@@ -1,4 +1,4 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,11 +17,11 @@ public class HalfRandomPointsGenerator implements PointsGenerator {
     }
 
     @Override
-    public List<Boolean> getPoints(NumberOfParticipants numberOfParticipants) {
-        List<Boolean> points = new ArrayList<>(numberOfParticipants.getPointsSize());
+    public List<Boolean> getPoints(int pointsSize) {
+        List<Boolean> points = new ArrayList<>(pointsSize);
         points.add(RANDOM.nextBoolean());
 
-        IntStream.range(1, numberOfParticipants.getPointsSize())
+        IntStream.range(1, pointsSize)
                 .forEach(index -> {
                     Boolean prevPoint = points.get(index - 1);
                     points.add(prevPoint ? false : RANDOM.nextBoolean());

@@ -1,5 +1,8 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.util.HalfRandomPointsGenerator;
+import nextstep.ladder.util.PointsGenerator;
+
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.stream.IntStream;
@@ -9,7 +12,7 @@ public class Line {
     private final List<Boolean> points;
 
     private Line(NumberOfParticipants numberOfParticipants, PointsGenerator pointsGenerator) {
-        points = pointsGenerator.getPoints(numberOfParticipants);
+        points = pointsGenerator.getPoints(numberOfParticipants.getPointsSize());
         validatePoints();
     }
 
