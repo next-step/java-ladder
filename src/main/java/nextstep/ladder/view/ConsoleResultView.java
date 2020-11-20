@@ -11,26 +11,31 @@ public class ConsoleResultView implements ResultView {
     private static final String EMPTY_POINT = "     ";
 
     @Override
-    public void printHeader() {
-        System.out.println("실행 결과" + System.lineSeparator());
+    public void printResult(Participants participants, Ladder ladder) {
+        StringBuilder resultBuilder = new StringBuilder();
+
+        appendHeader(resultBuilder);
+        appendParticipantNames(participants, resultBuilder);
+        appendLadder(ladder, resultBuilder);
+
+        System.out.println(resultBuilder.toString());
     }
 
-    @Override
-    public void printParticipants(Participants participants) {
-        StringBuilder namesBuilder = new StringBuilder();
-        participants.namesValueForEach(renderName(namesBuilder));
-        System.out.println(namesBuilder.toString());
+    private void appendLadder(Ladder ladder, StringBuilder resultBuilder) {
+        ladder.linesForEach(renderFirstPartOfLine(resultBuilder), renderPoint(resultBuilder), renderLadderStick(resultBuilder), renderLastPartOfLine(resultBuilder));
+    }
+
+    private void appendParticipantNames(Participants participants, StringBuilder resultBuilder) {
+        participants.namesValueForEach(renderName(resultBuilder));
+        resultBuilder.append(System.lineSeparator());
+    }
+
+    private void appendHeader(StringBuilder resultBuilder) {
+        resultBuilder.append("실행 결과").append(System.lineSeparator());
     }
 
     private Consumer<String> renderName(StringBuilder namesBuilder) {
         return (String name) -> namesBuilder.append(String.format("%6s", name));
-    }
-
-    @Override
-    public void printLadder(Ladder ladder) {
-        StringBuilder ladderBuilder = new StringBuilder();
-        ladder.linesForEach(renderFirstPartOfLine(ladderBuilder), renderPoint(ladderBuilder), renderLadderStick(ladderBuilder), renderLastPartOfLine(ladderBuilder));
-        System.out.println(ladderBuilder.toString());
     }
 
     private Runnable renderFirstPartOfLine(StringBuilder ladderBuilder) {
