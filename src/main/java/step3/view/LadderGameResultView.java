@@ -2,7 +2,9 @@ package step3.view;
 
 import step3.domain.ladder.Ladder;
 import step3.domain.ladder.LadderPlayers;
+import step3.domain.ladder.LadderResults;
 import step3.domain.ladder.Line;
+import step3.domain.ladder.dto.LadderDrawDTO;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,10 +14,25 @@ public class LadderGameResultView implements ResultView {
     public static final String VERTICAL_LINE = "|";
     public static final String HORIZON_LINE_MARKED = "-----";
     public static final String HORIZON_LINE_WHITE =  "     ";
+    public static final String LADDER_RESULT = "사다리 결과";
     private final StringBuilder sb;
 
     public LadderGameResultView() {
         sb = new StringBuilder();
+    }
+
+    @Override
+    public void draw(LadderDrawDTO drawDTO) {
+        System.out.println(LADDER_RESULT);
+
+        drawLadder(drawDTO.getLadderPlayers(), drawDTO.getLadder());
+        drawResult(drawDTO.getLadderResults());
+    }
+
+    private void drawResult(LadderResults ladderResults) {
+        clearStringBuilder();
+        System.out.println(ladderResults.toString());
+
     }
 
     @Override

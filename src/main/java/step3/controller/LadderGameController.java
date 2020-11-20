@@ -1,9 +1,9 @@
 package step3.controller;
 
-import step3.domain.ladder.Ladder;
-import step3.domain.ladder.LadderGame;
-import step3.domain.ladder.LadderPlayers;
+import step3.domain.ladder.*;
 import step3.domain.ladder.dto.LadderBuildDTO;
+import step3.domain.ladder.dto.LadderDrawDTO;
+import step3.domain.ladder.dto.LadderResultDTO;
 import step3.strategy.MakeLadderLineStrategy;
 import step3.view.ConsoleViewImpl;
 import step3.view.LadderGameInputView;
@@ -23,8 +23,25 @@ public class LadderGameController {
         Integer ladderHeight = view.getLadderHeight();
 
         LadderPlayers players = LadderGame.join(playerNames);
+
+        String ladderResultString = view.getLadderResult(players.count());
+        LadderResults ladderResults = LadderResults.of(ladderResultString);
+
         Ladder ladder = LadderGame.makeLadder(new LadderBuildDTO(players, ladderHeight), new MakeLadderLineStrategy());
 
-        view.drawLadder(players, ladder);
+        LadderDrawDTO ladderDrawDTO = new LadderDrawDTO.Builder()
+                .ladder(ladder)
+                .ladderPlayers(players)
+                .ladderResults(ladderResults)
+                .build();
+
+        view.draw(ladderDrawDTO);
+
+        String findPlayerName = view.findResultByPlayer(players);
+        Player picked = players.pick(findPlayerName);
+        Point resultPoint = LadderGame.play(picked, ladder);
+
+        /*LadderResultDTO resultDTO = ladderResults.resultByPoint(resultPoint.getX());
+        view.drawPlayResult(resultDTO);*/
     }
 }

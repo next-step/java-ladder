@@ -23,6 +23,14 @@ public class LadderPlayers {
                 .collect(collectingAndThen(Collectors.toList(), LadderPlayers::new));
     }
 
+    public String existsPlayer(String playerName) {
+        boolean is = players.contains(new Player(playerName, Point.defaultPoint));
+        if (!is) {
+            throw new NoSuchElementException(playerName + "는 참가하지 않았습니다.");
+        }
+        return playerName;
+    }
+
     public int count() {
         return players.size();
     }
