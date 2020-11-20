@@ -2,6 +2,7 @@ package nextstep.ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 public class Participants {
@@ -23,5 +24,11 @@ public class Participants {
 
     public List<Name> getNames() {
         return new ArrayList<>(names);
+    }
+
+    public void namesValueForEach(Consumer<String> consumer) {
+        names.stream()
+                .map(name -> name.value)
+                .forEach(consumer::accept);
     }
 }

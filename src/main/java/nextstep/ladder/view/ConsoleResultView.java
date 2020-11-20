@@ -1,17 +1,21 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Name;
 import nextstep.ladder.domain.Participants;
 
-import java.util.List;
 import java.util.function.Consumer;
-import java.util.stream.Collectors;
 
 public class ConsoleResultView implements ResultView {
     private static final String LADDER_STICK = "|";
     private static final String EXIST_POINT = "-----";
     private static final String EMPTY_POINT = "     ";
+
+    @Override
+    public void printParticipants(Participants participants) {
+        StringBuilder namesBuilder = new StringBuilder();
+        participants.namesValueForEach((String name) -> namesBuilder.append(String.format("%6s", name)));
+        System.out.println(namesBuilder.toString());
+    }
 
     @Override
     public void printLadder(Ladder ladder) {
@@ -34,13 +38,5 @@ public class ConsoleResultView implements ResultView {
 
     private Runnable renderLastPartOfLine(StringBuilder ladderBuilder) {
         return () -> ladderBuilder.append(System.lineSeparator());
-    }
-
-    public void printParticipants(Participants participants) {
-        List<Name> names = participants.getNames();
-        String joinedNames = names.stream()
-                .map(name -> String.format("%6s", name.value))
-                .collect(Collectors.joining());
-        System.out.println(joinedNames);
     }
 }
