@@ -16,27 +16,31 @@ public class ConsoleResultView implements ResultView {
     @Override
     public void printLadder(Ladder ladder) {
         StringBuilder ladderBuilder = new StringBuilder();
-        ladder.repeatAsHeight(renderPoint(ladderBuilder), renderLastPartOfLine(ladderBuilder));
+        ladder.repeatAsHeight(renderFirstPartOfLine(ladderBuilder), renderPoint(ladderBuilder), renderLastPartOfLine(ladderBuilder));
 
         System.out.println(ladderBuilder.toString());
     }
 
+    private Runnable renderFirstPartOfLine(StringBuilder ladderBuilder) {
+        return () -> ladderBuilder.append(EMPTY_POINT).append(LADDER_STICK);
+    }
+
     private Consumer<Boolean> renderPoint(StringBuilder ladderBuilder) {
         return point -> {
-            ladderBuilder.append(LADDER_STICK);
             ladderBuilder.append(point ? EXIST_POINT : EMPTY_POINT);
+            ladderBuilder.append(LADDER_STICK);
         };
     }
 
     private Runnable renderLastPartOfLine(StringBuilder ladderBuilder) {
-        return () -> ladderBuilder.append(LADDER_STICK).append(System.lineSeparator());
+        return () -> ladderBuilder.append(System.lineSeparator());
     }
 
     public void printParticipants(Participants participants) {
         List<Name> names = participants.getNames();
         String joinedNames = names.stream()
-                .map(name -> String.format("%5s", name.value))
-                .collect(Collectors.joining(" "));
+                .map(name -> String.format("%6s", name.value))
+                .collect(Collectors.joining());
         System.out.println(joinedNames);
     }
 }
