@@ -13,8 +13,12 @@ public class ConsoleResultView implements ResultView {
     @Override
     public void printParticipants(Participants participants) {
         StringBuilder namesBuilder = new StringBuilder();
-        participants.namesValueForEach((String name) -> namesBuilder.append(String.format("%6s", name)));
+        participants.namesValueForEach(renderName(namesBuilder));
         System.out.println(namesBuilder.toString());
+    }
+
+    private Consumer<String> renderName(StringBuilder namesBuilder) {
+        return (String name) -> namesBuilder.append(String.format("%6s", name));
     }
 
     @Override
