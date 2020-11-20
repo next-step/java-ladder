@@ -1,6 +1,7 @@
-package step3.ladder;
+package step3.domain.ladder;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -17,8 +18,8 @@ public class LadderPlayers {
     }
 
     public static LadderPlayers of(List<String> names) {
-        return names.stream()
-                .map(Player::new)
+        return IntStream.range(0, names.size())
+                .mapToObj(index-> Player.of(names.get(index), index))
                 .collect(collectingAndThen(Collectors.toList(), LadderPlayers::new));
     }
 
@@ -39,5 +40,13 @@ public class LadderPlayers {
                 .forEach(index -> inputBuilder.append(WHITE_SPACE));
 
         return inputBuilder.toString();
+    }
+
+    public Player pick(String name) {
+        Player sourcePlayer = new Player(name,Point.defaultPoint);
+        return players.stream()
+                .filter(sourcePlayer::equals)
+                .findFirst()
+                .orElseThrow(NoSuchElementException::new);
     }
 }

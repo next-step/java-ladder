@@ -1,8 +1,9 @@
-package step3.ladder;
+package step3.domain.ladder;
 
 import java.util.Objects;
 
 public class Point {
+    public static final Point defaultPoint = new Point(0, 0);
     private final Integer x;
     private final Integer y;
 
