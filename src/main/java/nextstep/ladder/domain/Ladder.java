@@ -19,9 +19,9 @@ public class Ladder {
         return new Ladder(participants, height);
     }
 
-    public void repeatAsHeight(Consumer<Boolean> renderPoints, Runnable renderLastPartOfLine) {
+    public void repeatAsHeight(Consumer<Boolean> renderPoint, Runnable renderLastPartOfLine) {
         lines.forEach(line -> {
-            line.repeatAsPoints(renderPoints);
+            line.repeatAsPoints(renderPoint);
             renderLastPartOfLine.run();
         });
     }

@@ -12,12 +12,12 @@ public class ConsoleResultView implements ResultView {
     @Override
     public void printLadder(Ladder ladder) {
         StringBuilder ladderBuilder = new StringBuilder();
-        ladder.repeatAsHeight(renderPoints(ladderBuilder), renderLastPartOfLine(ladderBuilder));
+        ladder.repeatAsHeight(renderPoint(ladderBuilder), renderLastPartOfLine(ladderBuilder));
 
         System.out.println(ladderBuilder.toString());
     }
 
-    private Consumer<Boolean> renderPoints(StringBuilder ladderBuilder) {
+    private Consumer<Boolean> renderPoint(StringBuilder ladderBuilder) {
         return point -> {
             ladderBuilder.append(LADDER_STICK);
             ladderBuilder.append(point ? EXIST_POINT : EMPTY_POINT);
