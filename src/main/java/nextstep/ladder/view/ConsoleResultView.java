@@ -20,8 +20,7 @@ public class ConsoleResultView implements ResultView {
     @Override
     public void printLadder(Ladder ladder) {
         StringBuilder ladderBuilder = new StringBuilder();
-        ladder.repeatAsHeight(renderFirstPartOfLine(ladderBuilder), renderPoint(ladderBuilder), renderLastPartOfLine(ladderBuilder));
-
+        ladder.linesForEach(renderFirstPartOfLine(ladderBuilder), renderPoint(ladderBuilder), renderLastPartOfLine(ladderBuilder));
         System.out.println(ladderBuilder.toString());
     }
 
