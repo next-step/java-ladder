@@ -3,24 +3,34 @@ package nextstep.ladder;
 import nextstep.ladder.domain.Height;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Participants;
-import nextstep.ladder.view.ConsoleInputView;
-import nextstep.ladder.view.ConsoleResultView;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
 import java.util.List;
 
 public class LadderGame {
-    public static void main(String[] args) {
-        InputView inputView = new ConsoleInputView();
-        List<String> inputNames = inputView.getParticipantNames();
-        Participants participants = Participants.from(inputNames);
+    private final InputView inputView;
+    private final ResultView resultView;
 
-        int inputHeight = inputView.getHeight();
-        Height height = Height.valueOf(inputHeight);
+    public LadderGame(InputView inputView, ResultView resultView) {
+        this.inputView = inputView;
+        this.resultView = resultView;
+    }
+
+    public void start() {
+        Participants participants = getParticipants();
+        Height height = getHeight();
         Ladder ladder = Ladder.of(participants, height);
+        resultView.printResult(participants, ladder);
+    }
 
-        ResultView consoleResultView = new ConsoleResultView();
-        consoleResultView.printResult(participants, ladder);
+    private Participants getParticipants() {
+        List<String> inputNames = inputView.getParticipantNames();
+        return Participants.from(inputNames);
+    }
+
+    private Height getHeight() {
+        int inputHeight = inputView.getHeight();
+        return Height.valueOf(inputHeight);
     }
 }
