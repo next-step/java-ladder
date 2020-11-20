@@ -24,10 +24,8 @@ class ModelMapper {
     }
 
     static Ladder getLadder(int sizeOfPerson) {
-        int height = RequestView.askLadderHeight()
-                .getHeight();
-        return new Ladder(
-                height,
+        return new Ladder(RequestView.askLadderHeight()
+                .getHeight(),
                 () -> new Line(sizeOfPerson, () -> random.nextBoolean())
         );
     }

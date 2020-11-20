@@ -7,7 +7,7 @@ enum Direction {
 
     private final int move;
 
-    private Direction(int move) {
+    Direction(int move) {
         this.move = move;
     }
 

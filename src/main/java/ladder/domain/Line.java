@@ -21,7 +21,10 @@ public class Line {
 
     // NOTE: 3단계를 대비하여 미리 만든 함수
     int move(int position) {
-        return points.get(position).move();
+        return Math.min(
+                points.size() - 1,
+                points.get(position).move()
+        );
     }
 
     @Override
