@@ -1,4 +1,4 @@
-package step3.ladder.dto;
+package step3.domain.ladder.dto;
 
 import java.util.Collections;
 import java.util.List;

@@ -1,6 +1,6 @@
-package step3.ladder.dto;
+package step3.domain.ladder.dto;
 
-import step3.ladder.LadderPlayers;
+import step3.domain.ladder.LadderPlayers;
 
 public class LadderBuildDTO {
 

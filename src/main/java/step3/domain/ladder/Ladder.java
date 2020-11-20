@@ -1,6 +1,6 @@
-package step3.ladder;
+package step3.domain.ladder;
 
-import step3.ladder.dto.LadderBuildDTO;
+import step3.domain.ladder.dto.LadderBuildDTO;
 import step3.strategy.MakeLineStrategy;
 
 import java.util.List;
@@ -15,7 +15,7 @@ public class Ladder {
 
     private final List<Line> ladder;
 
-    private Ladder(List<Line> ladder) {
+    public Ladder(List<Line> ladder) {
         this.ladder = ladder;
     }
 

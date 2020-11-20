@@ -1,6 +1,6 @@
-package step3.ladder;
+package step3.domain.ladder;
 
-import step3.ladder.dto.LinePointsDTO;
+import step3.domain.ladder.dto.LinePointsDTO;
 import step3.strategy.MakeLineStrategy;
 
 import java.util.List;

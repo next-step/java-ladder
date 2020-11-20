@@ -1,6 +1,6 @@
-package step3.ladder;
+package step3.domain.ladder;
 
-import step3.ladder.dto.LadderBuildDTO;
+import step3.domain.ladder.dto.LadderBuildDTO;
 import step3.strategy.MakeLineStrategy;
 
 import java.util.Arrays;
@@ -38,5 +38,9 @@ public class LadderGame {
 
     public static Ladder makeLadder(LadderBuildDTO buildDTO, MakeLineStrategy strategy) {
         return Ladder.of(buildDTO, strategy);
+    }
+
+    public static Point play(Player player, Ladder ladder) {
+        return null;
     }
 }

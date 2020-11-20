@@ -1,10 +1,10 @@
 package step3.view;
 
 import step3.exceptions.OutOfRangePlayerNameException;
-import step3.ladder.Ladder;
-import step3.ladder.LadderGame;
-import step3.ladder.LadderPlayers;
-import step3.ladder.Player;
+import step3.domain.ladder.Ladder;
+import step3.domain.ladder.LadderGame;
+import step3.domain.ladder.LadderPlayers;
+import step3.domain.ladder.Player;
 
 import java.util.NoSuchElementException;
 import java.util.Objects;
