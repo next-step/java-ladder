@@ -1,9 +1,7 @@
 package ladder.domain;
 
+import ladder.dto.response.PersonDto;
 import ladder.exception.BadNameException;
-
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Person {
     private static final int STANDARD_NAME_LENGTH = 5;
@@ -21,11 +19,7 @@ public class Person {
         }
     }
 
-    @Override
-    public String toString() {
-        String whitespaces = Stream.generate(() -> " ")
-                .limit(STANDARD_NAME_LENGTH - name.length())
-                .collect(Collectors.joining());
-        return whitespaces + name;
+    PersonDto getPersonDto() {
+        return new PersonDto(STANDARD_NAME_LENGTH, name);
     }
 }

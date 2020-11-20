@@ -1,9 +1,14 @@
 package ladder.domain;
 
+import ladder.dto.response.LineDto;
+
 import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
 
 public class Line {
     private final List<Point> points;
@@ -27,10 +32,9 @@ public class Line {
         );
     }
 
-    @Override
-    public String toString() {
+    LineDto getLineDto() {
         return points.stream()
-                .map(Point::toString)
-                .reduce("", String::concat);
+                .map(Point::getPointDto)
+                .collect(collectingAndThen(toList(), LineDto::new));
     }
 }

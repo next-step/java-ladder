@@ -26,16 +26,4 @@ class LineTest {
                         .isEqualTo(4)
         );
     }
-
-    @Test
-    @DisplayName("Line.toString 테스트")
-    void testToString() {
-        int sizeOfPerson = 5;
-        Assertions.assertAll(
-                () -> assertThat(new Line(sizeOfPerson, () -> false).toString())
-                        .isEqualTo("     |-----|     |-----|     |"),
-                () -> assertThat(new Line(sizeOfPerson, () -> true).toString())
-                        .isEqualTo("     |     |     |     |     |")
-        );
-    }
 }

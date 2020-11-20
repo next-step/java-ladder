@@ -1,22 +1,19 @@
 package ladder.dto.response;
 
-import ladder.domain.Ladder;
-import ladder.domain.Persons;
-
 public class LadderDto {
-    private final Persons persons;
-    private final Ladder ladder;
+    private final PersonsDto persons;
+    private final LinesDto lines;
 
-    public LadderDto(Persons persons, Ladder ladder) {
+    public LadderDto(PersonsDto persons, LinesDto lines) {
         this.persons = persons;
-        this.ladder = ladder;
+        this.lines = lines;
     }
 
-    public Persons getPersons() {
+    public PersonsDto getPersons() {
         return persons;
     }
 
-    public Ladder getLadder() {
-        return ladder;
+    public LinesDto getLines() {
+        return lines;
     }
 }

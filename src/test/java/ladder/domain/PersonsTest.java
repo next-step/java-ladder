@@ -23,11 +23,4 @@ class PersonsTest {
         assertThat(persons.getSize())
                 .isEqualTo(5);
     }
-
-    @Test
-    @DisplayName("사람 이름이 연속해서 출력되어야 한다.")
-    void testToString() {
-        assertThat(persons.toString())
-                .isEqualTo("     1    22   333  4444 55555");
-    }
 }

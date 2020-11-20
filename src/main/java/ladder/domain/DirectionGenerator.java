@@ -4,11 +4,9 @@ class DirectionGenerator {
     private Direction prevDirection = Direction.DOWN;
 
     Direction generateDirection(boolean isDown) {
-        Direction direction = prevDirection == Direction.RIGHT
-                ? Direction.LEFT
-                : isDown
-                ? Direction.DOWN
-                : Direction.RIGHT;
+        boolean isLeft = prevDirection == Direction.RIGHT;
+        Direction direction = isLeft ? Direction.LEFT :
+                isDown ? Direction.DOWN : Direction.RIGHT;
         prevDirection = direction;
         return direction;
     }

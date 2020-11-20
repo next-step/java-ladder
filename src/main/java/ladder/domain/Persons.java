@@ -1,6 +1,11 @@
 package ladder.domain;
 
+import ladder.dto.response.PersonsDto;
+
 import java.util.List;
+
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
 
 public class Persons {
     private final List<Person> persons;
@@ -13,10 +18,9 @@ public class Persons {
         return persons.size();
     }
 
-    @Override
-    public String toString() {
+    public PersonsDto getPersonsDto() {
         return persons.stream()
-                .map(person -> " " + person.toString())
-                .reduce("", String::concat);
+                .map(Person::getPersonDto)
+                .collect(collectingAndThen(toList(), PersonsDto::new));
     }
 }

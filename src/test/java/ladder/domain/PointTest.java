@@ -21,18 +21,4 @@ class PointTest {
                         .isEqualTo(6)
         );
     }
-
-    @Test
-    @DisplayName("LEFT 인 경우에만 -----| 출력")
-    void testToString() {
-        int index = 5;
-        Assertions.assertAll(
-                () -> assertThat(new Point(index, Direction.LEFT).toString())
-                        .isEqualTo("-----|"),
-                () -> assertThat(new Point(index, Direction.DOWN).toString())
-                        .isEqualTo("     |"),
-                () -> assertThat(new Point(index, Direction.RIGHT).toString())
-                        .isEqualTo("     |")
-        );
-    }
 }

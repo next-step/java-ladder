@@ -7,7 +7,9 @@ import ladder.domain.Persons;
 import ladder.view.RequestView;
 
 import java.util.Random;
-import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
 
 class ModelMapper {
     private static final Random random = new Random();
@@ -15,12 +17,11 @@ class ModelMapper {
     private ModelMapper() {}
 
     static Persons getPersons() {
-        return new Persons(RequestView.askPersons()
+        return RequestView.askPersons()
                 .getPersons()
                 .stream()
-                .map(person -> new Person(person))
-                .collect(Collectors.toList())
-        );
+                .map(Person::new)
+                .collect(collectingAndThen(toList(), Persons::new));
     }
 
     static Ladder getLadder(int sizeOfPerson) {

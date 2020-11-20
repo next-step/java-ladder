@@ -1,10 +1,12 @@
 package ladder.domain;
 
-public class Point {
+import ladder.dto.response.PointDto;
+
+class Point {
     private final int index;
     private final Direction direction;
 
-    public Point(int index, Direction direction) {
+    Point(int index, Direction direction) {
         this.index = index;
         this.direction = direction;
     }
@@ -17,10 +19,7 @@ public class Point {
         return direction == Direction.LEFT;
     }
 
-    @Override
-    public String toString() {
-        return isLeft()
-                ? "-----|"
-                : "     |";
+    PointDto getPointDto() {
+        return new PointDto(isLeft());
     }
 }
