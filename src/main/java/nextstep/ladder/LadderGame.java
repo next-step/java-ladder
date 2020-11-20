@@ -1,5 +1,8 @@
 package nextstep.ladder;
 
+import nextstep.ladder.domain.Height;
+import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.Participants;
 import nextstep.ladder.view.ConsoleResultView;
 
 import java.util.Arrays;

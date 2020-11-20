@@ -1,5 +1,7 @@
 package nextstep.ladder;
 
+import nextstep.ladder.domain.Line;
+
 import java.util.function.Consumer;
 
 public class LineRenderer {

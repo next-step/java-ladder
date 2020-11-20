@@ -1,6 +1,6 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.Ladder;
+import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.LineRenderer;
 
 import java.util.function.Consumer;
