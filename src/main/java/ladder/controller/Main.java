@@ -9,9 +9,9 @@ public class Main {
 
     public static void main(String[] args) {
         Persons persons = ModelMapper.getPersons();
-        Ladder ladder = ModelMapper.getLadder();
+        Ladder ladder = ModelMapper.getLadder(persons.getSize());
 
-        LadderDto ladderDto = new LadderDto(persons);
+        LadderDto ladderDto = new LadderDto(persons, ladder);
         ResponseView.printLadder(ladderDto);
     }
 }

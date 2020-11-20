@@ -9,6 +9,10 @@ public class Persons {
         this.persons = persons;
     }
 
+    public int getSize() {
+        return persons.size();
+    }
+
     @Override
     public String toString() {
         return persons.stream()

@@ -17,6 +17,7 @@ public class LadderPrintable extends Printable {
         sb.append(System.lineSeparator());
         sb.append(System.lineSeparator());
         sb.append(dto.getPersons());
+        sb.append(dto.getLadder());
         println(sb);
     }
 }
