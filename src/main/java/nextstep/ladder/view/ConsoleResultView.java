@@ -11,6 +11,11 @@ public class ConsoleResultView implements ResultView {
     private static final String EMPTY_POINT = "     ";
 
     @Override
+    public void printHeader() {
+        System.out.println("실행 결과" + System.lineSeparator());
+    }
+
+    @Override
     public void printParticipants(Participants participants) {
         StringBuilder namesBuilder = new StringBuilder();
         participants.namesValueForEach(renderName(namesBuilder));
