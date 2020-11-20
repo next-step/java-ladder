@@ -22,7 +22,7 @@ public class Ladder {
     public void linesForEach(Runnable renderFirstPartOfLine, Consumer<Boolean> renderPoint, Runnable renderLastPartOfLine) {
         lines.forEach(line -> {
             renderFirstPartOfLine.run();
-            line.repeatAsPoints(renderPoint);
+            line.pointsForEach(renderPoint);
             renderLastPartOfLine.run();
         });
     }
