@@ -18,4 +18,19 @@ public class Name {
             throw new IllegalArgumentException(INVALID_NAME_LENGTH_ERR_MSG);
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Name)) return false;
+
+        Name name = (Name) o;
+
+        return value.equals(name.value);
+    }
+
+    @Override
+    public int hashCode() {
+        return value.hashCode();
+    }
 }

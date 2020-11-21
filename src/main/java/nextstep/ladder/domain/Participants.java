@@ -1,19 +1,27 @@
 package nextstep.ladder.domain;
 
-import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 public class Participants {
-    private final List<Name> names;
+    public static final String DUPLICATE_NAME_EXIST_ERR_MSG = "중복된 이름은 사용 할 수 없습니다.";
+    private final LinkedHashSet<Name> names;
     private final NumberOfParticipants numberOfParticipants;
 
-    private Participants(List<String> names) {
-        this.names = names.stream()
+    private Participants(List<String> inputNames) {
+        this.names = inputNames.stream()
                 .map(Name::valueOf)
-                .collect(Collectors.toList());
-        numberOfParticipants = NumberOfParticipants.valueOf(names.size());
+                .collect(Collectors.toCollection(LinkedHashSet::new));
+        numberOfParticipants = NumberOfParticipants.valueOf(inputNames.size());
+        validateDuplication(inputNames);
+    }
+
+    private void validateDuplication(List<String> inputNames) {
+        if (names.size() != inputNames.size()) {
+            throw new IllegalStateException(DUPLICATE_NAME_EXIST_ERR_MSG);
+        }
     }
 
     public static Participants from(List<String> names) {
@@ -22,10 +30,6 @@ public class Participants {
 
     public NumberOfParticipants getNumberOfParticipants() {
         return numberOfParticipants;
-    }
-
-    public List<Name> getNames() {
-        return new ArrayList<>(names);
     }
 
     public void namesValueForEach(Consumer<String> consumer) {
