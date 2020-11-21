@@ -1,9 +1,18 @@
 package ladder.view.printable;
 
-import ladder.dto.response.*;
+import ladder.dto.PersonDto;
+import ladder.dto.PersonsDto;
+import ladder.dto.ResultDto;
+import ladder.dto.ResultsDto;
+import ladder.dto.response.LadderDto;
+import ladder.dto.response.LineDto;
+import ladder.dto.response.LinesDto;
+import ladder.dto.response.PointDto;
 
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import static ladder.asset.LadderConst.STANDARD_LENGTH;
 
 public class LadderPrintable extends Printable {
     private final LadderDto dto;
@@ -16,26 +25,25 @@ public class LadderPrintable extends Printable {
     public void print() {
         StringBuilder sb = new StringBuilder();
         sb.append(System.lineSeparator());
-        sb.append("실행결과");
+        sb.append("사다리 결과");
         sb.append(System.lineSeparator());
         sb.append(System.lineSeparator());
         sb.append(toString(dto.getPersons()));
         sb.append(toString(dto.getLines()));
+        sb.append(System.lineSeparator());
+        sb.append(toString(dto.getResults()));
         println(sb);
     }
 
     private String toString(PersonsDto dto) {
         return dto.getPersons().stream()
-                .map(person -> " " + toString(person))
+                .map(person -> toString(person))
                 .reduce("", String::concat);
     }
 
     private String toString(PersonDto dto) {
         String name = dto.getName();
-        String whitespaces = Stream.generate(() -> " ")
-                .limit(dto.getStandardLength() - name.length())
-                .collect(Collectors.joining());
-        return whitespaces + name;
+        return addWhiteSpaces(name);
     }
 
     private String toString(LinesDto dto) {
@@ -55,5 +63,21 @@ public class LadderPrintable extends Printable {
                 ? "-----|"
                 : "     |";
     }
-}
 
+    private String toString(ResultsDto dto) {
+        return dto.getResults().stream()
+                .map(result -> toString(result))
+                .reduce("", String::concat);
+    }
+
+    private String toString(ResultDto dto) {
+        return addWhiteSpaces(dto.getResult());
+    }
+
+    private String addWhiteSpaces(String str) {
+        String whitespaces = Stream.generate(() -> " ")
+                .limit(STANDARD_LENGTH - str.length() + 1)
+                .collect(Collectors.joining());
+        return whitespaces + str;
+    }
+}

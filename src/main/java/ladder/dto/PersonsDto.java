@@ -1,4 +1,4 @@
-package ladder.dto.response;
+package ladder.dto;
 
 import java.util.List;
 

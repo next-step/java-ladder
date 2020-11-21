@@ -19,6 +19,11 @@ public class Ladder {
                 .collect(Collectors.toList());
     }
 
+    public int move(int position) {
+        return lines.stream()
+                .reduce(position, (acc, line) -> line.move(acc), Integer::sum);
+    }
+
     public LinesDto getLinesDto() {
         return lines.stream()
                 .map(Line::getLineDto)

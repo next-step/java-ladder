@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.dto.response.PersonsDto;
+import ladder.dto.PersonsDto;
 
 import java.util.List;
 

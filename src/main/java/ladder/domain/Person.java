@@ -1,11 +1,11 @@
 package ladder.domain;
 
-import ladder.dto.response.PersonDto;
+import ladder.dto.PersonDto;
 import ladder.exception.BadNameException;
 
-public class Person {
-    private static final int STANDARD_NAME_LENGTH = 5;
+import static ladder.asset.LadderConst.STANDARD_LENGTH;
 
+public class Person {
     private final String name;
 
     public Person(String name) {
@@ -14,12 +14,12 @@ public class Person {
     }
 
     private void validate() {
-        if (name.length() > STANDARD_NAME_LENGTH) {
+        if (name.length() > STANDARD_LENGTH) {
             throw BadNameException.getInstance();
         }
     }
 
     PersonDto getPersonDto() {
-        return new PersonDto(STANDARD_NAME_LENGTH, name);
+        return new PersonDto(name);
     }
 }

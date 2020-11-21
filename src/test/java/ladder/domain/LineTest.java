@@ -11,8 +11,8 @@ class LineTest {
     @Test
     @DisplayName("라인의 Direction 을 따라 position 이 움직여야 한다.")
     void move() {
-        int sizeOfPerson = 5;
-        Line line = new Line(sizeOfPerson, () -> false);
+        int sizeOfPersons = 5;
+        Line line = new Line(sizeOfPersons, () -> false);
         Assertions.assertAll(
                 () -> assertThat(line.move(0))
                         .isEqualTo(1),

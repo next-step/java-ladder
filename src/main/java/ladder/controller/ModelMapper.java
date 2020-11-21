@@ -1,9 +1,8 @@
 package ladder.controller;
 
-import ladder.domain.Ladder;
-import ladder.domain.Line;
-import ladder.domain.Person;
-import ladder.domain.Persons;
+import ladder.domain.*;
+import ladder.dto.PersonDto;
+import ladder.dto.ResultDto;
 import ladder.view.RequestView;
 
 import java.util.Random;
@@ -16,18 +15,33 @@ class ModelMapper {
 
     private ModelMapper() {}
 
+    static Person getPerson() {
+        return new Person(RequestView.askPerson()
+                .getName());
+    }
+
     static Persons getPersons() {
         return RequestView.askPersons()
                 .getPersons()
                 .stream()
+                .map(PersonDto::getName)
                 .map(Person::new)
                 .collect(collectingAndThen(toList(), Persons::new));
     }
 
-    static Ladder getLadder(int sizeOfPerson) {
+    static Ladder getLadder(int sizeOfPersons) {
         return new Ladder(RequestView.askLadderHeight()
                 .getHeight(),
-                () -> new Line(sizeOfPerson, () -> random.nextBoolean())
+                () -> new Line(sizeOfPersons, () -> random.nextBoolean())
         );
+    }
+
+    static Results getValidatedResults(int sizeOfPersons) {
+        return RequestView.askResults()
+                .getResults()
+                .stream()
+                .map(ResultDto::getResult)
+                .map(Result::new)
+                .collect(collectingAndThen(toList(), (result) -> new ValidatedResults(sizeOfPersons, result)));
     }
 }

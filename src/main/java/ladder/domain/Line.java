@@ -13,9 +13,9 @@ import static java.util.stream.Collectors.toList;
 public class Line {
     private final List<Point> points;
 
-    public Line(int sizeOfPerson, Supplier<Boolean> supplier) {
+    public Line(int sizeOfPersons, Supplier<Boolean> supplier) {
         DirectionGenerator generator = new DirectionGenerator();
-        points = IntStream.range(0, sizeOfPerson)
+        points = IntStream.range(0, sizeOfPersons)
                 .mapToObj(position -> new Point(
                         position,
                         generator.generateDirection(
@@ -24,7 +24,6 @@ public class Line {
                 )).collect(Collectors.toList());
     }
 
-    // NOTE: 3단계를 대비하여 미리 만든 함수
     int move(int position) {
         return Math.min(
                 points.size() - 1,
