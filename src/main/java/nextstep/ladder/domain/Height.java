@@ -2,7 +2,7 @@ package nextstep.ladder.domain;
 
 public class Height {
     public static final String INVALID_HEIGHT_VALUE_ERR_MSG = "사다리의 높이는 1이상이어야 합니다.";
-    public static final int MIN_AVAILABLE_HEIGHT_VALUE = 1;
+    private static final int MIN_AVAILABLE_HEIGHT_VALUE = 1;
     public final int value;
 
     private Height(int value) {
