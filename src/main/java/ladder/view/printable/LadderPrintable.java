@@ -35,26 +35,16 @@ public class LadderPrintable extends Printable {
         println(sb);
     }
 
-    private String toString(PersonsDto dto) {
-        return dto.getPersons().stream()
-                .map(person -> toString(person))
-                .reduce("", String::concat);
-    }
-
-    private String toString(PersonDto dto) {
-        String name = dto.getName();
-        return addWhiteSpaces(name);
-    }
-
     private String toString(LinesDto dto) {
         return dto.getLines().stream()
-                .map(line -> System.lineSeparator() + toString(line))
+                .map(this::toString)
+                .map(line -> System.lineSeparator() + line)
                 .reduce("", String::concat);
     }
 
     private String toString(LineDto dto) {
         return dto.getPoints().stream()
-                .map(point -> toString(point))
+                .map(this::toString)
                 .reduce("", String::concat);
     }
 
@@ -64,14 +54,18 @@ public class LadderPrintable extends Printable {
                 : "     |";
     }
 
-    private String toString(ResultsDto dto) {
-        return dto.getResults().stream()
-                .map(result -> toString(result))
+    private String toString(PersonsDto dto) {
+        return dto.getPersons().stream()
+                .map(PersonDto::getName)
+                .map(this::addWhiteSpaces)
                 .reduce("", String::concat);
     }
 
-    private String toString(ResultDto dto) {
-        return addWhiteSpaces(dto.getResult());
+    private String toString(ResultsDto dto) {
+        return dto.getResults().stream()
+                .map(ResultDto::getResult)
+                .map(this::addWhiteSpaces)
+                .reduce("", String::concat);
     }
 
     private String addWhiteSpaces(String str) {

@@ -42,6 +42,6 @@ class ModelMapper {
                 .stream()
                 .map(ResultDto::getResult)
                 .map(Result::new)
-                .collect(collectingAndThen(toList(), (result) -> new ValidatedResults(sizeOfPersons, result)));
+                .collect(collectingAndThen(toList(), result -> new ValidatedResults(sizeOfPersons, result)));
     }
 }
