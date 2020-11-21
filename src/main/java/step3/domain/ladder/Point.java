@@ -1,5 +1,7 @@
 package step3.domain.ladder;
 
+import step3.exceptions.OutOfRangePositionException;
+
 import java.util.Objects;
 
 public class Point {
@@ -32,5 +34,21 @@ public class Point {
     @Override
     public int hashCode() {
         return Objects.hash(x, y);
+    }
+
+    public Point leftMove() {
+        if (x <= 0) {
+            throw new OutOfRangePositionException();
+        }
+
+        return new Point(x-1, y+1);
+    }
+
+    public Point rightMove() {
+        return new Point(x+1, y+1);
+    }
+
+    public Point downMove() {
+        return new Point(x, y+1);
     }
 }
