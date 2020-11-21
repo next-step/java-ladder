@@ -6,6 +6,7 @@ import step3.strategy.MakeLineStrategy;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.Stack;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -40,5 +41,14 @@ public class Ladder {
         if (lineHeight <= 0) {
             throw new IllegalArgumentException(ERROR_INVALID_LADDER_HEIGHT);
         }
+    }
+
+    public Point start(Point startPosition) {
+        Stack<Point> current = new Stack<Point>() {{
+            push(startPosition);
+        }};
+        ladder.forEach(line -> current.push(line.nextPosition(current.pop())));
+
+        return current.pop();
     }
 }

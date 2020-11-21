@@ -1,6 +1,9 @@
 package step3.domain.ladder;
 
 import step3.domain.ladder.dto.LadderBuildDTO;
+import step3.domain.ladder.dto.LadderGameInformationDTO;
+import step3.domain.ladder.dto.LadderResultDTO;
+import step3.domain.ladder.dto.PlayerWinningInfo;
 import step3.strategy.MakeLineStrategy;
 
 import java.util.Arrays;
@@ -15,7 +18,7 @@ public class LadderGame {
     public static final String DELIMITER = ",";
     public static final String SPACE = "";
 
-    private LadderGame() {}
+    private LadderGame() { }
 
     public static LadderPlayers join(String input) {
         isValid(input);
@@ -41,6 +44,23 @@ public class LadderGame {
     }
 
     public static Point play(Player player, Ladder ladder) {
-        return null;
+        return ladder.start(player.getPosition());
+    }
+
+    public static LadderGameResults playAll(LadderGameInformationDTO gameDTO) {
+
+        return gameDTO.getPlayers()
+                .stream()
+                .map(player -> {
+                    Point resultPoint = play(player, gameDTO.getLadder());
+                    LadderResultDTO ladderResultDTO = gameDTO.getLadderResults().resultByPoint(resultPoint.getX());
+                    return new PlayerWinningInfo.Builder()
+                            .player(player)
+                            .point(resultPoint)
+                            .winningResult(ladderResultDTO.getResult())
+                            .build();
+                })
+                .collect(Collectors.collectingAndThen(Collectors.toList(), LadderGameResults::new));
+
     }
 }
