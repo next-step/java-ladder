@@ -13,6 +13,7 @@ public class ParticipantsTest {
     @DisplayName("중복된 참가자 이름은을 사용 한 경우 throw Exception")
     void duplicateNameTest() {
         assertThatExceptionOfType(IllegalStateException.class)
-                .isThrownBy(() -> Participants.from(Arrays.asList("name1", "name1", "name2")));
+                .isThrownBy(() -> Participants.from(Arrays.asList("name1", "name1", "name2")))
+                .withMessage(Participants.DUPLICATE_NAME_EXIST_ERR_MSG);
     }
 }
