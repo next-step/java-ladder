@@ -7,11 +7,13 @@ import java.util.stream.Collectors;
 
 public class Participants {
     private final List<Name> names;
+    private final NumberOfParticipants numberOfParticipants;
 
     private Participants(List<String> names) {
         this.names = names.stream()
                 .map(Name::valueOf)
                 .collect(Collectors.toList());
+        numberOfParticipants = NumberOfParticipants.valueOf(names.size());
     }
 
     public static Participants from(List<String> names) {
@@ -19,7 +21,7 @@ public class Participants {
     }
 
     public NumberOfParticipants getNumberOfParticipants() {
-        return NumberOfParticipants.valueOf(names.size());
+        return numberOfParticipants;
     }
 
     public List<Name> getNames() {
@@ -29,6 +31,6 @@ public class Participants {
     public void namesValueForEach(Consumer<String> consumer) {
         names.stream()
                 .map(name -> name.value)
-                .forEach(consumer::accept);
+                .forEach(consumer);
     }
 }
