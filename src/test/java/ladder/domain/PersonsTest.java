@@ -1,7 +1,7 @@
 package ladder.domain;
 
 import ladder.dto.PersonDto;
-import ladder.exception.NotExistPersonException;
+import ladder.exception.PersonNotFoundException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -45,9 +45,9 @@ class PersonsTest {
     }
 
     @Test
-    @DisplayName("존재하지 않는 사람을 입력할 경우, NotExistPersonException 이 발생한다.")
-    void getPosition_NotExistPerson() {
-        assertThatExceptionOfType(NotExistPersonException.class)
+    @DisplayName("존재하지 않는 사람을 입력할 경우, PersonNotFoundException 이 발생한다.")
+    void getPosition_PersonNotFound() {
+        assertThatExceptionOfType(PersonNotFoundException.class)
                 .isThrownBy(() -> persons.getPosition(new Person("zero")));
     }
 
