@@ -13,7 +13,4 @@ public class LadderResultDTO {
         return result;
     }
 
-    public int getPosition() {
-        return position;
-    }
 }

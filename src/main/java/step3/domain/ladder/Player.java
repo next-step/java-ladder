@@ -32,8 +32,8 @@ public class Player {
         return name;
     }
 
-    public Integer getPosition() {
-        return point.getX();
+    public Point getPosition() {
+        return point;
     }
 
     @Override
