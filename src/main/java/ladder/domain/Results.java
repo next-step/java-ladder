@@ -17,7 +17,7 @@ public class Results {
         this.results = results;
     }
 
-    public int getSize() {
+    int size() {
         return results.size();
     }
 
@@ -33,7 +33,7 @@ public class Results {
     }
 
     public ResultsDto exportMovedResultsDto(Function<Integer, Integer> move) {
-        return IntStream.range(0, getSize())
+        return IntStream.range(0, size())
                 .boxed()
                 .map(move)
                 .map(this::exportResultDto)

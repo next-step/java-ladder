@@ -12,7 +12,7 @@ public class Main {
 
     public static void main(String[] args) {
         Persons persons = ModelMapper.getPersons();
-        int sizeOfPersons = persons.getSize();
+        int sizeOfPersons = persons.size();
         Results results = ModelMapper.getValidatedResults(sizeOfPersons);
         Ladder ladder = ModelMapper.getLadder(sizeOfPersons);
 

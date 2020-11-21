@@ -30,8 +30,8 @@ class PersonsTest {
 
     @Test
     @DisplayName("Persons 의 사이즈가 정상적으로 받아져야 한다.")
-    void getSize() {
-        assertThat(persons.getSize())
+    void size() {
+        assertThat(persons.size())
                 .isEqualTo(5);
     }
 

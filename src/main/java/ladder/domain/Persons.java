@@ -15,7 +15,7 @@ public class Persons {
         this.persons = persons;
     }
 
-    public int getSize() {
+    public int size() {
         return persons.size();
     }
 
