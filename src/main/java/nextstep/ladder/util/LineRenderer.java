@@ -40,6 +40,10 @@ public class LineRenderer {
         private Runnable ladderStick;
         private Runnable lastPartOfLine;
 
+        private Builder() {
+
+        }
+
         public Builder firstPartOfLine(Runnable firstPartOfLine) {
             this.firstPartOfLine = firstPartOfLine;
             return this;
