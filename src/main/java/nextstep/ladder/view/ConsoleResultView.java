@@ -2,7 +2,7 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Participants;
-import nextstep.ladder.util.LadderRenderer;
+import nextstep.ladder.util.LineRenderer;
 
 import java.util.function.Consumer;
 
@@ -37,13 +37,13 @@ public class ConsoleResultView implements ResultView {
     }
 
     private void appendLadder(Ladder ladder, StringBuilder resultBuilder) {
-        LadderRenderer ladderRenderer = LadderRenderer.builder()
+        LineRenderer lineRenderer = LineRenderer.builder()
                 .firstPartOfLine(() -> resultBuilder.append(EMPTY_POINT).append(LADDER_STICK))
                 .point(point -> resultBuilder.append(point ? EXIST_POINT : EMPTY_POINT))
                 .ladderStick(() -> resultBuilder.append(LADDER_STICK))
                 .lastPartOfLine(() -> resultBuilder.append(System.lineSeparator()))
                 .build();
 
-        ladder.linesForEach(ladderRenderer);
+        ladder.linesForEach(lineRenderer);
     }
 }

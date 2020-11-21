@@ -2,13 +2,13 @@ package nextstep.ladder.util;
 
 import java.util.function.Consumer;
 
-public class LadderRenderer {
+public class LineRenderer {
     private final Runnable firstPartOfLine;
     private final Consumer<Boolean> point;
     private final Runnable ladderStick;
     private final Runnable lastPartOfLine;
 
-    private LadderRenderer(Builder builder) {
+    private LineRenderer(Builder builder) {
         firstPartOfLine = builder.firstPartOfLine;
         point = builder.point;
         ladderStick = builder.ladderStick;
@@ -27,7 +27,7 @@ public class LadderRenderer {
         lastPartOfLine.run();
     }
 
-    public Consumer<Boolean> renderLine() {
+    public Consumer<Boolean> renderPoint() {
         return point -> {
             this.point.accept(point);
             ladderStick.run();
@@ -60,8 +60,8 @@ public class LadderRenderer {
             return this;
         }
 
-        public LadderRenderer build() {
-            return new LadderRenderer(this);
+        public LineRenderer build() {
+            return new LineRenderer(this);
         }
     }
 }

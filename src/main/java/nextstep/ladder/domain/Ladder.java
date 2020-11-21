@@ -1,6 +1,6 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.util.LadderRenderer;
+import nextstep.ladder.util.LineRenderer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,11 +20,11 @@ public class Ladder {
         return new Ladder(participants, height);
     }
 
-    public void linesForEach(LadderRenderer ladderRenderer) {
+    public void linesForEach(LineRenderer lineRenderer) {
         lines.forEach(line -> {
-            ladderRenderer.renderFirstPartOfLine();
-            line.pointsForEach(ladderRenderer.renderLine());
-            ladderRenderer.renderLastPartOfLine();
+            lineRenderer.renderFirstPartOfLine();
+            line.pointsForEach(lineRenderer.renderPoint());
+            lineRenderer.renderLastPartOfLine();
         });
     }
 }

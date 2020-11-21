@@ -45,7 +45,7 @@ public class Line {
         return points.size();
     }
 
-    public void pointsForEach(Consumer<Boolean> renderLine) {
-        points.forEach(renderLine::accept);
+    public void pointsForEach(Consumer<Boolean> renderPoint) {
+        points.forEach(renderPoint);
     }
 }
