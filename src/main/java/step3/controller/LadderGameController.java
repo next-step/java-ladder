@@ -4,6 +4,7 @@ import step3.domain.ladder.*;
 import step3.domain.ladder.dto.LadderBuildDTO;
 import step3.domain.ladder.dto.LadderDrawDTO;
 import step3.domain.ladder.dto.LadderResultDTO;
+import step3.domain.ladder.dto.PlayerWinningInfo;
 import step3.strategy.MakeLadderLineStrategy;
 import step3.view.ConsoleViewImpl;
 import step3.view.LadderGameInputView;
@@ -11,6 +12,8 @@ import step3.view.LadderGameResultView;
 import step3.view.View;
 
 public class LadderGameController {
+    public static final String ALL = "ALL";
+    public static final String END = "end";
     private final View view;
 
     public LadderGameController(LadderGameInputView ladderGameInputView,
@@ -20,9 +23,9 @@ public class LadderGameController {
 
     public void play() {
         String playerNames = view.getPlayerNames();
-        Integer ladderHeight = view.getLadderHeight();
-
         LadderPlayers players = LadderGame.join(playerNames);
+
+        Integer ladderHeight = view.getLadderHeight();
 
         String ladderResultString = view.getLadderResult(players.count());
         LadderResults ladderResults = LadderResults.of(ladderResultString);
@@ -37,11 +40,33 @@ public class LadderGameController {
 
         view.draw(ladderDrawDTO);
 
-        String findPlayerName = view.findResultByPlayer(players);
-        Player picked = players.pick(findPlayerName);
-        Point resultPoint = LadderGame.play(picked, ladder);
+        LadderGameResults playResults = LadderGame.playAll(players.buildDTO(ladder, ladderResults));
 
-        /*LadderResultDTO resultDTO = ladderResults.resultByPoint(resultPoint.getX());
-        view.drawPlayResult(resultDTO);*/
+        processFromPlayerName(players, playResults);
+    }
+
+    private void processFromPlayerName(LadderPlayers players, LadderGameResults playResults) {
+        while (true) {
+            String findPlayerName = view.findResultByPlayer(players);
+
+            if (isAll(playResults, findPlayerName) || isEnd(findPlayerName)) break;
+
+            Player picked = players.pick(findPlayerName);
+            PlayerWinningInfo resultByPlayer = playResults.findResultByPlayer(picked);
+
+            view.drawPlayResult(resultByPlayer);
+        }
+    }
+
+    private boolean isEnd(String findPlayerName) {
+        return findPlayerName.equalsIgnoreCase(END);
+    }
+
+    private boolean isAll(LadderGameResults playResults, String findPlayerName) {
+        if (findPlayerName.equalsIgnoreCase(ALL)) {
+            view.drawPlayResultAll(playResults);
+            return true;
+        }
+        return false;
     }
 }

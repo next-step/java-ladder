@@ -1,10 +1,8 @@
 package step3.view;
 
-import step3.domain.ladder.Ladder;
-import step3.domain.ladder.LadderPlayers;
-import step3.domain.ladder.LadderResults;
-import step3.domain.ladder.Line;
+import step3.domain.ladder.*;
 import step3.domain.ladder.dto.LadderDrawDTO;
+import step3.domain.ladder.dto.PlayerWinningInfo;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -40,6 +38,23 @@ public class LadderGameResultView implements ResultView {
         clearStringBuilder();
         append(players.toString());
         ladder.forEach(this::drawLine);
+
+        System.out.println(sb.toString());
+    }
+
+    @Override
+    public void drawPlayResult(PlayerWinningInfo playerWinningInfo) {
+        System.out.println(playerWinningInfo.getWinningResult());
+    }
+
+    @Override
+    public void drawPlayResultAll(LadderGameResults playResults) {
+        clearStringBuilder();
+        playResults.forEach(playerWinningInfo ->
+                append(String.format("%s: %s",
+                playerWinningInfo.getPlayer().getName(),
+                playerWinningInfo.getWinningResult()
+                )));
 
         System.out.println(sb.toString());
     }
