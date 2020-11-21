@@ -28,8 +28,8 @@ public class LineRenderer {
     }
 
     public Consumer<Boolean> renderPoint() {
-        return point -> {
-            this.point.accept(point);
+        return pointValue -> {
+            this.point.accept(pointValue);
             ladderStick.run();
         };
     }
