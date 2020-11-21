@@ -15,9 +15,9 @@ public class Main {
         Ladder ladder = ModelMapper.getLadder(sizeOfPersons);
 
         LadderDto ladderDto = new LadderDto(
-                persons.getPersonsDto(),
-                results.getResultsDto(),
-                ladder.getLinesDto()
+                persons.exportPersonsDto(),
+                results.exportResultsDto(),
+                ladder.exportLinesDto()
         );
         ResponseView.printLadder(ladderDto);
 

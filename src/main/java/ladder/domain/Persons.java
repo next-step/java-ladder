@@ -18,9 +18,9 @@ public class Persons {
         return persons.size();
     }
 
-    public PersonsDto getPersonsDto() {
+    public PersonsDto exportPersonsDto() {
         return persons.stream()
-                .map(Person::getPersonDto)
+                .map(Person::exportPersonDto)
                 .collect(collectingAndThen(toList(), PersonsDto::new));
     }
 }

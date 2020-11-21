@@ -23,7 +23,7 @@ public class Result {
         }
     }
 
-    ResultDto getResultDto() {
+    ResultDto exportResultDto() {
         return new ResultDto(result);
     }
 }

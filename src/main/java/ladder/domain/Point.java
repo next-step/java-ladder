@@ -19,7 +19,7 @@ class Point {
         return direction == Direction.LEFT;
     }
 
-    PointDto getPointDto() {
+    PointDto exportPointDto() {
         return new PointDto(isLeft());
     }
 }

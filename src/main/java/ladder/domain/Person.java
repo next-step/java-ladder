@@ -19,7 +19,7 @@ public class Person {
         }
     }
 
-    PersonDto getPersonDto() {
+    PersonDto exportPersonDto() {
         return new PersonDto(name);
     }
 }

@@ -24,9 +24,9 @@ public class Ladder {
                 .reduce(position, (acc, line) -> line.move(acc), Integer::sum);
     }
 
-    public LinesDto getLinesDto() {
+    public LinesDto exportLinesDto() {
         return lines.stream()
-                .map(Line::getLineDto)
+                .map(Line::exportLineDto)
                 .collect(collectingAndThen(toList(), LinesDto::new));
     }
 }

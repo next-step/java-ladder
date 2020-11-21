@@ -18,9 +18,9 @@ public class Results {
         return results.size();
     }
 
-    public ResultsDto getResultsDto() {
+    public ResultsDto exportResultsDto() {
         return results.stream()
-                .map(Result::getResultDto)
+                .map(Result::exportResultDto)
                 .collect(collectingAndThen(toList(), ResultsDto::new));
     }
 }

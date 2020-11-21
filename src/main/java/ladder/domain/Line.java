@@ -31,9 +31,9 @@ public class Line {
         );
     }
 
-    LineDto getLineDto() {
+    LineDto exportLineDto() {
         return points.stream()
-                .map(Point::getPointDto)
+                .map(Point::exportPointDto)
                 .collect(collectingAndThen(toList(), LineDto::new));
     }
 }
