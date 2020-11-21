@@ -20,4 +20,4 @@
 - 자바 8의 스트림과 람다를 적용해 프로그래밍한다.
 - 규칙 6: 모든 엔티티를 작게 유지한다.
 
-Q) CountOfPerson의 value가 불변 원시타입이라면 getter없이 public으로 노출시키는건 어떤가요?
+Q) 기본타입을 포장한 래핑클래스의 value가 불변원시타입이라면 getter없이 public으로 노출시키는건 어떤가요? 예를들어 지금 Height의 value는 public 한 필드로 노출시켰습니다.
