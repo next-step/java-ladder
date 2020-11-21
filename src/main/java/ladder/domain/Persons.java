@@ -18,6 +18,10 @@ public class Persons {
         return persons.size();
     }
 
+    public int getPosition(Person person) {
+        return persons.indexOf(person);
+    }
+
     public PersonsDto exportPersonsDto() {
         return persons.stream()
                 .map(Person::exportPersonDto)

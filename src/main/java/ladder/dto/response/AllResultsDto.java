@@ -1,19 +1,22 @@
 package ladder.dto.response;
 
-import ladder.dto.PersonDto;
-import ladder.dto.ResultDto;
-
-import java.util.Map;
+import ladder.dto.PersonsDto;
+import ladder.dto.ResultsDto;
 
 public class AllResultsDto {
-    private final Map<PersonDto, ResultDto> allResults;
+    private final PersonsDto personsDto;
+    private final ResultsDto resultsDto;
 
-    public AllResultsDto(Map<PersonDto, ResultDto> allResults) {
-        this.allResults = allResults;
+    public AllResultsDto(PersonsDto personsDto, ResultsDto resultsDto) {
+        this.personsDto = personsDto;
+        this.resultsDto = resultsDto;
     }
 
-    public Map<PersonDto, ResultDto> getAllResults() {
-        return allResults;
+    public PersonsDto getPersonsDto() {
+        return personsDto;
     }
 
+    public ResultsDto getResultsDto() {
+        return resultsDto;
+    }
 }
