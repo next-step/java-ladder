@@ -20,17 +20,13 @@ public class LadderController {
     }
 
     public static void main(String[] args) {
-        createLadderGameAndExecute();
-        output.close();
-    }
-
-    private static void createLadderGameAndExecute() {
         Members members = getInputWithoutException(() -> Members.of(inputView.getMemberNames()));
         List<String> givenEndPoints = getInputWithoutException(inputView::getLadderResult);
         Ladder ladder = getInputWithoutException(() -> Ladder.of(members.getCount(), inputView.getLadderHeight()));
 
         showLadder(members, givenEndPoints, ladder);
         showLadderGameResult(LadderGameResult.of(members, ladder.followAllLinesToEndPoint(givenEndPoints)));
+        output.close();
     }
 
     private static void showLadder(Members members, List<String> endPoints, Ladder ladder) {
@@ -51,9 +47,8 @@ public class LadderController {
     }
 
     private static void showEndPointOfMemberIfExist(LadderGameResult gameResult, String memberName) {
-        if (gameResult.hasEndPointOfMember(memberName)) {
-            resultView.showEndPointOfMember(gameResult.getEndPointOfMember(memberName));
-        }
+        gameResult.getEndPointOfMemberIfExist(memberName)
+                .ifPresent(resultView::showEndPointOfMember);
     }
 
     private static <T> T getInputWithoutException(Supplier<T> inputSupplier) {

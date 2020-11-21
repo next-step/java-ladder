@@ -49,7 +49,7 @@ public class MembersTest {
     public void getMemberIndex(String name, int expectedPosition) {
         Members members = Members.of(Arrays.asList("pobi", "honux", "crong", "jk"));
 
-        int position = members.findMember(MemberName.of(name));
+        int position = members.findMemberPosition(MemberName.of(name));
 
         assertThat(position).isEqualTo(expectedPosition);
     }
@@ -59,7 +59,7 @@ public class MembersTest {
     public void getInvalidMemberIndex() {
         Members members = Members.of(Arrays.asList("pobi", "honux", "crong", "jk"));
         assertThatThrownBy(() -> {
-            members.findMember(MemberName.of("no"));
+            members.findMemberPosition(MemberName.of("no"));
         }).isInstanceOf(MemberNotFoundException.class)
                 .hasMessageContaining("해당 멤버를 찾을 수 없습니다.");
 

@@ -36,12 +36,12 @@ public class Ladder {
         return ladderHeight.getHeight();
     }
 
-    public int followFrom(int startPoint) {
-        int point = startPoint;
-        for (int i = 0; i < ladderHeight.getHeight(); i++) {
-            point = ladderLines.get(i).followFrom(point);
+    public int followFrom(int startPosition) {
+        int position = startPosition;
+        for (LadderLine ladderLine : ladderLines) {
+            position = ladderLine.followFrom(position);
         }
-        return point;
+        return position;
     }
 
     public List<String> followAllLinesToEndPoint(List<String> endPoints) {

@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -30,12 +31,8 @@ public class LadderGameResult {
         return new LadderGameResult(endPointsOfMembers);
     }
 
-    public boolean hasEndPointOfMember(String memberName) {
-        return endPointsOfMembers.containsKey(memberName);
-    }
-
-    public String getEndPointOfMember(String memberName) {
-        return endPointsOfMembers.get(memberName);
+    public Optional<String> getEndPointOfMemberIfExist(String memberName) {
+        return Optional.ofNullable(endPointsOfMembers.get(memberName));
     }
 
     public Map<String, String> getAll() {
