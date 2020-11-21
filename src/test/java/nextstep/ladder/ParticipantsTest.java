@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 public class ParticipantsTest {
     @Test
-    @DisplayName("중복된 참가자 이름은을 사용 한 경우 throw Exception")
+    @DisplayName("중복된 참가자 이름을 사용 한 경우 throw Exception")
     void duplicateNameTest() {
         assertThatExceptionOfType(IllegalStateException.class)
                 .isThrownBy(() -> Participants.from(Arrays.asList("name1", "name1", "name2")))
