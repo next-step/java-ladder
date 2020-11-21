@@ -7,10 +7,11 @@ import nextstep.ladder.util.LineRenderer;
 import java.util.function.Consumer;
 
 public class ConsoleResultView implements ResultView {
-    public static final String HEADER_MSG = "실행 결과";
+    private static final String HEADER_MSG = "실행 결과";
     private static final String LADDER_STICK = "|";
     private static final String EXIST_POINT = "-----";
     private static final String EMPTY_POINT = "     ";
+    private static final String NAME_STRING_FORMAT = "%6s";
 
     @Override
     public void printResult(Participants participants, Ladder ladder) {
@@ -33,7 +34,7 @@ public class ConsoleResultView implements ResultView {
     }
 
     private Consumer<String> appendName(StringBuilder namesBuilder) {
-        return (String name) -> namesBuilder.append(String.format("%6s", name));
+        return (String name) -> namesBuilder.append(String.format(NAME_STRING_FORMAT, name));
     }
 
     private void appendLadder(Ladder ladder, StringBuilder resultBuilder) {
