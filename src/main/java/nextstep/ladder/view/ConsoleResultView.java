@@ -33,8 +33,8 @@ public class ConsoleResultView implements ResultView {
         resultBuilder.append(System.lineSeparator());
     }
 
-    private Consumer<String> appendName(StringBuilder namesBuilder) {
-        return (String name) -> namesBuilder.append(String.format(NAME_STRING_FORMAT, name));
+    private Consumer<String> appendName(StringBuilder resultBuilder) {
+        return (String name) -> resultBuilder.append(String.format(NAME_STRING_FORMAT, name));
     }
 
     private void appendLadder(Ladder ladder, StringBuilder resultBuilder) {
