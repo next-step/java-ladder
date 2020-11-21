@@ -25,4 +25,9 @@ public class ConsoleInputView implements InputView {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         return Integer.parseInt(scanner.nextLine());
     }
+
+    @Override
+    public void printError(RuntimeException e) {
+        System.out.println("[ERROR] " + e.getMessage());
+    }
 }
