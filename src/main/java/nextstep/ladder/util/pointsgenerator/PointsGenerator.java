@@ -1,4 +1,4 @@
-package nextstep.ladder.util;
+package nextstep.ladder.util.pointsgenerator;
 
 import java.util.List;
 

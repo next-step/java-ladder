@@ -1,7 +1,7 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.util.HalfRandomPointsGenerator;
-import nextstep.ladder.util.PointsGenerator;
+import nextstep.ladder.util.pointsgenerator.HalfRandomPointsGenerator;
+import nextstep.ladder.util.pointsgenerator.PointsGenerator;
 
 import java.util.List;
 import java.util.function.Consumer;
