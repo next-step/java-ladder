@@ -15,11 +15,8 @@ class Point {
         return index + direction.getMove();
     }
 
-    private boolean isLeft() {
-        return direction == Direction.LEFT;
-    }
-
     PointDto exportPointDto() {
-        return new PointDto(isLeft());
+        boolean isLeft = direction == Direction.LEFT;
+        return new PointDto(isLeft);
     }
 }

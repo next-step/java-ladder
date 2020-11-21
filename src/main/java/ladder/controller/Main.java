@@ -30,7 +30,7 @@ public class Main {
                     persons.getPosition(person)
             );
             ResponseView.printResult(
-                    results.exportResult(movedPosition)
+                    results.exportResultDto(movedPosition)
             );
             person = ModelMapper.getPerson();
         }

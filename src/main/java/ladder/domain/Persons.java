@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import ladder.dto.PersonsDto;
+import ladder.exception.NotExistPersonException;
 
 import java.util.List;
 
@@ -19,7 +20,11 @@ public class Persons {
     }
 
     public int getPosition(Person person) {
-        return persons.indexOf(person);
+        int position = persons.indexOf(person);
+        if (position < 0) {
+            throw NotExistPersonException.getInstance();
+        }
+        return position;
     }
 
     public PersonsDto exportPersonsDto() {

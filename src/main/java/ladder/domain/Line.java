@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import ladder.dto.response.LineDto;
+import ladder.exception.BadPositionException;
 
 import java.util.List;
 import java.util.function.Supplier;
@@ -25,8 +26,12 @@ public class Line {
     }
 
     int move(int position) {
+        int size = points.size();
+        if (size <= position) {
+            throw BadPositionException.getInstance();
+        }
         return Math.min(
-                points.size() - 1,
+                size - 1,
                 points.get(position).move()
         );
     }

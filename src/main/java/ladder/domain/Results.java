@@ -21,7 +21,7 @@ public class Results {
         return results.size();
     }
 
-    public ResultDto exportResult(int position) {
+    public ResultDto exportResultDto(int position) {
         return results.get(position)
                 .exportResultDto();
     }
@@ -36,7 +36,7 @@ public class Results {
         return IntStream.range(0, getSize())
                 .boxed()
                 .map(move)
-                .map(this::exportResult)
+                .map(this::exportResultDto)
                 .collect(collectingAndThen(toList(), ResultsDto::new));
     }
 }
