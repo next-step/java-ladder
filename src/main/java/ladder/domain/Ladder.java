@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.dto.response.LinesDto;
+import ladder.dto.LinesDto;
 
 import java.util.List;
 import java.util.function.Supplier;

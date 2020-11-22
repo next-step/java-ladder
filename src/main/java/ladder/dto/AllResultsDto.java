@@ -1,7 +1,4 @@
-package ladder.dto.response;
-
-import ladder.dto.PersonsDto;
-import ladder.dto.ResultsDto;
+package ladder.dto;
 
 public class AllResultsDto {
     private final PersonsDto personsDto;

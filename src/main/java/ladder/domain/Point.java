@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.dto.response.PointDto;
+import ladder.dto.PointDto;
 
 class Point {
     private final int index;

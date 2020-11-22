@@ -1,8 +1,8 @@
 package ladder.view;
 
+import ladder.dto.AllResultsDto;
+import ladder.dto.LadderDto;
 import ladder.dto.ResultDto;
-import ladder.dto.response.AllResultsDto;
-import ladder.dto.response.LadderDto;
 import ladder.view.printable.AllResultsPrintable;
 import ladder.view.printable.LadderPrintable;
 import ladder.view.printable.ResultPrintable;

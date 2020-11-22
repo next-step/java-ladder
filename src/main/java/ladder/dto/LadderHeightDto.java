@@ -1,4 +1,4 @@
-package ladder.dto.request;
+package ladder.dto;
 
 public class LadderHeightDto {
     private final int height;

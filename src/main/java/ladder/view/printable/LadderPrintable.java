@@ -1,13 +1,6 @@
 package ladder.view.printable;
 
-import ladder.dto.PersonDto;
-import ladder.dto.PersonsDto;
-import ladder.dto.ResultDto;
-import ladder.dto.ResultsDto;
-import ladder.dto.response.LadderDto;
-import ladder.dto.response.LineDto;
-import ladder.dto.response.LinesDto;
-import ladder.dto.response.PointDto;
+import ladder.dto.*;
 
 import java.util.stream.Collectors;
 import java.util.stream.Stream;

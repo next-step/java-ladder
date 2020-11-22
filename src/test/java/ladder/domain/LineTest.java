@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.dto.response.PointDto;
+import ladder.dto.PointDto;
 import ladder.exception.BadPositionException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

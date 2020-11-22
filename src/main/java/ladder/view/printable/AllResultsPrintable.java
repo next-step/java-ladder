@@ -1,8 +1,8 @@
 package ladder.view.printable;
 
+import ladder.dto.AllResultsDto;
 import ladder.dto.PersonDto;
 import ladder.dto.ResultDto;
-import ladder.dto.response.AllResultsDto;
 
 import java.util.List;
 import java.util.stream.IntStream;

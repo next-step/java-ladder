@@ -1,10 +1,6 @@
 package ladder.view;
 
-import ladder.dto.PersonDto;
-import ladder.dto.PersonsDto;
-import ladder.dto.ResultDto;
-import ladder.dto.ResultsDto;
-import ladder.dto.request.LadderHeightDto;
+import ladder.dto.*;
 import ladder.exception.NanException;
 import ladder.view.printable.QuestionPrintable;
 

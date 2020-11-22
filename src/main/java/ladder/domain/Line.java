@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.dto.response.LineDto;
+import ladder.dto.LineDto;
 import ladder.exception.BadPositionException;
 
 import java.util.List;

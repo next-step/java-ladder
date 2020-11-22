@@ -4,8 +4,8 @@ import ladder.domain.Ladder;
 import ladder.domain.Person;
 import ladder.domain.Persons;
 import ladder.domain.Results;
-import ladder.dto.response.AllResultsDto;
-import ladder.dto.response.LadderDto;
+import ladder.dto.AllResultsDto;
+import ladder.dto.LadderDto;
 import ladder.view.ResponseView;
 
 public class Main {

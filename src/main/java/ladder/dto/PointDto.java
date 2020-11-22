@@ -1,4 +1,4 @@
-package ladder.dto.response;
+package ladder.dto;
 
 public class PointDto {
     private final boolean isLeft;
