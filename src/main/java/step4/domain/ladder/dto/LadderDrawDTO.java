@@ -9,11 +9,21 @@ public class LadderDrawDTO {
     private final LadderResults ladderResults;
     private final Ladder ladder;
 
-    public static class Builder {
+    public LadderDrawDTO(Builder builder) {
+        ladderPlayers = builder.ladderPlayers;
+        ladderResults = builder.ladderResults;
+        ladder = builder.ladder;
+    }
 
-        private LadderPlayers ladderPlayers = null;
-        private LadderResults ladderResults = null;
-        private Ladder ladder = null;
+    public static Builder Builder() {
+        return new Builder();
+    }
+
+    public static class Builder {
+        private LadderPlayers ladderPlayers;
+        private LadderResults ladderResults;
+        private Ladder ladder;
+
         public Builder() { }
 
         public Builder ladderPlayers(LadderPlayers ladderPlayers) {
@@ -34,11 +44,6 @@ public class LadderDrawDTO {
         public LadderDrawDTO build() {
             return new LadderDrawDTO(this);
         }
-    }
-    private LadderDrawDTO(Builder builder) {
-        ladderPlayers = builder.ladderPlayers;
-        ladderResults = builder.ladderResults;
-        ladder = builder.ladder;
     }
 
     public LadderPlayers getLadderPlayers() {

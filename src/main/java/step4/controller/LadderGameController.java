@@ -31,13 +31,11 @@ public class LadderGameController {
 
         Ladder ladder = LadderGame.makeLadder(new LadderBuildDTO(players, ladderHeight), new MakeLadderLineStrategy());
 
-        LadderDrawDTO ladderDrawDTO = new LadderDrawDTO.Builder()
+        view.draw(LadderDrawDTO.Builder()
                 .ladder(ladder)
                 .ladderPlayers(players)
                 .ladderResults(ladderResults)
-                .build();
-
-        view.draw(ladderDrawDTO);
+                .build());
 
         LadderGameResults playResults = LadderGame.playAll(players.buildDTO(ladder, ladderResults));
 
@@ -48,12 +46,18 @@ public class LadderGameController {
         while (true) {
             String findPlayerName = view.findResultByPlayer(players);
 
-            if (isAll(playResults, findPlayerName) || isEnd(findPlayerName)) break;
+            checkBreakCondition(playResults, findPlayerName);
 
             Player picked = players.pick(findPlayerName);
             PlayerWinningInfo resultByPlayer = playResults.findResultByPlayer(picked);
 
             view.drawPlayResult(resultByPlayer);
+        }
+    }
+
+    private void checkBreakCondition(LadderGameResults playResults, String findPlayerName) {
+        if (isAll(playResults, findPlayerName) || isEnd(findPlayerName)) {
+            System.exit(0);
         }
     }
 

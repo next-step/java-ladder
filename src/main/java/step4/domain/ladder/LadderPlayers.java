@@ -38,7 +38,7 @@ public class LadderPlayers {
     }
 
     private boolean isInputEqualsAllOrEnd(String name) {
-        return ALL_AND_END.contains(name);
+        return ALL_AND_END.contains(name.toLowerCase());
     }
 
     public int count() {
