@@ -29,7 +29,8 @@ public class Ladder {
     }
 
     public boolean isExistsPoint(Point point) {
-        Line line = Optional.ofNullable(ladder.get(point.getY())).orElseThrow(NoSuchElementException::new);
+        Line line = Optional.ofNullable(ladder.get(point.getY()))
+                .orElseThrow(NoSuchElementException::new);
         return line.isExistsPoint(point);
     }
 
@@ -47,7 +48,7 @@ public class Ladder {
         Stack<Point> current = new Stack<Point>() {{
             push(startPosition);
         }};
-        ladder.forEach(line -> current.push(line.nextPosition(current.pop())));
+        forEach(line -> current.push(line.nextPosition(current.pop())));
 
         return current.pop();
     }

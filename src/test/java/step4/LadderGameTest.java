@@ -1,5 +1,6 @@
 package step4;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -9,9 +10,11 @@ import step4.domain.ladder.dto.LadderResultDTO;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LadderGameTest {
 
@@ -28,8 +31,19 @@ public class LadderGameTest {
 
     }
 
+    @DisplayName("사다리에게임 없는 유저 선택 테스트")
+    @ParameterizedTest
+    @MethodSource("provideLadderGameInfo")
+    void playLadderGameFromNotExistsPlayer(Ladder ladder, LadderPlayers players, LadderResults ladderResults) {
+
+        assertThatThrownBy(() -> {
+            players.pick("g");
+        }).isInstanceOf(NoSuchElementException.class);
+
+    }
+
     private static Stream<Arguments> provideLadderGameInfo() {
-        LadderPlayers players = LadderGame.join("a,b,c,d,e,");
+        LadderPlayers players = LadderGame.join("a,b,c,d,e");
         LadderResults ladderResults = LadderResults.of("꽝,5000,꽝,3000,10000");
 
         List<Line> lines = Arrays.asList(
