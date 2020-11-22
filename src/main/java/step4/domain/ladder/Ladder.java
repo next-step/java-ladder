@@ -14,10 +14,14 @@ import java.util.stream.IntStream;
 public class Ladder {
     public static final String ERROR_INVALID_LADDER_HEIGHT = "사다리 높이는 0보다 커야 합니다.";
 
-    private final List<Line> ladder;
+    private final LadderLine ladder;
 
-    public Ladder(List<Line> ladder) {
+    public Ladder(LadderLine ladder) {
         this.ladder = ladder;
+    }
+
+    public static Ladder of(List<Line> ladder) {
+        return new Ladder(new LadderLine(ladder));
     }
 
     public static Ladder of(LadderBuildDTO buildDTO, MakeLineStrategy strategy) {
@@ -25,11 +29,11 @@ public class Ladder {
 
         return IntStream.range(0, buildDTO.getLineHeight())
                 .mapToObj(index -> Line.of(buildDTO.getPlayers().count(), strategy))
-                .collect(Collectors.collectingAndThen(Collectors.toList(), Ladder::new));
+                .collect(Collectors.collectingAndThen(Collectors.toList(), Ladder::of));
     }
 
     public boolean isExistsPoint(Point point) {
-        Line line = Optional.ofNullable(ladder.get(point.getY()))
+        Line line = Optional.of(ladder.get(point.getY()))
                 .orElseThrow(NoSuchElementException::new);
         return line.isExistsPoint(point);
     }
