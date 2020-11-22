@@ -54,7 +54,7 @@ public class LadderGame {
                 .map(player -> {
                     Point resultPoint = play(player, gameDTO.getLadder());
                     LadderResultDTO ladderResultDTO = gameDTO.getLadderResults().resultByPoint(resultPoint.getX());
-                    return new PlayerWinningInfo.Builder()
+                    return PlayerWinningInfo.Builder()
                             .player(player)
                             .point(resultPoint)
                             .winningResult(ladderResultDTO.getResult())

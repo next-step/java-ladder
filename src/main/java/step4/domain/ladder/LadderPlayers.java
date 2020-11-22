@@ -69,7 +69,7 @@ public class LadderPlayers {
     }
 
     public LadderGameInformationDTO buildDTO(Ladder ladder, LadderResults ladderResults) {
-        return new LadderGameInformationDTO.Builder()
+        return LadderGameInformationDTO.Builder()
                 .ladder(ladder)
                 .ladderResults(ladderResults)
                 .players(players)

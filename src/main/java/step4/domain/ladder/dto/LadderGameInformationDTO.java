@@ -18,6 +18,10 @@ public class LadderGameInformationDTO {
         ladderResults = builder.ladderResults;
     }
 
+    public static Builder Builder() {
+        return new Builder();
+    }
+
 
     public static class Builder {
         private List<Player> players;

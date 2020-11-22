@@ -26,7 +26,7 @@ public class LadderLine {
         if (index < 0) {
             throw new IllegalArgumentException();
         }
-        if (ladderLine.size() <= index) {
+        if (ladderLine.size() - 1 <= index) {
             throw new NoSuchElementException();
         }
     }

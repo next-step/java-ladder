@@ -14,6 +14,10 @@ public class PlayerWinningInfo {
         point = builder.point;
     }
 
+    public static Builder Builder() {
+        return new Builder();
+    }
+
     public boolean match(Player player) {
         return this.player.equals(player);
     }

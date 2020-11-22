@@ -8,6 +8,7 @@ import step4.domain.ladder.dto.PlayerWinningInfo;
 
 public interface ResultView {
     void draw(LadderDrawDTO drawDTO);
+
     void drawLadder(LadderPlayers players, Ladder ladder);
 
     void drawPlayResult(PlayerWinningInfo playerWinningInfo);

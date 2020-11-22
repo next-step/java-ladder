@@ -3,7 +3,6 @@ package step4.domain.ladder.dto;
 import step4.domain.ladder.LadderPlayers;
 
 public class LadderBuildDTO {
-
     private final LadderPlayers players;
     private final int lineHeight;
 
