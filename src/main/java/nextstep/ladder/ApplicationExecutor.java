@@ -7,19 +7,19 @@ import nextstep.ladder.view.ResultView;
 
 public class ApplicationExecutor {
     public static void main(String[] args) {
-        LadderGame ladderGame = ladderGame();
+        LadderGame ladderGame = getLadderGame();
         ladderGame.start();
     }
 
-    private static LadderGame ladderGame() {
-        return new LadderGame(inputView(), resultView());
+    private static LadderGame getLadderGame() {
+        return new LadderGame(getInputView(), getResultView());
     }
 
-    private static InputView inputView() {
+    private static InputView getInputView() {
         return new ConsoleInputView();
     }
 
-    private static ResultView resultView() {
+    private static ResultView getResultView() {
         return new ConsoleResultView();
     }
 }
