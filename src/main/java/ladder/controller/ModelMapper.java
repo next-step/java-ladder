@@ -32,7 +32,7 @@ class ModelMapper {
     static Ladder getLadder(int sizeOfPersons) {
         return new Ladder(RequestView.askLadderHeight()
                 .getHeight(),
-                () -> new Line(sizeOfPersons, () -> random.nextBoolean())
+                () -> new Line(sizeOfPersons, random::nextBoolean)
         );
     }
 

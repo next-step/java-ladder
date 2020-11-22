@@ -8,6 +8,8 @@ import java.util.stream.Stream;
 import static ladder.asset.LadderConst.STANDARD_LENGTH;
 
 public class LadderPrintable extends Printable {
+    private static final String lineSeparator = System.lineSeparator();
+
     private final LadderDto dto;
 
     public LadderPrintable(final LadderDto ladderDto) {
@@ -16,22 +18,19 @@ public class LadderPrintable extends Printable {
 
     @Override
     public void print() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(System.lineSeparator());
-        sb.append("사다리 결과");
-        sb.append(System.lineSeparator());
-        sb.append(System.lineSeparator());
-        sb.append(toString(dto.getPersons()));
-        sb.append(toString(dto.getLines()));
-        sb.append(System.lineSeparator());
-        sb.append(toString(dto.getResults()));
-        println(sb);
+        println(
+                String.format("$n사다리 결과$n$n%s%s$n%s",
+                        toString(dto.getPersons()),
+                        toString(dto.getLines()),
+                        toString(dto.getResults())
+                ).replace("$n", lineSeparator)
+        );
     }
 
     private String toString(LinesDto dto) {
         return dto.getLines().stream()
                 .map(this::toString)
-                .map(line -> System.lineSeparator() + line)
+                .map(line -> lineSeparator + line)
                 .reduce("", String::concat);
     }
 

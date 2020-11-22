@@ -37,7 +37,7 @@ public class Main {
 
         ResponseView.printAllResults(new AllResultsDto(
                 persons.exportPersonsDto(),
-                results.exportMovedResultsDto(position -> ladder.move(position))
+                results.exportMovedResultsDto(ladder::move)
         ));
     }
 }
