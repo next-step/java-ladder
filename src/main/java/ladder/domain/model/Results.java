@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.model;
 
 import ladder.dto.ResultDto;
 import ladder.dto.ResultsDto;
@@ -13,7 +13,7 @@ import static java.util.stream.Collectors.toList;
 public class Results {
     private final List<Result> results;
 
-    Results(List<Result> results) {
+    public Results(List<Result> results) {
         this.results = results;
     }
 

@@ -1,18 +1,18 @@
 package ladder.controller;
 
-import ladder.domain.*;
+import ladder.domain.generator.DirectionGenerator;
+import ladder.domain.generator.LadderGenerator;
+import ladder.domain.generator.LineGenerator;
+import ladder.domain.model.*;
 import ladder.dto.PersonDto;
 import ladder.dto.ResultDto;
+import ladder.strategy.RandomStrategy;
 import ladder.view.RequestView;
-
-import java.util.Random;
 
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
 
 class ModelMapper {
-    private static final Random random = new Random();
-
     private ModelMapper() {}
 
     static Person getPerson() {
@@ -30,10 +30,13 @@ class ModelMapper {
     }
 
     static Ladder getLadder(int sizeOfPersons) {
-        return new Ladder(RequestView.askLadderHeight()
-                .getHeight(),
-                () -> new Line(sizeOfPersons, random::nextBoolean)
-        );
+        // FIXME: Generator 의 중첩을 더 깔끔하게 할 방법은 없을까?
+        return new LadderGenerator(
+                RequestView.askLadderHeight()
+                        .getHeight(),
+                new LineGenerator(sizeOfPersons,
+                        new DirectionGenerator(RandomStrategy.getInstance()))
+        ).generate();
     }
 
     static Results getValidatedResults(int sizeOfPersons) {
@@ -42,6 +45,6 @@ class ModelMapper {
                 .stream()
                 .map(ResultDto::getResult)
                 .map(Result::new)
-                .collect(collectingAndThen(toList(), result -> new ValidatedResults(sizeOfPersons, result)));
+                .collect(collectingAndThen(toList(), results -> new ValidatedResults(sizeOfPersons, results)));
     }
 }

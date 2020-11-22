@@ -1,6 +1,6 @@
-package ladder.domain;
+package ladder.domain.model;
 
-enum Direction {
+public enum Direction {
     LEFT(-1),
     DOWN(0),
     RIGHT(1);

@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.model;
 
 import ladder.dto.ResultDto;
 import ladder.exception.BadResultException;

@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.model;
 
 import ladder.dto.PersonsDto;
 import ladder.exception.PersonNotFoundException;

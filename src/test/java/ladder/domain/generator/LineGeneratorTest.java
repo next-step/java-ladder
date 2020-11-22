@@ -1,7 +1,9 @@
-package ladder.domain;
+package ladder.domain.generator;
 
+import ladder.domain.model.Line;
 import ladder.dto.PointDto;
 import ladder.exception.BadPositionException;
+import ladder.strategy.FalseStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -11,13 +13,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
-class LineTest {
+class LineGeneratorTest {
+
     private final int sizeOfPersons = 5;
-    private final Line line = new Line(sizeOfPersons, () -> false);
+    private final DirectionGenerator directionGenerator = new DirectionGenerator(FalseStrategy.getInstance());
+    private final LineGenerator lineGenerator = new LineGenerator(sizeOfPersons, directionGenerator);
+    private final Line line = lineGenerator.generate();
 
     @Test
-    @DisplayName("라인의 Direction 을 따라 position 이 움직여야 한다.")
-    void move() {
+    @DisplayName("generate 된 라인의 move 테스트")
+    void generate() {
         assertAll(
                 () -> assertThat(line.move(0))
                         .isEqualTo(1),
@@ -33,10 +38,14 @@ class LineTest {
     }
 
     @Test
-    @DisplayName("Points 갯수보다 더 큰 position 을 move 하려 하면, BadPositionException 이 발생한다.")
+    @DisplayName("sizeOfPersons 보다 더 큰 position 을 move 하려 하면, BadPositionException 이 발생한다.")
     void move_BadPosition() {
-        assertThatExceptionOfType(BadPositionException.class)
-                .isThrownBy(() -> line.move(sizeOfPersons));
+        assertAll(
+                () -> assertThatExceptionOfType(BadPositionException.class)
+                        .isThrownBy(() -> line.move(sizeOfPersons)),
+                () -> assertThatExceptionOfType(BadPositionException.class)
+                        .isThrownBy(() -> line.move(sizeOfPersons + 10))
+        );
     }
 
     @Test

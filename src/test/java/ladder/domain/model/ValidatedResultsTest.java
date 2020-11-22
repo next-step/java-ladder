@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.model;
 
 import ladder.exception.BadResultsException;
 import org.junit.jupiter.api.DisplayName;
@@ -10,7 +10,6 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 class ValidatedResultsTest {
-
     @Test
     @DisplayName("sizeOfPersons 과 입력받은 Results size가 일치하지 않으면, BadResultsException 이 발생한다.")
     void constructor_BadResultsException() {
@@ -19,5 +18,4 @@ class ValidatedResultsTest {
         assertThatExceptionOfType(BadResultsException.class)
                 .isThrownBy(() -> new ValidatedResults(sizeOfPersons, results));
     }
-
 }

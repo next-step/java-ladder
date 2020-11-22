@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.model;
 
 import ladder.dto.ResultDto;
 import ladder.exception.BadResultException;
@@ -13,14 +13,10 @@ public class Result {
     private final String result;
 
     public Result(String result) {
-        this.result = result;
-        validate();
-    }
-
-    private void validate() {
         if (result.length() > STANDARD_LENGTH) {
             throw BadResultException.getInstance();
         }
+        this.result = result;
     }
 
     ResultDto exportResultDto() {
