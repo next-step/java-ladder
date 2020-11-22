@@ -9,9 +9,9 @@ public class Ladder {
     private final List<Line> lines;
 
     private Ladder(Participants participants, Height height) {
-        lines = new ArrayList<>(height.value);
+        lines = new ArrayList<>(height.getValue());
 
-        IntStream.range(0, height.value)
+        IntStream.range(0, height.getValue())
                 .forEach(index -> lines.add(Line.from(participants)));
     }
 

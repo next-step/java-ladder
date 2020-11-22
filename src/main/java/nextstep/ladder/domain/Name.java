@@ -4,7 +4,7 @@ public class Name {
     public static final String INVALID_NAME_LENGTH_ERR_MSG = "이름은 1글자 이상 5글자 이하만 허용합니다.";
     private static final int MIN_AVAILABLE_LENGTH = 1;
     private static final int MAX_AVAILABLE_LENGTH = 5;
-    public final String value;
+    private final String value;
 
     private Name(String value) {
         validateLength(value.length());
@@ -19,6 +19,10 @@ public class Name {
         if (length < MIN_AVAILABLE_LENGTH || length > MAX_AVAILABLE_LENGTH) {
             throw new IllegalArgumentException(INVALID_NAME_LENGTH_ERR_MSG);
         }
+    }
+
+    public String getValue() {
+        return value;
     }
 
     @Override

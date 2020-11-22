@@ -34,7 +34,7 @@ public class Participants {
 
     public void namesValueForEach(Consumer<String> consumer) {
         names.stream()
-                .map(name -> name.value)
+                .map(Name::getValue)
                 .forEach(consumer);
     }
 }
