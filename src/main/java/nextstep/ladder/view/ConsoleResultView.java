@@ -2,7 +2,6 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Participants;
-import nextstep.ladder.util.LineRenderer;
 
 import java.util.function.Consumer;
 
@@ -45,6 +44,6 @@ public class ConsoleResultView implements ResultView {
                 .lastPartOfLine(() -> resultBuilder.append(System.lineSeparator()))
                 .build();
 
-        ladder.linesForEach(lineRenderer);
+        ladder.linesForEach(lineRenderer.renderLine());
     }
 }

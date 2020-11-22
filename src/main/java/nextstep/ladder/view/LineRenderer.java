@@ -1,4 +1,6 @@
-package nextstep.ladder.util;
+package nextstep.ladder.view;
+
+import nextstep.ladder.domain.Line;
 
 import java.util.function.Consumer;
 
@@ -19,15 +21,15 @@ public class LineRenderer {
         return new Builder();
     }
 
-    public void renderFirstPartOfLine() {
-        firstPartOfLine.run();
+    public Consumer<Line> renderLine() {
+        return (Line line) -> {
+            firstPartOfLine.run();
+            line.pointsForEach(renderPoint());
+            lastPartOfLine.run();
+        };
     }
 
-    public void renderLastPartOfLine() {
-        lastPartOfLine.run();
-    }
-
-    public Consumer<Boolean> renderPoint() {
+    private Consumer<Boolean> renderPoint() {
         return pointValue -> {
             this.point.accept(pointValue);
             ladderStick.run();

@@ -1,9 +1,8 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.util.LineRenderer;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.stream.IntStream;
 
 public class Ladder {
@@ -20,11 +19,7 @@ public class Ladder {
         return new Ladder(participants, height);
     }
 
-    public void linesForEach(LineRenderer lineRenderer) {
-        lines.forEach(line -> {
-            lineRenderer.renderFirstPartOfLine();
-            line.pointsForEach(lineRenderer.renderPoint());
-            lineRenderer.renderLastPartOfLine();
-        });
+    public void linesForEach(Consumer<Line> consumer) {
+        lines.forEach(consumer);
     }
 }
