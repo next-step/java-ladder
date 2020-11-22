@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import step4.domain.ladder.Ladder;
 import step4.domain.ladder.LadderLine;
 import step4.domain.ladder.Line;
 import step4.domain.ladder.Point;
@@ -14,6 +13,7 @@ import step4.type.DirectionType;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -88,4 +88,21 @@ public class DirectionTest {
         );
     }
 
+    @DisplayName("라인이동 예외 테스트")
+    @Test
+    void moveLadderLineException() {
+        List<Line> lines = Arrays.asList(
+                Line.of(Arrays.asList(true, false, true, false)),
+                Line.of(Arrays.asList(false, false, false, false)),
+                Line.of(Arrays.asList(false, true, false, true))
+        );
+        LadderLine ladderLine = new LadderLine(lines);
+
+        assertThatThrownBy(()-> ladderLine.nextPosition(new Point(0, -1)))
+                .isInstanceOf(IllegalArgumentException.class);
+
+        assertThatThrownBy(()->ladderLine.nextPosition(new Point(0, 3)))
+                .isInstanceOf(NoSuchElementException.class);
+
+    }
 }
