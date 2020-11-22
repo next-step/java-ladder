@@ -2,10 +2,11 @@ package step4.domain.ladder;
 
 import step4.domain.ladder.dto.LinePointsDTO;
 import step4.strategy.MakeLineStrategy;
-import step4.type.DirectionType;
 
 import java.util.List;
 import java.util.Optional;
+
+import static step4.type.DirectionType.*;
 
 public class Line {
     public static final String ERROR_NOT_FOUND_DIRECTION = "진행방향을 찾을 수 없습니다. 현재 위치: x(%s), y(%s)";
@@ -27,6 +28,7 @@ public class Line {
         return isExistsPoint(targetPoint.getX());
 
     }
+
     public boolean isExistsPoint(int position) {
         if (isValidRangePosition(position)) {
             return false;
@@ -37,7 +39,7 @@ public class Line {
     }
 
     private boolean isValidRangePosition(int position) {
-        return position < 0 || position > points.size()-1;
+        return position < 0 || position > points.size() - 1;
     }
 
     public LinePointsDTO getPoints() {
@@ -46,24 +48,24 @@ public class Line {
 
     public Point nextPosition(Point sourcePoint) {
         if (existsRight(sourcePoint)) {
-            return DirectionType.execute(DirectionType.RIGHT, sourcePoint) ;
+            return execute(sourcePoint, RIGHT, DOWN);
         }
         if (existsLeft(sourcePoint)) {
-            return DirectionType.execute(DirectionType.LEFT, sourcePoint);
+            return execute(sourcePoint, LEFT, DOWN);
         }
         if (isDown(sourcePoint)) {
-            return DirectionType.execute(DirectionType.DOWN, sourcePoint);
+            return execute(sourcePoint, DOWN);
         }
         String errorMsg = String.format(ERROR_NOT_FOUND_DIRECTION, sourcePoint.getX(), sourcePoint.getY());
         throw new IllegalArgumentException(errorMsg);
     }
 
     private boolean isDown(Point sourcePoint) {
-        return !existsLeft(sourcePoint)&&!existsLeft(sourcePoint);
+        return !existsLeft(sourcePoint) && !existsLeft(sourcePoint);
     }
 
     private boolean existsLeft(Point sourcePoint) {
-        return isExistsPoint(sourcePoint.getX()-1);
+        return isExistsPoint(sourcePoint.getX() - 1);
     }
 
     private boolean existsRight(Point sourcePoint) {

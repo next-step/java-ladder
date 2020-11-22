@@ -41,11 +41,11 @@ public class Point {
             throw new OutOfRangePositionException();
         }
 
-        return new Point(x-1, y+1);
+        return new Point(x-1, y);
     }
 
     public Point rightMove() {
-        return new Point(x+1, y+1);
+        return new Point(x+1, y);
     }
 
     public Point downMove() {

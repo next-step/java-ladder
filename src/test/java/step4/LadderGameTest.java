@@ -52,7 +52,7 @@ public class LadderGameTest {
                 Line.of(Arrays.asList(true, false, false, true)),
                 Line.of(Arrays.asList(true, false, false, true))
         );
-        Ladder ladder = new Ladder(lines);
+        Ladder ladder = new Ladder(new LadderLine(lines));
 
         return Stream.of(
                 Arguments.of(ladder, players, ladderResults)
