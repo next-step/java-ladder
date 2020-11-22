@@ -32,6 +32,10 @@ public class Line {
         return new Line(participants.getNumberOfParticipants());
     }
 
+    public static Line of(Participants participants, PointsGenerator pointsGenerator) {
+        return new Line(participants.getNumberOfParticipants(), pointsGenerator);
+    }
+
     private void validatePoints() {
         boolean hasContinuousTrueValue = IntStream.range(0, points.size() - 1)
                 .anyMatch(index -> points.get(index) && points.get(index + 1));
