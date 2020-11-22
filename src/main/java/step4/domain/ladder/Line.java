@@ -2,7 +2,9 @@ package step4.domain.ladder;
 
 import step4.domain.ladder.dto.LinePointsDTO;
 import step4.strategy.MakeLineStrategy;
+import step4.type.DirectionType;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -48,13 +50,13 @@ public class Line {
 
     public Point nextPosition(Point sourcePoint) {
         if (existsRight(sourcePoint)) {
-            return execute(sourcePoint, RIGHT, DOWN);
+            return execute(sourcePoint, asList(RIGHT, DOWN));
         }
         if (existsLeft(sourcePoint)) {
-            return execute(sourcePoint, LEFT, DOWN);
+            return execute(sourcePoint, asList(LEFT, DOWN));
         }
         if (isDown(sourcePoint)) {
-            return execute(sourcePoint, DOWN);
+            return execute(sourcePoint, asList(DOWN));
         }
         String errorMsg = String.format(ERROR_NOT_FOUND_DIRECTION, sourcePoint.getX(), sourcePoint.getY());
         throw new IllegalArgumentException(errorMsg);
@@ -72,5 +74,8 @@ public class Line {
         return isExistsPoint(sourcePoint.getX());
     }
 
+    private List<DirectionType> asList(DirectionType... types) {
+        return Arrays.asList(types);
+    }
 
 }

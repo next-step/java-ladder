@@ -14,10 +14,10 @@ import java.util.stream.IntStream;
 public class Ladder {
     public static final String ERROR_INVALID_LADDER_HEIGHT = "사다리 높이는 0보다 커야 합니다.";
 
-    private final LadderLine ladder;
+    private final LadderLine ladderLine;
 
-    public Ladder(LadderLine ladder) {
-        this.ladder = ladder;
+    public Ladder(LadderLine ladderLine) {
+        this.ladderLine = ladderLine;
     }
 
     public static Ladder of(List<Line> ladder) {
@@ -33,13 +33,13 @@ public class Ladder {
     }
 
     public boolean isExistsPoint(Point point) {
-        Line line = Optional.of(ladder.get(point.getY()))
+        Line line = Optional.of(ladderLine.get(point.getY()))
                 .orElseThrow(NoSuchElementException::new);
         return line.isExistsPoint(point);
     }
 
     public void forEach(Consumer<Line> function) {
-        ladder.forEach(function);
+        ladderLine.forEach(function);
     }
 
     public static void isValidLineHeight(int lineHeight) {
@@ -49,11 +49,6 @@ public class Ladder {
     }
 
     public Point start(Point startPosition) {
-        Stack<Point> current = new Stack<Point>() {{
-            push(startPosition);
-        }};
-        forEach(line -> current.push(line.nextPosition(current.pop())));
-
-        return current.pop();
+        return ladderLine.getArrivalPoint(startPosition);
     }
 }
