@@ -1,6 +1,6 @@
 package ladder.domain.generator;
 
-import ladder.domain.model.Direction;
+import ladder.domain.expert.Direction;
 
 import java.util.function.Supplier;
 

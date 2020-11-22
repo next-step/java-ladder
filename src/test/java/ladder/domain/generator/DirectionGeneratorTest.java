@@ -1,6 +1,6 @@
 package ladder.domain.generator;
 
-import ladder.domain.model.Direction;
+import ladder.domain.expert.Direction;
 import ladder.strategy.FalseStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

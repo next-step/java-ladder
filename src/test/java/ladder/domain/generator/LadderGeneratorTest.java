@@ -1,6 +1,6 @@
 package ladder.domain.generator;
 
-import ladder.domain.model.Ladder;
+import ladder.domain.expert.Ladder;
 import ladder.exception.BadPositionException;
 import ladder.strategy.FalseStrategy;
 import org.junit.jupiter.api.DisplayName;

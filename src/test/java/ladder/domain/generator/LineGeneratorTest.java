@@ -1,6 +1,6 @@
 package ladder.domain.generator;
 
-import ladder.domain.model.Line;
+import ladder.domain.expert.Line;
 import ladder.dto.PointDto;
 import ladder.exception.BadPositionException;
 import ladder.strategy.FalseStrategy;

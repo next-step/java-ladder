@@ -1,9 +1,9 @@
 package ladder.controller;
 
+import ladder.domain.expert.*;
 import ladder.domain.generator.DirectionGenerator;
 import ladder.domain.generator.LadderGenerator;
 import ladder.domain.generator.LineGenerator;
-import ladder.domain.model.*;
 import ladder.dto.PersonDto;
 import ladder.dto.ResultDto;
 import ladder.strategy.RandomStrategy;

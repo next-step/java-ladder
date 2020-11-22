@@ -1,7 +1,7 @@
 package ladder.domain.generator;
 
-import ladder.domain.model.Ladder;
-import ladder.domain.model.Line;
+import ladder.domain.expert.Ladder;
+import ladder.domain.expert.Line;
 
 import java.util.stream.IntStream;
 

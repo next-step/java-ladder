@@ -1,4 +1,4 @@
-package ladder.domain.model;
+package ladder.domain.expert;
 
 import ladder.exception.ConsecutiveDirectionException;
 import org.junit.jupiter.api.DisplayName;
