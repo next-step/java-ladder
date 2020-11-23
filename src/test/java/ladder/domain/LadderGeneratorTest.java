@@ -1,7 +1,6 @@
 package ladder.domain;
 
 import ladder.exception.BadPositionException;
-import ladder.strategy.FalseStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +12,12 @@ class LadderGeneratorTest {
 
     private final int height = 3;
     private final int sizeOfPersons = 5;
-    private final DirectionStrategy directionStrategy = new DirectionStrategy(FalseStrategy.getInstance());
+    private final DirectionStrategy directionStrategy = new DirectionStrategy() {
+        @Override
+        Direction get() {
+            return get(false);
+        }
+    };
     private final LineGenerator lineGenerator = new LineGenerator(sizeOfPersons, directionStrategy);
     private final LadderGenerator ladderGenerator = new LadderGenerator(height, lineGenerator);
     private final Ladder ladder = ladderGenerator.generate();

@@ -3,7 +3,6 @@ package ladder.controller;
 import ladder.domain.*;
 import ladder.dto.PersonDto;
 import ladder.dto.ResultDto;
-import ladder.strategy.RandomStrategy;
 import ladder.view.RequestView;
 
 import static java.util.stream.Collectors.collectingAndThen;
@@ -32,7 +31,7 @@ class ModelMapper {
                 RequestView.askLadderHeight()
                         .getHeight(),
                 new LineGenerator(sizeOfPersons,
-                        new DirectionStrategy(RandomStrategy.getInstance()))
+                        new RandomDirectionStrategy())
         ).generate();
     }
 

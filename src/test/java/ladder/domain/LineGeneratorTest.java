@@ -2,7 +2,6 @@ package ladder.domain;
 
 import ladder.dto.PointDto;
 import ladder.exception.BadPositionException;
-import ladder.strategy.FalseStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +14,12 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 class LineGeneratorTest {
 
     private final int sizeOfPersons = 5;
-    private final DirectionStrategy directionStrategy = new DirectionStrategy(FalseStrategy.getInstance());
+    private final DirectionStrategy directionStrategy = new DirectionStrategy() {
+        @Override
+        Direction get() {
+            return get(false);
+        }
+    };
     private final LineGenerator lineGenerator = new LineGenerator(sizeOfPersons, directionStrategy);
     private final Line line = lineGenerator.generate();
 
