@@ -16,6 +16,6 @@
 - [x] map, reduce, filter 실습 2 : printLongestWordTop100()
 - [x] Optional 1: 조건에 따른 반환
 - [x] Optional 2: 값을 반환
-- [ ] Optional 3: exception 처리
+- [x] Optional 3: exception 처리
 
 
