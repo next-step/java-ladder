@@ -35,7 +35,7 @@ public class StreamStudyTest {
 
     @Test
     public void sumAll() throws Exception {
-        long sum = StreamStudy.sumAll(numbers, n -> true);
+        long sum = StreamStudy.sumAll(numbers);
         assertThat(sum).isEqualTo(21);
     }
 

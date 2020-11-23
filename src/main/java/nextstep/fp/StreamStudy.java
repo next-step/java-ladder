@@ -38,9 +38,8 @@ public class StreamStudy {
         return numbers.stream().map(x -> 2 * x).collect(Collectors.toList());
     }
 
-    public static long sumAll(List<Integer> numbers, Conditional conditional) {
+    public static long sumAll(List<Integer> numbers) {
         return numbers.stream()
-                .filter(conditional::test)
                 .reduce(0, Integer::sum);
     }
 
