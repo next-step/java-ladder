@@ -1,4 +1,4 @@
-package ladder.domain.expert;
+package ladder.domain;
 
 
 import ladder.dto.PointDto;
@@ -77,6 +77,35 @@ class LadderTest {
                                 .map(Point::isLeft)
                                 .collect(toList())
                 ))
+        );
+    }
+
+    @Test
+    @DisplayName("생성자로 만들어진 ladder 의 move 가 정상적인지 확인")
+    void constructor() {
+        int height = 3;
+        int sizeOfPersons = 5;
+        Ladder ladder = new Ladder(sizeOfPersons, height, new DirectionStrategy() {
+            @Override
+            Direction get() {
+                return get(false);
+            }
+        });
+        assertAll(
+                () -> assertThatExceptionOfType(BadPositionException.class)
+                        .isThrownBy(() -> ladder.move(sizeOfPersons)),
+                () -> assertThatExceptionOfType(BadPositionException.class)
+                        .isThrownBy(() -> ladder.move(sizeOfPersons + 7)),
+                () -> assertThat(ladder.move(0))
+                        .isEqualTo(1),
+                () -> assertThat(ladder.move(1))
+                        .isEqualTo(0),
+                () -> assertThat(ladder.move(2))
+                        .isEqualTo(3),
+                () -> assertThat(ladder.move(3))
+                        .isEqualTo(2),
+                () -> assertThat(ladder.move(4))
+                        .isEqualTo(4)
         );
     }
 }

@@ -1,4 +1,4 @@
-package ladder.domain.expert;
+package ladder.domain;
 
 import ladder.dto.PointDto;
 import ladder.exception.BadPositionException;

@@ -1,12 +1,8 @@
 package ladder.controller;
 
-import ladder.domain.expert.*;
-import ladder.domain.generator.DirectionGenerator;
-import ladder.domain.generator.LadderGenerator;
-import ladder.domain.generator.LineGenerator;
+import ladder.domain.*;
 import ladder.dto.PersonDto;
 import ladder.dto.ResultDto;
-import ladder.strategy.RandomStrategy;
 import ladder.view.RequestView;
 
 import static java.util.stream.Collectors.collectingAndThen;
@@ -30,13 +26,11 @@ class ModelMapper {
     }
 
     static Ladder getLadder(int sizeOfPersons) {
-        // FIXME: Generator 의 중첩을 더 깔끔하게 할 방법은 없을까?
-        return new LadderGenerator(
+        return new Ladder(sizeOfPersons,
                 RequestView.askLadderHeight()
                         .getHeight(),
-                new LineGenerator(sizeOfPersons,
-                        new DirectionGenerator(RandomStrategy.getInstance()))
-        ).generate();
+                RandomDirectionStrategy.getInstance()
+        );
     }
 
     static Results getValidatedResults(int sizeOfPersons) {

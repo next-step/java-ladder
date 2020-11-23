@@ -1,4 +1,4 @@
-package ladder.domain.expert;
+package ladder.domain;
 
 import jdk.jfr.Description;
 import org.junit.jupiter.api.Test;

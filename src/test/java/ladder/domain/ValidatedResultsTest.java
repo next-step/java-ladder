@@ -1,4 +1,4 @@
-package ladder.domain.expert;
+package ladder.domain;
 
 import ladder.exception.BadResultsException;
 import org.junit.jupiter.api.DisplayName;

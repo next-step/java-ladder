@@ -1,4 +1,4 @@
-package ladder.domain.expert;
+package ladder.domain;
 
 public enum Direction {
     LEFT(-1),
