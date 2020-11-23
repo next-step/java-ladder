@@ -52,4 +52,15 @@ public class Line {
     public void pointsForEach(Consumer<Boolean> consumer) {
         points.forEach(consumer);
     }
+
+    public List<Boolean> getPoints() {
+        return points;
+    }
+
+    @Override
+    public String toString() {
+        return "Line{" +
+                "points=" + points +
+                '}';
+    }
 }

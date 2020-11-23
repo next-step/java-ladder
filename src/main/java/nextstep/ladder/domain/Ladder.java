@@ -35,4 +35,8 @@ public class Ladder {
     public void linesForEach(Consumer<Line> consumer) {
         lines.forEach(consumer);
     }
+
+    public List<Line> getLines() {
+        return lines;
+    }
 }

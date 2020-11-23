@@ -16,4 +16,8 @@ public class ExecutionsResults {
     public int size() {
         return executionResults.size();
     }
+
+    public String get(int i) {
+        return executionResults.get(i);
+    }
 }

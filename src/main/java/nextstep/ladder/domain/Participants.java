@@ -1,14 +1,12 @@
 package nextstep.ladder.domain;
 
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 public class Participants {
     public static final String DUPLICATE_NAME_EXIST_ERR_MSG = "중복된 이름은 사용 할 수 없습니다.";
-    private final Set<Name> names;
+    private final List<Name> names;
     private final NumberOfParticipants numberOfParticipants;
 
     private Participants(List<String> inputNames) {
@@ -17,10 +15,11 @@ public class Participants {
         validateDuplication(inputNames);
     }
 
-    private Set<Name> getNames(List<String> inputNames) {
+    private List<Name> getNames(List<String> inputNames) {
         return inputNames.stream()
                 .map(Name::valueOf)
-                .collect(Collectors.toCollection(LinkedHashSet::new));
+                .distinct()
+                .collect(Collectors.toList());
     }
 
     private void validateDuplication(List<String> inputNames) {
@@ -41,5 +40,9 @@ public class Participants {
         names.stream()
                 .map(Name::getValue)
                 .forEach(consumer);
+    }
+
+    public Name get(int i) {
+        return names.get(i);
     }
 }
