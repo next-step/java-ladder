@@ -18,4 +18,5 @@ public class UsersTest {
         Users users = new Users();
         assertThat(users.getUser("codesquard")).isEqualTo(Users.DEFAULT_USER);
     }
+
 }

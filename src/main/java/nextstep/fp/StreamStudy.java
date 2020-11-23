@@ -15,11 +15,9 @@ public class StreamStudy {
                 .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
-        long count = 0;
-        for (String w : words) {
-            if (w.length() > 12) count++;
-        }
-        return count;
+        return words.stream()
+                .filter(word -> word.length() > 12)
+                .count();
     }
 
     public static void printLongestWordTop100() throws IOException {
@@ -28,17 +26,35 @@ public class StreamStudy {
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
         // TODO 이 부분에 구현한다.
+        List<String> top100Words = words.stream()
+                .filter(word -> word.length() > 12)
+                .sorted((a, b) -> b.length() - a.length())
+                .map(String::toLowerCase)
+                .distinct()
+                .collect(Collectors.toList())
+                .subList(0, 100);
+
+        for (String word : top100Words) {
+            System.out.println(word);
+        }
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
-        return numbers.stream().map(x -> 2 * x).collect(Collectors.toList());
+        return numbers.stream()
+                .map(x -> 2 * x)
+                .collect(Collectors.toList());
     }
 
     public static long sumAll(List<Integer> numbers) {
-        return numbers.stream().reduce(0, (x, y) -> x + y);
+        return numbers
+                .stream()
+                .reduce(0, (x, y) -> x + y);
     }
 
     public static long sumOverThreeAndDouble(List<Integer> numbers) {
-        return 0;
+        return numbers.stream()
+                .filter(n -> n > 3)
+                .mapToInt(n -> n * 2)
+                .sum();
     }
 }
