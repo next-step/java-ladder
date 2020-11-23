@@ -30,11 +30,13 @@ public class StreamStudy {
         return numbers.stream().map(x -> 2 * x).collect(Collectors.toList());
     }
 
-    public static long sumAll(List<Integer> numbers) {
-        return numbers.stream().reduce(0, Integer::sum);
+    public static long sumAll(List<Integer> numbers, Conditional conditional) {
+        return numbers.stream()
+                .filter(conditional::test)
+                .reduce(0, Integer::sum);
     }
 
     public static long sumOverThreeAndDouble(List<Integer> numbers) {
-        return 0;
+        return sumAll(doubleNumbers(numbers), n -> n > 3);
     }
 }
