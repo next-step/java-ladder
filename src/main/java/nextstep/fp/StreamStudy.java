@@ -29,7 +29,8 @@ public class StreamStudy {
                 .sorted(Comparator.comparingInt(String::length))
                 .distinct()
                 .limit(100)
-                .forEach(w -> System.out.println(w.toLowerCase()));
+                .map(String::toLowerCase)
+                .forEach(System.out::println);
 
     }
 
