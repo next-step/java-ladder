@@ -14,7 +14,7 @@
 - [x] 람다실습2: 람다를 활용해 중복 제거
 - [x] map, reduce, filter 실습 1 : sumOverThreeAndDouble()
 - [x] map, reduce, filter 실습 2 : printLongestWordTop100()
-- [ ] Optional 1: 조건에 따른 반환
+- [x] Optional 1: 조건에 따른 반환
 - [ ] Optional 2: 값을 반환
 - [ ] Optional 3: exception 처리
 
