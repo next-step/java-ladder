@@ -7,4 +7,8 @@
 - 점진적인 테스트
 
 
+## 참고
+interface 부분 막상 어려워서 
+https://github.com/next-step/java-ladder/pull/676/files 참고하였습니다!
+
 
