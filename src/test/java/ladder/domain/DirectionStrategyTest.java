@@ -20,6 +20,7 @@ class DirectionStrategyTest {
     @Test
     @DisplayName("RIGHT 이후에는 항상 LEFT 가 나오는지 테스트")
     void generate() {
+        strategy.reset();
         assertAll(
                 () -> assertThat(strategy.get(true))
                         .isEqualTo(Direction.DOWN),

@@ -26,13 +26,11 @@ class ModelMapper {
     }
 
     static Ladder getLadder(int sizeOfPersons) {
-        // FIXME: Generator 의 중첩을 더 깔끔하게 할 방법은 없을까?
-        return new LadderGenerator(
+        return new Ladder(sizeOfPersons,
                 RequestView.askLadderHeight()
                         .getHeight(),
-                new LineGenerator(sizeOfPersons,
-                        new RandomDirectionStrategy())
-        ).generate();
+                RandomDirectionStrategy.getInstance()
+        );
     }
 
     static Results getValidatedResults(int sizeOfPersons) {
