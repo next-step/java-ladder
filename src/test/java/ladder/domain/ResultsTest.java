@@ -1,4 +1,4 @@
-package ladder.domain.expert;
+package ladder.domain;
 
 import ladder.dto.ResultDto;
 import org.junit.jupiter.api.DisplayName;

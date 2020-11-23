@@ -1,9 +1,6 @@
-package ladder.domain.generator;
+package ladder.domain;
 
-import ladder.domain.expert.Ladder;
-import ladder.domain.expert.Line;
-
-import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
@@ -19,8 +16,8 @@ public class LadderGenerator implements Generator<Ladder> {
 
     @Override
     public Ladder generate() {
-        return IntStream.range(0, height)
-                .mapToObj(i -> lineGenerator.generate())
+        return Stream.generate(lineGenerator::generate)
+                .limit(height)
                 .collect(collectingAndThen(toList(), Ladder::new));
     }
 }

@@ -1,9 +1,9 @@
 package ladder.controller;
 
-import ladder.domain.expert.Ladder;
-import ladder.domain.expert.Person;
-import ladder.domain.expert.Persons;
-import ladder.domain.expert.Results;
+import ladder.domain.Ladder;
+import ladder.domain.Person;
+import ladder.domain.Persons;
+import ladder.domain.Results;
 import ladder.dto.AllResultsDto;
 import ladder.dto.LadderDto;
 import ladder.view.ResponseView;

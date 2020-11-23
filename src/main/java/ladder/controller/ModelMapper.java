@@ -1,9 +1,6 @@
 package ladder.controller;
 
-import ladder.domain.expert.*;
-import ladder.domain.generator.DirectionGenerator;
-import ladder.domain.generator.LadderGenerator;
-import ladder.domain.generator.LineGenerator;
+import ladder.domain.*;
 import ladder.dto.PersonDto;
 import ladder.dto.ResultDto;
 import ladder.strategy.RandomStrategy;
@@ -35,7 +32,7 @@ class ModelMapper {
                 RequestView.askLadderHeight()
                         .getHeight(),
                 new LineGenerator(sizeOfPersons,
-                        new DirectionGenerator(RandomStrategy.getInstance()))
+                        new DirectionStrategy(RandomStrategy.getInstance()))
         ).generate();
     }
 

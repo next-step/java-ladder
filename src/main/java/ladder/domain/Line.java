@@ -1,4 +1,4 @@
-package ladder.domain.expert;
+package ladder.domain;
 
 import ladder.dto.LineDto;
 import ladder.exception.BadPositionException;
@@ -12,8 +12,7 @@ import static java.util.stream.Collectors.toList;
 public class Line {
     private final List<Point> points;
 
-    public Line(List<Point> points) {
-        // FIXME: Point 의 validate 에 의존하지 않고, 가로 라인이 겹치지 않는지 확인할 방법은 없을까?
+    Line(List<Point> points) {
         IntStream.range(1, points.size())
                 .forEach(position -> points.get(position)
                         .validate(points.get(position - 1))
@@ -32,7 +31,7 @@ public class Line {
                 : Math.min(size - 1, moved);
     }
 
-    public LineDto exportLineDto() {
+    LineDto exportLineDto() {
         return points.stream()
                 .map(Point::exportPointDto)
                 .collect(collectingAndThen(toList(), LineDto::new));

@@ -1,4 +1,4 @@
-package ladder.domain.expert;
+package ladder.domain;
 
 import ladder.dto.PointDto;
 import ladder.exception.ConsecutiveDirectionException;
@@ -16,7 +16,6 @@ public class Point {
         return position + direction.getMove();
     }
 
-    // FIXME: 이 로직을 Line 클래스로 옮길 방법은 없을까?
     void validate(Point consecutive) {
         if (direction == consecutive.direction && direction != Direction.DOWN) {
             throw ConsecutiveDirectionException.getInstance();

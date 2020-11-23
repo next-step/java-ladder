@@ -1,7 +1,4 @@
-package ladder.domain.generator;
-
-import ladder.domain.expert.Line;
-import ladder.domain.expert.Point;
+package ladder.domain;
 
 import java.util.stream.IntStream;
 
@@ -10,11 +7,11 @@ import static java.util.stream.Collectors.toList;
 
 public class LineGenerator implements Generator<Line> {
     private final int sizeOfPersons;
-    private final DirectionGenerator directionGenerator;
+    private final DirectionStrategy directionStrategy;
 
-    public LineGenerator(int sizeOfPersons, DirectionGenerator directionGenerator) {
+    public LineGenerator(int sizeOfPersons, DirectionStrategy directionStrategy) {
         this.sizeOfPersons = sizeOfPersons;
-        this.directionGenerator = directionGenerator;
+        this.directionStrategy = directionStrategy;
     }
 
     @Override
@@ -22,14 +19,14 @@ public class LineGenerator implements Generator<Line> {
         Line line = IntStream.range(0, sizeOfPersons)
                 .mapToObj(this::generatePoint)
                 .collect(collectingAndThen(toList(), Line::new));
-        directionGenerator.reset();
+        directionStrategy.reset();
         return line;
     }
 
     private Point generatePoint(int position) {
         return new Point(
                 position,
-                directionGenerator.generate()
+                directionStrategy.get()
         );
     }
 }

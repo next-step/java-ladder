@@ -1,4 +1,4 @@
-package ladder.domain.expert;
+package ladder.domain;
 
 import ladder.dto.LinesDto;
 
@@ -10,7 +10,7 @@ import static java.util.stream.Collectors.toList;
 public class Ladder {
     private final List<Line> lines;
 
-    public Ladder(List<Line> lines) {
+    Ladder(List<Line> lines) {
         this.lines = lines;
     }
 

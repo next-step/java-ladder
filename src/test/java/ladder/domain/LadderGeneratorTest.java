@@ -1,6 +1,5 @@
-package ladder.domain.generator;
+package ladder.domain;
 
-import ladder.domain.expert.Ladder;
 import ladder.exception.BadPositionException;
 import ladder.strategy.FalseStrategy;
 import org.junit.jupiter.api.DisplayName;
@@ -14,8 +13,8 @@ class LadderGeneratorTest {
 
     private final int height = 3;
     private final int sizeOfPersons = 5;
-    private final DirectionGenerator directionGenerator = new DirectionGenerator(FalseStrategy.getInstance());
-    private final LineGenerator lineGenerator = new LineGenerator(sizeOfPersons, directionGenerator);
+    private final DirectionStrategy directionStrategy = new DirectionStrategy(FalseStrategy.getInstance());
+    private final LineGenerator lineGenerator = new LineGenerator(sizeOfPersons, directionStrategy);
     private final LadderGenerator ladderGenerator = new LadderGenerator(height, lineGenerator);
     private final Ladder ladder = ladderGenerator.generate();
 
