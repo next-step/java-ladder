@@ -6,7 +6,6 @@ import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Participants;
 import nextstep.ladder.mock.MockInputView;
 import nextstep.ladder.mock.MockPointsGenerator;
-import nextstep.ladder.util.ResultJudge;
 import nextstep.ladder.util.pointsgenerator.PointsGenerator;
 import nextstep.ladder.view.ConsoleResultView;
 import nextstep.ladder.view.InputView;
@@ -34,7 +33,7 @@ public class ResultJudgeTest {
         List<String> executionResultInput = Arrays.asList("꽝", "5000", "꽝", "3000");
         ExecutionsResults executionResults = ExecutionsResults.of(executionResultInput);
 
-        Map<String, String> results = ResultJudge.of(ladder, participants, executionResults);
+        Map<String, String> results = ladder.resultOf(participants, executionResults);
         assertAll(
                 () -> assertThat(results.get("pobi")).isEqualTo("꽝"),
                 () -> assertThat(results.get("honux")).isEqualTo("3000"),

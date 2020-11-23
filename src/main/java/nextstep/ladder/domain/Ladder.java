@@ -3,7 +3,9 @@ package nextstep.ladder.domain;
 import nextstep.ladder.util.pointsgenerator.PointsGenerator;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Consumer;
 import java.util.stream.IntStream;
 
@@ -36,12 +38,16 @@ public class Ladder {
         lines.forEach(consumer);
     }
 
-    public List<Line> getLines() {
-        return lines;
-    }
+    public Map<String, String> resultOf(Participants participants, ExecutionsResults executionResults) {
+        Map<String, String> result = new HashMap<>();
+        int participantsSize = participants.getNumberOfParticipants().getValue();
 
-    public int getResult(int currIndex) {
-        return getResultOfPerLine(currIndex, lines.size() - 1);
+        for (int i = 0; i < participantsSize; i++) {
+            int resultIndex = getResultOfPerLine(i, lines.size() - 1);
+            result.put(participants.get(i).getValue(), executionResults.get(resultIndex));
+        }
+
+        return result;
     }
 
     private int getResultOfPerLine(int currIndex, int lineIndex) {
