@@ -39,4 +39,16 @@ public class Ladder {
     public List<Line> getLines() {
         return lines;
     }
+
+    public int getResult(int currIndex) {
+        return getResultOfPerLine(currIndex, lines.size() - 1);
+    }
+
+    private int getResultOfPerLine(int currIndex, int lineIndex) {
+        if (lineIndex == 0) {
+            return lines.get(lineIndex).moveIndex(currIndex);
+        }
+
+        return lines.get(lineIndex).moveIndex(getResultOfPerLine(currIndex, lineIndex - 1));
+    }
 }
