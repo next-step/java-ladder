@@ -14,27 +14,12 @@ public class ResultJudge {
         Map<String, String> result = new HashMap<>();
         int participantsSize = participants.getNumberOfParticipants().getValue();
 
-        int currIndex;
+        final int[] currIndex = {0};
         for (int i = 0; i < participantsSize; i++) {
-            currIndex = i;
+            currIndex[0] = i;
             List<Line> lines = ladder.getLines();
-            for (Line line : lines) {
-                List<Boolean> points = line.getPoints();
-                //왼쪽검사
-                if (currIndex > 0) {
-                    if (points.get(currIndex - 1)) {
-                        currIndex--;
-                        continue;
-                    }
-                }
-                //오른쪽검사
-                if (currIndex < line.size()) {
-                    if (points.get(currIndex)) {
-                        currIndex++;
-                    }
-                }
-            }
-            result.put(participants.get(i).getValue(), executionResults.get(currIndex));
+            lines.forEach(line -> currIndex[0] = line.moveIndex(currIndex[0]));
+            result.put(participants.get(i).getValue(), executionResults.get(currIndex[0]));
         }
 
         return result;
