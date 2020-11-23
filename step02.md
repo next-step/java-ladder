@@ -5,6 +5,7 @@
 
 ####  예외처리
 - OutOfNameLengthException
+- NotAPositiveStepsOfLadderException
 
 #### Participants
 - ParticipantName 참여자 이름
@@ -35,6 +36,7 @@
     - private Steps(List<Step> steps)
     - public static Steps of(Integer countOfSteps) countOfSteps 만큼 step 생성
     - getSteps (출력을 위한 기능)
+    - private void validate(Integer countOfSteps)사다리가 정수가 아니면 예외 처리
 
 ### view
 - InputView
