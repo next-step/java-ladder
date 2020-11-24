@@ -19,7 +19,7 @@ public class Steps {
         return new Steps(init(countOfSteps, stepGenerator));
     }
     private static List<Step> init(Integer countOfSteps, StepGenerator stepGenerator) {
-        return Stream.generate(() -> stepGenerator.generate())
+        return Stream.generate(stepGenerator::generate)
                 .limit(countOfSteps)
                 .collect(Collectors.toList());
     }
@@ -31,7 +31,7 @@ public class Steps {
 
     public List<List<Boolean>> getSteps() {
         return steps.stream()
-                .map(step -> step.getPoints())
+                .map(Step::getPoints)
                 .collect(Collectors.toList());
     }
 
