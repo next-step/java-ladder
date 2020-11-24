@@ -21,22 +21,27 @@
     - ParticipantName
     - @Override toString 
 
-
 - Participants 참여자들
     - private Participant(List<Participant> namesOfParticipants)
     - public static Participants of(String namesOfParticipants)
     - private static List<Participant> tokenizeNames
     - public Integer size()
-    - 참여자가 1명 이하일 때 에러 던짐
-    - show
+    - private static String[] tokenizeNames(String names)
+    - private static void validate(String[] nameTokens)
+    - private static List<Participant> parseNames(String names)
+    - public List<String> show()
 
-    
 #### Ladder 사다리
 - interface PointStrategy
     - public static boolean hasPoint
+- Point 좌표에 발판이 존재하는지에 대한 정보를 가지고 있다.
+    - private final Boolean hasPoint
+    - private Point(Boolean hasPoint)
+    - public static Point of(Boolean hasPoint)
+
 - Step 가로 라인 (참여자 수 - 1)
     - public static Step of(Integer countOfParticipants)
-    - 좌표에 사다리가 있는지 boolean
+    - 좌표에 Point 가 있는지 boolean
     - private static hasPoint(Integer position, PointStrategy pointStrategy) 선을 생성할지 결정하는 함수
         - 첫 position -> 랜덤으로 결정 PointStrategy.hasPoint
         - position 의 이전 Point 검사 -> 이전에 Point 가 존재하면 false
