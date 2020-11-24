@@ -14,7 +14,7 @@ public class ResultView {
 
     private ResultView() {}
 
-    public static String padLeft(String string, Integer repeat) {
+    private static String padLeft(String string, Integer repeat) {
         return String.format("%" + repeat + "s", string);
     }
 
@@ -23,14 +23,13 @@ public class ResultView {
         printNamesOfParticipants(participants);
         printLadder(steps);
     }
-
-    public static void printNamesOfParticipants(Participants participants) {
+    private static void printNamesOfParticipants(Participants participants) {
         participants.getNames()
                 .forEach(name -> System.out.print(padLeft(name, 5) + NAME_SPACE));
         System.out.println();
     }
 
-    public static void printLadder(Steps steps) {
+    private static void printLadder(Steps steps) {
         steps.getSteps()
                 .forEach(step -> {
                     System.out.print(FIRST_BLANK + STEP);
