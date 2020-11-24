@@ -6,9 +6,9 @@ import java.util.Objects;
 import java.util.Optional;
 
 public class ParticipantName {
-    private final String name;
     private static final Integer MIN = 1;
     private static final Integer MAX = 5;
+    private final String name;
 
     private ParticipantName(String name) {
         validate(name);
