@@ -40,6 +40,11 @@
     - private Point(Boolean hasLine)
     - public static Point of(Boolean hasLine)
     - public Boolean hasLine() 출력을 위한 기능
+    
+- StepGenerator 
+    - private StepGenerator(Integer countOfParticipants, PointStrategy pointStrategy)
+    - public Step generate(); 
+    - 같은 step 과 pointStrategy 를 요구하면 캐시하는 기능 고려
 
 - Step 가로 라인 (참여자 수 - 1)
     - private Step(List<Point> points)
@@ -52,9 +57,9 @@
 - Steps 세로 라인 (사다리의 최대 높이)
     - private final List<Step> steps
     - private Steps(List<Step> steps)
-    - public static Steps of(Integer countOfSteps) countOfSteps 만큼 step 생성
-    - getSteps (출력을 위한 기능)
-    - private void validate(Integer countOfSteps)사다리가 정수가 아니면 예외 처리
+    - public static Steps of(Integer countOfSteps, StepGenerator stepGenerator) countOfSteps 만큼 step 생성
+    - private void validate(Integer countOfSteps) 사다리가 정수가 아니면 예외 처리
+    - public List<List<Boolean>> getSteps() 
 
 ### view
 - InputView
