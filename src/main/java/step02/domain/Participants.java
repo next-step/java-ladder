@@ -1,11 +1,14 @@
 package step02.domain;
 
+import exception.DuplicatedParticipantsNameException;
 import exception.InvalidCountOfParticipantsException;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.counting;
 
 public class Participants {
     private static final String TOKEN = ",";
@@ -26,9 +29,21 @@ public class Participants {
     }
 
     private static void validate(String[] nameTokens) {
-        if (nameTokens.length < MIN_COUNT_OF_PARTICIPANTS) {
+        if (!isUnique(nameTokens)) {
+            throw new DuplicatedParticipantsNameException();
+        }
+
+        if (isValidCountOfParticipant(nameTokens)) {
             throw new InvalidCountOfParticipantsException();
         }
+    }
+
+    private static boolean isUnique(String[] nameTokens) {
+        return Arrays.stream(nameTokens).distinct().count() == nameTokens.length;
+    }
+
+    private static boolean isValidCountOfParticipant(String[] nameTokens) {
+        return nameTokens.length < MIN_COUNT_OF_PARTICIPANTS;
     }
 
     private static List<Participant> parseNames(String names) {

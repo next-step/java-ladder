@@ -1,5 +1,6 @@
 package step02.domain;
 
+import exception.DuplicatedParticipantsNameException;
 import exception.InvalidCountOfParticipantsException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -68,6 +69,21 @@ public class ParticipantsTest {
     void test_show(String names, List<String> showedParticipant) {
         assertThat(Participants.of(names).getNames())
                 .isEqualTo(showedParticipant);
+    }
+
+
+    private static Stream<String> provideDuplicatedParticipantsResult() {
+        return Stream.of(
+                "pobi,honux,crong,jk,jk"
+        );
+    }
+
+    @DisplayName("이름이 중복되어 있을 때 에러 던짐")
+    @ParameterizedTest
+    @MethodSource("provideDuplicatedParticipantsResult")
+    void test_show(String names) {
+        assertThatExceptionOfType(DuplicatedParticipantsNameException.class)
+                .isThrownBy(() -> Participants.of(names));
     }
 
 }
