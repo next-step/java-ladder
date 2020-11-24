@@ -66,7 +66,7 @@ public class ParticipantsTest {
     @ParameterizedTest
     @MethodSource("provideParticipantsShowResult")
     void test_show(String names, List<String> showedParticipant) {
-        assertThat(Participants.of(names).show())
+        assertThat(Participants.of(names).getNames())
                 .isEqualTo(showedParticipant);
     }
 

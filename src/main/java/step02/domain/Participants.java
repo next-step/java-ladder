@@ -44,7 +44,7 @@ public class Participants {
         return participants.size();
     }
 
-    public List<String> show() {
+    public List<String> getNames() {
         return participants.stream()
                 .map(participant -> participant.toString())
                 .collect(Collectors.toList());
