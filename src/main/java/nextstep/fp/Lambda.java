@@ -22,22 +22,9 @@ public class Lambda {
         new Thread(() -> System.out.println("Hello from thread")).start();
     }
 
-    public static int sumAll(List<Integer> numbers) {
+    public static int sumAll(List<Integer> numbers, Conditional conditional) {
         return numbers.stream()
-                .mapToInt(number -> number)
-                .sum();
-    }
-
-    public static int sumAllEven(List<Integer> numbers) {
-        return numbers.stream()
-                .filter(e -> e%2==0)
-                .mapToInt(number -> number)
-                .sum();
-    }
-
-    public static int sumAllOverThree(List<Integer> numbers) {
-        return numbers.stream()
-                .filter(e -> e > 3)
+                .filter(conditional::test)
                 .mapToInt(number -> number)
                 .sum();
     }
