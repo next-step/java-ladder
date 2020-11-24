@@ -4,13 +4,13 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
-public class NotAPositiveStepsOfLadderExceptionTest {
+public class InvalidCountOfStepsExceptionTest {
 
     @Test
     void test() {
-        assertThatExceptionOfType(NotAPositiveStepsOfLadderException.class)
+        assertThatExceptionOfType(InvalidCountOfStepsException.class)
                 .isThrownBy(() -> {
-                    throw new NotAPositiveStepsOfLadderException();
+                    throw new InvalidCountOfStepsException();
                 });
     }
 }
