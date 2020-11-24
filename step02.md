@@ -8,6 +8,7 @@
 - NotAPositiveStepsOfLadderException
 - InvalidCountOfParticipantsException
 - InvalidPointsOfStepException
+- DuplicatedParticipantsNameException
 
 #### utils
 
@@ -29,6 +30,8 @@
     - public Integer size()
     - private static String[] tokenizeNames(String names)
     - private static void validate(String[] nameTokens)
+    - private static boolean isDuplicated(String[] nameTokens)
+    - private static boolean isInValidCountOfParticipant(String[] nameTokens)
     - private static List<Participant> parseNames(String names)
     - public List<String> show()
 

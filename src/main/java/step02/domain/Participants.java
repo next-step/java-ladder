@@ -29,20 +29,20 @@ public class Participants {
     }
 
     private static void validate(String[] nameTokens) {
-        if (!isUnique(nameTokens)) {
+        if (isDuplicated(nameTokens)) {
             throw new DuplicatedParticipantsNameException();
         }
 
-        if (isValidCountOfParticipant(nameTokens)) {
+        if (isInValidCountOfParticipant(nameTokens)) {
             throw new InvalidCountOfParticipantsException();
         }
     }
 
-    private static boolean isUnique(String[] nameTokens) {
-        return Arrays.stream(nameTokens).distinct().count() == nameTokens.length;
+    private static boolean isDuplicated(String[] nameTokens) {
+        return Arrays.stream(nameTokens).distinct().count() != nameTokens.length;
     }
 
-    private static boolean isValidCountOfParticipant(String[] nameTokens) {
+    private static boolean isInValidCountOfParticipant(String[] nameTokens) {
         return nameTokens.length < MIN_COUNT_OF_PARTICIPANTS;
     }
 
