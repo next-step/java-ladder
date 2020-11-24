@@ -7,6 +7,7 @@
 - OutOfNameLengthException
 - NotAPositiveStepsOfLadderException
 - InvalidCountOfParticipantsException
+- InvalidPointsOfStepException
 
 #### utils
 
@@ -38,20 +39,16 @@
     - private final Boolean hasLine
     - private Point(Boolean hasLine)
     - public static Point of(Boolean hasLine)
+    - public Boolean hasLine() 출력을 위한 기능
 
 - Step 가로 라인 (참여자 수 - 1)
     - private Step(List<Point> points)
     - public static Step of(List<Boolean> points)
     - public static Step of(Integer countOfParticipants)
     - private static void validate(List<Point> points) points 가 유효한지 검사
-    - 좌표에 Point 가 있는지 boolean
-    
     - private static initStep(Integer position, PointStrategy pointStrategy) 선을 생성할지 결정하는 함수
-        - 첫 position -> 랜덤으로 결정 PointStrategy.hasPoint
-        - position 의 이전 Point 검사 -> 이전에 Point 가 존재하면 false
-        - position 의 이전 Point 검사 -> 이전에 Point 가 존재하지 않으면 랜덤으로 결정 PointStrategy.hasPoint
-    - 
-    - getStep (출력을 위한 기능)
+    - public List<Boolean> getPoints() 출력을 위한 기능
+    
 - Steps 세로 라인 (사다리의 최대 높이)
     - private final List<Step> steps
     - private Steps(List<Step> steps)

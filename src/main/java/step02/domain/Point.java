@@ -13,6 +13,10 @@ public class Point {
         return new Point(hasLine);
     }
 
+    public Boolean hasLine() {
+        return hasLine;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -25,4 +29,5 @@ public class Point {
     public int hashCode() {
         return Objects.hash(hasLine);
     }
+
 }
