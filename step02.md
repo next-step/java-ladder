@@ -64,13 +64,15 @@
 ### view
 - InputView
     - private InputView
-    - readNamesOfParticipants 참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요) nextline
-    - readCountOfSteps 최대 사다리 높이는 몇 개인가요? nextInt
+    - public static String readNamesOfParticipants() 참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요) nextline
+    - public static Integer readCountOfSteps()  최대 사다리 높이는 몇 개인가요? nextInt
     
 - ResultView
-    - private ResultView
-    - printNamesOfParticipants 사다리를 출력할 때 사람 이름도 같이 출력한다.
-    - printLadder 사다리 폭을 정할 수 있어야 한다. 사람 이름을 5자 기준으로 출력하기 때문에 사다리 폭도 넓어져야 한다.
+    - private ResultView()
+    - private static String padLeft(String string, Integer repeat)
+    - public static void print(Participants participants, Steps steps)
+    - private static void printNamesOfParticipants(Participants participants)
+    - private static void printLadder(Steps steps) 
 
 ## 프로그래밍 요구사항
 - 자바 8의 스트림과 람다를 적용해 프로그래밍한다.
