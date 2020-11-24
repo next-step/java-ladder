@@ -10,14 +10,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class PointTest {
 
-    private static Stream<Boolean> provideHasPointResult() {
+    private static Stream<Boolean> provideHasLineResult() {
         return Stream.of(true, false);
     }
 
     @DisplayName("생성자")
     @ParameterizedTest
-    @MethodSource("provideHasPointResult")
-    void test_constructor_of(Boolean hasPoint) {
-        assertThat(Point.of(hasPoint)).isEqualTo(Point.of(hasPoint));
+    @MethodSource("provideHasLineResult")
+    void test_constructor_of(Boolean hasLine) {
+        assertThat(Point.of(hasLine)).isEqualTo(Point.of(hasLine));
     }
 }

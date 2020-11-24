@@ -3,14 +3,14 @@ package step02.domain;
 import java.util.Objects;
 
 public class Point {
-    private final Boolean hasPoint;
+    private final Boolean hasLine;
 
-    private Point(Boolean hasPoint) {
-        this.hasPoint = hasPoint;
+    private Point(Boolean hasLine) {
+        this.hasLine = hasLine;
     }
 
-    public static Point of(Boolean hasPoint) {
-        return new Point(hasPoint);
+    public static Point of(Boolean hasLine) {
+        return new Point(hasLine);
     }
 
     @Override
@@ -18,11 +18,11 @@ public class Point {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Point point = (Point) o;
-        return Objects.equals(hasPoint, point.hasPoint);
+        return Objects.equals(hasLine, point.hasLine);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(hasPoint);
+        return Objects.hash(hasLine);
     }
 }
