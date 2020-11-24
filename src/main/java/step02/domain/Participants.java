@@ -46,7 +46,7 @@ public class Participants {
 
     public List<String> getNames() {
         return participants.stream()
-                .map(participant -> participant.toString())
+                .map(Participant::toString)
                 .collect(Collectors.toList());
     }
 

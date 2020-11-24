@@ -52,7 +52,7 @@ public class Step {
 
     public List<Boolean> getPoints() {
         return points.stream()
-                .map(point -> point.hasLine())
+                .map(Point::hasLine)
                 .collect(Collectors.toList());
     }
 
