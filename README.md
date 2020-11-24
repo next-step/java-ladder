@@ -7,3 +7,15 @@
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
+
+
+### step1
+- [x] 람다실습1: 익명 클래스를 람다로 전환
+- [x] 람다실습2: 람다를 활용해 중복 제거
+- [x] map, reduce, filter 실습 1 : sumOverThreeAndDouble()
+- [x] map, reduce, filter 실습 2 : printLongestWordTop100()
+- [x] Optional 1: 조건에 따른 반환
+- [x] Optional 2: 값을 반환
+- [x] Optional 3: exception 처리
+
+
