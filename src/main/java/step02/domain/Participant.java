@@ -25,4 +25,9 @@ public class Participant {
     public int hashCode() {
         return Objects.hash(participantName);
     }
+
+    @Override
+    public String toString() {
+        return participantName.toString() + "";
+    }
 }

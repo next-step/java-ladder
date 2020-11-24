@@ -44,4 +44,12 @@ public class ParticipantNameTest {
                 .isThrownBy(() -> ParticipantName.of(name));
     }
 
+    @DisplayName("Overrided toString")
+    @ParameterizedTest
+    @MethodSource("provideNameResult")
+    void test_toString(String name) {
+        assertThat(ParticipantName.of(name).toString())
+                .isEqualTo(name);
+    }
+
 }

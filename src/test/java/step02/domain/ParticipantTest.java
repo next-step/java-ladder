@@ -25,4 +25,12 @@ public class ParticipantTest {
         assertThat(Participant.of(name))
                 .isEqualTo(Participant.of(name));
     }
+
+    @DisplayName("Overrided toString ")
+    @ParameterizedTest
+    @MethodSource("provideNameResult")
+    void test_toString(String name) {
+        assertThat(Participant.of(name).toString())
+                .isEqualTo(name);
+    }
 }

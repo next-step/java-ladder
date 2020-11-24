@@ -6,6 +6,7 @@
 ####  예외처리
 - OutOfNameLengthException
 - NotAPositiveStepsOfLadderException
+- InvalidCountOfParticipantsException
 
 #### utils
 
@@ -14,15 +15,21 @@
     - private Name(String name)
     - public static Name of(String name)
     - private validate 0 ~ 5 자 인지 검사 -> OutOfNameLengthException
+    - @Override toString 
     
 - Participant 참여자
     - ParticipantName
+    - @Override toString 
+
 
 - Participants 참여자들
     - private Participant(List<Participant> namesOfParticipants)
     - public static Participants of(String namesOfParticipants)
     - private static List<Participant> tokenizeNames
     - public Integer size()
+    - 참여자가 1명 이하일 때 에러 던짐
+    - show
+
     
 #### Ladder 사다리
 - interface PointStrategy
