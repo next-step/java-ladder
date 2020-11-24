@@ -1,12 +1,11 @@
 package nextstep.fp;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
 import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class StreamStudyTest {
     private List<Integer> numbers;
@@ -20,6 +19,7 @@ public class StreamStudyTest {
     public void countWords() throws Exception {
         long result = StreamStudy.countWords();
         System.out.println("result : " + result);
+        assertThat(result).isEqualTo(1946);
     }
 
     @Test
