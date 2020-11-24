@@ -7,9 +7,13 @@
 - OutOfNameLengthException
 - NotAPositiveStepsOfLadderException
 
+#### utils
+
 #### Participants
 - ParticipantName 참여자 이름
-    - validate 0 ~ 5 자 인지 검사 -> OutOfNameLengthException
+    - private Name(String name)
+    - public static Name of(String name)
+    - private validate 0 ~ 5 자 인지 검사 -> OutOfNameLengthException
     
 - Participant 참여자
     - ParticipantName
@@ -86,3 +90,11 @@ public class Line {
     [...]
 }
 위와 같이 Line 객체를 추가하면 ArrayList<ArrayList<Boolean>> 코드를 ArrayList<Line>과 같이 구현하는 것이 가능해 진다.
+
+## 참고글
+- [[if(kakao)2020] JUnit5를 시작하며](https://rutgo-letsgo.tistory.com/172)
+
+## 생각
+- 테스트 케이스 매개 변수를 실제 구현사항과 비슷하게 하기
+- 테스트 케이스를 위해 private 이 아닌 protected 로 해보기
+- private 메서드는 클래스로 분리할 수 있는지 생각해 보기
