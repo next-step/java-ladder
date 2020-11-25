@@ -1,7 +1,7 @@
 package step02.domain;
 
-import exception.DuplicatedParticipantsNameException;
-import exception.InvalidCountOfParticipantsException;
+import exception.DuplicatedNameException;
+import exception.InvalidCountOfNamesException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -53,7 +53,7 @@ public class ParticipantsTest {
     @ParameterizedTest
     @MethodSource("provideInvalidCountOfParticipantsResult")
     void test_validateCountOfParticipants_throwException(String name) {
-        assertThatExceptionOfType(InvalidCountOfParticipantsException.class)
+        assertThatExceptionOfType(InvalidCountOfNamesException.class)
                 .isThrownBy(() -> Participants.of(name));
     }
 
@@ -82,7 +82,7 @@ public class ParticipantsTest {
     @ParameterizedTest
     @MethodSource("provideDuplicatedParticipantsResult")
     void test_show(String names) {
-        assertThatExceptionOfType(DuplicatedParticipantsNameException.class)
+        assertThatExceptionOfType(DuplicatedNameException.class)
                 .isThrownBy(() -> Participants.of(names));
     }
 

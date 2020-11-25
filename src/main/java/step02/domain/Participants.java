@@ -1,7 +1,7 @@
 package step02.domain;
 
-import exception.DuplicatedParticipantsNameException;
-import exception.InvalidCountOfParticipantsException;
+import exception.DuplicatedNameException;
+import exception.InvalidCountOfNamesException;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -29,11 +29,11 @@ public class Participants {
 
     private static void validate(String[] nameTokens) {
         if (isDuplicated(nameTokens)) {
-            throw new DuplicatedParticipantsNameException();
+            throw new DuplicatedNameException();
         }
 
         if (isInValidCountOfParticipant(nameTokens)) {
-            throw new InvalidCountOfParticipantsException();
+            throw new InvalidCountOfNamesException();
         }
     }
 
