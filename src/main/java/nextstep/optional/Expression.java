@@ -20,5 +20,5 @@ enum Expression {
                 .filter( e -> matchExpression(e, expression))
                 .findFirst()
                 .orElseThrow(IllegalArgumentException::new);
-         }
+    }
 }
