@@ -1,4 +1,4 @@
-package step03.domain.domain;
+package step03.domain;
 
 import java.util.Objects;
 

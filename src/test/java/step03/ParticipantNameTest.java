@@ -1,4 +1,4 @@
-package step03.domain;
+package step03;
 
 import exception.OutOfNameLengthException;
 import org.junit.jupiter.api.DisplayName;

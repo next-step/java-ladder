@@ -1,4 +1,4 @@
-package step03.domain.domain;
+package step03.domain;
 
 import exception.InvalidCountOfStepsException;
 

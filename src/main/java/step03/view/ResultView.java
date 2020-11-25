@@ -1,7 +1,7 @@
-package step03.domain.view;
+package step03.view;
 
-import step03.domain.domain.Participants;
-import step03.domain.domain.Steps;
+import step03.domain.Participants;
+import step03.domain.Steps;
 
 import java.util.List;
 
