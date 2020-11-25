@@ -7,3 +7,23 @@
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
+
+
+## 1단계 - 자바8 스트림, 람다, Optional
+
+#### 람다(lambda)
+
+- 람다 실습 1 - 익명 클래스를 람다로 전환
+- 람다 실습 2 - 람다를 활용해 중복 제거
+
+#### 스트림(stream)
+| map, filter, reduce
+
+- map, reduce, filter 실습 1
+- map, reduce, filter 실습 2
+
+#### Optional
+
+- 요구사항 1 - Optional을 활용해 조건에 따른 반환
+- 요구사항 2 - Optional에서 값을 반환
+- 요구사항 3 - Optional에서 exception 처리
