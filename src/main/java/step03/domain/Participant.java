@@ -3,14 +3,14 @@ package step03.domain;
 import java.util.Objects;
 
 public class Participant {
-    private final ParticipantName participantName;
+    private final Name name;
 
-    private Participant(ParticipantName participantName) {
-        this.participantName = participantName;
+    private Participant(Name name) {
+        this.name = name;
     }
 
     public static Participant of(String name) {
-        return new Participant(ParticipantName.of(name));
+        return new Participant(Name.of(name));
     }
 
     @Override
@@ -18,16 +18,16 @@ public class Participant {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Participant that = (Participant) o;
-        return Objects.equals(participantName, that.participantName);
+        return Objects.equals(name, that.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(participantName);
+        return Objects.hash(name);
     }
 
     @Override
     public String toString() {
-        return participantName.toString() + "";
+        return name.toString() + "";
     }
 }
