@@ -7,6 +7,8 @@ import static nextstep.optional.User.ageIsInRange2;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class UserTest {
+
+
     @Test
     public void whenFiltersWithoutOptional_thenCorrect() {
         assertThat(ageIsInRange1(new User("crong", 35))).isTrue();
