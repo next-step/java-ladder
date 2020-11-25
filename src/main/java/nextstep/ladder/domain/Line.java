@@ -53,8 +53,24 @@ public class Line {
         points.forEach(consumer);
     }
 
-    public boolean get(int index) {
-        return points.get(index);
+    public int getNextIndexOf(int currIndex) {
+        if (shouldBeMoveToLeft(currIndex)) {
+            return currIndex - 1;
+        }
+
+        if (shouldBeMoveToRight(currIndex)) {
+            return currIndex + 1;
+        }
+
+        return currIndex;
+    }
+
+    private boolean shouldBeMoveToRight(int currIndex) {
+        return currIndex < points.size() && points.get(currIndex);
+    }
+
+    private boolean shouldBeMoveToLeft(int currIndex) {
+        return currIndex > 0 || points.get(currIndex - 1);
     }
 
     @Override
@@ -62,22 +78,5 @@ public class Line {
         return "Line{" +
                 "points=" + points +
                 '}';
-    }
-
-    public int moveIndex(int currIndex) {
-        //왼쪽검사
-        if (currIndex > 0) {
-            if (points.get(currIndex - 1)) {
-                return currIndex - 1;
-            }
-        }
-        //오른쪽검사
-        if (currIndex < points.size()) {
-            if (points.get(currIndex)) {
-                return currIndex + 1;
-            }
-        }
-
-        return currIndex;
     }
 }

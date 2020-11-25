@@ -50,9 +50,9 @@ public class Ladder {
 
     private int getResultOfPerLine(int currIndex, int lineIndex) {
         if (lineIndex == 0) {
-            return lines.get(lineIndex).moveIndex(currIndex);
+            return lines.get(lineIndex).getNextIndexOf(currIndex);
         }
 
-        return lines.get(lineIndex).moveIndex(getResultOfPerLine(currIndex, lineIndex - 1));
+        return lines.get(lineIndex).getNextIndexOf(getResultOfPerLine(currIndex, lineIndex - 1));
     }
 }
