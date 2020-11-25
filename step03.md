@@ -17,6 +17,7 @@
 - InvalidCountOfParticipantsException
 - InvalidPointsOfStepException
 - DuplicatedParticipantsNameException
+- NotMatchedParticipantsWithNamesOfResultException
 
 - Name 이름
     - private Name(String name)
@@ -76,6 +77,13 @@
     - private NamesOfResult(List<Name> name)
     - public static NamesOfResult of(String names)
     - private static List<Name> tokenize(String names)
+- LadderGame 
+    - 사다리(Steps)
+    - NamesOfResult, NamesOfResult 을 인자로 받아 초기화함
+    - NamesOfResult 과 NamesOfResult 의 길이가 같은지 검증
+    - 사다리 높이와 stepGenerator 입력하면 사다리(Steps)를 만드는 메서드
+    - 결과를 매칭하는 메서드
+    
 - Matcher
     - Steps 를 인자로 받아 결과를 인덱스로 출력
 
