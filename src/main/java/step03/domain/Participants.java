@@ -4,7 +4,6 @@ import exception.DuplicatedParticipantsNameException;
 import exception.InvalidCountOfParticipantsException;
 import step03.utils.Tokenizer;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -12,10 +11,10 @@ import java.util.stream.Collectors;
 
 public class Participants {
     private static final Integer MIN_COUNT_OF_PARTICIPANTS = 2;
-    private final List<Participant> participants;
+    private final List<Name> participants;
 
 
-    private Participants(List<Participant> participants) {
+    private Participants(List<Name> participants) {
         this.participants = participants;
     }
 
@@ -45,12 +44,12 @@ public class Participants {
         return nameTokens.size() < MIN_COUNT_OF_PARTICIPANTS;
     }
 
-    private static List<Participant> parseNames(String names) {
+    private static List<Name> parseNames(String names) {
         List<String> nameTokens = tokenizeNames(names);
         validate(nameTokens);
 
         return nameTokens.stream()
-                .map(Participant::of)
+                .map(Name::of)
                 .collect(Collectors.toList());
     }
 
@@ -60,7 +59,7 @@ public class Participants {
 
     public List<String> getNames() {
         return participants.stream()
-                .map(Participant::toString)
+                .map(Name::toString)
                 .collect(Collectors.collectingAndThen(Collectors.toList(), Collections::unmodifiableList));
     }
 
