@@ -1,6 +1,7 @@
 package step03.domain;
 
 import exception.InvalidCountOfStepsException;
+import strategy.PointStrategy;
 
 import java.util.Collections;
 import java.util.List;
@@ -15,12 +16,12 @@ public class Steps {
         this.steps = steps;
     }
 
-    public static Steps of(Integer countOfSteps, StepGenerator stepGenerator) {
+    public static Steps of(Integer countOfSteps, PointStrategy pointStrategy) {
         validate(countOfSteps);
-        return new Steps(init(countOfSteps, stepGenerator));
+        return new Steps(init(countOfSteps, pointStrategy));
     }
-    private static List<Step> init(Integer countOfSteps, StepGenerator stepGenerator) {
-        return Stream.generate(stepGenerator::generate)
+    private static List<Step> init(Integer countOfSteps, PointStrategy pointStrategy) {
+        return Stream.generate(() -> Step.of(countOfSteps, pointStrategy))
                 .limit(countOfSteps)
                 .collect(Collectors.toList());
     }
