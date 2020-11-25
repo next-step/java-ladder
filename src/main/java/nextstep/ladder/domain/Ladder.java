@@ -45,14 +45,16 @@ public class Ladder {
     }
 
     private int getResult(int currIndex) {
-        return getResultOfPerLine(currIndex, lines.size() - 1);
+        return getResult(currIndex, lines.size() - 1);
     }
 
-    private int getResultOfPerLine(int currIndex, int lineIndex) {
+    private int getResult(int currIndex, int lineIndex) {
+        Line line = lines.get(lineIndex);
         if (lineIndex == 0) {
-            return lines.get(lineIndex).getNextIndexOf(currIndex);
+            return line.getNextIndexOf(currIndex);
         }
 
-        return lines.get(lineIndex).getNextIndexOf(getResultOfPerLine(currIndex, lineIndex - 1));
+        int nextIndex = getResult(currIndex, lineIndex - 1);
+        return line.getNextIndexOf(nextIndex);
     }
 }
