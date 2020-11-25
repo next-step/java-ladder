@@ -5,6 +5,10 @@
 - 중첩 forEach
 
 ## 기능 정의
+### utils
+- Tokenizer
+    - public static List<String> tokenizeWithComma(String string)
+
 ### domain
 
 예외처리
@@ -66,7 +70,8 @@
     - public List<List<Boolean>> getSteps() 
     
     // - 참여자의 수와 같지 않으면 예외처리
-#### 실행 결과
+    
+실행 결과
 - NamesOfResult 결과 목록
     - 결과이름도, 5자로 제한 한다. 1~5 자 사이가 아니면 예외 처리
 - Matcher
