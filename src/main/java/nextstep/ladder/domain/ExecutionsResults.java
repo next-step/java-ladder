@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class ExecutionsResults {
@@ -11,6 +12,10 @@ public class ExecutionsResults {
 
     public static ExecutionsResults of(List<String> executionResultInput) {
         return new ExecutionsResults(executionResultInput);
+    }
+
+    public static ExecutionsResults of(String... executionResultInput) {
+        return new ExecutionsResults(Arrays.asList(executionResultInput));
     }
 
     public int size() {

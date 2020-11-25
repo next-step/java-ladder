@@ -70,7 +70,7 @@ public class Line {
     }
 
     private boolean shouldBeMoveToLeft(int currIndex) {
-        return currIndex > 0 || points.get(currIndex - 1);
+        return currIndex > 0 && points.get(currIndex - 1);
     }
 
     @Override
