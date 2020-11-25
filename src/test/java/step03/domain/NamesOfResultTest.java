@@ -1,9 +1,11 @@
-package step03;
+package step03.domain;
 
 import exception.OutOfNameLengthException;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
+import step03.NamesOfResult;
 
 import java.util.stream.Stream;
 
@@ -22,7 +24,7 @@ public class NamesOfResultTest {
     @ParameterizedTest
     @MethodSource("provideResultsOfLadderResult")
     void test_constructor_of(String results) {
-        assertThat(NamesOfResult.of(results))
+        Assertions.assertThat(NamesOfResult.of(results))
                 .isEqualTo(NamesOfResult.of(results));
     }
 

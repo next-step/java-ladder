@@ -1,4 +1,4 @@
-package step03;
+package step03.domain;
 
 import exception.InvalidPointsOfStepException;
 import org.junit.jupiter.api.DisplayName;

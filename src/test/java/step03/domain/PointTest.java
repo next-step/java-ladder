@@ -1,4 +1,4 @@
-package step03;
+package step03.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;

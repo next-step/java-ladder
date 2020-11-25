@@ -1,4 +1,4 @@
-package step03;
+package step03.domain;
 
 import exception.InvalidCountOfStepsException;
 import org.junit.jupiter.api.BeforeEach;
