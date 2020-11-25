@@ -4,7 +4,7 @@ import exception.OutOfNameLengthException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
-import step02.domain.ParticipantName;
+import step03.domain.Name;
 
 import java.util.stream.Stream;
 
@@ -25,8 +25,8 @@ public class NameTest {
     @ParameterizedTest
     @MethodSource("provideNameResult")
     void test_constructor_of(String name) {
-        assertThat(ParticipantName.of(name))
-                .isEqualTo(ParticipantName.of(name));
+        assertThat(Name.of(name))
+                .isEqualTo(Name.of(name));
     }
 
     private static Stream<String> provideInvalidLengthOfNameResult() {
@@ -42,14 +42,14 @@ public class NameTest {
     @MethodSource("provideInvalidLengthOfNameResult")
     void test_validate(String name) {
         assertThatExceptionOfType(OutOfNameLengthException.class)
-                .isThrownBy(() -> ParticipantName.of(name));
+                .isThrownBy(() -> Name.of(name));
     }
 
     @DisplayName("Overrided toString")
     @ParameterizedTest
     @MethodSource("provideNameResult")
     void test_toString(String name) {
-        assertThat(ParticipantName.of(name).toString())
+        assertThat(Name.of(name).toString())
                 .isEqualTo(name);
     }
 
