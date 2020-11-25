@@ -73,7 +73,9 @@
     
 실행 결과
 - NamesOfResult 결과 목록
-    - 결과이름도, 5자로 제한 한다. 1~5 자 사이가 아니면 예외 처리
+    - private NamesOfResult(List<Name> name)
+    - public static NamesOfResult of(String names)
+    - private static List<Name> tokenize(String names)
 - Matcher
     - Steps 를 인자로 받아 결과를 인덱스로 출력
 
