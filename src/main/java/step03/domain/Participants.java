@@ -2,6 +2,7 @@ package step03.domain;
 
 import exception.DuplicatedParticipantsNameException;
 import exception.InvalidCountOfParticipantsException;
+import step03.utils.Tokenizer;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -10,7 +11,6 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Participants {
-    private static final String TOKEN = ",";
     private static final Integer MIN_COUNT_OF_PARTICIPANTS = 2;
     private final List<Participant> participants;
 
@@ -23,11 +23,11 @@ public class Participants {
         return new Participants(parseNames(names));
     }
 
-    private static String[] tokenizeNames(String names) {
-        return names.split(TOKEN);
+    private static List<String> tokenizeNames(String names) {
+        return Tokenizer.tokenizeWithComma(names);
     }
 
-    private static void validate(String[] nameTokens) {
+    private static void validate(List<String> nameTokens) {
         if (isDuplicated(nameTokens)) {
             throw new DuplicatedParticipantsNameException();
         }
@@ -37,19 +37,19 @@ public class Participants {
         }
     }
 
-    private static boolean isDuplicated(String[] nameTokens) {
-        return Arrays.stream(nameTokens).distinct().count() != nameTokens.length;
+    private static boolean isDuplicated(List<String> nameTokens) {
+        return nameTokens.stream().distinct().count() != nameTokens.size();
     }
 
-    private static boolean isInValidCountOfParticipant(String[] nameTokens) {
-        return nameTokens.length < MIN_COUNT_OF_PARTICIPANTS;
+    private static boolean isInValidCountOfParticipant(List<String> nameTokens) {
+        return nameTokens.size() < MIN_COUNT_OF_PARTICIPANTS;
     }
 
     private static List<Participant> parseNames(String names) {
-        String[] nameTokens = tokenizeNames(names);
+        List<String> nameTokens = tokenizeNames(names);
         validate(nameTokens);
 
-        return Arrays.stream(nameTokens)
+        return nameTokens.stream()
                 .map(Participant::of)
                 .collect(Collectors.toList());
     }
