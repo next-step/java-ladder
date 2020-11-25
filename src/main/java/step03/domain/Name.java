@@ -5,18 +5,18 @@ import exception.OutOfNameLengthException;
 import java.util.Objects;
 import java.util.Optional;
 
-public class ParticipantName {
+public class Name {
     private static final Integer MIN = 1;
     private static final Integer MAX = 5;
     private final String name;
 
-    private ParticipantName(String name) {
+    private Name(String name) {
         validate(name);
         this.name = name;
     }
 
-    public static ParticipantName of(String name) {
-        return new ParticipantName(name);
+    public static Name of(String name) {
+        return new Name(name);
     }
 
     private static void validate(String name) {
@@ -29,7 +29,7 @@ public class ParticipantName {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ParticipantName that = (ParticipantName) o;
+        Name that = (Name) o;
         return Objects.equals(name, that.name);
     }
 

@@ -7,17 +7,14 @@
 ## 기능 정의
 ### domain
 
-####  예외처리
+예외처리
 - OutOfNameLengthException
 - NotAPositiveStepsOfLadderException
 - InvalidCountOfParticipantsException
 - InvalidPointsOfStepException
 - DuplicatedParticipantsNameException
 
-#### utils
-
-#### Participants
-- ParticipantName 참여자 이름
+- Name 이름
     - private Name(String name)
     - public static Name of(String name)
     - private validate 0 ~ 5 자 인지 검사 -> OutOfNameLengthException
@@ -68,9 +65,9 @@
     - private void validate(Integer countOfSteps) 사다리가 정수가 아니면 예외 처리
     - public List<List<Boolean>> getSteps() 
     
+    // - 참여자의 수와 같지 않으면 예외처리
 #### 실행 결과
-- 결과 목록
-    - 참여자의 수와 같지 않으면 예외처리
+- NamesOfResult 결과 목록
     - 결과이름도, 5자로 제한 한다. 1~5 자 사이가 아니면 예외 처리
 - Matcher
     - Steps 를 인자로 받아 결과를 인덱스로 출력
@@ -94,11 +91,7 @@
     - private static void printResults(...) 결과 목록 출력
 
 ### controller Main
-- 참여할 사람 입력 
-```
-    String namesOfParticipants = InputView.readNamesOfParticipants();
-    Participants participants = Participants.of(namesOfParticipants);
-```
+- public static Participants readParticipants() 참여할 사람 입력 
 - 실행 결과 입력
 ```
     실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)

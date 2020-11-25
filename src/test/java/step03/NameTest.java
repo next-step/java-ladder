@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
-public class ParticipantNameTest {
+public class NameTest {
 
     private static Stream<String> provideNameResult() {
         return Stream.of(
