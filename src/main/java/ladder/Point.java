@@ -10,7 +10,7 @@ public class Point {
     private final boolean left;
     private final boolean right;
 
-    private Point(int index, boolean left, boolean right) {
+    private Point(final int index, final boolean left, final boolean right) {
         this.index = index;
         this.left = left;
         this.right = right;
@@ -19,6 +19,24 @@ public class Point {
     public static Point of(final int index, final boolean left, final boolean right) {
         checkArgument(!(left && right), POINT_MUST_HAS_ONLY_ONE_DIRECTION);
         return new Point(index, left, right);
+    }
+
+    public Point createNext(final DirectionGenerator directionGenerator) {
+        final int nextPointsIndex = this.index + 1;
+        if (this.right) {
+            return Point.of(nextPointsIndex, Boolean.TRUE, Boolean.FALSE);
+        }
+        
+        final boolean nextPointsRight = directionGenerator.generate();
+        return Point.of(nextPointsIndex, Boolean.FALSE, nextPointsRight);
+    }
+
+    public boolean hasLeft() {
+        return left;
+    }
+
+    public boolean hasRight() {
+        return right;
     }
 
     @Override
