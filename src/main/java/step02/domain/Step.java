@@ -4,6 +4,7 @@ import exception.InvalidPointsOfStepException;
 import strategy.PointStrategy;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -34,11 +35,14 @@ public class Step {
         points.add(pointStrategy.hasPoint());
 
         for (int i = 1; i < countOfPoints; i++) {
-            Boolean thisPoint = !points.get(points.size() - 1) && pointStrategy.hasPoint();
-            points.add(thisPoint);
+            points.add(hasLine(points, pointStrategy));
         }
 
         return points;
+    }
+
+    private static Boolean hasLine(List<Boolean> points, PointStrategy pointStrategy) {
+        return !points.get(points.size() - 1) && pointStrategy.hasPoint();
     }
 
     private static void validate(List<Boolean> points) {
@@ -53,7 +57,7 @@ public class Step {
     public List<Boolean> getPoints() {
         return points.stream()
                 .map(Point::hasLine)
-                .collect(Collectors.toList());
+                .collect(Collectors.collectingAndThen(Collectors.toList(), Collections::unmodifiableList));
     }
 
     @Override

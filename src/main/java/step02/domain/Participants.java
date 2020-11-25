@@ -4,11 +4,10 @@ import exception.DuplicatedParticipantsNameException;
 import exception.InvalidCountOfParticipantsException;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-
-import static java.util.stream.Collectors.counting;
 
 public class Participants {
     private static final String TOKEN = ",";
@@ -62,7 +61,7 @@ public class Participants {
     public List<String> getNames() {
         return participants.stream()
                 .map(Participant::toString)
-                .collect(Collectors.toList());
+                .collect(Collectors.collectingAndThen(Collectors.toList(), Collections::unmodifiableList));
     }
 
     @Override
