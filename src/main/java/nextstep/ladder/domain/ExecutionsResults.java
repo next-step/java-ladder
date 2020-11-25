@@ -2,6 +2,7 @@ package nextstep.ladder.domain;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class ExecutionsResults {
     private final List<String> executionResults;
@@ -24,5 +25,9 @@ public class ExecutionsResults {
 
     public String get(int i) {
         return executionResults.get(i);
+    }
+
+    public void forEach(Consumer<String> consumer) {
+        executionResults.forEach(consumer);
     }
 }

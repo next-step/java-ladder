@@ -1,5 +1,6 @@
 package nextstep.ladder;
 
+import nextstep.ladder.domain.ExecutionsResults;
 import nextstep.ladder.domain.Height;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Participants;
@@ -22,7 +23,8 @@ public class LadderGame {
         Participants participants = ValidInputHelper.get(this::getParticipants, inputView::printError);
         Height height = ValidInputHelper.get(this::getHeight, inputView::printError);
         Ladder ladder = Ladder.of(participants, height);
-        resultView.printResult(participants, ladder);
+        ExecutionsResults executionsResults = ValidInputHelper.get(this::getExecutionResults, inputView::printError);
+        resultView.printResult(participants, ladder, executionsResults);
     }
 
     private Participants getParticipants() {
@@ -33,5 +35,10 @@ public class LadderGame {
     private Height getHeight() {
         int inputHeight = ValidInputHelper.get(inputView::getHeight, inputView::printError);
         return Height.valueOf(inputHeight);
+    }
+
+    private ExecutionsResults getExecutionResults() {
+        List<String> executionResults = ValidInputHelper.get(inputView::getExecutionResults, inputView::printError);
+        return ExecutionsResults.of(executionResults);
     }
 }

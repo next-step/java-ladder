@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
@@ -30,6 +31,10 @@ public class Participants {
 
     public static Participants from(List<String> names) {
         return new Participants(names);
+    }
+
+    public static Participants of(String... inputNames) {
+        return new Participants(Arrays.asList(inputNames));
     }
 
     public NumberOfParticipants getNumberOfParticipants() {

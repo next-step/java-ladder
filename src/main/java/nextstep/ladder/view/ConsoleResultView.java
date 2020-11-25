@@ -1,5 +1,6 @@
 package nextstep.ladder.view;
 
+import nextstep.ladder.domain.ExecutionsResults;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Participants;
 
@@ -13,12 +14,13 @@ public class ConsoleResultView implements ResultView {
     private static final String NAME_STRING_FORMAT = "%6s";
 
     @Override
-    public void printResult(Participants participants, Ladder ladder) {
+    public void printResult(Participants participants, Ladder ladder, ExecutionsResults executionsResults) {
         StringBuilder resultBuilder = new StringBuilder();
 
         appendHeader(resultBuilder);
         appendParticipantNames(participants, resultBuilder);
         appendLadder(ladder, resultBuilder);
+        appendResults(executionsResults, resultBuilder);
 
         System.out.println(resultBuilder.toString());
     }
@@ -45,5 +47,9 @@ public class ConsoleResultView implements ResultView {
                 .build();
 
         ladder.linesForEach(lineRenderer.renderLine());
+    }
+
+    private void appendResults(ExecutionsResults executionsResults, StringBuilder resultBuilder) {
+        executionsResults.forEach(appendName(resultBuilder));
     }
 }

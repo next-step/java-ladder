@@ -7,5 +7,7 @@ public interface InputView {
 
     int getHeight();
 
+    List<String> getExecutionResults();
+
     void printError(RuntimeException e);
 }
