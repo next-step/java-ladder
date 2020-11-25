@@ -28,7 +28,7 @@ public class PointTest {
             assertThat(point).isNotNull();
         }
 
-        @DisplayName("지점은 가로 세로 중 하나만 선택 가능")
+        @DisplayName("지점은 왼쪽 오른쪽 중 하나만 선택 가능")
         @Test
         void fail_when_has_two_direction() {
             // given
@@ -56,20 +56,6 @@ public class PointTest {
 
             // when
             final Point point = Point.of(index, horizontal, vertical);
-
-            // then
-            assertThat(point).isNotNull();
-            assertThat(point).isEqualTo(Point.createEmpty(index));
-        }
-
-        @DisplayName("empty 생성")
-        @Test
-        void createEmpty() {
-            // given
-            final int index = 0;
-
-            // when
-            final Point point = Point.createEmpty(index);
 
             // then
             assertThat(point).isNotNull();
