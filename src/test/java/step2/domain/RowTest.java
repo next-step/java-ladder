@@ -2,8 +2,10 @@ package step2.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import step2.exception.PlayerCountException;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class RowTest {
 
@@ -29,4 +31,9 @@ class RowTest {
         assertThat(row.move(2)).isEqualTo(1);
     }
 
+    @Test
+    @DisplayName("사람이 1명 미만이면 익셉션을 발생시킨다.")
+    void validPlayerCount() {
+        assertThatThrownBy(() -> new Row(0)).isInstanceOf(PlayerCountException.class);
+    }
 }
