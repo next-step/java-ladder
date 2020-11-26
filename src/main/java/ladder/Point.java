@@ -6,7 +6,7 @@ import static util.Preconditions.checkArgument;
 
 public class Point {
     public static final String POINT_MUST_HAS_ONLY_ONE_DIRECTION = "point must has only one direction";
-    private static final DirectionGenerator defaultDirectionGenerator = new RandomDirectionGenerator();
+    private static final DirectionGenerator DEFAULT_DIRECTION_GENERATOR = new RandomDirectionGenerator();
     private final int index;
     private final boolean left;
     private final boolean right;
@@ -22,8 +22,16 @@ public class Point {
         return new Point(index, left, right);
     }
 
+    public static Point createFirst() {
+        return createFirst(DEFAULT_DIRECTION_GENERATOR);
+    }
+
+    public static Point createFirst(final DirectionGenerator directionGenerator) {
+        return Point.of(0, Boolean.FALSE, directionGenerator.generate());
+    }
+
     public Point createNext() {
-        return createNext(defaultDirectionGenerator);
+        return createNext(DEFAULT_DIRECTION_GENERATOR);
     }
 
     public Point createNext(final DirectionGenerator directionGenerator) {

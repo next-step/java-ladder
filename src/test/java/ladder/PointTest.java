@@ -128,4 +128,25 @@ public class PointTest {
         // then
         assertThat(nextPoint).isNotNull();
     }
+
+    @DisplayName("첫 번째 Direction 만들기")
+    @Test
+    void create_first_point_using_generator() {
+        // when
+        final Point nextPoint = Point.createFirst(() -> true);
+
+        // then
+        assertThat(nextPoint.hasLeft()).isFalse();
+        assertThat(nextPoint.hasRight()).isTrue();
+    }
+
+    @DisplayName("기본 방향 제너레이터를 통해 첫 번째 Direction 만들기")
+    @Test
+    void create_first_point_using_default_generator() {
+        // when
+        final Point nextPoint = Point.createFirst();
+
+        // then
+        assertThat(nextPoint).isNotNull();
+    }
 }
