@@ -10,7 +10,6 @@ import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
 import java.util.List;
-import java.util.Map;
 
 public class LadderGame {
     private final InputView inputView;
@@ -46,15 +45,10 @@ public class LadderGame {
     }
 
     private void printResults(Participants participants, Ladder ladder, ExecutionResults executionResults) {
-        Results results = getResults(participants, ladder, executionResults);
+        Results results = ladder.resultOf(participants, executionResults);
         for (boolean printedAll = false; !printedAll; ) {
             String nameOfWantToCheck = inputView.getNameOfWantToCheck();
             printedAll = resultView.printResult(results, nameOfWantToCheck);
         }
-    }
-
-    private Results getResults(Participants participants, Ladder ladder, ExecutionResults executionResults) {
-        Map<String, String> resultsInput = ladder.resultOf(participants, executionResults);
-        return Results.of(resultsInput);
     }
 }

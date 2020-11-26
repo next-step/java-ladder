@@ -4,10 +4,9 @@ import nextstep.ladder.domain.ExecutionResults;
 import nextstep.ladder.domain.Height;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Participants;
+import nextstep.ladder.domain.Results;
 import nextstep.ladder.mock.MockPointsGenerator;
 import org.junit.jupiter.api.Test;
-
-import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -22,14 +21,14 @@ public class ResultJudgeTest {
         ExecutionResults executionResults = ExecutionResults.of(participants, "꽝", "5000", "꽝", "3000");
 
         //when
-        Map<String, String> results = ladder.resultOf(participants, executionResults);
+        Results results = ladder.resultOf(participants, executionResults);
 
         //then
         assertAll(
-                () -> assertThat(results.get("pobi")).isEqualTo("꽝"),
-                () -> assertThat(results.get("honux")).isEqualTo("3000"),
-                () -> assertThat(results.get("crong")).isEqualTo("꽝"),
-                () -> assertThat(results.get("jk")).isEqualTo("5000")
+                () -> results.accept("pobi", (key, value) -> assertThat(value).isEqualTo("꽝")),
+                () -> results.accept("honux", (key, value) -> assertThat(value).isEqualTo("3000")),
+                () -> results.accept("crong", (key, value) -> assertThat(value).isEqualTo("꽝")),
+                () -> results.accept("jk", (key, value) -> assertThat(value).isEqualTo("5000"))
         );
     }
 }
