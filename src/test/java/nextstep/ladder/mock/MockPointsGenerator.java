@@ -3,11 +3,12 @@ package nextstep.ladder.mock;
 import nextstep.ladder.util.pointsgenerator.PointsGenerator;
 
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 public class MockPointsGenerator implements PointsGenerator {
     private final List<List<Boolean>> mockPoints;
-    private int index = 0;
+    private Iterator<List<Boolean>> mockPointsIterator;
 
     public MockPointsGenerator() {
         mockPoints = Arrays.asList(
@@ -21,6 +22,9 @@ public class MockPointsGenerator implements PointsGenerator {
 
     @Override
     public List<Boolean> getPoints(int pointsSize) {
-        return mockPoints.get(index++);
+        if (mockPointsIterator == null || !mockPointsIterator.hasNext()) {
+            mockPointsIterator = mockPoints.iterator();
+        }
+        return mockPointsIterator.next();
     }
 }
