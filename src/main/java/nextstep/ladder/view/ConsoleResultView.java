@@ -50,11 +50,11 @@ public class ConsoleResultView implements ResultView {
     }
 
     private void appendParticipantNames(Participants participants, StringBuilder resultBuilder) {
-        participants.namesValueForEach(appendName(resultBuilder));
+        participants.namesValueForEach(appendString(resultBuilder));
         resultBuilder.append(System.lineSeparator());
     }
 
-    private Consumer<String> appendName(StringBuilder resultBuilder) {
+    private Consumer<String> appendString(StringBuilder resultBuilder) {
         return (String name) -> resultBuilder.append(String.format(NAME_STRING_FORMAT, name));
     }
 
@@ -70,6 +70,6 @@ public class ConsoleResultView implements ResultView {
     }
 
     private void appendResults(Results results, StringBuilder resultBuilder) {
-        results.forEach(appendName(resultBuilder));
+        results.forEach(appendString(resultBuilder));
     }
 }

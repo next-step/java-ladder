@@ -40,7 +40,7 @@ public class Ladder {
     }
 
     public ExecutionResults resultOf(Participants participants, Results results) {
-        Map<Name, String> resultsMap = IntStream.range(0, participants.getNumberOfParticipants().getValue())
+        Map<Name, Result> resultsMap = IntStream.range(0, participants.getNumberOfParticipants().getValue())
                 .boxed()
                 .collect(Collectors.toMap(participants::get, i -> results.get(getResult(i)),
                         (k1, k2) -> {
