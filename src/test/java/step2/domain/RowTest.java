@@ -36,4 +36,14 @@ class RowTest {
     void validPlayerCount() {
         assertThatThrownBy(() -> new Row(0)).isInstanceOf(PlayerCountException.class);
     }
+    @Test
+    @DisplayName("시작 지점이 0 보다 크거나 같지 않을경우 예외처리가 된다.")
+    void validStartPosition() {
+        assertThatThrownBy(() -> new Row(0)).isInstanceOf(PlayerCountException.class);
+    }
+    @Test
+    @DisplayName("시작 지점이 사람수보다 클경우 익셉션을 터뜨린다.")
+    void validStartPositionOfPlayerCount() {
+        assertThatThrownBy(() -> new Row(0)).isInstanceOf(PlayerCountException.class);
+    }
 }
