@@ -58,7 +58,7 @@ public class Participants {
                 .forEach(consumer);
     }
 
-    public Name get(int i) {
-        return names.get(i);
+    public Name get(int index) {
+        return names.get(index);
     }
 }

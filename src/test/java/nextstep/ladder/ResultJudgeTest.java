@@ -3,6 +3,7 @@ package nextstep.ladder;
 import nextstep.ladder.domain.ExecutionResults;
 import nextstep.ladder.domain.Height;
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.Name;
 import nextstep.ladder.domain.Participants;
 import nextstep.ladder.domain.Results;
 import nextstep.ladder.mock.MockPointsGenerator;
@@ -25,10 +26,10 @@ public class ResultJudgeTest {
 
         //then
         assertAll(
-                () -> results.accept("pobi", (key, value) -> assertThat(value).isEqualTo("꽝")),
-                () -> results.accept("honux", (key, value) -> assertThat(value).isEqualTo("3000")),
-                () -> results.accept("crong", (key, value) -> assertThat(value).isEqualTo("꽝")),
-                () -> results.accept("jk", (key, value) -> assertThat(value).isEqualTo("5000"))
+                () -> results.accept(Name.valueOf("pobi"), (key, value) -> assertThat(value).isEqualTo("꽝")),
+                () -> results.accept(Name.valueOf("honux"), (key, value) -> assertThat(value).isEqualTo("3000")),
+                () -> results.accept(Name.valueOf("crong"), (key, value) -> assertThat(value).isEqualTo("꽝")),
+                () -> results.accept(Name.valueOf("jk"), (key, value) -> assertThat(value).isEqualTo("5000"))
         );
     }
 }

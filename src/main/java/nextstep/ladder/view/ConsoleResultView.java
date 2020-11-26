@@ -2,6 +2,7 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.domain.ExecutionResults;
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.Name;
 import nextstep.ladder.domain.Participants;
 import nextstep.ladder.domain.Results;
 
@@ -28,9 +29,9 @@ public class ConsoleResultView implements ResultView {
     }
 
     @Override
-    public boolean printResult(Results results, String nameOfWantToCheck) {
-        if (results.isAll(nameOfWantToCheck)) {
-            results.forEach((key, value) -> System.out.println(key + " : " + value));
+    public boolean printResult(Results results, Name nameOfWantToCheck) {
+        if (results.isAllKeyword(nameOfWantToCheck)) {
+            results.forEach((key, value) -> System.out.println(key.getValue() + " : " + value));
             return true;
         }
 

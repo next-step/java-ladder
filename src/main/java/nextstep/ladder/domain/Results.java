@@ -5,25 +5,25 @@ import java.util.function.BiConsumer;
 
 public class Results {
     public static final String ALL_KEYWORD = "all";
-    private final Map<String, String> value;
+    private final Map<Name, String> value;
 
-    private Results(Map<String, String> value) {
+    private Results(Map<Name, String> value) {
         this.value = value;
     }
 
-    public static Results of(Map<String, String> value) {
+    public static Results of(Map<Name, String> value) {
         return new Results(value);
     }
 
-    public boolean isAll(String name) {
-        return ALL_KEYWORD.equals(name);
+    public boolean isAllKeyword(Name name) {
+        return ALL_KEYWORD.equals(name.getValue());
     }
 
-    public void forEach(BiConsumer<String, String> biConsumer) {
+    public void forEach(BiConsumer<Name, String> biConsumer) {
         value.forEach(biConsumer);
     }
 
-    public void accept(String nameOfWantToCheck, BiConsumer<String, String> biConsumer) {
+    public void accept(Name nameOfWantToCheck, BiConsumer<Name, String> biConsumer) {
         biConsumer.accept(nameOfWantToCheck, value.get(nameOfWantToCheck));
     }
 }

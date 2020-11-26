@@ -3,6 +3,7 @@ package nextstep.ladder;
 import nextstep.ladder.domain.ExecutionResults;
 import nextstep.ladder.domain.Height;
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.Name;
 import nextstep.ladder.domain.Participants;
 import nextstep.ladder.domain.Results;
 import nextstep.ladder.util.ValidInputHelper;
@@ -47,7 +48,8 @@ public class LadderGame {
     private void printResults(Participants participants, Ladder ladder, ExecutionResults executionResults) {
         Results results = ladder.resultOf(participants, executionResults);
         for (boolean printedAll = false; !printedAll; ) {
-            String nameOfWantToCheck = inputView.getNameOfWantToCheck();
+            String nameOfWantToCheckInput = inputView.getNameOfWantToCheck();
+            Name nameOfWantToCheck = Name.valueOf(nameOfWantToCheckInput);
             printedAll = resultView.printResult(results, nameOfWantToCheck);
         }
     }
