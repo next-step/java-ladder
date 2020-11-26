@@ -13,6 +13,7 @@ public class ConsoleResultView implements ResultView {
     private static final String EXIST_POINT = "-----";
     private static final String EMPTY_POINT = "     ";
     private static final String NAME_STRING_FORMAT = "%6s";
+    private static final String CAN_NOT_FIND_PARTICIPANTS_ERR_MSG = "입력된 참가자 이름을 찾을 수 없습니다.";
 
     @Override
     public void printLadder(Participants participants, Ladder ladder, ExecutionResults executionResults) {
@@ -33,7 +34,13 @@ public class ConsoleResultView implements ResultView {
             return true;
         }
 
-        results.accept(nameOfWantToCheck, (key, value) -> System.out.println(value));
+        results.accept(nameOfWantToCheck, (key, value) -> {
+            if (value == null) {
+                System.out.println(CAN_NOT_FIND_PARTICIPANTS_ERR_MSG);
+                return;
+            }
+            System.out.println(value);
+        });
         return false;
     }
 
