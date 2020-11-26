@@ -2,7 +2,9 @@ package step03.domain;
 
 import exception.DuplicatedNameException;
 import exception.InvalidCountOfNamesException;
+import exception.UsingProhibitedNameException;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -82,6 +84,13 @@ public class NamesTest {
     void test_show(String names) {
         assertThatExceptionOfType(DuplicatedNameException.class)
                 .isThrownBy(() -> Names.of(names).validateUnique());
+    }
+
+    @DisplayName("금지 단어를 포함하고 있으면 예외 던짐")
+    @Test
+    void test_validateProhibitNames() {
+        assertThatExceptionOfType(UsingProhibitedNameException.class)
+                .isThrownBy(() -> Names.of("all,b,c").validateProhibitNames("all"));
     }
 
 }

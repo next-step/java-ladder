@@ -1,6 +1,7 @@
 package step03.domain;
 
 import exception.OutOfNameLengthException;
+import exception.UsingProhibitedNameException;
 
 import java.util.Objects;
 import java.util.Optional;
@@ -41,5 +42,11 @@ public class Name {
     @Override
     public String toString() {
         return name + "";
+    }
+
+    public void validateProhibitName(String prohibitedName) {
+        if (name.equals(prohibitedName)) {
+            throw new UsingProhibitedNameException();
+        }
     }
 }

@@ -72,4 +72,8 @@ public class Names {
     public int hashCode() {
         return Objects.hash(names);
     }
+
+    public void validateProhibitNames(String prohibitName) {
+        names.forEach(name -> name.validateProhibitName(prohibitName));
+    }
 }

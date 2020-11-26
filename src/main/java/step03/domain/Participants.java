@@ -3,10 +3,12 @@ package step03.domain;
 import java.util.List;
 
 public class Participants {
+    private static final String ALL = "all";
     private final Names names;
 
     private Participants(Names names) {
         names.validateUnique();
+        names.validateProhibitNames(ALL);
         this.names = names;
     }
 

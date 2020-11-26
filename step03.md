@@ -14,9 +14,9 @@
 예외처리
 - OutOfNameLengthException
 - NotAPositiveStepsOfLadderException
-- InvalidCountOfParticipantsException
+- InvalidCountOfNamesException
 - InvalidPointsOfStepException
-- DuplicatedParticipantsNameException
+- DuplicatedNameException
 - NotMatchedParticipantsWithNamesOfResultException
 
 - Name 이름
@@ -25,21 +25,21 @@
     - private validate 0 ~ 5 자 인지 검사 -> OutOfNameLengthException
     - @Override toString 
     
-- Participant 참여자
-    - ParticipantName
-    - @Override toString 
-
-- Participants 참여자들
-    - private Participant(List<Participant> namesOfParticipants)
-    - public static Participants of(String namesOfParticipants)
-    - private static List<Participant> tokenizeNames
+- Names 
+    - private final List<Name> names
+    - private Names(List<Name> names)
+    - public static Names of(String names)
+    - private static List<String> tokenizeNames(String names)
+    - private static void validate(List<String> nameTokens)
+    - public void validateUnique() {
+    - private static boolean isInValidCount(List<String> nameTokens)
+    - private static List<Name> parseNames(String names)
     - public Integer size()
-    - private static String[] tokenizeNames(String names)
-    - private static void validate(String[] nameTokens)
-    - private static boolean isDuplicated(String[] nameTokens)
-    - private static boolean isInValidCountOfParticipant(String[] nameTokens)
-    - private static List<Participant> parseNames(String names)
-    - public List<String> show()
+    - public List<String> getNames()
+    
+- Participants 참여자들
+
+- NamesOfResult 
 
 #### Ladder 사다리
 - interface PointStrategy
@@ -64,19 +64,14 @@
     - public List<Boolean> getPoints() 출력을 위한 기능
     
 - Steps 세로 라인 (사다리의 최대 높이)
-    - private final List<Step> steps
-    - private Steps(List<Step> steps)
+    - private final List<Step> ladder
+    - private Steps(List<Step> ladder)
     - public static Steps of(Integer countOfSteps, StepGenerator stepGenerator) countOfSteps 만큼 step 생성
     - private void validate(Integer countOfSteps) 사다리가 정수가 아니면 예외 처리
     - public List<List<Boolean>> getSteps() 
     
     // - 참여자의 수와 같지 않으면 예외처리
     
-실행 결과
-- NamesOfResult 결과 목록
-    - private NamesOfResult(List<Name> name)
-    - public static NamesOfResult of(String names)
-    - private static List<Name> tokenize(String names)
 - LadderGame 
     - 사다리(Steps)
     - NamesOfResult, NamesOfResult 을 인자로 받아 초기화함
@@ -100,9 +95,9 @@
 - ResultView
     - private ResultView()
     - private static String padLeft(String string, Integer repeat)
-    - public static void print(Participants participants, Steps steps)
+    - public static void print(Participants participants, Steps ladder)
     - private static void printNamesOfParticipants(Participants participants)
-    - private static void printLadder(Steps steps) 
+    - private static void printLadder(Steps ladder) 
     - private static void printResults(...) 결과 목록 출력
 
 ### controller Main
@@ -119,8 +114,8 @@
 Integer heightOfLadder = InputView.readCountOfSteps();
 
 StepGenerator stepGenerator = StepGenerator.of(participants, RandomPointStrategy.of());
-Steps steps = Steps.of(heightOfLadder, stepGenerator);
-ResultView.print(participants, steps);
+Steps ladder = Steps.of(heightOfLadder, stepGenerator);
+ResultView.print(participants, ladder);
 ```
 
 - 결과를 보고 싶은 사람은? - 실행 결과

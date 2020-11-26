@@ -1,10 +1,11 @@
 package step03.domain;
 
 import exception.OutOfNameLengthException;
+import exception.UsingProhibitedNameException;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
-import step03.domain.Name;
 
 import java.util.stream.Stream;
 
@@ -51,6 +52,13 @@ public class NameTest {
     void test_toString(String name) {
         assertThat(Name.of(name).toString())
                 .isEqualTo(name);
+    }
+
+    @DisplayName("금지 단어 예외 던짐")
+    @Test
+    void test_validateProhibitName() {
+        assertThatExceptionOfType(UsingProhibitedNameException.class)
+                .isThrownBy(() -> Name.of("all").validateProhibitName("all"));
     }
 
 }
