@@ -4,7 +4,7 @@ import java.util.Map;
 import java.util.function.BiConsumer;
 
 public class Results {
-    private static final String ALL = "all";
+    public static final String ALL_KEYWORD = "all";
     private final Map<String, String> value;
 
     private Results(Map<String, String> value) {
@@ -16,7 +16,7 @@ public class Results {
     }
 
     public boolean isAll(String name) {
-        return ALL.equals(name);
+        return ALL_KEYWORD.equals(name);
     }
 
     public void forEach(BiConsumer<String, String> biConsumer) {

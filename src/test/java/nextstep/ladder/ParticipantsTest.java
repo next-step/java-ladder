@@ -1,6 +1,7 @@
 package nextstep.ladder;
 
 import nextstep.ladder.domain.Participants;
+import nextstep.ladder.domain.Results;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -15,5 +16,13 @@ public class ParticipantsTest {
         assertThatExceptionOfType(IllegalStateException.class)
                 .isThrownBy(() -> Participants.from(Arrays.asList("name1", "name1", "name2")))
                 .withMessage(Participants.DUPLICATE_NAME_EXIST_ERR_MSG);
+    }
+
+    @Test
+    @DisplayName("ALL_KEYWORD를 참석자의 이름으로 사용한 경우 throw Exception")
+    void keywordTest() {
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> Participants.from(Arrays.asList(Results.ALL_KEYWORD, "name1", "name2")))
+                .withMessage(Participants.ALL_KEYWORD_USED_ERR_MSG);
     }
 }
