@@ -28,30 +28,15 @@ public class Lambda {
     }
 
     public static int sumAll(List<Integer> numbers) {
-        return sum(numbers, new Predicate<Integer>() {
-            @Override
-            public boolean test(Integer number) {
-                return true;
-            }
-        });
+        return sum(numbers, number -> true);
     }
 
     public static int sumAllEven(List<Integer> numbers) {
-        return sum(numbers, new Predicate<Integer>() {
-            @Override
-            public boolean test(Integer number) {
-                return number % 2 == 0;
-            }
-        });
+        return sum(numbers, number -> number % 2 == 0);
     }
 
     public static int sumAllOverThree(List<Integer> numbers) {
-        return sum(numbers, new Predicate<Integer>() {
-            @Override
-            public boolean test(Integer number) {
-                return number > 3;
-            }
-        });
+        return sum(numbers, number -> number > 3);
     }
 
     private static int sum(List<Integer> numbers, Predicate<Integer> condition) {
