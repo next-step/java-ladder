@@ -40,6 +40,12 @@ public class ConsoleInputView implements InputView {
     }
 
     @Override
+    public String getNameOfWantToCheck() {
+        System.out.println("결과를 보고 싶은 사람은?");
+        return scanner.nextLine();
+    }
+
+    @Override
     public void printError(RuntimeException e) {
         System.out.println(ERROR_MSG_PREFIX + e.getMessage());
     }

@@ -9,5 +9,7 @@ public interface InputView {
 
     List<String> getExecutionResults();
 
+    String getNameOfWantToCheck();
+
     void printError(RuntimeException e);
 }

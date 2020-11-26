@@ -4,11 +4,13 @@ import nextstep.ladder.domain.ExecutionsResults;
 import nextstep.ladder.domain.Height;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Participants;
+import nextstep.ladder.domain.Results;
 import nextstep.ladder.util.ValidInputHelper;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
 import java.util.List;
+import java.util.Map;
 
 public class LadderGame {
     private final InputView inputView;
@@ -24,7 +26,8 @@ public class LadderGame {
         Height height = ValidInputHelper.get(this::getHeight, inputView::printError);
         Ladder ladder = Ladder.of(participants, height);
         ExecutionsResults executionsResults = ValidInputHelper.get(() -> getExecutionResults(participants), inputView::printError);
-        resultView.printResult(participants, ladder, executionsResults);
+        resultView.printLadder(participants, ladder, executionsResults);
+        printResults(participants, ladder, executionsResults);
     }
 
     private Participants getParticipants() {
@@ -40,5 +43,18 @@ public class LadderGame {
     private ExecutionsResults getExecutionResults(Participants participants) {
         List<String> executionResults = ValidInputHelper.get(inputView::getExecutionResults, inputView::printError);
         return ExecutionsResults.of(participants, executionResults);
+    }
+
+    private void printResults(Participants participants, Ladder ladder, ExecutionsResults executionsResults) {
+        Results results = getResults(participants, ladder, executionsResults);
+        for (boolean printedAll = false; !printedAll; ) {
+            String nameOfWantToCheck = inputView.getNameOfWantToCheck();
+            printedAll = resultView.printResult(results, nameOfWantToCheck);
+        }
+    }
+
+    private Results getResults(Participants participants, Ladder ladder, ExecutionsResults executionsResults) {
+        Map<String, String> resultsInput = ladder.resultOf(participants, executionsResults);
+        return new Results(resultsInput);
     }
 }

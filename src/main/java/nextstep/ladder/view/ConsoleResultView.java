@@ -3,6 +3,7 @@ package nextstep.ladder.view;
 import nextstep.ladder.domain.ExecutionsResults;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Participants;
+import nextstep.ladder.domain.Results;
 
 import java.util.function.Consumer;
 
@@ -14,7 +15,7 @@ public class ConsoleResultView implements ResultView {
     private static final String NAME_STRING_FORMAT = "%6s";
 
     @Override
-    public void printResult(Participants participants, Ladder ladder, ExecutionsResults executionsResults) {
+    public void printLadder(Participants participants, Ladder ladder, ExecutionsResults executionsResults) {
         StringBuilder resultBuilder = new StringBuilder();
 
         appendHeader(resultBuilder);
@@ -23,6 +24,17 @@ public class ConsoleResultView implements ResultView {
         appendResults(executionsResults, resultBuilder);
 
         System.out.println(resultBuilder.toString());
+    }
+
+    @Override
+    public boolean printResult(Results results, String nameOfWantToCheck) {
+        if (results.isAll(nameOfWantToCheck)) {
+            results.forEach((key, value) -> System.out.println(key + " : " + value));
+            return true;
+        }
+
+        results.accept(nameOfWantToCheck, (key, value) -> System.out.println(value));
+        return false;
     }
 
     private void appendHeader(StringBuilder resultBuilder) {

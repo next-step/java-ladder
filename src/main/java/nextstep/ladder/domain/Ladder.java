@@ -3,6 +3,7 @@ package nextstep.ladder.domain;
 import nextstep.ladder.util.pointsgenerator.PointsGenerator;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
@@ -41,7 +42,9 @@ public class Ladder {
     public Map<String, String> resultOf(Participants participants, ExecutionsResults executionResults) {
         return IntStream.range(0, participants.getNumberOfParticipants().getValue())
                 .boxed()
-                .collect(Collectors.toMap(i -> participants.get(i).getValue(), i -> executionResults.get(getResult(i))));
+                .collect(Collectors.toMap(i -> participants.get(i).getValue(), i -> executionResults.get(getResult(i)),
+                        (k1, k2) -> { throw new IllegalStateException("Duplicate Key"); },
+                        LinkedHashMap::new));
     }
 
     private int getResult(int currIndex) {
