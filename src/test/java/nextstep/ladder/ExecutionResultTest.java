@@ -1,7 +1,7 @@
 package nextstep.ladder;
 
-import nextstep.ladder.domain.ExecutionResults;
 import nextstep.ladder.domain.Participants;
+import nextstep.ladder.domain.Results;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -20,10 +20,10 @@ public class ExecutionResultTest {
         List<String> executionResultInput = Arrays.asList("꽝", "5000", "꽝", "3000");
 
         //when
-        ExecutionResults executionResults = ExecutionResults.of(participants, executionResultInput);
+        Results results = Results.of(participants, executionResultInput);
 
         //then
-        assertThat(executionResults.size()).isEqualTo(executionResultInput.size());
+        assertThat(results.size()).isEqualTo(executionResultInput.size());
     }
 
     @Test
@@ -33,7 +33,7 @@ public class ExecutionResultTest {
         List<String> executionResultInput = Arrays.asList("꽝", "5000", "꽝", "3000");
 
         assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> ExecutionResults.of(participants, executionResultInput))
-                .withMessage(ExecutionResults.INVALID_SIZE_ERR_MSG);
+                .isThrownBy(() -> Results.of(participants, executionResultInput))
+                .withMessage(Results.INVALID_SIZE_ERR_MSG);
     }
 }

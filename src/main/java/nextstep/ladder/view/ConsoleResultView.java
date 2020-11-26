@@ -17,25 +17,25 @@ public class ConsoleResultView implements ResultView {
     private static final String CAN_NOT_FIND_PARTICIPANTS_ERR_MSG = "입력된 참가자 이름을 찾을 수 없습니다.";
 
     @Override
-    public void printLadder(Participants participants, Ladder ladder, ExecutionResults executionResults) {
+    public void printLadder(Participants participants, Ladder ladder, Results results) {
         StringBuilder resultBuilder = new StringBuilder();
 
         appendHeader(resultBuilder);
         appendParticipantNames(participants, resultBuilder);
         appendLadder(ladder, resultBuilder);
-        appendResults(executionResults, resultBuilder);
+        appendResults(results, resultBuilder);
 
         System.out.println(resultBuilder.toString());
     }
 
     @Override
-    public boolean printResult(Results results, Name nameOfWantToCheck) {
-        if (results.isAllKeyword(nameOfWantToCheck)) {
-            results.forEach((key, value) -> System.out.println(key.getValue() + " : " + value));
+    public boolean printResult(ExecutionResults executionResults, Name nameOfWantToCheck) {
+        if (executionResults.isAllKeyword(nameOfWantToCheck)) {
+            executionResults.forEach((key, value) -> System.out.println(key.getValue() + " : " + value));
             return true;
         }
 
-        results.accept(nameOfWantToCheck, (key, value) -> {
+        executionResults.accept(nameOfWantToCheck, (key, value) -> {
             if (value == null) {
                 System.out.println(CAN_NOT_FIND_PARTICIPANTS_ERR_MSG);
                 return;
@@ -69,7 +69,7 @@ public class ConsoleResultView implements ResultView {
         ladder.linesForEach(lineRenderer.renderLine());
     }
 
-    private void appendResults(ExecutionResults executionResults, StringBuilder resultBuilder) {
-        executionResults.forEach(appendName(resultBuilder));
+    private void appendResults(Results results, StringBuilder resultBuilder) {
+        results.forEach(appendName(resultBuilder));
     }
 }

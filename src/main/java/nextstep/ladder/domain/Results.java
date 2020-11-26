@@ -1,29 +1,42 @@
 package nextstep.ladder.domain;
 
-import java.util.Map;
-import java.util.function.BiConsumer;
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Consumer;
 
 public class Results {
-    public static final String ALL_KEYWORD = "all";
-    private final Map<Name, String> value;
+    public static final String INVALID_SIZE_ERR_MSG = "실행 결과값은 참가자 수와 같아야 합니다.";
+    private final List<String> value;
 
-    private Results(Map<Name, String> value) {
+    private Results(List<String> value, Participants participants) {
         this.value = value;
+        validateSize(participants);
     }
 
-    public static Results of(Map<Name, String> value) {
-        return new Results(value);
+    private void validateSize(Participants participants) {
+        NumberOfParticipants numberOfParticipants = participants.getNumberOfParticipants();
+        if (value.size() != numberOfParticipants.getValue()) {
+            throw new IllegalArgumentException(INVALID_SIZE_ERR_MSG);
+        }
     }
 
-    public boolean isAllKeyword(Name name) {
-        return ALL_KEYWORD.equals(name.getValue());
+    public static Results of(Participants participants, List<String> executionResultInput) {
+        return new Results(executionResultInput, participants);
     }
 
-    public void forEach(BiConsumer<Name, String> biConsumer) {
-        value.forEach(biConsumer);
+    public static Results of(Participants participants, String... executionResultInput) {
+        return new Results(Arrays.asList(executionResultInput), participants);
     }
 
-    public void accept(Name nameOfWantToCheck, BiConsumer<Name, String> biConsumer) {
-        biConsumer.accept(nameOfWantToCheck, value.get(nameOfWantToCheck));
+    public int size() {
+        return value.size();
+    }
+
+    public String get(int index) {
+        return value.get(index);
+    }
+
+    public void forEach(Consumer<String> consumer) {
+        value.forEach(consumer);
     }
 }

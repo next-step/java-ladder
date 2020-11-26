@@ -1,42 +1,29 @@
 package nextstep.ladder.domain;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.function.Consumer;
+import java.util.Map;
+import java.util.function.BiConsumer;
 
 public class ExecutionResults {
-    public static final String INVALID_SIZE_ERR_MSG = "실행 결과값은 참가자 수와 같아야 합니다.";
-    private final List<String> value;
+    public static final String ALL_KEYWORD = "all";
+    private final Map<Name, String> value;
 
-    private ExecutionResults(List<String> value, Participants participants) {
+    private ExecutionResults(Map<Name, String> value) {
         this.value = value;
-        validateSize(participants);
     }
 
-    private void validateSize(Participants participants) {
-        NumberOfParticipants numberOfParticipants = participants.getNumberOfParticipants();
-        if (value.size() != numberOfParticipants.getValue()) {
-            throw new IllegalArgumentException(INVALID_SIZE_ERR_MSG);
-        }
+    public static ExecutionResults of(Map<Name, String> value) {
+        return new ExecutionResults(value);
     }
 
-    public static ExecutionResults of(Participants participants, List<String> executionResultInput) {
-        return new ExecutionResults(executionResultInput, participants);
+    public boolean isAllKeyword(Name name) {
+        return ALL_KEYWORD.equals(name.getValue());
     }
 
-    public static ExecutionResults of(Participants participants, String... executionResultInput) {
-        return new ExecutionResults(Arrays.asList(executionResultInput), participants);
+    public void forEach(BiConsumer<Name, String> biConsumer) {
+        value.forEach(biConsumer);
     }
 
-    public int size() {
-        return value.size();
-    }
-
-    public String get(int index) {
-        return value.get(index);
-    }
-
-    public void forEach(Consumer<String> consumer) {
-        value.forEach(consumer);
+    public void accept(Name nameOfWantToCheck, BiConsumer<Name, String> biConsumer) {
+        biConsumer.accept(nameOfWantToCheck, value.get(nameOfWantToCheck));
     }
 }

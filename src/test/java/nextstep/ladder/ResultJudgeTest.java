@@ -19,17 +19,17 @@ public class ResultJudgeTest {
         Participants participants = Participants.of("pobi", "honux", "crong", "jk");
         Height height = Height.valueOf(5);
         Ladder ladder = Ladder.of(participants, height, new MockPointsGenerator());
-        ExecutionResults executionResults = ExecutionResults.of(participants, "꽝", "5000", "꽝", "3000");
+        Results results = Results.of(participants, "꽝", "5000", "꽝", "3000");
 
         //when
-        Results results = ladder.resultOf(participants, executionResults);
+        ExecutionResults executionResults = ladder.resultOf(participants, results);
 
         //then
         assertAll(
-                () -> results.accept(Name.valueOf("pobi"), (key, value) -> assertThat(value).isEqualTo("꽝")),
-                () -> results.accept(Name.valueOf("honux"), (key, value) -> assertThat(value).isEqualTo("3000")),
-                () -> results.accept(Name.valueOf("crong"), (key, value) -> assertThat(value).isEqualTo("꽝")),
-                () -> results.accept(Name.valueOf("jk"), (key, value) -> assertThat(value).isEqualTo("5000"))
+                () -> executionResults.accept(Name.valueOf("pobi"), (key, value) -> assertThat(value).isEqualTo("꽝")),
+                () -> executionResults.accept(Name.valueOf("honux"), (key, value) -> assertThat(value).isEqualTo("3000")),
+                () -> executionResults.accept(Name.valueOf("crong"), (key, value) -> assertThat(value).isEqualTo("꽝")),
+                () -> executionResults.accept(Name.valueOf("jk"), (key, value) -> assertThat(value).isEqualTo("5000"))
         );
     }
 }

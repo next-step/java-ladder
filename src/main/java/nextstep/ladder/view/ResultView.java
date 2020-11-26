@@ -7,10 +7,10 @@ import nextstep.ladder.domain.Participants;
 import nextstep.ladder.domain.Results;
 
 public interface ResultView {
-    void printLadder(Participants participants, Ladder ladder, ExecutionResults executionResults);
+    void printLadder(Participants participants, Ladder ladder, Results results);
 
     /**
      * @return @Param nameOfWantToCheck를 Results.ALL로 입력받은 경우 true를 리턴한다.
      */
-    boolean printResult(Results results, Name nameOfWantToCheck);
+    boolean printResult(ExecutionResults executionResults, Name nameOfWantToCheck);
 }

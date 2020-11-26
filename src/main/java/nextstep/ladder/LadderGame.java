@@ -25,9 +25,9 @@ public class LadderGame {
         Participants participants = ValidInputHelper.get(this::getParticipants, inputView::printError);
         Height height = ValidInputHelper.get(this::getHeight, inputView::printError);
         Ladder ladder = Ladder.of(participants, height);
-        ExecutionResults executionResults = ValidInputHelper.get(() -> getExecutionResults(participants), inputView::printError);
-        resultView.printLadder(participants, ladder, executionResults);
-        printResults(participants, ladder, executionResults);
+        Results results = ValidInputHelper.get(() -> getExecutionResults(participants), inputView::printError);
+        resultView.printLadder(participants, ladder, results);
+        printResults(participants, ladder, results);
     }
 
     private Participants getParticipants() {
@@ -40,17 +40,17 @@ public class LadderGame {
         return Height.valueOf(inputHeight);
     }
 
-    private ExecutionResults getExecutionResults(Participants participants) {
+    private Results getExecutionResults(Participants participants) {
         List<String> executionResults = ValidInputHelper.get(inputView::getExecutionResults, inputView::printError);
-        return ExecutionResults.of(participants, executionResults);
+        return Results.of(participants, executionResults);
     }
 
-    private void printResults(Participants participants, Ladder ladder, ExecutionResults executionResults) {
-        Results results = ladder.resultOf(participants, executionResults);
+    private void printResults(Participants participants, Ladder ladder, Results results) {
+        ExecutionResults executionResults = ladder.resultOf(participants, results);
         for (boolean printedAll = false; !printedAll; ) {
             String nameOfWantToCheckInput = inputView.getNameOfWantToCheck();
             Name nameOfWantToCheck = Name.valueOf(nameOfWantToCheckInput);
-            printedAll = resultView.printResult(results, nameOfWantToCheck);
+            printedAll = resultView.printResult(executionResults, nameOfWantToCheck);
         }
     }
 }
