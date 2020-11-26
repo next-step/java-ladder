@@ -55,6 +55,6 @@ public class LadderGame {
 
     private Results getResults(Participants participants, Ladder ladder, ExecutionsResults executionsResults) {
         Map<String, String> resultsInput = ladder.resultOf(participants, executionsResults);
-        return new Results(resultsInput);
+        return Results.of(resultsInput);
     }
 }

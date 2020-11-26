@@ -7,8 +7,12 @@ public class Results {
     private static final String ALL = "all";
     private final Map<String, String> value;
 
-    public Results(Map<String, String> value) {
+    private Results(Map<String, String> value) {
         this.value = value;
+    }
+
+    public static Results of(Map<String, String> value) {
+        return new Results(value);
     }
 
     public boolean isAll(String name) {
