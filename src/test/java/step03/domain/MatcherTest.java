@@ -9,7 +9,9 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -80,6 +82,24 @@ public class MatcherTest {
 
         assertThat(matcher.getResultByParticipant(nameOfParticipant))
                 .isEqualTo(nameOfResult);
+    }
+
+    @DisplayName("참여자와 결과의 모든 매칭 결과")
+    @Test
+    void test_getResults() {
+        Matcher matcher = Matcher.Builder.of(participants)
+                .namesOfResult(namesOfResult)
+                .matchedTable(matchTable)
+                .build();
+
+        Map<String, String> expect = new HashMap<>();
+        expect.put("pobi", "5000");
+        expect.put("honux", "꽝");
+        expect.put("crong", "3000");
+        expect.put("jk", "꽝");
+
+        assertThat(matcher.getResults())
+                .isEqualTo(expect);
     }
 
 }
