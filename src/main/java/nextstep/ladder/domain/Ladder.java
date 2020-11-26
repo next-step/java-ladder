@@ -39,7 +39,7 @@ public class Ladder {
         lines.forEach(consumer);
     }
 
-    public Map<String, String> resultOf(Participants participants, ExecutionsResults executionResults) {
+    public Map<String, String> resultOf(Participants participants, ExecutionResults executionResults) {
         return IntStream.range(0, participants.getNumberOfParticipants().getValue())
                 .boxed()
                 .collect(Collectors.toMap(i -> participants.get(i).getValue(), i -> executionResults.get(getResult(i)),

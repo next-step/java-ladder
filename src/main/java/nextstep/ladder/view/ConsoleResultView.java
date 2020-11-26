@@ -1,6 +1,6 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.ExecutionsResults;
+import nextstep.ladder.domain.ExecutionResults;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Participants;
 import nextstep.ladder.domain.Results;
@@ -15,13 +15,13 @@ public class ConsoleResultView implements ResultView {
     private static final String NAME_STRING_FORMAT = "%6s";
 
     @Override
-    public void printLadder(Participants participants, Ladder ladder, ExecutionsResults executionsResults) {
+    public void printLadder(Participants participants, Ladder ladder, ExecutionResults executionResults) {
         StringBuilder resultBuilder = new StringBuilder();
 
         appendHeader(resultBuilder);
         appendParticipantNames(participants, resultBuilder);
         appendLadder(ladder, resultBuilder);
-        appendResults(executionsResults, resultBuilder);
+        appendResults(executionResults, resultBuilder);
 
         System.out.println(resultBuilder.toString());
     }
@@ -61,7 +61,7 @@ public class ConsoleResultView implements ResultView {
         ladder.linesForEach(lineRenderer.renderLine());
     }
 
-    private void appendResults(ExecutionsResults executionsResults, StringBuilder resultBuilder) {
-        executionsResults.forEach(appendName(resultBuilder));
+    private void appendResults(ExecutionResults executionResults, StringBuilder resultBuilder) {
+        executionResults.forEach(appendName(resultBuilder));
     }
 }

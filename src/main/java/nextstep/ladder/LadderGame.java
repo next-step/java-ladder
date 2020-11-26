@@ -1,6 +1,6 @@
 package nextstep.ladder;
 
-import nextstep.ladder.domain.ExecutionsResults;
+import nextstep.ladder.domain.ExecutionResults;
 import nextstep.ladder.domain.Height;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Participants;
@@ -25,9 +25,9 @@ public class LadderGame {
         Participants participants = ValidInputHelper.get(this::getParticipants, inputView::printError);
         Height height = ValidInputHelper.get(this::getHeight, inputView::printError);
         Ladder ladder = Ladder.of(participants, height);
-        ExecutionsResults executionsResults = ValidInputHelper.get(() -> getExecutionResults(participants), inputView::printError);
-        resultView.printLadder(participants, ladder, executionsResults);
-        printResults(participants, ladder, executionsResults);
+        ExecutionResults executionResults = ValidInputHelper.get(() -> getExecutionResults(participants), inputView::printError);
+        resultView.printLadder(participants, ladder, executionResults);
+        printResults(participants, ladder, executionResults);
     }
 
     private Participants getParticipants() {
@@ -40,21 +40,21 @@ public class LadderGame {
         return Height.valueOf(inputHeight);
     }
 
-    private ExecutionsResults getExecutionResults(Participants participants) {
+    private ExecutionResults getExecutionResults(Participants participants) {
         List<String> executionResults = ValidInputHelper.get(inputView::getExecutionResults, inputView::printError);
-        return ExecutionsResults.of(participants, executionResults);
+        return ExecutionResults.of(participants, executionResults);
     }
 
-    private void printResults(Participants participants, Ladder ladder, ExecutionsResults executionsResults) {
-        Results results = getResults(participants, ladder, executionsResults);
+    private void printResults(Participants participants, Ladder ladder, ExecutionResults executionResults) {
+        Results results = getResults(participants, ladder, executionResults);
         for (boolean printedAll = false; !printedAll; ) {
             String nameOfWantToCheck = inputView.getNameOfWantToCheck();
             printedAll = resultView.printResult(results, nameOfWantToCheck);
         }
     }
 
-    private Results getResults(Participants participants, Ladder ladder, ExecutionsResults executionsResults) {
-        Map<String, String> resultsInput = ladder.resultOf(participants, executionsResults);
+    private Results getResults(Participants participants, Ladder ladder, ExecutionResults executionResults) {
+        Map<String, String> resultsInput = ladder.resultOf(participants, executionResults);
         return Results.of(resultsInput);
     }
 }

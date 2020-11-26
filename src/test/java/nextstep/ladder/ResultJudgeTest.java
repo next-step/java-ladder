@@ -1,6 +1,6 @@
 package nextstep.ladder;
 
-import nextstep.ladder.domain.ExecutionsResults;
+import nextstep.ladder.domain.ExecutionResults;
 import nextstep.ladder.domain.Height;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Participants;
@@ -19,7 +19,7 @@ public class ResultJudgeTest {
         Participants participants = Participants.of("pobi", "honux", "crong", "jk");
         Height height = Height.valueOf(5);
         Ladder ladder = Ladder.of(participants, height, new MockPointsGenerator());
-        ExecutionsResults executionResults = ExecutionsResults.of(participants, "꽝", "5000", "꽝", "3000");
+        ExecutionResults executionResults = ExecutionResults.of(participants, "꽝", "5000", "꽝", "3000");
 
         //when
         Map<String, String> results = ladder.resultOf(participants, executionResults);
