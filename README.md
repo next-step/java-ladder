@@ -19,3 +19,8 @@
 - [x] Optional 3: exception 처리
 
 
+-----
+
+### step2
+- [x] 피드백 반영
+
