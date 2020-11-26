@@ -129,7 +129,7 @@ public class PointTest {
         assertThat(nextPoint).isNotNull();
     }
 
-    @DisplayName("첫 번째 Direction 만들기")
+    @DisplayName("첫 번째 Point 만들기")
     @Test
     void create_first_point_using_generator() {
         // when
@@ -148,5 +148,22 @@ public class PointTest {
 
         // then
         assertThat(nextPoint).isNotNull();
+    }
+    
+    @DisplayName("마지막 Point 만들기")
+    @Test
+    void create_last_point() {
+        // given
+        final int index = 0;
+        final boolean left = false;
+        final boolean right = true;
+        final Point point = Point.of(index, left, right);
+        
+        // when
+        final Point nextPoint = point.createLast();
+
+        // then
+        assertThat(nextPoint.hasLeft()).isTrue();
+        assertThat(nextPoint.hasRight()).isFalse();
     }
 }

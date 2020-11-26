@@ -5,7 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import static ladder.LadderLine.PERSON_COUNT_MUST_MORE_THEN_ONE;
+import static ladder.LadderLine.PERSON_COUNT_MUST_MORE_THEN_TWO;
 import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
@@ -23,12 +23,12 @@ public class LadderLineTest {
             final LadderLine ladderLine = LadderLine.of(personCount);
 
             // then
-            assertThat(ladderLine).isNotNull();
+            assertThat(ladderLine.size()).isEqualTo(personCount);
         }
 
-        @DisplayName("1보다 작은 경우 실패")
+        @DisplayName("2보다 작은 경우 실패")
         @Test
-        void fail_when_person_count_less_then_one() {
+        void fail_when_person_count_less_then_two() {
             // given
             final int personCount = 0;
 
@@ -39,7 +39,7 @@ public class LadderLineTest {
 
             // then
             Assertions.assertThat(thrown).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(PERSON_COUNT_MUST_MORE_THEN_ONE);
+                    .hasMessageContaining(PERSON_COUNT_MUST_MORE_THEN_TWO);
         }
     }
 }

@@ -44,6 +44,10 @@ public class Point {
         return Point.of(nextPointsIndex, Boolean.FALSE, nextPointsRight);
     }
 
+    public Point createLast() {
+        return Point.of(this.index + 1, this.right, Boolean.FALSE);
+    }
+
     public boolean hasLeft() {
         return left;
     }
