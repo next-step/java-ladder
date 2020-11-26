@@ -3,13 +3,13 @@ package domain;
 import java.util.Random;
 
 public class Point {
-    private boolean isPresent;
+    private final boolean isPresent;
 
     public Point() {
         isPresent = new Random().nextBoolean();
     }
 
-    public Point(boolean isPresent) {
+    public Point(final boolean isPresent) {
         this.isPresent = isPresent;
     }
 

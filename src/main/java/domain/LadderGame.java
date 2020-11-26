@@ -1,5 +1,7 @@
 package domain;
 
+import exception.NegativeLengthException;
+
 public class LadderGame {
     private PlayerNames playerNames;
     private Ladder ladder;
@@ -9,9 +11,9 @@ public class LadderGame {
         this.ladder = ladder;
     }
 
-    public static LadderGame of(String names, int height) {
-        PlayerNames playerNames = PlayerNames.of(names);
-        Ladder ladder = Ladder.of(playerNames.size(), height);
+    public static LadderGame of(PlayerNames playerNames, Length height) throws NegativeLengthException {
+        Length width = Length.of(playerNames.size());
+        Ladder ladder = Ladder.of(width, height);
 
         return new LadderGame(playerNames, ladder);
     }

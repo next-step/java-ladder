@@ -1,13 +1,13 @@
 package domain;
 
 public class Ladder {
-    private Lines lines;
+    private final Lines lines;
 
-    private Ladder(Lines lines) {
+    private Ladder(final Lines lines) {
         this.lines = lines;
     }
 
-    public static Ladder of(int width, int height) {
+    public static Ladder of(final Length width, final Length height) {
         Lines lines = Lines.of(width, height);
 
         return new Ladder(lines);

@@ -1,12 +1,15 @@
 package domain;
 
 public class Line {
-    private Points points = new Points();
+    private final Points points;
 
-    public Line(int width) {
-        for(int i = 0; i < width - 1; i++) {
-            points.initialize(i);
-        }
+    private Line(final Points points) {
+        this.points = points;
+    }
+
+    public static Line of(final Length width) {
+        Points points = Points.of(width);
+        return new Line(points);
     }
 
     public Points getPoints() {
