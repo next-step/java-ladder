@@ -112,4 +112,20 @@ public class PointTest {
         assertThat(nextPoint.hasLeft()).isFalse();
         assertThat(nextPoint.hasRight()).isTrue();
     }
+
+    @DisplayName("기본 방향 제너레이터를 통해 Direction 만들기")
+    @Test
+    void crate_using_default_generator() {
+        // given
+        final int index = 0;
+        final boolean left = false;
+        final boolean right = false;
+        final Point point = Point.of(index, left, right);
+
+        // when
+        final Point nextPoint = point.createNext();
+
+        // then
+        assertThat(nextPoint).isNotNull();
+    }
 }
