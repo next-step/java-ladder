@@ -2,6 +2,7 @@ package step03.domain;
 
 import exception.DuplicatedNameException;
 import exception.InvalidCountOfNamesException;
+import exception.NotFoundNameException;
 import step03.utils.Tokenizer;
 
 import java.util.Collections;
@@ -75,5 +76,13 @@ public class Names {
 
     public void validateProhibitNames(String prohibitName) {
         names.forEach(name -> name.validateProhibitName(prohibitName));
+    }
+
+    public Integer indexOf(String targetName) {
+        Integer index = names.indexOf(Name.of(targetName));
+        if (index == -1) {
+            throw new NotFoundNameException();
+        }
+        return index;
     }
 }

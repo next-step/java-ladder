@@ -93,4 +93,29 @@ public class NamesTest {
                 .isThrownBy(() -> Names.of("all,b,c").validateProhibitNames("all"));
     }
 
+    private static Stream<Arguments> provideNameIndexResult()
+    {
+        return Stream.of(
+                Arguments.of("pobi", 0),
+                Arguments.of("honux", 1),
+                Arguments.of("crong", 2),
+                Arguments.of("jk", 3)
+        );
+    }
+
+    @DisplayName("이름으로 인덱스 찾기")
+    @ParameterizedTest
+    @MethodSource("provideNameIndexResult")
+    void test_indexOf(String name, Integer index) {
+        assertThat(
+                Names.of("pobi,honux,crong,jk").indexOf(name)
+        ).isEqualTo(index);
+    }
+
+    @DisplayName("이름을 찾을 수 없으면 예외 던짐")
+    @Test
+    void test_indexOf_invalid() {
+        Names.of("pobi,honux,crong,jk").indexOf("name");
+    }
+
 }

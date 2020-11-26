@@ -24,4 +24,9 @@ public class Participants {
         return names.size();
     }
 
+    public Integer indexOf(String name) {
+        return names.indexOf(name);
+    }
+
+
 }

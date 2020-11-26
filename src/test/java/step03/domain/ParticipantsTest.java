@@ -95,4 +95,22 @@ public class ParticipantsTest {
                 .isThrownBy(() -> Participants.of("all,b,c"));
     }
 
+    private static Stream<Arguments> provideNameOfParticipantIndexResult()
+    {
+        return Stream.of(
+                Arguments.of("pobi", 0),
+                Arguments.of("honux", 1),
+                Arguments.of("crong", 2),
+                Arguments.of("jk", 3)
+        );
+    }
+
+    @DisplayName("이름으로 인덱스 찾기")
+    @ParameterizedTest
+    @MethodSource("provideNameOfParticipantIndexResult")
+    void test_indexOf(String name, Integer index) {
+        assertThat(Participants.of("pobi,honux,crong,jk").indexOf(name))
+                .isEqualTo(index);
+    }
+
 }
