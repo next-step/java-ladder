@@ -21,7 +21,7 @@ public class UsersTest {
         final Users users = Users.of(userList);
 
         // then
-        assertThat(users).isNotNull();
+        assertThat(users.size()).isEqualTo(2);
     }
 
     @Test

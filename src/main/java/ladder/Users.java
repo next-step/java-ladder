@@ -19,4 +19,8 @@ public class Users {
         checkArgument(userList.size() >= 2, NUMBER_OF_USER_MUST_BE_MORE_THEN_TWO);
         return new Users(userList);
     }
+
+    public int size() {
+        return users.size();
+    }
 }
