@@ -30,8 +30,26 @@ public class Lambda {
     public static int sumAll(List<Integer> numbers) {
         return sum(numbers, new Predicate<Integer>() {
             @Override
-            public boolean test(Integer integer) {
+            public boolean test(Integer number) {
                 return true;
+            }
+        });
+    }
+
+    public static int sumAllEven(List<Integer> numbers) {
+        return sum(numbers, new Predicate<Integer>() {
+            @Override
+            public boolean test(Integer number) {
+                return number % 2 == 0;
+            }
+        });
+    }
+
+    public static int sumAllOverThree(List<Integer> numbers) {
+        return sum(numbers, new Predicate<Integer>() {
+            @Override
+            public boolean test(Integer number) {
+                return number > 3;
             }
         });
     }
@@ -40,26 +58,6 @@ public class Lambda {
         int total = 0;
         for (int number : numbers) {
             if (condition.test(number)) {
-                total += number;
-            }
-        }
-        return total;
-    }
-
-    public static int sumAllEven(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number % 2 == 0) {
-                total += number;
-            }
-        }
-        return total;
-    }
-
-    public static int sumAllOverThree(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number > 3) {
                 total += number;
             }
         }
