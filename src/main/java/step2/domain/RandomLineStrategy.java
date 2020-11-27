@@ -7,7 +7,6 @@ import java.util.stream.IntStream;
 
 public class RandomLineStrategy implements LineStrategy {
     private final Random random = new Random();
-
     private boolean previousLadder = false;
 
     @Override

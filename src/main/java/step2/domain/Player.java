@@ -8,12 +8,14 @@ public class Player {
 
     private final String name;
 
-    public Player(final String name) {
-        validationName(name);
+    private Player(final String name) {
         this.name = name;
     }
-
-    private void validationName(final String name) {
+    public static Player of(final String name){
+        validationName(name);
+        return Player.of(name);
+    }
+    private static void validationName(final String name) {
         if (name.length() > 5) {
             throw new NameLengthException();
         }

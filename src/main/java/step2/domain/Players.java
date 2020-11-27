@@ -2,18 +2,19 @@ package step2.domain;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 import static java.util.Collections.unmodifiableList;
 
 public class Players {
-    private List<Player> players;
+    private final List<Player> players;
 
     private Players(List<Player> players) {
         this.players = players;
     }
 
     public static Players of(List<Player> players) {
-        return new Players(players);
+        return Player.ofs(players);
     }
 
     public int getPlayersCount() {
@@ -22,5 +23,18 @@ public class Players {
 
     public List<Player> getPlayers() {
         return unmodifiableList(players);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Players players1 = (Players) o;
+        return Objects.equals(players, players1.players);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(players);
     }
 }

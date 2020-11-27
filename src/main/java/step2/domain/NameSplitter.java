@@ -10,7 +10,7 @@ public class NameSplitter {
 
     public static List<Player> splitParticipationNames(String participationNames) {
         return Arrays.stream(splitName(participationNames))
-                .map(Player::new)
+                .map(Player::of)
                 .collect(Collectors.toList());
     }
 
