@@ -19,7 +19,8 @@ public class NameSplitterTest {
         List<Player> players = NameSplitter.splitParticipationNames(name);
 
         //then
-        assertThat(players).isEqualTo(Arrays.asList(new Player("a"), new Player("b"), new Player("c")));
-        assertThat(players).containsExactly(new Player("a"), new Player("b"), new Player("c"));
+        assertThat(players).isEqualTo(Arrays.asList(Player.of("a"), Player.of("b"), Player.of("c")));
+        assertThat(players).containsExactly(Player.of("a"), Player.of("b"), Player.of("c"));
     }
+
 }
