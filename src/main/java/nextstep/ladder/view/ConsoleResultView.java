@@ -31,7 +31,7 @@ public class ConsoleResultView implements ResultView {
     @Override
     public boolean printResult(ExecutionResults executionResults, Name nameOfWantToCheck) {
         if (executionResults.isAllKeyword(nameOfWantToCheck)) {
-            executionResults.forEach((key, value) -> System.out.println(key.getValue() + " : " + value));
+            executionResults.forEach((key, value) -> System.out.println(key.getValue() + " : " + value.getValue()));
             return true;
         }
 
@@ -40,7 +40,7 @@ public class ConsoleResultView implements ResultView {
                 System.out.println(CAN_NOT_FIND_PARTICIPANTS_ERR_MSG);
                 return;
             }
-            System.out.println(value);
+            System.out.println(value.getValue());
         });
         return false;
     }
