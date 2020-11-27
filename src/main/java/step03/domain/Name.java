@@ -26,6 +26,12 @@ public class Name {
                 .orElseThrow(OutOfNameLengthException::new);
     }
 
+    public void validateProhibitName(String prohibitedName) {
+        if (name.equals(prohibitedName)) {
+            throw new UsingProhibitedNameException();
+        }
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -44,9 +50,4 @@ public class Name {
         return name + "";
     }
 
-    public void validateProhibitName(String prohibitedName) {
-        if (name.equals(prohibitedName)) {
-            throw new UsingProhibitedNameException();
-        }
-    }
 }
