@@ -24,3 +24,9 @@ public class Line{
 }
 ```
 - 위와같이 Line객체를 추가하면 ArrayList<ArrayList<Boolean>> 코드를 ArrayList<Line>과 같이 구현하는게 가능해진다.
+
+
+## 페어프로그래밍 설계
+
+- 사람수 만큼 열 높이고 , 높이만큼 행으로 한다.
+- 생각은 배열로 하되 , 리스트로한다.
