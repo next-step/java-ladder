@@ -2,6 +2,7 @@ package step03.domain;
 
 import exception.DuplicatedNameException;
 import exception.InvalidCountOfNamesException;
+import exception.NotFoundNameException;
 import exception.UsingProhibitedNameException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -115,7 +116,8 @@ public class NamesTest {
     @DisplayName("이름을 찾을 수 없으면 예외 던짐")
     @Test
     void test_indexOf_invalid() {
-        Names.of("pobi,honux,crong,jk").indexOf("name");
+        assertThatExceptionOfType(NotFoundNameException.class)
+            .isThrownBy(() -> Names.of("pobi,honux,crong,jk").indexOf("name"));
     }
 
 }

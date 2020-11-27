@@ -1,6 +1,7 @@
 package step03.domain;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Participants {
     private static final String ALL = "all";
@@ -28,5 +29,16 @@ public class Participants {
         return names.indexOf(name);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Participants that = (Participants) o;
+        return Objects.equals(names, that.names);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(names);
+    }
 }
