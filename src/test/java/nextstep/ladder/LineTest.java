@@ -17,6 +17,12 @@ public class LineTest {
         assertThat(new Line(Spork.of(true, false, true)).hasSporkRightSide(Position.of(0))).isTrue();
     }
 
+    @DisplayName("발판은 갯수로 생성할 수 있다.")
+    @Test
+    void createSpokeFromCount() {
+        assertThat(Spork.fromCount(4)).isNotNull();
+    }
+
     /**
      * |-----|     |-----| 의 경우 첫번째는 1~2 구간에는 발판이 있고 2~3구간에는 발판이 없고 3~4 구간에는 발판이 있다.
      * 이를 Spork.of(true, false, true) 로 표현한다
@@ -24,6 +30,10 @@ public class LineTest {
     private static class Spork {
         public static Spork of(boolean... existsSpoke) {
             return null;
+        }
+
+        public static Spork fromCount(int count) {
+            return new Spork();
         }
     }
 
