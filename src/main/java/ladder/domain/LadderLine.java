@@ -7,6 +7,7 @@ import java.util.List;
 import static util.Preconditions.checkArgument;
 
 public class LadderLine {
+    private static final int MINIMUM_USER_COUNT = 2;
     public static final String PERSON_COUNT_MUST_MORE_THEN_TWO = "person count must more then two";
     private final List<Point> points;
 
@@ -14,14 +15,15 @@ public class LadderLine {
         this.points = Collections.unmodifiableList(points);
     }
 
-    public static LadderLine of(final int personCount) {
-        checkArgument(personCount >= 2, PERSON_COUNT_MUST_MORE_THEN_TWO);
-        final List<Point> points = new ArrayList<>(personCount);
+    public static LadderLine of(final int userCount) {
+        checkArgument(userCount >= MINIMUM_USER_COUNT, PERSON_COUNT_MUST_MORE_THEN_TWO);
+        final List<Point> points = new ArrayList<>(userCount);
 
         initFirstPoint(points);
 
-        initMiddlePoints(personCount - 2, points);
-
+        final int pointCountExceptFirstAndLast = userCount - 2;
+        initMiddlePoints(pointCountExceptFirstAndLast, points);
+        
         final Point lastBefore = points.get(points.size() - 1);
         initLastPoint(points, lastBefore);
 
