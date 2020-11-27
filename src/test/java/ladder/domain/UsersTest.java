@@ -1,7 +1,5 @@
 package ladder.domain;
 
-import ladder.domain.User;
-import ladder.domain.Users;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
