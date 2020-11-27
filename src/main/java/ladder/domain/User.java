@@ -19,4 +19,8 @@ public class User {
         checkArgument(userName.length() <= 5, USER_NAME_LENGTH_MUST_NOT_MORE_THEN_FIVE);
         return new User(userName);
     }
+
+    public String getName() {
+        return name;
+    }
 }

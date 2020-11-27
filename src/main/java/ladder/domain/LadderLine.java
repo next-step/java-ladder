@@ -48,4 +48,8 @@ public class LadderLine {
     public int size() {
         return points.size();
     }
+
+    public List<Point> getPoints() {
+        return points;
+    }
 }

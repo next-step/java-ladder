@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.dto.LadderResultDTO;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -8,9 +10,11 @@ import static util.Preconditions.checkArgument;
 
 public class LadderGame {
     public static String LADDER_HEIGHT_MUST_MORE_THEN_ONE = "ladder height must more then one";
+    private final Users users;
     private final List<LadderLine> ladderLines;
-
-    private LadderGame(final List<LadderLine> ladderLines) {
+    
+    private LadderGame(final Users users, final List<LadderLine> ladderLines) {
+        this.users = users;
         this.ladderLines = Collections.unmodifiableList(ladderLines);
     }
 
@@ -22,6 +26,10 @@ public class LadderGame {
             final LadderLine ladderLine = LadderLine.of(users.size());
             ladderLines.add(ladderLine);
         }
-        return new LadderGame(ladderLines);
+        return new LadderGame(users, ladderLines);
+    }
+
+    public LadderResultDTO getLadderViewResult() {
+        return new LadderResultDTO(users.getNames(), ladderLines);
     }
 }

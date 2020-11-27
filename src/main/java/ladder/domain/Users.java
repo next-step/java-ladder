@@ -3,6 +3,7 @@ package ladder.domain;
 import util.CollectionUtil;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static util.Preconditions.checkArgument;
 
@@ -22,5 +23,11 @@ public class Users {
 
     public int size() {
         return users.size();
+    }
+
+    public List<String> getNames() {
+        return users.stream()
+                .map(User::getName)
+                .collect(Collectors.toList());
     }
 }
