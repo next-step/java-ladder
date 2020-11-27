@@ -27,7 +27,7 @@ public class LadderGame {
         Ladder ladder = Ladder.of(participants, height);
         Results results = ValidInputHelper.get(() -> getExecutionResults(participants), inputView::printError);
         resultView.printLadder(participants, ladder, results);
-        printResults(participants, ladder, results);
+        printExecutionResults(participants, ladder, results);
     }
 
     private Participants getParticipants() {
@@ -45,7 +45,7 @@ public class LadderGame {
         return Results.of(participants, executionResults);
     }
 
-    private void printResults(Participants participants, Ladder ladder, Results results) {
+    private void printExecutionResults(Participants participants, Ladder ladder, Results results) {
         ExecutionResults executionResults = ladder.resultOf(participants, results);
         for (boolean printedAll = false; !printedAll; ) {
             String nameOfWantToCheckInput = inputView.getNameOfWantToCheck();
