@@ -13,7 +13,7 @@ public class OutputView {
     private static final String HEIGHT_LINE = "|";
     private static final String PLAY_LINE = "-----";
     private static final String PLAY_NO_LINE = "     ";
-    public static final int DEFAULT_BLANK_LENGHT = 6;
+    public static final int DEFAULT_BLANK_LENGTH = 6;
 
 
     public static void printResult() {
@@ -24,20 +24,13 @@ public class OutputView {
         System.out.println(players.getPlayers()
                 .stream()
                 .map(Player::getName)
-                .map(name -> name + getBlank(name.length()))
+                .map(name -> String.format("%-6s", name))
                 .collect(Collectors.joining()));
-    }
-
-    private static String getBlank(final int length) {
-        StringBuilder sb = new StringBuilder();
-        IntStream.range(0, DEFAULT_BLANK_LENGHT - length)
-                .forEach(i -> sb.append(" "));
-        return sb.toString();
     }
 
     public static void printLadder(Ladder ladder) {
         StringBuilder sb = new StringBuilder();
-        ladder.getLadder()
+        ladder.getLines()
                 .forEach(line -> lineBuilder(sb, line));
         System.out.println(sb);
     }

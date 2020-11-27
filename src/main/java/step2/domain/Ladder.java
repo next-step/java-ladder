@@ -9,10 +9,11 @@ import java.util.stream.IntStream;
 import static java.util.Collections.unmodifiableList;
 
 public class Ladder {
-    private final List<Line> ladder;
+    public static final int MIN_LADDER_HEIGHT = 1;
+    private final List<Line> lines;
 
-    private Ladder(List<Line> ladder) {
-        this.ladder = ladder;
+    private Ladder(List<Line> lines) {
+        this.lines = lines;
     }
 
     public static Ladder of(final Players players, final int ladderHeight, final LineStrategy lineStrategy) {
@@ -24,12 +25,12 @@ public class Ladder {
     }
 
     private static void validLineHeight(int ladderHeight) {
-        if (ladderHeight < 1) {
+        if (ladderHeight < MIN_LADDER_HEIGHT) {
             throw new LadderHeightException();
         }
     }
 
-    public List<Line> getLadder() {
-        return unmodifiableList(ladder);
+    public List<Line> getLines() {
+        return unmodifiableList(lines);
     }
 }
