@@ -42,7 +42,7 @@ public class Ladder {
     public ExecutionResults resultOf(Participants participants, Results results) {
         Map<Name, Result> resultsMap = IntStream.range(0, participants.getNumberOfParticipants().getValue())
                 .boxed()
-                .collect(Collectors.toMap(participants::get, i -> results.get(getResult(i)),
+                .collect(Collectors.toMap(participants::get, i -> results.get(getResultIndexOf(i)),
                         (k1, k2) -> {
                             throw new IllegalStateException(Participants.DUPLICATE_NAME_EXIST_ERR_MSG);
                         },
@@ -51,17 +51,17 @@ public class Ladder {
         return ExecutionResults.of(resultsMap);
     }
 
-    private int getResult(int currIndex) {
-        return getResult(currIndex, lines.size() - 1);
+    private int getResultIndexOf(int index) {
+        return getResultIndexOf(index, lines.size() - 1);
     }
 
-    private int getResult(int currIndex, int lineIndex) {
+    private int getResultIndexOf(int index, int lineIndex) {
         Line line = lines.get(lineIndex);
         if (lineIndex == 0) {
-            return line.getNextIndexOf(currIndex);
+            return line.getNextIndexOf(index);
         }
 
-        int nextIndex = getResult(currIndex, lineIndex - 1);
+        int nextIndex = getResultIndexOf(index, lineIndex - 1);
         return line.getNextIndexOf(nextIndex);
     }
 }
