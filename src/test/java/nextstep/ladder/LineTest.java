@@ -3,6 +3,11 @@ package nextstep.ladder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.stream.IntStream;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LineTest {
@@ -28,12 +33,47 @@ public class LineTest {
      * 이를 Spork.of(true, false, true) 로 표현한다
      */
     private static class Spork {
+        private final List<Boolean> list = new ArrayList<>();
+        private static final Random RANDOM = new Random();
         public static Spork of(boolean... existsSpoke) {
-            return null;
+            Spork spork = new Spork();
+            for (boolean value : existsSpoke) {
+                spork.add(value);
+            }
+            return spork;
         }
 
         public static Spork fromCount(int count) {
-            return new Spork();
+            return IntStream.of(count)
+                    .mapToObj(number -> nextBoolean())
+                    .collect(Spork::new, Spork::add, Spork::addAll);
+        }
+
+        private static boolean nextBoolean() {
+            return RANDOM.nextBoolean();
+        }
+
+        private static void addAll(Spork right, Spork left) {
+            throw new UnsupportedOperationException("병렬처리는 지원하지 않습니다.");
+        }
+
+        private void add(Boolean next) {
+            if (list.isEmpty()) {
+                list.add(next);
+                return;
+            }
+
+            Boolean previousBoolean = last();
+            if (previousBoolean) {
+                list.add(Boolean.FALSE);
+                return;
+            }
+
+            list.add(next);
+        }
+
+        private Boolean last() {
+            return list.get(list.size() - 1);
         }
     }
 
