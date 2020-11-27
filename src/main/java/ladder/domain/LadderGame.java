@@ -2,34 +2,22 @@ package ladder.domain;
 
 import ladder.dto.LadderResultDTO;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import static util.Preconditions.checkArgument;
-
 public class LadderGame {
-    public static String LADDER_HEIGHT_MUST_MORE_THEN_ONE = "ladder height must more then one";
     private final Users users;
-    private final List<LadderLine> ladderLines;
-    
-    private LadderGame(final Users users, final List<LadderLine> ladderLines) {
+    private final TotalLadderLine totalLadderLine;
+
+    private LadderGame(final Users users, final TotalLadderLine totalLadderLine) {
         this.users = users;
-        this.ladderLines = Collections.unmodifiableList(ladderLines);
+        this.totalLadderLine = totalLadderLine;
     }
 
     public static LadderGame of(final String usersExpression, final int ladderHeight) {
-        checkArgument(ladderHeight >= 1, LADDER_HEIGHT_MUST_MORE_THEN_ONE);
         final Users users = UsersGenerator.generate(usersExpression);
-        final List<LadderLine> ladderLines = new ArrayList<>(ladderHeight);
-        for (int i = 0; i < ladderHeight; i++) {
-            final LadderLine ladderLine = LadderLine.of(users.size());
-            ladderLines.add(ladderLine);
-        }
-        return new LadderGame(users, ladderLines);
+        final TotalLadderLine totalLadderLine = TotalLadderLine.of(users.size(), ladderHeight);
+        return new LadderGame(users, totalLadderLine);
     }
 
     public LadderResultDTO getLadderViewResult() {
-        return new LadderResultDTO(users.getNames(), ladderLines);
+        return new LadderResultDTO(users.getNames(), totalLadderLine.getLadderLines());
     }
 }
