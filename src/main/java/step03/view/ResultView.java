@@ -36,12 +36,12 @@ public class ResultView {
     private static void printLadder(List<List<Boolean>> ladder) {
         ladder.forEach(step -> {
                     System.out.print(FIRST_BLANK + STEP);
-                    printLine(step);
+                    printSteps(step);
                     System.out.println();
                 });
     }
 
-    private static void printLine(List<Boolean> step) {
+    private static void printSteps(List<Boolean> step) {
         step.forEach(point -> {
             String drawing = point ? LINE : BLANK;
             System.out.print(drawing + STEP);
