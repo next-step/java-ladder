@@ -3,6 +3,8 @@ package step02.view;
 import step02.domain.Participants;
 import step02.domain.Steps;
 
+import java.util.List;
+
 public class ResultView {
     private static final String RESULT = "실행결과";
     private static final String STEP = "|";
@@ -33,12 +35,16 @@ public class ResultView {
         steps.getSteps()
                 .forEach(step -> {
                     System.out.print(FIRST_BLANK + STEP);
-                    step.forEach(point -> {
-                        String drawing = point ? LINE : BLANK;
-                        System.out.print(drawing + STEP);
-                    });
+                    printLine(step);
                     System.out.println();
                 });
+    }
+
+    private static void printLine(List<Boolean> step) {
+        step.forEach(point -> {
+            String drawing = point ? LINE : BLANK;
+            System.out.print(drawing + STEP);
+        });
     }
 
 }

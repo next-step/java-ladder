@@ -4,12 +4,14 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
-public class DuplicatedParticipantsNameExceptionTest {
+public class InvalidCountOfNamesExceptionTest {
+
     @Test
     void test() {
-        assertThatExceptionOfType(DuplicatedParticipantsNameException.class)
+        assertThatExceptionOfType(InvalidCountOfNamesException.class)
                 .isThrownBy(() -> {
-                    throw new DuplicatedParticipantsNameException();
+                    throw new InvalidCountOfNamesException();
                 });
     }
+
 }

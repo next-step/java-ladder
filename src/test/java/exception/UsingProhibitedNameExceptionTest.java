@@ -4,14 +4,13 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
-public class InvalidCountOfParticipantsExceptionTest {
+public class UsingProhibitedNameExceptionTest {
 
     @Test
     void test() {
-        assertThatExceptionOfType(InvalidCountOfParticipantsException.class)
+        assertThatExceptionOfType(UsingProhibitedNameException.class)
                 .isThrownBy(() -> {
-                    throw new InvalidCountOfParticipantsException();
+                    throw new UsingProhibitedNameException();
                 });
     }
-
 }
