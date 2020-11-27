@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collector;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -48,17 +49,19 @@ public class LineTest {
         private final List<Boolean> list = new ArrayList<>();
         public static Spork of(Boolean... existsSpoke) {
             return Stream.of(existsSpoke)
-                    .collect(Spork::new, Spork::add, Spork::addAll);
+                    .collect(collect());
         }
 
         public static Spork fromCount(int count, BooleanGenerator booleanGenerator) {
             return IntStream.range(0, count)
                     .mapToObj(number -> booleanGenerator.nextBoolean())
-                    .collect(Spork::new, Spork::add, Spork::addAll);
+                    .collect(collect());
         }
 
-        private static void addAll(Spork right, Spork left) {
-            throw new UnsupportedOperationException("병렬처리는 지원하지 않습니다.");
+        private static Collector<Boolean, Spork, Spork> collect() {
+            return Collector.of(Spork::new, Spork::add, (spork, spork2) -> {
+                throw new UnsupportedOperationException("병렬처리는 지원하지 않습니다.");
+            });
         }
 
         private void add(Boolean next) {
