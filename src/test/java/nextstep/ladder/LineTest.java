@@ -1,5 +1,6 @@
 package nextstep.ladder;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -8,6 +9,12 @@ public class LineTest {
     @Test
     void create() {
         assertThat(new Line(Spork.of(true, false, true))).isNotNull();
+    }
+
+    @DisplayName("오른쪽에 발판이 존재하는지 알 수 있다")
+    @Test
+    void hasSporkRightSide() {
+        assertThat(new Line(Spork.of(true, false, true)).hasSporkRightSide(Position.of(0))).isTrue();
     }
 
     /**
@@ -22,6 +29,16 @@ public class LineTest {
 
     private static class Line {
         public Line(Spork spork) {
+        }
+
+        public boolean hasSporkRightSide(Position position) {
+            return true;
+        }
+    }
+
+    private static class Position {
+        public static Position of(int position) {
+            return null;
         }
     }
 }
