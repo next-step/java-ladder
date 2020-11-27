@@ -5,8 +5,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -25,7 +25,11 @@ public class LineTest {
     @DisplayName("발판은 갯수로 생성할 수 있다.")
     @Test
     void createSpokeFromCount() {
-        assertThat(Spork.fromCount(4)).isNotNull();
+        assertThat(Spork.fromCount(3, createTestingObject())).isNotNull();
+    }
+
+    private TestingRandomBooleanGenerator createTestingObject() {
+        return new TestingRandomBooleanGenerator(true, false, true);
     }
 
     /**
@@ -34,23 +38,15 @@ public class LineTest {
      */
     private static class Spork {
         private final List<Boolean> list = new ArrayList<>();
-        private static final Random RANDOM = new Random();
-        public static Spork of(boolean... existsSpoke) {
-            Spork spork = new Spork();
-            for (boolean value : existsSpoke) {
-                spork.add(value);
-            }
-            return spork;
-        }
-
-        public static Spork fromCount(int count) {
-            return IntStream.of(count)
-                    .mapToObj(number -> nextBoolean())
+        public static Spork of(Boolean... existsSpoke) {
+            return Stream.of(existsSpoke)
                     .collect(Spork::new, Spork::add, Spork::addAll);
         }
 
-        private static boolean nextBoolean() {
-            return RANDOM.nextBoolean();
+        public static Spork fromCount(int count, RandomBooleanGenerator randomBooleanGenerator) {
+            return IntStream.of(count)
+                    .mapToObj(number -> randomBooleanGenerator.nextBoolean())
+                    .collect(Spork::new, Spork::add, Spork::addAll);
         }
 
         private static void addAll(Spork right, Spork left) {
