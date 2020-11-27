@@ -10,6 +10,7 @@ import java.util.stream.Collector;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+import static java.util.stream.Collectors.toList;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LineTest {
@@ -104,20 +105,34 @@ public class LineTest {
                     "list=" + list +
                     '}';
         }
+
+        public Stream<Boolean> stream() {
+            return list.stream();
+        }
     }
 
     private static class Line {
+
+        private final List<Boolean> cross;
+
         public Line(Spork spork) {
+            cross = spork.stream().collect(toList());
         }
 
         public boolean hasSporkRightSide(Position position) {
-            return true;
+            return cross.get(position.crossPosition);
         }
     }
 
     private static class Position {
+        public int crossPosition;
+
+        public Position(int crossPosition) {
+            this.crossPosition = crossPosition;
+        }
+
         public static Position of(int position) {
-            return null;
+            return new Position(position);
         }
     }
 }
