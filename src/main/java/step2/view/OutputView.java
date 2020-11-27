@@ -6,14 +6,12 @@ import step2.domain.Player;
 import step2.domain.Players;
 
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class OutputView {
     public static final String PRINT_RESULT = "실행 결과";
     private static final String HEIGHT_LINE = "|";
     private static final String PLAY_LINE = "-----";
     private static final String PLAY_NO_LINE = "     ";
-    public static final int DEFAULT_BLANK_LENGTH = 6;
 
 
     public static void printResult() {

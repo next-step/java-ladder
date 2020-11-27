@@ -11,7 +11,7 @@ public class RandomLineStrategy implements LineStrategy {
 
     @Override
     public List<Boolean> createLine(int personCount) {
-        return IntStream.range(0, personCount)
+        return IntStream.range(1, personCount)
                 .mapToObj(this::randomLine)
                 .collect(Collectors.toList());
     }

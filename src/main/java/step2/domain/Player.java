@@ -13,7 +13,7 @@ public class Player {
     }
     public static Player of(final String name){
         validationName(name);
-        return Player.of(name);
+        return new Player(name);
     }
     private static void validationName(final String name) {
         if (name.length() > 5) {

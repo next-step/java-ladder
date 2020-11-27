@@ -1,6 +1,5 @@
 package step2.domain;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -14,7 +13,7 @@ public class Players {
     }
 
     public static Players of(List<Player> players) {
-        return Player.ofs(players);
+        return new Players(players);
     }
 
     public int getPlayersCount() {
