@@ -9,6 +9,7 @@ import step03.view.ResultView;
 import strategy.RandomPointStrategy;
 
 public class Main {
+    private static final String ALL = "all";
     public static void main(String[] args) {
 
         Participants participants = readParticipants();
@@ -39,7 +40,7 @@ public class Main {
 
     public static void printResult(Matcher matcher) {
         String target = InputView.readNamesOfParticipant();
-        while(!target.equals("all")) {
+        while(!ALL.equals(target)) {
             ResultView.printResult(matcher.getResultByParticipant(target));
             target = InputView.readNamesOfParticipant();
         }
