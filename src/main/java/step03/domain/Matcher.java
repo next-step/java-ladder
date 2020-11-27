@@ -48,8 +48,9 @@ public class Matcher {
         }
 
         private void validateCount(Integer count1, Integer count2) {
-            if (!count1.equals(count2))
+            if (!count1.equals(count2)) {
                 throw new NotMatchedCountException();
+            }
         }
 
     }
