@@ -28,23 +28,6 @@ public class ConsoleResultView implements ResultView {
         System.out.println(resultBuilder.toString());
     }
 
-    @Override
-    public boolean printResult(ExecutionResults executionResults, Name nameOfWantToCheck) {
-        if (executionResults.isAllKeyword(nameOfWantToCheck)) {
-            executionResults.forEach((key, value) -> System.out.println(key.getValue() + " : " + value.getValue()));
-            return true;
-        }
-
-        executionResults.accept(nameOfWantToCheck, (key, value) -> {
-            if (value == null) {
-                System.out.println(CAN_NOT_FIND_PARTICIPANTS_ERR_MSG);
-                return;
-            }
-            System.out.println(value.getValue());
-        });
-        return false;
-    }
-
     private void appendHeader(StringBuilder resultBuilder) {
         resultBuilder.append(HEADER_MSG).append(System.lineSeparator());
     }
@@ -71,5 +54,22 @@ public class ConsoleResultView implements ResultView {
 
     private void appendResults(Results results, StringBuilder resultBuilder) {
         results.forEach(appendString(resultBuilder));
+    }
+
+    @Override
+    public boolean printResult(ExecutionResults executionResults, Name nameOfWantToCheck) {
+        if (executionResults.isAllKeyword(nameOfWantToCheck)) {
+            executionResults.forEach((key, value) -> System.out.println(key.getValue() + " : " + value.getValue()));
+            return true;
+        }
+
+        executionResults.accept(nameOfWantToCheck, (key, value) -> {
+            if (value == null) {
+                System.out.println(CAN_NOT_FIND_PARTICIPANTS_ERR_MSG);
+                return;
+            }
+            System.out.println(value.getValue());
+        });
+        return false;
     }
 }
