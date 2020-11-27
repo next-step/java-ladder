@@ -24,10 +24,6 @@ public class Result {
         }
     }
 
-    public String getValue() {
-        return value;
-    }
-
     public void accept(Consumer<String> consumer) {
         consumer.accept(value);
     }
