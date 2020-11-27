@@ -25,7 +25,7 @@ public class LadderGame {
         Participants participants = ValidInputHelper.get(this::getParticipants, inputView::printError);
         Height height = ValidInputHelper.get(this::getHeight, inputView::printError);
         Ladder ladder = Ladder.of(participants, height);
-        Results results = ValidInputHelper.get(() -> getExecutionResults(participants), inputView::printError);
+        Results results = ValidInputHelper.get(() -> getResults(participants), inputView::printError);
         resultView.printLadder(participants, ladder, results);
         printExecutionResults(participants, ladder, results);
     }
@@ -40,9 +40,9 @@ public class LadderGame {
         return Height.valueOf(inputHeight);
     }
 
-    private Results getExecutionResults(Participants participants) {
-        List<String> executionResults = ValidInputHelper.get(inputView::getExecutionResults, inputView::printError);
-        return Results.of(participants, executionResults);
+    private Results getResults(Participants participants) {
+        List<String> results = ValidInputHelper.get(inputView::getResults, inputView::printError);
+        return Results.of(participants, results);
     }
 
     private void printExecutionResults(Participants participants, Ladder ladder, Results results) {

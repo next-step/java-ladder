@@ -32,7 +32,7 @@ public class ConsoleInputView implements InputView {
     }
 
     @Override
-    public List<String> getExecutionResults() {
+    public List<String> getResults() {
         System.out.println(RESULTS_INPUT_MSG);
         String resultsInput = scanner.nextLine();
         return Arrays.stream(resultsInput.split(MULTIPLE_INPUT_DELIMITER))
