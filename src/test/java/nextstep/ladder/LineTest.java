@@ -28,6 +28,12 @@ public class LineTest {
         assertThat(Spork.fromCount(3, createTestingObject(true, false, true))).isNotNull();
     }
 
+    @DisplayName("제네레이터을 통해 생성한 값을 테스트한다")
+    @Test
+    void sporkCreateFromGenerator() {
+        assertThat(Spork.fromCount(3, createTestingObject(true, false, true)))
+                .isEqualTo(Spork.of(true, false, true));
+    }
 
     private TestingBooleanGenerator createTestingObject(Boolean... booleans) {
         return new TestingBooleanGenerator(booleans);
