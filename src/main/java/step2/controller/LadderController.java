@@ -11,7 +11,7 @@ public class LadderController {
     private LadderController() {}
 
     public static void runLadder() {
-        Players players = new Players(NameSplitter.splitParticipationNames(InputView.putParticipation()));
+        Players players = Players.of(NameSplitter.splitParticipationNames(InputView.putParticipation()));
         int ladderHeight = InputView.putLadderHeight();
 
         OutputView.printResult();
