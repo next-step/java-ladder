@@ -25,11 +25,12 @@ public class LineTest {
     @DisplayName("발판은 갯수로 생성할 수 있다.")
     @Test
     void createSpokeFromCount() {
-        assertThat(Spork.fromCount(3, createTestingObject())).isNotNull();
+        assertThat(Spork.fromCount(3, createTestingObject(true, false, true))).isNotNull();
     }
 
-    private TestingRandomBooleanGenerator createTestingObject() {
-        return new TestingRandomBooleanGenerator(true, false, true);
+
+    private TestingBooleanGenerator createTestingObject(Boolean... booleans) {
+        return new TestingBooleanGenerator(booleans);
     }
 
     /**
@@ -43,9 +44,9 @@ public class LineTest {
                     .collect(Spork::new, Spork::add, Spork::addAll);
         }
 
-        public static Spork fromCount(int count, RandomBooleanGenerator randomBooleanGenerator) {
+        public static Spork fromCount(int count, BooleanGenerator booleanGenerator) {
             return IntStream.of(count)
-                    .mapToObj(number -> randomBooleanGenerator.nextBoolean())
+                    .mapToObj(number -> booleanGenerator.nextBoolean())
                     .collect(Spork::new, Spork::add, Spork::addAll);
         }
 

@@ -4,11 +4,11 @@ import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.Queue;
 
-class TestingRandomBooleanGenerator implements RandomBooleanGenerator {
+class TestingBooleanGenerator implements BooleanGenerator {
 
     private final Queue<Boolean> queue;
 
-    public TestingRandomBooleanGenerator(Boolean... booleans) {
+    public TestingBooleanGenerator(Boolean... booleans) {
         queue = new ArrayDeque<>(Arrays.asList(booleans));
     }
 

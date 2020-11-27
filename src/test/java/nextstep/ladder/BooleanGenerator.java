@@ -1,5 +1,5 @@
 package nextstep.ladder;
 
-interface RandomBooleanGenerator {
+interface BooleanGenerator {
     Boolean nextBoolean();
 }
