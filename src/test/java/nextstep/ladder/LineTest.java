@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -51,7 +52,7 @@ public class LineTest {
         }
 
         public static Spork fromCount(int count, BooleanGenerator booleanGenerator) {
-            return IntStream.of(count)
+            return IntStream.range(0, count)
                     .mapToObj(number -> booleanGenerator.nextBoolean())
                     .collect(Spork::new, Spork::add, Spork::addAll);
         }
@@ -77,6 +78,28 @@ public class LineTest {
 
         private Boolean last() {
             return list.get(list.size() - 1);
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o)
+                return true;
+            if (o == null || getClass() != o.getClass())
+                return false;
+            Spork spork = (Spork) o;
+            return list.equals(spork.list);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(list);
+        }
+
+        @Override
+        public String toString() {
+            return "Spork{" +
+                    "list=" + list +
+                    '}';
         }
     }
 
