@@ -1,11 +1,12 @@
-package ladder;
+package ladder.domain;
 
+import ladder.domain.Point;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import static ladder.Point.POINT_MUST_HAS_ONLY_ONE_DIRECTION;
+import static ladder.domain.Point.POINT_MUST_HAS_ONLY_ONE_DIRECTION;
 import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 

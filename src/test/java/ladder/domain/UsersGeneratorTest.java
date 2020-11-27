@@ -1,5 +1,7 @@
-package ladder;
+package ladder.domain;
 
+import ladder.domain.Users;
+import ladder.domain.UsersGenerator;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;

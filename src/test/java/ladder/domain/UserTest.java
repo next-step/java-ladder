@@ -1,10 +1,11 @@
-package ladder;
+package ladder.domain;
 
+import ladder.domain.User;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static ladder.User.USER_NAME_LENGTH_MUST_NOT_MORE_THEN_FIVE;
-import static ladder.User.USER_NAME_MUST_NOT_BE_BLANK;
+import static ladder.domain.User.USER_NAME_LENGTH_MUST_NOT_MORE_THEN_FIVE;
+import static ladder.domain.User.USER_NAME_MUST_NOT_BE_BLANK;
 import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 

@@ -1,11 +1,12 @@
-package ladder;
+package ladder.domain;
 
+import ladder.domain.LadderLine;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import static ladder.LadderLine.PERSON_COUNT_MUST_MORE_THEN_TWO;
+import static ladder.domain.LadderLine.PERSON_COUNT_MUST_MORE_THEN_TWO;
 import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 

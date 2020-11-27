@@ -1,5 +1,7 @@
-package ladder;
+package ladder.domain;
 
+import ladder.domain.User;
+import ladder.domain.Users;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -7,7 +9,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static ladder.Users.NUMBER_OF_USER_MUST_BE_MORE_THEN_TWO;
+import static ladder.domain.Users.NUMBER_OF_USER_MUST_BE_MORE_THEN_TWO;
 import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
