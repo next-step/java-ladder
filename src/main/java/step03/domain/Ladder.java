@@ -50,21 +50,24 @@ public class Ladder {
         List<Integer> table = Stream.iterate(0, n -> n + 1)
                 .limit(countOfParticipants)
                 .collect(Collectors.toList());
-        ladder.forEach(step -> moveIndex(table, step.getPoints()));
+        ladder.forEach(step -> moveStep(table, step.getPoints()));
 
         return table;
     }
 
-    private static void moveIndex(List<Integer> table, List<Boolean> points) {
-        Stream.iterate(0, n -> n + 1)
-                .limit(points.size())
-                .forEach(index -> {
-                    if (!points.get(index)) return;
-                    int temp1 = table.get(index);
-                    int temp2 = table.get(index + 1);
-                    table.set(index, temp2);
-                    table.set(index + 1, temp1);
-                });
+    private static void moveStep(List<Integer> table, List<Boolean> points) {
+        for(int index = 0; index < points.size(); index++) {
+            swapIndex(table, index, points.get(index));
+        }
+    }
+
+    private static void swapIndex(List<Integer> table, int index, boolean hasLine) {
+        if (!hasLine) return;
+
+        int temp1 = table.get(index);
+        int temp2 = table.get(index + 1);
+        table.set(index, temp2);
+        table.set(index + 1, temp1);
     }
 
     public List<Integer> getResultTable() {
