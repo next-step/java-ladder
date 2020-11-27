@@ -22,7 +22,7 @@ public class InputView {
         return scanner.nextLine();
     }
 
-    public static Integer readCountOfSteps() {
+    public static int readCountOfSteps() {
         System.out.println(HEIGHT_OF_LADDER_MESSAGE);
         return scanner.nextInt();
     }

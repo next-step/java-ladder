@@ -22,20 +22,20 @@ public class Ladder {
         return new Ladder(ladder, resultTable);
     }
 
-    public static Ladder of(Integer countOfSteps, Integer countOfParticipants, PointStrategy pointStrategy) {
+    public static Ladder of(int countOfSteps, int countOfParticipants, PointStrategy pointStrategy) {
         validate(countOfSteps);
         List<Step> ladder = init(countOfSteps, countOfParticipants, pointStrategy);
         List<Integer> resultTable = matchTable(ladder, countOfParticipants);
         return of(ladder, resultTable);
     }
 
-    private static List<Step> init(Integer countOfSteps, Integer countOfParticipants, PointStrategy pointStrategy) {
+    private static List<Step> init(int countOfSteps, int countOfParticipants, PointStrategy pointStrategy) {
         return Stream.generate(() -> Step.of(countOfParticipants, pointStrategy))
                 .limit(countOfSteps)
                 .collect(Collectors.toList());
     }
 
-    private static void validate(Integer countOfSteps) {
+    private static void validate(int countOfSteps) {
         if (countOfSteps < 1)
             throw new InvalidCountOfStepsException();
     }
@@ -46,7 +46,7 @@ public class Ladder {
                 .collect(Collectors.collectingAndThen(Collectors.toList(), Collections::unmodifiableList));
     }
 
-    private static List<Integer> matchTable(List<Step> ladder, Integer countOfParticipants) {
+    private static List<Integer> matchTable(List<Step> ladder, int countOfParticipants) {
         List<Integer> table = Stream.iterate(0, n -> n + 1)
                 .limit(countOfParticipants)
                 .collect(Collectors.toList());

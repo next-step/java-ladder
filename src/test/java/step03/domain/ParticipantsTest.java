@@ -42,7 +42,7 @@ public class ParticipantsTest {
     @DisplayName("Participants List size")
     @ParameterizedTest
     @MethodSource("provideNamesSizeResult")
-    void test_size(String names, Integer size) {
+    void test_size(String names, int size) {
         assertThat(Participants.of(names).size())
                 .isEqualTo(size);
     }
@@ -108,7 +108,7 @@ public class ParticipantsTest {
     @DisplayName("이름으로 인덱스 찾기")
     @ParameterizedTest
     @MethodSource("provideNameOfParticipantIndexResult")
-    void test_indexOf(String name, Integer index) {
+    void test_indexOf(String name, int index) {
         assertThat(Participants.of("pobi,honux,crong,jk").indexOf(name))
                 .isEqualTo(index);
     }

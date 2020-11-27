@@ -18,7 +18,7 @@ public class ResultView {
 
     private ResultView() {}
 
-    private static String padLeft(String string, Integer repeat) {
+    private static String padLeft(String string, int repeat) {
         return String.format("%" + repeat + "s", string);
     }
 

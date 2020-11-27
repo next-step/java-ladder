@@ -18,7 +18,7 @@ public class NamesOfResult {
         return names.getNames();
     }
 
-    public Integer size() {
+    public int size() {
         return names.size();
     }
 

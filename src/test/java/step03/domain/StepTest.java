@@ -26,7 +26,7 @@ public class StepTest {
     @DisplayName("인자 CountOfParticipants, 생성자")
     @ParameterizedTest
     @MethodSource("provideCountOfParticipantsResult")
-    void test_constructor_of_CountOfParticipants(Integer countOfParticipants, boolean pointStrategy) {
+    void test_constructor_of_CountOfParticipants(int countOfParticipants, boolean pointStrategy) {
         assertThat(Step.of(countOfParticipants, () -> pointStrategy))
                 .isEqualTo(Step.of(countOfParticipants, () -> pointStrategy));
     }

@@ -26,11 +26,11 @@ public class Step {
         );
     }
 
-    public static Step of(Integer countOfParticipants, PointStrategy pointStrategy) {
+    public static Step of(int countOfParticipants, PointStrategy pointStrategy) {
         return of(initStep(countOfParticipants - 1, pointStrategy));
     }
 
-    private static List<Boolean> initStep(Integer countOfPoints, PointStrategy pointStrategy) {
+    private static List<Boolean> initStep(int countOfPoints, PointStrategy pointStrategy) {
         List<Boolean> points = new ArrayList<>();
         points.add(pointStrategy.hasPoint());
 

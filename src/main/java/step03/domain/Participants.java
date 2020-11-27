@@ -21,11 +21,11 @@ public class Participants {
         return names.getNames();
     }
 
-    public Integer size() {
+    public int size() {
         return names.size();
     }
 
-    public Integer indexOf(String name) {
+    public int indexOf(String name) {
         return names.indexOf(name);
     }
 

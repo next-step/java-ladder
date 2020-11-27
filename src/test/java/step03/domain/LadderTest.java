@@ -18,7 +18,7 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 public class LadderTest {
     Participants participants;
     PointStrategy pointStrategy;
-    Integer countOfParticipants;
+    int countOfParticipants;
 
     @BeforeEach
     void setup() {
@@ -41,7 +41,7 @@ public class LadderTest {
     @DisplayName("Ladder 가 1 이상이 아니면 예외 처리")
     @ParameterizedTest
     @MethodSource("provideInvalidCountOfLadderResult")
-    void test_validate(Integer countOfLadder) {
+    void test_validate(int countOfLadder) {
         assertThatExceptionOfType(InvalidCountOfStepsException.class)
                 .isThrownBy(() -> Ladder.of(countOfLadder, countOfParticipants, pointStrategy));
     }

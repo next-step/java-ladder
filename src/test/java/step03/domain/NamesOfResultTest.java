@@ -51,7 +51,7 @@ public class NamesOfResultTest {
     @DisplayName("사이즈")
     @ParameterizedTest
     @MethodSource("provideResultsOfLadderSizeResult")
-    void test_constructor_of(String names, Integer size) {
+    void test_constructor_of(String names, int size) {
         Assertions.assertThat(NamesOfResult.of(names).size())
                 .isEqualTo(size);
     }

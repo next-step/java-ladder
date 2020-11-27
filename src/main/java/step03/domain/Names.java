@@ -11,7 +11,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Names {
-    private static final Integer MIN_COUNT_OF_NAMES = 2;
+    private static final int MIN_COUNT_OF_NAMES = 2;
     private final List<Name> names;
 
     private Names(List<Name> names) {
@@ -51,7 +51,7 @@ public class Names {
                 .collect(Collectors.toList());
     }
 
-    public Integer size() {
+    public int size() {
         return names.size();
     }
 
@@ -78,8 +78,8 @@ public class Names {
         names.forEach(name -> name.validateProhibitName(prohibitName));
     }
 
-    public Integer indexOf(String targetName) {
-        Integer index = names.indexOf(Name.of(targetName));
+    public int indexOf(String targetName) {
+        int index = names.indexOf(Name.of(targetName));
         if (index == -1) {
             throw new NotFoundNameException();
         }

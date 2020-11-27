@@ -7,8 +7,8 @@ import java.util.Objects;
 import java.util.Optional;
 
 public class Name {
-    private static final Integer MIN = 1;
-    private static final Integer MAX = 5;
+    private static final int MIN = 1;
+    private static final int MAX = 5;
     private final String name;
 
     private Name(String name) {

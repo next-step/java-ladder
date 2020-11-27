@@ -47,8 +47,8 @@ public class Matcher {
             return new Matcher(this);
         }
 
-        private void validateCount(Integer count1, Integer count2) {
-            if (!count1.equals(count2)) {
+        private void validateCount(int count1, int count2) {
+            if (count1 != count2) {
                 throw new NotMatchedCountException();
             }
         }
@@ -56,8 +56,8 @@ public class Matcher {
     }
 
     public String getResultByParticipant(String nameOfParticipant) {
-        Integer indexOfName = participants.indexOf(nameOfParticipant);
-        Integer indexOfMatched = matchedTable.indexOf(indexOfName);
+        int indexOfName = participants.indexOf(nameOfParticipant);
+        int indexOfMatched = matchedTable.indexOf(indexOfName);
         return namesOfResult.getNames().get(indexOfMatched);
     }
 
@@ -68,7 +68,7 @@ public class Matcher {
         List<String> namesOfResult2 = namesOfResult.getNames();
 
         for(int i = 0; i < participants.size(); i++) {
-            Integer targetIndex = matchedTable.indexOf(i);
+            int targetIndex = matchedTable.indexOf(i);
             map.put(namesOfParticipant.get(i), namesOfResult2.get(targetIndex));
         }
 
