@@ -8,10 +8,7 @@ public class Ladder {
     }
 
     public static Ladder of(int width, int height) {
-        Lines lines = new Lines();
-        for(int i = 0; i < height; i++) {
-            lines.add(new Line(width));
-        }
+        Lines lines = Lines.of(width, height);
 
         return new Ladder(lines);
     }
