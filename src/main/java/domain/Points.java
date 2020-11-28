@@ -13,7 +13,9 @@ public class Points {
 
     public static Points of(final Length width) {
         List<Point> points = new ArrayList<>();
-        for(int i = 0; i < width.getValue() - 1; i++) {
+        int numberOfPoints = width.getValue() - 1;
+
+        for(int i = 0; i < numberOfPoints; i++) {
             Point point = isFormerPointPresent(points, i) ? new Point(false) : new Point();
             points.add(point);
         }

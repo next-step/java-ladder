@@ -13,7 +13,9 @@ public class Lines {
 
     public static Lines of(final Length width, final Length height) {
         List<Line> lines = new ArrayList<>();
-        for(int i = 0; i < height.getValue(); i++) {
+        int heightOfLadder = height.getValue();
+
+        for(int i = 0; i < heightOfLadder; i++) {
             lines.add(Line.of(width));
         }
 
