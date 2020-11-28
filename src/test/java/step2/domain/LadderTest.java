@@ -22,10 +22,10 @@ class LadderTest {
     @Test
     @DisplayName("Ladder가 잘 생성되는지 확인한다.")
     void create() {
-        Ladder ladder = Ladder.of(Players.of(Arrays.asList(Player.of("a"), Player.of("b"))), 2, new MustLineStrategy());
+        Ladder ladder = Ladder.of(Players.of(Arrays.asList("a","b")), 2, new MustLineStrategy());
 
         assertThat(ladder)
-                .isEqualTo(Ladder.of(Players.of(Arrays.asList(Player.of("a"), Player.of("b"))), 2, new MustLineStrategy()));
+                .isEqualTo(Ladder.of(Players.of(Arrays.asList("a","b")), 2, new MustLineStrategy()));
     }
 
 }

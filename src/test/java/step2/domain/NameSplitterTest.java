@@ -16,11 +16,11 @@ public class NameSplitterTest {
     void create() {
         //given
         String name = "a,b,c";
-        List<Player> players = NameSplitter.splitParticipationNames(name);
+        List<String> names = NameSplitter.splitParticipationNames(name);
 
         //then
-        assertThat(players).isEqualTo(Arrays.asList(Player.of("a"), Player.of("b"), Player.of("c")));
-        assertThat(players).containsExactly(Player.of("a"), Player.of("b"), Player.of("c"));
+        assertThat(names).isEqualTo(Arrays.asList("a","b","c"));
+        assertThat(names).containsExactly("a","b","c");
     }
 
 }
