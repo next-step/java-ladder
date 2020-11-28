@@ -1,6 +1,6 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
 
-class Position {
+public class Position {
     private final int crossPosition;
 
     public Position(int crossPosition) {

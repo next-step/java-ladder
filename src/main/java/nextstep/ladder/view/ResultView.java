@@ -1,4 +1,6 @@
-package nextstep.ladder;
+package nextstep.ladder.view;
+
+import nextstep.ladder.domain.Line;
 
 import java.io.PrintWriter;
 import java.io.Writer;
@@ -7,7 +9,7 @@ import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.joining;
 
-class ResultView {
+public class ResultView {
     public static final String BLANK = " ";
     public static final String POLE = "|";
     public static final String RUNG = "-";

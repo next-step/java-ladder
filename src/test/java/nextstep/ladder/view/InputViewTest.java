@@ -1,4 +1,4 @@
-package nextstep.ladder;
+package nextstep.ladder.view;
 
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.stream.Stream;
  * |-----|     |-----| 의 경우 첫번째는 1~2 구간에는 발판이 있고 2~3구간에는 발판이 없고 3~4 구간에는 발판이 있다.
  * 이를 Spoke.of(true, false, true) 로 표현한다
  */
-class Spoke {
+public class Spoke {
     private final List<Boolean> list = new ArrayList<>();
 
     public static Spoke of(Boolean... existsSpoke) {

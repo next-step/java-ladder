@@ -1,10 +1,10 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
 
 import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.Queue;
 
-class TestingBooleanGenerator implements BooleanGenerator {
+public class TestingBooleanGenerator implements BooleanGenerator {
 
     private final Queue<Boolean> queue;
 

@@ -1,5 +1,9 @@
 package nextstep.ladder;
 
+import nextstep.ladder.domain.Spoke;
+import nextstep.ladder.view.InputView;
+import nextstep.ladder.view.ResultView;
+
 import java.io.OutputStreamWriter;
 import java.util.List;
 import java.util.Random;

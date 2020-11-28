@@ -1,5 +1,7 @@
-package nextstep.ladder;
+package nextstep.ladder.view;
 
+import nextstep.ladder.domain.Line;
+import nextstep.ladder.domain.Spoke;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -8,7 +10,7 @@ import java.io.StringWriter;
 import java.util.Arrays;
 import java.util.List;
 
-import static nextstep.ladder.ResultView.times;
+import static nextstep.ladder.view.ResultView.times;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ResultViewTest {
