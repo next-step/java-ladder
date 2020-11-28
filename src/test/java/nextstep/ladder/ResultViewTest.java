@@ -5,7 +5,10 @@ import org.junit.jupiter.api.Test;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.stream.IntStream;
 
+import static java.util.stream.Collectors.joining;
+import static nextstep.ladder.ResultViewTest.ResultView.times;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ResultViewTest {
@@ -22,7 +25,7 @@ public class ResultViewTest {
         assertThat(times("-", 5)).isEqualTo("-----");
     }
 
-    private static class ResultView {
+    static class ResultView {
         private final PrintWriter out;
 
         public ResultView(StringWriter out) {
@@ -48,6 +51,10 @@ public class ResultViewTest {
 
         private void print(String string) {
             out.print(string);
+        }
+
+        static String times(String string, int repeat) {
+            return IntStream.range(0, repeat).mapToObj(__ -> string).collect(joining());
         }
     }
 }
