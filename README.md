@@ -44,4 +44,9 @@ Q) 기본타입을 포장한 래핑클래스의 value가 불변원시타입이�
 - [x] NumberOfParticipants 값을 넘겨주는 것은 어떨까요~? (private Results(List<String> value, Participants participants) {)
     - 그러네요. 굳이 필요없는 도메인에게 의존성을 갖게 되는 문제가 있었군요! :)
 - [ ] Results 라는 이름은 ExecutionResults 의 상위 개념으로 오해할 수 도 있을 것 같아요.
-- [ ] allKeyword 에 대한 판단을 view 에서 했을때와 view 외부에서 계층에서 했을 때의 각각의 장단점은 무엇일까요~?
+- [x] allKeyword 에 대한 판단을 view 에서 했을때와 view 외부에서 계층에서 했을 때의 각각의 장단점은 무엇일까요~?
+    - AllKeyword에 대한 고민해봤습니다. 일단 'all'이라는 키워드를 도메인이 갖고 판단하는게 적절하지 못하게 보이네요. 
+    입력 키워드와 키워드에 판단은 view에서 해야하는데 도메인이 갖게 되었으니까요. 이건 view에 대한 직접적인 의존이 아니지만, 간접적으로 도메인이 view에 로직에 의존하게 되어버리는것 같습니다. 
+    keyword에 판단은 입력값을 건내준 ConsoleInputView로 이동시켰습니다.
+    참석자 이름중에 allKeyword와 같은 이름이 있는지에 대한 유효성검사를 Participants에서 검사했었는데, Keyword를 view가 가지게 되어서 해당 검사는 LadderGame으로 이동시켰습니다. :)
+    이런 의도로 리뷰를 해주신게 맞을까요? 혹시 더 고민해봐야할 것이 있다면 꼭 얘기해주세요! 감사합니다.

@@ -6,6 +6,7 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class ConsoleInputView implements InputView {
+    public static final String ALL_KEYWORD = "all";
     private static final String PARTICIPANT_NAMES_INPUT_MSG = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
     private static final String HEIGHT_INPUT_MSG = "최대 사다리 높이는 몇 개인가요?";
     private static final String RESULTS_INPUT_MSG = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
