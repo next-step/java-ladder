@@ -11,10 +11,10 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
-public class ExecutionResultTest {
+public class ResultsTest {
     @Test
     @DisplayName("실행결과의 size는 입력된 input 실행결과와 size()가 같아야 한다.")
-    void executionResultTest() {
+    void resultsSizeTest() {
         //given
         Participants participants = Participants.of("참가자1", "참가자2", "참가자3", "참가자4");
         List<String> executionResultInput = Arrays.asList("꽝", "5000", "꽝", "3000");
