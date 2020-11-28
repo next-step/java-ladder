@@ -1,7 +1,7 @@
 package nextstep.ladder;
 
 import java.io.PrintWriter;
-import java.io.StringWriter;
+import java.io.Writer;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -14,7 +14,7 @@ class ResultView {
     public static final int NAME_SPACE = 5;
     private final PrintWriter out;
 
-    public ResultView(StringWriter out) {
+    public ResultView(Writer out) {
         this.out = new PrintWriter(out);
     }
 
@@ -66,5 +66,12 @@ class ResultView {
 
     static String times(String string, int repeat) {
         return IntStream.range(0, repeat).mapToObj(__ -> string).collect(joining());
+    }
+
+    public void printResult(List<String> players, List<Line> lines) {
+        println("실행결과");
+        println("");
+        printNames(players);
+        printLadders(lines);
     }
 }
