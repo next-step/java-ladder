@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.joining;
@@ -18,6 +20,18 @@ public class ResultViewTest {
         StringWriter out = new StringWriter();
         new ResultView(out).printLadder(Spoke.of(true, false, true).toLine());
         assertThat(out.toString()).isEqualTo("    |-----|     |-----|\n");
+    }
+
+    @DisplayName("사다리 라인 두개를 그린다")
+    @Test
+    void printTwoLadderLine() {
+        StringWriter out = new StringWriter();
+        List<Line> lines = Arrays.asList(Spoke.of(true, false, true).toLine(), Spoke.of(false, true, false).toLine())
+        new ResultView(out).printLadders(lines);
+        assertThat(out.toString()).isEqualTo(
+                "    |-----|     |-----|\n" +
+                "    |     |-----|     |\n"
+        );
     }
 
     @Test
