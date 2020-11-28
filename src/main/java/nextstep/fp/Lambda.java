@@ -40,12 +40,9 @@ public class Lambda {
     }
 
     private static int sum(List<Integer> numbers, Predicate<Integer> condition) {
-        int total = 0;
-        for (int number : numbers) {
-            if (condition.test(number)) {
-                total += number;
-            }
-        }
-        return total;
+        return numbers.stream()
+                .filter(condition)
+                .mapToInt(Integer::intValue)
+                .sum();
     }
 }
