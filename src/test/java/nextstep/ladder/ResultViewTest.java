@@ -44,7 +44,7 @@ public class ResultViewTest {
 
         assertThat(out.toString()).isEqualTo(
                 "    |-----|     |-----|\n" +
-                "    |     |-----|     |\n"
+                        "    |     |-----|     |\n"
         );
     }
 
@@ -67,6 +67,7 @@ public class ResultViewTest {
         public static final String BLANK = " ";
         public static final String POLE = "|";
         public static final String RUNG = "-";
+        public static final int NAME_SPACE = 5;
         private final PrintWriter out;
 
         public ResultView(StringWriter out) {
@@ -94,7 +95,7 @@ public class ResultViewTest {
         public void printNames(List<String> names) {
             println(
                     names.stream()
-                            .map(name -> String.format("%5s", name))
+                            .map(name -> String.format("%" + NAME_SPACE + "s", name))
                             .collect(joining(" "))
             );
         }
@@ -104,11 +105,11 @@ public class ResultViewTest {
         }
 
         private String makeEmptyRung() {
-            return times(BLANK, 5);
+            return times(BLANK, NAME_SPACE);
         }
 
         private String makeRung() {
-            return times(RUNG, 5);
+            return times(RUNG, NAME_SPACE);
         }
 
         private void println(String string) {
