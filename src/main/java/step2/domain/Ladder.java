@@ -1,6 +1,9 @@
 package step2.domain;
 
+import step2.dto.LadderDto;
+import step2.dto.PlayersRewardsDto;
 import step2.exception.LadderHeightException;
+import step2.exception.NotMatchPlayerRewardsCountException;
 
 import java.util.List;
 import java.util.Objects;
@@ -17,13 +20,20 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public static Ladder of(final Players players, final int ladderHeight, final LineStrategy lineStrategy) {
-        validLineHeight(ladderHeight);
+    public static Ladder of(final PlayersRewardsDto playersRewardsDto, final LadderDto ladderDto) {
+        validLineHeight(ladderDto.getLadderHeight());
+        validPlayerRewardsCount(playersRewardsDto);
 
         return new Ladder(
-                IntStream.range(0, ladderHeight)
-                        .mapToObj(i -> Line.of(players.getPlayersCount(), lineStrategy))
+                IntStream.range(0, ladderDto.getLadderHeight())
+                        .mapToObj(i -> Line.of(playersRewardsDto.getPlayers().getPlayersCount(), ladderDto.getLineStrategy()))
                         .collect(Collectors.toList()));
+    }
+
+    private static void validPlayerRewardsCount(PlayersRewardsDto playersRewardsDto) {
+        if (playersRewardsDto.getPlayers().getPlayersCount() != playersRewardsDto.getRewards().getRewardsCount()) {
+            throw new NotMatchPlayerRewardsCountException();
+        }
     }
 
     private static void validLineHeight(int ladderHeight) {

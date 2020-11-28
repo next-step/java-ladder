@@ -5,5 +5,5 @@ import java.util.List;
 @FunctionalInterface
 public interface LineStrategy {
 
-    List<Boolean> createLine(int personCount);
+    List<LadderPoint> createLine(int personCount);
 }
