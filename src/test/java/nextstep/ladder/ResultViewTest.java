@@ -48,6 +48,16 @@ public class ResultViewTest {
         );
     }
 
+    @DisplayName("이름을 그린다")
+    @Test
+    void printNames() {
+        resultView.printNames(Arrays.<String>asList("white, blue, green, red"));
+
+        assertThat(out.toString()).isEqualTo(
+                "white  blue green   red\n"
+        );
+    }
+
     @Test
     void timesForString() {
         assertThat(times("-", 5)).isEqualTo("-----");
