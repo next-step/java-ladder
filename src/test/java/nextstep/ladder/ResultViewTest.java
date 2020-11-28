@@ -26,7 +26,7 @@ public class ResultViewTest {
     @Test
     void printTwoLadderLine() {
         StringWriter out = new StringWriter();
-        List<Line> lines = Arrays.asList(Spoke.of(true, false, true).toLine(), Spoke.of(false, true, false).toLine())
+        List<Line> lines = Arrays.asList(Spoke.of(true, false, true).toLine(), Spoke.of(false, true, false).toLine());
         new ResultView(out).printLadders(lines);
         assertThat(out.toString()).isEqualTo(
                 "    |-----|     |-----|\n" +
@@ -61,6 +61,10 @@ public class ResultViewTest {
                     .map(this::withPole)
                     .forEach(this::print);
             println("|");
+        }
+
+        public void printLadders(List<Line> lines) {
+            lines.forEach(this::printLadder);
         }
 
         private String withPole(String rung) {
