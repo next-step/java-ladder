@@ -5,10 +5,11 @@ import java.util.Arrays;
 public enum Direction {
     LEFT(true, false),
     RIGHT(false, true),
-    LEFT_AND_RIGHT(true, true),
-    NO_DIRECTION(false, false),
+    NONE(false, false),
     ;
 
+    public static final String MAXIMUM_DIRECTION_IS_ONE = "maximum direction is one";
+    
     private final boolean left;
     private final boolean right;
 
@@ -22,7 +23,7 @@ public enum Direction {
                 .filter(direction -> direction.hasLeft() == left)
                 .filter(direction -> direction.hasRight() == right)
                 .findAny()
-                .orElseThrow(IllegalArgumentException::new);
+                .orElseThrow(() -> new IllegalArgumentException(MAXIMUM_DIRECTION_IS_ONE));
     }
 
     public boolean hasLeft() {

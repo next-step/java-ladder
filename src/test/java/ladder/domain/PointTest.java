@@ -5,7 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import static ladder.domain.Point.POINT_MUST_HAS_ONLY_ONE_DIRECTION;
+import static ladder.domain.Direction.MAXIMUM_DIRECTION_IS_ONE;
 import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -26,24 +26,6 @@ public class PointTest {
 
             // then
             assertThat(point).isNotNull();
-        }
-
-        @DisplayName("지점은 왼쪽 오른쪽 중 하나만 선택 가능")
-        @Test
-        void fail_when_has_two_direction() {
-            // given
-            final int index = 0;
-            final boolean left = true;
-            final boolean right = true;
-
-            // when 
-            final Throwable thrown = catchThrowable(() -> {
-                Point.of(index, left, right);
-            });
-
-            // then
-            Assertions.assertThat(thrown).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(POINT_MUST_HAS_ONLY_ONE_DIRECTION);
         }
 
         @DisplayName("방향이 없는 경우")

@@ -1,22 +1,20 @@
 package ladder.domain;
 
-import static util.Preconditions.checkArgument;
 
 public class Point {
-    public static final String POINT_MUST_HAS_ONLY_ONE_DIRECTION = "point must has only one direction";
     private static final DirectionGenerator DEFAULT_DIRECTION_GENERATOR = new RandomDirectionGenerator();
 
     private final int index;
     private final Direction direction;
 
-    private Point(final int index, final boolean left, final boolean right) {
+    private Point(final int index, final Direction direction) {
         this.index = index;
-        this.direction = Direction.valueOf(left, right);
+        this.direction = direction;
     }
 
     public static Point of(final int index, final boolean left, final boolean right) {
-        checkArgument(!(left && right), POINT_MUST_HAS_ONLY_ONE_DIRECTION);
-        return new Point(index, left, right);
+        final Direction direction = Direction.valueOf(left, right);
+        return new Point(index, direction);
     }
 
     public static Point createFirst() {
