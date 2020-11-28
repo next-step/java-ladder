@@ -5,17 +5,17 @@ import java.util.stream.Stream;
 
 class Line {
 
-    private final List<Boolean> spork;
+    private final List<Boolean> spoke;
 
-    public Line(List<Boolean> spork) {
-        this.spork = spork;
+    public Line(List<Boolean> spoke) {
+        this.spoke = spoke;
     }
 
-    public boolean hasSporkRightSide(Position position) {
-        return spork.get(position.toInt());
+    public boolean hasSpokeRightSide(Position position) {
+        return spoke.get(position.toInt());
     }
 
-    public Stream<Boolean> toSporkStream() {
-        return spork.stream();
+    public Stream<Boolean> toSpokeStream() {
+        return spoke.stream();
     }
 }

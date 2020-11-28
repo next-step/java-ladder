@@ -16,7 +16,7 @@ public class ResultViewTest {
     @Test
     void printOneLadderLine() {
         StringWriter out = new StringWriter();
-        new ResultView(out).printLadder(Spork.of(true, false, true).toLine());
+        new ResultView(out).printLadder(Spoke.of(true, false, true).toLine());
         assertThat(out.toString()).isEqualTo("    |-----|     |-----|\n");
     }
 
@@ -34,9 +34,9 @@ public class ResultViewTest {
 
         public void printLadder(Line line) {
             print("    ");
-            line.toSporkStream()
-                    .map(sporkExists -> {
-                        if (sporkExists) {
+            line.toSpokeStream()
+                    .map(spokeExists -> {
+                        if (spokeExists) {
                             return "|-----";
                         }
                         return "|     ";
