@@ -12,6 +12,7 @@ import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class LineTest {
     @Test
@@ -22,7 +23,12 @@ public class LineTest {
     @DisplayName("오른쪽에 발판이 존재하는지 알 수 있다")
     @Test
     void hasSporkRightSide() {
-        assertThat(new Line(Spork.of(true, false, true)).hasSporkRightSide(Position.of(0))).isTrue();
+        Line line = new Line(Spork.of(true, false, true));
+        assertAll(
+                () -> assertThat(line.hasSporkRightSide(Position.of(0))).isTrue(),
+                () -> assertThat(line.hasSporkRightSide(Position.of(1))).isFalse(),
+                () -> assertThat(line.hasSporkRightSide(Position.of(2))).isTrue()
+        );
     }
 
     @DisplayName("발판은 갯수로 생성할 수 있다.")
