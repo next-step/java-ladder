@@ -1,21 +1,17 @@
 package ladder.domain;
 
-import java.util.Objects;
-
 import static util.Preconditions.checkArgument;
 
 public class Point {
     public static final String POINT_MUST_HAS_ONLY_ONE_DIRECTION = "point must has only one direction";
     private static final DirectionGenerator DEFAULT_DIRECTION_GENERATOR = new RandomDirectionGenerator();
-    
+
     private final int index;
-    private final boolean left;
-    private final boolean right;
+    private final Direction direction;
 
     private Point(final int index, final boolean left, final boolean right) {
         this.index = index;
-        this.left = left;
-        this.right = right;
+        this.direction = Direction.valueOf(left, right);
     }
 
     public static Point of(final int index, final boolean left, final boolean right) {
@@ -37,7 +33,7 @@ public class Point {
 
     public Point createNext(final DirectionGenerator directionGenerator) {
         final int nextPointsIndex = this.index + 1;
-        if (this.right) {
+        if (direction.hasRight()) {
             return Point.of(nextPointsIndex, Boolean.TRUE, Boolean.FALSE);
         }
 
@@ -46,29 +42,15 @@ public class Point {
     }
 
     public Point createLast() {
-        return Point.of(this.index + 1, this.right, Boolean.FALSE);
+        return Point.of(this.index + 1, direction.hasRight(), Boolean.FALSE);
     }
 
     public boolean hasLeft() {
-        return left;
+        return direction.hasLeft();
     }
 
     public boolean hasRight() {
-        return right;
+        return direction.hasRight();
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Point point = (Point) o;
-        return index == point.index &&
-                left == point.left &&
-                right == point.right;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(index, left, right);
-    }
 }
