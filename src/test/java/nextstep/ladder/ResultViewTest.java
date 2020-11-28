@@ -10,7 +10,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 
-import static java.util.Collections.singletonList;
 import static java.util.stream.Collectors.joining;
 import static nextstep.ladder.ResultViewTest.ResultView.times;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -52,7 +51,7 @@ public class ResultViewTest {
     @DisplayName("이름을 그린다")
     @Test
     void printNames() {
-        resultView.printNames(singletonList("white, blue, green, red"));
+        resultView.printNames(Arrays.asList("white", "blue", "green", "red"));
 
         assertThat(out.toString()).isEqualTo(
                 "white  blue green   red\n"
@@ -93,7 +92,11 @@ public class ResultViewTest {
         }
 
         public void printNames(List<String> names) {
-            println("white  blue green   red");
+            println(
+                    names.stream()
+                            .map(name -> String.format("%5s", name))
+                            .collect(joining(" "))
+            );
         }
 
         private String withPole(String rung) {
