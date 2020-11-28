@@ -20,7 +20,7 @@ public class ExecutionResultTest {
         List<String> executionResultInput = Arrays.asList("꽝", "5000", "꽝", "3000");
 
         //when
-        Results results = Results.of(participants, executionResultInput);
+        Results results = Results.of(participants.getNumberOfParticipants(), executionResultInput);
 
         //then
         assertThat(results.size()).isEqualTo(executionResultInput.size());
@@ -33,7 +33,7 @@ public class ExecutionResultTest {
         List<String> executionResultInput = Arrays.asList("꽝", "5000", "꽝", "3000");
 
         assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> Results.of(participants, executionResultInput))
+                .isThrownBy(() -> Results.of(participants.getNumberOfParticipants(), executionResultInput))
                 .withMessage(Results.INVALID_SIZE_ERR_MSG);
     }
 }

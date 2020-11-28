@@ -42,7 +42,7 @@ public class LadderGame {
 
     private Results getResults(Participants participants) {
         List<String> results = ValidInputHelper.get(inputView::getResults, inputView::printError);
-        return Results.of(participants, results);
+        return Results.of(participants.getNumberOfParticipants(), results);
     }
 
     private void printExecutionResults(Participants participants, Ladder ladder, Results results) {

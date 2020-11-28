@@ -41,6 +41,7 @@ Q) 기본타입을 포장한 래핑클래스의 value가 불변원시타입이�
 
 ### 3단계 피드백 사항
 - [x] 파라미터 이름으로 축약어 사용은 최대한 지양하는 것이 어떨까요~? (getNextIndexOf(int currIndex))
-- [ ] NumberOfParticipants 값을 넘겨주는 것은 어떨까요~? (private Results(List<String> value, Participants participants) {)
+- [x] NumberOfParticipants 값을 넘겨주는 것은 어떨까요~? (private Results(List<String> value, Participants participants) {)
+    - 그러네요. 굳이 필요없는 도메인에게 의존성을 갖게 되는 문제가 있었군요! :)
 - [ ] Results 라는 이름은 ExecutionResults 의 상위 개념으로 오해할 수 도 있을 것 같아요.
 - [ ] allKeyword 에 대한 판단을 view 에서 했을때와 view 외부에서 계층에서 했을 때의 각각의 장단점은 무엇일까요~?

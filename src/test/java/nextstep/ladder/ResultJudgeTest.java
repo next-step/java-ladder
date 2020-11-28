@@ -20,7 +20,7 @@ public class ResultJudgeTest {
         Participants participants = Participants.of("pobi", "honux", "crong", "jk");
         Height height = Height.valueOf(5);
         Ladder ladder = Ladder.of(participants, height, new MockPointsGenerator());
-        Results results = Results.of(participants, "꽝", "5000", "꽝", "3000");
+        Results results = Results.of(participants.getNumberOfParticipants(), "꽝", "5000", "꽝", "3000");
 
         //when
         ExecutionResults executionResults = ladder.resultOf(participants, results);
