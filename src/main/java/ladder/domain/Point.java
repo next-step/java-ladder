@@ -7,6 +7,7 @@ import static util.Preconditions.checkArgument;
 public class Point {
     public static final String POINT_MUST_HAS_ONLY_ONE_DIRECTION = "point must has only one direction";
     private static final DirectionGenerator DEFAULT_DIRECTION_GENERATOR = new RandomDirectionGenerator();
+    
     private final int index;
     private final boolean left;
     private final boolean right;
