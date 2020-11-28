@@ -51,6 +51,6 @@ public class StreamStudy {
                 .mapToInt(Integer::valueOf)
                 .filter(number -> number > 3)
                 .map(number -> number * 2)
-                .sum();
+                .reduce(0, Integer::sum);
     }
 }
