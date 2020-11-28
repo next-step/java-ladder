@@ -26,6 +26,9 @@ public class ResultViewTest {
     }
 
     static class ResultView {
+        public static final String BLANK = " ";
+        public static final String POLE = "|";
+        public static final String RUNG = "-";
         private final PrintWriter out;
 
         public ResultView(StringWriter out) {
@@ -33,16 +36,29 @@ public class ResultViewTest {
         }
 
         public void printLadder(Line line) {
-            print("    ");
+            print(times(BLANK, 4));
             line.toSpokeStream()
                     .map(spokeExists -> {
                         if (spokeExists) {
-                            return "|-----";
+                            return makeRung();
                         }
-                        return "|     ";
+                        return makeEmptyRung();
                     })
+                    .map(this::withPole)
                     .forEach(this::print);
             println("|");
+        }
+
+        private String withPole(String rung) {
+            return POLE + rung;
+        }
+
+        private String makeEmptyRung() {
+            return times(BLANK, 5);
+        }
+
+        private String makeRung() {
+            return times(RUNG, 5);
         }
 
         private void println(String string) {
