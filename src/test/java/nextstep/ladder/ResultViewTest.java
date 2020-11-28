@@ -26,9 +26,14 @@ public class ResultViewTest {
 
         public void printLadder(Line line) {
             print("    ");
-            print("|-----");
-            print("|     ");
-            print("|-----");
+            line.toSporkStream()
+                    .map(sporkExists -> {
+                        if (sporkExists) {
+                            return "|-----";
+                        }
+                        return "|     ";
+                    })
+                    .forEach(this::print);
             println("|");
         }
 

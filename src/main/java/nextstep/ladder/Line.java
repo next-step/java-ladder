@@ -1,6 +1,7 @@
 package nextstep.ladder;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 class Line {
 
@@ -12,5 +13,9 @@ class Line {
 
     public boolean hasSporkRightSide(Position position) {
         return spork.get(position.toInt());
+    }
+
+    public Stream<Boolean> toSporkStream() {
+        return spork.stream();
     }
 }
