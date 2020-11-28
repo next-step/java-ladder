@@ -15,6 +15,7 @@ public class OutputView {
     private static final String PLAY_LINE = "-----";
     private static final String PLAY_NO_LINE = "     ";
 
+    private OutputView() {}
 
     public static void printResult() {
         System.out.println(PRINT_RESULT);

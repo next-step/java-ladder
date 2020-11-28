@@ -6,11 +6,10 @@ import java.util.stream.Collectors;
 
 public class NameSplitter {
 
-    private NameSplitter() {}
+    private NameSplitter() { }
 
-    public static List<Player> splitParticipationNames(String participationNames) {
+    public static List<String> splitParticipationNames(String participationNames) {
         return Arrays.stream(splitName(participationNames))
-                .map(Player::of)
                 .collect(Collectors.toList());
     }
 

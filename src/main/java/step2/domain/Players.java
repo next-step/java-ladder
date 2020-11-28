@@ -2,6 +2,7 @@ package step2.domain;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import static java.util.Collections.unmodifiableList;
 
@@ -12,8 +13,10 @@ public class Players {
         this.players = players;
     }
 
-    public static Players of(List<Player> players) {
-        return new Players(players);
+    public static Players of(List<String> names) {
+        return new Players(names.stream()
+                .map(Player::of)
+                .collect(Collectors.toList()));
     }
 
     public int getPlayersCount() {
