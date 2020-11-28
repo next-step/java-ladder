@@ -1,5 +1,7 @@
 package step2.view;
 
+
+
 import step2.domain.Ladder;
 import step2.domain.Line;
 import step2.domain.Player;

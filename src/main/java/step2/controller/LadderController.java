@@ -1,10 +1,12 @@
 package step2.controller;
 
-import step2.domain.*;
+import step2.domain.Ladder;
+import step2.domain.NameSplitter;
+import step2.domain.Players;
+import step2.domain.RandomLineStrategy;
 import step2.view.InputView;
 import step2.view.OutputView;
 
-import java.util.List;
 
 public class LadderController {
 
