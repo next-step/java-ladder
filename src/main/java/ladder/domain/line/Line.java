@@ -1,7 +1,6 @@
 package ladder.domain.line;
 
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Objects;
 import ladder.domain.point.Point;
 import ladder.exception.LadderGameException;
@@ -35,16 +34,6 @@ public class Line {
 
     public LinkedList<Point> getPoints() {
         return points;
-    }
-
-    private void validatePoints(List<Point> points) {
-        Point now = points.get(START_INDEX);
-
-        for (int i = 1; i < points.size(); i++) {
-            Point next = points.get(i);
-            validateWithNextPoint(now, next);
-            now = next;
-        }
     }
 
     private void validateWithNextPoint(Point now, Point next) {

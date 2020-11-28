@@ -20,7 +20,8 @@ public class InputView {
     private static final String PLEASE_INPUT_LADDER_HEIGHT = "최대 사다리 높이는 몇 개인가요?";
     private static final Scanner SCANNER = new Scanner(System.in);
 
-    private InputView() {}
+    private InputView() {
+    }
 
     public static LadderGameInfo ladderGameInfo() {
         Users users = inputUsers();
@@ -32,7 +33,7 @@ public class InputView {
         System.out.println(PLEASE_INPUT_USERS_NAME);
         String[] names = getStringArray();
         List<User> users = IntStream.range(0, names.length)
-            .mapToObj(index -> new User(names[index], new Position(index)))
+            .mapToObj(index -> User.of(names[index], new Position(index)))
             .collect(Collectors.toList());
         return new Users(users);
     }

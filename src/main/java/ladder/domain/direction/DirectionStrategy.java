@@ -12,7 +12,11 @@ public class DirectionStrategy {
 
     private final IntSupplier directionWaySupplier;
 
-    public DirectionStrategy() {
+    public static DirectionStrategy newInstance() {
+        return new DirectionStrategy();
+    }
+
+    private DirectionStrategy() {
         this.directionWaySupplier = () -> new Random().nextInt(DIRECTION_WAY);
     }
 

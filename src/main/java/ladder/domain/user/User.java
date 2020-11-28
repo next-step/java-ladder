@@ -16,8 +16,12 @@ public class User {
 
     private final Position startPosition;
 
-    public User(String name, Position startCoordinate) {
+    public static User of(String name, Position startPosition) {
         validateName(name);
+        return new User(name, startPosition);
+    }
+
+    private User(String name, Position startCoordinate) {
         this.name = name;
         this.startPosition = startCoordinate;
     }
@@ -30,7 +34,7 @@ public class User {
         return startPosition;
     }
 
-    private void validateName(String name) {
+    private static void validateName(String name) {
         if(isNullOrEmpty(name)) {
             throw new LadderGameException(NAME_SHOULD_NOT_NULL_OR_EMPTY);
         }
@@ -39,7 +43,7 @@ public class User {
         }
     }
 
-    private boolean isOverMaxNameLength(String name) {
+    private static boolean isOverMaxNameLength(String name) {
         return name.length() > MAX_NAME_LENGTH;
     }
 

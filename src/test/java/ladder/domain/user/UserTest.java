@@ -14,13 +14,13 @@ class UserTest {
     @NullAndEmptySource
     void 유저이름_공백_Null_테스트(String given) {
         Position givenCoordinate = new Position(0);
-        assertThrows(LadderGameException.class, () -> new User(given, givenCoordinate));
+        assertThrows(LadderGameException.class, () -> User.of(given, givenCoordinate));
     }
 
     @Test
     void 유저이름_6글자_테스트() {
         String length6 = "test12";
         Position givenCoordinate = new Position(0);
-        assertThrows(LadderGameException.class, () -> new User(length6, givenCoordinate));
+        assertThrows(LadderGameException.class, () -> User.of(length6, givenCoordinate));
     }
 }

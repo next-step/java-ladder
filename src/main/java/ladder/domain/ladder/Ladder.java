@@ -1,5 +1,6 @@
 package ladder.domain.ladder;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import ladder.domain.line.Line;
@@ -13,7 +14,7 @@ public class Ladder {
     }
 
     public List<Line> getLines() {
-        return lines;
+        return Collections.unmodifiableList(lines);
     }
 
     @Override

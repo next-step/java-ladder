@@ -19,8 +19,8 @@ class LadderGeneratorTest {
 
     @Test
     void generateLadder() {
-        User participant1 = new User("a", new Position(0));
-        User participant2 = new User("b", new Position(1));
+        User participant1 = User.of("a", new Position(0));
+        User participant2 = User.of("b", new Position(1));
         Users participants = new Users(Arrays.asList(participant1, participant2));
 
         LadderHeight ladderHeight = new LadderHeight(1);
