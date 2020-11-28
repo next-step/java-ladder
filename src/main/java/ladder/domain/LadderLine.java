@@ -9,6 +9,7 @@ import static util.Preconditions.checkArgument;
 public class LadderLine {
     private static final int MINIMUM_USER_COUNT = 2;
     public static final String PERSON_COUNT_MUST_MORE_THEN_TWO = "person count must more then two";
+    
     private final List<Point> points;
 
     private LadderLine(final List<Point> points) {
