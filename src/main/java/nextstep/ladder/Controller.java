@@ -9,6 +9,7 @@ import static java.util.stream.Collectors.toList;
 
 public class Controller {
 
+    private static final Random RANDOM = new Random();
     private final InputView inputView = new InputView();
     private final ResultView resultView = new ResultView(new OutputStreamWriter(System.out));
 
@@ -17,7 +18,7 @@ public class Controller {
         int ladderHeight = inputView.requestHeight();
 
         resultView.printResult(players, IntStream.range(0, ladderHeight)
-                .mapToObj(__ -> Spoke.fromCount(players.size() - 1, () -> new Random().nextBoolean()))
+                .mapToObj(__ -> Spoke.fromCount(players.size() - 1, RANDOM::nextBoolean))
                 .map(Spoke::toLine)
                 .collect(toList()));
     }
