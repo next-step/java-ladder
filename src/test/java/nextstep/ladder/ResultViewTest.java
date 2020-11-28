@@ -1,5 +1,6 @@
 package nextstep.ladder;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,20 +15,33 @@ import static nextstep.ladder.ResultViewTest.ResultView.times;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ResultViewTest {
+
+    private StringWriter out;
+    private ResultView resultView;
+
+    @BeforeEach
+    void setUp() {
+        out = new StringWriter();
+        resultView = new ResultView(out);
+    }
+
     @DisplayName("사다리 라인 하나를 그린다")
     @Test
     void printOneLadderLine() {
-        StringWriter out = new StringWriter();
-        new ResultView(out).printLadder(Spoke.of(true, false, true).toLine());
+        resultView.printLadder(Spoke.of(true, false, true).toLine());
+
         assertThat(out.toString()).isEqualTo("    |-----|     |-----|\n");
     }
 
     @DisplayName("사다리 라인 두개를 그린다")
     @Test
     void printTwoLadderLine() {
-        StringWriter out = new StringWriter();
-        List<Line> lines = Arrays.asList(Spoke.of(true, false, true).toLine(), Spoke.of(false, true, false).toLine());
-        new ResultView(out).printLadders(lines);
+        List<Line> lines = Arrays.asList(
+                Spoke.of(true, false, true).toLine(),
+                Spoke.of(false, true, false).toLine());
+
+        resultView.printLadders(lines);
+
         assertThat(out.toString()).isEqualTo(
                 "    |-----|     |-----|\n" +
                 "    |     |-----|     |\n"
