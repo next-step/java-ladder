@@ -10,20 +10,19 @@ import java.util.stream.Collector;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-import static java.util.stream.Collectors.toList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class LineTest {
     @Test
     void create() {
-        assertThat(new Line(Spork.of(true, false, true))).isNotNull();
+        assertThat(Spork.of(true, false, true).toLine()).isNotNull();
     }
 
     @DisplayName("오른쪽에 발판이 존재하는지 알 수 있다")
     @Test
     void hasSporkRightSide() {
-        Line line = new Line(Spork.of(true, false, true));
+        Line line = Spork.of(true, false, true).toLine();
         assertAll(
                 () -> assertThat(line.hasSporkRightSide(Position.of(0))).isTrue(),
                 () -> assertThat(line.hasSporkRightSide(Position.of(1))).isFalse(),
@@ -92,10 +91,12 @@ public class LineTest {
 
         @Override
         public boolean equals(Object o) {
-            if (this == o)
+            if (this == o) {
                 return true;
-            if (o == null || getClass() != o.getClass())
+            }
+            if (o == null || getClass() != o.getClass()) {
                 return false;
+            }
             Spork spork = (Spork) o;
             return list.equals(spork.list);
         }
@@ -112,21 +113,21 @@ public class LineTest {
                     '}';
         }
 
-        public Stream<Boolean> stream() {
-            return list.stream();
+        public Line toLine() {
+            return new Line(this.list);
         }
     }
 
     private static class Line {
 
-        private final List<Boolean> cross;
+        private final List<Boolean> spork;
 
-        public Line(Spork spork) {
-            cross = spork.stream().collect(toList());
+        public Line(List<Boolean> spork) {
+            this.spork = spork;
         }
 
         public boolean hasSporkRightSide(Position position) {
-            return cross.get(position.crossPosition);
+            return spork.get(position.crossPosition);
         }
     }
 
