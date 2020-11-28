@@ -53,24 +53,24 @@ public class Line {
         points.forEach(consumer);
     }
 
-    public int getNextIndexOf(int currIndex) {
-        if (shouldBeMoveToLeft(currIndex)) {
-            return currIndex - 1;
+    public int getNextIndexOf(int currentIndex) {
+        if (shouldBeMoveToLeft(currentIndex)) {
+            return currentIndex - 1;
         }
 
-        if (shouldBeMoveToRight(currIndex)) {
-            return currIndex + 1;
+        if (shouldBeMoveToRight(currentIndex)) {
+            return currentIndex + 1;
         }
 
-        return currIndex;
+        return currentIndex;
     }
 
-    private boolean shouldBeMoveToRight(int currIndex) {
-        return currIndex < points.size() && points.get(currIndex);
+    private boolean shouldBeMoveToRight(int currentIndex) {
+        return currentIndex < points.size() && points.get(currentIndex);
     }
 
-    private boolean shouldBeMoveToLeft(int currIndex) {
-        return currIndex > 0 && points.get(currIndex - 1);
+    private boolean shouldBeMoveToLeft(int currentIndex) {
+        return currentIndex > 0 && points.get(currentIndex - 1);
     }
 
     @Override
