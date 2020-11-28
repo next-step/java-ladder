@@ -5,7 +5,7 @@ import nextstep.ladder.domain.Height;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Name;
 import nextstep.ladder.domain.Participants;
-import nextstep.ladder.domain.Results;
+import nextstep.ladder.domain.ResultCandidates;
 import nextstep.ladder.util.ValidInputHelper;
 import nextstep.ladder.view.ConsoleInputView;
 import nextstep.ladder.view.InputView;
@@ -27,9 +27,9 @@ public class LadderGame {
         Participants participants = ValidInputHelper.get(this::getParticipants, inputView::printError);
         Height height = ValidInputHelper.get(this::getHeight, inputView::printError);
         Ladder ladder = Ladder.of(participants, height);
-        Results results = ValidInputHelper.get(() -> getResults(participants), inputView::printError);
-        resultView.printLadder(participants, ladder, results);
-        printExecutionResults(participants, ladder, results);
+        ResultCandidates resultCandidates = ValidInputHelper.get(() -> getResults(participants), inputView::printError);
+        resultView.printLadder(participants, ladder, resultCandidates);
+        printExecutionResults(participants, ladder, resultCandidates);
     }
 
     private Participants getParticipants() {
@@ -52,13 +52,13 @@ public class LadderGame {
         return Height.valueOf(inputHeight);
     }
 
-    private Results getResults(Participants participants) {
+    private ResultCandidates getResults(Participants participants) {
         List<String> results = ValidInputHelper.get(inputView::getResults, inputView::printError);
-        return Results.of(participants.getNumberOfParticipants(), results);
+        return ResultCandidates.of(participants.getNumberOfParticipants(), results);
     }
 
-    private void printExecutionResults(Participants participants, Ladder ladder, Results results) {
-        ExecutionResults executionResults = ladder.resultOf(participants, results);
+    private void printExecutionResults(Participants participants, Ladder ladder, ResultCandidates resultCandidates) {
+        ExecutionResults executionResults = ladder.resultOf(participants, resultCandidates);
         for (boolean printedAll = false; !printedAll; ) {
             String nameOfWantToCheckInput = inputView.getNameOfWantToCheck();
             Name nameOfWantToCheck = Name.valueOf(nameOfWantToCheckInput);

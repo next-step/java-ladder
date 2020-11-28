@@ -43,7 +43,8 @@ Q) 기본타입을 포장한 래핑클래스의 value가 불변원시타입이�
 - [x] 파라미터 이름으로 축약어 사용은 최대한 지양하는 것이 어떨까요~? (getNextIndexOf(int currIndex))
 - [x] NumberOfParticipants 값을 넘겨주는 것은 어떨까요~? (private Results(List<String> value, Participants participants) {)
     - 그러네요. 굳이 필요없는 도메인에게 의존성을 갖게 되는 문제가 있었군요! :)
-- [ ] Results 라는 이름은 ExecutionResults 의 상위 개념으로 오해할 수 도 있을 것 같아요.
+- [x] Results 라는 이름은 ExecutionResults 의 상위 개념으로 오해할 수 도 있을 것 같아요.
+    - Results에 이름을 ResultCandidate라는 이름으로 변경했습니다. 이름짓기는 정말 어렵네요 ㅠㅠ 혹시 적절했던 사례가 있었으면 얘기해주실수 있나요? :) 
 - [x] allKeyword 에 대한 판단을 view 에서 했을때와 view 외부에서 계층에서 했을 때의 각각의 장단점은 무엇일까요~?
     - AllKeyword에 대한 고민해봤습니다. 일단 'all'이라는 키워드를 도메인이 갖고 판단하는게 적절하지 못하게 보이네요. 
     입력 키워드와 키워드에 판단은 view에서 해야하는데 도메인이 갖게 되었으니까요. 이건 view에 대한 직접적인 의존이 아니지만, 간접적으로 도메인이 view에 로직에 의존하게 되어버리는것 같습니다. 

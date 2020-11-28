@@ -39,10 +39,10 @@ public class Ladder {
         lines.forEach(consumer);
     }
 
-    public ExecutionResults resultOf(Participants participants, Results results) {
-        Map<Name, Result> resultsMap = IntStream.range(0, participants.getNumberOfParticipants().getValue())
+    public ExecutionResults resultOf(Participants participants, ResultCandidates resultCandidates) {
+        Map<Name, ResultCandidate> resultsMap = IntStream.range(0, participants.getNumberOfParticipants().getValue())
                 .boxed()
-                .collect(Collectors.toMap(participants::get, i -> results.get(getResultIndexOf(i)),
+                .collect(Collectors.toMap(participants::get, i -> resultCandidates.get(getResultIndexOf(i)),
                         (k1, k2) -> {
                             throw new IllegalStateException(Participants.DUPLICATE_NAME_EXIST_ERR_MSG);
                         },

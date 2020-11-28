@@ -4,7 +4,7 @@ import nextstep.ladder.domain.ExecutionResults;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Name;
 import nextstep.ladder.domain.Participants;
-import nextstep.ladder.domain.Results;
+import nextstep.ladder.domain.ResultCandidates;
 
 import java.util.function.Consumer;
 
@@ -17,13 +17,13 @@ public class ConsoleResultView implements ResultView {
     private static final String CAN_NOT_FIND_PARTICIPANTS_ERR_MSG = "입력된 참가자 이름을 찾을 수 없습니다.";
 
     @Override
-    public void printLadder(Participants participants, Ladder ladder, Results results) {
+    public void printLadder(Participants participants, Ladder ladder, ResultCandidates resultCandidates) {
         StringBuilder resultBuilder = new StringBuilder();
 
         appendHeader(resultBuilder);
         appendParticipantNames(participants, resultBuilder);
         appendLadder(ladder, resultBuilder);
-        appendResults(results, resultBuilder);
+        appendResults(resultCandidates, resultBuilder);
 
         System.out.println(resultBuilder.toString());
     }
@@ -52,8 +52,8 @@ public class ConsoleResultView implements ResultView {
         ladder.linesForEach(lineRenderer.renderLine());
     }
 
-    private void appendResults(Results results, StringBuilder resultBuilder) {
-        results.forEach(appendString(resultBuilder));
+    private void appendResults(ResultCandidates resultCandidates, StringBuilder resultBuilder) {
+        resultCandidates.forEach(appendString(resultBuilder));
     }
 
     @Override

@@ -2,19 +2,19 @@ package nextstep.ladder.domain;
 
 import java.util.function.Consumer;
 
-public class Result {
+public class ResultCandidate {
     public static final String INVALID_RESULT_LENGTH_ERR_MSG = "실행결과는 1글자 이상 5글자 이하만 허용합니다.";
     private static final int MIN_AVAILABLE_LENGTH = 1;
     private static final int MAX_AVAILABLE_LENGTH = 5;
     private final String value;
 
-    private Result(String value) {
+    private ResultCandidate(String value) {
         this.value = value;
         validateLength();
     }
 
-    public static Result valueOf(String value) {
-        return new Result(value);
+    public static ResultCandidate valueOf(String value) {
+        return new ResultCandidate(value);
     }
 
     private void validateLength() {
@@ -35,11 +35,11 @@ public class Result {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Result)) return false;
+        if (!(o instanceof ResultCandidate)) return false;
 
-        Result result = (Result) o;
+        ResultCandidate resultCandidate = (ResultCandidate) o;
 
-        return value.equals(result.value);
+        return value.equals(resultCandidate.value);
     }
 
     @Override
