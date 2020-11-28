@@ -38,8 +38,8 @@ public class OutputView {
     private static void printOneLine(final Point point) {
         if (point.hasRight()) {
             Printer.print(RIGHT_LADDER_LINE);
-        } else {
-            Printer.print(NO_LADDER_LINE);
+            return;
         }
+        Printer.print(NO_LADDER_LINE);
     }
 }
