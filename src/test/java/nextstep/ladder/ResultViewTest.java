@@ -17,6 +17,11 @@ public class ResultViewTest {
         assertThat(out.toString()).isEqualTo("    |-----|     |-----|\n");
     }
 
+    @Test
+    void timesForString() {
+        assertThat(times("-", 5)).isEqualTo("-----");
+    }
+
     private static class ResultView {
         private final PrintWriter out;
 
