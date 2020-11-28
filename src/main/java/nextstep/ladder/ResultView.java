@@ -18,7 +18,15 @@ class ResultView {
         this.out = new PrintWriter(out);
     }
 
-    public void printLadder(Line line) {
+    public void printResult(List<String> players, List<Line> lines) {
+        println("실행결과");
+        println("");
+        printNames(players);
+        printLadders(lines);
+        flush();
+    }
+
+    void printLadder(Line line) {
         print(times(BLANK, 4));
         line.toSpokeStream()
                 .map(spokeExists -> {
@@ -32,11 +40,11 @@ class ResultView {
         println("|");
     }
 
-    public void printLadders(List<Line> lines) {
+    void printLadders(List<Line> lines) {
         lines.forEach(this::printLadder);
     }
 
-    public void printNames(List<String> names) {
+    void printNames(List<String> names) {
         println(
                 names.stream()
                         .map(name -> String.format("%" + NAME_SPACE + "s", name))
@@ -68,10 +76,7 @@ class ResultView {
         return IntStream.range(0, repeat).mapToObj(__ -> string).collect(joining());
     }
 
-    public void printResult(List<String> players, List<Line> lines) {
-        println("실행결과");
-        println("");
-        printNames(players);
-        printLadders(lines);
+    private void flush() {
+        out.flush();
     }
 }

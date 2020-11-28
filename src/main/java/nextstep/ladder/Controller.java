@@ -17,7 +17,7 @@ public class Controller {
         int ladderHeight = inputView.requestHeight();
 
         resultView.printResult(players, IntStream.range(0, ladderHeight)
-                .mapToObj(__ -> Spoke.fromCount(players.size(), () -> new Random().nextBoolean()))
+                .mapToObj(__ -> Spoke.fromCount(players.size() - 1, () -> new Random().nextBoolean()))
                 .map(Spoke::toLine)
                 .collect(toList()));
     }
