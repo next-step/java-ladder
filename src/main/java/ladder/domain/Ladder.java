@@ -1,14 +1,17 @@
 package ladder.domain;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Stream;
 
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
 import static util.Preconditions.checkArgument;
 
 public class Ladder {
     private static final int MINIMUM_LADDER_HEIGHT = 1;
     public static String LADDER_HEIGHT_MUST_MORE_THEN_ONE = "ladder height must more then one";
+    
     private final List<LadderLine> ladderLines;
 
     public Ladder(final List<LadderLine> ladderLines) {
@@ -17,12 +20,9 @@ public class Ladder {
 
     public static Ladder of(final int userCount, final int ladderHeight) {
         checkArgument(ladderHeight >= MINIMUM_LADDER_HEIGHT, LADDER_HEIGHT_MUST_MORE_THEN_ONE);
-        final List<LadderLine> ladderLines = new ArrayList<>(ladderHeight);
-        for (int i = 0; i < ladderHeight; i++) {
-            final LadderLine ladderLine = LadderLine.of(userCount);
-            ladderLines.add(ladderLine);
-        }
-        return new Ladder(ladderLines);
+        return Stream.generate(() -> LadderLine.of(userCount))
+                .limit(ladderHeight)
+                .collect(collectingAndThen(toList(), Ladder::new));
     }
 
     public int size() {
