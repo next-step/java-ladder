@@ -31,14 +31,17 @@ class Spork {
         });
     }
 
+    public Line toLine() {
+        return new Line(this.list);
+    }
+
     private void add(Boolean next) {
         if (list.isEmpty()) {
             list.add(next);
             return;
         }
 
-        Boolean previousBoolean = last();
-        if (previousBoolean) {
+        if (last()) {
             list.add(Boolean.FALSE);
             return;
         }
@@ -72,9 +75,5 @@ class Spork {
         return "Spork{" +
                 "list=" + list +
                 '}';
-    }
-
-    public Line toLine() {
-        return new Line(this.list);
     }
 }

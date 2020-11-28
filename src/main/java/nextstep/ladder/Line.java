@@ -11,6 +11,6 @@ class Line {
     }
 
     public boolean hasSporkRightSide(Position position) {
-        return spork.get(position.crossPosition);
+        return spork.get(position.toInt());
     }
 }
