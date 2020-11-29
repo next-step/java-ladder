@@ -2,14 +2,9 @@ package nextstep.ladder.domain;
 
 public class ConnectionCreator {
 
-    private final ConnectionCreationStrategy connectionCreationStrategy;
     private boolean isCreated = false;
 
-    public ConnectionCreator(ConnectionCreationStrategy connectionCreationStrategy) {
-        this.connectionCreationStrategy = connectionCreationStrategy;
-    }
-
-    Connection create(int point) {
+    Connection create(int point, ConnectionCreationStrategy connectionCreationStrategy) {
         if (!isCreated && connectionCreationStrategy.isAble()) {
             isCreated = true;
             return new Connection(point);

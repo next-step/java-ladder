@@ -11,9 +11,9 @@ public class Lines {
         this.lines = lines;
     }
 
-    public static Lines fromHeight(int height) {
+    public static Lines fromHeight(int height, ConnectionCreationStrategy connectionCreationStrategy) {
         return new Lines(IntStream.range(0, height)
-                .mapToObj(Line::new)
+                .mapToObj(idx -> new Line(idx, connectionCreationStrategy))
                 .collect(Collectors.toList()));
     }
 }

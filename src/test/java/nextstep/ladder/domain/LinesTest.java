@@ -7,6 +7,6 @@ public class LinesTest {
     @Test
     @DisplayName("높이만큼 라인 생성")
     void createLines() {
-        Lines lines = Lines.fromHeight(3);
+        Lines lines = Lines.fromHeight(3, new ConnectionCreationStrategyImpl());
     }
 }
