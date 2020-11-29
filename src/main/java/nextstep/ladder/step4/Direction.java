@@ -45,6 +45,10 @@ public class Direction {
         return Direction.of(false, generatePoint());
     }
 
+    public Direction next(boolean nextRight) {
+        return Direction.of(this.right, nextRight);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
