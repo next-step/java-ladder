@@ -24,13 +24,15 @@ public class StreamStudyTest {
 
     @Test
     public void printLongestWordTop100() throws Exception {
-        StreamStudy.printLongestWordTop100();
+        List<String> stringList = StreamStudy.printLongestWordTop100();
+        System.out.println("stringList = " + stringList);
+        assertThat(stringList.size()).isEqualTo(100);
     }
 
     @Test
     public void map() throws Exception {
         List<Integer> doubleNumbers = StreamStudy.doubleNumbers(numbers);
-        doubleNumbers.forEach(System.out::println);
+        assertThat(doubleNumbers).isEqualTo(Arrays.asList(2, 4, 6, 8, 10, 12));
     }
 
     @Test
