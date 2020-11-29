@@ -26,4 +26,11 @@ public class DirectionTest {
         Direction direction = Direction.of(false, true);
         assertThat(direction.next()).isEqualTo(Direction.of(true, false));
     }
+
+    @Test
+    @DisplayName("first(첫번째) Direction의 left는 false여야 한다.")
+    void firstDirectionTest() {
+        Direction first = Direction.first(true);
+        assertThat(first.isLeft()).isFalse();
+    }
 }
