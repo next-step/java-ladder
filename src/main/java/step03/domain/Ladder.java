@@ -56,13 +56,15 @@ public class Ladder {
     }
 
     private static void moveStep(List<Integer> table, List<Boolean> points) {
-        for(int index = 0; index < points.size(); index++) {
+        for (int index = 0; index < points.size(); index++) {
             swapIndex(table, index, points.get(index));
         }
     }
 
     private static void swapIndex(List<Integer> table, int index, boolean hasLine) {
-        if (!hasLine) return;
+        if (!hasLine) {
+            return;
+        }
 
         int temp1 = table.get(index);
         int temp2 = table.get(index + 1);

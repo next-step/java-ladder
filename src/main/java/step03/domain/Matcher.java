@@ -1,4 +1,5 @@
 package step03.domain;
+
 import exception.NotMatchedCountException;
 
 import java.util.HashMap;
@@ -67,7 +68,7 @@ public class Matcher {
         List<String> namesOfParticipant = participants.getNames();
         List<String> namesOfResult2 = namesOfResult.getNames();
 
-        for(int i = 0; i < participants.size(); i++) {
+        for (int i = 0; i < participants.size(); i++) {
             int targetIndex = matchedTable.indexOf(i);
             map.put(namesOfParticipant.get(i), namesOfResult2.get(targetIndex));
         }
