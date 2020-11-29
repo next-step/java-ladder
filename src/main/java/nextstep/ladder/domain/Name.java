@@ -7,15 +7,16 @@ public class Name {
     private final String value;
 
     private Name(String value) {
-        validateLength(value.length());
         this.value = value;
+        validateLength();
     }
 
     public static Name valueOf(String value) {
         return new Name(value);
     }
 
-    private void validateLength(int length) {
+    private void validateLength() {
+        int length = value.length();
         if (length < MIN_AVAILABLE_LENGTH || length > MAX_AVAILABLE_LENGTH) {
             throw new IllegalArgumentException(INVALID_NAME_LENGTH_ERR_MSG);
         }

@@ -1,7 +1,10 @@
 package nextstep.ladder.view;
 
+import nextstep.ladder.domain.ExecutionResults;
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.Name;
 import nextstep.ladder.domain.Participants;
+import nextstep.ladder.domain.ResultCandidates;
 
 import java.util.function.Consumer;
 
@@ -11,14 +14,16 @@ public class ConsoleResultView implements ResultView {
     private static final String EXIST_POINT = "-----";
     private static final String EMPTY_POINT = "     ";
     private static final String NAME_STRING_FORMAT = "%6s";
+    private static final String CAN_NOT_FIND_PARTICIPANTS_ERR_MSG = "입력된 참가자 이름을 찾을 수 없습니다.";
 
     @Override
-    public void printResult(Participants participants, Ladder ladder) {
+    public void printLadder(Participants participants, Ladder ladder, ResultCandidates resultCandidates) {
         StringBuilder resultBuilder = new StringBuilder();
 
         appendHeader(resultBuilder);
         appendParticipantNames(participants, resultBuilder);
         appendLadder(ladder, resultBuilder);
+        appendResults(resultCandidates, resultBuilder);
 
         System.out.println(resultBuilder.toString());
     }
@@ -28,11 +33,11 @@ public class ConsoleResultView implements ResultView {
     }
 
     private void appendParticipantNames(Participants participants, StringBuilder resultBuilder) {
-        participants.namesValueForEach(appendName(resultBuilder));
+        participants.namesValueForEach(appendString(resultBuilder));
         resultBuilder.append(System.lineSeparator());
     }
 
-    private Consumer<String> appendName(StringBuilder resultBuilder) {
+    private Consumer<String> appendString(StringBuilder resultBuilder) {
         return (String name) -> resultBuilder.append(String.format(NAME_STRING_FORMAT, name));
     }
 
@@ -45,5 +50,30 @@ public class ConsoleResultView implements ResultView {
                 .build();
 
         ladder.linesForEach(lineRenderer.renderLine());
+    }
+
+    private void appendResults(ResultCandidates resultCandidates, StringBuilder resultBuilder) {
+        resultCandidates.forEach(appendString(resultBuilder));
+    }
+
+    @Override
+    public boolean printResult(ExecutionResults executionResults, Name nameOfWantToCheck) {
+        if (isAllKeyword(nameOfWantToCheck)) {
+            executionResults.forEach((key, value) -> System.out.println(key.getValue() + " : " + value.getValue()));
+            return true;
+        }
+
+        executionResults.accept(nameOfWantToCheck, (key, value) -> {
+            if (value == null) {
+                System.out.println(CAN_NOT_FIND_PARTICIPANTS_ERR_MSG);
+                return;
+            }
+            System.out.println(value.getValue());
+        });
+        return false;
+    }
+
+    private boolean isAllKeyword(Name nameOfWantToCheck) {
+        return ConsoleInputView.ALL_KEYWORD.equals(nameOfWantToCheck.getValue());
     }
 }

@@ -7,5 +7,9 @@ public interface InputView {
 
     int getHeight();
 
+    List<String> getResults();
+
+    String getNameOfWantToCheck();
+
     void printError(RuntimeException e);
 }
