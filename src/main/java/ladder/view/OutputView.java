@@ -2,7 +2,6 @@ package ladder.view;
 
 import ladder.domain.LadderLine;
 import ladder.domain.Point;
-import ladder.dto.LadderResultDTO;
 
 import java.util.List;
 
@@ -12,9 +11,9 @@ public class OutputView {
     private static final String NO_LADDER_LINE = "|     ";
     private static final String INIT_SPACE = "     ";
 
-    public static void printLadderViewResult(final LadderResultDTO ladderResultDTO) {
-        printUserNames(ladderResultDTO.getUserNames());
-        printLadder(ladderResultDTO.getLadderLine());
+    public static void printLadderViewResult(final List<String> userNames, final List<LadderLine> ladderLines) {
+        printUserNames(userNames);
+        printLadder(ladderLines);
     }
 
     private static void printUserNames(final List<String> userNames) {

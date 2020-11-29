@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.prize;
 
 import util.StringUtils;
 
@@ -19,5 +19,9 @@ public class Prize {
         checkArgument(StringUtils.isNotBlank(prizeName), PRIZE_NAME_MUST_NOT_BE_BLANK);
         checkArgument(prizeName.length() <= MAXIMUM_NAME_LENGTH, PRIZE_NAME_LENGTH_MUST_BE_FIVE_OR_LESS);
         return new Prize(prizeName);
+    }
+
+    public String getName() {
+        return name;
     }
 }

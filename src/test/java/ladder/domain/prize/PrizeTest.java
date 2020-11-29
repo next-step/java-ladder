@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.prize;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static ladder.domain.Prize.PRIZE_NAME_LENGTH_MUST_BE_FIVE_OR_LESS;
-import static ladder.domain.Prize.PRIZE_NAME_MUST_NOT_BE_BLANK;
+import static ladder.domain.prize.Prize.PRIZE_NAME_LENGTH_MUST_BE_FIVE_OR_LESS;
+import static ladder.domain.prize.Prize.PRIZE_NAME_MUST_NOT_BE_BLANK;
 import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 

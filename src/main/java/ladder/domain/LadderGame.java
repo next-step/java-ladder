@@ -1,23 +1,20 @@
 package ladder.domain;
 
-import ladder.dto.LadderResultDTO;
+import java.util.List;
 
 public class LadderGame {
-    private final Users users;
     private final Ladder ladder;
 
-    private LadderGame(final Users users, final Ladder ladder) {
-        this.users = users;
+    private LadderGame(final Ladder ladder) {
         this.ladder = ladder;
     }
 
-    public static LadderGame of(final String usersExpression, final int ladderHeight) {
-        final Users users = UsersGenerator.generate(usersExpression);
-        final Ladder ladder = Ladder.of(users.size(), ladderHeight);
-        return new LadderGame(users, ladder);
+    public static LadderGame of(final int userCount, final int ladderHeight) {
+        final Ladder ladder = Ladder.of(userCount, ladderHeight);
+        return new LadderGame(ladder);
     }
 
-    public LadderResultDTO getLadderViewResult() {
-        return new LadderResultDTO(users.getNames(), ladder.getLadderLines());
+    public List<LadderLine> getLadderLine() {
+        return ladder.getLadderLines();
     }
 }

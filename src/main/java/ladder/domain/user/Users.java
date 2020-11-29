@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.user;
 
 import util.CollectionUtil;
 
@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import static util.Preconditions.checkArgument;
 
 public class Users {
-    private static final int MINIMUM_USER_COUNT = 2;
+    public static final int MINIMUM_USER_COUNT = 2;
     public static final String NUMBER_OF_USER_MUST_BE_MORE_THEN_TWO = "number of user must be more then two";
     private final List<User> users;
 

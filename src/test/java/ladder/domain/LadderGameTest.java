@@ -11,11 +11,11 @@ public class LadderGameTest {
     @Test
     void of() {
         // given
-        final String usersExpression = "pobi,honux,crong,jk";
+        final int userCount = 4;
         final int ladderHeight = 5;
 
         // when 
-        final LadderGame result = LadderGame.of(usersExpression, ladderHeight);
+        final LadderGame result = LadderGame.of(userCount, ladderHeight);
 
         // then
         assertThat(result).isNotNull();

@@ -25,12 +25,12 @@ public class LadderTest {
     @Test
     void of_throw_exception_when_height_not_more_then_one() {
         // given
-        final String usersExpression = "pobi,honux,crong,jk";
+        final int userCount = 5;
         final int ladderHeight = 0;
 
         // when 
         final Throwable thrown = catchThrowable(() -> {
-            LadderGame.of(usersExpression, ladderHeight);
+            LadderGame.of(userCount, ladderHeight);
         });
 
         // then
