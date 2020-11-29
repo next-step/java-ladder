@@ -34,7 +34,7 @@ public class PlayerGamePosition {
     }
 
     private void validMoveLeftPosition() {
-        if (position < 1) {
+        if (position == 0) {
             throw new NotMoveLeftException();
         }
     }
