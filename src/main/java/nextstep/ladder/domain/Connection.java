@@ -9,6 +9,10 @@ public class Connection {
         this.isConnected = isConnected;
     }
 
+    public boolean isConnected() {
+        return isConnected;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

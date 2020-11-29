@@ -14,7 +14,7 @@ public class LineTest {
     void createLine() {
         Line line = new Line(3, () -> true);
 
-        Connections expectedConnections = new Connections(Arrays.asList(new Connection(0), new Connection(2)));
+        Connections expectedConnections = new Connections(Arrays.asList(new Connection(true), new Connection(false), new Connection(true)));
         assertThat(line.getConnections()).isEqualTo(expectedConnections);
     }
 }
