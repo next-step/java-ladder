@@ -1,5 +1,6 @@
 package nextstep.ladder;
 
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -11,11 +12,11 @@ public class Line {
     }
 
     public Connections createConnections(ConnectionCreationStrategy connectionCreationStrategy) {
-        boolean isConnectionCreated = false;
+        ConnectionCreator connectionCreator = new ConnectionCreator(connectionCreationStrategy);
 
         return new Connections(IntStream.range(0, length)
-                .filter(i -> connectionCreationStrategy.isAble())
-                .mapToObj(Connection::new)
+                .mapToObj(connectionCreator::create)
+                .filter(Objects::nonNull)
                 .collect(Collectors.toList()));
     }
 }
