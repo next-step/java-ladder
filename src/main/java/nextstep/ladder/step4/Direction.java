@@ -1,5 +1,7 @@
 package nextstep.ladder.step4;
 
+import java.util.Random;
+
 public class Direction {
     public static final String INVALID_STATE_ERR_MSG = "Direction의 left와 right가 모두 true일 수 없습니다.";
     private final boolean left;
@@ -16,6 +18,14 @@ public class Direction {
 
     public static Direction of(boolean left, boolean right) {
         return new Direction(left, right);
+    }
+
+    public Direction next() {
+        if (this.right) {
+            return Direction.of(true, false);
+        }
+
+        return Direction.of(false, new Random().nextBoolean());
     }
 
     @Override
