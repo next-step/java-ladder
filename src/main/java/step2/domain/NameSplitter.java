@@ -13,13 +13,14 @@ public class NameSplitter {
 
     public static List<String> splitParticipationNames(String participationNames) {
         validEmpty(participationNames);
+
         return Arrays.stream(splitName(participationNames))
                 .map(String::trim)
                 .collect(Collectors.toList());
     }
 
     private static void validEmpty(String participationNames) {
-        if(participationNames.isEmpty()){
+        if (participationNames.trim().isEmpty()) {
             throw new EmptyNameException();
         }
     }
