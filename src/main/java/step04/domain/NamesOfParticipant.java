@@ -3,18 +3,18 @@ package step04.domain;
 import java.util.List;
 import java.util.Objects;
 
-public class Participants {
+public class NamesOfParticipant {
     private static final String ALL = "all";
     private final Names names;
 
-    private Participants(Names names) {
+    private NamesOfParticipant(Names names) {
         names.validateUnique();
         names.validateProhibitNames(ALL);
         this.names = names;
     }
 
-    public static Participants of(String names) {
-        return new Participants(Names.of(names));
+    public static NamesOfParticipant of(String names) {
+        return new NamesOfParticipant(Names.of(names));
     }
 
     public List<String> getNames() {
@@ -33,7 +33,7 @@ public class Participants {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Participants that = (Participants) o;
+        NamesOfParticipant that = (NamesOfParticipant) o;
         return Objects.equals(names, that.names);
     }
 

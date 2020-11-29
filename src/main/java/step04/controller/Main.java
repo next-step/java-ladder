@@ -12,25 +12,25 @@ public class Main {
     private static final String ALL = "all";
     public static void main(String[] args) {
 
-        Participants participants = readParticipants();
+        NamesOfParticipant namesOfParticipant = readParticipants();
         NamesOfResult namesOfResult = readNamesOfResults();
 
-        Matcher.Builder matcherBuilder = Matcher.Builder.of(participants)
+        Matcher.Builder matcherBuilder = Matcher.Builder.of(namesOfParticipant)
                 .namesOfResult(namesOfResult);
 
         int countOfSteps = InputView.readCountOfSteps();
 
-        Ladder ladder = Ladder.of(countOfSteps, participants.size(), RandomPointStrategy.of());
-        ResultView.printLadderWithNames(participants, namesOfResult, ladder.getLadder());
+        Ladder ladder = Ladder.of(countOfSteps, namesOfParticipant.size(), RandomPointStrategy.of());
+        ResultView.printLadderWithNames(namesOfParticipant, namesOfResult, ladder.getLadder());
 
         Matcher matcher = matcherBuilder.matchedTable(ladder.getResultTable()).build();
 
         printResult(matcher);
     }
 
-    public static Participants readParticipants() {
+    public static NamesOfParticipant readParticipants() {
         String namesOfParticipants = InputView.readNamesOfParticipants();
-        return Participants.of(namesOfParticipants);
+        return NamesOfParticipant.of(namesOfParticipants);
     }
 
     public static NamesOfResult readNamesOfResults() {
