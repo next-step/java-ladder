@@ -13,10 +13,10 @@ class ConnectionCreatorTest {
         ConnectionCreator connectionCreator = new ConnectionCreator();
         ConnectionCreationStrategy connectionCreationStrategy = () -> true;
 
-        Connection connection1 = connectionCreator.create(0, connectionCreationStrategy);
-        assertThat(connection1).isNotNull();
+        Connection connectionConnected = connectionCreator.create(0, connectionCreationStrategy);
+        assertThat(connectionConnected).isEqualTo(new Connection(true));
 
-        Connection connection2 = connectionCreator.create(1, connectionCreationStrategy);
-        assertThat(connection2).isNull();
+        Connection connectionNotConnected = connectionCreator.create(1, connectionCreationStrategy);
+        assertThat(connectionNotConnected).isEqualTo(new Connection(false));
     }
 }

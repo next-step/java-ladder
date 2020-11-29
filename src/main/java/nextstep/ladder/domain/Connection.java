@@ -3,10 +3,10 @@ package nextstep.ladder.domain;
 import java.util.Objects;
 
 public class Connection {
-    private final int point;
+    private final boolean isConnected;
 
-    public Connection(int point) {
-        this.point = point;
+    public Connection(boolean isConnected) {
+        this.isConnected = isConnected;
     }
 
     @Override
@@ -14,11 +14,11 @@ public class Connection {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Connection that = (Connection) o;
-        return point == that.point;
+        return isConnected == that.isConnected;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(point);
+        return Objects.hash(isConnected);
     }
 }

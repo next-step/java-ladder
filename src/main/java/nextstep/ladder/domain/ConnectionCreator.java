@@ -7,10 +7,10 @@ public class ConnectionCreator {
     Connection create(int point, ConnectionCreationStrategy connectionCreationStrategy) {
         if (!isCreated && connectionCreationStrategy.isAble()) {
             isCreated = true;
-            return new Connection(point);
+            return new Connection(true);
         }
 
         isCreated = false;
-        return null;
+        return new Connection(false);
     }
 }
