@@ -22,7 +22,11 @@ public class Direction {
     }
 
     public static Direction first(boolean right) {
-        return of(false, right);
+        return Direction.of(false, right);
+    }
+
+    public static Direction last(boolean left) {
+        return Direction.of(left, false);
     }
 
     public boolean isLeft() {
