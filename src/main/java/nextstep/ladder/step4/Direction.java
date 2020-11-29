@@ -1,6 +1,7 @@
 package nextstep.ladder.step4;
 
-import java.util.Random;
+
+import static nextstep.ladder.step4.LadderPointGenerator.generatePoint;
 
 public class Direction {
     public static final String INVALID_STATE_ERR_MSG = "Direction의 left와 right가 모두 true일 수 없습니다.";
@@ -25,7 +26,7 @@ public class Direction {
             return Direction.of(true, false);
         }
 
-        return Direction.of(false, new Random().nextBoolean());
+        return Direction.of(false, generatePoint());
     }
 
     @Override
