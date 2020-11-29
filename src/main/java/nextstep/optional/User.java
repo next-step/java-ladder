@@ -1,5 +1,7 @@
 package nextstep.optional;
 
+import java.util.Optional;
+
 public class User {
     private String name;
     private Integer age;
@@ -24,18 +26,22 @@ public class User {
     public static boolean ageIsInRange1(User user) {
         boolean isInRange = false;
 
-        if (user != null && user.getAge() != null
-                && (user.getAge() >= 30
-                && user.getAge() <= 45)) {
+        if (ageCondition(user)) {
             isInRange = true;
         }
         return isInRange;
     }
 
     public static boolean ageIsInRange2(User user) {
-        return false;
+        return  Optional.ofNullable(user)
+                .filter(User::ageCondition)
+                .isPresent();
     }
-
+    private static boolean ageCondition(User user){
+        return user != null && user.getAge() != null
+                && (user.getAge() >= 30
+                && user.getAge() <= 45);
+    }
     @Override
     public int hashCode() {
         final int prime = 31;
