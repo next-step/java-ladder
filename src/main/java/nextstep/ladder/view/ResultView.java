@@ -31,12 +31,7 @@ public class ResultView {
     void printLadder(Line line) {
         print(times(BLANK, 4));
         line.toSpokeStream()
-                .map(spokeExists -> {
-                    if (spokeExists) {
-                        return makeRung();
-                    }
-                    return makeEmptyRung();
-                })
+                .map(this::makeRung)
                 .map(this::withPole)
                 .forEach(this::print);
         println("|");
@@ -52,6 +47,13 @@ public class ResultView {
                         .map(name -> String.format("%" + NAME_SPACE + "s", name))
                         .collect(joining(" "))
         );
+    }
+
+    private String makeRung(Boolean spokeExists) {
+        if (spokeExists) {
+            return makeRung();
+        }
+        return makeEmptyRung();
     }
 
     private String withPole(String rung) {
