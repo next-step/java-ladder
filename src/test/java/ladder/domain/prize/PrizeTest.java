@@ -27,7 +27,7 @@ public class PrizeTest {
 
     @DisplayName("5글자를 넘는 상품 이름이 전달 된 경우 예외 반환")
     @Test
-    void of_throw_exception_when_prize_name_length_is_grate_then_five() {
+    void of_throw_exception_when_prize_name_length_is_greater_then_five() {
         // given
         final String prizeName = "123456";
 

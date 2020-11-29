@@ -55,4 +55,10 @@ public class LadderLine {
     public List<Point> getPoints() {
         return points;
     }
+
+    public int move(final int position) {
+        final Point nowPoint = points.get(position);
+        final int afterMovePosition = nowPoint.move();
+        return afterMovePosition;
+    }
 }

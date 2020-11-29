@@ -31,4 +31,8 @@ public class Users {
                 .map(User::getName)
                 .collect(Collectors.toList());
     }
+    
+    public User findUserByPosition(final int position) {
+        return users.get(position);
+    }
 }

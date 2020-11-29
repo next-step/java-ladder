@@ -131,4 +131,49 @@ public class PointTest {
         assertThat(nextPoint.hasLeft()).isTrue();
         assertThat(nextPoint.hasRight()).isFalse();
     }
+
+    @DisplayName("오른쪽 사다리로 이동")
+    @Test
+    void move_right() {
+        // given
+        final int index = 0;
+        final Direction direction = Direction.RIGHT;
+        final Point point = Point.of(index, direction);
+
+        // when
+        final int afterMovePosition = point.move();
+
+        // then
+        assertThat(afterMovePosition).isEqualTo(index + 1);
+    }
+
+    @DisplayName("왼쪽 사다리로 이동")
+    @Test
+    void move_left() {
+        // given
+        final int index = 1;
+        final Direction direction = Direction.LEFT;
+        final Point point = Point.of(index, direction);
+
+        // when
+        final int afterMovePosition = point.move();
+
+        // then
+        assertThat(afterMovePosition).isEqualTo(index - 1);
+    }
+
+    @DisplayName("기존 사다리 유지")
+    @Test
+    void not_move() {
+        // given
+        final int index = 1;
+        final Direction direction = Direction.NONE;
+        final Point point = Point.of(index, direction);
+
+        // when
+        final int afterMovePosition = point.move();
+
+        // then
+        assertThat(afterMovePosition).isEqualTo(index);
+    }
 }

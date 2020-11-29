@@ -3,19 +3,21 @@ package ladder.domain;
 import java.util.Arrays;
 
 public enum Direction {
-    LEFT(true, false),
-    RIGHT(false, true),
-    NONE(false, false),
+    LEFT(true, false, -1),
+    RIGHT(false, true, 1),
+    NONE(false, false, 0),
     ;
 
     public static final String MAXIMUM_DIRECTION_IS_ONE = "maximum direction is one";
-    
+
     private final boolean left;
     private final boolean right;
+    private final int movePositionVal;
 
-    Direction(final boolean left, final boolean right) {
+    Direction(final boolean left, final boolean right, final int movePositionVal) {
         this.left = left;
         this.right = right;
+        this.movePositionVal = movePositionVal;
     }
 
     public static Direction valueOf(final boolean left, final boolean right) {
@@ -32,6 +34,10 @@ public enum Direction {
 
     public boolean hasRight() {
         return right;
+    }
+
+    public int getMovePositionVal() {
+        return movePositionVal;
     }
 
 }

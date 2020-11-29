@@ -48,4 +48,8 @@ public class Point {
     public boolean hasRight() {
         return direction.hasRight();
     }
+
+    public int move() {
+        return index + direction.getMovePositionVal();
+    }
 }

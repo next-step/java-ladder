@@ -14,7 +14,7 @@ import static util.Preconditions.checkArgument;
 public class Ladder {
     private static final int MINIMUM_LADDER_HEIGHT = 1;
     public static String LADDER_HEIGHT_MUST_MORE_THEN_ONE = "ladder height must more then one";
-    
+
     private final List<LadderLine> ladderLines;
 
     public Ladder(final List<LadderLine> ladderLines) {
@@ -35,5 +35,13 @@ public class Ladder {
 
     public List<LadderLine> getLadderLines() {
         return ladderLines;
+    }
+
+    public int startAt(final int startPosition) {
+        int nextStartPosition = startPosition;
+        for (final LadderLine ladderLine : ladderLines) {
+            nextStartPosition = ladderLine.move(nextStartPosition);
+        }
+        return nextStartPosition;
     }
 }

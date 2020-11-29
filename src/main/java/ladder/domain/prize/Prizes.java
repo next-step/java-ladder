@@ -31,4 +31,8 @@ public class Prizes {
                 .map(Prize::getName)
                 .collect(Collectors.toList());
     }
+
+    public Prize findPrizeByPosition(final int position) {
+        return prizes.get(position);
+    }
 }
