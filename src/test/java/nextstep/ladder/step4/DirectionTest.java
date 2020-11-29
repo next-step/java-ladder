@@ -16,6 +16,7 @@ public class DirectionTest {
     @DisplayName("Direction의 left와 right가 모두 true인 경우 throw Exception")
     void invalidStateTest() {
         assertThatExceptionOfType(IllegalStateException.class)
-                .isThrownBy(() -> Direction.of(true, true));
+                .isThrownBy(() -> Direction.of(true, true))
+                .withMessage(Direction.INVALID_STATE_ERR_MSG);
     }
 }

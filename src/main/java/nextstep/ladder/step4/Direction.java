@@ -1,12 +1,13 @@
 package nextstep.ladder.step4;
 
 public class Direction {
+    public static final String INVALID_STATE_ERR_MSG = "Direction의 left와 right가 모두 true일 수 없습니다.";
     private final boolean left;
     private final boolean right;
 
     private Direction(boolean left, boolean right) {
         if (left && right) {
-            throw new IllegalStateException("Direction의 left와 right가 모두 true일 수 없습니다.");
+            throw new IllegalStateException(INVALID_STATE_ERR_MSG);
         }
 
         this.left = left;
