@@ -18,6 +18,10 @@ public class Players {
                 .collect(Collectors.toList()));
     }
 
+    public List<Player> getPlayers() {
+        return players;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
