@@ -14,7 +14,7 @@ public class Players {
     }
 
     public static Players from(String names) {
-        return new Players(Arrays.stream(names.split(","))
+        return new Players(Arrays.stream(names.split(NAME_SPLITTER))
                 .map(Player::new)
                 .collect(Collectors.toList()));
     }
