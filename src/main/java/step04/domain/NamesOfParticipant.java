@@ -17,7 +17,7 @@ public class NamesOfParticipant {
         return new NamesOfParticipant(Names.of(names));
     }
 
-    public List<String> getNames() {
+    public List<Name> getNames() {
         return names.getNames();
     }
 
@@ -25,7 +25,7 @@ public class NamesOfParticipant {
         return names.size();
     }
 
-    public int indexOf(String name) {
+    public int indexOf(Name name) {
         return names.indexOf(name);
     }
 

@@ -1,9 +1,6 @@
 package step04.controller;
 
-import step04.domain.Ladder;
-import step04.domain.Matcher;
-import step04.domain.NamesOfResult;
-import step04.domain.Participants;
+import step04.domain.*;
 import step04.view.InputView;
 import step04.view.ResultView;
 import strategy.RandomPointStrategy;
@@ -41,7 +38,9 @@ public class Main {
     public static void printResult(Matcher matcher) {
         String target = InputView.readNamesOfParticipant();
         while(!ALL.equals(target)) {
-            ResultView.printResult(matcher.getResultByParticipant(target));
+            ResultView.printResult(
+                    matcher.getResultByParticipant(Name.of(target)).toString()
+            );
             target = InputView.readNamesOfParticipant();
         }
         ResultView.printResults(matcher);

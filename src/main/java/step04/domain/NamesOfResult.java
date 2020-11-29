@@ -14,7 +14,7 @@ public class NamesOfResult {
         return new NamesOfResult(Names.of(names));
     }
 
-    public List<String> getNames() {
+    public List<Name> getNames() {
         return names.getNames();
     }
 

@@ -26,6 +26,10 @@ public class Names {
         return Tokenizer.tokenizeWithComma(names);
     }
 
+    private static boolean isInValidCount(List<String> nameTokens) {
+        return nameTokens.size() < MIN_COUNT_OF_NAMES;
+    }
+
     private static void validate(List<String> nameTokens) {
         if (isInValidCount(nameTokens)) {
             throw new InvalidCountOfNamesException();
@@ -36,10 +40,6 @@ public class Names {
         if (names.stream().distinct().count() != names.size()) {
             throw new DuplicatedNameException();
         }
-    }
-
-    private static boolean isInValidCount(List<String> nameTokens) {
-        return nameTokens.size() < MIN_COUNT_OF_NAMES;
     }
 
     private static List<Name> parseNames(String names) {
@@ -55,9 +55,8 @@ public class Names {
         return names.size();
     }
 
-    public List<String> getNames() {
+    public List<Name> getNames() {
         return names.stream()
-                .map(Name::toString)
                 .collect(Collectors.collectingAndThen(Collectors.toList(), Collections::unmodifiableList));
     }
 
@@ -78,8 +77,8 @@ public class Names {
         names.forEach(name -> name.validateProhibitName(prohibitName));
     }
 
-    public int indexOf(String targetName) {
-        int index = names.indexOf(Name.of(targetName));
+    public int indexOf(Name targetName) {
+        int index = names.indexOf(targetName);
         if (index == -1) {
             throw new NotFoundNameException();
         }

@@ -8,39 +8,39 @@ import java.util.Map;
 import java.util.Objects;
 
 public class Matcher {
-    private final Participants participants;
+    private final NamesOfParticipant namesOfParticipant;
     private final NamesOfResult namesOfResult;
     private final List<Integer> matchedTable;
 
     private Matcher(Builder builder) {
-        this.participants = builder.participants;
+        this.namesOfParticipant = builder.namesOfParticipant;
         this.namesOfResult = builder.namesOfResult;
         this.matchedTable = builder.matchedTable;
     }
 
 
     public static class Builder {
-        private final Participants participants;
+        private final NamesOfParticipant namesOfParticipant;
         private NamesOfResult namesOfResult;
         private List<Integer> matchedTable;
 
-        private Builder(Participants participants) {
-            this.participants = participants;
+        private Builder(NamesOfParticipant namesOfParticipant) {
+            this.namesOfParticipant = namesOfParticipant;
         }
 
-        public static Builder of(Participants participants) {
-            return new Builder(participants);
+        public static Builder of(NamesOfParticipant namesOfParticipant) {
+            return new Builder(namesOfParticipant);
         }
 
         public Builder namesOfResult(NamesOfResult namesOfResult) {
             this.namesOfResult = namesOfResult;
-            validateCount(participants.size(), namesOfResult.size());
+            validateCount(namesOfParticipant.size(), namesOfResult.size());
             return this;
         }
 
         public Builder matchedTable(List<Integer> matchedTable) {
             this.matchedTable = matchedTable;
-            validateCount(participants.size(), matchedTable.size());
+            validateCount(namesOfParticipant.size(), matchedTable.size());
             return this;
         }
 
@@ -56,19 +56,19 @@ public class Matcher {
 
     }
 
-    public String getResultByParticipant(String nameOfParticipant) {
-        int indexOfName = participants.indexOf(nameOfParticipant);
+    public Name getResultByParticipant(Name nameOfParticipant) {
+        int indexOfName = namesOfParticipant.indexOf(nameOfParticipant);
         int indexOfMatched = matchedTable.indexOf(indexOfName);
         return namesOfResult.getNames().get(indexOfMatched);
     }
 
-    public Map<String, String> getResults() {
-        Map<String, String> map = new HashMap<>();
+    public Map<Name, Name> getResults() {
+        Map<Name, Name> map = new HashMap<>();
 
-        List<String> namesOfParticipant = participants.getNames();
-        List<String> namesOfResult2 = namesOfResult.getNames();
+        List<Name> namesOfParticipant = this.namesOfParticipant.getNames();
+        List<Name> namesOfResult2 = namesOfResult.getNames();
 
-        for (int i = 0; i < participants.size(); i++) {
+        for (int i = 0; i < this.namesOfParticipant.size(); i++) {
             int targetIndex = matchedTable.indexOf(i);
             map.put(namesOfParticipant.get(i), namesOfResult2.get(targetIndex));
         }
@@ -81,13 +81,13 @@ public class Matcher {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Matcher matcher = (Matcher) o;
-        return Objects.equals(participants, matcher.participants) &&
+        return Objects.equals(namesOfParticipant, matcher.namesOfParticipant) &&
                 Objects.equals(namesOfResult, matcher.namesOfResult) &&
                 Objects.equals(matchedTable, matcher.matchedTable);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(participants, namesOfResult, matchedTable);
+        return Objects.hash(namesOfParticipant, namesOfResult, matchedTable);
     }
 }
