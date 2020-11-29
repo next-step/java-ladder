@@ -1,4 +1,4 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
 
 public class ConnectionCreator {
 
@@ -14,7 +14,7 @@ public class ConnectionCreator {
             isCreated = true;
             return new Connection(point);
         }
-        
+
         isCreated = false;
         return null;
     }
