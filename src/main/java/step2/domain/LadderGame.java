@@ -10,6 +10,7 @@ import java.util.stream.IntStream;
 
 public class LadderGame {
 
+    private LadderGame() {}
 
     public static LadderGameResult runGame(final Ladder ladder, final PlayersRewardsDto playersRewardsDto) {
 
@@ -19,16 +20,40 @@ public class LadderGame {
 
 
         for (int i = 0; i < ladder.getLines().size(); i++) {
-            for (int j = 0; j < playerPositions.size(); j++) {
-                playerPositions.get(j).move(ladder.getLines().get(i).getLadderPoints().get(playerPositions.get(j).getPosition()).getDirection());
-            }
+            moveLadder(ladder, playerPositions, i);
         }
 
+        return new LadderGameResult(mapPlayerReward(playersRewardsDto, playerPositions));
+    }
+
+    private static Map<String, String> mapPlayerReward(PlayersRewardsDto playersRewardsDto, List<PlayerGamePosition> playerPositions) {
         Map<String, String> rewards = new HashMap<>();
         for (int i = 0; i < playerPositions.size(); i++) {
-            rewards.put(playersRewardsDto.getPlayers().getPlayers().get(i).getName(), playersRewardsDto.getRewards().getRewards().get(playerPositions.get(i).getPosition()).getName());
+            rewards.put(getPlayerName(playersRewardsDto, i), getRewardName(playersRewardsDto, playerPositions, i));
         }
-        return new LadderGameResult(rewards);
+        return rewards;
+    }
+
+    private static String getRewardName(PlayersRewardsDto playersRewardsDto, List<PlayerGamePosition> playerPositions, int i) {
+        return getRewards(playersRewardsDto).get(playerPositions.get(i).getPosition()).getName();
+    }
+
+    private static String getPlayerName(PlayersRewardsDto playersRewardsDto, int i) {
+        return getPlayers(playersRewardsDto).get(i).getName();
+    }
+
+    private static List<Reward> getRewards(PlayersRewardsDto playersRewardsDto) {
+        return playersRewardsDto.getRewards().getRewards();
+    }
+
+    private static List<Player> getPlayers(PlayersRewardsDto playersRewardsDto) {
+        return playersRewardsDto.getPlayers().getPlayers();
+    }
+
+    private static void moveLadder(Ladder ladder, List<PlayerGamePosition> playerPositions, int i) {
+        for (PlayerGamePosition playerPosition : playerPositions) {
+            playerPosition.move(ladder.getLines().get(i).getDirections().get(playerPosition.getPosition()).getDirection());
+        }
     }
 
     private static int getPlayerCount(PlayersRewardsDto playersRewardsDto) {
