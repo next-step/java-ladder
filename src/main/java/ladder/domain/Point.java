@@ -22,7 +22,7 @@ public class Point {
     }
 
     public static Point createFirst(final DirectionGenerator directionGenerator) {
-        return Point.of(0, Boolean.FALSE, directionGenerator.generate());
+        return new Point(0, directionGenerator.generateFirst());
     }
 
     public Point createNext() {
@@ -31,12 +31,8 @@ public class Point {
 
     public Point createNext(final DirectionGenerator directionGenerator) {
         final int nextPointsIndex = this.index + 1;
-        if (direction.hasRight()) {
-            return Point.of(nextPointsIndex, Boolean.TRUE, Boolean.FALSE);
-        }
-
-        final boolean nextPointsRight = directionGenerator.generate();
-        return Point.of(nextPointsIndex, Boolean.FALSE, nextPointsRight);
+        final Direction nextPointsDirection = directionGenerator.generateNext(this.direction);
+        return new Point(nextPointsIndex, nextPointsDirection);
     }
 
     public Point createLast() {

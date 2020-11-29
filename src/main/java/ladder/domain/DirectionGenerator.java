@@ -1,5 +1,7 @@
 package ladder.domain;
 
-public interface DirectionGenerator {
-    boolean generate();
+public interface DirectionGenerator { 
+    Direction generateFirst();
+
+    Direction generateNext(Direction beforeDirection);
 }

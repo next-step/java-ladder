@@ -51,7 +51,17 @@ public class PointTest {
         final Point point = Point.of(index, left, right);
 
         // when
-        final Point nextPoint = point.createNext(() -> true);
+        final Point nextPoint = point.createNext(new DirectionGenerator() {
+            @Override
+            public Direction generateFirst() {
+                return null;
+            }
+
+            @Override
+            public Direction generateNext(Direction beforeDirection) {
+                return Direction.LEFT;
+            }
+        });
 
         // then
         assertThat(nextPoint.hasLeft()).isTrue();
@@ -63,12 +73,22 @@ public class PointTest {
     void when_generator_is_only_generate_false_result() {
         // given
         final int index = 0;
-        final boolean left = false;
+        final boolean left = true;
         final boolean right = false;
         final Point point = Point.of(index, left, right);
 
         // when
-        final Point nextPoint = point.createNext(() -> false);
+        final Point nextPoint = point.createNext(new DirectionGenerator() {
+            @Override
+            public Direction generateFirst() {
+                return null;
+            }
+
+            @Override
+            public Direction generateNext(Direction beforeDirection) {
+                return Direction.NONE;
+            }
+        });
 
         // then
         assertThat(nextPoint.hasLeft()).isFalse();
@@ -85,7 +105,17 @@ public class PointTest {
         final Point point = Point.of(index, left, right);
 
         // when
-        final Point nextPoint = point.createNext(() -> true);
+        final Point nextPoint = point.createNext(new DirectionGenerator() {
+            @Override
+            public Direction generateFirst() {
+                return null;
+            }
+
+            @Override
+            public Direction generateNext(Direction beforeDirection) {
+                return Direction.RIGHT;
+            }
+        });
 
         // then
         assertThat(nextPoint.hasLeft()).isFalse();
@@ -112,7 +142,19 @@ public class PointTest {
     @Test
     void create_first_point_using_generator() {
         // when
-        final Point nextPoint = Point.createFirst(() -> true);
+        final Point nextPoint = Point.createFirst(
+                new DirectionGenerator() {
+                    @Override
+                    public Direction generateFirst() {
+                        return Direction.RIGHT;
+                    }
+
+                    @Override
+                    public Direction generateNext(Direction beforeDirection) {
+                        return null;
+                    }
+                }
+        );
 
         // then
         assertThat(nextPoint.hasLeft()).isFalse();
@@ -128,7 +170,7 @@ public class PointTest {
         // then
         assertThat(nextPoint).isNotNull();
     }
-    
+
     @DisplayName("마지막 Point 만들기")
     @Test
     void create_last_point() {
@@ -137,7 +179,7 @@ public class PointTest {
         final boolean left = false;
         final boolean right = true;
         final Point point = Point.of(index, left, right);
-        
+
         // when
         final Point nextPoint = point.createLast();
 
