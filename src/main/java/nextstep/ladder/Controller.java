@@ -1,5 +1,6 @@
 package nextstep.ladder;
 
+import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Spoke;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
@@ -21,9 +22,13 @@ public class Controller {
         List<String> players = inputView.requestPlayers();
         int ladderHeight = inputView.requestHeight();
 
-        resultView.printResult(players, IntStream.range(0, ladderHeight)
-                .mapToObj(__ -> Spoke.fromCount(players.size() - 1, RANDOM::nextBoolean))
+        resultView.printResult(players, getLines(ladderHeight, players.size()));
+    }
+
+    private List<Line> getLines(int ladderHeight, int playersCount) {
+        return IntStream.range(0, ladderHeight)
+                .mapToObj(__ -> Spoke.fromCount(playersCount - 1, RANDOM::nextBoolean))
                 .map(Spoke::toLine)
-                .collect(toList()));
+                .collect(toList());
     }
 }
