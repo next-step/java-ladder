@@ -7,6 +7,8 @@ import ladder.domain.user.UsersGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Map;
+
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 public class LadderGameTest {
@@ -33,7 +35,7 @@ public class LadderGameTest {
         final LadderGame ladderGame = LadderGame.of(4, 5);
 
         // when
-        final LadderGameResult result = ladderGame.play(users, prizes);
+        final Map<String, String> result = ladderGame.play(users, prizes);
 
         // then
         assertThat(result.size()).isEqualTo(users.size());
