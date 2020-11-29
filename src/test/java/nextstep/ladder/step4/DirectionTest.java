@@ -19,4 +19,11 @@ public class DirectionTest {
                 .isThrownBy(() -> Direction.of(true, true))
                 .withMessage(Direction.INVALID_STATE_ERR_MSG);
     }
+
+    @Test
+    @DisplayName("Direction의 right가 true이면, 다음(오른쪽) Direction은 of(true, false)여야 한다.")
+    void nextRightDirectionTest() {
+        Direction direction = Direction.of(false, true);
+        assertThat(direction.next()).isEqualTo(Direction.of(true, false));
+    }
 }
