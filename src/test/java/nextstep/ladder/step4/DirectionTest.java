@@ -33,4 +33,11 @@ public class DirectionTest {
         Direction first = Direction.first(true);
         assertThat(first.isLeft()).isFalse();
     }
+
+    @Test
+    @DisplayName("last(마지막) Direction의 right는 false여야 한다.")
+    void lastDirectionTest() {
+        Direction last = Direction.last(true);
+        assertThat(last.isRight()).isFalse();
+    }
 }
