@@ -1,8 +1,11 @@
-package step02.domain;
+package step03.domain;
 
 import exception.DuplicatedNameException;
 import exception.InvalidCountOfNamesException;
+import exception.NotFoundNameException;
+import exception.UsingProhibitedNameException;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -14,11 +17,12 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
-public class ParticipantsTest {
+public class NamesTest {
 
     private static Stream<String> provideNamesResult() {
         return Stream.of(
-                "pobi,honux,crong,jk"
+                "pobi,honux,crong,jk",
+                "꽝,5000,꽝,3000"
         );
     }
 
@@ -26,8 +30,7 @@ public class ParticipantsTest {
     @ParameterizedTest
     @MethodSource("provideNamesResult")
     void test_constructor_of(String names) {
-        assertThat(Participants.of(names))
-                .isEqualTo(Participants.of(names));
+        assertThat(Names.of(names)).isEqualTo(Names.of(names));
     }
 
     private static Stream<Arguments> provideNamesSizeResult() {
@@ -40,21 +43,21 @@ public class ParticipantsTest {
     @DisplayName("Participants List size")
     @ParameterizedTest
     @MethodSource("provideNamesSizeResult")
-    void test_size(String names, Integer size) {
-        assertThat(Participants.of(names).size())
+    void test_size(String names, int size) {
+        assertThat(Names.of(names).size())
                 .isEqualTo(size);
     }
 
-    private static Stream<String> provideInvalidCountOfParticipantsResult() {
+    private static Stream<String> provideInvalidCountOfNameResult() {
         return Stream.of("jk", "");
     }
 
-    @DisplayName("Participants 가 1명 이하일 때 에러 던짐")
+    @DisplayName("CountOfName 이 1개 이하일 때 에러 던짐")
     @ParameterizedTest
-    @MethodSource("provideInvalidCountOfParticipantsResult")
-    void test_validateCountOfParticipants_throwException(String name) {
+    @MethodSource("provideInvalidCountOfNameResult")
+    void test_validate_throwException(String name) {
         assertThatExceptionOfType(InvalidCountOfNamesException.class)
-                .isThrownBy(() -> Participants.of(name));
+                .isThrownBy(() -> Names.of(name));
     }
 
     private static Stream<Arguments> provideParticipantsShowResult() {
@@ -67,10 +70,8 @@ public class ParticipantsTest {
     @ParameterizedTest
     @MethodSource("provideParticipantsShowResult")
     void test_show(String names, List<String> showedParticipant) {
-        assertThat(Participants.of(names).getNames())
-                .isEqualTo(showedParticipant);
+               assertThat(Names.of(names).getNames()).isEqualTo(showedParticipant);
     }
-
 
     private static Stream<String> provideDuplicatedParticipantsResult() {
         return Stream.of(
@@ -83,7 +84,40 @@ public class ParticipantsTest {
     @MethodSource("provideDuplicatedParticipantsResult")
     void test_show(String names) {
         assertThatExceptionOfType(DuplicatedNameException.class)
-                .isThrownBy(() -> Participants.of(names));
+                .isThrownBy(() -> Names.of(names).validateUnique());
+    }
+
+    @DisplayName("금지 단어를 포함하고 있으면 예외 던짐")
+    @Test
+    void test_validateProhibitNames() {
+        assertThatExceptionOfType(UsingProhibitedNameException.class)
+                .isThrownBy(() -> Names.of("all,b,c").validateProhibitNames("all"));
+    }
+
+    private static Stream<Arguments> provideNameIndexResult()
+    {
+        return Stream.of(
+                Arguments.of("pobi", 0),
+                Arguments.of("honux", 1),
+                Arguments.of("crong", 2),
+                Arguments.of("jk", 3)
+        );
+    }
+
+    @DisplayName("이름으로 인덱스 찾기")
+    @ParameterizedTest
+    @MethodSource("provideNameIndexResult")
+    void test_indexOf(String name, int index) {
+        assertThat(
+                Names.of("pobi,honux,crong,jk").indexOf(name)
+        ).isEqualTo(index);
+    }
+
+    @DisplayName("이름을 찾을 수 없으면 예외 던짐")
+    @Test
+    void test_indexOf_invalid() {
+        assertThatExceptionOfType(NotFoundNameException.class)
+            .isThrownBy(() -> Names.of("pobi,honux,crong,jk").indexOf("name"));
     }
 
 }

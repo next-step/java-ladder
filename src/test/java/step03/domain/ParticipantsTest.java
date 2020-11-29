@@ -1,8 +1,10 @@
-package step02.domain;
+package step03.domain;
 
 import exception.DuplicatedNameException;
 import exception.InvalidCountOfNamesException;
+import exception.UsingProhibitedNameException;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -40,7 +42,7 @@ public class ParticipantsTest {
     @DisplayName("Participants List size")
     @ParameterizedTest
     @MethodSource("provideNamesSizeResult")
-    void test_size(String names, Integer size) {
+    void test_size(String names, int size) {
         assertThat(Participants.of(names).size())
                 .isEqualTo(size);
     }
@@ -84,6 +86,31 @@ public class ParticipantsTest {
     void test_show(String names) {
         assertThatExceptionOfType(DuplicatedNameException.class)
                 .isThrownBy(() -> Participants.of(names));
+    }
+
+    @DisplayName("금지 단어를 포함하고 있으면 예외 던짐")
+    @Test
+    void test_validateProhibitNames() {
+        assertThatExceptionOfType(UsingProhibitedNameException.class)
+                .isThrownBy(() -> Participants.of("all,b,c"));
+    }
+
+    private static Stream<Arguments> provideNameOfParticipantIndexResult()
+    {
+        return Stream.of(
+                Arguments.of("pobi", 0),
+                Arguments.of("honux", 1),
+                Arguments.of("crong", 2),
+                Arguments.of("jk", 3)
+        );
+    }
+
+    @DisplayName("이름으로 인덱스 찾기")
+    @ParameterizedTest
+    @MethodSource("provideNameOfParticipantIndexResult")
+    void test_indexOf(String name, int index) {
+        assertThat(Participants.of("pobi,honux,crong,jk").indexOf(name))
+                .isEqualTo(index);
     }
 
 }

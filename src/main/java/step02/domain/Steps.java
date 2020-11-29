@@ -2,6 +2,7 @@ package step02.domain;
 
 import exception.InvalidCountOfStepsException;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -32,7 +33,7 @@ public class Steps {
     public List<List<Boolean>> getSteps() {
         return steps.stream()
                 .map(Step::getPoints)
-                .collect(Collectors.toList());
+                .collect(Collectors.collectingAndThen(Collectors.toList(), Collections::unmodifiableList));
     }
 
     @Override

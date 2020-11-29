@@ -58,8 +58,8 @@
     - public List<Boolean> getPoints() 출력을 위한 기능
     
 - Steps 세로 라인 (사다리의 최대 높이)
-    - private final List<Step> steps
-    - private Steps(List<Step> steps)
+    - private final List<Step> ladder
+    - private Steps(List<Step> ladder)
     - public static Steps of(Integer countOfSteps, StepGenerator stepGenerator) countOfSteps 만큼 step 생성
     - private void validate(Integer countOfSteps) 사다리가 정수가 아니면 예외 처리
     - public List<List<Boolean>> getSteps() 
@@ -73,9 +73,9 @@
 - ResultView
     - private ResultView()
     - private static String padLeft(String string, Integer repeat)
-    - public static void print(Participants participants, Steps steps)
+    - public static void print(Participants participants, Steps ladder)
     - private static void printNamesOfParticipants(Participants participants)
-    - private static void printLadder(Steps steps) 
+    - private static void printLadder(Steps ladder) 
 
 ## 프로그래밍 요구사항
 - 자바 8의 스트림과 람다를 적용해 프로그래밍한다.
