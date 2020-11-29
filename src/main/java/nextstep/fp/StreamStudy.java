@@ -1,5 +1,7 @@
 package nextstep.fp;
 
+import nextstep.fp.lamda.Conditional;
+
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -15,11 +17,9 @@ public class StreamStudy {
                 .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
-        long count = 0;
-        for (String w : words) {
-            if (w.length() > 12) count++;
-        }
-        return count;
+        return words.stream()
+                .filter(w -> w.length() > 12)
+                .count();
     }
 
     public static void printLongestWordTop100() throws IOException {
@@ -38,7 +38,10 @@ public class StreamStudy {
         return numbers.stream().reduce(0, (x, y) -> x + y);
     }
 
-    public static long sumOverThreeAndDouble(List<Integer> numbers) {
-        return 0;
+    public static long sumOverThreeAndDouble(List<Integer> numbers, Conditional conditional) {
+        return numbers.stream()
+                .filter(conditional::test)
+                .mapToInt(number -> number * 2)
+                .sum();
     }
 }
