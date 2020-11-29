@@ -5,6 +5,10 @@ public class Direction {
     private final boolean right;
 
     private Direction(boolean left, boolean right) {
+        if (left && right) {
+            throw new IllegalStateException("Direction의 left와 right가 모두 true일 수 없습니다.");
+        }
+
         this.left = left;
         this.right = right;
     }
