@@ -30,7 +30,7 @@ public class StreamStudyTest {
     @Test
     public void map() throws Exception {
         List<Integer> doubleNumbers = StreamStudy.doubleNumbers(numbers);
-        doubleNumbers.forEach(System.out::println);
+        assertThat(doubleNumbers).isEqualTo(Arrays.asList(2, 4, 6, 8, 10, 12));
     }
 
     @Test
