@@ -2,10 +2,11 @@ package nextstep.ladder.step4;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
-import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class DirectionTest {
     @Test
@@ -35,14 +36,13 @@ public class DirectionTest {
         assertThat(direction.next().isLeft()).isFalse();
     }
 
-    @Test
+    @ParameterizedTest
+    @ValueSource(booleans = {true, false})
     @DisplayName("다음(오른쪽) Direction의 right의 값을 지정한 경우")
-    void nextTrueTest() {
+    void nextTrueTest(boolean nextRight) {
         Direction direction = Direction.of(false, false);
-        assertAll(() -> {
-            Direction next = direction.next(true);
-            assertThat(next.isRight()).isTrue();
-        });
+        Direction next = direction.next(nextRight);
+        assertThat(next.isRight()).isEqualTo(nextRight);
     }
 
     @Test
