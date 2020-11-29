@@ -1,6 +1,5 @@
 package ladder.domain;
 
-
 public class Point {
     private static final DirectionGenerator DEFAULT_DIRECTION_GENERATOR = new RandomDirectionGenerator();
 
@@ -12,8 +11,10 @@ public class Point {
         this.direction = direction;
     }
 
-    public static Point of(final int index, final boolean left, final boolean right) {
-        final Direction direction = Direction.valueOf(left, right);
+    public static Point of(final int index, final Direction direction) {
+        if (direction == null) {
+            return new Point(index, Direction.NONE);
+        }
         return new Point(index, direction);
     }
 
@@ -22,7 +23,7 @@ public class Point {
     }
 
     public static Point createFirst(final DirectionGenerator directionGenerator) {
-        return new Point(0, directionGenerator.generateFirst());
+        return Point.of(0, directionGenerator.generateFirst());
     }
 
     public Point createNext() {
@@ -32,11 +33,12 @@ public class Point {
     public Point createNext(final DirectionGenerator directionGenerator) {
         final int nextPointsIndex = this.index + 1;
         final Direction nextPointsDirection = directionGenerator.generateNext(this.direction);
-        return new Point(nextPointsIndex, nextPointsDirection);
+        return Point.of(nextPointsIndex, nextPointsDirection);
     }
 
     public Point createLast() {
-        return Point.of(this.index + 1, direction.hasRight(), Boolean.FALSE);
+        final Direction lastPointsDirection = DEFAULT_DIRECTION_GENERATOR.generateLast(this.direction);
+        return Point.of(this.index + 1, lastPointsDirection);
     }
 
     public boolean hasLeft() {
@@ -46,5 +48,4 @@ public class Point {
     public boolean hasRight() {
         return direction.hasRight();
     }
-
 }
