@@ -6,19 +6,23 @@ import java.util.stream.IntStream;
 
 public class Line {
     private final int length;
-    private final ConnectionCreationStrategy connectionCreationStrategy;
+    private final Connections connections;
 
     public Line(int length, ConnectionCreationStrategy connectionCreationStrategy) {
         this.length = length;
-        this.connectionCreationStrategy = connectionCreationStrategy;
+        this.connections = createConnections(connectionCreationStrategy);
     }
 
-    public Connections createConnections() {
+    private Connections createConnections(ConnectionCreationStrategy connectionCreationStrategy) {
         ConnectionCreator connectionCreator = new ConnectionCreator();
 
         return new Connections(IntStream.range(0, length)
                 .mapToObj(point -> connectionCreator.create(point, connectionCreationStrategy))
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList()));
+    }
+
+    public Connections getConnections() {
+        return connections;
     }
 }
