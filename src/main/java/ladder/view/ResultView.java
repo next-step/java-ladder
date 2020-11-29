@@ -2,10 +2,8 @@ package ladder.view;
 
 import ladder.domain.Line;
 import ladder.domain.Lines;
-
 import java.util.List;
 import java.util.stream.IntStream;
-
 import static ladder.view.ResultViewConfig.*;
 import static ladder.domain.LadderConfig.*;
 

@@ -29,12 +29,19 @@ public class InputView {
         do {
             System.out.print(INPUT_LADDER_HEIGHT_MESSAGE);
             height = SCANNER.nextInt();
-        } while (height <= 0);
+        } while (inputHeightValidationCheck(height));
         return height;
     }
 
-    private static boolean inputStringValidationCheck(String input) {
+    private static boolean inputHeightValidationCheck(int height) {
+        if(height < MIN_HEIGHT) {
+            System.out.print(INPUT_HEIGHT_ERROR);
+            return true;
+        }
+        return false;
+    }
 
+    private static boolean inputStringValidationCheck(String input) {
         if(nameLengthCheck(input)) {
             System.out.print(INPUT_NAME_LENGTH_ERROR);
             return true;
