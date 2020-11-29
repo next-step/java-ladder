@@ -18,7 +18,7 @@ class LineTest {
     @DisplayName("라인이 Point가 잘 생성되는지 본다.")
     void getLine() {
         Line line = Line.of(4, new MustLineStrategy());
-        assertThat(line.getDirection()).containsExactly(Direction.DOWN,Direction.DOWN,Direction.DOWN,Direction.DOWN);
+        assertThat(line.getDirections()).containsExactly(Direction.DOWN,Direction.DOWN,Direction.DOWN,Direction.DOWN);
     }
 
 }
