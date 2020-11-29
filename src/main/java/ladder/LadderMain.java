@@ -1,6 +1,7 @@
 package ladder;
 
 import ladder.domain.*;
+import ladder.domain.ladder.LadderLine;
 import ladder.domain.prize.Prizes;
 import ladder.domain.prize.PrizesGenerator;
 import ladder.domain.user.Users;

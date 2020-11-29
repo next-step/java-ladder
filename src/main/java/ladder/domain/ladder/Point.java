@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
 public class Point {
     private static final DirectionGenerator DEFAULT_DIRECTION_GENERATOR = new RandomDirectionGenerator();

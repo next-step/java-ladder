@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import static ladder.domain.Direction.MAXIMUM_DIRECTION_IS_ONE;
+import static ladder.domain.ladder.Direction.MAXIMUM_DIRECTION_IS_ONE;
 import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 

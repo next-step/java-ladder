@@ -1,10 +1,11 @@
 package ladder.domain;
 
+import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.LadderLine;
 import ladder.domain.prize.Prize;
 import ladder.domain.prize.Prizes;
 import ladder.domain.user.User;
 import ladder.domain.user.Users;
-import util.CollectionUtil;
 
 import java.util.List;
 import java.util.Map;

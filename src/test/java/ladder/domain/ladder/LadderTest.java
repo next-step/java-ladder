@@ -1,11 +1,12 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
+import ladder.domain.LadderGame;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static ladder.domain.Ladder.LADDER_HEIGHT_MUST_MORE_THEN_ONE;
+import static ladder.domain.ladder.Ladder.LADDER_HEIGHT_MUST_MORE_THEN_ONE;
 import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
