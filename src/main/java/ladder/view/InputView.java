@@ -22,4 +22,11 @@ public class InputView {
         final Scanner scanner = new Scanner(System.in);
         return scanner.nextInt();
     }
+
+    public static String plzEnterUserName() {
+        Printer.printNewLine();
+        Printer.println("결과를 보고 싶은 사람은?");
+        final Scanner scanner = new Scanner(System.in);
+        return scanner.next();
+    }
 }
