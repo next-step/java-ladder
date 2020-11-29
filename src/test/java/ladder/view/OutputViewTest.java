@@ -1,6 +1,8 @@
 package ladder.view;
 
 import ladder.domain.LadderGame;
+import ladder.domain.prize.Prizes;
+import ladder.domain.prize.PrizesGenerator;
 import ladder.domain.user.Users;
 import ladder.domain.user.UsersGenerator;
 import org.junit.jupiter.api.DisplayName;
@@ -12,9 +14,10 @@ class OutputViewTest {
     void printUserNameTest() {
         // given
         final Users users = UsersGenerator.generate("pobi,honux,crong,jk,sung,min,hong");
+        final Prizes prizes = PrizesGenerator.generate("꽝,꽝,꽝,1000,100,10000,꽝");
         final LadderGame ladderGame = LadderGame.of(users.size(), 8);
 
-        OutputView.printLadderViewResult(users.getNames(), ladderGame.getLadderLine());
+        OutputView.printLadderViewResult(users.getNames(), ladderGame.getLadderLine(), prizes.getNames());
     }
 
 }
