@@ -40,9 +40,8 @@ public class Ladder {
             throw new InvalidCountOfStepsException();
     }
 
-    public List<List<Boolean>> getLadder() {
+    public List<Step> getLadder() {
         return ladder.stream()
-                .map(Step::getPoints)
                 .collect(Collectors.collectingAndThen(Collectors.toList(), Collections::unmodifiableList));
     }
 
@@ -55,14 +54,14 @@ public class Ladder {
         return table;
     }
 
-    private static void moveStep(List<Integer> table, List<Boolean> points) {
+    private static void moveStep(List<Integer> table, List<Point> points) {
         for (int index = 0; index < points.size(); index++) {
             swapIndex(table, index, points.get(index));
         }
     }
 
-    private static void swapIndex(List<Integer> table, int index, boolean hasLine) {
-        if (!hasLine) {
+    private static void swapIndex(List<Integer> table, int index, Point point) {
+        if (!point.hasLine()) {
             return;
         }
 

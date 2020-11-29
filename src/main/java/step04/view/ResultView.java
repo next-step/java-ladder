@@ -1,9 +1,6 @@
 package step04.view;
 
-import step04.domain.Name;
-import step04.domain.NamesOfResult;
-import step04.domain.Matcher;
-import step04.domain.NamesOfParticipant;
+import step04.domain.*;
 
 import java.util.List;
 import java.util.Map;
@@ -26,10 +23,10 @@ public class ResultView {
         return String.format("%" + repeat + "s", string);
     }
 
-    public static void printLadderWithNames(NamesOfParticipant namesOfParticipant, NamesOfResult namesOfResult, List<List<Boolean>> ladder) {
+    public static void printLadderWithNames(NamesOfParticipant namesOfParticipant, NamesOfResult namesOfResult, Ladder ladder) {
         System.out.println(LADDER_RESULT);
         printNames(namesOfParticipant.getNames());
-        printLadder(ladder);
+        printLadder(ladder.getLadder());
         printNames(namesOfResult.getNames());
     }
 
@@ -40,17 +37,17 @@ public class ResultView {
         System.out.println();
     }
 
-    private static void printLadder(List<List<Boolean>> ladder) {
+    private static void printLadder(List<Step> ladder) {
         ladder.forEach(step -> {
             System.out.print(FIRST_BLANK + STEP);
-            printSteps(step);
+            printSteps(step.getPoints());
             System.out.println();
         });
     }
 
-    private static void printSteps(List<Boolean> step) {
+    private static void printSteps(List<Point> step) {
         step.forEach(point -> {
-            String drawing = point ? LINE : BLANK;
+            String drawing = point.hasLine() ? LINE : BLANK;
             System.out.print(drawing + STEP);
         });
     }

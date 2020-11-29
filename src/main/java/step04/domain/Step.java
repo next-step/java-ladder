@@ -54,9 +54,8 @@ public class Step {
                 });
     }
 
-    public List<Boolean> getPoints() {
+    public List<Point> getPoints() {
         return points.stream()
-                .map(Point::hasLine)
                 .collect(Collectors.collectingAndThen(Collectors.toList(), Collections::unmodifiableList));
     }
 

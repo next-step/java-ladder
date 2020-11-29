@@ -18,7 +18,7 @@ public class Main {
         int countOfSteps = InputView.readCountOfSteps();
 
         Ladder ladder = Ladder.of(countOfSteps, namesOfParticipant.size(), RandomPointStrategy.of());
-        ResultView.printLadderWithNames(namesOfParticipant, namesOfResult, ladder.getLadder());
+        ResultView.printLadderWithNames(namesOfParticipant, namesOfResult, ladder);
 
         Matcher matcher = matcherBuilder.matchedTable(ladder.getResultTable()).build();
 
