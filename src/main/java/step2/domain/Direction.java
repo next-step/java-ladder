@@ -8,5 +8,7 @@ public enum Direction {
 
     Direction() {}
 
-
+    Direction getDirection(){
+        return this;
+    }
 }

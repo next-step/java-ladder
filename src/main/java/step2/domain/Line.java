@@ -6,9 +6,9 @@ import java.util.Objects;
 import static java.util.Collections.unmodifiableList;
 
 public class Line {
-    private final List<LadderPoint> ladderPoints;
+    private final List<Direction> ladderPoints;
 
-    private Line(List<LadderPoint> ladderPoints) {
+    private Line(List<Direction> ladderPoints) {
         this.ladderPoints = ladderPoints;
     }
 
@@ -17,7 +17,7 @@ public class Line {
     }
 
 
-    public List<LadderPoint> getLadderPoints() {
+    public List<Direction> getDirections() {
         return unmodifiableList(ladderPoints);
     }
 
