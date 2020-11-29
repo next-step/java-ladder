@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class DirectionTest {
     @Test
@@ -32,6 +33,16 @@ public class DirectionTest {
     void randomNextFalseTest() {
         Direction direction = Direction.of(false, false);
         assertThat(direction.next().isLeft()).isFalse();
+    }
+
+    @Test
+    @DisplayName("다음(오른쪽) Direction의 right의 값을 지정한 경우")
+    void nextTrueTest() {
+        Direction direction = Direction.of(false, false);
+        assertAll(() -> {
+            Direction next = direction.next(true);
+            assertThat(next.isRight()).isTrue();
+        });
     }
 
     @Test
