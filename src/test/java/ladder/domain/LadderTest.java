@@ -20,7 +20,7 @@ public class LadderTest {
             "3:true,false,false",
             "2:true,false"
     }, delimiter = ':')
-    @DisplayName("이동가능 여부를 참으로 할 경우 결과값 확인")
+    @DisplayName("이동가능 여부를 참으로 할 경우 결과값 확인(첫번째 무조건 true, 마지막 무조건 false)")
     void ladder_createLines(int countOfPerson, String points) {
         Lines lines = Ladder.createLines(countOfPerson,1,() -> true);
         Line actual = lines.getLines().get(0);
