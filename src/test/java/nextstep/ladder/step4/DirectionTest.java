@@ -22,9 +22,16 @@ public class DirectionTest {
 
     @Test
     @DisplayName("Direction의 right가 true이면, 다음(오른쪽) Direction은 of(true, false)여야 한다.")
-    void nextRightDirectionTest() {
+    void randomNextTrueTest() {
         Direction direction = Direction.of(false, true);
         assertThat(direction.next()).isEqualTo(Direction.of(true, false));
+    }
+
+    @Test
+    @DisplayName("Direction의 right가 false이면, 다음(오른쪽) Direction은 left가 false여야 한다.")
+    void randomNextFalseTest() {
+        Direction direction = Direction.of(false, false);
+        assertThat(direction.next().isLeft()).isFalse();
     }
 
     @Test
