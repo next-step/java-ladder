@@ -1,4 +1,4 @@
-package nextstep.ladder.step4;
+package nextstep.ladder.domain;
 
 public class Point {
     private final int index;

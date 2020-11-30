@@ -1,9 +1,9 @@
-package nextstep.ladder.step4;
+package nextstep.ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static nextstep.ladder.step4.LadderPointGenerator.generatePoint;
+import static nextstep.ladder.domain.LadderPointGenerator.generatePoint;
 
 public class LadderLine {
     private final List<Point> points;

@@ -1,7 +1,7 @@
-package nextstep.ladder.step4;
+package nextstep.ladder.domain;
 
 
-import static nextstep.ladder.step4.LadderPointGenerator.generatePoint;
+import static nextstep.ladder.domain.LadderPointGenerator.generatePoint;
 
 public class Direction {
     public static final String INVALID_STATE_ERR_MSG = "Direction의 left와 right가 모두 true일 수 없습니다.";

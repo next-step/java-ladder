@@ -1,5 +1,6 @@
 package nextstep.ladder.step4;
 
+import nextstep.ladder.domain.LadderLine;
 import org.junit.jupiter.api.Test;
 
 public class LadderLineTest {
