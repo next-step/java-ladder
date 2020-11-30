@@ -30,6 +30,7 @@ public class StreamStudy {
                 .filter(word -> word.length() > 12)
                 .distinct()
                 .sorted(Comparator.comparing(String::length).reversed())
+                .limit(100)
                 .map(String::toLowerCase)
                 .forEach(System.out::println);
     }
