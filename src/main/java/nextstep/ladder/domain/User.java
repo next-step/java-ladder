@@ -3,10 +3,10 @@ package nextstep.ladder.domain;
 import java.util.Objects;
 
 public class User {
-    public static final int LENGTH_MINIMUM = 1;
-    public static final int LENGTH_MAXIMUM = 5;
-    public static final String LENGTH_MINIMUM_MENTION = "이름은 %d글자를 초과할 수 없습니다.";
-    public static final String LENGTH_MAXIMUM_MENTION = "이름은 %d글자를 초과할 수 없습니다.";
+    private static final int LENGTH_MINIMUM = 1;
+    private static final int LENGTH_MAXIMUM = 5;
+    private static final String LENGTH_MINIMUM_MENTION = "이름은 %d글자를 초과할 수 없습니다.";
+    private static final String LENGTH_MAXIMUM_MENTION = "이름은 %d글자를 초과할 수 없습니다.";
     private String name;
 
     public User(String name) {

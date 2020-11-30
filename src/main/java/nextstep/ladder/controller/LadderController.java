@@ -16,6 +16,8 @@ public class LadderController {
 
         InputUsers inputUsers = new InputUsers(inputView.inputParticipants());
         Users users = initUsers(inputUsers);
+
+        int height = Integer.parseInt(inputView.inputHeight());
     }
 
     public Users initUsers(InputUsers inputUsers) {

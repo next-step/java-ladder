@@ -1,7 +1,7 @@
 package nextstep.ladder.domain;
 
 public class InputUsers {
-    public static final String COMMA_DELIMITER = ",";
+    private static final String COMMA_DELIMITER = ",";
     private String names;
 
     public InputUsers(String names) {
