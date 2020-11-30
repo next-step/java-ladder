@@ -1,8 +1,10 @@
 package ladder.view;
 
-import static ladder.view.ViewString.NEWLINE;
+import java.util.stream.Stream;
 
 public class Printer {
+    private static final String NEWLINE = System.lineSeparator();
+
     public static void print(final String x) {
         System.out.print(x);
     }
@@ -11,11 +13,14 @@ public class Printer {
         System.out.println(x);
     }
 
-    public static void print(final Object x) {
-        System.out.print(x);
-    }
 
     public static void printNewLine() {
-        System.out.print(NEWLINE);
+        printNewLine(1);
+    }
+    
+    public static void printNewLine(int times) {
+        Stream.generate(() -> NEWLINE)
+                .limit(times)
+                .forEach(System.out::print);
     }
 }

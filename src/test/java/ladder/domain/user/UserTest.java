@@ -1,14 +1,16 @@
-package ladder.domain;
+package ladder.domain.user;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static ladder.domain.User.USER_NAME_LENGTH_MUST_NOT_MORE_THEN_FIVE;
-import static ladder.domain.User.USER_NAME_MUST_NOT_BE_BLANK;
+import static ladder.domain.user.User.USER_NAME_LENGTH_MUST_NOT_MORE_THEN_FIVE;
+import static ladder.domain.user.User.USER_NAME_MUST_NOT_BE_BLANK;
 import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 class UserTest {
+    @DisplayName("정적 팩터리 메서드를 이용한 생성")
     @Test
     void of() {
         // given

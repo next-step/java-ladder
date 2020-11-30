@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -9,6 +9,7 @@ import static util.Preconditions.checkArgument;
 public class LadderLine {
     private static final int MINIMUM_USER_COUNT = 2;
     public static final String PERSON_COUNT_MUST_MORE_THEN_TWO = "person count must more then two";
+    
     private final List<Point> points;
 
     private LadderLine(final List<Point> points) {
@@ -53,5 +54,11 @@ public class LadderLine {
 
     public List<Point> getPoints() {
         return points;
+    }
+
+    public int move(final int position) {
+        final Point nowPoint = points.get(position);
+        final int afterMovePosition = nowPoint.move();
+        return afterMovePosition;
     }
 }

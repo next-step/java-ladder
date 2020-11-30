@@ -1,23 +1,56 @@
 package ladder.domain;
 
-import ladder.dto.LadderResultDTO;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.LadderLine;
+import ladder.domain.prize.Prize;
+import ladder.domain.prize.Prizes;
+import ladder.domain.user.User;
+import ladder.domain.user.Users;
+
+import java.util.List;
+import java.util.Map;
+
+import static util.Preconditions.checkArgument;
 
 public class LadderGame {
-    private final Users users;
-    private final Ladder ladder;
+    public static final String USERS_AND_PRIZES_SIZE_MUST_BE_EQUAL = "users and prizes size must be equal";
 
-    private LadderGame(final Users users, final Ladder ladder) {
-        this.users = users;
+    private final Ladder ladder;
+    private final LadderGameResult ladderGameResult = new LadderGameResult();
+
+    private LadderGame(final Ladder ladder) {
         this.ladder = ladder;
     }
 
-    public static LadderGame of(final String usersExpression, final int ladderHeight) {
-        final Users users = UsersGenerator.generate(usersExpression);
-        final Ladder ladder = Ladder.of(users.size(), ladderHeight);
-        return new LadderGame(users, ladder);
+    public static LadderGame of(final int userCount, final int ladderHeight) {
+        final Ladder ladder = Ladder.of(userCount, ladderHeight);
+        return new LadderGame(ladder);
     }
 
-    public LadderResultDTO getLadderViewResult() {
-        return new LadderResultDTO(users.getNames(), ladder.getLadderLines());
+    public Map<String, String> play(final Users users, final Prizes prizes) {
+        checkArgument(users.size() == prizes.size(), USERS_AND_PRIZES_SIZE_MUST_BE_EQUAL);
+        if (isAlreadyFinished()) {
+            ladderGameResult.toDTO();
+        }
+
+        for (int i = 0; i < users.size(); i++) {
+            saveResult(i, users, prizes);
+        }
+        return ladderGameResult.toDTO();
+    }
+
+    private void saveResult(final int startPosition, final Users users, final Prizes prizes) {
+        final User user = users.findUserByPosition(startPosition);
+        final int lastPosition = ladder.startAt(startPosition);
+        final Prize prize = prizes.findPrizeByPosition(lastPosition);
+        ladderGameResult.put(user, prize);
+    }
+
+    public boolean isAlreadyFinished() {
+        return ladderGameResult.size() > 0;
+    }
+
+    public List<LadderLine> getLadderLine() {
+        return ladder.getLadderLines();
     }
 }
