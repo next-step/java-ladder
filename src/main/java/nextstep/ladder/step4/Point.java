@@ -39,4 +39,12 @@ public class Point {
 
         return index;
     }
+
+    @Override
+    public String toString() {
+        return "Point{" +
+                "index=" + index +
+                ", direction=" + direction +
+                '}';
+    }
 }

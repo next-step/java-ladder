@@ -70,4 +70,12 @@ public class Direction {
         result = 31 * result + (right ? 1 : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Direction{" +
+                "left=" + left +
+                ", right=" + right +
+                '}';
+    }
 }
