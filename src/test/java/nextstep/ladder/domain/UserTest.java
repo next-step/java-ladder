@@ -16,4 +16,14 @@ class UserTest {
         );
     }
 
+    @Test
+    @DisplayName("참여자 이름이 빈칸일 경우 예외처리")
+    void checkEmptyName() {
+        String name = "";
+
+        Assertions.assertThrows(IllegalArgumentException.class,
+                () -> new User(name)
+        );
+    }
+
 }
