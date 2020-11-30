@@ -16,7 +16,6 @@ public class InputUi {
     }
 
     public static void close() {
-        SCANNER.close()
-        ;
+        SCANNER.close();
     }
 }
