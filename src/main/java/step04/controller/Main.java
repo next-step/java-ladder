@@ -12,7 +12,7 @@ public class Main {
         NamesOfParticipant namesOfParticipant = readParticipants();
         NamesOfResult namesOfResult = readNamesOfResults();
 
-        Matcher.Builder matcherBuilder = Matcher.Builder.of(namesOfParticipant)
+        ResultMatcher.Builder matcherBuilder = ResultMatcher.Builder.of(namesOfParticipant)
                 .namesOfResult(namesOfResult);
 
         int countOfSteps = InputView.readCountOfSteps();
@@ -20,9 +20,9 @@ public class Main {
         Ladder ladder = Ladder.of(countOfSteps, namesOfParticipant.size(), RandomPointStrategy.of());
         ResultView.printLadderWithNames(namesOfParticipant, namesOfResult, ladder);
 
-        Matcher matcher = matcherBuilder.matchedTable(ladder.getResultTable()).build();
+        ResultMatcher resultMatcher = matcherBuilder.tableOfResult(ladder.matchTable()).build();
 
-        printResult(matcher);
+        printResult(resultMatcher);
     }
 
     public static NamesOfParticipant readParticipants() {
@@ -35,14 +35,14 @@ public class Main {
         return NamesOfResult.of(resultsOfLADDER);
     }
 
-    public static void printResult(Matcher matcher) {
+    public static void printResult(ResultMatcher resultMatcher) {
         String target = InputView.readNamesOfParticipant();
         while(!ALL.equals(target)) {
             ResultView.printResult(
-                    matcher.getResultByParticipant(Name.of(target)).toString()
+                    resultMatcher.getResultByParticipant(Name.of(target)).toString()
             );
             target = InputView.readNamesOfParticipant();
         }
-        ResultView.printResults(matcher);
+        ResultView.printResults(resultMatcher);
     }
 }
