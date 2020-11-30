@@ -11,8 +11,6 @@ public class LadderHeightInputView extends AbstractView{
         stringBuilder.append(LADDER_HEIGHT_MESSAGE);
         printAndClear();
 
-//        int height = scanner.nextInt();
-//        return new LadderHeight(height);
         return scanner.nextInt();
     }
 }
