@@ -6,6 +6,7 @@ import java.util.Objects;
 
 public class Player {
 
+    public static final int PLAYER_NAME_MIN_LENGTH = 5;
     private final String name;
 
     private Player(final String name) {
@@ -16,7 +17,7 @@ public class Player {
         return new Player(name);
     }
     private static void validationName(final String name) {
-        if (name.length() > 5) {
+        if (name.length() > PLAYER_NAME_MIN_LENGTH) {
             throw new NameLengthException();
         }
     }

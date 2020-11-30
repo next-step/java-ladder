@@ -6,18 +6,16 @@ import java.util.stream.IntStream;
 
 public class MustLineStrategy implements LineStrategy {
 
-    private boolean line;
 
     @Override
-    public List<Boolean> createLine(int personCount) {
+    public List<Direction> createLine(int personCount) {
         return IntStream.range(0, personCount)
                 .mapToObj(i -> getLine())
                 .collect(Collectors.toList());
     }
 
-    private boolean getLine() {
-        line = !line;
-        return line;
+    private Direction getLine() {
+        return Direction.DOWN;
     }
 
 }
