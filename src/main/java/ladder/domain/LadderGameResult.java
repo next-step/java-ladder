@@ -7,7 +7,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class LadderGameResult {
-    private Map<User, Prize> result = new LinkedHashMap<>();
+    private final Map<User, Prize> result = new LinkedHashMap<>();
 
     public void put(final User user, final Prize prize) {
         result.put(user, prize);
