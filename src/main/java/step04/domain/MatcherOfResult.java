@@ -7,12 +7,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-public class ResultMatcher {
+public class MatcherOfResult {
     private final NamesOfParticipant namesOfParticipant;
     private final NamesOfResult namesOfResult;
     private final TableOfResult tableOfResult;
 
-    private ResultMatcher(Builder builder) {
+    private MatcherOfResult(Builder builder) {
         this.namesOfParticipant = builder.namesOfParticipant;
         this.namesOfResult = builder.namesOfResult;
         this.tableOfResult = builder.tableOfResult;
@@ -44,8 +44,8 @@ public class ResultMatcher {
             return this;
         }
 
-        public ResultMatcher build() {
-            return new ResultMatcher(this);
+        public MatcherOfResult build() {
+            return new MatcherOfResult(this);
         }
 
         private void validateCount(int count1, int count2) {
@@ -80,10 +80,10 @@ public class ResultMatcher {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ResultMatcher resultMatcher = (ResultMatcher) o;
-        return Objects.equals(namesOfParticipant, resultMatcher.namesOfParticipant) &&
-                Objects.equals(namesOfResult, resultMatcher.namesOfResult) &&
-                Objects.equals(tableOfResult, resultMatcher.tableOfResult);
+        MatcherOfResult matcherOfResult = (MatcherOfResult) o;
+        return Objects.equals(namesOfParticipant, matcherOfResult.namesOfParticipant) &&
+                Objects.equals(namesOfResult, matcherOfResult.namesOfResult) &&
+                Objects.equals(tableOfResult, matcherOfResult.tableOfResult);
     }
 
     @Override
