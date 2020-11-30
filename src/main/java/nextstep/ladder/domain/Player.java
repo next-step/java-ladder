@@ -4,9 +4,12 @@ import java.util.Objects;
 
 public class Player {
     public static final int MAX_LENGTH = 5;
+    public static final String BLANK = " ";
     private final String name;
 
     public Player(String name) {
+        name = name.replace(BLANK, "");
+
         checkLength(name);
         checkEmpty(name);
 
@@ -20,7 +23,7 @@ public class Player {
     }
 
     private void checkEmpty(String name) {
-        if (name.replace(" ", "").isEmpty()) {
+        if (name.isEmpty()) {
             throw new IllegalArgumentException("name must not be empty");
         }
     }
