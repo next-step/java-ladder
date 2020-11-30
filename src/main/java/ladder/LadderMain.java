@@ -42,13 +42,11 @@ public class LadderMain {
     }
 
     private static void checkResult(final Map<String, String> ladderGameResult) {
-        while (true) {
-            final String userName = InputView.plzEnterUserName();
-            if (ALL.equals(userName)) {
-                OutputView.printAllUserResult(ladderGameResult);
-                break;
-            }
+        String userName;
+        do {
+            userName = InputView.plzEnterUserName();
             OutputView.printUserResult(ladderGameResult, userName);
-        }
+        } while (!ALL.equals(userName));
+        OutputView.printAllUserResult(ladderGameResult);
     }
 }

@@ -30,7 +30,7 @@ public class LadderGame {
     public Map<String, String> play(final Users users, final Prizes prizes) {
         checkArgument(users.size() == prizes.size(), USERS_AND_PRIZES_SIZE_MUST_BE_EQUAL);
         if (isAlreadyFinished()) {
-            ladderGameResult.toDTO();
+            return ladderGameResult.toDTO();
         }
 
         for (int i = 0; i < users.size(); i++) {
