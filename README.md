@@ -2,7 +2,7 @@
 
 ## Step1 자바8 스트림, 람다, Optional
 * [X] Lambda
-* [ ] Stream
+* [X] Stream
 * [ ] Optional
 
 ## 진행 방법
