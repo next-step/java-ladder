@@ -10,8 +10,6 @@ public class Floor {
     private Point startPoint;
     private Floor nextFloor;
 
-    protected Floor() {}
-
     protected Floor(Point startPoint) {
         this.startPoint = startPoint;
     }

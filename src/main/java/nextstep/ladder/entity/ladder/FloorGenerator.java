@@ -2,7 +2,7 @@ package nextstep.ladder.entity.ladder;
 
 import java.util.Optional;
 
-public class FloorGenerator extends Floor {
+public class FloorGenerator {
 
     private final LinkGenerator linkGenerator;
 
