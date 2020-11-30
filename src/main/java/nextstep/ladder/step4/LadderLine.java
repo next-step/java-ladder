@@ -39,6 +39,10 @@ public class LadderLine {
         points.add(point);
     }
 
+    public int move(int position) {
+        return points.get(position).move();
+    }
+
     @Override
     public String toString() {
         return "LadderLine{" +
