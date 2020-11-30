@@ -13,6 +13,10 @@ public class Point {
         return new Point(0, Direction.first(right));
     }
 
+    public Point next() {
+        return new Point(index + 1, direction.next());
+    }
+
     public Point next(boolean nextRight) {
         return new Point(index + 1, direction.next(nextRight));
     }
