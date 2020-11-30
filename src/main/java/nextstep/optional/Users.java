@@ -15,10 +15,8 @@ public class Users {
 
     User getUser(String name) {
         return users.stream()
-                .map(Optional::of)
-                .filter(user -> user.get().matchName(name))
+                .filter(user -> user.matchName(name))
                 .findFirst()
-                .orElse(Optional.of(DEFAULT_USER))
-                .get();
+                .orElseGet(() -> DEFAULT_USER);
     }
 }
