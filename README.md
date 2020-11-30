@@ -1,4 +1,10 @@
 # 사다리 게임
+
+## Step1 자바8 스트림, 람다, Optional
+* [X] Lambda
+* [X] Stream
+* [X] Optional
+
 ## 진행 방법
 * 사다리 게임 게임 요구사항을 파악한다.
 * 요구사항에 대한 구현을 완료한 후 자신의 github 아이디에 해당하는 브랜치에 Pull Request(이하 PR)를 통해 코드 리뷰 요청을 한다.
