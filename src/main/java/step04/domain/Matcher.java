@@ -10,19 +10,19 @@ import java.util.Objects;
 public class Matcher {
     private final NamesOfParticipant namesOfParticipant;
     private final NamesOfResult namesOfResult;
-    private final List<Integer> matchedTable;
+    private final TableOfResult tableOfResult;
 
     private Matcher(Builder builder) {
         this.namesOfParticipant = builder.namesOfParticipant;
         this.namesOfResult = builder.namesOfResult;
-        this.matchedTable = builder.matchedTable;
+        this.tableOfResult = builder.tableOfResult;
     }
 
 
     public static class Builder {
         private final NamesOfParticipant namesOfParticipant;
         private NamesOfResult namesOfResult;
-        private List<Integer> matchedTable;
+        private TableOfResult tableOfResult;
 
         private Builder(NamesOfParticipant namesOfParticipant) {
             this.namesOfParticipant = namesOfParticipant;
@@ -38,9 +38,9 @@ public class Matcher {
             return this;
         }
 
-        public Builder matchedTable(List<Integer> matchedTable) {
-            this.matchedTable = matchedTable;
-            validateCount(namesOfParticipant.size(), matchedTable.size());
+        public Builder tableOfResult(TableOfResult tableOfResult) {
+            this.tableOfResult = tableOfResult;
+            validateCount(namesOfParticipant.size(), tableOfResult.size());
             return this;
         }
 
@@ -58,7 +58,7 @@ public class Matcher {
 
     public Name getResultByParticipant(Name nameOfParticipant) {
         int indexOfName = namesOfParticipant.indexOf(nameOfParticipant);
-        int indexOfMatched = matchedTable.indexOf(indexOfName);
+        int indexOfMatched = tableOfResult.indexOf(indexOfName);
         return namesOfResult.getNames().get(indexOfMatched);
     }
 
@@ -69,7 +69,7 @@ public class Matcher {
         List<Name> namesOfResult2 = namesOfResult.getNames();
 
         for (int i = 0; i < this.namesOfParticipant.size(); i++) {
-            int targetIndex = matchedTable.indexOf(i);
+            int targetIndex = tableOfResult.indexOf(i);
             map.put(namesOfParticipant.get(i), namesOfResult2.get(targetIndex));
         }
 
@@ -83,11 +83,11 @@ public class Matcher {
         Matcher matcher = (Matcher) o;
         return Objects.equals(namesOfParticipant, matcher.namesOfParticipant) &&
                 Objects.equals(namesOfResult, matcher.namesOfResult) &&
-                Objects.equals(matchedTable, matcher.matchedTable);
+                Objects.equals(tableOfResult, matcher.tableOfResult);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(namesOfParticipant, namesOfResult, matchedTable);
+        return Objects.hash(namesOfParticipant, namesOfResult, tableOfResult);
     }
 }
