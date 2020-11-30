@@ -2,23 +2,28 @@ package ladder.view;
 
 import ladder.domain.Line;
 import ladder.domain.Lines;
+import ladder.domain.User;
+import ladder.domain.Users;
+
 import java.util.List;
 import java.util.stream.IntStream;
-import static ladder.view.ResultViewConfig.*;
-import static ladder.domain.LadderConfig.*;
 
 public class ResultView {
 
+    private static final int MAX_NAME_LENGTH = 5;
+    private static final String RESULT_EXECUTE_MESSAGE = "\n실행결과\n\n";
+
     private ResultView() {}
 
-    public static void printGameResult(List<String> userNames, Lines lines) {
+    public static void printGameResult(Users users, Lines lines) {
         System.out.print(RESULT_EXECUTE_MESSAGE);
-        printGamePlayers(userNames);
+        printGamePlayers(users);
         printLadderGame(lines);
     }
 
-    private static void printGamePlayers(List<String> userNames) {
-        userNames.forEach(name -> System.out.print(getPlayer(name) + " "));
+    private static void printGamePlayers(Users users) {
+        List<User> userList = users.getUsers();
+        userList.forEach(e -> System.out.print(getPlayer(e.getUserName()) + " "));
         System.out.println();
     }
 
