@@ -59,6 +59,22 @@ public class Step {
                 .collect(Collectors.collectingAndThen(Collectors.toList(), Collections::unmodifiableList));
     }
 
+    public TableOfResult move(TableOfResult tableOfResult) {
+        TableOfResult tableOfResult1 = tableOfResult;
+        for (int index = 0; index < points.size(); index++) {
+            tableOfResult1 = Step.swap(tableOfResult, index, points.get(index));
+        }
+        return tableOfResult1;
+    }
+
+    private static TableOfResult swap(TableOfResult tableOfResult, int index, Point point) {
+        if (!point.hasLine()) {
+            return tableOfResult;
+        }
+        return tableOfResult.swapIndex(index);
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
