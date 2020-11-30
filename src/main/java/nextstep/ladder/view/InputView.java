@@ -17,6 +17,11 @@ public class InputView {
 
     public static int getHeight() {
         out.println(GET_HEIGHT_MESSAGE);
-        return Integer.parseInt(scanner.nextLine());
+
+        try {
+            return Integer.parseInt(scanner.nextLine());
+        } catch (NumberFormatException numberFormatException) {
+            throw new NumberFormatException("please input number");
+        }
     }
 }
