@@ -14,7 +14,7 @@ public class Line {
 
     public static Line of(List<Boolean> points) {
         if (points == null || points.size() == 0)
-            throw new NullPointerException();
+            throw new IllegalArgumentException();
 
         return new Line(points);
     }

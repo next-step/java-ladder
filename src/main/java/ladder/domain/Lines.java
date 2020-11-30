@@ -11,8 +11,8 @@ public class Lines {
     }
 
     public static Lines of(List<Line> lines) {
-        if(lines == null)
-            throw new NullPointerException();
+        if(lines == null || lines.size() == 0)
+            throw new IllegalArgumentException();
 
         return new Lines(lines);
     }

@@ -29,11 +29,11 @@ public class LineTest {
     }
 
     @Test
-    @DisplayName("라인 생성시 null 값 또는 size 가 0인 값으로 객체 생성시 exception 발생")
-    void line_points_ThrowNullPointException() {
+    @DisplayName("라인 생성시 null 값 또는 size 가 0인 값으로 객체 생성시 IllegalArgumentException 발생")
+    void line_points_ThrowIllegalArgumentException() {
         assertThatThrownBy(() -> {
             Line.of(new ArrayList<>());
             Line.of(null);
-        }).isInstanceOf(NullPointerException.class);
+        }).isInstanceOf(IllegalArgumentException.class);
     }
 }
