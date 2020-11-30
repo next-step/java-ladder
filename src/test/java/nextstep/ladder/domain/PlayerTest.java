@@ -12,6 +12,15 @@ class PlayerTest {
         assertThatThrownBy(() -> {
             new Player("pppppp");
         }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("name must be over 5");
+                .hasMessageContaining("name must not be over 5");
+    }
+
+    @Test
+    @DisplayName("이름에 공백이 있으면 에러")
+    void createPlayer_nameIsEmpty() {
+        assertThatThrownBy(() -> {
+            new Player("    ");
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("name must not be empty");
     }
 }
