@@ -24,7 +24,7 @@ public class User {
     }
 
     private void nameLengthException() {
-        if(userName.length() < MIN_NAME_LENGTH || userName.length() > MAX_NAME_LENGTH) {
+        if ((userName.length() < MIN_NAME_LENGTH) || (userName.length() > MAX_NAME_LENGTH)) {
             throw new IllegalArgumentException(NAME_LENGTH_ERROR);
         }
     }

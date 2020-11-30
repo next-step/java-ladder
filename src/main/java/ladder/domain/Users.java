@@ -28,7 +28,7 @@ public class Users {
     }
 
     private static List<User> splitUserNames(String userNames) {
-        if(userNames == null || userNames.equals(""))
+        if (userNames == null || userNames.equals(""))
             throw new IllegalArgumentException(USER_NAMES_EMPTY);
 
         return Arrays.stream(userNames.split(USER_NAMEs_SEPARATOR))

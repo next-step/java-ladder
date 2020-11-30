@@ -29,7 +29,7 @@ public class Ladder {
     }
 
     private int heightValidationCheck(int height) {
-        if(height < MIN_HEIGHT) {
+        if (height < MIN_HEIGHT) {
             throw new IllegalArgumentException(INPUT_HEIGHT_ERROR);
         }
         return height;
@@ -49,7 +49,7 @@ public class Ladder {
     }
 
     private boolean isMovable(boolean condition, MoveStrategy strategy) {
-        if(condition) {
+        if (condition) {
             return false;
         }
         return strategy.isMovable();

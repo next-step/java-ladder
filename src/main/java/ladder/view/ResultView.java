@@ -28,7 +28,7 @@ public class ResultView {
     }
 
     private static String getPlayer(String name) {
-        if(name.length() == MAX_NAME_LENGTH) {
+        if (name.length() == MAX_NAME_LENGTH) {
             return name;
         }
         return String.format("%-"+MAX_NAME_LENGTH+"s",name);
@@ -50,7 +50,7 @@ public class ResultView {
     }
 
     private static void parseBooleanToString(boolean moved) {
-        if(moved) {
+        if (moved) {
             System.out.print("|-----");
             return;
         }

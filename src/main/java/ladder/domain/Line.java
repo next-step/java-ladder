@@ -20,7 +20,7 @@ public class Line {
     }
 
     public boolean hasRightMoved(int index) {
-        if (index == (points.size()-  1)) {
+        if (index == (points.size() - 1)) {
             return false;
         }
         return points.get(index);
