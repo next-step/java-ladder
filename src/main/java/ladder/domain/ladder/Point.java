@@ -50,6 +50,6 @@ public class Point {
     }
 
     public int move() {
-        return index + direction.getMovePositionVal();
+        return direction.move(index);
     }
 }

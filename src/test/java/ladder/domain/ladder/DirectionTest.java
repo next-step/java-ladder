@@ -42,4 +42,46 @@ class DirectionTest {
         // then
         assertThat(actualDirection).isEqualTo(expectedDirection);
     }
+
+    @DisplayName("오른쪽 방향으로 한칸 이동")
+    @Test
+    void move_right() {
+        // given
+        final int index = 0;
+        final Direction direction = Direction.RIGHT;
+
+        // when
+        final int afterMovePosition = direction.move(index);
+
+        // then
+        assertThat(afterMovePosition).isEqualTo(index + 1);
+    }
+
+    @DisplayName("왼쪽 방향으로 한칸 이동")
+    @Test
+    void move_left() {
+        // given
+        final int index = 1;
+        final Direction direction = Direction.LEFT;
+
+        // when
+        final int afterMovePosition = direction.move(index);
+
+        // then
+        assertThat(afterMovePosition).isEqualTo(index - 1);
+    }
+
+    @DisplayName("기존 사다리 유지")
+    @Test
+    void not_move() {
+        // given
+        final int index = 1;
+        final Direction direction = Direction.NONE;
+
+        // when
+        final int afterMovePosition = direction.move(index);
+
+        // then
+        assertThat(afterMovePosition).isEqualTo(index);
+    }
 }

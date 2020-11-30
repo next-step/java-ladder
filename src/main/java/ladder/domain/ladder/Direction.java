@@ -35,9 +35,8 @@ public enum Direction {
     public boolean hasRight() {
         return right;
     }
-
-    public int getMovePositionVal() {
-        return movePositionVal;
+    
+    public int move(final int index) {
+        return index + movePositionVal;
     }
-
 }
