@@ -3,7 +3,7 @@
 ## Step1 자바8 스트림, 람다, Optional
 * [X] Lambda
 * [X] Stream
-* [ ] Optional
+* [X] Optional
 
 ## 진행 방법
 * 사다리 게임 게임 요구사항을 파악한다.
