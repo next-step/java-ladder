@@ -11,7 +11,7 @@ class ConnectionCreatorTest {
     @DisplayName("직전에 연결을 만들었다면 연결 생성x")
     void create() {
         ConnectionCreator connectionCreator = new ConnectionCreator();
-        ConnectionCreationStrategy connectionCreationStrategy = () -> true;
+        ConnectionCreationStrategy connectionCreationStrategy = (point) -> true;
 
         Connection connectionConnected = connectionCreator.create(0, connectionCreationStrategy);
         assertThat(connectionConnected).isEqualTo(new Connection(true));
