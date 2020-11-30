@@ -1,19 +1,16 @@
 package nextstep.ladder.entity.ladder;
 
-import nextstep.ladder.LadderController;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class LadderTest {
 
     private LinkGenerator linkGenerator = RandomLinkGenerator.getInstance();
-    private LadderConfiguration ladderConfiguration = new LadderConfiguration(5, 4);
 
     @Test
     void test_createLadder() {
-
-        Ladder ladder = Ladder.create(ladderConfiguration, linkGenerator);
+        // Given
+        FloorGenerator floorGenerator = new FloorGenerator(linkGenerator, new LadderLine(4));
+        Ladder ladder = Ladder.create(new LadderHeight(5), floorGenerator);
 
         System.out.println(ladder.toString());
     }

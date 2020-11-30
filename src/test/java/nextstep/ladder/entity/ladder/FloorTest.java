@@ -9,9 +9,9 @@ class FloorTest {
     @Test
     void test_nextFloor() {
         // Given
-        FloorGenerator floorGenerator = new FloorGenerator(RandomLinkGenerator.getInstance());
-        Floor firstFloor = floorGenerator.create(5);
-        Floor secondFloor = floorGenerator.create(5);
+        FloorGenerator floorGenerator = new FloorGenerator(RandomLinkGenerator.getInstance(), new LadderLine(5));
+        Floor firstFloor = floorGenerator.create();
+        Floor secondFloor = floorGenerator.create();
 
         // When
         firstFloor.next(secondFloor);

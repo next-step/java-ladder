@@ -21,8 +21,8 @@ class UsersTest {
         Users users = new Users(this.users);
 
         // When
-        String userNames = users.getUserNames();
+        List<String> userNames = users.getUserNames();
 
-        System.out.println(userNames);
+        assertArrayEquals(userNames.toArray(), new String[]{"pobi", "honux", "crong", "jk"});
     }
 }

@@ -1,10 +1,7 @@
 package nextstep.ladder;
 
 import nextstep.ladder.entity.User;
-import nextstep.ladder.entity.ladder.Ladder;
-import nextstep.ladder.entity.ladder.LadderConfiguration;
-import nextstep.ladder.entity.ladder.RandomLinkGenerator;
-import nextstep.ladder.entity.ladder.Users;
+import nextstep.ladder.entity.ladder.*;
 import nextstep.ladder.view.LadderHeightInputView;
 import nextstep.ladder.view.LadderResultView;
 import nextstep.ladder.view.UsersInputView;
@@ -18,11 +15,12 @@ public class LadderController {
         // 사용자 입력 받기
         Users users = getUsers();
         // 사다리 높이 입력 받기
-        int ladderHeight = getLadderHeight();
+        LadderHeight ladderHeight = getLadderHeight();
 
         // 사다리 생성
-        LadderConfiguration ladderConfiguration = new LadderConfiguration(ladderHeight, users.getUserCount());
-        Ladder ladder = Ladder.create(ladderConfiguration, RandomLinkGenerator.getInstance());
+        FloorGenerator floorGenerator
+                = new FloorGenerator(RandomLinkGenerator.getInstance(), new LadderLine(users.getUserCount()));
+        Ladder ladder = Ladder.create(ladderHeight, floorGenerator);
 
         // 출력
         LadderResultView.display(ladder, users);
@@ -36,8 +34,8 @@ public class LadderController {
         return new Users(users);
     }
 
-    private int getLadderHeight() {
-        return LadderHeightInputView.getLadderHeight();
+    private LadderHeight getLadderHeight() {
+        return new LadderHeight(LadderHeightInputView.getLadderHeight());
     }
 
 }

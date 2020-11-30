@@ -5,27 +5,28 @@ import java.util.Optional;
 public class FloorGenerator {
 
     private final LinkGenerator linkGenerator;
+    private final LadderLine ladderLine;
 
-    public FloorGenerator(LinkGenerator linkGenerator) {
-        super();
+    public FloorGenerator(LinkGenerator linkGenerator, LadderLine ladderLine) {
         this.linkGenerator = linkGenerator;
+        this.ladderLine = ladderLine;
     }
 
-    public Floor create(int countOfPoints) {
+    public Floor create() {
         // 점 초기화
-        Point point = initPoints(countOfPoints);
+        Point point = initPoints();
         // 점 연결
         createLinkRecursively(point);
         return new Floor(point);
     }
 
-    private Point initPoints(int countOfPoints) {
+    private Point initPoints() {
 
         Point startPoint = new Point();
         Point current = startPoint;
         Point next;
 
-        for (int count = 2; count <= countOfPoints; count++) {
+        for (int count = 2; ladderLine.more(count); count++) {
             next = new Point();
             current.next(next);
             current = next;
