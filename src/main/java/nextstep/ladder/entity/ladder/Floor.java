@@ -8,14 +8,12 @@ import java.util.Objects;
 public class Floor {
 
     private Point startPoint;
-    private int totalPointCount;
     private Floor nextFloor;
 
     protected Floor() {}
 
-    protected Floor(Point startPoint, int totalPointCount) {
+    protected Floor(Point startPoint) {
         this.startPoint = startPoint;
-        this.totalPointCount = totalPointCount;
     }
 
     public Point getStartPoint() {
@@ -34,7 +32,4 @@ public class Floor {
         return nextFloor;
     }
 
-    public int getTotalPointCount() {
-        return totalPointCount;
-    }
 }

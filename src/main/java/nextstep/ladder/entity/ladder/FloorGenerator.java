@@ -16,7 +16,7 @@ public class FloorGenerator extends Floor {
         Point point = initPoints(countOfPoints);
         // 점 연결
         createLinkRecursively(point);
-        return new Floor(point, countOfPoints);
+        return new Floor(point);
     }
 
     private Point initPoints(int countOfPoints) {
