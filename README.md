@@ -47,14 +47,16 @@
 - Line 일급 컬렉션 생성
 - MoveStrategy 인터페이스 생성 `boolean` 값을 리턴하는 `isMovable` 메소드 생성
 - LadderMoveStrategy 객체 생성 MoveStrategy를 상속하여 `isMovable` 메소드구현 -> `랜덤 boolean 값을 생성`하여 리턴
-- Ladder 객체에서 `createLines` 메소드가 `인원수`, `높이`, `MoveStrategy` 구현 객체를 받아 `Lines`를 리턴하여 사다리 게임을 생성한다
+- Ladder 객체에서 `인원수`, `높이` 상태값을 받아 `MoveStrategy` 구현한 메소드를 실행하여 `Line` 을 생성한다
 - Ladder 객체에서 Line 생성시 `이전 생성값(boolean)`을 비교하여 중복 생성되지 않도록 한다
-- InputView 객체에서 입력값(이름)의 길이가 1 ~ 5자 에 포함되지 않을 경우 입력을 다시 받도록 한다
-- InputView 객체에서 입력값(높이)가 최소 1이상 이여야 하며 1이상이 아닐 경우 입력을 다시 받도록 한다
+- User 객체에서 입력값(이름)의 길이가 1 ~ 5자 에 포함되지 않을 경우 입력을 다시 받도록 한다
+- Ladder 객체에서 입력값(높이)가 최소 1이상 이여야 하며 1이상이 아닐 경우 입력을 다시 받도록 한다
 - ResultView 객체에서 입력값(이름)의 길이가 5자 미만이면 String.format을 이용하여 자리 수를 맞춰 표시하도록 한다
 - Ladder 테스트 케이스 추가
+  - LadderStub 클래스 추가 (Ladder 상속) `moveRule` 메소드 구현(() -> true)
   - 이동가능 여부를 참으로 할 경우 결과값 확인(첫번째 무조건 true, 마지막 무조건 false)
 - Line 테스트 케이스 추가
   - 오른쪽으로 이동 가능한지 확인
+- 도메인 객체 throwException 테스트 케이스 추가
 
 <br>
