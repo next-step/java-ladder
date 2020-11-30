@@ -9,4 +9,10 @@ public class LadderLineTest {
         LadderLine ladderLine = LadderLine.init(sizeOfPerson);
         System.out.println(ladderLine);
     }
+
+    @Test
+    public void move() {
+        LadderLine line = LadderLine.init(2);
+        System.out.println("ladder result : " + line.move(0));
+    }
 }
