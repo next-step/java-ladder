@@ -40,5 +40,4 @@ class UserTest {
         assertThat(illegalUserNameException).hasMessageStartingWith("사용자 이름은 빈 공백이거나 5자를 초과하여 입력할 수 없습니다.");
     }
 
-
 }

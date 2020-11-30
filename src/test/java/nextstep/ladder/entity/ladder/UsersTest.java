@@ -25,4 +25,5 @@ class UsersTest {
 
         assertArrayEquals(userNames.toArray(), new String[]{"pobi", "honux", "crong", "jk"});
     }
+
 }
