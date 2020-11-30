@@ -34,6 +34,14 @@ public class TableOfResult {
         );
     }
 
+    public int size() {
+        return tableOfResult.size();
+    }
+
+    public int indexOf(int target) {
+        return tableOfResult.indexOf(target);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -46,4 +54,5 @@ public class TableOfResult {
     public int hashCode() {
         return Objects.hash(tableOfResult);
     }
+
 }

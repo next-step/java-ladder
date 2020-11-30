@@ -39,4 +39,16 @@ public class TableOfResultTest {
         assertThat(ladder.matchTable()).isEqualTo(expectTable);
     }
 
+    @DisplayName("size")
+    @Test
+    void test_size() {
+        assertThat(tableOfResult.size()).isEqualTo(4);
+    }
+
+    @DisplayName("indexOf")
+    @Test
+    void test_indexOf() {
+        assertThat(tableOfResult.indexOf(3))
+                .isEqualTo(3);
+    }
 }
