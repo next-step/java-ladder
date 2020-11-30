@@ -7,26 +7,49 @@ import java.util.stream.IntStream;
 
 public class Ladder {
 
-    private Ladder() {}
+    private static final String INPUT_HEIGHT_ERROR = "오류:: 사다리의 높이는 최소 1개 이상이어야 합니다.\n\n";
+    private static final int MIN_HEIGHT = 1;
+    private final int countOfPerson;
+    private final int height;
 
-    public static Lines createLines(int countOfPerson, int height, MoveStrategy strategy) {
-        List<Line> lines = IntStream.range(0,height)
-                .mapToObj(e -> generateLine(countOfPerson,strategy))
-                .map(Line::new)
-                .collect(Collectors.toList());
-        return new Lines(lines);
+    public Ladder(int countOfPerson, int height) {
+        this.countOfPerson = countOfPerson;
+        this.height = heightValidationCheck(height);
     }
 
-    private static List<Boolean> generateLine(int countOfPerson, MoveStrategy strategy) {
+    public Lines createLines() {
+        return Lines.of(IntStream.range(0,height)
+                .mapToObj(e -> generateLine())
+                .map(Line::of)
+                .collect(Collectors.toList()));
+    }
+
+    public MoveStrategy moveRule() {
+        return new LadderMoveStrategy();
+    }
+
+    private int heightValidationCheck(int height) {
+        if(height < MIN_HEIGHT) {
+            throw new IllegalArgumentException(INPUT_HEIGHT_ERROR);
+        }
+        return height;
+    }
+
+    private List<Boolean> generateLine() {
         AtomicReference<Boolean> previous = new AtomicReference<>(false);
         return IntStream.rangeClosed(1,countOfPerson)
-                .peek(position -> previous.getAndSet(movable(previous.get(),position,countOfPerson,strategy)))
-                .mapToObj(e -> previous.get())
+                .mapToObj(position -> positionCheck(previous.get(),position))
+                .map(condition -> previous.getAndSet(isMovable(condition,moveRule())))
+                .map(e -> previous.get())
                 .collect(Collectors.toList());
     }
 
-    private static boolean movable(boolean previous, int position, int countOfPerson, MoveStrategy strategy) {
-        if(previous || (position == countOfPerson)) {
+    private boolean positionCheck(boolean previous, int position) {
+        return previous || (position == countOfPerson);
+    }
+
+    private boolean isMovable(boolean condition, MoveStrategy strategy) {
+        if(condition) {
             return false;
         }
         return strategy.isMovable();
