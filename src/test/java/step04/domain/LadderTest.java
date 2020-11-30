@@ -9,7 +9,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 import strategy.PointStrategy;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -50,25 +49,17 @@ public class LadderTest {
     @Test
     void test_getLadder() {
         assertThat(Ladder.of(2, countOfParticipants, pointStrategy).getLadder())
-        .isEqualTo(Arrays.asList(
-                Arrays.asList(true, false, true),
-                Arrays.asList(true, false, true)));
+                .isEqualTo(Arrays.asList(
+                        Step.of(Arrays.asList(true, false, true)),
+                        Step.of(Arrays.asList(true, false, true)))
+                );
     }
 
-//    @DisplayName("사다리 match table ")
-//    @Test
-//    void test_matchTable() {
-//        List<Integer> resultTable = Ladder.of(3, countOfParticipants, pointStrategy)
-//                .getResultTable();
-//        List<Integer> expectTable = Arrays.asList(1, 0, 3, 2);
-//
-//        assertThat(resultTable).isEqualTo(expectTable);
-//    }
-
-    @DisplayName("사다리 높이 반환")
     @Test
-    void test_size() {
-        Ladder ladder = Ladder.of(3, countOfParticipants, pointStrategy);
-        assertThat(ladder.size()).isEqualTo(3);
+    void test_matchTable() {
+        Ladder ladder = Ladder.of(1, countOfParticipants, pointStrategy);
+        assertThat(ladder.matchTable())
+                .isEqualTo(TableOfResult.of(Arrays.asList(1, 0, 3, 2)));
     }
+
 }

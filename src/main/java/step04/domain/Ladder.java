@@ -11,18 +11,21 @@ import java.util.stream.Stream;
 
 public class Ladder {
     private final List<Step> ladder;
-    private Ladder(List<Step> ladder) {
+    private final int countOfParticipants;
+
+    private Ladder(List<Step> ladder, int countOfParticipants) {
         this.ladder = ladder;
+        this.countOfParticipants = countOfParticipants;
     }
 
-    public static Ladder of(List<Step> ladder) {
-        return new Ladder(ladder);
+    public static Ladder of(List<Step> ladder, int countOfParticipants) {
+        return new Ladder(ladder, countOfParticipants);
     }
 
     public static Ladder of(int countOfSteps, int countOfParticipants, PointStrategy pointStrategy) {
         validate(countOfSteps);
         List<Step> ladder = init(countOfSteps, countOfParticipants, pointStrategy);
-        return of(ladder);
+        return of(ladder, countOfParticipants);
     }
 
     private static List<Step> init(int countOfSteps, int countOfParticipants, PointStrategy pointStrategy) {
@@ -41,6 +44,17 @@ public class Ladder {
                 .collect(Collectors.collectingAndThen(Collectors.toList(), Collections::unmodifiableList));
     }
 
+    public TableOfResult matchTable() {
+        TableOfResult tableOfResult = Stream.iterate(0, n -> n + 1)
+                .limit(countOfParticipants)
+                .collect(Collectors.collectingAndThen(Collectors.toList(), TableOfResult::of));
+
+        for (int i = 0; i < ladder.size(); i++) {
+            tableOfResult = ladder.get(i).move(tableOfResult);
+        }
+
+        return tableOfResult;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -53,9 +67,5 @@ public class Ladder {
     @Override
     public int hashCode() {
         return Objects.hash(ladder);
-    }
-
-    public int size() {
-        return ladder.size();
     }
 }
