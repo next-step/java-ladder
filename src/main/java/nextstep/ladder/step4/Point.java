@@ -21,6 +21,10 @@ public class Point {
         return new Point(index + 1, direction.next(nextRight));
     }
 
+    public Point last() {
+        return new Point(index + 1, direction.last());
+    }
+
     /**
      * @return 다음(아래) Point의 index 반환
      */

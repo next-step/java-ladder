@@ -49,6 +49,10 @@ public class Direction {
         return Direction.of(this.right, nextRight);
     }
 
+    public Direction last() {
+        return Direction.of(this.right, false);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
