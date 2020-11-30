@@ -26,14 +26,6 @@ public class TableOfResult {
         return newTable;
     }
 
-    public List<Integer> getTableOfResult() {
-        return tableOfResult.stream().collect(
-                Collectors.collectingAndThen(
-                        Collectors.toList(),
-                        Collections::unmodifiableList)
-        );
-    }
-
     public int size() {
         return tableOfResult.size();
     }
