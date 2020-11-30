@@ -3,11 +3,9 @@ package nextstep.ladder.entity.ladder;
 public class Ladder {
 
     private final Floor firstFloor;
-    private int totalFloorsCount;
 
-    private Ladder(Floor firstFloor, int totalFloorsCount) {
+    private Ladder(Floor firstFloor) {
         this.firstFloor = firstFloor;
-        this.totalFloorsCount = totalFloorsCount;
     }
 
     public static Ladder create(LadderConfiguration ladderConfiguration, LinkGenerator linkGenerator) {
@@ -25,7 +23,7 @@ public class Ladder {
             current = next;
         }
 
-        return new Ladder(firstFloor, ladderConfiguration.getCountOfFloors());
+        return new Ladder(firstFloor);
     }
 
     public Floor getFirstFloor() {
