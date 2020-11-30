@@ -20,7 +20,7 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
-public class MatcherTest {
+public class ResultMatcherTest {
     Participants participants;
     NamesOfResult namesOfResult;
     List<Integer> matchTable;

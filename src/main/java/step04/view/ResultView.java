@@ -57,10 +57,10 @@ public class ResultView {
         System.out.println(nameOfResult);
     }
 
-    public static void printResults(Matcher matcher) {
+    public static void printResults(ResultMatcher resultMatcher) {
         System.out.println(EXECUTE_RESULT);
 
-        Map<Name, Name> map = matcher.getResults();
+        Map<Name, Name> map = resultMatcher.getResults();
         map.forEach((key, value) -> {
             System.out.printf(ALL_RESULTS, key.toString(), value.toString());
             System.out.println();
