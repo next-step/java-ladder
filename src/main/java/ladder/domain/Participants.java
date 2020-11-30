@@ -1,6 +1,8 @@
 package ladder.domain;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Participants {
 
@@ -10,8 +12,16 @@ public class Participants {
         this.names = names;
     }
 
-    public static Participants of(List<Name> names) {
-        return new Participants(names);
+    public static Participants of(String names) {
+        return new Participants(create(names));
+    }
+
+    private static List<Name> create(String name) {
+        String[] names = name.split(",");
+        return Arrays
+                .stream(names)
+                .map(Name::of)
+                .collect(Collectors.toList());
     }
 
     public List<Name> getNames() {
