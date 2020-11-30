@@ -6,8 +6,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
-import step03.domain.Ladder;
-import step03.domain.Participants;
 import strategy.PointStrategy;
 
 import java.util.Arrays;
@@ -18,13 +16,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 public class LadderTest {
-    Participants participants;
+    NamesOfParticipant participants;
     PointStrategy pointStrategy;
     int countOfParticipants;
 
     @BeforeEach
     void setup() {
-        participants = Participants.of("pobi,honux,crong,jk");
+        participants = NamesOfParticipant.of("pobi,honux,crong,jk");
         countOfParticipants = participants.size();
         pointStrategy = () -> true;
     }
@@ -57,13 +55,20 @@ public class LadderTest {
                 Arrays.asList(true, false, true)));
     }
 
-    @DisplayName("사다리 match table ")
-    @Test
-    void test_matchTable() {
-        List<Integer> resultTable = Ladder.of(3, countOfParticipants, pointStrategy)
-                .getResultTable();
-        List<Integer> expectTable = Arrays.asList(1, 0, 3, 2);
+//    @DisplayName("사다리 match table ")
+//    @Test
+//    void test_matchTable() {
+//        List<Integer> resultTable = Ladder.of(3, countOfParticipants, pointStrategy)
+//                .getResultTable();
+//        List<Integer> expectTable = Arrays.asList(1, 0, 3, 2);
+//
+//        assertThat(resultTable).isEqualTo(expectTable);
+//    }
 
-        assertThat(resultTable).isEqualTo(expectTable);
+    @DisplayName("사다리 높이 반환")
+    @Test
+    void test_size() {
+        Ladder ladder = Ladder.of(3, countOfParticipants, pointStrategy);
+        assertThat(ladder.size()).isEqualTo(3);
     }
 }
