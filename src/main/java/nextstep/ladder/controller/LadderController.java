@@ -1,6 +1,6 @@
 package nextstep.ladder.controller;
 
-import nextstep.ladder.domain.Participants;
+import nextstep.ladder.domain.Users;
 import nextstep.ladder.view.InputView;
 
 public class LadderController {
@@ -8,6 +8,6 @@ public class LadderController {
     public void start() {
         InputView inputView = new InputView();
 
-        Participants participants = new Participants(inputView.inputParticipants());
+        Users users = new Users(inputView.inputParticipants());
     }
 }
