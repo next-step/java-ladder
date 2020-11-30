@@ -1,8 +1,6 @@
 package nextstep.ladder.domain;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Players {
@@ -10,7 +8,7 @@ public class Players {
     private final List<Player> players;
 
     public Players(List<Player> players) {
-        this.players = players;
+        this.players = new ArrayList<>(players);
     }
 
     public static Players from(String names) {
@@ -20,7 +18,7 @@ public class Players {
     }
 
     public List<Player> getPlayers() {
-        return players;
+        return Collections.unmodifiableList(players);
     }
 
     public int getSize() {

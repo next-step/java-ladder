@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -8,7 +10,7 @@ public class Lines {
     private final List<Line> lines;
 
     public Lines(List<Line> lines) {
-        this.lines = lines;
+        this.lines = new ArrayList<>(lines);
     }
 
     public static Lines fromHeight(int length, int height, ConnectionCreationStrategy connectionCreationStrategy) {
@@ -18,6 +20,6 @@ public class Lines {
     }
 
     public List<Line> getLines() {
-        return lines;
+        return Collections.unmodifiableList(lines);
     }
 }
