@@ -49,8 +49,28 @@ public class Spoke {
         list.add(next);
     }
 
-    private Boolean last() {
+    Boolean first() {
+        return list.get(0);
+    }
+
+    Boolean last() {
         return list.get(list.size() - 1);
+    }
+
+    int size() {
+        return list.size();
+    }
+
+    Boolean isMovableRight(Position position) {
+        return list.get(position.toInt());
+    }
+
+    public Boolean isMovableLeft(Position position) {
+        return list.get(position.toInt() - 1);
+    }
+
+    public Stream<Boolean> stream() {
+        return list.stream();
     }
 
     @Override

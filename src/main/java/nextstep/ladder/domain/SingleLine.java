@@ -7,10 +7,10 @@ public class SingleLine implements Line {
 
     public static final int LEFT = -1;
     public static final int RIGHT = +1;
-    private final List<Boolean> spoke;
+    private final Spoke spoke;
 
     public SingleLine(List<Boolean> spoke) {
-        this.spoke = spoke;
+        this.spoke = Spoke.of(spoke.toArray(new Boolean[0]));
     }
 
     public Stream<Boolean> toSpokeStream() {
@@ -18,26 +18,26 @@ public class SingleLine implements Line {
     }
 
     @Override
-    public Position moveOn(Position from) {
-        ensureLineBoundaryIn(from);
+    public Position moveOn(Position position) {
+        ensureLineBoundaryIn(position);
 
-        if (isRightEdge(from)) {
-            return movePosition(from, getLastSpoke(), LEFT);
+        if (isRightEdge(position)) {
+            return movePosition(position, spoke.last(), LEFT);
         }
 
-        if (isLeftEdge(from)) {
-            return movePosition(from, getFirstSpoke(), RIGHT);
+        if (isLeftEdge(position)) {
+            return movePosition(position, spoke.first(), RIGHT);
         }
 
-        if (isMoveLeft(from)) {
-            return from.move(LEFT);
+        if (spoke.isMovableLeft(position)) {
+            return position.move(LEFT);
         }
 
-        if (isMoveRight(from)) {
-            return from.move(RIGHT);
+        if (spoke.isMovableRight(position)) {
+            return position.move(RIGHT);
         }
 
-        return from;
+        return position;
     }
 
     private boolean isLeftEdge(Position position) {
@@ -54,18 +54,6 @@ public class SingleLine implements Line {
         }
     }
 
-    private Boolean isMoveRight(Position from) {
-        return spoke.get(from.toInt());
-    }
-
-    private Boolean isMoveLeft(Position from) {
-        return spoke.get(from.toInt() - 1);
-    }
-
-    private Boolean getFirstSpoke() {
-        return spoke.get(0);
-    }
-
     private Position movePosition(Position position, Boolean spokeExists, int direction) {
         if (spokeExists) {
             return position.move(direction);
@@ -73,7 +61,4 @@ public class SingleLine implements Line {
         return position;
     }
 
-    private boolean getLastSpoke() {
-        return spoke.get(spoke.size() - 1);
-    }
 }
