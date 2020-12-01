@@ -1,12 +1,11 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.util.pointsgenerator.HalfRandomPointsGenerator;
 import nextstep.ladder.util.pointsgenerator.PointsGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
-
-import static nextstep.ladder.domain.LadderPointGenerator.generatePoint;
 
 public class LadderLine {
     private final List<Point> points;
@@ -17,7 +16,7 @@ public class LadderLine {
 
     public static LadderLine init(int sizeOfPerson) {
         List<Point> points = new ArrayList<>();
-        Point point = initFirst(points);
+        Point point = initFirst(points, HalfRandomPointsGenerator.getInstance());
         point = initBody(sizeOfPerson, points, point);
         initLast(points, point);
         return new LadderLine(points);
@@ -29,12 +28,6 @@ public class LadderLine {
         point = initBody(sizeOfPerson, points, point, pointsGenerator);
         initLast(points, point);
         return new LadderLine(points);
-    }
-
-    private static Point initFirst(List<Point> points) {
-        Point point = Point.first(generatePoint());
-        points.add(point);
-        return point;
     }
 
     private static Point initFirst(List<Point> points, PointsGenerator pointsGenerator) {
