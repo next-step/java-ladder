@@ -7,6 +7,7 @@ public class User {
     private static final int LENGTH_MAXIMUM = 5;
     private static final String LENGTH_MINIMUM_MENTION = "이름은 %d글자를 초과할 수 없습니다.";
     private static final String LENGTH_MAXIMUM_MENTION = "이름은 %d글자를 초과할 수 없습니다.";
+
     private String name;
 
     public User(String name) {
@@ -29,6 +30,10 @@ public class User {
         if(name == null || name.trim().length() < LENGTH_MINIMUM) {
             throw new IllegalArgumentException(String.format(LENGTH_MINIMUM_MENTION, LENGTH_MINIMUM));
         }
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override
