@@ -14,10 +14,19 @@ public class Results {
         this.results = results;
     }
 
-    public static Results from(String resultList) {
-        return new Results(Arrays.stream(resultList.split(SPLITTER))
+    public static Results from(int length, String results) {
+        List<Result> resultList = Arrays.stream(results.split(SPLITTER))
                 .map(Result::new)
-                .collect(Collectors.toList()));
+                .collect(Collectors.toList());
+        checkSize(length, resultList);
+
+        return new Results(resultList);
+    }
+
+    private static void checkSize(int length, List<Result> resultList) {
+        if (resultList.size() != length) {
+            throw new IllegalArgumentException("length and results size is different");
+        }
     }
 
     @Override
