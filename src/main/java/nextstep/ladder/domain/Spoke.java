@@ -7,6 +7,8 @@ import java.util.stream.Collector;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+import static nextstep.ladder.utils.BinaryOperators.nope;
+
 /**
  * |-----|     |-----| 의 경우 첫번째는 1~2 구간에는 발판이 있고 2~3구간에는 발판이 없고 3~4 구간에는 발판이 있다.
  * 이를 Spoke.of(true, false, true) 로 표현한다
@@ -26,9 +28,7 @@ public class Spoke {
     }
 
     private static Collector<Boolean, Spoke, Spoke> collect() {
-        return Collector.of(Spoke::new, Spoke::add, (spoke, spoke2) -> {
-            throw new UnsupportedOperationException("병렬처리는 지원하지 않습니다.");
-        });
+        return Collector.of(Spoke::new, Spoke::add, nope());
     }
 
     public Line toLine() {

@@ -3,10 +3,6 @@ package nextstep.ladder.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.function.BinaryOperator;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -89,32 +85,4 @@ public class LineTest {
         );
     }
 
-    private static class Lines implements LineIF {
-        private final List<Line> lines;
-
-        public Lines(List<Line> lines) {
-            this.lines = lines;
-        }
-
-        public static LineIF of(Line... lines) {
-            return new Lines(Arrays.asList(lines));
-        }
-
-        @Override
-        public Position moveOn(Position from) {
-            return lines.stream()
-                    .reduce(from, (position, line) -> line.moveOn(position), nope());
-        }
-    }
-
-    interface LineIF {
-
-        Position moveOn(Position from);
-    }
-
-    private static <T> BinaryOperator<T> nope() {
-        return (t, u) -> {
-            throw new UnsupportedOperationException("병렬처리는 지원하지 않습니다.");
-        };
-    }
 }
