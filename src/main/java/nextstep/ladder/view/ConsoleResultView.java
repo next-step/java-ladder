@@ -4,6 +4,7 @@ import nextstep.ladder.domain.ExecutionResults;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Name;
 import nextstep.ladder.domain.Participants;
+import nextstep.ladder.domain.Point;
 import nextstep.ladder.domain.ResultCandidates;
 
 import java.util.function.Consumer;
@@ -11,8 +12,8 @@ import java.util.function.Consumer;
 public class ConsoleResultView implements ResultView {
     private static final String HEADER_MSG = "실행 결과";
     private static final String LADDER_STICK = "|";
-    private static final String EXIST_POINT = "-----";
-    private static final String EMPTY_POINT = "     ";
+    private static final String EXIST_DIRECTION = "-----";
+    private static final String EMPTY_DIRECTION = "     ";
     private static final String NAME_STRING_FORMAT = "%6s";
     private static final String CAN_NOT_FIND_PARTICIPANTS_ERR_MSG = "입력된 참가자 이름을 찾을 수 없습니다.";
 
@@ -43,13 +44,23 @@ public class ConsoleResultView implements ResultView {
 
     private void appendLadder(Ladder ladder, StringBuilder resultBuilder) {
         LineRenderer lineRenderer = LineRenderer.builder()
-                .firstPartOfLine(() -> resultBuilder.append(EMPTY_POINT).append(LADDER_STICK))
-                .point(point -> resultBuilder.append(point ? EXIST_POINT : EMPTY_POINT))
-                .ladderStick(() -> resultBuilder.append(LADDER_STICK))
+                .firstPartOfLine(() -> resultBuilder.append(EMPTY_DIRECTION))
+                .point(appendPoint(resultBuilder))
                 .lastPartOfLine(() -> resultBuilder.append(System.lineSeparator()))
                 .build();
 
         ladder.linesForEach(lineRenderer.renderLine());
+    }
+
+    private Consumer<Point> appendPoint(StringBuilder resultBuilder) {
+        return point -> {
+            resultBuilder.append(LADDER_STICK);
+            if (point.hasRightDirection()) {
+                resultBuilder.append(EXIST_DIRECTION);
+                return;
+            }
+            resultBuilder.append(EMPTY_DIRECTION);
+        };
     }
 
     private void appendResults(ResultCandidates resultCandidates, StringBuilder resultBuilder) {

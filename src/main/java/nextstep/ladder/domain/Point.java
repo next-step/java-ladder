@@ -25,7 +25,7 @@ public class Point {
         return new Point(index + 1, direction.last());
     }
 
-    public boolean isRightDirection() {
+    public boolean hasRightDirection() {
         return direction.isRight();
     }
 
