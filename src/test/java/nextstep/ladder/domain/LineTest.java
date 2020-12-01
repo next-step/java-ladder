@@ -59,4 +59,16 @@ public class LineTest {
                 () -> assertThat(line.moveOn(Position.of(2))).isEqualTo(Position.of(1))
         );
     }
+
+    @DisplayName("|-----|" +
+                 "|-----| 의 경우 입력 포지션과 출력 포지션이 같다")
+    @Test
+    void moveWithTwoLineTwoStairs() {
+        Line line = Lines.of(Spoke.of(true), Spoke.of(true));
+
+        assertAll(
+                () -> assertThat(line.moveOn(Position.of(0))).isEqualTo(Position.of(1)),
+                () -> assertThat(line.moveOn(Position.of(1))).isEqualTo(Position.of(0))
+        );
+    }
 }
