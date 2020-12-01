@@ -58,7 +58,7 @@ public class LadderGame {
     }
 
     private void printExecutionResults(Participants participants, Ladder ladder, ResultCandidates resultCandidates) {
-        ExecutionResults executionResults = ladder.resultOf(participants, resultCandidates);
+        ExecutionResults executionResults = ladder.resultOf2(participants, resultCandidates);
         for (boolean printedAll = false; !printedAll; ) {
             String nameOfWantToCheckInput = inputView.getNameOfWantToCheck();
             Name nameOfWantToCheck = Name.valueOf(nameOfWantToCheckInput);

@@ -82,4 +82,24 @@ public class Ladder {
         int nextIndex = getResultIndexOf(index, lineIndex - 1);
         return line.getNextIndexOf(nextIndex);
     }
+
+    public ExecutionResults resultOf2(Participants participants, ResultCandidates resultCandidates) {
+        Map<Name, ResultCandidate> resultsMap = IntStream.range(0, participants.getSizeOfPerson().getValue())
+                .boxed()
+                .collect(Collectors.toMap(participants::get, i -> resultCandidates.get(getResultIndexOf2(i)),
+                        (k1, k2) -> {
+                            throw new IllegalStateException(Participants.DUPLICATE_NAME_EXIST_ERR_MSG);
+                        },
+                        LinkedHashMap::new));
+
+        return ExecutionResults.of(resultsMap);
+    }
+
+    private int getResultIndexOf2(Integer position) {
+        for (LadderLine ladderLine : ladderLines) {
+            position = ladderLine.move(position);
+        }
+
+        return position;
+    }
 }
