@@ -5,6 +5,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,7 +28,15 @@ public class StreamStudy {
                 .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
-        // TODO 이 부분에 구현한다.
+        List<String> longestWords = words.stream()
+                .filter(it -> it.length() > 12)
+                .distinct()
+                .sorted((o1, o2) -> Integer.valueOf(o2.length()).compareTo(Integer.valueOf(o1.length())))
+                .map(String::toLowerCase)
+                .collect(Collectors.toList());
+
+        longestWords.subList(0, Math.min(longestWords.size(), 100))
+                .forEach(System.out::println);
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
