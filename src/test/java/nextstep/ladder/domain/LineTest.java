@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class LineTest {
@@ -27,5 +28,13 @@ public class LineTest {
                 () -> assertThat(line.moveOn(Position.of(0))).isEqualTo(Position.of(1)),
                 () -> assertThat(line.moveOn(Position.of(1))).isEqualTo(Position.of(0))
         );
+    }
+
+    @DisplayName("라인 바깥쪽 포지션은 입력받을 수 없다")
+    @Test
+    void outOfLineEndException() {
+        Line line = Spoke.of(true).toLine();
+        assertThatThrownBy(() -> line.moveOn(Position.of(2)))
+                .isInstanceOf(OutOfLineException.class);
     }
 }
