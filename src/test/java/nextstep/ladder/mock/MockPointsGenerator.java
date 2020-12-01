@@ -9,6 +9,7 @@ import java.util.List;
 public class MockPointsGenerator implements PointsGenerator {
     private final List<List<Boolean>> mockPoints;
     private Iterator<List<Boolean>> mockPointsIterator;
+    private Iterator<Boolean> mockBooleanIterator;
 
     public MockPointsGenerator() {
         mockPoints = Arrays.asList(
@@ -26,5 +27,18 @@ public class MockPointsGenerator implements PointsGenerator {
             mockPointsIterator = mockPoints.iterator();
         }
         return mockPointsIterator.next();
+    }
+
+    @Override
+    public boolean generatePoint() {
+        if (mockPointsIterator == null || !mockPointsIterator.hasNext()) {
+            mockPointsIterator = mockPoints.iterator();
+        }
+
+        if (mockBooleanIterator == null || !mockBooleanIterator.hasNext()) {
+            mockBooleanIterator = mockPointsIterator.next().iterator();
+        }
+
+        return mockBooleanIterator.next();
     }
 }

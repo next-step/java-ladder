@@ -28,4 +28,9 @@ public class HalfRandomPointsGenerator implements PointsGenerator {
                 });
         return points;
     }
+
+    @Override
+    public boolean generatePoint() {
+        return RANDOM.nextBoolean();
+    }
 }
