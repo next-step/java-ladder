@@ -1,6 +1,7 @@
 package nextstep.fp;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 public class Lambda {
     public static void printAllOld(List<Integer> numbers) {
@@ -27,30 +28,27 @@ public class Lambda {
     }
 
     public static int sumAll(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            total += number;
-        }
-        return total;
+        Stream<Integer> integerStream = numbers.stream();
+
+        return commonSum(integerStream);
     }
 
     public static int sumAllEven(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number % 2 == 0) {
-                total += number;
-            }
-        }
-        return total;
+        Stream<Integer> integerStream = numbers.stream()
+                .filter(number -> number % 2 == 0);
+        return commonSum(integerStream);
     }
 
     public static int sumAllOverThree(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number > 3) {
-                total += number;
-            }
-        }
-        return total;
+        Stream<Integer> integerStream = numbers.stream()
+                .filter(number -> number > 3);
+
+        return commonSum(integerStream);
+    }
+
+    public static int commonSum(Stream<Integer> integerStream) {
+        return integerStream
+                .mapToInt(number -> number)
+                .sum();
     }
 }
