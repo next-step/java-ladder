@@ -27,7 +27,26 @@ public class Line {
         if (spoke.size() == from.toInt()) {
             return moveWithSpoke(from, lastSpoke(), - 1);
         }
-        return moveWithSpoke(from, spoke.get(from.toInt()), 1);
+
+        if (from.toInt() == 0) {
+            return moveWithSpoke(from, firstSpoke(), + 1);
+        }
+
+        Boolean moveLeft = spoke.get(from.toInt() - 1);
+        if (moveLeft) {
+            return Position.of(from.toInt() - 1);
+        }
+
+        Boolean moveRight = spoke.get(from.toInt());
+        if (moveRight) {
+            return Position.of(from.toInt() + 1);
+        }
+
+        return from;
+    }
+
+    private Boolean firstSpoke() {
+        return spoke.get(0);
     }
 
     private Position moveWithSpoke(Position from, Boolean spokeExists, int amount) {
