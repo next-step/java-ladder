@@ -32,7 +32,6 @@ public class StreamStudy {
                 .distinct()
                 .limit(100)
                 .map(String::toLowerCase)
-                .collect(Collectors.toList())
                 .forEach(System.out::println);
     }
 
