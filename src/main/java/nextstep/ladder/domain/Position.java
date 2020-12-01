@@ -10,6 +10,9 @@ public class Position {
     }
 
     public static Position of(int position) {
+        if (position < 0) {
+            throw new OutOfLineException();
+        }
         return new Position(position);
     }
 

@@ -20,7 +20,9 @@ public class Line {
     }
 
     public Position moveOn(Position from) {
-        // TODO spoke 보다 크거나 0보다 작은 숫자는 예외발생!
+        if (spoke.size() < from.toInt()) {
+            throw new OutOfLineException();
+        }
 
         if (spoke.size() == from.toInt()) {
             return moveWithSpoke(from, lastSpoke(), - 1);
