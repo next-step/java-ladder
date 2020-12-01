@@ -20,6 +20,10 @@ public class Position {
         return value;
     }
 
+    public boolean isEqualsValue(int value) {
+        return this.value == value;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

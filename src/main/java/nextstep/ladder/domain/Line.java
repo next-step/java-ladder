@@ -22,43 +22,61 @@ public class Line {
     }
 
     public Position moveOn(Position from) {
-        if (spoke.size() < from.toInt()) {
-            throw new OutOfLineException();
+        ensureLineBoundaryIn(from);
+
+        if (isRightEdge(from)) {
+            return movePosition(from, getLastSpoke(), LEFT);
         }
 
-        if (spoke.size() == from.toInt()) {
-            return moveEdgePosition(from, lastSpoke(), LEFT);
+        if (isLeftEdge(from)) {
+            return movePosition(from, getFirstSpoke(), RIGHT);
         }
 
-        if (from.toInt() == 0) {
-            return moveEdgePosition(from, firstSpoke(), RIGHT);
-        }
-
-        Boolean moveLeft = spoke.get(from.toInt() - 1);
-        if (moveLeft) {
+        if (isMoveLeft(from)) {
             return from.move(LEFT);
         }
 
-        Boolean moveRight = spoke.get(from.toInt());
-        if (moveRight) {
+        if (isMoveRight(from)) {
             return from.move(RIGHT);
         }
 
         return from;
     }
 
-    private Boolean firstSpoke() {
+    private boolean isLeftEdge(Position position) {
+        return position.isEqualsValue(0);
+    }
+
+    private boolean isRightEdge(Position position) {
+        return position.isEqualsValue(spoke.size());
+    }
+
+    private void ensureLineBoundaryIn(Position from) {
+        if (spoke.size() < from.toInt()) {
+            throw new OutOfLineException();
+        }
+    }
+
+    private Boolean isMoveRight(Position from) {
+        return spoke.get(from.toInt());
+    }
+
+    private Boolean isMoveLeft(Position from) {
+        return spoke.get(from.toInt() - 1);
+    }
+
+    private Boolean getFirstSpoke() {
         return spoke.get(0);
     }
 
-    private Position moveEdgePosition(Position position, Boolean spokeExists, int direction) {
+    private Position movePosition(Position position, Boolean spokeExists, int direction) {
         if (spokeExists) {
             return position.move(direction);
         }
         return position;
     }
 
-    private boolean lastSpoke() {
+    private boolean getLastSpoke() {
         return spoke.get(spoke.size() - 1);
     }
 }
