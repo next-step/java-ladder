@@ -36,12 +36,12 @@ public class Line {
 
         Boolean moveLeft = spoke.get(from.toInt() - 1);
         if (moveLeft) {
-            return Position.of(from.toInt() + LEFT);
+            return from.move(LEFT);
         }
 
         Boolean moveRight = spoke.get(from.toInt());
         if (moveRight) {
-            return Position.of(from.toInt() + RIGHT);
+            return from.move(RIGHT);
         }
 
         return from;
@@ -51,11 +51,11 @@ public class Line {
         return spoke.get(0);
     }
 
-    private Position moveEdgePosition(Position from, Boolean spokeExists, int direction) {
+    private Position moveEdgePosition(Position position, Boolean spokeExists, int direction) {
         if (spokeExists) {
-            return Position.of(from.toInt() + direction);
+            return position.move(direction);
         }
-        return from;
+        return position;
     }
 
     private boolean lastSpoke() {

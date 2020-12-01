@@ -43,4 +43,8 @@ public class Position {
                "value=" + value +
                '}';
     }
+
+    public Position move(int direction) {
+        return of(value + direction);
+    }
 }
