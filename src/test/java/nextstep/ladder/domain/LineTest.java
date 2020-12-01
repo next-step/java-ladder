@@ -3,6 +3,10 @@ package nextstep.ladder.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.BinaryOperator;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -64,11 +68,40 @@ public class LineTest {
                  "|-----| 의 경우 입력 포지션과 출력 포지션이 같다")
     @Test
     void moveWithTwoLineTwoStairs() {
-        Line line = Lines.of(Spoke.of(true), Spoke.of(true));
+        LineIF line = Lines.of(Spoke.of(true).toLine(), Spoke.of(true).toLine());
 
         assertAll(
-                () -> assertThat(line.moveOn(Position.of(0))).isEqualTo(Position.of(1)),
-                () -> assertThat(line.moveOn(Position.of(1))).isEqualTo(Position.of(0))
+                () -> assertThat(line.moveOn(Position.of(0))).isEqualTo(Position.of(0)),
+                () -> assertThat(line.moveOn(Position.of(1))).isEqualTo(Position.of(1))
         );
+    }
+
+    private static class Lines implements LineIF {
+        private final List<Line> lines;
+
+        public Lines(List<Line> lines) {
+            this.lines = lines;
+        }
+
+        public static LineIF of(Line... lines) {
+            return new Lines(Arrays.asList(lines));
+        }
+
+        @Override
+        public Position moveOn(Position from) {
+            return lines.stream()
+                    .reduce(from, (position, line) -> line.moveOn(position), nope());
+        }
+    }
+
+    interface LineIF {
+
+        Position moveOn(Position from);
+    }
+
+    private static <T> BinaryOperator<T> nope() {
+        return (t, u) -> {
+            throw new UnsupportedOperationException("병렬처리는 지원하지 않습니다.");
+        };
     }
 }
