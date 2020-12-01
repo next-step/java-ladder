@@ -3,9 +3,6 @@ package nextstep.ladder.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.Collections;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
@@ -22,10 +19,13 @@ public class LineTest {
         );
     }
 
-    @DisplayName("|-----| 의 경우 Position(0) 에서 출발하면 Position(1)이 나온다")
+    @DisplayName("|-----| 의 경우 입력 포지션과 출력 포지션이 다르다")
     @Test
-    void moveWithLineZeroToOne() {
+    void moveWithLine() {
         Line line = Spoke.of(true).toLine();
-        assertThat(line.moveOn(Position.of(0))).isEqualTo(Position.of(1));
+        assertAll(
+                () -> assertThat(line.moveOn(Position.of(0))).isEqualTo(Position.of(1)),
+                () -> assertThat(line.moveOn(Position.of(1))).isEqualTo(Position.of(0))
+        );
     }
 }
