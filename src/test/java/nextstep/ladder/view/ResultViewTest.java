@@ -1,6 +1,6 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.Lines;
+import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Spoke;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -35,11 +35,11 @@ public class ResultViewTest {
     @DisplayName("사다리 라인 두개를 그린다")
     @Test
     void printTwoLadderLine() {
-        Lines lines = Lines.of(
+        Ladder ladder = Ladder.of(
                 Stream.of(Spoke.of(true, false, true),
                           Spoke.of(false, true, false)));
 
-        resultView.printLadders(lines);
+        resultView.printLadders(ladder);
 
         assertThat(out.toString()).isEqualTo(
                 "    |-----|     |-----|\n" +

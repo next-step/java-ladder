@@ -7,15 +7,15 @@ import java.util.stream.Stream;
 import static java.util.stream.Collectors.toList;
 import static nextstep.ladder.utils.BinaryOperators.nope;
 
-public class Lines implements Line {
+public class Ladder implements Line {
     private final List<SingleLine> lines;
 
-    public Lines(List<SingleLine> lines) {
+    public Ladder(List<SingleLine> lines) {
         this.lines = lines;
     }
 
-    public static Lines of(Stream<Spoke> spokes) {
-        return new Lines(spokes.map(Spoke::toSingleLine)
+    public static Ladder of(Stream<Spoke> spokes) {
+        return new Ladder(spokes.map(Spoke::toSingleLine)
                                  .collect(toList()));
     }
 

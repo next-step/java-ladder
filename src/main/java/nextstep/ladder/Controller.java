@@ -1,6 +1,6 @@
 package nextstep.ladder;
 
-import nextstep.ladder.domain.Lines;
+import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Spoke;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
@@ -23,8 +23,8 @@ public class Controller {
         resultView.printResult(players, toLines(ladderHeight, players.size()));
     }
 
-    private Lines toLines(int ladderHeight, int playersCount) {
-        return Lines.of(IntStream.range(0, ladderHeight)
+    private Ladder toLines(int ladderHeight, int playersCount) {
+        return Ladder.of(IntStream.range(0, ladderHeight)
                                 .mapToObj(__ -> Spoke.fromCount(playersCount - 1, RANDOM::nextBoolean)));
     }
 }

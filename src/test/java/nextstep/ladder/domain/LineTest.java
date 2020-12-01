@@ -76,8 +76,8 @@ public class LineTest {
         );
     }
 
-    public static Lines toLines(Spoke... spokes) {
-        return Lines.of(Stream.of(spokes));
+    public static Ladder toLines(Spoke... spokes) {
+        return Ladder.of(Stream.of(spokes));
     }
 
 }
