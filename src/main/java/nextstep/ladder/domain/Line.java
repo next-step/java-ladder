@@ -5,6 +5,8 @@ import java.util.stream.Stream;
 
 public class Line {
 
+    public static final int LEFT = -1;
+    public static final int RIGHT = +1;
     private final List<Boolean> spoke;
 
     public Line(List<Boolean> spoke) {
@@ -25,21 +27,21 @@ public class Line {
         }
 
         if (spoke.size() == from.toInt()) {
-            return moveWithSpoke(from, lastSpoke(), - 1);
+            return moveEdgePosition(from, lastSpoke(), LEFT);
         }
 
         if (from.toInt() == 0) {
-            return moveWithSpoke(from, firstSpoke(), + 1);
+            return moveEdgePosition(from, firstSpoke(), RIGHT);
         }
 
         Boolean moveLeft = spoke.get(from.toInt() - 1);
         if (moveLeft) {
-            return Position.of(from.toInt() - 1);
+            return Position.of(from.toInt() + LEFT);
         }
 
         Boolean moveRight = spoke.get(from.toInt());
         if (moveRight) {
-            return Position.of(from.toInt() + 1);
+            return Position.of(from.toInt() + RIGHT);
         }
 
         return from;
@@ -49,9 +51,9 @@ public class Line {
         return spoke.get(0);
     }
 
-    private Position moveWithSpoke(Position from, Boolean spokeExists, int amount) {
+    private Position moveEdgePosition(Position from, Boolean spokeExists, int direction) {
         if (spokeExists) {
-            return Position.of(from.toInt() + amount);
+            return Position.of(from.toInt() + direction);
         }
         return from;
     }
