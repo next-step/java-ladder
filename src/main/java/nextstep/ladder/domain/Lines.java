@@ -1,31 +1,31 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.utils.BinaryOperators;
-
-import java.util.Arrays;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
+import static nextstep.ladder.utils.BinaryOperators.nope;
 
-class Lines implements Line {
-    private final List<Line> lines;
+public class Lines implements Line {
+    private final List<SingleLine> lines;
 
-    public Lines(List<Line> lines) {
+    public Lines(List<SingleLine> lines) {
         this.lines = lines;
     }
 
-    public static Line of(Line... lines) {
-        return new Lines(Arrays.asList(lines));
-    }
-
-    public static Line of(Spoke... spokes) {
-        return new Lines(Stream.of(spokes).map(Spoke::toLine).collect(toList()));
+    public static Lines of(Stream<Spoke> spokes) {
+        return new Lines(spokes.map(Spoke::toSingleLine)
+                                 .collect(toList()));
     }
 
     @Override
     public Position moveOn(Position from) {
         return lines.stream()
-                .reduce(from, (position, line) -> line.moveOn(position), BinaryOperators.nope());
+                .reduce(from, (position, line) -> line.moveOn(position), nope());
+    }
+
+    public void forEach(Consumer<SingleLine> singleLineConsumer) {
+        lines.forEach(singleLineConsumer);
     }
 }

@@ -1,6 +1,6 @@
 package nextstep.ladder;
 
-import nextstep.ladder.domain.SingleLine;
+import nextstep.ladder.domain.Lines;
 import nextstep.ladder.domain.Spoke;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
@@ -9,8 +9,6 @@ import java.io.OutputStreamWriter;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.IntStream;
-
-import static java.util.stream.Collectors.toList;
 
 public class Controller {
 
@@ -22,13 +20,11 @@ public class Controller {
         List<String> players = inputView.requestPlayers();
         int ladderHeight = inputView.requestHeight();
 
-        resultView.printResult(players, getLines(ladderHeight, players.size()));
+        resultView.printResult(players, toLines(ladderHeight, players.size()));
     }
 
-    private List<SingleLine> getLines(int ladderHeight, int playersCount) {
-        return IntStream.range(0, ladderHeight)
-                .mapToObj(__ -> Spoke.fromCount(playersCount - 1, RANDOM::nextBoolean))
-                .map(Spoke::toLine)
-                .collect(toList());
+    private Lines toLines(int ladderHeight, int playersCount) {
+        return Lines.of(IntStream.range(0, ladderHeight)
+                                .mapToObj(__ -> Spoke.fromCount(playersCount - 1, RANDOM::nextBoolean)));
     }
 }

@@ -31,7 +31,7 @@ public class Spoke {
         return Collector.of(Spoke::new, Spoke::add, nope());
     }
 
-    public SingleLine toLine() {
+    public SingleLine toSingleLine() {
         return new SingleLine(this.list);
     }
 

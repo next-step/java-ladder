@@ -1,6 +1,6 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.SingleLine;
+import nextstep.ladder.domain.Lines;
 import nextstep.ladder.domain.Spoke;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.StringWriter;
 import java.util.Arrays;
-import java.util.List;
+import java.util.stream.Stream;
 
 import static nextstep.ladder.view.ResultView.times;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -27,7 +27,7 @@ public class ResultViewTest {
     @DisplayName("사다리 라인 하나를 그린다")
     @Test
     void printOneLadderLine() {
-        resultView.printLadder(Spoke.of(true, false, true).toLine());
+        resultView.printLadder(Spoke.of(true, false, true).toSingleLine());
 
         assertThat(out.toString()).isEqualTo("    |-----|     |-----|\n");
     }
@@ -35,9 +35,9 @@ public class ResultViewTest {
     @DisplayName("사다리 라인 두개를 그린다")
     @Test
     void printTwoLadderLine() {
-        List<SingleLine> lines = Arrays.asList(
-                Spoke.of(true, false, true).toLine(),
-                Spoke.of(false, true, false).toLine());
+        Lines lines = Lines.of(
+                Stream.of(Spoke.of(true, false, true),
+                          Spoke.of(false, true, false)));
 
         resultView.printLadders(lines);
 
