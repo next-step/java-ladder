@@ -26,7 +26,7 @@ public class LadderGame {
     public void start() {
         Participants participants = ValidInputHelper.get(this::getParticipants, inputView::printError);
         Height height = ValidInputHelper.get(this::getHeight, inputView::printError);
-        Ladder ladder = Ladder.of(participants, height);
+        Ladder ladder = Ladder.of2(participants, height);
         ResultCandidates resultCandidates = ValidInputHelper.get(() -> getResults(participants), inputView::printError);
         resultView.printLadder(participants, ladder, resultCandidates);
         printExecutionResults(participants, ladder, resultCandidates);
