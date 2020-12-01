@@ -13,9 +13,9 @@ public class Lines {
         this.lines = new ArrayList<>(lines);
     }
 
-    public static Lines fromHeight(int length, int height, ConnectionCreationStrategy connectionCreationStrategy) {
+    public static Lines fromHeight(int width, int height, ConnectionCreationStrategy connectionCreationStrategy) {
         return new Lines(IntStream.range(0, height)
-                .mapToObj(idx -> new Line(length, connectionCreationStrategy))
+                .mapToObj(idx -> new Line(width, connectionCreationStrategy))
                 .collect(Collectors.toList()));
     }
 

@@ -21,4 +21,8 @@ public class Result {
     public int hashCode() {
         return Objects.hash(result);
     }
+
+    public String getResult() {
+        return result;
+    }
 }

@@ -41,4 +41,10 @@ public class OutputView {
         }
         return NO_CONNECTION;
     }
+
+    public static void showLineResult(LineResult lineResult) {
+        out.println(lineResult.getResults().stream()
+                .map(result -> String.format("%-5s", result.getResult()))
+                .collect(Collectors.joining()));
+    }
 }

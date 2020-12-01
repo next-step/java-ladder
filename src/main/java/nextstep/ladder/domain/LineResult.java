@@ -12,18 +12,18 @@ public class LineResult {
         this.results = new ArrayList<>(results);
     }
 
-    public static LineResult from(int length, String results) {
+    public static LineResult from(int width, String results) {
         List<Result> resultList = Arrays.stream(results.split(SPLITTER))
                 .map(Result::new)
                 .collect(Collectors.toList());
-        checkSize(length, resultList);
+        checkSize(width, resultList);
 
         return new LineResult(resultList);
     }
 
-    private static void checkSize(int length, List<Result> resultList) {
-        if (resultList.size() != length) {
-            throw new IllegalArgumentException("length and results size is different");
+    private static void checkSize(int width, List<Result> resultList) {
+        if (resultList.size() != width) {
+            throw new IllegalArgumentException("width and results size is different");
         }
     }
 

@@ -9,6 +9,7 @@ public class InputView {
     private static final PrintStream out = System.out;
     public static final String GET_NAMES_MESSAGE = "참여할 사람 이름을 입력하세요.";
     public static final String GET_HEIGHT_MESSAGE = "최대 사다리 높이는 몇 개인가요?";
+    public static final String GET_FIRST_LINE_RESULT_MESSAGE = "실행 결과를 입력하세요.";
 
     public static String getNames() {
         out.println(GET_NAMES_MESSAGE);
@@ -23,5 +24,10 @@ public class InputView {
         } catch (NumberFormatException numberFormatException) {
             throw new NumberFormatException("please input number");
         }
+    }
+
+    public static String getFirstLineResult() {
+        out.println(GET_FIRST_LINE_RESULT_MESSAGE);
+        return scanner.nextLine();
     }
 }
