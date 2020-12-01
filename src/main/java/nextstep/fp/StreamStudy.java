@@ -17,7 +17,8 @@ public class StreamStudy {
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
         return words.stream()
-                .filter(word -> word.length() > 12).count();
+                .filter(word -> word.length() > 12)
+                .count();
     }
 
     public static void printLongestWordTop100() throws IOException {
@@ -27,10 +28,11 @@ public class StreamStudy {
 
         words.stream()
                 .filter(word -> word.length() > 12)
-                .sorted(Comparator.comparing(String::length).reversed())
                 .distinct()
+                .sorted(Comparator.comparing(String::length).reversed())
                 .limit(100)
-                .forEach(word -> System.out.println(word.toLowerCase()));
+                .map(String::toLowerCase)
+                .forEach(System.out::println);
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
@@ -38,7 +40,8 @@ public class StreamStudy {
     }
 
     public static long sumAll(List<Integer> numbers) {
-        return numbers.stream().reduce(0, (x, y) -> x + y);
+        return numbers.stream()
+                .reduce(0, (x, y) -> x + y);
     }
 
     public static long sumOverThreeAndDouble(List<Integer> numbers) {
