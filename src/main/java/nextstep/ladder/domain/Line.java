@@ -18,4 +18,8 @@ public class Line {
     public Stream<Boolean> toSpokeStream() {
         return spoke.stream();
     }
+
+    public Position moveOn(Position from) {
+        return Position.of(1);
+    }
 }
