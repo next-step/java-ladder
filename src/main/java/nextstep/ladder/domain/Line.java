@@ -11,29 +11,29 @@ public class Line {
     public static final String POINTS_INVALID_VALUE_ERR_MSG = "points의 값이 연속된 true일 수 없습니다.";
     private final List<Boolean> points;
 
-    private Line(NumberOfParticipants numberOfParticipants, PointsGenerator pointsGenerator) {
-        points = pointsGenerator.getPoints(numberOfParticipants.getPointsSize());
+    private Line(SizeOfPerson sizeOfPerson, PointsGenerator pointsGenerator) {
+        points = pointsGenerator.getPoints(sizeOfPerson.getPointsSize());
         validatePoints();
     }
 
-    private Line(NumberOfParticipants numberOfParticipants) {
-        this(numberOfParticipants, HalfRandomPointsGenerator.getInstance());
+    private Line(SizeOfPerson sizeOfPerson) {
+        this(sizeOfPerson, HalfRandomPointsGenerator.getInstance());
     }
 
-    public static Line from(NumberOfParticipants numberOfParticipants) {
-        return new Line(numberOfParticipants);
+    public static Line from(SizeOfPerson sizeOfPerson) {
+        return new Line(sizeOfPerson);
     }
 
-    public static Line of(NumberOfParticipants numberOfParticipants, PointsGenerator pointsGenerator) {
-        return new Line(numberOfParticipants, pointsGenerator);
+    public static Line of(SizeOfPerson sizeOfPerson, PointsGenerator pointsGenerator) {
+        return new Line(sizeOfPerson, pointsGenerator);
     }
 
     public static Line from(Participants participants) {
-        return new Line(participants.getNumberOfParticipants());
+        return new Line(participants.getSizeOfPerson());
     }
 
     public static Line of(Participants participants, PointsGenerator pointsGenerator) {
-        return new Line(participants.getNumberOfParticipants(), pointsGenerator);
+        return new Line(participants.getSizeOfPerson(), pointsGenerator);
     }
 
     private void validatePoints() {
