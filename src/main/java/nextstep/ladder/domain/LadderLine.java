@@ -4,6 +4,7 @@ import nextstep.ladder.util.pointsgenerator.PointsGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 import static nextstep.ladder.domain.LadderPointGenerator.generatePoint;
 
@@ -65,6 +66,10 @@ public class LadderLine {
 
     public int move(int position) {
         return points.get(position).move();
+    }
+
+    public void pointsForEach(Consumer<Point> consumer) {
+        points.forEach(consumer);
     }
 
     @Override

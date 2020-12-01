@@ -19,11 +19,11 @@ public class ExecutionResultCandidatesTest {
         //given
         Participants participants = Participants.of("pobi", "honux", "crong", "jk");
         Height height = Height.valueOf(5);
-        Ladder ladder = Ladder.of2(participants, height, new MockPointsGenerator());
+        Ladder ladder = Ladder.of(participants, height, new MockPointsGenerator());
         ResultCandidates resultCandidates = ResultCandidates.of(participants.getSizeOfPerson(), "꽝", "5000", "꽝", "3000");
 
         //when
-        ExecutionResults executionResults = ladder.resultOf2(participants, resultCandidates);
+        ExecutionResults executionResults = ladder.resultOf(participants, resultCandidates);
 
         //then
         assertAll(
