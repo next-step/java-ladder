@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.util.pointsgenerator.PointsGenerator;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,8 +22,22 @@ public class LadderLine {
         return new LadderLine(points);
     }
 
+    public static LadderLine init(int sizeOfPerson, PointsGenerator pointsGenerator) {
+        List<Point> points = new ArrayList<>();
+        Point point = initFirst(points, pointsGenerator);
+        point = initBody(sizeOfPerson, points, point, pointsGenerator);
+        initLast(points, point);
+        return new LadderLine(points);
+    }
+
     private static Point initFirst(List<Point> points) {
         Point point = Point.first(generatePoint());
+        points.add(point);
+        return point;
+    }
+
+    private static Point initFirst(List<Point> points, PointsGenerator pointsGenerator) {
+        Point point = Point.first(pointsGenerator.generatePoint());
         points.add(point);
         return point;
     }
@@ -29,6 +45,14 @@ public class LadderLine {
     private static Point initBody(int sizeOfPerson, List<Point> points, Point point) {
         for (int i = 1; i < sizeOfPerson - 1; i++) {
             point = point.next();
+            points.add(point);
+        }
+        return point;
+    }
+
+    private static Point initBody(int sizeOfPerson, List<Point> points, Point point, PointsGenerator pointsGenerator) {
+        for (int i = 1; i < sizeOfPerson - 1; i++) {
+            point = point.next(pointsGenerator.generatePoint());
             points.add(point);
         }
         return point;

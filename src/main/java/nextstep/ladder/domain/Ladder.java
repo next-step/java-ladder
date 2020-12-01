@@ -29,7 +29,7 @@ public class Ladder {
     }
 
     private Ladder(List<LadderLine> ladderLines) {
-        lines = new ArrayList<>();
+        lines = new ArrayList<>(); //todo 삭제
         this.ladderLines = ladderLines;
     }
 
@@ -42,7 +42,7 @@ public class Ladder {
     }
 
     public static Ladder of2(Participants participants, Height height) {
-        List<LadderLine> ladderLines = new ArrayList<>();
+        List<LadderLine> ladderLines = new ArrayList<>(height.getValue());
         int sizeOfPerson = participants.getSizeOfPerson().getValue();
         IntStream.range(0, height.getValue())
                 .forEach(index -> ladderLines.add(LadderLine.init(sizeOfPerson)));
@@ -50,7 +50,11 @@ public class Ladder {
     }
 
     public static Ladder of2(Participants participants, Height height, PointsGenerator pointsGenerator) {
-        return new Ladder(participants, height, pointsGenerator);
+        List<LadderLine> ladderLines = new ArrayList<>(height.getValue());
+        int sizeOfPerson = participants.getSizeOfPerson().getValue();
+        IntStream.range(0, height.getValue())
+                .forEach(index -> ladderLines.add(LadderLine.init(sizeOfPerson, pointsGenerator)));
+        return new Ladder(ladderLines);
     }
 
     public void linesForEach(Consumer<Line> consumer) {
@@ -95,11 +99,17 @@ public class Ladder {
         return ExecutionResults.of(resultsMap);
     }
 
-    private int getResultIndexOf2(Integer position) {
-        for (LadderLine ladderLine : ladderLines) {
-            position = ladderLine.move(position);
+    private int getResultIndexOf2(int index) {
+        return getResultIndexOf2(index, ladderLines.size() - 1);
+    }
+
+    private int getResultIndexOf2(int index, int lineIndex) {
+        LadderLine line = ladderLines.get(lineIndex);
+        if (lineIndex == 0) {
+            return line.move(index);
         }
 
-        return position;
+        int nextIndex = getResultIndexOf2(index, lineIndex - 1);
+        return line.move(nextIndex);
     }
 }
