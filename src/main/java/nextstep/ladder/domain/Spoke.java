@@ -31,8 +31,8 @@ public class Spoke {
         return Collector.of(Spoke::new, Spoke::add, nope());
     }
 
-    public Line toLine() {
-        return new Line(this.list);
+    public SingleLine toLine() {
+        return new SingleLine(this.list);
     }
 
     private void add(Boolean next) {

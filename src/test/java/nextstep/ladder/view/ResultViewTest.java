@@ -1,6 +1,6 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.Line;
+import nextstep.ladder.domain.SingleLine;
 import nextstep.ladder.domain.Spoke;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -35,7 +35,7 @@ public class ResultViewTest {
     @DisplayName("사다리 라인 두개를 그린다")
     @Test
     void printTwoLadderLine() {
-        List<Line> lines = Arrays.asList(
+        List<SingleLine> lines = Arrays.asList(
                 Spoke.of(true, false, true).toLine(),
                 Spoke.of(false, true, false).toLine());
 

@@ -1,6 +1,6 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.Line;
+import nextstep.ladder.domain.SingleLine;
 
 import java.io.PrintWriter;
 import java.io.Writer;
@@ -20,7 +20,7 @@ public class ResultView {
         this.out = new PrintWriter(out);
     }
 
-    public void printResult(List<String> players, List<Line> lines) {
+    public void printResult(List<String> players, List<SingleLine> lines) {
         println("실행결과");
         println("");
         printNames(players);
@@ -28,7 +28,7 @@ public class ResultView {
         flush();
     }
 
-    void printLadder(Line line) {
+    void printLadder(SingleLine line) {
         print(times(BLANK, 4));
         line.toSpokeStream()
                 .map(this::makeRung)
@@ -37,7 +37,7 @@ public class ResultView {
         println("|");
     }
 
-    void printLadders(List<Line> lines) {
+    void printLadders(List<SingleLine> lines) {
         lines.forEach(this::printLadder);
     }
 
