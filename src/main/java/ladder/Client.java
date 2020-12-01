@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Client {
 
-    private static List<String> parsedInput;
+    private static Users users;
 
     public static void main(String[] args) {
         userSetUpPhase();
@@ -14,6 +14,7 @@ public class Client {
 
     private static void userSetUpPhase() {
         String rawInput = InputView.askNames();
-        parsedInput = InputParser.parseRawInput(rawInput);
+        List<String> parsedInput = InputParser.parseRawInput(rawInput);
+        users = new Users(parsedInput);
     }
 }

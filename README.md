@@ -20,9 +20,10 @@
 
 ### 파생 요구사항(설계)
 * [ ] User
-    * [X] 이름 길이는 최대 5자
+    * [X] 이름 길이는 최대 5자(이름에 대한 정상 포멧 검증)
 * [ ] Users
     * [ ] 초기 위치(?)
+    * [X] List<User>
 * [ ] RawInputParser
     * [X] ,로 인풋 분리 기능 `String -> <List>String`
 * [ ] VerticalLine
