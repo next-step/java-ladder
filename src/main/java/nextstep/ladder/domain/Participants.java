@@ -41,6 +41,10 @@ public class Participants {
         return numberOfParticipants;
     }
 
+    public NumberOfParticipants getSizeOfPerson() {
+        return numberOfParticipants;
+    }
+
     public void namesValueForEach(Consumer<String> consumer) {
         names.stream()
                 .map(Name::getValue)

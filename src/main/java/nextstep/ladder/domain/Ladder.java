@@ -12,6 +12,7 @@ import java.util.stream.IntStream;
 
 public class Ladder {
     private final List<Line> lines;
+    private List<LadderLine> ladderLines;
 
     private Ladder(Participants participants, Height height) {
         lines = new ArrayList<>(height.getValue());
@@ -27,11 +28,28 @@ public class Ladder {
                 .forEach(index -> lines.add(Line.of(participants, pointsGenerator)));
     }
 
+    private Ladder(List<LadderLine> ladderLines) {
+        lines = new ArrayList<>();
+        this.ladderLines = ladderLines;
+    }
+
     public static Ladder of(Participants participants, Height height) {
         return new Ladder(participants, height);
     }
 
     public static Ladder of(Participants participants, Height height, PointsGenerator pointsGenerator) {
+        return new Ladder(participants, height, pointsGenerator);
+    }
+
+    public static Ladder of2(Participants participants, Height height) {
+        List<LadderLine> ladderLines = new ArrayList<>();
+        int sizeOfPerson = participants.getSizeOfPerson().getValue();
+        IntStream.range(0, height.getValue())
+                .forEach(index -> ladderLines.add(LadderLine.init(sizeOfPerson)));
+        return new Ladder(ladderLines);
+    }
+
+    public static Ladder of2(Participants participants, Height height, PointsGenerator pointsGenerator) {
         return new Ladder(participants, height, pointsGenerator);
     }
 
