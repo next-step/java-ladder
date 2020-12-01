@@ -15,7 +15,7 @@ public class Ladder implements Line {
     }
 
     public static Ladder of(Stream<Spoke> spokes) {
-        return new Ladder(spokes.map(Spoke::toSingleLine)
+        return new Ladder(spokes.map(SingleLine::new)
                                  .collect(toList()));
     }
 

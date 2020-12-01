@@ -13,6 +13,10 @@ public class SingleLine implements Line {
         this.spoke = Spoke.of(spoke.toArray(new Boolean[0]));
     }
 
+    public SingleLine(Spoke spoke) {
+        this.spoke = spoke;
+    }
+
     public Stream<Boolean> toSpokeStream() {
         return spoke.stream();
     }

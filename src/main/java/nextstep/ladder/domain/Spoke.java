@@ -31,10 +31,6 @@ public class Spoke {
         return Collector.of(Spoke::new, Spoke::add, nope());
     }
 
-    public SingleLine toSingleLine() {
-        return new SingleLine(this.list);
-    }
-
     private void add(Boolean next) {
         if (list.isEmpty()) {
             list.add(next);
