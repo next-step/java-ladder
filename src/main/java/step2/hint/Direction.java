@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.Objects;
 
 import static java.lang.Boolean.FALSE;
+import static step2.hint.LadderPointGenerator.generatePoint;
 
 public class Direction {
     private final boolean left;
@@ -16,7 +17,6 @@ public class Direction {
 
         this.left = left;
         this.right = right;
-        System.out.println(this);
     }
 
     public boolean isRight() {
@@ -38,9 +38,6 @@ public class Direction {
         return next(generatePoint());
     }
 
-    private boolean generatePoint() {
-        return false;
-    }
 
     public static Direction of(boolean first, boolean second) {
         return new Direction(first, second);
