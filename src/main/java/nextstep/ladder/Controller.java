@@ -20,10 +20,10 @@ public class Controller {
         List<String> players = inputView.requestPlayers();
         int ladderHeight = inputView.requestHeight();
 
-        resultView.printResult(players, toLines(ladderHeight, players.size()));
+        resultView.printResult(players, createLadder(ladderHeight, players.size()));
     }
 
-    private Ladder toLines(int ladderHeight, int playersCount) {
+    private Ladder createLadder(int ladderHeight, int playersCount) {
         return Ladder.of(IntStream.range(0, ladderHeight)
                                 .mapToObj(__ -> Spoke.fromCount(playersCount - 1, RANDOM::nextBoolean)));
     }

@@ -57,11 +57,11 @@ public class Spoke {
         return list.size();
     }
 
-    Boolean isMovableRight(Position position) {
+    Boolean isRightMovable(Position position) {
         return list.get(position.toInt());
     }
 
-    public Boolean isMovableLeft(Position position) {
+    public Boolean isLeftMovable(Position position) {
         return list.get(position.toInt() - 1);
     }
 

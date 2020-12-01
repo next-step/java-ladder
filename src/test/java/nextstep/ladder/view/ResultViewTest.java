@@ -1,7 +1,7 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.SingleLine;
+import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Spoke;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -28,7 +28,7 @@ public class ResultViewTest {
     @DisplayName("사다리 라인 하나를 그린다")
     @Test
     void printOneLadderLine() {
-        resultView.printLadder(new SingleLine(Spoke.of(true, false, true)));
+        resultView.printLine(new Line(Spoke.of(true, false, true)));
 
         assertThat(out.toString()).isEqualTo("    |-----|     |-----|\n");
     }
@@ -40,7 +40,7 @@ public class ResultViewTest {
                 Stream.of(Spoke.of(true, false, true),
                           Spoke.of(false, true, false)));
 
-        resultView.printLadders(ladder);
+        resultView.printLadder(ladder);
 
         assertThat(out.toString()).isEqualTo(
                 "    |-----|     |-----|\n" +
