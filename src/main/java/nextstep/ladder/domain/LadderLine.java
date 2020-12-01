@@ -72,6 +72,10 @@ public class LadderLine {
         points.forEach(consumer);
     }
 
+    public int size() {
+        return points.size();
+    }
+
     @Override
     public String toString() {
         return "LadderLine{" +
