@@ -9,7 +9,7 @@ public class User {
     String name;
 
     public User(String inputName) {
-        this.name = Optional.ofNullable(inputName)
+        this.name = Optional.of(inputName)
                 .filter(name -> !name.isEmpty() && name.length() <= 5)
                 .orElseThrow(InvalidUserNameException::new);
     }

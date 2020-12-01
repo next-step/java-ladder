@@ -5,13 +5,14 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.assertj.core.api.Assertions.assertThatNullPointerException;
 
 public class UserTest {
 
     @Test
     @DisplayName("Null 값 테스트")
     void testNullValue() {
-        assertThatExceptionOfType(InvalidUserNameException.class).isThrownBy(
+        assertThatNullPointerException().isThrownBy(
                 () -> new User(null)
         );
     }
