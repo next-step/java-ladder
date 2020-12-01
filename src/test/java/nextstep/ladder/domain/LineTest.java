@@ -38,7 +38,6 @@ public class LineTest {
                 .isInstanceOf(OutOfLineException.class);
     }
 
-
     @DisplayName("|-----|     | 의 경우 입력 포지션과 출력 포지션이 다르다")
     @Test
     void moveWithLineWithThreePole() {
@@ -47,6 +46,17 @@ public class LineTest {
                 () -> assertThat(line.moveOn(Position.of(0))).isEqualTo(Position.of(1)),
                 () -> assertThat(line.moveOn(Position.of(1))).isEqualTo(Position.of(0)),
                 () -> assertThat(line.moveOn(Position.of(2))).isEqualTo(Position.of(2))
+        );
+    }
+
+    @DisplayName("|     |-----| 의 경우 입력 포지션과 출력 포지션이 다르다")
+    @Test
+    void moveWithLineWithThreePoleOther() {
+        Line line = Spoke.of(false, true).toLine();
+        assertAll(
+                () -> assertThat(line.moveOn(Position.of(0))).isEqualTo(Position.of(0)),
+                () -> assertThat(line.moveOn(Position.of(1))).isEqualTo(Position.of(2)),
+                () -> assertThat(line.moveOn(Position.of(2))).isEqualTo(Position.of(1))
         );
     }
 }
