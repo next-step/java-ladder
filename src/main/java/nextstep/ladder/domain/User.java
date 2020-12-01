@@ -16,4 +16,5 @@ public class User {
             throw new IllegalArgumentException(ErrorMessage.INVALID_USER_NAME);
         }
     }
+
 }
