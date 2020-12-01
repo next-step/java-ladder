@@ -26,7 +26,7 @@ public class Ladder {
     }
 
     public static Ladder of(Participants participants, Height height, PointsGenerator pointsGenerator) {
-        return new Ladder(participants, height, (sizeOfPerson) -> LadderLine.init(sizeOfPerson, pointsGenerator));
+        return new Ladder(participants, height, sizeOfPerson -> LadderLine.init(sizeOfPerson, pointsGenerator));
     }
 
     public void linesForEach(Consumer<LadderLine> consumer) {

@@ -19,8 +19,4 @@ public class SizeOfPerson {
     public int getValue() {
         return value;
     }
-
-    public int getPointsSize() {
-        return value - 1;
-    }
 }
