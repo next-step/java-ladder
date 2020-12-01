@@ -27,6 +27,10 @@ public class LineResult {
         }
     }
 
+    public void swapWithNextPosition(int position) {
+        Collections.swap(this.results, position, position + 1);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -38,5 +42,9 @@ public class LineResult {
     @Override
     public int hashCode() {
         return Objects.hash(results);
+    }
+
+    public List<Result> getResults() {
+        return Collections.unmodifiableList(results);
     }
 }

@@ -22,4 +22,14 @@ public class Lines {
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
     }
+
+    public int getHeight() {
+        return lines.size();
+    }
+
+    public List<Connection> getConnectionList(int heightPoint) {
+        return this.lines.get(heightPoint)
+                .getConnections()
+                .getConnections();
+    }
 }
