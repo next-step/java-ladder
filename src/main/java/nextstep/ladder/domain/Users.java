@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 public class Users {
 
     private static final String COMMA = ",";
+    private static final int EMPTY = 0;
 
     private final List<User> users;
 
@@ -24,7 +25,7 @@ public class Users {
     }
 
     private void throwIfNullOrEmpty(String usersNameString) {
-        if (usersNameString == null || usersNameString.length() == 0) {
+        if (usersNameString == null || usersNameString.length() == EMPTY) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_USERS_NAME_STRING);
         }
     }
