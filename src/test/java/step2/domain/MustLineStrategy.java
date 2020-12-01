@@ -8,14 +8,14 @@ public class MustLineStrategy implements LineStrategy {
 
 
     @Override
-    public List<Direction> createLine(int personCount) {
+    public List<Way> createLine(int personCount) {
         return IntStream.range(0, personCount)
                 .mapToObj(i -> getLine())
                 .collect(Collectors.toList());
     }
 
-    private Direction getLine() {
-        return Direction.DOWN;
+    private Way getLine() {
+        return Way.DOWN;
     }
 
 }

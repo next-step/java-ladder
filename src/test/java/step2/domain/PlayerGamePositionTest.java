@@ -21,37 +21,37 @@ class PlayerGamePositionTest {
     @Test
     @DisplayName("왼쪽으로 움직이는지 확인한다.")
     void moveLeft() {
-        playerGamePosition.move(Direction.LEFT);
+        playerGamePosition.move(Way.LEFT);
         assertThat(playerGamePosition.getPosition()).isEqualTo(0);
     }
 
     @Test
     @DisplayName("오른쪽으로 움직이는지 확인한다.")
     void moveRight() {
-        playerGamePosition.move(Direction.RIGHT);
+        playerGamePosition.move(Way.RIGHT);
         assertThat(playerGamePosition.getPosition()).isEqualTo(2);
     }
 
     @Test
     @DisplayName("아래쪽으로 움직이는지 확인한다.")
     void moveDown() {
-        playerGamePosition.move(Direction.DOWN);
+        playerGamePosition.move(Way.DOWN);
         assertThat(playerGamePosition.getPosition()).isEqualTo(1);
     }
 
     @Test
     @DisplayName("왼쪽으로 움직일때 경계선을 넘어가면 익셉션이 터지는지 확인한다.")
     void moveLeftException() {
-        playerGamePosition.move(Direction.LEFT);
-        assertThatThrownBy(() -> playerGamePosition.move(Direction.LEFT))
+        playerGamePosition.move(Way.LEFT);
+        assertThatThrownBy(() -> playerGamePosition.move(Way.LEFT))
                 .isInstanceOf(NotMoveLeftException.class);
     }
 
     @Test
     @DisplayName("오쪽으로 움직일때 경계선을 넘어가면 익셉션이 터지는지 확인한다.")
     void moveRightException() {
-        playerGamePosition.move(Direction.RIGHT);
-        assertThatThrownBy(() -> playerGamePosition.move(Direction.RIGHT))
+        playerGamePosition.move(Way.RIGHT);
+        assertThatThrownBy(() -> playerGamePosition.move(Way.RIGHT))
                 .isInstanceOf(NotMoveRightException.class);
     }
 
