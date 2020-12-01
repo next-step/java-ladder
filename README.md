@@ -20,15 +20,15 @@
 
 ### 파생 요구사항(설계)
 * [ ] User
-    * [ ] 이름 길이는 최대 5자
+    * [X] 이름 길이는 최대 5자
 * [ ] Users
     * [ ] 초기 위치(?)
 * [ ] RawInputParser
-    * [ ] ,로 인풋 분리 기능 `String -> <List>String`
+    * [X] ,로 인풋 분리 기능 `String -> <List>String`
 * [ ] VerticalLine
-    * [ ] height > 0
+    * [X] height > 0
     * [ ] 가로 선 생성 조건 존재
-* [ ] Enum 으로 Left, Right, NoHorizontalLine
+* [X] Enum 으로 Left, Right, NoHorizontalLine
 * [ ] Ladder
     * [ ] VerticalLine 의 묶음
         * [ ] Line 의 갯수는 User 수와 동일
