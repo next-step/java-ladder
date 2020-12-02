@@ -23,6 +23,6 @@ class RewardTest {
     @Test
     @DisplayName("플레이어 이름 확인")
     void validName() {
-        assertThat(reward.getName()).isEqualTo("a");
+        assertThat(reward.getRewardName()).isEqualTo("a");
     }
 }
