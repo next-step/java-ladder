@@ -6,7 +6,6 @@ public class RandomLinkGenerator implements LinkGenerator{
 
     private static final RandomLinkGenerator instance = new RandomLinkGenerator();
     private static final Random random = new Random();
-    private static final int BOUND = 2_000_000_000;
 
     private RandomLinkGenerator() {}
 
@@ -16,7 +15,7 @@ public class RandomLinkGenerator implements LinkGenerator{
 
     @Override
     public boolean isPossibleToLink() {
-        return random.nextInt(BOUND) % 2 == 0;
+        return random.nextBoolean();
     }
 
 }
