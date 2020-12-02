@@ -24,16 +24,17 @@ class PlayersTest {
     }
 
     @Test
-    @DisplayName("플레이어가 생성되는지 확인")
+    @DisplayName("플레이어들이 생성되는지 확인")
     void createPlayers() {
         //given
-        assertThat(players).isEqualTo(Players.of(Arrays.asList("a","b","c")));
+        assertThat(players).isEqualTo(Players.of(Arrays.asList("a", "b", "c")));
     }
 
     @Test
     @DisplayName("플레이어가 리스트가 잘 생성되는지 확인")
     void createPlayersList() {
         //given
-        assertThat(players.getPlayers()).containsExactly(Player.of("a"), Player.of("b"), Player.of("c"));
+        assertThat(players.getPlayers())
+                .containsExactly(Player.of("a", 0), Player.of("b", 1), Player.of("c", 2));
     }
 }

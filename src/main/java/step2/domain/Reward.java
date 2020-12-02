@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Reward {
 
-    final String name;
+    private final String name;
 
     private Reward(String name) {
         this.name = name;
@@ -14,7 +14,7 @@ public class Reward {
         return new Reward(name);
     }
 
-    public String getName() {
+    public String getRewardName() {
         return name;
     }
 

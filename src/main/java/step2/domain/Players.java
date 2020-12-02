@@ -2,11 +2,13 @@ package step2.domain;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 import static java.util.Collections.unmodifiableList;
 
 public class Players {
+    public static final int PLAYER_START_POSITION = 0;
     private final List<Player> players;
 
     private Players(List<Player> players) {
@@ -14,8 +16,9 @@ public class Players {
     }
 
     public static Players of(List<String> names) {
+        AtomicInteger position = new AtomicInteger(PLAYER_START_POSITION);
         return new Players(names.stream()
-                .map(Player::of)
+                .map(name -> Player.of(name, position.getAndIncrement()))
                 .collect(Collectors.toList()));
     }
 
@@ -26,6 +29,7 @@ public class Players {
     public List<Player> getPlayers() {
         return unmodifiableList(players);
     }
+
 
     @Override
     public boolean equals(Object o) {

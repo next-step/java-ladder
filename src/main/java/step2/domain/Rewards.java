@@ -21,10 +21,6 @@ public class Rewards {
                 .collect(Collectors.toList()));
     }
 
-    public int getRewardsCount() {
-        return rewards.size();
-    }
-
     public List<Reward> getRewards() {
         return unmodifiableList(rewards);
     }
