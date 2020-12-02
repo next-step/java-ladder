@@ -1,6 +1,6 @@
 package ladder;
 
-import ladder.domain.Line;
+import ladder.domain.Lines;
 import ladder.domain.Participants;
 import ladder.view.InputUi;
 import ladder.view.OutputUi;
@@ -11,6 +11,8 @@ public class ladderApplication {
         Participants ladderMaker = Participants.of(ladderParticipants);
 
         int ladderMaximumHeight = InputUi.maximumHeight();
-        OutputUi.printLadder(ladderMaker.getNames(), Line.of(ladderMaximumHeight));
+        OutputUi.printLadder(ladderMaker.getNames(), Lines.of(ladderMaximumHeight));
+
+        InputUi.close();
     }
 }
