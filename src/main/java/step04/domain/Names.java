@@ -4,6 +4,7 @@ import exception.DuplicatedNameException;
 import exception.InvalidCountOfNamesException;
 import exception.NotFoundNameException;
 import step04.utils.Tokenizer;
+import step04.utils.Validator;
 
 import java.util.Collections;
 import java.util.List;
@@ -37,7 +38,7 @@ public class Names {
     }
 
     public void validateUnique() {
-        if (names.stream().distinct().count() != names.size()) {
+        if (!Validator.isUnique(names)) {
             throw new DuplicatedNameException();
         }
     }
