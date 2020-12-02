@@ -6,7 +6,7 @@ public class ConnectionCreationStrategyImpl implements ConnectionCreationStrateg
     private static final Random random = new Random();
     public static final int BOUND = 10;
     public static final int LIMIT = 2;
-    public static final int FIRST = 5;
+    public static final int FIRST = 4;
 
     @Override
     public boolean isAble(int point) {
