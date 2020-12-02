@@ -3,10 +3,7 @@ package nextstep.ladder.entity.ladder;
 import nextstep.ladder.entity.User;
 import nextstep.ladder.view.UsersInputView;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Users {
@@ -33,7 +30,7 @@ public class Users {
     public List<String> getUserNames() {
         return users.stream()
                 .map(User::getName)
-                .collect(Collectors.toList());
+                .collect(Collectors.collectingAndThen(Collectors.toList(), Collections::unmodifiableList));
     }
 
     public int getUserCount() {

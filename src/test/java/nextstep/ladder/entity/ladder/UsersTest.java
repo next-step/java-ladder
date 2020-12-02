@@ -23,4 +23,13 @@ class UsersTest {
         assertArrayEquals(userNames.toArray(), usersInput.toArray());
     }
 
+    @Test
+    void test_unmodifiableList() {
+        assertThrows(UnsupportedOperationException.class, () -> {
+            Users users = new Users(usersInput);
+            List<String> userNames = users.getUserNames();
+            userNames.add("test");
+        });
+    }
+
 }
