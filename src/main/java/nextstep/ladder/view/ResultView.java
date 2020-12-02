@@ -18,15 +18,20 @@ public class ResultView {
     private final PrintWriter out;
 
     public ResultView(Writer out) {
-        this.out = new PrintWriter(out);
+        this.out = new PrintWriter(out, true);
     }
 
-    public void printResult(List<String> players, Ladder ladder) {
+    public void printLadder(List<String> players, List<String> goals, Ladder ladder) {
         println("실행결과");
         println("");
         printNames(players);
         printLadder(ladder);
-        flush();
+        printNames(goals);
+    }
+
+    public void printResult(List<String> names) {
+        println("실행 결과");
+        names.forEach(this::println);
     }
 
     void printLine(Line line) {
