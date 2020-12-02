@@ -6,6 +6,7 @@ import nextstep.ladder.domain.Line;
 import java.io.PrintWriter;
 import java.io.Writer;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.joining;
@@ -21,17 +22,17 @@ public class ResultView {
         this.out = new PrintWriter(out, true);
     }
 
-    public void printLadder(List<String> players, List<String> goals, Ladder ladder) {
+    public void printLadder(Ladder ladder) {
         println("실행결과");
         println("");
-        printNames(players);
-        printLadder(ladder);
-        printNames(goals);
+        printNames(ladder.getPlayers());
+        ladder.forEach(this::printLine);
+        printNames(ladder.getGoals());
     }
 
-    public void printResult(List<String> names) {
+    public void printResult(Map<String, String> names) {
         println("실행 결과");
-        names.forEach(this::println);
+        names.forEach(this::printResult);
     }
 
     void printLine(Line line) {
@@ -41,10 +42,6 @@ public class ResultView {
                 .map(this::withPole)
                 .forEach(this::print);
         println("|");
-    }
-
-    void printLadder(Ladder ladder) {
-        ladder.forEach(this::printLine);
     }
 
     void printNames(List<String> names) {
@@ -74,6 +71,10 @@ public class ResultView {
         return times(RUNG, NAME_SPACE);
     }
 
+    private void printResult(String name, String result) {
+        println(name + ":" + result);
+    }
+
     private void println(String string) {
         out.println(string);
     }
@@ -84,9 +85,5 @@ public class ResultView {
 
     static String times(String string, int repeat) {
         return IntStream.range(0, repeat).mapToObj(__ -> string).collect(joining());
-    }
-
-    private void flush() {
-        out.flush();
     }
 }

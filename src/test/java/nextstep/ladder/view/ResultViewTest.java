@@ -40,7 +40,7 @@ public class ResultViewTest {
                 Stream.of(Spoke.of(true, false, true),
                           Spoke.of(false, true, false)));
 
-        resultView.printLadder(ladder);
+        ladder.forEach(resultView::printLine);
 
         assertThat(out.toString()).isEqualTo(
                 "    |-----|     |-----|\n" +

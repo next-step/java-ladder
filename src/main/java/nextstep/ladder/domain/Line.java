@@ -2,7 +2,7 @@ package nextstep.ladder.domain;
 
 import java.util.stream.Stream;
 
-public class Line implements Moveable {
+public class Line {
 
     public static final int LEFT = -1;
     public static final int RIGHT = +1;
@@ -16,7 +16,6 @@ public class Line implements Moveable {
         return spoke.stream();
     }
 
-    @Override
     public Position moveOn(Position position) {
         ensureLineBoundaryIn(position);
 

@@ -14,7 +14,7 @@ public class LineTest {
     @DisplayName("|-----| 의 경우 입력 포지션과 출력 포지션이 다르다")
     @Test
     void moveWithLine() {
-        Moveable line = toLines(Spoke.of(true));
+        Ladder line = toLines(Spoke.of(true));
         assertAll(
                 () -> assertThat(line.moveOn(Position.of(0))).isEqualTo(Position.of(1)),
                 () -> assertThat(line.moveOn(Position.of(1))).isEqualTo(Position.of(0))
@@ -24,7 +24,7 @@ public class LineTest {
     @DisplayName("라인 바깥쪽 포지션은 입력받을 수 없다")
     @Test
     void outOfLineEndException() {
-        Moveable line = toLines(Spoke.of(true));
+        Ladder line = toLines(Spoke.of(true));
         assertThatThrownBy(() -> line.moveOn(Position.of(2)))
                 .isInstanceOf(OutOfLineException.class);
     }
@@ -32,7 +32,7 @@ public class LineTest {
     @DisplayName("|-----|     | 의 경우 입력 포지션과 출력 포지션이 다르다")
     @Test
     void moveWithLineWithThreePole() {
-        Moveable line = toLines(Spoke.of(true, false));
+        Ladder line = toLines(Spoke.of(true, false));
         assertAll(
                 () -> assertThat(line.moveOn(Position.of(0))).isEqualTo(Position.of(1)),
                 () -> assertThat(line.moveOn(Position.of(1))).isEqualTo(Position.of(0)),
@@ -43,7 +43,7 @@ public class LineTest {
     @DisplayName("|     |-----| 의 경우 입력 포지션과 출력 포지션이 다르다")
     @Test
     void moveWithLineWithThreePoleOther() {
-        Moveable line = toLines(Spoke.of(false, true));
+        Ladder line = toLines(Spoke.of(false, true));
         assertAll(
                 () -> assertThat(line.moveOn(Position.of(0))).isEqualTo(Position.of(0)),
                 () -> assertThat(line.moveOn(Position.of(1))).isEqualTo(Position.of(2)),
@@ -55,7 +55,7 @@ public class LineTest {
                  "|-----| 의 경우 입력 포지션과 출력 포지션이 같다")
     @Test
     void moveWithTwoLineTwoStairs() {
-        Moveable line = toLines(Spoke.of(true), Spoke.of(true));
+        Ladder line = toLines(Spoke.of(true), Spoke.of(true));
 
         assertAll(
                 () -> assertThat(line.moveOn(Position.of(0))).isEqualTo(Position.of(0)),
@@ -67,7 +67,7 @@ public class LineTest {
                  "|     |-----| 의 경우 입력 포지션과 출력 포지션이 하나씩 교차된다")
     @Test
     void moveWithThreeLineTwoStairs() {
-        Moveable line = toLines(Spoke.of(true, false), Spoke.of(false, true));
+        Ladder line = toLines(Spoke.of(true, false), Spoke.of(false, true));
 
         assertAll(
                 () -> assertThat(line.moveOn(Position.of(0))).isEqualTo(Position.of(2)),
