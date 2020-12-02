@@ -12,7 +12,7 @@ public class Users {
 
     Users(List<String> users) {
         this.users = Optional.of(users)
-                .filter(list -> list.size() >= 1)
+                .filter(list -> list.size() >= 2)
                 .orElseThrow(InvalidUsersNumberException::new)
 
                 .stream()
