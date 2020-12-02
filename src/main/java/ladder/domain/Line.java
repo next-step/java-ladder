@@ -1,35 +1,33 @@
 package ladder.domain;
 
-import java.util.List;
-import java.util.Random;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.Objects;
 
 public class Line {
 
-    private final static Random RANDOM = new Random();
+    private Boolean isLine;
 
-    private final List<Boolean> points;
-
-    private Line(List<Boolean> points) {
-        this.points = points;
+    public Line(Boolean isLine) {
+        this.isLine = isLine;
     }
 
-    public static Line of(int countOfPerson) {
-        return new Line(addPoints(countOfPerson));
+    public static Line of(Boolean isLine) {
+        return new Line(isLine);
     }
 
-    public static Boolean isLine() {
-        return RANDOM.nextBoolean();
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Line line = (Line) o;
+        return Objects.equals(isLine, line.isLine);
     }
 
-    private static List<Boolean> addPoints(int countOfPerson) {
-        return IntStream.range(0, countOfPerson)
-                .mapToObj(i -> isLine())
-                .collect(Collectors.toList());
+    @Override
+    public int hashCode() {
+        return Objects.hash(isLine);
     }
 
-    public List<Boolean> getPoints() {
-        return points;
+    public Boolean getLine() {
+        return isLine;
     }
 }
