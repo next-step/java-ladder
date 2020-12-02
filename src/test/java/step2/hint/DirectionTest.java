@@ -1,11 +1,10 @@
 package step2.hint;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class DirectionTest {
 
@@ -16,14 +15,14 @@ class DirectionTest {
 
     @Test
     void next_random_true() {
-        Direction next = Direction.first(TRUE).next();
+        Direction next = Direction.first(TRUE).next(new NotCreateLadderPointGenerator());
         assertThat(next).isEqualTo(Direction.of(TRUE, FALSE));
     }
 
     @Test
     void next_random_false() {
         for (int i = 0; i < 100; i++) {
-            Direction.first(FALSE).next();
+            Direction.first(FALSE).next(new NotCreateLadderPointGenerator());
         }
     }
 
@@ -39,12 +38,6 @@ class DirectionTest {
         assertThat(next).isEqualTo(Direction.of(TRUE, FALSE));
     }
 
-    @Test
-    public void first() {
-        Direction first = Direction.first(TRUE);
-        assertThat(first.isLeft()).isEqualTo(Direction.of(TRUE, FALSE));
-
-    }
 
     @Test
     public void last() {

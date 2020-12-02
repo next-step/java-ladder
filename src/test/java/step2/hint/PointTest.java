@@ -1,12 +1,10 @@
 package step2.hint;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class PointTest {
 
@@ -36,7 +34,7 @@ class PointTest {
 
     @Test
     void next() {
-        Point second = Point.first(TRUE).next();
+        Point second = Point.first(TRUE).next(new NotCreateLadderPointGenerator());
         assertThat(second.move()).isEqualTo(0);
     }
 
