@@ -18,4 +18,8 @@ public class Matches {
 
         return matches.get(playerFound);
     }
+
+    public Map<Player, Result> getMatches() {
+        return matches;
+    }
 }

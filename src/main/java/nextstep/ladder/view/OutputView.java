@@ -14,6 +14,8 @@ public class OutputView {
     public static final String CONNECTION = "-----";
     public static final String NO_CONNECTION = "     ";
     public static final String NEW_LINE = "\n";
+    public static final String INFIX = " : ";
+    public static final String MATCH_RESULT_MESSAGE = "실행결과";
 
     public static void showPlayers(Players players) {
         out.println(players.getPlayers().stream()
@@ -46,5 +48,19 @@ public class OutputView {
         out.println(results.getResults().stream()
                 .map(result -> String.format("%-5s", result.getResult()))
                 .collect(Collectors.joining()));
+    }
+
+    public static void showMatch(Result result) {
+        out.println(result.getResult());
+    }
+
+    public static void showMatches(Matches matches) {
+        out.println(matches.getMatches().entrySet().stream()
+                .map(entry -> entry.getKey().getName() + INFIX + entry.getValue().getResult())
+                .collect(Collectors.joining(NEW_LINE)));
+    }
+
+    public static void showMatchResult() {
+        out.println(MATCH_RESULT_MESSAGE);
     }
 }
