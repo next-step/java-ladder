@@ -14,6 +14,8 @@ public class LadderController {
     public void ladderGame() {
         // 사용자 입력 받기
         Users users = getUsers();
+        // 실행 결과 입력 받기
+
         // 사다리 높이 입력 받기
         LadderHeight ladderHeight = getLadderHeight();
 
@@ -33,5 +35,6 @@ public class LadderController {
     private LadderHeight getLadderHeight() {
         return new LadderHeight(LadderHeightInputView.getLadderHeight());
     }
+
 
 }

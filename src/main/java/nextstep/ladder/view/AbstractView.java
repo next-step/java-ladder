@@ -3,6 +3,7 @@ package nextstep.ladder.view;
 public class AbstractView {
 
     protected static StringBuilder stringBuilder = new StringBuilder();
+    protected static final String COMMA = ",";
 
     protected static void clear() {
         stringBuilder.setLength(0);
