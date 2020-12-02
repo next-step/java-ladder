@@ -1,11 +1,7 @@
 package step2.hint;
 
-import java.util.Random;
+@FunctionalInterface
+public interface LadderPointGenerator {
 
-public class LadderPointGenerator {
-    private static Random random = new Random();
-
-    public static boolean generatePoint() {
-        return random.nextBoolean();
-    }
+    boolean generatePoint();
 }
