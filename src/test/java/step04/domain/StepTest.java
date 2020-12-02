@@ -75,11 +75,11 @@ public class StepTest {
 
     @Test
     void test_move() {
-        TableOfResult tableOfResult = TableOfResult.of(Arrays.asList(0, 1, 2));
+        List<Integer> table = Arrays.asList(0, 1, 2);
         Step step = Step.of(Arrays.asList(true, false));
 
-        assertThat(step.move(tableOfResult))
-                .isEqualTo(TableOfResult.of(Arrays.asList(1, 0, 2)));
+        assertThat(step.move(table))
+                .isEqualTo(Arrays.asList(1, 0, 2));
     }
 
 }

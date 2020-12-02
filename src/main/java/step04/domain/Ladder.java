@@ -45,15 +45,15 @@ public class Ladder {
     }
 
     public TableOfResult matchTable() {
-        TableOfResult tableOfResult = Stream.iterate(0, n -> n + 1)
+        List<Integer> table = Stream.iterate(0, n -> n + 1)
                 .limit(countOfParticipants)
-                .collect(Collectors.collectingAndThen(Collectors.toList(), TableOfResult::of));
+                .collect(Collectors.toList());
 
         for (Step step : ladder) {
-            tableOfResult = step.move(tableOfResult);
+            table = step.move(table);
         }
 
-        return tableOfResult;
+        return TableOfResult.of(table);
     }
 
     @Override

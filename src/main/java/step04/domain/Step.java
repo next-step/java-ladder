@@ -59,21 +59,26 @@ public class Step {
                 .collect(Collectors.collectingAndThen(Collectors.toList(), Collections::unmodifiableList));
     }
 
-    public TableOfResult move(TableOfResult tableOfResult) {
-        TableOfResult tableOfResult1 = tableOfResult;
+    public List<Integer> move(List<Integer> table) {
+        List<Integer> tableOfCopyed = new ArrayList<>(table);
+
         for (int index = 0; index < points.size(); index++) {
-            tableOfResult1 = Step.swap(tableOfResult, index, points.get(index));
+            swap(tableOfCopyed, index, points.get(index));
         }
-        return tableOfResult1;
+
+        return tableOfCopyed;
     }
 
-    private static TableOfResult swap(TableOfResult tableOfResult, int index, Point point) {
+    private static void swap(List<Integer> table, int index, Point point) {
         if (!point.hasLine()) {
-            return tableOfResult;
+            return;
         }
-        return tableOfResult.swapIndex(index);
-    }
 
+        int temp1 = table.get(index);
+        int temp2 = table.get(index + 1);
+        table.set(index, temp2);
+        table.set(index + 1, temp1);
+    }
 
     @Override
     public boolean equals(Object o) {

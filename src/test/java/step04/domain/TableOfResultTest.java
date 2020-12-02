@@ -23,14 +23,6 @@ public class TableOfResultTest {
                 .isEqualTo(TableOfResult.of(Arrays.asList(0, 1, 2, 3)));
     }
 
-
-    @DisplayName("swap index")
-    @Test
-    void test_swapIndex() {
-        assertThat(tableOfResult.swapIndex(2))
-                .isEqualTo(TableOfResult.of(Arrays.asList(0, 1, 3, 2)));
-    }
-
     @DisplayName("사다리 match table ")
     @Test
     void test_matchTable() {
