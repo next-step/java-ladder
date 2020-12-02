@@ -23,12 +23,18 @@
 
 ### 파생 요구사항(설계)
 
-* [ ] User
+* User
   * [X] 이름 길이는 최대 5자 조건을 검증하는 역할
-* [ ] Users
+* Users
   * [X] 최소 인원 검증 역할
   * [X] 게임에 참여하는 유저들을 관리하는 역할
-* [ ] RawInputParser
-  * [X] ,로 인풋 분리 기능 `String -> <List>String`
-* [ ] ResultView
-* [ ] InputView
+* InputParser
+  * [X] ,로 인풋을 분리하는 기능 `String -> <List>String`
+* HorizontalLine
+  * [X] 지정된 길이 만큼, true 가 2개 이상 연속되지 않은 `List<boolean>` 를 변환하는 역할
+* Ladder
+  * [ ] 사다리 높이 만큼 `HorizontalLine` 을 생성하는 역할
+* ResultView
+* InputView
+  * [X] User 정보 입력 받는 기능
+  * [X] 사다리 높이 입력 받는 기능
