@@ -1,12 +1,14 @@
 package domain;
 
 import common.CommonConstants;
+import exception.InvalidPlayerNumberException;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
 public class PlayerNames {
+    private static final int PLAYERS_NUMBER_MIN = 2;
     private final List<String> playerNames;
 
     private PlayerNames(List<String> playerNames) {
@@ -14,7 +16,12 @@ public class PlayerNames {
     }
 
     public static PlayerNames of(final String names) {
-        return new PlayerNames(Arrays.asList(names.split(CommonConstants.SPLIT_DELIMITER_COMMA)));
+        List<String> playerNamesArray = Arrays.asList(names.split(CommonConstants.SPLIT_DELIMITER_COMMA));
+        if(playerNamesArray.size() < PLAYERS_NUMBER_MIN) {
+            throw new InvalidPlayerNumberException();
+        }
+
+        return new PlayerNames(playerNamesArray);
     }
 
     public int size() {
