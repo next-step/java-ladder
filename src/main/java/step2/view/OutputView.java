@@ -13,6 +13,8 @@ public class OutputView {
     private static final String PLAY_LINE = "-----";
     private static final String PLAY_NO_LINE = "     ";
     public static final String BLANK = "     ";
+    public static final String NAME_FORMATTER = "%-6s";
+    public static final String SPLIT = ":";
 
     private OutputView() {
     }
@@ -21,16 +23,13 @@ public class OutputView {
         System.out.println(PRINT_LADDER_RESULT);
     }
 
-    public static void printResult() {
-        System.out.println(PRINT_RESULT);
-    }
 
     public static void printPlayers(Players players) {
         System.out.print(BLANK);
         System.out.println(players.getPlayers()
                 .stream()
                 .map(Player::getPlayerGameName)
-                .map(name -> String.format("%-6s", name))
+                .map(name -> String.format(NAME_FORMATTER, name))
                 .collect(Collectors.joining()));
     }
 
@@ -62,7 +61,7 @@ public class OutputView {
         System.out.println(rewards.getRewards()
                 .stream()
                 .map(Reward::getRewardName)
-                .map(name -> String.format("%-6s", name))
+                .map(name -> String.format(NAME_FORMATTER, name))
                 .collect(Collectors.joining()));
     }
 
@@ -84,6 +83,6 @@ public class OutputView {
     }
 
     private static void printPlayerReward(PlayerRewardMatch playerRewardMatch, String playerGameName) {
-        System.out.println(playerGameName + ":" + playerRewardMatch.getRewardName());
+        System.out.println(playerGameName + SPLIT + playerRewardMatch.getRewardName());
     }
 }
