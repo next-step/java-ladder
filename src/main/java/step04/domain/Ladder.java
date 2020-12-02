@@ -49,8 +49,8 @@ public class Ladder {
                 .limit(countOfParticipants)
                 .collect(Collectors.collectingAndThen(Collectors.toList(), TableOfResult::of));
 
-        for (int i = 0; i < ladder.size(); i++) {
-            tableOfResult = ladder.get(i).move(tableOfResult);
+        for (Step step : ladder) {
+            tableOfResult = step.move(tableOfResult);
         }
 
         return tableOfResult;
