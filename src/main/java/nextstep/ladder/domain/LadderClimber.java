@@ -29,7 +29,7 @@ public class LadderClimber {
     private PlayersOnLine createNextPlayersOnLine(PlayersOnLine playersOnLine, int heightPoint) {
         List<Connection> connections = lines.getConnectionList(heightPoint);
         PlayersOnLine newPlayersOnLine = new PlayersOnLine(playersOnLine.getPlayers());
-        IntStream.range(0, players.getSize())
+        IntStream.range(0, players.getSize() - 1)
                 .forEach(widthPoint -> crossConnections(connections, newPlayersOnLine, widthPoint));
 
         return newPlayersOnLine;
