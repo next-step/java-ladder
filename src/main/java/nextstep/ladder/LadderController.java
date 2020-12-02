@@ -27,11 +27,7 @@ public class LadderController {
     }
 
     private Users getUsers() {
-        List<User> users = UsersInputView.getUserInput()
-                .stream()
-                .map(User::new)
-                .collect(Collectors.toList());
-        return new Users(users);
+        return new Users(UsersInputView.getUserInput());
     }
 
     private LadderHeight getLadderHeight() {

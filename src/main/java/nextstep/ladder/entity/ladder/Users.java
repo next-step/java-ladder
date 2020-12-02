@@ -1,6 +1,7 @@
 package nextstep.ladder.entity.ladder;
 
 import nextstep.ladder.entity.User;
+import nextstep.ladder.view.UsersInputView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,12 +13,14 @@ public class Users {
 
     private List<User> users;
 
-    public Users(List<User> users) {
+    public Users(List<String> usersInput) {
 
-        Optional.ofNullable(users)
+        List<User> users = usersInput.stream()
+                .map(User::new)
                 .filter(Objects::nonNull)
-                .ifPresent(this::throwIfLinesLessThanTwo);
+                .collect(Collectors.toList());
 
+        throwIfLinesLessThanTwo(users);
         this.users = users;
     }
 
