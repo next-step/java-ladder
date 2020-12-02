@@ -10,20 +10,17 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UsersTest {
 
-    private List<User> users = Arrays.asList(new User("pobi")
-            , new User("honux")
-            , new User("crong")
-            , new User("jk"));
+    private List<String> usersInput = Arrays.asList("pobi", "honux", "crong", "jk");
 
     @Test
     void test_getUsernames() {
         // Given
-        Users users = new Users(this.users);
+        Users users = new Users(usersInput);
 
         // When
         List<String> userNames = users.getUserNames();
 
-        assertArrayEquals(userNames.toArray(), new String[]{"pobi", "honux", "crong", "jk"});
+        assertArrayEquals(userNames.toArray(), usersInput.toArray());
     }
 
 }
