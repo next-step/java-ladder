@@ -28,6 +28,7 @@
 * Users
   * [X] 최소 인원 검증 역할
   * [X] 게임에 참여하는 유저들을 관리하는 역할
+  * [X] 인원 수 getter
 * InputParser
   * [X] ,로 인풋을 분리하는 기능 `String -> <List>String`
 * HorizontalLine

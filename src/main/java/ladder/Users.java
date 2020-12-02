@@ -19,4 +19,8 @@ public class Users {
                 .map(User::new)
                 .collect(Collectors.toList());
     }
+
+    public int size() {
+        return users.size();
+    }
 }

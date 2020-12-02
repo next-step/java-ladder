@@ -8,8 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
-import static org.assertj.core.api.Assertions.assertThatNullPointerException;
+import static org.assertj.core.api.Assertions.*;
 
 class UsersTest {
 
@@ -38,5 +37,13 @@ class UsersTest {
                     new Users(users);
                 }
         );
+    }
+
+    @Test
+    @DisplayName("Size 확인")
+    void testSize() {
+        List<String> users = Arrays.asList("BSH", "ABC");
+
+        assertThat(users.size()).isEqualTo(2);
     }
 }
