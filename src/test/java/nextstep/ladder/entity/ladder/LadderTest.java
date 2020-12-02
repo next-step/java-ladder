@@ -14,7 +14,7 @@ class LadderTest {
     private LinkGenerator linkGenerator = RandomLinkGenerator.getInstance();
 
     @Test
-    @DisplayName("입력된 값에 맞게 사다리가 생성된다.")
+    @DisplayName("사라디가 생성되고 지정된 숫자의 층을 갖는다.")
     void test_create_ladder() {
         // Given
         FloorGenerator floorGenerator = new FloorGenerator(linkGenerator, new LadderLine(LADDER_LINE_COUNT));
@@ -22,11 +22,9 @@ class LadderTest {
         // When
         Ladder ladder = Ladder.create(new LadderHeight(LADDER_HEIGHT_COUNT), floorGenerator);
 
-
         // Then
         Floor firstFloor = ladder.getFirstFloor();
         validateFloor(firstFloor);
-        validatePoint(firstFloor.getStartPoint());
     }
 
     private void validateFloor(Floor firstFloor) {
@@ -40,16 +38,6 @@ class LadderTest {
         }
 
         assertEquals(count, LADDER_HEIGHT_COUNT);
-    }
-
-    private void validatePoint(Point startPoint) {
-        Point current = startPoint;
-        int count = 1;
-        while(current.hasNext()) {
-            current = current.getNext();
-            count++;
-        }
-        assertEquals(count, LADDER_LINE_COUNT);
     }
 
 }
