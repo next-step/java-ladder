@@ -1,9 +1,9 @@
 package nextstep.ladder.controller;
 
 import nextstep.ladder.domain.ConnectionCreationStrategyImpl;
-import nextstep.ladder.domain.LineResult;
 import nextstep.ladder.domain.Lines;
 import nextstep.ladder.domain.Players;
+import nextstep.ladder.domain.Results;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
 
@@ -18,11 +18,6 @@ public class LadderController {
         return InputView.getHeight();
     }
 
-    public static LineResult getFirstLineResult(int width) {
-        String firstLineResultString = InputView.getFirstLineResult();
-        return LineResult.from(width, firstLineResultString);
-    }
-
     public static Lines createLines(Players players, int height) {
         return Lines.fromHeight(players.getSize() - 1, height, new ConnectionCreationStrategyImpl());
     }
@@ -35,7 +30,11 @@ public class LadderController {
         OutputView.showLines(lines);
     }
 
-    public static void showLineResult(LineResult lineResult) {
-        OutputView.showLineResult(lineResult);
+    public static Results getResults(int size) {
+        return Results.from(size, InputView.getResults());
+    }
+
+    public static void showResults(Results results) {
+        OutputView.showResults(results);
     }
 }

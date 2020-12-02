@@ -1,24 +1,26 @@
 package nextstep.ladder.domain;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class LineResult {
+public class Results {
 
     public static final String SPLITTER = ",";
     private final List<Result> results;
 
-    public LineResult(List<Result> results) {
-        this.results = new ArrayList<>(results);
+    public Results(List<Result> results) {
+        this.results = results;
     }
 
-    public static LineResult from(int width, String results) {
-        List<Result> resultList = Arrays.stream(results.split(SPLITTER))
+    public static Results from(int width, String resultsString) {
+        List<Result> results = Arrays.stream(resultsString.split(SPLITTER))
                 .map(Result::new)
                 .collect(Collectors.toList());
-        checkSize(width, resultList);
+        checkSize(width, results);
 
-        return new LineResult(resultList);
+        return new Results(results);
     }
 
     private static void checkSize(int width, List<Result> resultList) {
@@ -27,24 +29,20 @@ public class LineResult {
         }
     }
 
-    public void swapWithNextPosition(int position) {
-        Collections.swap(this.results, position, position + 1);
+    public List<Result> getResults() {
+        return results;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        LineResult lineResult1 = (LineResult) o;
-        return Objects.equals(results, lineResult1.results);
+        Results results1 = (Results) o;
+        return Objects.equals(results, results1.results);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(results);
-    }
-
-    public List<Result> getResults() {
-        return Collections.unmodifiableList(results);
     }
 }

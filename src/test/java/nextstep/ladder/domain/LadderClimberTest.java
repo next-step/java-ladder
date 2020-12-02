@@ -23,12 +23,12 @@ public class LadderClimberTest {
         Lines lines = Lines.fromHeight(players.getSize(), 2, (point) -> true);
         LadderClimber ladderClimber = new LadderClimber(players, lines);
 
-        LineResult firstLineResult = LineResult.from(players.getSize(), "꽝,3000");
-        LineResults lineResults = ladderClimber.climb(firstLineResult);
+        PlayersOnLines playersOnLines = ladderClimber.climb();
 
-        LineResult secondLineResult = new LineResult(Arrays.asList(new Result("3000"), new Result("꽝")));
-        LineResult thirdLineResult = new LineResult(Arrays.asList(new Result("꽝"), new Result("3000")));
-        LineResults lineResultsExpected = new LineResults(Arrays.asList(firstLineResult, secondLineResult, thirdLineResult));
-        assertThat(lineResults).isEqualTo(lineResultsExpected);
+        PlayersOnLine firstPlayerOnLIne = new PlayersOnLine(players);
+        PlayersOnLine secondPlayersOnLine = new PlayersOnLine(new Players(Arrays.asList(new Player("b"), new Player("a"))));
+        PlayersOnLine thirdPlayersOnLine = new PlayersOnLine(new Players(Arrays.asList(new Player("a"), new Player("b"))));
+        PlayersOnLines playersOnLinesExpected = new PlayersOnLines(Arrays.asList(firstPlayerOnLIne, secondPlayersOnLine, thirdPlayersOnLine));
+        assertThat(playersOnLines).isEqualTo(playersOnLinesExpected);
     }
 }

@@ -26,7 +26,7 @@ public class InputView {
         }
     }
 
-    public static String getFirstLineResult() {
+    public static String getResults() {
         out.println(GET_FIRST_LINE_RESULT_MESSAGE);
         return scanner.nextLine();
     }

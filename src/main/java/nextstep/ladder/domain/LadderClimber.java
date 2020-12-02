@@ -13,30 +13,31 @@ public class LadderClimber {
         this.lines = lines;
     }
 
-    public LineResults climb(LineResult firstLineResult) {
-        LineResults lineResults = new LineResults(Collections.singletonList(firstLineResult));
+    public PlayersOnLines climb() {
+        PlayersOnLine firstPlayersOnLine = new PlayersOnLine(players);
+        PlayersOnLines playersOnLines = new PlayersOnLines(Collections.singletonList(firstPlayersOnLine));
 
         IntStream.range(0, lines.getHeight())
                 .forEach(heightPoint -> {
-                    LineResult newLineResult = createNewLineResult(lineResults.getLast(), heightPoint);
-                    lineResults.add(newLineResult);
+                    PlayersOnLine newPlayersOnLine = createNextPlayersOnLine(playersOnLines.getLast(), heightPoint);
+                    playersOnLines.add(newPlayersOnLine);
                 });
 
-        return lineResults;
+        return playersOnLines;
     }
 
-    private LineResult createNewLineResult(LineResult lineResult, int heightPoint) {
+    private PlayersOnLine createNextPlayersOnLine(PlayersOnLine playersOnLine, int heightPoint) {
         List<Connection> connections = lines.getConnectionList(heightPoint);
-        LineResult newLineResult = new LineResult(lineResult.getResults());
+        PlayersOnLine newPlayersOnLine = new PlayersOnLine(playersOnLine.getPlayers());
         IntStream.range(0, players.getSize())
-                .forEach(widthPoint -> checkConnection(connections, newLineResult, widthPoint));
+                .forEach(widthPoint -> crossConnections(connections, newPlayersOnLine, widthPoint));
 
-        return newLineResult;
+        return newPlayersOnLine;
     }
 
-    private void checkConnection(List<Connection> connections, LineResult newLineResult, int widthPoint) {
+    private void crossConnections(List<Connection> connections, PlayersOnLine newPlayersOnLine, int widthPoint) {
         if (connections.get(widthPoint).isConnected()) {
-            newLineResult.swapWithNextPosition(widthPoint);
+            newPlayersOnLine.swapWithNext(widthPoint);
         }
     }
 }

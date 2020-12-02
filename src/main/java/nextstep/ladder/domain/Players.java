@@ -37,4 +37,8 @@ public class Players {
     public int hashCode() {
         return Objects.hash(players);
     }
+
+    public void swapWithNext(int position) {
+        Collections.swap(players, position, position + 1);
+    }
 }
