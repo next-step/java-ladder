@@ -3,14 +3,14 @@ package ladder;
 
 import ladder.ladderexceptions.InvalidUserNameException;
 
-import java.util.Optional;
-
 public class User {
-    String name;
+    private final String name;
 
-    public User(String inputName) {
-        this.name = Optional.of(inputName)
-                .filter(name -> !name.isEmpty() && name.length() <= 5)
-                .orElseThrow(InvalidUserNameException::new);
+    public User(String name) {
+        if (name.length() <= 5) {
+            throw new InvalidUserNameException();
+        }
+
+        this.name = name;
     }
 }
