@@ -37,6 +37,10 @@ public class Line {
             return;
         }
 
+        checkPointRepeat();
+    }
+    
+    private void checkPointRepeat(){
         //연속으로 true가 나올경우
         if (this.points.get(points.size() - 1) == true) {
             this.points.add(false);
