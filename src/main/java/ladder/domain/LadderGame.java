@@ -16,6 +16,7 @@ public class LadderGame {
     private void initLadderGame(final String names, final int ladderHeight) {
         this.inputValueStatus = new InputValueStatus(names, ladderHeight);
         this.names = new Names(names);
+
         addLine(ladderHeight);
     }
 
