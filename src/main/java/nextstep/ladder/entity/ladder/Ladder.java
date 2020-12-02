@@ -27,4 +27,6 @@ public class Ladder {
     public Floor getFirstFloor() {
         return firstFloor;
     }
+
+
 }

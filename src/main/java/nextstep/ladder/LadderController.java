@@ -4,6 +4,7 @@ import nextstep.ladder.entity.User;
 import nextstep.ladder.entity.ladder.*;
 import nextstep.ladder.view.LadderHeightInputView;
 import nextstep.ladder.view.LadderResultView;
+import nextstep.ladder.view.ShowGameResultUserInputView;
 import nextstep.ladder.view.UsersInputView;
 
 import java.util.List;
@@ -26,6 +27,10 @@ public class LadderController {
 
         // 출력
         LadderResultView.display(ladder, users);
+
+        // 결과 보기 사용자 입력
+        User showGameResultUser = getShowGameResultUser();
+
     }
 
     private Users getUsers() {
@@ -36,5 +41,9 @@ public class LadderController {
         return new LadderHeight(LadderHeightInputView.getLadderHeight());
     }
 
+    private User getShowGameResultUser() {
+        String showGameResultUser = ShowGameResultUserInputView.getShowGameResultUser();
+        return new User(showGameResultUser);
+    }
 
 }
