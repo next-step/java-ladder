@@ -29,6 +29,10 @@ public class Results {
         }
     }
 
+    public int getSize() {
+        return results.size();
+    }
+
     public List<Result> getResults() {
         return results;
     }
@@ -44,5 +48,9 @@ public class Results {
     @Override
     public int hashCode() {
         return Objects.hash(results);
+    }
+
+    public Result get(int idx) {
+        return results.get(idx);
     }
 }

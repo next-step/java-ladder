@@ -18,6 +18,10 @@ public class PlayersOnLine {
         return players;
     }
 
+    public Player get(int index) {
+        return players.getPlayers().get(index);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
