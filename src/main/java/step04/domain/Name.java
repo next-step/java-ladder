@@ -1,4 +1,4 @@
-package step03.domain;
+package step04.domain;
 
 import exception.OutOfNameLengthException;
 import exception.UsingProhibitedNameException;
