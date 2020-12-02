@@ -1,10 +1,8 @@
 package step2.hint;
 
-import java.util.Iterator;
 import java.util.Objects;
 
 import static java.lang.Boolean.FALSE;
-import static step2.hint.LadderPointGenerator.generatePoint;
 
 public class Direction {
     private final boolean left;
@@ -31,11 +29,11 @@ public class Direction {
         return of(this.right, nextRight);
     }
 
-    public Direction next() {
+    public Direction next(LadderPointGenerator ladderPointGenerator) {
         if (this.right) {
             return next(FALSE);
         }
-        return next(generatePoint());
+        return next(ladderPointGenerator.generatePoint());
     }
 
 
