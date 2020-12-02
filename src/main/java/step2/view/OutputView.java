@@ -2,8 +2,8 @@ package step2.view;
 
 
 import step2.domain.*;
+import step2.hint.LadderLine;
 
-import java.util.Map;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -29,7 +29,7 @@ public class OutputView {
         System.out.print(BLANK);
         System.out.println(players.getPlayers()
                 .stream()
-                .map(Player::getName)
+                .map(Player::getPlayerGameName)
                 .map(name -> String.format("%-6s", name))
                 .collect(Collectors.joining()));
     }
@@ -41,39 +41,49 @@ public class OutputView {
         System.out.println(sb);
     }
 
-    private static void lineBuilder(StringBuilder ladder, Line line) {
-        line.getDirections()
-                .forEach(direction -> appendLine(ladder, direction));
-        ladder.append("\n");
-    }
+    private static void lineBuilder(StringBuilder ladder, LadderLine line) {
+        line.getPoints()
+                .forEach(point -> {
+                    if (point.getDirection().isLeft()) {
+                        ladder.append(PLAY_LINE);
+                        ladder.append(HEIGHT_LINE);
+                        return;
+                    }
+                    ladder.append(PLAY_NO_LINE);
+                    ladder.append(HEIGHT_LINE);
 
-    private static void appendLine(StringBuilder ladder, Direction direction) {
-        if (direction == Direction.LEFT) {
-            ladder.append(PLAY_LINE);
-            ladder.append(HEIGHT_LINE);
-            return;
-        }
-        ladder.append(PLAY_NO_LINE);
-        ladder.append(HEIGHT_LINE);
+
+                });
+        ladder.append("\n");
     }
 
     public static void printRewards(Rewards rewards) {
         System.out.print(BLANK);
         System.out.println(rewards.getRewards()
                 .stream()
-                .map(Reward::getName)
+                .map(Reward::getRewardName)
                 .map(name -> String.format("%-6s", name))
                 .collect(Collectors.joining()));
     }
 
-    public static void printAllPlayerReward(LadderGameResult ladderGameResult) {
+    public static void printPlayerReward(PlayerRewardMatches playerRewardMatches, String player) {
         System.out.println(PRINT_RESULT);
-        for (Map.Entry<String, String> entry : ladderGameResult.getResult().entrySet()) {
-            System.out.println(entry.getKey() + ":" + entry.getValue());
+        playerRewardMatches.getPlayerRewardMatches()
+                .forEach(playerRewardMatch -> printPlayerReward(player, playerRewardMatch));
+    }
+
+    private static void printPlayerReward(String player, PlayerRewardMatch playerRewardMatch) {
+        if (playerRewardMatch.getPlayerGameName().equals(player)) {
+            printPlayerReward(playerRewardMatch, player);
         }
     }
 
-    public static void printPlayerReward(LadderGameResult ladderGameResult, String player) {
-        System.out.println(player + ":" + ladderGameResult.getResult().get(player));
+    public static void printAllPlayerReward(PlayerRewardMatches playerRewardMatches) {
+        playerRewardMatches.getPlayerRewardMatches()
+                .forEach(playerRewardMatch -> printPlayerReward(playerRewardMatch, playerRewardMatch.getPlayerGameName()));
+    }
+
+    private static void printPlayerReward(PlayerRewardMatch playerRewardMatch, String playerGameName) {
+        System.out.println(playerGameName + ":" + playerRewardMatch.getRewardName());
     }
 }
