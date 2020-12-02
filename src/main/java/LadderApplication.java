@@ -1,17 +1,17 @@
 import domain.LadderGame;
 import domain.Length;
 import domain.PlayerNames;
+import dto.InputDto;
 import exception.NegativeLengthException;
 import ui.InputView;
 import ui.ResultView;
 
 public class LadderApplication {
-    public static void main(String[] args) throws NegativeLengthException {
-        String names = InputView.askNames();
-        int ladderHeight = InputView.askLadderHeight();
+    public static void main(String[] args){
+        InputDto inputDto = InputView.askInput();
 
-        PlayerNames playerNames = PlayerNames.of(names);
-        Length height = Length.of(ladderHeight);
+        PlayerNames playerNames = PlayerNames.of(inputDto.getNames());
+        Length height = Length.of(inputDto.getLadderHeight());
 
         LadderGame ladderGame = LadderGame.of(playerNames, height);
 

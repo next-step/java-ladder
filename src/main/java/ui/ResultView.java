@@ -25,9 +25,11 @@ public class ResultView {
     }
 
     public static void printLadder(final Ladder ladder) {
-        ladder.getLines().stream().map(Line::getPoints).forEach(points -> {
+        ladder.getLines().mapLineOntoPoints()
+                .forEach( points -> {
             System.out.print(StringUtils.copyAndJoin(NUMBER_OF_TEMPLATE_BLANK, BLANK));
-            points.stream().forEach( point -> System.out.print(convertPointToString(point.isPresent())) );
+            points.stream()
+                    .forEach( point -> System.out.print(convertPointToString(point.isPresent())) );
             System.out.println(VERTICAL);
         });
     }

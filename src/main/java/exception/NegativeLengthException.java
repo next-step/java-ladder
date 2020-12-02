@@ -1,6 +1,6 @@
 package exception;
 
-public class NegativeLengthException extends Exception {
+public class NegativeLengthException extends RuntimeException {
     public NegativeLengthException() {
     }
 

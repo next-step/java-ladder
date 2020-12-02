@@ -22,7 +22,7 @@ public class Lines {
         return new Lines(lines);
     }
 
-    public Stream<Line> stream() {
-        return lines.stream();
+    public Stream<Points> mapLineOntoPoints() {
+        return lines.stream().map(Line::getPoints);
     }
 }
