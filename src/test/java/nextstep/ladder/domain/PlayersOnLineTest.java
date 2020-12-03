@@ -13,10 +13,12 @@ class PlayersOnLineTest {
     @DisplayName("다음 플레이어와 교체")
     void swapWithNext() {
         Players players = new Players(Arrays.asList(new Player("a"), new Player("b"), new Player("c")));
+        PlayersOnLine playersOnLine = new PlayersOnLine(players);
 
-        players.swapWithNext(0);
+        playersOnLine.swapWithNext(0);
 
         Players playersExpected = new Players(Arrays.asList(new Player("b"), new Player("a"), new Player("c")));
-        assertThat(players).isEqualTo(playersExpected);
+        PlayersOnLine playersOnLineExpected = new PlayersOnLine(playersExpected);
+        assertThat(playersOnLine).isEqualTo(playersOnLineExpected);
     }
 }
