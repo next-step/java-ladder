@@ -75,7 +75,14 @@ public class PointTest {
             if (direction.isRight()) {
                 return index + 1;
             }
+            if (direction.isLeft()) {
+                return index - 1;
+            }
             return index;
+        }
+
+        public Point next(boolean right) {
+            return new Point(index + 1, direction.next(right));
         }
     }
 }
