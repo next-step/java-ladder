@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 /**
  * Direction 요구사항
@@ -18,8 +19,14 @@ public class DirectionTest {
     @DisplayName("왼쪽/오른쪽 이동 가능한지를 표현한다")
     @Test
     void create() {
-        assertThat(Direction.of(true, false))
-                .isEqualTo(Direction.of(true, false));
+        assertAll(
+                () -> assertThat(Direction.of(true, false))
+                        .isEqualTo(Direction.of(true, false)),
+                () -> assertThat(Direction.of(false, true))
+                        .isEqualTo(Direction.of(false, true)),
+                () -> assertThat(Direction.of(false, false))
+                        .isEqualTo(Direction.of(false, false))
+        );
     }
 
     private static class Direction {
