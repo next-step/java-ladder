@@ -58,11 +58,12 @@ public class DirectionTest {
         assertThat(Direction.first(false).last().isRight()).isFalse();
     }
 
-    @DisplayName("우측 끝지점은 이전지점의 오른쪽 이동가능여부와 왼쪽 이동가능여부가 같다")
+    @DisplayName("우측 끝지점의 왼쪽 이동가능여부는 이전지점의 오른쪽 이동가능여부와 같다")
     @ParameterizedTest
     @ValueSource(booleans = {true, false})
     void lastUsePreviousValue(boolean rightMoveable) {
-        assertThat(Direction.first(rightMoveable).last().isLeft()).isEqualTo(rightMoveable);
+        Direction first = Direction.first(rightMoveable);
+        assertThat(first.last().isLeft()).isEqualTo(first.isRight());
     }
 
     private static class Direction {
@@ -98,7 +99,8 @@ public class DirectionTest {
         }
 
         public Direction last() {
-            if (left) {
+            // 현지점에서 오른쪽으로 이동 가능하니 다음지점은 왼쪽으로 이동가능한 객체 리턴
+            if (right) {
                 return LEFT;
             }
             return NEUTRAL;
