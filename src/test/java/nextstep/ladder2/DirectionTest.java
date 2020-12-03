@@ -52,6 +52,12 @@ public class DirectionTest {
         assertThat(Direction.first(rightMovable).isRight()).isEqualTo(rightMovable);
     }
 
+    @DisplayName("우측 끝지점은 오른쪽 이동이 불가능하다")
+    @Test
+    void last() {
+        assertThat(Direction.first(false).last().isright()).isFalse();
+    }
+
     private static class Direction {
         private static final Direction LEFT = new Direction(true, false);
         private static final Direction RIGHT = new Direction(false, true);
