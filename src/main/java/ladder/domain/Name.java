@@ -4,7 +4,7 @@ import ladder.utils.StringUtil;
 
 public class Name {
 
-    private static final Integer NAME_MAX_LENGTH = 5;
+    private static final Integer MAX_LENGTH = 5;
     private String name;
 
     private Name(String name) {
@@ -17,16 +17,16 @@ public class Name {
     }
 
     private static void nameToMaxLengthValidate(String name) {
-        if (name.length() > NAME_MAX_LENGTH) {
-            throw new IllegalArgumentException("참여할 사람 이름 최대 길이는 5글자 입니다.");
+        if (name.length() > MAX_LENGTH) {
+            throw new IllegalArgumentException("참여할 사람 이름 최대 길이는 " + MAX_LENGTH + "글자 입니다.");
         }
     }
 
     public static void validate(String name) {
+        nameToMaxLengthValidate(name);
         if (StringUtil.isEmpty(name)) {
             throw new IllegalArgumentException("참여할 사람 이름을 입력해주세요.");
         }
-        nameToMaxLengthValidate(name);
     }
 
     public String getName() {
