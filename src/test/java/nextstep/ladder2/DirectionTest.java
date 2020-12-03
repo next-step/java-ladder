@@ -55,7 +55,7 @@ public class DirectionTest {
     @DisplayName("우측 끝지점은 오른쪽 이동이 불가능하다")
     @Test
     void last() {
-        assertThat(Direction.first(false).last().isright()).isFalse();
+        assertThat(Direction.first(false).last().isRight()).isFalse();
     }
 
     private static class Direction {
@@ -86,6 +86,13 @@ public class DirectionTest {
         public static Direction first(boolean right) {
             if (right) {
                 return RIGHT;
+            }
+            return NEUTRAL;
+        }
+
+        public Direction last() {
+            if (left) {
+                return LEFT;
             }
             return NEUTRAL;
         }
