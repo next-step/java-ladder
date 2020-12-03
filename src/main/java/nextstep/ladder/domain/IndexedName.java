@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.toList;
@@ -38,9 +39,43 @@ public class IndexedName {
         return name;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        IndexedName that = (IndexedName) o;
+        return index == that.index && name.equals(that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(index, name);
+    }
+
+    public static List<String> unwrap(List<IndexedName> goals) {
+        return goals.stream().map(IndexedName::toString).collect(toList());
+    }
+
     public static List<IndexedName> wrap(List<String> names) {
         return IntStream.range(0, names.size())
                 .mapToObj(index -> new IndexedName(index, names.get(index)))
                 .collect(toList());
+    }
+
+    public static IndexedName find(List<IndexedName> names, String name) {
+        return names.stream()
+                .filter(indexedName -> indexedName.equalsName(name))
+                .findFirst()
+                .orElseThrow(IllegalArgumentException::new);
+    }
+
+    private boolean equalsName(String name) {
+        return this.name.equals(name);
+    }
+
+    public boolean equalsIndex(int index) {
+        return this.index == index;
     }
 }

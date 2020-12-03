@@ -4,9 +4,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
 import java.util.stream.Stream;
 
+import static java.util.Arrays.asList;
+import static nextstep.ladder.domain.IndexedName.wrap;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.entry;
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -20,8 +21,7 @@ class LadderTest {
     @BeforeEach
     void setUp() {
         line = Ladder.of(Stream.of(Spoke.of(true, false), Spoke.of(false, true)),
-                         null,
-                         Arrays.asList("boom", "5000", "boom"));
+                         wrap(asList("boom", "5000", "boom")));
     }
 
     @DisplayName("특정 플레이어의 이동결과를 리턴한다")
@@ -37,7 +37,7 @@ class LadderTest {
     @DisplayName("모든 플레이어의 이동결과를 리턴한다")
     @Test
     void moveForAll() {
-        assertThat(line.moveForAll())
+        assertThat(line.moveForAll(wrap(asList("red", "blue", "green"))))
                 .containsOnly(
                         entry("red", "boom"),
                         entry("blue", "boom"),

@@ -25,12 +25,12 @@ public class Controller {
 
         Ladder ladder = Ladder.of(createSpokes(ladderHeight, players.size()), goals);
 
-        resultView.printLadder(ladder);
+        resultView.printLadder(ladder, IndexedName.unwrap(players));
 
         String name;
         do {
             name = inputView.requestPlayerName();
-            resultView.printResult(getMoveResult(ladder, name));
+            resultView.printResult(getMoveResult(ladder, players, name));
         } while (!name.equals(ALL));
     }
 
@@ -39,12 +39,12 @@ public class Controller {
                 .mapToObj(__ -> Spoke.fromCount(width - 1, RANDOM::nextBoolean));
     }
 
-    private Map<String, String> getMoveResult(Ladder ladder, String name) {
+    private Map<String, String> getMoveResult(Ladder ladder, List<IndexedName> players, String name) {
         if (name.equals(ALL)) {
-            return ladder.moveForAll();
+            return ladder.moveForAll(players);
         }
         Map<String, String> result = new HashMap<>();
-        result.put(name, ladder.moveFor(name));
+        result.put(name, ladder.moveFor(IndexedName.find(players, name)));
         return result;
     }
 }

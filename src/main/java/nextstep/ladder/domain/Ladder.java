@@ -3,20 +3,16 @@ package nextstep.ladder.domain;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
 
 import static java.util.Collections.emptyList;
-import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toMap;
-import static nextstep.ladder.domain.IndexedName.wrap;
 import static nextstep.ladder.utils.BinaryOperators.nope;
 
 public class Ladder {
     private final List<Line> lines;
-    private List<String> players;
     private final List<IndexedName> goals;
 
     public Ladder(List<Line> lines, List<IndexedName> goals) {
@@ -25,11 +21,7 @@ public class Ladder {
     }
 
     public static Ladder of(Stream<Spoke> spokes) {
-        return of(spokes, emptyList(), emptyList());
-    }
-
-    public static Ladder of(Stream<Spoke> spokes, List<String> names, List<String> goals) {
-        return of(spokes, wrap(goals));
+        return of(spokes, emptyList());
     }
 
     public static Ladder of(Stream<Spoke> spokes, List<IndexedName> goals) {
@@ -41,24 +33,13 @@ public class Ladder {
         lines.forEach(singleLineConsumer);
     }
 
-    public List<String> getPlayers() {
-        return Collections.unmodifiableList(players);
-    }
-
     public List<String> getGoals() {
-        return Collections.unmodifiableList(goals.stream().map(Object::toString).collect(toList()));
+        return Collections.unmodifiableList(IndexedName.unwrap(goals));
     }
 
-    @Deprecated
-    public String moveFor(String playerName) {
-        int index = moveOn(Position.of(players.indexOf(playerName))).toInt();
-        return goals.stream().filter(goals -> goals.getIndex() == index).findFirst().toString();
-    }
-
-    @Deprecated
-    public Map<String, String> moveForAll() {
+    public Map<String, String> moveForAll(List<IndexedName> players) {
         return players.stream()
-                .collect(toMap(identity(), this::moveFor));
+                .collect(toMap(IndexedName::toString, this::moveFor));
     }
 
     public Position moveOn(Position from) {
@@ -69,9 +50,9 @@ public class Ladder {
     public String moveFor(IndexedName name) {
         int index = moveOn(Position.of(name)).toInt();
         return goals.stream()
-                .filter(goals -> goals.getIndex() == index)
+                .filter(goal -> goal.equalsIndex(index))
                 .findFirst()
-                .map(Objects::toString)
+                .map(IndexedName::toString)
                 .orElse("");
     }
 }

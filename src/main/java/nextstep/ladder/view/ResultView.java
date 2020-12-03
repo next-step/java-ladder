@@ -22,10 +22,10 @@ public class ResultView {
         this.out = new PrintWriter(out, true);
     }
 
-    public void printLadder(Ladder ladder) {
+    public void printLadder(Ladder ladder, List<String> players) {
         println("실행결과");
         println("");
-        printNames(ladder.getPlayers());
+        printNames(players);
         ladder.forEach(this::printLine);
         printNames(ladder.getGoals());
     }

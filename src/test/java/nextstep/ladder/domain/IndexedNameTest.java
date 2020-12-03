@@ -3,6 +3,7 @@ package nextstep.ladder.domain;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.*;
 
 public class IndexedNameTest {
@@ -32,4 +33,22 @@ public class IndexedNameTest {
         assertThat(new IndexedName(0, "red").toString()).isEqualTo("red");
     }
 
+    @Test
+    void wrap() {
+        assertThat(IndexedName.wrap(asList("red", "blue")))
+                .containsExactly(new IndexedName(0, "red"),
+                                 new IndexedName(1, "blue"));
+    }
+
+    @Test
+    void unwrap() {
+        assertThat(IndexedName.unwrap(asList(new IndexedName(0, "red"), new IndexedName(1, "blue"))))
+                .containsExactly("red", "blue");
+    }
+
+    @Test
+    void find() {
+        assertThat(IndexedName.find(IndexedName.wrap(asList("red", "blue")), "blue"))
+                .isEqualTo(new IndexedName(1, "blue"));
+    }
 }
