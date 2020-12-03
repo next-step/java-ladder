@@ -27,22 +27,23 @@ public class LadderLine {
     }
 
     private Point initFirst(PointsGenerator pointsGenerator) {
-        Point point = Point.first(pointsGenerator.generatePoint());
-        this.points.add(point);
-        return point;
+        Point first = Point.first(pointsGenerator.generatePoint());
+        this.points.add(first);
+        return first;
     }
 
-    private Point initBody(int sizeOfPerson, Point point, Function<Point, Point> nextPointFactory) {
+    private Point initBody(int sizeOfPerson, Point first, Function<Point, Point> nextPointFactory) {
+        Point nextPoint = first;
         for (int i = 1; i < sizeOfPerson - 1; i++) {
-            point = nextPointFactory.apply(point);
-            points.add(point);
+            nextPoint = nextPointFactory.apply(nextPoint);
+            points.add(nextPoint);
         }
-        return point;
+        return nextPoint;
     }
 
     private void initLast(Point point) {
-        point = point.last();
-        points.add(point);
+        Point last = point.last();
+        points.add(last);
     }
 
     public int move(int position) {
