@@ -32,7 +32,7 @@ public class PointTest {
     @DisplayName("이동하면 위치값을 리턴한다")
     @ParameterizedTest
     @CsvSource({"true,1", "false,0"})
-    void first(boolean right, int index) {
+    void move(boolean right, int index) {
         assertThat(Point.first(right).move()).isEqualTo(index);
     }
 
@@ -62,6 +62,13 @@ public class PointTest {
         @Override
         public int hashCode() {
             return Objects.hash(index, direction);
+        }
+
+        public int move() {
+            if (direction.isRight()) {
+                return index + 1;
+            }
+            return index;
         }
     }
 }
