@@ -79,6 +79,14 @@ public class DirectionTest {
                 .isInstanceOf(IllegalStateException.class);
     }
 
+    @DisplayName("다음 지점의 왼쪽 이동가능여부는 이전지점의 오른쪽 이동가능여부와 같다")
+    @ParameterizedTest
+    @ValueSource(booleans = {true, false})
+    void nextUsePreviousValue(boolean rightMoveable) {
+        Direction first = Direction.first(rightMoveable);
+        assertThat(first.next(false).isLeft()).isEqualTo(first.isRight());
+    }
+
     private static class Direction {
         private static final Direction LEFT = new Direction(true, false);
         private static final Direction RIGHT = new Direction(false, true);
