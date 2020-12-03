@@ -13,7 +13,7 @@ public class LadderController {
         int height = InputView.inputHeight();
 
         Users users = Users.of(names);
-        Lines lines = new Ladder(users.countOfPerson(),height).createLines();
+        Lines lines = Lines.of(users.countOfPerson(),height);
 
         ResultView.printGameResult(users,lines);
     }
