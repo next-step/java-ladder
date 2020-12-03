@@ -36,6 +36,13 @@ public class PointTest {
         assertThat(Point.first(right).move()).isEqualTo(index);
     }
 
+    @DisplayName("두번째 지점이 왼쪽으로 이동하는 경우")
+    @Test
+    void second_move_left() {
+        Point second = Point.first(true).next(false);
+        assertThat(second.move()).isEqualTo(0);
+    }
+
     private static class Point {
         private final int index;
         private final Direction direction;
