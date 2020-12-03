@@ -25,4 +25,5 @@ public class Lines {
     public Stream<Points> mapLineOntoPoints() {
         return lines.stream().map(Line::getPoints);
     }
+
 }

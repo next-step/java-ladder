@@ -26,16 +26,19 @@ public class ResultView {
 
     public static void printLadder(final Ladder ladder) {
         ladder.getLines().mapLineOntoPoints()
-                .forEach( points -> {
-            System.out.print(StringUtils.copyAndJoin(NUMBER_OF_TEMPLATE_BLANK, BLANK));
-            points.stream()
-                    .forEach( point -> System.out.print(convertPointToString(point.isPresent())) );
-            System.out.println(VERTICAL);
-        });
+                .forEach( points -> printPoints(points));
     }
 
-    private static String convertPointToString(final boolean isPresent) {
-        return isPresent ?
+    private static void printPoints(Points points) {
+        System.out.print(StringUtils.copyAndJoin(NUMBER_OF_TEMPLATE_BLANK, BLANK));
+        points.stream()
+                .forEach(point -> System.out.print(convertPointToString(point)));
+        System.out.print(NEWLINE);
+
+    }
+
+    private static String convertPointToString(final Point point) {
+        return point.getDirection() == Direction.RIGHT ?
                VERTICAL.concat(StringUtils.copyAndJoin(NUMBER_OF_TEMPLATE_HORIZONTAL, HORIZONTAL)) :
                VERTICAL.concat(StringUtils.copyAndJoin(NUMBER_OF_TEMPLATE_HORIZONTAL, BLANK));
     }

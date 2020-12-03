@@ -1,19 +1,19 @@
 package domain;
 
-import java.util.Random;
-
 public class Point {
-    private final boolean isPresent;
+    private final int position;
+    private final Direction direction;
 
-    public Point() {
-        isPresent = new Random().nextBoolean();
+    private Point(final int position, final Direction direction) {
+        this.position = position;
+        this.direction = direction;
     }
 
-    public Point(final boolean isPresent) {
-        this.isPresent = isPresent;
+    public static Point of(final int position, final Direction direction) {
+        return new Point(position, direction);
     }
 
-    public boolean isPresent() {
-        return isPresent;
+    public Direction getDirection() {
+        return direction;
     }
 }

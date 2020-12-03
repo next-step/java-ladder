@@ -16,4 +16,5 @@ public class Ladder {
     public Lines getLines() {
         return lines;
     }
+
 }
