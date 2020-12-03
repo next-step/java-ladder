@@ -6,13 +6,13 @@ public class User {
 
     private static final int MIN_NAME_LENGTH = 1;
     private static final int MAX_NAME_LENGTH = 5;
-    private static final String NAME_LENGTH_ERROR = "오류:: 참여자 이름은 최소 1자 ~ 5자까지 입력해야 합니다.\n\n";
+    private static final String NAME_LENGTH_ERROR = "참여자 이름은 최소 "+MIN_NAME_LENGTH+"자 ~ "+MAX_NAME_LENGTH+"자까지 입력해야 합니다.";
 
     private final String userName;
 
     private User(String userName) {
         this.userName = userName;
-        nameLengthException();
+        nameLengthValidationCheck();
     }
 
     public static User of(String userName) {
@@ -23,7 +23,7 @@ public class User {
         return userName;
     }
 
-    private void nameLengthException() {
+    private void nameLengthValidationCheck() {
         if ((userName.length() < MIN_NAME_LENGTH) || (userName.length() > MAX_NAME_LENGTH)) {
             throw new IllegalArgumentException(NAME_LENGTH_ERROR);
         }

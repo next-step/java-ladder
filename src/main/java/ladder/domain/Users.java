@@ -7,8 +7,8 @@ import java.util.stream.Collectors;
 
 public class Users {
 
-    private static final String USER_NAMES_EMPTY = "오류:: 참여자 이름을 입력해야 합니다.";
-    private static final String USER_NAMEs_SEPARATOR = ",";
+    private static final String USER_NAMES_EMPTY = "참여자 이름을 입력해야 합니다.";
+    private static final String USER_NAMES_SEPARATOR = ",";
     private final List<User> users;
 
     private Users(List<User> users) {
@@ -19,21 +19,25 @@ public class Users {
         return new Users(splitUserNames(userNames));
     }
 
+    private static List<User> splitUserNames(String userNames) {
+        if (isBlank(userNames))
+            throw new IllegalArgumentException(USER_NAMES_EMPTY);
+
+        return Arrays.stream(userNames.split(USER_NAMES_SEPARATOR))
+                .map(User::of)
+                .collect(Collectors.toList());
+    }
+
+    private static boolean isBlank(String str) {
+        return str == null || str.trim().isEmpty();
+    }
+
     public int countOfPerson() {
         return users.size();
     }
 
     public List<User> getUsers() {
         return users;
-    }
-
-    private static List<User> splitUserNames(String userNames) {
-        if (userNames == null || userNames.equals(""))
-            throw new IllegalArgumentException(USER_NAMES_EMPTY);
-
-        return Arrays.stream(userNames.split(USER_NAMEs_SEPARATOR))
-                .map(User::of)
-                .collect(Collectors.toList());
     }
 
     @Override
