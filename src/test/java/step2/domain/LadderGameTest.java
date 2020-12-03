@@ -3,6 +3,8 @@ package step2.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import step2.dto.PlayersRewardsDto;
+import step2.hint.NotCreateLadderPointGenerator;
+import step2.hint.RandomLadderPointGenerator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -15,18 +17,22 @@ class LadderGameTest {
         Players players = Players.of(NameSplitter.splitParticipationNames("a,b"));
         Rewards rewards = Rewards.of(NameSplitter.splitParticipationNames("1,2"));
         int ladderHeight = 10;
-        PlayersRewardsDto playersRewardsDto = new PlayersRewardsDto(players, rewards);
-        /*LadderDto ladderDto = new LadderDto(ladderHeight, new MustLineStrategy());
+        Ladder ladder = Ladder.of(ladderHeight, players.getPlayersCount(), new NotCreateLadderPointGenerator());
+
         //when
-        Ladder ladder = Ladder.of(playersRewardsDto, ladderDto);
-        LadderGameResult ladderGameResult = LadderGame.runGame(ladder, playersRewardsDto);
+        PlayerRewardMatches playerRewardMatches = LadderGame.runGame(players, rewards, ladder);
 
-        //then
-        Map<String, String> expected = new HashMap<>();
-        expected.put("a", "1");
-        expected.put("b", "2");
+        assertThat(getPlayerGameName(playerRewardMatches, 0)).isEqualTo("a");
+        assertThat(getPlayerGameName(playerRewardMatches, 1)).isEqualTo("b");
+        assertThat(getRewardName(playerRewardMatches, 0)).isEqualTo("1");
+        assertThat(getRewardName(playerRewardMatches, 1)).isEqualTo("2");
+    }
 
-        assertThat(ladderGameResult.getResult()).isEqualTo(expected);
-*/
+    private String getRewardName(PlayerRewardMatches playerRewardMatches, int i) {
+        return playerRewardMatches.getPlayerRewardMatches().get(i).getRewardName();
+    }
+
+    private String getPlayerGameName(PlayerRewardMatches playerRewardMatches, int i) {
+        return playerRewardMatches.getPlayerRewardMatches().get(i).getPlayerGameName();
     }
 }

@@ -12,8 +12,7 @@ public class LadderController {
     public static final String ALL = "all";
     public static final String END = "end";
 
-    private LadderController() {
-    }
+    private LadderController() {}
 
     public static void runLadder() {
         Players players = Players.of(NameSplitter.splitParticipationNames(InputView.putParticipation()));
