@@ -9,19 +9,19 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class LadderTest {
     @Test
     public void 음수_높이_사다리() {
-        assertThatThrownBy(() -> new Ladder("-1", 2))
+        assertThatThrownBy(() -> Ladder.of("-1", 2))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     public void 높이가_없는_사다리() {
-        assertThatThrownBy(() -> new Ladder("0", 2))
+        assertThatThrownBy(() -> Ladder.of("0", 2))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     public void 정상_사다리() {
-        Ladder ladder = new Ladder("1", 2);
+        Ladder ladder = Ladder.of("1", 2);
         assertThat(ladder.getLadder().size()).isEqualTo(1);
     }
 }

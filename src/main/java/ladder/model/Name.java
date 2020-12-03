@@ -2,12 +2,12 @@ package ladder.model;
 
 import ladder.config.NameConfig;
 
-public class Name {
-    public final static int NAME_MAX_LIMIT = NameConfig.NAME_SIZE;
+public final class Name {
+    private final static int NAME_MAX_LIMIT = NameConfig.NAME_SIZE;
     private final static int NAME_MIN_LIMIT = 1;
     private final static String NAME_LIMIT_ERROR = "올바른 이름을 입력하세요.";
 
-    private String name;
+    private final String name;
 
     public Name(String name) {
         if (isNotValid(name)) {
