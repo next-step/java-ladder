@@ -3,6 +3,7 @@ package nextstep.ladder2;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Objects;
@@ -26,6 +27,13 @@ public class PointTest {
     @ValueSource(booleans = {true, false})
     void first(boolean right) {
         assertThat(Point.first(right)).isEqualTo(new Point(0, Direction.of(false, right)));
+    }
+
+    @DisplayName("이동하면 위치값을 리턴한다")
+    @ParameterizedTest
+    @CsvSource({"true,1", "false,0"})
+    void first(boolean right, int index) {
+        assertThat(Point.first(right).move()).isEqualTo(index);
     }
 
     private static class Point {
