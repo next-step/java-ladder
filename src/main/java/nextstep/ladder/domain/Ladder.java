@@ -14,11 +14,11 @@ import java.util.stream.IntStream;
 public class Ladder {
     private final List<LadderLine> ladderLines;
 
-    private Ladder(Participants participants, Height height, Function<Integer, LadderLine> function) {
+    private Ladder(Participants participants, Height height, Function<Integer, LadderLine> ladderLineFactory) {
         ladderLines = new ArrayList<>(height.getValue());
         int sizeOfPerson = participants.getSizeOfPerson().getValue();
         IntStream.range(0, height.getValue())
-                .forEach(index -> ladderLines.add(function.apply(sizeOfPerson)));
+                .forEach(index -> ladderLines.add(ladderLineFactory.apply(sizeOfPerson)));
     }
 
     public static Ladder of(Participants participants, Height height) {
