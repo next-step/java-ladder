@@ -3,6 +3,7 @@ package step2.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import step2.hint.CreateLadderPointGenerator;
+import step2.hint.RandomLadderPointGenerator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -15,8 +16,11 @@ class LadderGameTest {
         Players players = Players.of(NameSplitter.splitParticipationNames("a,b"));
         Rewards rewards = Rewards.of(NameSplitter.splitParticipationNames("1,2"));
         int ladderHeight = 10;
-        Ladder ladder = Ladder.of(ladderHeight, players.getPlayersCount(), new CreateLadderPointGenerator());
-
+        Ladder ladder = new Ladder.LadderBuilder()
+                .buildLadderHeight(ladderHeight)
+                .buildPlayerCount(players.getPlayersCount())
+                .buildLadderPointGenerator(new CreateLadderPointGenerator())
+                .build();
         //when
         GameResults gameResults = LadderGame.runGame(players, rewards, ladder);
 

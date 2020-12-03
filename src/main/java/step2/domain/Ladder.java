@@ -12,25 +12,19 @@ import java.util.stream.IntStream;
 
 import static java.util.Collections.unmodifiableList;
 
-public class Ladder{
+public class Ladder {
     public static final int MIN_LADDER_HEIGHT = 1;
     public static final int MIN_PLAYER_COUNT = 1;
     private final List<LadderLine> lines;
 
-    private Ladder(List<LadderLine> lines) {
-        this.lines = lines;
+    private Ladder(LadderBuilder builder) {
+        validLineHeight(builder.ladderHeight);
+        validPlayerCount(builder.playerCount);
+
+        lines = IntStream.range(0, builder.ladderHeight)
+                .mapToObj(i -> LadderLine.init(builder.playerCount, builder.ladderPointGenerator))
+                .collect(Collectors.toList());
     }
-
-    public static Ladder of(final int ladderHeight, final int playerCount , final LadderPointGenerator ladderPointGenerator) {
-        validLineHeight(ladderHeight);
-        validPlayerCount(playerCount);
-
-        return new Ladder(
-                IntStream.range(0, ladderHeight)
-                        .mapToObj(i -> LadderLine.init(playerCount , ladderPointGenerator))
-                        .collect(Collectors.toList()));
-    }
-
 
     public int moveAll(int startPosition) {
         int currentPosition = startPosition;
@@ -67,5 +61,32 @@ public class Ladder{
     @Override
     public int hashCode() {
         return Objects.hash(lines);
+    }
+
+
+    public static class LadderBuilder {
+
+        private int ladderHeight;
+        private int playerCount;
+        private LadderPointGenerator ladderPointGenerator;
+
+        public LadderBuilder buildLadderHeight(int ladderHeight) {
+            this.ladderHeight = ladderHeight;
+            return this;
+        }
+
+        public LadderBuilder buildPlayerCount(int playerCount) {
+            this.playerCount = playerCount;
+            return this;
+        }
+
+        public LadderBuilder buildLadderPointGenerator(LadderPointGenerator ladderPointGenerator) {
+            this.ladderPointGenerator = ladderPointGenerator;
+            return this;
+        }
+
+        public Ladder build() {
+            return new Ladder(this);
+        }
     }
 }

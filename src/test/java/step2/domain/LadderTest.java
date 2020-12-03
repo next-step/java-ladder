@@ -14,24 +14,40 @@ class LadderTest {
     @Test
     @DisplayName("사다리 높이가 0일경우 익셉션 발생")
     void throwLadderHeightException() {
-        assertThatThrownBy(() -> Ladder.of(0, 1, new CreateLadderPointGenerator()))
+        assertThatThrownBy(() -> new Ladder.LadderBuilder()
+                .buildLadderHeight(0)
+                .buildPlayerCount(1)
+                .buildLadderPointGenerator(new CreateLadderPointGenerator())
+                .build())
                 .isInstanceOf(LadderHeightException.class);
     }
 
     @Test
-    @DisplayName("리워드의 숫자와 플레이어의 숫자가 일치하지 않을경우 익셉션 발생")
+    @DisplayName("플레이어의 숫자가 0이하일 경우 익셉션 발생")
     void throwPlayerRewardsCountException() {
-        assertThatThrownBy(() -> Ladder.of(1, 0, new CreateLadderPointGenerator()))
+        assertThatThrownBy(() -> new Ladder.LadderBuilder()
+                .buildLadderHeight(1)
+                .buildPlayerCount(0)
+                .buildLadderPointGenerator(new CreateLadderPointGenerator())
+                .build())
                 .isInstanceOf(ValidPlayerCountException.class);
     }
 
     @Test
     @DisplayName("Ladder가 잘 생성되는지 확인한다.")
     void create() {
-        Ladder ladder = Ladder.of(3, 3, new CreateLadderPointGenerator());
+        Ladder ladder = new Ladder.LadderBuilder()
+                .buildLadderHeight(1)
+                .buildPlayerCount(0)
+                .buildLadderPointGenerator(new CreateLadderPointGenerator())
+                .build();
 
         assertThat(ladder).usingRecursiveComparison()
-                .isEqualTo(Ladder.of(3, 3, new CreateLadderPointGenerator()));
+                .isEqualTo(new Ladder.LadderBuilder()
+                        .buildLadderHeight(1)
+                        .buildPlayerCount(0)
+                        .buildLadderPointGenerator(new CreateLadderPointGenerator())
+                        .build());
     }
 
 }

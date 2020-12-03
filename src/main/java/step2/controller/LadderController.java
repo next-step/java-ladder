@@ -19,7 +19,11 @@ public class LadderController {
         int ladderHeight = InputView.putLadderHeight();
 
         OutputView.printLadderResult();
-        Ladder ladder = Ladder.of(ladderHeight, players.getPlayersCount(), new RandomLadderPointGenerator());
+        Ladder ladder = new Ladder.LadderBuilder()
+                .buildLadderHeight(ladderHeight)
+                .buildPlayerCount(players.getPlayersCount())
+                .buildLadderPointGenerator(new RandomLadderPointGenerator())
+                .build();
 
         OutputView.printPlayers(players);
         OutputView.printLadder(ladder);
