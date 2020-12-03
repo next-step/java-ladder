@@ -1,22 +1,24 @@
 package ladder.view;
 
-import ladder.domain.Line;
-import ladder.domain.Lines;
-import ladder.domain.User;
-import ladder.domain.Users;
+import ladder.domain.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class ResultView {
 
     private static final int MAX_NAME_LENGTH = 5;
-    private static final String RESULT_EXECUTE_MESSAGE = "\n실행결과\n\n";
+    private static final String LINE_SEPARATOR = System.lineSeparator();
+    private static final String RESULT_EXECUTE_MESSAGE = "실행결과";
+    private static final String LINE_FULL = "|-----";
+    private static final String LINE_EMPTY = "|     ";
+
 
     private ResultView() {}
 
     public static void printGameResult(Users users, Lines lines) {
-        System.out.print(RESULT_EXECUTE_MESSAGE);
+        System.out.println(LINE_SEPARATOR + RESULT_EXECUTE_MESSAGE + LINE_SEPARATOR);
         printGamePlayers(users);
         printLadderGame(lines);
     }
@@ -31,7 +33,7 @@ public class ResultView {
         if (name.length() == MAX_NAME_LENGTH) {
             return name;
         }
-        return String.format("%-"+MAX_NAME_LENGTH+"s",name);
+        return String.format("%-" + MAX_NAME_LENGTH + "s",name);
     }
 
     private static void printLadderGame(Lines lines) {
@@ -41,19 +43,23 @@ public class ResultView {
     }
 
     private static void printLine(Line line) {
-        List<Boolean> booleans = line.getPoints();
         System.out.print("    ");
-        IntStream.range(0,booleans.size())
-                .filter(i -> i != booleans.size())
-                .forEach(i -> parseBooleanToString(line.hasRightMoved(i)));
+        parseBooleanToString(line.getPoints());
         System.out.println();
     }
 
-    private static void parseBooleanToString(boolean moved) {
-        if (moved) {
-            System.out.print("|-----");
-            return;
+    private static void parseBooleanToString(List<Point> points) {
+        StringBuilder ladderLine = new StringBuilder();
+        points.stream()
+                .map(point -> hasLine(point.isMovable()))
+                .forEach(ladderLine::append);
+        System.out.print(ladderLine.toString());
+    }
+
+    private static String hasLine(boolean hasLine) {
+        if (hasLine) {
+           return LINE_FULL;
         }
-        System.out.print("|     ");
+        return LINE_EMPTY;
     }
 }
