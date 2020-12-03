@@ -50,5 +50,10 @@ public class IndexedNameTest {
         public int getIndex() {
             return index;
         }
+
+        @Override
+        public String toString() {
+            return name;
+        }
     }
 }
