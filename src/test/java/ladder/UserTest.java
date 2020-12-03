@@ -4,8 +4,7 @@ import ladder.ladderexceptions.InvalidUserNameException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
-import static org.assertj.core.api.Assertions.assertThatNullPointerException;
+import static org.assertj.core.api.Assertions.*;
 
 public class UserTest {
 
@@ -31,5 +30,12 @@ public class UserTest {
         assertThatExceptionOfType(InvalidUserNameException.class).isThrownBy(
                 () -> new User("SIXsix")
         );
+    }
+
+    @Test
+    @DisplayName("Getter")
+    void testGetter() {
+        assertThat(new User("ABC").getName())
+                .isEqualTo("ABC");
     }
 }

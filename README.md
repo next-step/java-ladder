@@ -39,8 +39,8 @@
   * [X] ResultView 용 출력 데이터 생성 하는 역할
   * [X] 각 `HorizontalLine`에 layout을 바꾸도록 요청하는 역할
 * ResultView
-  * [ ] User 에 대해
-  * [ ] `List<List<boolean>>` 을 사다리로 출력하는 역할
+  * [X] User 에 대해 출력 하는 역할
+  * [X] `List<List<boolean>>` 을 사다리로 출력하는 역할
 * InputView
   * [X] User 정보 입력 받는 기능
   * [X] 사다리 높이 입력 받는 기능

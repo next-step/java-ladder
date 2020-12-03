@@ -4,7 +4,7 @@ import java.util.List;
 
 public class LadderDTO {
 
-    List<List<Boolean>> layout;
+    private final List<List<Boolean>> layout;
 
     public LadderDTO(List<List<Boolean>> layout) {
         this.layout = layout;
