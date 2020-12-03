@@ -3,6 +3,7 @@ package nextstep.ladder;
 import nextstep.ladder.domain.IndexedName;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Spoke;
+import nextstep.ladder.utils.ImmutableMaps;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
@@ -27,10 +28,12 @@ public class Controller {
 
         resultView.printLadder(ladder, IndexedName.unwrap(players));
 
+        Map<String, String> moveResult = ladder.moveForAll(players);
+
         String name;
         do {
             name = inputView.requestPlayerName();
-            resultView.printResult(getMoveResult(ladder, players, name));
+            resultView.printResult(getMoveResult(moveResult, name));
         } while (!name.equals(ALL));
     }
 
@@ -39,12 +42,10 @@ public class Controller {
                 .mapToObj(__ -> Spoke.fromCount(width - 1, RANDOM::nextBoolean));
     }
 
-    private Map<String, String> getMoveResult(Ladder ladder, List<IndexedName> players, String name) {
+    private Map<String, String> getMoveResult(Map<String, String> result, String name) {
         if (name.equals(ALL)) {
-            return ladder.moveForAll(players);
+            return result;
         }
-        Map<String, String> result = new HashMap<>();
-        result.put(name, ladder.moveFor(IndexedName.find(players, name)));
-        return result;
+        return ImmutableMaps.of(name, result.get(name));
     }
 }

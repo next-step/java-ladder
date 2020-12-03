@@ -47,7 +47,7 @@ public class Ladder {
                 .reduce(from, (position, line) -> line.moveOn(position), nope());
     }
 
-    public String moveFor(IndexedName name) {
+    String moveFor(IndexedName name) {
         int index = moveOn(Position.of(name)).toInt();
         return goals.stream()
                 .filter(goal -> goal.equalsIndex(index))
