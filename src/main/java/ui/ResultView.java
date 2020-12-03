@@ -15,18 +15,26 @@ public class ResultView {
     public static void print(final LadderGame ladderGame) {
         printPlayerNames(ladderGame.getPlayerNames());
         printLadder(ladderGame.getLadder());
+        printGameResults(ladderGame.getGameResults());
     }
 
     private static void printPlayerNames(final PlayerNames playerNames) {
-        playerNames.stream().forEach(s -> {
-            System.out.print(StringUtils.padByBlank(s, NUMBER_OF_NAME_PADDING).concat(BLANK));
-        });
+        playerNames.stream().forEach( s -> padAndPrint(s));
         System.out.print(NEWLINE);
     }
 
     public static void printLadder(final Ladder ladder) {
         ladder.getLines().mapLineOntoPoints()
                 .forEach( points -> printPoints(points));
+    }
+
+    private static void printGameResults(final GameResults gameResults ) {
+        gameResults.stream().forEach( s -> padAndPrint(s));
+        System.out.print(NEWLINE);
+    }
+
+    private static void padAndPrint(String s) {
+        System.out.print(StringUtils.padByBlank(s, NUMBER_OF_NAME_PADDING).concat(BLANK));
     }
 
     private static void printPoints(Points points) {
@@ -42,4 +50,6 @@ public class ResultView {
                VERTICAL.concat(StringUtils.copyAndJoin(NUMBER_OF_TEMPLATE_HORIZONTAL, HORIZONTAL)) :
                VERTICAL.concat(StringUtils.copyAndJoin(NUMBER_OF_TEMPLATE_HORIZONTAL, BLANK));
     }
+
+
 }
