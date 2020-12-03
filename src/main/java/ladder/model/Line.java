@@ -5,7 +5,7 @@ import java.util.stream.IntStream;
 
 public class Line {
     private final static String LINE_ERROR_MESSAGE = "올바르지 못한 라인입니다.";
-
+    private final static String LINE_ERROR_MESSAGE_ILLEGAL_LINE_SIZE = "사다리 아이템은 2개 이상이여야 합니다.";
     private List<LadderItem> ladderItems;
 
     private Line(List<LadderItem> ladderItems) {
@@ -13,22 +13,23 @@ public class Line {
     }
 
     public static Line from(List<LadderItem> ladderItems) {
-        if (isNotValid(ladderItems)) {
-            throw new IllegalArgumentException(LINE_ERROR_MESSAGE);
-        }
-
+        validateLine(ladderItems);
         return new Line(ladderItems);
     }
 
-    private static boolean isNotValid(List<LadderItem> ladderItems) {
-        if (ladderItems.size() == 1)
-            return false;
+    private static void validateLine(List<LadderItem> ladderItems) {
+        if (ladderItems.size() == 1) {
+           return;
+        }
 
-        return IntStream.range(0, ladderItems.size() - 1)
+        boolean hasInvalidLadderItem = IntStream.range(0, ladderItems.size() - 1)
                 .mapToObj(idx -> window(idx, ladderItems))
                 .reduce((x, y) -> x || y)
-                .orElse(true);
+                .orElse(Boolean.TRUE);
 
+        if (hasInvalidLadderItem) {
+            throw new IllegalArgumentException(LINE_ERROR_MESSAGE);
+        }
     }
 
     private static boolean window(int idx, List<LadderItem> ladderItems) {

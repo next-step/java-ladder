@@ -23,9 +23,7 @@ public class Ladder {
     }
 
     public static Ladder of(String ladderSize, int userSize){
-        if (isNotValid(ladderSize)) {
-            throw new IllegalArgumentException(LADDER_SIZE_ERROR_MESSAGE);
-        }
+        validateLadderSize(ladderSize);
 
         int numberOfItems = userSize - LINE_ITEM_VARIABLE;
 
@@ -59,15 +57,16 @@ public class Ladder {
         return RANDOM.nextDouble() >= 0.5 ? 1 : 0;
     }
 
-
-    private static boolean isNotValid(String size) {
+    private static void validateLadderSize(String size) {
         if (!StringUtils.isPositiveNumber(size)) {
-            return true;
+            throw new IllegalArgumentException(LADDER_SIZE_ERROR_MESSAGE);
         }
 
         int ladderSize = StringUtils.stringToInt(size);
 
-        return ladderSize <= LADDER_MIN_LIMIT;
+        if(ladderSize <= LADDER_MIN_LIMIT){
+            throw new IllegalArgumentException(LADDER_SIZE_ERROR_MESSAGE);
+        }
     }
 
     public List<String> getLadder() {
