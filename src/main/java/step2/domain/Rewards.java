@@ -25,6 +25,10 @@ public class Rewards {
         return unmodifiableList(rewards);
     }
 
+    public String getRewardName(int position) {
+        return rewards.get(position).getRewardName();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

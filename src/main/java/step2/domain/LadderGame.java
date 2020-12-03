@@ -4,14 +4,16 @@ import java.util.stream.Collectors;
 
 public class LadderGame {
 
-    private LadderGame() {}
+    private LadderGame() {
+    }
 
     public static PlayerRewardMatches runGame(Players players, Rewards rewards, Ladder ladder) {
         return PlayerRewardMatches.of(
                 players.getPlayers()
                         .stream()
                         .map(player ->
-                                PlayerRewardMatch.of(player.getPlayerGameName(), rewards.getRewards().get(ladder.moveAll(player.getPlayerGamePosition())).getRewardName())).
-                        collect(Collectors.toList()));
+                                PlayerRewardMatch.of(
+                                        player.getPlayerGameName(), rewards.getRewardName(ladder.moveAll(player.getPlayerGamePosition()))))
+                        .collect(Collectors.toList()));
     }
 }
