@@ -1,9 +1,9 @@
 package step2.domain;
 
-import step2.dto.LadderDto;
-import step2.dto.PlayersRewardsDto;
 import step2.exception.LadderHeightException;
-import step2.exception.NotMatchPlayerRewardsCountException;
+import step2.exception.ValidPlayerCountException;
+import step2.hint.LadderLine;
+import step2.hint.LadderPointGenerator;
 
 import java.util.List;
 import java.util.Objects;
@@ -14,25 +14,33 @@ import static java.util.Collections.unmodifiableList;
 
 public class Ladder {
     public static final int MIN_LADDER_HEIGHT = 1;
-    private final List<Line> lines;
+    public static final int MIN_PLAYER_COUNT = 1;
+    private final List<LadderLine> lines;
 
-    private Ladder(List<Line> lines) {
-        this.lines = lines;
+    private Ladder(LadderBuilder builder) {
+        validLineHeight(builder.ladderHeight);
+        validPlayerCount(builder.playerCount);
+
+        lines = IntStream.range(0, builder.ladderHeight)
+                .mapToObj(i -> LadderLine.init(builder.playerCount, builder.ladderPointGenerator))
+                .collect(Collectors.toList());
     }
 
-    public static Ladder of(final PlayersRewardsDto playersRewardsDto, final LadderDto ladderDto) {
-        validLineHeight(ladderDto.getLadderHeight());
-        validPlayerRewardsCount(playersRewardsDto);
-
-        return new Ladder(
-                IntStream.range(0, ladderDto.getLadderHeight())
-                        .mapToObj(i -> Line.of(playersRewardsDto.getPlayers().getPlayersCount(), ladderDto.getLineStrategy()))
-                        .collect(Collectors.toList()));
+    public int moveAll(int startPosition) {
+        int currentPosition = startPosition;
+        for (LadderLine line : lines) {
+            currentPosition = line.move(currentPosition);
+        }
+        return currentPosition;
     }
 
-    private static void validPlayerRewardsCount(PlayersRewardsDto playersRewardsDto) {
-        if (playersRewardsDto.getPlayers().getPlayersCount() != playersRewardsDto.getRewards().getRewardsCount()) {
-            throw new NotMatchPlayerRewardsCountException();
+    public List<LadderLine> getLines() {
+        return unmodifiableList(lines);
+    }
+
+    private static void validPlayerCount(int playerCount) {
+        if (playerCount < MIN_PLAYER_COUNT) {
+            throw new ValidPlayerCountException();
         }
     }
 
@@ -55,7 +63,30 @@ public class Ladder {
         return Objects.hash(lines);
     }
 
-    public List<Line> getLines() {
-        return unmodifiableList(lines);
+
+    public static class LadderBuilder {
+
+        private int ladderHeight;
+        private int playerCount;
+        private LadderPointGenerator ladderPointGenerator;
+
+        public LadderBuilder buildLadderHeight(int ladderHeight) {
+            this.ladderHeight = ladderHeight;
+            return this;
+        }
+
+        public LadderBuilder buildPlayerCount(int playerCount) {
+            this.playerCount = playerCount;
+            return this;
+        }
+
+        public LadderBuilder buildLadderPointGenerator(LadderPointGenerator ladderPointGenerator) {
+            this.ladderPointGenerator = ladderPointGenerator;
+            return this;
+        }
+
+        public Ladder build() {
+            return new Ladder(this);
+        }
     }
 }

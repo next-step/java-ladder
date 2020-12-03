@@ -8,8 +8,7 @@ import java.util.stream.Collectors;
 
 public class NameSplitter {
 
-    private NameSplitter() {
-    }
+    private NameSplitter() { }
 
     public static List<String> splitParticipationNames(String participationNames) {
         validEmpty(participationNames);

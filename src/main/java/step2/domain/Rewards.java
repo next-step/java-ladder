@@ -21,12 +21,16 @@ public class Rewards {
                 .collect(Collectors.toList()));
     }
 
-    public int getRewardsCount() {
-        return rewards.size();
-    }
-
     public List<Reward> getRewards() {
         return unmodifiableList(rewards);
+    }
+
+    public String getRewardName(int position) {
+        return rewards.get(position).getRewardName();
+    }
+
+    public int getRewardsCount() {
+        return rewards.size();
     }
 
     @Override
@@ -41,5 +45,4 @@ public class Rewards {
     public int hashCode() {
         return Objects.hash(rewards);
     }
-
 }

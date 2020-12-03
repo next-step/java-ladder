@@ -7,21 +7,21 @@ import step2.exception.ValidPositionException;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class PlayerGamePositionTest {
+class PlayerGameNameTest {
+
 
     @Test
-    @DisplayName("게임 포지션이 잘 생성되는지 확인한다.")
+    @DisplayName("플레이어 게임 네임이 잘 생성되는지 확인")
     void create() {
-        PlayerGamePosition playerGamePosition = PlayerGamePosition.of(1);
-        assertThat(playerGamePosition).isEqualTo(PlayerGamePosition.of(1));
+        PlayerGameName playerGameName = PlayerGameName.of("a");
+        assertThat(playerGameName).isEqualTo(PlayerGameName.of("a"));
     }
 
 
     @Test
-    @DisplayName("포지션이 0 이하일경우 익셉션 발생")
+    @DisplayName("네임이 5글자를 초과하는경우 익셉션 발생")
     void throwPositionException() {
         assertThatThrownBy(() -> PlayerGamePosition.of(-1))
                 .isInstanceOf(ValidPositionException.class);
     }
-
 }

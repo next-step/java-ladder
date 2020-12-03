@@ -1,13 +1,15 @@
 package step2.controller;
 
 import step2.domain.*;
-import step2.dto.LadderDto;
-import step2.dto.PlayersRewardsDto;
+import step2.hint.RandomLadderPointGenerator;
 import step2.view.InputView;
 import step2.view.OutputView;
 
 
 public class LadderController {
+
+    public static final String ALL = "all";
+    public static final String END = "end";
 
     private LadderController() {}
 
@@ -17,44 +19,47 @@ public class LadderController {
         int ladderHeight = InputView.putLadderHeight();
 
         OutputView.printLadderResult();
-        PlayersRewardsDto playersRewardsDto = new PlayersRewardsDto(players, rewards);
-        Ladder ladder = Ladder.of(playersRewardsDto, new LadderDto(ladderHeight, new RandomLineStrategy()));
+        Ladder ladder = new Ladder.LadderBuilder()
+                .buildLadderHeight(ladderHeight)
+                .buildPlayerCount(players.getPlayersCount())
+                .buildLadderPointGenerator(new RandomLadderPointGenerator())
+                .build();
 
         OutputView.printPlayers(players);
         OutputView.printLadder(ladder);
         OutputView.printRewards(rewards);
 
+        printResult(LadderGame.runGame(players, rewards, ladder));
 
-
-        printResult( LadderGame.runGame(ladder, playersRewardsDto));
     }
 
-    private static void printResult(LadderGameResult ladderGameResult) {
+    private static void printResult(GameResults gameResults) {
         while (true) {
             String player = InputView.putWantPrintPlay();
             if (isAllPrint(player)) {
-                printAllPlayer(ladderGameResult);
+                printAllPlayer(gameResults);
                 continue;
             }
             if (gameEnd(player)) return;
 
-            printPlayer(ladderGameResult, player);
+            printPlayer(gameResults, player);
         }
     }
 
     private static boolean isAllPrint(String player) {
-        return player.equals("all");
+        return player.equals(ALL);
     }
+
     private static boolean gameEnd(String player) {
-        return player.equals("end");
+        return player.equals(END);
     }
 
-    private static void printPlayer(LadderGameResult ladderGameResult, String player) {
-        OutputView.printPlayerReward(ladderGameResult, player);
+    private static void printPlayer(GameResults gameResults, String player) {
+        OutputView.printPlayerReward(gameResults, player);
     }
 
-    private static void printAllPlayer(LadderGameResult ladderGameResult) {
-        OutputView.printAllPlayerReward(ladderGameResult);
+    private static void printAllPlayer(GameResults gameResults) {
+        OutputView.printAllPlayerReward(gameResults);
     }
 
 

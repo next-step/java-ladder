@@ -2,11 +2,7 @@ package step2.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import step2.dto.LadderDto;
-import step2.dto.PlayersRewardsDto;
-
-import java.util.HashMap;
-import java.util.Map;
+import step2.hint.CreateLadderPointGenerator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -19,18 +15,25 @@ class LadderGameTest {
         Players players = Players.of(NameSplitter.splitParticipationNames("a,b"));
         Rewards rewards = Rewards.of(NameSplitter.splitParticipationNames("1,2"));
         int ladderHeight = 10;
-        PlayersRewardsDto playersRewardsDto = new PlayersRewardsDto(players, rewards);
-        LadderDto ladderDto = new LadderDto(ladderHeight, new MustLineStrategy());
+        Ladder ladder = new Ladder.LadderBuilder()
+                .buildLadderHeight(ladderHeight)
+                .buildPlayerCount(players.getPlayersCount())
+                .buildLadderPointGenerator(new CreateLadderPointGenerator())
+                .build();
         //when
-        Ladder ladder = Ladder.of(playersRewardsDto, ladderDto);
-        LadderGameResult ladderGameResult = LadderGame.runGame(ladder, playersRewardsDto);
+        GameResults gameResults = LadderGame.runGame(players, rewards, ladder);
 
-        //then
-        Map<String, String> expected = new HashMap<>();
-        expected.put("a", "1");
-        expected.put("b", "2");
+        assertThat(getPlayerGameName(gameResults, 0)).isEqualTo("a");
+        assertThat(getPlayerGameName(gameResults, 1)).isEqualTo("b");
+        assertThat(getRewardName(gameResults, 0)).isEqualTo("1");
+        assertThat(getRewardName(gameResults, 1)).isEqualTo("2");
+    }
 
-        assertThat(ladderGameResult.getResult()).isEqualTo(expected);
+    private String getRewardName(GameResults gameResults, int i) {
+        return gameResults.getGameResults().get(i).getRewardName();
+    }
 
+    private String getPlayerGameName(GameResults gameResults, int i) {
+        return gameResults.getGameResults().get(i).getPlayerGameName();
     }
 }

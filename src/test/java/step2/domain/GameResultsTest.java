@@ -8,33 +8,30 @@ import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class PlayersTest {
-    private Players players;
+class GameResultsTest {
+    private GameResults gameResults;
 
     @BeforeEach
     void setUp() {
-        players = Players.of(Arrays.asList("a", "b", "c"));
+        gameResults = GameResults.of(Arrays.asList(
+                GameResult.of("a", "1"), GameResult.of("b", "2")));
     }
 
-    @Test
-    @DisplayName("플레이어 인원이 잘 되는지 확인")
-    void testPlayersCount() {
-        //given
-        assertThat(players.getPlayersCount()).isEqualTo(3);
-    }
 
     @Test
     @DisplayName("플레이어들이 생성되는지 확인")
     void createPlayers() {
         //given
-        assertThat(players).isEqualTo(Players.of(Arrays.asList("a", "b", "c")));
+        assertThat(gameResults).isEqualTo(GameResults.of(Arrays.asList(
+                GameResult.of("a", "1"), GameResult.of("b", "2"))));
     }
 
     @Test
     @DisplayName("플레이어가 리스트가 잘 생성되는지 확인")
     void createPlayersList() {
         //given
-        assertThat(players.getPlayers())
-                .containsExactly(Player.of("a", 0), Player.of("b", 1), Player.of("c", 2));
+        assertThat(gameResults.getGameResults())
+                .containsExactly(GameResult.of("a", "1"), GameResult.of("b", "2"));
     }
+
 }
