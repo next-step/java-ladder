@@ -1,2 +1,6 @@
-package ladder.domain;public interface LineBuildStrategy {
+package ladder.domain;
+
+public interface LineBuildStrategy {
+
+    Line build(int countOfPlayer);
 }
