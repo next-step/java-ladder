@@ -119,5 +119,9 @@ public class DirectionTest {
         public boolean isRight() {
             return right;
         }
+
+        public Direction next(boolean right) {
+            return of(this.left, right);
+        }
     }
 }
