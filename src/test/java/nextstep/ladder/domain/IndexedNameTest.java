@@ -27,6 +27,11 @@ public class IndexedNameTest {
         assertThat(new IndexedName(0, "red").getIndex()).isEqualTo(0);
     }
 
+    @Test
+    void toStringWithName() {
+        assertThat(new IndexedName(0, "red").toString()).isEqualTo("red");
+    }
+
     private static class IndexedName {
         private final int index;
         private final String name;
