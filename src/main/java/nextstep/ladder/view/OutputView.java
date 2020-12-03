@@ -46,8 +46,8 @@ public class OutputView {
 
     public static void showResults(Results results) {
         out.println(results.getResults().stream()
-                .map(result -> String.format("%-5s", result.getResult()))
-                .collect(Collectors.joining()));
+                .map(result -> String.format("%5s", result.getResult()))
+                .collect(Collectors.joining(BLANK)));
     }
 
     public static void showMatch(Result result) {
