@@ -16,6 +16,12 @@ public class IndexedNameTest {
         );
     }
 
+    @Test
+    void nameLength() {
+        assertThatThrownBy(() -> new IndexedName(0, "nameWithLengthOverSix"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     private static class IndexedName {
         public IndexedName(int index, String name) {
             throw new IllegalArgumentException("이름/인덱스가 올바르지 않습니다");
