@@ -2,13 +2,18 @@ package nextstep.ladder;
 
 import nextstep.ladder.domain.IndexedName;
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Spoke;
 import nextstep.ladder.utils.ImmutableMaps;
 import nextstep.ladder.view.InputView;
+import nextstep.ladder.view.LadderView;
 import nextstep.ladder.view.ResultView;
 
 import java.io.OutputStreamWriter;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import java.util.function.Consumer;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -26,7 +31,7 @@ public class Controller {
 
         Ladder ladder = Ladder.of(createSpokes(ladderHeight, players.size()), goals);
 
-        resultView.printLadder(ladder, IndexedName.unwrap(players));
+        resultView.printLadder(new LadderViewAdapter(goals, ladder), IndexedName.unwrap(players));
 
         Map<String, String> moveResult = ladder.moveForAll(players);
 
@@ -47,5 +52,27 @@ public class Controller {
             return result;
         }
         return ImmutableMaps.of(name, result.get(name));
+    }
+
+    private static class LadderViewAdapter implements LadderView {
+
+        private final List<IndexedName> goals;
+        private final Ladder ladder;
+
+        public LadderViewAdapter(List<IndexedName> goals, Ladder ladder) {
+            this.goals = goals;
+            this.ladder = ladder;
+        }
+
+        @Override
+        public List<String> getGoals() {
+            return IndexedName.unwrap(goals);
+        }
+
+        @Override
+        public void forEachLine(Consumer<List<Boolean>> singleLineConsumer) {
+            ladder.forEach(Line::toSpokeStream);
+
+        }
     }
 }

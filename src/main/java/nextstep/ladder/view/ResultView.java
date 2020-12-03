@@ -1,8 +1,5 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Line;
-
 import java.io.PrintWriter;
 import java.io.Writer;
 import java.util.List;
@@ -22,11 +19,11 @@ public class ResultView {
         this.out = new PrintWriter(out, true);
     }
 
-    public void printLadder(Ladder ladder, List<String> players) {
+    public void printLadder(LadderView ladder, List<String> players) {
         println("실행결과");
         println("");
         printNames(players);
-        ladder.forEach(this::printLine);
+        ladder.forEachLine(this::printLine);
         printNames(ladder.getGoals());
     }
 
@@ -35,9 +32,9 @@ public class ResultView {
         names.forEach(this::printResult);
     }
 
-    void printLine(Line line) {
+    void printLine(List<Boolean> line) {
         print(times(BLANK, 4));
-        line.toSpokeStream()
+        line.stream()
                 .map(this::makeRung)
                 .map(this::withPole)
                 .forEach(this::print);
