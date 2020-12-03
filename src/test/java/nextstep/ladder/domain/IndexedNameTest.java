@@ -3,6 +3,7 @@ package nextstep.ladder.domain;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class IndexedNameTest {
@@ -20,6 +21,11 @@ public class IndexedNameTest {
     void nameLength() {
         assertThatThrownBy(() -> new IndexedName(0, "nameWithLengthOverSix"))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void getIndex() {
+        assertThat(new IndexedName(0, "red").getIndex()).isEqualTo(0);
     }
 
     private static class IndexedName {
