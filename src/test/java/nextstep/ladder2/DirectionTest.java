@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 
 /**
  * Direction 요구사항
- *
+ * <p>
  * * 특정 지점의 오른쪽/왼쪽 이동가능한지를 나타낸다
  * * 좌측 끝지점은 항상 왼쪽은 이동이 불가능하다
  * * 우측 끝지점은 항상 오른쪽 이동이 불가능하다
@@ -79,8 +79,7 @@ public class DirectionTest {
                 .isInstanceOf(IllegalStateException.class);
     }
 
-
-        private static class Direction {
+    private static class Direction {
         private static final Direction LEFT = new Direction(true, false);
         private static final Direction RIGHT = new Direction(false, true);
         private static final Direction NEUTRAL = new Direction(false, false);
@@ -114,7 +113,7 @@ public class DirectionTest {
         }
 
         public Direction next(boolean right) {
-            return of(this.left, right);
+            return of(this.right, right);
         }
 
         public boolean isLeft() {
