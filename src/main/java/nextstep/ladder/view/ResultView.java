@@ -1,10 +1,9 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.Line;
-
 import java.io.PrintWriter;
 import java.io.Writer;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.joining;
@@ -17,28 +16,29 @@ public class ResultView {
     private final PrintWriter out;
 
     public ResultView(Writer out) {
-        this.out = new PrintWriter(out);
+        this.out = new PrintWriter(out, true);
     }
 
-    public void printResult(List<String> players, List<Line> lines) {
+    public void printLadder(LadderView ladder, List<String> players) {
         println("실행결과");
         println("");
         printNames(players);
-        printLadders(lines);
-        flush();
+        ladder.forEachLine(this::printLine);
+        printNames(ladder.getGoals());
     }
 
-    void printLadder(Line line) {
+    public void printResult(Map<String, String> names) {
+        println("실행 결과");
+        names.forEach(this::printResult);
+    }
+
+    void printLine(List<Boolean> line) {
         print(times(BLANK, 4));
-        line.toSpokeStream()
+        line.stream()
                 .map(this::makeRung)
                 .map(this::withPole)
                 .forEach(this::print);
         println("|");
-    }
-
-    void printLadders(List<Line> lines) {
-        lines.forEach(this::printLadder);
     }
 
     void printNames(List<String> names) {
@@ -68,6 +68,10 @@ public class ResultView {
         return times(RUNG, NAME_SPACE);
     }
 
+    private void printResult(String name, String result) {
+        println(name + ":" + result);
+    }
+
     private void println(String string) {
         out.println(string);
     }
@@ -78,9 +82,5 @@ public class ResultView {
 
     static String times(String string, int repeat) {
         return IntStream.range(0, repeat).mapToObj(__ -> string).collect(joining());
-    }
-
-    private void flush() {
-        out.flush();
     }
 }

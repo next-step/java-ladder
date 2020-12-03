@@ -1,15 +1,13 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Spoke;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.StringWriter;
-import java.util.Arrays;
 import java.util.List;
 
+import static java.util.Arrays.asList;
 import static nextstep.ladder.view.ResultView.times;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -27,7 +25,7 @@ public class ResultViewTest {
     @DisplayName("사다리 라인 하나를 그린다")
     @Test
     void printOneLadderLine() {
-        resultView.printLadder(Spoke.of(true, false, true).toLine());
+        resultView.printLine(asWrappedList(true, false, true));
 
         assertThat(out.toString()).isEqualTo("    |-----|     |-----|\n");
     }
@@ -35,11 +33,8 @@ public class ResultViewTest {
     @DisplayName("사다리 라인 두개를 그린다")
     @Test
     void printTwoLadderLine() {
-        List<Line> lines = Arrays.asList(
-                Spoke.of(true, false, true).toLine(),
-                Spoke.of(false, true, false).toLine());
-
-        resultView.printLadders(lines);
+        resultView.printLine(asWrappedList(true, false, true));
+        resultView.printLine(asWrappedList(false, true, false));
 
         assertThat(out.toString()).isEqualTo(
                 "    |-----|     |-----|\n" +
@@ -50,7 +45,7 @@ public class ResultViewTest {
     @DisplayName("이름을 그린다")
     @Test
     void printNames() {
-        resultView.printNames(Arrays.asList("white", "blue", "green", "red"));
+        resultView.printNames(asList("white", "blue", "green", "red"));
 
         assertThat(out.toString()).isEqualTo(
                 "white  blue green   red\n"
@@ -60,6 +55,10 @@ public class ResultViewTest {
     @Test
     void timesForString() {
         assertThat(times("-", 5)).isEqualTo("-----");
+    }
+
+    private List<Boolean> asWrappedList(Boolean... booleans) {
+        return asList(booleans);
     }
 
 }
