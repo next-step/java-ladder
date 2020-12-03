@@ -98,18 +98,15 @@ public class DirectionTest {
         }
 
         public static Direction first(boolean right) {
-            if (right) {
-                return RIGHT;
-            }
-            return NEUTRAL;
+            return of(false, right);
         }
 
         public Direction last() {
-            // 현지점에서 오른쪽으로 이동 가능하니 다음지점은 왼쪽으로 이동가능한 객체 리턴
-            if (right) {
-                return LEFT;
-            }
-            return NEUTRAL;
+            return of(right, false);
+        }
+
+        public Direction next(boolean right) {
+            return of(this.left, right);
         }
 
         public boolean isLeft() {
@@ -118,10 +115,6 @@ public class DirectionTest {
 
         public boolean isRight() {
             return right;
-        }
-
-        public Direction next(boolean right) {
-            return of(this.left, right);
         }
     }
 }
