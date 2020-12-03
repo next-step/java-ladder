@@ -13,7 +13,7 @@ public class Matches {
     public Result find(String nameToFind) {
         Player playerFound = matches.keySet()
                 .stream()
-                .filter(player -> player.getName().equals(nameToFind))
+                .filter(player -> player.hasName(nameToFind))
                 .findFirst().orElseThrow(() -> new IllegalArgumentException("there's no player of that name"));
 
         return matches.get(playerFound);
