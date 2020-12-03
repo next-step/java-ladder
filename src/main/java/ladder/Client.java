@@ -37,13 +37,14 @@ public class Client {
     }
 
     private static void printUsers() {
+        ResultView.printResultOpening();
+
         UsersDTO usersDTO = users.exportData();
         List<String> users = usersDTO.getUsers();
         ResultView.printUsers(users);
     }
 
     private static void printLadder() {
-        ResultView.printResultOpening();
         LadderDTO ladderDTO = ladder.exportData();
         List<List<Boolean>> layout = ladderDTO.getLayout();
         ResultView.printLadder(layout);

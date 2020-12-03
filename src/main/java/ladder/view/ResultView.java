@@ -5,7 +5,7 @@ import java.util.List;
 public class ResultView {
 
     private static final String RESULT_OPENING_MESSAGE = "실행 결과";
-    private static final String LADDER_PRINT_MARGIN = "   ";
+    private static final String LADDER_PRINT_MARGIN = "     ";
     private static final String LADDER_DIVIDER = "|";
     private static final String IS_HORIZONTAL = "-----";
     private static final String IS_NOT_HORIZONTAL = "     ";
@@ -16,8 +16,9 @@ public class ResultView {
 
     public static void printUsers(List<String> users) {
         for (String user : users) {
-            System.out.printf("%.5s", user);
+            System.out.printf("%6s", user);
         }
+        System.out.println();
     }
 
     public static void printLadder(List<List<Boolean>> layout) {
