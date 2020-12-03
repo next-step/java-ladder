@@ -16,22 +16,27 @@ public class Ladder {
 
     private final static Random RANDOM = new Random();
 
-    private List<Line> lines;
+    private final List<Line> lines;
 
-    public Ladder(String ladderSize, int userSize) {
+    private Ladder(List<Line> lines) {
+        this.lines = lines;
+    }
+
+    public static Ladder of(String ladderSize, int userSize){
         if (isNotValid(ladderSize)) {
             throw new IllegalArgumentException(LADDER_SIZE_ERROR_MESSAGE);
         }
 
         int numberOfItems = userSize - LINE_ITEM_VARIABLE;
 
-        lines = IntStream.range(0, StringUtils.stringToInt(ladderSize))
+        List<Line> lines = IntStream.range(0, StringUtils.stringToInt(ladderSize))
                 .mapToObj(x -> makeLineItems(numberOfItems))
                 .map(Line::from)
                 .collect(Collectors.toList());
-    }
 
-    private List<LadderItem> makeLineItems(int numberOfItems) {
+        return new Ladder(lines);
+    }
+    private static List<LadderItem> makeLineItems(int numberOfItems) {
         List<LadderItem> ladderItems = new ArrayList<>();
         ladderItems.add(LadderItem.findItem(getZeroOrOne()));
 
@@ -42,7 +47,7 @@ public class Ladder {
 
     }
 
-    private LadderItem makeLineItem(LadderItem previousItem) {
+    private static LadderItem makeLineItem(LadderItem previousItem) {
         if (previousItem.equals(LadderItem.HORIZONTAL)) {
             return LadderItem.BLANK_HORIZONTAL;
         }
@@ -50,12 +55,12 @@ public class Ladder {
         return LadderItem.findItem(getZeroOrOne());
     }
 
-    private int getZeroOrOne() {
+    private static int getZeroOrOne() {
         return RANDOM.nextDouble() >= 0.5 ? 1 : 0;
     }
 
 
-    private boolean isNotValid(String size) {
+    private static boolean isNotValid(String size) {
         if (!StringUtils.isPositiveNumber(size)) {
             return true;
         }

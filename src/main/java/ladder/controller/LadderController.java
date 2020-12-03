@@ -14,7 +14,7 @@ public class LadderController {
         users = new Users(user);
 
         String ladderSize = InputView.printInputLadderMessage();
-        ladder = new Ladder(ladderSize, users.countOfPerson());
+        ladder = Ladder.of(ladderSize, users.countOfPerson());
 
         ResultView.printResult();
         ResultView.printUsers(users.getUserNames());
