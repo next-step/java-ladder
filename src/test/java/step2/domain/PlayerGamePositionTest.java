@@ -1,15 +1,9 @@
 package step2.domain;
 
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import step2.exception.NameLengthException;
-import step2.exception.NotMoveLeftException;
-import step2.exception.NotMoveRightException;
 import step2.exception.ValidPositionException;
 
-import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

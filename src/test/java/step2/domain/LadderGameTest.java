@@ -3,7 +3,6 @@ package step2.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import step2.hint.CreateLadderPointGenerator;
-import step2.hint.RandomLadderPointGenerator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
