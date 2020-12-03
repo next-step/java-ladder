@@ -6,53 +6,41 @@ import nextstep.ladder.util.pointsgenerator.PointsGenerator;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 public class LadderLine {
     private final List<Point> points;
 
-    private LadderLine(List<Point> points) {
-        this.points = points;
+    private LadderLine(int sizeOfPerson, PointsGenerator pointsGenerator, Function<Point, Point> nextPointFactory) {
+        this.points = new ArrayList<>();
+        Point point = initFirst(pointsGenerator);
+        point = initBody(sizeOfPerson, point, nextPointFactory);
+        initLast(point);
     }
 
     public static LadderLine init(int sizeOfPerson) {
-        List<Point> points = new ArrayList<>();
-        Point point = initFirst(points, HalfRandomPointsGenerator.getInstance());
-        point = initBody(sizeOfPerson, points, point);
-        initLast(points, point);
-        return new LadderLine(points);
+        return new LadderLine(sizeOfPerson, HalfRandomPointsGenerator.getInstance(), Point::next);
     }
 
     public static LadderLine init(int sizeOfPerson, PointsGenerator pointsGenerator) {
-        List<Point> points = new ArrayList<>();
-        Point point = initFirst(points, pointsGenerator);
-        point = initBody(sizeOfPerson, points, point, pointsGenerator);
-        initLast(points, point);
-        return new LadderLine(points);
+        return new LadderLine(sizeOfPerson, pointsGenerator, p -> p.next(pointsGenerator.generatePoint()));
     }
 
-    private static Point initFirst(List<Point> points, PointsGenerator pointsGenerator) {
+    private Point initFirst(PointsGenerator pointsGenerator) {
         Point point = Point.first(pointsGenerator.generatePoint());
-        points.add(point);
+        this.points.add(point);
         return point;
     }
 
-    private static Point initBody(int sizeOfPerson, List<Point> points, Point point) {
+    private Point initBody(int sizeOfPerson, Point point, Function<Point, Point> nextPointFactory) {
         for (int i = 1; i < sizeOfPerson - 1; i++) {
-            point = point.next();
+            point = nextPointFactory.apply(point);
             points.add(point);
         }
         return point;
     }
 
-    private static Point initBody(int sizeOfPerson, List<Point> points, Point point, PointsGenerator pointsGenerator) {
-        for (int i = 1; i < sizeOfPerson - 1; i++) {
-            point = point.next(pointsGenerator.generatePoint());
-            points.add(point);
-        }
-        return point;
-    }
-
-    private static void initLast(List<Point> points, Point point) {
+    private void initLast(Point point) {
         point = point.last();
         points.add(point);
     }
