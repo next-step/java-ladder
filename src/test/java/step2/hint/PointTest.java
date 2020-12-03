@@ -34,7 +34,7 @@ class PointTest {
 
     @Test
     void next() {
-        Point second = Point.first(TRUE).next(new NotCreateLadderPointGenerator());
+        Point second = Point.first(TRUE).next(new CreateLadderPointGenerator());
         assertThat(second.move()).isEqualTo(0);
     }
 

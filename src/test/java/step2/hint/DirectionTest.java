@@ -15,14 +15,14 @@ class DirectionTest {
 
     @Test
     void next_random_true() {
-        Direction next = Direction.first(TRUE).next(new NotCreateLadderPointGenerator());
+        Direction next = Direction.first(TRUE).next(new CreateLadderPointGenerator());
         assertThat(next).isEqualTo(Direction.of(TRUE, FALSE));
     }
 
     @Test
     void next_random_false() {
         for (int i = 0; i < 100; i++) {
-            Direction.first(FALSE).next(new NotCreateLadderPointGenerator());
+            Direction.first(FALSE).next(new CreateLadderPointGenerator());
         }
     }
 
