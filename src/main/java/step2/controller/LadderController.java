@@ -1,7 +1,6 @@
 package step2.controller;
 
 import step2.domain.*;
-import step2.hint.LadderPointGenerator;
 import step2.hint.RandomLadderPointGenerator;
 import step2.view.InputView;
 import step2.view.OutputView;
