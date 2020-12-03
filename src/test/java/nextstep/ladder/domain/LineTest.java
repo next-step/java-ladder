@@ -12,7 +12,7 @@ public class LineTest {
     @Test
     @DisplayName("사다리 가로줄 연결 생성")
     void createLine() {
-        Line line = new Line(3, () -> true);
+        Line line = new Line(3, (point) -> true);
 
         Connections expectedConnections = new Connections(Arrays.asList(new Connection(true), new Connection(false), new Connection(true)));
         assertThat(line.getConnections()).isEqualTo(expectedConnections);

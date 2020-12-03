@@ -3,13 +3,29 @@ package nextstep.ladder.domain;
 import java.util.Objects;
 
 public class Player {
-    private String name;
+    public static final int MAX_LENGTH = 5;
+    public static final String BLANK = " ";
+    private final String name;
 
     public Player(String name) {
-        if (name.length() > 5)
-            throw new IllegalArgumentException("name must be over 5");
+        name = name.replace(BLANK, "");
+
+        checkLength(name);
+        checkEmpty(name);
 
         this.name = name;
+    }
+
+    private void checkLength(String name) {
+        if (name.length() > MAX_LENGTH) {
+            throw new IllegalArgumentException("name must not be over 5");
+        }
+    }
+
+    private void checkEmpty(String name) {
+        if (name.isEmpty()) {
+            throw new IllegalArgumentException("name must not be empty");
+        }
     }
 
     public String getName() {

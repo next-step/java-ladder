@@ -9,6 +9,14 @@ public class Connection {
         this.isConnected = isConnected;
     }
 
+    public static Connection connected() {
+        return new Connection(true);
+    }
+
+    public static Connection disConnected() {
+        return new Connection(false);
+    }
+
     public boolean isConnected() {
         return isConnected;
     }

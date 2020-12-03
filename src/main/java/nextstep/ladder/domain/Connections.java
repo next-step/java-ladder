@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -7,11 +9,11 @@ public class Connections {
     private final List<Connection> connections;
 
     public Connections(List<Connection> connections) {
-        this.connections = connections;
+        this.connections = new ArrayList<>(connections);
     }
 
     public List<Connection> getConnections() {
-        return connections;
+        return Collections.unmodifiableList(connections);
     }
 
     @Override
