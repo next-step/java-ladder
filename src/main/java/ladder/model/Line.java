@@ -5,7 +5,6 @@ import java.util.stream.IntStream;
 
 public class Line {
     private final static String LINE_ERROR_MESSAGE = "올바르지 못한 라인입니다.";
-    private final static String LINE_ERROR_MESSAGE_ILLEGAL_LINE_SIZE = "사다리 아이템은 2개 이상이여야 합니다.";
     private List<LadderItem> ladderItems;
 
     private Line(List<LadderItem> ladderItems) {
