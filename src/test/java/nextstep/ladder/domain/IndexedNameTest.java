@@ -4,15 +4,15 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class PlayerTest {
+public class IndexedNameTest {
     @Test
     void notNull() {
-        assertThatThrownBy(() -> new Player(null))
+        assertThatThrownBy(() -> new IndexedName(0, null))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    private static class Player {
-        public Player(String name) {
+    private static class IndexedName {
+        public IndexedName(int index, String name) {
             throw new IllegalArgumentException("이름이 반드시 제공되어야 한다");
         }
     }
