@@ -8,8 +8,21 @@ import java.util.Objects;
  */
 public class Point {
 
+    private int position;
     private Point next;
     private Point linkWith;
+
+    private Point(int position) {
+        this.position = position;
+    }
+
+    public static Point start() {
+        return new Point(1);
+    }
+
+    public static Point of(int value) {
+        return new Point(value);
+    }
 
     public void next(Point next) {
         this.next = next;
