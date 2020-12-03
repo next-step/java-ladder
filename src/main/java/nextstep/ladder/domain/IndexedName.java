@@ -63,19 +63,4 @@ public class IndexedName {
                 .mapToObj(index -> new IndexedName(index, names.get(index)))
                 .collect(toList());
     }
-
-    public static IndexedName find(List<IndexedName> names, String name) {
-        return names.stream()
-                .filter(indexedName -> indexedName.equalsName(name))
-                .findFirst()
-                .orElseThrow(IllegalArgumentException::new);
-    }
-
-    private boolean equalsName(String name) {
-        return this.name.equals(name);
-    }
-
-    public boolean equalsIndex(int index) {
-        return this.index == index;
-    }
 }

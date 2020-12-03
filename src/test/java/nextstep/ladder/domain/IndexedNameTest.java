@@ -45,10 +45,4 @@ public class IndexedNameTest {
         assertThat(IndexedName.unwrap(asList(new IndexedName(0, "red"), new IndexedName(1, "blue"))))
                 .containsExactly("red", "blue");
     }
-
-    @Test
-    void find() {
-        assertThat(IndexedName.find(IndexedName.wrap(asList("red", "blue")), "blue"))
-                .isEqualTo(new IndexedName(1, "blue"));
-    }
 }

@@ -1,6 +1,5 @@
 package nextstep.ladder.domain;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
@@ -33,10 +32,6 @@ public class Ladder {
         lines.forEach(singleLineConsumer);
     }
 
-    public List<String> getGoals() {
-        return Collections.unmodifiableList(IndexedName.unwrap(goals));
-    }
-
     public Map<String, String> moveForAll(List<IndexedName> players) {
         return players.stream()
                 .collect(toMap(IndexedName::toString, this::moveFor));
@@ -49,10 +44,6 @@ public class Ladder {
 
     String moveFor(IndexedName name) {
         int index = moveOn(Position.of(name)).toInt();
-        return goals.stream()
-                .filter(goal -> goal.equalsIndex(index))
-                .findFirst()
-                .map(IndexedName::toString)
-                .orElse("");
+        return goals.get(index).toString();
     }
 }
