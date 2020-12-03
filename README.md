@@ -33,9 +33,14 @@
   * [X] ,로 인풋을 분리하는 기능 `String -> <List>String`
 * HorizontalLine
   * [X] 지정된 길이 만큼, true 가 2개 이상 연속되지 않은 `List<boolean>` 를 변환하는 역할
+  * [X] Line 의 `List<Boolean>` 반환 기능
 * Ladder
-  * [ ] 사다리 높이 만큼 `HorizontalLine` 을 생성하는 역할
+  * [X] 사다리 높이 만큼 `HorizontalLine` 을 생성하는 역할
+  * [X] ResultView 용 출력 데이터 생성 하는 역할
+  * [X] 각 `HorizontalLine`에 layout을 바꾸도록 요청하는 역할
 * ResultView
+  * [ ] User 에 대해
+  * [ ] `List<List<boolean>>` 을 사다리로 출력하는 역할
 * InputView
   * [X] User 정보 입력 받는 기능
   * [X] 사다리 높이 입력 받는 기능

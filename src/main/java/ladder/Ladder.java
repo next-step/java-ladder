@@ -1,5 +1,6 @@
 package ladder;
 
+import ladder.DTO.LadderDTO;
 import ladder.ladderexceptions.InvalidLadderHeightException;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public class Ladder {
         }
 
         this.layer = IntStream.range(0, height)
-                .mapToObj(x -> HorizontalLine.of(numUsers))
+                .mapToObj(x -> HorizontalLine.of(numUsers - 1))
                 .collect(toList());
     }
 
@@ -32,6 +33,14 @@ public class Ladder {
         for (HorizontalLine line : layer) {
             line.shuffle(strategy);
         }
+    }
+
+    public LadderDTO exportData() {
+        List<List<Boolean>> layout = this.layer.stream()
+                .map(HorizontalLine::getLine)
+                .collect(toList());
+
+        return new LadderDTO(layout);
     }
 
     @Override

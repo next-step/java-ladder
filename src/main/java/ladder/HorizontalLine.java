@@ -1,5 +1,6 @@
 package ladder;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.IntStream;
@@ -37,6 +38,10 @@ public class HorizontalLine {
             return false;
         }
         return line.get(idx - 1);
+    }
+
+    public List<Boolean> getLine() {
+        return new ArrayList<>(this.line);
     }
 
     @Override
