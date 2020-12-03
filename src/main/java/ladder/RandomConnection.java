@@ -2,7 +2,7 @@ package ladder;
 
 import java.util.Random;
 
-public class randomConnection implements ConnectionStrategy {
+public class RandomConnection implements HowToConnect {
 
     @Override
     public boolean connect(Boolean leftSideCondition) {

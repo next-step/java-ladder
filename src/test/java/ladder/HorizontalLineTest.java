@@ -15,11 +15,11 @@ class HorizontalLineTest {
 
     private static Stream<Arguments> makePatterns() {
         return Stream.of(
-                Arguments.of((ConnectionStrategy) x -> false,
+                Arguments.of((HowToConnect) x -> false,
                         new Boolean[]{false, false, false, false, false}),
-                Arguments.of((ConnectionStrategy) x -> !x,
+                Arguments.of((HowToConnect) x -> !x,
                         new Boolean[]{true, false, true, false, true}),
-                Arguments.of((ConnectionStrategy) x -> true,
+                Arguments.of((HowToConnect) x -> true,
                         new Boolean[]{true, true, true, true, true})
         );
     }
@@ -36,7 +36,7 @@ class HorizontalLineTest {
     @ParameterizedTest
     @MethodSource("makePatterns")
     @DisplayName("변경 테스트")
-    void shuffle(ConnectionStrategy strategy, Boolean[] expected) {
+    void shuffle(HowToConnect strategy, Boolean[] expected) {
         HorizontalLine sampleLine = HorizontalLine.of(5);
 
         sampleLine.shuffle(strategy);

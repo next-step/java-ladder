@@ -25,7 +25,7 @@ public class HorizontalLine {
         return new HorizontalLine(line);
     }
 
-    public void shuffle(ConnectionStrategy strategy) {
+    public void shuffle(HowToConnect strategy) {
         for (int i = 0; i < line.size(); i++) {
             boolean leftSideStatus = translateLeftSideStatus(i);
             this.line.set(i, strategy.connect(leftSideStatus));

@@ -1,5 +1,5 @@
 package ladder;
 
-public interface ConnectionStrategy {
+public interface HowToConnect {
     boolean connect(Boolean leftSideCondition);
 }
