@@ -66,6 +66,12 @@ public class DirectionTest {
         assertThat(first.last().isLeft()).isEqualTo(first.isRight());
     }
 
+    @DisplayName("이전지점으로 부터 다음 지점을 제공한다")
+    @Test
+    void next() {
+        assertThat(Direction.first(false).next(true)).isEqualTo(Direction.of(false, true));
+    }
+
     private static class Direction {
         private static final Direction LEFT = new Direction(true, false);
         private static final Direction RIGHT = new Direction(false, true);
