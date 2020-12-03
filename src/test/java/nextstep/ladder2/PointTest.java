@@ -5,6 +5,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.Objects;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
 /**
  * Point 요구사항
  * <p>
@@ -22,11 +26,34 @@ public class PointTest {
     @ValueSource(booleans = {true, false})
     void first(boolean right) {
         assertThat(Point.first(right)).isEqualTo(new Point(0, Direction.of(false, right)));
-        assertThat(Point.first(right)).isEqualTo(new Point(0, Direction.of(false, right)));
     }
 
     private static class Point {
-        public Point(int index, Direction direction) {
+        private final int index;
+        private final Direction direction;
+
+        Point(int index, Direction direction) {
+            this.index = index;
+            this.direction = direction;
+        }
+
+        public static Point first(boolean right) {
+            return new Point(0, Direction.first(right));
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o)
+                return true;
+            if (o == null || getClass() != o.getClass())
+                return false;
+            Point point = (Point) o;
+            return index == point.index && direction.equals(point.direction);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(index, direction);
         }
     }
 }
