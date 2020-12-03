@@ -29,6 +29,10 @@ public class Rewards {
         return rewards.get(position).getRewardName();
     }
 
+    public int getRewardsCount() {
+        return rewards.size();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -41,5 +45,4 @@ public class Rewards {
     public int hashCode() {
         return Objects.hash(rewards);
     }
-
 }
