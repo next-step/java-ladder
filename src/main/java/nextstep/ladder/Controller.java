@@ -13,6 +13,7 @@ import java.util.stream.Stream;
 public class Controller {
 
     private static final Random RANDOM = new Random();
+    private static final String ALL = "all";
     private final InputView inputView = new InputView();
     private final ResultView resultView = new ResultView(new OutputStreamWriter(System.out));
 
@@ -29,7 +30,7 @@ public class Controller {
         do {
             name = inputView.requestPlayerName();
             resultView.printResult(getMoveResult(ladder, name));
-        } while (!name.equals("all"));
+        } while (!name.equals(ALL));
     }
 
     private Stream<Spoke> createSpokes(List<String> players, int ladderHeight) {
@@ -38,7 +39,7 @@ public class Controller {
     }
 
     private Map<String, String> getMoveResult(Ladder ladder, String name) {
-        if (name.equals("all")) {
+        if (name.equals(ALL)) {
             return ladder.moveForAll();
         }
         Map<String, String> result = new HashMap<>();
