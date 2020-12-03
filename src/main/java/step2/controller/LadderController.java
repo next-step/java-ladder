@@ -29,16 +29,16 @@ public class LadderController {
 
     }
 
-    private static void printResult(PlayerRewardMatches playerRewardMatches) {
+    private static void printResult(GameResults gameResults) {
         while (true) {
             String player = InputView.putWantPrintPlay();
             if (isAllPrint(player)) {
-                printAllPlayer(playerRewardMatches);
+                printAllPlayer(gameResults);
                 continue;
             }
             if (gameEnd(player)) return;
 
-            printPlayer(playerRewardMatches, player);
+            printPlayer(gameResults, player);
         }
     }
 
@@ -50,12 +50,12 @@ public class LadderController {
         return player.equals(END);
     }
 
-    private static void printPlayer(PlayerRewardMatches playerRewardMatches, String player) {
-        OutputView.printPlayerReward(playerRewardMatches, player);
+    private static void printPlayer(GameResults gameResults, String player) {
+        OutputView.printPlayerReward(gameResults, player);
     }
 
-    private static void printAllPlayer(PlayerRewardMatches playerRewardMatches) {
-        OutputView.printAllPlayerReward(playerRewardMatches);
+    private static void printAllPlayer(GameResults gameResults) {
+        OutputView.printAllPlayerReward(gameResults);
     }
 
 

@@ -18,19 +18,19 @@ class LadderGameTest {
         Ladder ladder = Ladder.of(ladderHeight, players.getPlayersCount(), new CreateLadderPointGenerator());
 
         //when
-        PlayerRewardMatches playerRewardMatches = LadderGame.runGame(players, rewards, ladder);
+        GameResults gameResults = LadderGame.runGame(players, rewards, ladder);
 
-        assertThat(getPlayerGameName(playerRewardMatches, 0)).isEqualTo("a");
-        assertThat(getPlayerGameName(playerRewardMatches, 1)).isEqualTo("b");
-        assertThat(getRewardName(playerRewardMatches, 0)).isEqualTo("1");
-        assertThat(getRewardName(playerRewardMatches, 1)).isEqualTo("2");
+        assertThat(getPlayerGameName(gameResults, 0)).isEqualTo("a");
+        assertThat(getPlayerGameName(gameResults, 1)).isEqualTo("b");
+        assertThat(getRewardName(gameResults, 0)).isEqualTo("1");
+        assertThat(getRewardName(gameResults, 1)).isEqualTo("2");
     }
 
-    private String getRewardName(PlayerRewardMatches playerRewardMatches, int i) {
-        return playerRewardMatches.getPlayerRewardMatches().get(i).getRewardName();
+    private String getRewardName(GameResults gameResults, int i) {
+        return gameResults.getGameResults().get(i).getRewardName();
     }
 
-    private String getPlayerGameName(PlayerRewardMatches playerRewardMatches, int i) {
-        return playerRewardMatches.getPlayerRewardMatches().get(i).getPlayerGameName();
+    private String getPlayerGameName(GameResults gameResults, int i) {
+        return gameResults.getGameResults().get(i).getPlayerGameName();
     }
 }

@@ -65,24 +65,24 @@ public class OutputView {
                 .collect(Collectors.joining()));
     }
 
-    public static void printPlayerReward(PlayerRewardMatches playerRewardMatches, String player) {
+    public static void printPlayerReward(GameResults gameResults, String player) {
         System.out.println(PRINT_RESULT);
-        playerRewardMatches.getPlayerRewardMatches()
+        gameResults.getGameResults()
                 .forEach(playerRewardMatch -> printPlayerReward(player, playerRewardMatch));
     }
 
-    private static void printPlayerReward(String player, PlayerRewardMatch playerRewardMatch) {
-        if (playerRewardMatch.getPlayerGameName().equals(player)) {
-            printPlayerReward(playerRewardMatch, player);
+    private static void printPlayerReward(String player, GameResult gameResult) {
+        if (gameResult.getPlayerGameName().equals(player)) {
+            printPlayerReward(gameResult, player);
         }
     }
 
-    public static void printAllPlayerReward(PlayerRewardMatches playerRewardMatches) {
-        playerRewardMatches.getPlayerRewardMatches()
+    public static void printAllPlayerReward(GameResults gameResults) {
+        gameResults.getGameResults()
                 .forEach(playerRewardMatch -> printPlayerReward(playerRewardMatch, playerRewardMatch.getPlayerGameName()));
     }
 
-    private static void printPlayerReward(PlayerRewardMatch playerRewardMatch, String playerGameName) {
-        System.out.println(playerGameName + SPLIT + playerRewardMatch.getRewardName());
+    private static void printPlayerReward(GameResult gameResult, String playerGameName) {
+        System.out.println(playerGameName + SPLIT + gameResult.getRewardName());
     }
 }

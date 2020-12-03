@@ -7,12 +7,12 @@ public class LadderGame {
     private LadderGame() {
     }
 
-    public static PlayerRewardMatches runGame(Players players, Rewards rewards, Ladder ladder) {
-        return PlayerRewardMatches.of(
+    public static GameResults runGame(Players players, Rewards rewards, Ladder ladder) {
+        return GameResults.of(
                 players.getPlayers()
                         .stream()
                         .map(player ->
-                                PlayerRewardMatch.of(
+                                GameResult.of(
                                         player.getPlayerGameName(), rewards.getRewardName(ladder.moveAll(player.getPlayerGamePosition()))))
                         .collect(Collectors.toList()));
     }
