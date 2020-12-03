@@ -43,11 +43,9 @@
   - |-----|-----| 모양과 같이 가로 라인이 겹치는 경우 어느 방향으로 이동할지 결정할 수 없다.
 
 **기능 구현사항**
-- Line 객체 생성 각 포인트마다 `이동 가능여부(Boolean)`를 가진 `List<Boolean> points` 객체를 가진다
-- Line 일급 컬렉션 생성
-- MoveStrategy 인터페이스 생성 `boolean` 값을 리턴하는 `isMovable` 메소드 생성
-- LadderMoveStrategy 객체 생성 MoveStrategy를 상속하여 `isMovable` 메소드구현 -> `랜덤 boolean 값을 생성`하여 리턴
-- Ladder 객체에서 `인원수`, `높이` 상태값을 받아 `MoveStrategy` 구현한 메소드를 실행하여 `Line` 을 생성한다
+- Point 객체 static에 `List<Point>` -> `new Point(true)`, `new Point(false)` 생성
+- Point 객체에서 Collections.shuffle()로 랜덤 값을 구현한다     
+- Line 객체 생성 각 포인트마다 `이동 가능여부(movable) 상태값`을 가진 `List<Point> points` 객체를 가진다
 - Ladder 객체에서 Line 생성시 `이전 생성값(boolean)`을 비교하여 중복 생성되지 않도록 한다
 - User 객체에서 입력값(이름)의 길이가 1 ~ 5자 에 포함되지 않을 경우 입력을 다시 받도록 한다
 - Ladder 객체에서 입력값(높이)가 최소 1이상 이여야 하며 1이상이 아닐 경우 입력을 다시 받도록 한다
