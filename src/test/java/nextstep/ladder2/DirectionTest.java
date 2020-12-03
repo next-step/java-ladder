@@ -2,6 +2,8 @@ package nextstep.ladder2;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -41,6 +43,13 @@ public class DirectionTest {
     @Test
     void first() {
         assertThat(Direction.first(true).isLeft()).isFalse();
+    }
+
+    @DisplayName("좌측 끝지점은 오른쪽 이동가능여부를 받는다")
+    @ParameterizedTest
+    @ValueSource(booleans = {true, false})
+    void firstAcceptRightMovable(boolean rightMovable) {
+        assertThat(Direction.first(rightMovable).isRight()).isEqualTo(rightMovable);
     }
 
     private static class Direction {
