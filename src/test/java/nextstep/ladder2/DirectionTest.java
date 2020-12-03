@@ -72,7 +72,15 @@ public class DirectionTest {
         assertThat(Direction.first(false).next(true)).isEqualTo(Direction.of(false, true));
     }
 
-    private static class Direction {
+    @DisplayName("이전지점에서 오른쪽으로 이동가능한 경우 다음지점은 오른쪽으로 이동 불가능하다")
+    @Test
+    void next_illegal_state() {
+        assertThatThrownBy(() -> Direction.first(true).next(true))
+                .isInstanceOf(IllegalStateException.class);
+    }
+
+
+        private static class Direction {
         private static final Direction LEFT = new Direction(true, false);
         private static final Direction RIGHT = new Direction(false, true);
         private static final Direction NEUTRAL = new Direction(false, false);
