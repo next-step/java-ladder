@@ -9,7 +9,7 @@ public class Users {
     private final static String EMPTY_NAME_ERROR_MESSAGE = "올바른 유저들의 이름이 아닙니다.";
 
     private final static int MIN_USER_COUNT = 2;
-    
+
     private final List<Name> users;
 
     private Users(List<Name> users) {
