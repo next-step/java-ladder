@@ -3,6 +3,7 @@ package step2.view;
 
 import step2.domain.*;
 import step2.hint.LadderLine;
+import step2.hint.Point;
 
 import java.util.stream.Collectors;
 
@@ -42,18 +43,18 @@ public class OutputView {
 
     private static void lineBuilder(StringBuilder ladder, LadderLine line) {
         line.getPoints()
-                .forEach(point -> {
-                    if (point.getDirection().isLeft()) {
-                        ladder.append(PLAY_LINE);
-                        ladder.append(HEIGHT_LINE);
-                        return;
-                    }
-                    ladder.append(PLAY_NO_LINE);
-                    ladder.append(HEIGHT_LINE);
-
-
-                });
+                .forEach(point -> printLadderLine(ladder, point));
         ladder.append("\n");
+    }
+
+    private static void printLadderLine(StringBuilder ladder, Point point) {
+        if (point.isDrawLine()) {
+            ladder.append(PLAY_LINE);
+            ladder.append(HEIGHT_LINE);
+            return;
+        }
+        ladder.append(PLAY_NO_LINE);
+        ladder.append(HEIGHT_LINE);
     }
 
     public static void printRewards(Rewards rewards) {
