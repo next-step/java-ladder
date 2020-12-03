@@ -4,14 +4,18 @@ import java.util.Objects;
 
 public class Line {
 
-    private Boolean isLine;
+    private boolean isLine;
 
-    public Line(Boolean isLine) {
+    private Line(boolean isLine) {
         this.isLine = isLine;
     }
 
-    public static Line of(Boolean isLine) {
+    public static Line of(boolean isLine) {
         return new Line(isLine);
+    }
+
+    public boolean getLine() {
+        return isLine;
     }
 
     @Override
@@ -25,9 +29,5 @@ public class Line {
     @Override
     public int hashCode() {
         return Objects.hash(isLine);
-    }
-
-    public Boolean getLine() {
-        return isLine;
     }
 }

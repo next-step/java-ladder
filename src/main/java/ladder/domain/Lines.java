@@ -16,14 +16,14 @@ public class Lines {
     }
 
     public static Lines of(int countOfPerson) {
-        return new Lines(addLines(countOfPerson));
+        return new Lines(createLines(countOfPerson));
     }
 
-    public static Boolean isLine() {
+    public static boolean isLine() {
         return RANDOM.nextBoolean();
     }
 
-    private static List<Line> addLines(int countOfPerson) {
+    private static List<Line> createLines(int countOfPerson) {
         return IntStream.range(0, countOfPerson)
                 .mapToObj(i -> Line.of(isLine()))
                 .collect(Collectors.toList());
