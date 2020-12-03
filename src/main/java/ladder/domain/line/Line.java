@@ -2,6 +2,7 @@ package ladder.domain.line;
 
 import java.util.LinkedList;
 import java.util.Objects;
+import ladder.domain.Position;
 import ladder.domain.point.Point;
 import ladder.exception.LadderGameException;
 
@@ -19,6 +20,11 @@ public class Line {
     //for Test
     public Line(LinkedList<Point> points) {
         this.points = points;
+    }
+
+    public Position getNextLinePosition(Position position) {
+        return points.get(position.getPosition())
+            .goNextPoint();
     }
 
     public boolean addPoint(Point point) {

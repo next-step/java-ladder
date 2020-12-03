@@ -10,6 +10,7 @@ public class Users {
     private static final int MIN_USER_COUNT = 2;
     private static final String USER_SHOULD_EQUAL_OR_OVER_N = "참가자 수는 %d명 이상이어야 합니다.";
     private static final String PLEASE_INPUT_NOT_DUPLICATE_USER = "중복되지 않은 참가자를 입력해주세요.";
+    private static final String NOT_INPUT_USER_NAME = "참가자 이름을 입력 해주세요!";
 
     private final List<User> users;
 
@@ -35,6 +36,13 @@ public class Users {
         if (validNameCount < users.size()) {
             throw new LadderGameException(PLEASE_INPUT_NOT_DUPLICATE_USER);
         }
+    }
+
+    public User getUserByName(String name) {
+        return users.stream()
+            .filter(u -> u.getName().equals(name))
+            .findFirst()
+            .orElseThrow(() -> new LadderGameException(NOT_INPUT_USER_NAME));
     }
 
     private void checkUserCount(List<User> users) {

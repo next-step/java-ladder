@@ -3,7 +3,9 @@ package ladder.domain.ladder;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import ladder.domain.Position;
 import ladder.domain.line.Line;
+import ladder.domain.user.User;
 
 public class Ladder {
 
@@ -15,6 +17,14 @@ public class Ladder {
 
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
+    }
+
+    public Position playGame(User user) {
+        Position newPosition = user.getStartPosition();
+        for (Line line : lines) {
+            newPosition = line.getNextLinePosition(newPosition);
+        }
+        return newPosition;
     }
 
     @Override
