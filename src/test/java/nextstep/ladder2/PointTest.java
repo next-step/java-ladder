@@ -13,4 +13,9 @@ public class PointTest {
     void create() {
         new Point(0, Direction.of(false, true));
     }
+
+    private static class Point {
+        public Point(int index, Direction direction) {
+        }
+    }
 }
