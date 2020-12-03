@@ -13,20 +13,20 @@ class RewardsTest {
 
     @BeforeEach
     void setUp() {
-        rewards = Rewards.of(Arrays.asList("a", "b", "c"));
+        rewards = Rewards.of(Arrays.asList("firstPrize", "secondPrize", "꽝"));
     }
 
     @Test
-    @DisplayName("리워즈가 생성되는지 확인")
+    @DisplayName("리워드 일급컬렉션이 생성되는지 확인")
     void createPlayers() {
         //given
-        assertThat(rewards).isEqualTo(Rewards.of(Arrays.asList("a", "b", "c")));
+        assertThat(rewards).isEqualTo(Rewards.of(Arrays.asList("firstPrize", "secondPrize", "꽝")));
     }
 
     @Test
-    @DisplayName("플레이어가 리스트가 잘 생성되는지 확인")
+    @DisplayName("리워드의 리스트가 잘 생성되는지 확인")
     void createPlayersList() {
         //given
-        assertThat(rewards.getRewards()).containsExactly(Reward.of("a"), Reward.of("b"), Reward.of("c"));
+        assertThat(rewards.getRewards()).containsExactly(Reward.of("firstPrize"), Reward.of("secondPrize"), Reward.of("꽝"));
     }
 }
