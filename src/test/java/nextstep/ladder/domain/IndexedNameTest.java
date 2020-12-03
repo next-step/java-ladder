@@ -33,18 +33,27 @@ public class IndexedNameTest {
     }
 
     private static class IndexedName {
+        public static final int MAX_NAME_LENGTH = 5;
         private final int index;
         private final String name;
 
         public IndexedName(int index, String name) {
+            ensureValidParameter(index, name);
+            ensureNameLength(name);
+            this.index = index;
+            this.name = name;
+        }
+
+        private void ensureValidParameter(int index, String name) {
             if (index < 0 || name == null) {
                 throw new IllegalArgumentException("이름/인덱스가 올바르지 않습니다");
             }
-            if (name.length() > 5) {
-                throw new IllegalArgumentException(String.format("이름은 %d자 이하여야 합니다.", 5));
+        }
+
+        private void ensureNameLength(String name) {
+            if (name.length() > MAX_NAME_LENGTH) {
+                throw new IllegalArgumentException(String.format("이름은 %d자 이하여야 합니다.", MAX_NAME_LENGTH));
             }
-            this.index = index;
-            this.name = name;
         }
 
         public int getIndex() {
