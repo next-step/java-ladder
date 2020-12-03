@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 /**
@@ -27,6 +28,12 @@ public class DirectionTest {
                 () -> assertThat(Direction.of(false, false))
                         .isEqualTo(Direction.of(false, false))
         );
+    }
+    @DisplayName("양쪽으로 이동을 불가능하다")
+    @Test
+    void illegal_state() {
+        assertThatThrownBy(() -> Direction.of(true, true))
+                .isInstanceOf(IllegalStateException.class);
     }
 
     private static class Direction {
