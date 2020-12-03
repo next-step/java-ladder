@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 public class Participants {
 
+    private static final String NAME_SEPARATOR = ",";
     private List<Name> names;
 
     private Participants(List<Name> names) {
@@ -17,7 +18,7 @@ public class Participants {
     }
 
     private static List<Name> create(String name) {
-        String[] names = name.split(",");
+        String[] names = name.split(NAME_SEPARATOR);
         return Arrays
                 .stream(names)
                 .map(Name::of)
