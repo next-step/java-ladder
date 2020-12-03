@@ -1,6 +1,5 @@
 package ladder.view;
 
-import ladder.domain.Line;
 import ladder.domain.Lines;
 import ladder.domain.Name;
 import ladder.utils.LadderUtil;
