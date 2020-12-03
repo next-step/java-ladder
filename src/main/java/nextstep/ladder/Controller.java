@@ -1,5 +1,6 @@
 package nextstep.ladder;
 
+import nextstep.ladder.domain.IndexedName;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Spoke;
 import nextstep.ladder.view.InputView;
@@ -18,11 +19,11 @@ public class Controller {
     private final ResultView resultView = new ResultView(new OutputStreamWriter(System.out));
 
     public void play() {
-        List<String> players = inputView.requestPlayers();
-        List<String> goals = inputView.requestGoal();
+        List<IndexedName> players = IndexedName.wrap(inputView.requestPlayers());
+        List<IndexedName> goals = IndexedName.wrap(inputView.requestGoal());
         int ladderHeight = inputView.requestHeight();
 
-        Ladder ladder = Ladder.of(createSpokes(players, ladderHeight), players, goals);
+        Ladder ladder = Ladder.of(createSpokes(ladderHeight, players.size()), goals);
 
         resultView.printLadder(ladder);
 
@@ -33,9 +34,9 @@ public class Controller {
         } while (!name.equals(ALL));
     }
 
-    private Stream<Spoke> createSpokes(List<String> players, int ladderHeight) {
+    private Stream<Spoke> createSpokes(int ladderHeight, int width) {
         return IntStream.range(0, ladderHeight)
-                .mapToObj(__ -> Spoke.fromCount(players.size() - 1, RANDOM::nextBoolean));
+                .mapToObj(__ -> Spoke.fromCount(width - 1, RANDOM::nextBoolean));
     }
 
     private Map<String, String> getMoveResult(Ladder ladder, String name) {

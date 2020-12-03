@@ -10,16 +10,16 @@ import static java.util.Collections.emptyList;
 import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toMap;
+import static nextstep.ladder.domain.IndexedName.wrap;
 import static nextstep.ladder.utils.BinaryOperators.nope;
 
 public class Ladder {
     private final List<Line> lines;
-    private final List<String> players;
-    private final List<String> goals;
+    private List<String> players;
+    private final List<IndexedName> goals;
 
-    public Ladder(List<Line> lines, List<String> players, List<String> goals) {
+    public Ladder(List<Line> lines, List<IndexedName> goals) {
         this.lines = lines;
-        this.players = players;
         this.goals = goals;
     }
 
@@ -28,8 +28,12 @@ public class Ladder {
     }
 
     public static Ladder of(Stream<Spoke> spokes, List<String> names, List<String> goals) {
+        return of(spokes, wrap(goals));
+    }
+
+    public static Ladder of(Stream<Spoke> spokes, List<IndexedName> goals) {
         return new Ladder(spokes.map(Line::new)
-                                  .collect(toList()), names, goals);
+                                  .collect(toList()), goals);
     }
 
     public void forEach(Consumer<Line> singleLineConsumer) {
@@ -41,11 +45,12 @@ public class Ladder {
     }
 
     public List<String> getGoals() {
-        return Collections.unmodifiableList(goals);
+        return Collections.unmodifiableList(goals.stream().map(Object::toString).collect(toList()));
     }
 
     public String moveFor(String playerName) {
-        return goals.get(moveOn(Position.of(players.indexOf(playerName))).toInt());
+        int index = moveOn(Position.of(players.indexOf(playerName))).toInt();
+        return goals.stream().filter(goals -> goals.getIndex() == index).findFirst().toString();
     }
 
     public Map<String, String> moveForAll() {

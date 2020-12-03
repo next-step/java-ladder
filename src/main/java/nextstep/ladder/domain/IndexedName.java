@@ -1,5 +1,10 @@
 package nextstep.ladder.domain;
 
+import java.util.List;
+import java.util.stream.IntStream;
+
+import static java.util.stream.Collectors.toList;
+
 public class IndexedName {
     public static final int MAX_NAME_LENGTH = 5;
     private final int index;
@@ -31,5 +36,11 @@ public class IndexedName {
     @Override
     public String toString() {
         return name;
+    }
+
+    public static List<IndexedName> wrap(List<String> names) {
+        return IntStream.range(0, names.size())
+                .mapToObj(index -> new IndexedName(index, names.get(index)))
+                .collect(toList());
     }
 }
