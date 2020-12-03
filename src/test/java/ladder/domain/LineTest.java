@@ -1,39 +1,38 @@
 package ladder.domain;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class LineTest {
 
-    @Test
-    @DisplayName("오른쪽으로 이동 가능한지 확인")
-    void line_hasRightMoved_isTrueOrFalse() {
-        List<Boolean> lineResult = Arrays.asList(true, false, true, false, false);
-        Line actual = Line.of(lineResult);
+    private Line line;
 
-        assertAll(
-                () -> assertThat(actual.hasRightMoved(0)).isTrue(),
-                () -> assertThat(actual.hasRightMoved(1)).isFalse(),
-                () -> assertThat(actual.hasRightMoved(2)).isTrue(),
-                () -> assertThat(actual.hasRightMoved(3)).isFalse(),
-                () -> assertThat(actual.hasRightMoved(4)).isFalse()
-        );
+    @BeforeEach
+    void setUp() {
+        this.line = new Line(Arrays.asList(
+                Point.of(true),
+                Point.of(false),
+                Point.of(true),
+                Point.of(false),
+                Point.of(false)
+        ));
     }
 
     @Test
-    @DisplayName("라인 생성시 null 값 또는 size 가 0인 값으로 객체 생성시 IllegalArgumentException 발생")
-    void line_points_ThrowIllegalArgumentException() {
-        assertThatThrownBy(() -> {
-            Line.of(new ArrayList<>());
-            Line.of(null);
-        }).isInstanceOf(IllegalArgumentException.class);
+    @DisplayName("Line 객체 boolean 값 확인")
+    void line_hasRightMoved_isTrueOrFalse() {
+        assertAll(
+                () -> assertThat(line.hasRightMoved(0)).isTrue(),
+                () -> assertThat(line.hasRightMoved(1)).isFalse(),
+                () -> assertThat(line.hasRightMoved(2)).isTrue(),
+                () -> assertThat(line.hasRightMoved(3)).isFalse(),
+                () -> assertThat(line.hasRightMoved(4)).isFalse()
+        );
     }
 }
