@@ -29,11 +29,18 @@ public class DirectionTest {
                         .isEqualTo(Direction.of(false, false))
         );
     }
+
     @DisplayName("양쪽으로 이동을 불가능하다")
     @Test
     void illegal_state() {
         assertThatThrownBy(() -> Direction.of(true, true))
                 .isInstanceOf(IllegalStateException.class);
+    }
+
+    @DisplayName("좌측 끝지점은 왼쪽으로 이동이 불가능하다")
+    @Test
+    void first() {
+        assertThat(Direction.first(true).isLeft()).isFalse();
     }
 
     private static class Direction {
