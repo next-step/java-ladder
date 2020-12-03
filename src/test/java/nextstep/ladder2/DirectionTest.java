@@ -46,6 +46,9 @@ public class DirectionTest {
         }
 
         public static Direction of(boolean left, boolean right) {
+            if (left && right) {
+                throw new IllegalStateException();
+            }
             if (left) {
                 return LEFT;
             }
