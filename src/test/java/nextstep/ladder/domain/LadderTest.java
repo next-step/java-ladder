@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.entry;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 @DisplayName("|-----|     |" +
              "|     |-----| 의 경우")
@@ -20,17 +20,17 @@ class LadderTest {
     @BeforeEach
     void setUp() {
         line = Ladder.of(Stream.of(Spoke.of(true, false), Spoke.of(false, true)),
-                                Arrays.asList("red", "blue", "green"),
-                                Arrays.asList("boom", "5000", "boom"));
+                         null,
+                         Arrays.asList("boom", "5000", "boom"));
     }
 
     @DisplayName("특정 플레이어의 이동결과를 리턴한다")
     @Test
     void moveForName() {
         assertAll(
-                () -> assertThat(line.moveFor("red")).isEqualTo("boom"),
-                () -> assertThat(line.moveFor("blue")).isEqualTo("boom"),
-                () -> assertThat(line.moveFor("green")).isEqualTo("5000")
+                () -> assertThat(line.moveFor(new IndexedName(0, "red"))).isEqualTo("boom"),
+                () -> assertThat(line.moveFor(new IndexedName(1, "blue"))).isEqualTo("boom"),
+                () -> assertThat(line.moveFor(new IndexedName(2, "green"))).isEqualTo("5000")
         );
     }
 

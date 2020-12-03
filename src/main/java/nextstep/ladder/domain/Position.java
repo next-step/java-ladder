@@ -16,6 +16,10 @@ public class Position {
         return new Position(position);
     }
 
+    public static Position of(IndexedName name) {
+        return of(name.getIndex());
+    }
+
     public int toInt() {
         return value;
     }

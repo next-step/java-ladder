@@ -3,6 +3,7 @@ package nextstep.ladder.domain;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
 
@@ -48,11 +49,13 @@ public class Ladder {
         return Collections.unmodifiableList(goals.stream().map(Object::toString).collect(toList()));
     }
 
+    @Deprecated
     public String moveFor(String playerName) {
         int index = moveOn(Position.of(players.indexOf(playerName))).toInt();
         return goals.stream().filter(goals -> goals.getIndex() == index).findFirst().toString();
     }
 
+    @Deprecated
     public Map<String, String> moveForAll() {
         return players.stream()
                 .collect(toMap(identity(), this::moveFor));
@@ -61,5 +64,14 @@ public class Ladder {
     public Position moveOn(Position from) {
         return lines.stream()
                 .reduce(from, (position, line) -> line.moveOn(position), nope());
+    }
+
+    public String moveFor(IndexedName name) {
+        int index = moveOn(Position.of(name)).toInt();
+        return goals.stream()
+                .filter(goals -> goals.getIndex() == index)
+                .findFirst()
+                .map(Objects::toString)
+                .orElse("");
     }
 }
