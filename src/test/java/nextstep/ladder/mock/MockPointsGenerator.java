@@ -22,14 +22,6 @@ public class MockPointsGenerator implements PointsGenerator {
     }
 
     @Override
-    public List<Boolean> getPoints(int pointsSize) {
-        if (mockPointsIterator == null || !mockPointsIterator.hasNext()) {
-            mockPointsIterator = mockPoints.iterator();
-        }
-        return mockPointsIterator.next();
-    }
-
-    @Override
     public boolean generatePoint() {
         if (mockPointsIterator == null || !mockPointsIterator.hasNext()) {
             mockPointsIterator = mockPoints.iterator();
