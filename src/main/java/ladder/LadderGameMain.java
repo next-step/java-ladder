@@ -1,6 +1,7 @@
 package ladder;
 
 import ladder.controller.LadderGameController;
+import ladder.domain.LadderGameResult;
 
 public class LadderGameMain {
 
@@ -8,6 +9,10 @@ public class LadderGameMain {
 
         String[] playerNames = LadderGameController.getPlayerNames();
         int ladderMaxHeight = LadderGameController.getLadderMaxHeight();
+
+        LadderGameResult ladderGameResult = LadderGameController.execute(playerNames, ladderMaxHeight);
+
+        LadderGameController.showResult(ladderGameResult);
 
     }
 }

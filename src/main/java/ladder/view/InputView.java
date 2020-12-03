@@ -17,12 +17,15 @@ public class InputView {
 
     public static String[] inputPlayerNames(){
         System.out.println(INPUT_PLAYER_NAME_MESSAGE);
+
         return splitPlayerNames(scanner.next());
     }
 
     private static String[] splitPlayerNames(String playerNamesValue) {
         String[] playerNames = playerNamesValue.split(PLAYER_NAME_DELIMITER);
+
         validatePlayerName(playerNames);
+
         return playerNames;
     }
 
@@ -33,7 +36,6 @@ public class InputView {
         if(matched){
             throw new IllegalArgumentException(LadderGameErrorMessage.ILLEGAL_MAX_PLAYER_NAME.getErrorMessage());
         }
-
 
     }
 
