@@ -1,6 +1,5 @@
 package domain;
 
-import exception.NegativeLengthException;
 import org.junit.jupiter.api.Test;
 import ui.ResultView;
 

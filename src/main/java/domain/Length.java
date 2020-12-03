@@ -1,9 +1,11 @@
 package domain;
 
-import exception.NegativeLengthException;
+import exception.InvalidLengthException;
+
+import java.util.Objects;
 
 public class Length {
-    private static final int LENGTH_MIN_BOUNDARY = 0;
+    private static final int LENGTH_MIN_BOUNDARY = 1;
     private final int length;
 
 
@@ -13,7 +15,7 @@ public class Length {
 
     public static Length of(final int length) {
         if(length < LENGTH_MIN_BOUNDARY) {
-            throw new NegativeLengthException();
+            throw new InvalidLengthException();
         }
 
         return new Length(length);
@@ -21,5 +23,18 @@ public class Length {
 
     public int getValue() {
         return length;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Length)) return false;
+        Length length1 = (Length) o;
+        return length == length1.length;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(length);
     }
 }

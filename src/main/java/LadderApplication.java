@@ -2,7 +2,6 @@ import domain.LadderGame;
 import domain.Length;
 import domain.PlayerNames;
 import dto.InputDto;
-import exception.NegativeLengthException;
 import ui.InputView;
 import ui.ResultView;
 
