@@ -9,12 +9,14 @@ public class Players {
     private List<Player> players;
 
     public Players(String[] players){
-        this.players = Arrays.stream(players).
-                map(Player::new)
+        this.players = Arrays.stream(players)
+                .map(Player::new)
                 .collect(Collectors.toList());
     }
 
     public List<Player> getPlayers() {
         return players;
     }
+
+
 }
