@@ -31,6 +31,8 @@ public class DirectionTest {
 
     private static class Direction {
         private static final Direction LEFT = new Direction(true, false);
+        private static final Direction RIGHT = new Direction(false, true);
+        private static final Direction NEUTRAL = new Direction(false, true);
 
         public Direction(boolean left, boolean right) {
 
@@ -40,7 +42,10 @@ public class DirectionTest {
             if (left) {
                 return LEFT;
             }
-            return null;
+            if (right) {
+                return RIGHT;
+            }
+            return NEUTRAL;
         }
     }
 }
