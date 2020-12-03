@@ -7,7 +7,7 @@ public class User {
     private final String name;
 
     public User(String name) {
-        if (name.length() <= 5) {
+        if (name.isEmpty() || name.length() > 5) {
             throw new InvalidUserNameException();
         }
 
