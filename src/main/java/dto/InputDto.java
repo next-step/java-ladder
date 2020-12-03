@@ -2,6 +2,16 @@ package dto;
 
 public class InputDto {
     private String names;
+    private String results;
+
+    public String getResults() {
+        return results;
+    }
+
+    public void setResults(String results) {
+        this.results = results;
+    }
+
     private int ladderHeight;
 
     public String getNames() {
