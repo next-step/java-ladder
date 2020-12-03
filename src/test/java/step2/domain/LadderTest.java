@@ -38,14 +38,14 @@ class LadderTest {
     void create() {
         Ladder ladder = new Ladder.LadderBuilder()
                 .buildLadderHeight(1)
-                .buildPlayerCount(0)
+                .buildPlayerCount(2)
                 .buildLadderPointGenerator(new CreateLadderPointGenerator())
                 .build();
 
         assertThat(ladder).usingRecursiveComparison()
                 .isEqualTo(new Ladder.LadderBuilder()
                         .buildLadderHeight(1)
-                        .buildPlayerCount(0)
+                        .buildPlayerCount(2)
                         .buildLadderPointGenerator(new CreateLadderPointGenerator())
                         .build());
     }
