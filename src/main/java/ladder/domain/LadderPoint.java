@@ -20,7 +20,7 @@ public class LadderPoint {
     }
 
     private void addPoint() {
-        if (points.size() == 0) {
+        if (points.isEmpty()) {
             points.add(random.nextBoolean());
 
             return;
