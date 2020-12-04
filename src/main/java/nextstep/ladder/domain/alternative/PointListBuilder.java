@@ -18,12 +18,12 @@ class PointListBuilder {
 
     public List<Point> build() {
         List<Point> result = Arrays.stream(rightMovables)
-                .collect(collectPointsTo(ArrayList::new));
+                .collect(pointTo(ArrayList::new));
         addLast(result);
         return result;
     }
 
-    private Collector<Boolean, List<Point>, List<Point>> collectPointsTo(Supplier<List<Point>> supplier) {
+    private Collector<Boolean, List<Point>, List<Point>> pointTo(Supplier<List<Point>> supplier) {
         return Collector.of(supplier,
                             this::addPoint,
                             nope()
