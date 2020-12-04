@@ -54,7 +54,7 @@ public class LadderController {
         return new Ladder(lines);
     }
 
-    private Line initLine(Users users) {
+    public Line initLine(Users users) {
         List<Point> points = new ArrayList<>();
         Direction direction = null;
 

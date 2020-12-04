@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LadderControllerTest {
@@ -40,7 +41,17 @@ class LadderControllerTest {
         controller = new LadderController();
         Ladder ladder = controller.initLadder(users, height);
 
-        Assertions.assertThat(ladder.getLines().size()).isEqualTo(3);
+        assertThat(ladder.getLines().size()).isEqualTo(3);
+    }
+
+    @Test
+    @DisplayName("라인 생성 기능")
+    void initLine() {
+        Users users = new Users(Arrays.asList(new User("java"), new User("study")));
+        controller = new LadderController();
+        Line line = controller.initLine(users);
+
+        assertThat(line.getPoints().size()).isEqualTo(2);
     }
 
 }
