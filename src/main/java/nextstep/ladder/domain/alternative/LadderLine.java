@@ -2,13 +2,16 @@ package nextstep.ladder.domain.alternative;
 
 import nextstep.ladder.domain.BooleanGenerator;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
 import static nextstep.ladder.domain.BooleanGenerator.generateBooleans;
 
-class LadderLine {
+public class LadderLine {
     private static final Random RANDOM = new Random();
     private final List<Point> points;
 
@@ -50,5 +53,12 @@ class LadderLine {
 
     public int move(int position) {
         return points.get(position).move();
+    }
+
+    public List<Boolean> toMovableList() {
+        return points.stream()
+                .limit(points.size() - 1)
+                .map(Point::hasRight)
+                .collect(collectingAndThen(toList(), Collections::unmodifiableList));
     }
 }
