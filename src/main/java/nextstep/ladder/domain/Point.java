@@ -16,8 +16,7 @@ public class Point {
         this.direction = direction;
     }
 
-    public Point from(int index) {
-        return new Point(index, direction);
+    public Direction getDirection() {
+        return direction;
     }
-
 }

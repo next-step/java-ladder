@@ -28,7 +28,7 @@ public class LadderController {
         resultView.printResultMention();
         printUsers(resultView, users);
         Ladder ladder = initLadder(users, height);
-//        drawLadders(resultView, ladder);
+        drawLadders(resultView, ladder);
     }
 
     public Users initUsers(InputUsers inputUsers) {
@@ -59,45 +59,44 @@ public class LadderController {
         int bound = users.getUsers().size();
         for (int number = ZERO; number < bound; number++) {
             if(number == 0) {
-                direction = Direction.from(random.nextInt(1));
+                direction = Direction.from(random.nextInt(2));
             } else if(direction.getMove() == 1) {
                 direction = Direction.from(-1);
             } else if(direction.getMove() ==-1) {
                 if(number == bound - 1) {
                     direction = Direction.from(0);
                 } else {
-                    direction = Direction.from(random.nextInt(1));
+                    direction = Direction.from(random.nextInt(2));
                 }
             }
             points.add(new Point(number, direction));
         }
 
-//        IntStream.range(ZERO, users.getUsers().size())
-//                .forEach(number -> {
-//                    Direction direction = Direction.from(decideDirection(int number));
-//                    points.add(initPoint(number, direction));
-//                });
-
         return new Line(points);
     }
 
-//    private void drawLadders(ResultView resultView, Height height, Users users) {
-//        IntStream.range(ZERO, height.getHeight())
-//                .forEach(number -> drawLines(resultView, users));
-//    }
+    private void drawLadders(ResultView resultView, Ladder ladder) {
+        for(Line line : ladder.getLines()) {
+            drawLine(resultView, line.getPoints());
+        }
+    }
 
-//    private void drawLadders(ResultView resultView, Height height, Users users) {
-//        IntStream.range(ZERO, height.getHeight())
-//                .forEach(number -> {
-//                    drawLines(resultView, users);
-//                });
-//    }
-//
-//    private void drawLines(ResultView resultView, Users users) {
-//        System.out.println();
-//        IntStream.range(ZERO, users.getUsers().size())
-//                .forEach(number -> resultView.printVertical());
-//    }
+    private void drawLine(ResultView resultView, List<Point> points) {
+        System.out.println();
+        for(Point point : points) {
+            if(point.getDirection() == Direction.RIGHT) {
+                resultView.drawRight();
+            }
 
+            if(point.getDirection() == Direction.LEFT) {
+                resultView.drawLeft();
+            }
+
+            if(point.getDirection() == Direction.FORWARD) {
+                resultView.drawForward();
+            }
+
+        }
+    }
 
 }
