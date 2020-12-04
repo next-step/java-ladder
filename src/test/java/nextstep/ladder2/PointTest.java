@@ -55,4 +55,11 @@ public class PointTest {
         assertThat(second.move()).isEqualTo(1);
     }
 
+    @DisplayName("마지막 지점을 만들 수 있다")
+    @ParameterizedTest
+    @CsvSource({"true,1", "false,0"})
+    void last(boolean right, int index) {
+        Point last = Point.first(right).last();
+        assertThat(last.move()).isEqualTo(index);
+    }
 }
