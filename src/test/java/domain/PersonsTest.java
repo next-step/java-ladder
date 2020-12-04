@@ -33,4 +33,16 @@ public class PersonsTest {
         ).isInstanceOf(RuntimeException.class)
                 .withFailMessage(ErrorMessage.getCheckInputNames());
     }
+
+
+    @ParameterizedTest
+    @DisplayName("이름이 6글자 이상인 경우 예외를 던진다")
+    @ValueSource(strings = {"123456, dfdfdf, ddddddd"})
+    @NullAndEmptySource
+    void checkName(String name) {
+        assertThatThrownBy(() ->
+                personsTest = new Persons(name)
+        ).isInstanceOf(RuntimeException.class)
+                .withFailMessage(ErrorMessage.getCheckInputNames());
+    }
 }
