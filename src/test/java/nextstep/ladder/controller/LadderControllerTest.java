@@ -84,6 +84,17 @@ class LadderControllerTest {
         assertThat(direction).isEqualTo(Direction.LEFT);
     }
 
+    @Test
+    @DisplayName("이전 direction이 왼쪽일 때, 다음 direction 직진")
+    void leftDirectionForward() {
+        controller = new LadderController();
+
+        Direction direction = controller.decideDirection(Direction.LEFT, 2, () -> 0);
+
+        assertThat(direction).isEqualTo(Direction.FORWARD);
+    }
+
+
 }
 
 //    public Direction decideDirection(Direction direction, int condition, RandomStrategy randomStrategy) {
@@ -100,4 +111,12 @@ class LadderControllerTest {
 //        }
 //
 //        return direction;
+//    }
+
+//    private Direction checkLastIndex(int condition, RandomStrategy randomStrategy) {
+//        if(condition == -ONE) {
+//            return Direction.FORWARD;
+//        }
+//
+//        return Direction.from(randomStrategy.randomDirection());
 //    }
