@@ -5,50 +5,47 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import static domain.Direction.*;
-import static domain.RandomDirectionGenerator.generate;
 
 public class Points {
     private List<Point> points;
-    public Points() {}
-    public Points(final List<Point> points) {
+
+    private Points(final List<Point> points) {
         this.points = points;
     }
 
     public static Points of(final Length width) {
         List<Point> points = new ArrayList<>();
-        int numberOfPoints = width.getValue();
-
+        int numberOfPoints = width.value();
 
         for(int i = 0; i < numberOfPoints; i++) {
-            Point point = fetchPointByPosition(i, numberOfPoints, points);
+            Point point = fetchPointByPosition(Position.of(i), numberOfPoints, points);
             points.add(point);
         }
 
         return new Points(points);
     }
 
-
-    protected static Point fetchPointByPosition(int position, int numberOfPoints, List<Point> points) {
-        if(position == 0) {
-            return Point.of(0, generate());
+    private static Point fetchPointByPosition(final Position position, final int numberOfPoints, final List<Point> points) {
+        if( !position.equals(Position.FIRST) && isFormerPointConnected(points.get(position.value() - 1))) {
+            return Point.of(position, LEFT);
         }
 
-        if(position == numberOfPoints - 1) {
-            return Point.of(position, IsFormerPointConnected(points.get(position-1)) ? LEFT : DOWN);
+        if(position.value() == numberOfPoints - 1) {
+            return Point.of(position, DOWN);
         }
 
-        return Point.of(position, IsFormerPointConnected(points.get(position-1)) ? LEFT : generate());
+        return Point.of(position, RandomDirectionGenerator.generate());
     }
 
-    private static boolean IsFormerPointConnected(Point point) {
-        return point.getDirection() == RIGHT;
+    private static boolean isFormerPointConnected(final Point point) {
+        return point.isHeadingRight();
     }
 
     public Stream<Point> stream() {
         return points.stream();
     }
 
-    public int movePointAt(int position) {
-        return points.get(position).next();
+    public Position movePointAt(final Position position) {
+        return points.get(position.value()).next();
     }
 }

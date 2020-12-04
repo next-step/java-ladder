@@ -13,7 +13,7 @@ public class Lines {
 
     public static Lines of(final Length width, final Length height) {
         List<Line> lines = new ArrayList<>();
-        int heightOfLadder = height.getValue();
+        int heightOfLadder = height.value();
 
         for(int i = 0; i < heightOfLadder; i++) {
             lines.add(Line.of(width));
@@ -26,8 +26,8 @@ public class Lines {
         return lines.stream().map(Line::getPoints);
     }
 
-    public int departsAt(int start) {
-        int position = start;
+    public Position departsAt(final Position start) {
+        Position position = start;
 
         for(int i = 0; i < lines.size(); i++) {
             position = lines.get(i).move(position);

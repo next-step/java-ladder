@@ -1,17 +1,15 @@
 package domain;
 
-import static domain.Direction.*;
-
 public class Point {
-    private final int position;
+    private final Position position;
     private final Direction direction;
 
-    private Point(final int position, final Direction direction) {
+    private Point(final Position position, final Direction direction) {
         this.position = position;
         this.direction = direction;
     }
 
-    public static Point of(final int position, final Direction direction) {
+    public static Point of(final Position position, final Direction direction) {
         return new Point(position, direction);
     }
 
@@ -19,15 +17,19 @@ public class Point {
         return direction;
     }
 
-    public int next() {
-        if(direction == RIGHT) {
-            return position + 1;
+    public Position next() {
+        if(direction.isRight()) {
+            return position.plus();
         }
 
-        if(direction == LEFT) {
-            return position - 1;
+        if(direction.isLeft()) {
+            return position.minus();
         }
 
         return position;
+    }
+
+    public boolean isHeadingRight() {
+        return direction.isRight();
     }
 }

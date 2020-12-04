@@ -17,7 +17,7 @@ public class Ladder {
         return lines;
     }
 
-    public int ride(int position) {
+    public Position departsAt(final Position position) {
         return lines.departsAt(position);
     }
 }

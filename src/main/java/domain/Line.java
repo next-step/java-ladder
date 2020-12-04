@@ -16,7 +16,7 @@ public class Line {
         return points;
     }
 
-    public int move(int position) {
+    public Position move(final Position position) {
         return points.movePointAt(position);
     }
 

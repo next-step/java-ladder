@@ -8,7 +8,6 @@ public class Length {
     private static final int LENGTH_MIN_BOUNDARY = 1;
     private final int length;
 
-
     private Length(final int length) {
         this.length = length;
     }
@@ -21,7 +20,7 @@ public class Length {
         return new Length(length);
     }
 
-    public int getValue() {
+    public int value() {
         return length;
     }
 

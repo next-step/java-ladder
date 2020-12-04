@@ -8,14 +8,14 @@ public class PointTest {
 
     @Test
     void ofTest(){
-        Point point = Point.of(0, Direction.RIGHT);
+        Point point = Point.of(Position.FIRST, Direction.RIGHT);
         assertThat(point.getDirection()).isEqualTo(Direction.RIGHT);
         assertThat(point.getDirection() == Direction.RIGHT).isTrue();
     }
 
     @Test
     void nextTest() {
-        Point point = Point.of(0, Direction.RIGHT);
+        Point point = Point.of(Position.FIRST, Direction.RIGHT);
         assertThat(point.next()).isEqualTo(1);
     }
 }

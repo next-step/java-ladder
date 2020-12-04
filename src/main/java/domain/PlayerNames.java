@@ -11,7 +11,7 @@ public class PlayerNames {
     private static final int PLAYERS_NUMBER_MIN = 2;
     private final List<String> playerNames;
 
-    private PlayerNames(List<String> playerNames) {
+    private PlayerNames(final List<String> playerNames) {
         this.playerNames = playerNames;
     }
 
@@ -30,5 +30,13 @@ public class PlayerNames {
 
     public Stream<String> stream() {
         return playerNames.stream();
+    }
+
+    public int indexOf(final String name) {
+        return playerNames.indexOf(name);
+    }
+
+    public String get(final int index) {
+        return playerNames.get(index);
     }
 }

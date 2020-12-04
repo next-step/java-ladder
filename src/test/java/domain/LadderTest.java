@@ -11,4 +11,5 @@ public class LadderTest {
         Ladder ladder = Ladder.of(Length.of(3), Length.of(4));
         assertThat(ladder.getLines().mapLineOntoPoints().count()).isEqualTo(4);
     }
+
 }
