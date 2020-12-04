@@ -114,28 +114,34 @@ class LadderControllerTest {
         assertThat(direction).isEqualTo(Direction.FORWARD);
     }
 
+    @Test
+    @DisplayName("이전 direction이 직진일 때, 다음 direction 직진")
+    void forwardDirectionForward() {
+        controller = new LadderController();
+
+        Direction direction = controller.decideDirection(Direction.FORWARD, 2, () -> 0);
+
+        assertThat(direction).isEqualTo(Direction.FORWARD);
+    }
+
+    @Test
+    @DisplayName("이전 direction이 직진일 때, 다음 direction 오른쪽")
+    void forwardDirectionRight() {
+        controller = new LadderController();
+
+        Direction direction = controller.decideDirection(Direction.FORWARD, 2, () -> 1);
+
+        assertThat(direction).isEqualTo(Direction.RIGHT);
+    }
+
+    @Test
+    @DisplayName("이전 direction이 직진일 때, 마지막 인덱스인 경우 직진")
+    void forwardDirectionLastIndex() {
+        controller = new LadderController();
+
+        Direction direction = controller.decideDirection(Direction.FORWARD, -1, () -> 0);
+
+        assertThat(direction).isEqualTo(Direction.FORWARD);
+    }
+
 }
-
-//    public Direction decideDirection(Direction direction, int condition, RandomStrategy randomStrategy) {
-//        if(condition == ZERO) {
-//            return Direction.from(randomStrategy.randomDirection());
-//        }
-//
-//        if(direction == Direction.RIGHT) {
-//            return Direction.LEFT;
-//        }
-//
-//        if(direction == Direction.LEFT) {
-//            return checkLastIndex(condition, randomStrategy);
-//        }
-//
-//        return direction;
-//    }
-
-//    private Direction checkLastIndex(int condition, RandomStrategy randomStrategy) {
-//        if(condition == -ONE) {
-//            return Direction.FORWARD;
-//        }
-//
-//        return Direction.from(randomStrategy.randomDirection());
-//    }
