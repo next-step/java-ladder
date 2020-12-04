@@ -1,4 +1,4 @@
-package nextstep.ladder2;
+package nextstep.ladder.domain.alternative;
 
 import java.util.Objects;
 

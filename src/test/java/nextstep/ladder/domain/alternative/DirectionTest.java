@@ -1,4 +1,4 @@
-package nextstep.ladder2;
+package nextstep.ladder.domain.alternative;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -1,4 +1,4 @@
-package nextstep.ladder2;
+package nextstep.ladder.domain.alternative;
 
 class Direction {
     private static final Direction LEFT = new Direction(true, false);

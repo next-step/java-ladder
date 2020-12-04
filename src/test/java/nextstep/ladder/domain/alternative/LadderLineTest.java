@@ -1,4 +1,4 @@
-package nextstep.ladder2;
+package nextstep.ladder.domain.alternative;
 
 import nextstep.ladder.domain.BooleanGenerator;
 import nextstep.ladder.domain.TestingBooleanGenerator;
@@ -11,7 +11,7 @@ import java.util.stream.Collector;
 
 import static nextstep.ladder.domain.BooleanGenerator.generateBooleans;
 import static nextstep.ladder.utils.BinaryOperators.nope;
-import static nextstep.ladder2.LadderLineTest.Lists.last;
+import static nextstep.ladder.domain.alternative.LadderLineTest.Lists.last;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
