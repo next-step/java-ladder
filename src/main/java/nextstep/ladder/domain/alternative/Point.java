@@ -47,4 +47,8 @@ class Point {
     public Point last() {
         return next(false);
     }
+
+    public boolean hasRight() {
+        return direction.isRight();
+    }
 }
