@@ -1,6 +1,7 @@
 package ladder.controller;
 
 import ladder.domain.LadderGame;
+import ladder.domain.PrintLadder;
 import ladder.view.InputView;
 
 public class PlayLadderGame {
@@ -10,6 +11,9 @@ public class PlayLadderGame {
         int ladderHeight = InputView.inputLadderHeight();
 
         LadderGame ladderGame = new LadderGame(names, ladderHeight);
-        ladderGame.printLadder();
+
+        PrintLadder printLadder = new PrintLadder();
+        printLadder.printNames(ladderGame.getNames());
+        printLadder.printLadder(ladderGame.getLadderLineDTO());
     }
 }
