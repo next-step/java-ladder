@@ -2,6 +2,7 @@ package nextstep.ladder2;
 
 import nextstep.ladder.domain.BooleanGenerator;
 import nextstep.ladder.domain.TestingBooleanGenerator;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
@@ -30,6 +31,13 @@ public class LadderLineTest {
     void createWithPoint() {
         assertThat(LadderLine.of(3, new TestingBooleanGenerator(true, false)))
                 .isEqualTo(new LadderLine(buildPoints(true, false)));
+    }
+
+    @DisplayName("`|-----|     |` 에서 index 1 에서 이동하면 index 0 을 리턴한다")
+    @Test
+    void move() {
+        assertThat(LadderLine.of(3, new TestingBooleanGenerator(true, false)).move(1))
+                .isEqualTo(0);
     }
 
     private List<Point> buildPoints(Boolean... booleans) {
