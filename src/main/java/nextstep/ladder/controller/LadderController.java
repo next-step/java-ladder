@@ -90,9 +90,8 @@ public class LadderController {
     }
 
     private void drawLadders(ResultView resultView, Ladder ladder) {
-        for(Line line : ladder.getLines()) {
-            drawLine(resultView, line.getPoints());
-        }
+        ladder.getLines()
+                .forEach(line -> drawLine(resultView, line.getPoints()));
     }
 
     private void drawLine(ResultView resultView, List<Point> points) {
