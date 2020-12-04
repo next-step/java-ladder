@@ -47,7 +47,7 @@ public class PrintLadder {
         System.out.println(stringBuilder);
     }
 
-    public String checkDivisionLadder(boolean point) {
+    private String checkDivisionLadder(boolean point) {
         if (point) {
             return HAVE_LINE;
         }
