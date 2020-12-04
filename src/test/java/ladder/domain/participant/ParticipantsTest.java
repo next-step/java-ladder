@@ -22,6 +22,7 @@ public class ParticipantsTest {
                                                                    new Participant(userName3)));
         //Then
         assertThat(participants).isNotNull();
+        assertThat(participants.getParticipantNames()).contains(userName, userName2, userName3);
     }
 
     @DisplayName("1명만 사다리 게임에 참가하였을 경우 예외처리 테스트")

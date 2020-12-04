@@ -1,6 +1,5 @@
 package ladder.domain.participant;
 
-import ladder.domain.participant.Participant;
 import ladder.exception.InValidUserNameException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
