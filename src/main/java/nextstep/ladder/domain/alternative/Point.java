@@ -41,6 +41,9 @@ class Point {
     }
 
     public Point next(boolean right) {
+        if (direction.isRight()) {
+            return new Point(index + 1, direction.next(false));
+        }
         return new Point(index + 1, direction.next(right));
     }
 
