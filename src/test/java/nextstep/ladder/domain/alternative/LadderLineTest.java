@@ -23,23 +23,27 @@ public class LadderLineTest {
 
     @Test
     void createWithPoint() {
-        assertThat(LadderLine.of(3, new TestingBooleanGenerator(true, false)))
+        assertThat(LadderLine.of(3, getGenerator(true, false)))
                 .isEqualTo(new LadderLine(buildPoints(true, false)));
     }
 
     @DisplayName("`|-----|     |` 에서 index 1 에서 이동하면 index 0 을 리턴한다")
     @Test
     void move() {
-        assertThat(LadderLine.of(3, new TestingBooleanGenerator(true, false)).move(1))
+        assertThat(LadderLine.of(3, getGenerator(true, false)).move(1))
                 .isEqualTo(0);
     }
 
     @DisplayName("이동가능한 목록을 리턴한다")
     @Test
     void toMovableList() {
-        assertThat(LadderLine.of(3, new TestingBooleanGenerator(true, false))
+        assertThat(LadderLine.of(3, getGenerator(true, false))
                            .toMovableList())
                 .containsExactly(true, false);
+    }
+
+    private TestingBooleanGenerator getGenerator(Boolean... booleans) {
+        return new TestingBooleanGenerator(booleans);
     }
 
     private List<Point> buildPoints(Boolean... booleans) {
