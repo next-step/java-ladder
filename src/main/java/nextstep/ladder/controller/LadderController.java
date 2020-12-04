@@ -14,6 +14,8 @@ import java.util.stream.IntStream;
 public class LadderController {
 
     private static final int ZERO = 0;
+    private static final int ONE = 1;
+    private static final int DIRECTION_BOUND = 2;
     private Random random = new Random();
 
     public void start() {
@@ -58,16 +60,24 @@ public class LadderController {
 
         int bound = users.getUsers().size();
         for (int number = ZERO; number < bound; number++) {
-            direction = decideDirection(direction, bound, number);
+            int condition = minusIndex(number, bound);
+            direction = decideDirection(direction, condition, () -> random.nextInt(DIRECTION_BOUND));
             points.add(new Point(number, direction));
         }
 
         return new Line(points);
     }
 
-    private Direction decideDirection(Direction direction, int bound, int number) {
-        if(number == ZERO) {
-            return Direction.from(random.nextInt(2));
+    private int minusIndex(int number, int bound) {
+        if(bound - ONE - number == ZERO) {
+            return -ONE;
+        }
+        return number;
+    }
+
+    private Direction decideDirection(Direction direction, int condition, RandomStrategy randomStrategy) {
+        if(condition == ZERO) {
+            return Direction.from(randomStrategy.randomDirection());
         }
 
         if(direction == Direction.RIGHT) {
@@ -75,18 +85,18 @@ public class LadderController {
         }
 
         if(direction == Direction.LEFT) {
-            return checkLastIndex(bound, number);
+            return checkLastIndex(condition, randomStrategy);
         }
 
         return direction;
     }
 
-    private Direction checkLastIndex(int bound, int number) {
-        if(number == bound - 1) {
+    private Direction checkLastIndex(int condition, RandomStrategy randomStrategy) {
+        if(condition == -ONE) {
             return Direction.FORWARD;
         }
 
-        return Direction.from(random.nextInt(2));
+        return Direction.from(randomStrategy.randomDirection());
     }
 
     private void drawLadders(ResultView resultView, Ladder ladder) {

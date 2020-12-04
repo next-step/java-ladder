@@ -21,13 +21,6 @@ public enum Direction {
                 .get();
     }
 
-//    public static Direction init(int index, Random random) {
-//        if(index == 0) {
-//            return Direction.from(random.nextInt(1));
-//        }
-//        return null;
-//    }
-
     public int getMove() {
         return move;
     }
