@@ -1,23 +1,21 @@
 package ladder.domain;
 
+import ladder.dto.LadderLineDTO;
+
 import java.util.List;
 
 public class PrintLadder {
-
-
     private static final String HAVE_LINE = "-----";
     private static final String NON_HAVE_LINE = "     ";
-    private static String plusNonhaveLine = "";
-    private static String plusHaveLine = "";
 
     public void printNames(List<String> names) {
-        StringBuffer sb = new StringBuffer();
+        StringBuilder stringBuilder = new StringBuilder();
 
         for (int i = 0; i < names.size(); i++) {
-            sb.append(checkDivisionNames(i == names.size() - 1, names.get(i)));
+            stringBuilder.append(checkDivisionNames(i == names.size() - 1, names.get(i)));
         }
 
-        System.out.println(sb);
+        System.out.println(stringBuilder);
     }
 
     private String checkDivisionNames(boolean last, String name) {
@@ -28,50 +26,32 @@ public class PrintLadder {
             return sb.toString();
         }
 
-        sb.append(name + "   ");
+        sb.append(name + "\t");
 
         return sb.toString();
     }
 
 
-    public void printLadder(List<Boolean> points, int lineSize) {
-        addLineSize(lineSize);
+    public void printLadder(LadderLineDTO ladderLineDTO) {
+        StringBuilder stringBuilder = new StringBuilder();
+        List<List<Boolean>> ladderLine = ladderLineDTO.getLadderLine();
 
-        StringBuilder sb = new StringBuilder();
-        sb.append(plusNonhaveLine);
-        sb.append("|");
-
-        for (Boolean point : points) {
-            sb.append(checkDivisionLadder(point));
-            sb.append("|");
+        for (List<Boolean> line : ladderLine) {
+            stringBuilder.append("|");
+            for(Boolean ladder : line){
+                stringBuilder.append(checkDivisionLadder(ladder));
+                stringBuilder.append("|");
+            }
+            stringBuilder.append("\n");
         }
-        System.out.println(sb);
+        System.out.println(stringBuilder);
     }
 
     public String checkDivisionLadder(boolean point) {
-        String returnValue = "";
-
         if (point) {
-            return HAVE_LINE + plusHaveLine;
+            return HAVE_LINE;
         }
 
-        if (!point) {
-            return NON_HAVE_LINE + plusNonhaveLine;
-        }
-
-        return returnValue;
-    }
-
-    public void addLineSize(int lineSize) {
-        StringBuilder haveSb = new StringBuilder();
-        StringBuilder nonSb = new StringBuilder();
-
-        for (int i = 0; i < lineSize / 2; i++) {
-            nonSb.append(" ");
-            haveSb.append("-");
-        }
-
-        this.plusNonhaveLine = nonSb.toString();
-        this.plusHaveLine = haveSb.toString();
+        return NON_HAVE_LINE;
     }
 }
