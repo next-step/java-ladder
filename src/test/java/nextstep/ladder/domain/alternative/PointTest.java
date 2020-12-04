@@ -68,4 +68,11 @@ public class PointTest {
     void hasRight(boolean right) {
         assertThat(Point.first(right).hasRight()).isEqualTo(right);
     }
+
+    @DisplayName("이전 지점에서 이동 가능하면 다음지점은 이동 불가로 설정된다")
+    @Test
+    void alwaysFalseNext() {
+        assertThat(Point.first(true).next(true))
+                .isEqualTo(Point.first(true).next(false));
+    }
 }
