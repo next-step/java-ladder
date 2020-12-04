@@ -28,10 +28,10 @@ public class Ladder {
     }
 
     public void shuffle() {
-        HowToConnect strategy = new RandomConnection();
+        HowToConnect connectionMode = new RandomConnectionMode();
 
         for (HorizontalLine line : layer) {
-            line.shuffle(strategy);
+            line.shuffle(connectionMode);
         }
     }
 

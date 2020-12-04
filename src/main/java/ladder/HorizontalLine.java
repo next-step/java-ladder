@@ -26,18 +26,18 @@ public class HorizontalLine {
         return new HorizontalLine(line);
     }
 
-    public void shuffle(HowToConnect strategy) {
+    public void shuffle(HowToConnect connectionMode) {
         for (int i = 0; i < line.size(); i++) {
-            boolean leftSideStatus = translateLeftSideStatus(i);
-            this.line.set(i, strategy.connect(leftSideStatus));
+            boolean leftSideStatus = checkLeftSideStatus(i);
+            this.line.set(i, connectionMode.needToConnect(leftSideStatus));
         }
     }
 
-    private boolean translateLeftSideStatus(int idx) {
-        if (idx == 0) {
+    private boolean checkLeftSideStatus(int index) {
+        if (index == 0) {
             return false;
         }
-        return line.get(idx - 1);
+        return this.line.get(index - 1);
     }
 
     public List<Boolean> getLine() {
@@ -46,8 +46,12 @@ public class HorizontalLine {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         HorizontalLine that = (HorizontalLine) o;
         return line.equals(that.line);
     }

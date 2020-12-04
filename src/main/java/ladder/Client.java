@@ -22,8 +22,8 @@ public class Client {
     }
 
     private static void setUpUser() {
-        String rawInput = InputView.askNames();
-        List<String> parsedInput = InputParser.parseRawInput(rawInput);
+        String userNameInput = InputView.askNames();
+        List<String> parsedInput = InputParser.parseRawInput(userNameInput);
         users = new Users(parsedInput);
     }
 

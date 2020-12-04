@@ -1,5 +1,5 @@
 package ladder;
 
 public interface HowToConnect {
-    boolean connect(Boolean leftSideCondition);
+    boolean needToConnect(Boolean leftSideCondition);
 }

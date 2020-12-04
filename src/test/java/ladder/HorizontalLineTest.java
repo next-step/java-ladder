@@ -15,11 +15,11 @@ class HorizontalLineTest {
 
     private static Stream<Arguments> makePatterns() {
         return Stream.of(
-                Arguments.of((HowToConnect) x -> false,
+                Arguments.of((HowToConnect) leftSideStatus -> false,
                         new Boolean[]{false, false, false, false, false}),
-                Arguments.of((HowToConnect) x -> !x,
+                Arguments.of((HowToConnect) leftSideStatus -> !leftSideStatus,
                         new Boolean[]{true, false, true, false, true}),
-                Arguments.of((HowToConnect) x -> true,
+                Arguments.of((HowToConnect) leftSideStatus -> true,
                         new Boolean[]{true, true, true, true, true})
         );
     }
@@ -27,10 +27,10 @@ class HorizontalLineTest {
     @Test
     @DisplayName("초깃값 확인")
     void test() {
-        Boolean[] booleans = {false, false, false, false};
+        Boolean[] expected = {false, false, false, false};
 
         assertThat(HorizontalLine.of(4))
-                .isEqualTo(HorizontalLine.of(Arrays.asList(booleans)));
+                .isEqualTo(HorizontalLine.of(Arrays.asList(expected)));
     }
 
     @ParameterizedTest
