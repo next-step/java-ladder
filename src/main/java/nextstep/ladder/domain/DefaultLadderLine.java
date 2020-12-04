@@ -13,6 +13,8 @@ public class DefaultLadderLine implements LadderLines {
     private final List<Line> lines;
 
     public DefaultLadderLine(int width, int height) {
+        ensure(width, height);
+
         this.lines = IntStream.range(0, height)
                 .mapToObj(__ -> Spoke.fromCount(width - 1, RANDOM::nextBoolean))
                 .map(Line::new)

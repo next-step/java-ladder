@@ -10,10 +10,10 @@ import static java.util.stream.Collectors.toList;
 import static nextstep.ladder.utils.BinaryOperators.nope;
 
 public class NextStepLadderLine implements LadderLines {
-
     private final List<LadderLine> lines;
 
     public NextStepLadderLine(int size, int height) {
+        ensure(size, height);
         lines = IntStream.range(0, height)
                 .mapToObj(__ -> LadderLine.of(size))
                 .collect(toList());
