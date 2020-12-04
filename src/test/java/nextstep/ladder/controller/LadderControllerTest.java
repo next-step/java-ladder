@@ -54,4 +54,30 @@ class LadderControllerTest {
         assertThat(line.getPoints().size()).isEqualTo(2);
     }
 
+    @Test
+    @DisplayName("첫 인덱스일 때, Direction 오른쪽")
+    void firstIndexRight() {
+        controller = new LadderController();
+
+        Direction direction = controller.decideDirection(null, 0, () -> 1);
+
+        assertThat(direction).isEqualTo(Direction.RIGHT);
+    }
+
 }
+
+//    public Direction decideDirection(Direction direction, int condition, RandomStrategy randomStrategy) {
+//        if(condition == ZERO) {
+//            return Direction.from(randomStrategy.randomDirection());
+//        }
+//
+//        if(direction == Direction.RIGHT) {
+//            return Direction.LEFT;
+//        }
+//
+//        if(direction == Direction.LEFT) {
+//            return checkLastIndex(condition, randomStrategy);
+//        }
+//
+//        return direction;
+//    }

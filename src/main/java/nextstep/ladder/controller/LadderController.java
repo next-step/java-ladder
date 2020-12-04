@@ -75,7 +75,7 @@ public class LadderController {
         return number;
     }
 
-    private Direction decideDirection(Direction direction, int condition, RandomStrategy randomStrategy) {
+    public Direction decideDirection(Direction direction, int condition, RandomStrategy randomStrategy) {
         if(condition == ZERO) {
             return Direction.from(randomStrategy.randomDirection());
         }
