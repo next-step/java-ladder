@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.stream.Stream;
 
+import static java.util.Collections.emptyList;
+import static java.util.stream.Collectors.toList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -77,7 +79,8 @@ public class LineTest {
     }
 
     public static Ladder toLines(Spoke... spokes) {
-        return Ladder.of(Stream.of(spokes));
+        return new Ladder(new DefaultLadderLine(Stream.of(spokes).map(Line::new)
+                                  .collect(toList())), emptyList());
     }
 
 }
