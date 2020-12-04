@@ -46,7 +46,7 @@ public class LadderController {
                 .forEach(user -> resultView.printUsers(user.getName()));
     }
 
-    private Ladder initLadder(Users users, Height height) {
+    public Ladder initLadder(Users users, Height height) {
         List<Line> lines = new ArrayList<>();
 
         IntStream.range(ZERO, height.getHeight())
