@@ -1,5 +1,7 @@
 package domain;
 
+import static domain.Direction.*;
+
 public class Point {
     private final int position;
     private final Direction direction;
@@ -15,5 +17,17 @@ public class Point {
 
     public Direction getDirection() {
         return direction;
+    }
+
+    public int next() {
+        if(direction == RIGHT) {
+            return position + 1;
+        }
+
+        if(direction == LEFT) {
+            return position - 1;
+        }
+
+        return position;
     }
 }

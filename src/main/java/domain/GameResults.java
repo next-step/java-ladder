@@ -22,4 +22,8 @@ public class GameResults {
     public Stream<String> stream() {
         return gameResults.stream();
     }
+
+    public String fetch(int index) {
+        return gameResults.get(index);
+    }
 }

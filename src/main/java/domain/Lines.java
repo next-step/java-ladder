@@ -26,4 +26,14 @@ public class Lines {
         return lines.stream().map(Line::getPoints);
     }
 
+    public int departsAt(int start) {
+        int position = start;
+
+        for(int i = 0; i < lines.size(); i++) {
+            position = lines.get(i).move(position);
+        }
+
+        return position;
+    }
+
 }

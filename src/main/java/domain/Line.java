@@ -16,4 +16,8 @@ public class Line {
         return points;
     }
 
+    public int move(int position) {
+        return points.movePointAt(position);
+    }
+
 }

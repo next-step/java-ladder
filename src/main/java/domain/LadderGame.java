@@ -34,4 +34,9 @@ public class LadderGame {
     }
 
     public GameResults getGameResults() { return gameResults; }
+
+    public void play(int position) {
+
+        System.out.println(gameResults.fetch(ladder.ride(position)));
+    }
 }

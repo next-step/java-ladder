@@ -1,6 +1,5 @@
 package domain;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -12,5 +11,11 @@ public class PointTest {
         Point point = Point.of(0, Direction.RIGHT);
         assertThat(point.getDirection()).isEqualTo(Direction.RIGHT);
         assertThat(point.getDirection() == Direction.RIGHT).isTrue();
+    }
+
+    @Test
+    void nextTest() {
+        Point point = Point.of(0, Direction.RIGHT);
+        assertThat(point.next()).isEqualTo(1);
     }
 }

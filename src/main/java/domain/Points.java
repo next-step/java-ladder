@@ -8,8 +8,9 @@ import static domain.Direction.*;
 import static domain.RandomDirectionGenerator.generate;
 
 public class Points {
-    private final List<Point> points;
-    private Points(final List<Point> points) {
+    private List<Point> points;
+    public Points() {}
+    public Points(final List<Point> points) {
         this.points = points;
     }
 
@@ -26,7 +27,8 @@ public class Points {
         return new Points(points);
     }
 
-    private static Point fetchPointByPosition(int position, int numberOfPoints, List<Point> points) {
+
+    protected static Point fetchPointByPosition(int position, int numberOfPoints, List<Point> points) {
         if(position == 0) {
             return Point.of(0, generate());
         }
@@ -46,4 +48,7 @@ public class Points {
         return points.stream();
     }
 
+    public int movePointAt(int position) {
+        return points.get(position).next();
+    }
 }

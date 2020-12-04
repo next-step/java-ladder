@@ -12,5 +12,6 @@ public class LadderApplication {
         LadderGame ladderGame = LadderGame.of(inputDto);
 
         ResultView.print(ladderGame);
-    }
+
+        }
 }
