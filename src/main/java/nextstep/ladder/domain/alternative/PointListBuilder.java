@@ -24,10 +24,7 @@ class PointListBuilder {
     }
 
     private Collector<Boolean, List<Point>, List<Point>> pointTo(Supplier<List<Point>> supplier) {
-        return Collector.of(supplier,
-                            this::addPoint,
-                            nope()
-        );
+        return Collector.of(supplier, this::addPoint, nope());
     }
 
     private void addPoint(List<Point> list, Boolean right) {
@@ -42,7 +39,7 @@ class PointListBuilder {
         list.add(Point.first(right));
     }
 
-    private static void addNext(List<Point> list, Boolean right) {
+    private void addNext(List<Point> list, Boolean right) {
         list.add(last(list).next(right));
     }
 
