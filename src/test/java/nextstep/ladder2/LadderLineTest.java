@@ -17,6 +17,12 @@ public class LadderLineTest {
         assertThat(LadderLine.of(3).sizeOfPoints()).isEqualTo(3);
     }
 
+    @Test
+    void createWithPoint() {
+        assertThat(LadderLine.of(3, new TestingBooleanGenerator(true, false)))
+                .isEqualTo(new LadderLine(buildPoints(true, false)));
+    }
+
     private static class LadderLine {
         private int size;
 
