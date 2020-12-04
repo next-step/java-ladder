@@ -51,10 +51,10 @@
 
 * [X] 변수 네이밍 (Client, HorizontalLine)
 * 테스트 코드 가독성 및 람다식 적용
-* 정적 팩토리 메소드
+* [X] 정적 팩토리 메소드
   개선 [참고](https://velog.io/@ljinsk3/%EC%A0%95%EC%A0%81-%ED%8C%A9%ED%86%A0%EB%A6%AC-%EB%A9%94%EC%84%9C%EB%93%9C%EB%8A%94-%EC%99%9C-%EC%82%AC%EC%9A%A9%ED%95%A0%EA%B9%8C)
 * 유효성 검사 분리
-* 매직넘버 치환 [참고](https://hoonmaro.tistory.com/44)
+* [X] 매직넘버 치환 [참고](https://hoonmaro.tistory.com/44)
 * 테스트 하기 힘든 로직 외부 주입
 * 불변 객체 [참고](https://woowacourse.github.io/javable/2020-05-08/First-Class-Collection)
 * DTO 객체 생성방식

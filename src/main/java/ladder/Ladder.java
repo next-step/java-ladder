@@ -11,10 +11,12 @@ import static java.util.stream.Collectors.toList;
 
 public class Ladder {
 
+    private static final int MINIMUM_LADDER_HEIGHT = 1;
+
     List<HorizontalLine> layer;
 
     public Ladder(int height, int numUsers) {
-        if (height < 1) {
+        if (height < MINIMUM_LADDER_HEIGHT) {
             throw new InvalidLadderHeightException();
         }
 

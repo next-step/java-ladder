@@ -10,10 +10,12 @@ import static java.util.stream.Collectors.toList;
 
 public class Users {
 
+    private static final int MINIMUM_USER_COUNTS = 2;
+
     private final List<User> users;
 
     Users(List<String> users) {
-        if (users.size() < 2) {
+        if (users.size() < MINIMUM_USER_COUNTS) {
             throw new InvalidUsersNumberException();
         }
 
