@@ -1,20 +1,20 @@
 package nextstep.ladder.controller;
 
-import nextstep.ladder.domain.Height;
-import nextstep.ladder.domain.InputUsers;
-import nextstep.ladder.domain.User;
-import nextstep.ladder.domain.Users;
+import nextstep.ladder.domain.*;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LadderController {
 
     private static final int ZERO = 0;
+    private Random random = new Random();
 
     public void start() {
         InputView inputView = new InputView();
@@ -27,7 +27,8 @@ public class LadderController {
 
         resultView.printResultMention();
         printUsers(resultView, users);
-        printLadders(resultView, height, users);
+        Ladder ladder = initLadder(users, height);
+//        drawLadders(resultView, ladder);
     }
 
     public Users initUsers(InputUsers inputUsers) {
@@ -43,14 +44,60 @@ public class LadderController {
                 .forEach(user -> resultView.printUsers(user.getName()));
     }
 
-    private void printLadders(ResultView resultView, Height height, Users users) {
+    private Ladder initLadder(Users users, Height height) {
+        List<Line> lines = new ArrayList<>();
+
         IntStream.range(ZERO, height.getHeight())
-                .forEach(number -> printVertical(resultView, users));
+                .forEach(number -> lines.add(initLine(users)));
+        return new Ladder(lines);
     }
 
-    private void printVertical(ResultView resultView, Users users) {
-        System.out.println();
-        IntStream.range(ZERO, users.getUsers().size())
-                .forEach(number -> resultView.printVertical());
+    private Line initLine(Users users) {
+        List<Point> points = new ArrayList<>();
+        Direction direction = null;
+
+        int bound = users.getUsers().size();
+        for (int number = ZERO; number < bound; number++) {
+            if(number == 0) {
+                direction = Direction.from(random.nextInt(1));
+            } else if(direction.getMove() == 1) {
+                direction = Direction.from(-1);
+            } else if(direction.getMove() ==-1) {
+                if(number == bound - 1) {
+                    direction = Direction.from(0);
+                } else {
+                    direction = Direction.from(random.nextInt(1));
+                }
+            }
+            points.add(new Point(number, direction));
+        }
+
+//        IntStream.range(ZERO, users.getUsers().size())
+//                .forEach(number -> {
+//                    Direction direction = Direction.from(decideDirection(int number));
+//                    points.add(initPoint(number, direction));
+//                });
+
+        return new Line(points);
     }
+
+//    private void drawLadders(ResultView resultView, Height height, Users users) {
+//        IntStream.range(ZERO, height.getHeight())
+//                .forEach(number -> drawLines(resultView, users));
+//    }
+
+//    private void drawLadders(ResultView resultView, Height height, Users users) {
+//        IntStream.range(ZERO, height.getHeight())
+//                .forEach(number -> {
+//                    drawLines(resultView, users);
+//                });
+//    }
+//
+//    private void drawLines(ResultView resultView, Users users) {
+//        System.out.println();
+//        IntStream.range(ZERO, users.getUsers().size())
+//                .forEach(number -> resultView.printVertical());
+//    }
+
+
 }
