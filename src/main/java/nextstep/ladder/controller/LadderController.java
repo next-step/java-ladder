@@ -58,21 +58,35 @@ public class LadderController {
 
         int bound = users.getUsers().size();
         for (int number = ZERO; number < bound; number++) {
-            if(number == 0) {
-                direction = Direction.from(random.nextInt(2));
-            } else if(direction.getMove() == 1) {
-                direction = Direction.from(-1);
-            } else if(direction.getMove() ==-1) {
-                if(number == bound - 1) {
-                    direction = Direction.from(0);
-                } else {
-                    direction = Direction.from(random.nextInt(2));
-                }
-            }
+            direction = decideDirection(direction, bound, number);
             points.add(new Point(number, direction));
         }
 
         return new Line(points);
+    }
+
+    private Direction decideDirection(Direction direction, int bound, int number) {
+        if(number == ZERO) {
+            return Direction.from(random.nextInt(2));
+        }
+
+        if(direction == Direction.RIGHT) {
+            return Direction.LEFT;
+        }
+
+        if(direction == Direction.LEFT) {
+            return checkLastIndex(bound, number);
+        }
+
+        return direction;
+    }
+
+    private Direction checkLastIndex(int bound, int number) {
+        if(number == bound - 1) {
+            return Direction.FORWARD;
+        }
+
+        return Direction.from(random.nextInt(2));
     }
 
     private void drawLadders(ResultView resultView, Ladder ladder) {
