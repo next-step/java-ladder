@@ -1,7 +1,7 @@
 package ladder.controller;
 
 import ladder.domain.LadderGame;
-import ladder.domain.PrintLadder;
+import ladder.view.PrintLadder;
 import ladder.view.InputView;
 
 public class PlayLadderGame {

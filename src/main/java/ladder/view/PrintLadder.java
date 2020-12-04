@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.view;
 
 import ladder.dto.LadderLineDTO;
 
