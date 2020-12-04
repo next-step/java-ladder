@@ -43,4 +43,8 @@ class Point {
     public Point next(boolean right) {
         return new Point(index + 1, direction.next(right));
     }
+
+    public Point last() {
+        return next(false);
+    }
 }

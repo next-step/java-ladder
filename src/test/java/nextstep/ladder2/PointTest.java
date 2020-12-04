@@ -57,7 +57,7 @@ public class PointTest {
 
     @DisplayName("마지막 지점을 만들 수 있다")
     @ParameterizedTest
-    @CsvSource({"true,1", "false,0"})
+    @CsvSource({"true,0", "false,1"})
     void last(boolean right, int index) {
         Point last = Point.first(right).last();
         assertThat(last.move()).isEqualTo(index);
