@@ -62,4 +62,10 @@ public class PointTest {
         Point last = Point.first(right).last();
         assertThat(last.move()).isEqualTo(index);
     }
+
+    @ParameterizedTest
+    @ValueSource(booleans = {true, false})
+    void hasRight(boolean right) {
+        assertThat(Point.first(right).hasRight()).isEqualTo(right);
+    }
 }
