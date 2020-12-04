@@ -21,6 +21,10 @@ public class Participant {
         }
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -34,10 +38,4 @@ public class Participant {
         return Objects.hash(userName);
     }
 
-
-    @Override
-    public String toString() {
-        return userName;
-
-    }
 }
