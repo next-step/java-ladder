@@ -84,7 +84,7 @@ public class LadderController {
             return Direction.LEFT;
         }
 
-        if(direction == Direction.LEFT) {
+        if(direction == Direction.LEFT || direction == Direction.FORWARD) {
             return checkLastIndex(condition, randomStrategy);
         }
 
