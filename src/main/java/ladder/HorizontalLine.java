@@ -1,6 +1,6 @@
 package ladder;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.IntStream;
@@ -27,10 +27,9 @@ public class HorizontalLine {
     }
 
     public void shuffle(HowToConnect connectionMode) {
-        for (int i = 0; i < line.size(); i++) {
-            boolean leftSideStatus = checkLeftSideStatus(i);
-            this.line.set(i, connectionMode.needToConnect(leftSideStatus));
-        }
+        IntStream.range(0, line.size())
+                .mapToObj(this::checkLeftSideStatus)
+                .forEach(connectionMode::needToConnect);
     }
 
     private boolean checkLeftSideStatus(int index) {
@@ -41,7 +40,7 @@ public class HorizontalLine {
     }
 
     public List<Boolean> getLine() {
-        return new ArrayList<>(this.line);
+        return Collections.unmodifiableList(line);
     }
 
     @Override
