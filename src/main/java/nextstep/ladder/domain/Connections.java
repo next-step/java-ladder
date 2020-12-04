@@ -28,4 +28,9 @@ public class Connections {
     public int hashCode() {
         return Objects.hash(connections);
     }
+
+    public boolean isConnected(int widthPoint) {
+        return connections.get(widthPoint)
+                .isConnected();
+    }
 }

@@ -3,6 +3,7 @@ package nextstep.ladder.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class PlayerTest {
@@ -22,5 +23,21 @@ class PlayerTest {
             new Player("    ");
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("name must not be empty");
+    }
+
+    @Test
+    @DisplayName("이름 확인")
+    void hasName() {
+        Player player = new Player("a");
+
+        assertThat(player.hasName("a")).isTrue();
+    }
+
+    @Test
+    @DisplayName("이름 확인")
+    void hasName_different() {
+        Player player = new Player("a");
+
+        assertThat(player.hasName("b")).isFalse();
     }
 }

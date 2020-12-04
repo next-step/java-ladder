@@ -1,7 +1,6 @@
 package nextstep.ladder.domain;
 
 import java.util.Collections;
-import java.util.List;
 import java.util.stream.IntStream;
 
 public class LadderClimber {
@@ -27,7 +26,7 @@ public class LadderClimber {
     }
 
     private PlayersOnLine createNextPlayersOnLine(PlayersOnLine playersOnLine, int heightPoint) {
-        List<Connection> connections = lines.getConnectionList(heightPoint);
+        Connections connections = lines.getConnections(heightPoint);
         PlayersOnLine newPlayersOnLine = new PlayersOnLine(playersOnLine.getPlayers());
         IntStream.range(0, players.getSize() - 1)
                 .forEach(widthPoint -> crossConnections(connections, newPlayersOnLine, widthPoint));
@@ -35,8 +34,8 @@ public class LadderClimber {
         return newPlayersOnLine;
     }
 
-    private void crossConnections(List<Connection> connections, PlayersOnLine newPlayersOnLine, int widthPoint) {
-        if (connections.get(widthPoint).isConnected()) {
+    private void crossConnections(Connections connections, PlayersOnLine newPlayersOnLine, int widthPoint) {
+        if (connections.isConnected(widthPoint)) {
             newPlayersOnLine.swapWithNext(widthPoint);
         }
     }

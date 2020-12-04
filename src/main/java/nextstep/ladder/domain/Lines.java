@@ -27,9 +27,8 @@ public class Lines {
         return lines.size();
     }
 
-    public List<Connection> getConnectionList(int heightPoint) {
+    public Connections getConnections(int heightPoint) {
         return this.lines.get(heightPoint)
-                .getConnections()
                 .getConnections();
     }
 }

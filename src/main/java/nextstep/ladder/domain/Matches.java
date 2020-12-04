@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import java.util.Map;
+import java.util.Objects;
 
 public class Matches {
 
@@ -13,7 +14,7 @@ public class Matches {
     public Result find(String nameToFind) {
         Player playerFound = matches.keySet()
                 .stream()
-                .filter(player -> player.getName().equals(nameToFind))
+                .filter(player -> player.hasName(nameToFind))
                 .findFirst().orElseThrow(() -> new IllegalArgumentException("there's no player of that name"));
 
         return matches.get(playerFound);
@@ -21,5 +22,18 @@ public class Matches {
 
     public Map<Player, Result> getMatches() {
         return matches;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Matches matches1 = (Matches) o;
+        return Objects.equals(matches, matches1.matches);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(matches);
     }
 }

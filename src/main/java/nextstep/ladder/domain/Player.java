@@ -44,4 +44,8 @@ public class Player {
     public int hashCode() {
         return Objects.hash(name);
     }
+
+    public boolean hasName(String nameToFind) {
+        return name.equals(nameToFind);
+    }
 }
