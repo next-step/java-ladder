@@ -83,6 +83,10 @@ public class LadderLineTest {
         public int hashCode() {
             return Objects.hash(points);
         }
+
+        public int move(int position) {
+            return points.get(position).move();
+        }
     }
 
     static class Lists {
