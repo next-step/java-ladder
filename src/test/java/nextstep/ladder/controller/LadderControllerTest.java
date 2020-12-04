@@ -74,6 +74,16 @@ class LadderControllerTest {
         assertThat(direction).isEqualTo(Direction.FORWARD);
     }
 
+    @Test
+    @DisplayName("이전 direction이 오른쪽일 때, 다음 direction 왼쪽")
+    void nextDirectionLeft() {
+        controller = new LadderController();
+
+        Direction direction = controller.decideDirection(Direction.RIGHT, 1, () -> 3);
+
+        assertThat(direction).isEqualTo(Direction.LEFT);
+    }
+
 }
 
 //    public Direction decideDirection(Direction direction, int condition, RandomStrategy randomStrategy) {
