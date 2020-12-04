@@ -25,6 +25,6 @@ class LadderTest {
     @DisplayName("동일 테스트")
     void testLadderEquality() {
         assertThat(new Ladder(2, 2))
-                .isEqualTo(new Ladder(Arrays.asList(HorizontalLine.of(2), HorizontalLine.of(2))));
+                .isEqualTo(new Ladder(Arrays.asList(HorizontalLine.ofLineCounts(2), HorizontalLine.ofLineCounts(2))));
     }
 }

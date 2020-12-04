@@ -29,19 +29,19 @@ class HorizontalLineTest {
     void test() {
         Boolean[] expected = {false, false, false, false};
 
-        assertThat(HorizontalLine.of(4))
-                .isEqualTo(HorizontalLine.of(Arrays.asList(expected)));
+        assertThat(HorizontalLine.ofLineCounts(4))
+                .isEqualTo(HorizontalLine.ofLines(Arrays.asList(expected)));
     }
 
     @ParameterizedTest
     @MethodSource("makePatterns")
     @DisplayName("변경 테스트")
     void shuffle(HowToConnect strategy, Boolean[] expected) {
-        HorizontalLine sampleLine = HorizontalLine.of(5);
+        HorizontalLine sampleLine = HorizontalLine.ofLineCounts(5);
 
         sampleLine.shuffle(strategy);
 
         assertThat(sampleLine)
-                .isEqualTo(HorizontalLine.of(Arrays.asList(expected)));
+                .isEqualTo(HorizontalLine.ofLines(Arrays.asList(expected)));
     }
 }

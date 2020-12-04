@@ -19,7 +19,7 @@ public class Ladder {
         }
 
         this.layer = IntStream.range(0, height)
-                .mapToObj(x -> HorizontalLine.of(numUsers - 1))
+                .mapToObj(x -> HorizontalLine.ofLineCounts(numUsers - 1))
                 .collect(toList());
     }
 

@@ -16,13 +16,13 @@ public class HorizontalLine {
         this.line = line;
     }
 
-    public static HorizontalLine of(int numUser) {
-        return IntStream.range(0, numUser)
+    public static HorizontalLine ofLineCounts(int LineCounts) {
+        return IntStream.range(0, LineCounts)
                 .mapToObj(x -> false)
                 .collect(collectingAndThen(toList(), HorizontalLine::new));
     }
 
-    public static HorizontalLine of(List<Boolean> line) {
+    public static HorizontalLine ofLines(List<Boolean> line) {
         return new HorizontalLine(line);
     }
 
