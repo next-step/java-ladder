@@ -10,6 +10,9 @@ public class ResultView {
     private static final String IS_HORIZONTAL = "-----";
     private static final String IS_NOT_HORIZONTAL = "     ";
 
+    private ResultView() {
+    }
+
     public static void printResultOpening() {
         System.out.println(RESULT_OPENING_MESSAGE);
     }

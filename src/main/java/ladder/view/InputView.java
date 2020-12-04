@@ -9,6 +9,9 @@ public class InputView {
 
     private static final Scanner scanner = new Scanner(System.in);
 
+    private InputView() {
+    }
+
     public static String askNames() {
         System.out.println(WHEN_ASK_USER_NAMES_MESSAGE);
         return scanner.nextLine();
