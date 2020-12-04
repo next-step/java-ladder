@@ -1,17 +1,11 @@
 package nextstep.ladder.domain.alternative;
 
-import nextstep.ladder.domain.BooleanGenerator;
 import nextstep.ladder.domain.TestingBooleanGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
-import java.util.function.Supplier;
-import java.util.stream.Collector;
 
-import static nextstep.ladder.domain.BooleanGenerator.generateBooleans;
-import static nextstep.ladder.utils.BinaryOperators.nope;
-import static nextstep.ladder.domain.alternative.LadderLineTest.Lists.last;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
@@ -44,96 +38,4 @@ public class LadderLineTest {
         return new PointListBuilder(booleans).build();
     }
 
-    static class LadderLine {
-        private static final Random RANDOM = new Random();
-        private final List<Point> points;
-
-        LadderLine(List<Point> points) {
-            this.points = points;
-        }
-
-        public static LadderLine of(int size) {
-            return of(size, RANDOM::nextBoolean);
-        }
-
-        static LadderLine of(int size, BooleanGenerator generator) {
-            return new LadderLine(new PointListBuilder(
-                    generateBooleans(excludeFirstPoint(size), generator)).build());
-        }
-
-        private static int excludeFirstPoint(int size) {
-            return size - 1;
-        }
-
-        int sizeOfPoints() {
-            return points.size();
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o)
-                return true;
-            if (o == null || getClass() != o.getClass())
-                return false;
-            LadderLine that = (LadderLine) o;
-            return points.equals(that.points);
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(points);
-        }
-
-        public int move(int position) {
-            return points.get(position).move();
-        }
-    }
-
-    static class Lists {
-        public static <T> T last(List<T> list) {
-            return list.get(list.size() - 1);
-        }
-    }
-
-    static class PointListBuilder {
-        private final Boolean[] rightMovables;
-
-        public PointListBuilder(Boolean[] rightMovables) {
-            this.rightMovables = rightMovables;
-        }
-
-        private List<Point> build() {
-            List<Point> result = Arrays.stream(rightMovables)
-                    .collect(collectPointsTo(ArrayList::new));
-            addLast(result);
-            return result;
-        }
-
-        private Collector<Boolean, List<Point>, List<Point>> collectPointsTo(Supplier<List<Point>> supplier) {
-            return Collector.of(supplier,
-                                this::addPoint,
-                                nope()
-            );
-        }
-
-        private void addPoint(List<Point> list, Boolean right) {
-            if (list.isEmpty()) {
-                addFirst(list, right);
-                return;
-            }
-            addNext(list, right);
-        }
-
-        private void addFirst(List<Point> list, Boolean right) {
-            list.add(Point.first(right));
-        }
-
-        private static void addNext(List<Point> list, Boolean right) {
-            list.add(last(list).next(right));
-        }
-
-        private void addLast(List<Point> result) {
-            result.add(last(result).last());
-        }
-    }
 }
