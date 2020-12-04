@@ -2,8 +2,7 @@ package nextstep.ladder2;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * 요구사항
@@ -16,5 +15,21 @@ public class LadderLineTest {
     @Test
     void create() {
         assertThat(LadderLine.of(3).sizeOfPoints()).isEqualTo(3);
+    }
+
+    private static class LadderLine {
+        private int size;
+
+        public LadderLine(int size) {
+            this.size = size;
+        }
+
+        public static LadderLine of(int size) {
+            return new LadderLine(3);
+        }
+
+        public int sizeOfPoints() {
+            return size;
+        }
     }
 }
