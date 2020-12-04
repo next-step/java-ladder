@@ -26,4 +26,8 @@ public class ResultView {
     public void drawForward() {
         System.out.print(String.format("%5s ", VERTICAL));
     }
+
+    public void enterLine() {
+        System.out.println();
+    }
 }

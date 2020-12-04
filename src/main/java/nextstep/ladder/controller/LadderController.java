@@ -82,20 +82,21 @@ public class LadderController {
     }
 
     private void drawLine(ResultView resultView, List<Point> points) {
-        System.out.println();
-        for(Point point : points) {
-            if(point.getDirection() == Direction.RIGHT) {
-                resultView.drawRight();
-            }
+        resultView.enterLine();
+        points.forEach(point -> checkDirection(resultView, point));
+    }
 
-            if(point.getDirection() == Direction.LEFT) {
-                resultView.drawLeft();
-            }
+    private void checkDirection(ResultView resultView, Point point) {
+        if(point.getDirection() == Direction.RIGHT) {
+            resultView.drawRight();
+        }
 
-            if(point.getDirection() == Direction.FORWARD) {
-                resultView.drawForward();
-            }
+        if(point.getDirection() == Direction.LEFT) {
+            resultView.drawLeft();
+        }
 
+        if(point.getDirection() == Direction.FORWARD) {
+            resultView.drawForward();
         }
     }
 
