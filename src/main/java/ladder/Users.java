@@ -14,14 +14,18 @@ public class Users {
 
     private final List<User> users;
 
-    Users(List<String> users) {
-        if (users.size() < MINIMUM_USER_COUNTS) {
-            throw new InvalidUsersNumberException();
-        }
+    public Users(List<String> users) {
+        validateUsers(users);
 
         this.users = users.stream()
                 .map(User::new)
                 .collect(toList());
+    }
+
+    private void validateUsers(List<String> users) {
+        if (users.size() < MINIMUM_USER_COUNTS) {
+            throw new InvalidUsersNumberException();
+        }
     }
 
     public int size() {

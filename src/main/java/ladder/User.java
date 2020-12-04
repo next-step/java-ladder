@@ -10,11 +10,15 @@ public class User {
     private final String name;
 
     public User(String name) {
+        validateName(name);
+
+        this.name = name;
+    }
+
+    private void validateName(String name) {
         if (name.isEmpty() || name.length() > MAXIMUM_NAME_LENGTH) {
             throw new InvalidUserNameException();
         }
-
-        this.name = name;
     }
 
     public String getName() {

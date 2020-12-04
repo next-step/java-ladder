@@ -16,13 +16,17 @@ public class Ladder {
     List<HorizontalLine> layer;
 
     public Ladder(int height, int numUsers) {
-        if (height < MINIMUM_LADDER_HEIGHT) {
-            throw new InvalidLadderHeightException();
-        }
+        validateHeight(height);
 
         this.layer = IntStream.range(0, height)
                 .mapToObj(x -> HorizontalLine.ofLineCounts(numUsers - 1))
                 .collect(toList());
+    }
+
+    private void validateHeight(int height) {
+        if (height < MINIMUM_LADDER_HEIGHT) {
+            throw new InvalidLadderHeightException();
+        }
     }
 
     public Ladder(List<HorizontalLine> lines) {
