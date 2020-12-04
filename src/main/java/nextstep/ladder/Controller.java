@@ -1,8 +1,11 @@
 package nextstep.ladder;
 
+import nextstep.ladder.auxiliary.LadderLinesFactory;
 import nextstep.ladder.domain.IndexedName;
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.LadderLines;
 import nextstep.ladder.domain.Spoke;
+import nextstep.ladder.domain.alternative.NextStepLadderLine;
 import nextstep.ladder.utils.ImmutableMaps;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.LadderView;
@@ -28,7 +31,10 @@ public class Controller {
         List<IndexedName> goals = IndexedName.wrap(inputView.requestGoal());
         int ladderHeight = inputView.requestHeight();
 
-        Ladder ladder = Ladder.of(createSpokes(ladderHeight, players.size()), goals);
+        LadderLines ladderLines = LadderLinesFactory.getConstructorFunction(NextStepLadderLine.class)
+                .apply(players.size(), ladderHeight);
+
+        Ladder ladder = new Ladder(ladderLines, goals);
 
         resultView.printLadder(new LadderViewAdapter(goals, ladder), IndexedName.unwrap(players));
 
