@@ -34,6 +34,14 @@ public class LadderLineTest {
                 .isEqualTo(0);
     }
 
+    @DisplayName("이동가능한 목록을 리턴한다")
+    @Test
+    void toMovableList() {
+        assertThat(LadderLine.of(3, new TestingBooleanGenerator(true, false))
+                           .toMovableList())
+                .containsExactly(true, false);
+    }
+
     private List<Point> buildPoints(Boolean... booleans) {
         return new PointListBuilder(booleans).build();
     }
