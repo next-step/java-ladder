@@ -11,11 +11,15 @@ import static java.util.stream.Collectors.toMap;
 import static nextstep.ladder.utils.BinaryOperators.nope;
 
 public class Ladder {
-    private final List<Line> lines;
     private final List<IndexedName> goals;
+    private final LadderLines ladderLines;
 
     public Ladder(List<Line> lines, List<IndexedName> goals) {
-        this.lines = lines;
+        this(new DefaultLadderLine(lines), goals);
+    }
+
+    public Ladder(LadderLines ladderLines, List<IndexedName> goals) {
+        this.ladderLines = ladderLines;
         this.goals = goals;
     }
 
@@ -28,8 +32,8 @@ public class Ladder {
                                   .collect(toList()), goals);
     }
 
-    public void forEach(Consumer<Line> singleLineConsumer) {
-        lines.forEach(singleLineConsumer);
+    public void forEach(Consumer<List<Boolean>> singleLineConsumer) {
+        ladderLines.forEach(singleLineConsumer);
     }
 
     public Map<String, String> moveForAll(List<IndexedName> players) {
@@ -38,12 +42,31 @@ public class Ladder {
     }
 
     public Position moveOn(Position from) {
-        return lines.stream()
-                .reduce(from, (position, line) -> line.moveOn(position), nope());
+        return Position.of(ladderLines.move(from.toInt()));
     }
 
     String moveFor(IndexedName name) {
         int index = moveOn(Position.of(name)).toInt();
         return goals.get(index).toString();
+    }
+
+    static class DefaultLadderLine implements LadderLines {
+        private final List<Line> lines;
+
+        public DefaultLadderLine(List<Line> lines) {
+            this.lines = lines;
+        }
+
+        @Override
+        public int move(int index) {
+            return lines.stream()
+                    .reduce(Position.of(index), (position, line) -> line.moveOn(position), nope())
+                    .toInt();
+        }
+
+        @Override
+        public void forEach(Consumer<List<Boolean>> singleLineConsumer) {
+            lines.forEach(line -> singleLineConsumer.accept(line.toSpokeList()));
+        }
     }
 }

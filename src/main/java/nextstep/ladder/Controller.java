@@ -2,7 +2,6 @@ package nextstep.ladder;
 
 import nextstep.ladder.domain.IndexedName;
 import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Spoke;
 import nextstep.ladder.utils.ImmutableMaps;
 import nextstep.ladder.view.InputView;
@@ -71,8 +70,7 @@ public class Controller {
 
         @Override
         public void forEachLine(Consumer<List<Boolean>> singleLineConsumer) {
-            ladder.forEach(Line::toSpokeStream);
-
+            ladder.forEach(singleLineConsumer);
         }
     }
 }
