@@ -9,7 +9,7 @@ public class LadderPoint {
     private static Random random = new Random();
     private List<Boolean> points = new ArrayList<>();
 
-    public LadderPoint(int countOfPerson) {
+    public LadderPoint(final int countOfPerson) {
         initLineList(countOfPerson);
     }
 
