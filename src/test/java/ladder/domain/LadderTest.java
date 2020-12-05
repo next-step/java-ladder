@@ -31,4 +31,5 @@ public class LadderTest {
         // then
         assertThat(ladder.getLine()).isEqualTo(new Line(lineConnections));
     }
+
 }
