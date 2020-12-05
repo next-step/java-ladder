@@ -2,8 +2,6 @@ package nextstep.optional;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
 
 public class Users {
     static final User DEFAULT_USER = new User("codesquad", 100);
