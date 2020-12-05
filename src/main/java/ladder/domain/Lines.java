@@ -1,32 +1,41 @@
 package ladder.domain;
 
+import ladder.utils.LadderUtil;
+
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Lines {
 
-    private final static Random RANDOM = new Random();
+    private final List<Line> lines = new ArrayList<>();
 
-    private final List<Line> lines;
-
-    private Lines(List<Line> lines) {
-        this.lines = lines;
+    public Lines(int countOfPerson) {
+        createLines(countOfPerson);
     }
 
-    public static Lines of(int countOfPerson) {
-        return new Lines(createLines(countOfPerson));
+    private void createLines(int countOfPerson) {
+        IntStream.range(0, countOfPerson - 1)
+                .forEach(i -> addPoint());
     }
 
-    public static boolean isLine() {
-        return RANDOM.nextBoolean();
+    private void addPoint() {
+        if (this.lines.isEmpty()) {
+            this.lines.add(Line.of(LadderUtil.isLine()));
+            return;
+        }
+        checkPointRepeat();
     }
 
-    private static List<Line> createLines(int countOfPerson) {
-        return IntStream.range(0, countOfPerson)
-                .mapToObj(i -> Line.of(isLine()))
-                .collect(Collectors.toList());
+    private void checkPointRepeat() {
+        boolean isCurrentOfLine = this.lines.get(lines.size() - 1).getLine();
+        boolean isLine = LadderUtil.isLine();
+        if (isCurrentOfLine == isLine) {
+            this.lines.add(Line.of(!isCurrentOfLine));
+            return;
+        }
+
+        this.lines.add(Line.of(isLine));
     }
 
     public List<Line> getLines() {
