@@ -1,4 +1,4 @@
-package ladder;
+package ladder.domain;
 
 import ladder.DTO.LadderDTO;
 import ladder.ladderexceptions.InvalidLadderHeightException;

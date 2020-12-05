@@ -1,4 +1,4 @@
-package ladder;
+package ladder.domain;
 
 import ladder.ladderexceptions.InvalidUserNameException;
 import org.junit.jupiter.api.DisplayName;

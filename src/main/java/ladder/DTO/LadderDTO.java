@@ -1,6 +1,6 @@
 package ladder.DTO;
 
-import ladder.HorizontalLine;
+import ladder.domain.HorizontalLine;
 
 import java.util.List;
 

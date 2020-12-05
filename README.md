@@ -57,8 +57,9 @@
 * [X] 매직넘버 치환 [참고](https://hoonmaro.tistory.com/44)
 * [X] 테스트 하기 힘든 로직 외부 주입
 * [X] 불변 객체 [참고](https://woowacourse.github.io/javable/2020-05-08/First-Class-Collection)
-* DTO 객체 생성방식
+* [X] DTO 객체 생성방식
 * [X] Static method 만 가지고 있는 유틸성 클래스에 대한 불필요한 인스턴스화 방지
+* [X] Client 분리
 
 ### 피드백 액션플랜 및 개인 묙표
 

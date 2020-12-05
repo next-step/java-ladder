@@ -1,4 +1,4 @@
-package ladder;
+package ladder.domain;
 
 import ladder.DTO.UsersDTO;
 import ladder.ladderexceptions.InvalidUsersNumberException;
