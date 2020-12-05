@@ -27,9 +27,10 @@ public class HorizontalLine {
     }
 
     public void shuffle(HowToConnect connectionMode) {
-        IntStream.range(0, line.size())
-                .mapToObj(this::checkLeftSideStatus)
-                .forEach(connectionMode::needToConnect);
+        for (int i = 0; i < line.size(); i++) {
+            boolean leftSideStatus = checkLeftSideStatus(i);
+            line.set(i, connectionMode.needToConnect(leftSideStatus));
+        }
     }
 
     private boolean checkLeftSideStatus(int index) {

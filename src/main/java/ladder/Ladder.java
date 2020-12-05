@@ -15,11 +15,11 @@ public class Ladder {
 
     List<HorizontalLine> layer;
 
-    public Ladder(int height, int numUsers) {
+    public Ladder(int height, int numLines) {
         validateHeight(height);
 
         this.layer = IntStream.range(0, height)
-                .mapToObj(x -> HorizontalLine.ofLineCounts(numUsers - 1))
+                .mapToObj(x -> HorizontalLine.ofLineCounts(numLines))
                 .collect(toList());
     }
 
@@ -35,7 +35,10 @@ public class Ladder {
 
     public void shuffle() {
         HowToConnect connectionMode = new RandomConnectionMode();
+        shuffle(connectionMode);
+    }
 
+    public void shuffle(HowToConnect connectionMode) {
         for (HorizontalLine line : layer) {
             line.shuffle(connectionMode);
         }

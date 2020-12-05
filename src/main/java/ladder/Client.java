@@ -32,7 +32,7 @@ public class Client {
     }
 
     private static void generateLadder() {
-        ladder = new Ladder(ladderHeight, users.size());
+        ladder = new Ladder(ladderHeight, users.size() - 1);
         ladder.shuffle();
     }
 
