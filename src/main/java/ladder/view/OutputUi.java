@@ -2,7 +2,6 @@ package ladder.view;
 
 import ladder.domain.Lines;
 import ladder.domain.Name;
-import ladder.utils.LadderUtil;
 import ladder.utils.StringUtil;
 
 import java.util.Collections;
@@ -19,10 +18,10 @@ public class OutputUi {
         System.out.println("실행결과");
     }
 
-    public static void printLadder(List<Name> names, Lines lines) {
+    public static void printLadder(List<Name> names, Lines lines, int ladderMaximumHeight) {
         printResult();
         printParticipants(names);
-        drawingLadder(names, lines);
+        drawingLadder(lines, ladderMaximumHeight);
     }
 
     private static void printParticipants(List<Name> names) {
@@ -32,24 +31,20 @@ public class OutputUi {
         System.out.println();
     }
 
-    private static void drawingLadder(List<Name> names, Lines lines) {
-        IntStream.range(0, lines.getLines().size()).forEach(j -> printLine(names, j, lines));
+    private static void drawingLadder(Lines lines, int ladderMaximumHeight) {
+        IntStream.range(0, ladderMaximumHeight)
+                .mapToObj(j -> lines)
+                .forEach(OutputUi::printLine);
     }
 
-    private static void printLine(List<Name> names, int count, Lines lines) {
+    private static void printLine(Lines lines) {
         StringBuilder sb = new StringBuilder();
-        int bound = names.size();
-        IntStream.range(0, bound).forEach(i -> {
+        sb.append(STEP);
+        Collections.reverse(lines.getLines());
+        lines.getLines().forEach(line -> {
+            sb.append(line.getLine() ? LINE : StringUtil.padRight(EMPTY, REPEAT));
             sb.append(STEP);
-            sb.append(LadderUtil.isLast(i, names.size()) ? printLine(count, lines) : "");
         });
         System.out.println(sb);
     }
-
-    private static String printLine(int count, Lines lines) {
-        Collections.reverse(lines.getLines());
-        return lines.getLines().get(count).getLine() ? LINE : StringUtil.padRight(EMPTY, REPEAT);
-    }
-
-
 }
