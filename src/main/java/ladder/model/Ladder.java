@@ -4,7 +4,6 @@ import utils.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -13,8 +12,6 @@ public class Ladder {
     private final static int LINE_ITEM_VARIABLE = 1;
 
     private final static String LADDER_SIZE_ERROR_MESSAGE = "올바른 사다리 높이를 입력해주세요";
-
-    private final static Random RANDOM = new Random();
 
     private final List<Line> lines;
 
@@ -34,27 +31,22 @@ public class Ladder {
 
         return new Ladder(lines);
     }
-    private static List<LadderItem> makeLineItems(int numberOfItems) {
-        List<LadderItem> ladderItems = new ArrayList<>();
-        ladderItems.add(LadderItem.findItem(getZeroOrOne()));
+    private static List<Bridge> makeLineItems(int numberOfItems) {
+        List<Bridge> bridges = new ArrayList<>();
+        bridges.add(Bridge.createRandomBridge(0));
 
         IntStream.range(1, numberOfItems)
-                .forEach(idx -> ladderItems.add(makeLineItem(ladderItems.get(idx - 1))));
+                .forEach(idx -> bridges.add(makeBridge(idx, bridges.get(idx-1))));
 
-        return ladderItems;
+        return bridges;
 
     }
-
-    private static LadderItem makeLineItem(LadderItem previousItem) {
-        if (previousItem.equals(LadderItem.HORIZONTAL)) {
-            return LadderItem.BLANK_HORIZONTAL;
+    private static Bridge makeBridge(int idx, Bridge previousBridges){
+        if(previousBridges.isMovable()){
+            return Bridge.createNonMovableBridge(idx);
         }
 
-        return LadderItem.findItem(getZeroOrOne());
-    }
-
-    private static int getZeroOrOne() {
-        return RANDOM.nextDouble() >= 0.5 ? 1 : 0;
+        return Bridge.createRandomBridge(idx);
     }
 
     private static void validateLadderSize(String size) {

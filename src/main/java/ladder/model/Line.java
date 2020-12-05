@@ -5,24 +5,24 @@ import java.util.stream.IntStream;
 
 public class Line {
     private final static String LINE_ERROR_MESSAGE = "올바르지 못한 라인입니다.";
-    private List<LadderItem> ladderItems;
+    private List<Bridge> bridges;
 
-    private Line(List<LadderItem> ladderItems) {
-        this.ladderItems = ladderItems;
+    private Line(List<Bridge> bridges) {
+        this.bridges = bridges;
     }
 
-    public static Line from(List<LadderItem> ladderItems) {
-        validateLine(ladderItems);
-        return new Line(ladderItems);
+    public static Line from(List<Bridge> bridges) {
+        validateLine(bridges);
+        return new Line(bridges);
     }
 
-    private static void validateLine(List<LadderItem> ladderItems) {
-        if (ladderItems.size() == 1) {
+    private static void validateLine(List<Bridge> bridges) {
+        if (bridges.size() == 1) {
            return;
         }
 
-        boolean hasInvalidLadderItem = IntStream.range(0, ladderItems.size() - 1)
-                .mapToObj(idx -> window(idx, ladderItems))
+        boolean hasInvalidLadderItem = IntStream.range(0, bridges.size() - 1)
+                .mapToObj(idx -> window(idx, bridges))
                 .reduce((x, y) -> x || y)
                 .orElse(Boolean.TRUE);
 
@@ -31,29 +31,25 @@ public class Line {
         }
     }
 
-    private static boolean window(int idx, List<LadderItem> ladderItems) {
-        LadderItem now = ladderItems.get(idx);
-        LadderItem next = ladderItems.get(idx + 1);
+    private static boolean window(int idx, List<Bridge> bridges) {
+        Bridge now = bridges.get(idx);
+        Bridge next = bridges.get(idx + 1);
 
-        if (now.equals(LadderItem.HORIZONTAL)) {
-            return now.equals(next);
-        }
-
-        return false;
+        return now.isMovable() && next.isMovable();
     }
 
     @Override
     public String toString() {
         StringBuilder line = new StringBuilder(LadderItem.VERTICAL.getItem());
 
-        ladderItems.stream()
+        bridges.stream()
                 .map(this::partOfLine)
                 .forEach(line::append);
 
         return line.toString();
     }
 
-    private String partOfLine(LadderItem ladderItem) {
-        return ladderItem.getItem() + LadderItem.VERTICAL.getItem();
+    private String partOfLine(Bridge bridge) {
+        return bridge.toString() + LadderItem.VERTICAL.getItem();
     }
 }
