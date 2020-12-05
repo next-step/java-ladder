@@ -20,7 +20,7 @@ public class LadderResultView extends AbstractView {
         displayLadder(ladder);
 
         // 게임 결과 출력
-        stringBuilder.append(gameResultsView(gameResults.getGameResults()));
+        stringBuilder.append(gameResultsView(gameResults.getGameResultValues()));
         printAndClear();
     }
 

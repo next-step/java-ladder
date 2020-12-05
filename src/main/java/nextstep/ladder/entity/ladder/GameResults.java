@@ -1,21 +1,22 @@
 package nextstep.ladder.entity.ladder;
 
 import nextstep.ladder.entity.User;
+import nextstep.ladder.entity.exception.NotFoundException;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class GameResults {
 
-    private final List<String> gameResults;
+    private final List<GameResult> gameResults;
 
     public GameResults(List<String> gameResults) {
-        for (String gameResult : gameResults) {
-           throwIfNull(gameResult);
-           throwIfEmpty(gameResult);
-        }
-        this.gameResults = gameResults;
+        this.gameResults = gameResults.stream()
+                .peek(this::throwIfNull)
+                .peek(this::throwIfEmpty)
+                .map(GameResult::new)
+                .collect(Collectors.toList());
     }
 
     private void throwIfNull(String gameResult) {
@@ -30,7 +31,7 @@ public class GameResults {
         }
     }
 
-    public String getGameResult(int positionInLadder) {
+    public GameResult getGameResult(int positionInLadder) {
         try {
             return gameResults.get(positionInLadder - 1);
         } catch (IndexOutOfBoundsException e) {
@@ -40,7 +41,21 @@ public class GameResults {
         }
     }
 
-    public List<String> getGameResults() {
-        return gameResults;
+    public GameResult getGameResult(User user) {
+        return gameResults.stream()
+                .filter(gameResult -> gameResult.ofUser(user))
+                .findFirst()
+                .orElseThrow(() -> new NotFoundException("게임 결과를 찾을 수 없습니다."));
     }
+
+    public List<String> getGameResultValues() {
+        return gameResults.stream()
+                .map(GameResult::getValue)
+                .collect(Collectors.toList());
+    }
+
+    public void map(User user, int position) {
+        getGameResult(position).map(user);
+    }
+
 }

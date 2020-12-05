@@ -5,6 +5,8 @@ import nextstep.ladder.entity.ladder.*;
 import nextstep.ladder.view.*;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class LadderController {
@@ -14,7 +16,6 @@ public class LadderController {
         Users users = getUsers();
         // 실행 결과 입력 받기
         GameResults gameResults = getGameResults();
-
         // 사다리 높이 입력 받기
         LadderHeight ladderHeight = getLadderHeight();
 
@@ -25,20 +26,15 @@ public class LadderController {
 
         // 출력
         LadderResultView.display(ladder, users, gameResults);
-
         // 결과 보기 사용자 입력
         User showGameResultUser = getShowGameResultUser();
 
-        // 결과 계산
-        int position = users.getPosition(showGameResultUser);
-        int arrivalPosition = ladder.goDown(position);
+        if (Objects.isNull(showGameResultUser)) {
+            showAllUsers(ladder, users, gameResults);
+            return;
+        }
 
-        // 출력
-        String gameResult = gameResults.getGameResult(arrivalPosition);
-
-        System.out.println("실행 결과");
-        System.out.println(gameResult);
-
+        showSingleUser(ladder, users, showGameResultUser, gameResults);
     }
 
     private Users getUsers() {
@@ -51,6 +47,9 @@ public class LadderController {
 
     private User getShowGameResultUser() {
         String showGameResultUser = ShowGameResultUserInputView.getShowGameResultUser();
+        if (showGameResultUser.equals("all")) {
+            return null;
+        }
         return new User(showGameResultUser);
     }
 
@@ -58,4 +57,24 @@ public class LadderController {
         return new GameResults(GameResultInputView.getGameResult());
     }
 
+    private void showAllUsers(Ladder ladder, Users users, GameResults gameResults) {
+        for (int position = 1; position <= users.getUserCount(); position++) {
+            int arrivalPosition = ladder.goDown(position);
+            gameResults.map(users.at(position), arrivalPosition);
+        }
+        // 출력
+        GameResultView.displayResultWithUserName(users, gameResults);
+    }
+
+    private void showSingleUser(Ladder ladder, Users users, User showGameResultUser, GameResults gameResults) {
+        // 결과 계산
+        int startPosition = users.getPosition(showGameResultUser);
+        int arrivalPosition = ladder.goDown(startPosition);
+
+        // 출력
+        gameResults.map(users.at(startPosition), arrivalPosition);
+        GameResult gameResult = gameResults.getGameResult(arrivalPosition);
+
+        GameResultView.displaySingleResult(gameResult);
+    }
 }
