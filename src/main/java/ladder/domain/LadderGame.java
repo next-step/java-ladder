@@ -3,6 +3,8 @@ package ladder.domain;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import static ladder.domain.LadderGameConfig.MIN_LADDER_HEIGHT;
+
 public class LadderGame {
 
     private LineBuildStrategy lineBuildStrategy;
@@ -13,7 +15,14 @@ public class LadderGame {
     }
 
     public Ladders start(int ladderCount, int ladderMaxHeight){
+        validateLadderMinHeight(ladderMaxHeight);
         return build(ladderCount, ladderMaxHeight);
+    }
+
+    private void validateLadderMinHeight(int ladderMaxHeight) {
+        if(ladderMaxHeight < MIN_LADDER_HEIGHT){
+            throw new IllegalArgumentException(LadderGameErrorMessage.OVER_MIN_HEIGHT.getErrorMessage());
+        }
     }
 
     private Ladders build(int ladderCount, int ladderMaxHeight) {
