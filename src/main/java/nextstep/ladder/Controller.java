@@ -13,12 +13,9 @@ import nextstep.ladder.view.ResultView;
 import java.io.OutputStreamWriter;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 import java.util.function.Consumer;
 
 public class Controller {
-
-    private static final Random RANDOM = new Random();
     private static final String ALL = "all";
     private final InputView inputView = new InputView();
     private final ResultView resultView = new ResultView(new OutputStreamWriter(System.out));
