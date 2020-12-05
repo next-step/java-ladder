@@ -3,6 +3,7 @@ package ladder;
 import ladder.DTO.LadderDTO;
 import ladder.ladderexceptions.InvalidLadderHeightException;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.IntStream;
@@ -45,11 +46,7 @@ public class Ladder {
     }
 
     public LadderDTO exportData() {
-        List<List<Boolean>> layout = this.layer.stream()
-                .map(HorizontalLine::getLine)
-                .collect(toList());
-
-        return new LadderDTO(layout);
+        return new LadderDTO(Collections.unmodifiableList(layer));
     }
 
     @Override

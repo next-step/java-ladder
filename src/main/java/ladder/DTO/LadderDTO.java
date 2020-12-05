@@ -1,16 +1,22 @@
 package ladder.DTO;
 
+import ladder.HorizontalLine;
+
 import java.util.List;
+
+import static java.util.stream.Collectors.toList;
 
 public class LadderDTO {
 
-    private final List<List<Boolean>> layout;
+    private final List<HorizontalLine> layout;
 
-    public LadderDTO(List<List<Boolean>> layout) {
+    public LadderDTO(List<HorizontalLine> layout) {
         this.layout = layout;
     }
 
     public List<List<Boolean>> getLayout() {
-        return this.layout;
+        return this.layout.stream()
+                .map(HorizontalLine::getLine)
+                .collect(toList());
     }
 }
