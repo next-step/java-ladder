@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Line {
 
-    private boolean isLine;
+    private final boolean isLine;
 
     private Line(boolean isLine) {
         this.isLine = isLine;
