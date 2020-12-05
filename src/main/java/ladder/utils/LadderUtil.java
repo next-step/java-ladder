@@ -1,7 +1,11 @@
 package ladder.utils;
 
+import java.util.Random;
+
 public class LadderUtil {
-    public static boolean isLast(int i, int size) {
-        return i != (size - 1);
+    private static final Random RANDOM = new Random();
+
+    public static boolean isLine() {
+        return RANDOM.nextBoolean();
     }
 }
