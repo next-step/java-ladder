@@ -1,6 +1,8 @@
 package nextstep.ladder.domain;
 
-import java.util.stream.Stream;
+import java.util.List;
+
+import static java.util.stream.Collectors.toList;
 
 public class Line {
 
@@ -12,8 +14,8 @@ public class Line {
         this.spoke = spoke;
     }
 
-    public Stream<Boolean> toSpokeStream() {
-        return spoke.stream();
+    public List<Boolean> toSpokeList() {
+        return spoke.stream().collect(toList());
     }
 
     public Position moveOn(Position position) {
