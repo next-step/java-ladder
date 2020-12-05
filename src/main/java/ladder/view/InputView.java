@@ -1,9 +1,7 @@
 package ladder.view;
 
 import ladder.domain.LadderGameErrorMessage;
-import java.util.Arrays;
 import java.util.Scanner;
-import static ladder.domain.LadderGameConfig.PLAYER_NAME_MAX_LENGTH;
 
 public class InputView {
 
@@ -24,19 +22,7 @@ public class InputView {
     private static String[] splitPlayerNames(String playerNamesValue) {
         String[] playerNames = playerNamesValue.split(PLAYER_NAME_DELIMITER);
 
-        validatePlayerName(playerNames);
-
         return playerNames;
-    }
-
-    private static void validatePlayerName(String[] playerNames) {
-        boolean matched = Arrays.stream(playerNames)
-                .anyMatch(playerName -> playerName.length() > PLAYER_NAME_MAX_LENGTH);
-
-        if(matched){
-            throw new IllegalArgumentException(LadderGameErrorMessage.ILLEGAL_MAX_PLAYER_NAME.getErrorMessage());
-        }
-
     }
 
     public static int inputLadderHeight(){

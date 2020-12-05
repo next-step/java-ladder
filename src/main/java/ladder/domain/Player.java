@@ -2,16 +2,25 @@ package ladder.domain;
 
 import java.util.Objects;
 
+import static ladder.domain.LadderGameConfig.PLAYER_NAME_MAX_LENGTH;
+
 public class Player {
 
     private String name;
 
     public Player(String name){
+        validatePlayerName(name);
         this.name = name;
     }
 
     public String getName() {
         return name;
+    }
+
+    private void validatePlayerName(String playerName) {
+        if(playerName.length() > PLAYER_NAME_MAX_LENGTH){
+            throw new IllegalArgumentException(LadderGameErrorMessage.ILLEGAL_MAX_PLAYER_NAME.getErrorMessage());
+        }
     }
 
     @Override
