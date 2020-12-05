@@ -50,7 +50,7 @@
 ### 리뷰어님 피드백 정리
 
 * [X] 변수 네이밍 (Client, HorizontalLine)
-* 테스트 코드 작성방식 변경, 람다식 적용 등
+* [X] 테스트 코드 작성방식 변경, 람다식 적용 등
 * [X] 정적 팩토리 메소드
   개선 [참고](https://velog.io/@ljinsk3/%EC%A0%95%EC%A0%81-%ED%8C%A9%ED%86%A0%EB%A6%AC-%EB%A9%94%EC%84%9C%EB%93%9C%EB%8A%94-%EC%99%9C-%EC%82%AC%EC%9A%A9%ED%95%A0%EA%B9%8C)
 * [X] 유효성 검사 분리

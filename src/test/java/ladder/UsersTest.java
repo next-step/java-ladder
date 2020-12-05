@@ -23,20 +23,21 @@ class UsersTest {
     @Test
     @DisplayName("Users 생성 테스트 빈 배열")
     void testEmptyInstance() {
-        assertThatExceptionOfType(InvalidUsersNumberException.class).isThrownBy(
-                () -> new Users(new ArrayList<>())
-        );
+        assertThatThrownBy(() -> new Users(new ArrayList<>()))
+                .isInstanceOf(InvalidUsersNumberException.class)
+                .hasMessage("최소 1인 이상의 사용자가 필요합니다.");
     }
 
     @Test
     @DisplayName("최소 인원(2) 미만 시의 예외")
     void testWhenLessMember() {
-        assertThatExceptionOfType(InvalidUsersNumberException.class).isThrownBy(
+        assertThatThrownBy(
                 () -> {
                     List<String> users = Arrays.asList("BSH");
                     new Users(users);
                 }
-        );
+        ).isInstanceOf(InvalidUsersNumberException.class)
+                .hasMessage("최소 1인 이상의 사용자가 필요합니다.");
     }
 
     @Test
