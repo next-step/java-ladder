@@ -22,7 +22,7 @@ public class Name {
         }
     }
 
-    public static void validate(String name) {
+    private static void validate(String name) {
         nameToMaxLengthValidate(name);
         if (StringUtil.isEmpty(name)) {
             throw new IllegalArgumentException("참여할 사람 이름을 입력해주세요.");
