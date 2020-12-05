@@ -3,6 +3,7 @@ package ladder.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -27,7 +28,7 @@ public class NameTest {
 
     @ParameterizedTest
     @DisplayName("사다리 참가자 입력 받은 사람 이름 빈 값인 경우 예외")
-    @ValueSource(strings = {""})
+    @EmptySource
     public void 입력받은_사람_이름_빈(String name) {
         assertThatThrownBy(() -> Name.of(name))
                 .isInstanceOf(IllegalArgumentException.class)
