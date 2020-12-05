@@ -1,6 +1,9 @@
 package nextstep.ladder.entity.ladder;
 
+import nextstep.ladder.entity.User;
+
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public class GameResults {
@@ -35,5 +38,9 @@ public class GameResults {
             String message = String.format("올바르지 않은 위치값 입니다. (최소=1, 최대=%d)", total);
             throw new IllegalArgumentException(message);
         }
+    }
+
+    public List<String> getGameResults() {
+        return gameResults;
     }
 }

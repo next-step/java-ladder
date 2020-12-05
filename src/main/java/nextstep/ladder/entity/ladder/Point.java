@@ -51,4 +51,15 @@ public class Point {
         return this.next;
     }
 
+    public int getPosition() {
+        return position;
+    }
+
+    public Point getLinkPoint() {
+        return linkWith;
+    }
+
+    public boolean isOnPositionOf(int position) {
+        return this.position == position;
+    }
 }

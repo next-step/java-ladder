@@ -24,6 +24,24 @@ public class Ladder {
         return new Ladder(firstFloor);
     }
 
+    public int goDown(int startPosition) {
+        return goDownRecursively(firstFloor, firstFloor.moveTo(startPosition))
+                .getPosition();
+    }
+
+    private Point goDownRecursively(Floor floor, Point point) {
+
+        if (!floor.hasNext()) {
+            return point.isLinked() ? point.getLinkPoint() : point;
+        }
+
+        int nextPosition = point.isLinked() ? point.getLinkPoint().getPosition() : point.getPosition();
+        Floor nextFloor = floor.getNextFloor();
+        Point nextPoint = nextFloor.moveTo(nextPosition);
+
+        return goDownRecursively(nextFloor, nextPoint);
+    }
+
     public Floor getFirstFloor() {
         return firstFloor;
     }

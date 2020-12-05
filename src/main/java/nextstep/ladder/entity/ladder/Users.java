@@ -36,4 +36,9 @@ public class Users {
     public int getUserCount() {
         return this.users.size();
     }
+
+    public int getPosition(User user) {
+        int index = users.indexOf(user);
+        return index > -1? index + 1 : -1;
+    }
 }

@@ -32,4 +32,31 @@ class UsersTest {
         });
     }
 
+    @Test
+    void test_getPosition_success() {
+        // Given
+        Users users = new Users(usersInput);
+        User user = new User(usersInput.get(1));
+
+        // When
+        int position = users.getPosition(user);
+
+        // Then
+        assertEquals(position, 1);
+    }
+
+    @Test
+    void test_getPosition_fail() {
+        // Given
+        Users users = new Users(usersInput);
+        User user = new User("unkn");
+
+        // When
+        int position = users.getPosition(user);
+
+        // Then
+        assertEquals(position, -1);
+    }
+
+
 }
