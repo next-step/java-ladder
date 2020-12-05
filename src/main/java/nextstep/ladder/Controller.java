@@ -4,7 +4,6 @@ import nextstep.ladder.auxiliary.LadderLinesFactory;
 import nextstep.ladder.domain.IndexedName;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.LadderLines;
-import nextstep.ladder.domain.Spoke;
 import nextstep.ladder.domain.alternative.NextStepLadderLine;
 import nextstep.ladder.utils.ImmutableMaps;
 import nextstep.ladder.view.InputView;
@@ -16,8 +15,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.function.Consumer;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class Controller {
 
@@ -45,11 +42,6 @@ public class Controller {
             name = inputView.requestPlayerName();
             resultView.printResult(getMoveResult(moveResult, name));
         } while (!name.equals(ALL));
-    }
-
-    private Stream<Spoke> createSpokes(int ladderHeight, int width) {
-        return IntStream.range(0, ladderHeight)
-                .mapToObj(__ -> Spoke.fromCount(width - 1, RANDOM::nextBoolean));
     }
 
     private Map<String, String> getMoveResult(Map<String, String> result, String name) {
