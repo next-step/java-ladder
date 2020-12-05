@@ -1,19 +1,18 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.Line;
+import nextstep.ladder.domain.LadderLine;
+import nextstep.ladder.domain.Point;
 
 import java.util.function.Consumer;
 
 public class LineRenderer {
     private final Runnable firstPartOfLine;
-    private final Consumer<Boolean> point;
-    private final Runnable ladderStick;
+    private final Consumer<Point> point;
     private final Runnable lastPartOfLine;
 
     private LineRenderer(Builder builder) {
         firstPartOfLine = builder.firstPartOfLine;
         point = builder.point;
-        ladderStick = builder.ladderStick;
         lastPartOfLine = builder.lastPartOfLine;
     }
 
@@ -21,25 +20,17 @@ public class LineRenderer {
         return new Builder();
     }
 
-    public Consumer<Line> renderLine() {
-        return (Line line) -> {
+    public Consumer<LadderLine> renderLine() {
+        return (LadderLine line) -> {
             firstPartOfLine.run();
-            line.pointsForEach(renderPoint());
+            line.pointsForEach(point);
             lastPartOfLine.run();
-        };
-    }
-
-    private Consumer<Boolean> renderPoint() {
-        return pointValue -> {
-            this.point.accept(pointValue);
-            ladderStick.run();
         };
     }
 
     public static class Builder {
         private Runnable firstPartOfLine;
-        private Consumer<Boolean> point;
-        private Runnable ladderStick;
+        private Consumer<Point> point;
         private Runnable lastPartOfLine;
 
         private Builder() {
@@ -51,13 +42,8 @@ public class LineRenderer {
             return this;
         }
 
-        public Builder point(Consumer<Boolean> point) {
+        public Builder point(Consumer<Point> point) {
             this.point = point;
-            return this;
-        }
-
-        public Builder ladderStick(Runnable ladderStick) {
-            this.ladderStick = ladderStick;
             return this;
         }
 

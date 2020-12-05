@@ -8,11 +8,11 @@ import java.util.stream.Collectors;
 public class Participants {
     public static final String DUPLICATE_NAME_EXIST_ERR_MSG = "중복된 이름은 사용 할 수 없습니다.";
     private final List<Name> names;
-    private final NumberOfParticipants numberOfParticipants;
+    private final SizeOfPerson sizeOfPerson;
 
     private Participants(List<String> inputNames) {
         names = getNames(inputNames);
-        numberOfParticipants = NumberOfParticipants.valueOf(inputNames.size());
+        sizeOfPerson = SizeOfPerson.valueOf(inputNames.size());
         validateDuplication(inputNames);
     }
 
@@ -37,8 +37,8 @@ public class Participants {
         return new Participants(Arrays.asList(inputNames));
     }
 
-    public NumberOfParticipants getNumberOfParticipants() {
-        return numberOfParticipants;
+    public SizeOfPerson getSizeOfPerson() {
+        return sizeOfPerson;
     }
 
     public void namesValueForEach(Consumer<String> consumer) {

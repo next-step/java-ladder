@@ -46,4 +46,11 @@ public class ResultCandidate {
     public int hashCode() {
         return value.hashCode();
     }
+
+    @Override
+    public String toString() {
+        return "ResultCandidate{" +
+                "value='" + value + '\'' +
+                '}';
+    }
 }

@@ -9,9 +9,9 @@ public class ResultCandidates {
     public static final String INVALID_SIZE_ERR_MSG = "실행 결과값은 참가자 수와 같아야 합니다.";
     private final List<ResultCandidate> value;
 
-    private ResultCandidates(List<String> value, NumberOfParticipants numberOfParticipants) {
+    private ResultCandidates(List<String> value, SizeOfPerson sizeOfPerson) {
         this.value = getResultsValue(value);
-        validateSize(numberOfParticipants);
+        validateSize(sizeOfPerson);
     }
 
     private List<ResultCandidate> getResultsValue(List<String> value) {
@@ -20,18 +20,18 @@ public class ResultCandidates {
                 .collect(Collectors.toList());
     }
 
-    private void validateSize(NumberOfParticipants numberOfParticipants) {
-        if (value.size() != numberOfParticipants.getValue()) {
+    private void validateSize(SizeOfPerson sizeOfPerson) {
+        if (value.size() != sizeOfPerson.getValue()) {
             throw new IllegalArgumentException(INVALID_SIZE_ERR_MSG);
         }
     }
 
-    public static ResultCandidates of(NumberOfParticipants numberOfParticipants, List<String> resultsInput) {
-        return new ResultCandidates(resultsInput, numberOfParticipants);
+    public static ResultCandidates of(SizeOfPerson sizeOfPerson, List<String> resultsInput) {
+        return new ResultCandidates(resultsInput, sizeOfPerson);
     }
 
-    public static ResultCandidates of(NumberOfParticipants numberOfParticipants, String... resultsInput) {
-        return new ResultCandidates(Arrays.asList(resultsInput), numberOfParticipants);
+    public static ResultCandidates of(SizeOfPerson sizeOfPerson, String... resultsInput) {
+        return new ResultCandidates(Arrays.asList(resultsInput), sizeOfPerson);
     }
 
     public int size() {
