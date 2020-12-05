@@ -5,7 +5,6 @@ import nextstep.ladder.domain.IndexedName;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.LadderLines;
 import nextstep.ladder.domain.alternative.NextStepLadderLine;
-import nextstep.ladder.utils.ImmutableMaps;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.LadderView;
 import nextstep.ladder.view.ResultView;
@@ -14,6 +13,10 @@ import java.io.OutputStreamWriter;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
+
+import static nextstep.ladder.domain.IndexedName.unwrap;
+import static nextstep.ladder.utils.ImmutableMaps.of;
+import static nextstep.ladder.utils.ImmutableMaps.ordered;
 
 public class Controller {
     private static final String ALL = "all";
@@ -30,14 +33,14 @@ public class Controller {
 
         Ladder ladder = new Ladder(ladderLines, goals);
 
-        resultView.printLadder(new LadderViewAdapter(goals, ladder), IndexedName.unwrap(players));
+        resultView.printLadder(new LadderViewAdapter(goals, ladder), unwrap(players));
 
         Map<String, String> moveResult = ladder.moveForAll(players);
 
         String name;
         do {
             name = inputView.requestPlayerName();
-            resultView.printResult(getMoveResult(moveResult, name));
+            resultView.printResult(ordered(getMoveResult(moveResult, name), unwrap(goals)));
         } while (!name.equals(ALL));
     }
 
@@ -45,7 +48,7 @@ public class Controller {
         if (name.equals(ALL)) {
             return result;
         }
-        return ImmutableMaps.of(name, result.get(name));
+        return of(name, result.get(name));
     }
 
     private static class LadderViewAdapter implements LadderView {
@@ -60,7 +63,7 @@ public class Controller {
 
         @Override
         public List<String> getGoals() {
-            return IndexedName.unwrap(goals);
+            return unwrap(goals);
         }
 
         @Override
