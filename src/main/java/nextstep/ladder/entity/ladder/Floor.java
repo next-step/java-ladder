@@ -30,4 +30,22 @@ public class Floor {
         return nextFloor;
     }
 
+    public Point moveTo(int position) {
+
+        Point current;
+
+        for (current = startPoint; current.hasNext(); current = current.getNext()) {
+            if (current.isOnPositionOf(position)) {
+                return current;
+            }
+        }
+
+        if (current.isOnPositionOf(position)) {
+            return current;
+        }
+
+        throw new IndexOutOfBoundsException("해당 위치로 이동할 수 없습니다.");
+    }
+
+
 }

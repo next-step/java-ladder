@@ -1,23 +1,23 @@
 package nextstep.ladder.entity.ladder;
 
 import nextstep.ladder.entity.User;
+import nextstep.ladder.view.UsersInputView;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Users {
 
     private List<User> users;
 
-    public Users(List<User> users) {
+    public Users(List<String> usersInput) {
 
-        Optional.ofNullable(users)
+        List<User> users = usersInput.stream()
+                .map(User::new)
                 .filter(Objects::nonNull)
-                .ifPresent(this::throwIfLinesLessThanTwo);
+                .collect(Collectors.toList());
 
+        throwIfLinesLessThanTwo(users);
         this.users = users;
     }
 
@@ -30,10 +30,24 @@ public class Users {
     public List<String> getUserNames() {
         return users.stream()
                 .map(User::getName)
-                .collect(Collectors.toList());
+                .collect(Collectors.collectingAndThen(Collectors.toList(), Collections::unmodifiableList));
     }
 
     public int getUserCount() {
         return this.users.size();
+    }
+
+    public int getPosition(User user) {
+        int index = users.indexOf(user);
+        return index > -1? index + 1 : -1;
+    }
+
+    public User at(int position) {
+        try {
+            return users.get(position - 1);
+        } catch (IndexOutOfBoundsException e) {
+            String message = String.format("올바르지 않은 위치값입니다. (최소=%d, 최대=%d)", 1, getUserCount());
+            throw new IllegalArgumentException(message);
+        }
     }
 }

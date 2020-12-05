@@ -11,15 +11,15 @@ class PointTest {
 
     private static final int POINT_COUNT = 4;
 
-    private Point startPoint = new Point();
+    private Point startPoint = Point.start();
 
     @BeforeEach
     void init() {
 
         Point current = startPoint;
         Point next = null;
-        for (int count = 1; count <= POINT_COUNT; count++) {
-            next = new Point();
+        for (int count = 2; count <= POINT_COUNT; count++) {
+            next = Point.of(count);
             current.next(next);
             current = next;
         }
@@ -29,8 +29,8 @@ class PointTest {
     @Test
     void test_isLinked_true() {
         // Given
-        Point pointA = new Point();
-        Point pointB = new Point();
+        Point pointA = Point.of(1);
+        Point pointB = Point.of(2);
         pointA.next(pointB);
 
         // When
@@ -43,8 +43,8 @@ class PointTest {
     @Test
     void test_isLinked_false() {
         // Given
-        Point pointA = new Point();
-        Point pointB = new Point();
+        Point pointA = Point.of(1);
+        Point pointB = Point.of(2);
         pointA.next(pointB);
 
         // When
@@ -57,8 +57,8 @@ class PointTest {
     @Test
     void test_hasNext_true() {
         // Given
-        Point pointA = new Point();
-        Point pointB = new Point();
+        Point pointA = Point.of(1);
+        Point pointB = Point.of(2);
 
         // When
         pointA.next(pointB);
@@ -70,7 +70,7 @@ class PointTest {
     @Test
     void test_hasNext_false() {
         // Given
-        Point point = new Point();
+        Point point = Point.start();
 
         // When & Then
         assertFalse(point.hasNext());
@@ -79,8 +79,8 @@ class PointTest {
     @Test
     void test_hasBackwardLink_true() {
         // Given
-        Point pointA = new Point();
-        Point pointB = new Point();
+        Point pointA = Point.of(1);
+        Point pointB = Point.of(2);
         pointA.next(pointB);
 
         // When
@@ -93,8 +93,8 @@ class PointTest {
     @Test
     void test_hasBackwardLink_false() {
         // Given
-        Point pointA = new Point();
-        Point pointB = new Point();
+        Point pointA = Point.of(1);
+        Point pointB = Point.of(2);
         pointA.next(pointB);
 
         // When

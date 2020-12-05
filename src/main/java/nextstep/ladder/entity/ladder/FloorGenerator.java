@@ -22,12 +22,12 @@ public class FloorGenerator {
 
     private Point initPoints() {
 
-        Point startPoint = new Point();
+        Point startPoint = Point.start();
         Point current = startPoint;
         Point next;
 
         for (int count = 2; ladderLine.more(count); count++) {
-            next = new Point();
+            next = Point.of(count);
             current.next(next);
             current = next;
         }

@@ -54,5 +54,18 @@ class FloorTest {
         assertNotNull(startPoint);
     }
 
+    @Test
+    void test_moveTo() {
+        // Given
+        FloorGenerator floorGenerator = new FloorGenerator(RandomLinkGenerator.getInstance(), new LadderLine(LADDER_LINE_COUNT));
+        Floor floor = floorGenerator.create();
+
+        // When
+        Point point = floor.moveTo(3);
+
+        // Then
+        assertEquals(point.getPosition(), 3);
+    }
+
 
 }
