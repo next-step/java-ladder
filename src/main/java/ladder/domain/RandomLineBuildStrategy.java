@@ -6,17 +6,17 @@ import java.util.stream.IntStream;
 
 public class RandomLineBuildStrategy implements LineBuildStrategy{
 
-    private int countOfPlayer;
+    private int ladderCount;
     private boolean previousConnection = false;
     private Random random = new Random();
 
     @Override
-    public Line build(int countOfPlayer) {
+    public Line build(int ladderCount) {
 
-        this.countOfPlayer = countOfPlayer;
+        this.ladderCount = ladderCount;
 
         Line line = new Line(
-        IntStream.range(0, countOfPlayer)
+        IntStream.range(0, ladderCount)
                 .mapToObj(this::makeConnection)
                 .collect(Collectors.toList()));
 
@@ -25,7 +25,7 @@ public class RandomLineBuildStrategy implements LineBuildStrategy{
 
     private boolean makeConnection(int position){
 
-        if(position == countOfPlayer-1){
+        if(position == ladderCount-1){
             return false;
         }
 

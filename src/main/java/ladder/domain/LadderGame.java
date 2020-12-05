@@ -7,19 +7,19 @@ public class LadderGame {
 
     private LineBuildStrategy lineBuildStrategy;
 
+
     public LadderGame(LineBuildStrategy lineBuildStrategy) {
         this.lineBuildStrategy = lineBuildStrategy;
     }
 
-    public LadderGameResult start(String[] playerNames, int ladderMaxHeight){
-        Players players = new Players(playerNames);
-        return new LadderGameResult(build(players, ladderMaxHeight), players);
+    public Ladders start(int ladderCount, int ladderMaxHeight){
+        return build(ladderCount, ladderMaxHeight);
     }
 
-    private Ladders build(Players players, int ladderMaxHeight) {
+    private Ladders build(int ladderCount, int ladderMaxHeight) {
 
         Ladders ladders = new Ladders(IntStream.range(0, ladderMaxHeight)
-                .mapToObj(ladder -> new Ladder(lineBuildStrategy.build(players.getPlayers().size())))
+                .mapToObj(ladder -> new Ladder(lineBuildStrategy.build(ladderCount)))
                 .collect(Collectors.toList()));
 
 
