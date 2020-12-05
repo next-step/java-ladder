@@ -17,6 +17,7 @@ public class Client {
         setUpUser();
         setUpLadderHeight();
         generateLadder();
+        printOpening();
         printUsers();
         printLadder();
     }
@@ -36,9 +37,11 @@ public class Client {
         ladder.shuffle();
     }
 
-    private static void printUsers() {
+    private static void printOpening() {
         ResultView.printResultOpening();
+    }
 
+    private static void printUsers() {
         UsersDTO usersDTO = users.exportData();
         List<String> users = usersDTO.getUsers();
         ResultView.printUsers(users);
