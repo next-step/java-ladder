@@ -20,8 +20,8 @@ public class LadderGameResultTest {
         String[] playNames = {"AAA", "BBB", "CCC"};
         players = new Players(playNames);
 
-        List<Boolean> lineConnections = new ArrayList<>();
-        lineConnections.add(true);
+        List<Point> lineConnections = new ArrayList<>();
+        lineConnections.add(new Point(true));
 
         List<Ladder> ladderList = new ArrayList<>();
         ladderList.add(new Ladder(new Line(lineConnections)));

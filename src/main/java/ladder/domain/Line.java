@@ -1,18 +1,19 @@
 package ladder.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
 public class Line {
 
-    private List<Boolean> points;
+    private final List<Point> points;
 
-    public Line(List<Boolean> points){
+    public Line(List<Point> points){
         this.points = points;
     }
 
-    public List<Boolean> getPoints() {
-        return points;
+    public List<Point> getPoints() {
+        return Collections.unmodifiableList(points);
     }
 
     @Override

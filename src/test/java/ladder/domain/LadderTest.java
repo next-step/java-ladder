@@ -11,12 +11,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderTest {
 
-    private List<Boolean> lineConnections = new ArrayList<>();
+    private List<Point> lineConnections = new ArrayList<>();
 
     @BeforeEach
     public void init(){
-        lineConnections.add(true);
-        lineConnections.add(false);
+        lineConnections.add(new Point(true));
+        lineConnections.add(new Point(false));
     }
 
     @DisplayName("Ladder 생성 테스트")

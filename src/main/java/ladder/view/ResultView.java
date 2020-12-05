@@ -37,7 +37,7 @@ public class ResultView {
 
     private static String showLadder(Ladder ladder) {
         return ladder.getLine().getPoints().stream()
-                .map(i-> LADDER+(i? CONNECTED:NOT_CONNECTED)).collect(Collectors.joining());
+                .map(i-> LADDER+(i.isConnected()? CONNECTED:NOT_CONNECTED)).collect(Collectors.joining());
     }
 
     private static void showPlayers(Players players) {

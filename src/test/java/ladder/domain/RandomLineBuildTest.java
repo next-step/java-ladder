@@ -17,6 +17,6 @@ public class RandomLineBuildTest {
 
 
         // then
-        assertThat(line.getPoints().get(countOfPlayer-1)).isFalse();
+        assertThat(line.getPoints().get(countOfPlayer-1).isConnected()).isFalse();
     }
 }

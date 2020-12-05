@@ -5,7 +5,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -17,9 +16,9 @@ public class LaddersTest {
     @BeforeEach
     public void init(){
 
-        List<Boolean> lineConnections = new ArrayList<>();
-        lineConnections.add(true);
-        lineConnections.add(false);
+        List<Point> lineConnections = new ArrayList<>();
+        lineConnections.add(new Point(true));
+        lineConnections.add(new Point(false));
 
         line = new Line(lineConnections);
     }
