@@ -1,6 +1,7 @@
 package my.project.dto;
 
 import my.project.domain.User;
+import my.project.domain.Users;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

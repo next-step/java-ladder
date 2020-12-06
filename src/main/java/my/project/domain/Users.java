@@ -1,6 +1,4 @@
-package my.project.dto;
-
-import my.project.domain.User;
+package my.project.domain;
 
 import java.util.Arrays;
 import java.util.List;

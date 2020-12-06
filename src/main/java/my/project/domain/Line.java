@@ -10,12 +10,13 @@ import java.util.stream.IntStream;
  * Developer : Seo
  */
 public class Line {
+    public static final int START = 0;
     private final List<Symbol> points = new ArrayList<>();
 
     public Line(int countOfPerson) {
-        int endExclusive = countOfPerson + countOfPerson - 1;
+        int end = countOfPerson + countOfPerson - 1;
 
-        IntStream.range(0, endExclusive)
+        IntStream.range(START, end)
                 .forEach(y -> {
                     if (isVertical(y)) {
                         this.points.add(Symbol.VERTICAL);

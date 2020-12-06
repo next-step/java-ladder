@@ -1,10 +1,9 @@
 package my.project.view;
 
-import my.project.domain.Line;
 import my.project.domain.Symbol;
 import my.project.domain.User;
 import my.project.dto.Ladder;
-import my.project.dto.Users;
+import my.project.domain.Users;
 
 import java.util.stream.Collectors;
 
@@ -32,25 +31,12 @@ public class ResultView {
     }
 
     private static void printLadder(Ladder ladder) {
-        /*
-        String[][] ladders = ladder.getLadder();
-        for (int i = 0; i < ladders.length; i++) {
-            String s = "";
-            for (int j = 0; j < ladders[i].length; j++) {
-                s += ladders[i][j];
-            }
-            System.out.println(s);
-        }
-         */
-
         ladder.getLines()
-                .forEach(ResultView::printLine);
+                .forEach(line -> System.out.println(
+                        line.getPoints().stream()
+                                .map(Symbol::getSymbol)
+                                .collect(Collectors.joining())
+                        )
+                );
     }
-
-    private static void printLine(Line line) {
-        System.out.println(line.getPoints().stream()
-                .map(Symbol::getSymbol)
-                .collect(Collectors.joining(DELIMITER)));
-    }
-
 }

@@ -1,7 +1,7 @@
 package my.project;
 
 import my.project.domain.LadderGenerator;
-import my.project.dto.Users;
+import my.project.domain.Users;
 import my.project.view.InputView;
 import my.project.view.ResultView;
 
