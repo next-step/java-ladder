@@ -39,7 +39,10 @@ public class Users {
 
     public int getPosition(User user) {
         int index = users.indexOf(user);
-        return index > -1? index + 1 : -1;
+        if (index > -1) {
+            return index + 1;
+        }
+        return -1;
     }
 
     public User at(int position) {
