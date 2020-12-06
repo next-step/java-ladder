@@ -21,7 +21,6 @@ public class LadderController {
 
         resultView.printResultMention();
         printUsers(resultView, users);
-//        Ladder ladder = new Ladder().initLadder(users, height);
         Ladder ladder = Ladder.initLadder(users, height);
         drawLadders(resultView, ladder);
     }

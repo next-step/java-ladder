@@ -28,23 +28,12 @@ public enum Direction {
             return directionStrategy.getStartDirection();
         }
 
-        if(direction == Direction.RIGHT) {
-            return Direction.LEFT;
-        }
-
-        if(direction == Direction.LEFT || direction == Direction.FORWARD) {
-            return checkLastIndex(condition, directionStrategy);
-        }
-
-        return direction;
-    }
-
-    private static Direction checkLastIndex(int condition, DirectionStrategy directionStrategy) {
         if(condition == -ONE) {
-            return directionStrategy.getEndDirection();
+            return directionStrategy.getEndDirection(direction);
         }
 
-        return directionStrategy.getNextDirection();
+        return directionStrategy.getNextDirection(direction);
+
     }
 
     public int getMove() {

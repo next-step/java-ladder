@@ -4,7 +4,7 @@ public interface DirectionStrategy {
 
     Direction getStartDirection();
 
-    Direction getNextDirection();
+    Direction getNextDirection(Direction direction);
 
-    Direction getEndDirection();
+    Direction getEndDirection(Direction direction);
 }

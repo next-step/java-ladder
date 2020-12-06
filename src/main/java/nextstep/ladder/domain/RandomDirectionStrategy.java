@@ -12,12 +12,18 @@ public class RandomDirectionStrategy implements DirectionStrategy {
     }
 
     @Override
-    public Direction getNextDirection() {
+    public Direction getNextDirection(Direction direction) {
+        if(direction == Direction.RIGHT) {
+            return Direction.LEFT;
+        }
         return Direction.from(getRandomDirectionNumber());
     }
 
     @Override
-    public Direction getEndDirection() {
+    public Direction getEndDirection(Direction direction) {
+        if(direction == Direction.RIGHT) {
+            return Direction.LEFT;
+        }
         return Direction.FORWARD;
     }
 
@@ -26,4 +32,3 @@ public class RandomDirectionStrategy implements DirectionStrategy {
     }
 
 }
-//() -> random.nextInt(DIRECTION_BOUND)
