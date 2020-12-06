@@ -41,7 +41,7 @@ public class Users {
         return (User) o;
     }
 
-    public Users passStage(SwapRule rule) {
+    public Users passLayer(SwapRule rule) {
         List<User> swappedUsers = new ArrayList<>(users);
 
         for (int i = 0; i < swappedUsers.size() - 1; i++) {

@@ -64,7 +64,7 @@ class UsersTest {
         Users inputUsers = new Users(Arrays.asList("A", "B", "C", "D"));
         Users expectedUsers = new Users(Arrays.asList("B", "C", "D", "A"));
 
-        Users swappedUsers = inputUsers.passStage(sampleRule);
+        Users swappedUsers = inputUsers.passLayer(sampleRule);
 
         assertThat(swappedUsers).isEqualTo(expectedUsers);
     }
