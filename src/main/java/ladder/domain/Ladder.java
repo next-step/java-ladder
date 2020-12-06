@@ -14,7 +14,7 @@ public class Ladder {
 
     private static final int MINIMUM_LADDER_HEIGHT = 1;
 
-    List<HorizontalLine> layer;
+    private final List<HorizontalLine> layer;
 
     public Ladder(int height, int numLines) {
         validateHeight(height);
