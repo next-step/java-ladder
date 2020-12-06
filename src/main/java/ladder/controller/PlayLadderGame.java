@@ -13,7 +13,7 @@ public class PlayLadderGame {
         LadderGame ladderGame = new LadderGame(names, ladderHeight);
 
         PrintLadder printLadder = new PrintLadder();
-        printLadder.printNames(ladderGame.getNames());
-        printLadder.printLadder(ladderGame.getLadderLineDTO());
+        printLadder.printNames(ladderGame.getPerson());
+        printLadder.printLadder(ladderGame.getLadderLine());
     }
 }

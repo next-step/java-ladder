@@ -1,6 +1,6 @@
 package ladder.view;
 
-import ladder.dto.LadderLineDTO;
+import ladder.domain.*;
 
 import java.util.List;
 
@@ -8,11 +8,12 @@ public class PrintLadder {
     private static final String HAVE_LINE = "-----";
     private static final String NON_HAVE_LINE = "     ";
 
-    public void printNames(List<String> names) {
+    public void printNames(Persons persons) {
         StringBuilder stringBuilder = new StringBuilder();
+        List<Person> personList = persons.getPersons();
 
-        for (int i = 0; i < names.size(); i++) {
-            stringBuilder.append(checkDivisionNames(i == names.size() - 1, names.get(i)));
+        for (int i = 0; i < personList.size(); i++) {
+            stringBuilder.append(checkDivisionNames(i == personList.size() - 1, personList.get(i).getName()));
         }
 
         System.out.println(stringBuilder);
@@ -32,19 +33,29 @@ public class PrintLadder {
     }
 
 
-    public void printLadder(LadderLineDTO ladderLineDTO) {
+    public void printLadder(LadderLine ladderLine) {
         StringBuilder stringBuilder = new StringBuilder();
-        List<List<Boolean>> ladderLine = ladderLineDTO.getLadderLine();
+        List<LadderPoints> lll = ladderLine.getLadderLine();
 
-        for (List<Boolean> line : ladderLine) {
+        for (LadderPoints points : lll) {
             stringBuilder.append("|");
-            for(Boolean ladder : line){
-                stringBuilder.append(checkDivisionLadder(ladder));
-                stringBuilder.append("|");
-            }
+
+            stringBuilder.append(RepeatPoint(points.getPoints()));
+
             stringBuilder.append("\n");
         }
         System.out.println(stringBuilder);
+    }
+
+    public String RepeatPoint(List<LadderPoint> points) {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (LadderPoint point : points) {
+            stringBuilder.append(checkDivisionLadder(point.isLadderPoint()));
+            stringBuilder.append("|");
+        }
+
+        return stringBuilder.toString();
     }
 
     private String checkDivisionLadder(boolean point) {

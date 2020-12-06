@@ -1,13 +1,9 @@
 package ladder.domain;
 
 
-import ladder.dto.LadderLineDTO;
-
-import java.util.List;
-
 public class LadderGame {
     private Persons person;
-    private LadderLineDTO ladderLineDTO = new LadderLineDTO();
+    private LadderLine ladderLine;
 
     public LadderGame(final String names, final int ladderHeight) {
         initLadderGame(names, ladderHeight);
@@ -15,15 +11,14 @@ public class LadderGame {
 
     private void initLadderGame(final String names, final int ladderHeight) {
         this.person = new Persons(names);
-        LadderLine ladderLine = new LadderLine(ladderHeight, person.getNames().size());
-        this.ladderLineDTO = ladderLine.getLadderLineDTO();
+        this.ladderLine = new LadderLine(ladderHeight, person.getPersons().size());
     }
 
-    public LadderLineDTO getLadderLineDTO() {
-        return ladderLineDTO;
+    public Persons getPerson() {
+        return person;
     }
 
-    public List<String> getNames(){
-        return person.getNames();
+    public LadderLine getLadderLine() {
+        return ladderLine;
     }
 }
