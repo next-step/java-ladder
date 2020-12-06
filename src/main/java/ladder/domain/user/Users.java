@@ -14,9 +14,13 @@ public class Users {
 
     private final List<User> users;
 
-    public Users(List<User> users) {
+    public static Users from(List<User> users) {
         checkUserCount(users);
         checkUserName(users);
+        return new Users(users);
+    }
+
+    private Users(List<User> users) {
         this.users = users;
     }
 
@@ -28,7 +32,7 @@ public class Users {
         return users;
     }
 
-    private void checkUserName(List<User> users) {
+    private static void checkUserName(List<User> users) {
         int validNameCount = users.stream()
             .map(User::getName)
             .collect(Collectors.toSet()).size();
@@ -45,7 +49,7 @@ public class Users {
             .orElseThrow(() -> new LadderGameException(NOT_INPUT_USER_NAME));
     }
 
-    private void checkUserCount(List<User> users) {
+    private static void checkUserCount(List<User> users) {
         if (users.size() < MIN_USER_COUNT) {
             throw new LadderGameException(String.format(USER_SHOULD_EQUAL_OR_OVER_N, MIN_USER_COUNT));
         }

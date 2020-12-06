@@ -41,7 +41,7 @@ public class InputView {
         List<User> users = IntStream.range(START_INDEX, names.length)
             .mapToObj(index -> User.of(names[index], new Position(index)))
             .collect(Collectors.toList());
-        return new Users(users);
+        return Users.from(users);
     }
 
     public static String inputNameWantShowResult() {

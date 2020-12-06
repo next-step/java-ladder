@@ -9,7 +9,6 @@ import ladder.exception.LadderGameException;
 public class Line {
 
     private static final String INVALID_LADDER_POSITION = "사다리 좌표가 잘못 되었습니다.";
-    private static final int START_INDEX = 0;
 
     private final LinkedList<Point> points;
 
@@ -27,14 +26,14 @@ public class Line {
             .goNextPoint();
     }
 
-    public boolean addPoint(Point point) {
+    protected boolean addPoint(Point point) {
         if (!points.isEmpty()) {
             validateWithNextPoint(points.getLast(), point);
         }
         return points.add(point);
     }
 
-    public Point getLastPoint() {
+    protected Point getLastPoint() {
         return points.getLast();
     }
 

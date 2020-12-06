@@ -23,7 +23,7 @@ class LadderGeneratorTest {
         User participant1 = User.of("a", new Position(0));
         User participant2 = User.of("b", new Position(1));
         ResultPrize resultPrize = new ResultPrize(new String[]{"1", "2"}, 2);
-        Users participants = new Users(Arrays.asList(participant1, participant2));
+        Users participants = Users.from(Arrays.asList(participant1, participant2));
 
         LadderHeight ladderHeight = new LadderHeight(1);
 

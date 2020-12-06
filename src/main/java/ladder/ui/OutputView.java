@@ -1,7 +1,6 @@
 package ladder.ui;
 
 import java.util.stream.Collectors;
-import ladder.domain.Position;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.model.LadderGameInfo;
 import ladder.domain.point.Point;
@@ -13,7 +12,6 @@ public class OutputView {
 
     public static final String RESULT_ALL_KEYWORD = "all";
     private static final String PLAY_RESULT_MESSAGE = "실행결과";
-    private static final String RESULT_ALL_FORMAT = "%s : %s";
     private static final String PREPARED_RESULT_MESSAGE = "사다리 결과";
     private static final String FIVE_LENGTH_SPACE = "     ";
     private static final String FIVE_LENGTH_HYPHEN = "-----";
@@ -21,7 +19,8 @@ public class OutputView {
     private static final int NAME_START_INDEX = 0;
     private static final String DELIMITER = " ";
 
-    private OutputView() {}
+    private OutputView() {
+    }
 
     public static void printPreparedGame(LadderGameInfo ladderGameInfo, Ladder ladder) {
         System.out.println(PREPARED_RESULT_MESSAGE);
@@ -41,21 +40,11 @@ public class OutputView {
     }
 
     private static void printResultByName(String name, LadderGameInfo ladderGameInfo, Ladder ladder) {
-        User namedUser = ladderGameInfo.getUsers().getUserByName(name);
-        Position resultPosition = ladder.playGame(namedUser);
-        System.out.println(ladderGameInfo.getResultPrize().getResultByResultPosition(resultPosition));
+        System.out.println(ladderGameInfo.getResultPrize().getResultByResultPosition(ladderGameInfo.getResultPositionByName(name, ladder)));
     }
 
     private static void printAllResult(LadderGameInfo ladderGameInfo, Ladder ladder) {
-        String allResult = ladderGameInfo.getUsers()
-            .getUsers()
-            .stream()
-            .map(participant -> {
-                Position resultCoordinate = ladder.playGame(participant);
-                return String.format(RESULT_ALL_FORMAT, participant.getName(), ladderGameInfo.getResultPrize().getResultByResultPosition(resultCoordinate));
-            })
-            .collect(Collectors.joining(System.lineSeparator()));
-        System.out.println(allResult);
+        System.out.println(ladderGameInfo.getAllResultPosition(ladder));
     }
 
     private static void printUsersNames(Users users) {
