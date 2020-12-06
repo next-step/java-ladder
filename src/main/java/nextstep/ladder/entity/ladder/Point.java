@@ -62,4 +62,6 @@ public class Point {
     public boolean isOnPositionOf(int position) {
         return this.position == position;
     }
+
+
 }

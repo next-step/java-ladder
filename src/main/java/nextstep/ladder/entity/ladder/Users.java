@@ -4,6 +4,7 @@ import nextstep.ladder.entity.User;
 import nextstep.ladder.view.UsersInputView;
 
 import java.util.*;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 public class Users {
@@ -53,4 +54,11 @@ public class Users {
             throw new IllegalArgumentException(message);
         }
     }
+
+    public void goDownAllUsers(Ladder ladder) {
+        for (User user : users) {
+            ladder.goDown(user);
+        }
+    }
+
 }
