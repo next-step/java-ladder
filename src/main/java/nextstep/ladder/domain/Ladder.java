@@ -7,13 +7,16 @@ import java.util.stream.IntStream;
 public class Ladder {
 
     private static final int ZERO = 0;
+
     private List<Line> lines;
+
+    public Ladder() {}
 
     private Ladder(List<Line> lines) {
         this.lines = lines;
     }
 
-    public static Ladder initLadder(Users users, Height height) {
+    public Ladder initLadder(Users users, Height height) {
         List<Line> lines = new ArrayList<>();
 
         IntStream.range(ZERO, height.getHeight())

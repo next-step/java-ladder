@@ -43,27 +43,6 @@ public class LadderController {
                 .forEach(user -> resultView.printUsers(user.getName()));
     }
 
-    public Line initLine(Users users) {
-        List<Point> points = new ArrayList<>();
-        Direction direction = null;
-
-        int bound = users.getUsers().size();
-        for (int number = ZERO; number < bound; number++) {
-            int condition = minusIndex(number, bound);
-            direction = decideDirection(direction, condition, new RandomDirectionStrategy());
-            points.add(new Point(number, direction));
-        }
-
-        return new Line(points);
-    }
-
-    private int minusIndex(int number, int bound) {
-        if(bound - ONE - number == ZERO) {
-            return -ONE;
-        }
-        return number;
-    }
-
     public Direction decideDirection(Direction direction, int condition, DirectionStrategy directionStrategy) {
         if(condition == ZERO) {
             return directionStrategy.getStartDirection();
