@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.exception.MinimumNumberOfPersonException;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -32,13 +34,9 @@ public class Participants {
     }
 
     private static void validate(String name) {
-        countOfPerson(name);
-    }
-
-    private static void countOfPerson(String name) {
         String[] names = name.split(NAME_SEPARATOR);
         if (names.length < MIN_LENGTH) {
-            throw new IllegalArgumentException("참여하는 사람은 최소 2명입니다.");
+            throw new MinimumNumberOfPersonException();
         }
     }
 }
