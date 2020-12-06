@@ -6,8 +6,8 @@ public class Line {
 
     private final boolean isLine;
 
-    private Line(boolean isLine) {
-        this.isLine = isLine;
+    private Line(boolean isNextLine) {
+        this.isLine = isNextLine;
     }
 
     public static Line of(boolean isLine) {
@@ -15,7 +15,7 @@ public class Line {
     }
 
     public boolean getLine() {
-        return isLine;
+        return this.isLine;
     }
 
     @Override
