@@ -1,6 +1,6 @@
-package ladder;
+package ladder.ladder;
 
-import ladder.model.LadderItem;
+import ladder.model.ladder.LadderItem;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

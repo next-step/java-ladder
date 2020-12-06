@@ -1,35 +1,34 @@
-package ladder.model;
+package ladder.model.group;
+
+import ladder.model.name.wrapper.User;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
-public class Users {
+public class Users extends Group<User> {
     private final static String NAME_DELIMITER = ",";
     private final static String EMPTY_NAME_ERROR_MESSAGE = "올바른 유저들의 이름이 아닙니다.";
 
     private final static int MIN_USER_COUNT = 2;
 
-    private final List<Name> users;
-
-    private Users(List<Name> users) {
-        this.users = users;
+    private Users(List<User> users){
+        super(users);
     }
 
     public static Users from(String names){
         String[] userNames = names.split(NAME_DELIMITER);
+
         if (isNotValid(userNames)) {
             throw new IllegalArgumentException(EMPTY_NAME_ERROR_MESSAGE);
         }
-        List<Name> users = Arrays.stream(userNames)
-                .map(Name::new)
+
+        List<User> users = IntStream.range(0, userNames.length)
+                .mapToObj(idx -> User.of(userNames[idx], idx))
                 .collect(Collectors.toList());
 
         return new Users(users);
-    }
-
-    public int countOfPerson() {
-        return users.size();
     }
 
     private static boolean isNotValid(String[] userNames) {
@@ -38,11 +37,5 @@ public class Users {
                 .count();
 
         return (userNames.length < MIN_USER_COUNT) || (userNames.length != setCount);
-    }
-
-    public List<String> getUserNames() {
-        return users.stream()
-                .map(Name::toString)
-                .collect(Collectors.toList());
     }
 }

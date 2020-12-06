@@ -1,6 +1,9 @@
-package ladder.model;
+package ladder.model.ladder;
+
+import ladder.model.name.wrapper.User;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.IntStream;
 
 public class Line {
@@ -14,6 +17,12 @@ public class Line {
     public static Line from(List<Bridge> bridges) {
         validateLine(bridges);
         return new Line(bridges);
+    }
+
+    public Optional<Bridge> getBridge(User user){
+        return bridges.stream()
+                .filter(user::isCross)
+                .findFirst();
     }
 
     private static void validateLine(List<Bridge> bridges) {
