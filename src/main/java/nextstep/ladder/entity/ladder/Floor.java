@@ -33,19 +33,26 @@ public class Floor {
     public Point moveTo(int position) {
 
         Point current;
+        Point findOut = null;
 
         for (current = startPoint; current.hasNext(); current = current.getNext()) {
-            if (current.isOnPositionOf(position)) {
-                return current;
-            }
+            findOut = getPointIfOn(current, position);
         }
 
+        findOut = getPointIfOn(current, position);
+
+        if (Objects.isNull(findOut)) {
+            throw new IndexOutOfBoundsException("해당 위치로 이동할 수 없습니다.");
+        }
+
+        return findOut;
+    }
+
+    private Point getPointIfOn(Point current, int position) {
         if (current.isOnPositionOf(position)) {
             return current;
         }
-
-        throw new IndexOutOfBoundsException("해당 위치로 이동할 수 없습니다.");
+        return null;
     }
-
 
 }
