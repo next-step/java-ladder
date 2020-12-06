@@ -2,40 +2,24 @@ package ladder.domain;
 
 import ladder.utils.LadderUtil;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Lines {
 
-    private final List<Line> lines = new ArrayList<>();
+    private final List<Line> lines;
 
-    public Lines(int countOfPerson) {
-        createLines(countOfPerson);
+    private Lines(List<Line> lines) {
+        this.lines = lines;
     }
-
-    private void createLines(int countOfPerson) {
-        IntStream.range(0, countOfPerson - 1)
-                .forEach(i -> addPoint());
+    public static Lines of(int countOfPerson){
+        return new Lines(createLines(countOfPerson));
     }
-
-    private void addPoint() {
-        if (this.lines.isEmpty()) {
-            this.lines.add(Line.of(LadderUtil.isLine()));
-            return;
-        }
-        checkPointRepeat();
-    }
-
-    private void checkPointRepeat() {
-        boolean isCurrentOfLine = this.lines.get(lines.size() - 1).getLine();
-        boolean isLine = LadderUtil.isLine();
-        if (isCurrentOfLine == isLine) {
-            this.lines.add(Line.of(!isCurrentOfLine));
-            return;
-        }
-
-        this.lines.add(Line.of(isLine));
+    private static List<Line> createLines(int countOfPerson) {
+        return  IntStream.range(0, countOfPerson - 1)
+                .mapToObj(i -> Line.of(LadderUtil.isLine()))
+                .collect(Collectors.toList());
     }
 
     public List<Line> getLines() {
