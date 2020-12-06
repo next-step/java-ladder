@@ -26,7 +26,7 @@ public class LadderController {
 
         resultView.printResultMention();
         printUsers(resultView, users);
-        Ladder ladder = initLadder(users, height);
+        Ladder ladder = new Ladder().initLadder(users, height);
         drawLadders(resultView, ladder);
     }
 
@@ -41,14 +41,6 @@ public class LadderController {
     private void printUsers(ResultView resultView, Users users) {
         users.getUsers()
                 .forEach(user -> resultView.printUsers(user.getName()));
-    }
-
-    public Ladder initLadder(Users users, Height height) {
-        List<Line> lines = new ArrayList<>();
-
-        IntStream.range(ZERO, height.getHeight())
-                .forEach(number -> lines.add(initLine(users)));
-        return new Ladder(lines);
     }
 
     public Line initLine(Users users) {
