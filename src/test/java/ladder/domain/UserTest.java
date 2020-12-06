@@ -38,4 +38,12 @@ public class UserTest {
         assertThat(new User("ABC").getName())
                 .isEqualTo("ABC");
     }
+
+    @Test
+    @DisplayName("출력을 위해 입력이 금지된 이름 all")
+    void testDeniedName() {
+        assertThatExceptionOfType(InvalidUserNameException.class).isThrownBy(
+                () -> new User("all")
+        );
+    }
 }
