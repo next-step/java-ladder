@@ -94,6 +94,7 @@
 * [추가] User
   * [X] User 이름에 all 금지
 * [추가] Users
-  * [X] ~~HorizontalLine~~ `SwapRule` 을 받아서 Users 새로운 Users 를 반환하는 역할
+  * [X] ~~HorizontalLine~~ `SwapRule` 을 받아서 새로운 Users 를 반환하는 역할
 * [추가] HorizontalLine
-  * [ ] `SwapRule` 구현
+  * [X] `SwapRule` 구현
+  * [X] Line 배열에 대한 검증조건 추가 

@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import ladder.ladderexceptions.InvalidLayoutException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -10,6 +11,7 @@ import java.util.Arrays;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class HorizontalLineTest {
 
@@ -19,9 +21,18 @@ class HorizontalLineTest {
                         new Boolean[]{false, false, false, false, false}),
                 Arguments.of((HowToConnect) leftSideStatus -> !leftSideStatus,
                         new Boolean[]{true, false, true, false, true}),
-                Arguments.of((HowToConnect) leftSideStatus -> true,
-                        new Boolean[]{true, true, true, true, true})
+                Arguments.of(new SampleConcretePattern(),
+                        new Boolean[]{false, true, false, true, false})
         );
+    }
+
+    @Test
+    @DisplayName("swap 조건 반환")
+    void testSwapCondition() {
+        Boolean[] input = {true, false, false, true};
+        HorizontalLine line = HorizontalLine.ofLines(Arrays.asList(input));
+
+        assertThat(line.needToSwap(0)).isEqualTo(true);
     }
 
     @Test
@@ -43,5 +54,32 @@ class HorizontalLineTest {
 
         assertThat(sampleLine)
                 .isEqualTo(HorizontalLine.ofLines(Arrays.asList(expected)));
+    }
+
+    @Test
+    @DisplayName("허용되지 않는 배열(연속 True)에 대한 예외처리 테스트")
+    void testInvalidCondition() {
+        Boolean[] input = {true, false, true, true};
+
+        assertThatThrownBy(
+                () -> HorizontalLine.ofLines(Arrays.asList(input))
+        ).isInstanceOf(InvalidLayoutException.class);
+    }
+
+    static class SampleConcretePattern implements HowToConnect {
+        private int idx = 0;
+
+        public SampleConcretePattern() {
+        }
+
+        @Override
+        public boolean needToConnect(Boolean leftSideCondition) {
+            idx += 1;
+            return isEven(idx);
+        }
+
+        private boolean isEven(int index) {
+            return index % 2 == 0;
+        }
     }
 }

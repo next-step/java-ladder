@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.ladderexceptions.InvalidLayoutException;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -8,7 +10,7 @@ import java.util.stream.IntStream;
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
 
-public class HorizontalLine {
+public class HorizontalLine implements SwapRule {
 
     private final List<Boolean> line;
 
@@ -23,7 +25,20 @@ public class HorizontalLine {
     }
 
     public static HorizontalLine ofLines(List<Boolean> line) {
+        validateLine(line);
         return new HorizontalLine(line);
+    }
+
+    private static void validateLine(List<Boolean> line) {
+        for (int i = 0; i < line.size() - 1; i++) {
+            throwExceptionOnContinuousConnection(line.get(i), line.get(i + 1));
+        }
+    }
+
+    private static void throwExceptionOnContinuousConnection(Boolean arg1, Boolean arg2) {
+        if (arg1 && arg2) {
+            throw new InvalidLayoutException();
+        }
     }
 
     public void shuffle(HowToConnect connectionMode) {
@@ -31,6 +46,7 @@ public class HorizontalLine {
             boolean leftSideStatus = checkLeftSideStatus(i);
             line.set(i, connectionMode.needToConnect(leftSideStatus));
         }
+        validateLine(line);
     }
 
     private boolean checkLeftSideStatus(int index) {
@@ -59,5 +75,10 @@ public class HorizontalLine {
     @Override
     public int hashCode() {
         return Objects.hash(line);
+    }
+
+    @Override
+    public boolean needToSwap(int index) {
+        return line.get(index);
     }
 }
