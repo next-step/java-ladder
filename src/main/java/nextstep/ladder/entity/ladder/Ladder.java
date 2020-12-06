@@ -32,7 +32,7 @@ public class Ladder {
     private Point goDownRecursively(Floor floor, Point point) {
 
         if (!floor.hasNext()) {
-            return point.isLinked() ? point.getLinkPoint() : point;
+            return getPointOnLastFloor(point);
         }
 
         int nextPosition = point.isLinked() ? point.getLinkPoint().getPosition() : point.getPosition();
@@ -40,6 +40,13 @@ public class Ladder {
         Point nextPoint = nextFloor.moveTo(nextPosition);
 
         return goDownRecursively(nextFloor, nextPoint);
+    }
+
+    private Point getPointOnLastFloor(Point point) {
+        if (point.isLinked()) {
+            return point.getLinkPoint();
+        }
+        return point;
     }
 
     public Floor getFirstFloor() {
