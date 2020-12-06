@@ -1,9 +1,10 @@
 package nextstep.ladder.entity.ladder;
 
 import nextstep.ladder.entity.User;
-import nextstep.ladder.view.UsersInputView;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Users {
@@ -39,7 +40,10 @@ public class Users {
 
     public int getPosition(User user) {
         int index = users.indexOf(user);
-        return index > -1? index + 1 : -1;
+        if (index > -1) {
+            return index + 1;
+        }
+        return -1;
     }
 
     public User at(int position) {
@@ -50,4 +54,11 @@ public class Users {
             throw new IllegalArgumentException(message);
         }
     }
+
+    public void goDownAllUsers(Ladder ladder) {
+        for (User user : users) {
+            ladder.goDown(user);
+        }
+    }
+
 }

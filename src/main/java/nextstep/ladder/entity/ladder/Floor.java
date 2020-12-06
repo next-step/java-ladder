@@ -32,20 +32,26 @@ public class Floor {
 
     public Point moveTo(int position) {
 
-        Point current;
+        Point findOut = moveToRecursively(startPoint, position);
 
-        for (current = startPoint; current.hasNext(); current = current.getNext()) {
-            if (current.isOnPositionOf(position)) {
-                return current;
-            }
+        if (Objects.isNull(findOut)) {
+            throw new IndexOutOfBoundsException("해당 위치로 이동할 수 없습니다.");
         }
 
-        if (current.isOnPositionOf(position)) {
-            return current;
-        }
-
-        throw new IndexOutOfBoundsException("해당 위치로 이동할 수 없습니다.");
+        return findOut;
     }
 
+    private Point moveToRecursively(Point point, int position) {
+        // 종료 조건
+        if (point.getPosition() == position) {
+            return point;
+        }
+        // 임계 조건
+        if (!point.hasNext()) {
+            return null;
+        }
+
+        return moveToRecursively(point.getNext(), position);
+    }
 
 }

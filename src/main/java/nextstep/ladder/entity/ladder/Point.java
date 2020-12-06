@@ -59,7 +59,4 @@ public class Point {
         return linkWith;
     }
 
-    public boolean isOnPositionOf(int position) {
-        return this.position == position;
-    }
 }
