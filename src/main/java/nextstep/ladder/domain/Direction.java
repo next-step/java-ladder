@@ -7,6 +7,9 @@ public enum Direction {
     FORWARD(0),
     RIGHT(+1);
 
+    private static final int ZERO = 0;
+    private static final int ONE = 1;
+
     private int move;
 
     Direction(int move) {
@@ -18,6 +21,30 @@ public enum Direction {
                 .filter(direction -> direction.getMove() == move)
                 .findFirst()
                 .get();
+    }
+
+    public static Direction decideDirection(Direction direction, int condition, DirectionStrategy directionStrategy) {
+        if(condition == ZERO) {
+            return directionStrategy.getStartDirection();
+        }
+
+        if(direction == Direction.RIGHT) {
+            return Direction.LEFT;
+        }
+
+        if(direction == Direction.LEFT || direction == Direction.FORWARD) {
+            return checkLastIndex(condition, directionStrategy);
+        }
+
+        return direction;
+    }
+
+    private static Direction checkLastIndex(int condition, DirectionStrategy directionStrategy) {
+        if(condition == -ONE) {
+            return directionStrategy.getEndDirection();
+        }
+
+        return directionStrategy.getNextDirection();
     }
 
     public int getMove() {

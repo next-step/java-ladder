@@ -18,7 +18,7 @@ public class RandomDirectionStrategy implements DirectionStrategy {
 
     @Override
     public Direction getEndDirection() {
-        return null;
+        return Direction.FORWARD;
     }
 
     private int getRandomDirectionNumber() {

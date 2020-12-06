@@ -4,16 +4,11 @@ import nextstep.ladder.domain.*;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class LadderController {
-
-    private static final int ZERO = 0;
-    private static final int ONE = 1;
 
     public void start() {
         InputView inputView = new InputView();
@@ -41,30 +36,6 @@ public class LadderController {
     private void printUsers(ResultView resultView, Users users) {
         users.getUsers()
                 .forEach(user -> resultView.printUsers(user.getName()));
-    }
-
-    public Direction decideDirection(Direction direction, int condition, DirectionStrategy directionStrategy) {
-        if(condition == ZERO) {
-            return directionStrategy.getStartDirection();
-        }
-
-        if(direction == Direction.RIGHT) {
-            return Direction.LEFT;
-        }
-
-        if(direction == Direction.LEFT || direction == Direction.FORWARD) {
-            return checkLastIndex(condition, directionStrategy);
-        }
-
-        return direction;
-    }
-
-    private Direction checkLastIndex(int condition, DirectionStrategy directionStrategy) {
-        if(condition == -ONE) {
-            return Direction.FORWARD;
-        }
-
-        return directionStrategy.getNextDirection();
     }
 
     private void drawLadders(ResultView resultView, Ladder ladder) {

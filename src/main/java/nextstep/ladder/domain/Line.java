@@ -23,7 +23,7 @@ public class Line {
         int bound = users.getUsers().size();
         for (int number = ZERO; number < bound; number++) {
             int condition = minusIndex(number, bound);
-            direction = decideDirection(direction, condition, new RandomDirectionStrategy());
+            direction = Direction.decideDirection(direction, condition, new RandomDirectionStrategy());
             points.add(new Point(number, direction));
         }
 
