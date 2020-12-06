@@ -19,6 +19,7 @@ public class Persons {
     private void initNames(final String names) {
         List<String> nameList = Arrays.asList(names.replaceAll(" ", "").split(","));
 
+        checkMakeList(nameList);
         addPerson(nameList);
     }
 
@@ -28,6 +29,12 @@ public class Persons {
         for (String name : names) {
             person = new Person(name);
             persons.add(person);
+        }
+    }
+
+    private void checkMakeList(List<String> nameList) {
+        if (nameList.isEmpty()) {
+            throw new RuntimeException(ErrorMessage.getCheckInputNames());
         }
     }
 
