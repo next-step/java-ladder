@@ -45,6 +45,14 @@ public class Ladder {
         }
     }
 
+    public Users generateResult(Users users) {
+        Users currentStatus = users;
+        for (SwapRule rule : layer) {
+            currentStatus = currentStatus.passLayer(rule);
+        }
+        return currentStatus;
+    }
+
     public LadderDTO exportData() {
         return new LadderDTO(Collections.unmodifiableList(layer));
     }

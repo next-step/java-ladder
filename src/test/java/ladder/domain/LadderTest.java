@@ -41,8 +41,8 @@ class LadderTest {
                         new Boolean[]{false, false, false, false}),
                 Arguments.of((HowToConnect) leftSideStatus -> !leftSideStatus,
                         new Boolean[]{true, false, true, false}),
-                Arguments.of((HowToConnect) leftSideStatus -> true,
-                        new Boolean[]{true, true, true, true})
+                Arguments.of(new SampleShufflePattern(),
+                        new Boolean[]{false, true, false, true})
         );
     }
 
@@ -59,5 +59,20 @@ class LadderTest {
         sampleLadder.shuffle(shuffleMode);
 
         assertThat(sampleLadder).isEqualTo(expectedLadder);
+    }
+
+    @Test
+    @DisplayName("게임 동작 테스트")
+    void testProcess() {
+        HorizontalLine layer1 = HorizontalLine.ofLines(Arrays.asList(true, false, true));
+        HorizontalLine layer2 = HorizontalLine.ofLines(Arrays.asList(false, false, true));
+        HorizontalLine layer3 = HorizontalLine.ofLines(Arrays.asList(false, true, false));
+        Ladder sampleLadder = new Ladder(Arrays.asList(layer1, layer2, layer3));
+
+        Users inputs = new Users(Arrays.asList("a", "b", "c", "d"));
+        Users expected = new Users(Arrays.asList("b", "c", "a", "d"));
+
+        assertThat(sampleLadder.generateResult(inputs))
+                .isEqualTo(expected);
     }
 }

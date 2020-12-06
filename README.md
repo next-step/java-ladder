@@ -82,19 +82,18 @@
 
 ### 파생 기능사항
 
-* [신규] NameSaver
-  * [ ] 입력된 스트링의 검증 조건을 받아 검증하는 역할
-  * [ ] Getter
 * [신규] Reward
   * [X] 리워드 String 보관
 * [신규] Rewards
-  * [ ] `List<Reward>` 를 보관하는 역할
+  * [X] `List<Reward>` 를 보관하는 역할
 * [신규] Result
   * [ ] Users 와 Rewards 의 연결 및 반환
 * [추가] User
   * [X] User 이름에 all 금지
+* [추가] Ladder
+  * [ ] Users 를 받아서 각 Layer 에 적용하고, 새로 생성된 Users 를 생성하는 역할
 * [추가] Users
   * [X] ~~HorizontalLine~~ `SwapRule` 을 받아서 새로운 Users 를 반환하는 역할
 * [추가] HorizontalLine
   * [X] `SwapRule` 구현
-  * [X] Line 배열에 대한 검증조건 추가 
+  * [X] Line 배열에 대한 검증조건 추가
