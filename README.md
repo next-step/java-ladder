@@ -86,7 +86,7 @@
   * [ ] 입력된 스트링의 검증 조건을 받아 검증하는 역할
   * [ ] Getter
 * [신규] Reward
-  * [ ] 리워드 String 보관
+  * [X] 리워드 String 보관
 * [신규] Rewards
   * [ ] `List<Reward>` 를 보관하는 역할
 * [신규] Result
