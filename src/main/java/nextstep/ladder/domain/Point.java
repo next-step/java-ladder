@@ -6,6 +6,7 @@ public class Point {
     private Direction direction;
 
     private Point(int index, Direction direction) {
+        checkFirstDirection(index, direction);
         this.index = index;
         this.direction = direction;
     }
@@ -16,5 +17,11 @@ public class Point {
 
     public Direction getDirection() {
         return direction;
+    }
+
+    private void checkFirstDirection(int index, Direction direction) {
+        if(index == 0 && direction == Direction.LEFT) {
+            throw new IllegalArgumentException("첫 방향은 왼쪽일 수 없습니다.");
+        }
     }
 }
