@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.DTO.UsersDTO;
+import ladder.dto.UsersDTO;
 import ladder.ladderexceptions.InvalidUsersNumberException;
 
 import java.util.ArrayList;

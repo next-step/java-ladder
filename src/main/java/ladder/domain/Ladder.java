@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.DTO.LadderDTO;
+import ladder.dto.LadderDTO;
 import ladder.ladderexceptions.InvalidLadderHeightException;
 
 import java.util.Collections;

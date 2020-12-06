@@ -1,4 +1,4 @@
-package ladder.DTO;
+package ladder.dto;
 
 import ladder.domain.HorizontalLine;
 
