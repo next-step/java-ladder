@@ -1,13 +1,18 @@
 package my.project.dto;
 
-import my.project.dto.User;
+import my.project.domain.User;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static my.project.dto.User.ageIsInRange1;
-import static my.project.dto.User.ageIsInRange2;
+import java.util.Arrays;
+import java.util.List;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+
+import static my.project.domain.User.ageIsInRange1;
+import static my.project.domain.User.ageIsInRange2;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -38,4 +43,20 @@ public class UserTest {
         assertThat(ageIsInRange2(new User("crong", 29))).isFalse();
         assertThat(ageIsInRange2(null)).isFalse();
     }
+
+    @Test
+    void exp() {
+        assertThat(Pattern.matches("^([A-z0-9,]{1,5})$", "a")).isTrue();
+    }
+
+    @Test
+    void print() {
+        List<String> lang = Arrays.asList("Java", "Scala", "Groovy", "Python", "Go", "Swift");
+
+        lang.stream()
+                .sorted()
+                .collect(Collectors.toList()).forEach(System.out::println); // [Go, Groovy, Java, Python, Scala, Swift]
+
+    }
+
 }
