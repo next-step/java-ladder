@@ -10,17 +10,15 @@ public class Ladder {
 
     private List<Line> lines;
 
-    public Ladder() {}
-
     private Ladder(List<Line> lines) {
         this.lines = lines;
     }
 
-    public Ladder initLadder(Users users, Height height) {
+    public static Ladder initLadder(Users users, Height height) {
         List<Line> lines = new ArrayList<>();
 
         IntStream.range(ZERO, height.getHeight())
-                .forEach(number -> lines.add(new Line().initLine(users)));
+                .forEach(number -> lines.add(Line.initLine(users)));
         return new Ladder(lines);
     }
 

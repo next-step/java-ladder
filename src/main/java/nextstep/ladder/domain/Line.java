@@ -10,13 +10,11 @@ public class Line {
 
     private List<Point> points;
 
-    public Line() {}
-
     private Line(List<Point> points) {
         this.points = points;
     }
 
-    public Line initLine(Users users) {
+    public static Line initLine(Users users) {
         List<Point> points = new ArrayList<>();
         Direction direction = null;
 
@@ -24,13 +22,13 @@ public class Line {
         for (int number = ZERO; number < bound; number++) {
             int condition = minusIndex(number, bound);
             direction = Direction.decideDirection(direction, condition, new RandomDirectionStrategy());
-            points.add(new Point(number, direction));
+            points.add(Point.from(number, direction));
         }
 
         return new Line(points);
     }
 
-    private int minusIndex(int number, int bound) {
+    private static int minusIndex(int number, int bound) {
         if(bound - ONE - number == ZERO) {
             return -ONE;
         }
