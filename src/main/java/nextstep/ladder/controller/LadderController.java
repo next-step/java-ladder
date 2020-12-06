@@ -7,7 +7,6 @@ import nextstep.ladder.view.ResultView;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -15,8 +14,6 @@ public class LadderController {
 
     private static final int ZERO = 0;
     private static final int ONE = 1;
-    private static final int DIRECTION_BOUND = 2;
-    private Random random = new Random();
 
     public void start() {
         InputView inputView = new InputView();
@@ -61,7 +58,7 @@ public class LadderController {
         int bound = users.getUsers().size();
         for (int number = ZERO; number < bound; number++) {
             int condition = minusIndex(number, bound);
-            direction = decideDirection(direction, condition, () -> random.nextInt(DIRECTION_BOUND));
+            direction = decideDirection(direction, condition, new RandomDirectionStrategy());
             points.add(new Point(number, direction));
         }
 
@@ -75,9 +72,9 @@ public class LadderController {
         return number;
     }
 
-    public Direction decideDirection(Direction direction, int condition, RandomStrategy randomStrategy) {
+    public Direction decideDirection(Direction direction, int condition, DirectionStrategy directionStrategy) {
         if(condition == ZERO) {
-            return Direction.from(randomStrategy.randomDirection());
+            return directionStrategy.getStartDirection();
         }
 
         if(direction == Direction.RIGHT) {
@@ -85,18 +82,18 @@ public class LadderController {
         }
 
         if(direction == Direction.LEFT || direction == Direction.FORWARD) {
-            return checkLastIndex(condition, randomStrategy);
+            return checkLastIndex(condition, directionStrategy);
         }
 
         return direction;
     }
 
-    private Direction checkLastIndex(int condition, RandomStrategy randomStrategy) {
+    private Direction checkLastIndex(int condition, DirectionStrategy directionStrategy) {
         if(condition == -ONE) {
             return Direction.FORWARD;
         }
 
-        return Direction.from(randomStrategy.randomDirection());
+        return directionStrategy.getNextDirection();
     }
 
     private void drawLadders(ResultView resultView, Ladder ladder) {
