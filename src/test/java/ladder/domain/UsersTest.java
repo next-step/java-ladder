@@ -41,6 +41,35 @@ class UsersTest {
     }
 
     @Test
+    @DisplayName("허용되지 않은 타입의 Casting Test")
+    void testInvalidTypeCastingTest() {
+        assertThatThrownBy(
+                () -> new Users(Arrays.asList(1, 2, 3))
+        ).isInstanceOf(ClassCastException.class);
+    }
+
+    @Test
+    @DisplayName("List<User>와 List<String>의 동일성 테스트")
+    void testEqualityOnOtherType() {
+        List<String> input = Arrays.asList("a", "b", "c");
+        List<User> expected = Arrays.asList(new User("a"), new User("b"), new User("c"));
+
+        assertThat(new Users(input)).isEqualTo(new Users(expected));
+    }
+
+    @Test
+    @DisplayName("Swap 테스팅")
+    void testCorrectlySwapped() {
+        SwapRule sampleRule = index -> true;
+        Users inputUsers = new Users(Arrays.asList("A", "B", "C", "D"));
+        Users expectedUsers = new Users(Arrays.asList("B", "C", "D", "A"));
+
+        Users swappedUsers = inputUsers.passStage(sampleRule);
+
+        assertThat(swappedUsers).isEqualTo(expectedUsers);
+    }
+
+    @Test
     @DisplayName("Size 확인")
     void testSize() {
         List<String> users = Arrays.asList("BSH", "ABC");

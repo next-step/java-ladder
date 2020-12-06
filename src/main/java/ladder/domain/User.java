@@ -3,8 +3,9 @@ package ladder.domain;
 
 import ladder.ladderexceptions.InvalidUserNameException;
 
-public class User {
+import java.util.Objects;
 
+public class User {
     private static final int MAXIMUM_NAME_LENGTH = 5;
     private static final String DENIED_NAME = "all";
 
@@ -24,5 +25,18 @@ public class User {
 
     public String getName() {
         return this.name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(getName(), user.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName());
     }
 }

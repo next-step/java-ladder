@@ -46,4 +46,13 @@ public class UserTest {
                 () -> new User("all")
         );
     }
+
+    @Test
+    @DisplayName("동일성 테스트")
+    void testEquality() {
+        User input = new User("ABC");
+        User expected = new User("ABC");
+
+        assertThat(input).isEqualTo(expected);
+    }
 }

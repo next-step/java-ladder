@@ -94,6 +94,6 @@
 * [추가] User
   * [X] User 이름에 all 금지
 * [추가] Users
-  * [ ] `HorizontalLine` 를 받아서 Users 새로운 Users 를 반환하는 역할
+  * [X] ~~HorizontalLine~~ `SwapRule` 을 받아서 Users 새로운 Users 를 반환하는 역할
 * [추가] HorizontalLine
-  * [ ] String 2개의 순서를 바꾸도록 하는 역할???? 
+  * [ ] `SwapRule` 구현
