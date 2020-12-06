@@ -55,10 +55,5 @@ public class Users {
         }
     }
 
-    public void goDownAllUsers(Ladder ladder) {
-        for (User user : users) {
-            ladder.goDown(user);
-        }
-    }
 
 }

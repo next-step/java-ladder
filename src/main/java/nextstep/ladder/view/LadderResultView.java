@@ -17,7 +17,7 @@ public class LadderResultView extends AbstractView {
         printAndClear();
 
         // 사다리 출력
-        displayLadder(ladder);
+
 
         // 게임 결과 출력
         stringBuilder.append(gameResultsView(gameResults.getGameResultValues()));
@@ -34,31 +34,6 @@ public class LadderResultView extends AbstractView {
         return String.format("%5s", userName);
     }
 
-    private static void displayLadder(Ladder ladder) {
-        floorView(ladder.getFirstFloor());
-    }
-
-    private static void floorView(Floor floor) {
-
-        pointChainingView(floor.getStartPoint());
-
-        printAndClear();
-
-        if (floor.hasNext()) {
-            floorView(floor.getNextFloor());
-        }
-    }
-
-    private static void pointChainingView(Point point) {
-        String pointWithLinkView = point.hasBackwardLink() ?
-                BACKWARD_LINK_POINT
-                : BACKWARD_EMPTY_LINK_POINT;
-        stringBuilder.append(pointWithLinkView);
-
-        if (point.hasNext()) {
-            pointChainingView(point.getNext());
-        }
-    }
 
     private static String gameResultsView(List<String> gameResults) {
         return gameResults.stream()
