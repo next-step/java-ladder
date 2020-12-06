@@ -1,46 +1,26 @@
 package ladder.domain;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class LadderPoint {
-    private static final int SUBTRACT_NUMBER = 1;
     private static Random random = new Random();
-    private List<Boolean> points = new ArrayList<>();
 
-    public LadderPoint(final int countOfPerson) {
-        initLineList(countOfPerson);
+    private boolean ladderPoint;
+
+    public LadderPoint(final boolean ladderPoint) {
+        initPoint(ladderPoint);
     }
 
-    private void initLineList(final int countOfPerson) {
-        for (int i = 0; i < countOfPerson - SUBTRACT_NUMBER; i++) {
-            addPoint();
-        }
-    }
-
-    private void addPoint() {
-        if (points.isEmpty()) {
-            points.add(random.nextBoolean());
-
+    public void initPoint(boolean point) {
+        if (point) {
+            this.ladderPoint = false;
             return;
         }
 
-        checkContinuityPoint();
+        this.ladderPoint = new Boolean(random.nextBoolean());
     }
 
-    private void checkContinuityPoint() {
-        //연속으로 true가 나올경우
-        if (this.points.get(points.size() - 1) == true) {
-            this.points.add(false);
-
-            return;
-        }
-
-        points.add(random.nextBoolean());
-    }
-
-    public List<Boolean> getPoints() {
-        return points;
+    public boolean isLadderPoint() {
+        return this.ladderPoint;
     }
 }
