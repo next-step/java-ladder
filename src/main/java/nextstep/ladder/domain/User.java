@@ -10,9 +10,13 @@ public class User {
 
     private String name;
 
-    public User(String name) {
+    private User(String name) {
         checkValidate(name);
         this.name = name;
+    }
+
+    public static User of(String name) {
+        return new User(name);
     }
 
     private void checkValidate(String name) {

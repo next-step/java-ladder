@@ -7,8 +7,12 @@ public class Users {
 
     private List<User> users;
 
-    public Users(List<User> users) {
+    private Users(List<User> users) {
         this.users = users;
+    }
+
+    public static Users of(List<User> users) {
+        return new Users(users);
     }
 
     public List<User> getUsers() {

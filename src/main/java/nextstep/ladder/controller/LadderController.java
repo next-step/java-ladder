@@ -27,10 +27,10 @@ public class LadderController {
 
     public Users initUsers(InputUsers inputUsers) {
         List<User> userList = Arrays.stream(inputUsers.splitUsers())
-                .map(User::new)
+                .map(User::of)
                 .collect(Collectors.toList());
 
-        return new Users(userList);
+        return Users.of(userList);
     }
 
     private void printUsers(ResultView resultView, Users users) {
