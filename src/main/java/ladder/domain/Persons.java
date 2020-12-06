@@ -9,7 +9,7 @@ import java.util.List;
 public class Persons {
     private static int MAX_NAME_LENGTH = 5;
 
-    private List<String> names = new ArrayList<>();
+    private List<Person> persons = new ArrayList<>();
 
     public Persons(final String names) {
         checkInputName(names);
@@ -17,10 +17,18 @@ public class Persons {
     }
 
     private void initNames(final String names) {
-        List<String> tempNames = Arrays.asList(names.replaceAll(" ", "").split(","));
-        checkName(tempNames);
+        List<String> nameList = Arrays.asList(names.replaceAll(" ", "").split(","));
 
-        this.names = tempNames;
+        addPerson(nameList);
+    }
+
+    private void addPerson(final List<String> names) {
+        Person person;
+
+        for (String name : names) {
+            person = new Person(name);
+            persons.add(person);
+        }
     }
 
     private void checkInputName(final String names) {
@@ -40,27 +48,7 @@ public class Persons {
         }
     }
 
-    private void checkName(final List<String> tempNames) {
-        isEmpty(tempNames);
-
-        for (String name : tempNames) {
-            checkNameLength(name);
-        }
-    }
-
-    private void isEmpty(final List<String> tempNames) {
-        if (tempNames.size() == 0) {
-            throw new RuntimeException(ErrorMessage.getCheckInputNames());
-        }
-    }
-
-    private void checkNameLength(final String name) {
-        if (name.length() > MAX_NAME_LENGTH) {
-            throw new RuntimeException(ErrorMessage.getCheckNameLength());
-        }
-    }
-
-    public List<String> getNames() {
-        return names;
+    public List<Person> getPersons() {
+        return persons;
     }
 }
