@@ -6,11 +6,11 @@ import java.util.Objects;
 
 public class Reward {
 
-    private final String name;
+    private final String reward;
 
-    public Reward(String name) {
-        validateName(name);
-        this.name = name;
+    public Reward(String reward) {
+        validateName(reward);
+        this.reward = reward;
     }
 
     private void validateName(String name) {
@@ -19,16 +19,20 @@ public class Reward {
         }
     }
 
+    public String getReward() {
+        return reward;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Reward reward = (Reward) o;
-        return Objects.equals(name, reward.name);
+        return Objects.equals(this.reward, reward.reward);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(reward);
     }
 }

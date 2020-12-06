@@ -19,8 +19,15 @@ public class RewardTest {
 
     @Test
     @DisplayName("동일성 테스트")
-    public void rewardTest() {
+    public void testEquality() {
         assertThat(new Reward("HI"))
                 .isEqualTo(new Reward("HI"));
+    }
+
+    @Test
+    @DisplayName("DTO 용 getter 추가")
+    public void testGetter() {
+        assertThat(new Reward("1000").getReward())
+                .isEqualTo("1000");
     }
 }
