@@ -6,32 +6,45 @@ import java.util.List;
 
 public class LadderStatePrintView {
 
+    private static final String FIVE_SIZE_STRING_FORMATTER = "%5s";
+    private static final String BAR = "|";
+    private static final String LEFT_BAR = "----|";
 
     public static void print(Ladder ladder) {
-        Users users = ladder.getUsers();
-        List<User> export = users.export();
         StringBuilder stringBuilder = new StringBuilder();
-        for (User user : export) {
-            stringBuilder.append(String.format("%5s", user.getName()));
-        }
+        Users users = ladder.getUsers();
+        stringBuilder.append(buildUserNameString(users));
         stringBuilder.append(System.lineSeparator());
+        stringBuilder.append(buildLadderString(ladder));
+        System.out.println(stringBuilder);
+    }
+
+    private static String buildUserNameString(Users users) {
+        StringBuilder sb = new StringBuilder();
+        for (User user : users.export()) {
+            sb.append(String.format(FIVE_SIZE_STRING_FORMATTER, user.getName()));
+        }
+        return sb.toString();
+    }
+
+    private static String buildLadderString(Ladder ladder) {
+        StringBuilder sb = new StringBuilder();
         LadderRows ladderRows = ladder.getLadderRows();
         List<LadderRow> ladderRowList = ladderRows.getLadderRows();
         for (LadderRow ladderRow : ladderRowList) {
             for (LadderPoint ladderPoint : ladderRow.export()) {
                 Direction direction = ladderPoint.getDirection();
-                stringBuilder.append(buildDirection(direction));
+                sb.append(buildDirection(direction));
             }
-            stringBuilder.append(System.lineSeparator());
+            sb.append(System.lineSeparator());
         }
-        System.out.println(stringBuilder);
-
+        return sb.toString();
     }
 
     private static String buildDirection(Direction direction) {
         if (direction.equals(Direction.NONE) || direction.equals(Direction.RIGHT)) {
-            return String.format("%5s", "|");
+            return String.format(FIVE_SIZE_STRING_FORMATTER, BAR);
         }
-        return "----|";
+        return LEFT_BAR;
     }
 }
