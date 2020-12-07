@@ -5,9 +5,10 @@ import ladder.ladderexceptions.InvalidUserNameException;
 
 import java.util.Objects;
 
+import static ladder.domain.LadderConstant.SEARCH_ALL_REQUEST;
+
 public class User {
     private static final int MAXIMUM_NAME_LENGTH = 5;
-    private static final String DENIED_NAME = "all";
 
     private final String name;
 
@@ -18,7 +19,7 @@ public class User {
     }
 
     private void validateName(String name) {
-        if (name.isEmpty() || name.length() > MAXIMUM_NAME_LENGTH || name.equals(DENIED_NAME)) {
+        if (name.isEmpty() || name.length() > MAXIMUM_NAME_LENGTH || name.equals(SEARCH_ALL_REQUEST)) {
             throw new InvalidUserNameException();
         }
     }
