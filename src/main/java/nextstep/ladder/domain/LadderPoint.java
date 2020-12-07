@@ -12,7 +12,7 @@ public class LadderPoint {
         this.direction = getDirection(before, ladderIndex, ladderSize);
     }
 
-    public Direction getDirection(LadderPoint before, int ladderIndex, int ladderSize) {
+    private Direction getDirection(LadderPoint before, int ladderIndex, int ladderSize) {
         if (ladderIndex == 0) {
             return Direction.generateFirst();
         }
@@ -20,5 +20,9 @@ public class LadderPoint {
             return Direction.generateLast(before.direction);
         }
         return Direction.next(before.direction);
+    }
+
+    public Direction getDirection() {
+        return direction;
     }
 }

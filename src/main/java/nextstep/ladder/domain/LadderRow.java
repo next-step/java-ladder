@@ -1,6 +1,8 @@
 package nextstep.ladder.domain;
 
+import java.util.Collections;
 import java.util.LinkedList;
+import java.util.List;
 
 public class LadderRow {
 
@@ -13,5 +15,9 @@ public class LadderRow {
             LadderPoint last = ladderPoints.getLast();
             this.ladderPoints.add(new LadderPoint(last, i, countOfPerson));
         }
+    }
+
+    public List<LadderPoint> export() {
+        return Collections.unmodifiableList(this.ladderPoints);
     }
 }

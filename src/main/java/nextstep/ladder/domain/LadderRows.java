@@ -15,4 +15,8 @@ public class LadderRows {
                 .map(index -> new LadderRow(users.size()))
                 .collect(Collectors.toList()));
     }
+
+    public List<LadderRow> getLadderRows() {
+        return this.ladderRows;
+    }
 }
