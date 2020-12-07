@@ -1,9 +1,11 @@
 package ladder.view;
 
 import java.util.List;
+import java.util.Map;
 
 public class ResultView {
 
+    private static final String LADDER_DESCRIPTION_MESSAGE = "사다리 결과";
     private static final String RESULT_OPENING_MESSAGE = "실행 결과";
     private static final String LADDER_PRINT_MARGIN = "     ";
     private static final String LADDER_DIVIDER = "|";
@@ -13,8 +15,8 @@ public class ResultView {
     private ResultView() {
     }
 
-    public static void printResultOpening() {
-        System.out.println(RESULT_OPENING_MESSAGE);
+    public static void printLadderLayoutOpening() {
+        System.out.println(LADDER_DESCRIPTION_MESSAGE);
     }
 
     public static void printUsers(List<String> users) {
@@ -42,5 +44,26 @@ public class ResultView {
     private static void printPart(Boolean status) {
         String part = status ? IS_HORIZONTAL : IS_NOT_HORIZONTAL;
         System.out.print(part);
+    }
+
+    public static void printRewards(List<String> rewards) {
+        for (String reward : rewards) {
+            System.out.printf("%6s", reward);
+        }
+        System.out.println();
+    }
+
+    public static void printRewardsOpening() {
+        System.out.println(RESULT_OPENING_MESSAGE);
+    }
+
+    public static void printAll(Map<String, String> mapper) {
+        for (String key : mapper.keySet()) {
+            System.out.println(key + ":" + mapper.get(key));
+        }
+    }
+
+    public static void printForOne(String reward) {
+        System.out.println(reward);
     }
 }
