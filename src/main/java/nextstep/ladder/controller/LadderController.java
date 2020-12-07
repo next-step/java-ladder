@@ -4,9 +4,7 @@ import nextstep.ladder.domain.*;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class LadderController {
 
@@ -15,7 +13,7 @@ public class LadderController {
         ResultView resultView = new ResultView();
 
         InputUsers inputUsers = new InputUsers(inputView.inputParticipants());
-        Users users = initUsers(inputUsers);
+        Users users = Users.createUsers(inputUsers);
 
         Height height = new Height(Integer.parseInt(inputView.inputHeight()));
 
@@ -23,14 +21,6 @@ public class LadderController {
         resultView.printUsers(users);
         Ladder ladder = Ladder.initLadder(users, height);
         drawLadders(resultView, ladder);
-    }
-
-    public Users initUsers(InputUsers inputUsers) {
-        List<User> userList = Arrays.stream(inputUsers.splitUsers())
-                .map(User::of)
-                .collect(Collectors.toList());
-
-        return Users.of(userList);
     }
 
     private void drawLadders(ResultView resultView, Ladder ladder) {
