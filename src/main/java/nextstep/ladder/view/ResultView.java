@@ -1,6 +1,11 @@
 package nextstep.ladder.view;
 
+import nextstep.ladder.domain.Direction;
+import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.Point;
 import nextstep.ladder.domain.Users;
+
+import java.util.List;
 
 public class ResultView {
     private static final String RESULT_MENTION = "실행결과";
@@ -15,23 +20,46 @@ public class ResultView {
     public void printUsers(Users users) {
         users.getUsers()
                 .forEach(user -> System.out.print(String.format("%5s ", user.getName())));
-        ;
     }
 
-    public void drawRight() {
+    public void drawLadders(Ladder ladder) {
+        ladder.getLines()
+                .forEach(line -> drawLine(line.getPoints()));
+    }
+
+    private void drawLine(List<Point> points) {
+        enterLine();
+        points.forEach(this::checkDirection);
+    }
+
+    private void enterLine() {
+        System.out.println();
+    }
+
+    private void checkDirection(Point point) {
+        if(point.getDirection() == Direction.RIGHT) {
+            drawRight();
+        }
+
+        if(point.getDirection() == Direction.LEFT) {
+            drawLeft();
+        }
+
+        if(point.getDirection() == Direction.FORWARD) {
+            drawForward();
+        }
+    }
+
+    private void drawRight() {
         System.out.print(String.format("%5s", VERTICAL));
         System.out.print(String.format("%5s", BAR));
     }
 
-    public void drawLeft() {
+    private void drawLeft() {
         System.out.print(String.format("%s ", VERTICAL));
     }
 
-    public void drawForward() {
+    private void drawForward() {
         System.out.print(String.format("%5s ", VERTICAL));
-    }
-
-    public void enterLine() {
-        System.out.println();
     }
 }

@@ -1,10 +1,11 @@
 package nextstep.ladder.controller;
 
-import nextstep.ladder.domain.*;
+import nextstep.ladder.domain.Height;
+import nextstep.ladder.domain.InputUsers;
+import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.Users;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
-
-import java.util.List;
 
 public class LadderController {
 
@@ -20,31 +21,6 @@ public class LadderController {
         resultView.printResultMention();
         resultView.printUsers(users);
         Ladder ladder = Ladder.initLadder(users, height);
-        drawLadders(resultView, ladder);
+        resultView.drawLadders(ladder);
     }
-
-    private void drawLadders(ResultView resultView, Ladder ladder) {
-        ladder.getLines()
-                .forEach(line -> drawLine(resultView, line.getPoints()));
-    }
-
-    private void drawLine(ResultView resultView, List<Point> points) {
-        resultView.enterLine();
-        points.forEach(point -> checkDirection(resultView, point));
-    }
-
-    private void checkDirection(ResultView resultView, Point point) {
-        if(point.getDirection() == Direction.RIGHT) {
-            resultView.drawRight();
-        }
-
-        if(point.getDirection() == Direction.LEFT) {
-            resultView.drawLeft();
-        }
-
-        if(point.getDirection() == Direction.FORWARD) {
-            resultView.drawForward();
-        }
-    }
-
 }
