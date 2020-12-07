@@ -28,15 +28,14 @@ public class StreamStudy {
                 .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
-        List<String> longestWords = words.stream()
-                .filter(it -> it.length() > 12)
+        words.stream()
+                .filter(word -> word.length() > 12)
                 .distinct()
-                .sorted((o1, o2) -> Integer.valueOf(o2.length()).compareTo(Integer.valueOf(o1.length())))
+                .sorted((word1, word2) -> Integer.valueOf(word2.length()).compareTo(Integer.valueOf(word1.length())))
+                .limit(100)
                 .map(String::toLowerCase)
-                .collect(Collectors.toList());
-
-        longestWords.subList(0, Math.min(longestWords.size(), 100))
                 .forEach(System.out::println);
+
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
