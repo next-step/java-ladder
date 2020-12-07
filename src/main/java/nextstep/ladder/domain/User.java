@@ -5,7 +5,7 @@ import java.util.Objects;
 public class User {
     private static final int LENGTH_MINIMUM = 1;
     private static final int LENGTH_MAXIMUM = 5;
-    private static final String LENGTH_MINIMUM_MENTION = "이름은 %d글자를 초과할 수 없습니다.";
+    private static final String LENGTH_MINIMUM_MENTION = "이름은 %d글자 이상이어야 합니다.";
     private static final String LENGTH_MAXIMUM_MENTION = "이름은 %d글자를 초과할 수 없습니다.";
 
     private String name;

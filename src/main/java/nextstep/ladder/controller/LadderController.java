@@ -1,9 +1,6 @@
 package nextstep.ladder.controller;
 
-import nextstep.ladder.domain.Height;
-import nextstep.ladder.domain.InputUsers;
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Users;
+import nextstep.ladder.domain.*;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
@@ -15,6 +12,10 @@ public class LadderController {
 
         InputUsers inputUsers = new InputUsers(inputView.inputParticipants());
         Users users = Users.createUsers(inputUsers);
+
+        int usersNumber = users.getUsers().size();
+        InputResult inputResult = InputResult.createInputResult(inputView.inputResults(), usersNumber);
+        Results results = Results.createResults(inputResult);
 
         Height height = new Height(Integer.parseInt(inputView.inputHeight()));
 
