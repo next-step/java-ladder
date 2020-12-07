@@ -10,7 +10,7 @@ public class PointGenerator {
     private final DirectionStrategy directionStrategy;
 
     public PointGenerator() {
-        this.directionStrategy = new DirectionStrategy();
+        this.directionStrategy = DirectionStrategy.newInstance();
     }
 
     public PointGenerator(DirectionStrategy directionStrategy) {

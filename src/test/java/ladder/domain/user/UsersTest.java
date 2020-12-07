@@ -11,8 +11,8 @@ class UsersTest {
 
     @Test
     void 객체생성_실패_테스트() {
-        User user1 = new User("test", new Position(0));
-        User user2 = new User("test", new Position(1));
-        assertThrows(LadderGameException.class, () -> new Users(Arrays.asList(user1, user2)));
+        User user1 = User.of("test", new Position(0));
+        User user2 = User.of("test", new Position(1));
+        assertThrows(LadderGameException.class, () -> Users.from(Arrays.asList(user1, user2)));
     }
 }

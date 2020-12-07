@@ -19,6 +19,10 @@ public class Position {
         this.position = position;
     }
 
+    public int getPosition() {
+        return position;
+    }
+
     public Position decreasePosition() {
         return new Position(this.position - POSITION_ONE.position);
     }

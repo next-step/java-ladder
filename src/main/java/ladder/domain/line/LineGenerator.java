@@ -1,11 +1,13 @@
 package ladder.domain.line;
 
+import java.util.stream.IntStream;
 import ladder.domain.Position;
-import ladder.domain.point.Point;
 import ladder.domain.point.PointGenerator;
 import ladder.domain.user.Users;
 
 public class LineGenerator {
+
+    private static final int SECOND_INDEX = 1;
 
     private final PointGenerator pointGenerator;
 
@@ -23,10 +25,10 @@ public class LineGenerator {
 
         newLine.addPoint(pointGenerator.generateLineStartPoint());
 
-        for (int i = 1; i < lastIndexOfLine; i++) {
-            Point newPoint = pointGenerator.generateNextPoint(newLine.getLastPoint(), new Position(i));
-            newLine.addPoint(newPoint);
-        }
+        IntStream.range(SECOND_INDEX, lastIndexOfLine)
+            .mapToObj(index -> pointGenerator.generateNextPoint(newLine.getLastPoint(), new Position(index)))
+            .forEach(newLine::addPoint);
+
         newLine.addPoint(pointGenerator.generateLineEndPoint(newLine.getLastPoint(), new Position(lastIndexOfLine)));
 
         return newLine;

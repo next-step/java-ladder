@@ -8,6 +8,7 @@ import ladder.domain.direction.DirectionStrategy;
 import ladder.domain.line.LineGenerator;
 import ladder.domain.model.LadderGameInfo;
 import ladder.domain.point.PointGenerator;
+import ladder.domain.result.ResultPrize;
 import ladder.domain.user.User;
 import ladder.domain.user.Users;
 import org.junit.jupiter.api.Test;
@@ -19,13 +20,14 @@ class LadderGeneratorTest {
 
     @Test
     void generateLadder() {
-        User participant1 = new User("a", new Position(0));
-        User participant2 = new User("b", new Position(1));
-        Users participants = new Users(Arrays.asList(participant1, participant2));
+        User participant1 = User.of("a", new Position(0));
+        User participant2 = User.of("b", new Position(1));
+        ResultPrize resultPrize = new ResultPrize(new String[]{"1", "2"}, 2);
+        Users participants = Users.from(Arrays.asList(participant1, participant2));
 
         LadderHeight ladderHeight = new LadderHeight(1);
 
-        LadderGameInfo ladderGameInfo = new LadderGameInfo(participants, ladderHeight);
+        LadderGameInfo ladderGameInfo = new LadderGameInfo(participants, resultPrize, ladderHeight);
 
         assertThat(ladderGenerator.generateLadder(ladderGameInfo))
             .isEqualTo(new Ladder(Arrays.asList(lineGenerator.generateLine(participants))));

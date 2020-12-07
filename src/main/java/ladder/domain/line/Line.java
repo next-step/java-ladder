@@ -1,15 +1,14 @@
 package ladder.domain.line;
 
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Objects;
+import ladder.domain.Position;
 import ladder.domain.point.Point;
 import ladder.exception.LadderGameException;
 
 public class Line {
 
     private static final String INVALID_LADDER_POSITION = "사다리 좌표가 잘못 되었습니다.";
-    private static final int START_INDEX = 0;
 
     private final LinkedList<Point> points;
 
@@ -22,29 +21,24 @@ public class Line {
         this.points = points;
     }
 
-    public boolean addPoint(Point point) {
+    public Position getNextLinePosition(Position position) {
+        return points.get(position.getPosition())
+            .goNextPoint();
+    }
+
+    protected boolean addPoint(Point point) {
         if (!points.isEmpty()) {
             validateWithNextPoint(points.getLast(), point);
         }
         return points.add(point);
     }
 
-    public Point getLastPoint() {
+    protected Point getLastPoint() {
         return points.getLast();
     }
 
     public LinkedList<Point> getPoints() {
         return points;
-    }
-
-    private void validatePoints(List<Point> points) {
-        Point now = points.get(START_INDEX);
-
-        for (int i = 1; i < points.size(); i++) {
-            Point next = points.get(i);
-            validateWithNextPoint(now, next);
-            now = next;
-        }
     }
 
     private void validateWithNextPoint(Point now, Point next) {

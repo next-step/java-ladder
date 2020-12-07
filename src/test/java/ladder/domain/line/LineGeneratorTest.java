@@ -31,8 +31,8 @@ class LineGeneratorTest {
 
     @Test
     void 유저한명_라인생성_테스트() {
-        User solo = new User("solo", new Position(0));
-        assertThrows(LadderGameException.class, () -> lineGenerator.generateLine(new Users(Arrays.asList(solo))));
+        User solo = User.of("solo", new Position(0));
+        assertThrows(LadderGameException.class, () -> lineGenerator.generateLine(Users.from(Arrays.asList(solo))));
     }
 
     static Stream<Arguments> provide() {
@@ -42,14 +42,14 @@ class LineGeneratorTest {
         Position three = new Position(3);
         Position four = new Position(4);
 
-        User user1 = new User("a", zero);
-        User user2 = new User("b", one);
-        User user3 = new User("c", two);
-        User user4 = new User("d", three);
-        User user5 = new User("e", four);
+        User user1 = User.of("a", zero);
+        User user2 = User.of("b", one);
+        User user3 = User.of("c", two);
+        User user4 = User.of("d", three);
+        User user5 = User.of("e", four);
 
-        Users users1 = new Users(Arrays.asList(user1, user2, user3, user4));
-        Users users2 = new Users(Arrays.asList(user1, user2, user3, user4, user5));
+        Users users1 = Users.from(Arrays.asList(user1, user2, user3, user4));
+        Users users2 = Users.from(Arrays.asList(user1, user2, user3, user4, user5));
 
         List<Point> points = Arrays.asList(
             new Point(zero, Direction.RIGHT),
