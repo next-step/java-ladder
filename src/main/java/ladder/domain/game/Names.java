@@ -52,6 +52,9 @@ public class Names {
         return this.names;
     }
 
+    public int getParticipantNum() {
+        return this.names.size();
+    }
 
     @Override
     public boolean equals(Object o) {
