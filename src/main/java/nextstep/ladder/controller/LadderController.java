@@ -20,7 +20,7 @@ public class LadderController {
         Height height = new Height(Integer.parseInt(inputView.inputHeight()));
 
         resultView.printResultMention();
-        printUsers(resultView, users);
+        resultView.printUsers(users);
         Ladder ladder = Ladder.initLadder(users, height);
         drawLadders(resultView, ladder);
     }
@@ -31,11 +31,6 @@ public class LadderController {
                 .collect(Collectors.toList());
 
         return Users.of(userList);
-    }
-
-    private void printUsers(ResultView resultView, Users users) {
-        users.getUsers()
-                .forEach(user -> resultView.printUsers(user.getName()));
     }
 
     private void drawLadders(ResultView resultView, Ladder ladder) {

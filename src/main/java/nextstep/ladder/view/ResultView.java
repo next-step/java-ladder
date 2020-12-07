@@ -1,5 +1,7 @@
 package nextstep.ladder.view;
 
+import nextstep.ladder.domain.Users;
+
 public class ResultView {
     private static final String RESULT_MENTION = "실행결과";
     private static final String VERTICAL = "|";
@@ -10,8 +12,10 @@ public class ResultView {
         System.out.println(RESULT_MENTION);
     }
 
-    public void printUsers(String name) {
-        System.out.print(String.format("%5s ", name));
+    public void printUsers(Users users) {
+        users.getUsers()
+                .forEach(user -> System.out.print(String.format("%5s ", user.getName())));
+        ;
     }
 
     public void drawRight() {
