@@ -1,18 +1,35 @@
-package nextstep.optional;
+package my.project.domain;
 
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 public class User {
+    public static final int MAX_LENGTH = 5;
+    public static final String USER_PATTERN = "^([A-z0-9,]{1," + MAX_LENGTH + "})$";
+    public static final String INPUT_USER_ALERT = "사용자명을 확인해주십시요.(최대 " + MAX_LENGTH + "자)";
+
     private String name;
     private Integer age;
 
     public User(String name, Integer age) {
+        validateName(name);
         this.name = name;
         this.age = age;
     }
 
+    public User(String name) {
+        validateName(name);
+        this.name = name;
+    }
+
+    private void validateName(String name) {
+        if (!Pattern.matches(USER_PATTERN, name)) {
+            throw new IllegalArgumentException(INPUT_USER_ALERT);
+        }
+    }
+
     public String getName() {
-        return name;
+        return String.format("%-" + MAX_LENGTH + "s", name);
     }
 
     public Integer getAge() {
@@ -72,4 +89,5 @@ public class User {
             return false;
         return true;
     }
+
 }
