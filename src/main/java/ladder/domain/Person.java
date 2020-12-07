@@ -2,6 +2,8 @@ package ladder.domain;
 
 import ladder.util.ErrorMessage;
 
+import java.util.Objects;
+
 public class Person {
     private static final int MAX_NAME_LENGTH = 5;
 
@@ -19,7 +21,7 @@ public class Person {
     }
 
     private void checkEmpty(final String names) {
-        if (names == null) {
+        if (Objects.isNull(names)) {
             throw new RuntimeException(ErrorMessage.getCheckInputNames());
         }
     }

@@ -1,47 +1,25 @@
 package ladder.domain;
 
-
-import ladder.util.ErrorMessage;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class LadderLine {
-    private static final int MIN_LADDER_HEIGHT = 1;
-    private List<LadderPoints> LadderLine = new ArrayList<>();
+    private static final int SUBTRACT_NUMBER = 1;
+    private List<LadderPoint> points = new ArrayList<>();
 
-    public LadderLine(final int ladderHeight, final int countOfPerson) {
-        checkValue(ladderHeight, countOfPerson);
-        addLadderLine(ladderHeight, countOfPerson);
+    public LadderLine(final int countOfPerson) {
+        initLineList(countOfPerson);
     }
 
-    private void addLadderLine(final int ladderHeight, final int countOfPerson) {
-        LadderPoints points;
+    private void initLineList(final int countOfPerson) {
+        points.add(new LadderPoint(false));
 
-        for (int i = 0; i < ladderHeight; i++) {
-            points = new LadderPoints(countOfPerson);
-            this.LadderLine.add(points);
+        for (int i = 1; i < countOfPerson - SUBTRACT_NUMBER; i++) {
+            points.add(new LadderPoint(points.get(points.size() - 1).isLadderPoint()));
         }
     }
 
-    private void checkValue(final int ladderHeight, final int countOfPerson) {
-        checkLadderHeight(ladderHeight);
-        checkCountOfPerson(countOfPerson);
-    }
-
-    private void checkCountOfPerson(int countOfPerson) {
-        if (countOfPerson < MIN_LADDER_HEIGHT) {
-            throw new RuntimeException(ErrorMessage.getCheckInputLadderHeight());
-        }
-    }
-
-    private void checkLadderHeight(int ladderHeight) {
-        if (ladderHeight < MIN_LADDER_HEIGHT) {
-            throw new RuntimeException(ErrorMessage.getCheckInputLadderHeight());
-        }
-    }
-
-    public List<LadderPoints> getLadderLine() {
-        return LadderLine;
+    public List<LadderPoint> getPoints() {
+        return points;
     }
 }

@@ -33,11 +33,11 @@ public class PrintLadder {
     }
 
 
-    public void printLadder(LadderLine ladderLine) {
+    public void printLadder(LadderLines ladderLine) {
         StringBuilder stringBuilder = new StringBuilder();
-        List<LadderPoints> lll = ladderLine.getLadderLine();
+        List<LadderLine> lll = ladderLine.getLadderLine();
 
-        for (LadderPoints points : lll) {
+        for (LadderLine points : lll) {
             stringBuilder.append("|");
 
             stringBuilder.append(RepeatPoint(points.getPoints()));
