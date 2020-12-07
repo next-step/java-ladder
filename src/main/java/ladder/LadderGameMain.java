@@ -8,6 +8,7 @@ public class LadderGameMain {
     public static void main(String[] args){
 
         String[] playerNames = LadderGameController.getPlayerNames();
+        String[] awards = LadderGameController.getLadderGameAwards(playerNames.length);
         String ladderMaxHeightValue = LadderGameController.getLadderMaxHeight();
 
         LadderGameResult ladderGameResult = LadderGameController.execute(playerNames, ladderMaxHeightValue);

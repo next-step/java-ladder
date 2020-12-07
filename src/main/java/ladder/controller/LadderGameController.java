@@ -33,4 +33,8 @@ public class LadderGameController {
     public static void showResult(LadderGameResult ladderGameResult) {
         ResultView.showResult(ladderGameResult);
     }
+
+    public static String[] getLadderGameAwards(int ladderCount) {
+        return InputView.inputLadderGameAwards(ladderCount);
+    }
 }

@@ -1,31 +1,51 @@
 package ladder.view;
 
+import ladder.domain.LadderGameErrorMessage;
+
 import java.util.Scanner;
 
 public class InputView {
 
     private static final String INPUT_PLAYER_NAME_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
-    private static final String PLAYER_NAME_DELIMITER = ",";
+    private static final String INPUT_DELIMITER = ",";
     private static final String INPUT_MAX_HEIGHT_MESSAGE = "\n최대 사다리 높이는 몇 개인가요?";
+    private static final String INPUT_AWARDS_MESSAGE = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
 
     private static Scanner scanner = new Scanner(System.in);
 
     public static String[] inputPlayerNames(){
         System.out.println(INPUT_PLAYER_NAME_MESSAGE);
 
-        return splitPlayerNames(scanner.next());
+        return splitInputValues(scanner.next());
     }
 
-    private static String[] splitPlayerNames(String playerNamesValue) {
-        String[] playerNames = playerNamesValue.split(PLAYER_NAME_DELIMITER);
+    private static String[] splitInputValues(String inputValues) {
+        String[] splitInputValues = inputValues.split(INPUT_DELIMITER);
 
-        return playerNames;
+        return splitInputValues;
     }
 
     public static String inputLadderHeight(){
         System.out.println(INPUT_MAX_HEIGHT_MESSAGE);
 
         return scanner.next();
+    }
+
+    public static String[] inputLadderGameAwards(int ladderCount){
+        System.out.println(INPUT_AWARDS_MESSAGE);
+
+        String[] awards = splitInputValues(scanner.next());
+
+        validateAwardsCount(awards, ladderCount);
+
+        return awards;
+    }
+
+    private static void validateAwardsCount(String[] awards, int ladderCount) {
+        if(awards.length != ladderCount){
+            throw new IllegalArgumentException(LadderGameErrorMessage.ILLEGAL_AWARDS_COUNT.getErrorMessage());
+        }
+
     }
 
 }
