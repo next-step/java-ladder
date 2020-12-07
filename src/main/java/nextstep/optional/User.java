@@ -1,5 +1,6 @@
 package nextstep.optional;
 
+import java.util.Objects;
 import java.util.Optional;
 
 public class User {

@@ -26,10 +26,14 @@ public class Lambda {
         }).start();
     }
 
-    public static int sumByConditional(List<Integer> numbers, Conditional c) {
+    public static int sumByConditional(List<Integer> numbers, Conditional conditional) {
         return numbers.stream()
-                .filter(number -> c.test(number))
+                .filter(conditional::test)
                 .reduce(0, Integer::sum);
+    }
+
+    public static int sumAll(List<Integer> numbers) {
+        return sumByConditional(numbers,  number -> true);
     }
 
     public static int sumAllEven(List<Integer> numbers) {
