@@ -1,4 +1,4 @@
-package ladder;
+package ladder.domain;
 
 import ladder.ladderexceptions.InvalidUserNameException;
 import org.junit.jupiter.api.DisplayName;
@@ -37,5 +37,22 @@ public class UserTest {
     void testGetter() {
         assertThat(new User("ABC").getName())
                 .isEqualTo("ABC");
+    }
+
+    @Test
+    @DisplayName("출력을 위해 입력이 금지된 이름 all")
+    void testDeniedName() {
+        assertThatExceptionOfType(InvalidUserNameException.class).isThrownBy(
+                () -> new User("all")
+        );
+    }
+
+    @Test
+    @DisplayName("동일성 테스트")
+    void testEquality() {
+        User input = new User("ABC");
+        User expected = new User("ABC");
+
+        assertThat(input).isEqualTo(expected);
     }
 }

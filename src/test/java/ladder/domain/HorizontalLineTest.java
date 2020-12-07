@@ -1,4 +1,4 @@
-package ladder;
+package ladder.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,33 +15,42 @@ class HorizontalLineTest {
 
     private static Stream<Arguments> makePatterns() {
         return Stream.of(
-                Arguments.of((HowToConnect) x -> false,
+                Arguments.of((HowToConnect) leftSideStatus -> false,
                         new Boolean[]{false, false, false, false, false}),
-                Arguments.of((HowToConnect) x -> !x,
+                Arguments.of((HowToConnect) leftSideStatus -> !leftSideStatus,
                         new Boolean[]{true, false, true, false, true}),
-                Arguments.of((HowToConnect) x -> true,
-                        new Boolean[]{true, true, true, true, true})
+                Arguments.of(new SampleShufflePattern(),
+                        new Boolean[]{false, true, false, true, false})
         );
+    }
+
+    @Test
+    @DisplayName("swap 조건 반환")
+    void testSwapCondition() {
+        Boolean[] input = {true, false, false, true};
+        HorizontalLine line = HorizontalLine.ofLines(Arrays.asList(input));
+
+        assertThat(line.needToSwap(0)).isEqualTo(true);
     }
 
     @Test
     @DisplayName("초깃값 확인")
     void test() {
-        Boolean[] booleans = {false, false, false, false};
+        Boolean[] expected = {false, false, false, false};
 
-        assertThat(HorizontalLine.of(4))
-                .isEqualTo(HorizontalLine.of(Arrays.asList(booleans)));
+        assertThat(HorizontalLine.ofLineCounts(4))
+                .isEqualTo(HorizontalLine.ofLines(Arrays.asList(expected)));
     }
 
     @ParameterizedTest
     @MethodSource("makePatterns")
     @DisplayName("변경 테스트")
     void shuffle(HowToConnect strategy, Boolean[] expected) {
-        HorizontalLine sampleLine = HorizontalLine.of(5);
+        HorizontalLine sampleLine = HorizontalLine.ofLineCounts(5);
 
         sampleLine.shuffle(strategy);
 
         assertThat(sampleLine)
-                .isEqualTo(HorizontalLine.of(Arrays.asList(expected)));
+                .isEqualTo(HorizontalLine.ofLines(Arrays.asList(expected)));
     }
 }
