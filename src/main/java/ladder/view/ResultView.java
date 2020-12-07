@@ -1,9 +1,6 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
-import ladder.domain.LadderGameResult;
-import ladder.domain.Ladders;
-import ladder.domain.Players;
+import ladder.domain.*;
 
 import java.util.stream.Collectors;
 
@@ -11,6 +8,7 @@ import static ladder.domain.LadderGameConfig.PLAYER_NAME_MAX_LENGTH;
 
 public class ResultView {
 
+    private static final String BUILD_HEAD_MESSAGE = "\n사다리 결과\n";
     private static final String RESULT_HEAD_MESSAGE = "\n실행결과\n";
     private static final String CONNECTED = "-----";
     private static final String EMPTY = "";
@@ -20,11 +18,21 @@ public class ResultView {
 
     private ResultView(){}
 
-    public static void showResult(LadderGameResult ladderGameResult) {
-        System.out.println(RESULT_HEAD_MESSAGE);
+    public static void showBuildResult(LadderBuildResult ladderBuildResult, Awards awards) {
+        System.out.println(BUILD_HEAD_MESSAGE);
 
-        showPlayers(ladderGameResult.getPlayers());
-        showLadders(ladderGameResult.getLadders());
+        showPlayers(ladderBuildResult.getPlayers());
+        showLadders(ladderBuildResult.getLadders());
+        showAwards(awards);
+
+    }
+
+    private static void showAwards(Awards awards) {
+
+        awards.getAwards().stream()
+                .map(award -> padLeftZeros(award.getAwardName(),PLAYER_NAME_MAX_LENGTH) + SPACE)
+                .forEach(System.out::print);
+        System.out.println();
     }
 
     private static void showLadders(Ladders ladders) {
@@ -37,7 +45,7 @@ public class ResultView {
 
     private static String showLadder(Ladder ladder) {
         return ladder.getLine().getPoints().stream()
-                .map(i-> LADDER+(i.isConnected()? CONNECTED:NOT_CONNECTED)).collect(Collectors.joining());
+                .map(i-> LADDER+(i.getDirection().isRight()? CONNECTED:NOT_CONNECTED)).collect(Collectors.joining());
     }
 
     private static void showPlayers(Players players) {

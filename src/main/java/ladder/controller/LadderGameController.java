@@ -16,12 +16,14 @@ public class LadderGameController {
         return InputView.inputLadderHeight();
     }
 
-    public static LadderGameResult execute(String[] playerNames, String ladderMaxHeightValue) {
+    public static LadderBuildResult execute(String[] playerNames, String ladderMaxHeightValue) {
         Players players = new Players(playerNames);
         validateLadderMaxHeight(ladderMaxHeightValue);
 
+        //Awards awards = new Awards(awardNames);
+
         LadderGame ladderGame = new LadderGame(new RandomLineBuildStrategy());
-        return new LadderGameResult(ladderGame.start(players.getPlayers().size(), Integer.parseInt(ladderMaxHeightValue)), players);
+        return new LadderBuildResult(ladderGame.start(players.getPlayers().size(), Integer.parseInt(ladderMaxHeightValue)), players);
     }
 
     private static void validateLadderMaxHeight(String ladderMaxHeightValue) {
@@ -30,11 +32,15 @@ public class LadderGameController {
         }
     }
 
-    public static void showResult(LadderGameResult ladderGameResult) {
-        ResultView.showResult(ladderGameResult);
+    public static void showBuildResult(LadderBuildResult ladderBuildResult, Awards awards) {
+        ResultView.showBuildResult(ladderBuildResult, awards);
     }
 
     public static String[] getLadderGameAwards(int ladderCount) {
         return InputView.inputLadderGameAwards(ladderCount);
+    }
+
+    public static Awards makeAwards(String[] awardNames) {
+        return new Awards(awardNames);
     }
 }

@@ -21,7 +21,7 @@ public class Line {
     private void validatePoints(List<Point> points) {
 
         String pointsValue = points.stream()
-                .map(point -> point.isConnected() ? CONNECTED_DELIMITER: NOT_CONNECTED_DELIMITER)
+                .map(point -> point.getDirection().isRight() ? CONNECTED_DELIMITER: NOT_CONNECTED_DELIMITER)
                 .collect(Collectors.joining());
 
         if(pointsValue.contains(CONNECTED_DELIMITER+CONNECTED_DELIMITER)){

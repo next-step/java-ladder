@@ -1,19 +1,26 @@
 package ladder;
 
 import ladder.controller.LadderGameController;
-import ladder.domain.LadderGameResult;
+import ladder.domain.Award;
+import ladder.domain.Awards;
+import ladder.domain.LadderBuildResult;
+import ladder.domain.Player;
+
+import java.util.List;
+import java.util.Map;
 
 public class LadderGameMain {
 
     public static void main(String[] args){
 
         String[] playerNames = LadderGameController.getPlayerNames();
-        String[] awards = LadderGameController.getLadderGameAwards(playerNames.length);
+        String[] awardNames = LadderGameController.getLadderGameAwards(playerNames.length);
         String ladderMaxHeightValue = LadderGameController.getLadderMaxHeight();
 
-        LadderGameResult ladderGameResult = LadderGameController.execute(playerNames, ladderMaxHeightValue);
+        LadderBuildResult ladderBuildResult = LadderGameController.execute(playerNames, ladderMaxHeightValue);
+        Awards awards = LadderGameController.makeAwards(awardNames);
 
-        LadderGameController.showResult(ladderGameResult);
+        LadderGameController.showBuildResult(ladderBuildResult, awards);
 
     }
 }

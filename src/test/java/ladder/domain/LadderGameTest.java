@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import ladder.controller.LadderGameController;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -32,6 +33,41 @@ public class LadderGameTest {
         Ladders ladders = new Ladders(IntStream.range(0, ladderMaxHeight)
                 .mapToObj(ladder -> new Ladder(lineBuildStrategy.build(3)))
                 .collect(Collectors.toList()));
+
+        // then
+        assertThat(ladders.getLadders().size()).isEqualTo(ladderMaxHeight);
+    }
+
+    @DisplayName("사다리 실행결과 테스트")
+    @Test
+    void ladderResultTest(){
+        // given
+        int ladderMaxHeight = 5;
+
+
+        LadderBuildResult ladderBuildResult = LadderGameController.execute(new String[]{"aa","bb","dc"}, "5", awards);
+
+        LadderGameController.showResult(ladderBuildResult);
+
+        Ladders ladders = ladderBuildResult.getLadders();
+
+
+        int startLadderIndex = 0;
+        int maxPoint = 2;
+        int left = -1;
+        int startPoint = 0;
+        int right = 1;
+
+        boolean results = true;
+        while(startLadderIndex < ladderMaxHeight){
+            System.out.println("=================결과");
+            System.out.println("사다리 높이: "+ startLadderIndex+"  라인인덱스: "+startPoint);
+            System.out.println(results);
+
+
+
+            results = ladders.getLadders().get(startLadderIndex).getLine().getPoints().get(startPoint).getDirection().isRight();
+        }
 
         // then
         assertThat(ladders.getLadders().size()).isEqualTo(ladderMaxHeight);

@@ -4,14 +4,14 @@ import java.util.Objects;
 
 public final class Point {
 
-    private final boolean isConnected;
+    private final Direction direction;
 
-    public Point(boolean isConnected){
-        this.isConnected = isConnected;
+    public Point(Direction direction){
+        this.direction = direction;
     }
 
-    public boolean isConnected() {
-        return isConnected;
+    public Direction getDirection() {
+        return direction;
     }
 
     @Override
@@ -19,11 +19,11 @@ public final class Point {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Point point = (Point) o;
-        return isConnected == point.isConnected;
+        return Objects.equals(direction, point.direction);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(isConnected);
+        return Objects.hash(direction);
     }
 }

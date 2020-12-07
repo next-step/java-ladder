@@ -17,8 +17,8 @@ public class LineTest {
 
         assertThatIllegalArgumentException().isThrownBy(() -> {
             List<Point> points = new ArrayList<>();
-            points.add(new Point(true));
-            points.add(new Point(true));
+            points.add(new Point(new Direction(false, true)));
+            points.add(new Point(new Direction(true, true)));
 
             new Line(points);
 
