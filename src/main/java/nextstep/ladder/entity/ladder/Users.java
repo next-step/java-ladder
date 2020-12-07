@@ -39,11 +39,6 @@ public class Users {
     }
 
     public int getPosition(User user) {
-//        int index = users.indexOf(user);
-//        if (index > -1) {
-//            return index + 1;
-//        }
-//        return -1;
         return users.indexOf(user);
     }
 
@@ -51,7 +46,7 @@ public class Users {
         try {
             return users.get(position - 1);
         } catch (IndexOutOfBoundsException e) {
-            String message = String.format("올바르지 않은 위치값입니다. (최소=%d, 최대=%d)", 1, getUserCount());
+            String message = String.format("올바르지 않은 위치값입니다. (최소 = %d, 최대 = %d)", 0, getUserCount());
             throw new IllegalArgumentException(message);
         }
     }

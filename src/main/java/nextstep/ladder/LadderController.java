@@ -18,8 +18,8 @@ public class LadderController {
 
         // 사다리 생성
         Ladder ladder = Ladder.init(ladderHeight, users.getUserCount());
-//
-//        // 사다리 초기화
+
+        // 사다리 초기화
         ladder.participants(users);
         ladder.gameResults(gameResults);
 
@@ -36,7 +36,6 @@ public class LadderController {
 
         // Multi
         if (doShowAllUsers(showGameResultUser)) {
-            // 메서드로 이동해야함
             users.goDownAllUsers(ladder);
             GameResultView.displayResultWithUserName(users, gameResults);
         }
@@ -57,7 +56,6 @@ public class LadderController {
     private GameResults getGameResults() {
         return new GameResults(GameResultInputView.getGameResult());
     }
-
 
     private boolean doShowAllUsers(User user) {
         return ALL_RESULT.equals(user.getName());
