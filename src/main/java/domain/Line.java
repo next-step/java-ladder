@@ -3,7 +3,7 @@ package domain;
 public class Line {
     private final Points points;
 
-    private Line(final Points points) {
+    protected Line(final Points points) {
         this.points = points;
     }
 

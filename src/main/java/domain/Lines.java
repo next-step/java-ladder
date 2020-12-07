@@ -2,12 +2,11 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
 public class Lines {
     private List<Line> lines;
 
-    private Lines(final List<Line> lines) {
+    protected Lines(final List<Line> lines) {
         this.lines = lines;
     }
 
@@ -22,8 +21,8 @@ public class Lines {
         return new Lines(lines);
     }
 
-    public Stream<Points> mapLineOntoPoints() {
-        return lines.stream().map(Line::getPoints);
+    public List<Line> unbox() {
+        return lines;
     }
 
     public Position departsAt(final Position start) {

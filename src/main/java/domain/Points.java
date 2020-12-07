@@ -2,14 +2,13 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
 import static domain.Direction.*;
 
 public class Points {
     private List<Point> points;
 
-    private Points(final List<Point> points) {
+    protected Points(final List<Point> points) {
         this.points = points;
     }
 
@@ -26,26 +25,30 @@ public class Points {
     }
 
     private static Point fetchPointByPosition(final Position position, final int numberOfPoints, final List<Point> points) {
-        if( !position.equals(Position.FIRST) && isFormerPointConnected(points.get(position.value() - 1))) {
+        if(isHeadingLeft(position, points)) {
             return Point.of(position, LEFT);
         }
 
-        if(position.value() == numberOfPoints - 1) {
+        if(isLastPoint(position, numberOfPoints)) {
             return Point.of(position, DOWN);
         }
 
         return Point.of(position, RandomDirectionGenerator.generate());
     }
 
-    private static boolean isFormerPointConnected(final Point point) {
-        return point.isHeadingRight();
+    private static boolean isHeadingLeft(Position position, List<Point> points) {
+        return position.value() != 0 && points.get(position.value() - 1).isHeadingRight();
     }
 
-    public Stream<Point> stream() {
-        return points.stream();
+    private static boolean isLastPoint(Position position, int numberOfPoints) {
+        return position.value() == numberOfPoints - 1;
     }
 
     public Position movePointAt(final Position position) {
         return points.get(position.value()).next();
+    }
+
+    public List<Point> unbox() {
+        return points;
     }
 }

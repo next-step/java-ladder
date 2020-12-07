@@ -5,11 +5,11 @@ import exception.NegativePositionException;
 import java.util.Objects;
 
 public class Position {
-    public static final Position FIRST = new Position(0);
+    public static final int FIRST_INDEX = 0;
     private int position;
 
     private Position(int position) {
-        if(position < 0) {
+        if(position < FIRST_INDEX) {
             throw new NegativePositionException();
         }
 
@@ -17,10 +17,6 @@ public class Position {
     }
 
     public static Position of(int position) {
-        if(position == 0) {
-            return FIRST;
-        }
-
         return new Position(position);
     }
 

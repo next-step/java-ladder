@@ -5,7 +5,6 @@ import exception.InvalidPlayerNumberException;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
 
 public class PlayerNames {
     private static final int PLAYERS_NUMBER_MIN = 2;
@@ -28,8 +27,8 @@ public class PlayerNames {
         return playerNames.size();
     }
 
-    public Stream<String> stream() {
-        return playerNames.stream();
+    public List<String> unbox() {
+        return playerNames;
     }
 
     public int indexOf(final String name) {

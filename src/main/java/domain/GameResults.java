@@ -4,7 +4,6 @@ import common.CommonConstants;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
 
 public class GameResults {
     private final List<String> gameResults;
@@ -18,8 +17,8 @@ public class GameResults {
         return new GameResults(gameResults);
     }
 
-    public Stream<String> stream() {
-        return gameResults.stream();
+    public List<String> unbox() {
+        return gameResults;
     }
 
     public String get(int index) {

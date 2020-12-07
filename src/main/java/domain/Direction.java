@@ -20,4 +20,5 @@ public enum Direction {
     public boolean isLeft() {
         return left;
     }
+
 }

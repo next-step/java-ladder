@@ -18,6 +18,7 @@ public class Point {
     }
 
     public Position next() {
+
         if(direction.isRight()) {
             return position.plus();
         }
