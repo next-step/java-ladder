@@ -30,6 +30,10 @@ public class Users {
         }
     }
 
+    public int size() {
+        return this.users.size();
+    }
+
     public List<User> export() {
         return this.users;
     }
