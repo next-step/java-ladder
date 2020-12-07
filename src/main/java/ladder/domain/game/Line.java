@@ -3,6 +3,7 @@ package ladder.domain.game;
 import ladder.strategy.ConnectionStrategy;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -33,16 +34,19 @@ public class Line {
                 .ifPresent((i) -> {
                     throw new IllegalArgumentException(MESSAGE_BRIDGES_DUPLICATED);
                 });
-        
     }
 
     public static Line of(int participantNum, ConnectionStrategy connectionStrategy) {
         return of(init(participantNum, connectionStrategy));
     }
 
-    private static List<Boolean> init(int i, ConnectionStrategy connectionStrategy) {
+    private static List<Boolean> init(int participantNum, ConnectionStrategy connectionStrategy) {
         List<Boolean> bridges = new ArrayList<>();
-        addBridge(bridges, connectionStrategy);
+
+        for (int i = 0; i < participantNum; i++) {
+            addBridge(bridges, connectionStrategy);
+        }
+
         return bridges;
     }
 
@@ -63,7 +67,13 @@ public class Line {
     }
 
     private static Boolean hasConnected(List<Boolean> bridges, ConnectionStrategy connectionStrategy) {
-        return bridges.get(bridges.size() - 1) && connectionStrategy.hasConnected();
+        return !bridges.get(bridges.size() - 1) && connectionStrategy.hasConnected();
+    }
+
+    public List<Boolean> getLine() {
+        return this.bridges.stream()
+                .map(Bridge::hasConnected)
+                .collect(Collectors.collectingAndThen(Collectors.toList(), Collections::unmodifiableList));
     }
 
 

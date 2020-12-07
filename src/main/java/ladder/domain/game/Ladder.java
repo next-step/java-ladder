@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 /**
@@ -31,8 +32,8 @@ public class Ladder {
     }
 
     private static List<Line> init(int participantNum, ConnectionStrategy connectionStrategy, int height) {
-        return Stream.generate(() -> Line.of(participantNum, connectionStrategy))
-                .limit(height)
+        return IntStream.range(0, height)
+                .mapToObj(__ -> Line.of(participantNum, connectionStrategy))
                 .collect(Collectors.collectingAndThen(Collectors.toList(), Collections::unmodifiableList));
     }
 
