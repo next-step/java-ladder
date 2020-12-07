@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class Awards {
 
-    private List<Award> awards;
+    private final List<Award> awards;
 
     public Awards(String[] awards){
         this.awards = Arrays.stream(awards)

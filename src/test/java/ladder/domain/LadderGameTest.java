@@ -45,9 +45,11 @@ public class LadderGameTest {
         int ladderMaxHeight = 5;
 
 
-        LadderBuildResult ladderBuildResult = LadderGameController.execute(new String[]{"aa","bb","dc"}, "5", awards);
+        LadderBuildResult ladderBuildResult = LadderGameController.execute(new String[]{"aa","bb","dc"}, "5");
 
-        LadderGameController.showResult(ladderBuildResult);
+        Awards awards = new Awards(new String[]{"꽝","5000","1500"});
+
+        LadderGameController.showBuildResult(ladderBuildResult, awards);
 
         Ladders ladders = ladderBuildResult.getLadders();
 

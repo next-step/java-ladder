@@ -9,6 +9,7 @@ public class LadderGameConfig {
     public static final String NOT_CONNECTED_DELIMITER = " ";
 
     public static final int FIRST_INDEX = 0;
+    public static final int AWARD_NAME_MAX_LENGTH = 5;
 
     private LadderGameConfig(){}
 }
