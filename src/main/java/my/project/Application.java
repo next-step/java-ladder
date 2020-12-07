@@ -1,6 +1,6 @@
 package my.project;
 
-import my.project.domain.LadderGenerator;
+import my.project.domain.Ladder;
 import my.project.domain.Users;
 import my.project.view.InputView;
 import my.project.view.ResultView;
@@ -12,7 +12,7 @@ import my.project.view.ResultView;
 public class Application {
     public static void main(String[] args) {
         Users users = new Users(InputView.getUsers());
-        LadderGenerator generator = new LadderGenerator(users, InputView.getLadderHeight());
-        ResultView.print(users, generator.generate());
+        Ladder ladder = new Ladder(users, InputView.getLadderHeight());
+        ResultView.print(users, ladder);
     }
 }

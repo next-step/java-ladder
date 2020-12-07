@@ -2,7 +2,7 @@ package my.project.view;
 
 import my.project.domain.Symbol;
 import my.project.domain.User;
-import my.project.dto.Ladder;
+import my.project.domain.Ladder;
 import my.project.domain.Users;
 
 import java.util.stream.Collectors;
