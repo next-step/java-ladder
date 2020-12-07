@@ -12,7 +12,7 @@ public class DefaultLadder implements Ladder {
 
     public DefaultLadder(List<String> memberNames, int height) {
         this.members = new LadderMembers(memberNames);
-        if( height < 1 ) throw new IllegalArgumentException("사다리 높이는 최소 1이상 입력되어야 합니다.");
+        if (height < 1) throw new IllegalArgumentException("사다리 높이는 최소 1이상 입력되어야 합니다.");
 
         initLadderLevels(getLadderWidth(this.members.size()), height);
     }

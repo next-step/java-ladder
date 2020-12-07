@@ -8,15 +8,15 @@ public interface LevelItem {
 
     Type getType();
 
-    default boolean isStep(){
+    default boolean isStep() {
         return getType() == Type.Step;
     }
 
-    default boolean isBar(){
+    default boolean isBar() {
         return getType() == Type.Bar;
     }
 
-    static LevelItem step(){
+    static LevelItem step() {
         return new LevelItem() {
             @Override
             public Type getType() {
@@ -32,7 +32,7 @@ public interface LevelItem {
         };
     }
 
-    static LevelItem bar(){
+    static LevelItem bar() {
         return new LevelItem() {
             @Override
             public Type getType() {

@@ -7,7 +7,7 @@ public class LadderGame {
 
     private Ladder ladder;
 
-    public LadderGame(String membersString, int height){
+    public LadderGame(String membersString, int height) {
         this(Arrays.asList(membersString.split(",")), height);
     }
 
@@ -15,7 +15,7 @@ public class LadderGame {
         this.ladder = new DefaultLadder(members, height);
     }
 
-    public LadderGameResult run(){
+    public LadderGameResult run() {
         return new LadderGameResult(ladder);
     }
 

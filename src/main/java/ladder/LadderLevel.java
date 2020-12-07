@@ -23,7 +23,7 @@ public class LadderLevel {
         IntStream.range(0, items.size())
                 .filter(idx -> items.get(idx).isStep())
                 .forEach(idx -> {
-                    if( nextStep(items, idx).isPresent() )
+                    if (nextStep(items, idx).isPresent())
                         throw new IllegalArgumentException("step 은 연속해서 구성할 수 없습니다");
                 });
     }

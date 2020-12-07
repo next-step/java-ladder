@@ -2,7 +2,7 @@ package ladder;
 
 public class LadderGameApplication {
 
-    public static void main(String [] args){
+    public static void main(String[] args) {
 
         UserInput input = new UserInput();
         String memberNames = input.readLadderMemberNames();

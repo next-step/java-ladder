@@ -10,7 +10,7 @@ public interface LadderLevelGenerator {
 
     List<LevelItem> generate(int size);
 
-    static LadderLevelGenerator auto(){
+    static LadderLevelGenerator auto() {
         return new LadderLevelGenerator() {
 
             private Random random = new Random();

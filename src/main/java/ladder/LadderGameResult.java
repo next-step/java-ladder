@@ -9,7 +9,7 @@ public class LadderGameResult {
         this.ladder = ladder;
     }
 
-    public void printLadder(PrintWriter writer){
+    public void printLadder(PrintWriter writer) {
         this.ladder.print(writer);
     }
 }
