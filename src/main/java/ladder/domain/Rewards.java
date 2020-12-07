@@ -26,6 +26,10 @@ public class Rewards {
         return (Reward) o;
     }
 
+    public Reward get(int index) {
+        return rewards.get(index);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
