@@ -6,6 +6,7 @@ import java.util.List;
 import static nextstep.ladder.entity.ladder.LadderPointGenerator.generatePoint;
 
 public class LadderLine {
+
     private final List<Point> points;
 
     public LadderLine(List<Point> points) {
@@ -14,6 +15,10 @@ public class LadderLine {
 
     public int move(int position) {
         return points.get(position).move();
+    }
+
+    public Point at(int position) {
+        return points.get(position);
     }
 
     public static LadderLine init(int sizeOfPerson) {
@@ -41,6 +46,10 @@ public class LadderLine {
         Point point = Point.first(generatePoint());
         points.add(point);
         return point;
+    }
+
+    public int getNumberOfPoints() {
+        return this.points.size();
     }
 
     @Override

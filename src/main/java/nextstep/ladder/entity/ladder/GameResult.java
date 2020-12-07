@@ -2,6 +2,8 @@ package nextstep.ladder.entity.ladder;
 
 import nextstep.ladder.entity.User;
 
+import java.util.Objects;
+
 public class GameResult {
 
     private String value;
@@ -23,8 +25,8 @@ public class GameResult {
         return user;
     }
 
-    public boolean ofUser(User user) {
-        return this.user.equals(user);
+    public boolean isResultOf(User user) {
+        return Objects.equals(this.user, user);
     }
 
 }

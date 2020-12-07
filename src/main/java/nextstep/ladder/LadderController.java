@@ -17,30 +17,29 @@ public class LadderController {
         LadderHeight ladderHeight = getLadderHeight();
 
         // 사다리 생성
-//        Ladder ladder = Ladder.create(ladderHeight, floorGenerator);
+        Ladder ladder = Ladder.init(ladderHeight, users.getUserCount());
 //
 //        // 사다리 초기화
-//        ladder.startWith(users);
-//        ladder.arrivalAt(gameResults);
-//
-//        // 출력
-//        LadderResultView.display(ladder, users, gameResults);
-//        // 결과 보기 사용자 입력
-//        User showGameResultUser = getShowGameResultUser();
-//
-//        // Single
-//        if (!doShowAllUsers(showGameResultUser)) {
-//            GameResult gameResult = ladder.goDown(showGameResultUser);
-//            GameResultView.displaySingleResult(gameResult);
-//        }
-//
-//        // Multi
-//        if (doShowAllUsers(showGameResultUser)) {
-//            // 메서드로 이동해야함
-//            users.goDownAllUsers(ladder);
-//            GameResultView.displayResultWithUserName(users, gameResults);
-//        }
+        ladder.participants(users);
+        ladder.gameResults(gameResults);
 
+        // 출력
+        LadderResultView.display(ladder, users, gameResults);
+        // 결과 보기 사용자 입력
+        User showGameResultUser = getShowGameResultUser();
+
+        // Single
+       if (!doShowAllUsers(showGameResultUser)) {
+            GameResult gameResult = ladder.goDown(showGameResultUser);
+            GameResultView.displaySingleResult(gameResult);
+        }
+
+        // Multi
+        if (doShowAllUsers(showGameResultUser)) {
+            // 메서드로 이동해야함
+            users.goDownAllUsers(ladder);
+            GameResultView.displayResultWithUserName(users, gameResults);
+        }
     }
 
     private Users getUsers() {

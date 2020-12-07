@@ -39,11 +39,12 @@ public class Users {
     }
 
     public int getPosition(User user) {
-        int index = users.indexOf(user);
-        if (index > -1) {
-            return index + 1;
-        }
-        return -1;
+//        int index = users.indexOf(user);
+//        if (index > -1) {
+//            return index + 1;
+//        }
+//        return -1;
+        return users.indexOf(user);
     }
 
     public User at(int position) {
@@ -56,4 +57,9 @@ public class Users {
     }
 
 
+    public void goDownAllUsers(Ladder ladder) {
+        for (User user : users) {
+            ladder.goDown(user);
+        }
+    }
 }

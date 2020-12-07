@@ -10,6 +10,7 @@ import static java.lang.Boolean.TRUE;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PointTest {
+
     @Test
     public void first() {
         assertEquals(Point.first(TRUE).move(), 1);

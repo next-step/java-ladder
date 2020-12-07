@@ -44,7 +44,7 @@ class GameResultsTest {
         GameResults gameResults = new GameResults(Arrays.asList("꽝"));
         
         // When
-        GameResult gameResult = gameResults.getGameResult(1);
+        GameResult gameResult = gameResults.getGameResult(0);
         
         assertEquals(gameResult.getValue(), "꽝");
     }

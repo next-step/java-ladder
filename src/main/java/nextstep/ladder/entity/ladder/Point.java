@@ -1,12 +1,7 @@
 package nextstep.ladder.entity.ladder;
 
-import java.util.Objects;
-
-/**
- * 사다리의 각 지점을 추상화
- * 가로 방향으로 연결되어 Link를 통해 연결되었는지를 나타냄 
- */
 public class Point {
+
     private final int index;
     private final Direction direction;
 
@@ -16,8 +11,8 @@ public class Point {
     }
 
     public int move() {
-        System.out.println("is left? " + direction.isLeft());
-        System.out.println("is right? " + direction.isRight());
+        // System.out.println("is left? " + direction.isLeft());
+        // System.out.println("is right? " + direction.isRight());
 
         if (direction.isRight()) {
             return index + 1;
@@ -44,6 +39,10 @@ public class Point {
 
     public static Point first(Boolean right) {
         return new Point(0, Direction.first(right));
+    }
+
+    public boolean hasPrevious() {
+        return this.direction.isLeft();
     }
 
     @Override

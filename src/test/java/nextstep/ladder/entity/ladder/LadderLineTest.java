@@ -3,6 +3,7 @@ package nextstep.ladder.entity.ladder;
 import org.junit.jupiter.api.Test;
 
 public class LadderLineTest {
+
     @Test
     public void init() {
         int sizeOfPerson = 5;

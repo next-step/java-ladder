@@ -33,17 +33,17 @@ public class GameResults {
 
     public GameResult getGameResult(int positionInLadder) {
         try {
-            return gameResults.get(positionInLadder - 1);
+            return gameResults.get(positionInLadder);
         } catch (IndexOutOfBoundsException e) {
             int total = gameResults.size();
-            String message = String.format("올바르지 않은 위치값 입니다. (최소=1, 최대=%d)", total);
+            String message = String.format("올바르지 않은 위치값 입니다. (최소 = 0, 최대 = %d)", total);
             throw new IllegalArgumentException(message);
         }
     }
 
     public GameResult getGameResult(User user) {
         return gameResults.stream()
-                .filter(gameResult -> gameResult.ofUser(user))
+                .filter(gameResult -> gameResult.isResultOf(user))
                 .findFirst()
                 .orElseThrow(() -> new NotFoundException("게임 결과를 찾을 수 없습니다."));
     }

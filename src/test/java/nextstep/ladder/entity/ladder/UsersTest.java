@@ -44,7 +44,7 @@ class UsersTest {
         int position = users.getPosition(user);
 
         // Then
-        assertEquals(position, 2);
+        assertEquals(position, 1);
     }
 
     @Test
@@ -59,6 +59,5 @@ class UsersTest {
         // Then
         assertEquals(position, -1);
     }
-
 
 }

@@ -8,4 +8,16 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LadderTest {
 
+    @Test
+    void test_goDown() {
+        // Given
+        Ladder ladder = Ladder.init(new LadderHeight(5), 2);
+
+        // When
+        int arrivalPosition = ladder.goDown(0);
+
+        // Then
+        assertEquals(0, arrivalPosition);
+    }
+    
 }

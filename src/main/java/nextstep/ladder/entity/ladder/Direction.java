@@ -6,6 +6,7 @@ import static java.lang.Boolean.FALSE;
 import static nextstep.ladder.entity.ladder.LadderPointGenerator.generatePoint;
 
 public class Direction {
+
     private final boolean left;
     private final boolean right;
 
@@ -16,7 +17,7 @@ public class Direction {
 
         this.left = left;
         this.right = right;
-        System.out.println(this);
+        // System.out.println(this);
     }
 
     public boolean isRight() {
@@ -71,4 +72,5 @@ public class Direction {
                 ", right=" + right +
                 '}';
     }
+
 }
