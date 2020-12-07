@@ -9,7 +9,9 @@ public enum LadderGameErrorMessage {
     OVER_MIN_HEIGHT(2, "최소 사다리 높이는 "+MIN_LADDER_HEIGHT+" 입니다."),
     ILLEGAL_LINE_POINTS(3, "사다리 가로라인은 겹칠 수 없습니다."),
     ILLEGAL_AWARDS_COUNT(4, "사다리 갯수만큼 실행결과를 입력하세요."),
-    ILLEGAL_MAX_AWARD_NAME(5, "실행결과 이름은 최대 "+AWARD_NAME_MAX_LENGTH+" 글자 입니다.");
+    ILLEGAL_MAX_AWARD_NAME(5, "실행결과 이름은 최대 "+AWARD_NAME_MAX_LENGTH+" 글자 입니다."),
+    ILLEGAL_AWARD_INDEX(6, "해당 위치에 결과값이 존재하지 않습니다."),
+    ILLEGAL_PLAYER_INDEX(7, "해당 위치에 참여한 사람값이 존재하지 않습니다.");
 
     private int code;
     private String errorMessage;

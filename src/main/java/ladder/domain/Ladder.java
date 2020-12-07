@@ -26,4 +26,25 @@ public class Ladder {
     public int hashCode() {
         return Objects.hash(line);
     }
+
+    public int move(int moveIndex) {
+        Direction direction = line.getPoints().get(moveIndex).getDirection();
+
+        if(!direction.isLeft() && !direction.isRight()){
+            return moveIndex;
+        }
+
+        if(direction.isLeft()){
+            moveIndex--;
+            return moveIndex;
+        }
+
+        if(direction.isRight()){
+            moveIndex++;
+            return moveIndex;
+        }
+
+        return  moveIndex;
+
+    }
 }

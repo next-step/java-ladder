@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Ladders {
 
@@ -14,5 +15,15 @@ public class Ladders {
         return ladders;
     }
 
+    public int climb(int index) {
+
+        AtomicInteger moveIndex = new AtomicInteger(index);
+
+        ladders.forEach(ladder -> moveIndex.set(ladder.move(moveIndex.get())));
+
+        return moveIndex.get();
+
+    }
 
 }
+

@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static ladder.domain.LadderGameConfig.FIRST_INDEX;
+
 public class Players {
 
     private List<Player> players;
@@ -18,5 +20,17 @@ public class Players {
         return players;
     }
 
+
+    public Player searchPlayerName(int index) {
+        validatePlayerIndex(index);
+        return players.get(index);
+    }
+
+    private void validatePlayerIndex(int index) {
+        if(index < FIRST_INDEX || index >= players.size()){
+            throw new IllegalArgumentException(LadderGameErrorMessage.ILLEGAL_PLAYER_INDEX.getErrorMessage());
+        }
+
+    }
 
 }

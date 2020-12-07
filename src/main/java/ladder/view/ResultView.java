@@ -2,19 +2,25 @@ package ladder.view;
 
 import ladder.domain.*;
 
+import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
+import static ladder.domain.LadderGameConfig.ALL_RESULT_MESSAGE;
 import static ladder.domain.LadderGameConfig.PLAYER_NAME_MAX_LENGTH;
+
 
 public class ResultView {
 
     private static final String BUILD_HEAD_MESSAGE = "\n사다리 결과\n";
-    private static final String RESULT_HEAD_MESSAGE = "\n실행결과\n";
+    private static final String RESULT_HEAD_MESSAGE = "\n실행결과";
     private static final String CONNECTED = "-----";
     private static final String EMPTY = "";
     private static final String NOT_CONNECTED = padLeftZeros(EMPTY, 5);
     private static final String LADDER = "|";
     private static final String SPACE = " ";
+    private static final String RESULT_DELIMITER = " : ";
+    private static final String ALL_RESULT_DELIMITER = "\n";
 
     private ResultView(){}
 
@@ -70,4 +76,24 @@ public class ResultView {
 
         return sb.toString();
     }
+
+    public static void printPlayerResult(Map<Player, Award> climbResult, String player) {
+        System.out.println(RESULT_HEAD_MESSAGE);
+        System.out.println(getPlayerResult(climbResult, player));
+    }
+
+    private static String getPlayerResult(Map<Player, Award> climbResult, String playerName) {
+        if(playerName.equals(ALL_RESULT_MESSAGE)){
+           return climbResult.entrySet().stream()
+                    .map(entry -> entry.getKey().getName() + RESULT_DELIMITER + entry.getValue().getAwardName())
+                    .collect(Collectors.joining(ALL_RESULT_DELIMITER));
+        }
+
+        return Optional.ofNullable(climbResult.get(new Player(playerName)))
+                .map(m -> m.getAwardName())
+                .orElseThrow(RuntimeException::new);
+
+    }
+
+
 }

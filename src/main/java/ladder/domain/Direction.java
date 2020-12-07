@@ -16,4 +16,5 @@ public class Direction {
     public boolean isRight() {
         return right;
     }
+
 }

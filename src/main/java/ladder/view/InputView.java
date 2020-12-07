@@ -10,6 +10,7 @@ public class InputView {
     private static final String INPUT_DELIMITER = ",";
     private static final String INPUT_MAX_HEIGHT_MESSAGE = "\n최대 사다리 높이는 몇 개인가요?";
     private static final String INPUT_AWARDS_MESSAGE = "\n실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
+    private static final String INPUT_PLAYER_RESULT = "\n결과를 보고 싶은 사람은?";
 
     private static Scanner scanner = new Scanner(System.in);
 
@@ -48,4 +49,8 @@ public class InputView {
 
     }
 
+    public static String getPlayerResult() {
+        System.out.println(INPUT_PLAYER_RESULT);
+        return scanner.next();
+    }
 }

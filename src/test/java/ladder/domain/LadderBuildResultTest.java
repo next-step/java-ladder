@@ -33,7 +33,7 @@ public class LadderBuildResultTest {
     @Test
     void ladderGameResultCreationTest(){
         // given
-        LadderBuildResult line = new LadderBuildResult( ladders, players);
+        LadderBuildResult line = new LadderBuildResult(ladders, players);
         // then
         assertThat(line.getPlayers()).isEqualTo(players);
 

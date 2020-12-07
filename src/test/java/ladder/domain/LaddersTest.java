@@ -18,6 +18,7 @@ public class LaddersTest {
 
         List<Point> lineConnections = new ArrayList<>();
         lineConnections.add(new Point(new Direction(false, true)));
+        lineConnections.add(new Point(new Direction(true,false)));
         lineConnections.add(new Point(new Direction(false,false)));
 
         line = new Line(lineConnections);
@@ -40,5 +41,33 @@ public class LaddersTest {
 
         // then
         assertThat(ladders.getLadders()).containsExactly(new Ladder(line), new Ladder(line));
+    }
+
+    @DisplayName("Ladders Climb 테스트")
+    @Test
+    void laddersClimbTest(){
+        // given
+        String[] playNames = {"AAA", "BBB", "CCC"};
+
+        // when
+        Ladder ladder1 = new Ladder(line);
+        Ladder ladder2 = new Ladder(line);
+
+        List<Ladder> ladderList = new ArrayList<>();
+        ladderList.add(ladder1);
+        ladderList.add(ladder2);
+        Ladders ladders = new Ladders(ladderList);
+
+        /*
+
+          AAA   BBB    CCC
+            |-----|      |
+            |-----|      |
+     결과  AAA   BBB    CCC
+          */
+
+        assertThat(ladders.climb(0)).isEqualTo(0);
+        assertThat(ladders.climb(1)).isEqualTo(1);
+        assertThat(ladders.climb(2)).isEqualTo(2);
     }
 }

@@ -32,4 +32,17 @@ public class LadderTest {
         assertThat(ladder.getLine()).isEqualTo(new Line(lineConnections));
     }
 
+    @DisplayName("Ladder move 테스트")
+    @Test
+    void ladderMoveTest(){
+        // given
+        Line line = new Line(lineConnections);
+
+        // when
+        Ladder ladder = new Ladder(line);
+
+        // then
+        assertThat(ladder.move(0)).isEqualTo(1);
+    }
+
 }
