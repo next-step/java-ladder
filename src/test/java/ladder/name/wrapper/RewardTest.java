@@ -16,8 +16,6 @@ public class RewardTest {
     public void match(){
         Reward reward = Reward.of("a", Point.rewardPoint(2,2));
         assertThat(reward.match(Point.rewardPoint(2,2))).isTrue();
-
         assertThat(reward.match(Point.rewardPoint(1,1))).isFalse();
     }
-
 }

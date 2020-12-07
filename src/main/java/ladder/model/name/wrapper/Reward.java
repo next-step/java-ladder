@@ -4,8 +4,8 @@ import ladder.model.move.Point;
 import ladder.model.name.Name;
 
 public class Reward {
-    private Name name;
-    private Point point;
+    private final Name name;
+    private final Point point;
 
     private Reward(String name, Point point){
         this.name = Name.createRewardName(name);

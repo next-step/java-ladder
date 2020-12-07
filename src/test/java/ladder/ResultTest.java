@@ -4,10 +4,12 @@ import ladder.model.Result;
 import ladder.model.group.Rewards;
 import ladder.model.move.Point;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.Collections;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
@@ -20,13 +22,21 @@ public class ResultTest {
                 .withMessageMatching("결과가 없습니다.");
     }
 
-    @Test
-    public void 정상_결과_반환(){
+    @ParameterizedTest
+    @MethodSource("resultParams")
+    public void 정상_결과_반환(String userName, String rewardName){
         Result result = getResult();
 
-        assertThat(result.getReward("user1")).isEqualTo("a");
-        assertThat(result.getReward("user2")).isEqualTo("b");
-        assertThat(result.getReward("user3")).isEqualTo("c");
+        assertThat(result.getReward(userName)).isEqualTo(rewardName);
+
+    }
+
+    private static Stream<Arguments> resultParams() {
+        return Stream.of(
+                Arguments.of("user1", "a"),
+                Arguments.of("user2", "b"),
+                Arguments.of("user3", "c")
+        );
     }
 
     @Test

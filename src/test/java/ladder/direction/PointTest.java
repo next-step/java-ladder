@@ -2,6 +2,7 @@ package ladder.direction;
 
 import ladder.model.move.Direction;
 import ladder.model.move.Point;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -29,6 +30,7 @@ public class PointTest {
     }
 
     @Test
+    @DisplayName("이동 체크")
     public void move() {
         Point userPoint = Point.userPoint(1);
         assertThat(userPoint.move(Direction.LEFT)).isEqualTo(Point.of(0, 0));
@@ -63,6 +65,7 @@ public class PointTest {
     }
 
     @Test
+    @DisplayName("두 Point간 방향 체크")
     public void direction() {
         Point left = Point.userPoint(0);
         Point bridge = Point.bridgePoint(1,0);

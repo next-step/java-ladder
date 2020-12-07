@@ -1,6 +1,6 @@
 package ladder.model.ladder;
 
-import ladder.model.name.wrapper.User;
+import ladder.model.move.Point;
 
 import java.util.List;
 import java.util.Optional;
@@ -8,7 +8,7 @@ import java.util.stream.IntStream;
 
 public class Line {
     private final static String LINE_ERROR_MESSAGE = "올바르지 못한 라인입니다.";
-    private List<Bridge> bridges;
+    private final List<Bridge> bridges;
 
     private Line(List<Bridge> bridges) {
         this.bridges = bridges;
@@ -19,9 +19,10 @@ public class Line {
         return new Line(bridges);
     }
 
-    public Optional<Bridge> getBridge(User user){
+    public Optional<Bridge> getBridge(Point point){
         return bridges.stream()
-                .filter(user::isCross)
+                .filter(bridge -> bridge.isCross(point))
+                .filter(Bridge::isMovable)
                 .findFirst();
     }
 

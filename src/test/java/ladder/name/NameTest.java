@@ -2,6 +2,11 @@ package ladder.name;
 
 import ladder.model.name.Name;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -22,9 +27,16 @@ public class NameTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    public void 정상_이름() {
-        assertThat((Name.createUserName("12345")).toString()).isEqualTo("12345");
-        assertThat((Name.createRewardName("1")).toString()).isEqualTo("1");
+    @ParameterizedTest
+    @MethodSource("nameParams")
+    public void 정상_이름(String inputName, String stringName) {
+        assertThat(inputName).isEqualTo(stringName);
+    }
+
+    private static Stream<Arguments> nameParams() {
+        return Stream.of(
+                Arguments.of(Name.createUserName("12345").toString(), "12345"),
+                Arguments.of(Name.createRewardName("1").toString(), "1")
+        );
     }
 }

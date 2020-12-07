@@ -2,7 +2,6 @@ package ladder.model.ladder;
 
 import ladder.model.group.Users;
 import ladder.model.move.Point;
-import ladder.model.name.wrapper.User;
 import utils.StringUtils;
 
 import java.util.*;
@@ -21,7 +20,7 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public static Ladder from(List<Line> lines){
+    public static Ladder from(List<Line> lines) {
         return new Ladder(lines);
     }
 
@@ -38,41 +37,55 @@ public class Ladder {
         return new Ladder(lines);
     }
 
-    public Map<String,Point> getResults(Users users){
+    public Map<String, Point> getResults(Users users) {
         Map<String, Point> results = new LinkedHashMap<>();
 
         users.stream()
-                .forEach(user -> results.put(user.toString(), getResult(user)));
+                .forEach(user -> results.put(user.toString(), getResult(user.getPoint())));
 
         return results;
     }
 
-    private Point getResult(User user) {
-        List<Point> results = lines.stream()
-                .map(user::move)
-                .collect(Collectors.toList());
+    private Point getResult(Point point) {
+        List<Point> step = new ArrayList<>(Collections.singletonList(point));
 
-        if(results.isEmpty()){
+        IntStream.range(0, lines.size())
+                .forEach(idx -> step.add(movePointOnLine(step.get(idx), lines.get(idx))));
+
+        if (step.size() < 2) {
             throw new IllegalArgumentException(LADDER_RESULT_ERROR_MESSAGE);
         }
 
-        return results.get(results.size() - 1);
+        return step.get(step.size() - 1);
     }
 
-    public int size(){
+    private Point movePointOnLine(Point point, Line line) {
+        Point now = point;
+        Optional<Bridge> optionalBridge = line.getBridge(now);
+
+        if(optionalBridge.isPresent()){
+            now = now.move(optionalBridge.get().directionByUser(now));
+        }
+
+        now = now.moveDown();
+
+        return now;
+    }
+
+    public int size() {
         return lines.size();
     }
 
     private static List<Bridge> makeLineItems(int numberOfItems, int column) {
         List<Bridge> bridges = new ArrayList<>();
-        List<Point> bridgePoints = IntStream.rangeClosed(1,numberOfItems)
+        List<Point> bridgePoints = IntStream.rangeClosed(1, numberOfItems)
                 .mapToObj(idx -> Point.bridgePoint(idx, column))
                 .collect(Collectors.toList());
 
         bridges.add(Bridge.createRandomBridge(bridgePoints.get(0)));
 
         IntStream.range(1, numberOfItems)
-                .forEach(idx -> bridges.add(makeBridge(bridgePoints.get(idx), bridges.get(idx-1))));
+                .forEach(idx -> bridges.add(makeBridge(bridgePoints.get(idx), bridges.get(idx - 1))));
 
         return bridges;
     }
