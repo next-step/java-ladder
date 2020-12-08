@@ -22,36 +22,36 @@ public class ResultView {
     public static final String BRIDGE_CONNECTION = "-";
     public static final String BRIDGE_POLE = "|";
 
-    public static void print(Names participants, Ladder ladder, Names goals) {
+    public static void printLadder(Names participants, Ladder ladder, Names goals) {
         System.out.println(System.lineSeparator() + RESULT + System.lineSeparator());
-        printNames(participants.getNames());
-        printLadder(ladder.getLadder());
-        printNames(goals.getNames());
+        showNames(participants.getNames());
+        showLadder(ladder.getLadder());
+        showNames(goals.getNames());
     }
 
-    private static void printNames(List<Name> names) {
+    private static void showNames(List<Name> names) {
         System.out.println(
                 names.stream()
                 .map(name -> String.format("%" + NAME_SPACE + "s", name))
                 .collect(joining(BRIDGE_BLANK)));
     }
 
-    private static void printLadder(List<Line> ladder) {
+    private static void showLadder(List<Line> ladder) {
         ladder.stream()
                 .forEach(line -> printLine(line.getLine()));
     }
 
     private static void printLine(List<Boolean> line) {
-        line.forEach(hasConnected -> print(hasConnected));
+        line.forEach(hasConnected -> printBridge(hasConnected));
         System.out.println();
     }
 
-    private static void print(Boolean hasConnected) {
-        System.out.print(printBridge(hasConnected));
+    private static void printBridge(Boolean hasConnected) {
+        System.out.print(printConnection(hasConnected));
         System.out.print(BRIDGE_POLE);
     }
 
-    private static String printBridge(Boolean connected) {
+    private static String printConnection(Boolean connected) {
         if (connected) {
             return repeat(BRIDGE_CONNECTION, NAME_SPACE);
         }

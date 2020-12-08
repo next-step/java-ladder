@@ -26,6 +26,6 @@ public class Controller {
         ConnectionStrategy connectionStrategy = new RandomConnectionStrategy();
         Ladder ladder = Ladder.of(participants.getParticipantNum(), connectionStrategy, height);
 
-        ResultView.print(participants, ladder, goals);
+        ResultView.printLadder(participants, ladder, goals);
     }
 }
