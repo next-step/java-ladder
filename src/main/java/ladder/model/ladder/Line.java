@@ -19,7 +19,19 @@ public class Line {
         return new Line(bridges);
     }
 
-    public Optional<Bridge> getBridge(Point point){
+    public Point movePoint(Point point){
+        Optional<Bridge> optionalBridge = getBridge(point);
+
+        if(optionalBridge.isPresent()){
+            point = point.move(optionalBridge.get().directionByUser(point));
+        }
+
+        point = point.moveDown();
+
+        return point;
+    }
+
+    private Optional<Bridge> getBridge(Point point){
         return bridges.stream()
                 .filter(bridge -> bridge.isCross(point))
                 .filter(Bridge::isMovable)

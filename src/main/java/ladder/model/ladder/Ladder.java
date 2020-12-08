@@ -12,7 +12,6 @@ public class Ladder {
     private final static int LADDER_MIN_LIMIT = 0;
     private final static int LINE_ITEM_VARIABLE = 1;
     private final static String LADDER_SIZE_ERROR_MESSAGE = "올바른 사다리 높이를 입력해주세요";
-    private final static String LADDER_RESULT_ERROR_MESSAGE = "유저 이동 경과가 없습니다.";
 
     private final List<Line> lines;
 
@@ -40,36 +39,17 @@ public class Ladder {
     public Map<String, Point> getResults(Users users) {
         Map<String, Point> results = new LinkedHashMap<>();
 
-        users.stream()
-                .forEach(user -> results.put(user.toString(), getResult(user.getPoint())));
+        List<Point> userPoints = users.getUserPoint();
+
+        IntStream.range(0, userPoints.size())
+                .forEach(idx -> results.put(users.findUserNameByIdx(idx), getResult(userPoints.get(idx))));
 
         return results;
     }
 
-    private Point getResult(Point point) {
-        List<Point> step = new ArrayList<>(Collections.singletonList(point));
-
-        IntStream.range(0, lines.size())
-                .forEach(idx -> step.add(movePointOnLine(step.get(idx), lines.get(idx))));
-
-        if (step.size() < 2) {
-            throw new IllegalArgumentException(LADDER_RESULT_ERROR_MESSAGE);
-        }
-
-        return step.get(step.size() - 1);
-    }
-
-    private Point movePointOnLine(Point point, Line line) {
-        Point now = point;
-        Optional<Bridge> optionalBridge = line.getBridge(now);
-
-        if(optionalBridge.isPresent()){
-            now = now.move(optionalBridge.get().directionByUser(now));
-        }
-
-        now = now.moveDown();
-
-        return now;
+    private Point getResult(Point startPoint) {
+        return lines.stream()
+                .reduce(startPoint, (point, line) -> line.movePoint(point), (x, y) -> y);
     }
 
     public int size() {

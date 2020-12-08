@@ -1,5 +1,6 @@
 package ladder.model.group;
 
+import ladder.model.move.Point;
 import ladder.model.name.wrapper.User;
 
 import java.util.Arrays;
@@ -24,11 +25,21 @@ public class Users extends Group<User> {
             throw new IllegalArgumentException(EMPTY_NAME_ERROR_MESSAGE);
         }
 
-        List<User> users = IntStream.range(0, userNames.length)
-                .mapToObj(idx -> User.of(userNames[idx], idx))
+        List<User> users = Arrays.stream(userNames)
+                .map(User::of)
                 .collect(Collectors.toList());
 
         return new Users(users);
+    }
+
+    public String findUserNameByIdx(int idx){
+        return group.get(idx).toString();
+    }
+
+    public List<Point> getUserPoint(){
+        return IntStream.range(0, group.size())
+                .mapToObj(Point::userPoint)
+                .collect(Collectors.toList());
     }
 
     private static boolean isNotValid(String[] userNames) {
