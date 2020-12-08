@@ -85,7 +85,8 @@ public class Line {
             return index - 1;
         }
 
-        if (indexOf(index + 1).hasConnected()) {
+        if (index < this.bridges.size() - 1
+                && indexOf(index + 1).hasConnected()) {
             return index + 1;
         }
 
