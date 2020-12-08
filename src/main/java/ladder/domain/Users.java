@@ -40,6 +40,10 @@ public class Users {
         return users;
     }
 
+    public User get(int index) {
+        return users.get(index);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
