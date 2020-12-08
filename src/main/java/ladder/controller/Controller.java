@@ -17,7 +17,7 @@ public class Controller {
     public final static Scanner SCANNER = new Scanner(System.in);
 
     public static void main(String[] args) {
-        Names participants = Names.from(InputView.askParticiPantList());
+        Names participants = Names.from(InputView.askParticipantList());
         int height = InputView.askLadderHeight();
 
         ConnectionStrategy connectionStrategy = new RandomConnectionStrategy();
