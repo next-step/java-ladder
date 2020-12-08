@@ -1,6 +1,7 @@
 package my.project;
 
 import my.project.domain.Ladder;
+import my.project.domain.Rewards;
 import my.project.domain.Users;
 import my.project.view.InputView;
 import my.project.view.ResultView;
@@ -12,7 +13,10 @@ import my.project.view.ResultView;
 public class Application {
     public static void main(String[] args) {
         Users users = new Users(InputView.getUsers());
+        Rewards rewards = new Rewards(InputView.getRewards());
         Ladder ladder = new Ladder(users, InputView.getLadderHeight());
-        ResultView.print(users, ladder);
+        ResultView.print(users, ladder, rewards);
+
+        ResultView.printReward(ladder.result(InputView.getPlayer()));
     }
 }

@@ -2,6 +2,7 @@ package my.project.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
@@ -13,19 +14,24 @@ public class Ladder {
     public static final int LAST_BRIDGE = 2;
 
     private final List<Line> lines;
+    private final Users users;
+    private final int height;
 
     public Ladder(Users users, int height) {
         lines = new ArrayList<>();
-        build(users, height);
-        balance(height);
+        this.users = users;
+        this.height = height;
+
+        build(users);
+        balance();
     }
 
-    private void build(Users users, int height) {
+    private void build(Users users) {
         IntStream.range(Line.ZERO, height)
                 .forEach(i -> lines.add(new Line(users.getUsers().size())));
     }
 
-    private void balance(int height) {
+    private void balance() {
         IntStream.range(FIRST_LINE, height)
                 .forEach(i -> IntStream.range(FIRST_LINE, lines.get(i).getPoints().size())
                         .forEach(j -> {
@@ -60,5 +66,17 @@ public class Ladder {
 
     public List<Line> getLines() {
         return lines;
+    }
+
+    public String result(String player) {
+        Point startPoint = users.getUserPoint(player);
+
+        lines.forEach(line ->
+                line.getPoints().stream()
+                        .map(Symbol::getSymbol)
+                        .collect(Collectors.joining())
+        );
+
+        return "";
     }
 }

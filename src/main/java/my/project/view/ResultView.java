@@ -1,23 +1,21 @@
 package my.project.view;
 
-import my.project.domain.Symbol;
-import my.project.domain.User;
-import my.project.domain.Ladder;
-import my.project.domain.Users;
+import my.project.domain.*;
 
 import java.util.stream.Collectors;
 
 public class ResultView {
-    public static final String TITLE = "실행결과\n";
+    public static final String TITLE = "\n사다리 결과\n";
     public static final String DELIMITER = " ";
 
     private ResultView() {
     }
 
-    public static void print(Users users, Ladder ladder) {
+    public static void print(Users users, Ladder ladder, Rewards rewards) {
         printTitle();
         printUsers(users);
         printLadder(ladder);
+        printRewards(rewards);
     }
 
     private static void printTitle() {
@@ -38,5 +36,14 @@ public class ResultView {
                                 .collect(Collectors.joining())
                         )
                 );
+    }
+
+    private static void printRewards(Rewards rewards) {
+        System.out.println(rewards.getRewards().stream()
+                .map(Reward::getReward)
+                .collect(Collectors.joining(DELIMITER)));
+    }
+
+    public static void printReward(String reward) {
     }
 }

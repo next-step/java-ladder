@@ -11,7 +11,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class UsersTest {
+class UsersTest {
 
     @DisplayName("참여할 사람")
     @ParameterizedTest
@@ -36,11 +36,14 @@ public class UsersTest {
         assertThat(users.getUser("crong")).isEqualTo(new User("crong"));
     }
 
+
     @DisplayName("참여한 사람 없을 경우")
     @ParameterizedTest
     @ValueSource(strings = {"pobi,honux,crong,jk"})
     void givenUsername_thenNoExist(String input) {
         Users users = new Users(input);
-        assertThat(users.getUser("codesquard")).isEqualTo(Users.DEFAULT_USER);
+        //assertThat(users.getUser("codesquard")).isEqualTo(Users.DEFAULT_USER);
+        assertThatThrownBy(() -> users.getUser("codesquard"))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
