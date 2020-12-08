@@ -15,6 +15,7 @@ import java.util.stream.IntStream;
 public class Line {
 
     public static final String MESSAGE_BRIDGES_DUPLICATED = "사다리의 라인이 겹쳐있으면 안됩니다.";
+
     private final List<Bridge> bridges;
 
     private Line(List<Bridge> bridges) {

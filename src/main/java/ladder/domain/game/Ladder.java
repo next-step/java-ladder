@@ -16,6 +16,7 @@ public class Ladder {
 
     public static final int MINIMUM_HEIGHT = 1;
     public static final String MESSAGE_LADDER_HEIGHT = "사다리의 높이는 최소 1이상이어야 합니다.";
+
     private final List<Line> ladder;
 
     public Ladder(List<Line> ladder) {
