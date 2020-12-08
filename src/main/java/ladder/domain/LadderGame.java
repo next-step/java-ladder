@@ -1,40 +1,27 @@
 package ladder.domain;
 
 
-import ladder.domain.ladder.LineGenerator;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.Line;
-import ladder.domain.participant.Participant;
-import ladder.domain.participant.Participants;
+import ladder.domain.ladder.LineGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class LadderGame {
 
-    private LineGenerator mover;
+    private LineGenerator lineGenerator;
 
-    public LadderGame(LineGenerator mover) {
-        this.mover = mover;
-    }
-
-    public Participants participatePeople(List<String> people) {
-        List<Participant> persons = people.stream()
-                .map(userName -> new Participant(userName))
-                .collect(Collectors.toList());
-
-        return new Participants(persons);
+    public LadderGame(LineGenerator lineGenerator) {
+        this.lineGenerator = lineGenerator;
     }
 
     public Ladder makeLadder(int width, int height) {
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            Line line = mover.generateLine(width);
+            Line line = lineGenerator.generateLine(width);
             lines.add(line);
-        };
+        }
         return new Ladder(lines);
     }
-
-
 }
