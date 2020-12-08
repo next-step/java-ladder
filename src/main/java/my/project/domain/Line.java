@@ -39,11 +39,10 @@ public class Line {
     private boolean isBridge(int y) {
         boolean isTarget = makeBridgeTarget();
 
-        // nullable 확인
         if (isExcept(isTarget, y)) {
             return true;
         }
-        return isTarget && makeBridgeBalanced(y);
+        return isTarget && isValid(y);
     }
 
     private boolean makeBridgeTarget() {
@@ -54,7 +53,7 @@ public class Line {
         return isTarget && y < EVEN;
     }
 
-    private boolean makeBridgeBalanced(int y) {
+    private boolean isValid(int y) {
         int previousBridgeTargetIndex = y - EVEN;
         return points.get(previousBridgeTargetIndex) != Symbol.BRIDGE;
     }
