@@ -10,11 +10,18 @@ public class Participants {
     private static final int MIN_PARTICIPANTS_COUNT = 2;
     private final List<Participant> participants;
 
-    public Participants(List<Participant> participants) {
+    private Participants(List<Participant> participants) {
         if (participants.size() < MIN_PARTICIPANTS_COUNT) {
             throw new InsufficientParticipantsCountException();
         }
         this.participants = participants;
+    }
+
+    public static Participants of(List<String> people) {
+        List<Participant> persons = people.stream()
+                .map(userName -> new Participant(userName))
+                .collect(Collectors.toList());
+        return new Participants(persons);
     }
 
     public int countParticipant() {

@@ -17,9 +17,8 @@ public class ParticipantsTest {
     @CsvSource(value = {"user1:user2:user3"}, delimiter = ':')
     public void createInstanceTest(String userName, String userName2, String userName3) {
         //Given & When
-        Participants participants = new Participants(Arrays.asList(new Participant(userName),
-                                                                   new Participant(userName2),
-                                                                   new Participant(userName3)));
+        Participants participants = Participants.of(Arrays.asList(userName, userName2, userName3));
+
         //Then
         assertThat(participants).isNotNull();
         assertThat(participants.getParticipantNames()).contains(userName, userName2, userName3);
@@ -29,7 +28,7 @@ public class ParticipantsTest {
     @Test
     public void insufficientParticipatePersons() {
         assertThatThrownBy(() ->
-                new Participants(Arrays.asList(new Participant("user")))
+                Participants.of(Arrays.asList("user"))
         ).isInstanceOf(InsufficientParticipantsCountException.class);
     }
 }
