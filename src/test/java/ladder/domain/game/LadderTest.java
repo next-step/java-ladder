@@ -32,8 +32,8 @@ class LadderTest {
 
     @Test
     void 사다리를_생성한다() {
-        assertThat(Ladder.of(participants.getParticipantNum(), connectionStrategy, height))
-                .isEqualTo(Ladder.of(participants.getParticipantNum(), connectionStrategy, height));
+        assertThat(Ladder.of(participants.getParticipantNum(), ()->false, height))
+                .isEqualTo(Ladder.of(participants.getParticipantNum(), ()->false, height));
     }
 
     @ParameterizedTest
