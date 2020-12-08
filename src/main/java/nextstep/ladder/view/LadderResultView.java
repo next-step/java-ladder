@@ -17,11 +17,28 @@ public class LadderResultView extends AbstractView {
         printAndClear();
 
         // 사다리 출력
-        displayLadder(ladder);
+        printLadder(ladder);
 
         // 게임 결과 출력
         stringBuilder.append(gameResultsView(gameResults.getGameResultValues()));
         printAndClear();
+    }
+
+    private static void printLadder(Ladder ladder) {
+        for (int floor = 0; floor < ladder.getHeight().getValue(); floor++) {
+            printLadderLine(ladder.on(floor));
+        }
+    }
+
+    private static void printLadderLine(LadderLine ladderLine) {
+        for (int position = 0; position < ladderLine.getNumberOfPoints(); position++) {
+            stringBuilder.append(pointView(ladderLine.at(position)));
+        }
+        printAndClear();
+    }
+
+    private static String pointView(Point point) {
+        return point.hasPrevious() ? BACKWARD_LINK_POINT : BACKWARD_EMPTY_LINK_POINT;
     }
 
     private static String userNamesView(List<String> userNames) {
@@ -34,31 +51,6 @@ public class LadderResultView extends AbstractView {
         return String.format("%5s", userName);
     }
 
-    private static void displayLadder(Ladder ladder) {
-        floorView(ladder.getFirstFloor());
-    }
-
-    private static void floorView(Floor floor) {
-
-        pointChainingView(floor.getStartPoint());
-
-        printAndClear();
-
-        if (floor.hasNext()) {
-            floorView(floor.getNextFloor());
-        }
-    }
-
-    private static void pointChainingView(Point point) {
-        String pointWithLinkView = point.hasBackwardLink() ?
-                BACKWARD_LINK_POINT
-                : BACKWARD_EMPTY_LINK_POINT;
-        stringBuilder.append(pointWithLinkView);
-
-        if (point.hasNext()) {
-            pointChainingView(point.getNext());
-        }
-    }
 
     private static String gameResultsView(List<String> gameResults) {
         return gameResults.stream()

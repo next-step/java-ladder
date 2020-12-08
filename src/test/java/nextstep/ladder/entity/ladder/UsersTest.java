@@ -60,5 +60,4 @@ class UsersTest {
         assertEquals(position, -1);
     }
 
-
 }
