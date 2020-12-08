@@ -41,8 +41,8 @@ public class User {
 
     private static boolean checkAge(Integer userAge) {
         return Optional.ofNullable(userAge)
-                .map(age -> (userAge >= 30 && userAge <= 45) ? true : false)
-                .orElse(false);
+                .filter(age -> (age >= 30 && age <= 45))
+                .isPresent();
     }
 
     @Override
