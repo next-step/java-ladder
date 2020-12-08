@@ -9,6 +9,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.sql.Connection;
+import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -46,5 +47,18 @@ class LadderTest {
     }
 
 
+    @Test
+    void 참가자_한명의_결과값을_찾는다() {
+        Line line = Line.of(Arrays.asList(false, false, true));
+
+        Ladder ladder = Ladder.of(Arrays.asList(
+                Line.of(Arrays.asList(false, false, true)),
+                Line.of(Arrays.asList(false, true, false)),
+                Line.of(Arrays.asList(false, true, false))
+        ));
+        assertThat(ladder.move(0)).isEqualTo(0);
+        assertThat(ladder.move(1)).isEqualTo(2);
+        assertThat(ladder.move(2)).isEqualTo(1);
+    }
 
 }

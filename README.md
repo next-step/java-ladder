@@ -92,4 +92,5 @@ pobi  honux crong   jk
   - [x] 입력받기 & validation 👉 `Names` 클래스 재사용
 -결과보기  
   - [ ] 참가자 1인 결과 찾기
+    - 현재 마지막 값에 대해서 IndexOutOfBoundsException 나옴. 해결할 것.
   - [ ] 예약어 all. -> 참가자 이름에서 all 제외시키기

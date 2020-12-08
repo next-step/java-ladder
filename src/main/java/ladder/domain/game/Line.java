@@ -80,6 +80,22 @@ public class Line {
                 .collect(Collectors.collectingAndThen(Collectors.toList(), Collections::unmodifiableList));
     }
 
+    public int move(int index) {
+        if (indexOf(index).hasConnected()) { // 현재 위치 -> 연결되었을 때
+            return index - 1;
+        }
+
+        if (indexOf(index + 1).hasConnected()) {
+            return index + 1;
+        }
+
+        return index;
+    }
+
+    private Bridge indexOf(int index) {
+        return this.bridges.get(index);
+    }
+
 
     @Override
     public boolean equals(Object o) {

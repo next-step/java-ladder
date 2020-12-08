@@ -48,6 +48,13 @@ public class Ladder {
         return ladder;
     }
 
+    public int move(int index) {
+        return this.ladder.stream()
+                .mapToInt(line -> line.move(index))
+                .reduce((ladder1, ladder2)->ladder1)
+                .getAsInt();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
