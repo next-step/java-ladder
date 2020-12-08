@@ -29,12 +29,12 @@ public class LadderGameMain {
 
         while(true){
 
+            LadderGameController.showPlayerResult(climbResult, playerName);
+
             if(playerName.equals(ALL_RESULT_MESSAGE)){
-                LadderGameController.showPlayerResult(climbResult, playerName);
                 break;
             }
 
-            LadderGameController.showPlayerResult(climbResult, playerName);
             playerName = LadderGameController.getPlayerResult();
         }
 

@@ -6,6 +6,7 @@ import static ladder.domain.LadderGameConfig.AWARD_NAME_MAX_LENGTH;
 
 
 public class Award {
+
     private String awardName;
 
     public Award(String awardName){

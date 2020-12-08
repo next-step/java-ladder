@@ -3,7 +3,6 @@ package ladder.domain;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 import static ladder.domain.LadderGameConfig.CONNECTED_DELIMITER;

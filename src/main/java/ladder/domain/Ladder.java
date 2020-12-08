@@ -30,6 +30,10 @@ public class Ladder {
     public int move(int moveIndex) {
         Direction direction = line.getPoints().get(moveIndex).getDirection();
 
+        if(direction.isLeft() && direction.isRight()){
+            throw new IllegalArgumentException(LadderGameErrorMessage.ILLEGAL_LINE_POINTS.getErrorMessage());
+        }
+
         if(!direction.isLeft() && !direction.isRight()){
             return moveIndex;
         }

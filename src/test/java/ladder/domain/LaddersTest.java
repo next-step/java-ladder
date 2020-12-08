@@ -27,35 +27,32 @@ public class LaddersTest {
     @DisplayName("Ladders 생성 테스트")
     @Test
     void laddersConstructorTest(){
-        // given
-        String[] playNames = {"AAA", "BBB", "CCC"};
 
-        // when
+
         Ladder ladder1 = new Ladder(line);
         Ladder ladder2 = new Ladder(line);
 
         List<Ladder> ladderList = new ArrayList<>();
         ladderList.add(ladder1);
         ladderList.add(ladder2);
+
         Ladders ladders = new Ladders(ladderList);
 
-        // then
+
         assertThat(ladders.getLadders()).containsExactly(new Ladder(line), new Ladder(line));
     }
 
     @DisplayName("Ladders Climb 테스트")
     @Test
     void laddersClimbTest(){
-        // given
-        String[] playNames = {"AAA", "BBB", "CCC"};
 
-        // when
         Ladder ladder1 = new Ladder(line);
         Ladder ladder2 = new Ladder(line);
 
         List<Ladder> ladderList = new ArrayList<>();
         ladderList.add(ladder1);
         ladderList.add(ladder2);
+
         Ladders ladders = new Ladders(ladderList);
 
         /*

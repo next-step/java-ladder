@@ -5,7 +5,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Ladders {
 
-    List<Ladder> ladders;
+    private List<Ladder> ladders;
 
     public Ladders(List<Ladder> ladders){
         this.ladders = ladders;

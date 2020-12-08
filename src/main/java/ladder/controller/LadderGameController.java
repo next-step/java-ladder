@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.IntStream;
 
+import static ladder.domain.LadderGameConfig.FIRST_INDEX;
+
 public class LadderGameController {
 
     private static final String MAX_HEIGHT_PATTERN = "(\\d+)";
@@ -49,7 +51,7 @@ public class LadderGameController {
     public static Map<Player, Award> climb(LadderBuildResult ladderBuildResult, Awards awards) {
         Map<Integer, Integer> climbResult = new HashMap<>();
 
-        IntStream.range(0, ladderBuildResult.getPlayers().getPlayers().size())
+        IntStream.range(FIRST_INDEX, ladderBuildResult.getPlayers().getPlayers().size())
                 .forEach(i -> climbResult.put(i, ladderBuildResult.getLadders().climb(i)));
 
         return parseClimbResult(climbResult, ladderBuildResult.getPlayers(), awards);
