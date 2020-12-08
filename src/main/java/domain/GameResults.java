@@ -17,7 +17,7 @@ public class GameResults {
         return new GameResults(gameResults);
     }
 
-    public List<String> unbox() {
+    public List<String> getGameResults() {
         return gameResults;
     }
 

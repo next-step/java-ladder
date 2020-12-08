@@ -25,19 +25,19 @@ public class ResultView {
     }
 
     private static void printPlayerNames(final PlayerNames playerNames) {
-        playerNames.unbox().forEach(s -> padAndPrint(s));
+        playerNames.getPlayerNames().forEach(s -> padAndPrint(s));
         System.out.print(NEWLINE);
     }
 
     private static void printLadder(final Ladder ladder) {
-        ladder.getLines().unbox()
+        ladder.getLines().getLines()
                 .stream()
                 .map( line -> line.getPoints() )
                 .forEach( points -> printPoints(points));
     }
 
     private static void printGameResults(final GameResults gameResults ) {
-        gameResults.unbox().forEach( s -> padAndPrint(s));
+        gameResults.getGameResults().forEach(s -> padAndPrint(s));
         System.out.print(NEWLINE);
     }
 
@@ -47,7 +47,7 @@ public class ResultView {
 
     private static void printPoints(final Points points) {
         System.out.print(StringUtils.copyAndJoin(NUMBER_OF_TEMPLATE_BLANK, BLANK));
-        points.unbox().forEach(point -> System.out.print(convertPointToString(point)));
+        points.getPoints().forEach(point -> System.out.print(convertPointToString(point)));
         System.out.print(NEWLINE);
 
     }

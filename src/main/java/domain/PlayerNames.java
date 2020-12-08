@@ -27,7 +27,7 @@ public class PlayerNames {
         return playerNames.size();
     }
 
-    public List<String> unbox() {
+    public List<String> getPlayerNames() {
         return playerNames;
     }
 

@@ -48,7 +48,7 @@ public class Points {
         return points.get(position.value()).next();
     }
 
-    public List<Point> unbox() {
+    public List<Point> getPoints() {
         return points;
     }
 }

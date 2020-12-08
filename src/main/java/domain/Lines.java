@@ -21,7 +21,7 @@ public class Lines {
         return new Lines(lines);
     }
 
-    public List<Line> unbox() {
+    public List<Line> getLines() {
         return lines;
     }
 
