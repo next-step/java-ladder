@@ -1,11 +1,11 @@
 package nextstep.ladder.domain;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Users {
+    private static final int ZERO = 0;
 
     private List<User> users;
 
@@ -19,6 +19,14 @@ public class Users {
                 .collect(Collectors.toList());
 
         return new Users(userList);
+    }
+
+    public Map<User, Integer> mapUserIndex() {
+        Map<User, Integer> userMap = new HashMap<>();
+
+        IntStream.range(ZERO, users.size())
+                .forEach(index -> userMap.put(users.get(index), index));
+        return userMap;
     }
 
     public List<User> getUsers() {

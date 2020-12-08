@@ -4,6 +4,8 @@ import nextstep.ladder.domain.*;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
+import java.util.Map;
+
 public class LadderController {
 
     public void start() {
@@ -18,6 +20,8 @@ public class LadderController {
         Results results = Results.createResults(inputResult);
 
         Height height = new Height(Integer.parseInt(inputView.inputHeight()));
+
+        Map<User, Integer> userMap = users.mapUserIndex();
 
         resultView.printResultMention();
         resultView.printUsers(users);
