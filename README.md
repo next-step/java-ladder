@@ -96,6 +96,6 @@ pobi  honux crong   jk
   - [x] 참가자 전체 결과 찾기
   - [x] 예약어 all. -> 참가자 이름에서 all 제외시키기
   - 👀 고민해볼 사항:     
-     `Line move()` 에 필요한 index 값 추출하는 메서드에 더불어,
-      Bridge에서 curHasConnected, nextHasConnected을 추가하면 값 찾기가 수월할듯..? 
-     => hasConnected 값을 연속적으로 놓아야한다는 점이 까다로움🤔 
+     Bridge에서 `Line move()` 에 필요한 index 값을 추출하는 메서드,
+     curHasConnected(현재의 hasConnected), nextHasConnected을 추가하면 값 찾기가 수월할듯..?
+     => hasConnected 값을 연속적으로 놓아야한다는 점이 까다로움🤔
