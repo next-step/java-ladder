@@ -20,6 +20,10 @@ class LadderTest {
         assertThat(ladder.getLines().size()).isEqualTo(3);
     }
 
+    @Test
+    @DisplayName("사다리 결과 매핑")
+    void mappingResult() {
 
+    }
 
 }
