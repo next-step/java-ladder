@@ -4,10 +4,15 @@ import ladder.strategy.ConnectionStrategy;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toMap;
 
 /**
  * Created By mand2 on 2020-12-07.
@@ -49,10 +54,17 @@ public class Ladder {
     }
 
     public int move(int index) {
-        return this.ladder.stream()
-                .mapToInt(line -> line.move(index))
-                .reduce((ladder1, ladder2)->ladder1)
-                .getAsInt();
+        for (Line line : this.ladder) {
+            index = line.move(index);
+        }
+        return index;
+    }
+
+    public List<Name> moveAll(Names goals) {
+        return IntStream.range(0, this.ladder.get(0).width())
+                .mapToObj(this::move)
+                .map(goals::getParticipantName)
+                .collect(toList());
     }
 
     @Override

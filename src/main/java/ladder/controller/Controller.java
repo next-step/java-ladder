@@ -1,10 +1,12 @@
 package ladder.controller;
 
 import ladder.domain.game.Ladder;
+import ladder.domain.game.Name;
 import ladder.domain.game.Names;
 import ladder.strategy.ConnectionStrategy;
 import ladder.strategy.RandomConnectionStrategy;
 import ladder.view.InputView;
+import ladder.view.LadderView;
 import ladder.view.ResultView;
 
 import java.util.Scanner;
@@ -27,5 +29,15 @@ public class Controller {
         Ladder ladder = Ladder.of(participants.getParticipantNum(), connectionStrategy, height);
 
         ResultView.printLadder(participants, ladder, goals);
+
+        LadderView ladderView = LadderView.of(participants, ladder.moveAll(goals));
+
+        String inputName;
+
+        do {
+            inputName = InputView.askResultPerson();
+            ResultView.printGoals(ladderView, inputName);
+        } while (!inputName.equals(ResultView.RESERVED_WORD_ALL));
+
     }
 }

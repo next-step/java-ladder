@@ -49,8 +49,6 @@ class LadderTest {
 
     @Test
     void 참가자_한명의_결과값을_찾는다() {
-        Line line = Line.of(Arrays.asList(false, false, true));
-
         Ladder ladder = Ladder.of(Arrays.asList(
                 Line.of(Arrays.asList(false, false, true)),
                 Line.of(Arrays.asList(false, true, false)),

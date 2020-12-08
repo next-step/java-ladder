@@ -6,6 +6,7 @@ import ladder.domain.game.Name;
 import ladder.domain.game.Names;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.joining;
@@ -15,18 +16,42 @@ import static java.util.stream.Collectors.joining;
  */
 public class ResultView {
 
-    public static final String RESULT = "실행결과";
+    public static final String RESULT_LADDER = "사다리 결과";
+    public static final String RESULT_GOALS = "실행 결과";
+    public static final String RESERVED_WORD_ALL = "all";
 
     public static final int NAME_SPACE = 5;
     public static final String BRIDGE_BLANK = " ";
     public static final String BRIDGE_CONNECTION = "-";
     public static final String BRIDGE_POLE = "|";
+    public static final String RESULT_SEPERATOR = " : ";
 
     public static void printLadder(Names participants, Ladder ladder, Names goals) {
-        System.out.println(System.lineSeparator() + RESULT + System.lineSeparator());
+        System.out.println(System.lineSeparator() + RESULT_LADDER + System.lineSeparator());
         showNames(participants.getNames());
         showLadder(ladder.getLadder());
         showNames(goals.getNames());
+    }
+
+    public static void printGoals(LadderView ladderView, String inputName) {
+        System.out.println(System.lineSeparator() + RESULT_GOALS);
+
+        if (inputName.equals(RESERVED_WORD_ALL)) {
+            showAllResults(ladderView.getResultOfAll());
+        }
+        if (!inputName.equals(RESERVED_WORD_ALL)) {
+            System.out.println(ladderView.getResultOfOneParticipant(Name.from(inputName)));
+        }
+    }
+
+    private static void showAllResults(Map<Name, Name> allResults) {
+        allResults.entrySet().stream()
+                .forEach(resultGoal -> {
+                    System.out.print(resultGoal.getKey());
+                    System.out.print(RESULT_SEPERATOR);
+                    System.out.print(resultGoal.getValue());
+                    System.out.println();
+                });
     }
 
     private static void showNames(List<Name> names) {
