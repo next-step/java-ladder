@@ -1,15 +1,9 @@
 package ladder.domain;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
-import java.util.concurrent.atomic.AtomicReference;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.*;
 
 public class Line {
 
-    private static final AtomicReference<Boolean> PREVIOUS = new AtomicReference<>(false);
     private final List<Point> points;
 
     public Line (int countOfPerson) {
@@ -21,30 +15,40 @@ public class Line {
     }
 
     private static List<Point> generateLine(int countOfPerson) {
-        List<Point> points = IntStream.rangeClosed(1,countOfPerson - 1)
-                .mapToObj(position -> compareAndSet(Point.shuffle()))
-                .collect(Collectors.toList());
-        points.add(Point.of(false));
-        return points;
+        LinkedList<Point> pointsList = new LinkedList<>();
+
+        Point prePoint = Point.first(nextBooleanStrategy());
+        pointsList.addFirst(prePoint);
+
+        for (int i = 1; i < countOfPerson - 1; i++) {
+            prePoint = Point.next(prePoint, nextBooleanStrategy());
+            pointsList.add(prePoint);
+        }
+
+        pointsList.addLast(Point.last(prePoint));
+        return pointsList;
     }
 
-    private static Point compareAndSet(Point point) {
-        if (PREVIOUS.compareAndSet(false, point.isMovable())) {
-            return point;
-        }
-        PREVIOUS.set(false);
-        return Point.of(false);
-    }
-
-    public boolean hasRightMoved(int index) {
-        if (index == (points.size() - 1)) {
-            return false;
-        }
-        return points.get(index).isMovable();
+    private static NextBooleanRule nextBooleanStrategy() {
+        return new NextBoolean();
     }
 
     public List<Point> getPoints() {
         return Collections.unmodifiableList(points);
+    }
+
+    public int movePoint(int position) {
+        Pointer pointer = this.points.get(position).getPointer();
+
+        if (pointer.isRight()) {
+            return position + 1;
+        }
+
+        if (pointer.isLeft()) {
+            return position - 1;
+        }
+
+        return position;
     }
 
     @Override

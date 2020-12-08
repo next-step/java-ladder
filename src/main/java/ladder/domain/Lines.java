@@ -15,7 +15,7 @@ public class Lines {
     }
 
     public static Lines of(int countOfPerson, int height) {
-        return new Lines(IntStream.range(0,heightValidationCheck(height))
+        return new Lines(IntStream.range(0, heightValidationCheck(height))
                 .mapToObj(i -> new Line(countOfPerson))
                 .collect(Collectors.toList()));
     }
@@ -25,6 +25,14 @@ public class Lines {
             throw new IllegalArgumentException(INPUT_HEIGHT_ERROR);
         }
         return height;
+    }
+
+    public int finalPoint(int position) {
+        int current = position;
+        for (Line line : lines) {
+            current = line.movePoint(current);
+        }
+        return current;
     }
 
     public List<Line> getLines() {
