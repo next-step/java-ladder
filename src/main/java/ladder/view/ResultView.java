@@ -15,7 +15,7 @@ import static java.util.stream.Collectors.joining;
  */
 public class ResultView {
 
-    public static final String RESULT = "실행결과\n";
+    public static final String RESULT = "실행결과" + System.lineSeparator();
 
     public static final int NAME_SPACE = 5;
     public static final String BRIDGE_BLANK = " ";
