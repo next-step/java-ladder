@@ -5,9 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
-
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class LineTest {
 
@@ -16,23 +14,31 @@ public class LineTest {
     @BeforeEach
     void setUp() {
         this.line = new Line(Arrays.asList(
-                Point.of(true),
-                Point.of(false),
-                Point.of(true),
-                Point.of(false),
-                Point.of(false)
+                Point.of(0,Pointer.of(false,true)),
+                Point.of(1,Pointer.of(true,false)),
+                Point.of(2,Pointer.of(false,true)),
+                Point.of(3,Pointer.of(true,false)),
+                Point.of(4,Pointer.of(false,false))
         ));
     }
 
     @Test
-    @DisplayName("Line 객체 boolean 값 확인")
-    void line_hasRightMoved_isTrueOrFalse() {
-        assertAll(
-                () -> assertThat(line.hasRightMoved(0)).isTrue(),
-                () -> assertThat(line.hasRightMoved(1)).isFalse(),
-                () -> assertThat(line.hasRightMoved(2)).isTrue(),
-                () -> assertThat(line.hasRightMoved(3)).isFalse(),
-                () -> assertThat(line.hasRightMoved(4)).isFalse()
-        );
+    @DisplayName("동일한 Point 값의 객체를 생성 후 동일한 객체인지 비교")
+    void line_points_isEqualTo() {
+        Line expect = new Line(Arrays.asList(
+                Point.of(0,Pointer.of(false,true)),
+                Point.of(1,Pointer.of(true,false)),
+                Point.of(2,Pointer.of(false,true)),
+                Point.of(3,Pointer.of(true,false)),
+                Point.of(4,Pointer.of(false,false))
+        ));
+
+        assertThat(line).isEqualTo(expect);
+    }
+
+    @Test
+    @DisplayName("Line 객체 Point index 가 어느 Point 로 이동했는지 확인")
+    void line_pointMovePosition_isEqualTo() {
+        assertThat(line.movePoint(1)).isEqualTo(0);
     }
 }
