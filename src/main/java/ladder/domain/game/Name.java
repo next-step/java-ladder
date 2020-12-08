@@ -7,11 +7,11 @@ import java.util.Objects;
  */
 public class Name {
 
-    private final String name ;
-
     public static final int NAME_LEN = 5;
     public static final String MESSAGE_NAME_NOT_NULL = "이름은 빈 칸이 될 수 없습니다.";
     public static final String MESSAGE_NAME_LEN_FIVE = "이름은 5자 이내여야 합니다.";
+
+    private final String name ;
 
     private Name(String name) {
         this.name = name;
