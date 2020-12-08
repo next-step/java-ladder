@@ -23,7 +23,10 @@ public class Line {
 
     public static Line of(List<Boolean> bridges) {
         validation(bridges);
-        return new Line(bridges.stream().map(Bridge::of).collect(Collectors.toList()));
+        return new Line(
+                bridges.stream()
+                        .map(Bridge::of)
+                        .collect(Collectors.toList()));
     }
 
     private static void validation(List<Boolean> bridges) {
