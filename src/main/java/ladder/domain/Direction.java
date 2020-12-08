@@ -18,4 +18,26 @@ public class Direction {
     }
 
 
+    public int moveIndex(int moveIndex) {
+
+        if(left && right){
+            throw new IllegalArgumentException(LadderGameErrorMessage.ILLEGAL_LINE_POINTS.getErrorMessage());
+        }
+
+        if(!left && !right){
+            return moveIndex;
+        }
+
+        if(left){
+            moveIndex--;
+            return moveIndex;
+        }
+
+        if(right){
+            moveIndex++;
+            return moveIndex;
+        }
+
+        return  moveIndex;
+    }
 }
