@@ -43,18 +43,14 @@
   - |-----|-----| 모양과 같이 가로 라인이 겹치는 경우 어느 방향으로 이동할지 결정할 수 없다.
 
 **기능 구현사항**
-- Point 객체 static에 `List<Point>` -> `new Point(true)`, `new Point(false)` 생성
-- Point 객체에서 Collections.shuffle()로 랜덤 값을 구현한다     
-- Line 객체 생성 각 포인트마다 `이동 가능여부(movable) 상태값`을 가진 `List<Point> points` 객체를 가진다
-- Ladder 객체에서 Line 생성시 `이전 생성값(boolean)`을 비교하여 중복 생성되지 않도록 한다
-- User 객체에서 입력값(이름)의 길이가 1 ~ 5자 에 포함되지 않을 경우 입력을 다시 받도록 한다
-- Ladder 객체에서 입력값(높이)가 최소 1이상 이여야 하며 1이상이 아닐 경우 입력을 다시 받도록 한다
-- ResultView 객체에서 입력값(이름)의 길이가 5자 미만이면 String.format을 이용하여 자리 수를 맞춰 표시하도록 한다
-- Ladder 테스트 케이스 추가
-  - LadderStub 클래스 추가 (Ladder 상속) `moveRule` 메소드 구현(() -> true)
-  - 이동가능 여부를 참으로 할 경우 결과값 확인(첫번째 무조건 true, 마지막 무조건 false)
-- Line 테스트 케이스 추가
-  - 오른쪽으로 이동 가능한지 확인
-- 도메인 객체 throwException 테스트 케이스 추가
+- 게임 참여자를 입력안할 경우 -> `IllegalArgumentException` 이 발생한다
+- 게임 참여자를 최대 5자 기준으로 입력가능하며 이탈시 -> `IllegalArgumentException` 이 발생한다
+- 게임 보상을 입력할 시에 빈 값을 입력할 경우 -> `IllegalArgumentException` 이 발생한다
+- 사람수, 사다리 높이 값을 입력받아 `Lines` 객체를 생성한다 사다리의 높이가 1보다 작은경우 -> `IllegalArgumentException` 이 발생한다
+- `Line` 생성시 `Point`의 첫번째 ~ 마지막 객체를 생성한다 첫번째의 왼쪽 상태값과, 마지막의 오른쪽 상태값은 `false` 고정이다
+- `Pointer`의 이동여부를 판별하는 것은 전략패턴을 구현한 `NextBoolean` 에서 `boolean` 값을 주입 받아 판별한다
+- `Pointer` 의 상태값 `left`,`right`의 `boolean` 값으로 현재위치에서 이동할 위치로 `+1` 하거나 `-1` 하여 이동된 위치를 계산한다
+- 게임 결과값을 검색할때 검색할 단어에 Null 또는 공백이 오는 경우 -> `NullPointerException` 이 발생한다
+- 게임 결과값은 `all` 또는 `유저명` 으로 조회가능하다
 
 <br>
