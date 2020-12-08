@@ -3,7 +3,7 @@ package domain;
 public class Ladder {
     private final Lines lines;
 
-    private Ladder(final Lines lines) {
+    protected Ladder(final Lines lines) {
         this.lines = lines;
     }
 
@@ -15,5 +15,9 @@ public class Ladder {
 
     public Lines getLines() {
         return lines;
+    }
+
+    public Position departsAt(final Position position) {
+        return lines.departsAt(position);
     }
 }

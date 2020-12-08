@@ -3,7 +3,7 @@ package domain;
 public class Line {
     private final Points points;
 
-    private Line(final Points points) {
+    protected Line(final Points points) {
         this.points = points;
     }
 
@@ -15,4 +15,9 @@ public class Line {
     public Points getPoints() {
         return points;
     }
+
+    public Position move(final Position position) {
+        return points.movePointAt(position);
+    }
+
 }
