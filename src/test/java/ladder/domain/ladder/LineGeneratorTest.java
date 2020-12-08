@@ -5,14 +5,14 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class GeneratorLadderMoverTest {
+public class LineGeneratorTest {
 
 
     @ParameterizedTest
     @ValueSource(ints = {3, 5, 6, 7})
     public void creatLadder(int width) {
         //Given
-        GeneratorLadderMover mover = new RandomGeneratorLadderMover();
+        LineGenerator mover = new RandomLineGenerator();
 
         //When
         Line line = mover.generateLine(width);

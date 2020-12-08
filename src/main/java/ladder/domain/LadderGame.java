@@ -1,7 +1,7 @@
 package ladder.domain;
 
 
-import ladder.domain.ladder.GeneratorLadderMover;
+import ladder.domain.ladder.LineGenerator;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.Line;
 import ladder.domain.participant.Participant;
@@ -13,9 +13,9 @@ import java.util.stream.Collectors;
 
 public class LadderGame {
 
-    private GeneratorLadderMover mover;
+    private LineGenerator mover;
 
-    public LadderGame(GeneratorLadderMover mover) {
+    public LadderGame(LineGenerator mover) {
         this.mover = mover;
     }
 

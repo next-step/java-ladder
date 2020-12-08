@@ -5,7 +5,7 @@ import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class RandomGeneratorLadderMover implements GeneratorLadderMover {
+public class RandomLineGenerator implements LineGenerator {
 
     private static final Random random = new Random();
 

@@ -1,7 +1,7 @@
 package ladder.domain;
 
 import ladder.domain.ladder.Ladder;
-import ladder.domain.ladder.RandomGeneratorLadderMover;
+import ladder.domain.ladder.RandomLineGenerator;
 import ladder.exception.InsufficientParticipantsCountException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,7 +18,7 @@ public class LadderGameTest {
     @Test
     public void createInstanceTest() {
         //Given & When
-        LadderGame ladderGame = new LadderGame(new RandomGeneratorLadderMover());
+        LadderGame ladderGame = new LadderGame(new RandomLineGenerator());
 
         ladderGame.participatePeople(Arrays.asList("유저1", "유저2", "유저3"));
 
@@ -30,7 +30,7 @@ public class LadderGameTest {
     @Test
     public void participateOnePerson() {
         assertThatThrownBy(() ->
-                new LadderGame(new RandomGeneratorLadderMover()).participatePeople(Arrays.asList("유저"))
+                new LadderGame(new RandomLineGenerator()).participatePeople(Arrays.asList("유저"))
         ).isInstanceOf(InsufficientParticipantsCountException.class);
     }
 
@@ -39,7 +39,7 @@ public class LadderGameTest {
     @CsvSource(value = {"3:5", "2:6", "5:3", "6:12"}, delimiter = ':')
     public void makeLadderTest(int width, int height) {
         //Given
-        LadderGame game = new LadderGame(new RandomGeneratorLadderMover());
+        LadderGame game = new LadderGame(new RandomLineGenerator());
 
         //When
         Ladder ladder = game.makeLadder(width, height);

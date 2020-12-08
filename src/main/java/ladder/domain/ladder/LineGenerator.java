@@ -1,6 +1,6 @@
 package ladder.domain.ladder;
 
 @FunctionalInterface
-public interface GeneratorLadderMover {
+public interface LineGenerator {
     Line generateLine(int width);
 }
