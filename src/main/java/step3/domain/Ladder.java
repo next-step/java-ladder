@@ -4,12 +4,14 @@ import step3.utils.LadderUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Ladder {
 
-    private final List<Line> lines;
+    private List<Lines> lines;
 
-    private Ladder(List<Line> lines) {
+    private Ladder(List<Lines> lines) {
         this.lines = lines;
     }
 
@@ -17,18 +19,21 @@ public class Ladder {
         return new Ladder(createLines(countOfPerson, maxHeight));
     }
 
-    private static List<Line> createLines(int countOfPerson, int maxHeight) {
+    private static List<Lines> createLines(int countOfPerson, int maxHeight) {
+        return IntStream.range(0, maxHeight)
+                .mapToObj(j -> Lines.of(createLine(countOfPerson)))
+                .collect(Collectors.toList());
+    }
+
+    private static List<Line> createLine(int countOfPerson) {
         List<Line> list = new ArrayList<>();
-        for (int j = 0; j < maxHeight; j++) {
-            Line currentLine = Line.of(LadderUtil.isLine());
+        Line currentLine = Line.of(LadderUtil.isLine());
+        list.add(currentLine);
+
+        for (int i = 1; i < countOfPerson - 1; i++) {
+            currentLine = nextCreate(currentLine.getLine());
             list.add(currentLine);
-
-            for (int i = 1; i < (countOfPerson - 1); i++) {
-                currentLine = nextCreate(currentLine.getLine());
-                list.add(currentLine);
-            }
         }
-
         return list;
     }
 
@@ -40,7 +45,7 @@ public class Ladder {
         return Line.of(isNextLine);
     }
 
-    public List<Line> getLines() {
+    public List<Lines> getLines() {
         return this.lines;
     }
 }
