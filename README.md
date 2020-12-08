@@ -89,7 +89,7 @@ pobi  honux crong   jk
   - 참여자 개인이름 + all 입력시 결과 출력
 
 - 실행결과 입력
-  - [ ] 입력받기 & validation
+  - [x] 입력받기 & validation 👉 `Names` 클래스 재사용
 -결과보기  
   - [ ] 참가자 1인 결과 찾기
   - [ ] 예약어 all. -> 참가자 이름에서 all 제외시키기

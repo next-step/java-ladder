@@ -15,17 +15,18 @@ import static java.util.stream.Collectors.joining;
  */
 public class ResultView {
 
-    public static final String RESULT = "실행결과" + System.lineSeparator();
+    public static final String RESULT = "실행결과";
 
     public static final int NAME_SPACE = 5;
     public static final String BRIDGE_BLANK = " ";
     public static final String BRIDGE_CONNECTION = "-";
     public static final String BRIDGE_POLE = "|";
 
-    public static void print(Names participants, Ladder ladder) {
-        System.out.println(RESULT);
+    public static void print(Names participants, Ladder ladder, Names goals) {
+        System.out.println(System.lineSeparator() + RESULT + System.lineSeparator());
         printNames(participants.getNames());
         printLadder(ladder.getLadder());
+        printNames(goals.getNames());
     }
 
     private static void printNames(List<Name> names) {

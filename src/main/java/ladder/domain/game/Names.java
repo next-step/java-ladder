@@ -56,6 +56,14 @@ public class Names {
         return this.names.size();
     }
 
+    public int getParticipantIndex(Name participant) {
+        return this.names.indexOf(participant);
+    }
+
+    public Name getParticipantName(int index) {
+        return this.names.get(index);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

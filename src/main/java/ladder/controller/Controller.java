@@ -18,11 +18,14 @@ public class Controller {
 
     public static void main(String[] args) {
         Names participants = Names.from(InputView.askParticipantList());
+
+        Names goals = Names.from(InputView.askGoal());
+
         int height = InputView.askLadderHeight();
 
         ConnectionStrategy connectionStrategy = new RandomConnectionStrategy();
         Ladder ladder = Ladder.of(participants.getParticipantNum(), connectionStrategy, height);
 
-        ResultView.print(participants, ladder);
+        ResultView.print(participants, ladder, goals);
     }
 }

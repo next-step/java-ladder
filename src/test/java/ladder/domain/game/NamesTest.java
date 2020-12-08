@@ -5,11 +5,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -37,4 +35,29 @@ public class NamesTest {
                 .hasMessage(Names.MESSAGE_PARTICIPANTS_LIST_NON_NULL);
     }
 
+    private static Stream<Arguments> providedNameOfParticipantIntoIndex() {
+        return Stream.of(
+                Arguments.of("pobi,honux,crong,jk", "pobi", 0),
+                Arguments.of("pobi,honux,crong,jk", "honux", 1),
+                Arguments.of("pobi,honux,crong,jk", "crong", 2),
+                Arguments.of("pobi,honux,crong,jk", "jk", 3)
+        );
+    }
+
+    @ParameterizedTest
+    @MethodSource("providedNameOfParticipantIntoIndex")
+    void 참가자_이름을_입력하면_참가자의_번호를_반환한다(String inputNames, String participantName, int expectedIndex) {
+        Names names = Names.from(inputNames);
+        assertThat(
+                names.getParticipantIndex(Name.from(participantName))
+        ).isEqualTo(expectedIndex);
+    }
+
+    @ParameterizedTest
+    @MethodSource("providedNameOfParticipantIntoIndex")
+    void 참가자_번호를_입력하면_참가자의_이름을_반환한다(String inputNames, String participantName, int expectedIndex) {
+        Names names = Names.from(inputNames);
+        assertThat(names.getParticipantName(expectedIndex))
+                .isEqualTo(Name.from(participantName));
+    }
 }
