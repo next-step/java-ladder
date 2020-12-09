@@ -1,20 +1,19 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.Direction;
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Point;
-import nextstep.ladder.domain.Users;
+import nextstep.ladder.domain.*;
 
 import java.util.List;
+import java.util.Map;
 
 public class ResultView {
-    private static final String RESULT_MENTION = "실행결과";
+    private static final String LADDER_MENTION = "사다리 결과";
+    private static final String RESULT_MENTION = "실행 결과";
     private static final String VERTICAL = "|";
     private static final String BAR = "-----";
 
     public void printResultMention() {
         System.out.println();
-        System.out.println(RESULT_MENTION);
+        System.out.println(LADDER_MENTION);
     }
 
     public void printUsers(Users users) {
@@ -25,6 +24,7 @@ public class ResultView {
     public void drawLadders(Ladder ladder) {
         ladder.getLines()
                 .forEach(line -> drawLine(line.getPoints()));
+        System.out.println();
     }
 
     private void drawLine(List<Point> points) {
@@ -61,5 +61,32 @@ public class ResultView {
 
     private void drawForward() {
         System.out.print(String.format("%5s ", VERTICAL));
+    }
+
+    public void printResult(Map<User, Result> userResultMap, String inputResultUser) {
+        System.out.println();
+        System.out.println(RESULT_MENTION);
+        if(inputResultUser.equals("all")) {
+            printAllResult(userResultMap);
+        }
+        printUserResult(userResultMap, inputResultUser);
+    }
+
+    private void printAllResult(Map<User, Result> userResultMap) {
+        userResultMap.keySet()
+                .forEach(key -> printMapResult(userResultMap, key));
+    }
+
+    private void printMapResult(Map<User, Result> userResultMap, User key) {
+        System.out.println(key + " : " + userResultMap.get(key));
+    }
+
+    private void printUserResult(Map<User, Result> userResultMap, String inputResultUser) {
+        userResultMap.keySet()
+                .forEach(key -> {
+                    if(key.getName().equals(inputResultUser)) {
+                        printMapResult(userResultMap, key);
+                    }
+                });
     }
 }

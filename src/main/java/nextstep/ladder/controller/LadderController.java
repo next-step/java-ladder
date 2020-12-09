@@ -36,6 +36,8 @@ public class LadderController {
         resultView.drawLadders(ladder);
 
         Map<User, Result> userResultMap = matchResults(endMap, resultMap);
+
+        resultView.printResult(userResultMap, inputView.inputResultUser());
     }
 
     public Map<User, Result> matchResults(Map<User, Integer> endMap, Map<Result, Integer> resultMap) {
