@@ -4,9 +4,13 @@ public class Direction {
     private final boolean left;
     private final boolean right;
 
-    public Direction(boolean left, boolean right){
+    private Direction(boolean left, boolean right){
         this.left = left;
         this.right = right;
+    }
+
+    public static Direction of(boolean left, boolean right){
+        return new Direction(left, right);
     }
 
     public boolean isLeft() {

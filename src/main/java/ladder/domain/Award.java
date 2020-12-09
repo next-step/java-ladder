@@ -9,9 +9,13 @@ public class Award {
 
     private String awardName;
 
-    public Award(String awardName){
+    private Award(String awardName){
         validateAwardName(awardName);
         this.awardName = awardName;
+    }
+
+    public static Award from(String awardName){
+        return new Award(awardName);
     }
 
     public String getAwardName() {

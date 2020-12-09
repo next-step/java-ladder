@@ -11,14 +11,10 @@ public class AwardTest {
     @DisplayName("Award 생성 테스트")
     @Test
     void awardConstructorTest(){
-        // given
+
         String awardName = "꽝";
 
-        // when
-        Award award = new Award(awardName);
-
-        // then
-        assertThat(award.getAwardName()).isEqualTo(awardName);
+        assertThat(Award.from(awardName).getAwardName()).isEqualTo(awardName);
     }
 
 
@@ -30,7 +26,7 @@ public class AwardTest {
 
             String awardName = "꽝 다음기회에";
 
-            new Award(awardName);
+            Award.from(awardName);
 
         }).withMessageContaining(LadderGameErrorMessage.ILLEGAL_MAX_AWARD_NAME.getErrorMessage());
     }

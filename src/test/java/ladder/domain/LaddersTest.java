@@ -17,9 +17,9 @@ public class LaddersTest {
     public void init(){
 
         List<Point> lineConnections = new ArrayList<>();
-        lineConnections.add(new Point(new Direction(false, true)));
-        lineConnections.add(new Point(new Direction(true,false)));
-        lineConnections.add(new Point(new Direction(false,false)));
+        lineConnections.add(new Point(Direction.of(false, true)));
+        lineConnections.add(new Point(Direction.of(true,false)));
+        lineConnections.add(new Point(Direction.of(false,false)));
 
         line = new Line(lineConnections);
     }

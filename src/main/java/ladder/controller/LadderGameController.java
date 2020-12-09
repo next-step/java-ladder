@@ -52,7 +52,7 @@ public class LadderGameController {
     public static Map<Player, Award> climb(LadderBuildResult ladderBuildResult, Awards awards) {
 
         Paths paths = new Paths(IntStream.range(FIRST_INDEX, ladderBuildResult.getPlayers().getPlayers().size())
-                .mapToObj(i -> new Path(i, ladderBuildResult.getLadders().climb(i))).collect(Collectors.toList()));
+                .mapToObj(i -> Path.of(i, ladderBuildResult.getLadders().climb(i))).collect(Collectors.toList()));
 
         return parseClimbResult(paths, ladderBuildResult.getPlayers(), awards);
 

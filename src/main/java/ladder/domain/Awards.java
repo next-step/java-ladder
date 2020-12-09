@@ -13,7 +13,7 @@ public class Awards {
 
     public Awards(String[] awards){
         this.awards = Arrays.stream(awards)
-                .map(Award::new)
+                .map(Award::from)
                 .collect(Collectors.toList());
     }
 

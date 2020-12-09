@@ -21,7 +21,7 @@ public class LadderBuildResultTest {
         players = new Players(playNames);
 
         List<Point> lineConnections = new ArrayList<>();
-        lineConnections.add(new Point(new Direction(false,true)));
+        lineConnections.add(new Point(Direction.of(false,true)));
 
         List<Ladder> ladderList = new ArrayList<>();
         ladderList.add(new Ladder(new Line(lineConnections)));

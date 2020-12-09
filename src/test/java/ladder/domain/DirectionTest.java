@@ -15,7 +15,7 @@ public class DirectionTest {
     @Test
     void directionConstructorTest(){
 
-        Direction direction = new Direction(true, false);
+        Direction direction = Direction.of(true, false);
 
         assertThat(direction.isLeft()).isTrue();
         assertThat(direction.isRight()).isFalse();
@@ -26,7 +26,7 @@ public class DirectionTest {
     @CsvSource(value = {"true:false:-1", "false:true:1", "false:false:0"}, delimiter = ':')
     void directionMoveIndexTest(boolean left, boolean right, int expect){
 
-        Direction direction = new Direction(left, right);
+        Direction direction = Direction.of(left, right);
 
         assertThat(direction.moveIndex(FIRST_INDEX)).isEqualTo(expect);
 
@@ -38,7 +38,7 @@ public class DirectionTest {
 
         assertThatIllegalArgumentException().isThrownBy(() -> {
 
-            Direction direction = new Direction(true, true);
+            Direction direction = Direction.of(true, true);
             direction.moveIndex(FIRST_INDEX);
 
         }).withMessageContaining(LadderGameErrorMessage.ILLEGAL_LINE_POINTS.getErrorMessage());

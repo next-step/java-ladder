@@ -20,7 +20,7 @@ public class RandomLineBuildStrategy implements LineBuildStrategy{
                 .collect(Collectors.toList());
 
        ;
-        pointList.add(new Point(new Direction( pointList.get(pointList.size()-1).getDirection().isRight(), false)));
+        pointList.add(new Point(Direction.of(pointList.get(pointList.size()-1).getDirection().isRight(), false)));
 
         return new Line(pointList);
     }
@@ -33,12 +33,12 @@ public class RandomLineBuildStrategy implements LineBuildStrategy{
 
         if(previousConnection){
             previousConnection = false;
-            return new Direction(true, false);
+            return Direction.of(true, false);
         }
 
         previousConnection = random.nextBoolean();
 
-        return new Direction(false, previousConnection);
+        return Direction.of(false, previousConnection);
 
     }
 
