@@ -15,4 +15,16 @@ class PlayerTest {
         Assertions.assertThat(new Player("12345").getName())
                 .isEqualTo("12345");
     }
+
+    @Test
+    void testEquals() {
+        Assertions.assertThat(new Player("12345"))
+                .isEqualTo(new Player("12345"));
+    }
+
+    @Test
+    void testHashCode() {
+        Assertions.assertThat(new Player("12345").hashCode())
+                .isEqualTo(new Player("12345").hashCode());
+    }
 }

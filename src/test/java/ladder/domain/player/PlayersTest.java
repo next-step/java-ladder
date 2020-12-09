@@ -39,4 +39,17 @@ class PlayersTest {
         Assertions.assertThat(players.getPlayers().size())
                 .isEqualTo(3);
     }
+
+    @Test
+    void getIndexByName() {
+        Assertions.assertThat(players.getIndexByName("hano"))
+                .isEqualTo(1);
+    }
+
+    @Test
+    void throwGetIndexByName() {
+        Assertions.assertThatThrownBy(() -> {
+            players.getIndexByName("Exception");
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
 }

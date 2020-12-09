@@ -20,4 +20,11 @@ public class Ladder {
         return Collections.unmodifiableList(lines);
     }
 
+    public int getResultIndexByPlayerIndex(int playerIndex) {
+        int index = playerIndex;
+        for (Line line : lines) {
+            index = line.movePoint(index);
+        }
+        return index;
+    }
 }

@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 public class Players {
     private static final String NAMES_REGEX = ",";
+    public static final int DEFAULT_INDEX = -1;
 
     private final List<Player> players;
 
@@ -49,5 +50,15 @@ public class Players {
 
     public List<Player> getPlayers() {
         return Collections.unmodifiableList(players);
+    }
+
+    public int getIndexByName(String name) {
+        return Optional.ofNullable(name)
+                .map(Player::new)
+                .map(players::indexOf)
+                .filter(index -> index > DEFAULT_INDEX)
+                .orElseThrow(() ->
+                        new IllegalArgumentException(String.format("'%s'이름을 사용하는 플레이어는 존재하지 않습니다.", name))
+                );
     }
 }

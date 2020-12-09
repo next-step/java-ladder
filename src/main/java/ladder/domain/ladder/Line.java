@@ -36,4 +36,9 @@ public class Line {
     public List<Point> getPoints() {
         return Collections.unmodifiableList(points);
     }
+
+    public int movePoint(int index) {
+        return points.get(index)
+                .move();
+    }
 }
