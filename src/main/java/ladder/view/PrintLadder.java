@@ -1,12 +1,14 @@
 package ladder.view;
 
 import ladder.domain.*;
+import ladder.dto.LadderWinningDTO;
 
 import java.util.List;
 
 public class PrintLadder {
     private static final String HAVE_LINE = "-----";
     private static final String NON_HAVE_LINE = "     ";
+    private static final String EXECUTION_RESULT = "실행결과";
 
     public void printNames(Persons persons) {
         StringBuilder stringBuilder = new StringBuilder();
@@ -33,7 +35,7 @@ public class PrintLadder {
     }
 
 
-    public void printLadder(LadderLines ladderLine) {
+    public void printLadder(Ladder ladderLine) {
         StringBuilder stringBuilder = new StringBuilder();
         List<LadderLine> lll = ladderLine.getLadderLine();
 
@@ -44,10 +46,10 @@ public class PrintLadder {
 
             stringBuilder.append("\n");
         }
-        System.out.println(stringBuilder);
+        System.out.print(stringBuilder);
     }
 
-    public String RepeatPoint(List<LadderPoint> points) {
+    private String RepeatPoint(List<LadderPoint> points) {
         StringBuilder stringBuilder = new StringBuilder();
 
         for (LadderPoint point : points) {
@@ -64,5 +66,28 @@ public class PrintLadder {
         }
 
         return NON_HAVE_LINE;
+    }
+
+    public void printWinnings(List<LadderWinning> winnings){
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for(LadderWinning winning : winnings){
+            stringBuilder.append(winning.getWinning() + NON_HAVE_LINE);
+        }
+
+        System.out.println(stringBuilder);
+    }
+
+    public void printOneWinningResult(List<LadderWinningDTO> ladderWinningList) {
+        System.out.println(EXECUTION_RESULT);
+        System.out.println(ladderWinningList.get(0).getResult());
+        System.out.println();
+    }
+
+    public void printAllWinningResult(List<LadderWinningDTO> ladderWinningList) {
+        System.out.println(EXECUTION_RESULT);
+        for (LadderWinningDTO dto : ladderWinningList) {
+            System.out.println(dto.getName() + " : " + dto.getResult());
+        }
     }
 }
