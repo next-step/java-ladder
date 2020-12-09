@@ -68,6 +68,7 @@ public class ResultView {
         System.out.println(RESULT_MENTION);
         if(inputResultUser.equals("all")) {
             printAllResult(userResultMap);
+            return;
         }
         printUserResult(userResultMap, inputResultUser);
     }
@@ -82,11 +83,10 @@ public class ResultView {
     }
 
     private void printUserResult(Map<User, Result> userResultMap, String inputResultUser) {
-        userResultMap.keySet()
-                .forEach(key -> {
-                    if(key.getName().equals(inputResultUser)) {
-                        printMapResult(userResultMap, key);
-                    }
-                });
+        User user = userResultMap.keySet().stream()
+                .filter(key -> key.getName().equals(inputResultUser))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("참가자가 아닙니다."));
+        printMapResult(userResultMap, user);
     }
 }
