@@ -20,13 +20,13 @@ public class ResultView {
         users.forEach(name -> {
                 System.out.print(repeatWord(" ", PRINT_DEFAULT_NAME_SPACE - name.length()) + name);
             });
-        System.out.println("");
+        System.out.println();
     }
 
     public static void printLines(List<Line> lines) {
         lines.forEach(line -> {
             printPoint(line);
-            System.out.println("");
+            System.out.println();
         });
     }
 
