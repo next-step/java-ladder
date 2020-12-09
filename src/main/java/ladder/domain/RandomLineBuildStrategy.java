@@ -22,10 +22,13 @@ public class RandomLineBuildStrategy implements LineBuildStrategy{
                 .map(Point::new)
                 .collect(Collectors.toList());
 
-       ;
-        pointList.add(new Point(Direction.of(pointList.get(pointList.size()-1).getDirection().isRight(), false)));
+        makeLastPoint(pointList);
 
         return new Line(pointList);
+    }
+
+    private void makeLastPoint(List<Point> pointList) {
+        pointList.add(new Point(Direction.of(pointList.get(pointList.size()-1).getDirection().isRight(), false)));
     }
 
     private Direction makeDirection(int position){

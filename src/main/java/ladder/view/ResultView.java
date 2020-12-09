@@ -52,7 +52,11 @@ public class ResultView {
 
     private static String showLadder(Ladder ladder) {
         return ladder.getLine().getPoints().stream()
-                .map(i-> LADDER+(i.getDirection().isRight()? CONNECTED:NOT_CONNECTED)).collect(Collectors.joining());
+                .map(point -> makeConnectionLine(point)).collect(Collectors.joining());
+    }
+
+    private static String makeConnectionLine(Point point) {
+        return LADDER + (point.getDirection().isRight()? CONNECTED:NOT_CONNECTED);
     }
 
     private static void showPlayers(Players players) {
