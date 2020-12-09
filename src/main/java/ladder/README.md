@@ -2,10 +2,10 @@
 v. 참여자 (Participants / Participant 클래스)
 - [x] 참여자 이름 최대 5글자 유효성 검사 
 - [x] 빈 공백, Null 불가
-- [x] 참여자 객체는 이름에 논리적 동등성을 부여한다equals hascode 적용
+- [x] 참여자 객체는 이름에 논리적 동등성을 부여한다 equals hascode 적용
 - [x] 참가자 2명 미만에 대한 유효성 검사 
 
-v. 사다리 이동 경로(GeneratorLadderMover / RandomGeneratorLadderMover 클래스~~~~)
+v. 사다리 이동 경로(LineGenerator / RandomLineGenerator 클래스)
 - [x] 사다리 이동 경로 생성방식은 Random
 - [x] 이동경로 사이즈는 참여자수 - 1
 - [x] 랜덤 생성 방식의 전체조건 규칙 : true가 연속적으로 이어지면 안된다
