@@ -10,7 +10,7 @@ public class ResultView {
     private static final String PRINT_LADDER_WIDTH = "-";
     private static final String PRINT_LADDER_HEIGHT = "|";
     private static final int PRINT_DEFAULT_NAME_SPACE = 5;
-    private static final int PIRNT_LADDER_REPEAT = 4;
+    private static final int PRINT_LADDER_REPEAT = 4;
 
     private ResultView() {
 
@@ -40,7 +40,7 @@ public class ResultView {
         IntStream.range(0, line.getSize())
                 .mapToObj(line::isLeft)
                 .forEach(aBoolean -> {
-                    System.out.print(repeatWord(aBoolean ? PRINT_LADDER_WIDTH :  " ", PIRNT_LADDER_REPEAT));
+                    System.out.print(repeatWord(aBoolean ? PRINT_LADDER_WIDTH :  " ", PRINT_LADDER_REPEAT));
                     System.out.print(PRINT_LADDER_HEIGHT);
                 });
     }
