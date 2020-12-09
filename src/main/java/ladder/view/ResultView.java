@@ -15,8 +15,8 @@ import java.util.stream.Collectors;
 public class ResultView {
     private static final String PRINT_LADDER_WIDTH = "-";
     private static final String PRINT_LADDER_HEIGHT = "|";
-    private static final int PRINT_DEFAULT_NAME_SPACE = 5;
-    private static final int PRINT_LADDER_REPEAT = 4;
+    private static final int PRINT_DEFAULT_NAME_SPACE = 6;
+    private static final int PRINT_LADDER_REPEAT = 5;
 
     private ResultView() {
 
