@@ -29,6 +29,6 @@ public class Ladder {
 
     public int move(int moveIndex) {
         Direction direction = line.getPoints().get(moveIndex).getDirection();
-        return direction.moveIndex(moveIndex);
+        return direction.moveIndex();
     }
 }

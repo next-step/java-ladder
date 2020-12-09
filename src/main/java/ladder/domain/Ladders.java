@@ -19,10 +19,14 @@ public class Ladders {
 
         AtomicInteger moveIndex = new AtomicInteger(index);
 
-        ladders.forEach(ladder -> moveIndex.set(ladder.move(moveIndex.get())));
+        ladders.forEach(ladder -> moveIndex.set(changeMoveIndex(ladder, moveIndex.get())));
 
         return moveIndex.get();
 
+    }
+
+    private int changeMoveIndex(Ladder ladder, int currentMoveIndex) {
+        return currentMoveIndex + ladder.move(currentMoveIndex);
     }
 
 }

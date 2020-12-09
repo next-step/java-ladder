@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -10,26 +11,39 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 
 public class DirectionTest {
 
-    private static final int FIRST_INDEX = 0;
+    private int startIndex;
+    private Direction leftDirection;
+    private Direction rightDirection;
 
-    @DisplayName("Direction 생성 테스트")
+    @BeforeEach
+    public void init(){
+        startIndex = 3;
+        leftDirection = Direction.of(true, false);
+        rightDirection = Direction.of(false, true);
+    }
+
+    @DisplayName("isLeft 테스트")
     @Test
-    void directionConstructorTest(){
+    void directionIsLeftTest(){
+        assertThat(leftDirection.isLeft()).isTrue();
+        assertThat(rightDirection.isLeft()).isFalse();
+    }
 
-        Direction direction = Direction.of(true, false);
-
-        assertThat(direction.isLeft()).isTrue();
-        assertThat(direction.isRight()).isFalse();
+    @DisplayName("isRight 테스트")
+    @Test
+    void directionIsRightTest(){
+        assertThat(leftDirection.isRight()).isFalse();
+        assertThat(rightDirection.isRight()).isTrue();
     }
 
     @DisplayName("Direction move index 테스트")
     @ParameterizedTest
-    @CsvSource(value = {"true:false:-1", "false:true:1", "false:false:0"}, delimiter = ':')
+    @CsvSource(value = {"true:false:2", "false:true:4", "false:false:3"}, delimiter = ':')
     void directionMoveIndexTest(boolean left, boolean right, int expect){
 
         Direction direction = Direction.of(left, right);
 
-        assertThat(direction.moveIndex(FIRST_INDEX)).isEqualTo(expect);
+        assertThat(startIndex + direction.moveIndex()).isEqualTo(expect);
 
     }
 
@@ -40,7 +54,7 @@ public class DirectionTest {
         assertThatIllegalArgumentException().isThrownBy(() -> {
 
             Direction direction = Direction.of(true, true);
-            direction.moveIndex(FIRST_INDEX);
+            direction.moveIndex();
 
         }).withMessageContaining("사다리 가로라인은 겹칠 수 없습니다.");
 
