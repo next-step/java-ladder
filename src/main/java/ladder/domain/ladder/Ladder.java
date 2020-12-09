@@ -16,10 +16,6 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public Line findByIndex(int index) {
-       return lines.get(index);
-    }
-
     public int sizeHeight() {
         return lines.size();
     }
@@ -27,4 +23,8 @@ public class Ladder {
     public int sizeWidth() {
         return lines.get(0).sizeWidth();
     }
+
+   public List<Boolean> getLine(int index){
+        return lines.get(index).getPoints();
+   }
 }

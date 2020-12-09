@@ -1,5 +1,6 @@
 package ladder.domain.ladder;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -13,6 +14,10 @@ public class Line {
 
     public boolean isAvailableMove(int countOfPerson) {
         return points.get(countOfPerson);
+    }
+
+    public List<Boolean> getPoints() {
+        return Collections.unmodifiableList(points);
     }
 
     public int sizeWidth() {
