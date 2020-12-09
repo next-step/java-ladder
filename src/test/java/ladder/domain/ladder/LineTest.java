@@ -39,6 +39,4 @@ public class LineTest {
         //Then
         assertThat(expected).isEqualTo(expectedPoints.get(index));
     }
-
-
 }

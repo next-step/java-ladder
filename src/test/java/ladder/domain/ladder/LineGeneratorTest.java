@@ -21,5 +21,4 @@ public class LineGeneratorTest {
         assertThat(line).isNotNull();
         assertThat(line.sizeWidth()).isEqualTo(width);
     }
-
 }

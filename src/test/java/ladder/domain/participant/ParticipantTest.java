@@ -66,6 +66,4 @@ public class ParticipantTest {
                 new Participant(userName)
         ).isInstanceOf(InValidUserNameException.class);
     }
-
-
 }

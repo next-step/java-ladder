@@ -22,6 +22,4 @@ public class LadderGameTest {
         assertThat(ladder.sizeWidth()).isEqualTo(width);
         assertThat(ladder.sizeHeight()).isEqualTo(height);
     }
-
-
 }
