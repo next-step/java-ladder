@@ -5,7 +5,9 @@ import nextstep.ladder.ErrorMessage;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
 
 public class Users {
 
@@ -16,12 +18,9 @@ public class Users {
 
     public Users(String usersNameString) {
         throwIfNullOrEmpty(usersNameString);
-        this.users = Collections.unmodifiableList(
-                Arrays
-                        .stream(usersNameString.split(COMMA))
-                        .map(User::new)
-                        .collect(Collectors.toList())
-        );
+        this.users = Arrays.stream(usersNameString.split(COMMA))
+                .map(User::new)
+                .collect(collectingAndThen(toList(), Collections::unmodifiableList));
     }
 
     private void throwIfNullOrEmpty(String usersNameString) {
