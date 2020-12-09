@@ -1,5 +1,6 @@
 package ladder.domain.ladder;
 
+import ladder.domain.util.RandomStrategy;
 import ladder.domain.util.RightPointRandom;
 
 import java.util.ArrayList;
@@ -10,17 +11,17 @@ public class Line {
 
     private List<Point> points;
 
-    public Line(int countOfPlayer, RightPointRandom rightPointRandom) {
-        this.points = createLine(countOfPlayer, rightPointRandom);
+    public Line(int countOfPlayer, RandomStrategy randomStrategy) {
+        this.points = createLine(countOfPlayer, randomStrategy);
     }
 
-    public List<Point> createLine(int countOfPlayer, RightPointRandom rightPointRandom) {
+    private List<Point> createLine(int countOfPlayer, RandomStrategy randomStrategy) {
         points = new ArrayList<>();
-        Point point = Point.first(rightPointRandom.right());
+        Point point = Point.first(randomStrategy.right());
         points.add(point);
 
         for (int i = NUMBER_ONE; i < countOfPlayer - NUMBER_ONE; i++) {
-            point = point.next(rightPointRandom.right());
+            point = point.next(randomStrategy.right());
             points.add(i, point);
         }
 

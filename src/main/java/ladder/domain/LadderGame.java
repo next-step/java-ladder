@@ -11,7 +11,6 @@ public class LadderGame {
         Players players = new Players(InputView.inputGamePlayers());
         Ladder ladder = new Ladder(players.getPlayerCount(), InputView.inputLadderSize(),
                 new RightPointRandom());
-
         ResultView.printLadderResult(players, ladder.getLines());
     }
 }
