@@ -29,8 +29,8 @@ public class Point {
        return index + direction.move();
     }
 
-    public boolean isLeft() {
-        return direction.isLeft();
+    public Direction getDirection() {
+        return direction;
     }
 
     @Override

@@ -18,7 +18,7 @@ class PointTest {
     }
 
     @Test
-    void move_current() {
+    void move_right() {
         Point point = Point.first(false).next(true);
         Assertions.assertThat(point.move()).isEqualTo(2);
     }
@@ -30,9 +30,8 @@ class PointTest {
     }
 
     @Test
-    void move_isLeft() {
-        Point point = Point.first(false);
-        Assertions.assertThat(point.isLeft()).isEqualTo(false);
+    void getDirection() {
+        Assertions.assertThat(Point.first(false).getDirection())
+                .isEqualTo(Direction.of(false, false));
     }
-
 }

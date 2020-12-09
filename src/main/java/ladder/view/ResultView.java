@@ -1,6 +1,9 @@
 package ladder.view;
 
+import ladder.domain.ladder.Direction;
 import ladder.domain.ladder.Line;
+import ladder.domain.ladder.Point;
+import ladder.domain.player.Player;
 import ladder.domain.player.Players;
 
 import java.util.List;
@@ -16,10 +19,13 @@ public class ResultView {
 
     }
 
-    public static void printUserNames(List<String> users) {
-        users.forEach(name -> {
-                System.out.print(repeatWord(" ", PRINT_DEFAULT_NAME_SPACE - name.length()) + name);
-            });
+    public static void printUserNames(Players players) {
+        players.getPlayers()
+                .stream()
+                .map(Player::getName)
+                .forEach(name -> {
+                    System.out.print(repeatWord(" ", PRINT_DEFAULT_NAME_SPACE - name.length()) + name);
+                });
         System.out.println();
     }
 
@@ -32,15 +38,16 @@ public class ResultView {
 
     public static void printLadderResult(Players players, List<Line> lines) {
         System.out.println("\n실행결과\n");
-        printUserNames(players.getPlayerNames());
+        printUserNames(players);
         printLines(lines);
     }
 
     public static void printPoint(Line line) {
-        IntStream.range(0, line.getSize())
-                .mapToObj(line::isLeft)
+        line.getPoints().stream()
+                .map(Point::getDirection)
+                .map(Direction::isLeft)
                 .forEach(aBoolean -> {
-                    System.out.print(repeatWord(aBoolean ? PRINT_LADDER_WIDTH :  " ", PRINT_LADDER_REPEAT));
+                    System.out.print(repeatWord(aBoolean ? PRINT_LADDER_WIDTH : " ", PRINT_LADDER_REPEAT));
                     System.out.print(PRINT_LADDER_HEIGHT);
                 });
     }

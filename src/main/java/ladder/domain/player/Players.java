@@ -2,10 +2,7 @@ package ladder.domain.player;
 
 import ladder.context.ErrorMessage;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Players {
@@ -44,15 +41,13 @@ public class Players {
                 .collect(Collectors.toList());
     }
 
-    public List<String> getPlayerNames() {
-        return players.stream()
-                .map(Player::getName)
-                .collect(Collectors.toList());
-    }
-
     public int getPlayerCount() {
         return (int) players.stream()
                 .map(Player::getName)
                 .count();
+    }
+
+    public List<Player> getPlayers() {
+        return Collections.unmodifiableList(players);
     }
 }

@@ -3,6 +3,7 @@ package ladder.domain.ladder;
 import ladder.domain.util.RightPointRandom;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LineTest {
@@ -10,7 +11,7 @@ class LineTest {
 
     @BeforeEach
     void before() {
-        line = new Line(5, new RightPointRandom());
+        line = new Line(5, () -> false);
     }
 
     @Test
@@ -19,8 +20,11 @@ class LineTest {
     }
 
     @Test
-    void getIsLeft() {
-        Assertions.assertThat(line.isLeft(0)).isEqualTo(false);
+    @DisplayName("사다리 그리기 테스트")
+    void getPoints() {
+        line.getPoints().forEach(point -> {
+            Assertions.assertThat(point.getDirection().isLeft())
+                    .isFalse();
+        });
     }
-
 }

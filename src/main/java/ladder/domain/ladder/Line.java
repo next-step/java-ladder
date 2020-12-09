@@ -3,6 +3,7 @@ package ladder.domain.ladder;
 import ladder.domain.util.RandomStrategy;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Line {
@@ -32,7 +33,7 @@ public class Line {
         return points.size();
     }
 
-    public boolean isLeft(int index) {
-        return points.get(index).isLeft();
+    public List<Point> getPoints() {
+        return Collections.unmodifiableList(points);
     }
 }
