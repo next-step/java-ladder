@@ -3,6 +3,7 @@ package domain;
 import ladder.domain.Persons;
 import ladder.util.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -44,5 +45,15 @@ public class PersonsTest {
                 personsTest = new Persons(name)
         ).isInstanceOf(RuntimeException.class)
                 .withFailMessage(ErrorMessage.getCheckInputNames());
+    }
+
+    @Test
+    @DisplayName("참가자 인원이 2명 미만인경우 예외를 던진다")
+    void checkCountOfperson(){
+
+        assertThatThrownBy(() ->
+                personsTest = new Persons("test1")
+        ).isInstanceOf(RuntimeException.class)
+                .withFailMessage(ErrorMessage.getCheckCountOfPerson());
     }
 }
