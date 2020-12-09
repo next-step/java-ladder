@@ -46,12 +46,12 @@ echo location of your Java installation.
 goto fail
 
 :init
-@rem Get command-line arguments, handling Windows variants
+@rem Get command-transverseLadder arguments, handling Windows variants
 
 if not "%OS%" == "Windows_NT" goto win9xME_args
 
 :win9xME_args
-@rem Slurp the command line arguments.
+@rem Slurp the command transverseLadder arguments.
 set CMD_LINE_ARGS=
 set _SKIP=2
 
@@ -61,7 +61,7 @@ if "x%~1" == "x" goto execute
 set CMD_LINE_ARGS=%*
 
 :execute
-@rem Setup the command line
+@rem Setup the command transverseLadder
 
 set CLASSPATH=%APP_HOME%\gradle\wrapper\gradle-wrapper.jar
 

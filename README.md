@@ -8,6 +8,17 @@
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
 
+## 사다리 생성 방법
+사다리 예시
+```
+|-----|     | 
+|     |-----|
+|-----|     |
+```
+- TransverseLadder: '-----'를 연속되지 않게 생성한다.
+- VerticalLadder: '|' 를 입력한 사람의 수 만큼 생성한다.
+- Ladder: TransverseLadder, VerticalLadder를 조합하여 ladder를 생성한다.
+
 ## 요구사항 정리
 
 Person
@@ -31,5 +42,8 @@ LadderHeight
 - int: value
 
 ##TODO
-1. 사다리를 생성하기 위해 한 라인의 n개의 좌표 중 연속되는 2개를 랜덤하게 선택하여 사다리 생성
+2. 세로 사다리를 생성
+3. 가로 사다리, 세로 사다리를 합쳐서 사다리 게임 생성
 ##DONE
+1. 가로 사다리를 생성 
+    - 랜덤하게 생성할지 말지를 결정하고, 이전 가로 사다리가 생성되어 있으면 생성하지 않음
