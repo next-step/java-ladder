@@ -5,11 +5,11 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import static ladder.domain.LadderGameConfig.CONNECTED_DELIMITER;
-import static ladder.domain.LadderGameConfig.NOT_CONNECTED_DELIMITER;
 
 public class Line {
 
+    private static final String CONNECTED_DELIMITER = "-";
+    private static final String NOT_CONNECTED_DELIMITER = " ";
     private final List<Point> points;
 
     public Line(List<Point> points){
@@ -24,7 +24,7 @@ public class Line {
                 .collect(Collectors.joining());
 
         if(pointsValue.contains(CONNECTED_DELIMITER+CONNECTED_DELIMITER)){
-            throw new IllegalArgumentException(LadderGameErrorMessage.ILLEGAL_LINE_POINTS.getErrorMessage());
+            throw new IllegalArgumentException("사다리 가로라인은 겹칠 수 없습니다.");
         }
 
     }

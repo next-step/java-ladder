@@ -6,11 +6,12 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static ladder.domain.LadderGameConfig.ALL_RESULT_MESSAGE;
-import static ladder.domain.LadderGameConfig.PLAYER_NAME_MAX_LENGTH;
 
 
 public class ResultView {
+
+    private static final int PLAYER_NAME_MAX_LENGTH = 5;
+    private static final String ALL_RESULT_MESSAGE = "all";
 
     private static final String BUILD_HEAD_MESSAGE = "\n사다리 결과\n";
     private static final String RESULT_HEAD_MESSAGE = "\n실행결과";

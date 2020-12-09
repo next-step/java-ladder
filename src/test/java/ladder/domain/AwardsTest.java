@@ -30,6 +30,6 @@ public class AwardsTest {
 
             awards.searchAwardName(4);
 
-        }).withMessageContaining(LadderGameErrorMessage.ILLEGAL_AWARD_INDEX.getErrorMessage());
+        }).withMessageContaining("해당 위치에 결과값이 존재하지 않습니다.");
     }
 }

@@ -1,7 +1,5 @@
 package ladder.view;
 
-import ladder.domain.LadderGameErrorMessage;
-
 import java.util.Scanner;
 
 public class InputView {
@@ -44,7 +42,7 @@ public class InputView {
 
     private static void validateAwardsCount(String[] awards, int ladderCount) {
         if(awards.length != ladderCount){
-            throw new IllegalArgumentException(LadderGameErrorMessage.ILLEGAL_AWARDS_COUNT.getErrorMessage());
+            throw new IllegalArgumentException("사다리 갯수만큼 실행결과를 입력하세요.");
         }
 
     }

@@ -3,10 +3,13 @@ package ladder.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class AwardTest {
+
+    private static final int AWARD_NAME_MAX_LENGTH = 5;
 
     @DisplayName("Award 생성 테스트")
     @Test
@@ -28,6 +31,6 @@ public class AwardTest {
 
             Award.from(awardName);
 
-        }).withMessageContaining(LadderGameErrorMessage.ILLEGAL_MAX_AWARD_NAME.getErrorMessage());
+        }).withMessageContaining("실행결과 이름은 최대 "+AWARD_NAME_MAX_LENGTH+" 글자 입니다.");
     }
 }

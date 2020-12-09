@@ -8,9 +8,10 @@ import ladder.domain.Player;
 
 import java.util.Map;
 
-import static ladder.domain.LadderGameConfig.ALL_RESULT_MESSAGE;
 
 public class LadderGameMain {
+
+    private static final String ALL_RESULT_MESSAGE = "all";
 
     public static void main(String[] args){
 

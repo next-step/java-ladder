@@ -4,10 +4,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static ladder.domain.LadderGameConfig.FIRST_INDEX;
 
 public class Players {
 
+    private static final int FIRST_INDEX = 0;
     private List<Player> players;
 
     public Players(String[] players){
@@ -28,7 +28,7 @@ public class Players {
 
     private void validatePlayerIndex(int index) {
         if(index < FIRST_INDEX || index >= players.size()){
-            throw new IllegalArgumentException(LadderGameErrorMessage.ILLEGAL_PLAYER_INDEX.getErrorMessage());
+            throw new IllegalArgumentException("해당 위치에 참여한 사람값이 존재하지 않습니다.");
         }
 
     }

@@ -5,10 +5,13 @@ import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static ladder.domain.LadderGameConfig.FIRST_INDEX;
 
 public class RandomLineBuildStrategy implements LineBuildStrategy{
+
+    private static final int FIRST_INDEX = 0;
+
     private boolean previousConnection = false;
+
     private Random random = new Random();
 
     @Override

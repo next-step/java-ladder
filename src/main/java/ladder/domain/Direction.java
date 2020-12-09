@@ -25,7 +25,7 @@ public class Direction {
     public int moveIndex(int moveIndex) {
 
         if(left && right){
-            throw new IllegalArgumentException(LadderGameErrorMessage.ILLEGAL_LINE_POINTS.getErrorMessage());
+            throw new IllegalArgumentException("사다리 가로라인은 겹칠 수 없습니다.");
         }
 
         if(!left && !right){

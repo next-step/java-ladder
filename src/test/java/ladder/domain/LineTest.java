@@ -22,6 +22,6 @@ public class LineTest {
 
             new Line(points);
 
-        }).withMessageContaining(LadderGameErrorMessage.ILLEGAL_LINE_POINTS.getErrorMessage());
+        }).withMessageContaining("사다리 가로라인은 겹칠 수 없습니다.");
     }
 }

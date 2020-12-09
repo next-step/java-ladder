@@ -5,10 +5,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static ladder.domain.LadderGameConfig.FIRST_INDEX;
 
 public class Awards {
 
+    private static final int FIRST_INDEX = 0;
     private final List<Award> awards;
 
     public Awards(String[] awards){
@@ -28,7 +28,7 @@ public class Awards {
 
     private void validateAwardIndex(int index) {
         if(index < FIRST_INDEX || index >= awards.size()){
-            throw new IllegalArgumentException(LadderGameErrorMessage.ILLEGAL_AWARD_INDEX.getErrorMessage());
+            throw new IllegalArgumentException("해당 위치에 결과값이 존재하지 않습니다.");
         }
 
     }

@@ -9,10 +9,10 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static ladder.domain.LadderGameConfig.FIRST_INDEX;
 
 public class LadderGameController {
 
+    private static final int FIRST_INDEX = 0;
     private static final String MAX_HEIGHT_PATTERN = "(\\d+)";
 
     public static String[] getPlayerNames() {
@@ -33,7 +33,7 @@ public class LadderGameController {
 
     private static void validateLadderMaxHeight(String ladderMaxHeightValue) {
         if(!ladderMaxHeightValue.matches(MAX_HEIGHT_PATTERN)){
-            throw new IllegalArgumentException(LadderGameErrorMessage.ILLEGAL_MAX_HEIGHT.getErrorMessage());
+            throw new IllegalArgumentException("최대 사다리 높이를 숫자로 입력하세요.");
         }
     }
 

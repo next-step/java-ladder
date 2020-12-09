@@ -2,11 +2,10 @@ package ladder.domain;
 
 import java.util.Objects;
 
-import static ladder.domain.LadderGameConfig.AWARD_NAME_MAX_LENGTH;
-
 
 public class Award {
 
+    private static final int AWARD_NAME_MAX_LENGTH = 5;
     private String awardName;
 
     private Award(String awardName){
@@ -24,7 +23,7 @@ public class Award {
 
     private void validateAwardName(String awardName) {
         if(awardName.length() > AWARD_NAME_MAX_LENGTH){
-            throw new IllegalArgumentException(LadderGameErrorMessage.ILLEGAL_MAX_AWARD_NAME.getErrorMessage());
+            throw new IllegalArgumentException("실행결과 이름은 최대 "+AWARD_NAME_MAX_LENGTH+" 글자 입니다.");
         }
     }
 

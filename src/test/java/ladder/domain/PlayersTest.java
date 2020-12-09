@@ -33,6 +33,6 @@ public class PlayersTest {
 
             players.searchPlayerName(4);
 
-        }).withMessageContaining(LadderGameErrorMessage.ILLEGAL_PLAYER_INDEX.getErrorMessage());
+        }).withMessageContaining("해당 위치에 참여한 사람값이 존재하지 않습니다.");
     }
 }
