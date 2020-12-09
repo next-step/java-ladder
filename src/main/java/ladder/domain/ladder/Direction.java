@@ -18,6 +18,13 @@ public class Direction {
         this.right = right;
     }
 
+    public static Direction of(boolean left, boolean right) {
+        if (left && right) {
+            return new Direction(true, false);
+        }
+        return new Direction(left, right);
+    }
+
     public int move() {
         if (left) {
             return MOVE_LEFT;
