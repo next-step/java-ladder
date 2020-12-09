@@ -6,6 +6,7 @@ import ladder.view.ResultView;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static ladder.domain.LadderGameConfig.FIRST_INDEX;
@@ -49,21 +50,20 @@ public class LadderGameController {
     }
 
     public static Map<Player, Award> climb(LadderBuildResult ladderBuildResult, Awards awards) {
-        Map<Integer, Integer> climbResult = new HashMap<>();
 
-        IntStream.range(FIRST_INDEX, ladderBuildResult.getPlayers().getPlayers().size())
-                .forEach(i -> climbResult.put(i, ladderBuildResult.getLadders().climb(i)));
+        Paths paths = new Paths(IntStream.range(FIRST_INDEX, ladderBuildResult.getPlayers().getPlayers().size())
+                .mapToObj(i -> new Path(i, ladderBuildResult.getLadders().climb(i))).collect(Collectors.toList()));
 
-        return parseClimbResult(climbResult, ladderBuildResult.getPlayers(), awards);
+        return parseClimbResult(paths, ladderBuildResult.getPlayers(), awards);
 
     }
 
-    private static Map<Player, Award> parseClimbResult(Map<Integer, Integer> climbResult, Players players, Awards awards) {
+    private static Map<Player, Award> parseClimbResult(Paths paths, Players players, Awards awards) {
         Map<Player, Award> playerAwardMap = new HashMap<>();
 
-        climbResult.entrySet().stream()
-                .forEach(indexEntry -> playerAwardMap.put((players.searchPlayerName(indexEntry.getKey()))
-                        , awards.searchAwardName(indexEntry.getValue())));
+        paths.getPaths().stream()
+                .forEach(path -> playerAwardMap.put(players.searchPlayerName(path.getStartIndex())
+                        , awards.searchAwardName(path.getEndIndex())));
 
         return playerAwardMap;
     }
