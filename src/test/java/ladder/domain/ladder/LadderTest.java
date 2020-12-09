@@ -41,6 +41,6 @@ class LadderTest {
     @CsvSource(value = {"0,1", "1,2", "2,3", "3,0"})
     void playGame(int startIndex, int resultIndex) {
         User user = User.of(String.valueOf(startIndex), new Position(startIndex));
-        assertThat(ladder.playGame(user)).isEqualTo(new Position(resultIndex));
+        assertThat(ladder.playGame(user.getStartPosition())).isEqualTo(new Position(resultIndex));
     }
 }

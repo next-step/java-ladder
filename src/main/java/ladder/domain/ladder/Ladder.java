@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Objects;
 import ladder.domain.Position;
 import ladder.domain.line.Line;
-import ladder.domain.user.User;
 
 public class Ladder {
 
@@ -19,8 +18,7 @@ public class Ladder {
         return Collections.unmodifiableList(lines);
     }
 
-    public Position playGame(User user) {
-        Position newPosition = user.getStartPosition();
+    public Position playGame(Position newPosition) {
         for (Line line : lines) {
             newPosition = line.getNextLinePosition(newPosition);
         }
