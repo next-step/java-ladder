@@ -7,14 +7,14 @@ import org.junit.jupiter.api.Test;
 class DirectionTest {
     @Test
     void move_left() {
-        Direction direction = new Direction(false, true);
-        Assertions.assertThat(direction.move()).isEqualTo(1);
+        Direction direction = new Direction(true, false);
+        Assertions.assertThat(direction.move()).isEqualTo(-1);
     }
 
     @Test
-    void move_current() {
-        Direction direction = new Direction(true, false);
-        Assertions.assertThat(direction.move()).isEqualTo(-1);
+    void move_right() {
+        Direction direction = new Direction(false, true);
+        Assertions.assertThat(direction.move()).isEqualTo(1);
     }
 
     @Test
@@ -30,9 +30,8 @@ class DirectionTest {
     }
 
     @Test
-    void isCurrent() {
+    void isRight() {
         Direction direction = new Direction(false, true);
         Assertions.assertThat(direction.isRight()).isEqualTo(true);
     }
-
 }
