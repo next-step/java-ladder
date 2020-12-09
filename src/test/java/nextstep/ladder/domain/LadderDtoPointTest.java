@@ -5,7 +5,7 @@ import org.junit.jupiter.api.RepeatedTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class LadderPointTest {
+class LadderDtoPointTest {
 
     @DisplayName("첫번째 점 테스트")
     @RepeatedTest(10)
