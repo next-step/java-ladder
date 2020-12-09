@@ -7,7 +7,6 @@ import ladder.domain.player.Player;
 import ladder.domain.player.Players;
 
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class ResultView {
     private static final String PRINT_LADDER_WIDTH = "-";
