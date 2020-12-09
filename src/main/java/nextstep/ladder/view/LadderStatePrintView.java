@@ -2,8 +2,6 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.domain.*;
 
-import java.util.List;
-
 public class LadderStatePrintView {
 
     private static final String FIVE_SIZE_STRING_FORMATTER = "%5s";
@@ -30,13 +28,18 @@ public class LadderStatePrintView {
     private static String buildLadderString(Ladder ladder) {
         StringBuilder sb = new StringBuilder();
         LadderRows ladderRows = ladder.getLadderRows();
-        List<LadderRow> ladderRowList = ladderRows.getLadderRows();
-        for (LadderRow ladderRow : ladderRowList) {
-            for (LadderPoint ladderPoint : ladderRow.export()) {
-                Direction direction = ladderPoint.getDirection();
-                sb.append(buildDirection(direction));
-            }
+        for (LadderRow ladderRow : ladderRows.getLadderRows()) {
+            sb.append(buildLadderRowString(ladderRow));
             sb.append(System.lineSeparator());
+        }
+        return sb.toString();
+    }
+
+    private static String buildLadderRowString(LadderRow ladderRow) {
+        StringBuilder sb = new StringBuilder();
+        for (LadderPoint ladderPoint : ladderRow.export()) {
+            Direction direction = ladderPoint.getDirection();
+            sb.append(buildDirection(direction));
         }
         return sb.toString();
     }
