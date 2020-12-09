@@ -11,6 +11,10 @@ public class LadderPoint {
         this.direction = generateFirst();
     }
 
+    public LadderPoint(boolean left, boolean right) {
+        this.direction = Direction.of(left, right);
+    }
+
     public LadderPoint(LadderPoint before, int ladderIndex, int ladderSize) {
         this.direction = getDirection(before, ladderIndex, ladderSize);
     }
