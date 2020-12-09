@@ -27,4 +27,3 @@ public class InputView {
         return scanner.nextLine();
     }
 }
-
