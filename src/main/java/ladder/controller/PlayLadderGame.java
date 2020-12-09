@@ -1,6 +1,7 @@
 package ladder.controller;
 
 import ladder.domain.LadderGame;
+import ladder.domain.LadderPoint;
 import ladder.view.PrintLadder;
 import ladder.view.InputView;
 
@@ -14,6 +15,13 @@ public class PlayLadderGame {
 
         PrintLadder printLadder = new PrintLadder();
         printLadder.printNames(ladderGame.getPerson());
-        printLadder.printLadder(ladderGame.getLadderLine());
+        printLadder.printLadder(ladderGame.getLadder());
+        printLadder.printWinnings(ladderGame.getWinnings());
+
+        String winnings = InputView.wantNameToResult();
+        printLadder.printOneWinningResult(ladderGame.getWinningResult(winnings));
+
+        winnings = InputView.wantNameToResult();
+        printLadder.printAllWinningResult(ladderGame.getWinningResult(winnings));
     }
 }
