@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import java.util.Objects;
+
 public class Result {
     private static final int LENGTH_MINIMUM = 1;
     private static final String LENGTH_MINIMUM_MENTION = "결과는 %d글자 이상이어야 합니다.";
@@ -23,5 +25,18 @@ public class Result {
 
     public String getResult() {
         return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Result result1 = (Result) o;
+        return Objects.equals(getResult(), result1.getResult());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getResult());
     }
 }
