@@ -23,13 +23,12 @@ public class LadderController {
         ladder = Ladder.of(ladderSize, users.size());
         rewards = Rewards.from(rewardInput, ladder.size());
 
-
         ResultView.printResult();
         ResultView.printNames(users.getNames());
         ResultView.printLadder(ladder.getLadder());
         ResultView.printNames(rewards.getNames());
 
-        result = Result.of(ladder.getResults(users), rewards);
+        result = Result.of(ladder.getResults(users.getUserInfo()), rewards);
         String inputName;
 
         do{

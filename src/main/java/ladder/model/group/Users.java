@@ -4,7 +4,9 @@ import ladder.model.move.Point;
 import ladder.model.name.wrapper.User;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -32,14 +34,14 @@ public class Users extends Group<User> {
         return new Users(users);
     }
 
-    public String findUserNameByIdx(int idx){
-        return group.get(idx).toString();
+    public Map<String, Point> getUserInfo(){
+        return IntStream.range(0, group.size())
+                .boxed()
+                .collect(Collectors.toMap(this::findUserNameByIdx, Point::userPoint));
     }
 
-    public List<Point> getUserPoint(){
-        return IntStream.range(0, group.size())
-                .mapToObj(Point::userPoint)
-                .collect(Collectors.toList());
+    private String findUserNameByIdx(int idx){
+        return group.get(idx).toString();
     }
 
     private static boolean isNotValid(String[] userNames) {

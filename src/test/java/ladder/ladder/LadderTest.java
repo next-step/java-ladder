@@ -47,7 +47,7 @@ public class LadderTest {
         List<Line> lines = Collections.singletonList(Line.from(Arrays.asList(MOVABLE_BRIDGE.get(0), NON_MOVABLE_BRIDGE.get(1))));
 
         Ladder ladder = Ladder.from(lines);
-        assertThat(ladder.getResults(users).entrySet()).containsExactly(
+        assertThat(ladder.getResults(users.getUserInfo()).entrySet()).containsExactly(
                 new AbstractMap.SimpleEntry<>("a", Point.of(2,1)),
                 new AbstractMap.SimpleEntry<>("b", Point.of(0,1))
         );
@@ -59,7 +59,7 @@ public class LadderTest {
         List<Line> lines = Collections.singletonList(Line.from(Arrays.asList(NON_MOVABLE_BRIDGE.get(0), NON_MOVABLE_BRIDGE.get(1))));
 
         Ladder ladder = Ladder.from(lines);
-        assertThat(ladder.getResults(users).entrySet()).containsExactly(
+        assertThat(ladder.getResults(users.getUserInfo()).entrySet()).containsExactly(
                 new AbstractMap.SimpleEntry<>("a", Point.of(0,1)),
                 new AbstractMap.SimpleEntry<>("b", Point.of(2,1))
         );

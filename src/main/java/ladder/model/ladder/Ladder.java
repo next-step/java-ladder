@@ -1,6 +1,5 @@
 package ladder.model.ladder;
 
-import ladder.model.group.Users;
 import ladder.model.move.Point;
 import utils.StringUtils;
 
@@ -36,13 +35,10 @@ public class Ladder {
         return new Ladder(lines);
     }
 
-    public Map<String, Point> getResults(Users users) {
+    public Map<String, Point> getResults(Map<String,Point> userInfo) {
         Map<String, Point> results = new LinkedHashMap<>();
 
-        List<Point> userPoints = users.getUserPoint();
-
-        IntStream.range(0, userPoints.size())
-                .forEach(idx -> results.put(users.findUserNameByIdx(idx), getResult(userPoints.get(idx))));
+        userInfo.forEach((name, Point) -> results.put(name, getResult(Point)));
 
         return results;
     }
