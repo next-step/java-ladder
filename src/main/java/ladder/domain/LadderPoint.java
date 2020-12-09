@@ -3,21 +3,21 @@ package ladder.domain;
 import java.util.Random;
 
 public class LadderPoint {
+
     private static Random random = new Random();
 
     private boolean ladderPoint;
 
     public LadderPoint(final boolean ladderPoint) {
-        initPoint(ladderPoint);
+        this.ladderPoint = initPoint(ladderPoint);
     }
 
-    public void initPoint(boolean point) {
+    private boolean initPoint(boolean point) {
         if (point) {
-            this.ladderPoint = false;
-            return;
+            return false;
         }
 
-        this.ladderPoint = new Boolean(random.nextBoolean());
+        return new Boolean(random.nextBoolean());
     }
 
     public boolean isLadderPoint() {
