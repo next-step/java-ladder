@@ -1,6 +1,6 @@
-package ladder;
+package ladder.group;
 
-import ladder.model.Users;
+import ladder.model.group.Users;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -28,6 +28,6 @@ public class UsersTest {
     @Test
     public void 정상_유저(){
         Users users = Users.from("1,2");
-        assertThat(users.getUserNames()).containsExactly("1","2");
+        assertThat(users.getNames()).containsExactly("1","2");
     }
 }

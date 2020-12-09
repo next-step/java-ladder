@@ -1,6 +1,6 @@
-package ladder.model;
+package ladder.model.ladder;
 
-import ladder.config.NameConfig;
+import ladder.config.Config;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
@@ -8,8 +8,8 @@ import java.util.stream.IntStream;
 
 public enum LadderItem {
 
-    BLANK_HORIZONTAL(0, IntStream.range(0, NameConfig.NAME_SIZE).mapToObj(x -> " ").collect(Collectors.joining())),
-    HORIZONTAL(1, IntStream.range(0, NameConfig.NAME_SIZE).mapToObj(x -> "-").collect(Collectors.joining())),
+    BLANK_HORIZONTAL(0, IntStream.range(0, Config.NAME_SIZE).mapToObj(x -> " ").collect(Collectors.joining())),
+    HORIZONTAL(1, IntStream.range(0, Config.NAME_SIZE).mapToObj(x -> "-").collect(Collectors.joining())),
     VERTICAL(2, "|");
 
     private final int idx;
