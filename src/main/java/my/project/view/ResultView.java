@@ -37,7 +37,7 @@ public class ResultView {
     }
 
     private static void printLadder(Ladder ladder) {
-        ladder.getLines()
+        ladder.getLines().get()
                 .forEach(line -> System.out.println(
                         line.getPoints().stream()
                                 .map(Symbol::getSymbol)

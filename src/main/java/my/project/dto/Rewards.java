@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class Rewards {
     public static final String DELIMITER = ",";
-    public static final int ARRAY_REWARDS_CONVERTER = 2;
+    public static final int FOR_REMOVE_EMPTY = 2;
 
     private final List<Reward> rewards;
 
@@ -22,7 +22,8 @@ public class Rewards {
         return rewards;
     }
 
-    public Reward getReward(int resultIndex) {
-        return rewards.get(resultIndex / ARRAY_REWARDS_CONVERTER);
+    public Reward getReward(int ladderArrayIndex) {
+        int listIndex = ladderArrayIndex / FOR_REMOVE_EMPTY;
+        return rewards.get(listIndex);
     }
 }

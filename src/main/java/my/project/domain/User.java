@@ -6,14 +6,16 @@ public class User {
     public static final int MAX_LENGTH = 5;
     public static final String USER_PATTERN = "^([A-z0-9,]{1," + MAX_LENGTH + "})$";
     public static final String INPUT_USER_ALERT = "사용자명을 확인해주십시요.(최대 " + MAX_LENGTH + "자)";
+    public static final int USER_START_POINT_MULTIPLE = 2;
+    public static final int FIRST_LINE = 0;
 
     private final String name;
     private Point point;
 
-    public User(String name, Point point) {
+    public User(String name, int x) {
         validateName(name);
         this.name = name;
-        this.point = point;
+        this.point = new Point(x * USER_START_POINT_MULTIPLE, FIRST_LINE);
     }
 
     public User(String name) {
