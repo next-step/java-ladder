@@ -12,39 +12,36 @@ public class RandomLineGenerator implements LineGenerator {
     @Override
     public Line generateLine(int width) {
 
-        List<Boolean> points = initiallizeLine(width);
-        points = applyTheRule(points);
+        List<Boolean> points = initializeLine(width);
+        points = applyNotContinuousLines(points);
 
         return new Line(points);
     }
 
-    private List<Boolean> applyTheRule(List<Boolean> points) {
+    private List<Boolean> initializeLine(int width) {
+        return IntStream.range(0, width)
+                .mapToObj(i -> random.nextBoolean())
+                .collect(Collectors.toList());
+    }
+
+    private List<Boolean> applyNotContinuousLines(List<Boolean> points) {
         for (int i = 1; i < points.size() - 1; i++) {
-            if (points.get(i) == true) {
-                previousApply(points, i - 1);
-                nextApply(points, i + 1);
-            }
+            compareWithBothSidesElements(points, i);
         }
         return points;
     }
 
-    private void previousApply(List<Boolean> points, int previousIndex) {
-        if (points.get(previousIndex) == true) {
-            points.remove(previousIndex);
-            points.add(previousIndex, false);
+    private void compareWithBothSidesElements(List<Boolean> points, int currentIndex) {
+        if (points.get(currentIndex) == true) {
+            changeNotContinuousLines(points, currentIndex - 1);
+            changeNotContinuousLines(points, currentIndex + 1);
         }
     }
 
-    private void nextApply(List<Boolean> points, int nextIndex) {
-        if (points.get(nextIndex) == true) {
-            points.remove(nextIndex);
-            points.add(nextIndex, false);
+    private void changeNotContinuousLines(List<Boolean> points, int index) {
+        if (points.get(index) == true) {
+            points.remove(index);
+            points.add(index, false);
         }
-    }
-
-    private List<Boolean> initiallizeLine(int width) {
-        return IntStream.range(0, width)
-                .mapToObj(i -> random.nextBoolean())
-                .collect(Collectors.toList());
     }
 }
