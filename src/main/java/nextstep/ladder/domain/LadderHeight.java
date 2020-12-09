@@ -4,16 +4,16 @@ import nextstep.ladder.ErrorMessage;
 
 public class LadderHeight {
 
-    private final int height;
+    private final int value;
 
-    public LadderHeight(int height) {
-        if (height < 0) {
+    public LadderHeight(int value) {
+        if (value < 0) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LADDER_HEIGHT);
         }
-        this.height = height;
+        this.value = value;
     }
 
-    public int getHeight() {
-        return height;
+    public int getValue() {
+        return value;
     }
 }
