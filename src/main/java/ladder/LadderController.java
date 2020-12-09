@@ -16,7 +16,7 @@ public class LadderController {
         Participants participants = Participants.of(InputView.participantPerson());
         Ladder ladder = ladderGame.makeLadder(participants.countParticipant() - 1, InputView.inputLadderHeight());
 
-        ResultView.executeLadder(participants, ladder);
+        ResultView.outputLadder(participants, ladder);
 
     }
 }

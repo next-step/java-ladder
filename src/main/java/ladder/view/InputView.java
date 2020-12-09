@@ -22,8 +22,7 @@ public class InputView {
         System.out.println(PARTICIPANT_PERSON_COMMENT);
         String[] inputName = sc.next().split(SEPARATE_EXPRESSION);
         validateParticipantName(inputName);
-        return Arrays.stream(inputName)
-                .collect(Collectors.toList());
+        return Arrays.asList(inputName);
     }
 
     private static void validateParticipantName(String[] inputName) {
