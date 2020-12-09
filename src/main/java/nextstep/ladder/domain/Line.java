@@ -1,7 +1,9 @@
 package nextstep.ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class Line {
 
@@ -41,5 +43,20 @@ public class Line {
 
     public List<Point> getPoints() {
         return points;
+    }
+
+    public User[] matchLine(Map<User, Integer> userMap, User[] userOrder) {
+        for(Point point : points) {
+            userMap.put(userOrder[point.getIndex()], point.getIndex() + point.getDirection().getMove());
+        }
+        userOrder = getUserOrder(userMap);
+        return userOrder;
+    }
+
+    public User[] getUserOrder(Map<User, Integer> userMap) {
+        User[] userOrder = new User[userMap.size()];
+        userMap.keySet()
+                .forEach(key -> userOrder[userMap.get(key)] = key);
+        return userOrder;
     }
 }

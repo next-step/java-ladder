@@ -2,6 +2,7 @@ package nextstep.ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.IntStream;
 
 public class Ladder {
@@ -22,7 +23,29 @@ public class Ladder {
         return new Ladder(lines);
     }
 
+    public static Ladder from(List<Line> lines) {
+        return new Ladder(lines);
+    }
+
     public List<Line> getLines() {
         return lines;
+    }
+
+    public Map<User, Integer> matchLadder(Map<User, Integer> userMap) {
+
+        User[] userOrder = getUserOrder(userMap);
+
+        for(Line line : lines) {
+            userOrder = line.matchLine(userMap, userOrder);
+        }
+
+        return userMap;
+    }
+
+    public User[] getUserOrder(Map<User, Integer> userMap) {
+        User[] userOrder = new User[userMap.size()];
+        userMap.keySet()
+                .forEach(key -> userOrder[userMap.get(key)] = key);
+        return userOrder;
     }
 }

@@ -22,7 +22,7 @@ public class Users {
     }
 
     public Map<User, Integer> mapUserIndex() {
-        Map<User, Integer> userMap = new HashMap<>();
+        Map<User, Integer> userMap = new LinkedHashMap<>();
 
         IntStream.range(ZERO, users.size())
                 .forEach(index -> userMap.put(users.get(index), index));
