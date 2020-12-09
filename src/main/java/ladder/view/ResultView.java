@@ -85,6 +85,7 @@ public class ResultView {
     private static String getPlayerResult(Map<Player, Award> climbResult, String playerName) {
         if(playerName.equals(ALL_RESULT_MESSAGE)){
            return climbResult.entrySet().stream()
+                    .sequential()
                     .map(entry -> entry.getKey().getName() + RESULT_DELIMITER + entry.getValue().getAwardName())
                     .collect(Collectors.joining(ALL_RESULT_DELIMITER));
         }
