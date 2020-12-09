@@ -1,6 +1,5 @@
 package my.project.domain;
 
-import java.util.Optional;
 import java.util.regex.Pattern;
 
 public class User {
@@ -8,7 +7,7 @@ public class User {
     public static final String USER_PATTERN = "^([A-z0-9,]{1," + MAX_LENGTH + "})$";
     public static final String INPUT_USER_ALERT = "사용자명을 확인해주십시요.(최대 " + MAX_LENGTH + "자)";
 
-    private String name;
+    private final String name;
     private Point point;
 
     public User(String name, Point point) {
@@ -58,10 +57,7 @@ public class User {
             return false;
         User other = (User) obj;
         if (name == null) {
-            if (other.name != null)
-                return false;
-        } else if (!name.equals(other.name))
-            return false;
-        return true;
+            return other.name == null;
+        } else return name.equals(other.name);
     }
 }

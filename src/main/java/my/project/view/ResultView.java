@@ -1,12 +1,20 @@
 package my.project.view;
 
-import my.project.domain.*;
+import my.project.domain.Ladder;
+import my.project.domain.Reward;
+import my.project.domain.Symbol;
+import my.project.domain.User;
+import my.project.dto.Result;
+import my.project.dto.Rewards;
+import my.project.dto.Users;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class ResultView {
     public static final String TITLE = "\n사다리 결과\n";
     public static final String DELIMITER = " ";
+    public static final String REWARD_TITLE = "\n실행 결과";
 
     private ResultView() {
     }
@@ -44,6 +52,9 @@ public class ResultView {
                 .collect(Collectors.joining(DELIMITER)));
     }
 
-    public static void printReward(String reward) {
+    public static void printResults(List<Result> results) {
+        System.out.println(REWARD_TITLE);
+        results.stream()
+                .forEach(result -> System.out.println(result.getUsername() + " : " + result.getReward()));
     }
 }
