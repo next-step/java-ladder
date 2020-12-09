@@ -36,16 +36,16 @@ public class LadderGameInfo {
 
     public Position getResultPositionByName(String name, Ladder ladder) {
         User namedUser = users.getUserByName(name);
-        return ladder.playGame(namedUser);
+        return ladder.playGame(namedUser.getStartPosition());
     }
 
     public String getAllResultPosition(Ladder ladder) {
         return users
             .getUsers()
             .stream()
-            .map(participant -> {
-                Position resultCoordinate = ladder.playGame(participant);
-                return String.format(RESULT_ALL_FORMAT, participant.getName(), resultPrize.getResultByResultPosition(resultCoordinate));
+            .map(user -> {
+                Position resultCoordinate = ladder.playGame(user.getStartPosition());
+                return String.format(RESULT_ALL_FORMAT, user.getName(), resultPrize.getResultByResultPosition(resultCoordinate));
             })
             .collect(Collectors.joining(System.lineSeparator()));
     }
