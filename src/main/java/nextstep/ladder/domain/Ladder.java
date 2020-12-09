@@ -5,7 +5,7 @@ public class Ladder {
     private final Users users;
     private final LadderRows ladderRows;
 
-    public Ladder(Users users, int height) {
+    public Ladder(Users users, LadderHeight height) {
         this.users = users;
         this.ladderRows = new LadderRows(users, height);
     }

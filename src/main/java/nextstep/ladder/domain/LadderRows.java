@@ -9,8 +9,8 @@ public class LadderRows {
 
     private List<LadderRow> ladderRows;
 
-    public LadderRows(Users users, int height) {
-        this.ladderRows = Collections.unmodifiableList(IntStream.range(0, height)
+    public LadderRows(Users users, LadderHeight height) {
+        this.ladderRows = Collections.unmodifiableList(IntStream.range(0, height.getHeight())
                 .boxed()
                 .map(index -> new LadderRow(users.size()))
                 .collect(Collectors.toList()));
