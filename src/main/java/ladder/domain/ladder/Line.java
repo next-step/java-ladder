@@ -1,7 +1,6 @@
 package ladder.domain.ladder;
 
 import ladder.domain.util.RandomStrategy;
-import ladder.domain.util.RightPointRandom;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,5 +1,7 @@
 package ladder.domain.ladder;
 
+import ladder.context.ErrorMessage;
+
 import java.util.Objects;
 
 public class Direction {
@@ -12,7 +14,7 @@ public class Direction {
 
     public Direction(boolean left, boolean right) {
         if (left && right) {
-            throw new IllegalArgumentException("유효하지 않은 값 입니다.");
+            throw new IllegalArgumentException(ErrorMessage.DIRECTION_VALID.getMessage());
         }
         this.left = left;
         this.right = right;

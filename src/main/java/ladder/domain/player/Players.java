@@ -1,5 +1,7 @@
 package ladder.domain.player;
 
+import ladder.context.ErrorMessage;
+
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -19,7 +21,7 @@ public class Players {
 
     private void validEmpty(String names) {
         if (Objects.isNull(names) || names.isEmpty()) {
-            throw new IllegalArgumentException("이름을 입력하셔야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.NAME_NULL.getMessage());
         }
     }
 
@@ -31,12 +33,12 @@ public class Players {
 
     private void validDuplication(String names) {
         if (!isDuplication(names)) {
-            throw new IllegalArgumentException("중복된 이름이 있습니다.");
+            throw new IllegalArgumentException(ErrorMessage.NAME_DULICATION.getMessage());
         }
     }
 
     private List<Player> makePlayersList(String names) {
-        return Arrays.stream(names.split(","))
+        return Arrays.stream(names.split(NAMES_REGEX))
                 .map(String::trim)
                 .map(Player::new)
                 .collect(Collectors.toList());
