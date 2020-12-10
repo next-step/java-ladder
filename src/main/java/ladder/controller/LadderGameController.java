@@ -4,9 +4,6 @@ import ladder.domain.*;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -50,7 +47,7 @@ public class LadderGameController {
         return new Awards(awardNames);
     }
 
-    public static LinkedHashMap<Player, Award> climb(LadderBuildResult ladderBuildResult, Awards awards) {
+    public static ClimbResults climb(LadderBuildResult ladderBuildResult, Awards awards) {
 
         Paths paths = new Paths(IntStream.range(FIRST_INDEX, ladderBuildResult.getPlayers().getPlayers().size())
                 .mapToObj(i -> Path.of(i, ladderBuildResult.getLadders().climb(i))).collect(Collectors.toList()));
@@ -59,14 +56,12 @@ public class LadderGameController {
 
     }
 
-    private static LinkedHashMap<Player, Award> parseClimbResult(Paths paths, Players players, Awards awards) {
-        LinkedHashMap<Player, Award> playerAwardMap = new LinkedHashMap<>();
+    private static ClimbResults parseClimbResult(Paths paths, Players players, Awards awards) {
 
-        paths.getPaths().stream()
-                .forEach(path -> playerAwardMap.put(players.searchPlayerName(path.getStartIndex())
-                        , awards.searchAwardName(path.getEndIndex())));
+        return new ClimbResults(paths.getPaths().stream()
+                .map(path -> ClimbResult.of(players.searchPlayerName(path.getStartIndex()), awards.searchAwardName(path.getEndIndex())))
+                .collect(Collectors.toList()));
 
-        return playerAwardMap;
     }
 
 
@@ -74,7 +69,7 @@ public class LadderGameController {
         return InputView.getPlayerResult();
     }
 
-    public static void showPlayerResult(LinkedHashMap<Player, Award> climbResult, String player) {
+    public static void showPlayerResult(ClimbResults climbResult, String player) {
         ResultView.printPlayerResult(climbResult, player);
     }
 }

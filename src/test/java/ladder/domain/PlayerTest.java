@@ -18,7 +18,7 @@ public class PlayerTest {
         String playerName = "AAA";
 
         // when
-        Player player = new Player(playerName);
+        Player player = Player.from(playerName);
 
         // then
         assertThat(player.getName()).isEqualTo(playerName);
@@ -33,7 +33,7 @@ public class PlayerTest {
 
             String playerName = "christoper";
 
-            new Player(playerName);
+            Player.from(playerName);
 
         }).withMessageContaining("참여할 사람의 이름은 최대 "+PLAYER_NAME_MAX_LENGTH+" 글자 입니다.");
     }

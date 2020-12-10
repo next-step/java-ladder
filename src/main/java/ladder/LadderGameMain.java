@@ -1,13 +1,7 @@
 package ladder;
 
 import ladder.controller.LadderGameController;
-import ladder.domain.Award;
-import ladder.domain.Awards;
-import ladder.domain.LadderBuildResult;
-import ladder.domain.Player;
-
-import java.util.LinkedHashMap;
-import java.util.Map;
+import ladder.domain.*;
 
 
 public class LadderGameMain {
@@ -25,7 +19,7 @@ public class LadderGameMain {
 
         LadderGameController.showBuildResult(ladderBuildResult, awards);
 
-        LinkedHashMap<Player, Award> climbResult = LadderGameController.climb(ladderBuildResult, awards);
+        ClimbResults climbResult = LadderGameController.climb(ladderBuildResult, awards);
 
         String playerName = LadderGameController.getPlayerResult();
 

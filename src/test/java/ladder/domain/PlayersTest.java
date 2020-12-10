@@ -22,7 +22,7 @@ public class PlayersTest {
     @DisplayName("Players 생성 테스트")
     @Test
     void playersConstructorTest(){
-        assertThat(players.getPlayers()).containsExactly(new Player("AAA"), new Player("BBB"), new Player("CCC"));
+        assertThat(players.getPlayers()).containsExactly(Player.from("AAA"), Player.from("BBB"), Player.from("CCC"));
     }
 
     @DisplayName("입력하지 않은 실행결과를 찾는 경우 Exception Test")
