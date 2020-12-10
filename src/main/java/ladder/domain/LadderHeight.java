@@ -4,6 +4,7 @@ import ladder.common.ErrorMessage;
 
 public class LadderHeight {
 
+    private static final int MIN_HEIGHT = 0;
     private final int value;
 
     public LadderHeight(int value) {
@@ -12,12 +13,12 @@ public class LadderHeight {
     }
 
     private void valid(int value) {
-        if (value <= 0) {
+        if (value <= MIN_HEIGHT) {
             throw new IllegalArgumentException(ErrorMessage.LADDER_HEIGHT_IS_WRONG);
         }
     }
 
-    public int getValue() {
+    public int size() {
         return value;
     }
 }

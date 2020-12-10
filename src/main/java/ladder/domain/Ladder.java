@@ -6,35 +6,16 @@ import java.util.stream.IntStream;
 
 public class Ladder {
 
-    private final List<Boolean> value;
+    private static final int START_INDEX = 0;
+    private final List<LadderLine> ladderLines;
 
-    public Ladder(int personCount) {
-        value = initLadder(personCount);
-    }
-
-    private List<Boolean> initLadder(int personCount) {
-        TransverseLadder transverseLadder = new TransverseLadder(personCount);
-
-        return IntStream.range(0, transverseLadder.size() + personCount)
-                .mapToObj(index -> getLadderPoint(index, transverseLadder))
+    public Ladder(Participants participants, LadderHeight ladderHeight) {
+        this.ladderLines = IntStream.range(START_INDEX, ladderHeight.size())
+                .mapToObj(index -> new LadderLine(participants))
                 .collect(Collectors.toList());
     }
 
-    private Boolean getLadderPoint(int i, TransverseLadder transverseLadder) {
-        if (i % 2 == 1) {
-            return getPoint(transverseLadder.getPoints().get(i / 2));
-        }
-        return true;
-    }
-
-    private Boolean getPoint(Boolean before) {
-        if (Boolean.TRUE.equals(before)) {
-            return true;
-        }
-        return false;
-    }
-
-    public List<Boolean> getValue() {
-        return value;
+    public List<LadderLine> getLadderLines() {
+        return ladderLines;
     }
 }

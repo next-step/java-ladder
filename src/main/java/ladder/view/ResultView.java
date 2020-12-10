@@ -1,7 +1,7 @@
 package ladder.view;
 
+import ladder.domain.LadderLine;
 import ladder.domain.Ladder;
-import ladder.domain.Ladders;
 
 import java.util.List;
 import java.util.stream.IntStream;
@@ -13,10 +13,10 @@ public class ResultView {
     private static final String LADDER = "-----";
     private static final int MAX_NAME_SPACE = 6;
 
-    protected static void printResult(Ladders ladders, List<String> participants) {
+    protected static void printResult(Ladder ladder, List<String> participants) {
         printResultHeader();
         printParticipants(participants);
-        printLadders(ladders);
+        printLadders(ladder);
     }
 
     private static void printResultHeader() {
@@ -25,9 +25,9 @@ public class ResultView {
         System.out.println();
     }
 
-    private static void printLadders(Ladders ladders) {
-        for (Ladder ladder : ladders.getLadders()) {
-            printLadderLine(ladder);
+    private static void printLadders(Ladder ladder) {
+        for (LadderLine ladderLine : ladder.getLadderLines()) {
+            printLadderLine(ladderLine);
         }
     }
 
@@ -44,21 +44,25 @@ public class ResultView {
                 .forEach(index -> System.out.print(" "));
     }
 
-    private static void printLadderLine(Ladder ladder) {
-        IntStream.range(0, ladder.getValue().size())
-                .mapToObj(index -> getLadder(ladder, index))
+    private static void printLadderLine(LadderLine ladderLine) {
+        IntStream.range(0, ladderLine.getValue().size())
+                .mapToObj(index -> getLadder(ladderLine, index))
                 .forEach(System.out::print);
         System.out.println();
     }
 
-    private static String getLadder(Ladder ladder, int index) {
-        if (index % 2 == 0) {
+    private static String getLadder(LadderLine ladderLine, int index) {
+        if (isBarIndex(index)) {
             return BAR;
         }
-        if (Boolean.TRUE.equals(ladder.getValue().get(index))) {
+        if (Boolean.TRUE.equals(ladderLine.getValue().get(index))) {
             return LADDER;
         }
         return BLANK;
+    }
+
+    private static boolean isBarIndex(int index) {
+        return index % 2 == 0;
     }
 
 }

@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-class LadderHeightTest {
+class LadderLineHeightTest {
 
     @Test
     @DisplayName("0보다 작거나 같은 값이 사다리의 높이 값으로 들어오면, Exception을 throw 한다.")

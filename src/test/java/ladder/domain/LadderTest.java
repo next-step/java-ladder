@@ -5,19 +5,22 @@ import org.junit.jupiter.api.Test;
 
 class LadderTest {
 
-
     @Test
-    @DisplayName("가로 사다리와 세로 사다리를 합쳐 사다리를 생성한다.")
-    void should_return_ladder() {
+    @DisplayName("사람 이름, 사다리 높이를 입력 받아 사다리 생성")
+    void should_return_ladders() {
+
         //Given
-        int personCount = 10;
+        Participants participants = new Participants("pobi,honux,crong,jk");
+        int ladderHeight = 10;
 
         //When
-        Ladder ladder = new Ladder(personCount);
+        Ladder ladder = new Ladder(participants, new LadderHeight(ladderHeight));
 
         //Then
-        ladder.getValue().forEach(System.out::print);
+//        LadderGameResult
+//        LadderGameView.printLadders(ladders, participants.getValue());
 
     }
+
 
 }

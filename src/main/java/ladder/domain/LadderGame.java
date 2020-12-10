@@ -1,22 +1,22 @@
 package ladder.domain;
 
-import java.util.List;
+import ladder.dto.LadderGameResult;
 
 public class LadderGame {
 
     private final Participants participants;
     private final LadderHeight ladderHeight;
 
-    public LadderGame(String names, int height) {
-        this.participants = new Participants(names);
-        this.ladderHeight = new LadderHeight(height);
+    public LadderGame(Participants participants, LadderHeight ladderHeight) {
+        this.participants = participants;
+        this.ladderHeight = ladderHeight;
     }
 
-    public Ladders getLadders() {
-        return new Ladders(participants, ladderHeight);
+    public LadderGameResult getLadderGameResult() {
+        return new LadderGameResult(getLadders(), participants.getValue());
     }
 
-    public List<String> getParticipantNames() {
-        return participants.getValue();
+    private Ladder getLadders() {
+        return new Ladder(participants, ladderHeight);
     }
 }
