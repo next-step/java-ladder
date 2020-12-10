@@ -56,4 +56,13 @@ public class PointTest {
         assertThat(Point.first(true))
                 .isEqualTo(Point.custom(false, true));
     }
+
+    @Test
+    @DisplayName("사다리 중간 다리 생성 기능 추가")
+    void testMiddlePoints(){
+        Point sampleFirstPoint = Point.first(true);
+
+        assertThat(sampleFirstPoint.next(false))
+                .isEqualto(Point.custom(true, false));
+    }
 }
