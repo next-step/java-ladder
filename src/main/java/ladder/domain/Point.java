@@ -16,6 +16,10 @@ public class Point {
         return Point.custom(this.atStatus, atStatus);
     }
 
+    public Point last() {
+        return custom(this.atStatus, atStatus);
+    }
+
     public static Point custom(boolean leftSideStatus, boolean atPointStatus) {
         return new Point(leftSideStatus, atPointStatus);
     }
