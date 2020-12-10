@@ -52,7 +52,7 @@ public class PersonsTest {
     @Test
     @DisplayName("참가자 인원이 2명 미만인경우 예외를 던진다")
     void checkCountOfperson() {
-
+        String name = "test1";
         assertThatThrownBy(() ->
                 pesonsTest =new Persons(name)
         ).isInstanceOf(RuntimeException.class)

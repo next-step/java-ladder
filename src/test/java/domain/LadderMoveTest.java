@@ -28,11 +28,11 @@ public class LadderMoveTest {
 
     public List<Integer> successList(){
         List<Integer> returnList = new ArrayList<>();
-        returnList.add(1);
         returnList.add(0);
-        returnList.add(3);
         returnList.add(2);
+        returnList.add(1);
         returnList.add(4);
+        returnList.add(3);
 
         return returnList;
     }
@@ -44,9 +44,9 @@ public class LadderMoveTest {
     }
 
     static void addTestDirectionList() {
-        directionTestDataList.add(true);
         directionTestDataList.add(false);
         directionTestDataList.add(true);
         directionTestDataList.add(false);
+        directionTestDataList.add(true);
     }
 }

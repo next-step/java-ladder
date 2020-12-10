@@ -6,6 +6,7 @@ import ladder.dto.LadderWinningDTO;
 import java.util.List;
 
 public class LadderGame {
+
     private Persons persons;
     private Ladder ladder;
     private LadderWinnings ladderWinning;
