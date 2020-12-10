@@ -9,26 +9,21 @@ import ladder.view.ResultView;
 
 
 public class LadderController {
-    private Users users;
-    private Ladder ladder;
-    private Rewards rewards;
-    private Result result;
-
     public void run() {
         String usersInput = InputView.printInputUsersMessage();
-        users = Users.from(usersInput);
+        Users users = Users.from(usersInput);
 
         String rewardInput = InputView.printInputLadderResultMessage();
         String ladderSize = InputView.printInputLadderMessage();
-        ladder = Ladder.of(ladderSize, users.size());
-        rewards = Rewards.from(rewardInput, ladder.size());
+        Ladder ladder = Ladder.of(ladderSize, users.size());
+        Rewards rewards = Rewards.from(rewardInput);
 
         ResultView.printResult();
         ResultView.printNames(users.getNames());
         ResultView.printLadder(ladder.getLadder());
         ResultView.printNames(rewards.getNames());
 
-        result = Result.of(ladder.getResults(users.getUserInfo()), rewards);
+        Result result = Result.of(ladder.getResults(users.getUserNames()), rewards);
         String inputName;
 
         do{

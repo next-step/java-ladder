@@ -1,6 +1,5 @@
 package ladder.model.ladder;
 
-import ladder.model.move.Point;
 import utils.StringUtils;
 
 import java.util.*;
@@ -9,8 +8,8 @@ import java.util.stream.IntStream;
 
 public class Ladder {
     private final static int LADDER_MIN_LIMIT = 0;
-    private final static int LINE_ITEM_VARIABLE = 1;
     private final static String LADDER_SIZE_ERROR_MESSAGE = "올바른 사다리 높이를 입력해주세요";
+    private final static String RESULT_SIZE_ERROR = "시작지점과 사람 수가 일치하지 않습니다.";
 
     private final List<Line> lines;
 
@@ -18,60 +17,37 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public static Ladder from(List<Line> lines) {
-        return new Ladder(lines);
-    }
-
     public static Ladder of(String ladderSize, int userSize) {
         validateLadderSize(ladderSize);
 
-        int numberOfItems = userSize - LINE_ITEM_VARIABLE;
-
         List<Line> lines = IntStream.range(0, StringUtils.stringToInt(ladderSize))
-                .mapToObj(column -> makeLineItems(numberOfItems, column))
-                .map(Line::from)
+                .mapToObj(idx -> Line.from(userSize))
                 .collect(Collectors.toList());
 
         return new Ladder(lines);
     }
 
-    public Map<String, Point> getResults(Map<String,Point> userInfo) {
-        Map<String, Point> results = new LinkedHashMap<>();
+    public Map<String, Integer> getResults(List<String> userNames) {
+        validateUserNames(userNames);
 
-        userInfo.forEach((name, Point) -> results.put(name, getResult(Point)));
-
-        return results;
+        return IntStream.range(0, userNames.size())
+                .boxed()
+                .collect(Collectors.toMap(userNames::get, this::getResultIndex));
     }
 
-    private Point getResult(Point startPoint) {
-        return lines.stream()
-                .reduce(startPoint, (point, line) -> line.movePoint(point), (x, y) -> y);
-    }
+    private void validateUserNames(List<String> userNames){
+        boolean validation = lines.stream()
+                .map(line -> line.size() == userNames.size())
+                .reduce((x,y) -> x && y).orElse(false);
 
-    public int size() {
-        return lines.size();
-    }
-
-    private static List<Bridge> makeLineItems(int numberOfItems, int column) {
-        List<Bridge> bridges = new ArrayList<>();
-        List<Point> bridgePoints = IntStream.rangeClosed(1, numberOfItems)
-                .mapToObj(idx -> Point.bridgePoint(idx, column))
-                .collect(Collectors.toList());
-
-        bridges.add(Bridge.createRandomBridge(bridgePoints.get(0)));
-
-        IntStream.range(1, numberOfItems)
-                .forEach(idx -> bridges.add(makeBridge(bridgePoints.get(idx), bridges.get(idx - 1))));
-
-        return bridges;
-    }
-
-    private static Bridge makeBridge(Point point, Bridge previousBridges) {
-        if (previousBridges.isMovable()) {
-            return Bridge.createNonMovableBridge(point);
+        if(!validation){
+            throw new IllegalArgumentException(RESULT_SIZE_ERROR);
         }
+    }
 
-        return Bridge.createRandomBridge(point);
+    private int getResultIndex(int start){
+        return lines.stream()
+                .reduce(start, (idx, line) -> line.move(idx), (x, y) -> y);
     }
 
     private static void validateLadderSize(String size) {
