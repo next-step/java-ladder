@@ -9,6 +9,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class PointTest {
@@ -30,8 +31,7 @@ public class PointTest {
     void testNextIndex(Point point, int expectedIndex) {
         int startingIndex = 1;
 
-        assertThat(point.nextIndex(startingIndex)).isEqual(expectedIndex);
-
+        assertThat(point.nextIndex(startingIndex)).isEqualTo(expectedIndex);
     }
 
     @MethodSource

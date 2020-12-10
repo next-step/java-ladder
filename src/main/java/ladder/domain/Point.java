@@ -17,4 +17,15 @@ public class Point {
             throw new InvalidLayoutException();
         }
     }
+
+    public int nextIndex(int startingIndex) {
+        if (!leftSideStatus && atStatus) {
+            return startingIndex + 1;
+        }
+        if (leftSideStatus && !atStatus) {
+            return startingIndex - 1;
+        }
+
+        return startingIndex;
+    }
 }
