@@ -16,7 +16,7 @@ public class LadderLine {
 
     private List<Boolean> initLadder(Participants participants) {
 
-        TransverseLadder transverseLadder = new TransverseLadder(new RandomLadderGenerateStrategy(), participants);
+        TransverseLadder transverseLadder = new TransverseLadder(participants);
         int ladderSize = transverseLadder.size() + participants.size();
 
         return IntStream.range(START_INDEX, ladderSize)

@@ -13,26 +13,26 @@ class TransverseLadderLineTest {
     @DisplayName("가로 사다리 생성 전략이 false가 들어가면, false를 반환한다.")
     void should_return_false_points() {
         //Given
-        TransverseLadder ladder = new TransverseLadder(() -> false, participants);
+        TransverseLadder ladder = new TransverseLadder(participants);
 
         //When
-        Boolean point = ladder.getLadder(0);
+        Boolean line = ladder.getLine(() -> false);
 
         //Then
-        assertThat(point).isFalse();
+        assertThat(line).isFalse();
     }
 
     @Test
     @DisplayName("가로 사다리 생성 전략이 true가 들어가면, true를 반환한다.")
     void should_return_true_points() {
         //Given
-        TransverseLadder ladder = new TransverseLadder(() -> true, participants);
+        TransverseLadder ladder = new TransverseLadder(participants);
 
         //When
-        Boolean point = ladder.getLadder(0);
+        Boolean line = ladder.getLine(() -> true);
 
         //Then
-        assertThat(point).isTrue();
+        assertThat(line).isTrue();
     }
 
 }

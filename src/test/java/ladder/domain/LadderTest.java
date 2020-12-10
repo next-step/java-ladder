@@ -3,6 +3,8 @@ package ladder.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 class LadderTest {
 
     @Test
@@ -17,8 +19,8 @@ class LadderTest {
         Ladder ladder = new Ladder(participants, new LadderHeight(ladderHeight));
 
         //Then
-//        LadderGameResult
-//        LadderGameView.printLadders(ladders, participants.getValue());
+        assertThat(ladder.getLadderLines().size()).isEqualTo(ladderHeight);
+        assertThat(ladder.getLadderLines().get(0).getValue().size()).isEqualTo(7);
 
     }
 

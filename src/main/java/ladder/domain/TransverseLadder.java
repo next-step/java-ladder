@@ -6,27 +6,25 @@ import java.util.List;
 public class TransverseLadder {
 
     private final List<Boolean> lines;
-    private final LadderGenerateStrategy ladderGenerateStrategy;
 
-    public TransverseLadder(LadderGenerateStrategy ladderGenerateStrategy, Participants participants) {
-        this.ladderGenerateStrategy = ladderGenerateStrategy;
-
+    public TransverseLadder(Participants participants) {
         this.lines = new ArrayList<>();
         for (int index = 0; index < participants.size() - 1; index++) {
             lines.add(getLadder(index));
         }
     }
 
-    protected Boolean getLadder(int index) {
-        if (isFirstIndex(index)) {
-            return ladderGenerateStrategy.isGenerating();
-        }
+    private Boolean getLadder(int index) {
 
-        if (Boolean.FALSE.equals(existsLadder(index - 1))) {
-            return ladderGenerateStrategy.isGenerating();
+        if (isFirstIndex(index) || Boolean.FALSE.equals(existsLadder(index - 1))) {
+            return getLine(new RandomLadderGenerateStrategy());
         }
 
         return false;
+    }
+
+    protected Boolean getLine(LadderGenerateStrategy ladderGenerateStrategy) {
+        return ladderGenerateStrategy.isGenerating();
     }
 
     private boolean isFirstIndex(int index) {
