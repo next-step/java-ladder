@@ -25,7 +25,7 @@ public class Controller {
         int height = InputView.askLadderHeight();
 
         ConnectionStrategy connectionStrategy = new RandomConnectionStrategy();
-        Ladder ladder = Ladder.of(participants.getParticipantNum(), connectionStrategy, height);
+        Ladder ladder = Ladder.of(participants.getSize(), connectionStrategy, height);
 
         ResultView.printLadder(participants, ladder, goals);
 

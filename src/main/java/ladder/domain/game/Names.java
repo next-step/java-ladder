@@ -52,15 +52,15 @@ public class Names {
         return this.names;
     }
 
-    public int getParticipantNum() {
+    public int getSize() {
         return this.names.size();
     }
 
-    public int getParticipantIndex(Name participant) {
+    public int getIndexByName(Name participant) {
         return this.names.indexOf(participant);
     }
 
-    public Name getParticipantName(int index) {
+    public Name getNameByIndex(int index) {
         return this.names.get(index);
     }
 

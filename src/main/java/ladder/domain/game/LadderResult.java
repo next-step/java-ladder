@@ -25,10 +25,10 @@ public class LadderResult {
     }
 
     private static Map<Name, Name> createLadderResult(Names participants, List<Name> moveResults) {
-        return IntStream.range(0, participants.getParticipantNum())
+        return IntStream.range(0, participants.getSize())
                 .boxed()
                 .collect(Collectors.toMap(
-                        participants::getParticipantName,
+                        participants::getNameByIndex,
                         moveResults::get,
                         (u1, u2) -> u1,
                         HashMap::new
