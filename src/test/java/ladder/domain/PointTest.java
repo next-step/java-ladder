@@ -51,8 +51,9 @@ public class PointTest {
     }
 
     @Test
-    @DisplayName("사다리 시작 점 추가")
-    void testFirstPoint(){
-        assertThat(Point.first(true)).isEqual(Point.custom(false, true));
+    @DisplayName("사다리 시작 점 생성 기능 추가")
+    void testFirstPoint() {
+        assertThat(Point.first(true))
+                .isEqualTo(Point.custom(false, true));
     }
 }
