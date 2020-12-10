@@ -9,9 +9,12 @@ import java.util.stream.IntStream;
  * Developer : Seo
  */
 public class Lines {
+    public static final int FIRST_LINE = 0;
+    public static final int FIRST_VERTICAL = 0;
     public static final int SECOND_VERTICAL = 2;
     public static final int PREVIOUS_NUMBER = 1;
     public static final int PREVIOUS_BRIDGE = 2;
+    public static final int NEXT_VERTICAL = 2;
     public static final int LAST_VERTICAL = 2;
     public static final int LAST_BRIDGE = 2;
 
@@ -37,7 +40,7 @@ public class Lines {
     private void arrangeLine(int lineIndex) {
         int lineSize = getSize(lineIndex);
 
-        IntStream.range(Ladder.FIRST_LINE, lineSize).forEach(pointIndex -> {
+        IntStream.range(FIRST_LINE, lineSize).forEach(pointIndex -> {
             if (isNoBridgeBetweenLines(lineIndex, pointIndex)) {
                 buildSingleBridge(lineIndex, pointIndex);
                 destroySideBridges(lineIndex, pointIndex);
@@ -46,7 +49,7 @@ public class Lines {
     }
 
     private boolean isNoBridgeBetweenLines(int lineIndex, int pointIndex) {
-        return lineIndex != Ladder.FIRST_LINE
+        return lineIndex != FIRST_LINE
                 && getLine(lineIndex).get(pointIndex) == Symbol.NONE
                 && getLine(lineIndex - PREVIOUS_NUMBER).get(pointIndex) == Symbol.NONE;
     }
@@ -75,20 +78,16 @@ public class Lines {
         return pointIndex < getSize(lineIndex) - LAST_VERTICAL;
     }
 
-    public int getSize(int lineIndex) {
-        return lines.get(lineIndex).getPoints().size();
-    }
-
-    private List<Symbol> getLine(int lineIndex) {
-        return lines.get(lineIndex).getPoints();
-    }
-
     public List<Line> get() {
         return lines;
     }
 
-    public Line get(int y) {
-        return this.lines.get(y);
+    public List<Symbol> getLine(int lineIndex) {
+        return lines.get(lineIndex).getPoints();
+    }
+
+    public int getSize(int lineIndex) {
+        return lines.get(lineIndex).getPoints().size();
     }
 
 }

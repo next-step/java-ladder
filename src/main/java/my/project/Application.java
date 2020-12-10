@@ -1,13 +1,11 @@
 package my.project;
 
 import my.project.domain.Ladder;
-import my.project.dto.Result;
 import my.project.domain.Rewards;
 import my.project.domain.Users;
+import my.project.domain.Result;
 import my.project.view.InputView;
 import my.project.view.ResultView;
-
-import java.util.List;
 
 /**
  * Created : 2020-12-04 오전 8:51
@@ -16,11 +14,11 @@ import java.util.List;
 public class Application {
     public static void main(String[] args) {
         Users users = new Users(InputView.getUsers());
-        Rewards rewards = new Rewards(InputView.getRewards(), users);
+        Rewards rewards = new Rewards(users, InputView.getRewards());
         Ladder ladder = new Ladder(users, InputView.getLadderHeight());
         ResultView.print(users, ladder, rewards);
 
-        List<Result> resultList = ladder.results(InputView.getUsername(), rewards);
-        ResultView.printResults(resultList);
+        Result result = new Result(users, ladder);
+        ResultView.printResults(result.get(InputView.getUsername(), rewards));
     }
 }

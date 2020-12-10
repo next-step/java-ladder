@@ -11,13 +11,11 @@ public class Rewards {
 
     private final List<Reward> rewards;
 
-    public Rewards(String rewards, Users users) {
+    public Rewards(Users users, String rewards) {
         List<Reward> rewardList = Arrays.stream(rewards.split(DELIMITER))
                 .map(Reward::new)
                 .collect(Collectors.toList());
-
         validate(rewardList, users);
-
         this.rewards = rewardList;
     }
 

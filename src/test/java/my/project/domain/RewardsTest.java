@@ -23,7 +23,7 @@ class RewardsTest {
         Users users = new Users(input);
         String rewards = "100,꽝";
 
-        assertThatThrownBy(() -> new Rewards(rewards, users))
+        assertThatThrownBy(() -> new Rewards(users, rewards))
                 .withFailMessage("실행 결과를 확인해주십시요.(참여자 : %s, 실행 결과 : %s)", 6, 2)
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -33,7 +33,7 @@ class RewardsTest {
     void whenValid() {
         Users users = new Users("a,b");
         String rewards = "100,꽝";
-        assertThat(new Rewards(rewards, users).getRewards()).hasSize(2);
+        assertThat(new Rewards(users, rewards).getRewards()).hasSize(2);
     }
 
     @DisplayName("결과리스트를 포인터배열 인덱스로 조회")
@@ -41,6 +41,6 @@ class RewardsTest {
     void givenArrayIndex_shouldGetResult() {
         Users users = new Users("a,b");
         String rewards = "100,꽝";
-        assertThat(new Rewards(rewards, users).getReward(0).get()).isEqualTo("100  ");
+        assertThat(new Rewards(users, rewards).getReward(0).get()).isEqualTo("100  ");
     }
 }

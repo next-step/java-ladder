@@ -1,12 +1,7 @@
 package my.project.view;
 
-import my.project.domain.Ladder;
-import my.project.domain.Reward;
-import my.project.domain.Symbol;
-import my.project.domain.User;
-import my.project.dto.Result;
-import my.project.domain.Rewards;
-import my.project.domain.Users;
+import my.project.domain.*;
+import my.project.dto.ResultSet;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -38,12 +33,15 @@ public class ResultView {
 
     private static void printLadder(Ladder ladder) {
         ladder.getLines().get()
-                .forEach(line -> System.out.println(
-                        line.getPoints().stream()
-                                .map(Symbol::getSymbol)
-                                .collect(Collectors.joining())
-                        )
-                );
+                .forEach(ResultView::printPoints);
+    }
+
+    private static void printPoints(Line line) {
+        System.out.println(
+                line.getPoints().stream()
+                        .map(Symbol::getSymbol)
+                        .collect(Collectors.joining())
+        );
     }
 
     private static void printRewards(Rewards rewards) {
@@ -52,9 +50,8 @@ public class ResultView {
                 .collect(Collectors.joining(DELIMITER)));
     }
 
-    public static void printResults(List<Result> results) {
+    public static void printResults(List<ResultSet> results) {
         System.out.println(REWARD_TITLE);
-        results.stream()
-                .forEach(result -> System.out.println(result.getUsername() + " : " + result.getReward()));
+        results.forEach(result -> System.out.println(result.getUsername() + " : " + result.getReward()));
     }
 }
