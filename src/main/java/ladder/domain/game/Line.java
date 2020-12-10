@@ -105,10 +105,6 @@ public class Line {
         return this.bridges.get(index);
     }
 
-    public int width() {
-        return this.bridges.size();
-    }
-
 
     @Override
     public boolean equals(Object o) {

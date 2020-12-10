@@ -1,4 +1,4 @@
-package ladder.view;
+package ladder.domain.game;
 
 import ladder.domain.game.*;
 import org.junit.jupiter.api.BeforeEach;
