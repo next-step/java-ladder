@@ -13,8 +13,8 @@ import java.util.stream.IntStream;
 public class LadderResult {
 
     public static final String MESSAGE_NAME_NOT_MATCH_PARTICIPANT_LIST = "입력한 이름과 일치하는 참가자가 없습니다.";
-    private final Map<Name, Name> resultOfLadder;
 
+    private final Map<Name, Name> resultOfLadder;
 
     private LadderResult(Map<Name, Name> resultOfLadder) {
         this.resultOfLadder = resultOfLadder;

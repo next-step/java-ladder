@@ -1,6 +1,7 @@
 package ladder.controller;
 
 import ladder.domain.game.Ladder;
+import ladder.domain.game.LadderManager;
 import ladder.domain.game.Names;
 import ladder.strategy.ConnectionStrategy;
 import ladder.strategy.RandomConnectionStrategy;
@@ -25,17 +26,19 @@ public class Controller {
         int height = InputView.askLadderHeight();
 
         ConnectionStrategy connectionStrategy = new RandomConnectionStrategy();
-        Ladder ladder = Ladder.of(participants.getSize(), connectionStrategy, height);
 
-        ResultView.printLadder(participants, ladder, goals);
+        LadderManager ladderManager = new LadderManager.Builder()
+                .participants(participants)
+                .goals(goals)
+                .build(connectionStrategy, height);
 
-        LadderResult ladderResult = LadderResult.of(participants, ladder.moveAll(goals));
+        ResultView.printLadder(ladderManager);
 
         String inputName;
 
         do {
             inputName = InputView.askResultPerson();
-            ResultView.printGoals(ladderResult, inputName);
+            ResultView.printGoals(ladderManager.getLadderResult(), inputName);
         } while (!inputName.equals(ResultView.RESERVED_WORD_ALL));
 
     }

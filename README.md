@@ -104,7 +104,12 @@ pobi  honux crong   jk
 -----
 
 ### step4
-- [ ] 피드백 반영
+- [x] 피드백 반영
   - LadderView 이동하기👉 LadderResult로 명칭 변경, `domain.game`으로 이동
   - Line `move(int)` 가독성 높이기 -> 메서드 분리
+  - Names 메서드 범용성 있게 변경
+
+- [x] Width는 line이 아니라 Ladder의 특징
+- [x] 예외처리: 사다리 실행결과를 보고자 하는 이름이 참가자 명단에 없을 때
+- [x] LadderManager 추가: 사다리 만들기, 사다리전체 조합, 결과를 한번에 만들어주는 객체
 
