@@ -8,18 +8,22 @@ public class Point {
     private final boolean leftSideStatus;
     private final boolean atStatus;
 
-    private Point(boolean leftSideStatus, boolean atPointStatus) {
-        validateStatus(leftSideStatus, atPointStatus);
-        this.leftSideStatus = leftSideStatus;
-        this.atStatus = atPointStatus;
+    public static Point first(boolean atPointStatus) {
+        return custom(false, atPointStatus);
+    }
+
+    public Point next(boolean atStatus) {
+        return Point.custom(this.atStatus, atStatus);
     }
 
     public static Point custom(boolean leftSideStatus, boolean atPointStatus) {
         return new Point(leftSideStatus, atPointStatus);
     }
 
-    public static Point first(boolean atPointStatus) {
-        return new Point(false, atPointStatus);
+    private Point(boolean leftSideStatus, boolean atPointStatus) {
+        validateStatus(leftSideStatus, atPointStatus);
+        this.leftSideStatus = leftSideStatus;
+        this.atStatus = atPointStatus;
     }
 
     private void validateStatus(boolean leftSideStatus, boolean atPointStatus) {
