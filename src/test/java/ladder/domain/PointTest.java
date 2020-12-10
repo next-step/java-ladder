@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.stream.Stream;
 
@@ -27,19 +28,25 @@ public class PointTest {
 
     @ParameterizedTest
     @MethodSource("allStatus")
-    @DisplayName("아랫 방향  움직임 테스트")
+    @DisplayName("아랫 방향 움직임 테스트")
     void testNextIndex(Point point, int expectedIndex) {
         int startingIndex = 1;
 
         assertThat(point.nextIndex(startingIndex)).isEqualTo(expectedIndex);
     }
 
-    @MethodSource
     private static Stream<Arguments> allStatus() {
         return Stream.of(
                 Arguments.of(new Point(false, false), 1),
                 Arguments.of(new Point(false, true), 2),
                 Arguments.of(new Point(true, false), 0)
         );
+    }
+
+    @Test
+    @DisplayName("동일성 테스트")
+    void testEquality() {
+        assertThat(new Point(false, false))
+                .isEqualTo(new Point(false, false));
     }
 }
