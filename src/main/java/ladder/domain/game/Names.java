@@ -15,9 +15,9 @@ import static java.util.stream.Collectors.toList;
 public class Names {
 
     public static final String MESSAGE_PARTICIPANTS_LIST_NON_NULL = "최소 한명 이상이 참여해야 합니다.";
-    private final List<Name> names;
-
     private static final String tokenizer = ",";
+
+    private final List<Name> names;
 
     private Names(List<Name> names) {
         this.names = names;
@@ -54,6 +54,14 @@ public class Names {
 
     public int getParticipantNum() {
         return this.names.size();
+    }
+
+    public int getParticipantIndex(Name participant) {
+        return this.names.indexOf(participant);
+    }
+
+    public Name getParticipantName(int index) {
+        return this.names.get(index);
     }
 
     @Override

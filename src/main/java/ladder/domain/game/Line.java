@@ -15,6 +15,7 @@ import java.util.stream.IntStream;
 public class Line {
 
     public static final String MESSAGE_BRIDGES_DUPLICATED = "사다리의 라인이 겹쳐있으면 안됩니다.";
+
     private final List<Bridge> bridges;
 
     private Line(List<Bridge> bridges) {
@@ -23,7 +24,10 @@ public class Line {
 
     public static Line of(List<Boolean> bridges) {
         validation(bridges);
-        return new Line(bridges.stream().map(Bridge::of).collect(Collectors.toList()));
+        return new Line(
+                bridges.stream()
+                        .map(Bridge::of)
+                        .collect(Collectors.toList()));
     }
 
     private static void validation(List<Boolean> bridges) {
@@ -74,6 +78,27 @@ public class Line {
         return this.bridges.stream()
                 .map(Bridge::hasConnected)
                 .collect(Collectors.collectingAndThen(Collectors.toList(), Collections::unmodifiableList));
+    }
+
+    public int move(int index) {
+        if (indexOf(index).hasConnected()) { // 현재 위치 -> 연결되었을 때
+            return index - 1;
+        }
+
+        if (index < this.bridges.size() - 1
+                && indexOf(index + 1).hasConnected()) {
+            return index + 1;
+        }
+
+        return index;
+    }
+
+    private Bridge indexOf(int index) {
+        return this.bridges.get(index);
+    }
+
+    public int width() {
+        return this.bridges.size();
     }
 
 

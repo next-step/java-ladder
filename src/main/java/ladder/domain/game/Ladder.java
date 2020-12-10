@@ -4,10 +4,15 @@ import ladder.strategy.ConnectionStrategy;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toMap;
 
 /**
  * Created By mand2 on 2020-12-07.
@@ -16,6 +21,7 @@ public class Ladder {
 
     public static final int MINIMUM_HEIGHT = 1;
     public static final String MESSAGE_LADDER_HEIGHT = "사다리의 높이는 최소 1이상이어야 합니다.";
+
     private final List<Line> ladder;
 
     public Ladder(List<Line> ladder) {
@@ -45,6 +51,20 @@ public class Ladder {
 
     public List<Line> getLadder() {
         return ladder;
+    }
+
+    public int move(int index) {
+        for (Line line : this.ladder) {
+            index = line.move(index);
+        }
+        return index;
+    }
+
+    public List<Name> moveAll(Names goals) {
+        return IntStream.range(0, this.ladder.get(0).width())
+                .mapToObj(this::move)
+                .map(goals::getParticipantName)
+                .collect(toList());
     }
 
     @Override
