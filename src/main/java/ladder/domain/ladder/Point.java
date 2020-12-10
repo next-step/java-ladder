@@ -14,26 +14,23 @@ public class Point {
     }
 
     public static Point first(boolean isRight) {
-        return new Point(0, new Direction(false, isRight));
+        return new Point(0, Direction.of(false, isRight));
     }
 
     public Point next(boolean isRight) {
-        if (direction.isRight() == isRight) {
-            return new Point(index + ADD_INDEX, new Direction(direction.isRight(), !isRight));
-        }
-        return new Point(index + ADD_INDEX, new Direction(direction.isRight(), isRight));
+        return new Point(index + ADD_INDEX, Direction.of(direction.isRight(), isRight));
     }
 
     public Point last() {
-        return new Point(index + ADD_INDEX, new Direction(direction.isRight(), false));
+        return new Point(index + ADD_INDEX, Direction.of(direction.isRight(), false));
     }
 
     int move() {
        return index + direction.move();
     }
 
-    public boolean isLeft() {
-        return direction.isLeft();
+    public Direction getDirection() {
+        return direction;
     }
 
     @Override

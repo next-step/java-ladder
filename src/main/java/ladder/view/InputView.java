@@ -1,22 +1,36 @@
 package ladder.view;
 
+import ladder.context.ErrorMessage;
+import ladder.context.PrintMessage;
+
 import java.util.Scanner;
 
 public class InputView {
-    private static final Scanner strScanner = new Scanner(System.in);
-    private static final Scanner intScanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
 
     private InputView() {
 
     }
 
     public static String inputGamePlayers() {
-        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        return strScanner.nextLine();
+        System.out.println(PrintMessage.GAME_PLAYER.getMessage());
+        return scanner.nextLine();
     }
 
     public static int inputLadderSize() {
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
-        return intScanner.nextInt();
+        System.out.println(PrintMessage.LADDER_SIZE.getMessage());
+        int i = scanner.nextInt();
+        scanner.nextLine();
+        return i;
+    }
+
+    public static String inputResult() {
+        System.out.println(PrintMessage.RESULT_PLAYER.getMessage());
+        return scanner.nextLine();
+    }
+
+    public static String inputProducts() {
+        System.out.println(PrintMessage.INIT_PRODUCTS.getMessage());
+        return scanner.nextLine();
     }
 }

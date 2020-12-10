@@ -1,8 +1,9 @@
 package ladder.domain.ladder;
 
-import ladder.domain.util.RightPointRandom;
+import ladder.domain.util.RandomStrategy;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Line {
@@ -10,17 +11,17 @@ public class Line {
 
     private List<Point> points;
 
-    public Line(int countOfPlayer, RightPointRandom rightPointRandom) {
-        this.points = createLine(countOfPlayer, rightPointRandom);
+    public Line(int countOfPlayer, RandomStrategy randomStrategy) {
+        this.points = createLine(countOfPlayer, randomStrategy);
     }
 
-    public List<Point> createLine(int countOfPlayer, RightPointRandom rightPointRandom) {
+    private List<Point> createLine(int countOfPlayer, RandomStrategy randomStrategy) {
         points = new ArrayList<>();
-        Point point = Point.first(rightPointRandom.right());
+        Point point = Point.first(randomStrategy.right());
         points.add(point);
 
         for (int i = NUMBER_ONE; i < countOfPlayer - NUMBER_ONE; i++) {
-            point = point.next(rightPointRandom.right());
+            point = point.next(randomStrategy.right());
             points.add(i, point);
         }
 
@@ -32,7 +33,12 @@ public class Line {
         return points.size();
     }
 
-    public boolean isLeft(int index) {
-        return points.get(index).isLeft();
+    public List<Point> getPoints() {
+        return Collections.unmodifiableList(points);
+    }
+
+    public int movePoint(int index) {
+        return points.get(index)
+                .move();
     }
 }

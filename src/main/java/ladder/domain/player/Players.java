@@ -1,13 +1,13 @@
 package ladder.domain.player;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
+import ladder.context.ErrorMessage;
+
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Players {
     private static final String NAMES_REGEX = ",";
+    public static final int DEFAULT_INDEX = -1;
 
     private final List<Player> players;
 
@@ -19,7 +19,7 @@ public class Players {
 
     private void validEmpty(String names) {
         if (Objects.isNull(names) || names.isEmpty()) {
-            throw new IllegalArgumentException("이름을 입력하셔야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.NAME_NULL.getMessage());
         }
     }
 
@@ -31,20 +31,14 @@ public class Players {
 
     private void validDuplication(String names) {
         if (!isDuplication(names)) {
-            throw new IllegalArgumentException("중복된 이름이 있습니다.");
+            throw new IllegalArgumentException(ErrorMessage.NAME_DULICATION.getMessage());
         }
     }
 
     private List<Player> makePlayersList(String names) {
-        return Arrays.stream(names.split(","))
+        return Arrays.stream(names.split(NAMES_REGEX))
                 .map(String::trim)
                 .map(Player::new)
-                .collect(Collectors.toList());
-    }
-
-    public List<String> getPlayerNames() {
-        return players.stream()
-                .map(Player::getName)
                 .collect(Collectors.toList());
     }
 
@@ -52,5 +46,19 @@ public class Players {
         return (int) players.stream()
                 .map(Player::getName)
                 .count();
+    }
+
+    public List<Player> getPlayers() {
+        return Collections.unmodifiableList(players);
+    }
+
+    public int getIndexByName(String name) {
+        return Optional.ofNullable(name)
+                .map(Player::new)
+                .map(players::indexOf)
+                .filter(index -> index > DEFAULT_INDEX)
+                .orElseThrow(() ->
+                        new IllegalArgumentException(String.format("'%s'이름을 사용하는 플레이어는 존재하지 않습니다.", name))
+                );
     }
 }

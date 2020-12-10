@@ -14,6 +14,13 @@ class PlayersTest {
     }
 
     @Test
+    void validEmpty() {
+        String names = "";
+        Assertions.assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> new Players(names));
+    }
+
+    @Test
     void validNameCheck() {
         String names = "pobi, hano, zero, zero";
         Assertions.assertThatExceptionOfType(IllegalArgumentException.class)
@@ -21,4 +28,28 @@ class PlayersTest {
     }
 
 
+    @Test
+    void getPlayerCount() {
+        Assertions.assertThat(players.getPlayerCount())
+                .isEqualTo(3);
+    }
+
+    @Test
+    void getPlayers() {
+        Assertions.assertThat(players.getPlayers().size())
+                .isEqualTo(3);
+    }
+
+    @Test
+    void getIndexByName() {
+        Assertions.assertThat(players.getIndexByName("hano"))
+                .isEqualTo(1);
+    }
+
+    @Test
+    void throwGetIndexByName() {
+        Assertions.assertThatThrownBy(() -> {
+            players.getIndexByName("Exception");
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
 }
