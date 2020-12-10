@@ -99,3 +99,12 @@ pobi  honux crong   jk
      Bridge에서 `Line move()` 에 필요한 index 값을 추출하는 메서드,
      curHasConnected(현재의 hasConnected), nextHasConnected을 추가하면 값 찾기가 수월할듯..?
      => hasConnected 값을 연속적으로 놓아야한다는 점이 까다로움🤔
+
+
+-----
+
+### step4
+- [ ] 피드백 반영
+  - LadderView 이동하기👉 LadderResult로 명칭 변경, `domain.game`으로 이동
+  - Line `move(int)` 가독성 높이기 -> 메서드 분리
+
