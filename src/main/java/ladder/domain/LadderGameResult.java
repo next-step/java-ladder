@@ -5,13 +5,15 @@ import java.util.Map;
 
 public class LadderGameResult {
     private final Ladder ladder;
+    private final Map<String, String> ladderResults;
 
-    public LadderGameResult(Ladder ladder) {
+    public LadderGameResult(Ladder ladder, Map<String, String> ladderResults) {
         this.ladder = ladder;
+        this.ladderResults = ladderResults;
     }
 
     public String getLadderResult(String memberName){
-        return ladder.startFrom(memberName);
+        return ladderResults.get(memberName);
     }
 
     public void printLadder(PrintWriter writer) {
@@ -19,6 +21,6 @@ public class LadderGameResult {
     }
 
     public Map<String, String> getAllLadderResult() {
-        return ladder.startAll();
+        return ladderResults;
     }
 }

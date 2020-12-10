@@ -2,6 +2,7 @@ package ladder.domain;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class LadderGame {
 
@@ -16,7 +17,8 @@ public class LadderGame {
     }
 
     public LadderGameResult run() {
-        return new LadderGameResult(ladder);
+        Map<String, String> ladderResults = ladder.startAll();
+        return new LadderGameResult(ladder, ladderResults);
     }
 
 }

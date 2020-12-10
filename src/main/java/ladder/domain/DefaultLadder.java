@@ -9,11 +9,11 @@ import java.util.stream.IntStream;
 
 public class DefaultLadder implements Ladder {
 
-    private List<LadderLevel> ladderLevels;
-    private LadderMembers members;
-    private LadderResults results;
+    private final List<LadderLevel> ladderLevels;
+    private final LadderMembers members;
+    private final LadderResults results;
 
-    public DefaultLadder(List<String> memberNames, List<String> results, int height, List<LadderLevel> ladderLevels){
+    DefaultLadder(List<String> memberNames, List<String> results, int height, List<LadderLevel> ladderLevels){
         if( memberNames.size() != results.size() ) throw new IllegalArgumentException("참여자와 결과의 개수는 동일해야 합니다");
         if (height < 1) throw new IllegalArgumentException("사다리 높이는 최소 1이상 입력되어야 합니다.");
 

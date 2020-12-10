@@ -1,4 +1,4 @@
-package ladder;
+package ladder.domain;
 
 import ladder.domain.LadderLevel;
 import ladder.domain.LevelItem;
