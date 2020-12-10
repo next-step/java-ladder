@@ -8,7 +8,6 @@ import java.util.List;
 
 public class Ladder {
     private static final int MIN_LADDER_HEIGHT = 1;
-
     private List<LadderLine> ladderLine = new ArrayList<>();
 
     public Ladder(final int ladderHeight, final int countOfPerson) {

@@ -11,7 +11,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 
 public class LadderMoveTest {
-
     private static List<Integer> positionTestDataList = new ArrayList<>();
     private static List<Boolean> directionTestDataList = new ArrayList<>();
 

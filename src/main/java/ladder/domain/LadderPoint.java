@@ -3,7 +3,6 @@ package ladder.domain;
 import java.util.Random;
 
 public class LadderPoint {
-
     private static Random random = new Random();
 
     private boolean ladderPoint;

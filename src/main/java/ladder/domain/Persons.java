@@ -9,7 +9,6 @@ import java.util.List;
 public class Persons {
     private static int MAX_NAME_LENGTH = 5;
     private static int MIN_COUNT_OF_PERSON = 2;
-
     private List<Person> persons = new ArrayList<>();
 
     public Persons(final String names) {

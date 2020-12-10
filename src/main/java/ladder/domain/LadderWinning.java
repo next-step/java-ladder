@@ -3,7 +3,6 @@ package ladder.domain;
 import ladder.util.ErrorMessage;
 
 public class LadderWinning {
-
     private String winning;
 
     public LadderWinning(String winning){

@@ -1,6 +1,7 @@
 package ladder.dto;
 
 public class LadderWinningDTO {
+
     private String name;
     private String result;
 

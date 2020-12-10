@@ -10,7 +10,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 public class LadderDirectionTest {
 
-    LadderDirection LadderDirectionTest;
+    private LadderDirection LadderDirectionTest;
 
     @Test
     @DisplayName("양쪽에 사다리가 있는 경우 에러처리")

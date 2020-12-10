@@ -9,7 +9,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 public class LadderLineTest {
-
     private static Ladder LadderLineTest;
 
     @ParameterizedTest

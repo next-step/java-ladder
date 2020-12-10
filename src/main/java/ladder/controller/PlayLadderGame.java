@@ -6,7 +6,6 @@ import ladder.view.PrintLadder;
 import ladder.view.InputView;
 
 public class PlayLadderGame {
-
     public void playGame() {
         String names = InputView.inputNames();
         int ladderHeight = InputView.inputLadderHeight();

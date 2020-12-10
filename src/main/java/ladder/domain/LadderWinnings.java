@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Optional;
 
 public class LadderWinnings {
-
     private List<LadderWinning> winnings = new ArrayList<>();
     private List<Person> persons = new ArrayList<>();
 

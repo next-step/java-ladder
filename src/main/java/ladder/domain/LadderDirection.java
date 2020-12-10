@@ -1,7 +1,6 @@
 package ladder.domain;
 
 public class LadderDirection {
-
     private boolean left;
     private boolean right;
 

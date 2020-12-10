@@ -6,6 +6,7 @@ import ladder.dto.LadderWinningDTO;
 import java.util.List;
 
 public class PrintLadder {
+
     private static final String HAVE_LINE = "-----";
     private static final String NON_HAVE_LINE = "     ";
     private static final String EXECUTION_RESULT = "실행결과";

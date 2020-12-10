@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LadderMove {
-
     private List<Integer> positionList = new ArrayList<>();
     private List<Boolean> directionList = new ArrayList<>();
 

@@ -12,7 +12,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 public class PersonsTest {
 
-    private Persons personsTest;
+    private Persons pesonsTest;
 
     @ParameterizedTest
     @DisplayName("이름이 Null이거나 Empty인경우 예외를 던진다.")

@@ -9,6 +9,7 @@ public class ErrorMessage {
     private static final String CHECK_PERSONS_INIT = "psersons 객체 초기화 시 list사이즈가 같아야 합니다.";
     private static final String CHECK_WINNNG_SIZE = "당첨결과 크기와 참여 명단의 크기가 같아야 합니다.";
     private static final String CHECK_INPUT_WINNING = "당첨 결결과 입력을 확인해주세요";
+
     private ErrorMessage(){
     }
 
