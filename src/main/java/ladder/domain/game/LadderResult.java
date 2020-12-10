@@ -1,30 +1,26 @@
-package ladder.view;
-
-import ladder.domain.game.Name;
-import ladder.domain.game.Names;
+package ladder.domain.game;
 
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 /**
  * Created By mand2 on 2020-12-09.
  */
-public class LadderView {
+public class LadderResult {
 
     private final Map<Name, Name> resultOfLadder;
 
 
-    private LadderView(Map<Name, Name> resultOfLadder) {
+    private LadderResult(Map<Name, Name> resultOfLadder) {
         this.resultOfLadder = resultOfLadder;
     }
 
-    public static LadderView of(Names participants, List<Name> moveResults) {
-        return new LadderView(createLadderResult(participants, moveResults));
+    public static LadderResult of(Names participants, List<Name> moveResults) {
+        return new LadderResult(createLadderResult(participants, moveResults));
     }
 
     private static Map<Name, Name> createLadderResult(Names participants, List<Name> moveResults) {
