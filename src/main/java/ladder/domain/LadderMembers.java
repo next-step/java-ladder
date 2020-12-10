@@ -1,9 +1,12 @@
-package ladder;
+package ladder.domain;
 
+import java.util.Iterator;
 import java.util.List;
+import java.util.Spliterator;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
-public class LadderMembers {
+public class LadderMembers implements Iterable<String>{
     private List<String> names;
 
     public LadderMembers(List<String> names) {
@@ -15,6 +18,10 @@ public class LadderMembers {
         this.names = names;
     }
 
+    public int getPosition(String name){
+        return names.indexOf(name);
+    }
+
     @Override
     public String toString() {
         return names.stream()
@@ -24,5 +31,20 @@ public class LadderMembers {
 
     public int size() {
         return names.size();
+    }
+
+    @Override
+    public Iterator iterator() {
+        throw new RuntimeException("구현되지 않은 기능입니다.");
+    }
+
+    @Override
+    public void forEach(Consumer<? super String> action) {
+        names.forEach(action);
+    }
+
+    @Override
+    public Spliterator spliterator() {
+        throw new RuntimeException("구현되지 않은 기능입니다.");
     }
 }
