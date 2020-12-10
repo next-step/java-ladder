@@ -2,6 +2,7 @@ package ladder.view;
 
 import ladder.domain.*;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -82,14 +83,14 @@ public class ResultView {
         return sb.toString();
     }
 
-    public static void printPlayerResult(Map<Player, Award> climbResult, String player) {
+    public static void printPlayerResult(LinkedHashMap<Player, Award> climbResult, String player) {
         System.out.println(RESULT_HEAD_MESSAGE);
         System.out.println(getPlayerResult(climbResult, player));
     }
 
-    private static String getPlayerResult(Map<Player, Award> climbResult, String playerName) {
+    private static String getPlayerResult(LinkedHashMap<Player, Award> climbResult, String playerName) {
         if(playerName.equals(ALL_RESULT_MESSAGE)){
-           return climbResult.entrySet().stream()
+            return climbResult.entrySet().stream()
                     .sequential()
                     .map(entry -> entry.getKey().getName() + RESULT_DELIMITER + entry.getValue().getAwardName())
                     .collect(Collectors.joining(ALL_RESULT_DELIMITER));
