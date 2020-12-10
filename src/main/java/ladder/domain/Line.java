@@ -3,13 +3,10 @@ package ladder.domain;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 
 public class Line {
 
-    private static final String CONNECTED_DELIMITER = "-";
-    private static final String NOT_CONNECTED_DELIMITER = " ";
     private final List<Point> points;
 
     public Line(List<Point> points){
@@ -18,15 +15,12 @@ public class Line {
     }
 
     private void validatePoints(List<Point> points) {
-
-        String pointsValue = points.stream()
-                .map(point -> point.getDirection().isRight() ? CONNECTED_DELIMITER: NOT_CONNECTED_DELIMITER)
-                .collect(Collectors.joining());
-
-        if(pointsValue.contains(CONNECTED_DELIMITER+CONNECTED_DELIMITER)){
-            throw new IllegalArgumentException("사다리 가로라인은 겹칠 수 없습니다.");
-        }
-
+        points.stream()
+                .filter(point -> point.getDirection().isLeft() && point.getDirection().isRight())
+                .findAny()
+                .ifPresent(point -> {
+                    throw new IllegalArgumentException("사다리 가로라인은 겹칠 수 없습니다.");
+                });
     }
 
     public List<Point> getPoints() {

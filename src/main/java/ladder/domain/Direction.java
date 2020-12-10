@@ -11,8 +11,15 @@ public class Direction {
 
 
     private Direction(boolean left, boolean right){
+        validateDirection(left, right);
         this.left = left;
         this.right = right;
+    }
+
+    private void validateDirection(boolean left, boolean right) {
+        if(left && right){
+            throw new IllegalArgumentException("사다리 가로라인은 겹칠 수 없습니다.");
+        }
     }
 
     public static Direction of(boolean left, boolean right){
