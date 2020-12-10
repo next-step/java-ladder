@@ -2,17 +2,29 @@ package ladder.direction;
 
 import ladder.model.move.Point;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class PointTest {
 
-    @Test
-    public void first() {
-        assertThat(Point.first(true).move()).isEqualTo(1);
-        assertThat(Point.first(false).move()).isEqualTo(0);
+    @ParameterizedTest
+    @MethodSource("firstParams")
+    public void first(boolean trueOrFalse, int result) {
+        assertThat(Point.first(trueOrFalse).move()).isEqualTo(result);
     }
 
+    private static Stream<Arguments> firstParams() {
+        return Stream.of(
+                Arguments.of(false, 0),
+                Arguments.of(true, 1)
+
+        );
+    }
     @Test
     public void next_stay() {
         Point second = Point.first(false).next(false);
