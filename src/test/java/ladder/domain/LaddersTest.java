@@ -15,13 +15,12 @@ class LaddersTest {
         int ladderHeight = 10;
 
         //When
-        Ladders ladders = new Ladders(personCount, ladderHeight);
+        Ladders ladders = new Ladders(personCount, new LadderHeight(ladderHeight));
 
         //Then
         LadderGameView.printLadders(ladders);
 
     }
-
 
 
 }
