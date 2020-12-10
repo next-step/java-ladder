@@ -2,43 +2,40 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Ladder {
 
-    private final List<String> value;
+    private final List<Boolean> value;
 
     public Ladder(int personCount) {
-        TransverseLadder transverseLadder = new TransverseLadder(personCount);
-        VerticalLadder verticalLadder = new VerticalLadder(personCount);
-
-        int size = transverseLadder.size() + verticalLadder.size();
-
-        List<String> result = new ArrayList<>(size);
-        int index = 0;
-        for (int i = 0; i < size; i++) {
-
-            if (i % 2 == 0) {
-                result.add("|");
-                continue;
-            }
-
-            if (Boolean.TRUE.equals(transverseLadder.getPoints().get(index))) {
-                result.add("------");
-            }
-
-            if (Boolean.FALSE.equals(transverseLadder.getPoints().get(index))) {
-                result.add("      ");
-            }
-
-            index++;
-
-        }
-
-        value = result;
-
+        value = initLadder(personCount);
     }
 
-    public List<String> getValue() {
+    private List<Boolean> initLadder(int personCount) {
+        TransverseLadder transverseLadder = new TransverseLadder(personCount);
+
+        return IntStream.range(0, transverseLadder.size() + personCount)
+                .mapToObj(index -> getLadderPoint(index, transverseLadder))
+                .collect(Collectors.toList());
+    }
+
+    private Boolean getLadderPoint(int i, TransverseLadder transverseLadder) {
+        if (i % 2 == 1) {
+            return getPoint(transverseLadder.getPoints().get(i / 2));
+        }
+        return true;
+    }
+
+    private Boolean getPoint(Boolean before) {
+        if (Boolean.TRUE.equals(before)) {
+            return true;
+        }
+        return false;
+    }
+
+    public List<Boolean> getValue() {
         return value;
     }
 }
