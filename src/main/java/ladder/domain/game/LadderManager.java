@@ -10,6 +10,9 @@ import java.util.Objects;
  */
 public class LadderManager {
 
+    public static final String MESSAGE_LADDER_NON_NULL = "어떤 사다리를 만들 건지 입력하세요";
+    public static final String MESSAGE_SIZE_MISSMATCH_IN_PARTICIPANTS_AND_GOALS = "참가자의 수와 실행결과의 수가 일치하지 않습니다.";
+
     private final Names participants;
     private final Names goals;
     private Ladder ladder;
@@ -39,28 +42,21 @@ public class LadderManager {
     }
 
     public static class Builder {
-        private Names participants;
-        private Names goals;
+        private final Names participants;
+        private final Names goals;
         private Ladder ladder;
         private LadderResult ladderResult;
 
-        public Builder() {}
+        public Builder(Names participants, Names goals) {
+            this.participants = participants;
+            this.goals = goals;
+        }
 
         public Builder(LadderManager ladderManager) {
             this.participants = ladderManager.participants;
             this.goals = ladderManager.goals;
             this.ladder = ladderManager.ladder;
             this.ladderResult = ladderManager.ladderResult;
-        }
-
-        public Builder participants(Names participants) {
-            this.participants = participants;
-            return this;
-        }
-
-        public Builder goals(Names goals) {
-            this.goals = goals;
-            return this;
         }
 
         public Builder ladder(Ladder ladder) {
@@ -73,25 +69,25 @@ public class LadderManager {
             return this;
         }
 
-        public Builder ladderResult(LadderResult ladderResult) {
-            this.ladderResult = ladderResult;
-            return this;
-        }
-
         public Builder ladderResult() {
             this.ladderResult = LadderResult.of(this.participants, this.ladder.moveAll(this.goals));
             return this;
         }
 
         public LadderManager build() {
-            return new LadderManager(this);
+            validate();
+            return new LadderManager(this.ladderResult());
         }
 
-        public LadderManager build(ConnectionStrategy connectionStrategy, int height) {
-            return new LadderManager(this
-                                        .ladder(connectionStrategy, height)
-                                        .ladderResult());
+        private void validate() {
+            if (Objects.isNull(this.ladder)) {
+                throw new NullPointerException(MESSAGE_LADDER_NON_NULL);
+            }
+            if (this.participants.getSize() != this.goals.getSize()) {
+                throw new RuntimeException(MESSAGE_SIZE_MISSMATCH_IN_PARTICIPANTS_AND_GOALS);
+            }
         }
+
     }
 
     @Override

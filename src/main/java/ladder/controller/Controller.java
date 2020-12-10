@@ -27,10 +27,9 @@ public class Controller {
 
         ConnectionStrategy connectionStrategy = new RandomConnectionStrategy();
 
-        LadderManager ladderManager = new LadderManager.Builder()
-                .participants(participants)
-                .goals(goals)
-                .build(connectionStrategy, height);
+        LadderManager ladderManager = new LadderManager.Builder(participants, goals)
+                .ladder(connectionStrategy, height)
+                .build();
 
         ResultView.printLadder(ladderManager);
 
