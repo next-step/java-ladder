@@ -17,7 +17,6 @@ public class LadderMove {
     private void moveLadder() {
         moveFirst();
         moveBody();
-        moveLast();
     }
 
     private void moveBody() {
@@ -25,29 +24,15 @@ public class LadderMove {
 
         for (int i = 1; i < positionList.size() - 1; i++) {
             ladderDirection = new LadderDirection(directionList.get(i - 1), directionList.get(i));
-            moveLadder(i, i + 1, ladderDirection);
+            moveLadder(i, i + 1, ladderDirection.isRight());
         }
     }
 
     private void moveFirst() {
-        moveRight(0, 1, directionList.get(0));
+        moveLadder(0, 1, directionList.get(0));
     }
 
-    private void moveLast() {
-        moveLeft(positionList.get(positionList.size() - 2)
-                , positionList.get(positionList.size() - 1)
-                , directionList.get(directionList.size() - 1));
-    }
-
-    private void moveLadder(int firstIndex, int secondIndex, LadderDirection ladderDirection) {
-        if (ladderDirection.isRight()) {
-            moveRight(firstIndex, secondIndex, ladderDirection.isRight());
-            return;
-        }
-        moveLeft(firstIndex - 1, secondIndex - 1, ladderDirection.isLeft());
-    }
-
-    private void moveRight(int firstIndex, int secondIndex, boolean moveCheck) {
+    private void moveLadder(int firstIndex, int secondIndex, boolean moveCheck) {
         if (moveCheck) {
             int firstValue = this.positionList.get(firstIndex);
             int secondValue = this.positionList.get(secondIndex);
@@ -57,10 +42,6 @@ public class LadderMove {
 
             return;
         }
-    }
-
-    private void moveLeft(int firstIndex, int secondIndex, boolean moveCheck) {
-
     }
 
     public List<Integer> getPositionList() {

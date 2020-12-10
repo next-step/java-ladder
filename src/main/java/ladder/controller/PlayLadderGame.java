@@ -1,9 +1,12 @@
 package ladder.controller;
 
 import ladder.domain.LadderGame;
+import ladder.domain.LadderLine;
 import ladder.domain.LadderPoint;
 import ladder.view.PrintLadder;
 import ladder.view.InputView;
+
+import java.util.List;
 
 public class PlayLadderGame {
     public void playGame() {

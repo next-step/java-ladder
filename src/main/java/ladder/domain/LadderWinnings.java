@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class LadderWinnings {
+
     private List<LadderWinning> winnings = new ArrayList<>();
     private List<Person> persons = new ArrayList<>();
 
@@ -56,7 +57,7 @@ public class LadderWinnings {
     }
 
     private LadderWinningDTO mappingWinning(Person person) {
-        LadderWinningDTO ladderWinningDTO = new LadderWinningDTO(person.getName()
+        LadderWinningDTO ladderWinningDTO = new LadderWinningDTO(persons.get(person.getPosition()).getName()
                 , winnings.get(person.getPosition()).getWinning());
         return ladderWinningDTO;
     }
