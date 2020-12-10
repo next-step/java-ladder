@@ -2,6 +2,8 @@ package ladder.domain;
 
 import ladder.ladderexceptions.InvalidLayoutException;
 
+import java.util.Objects;
+
 public class Point {
     private final boolean leftSideStatus;
     private final boolean atStatus;
@@ -27,5 +29,18 @@ public class Point {
         }
 
         return startingIndex;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Point point = (Point) o;
+        return leftSideStatus == point.leftSideStatus && atStatus == point.atStatus;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(leftSideStatus, atStatus);
     }
 }
