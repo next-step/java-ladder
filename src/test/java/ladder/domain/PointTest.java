@@ -59,10 +59,19 @@ public class PointTest {
 
     @Test
     @DisplayName("사다리 중간 다리 생성 기능 추가")
-    void testMiddlePoints(){
+    void testMiddlePoints() {
         Point sampleFirstPoint = Point.first(true);
 
         assertThat(sampleFirstPoint.next(false))
-                .isEqualto(Point.custom(true, false));
+                .isEqualTo(Point.custom(true, false));
+    }
+
+    @Test
+    @DisplayName("사다리에 마지막 다리 생성 기능 추가")
+    void testLastPoint() {
+        Point sample = Point.custom(true, false);
+
+        assertThat(sample.last())
+                .isEqualTo(Point.custom(false, false));
     }
 }
