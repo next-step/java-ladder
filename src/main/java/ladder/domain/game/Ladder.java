@@ -20,11 +20,11 @@ public class Ladder {
     public static final String MESSAGE_LADDER_HEIGHT = "사다리의 높이는 최소 1이상이어야 합니다.";
 
     private final List<Line> ladder;
-    private final int width;
+    private final Width width;
 
     public Ladder(List<Line> ladder) {
         this.ladder = ladder;
-        this.width = ladder.get(0).getLine().size();
+        this.width = Width.from(ladder);
     }
 
     public static Ladder of(List<Line> ladder) {
@@ -60,7 +60,7 @@ public class Ladder {
     }
 
     public List<Name> moveAll(Names goals) {
-        return IntStream.range(0, this.width)
+        return IntStream.range(0, this.width.getWidth())
                 .mapToObj(this::move)
                 .map(goals::getNameByIndex)
                 .collect(toList());
