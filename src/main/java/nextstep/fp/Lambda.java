@@ -29,8 +29,7 @@ public class Lambda {
     public static int conditionalSum(List<Integer> numbers, Conditional conditional) {
         return numbers.stream()
                 .filter(conditional::test)
-                .mapToInt(number -> number)
-                .sum();
+                .reduce(0, Integer::sum);
     }
 
     public static int sumAll(List<Integer> numbers) {
