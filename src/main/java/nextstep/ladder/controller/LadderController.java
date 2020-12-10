@@ -16,28 +16,21 @@ public class LadderController {
         InputView inputView = new InputView();
         ResultView resultView = new ResultView();
 
-        InputUsers inputUsers = new InputUsers(inputView.inputParticipants());
-        Users users = Users.createUsers(inputUsers);
+        GameCriteria gameCriteria = inputView.getGameCriteria();
 
-        int usersNumber = users.getUsers().size();
-        InputResult inputResult = InputResult.createInputResult(inputView.inputResults(), usersNumber);
-        Results results = Results.createResults(inputResult);
-
-        Height height = new Height(Integer.parseInt(inputView.inputHeight()));
-
-        Map<User, Integer> userMap = users.mapUserIndex();
-        Map<Result, Integer> resultMap = results.mapResultIndex();
-
-        resultView.printResultMention();
-        resultView.printUsers(users);
-        Ladder ladder = Ladder.initLadder(users, height);
-        Map<User, Integer> endMap = ladder.matchLadder(userMap);
-
-        resultView.drawLadders(ladder);
-
-        Map<User, Result> userResultMap = matchResults(endMap, resultMap);
-
-        resultView.printResult(userResultMap, inputView.inputResultUser());
+//        Map<User, Integer> userMap = users.mapUserIndex();
+//        Map<Result, Integer> resultMap = results.mapResultIndex();
+//
+//        resultView.printResultMention();
+//        resultView.printUsers(users);
+//        Ladder ladder = Ladder.initLadder(users, height);
+//        Map<User, Integer> endMap = ladder.matchLadder(userMap);
+//
+//        resultView.drawLadders(ladder);
+//
+//        Map<User, Result> userResultMap = matchResults(endMap, resultMap);
+//
+//        resultView.printResult(userResultMap, inputView.inputResultUser());
     }
 
     public Map<User, Result> matchResults(Map<User, Integer> endMap, Map<Result, Integer> resultMap) {

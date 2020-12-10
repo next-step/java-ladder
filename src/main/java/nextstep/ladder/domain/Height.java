@@ -3,9 +3,13 @@ package nextstep.ladder.domain;
 public class Height {
     private int height;
 
-    public Height(int height) {
+    private Height(int height) {
         checkHeightValidate(height);
         this.height = height;
+    }
+
+    public static Height from(int height) {
+        return new Height(height);
     }
 
     private void checkHeightValidate(int height) {

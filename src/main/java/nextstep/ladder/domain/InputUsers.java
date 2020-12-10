@@ -4,9 +4,13 @@ public class InputUsers {
     private static final String COMMA_DELIMITER = ",";
     private String names;
 
-    public InputUsers(String names) {
+    private InputUsers(String names) {
         checkMultipleUsers(names);
         this.names = names;
+    }
+
+    public static InputUsers createInputUsers(String names) {
+        return new InputUsers(names);
     }
 
     private void checkMultipleUsers(String names) {

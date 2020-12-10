@@ -1,5 +1,7 @@
 package nextstep.ladder.view;
 
+import nextstep.ladder.domain.*;
+
 import java.util.Scanner;
 
 public class InputView {
@@ -8,6 +10,19 @@ public class InputView {
     private final String INPUT_RESULTS = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private final String INPUT_HEIGHT = "최대 사다리 높이는 몇 개인가요?";
     private final String SHOW_MENTION = "결과를 보고 싶은 사람은?";
+
+    public GameCriteria getGameCriteria() {
+        InputUsers inputUsers = InputUsers.createInputUsers(inputParticipants());
+        Users users = Users.createUsers(inputUsers);
+
+        int usersNumber = users.getUsers().size();
+        InputResult inputResult = InputResult.createInputResult(inputResults(), usersNumber);
+        Results results = Results.createResults(inputResult);
+
+        Height height = Height.from(Integer.parseInt(inputHeight()));
+
+        return GameCriteria.of(users, results, height);
+    }
 
     public String inputParticipants() {
         System.out.println(INPUT_PARTICIPANTS);
