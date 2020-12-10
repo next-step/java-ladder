@@ -1,13 +1,9 @@
 package ladder.domain;
 
-import ladder.domain.LadderLevel;
-import ladder.domain.LevelItem;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestTemplate;
 
 import java.util.Arrays;
-import java.util.logging.Level;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
