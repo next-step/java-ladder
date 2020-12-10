@@ -7,10 +7,10 @@ public class TransverseLadder {
 
     private final List<Boolean> lines;
 
-    public TransverseLadder(int personCount) {
-        valid(personCount);
-        lines = new ArrayList<>(personCount - 1);
-        for (int i = 0; i < personCount-1; i++) {
+    public TransverseLadder(Participants participants) {
+        int length = participants.size() - 1;
+        lines = new ArrayList<>(length);
+        for (int i = 0; i < length; i++) {
             lines.add(getPoint(i, new RandomLadderGenerateStrategy()));
         }
     }
@@ -36,6 +36,4 @@ public class TransverseLadder {
         return lines.size();
     }
 
-    private void valid(int personCount) {
-    }
 }

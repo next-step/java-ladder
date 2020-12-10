@@ -36,4 +36,13 @@ class ParticipantsTest {
                 .withMessage(ErrorMessage.NAME_CAN_NOT_BE_BLANK);
     }
 
+    @Test
+    @DisplayName("중복되는 이름을 입력하면, Exception을 throw한다.")
+    void should_throw_exception_when_name_is_blank() {
+        //Given & When
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new Participants("pobi,pobi,poby,bopi,bopy"))
+                .withMessage(ErrorMessage.NAMES_CANNOT_BE_DUPLICATED);
+    }
+
 }

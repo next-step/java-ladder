@@ -11,14 +11,14 @@ class LaddersTest {
     void should_return_ladders() {
 
         //Given
-        String names = "pobi,honux,crong,jk";
+        Participants participants = new Participants("pobi,honux,crong,jk");
         int ladderHeight = 10;
 
         //When
-        Ladders ladders = new Ladders(new Participants(names), new LadderHeight(ladderHeight));
+        Ladders ladders = new Ladders(participants, new LadderHeight(ladderHeight));
 
         //Then
-        LadderGameView.printLadders(ladders);
+        LadderGameView.printLadders(ladders, participants.getValue());
 
     }
 
