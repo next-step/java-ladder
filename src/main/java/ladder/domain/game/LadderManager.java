@@ -11,7 +11,7 @@ import java.util.Objects;
 public class LadderManager {
 
     public static final String MESSAGE_LADDER_NON_NULL = "어떤 사다리를 만들 건지 입력하세요";
-    public static final String MESSAGE_SIZE_MISSMATCH_IN_PARTICIPANTS_AND_GOALS = "참가자의 수와 실행결과의 수가 일치하지 않습니다.";
+    public static final String MESSAGE_SIZE_MISMATCH_IN_PARTICIPANTS_AND_GOALS = "참가자의 수와 실행결과의 수가 일치하지 않습니다.";
 
     private final Names participants;
     private final Names goals;
@@ -84,7 +84,7 @@ public class LadderManager {
                 throw new NullPointerException(MESSAGE_LADDER_NON_NULL);
             }
             if (this.participants.getSize() != this.goals.getSize()) {
-                throw new RuntimeException(MESSAGE_SIZE_MISSMATCH_IN_PARTICIPANTS_AND_GOALS);
+                throw new RuntimeException(MESSAGE_SIZE_MISMATCH_IN_PARTICIPANTS_AND_GOALS);
             }
         }
 
