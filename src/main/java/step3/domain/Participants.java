@@ -17,7 +17,7 @@ public class Participants {
 
     private static List<Participant> toParticipant(List<String> participants) {
         return IntStream.range(0, participants.size())
-                .mapToObj(i -> Participant.of(Name.of(participants.get(i)), ParticipantPosition.of(i)))
+                .mapToObj(i -> Participant.of(ParticipantName.of(participants.get(i)), i))
                 .collect(Collectors.toList());
     }
 

@@ -1,7 +1,7 @@
 package step3.domain;
 
-import ladder.exception.EmptyRewardException;
-import ladder.utils.StringUtil;
+import step3.exception.EmptyRewardException;
+import step3.utils.StringUtil;
 
 public class Reward {
     private String name;

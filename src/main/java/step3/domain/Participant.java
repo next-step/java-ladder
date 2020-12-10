@@ -3,23 +3,23 @@ package step3.domain;
 import java.util.Objects;
 
 public class Participant {
-    private Name name;
-    private ParticipantPosition position;
+    private ParticipantName participantName;
+    private final int position;
 
-    private Participant(Name name, ParticipantPosition position) {
-        this.name = name;
+    private Participant(ParticipantName participantName, int position) {
+        this.participantName = participantName;
         this.position = position;
     }
 
-    public static Participant of(Name name, ParticipantPosition position) {
-        return new Participant(name, position);
+    public static Participant of(ParticipantName participantName, int position) {
+        return new Participant(participantName, position);
     }
 
-    public Name getName() {
-        return name;
+    public ParticipantName getName() {
+        return participantName;
     }
 
-    public ParticipantPosition getPosition() {
+    public Integer getPosition() {
         return position;
     }
 
@@ -28,12 +28,12 @@ public class Participant {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Participant that = (Participant) o;
-        return Objects.equals(name, that.name) &&
+        return Objects.equals(participantName, that.participantName) &&
                 Objects.equals(position, that.position);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, position);
+        return Objects.hash(participantName, position);
     }
 }

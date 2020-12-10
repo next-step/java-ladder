@@ -5,11 +5,11 @@ import step3.utils.LadderUtil;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Ladder {
 
-    private List<Lines> lines;
+    private final List<Lines> lines;
 
     private Ladder(List<Lines> lines) {
         this.lines = lines;
@@ -20,8 +20,8 @@ public class Ladder {
     }
 
     private static List<Lines> createLines(int countOfPerson, int maxHeight) {
-        return IntStream.range(0, maxHeight)
-                .mapToObj(j -> Lines.of(createLine(countOfPerson)))
+        return Stream.generate(() -> Lines.of(createLine(countOfPerson)))
+                .limit(maxHeight)
                 .collect(Collectors.toList());
     }
 

@@ -1,6 +1,8 @@
 package step3.domain;
 
 public class LadderGameResult {
-    private Name name;
+    private ParticipantName participantName;
     private Reward reward;
+
+
 }
