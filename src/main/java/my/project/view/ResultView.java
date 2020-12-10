@@ -5,8 +5,8 @@ import my.project.domain.Reward;
 import my.project.domain.Symbol;
 import my.project.domain.User;
 import my.project.dto.Result;
-import my.project.dto.Rewards;
-import my.project.dto.Users;
+import my.project.domain.Rewards;
+import my.project.domain.Users;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -48,7 +48,7 @@ public class ResultView {
 
     private static void printRewards(Rewards rewards) {
         System.out.println(rewards.getRewards().stream()
-                .map(Reward::getReward)
+                .map(Reward::get)
                 .collect(Collectors.joining(DELIMITER)));
     }
 

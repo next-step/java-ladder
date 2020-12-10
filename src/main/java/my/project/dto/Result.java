@@ -20,6 +20,6 @@ public class Result {
     }
 
     public String getReward() {
-        return this.reward.getReward();
+        return this.reward.get();
     }
 }

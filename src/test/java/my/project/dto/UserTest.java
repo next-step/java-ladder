@@ -24,29 +24,10 @@ class UserTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    /*
-    @Test
-    void whenFiltersWithoutOptional_thenCorrect() {
-        assertThat(ageIsInRange1(new User("crong", 35))).isTrue();
-        assertThat(ageIsInRange1(new User("crong", 48))).isFalse();
-        assertThat(ageIsInRange1(new User("crong", null))).isFalse();
-        assertThat(ageIsInRange1(new User("crong", 29))).isFalse();
-        assertThat(ageIsInRange1(null)).isFalse();
-    }
-
-    @Test
-    void whenFiltersWithOptional_thenCorrect() {
-        assertThat(ageIsInRange2(new User("crong", 35))).isTrue();
-        assertThat(ageIsInRange2(new User("crong", 48))).isFalse();
-        assertThat(ageIsInRange2(new User("crong", null))).isFalse();
-        assertThat(ageIsInRange2(new User("crong", 29))).isFalse();
-        assertThat(ageIsInRange2(null)).isFalse();
-    }
-     */
-
-    @Test
-    void exp() {
-        assertThat(Pattern.matches("^([A-z0-9,]{1,5})$", "a")).isTrue();
+    @ParameterizedTest
+    @ValueSource(strings = {"a", "꽝","1"})
+    void exp(String input) {
+        assertThat(Pattern.matches("^([A-z0-9ㄱ-ㅎㅏ-ㅣ가-힣,]{1,5})$", input)).isTrue();
     }
 
     @Test

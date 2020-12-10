@@ -1,7 +1,7 @@
 package my.project.dto;
 
 import my.project.domain.User;
-import org.assertj.core.api.Assertions;
+import my.project.domain.Users;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -16,7 +16,7 @@ class UsersTest {
     @ParameterizedTest
     @ValueSource(strings = {"pobi,honux,crong,jk"})
     void givenUsers_thenParsing(String input) {
-        Assertions.assertThat(new Users(input).getUsers()).hasSize(4);
+        assertThat(new Users(input).getUsers()).hasSize(4);
     }
 
     @DisplayName("참여할 사람 잘못된 값")

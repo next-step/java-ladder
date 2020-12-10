@@ -1,8 +1,10 @@
 package my.project.domain;
 
 
+import java.util.regex.Pattern;
+
 public class Reward {
-    public static final String INPUT_REWARD_ALERT = "실행 결과를 확인해주십시요.";
+    public static final String INPUT_REWARD_ALERT = "실행 결과를 확인해주십시요.(최대 " + User.MAX_LENGTH + "자)";
 
     private final String reward;
 
@@ -12,16 +14,12 @@ public class Reward {
     }
 
     private void validate(String reward) {
-        if (isBlank(reward)) {
+        if (!Pattern.matches(User.USER_PATTERN, reward)) {
             throw new IllegalArgumentException(INPUT_REWARD_ALERT);
         }
     }
 
-    private boolean isBlank(String reward) {
-        return reward == null || reward.trim().isEmpty();
-    }
-
-    public String getReward() {
+    public String get() {
         return String.format("%-" + User.MAX_LENGTH + "s", reward);
     }
 }

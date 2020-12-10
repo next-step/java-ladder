@@ -2,8 +2,8 @@ package my.project;
 
 import my.project.domain.Ladder;
 import my.project.dto.Result;
-import my.project.dto.Rewards;
-import my.project.dto.Users;
+import my.project.domain.Rewards;
+import my.project.domain.Users;
 import my.project.view.InputView;
 import my.project.view.ResultView;
 
@@ -16,7 +16,7 @@ import java.util.List;
 public class Application {
     public static void main(String[] args) {
         Users users = new Users(InputView.getUsers());
-        Rewards rewards = new Rewards(InputView.getRewards());
+        Rewards rewards = new Rewards(InputView.getRewards(), users);
         Ladder ladder = new Ladder(users, InputView.getLadderHeight());
         ResultView.print(users, ladder, rewards);
 

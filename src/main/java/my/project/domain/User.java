@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 
 public class User {
     public static final int MAX_LENGTH = 5;
-    public static final String USER_PATTERN = "^([A-z0-9,]{1," + MAX_LENGTH + "})$";
+    public static final String USER_PATTERN = "^([A-z0-9ㄱ-ㅎㅏ-ㅣ가-힣,]{1," + MAX_LENGTH + "})$";
     public static final String INPUT_USER_ALERT = "사용자명을 확인해주십시요.(최대 " + MAX_LENGTH + "자)";
     public static final int USER_START_POINT_MULTIPLE = 2;
     public static final int FIRST_LINE = 0;

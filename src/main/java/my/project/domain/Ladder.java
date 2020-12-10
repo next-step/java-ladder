@@ -1,9 +1,6 @@
 package my.project.domain;
 
-import my.project.dto.Lines;
 import my.project.dto.Result;
-import my.project.dto.Rewards;
-import my.project.dto.Users;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,16 +18,9 @@ public class Ladder {
     private final int height;
 
     public Ladder(Users users, int height) {
-        lines = new Lines();
+        lines = new Lines(users, height);
         this.users = users;
         this.height = height;
-
-        lines.make(users, height);
-        lines.balance(height);
-    }
-
-    public Lines getLines() {
-        return lines;
     }
 
     public List<Result> results(String username, Rewards rewards) {
@@ -40,37 +30,46 @@ public class Ladder {
         return resultOne(username, rewards);
     }
 
-    private List<Result> resultOne(String username, Rewards rewards) {
-        List<Result> resultList = new ArrayList<>();
-        resultList.add(result(username, rewards));
-        return resultList;
-    }
-
     private List<Result> resultsAll(Rewards rewards) {
         return users.getUsers().stream()
                 .map(user -> result(user.getName().trim(), rewards))
                 .collect(Collectors.toList());
     }
 
+    private List<Result> resultOne(String username, Rewards rewards) {
+        List<Result> resultList = new ArrayList<>();
+        resultList.add(result(username, rewards));
+        return resultList;
+    }
+
     private Result result(String username, Rewards rewards) {
         Point point = users.getUserPoint(username);
-
-        while (point.getY() < height) {
-            IntStream.range(FIRST_LINE, height)
-                    .forEach(y -> IntStream.range(FIRST_LINE, lines.get(y).getPoints().size())
-                            .forEach(x -> {
-                                if (point.getX() == x && point.getY() == y) {
-                                    move(point, x, y);
-
-                                    if (y == height) {
-                                        lastMove(point, x, y);
-                                    }
-                                }
-                            }));
+        while (toEndLine(point)) {
+            moving(point);
         }
+        return new Result(username, rewards.getReward(point.getX()));
+    }
 
-        Reward reward = rewards.getReward(point.getX());
-        return new Result(username, reward);
+    private boolean toEndLine(Point point) {
+        return point.getY() < height;
+    }
+
+    private void moving(Point point) {
+        for (int lineIndex = 0; lineIndex < height; lineIndex++) {
+            searchLine(point, lineIndex);
+        }
+    }
+
+    private void searchLine(Point point, int y) {
+        IntStream.range(FIRST_LINE, lines.getSize(y))
+                .forEach(x -> find(point, y, x));
+    }
+
+    private void find(Point point, int y, int x) {
+        if (point.getX() == x && point.getY() == y) {
+            move(point, x, y);
+            lastLineAction(point, y, x);
+        }
     }
 
     private void move(Point point, int x, int y) {
@@ -83,6 +82,12 @@ public class Ladder {
             return;
         }
         point.move(x, y + NEXT);
+    }
+
+    private void lastLineAction(Point point, int y, int x) {
+        if (y == height) {
+            lastMove(point, x, y);
+        }
     }
 
     private void lastMove(Point point, int x, int y) {
@@ -107,5 +112,9 @@ public class Ladder {
             return false;
         }
         return lines.get(y).getPoints().get(x - NEXT) == Symbol.BRIDGE;
+    }
+
+    public Lines getLines() {
+        return lines;
     }
 }

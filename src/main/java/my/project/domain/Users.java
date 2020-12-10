@@ -1,13 +1,9 @@
-package my.project.dto;
-
-import my.project.domain.Point;
-import my.project.domain.User;
+package my.project.domain;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Users {
     public static final String DELIMITER = ",";
@@ -17,7 +13,10 @@ public class Users {
 
     public Users(String sUsers) {
         this.users = new ArrayList<>();
-        List<String> userList = Arrays.stream(sUsers.split(DELIMITER)).collect(Collectors.toList());
+
+        List<String> userList = Arrays.stream(sUsers.split(DELIMITER))
+                .collect(Collectors.toList());
+
         for (int i = 0; i < userList.size(); i++) {
             users.add(new User(userList.get(i), i));
         }
@@ -36,5 +35,9 @@ public class Users {
 
     public Point getUserPoint(String name) {
         return getUser(name).getPoint();
+    }
+
+    public int size() {
+        return users.size();
     }
 }

@@ -13,9 +13,10 @@ public class Line {
     public static final int ZERO = 0;
     public static final int ONE = 1;
     public static final int EVEN = 2;
-    private final List<Symbol> points = new ArrayList<>();
+    private final List<Symbol> points;
 
     public Line(int countOfPerson) {
+        points = new ArrayList<>();
         int end = countOfPerson + countOfPerson - ONE;
 
         IntStream.range(ZERO, end)
