@@ -1,11 +1,11 @@
 package ladder.domain;
 
-public class LadderGameResult {
+public class LadderBuildResult {
 
     private Ladders ladders;
     private Players players;
 
-    public LadderGameResult(Ladders ladders, Players players){
+    public LadderBuildResult(Ladders ladders, Players players){
         this.ladders = ladders;
         this.players = players;
     }

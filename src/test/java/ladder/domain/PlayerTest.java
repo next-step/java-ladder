@@ -3,10 +3,13 @@ package ladder.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class PlayerTest {
+
+    private static final int PLAYER_NAME_MAX_LENGTH = 5;
 
     @DisplayName("Player 생성 테스트")
     @Test
@@ -15,7 +18,7 @@ public class PlayerTest {
         String playerName = "AAA";
 
         // when
-        Player player = new Player(playerName);
+        Player player = Player.from(playerName);
 
         // then
         assertThat(player.getName()).isEqualTo(playerName);
@@ -30,8 +33,8 @@ public class PlayerTest {
 
             String playerName = "christoper";
 
-            new Player(playerName);
+            Player.from(playerName);
 
-        }).withMessageContaining(LadderGameErrorMessage.ILLEGAL_MAX_PLAYER_NAME.getErrorMessage());
+        }).withMessageContaining("참여할 사람의 이름은 최대 "+PLAYER_NAME_MAX_LENGTH+" 글자 입니다.");
     }
 }

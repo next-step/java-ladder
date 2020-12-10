@@ -17,11 +17,11 @@ public class LineTest {
 
         assertThatIllegalArgumentException().isThrownBy(() -> {
             List<Point> points = new ArrayList<>();
-            points.add(new Point(true));
-            points.add(new Point(true));
+            points.add(new Point(Direction.of(false, true)));
+            points.add(new Point(Direction.of(true, true)));
 
             new Line(points);
 
-        }).withMessageContaining(LadderGameErrorMessage.ILLEGAL_LINE_POINTS.getErrorMessage());
+        }).withMessageContaining("사다리 가로라인은 겹칠 수 없습니다.");
     }
 }

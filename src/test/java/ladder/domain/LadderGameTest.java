@@ -14,7 +14,9 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 
 public class LadderGameTest {
 
+    private static final int MIN_LADDER_HEIGHT = 1;
     private LineBuildStrategy lineBuildStrategy;
+
 
     @BeforeEach
     public void init(){
@@ -37,6 +39,7 @@ public class LadderGameTest {
         assertThat(ladders.getLadders().size()).isEqualTo(ladderMaxHeight);
     }
 
+
     @DisplayName("사다리 최소 높이(1)보다 작은 경우 Exception Test")
     @ParameterizedTest
     @ValueSource(ints = {0, -2})
@@ -47,7 +50,7 @@ public class LadderGameTest {
             LadderGame ladderGame = new LadderGame(new RandomLineBuildStrategy());
             ladderGame.start(3, maxHeight);
 
-        }).withMessageContaining(LadderGameErrorMessage.OVER_MIN_HEIGHT.getErrorMessage());
+        }).withMessageContaining("최소 사다리 높이는 "+MIN_LADDER_HEIGHT+" 입니다.");
     }
 
 

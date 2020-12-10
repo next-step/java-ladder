@@ -9,7 +9,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class LadderGameResultTest {
+public class LadderBuildResultTest {
 
     private Players players;
     private Ladders ladders;
@@ -21,7 +21,7 @@ public class LadderGameResultTest {
         players = new Players(playNames);
 
         List<Point> lineConnections = new ArrayList<>();
-        lineConnections.add(new Point(true));
+        lineConnections.add(new Point(Direction.of(false,true)));
 
         List<Ladder> ladderList = new ArrayList<>();
         ladderList.add(new Ladder(new Line(lineConnections)));
@@ -33,7 +33,7 @@ public class LadderGameResultTest {
     @Test
     void ladderGameResultCreationTest(){
         // given
-        LadderGameResult line = new LadderGameResult( ladders, players);
+        LadderBuildResult line = new LadderBuildResult(ladders, players);
         // then
         assertThat(line.getPlayers()).isEqualTo(players);
 

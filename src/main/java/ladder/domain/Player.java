@@ -2,15 +2,19 @@ package ladder.domain;
 
 import java.util.Objects;
 
-import static ladder.domain.LadderGameConfig.PLAYER_NAME_MAX_LENGTH;
 
 public class Player {
 
+    private static final int PLAYER_NAME_MAX_LENGTH = 5;
     private String name;
 
-    public Player(String name){
+    private Player(String name){
         validatePlayerName(name);
         this.name = name;
+    }
+
+    public static Player from(String name){
+        return new Player(name);
     }
 
     public String getName() {
@@ -19,7 +23,7 @@ public class Player {
 
     private void validatePlayerName(String playerName) {
         if(playerName.length() > PLAYER_NAME_MAX_LENGTH){
-            throw new IllegalArgumentException(LadderGameErrorMessage.ILLEGAL_MAX_PLAYER_NAME.getErrorMessage());
+            throw new IllegalArgumentException("참여할 사람의 이름은 최대 "+PLAYER_NAME_MAX_LENGTH+" 글자 입니다.");
         }
     }
 

@@ -3,10 +3,9 @@ package ladder.domain;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static ladder.domain.LadderGameConfig.MIN_LADDER_HEIGHT;
-
 public class LadderGame {
 
+    private static final int MIN_LADDER_HEIGHT = 1;
     private LineBuildStrategy lineBuildStrategy;
 
 
@@ -21,7 +20,7 @@ public class LadderGame {
 
     private void validateLadderMinHeight(int ladderMaxHeight) {
         if(ladderMaxHeight < MIN_LADDER_HEIGHT){
-            throw new IllegalArgumentException(LadderGameErrorMessage.OVER_MIN_HEIGHT.getErrorMessage());
+            throw new IllegalArgumentException("최소 사다리 높이는 "+MIN_LADDER_HEIGHT+" 입니다.");
         }
     }
 

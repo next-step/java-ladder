@@ -3,11 +3,7 @@ package ladder.domain;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
 
-import static ladder.domain.LadderGameConfig.CONNECTED_DELIMITER;
-import static ladder.domain.LadderGameConfig.NOT_CONNECTED_DELIMITER;
 
 public class Line {
 
@@ -19,15 +15,12 @@ public class Line {
     }
 
     private void validatePoints(List<Point> points) {
-
-        String pointsValue = points.stream()
-                .map(point -> point.isConnected() ? CONNECTED_DELIMITER: NOT_CONNECTED_DELIMITER)
-                .collect(Collectors.joining());
-
-        if(pointsValue.contains(CONNECTED_DELIMITER+CONNECTED_DELIMITER)){
-            throw new IllegalArgumentException(LadderGameErrorMessage.ILLEGAL_LINE_POINTS.getErrorMessage());
-        }
-
+        points.stream()
+                .filter(point -> point.getDirection().isLeft() && point.getDirection().isRight())
+                .findAny()
+                .ifPresent(point -> {
+                    throw new IllegalArgumentException("사다리 가로라인은 겹칠 수 없습니다.");
+                });
     }
 
     public List<Point> getPoints() {

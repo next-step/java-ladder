@@ -15,8 +15,7 @@ public class LadderTest {
 
     @BeforeEach
     public void init(){
-        lineConnections.add(new Point(true));
-        lineConnections.add(new Point(false));
+        lineConnections.add(new Point(Direction.of(false,true)));
     }
 
     @DisplayName("Ladder 생성 테스트")
@@ -30,6 +29,19 @@ public class LadderTest {
 
         // then
         assertThat(ladder.getLine()).isEqualTo(new Line(lineConnections));
+    }
+
+    @DisplayName("Ladder move 테스트")
+    @Test
+    void ladderMoveTest(){
+        // given
+        Line line = new Line(lineConnections);
+
+        // when
+        Ladder ladder = new Ladder(line);
+
+        // then
+        assertThat(ladder.move(0)).isEqualTo(1);
     }
 
 }
