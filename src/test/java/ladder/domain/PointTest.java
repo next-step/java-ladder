@@ -18,11 +18,11 @@ public class PointTest {
     @Test
     @DisplayName("허용되지 않은 상태에 대한 생성 테스트")
     void testInstance() {
-        new Point(false, false);
-        new Point(false, true);
-        new Point(true, false);
+        Point.custom(false, false);
+        Point.custom(false, true);
+        Point.custom(true, false);
 
-        assertThatThrownBy(() -> new Point(true, true))
+        assertThatThrownBy(() -> Point.custom(true, true))
                 .isInstanceOf(InvalidLayoutException.class);
     }
 
@@ -37,16 +37,22 @@ public class PointTest {
 
     private static Stream<Arguments> allStatus() {
         return Stream.of(
-                Arguments.of(new Point(false, false), 1),
-                Arguments.of(new Point(false, true), 2),
-                Arguments.of(new Point(true, false), 0)
+                Arguments.of(Point.custom(false, false), 1),
+                Arguments.of(Point.custom(false, true), 2),
+                Arguments.of(Point.custom(true, false), 0)
         );
     }
 
     @Test
     @DisplayName("동일성 테스트")
     void testEquality() {
-        assertThat(new Point(false, false))
-                .isEqualTo(new Point(false, false));
+        assertThat(Point.custom(false, false))
+                .isEqualTo(Point.custom(false, false));
+    }
+
+    @Test
+    @DisplayName("사다리 시작 점 추가")
+    void testFirstPoint(){
+        assertThat(Point.first(true)).isEqual(Point.custom(false, true));
     }
 }
