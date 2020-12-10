@@ -14,12 +14,14 @@ import static java.util.stream.Collectors.toList;
  */
 public class Names {
 
-    public static final String MESSAGE_PARTICIPANTS_LIST_NON_NULL = "최소 한명 이상이 참여해야 합니다.";
+    public static final String MESSAGE_PARTICIPANTS_LIST_NON_NULL = "최소 두 명 이상이 참여해야 합니다.";
     private static final String tokenizer = ",";
+    private static final int MINIMUM_NUMBER = 2;
 
     private final List<Name> names;
 
     private Names(List<Name> names) {
+        checkMinimumSize(names.size());
         this.names = names;
     }
 
@@ -44,6 +46,12 @@ public class Names {
 
     private static void checkNull(String inputNames) {
         if (Objects.isNull(inputNames) || inputNames.isEmpty()) {
+            throw new IllegalArgumentException(MESSAGE_PARTICIPANTS_LIST_NON_NULL);
+        }
+    }
+
+    private static void checkMinimumSize(int size) {
+        if (MINIMUM_NUMBER > size) {
             throw new IllegalArgumentException(MESSAGE_PARTICIPANTS_LIST_NON_NULL);
         }
     }
