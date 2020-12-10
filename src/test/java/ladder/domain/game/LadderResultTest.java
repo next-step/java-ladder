@@ -5,11 +5,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Arrays;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 /**
  * Created By mand2 on 2020-12-09.
@@ -67,5 +69,15 @@ class LadderResultTest {
                 .isEqualTo(expectedGoal);
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {"가", "나", "ab"})
+    void 결과값_찾기시_잘못된_참가자_이름을_입력하면_예외처리(String findName) {
+        LadderResult ladderResult = LadderResult.of(participants, ladder.moveAll(goals));
+
+        assertThatThrownBy(() ->
+                    ladderResult.getResultOfOneParticipant(Name.from(findName))
+        ).isInstanceOf(IllegalArgumentException.class)
+            .hasMessage(ladderResult.MESSAGE_NAME_NOT_MATCH_PARTICIPANT_LIST);
+    }
 
 }

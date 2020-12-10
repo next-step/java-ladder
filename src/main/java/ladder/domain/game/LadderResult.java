@@ -12,6 +12,7 @@ import java.util.stream.IntStream;
  */
 public class LadderResult {
 
+    public static final String MESSAGE_NAME_NOT_MATCH_PARTICIPANT_LIST = "입력한 이름과 일치하는 참가자가 없습니다.";
     private final Map<Name, Name> resultOfLadder;
 
 
@@ -35,7 +36,14 @@ public class LadderResult {
     }
 
     public Name getResultOfOneParticipant(Name participant) {
+        checkParticipant(participant);
         return this.resultOfLadder.get(participant);
+    }
+
+    private void checkParticipant(Name participant) {
+        if (!this.resultOfLadder.keySet().contains(participant)) {
+            throw new IllegalArgumentException(MESSAGE_NAME_NOT_MATCH_PARTICIPANT_LIST);
+        }
     }
 
     public Map<Name, Name> getResultOfAll() {
