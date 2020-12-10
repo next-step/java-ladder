@@ -2,6 +2,8 @@ package ladder.view;
 
 import ladder.domain.Ladders;
 
+import java.util.List;
+
 public class LadderGameView {
 
     public static String enterParticipants() {
@@ -12,7 +14,7 @@ public class LadderGameView {
         return InputView.enterMaxLadderHeight();
     }
 
-    public static void printLadders(Ladders ladders) {
-        ResultView.printResult(ladders);
+    public static void printLadders(Ladders ladders, List<String> participants) {
+        ResultView.printResult(ladders, participants);
     }
 }

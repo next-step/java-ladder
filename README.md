@@ -42,8 +42,9 @@ LadderHeight
 - int: value
 
 ##TODO
-- 사다리 게임 생성 및 실행 결과 구현
+
 - 사용하지 않는 메서드 삭제
+- 중복되는 이름 입력시 Exception을 throw
 ##DONE
 - 가로 사다리를 생성
     1. 랜덤하게 생성할지 말지를 결정하고, 이전 가로 사다리가 생성되어 있으면 생성하지 않음
@@ -51,3 +52,4 @@ LadderHeight
 - 가로 사다리, 세로 사다리를 합쳐서 사다리 게임 생성
 - TransverseLadder(가로 사다리) indent 1로 수정
 - 참가자(Participants)를 생성하는 Class 추가
+- 사다리 게임 생성 및 실행 결과 구현

@@ -11,6 +11,6 @@ public class LadderGameController {
 
         LadderGame ladderGame = new LadderGame(names, height);
 
-
+        LadderGameView.printLadders(ladderGame.getLadders(), ladderGame.getParticipantNames());
     }
 }

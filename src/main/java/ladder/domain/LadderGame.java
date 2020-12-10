@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import java.util.List;
+
 public class LadderGame {
 
     private final Participants participants;
@@ -11,6 +13,10 @@ public class LadderGame {
     }
 
     public Ladders getLadders() {
-        return new Ladders(participants.size(), ladderHeight);
+        return new Ladders(participants, ladderHeight);
+    }
+
+    public List<String> getParticipantNames() {
+        return participants.getValue();
     }
 }

@@ -7,15 +7,15 @@ import org.junit.jupiter.api.Test;
 class LaddersTest {
 
     @Test
-    @DisplayName("사람 수, 사다리 높이를 입력 받아 사다리 생성")
+    @DisplayName("사람 이름, 사다리 높이를 입력 받아 사다리 생성")
     void should_return_ladders() {
 
         //Given
-        int personCount = 6;
+        String names = "pobi,honux,crong,jk";
         int ladderHeight = 10;
 
         //When
-        Ladders ladders = new Ladders(personCount, new LadderHeight(ladderHeight));
+        Ladders ladders = new Ladders(new Participants(names), new LadderHeight(ladderHeight));
 
         //Then
         LadderGameView.printLadders(ladders);

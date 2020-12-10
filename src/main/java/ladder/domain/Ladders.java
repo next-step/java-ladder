@@ -6,10 +6,10 @@ import java.util.List;
 public class Ladders {
     private final List<Ladder> ladders;
 
-    public Ladders(int personCount, LadderHeight ladderHeight) {
+    public Ladders(Participants participants, LadderHeight ladderHeight) {
         List<Ladder> result = new ArrayList<>();
         for (int i = 0; i < ladderHeight.getValue(); i++) {
-            result.add(new Ladder(personCount));
+            result.add(new Ladder(participants.size()));
         }
         this.ladders = result;
     }
