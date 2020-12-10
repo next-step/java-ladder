@@ -1,32 +1,34 @@
 package dto;
 
+import domain.Participants;
+import domain.Rewards;
+
 public class InputDto {
-    private String names;
-    private String results;
-
-    public String getResults() {
-        return results;
-    }
-
-    public void setResults(String results) {
-        this.results = results;
-    }
-
+    private Participants participants;
+    private Rewards rewards;
     private int ladderHeight;
 
-    public String getNames() {
-        return names;
+    public Participants getParticipants() {
+        return participants;
     }
 
-    public void setNames(String names) {
-        this.names = names;
+    public Rewards getRewards() {
+        return rewards;
     }
 
     public int getLadderHeight() {
         return ladderHeight;
     }
 
-    public void setLadderHeight(int ladderHeight) {
+    public void setParticipants(final Participants participants) {
+        this.participants = participants;
+    }
+
+    public void setRewards(final Rewards rewards) {
+        this.rewards = rewards;
+    }
+
+    public void setLadderHeight(final int ladderHeight) {
         this.ladderHeight = ladderHeight;
     }
 }

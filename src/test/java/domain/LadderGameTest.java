@@ -1,23 +1,27 @@
 package domain;
 
-import dto.InputDto;
-import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ui.ResultView;
+
+import java.util.Map;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderGameTest {
+    private LadderGame ladderGame;
+
+    @BeforeEach
+    void init() {
+        Participants participants = Participants.of("a,b,c,d,e");
+        Rewards rewards = Rewards.of("1,2,3,4,5");
+        HeadAndTail headAndTail = HeadAndTail.init(participants, rewards);
+        Ladder ladder = Ladder.init(5, participants.size());
+        ladderGame = LadderGame.init(headAndTail, ladder);
+    }
 
     @Test
-    @DisplayName("사람 이름과 결과, 사다리 높이를 입력받은 후 해당 사다리를 출력하는 테스트")
-    void printLadder() {
-        InputDto inputDto = new InputDto();
-
-        inputDto.setNames("a,b,c,d,e");
-        inputDto.setLadderHeight(5);
-        inputDto.setResults("100,꽝,100,꽝,10000");
-
-        LadderGame ladderGame = LadderGame.of(inputDto);
-        
-        ResultView.print(ladderGame);
+    void fetchAllResultsTest() {
+        Map<String, String> allResults = ladderGame.fetchAllResults();
+        assertThat(allResults.get("a")).isBetween("1", "5");
     }
 }

@@ -1,4 +1,4 @@
-import domain.LadderGame;
+import domain.*;
 import dto.InputDto;
 import ui.InputView;
 import ui.ResultView;
@@ -6,24 +6,30 @@ import ui.ResultView;
 public class LadderApplication {
     private static final String ALL_RESULTS = "all";
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         InputDto inputDto = InputView.askInput();
-        LadderGame ladderGame = LadderGame.of(inputDto);
-        ResultView.print(ladderGame);
+        LadderGame ladderGame = convertInputToLadderGame(inputDto);
+        ResultView.printLadderGame(ladderGame);
 
         repeatUntilGivenAll(ladderGame);
     }
 
-    private static void repeatUntilGivenAll(LadderGame ladderGame) {
-        while(true) {
-            String name = InputView.askName();
+    private static LadderGame convertInputToLadderGame(final InputDto inputDto) {
+        Participants participants = inputDto.getParticipants();
+        Rewards rewards = inputDto.getRewards();
+        int ladderHeight = inputDto.getLadderHeight();
 
-            if(name.toLowerCase().equals(ALL_RESULTS)) {
-                ResultView.printAllResults(ladderGame);
-                return;
-            }
+        HeadAndTail headAndTail = HeadAndTail.init(participants, rewards);
+        Ladder ladder = Ladder.init(ladderHeight, participants.size());
 
-            ResultView.printResultOf(ladderGame, name);
-        }
+        return LadderGame.init(headAndTail, ladder);
+    }
+
+    private static void repeatUntilGivenAll(final LadderGame ladderGame) {
+        String name;
+        do{
+            name = InputView.askResultOf();
+            ResultView.printResultOf(name, ladderGame);
+        } while ( !name.equals(ALL_RESULTS) );
     }
 }

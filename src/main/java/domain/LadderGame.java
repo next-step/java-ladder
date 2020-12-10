@@ -1,54 +1,39 @@
 package domain;
 
-import dto.InputDto;
+import java.util.HashMap;
+import java.util.Map;
 
 public class LadderGame {
-    private PlayerNames playerNames;
-    private Ladder ladder;
-    private GameResults gameResults;
+    private final HeadAndTail headAndTail;
+    private final Ladder ladder;
 
-    private LadderGame(final PlayerNames playerNames, final Ladder ladder, final GameResults gameResults) {
-        this.playerNames = playerNames;
+    private LadderGame(final HeadAndTail headAndTail, final Ladder ladder) {
+        this.headAndTail = headAndTail;
         this.ladder = ladder;
-        this.gameResults = gameResults;
     }
 
-    public static LadderGame of(final InputDto inputDto) {
-        PlayerNames playerNames = PlayerNames.of(inputDto.getNames());
-        GameResults gameResults= GameResults.of(inputDto.getResults());
+    public static LadderGame init(final HeadAndTail headAndTail, final Ladder ladder) {
+        return new LadderGame(headAndTail, ladder);
+    }
 
-        Length height = Length.of(inputDto.getLadderHeight());
-        Length width = Length.of(playerNames.size());
-        Ladder ladder = Ladder.of(width, height);
+    public Map<String, String> fetchAllResults() {
 
-        return new LadderGame(playerNames, ladder, gameResults);
+        int numberOfPeople = headAndTail.getParticipants().size();
+
+        Map<String, String> allResults = new HashMap<>();
+
+        for(int i = 0; i < numberOfPeople; i++) {
+            allResults.put( headAndTail.getParticipants().get(i), headAndTail.getRewardAt(ladder.move(i)) );
+        }
+
+        return allResults;
+    }
+
+    public HeadAndTail getHeadAndTail() {
+        return headAndTail;
     }
 
     public Ladder getLadder() {
         return ladder;
-    }
-
-    public PlayerNames getPlayerNames() {
-        return playerNames;
-    }
-
-    public GameResults getGameResults() { return gameResults; }
-
-    private int play(final int start) {
-        return ladder.departsAt(Position.of(start)).value();
-    }
-
-    public String fetchResultOf(final String name) {
-        int index = play(playerNames.indexOf(name));
-        return gameResults.get(index);
-    }
-
-    public ResultMap fetchAllResults() {
-        ResultMap resultMap = ResultMap.create();
-        for(int i = 0; i < playerNames.size(); i++) {
-            resultMap.put(playerNames.get(i), gameResults.get(play(i)));
-        }
-
-        return resultMap;
     }
 }
