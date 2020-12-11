@@ -1,7 +1,6 @@
 package ladder.model;
 
 import ladder.model.group.Rewards;
-import ladder.model.move.Point;
 
 import java.util.*;
 
@@ -11,17 +10,18 @@ public class Result {
     private final static String RESULT_EMPTY_RESULT = "결과가 없습니다.";
 
     private Rewards rewards;
-    private Map<String, Point> results;
+    private Map<String, Integer> results;
 
-    private Result(Map<String, Point> results, Rewards rewards){
+    private Result(Map<String, Integer> results, Rewards rewards){
         this.results = results;
         this.rewards = rewards;
     }
 
-    public static Result of(Map<String, Point> results, Rewards rewards){
+    public static Result of(Map<String, Integer> results, Rewards rewards){
         if(results.isEmpty()){
             throw  new IllegalArgumentException(RESULT_EMPTY_RESULT);
         }
+
         return new Result(results, rewards);
     }
 
@@ -33,9 +33,10 @@ public class Result {
                     .orElseThrow(() -> new IllegalArgumentException(RESULT_ERROR));
         }
 
-        Point resultPoint = Optional.ofNullable(results.get(name))
-                .orElseThrow(() -> new IllegalArgumentException(RESULT_ERROR));
+        if(results.containsKey(name)){
+            return rewards.getReward(results.get(name));
+        }
 
-        return rewards.getReward(resultPoint);
+        throw new IllegalArgumentException(RESULT_ERROR);
     }
 }

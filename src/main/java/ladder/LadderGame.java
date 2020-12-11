@@ -7,6 +7,5 @@ public class LadderGame {
         LadderController ladderController = new LadderController();
 
         ladderController.run();
-
     }
 }

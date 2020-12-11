@@ -2,7 +2,6 @@ package ladder;
 
 import ladder.model.Result;
 import ladder.model.group.Rewards;
-import ladder.model.move.Point;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -18,7 +17,7 @@ public class ResultTest {
     @Test
     public void 비정상_생성(){
         assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> Result.of(Collections.emptyMap(), Rewards.from("a,b", 2)))
+                .isThrownBy(() -> Result.of(Collections.emptyMap(), Rewards.from("a,b")))
                 .withMessageMatching("결과가 없습니다.");
     }
 
@@ -49,11 +48,11 @@ public class ResultTest {
     }
 
     private Result getResult(){
-        Map<String, Point> rewards = new LinkedHashMap();
-        rewards.put("user1", Point.rewardPoint(0,3));
-        rewards.put("user2", Point.rewardPoint(1,3));
-        rewards.put("user3", Point.rewardPoint(2,3));
+        Map<String, Integer> rewards = new LinkedHashMap();
+        rewards.put("user1",0);
+        rewards.put("user2", 1);
+        rewards.put("user3", 2);
 
-        return Result.of(rewards, Rewards.from("a,b,c", 3));
+        return Result.of(rewards, Rewards.from("a,b,c"));
     }
 }

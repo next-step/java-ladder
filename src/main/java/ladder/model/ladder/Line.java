@@ -1,77 +1,67 @@
 package ladder.model.ladder;
 
 import ladder.model.move.Point;
+import ladder.view.LadderItem;
+import utils.RandomUtils;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.IntStream;
 
 public class Line {
-    private final static String LINE_ERROR_MESSAGE = "올바르지 못한 라인입니다.";
-    private final List<Bridge> bridges;
+    private final List<Point> points;
 
-    private Line(List<Bridge> bridges) {
-        this.bridges = bridges;
+    public Line(List<Point> points) {
+        this.points = points;
     }
 
-    public static Line from(List<Bridge> bridges) {
-        validateLine(bridges);
-        return new Line(bridges);
+    public int move(int position) {
+        return points.get(position).move();
     }
 
-    public Point movePoint(Point point){
-        Optional<Bridge> optionalBridge = getBridge(point);
+    public static Line from(int sizeOfPerson) {
+        List<Point> points = new ArrayList<>();
+        Point point = initFirst(points);
+        point = initBody(sizeOfPerson, points, point);
+        initLast(points, point);
+        return new Line(points);
+    }
 
-        if(optionalBridge.isPresent()){
-            point = point.move(optionalBridge.get().directionByUser(point));
+    public int size(){
+        return points.size();
+    }
+
+    private static Point initBody(int sizeOfPerson, List<Point> points, Point point) {
+        for (int i = 1; i < sizeOfPerson - 1; i++) {
+            point = point.next();
+            points.add(point);
         }
-
-        point = point.moveDown();
-
         return point;
     }
 
-    private Optional<Bridge> getBridge(Point point){
-        return bridges.stream()
-                .filter(bridge -> bridge.isCross(point))
-                .filter(Bridge::isMovable)
-                .findFirst();
+    private static void initLast(List<Point> points, Point point) {
+        point = point.last();
+        points.add(point);
     }
 
-    private static void validateLine(List<Bridge> bridges) {
-        if (bridges.size() == 1) {
-           return;
-        }
-
-        boolean hasInvalidLadderItem = IntStream.range(0, bridges.size() - 1)
-                .mapToObj(idx -> window(idx, bridges))
-                .reduce((x, y) -> x || y)
-                .orElse(Boolean.TRUE);
-
-        if (hasInvalidLadderItem) {
-            throw new IllegalArgumentException(LINE_ERROR_MESSAGE);
-        }
-    }
-
-    private static boolean window(int idx, List<Bridge> bridges) {
-        Bridge now = bridges.get(idx);
-        Bridge next = bridges.get(idx + 1);
-
-        return now.isMovable() && next.isMovable();
+    private static Point initFirst(List<Point> points) {
+        Point point = Point.first(RandomUtils.trueOrFalse());
+        points.add(point);
+        return point;
     }
 
     @Override
     public String toString() {
         StringBuilder line = new StringBuilder(LadderItem.VERTICAL.getItem());
-
-        bridges.stream()
+        IntStream.range(0, points.size()-1).boxed()
+                .map(points::get)
                 .map(this::partOfLine)
                 .forEach(line::append);
 
         return line.toString();
     }
 
-    private String partOfLine(Bridge bridge) {
-        return bridge.toString() + LadderItem.VERTICAL.getItem();
+    private String partOfLine(Point point) {
+        return point.toString() + LadderItem.VERTICAL.getItem();
     }
 }
