@@ -23,8 +23,4 @@ public class InputResult {
     public String[] splitResults() {
         return results.split(COMMA_DELIMITER);
     }
-
-    public String getResults() {
-        return results;
-    }
 }

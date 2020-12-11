@@ -11,8 +11,6 @@ import java.util.stream.Collectors;
 
 public class LadderController {
 
-    private final int ZERO = 0;
-
     public void start() {
         InputView inputView = new InputView();
         ResultView resultView = new ResultView();

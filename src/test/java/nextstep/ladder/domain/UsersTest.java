@@ -11,13 +11,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class UsersTest {
 
-    Users users;
-
     @Test
     @DisplayName("참가자 리스트 생성 기능")
     void initUsers() {
         String names = "java,study,game";
-        users = setUp(names);
+        Users users = setUp(names);
 
         assertThat(users.getUsers().size()).isEqualTo(3);
     }
@@ -26,7 +24,7 @@ class UsersTest {
     @DisplayName("초기 user와 인덱스 맵 생성")
     void mapUserIndex() {
         String names = "java,study,game";
-        users = setUp(names);
+        Users users = setUp(names);
 
         Map<User, Integer> userMap = users.mapUserIndex();
 

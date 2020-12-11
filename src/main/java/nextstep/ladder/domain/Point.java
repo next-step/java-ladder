@@ -19,10 +19,6 @@ public class Point {
         return direction;
     }
 
-    public int getIndex() {
-        return index;
-    }
-
     private void checkFirstDirection(int index, Direction direction) {
         if(index == 0 && direction == Direction.LEFT) {
             throw new IllegalArgumentException("첫 방향은 왼쪽일 수 없습니다.");
