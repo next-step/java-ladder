@@ -29,12 +29,6 @@ public class ResultView {
         showLadder(ladder.getLadder());
         showNames(goals.getNames());
     }
-    public static void printLadder(LadderManager ladderManager) {
-        System.out.println(System.lineSeparator() + RESULT_LADDER + System.lineSeparator());
-        showNames(ladderManager.getParticipants());
-        showLadder(ladderManager.getLadder());
-        showNames(ladderManager.getGoals());
-    }
 
     public static void printGoals(LadderResult ladderResult, String inputName) {
         System.out.println(System.lineSeparator() + RESULT_GOALS);

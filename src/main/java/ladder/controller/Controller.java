@@ -1,7 +1,6 @@
 package ladder.controller;
 
 import ladder.domain.game.Ladder;
-import ladder.domain.game.LadderManager;
 import ladder.domain.game.Names;
 import ladder.strategy.ConnectionStrategy;
 import ladder.strategy.RandomConnectionStrategy;
@@ -17,28 +16,37 @@ import java.util.Scanner;
 public class Controller {
 
     public final static Scanner SCANNER = new Scanner(System.in);
+    private static final String MESSAGE_SIZE_MISMATCH_IN_PARTICIPANTS_AND_GOALS = "참가자의 수와 실행결과의 수가 일치하지 않습니다.";
 
     public static void main(String[] args) {
-        Names participants = Names.from(InputView.askParticipantList());
 
+        Names participants = Names.from(InputView.askParticipantList());
         Names goals = Names.from(InputView.askGoal());
+
+        checkParticipantsAndGoalsSize(participants, goals);
 
         int height = InputView.askLadderHeight();
 
         ConnectionStrategy connectionStrategy = new RandomConnectionStrategy();
+        Ladder ladder = Ladder.of(participants.getSize(), connectionStrategy, height);
 
-        LadderManager ladderManager = new LadderManager.Builder(participants, goals)
-                .ladder(connectionStrategy, height)
-                .build();
+        ResultView.printLadder(participants, ladder, goals);
 
-        ResultView.printLadder(ladderManager);
+        LadderResult ladderResult = LadderResult.of(participants, ladder.moveAll(goals));
 
         String inputName;
 
         do {
             inputName = InputView.askResultPerson();
-            ResultView.printGoals(ladderManager.getLadderResult(), inputName);
+            ResultView.printGoals(ladderResult, inputName);
         } while (!inputName.equals(ResultView.RESERVED_WORD_ALL));
 
     }
+
+    private static void checkParticipantsAndGoalsSize(Names participants, Names goals) {
+        if (participants.getSize() != goals.getSize()) {
+            throw new RuntimeException(MESSAGE_SIZE_MISMATCH_IN_PARTICIPANTS_AND_GOALS);
+        }        
+    }
+
 }
