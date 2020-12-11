@@ -1,11 +1,14 @@
 package step3.domain;
 
+import step3.exception.NotFoundException;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Participants {
-    private List<Participant> participants;
+    private static final int START_POINT = 2;
+    private final List<Participant> participants;
 
     private Participants(List<Participant> participants) {
         this.participants = participants;
@@ -17,11 +20,22 @@ public class Participants {
 
     private static List<Participant> toParticipant(List<String> participants) {
         return IntStream.range(0, participants.size())
-                .mapToObj(i -> Participant.of(ParticipantName.of(participants.get(i)), i))
+                .mapToObj(i -> Participant.of(participants.get(i), new Point(i * START_POINT, 0)))
                 .collect(Collectors.toList());
     }
 
     public List<Participant> getParticipants() {
         return participants;
+    }
+
+    public Participant getParticipant(String name) {
+        return participants.stream()
+                .filter(participant -> participant.getName().equals(name))
+                .findFirst()
+                .orElseThrow(() -> new NotFoundException(name));
+    }
+
+    public Point getPoint(String name) {
+        return this.getParticipant(name).getPosition();
     }
 }

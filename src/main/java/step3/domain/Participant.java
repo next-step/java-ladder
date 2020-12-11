@@ -1,26 +1,45 @@
 package step3.domain;
 
+import step3.exception.EmptyNameException;
+import step3.exception.LengthNameException;
+import step3.utils.StringUtil;
+
 import java.util.Objects;
 
 public class Participant {
-    private ParticipantName participantName;
-    private final int position;
 
-    private Participant(ParticipantName participantName, int position) {
+    private static final Integer MAX_LENGTH = 5;
+
+    private final String participantName;
+
+    private final Point position;
+
+    private Participant(String participantName, Point position) {
         this.participantName = participantName;
         this.position = position;
     }
 
-    public static Participant of(ParticipantName participantName, int position) {
+    public static Participant of(String participantName, Point position) {
+        validate(participantName);
         return new Participant(participantName, position);
     }
 
-    public ParticipantName getName() {
+    public String getName() {
         return participantName;
     }
 
-    public Integer getPosition() {
+    public Point getPosition() {
         return position;
+    }
+
+    private static void validate(String name) {
+        if (name.length() > MAX_LENGTH) {
+            throw new LengthNameException();
+        }
+
+        if (StringUtil.isEmpty(name)) {
+            throw new EmptyNameException();
+        }
     }
 
     @Override
