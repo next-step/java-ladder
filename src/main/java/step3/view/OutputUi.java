@@ -9,7 +9,6 @@ public class OutputUi {
     private static final String EMPTY = "";
     private static final Integer REPEAT = 5;
     private static final String STEP = "|";
-    private static final String LINE = "-----";
 
     private static void printResult() {
         System.out.println("실행결과");
@@ -25,7 +24,7 @@ public class OutputUi {
     private static void printParticipants(Participants participants) {
         participants.getParticipants()
                 .stream()
-                .map(name -> StringUtil.padRight(name.getName().getName(), REPEAT) + EMPTY)
+                .map(name -> StringUtil.padRight(name.getName(), REPEAT) + EMPTY)
                 .forEach(System.out::print);
         System.out.println();
     }
@@ -38,7 +37,7 @@ public class OutputUi {
         StringBuilder sb = new StringBuilder();
         sb.append(STEP);
         lines.getLineList().forEach(line -> {
-            sb.append(line.getLine() ? LINE : StringUtil.padRight(EMPTY, REPEAT) + EMPTY);
+            sb.append(line.getDirection().getDirection());
             sb.append(STEP);
         });
         System.out.println(sb);
@@ -50,6 +49,14 @@ public class OutputUi {
                 .map(e -> StringUtil.padRight(e.getName(), REPEAT) + EMPTY)
                 .forEach(System.out::print);
         System.out.println();
+    }
+
+    public static void printLadderGameResult(List<LadderGameResult> results) {
+        System.out.println("실행결과");
+
+        results.stream()
+                .map(ladderGameResult -> ladderGameResult.getName() + ": " + ladderGameResult.getReward().getName())
+                .forEach(System.out::println);
     }
 
 }

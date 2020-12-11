@@ -1,11 +1,12 @@
 package step3.Controller;
 
-import step3.domain.*;
+import step3.domain.Ladder;
+import step3.domain.LadderGame;
+import step3.domain.Participants;
+import step3.domain.Rewards;
 import step3.utils.SpliterUtil;
 import step3.view.InputUi;
 import step3.view.OutputUi;
-
-import java.util.List;
 
 public class LadderGameController {
 
@@ -20,10 +21,7 @@ public class LadderGameController {
 
         String name = InputUi.wantToSeeResult();
         LadderGame ladderGame = new LadderGame(ladder.getLines(), participants, maxHeight);
-        List<LadderGameResult> results = ladderGame.results(name, rewards);
-        for(LadderGameResult ladderGameResult : results) {
-            System.out.println(ladderGameResult.getName() +":reward ," + ladderGameResult.getReward().getName());
-        }
+        OutputUi.printLadderGameResult(ladderGame.results(name, rewards));
         InputUi.close();
     }
 
