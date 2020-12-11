@@ -6,29 +6,32 @@ import java.util.stream.Collectors;
 
 public class GameManager {
 
-    private final List<GameResult> gameResults;
+    private static final String DEFAULT_KEY = "all";
+    private final GameResults gameResults;
 
-    private GameManager(List<GameResult> gameResults) {
+    private GameManager(GameResults gameResults) {
         this.gameResults = gameResults;
     }
 
-    public static GameManager of(List<GameResult> gameResults) {
+    public static GameManager of(GameResults gameResults) {
         return new GameManager(gameResults);
     }
 
     public List<GameResult> getResult(String resultKey) {
-        String defaultKey = "all";
-
-        if (defaultKey.equals(resultKey)) {
-            return gameResults;
+        if (DEFAULT_KEY.equals(resultKey)) {
+            return gameResults.getGameResults();
         }
         return selectResult(resultKey);
     }
 
-    private List<GameResult> selectResult(String resultKey) {
-        return gameResults.stream()
-                .filter(e -> e.contains(resultKey))
+    private List<GameResult> selectResult(String userName) {
+        return gameResults.getGameResults().stream()
+                .filter(gameResult -> gameResult.contains(userName))
                 .collect(Collectors.toList());
+    }
+
+    public static String getDefaultKey() {
+        return DEFAULT_KEY;
     }
 
     @Override

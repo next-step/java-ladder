@@ -1,11 +1,12 @@
 package ladder.domain;
 
 import java.util.Objects;
+import static ladder.util.StringUtil.isBlank;
 
 public class GameResult {
 
     private static final String NOT_FOUND_USER = "유저이름에 Null 또는 공백이 올 수 없습니다.";
-    private static final String PRINT_SEPARATOR = " : ";
+
     private final User user;
     private final String reward;
 
@@ -22,17 +23,7 @@ public class GameResult {
         if (isBlank(userName)) {
             throw new NullPointerException(NOT_FOUND_USER);
         }
-        return user.getUserName().equals(userName);
-    }
-
-    private static boolean isBlank(String str) {
-        return str == null || str.trim().isEmpty();
-    }
-
-    public String toPrint() {
-        return user.getUserName() +
-                PRINT_SEPARATOR +
-                reward;
+        return user.contains(userName);
     }
 
     public User getUser() {

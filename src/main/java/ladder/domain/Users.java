@@ -4,11 +4,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import static ladder.util.StringUtil.isBlank;
 
 public class Users {
 
     private static final String USER_NAMES_EMPTY = "참여자 이름을 입력해야 합니다.";
     private static final String USER_NAMES_SEPARATOR = ",";
+
     private final List<User> users;
 
     private Users(List<User> users) {
@@ -26,10 +28,6 @@ public class Users {
         return Arrays.stream(userNames.split(USER_NAMES_SEPARATOR))
                 .map(User::of)
                 .collect(Collectors.toList());
-    }
-
-    private static boolean isBlank(String str) {
-        return str == null || str.trim().isEmpty();
     }
 
     public int countOfPerson() {

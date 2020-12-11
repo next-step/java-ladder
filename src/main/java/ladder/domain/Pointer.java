@@ -5,16 +5,17 @@ import java.util.Objects;
 public class Pointer {
 
     private static final String SAME_TRUE_TYPE = "두 상태값이 True 일 수 없습니다";
+
     private final boolean left;
     private final boolean right;
 
     private Pointer(boolean left, boolean right) {
-        throwIllegalStateException(left,right);
+        isSameBoolean(left,right);
         this.left = left;
         this.right = right;
     }
 
-    private void throwIllegalStateException(boolean left, boolean right) {
+    private void isSameBoolean(boolean left, boolean right) {
         if (left && right) {
             throw new IllegalStateException(SAME_TRUE_TYPE);
         }

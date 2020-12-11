@@ -3,6 +3,7 @@ package ladder.domain;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import static ladder.util.StringUtil.isBlank;
 
 public class GameReward {
 
@@ -27,12 +28,9 @@ public class GameReward {
     }
 
     private static void isNullReward(String reward) {
-        if(isBlank(reward))
+        if(isBlank(reward)) {
             throw new IllegalArgumentException(REWARD_IS_EMPTY);
-    }
-
-    private static boolean isBlank(String str) {
-        return str == null || str.trim().isEmpty();
+        }
     }
 
     public String get(int index) {
