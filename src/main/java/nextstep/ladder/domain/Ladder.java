@@ -22,6 +22,20 @@ public class Ladder {
         return new Ladder(lines);
     }
 
+    public static Ladder from(List<Line> lines) {
+        return new Ladder(lines);
+    }
+
+    public int getUserFinalIndex(User user) {
+        int index = user.getIndex();
+        for(Line line : lines) {
+            int move = line.getPoints().get(index).getDirection().getMove();
+            index += move;
+        }
+
+        return index;
+    }
+
     public List<Line> getLines() {
         return lines;
     }

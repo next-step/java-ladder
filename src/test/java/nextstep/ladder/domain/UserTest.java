@@ -12,7 +12,7 @@ class UserTest {
         String name = "python";
 
         Assertions.assertThrows(IllegalArgumentException.class,
-                () -> User.of(name)
+                () -> User.from(name)
         );
     }
 
@@ -22,7 +22,7 @@ class UserTest {
         String name = "";
 
         Assertions.assertThrows(IllegalArgumentException.class,
-                () -> User.of(name)
+                () -> User.from(name)
         );
     }
 

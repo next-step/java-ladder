@@ -28,6 +28,10 @@ public class Line {
         return new Line(points);
     }
 
+    public static Line from(List<Point> points) {
+        return new Line(points);
+    }
+
     private static int minusIndex(int number, int bound) {
         if(bound - ONE - number == ZERO) {
             return -ONE;
@@ -38,4 +42,5 @@ public class Line {
     public List<Point> getPoints() {
         return points;
     }
+
 }
