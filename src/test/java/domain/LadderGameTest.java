@@ -1,6 +1,7 @@
 package domain;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;
@@ -20,8 +21,10 @@ public class LadderGameTest {
     }
 
     @Test
+    @DisplayName("결과가 1,2,3,4,5일 경우 결과 테스트")
     void fetchAllResultsTest() {
         Map<String, String> allResults = ladderGame.fetchAllResults();
+        System.out.println(allResults.get("a"));
         assertThat(allResults.get("a")).isBetween("1", "5");
     }
 }

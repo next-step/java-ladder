@@ -26,10 +26,15 @@ public class LadderApplication {
     }
 
     private static void repeatUntilGivenAll(final LadderGame ladderGame) {
-        String name;
-        do{
-            name = InputView.askResultOf();
+        while(true) {
+            String name = InputView.askResultOf();
+
+            if(name.toLowerCase().equals(ALL_RESULTS)) {
+                ResultView.printAllResults(ladderGame);
+                return;
+            }
+
             ResultView.printResultOf(name, ladderGame);
-        } while ( !name.equals(ALL_RESULTS) );
+        }
     }
 }

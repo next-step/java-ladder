@@ -16,10 +16,13 @@ public class LadderGame {
         return new LadderGame(headAndTail, ladder);
     }
 
+    public String fetchResultOf(String name) {
+        int index = headAndTail.participantsIndexOf(name);
+        return headAndTail.getRewardAt(ladder.move(index));
+    }
+
     public Map<String, String> fetchAllResults() {
-
         int numberOfPeople = headAndTail.getParticipants().size();
-
         Map<String, String> allResults = new HashMap<>();
 
         for(int i = 0; i < numberOfPeople; i++) {
@@ -36,4 +39,6 @@ public class LadderGame {
     public Ladder getLadder() {
         return ladder;
     }
+
+
 }

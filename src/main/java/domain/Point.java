@@ -14,7 +14,7 @@ public class Point {
     }
 
     public int move() {
-        return direction.isRight() ? index + 1 : direction.isLeft() ? index - 1 : index;
+        return direction.move(index);
     }
 
     public Point next() {
@@ -32,6 +32,7 @@ public class Point {
     public boolean isRight() {
         return direction.isRight();
     }
+
     @Override
     public String toString() {
         return "Point{" +
@@ -39,6 +40,4 @@ public class Point {
                 ", direction=" + direction +
                 '}';
     }
-
-
 }

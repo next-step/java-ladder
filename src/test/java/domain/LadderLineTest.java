@@ -1,5 +1,6 @@
 package domain;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class LadderLineTest {
@@ -10,9 +11,9 @@ public class LadderLineTest {
     }
 
     @Test
+    @DisplayName("move() test")
     public void move() {
         LadderLine line = LadderLine.init(2);
         System.out.println("ladder result : " + line.move(0));
     }
 }
-

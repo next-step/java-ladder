@@ -1,6 +1,7 @@
 package domain;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -16,11 +17,13 @@ public class HeadAndTailTest {
     }
 
     @Test
+    @DisplayName("생성자 및 getter 테스트")
     void getParticipantsTest() {
         assertThat(headAndTail.getParticipants().size()).isEqualTo(5);
     }
 
     @Test
+    @DisplayName("생성자 및 getter 테스트")
     void getRewardsTest() {
         assertThat(headAndTail.getRewards().size()).isEqualTo(5);
     }

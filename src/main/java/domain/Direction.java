@@ -60,4 +60,16 @@ public class Direction {
     public int hashCode() {
         return Objects.hash(left, right);
     }
+
+    public int move(final int index) {
+        if(right) {
+            return index + 1;
+        }
+
+        if(left) {
+            return index - 1;
+        }
+
+        return index;
+    }
 }

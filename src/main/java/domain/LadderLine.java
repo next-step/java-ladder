@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LadderLine {
-    private final List<Point> points;
+    private final Points points;
 
     private LadderLine(final List<Point> points) {
-        this.points = points;
+        this.points = new Points(points);
     }
 
     public static LadderLine init(final int numberOfPeople) {
@@ -19,7 +19,7 @@ public class LadderLine {
     }
 
     public int move(final int index) {
-        return points.get(index).move();
+        return points.move(index);
     }
 
     private static Point initFirst(final List<Point> points) {
@@ -42,7 +42,7 @@ public class LadderLine {
         points.add(last);
     }
 
-    public List<Point> getPoints() {
+    public Points getPoints() {
         return points;
     }
 }
