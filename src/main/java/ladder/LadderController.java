@@ -13,7 +13,8 @@ public class LadderController {
 
         LadderGame ladderGame = new LadderGame(new RandomLineGenerator());
 
-        Participants participants = Participants.of(InputView.participantPerson());
+        Participants participants = Participants.of(InputView.inputParticipantPerson());
+        InputView.inputLadderGameReward();
         Ladder ladder = ladderGame.makeLadder(participants.countParticipant() - 1, InputView.inputLadderHeight());
 
         ResultView.outputLadder(participants, ladder);
