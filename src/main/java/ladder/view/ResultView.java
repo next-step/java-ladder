@@ -13,6 +13,7 @@ public class ResultView {
     private static final String RESULT_EXECUTE_MESSAGE = "실행 결과";
     private static final String LINE_FULL = "|-----";
     private static final String LINE_EMPTY = "|     ";
+    private static final String PRINT_SEPARATOR = " : ";
 
     private ResultView() {}
 
@@ -71,6 +72,12 @@ public class ResultView {
 
     public static void printGameRewards(List<GameResult> gameResults) {
         System.out.print(LINE_SEPARATOR + RESULT_EXECUTE_MESSAGE + LINE_SEPARATOR);
-        gameResults.forEach(e -> System.out.println(e.toPrint()));
+        gameResults.forEach(ResultView::toPrint);
+    }
+
+    private static void toPrint(GameResult gameResult) {
+        User user = gameResult.getUser();
+        String reward = gameResult.getReward();
+        System.out.println(user.getUserName() + PRINT_SEPARATOR + reward);
     }
 }

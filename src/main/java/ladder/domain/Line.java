@@ -6,31 +6,27 @@ public class Line {
 
     private final List<Point> points;
 
-    public Line (int countOfPerson) {
-        this.points = generateLine(countOfPerson);
+    public Line (int countOfPerson, DirectionRule directionRule) {
+        this.points = generateLine(countOfPerson, directionRule);
     }
 
     public Line (List<Point> points) {
         this.points = points;
     }
 
-    private static List<Point> generateLine(int countOfPerson) {
-        LinkedList<Point> pointsList = new LinkedList<>();
+    private static List<Point> generateLine(int countOfPerson, DirectionRule directionRule) {
+        LinkedList<Point> points = new LinkedList<>();
 
-        Point prePoint = Point.first(nextBooleanStrategy());
-        pointsList.addFirst(prePoint);
+        Point prePoint = Point.first(directionRule);
+        points.addFirst(prePoint);
 
         for (int i = 1; i < countOfPerson - 1; i++) {
-            prePoint = Point.next(prePoint, nextBooleanStrategy());
-            pointsList.add(prePoint);
+            prePoint = Point.next(prePoint, directionRule);
+            points.add(prePoint);
         }
 
-        pointsList.addLast(Point.last(prePoint));
-        return pointsList;
-    }
-
-    private static NextBooleanRule nextBooleanStrategy() {
-        return new NextBoolean();
+        points.addLast(Point.last(prePoint));
+        return points;
     }
 
     public List<Point> getPoints() {
@@ -38,17 +34,7 @@ public class Line {
     }
 
     public int movePoint(int position) {
-        Pointer pointer = this.points.get(position).getPointer();
-
-        if (pointer.isRight()) {
-            return position + 1;
-        }
-
-        if (pointer.isLeft()) {
-            return position - 1;
-        }
-
-        return position;
+        return this.points.get(position).movePoint(position);
     }
 
     @Override

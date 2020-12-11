@@ -8,15 +8,16 @@ public class Lines {
 
     private static final String INPUT_HEIGHT_ERROR = "사다리의 높이는 최소 1개 이상이어야 합니다.";
     private static final int MIN_HEIGHT = 1;
+
     private final List<Line> lines;
 
     private Lines(List<Line> lines) {
         this.lines = lines;
     }
 
-    public static Lines of(int countOfPerson, int height) {
-        return new Lines(IntStream.range(0, heightValidationCheck(height))
-                .mapToObj(i -> new Line(countOfPerson))
+    public static Lines of(GameSetup gameSetup, DirectionRule directionRule) {
+        return new Lines(IntStream.range(0, heightValidationCheck(gameSetup.getHeight()))
+                .mapToObj(i -> new Line(gameSetup.getCountOfPerson(), directionRule))
                 .collect(Collectors.toList()));
     }
 
@@ -27,7 +28,7 @@ public class Lines {
         return height;
     }
 
-    public int finalPoint(int position) {
+    public int toMaxPoint(int position) {
         int current = position;
         for (Line line : lines) {
             current = line.movePoint(current);

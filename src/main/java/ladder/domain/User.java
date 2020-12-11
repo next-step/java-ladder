@@ -29,6 +29,10 @@ public class User {
         return userName;
     }
 
+    public boolean contains(String name) {
+        return userName.equals(name);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

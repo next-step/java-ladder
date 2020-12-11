@@ -1,13 +1,13 @@
 package ladder.domain;
 
 import java.util.*;
-
 import static java.lang.Boolean.FALSE;
 
 public class Point {
 
     private static final int FIRST_INDEX = 0;
     private static final int ADD_INDEX = 1;
+
     private final int index;
     private final Pointer pointer;
 
@@ -20,11 +20,11 @@ public class Point {
         return new Point(index, pointer);
     }
 
-    public static Point first(NextBooleanRule nextBooleanRule) {
-        return of(FIRST_INDEX, Pointer.of(FALSE, nextBoolean(nextBooleanRule)));
+    public static Point first(DirectionRule nextBooleanRule) {
+        return of(FIRST_INDEX, Pointer.of(FALSE, nextBooleanRule.hasMoveAble()));
     }
 
-    public static Point next(Point prePoint, NextBooleanRule nextBooleanRule) {
+    public static Point next(Point prePoint, DirectionRule nextBooleanRule) {
         int nextIndex = addIndex(prePoint);
         Pointer previous = pointer(prePoint);
 
@@ -32,7 +32,7 @@ public class Point {
             return of(nextIndex, nextFalse(previous));
         }
 
-        return of(nextIndex, Pointer.next(previous, nextBoolean(nextBooleanRule)));
+        return of(nextIndex, Pointer.next(previous, nextBooleanRule.hasMoveAble()));
     }
 
     public static Point last(Point prePoint) {
@@ -54,16 +54,23 @@ public class Point {
         return Pointer.next(prePoint, FALSE);
     }
 
-    private static Boolean nextBoolean(NextBooleanRule nextBooleanRule) {
-        return nextBooleanRule.movementRule();
-    }
-
     public int getIndex() {
         return index;
     }
 
     public Pointer getPointer() {
         return pointer;
+    }
+
+    public int movePoint(int position) {
+        Pointer pointer = this.getPointer();
+        if (pointer.isRight()) {
+            return position + 1;
+        }
+        if (pointer.isLeft()) {
+            return position - 1;
+        }
+        return position;
     }
 
     @Override
