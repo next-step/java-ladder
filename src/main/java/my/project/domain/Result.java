@@ -8,8 +8,6 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Result {
-    public static final int NEXT = 1;
-
     private final Users users;
     private final Ladder ladder;
 
@@ -27,7 +25,7 @@ public class Result {
 
     private List<ResultSet> resultsAll(Rewards rewards) {
         return users.getUsers().stream()
-                .map(user -> result(user.getName().trim(), rewards))
+                .map(user -> result(user.getNameValue(), rewards))
                 .collect(Collectors.toList());
     }
 
@@ -56,7 +54,7 @@ public class Result {
     }
 
     private void searchLine(Point point, int y) {
-        IntStream.range(Lines.FIRST_LINE, ladder.getLines().getSize(y))
+        IntStream.range(Interval.FIRST.value(), ladder.getLines().getSize(y))
                 .forEach(x -> find(point, y, x));
     }
 
@@ -69,14 +67,14 @@ public class Result {
 
     private void move(Point point, int x, int y) {
         if (hasRightSideBridge(x, y)) {
-            point.move(x + Lines.NEXT_VERTICAL, y + NEXT);
+            point.move(x + Interval.VERTICAL.value(), y + Interval.NEXT.value());
             return;
         }
         if (hasLeftSideBridge(x, y)) {
-            point.move(x - Lines.NEXT_VERTICAL, y + NEXT);
+            point.move(x - Interval.VERTICAL.value(), y + Interval.NEXT.value());
             return;
         }
-        point.move(x, y + NEXT);
+        point.move(x, y + Interval.NEXT.value());
     }
 
     private void lastLineAction(Point point, int y, int x) {
@@ -87,26 +85,26 @@ public class Result {
 
     private void lastMove(Point point, int x, int y) {
         if (hasRightSideBridge(x, y)) {
-            point.move(x + Lines.NEXT_VERTICAL, y);
+            point.move(x + Interval.VERTICAL.value(), y);
             return;
         }
         if (hasLeftSideBridge(x, y)) {
-            point.move(x - Lines.NEXT_VERTICAL, y);
+            point.move(x - Interval.VERTICAL.value(), y);
         }
     }
 
     private boolean hasRightSideBridge(int x, int y) {
-        if (x + NEXT == ladder.getLines().getSize(y)) {
+        if (x + Interval.NEXT.value() == ladder.getLines().getSize(y)) {
             return false;
         }
-        return ladder.getLines().getLine(y).get(x + NEXT) == Symbol.BRIDGE;
+        return ladder.getLines().getLine(y).get(x + Interval.NEXT.value()) == Symbol.BRIDGE;
     }
 
     private boolean hasLeftSideBridge(int x, int y) {
-        if (x - NEXT < Lines.FIRST_VERTICAL) {
+        if (x - Interval.NEXT.value() < Interval.FIRST.value()) {
             return false;
         }
-        return ladder.getLines().getLine(y).get(x - NEXT) == Symbol.BRIDGE;
+        return ladder.getLines().getLine(y).get(x - Interval.NEXT.value()) == Symbol.BRIDGE;
     }
 
 }

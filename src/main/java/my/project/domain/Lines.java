@@ -9,15 +9,6 @@ import java.util.stream.IntStream;
  * Developer : Seo
  */
 public class Lines {
-    public static final int FIRST_LINE = 0;
-    public static final int FIRST_VERTICAL = 0;
-    public static final int SECOND_VERTICAL = 2;
-    public static final int PREVIOUS_NUMBER = 1;
-    public static final int PREVIOUS_BRIDGE = 2;
-    public static final int NEXT_VERTICAL = 2;
-    public static final int LAST_VERTICAL = 2;
-    public static final int LAST_BRIDGE = 2;
-
     private final List<Line> lines;
 
     public Lines(Users users, int height) {
@@ -40,7 +31,7 @@ public class Lines {
     private void arrangeLine(int lineIndex) {
         int lineSize = getSize(lineIndex);
 
-        IntStream.range(FIRST_LINE, lineSize).forEach(pointIndex -> {
+        IntStream.range(Interval.FIRST.value(), lineSize).forEach(pointIndex -> {
             if (isNoBridgeBetweenLines(lineIndex, pointIndex)) {
                 buildSingleBridge(lineIndex, pointIndex);
                 destroySideBridges(lineIndex, pointIndex);
@@ -49,9 +40,9 @@ public class Lines {
     }
 
     private boolean isNoBridgeBetweenLines(int lineIndex, int pointIndex) {
-        return lineIndex != FIRST_LINE
+        return lineIndex != Interval.FIRST.value()
                 && getLine(lineIndex).get(pointIndex) == Symbol.NONE
-                && getLine(lineIndex - PREVIOUS_NUMBER).get(pointIndex) == Symbol.NONE;
+                && getLine(lineIndex - Interval.LINE.value()).get(pointIndex) == Symbol.NONE;
     }
 
     private void buildSingleBridge(int lineIndex, int pointIndex) {
@@ -61,21 +52,21 @@ public class Lines {
 
     private void destroySideBridges(int lineIndex, int pointIndex) {
         if (hasPreviousBridge(pointIndex)) {
-            getLine(lineIndex).remove(pointIndex - PREVIOUS_BRIDGE);
-            getLine(lineIndex).add(pointIndex - PREVIOUS_BRIDGE, Symbol.NONE);
+            getLine(lineIndex).remove(pointIndex - Interval.BRIDGE.value());
+            getLine(lineIndex).add(pointIndex - Interval.BRIDGE.value(), Symbol.NONE);
         }
         if (hasNextBridge(lineIndex, pointIndex)) {
-            getLine(lineIndex).remove(pointIndex + LAST_BRIDGE);
-            getLine(lineIndex).add(pointIndex + LAST_BRIDGE, Symbol.NONE);
+            getLine(lineIndex).remove(pointIndex + Interval.BRIDGE.value());
+            getLine(lineIndex).add(pointIndex + Interval.BRIDGE.value(), Symbol.NONE);
         }
     }
 
     private boolean hasPreviousBridge(int pointIndex) {
-        return pointIndex > SECOND_VERTICAL;
+        return pointIndex > Interval.VERTICAL.value();
     }
 
     private boolean hasNextBridge(int lineIndex, int pointIndex) {
-        return pointIndex < getSize(lineIndex) - LAST_VERTICAL;
+        return pointIndex < getSize(lineIndex) - Interval.VERTICAL.value();
     }
 
     public List<Line> get() {

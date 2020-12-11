@@ -33,6 +33,10 @@ public class User {
         return String.format("%-" + MAX_LENGTH + "s", name);
     }
 
+    public String getNameValue() {
+        return name;
+    }
+
     public Point getPoint() {
         return this.point;
     }
