@@ -11,12 +11,10 @@ import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import static my.project.domain.User.ageIsInRange1;
-import static my.project.domain.User.ageIsInRange2;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class UserTest {
+class UserTest {
 
     @DisplayName("사용자명 확인 5글자 이하")
     @ParameterizedTest
@@ -26,37 +24,18 @@ public class UserTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    void whenFiltersWithoutOptional_thenCorrect() {
-        assertThat(ageIsInRange1(new User("crong", 35))).isTrue();
-        assertThat(ageIsInRange1(new User("crong", 48))).isFalse();
-        assertThat(ageIsInRange1(new User("crong", null))).isFalse();
-        assertThat(ageIsInRange1(new User("crong", 29))).isFalse();
-        assertThat(ageIsInRange1(null)).isFalse();
-    }
-
-    @Test
-    void whenFiltersWithOptional_thenCorrect() {
-        assertThat(ageIsInRange2(new User("crong", 35))).isTrue();
-        assertThat(ageIsInRange2(new User("crong", 48))).isFalse();
-        assertThat(ageIsInRange2(new User("crong", null))).isFalse();
-        assertThat(ageIsInRange2(new User("crong", 29))).isFalse();
-        assertThat(ageIsInRange2(null)).isFalse();
-    }
-
-    @Test
-    void exp() {
-        assertThat(Pattern.matches("^([A-z0-9,]{1,5})$", "a")).isTrue();
+    @ParameterizedTest
+    @ValueSource(strings = {"a", "꽝","1"})
+    void exp(String input) {
+        assertThat(Pattern.matches("^([A-z0-9ㄱ-ㅎㅏ-ㅣ가-힣,]{1,5})$", input)).isTrue();
     }
 
     @Test
     void print() {
         List<String> lang = Arrays.asList("Java", "Scala", "Groovy", "Python", "Go", "Swift");
-
         lang.stream()
                 .sorted()
                 .collect(Collectors.toList()).forEach(System.out::println); // [Go, Groovy, Java, Python, Scala, Swift]
-
     }
 
 }

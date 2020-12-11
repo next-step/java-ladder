@@ -10,13 +10,16 @@ import java.util.stream.IntStream;
  * Developer : Seo
  */
 public class Line {
-    public static final int START = 0;
-    private final List<Symbol> points = new ArrayList<>();
+    public static final int ZERO = 0;
+    public static final int ONE = 1;
+    public static final int EVEN = 2;
+    private final List<Symbol> points;
 
     public Line(int countOfPerson) {
-        int end = countOfPerson + countOfPerson - 1;
+        points = new ArrayList<>();
+        int end = countOfPerson + countOfPerson - ONE;
 
-        IntStream.range(START, end)
+        IntStream.range(ZERO, end)
                 .forEach(y -> {
                     if (isVertical(y)) {
                         this.points.add(Symbol.VERTICAL);
@@ -30,17 +33,30 @@ public class Line {
                 });
     }
 
-    private boolean isVertical(int i) {
-        return i % 2 == 0;
+    private boolean isVertical(int y) {
+        return y % EVEN == ZERO;
     }
 
     private boolean isBridge(int y) {
-        boolean target = new Random().nextInt(2) % 2 == 0;
+        boolean isTarget = makeBridgeTarget();
 
-        if (target && y < 2) {
+        if (isExcept(isTarget, y)) {
             return true;
         }
-        return target && points.get(y - 2) != Symbol.BRIDGE;
+        return isTarget && isValid(y);
+    }
+
+    private boolean makeBridgeTarget() {
+        return new Random().nextInt(EVEN) % EVEN == ZERO;
+    }
+
+    private boolean isExcept(boolean isTarget, int y) {
+        return isTarget && y < EVEN;
+    }
+
+    private boolean isValid(int y) {
+        int previousBridgeTargetIndex = y - EVEN;
+        return points.get(previousBridgeTargetIndex) != Symbol.BRIDGE;
     }
 
     public List<Symbol> getPoints() {

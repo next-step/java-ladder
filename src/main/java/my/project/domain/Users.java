@@ -1,32 +1,24 @@
 package my.project.domain;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class Users {
-    public static final User DEFAULT_USER = new User("abc", 100);
     public static final String DELIMITER = ",";
-    public static final String INPUT_PATTERN = "^([A-z0-9,]*)$";
-    public static final String INPUT_USERS_ALERT = "사용자 입력을 확인해주십시요.";
+    public static final String OUT_OF_USERS = "참여자가 아닙니다.";
 
-    private List<User> users;
+    private final List<User> users;
 
-    public Users(String users) {
-        this.users = parseUsers(users);
-    }
+    public Users(String sUsers) {
+        this.users = new ArrayList<>();
 
-    private List<User> parseUsers(String users) {
-        validate(users);
-        return Arrays.stream(users.split(DELIMITER))
-                .map(User::new)
+        List<String> userList = Arrays.stream(sUsers.split(DELIMITER))
                 .collect(Collectors.toList());
-    }
 
-    private void validate(String users) {
-        if (!Pattern.matches(INPUT_PATTERN, users)) {
-            throw new IllegalArgumentException(INPUT_USERS_ALERT);
+        for (int i = 0; i < userList.size(); i++) {
+            users.add(new User(userList.get(i), i));
         }
     }
 
@@ -38,6 +30,14 @@ public class Users {
         return users.stream()
                 .filter(user -> user.matchName(name))
                 .findFirst()
-                .orElse(DEFAULT_USER);
+                .orElseThrow(() -> new IllegalArgumentException(OUT_OF_USERS));
+    }
+
+    public Point getUserPoint(String name) {
+        return getUser(name).getPoint();
+    }
+
+    public int size() {
+        return users.size();
     }
 }

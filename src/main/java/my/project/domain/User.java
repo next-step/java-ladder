@@ -1,20 +1,21 @@
 package my.project.domain;
 
-import java.util.Optional;
 import java.util.regex.Pattern;
 
 public class User {
     public static final int MAX_LENGTH = 5;
-    public static final String USER_PATTERN = "^([A-z0-9,]{1," + MAX_LENGTH + "})$";
+    public static final String USER_PATTERN = "^([A-z0-9ㄱ-ㅎㅏ-ㅣ가-힣,]{1," + MAX_LENGTH + "})$";
     public static final String INPUT_USER_ALERT = "사용자명을 확인해주십시요.(최대 " + MAX_LENGTH + "자)";
+    public static final int USER_START_POINT_MULTIPLE = 2;
+    public static final int FIRST_LINE = 0;
 
-    private String name;
-    private Integer age;
+    private final String name;
+    private Point point;
 
-    public User(String name, Integer age) {
+    public User(String name, int x) {
         validateName(name);
         this.name = name;
-        this.age = age;
+        this.point = new Point(x * USER_START_POINT_MULTIPLE, FIRST_LINE);
     }
 
     public User(String name) {
@@ -32,38 +33,18 @@ public class User {
         return String.format("%-" + MAX_LENGTH + "s", name);
     }
 
-    public Integer getAge() {
-        return age;
+    public Point getPoint() {
+        return this.point;
     }
 
     public boolean matchName(String name) {
         return this.name.equals(name);
     }
 
-    public static boolean ageIsInRange1(User user) {
-        boolean isInRange = false;
-
-        if (user != null && user.getAge() != null
-                && (user.getAge() >= 30
-                && user.getAge() <= 45)) {
-            isInRange = true;
-        }
-        return isInRange;
-    }
-
-    public static boolean ageIsInRange2(User user) {
-        return Optional.ofNullable(user)
-                .map(User::getAge)
-                .filter(u -> u >= 30)
-                .filter(u -> u <= 45)
-                .isPresent();
-    }
-
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((age == null) ? 0 : age.hashCode());
         result = prime * result + ((name == null) ? 0 : name.hashCode());
         return result;
     }
@@ -77,17 +58,8 @@ public class User {
         if (getClass() != obj.getClass())
             return false;
         User other = (User) obj;
-        if (age == null) {
-            if (other.age != null)
-                return false;
-        } else if (!age.equals(other.age))
-            return false;
         if (name == null) {
-            if (other.name != null)
-                return false;
-        } else if (!name.equals(other.name))
-            return false;
-        return true;
+            return other.name == null;
+        } else return name.equals(other.name);
     }
-
 }

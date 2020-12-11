@@ -1,15 +1,13 @@
 package my.project.domain;
 
 public enum Symbol {
-    VERTICAL(1, "|"),
-    BRIDGE(2, "-----"),
-    NONE(0, "     ");
+    VERTICAL("|"),
+    BRIDGE("-----"),
+    NONE("     ");
 
-    private final int number;
     private final String symbol;
 
-    Symbol(int number, String symbol) {
-        this.number = number;
+    Symbol(String symbol) {
         this.symbol = symbol;
     }
 
@@ -17,7 +15,4 @@ public enum Symbol {
         return symbol;
     }
 
-    public int getNumber() {
-        return number;
-    }
 }
