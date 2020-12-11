@@ -21,7 +21,7 @@ public class ResultView {
     public static final String BRIDGE_BLANK = " ";
     public static final String BRIDGE_CONNECTION = "-";
     public static final String BRIDGE_POLE = "|";
-    public static final String RESULT_SEPERATOR = " : ";
+    public static final String RESULT_SEPARATOR = " : ";
 
     public static void printLadder(Names participants, Ladder ladder, Names goals) {
         System.out.println(System.lineSeparator() + RESULT_LADDER + System.lineSeparator());
@@ -51,7 +51,7 @@ public class ResultView {
         allResults.entrySet().stream()
                 .forEach(resultGoal -> {
                     System.out.print(resultGoal.getKey());
-                    System.out.print(RESULT_SEPERATOR);
+                    System.out.print(RESULT_SEPARATOR);
                     System.out.print(resultGoal.getValue());
                     System.out.println();
                 });
