@@ -7,10 +7,11 @@ import java.util.List;
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 
-public class NextBoolean implements NextBooleanRule{
+public class NextDirectionRule implements DirectionRule {
+
+    private static final int FIRST_INDEX = 0;
 
     private static final List<Boolean> NEXT_BOOLEAN = new LinkedList<>();
-    private static final int FIRST_INDEX = 0;
 
     static {
         NEXT_BOOLEAN.add(TRUE);
@@ -18,7 +19,7 @@ public class NextBoolean implements NextBooleanRule{
     }
 
     @Override
-    public boolean movementRule() {
+    public boolean hasMoveAble() {
         Collections.shuffle(NEXT_BOOLEAN);
         return NEXT_BOOLEAN.get(FIRST_INDEX);
     }
