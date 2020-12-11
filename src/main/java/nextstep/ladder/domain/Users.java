@@ -1,10 +1,10 @@
 package nextstep.ladder.domain;
 
-import java.util.*;
-import java.util.stream.IntStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class Users {
-    private static final int ZERO = 0;
 
     private List<User> users;
 
@@ -20,14 +20,6 @@ public class Users {
         }
 
         return new Users(userList);
-    }
-
-    public Map<User, Integer> mapUserIndex() {
-        Map<User, Integer> userMap = new LinkedHashMap<>();
-
-        IntStream.range(ZERO, users.size())
-                .forEach(index -> userMap.put(users.get(index), index));
-        return userMap;
     }
 
     public List<User> getUsers() {
