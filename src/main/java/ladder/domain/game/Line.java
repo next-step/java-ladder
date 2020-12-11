@@ -81,24 +81,28 @@ public class Line {
     }
 
     public int move(int index) {
-        if (indexOf(index).hasConnected()) { // 현재 위치 -> 연결되었을 때
+        if (moveLeft(index)) { // 현재 위치 -> 연결되었을 때
             return index - 1;
         }
 
-        if (index < this.bridges.size() - 1
-                && indexOf(index + 1).hasConnected()) {
+        if (moveRight(index)) {
             return index + 1;
         }
 
         return index;
     }
 
-    private Bridge indexOf(int index) {
-        return this.bridges.get(index);
+    private boolean moveLeft(int index) {
+        return indexOf(index).hasConnected();
     }
 
-    public int width() {
-        return this.bridges.size();
+    private boolean moveRight(int index) {
+        return index < this.bridges.size() - 1
+                && indexOf(index + 1).hasConnected();
+    }
+
+    private Bridge indexOf(int index) {
+        return this.bridges.get(index);
     }
 
 

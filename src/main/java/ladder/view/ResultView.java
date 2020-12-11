@@ -1,9 +1,6 @@
 package ladder.view;
 
-import ladder.domain.game.Ladder;
-import ladder.domain.game.Line;
-import ladder.domain.game.Name;
-import ladder.domain.game.Names;
+import ladder.domain.game.*;
 
 import java.util.List;
 import java.util.Map;
@@ -24,7 +21,7 @@ public class ResultView {
     public static final String BRIDGE_BLANK = " ";
     public static final String BRIDGE_CONNECTION = "-";
     public static final String BRIDGE_POLE = "|";
-    public static final String RESULT_SEPERATOR = " : ";
+    public static final String RESULT_SEPARATOR = " : ";
 
     public static void printLadder(Names participants, Ladder ladder, Names goals) {
         System.out.println(System.lineSeparator() + RESULT_LADDER + System.lineSeparator());
@@ -33,14 +30,14 @@ public class ResultView {
         showNames(goals.getNames());
     }
 
-    public static void printGoals(LadderView ladderView, String inputName) {
+    public static void printGoals(LadderResult ladderResult, String inputName) {
         System.out.println(System.lineSeparator() + RESULT_GOALS);
 
         if (inputName.equals(RESERVED_WORD_ALL)) {
-            showAllResults(ladderView.getResultOfAll());
+            showAllResults(ladderResult.getResultOfAll());
         }
         if (!inputName.equals(RESERVED_WORD_ALL)) {
-            System.out.println(ladderView.getResultOfOneParticipant(Name.from(inputName)));
+            System.out.println(ladderResult.getResultOfOneParticipant(Name.from(inputName)));
         }
     }
 
@@ -48,7 +45,7 @@ public class ResultView {
         allResults.entrySet().stream()
                 .forEach(resultGoal -> {
                     System.out.print(resultGoal.getKey());
-                    System.out.print(RESULT_SEPERATOR);
+                    System.out.print(RESULT_SEPARATOR);
                     System.out.print(resultGoal.getValue());
                     System.out.println();
                 });
