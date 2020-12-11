@@ -1,36 +1,43 @@
 package domain;
 
 public class Point {
-    private final Position position;
+    private final int index;
     private final Direction direction;
-
-    private Point(final Position position, final Direction direction) {
-        this.position = position;
+    
+    private Point(final int index, final Direction direction) {
+        this.index = index;
         this.direction = direction;
+    } 
+    
+    public static Point first(final boolean right) {
+        return new Point(0, Direction.first(right));
     }
 
-    public static Point of(final Position position, final Direction direction) {
-        return new Point(position, direction);
+    public int move() {
+        return direction.move(index);
     }
 
-    public Direction getDirection() {
-        return direction;
+    public Point next() {
+        return new Point(index + 1, direction.next());
     }
 
-    public Position next() {
-
-        if(direction.isRight()) {
-            return position.plus();
-        }
-
-        if(direction.isLeft()) {
-            return position.minus();
-        }
-
-        return position;
+    public Point next(final boolean right) {
+        return new Point(index + 1, direction.next(right));
     }
 
-    public boolean isHeadingRight() {
+    public Point last() {
+        return new Point(index + 1, direction.last());
+    }
+
+    public boolean isRight() {
         return direction.isRight();
+    }
+
+    @Override
+    public String toString() {
+        return "Point{" +
+                "index=" + index +
+                ", direction=" + direction +
+                '}';
     }
 }

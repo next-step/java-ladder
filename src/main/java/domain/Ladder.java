@@ -1,23 +1,33 @@
 package domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Ladder {
-    private final Lines lines;
+    private final LadderLines ladderLines;
 
-    protected Ladder(final Lines lines) {
-        this.lines = lines;
+    private Ladder(final List<LadderLine> ladderLines) {
+        this.ladderLines = new LadderLines(ladderLines);
     }
 
-    public static Ladder of(final Length width, final Length height) {
-        Lines lines = Lines.of(width, height);
+    public static Ladder init(final int ladderHeight, final int numberOfPeople) {
+        List<LadderLine> ladder = new ArrayList<>();
+        for(int i = 0; i < ladderHeight; i++) {
+            ladder.add(LadderLine.init(numberOfPeople));
+        }
 
-        return new Ladder(lines);
+        return new Ladder(ladder);
     }
 
-    public Lines getLines() {
-        return lines;
+    public LadderLines getLadderLines() {
+        return ladderLines;
     }
 
-    public Position departsAt(final Position position) {
-        return lines.departsAt(position);
+    public int move(int index) {
+        for(int i = 0, size = ladderLines.size(); i < size; i++) {
+            index = ladderLines.get(i).move(index);
+        }
+
+        return index;
     }
 }

@@ -1,33 +1,45 @@
 package domain;
 
-import exception.NegativePositionException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class PointTest {
-
     @Test
-    @DisplayName("생성자 테스트")
-    void ofTest(){
-        Point point = Point.of(Position.of(0), Direction.RIGHT);
-        assertThat(point.getDirection()).isEqualTo(Direction.RIGHT);
-        assertThat(point.getDirection() == Direction.RIGHT).isTrue();
+    @DisplayName("첫번째 Point객체의 움직임 테스트")
+    public void first() {
+        assertThat(Point.first(TRUE).move()).isEqualTo(1);
+        assertThat(Point.first(FALSE).move()).isEqualTo(0);
     }
 
     @Test
-    @DisplayName("다음 Point의 Position을 리턴하는 next() 테스트")
-    void nextTest() {
-        Point point = Point.of(Position.of(0), Direction.RIGHT);
-        assertThat(point.next()).isEqualTo(Position.of(1));
+    @DisplayName("첫번째 Point객체의 움직임 테스트")
+    public void next_stay() {
+        Point second = Point.first(FALSE).next(FALSE);
+        assertThat(second.move()).isEqualTo(1);
+    }
 
-        assertThatThrownBy( () ->
-            Point.of(Position.of(0), Direction.LEFT).next()
-        ).isInstanceOf(NegativePositionException.class);
+    @Test
+    @DisplayName("첫번째 Point객체의 움직임 테스트")
+    public void next_left() {
+        Point second = Point.first(TRUE).next(FALSE);
+        assertThat(second.move()).isEqualTo(0);
+    }
 
-        Point point2 = Point.of(Position.of(0), Direction.DOWN);
-        assertThat(point2.next()).isEqualTo(Position.of(0));
+    @Test
+    @DisplayName("첫번째 Point객체의 움직임 테스트")
+    public void next_right() {
+        Point second = Point.first(FALSE).next(TRUE);
+        assertThat(second.move()).isEqualTo(2);
+    }
+
+    @Test
+    @DisplayName("첫번째 Point객체의 움직임 테스트")
+    public void next() {
+        Point second = Point.first(TRUE).next();
+        assertThat(second.move()).isEqualTo(0);
     }
 }

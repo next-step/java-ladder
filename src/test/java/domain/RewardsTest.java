@@ -5,10 +5,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class GameResultsTest {
+public class RewardsTest {
+    private Rewards rewards;
+
     @Test
-    @DisplayName("스태틱 팩터리 메서드 테스트")
+    @DisplayName("of() test")
     void ofTest() {
-        assertThat(GameResults.of("a,b,c,d,e").get(2)).isEqualTo("c");
+        assertThat(Rewards.of("1,2,3,4,5").size()).isEqualTo(5);
     }
 }
