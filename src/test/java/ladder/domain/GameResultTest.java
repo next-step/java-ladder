@@ -24,13 +24,6 @@ public class GameResultTest {
     }
 
     @Test
-    @DisplayName("GameResult toPrint() 값 확인")
-    void gameResult_toPrint_isEqualTo() {
-        GameResult actual = GameResult.of(user,"꽝");
-        assertThat(actual.toPrint()).isEqualTo("TEST : 꽝");
-    }
-
-    @Test
     @DisplayName("GameResult contains() 인수값이 Null 또는 공백인 경우 NullPointerException 발생")
     void gameResult_containsIsBlank_throwNullPointException() {
         assertThatThrownBy(() -> {
@@ -39,5 +32,4 @@ public class GameResultTest {
         }).isInstanceOf(NullPointerException.class)
             .hasMessageContaining("유저이름에 Null 또는 공백이 올 수 없습니다.");
     }
-
 }
