@@ -50,7 +50,6 @@ pobi               cron               jh
 
 ### TODO
 
-- ErrorMessage 삭제
 ### DONE
 - 가로 사다리를 생성
     1. 랜덤하게 생성할지 말지를 결정하고, 이전 가로 사다리가 생성되어 있으면 생성하지 않음
@@ -63,3 +62,4 @@ pobi               cron               jh
 - 사용하지 않는 메서드 삭제 및 클래스 이름 변경
 - Ladder, LadderLine 테스트 코드 작성
 - 요구사항 정리
+- ErrorMessage 삭제

@@ -1,9 +1,9 @@
 package ladder.domain;
 
-import ladder.common.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static ladder.domain.LadderHeight.LADDER_HEIGHT_IS_WRONG;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 class LadderLineHeightTest {
@@ -13,7 +13,7 @@ class LadderLineHeightTest {
     void should_throw_exception() {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new LadderHeight(0))
-                .withMessage(ErrorMessage.LADDER_HEIGHT_IS_WRONG);
+                .withMessage(LADDER_HEIGHT_IS_WRONG);
     }
 
 }

@@ -1,16 +1,15 @@
 package ladder.domain;
 
-import ladder.common.ErrorMessage;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static ladder.common.ErrorMessage.NAME_CAN_NOT_BE_BLANK;
-import static ladder.common.ErrorMessage.NAME_IS_TOO_LONG;
 
 public class Participants {
 
+    public static final String NAMES_CANNOT_BE_DUPLICATED = "Names cannot be duplicated.";
+    public static final String NAME_CAN_NOT_BE_BLANK = "Name can not be blank.";
+    public static final String NAME_IS_TOO_LONG = "Name is too long.";
     private static final String SPLIT_LETTER = ",";
     private static final int MAX_NAME_LENGTH = 5;
     private final List<String> value;
@@ -28,7 +27,7 @@ public class Participants {
                         .collect(Collectors.toList());
 
         if (participants.size() != dividedName.length) {
-            throw new IllegalArgumentException(ErrorMessage.NAMES_CANNOT_BE_DUPLICATED);
+            throw new IllegalArgumentException(NAMES_CANNOT_BE_DUPLICATED);
         }
 
         return participants;

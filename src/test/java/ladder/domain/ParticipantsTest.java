@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import ladder.common.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -8,6 +7,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Arrays;
 
+import static ladder.domain.Participants.NAMES_CANNOT_BE_DUPLICATED;
+import static ladder.domain.Participants.NAME_CAN_NOT_BE_BLANK;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
@@ -33,7 +34,7 @@ class ParticipantsTest {
         //Given & When
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Participants(names))
-                .withMessage(ErrorMessage.NAME_CAN_NOT_BE_BLANK);
+                .withMessage(NAME_CAN_NOT_BE_BLANK);
     }
 
     @Test
@@ -42,7 +43,7 @@ class ParticipantsTest {
         //Given & When
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Participants("pobi,pobi,poby,bopi,bopy"))
-                .withMessage(ErrorMessage.NAMES_CANNOT_BE_DUPLICATED);
+                .withMessage(NAMES_CANNOT_BE_DUPLICATED);
     }
 
 }
