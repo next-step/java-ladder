@@ -63,7 +63,7 @@ public class ResultView {
         System.out.print(String.format("%5s ", VERTICAL));
     }
 
-    public void printResult(Map<User, Result> userResultMap, String inputResultUser) {
+    public void printResult(Map<String, Result> userResultMap, String inputResultUser) {
         System.out.println();
         System.out.println(RESULT_MENTION);
         if(inputResultUser.equals("all")) {
@@ -73,18 +73,18 @@ public class ResultView {
         printUserResult(userResultMap, inputResultUser);
     }
 
-    private void printAllResult(Map<User, Result> userResultMap) {
+    private void printAllResult(Map<String, Result> userResultMap) {
         userResultMap.keySet()
                 .forEach(key -> printMapResult(userResultMap, key));
     }
 
-    private void printMapResult(Map<User, Result> userResultMap, User key) {
+    private void printMapResult(Map<String, Result> userResultMap, String key) {
         System.out.println(key + " : " + userResultMap.get(key));
     }
 
-    private void printUserResult(Map<User, Result> userResultMap, String inputResultUser) {
-        User user = userResultMap.keySet().stream()
-                .filter(key -> key.getName().equals(inputResultUser))
+    private void printUserResult(Map<String, Result> userResultMap, String inputResultUser) {
+        String user = userResultMap.keySet().stream()
+                .filter(key -> key.equals(inputResultUser))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("참가자가 아닙니다."));
         printMapResult(userResultMap, user);

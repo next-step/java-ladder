@@ -12,7 +12,7 @@ class HeightTest {
         int height = 0;
 
         Assertions.assertThrows(IllegalArgumentException.class,
-                () -> new Height(height)
+                () -> Height.from(height)
         );
     }
 

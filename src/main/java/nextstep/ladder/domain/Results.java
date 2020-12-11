@@ -1,10 +1,9 @@
 package nextstep.ladder.domain;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Results {
@@ -18,9 +17,11 @@ public class Results {
     }
 
     public static Results createResults(InputResult inputResult) {
-        List<Result> resultList = Arrays.stream(inputResult.splitResults())
-                .map(Result::of)
-                .collect(Collectors.toList());
+        List<Result> resultList = new ArrayList<>();
+        int index = 0;
+        for(String result : inputResult.splitResults()) {
+            resultList.add(Result.of(result, index++));
+        }
 
         return new Results(resultList);
     }
@@ -36,4 +37,9 @@ public class Results {
     public List<Result> getResults() {
         return results;
     }
+
+    public Result confirmResult(int finalIndex) {
+        return results.get(finalIndex);
+    }
+
 }

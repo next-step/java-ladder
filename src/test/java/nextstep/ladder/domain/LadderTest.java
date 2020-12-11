@@ -16,8 +16,8 @@ class LadderTest {
     @DisplayName("사다리 생성")
     void initLadder() {
         String names = "java,study,game";
-        InputUsers inputUsers = new InputUsers(names);
-        Height height = new Height(3);
+        InputUsers inputUsers = InputUsers.createInputUsers(names);
+        Height height = Height.from(3);
         Users users = Users.createUsers(inputUsers);
 
         Ladder ladder = Ladder.initLadder(users, height);
@@ -41,7 +41,7 @@ class LadderTest {
         Ladder ladder = Ladder.from(Arrays.asList(line1, line2));
 
         String names = "java,study,game";
-        InputUsers inputUsers = new InputUsers(names);
+        InputUsers inputUsers = InputUsers.createInputUsers(names);
         Users users = Users.createUsers(inputUsers);
         Map<User, Integer> userMap = users.mapUserIndex();
 

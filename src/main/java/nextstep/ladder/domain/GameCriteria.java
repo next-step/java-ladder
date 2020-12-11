@@ -15,4 +15,15 @@ public class GameCriteria {
         return new GameCriteria(users, result, height);
     }
 
+    public Users getUsers() {
+        return users;
+    }
+
+    public Results getResult() {
+        return result;
+    }
+
+    public Height getHeight() {
+        return height;
+    }
 }

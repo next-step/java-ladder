@@ -1,7 +1,6 @@
 package nextstep.ladder.domain;
 
 import java.util.*;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Users {
@@ -14,9 +13,11 @@ public class Users {
     }
 
     public static Users createUsers(InputUsers inputUsers) {
-        List<User> userList = Arrays.stream(inputUsers.splitUsers())
-                .map(User::of)
-                .collect(Collectors.toList());
+        List<User> userList = new ArrayList<>();
+        int index = 0;
+        for(String userName : inputUsers.splitUsers()) {
+            userList.add(User.of(userName, index++));
+        }
 
         return new Users(userList);
     }

@@ -15,14 +15,14 @@ class InputUsersTest {
     void multipleUsers() {
         String names = "java";
         assertThrows(IllegalArgumentException.class,
-                () -> new InputUsers(names));
+                () -> InputUsers.createInputUsers(names));
     }
 
     @Test
     @DisplayName("참여자 목록에서 참여자 분리")
     void splitUsers() {
         String names = "java,study";
-        inputUsers = new InputUsers(names);
+        inputUsers = InputUsers.createInputUsers(names);
 
         String[] splitUsers = inputUsers.splitUsers();
 

@@ -34,9 +34,9 @@ class ResultsTest {
         Map<Result, Integer> resultMap = results.mapResultIndex();
 
         Map<Result, Integer> resultAnswer = new HashMap<>();
-        resultAnswer.put(Result.of("1000"), 0);
-        resultAnswer.put(Result.of("2000"), 1);
-        resultAnswer.put(Result.of("3000"), 2);
+        resultAnswer.put(Result.from("1000"), 0);
+        resultAnswer.put(Result.from("2000"), 1);
+        resultAnswer.put(Result.from("3000"), 2);
 
         assertThat(resultMap).isEqualTo(resultAnswer);
     }

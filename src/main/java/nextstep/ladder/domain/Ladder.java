@@ -48,4 +48,14 @@ public class Ladder {
                 .forEach(key -> userOrder[userMap.get(key)] = key);
         return userOrder;
     }
+
+    public int getUserFinalIndex(User user) {
+        int index = user.getIndex();
+        for(Line line : lines) {
+            int move = line.getPoints().get(index).getDirection().getMove();
+            index += move;
+        }
+
+        return index;
+    }
 }

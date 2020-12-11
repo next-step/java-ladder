@@ -9,14 +9,24 @@ public class User {
     private static final String LENGTH_MAXIMUM_MENTION = "이름은 %d글자를 초과할 수 없습니다.";
 
     private String name;
+    private int index;
 
     private User(String name) {
         checkValidate(name);
         this.name = name;
     }
 
-    public static User of(String name) {
+    private User(String name, int index) {
+        this.name = name;
+        this.index = index;
+    }
+
+    public static User from(String name) {
         return new User(name);
+    }
+
+    public static User of(String name, int index) {
+        return new User(name, index);
     }
 
     private void checkValidate(String name) {
@@ -38,6 +48,10 @@ public class User {
 
     public String getName() {
         return name;
+    }
+
+    public int getIndex() {
+        return index;
     }
 
     @Override

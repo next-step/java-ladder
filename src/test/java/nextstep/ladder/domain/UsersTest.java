@@ -31,15 +31,15 @@ class UsersTest {
         Map<User, Integer> userMap = users.mapUserIndex();
 
         Map<User, Integer> newUser = new HashMap<>();
-        newUser.put(User.of("java"), 0);
-        newUser.put(User.of("study"), 1);
-        newUser.put(User.of("game"), 2);
+        newUser.put(User.from("java"), 0);
+        newUser.put(User.from("study"), 1);
+        newUser.put(User.from("game"), 2);
 
         Assertions.assertThat(userMap).isEqualTo(newUser);
     }
 
     private Users setUp(String names) {
-        InputUsers inputUsers = new InputUsers(names);
+        InputUsers inputUsers = InputUsers.createInputUsers(names);
         return Users.createUsers(inputUsers);
     }
 

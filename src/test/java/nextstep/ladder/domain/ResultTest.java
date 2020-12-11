@@ -12,7 +12,7 @@ class ResultTest {
     @DisplayName("결과 생성")
     void result() {
         String answer = "꽝";
-        Result result = Result.of(answer);
+        Result result = Result.from(answer);
 
         assertThat(result.getResult()).isEqualTo("꽝");
     }
@@ -23,7 +23,7 @@ class ResultTest {
         String answer = "";
 
         assertThrows(IllegalArgumentException.class,
-                () -> Result.of(answer));
+                () -> Result.from(answer));
     }
 
 }

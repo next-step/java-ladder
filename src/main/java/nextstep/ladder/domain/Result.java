@@ -7,14 +7,24 @@ public class Result {
     private static final String LENGTH_MINIMUM_MENTION = "결과는 %d글자 이상이어야 합니다.";
 
     private String result;
+    private int index;
 
     private Result(String result) {
         checkEmptyResult(result);
         this.result = result;
     }
 
-    public static Result of(String result) {
+    private Result(String result, int index) {
+        this.result = result;
+        this.index = index;
+    }
+
+    public static Result from(String result) {
         return new Result(result);
+    }
+
+    public static Result of(String result, int index) {
+        return new Result(result, index);
     }
 
     private void checkEmptyResult(String result) {
