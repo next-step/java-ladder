@@ -5,7 +5,6 @@ import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -20,12 +19,10 @@ public class LadderController {
 
         Users users = gameCriteria.getUsers();
         Height height = gameCriteria.getHeight();
-        Results results = gameCriteria.getResult();
 
         Ladder ladder = Ladder.initLadder(users, height);
 
-        List<User> userList = users.getUsers();
-        Map<String, Result> userResultMap = mapUsernameResult(results, ladder, userList);
+        Map<String, Result> userResultMap = mapUsernameResult(gameCriteria, ladder);
 
         resultView.printResultMention();
         resultView.printUsers(users);
@@ -35,10 +32,10 @@ public class LadderController {
         resultView.printResult(userResultMap, inputView.inputResultUser());
     }
 
-    private Map<String, Result> mapUsernameResult(Results results, Ladder ladder, List<User> userList) {
-        return userList.stream()
+    private Map<String, Result> mapUsernameResult(GameCriteria gameCriteria, Ladder ladder) {
+        return gameCriteria.getUserList().stream()
                     .collect(Collectors.toMap(User::getName,
-                            getUserResult(results, ladder),
+                            getUserResult(gameCriteria.getResult(), ladder),
                             (participant1, participant2) -> participant1,
                             LinkedHashMap::new));
     }

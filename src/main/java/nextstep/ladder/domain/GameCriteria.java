@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import java.util.List;
+
 public class GameCriteria {
     private Users users;
     private Results result;
@@ -25,5 +27,9 @@ public class GameCriteria {
 
     public Height getHeight() {
         return height;
+    }
+
+    public List<User> getUserList() {
+        return users.getUsers();
     }
 }
