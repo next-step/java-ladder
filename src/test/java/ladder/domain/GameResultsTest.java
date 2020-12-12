@@ -15,7 +15,7 @@ public class GameResultsTest {
         Users users = Users.of("pobi,honux,crong,jk");
         Lines lines = Lines.of(GameSetup.of(4,5),() -> true);
         GameReward gameReward = GameReward.of("꽝,5000,꽝,3000");
-        this.gameResults = GameResults.of(users,lines,gameReward);
+        this.gameResults = GameResults.of(Ladder.of(users,lines),gameReward);
     }
 
     @Test
@@ -25,6 +25,6 @@ public class GameResultsTest {
         Lines lines = Lines.of(GameSetup.of(4,5),() -> true);
         GameReward gameReward = GameReward.of("꽝,5000,꽝,3000");
 
-        assertThat(gameResults).isEqualTo(GameResults.of(users,lines,gameReward));
+        assertThat(gameResults).isEqualTo(GameResults.of(Ladder.of(users,lines),gameReward));
     }
 }

@@ -6,11 +6,11 @@ public class Line {
 
     private final List<Point> points;
 
-    public Line (int countOfPerson, DirectionRule directionRule) {
+    public Line(int countOfPerson, DirectionRule directionRule) {
         this.points = generateLine(countOfPerson, directionRule);
     }
 
-    public Line (List<Point> points) {
+    public Line(List<Point> points) {
         this.points = points;
     }
 

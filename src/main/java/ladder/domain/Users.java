@@ -18,10 +18,10 @@ public class Users {
     }
 
     public static Users of(String userNames) {
-        return new Users(splitUserNames(userNames));
+        return new Users(getSplitUserNames(userNames));
     }
 
-    private static List<User> splitUserNames(String userNames) {
+    private static List<User> getSplitUserNames(String userNames) {
         if (isBlank(userNames))
             throw new IllegalArgumentException(USER_NAMES_EMPTY);
 
@@ -38,7 +38,7 @@ public class Users {
         return users;
     }
 
-    public User get(int index) {
+    public User getUser(int index) {
         return users.get(index);
     }
 

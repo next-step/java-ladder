@@ -10,7 +10,7 @@ public class GameResult {
     private final User user;
     private final String reward;
 
-    private GameResult (User user, String reward) {
+    private GameResult(User user, String reward) {
         this.user = user;
         this.reward = reward;
     }

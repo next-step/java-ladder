@@ -12,15 +12,15 @@ public class GameReward {
 
     private final List<String> rewards;
 
-    private GameReward (List<String> rewards) {
+    private GameReward(List<String> rewards) {
         this.rewards = rewards;
     }
 
     public static GameReward of(String rewardNames) {
-        return new GameReward(splitStrings(rewardNames));
+        return new GameReward(getSplitString(rewardNames));
     }
 
-    private static List<String> splitStrings(String rewardNames) {
+    private static List<String> getSplitString(String rewardNames) {
         isNullReward(rewardNames);
         return Arrays.stream(rewardNames.split(REWARD_NAMES_SEPARATOR))
                 .peek(GameReward::isNullReward)

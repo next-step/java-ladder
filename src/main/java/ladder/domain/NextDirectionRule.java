@@ -19,7 +19,7 @@ public class NextDirectionRule implements DirectionRule {
     }
 
     @Override
-    public boolean hasMoveAble() {
+    public boolean hasMovable() {
         Collections.shuffle(NEXT_BOOLEAN);
         return NEXT_BOOLEAN.get(FIRST_INDEX);
     }

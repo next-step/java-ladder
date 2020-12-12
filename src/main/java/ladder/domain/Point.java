@@ -21,7 +21,7 @@ public class Point {
     }
 
     public static Point first(DirectionRule nextBooleanRule) {
-        return of(FIRST_INDEX, Pointer.of(FALSE, nextBooleanRule.hasMoveAble()));
+        return of(FIRST_INDEX, Pointer.of(FALSE, nextBooleanRule.hasMovable()));
     }
 
     public static Point next(Point prePoint, DirectionRule nextBooleanRule) {
@@ -32,7 +32,7 @@ public class Point {
             return of(nextIndex, nextFalse(previous));
         }
 
-        return of(nextIndex, Pointer.next(previous, nextBooleanRule.hasMoveAble()));
+        return of(nextIndex, Pointer.next(previous, nextBooleanRule.hasMovable()));
     }
 
     public static Point last(Point prePoint) {

@@ -17,16 +17,16 @@ public class ResultView {
 
     private ResultView() {}
 
-    public static void printGameResult(Users users, Lines lines, GameReward reward) {
+    public static void printGameResult(Ladder ladder, GameReward reward) {
         System.out.println(LINE_SEPARATOR + LADDER_GAME_RESULT_MESSAGE + LINE_SEPARATOR);
-        printGamePlayers(users);
-        printLadderGame(lines);
+        printGamePlayers(ladder.getUsers());
+        printLadderGame(ladder.getLines());
         printRewards(reward);
     }
 
     private static void printGamePlayers(Users users) {
         List<User> userList = users.getUsers();
-        userList.forEach(e -> System.out.print(stringRightAlign(e.getUserName()) + " "));
+        userList.forEach(e -> System.out.print(parseRightAlign(e.getUserName()) + " "));
         System.out.println();
     }
 
@@ -59,11 +59,11 @@ public class ResultView {
 
     private static void printRewards(GameReward reward) {
         List<String> rewards = reward.getRewards();
-        rewards.forEach(e -> System.out.print(stringRightAlign(e) + " "));
+        rewards.forEach(e -> System.out.print(parseRightAlign(e) + " "));
         System.out.println(LINE_SEPARATOR);
     }
 
-    private static String stringRightAlign(String name) {
+    private static String parseRightAlign(String name) {
         if (name.length() == MAX_NAME_LENGTH) {
             return name;
         }

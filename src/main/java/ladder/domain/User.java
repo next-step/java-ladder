@@ -12,10 +12,10 @@ public class User {
 
     private User(String userName) {
         this.userName = userName;
-        nameLengthValidationCheck();
+        checkNameLength();
     }
 
-    private void nameLengthValidationCheck() {
+    private void checkNameLength() {
         if ((userName.length() < MIN_NAME_LENGTH) || (userName.length() > MAX_NAME_LENGTH)) {
             throw new IllegalArgumentException(NAME_LENGTH_ERROR);
         }

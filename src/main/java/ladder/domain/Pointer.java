@@ -10,12 +10,12 @@ public class Pointer {
     private final boolean right;
 
     private Pointer(boolean left, boolean right) {
-        isSameBoolean(left,right);
+        checkSameBoolean(left,right);
         this.left = left;
         this.right = right;
     }
 
-    private void isSameBoolean(boolean left, boolean right) {
+    private void checkSameBoolean(boolean left, boolean right) {
         if (left && right) {
             throw new IllegalStateException(SAME_TRUE_TYPE);
         }
