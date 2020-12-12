@@ -7,6 +7,7 @@ import nextstep.ladder.view.ResultView;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class LadderController {
@@ -24,14 +25,7 @@ public class LadderController {
         Ladder ladder = Ladder.initLadder(users, height);
 
         List<User> userList = users.getUsers();
-        Map<String, Result> userResultMap = userList.stream()
-                .collect(Collectors.toMap(User::getName,
-                        user -> {
-                            int finalIndex = ladder.getUserFinalIndex(user);
-                            return results.confirmResult(finalIndex);
-                        },
-                        (participant1, participant2) -> participant1,
-                        LinkedHashMap::new));
+        Map<String, Result> userResultMap = mapUsernameResult(results, ladder, userList);
 
         resultView.printResultMention();
         resultView.printUsers(users);
@@ -39,5 +33,20 @@ public class LadderController {
         resultView.drawLadders(ladder);
 
         resultView.printResult(userResultMap, inputView.inputResultUser());
+    }
+
+    private Map<String, Result> mapUsernameResult(Results results, Ladder ladder, List<User> userList) {
+        return userList.stream()
+                    .collect(Collectors.toMap(User::getName,
+                            getUserResult(results, ladder),
+                            (participant1, participant2) -> participant1,
+                            LinkedHashMap::new));
+    }
+
+    private Function<User, Result> getUserResult(Results results, Ladder ladder) {
+        return user -> {
+            int finalIndex = ladder.getUserFinalIndex(user);
+            return results.confirmResult(finalIndex);
+        };
     }
 }
