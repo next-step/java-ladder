@@ -75,6 +75,10 @@ public class Point {
         return pointStatus.nextIndex(index);
     }
 
+    public PointStatus getPointStatus() {
+        return pointStatus;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

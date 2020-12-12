@@ -51,8 +51,8 @@ public class Controller {
     }
 
     private void generateLadder() {
-        ladder = new Ladder(ladderHeight, users.size() - 1);
-        ladder.shuffle();
+        ConnectionMode mode = new RandomConnectionMode();
+        ladder = new Ladder(ladderHeight, users.size(), mode);
     }
 
     private void printOpening() {
@@ -66,8 +66,8 @@ public class Controller {
     }
 
     private void printLadder() {
-        LadderDTO ladderDTO = ladder.exportData();
-        List<List<Boolean>> layout = ladderDTO.getLayout();
+        LadderDTO ladderDTO = ladder.exportData1();
+        List<List<Boolean>> layout = ladderDTO.getLayout1();
         ResultView.printLadder(layout);
     }
 
@@ -78,8 +78,7 @@ public class Controller {
     }
 
     private void printRewardPerUser() {
-        Users finalStatus = ladder.generateResult(users);
-        Result result = new Result(finalStatus, rewards);
+        Result result = ladder.generateResult(users, rewards);
         while (true) {
             String request = InputView.askResult();
             ResultView.printRewardsOpening();

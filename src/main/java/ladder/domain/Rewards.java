@@ -13,8 +13,8 @@ public class Rewards {
 
     private final List<Reward> rewards;
 
-    public Rewards(List<?> users) {
-        this.rewards = users.stream()
+    public Rewards(List<?> rewards) {
+        this.rewards = rewards.stream()
                 .map(this::castToReward)
                 .collect(Collectors.toList());
     }

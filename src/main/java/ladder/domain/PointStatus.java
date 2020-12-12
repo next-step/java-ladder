@@ -45,4 +45,8 @@ public enum PointStatus {
     public int nextIndex(int current) {
         return current + delta;
     }
+
+    public boolean getStatus() {
+        return atStatus;
+    }
 }

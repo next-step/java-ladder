@@ -84,6 +84,10 @@ public class Ladder {
         return new LadderDTO(Collections.unmodifiableList(layer));
     }
 
+    public LadderDTO exportData1() {
+        return new LadderDTO(Collections.unmodifiableList(layer1));
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

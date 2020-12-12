@@ -1,7 +1,11 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.IntStream;
+
+import static java.util.stream.Collectors.toList;
 
 public class Line {
 
@@ -30,6 +34,13 @@ public class Line {
 
     public static Line ofPoints(List<Point> points) {
         return new Line(points);
+    }
+
+    public List<Point> getPoints() {
+        return Collections.unmodifiableList(
+                IntStream.range(0, points.size() - 1)
+                        .mapToObj(points::get)
+                        .collect(toList()));
     }
 
     public int getNextIndex(int index) {
