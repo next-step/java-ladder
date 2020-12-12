@@ -23,19 +23,23 @@ public enum PointStatus {
         return custom(false, atStatus);
     }
 
-    public static PointStatus custom(boolean leftSideStatus, boolean atStatus) {
-        return Arrays.stream(PointStatus.values())
-                .filter(value -> value.leftSideStatus == leftSideStatus && value.atStatus == atStatus)
-                .findAny()
-                .orElseThrow(InvalidLayoutException::new);
-    }
-
     public PointStatus next(boolean atStatus) {
+        if (this == PointStatus.RIGHT) {
+            return custom(this.atStatus, false);
+        }
+
         return custom(this.atStatus, atStatus);
     }
 
     public PointStatus last() {
         return custom(this.atStatus, false);
+    }
+
+    public static PointStatus custom(boolean leftSideStatus, boolean atStatus) {
+        return Arrays.stream(PointStatus.values())
+                .filter(value -> value.leftSideStatus == leftSideStatus && value.atStatus == atStatus)
+                .findAny()
+                .orElseThrow(InvalidLayoutException::new);
     }
 
     public int nextIndex(int current) {
