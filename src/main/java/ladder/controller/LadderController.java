@@ -12,14 +12,14 @@ import java.util.Map;
 
 import static ladder.domain.LadderConstant.SEARCH_ALL_REQUEST;
 
-public class Controller {
+public class LadderController {
 
     private Users users;
     private int ladderHeight;
     private Ladder ladder;
     private Rewards rewards;
 
-    public Controller() {
+    public LadderController() {
     }
 
     public void run() {
