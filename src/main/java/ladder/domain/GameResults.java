@@ -17,15 +17,16 @@ public class GameResults {
         return new GameResults(gameResults);
     }
 
-    public static GameResults of(Users users, Lines lines, GameReward gameReward) {
-        return new GameResults(makeResults(users, lines, gameReward));
+    public static GameResults of(Ladder ladder, GameReward gameReward) {
+        return new GameResults(makeResults(ladder, gameReward));
     }
 
-    private static List<GameResult> makeResults(Users users, Lines lines, GameReward gameReward) {
-        List<GameResult> gameResults = new ArrayList<>(users.countOfPerson());
-        for (int position = 0; position < users.countOfPerson(); position++) {
-            User user = users.get(position);
-            String reward = gameReward.get(lines.toMaxPoint(position));
+    private static List<GameResult> makeResults(Ladder ladder, GameReward gameReward) {
+        List<GameResult> gameResults = new ArrayList<>(ladder.getUserCount());
+
+        for (int position = 0; position < ladder.getUserCount(); position++) {
+            User user = ladder.getUser(position);
+            String reward = gameReward.get(ladder.getFinalPosition(position));
             gameResults.add(GameResult.of(user,reward));
         }
         return gameResults;
