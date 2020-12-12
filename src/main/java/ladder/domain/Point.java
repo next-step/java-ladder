@@ -5,8 +5,11 @@ import ladder.ladderexceptions.InvalidLayoutException;
 import java.util.Objects;
 
 public class Point {
-    private final boolean leftSideStatus;
-    private final boolean atStatus;
+    private boolean leftSideStatus;
+    private boolean atStatus;
+
+    private int index;
+    private PointStatus pointStatus;
 
     public static Point first(boolean atPointStatus) {
         return custom(false, atPointStatus);
@@ -30,6 +33,19 @@ public class Point {
         this.atStatus = atPointStatus;
     }
 
+    private Point(int index, PointStatus pointStatus) {
+        this.index = index;
+        this.pointStatus = pointStatus;
+    }
+
+    public static Point first1(boolean atStatus) {
+        return custom1(0, PointStatus.first(atStatus));
+    }
+
+    public static Point custom1(int index, PointStatus status) {
+        return new Point(index, status);
+    }
+
     private void validateStatus(boolean leftSideStatus, boolean atPointStatus) {
         if (leftSideStatus && atPointStatus) {
             throw new InvalidLayoutException();
@@ -45,6 +61,18 @@ public class Point {
         }
 
         return startingIndex;
+    }
+
+    public Point next1(boolean atStatus) {
+        return custom1(index + 1, pointStatus.next(atStatus));
+    }
+
+    public Point last1() {
+        return custom1(index + 1, pointStatus.last());
+    }
+
+    public int nextIndex1() {
+        return pointStatus.nextIndex(index);
     }
 
     @Override
