@@ -61,20 +61,17 @@ public class LadderController {
 
     private void printUsers() {
         UsersDTO usersDTO = users.exportData();
-        List<String> users = usersDTO.getUsers();
-        ResultView.printUsers(users);
+        ResultView.printUsers(usersDTO);
     }
 
     private void printLadder() {
         LadderDTO ladderDTO = ladder.exportData();
-        List<List<Boolean>> layout = ladderDTO.getLayout1();
-        ResultView.printLadder(layout);
+        ResultView.printLadder(ladderDTO);
     }
 
     private void printRewards() {
         RewardsDTO rewardsDTO = rewards.exportData();
-        List<String> rewards = rewardsDTO.getRewards();
-        ResultView.printRewards(rewards);
+        ResultView.printRewards(rewardsDTO);
     }
 
     private void printRewardPerUser() {

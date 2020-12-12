@@ -10,14 +10,14 @@ import static java.util.stream.Collectors.toList;
 
 public class LadderDTO {
 
-    private final List<Line> layout1;
+    private final List<Line> layout;
 
     public LadderDTO(List<Line> layout) {
-        this.layout1 = layout;
+        this.layout = layout;
     }
 
-    public List<List<Boolean>> getLayout1() {
-        return this.layout1.stream()
+    public List<List<Boolean>> getLayout() {
+        return this.layout.stream()
                 .map(Line::getValidPoints)
                 .map(points -> points.stream()
                         .map(Point::getPointStatus)
