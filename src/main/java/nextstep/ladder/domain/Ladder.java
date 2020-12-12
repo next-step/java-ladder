@@ -29,8 +29,7 @@ public class Ladder {
     public int getUserFinalIndex(User user) {
         int index = user.getIndex();
         for(Line line : lines) {
-            int move = line.getPoints().get(index).getDirection().getMove();
-            index += move;
+            index = line.getNextIndex(index);
         }
 
         return index;

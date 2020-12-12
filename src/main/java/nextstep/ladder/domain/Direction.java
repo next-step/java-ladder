@@ -10,15 +10,15 @@ public enum Direction {
     private static final int ZERO = 0;
     private static final int ONE = 1;
 
-    private int move;
+    private final int directionIndex;
 
     Direction(int move) {
-        this.move = move;
+        this.directionIndex = move;
     }
 
     public static Direction from(int move) {
         return Arrays.stream(Direction.values())
-                .filter(direction -> direction.getMove() == move)
+                .filter(direction -> direction.getDirectionIndex() == move)
                 .findFirst()
                 .get();
     }
@@ -36,7 +36,7 @@ public enum Direction {
 
     }
 
-    public int getMove() {
-        return move;
+    public int getDirectionIndex() {
+        return directionIndex;
     }
 }

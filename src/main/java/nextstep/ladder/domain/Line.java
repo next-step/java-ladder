@@ -39,6 +39,10 @@ public class Line {
         return number;
     }
 
+    public int getNextIndex(int index) {
+        return points.get(index).getNextPoint();
+    }
+
     public List<Point> getPoints() {
         return points;
     }
