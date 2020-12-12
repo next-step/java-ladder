@@ -26,4 +26,12 @@ public class Ladder {
     public List<Row> getRows() {
         return Collections.unmodifiableList(rows);
     }
+
+    public List<Integer> getResult() {
+        final List<Integer> initialPosition = IntStream.rangeClosed(0, rows.get(0).getLinks().size())
+                .boxed()
+                .collect(Collectors.toList());
+        return rows.stream()
+                .reduce(initialPosition, (pos, row) -> row.step(pos), (pos1, pos2) -> pos2);
+    }
 }
