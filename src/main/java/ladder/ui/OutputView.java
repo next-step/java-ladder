@@ -4,29 +4,40 @@ import ladder.domain.Ladder;
 import ladder.domain.Row;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class OutputView {
     private static final String COLUMN_MARKER = "|";
     private static final String LINK_MARKER = "-----";
     private static final String SPACE       = "     ";
+    private static final String PRIZE_ALL = "all";
 
-    public static void showAttendees(List<String> attendees) {
-        String outputLine = attendees.stream()
+    public static void showLadder(List<String> attendees, Ladder ladder, List<String> prizes) {
+        showLabels(attendees);
+        showRows(ladder.getRows());
+        showLabels(prizes);
+    }
+
+    private static void showLabels(List<String> labels) {
+        String outputLine = labels.stream()
                 .map(OutputView::centered)
                 .collect(Collectors.joining(" "));
         System.out.println(outputLine);
     }
 
     private static String centered(String text) {
-        int margin = SPACE.length() - text.length();
+        int length = text.codePoints()
+                .map(c -> c < 128 ? 1 : 2)
+                .reduce(0, Integer::sum);
+        int margin = SPACE.length() - length;
         return SPACE.substring(0, margin / 2) +
                 text +
                 SPACE.substring(0, (margin + 1) / 2);
     }
 
-    public static void showLadder(Ladder ladder) {
-        ladder.getRows().stream()
+    private static void showRows(List<Row> rows) {
+        rows.stream()
                 .map(OutputView::rowToString)
                 .forEach(System.out::println);
     }
@@ -37,5 +48,19 @@ public class OutputView {
                 .map(link -> link ? LINK_MARKER : SPACE)
                 .forEach(marker -> sb.append(marker).append(COLUMN_MARKER));
         return sb.toString();
+    }
+
+    public static void showPrize(Map<String, String> prizeTable, String whosePrize) {
+        System.out.println("실행 결과");
+
+        if (!PRIZE_ALL.equals(whosePrize)) {
+            System.out.println(prizeTable.get(whosePrize));
+            return;
+        }
+
+        prizeTable.forEach((who, prize) -> {
+            System.out.format("%s: ", who);
+            System.out.println(prize);
+        });
     }
 }
