@@ -12,15 +12,11 @@
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
 
 ## 사다리 생성 방법
-
-- TransverseLadder: '-----'를 연속되지 않게 생성한다.
-- LadderLine: TransverseLadder와 참가자 수를 조합하여 LadderLine을 생성한다.
-- 홀수번째는 true, 짝수번째는 Random하게 true or false를 저장한다.
+- LadderLine: 참가자 수를 기반으로 조합하여 LadderLine을 생성한다.
+- 홀수번째(Bar -> '|')는 true, 짝수번째(Blank/Ladder -> '     '/'-----')는 true/false를 Random으로 저장한다.
 - ex. 참가자: pobi, cron, jh 사다리 높이: 3
 
 ```
-## TransverseLadder
-true/false, true/false
 
 ## Ladder
 pobi               cron               jh
@@ -33,12 +29,6 @@ pobi               cron               jh
 
 
 ## 요구사항 정리
-1. 사다리 게임에 참여하는 사람에 이름을 최대5글자까지 부여할 수 있다. 사다리를 출력할 때 사람 이름도 같이 출력한다.
-2. 사람 이름은 쉼표(,)를 기준으로 구분한다.
-3. 사람 이름을 5자 기준으로 출력하기 때문에 사다리 폭도 넓어져야 한다.
-4. 사다리 타기가 정상적으로 동작하려면 라인이 겹치지 않도록 해야 한다.
-    |-----|-----| 모양과 같이 가로 라인이 겹치는 경우 어느 방향으로 이동할지 결정할 수 없다.
-
 - 사다리(Ladder)를 생성한다.
     1. 참가자(Participants)수 만큼 '|'를 생성한다.
     2. 사다리가 연속되지 않도록 크기가 1인 사다리를 생성한다. |-----|-----| (x)
