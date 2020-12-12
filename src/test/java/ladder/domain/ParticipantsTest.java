@@ -7,8 +7,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Arrays;
 
-import static ladder.domain.Participants.NAMES_CANNOT_BE_DUPLICATED;
-import static ladder.domain.Participants.NAME_CAN_NOT_BE_BLANK;
+import static ladder.domain.Participants.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
@@ -44,6 +43,15 @@ class ParticipantsTest {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Participants("pobi,pobi,poby,bopi,bopy"))
                 .withMessage(NAMES_CANNOT_BE_DUPLICATED);
+    }
+
+    @Test
+    @DisplayName("5글자 이상의 이름을 입력하면, Exception을 throw한다.")
+    void should_throw_exception_when_name_is_too_long() {
+        //Given & When
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new Participants("guylian, operabean, hoonick"))
+                .withMessage(NAME_IS_TOO_LONG);
     }
 
 }
