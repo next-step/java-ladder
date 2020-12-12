@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ResultTest {
@@ -16,10 +15,12 @@ class ResultTest {
 
     @BeforeEach
     void setUp() {
-        Users users = new Users(asList("A", "B", "C"));
-        Rewards rewards = new Rewards(asList("1등", "2등", "3등"));
+        Map<User, Reward> relation = new HashMap<>();
+        relation.put(new User("A"), new Reward("1등"));
+        relation.put(new User("B"), new Reward("2등"));
+        relation.put(new User("C"), new Reward("3등"));
 
-        sampleResult = new Result(users, rewards);
+        sampleResult = new Result(relation);
     }
 
     @Test
