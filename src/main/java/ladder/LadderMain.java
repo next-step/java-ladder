@@ -5,6 +5,6 @@ import ladder.controller.LadderController;
 public class LadderMain {
 
     public static void main(String[] args) {
-        LadderController.ladderCreator();
+        LadderController.getLadderResult();
     }
 }

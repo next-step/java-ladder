@@ -8,28 +8,45 @@ public class LadderController {
 
     private LadderController() {}
 
-    public static void ladderCreator() {
-        Users users = Users.of(InputView.userName());
-        GameReward gameReward = GameReward.of(InputView.ladderGameResult());
-        GameSetup gameSetup = GameSetup.of(users.countOfPerson(),InputView.inputHeight());
-        Lines lines = Lines.of(gameSetup, new NextDirectionRule());
+    public static void getLadderResult() {
+        Users users = enterUsers();
+        GameReward gameReward = enterGameReward();
+        GameSetup gameSetup = createGameSetup(users.countOfPerson(), InputView.enterHeight());
 
-        ResultView.printGameResult(users,lines,gameReward);
+        Ladder ladder = Ladder.of(users, createLines(gameSetup));
+        ResultView.printGameResult(ladder, gameReward);
 
-        GameManager gameManager = GameManager.of(GameResults.of(users,lines,gameReward));
-        viewGameResult(gameManager);
+        GameResults gameResults = GameResults.of(ladder, gameReward);
+        GameManager gameManager = GameManager.of(gameResults);
+
+        showRewardResult(gameManager);
     }
 
-    private static void viewGameResult(GameManager gameManager) {
-        final String defaultKey = GameManager.getDefaultKey();
+    private static Users enterUsers() {
+        return Users.of(InputView.enterUserNames());
+    }
+
+    private static GameReward enterGameReward() {
+        return GameReward.of(InputView.enterGameReward());
+    }
+
+    private static GameSetup createGameSetup(int countOfPerson, int height) {
+        return GameSetup.of(countOfPerson, height);
+    }
+
+    private static Lines createLines(GameSetup gameSetup) {
+        return Lines.of(gameSetup, new NextDirectionRule());
+    }
+
+    private static void showRewardResult(GameManager gameManager) {
         String resultKey;
         do {
-            resultKey  = InputView.selectLadderGameResult();
+            resultKey  = InputView.enterGameResultUser();
             ResultView.printGameRewards(gameManager.getResult(resultKey));
-        } while(defaultResultKeyCheck(defaultKey,resultKey));
+        } while(checkResultKey(resultKey));
     }
 
-    private static boolean defaultResultKeyCheck(String defaultKey, String inputKey) {
-        return !defaultKey.equals(inputKey.toLowerCase());
+    private static boolean checkResultKey(String inputKey) {
+        return !GameManager.DEFAULT_KEY.equalsIgnoreCase(inputKey);
     }
 }
