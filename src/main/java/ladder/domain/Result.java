@@ -6,19 +6,27 @@ import java.util.Map;
 public class Result {
 
     private final static String INVALID_MESSAGE = "포함되지 않은 인원입니다.";
-    private final Map<User, Reward> mapper;
+    private final Map<User, Reward> userRewardRelation;
 
     public Result(Users finalUsers, Rewards rewards) {
-        mapper = new HashMap<>();
+        userRewardRelation = new HashMap<>();
 
         for (int i = 0; i < finalUsers.size(); i++) {
-            mapper.put(finalUsers.get(i), rewards.get(i));
+            userRewardRelation.put(finalUsers.get(i), rewards.get(i));
         }
     }
 
+    public Result(Map<User, Reward> relation) {
+        this.userRewardRelation = relation;
+    }
+
     public String responseForOne(String input) {
-        if (mapper.containsKey(new User(input))) {
-            return mapper.get(new User(input)).getReward();
+        return responseForOne(new User(input));
+    }
+
+    public String responseForOne(User user) {
+        if (userRewardRelation != null && userRewardRelation.containsKey(user)) {
+            return userRewardRelation.get(user).getReward();
         }
 
         return INVALID_MESSAGE;
@@ -27,8 +35,8 @@ public class Result {
     public Map<String, String> responseForAll() {
         Map<String, String> result = new HashMap<>();
 
-        for (User user : mapper.keySet()) {
-            result.put(user.getName(), mapper.get(user).getReward());
+        for (User user : userRewardRelation.keySet()) {
+            result.put(user.getName(), userRewardRelation.get(user).getReward());
         }
 
         return result;
