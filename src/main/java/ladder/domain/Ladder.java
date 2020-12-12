@@ -9,9 +9,9 @@ public class Ladder {
     private static final int START_INDEX = 0;
     private final List<LadderLine> ladderLines;
 
-    public Ladder(Participants participants, LadderHeight ladderHeight) {
+    public Ladder(int participantCount, LadderHeight ladderHeight) {
         this.ladderLines = IntStream.range(START_INDEX, ladderHeight.size())
-                .mapToObj(index -> new LadderLine(participants))
+                .mapToObj(index -> new LadderLine(participantCount))
                 .collect(Collectors.toList());
     }
 

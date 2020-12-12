@@ -16,11 +16,11 @@ class LadderTest {
         int ladderHeight = 10;
 
         //When
-        Ladder ladder = new Ladder(participants, new LadderHeight(ladderHeight));
+        Ladder ladder = new Ladder(participants.size(), new LadderHeight(ladderHeight));
 
         //Then
         assertThat(ladder.getLadderLines().size()).isEqualTo(ladderHeight);
-        assertThat(ladder.getLadderLines().get(0).getValue().size()).isEqualTo(7);
+        assertThat(ladder.getLadderLines().get(0).getPoints().size()).isEqualTo(7);
 
     }
 

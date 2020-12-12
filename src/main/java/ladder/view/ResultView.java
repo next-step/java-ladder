@@ -45,7 +45,7 @@ public class ResultView {
     }
 
     private static void printLadderLine(LadderLine ladderLine) {
-        IntStream.range(0, ladderLine.getValue().size())
+        IntStream.range(0, ladderLine.getPoints().size())
                 .mapToObj(index -> getLadder(ladderLine, index))
                 .forEach(System.out::print);
         System.out.println();
@@ -55,7 +55,7 @@ public class ResultView {
         if (isBarIndex(index)) {
             return BAR;
         }
-        if (Boolean.TRUE.equals(ladderLine.getValue().get(index))) {
+        if (Boolean.TRUE.equals(ladderLine.getPoints().get(index))) {
             return LADDER;
         }
         return BLANK;

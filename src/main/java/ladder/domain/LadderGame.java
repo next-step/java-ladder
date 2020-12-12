@@ -17,6 +17,6 @@ public class LadderGame {
     }
 
     private Ladder getLadders() {
-        return new Ladder(participants, ladderHeight);
+        return new Ladder(participants.size(), ladderHeight);
     }
 }

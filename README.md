@@ -49,7 +49,7 @@ pobi               cron               jh
 - 사다리와 참가자를 관리하는 사다리 게임(LadderGame)을 생성한다.
 
 ### TODO
-
+- TransverseLadder의 protect method 분리
 ### DONE
 - 가로 사다리를 생성
     1. 랜덤하게 생성할지 말지를 결정하고, 이전 가로 사다리가 생성되어 있으면 생성하지 않음
@@ -63,3 +63,4 @@ pobi               cron               jh
 - Ladder, LadderLine 테스트 코드 작성
 - 요구사항 정리
 - ErrorMessage 삭제
+- Ladder와 Participants 의존성 제거

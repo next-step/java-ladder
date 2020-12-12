@@ -14,10 +14,10 @@ class LadderLineTest {
         String names = "pobi,crong,honux,jk";
 
         //When
-        LadderLine ladderLine = new LadderLine(new Participants(names));
+        LadderLine ladderLine = new LadderLine(new Participants(names).size());
 
         //Then
-        assertThat(ladderLine.getValue().size()).isEqualTo(7);
+        assertThat(ladderLine.getPoints().size()).isEqualTo(7);
     }
 
 }

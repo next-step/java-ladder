@@ -8,34 +8,24 @@ public class LadderLine {
 
     private static final int START_INDEX = 0;
 
-    private final List<Boolean> value;
+    private final List<Boolean> points;
 
-    public LadderLine(Participants participants) {
-        this.value = initLadder(participants);
+    public LadderLine(int participantsCount) {
+        this.points = initLadder(participantsCount);
     }
 
-    private List<Boolean> initLadder(Participants participants) {
+    private List<Boolean> initLadder(int participantsCount) {
 
-        TransverseLadder transverseLadder = new TransverseLadder(participants);
-        int ladderSize = transverseLadder.size() + participants.size();
+        TransverseLadder transverseLadder = new TransverseLadder(participantsCount);
+
+        int ladderSize = transverseLadder.size() + participantsCount;
 
         return IntStream.range(START_INDEX, ladderSize)
-                .mapToObj(index -> existsLadder(index, transverseLadder))
+                .mapToObj(transverseLadder::isTransverseLadder)
                 .collect(Collectors.toList());
     }
 
-    private Boolean existsLadder(int index, TransverseLadder transverseLadder) {
-        if (isTransverseLadderPosition(index)) {
-            return transverseLadder.existsLadder(index / 2);
-        }
-        return true;
-    }
-
-    private boolean isTransverseLadderPosition(int index) {
-        return index % 2 == 1;
-    }
-
-    public List<Boolean> getValue() {
-        return value;
+    public List<Boolean> getPoints() {
+        return points;
     }
 }
