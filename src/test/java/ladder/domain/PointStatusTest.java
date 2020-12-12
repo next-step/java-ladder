@@ -13,10 +13,8 @@ class PointStatusTest {
     @Test
     @DisplayName("허용되지 않은 레이아웃 에러처리")
     void testInvalidLayout() {
-        PointStatus first = PointStatus.first(true);
-
         assertThatThrownBy(
-                () -> first.next(true)
+                () -> PointStatus.custom(true, true)
         ).isInstanceOf(InvalidLayoutException.class);
     }
 
@@ -36,6 +34,14 @@ class PointStatusTest {
         PointStatus sample = first.next(false);
 
         assertThat(sample.nextIndex(1)).isEqualTo(0);
+    }
+
+    @Test
+    @DisplayName("연속된 사다리 레이아웃 방어 처리")
+    void testConnectedLayout() {
+        PointStatus status = PointStatus.first(true).next(true);
+
+        assertThat(status.nextIndex(1)).isEqualTo(0);
     }
 
     @Test
