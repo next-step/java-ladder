@@ -1,16 +1,10 @@
 package ladder.domain;
 
-public class SampleShufflePattern implements HowToConnect, ConnectionMode {
+public class SampleShufflePattern implements ConnectionMode {
 
     private int idx = 0;
 
     public SampleShufflePattern() {
-    }
-
-    @Override
-    public boolean needToConnect(Boolean leftSideCondition) {
-        idx += 1;
-        return isEven(idx);
     }
 
     @Override

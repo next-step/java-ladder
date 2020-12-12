@@ -54,11 +54,11 @@ class LineTest {
     @DisplayName("배열 수동 생성에 따른 값 테스트")
     void testManualLine(int input, int expected) {
         Line sampleLine = Line.ofPoints(new ArrayList<>(Arrays.asList(
-                Point.custom1(0, PointStatus.custom(false, true)),
-                Point.custom1(1, PointStatus.custom(true, false)),
-                Point.custom1(2, PointStatus.custom(false, false)),
-                Point.custom1(3, PointStatus.custom(false, true)),
-                Point.custom1(4, PointStatus.custom(true, false))
+                Point.custom(0, PointStatus.custom(false, true)),
+                Point.custom(1, PointStatus.custom(true, false)),
+                Point.custom(2, PointStatus.custom(false, false)),
+                Point.custom(3, PointStatus.custom(false, true)),
+                Point.custom(4, PointStatus.custom(true, false))
         )));
 
         assertThat(sampleLine.getNextIndex(input)).isEqualTo(expected);

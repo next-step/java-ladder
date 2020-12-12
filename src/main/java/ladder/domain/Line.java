@@ -14,15 +14,15 @@ public class Line {
     public static Line ofLineCounts(int numPoints, ConnectionMode mode) {
         List<Point> points = new ArrayList<>();
 
-        Point currentPoint = Point.first1(mode.generateConnection());
+        Point currentPoint = Point.first(mode.generateConnection());
         points.add(currentPoint);
 
         for (int i = 1; i < numPoints - 1; i++) {
-            currentPoint = currentPoint.next1(mode.generateConnection());
+            currentPoint = currentPoint.next(mode.generateConnection());
             points.add(currentPoint);
         }
 
-        Point lastPoint = currentPoint.last1();
+        Point lastPoint = currentPoint.last();
         points.add(lastPoint);
 
         return new Line(points);
@@ -36,7 +36,7 @@ public class Line {
         return new Line(points);
     }
 
-    public List<Point> getPoints() {
+    public List<Point> getValidPoints() {
         return Collections.unmodifiableList(
                 IntStream.range(0, points.size() - 1)
                         .mapToObj(points::get)
@@ -44,6 +44,6 @@ public class Line {
     }
 
     public int getNextIndex(int index) {
-        return points.get(index).nextIndex1();
+        return points.get(index).nextIndex();
     }
 }

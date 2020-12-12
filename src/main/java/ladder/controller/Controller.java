@@ -66,7 +66,7 @@ public class Controller {
     }
 
     private void printLadder() {
-        LadderDTO ladderDTO = ladder.exportData1();
+        LadderDTO ladderDTO = ladder.exportData();
         List<List<Boolean>> layout = ladderDTO.getLayout1();
         ResultView.printLadder(layout);
     }
