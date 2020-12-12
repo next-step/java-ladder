@@ -11,7 +11,7 @@ public class Ladder {
 
     public Ladder(int participantCount, LadderHeight ladderHeight) {
         this.ladderLines = IntStream.range(START_INDEX, ladderHeight.size())
-                .mapToObj(index -> new LadderLine(participantCount))
+                .mapToObj(index -> new LadderLine(participantCount, new RandomLadderGenerateStrategy()))
                 .collect(Collectors.toList());
     }
 
