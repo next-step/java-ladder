@@ -28,7 +28,7 @@ public class Participants {
         return participants;
     }
 
-    public Participant getParticipant(String name) {
+    private Participant getParticipant(String name) {
         return participants.stream()
                 .filter(participant -> participant.getName().equals(name))
                 .findFirst()
