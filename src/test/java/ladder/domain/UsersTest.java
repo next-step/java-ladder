@@ -58,18 +58,6 @@ class UsersTest {
     }
 
     @Test
-    @DisplayName("Swap 테스팅")
-    void testCorrectlySwapped() {
-        SwapRule sampleRule = index -> true;
-        Users inputUsers = new Users(Arrays.asList("A", "B", "C", "D"));
-        Users expectedUsers = new Users(Arrays.asList("B", "C", "D", "A"));
-
-        Users swappedUsers = inputUsers.passLayer(sampleRule);
-
-        assertThat(swappedUsers).isEqualTo(expectedUsers);
-    }
-
-    @Test
     @DisplayName("Size 확인")
     void testSize() {
         List<String> users = Arrays.asList("BSH", "ABC");

@@ -14,7 +14,6 @@ public class User {
 
     public User(String name) {
         validateName(name);
-
         this.name = name;
     }
 

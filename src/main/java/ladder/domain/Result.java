@@ -8,14 +8,6 @@ public class Result {
     private final static String INVALID_MESSAGE = "포함되지 않은 인원입니다.";
     private final Map<User, Reward> userRewardRelation;
 
-    public Result(Users finalUsers, Rewards rewards) {
-        userRewardRelation = new HashMap<>();
-
-        for (int i = 0; i < finalUsers.size(); i++) {
-            userRewardRelation.put(finalUsers.get(i), rewards.get(i));
-        }
-    }
-
     public Result(Map<User, Reward> relation) {
         this.userRewardRelation = relation;
     }

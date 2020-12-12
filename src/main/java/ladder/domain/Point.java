@@ -14,16 +14,16 @@ public class Point {
         return custom(0, PointStatus.first(atStatus));
     }
 
-    public static Point custom(int index, PointStatus status) {
-        return new Point(index, status);
-    }
-
     public Point next(boolean atStatus) {
         return custom(index + 1, pointStatus.next(atStatus));
     }
 
     public Point last() {
         return custom(index + 1, pointStatus.last());
+    }
+
+    public static Point custom(int index, PointStatus status) {
+        return new Point(index, status);
     }
 
     public int nextIndex() {
