@@ -7,10 +7,6 @@ public class Line {
 
     private final List<Point> points;
 
-    private Line(List<Point> points) {
-        this.points = points;
-    }
-
     public static Line ofLineCounts(int numPoints, ConnectionMode mode) {
         List<Point> points = new ArrayList<>();
 
@@ -25,6 +21,14 @@ public class Line {
         Point lastPoint = currentPoint.last1();
         points.add(lastPoint);
 
+        return new Line(points);
+    }
+
+    private Line(List<Point> points) {
+        this.points = points;
+    }
+
+    public static Line ofPoints(List<Point> points) {
         return new Line(points);
     }
 
