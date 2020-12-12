@@ -1,9 +1,9 @@
 package ladder.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class Ladder {
     private static final int MINIMUM_HEIGHT = 1;
@@ -23,7 +23,7 @@ public class Ladder {
         );
     }
 
-    public Stream<Row> stream() {
-        return rows.stream();
+    public List<Row> getRows() {
+        return Collections.unmodifiableList(rows);
     }
 }

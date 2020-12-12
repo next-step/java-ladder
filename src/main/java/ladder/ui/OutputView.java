@@ -26,7 +26,7 @@ public class OutputView {
     }
 
     public static void showLadder(Ladder ladder) {
-        ladder.stream()
+        ladder.getRows().stream()
                 .map(OutputView::rowToString)
                 .forEach(System.out::println);
     }

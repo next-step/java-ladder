@@ -1,10 +1,7 @@
 package ladder.domain;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-
-import java.util.function.Function;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
@@ -37,12 +34,12 @@ public class LadderTest {
     })
     void testLinkCount(int width, int height) {
         int expected = width / 2 * height;
-        assertThat(Ladder.of(width, height, () -> true).stream()
+        assertThat(Ladder.of(width, height, () -> true).getRows().stream()
                 .flatMap(r -> r.getLinks().stream())
                 .filter(b -> b)
                 .count()).isEqualTo(expected);
 
-        assertThat(Ladder.of(width, height, () -> false).stream()
+        assertThat(Ladder.of(width, height, () -> false).getRows().stream()
                 .flatMap(r -> r.getLinks().stream())
                 .filter(b -> b)
                 .count()).isEqualTo(0);
