@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class GameManager {
 
-    private static final String DEFAULT_KEY = "all";
+    public static final String DEFAULT_KEY = "all";
     private final GameResults gameResults;
 
     private GameManager(GameResults gameResults) {
@@ -21,17 +21,13 @@ public class GameManager {
         if (DEFAULT_KEY.equals(resultKey)) {
             return gameResults.getGameResults();
         }
-        return selectResult(resultKey);
+        return searchResult(resultKey);
     }
 
-    private List<GameResult> selectResult(String userName) {
+    private List<GameResult> searchResult(String userName) {
         return gameResults.getGameResults().stream()
                 .filter(gameResult -> gameResult.contains(userName))
                 .collect(Collectors.toList());
-    }
-
-    public static String getDefaultKey() {
-        return DEFAULT_KEY;
     }
 
     @Override

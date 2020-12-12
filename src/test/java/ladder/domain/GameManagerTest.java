@@ -28,7 +28,7 @@ public class GameManagerTest {
     @DisplayName("GameManager getResult() 전체 결과값 확인")
     void gameManager_getResultAll_isEqualTo() {
         GameManager gameManager = GameManager.of(GameResults.of(gameResults));
-        List<GameResult> actual = gameManager.getResult("all");
+        List<GameResult> actual = gameManager.getResult(GameManager.DEFAULT_KEY);
         assertAll(
                 () -> assertThat(actual.get(0)).isEqualTo(GameResult.of(User.of("pobi"),"꽝")),
                 () -> assertThat(actual.get(1)).isEqualTo(GameResult.of(User.of("honux"),"5000")),
