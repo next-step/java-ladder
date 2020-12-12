@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.Arrays;
@@ -74,5 +75,47 @@ class LadderTest {
 
         assertThat(sampleLadder.generateResult(inputs))
                 .isEqualTo(expected);
+    }
+
+    @Test
+    @DisplayName("게임 생성 테스트")
+    void testGenerateLadderWithConnection() {
+        int numUser = 5;
+        int numHeight = 0;
+        assertThatExceptionOfType(InvalidLadderHeightException.class)
+                .isThrownBy(() -> new Ladder(numHeight, numUser, new SampleShufflePattern()));
+    }
+
+    @ParameterizedTest
+    @CsvSource({"a,3등", "b,1등", "c,2등", "d,4등"})
+    @DisplayName("게임 동작 테스트")
+    void testGame(String input, String expected) {
+        Line layer1 = Line.ofPoints(Arrays.asList(
+                Point.custom1(0, PointStatus.custom(false, true)),
+                Point.custom1(1, PointStatus.custom(true, false)),
+                Point.custom1(2, PointStatus.custom(false, true)),
+                Point.custom1(3, PointStatus.custom(true, false))
+        ));
+        Line layer2 = Line.ofPoints(Arrays.asList(
+                Point.custom1(0, PointStatus.custom(false, false)),
+                Point.custom1(1, PointStatus.custom(false, false)),
+                Point.custom1(2, PointStatus.custom(false, true)),
+                Point.custom1(3, PointStatus.custom(true, false))
+        ));
+        Line layer3 = Line.ofPoints(Arrays.asList(
+                Point.custom1(0, PointStatus.custom(false, false)),
+                Point.custom1(1, PointStatus.custom(false, true)),
+                Point.custom1(2, PointStatus.custom(true, false)),
+                Point.custom1(3, PointStatus.custom(false, false))
+        ));
+
+        Ladder sampleLadder = new Ladder(Arrays.asList(layer1, layer2, layer3));
+
+        Users inputUsers = new Users(Arrays.asList("a", "b", "c", "d"));
+        Rewards inputRewards = new Rewards(Arrays.asList("1등", "2등", "3등", "4등"));
+
+        Result result = sampleLadder.generateResult(inputUsers, inputRewards);
+
+        assertThat(result.responseForOne(input)).isEqualTo(expected);
     }
 }
