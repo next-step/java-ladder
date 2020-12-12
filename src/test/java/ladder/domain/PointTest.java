@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.stream.Stream;
 
@@ -73,5 +72,34 @@ public class PointTest {
 
         assertThat(sample.last())
                 .isEqualTo(Point.custom(false, false));
+    }
+
+    @Test
+    @DisplayName("pass 생성")
+    public void next_stay() {
+        Point second = Point.first1(false).next1(false);
+        assertThat(second.nextIndex1()).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("좌측 이동 테스트")
+    public void next_left() {
+        Point second = Point.first1(true).next1(false);
+        assertThat(second.nextIndex1()).isEqualTo(0);
+    }
+
+    @Test
+    @DisplayName("우측 이동 테스트")
+    public void next_right() {
+        Point second = Point.first1(false).next1(true);
+        assertThat(second.nextIndex1()).isEqualTo(2);
+    }
+
+    @Test
+    @DisplayName("불가능한 상태에 대해 방어 테스트")
+    public void next() {
+        Point second = Point.first1(true).next1(true);
+        // false, true 순서로 생성된다.
+        assertThat(second.nextIndex1()).isEqualTo(0);
     }
 }
