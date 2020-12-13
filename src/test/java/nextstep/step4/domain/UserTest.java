@@ -23,4 +23,12 @@ class UserTest {
         assertThrows(IllegalArgumentException.class,
                 () -> User.of(0, name));
     }
+
+    @Test
+    @DisplayName("유저 이름이 빈 경우 예외 처리")
+    void exceptNameEmpty() {
+        String name = "";
+        assertThrows(IllegalArgumentException.class,
+                () -> User.of(0, name));
+    }
 }

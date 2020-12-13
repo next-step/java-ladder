@@ -10,14 +10,25 @@ public class User {
     private final String name;
 
     private User(int index, String name) {
-        checkNameLength(name);
+        validate(name);
         this.index = index;
         this.name = name;
+    }
+
+    private void validate(String name) {
+        checkNameLength(name);
+        checkEmptyName(name);
     }
 
     private void checkNameLength(String name) {
         if(name.length() > LENGTH_LIMIT) {
             throw new IllegalArgumentException("이름은 5글자를 초과할 수 없습니다.");
+        }
+    }
+
+    private void checkEmptyName(String name) {
+        if(name == null || name.trim().isEmpty()) {
+            throw new IllegalArgumentException("이름을 입력해주세요");
         }
     }
 
