@@ -1,15 +1,13 @@
 package ladder.domain;
 
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class LadderGame {
 
     private static final int MIN_LADDER_HEIGHT = 1;
 
-    public Ladders start(int ladderCount, int ladderMaxHeight){
+    public Ladder build(int sizeOfPerson, int ladderMaxHeight){
         validateLadderMinHeight(ladderMaxHeight);
-        return build(ladderCount, ladderMaxHeight);
+        return new Ladder(sizeOfPerson, ladderMaxHeight);
     }
 
     private void validateLadderMinHeight(int ladderMaxHeight) {
@@ -18,13 +16,4 @@ public class LadderGame {
         }
     }
 
-    private Ladders build(int ladderCount, int ladderMaxHeight) {
-
-        Ladders ladders = new Ladders(IntStream.range(0, ladderMaxHeight)
-                .mapToObj(ladder -> new Ladder(ladderCount))
-                .collect(Collectors.toList()));
-
-
-        return ladders;
-    }
 }

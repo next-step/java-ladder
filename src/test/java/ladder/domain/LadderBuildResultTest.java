@@ -4,15 +4,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderBuildResultTest {
 
     private Players players;
-    private Ladders ladders;
+    private Ladder ladder;
 
     @BeforeEach
     public void init(){
@@ -20,20 +17,17 @@ public class LadderBuildResultTest {
         String[] playNames = {"AAA", "BBB", "CCC"};
         players = new Players(playNames);
 
-        List<Ladder> ladderList = new ArrayList<>();
-        ladderList.add(new Ladder(1));
-
-        ladders = new Ladders(ladderList);
+        ladder = new Ladder(players.getPlayers().size(), 5);
     }
 
     @DisplayName("Ladder 생성 테스트")
     @Test
     void ladderGameResultCreationTest(){
         // given
-        LadderBuildResult line = new LadderBuildResult(ladders, players);
+        LadderBuildResult line = new LadderBuildResult(ladder, players);
         // then
         assertThat(line.getPlayers()).isEqualTo(players);
 
-        assertThat(line.getLadders()).isEqualTo(ladders);
+        assertThat(line.getLadder()).isEqualTo(ladder);
     }
 }

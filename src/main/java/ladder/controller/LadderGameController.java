@@ -25,7 +25,7 @@ public class LadderGameController {
         Players players = new Players(playerNames);
         validateLadderMaxHeight(ladderMaxHeightValue);
 
-        return new LadderBuildResult(new LadderGame().start(players.getPlayers().size(), Integer.parseInt(ladderMaxHeightValue)), players);
+        return new LadderBuildResult(new LadderGame().build(players.getPlayers().size(), Integer.parseInt(ladderMaxHeightValue)), players);
     }
 
     private static void validateLadderMaxHeight(String ladderMaxHeightValue) {
@@ -46,10 +46,11 @@ public class LadderGameController {
         return new Awards(awardNames);
     }
 
+
     public static ClimbResults climb(LadderBuildResult ladderBuildResult, Awards awards) {
 
         Paths paths = new Paths(IntStream.range(FIRST_INDEX, ladderBuildResult.getPlayers().getPlayers().size())
-                .mapToObj(i -> Path.of(i, ladderBuildResult.getLadders().climb(i))).collect(Collectors.toList()));
+                .mapToObj(i -> Path.of(i, ladderBuildResult.getLadder().climb(i))).collect(Collectors.toList()));
 
         return parseClimbResult(paths, ladderBuildResult.getPlayers(), awards);
 

@@ -2,16 +2,16 @@ package ladder.domain;
 
 public class LadderBuildResult {
 
-    private Ladders ladders;
+    private Ladder ladder;
     private Players players;
 
-    public LadderBuildResult(Ladders ladders, Players players){
-        this.ladders = ladders;
+    public LadderBuildResult(Ladder ladder, Players players){
+        this.ladder = ladder;
         this.players = players;
     }
 
-    public Ladders getLadders() {
-        return ladders;
+    public Ladder getLadder() {
+        return ladder;
     }
 
     public Players getPlayers() {

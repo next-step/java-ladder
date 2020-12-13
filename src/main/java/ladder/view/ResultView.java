@@ -2,9 +2,6 @@ package ladder.view;
 
 import ladder.domain.*;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 
@@ -30,7 +27,7 @@ public class ResultView {
         System.out.println(BUILD_HEAD_MESSAGE);
 
         showPlayers(ladderBuildResult.getPlayers());
-        showLadders(ladderBuildResult.getLadders());
+        showLadder(ladderBuildResult.getLadder());
         showAwards(awards);
 
     }
@@ -43,18 +40,21 @@ public class ResultView {
         System.out.println();
     }
 
-    private static void showLadders(Ladders ladders) {
-        ladders.getLadders().stream()
-                .forEach(ladder -> {
+    private static void showLadder(Ladder ladder) {
+
+        ladder.getLines().stream()
+                .forEach(line -> {
                     System.out.print(padLeftZeros(EMPTY, 5));
-                    System.out.println(showLadder(ladder));
+                    System.out.println(showLine(line));
                 });
+
     }
 
-    private static String showLadder(Ladder ladder) {
-        return ladder.getLine().getPoints().stream()
+    private static String showLine(Line line) {
+        return line.getPoints().stream()
                 .map(point -> makeConnectionLine(point)).collect(Collectors.joining());
     }
+
 
     private static String makeConnectionLine(Point point) {
         return LADDER + (point.getDirection().isRight()? CONNECTED:NOT_CONNECTED);
