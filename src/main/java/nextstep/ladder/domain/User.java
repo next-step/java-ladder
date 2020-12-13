@@ -23,4 +23,12 @@ public class User {
     public String getName() {
         return name;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) return false;
+        if (obj.getClass() != User.class) return false;
+        User user = (User) obj;
+        return name.equals(user.name);
+    }
 }

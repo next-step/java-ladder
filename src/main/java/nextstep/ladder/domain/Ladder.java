@@ -21,4 +21,12 @@ public class Ladder {
     public List<LadderRow> getLadderRows() {
         return this.ladderRows;
     }
+
+    public int move(int index) {
+        int curIndex = index;
+        for (LadderRow ladderRow : ladderRows) {
+            curIndex = ladderRow.move(curIndex);
+        }
+        return curIndex;
+    }
 }

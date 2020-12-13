@@ -14,7 +14,7 @@ public class LadderGoalBoard {
 
     public LadderGoalBoard(String ladderGoalString) {
         this.ladderGoals = Arrays.stream(ladderGoalString.split(COMMA))
-                .map(goal -> new LadderGoal(goal))
+                .map(LadderGoal::new)
                 .collect(collectingAndThen(Collectors.toList(), Collections::unmodifiableList));
     }
 
@@ -24,5 +24,9 @@ public class LadderGoalBoard {
 
     public List<LadderGoal> export(){
         return this.ladderGoals;
+    }
+
+    public LadderGoal get(int index) {
+        return ladderGoals.get(index);
     }
 }

@@ -20,4 +20,12 @@ public class LadderRow {
     public List<LadderPoint> export() {
         return Collections.unmodifiableList(this.ladderPoints);
     }
+
+    public int move(int index) {
+        int curIndex = index;
+        for (LadderPoint ladderPoint : ladderPoints) {
+            curIndex = ladderPoint.move(curIndex);
+        }
+        return curIndex;
+    }
 }

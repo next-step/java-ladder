@@ -2,8 +2,13 @@ package nextstep.ladder.domain;
 
 import nextstep.ladder.ErrorMessage;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class LadderGame {
 
+    private final String ALL_USER_KEY = "all";
     private final Users users;
     private final Ladder ladder;
     private final LadderGoalBoard ladderGoalBoard;
@@ -32,6 +37,22 @@ public class LadderGame {
         }
     }
 
+    public List<LadderResult> start(String key) {
+        if (ALL_USER_KEY.equals(key)) {
+            return users.export()
+                    .stream()
+                    .map(this::moveUser)
+                    .collect(Collectors.toList());
+        }
+        return Collections.singletonList(moveUser(new User(key)));
+    }
+
+    private LadderResult moveUser(User user) {
+        int userIndex = users.indexOf(user);
+        int resultIndex = ladder.move(userIndex);
+        LadderGoal ladderGoal = ladderGoalBoard.get(resultIndex);
+        return new LadderResult(user, ladderGoal);
+    }
 
     public Users getUsers() {
         return users;

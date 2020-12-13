@@ -37,4 +37,8 @@ public class Users {
         return this.users;
     }
 
+    public int indexOf(User user){
+        return users.indexOf(user);
+    }
+
 }
