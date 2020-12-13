@@ -8,4 +8,12 @@ public class LadderResult {
         this.user = user;
         this.ladderGoal = ladderGoal;
     }
+
+    public LadderGoal getLadderGoal() {
+        return ladderGoal;
+    }
+
+    public User getUser() {
+        return user;
+    }
 }
