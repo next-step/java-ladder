@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.view.ResultView;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -56,10 +56,6 @@ public class LaddersTest {
         ladderList.add(ladder2);
 
         Ladders ladders = new Ladders(ladderList);
-
-        ResultView.showBuildResult(new LadderBuildResult(ladders
-                , new Players(new String[]{"aaa","bbb", "ccc"}))
-                , new Awards(new String[]{"aaa","bbb", "ccc"}));
 
         /*
 
