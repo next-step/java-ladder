@@ -11,7 +11,7 @@ public class Line {
 
     private final List<Index> indexList;
 
-    private Line(List<Index> indexList) {
+    public Line(List<Index> indexList) {
         this.indexList = indexList;
     }
 
@@ -21,12 +21,15 @@ public class Line {
 
         Point point = Point.setFirst(moveStrategy);
         indexList.add(Index.of(ZERO, point));
-
         IntStream.range(ONE, numberOfUsers - ONE)
                 .forEach(position -> indexList.add(Index.of(position, point.setNext(moveStrategy))));
         indexList.add(Index.of(numberOfUsers - ONE, point.setLast()));
 
         return new Line(indexList);
+    }
+
+    public int move(int position) {
+        return indexList.get(position).move();
     }
 
     public List<Index> getIndexList() {
