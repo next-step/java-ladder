@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class UserTest {
 
@@ -15,4 +16,11 @@ class UserTest {
         assertThat(user.toString()).isEqualTo(name);
     }
 
+    @Test
+    @DisplayName("유저 이름이 5글자가 넘을 경우 예외 처리")
+    void exceptNameLength() {
+        String name = "abcdef";
+        assertThrows(IllegalArgumentException.class,
+                () -> User.of(name));
+    }
 }
