@@ -9,10 +9,12 @@ import java.util.stream.IntStream;
 
 public class Ladder {
 
+    private static final int FIRST_INDEX = 0;
+
     private List<Line> lines;
 
     public Ladder(int sizeOfPerson, int ladderMaxHeight) {
-        this.lines = IntStream.range(0, ladderMaxHeight)
+        this.lines = IntStream.range(FIRST_INDEX, ladderMaxHeight)
                 .mapToObj(i -> Line.init(sizeOfPerson))
                 .collect(Collectors.toList());
     }

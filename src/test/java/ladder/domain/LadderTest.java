@@ -32,9 +32,9 @@ public class LadderTest {
         assertThat(ladder.getLines().get(0)).isEqualTo(new Line(lineConnections));
     }
 
-    @DisplayName("Ladder move 테스트")
+    @DisplayName("Ladder climb 테스트")
     @Test
-    void ladderMoveTest(){
+    void ladderClimbTest(){
         // given
         List<Line> lines = new ArrayList<>();
         lines.add(new Line(lineConnections));

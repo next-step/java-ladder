@@ -48,22 +48,17 @@ public class LadderGameController {
 
 
     public static ClimbResults climb(LadderBuildResult ladderBuildResult, Awards awards) {
-
-        Paths paths = new Paths(IntStream.range(FIRST_INDEX, ladderBuildResult.getPlayers().getPlayers().size())
-                .mapToObj(i -> Path.of(i, ladderBuildResult.getLadder().climb(i))).collect(Collectors.toList()));
-
-        return parseClimbResult(paths, ladderBuildResult.getPlayers(), awards);
-
+        return new ClimbResults(
+                IntStream.range(FIRST_INDEX, ladderBuildResult.getPlayers().getPlayers().size())
+                .mapToObj(startIndex -> makeClimbResult(startIndex, ladderBuildResult, awards))
+                .collect(Collectors.toList())
+        );
     }
 
-    private static ClimbResults parseClimbResult(Paths paths, Players players, Awards awards) {
-
-        return new ClimbResults(paths.getPaths().stream()
-                .map(path -> ClimbResult.of(players.searchPlayerName(path.getStartIndex()), awards.searchAwardName(path.getEndIndex())))
-                .collect(Collectors.toList()));
-
+    private static ClimbResult makeClimbResult(int startIndex, LadderBuildResult ladderBuildResult, Awards awards) {
+        return ClimbResult.of(ladderBuildResult.getPlayers().searchPlayerName(startIndex)
+                , awards.searchAwardName(ladderBuildResult.getLadder().climb(startIndex)));
     }
-
 
     public static String getPlayerResult() {
         return InputView.getPlayerResult();
