@@ -75,11 +75,16 @@ public class OutputView {
         if(resultUser.equals("all")) {
             printAllUser(userResultMap);
         }
+        printUser(userResultMap, resultUser);
     }
 
     private void printAllUser(Map<String, Result> userResultMap) {
         userResultMap.forEach((key, value) -> {
             System.out.println(key + COMMA_DELIMITER + value);
         });
+    }
+
+    private void printUser(Map<String, Result> userResultMap, String resultUser) {
+        System.out.println(userResultMap.get(resultUser));
     }
 }
