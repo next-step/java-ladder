@@ -1,36 +1,76 @@
 package ladder.domain;
 
 import java.util.*;
+import static java.lang.Boolean.FALSE;
 
 public class Point {
 
-    private static final List<Point> pointSet = new LinkedList<>();
     private static final int FIRST_INDEX = 0;
-    private final boolean movable;
+    private static final int ADD_INDEX = 1;
 
-    static {
-        pointSet.add(new Point(true));
-        pointSet.add(new Point(false));
+    private final int index;
+    private final Pointer pointer;
+
+    private Point(int index, Pointer pointer) {
+        this.index = index;
+        this.pointer = pointer;
     }
 
-    private Point(boolean movable) {
-        this.movable = movable;
+    public static Point of(int index, Pointer pointer) {
+        return new Point(index, pointer);
     }
 
-    public static Point of(boolean point) {
-        return pointSet.stream()
-                .filter(e -> e.movable == point)
-                .findAny()
-                .orElseThrow(IllegalArgumentException::new);
+    public static Point first(DirectionRule nextBooleanRule) {
+        return of(FIRST_INDEX, Pointer.of(FALSE, nextBooleanRule.hasMovable()));
     }
 
-    public static Point shuffle() {
-        Collections.shuffle(pointSet);
-        return pointSet.get(FIRST_INDEX);
+    public static Point next(Point prePoint, DirectionRule nextBooleanRule) {
+        int nextIndex = addIndex(prePoint);
+        Pointer previous = pointer(prePoint);
+
+        if (previous.isRight()) {
+            return of(nextIndex, nextFalse(previous));
+        }
+
+        return of(nextIndex, Pointer.next(previous, nextBooleanRule.hasMovable()));
     }
 
-    public boolean isMovable() {
-        return movable;
+    public static Point last(Point prePoint) {
+        int nextIndex = addIndex(prePoint);
+        Pointer previous = pointer(prePoint);
+
+        return of(nextIndex, nextFalse(previous));
+    }
+
+    private static int addIndex(Point prePoint) {
+        return (prePoint.getIndex() + ADD_INDEX);
+    }
+
+    private static Pointer pointer(Point prePoint) {
+        return prePoint.getPointer();
+    }
+
+    private static Pointer nextFalse(Pointer prePoint) {
+        return Pointer.next(prePoint, FALSE);
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public Pointer getPointer() {
+        return pointer;
+    }
+
+    public int movePoint(int position) {
+        Pointer pointer = this.getPointer();
+        if (pointer.isRight()) {
+            return position + 1;
+        }
+        if (pointer.isLeft()) {
+            return position - 1;
+        }
+        return position;
     }
 
     @Override
@@ -38,11 +78,11 @@ public class Point {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Point point = (Point) o;
-        return movable == point.movable;
+        return index == point.index && Objects.equals(pointer, point.pointer);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(movable);
+        return Objects.hash(index, pointer);
     }
 }

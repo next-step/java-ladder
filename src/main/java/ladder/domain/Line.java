@@ -1,50 +1,40 @@
 package ladder.domain;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
-import java.util.concurrent.atomic.AtomicReference;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.*;
 
 public class Line {
 
-    private static final AtomicReference<Boolean> PREVIOUS = new AtomicReference<>(false);
     private final List<Point> points;
 
-    public Line (int countOfPerson) {
-        this.points = generateLine(countOfPerson);
+    public Line(int countOfPerson, DirectionRule directionRule) {
+        this.points = generateLine(countOfPerson, directionRule);
     }
 
-    public Line (List<Point> points) {
+    public Line(List<Point> points) {
         this.points = points;
     }
 
-    private static List<Point> generateLine(int countOfPerson) {
-        List<Point> points = IntStream.rangeClosed(1,countOfPerson - 1)
-                .mapToObj(position -> compareAndSet(Point.shuffle()))
-                .collect(Collectors.toList());
-        points.add(Point.of(false));
+    private static List<Point> generateLine(int countOfPerson, DirectionRule directionRule) {
+        LinkedList<Point> points = new LinkedList<>();
+
+        Point prePoint = Point.first(directionRule);
+        points.addFirst(prePoint);
+
+        for (int i = 1; i < countOfPerson - 1; i++) {
+            prePoint = Point.next(prePoint, directionRule);
+            points.add(prePoint);
+        }
+
+        points.addLast(Point.last(prePoint));
         return points;
-    }
-
-    private static Point compareAndSet(Point point) {
-        if (PREVIOUS.compareAndSet(false, point.isMovable())) {
-            return point;
-        }
-        PREVIOUS.set(false);
-        return Point.of(false);
-    }
-
-    public boolean hasRightMoved(int index) {
-        if (index == (points.size() - 1)) {
-            return false;
-        }
-        return points.get(index).isMovable();
     }
 
     public List<Point> getPoints() {
         return Collections.unmodifiableList(points);
+    }
+
+    public int movePoint(int position) {
+        return this.points.get(position).movePoint(position);
     }
 
     @Override
