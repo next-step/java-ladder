@@ -16,6 +16,7 @@ public class Users {
     }
 
     public static Users initUsers(String names) {
+        validateSplit(names);
         String[] split = names.split(COMMA);
 
         List<User> userList = new ArrayList<>(split.length);
@@ -30,6 +31,12 @@ public class Users {
 
     public static Users from(List<User> userList) {
         return new Users(userList);
+    }
+
+    private static void validateSplit(String names) {
+        if(!names.contains(",")) {
+            throw new IllegalArgumentException("2명 이상의 참가자가 있어야 합니다.");
+        }
     }
 
     @Override
