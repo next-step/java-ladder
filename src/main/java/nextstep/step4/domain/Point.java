@@ -4,10 +4,18 @@ public class Point {
     private final boolean previous;
     private final boolean current;
 
-    public Point(boolean previous, boolean current) {
+    private Point(boolean previous, boolean current) {
         validateDirection(previous, current);
         this.previous = previous;
         this.current = current;
+    }
+
+    public static Point setFirst(boolean current) {
+        return new Point(false, current);
+    }
+
+    public Point setNext(boolean current) {
+        return new Point(this.current, current);
     }
 
     private void validateDirection(boolean previous, boolean current) {
@@ -26,5 +34,9 @@ public class Point {
         }
 
         return Direction.FORWARD;
+    }
+
+    public Point last() {
+        return new Point(this.current, false);
     }
 }
