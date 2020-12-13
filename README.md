@@ -57,3 +57,4 @@ pobi               cron               jh
 - TransverseLadder 삭제 및 사다리 생성 전략 별 test code LadderLineTest에 추가
 - 입력한 이름의 길이가 5글자 이상이면, exception을 throw하는 테스트 코드 추가
 - 사다리 생성 화면 요구사항에 맞게 수정
+- Ladder의 size를 Ladder 생성자에서 계산하여 넘길 수 있도록 수정

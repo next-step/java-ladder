@@ -12,13 +12,12 @@ public class LadderLine {
     private static final int SECOND_LADDER_INDEX = 3;
     private final List<Boolean> points;
 
-    public LadderLine(int participantsCount, LadderGenerateStrategy ladderGenerateStrategy) {
-        this.points = InitializeLadder(participantsCount, ladderGenerateStrategy);
+    public LadderLine(int sizeOfLadder, LadderGenerateStrategy ladderGenerateStrategy) {
+        this.points = InitializeLadder(sizeOfLadder, ladderGenerateStrategy);
     }
 
-    private List<Boolean> InitializeLadder(int participantsCount, LadderGenerateStrategy ladderGenerateStrategy) {
-        int ladderLength = participantsCount * 2 - 1;
-        return createPoints(ladderLength, ladderGenerateStrategy);
+    private List<Boolean> InitializeLadder(int sizeOfLadder, LadderGenerateStrategy ladderGenerateStrategy) {
+        return createPoints(sizeOfLadder, ladderGenerateStrategy);
     }
 
     private List<Boolean> createPoints(int ladderLength, LadderGenerateStrategy ladderGenerateStrategy) {
