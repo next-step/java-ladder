@@ -8,7 +8,7 @@ public class Ladder {
 
     private final List<Line> lines;
 
-    private Ladder(List<Line> lines) {
+    public Ladder(List<Line> lines) {
         this.lines = lines;
     }
 
@@ -23,5 +23,13 @@ public class Ladder {
 
     public List<Line> getLines() {
         return lines;
+    }
+
+    public int move(int position) {
+        int current = position;
+        for(Line line : lines) {
+            current = line.move(current);
+        }
+        return current;
     }
 }
