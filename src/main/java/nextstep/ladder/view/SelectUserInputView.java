@@ -9,7 +9,7 @@ public class SelectUserInputView {
     public static String enter() {
         System.out.println(SELECT_USER_INPUT_MESSAGE);
         Scanner scanner = new Scanner(System.in);
-        String next = scanner.next();
-        return next;
+        String key = scanner.next();
+        return key;
     }
 }
