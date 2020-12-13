@@ -41,6 +41,10 @@ public class Results {
         return new Results(resultList);
     }
 
+    public List<Result> getResultList() {
+        return resultList;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

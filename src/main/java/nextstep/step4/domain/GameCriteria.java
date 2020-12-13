@@ -1,5 +1,7 @@
 package nextstep.step4.domain;
 
+import java.util.List;
+
 public class GameCriteria {
 
     private final Users users;
@@ -12,6 +14,14 @@ public class GameCriteria {
 
     public static GameCriteria of(Users users, Results results) {
         return new GameCriteria(users, results);
+    }
+
+    public List<User> getUserList() {
+        return users.getUserList();
+    }
+
+    public List<Result> getResultList() {
+        return results.getResultList();
     }
 
     public int getUserNumbers() {

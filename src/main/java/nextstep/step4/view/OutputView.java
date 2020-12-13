@@ -1,0 +1,72 @@
+package nextstep.step4.view;
+
+import nextstep.step4.domain.*;
+
+import java.util.List;
+
+public class OutputView {
+
+    private static final String RESULT_MENTION = "사다리 결과";
+    private static final String VERTICAL = "|";
+    private static final String BAR = "-----";
+
+    public void mentionResult() {
+        System.out.println();
+        System.out.println(RESULT_MENTION);
+    }
+
+    public void printLadder(GameCriteria gameCriteria, Ladder ladder) {
+        System.out.println();
+        printUsers(gameCriteria.getUserList());
+        drawLadder(ladder);
+        printResult(gameCriteria.getResultList());
+
+    }
+
+    private void printUsers(List<User> userList) {
+        userList.forEach(user -> System.out.print(String.format("%5s ", user)));
+    }
+
+    private void drawLadder(Ladder ladder) {
+        ladder.getLines()
+                .forEach(line -> drawLine(line.getIndexList()));
+        System.out.println();
+    }
+
+    private void drawLine(List<Index> indexList) {
+        System.out.println();
+        indexList.forEach(this::checkDirection);
+    }
+
+    private void checkDirection(Index index) {
+        if(index.getDirection() == Direction.RIGHT) {
+            drawRight();
+        }
+
+        if(index.getDirection() == Direction.LEFT) {
+            drawLeft();
+        }
+
+        if(index.getDirection() == Direction.FORWARD) {
+            drawForward();
+        }
+    }
+
+    private void drawRight() {
+        System.out.print(String.format("%5s", VERTICAL));
+        System.out.print(String.format("%5s", BAR));
+    }
+
+    private void drawLeft() {
+        System.out.print(String.format("%s ", VERTICAL));
+    }
+
+    private void drawForward() {
+        System.out.print(String.format("%5s ", VERTICAL));
+    }
+
+    private void printResult(List<Result> resultList) {
+        resultList.forEach(result -> System.out.print(String.format("%5s ", result)));
+    }
+
+}

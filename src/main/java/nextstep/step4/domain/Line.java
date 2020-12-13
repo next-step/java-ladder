@@ -2,7 +2,6 @@ package nextstep.step4.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class Line {
 
@@ -19,11 +18,22 @@ public class Line {
         List<Index> indexList = new ArrayList<>(numberOfUsers);
         MoveStrategy moveStrategy = new RandomMoveImpl();
 
-        Point point = Point.setFirst(moveStrategy);
-        indexList.add(Index.of(ZERO, point));
-        IntStream.range(ONE, numberOfUsers - ONE)
-                .forEach(position -> indexList.add(Index.of(position, point.setNext(moveStrategy))));
-        indexList.add(Index.of(numberOfUsers - ONE, point.setLast()));
+        Point point = null;
+        for(int i = ZERO; i < numberOfUsers; i++) {
+            if(i == ZERO) {
+                point = Point.setFirst(moveStrategy);
+                indexList.add(Index.of(i, point));
+            }
+
+            if(i != ZERO && i != numberOfUsers - ONE) {
+                point = point.setNext(moveStrategy);
+                indexList.add(Index.of(i, point));
+            }
+
+            if(i == numberOfUsers - ONE) {
+                indexList.add(Index.of(i, point.setLast()));
+            }
+        }
 
         return new Line(indexList);
     }

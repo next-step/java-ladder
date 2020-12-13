@@ -25,4 +25,8 @@ public class Index {
         }
         return position;
     }
+
+    public Direction getDirection() {
+        return point.move();
+    }
 }

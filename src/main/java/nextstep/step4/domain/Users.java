@@ -43,6 +43,10 @@ public class Users {
         return userList.size();
     }
 
+    public List<User> getUserList() {
+        return userList;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
