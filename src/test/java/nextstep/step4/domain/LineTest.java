@@ -34,7 +34,7 @@ class LineTest {
         indexList.add(index2);
         indexList.add(index3);
 
-        Line line = new Line(indexList);
+        Line line = Line.from(indexList);
 
         assertThat(line.move(position)).isEqualTo(1);
     }

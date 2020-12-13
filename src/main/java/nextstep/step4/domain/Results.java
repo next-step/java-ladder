@@ -41,6 +41,10 @@ public class Results {
         return new Results(resultList);
     }
 
+    public Result confirmResult(int finalIndex) {
+        return resultList.get(finalIndex);
+    }
+
     public List<Result> getResultList() {
         return resultList;
     }

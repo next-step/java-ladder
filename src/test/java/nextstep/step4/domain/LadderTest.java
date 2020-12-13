@@ -22,24 +22,29 @@ class LadderTest {
     @Test
     @DisplayName("사다리 이동 테스트")
     void moveLadder() {
-        int position = 0;
         // |-| |
         // | |-|
         Point point1 = Point.setFirst(previous -> true);
         Index index1 = Index.of(0, point1);
-        Index index2 = Index.of(1, point1.setNext(previous -> false));
-        Index index3 = Index.of(2, point1.setLast());
-        Line line1 = new Line(Arrays.asList(index1, index2, index3));
+        Point point2 = point1.setNext(previous -> false);
+        Index index2 = Index.of(1, point2);
+        Point point3 = point2.setLast();
+        Index index3 = Index.of(2, point3);
+        Line line1 = Line.from(Arrays.asList(index1, index2, index3));
 
-        Point point2 = Point.setFirst(previous -> false);
-        Index index4 = Index.of(0, point2);
-        Index index5 = Index.of(1, point2.setNext(previous -> true));
-        Index index6 = Index.of(2, point2.setLast());
-        Line line2 = new Line(Arrays.asList(index4, index5, index6));
+        Point point4 = Point.setFirst(previous -> false);
+        Index index4 = Index.of(0, point4);
+        Point point5 = point4.setNext(previous -> true);
+        Index index5 = Index.of(1, point5);
+        Point point6 = point5.setLast();
+        Index index6 = Index.of(2, point6);
+        Line line2 = Line.from(Arrays.asList(index4, index5, index6));
 
-        Ladder ladder = new Ladder(Arrays.asList(line1, line2));
+        Ladder ladder = Ladder.from(Arrays.asList(line1, line2));
 
-        assertThat(ladder.move(position)).isEqualTo(2);
+        assertThat(ladder.move(0)).isEqualTo(2);
+        assertThat(ladder.move(1)).isEqualTo(0);
+        assertThat(ladder.move(2)).isEqualTo(1);
     }
 
 }

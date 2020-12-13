@@ -10,7 +10,7 @@ public class Line {
 
     private final List<Index> indexList;
 
-    public Line(List<Index> indexList) {
+    private Line(List<Index> indexList) {
         this.indexList = indexList;
     }
 
@@ -35,6 +35,10 @@ public class Line {
             }
         }
 
+        return new Line(indexList);
+    }
+
+    public static Line from(List<Index> indexList) {
         return new Line(indexList);
     }
 

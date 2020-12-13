@@ -36,6 +36,10 @@ public class User {
         return new User(index, name);
     }
 
+    public int getIndex() {
+        return index;
+    }
+
     @Override
     public String toString() {
         return name;
