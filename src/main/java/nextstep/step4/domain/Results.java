@@ -11,7 +11,7 @@ public class Results {
 
     private final List<Result> resultList;
 
-    public Results(List<Result> resultList) {
+    private Results(List<Result> resultList) {
         this.resultList = resultList;
     }
 

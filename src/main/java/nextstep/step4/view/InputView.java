@@ -7,12 +7,13 @@ import java.util.Scanner;
 
 public class InputView {
 
-    private static Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
 
     private static final String INPUT_USER = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
     private static final String INPUT_RESULT = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String INPUT_HEIGHT = "최대 사다리 높이는 몇 개인가요?";
     private static final String RESULT_MENTION = "결과를 보고 싶은 사람은?";
+    private static final String ALL = "all";
 
     private static final int HEIGHT_LIMIT = 2;
 
@@ -53,7 +54,7 @@ public class InputView {
         System.out.println();
         System.out.println(RESULT_MENTION);
         String resultUser = scanner.nextLine();
-        if(resultUser.equals("all")) {
+        if(resultUser.equals(ALL)) {
             return resultUser;
         }
         return validateUser(gameCriteria.getUserList(), resultUser);
