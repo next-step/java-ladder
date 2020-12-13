@@ -6,6 +6,9 @@ import java.util.Objects;
 
 public class Users {
 
+    private static final String COMMA = ",";
+    private static final int ZERO = 0;
+
     private final List<User> userList;
 
     private Users(List<User> userList) {
@@ -13,11 +16,11 @@ public class Users {
     }
 
     public static Users initUsers(String names) {
-        String[] split = names.split(",");
+        String[] split = names.split(COMMA);
 
         List<User> userList = new ArrayList<>(split.length);
 
-        int index = 0;
+        int index = ZERO;
         for(String name : split) {
             userList.add(User.of(index++, name));
         }
