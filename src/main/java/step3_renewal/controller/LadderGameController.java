@@ -24,12 +24,16 @@ public class LadderGameController {
 
     public static GameResults gameStart(Participants participants, Rewards rewards, Ladder ladder) {
         List<GameResult> list =
-                participants.getParticipants().stream()
-                        .map(participant ->
-                                GameResult.of(participant.getParticipantName()
-                                        , rewards.getRewardName(ladder.move(participant.getPosition()))))
+                participants.getParticipants()
+                        .stream()
+                        .map(participant -> toGameResult(participant, rewards, ladder))
                         .collect(Collectors.toList());
         return GameResults.of(list);
+    }
+
+    private static GameResult toGameResult(Participant participant, Rewards rewards, Ladder ladder) {
+        return GameResult.of(participant.getParticipantName()
+                , rewards.getRewardName(ladder.move(participant.getPosition())));
     }
 
     private static void printResult(String name, GameResults gameResults) {
