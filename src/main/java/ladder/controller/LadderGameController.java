@@ -25,8 +25,7 @@ public class LadderGameController {
         Players players = new Players(playerNames);
         validateLadderMaxHeight(ladderMaxHeightValue);
 
-        LadderGame ladderGame = new LadderGame(new RandomDirectionStrategy());
-        return new LadderBuildResult(ladderGame.start(players.getPlayers().size(), Integer.parseInt(ladderMaxHeightValue)), players);
+        return new LadderBuildResult(new LadderGame().start(players.getPlayers().size(), Integer.parseInt(ladderMaxHeightValue)), players);
     }
 
     private static void validateLadderMaxHeight(String ladderMaxHeightValue) {

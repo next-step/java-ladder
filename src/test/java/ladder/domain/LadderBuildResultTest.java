@@ -21,7 +21,7 @@ public class LadderBuildResultTest {
         players = new Players(playNames);
 
         List<Ladder> ladderList = new ArrayList<>();
-        ladderList.add(new Ladder(1, new RandomDirectionStrategy()));
+        ladderList.add(new Ladder(1));
 
         ladders = new Ladders(ladderList);
     }

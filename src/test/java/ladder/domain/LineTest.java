@@ -13,14 +13,14 @@ public class LineTest {
     @Test
     void lineInitTest(){
         int sizeOfPerson = 5;
-        System.out.println(Line.init(sizeOfPerson, new RandomDirectionStrategy()));
+        System.out.println(Line.init(sizeOfPerson));
     }
 
     @DisplayName("line move 테스트")
     @Test
     void lineMoveTest(){
         int sizeOfPerson = 5;
-        Line line = Line.init(sizeOfPerson, new RandomDirectionStrategy());
+        Line line = Line.init(sizeOfPerson);
         System.out.println("ladder result : " + line.move(0));
     }
 

@@ -25,26 +25,26 @@ public class DirectionTest {
 
     @Test
     public void next_random_true() {
-        Direction next = Direction.first(true).next(new RandomDirectionStrategy());
+        Direction next = Direction.first(true).next();
         assertThat(next).isEqualTo(Direction.of(true, false));
     }
 
     @Test
     public void next_random_false() {
         for (int i = 0; i < 100; i++) {
-            Direction.first(false).next(new RandomDirectionStrategy());
+            Direction.first(false).next();
         }
     }
 
     @Test
     public void next_true() {
-        Direction next = Direction.of(true, false).next(() -> true);
+        Direction next = Direction.of(true, false).next(true);
         assertThat(next).isEqualTo(Direction.of(false, true));
     }
 
     @Test
     public void next_false() {
-        Direction next = Direction.of(false, true).next(() -> false);
+        Direction next = Direction.of(false, true).next(false);
         assertThat(next).isEqualTo(Direction.of(true, false));
     }
 

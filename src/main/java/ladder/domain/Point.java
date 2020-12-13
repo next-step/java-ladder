@@ -20,8 +20,12 @@ public final class Point {
         return new Point(START_INDEX, Direction.first(right));
     }
 
-    public Point next(DirectionStrategy directionStrategy) {
-        return new Point(index + INDEX_STEP , direction.next(directionStrategy));
+    public Point next() {
+        return new Point(index + INDEX_STEP , direction.next());
+    }
+
+    public Point next(boolean right) {
+        return new Point(index + INDEX_STEP , direction.next(right));
     }
 
     public Point last() {

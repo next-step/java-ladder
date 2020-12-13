@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -15,14 +14,6 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 public class LadderGameTest {
 
     private static final int MIN_LADDER_HEIGHT = 1;
-    private DirectionStrategy directionStrategy;
-
-
-    @BeforeEach
-    public void init(){
-        directionStrategy = new RandomDirectionStrategy();
-    }
-
 
     @DisplayName("사다리 생성 테스트")
     @Test
@@ -32,7 +23,7 @@ public class LadderGameTest {
 
         //when
         Ladders ladders = new Ladders(IntStream.range(0, ladderMaxHeight)
-                .mapToObj(ladder -> new Ladder(3, directionStrategy))
+                .mapToObj(ladder -> new Ladder(3))
                 .collect(Collectors.toList()));
 
         // then
@@ -47,8 +38,7 @@ public class LadderGameTest {
 
         assertThatIllegalArgumentException().isThrownBy(() -> {
 
-            LadderGame ladderGame = new LadderGame(new RandomDirectionStrategy());
-            ladderGame.start(3, maxHeight);
+            new LadderGame().start(3, maxHeight);
 
         }).withMessageContaining("최소 사다리 높이는 "+MIN_LADDER_HEIGHT+" 입니다.");
     }

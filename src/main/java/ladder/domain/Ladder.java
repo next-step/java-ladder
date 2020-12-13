@@ -6,8 +6,8 @@ public class Ladder {
 
     private Line line;
 
-    public Ladder(int ladderCount, DirectionStrategy directionStrategy) {
-       this.line = Line.init(ladderCount, directionStrategy);
+    public Ladder(int ladderCount) {
+       this.line = Line.init(ladderCount);
     }
 
     public Ladder(Line line){

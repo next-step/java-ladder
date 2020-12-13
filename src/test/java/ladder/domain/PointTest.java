@@ -24,28 +24,28 @@ public class PointTest {
     @DisplayName("point 이동 변화가 없는 경우")
     @Test
     void next_stay(){
-        Point second = Point.first(false).next(()-> false);
+        Point second = Point.first(false).next(false);
         assertThat(second.move()).isEqualTo(1);
     }
 
     @DisplayName("point 왼쪽 이동 test")
     @Test
     void next_left(){
-        Point second = Point.first(true).next(()-> false);
+        Point second = Point.first(true).next(false);
         assertThat(second.move()).isEqualTo(0);
     }
 
     @DisplayName("point 오른쪽 이동 test")
     @Test
     void next_right(){
-        Point second = Point.first(false).next(()-> true);
+        Point second = Point.first(false).next(true);
         assertThat(second.move()).isEqualTo(2);
     }
 
     @DisplayName("point 이동 test")
     @Test
     void next(){
-        Point second = Point.first(true).next(new RandomDirectionStrategy());
+        Point second = Point.first(true).next();
         assertThat(second.move()).isEqualTo(0);
     }
 
