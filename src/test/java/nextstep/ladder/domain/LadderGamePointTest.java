@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 class LadderGamePointTest {
 
@@ -18,23 +19,29 @@ class LadderGamePointTest {
     @RepeatedTest(10)
     void lastLadderPointLeftTest() {
         LadderPoint before = new LadderPoint(true, false);
-        LadderPoint ladderPoint = new LadderPoint(before, 2, 2);
-        assertThat(ladderPoint.getDirection()).isNotEqualTo(Direction.LEFT);
+        LadderPoint ladderPoint = new LadderPoint(before, 2, 3);
+        assertAll(
+                () -> assertThat(ladderPoint.getDirection()).isNotEqualTo(Direction.LEFT),
+                () -> assertThat(ladderPoint.getDirection()).isNotEqualTo(Direction.RIGHT)
+        );
     }
 
     @DisplayName("마지막 점 테스트 - right")
     @RepeatedTest(10)
     void lastLadderPointRightTest() {
         LadderPoint before = new LadderPoint(false, true);
-        LadderPoint ladderPoint = new LadderPoint(before, 2, 2);
-        assertThat(ladderPoint.getDirection()).isNotEqualTo(Direction.RIGHT);
+        LadderPoint ladderPoint = new LadderPoint(before, 2, 3);
+        assertAll(
+                () -> assertThat(ladderPoint.getDirection()).isNotEqualTo(Direction.NONE),
+                () -> assertThat(ladderPoint.getDirection()).isNotEqualTo(Direction.RIGHT)
+        );
     }
 
     @DisplayName("다음 점 테스트 - left")
     @RepeatedTest(10)
     void nextLadderPointLeftTest() {
         LadderPoint before = new LadderPoint(true, false);
-        LadderPoint ladderPoint = new LadderPoint(before, 1, 2);
+        LadderPoint ladderPoint = new LadderPoint(before, 1, 3);
         assertThat(ladderPoint.getDirection()).isNotEqualTo(Direction.LEFT);
     }
 
@@ -42,7 +49,7 @@ class LadderGamePointTest {
     @RepeatedTest(10)
     void nextLadderPointRightTest() {
         LadderPoint before = new LadderPoint(false, true);
-        LadderPoint ladderPoint = new LadderPoint(before, 1, 2);
+        LadderPoint ladderPoint = new LadderPoint(before, 1, 3);
         assertThat(ladderPoint.getDirection()).isNotEqualTo(Direction.RIGHT);
     }
 
