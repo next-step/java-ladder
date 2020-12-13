@@ -3,12 +3,14 @@ package nextstep.step4.view;
 import nextstep.step4.domain.*;
 
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
 
     private static final String RESULT_MENTION = "사다리 결과";
     private static final String VERTICAL = "|";
     private static final String BAR = "-----";
+    private static final String COMMA_DELIMITER = " : ";
 
     public void mentionResult() {
         System.out.println();
@@ -69,4 +71,15 @@ public class OutputView {
         resultList.forEach(result -> System.out.print(String.format("%5s ", result)));
     }
 
+    public void printResultUser(Map<String, Result> userResultMap, String resultUser) {
+        if(resultUser.equals("all")) {
+            printAllUser(userResultMap);
+        }
+    }
+
+    private void printAllUser(Map<String, Result> userResultMap) {
+        userResultMap.forEach((key, value) -> {
+            System.out.println(key + COMMA_DELIMITER + value);
+        });
+    }
 }
