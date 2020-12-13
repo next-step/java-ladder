@@ -23,7 +23,7 @@ public class LadderPoint {
         if (ladderIndex == 0) {
             return generateFirst();
         }
-        if (ladderIndex == ladderSize) {
+        if (ladderIndex == ladderSize - 1) {
             return generateLast(beforeLadderPoint.direction);
         }
         return generateNext(beforeLadderPoint.direction);
