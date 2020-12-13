@@ -11,9 +11,9 @@ import java.util.stream.Collectors;
 public class LadderGameController {
 
     public static void run() {
-        Participants participants = Participants.of(StringUtil.splitNames(InputUi.nameOfParticipate()));
+        Participants participants = Participants.of(StringUtil.splitToList(InputUi.nameOfParticipate()));
         Rewards rewards =
-                Rewards.of(StringUtil.splitNames(InputUi.inputExecutionResult()), participants.getParticipants().size());
+                Rewards.of(StringUtil.splitToList(InputUi.inputExecutionResult()), participants.getParticipants().size());
 
         Ladder ladder = Ladder.of(InputUi.maximumHeight(), participants);
         OutputUi.printAll(participants, rewards, ladder);
