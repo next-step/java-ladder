@@ -10,18 +10,18 @@ public class LadderLine {
 
     private List<Point> points;
 
-    public LadderLine(List<Point> points) {
+    private LadderLine(List<Point> points) {
         this.points = points;
-    }
-
-    public int move(int position) {
-        return points.get(position).move();
     }
 
     public static LadderLine init(int sizeOfPerson) {
         List<Point> points = new ArrayList<>();
         points.add(createLadderLine(sizeOfPerson, points));
         return new LadderLine(points);
+    }
+
+    public int move(int position) {
+        return points.get(position).move();
     }
 
     private static Point createLadderLine(int sizeOfPerson, List<Point> points) {
