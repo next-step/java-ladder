@@ -14,6 +14,7 @@ public class InputView {
     }
 
     protected static int enterMaxLadderHeight() {
+        System.out.println();
         System.out.println(ENTER_MAX_LADDER_HEIGHT);
         return scanner.nextInt();
     }

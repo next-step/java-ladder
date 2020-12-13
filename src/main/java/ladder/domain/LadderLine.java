@@ -8,6 +8,8 @@ public class LadderLine {
 
     private static final boolean BAR = true;
     private static final boolean BLANK = false;
+    private static final int FIRST_LADDER_INDEX = 1;
+    private static final int SECOND_LADDER_INDEX = 3;
     private final List<Boolean> points;
 
     public LadderLine(int participantsCount, LadderGenerateStrategy ladderGenerateStrategy) {
@@ -22,9 +24,11 @@ public class LadderLine {
     private List<Boolean> createPoints(int ladderLength, LadderGenerateStrategy ladderGenerateStrategy) {
         List<Boolean> result = initializePoints(ladderLength);
 
-        result.set(2, ladderGenerateStrategy.isGenerating());
-        for (int index = 3; index < ladderLength; index += 2) {
-            result.set(index, createPoint(result.get(index - 2), new RandomLadderGenerateStrategy()));
+        result.set(FIRST_LADDER_INDEX, ladderGenerateStrategy.isGenerating());
+        for (int index = SECOND_LADDER_INDEX; index < ladderLength; index += 2) {
+            int previousLadderIndex = index - 2;
+            Boolean point = createPoint(result.get(previousLadderIndex), new RandomLadderGenerateStrategy());
+            result.set(index, point);
         }
         return result;
     }
