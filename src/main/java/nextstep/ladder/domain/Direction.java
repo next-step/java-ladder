@@ -6,18 +6,18 @@ import java.util.Arrays;
 
 public enum Direction {
 
-    LEFT(true, false,-1),
-    NONE(false, false,0),
-    RIGHT(false, true,1);
+    LEFT(true, false, -1),
+    NONE(false, false, 0),
+    RIGHT(false, true, 1);
 
     private final boolean left;
     private final boolean right;
-    private int value;
+    private final int value;
 
-
-    Direction(boolean left, boolean right,int value) {
+    Direction(boolean left, boolean right, int value) {
         this.left = left;
         this.right = right;
+        this.value = value;
     }
 
     public static Direction of(boolean left, boolean right) {
