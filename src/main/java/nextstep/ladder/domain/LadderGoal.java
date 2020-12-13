@@ -16,4 +16,8 @@ public class LadderGoal {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LADDER_GOAL);
         }
     }
+
+    public String getValue() {
+        return value;
+    }
 }

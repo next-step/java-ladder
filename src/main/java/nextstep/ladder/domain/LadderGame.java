@@ -8,6 +8,10 @@ public class LadderGame {
     private final Ladder ladder;
     private final LadderGoalBoard ladderGoalBoard;
 
+    public LadderGoalBoard getLadderGoalBoard() {
+        return ladderGoalBoard;
+    }
+
     public LadderGame(Users users, LadderHeight height, LadderGoalBoard ladderGoalBoard) {
         throwIfNull(users, ladderGoalBoard);
         throwIfInvalidLadderGame(users, ladderGoalBoard);

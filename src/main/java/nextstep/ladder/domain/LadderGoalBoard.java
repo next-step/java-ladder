@@ -21,4 +21,8 @@ public class LadderGoalBoard {
     public int size() {
         return this.ladderGoals.size();
     }
+
+    public List<LadderGoal> export(){
+        return this.ladderGoals;
+    }
 }
