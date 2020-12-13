@@ -23,9 +23,7 @@ public class LadderRow {
 
     public int move(int index) {
         int curIndex = index;
-        for (LadderPoint ladderPoint : ladderPoints) {
-            curIndex = ladderPoint.move(curIndex);
-        }
-        return curIndex;
+        LadderPoint ladderPoint = ladderPoints.get(curIndex);
+        return ladderPoint.move(curIndex);
     }
 }
