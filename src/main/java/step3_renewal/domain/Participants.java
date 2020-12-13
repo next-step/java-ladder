@@ -35,4 +35,8 @@ public class Participants {
             throw new MinimumNumberOfPersonException(MIN_NUMBER);
         }
     }
+
+    public int size() {
+        return participants.size();
+    }
 }

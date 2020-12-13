@@ -19,7 +19,7 @@ public class Ladder {
         validate(maxHeight);
         List<LadderLine> ladderLines =
                 IntStream.range(0, maxHeight)
-                        .mapToObj(i -> LadderLine.init(participants.getParticipants().size()))
+                        .mapToObj(i -> LadderLine.init(participants.size()))
                         .collect(Collectors.toList());
         return new Ladder(ladderLines);
     }
