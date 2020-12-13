@@ -15,8 +15,10 @@ public class Results {
         this.resultList = resultList;
     }
 
-    public static Results initResults(String results) {
+    public static Results initResults(int userNumbers, String results) {
         String[] split = results.split(COMMA);
+
+        validateNumbers(userNumbers, split.length);
 
         List<Result> resultList = new ArrayList<>(split.length);
 
@@ -27,6 +29,13 @@ public class Results {
 
         return new Results(resultList);
     }
+
+    private static void validateNumbers(int userNumbers, int length) {
+        if(userNumbers != length) {
+            throw new IllegalArgumentException("참가자 수와 결과 수는 같아야 합니다.");
+        }
+    }
+
 
     public static Results from(List<Result> resultList) {
         return new Results(resultList);

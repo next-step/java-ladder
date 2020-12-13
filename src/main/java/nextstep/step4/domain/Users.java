@@ -39,6 +39,10 @@ public class Users {
         }
     }
 
+    public int getUserNumbers() {
+        return userList.size();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

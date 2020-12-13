@@ -1,5 +1,6 @@
 package nextstep.step4.view;
 
+import nextstep.step4.domain.GameCriteria;
 import nextstep.step4.domain.Results;
 import nextstep.step4.domain.Users;
 
@@ -16,14 +17,21 @@ public class InputView {
 
     private static final int HEIGHT_LIMIT = 2;
 
+    public GameCriteria getGameCriteria() {
+        Users users = getUsers();
+        Results results = getResults(users.getUserNumbers());
+
+        return GameCriteria.of(users, results);
+    }
+
     public Users getUsers() {
         System.out.println(INPUT_USER);
         return Users.initUsers(scanner.nextLine());
     }
 
-    public Results getResults() {
+    public Results getResults(int userNumbers) {
         System.out.println(INPUT_RESULT);
-        return Results.initResults(scanner.nextLine());
+        return Results.initResults(userNumbers, scanner.nextLine());
     }
 
     public int getHeight() {
