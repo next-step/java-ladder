@@ -3,10 +3,13 @@ package nextstep.step4.domain;
 public class User {
 
     private static final int LENGTH_LIMIT = 5;
+
+    private int index;
     private final String name;
 
-    private User(String name) {
+    private User(int index, String name) {
         checkNameLength(name);
+        this.index = index;
         this.name = name;
     }
 
@@ -16,8 +19,8 @@ public class User {
         }
     }
 
-    public static User of(String name) {
-        return new User(name);
+    public static User of(int index, String name) {
+        return new User(index, name);
     }
 
     @Override

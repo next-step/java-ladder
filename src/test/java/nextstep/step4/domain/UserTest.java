@@ -12,7 +12,7 @@ class UserTest {
     @DisplayName("유저 생성 테스트")
     void createUser() {
         String name = "java";
-        User user = User.of(name);
+        User user = User.of(0, name);
         assertThat(user.toString()).isEqualTo(name);
     }
 
@@ -21,6 +21,6 @@ class UserTest {
     void exceptNameLength() {
         String name = "abcdef";
         assertThrows(IllegalArgumentException.class,
-                () -> User.of(name));
+                () -> User.of(0, name));
     }
 }
