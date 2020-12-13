@@ -15,12 +15,12 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 public class LadderGameTest {
 
     private static final int MIN_LADDER_HEIGHT = 1;
-    private LineBuildStrategy lineBuildStrategy;
+    private DirectionStrategy directionStrategy;
 
 
     @BeforeEach
     public void init(){
-        lineBuildStrategy = new RandomLineBuildStrategy();
+        directionStrategy = new RandomDirectionStrategy();
     }
 
 
@@ -32,7 +32,7 @@ public class LadderGameTest {
 
         //when
         Ladders ladders = new Ladders(IntStream.range(0, ladderMaxHeight)
-                .mapToObj(ladder -> new Ladder(lineBuildStrategy.build(3)))
+                .mapToObj(ladder -> new Ladder(3, directionStrategy))
                 .collect(Collectors.toList()));
 
         // then
@@ -47,7 +47,7 @@ public class LadderGameTest {
 
         assertThatIllegalArgumentException().isThrownBy(() -> {
 
-            LadderGame ladderGame = new LadderGame(new RandomLineBuildStrategy());
+            LadderGame ladderGame = new LadderGame(new RandomDirectionStrategy());
             ladderGame.start(3, maxHeight);
 
         }).withMessageContaining("최소 사다리 높이는 "+MIN_LADDER_HEIGHT+" 입니다.");

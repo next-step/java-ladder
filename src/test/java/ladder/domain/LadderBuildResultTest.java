@@ -20,11 +20,8 @@ public class LadderBuildResultTest {
         String[] playNames = {"AAA", "BBB", "CCC"};
         players = new Players(playNames);
 
-        List<Point> lineConnections = new ArrayList<>();
-        lineConnections.add(new Point(Direction.of(false,true)));
-
         List<Ladder> ladderList = new ArrayList<>();
-        ladderList.add(new Ladder(new Line(lineConnections)));
+        ladderList.add(new Ladder(1, new RandomDirectionStrategy()));
 
         ladders = new Ladders(ladderList);
     }

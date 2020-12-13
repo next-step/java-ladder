@@ -15,18 +15,15 @@ public class Ladders {
         return ladders;
     }
 
-    public int climb(int index) {
 
-        AtomicInteger moveIndex = new AtomicInteger(index);
+    public int climb(int startIndex) {
 
-        ladders.forEach(ladder -> moveIndex.set(changeMoveIndex(ladder, moveIndex.get())));
+        AtomicInteger moveIndex = new AtomicInteger(startIndex);
+
+        ladders.forEach(ladder -> moveIndex.set(ladder.move(moveIndex.get())));
 
         return moveIndex.get();
 
-    }
-
-    private int changeMoveIndex(Ladder ladder, int currentMoveIndex) {
-        return currentMoveIndex + ladder.move(currentMoveIndex);
     }
 
 }

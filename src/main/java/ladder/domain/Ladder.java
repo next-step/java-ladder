@@ -6,6 +6,10 @@ public class Ladder {
 
     private Line line;
 
+    public Ladder(int ladderCount, DirectionStrategy directionStrategy) {
+       this.line = Line.init(ladderCount, directionStrategy);
+    }
+
     public Ladder(Line line){
         this.line = line;
     }
@@ -28,7 +32,6 @@ public class Ladder {
     }
 
     public int move(int moveIndex) {
-        Direction direction = line.getPoints().get(moveIndex).getDirection();
-        return direction.moveIndex();
+        return line.move(moveIndex);
     }
 }

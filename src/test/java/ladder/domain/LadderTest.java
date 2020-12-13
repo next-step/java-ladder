@@ -15,7 +15,7 @@ public class LadderTest {
 
     @BeforeEach
     public void init(){
-        lineConnections.add(new Point(Direction.of(false,true)));
+        lineConnections.add(new Point(0, Direction.of(false,true)));
     }
 
     @DisplayName("Ladder 생성 테스트")

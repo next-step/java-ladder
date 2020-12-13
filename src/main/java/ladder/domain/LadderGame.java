@@ -6,11 +6,11 @@ import java.util.stream.IntStream;
 public class LadderGame {
 
     private static final int MIN_LADDER_HEIGHT = 1;
-    private LineBuildStrategy lineBuildStrategy;
+    private DirectionStrategy directionStrategy;
 
 
-    public LadderGame(LineBuildStrategy lineBuildStrategy) {
-        this.lineBuildStrategy = lineBuildStrategy;
+    public LadderGame(DirectionStrategy directionStrategy) {
+        this.directionStrategy = directionStrategy;
     }
 
     public Ladders start(int ladderCount, int ladderMaxHeight){
@@ -27,7 +27,7 @@ public class LadderGame {
     private Ladders build(int ladderCount, int ladderMaxHeight) {
 
         Ladders ladders = new Ladders(IntStream.range(0, ladderMaxHeight)
-                .mapToObj(ladder -> new Ladder(lineBuildStrategy.build(ladderCount)))
+                .mapToObj(ladder -> new Ladder(ladderCount, directionStrategy))
                 .collect(Collectors.toList()));
 
 

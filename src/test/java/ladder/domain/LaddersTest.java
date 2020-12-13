@@ -1,11 +1,13 @@
 package ladder.domain;
 
+import ladder.view.ResultView;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -17,9 +19,9 @@ public class LaddersTest {
     public void init(){
 
         List<Point> lineConnections = new ArrayList<>();
-        lineConnections.add(new Point(Direction.of(false, true)));
-        lineConnections.add(new Point(Direction.of(true,false)));
-        lineConnections.add(new Point(Direction.of(false,false)));
+        lineConnections.add(new Point(0,Direction.of(false, true)));
+        lineConnections.add(new Point(1,Direction.of(true,false)));
+        lineConnections.add(new Point(2,Direction.of(false,false)));
 
         line = new Line(lineConnections);
     }
@@ -54,6 +56,10 @@ public class LaddersTest {
         ladderList.add(ladder2);
 
         Ladders ladders = new Ladders(ladderList);
+
+        ResultView.showBuildResult(new LadderBuildResult(ladders
+                , new Players(new String[]{"aaa","bbb", "ccc"}))
+                , new Awards(new String[]{"aaa","bbb", "ccc"}));
 
         /*
 
