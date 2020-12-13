@@ -27,4 +27,20 @@ public class Row {
     public List<Boolean> getLinks() {
         return Collections.unmodifiableList(links);
     }
+
+    public List<Integer> step(List<Integer> positions) {
+        return positions.stream()
+                .map(this::getNextColumn)
+                .collect(Collectors.toList());
+    }
+
+    private int getNextColumn(int fromColumn) {
+        if (fromColumn > 0 && links.get(fromColumn - 1)) {
+            return fromColumn - 1;
+        }
+        if (fromColumn < links.size() && links.get(fromColumn)) {
+            return fromColumn + 1;
+        }
+        return fromColumn;
+    }
 }

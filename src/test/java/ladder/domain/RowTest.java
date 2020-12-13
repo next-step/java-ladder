@@ -7,6 +7,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -54,5 +55,35 @@ public class RowTest {
 
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> Row.of(numberPerson, () -> false));
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "1, 0",
+            "2, 1|0",
+            "3, 1|0|2",
+            "4, 1|0|3|2",
+            "5, 1|0|3|2|4",
+            "6, 1|0|3|2|5|4"
+    })
+    void testStepForAlways(int numberPerson, String expected) {
+        List<Integer> when = IntStream.range(0, numberPerson)
+                .boxed()
+                .collect(Collectors.toList());
+        List<Integer> then = Arrays.stream(expected.split("\\|"))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+        Row row = Row.of(numberPerson, () -> true);
+        assertThat(row.step(when)).isEqualTo(then);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = { 1, 2, 3, 4, 5, 6 })
+    void testStepForNever(int numberPerson) {
+        List<Integer> when = IntStream.range(0, numberPerson)
+                .boxed()
+                .collect(Collectors.toList());
+        Row row = Row.of(numberPerson, () -> false);
+        assertThat(row.step(when)).isEqualTo(when);
     }
 }
