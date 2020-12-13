@@ -7,75 +7,36 @@ import ladder.dto.UsersDTO;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
-import java.util.List;
 import java.util.Map;
 
 import static ladder.domain.LadderConstant.SEARCH_ALL_REQUEST;
 
 public class LadderController {
 
-    private Users users;
-    private int ladderHeight;
-    private Ladder ladder;
-    private Rewards rewards;
-
     public LadderController() {
     }
 
     public void run() {
-        setUpUser();
-        setUpRewards();
-        setUpLadderHeight();
-        generateLadder();
-        printOpening();
-        printUsers();
-        printLadder();
-        printRewards();
-        printRewardPerUser();
+        Users users = new Users(InputParser.parseRawInput(InputView.askNames()));
+        Rewards rewards = new Rewards(InputParser.parseRawInput(InputView.askRewards()));
+        int ladderHeight = InputView.askLadderHeight();
+
+        Ladder ladder = new Ladder(ladderHeight, users.size(), new RandomConnectionMode());
+
+        printGameStatus(users.exportData(), ladder.exportData(), rewards.exportData());
+
+        Result result = ladder.generateResult(users, rewards);
+        printRewardPerUser(result);
     }
 
-    private void setUpUser() {
-        String userNameInput = InputView.askNames();
-        List<String> parsedInput = InputParser.parseRawInput(userNameInput);
-        users = new Users(parsedInput);
-    }
-
-    private void setUpRewards() {
-        String RewardsInput = InputView.askRewards();
-        List<String> parsedInput = InputParser.parseRawInput(RewardsInput);
-        rewards = new Rewards(parsedInput);
-    }
-
-    private void setUpLadderHeight() {
-        ladderHeight = InputView.askLadderHeight();
-    }
-
-    private void generateLadder() {
-        ConnectionMode mode = new RandomConnectionMode();
-        ladder = new Ladder(ladderHeight, users.size(), mode);
-    }
-
-    private void printOpening() {
+    private void printGameStatus(UsersDTO usersDTO, LadderDTO ladderDTO, RewardsDTO rewardsDTO) {
         ResultView.printLadderLayoutOpening();
-    }
-
-    private void printUsers() {
-        UsersDTO usersDTO = users.exportData();
         ResultView.printUsers(usersDTO);
-    }
-
-    private void printLadder() {
-        LadderDTO ladderDTO = ladder.exportData();
         ResultView.printLadder(ladderDTO);
-    }
-
-    private void printRewards() {
-        RewardsDTO rewardsDTO = rewards.exportData();
         ResultView.printRewards(rewardsDTO);
     }
 
-    private void printRewardPerUser() {
-        Result result = ladder.generateResult(users, rewards);
+    private void printRewardPerUser(Result result) {
         while (true) {
             String request = InputView.askResult();
             ResultView.printRewardsOpening();
