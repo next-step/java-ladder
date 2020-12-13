@@ -1,5 +1,6 @@
 package my.project.step3.domain;
 
+import my.project.common.domain.Symbol;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

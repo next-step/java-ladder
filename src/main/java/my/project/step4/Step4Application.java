@@ -1,17 +1,17 @@
-package my.project.step3;
+package my.project.step4;
 
-import my.project.step3.domain.Ladder;
-import my.project.step3.domain.Rewards;
-import my.project.step3.domain.Users;
-import my.project.step3.domain.Result;
-import my.project.step3.view.InputView;
-import my.project.step3.view.ResultView;
+import my.project.step4.domain.Ladder;
+import my.project.step4.domain.Result;
+import my.project.common.domain.Rewards;
+import my.project.common.domain.Users;
+import my.project.common.view.InputView;
+import my.project.common.view.ResultView;
 
 /**
  * Created : 2020-12-04 오전 8:51
  * Developer : Seo
  */
-public class Application {
+public class Step4Application {
     public static void main(String[] args) {
         Users users = new Users(InputView.getUsers());
         Rewards rewards = new Rewards(users, InputView.getRewards());

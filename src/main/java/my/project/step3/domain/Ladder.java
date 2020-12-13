@@ -1,5 +1,7 @@
 package my.project.step3.domain;
 
+import my.project.common.domain.Users;
+
 public class Ladder {
     private final Lines lines;
     private final int height;

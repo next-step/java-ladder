@@ -1,5 +1,6 @@
 package my.project.step3.domain;
 
+import my.project.common.domain.Reward;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;

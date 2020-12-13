@@ -1,6 +1,6 @@
-package my.project.step3.dto;
+package my.project.common.dto;
 
-import my.project.step3.domain.Reward;
+import my.project.common.domain.Reward;
 
 /**
  * Created : 2020-12-09 오후 1:13

@@ -1,4 +1,6 @@
-package my.project.step3.domain;
+package my.project.common.domain;
+
+import my.project.step3.domain.Point;
 
 import java.util.regex.Pattern;
 
@@ -11,11 +13,13 @@ public class User {
 
     private final String name;
     private Point point;
+    private int x;
 
     public User(String name, int x) {
         validateName(name);
         this.name = name;
         this.point = new Point(x * USER_START_POINT_MULTIPLE, FIRST_LINE);
+        this.x = x;
     }
 
     public User(String name) {
@@ -39,6 +43,10 @@ public class User {
 
     public Point getPoint() {
         return this.point;
+    }
+
+    public int getX() {
+        return x;
     }
 
     public boolean matchName(String name) {

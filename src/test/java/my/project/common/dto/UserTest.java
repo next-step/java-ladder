@@ -1,6 +1,6 @@
-package my.project.step3.dto;
+package my.project.common.dto;
 
-import my.project.step3.domain.User;
+import my.project.common.domain.User;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

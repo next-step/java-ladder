@@ -1,4 +1,4 @@
-package my.project.step3.domain;
+package my.project.common.domain;
 
 import java.util.Arrays;
 import java.util.List;
@@ -30,7 +30,7 @@ public class Rewards {
     }
 
     public Reward getReward(int ladderArrayIndex) {
-        int listIndex = ladderArrayIndex / FOR_REMOVE_EMPTY;
-        return rewards.get(listIndex);
+//        int listIndex = ladderArrayIndex / FOR_REMOVE_EMPTY;
+        return rewards.get(ladderArrayIndex);
     }
 }

@@ -1,4 +1,4 @@
-package my.project.step3.domain;
+package my.project.common.domain;
 
 
 import java.util.regex.Pattern;

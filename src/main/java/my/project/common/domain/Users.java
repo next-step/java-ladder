@@ -1,4 +1,6 @@
-package my.project.step3.domain;
+package my.project.common.domain;
+
+import my.project.step3.domain.Point;
 
 import java.util.ArrayList;
 import java.util.Arrays;

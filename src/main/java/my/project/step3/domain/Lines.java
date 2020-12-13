@@ -1,5 +1,8 @@
 package my.project.step3.domain;
 
+import my.project.common.domain.Users;
+import my.project.common.domain.Symbol;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;

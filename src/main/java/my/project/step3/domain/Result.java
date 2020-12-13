@@ -1,6 +1,9 @@
 package my.project.step3.domain;
 
-import my.project.step3.dto.ResultSet;
+import my.project.common.domain.Rewards;
+import my.project.common.domain.Symbol;
+import my.project.common.domain.Users;
+import my.project.common.dto.ResultSet;
 
 import java.util.ArrayList;
 import java.util.List;
