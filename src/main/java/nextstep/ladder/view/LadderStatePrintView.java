@@ -8,10 +8,10 @@ public class LadderStatePrintView {
     private static final String BAR = "|";
     private static final String LEFT_BAR = "----|";
 
-    public static void print(LadderDto ladderDto) {
+    public static void print(LadderGame ladderGame) {
         StringBuilder stringBuilder = new StringBuilder();
-        Users users = ladderDto.getUsers();
-        Ladder ladder = ladderDto.getLadder();
+        Users users = ladderGame.getUsers();
+        Ladder ladder = ladderGame.getLadder();
         stringBuilder.append(buildUserNameString(users));
         stringBuilder.append(System.lineSeparator());
         stringBuilder.append(buildLadderString(ladder));

@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class LadderDtoHeightTest {
+class LadderGameHeightTest {
 
     @DisplayName("사다리 높이 유효성 검사 예외 발생 테스트")
     @Test
