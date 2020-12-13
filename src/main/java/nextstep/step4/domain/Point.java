@@ -15,7 +15,11 @@ public class Point {
     }
 
     public Point setNext(MoveStrategy moveStrategy) {
-        return new Point(this.current, moveStrategy.move(previous));
+        return new Point(this.current, moveStrategy.move(this.current));
+    }
+
+    public Point setLast() {
+        return new Point(this.current, false);
     }
 
     private void validateDirection(boolean previous, boolean current) {
@@ -34,9 +38,5 @@ public class Point {
         }
 
         return Direction.FORWARD;
-    }
-
-    public Point last() {
-        return new Point(this.current, false);
     }
 }

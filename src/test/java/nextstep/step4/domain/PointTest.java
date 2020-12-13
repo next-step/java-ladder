@@ -39,7 +39,7 @@ class PointTest {
     @Test
     @DisplayName("마지막 인덱스는 false")
     void setLast() {
-        Point point = Point.setFirst((boolean previous) -> true).setNext((boolean previous) -> false).last();
+        Point point = Point.setFirst((boolean previous) -> true).setNext((boolean previous) -> false).setLast();
         assertThat(point.move()).isEqualTo(Direction.FORWARD);
     }
 

@@ -1,7 +1,7 @@
 package nextstep.step4.domain;
 
 public class Index {
-    public static final int MOVING_INDEX = 1;
+    private static final int MOVING_INDEX = 1;
 
     private final int position;
     private final Point point;
