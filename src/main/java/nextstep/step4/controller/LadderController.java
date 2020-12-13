@@ -18,5 +18,7 @@ public class LadderController {
         Ladder ladder = Ladder.init(gameCriteria.getUserNumbers(), height);
 
         outputView.printLadder(gameCriteria, ladder);
+
+        String resultUser = inputView.getResultUser(gameCriteria);
     }
 }
