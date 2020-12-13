@@ -14,4 +14,8 @@ public class GameCriteria {
         return new GameCriteria(users, results);
     }
 
+    public int getUserNumbers() {
+        return users.getUserNumbers();
+    }
+
 }

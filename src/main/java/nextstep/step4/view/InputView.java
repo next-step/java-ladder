@@ -30,11 +30,13 @@ public class InputView {
     }
 
     public Results getResults(int userNumbers) {
+        System.out.println();
         System.out.println(INPUT_RESULT);
         return Results.initResults(userNumbers, scanner.nextLine());
     }
 
     public int getHeight() {
+        System.out.println();
         System.out.println(INPUT_HEIGHT);
         int height = Integer.parseInt(scanner.nextLine());
         validateHeight(height);
