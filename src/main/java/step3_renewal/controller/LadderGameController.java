@@ -17,7 +17,7 @@ public class LadderGameController {
 
         Ladder ladder = Ladder.of(InputUi.maximumHeight(), participants);
         OutputUi.printAll(participants, rewards, ladder);
-        printResult(InputUi.wantToSeeResult(), gameStart(participants, rewards, ladder));
+        OutputUi.printLadderGameResult(InputUi.wantToSeeResult(), gameStart(participants, rewards, ladder));
 
         InputUi.close();
     }
@@ -34,12 +34,5 @@ public class LadderGameController {
     private static GameResult toGameResult(Participant participant, Rewards rewards, Ladder ladder) {
         return GameResult.of(participant.getParticipantName()
                 , rewards.getRewardName(ladder.move(participant.getPosition())));
-    }
-
-    private static void printResult(String name, GameResults gameResults) {
-        if (name.equalsIgnoreCase("all")) {
-            OutputUi.printLadderGameAllResult(gameResults);
-        }
-        OutputUi.printLadderGameOneResult(gameResults, name);
     }
 }

@@ -77,4 +77,11 @@ public class OutputUi {
                 .map(rewardName -> rewardName.getReward().getName())
                 .forEach(System.out::println);
     }
+
+    public static void printLadderGameResult(String name, GameResults gameResults) {
+        if (name.equalsIgnoreCase("all")) {
+            printLadderGameAllResult(gameResults);
+        }
+        printLadderGameOneResult(gameResults, name);
+    }
 }
