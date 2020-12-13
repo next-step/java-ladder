@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class StringUtil {
+    private static final String NAME_SEPARATOR = ",";
 
     private StringUtil() {
     }
@@ -13,20 +14,15 @@ public class StringUtil {
         return null == value || value.trim().isEmpty();
     }
 
-    public static String padRight(String value, int repeat) {
-        return String.format("%-" + repeat + "s", value);
-    }
-
-    public static String padLeft(int repeat, String value){
+    public static String padLeft(int repeat, String value) {
         return String.format("%" + repeat + "s", value);
     }
-    private static final String NAME_SEPARATOR = ",";
 
-    public static List<String> splitNames(String name) {
-        return new ArrayList<>(Arrays.asList(splitName(name)));
+    public static List<String> splitToList(String name) {
+        return new ArrayList<>(Arrays.asList(split(name)));
     }
 
-    private static String[] splitName(String name) {
+    private static String[] split(String name) {
         return name.split(NAME_SEPARATOR);
     }
 }
