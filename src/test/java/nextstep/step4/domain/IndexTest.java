@@ -9,7 +9,7 @@ class IndexTest {
     @Test
     @DisplayName("오른쪽으로 이동 시 인덱스")
     void right() {
-        Point right = Point.setFirst(true);
+        Point right = Point.setFirst((boolean previous) -> true);
         Index index = Index.of(1, right);
         Assertions.assertThat(index.move()).isEqualTo(2);
     }
@@ -17,7 +17,7 @@ class IndexTest {
     @Test
     @DisplayName("왼쪽으로 이동 시 인덱스")
     void left() {
-        Point left= Point.setFirst(true).setNext(false);
+        Point left= Point.setFirst((boolean previous) ->true).setNext((boolean previous) -> false);
         Index index = Index.of(1, left);
         Assertions.assertThat(index.move()).isEqualTo(0);
     }
@@ -25,7 +25,7 @@ class IndexTest {
     @Test
     @DisplayName("직진일 때 인덱스")
     void forward() {
-        Point forward= Point.setFirst(false);
+        Point forward= Point.setFirst((boolean previous) -> false);
         Index index = Index.of(1, forward);
         Assertions.assertThat(index.move()).isEqualTo(1);
     }

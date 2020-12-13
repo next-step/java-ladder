@@ -10,12 +10,12 @@ public class Point {
         this.current = current;
     }
 
-    public static Point setFirst(boolean current) {
-        return new Point(false, current);
+    public static Point setFirst(MoveStrategy moveStrategy) {
+        return new Point(false, moveStrategy.move(false));
     }
 
-    public Point setNext(boolean current) {
-        return new Point(this.current, current);
+    public Point setNext(MoveStrategy moveStrategy) {
+        return new Point(this.current, moveStrategy.move(previous));
     }
 
     private void validateDirection(boolean previous, boolean current) {
