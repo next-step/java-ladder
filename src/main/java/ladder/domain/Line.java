@@ -14,18 +14,33 @@ public class Line {
     public static Line ofLineCounts(int numPoints, ConnectionMode mode) {
         List<Point> points = new ArrayList<>();
 
-        Point currentPoint = Point.first(mode.generateConnection());
-        points.add(currentPoint);
+        Point initialPoint = initFirst(mode, points);
+        Point beforeTheLast = initBody(initialPoint, numPoints, mode, points);
+        initLast(beforeTheLast, points);
+
+        return new Line(points);
+    }
+
+    private static Point initFirst(ConnectionMode mode, List<Point> points) {
+        Point first = Point.first(mode.generateConnection());
+        points.add(first);
+
+        return first;
+    }
+
+    private static Point initBody(Point initialPoint, int numPoints, ConnectionMode mode, List<Point> points) {
+        Point currentPoint = initialPoint;
 
         for (int i = 1; i < numPoints - 1; i++) {
             currentPoint = currentPoint.next(mode.generateConnection());
             points.add(currentPoint);
         }
 
-        Point lastPoint = currentPoint.last();
-        points.add(lastPoint);
+        return currentPoint;
+    }
 
-        return new Line(points);
+    private static void initLast(Point beforeTheLast, List<Point> points) {
+        points.add(beforeTheLast.last());
     }
 
     private Line(List<Point> points) {
