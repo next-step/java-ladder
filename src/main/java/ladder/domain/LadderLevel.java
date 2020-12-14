@@ -1,8 +1,6 @@
 package ladder.domain;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -21,7 +19,7 @@ public class LadderLevel {
     }
 
     private void shouldNotConsecutivelyStep(List<LevelItem> items) {
-        new ConsecutivelyStepChecker(items).check((levelItems, idx) -> {
+        ConsecutivelyStepChecker.check(items, (levelItems, idx) -> {
             throw new IllegalArgumentException("step 은 연속해서 구성할 수 없습니다");
         });
     }

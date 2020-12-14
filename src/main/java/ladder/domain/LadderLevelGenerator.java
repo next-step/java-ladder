@@ -25,7 +25,7 @@ public interface LadderLevelGenerator {
                         .collect(Collectors.toList());
 
                 // 연속되는 step 제거
-                new ConsecutivelyStepChecker(items).check((levelItems, idx) -> {
+                ConsecutivelyStepChecker.check(items, (levelItems, idx) -> {
                     levelItems.set(idx, LevelItem.emptyStep());
                 });
 
