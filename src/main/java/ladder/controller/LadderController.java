@@ -13,7 +13,7 @@ public class LadderController {
         GameReward gameReward = enterGameReward();
         GameSetup gameSetup = createGameSetup(users.countOfPerson(), InputView.enterHeight());
 
-        Ladder ladder = Ladder.of(users, createLines(gameSetup));
+        Ladder ladder = Ladder.of(users, new Lines(gameSetup));
         ResultView.printGameResult(ladder, gameReward);
 
         GameResults gameResults = GameResults.of(ladder, gameReward);
@@ -32,10 +32,6 @@ public class LadderController {
 
     private static GameSetup createGameSetup(int countOfPerson, int height) {
         return GameSetup.of(countOfPerson, height);
-    }
-
-    private static Lines createLines(GameSetup gameSetup) {
-        return Lines.of(gameSetup, new NextDirectionRule());
     }
 
     private static void showRewardResult(GameManager gameManager) {

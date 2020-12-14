@@ -11,14 +11,18 @@ public class Lines {
 
     private final List<Line> lines;
 
-    private Lines(List<Line> lines) {
+    public Lines(GameSetup gameSetup) {
+        this.lines = makeLines(gameSetup);
+    }
+
+    public Lines(List<Line> lines) {
         this.lines = lines;
     }
 
-    public static Lines of(GameSetup gameSetup, DirectionRule directionRule) {
-        return new Lines(IntStream.range(0, checkMinimumHeight(gameSetup.getHeight()))
-                .mapToObj(i -> new Line(gameSetup.getCountOfPerson(), directionRule))
-                .collect(Collectors.toList()));
+    private static List<Line> makeLines(GameSetup gameSetup) {
+        return IntStream.range(0, checkMinimumHeight(gameSetup.getHeight()))
+                .mapToObj(i -> new Line(gameSetup.getCountOfPerson()))
+                .collect(Collectors.toList());
     }
 
     private static int checkMinimumHeight(int height) {
