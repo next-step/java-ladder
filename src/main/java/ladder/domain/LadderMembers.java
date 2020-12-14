@@ -6,20 +6,16 @@ import java.util.Spliterator;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
-public class LadderMembers implements Iterable<String>{
-    private List<String> names;
+public class LadderMembers implements Iterable<LadderMember>{
+    private List<LadderMember> names;
 
     public LadderMembers(List<String> names) {
         if (names == null || names.size() < 2) throw new IllegalArgumentException("사다리 참가자는 최소 2명 이상 입력해야 합니다");
-        names.forEach(name -> {
-            if (name.length() > 5)
-                throw new IllegalArgumentException("사다리 참가자명은 최대5자 까지 입력가능합니다. (name: " + name + ")");
-        });
-        this.names = names;
+        this.names = names.stream().map(LadderMember::new).collect(Collectors.toList());
     }
 
-    public int getPosition(String name){
-        return names.indexOf(name);
+    public int getPosition(LadderMember member){
+        return names.indexOf(member);
     }
 
     @Override
@@ -39,7 +35,7 @@ public class LadderMembers implements Iterable<String>{
     }
 
     @Override
-    public void forEach(Consumer<? super String> action) {
+    public void forEach(Consumer<? super LadderMember> action) {
         names.forEach(action);
     }
 

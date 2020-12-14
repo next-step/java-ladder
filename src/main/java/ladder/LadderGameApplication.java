@@ -23,7 +23,7 @@ public class LadderGameApplication {
         String member = input.readMemberNameForResult();
         consoleView.println("실행결과");
         if( "all".equals(member) ) {
-            consoleView.printAllMemberResults(member, result.getAllLadderResult());
+            consoleView.printAllMemberResults(result.getAllLadderResult());
         } else {
             consoleView.printMemberResult(result.getLadderResult(member));
         }

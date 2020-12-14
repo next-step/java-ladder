@@ -42,8 +42,8 @@ public class DefaultLadder implements Ladder {
     }
 
     @Override
-    public String startFrom(String memberName) {
-        int memberPos = members.getPosition(memberName);
+    public String startFrom(LadderMember member) {
+        int memberPos = members.getPosition(member);
         int currPos = toLadderLevelPos(memberPos);
         for( LadderLevel ladderLevel : ladderLevels ){
             currPos = ladderLevel.move(currPos);
@@ -52,9 +52,14 @@ public class DefaultLadder implements Ladder {
     }
 
     @Override
-    public Map<String, String> startAll() {
-        Map<String, String> results = new HashMap<>();
-        members.forEach(name -> results.put(name, startFrom(name)));
+    public String startFrom(String memberName) {
+        return startFrom(new LadderMember(memberName));
+    }
+
+    @Override
+    public Map<LadderMember, String> startAll() {
+        Map<LadderMember, String> results = new HashMap<>();
+        members.forEach(member -> results.put(member, startFrom(member)));
         return results;
     }
 

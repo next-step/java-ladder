@@ -5,9 +5,9 @@ import java.util.Map;
 
 public class LadderGameResult {
     private final Ladder ladder;
-    private final Map<String, String> ladderResults;
+    private final Map<LadderMember, String> ladderResults;
 
-    public LadderGameResult(Ladder ladder, Map<String, String> ladderResults) {
+    public LadderGameResult(Ladder ladder, Map<LadderMember, String> ladderResults) {
         this.ladder = ladder;
         this.ladderResults = ladderResults;
     }
@@ -20,7 +20,7 @@ public class LadderGameResult {
         this.ladder.print(writer);
     }
 
-    public Map<String, String> getAllLadderResult() {
+    public Map<LadderMember, String> getAllLadderResult() {
         return ladderResults;
     }
 }

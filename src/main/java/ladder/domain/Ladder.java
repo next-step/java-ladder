@@ -7,16 +7,18 @@ public interface Ladder {
 
     /**
      * memberName 위치에서 시작해서 도착한 LadderResult 를 return
-     * @param memberName
+     * @param member
      * @return
      */
+    String startFrom(LadderMember member);
+
     String startFrom(String memberName);
 
     /**
      * 모든 member 가 사다리를 타고 도착한 전체 LadderResult 를 return
      * @return
      */
-    Map<String, String> startAll();
+    Map<LadderMember, String> startAll();
 
     void print(PrintWriter printWriter);
 

@@ -1,6 +1,7 @@
 package ladder.view;
 
 import ladder.domain.LadderGameResult;
+import ladder.domain.LadderMember;
 
 import java.io.PrintWriter;
 import java.util.Map;
@@ -17,10 +18,10 @@ public class ConsoleView {
         writer.flush();
     }
 
-    public void printAllMemberResults(String member, Map<String, String> ladderResult) {
+    public void printAllMemberResults(Map<LadderMember, String> ladderResult) {
         ladderResult.keySet()
                 .stream()
-                .forEach(name -> writer.println(name + ": " + ladderResult.get(name)));
+                .forEach(member -> writer.println(member + ": " + ladderResult.get(member)));
         writer.println();
         writer.flush();
     }
