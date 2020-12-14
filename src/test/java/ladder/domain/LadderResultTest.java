@@ -5,7 +5,9 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
+import static ladder.domain.LadderResult.RESULT_CAN_NOT_BE_BLANK;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 class LadderResultTest {
 
@@ -20,6 +22,14 @@ class LadderResultTest {
 
         //Then
         assertThat(ladderResult.containsAll(Arrays.asList("꽝", "5000", "꽝", "3000"))).isTrue();
+    }
+
+    @Test
+    @DisplayName("실행결과에 공백이 있으면 exception을 throw 한다.")
+    void should_throw_exception_when_result_is_blank() {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new LadderResult(""))
+                .withMessage(RESULT_CAN_NOT_BE_BLANK);
     }
 
 }

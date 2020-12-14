@@ -1,6 +1,10 @@
 package ladder.view;
 
-import ladder.dto.LadderGameResult;
+import ladder.domain.Ladder;
+import ladder.domain.LadderGameResult;
+import ladder.dto.LadderGameResultDto;
+
+import java.util.List;
 
 public class LadderGameView {
 
@@ -12,8 +16,12 @@ public class LadderGameView {
         return InputView.enterMaxLadderHeight();
     }
 
-    public static void printLadders(LadderGameResult ladderGameResult) {
-        ResultView.printResult(ladderGameResult.getLadder(), ladderGameResult.getNames());
+    public static void printLadders(LadderGameResultDto ladderGameResult) {
+//        ResultView.printResult(ladderGameResult.getLadder(), ladderGameResult.getNames());
+    }
+
+    public static void printLadder(Ladder ladder, List<String> participants) {
+        ResultView.printResult(ladder, participants);
     }
 
     public static String enterLadderGameResult() {
