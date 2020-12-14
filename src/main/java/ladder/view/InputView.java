@@ -13,6 +13,8 @@ public class InputView {
     private static final String LADDER_GAME_REWARD_COMMENT = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String LADDER_HEIGHT_COMMENT = "최대 사다리 높이는 몇 개인가요?";
 
+    private static final String GAME_RESULT_OF_USER_COMMENT = "결과를 보고 싶은 사람은?";
+    private static final String GAME_RESULT_COMMENT = "실행결과";
 
     private InputView() {
     }
@@ -33,6 +35,11 @@ public class InputView {
         System.out.println();
         System.out.println(LADDER_HEIGHT_COMMENT);
         return sc.nextInt();
+    }
+
+    public static String inputGameResultOfUser() {
+        System.out.println("\n"+ GAME_RESULT_OF_USER_COMMENT);
+        return sc.next();
     }
 
 }
