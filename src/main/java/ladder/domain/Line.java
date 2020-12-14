@@ -26,7 +26,7 @@ public class Line {
     }
 
     private static Point initFirst(ConnectionMode mode, List<Point> points) {
-        Point first = Point.first(mode.generateConnection());
+        Point first = Point.createFirstFrom(mode.generateConnection());
         points.add(first);
 
         return first;
@@ -36,7 +36,7 @@ public class Line {
         Point currentPoint = initialPoint;
 
         for (int i = 1; i < numPoints - 1; i++) {
-            currentPoint = currentPoint.next(mode.generateConnection());
+            currentPoint = currentPoint.createNextFrom(mode.generateConnection());
             points.add(currentPoint);
         }
 
@@ -44,7 +44,7 @@ public class Line {
     }
 
     private static void initLast(Point beforeTheLast, List<Point> points) {
-        points.add(beforeTheLast.last());
+        points.add(beforeTheLast.createLast());
     }
 
     public List<Point> getValidPoints() {

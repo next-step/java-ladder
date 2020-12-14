@@ -10,19 +10,19 @@ public class Point {
         this.pointStatus = pointStatus;
     }
 
-    public static Point first(boolean atStatus) {
-        return custom(0, PointStatus.first(atStatus));
+    public static Point createFirstFrom(boolean atStatus) {
+        return createCustomStatusOf(0, PointStatus.first(atStatus));
     }
 
-    public Point next(boolean atStatus) {
-        return custom(index + 1, pointStatus.next(atStatus));
+    public Point createNextFrom(boolean atStatus) {
+        return createCustomStatusOf(index + 1, pointStatus.next(atStatus));
     }
 
-    public Point last() {
-        return custom(index + 1, pointStatus.last());
+    public Point createLast() {
+        return createCustomStatusOf(index + 1, pointStatus.last());
     }
 
-    public static Point custom(int index, PointStatus status) {
+    public static Point createCustomStatusOf(int index, PointStatus status) {
         return new Point(index, status);
     }
 
