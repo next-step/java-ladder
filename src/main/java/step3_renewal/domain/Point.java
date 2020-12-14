@@ -9,12 +9,16 @@ public class Point {
         this.direction = direction;
     }
 
+    public static Point first(Boolean right) {
+        return new Point(0, Direction.first(right));
+    }
+
     public int move() {
         if (direction.isLeft()) {
             return currentPoint - 1;
         }
 
-        if(direction.isRight()) {
+        if (direction.isRight()) {
             return currentPoint + 1;
         }
 
@@ -25,12 +29,8 @@ public class Point {
         return new Point(currentPoint + 1, direction.next(right));
     }
 
-    public static Point first(Boolean right) {
-        return new Point(0, Direction.first(right));
-    }
-
     public Point last() {
-        return new Point(currentPoint +1, direction.last());
+        return new Point(currentPoint + 1, direction.last());
     }
 
     public boolean isDrawLine() {
