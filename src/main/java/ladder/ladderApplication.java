@@ -9,7 +9,7 @@ public class ladderApplication {
     public static void main(String[] args) {
         String ladderParticipants = InputUi.nameOfParticipate();
         Participants ladderMaker = Participants.of(ladderParticipants);
-        Lines lines = new Lines(ladderMaker.getNames().size());
+        Lines lines = Lines.of(ladderMaker.getNames().size());
 
         int ladderMaximumHeight = InputUi.maximumHeight();
         OutputUi.printLadder(ladderMaker.getNames(), lines, ladderMaximumHeight);

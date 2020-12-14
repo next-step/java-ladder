@@ -4,38 +4,36 @@ import ladder.utils.LadderUtil;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class Lines {
 
-    private final List<Line> lines = new ArrayList<>();
+    private final List<Line> lines;
 
-    public Lines(int countOfPerson) {
-        createLines(countOfPerson);
+    private Lines(List<Line> lines) {
+        this.lines = lines;
     }
 
-    private void createLines(int countOfPerson) {
-        IntStream.range(0, countOfPerson - 1)
-                .forEach(i -> addPoint());
+    public static Lines of(int countOfPerson) {
+        return new Lines(createLines(countOfPerson));
     }
 
-    private void addPoint() {
-        if (this.lines.isEmpty()) {
-            this.lines.add(Line.of(LadderUtil.isLine()));
-            return;
+    private static List<Line> createLines(int countOfPerson) {
+        List<Line> list = new ArrayList<>();
+        Line currentLine = Line.of(LadderUtil.isLine());
+        list.add(currentLine);
+        for (int i = 1; i < (countOfPerson - 1); i++) {
+            currentLine = nextCreate(currentLine.getLine());
+            list.add(currentLine);
         }
-        checkPointRepeat();
+        return list;
     }
 
-    private void checkPointRepeat() {
-        boolean isCurrentOfLine = this.lines.get(lines.size() - 1).getLine();
-        boolean isLine = LadderUtil.isLine();
-        if (isCurrentOfLine == isLine) {
-            this.lines.add(Line.of(!isCurrentOfLine));
-            return;
+    private static Line nextCreate(boolean isLine) {
+        boolean isNextLine = LadderUtil.isLine();
+        if (isLine == isNextLine) {
+            return Line.of(!isNextLine);
         }
-
-        this.lines.add(Line.of(isLine));
+        return Line.of(isNextLine);
     }
 
     public List<Line> getLines() {

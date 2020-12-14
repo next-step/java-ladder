@@ -12,7 +12,7 @@ public class LinesTest {
     public void 참가자_사다리_정상적으로_생성되었는지() {
         String names = "yura,yiyi,yoyo";
         Participants ladderMaker = Participants.of(names);
-        Lines lines = new Lines(ladderMaker.getNames().size());
+        Lines lines = Lines.of(ladderMaker.getNames().size());
         assertEquals(lines.getLines().size(), 2);
     }
 }

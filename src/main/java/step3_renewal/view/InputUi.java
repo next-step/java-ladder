@@ -1,4 +1,4 @@
-package ladder.view;
+package step3_renewal.view;
 
 import java.util.Scanner;
 
