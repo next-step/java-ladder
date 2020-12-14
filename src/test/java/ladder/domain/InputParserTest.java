@@ -18,4 +18,11 @@ class InputParserTest {
         assertThat(InputParser.parseRawInput("pobi,honux,crong,jk"))
                 .isEqualTo(expected);
     }
+
+    @Test
+    @DisplayName("쉼표공백 <-> 쉼표 간의 동일성 테스트")
+    void testSplitPattern() {
+        assertThat(InputParser.parseRawInput("pobi,honux,crong,jk"))
+                .isEqualTo(InputParser.parseRawInput("pobi, honux, crong, jk"));
+    }
 }
