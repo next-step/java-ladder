@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import java.util.Objects;
+
 public class ClimbResult {
 
     private Player player;
@@ -21,5 +23,19 @@ public class ClimbResult {
 
     public Award getAward() {
         return award;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ClimbResult that = (ClimbResult) o;
+        return Objects.equals(player, that.player) &&
+                Objects.equals(award, that.award);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(player, award);
     }
 }

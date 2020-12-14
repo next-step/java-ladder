@@ -1,5 +1,8 @@
 package ladder.domain;
 
+import java.util.Objects;
+import java.util.Random;
+
 public class Direction {
 
     private static final int NOT_MOVE = 0;
@@ -9,11 +12,30 @@ public class Direction {
     private final boolean left;
     private final boolean right;
 
-
     private Direction(boolean left, boolean right){
         validateDirection(left, right);
         this.left = left;
         this.right = right;
+    }
+
+    public static Direction first(boolean right) {
+        return of(false, right);
+    }
+
+    public Direction next() {
+        if(this.right){
+            return next(false);
+        }
+
+        return next(DirectionGenerator.generateDirection());
+    }
+
+    public Direction next(boolean nextRight) {
+        return of(this.right, nextRight);
+    }
+
+    public Direction last() {
+        return of(this.right, false);
     }
 
     private void validateDirection(boolean left, boolean right) {
@@ -25,6 +47,7 @@ public class Direction {
     public static Direction of(boolean left, boolean right){
         return new Direction(left, right);
     }
+
 
     public boolean isLeft() {
         return left;
@@ -54,5 +77,19 @@ public class Direction {
         }
 
         return  NOT_MOVE;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Direction direction = (Direction) o;
+        return left == direction.left &&
+                right == direction.right;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(left, right);
     }
 }

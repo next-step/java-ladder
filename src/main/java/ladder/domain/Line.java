@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -12,6 +13,38 @@ public class Line {
     public Line(List<Point> points){
         validatePoints(points);
         this.points = points;
+    }
+
+    public static Line init(int sizeOfPerson) {
+        List<Point> points = new ArrayList<>();
+        Point point = initFirst(points);
+        point = initBody(sizeOfPerson, points, point);
+        initLast(points, point);
+        return new Line(points);
+    }
+
+    private static Point initFirst(List<Point> points) {
+        Point point = Point.first(DirectionGenerator.generateDirection());
+        points.add(point);
+        return point;
+    }
+
+    private static Point initBody(int sizeOfPerson, List<Point> points, Point point) {
+        for (int i = 1; i < sizeOfPerson - 1; i++) {
+            point = point.next();
+            points.add(point);
+        }
+        return point;
+
+    }
+
+    private static void initLast(List<Point> points, Point point) {
+        point = point.last();
+        points.add(point);
+    }
+
+    public int move(int moveIndex) {
+        return points.get(moveIndex).move();
     }
 
     private void validatePoints(List<Point> points) {
@@ -39,4 +72,6 @@ public class Line {
     public int hashCode() {
         return Objects.hash(points);
     }
+
+
 }
