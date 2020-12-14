@@ -3,12 +3,12 @@ package ladder.domain;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Result {
+public class Results {
 
     private final static String INVALID_MESSAGE = "포함되지 않은 인원입니다.";
     private final Map<User, Reward> userRewardRelation;
 
-    public Result(Map<User, Reward> relation) {
+    public Results(Map<User, Reward> relation) {
         this.userRewardRelation = relation;
     }
 

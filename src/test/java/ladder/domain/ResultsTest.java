@@ -9,9 +9,9 @@ import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class ResultTest {
+class ResultsTest {
 
-    private Result sampleResult;
+    private Results sampleResults;
 
     @BeforeEach
     void setUp() {
@@ -20,20 +20,20 @@ class ResultTest {
         relation.put(new User("B"), new Reward("2등"));
         relation.put(new User("C"), new Reward("3등"));
 
-        sampleResult = new Result(relation);
+        sampleResults = new Results(relation);
     }
 
     @Test
     @DisplayName("사람 조회")
     void testOnValidMember() {
-        assertThat(sampleResult.responseForOne("A"))
+        assertThat(sampleResults.responseForOne("A"))
                 .isEqualTo("1등");
     }
 
     @Test
     @DisplayName("없는 사람 조회시 반환값")
     void testOnInvalidMember() {
-        assertThat(sampleResult.responseForOne("No")).isEqualTo("포함되지 않은 인원입니다.");
+        assertThat(sampleResults.responseForOne("No")).isEqualTo("포함되지 않은 인원입니다.");
     }
 
     @Test
@@ -44,6 +44,6 @@ class ResultTest {
         expected.put("B", "2등");
         expected.put("C", "3등");
 
-        assertThat(sampleResult.responseForAll()).isEqualTo(expected);
+        assertThat(sampleResults.responseForAll()).isEqualTo(expected);
     }
 }

@@ -30,13 +30,13 @@ public class Ladder {
         }
     }
 
-    public Result generateResult(Users users, Rewards rewards) {
+    public Results generateResult(Users users, Rewards rewards) {
         Map<User, Reward> mapper = new HashMap<>();
         for (int i = 0; i < users.size(); i++) {
             int resultIndex = passAllLayer(i);
             mapper.put(users.get(i), rewards.get(resultIndex));
         }
-        return new Result(mapper);
+        return new Results(mapper);
     }
 
     private int passAllLayer(int initialIndex) {

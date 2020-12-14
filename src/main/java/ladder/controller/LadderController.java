@@ -28,8 +28,8 @@ public class LadderController {
 
         printGameStatus(users.exportData(), ladder.exportData(), rewards.exportData());
 
-        Result result = ladder.generateResult(users, rewards);
-        printRewardPerUser(result);
+        Results results = ladder.generateResult(users, rewards);
+        printRewardPerUser(results);
     }
 
     private void printGameStatus(UsersDTO usersDTO, LadderDTO ladderDTO, RewardsDTO rewardsDTO) {
@@ -39,22 +39,22 @@ public class LadderController {
         ResultView.printRewards(rewardsDTO);
     }
 
-    private void printRewardPerUser(Result result) {
+    private void printRewardPerUser(Results results) {
         while (true) {
             String request = InputView.askResult();
             ResultView.printRewardsOpening();
-            processWithQuery(request, result);
+            processWithQuery(request, results);
         }
     }
 
-    private void processWithQuery(String request, Result result) {
+    private void processWithQuery(String request, Results results) {
         if (request.equals(SEARCH_ALL_REQUEST)) {
-            Map<String, String> response = result.responseForAll();
+            Map<String, String> response = results.responseForAll();
             ResultView.printAll(response);
             return;
         }
 
-        String response = result.responseForOne(request);
+        String response = results.responseForOne(request);
         ResultView.printForOne(response);
     }
 }

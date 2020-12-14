@@ -54,8 +54,8 @@ class LadderTest {
         Users inputUsers = new Users(Arrays.asList("a", "b", "c", "d"));
         Rewards inputRewards = new Rewards(Arrays.asList("1등", "2등", "3등", "4등"));
 
-        Result result = sampleLadder.generateResult(inputUsers, inputRewards);
+        Results results = sampleLadder.generateResult(inputUsers, inputRewards);
 
-        assertThat(result.responseForOne(input)).isEqualTo(expected);
+        assertThat(results.responseForOne(input)).isEqualTo(expected);
     }
 }
