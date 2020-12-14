@@ -10,7 +10,8 @@ public class DirectionTest {
 
     @Test
     public void 첫번째이동() {
-        assertThat(Direction.first(true).next(LadderUtil.isLine())).isEqualTo(Direction.of(true, false));
+        LadderUtil ladderUtil = new LadderUtil();
+        assertThat(Direction.first(true).next(ladderUtil.isLine())).isEqualTo(Direction.of(true, false));
     }
 
     @Test

@@ -14,9 +14,9 @@ public class LadderLine {
         this.points = points;
     }
 
-    public static LadderLine init(int sizeOfPerson) {
+    public static LadderLine init(int sizeOfPerson, LadderUtil ladderUtil) {
         List<Point> points = new ArrayList<>();
-        points.add(createLadderLine(sizeOfPerson, points));
+        points.add(createLadderLine(sizeOfPerson, points, ladderUtil.isLine()));
         return new LadderLine(points);
     }
 
@@ -24,8 +24,7 @@ public class LadderLine {
         return points.get(position).move();
     }
 
-    private static Point createLadderLine(int sizeOfPerson, List<Point> points) {
-        boolean isLine = LadderUtil.isLine();
+    private static Point createLadderLine(int sizeOfPerson, List<Point> points, boolean isLine) {
         Point point = Point.first(isLine);
         points.add(point);
 
@@ -33,16 +32,15 @@ public class LadderLine {
             isLine = nextCreate(isLine);
             point = point.next(isLine);
             points.add(point);
-
-            if (i == sizeOfPerson - 2) {
-                points.add(point.last());
-            }
         }
+        points.add(point.last());
+
         return point;
     }
 
     private static boolean nextCreate(boolean isLine) {
-        boolean isNextLine = LadderUtil.isLine();
+        LadderUtil ladderUtil = new LadderUtil();
+        boolean isNextLine = ladderUtil.isLine();
         if (isLine && isNextLine) {
             return false;
         }
