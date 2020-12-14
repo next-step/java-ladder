@@ -18,7 +18,7 @@ public class Result {
 
     public String responseForOne(User user) {
         if (userRewardRelation != null && userRewardRelation.containsKey(user)) {
-            return userRewardRelation.get(user).getReward();
+            return userRewardRelation.get(user).getName();
         }
 
         return INVALID_MESSAGE;
@@ -28,7 +28,7 @@ public class Result {
         Map<String, String> result = new HashMap<>();
 
         for (User user : userRewardRelation.keySet()) {
-            result.put(user.getName(), userRewardRelation.get(user).getReward());
+            result.put(user.getName(), userRewardRelation.get(user).getName());
         }
 
         return result;

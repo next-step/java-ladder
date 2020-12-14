@@ -45,7 +45,7 @@ public class Rewards {
 
     public RewardsDTO exportData() {
         return rewards.stream()
-                .map(Reward::getReward)
+                .map(Reward::getName)
                 .collect(collectingAndThen(toList(), RewardsDTO::new));
     }
 }
