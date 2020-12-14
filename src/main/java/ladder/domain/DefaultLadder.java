@@ -10,15 +10,12 @@ import java.util.stream.IntStream;
 public class DefaultLadder implements Ladder {
 
     private final List<LadderLevel> ladderLevels;
-    private final LadderMembers members;
-    private final LadderResults results;
+    private final LadderMemberAndResult memberAndResults;
 
     DefaultLadder(List<String> memberNames, List<String> results, int height, List<LadderLevel> ladderLevels){
-        if( memberNames.size() != results.size() ) throw new IllegalArgumentException("참여자와 결과의 개수는 동일해야 합니다");
         if (height < 1) throw new IllegalArgumentException("사다리 높이는 최소 1이상 입력되어야 합니다.");
 
-        this.members = new LadderMembers(memberNames);
-        this.results = new LadderResults(results);
+        this.memberAndResults = new LadderMemberAndResult(memberNames, results);
         this.ladderLevels = ladderLevels;
     }
 
@@ -35,20 +32,20 @@ public class DefaultLadder implements Ladder {
 
     @Override
     public void print(PrintWriter writer) {
-        writer.println(members);
+        writer.println(memberAndResults.toStringMembers());
         ladderLevels.forEach(writer::println);
-        writer.println(results);
+        writer.println(memberAndResults.toStringResults());
         writer.flush();
     }
 
     @Override
     public LadderResult startFrom(LadderMember member) {
-        int memberPos = members.getPosition(member);
+        int memberPos = memberAndResults.getPositionOfMember(member);
         int currPos = toLadderLevelPos(memberPos);
         for( LadderLevel ladderLevel : ladderLevels ){
             currPos = ladderLevel.move(currPos);
         }
-        return results.get(toLadderResultPos(currPos));
+        return memberAndResults.getResult(toLadderResultPos(currPos));
     }
 
     @Override
@@ -59,7 +56,7 @@ public class DefaultLadder implements Ladder {
     @Override
     public Map<LadderMember, LadderResult> startAll() {
         Map<LadderMember, LadderResult> results = new HashMap<>();
-        members.forEach(member -> results.put(member, startFrom(member)));
+        memberAndResults.memberIterator().forEachRemaining(member -> results.put(member, startFrom(member)));
         return results;
     }
 

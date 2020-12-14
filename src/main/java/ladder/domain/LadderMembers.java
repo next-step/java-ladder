@@ -30,8 +30,19 @@ public class LadderMembers implements Iterable<LadderMember>{
     }
 
     @Override
-    public Iterator iterator() {
-        throw new RuntimeException("구현되지 않은 기능입니다.");
+    public Iterator<LadderMember> iterator() {
+        return new Iterator() {
+            private Iterator<LadderMember> iterator = names.iterator();
+            @Override
+            public boolean hasNext() {
+                return iterator.hasNext();
+            }
+
+            @Override
+            public LadderMember next() {
+                return iterator.next();
+            }
+        };
     }
 
     @Override
