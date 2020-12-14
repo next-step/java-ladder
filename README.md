@@ -47,7 +47,6 @@ pobi               cron               jh
 - all을 입력 받으면, 실행결과 모두를 출력한다.
 
 ### TODO
-- LadderGameResult에서 사다리 게임의 최종 결과를 반환한다.
 - 결과를 보고 싶은 사람을 입력받는다.
 - 입력 받은 참가자 명에 따른 결과를 출력한다.
 - all을 입력 받으면, 실행결과 모두를 출력한다.
@@ -75,5 +74,6 @@ pobi               cron               jh
 - 사다리 생성을 위한 람다식 생성
 - 사다리 게임을 진행 시켜, 참발가자와 맞는 사다리 게임 결과를 저장한다.
 - LadderSize 객체를 생성하여, Ladder를 생성하는데 필요한 width, hegith를 입력 받는다.
-- Participants와 LadderResult를 합쳐 하나의 LadderGameInformation을 만든다.
+- Participants 와 LadderResult를 합쳐 하나의 LadderGameInformation을 만든다.
 (사다리 게임 결과를 생성하는 LadderGame에게 필요한 정보를 모두 제공하기 위해)
+- LadderGameResult에서 사다리 게임의 최종 결과를 반환한다.

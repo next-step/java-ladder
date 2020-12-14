@@ -1,7 +1,36 @@
 package ladder.domain;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 class LadderGameTest {
 
+
+    @Test
+    @DisplayName("사다리가 모두 생성될 경우의 최종 결과를 반환한다.")
+    void should_return_ladder_game_result() {
+        //Given
+        LadderGameInformation ladderGameInformation = new LadderGameInformation("pobi,honux,crong,jk", "꽝,5000,꽝,3000");
+        LadderSize ladderSize = new LadderSize(4, 5);
+        Ladder ladder = new Ladder(ladderSize, () -> true);
+
+        //When
+        LadderGame ladderGame = new LadderGame(ladderGameInformation, ladder);
+        LadderGameResult result = ladderGame.getResult();
+
+        //Then
+        Map<String, String> expectedResults = new HashMap<>();
+        expectedResults.put("crong", "3000");
+        expectedResults.put("jk", "꽝");
+        expectedResults.put("pobi", "5000");
+        expectedResults.put("honux", "꽝");
+
+        assertThat(result.getResults()).isEqualTo(expectedResults);
+
+    }
 }

@@ -16,12 +16,12 @@ public class LadderGameView {
     }
 
     public static void printLadders(LadderGameResult ladderGameResult) {
-//        ResultView.printResult(ladderGameResult.getLadder(), ladderGameResult.getNames());
+        ResultView.printLadders(ladderGameResult.getLadder(), ladderGameResult.getResults());
     }
 
-    public static void printLadder(Ladder ladder, List<String> participants) {
-        ResultView.printResult(ladder, participants);
-    }
+//    public static void printLadder(Ladder ladder, List<String> participants) {
+//        ResultView.printResult(ladder, participants);
+//    }
 
     public static String enterLadderGameResult() {
         return InputView.enterLadderGameResult();

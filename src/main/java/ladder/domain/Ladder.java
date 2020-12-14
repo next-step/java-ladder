@@ -23,7 +23,7 @@ public class Ladder {
 
         List<Integer> result = new ArrayList<>();
 
-        for (int index = 0; index < this.ladderSize.getWidth(); index += 2) {
+        for (int index = 0; index < getLadderWidth(); index += 2) {
             result.add(getResult(index));
         }
 
@@ -39,5 +39,9 @@ public class Ladder {
 
     public List<LadderLine> getLadderLines() {
         return ladderLines;
+    }
+
+    public int getLadderWidth() {
+        return ladderLines.get(0).getPoints().size();
     }
 }

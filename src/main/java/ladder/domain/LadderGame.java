@@ -1,5 +1,9 @@
 package ladder.domain;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class LadderGame {
 
     private final LadderGameInformation ladderGameInformation;
@@ -11,9 +15,16 @@ public class LadderGame {
     }
 
     public LadderGameResult getResult() {
-//        return ladder.run().stream().collect(Collectors.toList());
-        return null;
-    }
+        Map<String, String> result = new HashMap<>();
 
+        List<Integer> indexes = ladder.run();
+
+        for (int index = 0; index < ladderGameInformation.getParticipants().size(); index++) {
+            result.put(ladderGameInformation.getParticipants().get(index),
+                    ladderGameInformation.getResults().get(indexes.get(index)));
+        }
+
+        return new LadderGameResult(result, ladder);
+    }
 
 }
