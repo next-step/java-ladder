@@ -11,6 +11,14 @@ public class Line {
 
     private final List<Point> points;
 
+    private Line(List<Point> points) {
+        this.points = points;
+    }
+
+    public static Line ofPoints(List<Point> points) {
+        return new Line(points);
+    }
+
     public static Line ofLineCounts(int numPoints, ConnectionMode mode) {
         List<Point> points = new ArrayList<>();
 
@@ -41,14 +49,6 @@ public class Line {
 
     private static void initLast(Point beforeTheLast, List<Point> points) {
         points.add(beforeTheLast.last());
-    }
-
-    private Line(List<Point> points) {
-        this.points = points;
-    }
-
-    public static Line ofPoints(List<Point> points) {
-        return new Line(points);
     }
 
     public List<Point> getValidPoints() {

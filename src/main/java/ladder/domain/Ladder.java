@@ -24,30 +24,6 @@ public class Ladder {
                 .collect(toList());
     }
 
-    public static class Builder {
-        private final int numLines;
-        private int height = MINIMUM_LADDER_HEIGHT;
-        private ConnectionMode mode = new RandomConnectionMode();
-
-        public Builder(int numLines) {
-            this.numLines = numLines;
-        }
-
-        public Builder height(int height) {
-            this.height = height;
-            return this;
-        }
-
-        public Builder connectionMode(ConnectionMode mode) {
-            this.mode = mode;
-            return this;
-        }
-
-        public Ladder build() {
-            return new Ladder(height, numLines, mode);
-        }
-    }
-
     private void validateHeight(int height) {
         if (height < MINIMUM_LADDER_HEIGHT) {
             throw new InvalidLadderHeightException();
@@ -77,5 +53,30 @@ public class Ladder {
 
     public LadderDTO exportData() {
         return new LadderDTO(Collections.unmodifiableList(layer));
+    }
+
+    public static class Builder {
+        private final int numLines;
+
+        private int height = MINIMUM_LADDER_HEIGHT;
+        private ConnectionMode mode = new RandomConnectionMode();
+
+        public Builder(int numLines) {
+            this.numLines = numLines;
+        }
+
+        public Builder height(int height) {
+            this.height = height;
+            return this;
+        }
+
+        public Builder connectionMode(ConnectionMode mode) {
+            this.mode = mode;
+            return this;
+        }
+
+        public Ladder build() {
+            return new Ladder(height, numLines, mode);
+        }
     }
 }
