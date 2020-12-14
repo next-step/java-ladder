@@ -1,4 +1,4 @@
-package ladder.utils;
+package ladder.domain.utils;
 
 public class StringUtils {
 
