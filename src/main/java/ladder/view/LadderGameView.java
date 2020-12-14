@@ -15,4 +15,8 @@ public class LadderGameView {
     public static void printLadders(LadderGameResult ladderGameResult) {
         ResultView.printResult(ladderGameResult.getLadder(), ladderGameResult.getNames());
     }
+
+    public static String enterLadderGameResult() {
+        return InputView.enterLadderGameResult();
+    }
 }

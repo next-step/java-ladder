@@ -22,8 +22,8 @@ public class Participants {
         String[] dividedName = names.split(SPLIT_LETTER);
         List<String> participants =
                 Arrays.stream(dividedName)
-                        .map(this::valid)
                         .distinct()
+                        .map(this::valid)
                         .collect(Collectors.toList());
 
         if (participants.size() != dividedName.length) {
