@@ -2,6 +2,8 @@ package ladder.domain.participant;
 
 import ladder.exception.InsufficientParticipantsCountException;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,9 +20,10 @@ public class Participants {
     }
 
     public static Participants of(List<String> people) {
-        List<Participant> persons = people.stream()
-                .map(userName -> new Participant(userName))
-                .collect(Collectors.toList());
+        List<Participant> persons = new ArrayList<>();
+        for (int i = 0; i < people.size(); i++) {
+            persons.add(new Participant(people.get(i), i));
+        }
         return new Participants(persons);
     }
 
@@ -28,10 +31,18 @@ public class Participants {
         return participants.size();
     }
 
+    public Participant getParticipant(int index){
+        return participants.get(index);
+    }
+
     public List<String> getParticipantNames() {
         return participants.stream()
                         .map(Participant::getUserName)
                         .collect(Collectors.toList());
+    }
+
+    public List<Participant> getParticipants() {
+        return Collections.unmodifiableList(participants);
     }
 
     @Override
