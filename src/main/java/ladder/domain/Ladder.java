@@ -17,11 +17,35 @@ public class Ladder {
 
     private final List<Line> layer;
 
-    public Ladder(int height, int numLines, ConnectionMode mode) {
+    private Ladder(int height, int numLines, ConnectionMode mode) {
         validateHeight(height);
         this.layer = IntStream.range(0, height)
                 .mapToObj(x -> Line.ofLineCounts(numLines, mode))
                 .collect(toList());
+    }
+
+    public static class Builder {
+        private final int numLines;
+        private int height = MINIMUM_LADDER_HEIGHT;
+        private ConnectionMode mode = new RandomConnectionMode();
+
+        public Builder(int numLines) {
+            this.numLines = numLines;
+        }
+
+        public Builder height(int height) {
+            this.height = height;
+            return this;
+        }
+
+        public Builder connectionMode(ConnectionMode mode) {
+            this.mode = mode;
+            return this;
+        }
+
+        public Ladder build() {
+            return new Ladder(height, numLines, mode);
+        }
     }
 
     private void validateHeight(int height) {

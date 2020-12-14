@@ -21,7 +21,10 @@ public class LadderController {
         Rewards rewards = new Rewards(InputParser.parseRawInput(InputView.askRewards()));
         int ladderHeight = InputView.askLadderHeight();
 
-        Ladder ladder = new Ladder(ladderHeight, users.size(), new RandomConnectionMode());
+        Ladder ladder = new Ladder.Builder(users.size())
+                .height(ladderHeight)
+                .connectionMode(new RandomConnectionMode())
+                .build();
 
         printGameStatus(users.exportData(), ladder.exportData(), rewards.exportData());
 

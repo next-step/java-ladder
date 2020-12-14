@@ -20,7 +20,7 @@ class LadderTest {
         int numUser = 5;
         int numHeight = 0;
         assertThatExceptionOfType(InvalidLadderHeightException.class)
-                .isThrownBy(() -> new Ladder(numHeight, numUser, new SampleShufflePattern()));
+                .isThrownBy(() -> new Ladder.Builder(numUser).height(numHeight).connectionMode(new SampleShufflePattern()).build());
     }
 
     @ParameterizedTest
