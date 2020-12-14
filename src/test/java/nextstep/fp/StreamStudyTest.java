@@ -3,6 +3,7 @@ package nextstep.fp;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -45,4 +46,13 @@ public class StreamStudyTest {
         long sum = StreamStudy.sumOverThreeAndDouble(numbers);
         assertThat(sum).isEqualTo(36);
     }
+
+    @Test
+    public void findNumberInTxt() throws IOException {
+        List<Integer> integers = StreamStudy.findNumberInTxt();
+        assertThat(integers).isNotNull();
+
+        assertThat(StreamStudy.sumOverThreeAndDouble(StreamStudy.findNumberInTxt())).isEqualTo(13431080L);
+    }
+
 }
