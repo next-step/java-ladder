@@ -1,32 +1,40 @@
 package ladder.domain;
 
 import java.util.*;
+import static ladder.domain.PointGenerator.hasMovable;
 
 public class Line {
 
     private final List<Point> points;
 
-    public Line(int countOfPerson, DirectionRule directionRule) {
-        this.points = generateLine(countOfPerson, directionRule);
+    public Line(int countOfPerson) {
+        this.points = generateLine(countOfPerson);
     }
 
     public Line(List<Point> points) {
         this.points = points;
     }
 
-    private static List<Point> generateLine(int countOfPerson, DirectionRule directionRule) {
-        LinkedList<Point> points = new LinkedList<>();
-
-        Point prePoint = Point.first(directionRule);
-        points.addFirst(prePoint);
-
+    private static List<Point> generateLine(int countOfPerson) {
+        List<Point> points = new ArrayList<>(countOfPerson);
+        Point point = initFirst(points);
         for (int i = 1; i < countOfPerson - 1; i++) {
-            prePoint = Point.next(prePoint, directionRule);
-            points.add(prePoint);
+            point = Point.next(point, hasMovable());
+            points.add(point);
         }
-
-        points.addLast(Point.last(prePoint));
+        initLast(points, point);
         return points;
+    }
+
+    private static Point initFirst(List<Point> points) {
+        Point point = Point.first(hasMovable());
+        points.add(point);
+        return point;
+    }
+
+    private static void initLast(List<Point> points, Point prePoint) {
+        Point point = Point.last(prePoint);
+        points.add(point);
     }
 
     public List<Point> getPoints() {
