@@ -30,7 +30,7 @@ public class RewardsTest {
     @DisplayName("입력받은 리워드 정상 입력 후 리스트에 담겼는지 확인")
     @ValueSource(strings = {"1000,꽝,1등,2등"})
     public void 입력받은_리워드_정상노출_확인(String rewardName) {
-        Rewards reward = Rewards.of(StringUtil.splitNames(rewardName), participantList.size());
+        Rewards reward = Rewards.of(StringUtil.splitToList(rewardName), participantList.size());
         assertThat(reward.getRewards().size()).isEqualTo(4);
     }
 
@@ -49,7 +49,7 @@ public class RewardsTest {
     public void 리워드수_참여자수_불일치(int sizeOfParticipants) {
         String rewardName = "1000,20000,3000,4000";
         assertThatThrownBy(() ->
-                Rewards.of(StringUtil.splitNames(rewardName), sizeOfParticipants)
+                Rewards.of(StringUtil.splitToList(rewardName), sizeOfParticipants)
         ).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("참여자와 리워드 보상수가 일치하지 않습니다. (참여자 수: %d, 리워드 수: %d)", sizeOfParticipants, 4);
     }

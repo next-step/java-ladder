@@ -12,7 +12,7 @@ public class LadderGameController {
     public static void run() {
         Participants participants = Participants.of(StringUtil.splitToList(InputUi.nameOfParticipate()));
         Rewards rewards =
-                Rewards.of(StringUtil.splitToList(InputUi.inputExecutionResult()), participants.participants().size());
+                Rewards.of(StringUtil.splitToList(InputUi.inputExecutionResult()), participants.getParticipants().size());
 
         Ladder ladder = Ladder.of(InputUi.maximumHeight(), participants);
         OutputUi.printAll(participants, rewards, ladder);

@@ -28,7 +28,7 @@ public class ParticipantsTest {
     @DisplayName("입력받은 참가자 정상처리 되었는지 리스트 사이즈 확인")
     @ValueSource(strings = "yu,haha,miii,kii")
     public void 입력받은_참가자_리스트_사이즈확인(String names) {
-        assertEquals(Participants.of(StringUtil.splitNames(names)).getParticipants().size(), 4);
+        assertEquals(Participants.of(StringUtil.splitToList(names)).getParticipants().size(), 4);
     }
 
     @ParameterizedTest
@@ -36,7 +36,7 @@ public class ParticipantsTest {
     @ValueSource(strings = {"yura"})
     public void 참가자_한명인_경우(String name) {
         assertThatThrownBy(() ->
-                Participants.of(StringUtil.splitNames(name)))
+                Participants.of(StringUtil.splitToList(name)))
                 .hasMessage("참여하는 사람은 최소 2명입니다.");
     }
 

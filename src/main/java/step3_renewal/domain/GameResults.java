@@ -21,16 +21,15 @@ public class GameResults {
     }
 
     public static GameResults results(Participants participants, Rewards rewards, Ladder ladder) {
-        List<GameResult> list =
-                participants.participants()
-                        .stream()
-                        .map(participant -> gameResult(participant, rewards, ladder))
-                        .collect(Collectors.toList());
+        List<GameResult> list = participants.getParticipants()
+                .stream()
+                .map(participant -> gameResult(participant, rewards, ladder))
+                .collect(Collectors.toList());
         return new GameResults(list);
     }
 
     private static GameResult gameResult(Participant participant, Rewards rewards, Ladder ladder) {
-        return GameResult.of(participant.name()
-                , rewards.getRewardName(ladder.move(participant.position())));
+        return GameResult.of(participant.getParticipantName()
+                , rewards.getRewardName(ladder.move(participant.getPosition())));
     }
 }

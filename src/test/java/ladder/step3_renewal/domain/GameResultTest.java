@@ -1,7 +1,6 @@
 package ladder.step3_renewal.domain;
 
 import org.junit.jupiter.api.Test;
-import step3_renewal.controller.LadderGameController;
 import step3_renewal.domain.GameResults;
 import step3_renewal.domain.Ladder;
 import step3_renewal.domain.Participants;
@@ -14,13 +13,13 @@ public class GameResultTest {
 
     @Test
     public void 게임실행_테스트() {
-        Participants participants = Participants.of(StringUtil.splitNames("yu,ra,won"));
-        Rewards rewards = Rewards.of(StringUtil.splitNames("100,200,300"), participants.getParticipants().size());
+        Participants participants = Participants.of(StringUtil.splitToList("yu,ra,won"));
+        Rewards rewards = Rewards.of(StringUtil.splitToList("100,200,300"), participants.size());
         int ladderHeight = 4;
 
         Ladder ladder = Ladder.of(ladderHeight, participants);
 
-        GameResults gameResults = LadderGameController.gameStart(participants, rewards, ladder);
+        GameResults gameResults = GameResults.results(participants, rewards, ladder);
 
         assertThat(gameResults.getGameResults().get(0).getParticipantName()).isEqualTo("yu");
         assertThat(gameResults.getGameResults().get(1).getParticipantName()).isEqualTo("ra");
