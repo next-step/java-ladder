@@ -17,7 +17,7 @@ public class LadderGame {
     }
 
     public LadderGameResult run() {
-        Map<LadderMember, String> ladderResults = ladder.startAll();
+        Map<LadderMember, LadderResult> ladderResults = ladder.startAll();
         return new LadderGameResult(ladder, ladderResults);
     }
 

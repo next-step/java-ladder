@@ -5,13 +5,15 @@ import java.util.stream.Collectors;
 
 public class LadderResults {
 
-    private List<String> results;
+    private List<LadderResult> results;
 
     public LadderResults(List<String> results) {
-        this.results = results;
+        this.results = results.stream()
+                .map(LadderResult::new)
+                .collect(Collectors.toList());
     }
 
-    public String get(int pos) {
+    public LadderResult get(int pos) {
         return results.get(pos);
     }
 

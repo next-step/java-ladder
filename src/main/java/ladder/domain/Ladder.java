@@ -10,15 +10,15 @@ public interface Ladder {
      * @param member
      * @return
      */
-    String startFrom(LadderMember member);
+    LadderResult startFrom(LadderMember member);
 
-    String startFrom(String memberName);
+    LadderResult startFrom(String memberName);
 
     /**
      * 모든 member 가 사다리를 타고 도착한 전체 LadderResult 를 return
      * @return
      */
-    Map<LadderMember, String> startAll();
+    Map<LadderMember, LadderResult> startAll();
 
     void print(PrintWriter printWriter);
 

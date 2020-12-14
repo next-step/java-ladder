@@ -44,9 +44,9 @@ class DefaultLadderTest {
                         new LadderLevel(Arrays.asList(bar(), emptyStep(), bar(), step(), bar()))));
 
         ladder.print(new PrintWriter(System.out));
-        assertThat(ladder.startFrom("nio")).isEqualTo("100");
-        assertThat(ladder.startFrom("hoon")).isEqualTo("0");
-        assertThat(ladder.startFrom("mit")).isEqualTo("1000");
+        assertThat(ladder.startFrom("nio")).isEqualTo(new LadderResult("100"));
+        assertThat(ladder.startFrom("hoon")).isEqualTo(new LadderResult("0"));
+        assertThat(ladder.startFrom("mit")).isEqualTo(new LadderResult("1000"));
     }
 
 }
