@@ -3,10 +3,9 @@ package ladder.domain;
 import ladder.dto.LadderDTO;
 import ladder.ladderexceptions.InvalidLadderHeightException;
 
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.toList;
@@ -31,12 +30,12 @@ public class Ladder {
     }
 
     public Results generateResult(Users users, Rewards rewards) {
-        Map<User, Reward> mapper = new HashMap<>();
+        List<Result> results = new ArrayList<>();
         for (int i = 0; i < users.size(); i++) {
             int resultIndex = passAllLayer(i);
-            mapper.put(users.get(i), rewards.get(resultIndex));
+            results.add(new Result(users.get(i), rewards.get(resultIndex)));
         }
-        return new Results(mapper);
+        return new Results(results);
     }
 
     private int passAllLayer(int initialIndex) {

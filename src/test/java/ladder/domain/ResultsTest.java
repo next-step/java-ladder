@@ -4,7 +4,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -15,12 +17,13 @@ class ResultsTest {
 
     @BeforeEach
     void setUp() {
-        Map<User, Reward> relation = new HashMap<>();
-        relation.put(new User("A"), new Reward("1등"));
-        relation.put(new User("B"), new Reward("2등"));
-        relation.put(new User("C"), new Reward("3등"));
+        List<Result> results = new ArrayList<>();
 
-        sampleResults = new Results(relation);
+        results.add(new Result(new User("A"), new Reward("1등")));
+        results.add(new Result(new User("B"), new Reward("2등")));
+        results.add(new Result(new User("C"), new Reward("3등")));
+
+        sampleResults = new Results(results);
     }
 
     @Test

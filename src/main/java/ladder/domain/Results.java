@@ -1,15 +1,21 @@
 package ladder.domain;
 
-import java.util.HashMap;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Results {
 
     private final static String INVALID_MESSAGE = "포함되지 않은 인원입니다.";
-    private final Map<User, Reward> userRewardRelation;
 
-    public Results(Map<User, Reward> relation) {
-        this.userRewardRelation = relation;
+    private final Map<String, String> userRewardRelation;
+
+    public Results(List<Result> results) {
+        this.userRewardRelation = new LinkedHashMap<>();
+        for (Result result : results) {
+            userRewardRelation.put(result.getUser().getName(), result.getReward().getName());
+        }
     }
 
     public String responseForOne(String input) {
@@ -17,20 +23,14 @@ public class Results {
     }
 
     public String responseForOne(User user) {
-        if (userRewardRelation != null && userRewardRelation.containsKey(user)) {
-            return userRewardRelation.get(user).getName();
+        if (userRewardRelation != null && userRewardRelation.containsKey(user.getName())) {
+            return userRewardRelation.get(user.getName());
         }
 
         return INVALID_MESSAGE;
     }
 
     public Map<String, String> responseForAll() {
-        Map<String, String> result = new HashMap<>();
-
-        for (User user : userRewardRelation.keySet()) {
-            result.put(user.getName(), userRewardRelation.get(user).getName());
-        }
-
-        return result;
+        return Collections.unmodifiableMap(userRewardRelation);
     }
 }
