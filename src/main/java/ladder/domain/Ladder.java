@@ -30,10 +30,6 @@ public class Ladder {
         }
     }
 
-    public Ladder(List<Line> lines) {
-        this.layer = lines;
-    }
-
     public Result generateResult(Users users, Rewards rewards) {
         Map<User, Reward> mapper = new HashMap<>();
         for (int i = 0; i < users.size(); i++) {
