@@ -7,6 +7,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -53,13 +54,18 @@ class LineTest {
     @ParameterizedTest
     @DisplayName("배열 수동 생성에 따른 값 테스트")
     void testManualLine(int input, int expected) {
-        Line sampleLine = Line.ofPoints(new ArrayList<>(Arrays.asList(
-                Point.custom(0, PointStatus.custom(false, true)),
-                Point.custom(1, PointStatus.custom(true, false)),
-                Point.custom(2, PointStatus.custom(false, false)),
-                Point.custom(3, PointStatus.custom(false, true)),
-                Point.custom(4, PointStatus.custom(true, false))
-        )));
+        Line sampleLine = Line.ofLineCounts(5, new ConnectionMode() {
+                    private int idx = 0;
+                    private final List<Boolean> sample = Arrays.asList(true, false, false, true, false);
+
+                    @Override
+                    public boolean generateConnection() {
+                        boolean result = sample.get(idx);
+                        idx += 1;
+                        return result;
+                    }
+                }
+        );
 
         assertThat(sampleLine.getNextIndex(input)).isEqualTo(expected);
     }

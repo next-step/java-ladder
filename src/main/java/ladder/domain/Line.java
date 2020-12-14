@@ -15,10 +15,6 @@ public class Line {
         this.points = points;
     }
 
-    public static Line ofPoints(List<Point> points) {
-        return new Line(points);
-    }
-
     public static Line ofLineCounts(int numPoints, ConnectionMode mode) {
         List<Point> points = new ArrayList<>();
 
