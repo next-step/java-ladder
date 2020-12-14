@@ -1,4 +1,4 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -17,8 +17,8 @@ public class LadderTest {
         ladder.setLadder(test.length, size);
 
         assertThat(ladder.getLadder().size()).isEqualTo(4);
-        assertThat(ladder.getLadder().get(0).length).isEqualTo(7);
-        assertThat(ladder.getLadder().get(0)[0]).isEqualTo(2);
+        assertThat(ladder.getLadder().get(0).getArray().length).isEqualTo(7);
+        assertThat(ladder.getLadder().get(0).getArray()[0]).isEqualTo(2);
     }
 
     @Test

@@ -1,6 +1,13 @@
 package nextstep.ladder.service;
 
+import nextstep.ladder.domain.Member;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.MemberList;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultVIew;
 
@@ -14,11 +21,13 @@ public class LadderGame {
     }
 
     public void operator(){
-        String[] list = inputView.getMembers();
+        MemberList members = new MemberList();
+        members.setMembers(inputView.getMembers());
         int height = inputView.getLadderHeight();
-        LadderService ladderService = new LadderService();
-        Ladder ladder = ladderService.setupLadder(list, height);
-        resultView.printMember(list);
+        Ladder ladder = new Ladder();
+        ladder.setLadder(members.getMembers().size(), height);
+
+        resultView.printMember(members);
         resultView.printLadder(ladder);
     }
     

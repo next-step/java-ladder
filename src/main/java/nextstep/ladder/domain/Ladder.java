@@ -5,16 +5,17 @@ import java.util.List;
 import java.util.Random;
 
 public class Ladder {
-    private List<Integer[]> list;
+    private List<Line> list;
 
-    public List<Integer[]> getLadder(){
+    public List<Line> getLadder(){
         return list;
     }
     
     public void setLadder(int width, int height){
-        List<Integer[]> list = new ArrayList<>();
+        List<Line> list = new ArrayList<>();
         for(int i = 0; i < height; i++){
-            Integer[] row = settingWidth(width);
+            Line row = new Line();
+            row.setArray(settingWidth(width));
             list.add(row);
         }
         this.list = list;

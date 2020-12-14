@@ -3,10 +3,11 @@ package nextstep.ladder.view;
 import java.util.Arrays;
 
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.MemberList;
 
 public class ResultVIew {
-    public void printMember(String[] list){
-        Arrays.stream(list).forEach(s -> System.out.print(s + "    "));
+    public void printMember(MemberList list){
+        list.getMembers().stream().forEach(s -> System.out.print(s.getName() + "    "));
         System.out.println();
     }
 
@@ -14,7 +15,7 @@ public class ResultVIew {
         ladder.getLadder()
                 .stream()
                 .forEach(l ->  {
-                    Arrays.stream(l).forEach(n -> checkLadder(n));
+                    Arrays.stream(l.getArray()).forEach(n -> checkLadder(n));
                     System.out.println();
                 });
     }
