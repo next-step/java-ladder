@@ -1,10 +1,12 @@
 package ladder.domain;
 
+import ladder.view.LadderGameView;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -13,7 +15,7 @@ class LadderGameTest {
 
     @Test
     @DisplayName("사다리가 모두 생성될 경우의 최종 결과를 반환한다.")
-    void should_return_ladder_game_result() {
+    void should_return_ladder_game_result_when_is_true() {
         //Given
         LadderGameInformation ladderGameInformation = new LadderGameInformation("pobi,honux,crong,jk", "꽝,5000,꽝,3000");
         LadderSize ladderSize = new LadderSize(4, 5);
@@ -31,6 +33,30 @@ class LadderGameTest {
         expectedResults.put("honux", "꽝");
 
         assertThat(result.getResults()).isEqualTo(expectedResults);
+
+    }
+
+    @Test
+    @DisplayName("사다리 게임의 최종 결과를 반환한다.")
+    void should_return_ladder_game_result() {
+        //Given
+        LadderGameInformation ladderGameInformation = new LadderGameInformation("pobi,honux,crong,jk", "5000,꽝,꽝,3000");
+        LadderSize ladderSize = new LadderSize(4, 5);
+        Ladder ladder = new Ladder(ladderSize, () -> new Random().nextBoolean());
+
+        //When
+        LadderGame ladderGame = new LadderGame(ladderGameInformation, ladder);
+        LadderGameResult result = ladderGame.getResult();
+
+        //Then
+        LadderGameView.printLadders(ladderGameInformation, result);
+//        Map<String, String> expectedResults = new HashMap<>();
+//        expectedResults.put("crong", "3000");
+//        expectedResults.put("jk", "꽝");
+//        expectedResults.put("pobi", "5000");
+//        expectedResults.put("honux", "꽝");
+//
+//        assertThat(result.getResults()).isEqualTo(expectedResults);
 
     }
 }

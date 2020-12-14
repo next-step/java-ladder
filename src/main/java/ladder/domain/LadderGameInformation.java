@@ -53,7 +53,7 @@ public class LadderGameInformation {
 
 
     private String valid(String name) {
-        if (name.isEmpty() | name.trim().isEmpty()) {
+        if (name.isEmpty() || name.trim().isEmpty()) {
             throw new IllegalArgumentException(INPUT_CAN_NOT_BE_BLANK);
         }
         return name;

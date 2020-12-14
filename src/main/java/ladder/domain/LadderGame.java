@@ -24,7 +24,9 @@ public class LadderGame {
                     ladderGameInformation.getResults().get(indexes.get(index)));
         }
 
+
         return new LadderGameResult(result, ladder);
     }
+
 
 }

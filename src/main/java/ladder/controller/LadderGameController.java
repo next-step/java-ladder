@@ -17,6 +17,6 @@ public class LadderGameController {
         Ladder ladder = new Ladder(ladderSize, () -> new Random().nextBoolean());
         LadderGame ladderGame = new LadderGame(ladderGameInformation, ladder);
 
-        LadderGameView.printLadders(ladderGame.getResult());
+        LadderGameView.printLadders(ladderGameInformation, ladderGame.getResult());
     }
 }

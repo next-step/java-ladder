@@ -1,10 +1,11 @@
 package ladder.view;
 
-import ladder.domain.LadderLine;
 import ladder.domain.Ladder;
+import ladder.domain.LadderGameInformation;
+import ladder.domain.LadderGameResult;
+import ladder.domain.LadderLine;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.List;
 import java.util.stream.IntStream;
 
 public class ResultView {
@@ -15,7 +16,7 @@ public class ResultView {
     private static final String LADDER = "-----";
     private static final int MAX_NAME_SPACE = 6;
 
-    protected static void printLadders(Ladder ladder, Map<String, String> participants) {
+    protected static void printLadders(LadderGameInformation ladder, LadderGameResult participants) {
         printResultHeader();
         printLadderGameResult(ladder, participants);
     }
@@ -26,13 +27,13 @@ public class ResultView {
         printOpeningLetter();
     }
 
-    private static void printLadderGameResult(Ladder ladder, Map<String, String> results) {
-        List<String> participants = new ArrayList<>(results.keySet());
-        printLadderGameInformation(participants);
-        printLadders(ladder, participants.get(0).length() - 1);
-        printLadderGameInformation(new ArrayList<>(results.values()));
+    private static void printLadderGameResult(LadderGameInformation ladderGameInformation, LadderGameResult results) {
+        printLadderGameInformation(ladderGameInformation.getParticipants());
+        int firstNameSpace = ladderGameInformation.getParticipants().get(0).length() - 1;
+        printLadders(results.getLadder(), firstNameSpace);
+        printLadderGameInformation(ladderGameInformation.getResults());
         System.out.println();
-        System.out.println(results.toString());
+        System.out.println(results.getResults().toString());
     }
 
     private static void printLadderGameInformation(List<String> participants) {
