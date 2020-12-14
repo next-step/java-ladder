@@ -1,19 +1,13 @@
 package ladder.domain;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Map;
 
 public class LadderGameResult {
+    private final Map<String, Integer> results;
     private final Ladder ladder;
-    private final List<Integer> result;
 
-    public LadderGameResult(Ladder ladder, LadderResult ladderResult) {
+    public LadderGameResult(Map<String, Integer> results, Ladder ladder) {
+        this.results = results;
         this.ladder = ladder;
-        this.result = getResult(ladderResult);
     }
-
-    private List<Integer> getResult(LadderResult ladderResult) {
-        return ladder.run().stream().collect(Collectors.toList());
-    }
-
 }

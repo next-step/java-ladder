@@ -75,3 +75,5 @@ pobi               cron               jh
 - 사다리 생성을 위한 람다식 생성
 - 사다리 게임을 진행 시켜, 참발가자와 맞는 사다리 게임 결과를 저장한다.
 - LadderSize 객체를 생성하여, Ladder를 생성하는데 필요한 width, hegith를 입력 받는다.
+- Participants와 LadderResult를 합쳐 하나의 LadderGameInformation을 만든다.
+(사다리 게임 결과를 생성하는 LadderGame에게 필요한 정보를 모두 제공하기 위해)
