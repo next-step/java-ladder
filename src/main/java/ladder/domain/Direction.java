@@ -12,9 +12,6 @@ public class Direction {
     private final boolean left;
     private final boolean right;
 
-    private static final Random random = new Random();
-
-
     private Direction(boolean left, boolean right){
         validateDirection(left, right);
         this.left = left;
