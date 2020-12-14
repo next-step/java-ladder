@@ -95,11 +95,7 @@ public class ResultView {
                     .collect(Collectors.joining(ALL_RESULT_DELIMITER));
         }
 
-        return climbResults.getClimbResults().stream()
-                .filter(climbResult -> climbResult.getPlayer().equals(Player.from(playerName)))
-                .findFirst()
-                .map(climbResult -> climbResult.getAward().getAwardName())
-                .orElseThrow(RuntimeException::new);
+        return climbResults.matchAwardByPlayerName(playerName);
 
     }
 

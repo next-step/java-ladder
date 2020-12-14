@@ -24,4 +24,19 @@ public class ClimbResultTest {
     void climbResultConstructorTest(){
         assertThat(ClimbResult.of(player,award)).isEqualTo(ClimbResult.of(player,award));
     }
+
+    @DisplayName("Climb Result 결과 확인 테스트")
+    @Test
+    void awardMatchTest(){
+        ClimbResult climbResult = ClimbResult.of(player, award);
+        assertThat(climbResult.getAward()).isEqualTo(Award.from("fail"));
+    }
+
+    @DisplayName("Climb Result 플레이어 확인 테스트")
+    @Test
+    void playerMatchTest(){
+        ClimbResult climbResult = ClimbResult.of(player, award);
+        assertThat(climbResult.getPlayer()).isEqualTo(Player.from("crong"));
+    }
+
 }

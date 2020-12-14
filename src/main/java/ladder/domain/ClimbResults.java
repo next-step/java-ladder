@@ -15,4 +15,14 @@ public class ClimbResults {
     public List<ClimbResult> getClimbResults() {
         return Collections.unmodifiableList(climbResults);
     }
+
+    public String matchAwardByPlayerName(String playerName){
+        return climbResults.stream()
+                .filter(climbResult -> climbResult.getPlayer().equals(Player.from(playerName)))
+                .findFirst()
+                .map(climbResult -> climbResult.getAward().getAwardName())
+                .orElseThrow(RuntimeException::new);
+
+    }
+
 }
