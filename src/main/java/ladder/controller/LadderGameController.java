@@ -11,11 +11,9 @@ public class LadderGameController {
     public void getLadderGameInformation() {
         Participants participants = new Participants(LadderGameView.enterParticipants());
         LadderResult ladderResult = new LadderResult(LadderGameView.enterLadderGameResult());
-        LadderHeight ladderHeight = new LadderHeight(LadderGameView.enterMaxLadderHeight());
+        LadderSize ladderSize = new LadderSize(participants.size(), LadderGameView.enterMaxLadderHeight());
 
-        Ladder ladder = new Ladder(participants.size(), ladderHeight, () -> new Random().nextBoolean());
-
-        LadderGame ladderGame = new LadderGame(participants, ladderResult);
+        Ladder ladder = new Ladder(ladderSize, () -> new Random().nextBoolean());
 
         LadderGameResult result = new LadderGameResult(ladder, ladderResult);
 

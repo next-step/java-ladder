@@ -5,52 +5,19 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LadderTest {
 
     @Test
-    @DisplayName("사람 이름, 사다리 높이를 입력 받아 사다리 생성")
-    void should_return_ladders() {
-
-        //Given
-        Participants participants = new Participants("pobi,honux,crong,jk");
-        int ladderHeight = 10;
-
-        //When
-        Ladder ladder = new Ladder(participants.size(), new LadderHeight(ladderHeight), () -> new Random().nextBoolean());
-
-        //Then
-        assertThat(ladder.getLadderLines().size()).isEqualTo(ladderHeight);
-        assertThat(ladder.getLadderLines().get(0).getPoints().size()).isEqualTo(7);
-    }
-
-    @Test
-    @DisplayName("사다리 game을 실행하여 결과를 얻어낸다.")
-    void should_return_game_result() {
-        //Given
-        Participants participants = new Participants("pobi,honux,crong,jk");
-        int ladderHeight = 5;
-
-        //When
-        Ladder ladder = new Ladder(participants.size(), new LadderHeight(ladderHeight), () -> new Random().nextBoolean());
-
-        //Then
-        ladder.run();
-    }
-
-
-    @Test
-    @DisplayName("사다리가 모두 생성되지 않으면(false), index가 그대로 나온다.")
+    @DisplayName("참가자수 4명, 높이가 5인 사다리에 모든 사다리가 생성되지 않으면(false) 0,1,2,3 순으로 index가 나온다.")
     void should_return_ladder_when_false() {
         //Given
-        Participants participants = new Participants("pobi,honux,crong,jk");
-        int ladderHeight = 5;
-        Ladder ladder = new Ladder(participants.size(), new LadderHeight(ladderHeight), () -> false);
+        LadderSize ladderSize = new LadderSize(4, 5);
 
         //When
+        Ladder ladder = new Ladder(ladderSize, () -> false);
         List<Integer> run = ladder.run();
 
         //Then
@@ -59,14 +26,13 @@ class LadderTest {
     }
 
     @Test
-    @DisplayName("사다리가 전부 생성 되면, index가 그대로 나온다.")
+    @DisplayName("참가자수 4명, 높이가 5인 사다리에 모든 사다리가 생성되면(true), 1,0,3,2 순으로 in으dex가 나온다.")
     void should_return_ladder_when_true() {
         //Given
-        Participants participants = new Participants("pobi,honux,crong,jk");
-        int ladderHeight = 5;
-        Ladder ladder = new Ladder(participants.size(), new LadderHeight(ladderHeight), () -> true);
+        LadderSize ladderSize = new LadderSize(4, 5);
 
         //When
+        Ladder ladder = new Ladder(ladderSize, () -> true);
         List<Integer> run = ladder.run();
 
         //Then
