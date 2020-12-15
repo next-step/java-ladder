@@ -37,7 +37,7 @@ public class Ladder {
 
     public Integer[] settingRow(Integer[] row, int i){
         if (i % 2 != 0) {
-            row = validateRow(row, i);
+            row = creatRow(row, i, randomInt());
         }
         if (i % 2 == 0) {
             row[i] = 2;
@@ -45,15 +45,15 @@ public class Ladder {
         return row;
     }
 
-    public Integer[] validateRow(Integer[] row, int i){
+    public Integer[] creatRow(Integer[] row, int i, int random){
         if (i > 2 && row[i-2] == 1) {
             row[i] = 0;
         }
         if (i > 2 && row[i-2] != 1) {
-            row[i] = randomInt();
+            row[i] = random;
         }
         if (i < 2) {
-            row[i] = randomInt();
+            row[i] = random;
         }
         return row; 
     }
