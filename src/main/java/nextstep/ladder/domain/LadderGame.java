@@ -11,18 +11,17 @@ public class LadderGame {
     private static final String ALL_USER_KEY = "all";
     private final Users users;
     private final Ladder ladder;
-    private final LadderGoalBoard ladderGoalBoard;
 
     public LadderGoalBoard getLadderGoalBoard() {
-        return ladderGoalBoard;
+        return ladder.getLadderGoalBoard();
     }
 
     public LadderGame(Users users, LadderHeight height, LadderGoalBoard ladderGoalBoard) {
         throwIfNull(users, ladderGoalBoard);
         throwIfInvalidLadderGame(users, ladderGoalBoard);
         this.users = users;
-        this.ladder = new Ladder(users, height);
-        this.ladderGoalBoard = ladderGoalBoard;
+        this.ladder = new Ladder(users, height, ladderGoalBoard);
+
     }
 
     private void throwIfNull(Users users, LadderGoalBoard ladderGoalBoard) {
@@ -49,8 +48,7 @@ public class LadderGame {
 
     private LadderResult moveUser(User user) {
         int userIndex = users.indexOf(user);
-        int resultIndex = ladder.move(userIndex);
-        LadderGoal ladderGoal = ladderGoalBoard.get(resultIndex);
+        LadderGoal ladderGoal = ladder.move(userIndex);
         return new LadderResult(user, ladderGoal);
     }
 
