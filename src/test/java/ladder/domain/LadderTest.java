@@ -5,74 +5,57 @@ import ladder.ladderexceptions.InvalidLadderHeightException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.Arrays;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
+import java.util.List;
 
-import static java.util.stream.Collectors.collectingAndThen;
-import static java.util.stream.Collectors.toList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 class LadderTest {
 
     @Test
-    @DisplayName("생성 테스트")
-    void testGenerateLadder() {
+    @DisplayName("게임 생성 테스트")
+    void testGenerateLadderWithConnection() {
         int numUser = 5;
         int numHeight = 0;
         assertThatExceptionOfType(InvalidLadderHeightException.class)
-                .isThrownBy(() -> new Ladder(numHeight, numUser));
-    }
-
-    @Test
-    @DisplayName("동일 테스트")
-    void testLadderEquality() {
-        assertThat(new Ladder(2, 2))
-                .isEqualTo(new Ladder(Arrays.asList(HorizontalLine.ofLineCounts(2), HorizontalLine.ofLineCounts(2))));
-    }
-
-    private static Stream<Arguments> makePatterns() {
-        return Stream.of(
-                Arguments.of((HowToConnect) leftSideStatus -> false,
-                        new Boolean[]{false, false, false, false}),
-                Arguments.of((HowToConnect) leftSideStatus -> !leftSideStatus,
-                        new Boolean[]{true, false, true, false}),
-                Arguments.of(new SampleShufflePattern(),
-                        new Boolean[]{false, true, false, true})
-        );
+                .isThrownBy(() -> new Ladder.Builder(numUser).height(numHeight).connectionMode(new SampleShufflePattern()).build());
     }
 
     @ParameterizedTest
-    @MethodSource("makePatterns")
-    @DisplayName("shuffle Test")
-    void testShuffle(HowToConnect shuffleMode, Boolean[] expected) {
-        int testHeight = 3;
-        Ladder sampleLadder = new Ladder(testHeight, 4);
-        Ladder expectedLadder = IntStream.range(0, testHeight)
-                .mapToObj(x -> HorizontalLine.ofLines(Arrays.asList(expected)))
-                .collect(collectingAndThen(toList(), Ladder::new));
-
-        sampleLadder.shuffle(shuffleMode);
-
-        assertThat(sampleLadder).isEqualTo(expectedLadder);
-    }
-
-    @Test
+    @CsvSource({"a,3등", "b,1등", "c,2등", "d,4등"})
     @DisplayName("게임 동작 테스트")
-    void testProcess() {
-        HorizontalLine layer1 = HorizontalLine.ofLines(Arrays.asList(true, false, true));
-        HorizontalLine layer2 = HorizontalLine.ofLines(Arrays.asList(false, false, true));
-        HorizontalLine layer3 = HorizontalLine.ofLines(Arrays.asList(false, true, false));
-        Ladder sampleLadder = new Ladder(Arrays.asList(layer1, layer2, layer3));
+    void testGame(String input, String expected) {
 
-        Users inputs = new Users(Arrays.asList("a", "b", "c", "d"));
-        Users expected = new Users(Arrays.asList("b", "c", "a", "d"));
+        Ladder sampleLadder = new Ladder.Builder(4)
+                .height(3)
+                .connectionMode(new ConnectionMode() {
+                    private int idx = 0;
+                    // 아래 입력에 따른 사다리 레이아웃은 다음과 같다.
+                    // true, false, true, false
+                    // false, false, true, false
+                    // false, true, false, false
+                    private final List<Boolean> layout = Arrays.asList(
+                            true, false, true,
+                            false, false, true,
+                            false, true, false);
 
-        assertThat(sampleLadder.generateResult(inputs))
-                .isEqualTo(expected);
+                    @Override
+                    public boolean generateConnection() {
+                        boolean status = layout.get(idx);
+                        idx += 1;
+                        return status;
+                    }
+                })
+                .build();
+
+        Users inputUsers = new Users(Arrays.asList("a", "b", "c", "d"));
+        Rewards inputRewards = new Rewards(Arrays.asList("1등", "2등", "3등", "4등"));
+
+        Results results = sampleLadder.generateResult(inputUsers, inputRewards);
+
+        assertThat(results.responseForOne(input)).isEqualTo(expected);
     }
 }

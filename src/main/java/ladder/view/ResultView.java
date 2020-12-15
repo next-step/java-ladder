@@ -1,5 +1,9 @@
 package ladder.view;
 
+import ladder.dto.LadderDTO;
+import ladder.dto.RewardsDTO;
+import ladder.dto.UsersDTO;
+
 import java.util.List;
 import java.util.Map;
 
@@ -19,14 +23,16 @@ public class ResultView {
         System.out.println(LADDER_DESCRIPTION_MESSAGE);
     }
 
-    public static void printUsers(List<String> users) {
+    public static void printUsers(UsersDTO usersDTO) {
+        List<String> users = usersDTO.getUsers();
         for (String user : users) {
             System.out.printf("%6s", user);
         }
         System.out.println();
     }
 
-    public static void printLadder(List<List<Boolean>> layout) {
+    public static void printLadder(LadderDTO ladderDTO) {
+        List<List<Boolean>> layout = ladderDTO.getLayout();
         for (List<Boolean> line : layout) {
             printLine(line);
         }
@@ -46,7 +52,8 @@ public class ResultView {
         System.out.print(part);
     }
 
-    public static void printRewards(List<String> rewards) {
+    public static void printRewards(RewardsDTO rewardsDTO) {
+        List<String> rewards = rewardsDTO.getRewards();
         for (String reward : rewards) {
             System.out.printf("%6s", reward);
         }

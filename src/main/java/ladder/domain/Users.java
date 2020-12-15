@@ -3,7 +3,6 @@ package ladder.domain;
 import ladder.dto.UsersDTO;
 import ladder.ladderexceptions.InvalidUsersNumberException;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -39,24 +38,6 @@ public class Users {
         }
 
         return (User) o;
-    }
-
-    public Users passLayer(SwapRule rule) {
-        List<User> swappedUsers = new ArrayList<>(users);
-
-        for (int i = 0; i < swappedUsers.size() - 1; i++) {
-            swapOnRule(swappedUsers, rule, i);
-        }
-
-        return new Users(swappedUsers);
-    }
-
-    private void swapOnRule(List<User> swappedUsers, SwapRule rule, int index) {
-        if (rule.needToSwap(index)) {
-            User temp = swappedUsers.get(index);
-            swappedUsers.set(index, users.get(index + 1));
-            swappedUsers.set(index + 1, temp);
-        }
     }
 
     public User get(int index) {

@@ -1,36 +1,35 @@
 package ladder.domain;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Objects;
 
 public class Result {
 
-    private final static String INVALID_MESSAGE = "포함되지 않은 인원입니다.";
-    private final Map<User, Reward> mapper;
+    private final User user;
+    private final Reward reward;
 
-    public Result(Users finalUsers, Rewards rewards) {
-        mapper = new HashMap<>();
-
-        for (int i = 0; i < finalUsers.size(); i++) {
-            mapper.put(finalUsers.get(i), rewards.get(i));
-        }
+    public Result(User user, Reward reward) {
+        this.user = user;
+        this.reward = reward;
     }
 
-    public String responseForOne(String input) {
-        if (mapper.containsKey(new User(input))) {
-            return mapper.get(new User(input)).getReward();
-        }
-
-        return INVALID_MESSAGE;
+    public User getUser() {
+        return user;
     }
 
-    public Map<String, String> responseForAll() {
-        Map<String, String> result = new HashMap<>();
+    public Reward getReward() {
+        return reward;
+    }
 
-        for (User user : mapper.keySet()) {
-            result.put(user.getName(), mapper.get(user).getReward());
-        }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Result result = (Result) o;
+        return user.equals(result.user) && reward.equals(result.reward);
+    }
 
-        return result;
+    @Override
+    public int hashCode() {
+        return Objects.hash(user, reward);
     }
 }

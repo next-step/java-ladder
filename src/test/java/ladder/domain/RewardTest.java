@@ -27,7 +27,7 @@ public class RewardTest {
     @Test
     @DisplayName("DTO 용 getter 추가")
     public void testGetter() {
-        assertThat(new Reward("1000").getReward())
+        assertThat(new Reward("1000").getName())
                 .isEqualTo("1000");
     }
 }

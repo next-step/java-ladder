@@ -3,9 +3,9 @@ package ladder.domain;
 import ladder.dto.LadderDTO;
 import ladder.ladderexceptions.InvalidLadderHeightException;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.toList;
@@ -14,13 +14,12 @@ public class Ladder {
 
     private static final int MINIMUM_LADDER_HEIGHT = 1;
 
-    private final List<HorizontalLine> layer;
+    private final List<Line> layer;
 
-    public Ladder(int height, int numLines) {
+    private Ladder(int height, int numLines, ConnectionMode mode) {
         validateHeight(height);
-
         this.layer = IntStream.range(0, height)
-                .mapToObj(x -> HorizontalLine.ofLineCounts(numLines))
+                .mapToObj(x -> Line.ofLineCounts(numLines, mode))
                 .collect(toList());
     }
 
@@ -30,43 +29,49 @@ public class Ladder {
         }
     }
 
-    public Ladder(List<HorizontalLine> lines) {
-        this.layer = lines;
-    }
-
-    public void shuffle() {
-        HowToConnect connectionMode = new RandomConnectionMode();
-        shuffle(connectionMode);
-    }
-
-    public void shuffle(HowToConnect connectionMode) {
-        for (HorizontalLine line : layer) {
-            line.shuffle(connectionMode);
+    public Results generateResult(Users users, Rewards rewards) {
+        List<Result> results = new ArrayList<>();
+        for (int i = 0; i < users.size(); i++) {
+            int resultIndex = passAllLayer(i);
+            results.add(new Result(users.get(i), rewards.get(resultIndex)));
         }
+        return new Results(results);
     }
 
-    public Users generateResult(Users users) {
-        Users currentStatus = users;
-        for (SwapRule rule : layer) {
-            currentStatus = currentStatus.passLayer(rule);
+    private int passAllLayer(int initialIndex) {
+        int currentIndex = initialIndex;
+        for (Line line : layer) {
+            currentIndex = line.getNextIndex(currentIndex);
         }
-        return currentStatus;
+        return currentIndex;
     }
 
     public LadderDTO exportData() {
         return new LadderDTO(Collections.unmodifiableList(layer));
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Ladder ladder = (Ladder) o;
-        return Objects.equals(layer, ladder.layer);
-    }
+    public static class Builder {
+        private final int numLines;
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(layer);
+        private int height = MINIMUM_LADDER_HEIGHT;
+        private ConnectionMode mode = new RandomConnectionMode();
+
+        public Builder(int numLines) {
+            this.numLines = numLines;
+        }
+
+        public Builder height(int height) {
+            this.height = height;
+            return this;
+        }
+
+        public Builder connectionMode(ConnectionMode mode) {
+            this.mode = mode;
+            return this;
+        }
+
+        public Ladder build() {
+            return new Ladder(height, numLines, mode);
+        }
     }
 }
