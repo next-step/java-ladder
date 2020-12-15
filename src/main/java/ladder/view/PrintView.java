@@ -1,11 +1,11 @@
 package ladder.view;
 
 import ladder.domain.*;
-import ladder.dto.LadderWinningDTO;
+import ladder.dto.MappingWinningDTO;
 
 import java.util.List;
 
-public class PrintLadder {
+public class PrintView {
 
     private static final String HAVE_LINE = "-----";
     private static final String NON_HAVE_LINE = "     ";
@@ -35,26 +35,21 @@ public class PrintLadder {
         return sb.toString();
     }
 
-
-    public void printLadder(Ladder ladderLine) {
+    public void printLadder(LadderLine points) {
         StringBuilder stringBuilder = new StringBuilder();
-        List<LadderLine> lll = ladderLine.getLadderLine();
 
-        for (LadderLine points : lll) {
-            stringBuilder.append("|");
+        stringBuilder.append("|");
+        stringBuilder.append(RepeatPoint(points.getPoints()));
+        stringBuilder.append("\n");
 
-            stringBuilder.append(RepeatPoint(points.getPoints()));
-
-            stringBuilder.append("\n");
-        }
         System.out.print(stringBuilder);
     }
 
     private String RepeatPoint(List<LadderPoint> points) {
         StringBuilder stringBuilder = new StringBuilder();
 
-        for (LadderPoint point : points) {
-            stringBuilder.append(checkDivisionLadder(point.isLadderPoint()));
+        for (int i = 0; i < points.size() - 1; i++) {
+            stringBuilder.append(checkDivisionLadder(points.get(i).getDirection().isRight()));
             stringBuilder.append("|");
         }
 
@@ -69,26 +64,23 @@ public class PrintLadder {
         return NON_HAVE_LINE;
     }
 
-    public void printWinnings(List<LadderWinning> winnings){
+    public void printWinnings(List<LadderWinning> winnings) {
         StringBuilder stringBuilder = new StringBuilder();
 
-        for(LadderWinning winning : winnings){
+        for (LadderWinning winning : winnings) {
             stringBuilder.append(winning.getWinning() + NON_HAVE_LINE);
         }
 
         System.out.println(stringBuilder);
     }
 
-    public void printOneWinningResult(List<LadderWinningDTO> ladderWinningList) {
-        System.out.println(EXECUTION_RESULT);
-        System.out.println(ladderWinningList.get(0).getResult());
-        System.out.println();
-    }
+    public void printWinningResult(List<MappingWinningDTO> paramList){
+        StringBuilder stringBuilder = new StringBuilder();
 
-    public void printAllWinningResult(List<LadderWinningDTO> ladderWinningList) {
         System.out.println(EXECUTION_RESULT);
-        for (LadderWinningDTO dto : ladderWinningList) {
-            System.out.println(dto.getName() + " : " + dto.getResult());
+        for(MappingWinningDTO dto : paramList){
+            stringBuilder.append(dto.getName() + " : " + dto.getWinning() + "\n");
         }
+        System.out.println(stringBuilder);
     }
 }
