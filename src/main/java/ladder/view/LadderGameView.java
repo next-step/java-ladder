@@ -26,7 +26,7 @@ public class LadderGameView {
     }
 
     public static void printLadderGameResult(Map<String, String> ladderGameResult) {
-        String name = LadderGameView.enterParticipantName();
+        String name = "";
         while (!name.equals("all")) {
             name = LadderGameView.enterParticipantName();
             printGameResult(name, ladderGameResult);
@@ -39,6 +39,7 @@ public class LadderGameView {
             System.out.println();
             System.out.println("실행결과");
             System.out.println(ladderGameResult.get(name));
+            return;
         }
 
         if (name.equals("all")) {

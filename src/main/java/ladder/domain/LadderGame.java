@@ -6,7 +6,6 @@ import java.util.TreeMap;
 
 public class LadderGame {
 
-    private final String NOT_EXISTS_NAME = "Not exists name";
     private final LadderGameInformation ladderGameInformation;
     private final Ladder ladder;
 

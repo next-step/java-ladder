@@ -32,8 +32,6 @@ public class ResultView {
         int firstNameSpace = ladderGameInformation.getParticipants().get(0).length() - 1;
         printLadders(results.getLadder(), firstNameSpace);
         printLadderGameInformation(ladderGameInformation.getResults());
-        System.out.println();
-        System.out.println(results.getResults().toString());
     }
 
     private static void printLadderGameInformation(List<String> participants) {

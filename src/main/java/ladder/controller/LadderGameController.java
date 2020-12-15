@@ -18,8 +18,6 @@ public class LadderGameController {
         LadderGame ladderGame = new LadderGame(ladderGameInformation, ladder);
 
         LadderGameView.printLadders(ladderGameInformation, ladderGame.getLadderGameResult());
-
-
         LadderGameView.printLadderGameResult(ladderGame.getLadderGameResult().getResults());
     }
 }
