@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class LadderGame {
 
-    private final String ALL_USER_KEY = "all";
+    private static final String ALL_USER_KEY = "all";
     private final Users users;
     private final Ladder ladder;
     private final LadderGoalBoard ladderGoalBoard;
