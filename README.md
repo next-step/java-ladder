@@ -47,8 +47,6 @@ pobi               cron               jh
 - all을 입력 받으면, 실행결과 모두를 출력한다.
 
 ### TODO
-- 결과 출력 버그 수정
-- 결과를 보고 싶은 사람을 입력받는다.
 - 입력 받은 참가자 명에 따른 결과를 출력한다.
 - all을 입력 받으면, 실행결과 모두를 출력한다.
 ### DONE
@@ -78,3 +76,4 @@ pobi               cron               jh
 - Participants 와 LadderResult를 합쳐 하나의 LadderGameInformation을 만든다.
 (사다리 게임 결과를 생성하는 LadderGame에게 필요한 정보를 모두 제공하기 위해)
 - LadderGameResult에서 사다리 게임의 최종 결과를 반환한다.
+- 결과 출력 버그 수정

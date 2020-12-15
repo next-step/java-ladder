@@ -1,11 +1,12 @@
 package ladder.domain;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class LadderGame {
 
+    private final String NOT_EXISTS_NAME = "Not exists name";
     private final LadderGameInformation ladderGameInformation;
     private final Ladder ladder;
 
@@ -14,8 +15,8 @@ public class LadderGame {
         this.ladder = ladder;
     }
 
-    public LadderGameResult getResult() {
-        Map<String, String> result = new HashMap<>();
+    public LadderGameResult getLadderGameResult() {
+        Map<String, String> result = new TreeMap<>();
 
         List<Integer> indexes = ladder.run();
 
@@ -24,9 +25,7 @@ public class LadderGame {
                     ladderGameInformation.getResults().get(indexes.get(index)));
         }
 
-
         return new LadderGameResult(result, ladder);
     }
-
 
 }

@@ -23,7 +23,7 @@ class LadderGameTest {
 
         //When
         LadderGame ladderGame = new LadderGame(ladderGameInformation, ladder);
-        LadderGameResult result = ladderGame.getResult();
+        LadderGameResult result = ladderGame.getLadderGameResult();
 
         //Then
         Map<String, String> expectedResults = new HashMap<>();
@@ -46,17 +46,29 @@ class LadderGameTest {
 
         //When
         LadderGame ladderGame = new LadderGame(ladderGameInformation, ladder);
-        LadderGameResult result = ladderGame.getResult();
+        LadderGameResult result = ladderGame.getLadderGameResult();
 
         //Then
         LadderGameView.printLadders(ladderGameInformation, result);
-//        Map<String, String> expectedResults = new HashMap<>();
-//        expectedResults.put("crong", "3000");
-//        expectedResults.put("jk", "꽝");
-//        expectedResults.put("pobi", "5000");
-//        expectedResults.put("honux", "꽝");
-//
-//        assertThat(result.getResults()).isEqualTo(expectedResults);
+        Map<String, String> expectedResults = new HashMap<>();
+        expectedResults.put("crong", "3000");
+        expectedResults.put("jk", "꽝");
+        expectedResults.put("pobi", "5000");
+        expectedResults.put("honux", "꽝");
+
+        assertThat(result.getResults()).isEqualTo(expectedResults);
+
+    }
+
+    @Test
+    @DisplayName("입력받은 이름의 게임 결과를 반환한다.")
+    void should_return_ladder_game_result_by_name() {
+
+    }
+
+    @Test
+    @DisplayName("입력받은 이름이 참가자명단에 없을 경우 exception을 throw한다.")
+    void should_throw_exception_when_not_exists_name() {
 
     }
 }
