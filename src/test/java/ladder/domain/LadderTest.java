@@ -12,7 +12,7 @@ public class LadderTest {
     @DisplayName("Ladder - Users, Lines 객체 비교")
     void ladder_isEqualTo() {
         Users users = Users.of("pobi,honux,crong,jk");
-        Lines lines = new Lines(GameSetup.of(users.countOfPerson(),5));
+        Lines lines = Lines.of(GameSetup.of(users.countOfPerson(),5), new NextDirectionRule());
 
         Ladder ladder = Ladder.of(users,lines);
 
