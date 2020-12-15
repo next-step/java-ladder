@@ -1,12 +1,7 @@
 package ladder.controller;
 
-import ladder.domain.LadderGame;
-import ladder.domain.LadderLine;
-import ladder.domain.LadderPoint;
-import ladder.view.PrintLadder;
+import ladder.domain.*;
 import ladder.view.InputView;
-
-import java.util.List;
 
 public class PlayLadderGame {
     public void playGame() {
@@ -15,17 +10,8 @@ public class PlayLadderGame {
         int ladderHeight = InputView.inputLadderHeight();
 
         LadderGame ladderGame = new LadderGame(names, ladderHeight, winnings);
+        LadderPrint ladderPrint = new LadderPrint(ladderGame);
 
-        PrintLadder printLadder = new PrintLadder();
-        printLadder.printNames(ladderGame.getPerson());
-        printLadder.printLadder(ladderGame.getLadder());
-        printLadder.printWinnings(ladderGame.getWinnings());
-
-        String resultWinnings = InputView.wantNameToResult();
-        printLadder.printOneWinningResult(ladderGame.getWinningResult(resultWinnings));
-
-        resultWinnings = InputView.wantNameToResult();
-        printLadder.printAllWinningResult(ladderGame.getWinningResult(resultWinnings));
-        printLadder.printAllWinningResult(ladderGame.getWinningResult("all"));
+        ladderPrint.resultPrint();
     }
 }
