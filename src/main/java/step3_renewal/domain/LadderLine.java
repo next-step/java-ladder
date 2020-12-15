@@ -1,8 +1,6 @@
 package step3_renewal.domain;
 
 
-import step3_renewal.utils.LadderUtil;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,9 +12,10 @@ public class LadderLine {
         this.points = points;
     }
 
-    public static LadderLine init(int sizeOfPerson, LadderUtil ladderUtil) {
+    public static LadderLine init(int sizeOfPerson, LadderRandomGenerator ladderRandomGenerator) {
         List<Point> points = new ArrayList<>();
-        points.add(createLadderLine(sizeOfPerson, points, ladderUtil.isLine()));
+        Point point = initFirst(points);
+        initBody(sizeOfPerson, points, point, ladderRandomGenerator);
         return new LadderLine(points);
     }
 
@@ -24,27 +23,20 @@ public class LadderLine {
         return points.get(position).move();
     }
 
-    private static Point createLadderLine(int sizeOfPerson, List<Point> points, boolean isLine) {
-        Point point = Point.first(isLine);
+    private static Point initFirst(List<Point> points) {
+        Point point = Point.first(new LadderRandomGenerator().nextLine());
         points.add(point);
+        return point;
+    }
 
+    private static Point initBody(int sizeOfPerson, List<Point> points, Point point, LadderRandomGenerator ladderRandomGenerator) {
         for (int i = 1; i < sizeOfPerson - 1; i++) {
-            isLine = nextCreate(isLine);
-            point = point.next(isLine);
+            point = point.next(ladderRandomGenerator.nextLine());
             points.add(point);
         }
         points.add(point.last());
 
         return point;
-    }
-
-    private static boolean nextCreate(boolean isLine) {
-        LadderUtil ladderUtil = new LadderUtil();
-        boolean isNextLine = ladderUtil.isLine();
-        if (isLine && isNextLine) {
-            return false;
-        }
-        return isNextLine;
     }
 
     public List<Point> getPoints() {
