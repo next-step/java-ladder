@@ -16,24 +16,6 @@ public class Persons {
         initNames(names);
     }
 
-    public Persons(Persons persons, List<Integer> positionList) {
-        checkListSize(persons.getPersons().size(), positionList.size());
-
-        Person person = null;
-        this.persons = new ArrayList<>();
-
-        for (int i = 0; i < persons.getPersons().size(); i++) {
-            person = new Person(persons.getPersons().get(i).getName(), positionList.get(i));
-            this.persons.add(person);
-        }
-    }
-
-    private void checkListSize(int first, int second) {
-        if (first != second) {
-            throw new RuntimeException(ErrorMessage.getCheckPersonsInit());
-        }
-    }
-
     private void initNames(final String names) {
         List<String> nameList = Arrays.asList(names.replaceAll(" ", "").split(","));
 
