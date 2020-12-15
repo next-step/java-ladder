@@ -1,11 +1,9 @@
 package nextstep.ladder;
 
-import nextstep.ladder.domain.LadderDto;
-import nextstep.ladder.domain.LadderHeight;
-import nextstep.ladder.domain.Users;
-import nextstep.ladder.view.LadderHeightInputView;
-import nextstep.ladder.view.LadderStatePrintView;
-import nextstep.ladder.view.UserInputView;
+import nextstep.ladder.domain.*;
+import nextstep.ladder.view.*;
+
+import java.util.List;
 
 public class Main {
 
@@ -13,9 +11,16 @@ public class Main {
         Users users = UserInputView.enter();
         LadderHeight ladderHeight = LadderHeightInputView.enter();
 
-        LadderDto ladderDto = new LadderDto(users, ladderHeight);
+        LadderGoalBoard ladderGoalBoard = LadderGoalInputView.enter();
 
-        LadderStatePrintView.print(ladderDto);
+        LadderGame ladderGame = new LadderGame(users, ladderHeight, ladderGoalBoard);
+
+        LadderStatePrintView.print(ladderGame);
+
+        String key = SelectUserInputView.enter();
+        List<LadderResult> ladderResults = ladderGame.start(key);
+        LadderResultView.print(ladderResults);
+
     }
 
 }

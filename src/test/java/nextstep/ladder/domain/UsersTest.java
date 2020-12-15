@@ -51,4 +51,12 @@ class UsersTest {
         );
     }
 
+    @DisplayName("Users indexOf test")
+    @Test
+    public void test(){
+        Users users = new Users("aaa,bbb,ccc,ddd,eee");
+        User user = new User("ccc");
+        int index = users.indexOf(user);
+        assertThat(index).isEqualTo(2);
+    }
 }
