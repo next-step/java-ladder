@@ -7,9 +7,9 @@ import java.util.List;
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 
-public class PointGenerator {
-
+public class NextDirectionRule implements DirectionRule{
     private static final int FIRST_INDEX = 0;
+
     private static final List<Boolean> NEXT_BOOLEAN = new LinkedList<>();
 
     static {
@@ -17,9 +17,8 @@ public class PointGenerator {
         NEXT_BOOLEAN.add(FALSE);
     }
 
-    private PointGenerator() {}
-
-    public static boolean hasMovable() {
+    @Override
+    public boolean hasMovable() {
         Collections.shuffle(NEXT_BOOLEAN);
         return NEXT_BOOLEAN.get(FIRST_INDEX);
     }
