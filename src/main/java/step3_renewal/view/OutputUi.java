@@ -15,7 +15,7 @@ public class OutputUi {
     private static final String NO_LINE = "     ";
 
     public static void printAll(Participants names, Rewards reward, Ladder ladder) {
-        System.out.println("PRINT_RESULT");
+        System.out.println("사다리 결과");
         printParticipants(names);
         printLadderLine(ladder);
         printLadderGameOneResult(reward);
@@ -52,7 +52,6 @@ public class OutputUi {
         ladder.append(STEP);
     }
 
-
     private static void printLadderGameOneResult(Rewards reward) {
         reward.getRewards().stream()
                 .map(e -> StringUtil.padLeft(REPEAT, e.getName()) + EMPTY)
@@ -69,19 +68,20 @@ public class OutputUi {
                 .forEach(System.out::println);
     }
 
-    public static void printLadderGameOneResult(GameResults gameResults, String participantName) {
+    private static void printLadderGameOneResult(String participantName, GameResults gameResults) {
         System.out.println(PRINT_RESULT);
         gameResults.getGameResults()
                 .stream()
                 .filter(rewardMatch -> rewardMatch.getParticipantName().equals(participantName))
-                .map(rewardName -> rewardName.getReward().getName())
+                .map(rewardMatch -> rewardMatch.getReward().getName())
                 .forEach(System.out::println);
     }
 
-    public static void printLadderGameResult(String name, GameResults gameResults) {
-        if (name.equalsIgnoreCase("all")) {
-            printLadderGameAllResult(gameResults);
+    public static void printLadderGameResult(String participantName, GameResults gameResults) {
+        while (!participantName.equalsIgnoreCase("all")) {
+            printLadderGameOneResult(participantName, gameResults);
+            participantName = InputUi.wantToSeeResult();
         }
-        printLadderGameOneResult(gameResults, name);
+        printLadderGameAllResult(gameResults);
     }
 }
