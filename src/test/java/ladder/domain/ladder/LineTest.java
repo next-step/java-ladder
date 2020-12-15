@@ -1,14 +1,12 @@
 package ladder.domain.ladder;
 
+import ladder.domain.participant.Position;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -27,16 +25,16 @@ public class LineTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {0, 1, 2, 3})
-    public void isAvailableMoveTest(int index) {
+    @CsvSource(value = {"0:1", "1:-1", "2:0", "3:1", "4:-1"}, delimiter = ':')
+    public void giveDirectionTest(int index, int expected) {
         //Given
         List<Boolean> expectedPoints = Arrays.asList(true, false, false, true);
         Line line = new Line(expectedPoints);
 
         //When
-        boolean expected = line.isAvailableMove(index);
+        int result = line.giveDirection(Position.from(index));
 
         //Then
-        assertThat(expected).isEqualTo(expectedPoints.get(index));
+        assertThat(result).isEqualTo(expected);
     }
 }

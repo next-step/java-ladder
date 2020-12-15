@@ -1,20 +1,50 @@
 package ladder.domain.ladder;
 
+import ladder.domain.participant.Position;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
 public class Line {
 
+    private static final int RIGHT = 1;
+    private static final int LEFT = -1;
     private final List<Boolean> points;
 
     public Line(List<Boolean> points) {
         this.points = points;
     }
 
-    public boolean isAvailableMove(int countOfPerson) {
-        return points.get(countOfPerson);
+    public int giveDirection(Position position) {
+        return moveEitherDirection(position);
     }
+
+    private int moveEitherDirection(Position position) {
+       if(position.getRow() == 0 || position.getRow() == points.size()){
+           return moveFirstAndLastDirection(position);
+       }
+       return points.get(position.getRow()) == true ? moveRightDirection(position) : moveLeftDirection(position);
+    }
+
+    private int moveLeftDirection(Position position) {
+        if(points.get(position.getRow() + LEFT) == true) {
+            return LEFT;
+        }
+        return 0;
+    }
+
+    private int moveRightDirection(Position position) {
+        if(points.get(position.getRow()) == true) {
+            return RIGHT;
+        }
+        return 0;
+    }
+
+    private int moveFirstAndLastDirection(Position position) {
+        return position.getRow() == 0 ? moveRightDirection(position) : moveLeftDirection(position);
+    }
+
 
     public List<Boolean> getPoints() {
         return Collections.unmodifiableList(points);
