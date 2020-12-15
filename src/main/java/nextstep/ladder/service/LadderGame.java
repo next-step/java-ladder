@@ -24,8 +24,7 @@ public class LadderGame {
         MemberList members = new MemberList();
         members.setMembers(inputView.getMembers());
         int height = inputView.getLadderHeight();
-        Ladder ladder = new Ladder();
-        ladder.setLadder(members.getMembers().size(), height);
+        Ladder ladder = new Ladder(members.getMembers().size(), height);
 
         resultView.printMember(members);
         resultView.printLadder(ladder);

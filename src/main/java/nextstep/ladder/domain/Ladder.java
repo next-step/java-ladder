@@ -10,8 +10,8 @@ public class Ladder {
     public List<Line> getLadder(){
         return list;
     }
-    
-    public void setLadder(int width, int height){
+
+    public Ladder(int width, int height){
         List<Line> list = new ArrayList<>();
         for(int i = 0; i < height; i++){
             Line row = new Line();
@@ -19,6 +19,9 @@ public class Ladder {
             list.add(row);
         }
         this.list = list;
+    }
+
+    public Ladder(){
     }
 
     public int randomInt(){

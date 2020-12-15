@@ -13,8 +13,7 @@ public class LadderTest {
         String[] test = {"test1","test2","test3","test4"};
         int size = 4;
 
-        Ladder ladder = new Ladder();
-        ladder.setLadder(test.length, size);
+        Ladder ladder = new Ladder(test.length, size);
 
         assertThat(ladder.getLadder().size()).isEqualTo(4);
         assertThat(ladder.getLadder().get(0).getArray().length).isEqualTo(7);
