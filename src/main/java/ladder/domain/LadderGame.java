@@ -20,8 +20,10 @@ public class LadderGame {
         List<Integer> indexes = ladder.run();
 
         for (int index = 0; index < ladderGameInformation.getParticipants().size(); index++) {
-            result.put(ladderGameInformation.getParticipants().get(index),
-                    ladderGameInformation.getResults().get(indexes.get(index)));
+            result.put(
+                    ladderGameInformation.getParticipants().get(index),
+                    ladderGameInformation.getResults().get(indexes.get(index))
+            );
         }
 
         return new LadderGameResult(result, ladder);

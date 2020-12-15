@@ -1,10 +1,6 @@
 package ladder.domain;
 
-import ladder.view.LadderGameView;
-import ladder.view.ResultView;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;

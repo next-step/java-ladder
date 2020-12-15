@@ -49,7 +49,7 @@ public class LadderLine {
             return 2;
         }
 
-        if (index == 0) {
+        if (index == 0 && Boolean.FALSE.equals(points.get(1))) {
             return index;
         }
 
@@ -57,7 +57,7 @@ public class LadderLine {
             return index - 2;
         }
 
-        if (index == points.size() - 1) {
+        if (index == points.size() - 1 && Boolean.FALSE.equals(points.get(index - 1))) {
             return index;
         }
 
