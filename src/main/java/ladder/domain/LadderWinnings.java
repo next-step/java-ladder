@@ -1,12 +1,10 @@
 package ladder.domain;
 
-import ladder.dto.LadderWinningDTO;
 import ladder.util.ErrorMessage;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 public class LadderWinnings {
 
@@ -29,37 +27,7 @@ public class LadderWinnings {
             ladderWinning = new LadderWinning(winning);
             this.winnings.add(ladderWinning);
         }
-
         this.persons = persons.getPersons();
-    }
-
-
-    public List<LadderWinningDTO> getOneWinningResult(String name) {
-        List<LadderWinningDTO> winningList = new ArrayList<>();
-
-        Optional<Person> paramPerson = persons.stream()
-                .filter(person -> person.getName().equals(name))
-                .findFirst();
-
-        winningList.add(mappingWinning(paramPerson.get()));
-
-        return winningList;
-    }
-
-    public List<LadderWinningDTO> getAllWinningResult() {
-        List<LadderWinningDTO> winningList = new ArrayList<>();
-
-        for (Person person : persons) {
-            winningList.add(mappingWinning(person));
-        }
-
-        return winningList;
-    }
-
-    private LadderWinningDTO mappingWinning(Person person) {
-        LadderWinningDTO ladderWinningDTO = new LadderWinningDTO(persons.get(person.getPosition()).getName()
-                , winnings.get(person.getPosition()).getWinning());
-        return ladderWinningDTO;
     }
 
     private void checkListSize(final List<String> winningList, final List<Person> personList) {
