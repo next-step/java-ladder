@@ -2,16 +2,18 @@ package ladder.step3_renewal.domain;
 
 import org.junit.jupiter.api.Test;
 import step3_renewal.domain.Direction;
-import step3_renewal.utils.LadderUtil;
+import step3_renewal.domain.LadderRandomGenerator;
 
+import java.util.stream.IntStream;
+
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class DirectionTest {
 
-    @Test
     public void 첫번째이동() {
-        LadderUtil ladderUtil = new LadderUtil();
-        assertThat(Direction.first(true).next(ladderUtil.isLine())).isEqualTo(Direction.of(true, false));
+        assertThat(Direction.first(true).next(new LadderRandomGenerator().nextLine())).isEqualTo(Direction.of(true, false));
     }
 
     @Test
@@ -27,5 +29,17 @@ public class DirectionTest {
     @Test
     public void 마지막이동() {
         assertThat(Direction.first(true).last()).isEqualTo(Direction.of(true, false));
+    }
+
+    @Test
+    public void next_random_true() {
+        Direction next = Direction.first(TRUE).next(new LadderRandomGenerator().nextLine());
+        assertThat(next).isEqualTo(Direction.of(TRUE, FALSE));
+    }
+
+    @Test
+    public void next_random_false() {
+        IntStream.range(0, 100)
+                .forEach(i -> Direction.first(FALSE).next(new LadderRandomGenerator().nextLine()));
     }
 }
