@@ -1,14 +1,33 @@
 package ladder.domain;
 
+import ladder.util.ErrorMessage;
+
 public class LadderDirection {
     private boolean left;
     private boolean right;
 
-    public LadderDirection(boolean left, boolean right) {
-        checkDirection(left, right);
-
+    public LadderDirection(final boolean left, final boolean right) {
+        checkValue(left, right);
         this.left = left;
         this.right = right;
+    }
+
+    public int move() {
+        if (this.left) {
+            return -1;
+        }
+
+        if (this.right) {
+            return 1;
+        }
+
+        return 0;
+    }
+
+    private void checkValue(final boolean left, final boolean right) {
+        if (left && right) {
+            throw new RuntimeException(ErrorMessage.getCheckDirection());
+        }
     }
 
     public boolean isLeft() {
@@ -17,12 +36,6 @@ public class LadderDirection {
 
     public boolean isRight() {
         return right;
-    }
-
-    private void checkDirection(boolean left, boolean right) {
-        if (left == true && right == true) {
-            throw new RuntimeException("방향을 제대로 선택해주세요");
-        }
     }
 
     @Override
