@@ -24,10 +24,9 @@ public class LadderTest {
     @Test
     void validateRowTest(){
         Integer[] test = {2,1,2,1,2};
-        int size = 4;
 
         Ladder ladder = new Ladder();
-        Integer[] result = ladder.validateRow(test, 3);
+        Integer[] result = ladder.createRow(test, 3, 1);
         
         assertThat(result[3]).isEqualTo(0);
     }

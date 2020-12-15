@@ -5,7 +5,7 @@ import java.util.Arrays;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.MemberList;
 
-public class ResultVIew {
+public class ResultView {
     public void printMember(MemberList list){
         list.getMembers().stream().forEach(s -> System.out.print(s.getName() + "    "));
         System.out.println();

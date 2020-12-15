@@ -9,13 +9,13 @@ import java.util.List;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.MemberList;
 import nextstep.ladder.view.InputView;
-import nextstep.ladder.view.ResultVIew;
+import nextstep.ladder.view.ResultView;
 
 public class LadderGame {
     InputView inputView;
-    ResultVIew resultView;
+    ResultView resultView;
 
-    public LadderGame(InputView inputView, ResultVIew resultView){
+    public LadderGame(InputView inputView, ResultView resultView){
         this.inputView = inputView;
         this.resultView = resultView;
     }
