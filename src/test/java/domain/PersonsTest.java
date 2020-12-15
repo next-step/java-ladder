@@ -32,7 +32,7 @@ public class PersonsTest {
     @NullAndEmptySource
     void checkInputName(String name) {
         assertThatThrownBy(() ->
-                pesonsTest =new Persons(name)
+                pesonsTest = new Persons(name)
         ).isInstanceOf(RuntimeException.class)
                 .withFailMessage(ErrorMessage.getCheckInputNames());
     }
@@ -44,7 +44,7 @@ public class PersonsTest {
     @NullAndEmptySource
     void checkName(String name) {
         assertThatThrownBy(() ->
-                pesonsTest =new Persons(name)
+                pesonsTest = new Persons(name)
         ).isInstanceOf(RuntimeException.class)
                 .withFailMessage(ErrorMessage.getCheckInputNames());
     }
@@ -54,7 +54,7 @@ public class PersonsTest {
     void checkCountOfperson() {
         String name = "test1";
         assertThatThrownBy(() ->
-                pesonsTest =new Persons(name)
+                pesonsTest = new Persons(name)
         ).isInstanceOf(RuntimeException.class)
                 .withFailMessage(ErrorMessage.getCheckCountOfPerson());
     }

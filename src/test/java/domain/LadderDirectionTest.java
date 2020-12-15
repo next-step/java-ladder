@@ -10,30 +10,39 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 public class LadderDirectionTest {
 
-    private LadderDirection LadderDirectionTest;
+    private LadderDirection direction;
 
     @Test
-    @DisplayName("양쪽에 사다리가 있는 경우 에러처리")
-    void checkContinuityPoint(){
+    @DisplayName("오른쪽으로 이동했는지")
+    void moveRight() {
+        direction = new LadderDirection(false, true);
+
+        assertThat(1).isEqualTo(direction.move());
+    }
+
+    @Test
+    @DisplayName("왼쪽으로 이동했는지")
+    void moveLeft() {
+        direction = new LadderDirection(true, false);
+
+        assertThat(-1).isEqualTo(direction.move());
+    }
+
+    @Test
+    @DisplayName("정지했는지")
+    void moveStop() {
+        direction = new LadderDirection(false, false);
+
+        assertThat(0).isEqualTo(direction.move());
+    }
+
+    @Test
+    @DisplayName("왼쪽 오른쪽이 true경우 에러를 발생한다.")
+    void moveErrorCheck() {
         assertThatThrownBy(() ->
-                LadderDirectionTest = new LadderDirection(true, true)
+                direction = new LadderDirection(true, true)
         ).isInstanceOf(RuntimeException.class)
-                .withFailMessage(ErrorMessage.getCheckInputLadderHeight());
-    }
+                .withFailMessage(ErrorMessage.getCheckDirection());
 
-    @Test
-    @DisplayName("왼쪽으로 이동하는지")
-    void checkMoveLeft(){
-        LadderDirectionTest = new LadderDirection(true, false);
-
-        assertThat(LadderDirectionTest.isLeft()).isEqualTo(true);
-    }
-
-    @Test
-    @DisplayName("오른쪽으로 이동하는지")
-    void checkMoveRight(){
-        LadderDirectionTest = new LadderDirection(false, true);
-
-        assertThat(LadderDirectionTest.isRight()).isEqualTo(true);
     }
 }
