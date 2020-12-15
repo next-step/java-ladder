@@ -31,13 +31,13 @@
     * LadderGame - 사다리게임 관리 객체
     * LadderLine - 사다리의 한 라인 생성 및 관리
         * 데이터 체크
-    * LadderMove - 사다리 이동 관리 객체
-        * 사다리 이동 관리
     * LadderPoint - 사다리 point 관리객체
     * LadderWinning - 당첨관리 객체
     * LadderWinnings - LadderWinning의 일급컬렉션 객체
     * Person - 참여자 관리객체
     * Persons - 참여자의 일급컬렉션
+    * LadderPrint - 출력 관리 객체
+    * MappingWinningDTO - 이동한 데이터와 매핑을 담는 객체
   
 
 ## 온라인 코드 리뷰 과정
