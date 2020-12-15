@@ -7,9 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
+
     private static final int MIN_LADDER_HEIGHT = 1;
 
-    private List<LadderLine> ladderLine = new ArrayList<>();
+    private List<LadderLine> ladderLines = new ArrayList<>();
 
     public Ladder(final int ladderHeight, final int countOfPerson) {
         checkValue(ladderHeight, countOfPerson);
@@ -18,47 +19,22 @@ public class Ladder {
 
     private void initAddLine(final int ladderHeight, final int countOfPerson) {
         initFirstAddLine(countOfPerson);
-        initOutherAddLine(countOfPerson, ladderHeight);
+        initOutherAddLine(ladderHeight);
     }
 
     private void initFirstAddLine(final int countOfPerson) {
         LadderLine line = new LadderLine(countOfPerson);
-        LadderMove ladderMove = new LadderMove(line.getPositionList(), chageDataType(line.getPoints()));
 
-        this.ladderLine.add(new LadderLine(line.getPoints(), ladderMove.getPositionList()));
+        this.ladderLines.add(line);
     }
 
-    private void initOutherAddLine(final int countOfPerson, final int ladderHeight) {
-        LadderMove ladderMove;
+    private void initOutherAddLine(final int ladderHeight) {
         LadderLine line;
 
         for (int i = 1; i < ladderHeight; i++) {
-            line = new LadderLine((new LadderLine(countOfPerson).getPoints())
-                    , deepCopyPositionList(ladderLine.get(ladderLine.size() - 1).getPositionList()));
-            ladderMove = new LadderMove(line.getPositionList(), chageDataType(line.getPoints()));
-
-            this.ladderLine.add(new LadderLine(line.getPoints(), ladderMove.getPositionList()));
+            line = new LadderLine(ladderLines.get(i - 1));
+            ladderLines.add(line);
         }
-    }
-
-    private List<Boolean> chageDataType(List<LadderPoint> beforeList) {
-        List<Boolean> afterList = new ArrayList<>();
-
-        for (LadderPoint point : beforeList) {
-            afterList.add(point.isLadderPoint());
-        }
-
-        return afterList;
-    }
-
-    private List<Integer> deepCopyPositionList(List<Integer> positionList) {
-        List<Integer> returnList = new ArrayList<>();
-
-        for (Integer position : positionList) {
-            returnList.add(position);
-        }
-
-        return returnList;
     }
 
     private void checkValue(final int ladderHeight, final int countOfPerson) {
@@ -78,7 +54,7 @@ public class Ladder {
         }
     }
 
-    public List<LadderLine> getLadderLine() {
-        return ladderLine;
+    public List<LadderLine> getLadderLines() {
+        return ladderLines;
     }
 }
