@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 public class LadderGameInformation {
 
     public static final String NAMES_CANNOT_BE_DUPLICATED = "Names cannot be duplicated.";
+    public static final String SIZE_CANNOT_BE_DIFFERENT = "Names cannot be duplicated.";
     public static final String INPUT_CAN_NOT_BE_BLANK = "Input can not be blank.";
     public static final String NAME_IS_TOO_LONG = "Name is too long.";
     private static final String SPLIT_LETTER = ",";
@@ -19,26 +20,29 @@ public class LadderGameInformation {
     public LadderGameInformation(String participants, String results) {
         this.participants = split(participants);
         this.results = split(results);
-
-        validParticipants(this.participants);
+        valid();
     }
 
     private List<String> split(String letters) {
         String[] dividedLetter = letters.split(SPLIT_LETTER);
         return Arrays.stream(dividedLetter)
-                .map(this::valid)
+                .map(this::validName)
                 .collect(Collectors.toList());
     }
 
 
-    private void validParticipants(List<String> participants) {
+    private void valid() {
 
-        long count = participants.stream()
+        if (this.participants.size() != this.results.size()) {
+            throw new IllegalArgumentException(SIZE_CANNOT_BE_DIFFERENT);
+        }
+
+        long count = this.participants.stream()
                 .distinct()
                 .map(this::validNameLength)
                 .count();
 
-        if (participants.size() != count) {
+        if (this.participants.size() != count) {
             throw new IllegalArgumentException(NAMES_CANNOT_BE_DUPLICATED);
         }
 
@@ -52,7 +56,7 @@ public class LadderGameInformation {
     }
 
 
-    private String valid(String name) {
+    private String validName(String name) {
         if (name.isEmpty() || name.trim().isEmpty()) {
             throw new IllegalArgumentException(INPUT_CAN_NOT_BE_BLANK);
         }

@@ -57,7 +57,7 @@ class LadderGameInformationTest {
     void should_throw_exception_when_name_is_too_long() {
 
         //Given
-        String names = "guylian, operabean, hoonick";
+        String names = "guylian, operabean, hoonick, pobi";
         String results = "꽝,5000,꽝,3000";
 
         //Given & When
@@ -74,10 +74,23 @@ class LadderGameInformationTest {
         String names = "pobi,honux,crong,jk";
         String results = "꽝,5000,,   ";
 
-        //When
+        //When & Then
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new LadderGameInformation(names, results))
                 .withMessage(INPUT_CAN_NOT_BE_BLANK);
+    }
+
+    @Test
+    @DisplayName("참가자 수와 결과 수가 다르면 throw exception")
+    void should_throw_exception_when_size_is_different() {
+        //Given
+        String names = "pobi,honux,crong,jk";
+        String results = "꽝,5000";
+
+        //When & Then
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new LadderGameInformation(names, results))
+                .withMessage(SIZE_CANNOT_BE_DIFFERENT);
     }
 
 

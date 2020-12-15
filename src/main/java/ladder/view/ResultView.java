@@ -6,15 +6,45 @@ import ladder.domain.LadderGameResult;
 import ladder.domain.LadderLine;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.IntStream;
 
 public class ResultView {
-    public static final String RESULT = "실행결과";
+    private static final String NOT_EXISTS_NAME = "Not exists name";
+    private static final String RESULT = "실행결과";
     private static final String BAR = "|";
     private static final String SPACE = " ";
     private static final String BLANK = "     ";
     private static final String LADDER = "-----";
     private static final int MAX_NAME_SPACE = 6;
+
+    protected static void printResult(Map<String, String> ladderGameResult) {
+        String name = "";
+        while (!name.equals("all")) {
+            name = LadderGameView.enterParticipantName();
+            printGameResult(name, ladderGameResult);
+        }
+    }
+
+    private static void printGameResult(String name, Map<String, String> ladderGameResult) {
+        if (ladderGameResult.containsKey(name)) {
+            System.out.println();
+            System.out.println("실행결과");
+            System.out.println(ladderGameResult.get(name));
+            return;
+        }
+
+        if (name.equals("all")) {
+            System.out.println();
+            System.out.println("실행결과");
+            ladderGameResult.forEach((key, value) ->
+                    System.out.println(key + " : " + value)
+            );
+            return;
+        }
+
+        throw new IllegalArgumentException(NOT_EXISTS_NAME);
+    }
 
     protected static void printLadders(LadderGameInformation ladder, LadderGameResult participants) {
         printResultHeader();
