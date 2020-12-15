@@ -15,18 +15,25 @@ public class Line {
     }
 
     private static List<Point> generateLine(int countOfPerson, DirectionRule directionRule) {
-        LinkedList<Point> points = new LinkedList<>();
-
-        Point prePoint = Point.first(directionRule);
-        points.addFirst(prePoint);
-
+        List<Point> points = new ArrayList<>(countOfPerson);
+        Point point = initFirst(points, directionRule);
         for (int i = 1; i < countOfPerson - 1; i++) {
-            prePoint = Point.next(prePoint, directionRule);
-            points.add(prePoint);
+            point = Point.next(point, directionRule.hasMovable());
+            points.add(point);
         }
-
-        points.addLast(Point.last(prePoint));
+        initLast(points, point);
         return points;
+    }
+
+    private static Point initFirst(List<Point> points, DirectionRule directionRule) {
+        Point point = Point.first(directionRule.hasMovable());
+        points.add(point);
+        return point;
+    }
+
+    private static void initLast(List<Point> points, Point prePoint) {
+        Point point = Point.last(prePoint);
+        points.add(point);
     }
 
     public List<Point> getPoints() {

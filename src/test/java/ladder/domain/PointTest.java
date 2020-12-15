@@ -12,7 +12,7 @@ public class PointTest {
     void point_next_isEqualTo() {
         // given
         Point point = Point.of(0,Pointer.of(false,true));
-        Point actual = Point.next(point,() -> false);
+        Point actual = Point.next(point,false);
 
         // when
         Point expect = Point.of(1,Pointer.of(true,false));
@@ -24,7 +24,7 @@ public class PointTest {
     @Test
     @DisplayName("Point first() 사용 하여 첫번째 상태값 예상")
     void point_first_isEqualTo() {
-        Point actual = Point.first(() -> true);
+        Point actual = Point.first(true);
         assertThat(actual).isEqualTo(Point.of(0,Pointer.of(false,true)));
     }
 

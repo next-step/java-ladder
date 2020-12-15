@@ -7,8 +7,7 @@ import java.util.List;
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 
-public class NextDirectionRule implements DirectionRule {
-
+public class NextDirectionRule implements DirectionRule{
     private static final int FIRST_INDEX = 0;
 
     private static final List<Boolean> NEXT_BOOLEAN = new LinkedList<>();

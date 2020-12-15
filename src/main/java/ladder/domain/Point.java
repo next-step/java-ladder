@@ -20,11 +20,11 @@ public class Point {
         return new Point(index, pointer);
     }
 
-    public static Point first(DirectionRule nextBooleanRule) {
-        return of(FIRST_INDEX, Pointer.of(FALSE, nextBooleanRule.hasMovable()));
+    public static Point first(boolean right) {
+        return of(FIRST_INDEX, Pointer.of(FALSE, right));
     }
 
-    public static Point next(Point prePoint, DirectionRule nextBooleanRule) {
+    public static Point next(Point prePoint, boolean right) {
         int nextIndex = addIndex(prePoint);
         Pointer previous = pointer(prePoint);
 
@@ -32,7 +32,7 @@ public class Point {
             return of(nextIndex, nextFalse(previous));
         }
 
-        return of(nextIndex, Pointer.next(previous, nextBooleanRule.hasMovable()));
+        return of(nextIndex, Pointer.next(previous, right));
     }
 
     public static Point last(Point prePoint) {

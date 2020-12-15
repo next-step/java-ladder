@@ -22,8 +22,9 @@ public class Users {
     }
 
     private static List<User> getSplitUserNames(String userNames) {
-        if (isBlank(userNames))
+        if (isBlank(userNames)) {
             throw new IllegalArgumentException(USER_NAMES_EMPTY);
+        }
 
         return Arrays.stream(userNames.split(USER_NAMES_SEPARATOR))
                 .map(User::of)
