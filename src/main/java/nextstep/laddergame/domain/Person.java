@@ -20,6 +20,9 @@ public class Person {
 
     public static Person of(String name, int sequence) {
         return new Person(name, sequence);
+    }
 
+    public String getName() {
+        return this.name.getName();
     }
 }
