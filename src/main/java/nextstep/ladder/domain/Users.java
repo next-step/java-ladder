@@ -21,11 +21,18 @@ public class Users {
         this.users = Arrays.stream(usersNameString.split(COMMA))
                 .map(User::new)
                 .collect(collectingAndThen(Collectors.toList(), Collections::unmodifiableList));
+        throwIfInvalidUserSize(users);
     }
 
     private void throwIfNullOrEmpty(String usersNameString) {
         if (usersNameString == null || usersNameString.length() == EMPTY) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_USERS_NAME_STRING);
+        }
+    }
+
+    private void throwIfInvalidUserSize(List<User> users){
+        if (users.size() < 2) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_USERS_SIZE);
         }
     }
 
