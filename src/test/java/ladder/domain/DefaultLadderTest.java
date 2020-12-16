@@ -35,7 +35,6 @@ class DefaultLadderTest {
         Ladder ladder = new DefaultLadder(
                 Arrays.asList("nio", "hoon", "mit"),
                 Arrays.asList("1000", "100", "0"),
-                5,
                 Arrays.asList(
                         new LadderLevel(Arrays.asList(bar(), step(), bar(), emptyStep(), bar())),
                         new LadderLevel(Arrays.asList(bar(), emptyStep(), bar(), step(), bar())),

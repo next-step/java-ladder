@@ -12,18 +12,17 @@ public class DefaultLadder implements Ladder {
     private final List<LadderLevel> ladderLevels;
     private final LadderMemberAndResult memberAndResults;
 
-    DefaultLadder(List<String> memberNames, List<String> results, int height, List<LadderLevel> ladderLevels){
-        if (height < 1) throw new IllegalArgumentException("사다리 높이는 최소 1이상 입력되어야 합니다.");
-
+    DefaultLadder(List<String> memberNames, List<String> results, List<LadderLevel> ladderLevels){
         this.memberAndResults = new LadderMemberAndResult(memberNames, results);
         this.ladderLevels = ladderLevels;
     }
 
     public DefaultLadder(List<String> memberNames, List<String> results, int height) {
-        this(memberNames, results, height, generateLadderLevels(memberNames.size(), height));
+        this(memberNames, results, generateLadderLevels(memberNames.size(), height));
     }
 
     static List<LadderLevel> generateLadderLevels(int memberCount, int height) {
+        if (height < 1) throw new IllegalArgumentException("사다리 높이는 최소 1이상 입력되어야 합니다.");
         int width = memberCount * 2 - 1;
         return IntStream.range(0, height)
                 .mapToObj(y -> LadderLevel.autoGenerate(width))
