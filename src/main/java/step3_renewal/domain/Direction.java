@@ -2,11 +2,12 @@ package step3_renewal.domain;
 
 import java.util.Objects;
 
-import static java.lang.Boolean.FALSE;
-
 public class Direction {
 
+    private static final boolean FALSE = false;
+
     private final boolean left;
+    
     private final boolean right;
 
     private Direction(boolean left, boolean right) {
