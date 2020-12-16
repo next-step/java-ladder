@@ -53,4 +53,41 @@ public class LadderLine {
         return "      " + str;
     }
 
+    public static Builder builder(){
+        return new Builder();
+    }
+
+    public static class Builder {
+
+        private List<Point> points;
+        private Point current;
+        private int index;
+
+        public Builder() {
+            this.points = new ArrayList<>();
+            this.index = 0;
+        }
+
+        public Builder first(boolean right){
+            current = new Point(index++, Direction.first(right));
+            points.add(current);
+            return this;
+        }
+
+        public Builder next(boolean right){
+            current = current.next(right);
+            points.add(current);
+            return this;
+        }
+
+        public Builder last(){
+            points.add(current.last());
+            return this;
+        }
+
+        public LadderLine build(){
+            return new LadderLine(points);
+        }
+
+    }
 }
