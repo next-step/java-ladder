@@ -1,8 +1,12 @@
 package nextstep.laddergame;
 
 import nextstep.laddergame.controller.LadderController;
+import nextstep.laddergame.domain.Person;
+import nextstep.laddergame.domain.dto.LadderDTO;
 import nextstep.laddergame.view.InputView;
 import nextstep.laddergame.view.ResultView;
+
+import java.util.List;
 
 public class LadderMain {
     private InputView inputView;
@@ -19,7 +23,11 @@ public class LadderMain {
         String participants =inputView.getParticipant();
         int ladderHeight = inputView.getLadderHeight();
 
-        ladderController.initParticipants(participants);
+        List<Person> people = ladderController.initParticipants(participants);
+        LadderDTO ladder = ladderController.createLadder(ladderHeight);
+
+        resultView.showPeople(people);
+        resultView.showLadder(ladder);
 
     }
 }

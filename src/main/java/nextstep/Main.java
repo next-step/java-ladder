@@ -1,6 +1,7 @@
 package nextstep;
 
-import nextstep.laddergame.view.LadderMain;
+
+import nextstep.laddergame.LadderMain;
 
 public class Main {
 
