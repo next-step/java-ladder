@@ -9,7 +9,7 @@ import static java.util.stream.Collectors.collectingAndThen;
 
 public class LadderGoals {
 
-    private final String COMMA = ",";
+    private static final String COMMA = ",";
     private final List<LadderGoal> ladderGoals;
 
     public LadderGoals(String ladderGoalString) {
