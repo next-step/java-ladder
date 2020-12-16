@@ -27,8 +27,6 @@ public interface LevelItem {
             public String toString() {
                 return "------";
             }
-
-
         };
     }
 

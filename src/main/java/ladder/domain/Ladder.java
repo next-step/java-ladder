@@ -20,6 +20,6 @@ public interface Ladder {
      */
     Map<LadderMember, LadderResult> startAll();
 
-    void print(PrintWriter printWriter);
+    void print(PrintWriter writer);
 
 }
