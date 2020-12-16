@@ -16,7 +16,7 @@ public class Ladder {
         this.ladderGoals = ladderGoals;
         this.ladderRows = IntStream.range(0, height.getValue())
                 .boxed()
-                .map(index -> new LadderRow(users.size(), directionStrategy))
+                .map(index -> new LadderRow(users, directionStrategy))
                 .collect(collectingAndThen(Collectors.toList(), Collections::unmodifiableList));
     }
 
