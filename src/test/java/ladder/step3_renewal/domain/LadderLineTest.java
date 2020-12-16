@@ -17,6 +17,6 @@ public class LadderLineTest {
     @Test
     public void move() {
         LadderLine ladderLine = LadderLine.init(5, new LadderRandomGenerator());
-        assertThat(ladderLine.move(3));
+        System.out.println(ladderLine.move(3));
     }
 }
