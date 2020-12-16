@@ -14,7 +14,7 @@ public class LadderGameController {
         Rewards rewards =
                 Rewards.of(StringUtil.splitToList(InputUi.inputExecutionResult()), participants.getParticipants().size());
 
-        Ladder ladder = Ladder.of(InputUi.maximumHeight(), participants);
+        Ladder ladder = Ladder.of(InputUi.maximumHeight(), participants,  new LadderRandomGenerator());
         OutputUi.printAll(participants, rewards, ladder);
         OutputUi.printLadderGameResult(InputUi.wantToSeeResult(), results(participants, rewards, ladder));
 
