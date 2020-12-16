@@ -16,11 +16,11 @@ public class Ladder {
         this.ladderLines = ladderLines;
     }
 
-    public static Ladder of(int maxHeight, Participants participants) {
+    public static Ladder of(int maxHeight, Participants participants, LadderRandomGenerator ladderRandomGenerator) {
         validate(maxHeight);
         List<LadderLine> ladderLines =
                 IntStream.range(0, maxHeight)
-                        .mapToObj(i -> LadderLine.init(participants.size(), new LadderRandomGenerator()))
+                        .mapToObj(i -> LadderLine.init(participants.size(), ladderRandomGenerator))
                         .collect(Collectors.toList());
         return new Ladder(ladderLines);
     }
