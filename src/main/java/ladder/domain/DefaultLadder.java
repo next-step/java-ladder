@@ -9,6 +9,8 @@ import java.util.stream.IntStream;
 
 public class DefaultLadder implements Ladder {
 
+    public static final int LADDER_LEVEL_CONVERSION_FACTOR = 2;
+
     private final List<LadderLevel> ladderLevels;
     private final LadderMemberAndResult memberAndResults;
 
@@ -23,7 +25,7 @@ public class DefaultLadder implements Ladder {
 
     static List<LadderLevel> generateLadderLevels(int memberCount, int height) {
         if (height < 1) throw new IllegalArgumentException("사다리 높이는 최소 1이상 입력되어야 합니다.");
-        int width = memberCount * 2 - 1;
+        int width = memberCount * LADDER_LEVEL_CONVERSION_FACTOR - 1;
         return IntStream.range(0, height)
                 .mapToObj(y -> LadderLevel.autoGenerate(width))
                 .collect(Collectors.toList());
@@ -61,11 +63,11 @@ public class DefaultLadder implements Ladder {
 
     private int toLadderResultPos(int ladderLevelPos) {
         if( ladderLevelPos == 0 ) return 0;
-        return ladderLevelPos / 2;
+        return ladderLevelPos / LADDER_LEVEL_CONVERSION_FACTOR;
     }
 
     private int toLadderLevelPos(int memberPos) {
-        return memberPos * 2;
+        return memberPos * LADDER_LEVEL_CONVERSION_FACTOR;
     }
 
 }
