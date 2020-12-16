@@ -16,10 +16,6 @@ public class LadderGame {
         return ladder.getLadderGoalBoard();
     }
 
-    public LadderGoalBoard getLadderGoalBoard() {
-        return ladderGoalBoard;
-    }
-
     public LadderGame(Users users, LadderHeight height, LadderGoalBoard ladderGoalBoard) {
         throwIfNull(users, ladderGoalBoard);
         throwIfInvalidLadderGame(users, ladderGoalBoard);
