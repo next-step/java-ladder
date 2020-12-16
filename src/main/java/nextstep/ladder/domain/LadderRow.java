@@ -10,11 +10,12 @@ public class LadderRow {
 
     public LadderRow(int countOfPerson, DirectionStrategy directionStrategy) {
         this.ladderPoints = new LinkedList<>();
-        this.ladderPoints.add(new LadderPoint(directionStrategy));
-        for (int i = 1; i < countOfPerson; i++) {
+        this.ladderPoints.add(LadderPoint.generateFirst(directionStrategy));
+        for (int i = 1; i < countOfPerson - 1; i++) {
             LadderPoint last = ladderPoints.getLast();
-            this.ladderPoints.add(new LadderPoint(last, i, countOfPerson, directionStrategy));
+            this.ladderPoints.add(LadderPoint.generateNext(last, directionStrategy));
         }
+        this.ladderPoints.add(LadderPoint.generateLast(ladderPoints.getLast()));
     }
 
     public List<LadderPoint> export() {
