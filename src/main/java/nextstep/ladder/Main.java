@@ -11,9 +11,9 @@ public class Main {
         Users users = UserInputView.enter();
         LadderHeight ladderHeight = LadderHeightInputView.enter();
 
-        LadderGoalBoard ladderGoalBoard = LadderGoalInputView.enter();
+        LadderGoals ladderGoals = LadderGoalInputView.enter();
 
-        LadderGame ladderGame = new LadderGame(users, ladderHeight, ladderGoalBoard);
+        LadderGame ladderGame = new LadderGame(users, ladderHeight, ladderGoals);
 
         LadderStatePrintView.print(ladderGame);
 

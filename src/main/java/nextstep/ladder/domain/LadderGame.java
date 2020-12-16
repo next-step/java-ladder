@@ -12,26 +12,26 @@ public class LadderGame {
     private final Users users;
     private final Ladder ladder;
 
-    public LadderGoalBoard getLadderGoalBoard() {
-        return ladder.getLadderGoalBoard();
+    public LadderGoals getLadderGoalBoard() {
+        return ladder.getLadderGoals();
     }
 
-    public LadderGame(Users users, LadderHeight height, LadderGoalBoard ladderGoalBoard) {
-        throwIfNull(users, ladderGoalBoard);
-        throwIfInvalidLadderGame(users, ladderGoalBoard);
+    public LadderGame(Users users, LadderHeight height, LadderGoals ladderGoals) {
+        throwIfNull(users, ladderGoals);
+        throwIfInvalidLadderGame(users, ladderGoals);
         this.users = users;
-        this.ladder = new Ladder(users, height, ladderGoalBoard);
+        this.ladder = new Ladder(users, height, ladderGoals);
 
     }
 
-    private void throwIfNull(Users users, LadderGoalBoard ladderGoalBoard) {
-        if (users == null || ladderGoalBoard == null) {
+    private void throwIfNull(Users users, LadderGoals ladderGoals) {
+        if (users == null || ladderGoals == null) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LADDER_GAME);
         }
     }
 
-    private void throwIfInvalidLadderGame(Users users, LadderGoalBoard ladderGoalBoard) {
-        if (users.size() != ladderGoalBoard.size()) {
+    private void throwIfInvalidLadderGame(Users users, LadderGoals ladderGoals) {
+        if (users.size() != ladderGoals.size()) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LADDER_GAME);
         }
     }

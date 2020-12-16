@@ -9,11 +9,11 @@ import static java.util.stream.Collectors.collectingAndThen;
 
 public class Ladder {
 
-    private LadderGoalBoard ladderGoalBoard;
+    private LadderGoals ladderGoals;
     private List<LadderRow> ladderRows;
 
-    public Ladder(Users users, LadderHeight height, LadderGoalBoard ladderGoalBoard) {
-        this.ladderGoalBoard = ladderGoalBoard;
+    public Ladder(Users users, LadderHeight height, LadderGoals ladderGoals) {
+        this.ladderGoals = ladderGoals;
         this.ladderRows = IntStream.range(0, height.getValue())
                 .boxed()
                 .map(index -> new LadderRow(users.size()))
@@ -29,10 +29,10 @@ public class Ladder {
         for (LadderRow ladderRow : ladderRows) {
             curIndex = ladderRow.move(curIndex);
         }
-        return ladderGoalBoard.get(curIndex);
+        return ladderGoals.get(curIndex);
     }
 
-    public LadderGoalBoard getLadderGoalBoard() {
-        return ladderGoalBoard;
+    public LadderGoals getLadderGoals() {
+        return ladderGoals;
     }
 }

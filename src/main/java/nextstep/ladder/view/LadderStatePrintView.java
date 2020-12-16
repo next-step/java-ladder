@@ -52,9 +52,9 @@ public class LadderStatePrintView {
         return LEFT_BAR;
     }
 
-    private static String buildLadGoalBoardString(LadderGoalBoard ladderGoalBoard) {
+    private static String buildLadGoalBoardString(LadderGoals ladderGoals) {
         StringBuilder sb = new StringBuilder();
-        for (LadderGoal ladderGoal : ladderGoalBoard.export()) {
+        for (LadderGoal ladderGoal : ladderGoals.export()) {
             sb.append(String.format(FIVE_SIZE_STRING_LEFT_FORMATTER, ladderGoal.getValue()));
         }
         return sb.toString();
