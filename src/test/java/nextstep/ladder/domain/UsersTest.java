@@ -59,4 +59,14 @@ class UsersTest {
         int index = users.indexOf(user);
         assertThat(index).isEqualTo(2);
     }
+
+    @DisplayName("사용자 수 유효성 검증 - 사용자 수도 2보다 작을때 예외 발생")
+    @Test
+    public void userSizeValidCheckTest(){
+        assertThatThrownBy(()->{
+            Users users = new Users("aaa");
+        }).isInstanceOf(IllegalArgumentException.class);
+
+    }
+
 }
