@@ -36,10 +36,4 @@ public class DirectionTest {
         Direction next = Direction.first(TRUE).next(new LadderRandomGenerator().nextLine());
         assertThat(next).isEqualTo(Direction.of(TRUE, FALSE));
     }
-
-    @Test
-    public void next_random_false() {
-        IntStream.range(0, 100)
-                .forEach(i -> Direction.first(FALSE).next(new LadderRandomGenerator().nextLine()));
-    }
 }

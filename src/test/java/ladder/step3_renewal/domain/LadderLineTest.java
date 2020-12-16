@@ -1,9 +1,10 @@
 package ladder.step3_renewal.domain;
 
 import org.junit.jupiter.api.Test;
-import step3_renewal.domain.Ladder;
 import step3_renewal.domain.LadderLine;
 import step3_renewal.domain.LadderRandomGenerator;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderLineTest {
 
@@ -16,7 +17,6 @@ public class LadderLineTest {
     @Test
     public void move() {
         LadderLine ladderLine = LadderLine.init(5, new LadderRandomGenerator());
-        System.out.println("ladder result : " + ladderLine.move(3));
+        assertThat(ladderLine.move(3));
     }
-
 }
