@@ -19,5 +19,7 @@ public class LadderMain {
         String participants =inputView.getParticipant();
         int ladderHeight = inputView.getLadderHeight();
 
+        ladderController.initParticipants(participants);
+
     }
 }
