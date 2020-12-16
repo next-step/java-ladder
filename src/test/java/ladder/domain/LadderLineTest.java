@@ -21,7 +21,7 @@ class LadderLineTest {
         LadderLine ladderLine = new LadderLine(5, () -> new Random().nextBoolean());
 
         //Then
-        assertThat(ladderLine.getPoints().size()).isEqualTo(9);
+        assertThat(ladderLine.getPoints().size()).isEqualTo(4);
     }
 
     @Test
@@ -31,7 +31,7 @@ class LadderLineTest {
         LadderLine ladderLine = new LadderLine(3, () -> BLANK);
 
         //Then
-        assertThat(ladderLine.getPoints()).containsAll(Arrays.asList(BAR, BLANK, BAR, BLANK, BAR));
+        assertThat(ladderLine.getPoints()).containsAll(Arrays.asList(BLANK, BLANK));
     }
 
     @Test
@@ -41,7 +41,7 @@ class LadderLineTest {
         LadderLine ladderLine = new LadderLine(3, () -> LADDER);
 
         //Then
-        assertThat(ladderLine.getPoints()).containsAll(Arrays.asList(BAR, LADDER, BAR, LADDER, BAR));
+        assertThat(ladderLine.getPoints()).containsAll(Arrays.asList(LADDER, LADDER));
     }
 
     @Test
@@ -51,8 +51,8 @@ class LadderLineTest {
         LadderLine ladderLine = new LadderLine(5, () -> new Random().nextBoolean());
 
         //Then
-        for (int index = 3; index < ladderLine.getPoints().size(); index += 2) {
-            boolean previous = ladderLine.getPoints().get(index - 2);
+        for (int index = 1; index < ladderLine.getPoints().size(); index++) {
+            boolean previous = ladderLine.getPoints().get(index - 1);
             boolean current = ladderLine.getPoints().get(index);
             assertThat(previous && current).isFalse();
         }

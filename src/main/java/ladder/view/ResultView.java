@@ -31,17 +31,26 @@ public class ResultView {
     }
 
     private static void printLadderGame(LadderGameInformation ladderGameInformation, LadderGameResult results) {
-        printLadderGameInformation(ladderGameInformation.getParticipants());
+        printLadderGameParticipants(ladderGameInformation.getParticipants());
         int firstNameSpace = ladderGameInformation.getParticipants().get(0).length() - 1;
         printLadders(results.getLadder(), firstNameSpace);
-        printLadderGameInformation(ladderGameInformation.getResults());
+        printLadderGameResult(ladderGameInformation.getResults(), firstNameSpace);
     }
 
-    private static void printLadderGameInformation(List<String> participants) {
+    private static void printLadderGameParticipants(List<String> participants) {
         printName(participants.get(0), 0);
 
         IntStream.range(1, participants.size())
                 .forEach(index -> printName(participants.get(index), MAX_NAME_SPACE - participants.get(index).length()));
+        printOpeningLetter();
+
+    }
+
+    private static void printLadderGameResult(List<String> results, int firstNameSpace) {
+        printName(results.get(0), firstNameSpace);
+
+        IntStream.range(1, results.size())
+                .forEach(index -> printName(results.get(index), MAX_NAME_SPACE - results.get(index).length()));
         printOpeningLetter();
     }
 

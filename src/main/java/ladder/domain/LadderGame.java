@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -15,7 +16,7 @@ public class LadderGame {
     }
 
     public LadderGameResult getLadderGameResult() {
-        Map<String, String> result = new TreeMap<>();
+        Map<String, String> result = new LinkedHashMap<>();
 
         List<Integer> indexes = ladder.run();
 
