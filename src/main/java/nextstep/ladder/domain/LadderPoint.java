@@ -32,7 +32,7 @@ public class LadderPoint {
     }
 
     private Direction generateFirst() {
-        return Direction.of(false, directionStrategy.next());
+        return directionStrategy.next();
     }
 
     private Direction generateLast(Direction beforeDirection) {
@@ -43,7 +43,7 @@ public class LadderPoint {
         if (beforeDirection.isRight()) {
             return Direction.of(true, false);
         }
-        return Direction.of(false, directionStrategy.next());
+        return directionStrategy.next();
     }
 
     public Direction getDirection() {

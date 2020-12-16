@@ -7,7 +7,7 @@ public class RandomDirectionStrategy implements DirectionStrategy {
     private Random random = new Random();
 
     @Override
-    public boolean next() {
-        return random.nextBoolean();
+    public Direction next() {
+        return Direction.of(false, random.nextBoolean());
     }
 }
