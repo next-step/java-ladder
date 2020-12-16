@@ -12,11 +12,11 @@ public class Ladder {
     private LadderGoals ladderGoals;
     private List<LadderRow> ladderRows;
 
-    public Ladder(Users users, LadderHeight height, LadderGoals ladderGoals) {
+    public Ladder(Users users, LadderHeight height, LadderGoals ladderGoals, DirectionStrategy directionStrategy) {
         this.ladderGoals = ladderGoals;
         this.ladderRows = IntStream.range(0, height.getValue())
                 .boxed()
-                .map(index -> new LadderRow(users.size()))
+                .map(index -> new LadderRow(users.size(), directionStrategy))
                 .collect(collectingAndThen(Collectors.toList(), Collections::unmodifiableList));
     }
 

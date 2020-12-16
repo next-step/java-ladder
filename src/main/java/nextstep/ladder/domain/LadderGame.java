@@ -16,11 +16,11 @@ public class LadderGame {
         return ladder.getLadderGoals();
     }
 
-    public LadderGame(Users users, LadderHeight height, LadderGoals ladderGoals) {
+    public LadderGame(Users users, LadderHeight height, LadderGoals ladderGoals, DirectionStrategy directionStrategy) {
         throwIfNull(users, ladderGoals);
         throwIfInvalidLadderGame(users, ladderGoals);
         this.users = users;
-        this.ladder = new Ladder(users, height, ladderGoals);
+        this.ladder = new Ladder(users, height, ladderGoals, directionStrategy);
 
     }
 

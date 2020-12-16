@@ -13,7 +13,7 @@ public class Main {
 
         LadderGoals ladderGoals = LadderGoalInputView.enter();
 
-        LadderGame ladderGame = new LadderGame(users, ladderHeight, ladderGoals);
+        LadderGame ladderGame = new LadderGame(users, ladderHeight, ladderGoals, new RandomDirectionStrategy());
 
         LadderStatePrintView.print(ladderGame);
 

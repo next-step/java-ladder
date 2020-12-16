@@ -7,9 +7,8 @@ import java.util.List;
 public class LadderRow {
 
     private final LinkedList<LadderPoint> ladderPoints;
-    private final DirectionStrategy directionStrategy = new RandomDirectionStrategy();
 
-    public LadderRow(int countOfPerson) {
+    public LadderRow(int countOfPerson, DirectionStrategy directionStrategy) {
         this.ladderPoints = new LinkedList<>();
         this.ladderPoints.add(new LadderPoint(directionStrategy));
         for (int i = 1; i < countOfPerson; i++) {
