@@ -7,21 +7,21 @@ import java.util.List;
 
 public class Rewards {
 
-    private final List<String> reward;
+    private final List<String> rewards;
 
-    public Rewards(List<String> reward) {
-        this.reward = reward;
+    public Rewards(List<String> rewards) {
+        this.rewards = rewards;
     }
 
     public String findRewardByPosition(Position position) {
-        if(position.getRow() > reward.size()) {
+        if(position.getRow() > rewards.size()) {
             throw new NotFoundRewardException();
         }
-        return reward.get(position.getRow());
+        return rewards.get(position.getRow());
 
     }
 
-    public List<String> getReward() {
-        return reward;
+    public List<String> getRewards() {
+        return rewards;
     }
 }
