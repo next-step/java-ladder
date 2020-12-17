@@ -13,7 +13,7 @@ public class LadderGameApplication {
         List<String> names = InputView.inputNames();
         int height = InputView.inputHeight();
 
-        LadderGame ladderGame = LadderGame.of(names, height, new LadderGenerateRule());
+        LadderGame ladderGame = LadderGame.start(names, height, new LadderGenerateRule());
 
         ResultView.printNames(ladderGame.getUserNames());
         ResultView.printLadder(ladderGame.getLines());

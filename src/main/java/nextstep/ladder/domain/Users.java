@@ -11,10 +11,10 @@ public class Users {
     }
 
     public static Users of(List<String> names) {
-        List<User> users = names.stream()
+        return names.stream()
                 .map(User::new)
-                .collect(Collectors.toList());
-        return new Users(users);
+                .collect(Collectors.collectingAndThen(Collectors.toList(),
+                        Users::new));
     }
 
     public List<String> getUserNames() {

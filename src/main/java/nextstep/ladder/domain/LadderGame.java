@@ -12,7 +12,7 @@ public class LadderGame {
         this.users = users;
     }
 
-    public static LadderGame of(List<String> names,int height, LadderGenerateRule ladderGenerateRule) {
+    public static LadderGame start(List<String> names, int height, LadderGenerateRule ladderGenerateRule) {
         Users users = Users.of(names);
         Ladder ladder = Ladder.of(height, users.getSize(), ladderGenerateRule);
         return new LadderGame(ladder, users);

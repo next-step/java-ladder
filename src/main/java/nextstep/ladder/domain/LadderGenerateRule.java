@@ -2,9 +2,9 @@ package nextstep.ladder.domain;
 
 import java.util.Random;
 
-public class LadderGenerateRule {
+public class LadderGenerateRule implements GenerateRule {
 
-    private final Random random = new Random();
+    private static final Random random = new Random();
 
     public boolean generate() {
         return random.nextBoolean();
