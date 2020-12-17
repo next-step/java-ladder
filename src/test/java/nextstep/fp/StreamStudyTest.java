@@ -1,10 +1,10 @@
 package nextstep.fp;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import java.util.Arrays;
 import java.util.List;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -28,19 +28,19 @@ public class StreamStudyTest {
     }
 
     @Test
-    public void map() throws Exception {
+    public void map() {
         List<Integer> doubleNumbers = StreamStudy.doubleNumbers(numbers);
         doubleNumbers.forEach(System.out::println);
     }
 
     @Test
-    public void sumAll() throws Exception {
+    public void sumAll() {
         long sum = StreamStudy.sumAll(numbers);
         assertThat(sum).isEqualTo(21);
     }
 
     @Test
-    public void sumOverThreeAndDouble() throws Exception {
+    public void sumOverThreeAndDouble() {
         numbers = Arrays.asList(3, 1, 6, 2, 4, 8);
         long sum = StreamStudy.sumOverThreeAndDouble(numbers);
         assertThat(sum).isEqualTo(36);
