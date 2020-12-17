@@ -9,6 +9,7 @@ import ladder.domain.ladder.LadderStructure;
 import ladder.domain.ladder.RandomLineGenerator;
 import ladder.domain.participant.Participants;
 import ladder.exception.CanNotPlayGameException;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -18,29 +19,30 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LadderGameTest {
 
+    private LadderGame ladderGame;
+    private Participants participants;
+    private Ladder ladder;
+
+    @BeforeEach
+    public void setUp() {
+        this.participants = Participants.of(Arrays.asList("user","user2","user3"));
+        this.ladder = LadderFactory.makeLadder(new LadderStructure(5,4), new RandomLineGenerator());
+        this.ladderGame = new LadderGame(participants, ladder);
+    }
+
+
     @Test
     public void createInstanceTest(){
-        //Given & When
-        Participants participants = Participants.of(Arrays.asList("user","user2","user3"));
-        Ladder ladder = LadderFactory.makeLadder(new LadderStructure(5,4), new RandomLineGenerator());
-        LadderGame ladderGame = new LadderGame(participants, ladder);
-
-        //Then
         assertThat(ladderGame.play(new Rewards(Arrays.asList("test","test2","test3")))).isNotNull();
     }
 
     @Test
     public void gamePlayTest() {
-        //Given
-        Participants participants = Participants.of(Arrays.asList("user1","user2","user3"));
-        Ladder ladder = LadderFactory.makeLadder(new LadderStructure(4,3), new RandomLineGenerator());
-        LadderGame ladderGame = new LadderGame(participants, ladder);
-
-        //When
+        //Given & When
         GameResult gameResult = ladderGame.play(new Rewards(Arrays.asList("꽝","3000","3000")));
 
         //Then
-        assertThat(gameResult.search("user1")).isNotNull();
+        assertThat(gameResult.search("user")).isNotNull();
     }
 
     @Test
@@ -52,12 +54,7 @@ public class LadderGameTest {
 
     @Test
     public void getLadderMaterial() {
-        //Given
-        Participants participants = Participants.of(Arrays.asList("user1","user2","user3"));
-        Ladder ladder = LadderFactory.makeLadder(new LadderStructure(4,3), new RandomLineGenerator());
-        LadderGame ladderGame = new LadderGame(participants, ladder);
-
-        //When
+        //Given & When
         LadderMaterial ladderMaterial = ladderGame.getLadderMaterial();
 
         //Then
