@@ -50,4 +50,12 @@ public class Participants {
         return participants.toString();
     }
 
+    public int findRowByParticipant(Participant participant) {
+        return participants.stream()
+                    .filter(target -> target.equals(participant))
+                    .findFirst()
+                    .get()
+                    .getPosition()
+                    .getRow();
+    }
 }
