@@ -3,58 +3,49 @@ package ladder.domain;
 import ladder.domain.dto.GameResult;
 import ladder.domain.dto.Rewards;
 import ladder.domain.ladder.Ladder;
-import ladder.domain.ladder.Line;
+import ladder.domain.ladder.LadderFactory;
+import ladder.domain.ladder.LadderStructure;
 import ladder.domain.ladder.RandomLineGenerator;
 import ladder.domain.participant.Participants;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.MethodSource;
+import ladder.exception.CanNotPlayGameException;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LadderGameTest {
 
-    @ParameterizedTest
-    @CsvSource(value = {"3:5", "2:6", "5:3", "6:12"}, delimiter = ':')
-    public void makeLadderTest(int width, int height) {
-        //Given
-        LadderGame game = new LadderGame(new RandomLineGenerator(), new Rewards(Arrays.asList("꽝", "3000", "50000")));
-
-        //When
-        Ladder ladder = game.makeLadder(width, height);
+    @Test
+    public void createInstanceTest(){
+        //Given & When
+        Participants participants = Participants.of(Arrays.asList("user","user2","user3"));
+        Ladder ladder = LadderFactory.makeLadder(new LadderStructure(5,4), new RandomLineGenerator());
+        LadderGame ladderGame = new LadderGame(participants, ladder);
 
         //Then
-        assertThat(ladder.sizeWidth()).isEqualTo(width);
-        assertThat(ladder.sizeHeight()).isEqualTo(height);
+        assertThat(ladderGame.play(new Rewards(Arrays.asList("test","test2","test3")))).isNotNull();
     }
 
-    @ParameterizedTest
-    @MethodSource("createLines")
-    public void gamePlayTest(List<Line> lines) {
+    @Test
+    public void gamePlayTest() {
         //Given
-        Participants participants = Participants.of(Arrays.asList("user1", "user2", "user3", "user4", "user5"));
-        Ladder ladder = new Ladder(lines);
-        LadderGame game = new LadderGame(new RandomLineGenerator(), new Rewards(Arrays.asList("꽝", "3000", "50000", "2000", "1000")));
+        Participants participants = Participants.of(Arrays.asList("user1","user2","user3"));
+        Ladder ladder = LadderFactory.makeLadder(new LadderStructure(4,3), new RandomLineGenerator());
+        LadderGame ladderGame = new LadderGame(participants, ladder);
 
         //When
-        GameResult gameResult = game.play(participants, ladder);
+        GameResult gameResult = ladderGame.play(new Rewards(Arrays.asList("꽝","3000","3000")));
 
         //Then
-        assertThat(gameResult).isNotNull();
-
-
+        assertThat(gameResult.search("user1")).isNotNull();
     }
-    private static Stream<Arguments> createLines() {
-        return Stream.of(
-                Arguments.of(Arrays.asList(new Line(Arrays.asList(true, false, false, true)),
-                        new Line(Arrays.asList(false, true, false, true)),
-                        new Line(Arrays.asList(false, true, false, true)))
-                )
-        );
+
+    @Test
+    public void canNotPlayGameTest() {
+        assertThatThrownBy(() ->
+              new LadderGame(Participants.of(Arrays.asList("test","test2")), null).play(new Rewards(Arrays.asList("test")))
+        ).isInstanceOf(CanNotPlayGameException.class);
     }
 }

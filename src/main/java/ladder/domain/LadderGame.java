@@ -4,38 +4,31 @@ package ladder.domain;
 import ladder.domain.dto.GameResult;
 import ladder.domain.dto.Rewards;
 import ladder.domain.ladder.Ladder;
-import ladder.domain.ladder.Line;
-import ladder.domain.ladder.LineGenerator;
 import ladder.domain.participant.Participants;
-
-import java.util.ArrayList;
-import java.util.List;
+import ladder.exception.CanNotPlayGameException;
 
 public class LadderGame {
 
-    private LineGenerator lineGenerator;
-    private Rewards rewards;
+    private Participants participants;
+    private Ladder ladder;
 
-    public LadderGame(LineGenerator lineGenerator, Rewards rewards) {
-        this.lineGenerator = lineGenerator;
-        this.rewards = rewards;
+    public LadderGame(Participants participants, Ladder ladder) {
+        this.participants = participants;
+        this.ladder = ladder;
     }
 
-    public Ladder makeLadder(int width, int height) {
-        List<Line> lines = new ArrayList<>();
-        for (int i = 0; i < height; i++) {
-            Line line = lineGenerator.generateLine(width);
-            lines.add(line);
-        }
-        return new Ladder(lines);
-    }
-
-    public GameResult play(Participants participants, Ladder ladder) {
-
+    public GameResult play(Rewards rewards){
+        validateRewardsAndParticipantsCountMatch(rewards);
         for (int i = 0; i < ladder.sizeHeight(); i++) {
-             ladder.movePosition(i, participants);
+            ladder.movePosition(i, participants);
         }
 
         return new GameResult(participants.getParticipants(), rewards);
+    }
+
+    private void validateRewardsAndParticipantsCountMatch(Rewards rewards) {
+        if(rewards.getRewards().size() != participants.countParticipant()) {
+            throw new CanNotPlayGameException();
+        }
     }
 }

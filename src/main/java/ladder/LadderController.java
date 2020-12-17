@@ -4,6 +4,8 @@ import ladder.domain.LadderGame;
 import ladder.domain.dto.GameResult;
 import ladder.domain.dto.Rewards;
 import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.LadderFactory;
+import ladder.domain.ladder.LadderStructure;
 import ladder.domain.ladder.RandomLineGenerator;
 import ladder.domain.participant.Participants;
 import ladder.view.InputView;
@@ -19,13 +21,15 @@ public class LadderController {
         Participants participants = Participants.of(InputView.inputParticipantPerson());
 
         Rewards rewards = new Rewards(InputView.inputLadderGameReward());
-        LadderGame ladderGame = new LadderGame(new RandomLineGenerator(), rewards);
 
-        Ladder ladder = ladderGame.makeLadder(participants.countParticipant() - 1, InputView.inputLadderHeight());
+        LadderStructure ladderStructure = new LadderStructure(participants.countParticipant() -1, InputView.inputLadderHeight());
+        Ladder ladder = LadderFactory.makeLadder(ladderStructure, new RandomLineGenerator());
+
+        LadderGame ladderGame = new LadderGame(participants, ladder);
 
         ResultView.outputLadderGame(participants, ladder, rewards);
 
-        GameResult result = ladderGame.play(participants, ladder);
+        GameResult result = ladderGame.play(rewards);
 
         String userRewardResult = result.search(InputView.inputGameResultOfUser());
         ResultView.gameResult(userRewardResult);
