@@ -17,32 +17,32 @@ public class Line {
     }
 
     public int giveDirection(Position position) {
-        return moveEitherDirection(position);
+        return pointDirectionLeftOrRight(position);
     }
 
-    private int moveEitherDirection(Position position) {
+    private int pointDirectionLeftOrRight(Position position) {
        if(position.getRow() == 0 || position.getRow() == points.size()){
-           return moveFirstAndLastDirection(position);
+           return pointFirstOrLastElementDirection(position);
        }
-       return points.get(position.getRow()) == true ? moveRightDirection(position) : moveLeftDirection(position);
+       return points.get(position.getRow()) == true ? pointRightDirection(position) : pointLeftDirection(position);
     }
 
-    private int moveLeftDirection(Position position) {
+    private int pointLeftDirection(Position position) {
         if(points.get(position.getRow() + LEFT) == true) {
             return LEFT;
         }
         return 0;
     }
 
-    private int moveRightDirection(Position position) {
+    private int pointRightDirection(Position position) {
         if(points.get(position.getRow()) == true) {
             return RIGHT;
         }
         return 0;
     }
 
-    private int moveFirstAndLastDirection(Position position) {
-        return position.getRow() == 0 ? moveRightDirection(position) : moveLeftDirection(position);
+    private int pointFirstOrLastElementDirection(Position position) {
+        return position.getRow() == 0 ? pointRightDirection(position) : pointLeftDirection(position);
     }
 
 
