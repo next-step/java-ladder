@@ -37,7 +37,7 @@ public class OutputUi {
     }
 
     private static void lineBuilder(StringBuilder ladder, LadderLine line) {
-        IntStream.range(0, line.getPoints().size())
+        IntStream.range(0, line.getPointSize())
                 .forEach(i -> printLadderLine(ladder, line.getPoints().get(i)));
         ladder.append("\n");
     }
