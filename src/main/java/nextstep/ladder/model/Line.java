@@ -9,5 +9,6 @@ public class Line {
     public Line (int countOfPerson){
         //라인의 좌표 값에 선이 있는지 유무를 판단하는 로직 추가
 
+
     }
 }
