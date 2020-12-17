@@ -27,7 +27,7 @@ public class LadderController {
 
         LadderGame ladderGame = new LadderGame(participants, ladder);
 
-        ResultView.outputLadderGame(participants, ladder, rewards);
+        ResultView.outputLadderGame(ladderGame.getLadderMaterial(), rewards);
 
         GameResult result = ladderGame.play(rewards);
 

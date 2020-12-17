@@ -2,6 +2,7 @@ package ladder.domain;
 
 
 import ladder.domain.dto.GameResult;
+import ladder.domain.dto.LadderMaterial;
 import ladder.domain.dto.Rewards;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.participant.Participants;
@@ -30,5 +31,9 @@ public class LadderGame {
         if(rewards.getRewards().size() != participants.countParticipant()) {
             throw new CanNotPlayGameException();
         }
+    }
+
+    public LadderMaterial getLadderMaterial() {
+        return new LadderMaterial(participants.getParticipantNames(), ladder);
     }
 }

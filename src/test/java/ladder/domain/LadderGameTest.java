@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import ladder.domain.dto.GameResult;
+import ladder.domain.dto.LadderMaterial;
 import ladder.domain.dto.Rewards;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.LadderFactory;
@@ -47,5 +48,19 @@ public class LadderGameTest {
         assertThatThrownBy(() ->
               new LadderGame(Participants.of(Arrays.asList("test","test2")), null).play(new Rewards(Arrays.asList("test")))
         ).isInstanceOf(CanNotPlayGameException.class);
+    }
+
+    @Test
+    public void getLadderMaterial() {
+        //Given
+        Participants participants = Participants.of(Arrays.asList("user1","user2","user3"));
+        Ladder ladder = LadderFactory.makeLadder(new LadderStructure(4,3), new RandomLineGenerator());
+        LadderGame ladderGame = new LadderGame(participants, ladder);
+
+        //When
+        LadderMaterial ladderMaterial = ladderGame.getLadderMaterial();
+
+        //Then
+        assertThat(ladderMaterial.getParticipantNames()).containsAll(participants.getParticipantNames());
     }
 }

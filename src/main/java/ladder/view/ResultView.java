@@ -1,5 +1,6 @@
 package ladder.view;
 
+import ladder.domain.dto.LadderMaterial;
 import ladder.domain.dto.Rewards;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.participant.Participants;
@@ -25,16 +26,16 @@ public class ResultView {
     private static final String DELIMITER = " : ";
 
 
-    public static void outputLadderGame(Participants participants, Ladder ladder, Rewards rewards) {
+    public static void outputLadderGame(LadderMaterial material, Rewards rewards) {
         System.out.println(EXECUTE_RESULT);
 
-        outputParticipants(participants);
-        outputLadder(ladder);
+        outputParticipants(material.getParticipantNames());
+        outputLadder(material.getLadder());
         outputReward(rewards);
     }
 
-    private static void outputParticipants(Participants participants) {
-        System.out.println(String.join(WHITE_SPACE, parseNames(participants.getParticipantNames())));
+    private static void outputParticipants(List<String> participantsName) {
+        System.out.println(String.join(WHITE_SPACE, parseNames(participantsName)));
     }
 
     private static void outputLadder(Ladder ladder) {
@@ -53,7 +54,7 @@ public class ResultView {
     }
 
     private static void outputReward(Rewards rewards) {
-        System.out.println(String.join(WHITE_SPACE, parseNames(rewards.getReward())));
+        System.out.println(String.join(WHITE_SPACE, parseNames(rewards.getRewards())));
     }
 
 
