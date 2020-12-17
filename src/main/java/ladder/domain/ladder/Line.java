@@ -16,35 +16,34 @@ public class Line {
         this.points = points;
     }
 
-    public int giveDirection(Position position) {
-        return pointDirectionLeftOrRight(position);
+    public int giveDirection(int rowPoint) {
+        return pointDirectionLeftOrRight(rowPoint);
     }
 
-    private int pointDirectionLeftOrRight(Position position) {
-       if(position.getRow() == 0 || position.getRow() == points.size()){
-           return pointFirstOrLastElementDirection(position);
-       }
-       return points.get(position.getRow()) == true ? pointRightDirection(position) : pointLeftDirection(position);
+    private int pointDirectionLeftOrRight(int rowPoint) {
+        if(rowPoint == 0 || rowPoint == points.size()){
+            return pointFirstOrLastElementDirection(rowPoint);
+        }
+        return points.get(rowPoint) == true ? pointRightDirection(rowPoint) : pointLeftDirection(rowPoint);
     }
 
-    private int pointLeftDirection(Position position) {
-        if(points.get(position.getRow() + LEFT) == true) {
+    private int pointLeftDirection(int rowPoint) {
+        if(points.get(rowPoint + LEFT) == true) {
             return LEFT;
         }
         return 0;
     }
 
-    private int pointRightDirection(Position position) {
-        if(points.get(position.getRow()) == true) {
+    private int pointRightDirection(int rowPoint) {
+        if(points.get(rowPoint) == true) {
             return RIGHT;
         }
         return 0;
     }
 
-    private int pointFirstOrLastElementDirection(Position position) {
-        return position.getRow() == 0 ? pointRightDirection(position) : pointLeftDirection(position);
+    private int pointFirstOrLastElementDirection(int rowPoint) {
+        return rowPoint == 0 ? pointRightDirection(rowPoint) : pointLeftDirection(rowPoint);
     }
-
 
     public List<Boolean> getPoints() {
         return Collections.unmodifiableList(points);

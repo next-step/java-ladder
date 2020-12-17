@@ -31,7 +31,7 @@ public class Ladder {
 
     public void movePosition(int step, Participants participants) {
         for (int i = 0; i < participants.countParticipant(); i++) {
-            int direction = lines.get(step).giveDirection(participants.getParticipant(i).getPosition());
+            int direction = lines.get(step).giveDirection(participants.getParticipant(i).getPosition().getRow());
             participants.getParticipant(i).movePosition(direction);
         }
     }

@@ -1,6 +1,5 @@
 package ladder.domain.ladder;
 
-import ladder.domain.participant.Position;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -9,7 +8,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LineTest {
 
@@ -32,7 +30,7 @@ public class LineTest {
         Line line = new Line(expectedPoints);
 
         //When
-        int result = line.giveDirection(Position.from(index));
+        int result = line.giveDirection(index);
 
         //Then
         assertThat(result).isEqualTo(expected);
