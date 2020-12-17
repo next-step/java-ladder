@@ -1,6 +1,6 @@
 package ladder.view;
 
-import ladder.domain.dto.Reward;
+import ladder.domain.dto.Rewards;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.participant.Participants;
 
@@ -25,12 +25,12 @@ public class ResultView {
     private static final String DELIMITER = " : ";
 
 
-    public static void outputLadderGame(Participants participants, Ladder ladder, Reward reward) {
+    public static void outputLadderGame(Participants participants, Ladder ladder, Rewards rewards) {
         System.out.println(EXECUTE_RESULT);
 
         outputParticipants(participants);
         outputLadder(ladder);
-        outputReward(reward);
+        outputReward(rewards);
     }
 
     private static void outputParticipants(Participants participants) {
@@ -52,8 +52,8 @@ public class ResultView {
         }
     }
 
-    private static void outputReward(Reward reward) {
-        System.out.println(String.join(WHITE_SPACE, parseNames(reward.getReward())));
+    private static void outputReward(Rewards rewards) {
+        System.out.println(String.join(WHITE_SPACE, parseNames(rewards.getReward())));
     }
 
 

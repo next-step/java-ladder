@@ -19,8 +19,8 @@ public class GameResultTest {
     public void searchTest(List<Participant> participants, int index) {
         //Given
         List<String> rowReward = Arrays.asList("꽝","5000","5000");
-        Reward reward = new Reward(rowReward);
-        GameResult gameResult = new GameResult(participants, reward);
+        Rewards rewards = new Rewards(rowReward);
+        GameResult gameResult = new GameResult(participants, rewards);
 
         //When
         String rewardResult = gameResult.search(participants.get(index).getUserName());

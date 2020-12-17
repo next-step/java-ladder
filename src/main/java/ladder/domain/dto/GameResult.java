@@ -13,10 +13,10 @@ public class GameResult {
     private static final String ALL_KEYWORD = "all";
     private Map<String, String> gameResult;
 
-    public GameResult(List<Participant> participants, Reward reward) {
+    public GameResult(List<Participant> participants, Rewards rewards) {
         this.gameResult = participants.stream()
                              .collect(Collectors.toMap(Participant::getUserName,
-                                      participant -> reward.findRewardByPosition(participant.getPosition())));
+                                      participant -> rewards.findRewardByPosition(participant.getPosition())));
     }
 
 

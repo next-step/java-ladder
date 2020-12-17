@@ -2,7 +2,7 @@ package ladder;
 
 import ladder.domain.LadderGame;
 import ladder.domain.dto.GameResult;
-import ladder.domain.dto.Reward;
+import ladder.domain.dto.Rewards;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.RandomLineGenerator;
 import ladder.domain.participant.Participants;
@@ -18,12 +18,12 @@ public class LadderController {
 
         Participants participants = Participants.of(InputView.inputParticipantPerson());
 
-        Reward reward = new Reward(InputView.inputLadderGameReward());
-        LadderGame ladderGame = new LadderGame(new RandomLineGenerator(), reward);
+        Rewards rewards = new Rewards(InputView.inputLadderGameReward());
+        LadderGame ladderGame = new LadderGame(new RandomLineGenerator(), rewards);
 
         Ladder ladder = ladderGame.makeLadder(participants.countParticipant() - 1, InputView.inputLadderHeight());
 
-        ResultView.outputLadderGame(participants, ladder, reward);
+        ResultView.outputLadderGame(participants, ladder, rewards);
 
         GameResult result = ladderGame.play(participants, ladder);
 

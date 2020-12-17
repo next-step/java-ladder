@@ -12,14 +12,14 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class RewardTest {
+public class RewardsTest {
 
     @ParameterizedTest
     @ValueSource(ints = {0,1,2,3})
     public void matchRewardTest(int index) {
         //Given
         List<String> rewards = Arrays.asList("꽝", "5000", "꽝", "5000");
-        Reward reward = new Reward(rewards);
+        Rewards reward = new Rewards(rewards);
 
         //When
         String result = reward.findRewardByPosition(Position.from(index));
@@ -32,7 +32,7 @@ public class RewardTest {
     public void failMatchReward() {
         assertThatThrownBy(() -> {
             List<String> rewards = Arrays.asList("꽝", "5000", "꽝", "5000");
-            new Reward(rewards).findRewardByPosition(Position.from(rewards.size() + 1));
+            new Rewards(rewards).findRewardByPosition(Position.from(rewards.size() + 1));
         }).isInstanceOf(NotFoundRewardException.class);
     }
 }

@@ -2,7 +2,7 @@ package ladder.domain;
 
 
 import ladder.domain.dto.GameResult;
-import ladder.domain.dto.Reward;
+import ladder.domain.dto.Rewards;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.Line;
 import ladder.domain.ladder.LineGenerator;
@@ -14,11 +14,11 @@ import java.util.List;
 public class LadderGame {
 
     private LineGenerator lineGenerator;
-    private Reward reward;
+    private Rewards rewards;
 
-    public LadderGame(LineGenerator lineGenerator, Reward reward) {
+    public LadderGame(LineGenerator lineGenerator, Rewards rewards) {
         this.lineGenerator = lineGenerator;
-        this.reward = reward;
+        this.rewards = rewards;
     }
 
     public Ladder makeLadder(int width, int height) {
@@ -36,6 +36,6 @@ public class LadderGame {
              ladder.movePosition(i, participants);
         }
 
-        return new GameResult(participants.getParticipants(), reward);
+        return new GameResult(participants.getParticipants(), rewards);
     }
 }

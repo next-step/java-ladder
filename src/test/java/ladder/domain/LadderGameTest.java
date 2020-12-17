@@ -1,7 +1,7 @@
 package ladder.domain;
 
 import ladder.domain.dto.GameResult;
-import ladder.domain.dto.Reward;
+import ladder.domain.dto.Rewards;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.Line;
 import ladder.domain.ladder.RandomLineGenerator;
@@ -23,7 +23,7 @@ public class LadderGameTest {
     @CsvSource(value = {"3:5", "2:6", "5:3", "6:12"}, delimiter = ':')
     public void makeLadderTest(int width, int height) {
         //Given
-        LadderGame game = new LadderGame(new RandomLineGenerator(), new Reward(Arrays.asList("꽝", "3000", "50000")));
+        LadderGame game = new LadderGame(new RandomLineGenerator(), new Rewards(Arrays.asList("꽝", "3000", "50000")));
 
         //When
         Ladder ladder = game.makeLadder(width, height);
@@ -39,7 +39,7 @@ public class LadderGameTest {
         //Given
         Participants participants = Participants.of(Arrays.asList("user1", "user2", "user3", "user4", "user5"));
         Ladder ladder = new Ladder(lines);
-        LadderGame game = new LadderGame(new RandomLineGenerator(), new Reward(Arrays.asList("꽝", "3000", "50000", "2000", "1000")));
+        LadderGame game = new LadderGame(new RandomLineGenerator(), new Rewards(Arrays.asList("꽝", "3000", "50000", "2000", "1000")));
 
         //When
         GameResult gameResult = game.play(participants, ladder);

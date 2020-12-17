@@ -5,11 +5,11 @@ import ladder.exception.NotFoundRewardException;
 
 import java.util.List;
 
-public class Reward {
+public class Rewards {
 
     private final List<String> reward;
 
-    public Reward(List<String> reward) {
+    public Rewards(List<String> reward) {
         this.reward = reward;
     }
 
