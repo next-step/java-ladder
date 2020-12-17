@@ -27,8 +27,7 @@ public class Ladder {
     }
 
     private static int getLadderLength(int participantCount) {
-        int ladderLength = participantCount * 2 - 1;
-        return ladderLength;
+        return participantCount * 2 - 1;
     }
 
     private static boolean isLessThanTwo(int ladderHeight) {
