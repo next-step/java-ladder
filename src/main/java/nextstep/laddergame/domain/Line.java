@@ -30,7 +30,7 @@ public class Line {
 
     private void addRandomWay(int index) {
         if (isFirstPoint(index)) {
-            setPoint(new RandomStrategy());
+            setPoint(RandomStrategy.isMovable());
             return;
         }
 
@@ -39,15 +39,15 @@ public class Line {
             return;
         }
 
-        setPoint(new RandomStrategy());
+        setPoint(RandomStrategy.isMovable());
     }
 
     private boolean checkFrontWay(int index) {
         return this.points.get(index - 2);
     }
 
-    private void setPoint(RandomStrategy way) {
-        this.points.add(way.isMovable());
+    private void setPoint(boolean isWay) {
+        this.points.add(isWay);
     }
 
     private boolean isFirstPoint(int index) {
