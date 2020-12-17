@@ -13,22 +13,26 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class DirectionTest {
 
     public void 첫번째이동() {
-        assertThat(Direction.first(true).next(new LadderRandomGenerator().nextLine())).isEqualTo(Direction.of(true, false));
+        Direction moveFirst = Direction.first(true).next(new LadderRandomGenerator().nextLine());
+        assertThat(moveFirst).isEqualTo(Direction.of(true, false));
     }
 
     @Test
     public void 오른쪽이동() {
-        assertThat(Direction.of(true, false).next(true)).isEqualTo(Direction.of(false, true));
+        Direction moveRight = Direction.of(true, false).next(true);
+        assertThat(moveRight).isEqualTo(Direction.of(false, true));
     }
 
     @Test
     public void 왼쪽이동() {
-        assertThat(Direction.of(false, true).next(false)).isEqualTo(Direction.of(true, false));
+        Direction moveLeft = Direction.of(false, true).next(false);
+        assertThat(moveLeft).isEqualTo(Direction.of(true, false));
     }
 
     @Test
     public void 마지막이동() {
-        assertThat(Direction.first(true).last()).isEqualTo(Direction.of(true, false));
+        Direction moveLast = Direction.first(true).last();
+        assertThat(moveLast).isEqualTo(Direction.of(true, false));
     }
 
     @Test
