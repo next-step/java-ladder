@@ -116,8 +116,4 @@ public class ResultView {
         throw new IllegalArgumentException(NOT_EXISTS_NAME);
     }
 
-    private static boolean isBarIndex(int index) {
-        return index % 2 == 0;
-    }
-
 }

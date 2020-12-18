@@ -12,13 +12,7 @@ public class LadderGameController {
         );
         LadderSize ladderSize = new LadderSize(ladderGameInformation.participantsCount(), LadderGameView.enterMaxLadderHeight());
 
-        Ladder ladder = new Ladder(ladderSize);
-        LadderGame ladderGame = new LadderGame(ladderGameInformation, ladder);
-
-        LadderResult ladderResult = new LadderResult(ladder.run());
-        LadderGameResult ladderGameResult = ladderGame.getLadderGameResult(ladderResult);
-
-        LadderGameView.printLadders(ladderGameInformation, ladderGameResult);
-        LadderGameView.printLadderGameResult(ladderGameResult.getResults());
+        LadderGame ladderGame = new LadderGame(ladderGameInformation, ladderSize);
+        LadderGameView.printLadders(ladderGameInformation, ladderGame.getResult());
     }
 }

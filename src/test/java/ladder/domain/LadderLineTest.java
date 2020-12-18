@@ -14,15 +14,7 @@ class LadderLineTest {
         LadderLine ladderLine = new LadderLine(5);
 
         //Then
-        assertThat(ladderLine.getPoints().size()).isEqualTo(4);
+        assertThat(ladderLine.getPoints().size()).isEqualTo(5);
     }
-
-    @Test
-    @DisplayName("연속되지 않는 사다리를 생성한다.")
-    void should_return_non_continuous_points() {
-        //Given & Whens
-        LadderLine ladderLine = new LadderLine(5);
-    }
-
 
 }

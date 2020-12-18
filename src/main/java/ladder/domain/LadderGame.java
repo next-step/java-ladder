@@ -8,21 +8,19 @@ public class LadderGame {
     private final LadderGameInformation ladderGameInformation;
     private final Ladder ladder;
 
-    public LadderGame(LadderGameInformation ladderGameInformation, Ladder ladder) {
+    public LadderGame(LadderGameInformation ladderGameInformation, LadderSize ladderSize) {
         this.ladderGameInformation = ladderGameInformation;
-        this.ladder = ladder;
+        this.ladder = new Ladder(ladderSize);
     }
 
-    public LadderGameResult getLadderGameResult(LadderResult ladderResult) {
+    public LadderGameResult getResult() {
         Map<String, String> result = new LinkedHashMap<>();
         for (int index = 0; index < ladderGameInformation.getParticipants().size(); index++) {
             result.put(
                     ladderGameInformation.getParticipants().get(index),
-                    ladderGameInformation.getResults().get(ladderResult.get(index))
+                    ladderGameInformation.getResults().get(ladder.getResult(index))
             );
         }
-        ladder.printLadder();
         return new LadderGameResult(result, ladder);
     }
-
 }

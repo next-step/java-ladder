@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.Objects;
 import java.util.Random;
 
 import static ladder.domain.Point.generateDirection;
@@ -52,5 +53,19 @@ public class Direction {
 
     public boolean isRight() {
         return right;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Direction direction = (Direction) o;
+        return left == direction.left &&
+                right == direction.right;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(left, right);
     }
 }

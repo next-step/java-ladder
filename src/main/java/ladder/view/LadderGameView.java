@@ -3,8 +3,6 @@ package ladder.view;
 import ladder.domain.LadderGameInformation;
 import ladder.domain.LadderGameResult;
 
-import java.util.Map;
-
 public class LadderGameView {
 
     public static String enterParticipants() {
@@ -21,11 +19,8 @@ public class LadderGameView {
 
     public static void printLadders(LadderGameInformation ladderGameInformation, LadderGameResult ladderGameResult) {
         ResultView.printLadders(ladderGameInformation, ladderGameResult);
+        ResultView.printResult(ladderGameResult.getResults());
 
-    }
-
-    public static void printLadderGameResult(Map<String, String> ladderGameResult) {
-        ResultView.printResult(ladderGameResult);
     }
 
     public static String enterLadderGameResult() {
