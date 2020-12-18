@@ -6,8 +6,10 @@ import java.util.stream.IntStream;
 
 public class Line {
     private final List<Boolean> points = new ArrayList<>();
+    private final MovingStrategy movingStrategy;
 
     public Line(int length) {
+        this.movingStrategy = new RandomStrategy();
         IntStream.range(0, length)
                 .forEach(index -> addPoint(index));
     }
@@ -30,7 +32,7 @@ public class Line {
 
     private void addRandomWay(int index) {
         if (isFirstPoint(index)) {
-            setPoint(RandomStrategy.isMovable());
+            setPoint(this.movingStrategy);
             return;
         }
 
@@ -39,15 +41,15 @@ public class Line {
             return;
         }
 
-        setPoint(RandomStrategy.isMovable());
+        setPoint(this.movingStrategy);
     }
 
     private boolean checkFrontWay(int index) {
         return this.points.get(index - 2);
     }
 
-    private void setPoint(boolean isWay) {
-        this.points.add(isWay);
+    private void setPoint(MovingStrategy movingStrategy) {
+        this.points.add(movingStrategy.isMovable());
     }
 
     private boolean isFirstPoint(int index) {
