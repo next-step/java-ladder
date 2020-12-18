@@ -1,7 +1,6 @@
 package step3_renewal.domain;
 
 import step3_renewal.exception.MinHeightException;
-import step3_renewal.utils.LadderUtil;
 
 import java.util.Collections;
 import java.util.List;
@@ -17,12 +16,11 @@ public class Ladder {
         this.ladderLines = ladderLines;
     }
 
-    public static Ladder of(int maxHeight, Participants participants) {
+    public static Ladder of(int maxHeight, Participants participants, LadderRandomGenerator ladderRandomGenerator) {
         validate(maxHeight);
-        LadderUtil ladderUtil = new LadderUtil();
         List<LadderLine> ladderLines =
                 IntStream.range(0, maxHeight)
-                        .mapToObj(i -> LadderLine.init(participants.size(), ladderUtil))
+                        .mapToObj(i -> LadderLine.init(participants.size(), ladderRandomGenerator))
                         .collect(Collectors.toList());
         return new Ladder(ladderLines);
     }

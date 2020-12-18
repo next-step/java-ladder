@@ -4,7 +4,10 @@ import java.util.Objects;
 
 public class Direction {
 
+    private static final boolean FALSE = false;
+
     private final boolean left;
+    
     private final boolean right;
 
     private Direction(boolean left, boolean right) {
@@ -15,6 +18,14 @@ public class Direction {
         this.right = right;
     }
 
+    public static Direction of(boolean left, boolean right) {
+        return new Direction(left, right);
+    }
+
+    public static Direction first(boolean right) {
+        return new Direction(FALSE, right);
+    }
+
     public boolean isLeft() {
         return this.left;
     }
@@ -23,23 +34,15 @@ public class Direction {
         return this.right;
     }
 
-    public static Direction of(boolean left, boolean right) {
-        return new Direction(left, right);
-    }
-
     public Direction next(boolean nextRight) {
         if (this.right) {
-            return of(this.right, false);
+            return of(this.right, FALSE);
         }
         return of(this.right, nextRight);
     }
 
-    public static Direction first(boolean direction) {
-        return new Direction(false, direction);
-    }
-
     public Direction last() {
-        return of(this.right, false);
+        return of(this.right, FALSE);
     }
 
     @Override

@@ -1,10 +1,7 @@
 package ladder.step3_renewal.domain;
 
 import org.junit.jupiter.api.Test;
-import step3_renewal.domain.GameResults;
-import step3_renewal.domain.Ladder;
-import step3_renewal.domain.Participants;
-import step3_renewal.domain.Rewards;
+import step3_renewal.domain.*;
 import step3_renewal.utils.StringUtil;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -17,7 +14,7 @@ public class GameResultTest {
         Rewards rewards = Rewards.of(StringUtil.splitToList("100,200,300"), participants.size());
         int ladderHeight = 4;
 
-        Ladder ladder = Ladder.of(ladderHeight, participants);
+        Ladder ladder = Ladder.of(ladderHeight, participants, new LadderRandomGenerator());
 
         GameResults gameResults = GameResults.results(participants, rewards, ladder);
 
