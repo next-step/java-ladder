@@ -10,6 +10,10 @@ public class Line {
         line.add(point);
     }
 
+    public List<Point> getLine() {
+        return line;
+    }
+
     public Point getLastPoint() {
         return line.get(line.size()-1);
     }

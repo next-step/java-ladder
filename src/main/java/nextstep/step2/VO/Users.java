@@ -10,6 +10,9 @@ public class Users {
         this.userList = userList;
     }
 
+    public List<User> getUserList() {
+        return userList;
+    }
     public int getUserListSize() {
         return userList.size();
     }

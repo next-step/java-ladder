@@ -9,4 +9,7 @@ public class User {
         this.startPosition = position;
     }
 
+    public String getName() {
+        return name;
+    }
 }

@@ -15,8 +15,8 @@ public class PointGenerator {
                 DirectionGenerator.getNextDirection(previousPoint.getDirection()));
     }
 
-    public static Point getLastPoint(int ladderWidth) {
+    public static Point getLastPoint(Point previousPoint, int ladderWidth) {
         return new Point(new Position(ladderWidth - 1),
-                DirectionGenerator.getLasDirection());
+                DirectionGenerator.getLastDirection(previousPoint.getDirection()));
     }
 }

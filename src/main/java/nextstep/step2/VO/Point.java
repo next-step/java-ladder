@@ -19,6 +19,10 @@ public class Point {
         return direction;
     }
 
+    public boolean checkRightDirection() {
+        return direction == Direction.RIGHT;
+    }
+
     public Position getPosition() {
         return position;
     }

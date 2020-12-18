@@ -15,11 +15,16 @@ public class InputView {
     private static final String PLEASE_INPUT_LADDER_HEIGHT = "최대 사다리 높이는 몇 개인가요?";
 
 
-    private static Users inputUsers() {
+    public static Users inputUsers() {
         System.out.println(PLEASE_INPUT_USERS_NAME);
         String[] names = getStringArray();
         List<User> users = getUserList(names);
         return new Users(users);
+    }
+
+    public static int inputHeight() {
+        System.out.println(PLEASE_INPUT_LADDER_HEIGHT);
+        return getIntValue();
     }
 
     public static List<User> getUserList(String[] names) {
@@ -36,6 +41,10 @@ public class InputView {
 
     private static String getStringValue() {
         return SCANNER.nextLine();
+    }
+
+    private static int getIntValue() {
+        return Integer.parseInt(getStringValue());
     }
 
 }

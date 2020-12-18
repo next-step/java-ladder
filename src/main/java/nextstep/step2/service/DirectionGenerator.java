@@ -17,8 +17,8 @@ public class DirectionGenerator {
         return getDirection(nextDirectionFilter(previous));
     }
 
-    public static Direction getLasDirection() {
-        return getDirection(firstDirectionFilter());
+    public static Direction getLastDirection(Direction previous) {
+        return getDirection(lastDirectionFilter(previous));
     }
 
     private static int defineDirectionWay() {

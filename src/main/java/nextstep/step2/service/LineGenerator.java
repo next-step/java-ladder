@@ -13,7 +13,7 @@ public class LineGenerator {
             line.addPoint(PointGenerator.getNextPoint(line.getLastPoint()));
         }
 
-        line.addPoint(PointGenerator.getLastPoint(ladderWidth));
+        line.addPoint(PointGenerator.getLastPoint(line.getLastPoint(), ladderWidth));
 
         return line;
     }
