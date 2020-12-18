@@ -10,28 +10,23 @@ public class Ladder {
     private static final int START_INDEX = 0;
     private final List<LadderLine> ladderLines;
 
-    public Ladder(LadderSize ladderSize, LadderGenerator ladderGenerator) {
+    public Ladder(LadderSize ladderSize) {
         this.ladderLines = IntStream.range(START_INDEX, ladderSize.getHeight())
-                .mapToObj(index -> new LadderLine(ladderSize.getWidth(), ladderGenerator))
+                .mapToObj(index -> new LadderLine(ladderSize.getWidth()))
                 .collect(Collectors.toList());
     }
 
     public List<Integer> run() {
-
-        List<Integer> result = new ArrayList<>();
-
-        for (int index = 0; index < getLadderWidth(); index += 2) {
-            result.add(getResult(index));
-        }
-
-        return result;
+        return IntStream.range(0, getLadderWidth())
+                .mapToObj(this::getResult)
+                .collect(Collectors.toList());
     }
 
     private int getResult(int index) {
-        for (LadderLine ladderLine : ladderLines) {
-            index = ladderLine.existsSideLadder(index);
+        for (LadderLine line : ladderLines) {
+            index = line.move(index);
         }
-        return index / 2;
+        return index;
     }
 
     public List<LadderLine> getLadderLines() {
@@ -40,5 +35,15 @@ public class Ladder {
 
     public int getLadderWidth() {
         return ladderLines.get(0).getPoints().size();
+    }
+
+    public void printLadder() {
+        getLadderLines().forEach(ladderLine -> {
+            ladderLine.getPoints().forEach(point -> {
+                System.out.print(String.valueOf(point.isLeft()) + '|' + point.isRight());
+                System.out.print(" ");
+            });
+            System.out.println();
+        });
     }
 }

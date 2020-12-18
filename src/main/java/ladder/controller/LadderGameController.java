@@ -3,7 +3,7 @@ package ladder.controller;
 import ladder.domain.*;
 import ladder.view.LadderGameView;
 
-import java.util.Random;
+import java.util.List;
 
 public class LadderGameController {
 
@@ -14,9 +14,11 @@ public class LadderGameController {
         );
         LadderSize ladderSize = new LadderSize(ladderGameInformation.participantsCount(), LadderGameView.enterMaxLadderHeight());
 
-        Ladder ladder = new Ladder(ladderSize, () -> new Random().nextBoolean());
+        Ladder ladder = new Ladder(ladderSize);
         LadderGame ladderGame = new LadderGame(ladderGameInformation, ladder);
-        LadderGameResult ladderGameResult = ladderGame.getLadderGameResult();
+
+        LadderResult ladderResult = new LadderResult(ladder.run());
+        LadderGameResult ladderGameResult = ladderGame.getLadderGameResult(ladderResult);
 
         LadderGameView.printLadders(ladderGameInformation, ladderGameResult);
         LadderGameView.printLadderGameResult(ladderGameResult.getResults());

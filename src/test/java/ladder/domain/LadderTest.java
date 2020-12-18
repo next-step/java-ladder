@@ -17,7 +17,7 @@ class LadderTest {
         LadderSize ladderSize = new LadderSize(4, 5);
 
         //When
-        Ladder ladder = new Ladder(ladderSize, () -> false);
+        Ladder ladder = new Ladder(ladderSize);
         List<Integer> run = ladder.run();
 
         //Then
@@ -32,7 +32,7 @@ class LadderTest {
         LadderSize ladderSize = new LadderSize(4, 5);
 
         //When
-        Ladder ladder = new Ladder(ladderSize, () -> true);
+        Ladder ladder = new Ladder(ladderSize);
         List<Integer> run = ladder.run();
 
         //Then

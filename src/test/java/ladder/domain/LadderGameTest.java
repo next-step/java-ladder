@@ -18,11 +18,12 @@ class LadderGameTest {
         //Given
         LadderGameInformation ladderGameInformation = new LadderGameInformation("pobi,honux,crong,jk", "꽝,5000,꽝,3000");
         LadderSize ladderSize = new LadderSize(4, 5);
-        Ladder ladder = new Ladder(ladderSize, () -> true);
+        Ladder ladder = new Ladder(ladderSize);
 
         //When
         LadderGame ladderGame = new LadderGame(ladderGameInformation, ladder);
-        LadderGameResult result = ladderGame.getLadderGameResult();
+        LadderResult ladderResult = new LadderResult(ladder.run());
+        LadderGameResult result = ladderGame.getLadderGameResult(ladderResult);
 
         //Then
         Map<String, String> expectedResults = new HashMap<>();
@@ -41,11 +42,12 @@ class LadderGameTest {
         //Given
         LadderGameInformation ladderGameInformation = new LadderGameInformation("pobi,honux,crong,jk", "5000,꽝,꽝,3000");
         LadderSize ladderSize = new LadderSize(4, 5);
-        Ladder ladder = new Ladder(ladderSize, () -> false);
+        Ladder ladder = new Ladder(ladderSize);
 
         //When
         LadderGame ladderGame = new LadderGame(ladderGameInformation, ladder);
-        LadderGameResult result = ladderGame.getLadderGameResult();
+        LadderResult ladderResult = new LadderResult(ladder.run());
+        LadderGameResult result = ladderGame.getLadderGameResult(ladderResult);
 
         //Then
         LadderGameView.printLadders(ladderGameInformation, result);
