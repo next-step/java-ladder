@@ -9,15 +9,15 @@ public class InputView {
 
 
     public String inputPeople(){
+        sc = new Scanner(System.in);
         System.out.println(INPUT_PEOPLE);
         return sc.nextLine();
     }
 
     public int inputLadderHeight(){
+        sc = new Scanner(System.in);
         System.out.println(INPUT_HEIGHT);
         return sc.nextInt();
     }
-
-
 
 }
