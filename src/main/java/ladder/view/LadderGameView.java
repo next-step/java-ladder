@@ -21,6 +21,7 @@ public class LadderGameView {
 
     public static void printLadders(LadderGameInformation ladderGameInformation, LadderGameResult ladderGameResult) {
         ResultView.printLadders(ladderGameInformation, ladderGameResult);
+
     }
 
     public static void printLadderGameResult(Map<String, String> ladderGameResult) {

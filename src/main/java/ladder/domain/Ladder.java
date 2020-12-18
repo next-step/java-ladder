@@ -40,7 +40,7 @@ public class Ladder {
     public void printLadder() {
         getLadderLines().forEach(ladderLine -> {
             ladderLine.getPoints().forEach(point -> {
-                System.out.print(String.valueOf(point.isLeft()) + '|' + point.isRight());
+                System.out.print(String.valueOf(point.getDirection().isLeft()) + '|' + point.getDirection().isRight());
                 System.out.print(" ");
             });
             System.out.println();

@@ -4,67 +4,47 @@ import java.util.Random;
 
 public class Point {
 
-    private final static String LADDER_CAN_NOT_BE_CONSECUTIVE = "The ladder cannot be consecutive.";
     private final int index;
     private final Direction direction;
-    private final boolean left;
-    private final boolean right;
 
-    public Point(int index, boolean left, boolean right) {
-        valid(left, right);
+    public Point(int index, Direction direction) {
         this.index = index;
-        this.left = left;
-        this.right = right;
-    }
-
-    private void valid(boolean left, boolean right) {
-        if (left && right) {
-            throw new IllegalArgumentException(LADDER_CAN_NOT_BE_CONSECUTIVE);
-        }
+        this.direction = direction;
     }
 
     public static Point of(Point previous) {
-        if (previous.right) {
-            return new Point(previous.index + 1, true, false);
+        if (previous.direction.isRight()) {
+            return new Point(previous.index + 1, Direction.of(true, false));
         }
-        return new Point(previous.index + 1, false, new Random().nextBoolean());
+        return new Point(previous.index + 1, Direction.of(false, generateDirection()));
     }
 
     public static Point firstOf() {
-        return new Point(0, false, new Random().nextBoolean());
+        return new Point(0, Direction.first(generateDirection()));
     }
 
-    public static Point lastOf(Point previous) {
-        if (previous.right) {
-            return new Point(previous.index + 1, true, false);
-        }
-        return new Point(previous.index + 1, false, false);
+    public Point lastOf() {
+        return new Point(index + 1, direction.last());
     }
 
     public int move() {
-        if (Boolean.TRUE.equals(left)) {
-            return moveLeft();
+        if (direction.isRight()) {
+            return index + 1;
         }
 
-        if (Boolean.TRUE.equals(right)) {
-            return moveRight();
+        if (direction.isLeft()) {
+            return index - 1;
         }
+
         return index;
     }
 
-    private int moveLeft() {
-        return index - 1;
+    public Direction getDirection() {
+        return direction;
     }
 
-    private int moveRight() {
-        return index + 1;
+    public static boolean generateDirection() {
+        return new Random().nextBoolean();
     }
 
-    public boolean isLeft() {
-        return left;
-    }
-
-    public boolean isRight() {
-        return right;
-    }
 }

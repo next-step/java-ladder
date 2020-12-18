@@ -83,3 +83,4 @@ pobi               cron               jh
 - all 입력시 출력하는 순서 수정
 - 결과가 출력되는 형태 수정
 - Ladder를 실행시키는 메서드 위치 변경
+- Point에서 Direction 나누기

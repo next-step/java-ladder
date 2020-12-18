@@ -3,8 +3,6 @@ package ladder.controller;
 import ladder.domain.*;
 import ladder.view.LadderGameView;
 
-import java.util.List;
-
 public class LadderGameController {
 
     public void getLadderGameInformation() {

@@ -1,9 +1,6 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
-import ladder.domain.LadderGameInformation;
-import ladder.domain.LadderGameResult;
-import ladder.domain.LadderLine;
+import ladder.domain.*;
 
 import java.util.List;
 import java.util.Map;
@@ -73,24 +70,22 @@ public class ResultView {
                 .forEach(ladderLine -> {
                     printSpace(space);
                     printLadderLine(ladderLine);
+                    printOpeningLetter();
                 });
     }
 
     private static void printLadderLine(LadderLine ladderLine) {
-        IntStream.range(0, ladderLine.getPoints().size())
-                .mapToObj(index -> getLadder(ladderLine, index))
-                .forEach(System.out::print);
-        printOpeningLetter();
+        ladderLine.getPoints().forEach(ResultView::getLadder);
     }
 
-    private static String getLadder(LadderLine ladderLine, int index) {
-        if (isBarIndex(index)) {
-            return BAR;
+    private static void getLadder(Point point) {
+        System.out.print(BAR);
+        if (Boolean.TRUE.equals(point.getDirection().isRight())) {
+            System.out.print(LADDER);
+            return;
         }
-        if (Boolean.TRUE.equals(ladderLine.getPoints().get(index))) {
-            return LADDER;
-        }
-        return BLANK;
+        System.out.print(BLANK);
+
     }
 
     protected static void printResult(Map<String, String> ladderGameResult) {

@@ -13,13 +13,13 @@ public class LadderLine {
     private List<Point> InitializeLadder(int sizeOfLadder) {
         List<Point> points = new ArrayList<>(sizeOfLadder);
 
-        Point previous = Point.firstOf();
-        points.add(previous);
+        Point point = Point.firstOf();
+        points.add(point);
         for (int i = 1; i < sizeOfLadder - 1; i++) {
-            previous = Point.of(previous);
-            points.add(previous);
+            point = Point.of(point);
+            points.add(point);
         }
-        points.add(Point.lastOf(previous));
+        points.add(point.lastOf());
 
         return points;
     }
