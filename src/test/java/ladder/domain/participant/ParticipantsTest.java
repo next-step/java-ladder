@@ -31,4 +31,18 @@ public class ParticipantsTest {
                 Participants.of(Arrays.asList("user"))
         ).isInstanceOf(InsufficientParticipantsCountException.class);
     }
+
+
+    @ParameterizedTest
+    @CsvSource(value = {"user1:0", "user2:1", "user3:2"}, delimiter = ':')
+    public void locateRowPointTest(String userName, int point) {
+        //Given
+        Participants participants = Participants.of(Arrays.asList("user1", "user2", "user3"));
+
+        //When
+        int expectedPoint = participants.findRowByParticipant(new Participant(userName, point));
+
+        //Then
+        assertThat(point).isEqualTo(expectedPoint);
+    }
 }
