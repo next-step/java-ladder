@@ -10,15 +10,16 @@ public class InputView {
     private static final String ENTER_NAME = "결과를 보고 싶은 사람은?";
     private static final Scanner scanner = new Scanner(System.in);
 
-    protected static String enterParticipants() {
+    private InputView() {
+    }
 
+    protected static String enterParticipants() {
         System.out.println(ENTER_PARTICIPANTS);
         return scanner.nextLine();
     }
 
     protected static int enterMaxLadderHeight() {
         System.out.println();
-
         System.out.println(ENTER_MAX_LADDER_HEIGHT);
         int height = scanner.nextInt();
         deleteOpeningLetter();
@@ -27,13 +28,11 @@ public class InputView {
 
     protected static String enterLadderGameResult() {
         System.out.println();
-
         System.out.println(ENTER_LADDER_GAME_RESULT);
         return scanner.nextLine();
     }
 
-    public static String enterName() {
-
+    protected static String enterName() {
         System.out.println();
         System.out.println(ENTER_NAME);
         return scanner.nextLine();

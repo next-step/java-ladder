@@ -7,21 +7,21 @@ public class LadderLine {
     private final List<Point> points;
 
     public LadderLine(int sizeOfLadder) {
-        this.points = InitializeLadder(sizeOfLadder);
+        this.points = initializeLadder(sizeOfLadder);
     }
 
-    private List<Point> InitializeLadder(int sizeOfLadder) {
-        List<Point> points = new ArrayList<>(sizeOfLadder);
+    private List<Point> initializeLadder(int sizeOfLadder) {
+        List<Point> result = new ArrayList<>(sizeOfLadder);
 
         Point point = Point.firstOf();
-        points.add(point);
+        result.add(point);
         for (int i = 1; i < sizeOfLadder - 1; i++) {
             point = Point.of(point);
-            points.add(point);
+            result.add(point);
         }
-        points.add(point.lastOf());
+        result.add(point.lastOf());
 
-        return points;
+        return result;
     }
 
     public int move(int index) {

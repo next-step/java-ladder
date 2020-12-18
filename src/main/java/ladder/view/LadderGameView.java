@@ -5,6 +5,9 @@ import ladder.domain.LadderGameResult;
 
 public class LadderGameView {
 
+    private LadderGameView() {
+    }
+
     public static String enterParticipants() {
         return InputView.enterParticipants();
     }
