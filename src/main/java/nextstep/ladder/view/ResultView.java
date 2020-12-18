@@ -3,6 +3,7 @@ package nextstep.ladder.view;
 import nextstep.ladder.model.Line;
 
 import java.util.List;
+import java.util.Optional;
 
 public class ResultView {
 
@@ -15,7 +16,6 @@ public class ResultView {
 
         System.out.println("실행결과");
         System.out.println();
-        System.out.println("");
 
         for(int i=0;i<people.length;i++){
             System.out.printf("%6s", people[i]);
@@ -31,18 +31,12 @@ public class ResultView {
     public void printLine(Line line){
         List<Boolean> points = line.getPoints();
 
-        for(int i=0;i< points.size();i++){
-            if(points.get(i)){
-                System.out.print("-----");
-            }else{
-                System.out.print("     ");
+        for(boolean point : points){
+            if(point){
+                System.out.print("-----|");
+                continue;
             }
-            System.out.printf("|");
+            System.out.print("     |");
         }
-
-        //points.stream().filter(point-> point == true?"-----":"     ");
-
-
-
     }
 }

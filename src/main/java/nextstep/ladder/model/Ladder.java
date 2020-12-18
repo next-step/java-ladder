@@ -1,7 +1,6 @@
 package nextstep.ladder.model;
 
 import java.util.Arrays;
-import java.util.List;
 
 public class Ladder {
     private String[] people;
