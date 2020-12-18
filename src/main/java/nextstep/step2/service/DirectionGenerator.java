@@ -3,6 +3,8 @@ package nextstep.step2.service;
 import nextstep.step2.VO.Direction;
 
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Random;
 import java.util.function.Predicate;
 
 public class DirectionGenerator {
@@ -19,9 +21,15 @@ public class DirectionGenerator {
         return getDirection(firstDirectionFilter());
     }
 
+    private static int defineDirectionWay() {
+        return new Random().nextInt(3);
+    }
+
     private static Direction getDirection(Predicate<Direction> filterCondition) {
         return Arrays.stream(Direction.values())
-                .filter(filterCondition).findAny().get();
+                .filter(filterCondition)
+                .min(Comparator.comparingInt(direction -> defineDirectionWay()))
+                .get();
     }
 
     private static Predicate<Direction> firstDirectionFilter() {
