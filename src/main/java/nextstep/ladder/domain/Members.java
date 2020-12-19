@@ -23,4 +23,10 @@ public class Members {
     public int getNumberOfMembers() {
         return members.size();
     }
+
+    public List<String> getNames() {
+        return members.stream()
+                .map(Member::getName)
+                .collect(Collectors.toList());
+    }
 }

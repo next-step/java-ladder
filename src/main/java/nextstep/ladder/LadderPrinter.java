@@ -1,28 +1,54 @@
 package nextstep.ladder;
 
 import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Links;
+import nextstep.ladder.domain.Members;
+import nextstep.ladder.domain.floor.Floor;
+
+import java.util.stream.Collectors;
 
 public class LadderPrinter {
 
+    private static final String VERTICAL_LINE = "|";
+    private static final String HORIZONTAL_MARGIN = "    ";
+    private static final String HORIZONTAL_LINK = "-----";
+    private static final String HORIZONTAL_BLANK = "     ";
+
     public static void print(Ladder ladder) {
-        Links links = ladder.getLinks();
 
+        printMemberNames(ladder.getMembers());
 
-        for (int y = 0; y < links.getBoundY(); y++) {
-            StringBuilder sb = new StringBuilder();
-            sb.append("|");
-
-            for (int x = 0; x < links.getBoundX(); x++) {
-                boolean mark = links.getMark(x, y);
-                if (mark) {
-                    sb.append("---");
-                } else {
-                    sb.append("   ");
-                }
-                sb.append("|");
-            }
-            System.out.println(sb.toString());
+        for (Floor floor : ladder.getFloors()) {
+            printFloor(floor);
         }
+    }
+
+    private static void printMemberNames(Members members) {
+        String names = members.getNames()
+                .stream()
+                .map(name -> String.format("%5s", name))
+                .collect(Collectors.joining(" "));
+
+        System.out.println(names);
+    }
+
+    private static void printFloor(Floor floor) {
+        int maxLinks = floor.getMaxLinks();
+        StringBuilder sb = new StringBuilder();
+
+        sb.append(HORIZONTAL_MARGIN);
+        sb.append(VERTICAL_LINE);
+        for (int x = 0; x < maxLinks; x++) {
+            sb.append(printLink(floor.getLinked(x)));
+            sb.append(VERTICAL_LINE);
+        }
+
+        System.out.println(sb.toString());
+    }
+
+    private static String printLink(boolean isLinked) {
+        if (isLinked) {
+            return HORIZONTAL_LINK;
+        }
+        return HORIZONTAL_BLANK;
     }
 }
