@@ -6,7 +6,7 @@ import nextstep.ladder.view.ResultView;
 
 public class LadderController {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         InputView inputView = new InputView();
 
         String people = inputView.inputPeople();
@@ -17,8 +17,4 @@ public class LadderController {
         ResultView resultView = new ResultView();
         resultView.printLadder(ladder.getPeople(), ladderHeight, ladder.getLines().getLines());
     }
-
-
-
-
 }
