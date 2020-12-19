@@ -9,30 +9,19 @@ class LineTest {
     @Test
     void create() {
         int people = 5;
-        Line line = new Line(people*2);
-        assertThat(line).isNotNull();
-    }
+        Line line = new Line(people);
 
-    @Test
-    @DisplayName(value = "지나갈 수 있는 길인지 아닌지 boolean을 리턴함.")
-    void isWay() {
-        Line line = new Line(10);
-        assertThat(line.isWay(9)).isIn(true,false);
-    }
+        for (Point ppoint : line.getPoints()) {
 
-    @Test
-    @DisplayName(value = "사다리의 가로길이보다 큰 위치를 조회할 수 없음")
-    void isWay_OverSize() {
-        Line line = new Line(10);
-        assertThatThrownBy(() -> line.isWay(10))
-                .isInstanceOf(IndexOutOfBoundsException.class);
-    }
+            if (ppoint.getDirection().isNotMove()) {
+                System.out.print("|     ");
+            } else if (ppoint.getDirection().isRight()){
+                System.out.print("|-----");
+            } else {
+                System.out.print("|     ");
+            }
 
-    @Test
-    @DisplayName(value = "짝수 위치는 항상 true")
-    void isNotOddWay_ShouldReturnTrue() {
-        Line line = new Line(10);
-        assertThat(line.isWay(0)).isTrue();
-        assertThat(line.isWay(2)).isTrue();
+
+        }
     }
 }
