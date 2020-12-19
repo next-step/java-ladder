@@ -16,18 +16,12 @@ public class Ladder {
             throw new IllegalArgumentException("사다리의 높이는 2 이상입니다.");
         }
 
-        int ladderLength = getLadderLength(participantCount);
-
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < ladderHeight; i++) {
-            lines.add(new Line(ladderLength));
+            lines.add(new Line(participantCount));
         }
 
         return new Ladder(lines);
-    }
-
-    private static int getLadderLength(int participantCount) {
-        return participantCount * 2 - 1;
     }
 
     private static boolean isLessThanTwo(int ladderHeight) {

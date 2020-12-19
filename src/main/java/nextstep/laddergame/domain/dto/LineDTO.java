@@ -1,13 +1,14 @@
 package nextstep.laddergame.domain.dto;
 
 import nextstep.laddergame.domain.Line;
+import nextstep.laddergame.domain.Point;
 
 import java.util.List;
 
 public class LineDTO {
-    private List<Boolean> points;
+    private List<Point> points;
 
-    private LineDTO(List<Boolean> points) {
+    private LineDTO(List<Point> points) {
         this.points = points;
     }
 
@@ -15,7 +16,7 @@ public class LineDTO {
         return new LineDTO(line.getPoints());
     }
 
-    public List<Boolean> getPoints() {
+    public List<Point> getPoints() {
         return points;
     }
 }
