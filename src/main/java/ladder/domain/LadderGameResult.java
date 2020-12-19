@@ -7,9 +7,11 @@ import java.util.Map;
 import java.util.stream.IntStream;
 
 public class LadderGameResult {
+    private final List<String> enteredResults;
     private final Map<String, String> results;
 
     public LadderGameResult(LadderGameInformation information, List<Integer> ladderResult) {
+        this.enteredResults = information.getResults();
         this.results = result(information, ladderResult);
     }
 
@@ -31,7 +33,7 @@ public class LadderGameResult {
     }
 
     public List<String> getEnteredResult() {
-        return new ArrayList<>(results.values());
+        return this.enteredResults;
     }
 
     public List<String> getParticipants() {
