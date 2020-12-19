@@ -5,6 +5,7 @@ import nextstep.ladder.ErrorMessage;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.collectingAndThen;
@@ -18,8 +19,9 @@ public class Users {
 
     public Users(String usersNameString) {
         throwIfNullOrEmpty(usersNameString);
+        AtomicInteger index = new AtomicInteger();
         this.users = Arrays.stream(usersNameString.split(COMMA))
-                .map(User::new)
+                .map(name -> new User(name, index.getAndIncrement()))
                 .collect(collectingAndThen(Collectors.toList(), Collections::unmodifiableList));
         throwIfInvalidUserSize(users);
     }
@@ -30,7 +32,7 @@ public class Users {
         }
     }
 
-    private void throwIfInvalidUserSize(List<User> users){
+    private void throwIfInvalidUserSize(List<User> users) {
         if (users.size() < 2) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_USERS_SIZE);
         }
@@ -44,8 +46,11 @@ public class Users {
         return this.users;
     }
 
-    public int indexOf(User user){
-        return users.indexOf(user);
+    public User getUser(String name) {
+        return users.stream()
+                .filter(user -> user.getName().equals(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.NOT_EXIST_USER_NAME));
     }
 
 }

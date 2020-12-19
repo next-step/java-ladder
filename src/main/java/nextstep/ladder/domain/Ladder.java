@@ -49,19 +49,18 @@ public class Ladder {
         return ladderGoals.get(curIndex);
     }
 
-
     public List<LadderResult> start(String key, Users users) {
         if (ALL_USER_KEY.equals(key)) {
             return users.export()
                     .stream()
-                    .map(item -> moveUser(item, users))
+                    .map(this::moveUser)
                     .collect(Collectors.toList());
         }
-        return Collections.singletonList(moveUser(new User(key), users));
+        return Collections.singletonList(moveUser(users.getUser(key)));
     }
 
-    private LadderResult moveUser(User user, Users users) {
-        int userIndex = users.indexOf(user);
+    private LadderResult moveUser(User user) {
+        int userIndex = user.getIndex();
         LadderGoal ladderGoal = move(userIndex);
         return new LadderResult(user, ladderGoal);
     }

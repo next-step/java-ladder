@@ -20,7 +20,7 @@ class UserTest {
     public void userNameValidCheckTest(String name) {
         assertThatThrownBy(
                 () -> {
-                    User user = new User(name);
+                    User user = new User(name,0);
                 }
         ).isInstanceOf(IllegalArgumentException.class);
     }
@@ -30,7 +30,7 @@ class UserTest {
     public void userNameIfNullExceptionTest() {
         assertThatThrownBy(
                 () -> {
-                    User user = new User(null);
+                    User user = new User(null,0);
                 }
         ).isInstanceOf(IllegalArgumentException.class);
     }
