@@ -17,7 +17,7 @@ public class LadderResults {
             return this.ladderResults;
         }
         return ladderResults.stream()
-                .filter(ladderResult -> ladderResult.getUser().getName().equals(key))
+                .filter(ladderResult -> ladderResult.isUserResult(key))
                 .collect(Collectors.toList());
     }
 

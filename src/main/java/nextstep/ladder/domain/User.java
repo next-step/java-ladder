@@ -30,6 +30,10 @@ public class User {
         return this.index;
     }
 
+    public boolean equalsByName(String name){
+        return this.name.equals(name);
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj == null) return false;
