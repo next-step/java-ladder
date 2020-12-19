@@ -4,6 +4,7 @@ import nextstep.ladder.domain.Height;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Members;
 import nextstep.ladder.domain.floor.DefaultFloorFactory;
+import nextstep.ladder.domain.floor.RandomFloorFactory;
 import org.junit.jupiter.api.Test;
 
 public class LadderPrinterTest {
@@ -13,7 +14,7 @@ public class LadderPrinterTest {
         Members members = Members.of("one", "two", "three", "four");
         Height height = new Height(5);
         Ladder ladder = new Ladder(members, height);
-        ladder.generateLadderWith(new DefaultFloorFactory());
+        ladder.generateLadderWith(new RandomFloorFactory());
 
         LadderPrinter.print(ladder);
     }

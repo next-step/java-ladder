@@ -9,7 +9,7 @@ public class DefaultFloorFactory implements FloorFactory {
     @Override
     public Floor generate(int maxLinks) {
         List<Boolean> links = IntStream.range(0, maxLinks)
-                .mapToObj(x -> Boolean.TRUE)
+                .mapToObj(x -> x % 2 == 0)
                 .collect(Collectors.toList());
         return new Floor(links);
     }
