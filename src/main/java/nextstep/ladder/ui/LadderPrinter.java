@@ -1,4 +1,4 @@
-package nextstep.ladder;
+package nextstep.ladder.ui;
 
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Members;

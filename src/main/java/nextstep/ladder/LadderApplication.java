@@ -4,18 +4,24 @@ import nextstep.ladder.domain.Height;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Members;
 import nextstep.ladder.domain.floor.RandomFloorFactory;
+import nextstep.ladder.ui.InputView;
 import nextstep.ladder.ui.LadderPrinter;
-import org.junit.jupiter.api.Test;
 
-public class LadderPrinterTest {
+import java.util.List;
 
-    @Test
-    public void test() {
-        Members members = Members.of("one", "two", "three", "four");
-        Height height = new Height(5);
+public class LadderApplication {
+
+    public static void main(String[] args) {
+
+        List<String> names = InputView.getNamesOfMembers();
+        Members members = Members.of(names);
+
+        Height height = InputView.getHeight();
+
         Ladder ladder = new Ladder(members, height);
         ladder.generateLadderWith(new RandomFloorFactory());
 
+        System.out.println("실행결과");
         LadderPrinter.print(ladder);
     }
 }
