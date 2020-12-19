@@ -49,9 +49,6 @@ public class Ladder {
         return ladderGoals.get(curIndex);
     }
 
-    public LadderGoals getLadderGoals() {
-        return ladderGoals;
-    }
 
     public List<LadderResult> start(String key, Users users) {
         if (ALL_USER_KEY.equals(key)) {
