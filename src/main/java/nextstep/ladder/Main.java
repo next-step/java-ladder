@@ -17,7 +17,7 @@ public class Main {
         LadderStatePrintView.print(ladder, users, ladderGoals);
 
         String key = SelectUserInputView.enter();
-        List<LadderResult> ladderResults = ladder.start(key,users);
+        List<LadderResult> ladderResults = ladder.start(key, users);
         LadderResultView.print(ladderResults);
 
     }
