@@ -14,28 +14,35 @@ class PointTest {
 
     @Test
     void createPointWithBeforePoint() {
-        Point point = Point.createFirst();
+        MovingStrategy movingStrategy = new RandomStrategy();
+        Point point = Point.createFirst(movingStrategy);
         point.canRight();
 
         assertThat(
-                        Point.createWithBeforePoint(point).getDirection().isLeft()
+                        Point.createWithBeforePoint(point,movingStrategy)
+                                .getDirection()
+                                .isLeft()
         ).isTrue();
 
         point.canLeft();
         assertThat(
-                Point.createWithBeforePoint(point).getDirection().isNotMove()
+                Point.createWithBeforePoint(point,movingStrategy)
+                        .getDirection()
+                        .isNotMove()
         ).isTrue();
     }
 
     @Test
     void createFirstPoint() {
-        Point point = Point.createFirst();
+        MovingStrategy movingStrategy = new RandomStrategy();
+        Point point = Point.createFirst(movingStrategy);
         assertThat(point.getIndex()).isEqualTo(0);
     }
 
     @Test
     void createLastPoint() {
-        Point point = Point.createFirst();
+        MovingStrategy movingStrategy = new RandomStrategy();
+        Point point = Point.createFirst(movingStrategy);
 
         point.canRight();
         Point lastPoint = Point.createLastWithBeforePoint(point);

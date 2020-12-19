@@ -4,6 +4,10 @@ package nextstep.laddergame.domain;
 import java.util.Random;
 
 public class Point {
+    private static final int LEFT = -1;
+    private static final int RIGHT = 1;
+    private static final int ZERO = 0;
+
     private Index index;
     private Direction direction;
 
@@ -20,60 +24,38 @@ public class Point {
         return new Point(index);
     }
 
-    public static Point of(int index, int direction) {
-        if (direction == 0) {
-            Random random = new Random();
-            if (random.nextBoolean()) {
-                return new Point(index, 1);
-            } else {
-                return new Point(index, 0);
-            }
-
-//            return new Point(index, 1);
-        }
-
-        if (direction == 1) {
-            return new Point(index, -1);
-        }
-
-        if (direction == -1) {
-            return new Point(index, 0);
-        }
-        return new Point(index,0);
+    public static Point createFirst(MovingStrategy movingStrategy) {
+        return Point.of(0, movingStrategy);
     }
 
-    public static Point createFirst() {
-        Random random = new Random();
-        random.nextBoolean();
+    public static Point createLastWithBeforePoint(Point beforePoint) {
+        if (beforePoint.getDirection().isRight()) {
+            return new Point(beforePoint.nextIndex(), LEFT);
+        }
+        return new Point(beforePoint.nextIndex(), ZERO);
+    }
 
-        if (random.nextBoolean()) {
-            return new Point(0, 1);
+    public static Point createWithBeforePoint(Point beforePoint, MovingStrategy movingStrategy) {
+        if (beforePoint.getDirection().isRight()) {
+            return new Point(beforePoint.nextIndex(), LEFT);
+        }
+        if (beforePoint.getDirection().isLeft()) {
+            return new Point(beforePoint.nextIndex(), ZERO);
+        }
+
+        return Point.of(beforePoint.getIndex(), movingStrategy);
+    }
+
+    private static Point of(int index, MovingStrategy movingStrategy) {
+        if (movingStrategy.isMovable()) {
+            return new Point(index, RIGHT);
         } else {
-            return new Point(0, 0);
+            return new Point(index, ZERO);
         }
     }
 
-    public static Point createLastWithBeforePoint(Point point) {
-        if (point.getDirection().isRight()) {
-            return new Point(point.index.getIndex() + 1, -1);
-        }
-        return new Point(point.index.getIndex() + 1, 0);
-    }
-
-    public static Point createWithBeforePoint(Point point) {
-        Random random = new Random();
-
-        if (point.getDirection().isRight()) {
-            return new Point(point.index.getIndex() + 1, -1);
-        } else if (point.getDirection().isLeft()) {
-            return new Point(point.index.getIndex() + 1, 0);
-        } else {
-            if (random.nextBoolean()) {
-                return new Point(point.index.getIndex() + 1, 1);
-            } else {
-                return new Point(point.index.getIndex() + 1, 0);
-            }
-        }
+    private int nextIndex() {
+        return this.index.getIndex() + RIGHT;
     }
 
     public int getIndex() {
@@ -85,14 +67,14 @@ public class Point {
     }
 
     public void canRight() {
-        this.direction = Direction.from(1);
+        this.direction = Direction.from(RIGHT);
     }
 
     public void canLeft() {
-        this.direction = Direction.from(-1);
+        this.direction = Direction.from(LEFT);
     }
 
     public void canNotMove(){
-        this.direction = Direction.from(0);
+        this.direction = Direction.from(ZERO);
     }
 }
