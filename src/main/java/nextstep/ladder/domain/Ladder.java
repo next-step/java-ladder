@@ -2,6 +2,7 @@ package nextstep.ladder.domain;
 
 import nextstep.ladder.ErrorMessage;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,14 +12,9 @@ import static java.util.stream.Collectors.collectingAndThen;
 
 public class Ladder {
 
-    private static final String ALL_USER_KEY = "all";
-    private LadderGoals ladderGoals;
     private List<LadderRow> ladderRows;
 
-    public Ladder(Users users, LadderHeight height, LadderGoals ladderGoals, DirectionStrategy directionStrategy) {
-        throwIfNull(users, ladderGoals);
-        throwIfInvalidLadderGame(users, ladderGoals);
-        this.ladderGoals = ladderGoals;
+    public Ladder(Users users, LadderHeight height, DirectionStrategy directionStrategy) {
         this.ladderRows = IntStream.range(0, height.getValue())
                 .boxed()
                 .map(index -> new LadderRow(users, directionStrategy))
@@ -41,28 +37,25 @@ public class Ladder {
         return this.ladderRows;
     }
 
-    public LadderGoal move(int index) {
+    public int move(int index) {
         int curIndex = index;
         for (LadderRow ladderRow : ladderRows) {
             curIndex = ladderRow.move(curIndex);
         }
-        return ladderGoals.get(curIndex);
+        return curIndex;
     }
 
-    public List<LadderResult> start(String key, Users users) {
-        if (ALL_USER_KEY.equals(key)) {
-            return users.export()
-                    .stream()
-                    .map(this::moveUser)
-                    .collect(Collectors.toList());
+    public LadderResults start(Users users, LadderGoals ladderGoals) {
+        throwIfNull(users, ladderGoals);
+        throwIfInvalidLadderGame(users, ladderGoals);
+        List<LadderResult> list = new ArrayList<>();
+        for (User user : users.export()) {
+            int index = user.getIndex();
+            int move = move(index);
+            list.add(new LadderResult(user, ladderGoals.get(move)));
         }
-        return Collections.singletonList(moveUser(users.getUser(key)));
+        return new LadderResults(list);
     }
 
-    private LadderResult moveUser(User user) {
-        int userIndex = user.getIndex();
-        LadderGoal ladderGoal = move(userIndex);
-        return new LadderResult(user, ladderGoal);
-    }
 }
 
