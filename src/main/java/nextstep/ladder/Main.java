@@ -13,12 +13,11 @@ public class Main {
 
         LadderGoals ladderGoals = LadderGoalInputView.enter();
 
-        LadderGame ladderGame = new LadderGame(users, ladderHeight, ladderGoals, new RandomDirectionStrategy());
-
-        LadderStatePrintView.print(ladderGame);
+        Ladder ladder = new Ladder(users, ladderHeight, ladderGoals, new RandomDirectionStrategy());
+        LadderStatePrintView.print(ladder, users, ladderGoals);
 
         String key = SelectUserInputView.enter();
-        List<LadderResult> ladderResults = ladderGame.start(key);
+        List<LadderResult> ladderResults = ladder.start(key,users);
         LadderResultView.print(ladderResults);
 
     }
