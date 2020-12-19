@@ -22,7 +22,7 @@ public class LadderGoals {
         return this.ladderGoals.size();
     }
 
-    public List<LadderGoal> export(){
+    public List<LadderGoal> export() {
         return this.ladderGoals;
     }
 

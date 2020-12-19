@@ -21,5 +21,4 @@ public class LadderResults {
                 .collect(Collectors.toList());
     }
 
-
 }
