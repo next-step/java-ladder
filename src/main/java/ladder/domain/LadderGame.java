@@ -15,10 +15,10 @@ public class LadderGame {
 
     public LadderGameResult getResult() {
         Map<String, String> result = new LinkedHashMap<>();
-        for (int index = 0; index < ladderGameInformation.getParticipants().size(); index++) {
+        for (int position = 0; position < ladderGameInformation.getParticipants().size(); position++) {
             result.put(
-                    ladderGameInformation.getParticipants().get(index),
-                    ladderGameInformation.getResults().get(ladder.getResult(index))
+                    ladderGameInformation.getParticipants().get(position),
+                    ladderGameInformation.getResults().get(ladder.getResultByPosition(position))
             );
         }
         return new LadderGameResult(result, ladder);

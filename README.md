@@ -85,3 +85,4 @@ pobi               cron               jh
 - Ladder를 실행시키는 메서드 위치 변경
 - Point에서 Direction 나누기
 - Test 코드 정리
+- Ladder 클래스 함수 명 및 변수 구체화

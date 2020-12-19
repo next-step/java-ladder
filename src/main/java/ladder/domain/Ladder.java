@@ -19,19 +19,20 @@ public class Ladder {
 
     private List<Integer> start() {
         return IntStream.range(0, getLadderWidth())
-                .mapToObj(this::get)
+                .mapToObj(this::getLastPosition)
                 .collect(Collectors.toList());
     }
 
-    private int get(int index) {
+    private int getLastPosition(int startPosition) {
+        int lastPosition = startPosition;
         for (LadderLine line : ladderLines) {
-            index = line.move(index);
+            lastPosition = line.move(lastPosition);
         }
-        return index;
+        return lastPosition;
     }
 
-    public int getResult(int index) {
-        return result.get(index);
+    public int getResultByPosition(int position) {
+        return result.get(position);
     }
 
     public List<LadderLine> getLadderLines() {
