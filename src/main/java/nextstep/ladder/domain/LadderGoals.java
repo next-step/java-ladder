@@ -7,12 +7,12 @@ import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.collectingAndThen;
 
-public class LadderGoalBoard {
+public class LadderGoals {
 
-    private final String COMMA = ",";
+    private static final String COMMA = ",";
     private final List<LadderGoal> ladderGoals;
 
-    public LadderGoalBoard(String ladderGoalString) {
+    public LadderGoals(String ladderGoalString) {
         this.ladderGoals = Arrays.stream(ladderGoalString.split(COMMA))
                 .map(LadderGoal::new)
                 .collect(collectingAndThen(Collectors.toList(), Collections::unmodifiableList));
@@ -22,7 +22,7 @@ public class LadderGoalBoard {
         return this.ladderGoals.size();
     }
 
-    public List<LadderGoal> export(){
+    public List<LadderGoal> export() {
         return this.ladderGoals;
     }
 

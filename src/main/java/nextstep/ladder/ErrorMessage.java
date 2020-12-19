@@ -10,4 +10,6 @@ public class ErrorMessage {
     public static final String INVALID_LADDER_HEIGHT = "Invalid Ladder Height";
     public static final String INVALID_LADDER_GOAL = "Invalid Ladder Goal";
     public static final String INVALID_LADDER_GAME = "Invalid Ladder Game";
+    public static final String INVALID_USERS_SIZE = "Invalid Users Size";
+    public static final String NOT_EXIST_USER_NAME = "not exist user name";
 }

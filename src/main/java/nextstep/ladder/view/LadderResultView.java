@@ -2,20 +2,19 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.domain.LadderGoal;
 import nextstep.ladder.domain.LadderResult;
+import nextstep.ladder.domain.LadderResults;
 import nextstep.ladder.domain.User;
-
-import java.util.List;
 
 public class LadderResultView {
 
     private static final String EXCUTE_RESULT_MESSAGE = "실행 결과";
     private static final String USER_LADDER_RESULT_FORMATTER = "%s : %s";
 
-    public static void print(List<LadderResult> LadderResults) {
+    public static void print(String key, LadderResults LadderResults) {
         StringBuilder sb = new StringBuilder();
         sb.append(EXCUTE_RESULT_MESSAGE);
         sb.append(System.lineSeparator());
-        for (LadderResult ladderResult : LadderResults) {
+        for (LadderResult ladderResult : LadderResults.getUserResult(key)) {
             sb.append(buildLadderResultString(ladderResult));
             sb.append(System.lineSeparator());
         }

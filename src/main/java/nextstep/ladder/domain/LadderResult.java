@@ -16,4 +16,9 @@ public class LadderResult {
     public User getUser() {
         return user;
     }
+
+    public boolean isUserResult(String name){
+        return user.equalsByName(name);
+    }
+
 }

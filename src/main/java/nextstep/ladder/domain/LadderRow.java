@@ -7,15 +7,15 @@ import java.util.List;
 public class LadderRow {
 
     private final LinkedList<LadderPoint> ladderPoints;
-    private final DirectionStrategy directionStrategy = new RandomDirectionStrategy();
 
-    public LadderRow(int countOfPerson) {
+    public LadderRow(Users users, DirectionStrategy directionStrategy) {
         this.ladderPoints = new LinkedList<>();
-        this.ladderPoints.add(new LadderPoint(directionStrategy));
-        for (int i = 1; i < countOfPerson; i++) {
+        this.ladderPoints.add(LadderPoint.generateFirst(directionStrategy));
+        for (int i = 1; i < users.size() - 1; i++) {
             LadderPoint last = ladderPoints.getLast();
-            this.ladderPoints.add(new LadderPoint(last, i, countOfPerson, directionStrategy));
+            this.ladderPoints.add(LadderPoint.generateNext(last, directionStrategy));
         }
+        this.ladderPoints.add(LadderPoint.generateLast(ladderPoints.getLast()));
     }
 
     public List<LadderPoint> export() {

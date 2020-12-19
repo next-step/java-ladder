@@ -8,10 +8,12 @@ public class User {
     private static final int MAX = 5;
 
     private final String name;
+    private final int index;
 
-    public User(String name) {
+    public User(String name, int index) {
         throwIfInvalidName(name);
         this.name = name;
+        this.index = index;
     }
 
     private void throwIfInvalidName(String name) {
@@ -21,7 +23,15 @@ public class User {
     }
 
     public String getName() {
-        return name;
+        return this.name;
+    }
+
+    public int getIndex() {
+        return this.index;
+    }
+
+    public boolean equalsByName(String name){
+        return this.name.equals(name);
     }
 
     @Override

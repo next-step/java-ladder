@@ -4,46 +4,24 @@ package nextstep.ladder.domain;
 public class LadderPoint {
 
     private final Direction direction;
-    private final DirectionStrategy directionStrategy;
 
-    public LadderPoint(DirectionStrategy directionStrategy) {
-        this.directionStrategy = directionStrategy;
-        this.direction = generateFirst();
+    public LadderPoint(Direction direction) {
+        this.direction = direction;
     }
 
-    public LadderPoint(boolean left, boolean right,DirectionStrategy directionStrategy) {
-        this.directionStrategy = directionStrategy;
-        this.direction = Direction.of(left, right);
+    public static LadderPoint generateFirst(DirectionStrategy directionStrategy) {
+        return new LadderPoint(directionStrategy.next());
     }
 
-    public LadderPoint(LadderPoint before, int ladderIndex, int ladderSize,DirectionStrategy directionStrategy) {
-        this.directionStrategy = directionStrategy;
-        this.direction = getDirection(before, ladderIndex, ladderSize);
+    public static LadderPoint generateLast(LadderPoint beforeLadderPoint) {
+        return new LadderPoint(Direction.of(beforeLadderPoint.direction, false));
     }
 
-    private Direction getDirection(LadderPoint beforeLadderPoint, int ladderIndex, int ladderSize) {
-        if (ladderIndex == 0) {
-            return generateFirst();
+    public static LadderPoint generateNext(LadderPoint beforeLadderPoint, DirectionStrategy directionStrategy) {
+        if (beforeLadderPoint.direction.isRight()) {
+            return new LadderPoint(Direction.LEFT);
         }
-        if (ladderIndex == ladderSize - 1) {
-            return generateLast(beforeLadderPoint.direction);
-        }
-        return generateNext(beforeLadderPoint.direction);
-    }
-
-    private Direction generateFirst() {
-        return Direction.of(false, directionStrategy.next());
-    }
-
-    private Direction generateLast(Direction beforeDirection) {
-        return Direction.of(beforeDirection, false);
-    }
-
-    private Direction generateNext(Direction beforeDirection) {
-        if (beforeDirection.isRight()) {
-            return Direction.of(true, false);
-        }
-        return Direction.of(false, directionStrategy.next());
+        return new LadderPoint(directionStrategy.next());
     }
 
     public Direction getDirection() {

@@ -9,13 +9,12 @@ public class LadderStatePrintView {
     private static final String BAR = "|";
     private static final String LEFT_BAR = "----|";
 
-    public static void print(LadderGame ladderGame) {
+    public static void print(Ladder ladder, Users users, LadderGoals ladderGoals) {
         StringBuilder stringBuilder = new StringBuilder();
-        Users users = ladderGame.getUsers();
         stringBuilder.append(buildUserNameString(users));
         stringBuilder.append(System.lineSeparator());
-        stringBuilder.append(buildLadderString(ladderGame.getLadder()));
-        stringBuilder.append(buildLadGoalBoardString(ladderGame.getLadderGoalBoard()));
+        stringBuilder.append(buildLadderString(ladder));
+        stringBuilder.append(buildLadGoalBoardString(ladderGoals));
         System.out.println(stringBuilder);
     }
 
@@ -52,9 +51,9 @@ public class LadderStatePrintView {
         return LEFT_BAR;
     }
 
-    private static String buildLadGoalBoardString(LadderGoalBoard ladderGoalBoard) {
+    private static String buildLadGoalBoardString(LadderGoals ladderGoals) {
         StringBuilder sb = new StringBuilder();
-        for (LadderGoal ladderGoal : ladderGoalBoard.export()) {
+        for (LadderGoal ladderGoal : ladderGoals.export()) {
             sb.append(String.format(FIVE_SIZE_STRING_LEFT_FORMATTER, ladderGoal.getValue()));
         }
         return sb.toString();

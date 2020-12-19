@@ -51,12 +51,31 @@ class UsersTest {
         );
     }
 
-    @DisplayName("Users indexOf test")
+    @DisplayName("사용자 수 유효성 검증 - 사용자 수도 2보다 작을때 예외 발생")
     @Test
-    public void test(){
-        Users users = new Users("aaa,bbb,ccc,ddd,eee");
-        User user = new User("ccc");
-        int index = users.indexOf(user);
-        assertThat(index).isEqualTo(2);
+    public void userSizeValidCheckTest() {
+        assertThatThrownBy(() -> {
+            Users users = new Users("aaa");
+        }).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("사용자 이름과 같은 유저 가져오기 테스트")
+    @Test
+    public void getUserNameTest() {
+        Users users = new Users("aaa,bbb,ccc,ddd");
+        User user = users.getUser("aaa");
+        assertThat(user).isNotNull();
+    }
+
+    @DisplayName("사용자 이름과 같은 유저가 없을때 예외 발생 테스트")
+    @Test
+    public void getUserExceptionTest() {
+        Users users = new Users("aaa,bbb,ccc,ddd");
+        assertThatThrownBy(
+                () -> {
+                    User user = users.getUser("www");
+                }
+        ).isInstanceOf(IllegalArgumentException.class);
+    }
+
 }

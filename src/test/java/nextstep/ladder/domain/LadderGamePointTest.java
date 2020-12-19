@@ -2,65 +2,82 @@ package nextstep.ladder.domain;
 
 import nextstep.ladder.domain.strategy.ForTestStrategy;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertAll;
 
 class LadderGamePointTest {
 
-    @DisplayName("첫번째 점 테스트")
-    @RepeatedTest(10)
-    void firstLadderPointTest() {
-        LadderPoint ladderPoint = new LadderPoint(new RandomDirectionStrategy());
-        assertThat(ladderPoint.getDirection()).isNotEqualTo(Direction.LEFT);
-    }
-
-    @DisplayName("마지막 점 테스트 - left")
-    @RepeatedTest(10)
-    void lastLadderPointLeftTest() {
-        LadderPoint before = new LadderPoint(true, false, new RandomDirectionStrategy());
-        LadderPoint ladderPoint = new LadderPoint(before, 2, 3, new RandomDirectionStrategy());
-        assertAll(
-                () -> assertThat(ladderPoint.getDirection()).isNotEqualTo(Direction.LEFT),
-                () -> assertThat(ladderPoint.getDirection()).isNotEqualTo(Direction.RIGHT)
-        );
-    }
-
-    @DisplayName("마지막 점 테스트 - right")
-    @RepeatedTest(10)
-    void lastLadderPointRightTest() {
-        LadderPoint before = new LadderPoint(false, true, new RandomDirectionStrategy());
-        LadderPoint ladderPoint = new LadderPoint(before, 2, 3, new RandomDirectionStrategy());
-        assertAll(
-                () -> assertThat(ladderPoint.getDirection()).isNotEqualTo(Direction.NONE),
-                () -> assertThat(ladderPoint.getDirection()).isNotEqualTo(Direction.RIGHT)
-        );
-    }
-
-    @DisplayName("다음 점 테스트 - right")
+    @DisplayName("첫번째 포인트 테스트 - right")
     @Test
-    void nextLadderPointRightTest() {
-        LadderPoint before = new LadderPoint(true, false, new RandomDirectionStrategy());
-        LadderPoint ladderPoint = new LadderPoint(before, 1, 3, new ForTestStrategy(() -> true));
+    public void firstPointRightTest() {
+        LadderPoint ladderPoint = LadderPoint.generateFirst(new ForTestStrategy(() -> true));
         assertThat(ladderPoint.getDirection()).isEqualTo(Direction.RIGHT);
     }
 
-    @DisplayName("다음 점 테스트 - none")
+    @DisplayName("첫번째 포인트 테스트 - none")
     @Test
-    void nextLadderPointNoneTest() {
-        LadderPoint before = new LadderPoint(true, false, new RandomDirectionStrategy());
-        LadderPoint ladderPoint = new LadderPoint(before, 1, 3, new ForTestStrategy(() -> false));
+    public void firstPointNoneTest() {
+        LadderPoint ladderPoint = LadderPoint.generateFirst(new ForTestStrategy(() -> false));
         assertThat(ladderPoint.getDirection()).isEqualTo(Direction.NONE);
     }
 
-    @DisplayName("다음 점 테스트 - left")
+    @DisplayName("다음점 포인트 테스트 - left")
     @Test
-    void nextLadderPointLeftTest() {
-        LadderPoint before = new LadderPoint(false, true, new RandomDirectionStrategy());
-        LadderPoint ladderPoint = new LadderPoint(before, 1, 3, new RandomDirectionStrategy());
+    public void nextPointLeftTest() {
+        LadderPoint beforeLadderPoint = new LadderPoint(Direction.RIGHT);
+        LadderPoint ladderPoint = LadderPoint.generateNext(beforeLadderPoint, new ForTestStrategy(() -> false));
         assertThat(ladderPoint.getDirection()).isEqualTo(Direction.LEFT);
+    }
+
+    @DisplayName("다음점 포인트 테스트 - right")
+    @Test
+    public void nextPointNoneRightTest() {
+        LadderPoint beforeLadderPoint = new LadderPoint(Direction.NONE);
+        LadderPoint ladderPoint = LadderPoint.generateNext(beforeLadderPoint, new ForTestStrategy(() -> true));
+        assertThat(ladderPoint.getDirection()).isEqualTo(Direction.RIGHT);
+    }
+
+    @DisplayName("다음점 포인트 테스트 - none")
+    @Test
+    public void nextPointNoneNoneTest() {
+        LadderPoint beforeLadderPoint = new LadderPoint(Direction.NONE);
+        LadderPoint ladderPoint = LadderPoint.generateNext(beforeLadderPoint, new ForTestStrategy(() -> false));
+        assertThat(ladderPoint.getDirection()).isEqualTo(Direction.NONE);
+    }
+
+    @DisplayName("다음점 포인트 테스트 - right")
+    @Test
+    public void nextPointLeftRightTest() {
+        LadderPoint beforeLadderPoint = new LadderPoint(Direction.LEFT);
+        LadderPoint ladderPoint = LadderPoint.generateNext(beforeLadderPoint, new ForTestStrategy(() -> true));
+        assertThat(ladderPoint.getDirection()).isEqualTo(Direction.RIGHT);
+    }
+
+    @DisplayName("다음점 포인트 테스트 - none")
+    @Test
+    public void nextPointLeftNoneTest() {
+        LadderPoint beforeLadderPoint = new LadderPoint(Direction.LEFT);
+        LadderPoint ladderPoint = LadderPoint.generateNext(beforeLadderPoint, new ForTestStrategy(() -> false));
+        assertThat(ladderPoint.getDirection()).isEqualTo(Direction.NONE);
+    }
+
+    @DisplayName("마지막 포인트 테스트 - left")
+    @Test
+    public void lastPointLeftTest() {
+        LadderPoint beforeLadderPoint = new LadderPoint(Direction.RIGHT);
+
+        LadderPoint ladderPoint = LadderPoint.generateLast(beforeLadderPoint);
+        assertThat(ladderPoint.getDirection()).isEqualTo(Direction.LEFT);
+    }
+
+    @DisplayName("마지막 포인트 테스트 - none")
+    @Test
+    public void lastPointNoneTest() {
+        LadderPoint beforeLadderPoint = new LadderPoint(Direction.LEFT);
+
+        LadderPoint ladderPoint = LadderPoint.generateLast(beforeLadderPoint);
+        assertThat(ladderPoint.getDirection()).isEqualTo(Direction.NONE);
     }
 
 }
