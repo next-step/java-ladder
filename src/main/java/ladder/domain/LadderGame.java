@@ -1,26 +1,26 @@
 package ladder.domain;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LadderGame {
 
-    private final LadderGameInformation ladderGameInformation;
     private final Ladder ladder;
+    private final List<Integer> ladderResult;
 
-    public LadderGame(LadderGameInformation ladderGameInformation, LadderSize ladderSize) {
-        this.ladderGameInformation = ladderGameInformation;
-        this.ladder = new Ladder(ladderSize);
+    public LadderGame(Ladder ladder) {
+        this.ladder = ladder;
+        this.ladderResult = start();
     }
 
-    public LadderGameResult getResult() {
-        Map<String, String> result = new LinkedHashMap<>();
-        for (int position = 0; position < ladderGameInformation.getParticipants().size(); position++) {
-            result.put(
-                    ladderGameInformation.getParticipants().get(position),
-                    ladderGameInformation.getResults().get(ladder.getResultByPosition(position))
-            );
-        }
-        return new LadderGameResult(result, ladder);
+    private List<Integer> start() {
+        return IntStream.range(0, ladder.getLadderWidth())
+                .mapToObj(ladder::getLastPosition)
+                .collect(Collectors.toList());
+    }
+
+    public List<Integer> getLadderResult() {
+        return ladderResult;
     }
 }

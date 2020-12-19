@@ -63,7 +63,7 @@ public class LadderGameInformation {
         return name;
     }
 
-    public int participantsCount() {
+    public int getParticipantsCount() {
         return participants.size();
     }
 

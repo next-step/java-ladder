@@ -16,7 +16,7 @@ public class ResultView {
     private static final String LADDER = "-----";
     private static final int MAX_NAME_SPACE = 6;
 
-    protected static void printLadders(LadderGameInformation ladder, LadderGameResult participants) {
+    protected static void printLadders(Ladder ladder, LadderGameResult participants) {
         printResultHeader();
         printLadderGame(ladder, participants);
     }
@@ -27,11 +27,11 @@ public class ResultView {
         printOpeningLetter();
     }
 
-    private static void printLadderGame(LadderGameInformation ladderGameInformation, LadderGameResult results) {
-        printLadderGameParticipants(ladderGameInformation.getParticipants());
-        int firstNameSpace = ladderGameInformation.getParticipants().get(0).length() - 1;
-        printLadders(results.getLadder(), firstNameSpace);
-        printLadderGameResult(ladderGameInformation.getResults(), firstNameSpace);
+    private static void printLadderGame(Ladder ladder, LadderGameResult results) {
+        printLadderGameParticipants(results.getParticipants());
+        int firstNameSpace = results.getParticipants().get(0).length() - 1;
+        printLadders(ladder, firstNameSpace);
+        printLadderGameResult(results.getEnteredResult(), firstNameSpace);
     }
 
     private static void printLadderGameParticipants(List<String> participants) {

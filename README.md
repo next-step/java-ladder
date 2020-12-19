@@ -47,7 +47,6 @@ pobi               cron               jh
 - all을 입력 받으면, 실행결과 모두를 출력한다.
 - 
 ### TODO
-
 ### DONE
 - 가로 사다리를 생성
     1. 랜덤하게 생성할지 말지를 결정하고, 이전 가로 사다리가 생성되어 있으면 생성하지 않음
@@ -86,3 +85,5 @@ pobi               cron               jh
 - Point에서 Direction 나누기
 - Test 코드 정리
 - Ladder 클래스 함수 명 및 변수 구체화
+- 사다리를 실행시켜 LadderGame에 결과 저장한다.
+- LadderGameInformation(참가자, 결과목록), 사다리 실행 결과를 받아 mapping한 결과를 저장한다.

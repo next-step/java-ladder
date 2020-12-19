@@ -1,6 +1,6 @@
 package ladder.view;
 
-import ladder.domain.LadderGameInformation;
+import ladder.domain.Ladder;
 import ladder.domain.LadderGameResult;
 
 public class LadderGameView {
@@ -20,10 +20,9 @@ public class LadderGameView {
         return InputView.enterName();
     }
 
-    public static void printLadders(LadderGameInformation ladderGameInformation, LadderGameResult ladderGameResult) {
-        ResultView.printLadders(ladderGameInformation, ladderGameResult);
+    public static void printLadders(Ladder ladder, LadderGameResult ladderGameResult) {
+        ResultView.printLadders(ladder, ladderGameResult);
         ResultView.printResult(ladderGameResult.getResults());
-
     }
 
     public static String enterLadderGameResult() {
