@@ -39,4 +39,10 @@ public class Ladder {
     public Results getResults() {
         return results;
     }
+
+    public Result getResultOf(Member member) {
+        int position = members.getPositionOfMember(member);
+        int resultPosition = floors.followFrom(position);
+        return results.getResultOfPosition(resultPosition);
+    }
 }

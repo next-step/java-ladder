@@ -41,4 +41,5 @@ public class InputView {
         String input = scanner.nextLine();
         return new Height(Integer.parseInt(input));
     }
+
 }

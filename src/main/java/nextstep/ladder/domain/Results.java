@@ -27,6 +27,10 @@ public class Results {
         return results.size();
     }
 
+    public Result getResultOfPosition(int position) {
+        return results.get(position);
+    }
+
     public List<String> getTitles() {
         return results.stream()
                 .map(Result::getTitle)

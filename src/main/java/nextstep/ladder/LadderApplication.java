@@ -7,6 +7,7 @@ import nextstep.ladder.domain.Results;
 import nextstep.ladder.domain.floor.RandomFloorFactory;
 import nextstep.ladder.ui.InputView;
 import nextstep.ladder.ui.LadderPrinter;
+import nextstep.ladder.ui.ResultView;
 
 import java.util.List;
 
@@ -27,5 +28,7 @@ public class LadderApplication {
 
         System.out.println("실행결과");
         LadderPrinter.print(ladder);
+
+        ResultView.printResult(ladder);
     }
 }

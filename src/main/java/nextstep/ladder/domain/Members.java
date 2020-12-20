@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -32,5 +33,16 @@ public class Members {
         return members.stream()
                 .map(Member::getName)
                 .collect(Collectors.toList());
+    }
+
+    public Member findMemberByName(String name) {
+        return members.stream()
+                .filter(member -> name.equals(member.getName()))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("그런 사람 없습니다."));
+    }
+
+    public int getPositionOfMember(Member member) {
+        return members.indexOf(member);
     }
 }
