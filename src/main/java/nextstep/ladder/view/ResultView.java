@@ -4,13 +4,9 @@ import nextstep.ladder.model.Line;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class ResultView {
-
-    public void test() {
-
-    }
-
 
     public void printLadder(String[] people, int height, List<Line> lines) {
 
@@ -31,13 +27,12 @@ public class ResultView {
 
     public void printLine(Line line) {
         List<Boolean> points = line.getPoints();
+        List<String> strLines = points.stream()
+                            .map(point -> point? "-----|":"     |")
+                            .collect(Collectors.toList());
 
-        for (boolean point : points) {
-            if (point) {
-                System.out.print("-----|");
-                continue;
-            }
-            System.out.print("     |");
+        for(String strLine : strLines){
+            System.out.print(strLine);
         }
     }
 }
