@@ -13,19 +13,15 @@ public class Members {
     }
 
     public static Members of(String ... name) {
-        List<Member> members = Stream.of(name)
+        return Stream.of(name)
                 .map(Member::new)
-                .collect(Collectors.toList());
-
-        return new Members(members);
+                .collect(Collectors.collectingAndThen(Collectors.toList(), Members::new));
     }
 
     public static Members of(List<String> names) {
-        List<Member> members = names.stream()
+        return names.stream()
                 .map(Member::new)
-                .collect(Collectors.toList());
-
-        return new Members(members);
+                .collect(Collectors.collectingAndThen(Collectors.toList(), Members::new));
     }
 
     public int getNumberOfMembers() {
