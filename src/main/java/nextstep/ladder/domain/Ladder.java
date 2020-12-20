@@ -12,10 +12,12 @@ import java.util.stream.IntStream;
 public class Ladder {
 
     private final Members members;
+    private final Results results;
     private final Floors floors;
 
-    public Ladder(Members members, Height height) {
+    public Ladder(Members members, Results results, Height height) {
         this.members = members;
+        this.results = results;
         this.floors = new Floors(height);
     }
 
@@ -32,5 +34,9 @@ public class Ladder {
 
     public Floors getFloors() {
         return floors;
+    }
+
+    public Results getResults() {
+        return results;
     }
 }

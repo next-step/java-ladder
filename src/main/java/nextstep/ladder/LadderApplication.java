@@ -3,6 +3,7 @@ package nextstep.ladder;
 import nextstep.ladder.domain.Height;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Members;
+import nextstep.ladder.domain.Results;
 import nextstep.ladder.domain.floor.RandomFloorFactory;
 import nextstep.ladder.ui.InputView;
 import nextstep.ladder.ui.LadderPrinter;
@@ -16,9 +17,12 @@ public class LadderApplication {
         List<String> names = InputView.getNamesOfMembers();
         Members members = Members.of(names);
 
+        List<String> titles = InputView.getTitlesOfResults();
+        Results results = Results.of(titles);
+
         Height height = InputView.getHeight();
 
-        Ladder ladder = new Ladder(members, height);
+        Ladder ladder = new Ladder(members, results, height);
         ladder.generateFloorsWith(new RandomFloorFactory());
 
         System.out.println("실행결과");
