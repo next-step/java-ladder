@@ -27,6 +27,15 @@ public class Floors {
         return floorList.get(height);
     }
 
+    public int followFrom(int position) {
+        int currentPosition = position;
+        for(Floor floor : floorList) {
+            currentPosition = floor.followFrom(currentPosition);
+        }
+
+        return currentPosition;
+    }
+
     private void validateAddingFloor() {
         if (height.getHeight() <= floorList.size()) {
             throw new IllegalArgumentException("더이상 floor 를 추가할 수 없습니다");
