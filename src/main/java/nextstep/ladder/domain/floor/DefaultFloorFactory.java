@@ -8,8 +8,8 @@ public class DefaultFloorFactory implements FloorFactory {
 
     @Override
     public Floor generate(int maxLinks) {
-        List<Boolean> links = IntStream.range(0, maxLinks)
-                .mapToObj(x -> x % 2 == 0)
+        List<Link> links = IntStream.range(0, maxLinks)
+                .mapToObj(x -> Link.of(x % 2 == 0))
                 .collect(Collectors.toList());
         return new Floor(links);
     }

@@ -10,8 +10,8 @@ public class RandomFloorFactory implements FloorFactory {
 
     @Override
     public Floor generate(int maxLinks) {
-        List<Boolean> links = new ArrayList<>();
-        boolean initial = random.nextBoolean();
+        List<Link> links = new ArrayList<>();
+        Link initial = Link.of(random.nextBoolean());
         links.add(initial);
 
         for (int i = 1; i < maxLinks; i++) {
@@ -21,15 +21,14 @@ public class RandomFloorFactory implements FloorFactory {
         return new Floor(links);
     }
 
-    private boolean nextLink(List<Boolean> links, int currentIndex) {
+    private Link nextLink(List<Link> links, int currentIndex) {
         if (isPreviousLinkNotLinked(links, currentIndex)) {
-            return random.nextBoolean();
+            return Link.of(random.nextBoolean());
         }
-        return false;
+        return Link.UNLINKED;
     }
 
-    private boolean isPreviousLinkNotLinked(List<Boolean> links, int currentIndex) {
-        return !links.get(currentIndex - 1);
+    private boolean isPreviousLinkNotLinked(List<Link> links, int currentIndex) {
+        return !(links.get(currentIndex - 1).equals(Link.LINKED));
     }
-
 }

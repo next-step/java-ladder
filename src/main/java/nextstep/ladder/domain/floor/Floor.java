@@ -4,24 +4,24 @@ import java.util.List;
 
 public class Floor {
 
-    private final List<Boolean> links;
+    private final List<Link> links;
 
-    public Floor(List<Boolean> links) {
+    public Floor(List<Link> links) {
         this.links = links;
     }
 
-    public boolean getLinked(int x) {
-        validateX(x);
-        return links.get(x);
+    public Link getLink(int position) {
+        validatePosition(position);
+        return links.get(position);
     }
 
-    public int getMaxLinks() {
+    public int getSizeOfLinks() {
         return links.size();
     }
 
-    private void validateX(int x) {
-        if (x > links.size()) {
-            throw new IllegalArgumentException("x 값은 " + links.size() + "를 넘을 수 없습니다");
+    private void validatePosition(int position) {
+        if (position > links.size()) {
+            throw new IllegalArgumentException("위치 값은 " + links.size() + "를 넘을 수 없습니다");
         }
     }
 }

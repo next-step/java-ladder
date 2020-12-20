@@ -2,6 +2,7 @@ package nextstep.ladder.floor;
 
 import nextstep.ladder.domain.floor.DefaultFloorFactory;
 import nextstep.ladder.domain.floor.Floor;
+import nextstep.ladder.domain.floor.Link;
 import nextstep.ladder.domain.floor.RandomFloorFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -25,9 +26,9 @@ public class FloorFactoryTest {
     }
 
     private void floorLinkTest(Floor floor) {
-        for (int i = 1; i < floor.getMaxLinks(); i++) {
+        for (int i = 1; i < floor.getSizeOfLinks(); i++) {
             // 연속으로 연결이 두번 있으면 안된다
-            assertThat(floor.getLinked(i - 1) && floor.getLinked(i)).isFalse();
+            assertThat(floor.getLink(i - 1) == Link.LINKED && floor.getLink(i) == Link.LINKED).isFalse();
         }
     }
 }

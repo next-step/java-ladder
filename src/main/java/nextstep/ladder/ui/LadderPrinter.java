@@ -3,6 +3,7 @@ package nextstep.ladder.ui;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Members;
 import nextstep.ladder.domain.floor.Floor;
+import nextstep.ladder.domain.floor.Link;
 
 import java.util.stream.Collectors;
 
@@ -32,21 +33,21 @@ public class LadderPrinter {
     }
 
     private static void printFloor(Floor floor) {
-        int maxLinks = floor.getMaxLinks();
+        int maxLinks = floor.getSizeOfLinks();
         StringBuilder sb = new StringBuilder();
 
         sb.append(HORIZONTAL_MARGIN);
         sb.append(VERTICAL_LINE);
         for (int x = 0; x < maxLinks; x++) {
-            sb.append(printLink(floor.getLinked(x)));
+            sb.append(printLink(floor.getLink(x)));
             sb.append(VERTICAL_LINE);
         }
 
         System.out.println(sb.toString());
     }
 
-    private static String printLink(boolean isLinked) {
-        if (isLinked) {
+    private static String printLink(Link linked) {
+        if (linked == Link.LINKED) {
             return HORIZONTAL_LINK;
         }
         return HORIZONTAL_BLANK;
