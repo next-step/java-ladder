@@ -1,52 +1,36 @@
 package ladder.domain;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class LadderLine {
+    private final List<Point> points;
 
-    private static final boolean BAR = true;
-    private static final boolean BLANK = false;
-    private static final int FIRST_LADDER_INDEX = 1;
-    private static final int SECOND_LADDER_INDEX = 3;
-    private final List<Boolean> points;
-
-    public LadderLine(int participantsCount, LadderGenerateStrategy ladderGenerateStrategy) {
-        this.points = InitializeLadder(participantsCount, ladderGenerateStrategy);
+    public LadderLine(int sizeOfLadder) {
+        this.points = initializeLadder(sizeOfLadder);
     }
 
-    private List<Boolean> InitializeLadder(int participantsCount, LadderGenerateStrategy ladderGenerateStrategy) {
-        int ladderLength = participantsCount * 2 - 1;
-        return createPoints(ladderLength, ladderGenerateStrategy);
-    }
+    private List<Point> initializeLadder(int sizeOfLadder) {
+        List<Point> result = new ArrayList<>(sizeOfLadder);
 
-    private List<Boolean> createPoints(int ladderLength, LadderGenerateStrategy ladderGenerateStrategy) {
-        List<Boolean> result = initializePoints(ladderLength);
-
-        result.set(FIRST_LADDER_INDEX, ladderGenerateStrategy.isGenerating());
-        for (int index = SECOND_LADDER_INDEX; index < ladderLength; index += 2) {
-            int previousLadderIndex = index - 2;
-            Boolean point = createPoint(result.get(previousLadderIndex), new RandomLadderGenerateStrategy());
-            result.set(index, point);
+        Point point = Point.firstOf();
+        result.add(point);
+        for (int i = 1; i < sizeOfLadder - 1; i++) {
+            point = Point.of(point);
+            result.add(point);
         }
+        result.add(point.lastOf());
+
         return result;
     }
 
-    private Boolean createPoint(boolean previousLadder, LadderGenerateStrategy ladderGenerateStrategy) {
-        if (!previousLadder) {
-            return ladderGenerateStrategy.isGenerating();
-        }
-        return BLANK;
+    public int move(int index) {
+        return points.get(index).move();
     }
 
-    private List<Boolean> initializePoints(int ladderLength) {
-        return IntStream.range(0, ladderLength)
-                .mapToObj(index -> BAR)
-                .collect(Collectors.toList());
-    }
-
-    public List<Boolean> getPoints() {
+    public List<Point> getPoints() {
         return points;
     }
+
+
 }

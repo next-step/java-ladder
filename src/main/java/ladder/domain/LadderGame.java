@@ -1,22 +1,26 @@
 package ladder.domain;
 
-import ladder.dto.LadderGameResult;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LadderGame {
 
-    private final Participants participants;
-    private final LadderHeight ladderHeight;
+    private final Ladder ladder;
+    private final List<Integer> ladderResult;
 
-    public LadderGame(Participants participants, LadderHeight ladderHeight) {
-        this.participants = participants;
-        this.ladderHeight = ladderHeight;
+    public LadderGame(Ladder ladder) {
+        this.ladder = ladder;
+        this.ladderResult = start();
     }
 
-    public LadderGameResult getLadderGameResult() {
-        return new LadderGameResult(getLadders(), participants.getValue());
+    private List<Integer> start() {
+        return IntStream.range(0, ladder.getLadderWidth())
+                .mapToObj(ladder::getLastPosition)
+                .collect(Collectors.toList());
     }
 
-    private Ladder getLadders() {
-        return new Ladder(participants.size(), ladderHeight);
+    public List<Integer> getLadderResult() {
+        return ladderResult;
     }
 }

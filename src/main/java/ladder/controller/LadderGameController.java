@@ -1,18 +1,20 @@
 package ladder.controller;
 
-import ladder.domain.LadderGame;
-import ladder.domain.LadderHeight;
-import ladder.domain.Participants;
+import ladder.domain.*;
 import ladder.view.LadderGameView;
 
 public class LadderGameController {
 
     public void getLadderGameInformation() {
-        Participants participants = new Participants(LadderGameView.enterParticipants());
-        LadderHeight ladderHeight = new LadderHeight(LadderGameView.enterMaxLadderHeight());
+        LadderGameInformation ladderGameInformation = new LadderGameInformation(
+                LadderGameView.enterParticipants(),
+                LadderGameView.enterLadderGameResult()
+        );
+        LadderSize ladderSize = new LadderSize(ladderGameInformation.getParticipantsCount(), LadderGameView.enterMaxLadderHeight());
+        Ladder ladder = new Ladder(ladderSize);
+        LadderGame ladderGame = new LadderGame(ladder);
+        LadderGameResult ladderGameResult = new LadderGameResult(ladderGameInformation, ladderGame.getLadderResult());
 
-        LadderGame ladderGame = new LadderGame(participants, ladderHeight);
-
-        LadderGameView.printLadders(ladderGame.getLadderGameResult());
+        LadderGameView.printLadders(ladder, ladderGameResult);
     }
 }
