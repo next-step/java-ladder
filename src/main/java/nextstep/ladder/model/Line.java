@@ -4,10 +4,13 @@ import java.util.*;
 
 public class Line {
     private List<Boolean> points = new ArrayList<>();
-    Random random = new Random();
+    private Random random = new Random();
 
     public Line(int countOfPerson) {
-        points.add(random.nextBoolean());
+        if (countOfPerson > 1) {
+            points.add(random.nextBoolean());
+        }
+
         for (int i = 1; i < countOfPerson - 1; i++) {
             points.add(isPreLine(i));
         }
