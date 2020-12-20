@@ -22,9 +22,9 @@ public class Ladder {
     }
 
     public void generateFloorsWith(FloorFactory floorLinkGenerator) {
-        int maxLinks = members.getNumberOfMembers() - 1;
+        int numberOfPositions = members.getNumberOfMembers();
         IntStream.range(0, floors.getMaxHeight())
-                .mapToObj(y -> floorLinkGenerator.generate(maxLinks))
+                .mapToObj(y -> floorLinkGenerator.generate(numberOfPositions))
                 .forEach(floors::addFloor);
     }
 

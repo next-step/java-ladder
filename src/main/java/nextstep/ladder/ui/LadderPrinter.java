@@ -47,13 +47,13 @@ public class LadderPrinter {
     }
 
     private static void printFloor(Floor floor) {
-        int maxLinks = floor.getSizeOfLinks();
+        int numberOfPositions = floor.getSizeOfPositions();
         StringBuilder sb = new StringBuilder();
 
         sb.append(HORIZONTAL_MARGIN);
         sb.append(VERTICAL_LINE);
-        for (int x = 0; x < maxLinks; x++) {
-            sb.append(printLink(floor.getLink(x)));
+        for (int x = 0; x < numberOfPositions - 1; x++) {
+            sb.append(printLink(floor.getRightLinkOf(x).get()));
             sb.append(VERTICAL_LINE);
         }
 

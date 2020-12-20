@@ -26,9 +26,10 @@ public class FloorFactoryTest {
     }
 
     private void floorLinkTest(Floor floor) {
-        for (int i = 1; i < floor.getSizeOfLinks(); i++) {
+        for (int i = 1; i < floor.getSizeOfPositions() - 1; i++) {
             // 연속으로 연결이 두번 있으면 안된다
-            assertThat(floor.getLink(i - 1) == Link.LINKED && floor.getLink(i) == Link.LINKED).isFalse();
+            assertThat(floor.getLeftLinkOf(i).get() == Link.LINKED
+                    && floor.getRightLinkOf(i).get() == Link.LINKED).isFalse();
         }
     }
 }
