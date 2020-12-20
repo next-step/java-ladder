@@ -2,7 +2,6 @@ package nextstep.step2.VO;
 
 import nextstep.step2.service.LineGenerator;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;

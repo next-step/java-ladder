@@ -1,14 +1,15 @@
 package nextstep.step2.VO;
 
 public class Position {
-    private int position;
+    private final int position;
 
     public Position(int position) {
         this.position = position;
     }
 
     public Position moveToLeft() {
-        return new Position(this.position --) ;
+        int newPosition = this.position - 1;
+        return new Position(newPosition) ;
     }
 
     public Position moveToDown() {
@@ -16,6 +17,7 @@ public class Position {
     }
 
     public Position moveToRight() {
-        return new Position(this.position ++) ;
+        int newPosition = this.position + 1;
+        return new Position(newPosition) ;
     }
 }

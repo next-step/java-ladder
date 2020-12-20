@@ -1,6 +1,5 @@
 package nextstep.step2.VO;
 
-import javafx.geometry.Pos;
 
 public class Point {
     private final Direction direction;

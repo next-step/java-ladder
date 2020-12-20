@@ -3,7 +3,6 @@ package nextstep.step2.view;
 import nextstep.step2.VO.Position;
 import nextstep.step2.VO.User;
 import nextstep.step2.VO.Users;
-import org.omg.PortableInterceptor.USER_EXCEPTION;
 
 import java.util.List;
 import java.util.Scanner;
