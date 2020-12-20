@@ -19,7 +19,7 @@ public class LadderApplication {
         Height height = InputView.getHeight();
 
         Ladder ladder = new Ladder(members, height);
-        ladder.generateLadderWith(new RandomFloorFactory());
+        ladder.generateFloorsWith(new RandomFloorFactory());
 
         System.out.println("실행결과");
         LadderPrinter.print(ladder);

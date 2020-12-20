@@ -3,6 +3,7 @@ package nextstep.ladder.ui;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Members;
 import nextstep.ladder.domain.floor.Floor;
+import nextstep.ladder.domain.floor.Floors;
 import nextstep.ladder.domain.floor.Link;
 
 import java.util.stream.Collectors;
@@ -18,8 +19,9 @@ public class LadderPrinter {
 
         printMemberNames(ladder.getMembers());
 
-        for (Floor floor : ladder.getFloors()) {
-            printFloor(floor);
+        Floors floors = ladder.getFloors();
+        for (int i = 0; i < floors.getMaxHeight(); i++) {
+            printFloor(floors.getFloor(i));
         }
     }
 

@@ -14,7 +14,7 @@ public class LadderPrinterTest {
         Members members = Members.of("one", "two", "three", "four");
         Height height = new Height(5);
         Ladder ladder = new Ladder(members, height);
-        ladder.generateLadderWith(new RandomFloorFactory());
+        ladder.generateFloorsWith(new RandomFloorFactory());
 
         LadderPrinter.print(ladder);
     }
