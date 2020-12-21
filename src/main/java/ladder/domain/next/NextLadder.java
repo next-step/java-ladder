@@ -33,7 +33,7 @@ public class NextLadder implements Ladder {
 
     @Override
     public LadderResult startFrom(LadderMember member) {
-        int startPos = memberAndResults.getPositionOfMember(member);
+        int startPos = member.getPos();
         int currentPos = startPos;
         for( LadderLine line: lines ){
             currentPos = line.move(currentPos);
@@ -43,7 +43,7 @@ public class NextLadder implements Ladder {
 
     @Override
     public LadderResult startFrom(String memberName) {
-        return startFrom(new LadderMember(memberName));
+        return startFrom(memberAndResults.findMember(memberName));
     }
 
     @Override

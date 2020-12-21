@@ -41,8 +41,7 @@ public class DefaultLadder implements Ladder {
 
     @Override
     public LadderResult startFrom(LadderMember member) {
-        int memberPos = memberAndResults.getPositionOfMember(member);
-        int currPos = toLadderLevelPos(memberPos);
+        int currPos = toLadderLevelPos(member.getPos());
         for( LadderLevel ladderLevel : ladderLevels ){
             currPos = ladderLevel.move(currPos);
         }
@@ -51,7 +50,7 @@ public class DefaultLadder implements Ladder {
 
     @Override
     public LadderResult startFrom(String memberName) {
-        return startFrom(new LadderMember(memberName));
+        return startFrom(memberAndResults.findMember(memberName));
     }
 
     @Override

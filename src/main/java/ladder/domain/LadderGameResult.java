@@ -13,7 +13,12 @@ public class LadderGameResult {
     }
 
     public LadderResult getLadderResult(String memberName){
-        return ladderResults.get(new LadderMember(memberName));
+        return ladderResults.keySet()
+                .stream()
+                .filter( member -> member.getName().equals(memberName))
+                .map( member -> ladderResults.get(member) )
+                .findFirst()
+                .get();
     }
 
     public void printLadder(PrintWriter writer) {

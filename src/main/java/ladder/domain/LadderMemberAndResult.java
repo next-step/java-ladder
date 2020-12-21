@@ -22,15 +22,15 @@ public class LadderMemberAndResult {
         return results.toString();
     }
 
-    public int getPositionOfMember(LadderMember member) {
-        return members.getPosition(member);
-    }
-
     public LadderResult getResult(int pos) {
         return results.get(pos);
     }
 
     public void forEachMember(Consumer<LadderMember> action) {
-        members.forEach(action);
+        members.stream().forEach(action);
+    }
+
+    public LadderMember findMember(String memberName) {
+        return members.findFirst( member -> member.getName().equals(memberName));
     }
 }
