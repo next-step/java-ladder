@@ -11,20 +11,10 @@ public class Results {
         this.results = results;
     }
 
-    public static Results of(String ... titles) {
-        return Stream.of(titles)
-                .map(Result::new)
-                .collect(Collectors.collectingAndThen(Collectors.toList(), Results::new));
-    }
-
     public static Results of(List<String> titles) {
         return titles.stream()
                 .map(Result::new)
                 .collect(Collectors.collectingAndThen(Collectors.toList(), Results::new));
-    }
-
-    public int getNumberOfResults() {
-        return results.size();
     }
 
     public Result getResultOfPosition(int position) {

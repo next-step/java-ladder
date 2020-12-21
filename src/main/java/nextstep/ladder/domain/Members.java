@@ -1,9 +1,7 @@
 package nextstep.ladder.domain;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Members {
 
@@ -11,12 +9,6 @@ public class Members {
 
     private Members(List<Member> members) {
         this.members = members;
-    }
-
-    public static Members of(String ... name) {
-        return Stream.of(name)
-                .map(Member::new)
-                .collect(Collectors.collectingAndThen(Collectors.toList(), Members::new));
     }
 
     public static Members of(List<String> names) {

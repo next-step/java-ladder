@@ -2,7 +2,10 @@ package nextstep.ladder.floor;
 
 import nextstep.ladder.domain.floor.Floor;
 import nextstep.ladder.domain.floor.Link;
-import org.junit.jupiter.api.Test;
+import nextstep.ladder.domain.floor.Position;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.Arrays;
 
@@ -10,14 +13,18 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class FloorTest {
 
-    @Test
-    public void followFrom() {
-        Floor floor = new Floor(5, Arrays.asList(Link.LINKED, Link.UNLINKED, Link.UNLINKED, Link.LINKED));
+    private Floor floor;
 
-        assertThat(floor.followFrom(0)).isEqualTo(1);
-        assertThat(floor.followFrom(1)).isEqualTo(0);
-        assertThat(floor.followFrom(2)).isEqualTo(2);
-        assertThat(floor.followFrom(3)).isEqualTo(4);
-        assertThat(floor.followFrom(4)).isEqualTo(3);
+    @BeforeEach
+    public void setUp() {
+        floor = new Floor(5, Arrays.asList(Link.LINKED, Link.UNLINKED, Link.UNLINKED, Link.LINKED));
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"0, 1", "1, 0", "2, 2", "3, 4", "4, 3"})
+    public void followFrom(int start, int result) {
+        Position position = new Position(start, 5);
+        floor.followFrom(position);
+        assertThat(position.getCurrentPosition()).isEqualTo(result);
     }
 }

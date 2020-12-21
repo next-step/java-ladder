@@ -27,13 +27,10 @@ public class Floors {
         return floorList.get(height);
     }
 
-    public int followFrom(int position) {
-        int currentPosition = position;
-        for(Floor floor : floorList) {
-            currentPosition = floor.followFrom(currentPosition);
+    public void followFrom(Position position) {
+        for (Floor floor : floorList) {
+            floor.followFrom(position);
         }
-
-        return currentPosition;
     }
 
     private void validateAddingFloor() {

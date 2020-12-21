@@ -12,51 +12,39 @@ public class Floor {
         this.links = links;
     }
 
-    public Optional<Link> getLeftLinkOf(int position) {
-        validatePosition(position);
-        if (position <= 0) {
+    public Optional<Link> getLeftLinkOf(Position position) {
+        if (position.isMostLeft()) {
             return Optional.empty();
         }
-        return Optional.of(links.get(position - 1));
+        return Optional.of(links.get(position.getCurrentPosition() - 1));
     }
 
-    public Optional<Link> getRightLinkOf(int position) {
-        validatePosition(position);
-        if (position >= links.size()) {
+    public Optional<Link> getRightLinkOf(Position position) {
+        if (position.isMostRight()) {
             return Optional.empty();
         }
-        return Optional.of(links.get(position));
+        return Optional.of(links.get(position.getCurrentPosition()));
     }
 
     public int getSizeOfPositions() {
         return links.size() + 1;
     }
 
-    public int followFrom(int position) {
-        validatePosition(position);
+    public void followFrom(Position position) {
         Link left = getLeftLinkOf(position).orElse(Link.UNLINKED);
         if (left == Link.LINKED) {
-            return position - 1;
+            position.moveLeft();
+            return;
         }
         Link right = getRightLinkOf(position).orElse(Link.UNLINKED);
         if (right == Link.LINKED) {
-            return position + 1;
+            position.moveRight();
         }
-        return position;
     }
 
     private void validatePositionAndLinks(int sizeOfPosition, List<Link> links) {
         if (links.size() + 1 != sizeOfPosition) {
             throw new IllegalArgumentException("link의 수가 position 수와 맞지 않습니다");
-        }
-    }
-
-    private void validatePosition(int position) {
-        if (position < 0) {
-            throw new IllegalArgumentException("position 의 값은 0보다 작을 수 없습니다");
-        }
-        if (position > links.size()) {
-            throw new IllegalArgumentException("position 의 값은 " + links.size() + "보다 클 수 없습니다");
         }
     }
 }

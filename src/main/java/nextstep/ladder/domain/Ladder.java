@@ -1,12 +1,9 @@
 package nextstep.ladder.domain;
 
 import nextstep.ladder.domain.floor.FloorFactory;
-import nextstep.ladder.domain.floor.Floor;
 import nextstep.ladder.domain.floor.Floors;
+import nextstep.ladder.domain.floor.Position;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
@@ -41,8 +38,8 @@ public class Ladder {
     }
 
     public Result getResultOf(Member member) {
-        int position = members.getPositionOfMember(member);
-        int resultPosition = floors.followFrom(position);
-        return results.getResultOfPosition(resultPosition);
+        Position position = new Position(members.getPositionOfMember(member), members.getNumberOfMembers());
+        floors.followFrom(position);
+        return results.getResultOfPosition(position.getCurrentPosition());
     }
 }
