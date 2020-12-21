@@ -30,40 +30,17 @@ public class PositionTest {
         ).isInstanceOf(InvalidPositionNumberException.class);
     }
 
-    @DisplayName("1 혹은 -1 보다 더 큰 절대값 수가 들어갈 경우 예외처리")
-    @ParameterizedTest
-    @ValueSource(ints = {-2, 2, 3, 5, 6})
-    public void inValidMovePositionValue(int movePosition) {
-        assertThatThrownBy(() ->
-                Position.from(1).move(movePosition)
-        ).isInstanceOf(InvalidPositionNumberException.class);
-    }
 
     @DisplayName("포지션 이동 테스트")
     @ParameterizedTest
-    @ValueSource(ints = {0, 1, -1})
-    public void movePositionTest(int movePosition) {
+    @ValueSource(ints = {1, 2, 3})
+    public void movePositionTest(int newPosition) {
         //Given & When
         int startPosition = 3;
-        Position movedPosition = Position.from(startPosition).move(movePosition);
+        Position movedPosition = Position.from(startPosition).move(newPosition);
 
         //Then
-        assertThat(movedPosition).isEqualTo(Position.from(startPosition + movePosition).move(0));
-    }
-
-    @Test
-    public void movePositionForEachTest() {
-        //Given
-        Position position = Position.from(5);
-        Position expectedPosition = Position.from(10);
-
-        for (int i = 0; i < 5; i++){
-            position = position.move(1);
-            expectedPosition = expectedPosition.move(0);
-        }
-
-        //Then
-        assertThat(position).isEqualTo(expectedPosition);
+        assertThat(movedPosition).isEqualTo(Position.from(newPosition).move(newPosition));
     }
 
 }
