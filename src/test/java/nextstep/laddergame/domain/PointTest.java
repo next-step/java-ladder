@@ -19,9 +19,9 @@ class PointTest {
         point.canRight();
 
         assertThat(
-                        Point.createWithBeforePoint(point,movingStrategy)
-                                .getDirection()
-                                .isLeft()
+                Point.createWithBeforePoint(point,movingStrategy)
+                        .getDirection()
+                        .isLeft()
         ).isTrue();
 
         point.canLeft();

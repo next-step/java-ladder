@@ -1,8 +1,5 @@
 package nextstep.laddergame.domain;
 
-
-import java.util.Random;
-
 public class Point {
     private static final int LEFT = -1;
     private static final int RIGHT = 1;
@@ -43,15 +40,15 @@ public class Point {
             return new Point(beforePoint.nextIndex(), ZERO);
         }
 
-        return Point.of(beforePoint.getIndex(), movingStrategy);
+        return Point.of(beforePoint.nextIndex(), movingStrategy);
     }
 
     private static Point of(int index, MovingStrategy movingStrategy) {
         if (movingStrategy.isMovable()) {
             return new Point(index, RIGHT);
-        } else {
-            return new Point(index, ZERO);
         }
+
+        return new Point(index, ZERO);
     }
 
     private int nextIndex() {
@@ -76,5 +73,13 @@ public class Point {
 
     public void canNotMove(){
         this.direction = Direction.from(ZERO);
+    }
+
+    public int move() {
+        return this.index.getIndex() + this.direction.getDirection();
+    }
+
+    public boolean isEqualTo(int index) {
+        return this.index.isEqualTo(index);
     }
 }

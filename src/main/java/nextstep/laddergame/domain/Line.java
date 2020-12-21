@@ -1,7 +1,6 @@
 package nextstep.laddergame.domain;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Line {
@@ -25,5 +24,17 @@ public class Line {
 
     public List<Point> getPoints() {
         return points;
+    }
+
+    public int moveByIndex(int index) {
+        Point point = findPointByIndex(index);
+
+        return point.move();
+    }
+
+    private Point findPointByIndex(int index) {
+        return this.points.stream().filter(point -> point.isEqualTo(index))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("index 범위를 초과하였습니다."));
     }
 }

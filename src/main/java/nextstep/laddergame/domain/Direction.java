@@ -22,4 +22,8 @@ public class Direction {
     public boolean isNotMove() {
         return this.direction == 0;
     }
+
+    public int getDirection() {
+        return direction;
+    }
 }

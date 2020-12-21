@@ -2,6 +2,7 @@ package nextstep.laddergame.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Gifts {
     private final List<Gift> gifts;
@@ -34,5 +35,13 @@ public class Gifts {
 
     private static String[] splitGiftName(String giftNames) {
         return giftNames.split(",");
+    }
+
+    public Gift findGiftByIndex(int index) {
+        return findGift(index);
+    }
+
+    private Gift findGift(int resultIndex) {
+        return this.getGifts().get(resultIndex);
     }
 }

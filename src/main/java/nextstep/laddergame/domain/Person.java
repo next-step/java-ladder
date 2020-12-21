@@ -3,7 +3,7 @@ package nextstep.laddergame.domain;
 public class Person {
     private Name name;
     private int sequence;
-    private String result;
+    private int resultIndex;
 
     private Person(String name) {
         this.name = Name.create(name);
@@ -24,5 +24,18 @@ public class Person {
 
     public String getName() {
         return this.name.getName();
+    }
+
+    public void runLadder(Ladder ladder) {
+        int index = this.sequence;
+        for (Line line : ladder.getLines()) {
+            index = line.moveByIndex(index);
+        }
+
+        this.resultIndex = index;
+    }
+
+    public int getResultIndex() {
+        return resultIndex;
     }
 }

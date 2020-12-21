@@ -15,4 +15,8 @@ public class Index {
     public int getIndex() {
         return this.index;
     }
+
+    public boolean isEqualTo(int index) {
+         return this.index == index;
+    }
 }
