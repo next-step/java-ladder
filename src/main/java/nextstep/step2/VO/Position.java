@@ -20,4 +20,8 @@ public class Position {
         int newPosition = this.position + 1;
         return new Position(newPosition) ;
     }
+
+    public int getPosition() {
+        return this.position;
+    }
 }

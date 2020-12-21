@@ -20,6 +20,6 @@ public class LadderTest {
 
         Ladder ladder = new Ladder(users.getUserListSize(), 5);
 
-        int dummy = 4;
+        assertThat(ladder.getLadder()).hasSize(5);
     }
 }
