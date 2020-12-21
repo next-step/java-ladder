@@ -20,4 +20,8 @@ public class InputView {
         return sc.nextInt();
     }
 
+    public void inputTest(){
+
+    }
+
 }
