@@ -1,52 +1,25 @@
 package ladder.domain.ladder;
 
-import ladder.domain.participant.Position;
-
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Line {
 
-    private static final int RIGHT = 1;
-    private static final int LEFT = -1;
-    private final List<Boolean> points;
+    private List<Point> points;
 
-    public Line(List<Boolean> points) {
+    public Line(List<Point> points) {
         this.points = points;
     }
 
     public int giveDirection(int rowPoint) {
-        return pointDirectionLeftOrRight(rowPoint);
+        return points.get(rowPoint).move();
     }
 
-    private int pointDirectionLeftOrRight(int rowPoint) {
-        if(rowPoint == 0 || rowPoint == points.size()){
-            return pointFirstOrLastElementDirection(rowPoint);
-        }
-        return points.get(rowPoint) == true ? pointRightDirection(rowPoint) : pointLeftDirection(rowPoint);
-    }
-
-    private int pointLeftDirection(int rowPoint) {
-        if(points.get(rowPoint + LEFT) == true) {
-            return LEFT;
-        }
-        return 0;
-    }
-
-    private int pointRightDirection(int rowPoint) {
-        if(points.get(rowPoint) == true) {
-            return RIGHT;
-        }
-        return 0;
-    }
-
-    private int pointFirstOrLastElementDirection(int rowPoint) {
-        return rowPoint == 0 ? pointRightDirection(rowPoint) : pointLeftDirection(rowPoint);
-    }
-
-    public List<Boolean> getPoints() {
-        return Collections.unmodifiableList(points);
+    public List<Boolean> getPointsRow(){
+        return this.points.stream()
+                            .map(point -> point.isRight())
+                            .collect(Collectors.toList());
     }
 
     public int sizeWidth() {
