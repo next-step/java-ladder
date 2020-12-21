@@ -1,7 +1,7 @@
 package ladder.domain;
 
-import java.util.Iterator;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class LadderMemberAndResult {
 
@@ -30,7 +30,7 @@ public class LadderMemberAndResult {
         return results.get(pos);
     }
 
-    public Iterator<LadderMember> memberIterator() {
-        return members.iterator();
+    public void forEachMember(Consumer<LadderMember> action) {
+        members.forEach(action);
     }
 }

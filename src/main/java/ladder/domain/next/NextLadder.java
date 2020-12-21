@@ -49,7 +49,7 @@ public class NextLadder implements Ladder {
     @Override
     public Map<LadderMember, LadderResult> startAll() {
         Map<LadderMember, LadderResult> results = new HashMap<>();
-        memberAndResults.memberIterator().forEachRemaining(member -> results.put(member, startFrom(member)));
+        memberAndResults.forEachMember(member -> results.put(member, startFrom(member)));
         return results;
     }
 
