@@ -19,5 +19,4 @@ class ParticipantsTest {
         assertThatThrownBy(() -> Participants.create("aaa"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
 }

@@ -12,5 +12,6 @@ class RandomStrategyTest {
 
         RandomStrategy randomStrategy = new RandomStrategy();
         Assertions.assertThat(randomStrategy.isMovable()).isIn(Boolean.TRUE, Boolean.FALSE);
+
     }
 }

@@ -13,6 +13,7 @@ public class LadderController {
     private Ladder ladder;
     private Gifts gifts;
 
+
     public List<Person> initParticipants(String participants) {
         this.participants = Participants.create(participants);
 

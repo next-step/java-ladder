@@ -57,5 +57,6 @@ class LineTest {
 
         assertThatThrownBy(() -> line.moveByIndex(10))
                 .isInstanceOf(RuntimeException.class);
+
     }
 }

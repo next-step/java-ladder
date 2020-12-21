@@ -8,15 +8,18 @@ import nextstep.laddergame.domain.dto.LineDTO;
 import nextstep.laddergame.domain.dto.ResultDTO;
 import org.apache.commons.lang3.StringUtils;
 
+
 import java.util.List;
 
 public class ResultView {
+
     private static final String WAY = "|-----";
     private static final String NOT_WAY = "|     ";
 
     public void showPeople(List<Person> people) {
         for (Person person : people) {
             System.out.print(" " + StringUtils.center(person.getName(), 5));
+
         }
         System.out.println();
     }
@@ -68,5 +71,6 @@ public class ResultView {
             System.out.print(" " + StringUtils.center(gift.getName(), 5));
         }
         System.out.println();
+
     }
 }

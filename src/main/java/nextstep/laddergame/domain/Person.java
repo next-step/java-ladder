@@ -25,7 +25,7 @@ public class Person {
     public String getName() {
         return this.name.getName();
     }
-
+  
     public void runLadder(Ladder ladder) {
         int index = this.sequence;
         for (Line line : ladder.getLines()) {
