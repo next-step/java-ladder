@@ -11,6 +11,8 @@ import ladder.domain.participant.Participants;
 import ladder.exception.CanNotPlayGameException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.Arrays;
 
@@ -25,30 +27,31 @@ public class LadderGameTest {
 
     @BeforeEach
     public void setUp() {
-        this.participants = Participants.of(Arrays.asList("user","user2","user3"));
-        this.ladder = LadderFactory.makeLadder(new LadderStructure(5,4), new RandomLineGenerator());
+        this.participants = Participants.of(Arrays.asList("user", "user2", "user3"));
+        this.ladder = LadderFactory.makeLadder(new LadderStructure(3, 4), new RandomLineGenerator());
         this.ladderGame = new LadderGame(participants, ladder);
     }
 
 
     @Test
-    public void createInstanceTest(){
-        assertThat(ladderGame.play(new Rewards(Arrays.asList("test","test2","test3")))).isNotNull();
+    public void createInstanceTest() {
+        assertThat(ladderGame.play(new Rewards(Arrays.asList("test", "test2", "test3")))).isNotNull();
     }
 
-    @Test
-    public void gamePlayTest() {
+    @ParameterizedTest
+    @CsvSource(value = {"user", "user2", "user3"})
+    public void gamePlayTest(String searchName) {
         //Given & When
-        GameResult gameResult = ladderGame.play(new Rewards(Arrays.asList("꽝","3000","3000")));
+        GameResult gameResult = ladderGame.play(new Rewards(Arrays.asList("꽝", "3000", "3000")));
 
         //Then
-        assertThat(gameResult.search("user")).isNotNull();
+        assertThat(gameResult.search(searchName)).isNotNull();
     }
 
     @Test
     public void canNotPlayGameTest() {
         assertThatThrownBy(() ->
-              new LadderGame(Participants.of(Arrays.asList("test","test2")), null).play(new Rewards(Arrays.asList("test")))
+                new LadderGame(Participants.of(Arrays.asList("test", "test2")), null).play(new Rewards(Arrays.asList("test")))
         ).isInstanceOf(CanNotPlayGameException.class);
     }
 
