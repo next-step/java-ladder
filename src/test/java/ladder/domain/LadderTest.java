@@ -1,7 +1,5 @@
 package ladder.domain;
 
-import ladder.domain.next.LadderLine;
-import ladder.domain.next.NextLadder;
 import org.assertj.core.util.Maps;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -11,16 +9,15 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import static ladder.domain.LevelItem.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-abstract class LadderTest {
+public abstract class LadderTest {
 
-    Ladder ladder;
+    protected Ladder ladder;
 
-    List<String> members = Arrays.asList("nio", "hoon", "mit");
-    List<String> results = Arrays.asList("10000", "5000", "0");
+    protected List<String> members = Arrays.asList("nio", "hoon", "mit");
+    protected List<String> results = Arrays.asList("10000", "5000", "0");
 
     @DisplayName("참가자 이름을 입력하면 결과를 알려준다")
     @Test
@@ -51,11 +48,11 @@ class DefaultLadderTest extends LadderTest {
                 members,
                 results,
                 Arrays.asList(
-                        new LadderLevel(Arrays.asList(bar(), step(), bar(), emptyStep(), bar())),
-                        new LadderLevel(Arrays.asList(bar(), emptyStep(), bar(), step(), bar())),
-                        new LadderLevel(Arrays.asList(bar(), emptyStep(), bar(), emptyStep(), bar())),
-                        new LadderLevel(Arrays.asList(bar(), step(), bar(), emptyStep(), bar())),
-                        new LadderLevel(Arrays.asList(bar(), emptyStep(), bar(), step(), bar()))));
+                        new LadderLevel(Arrays.asList(LadderItem.Bar, LadderItem.Step, LadderItem.Bar, LadderItem.Empty, LadderItem.Bar)),
+                        new LadderLevel(Arrays.asList(LadderItem.Bar, LadderItem.Empty, LadderItem.Bar, LadderItem.Step, LadderItem.Bar)),
+                        new LadderLevel(Arrays.asList(LadderItem.Bar, LadderItem.Empty, LadderItem.Bar, LadderItem.Empty, LadderItem.Bar)),
+                        new LadderLevel(Arrays.asList(LadderItem.Bar, LadderItem.Step, LadderItem.Bar, LadderItem.Empty, LadderItem.Bar)),
+                        new LadderLevel(Arrays.asList(LadderItem.Bar, LadderItem.Empty, LadderItem.Bar, LadderItem.Step, LadderItem.Bar))));
     }
 
 
@@ -68,23 +65,3 @@ class DefaultLadderTest extends LadderTest {
 
 }
 
-class NextLadderTest extends LadderTest {
-
-    @BeforeEach
-    void setUp(){
-        List<LadderLine> lines = Arrays.asList(
-                LadderLine.builder().first(true).next(false).last().build(),
-                LadderLine.builder().first(false).next(true).last().build(),
-                LadderLine.builder().first(false).next(false).last().build(),
-                LadderLine.builder().first(true).next(false).last().build(),
-                LadderLine.builder().first(false).next(true).last().build()
-        );
-
-        ladder = new NextLadder(
-                members,
-                results,
-                lines
-        );
-    }
-
-}

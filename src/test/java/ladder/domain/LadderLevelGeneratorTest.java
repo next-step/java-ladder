@@ -20,21 +20,21 @@ class LadderLevelGeneratorTest {
     @DisplayName("ladder level 은 bar-step-bar-step-bar 로 구성된다. bar 로 시작해서 bar 로 끝난다")
     @Test
     void generate(){
-        List<LevelItem> items = generator.generate(5);
+        List<LadderItem> items = generator.generate(5);
 
         assertThat(items).hasSize(5);
-        assertThat(items.get(0).getType()).isEqualTo(LevelItem.Type.Bar);
-        assertThat(items.get(1).getType()).isNotEqualTo(LevelItem.Type.Bar);
-        assertThat(items.get(2).getType()).isEqualTo(LevelItem.Type.Bar);
-        assertThat(items.get(3).getType()).isNotEqualTo(LevelItem.Type.Bar);
-        assertThat(items.get(4).getType()).isEqualTo(LevelItem.Type.Bar);
+        assertThat(items.get(0)).isEqualTo(LadderItem.Bar);
+        assertThat(items.get(1)).isNotEqualTo(LadderItem.Bar);
+        assertThat(items.get(2)).isEqualTo(LadderItem.Bar);
+        assertThat(items.get(3)).isNotEqualTo(LadderItem.Bar);
+        assertThat(items.get(4)).isEqualTo(LadderItem.Bar);
 
     }
 
     @DisplayName("ladder level 에서 step 은 연속해서 만들수 없다")
     @Test
     void shouldNotContinuesStep(){
-        List<LevelItem> items = generator.generate(5);
+        List<LadderItem> items = generator.generate(5);
 
         if( items.get(1).isStep() ) assertThat(items.get(3).isStep()).isEqualTo(false);
         if( items.get(3).isStep() ) assertThat(items.get(1).isStep()).isEqualTo(false);

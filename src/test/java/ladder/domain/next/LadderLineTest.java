@@ -1,5 +1,6 @@
 package ladder.domain.next;
 
+import ladder.domain.LadderItem;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -25,6 +26,24 @@ class LadderLineTest {
             assertThat(line.move(2)).isGreaterThanOrEqualTo(1);
             assertThat(line.move(2)).isLessThanOrEqualTo(3);
         }
+    }
+
+    @DisplayName("LadderItem 으로 변환할 수 있다")
+    @Test
+    void toLadderItems(){
+        LadderLine line = LadderLine.builder().first(true).next(false).last().build();
+        assertThat(line.toLadderItems())
+                .containsExactly(LadderItem.Bar, LadderItem.Step, LadderItem.Bar, LadderItem.Empty, LadderItem.Bar);
+
+        LadderLine line2 = LadderLine.builder().first(false).next(false).last().build();
+        assertThat(line2.toLadderItems())
+                .containsExactly(LadderItem.Bar, LadderItem.Empty, LadderItem.Bar, LadderItem.Empty, LadderItem.Bar);
+
+        LadderLine line3 = LadderLine.builder().first(false).next(true).last().build();
+        assertThat(line3.toLadderItems())
+                .containsExactly(LadderItem.Bar, LadderItem.Empty, LadderItem.Bar, LadderItem.Step, LadderItem.Bar);
+
+
     }
 
 }

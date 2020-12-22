@@ -14,9 +14,9 @@ public class LadderLevelTest {
     @Test
     void shouldBarAtFirst(){
         assertThatThrownBy(() -> new LadderLevel(Arrays.asList(
-                LevelItem.step(),
-                LevelItem.step(),
-                LevelItem.bar()
+                LadderItem.Step,
+                LadderItem.Step,
+                LadderItem.Bar
         ))).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -24,9 +24,9 @@ public class LadderLevelTest {
     @Test
     void shouldBarAtLast(){
         assertThatThrownBy(() -> new LadderLevel(Arrays.asList(
-                LevelItem.bar(),
-                LevelItem.step(),
-                LevelItem.step()
+                LadderItem.Bar,
+                LadderItem.Step,
+                LadderItem.Step
         ))).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -34,18 +34,18 @@ public class LadderLevelTest {
     @Test
     void shouldNotContinuesStep(){
         assertThatThrownBy(() -> new LadderLevel(Arrays.asList(
-                LevelItem.bar(),
-                LevelItem.step(),
-                LevelItem.bar(),
-                LevelItem.step(),
-                LevelItem.bar()
+                LadderItem.Bar,
+                LadderItem.Step,
+                LadderItem.Bar,
+                LadderItem.Step,
+                LadderItem.Bar
         ))).isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("Bar 에서만 이동을 시작할 수 있다")
     @Test
     void illegalStartPos(){
-        LadderLevel ladderLevel = new LadderLevel(Arrays.asList(LevelItem.bar(), LevelItem.step(), LevelItem.bar()));
+        LadderLevel ladderLevel = new LadderLevel(Arrays.asList(LadderItem.Bar, LadderItem.Step, LadderItem.Bar));
 
         assertThatThrownBy(() -> ladderLevel.move(1))
                 .isInstanceOf(IllegalArgumentException.class);
@@ -54,35 +54,35 @@ public class LadderLevelTest {
     @DisplayName("오른쪽에 step 이 있으면 오른쪽으로 이동한다")
     @Test
     void moveRight(){
-        LadderLevel ladderLevel = new LadderLevel(Arrays.asList(LevelItem.bar(), LevelItem.step(), LevelItem.bar()));
+        LadderLevel ladderLevel = new LadderLevel(Arrays.asList(LadderItem.Bar, LadderItem.Step, LadderItem.Bar));
         assertThat(ladderLevel.move(0)).isEqualTo(2);
     }
 
     @DisplayName("왼쪽에 step 이 있으면 왼쪽으로 이동한다")
     @Test
     void moveLeft(){
-        LadderLevel ladderLevel = new LadderLevel(Arrays.asList(LevelItem.bar(), LevelItem.step(), LevelItem.bar()));
+        LadderLevel ladderLevel = new LadderLevel(Arrays.asList(LadderItem.Bar, LadderItem.Step, LadderItem.Bar));
         assertThat(ladderLevel.move(2)).isEqualTo(0);
     }
 
     @DisplayName("양쪽 모두 step 이 없으면 이동하지 않고 현재위치에서 내려간다")
     @Test
     void notMove1(){
-        LadderLevel ladderLevel = new LadderLevel(Arrays.asList(LevelItem.bar(), LevelItem.emptyStep(), LevelItem.bar(), LevelItem.emptyStep(), LevelItem.bar()));
+        LadderLevel ladderLevel = new LadderLevel(Arrays.asList(LadderItem.Bar, LadderItem.Empty, LadderItem.Bar, LadderItem.Empty, LadderItem.Bar));
         assertThat(ladderLevel.move(2)).isEqualTo(2);
     }
 
     @DisplayName("끝에서 시작하고 왼쪽에 step이 없으면 이동하지 않고 현재위치에서 내려간다")
     @Test
     void notMove2(){
-        LadderLevel ladderLevel = new LadderLevel(Arrays.asList(LevelItem.bar(), LevelItem.emptyStep(), LevelItem.bar(), LevelItem.emptyStep(), LevelItem.bar()));
+        LadderLevel ladderLevel = new LadderLevel(Arrays.asList(LadderItem.Bar, LadderItem.Empty, LadderItem.Bar, LadderItem.Empty, LadderItem.Bar));
         assertThat(ladderLevel.move(4)).isEqualTo(4);
     }
 
     @DisplayName("맨앞에서 시작하고 왼쪽에 step이 없으면 이동하지 않고 현재위치에서 내려간다")
     @Test
     void notMove3(){
-        LadderLevel ladderLevel = new LadderLevel(Arrays.asList(LevelItem.bar(), LevelItem.emptyStep(), LevelItem.bar(), LevelItem.emptyStep(), LevelItem.bar()));
+        LadderLevel ladderLevel = new LadderLevel(Arrays.asList(LadderItem.Bar, LadderItem.Empty, LadderItem.Bar, LadderItem.Empty, LadderItem.Bar));
         assertThat(ladderLevel.move(0)).isEqualTo(0);
     }
 

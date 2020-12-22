@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,11 +31,8 @@ public class DefaultLadder implements Ladder {
     }
 
     @Override
-    public void print(PrintWriter writer) {
-        writer.println(memberAndResults.toStringMembers());
-        ladderLevels.forEach(writer::println);
-        writer.println(memberAndResults.toStringResults());
-        writer.flush();
+    public LadderReader getReader() {
+        return new DefaultLadderReader(ladderLevels);
     }
 
     @Override

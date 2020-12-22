@@ -1,6 +1,12 @@
 package ladder.domain.next;
 
-public class Point {
+import ladder.domain.LadderItem;
+import ladder.domain.SupportedLadderItems;
+
+import java.util.Arrays;
+import java.util.List;
+
+public class Point implements SupportedLadderItems {
 
     private final int index;
     private final Direction direction;
@@ -34,9 +40,16 @@ public class Point {
 
     @Override
     public String toString() {
-        if(direction.isRight())
-            return "|------";
-        return "|      ";
+        return "Point{" +
+                "index=" + index +
+                ", direction=" + direction +
+                '}';
     }
 
+    @Override
+    public List<LadderItem> toLadderItems() {
+        if(direction.isRight())
+            return Arrays.asList(LadderItem.Bar, LadderItem.Step);
+        return Arrays.asList(LadderItem.Bar, LadderItem.Empty);
+    }
 }
