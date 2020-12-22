@@ -1,6 +1,5 @@
 package nextstep.ladder.model;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class Ladder {
@@ -14,6 +13,11 @@ public class Ladder {
     }
     public List<Line> getLines(){
         return lines.getLines();
+    }
+
+
+    public void startMove(People people){
+        people.movePeoplePosition(lines.getLines());
     }
 
 
