@@ -1,10 +1,10 @@
 package ladder.ui;
 
 import ladder.domain.Ladder;
+import ladder.domain.PrizeTable;
 import ladder.domain.Row;
 
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -45,19 +45,19 @@ public class OutputView {
     private static String rowToString(Row row) {
         StringBuilder sb = new StringBuilder("  ").append(COLUMN_MARKER);
         row.getLinks().stream()
-                .map(link -> link ? LINK_MARKER : SPACE)
+                .map(link -> link.isLinked() ? LINK_MARKER : SPACE)
                 .forEach(marker -> sb.append(marker).append(COLUMN_MARKER));
         return sb.toString();
     }
 
-    public static void showPrize(Map<String, String> prizeTable, String whosePrize) {
-        System.out.println("실행 결과");
-
-        if (!PRIZE_ALL.equals(whosePrize)) {
-            System.out.println(prizeTable.get(whosePrize));
+    public static void showPrize(PrizeTable prizeTable, String whosePrize) {
+        if (!PRIZE_ALL.equals(whosePrize) && prizeTable.contains(whosePrize)) {
+            System.out.println("실행 결과");
+            System.out.println(prizeTable.getPrize(whosePrize));
             return;
         }
 
+        System.out.println("실행 결과");
         prizeTable.forEach((who, prize) -> {
             System.out.format("%s: ", who);
             System.out.println(prize);

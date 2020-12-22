@@ -40,12 +40,12 @@ public class LadderTest {
         int expected = width / 2 * height;
         assertThat(Ladder.of(width, height, () -> true).getRows().stream()
                 .flatMap(r -> r.getLinks().stream())
-                .filter(b -> b)
+                .filter(Link::isLinked)
                 .count()).isEqualTo(expected);
 
         assertThat(Ladder.of(width, height, () -> false).getRows().stream()
                 .flatMap(r -> r.getLinks().stream())
-                .filter(b -> b)
+                .filter(Link::isLinked)
                 .count()).isEqualTo(0);
     }
 

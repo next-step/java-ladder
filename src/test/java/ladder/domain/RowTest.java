@@ -26,8 +26,11 @@ public class RowTest {
         List<Boolean> links = Arrays.stream(expected.split("\\|"))
                 .map(Boolean::parseBoolean)
                 .collect(Collectors.toList());
-        assertThat(Row.of(numberPerson, () -> true).getLinks())
-                .isEqualTo(links);
+        assertThat(
+                Row.of(numberPerson, () -> true).getLinks().stream()
+                        .map(Link::isLinked)
+                        .collect(Collectors.toList())
+        ).isEqualTo(links);
     }
 
     @ParameterizedTest
@@ -36,8 +39,11 @@ public class RowTest {
         List<Boolean> links = Stream.generate(() -> false)
                 .limit(numberPerson - 1)
                 .collect(Collectors.toList());
-        assertThat(Row.of(numberPerson, () -> false).getLinks())
-                .isEqualTo(links);
+        assertThat(
+                Row.of(numberPerson, () -> false).getLinks().stream()
+                        .map(Link::isLinked)
+                        .collect(Collectors.toList())
+        ).isEqualTo(links);
     }
 
     @ParameterizedTest
