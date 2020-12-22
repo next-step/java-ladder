@@ -1,57 +1,48 @@
 package ladder.domain;
 
-import java.util.Iterator;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Spliterator;
-import java.util.function.Consumer;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-public class LadderMembers implements Iterable<LadderMember>{
-    private List<LadderMember> names;
+public class LadderMembers {
+    private List<LadderMember> members;
 
-    public LadderMembers(List<String> names) {
-        if (names == null || names.size() < 2) throw new IllegalArgumentException("사다리 참가자는 최소 2명 이상 입력해야 합니다");
-        this.names = names.stream().map(LadderMember::new).collect(Collectors.toList());
+    public LadderMembers(List<String> members) {
+        if (members == null || members.size() < 2) throw new IllegalArgumentException("사다리 참가자는 최소 2명 이상 입력해야 합니다");
+        int pos = 0;
+        this.members = new ArrayList<>();
+        for( String name: members){
+            this.members.add(new LadderMember(pos++, name));
+        }
     }
 
     public int getPosition(LadderMember member){
-        return names.indexOf(member);
+        return members.indexOf(member);
     }
 
     @Override
     public String toString() {
-        return names.stream()
+        return members.stream()
                 .map(name -> String.format("%1$7s", name))
                 .collect(Collectors.joining());
     }
 
     public int size() {
-        return names.size();
+        return members.size();
     }
 
-    @Override
-    public Iterator<LadderMember> iterator() {
-        return new Iterator() {
-            private Iterator<LadderMember> iterator = names.iterator();
-            @Override
-            public boolean hasNext() {
-                return iterator.hasNext();
-            }
-
-            @Override
-            public LadderMember next() {
-                return iterator.next();
-            }
-        };
+    public Stream<LadderMember> stream(){
+        return members.stream();
     }
 
-    @Override
-    public void forEach(Consumer<? super LadderMember> action) {
-        names.forEach(action);
+    public LadderMember findFirst(Predicate<LadderMember> condition){
+        return members.stream()
+                .filter(condition)
+                .findFirst()
+                .orElseThrow( () -> new RuntimeException("조건에 맞는 사다리 참가자는 없습니다."));
     }
 
-    @Override
-    public Spliterator spliterator() {
-        throw new RuntimeException("구현되지 않은 기능입니다.");
-    }
+
 }

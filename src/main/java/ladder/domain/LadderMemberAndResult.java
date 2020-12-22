@@ -1,8 +1,7 @@
 package ladder.domain;
 
-import java.util.Iterator;
 import java.util.List;
-import java.util.stream.IntStream;
+import java.util.function.Consumer;
 
 public class LadderMemberAndResult {
 
@@ -23,15 +22,15 @@ public class LadderMemberAndResult {
         return results.toString();
     }
 
-    public int getPositionOfMember(LadderMember member) {
-        return members.getPosition(member);
-    }
-
     public LadderResult getResult(int pos) {
         return results.get(pos);
     }
 
-    public Iterator<LadderMember> memberIterator() {
-        return members.iterator();
+    public void forEachMember(Consumer<LadderMember> action) {
+        members.stream().forEach(action);
+    }
+
+    public LadderMember findMember(String memberName) {
+        return members.findFirst( member -> member.getName().equals(memberName));
     }
 }

@@ -1,20 +1,42 @@
 package ladder.view;
 
-import ladder.domain.LadderGameResult;
-import ladder.domain.LadderMember;
-import ladder.domain.LadderResult;
+import ladder.domain.*;
 
 import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ConsoleView {
 
     private PrintWriter writer = new PrintWriter(System.out);
 
-    public void printResult(LadderGameResult result) {
+    private static Map<LadderItem, String> ladderPointSymbols;
+    static {
+        ladderPointSymbols = new HashMap<>();
+        ladderPointSymbols.put(LadderItem.Bar, "|");
+        ladderPointSymbols.put(LadderItem.Empty, "      ");
+        ladderPointSymbols.put(LadderItem.Step, "------");
+    }
+
+    public void printResult(LadderGameResult gameResult) {
         writer.println("사다리 결과");
         writer.println();
-        result.printLadder(writer);
+
+        gameResult.getAllLadderMembers().forEach(member -> writer.print(String.format("%1$7s", member.getName())));
+        writer.println();
+
+        LadderReader reader = gameResult.getLadderReader();
+        List<LadderItem> line;
+        while( (line = reader.readLine()) != null ) {
+            writer.print("      ");
+            line.forEach( point -> writer.print(ladderPointSymbols.get(point)));
+            writer.println();
+        }
+
+        gameResult.getAllLadderResults().forEach(ladderResult-> writer.print(String.format("%1$7s", ladderResult)));
+        writer.println();
+
         writer.println();
         writer.flush();
     }

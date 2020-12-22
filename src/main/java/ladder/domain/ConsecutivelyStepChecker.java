@@ -13,7 +13,7 @@ public class ConsecutivelyStepChecker {
      * action 은 LadderLevel 의 전체 items 와 확인된 item 의 index 를 인자로 받습니다.
      * @param action
      */
-    public static void check(List<LevelItem> items, BiConsumer<List<LevelItem>, Integer> action) {
+    public static void check(List<LadderItem> items, BiConsumer<List<LadderItem>, Integer> action) {
         IntStream.range(0, items.size())
                 .filter(idx -> items.get(idx).isStep())
                 .forEach(idx -> {
@@ -23,7 +23,7 @@ public class ConsecutivelyStepChecker {
                 });
     }
 
-    private static Optional<LevelItem> nextStep(List<LevelItem> items, int idx) {
+    private static Optional<LadderItem> nextStep(List<LadderItem> items, int idx) {
         int nextStepIdx = idx + 2;
         if (items.size() > nextStepIdx
                 && items.get(nextStepIdx).isStep()) {

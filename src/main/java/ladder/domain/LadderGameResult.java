@@ -1,7 +1,9 @@
 package ladder.domain;
 
-import java.io.PrintWriter;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class LadderGameResult {
     private final Ladder ladder;
@@ -13,14 +15,27 @@ public class LadderGameResult {
     }
 
     public LadderResult getLadderResult(String memberName){
-        return ladderResults.get(new LadderMember(memberName));
+        return ladderResults.keySet()
+                .stream()
+                .filter( member -> member.getName().equals(memberName))
+                .map( member -> ladderResults.get(member) )
+                .findFirst()
+                .get();
     }
 
-    public void printLadder(PrintWriter writer) {
-        this.ladder.print(writer);
+    public LadderReader getLadderReader(){
+        return ladder.getReader();
     }
 
     public Map<LadderMember, LadderResult> getAllLadderResult() {
         return ladderResults;
+    }
+
+    public Set<LadderMember> getAllLadderMembers(){
+        return ladderResults.keySet();
+    }
+
+    public Set<LadderResult> getAllLadderResults(){
+        return new HashSet<>(ladderResults.values());
     }
 }

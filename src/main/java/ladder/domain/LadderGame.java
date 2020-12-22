@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.domain.next.NextLadder;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -13,7 +15,7 @@ public class LadderGame {
     }
 
     public LadderGame(List<String> members, List<String> results, int height) {
-        this.ladder = new DefaultLadder(members, results, height);
+        this.ladder = new NextLadder(members, results, height);
     }
 
     public LadderGameResult run() {

@@ -1,39 +1,29 @@
 package ladder.domain;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
-public class LadderLevel {
+public class LadderLevel implements SupportedLadderItems {
 
-    private List<LevelItem> items;
+    private List<LadderItem> items;
 
     public static LadderLevel autoGenerate(int size) {
         return new LadderLevel(LadderLevelGenerator.auto().generate(size));
     }
 
-    public LadderLevel(List<LevelItem> items) {
+    public LadderLevel(List<LadderItem> items) {
         shouldBar(items.get(0), items.get(items.size() - 1));
         shouldNotConsecutivelyStep(items);
         this.items = items;
     }
 
-    private void shouldNotConsecutivelyStep(List<LevelItem> items) {
+    private void shouldNotConsecutivelyStep(List<LadderItem> items) {
         ConsecutivelyStepChecker.check(items, (levelItems, idx) -> {
             throw new IllegalArgumentException("step 은 연속해서 구성할 수 없습니다");
         });
     }
 
-    private void shouldBar(LevelItem first, LevelItem last) {
+    private void shouldBar(LadderItem first, LadderItem last) {
         if (!first.isBar() || !last.isBar()) throw new IllegalArgumentException("처음과 끝은 Bar 로 구성해야 합니다.");
-    }
-
-    @Override
-    public String toString() {
-        String str = IntStream.range(0, items.size())
-                .mapToObj(idx -> items.get(idx).toString())
-                .collect(Collectors.joining());
-        return "      " + str;
     }
 
     public int move(int startPos) {
@@ -55,5 +45,10 @@ public class LadderLevel {
 
     private void shouldBeBarPos(int startPos) {
         if( startPos % 2 == 1 ) throw new IllegalArgumentException("bar 위치에서만 이동을 시작할 수 있습니다");
+    }
+
+    @Override
+    public List<LadderItem> toLadderItems() {
+        return items;
     }
 }

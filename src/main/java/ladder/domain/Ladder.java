@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import java.io.PrintWriter;
 import java.util.Map;
 
 public interface Ladder {
@@ -20,6 +19,5 @@ public interface Ladder {
      */
     Map<LadderMember, LadderResult> startAll();
 
-    void print(PrintWriter printWriter);
-
+    LadderReader getReader();
 }
