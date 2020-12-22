@@ -18,7 +18,6 @@ public class LineGeneratorTest {
         Line line = mover.generateLine(width);
 
         //Then
-        assertThat(line).isNotNull();
         assertThat(line.sizeWidth()).isEqualTo(width);
     }
 }

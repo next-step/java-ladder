@@ -22,10 +22,7 @@ public class Position {
     }
 
     public Position move(int row) {
-        if(Math.abs(row) != 1 && row != 0) {
-            throw new InvalidPositionNumberException(row);
-        }
-        return new Position(this.row + row, this.column + 1);
+        return new Position(row, this.column + 1);
     }
 
     public int getRow() {

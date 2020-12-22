@@ -22,7 +22,7 @@ public class LadderController {
 
         Rewards rewards = new Rewards(InputView.inputLadderGameReward());
 
-        LadderStructure ladderStructure = new LadderStructure(participants.countParticipant() -1, InputView.inputLadderHeight());
+        LadderStructure ladderStructure = new LadderStructure(participants.countParticipant(), InputView.inputLadderHeight());
         Ladder ladder = LadderFactory.makeLadder(ladderStructure, new RandomLineGenerator());
 
         LadderGame ladderGame = new LadderGame(participants, ladder);

@@ -26,7 +26,7 @@ public class Ladder {
     }
 
     public List<Boolean> getLine(int index) {
-        return lines.get(index).getPoints();
+        return lines.get(index).getPointsRow();
     }
 
     public void movePosition(int step, Participants participants) {

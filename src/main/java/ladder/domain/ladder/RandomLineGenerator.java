@@ -1,9 +1,8 @@
 package ladder.domain.ladder;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class RandomLineGenerator implements LineGenerator {
 
@@ -12,36 +11,27 @@ public class RandomLineGenerator implements LineGenerator {
     @Override
     public Line generateLine(int width) {
 
-        List<Boolean> points = initializeLine(width);
-        points = applyNotContinuousLines(points);
+        List<Point> points = new ArrayList<>();
+        initializePoints(points, width);
 
         return new Line(points);
     }
-
-    private List<Boolean> initializeLine(int width) {
-        return IntStream.range(0, width)
-                .mapToObj(i -> random.nextBoolean())
-                .collect(Collectors.toList());
+    private void initializePoints(List<Point> points, int width) {
+        Point first = Point.first(random.nextBoolean());
+        points.add(first);
+        initializePointsNext(first, points, width);
     }
 
-    private List<Boolean> applyNotContinuousLines(List<Boolean> points) {
-        for (int i = 1; i < points.size() - 1; i++) {
-            compareWithBothSidesElements(points, i);
+    private void initializePointsNext(Point first, List<Point> points, int width) {
+        for (int i = 0; i < width -2; i++) {
+            first = first.next(random.nextBoolean());
+            points.add(first);
         }
-        return points;
+        initializeLast(first, points);
     }
 
-    private void compareWithBothSidesElements(List<Boolean> points, int currentIndex) {
-        if (points.get(currentIndex) == true) {
-            changeNotContinuousLines(points, currentIndex - 1);
-            changeNotContinuousLines(points, currentIndex + 1);
-        }
-    }
-
-    private void changeNotContinuousLines(List<Boolean> points, int index) {
-        if (points.get(index) == true) {
-            points.remove(index);
-            points.add(index, false);
-        }
+    private void initializeLast(Point first, List<Point> points) {
+        Point last = first.last(random.nextBoolean());
+        points.add(last);
     }
 }

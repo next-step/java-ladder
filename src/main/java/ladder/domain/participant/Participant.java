@@ -42,14 +42,11 @@ public class Participant {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Participant that = (Participant) o;
-        return Objects.equals(userName, that.userName) &&
-                Objects.equals(position, that.position);
+        return Objects.equals(userName, that.userName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userName, position);
+        return Objects.hash(userName);
     }
-
-
 }

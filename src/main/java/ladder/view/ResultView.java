@@ -47,9 +47,9 @@ public class ResultView {
     }
 
     private static void outputLine(List<Boolean> lines) {
-        for(boolean line : lines){
+        for (int i = 0; i < lines.size() - 1; i++) {
             System.out.print(POINT);
-            System.out.print(line == true ? EXIST_LINE : NOT_EXIST_LINE);
+            System.out.print(lines.get(i) == true ? EXIST_LINE : NOT_EXIST_LINE);
         }
     }
 
@@ -75,15 +75,15 @@ public class ResultView {
         names.set(lastIndex, lastName);
     }
 
-    public static void gameResult(String userRewardResult){
-        System.out.println("\n"+GAME_RESULT);
+    public static void gameResult(String userRewardResult) {
+        System.out.println("\n" + GAME_RESULT);
         System.out.println(userRewardResult);
     }
 
-    public static void gameAllResult(Map<String, String> result){
-        System.out.println("\n"+GAME_RESULT);
+    public static void gameAllResult(Map<String, String> result) {
+        System.out.println("\n" + GAME_RESULT);
         result.entrySet().stream()
-                    .forEach(i -> System.out.println(i.getKey() + DELIMITER + i.getValue()));
+                .forEach(i -> System.out.println(i.getKey() + DELIMITER + i.getValue()));
     }
 }
 
