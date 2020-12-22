@@ -45,7 +45,7 @@ public class OutputView {
     private static String rowToString(Row row) {
         StringBuilder sb = new StringBuilder("  ").append(COLUMN_MARKER);
         row.getLinks().stream()
-                .map(link -> link ? LINK_MARKER : SPACE)
+                .map(link -> link.isLinked() ? LINK_MARKER : SPACE)
                 .forEach(marker -> sb.append(marker).append(COLUMN_MARKER));
         return sb.toString();
     }

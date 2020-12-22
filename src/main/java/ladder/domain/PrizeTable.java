@@ -19,7 +19,7 @@ public class PrizeTable {
         }
         return new PrizeTable(
             IntStream.range(0, attendees.size())
-                .collect(HashMap::new, (m, i) -> m.put(attendees.get(i), prizes.get(result.get(i))), HashMap::putAll)
+                .collect(HashMap::new, (m, i) -> m.put(attendees.get(result.get(i)), prizes.get(i)), HashMap::putAll)
         );
     }
 
