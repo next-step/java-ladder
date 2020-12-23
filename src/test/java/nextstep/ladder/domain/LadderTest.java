@@ -16,8 +16,8 @@ public class LadderTest {
         Ladder ladder = new Ladder(test.length, size);
 
         assertThat(ladder.getLadder().size()).isEqualTo(4);
-        assertThat(ladder.getLadder().get(0).getArray().length).isEqualTo(7);
-        assertThat(ladder.getLadder().get(0).getArray()[0]).isEqualTo(2);
+        assertThat(ladder.getLadder().get(0).getArray().size()).isEqualTo(7);
+        assertThat(ladder.getLadder().get(0).getArray().get(0)).isEqualTo(2);
     }
 
     @Test

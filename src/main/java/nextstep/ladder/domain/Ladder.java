@@ -14,8 +14,9 @@ public class Ladder {
     public Ladder(int width, int height){
         List<Line> list = new ArrayList<>();
         for(int i = 0; i < height; i++){
-            Line row = new Line();
-            row.setArray(settingWidth(width));
+            // Line row = new Line();
+            // row.setArray(settingWidth(width));
+            Line row = settingWidth(width);
             list.add(row);
         }
         this.list = list;
@@ -29,14 +30,24 @@ public class Ladder {
         return rd.nextInt(2);
     }
 
-    public Integer[] settingWidth(int size){
+    public Line settingWidth(int size){
         int width = size + (size - 1);
         Integer[] row = new Integer[width];
         for(int i = 0; i < row.length; i++) {
             row = settingRow(row, i);
         }
-        return row;
+        Line line = new Line(row);
+        return line;
     }
+
+    // public Integer[] settingWidth(int size){
+    //     int width = size + (size - 1);
+    //     Integer[] row = new Integer[width];
+    //     for(int i = 0; i < row.length; i++) {
+    //         row = settingRow(row, i);
+    //     }
+    //     return row;
+    // }
 
     public Integer[] settingRow(Integer[] row, int i){
         if (i % 2 != 0) {

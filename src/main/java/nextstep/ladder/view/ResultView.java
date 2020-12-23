@@ -15,7 +15,7 @@ public class ResultView {
         ladder.getLadder()
                 .stream()
                 .forEach(l ->  {
-                    Arrays.stream(l.getArray()).forEach(n -> checkLadder(n));
+                    l.getArray().stream().forEach(n -> checkLadder(n));
                     System.out.println();
                 });
     }
