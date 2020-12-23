@@ -63,18 +63,6 @@ public class Point {
         return direction;
     }
 
-    public void canRight() {
-        this.direction = Direction.from(RIGHT);
-    }
-
-    public void canLeft() {
-        this.direction = Direction.from(LEFT);
-    }
-
-    public void canNotMove(){
-        this.direction = Direction.from(ZERO);
-    }
-
     public int move() {
         return this.index.getIndex() + this.direction.getDirection();
     }
