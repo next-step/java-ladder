@@ -1,9 +1,7 @@
 package nextstep.laddergame.domain;
 
 public class Point {
-    private static final int LEFT = -1;
-    private static final int RIGHT = 1;
-    private static final int ZERO = 0;
+    private static final int INDEX_MOVE = 1;
 
     private Index index;
     private Direction direction;
@@ -12,9 +10,9 @@ public class Point {
         this.index = Index.from(index);
     }
 
-    public Point(int index, int direction) {
+    public Point(int index, Direction direction) {
         this.index = Index.from(index);
-        this.direction = Direction.from(direction);
+        this.direction = direction;
     }
 
     public static Point create(int index) {
@@ -27,17 +25,17 @@ public class Point {
 
     public static Point createLastWithBeforePoint(Point beforePoint) {
         if (beforePoint.getDirection().isRight()) {
-            return new Point(beforePoint.nextIndex(), LEFT);
+            return new Point(beforePoint.nextIndex(), Direction.LEFT);
         }
-        return new Point(beforePoint.nextIndex(), ZERO);
+        return new Point(beforePoint.nextIndex(), Direction.NOT_MOVE);
     }
 
     public static Point createWithBeforePoint(Point beforePoint, MovingStrategy movingStrategy) {
         if (beforePoint.getDirection().isRight()) {
-            return new Point(beforePoint.nextIndex(), LEFT);
+            return new Point(beforePoint.nextIndex(), Direction.LEFT);
         }
         if (beforePoint.getDirection().isLeft()) {
-            return new Point(beforePoint.nextIndex(), ZERO);
+            return new Point(beforePoint.nextIndex(), Direction.NOT_MOVE);
         }
 
         return Point.of(beforePoint.nextIndex(), movingStrategy);
@@ -45,14 +43,14 @@ public class Point {
 
     private static Point of(int index, MovingStrategy movingStrategy) {
         if (movingStrategy.isMovable()) {
-            return new Point(index, RIGHT);
+            return new Point(index, Direction.RIGHT);
         }
 
-        return new Point(index, ZERO);
+        return new Point(index, Direction.NOT_MOVE);
     }
 
     private int nextIndex() {
-        return this.index.getIndex() + RIGHT;
+        return this.index.getIndex() + INDEX_MOVE;
     }
 
     public int getIndex() {
@@ -64,7 +62,7 @@ public class Point {
     }
 
     public int move() {
-        return this.index.getIndex() + this.direction.getDirection();
+        return this.direction.moveLine(this.index.getIndex());
     }
 
     public boolean isEqualTo(int index) {
