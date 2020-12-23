@@ -6,7 +6,6 @@ import nextstep.laddergame.domain.Point;
 import nextstep.laddergame.domain.dto.LadderDTO;
 import nextstep.laddergame.domain.dto.LineDTO;
 import nextstep.laddergame.domain.dto.ResultDTO;
-import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 
@@ -16,9 +15,30 @@ public class ResultView {
 
     public void showPeople(List<Person> people) {
         for (Person person : people) {
-            System.out.print(" " + StringUtils.center(person.getName(), 5));
+            System.out.print(" " + setStringSize(person.getName()));
         }
         System.out.println();
+    }
+
+    private String setStringSize(String name) {
+        while (name.length() < 5) {
+            name = addLeftSpace(name);
+
+            if (name.length() == 5) {
+                break;
+            }
+
+            name = addRightSpace(name);
+        }
+        return name;
+    }
+
+    private String addRightSpace(String name) {
+        return name + " ";
+    }
+
+    private String addLeftSpace(String name) {
+        return " " + name;
     }
 
     public void showLadder(LadderDTO ladder) {
@@ -65,7 +85,7 @@ public class ResultView {
 
     public void showGift(List<Gift> gifts) {
         for (Gift gift : gifts) {
-            System.out.print(" " + StringUtils.center(gift.getName(), 5));
+            System.out.print(" " + setStringSize(gift.getName()));
         }
         System.out.println();
     }
