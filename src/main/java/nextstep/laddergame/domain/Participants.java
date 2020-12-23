@@ -18,10 +18,9 @@ public class Participants {
         }
 
         List<Person> participants = new ArrayList<>();
-        for (String name : splitNames) {
-            participants.add(Person.from(name));
+        for (int index = 0; index < splitNames.length; index++) {
+            participants.add(Person.of(splitNames[index], index));
         }
-
         return new Participants(participants);
     }
 
@@ -39,5 +38,12 @@ public class Participants {
 
     public List<Person> getParticipants() {
         return participants;
+    }
+
+    public Person findPerson(String name) {
+        return this.participants.stream()
+                .filter(person -> person.getName().equals(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("해당 사용자를 찾을 수 없습니다."));
     }
 }

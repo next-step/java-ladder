@@ -3,7 +3,6 @@ package nextstep.laddergame.domain;
 public class Person {
     private Name name;
     private int sequence;
-    private String result;
 
     private Person(String name) {
         this.name = Name.create(name);
@@ -24,5 +23,9 @@ public class Person {
 
     public String getName() {
         return this.name.getName();
+    }
+
+    public int getSequence() {
+        return sequence;
     }
 }

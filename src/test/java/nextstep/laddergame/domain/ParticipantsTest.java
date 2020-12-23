@@ -19,4 +19,21 @@ class ParticipantsTest {
         assertThatThrownBy(() -> Participants.create("aaa"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName(value = "유저를 찾아서 반환함.")
+    void findPerson() {
+        Participants participants = Participants.create("aaa,bbb,ccc");
+        assertThat(participants.findPerson("aaa").getName()).isEqualTo("aaa");
+    }
+
+    @Test
+    @DisplayName(value = "유저를 찾아서 반환함. 유저가 없으면 IllegalArgumentException 발생.")
+    void findPersonWithException() {
+        Participants participants = Participants.create("aaa,bbb,ccc");
+
+        assertThatThrownBy(() -> participants.findPerson("ddd"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }

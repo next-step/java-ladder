@@ -2,10 +2,12 @@ package nextstep.laddergame.domain;
 
 import java.util.Random;
 
-public class RandomStrategy {
+
+public class RandomStrategy implements MovingStrategy{
     private static Random random = new Random();
 
-    public static boolean isMovable() {
+    @Override
+    public boolean isMovable() {
         return random.nextBoolean();
     }
 }

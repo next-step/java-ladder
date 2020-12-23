@@ -9,6 +9,9 @@ class RandomStrategyTest {
 
     @Test
     void isMovableTest() {
-        Assertions.assertThat(RandomStrategy.isMovable()).isIn(Boolean.TRUE, Boolean.FALSE);
+
+        RandomStrategy randomStrategy = new RandomStrategy();
+        Assertions.assertThat(randomStrategy.isMovable()).isIn(Boolean.TRUE, Boolean.FALSE);
+
     }
 }

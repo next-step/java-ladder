@@ -9,30 +9,19 @@ class LineTest {
     @Test
     void create() {
         int people = 5;
-        Line line = new Line(people*2);
+        Line line = new Line(people);
         assertThat(line).isNotNull();
     }
 
     @Test
-    @DisplayName(value = "지나갈 수 있는 길인지 아닌지 boolean을 리턴함.")
-    void isWay() {
-        Line line = new Line(10);
-        assertThat(line.isWay(9)).isIn(true,false);
-    }
+    @DisplayName(value = "존재하지 않는 Index가 들어오면 RuntimeException")
+    void move_hasNotPlace_RuntimeException() {
+        int people = 3;
+        Line line = new Line(people);
+        assertThat(line).isNotNull();
 
-    @Test
-    @DisplayName(value = "사다리의 가로길이보다 큰 위치를 조회할 수 없음")
-    void isWay_OverSize() {
-        Line line = new Line(10);
-        assertThatThrownBy(() -> line.isWay(10))
-                .isInstanceOf(IndexOutOfBoundsException.class);
-    }
+        assertThatThrownBy(() -> line.moveByIndex(10))
+                .isInstanceOf(RuntimeException.class);
 
-    @Test
-    @DisplayName(value = "짝수 위치는 항상 true")
-    void isNotOddWay_ShouldReturnTrue() {
-        Line line = new Line(10);
-        assertThat(line.isWay(0)).isTrue();
-        assertThat(line.isWay(2)).isTrue();
     }
 }
