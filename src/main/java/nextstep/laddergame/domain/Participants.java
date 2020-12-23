@@ -21,8 +21,6 @@ public class Participants {
         for (int index = 0; index < splitNames.length; index++) {
             participants.add(Person.of(splitNames[index], index));
         }
-
-
         return new Participants(participants);
     }
 

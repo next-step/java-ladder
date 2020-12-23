@@ -6,6 +6,7 @@ import nextstep.laddergame.domain.Point;
 import java.util.List;
 
 public class LineDTO {
+
     private List<Point> points;
 
     private LineDTO(List<Point> points) {

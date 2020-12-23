@@ -36,5 +36,6 @@ public class Line {
         return this.points.stream().filter(point -> point.isEqualTo(index))
                 .findFirst()
                 .orElseThrow(() -> new RuntimeException("index 범위를 초과하였습니다."));
+
     }
 }

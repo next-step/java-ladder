@@ -1,6 +1,7 @@
 package nextstep.laddergame;
 
 import nextstep.laddergame.controller.LadderController;
+
 import nextstep.laddergame.domain.Gift;
 import nextstep.laddergame.domain.Gifts;
 import nextstep.laddergame.domain.Person;
@@ -45,6 +46,7 @@ public class LadderMain {
 
         List<ResultDTO> allResult = ladderController.getAllResult();
         resultView.showAllResult(allResult);
+
 
     }
 }
