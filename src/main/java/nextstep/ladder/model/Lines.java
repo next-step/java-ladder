@@ -1,7 +1,6 @@
 package nextstep.ladder.model;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -12,9 +11,7 @@ public class Lines {
         for (int i = 0; i < height; i++) {
             lines.add(new Line(countOfPerson));
         }
-
     }
-
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
     }

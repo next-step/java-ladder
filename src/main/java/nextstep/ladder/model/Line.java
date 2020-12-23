@@ -7,16 +7,15 @@ public class Line {
     private Random random = new Random();
 
     public Line(int countOfPerson) {
-        if (countOfPerson > 1) {
-            points.add(random.nextBoolean());
-        }
-
-        for (int i = 1; i < countOfPerson - 1; i++) {
+        for (int i = 1; i < countOfPerson; i++) {
             points.add(isPreLine(i));
         }
     }
 
     public boolean isPreLine(int point) {
+        if(points.isEmpty()){
+            points.add(random.nextBoolean());
+        }
         return points.get(point - 1) ? false : random.nextBoolean();
     }
 
