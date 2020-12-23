@@ -23,4 +23,14 @@ class LadderTest {
                 .isInstanceOf(IllegalArgumentException.class);
 
     }
+
+    @Test
+    void runLadderByIndex() {
+        int participantCount = 2;
+        int ladderHeight = 2;
+        Ladder ladder = Ladder.of(participantCount, ladderHeight);
+
+        assertThat(ladder.runLadderByIndex(0)).isIn(0,1);
+
+    }
 }

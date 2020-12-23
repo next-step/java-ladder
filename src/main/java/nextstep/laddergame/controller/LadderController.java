@@ -30,17 +30,18 @@ public class LadderController {
     }
 
     public ResultDTO getResult(String name) {
-        Person person = this.participants.findResultByNameAndLadder(name, ladder);
-        Gift giftByIndex = gifts.findGiftByIndex(person.getResultIndex());
+        Person person = this.participants.findPerson(name);
+        int resultIndex = this.ladder.runLadderByIndex(person.getSequence());
+        Gift giftByIndex = gifts.findGiftByIndex(resultIndex);
 
         return ResultDTO.of(person, giftByIndex);
     }
 
     public List<ResultDTO> getAllResult() {
         List<ResultDTO> resultDTOS = new ArrayList<>();
-        List<Person> allResult = this.participants.getAllResult(ladder);
+        List<Person> allResult = this.participants.getParticipants();
         for (Person person : allResult) {
-            resultDTOS.add(ResultDTO.of(person, gifts.findGiftByIndex(person.getResultIndex())));
+            resultDTOS.add(ResultDTO.of(person, gifts.findGiftByIndex(this.ladder.runLadderByIndex(person.getSequence()))));
         }
 
         return resultDTOS;

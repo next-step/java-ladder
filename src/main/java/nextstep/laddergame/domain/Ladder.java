@@ -31,4 +31,12 @@ public class Ladder {
     public List<Line> getLines() {
         return lines;
     }
+
+    public int runLadderByIndex(int sequence) {
+        int index = sequence;
+        for (Line line : this.getLines()) {
+            index = line.moveByIndex(index);
+        }
+        return index;
+    }
 }

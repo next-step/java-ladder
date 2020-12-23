@@ -26,16 +26,11 @@ public class Person {
         return this.name.getName();
     }
 
-    public void runLadder(Ladder ladder) {
-        int index = this.sequence;
-        for (Line line : ladder.getLines()) {
-            index = line.moveByIndex(index);
-        }
-
-        this.resultIndex = index;
-    }
-
     public int getResultIndex() {
         return resultIndex;
+    }
+
+    public int getSequence() {
+        return sequence;
     }
 }
