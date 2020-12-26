@@ -4,7 +4,7 @@ import nextstep.laddergame.TestStrategy.FalseStrategy;
 import nextstep.laddergame.TestStrategy.TrueStrategy;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class PointTest {
 
