@@ -56,18 +56,16 @@ public class ResultView {
     }
 
     private void showWay(Point point) {
-        if (point.getDirection().isRight()){
+        if (point.canRight()){
             System.out.print(WAY);
         }
-
-        if (point.getDirection().isNotMove()) {
+        if (point.canLeft()) {
             System.out.print(NOT_WAY);
         }
-
-        if (point.getDirection().isLeft()) {
+        if (point.canNotMove()) {
             System.out.print(NOT_WAY);
-        }
 
+        }
     }
 
     public void showResult(ResultDTO result) {

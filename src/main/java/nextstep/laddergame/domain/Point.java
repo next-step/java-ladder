@@ -24,20 +24,20 @@ public class Point {
     }
 
     public static Point createLastWithBeforePoint(Point beforePoint) {
-        if (beforePoint.getDirection().isRight()) {
+        if (beforePoint.canRight()) {
             return new Point(beforePoint.nextIndex(), Direction.LEFT);
+
         }
         return new Point(beforePoint.nextIndex(), Direction.NOT_MOVE);
     }
 
     public static Point createWithBeforePoint(Point beforePoint, MovingStrategy movingStrategy) {
-        if (beforePoint.getDirection().isRight()) {
+        if (beforePoint.canRight()) {
             return new Point(beforePoint.nextIndex(), Direction.LEFT);
         }
-        if (beforePoint.getDirection().isLeft()) {
+        if (beforePoint.canLeft()) {
             return new Point(beforePoint.nextIndex(), Direction.NOT_MOVE);
         }
-
         return Point.of(beforePoint.nextIndex(), movingStrategy);
     }
 
@@ -57,15 +57,23 @@ public class Point {
         return index.getIndex();
     }
 
-    public Direction getDirection() {
-        return direction;
-    }
-
     public int move() {
         return this.direction.moveLine(this.index.getIndex());
     }
 
     public boolean isEqualTo(int index) {
         return this.index.isEqualTo(index);
+    }
+
+    public boolean canRight() {
+        return this.direction.isRight();
+    }
+
+    public boolean canLeft() {
+        return this.direction.isLeft();
+    }
+
+    public boolean canNotMove() {
+        return this.direction.isNotMove();
     }
 }
