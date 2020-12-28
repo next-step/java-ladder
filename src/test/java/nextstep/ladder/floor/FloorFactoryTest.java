@@ -11,14 +11,14 @@ public class FloorFactoryTest {
     @Test
     @DisplayName("생성된 DefaultFloorFactory의 가로 연결이 요구사항에 맞는지 검사한다")
     public void floorLinkTest_DefaultFloorFactory() {
-        Floor floor = new DefaultFloorFactory().generate(10);
+        Floor floor = new DefaultFloorFactory().generate(100);
         floorLinkTest(floor);
     }
 
     @Test
     @DisplayName("생성된 RandomFloorFactory의 가로 연결이 요구사항에 맞는지 검사한다")
     public void floorLinkTest_RandomFloorFactory() {
-        Floor floor = new RandomFloorFactory().generate(10);
+        Floor floor = new RandomFloorFactory().generate(100);
         floorLinkTest(floor);
     }
 

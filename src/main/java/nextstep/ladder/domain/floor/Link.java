@@ -10,4 +10,11 @@ public enum Link {
         }
         return UNLINKED;
     }
+
+    public Link nextLink(boolean wished) {
+        if (this == LINKED) {
+            return UNLINKED;
+        }
+        return of(wished);
+    }
 }

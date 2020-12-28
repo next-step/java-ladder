@@ -14,21 +14,13 @@ public class RandomFloorFactory implements FloorFactory {
         Link initial = Link.of(random.nextBoolean());
         links.add(initial);
 
+        Link previous = initial;
         for (int i = 1; i < numberOfPositions - 1; i++) {
-            links.add(nextLink(links, i));
+            Link next = previous.nextLink(random.nextBoolean());
+            links.add(next);
+            previous = next;
         }
 
         return new Floor(numberOfPositions, links);
-    }
-
-    private Link nextLink(List<Link> links, int currentIndex) {
-        if (isPreviousLinkNotLinked(links, currentIndex)) {
-            return Link.of(random.nextBoolean());
-        }
-        return Link.UNLINKED;
-    }
-
-    private boolean isPreviousLinkNotLinked(List<Link> links, int currentIndex) {
-        return !(links.get(currentIndex - 1).equals(Link.LINKED));
     }
 }
