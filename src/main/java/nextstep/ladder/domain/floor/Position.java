@@ -2,6 +2,10 @@ package nextstep.ladder.domain.floor;
 
 public class Position {
 
+    private static final int POSITION_MOST_LEFT = 0;
+    private static final int MOVE_LEFT = -1;
+    private static final int MOVE_RIGHT = 1;
+
     private int position;
     private final int numberOfPosition;
 
@@ -15,24 +19,32 @@ public class Position {
     }
 
     public void moveLeft() {
-        if (position - 1 < 0) {
+        if (position + MOVE_LEFT < getMostLeftPosition()) {
             throw new IllegalArgumentException("더이상 왼쪽으로 갈수 없어요");
         }
-        position = position - 1;
+        position += MOVE_LEFT;
     }
 
     public void moveRight() {
-        if (position + 1 >= numberOfPosition) {
+        if (position + MOVE_RIGHT > getMostRightPosition()) {
             throw new IllegalArgumentException("더이상 오른쪽으로 갈수 없어요");
         }
-        position = position + 1;
+        position += MOVE_RIGHT;
     }
 
     public boolean isMostLeft() {
-        return position == 0;
+        return position == getMostLeftPosition();
     }
 
     public boolean isMostRight() {
-        return position == numberOfPosition - 1;
+        return position == getMostRightPosition();
+    }
+
+    private int getMostLeftPosition() {
+        return POSITION_MOST_LEFT;
+    }
+
+    private int getMostRightPosition() {
+        return numberOfPosition - 1;
     }
 }
