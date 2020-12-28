@@ -8,6 +8,7 @@ import nextstep.ladder.domain.floor.Floors;
 import nextstep.ladder.domain.floor.Link;
 import nextstep.ladder.domain.floor.Position;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class LadderPrinter {
@@ -48,16 +49,15 @@ public class LadderPrinter {
     }
 
     private static void printFloor(Floor floor) {
-        int numberOfPositions = floor.getSizeOfPositions();
         StringBuilder sb = new StringBuilder();
 
         sb.append(HORIZONTAL_MARGIN);
         sb.append(VERTICAL_LINE);
-        Position position = new Position(0, floor.getSizeOfPositions());
-        while(!position.isMostRight()) {
-            sb.append(printLink(floor.getRightLinkOf(position)));
+
+        List<Link> links = floor.getLinks();
+        for (int i = 1; i < links.size() - 1; i++) {
+            sb.append(printLink(links.get(i)));
             sb.append(VERTICAL_LINE);
-            position.moveRight();
         }
 
         System.out.println(sb.toString());

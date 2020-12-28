@@ -2,7 +2,6 @@ package nextstep.ladder.domain.floor;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class Floor {
 
@@ -16,18 +15,6 @@ public class Floor {
         validatePositionAndLinks(sizeOfPosition);
     }
 
-    public Link getLeftLinkOf(Position position) {
-        return links.get(position.getCurrentPosition());
-    }
-
-    public Link getRightLinkOf(Position position) {
-        return links.get(position.getCurrentPosition() + 1);
-    }
-
-    public int getSizeOfPositions() {
-        return links.size() - 1;
-    }
-
     public void followFrom(Position position) {
         Link left = getLeftLinkOf(position);
         if (left == Link.LINKED) {
@@ -38,6 +25,18 @@ public class Floor {
         if (right == Link.LINKED) {
             position.moveRight();
         }
+    }
+
+    public List<Link> getLinks() {
+        return links;
+    }
+
+    private Link getLeftLinkOf(Position position) {
+        return links.get(position.getCurrentPosition());
+    }
+
+    private Link getRightLinkOf(Position position) {
+        return links.get(position.getCurrentPosition() + 1);
     }
 
     private void validatePositionAndLinks(int sizeOfPosition) {
