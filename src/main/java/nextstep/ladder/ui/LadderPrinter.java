@@ -55,7 +55,7 @@ public class LadderPrinter {
         sb.append(VERTICAL_LINE);
         Position position = new Position(0, floor.getSizeOfPositions());
         while(!position.isMostRight()) {
-            sb.append(printLink(floor.getRightLinkOf(position).get()));
+            sb.append(printLink(floor.getRightLinkOf(position)));
             sb.append(VERTICAL_LINE);
             position.moveRight();
         }

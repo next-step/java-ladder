@@ -25,8 +25,8 @@ public class FloorFactoryTest {
     private void floorLinkTest(Floor floor) {
         Position position = new Position(1, floor.getSizeOfPositions());
         while(!position.isMostRight()) {
-            assertThat(floor.getLeftLinkOf(position).get() == Link.LINKED
-                    && floor.getRightLinkOf(position).get() == Link.LINKED).isFalse();
+            assertThat(floor.getLeftLinkOf(position) == Link.LINKED
+                    && floor.getRightLinkOf(position) == Link.LINKED).isFalse();
             position.moveRight();
         }
     }
