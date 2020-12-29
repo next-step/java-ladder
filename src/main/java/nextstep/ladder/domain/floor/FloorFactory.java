@@ -1,7 +1,6 @@
 package nextstep.ladder.domain.floor;
 
-
+@FunctionalInterface
 public interface FloorFactory {
-
-    Floor generate(int maxLinks);
+    Floor generate(int numberOfPositions);
 }

@@ -1,27 +1,53 @@
 package nextstep.ladder.domain.floor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Floor {
 
-    private final List<Boolean> links;
+    private final List<Link> links;
 
-    public Floor(List<Boolean> links) {
-        this.links = links;
+    public Floor(int sizeOfPosition, List<Link> links) {
+        this.links = new ArrayList<>();
+        this.links.add(Link.UNLINKED);
+        this.links.addAll(links);
+        this.links.add(Link.UNLINKED);
+        validatePositionAndLinks(sizeOfPosition);
     }
 
-    public boolean getLinked(int x) {
-        validateX(x);
-        return links.get(x);
+    public void followFrom(Position position) {
+        Link left = getLeftLinkOf(position);
+        if (left == Link.LINKED) {
+            position.moveLeft();
+            return;
+        }
+        Link right = getRightLinkOf(position);
+        if (right == Link.LINKED) {
+            position.moveRight();
+        }
     }
 
-    public int getMaxLinks() {
-        return links.size();
+    public List<Link> getLinks() {
+        return links;
     }
 
-    private void validateX(int x) {
-        if (x > links.size()) {
-            throw new IllegalArgumentException("x 값은 " + links.size() + "를 넘을 수 없습니다");
+    private Link getLeftLinkOf(Position position) {
+        return links.get(position.getCurrentPosition());
+    }
+
+    private Link getRightLinkOf(Position position) {
+        return links.get(position.getCurrentPosition() + 1);
+    }
+
+    private void validatePositionAndLinks(int sizeOfPosition) {
+        if (links.size() != sizeOfPosition + 1) {
+            throw new IllegalArgumentException("입력된 link의 수가 position 수와 맞지 않습니다");
+        }
+        if (links.get(0) != Link.UNLINKED) {
+            throw new IllegalArgumentException("맨 처음 link 는 UNLINK 이어야 합니다");
+        }
+        if (links.get(sizeOfPosition) != Link.UNLINKED) {
+            throw new IllegalArgumentException("맨 마지막 link 는 UNLINK 이어야 합니다");
         }
     }
 }

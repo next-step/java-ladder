@@ -9,27 +9,18 @@ public class RandomFloorFactory implements FloorFactory {
     private final Random random = new Random();
 
     @Override
-    public Floor generate(int maxLinks) {
-        List<Boolean> links = new ArrayList<>();
-        boolean initial = random.nextBoolean();
+    public Floor generate(int numberOfPositions) {
+        List<Link> links = new ArrayList<>();
+        Link initial = Link.of(random.nextBoolean());
         links.add(initial);
 
-        for (int i = 1; i < maxLinks; i++) {
-            links.add(nextLink(links, i));
+        Link previous = initial;
+        for (int i = 1; i < numberOfPositions - 1; i++) {
+            Link next = previous.nextLink(random.nextBoolean());
+            links.add(next);
+            previous = next;
         }
 
-        return new Floor(links);
+        return new Floor(numberOfPositions, links);
     }
-
-    private boolean nextLink(List<Boolean> links, int currentIndex) {
-        if (isPreviousLinkNotLinked(links, currentIndex)) {
-            return random.nextBoolean();
-        }
-        return false;
-    }
-
-    private boolean isPreviousLinkNotLinked(List<Boolean> links, int currentIndex) {
-        return !links.get(currentIndex - 1);
-    }
-
 }

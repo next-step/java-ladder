@@ -1,36 +1,45 @@
 package nextstep.ladder.domain;
 
 import nextstep.ladder.domain.floor.FloorFactory;
-import nextstep.ladder.domain.floor.Floor;
+import nextstep.ladder.domain.floor.Floors;
+import nextstep.ladder.domain.floor.Position;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
 
     private final Members members;
-    private final Height height;
-    private List<Floor> floors = Collections.EMPTY_LIST;
+    private final Results results;
+    private final Floors floors;
 
-    public Ladder(Members members, Height height) {
+    public Ladder(Members members, Results results, Height height) {
         this.members = members;
-        this.height = height;
+        this.results = results;
+        this.floors = new Floors(height);
     }
 
-    public void generateLadderWith(FloorFactory floorLinkGenerator) {
-        int maxLinks = members.getNumberOfMembers() - 1;
-        floors = IntStream.range(0, height.getHeight())
-                .mapToObj(y -> floorLinkGenerator.generate(maxLinks))
-                .collect(Collectors.toList());
+    public void generateFloorsWith(FloorFactory floorLinkGenerator) {
+        int numberOfPositions = members.getNumberOfMembers();
+        IntStream.range(0, floors.getMaxHeight())
+                .mapToObj(y -> floorLinkGenerator.generate(numberOfPositions))
+                .forEach(floors::addFloor);
     }
 
     public Members getMembers() {
         return members;
     }
 
-    public List<Floor> getFloors() {
+    public Floors getFloors() {
         return floors;
+    }
+
+    public Results getResults() {
+        return results;
+    }
+
+    public Result getResultOf(Member member) {
+        Position position = new Position(members.getPositionOfMember(member), members.getNumberOfMembers());
+        floors.followFrom(position);
+        return results.getResultOfPosition(position.getCurrentPosition());
     }
 }

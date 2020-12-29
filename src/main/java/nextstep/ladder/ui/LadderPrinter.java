@@ -2,8 +2,13 @@ package nextstep.ladder.ui;
 
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Members;
+import nextstep.ladder.domain.Results;
 import nextstep.ladder.domain.floor.Floor;
+import nextstep.ladder.domain.floor.Floors;
+import nextstep.ladder.domain.floor.Link;
+import nextstep.ladder.domain.floor.Position;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class LadderPrinter {
@@ -17,9 +22,12 @@ public class LadderPrinter {
 
         printMemberNames(ladder.getMembers());
 
-        for (Floor floor : ladder.getFloors()) {
-            printFloor(floor);
+        Floors floors = ladder.getFloors();
+        for (int i = 0; i < floors.getMaxHeight(); i++) {
+            printFloor(floors.getFloor(i));
         }
+
+        printResultTitles(ladder.getResults());
     }
 
     private static void printMemberNames(Members members) {
@@ -31,22 +39,32 @@ public class LadderPrinter {
         System.out.println(names);
     }
 
+    private static void printResultTitles(Results results) {
+        String titles = results.getTitles()
+                .stream()
+                .map(title -> String.format("%5s", title))
+                .collect(Collectors.joining(" "));
+
+        System.out.println(titles);
+    }
+
     private static void printFloor(Floor floor) {
-        int maxLinks = floor.getMaxLinks();
         StringBuilder sb = new StringBuilder();
 
         sb.append(HORIZONTAL_MARGIN);
         sb.append(VERTICAL_LINE);
-        for (int x = 0; x < maxLinks; x++) {
-            sb.append(printLink(floor.getLinked(x)));
+
+        List<Link> links = floor.getLinks();
+        for (int i = 1; i < links.size() - 1; i++) {
+            sb.append(printLink(links.get(i)));
             sb.append(VERTICAL_LINE);
         }
 
         System.out.println(sb.toString());
     }
 
-    private static String printLink(boolean isLinked) {
-        if (isLinked) {
+    private static String printLink(Link linked) {
+        if (linked == Link.LINKED) {
             return HORIZONTAL_LINK;
         }
         return HORIZONTAL_BLANK;
