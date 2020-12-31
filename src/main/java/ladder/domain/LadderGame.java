@@ -19,12 +19,18 @@ public class LadderGame {
         this.ladder = new Ladder(ladderHeight, persons.getPersons().size());
     }
 
+
+    public LadderLine getLastLine() {
+        int lastIndex = ladder.getLadderLines().size() - 1;
+        return ladder.getLadderLines().get(lastIndex);
+    }
+
     public List<LadderWinning> getWinnings() {
         return ladderWinning.getWinnings();
     }
 
-    public Persons getPerson() {
-        return persons;
+    public List<Person> getPersonList() {
+        return persons.getPersons();
     }
 
     public Ladder getLadder() {
