@@ -28,6 +28,7 @@
     * Ladder - 사다리 관리객체
         * 라인 생성
     * LadderDirection - 사다리 방향 관리 객체
+    * LadderDirectionNext - 다음 사다리 방향 생성 객체
     * LadderGame - 사다리게임 관리 객체
     * LadderLine - 사다리의 한 라인 생성 및 관리
         * 데이터 체크
