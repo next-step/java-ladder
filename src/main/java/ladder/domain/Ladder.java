@@ -14,27 +14,20 @@ public class Ladder {
 
     public Ladder(final int ladderHeight, final int countOfPerson) {
         checkValue(ladderHeight, countOfPerson);
-        initAddLine(ladderHeight, countOfPerson);
+        initLines(ladderHeight, countOfPerson);
     }
 
-    private void initAddLine(final int ladderHeight, final int countOfPerson) {
-        initFirstAddLine(countOfPerson);
-        initOutherAddLine(ladderHeight);
-    }
-
-    private void initFirstAddLine(final int countOfPerson) {
-        LadderLine line = new LadderLine(countOfPerson);
-
-        this.ladderLines.add(line);
-    }
-
-    private void initOutherAddLine(final int ladderHeight) {
+    private void initLines(final int ladderHeight, final int countOfPerson) {
         LadderLine line;
+        List<LadderLine> lines= new ArrayList<>();
+        lines.add(new LadderLine(countOfPerson));
 
         for (int i = 1; i < ladderHeight; i++) {
-            line = new LadderLine(ladderLines.get(i - 1));
-            ladderLines.add(line);
+            line = LadderLine.makeNextLine(lines.get(i - 1));
+            lines.add(line);
         }
+
+        this.ladderLines = lines;
     }
 
     private void checkValue(final int ladderHeight, final int countOfPerson) {
@@ -56,5 +49,12 @@ public class Ladder {
 
     public List<LadderLine> getLadderLines() {
         return ladderLines;
+    }
+
+    @Override
+    public String toString() {
+        return "Ladder{" +
+                "ladderLines=" + ladderLines +
+                '}';
     }
 }
