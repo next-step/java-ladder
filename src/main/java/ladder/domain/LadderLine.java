@@ -13,94 +13,56 @@ public class LadderLine {
         initLadderLine(countOfPerson);
     }
 
-    public LadderLine(final LadderLine ladderLine) {
-        initLadderLine(ladderLine);
+    public LadderLine(List<LadderPoint> points) {
+        this.points = points;
     }
 
     public void initLadderLine(final int countOfPerson) {
-        initStartOrLast(0, new LadderDirection(false, random.nextBoolean()));
-        initFirstBody(countOfPerson);
-
-        if (countOfPerson > 2) {
-            initStartOrLast(points.size(),
-                    new LadderDirection(this.points.get(points.size() - 1).getDirection().isRight(), false));
-        }
-    }
-
-    public void initLadderLine(final LadderLine ladderLine) {
-        firstAdd(ladderLine);
-        bodyAdd(ladderLine);
-        lastAdd(ladderLine);
-    }
-
-    private void firstAdd(final LadderLine ladderLine) {
-        LadderDirection direction = new LadderDirection(false, random.nextBoolean());
-        int index = 0;
-
-        if (direction.isRight()) {
-            index = 1;
-        }
-        LadderPoint ladderPoint = new LadderPoint(ladderLine.getPoints().get(index).getIndex(), direction);
-
-        points.add(ladderPoint);
-    }
-
-
-    private void lastAdd(final LadderLine ladderLine) {
-        LadderDirection direction = new LadderDirection(points.get(points.size() - 1).getDirection().isRight(), false);
-
-        int index = ladderLine.getPoints().size() - 1;
-
-        if (direction.isLeft()) {
-            index = index - 1;
-        }
-
-        LadderPoint ladderPoint = new LadderPoint(ladderLine.getPoints().get(index).getIndex(), direction);
-        points.add(ladderPoint);
-    }
-
-    public void bodyAdd(final LadderLine ladderLine) {
-        for (int i = 1; i < ladderLine.getPoints().size() - 1; i++) {
-            LadderDirection direction = checkDirection(points.get(i - 1).getDirection());
-            LadderPoint ladderPoint = new LadderPoint(ladderLine.getPoints().get(i).getIndex(), direction);
-            chageAdd(ladderPoint, i, ladderLine);
-        }
-    }
-
-    private void chageAdd(LadderPoint ladderPoint, int paramIndex, LadderLine ladderLine) {
-        int index = paramIndex + ladderPoint.getMoveIndex();
-        LadderPoint point = new LadderPoint(ladderLine.getPoints().get(index).getIndex(), ladderPoint.getDirection());
+        LadderPoint point = new LadderPoint(0, LadderDirectionNext.makeDirectionFirst());
         this.points.add(point);
-    }
-
-    private void initStartOrLast(final int index, final LadderDirection direction) {
-        LadderPoint point = new LadderPoint(index, direction);
-        point.move();
-        this.points.add(point);
-    }
-
-    private void initFirstBody(final int countOfPerson) {
-        LadderPoint point;
 
         for (int i = 1; i < countOfPerson - 1; i++) {
-            point = new LadderPoint(i, checkDirection(points.get(i - 1).getDirection()));
-            point.move();
+            point = new LadderPoint(i, LadderDirectionNext.makeDirectionBody(points.get(i - 1).getDirection()));
             this.points.add(point);
         }
+
+        point = new LadderPoint(countOfPerson - 1, LadderDirectionNext.makeDirectionLast(points.get(points.size() - 1).getDirection()));
+        this.points.add(point);
     }
 
-    private LadderDirection checkDirection(LadderDirection beforePoint) {
-        boolean left;
-        boolean right;
+    public static LadderLine makeNextLine(LadderLine ladderLine) {
+        List<LadderPoint> initPoints = new ArrayList<>();
+        LadderPoint point = new LadderPoint(ladderLine.getPoints().get(0).getIndex(), LadderDirectionNext.makeDirectionFirst());
+        initPoints.add(point);
 
-        if (beforePoint.isRight()) {
-            return new LadderDirection(true, false);
+        for (int i = 1; i < ladderLine.points.size() - 1; i++) {
+            point = LadderPoint.movePointBody(initPoints.get(i - 1));
+            initPoints.add(point);
         }
 
-        return new LadderDirection(false, random.nextBoolean());
+        point = LadderPoint.movePointLast(initPoints.get(initPoints.size() - 1));
+        initPoints.add(point);
+
+        swapIndex(initPoints, ladderLine.getPoints());
+
+        return new LadderLine(initPoints);
+    }
+
+    private static void swapIndex(List<LadderPoint> initPoints, List<LadderPoint> paramList) {
+        for (int i = 0; i < initPoints.size(); i++) {
+            initPoints.get(i + initPoints.get(i).getDirection().moveDistance())
+                    .movePoint(paramList.get(i).getIndex());
+        }
     }
 
     public List<LadderPoint> getPoints() {
         return points;
+    }
+
+    @Override
+    public String toString() {
+        return "LadderLine{" +
+                "points=" + points +
+                '}';
     }
 }
