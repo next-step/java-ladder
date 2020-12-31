@@ -9,11 +9,9 @@ import java.util.List;
 public class LadderWinnings {
 
     private List<LadderWinning> winnings = new ArrayList<>();
-    private List<Person> persons = new ArrayList<>();
 
     public LadderWinnings(final String winnings, final Persons persons) {
         checkInputWinning(winnings);
-
         initLadderWinnings(winnings, persons);
     }
 
@@ -27,7 +25,6 @@ public class LadderWinnings {
             ladderWinning = new LadderWinning(winning);
             this.winnings.add(ladderWinning);
         }
-        this.persons = persons.getPersons();
     }
 
     private void checkListSize(final List<String> winningList, final List<Person> personList) {
