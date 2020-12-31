@@ -7,7 +7,6 @@ public class Index {
         this.index = index;
     }
 
-
     public static Index from(int index) {
         return new Index(index);
     }

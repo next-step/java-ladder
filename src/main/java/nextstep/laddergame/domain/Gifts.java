@@ -2,7 +2,6 @@ package nextstep.laddergame.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class Gifts {
     private final List<Gift> gifts;

@@ -1,9 +1,7 @@
 package nextstep.laddergame;
 
 import nextstep.laddergame.controller.LadderController;
-
 import nextstep.laddergame.domain.Gift;
-import nextstep.laddergame.domain.Gifts;
 import nextstep.laddergame.domain.Person;
 import nextstep.laddergame.domain.dto.LadderDTO;
 import nextstep.laddergame.domain.dto.ResultDTO;

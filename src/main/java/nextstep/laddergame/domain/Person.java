@@ -2,7 +2,7 @@ package nextstep.laddergame.domain;
 
 public class Person {
     private Name name;
-    private int sequence;
+    private Sequence sequence;
 
     private Person(String name) {
         this.name = Name.create(name);
@@ -10,7 +10,7 @@ public class Person {
 
     public Person(String name, int sequence) {
         this.name = Name.create(name);
-        this.sequence = sequence;
+        this.sequence = Sequence.create(sequence);
     }
 
     public static Person from(String name) {
@@ -26,6 +26,6 @@ public class Person {
     }
 
     public int getSequence() {
-        return sequence;
+        return sequence.getSequence();
     }
 }

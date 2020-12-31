@@ -4,7 +4,7 @@ import nextstep.laddergame.TestStrategy.FalseStrategy;
 import nextstep.laddergame.TestStrategy.TrueStrategy;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class PointTest {
 
@@ -22,16 +22,14 @@ class PointTest {
         Point point = Point.createFirst(trueStrategy);
         assertThat(
                 Point.createWithBeforePoint(point, movingStrategy)
-                        .getDirection()
-                        .isLeft()
+                        .canLeft()
         ).isTrue();
 
         Point point2 = Point.createFirst(trueStrategy);
         Point point3 = Point.createWithBeforePoint(point2, movingStrategy);
         assertThat(
                 Point.createWithBeforePoint(point3, movingStrategy)
-                        .getDirection()
-                        .isNotMove()
+                        .canNotMove()
         ).isTrue();
     }
 
@@ -49,11 +47,11 @@ class PointTest {
         
         Point point = Point.createFirst(trueStrategy);
         Point lastPoint = Point.createLastWithBeforePoint(point);
-        assertThat(lastPoint.getDirection().isLeft()).isTrue();
+        assertThat(lastPoint.canLeft()).isTrue();
 
         Point point2 = Point.createFirst(falseStrategy);
         lastPoint = Point.createLastWithBeforePoint(point2);
-        assertThat(lastPoint.getDirection().isNotMove()).isTrue();
+        assertThat(lastPoint.canNotMove()).isTrue();
 
     }
 }

@@ -4,11 +4,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class IndexTest {
+class SequenceTest {
 
     @Test
     void create() {
-        Index index = Index.from(1);
-        assertThat(index).isNotNull();
+        assertThat(Sequence.create(1)).isNotNull();
     }
 }
