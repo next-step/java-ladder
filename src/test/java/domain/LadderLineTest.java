@@ -26,4 +26,5 @@ public class LadderLineTest {
         ).isInstanceOf(RuntimeException.class)
                 .withFailMessage(ErrorMessage.getCheckInputLadderHeight());
     }
+
 }

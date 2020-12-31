@@ -17,7 +17,7 @@ public class LadderDirectionTest {
     void moveRight() {
         direction = new LadderDirection(false, true);
 
-        assertThat(1).isEqualTo(direction.move());
+        assertThat(1).isEqualTo(direction.moveDistance());
     }
 
     @Test
@@ -25,7 +25,7 @@ public class LadderDirectionTest {
     void moveLeft() {
         direction = new LadderDirection(true, false);
 
-        assertThat(-1).isEqualTo(direction.move());
+        assertThat(-1).isEqualTo(direction.moveDistance());
     }
 
     @Test
@@ -33,7 +33,7 @@ public class LadderDirectionTest {
     void moveStop() {
         direction = new LadderDirection(false, false);
 
-        assertThat(0).isEqualTo(direction.move());
+        assertThat(0).isEqualTo(direction.moveDistance());
     }
 
     @Test
@@ -43,6 +43,5 @@ public class LadderDirectionTest {
                 direction = new LadderDirection(true, true)
         ).isInstanceOf(RuntimeException.class)
                 .withFailMessage(ErrorMessage.getCheckDirection());
-
     }
 }
