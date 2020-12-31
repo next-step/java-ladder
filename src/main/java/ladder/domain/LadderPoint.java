@@ -10,6 +10,21 @@ public class LadderPoint {
     public LadderPoint(final int index, final LadderDirection direction) {
         checkValue(index, direction);
         initPoint(index, direction);
+        movePoint();
+    }
+
+    public static LadderPoint movePointBody(LadderPoint ladderPoint) {
+        LadderDirection direction = LadderDirectionNext.makeDirectionBody(ladderPoint.getDirection());
+        LadderPoint returnPoint = new LadderPoint(ladderPoint.getIndex(), direction);
+
+        return returnPoint;
+    }
+
+    public static LadderPoint movePointLast(LadderPoint ladderPoint) {
+        LadderDirection direction = LadderDirectionNext.makeDirectionLast(ladderPoint.getDirection());
+        LadderPoint returnPoint = new LadderPoint(ladderPoint.getIndex(), direction);
+
+        return returnPoint;
     }
 
     private void initPoint(final int index, final LadderDirection direction) {
@@ -17,12 +32,12 @@ public class LadderPoint {
         this.direction = direction;
     }
 
-    public void move(){
-        this.index = index+ direction.move();
+    public void movePoint(int index){
+        this.index = index;
     }
 
-    public int getMoveIndex(){
-        return direction.move();
+    private void movePoint() {
+        this.index = index + this.direction.moveDistance();
     }
 
     private void checkValue(final int index, final LadderDirection direction) {
@@ -30,7 +45,7 @@ public class LadderPoint {
         checkNull(direction);
     }
 
-    private void checkIndex(int index) {
+    private void checkIndex(final int index) {
         if (index < 0) {
             throw new RuntimeException(ErrorMessage.getCheckPointIndex());
         }
