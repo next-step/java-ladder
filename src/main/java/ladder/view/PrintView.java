@@ -11,9 +11,8 @@ public class PrintView {
     private static final String NON_HAVE_LINE = "     ";
     private static final String EXECUTION_RESULT = "실행결과";
 
-    public void printNames(Persons persons) {
+    public void printNames(List<Person> personList) {
         StringBuilder stringBuilder = new StringBuilder();
-        List<Person> personList = persons.getPersons();
 
         for (int i = 0; i < personList.size(); i++) {
             stringBuilder.append(checkDivisionNames(i == personList.size() - 1, personList.get(i).getName()));
@@ -74,11 +73,11 @@ public class PrintView {
         System.out.println(stringBuilder);
     }
 
-    public void printWinningResult(List<MappingWinningDTO> paramList){
+    public void printWinningResult(List<MappingWinningDTO> paramList) {
         StringBuilder stringBuilder = new StringBuilder();
 
         System.out.println(EXECUTION_RESULT);
-        for(MappingWinningDTO dto : paramList){
+        for (MappingWinningDTO dto : paramList) {
             stringBuilder.append(dto.getName() + " : " + dto.getWinning() + "\n");
         }
         System.out.println(stringBuilder);
