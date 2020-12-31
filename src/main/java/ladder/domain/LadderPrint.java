@@ -27,7 +27,7 @@ public class LadderPrint {
     }
 
     private void printNames() {
-        printLadder.printNames(ladderGame.getPerson());
+        printLadder.printNames(ladderGame.getPersonList());
     }
 
     private void printLadder() {
@@ -36,7 +36,6 @@ public class LadderPrint {
         for (LadderLine points : line) {
             printLadder.printLadder(points);
         }
-
     }
 
     private void printWinnings() {
@@ -44,14 +43,6 @@ public class LadderPrint {
     }
 
     public void resultPrint() {
-
-        for (LadderLine line : ladderGame.getLadder().getLadderLines()) {
-            for (LadderPoint point : line.getPoints()) {
-                System.out.print(point.getIndex() + " / ");
-            }
-            System.out.println();
-        }
-
         mappingAllWinnings();
         while (!printwinning()) {
         }
@@ -77,9 +68,8 @@ public class LadderPrint {
     private List<MappingWinningDTO> mappingAllWinnings() {
         MappingWinningDTO mappingWinningDTO;
         int pointIndex = 0;
-        int lastIndex = ladderGame.getLadder().getLadderLines().size() - 1;
-        LadderLine lastLine = ladderGame.getLadder().getLadderLines().get(lastIndex);
-        List<Person> persons = ladderGame.getPerson().getPersons();
+        LadderLine lastLine = ladderGame.getLastLine();
+        List<Person> persons = ladderGame.getPersonList();
         List<LadderWinning> winnings = ladderGame.getWinnings();
 
         for (int i = 0; i < lastLine.getPoints().size(); i++) {
