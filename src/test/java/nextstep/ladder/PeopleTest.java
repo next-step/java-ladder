@@ -1,13 +1,11 @@
 package nextstep.ladder;
 
-import nextstep.ladder.model.Ladder;
-import nextstep.ladder.model.People;
-import nextstep.ladder.model.Person;
-import nextstep.ladder.model.Results;
+import nextstep.ladder.model.*;
 import nextstep.ladder.view.ResultView;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Map;
 import java.util.NoSuchElementException;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -42,7 +40,7 @@ public class PeopleTest {
         ResultView resultView = new ResultView();
 
         resultView.printLadder(people.getPeople(),results.getResults(), ladder.getLines());
-        ladder.startMove(people);
+        Map<Person, Result> matches = ladder.getPersonResult(people.getPeople(), results.getResults());
 
         for(Person person : people.getPeople()){
             System.out.println(person.getName() +" : "+ person.getPosition());

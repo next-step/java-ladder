@@ -1,18 +1,25 @@
 package nextstep.ladder.model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class Results {
-    private String[] results;
+    private List<Result> results = new ArrayList<>();
 
-    public Results(String results){
+    public Results(String results) {
 
-        this.results = Arrays.stream(results.split(","))
-                            .map(String::trim)
-                            .toArray(String[]::new);
+        final int[] index = {0};
+        Arrays.stream(results.split(","))
+                .map(String::trim)
+                .forEach(result -> this.results.add(new Result(index[0]++, result)));
+
     }
 
-    public String[] getResults(){
-        return results;
+    public List<Result> getResults() {
+        return Collections.unmodifiableList(results);
     }
+
+
 }
