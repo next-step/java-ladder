@@ -3,8 +3,10 @@ package ladder.domain;
 import ladder.util.ErrorMessage;
 
 public class LadderDirection {
+
     private boolean left;
     private boolean right;
+    private static int MOVE_DISTANCE = 1;
 
     public LadderDirection(final boolean left, final boolean right) {
         checkValue(left, right);
@@ -12,13 +14,13 @@ public class LadderDirection {
         this.right = right;
     }
 
-    public int move() {
+    public int moveDistance() {
         if (this.left) {
-            return -1;
+            return -MOVE_DISTANCE;
         }
 
         if (this.right) {
-            return 1;
+            return MOVE_DISTANCE;
         }
 
         return 0;
@@ -28,10 +30,6 @@ public class LadderDirection {
         if (left && right) {
             throw new RuntimeException(ErrorMessage.getCheckDirection());
         }
-    }
-
-    public boolean isLeft() {
-        return left;
     }
 
     public boolean isRight() {
