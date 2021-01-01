@@ -16,4 +16,14 @@ public class LadderTest {
         assertThat(ladder.getLines().size()).isEqualTo(4);
 
     }
+
+
+    @Test
+    @DisplayName("리팩토링 사다리 생성 테스트")
+    public void initTest2(){
+        Ladder ladder = new Ladder(3,3);
+        System.out.println(ladder.toString());
+
+
+    }
 }

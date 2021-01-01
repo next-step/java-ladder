@@ -1,25 +1,40 @@
 package nextstep.ladder.model;
 
-import java.util.List;
+import java.util.*;
 
 public class Ladder {
-    private int height;
-    private Lines lines;
+    private final List<LadderLine> lines;
+    private Map<Person, Result> matches;
 
-    public Ladder(int countOfPerson, int height){
-        this.height = height;
-        lines = new Lines(countOfPerson, this.height);
+
+    public Ladder(int countOfPerson, int height) {
+        lines = new ArrayList<>();
+        for (int i = 0; i < height; i++) {
+            lines.add(LadderLine.init(countOfPerson));
+        }
 
     }
-    public List<Line> getLines(){
-        return lines.getLines();
+
+    public List<LadderLine> getLines() {
+        return Collections.unmodifiableList(lines);
     }
 
-
-    public void startMove(People people){
-        people.movePeoplePosition(lines.getLines());
+    public Map<Person, Result> getPersonResult(List<Person> people, List<Result> results) {
+        matches = new HashMap<>();
+        people.get(0);
+        results.get(0);
+        for (int i = 0; i < people.size(); i++) {
+            matches.put(people.get(i), results.get(move(i)));
+        }
+        return Collections.unmodifiableMap(matches);
     }
 
-
+    public int move(int position) {
+        int result = position;
+        for (LadderLine line : lines) {
+            result = line.move(result);
+        }
+        return result;
+    }
 
 }
