@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Persons {
     private static int MAX_NAME_LENGTH = 5;
-
+    private static int MIN_COUNT_OF_PERSON = 2;
     private List<Person> persons = new ArrayList<>();
 
     public Persons(final String names) {
@@ -20,14 +20,15 @@ public class Persons {
         List<String> nameList = Arrays.asList(names.replaceAll(" ", "").split(","));
 
         checkMakeList(nameList);
+        checkCountOfPerson(nameList.size());
         addPerson(nameList);
     }
 
     private void addPerson(final List<String> names) {
         Person person;
 
-        for (String name : names) {
-            person = new Person(name);
+        for (int i = 0; i < names.size(); i++) {
+            person = new Person(names.get(i));
             persons.add(person);
         }
     }
@@ -52,6 +53,12 @@ public class Persons {
     private void checkNull(final String names) {
         if (names.isEmpty()) {
             throw new RuntimeException(ErrorMessage.getCheckInputNames());
+        }
+    }
+
+    private void checkCountOfPerson(int countOfPerson) {
+        if (countOfPerson < MIN_COUNT_OF_PERSON) {
+            throw new RuntimeException(ErrorMessage.getCheckCountOfPerson());
         }
     }
 

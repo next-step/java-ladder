@@ -1,6 +1,5 @@
 package domain;
 
-import ladder.domain.Ladder;
 import ladder.domain.LadderDirection;
 import ladder.domain.LadderPoint;
 import ladder.util.ErrorMessage;
@@ -9,22 +8,20 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
-public class LadderLineTest {
-    private static Ladder ladderLineTest;
+public class LadderPointTest {
+
+    private static LadderPoint pointTest;
 
     @ParameterizedTest
-    @DisplayName("입력받은 사다리 높이가 0 또는 음수일 때 예외를 던진다")
-    @ValueSource(ints = {0, -100, -200, -3})
-    void checkLadderHeight(int ladderHeight) {
+    @DisplayName("입력받은 index가 음수 일대 에러를 던진다.")
+    @ValueSource(ints = {-100, -200, -3})
+    void checkIndexNegative(int index) {
         assertThatThrownBy(() ->
-                ladderLineTest = new Ladder(ladderHeight, 10)
+                pointTest = new LadderPoint(index, new LadderDirection(false, false))
         ).isInstanceOf(RuntimeException.class)
-                .withFailMessage(ErrorMessage.getCheckInputLadderHeight());
+                .withFailMessage(ErrorMessage.getCheckPointIndex());
     }
-
 }
