@@ -13,14 +13,14 @@ public class LadderPoint {
         movePoint();
     }
 
-    public static LadderPoint movePointBody(LadderPoint ladderPoint) {
+    public static LadderPoint initPointBody(LadderPoint ladderPoint) {
         LadderDirection direction = LadderDirectionNext.makeDirectionBody(ladderPoint.getDirection());
         LadderPoint returnPoint = new LadderPoint(ladderPoint.getIndex(), direction);
 
         return returnPoint;
     }
 
-    public static LadderPoint movePointLast(LadderPoint ladderPoint) {
+    public static LadderPoint initPointLast(LadderPoint ladderPoint) {
         LadderDirection direction = LadderDirectionNext.makeDirectionLast(ladderPoint.getDirection());
         LadderPoint returnPoint = new LadderPoint(ladderPoint.getIndex(), direction);
 
