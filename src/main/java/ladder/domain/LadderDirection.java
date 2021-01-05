@@ -36,6 +36,10 @@ public class LadderDirection {
         return right;
     }
 
+    public boolean isLeft() {
+        return left;
+    }
+
     @Override
     public String toString() {
         return "LadderDirection{" +

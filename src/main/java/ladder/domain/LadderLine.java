@@ -32,28 +32,16 @@ public class LadderLine {
 
     public static LadderLine makeNextLine(LadderLine ladderLine) {
         List<LadderPoint> initPoints = new ArrayList<>();
-        LadderPoint point = new LadderPoint(ladderLine.getPoints().get(0).getIndex(), LadderDirectionNext.makeDirectionFirst());
-        initPoints.add(point);
 
-        for (int i = 1; i < ladderLine.points.size() - 1; i++) {
-            point = LadderPoint.movePointBody(initPoints.get(i - 1));
-            initPoints.add(point);
-        }
+        initPoints.add(LadderFactory.makeFirstPoint(ladderLine.getPoints().get(0).getIndex()));
+        LadderFactory.makeBodyPoint(initPoints, ladderLine.getPoints().size());
+        LadderFactory.makeLastPoint(initPoints);
 
-        point = LadderPoint.movePointLast(initPoints.get(initPoints.size() - 1));
-        initPoints.add(point);
-
-        swapIndex(initPoints, ladderLine.getPoints());
+        LadderFactory.swapIndex(initPoints, ladderLine.getPoints());
 
         return new LadderLine(initPoints);
     }
 
-    private static void swapIndex(List<LadderPoint> initPoints, List<LadderPoint> paramList) {
-        for (int i = 0; i < initPoints.size(); i++) {
-            initPoints.get(i + initPoints.get(i).getDirection().moveDistance())
-                    .movePoint(paramList.get(i).getIndex());
-        }
-    }
 
     public List<LadderPoint> getPoints() {
         return points;
