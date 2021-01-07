@@ -30,7 +30,7 @@ public class StreamStudy {
                 .distinct()
                 .limit(100)
                 .collect(Collectors.toList())
-                .forEach(System.out::println);
+                .forEach(word -> System.out.println(word.toLowerCase()));
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
