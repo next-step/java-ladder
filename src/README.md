@@ -35,4 +35,6 @@ pobi  honux crong   jk
 1. 최대 사다리 높이 입력
 1. 사다리 그리기
     1. person list 구하기
-    1. 
+    1. Line 입력
+    1. Ladder 입력
+    1. 사다리 그리기
