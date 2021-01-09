@@ -14,6 +14,10 @@ public class PersonList {
                 .collect(Collectors.toList());
     }
 
+    public PersonList(String names) {
+        split(names);
+    }
+
     public int size() {
         return personList.size();
     }
