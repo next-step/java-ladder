@@ -9,20 +9,19 @@ public class Line {
     private static List<Boolean> flagList = new ArrayList<>(Arrays.asList(true, false));
     private List<Boolean> points = new ArrayList<>();
 
+    // TODO 테스트 고민 레이싱 강의 참조
+    private boolean createLine(int i) {
+        if (i > 0 && points.get(i)) {
+            points.add(false);
+            return false;
+        }
+        Collections.shuffle(flagList);
+        return flagList.get(0);
+    }
+
     public Line(int countOfPerson) {
-        boolean prevLine = false;
         for (int i = 0; i < countOfPerson - 1; i++) {
-            // 사다리 생성 참, 거짓
-            Collections.shuffle(flagList);
-            // 이전 라인이 있으면 false
-            boolean line;
-            if (prevLine) {
-                line = false;
-            } else {
-                line = flagList.get(0);
-            }
-            points.add(line);
-            prevLine = line;
+            createLine(i);
         }
     }
 
