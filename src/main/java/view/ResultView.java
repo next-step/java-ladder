@@ -5,10 +5,14 @@ import domain.Line;
 import domain.PersonList;
 
 public class ResultView {
+    private static String printName(String name) {
+        return String.format("%5s", name);
+    }
+
     private static void printNames(PersonList personList) {
         personList.getList()
                 .stream()
-                .map(person -> person.getName())
+                .map(person -> printName(person.getName()) + " ")
                 .forEach(System.out::print);
     }
 
@@ -19,7 +23,7 @@ public class ResultView {
     }
 
     private static void printLine(Line line) {
-        System.out.print("|");
+        System.out.print("   |");
         line.getLine()
                 .forEach(point -> printPoint(point));
         System.out.println();
