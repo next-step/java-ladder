@@ -10,6 +10,7 @@ public class Ladder {
 
     private List<Name> names;
     private int height ;
+    private List<Line> lines;
     public Ladder(String names, int height) {
         this.names = participateNames(names);
         this.height = height;
@@ -22,7 +23,7 @@ public class Ladder {
                 .collect(Collectors.toList());
         return collect;
     }
-    protected void generateLadderLine(){
+    protected void generateLadderLine(int height){
 
     }
 }

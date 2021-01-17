@@ -1,5 +1,7 @@
 package ladder.entity;
 
+import java.util.Optional;
+
 public class Name {
 
     private static final String NAME_VALIDATION = "이름의 길이는 5 이하 이여야 합니다.";
@@ -11,10 +13,10 @@ public class Name {
     }
 
     protected String validation(String name){
-        if( name.length() < limitLength){
-            return name;
-        }
-        throw new IllegalArgumentException( name + ","+name.length()+ NAME_VALIDATION);
+        String checkedName = Optional.ofNullable(name)
+                .filter((element -> element.length() < limitLength))
+                .orElseThrow(() -> new IllegalArgumentException(name + "," + name.length() + NAME_VALIDATION));
+        return checkedName;
     }
 
     protected String getName(){
