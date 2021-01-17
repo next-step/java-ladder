@@ -9,4 +9,12 @@ public class LineTest {
         Line line = new Line(4);
         assertThat(line.getLine().size()).isEqualTo(3);
     }
+
+    @Test
+    void 중복라인방지() {
+        Line line = new Line();
+        line.add(true);
+        line.add(true);
+        assertThat(line.getLine().get(1)).isEqualTo(false);
+    }
 }
