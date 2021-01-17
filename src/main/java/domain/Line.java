@@ -9,17 +9,27 @@ public class Line {
     private static List<Boolean> flagList = new ArrayList<>(Arrays.asList(true, false));
     private List<Boolean> points = new ArrayList<>();
 
-    private boolean createLine(int i) {
-        if (i > 0 && points.get(i - 1)) {
+    public Line() {}
+
+    private boolean validPrevPoint(boolean point) {
+        if (point && points.size() > 0 && points.get(points.size() - 1)) {
             return false;
         }
+        return point;
+    }
+
+    private boolean createPoint() {
         Collections.shuffle(flagList);
         return flagList.get(0);
     }
 
+    public void add(boolean point) {
+        points.add(validPrevPoint(point));
+    }
+
     public Line(int countOfPerson) {
         for (int i = 0; i < countOfPerson - 1; i++) {
-            points.add(createLine(i));
+            add(validPrevPoint(createPoint()));
         }
     }
 
