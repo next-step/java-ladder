@@ -1,9 +1,11 @@
-package ladder.entity;
+package ladder.domain;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 class LadderTest {
 
@@ -11,13 +13,28 @@ class LadderTest {
 
     @BeforeEach
     void setup(){
+        ladder = new Ladder();
     }
 
     @Test
-    void ladderNames(){
+    void ladderParticipateNames() {
         String names = "morr,dani";
-        int height= 5;
-        new Ladder(names,height);
+        String[] split = names.split(",");
+
+        List<Name> participateNames = ladder.participateNames(names);
+
+        assertThat(participateNames).hasSize(split.length);
+
     }
 
+    @Test
+    void generateLadderLine() {
+        String names = "morr,dani,dell";
+        int ladderHeight = 4;
+        ladder = new Ladder(names,ladderHeight);
+
+        List<Line> lines = ladder.generateLadderLine();
+
+        assertThat(lines).hasSize(ladderHeight);
+    }
 }

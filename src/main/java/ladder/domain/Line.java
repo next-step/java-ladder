@@ -1,31 +1,34 @@
-package ladder.entity;
+package ladder.domain;
+
+import ladder.util.RandomPoint;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-import java.util.stream.IntStream;
 
 public class Line {
-    private List<ArrayList<Boolean>> line;
-    private int column;
+    private List<Boolean> line;
+    private int columnSize;
 
-    private Line(int countOfPerson){
-        this.line = new ArrayList<>();
-        this.column = countOfPerson;
+    public Line(int countOfPerson){
+        this.columnSize = countOfPerson;
+        this.line = generateLine(RandomPoint.generateRandomPoint());
     }
 
-    protected void addLine(){
-        List<Boolean> booleans = new ArrayList<>();
-        int ladderColumn = column - 1;
-        Random random = new Random(2);
-        int initRandom = random.nextInt();
-        
-        for(int i = 0; i < ladderColumn; i++) {
-
+    protected List<Boolean> generateLine(Boolean randomPoint){
+        int ladderColumn = columnSize - 2;
+        List<Boolean> newPoint = new ArrayList<>();
+        Boolean initPoint = randomPoint;
+        newPoint.add(initPoint);
+        for(int i = 0; i < ladderColumn ; i++) {
+            Boolean nextBoolean = RandomPoint.nextPoint(initPoint);
+            newPoint.add(nextBoolean);
+            initPoint = nextBoolean;
         }
-
+        return newPoint;
     }
 
-
+    public List<Boolean> resultLine(){
+        return new ArrayList<>(this.line);
+    }
 
 }

@@ -1,7 +1,7 @@
 package ladder;
 
-import ladder.entity.Ladder;
-import ladder.util.DisplayUtil;
+import ladder.domain.Ladder;
+import ladder.view.DisplayUtil;
 import ladder.util.InputUtil;
 import ladder.util.NumberUtil;
 
@@ -12,9 +12,13 @@ public class LadderMain {
 
         DisplayUtil.requireLadderHeight();
         String inputHeight = InputUtil.inputLadderHeight();
+
         int ladderHeight = NumberUtil.convertStringToInt(inputHeight);
+
         Ladder ladder = new Ladder(names, ladderHeight);
-        DisplayUtil.ladderResult();
+        ladder.generateLadderLine();
+
+        DisplayUtil.ladderResult(ladder);
 
     }
 }

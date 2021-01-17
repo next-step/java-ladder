@@ -4,7 +4,9 @@ import java.util.Scanner;
 
 public class InputUtil {
     private final static Scanner scanner = new Scanner(System.in);
-    
+
+    private InputUtil(){}
+
     public static String inputNames(){
         String names = input();
         return names;

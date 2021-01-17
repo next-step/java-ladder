@@ -1,4 +1,4 @@
-package ladder.entity;
+package ladder.domain;
 
 import java.util.Optional;
 
@@ -14,12 +14,12 @@ public class Name {
 
     protected String validation(String name){
         String checkedName = Optional.ofNullable(name)
-                .filter((element -> element.length() < limitLength))
+                .filter((element -> element.length() <= limitLength))
                 .orElseThrow(() -> new IllegalArgumentException(name + "," + name.length() + NAME_VALIDATION));
         return checkedName;
     }
 
-    protected String getName(){
+    public String getName(){
         return this.name;
     }
 }

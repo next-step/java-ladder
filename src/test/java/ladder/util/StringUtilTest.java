@@ -11,7 +11,7 @@ class StringUtilTest {
 
     @Test
     void splitNames() {
-        String names = "morr,dd";
+        String names = "morr,dd,dell";
         String[] strings = StringUtil.splitNames(names);
         assertAll(
                 ()-> { strings[0].equals("morr");},
