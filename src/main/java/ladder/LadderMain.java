@@ -15,8 +15,8 @@ public class LadderMain {
 
         int ladderHeight = NumberUtil.convertStringToInt(inputHeight);
 
-        Ladder ladder = new Ladder(names, ladderHeight);
-        ladder.generateLadderLine();
+        Ladder ladder = new Ladder(names);
+        ladder.generateLadderLine(ladderHeight);
 
         DisplayUtil.ladderResult(ladder);
 

@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-    private List<Boolean> line;
-    private int columnSize;
+    private final List<Boolean> line;
+    private final int columnSize;
 
     public Line(int countOfPerson){
         this.columnSize = countOfPerson;
