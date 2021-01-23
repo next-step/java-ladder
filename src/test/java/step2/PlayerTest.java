@@ -1,12 +1,13 @@
 package step2;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestFactory;
 
 import java.util.stream.Stream;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class PlayerTest {
 
@@ -24,5 +25,17 @@ class PlayerTest {
                     }).isInstanceOf(IllegalArgumentException.class);
                 })
         );
+    }
+
+    @Test
+    void 참가자_생성() {
+        // given
+        String name = "이병덕";
+
+        // when
+        Player player = Player.newPlayer(name);
+
+        // then
+        Assertions.assertThat(player.getName()).isEqualTo(name);
     }
 }
