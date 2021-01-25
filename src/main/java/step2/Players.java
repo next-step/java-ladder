@@ -1,6 +1,7 @@
 package step2;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -33,6 +34,14 @@ public class Players {
         }
 
         return new Players(str.trim().split(SEPARATOR));
+    }
+
+    public List<Player> getPlayers() {
+        return Collections.unmodifiableList(players);
+    }
+
+    public int size() {
+        return players.size();
     }
 
     @Override
