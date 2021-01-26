@@ -6,10 +6,10 @@ import java.util.List;
 
 public class Ladder {
 
-    private final List<Line> ladder;
+    private final List<Line> lines;
 
-    private Ladder(List<Line> ladder) {
-        this.ladder = ladder;
+    private Ladder(List<Line> lines) {
+        this.lines = lines;
     }
 
     public static Ladder newLadder(int height, int countOfPerson) {
@@ -22,11 +22,11 @@ public class Ladder {
         return new Ladder(ladder);
     }
 
-    public List<Line> getLadder() {
-        return Collections.unmodifiableList(ladder);
+    public List<Line> getLines() {
+        return Collections.unmodifiableList(lines);
     }
 
     public int size() {
-        return ladder.size();
+        return lines.size();
     }
 }

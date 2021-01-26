@@ -2,7 +2,6 @@ package step2.UI;
 
 import step2.Ladder;
 import step2.Player;
-import step2.Players;
 
 import java.util.List;
 
@@ -37,7 +36,7 @@ public class OutputView {
             // 라인
             sb = new StringBuilder();
             sb.append(LADDER_HEIGHT_DRAWING);
-            for (Boolean point : ladder.getLadder().get(i).getPoints()) {
+            for (Boolean point : ladder.getLines().get(i).getPoints()) {
                 if (point) {
                     sb.append(LADDER_LINE_DRAWING);
                 } else {

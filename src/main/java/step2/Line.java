@@ -1,14 +1,12 @@
 package step2;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 public class Line {
 
     private final List<Boolean> points;
-    private static final List<Boolean> flagList = new ArrayList<>(Arrays.asList(true, false));
 
     private Line(List<Boolean> points) {
         this.points = points;
@@ -18,7 +16,7 @@ public class Line {
         List<Boolean> points = new ArrayList<>();
 
         for (int i = 0; i < countOfPerson - 1; i++) {
-            points.add(validPrePoint(createPoint(), points));
+            points.add(validPrePoint(RandomGeneratorPoint.generatorRandomPoint(), points));
         }
 
         return new Line(points);
@@ -30,12 +28,6 @@ public class Line {
         }
 
         return point;
-    }
-
-    private static boolean createPoint() {
-        Collections.shuffle(flagList);
-
-        return flagList.get(0);
     }
 
     public List<Boolean> getPoints() {
