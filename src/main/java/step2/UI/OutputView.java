@@ -1,8 +1,7 @@
 package step2.UI;
 
-import step2.Ladder;
+import step2.Line;
 import step2.Player;
-import step2.Point;
 
 import java.util.List;
 
@@ -13,11 +12,11 @@ public class OutputView {
     public static final String BLANK = " ";
     public static final int MAX_NAME_LENGTH = 5;
 
-    public static void outputView(Ladder ladder, List<Player> players) {
+    public static void outputView(List<Line> lines, List<Player> players) {
         System.out.println(RESULT_MESSAGE);
 
         printPlayers(players);
-        printLadder(ladder);
+        printLadder(lines);
     }
 
     private static void printPlayers(List<Player> players) {
@@ -26,7 +25,6 @@ public class OutputView {
         for (Player player : players) {
             appendName(sb, player);
             appendBlankName(sb, player);
-
         }
 
         System.out.println(sb);
@@ -47,11 +45,9 @@ public class OutputView {
         }
     }
 
-    private static void printLadder(Ladder ladder) {
-        for (int i = 0; i < ladder.size(); i++) {
-            String sb =
-                    LADDER_HEIGHT_DRAWING +
-                    ladder.getLines().get(i).drawLine();
+    private static void printLadder(List<Line> lines) {
+        for (Line line : lines) {
+            String sb = LADDER_HEIGHT_DRAWING + line.drawLine();
 
             System.out.println(sb);
         }
