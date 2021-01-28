@@ -8,12 +8,10 @@ import java.util.List;
 
 public class OutputView {
 
-    private static final String RESULT_MESSAGE ="실행결과";
-    private static final String LADDER_HEIGHT_DRAWING = "|";
-    private static final String LADDER_LINE_DRAWING = "-----";
-    private static final String LADDER_NO_LINE_DRAWING = "     ";
-    private static final String BLANK = " ";
-    private static final int MAX_NAME_LENGTH = 5;
+    public static final String RESULT_MESSAGE ="실행결과";
+    public static final String LADDER_HEIGHT_DRAWING = "|";
+    public static final String BLANK = " ";
+    public static final int MAX_NAME_LENGTH = 5;
 
     public static void outputView(Ladder ladder, List<Player> players) {
         System.out.println(RESULT_MESSAGE);
@@ -51,18 +49,9 @@ public class OutputView {
 
     private static void printLadder(Ladder ladder) {
         for (int i = 0; i < ladder.size(); i++) {
-            // 라인
-            StringBuilder sb = new StringBuilder();
-            sb.append(LADDER_HEIGHT_DRAWING);
-
-            for (Point point : ladder.getLines().get(i).getPoints()) {
-                if (point.isPoint()) {
-                    sb.append(LADDER_LINE_DRAWING);
-                } else {
-                    sb.append(LADDER_NO_LINE_DRAWING);
-                }
-                sb.append(LADDER_HEIGHT_DRAWING);
-            }
+            String sb =
+                    LADDER_HEIGHT_DRAWING +
+                    ladder.getLines().get(i).drawLine();
 
             System.out.println(sb);
         }
