@@ -30,7 +30,8 @@ public class Line {
         return Collections.unmodifiableList(points);
     }
 
-    public String drawLine() {
+    @Override
+    public String toString() {
         StringBuilder sb = new StringBuilder();
 
         for (Point point : points) {

@@ -47,7 +47,7 @@ public class OutputView {
 
     private static void printLadder(List<Line> lines) {
         for (Line line : lines) {
-            String sb = LADDER_HEIGHT_DRAWING + line.drawLine();
+            String sb = LADDER_HEIGHT_DRAWING + line.toString();
 
             System.out.println(sb);
         }
