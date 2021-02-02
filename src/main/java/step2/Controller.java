@@ -9,6 +9,9 @@ public class Controller {
         String playersNames = InputView.inputPlayerName();
         Players players = Players.newPlayers(playersNames);
 
+        String resultName = InputView.inputResultName();
+        Results results = Results.newResults(resultName, players);
+
         int ladderHeight = InputView.inputLadderHeight();
         Ladder ladder = Ladder.newLadder(ladderHeight, players.size());
 
