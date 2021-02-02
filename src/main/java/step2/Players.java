@@ -1,9 +1,6 @@
 package step2;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class Players {
 
@@ -23,9 +20,8 @@ public class Players {
             throw new IllegalArgumentException(MINIMUM_PLAYER_MESSAGE);
         }
 
-        for (String player : str) {
-            players.add(Player.newPlayer(player));
-        }
+        Arrays.stream(str)
+                .forEach(player -> players.add(Player.newPlayer(player)));
     }
 
     public static Players newPlayers(String str) {
