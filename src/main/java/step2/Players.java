@@ -7,8 +7,8 @@ public class Players {
     private static final String SEPARATOR = ",";
     private static final String MINIMUM_PLAYER_MESSAGE = "참가자 리스트는 2명 이상 이어야 합니다.";
     private static final String NULL_PLAYER_MESSAGE = "참가자 리스트는 null일 수 없습니다.";
-    public static final String BLANK = " ";
-    public static final int MAX_NAME_LENGTH = 5;
+    private static final String BLANK = " ";
+    private static final int MAX_NAME_LENGTH = 5;
 
     private List<Player> players =  new ArrayList<>();
 

@@ -7,9 +7,10 @@ public class Results {
     private static final String SEPARATOR = ",";
     private static final String RESULT_MESSAGE = "참가자 수와 결과 수는 동일해야 합니다.";
     private static final String NULL_RESULT_MESSAGE = "참가자 리스트는 null일 수 없습니다.";
+    private static final String BLANK = " ";
+    private static final int MAX_NAME_LENGTH = 5;
 
     private List<Result> results =  new ArrayList<>();
-
 
     public Results(List<Result> results) {
         this.results = results;
@@ -39,6 +40,33 @@ public class Results {
 
     public int size() {
         return results.size();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+
+        for (Result result : results) {
+            append(sb, result);
+            appendBlank(sb, result);
+        }
+
+        return sb.toString();
+    }
+
+    private static void append(StringBuilder sb, Result result) {
+        String name = result.getName();
+        sb.append(name);
+    }
+
+    private static void appendBlank(StringBuilder sb, Result result) {
+        int nameLength = MAX_NAME_LENGTH - result.getName().length();
+
+        if (nameLength != 0) {
+            for (int i = 0; i < nameLength; i++) {
+                sb.append(BLANK);
+            }
+        }
     }
 
     @Override
