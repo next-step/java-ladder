@@ -7,6 +7,8 @@ public class Players {
     private static final String SEPARATOR = ",";
     private static final String MINIMUM_PLAYER_MESSAGE = "참가자 리스트는 2명 이상 이어야 합니다.";
     private static final String NULL_PLAYER_MESSAGE = "참가자 리스트는 null일 수 없습니다.";
+    public static final String BLANK = " ";
+    public static final int MAX_NAME_LENGTH = 5;
 
     private List<Player> players =  new ArrayList<>();
 
@@ -38,6 +40,33 @@ public class Players {
 
     public int size() {
         return players.size();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+
+        for (Player player : players) {
+            appendName(sb, player);
+            appendBlankName(sb, player);
+        }
+
+        return sb.toString();
+    }
+
+    private static void appendName(StringBuilder sb, Player player) {
+        String name = player.getName();
+        sb.append(name);
+    }
+
+    private static void appendBlankName(StringBuilder sb, Player player) {
+        int nameLength = MAX_NAME_LENGTH - player.getName().length();
+
+        if (nameLength != 0) {
+            for (int i = 0; i < nameLength; i++) {
+                sb.append(BLANK);
+            }
+        }
     }
 
     @Override
