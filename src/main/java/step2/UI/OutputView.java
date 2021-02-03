@@ -12,7 +12,7 @@ public class OutputView {
     public static final String RESULT_MESSAGE ="실행결과";
     public static final String LADDER_HEIGHT_DRAWING = "|";
 
-    public static void outputView(List<Line> lines, Players players, Results results) {
+    public static void outputLadder(List<Line> lines, Players players, Results results) {
         System.out.println(RESULT_MESSAGE);
 
         printPlayers(players);
