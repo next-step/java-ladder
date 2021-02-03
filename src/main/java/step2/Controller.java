@@ -16,5 +16,8 @@ public class Controller {
         Ladder ladder = Ladder.newLadder(ladderHeight, players.size());
 
         OutputView.outputLadder(ladder.getLines(), players, results);
+
+        String resultPlayerName = InputView.inputResultPlayerName();
+        OutputView.outputResultPlayer(players, resultPlayerName);
     }
 }

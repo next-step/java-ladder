@@ -33,4 +33,8 @@ public class OutputView {
     private static void printResult(Results results) {
         System.out.println(results.toString());
     }
+
+    public static void outputResultPlayer(Players players, String playerName) {
+        players.validatePlayerExist(playerName);
+    }
 }

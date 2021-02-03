@@ -69,6 +69,13 @@ public class Players {
         }
     }
 
+    public void validatePlayerExist(String playerName) {
+        players.stream()
+                .filter(player -> playerName.equals(player.getName()))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 참가자 입니다."));
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -24,6 +24,13 @@ class PlayersTest {
                     assertThatThrownBy(() -> {
                         Players.newPlayers("이병덕");
                     }).isInstanceOf(IllegalArgumentException.class);
+                }),
+                DynamicTest.dynamicTest("당첨 결과에 입력한 참가자가 실제 참가자 목록에 없으면 예외", () -> {
+                    Players players = Players.newPlayers("이병덕,박효신,김범수");
+
+                    assertThatThrownBy(() -> {
+                        players.validatePlayerExist("나얼");
+                    }).isInstanceOf(IllegalArgumentException.class);
                 })
         );
     }
