@@ -14,7 +14,7 @@ public class LadderGameController {
 		this.outputView = new OutputView();
 	}
 
-	public void run(){
+	public void run() {
 		String name = inputView.getUserName();
 		Users users = new Users(name);
 

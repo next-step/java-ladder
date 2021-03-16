@@ -12,7 +12,7 @@ public class Line {
 	public Line(int countOfPerson) {
 
 		List<Root> initials = makeRoots((i) -> new Root(new RandomMakeRootStrategy()), countOfPerson);
-		this.roots = makeRoots(func.apply(initials), countOfPerson);
+		this.roots = makeRoots(makeRootWithInitialRandomRoots.apply(initials), countOfPerson);
 	}
 
 	public List<Root> getRoots() {
@@ -25,7 +25,7 @@ public class Line {
 			.collect(Collectors.toList());
 	}
 
-	private Function<List<Root>, IntFunction<Root>> func = (initials) -> (i) -> {
+	private Function<List<Root>, IntFunction<Root>> makeRootWithInitialRandomRoots = (initials) -> (i) -> {
 		if (i > 0 && initials.get(i - 1).getRoot()) {
 			return new Root(() -> false);
 		}
