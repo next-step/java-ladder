@@ -5,27 +5,45 @@ import java.util.List;
 import java.util.Random;
 
 public class Line {
-    private List<Boolean> points = new ArrayList<>();
+
+    private List<Boolean> pointList = new ArrayList<>();
+
+    private final Random random = new Random();
+
     public Line (int countOfPerson) {
-        int totalHorizontalLine = countOfPerson * 2 -1;
-        Random rd = new Random();
-        boolean isPreviousConnected = false;
-        for (int i = 0; i < totalHorizontalLine ; i++) {
-            if( i % 2 != 0) {
-                boolean newConnectingLine = rd.nextBoolean();
-                if(isPreviousConnected){
-                    newConnectingLine = false;
-                }
-                points.add(newConnectingLine);
-                isPreviousConnected= newConnectingLine;
-            }else{
-                points.add(Boolean.TRUE);
-            }
+        int verticalLineCount = countOfPerson;
+        int horizontalLineCount = countOfPerson - 1;
+        int totalPointCount = verticalLineCount + horizontalLineCount;
+
+        for (int i = 0; i < totalPointCount ; i++) {
+            pointList.add(getNextLinePoint(i));
         }
-        // 라인의 좌표 값에 선이 있는지 유무를 판단하는 로직 추가
     }
 
-    public List<Boolean> getPoints() {
-        return points;
+    private boolean getNextLinePoint(int index) {
+        if(isVerticalLine(index)) {
+            return true;
+        }
+       return getNextHorizontalLinePoint(index);
+    }
+
+    private boolean isVerticalLine(int index) {
+        return index % 2 == 0;
+    }
+
+    private boolean getNextHorizontalLinePoint(int index) {
+        boolean previousHorizontalLinePoint = false;
+        int previousHorizontalLinePointIdx = index - 2;
+        if(previousHorizontalLinePointIdx > 0){
+            previousHorizontalLinePoint = pointList.get(previousHorizontalLinePointIdx);
+        }
+        if(previousHorizontalLinePoint){
+           return false;
+        }
+        return random.nextBoolean();
+    }
+
+    public List<Boolean> getPointList() {
+        return pointList;
     }
 }

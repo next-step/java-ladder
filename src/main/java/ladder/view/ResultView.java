@@ -8,7 +8,7 @@ public class ResultView {
 
     public static void printLineList(List<Line> LineList) {
         for (Line line : LineList) {
-            List<Boolean> points = line.getPoints();
+            List<Boolean> points = line.getPointList();
             for (int j = 0; j < points.size(); j++) {
                 if (j % 2 != 0) {
                     if (points.get(j)) {

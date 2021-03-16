@@ -22,7 +22,7 @@ public class LadderGameTest {
 
         assertThat(lineList.size()).isEqualTo(height);
         assertThat(lineList.get(0)
-                .getPoints()
+                .getPointList()
                 .size()).isEqualTo(names.length * 2 -1);
         ResultView.printLineList(lineList);
         assertThat(isOverlapping(lineList)).isFalse();
@@ -30,7 +30,7 @@ public class LadderGameTest {
 
     private boolean isOverlapping(List<Line> lineList) {
         for (Line line : lineList) {
-            List<Boolean> points = line.getPoints();
+            List<Boolean> points = line.getPointList();
             boolean lineIsConnectedBefore = false;
             for (int i = 1; i < points.size(); i+=2) {
                 Boolean currentPointIsConnected = points.get(i);
