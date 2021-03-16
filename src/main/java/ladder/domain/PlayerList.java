@@ -18,4 +18,7 @@ public class PlayerList {
     }
 
 
+    public int size() {
+        return playerList.size();
+    }
 }

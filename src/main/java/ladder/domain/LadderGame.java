@@ -13,9 +13,12 @@ public class LadderGame {
 
     public LadderGame(LadderGameRequest ladderGameRequest) {
         participatingPlayerList.addBulk(ladderGameRequest.getNames());
+        for (int i = 0; i < ladderGameRequest.getHeight(); i++) {
+            lineList.add(new Line(participatingPlayerList.size()));
+        }
     }
 
     public List<Line> getLadderBoard() {
-    return null;
+        return lineList;
     }
 }

@@ -3,6 +3,7 @@ package ladder;
 import ladder.domain.LadderGame;
 import ladder.domain.Line;
 import ladder.dto.LadderGameRequest;
+import ladder.view.ResultView;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -23,6 +24,7 @@ public class LadderGameTest {
         assertThat(lineList.get(0)
                 .getPoints()
                 .size()).isEqualTo(names.length * 2 -1);
+        ResultView.printLineList(lineList);
         assertThat(isOverlapping(lineList)).isFalse();
     }
 
