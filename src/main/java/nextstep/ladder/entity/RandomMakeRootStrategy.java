@@ -6,6 +6,6 @@ public class RandomMakeRootStrategy implements RootMakeStrategy {
 
 	@Override
 	public boolean hasRoot() {
-		return new Random().nextInt(10) % 2 == 0;
+		return new Random().nextInt(2) % 2 == 0;
 	}
 }
