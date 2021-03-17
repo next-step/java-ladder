@@ -1,9 +1,23 @@
 # 사다리 게임
-## 진행 방법
-* 사다리 게임 게임 요구사항을 파악한다.
-* 요구사항에 대한 구현을 완료한 후 자신의 github 아이디에 해당하는 브랜치에 Pull Request(이하 PR)를 통해 코드 리뷰 요청을 한다.
-* 코드 리뷰 피드백에 대한 개선 작업을 하고 다시 PUSH한다.
-* 모든 피드백을 완료하면 다음 단계를 도전하고 앞의 과정을 반복한다.
 
-## 온라인 코드 리뷰 과정
-* [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
+## User
+- userName은 5자이상 불가
+
+## Users
+- users는 문자열로 받음 
+- , 가 기준점이되어 split
+
+## Root
+- 사다리의 옆라인으로 가는 것
+- RootMakeStrategy로 옆으로 이동 할지에대한 여부를 주입받아 존재여부 체크
+
+## Line 
+- 사람의 수만큼 Root를 만듬
+- 먼저, random하게 라인당 Root를 만듬
+- 곂치면 안되니, 먼저 random하게 만든거에서 이전꺼를 확인후 만약 이전 Root가 true라면 현재꺼는 false
+- currying을 이용하여 function 분리
+
+## Ladder
+- lines를 가지게됨
+- User 정보를 가지고 있음
+- 다음단계를 고려하여 결과값을 위해 user정보는 소유
