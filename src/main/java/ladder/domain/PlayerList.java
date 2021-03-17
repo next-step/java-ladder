@@ -17,7 +17,6 @@ public class PlayerList {
         playerList.add(new Player(name));
     }
 
-
     public int size() {
         return playerList.size();
     }

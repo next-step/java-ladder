@@ -18,7 +18,7 @@ public class LadderGame {
         }
     }
 
-    public List<Line> getLadderBoard() {
+    public List<Line> ladderBoard() {
         return lineList;
     }
 }

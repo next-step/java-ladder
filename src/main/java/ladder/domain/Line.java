@@ -16,22 +16,22 @@ public class Line {
         int totalPointCount = verticalLineCount + horizontalLineCount;
 
         for (int i = 0; i < totalPointCount ; i++) {
-            pointList.add(getNextLinePoint(i));
+            pointList.add(nextLinePoint(i));
         }
     }
 
-    private boolean getNextLinePoint(int index) {
+    private boolean nextLinePoint(int index) {
         if(isVerticalLine(index)) {
             return true;
         }
-       return getNextHorizontalLinePoint(index);
+       return nextHorizontalLinePoint(index);
     }
 
     private boolean isVerticalLine(int index) {
         return index % 2 == 0;
     }
 
-    private boolean getNextHorizontalLinePoint(int index) {
+    private boolean nextHorizontalLinePoint(int index) {
         boolean previousHorizontalLinePoint = false;
         int previousHorizontalLinePointIdx = index - 2;
         if(previousHorizontalLinePointIdx > 0){

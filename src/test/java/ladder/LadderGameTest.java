@@ -14,11 +14,11 @@ public class LadderGameTest {
 
     @Test
     void create() {
-        String[] names = new String[]{"pobi","honux","crong","jk"};
-        int height = 5;
+        String[] names = new String[]{"pobi","honux","crong","jk","aa","ccc"};
+        int height = 8;
         LadderGameRequest ladderGameRequest = new LadderGameRequest(names, height);
         LadderGame ladderGame = new LadderGame(ladderGameRequest);
-        List<Line> lineList = ladderGame.getLadderBoard();
+        List<Line> lineList = ladderGame.ladderBoard();
 
         assertThat(lineList.size()).isEqualTo(height);
         assertThat(lineList.get(0)
