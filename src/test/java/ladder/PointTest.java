@@ -1,6 +1,5 @@
 package ladder;
 
-import ladder.domain.Name;
 import ladder.domain.Point;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,28 +10,22 @@ public class PointTest {
 
     @Test
     @DisplayName("라인이 없는 좌표 라인이 있는 좌표 생성 테스트")
-    void create() {
-        int x = 1;
-        Point emptyPoint = Point.emptyPoint(x);
-        Point filledPoint = Point.filledPoint(x);
+    void create_with_new() {
+        Point emptyPoint = new Point(false);
+        Point filledPoint = new Point( true);
 
-        assertThat(emptyPoint.isEmpty()).isTrue();
-        assertThat(filledPoint.isEmpty()).isFalse();
+        assertThat(emptyPoint.isFilled()).isFalse();
+        assertThat(filledPoint.isFilled()).isTrue();
     }
 
+    @Test
+    @DisplayName("라인이 없는 좌표 라인이 있는 좌표 static 생성 테스트")
+    void create_static() {
+        Point emptyPoint = Point.emptyPoint();
+        Point filledPoint = Point.filledPoint();
 
-//    @Test
-//    @DisplayName("라인이 없는 좌표 라인이 있는 좌표 생성 테스트")
-//    void create() {
-//        int x = 0;
-//        Point emptyPoint = Point.emptyPoint(x);
-//        Point filledPoint = Point.filledPoint(x);
-//
-//        assertThat(emptyPoint.hasVerticalLine()).isTrue();
-//        assertThat(filledPoint.hasVerticalLine()).isTrue();
-//    }
-//
-
-
+        assertThat(emptyPoint.isFilled()).isFalse();
+        assertThat(filledPoint.isFilled()).isTrue();
+    }
 
 }
