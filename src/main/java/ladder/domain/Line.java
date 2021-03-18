@@ -6,44 +6,39 @@ import java.util.Random;
 
 public class Line {
 
-    private List<Boolean> pointList = new ArrayList<>();
+    private List<Point> pointList = new ArrayList<>();
 
     private final Random random = new Random();
 
-    public Line (int countOfPerson) {
-        int verticalLineCount = countOfPerson;
-        int horizontalLineCount = countOfPerson - 1;
-        int totalPointCount = verticalLineCount + horizontalLineCount;
-
-        for (int i = 0; i < totalPointCount ; i++) {
-            pointList.add(nextLinePoint(i));
+    public Line(int countOfPerson) {
+        if(countOfPerson <= 0){
+            throw new IllegalArgumentException("참가자는 한명 이상이여야 합니다.");
+        }
+        for (int i = 0; i < countOfPerson; i++) {
+            pointList.add(nextPoint(i));
         }
     }
 
-    private boolean nextLinePoint(int index) {
-        if(isVerticalLine(index)) {
-            return true;
+    private Point nextPoint(int index) {
+        if (index == 0) {
+            return Point.emptyPoint();
         }
-       return nextHorizontalLinePoint(index);
+        Point previousPoint = pointList.get(index - 1);
+        if (previousPoint.isFilled()) {
+            return Point.emptyPoint();
+        }
+        return new Point(random.nextBoolean());
     }
 
-    private boolean isVerticalLine(int index) {
-        return index % 2 == 0;
-    }
-
-    private boolean nextHorizontalLinePoint(int index) {
-        boolean previousHorizontalLinePoint = false;
-        int previousHorizontalLinePointIdx = index - 2;
-        if(previousHorizontalLinePointIdx > 0){
-            previousHorizontalLinePoint = pointList.get(previousHorizontalLinePointIdx);
-        }
-        if(previousHorizontalLinePoint){
-           return false;
-        }
-        return random.nextBoolean();
-    }
-
-    public List<Boolean> getPointList() {
+    public List<Point> getPointList() {
         return pointList;
+    }
+
+    public int pointListSize() {
+        return pointList.size();
+    }
+
+    public boolean isFilledAt(int index) {
+        return pointList.get(index).isFilled();
     }
 }
