@@ -2,16 +2,21 @@ package ladder.domain;
 
 public class Point {
 
-    private final int x;
+    private final boolean isFilled;
 
-    private final boolean hasLine;
-
-    public Point(int x, boolean hasLine) {
-        this.x = x;
-        this.hasLine = hasLine;
+    public Point(boolean hasLine) {
+        this.isFilled = hasLine;
     }
 
-    public static Point emptyPoint(int x) {
-        this(x, false);
+    public static Point emptyPoint() {
+        return new Point(false);
+    }
+
+    public static Point filledPoint() {
+        return new Point(true);
+    }
+
+    public boolean isFilled() {
+        return isFilled;
     }
 }
