@@ -1,5 +1,6 @@
 package ladder;
 
+import ladder.domain.LineList;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import ladder.LineList;
 import ladder.dto.LadderGameRequest;
 
 public class LadderGame {
