@@ -1,24 +1,20 @@
 package ladder.domain;
 
+import ladder.LineList;
 import ladder.dto.LadderGameRequest;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class LadderGame {
 
-    private final List<Line> lineList = new ArrayList<>();
+    private final LineList lineList = new LineList();
 
     private final PlayerList participatingPlayerList = new PlayerList();
 
     public LadderGame(LadderGameRequest ladderGameRequest) {
         participatingPlayerList.addBulk(ladderGameRequest.getNames());
-        for (int i = 0; i < ladderGameRequest.getHeight(); i++) {
-            lineList.add(new Line(participatingPlayerList.size()));
-        }
+        lineList.addBulk(ladderGameRequest.getHeight(), participatingPlayerList.size());
     }
 
-    public List<Line> ladderBoard() {
-        return lineList;
+    public LadderBoard ladderBoard() {
+        return new LadderBoard(participatingPlayerList, lineList);
     }
 }

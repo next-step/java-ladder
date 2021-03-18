@@ -15,6 +15,11 @@ public class Name {
         this.name = name;
     }
 
+    @Override
+    public String toString() {
+        return name;
+    }
+
     private void validateName(String name) {
         if (StringUtil.isBlank(name)) {
             throw new IllegalArgumentException("이름이 비었습니다.");

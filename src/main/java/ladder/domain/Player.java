@@ -9,9 +9,15 @@ public class Player {
     public Player(String name){
         this(new Name(name));
     }
+
     public Player(Name name) {
         this.name = name;
     }
+
+    public String name() {
+        return name.toString();
+    }
+
 
     @Override
     public boolean equals(Object o) {

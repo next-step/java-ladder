@@ -2,6 +2,7 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class PlayerList {
@@ -19,5 +20,9 @@ public class PlayerList {
 
     public int size() {
         return playerList.size();
+    }
+
+    public List<Player> playerList() {
+        return Collections.unmodifiableList(new ArrayList<>(playerList));
     }
 }
