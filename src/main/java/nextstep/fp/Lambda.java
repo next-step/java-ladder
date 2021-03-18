@@ -25,6 +25,7 @@ public class Lambda {
             }
         }).start();
     }
+
     public static int sumAll(List<Integer> numbers, Conditional conditional) {
         return sumByCondition(numbers, conditional);
     }
