@@ -6,7 +6,7 @@ public class Player {
 
     private final Name name;
 
-    public Player(String name){
+    public Player(String name) {
         this(new Name(name));
     }
 
@@ -17,7 +17,6 @@ public class Player {
     public String name() {
         return name.toString();
     }
-
 
     @Override
     public boolean equals(Object o) {

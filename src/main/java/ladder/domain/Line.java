@@ -10,24 +10,32 @@ public class Line {
 
     private final Random random = new Random();
 
-    public Line(int countOfPerson) {
-        if(countOfPerson <= 0){
-            throw new IllegalArgumentException("참가자는 한명 이상이여야 합니다.");
+    public Line(int pointCount) {
+        if(pointCount <= 0){
+            throw new IllegalArgumentException("0 보다 커야 합니다.");
         }
-        for (int i = 0; i < countOfPerson; i++) {
-            pointList.add(nextPoint(i));
+        createPointList(pointCount);
+    }
+
+    private void createPointList(int pointCount) {
+        for (int i = 0; i < pointCount; i++) {
+            pointList.add(nextPoint());
         }
     }
 
-    private Point nextPoint(int index) {
-        if (index == 0) {
+    private Point nextPoint() {
+        if (isFirstPoint()) {
             return Point.emptyPoint();
         }
-        Point previousPoint = pointList.get(index - 1);
+        Point previousPoint = pointList.get(pointList.size() - 1);
         if (previousPoint.isFilled()) {
             return Point.emptyPoint();
         }
         return new Point(random.nextBoolean());
+    }
+
+    private boolean isFirstPoint() {
+        return pointList.size() == 0;
     }
 
     public List<Point> getPointList() {

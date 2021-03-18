@@ -11,11 +11,11 @@ public class LadderGameRequest {
         this.height = height;
     }
 
-    public String[] getNames() {
+    public String[] names() {
         return names;
     }
 
-    public int getHeight() {
+    public int height() {
         return height;
     }
 }

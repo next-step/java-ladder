@@ -2,20 +2,16 @@ package ladder;
 
 import ladder.domain.LadderBoard;
 import ladder.domain.LadderGame;
-import ladder.domain.Line;
-import ladder.domain.Point;
 import ladder.dto.LadderGameRequest;
-import ladder.view.ResultView;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.Arrays;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderGameTest {
 
     @Test
+    @DisplayName("LadderGame 생성 테스트")
     void create() {
         String[] names = new String[]{"pobi","honux","crong","jk","aa","ccc"};
         int height = 8;

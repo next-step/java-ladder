@@ -9,8 +9,8 @@ public class LadderGame {
     private final PlayerList participatingPlayerList = new PlayerList();
 
     public LadderGame(LadderGameRequest ladderGameRequest) {
-        participatingPlayerList.addBulk(ladderGameRequest.getNames());
-        lineList.addBulk(ladderGameRequest.getHeight(), participatingPlayerList.size());
+        participatingPlayerList.addBulk(ladderGameRequest.names());
+        lineList.addBulk(ladderGameRequest.height(), participatingPlayerList.size());
     }
 
     public LadderBoard ladderBoard() {

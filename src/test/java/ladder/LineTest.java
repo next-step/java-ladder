@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class LineTest {
 
     @Test
-    @DisplayName("라인 생성 테스트 줄 겹치는 여부 테스트")
+    @DisplayName("라인 생성후 가로줄 겹치느지 여부 테스트")
     void create() {
         int countOfPerson = 5;
         Line line = new Line(5);
@@ -20,8 +20,8 @@ public class LineTest {
 
     private boolean isOverlapping(Line line) {
         for (int i = 1; i < line.pointListSize(); i++) {
-            boolean previousPointIsFilled = line.isFilledAt(i-1);
-            if (previousPointIsFilled &&  line.isFilledAt(i)) {
+            boolean previousPointIsFilled = line.isFilledAt(i - 1);
+            if (previousPointIsFilled && line.isFilledAt(i)) {
                 return true;
             }
         }
