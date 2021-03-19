@@ -15,7 +15,7 @@ public class UserTest {
 	@ParameterizedTest
 	@ValueSource(strings = {"1", "12", "123", "1234", "12345"})
 	void User_test(String name) {
-		assertThat(new User(name))
+		assertThat(new User(name, 0))
 			.isInstanceOf(User.class);
 	}
 
@@ -25,7 +25,7 @@ public class UserTest {
 	@ValueSource(strings = {"abcdef", "abcdefg", "abcdefhhh", "abcdefggg", "abcdefefe"})
 	void User_test_exception(String name) {
 		assertThatExceptionOfType(UserException.class)
-			.isThrownBy(() -> new User(name))
+			.isThrownBy(() -> new User(name, 0))
 			.withMessageMatching(NAME_SIZE_CHECK_FIVE.getMessage());
 	}
 

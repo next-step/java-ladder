@@ -12,6 +12,11 @@ public class Ladder {
 	private final List<Line> lines;
 	private final Users users;
 
+	public Ladder(Users users, List<Line> lines) {
+		this.users = users;
+		this.lines = lines;
+	}
+
 	public Ladder(Users users, int ladderHeight) {
 		validateLadderHeight(ladderHeight);
 
@@ -25,6 +30,19 @@ public class Ladder {
 		if (ladderHeight < 0) {
 			throw new UserException(NEGATIVE_NOT_AGRRESIVE);
 		}
+	}
+
+	public Users getUsers() {
+		return users;
+	}
+
+	public Ladder moveLadder() {
+
+		List<User> userList = users.getUsers()
+			.stream()
+			.map(user -> user.moveUser(this.lines))
+			.collect(Collectors.toList());
+		return new Ladder(new Users(userList), this.lines);
 	}
 
 	@Override

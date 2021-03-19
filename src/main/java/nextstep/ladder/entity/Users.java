@@ -2,20 +2,26 @@ package nextstep.ladder.entity;
 
 import static nextstep.ladder.exception.UserExceptionMesssage.*;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import nextstep.ladder.exception.UserException;
 
 public class Users {
-	private final List<User> users;
 	private static final String DELIMETER = ",";
+	private final List<User> users;
+
+	public Users(List<User> users) {
+		this.users = users;
+	}
 
 	public Users(String userNames) {
 		validate(userNames);
-		this.users = Arrays.stream(userNames.split(DELIMETER))
-			.map(User::new)
+
+		String[] userNameArray = userNames.split(DELIMETER);
+		this.users = IntStream.range(0, userNameArray.length)
+			.mapToObj((i) -> new User(userNameArray[i], i))
 			.collect(Collectors.toList());
 	}
 
@@ -27,6 +33,10 @@ public class Users {
 
 	public List<User> getUsers() {
 		return users;
+	}
+
+	public int getUserCount() {
+		return this.users.size();
 	}
 
 	@Override
