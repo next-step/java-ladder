@@ -16,17 +16,22 @@ public class InputView {
 
     private static String[] playerNameList() {
         System.out.println(MessageConstant.PLAYER_NAME_INPUT);
-        return SCANNER.nextLine().trim().split(PLAYER_NAME_SEPARATOR);
+        return SCANNER.nextLine()
+                .trim().split(PLAYER_NAME_SEPARATOR);
     }
 
     private static int ladderHeight() {
         System.out.println(MessageConstant.LADDER_HEIGHT_INPUT);
-        String heightInString = SCANNER.nextLine();
+        return intInput();
+    }
+
+    private static int intInput() {
+        String inputInString = SCANNER.nextLine();
         try {
-            return Integer.parseInt(heightInString);
+            return Integer.parseInt(inputInString);
         } catch (NumberFormatException ex) {
             printWrongInputMessage();
-            return ladderHeight();
+            return intInput();
         }
     }
 

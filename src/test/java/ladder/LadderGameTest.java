@@ -1,6 +1,6 @@
 package ladder;
 
-import ladder.domain.LadderBoard;
+import ladder.dto.LadderBoard;
 import ladder.domain.LadderGame;
 import ladder.dto.LadderGameRequest;
 import org.junit.jupiter.api.DisplayName;
@@ -22,7 +22,6 @@ public class LadderGameTest {
 
         assertThat(ladderBoard.playerNameList()).contains("pobi");
         assertThat(ladderBoard.playerNameList().size()).isEqualTo(names.length);
-        assertThat(ladderBoard.lineList().size()).isEqualTo(height);
     }
 
 }

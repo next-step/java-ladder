@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class Line {
 
-    private List<Point> pointList = new ArrayList<>();
+    private final List<Point> pointList = new ArrayList<>();
 
     private final Random random = new Random();
 
@@ -38,7 +38,7 @@ public class Line {
         return pointList.size() == 0;
     }
 
-    public List<Point> getPointList() {
+    public List<Point> pointList() {
         return pointList;
     }
 

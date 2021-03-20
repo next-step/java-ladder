@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import ladder.dto.LadderBoard;
 import ladder.dto.LadderGameRequest;
 
 public class LadderGame {

@@ -1,28 +1,23 @@
 package ladder.view;
 
-import ladder.domain.LadderBoard;
-import ladder.domain.Line;
-import ladder.domain.Point;
+import ladder.dto.LadderBoard;
 
 import java.util.List;
 
 public class ResultView {
 
-    private static String EMPTY_POINT_REPRESENTATION = "     ";
+    public static final String EMPTY_POINT_REPRESENTATION = "     ";
 
-    private static String FILLED_POINT_REPRESENTATION = "-----";
+    public static final String FILLED_POINT_REPRESENTATION = "-----";
 
-    private static String VERTICAL_LINE_REPRESENTATION = "|";
+    public static final String VERTICAL_LINE_REPRESENTATION = "|";
 
-    private static int FIXED_PLAYER_NAME_SPACE = 6;
+    private static final int FIXED_PLAYER_NAME_SPACE = 6;
 
     public static void printLadderBoard(LadderBoard ladderBoard) {
         System.out.println(MessageConstant.GAME_RESULT);
         printPlayerNameList(ladderBoard.playerNameList());
-        for (Line line : ladderBoard.lineList()) {
-            printLine(line);
-            printEmptyLine();
-        }
+        System.out.println(ladderBoard.lineListToString());
     }
 
     private static void printPlayerNameList(List<String> playerNameList) {
@@ -36,20 +31,6 @@ public class ResultView {
         System.out.println();
     }
 
-    private static void printLine(Line line) {
-        List<Point> pointList = line.getPointList();
-        for (Point point : pointList) {
-            System.out.print(pointRepresentation(point));
-            System.out.print(VERTICAL_LINE_REPRESENTATION);
-        }
-    }
-
-    private static String pointRepresentation(Point point) {
-        if (point.isFilled()) {
-            return FILLED_POINT_REPRESENTATION;
-        }
-        return EMPTY_POINT_REPRESENTATION;
-    }
 
 }
 
