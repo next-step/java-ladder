@@ -1,5 +1,6 @@
 package laddarGame.controller;
 
+import laddarGame.domain.LadderGame;
 import laddarGame.view.InputView;
 
 public class GameController {

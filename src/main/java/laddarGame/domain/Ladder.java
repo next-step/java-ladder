@@ -1,4 +1,4 @@
-package laddarGame.controller;
+package laddarGame.domain;
 
 import java.util.List;
 

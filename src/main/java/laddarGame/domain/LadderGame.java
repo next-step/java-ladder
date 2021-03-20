@@ -1,6 +1,4 @@
-package laddarGame.controller;
-
-import laddarGame.domain.Players;
+package laddarGame.domain;
 
 public class LadderGame {
 
