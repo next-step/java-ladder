@@ -15,15 +15,26 @@ class PlayersTest {
     void Player() {
         Players players = new Players("LG,SKT");
 
-        assertEquals(players.playerCount(), 2);
+        assertEquals(2, players.playerCount());
     }
 
     @DisplayName("같은 포지션에 두명은 있을 수 없다..")
     @Test
     void duplicate() {
         Player Player1 = new Player("LG", 0);
-        Player Player2 = new Player("LG", 0);
+        Player Player2 = new Player("SKT", 0);
 
         assertThrows(IllegalArgumentException.class, () -> new Players(Arrays.asList(Player1, Player2)));
+    }
+
+    @DisplayName("가장 이름이 긴이름 길이 반환")
+    @Test
+    void maxNameLength() {
+        Player Player1 = new Player("LG", 0);
+        Player Player2 = new Player("SKT", 1);
+
+        Players players = new Players(Arrays.asList(Player1, Player2));
+
+        assertEquals(3, players.maxNameLength());
     }
 }
