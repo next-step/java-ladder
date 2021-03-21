@@ -22,4 +22,8 @@ public class Ladder {
     public Prize prize() {
         return prize;
     }
+
+    public String prizeName() {
+        return prize.toString();
+    }
 }

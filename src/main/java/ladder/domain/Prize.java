@@ -4,10 +4,10 @@ import java.util.Objects;
 
 public class Prize {
 
-    private final String reward;
+    private final String prize;
 
-    public Prize(String reward) {
-        this.reward = reward;
+    public Prize(String prize) {
+        this.prize = prize;
     }
 
     @Override
@@ -15,13 +15,18 @@ public class Prize {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Prize prize = (Prize) o;
+        Prize prize1 = (Prize) o;
 
-        return Objects.equals(reward, prize.reward);
+        return Objects.equals(prize, prize1.prize);
     }
 
     @Override
     public int hashCode() {
-        return reward != null ? reward.hashCode() : 0;
+        return prize != null ? prize.hashCode() : 0;
+    }
+
+    @Override
+    public String toString() {
+        return prize;
     }
 }

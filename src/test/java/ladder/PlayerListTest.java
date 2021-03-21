@@ -13,8 +13,7 @@ public class PlayerListTest {
     void addBulk() {
         String[] names = {"pobi","test"};
 
-        PlayerList playerList = new PlayerList();
-        playerList.addBulk(names);
+        PlayerList playerList = PlayerList.of(names);
 
         assertThat(playerList.size()).isEqualTo(names.length);
     }

@@ -2,20 +2,27 @@ package ladder.dto;
 
 public class LadderGameRequest {
 
-    private String[] names;
+    private String[] nameList;
 
     private int height;
 
-    public LadderGameRequest(String[] names, int height) {
-        this.names = names;
+    private String[] prizeList;
+
+    public LadderGameRequest(String[] nameList, String[] prizeList, int height) {
+        this.nameList = nameList;
+        this.prizeList = prizeList;
         this.height = height;
     }
 
-    public String[] names() {
-        return names;
+    public String[] nameList() {
+        return nameList;
     }
 
     public int height() {
         return height;
+    }
+
+    public String[] prizeList() {
+        return prizeList;
     }
 }

@@ -22,6 +22,10 @@ public class Player {
         return name.toString();
     }
 
+    public boolean isMatch(String playerName){
+        return name.equals(new Name(playerName));
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -53,11 +57,12 @@ public class Player {
     }
 
     public void moveBy(Line line) {
-        int leftPointIndex = ladderNumber.number();
+        int currentIndex = ladderNumber.number();
+        int leftPointIndex = currentIndex;
         if (line.isFilledAt(leftPointIndex)) {
             moveLeft();
         }
-        int rightPointIndex = ladderNumber.number() + 1;
+        int rightPointIndex = currentIndex + 1;
         if (line.isFilledAt(rightPointIndex)) {
             moveRight();
         }

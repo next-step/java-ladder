@@ -13,8 +13,7 @@ public class LineListTest {
     void name() {
         int height = 5;
         int countOfPerson = 6;
-        LineList lineList = new LineList();
-        lineList.addBulk(height, countOfPerson);
+        LineList lineList = LineList.of(height, countOfPerson);
 
         assertThat(lineList.size()).isEqualTo(height);
     }

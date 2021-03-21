@@ -1,35 +1,29 @@
 package ladder.dto;
 
+import ladder.domain.Ladder;
 import ladder.domain.LadderBoard;
-import ladder.domain.Player;
-import ladder.domain.PlayerList;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class LadderBoardDto {
 
-    private List<String> playerNameList;
-
     private List<LineDto> lineList;
+
+    private List<String> prizeNameList;
 
     private static final String LINE_BREAK = "\n";
 
-    public LadderBoardDto(PlayerList participatingPlayerList, LadderBoard ladderBoard) {
-        playerNameList = participatingPlayerList.playerList()
-                .stream()
-                .map(Player::name)
-                .collect(Collectors.toList());
+    public LadderBoardDto(LadderBoard ladderBoard) {
         this.lineList = ladderBoard.lineList()
                 .stream().map(LineDto::new)
                 .collect(Collectors.toList());
+        this.prizeNameList = ladderBoard.ladderList()
+                .stream().map(Ladder::prizeName)
+                .collect(Collectors.toList());
     }
 
-    public List<String> playerNameList() {
-        return playerNameList;
-    }
-
-    public String lineListToString() {
+    public String ladderLine(){
         StringBuilder builder = new StringBuilder();
         for (LineDto line : lineList) {
             builder.append(line.toString());
@@ -38,4 +32,8 @@ public class LadderBoardDto {
         return builder.toString();
     }
 
+
+    public List<String> prizeNameList() {
+        return prizeNameList;
+    }
 }
