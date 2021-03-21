@@ -49,4 +49,16 @@ public class Players {
         }
     }
 
+    public int maxNameLength() {
+        int maxLength = 0;
+        for (Player player : playerList) {
+            maxLength = player.maxNameLength(maxLength);
+        }
+        return maxLength;
+    }
+
+    public List<Player> toList() {
+        return playerList;
+    }
+
 }

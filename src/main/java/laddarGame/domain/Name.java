@@ -8,7 +8,7 @@ public class Name {
     private String playerName;
 
     public Name(String playerName) {
-        Optional.ofNullable(playerName)
+        this.playerName = Optional.ofNullable(playerName)
                 .filter(name -> name.length() < 6)
                 .orElseThrow(() -> new IllegalArgumentException("플레이어 이름은 5글자를 초과할 수 없습니다."));
     }
@@ -24,5 +24,12 @@ public class Name {
     @Override
     public int hashCode() {
         return Objects.hash(playerName);
+    }
+
+    public int maxNameLength(int maxLength) {
+        if (maxLength < playerName.length()) {
+            return playerName.length();
+        }
+        return maxLength;
     }
 }
