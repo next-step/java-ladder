@@ -10,15 +10,7 @@ public class Position {
 	}
 
 	Position move(Root root, int rootIndex) {
-		if (root.getRoot()) {
-			if (rootIndex == position) {
-				return new Position(position + 1);
-			}
-			if (rootIndex + 1 == position) {
-				return new Position(position - 1);
-			}
-		}
-		return new Position(position);
+		return PositionMoveMatch.getMatchPosition(root, rootIndex, position);
 	}
 
 	public int getPosition() {
