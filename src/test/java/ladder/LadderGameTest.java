@@ -1,6 +1,6 @@
 package ladder;
 
-import ladder.dto.LadderBoard;
+import ladder.dto.LadderBoardDto;
 import ladder.domain.LadderGame;
 import ladder.dto.LadderGameRequest;
 import org.junit.jupiter.api.DisplayName;
@@ -18,10 +18,10 @@ public class LadderGameTest {
 
         LadderGameRequest ladderGameRequest = new LadderGameRequest(names, height);
         LadderGame ladderGame = new LadderGame(ladderGameRequest);
-        LadderBoard ladderBoard = ladderGame.ladderBoard();
+        LadderBoardDto ladderBoardDto = ladderGame.ladderBoard();
 
-        assertThat(ladderBoard.playerNameList()).contains("pobi");
-        assertThat(ladderBoard.playerNameList().size()).isEqualTo(names.length);
+        assertThat(ladderBoardDto.playerNameList()).contains("pobi");
+        assertThat(ladderBoardDto.playerNameList().size()).isEqualTo(names.length);
     }
 
 }
