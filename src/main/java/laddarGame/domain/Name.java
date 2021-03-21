@@ -5,7 +5,7 @@ import java.util.Optional;
 
 public class Name {
 
-    private String playerName;
+    private final String playerName;
 
     public Name(String playerName) {
         this.playerName = Optional.ofNullable(playerName)
@@ -27,9 +27,6 @@ public class Name {
     }
 
     public int maxNameLength(int maxLength) {
-        if (maxLength < playerName.length()) {
-            return playerName.length();
-        }
-        return maxLength;
+        return Math.max(maxLength, playerName.length());
     }
 }

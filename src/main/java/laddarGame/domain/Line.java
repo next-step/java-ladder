@@ -6,18 +6,15 @@ import java.util.Random;
 
 public class Line {
 
-    private Players players;
     private List<Boolean> line;
-    private Random random = new Random();
+    private final Random random = new Random();
 
-    public Line(String playerNames) {
-        List<Boolean> line = createLine();
+    public Line(int playerCount) {
+        List<Boolean> line = createLine(playerCount);
         valid(line);
-        this.players = new Players(playerNames);
     }
 
-    public Line(String playerNames, List<Boolean> line) {
-        this.players = new Players(playerNames);
+    public Line(List<Boolean> line) {
         valid(line);
         this.line = line;
     }
@@ -35,10 +32,10 @@ public class Line {
         }
     }
 
-    public List<Boolean> createLine() {
+    public List<Boolean> createLine(int playerCount) {
         List<Boolean> line = new ArrayList<>();
         boolean lastBoolean = true;
-        for (int i = 0; i < players.playerCount(); i++) {
+        for (int i = 0; i < playerCount; i++) {
             boolean randomBoolean = random();
             lastBoolean = addLine(lastBoolean, randomBoolean, conditional());
             line.add(lastBoolean);

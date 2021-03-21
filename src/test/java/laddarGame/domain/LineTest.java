@@ -13,7 +13,7 @@ class LineTest {
     @Test
     void isDuplicateHorizontal() {
         assertThrows(IllegalArgumentException.class,
-                () -> new Line("LG,SKT,KT", Arrays.asList(true, true, false)));
+                () -> new Line(Arrays.asList(true, true, false)));
     }
 
 }
