@@ -21,10 +21,6 @@ public class PlayerList {
         return new PlayerList(list);
     }
 
-    private void add(String name, int ladderNumber) {
-        playerList.add(new Player(name, ladderNumber));
-    }
-
     public int size() {
         return playerList.size();
     }
