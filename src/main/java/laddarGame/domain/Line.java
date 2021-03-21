@@ -8,12 +8,14 @@ import java.util.Random;
 
 public class Line {
 
-    private List<Boolean> line;
+    private final List<Boolean> line;
     private final Random random = new Random();
+    private static final int ONE = 1;
 
     public Line(int playerCount) {
         List<Boolean> line = createLine(playerCount);
         valid(line);
+        this.line = line;
     }
 
     public Line(List<Boolean> line) {
@@ -22,8 +24,8 @@ public class Line {
     }
 
     private void valid(List<Boolean> line) {
-        for (int i = 0; i < line.size() - 1; i++) {
-            isDuplicate(line.get(i), line.get(i + 1), conditional());
+        for (int i = 0; i < line.size() - ONE; i++) {
+            isDuplicate(line.get(i), line.get(i + ONE), conditional());
         }
     }
 
@@ -36,11 +38,10 @@ public class Line {
 
     public List<Boolean> createLine(int playerCount) {
         List<Boolean> line = new ArrayList<>();
-        boolean lastBoolean = true;
+        boolean lastBoolean = false;
         for (int i = 0; i < playerCount; i++) {
-            boolean randomBoolean = random();
-            lastBoolean = addLine(lastBoolean, randomBoolean, conditional());
             line.add(lastBoolean);
+            lastBoolean = isContinuousTrue(lastBoolean, random(), conditional());
         }
         return line;
     }
@@ -49,7 +50,7 @@ public class Line {
         return (last, random) -> last == true && random == true;
     }
 
-    private boolean addLine(boolean lastBoolean, boolean randomBoolean, Conditional conditional) {
+    private boolean isContinuousTrue(boolean lastBoolean, boolean randomBoolean, Conditional conditional) {
         if (conditional.test(lastBoolean, randomBoolean)) {
             return false;
         }

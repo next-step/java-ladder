@@ -23,7 +23,7 @@ public class Position {
         return Objects.hash(position);
     }
 
-    public int getPosition() {
+    public int position() {
         return position;
     }
 }

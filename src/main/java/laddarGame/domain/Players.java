@@ -10,6 +10,7 @@ public class Players {
 
     private final List<Player> playerList;
     private static final String DELIMITER = ",";
+    private static final int ZERO = 0;
 
     public Players(String playerNames) {
         List<Player> playerList = playerList(nameParser(playerNames));
@@ -53,7 +54,7 @@ public class Players {
     }
 
     public int maxNameLength() {
-        int maxLength = 0;
+        int maxLength = ZERO;
         for (Player player : playerList) {
             maxLength = player.maxNameLength(maxLength);
         }

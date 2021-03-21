@@ -30,7 +30,7 @@ public class Name {
         return Math.max(maxLength, playerName.length());
     }
 
-    public String getName() {
+    public String name() {
         return playerName;
     }
 }

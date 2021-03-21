@@ -1,5 +1,6 @@
 package laddarGame.dto;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -9,6 +10,14 @@ public class LineDto {
 
     public LineDto(List<Boolean> line) {
         this.line = line;
+    }
+
+    public LineDto(boolean first, boolean second, boolean third, boolean fourth) {
+        this.line = Arrays.asList(first, second, third, fourth);
+    }
+
+    public List<Boolean> getLine() {
+        return line;
     }
 
     @Override

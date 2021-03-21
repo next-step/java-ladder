@@ -3,7 +3,7 @@ package laddarGame.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -24,7 +24,7 @@ class PlayersTest {
         Player Player1 = new Player("LG", 0);
         Player Player2 = new Player("SKT", 0);
 
-        assertThrows(IllegalArgumentException.class, () -> new Players(Arrays.asList(Player1, Player2)));
+        assertThrows(IllegalArgumentException.class, () -> new Players(List.of(Player1, Player2)));
     }
 
     @DisplayName("가장 이름이 긴이름 길이 반환")
@@ -33,7 +33,7 @@ class PlayersTest {
         Player Player1 = new Player("LG", 0);
         Player Player2 = new Player("SKT", 1);
 
-        Players players = new Players(Arrays.asList(Player1, Player2));
+        Players players = new Players(List.of(Player1, Player2));
 
         assertEquals(3, players.maxNameLength());
     }

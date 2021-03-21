@@ -9,10 +9,10 @@ public class PlayersDto {
     public PlayersDto(List<PlayerDto> playerList) {
         this.playerList = playerList;
     }
-    
+
     public List<PlayerDto> getPlayerList() {
         return playerList;
     }
 
-
+    
 }

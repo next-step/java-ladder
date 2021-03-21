@@ -11,13 +11,21 @@ public class PlayerDto {
     private int position;
 
     public PlayerDto(Name name, Position position) {
-        this.name = name.getName();
-        this.position = position.getPosition();
+        this.name = name.name();
+        this.position = position.position();
     }
 
     public PlayerDto(String name, int position) {
         this.name = name;
         this.position = position;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getPosition() {
+        return position;
     }
 
     @Override

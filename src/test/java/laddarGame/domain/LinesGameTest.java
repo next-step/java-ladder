@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class LadderGameTest {
+class LinesGameTest {
 
     @DisplayName("생성된 Players를 PlayersDto로 반환한다.")
     @Test
