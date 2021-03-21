@@ -5,9 +5,6 @@ public class LadderNumber {
     private int number;
 
     public LadderNumber(int number) {
-        if (number < 0) {
-            throw new IllegalStateException("0 보다 커야 합니다.");
-        }
         this.number = number;
     }
 
@@ -19,14 +16,6 @@ public class LadderNumber {
         LadderNumber that = (LadderNumber) o;
 
         return number == that.number;
-    }
-
-    public LadderNumber leftLadderNumber() {
-        return new LadderNumber(number - 1);
-    }
-
-    public LadderNumber rightLadderNumber() {
-        return new LadderNumber(number + 1);
     }
 
     @Override
@@ -44,5 +33,13 @@ public class LadderNumber {
             return rightLadderNumber();
         }
         return this;
+    }
+
+    private LadderNumber leftLadderNumber() {
+        return new LadderNumber(number - 1);
+    }
+
+    private LadderNumber rightLadderNumber() {
+        return new LadderNumber(number + 1);
     }
 }
