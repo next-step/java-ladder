@@ -9,6 +9,9 @@ public class LadderGameRequest {
     private String[] prizeList;
 
     public LadderGameRequest(String[] nameList, String[] prizeList, int height) {
+        if(nameList.length != prizeList.length){
+            throw new IllegalArgumentException("이름과 결과의 갯수는 같아야 합니다.");
+        }
         this.nameList = nameList;
         this.prizeList = prizeList;
         this.height = height;

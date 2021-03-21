@@ -11,7 +11,12 @@ public class InputView {
     private static final String INPUT_SEPARATOR = ",";
 
     public static LadderGameRequest ladderGameRequest() {
-        return new LadderGameRequest(playerNameList(), prizeList(), ladderHeight());
+        try {
+            return new LadderGameRequest(playerNameList(), prizeList(), ladderHeight());
+        } catch (IllegalArgumentException ex) {
+            printWrongInputMessage();
+            return ladderGameRequest();
+        }
     }
 
     public static String playerName() {
