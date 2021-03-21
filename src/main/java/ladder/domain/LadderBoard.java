@@ -22,8 +22,8 @@ public class LadderBoard {
     }
 
     public Prize prize(Player player) {
-        player.move(lineList);
-        return ladderList.prize(player.ladderNumber());
+        LadderNumber endLadderNumber = lineList.endLadderNumber(player.startLadderNumber());
+        return ladderList.prize(endLadderNumber);
     }
 
     public List<Line> lineList() {

@@ -21,16 +21,28 @@ public class LadderNumber {
         return number == that.number;
     }
 
+    public LadderNumber leftLadderNumber() {
+        return new LadderNumber(number - 1);
+    }
+
+    public LadderNumber rightLadderNumber() {
+        return new LadderNumber(number + 1);
+    }
+
     @Override
     public int hashCode() {
         return number;
     }
 
-    public LadderNumber sum(int toSum) {
-        return new LadderNumber(number + toSum);
-    }
-
-    public int number() {
-        return number;
+    public LadderNumber next(Line line) {
+        int leftPointIndex = number;
+        if (line.isFilledAt(leftPointIndex)) {
+            return leftLadderNumber();
+        }
+        int rightPointIndex = number + 1;
+        if (line.isFilledAt(rightPointIndex)) {
+            return rightLadderNumber();
+        }
+        return this;
     }
 }

@@ -30,7 +30,6 @@ public class LineList {
         return new LineList(list);
     }
 
-
     public void add(List<Point> pointList) {
         lineList.add(Line.of(pointList));
     }
@@ -39,7 +38,17 @@ public class LineList {
         return lineList.size();
     }
 
+
     public List<Line> lineList() {
         return Collections.unmodifiableList(new ArrayList<>(lineList));
+    }
+
+    public LadderNumber endLadderNumber(LadderNumber startLadderNumber) {
+        LadderNumber currentLadderNumber = startLadderNumber;
+        for (Line line : lineList) {
+            LadderNumber nextLadderNumber = startLadderNumber.next(line);
+            currentLadderNumber = nextLadderNumber;
+        }
+        return currentLadderNumber;
     }
 }

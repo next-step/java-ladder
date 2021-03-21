@@ -1,13 +1,10 @@
 package ladder.domain;
 
-import java.util.List;
-import java.util.Objects;
-
 public class Player {
 
     private final Name name;
 
-    private LadderNumber ladderNumber;
+    private LadderNumber startLadderNumber;
 
     public Player(String name,int ladderNumber) {
         this(new Name(name), new LadderNumber(ladderNumber));
@@ -15,7 +12,7 @@ public class Player {
 
     public Player(Name name,LadderNumber ladderNumber) {
         this.name = name;
-        this.ladderNumber = ladderNumber;
+        this.startLadderNumber = ladderNumber;
     }
 
     public String name() {
@@ -26,49 +23,7 @@ public class Player {
         return name.equals(new Name(playerName));
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Player player = (Player) o;
-
-        return Objects.equals(name, player.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return name != null ? name.hashCode() : 0;
-    }
-
-    public void move(LineList lineList) {
-        List<Line> list = lineList.lineList();
-        for (Line line : list) {
-            moveBy(line);
-        }
-    }
-
-    private void moveRight() {
-        ladderNumber = ladderNumber.sum(1);
-    }
-
-    private void moveLeft() {
-        ladderNumber = ladderNumber.sum(-1);
-    }
-
-    public void moveBy(Line line) {
-        int currentIndex = ladderNumber.number();
-        int leftPointIndex = currentIndex;
-        if (line.isFilledAt(leftPointIndex)) {
-            moveLeft();
-        }
-        int rightPointIndex = currentIndex + 1;
-        if (line.isFilledAt(rightPointIndex)) {
-            moveRight();
-        }
-    }
-
-    public LadderNumber ladderNumber() {
-        return ladderNumber;
+    public LadderNumber startLadderNumber() {
+        return startLadderNumber;
     }
 }
