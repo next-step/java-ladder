@@ -24,8 +24,8 @@ public class LadderBoardTest {
 
         Prize expectedPrize2 = new Prize("꽝");
         LadderBoard ladderBoard = new LadderBoard(lineList, ladderList);
-//        Prize prize = ladderBoard.prize(player);
-//        assertThat(prize).isEqualTo(expectedPrize);
+        Prize prize = ladderBoard.prize(player);
+        assertThat(prize).isEqualTo(expectedPrize);
         Prize prize2 = ladderBoard.prize(player2);
         assertThat(prize2).isEqualTo(expectedPrize2);
     }
