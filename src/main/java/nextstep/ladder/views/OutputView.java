@@ -1,6 +1,7 @@
 package nextstep.ladder.views;
 
 import nextstep.ladder.entity.Ladder;
+import nextstep.ladder.entity.Prize;
 import nextstep.ladder.entity.PrizeResult;
 
 public class OutputView extends View {
@@ -10,7 +11,12 @@ public class OutputView extends View {
 		out.println(prizeResult);
 	}
 
-	public void showResultParticipant(String result) {
+	public void showResultParticipant(Prize result) {
+		out.println("실행 결과");
+		out.println(result.getName());
+	}
+
+	public void showAllResult(String result) {
 		out.println("실행 결과");
 		out.println(result);
 	}

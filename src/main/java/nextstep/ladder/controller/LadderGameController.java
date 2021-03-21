@@ -30,12 +30,20 @@ public class LadderGameController {
 		ScoreBoard scoreBoard = new ScoreBoard(moveLadder.getUsers(), prizeResult);
 		while(true) {
 			String participant = inputView.getParticipant();
-			outputView.showResultParticipant(scoreBoard.getPrizeResultStr(participant));
+			showResult(scoreBoard, participant);
 		}
 	}
 
 	private PrizeResult makePrizeResult(int userSize) {
 		String prizeResult = inputView.getPrizeResult();
 		return new PrizeResult(prizeResult, userSize);
+	}
+
+	private void showResult(ScoreBoard scoreBoard, String participant) {
+		if ("all".equals(participant)) {
+			outputView.showAllResult(scoreBoard.getAllResult());
+			return;
+		}
+		outputView.showResultParticipant(scoreBoard.getPrizeResultStr(participant));
 	}
 }
