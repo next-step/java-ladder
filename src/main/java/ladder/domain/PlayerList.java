@@ -1,7 +1,6 @@
 package ladder.domain;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -10,12 +9,13 @@ public class PlayerList {
     List<Player> playerList = new ArrayList<>();
 
     public void addBulk(String[] nameArray) {
-        Arrays.stream(nameArray)
-                .forEach(this::add);
+        for (int i = 0; i < nameArray.length; i++) {
+            add(nameArray[i], i);
+        }
     }
 
-    private void add(String name) {
-        playerList.add(new Player(name));
+    private void add(String name, int ladderNumber) {
+        playerList.add(new Player(name, ladderNumber));
     }
 
     public int size() {

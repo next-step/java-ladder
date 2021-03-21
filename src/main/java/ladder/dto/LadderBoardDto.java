@@ -1,13 +1,13 @@
 package ladder.dto;
 
-import ladder.domain.LineList;
+import ladder.domain.LadderBoard;
 import ladder.domain.Player;
 import ladder.domain.PlayerList;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class LadderBoard {
+public class LadderBoardDto {
 
     private List<String> playerNameList;
 
@@ -15,12 +15,12 @@ public class LadderBoard {
 
     private static final String LINE_BREAK = "\n";
 
-    public LadderBoard(PlayerList participatingPlayerList, LineList lineList) {
+    public LadderBoardDto(PlayerList participatingPlayerList, LadderBoard ladderBoard) {
         playerNameList = participatingPlayerList.playerList()
                 .stream()
                 .map(Player::name)
                 .collect(Collectors.toList());
-        this.lineList = lineList.lineList()
+        this.lineList = ladderBoard.lineList()
                 .stream().map(LineDto::new)
                 .collect(Collectors.toList());
     }

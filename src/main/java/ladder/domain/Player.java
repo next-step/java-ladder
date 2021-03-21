@@ -1,17 +1,21 @@
 package ladder.domain;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Player {
 
     private final Name name;
 
-    public Player(String name) {
-        this(new Name(name));
+    private LadderNumber ladderNumber;
+
+    public Player(String name,int ladderNumber) {
+        this(new Name(name), new LadderNumber(ladderNumber));
     }
 
-    public Player(Name name) {
+    public Player(Name name,LadderNumber ladderNumber) {
         this.name = name;
+        this.ladderNumber = ladderNumber;
     }
 
     public String name() {
@@ -31,5 +35,35 @@ public class Player {
     @Override
     public int hashCode() {
         return name != null ? name.hashCode() : 0;
+    }
+
+    public void move(LineList lineList) {
+        List<Line> list = lineList.lineList();
+        for (Line line : list) {
+            moveBy(line);
+        }
+    }
+
+    private void moveRight() {
+        ladderNumber = ladderNumber.sum(1);
+    }
+
+    private void moveLeft() {
+        ladderNumber = ladderNumber.sum(-1);
+    }
+
+    public void moveBy(Line line) {
+        int leftPointIndex = ladderNumber.number();
+        if (line.isFilledAt(leftPointIndex)) {
+            moveLeft();
+        }
+        int rightPointIndex = ladderNumber.number() + 1;
+        if (line.isFilledAt(rightPointIndex)) {
+            moveRight();
+        }
+    }
+
+    public LadderNumber ladderNumber() {
+        return ladderNumber;
     }
 }

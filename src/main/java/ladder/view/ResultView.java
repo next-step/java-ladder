@@ -1,6 +1,6 @@
 package ladder.view;
 
-import ladder.dto.LadderBoard;
+import ladder.dto.LadderBoardDto;
 
 import java.util.List;
 
@@ -14,10 +14,10 @@ public class ResultView {
 
     private static final int FIXED_PLAYER_NAME_SPACE = 6;
 
-    public static void printLadderBoard(LadderBoard ladderBoard) {
+    public static void printLadderBoard(LadderBoardDto ladderBoardDto) {
         System.out.println(MessageConstant.GAME_RESULT);
-        printPlayerNameList(ladderBoard.playerNameList());
-        System.out.println(ladderBoard.lineListToString());
+        printPlayerNameList(ladderBoardDto.playerNameList());
+        System.out.println(ladderBoardDto.lineListToString());
     }
 
     private static void printPlayerNameList(List<String> playerNameList) {

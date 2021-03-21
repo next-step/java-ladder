@@ -15,7 +15,11 @@ public class LineList {
     }
 
     private void add(int pointListSize) {
-        lineList.add(new Line(pointListSize));
+        lineList.add(Line.random(pointListSize));
+    }
+
+    public void add(List<Point> pointList) {
+        lineList.add(Line.of(pointList));
     }
 
     public int size() {

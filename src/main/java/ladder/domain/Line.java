@@ -2,40 +2,60 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+import java.util.stream.Collectors;
 
 public class Line {
 
-    private final List<Point> pointList = new ArrayList<>();
+    private static final int MIN_POINT_COUNT = 1;
 
-    private final Random random = new Random();
+    private final List<Point> pointList;
 
-    public Line(int pointCount) {
-        if(pointCount <= 0){
-            throw new IllegalArgumentException("0 보다 커야 합니다.");
-        }
-        createPointList(pointCount);
+    private Line(List<Point> pointList) {
+        validatePointSize(pointList);
+        validateOverlapping(pointList);
+        this.pointList = pointList;
     }
 
-    private void createPointList(int pointCount) {
+    public static Line random(int pointCount) {
+        List<Point> randomPointList = new ArrayList<>();
         for (int i = 0; i < pointCount; i++) {
-            pointList.add(nextPoint());
+            randomPointList.add(randomPoint(randomPointList));
         }
+        return new Line(randomPointList);
     }
 
-    private Point nextPoint() {
-        if (isFirstPoint()) {
+    public static Line of(List<Point> pointList) {
+        List<Point> copyOfPointList = pointList.stream()
+                .map(point -> new Point(point.isFilled()))
+                .collect(Collectors.toList());
+        return new Line(copyOfPointList);
+    }
+
+    private static Point randomPoint(List<Point> pointList) {
+        if (pointList.size() == 0) {
             return Point.emptyPoint();
         }
         Point previousPoint = pointList.get(pointList.size() - 1);
         if (previousPoint.isFilled()) {
             return Point.emptyPoint();
         }
-        return new Point(random.nextBoolean());
+        return Point.randomPoint();
     }
 
-    private boolean isFirstPoint() {
-        return pointList.size() == 0;
+    public void validateOverlapping(List<Point> pointList) {
+        for (int i = 1; i < pointList.size(); i++) {
+            Point currentPoint = pointList.get(i);
+            Point previousPoint = pointList.get(i - 1);
+            if (previousPoint.isFilled() && currentPoint.isFilled()) {
+                throw new IllegalArgumentException("가로줄이 겹칩니다.");
+            }
+        }
+    }
+
+    public void validatePointSize(List<Point> pointList) {
+        if (pointList.size() < MIN_POINT_COUNT) {
+            throw new IllegalArgumentException("숫자가 너무 작습니다.");
+        }
     }
 
     public List<Point> pointList() {
@@ -47,6 +67,13 @@ public class Line {
     }
 
     public boolean isFilledAt(int index) {
-        return pointList.get(index).isFilled();
+        return point(index).isFilled();
+    }
+
+    public Point point(int index) {
+        if(index < 0 || index > pointList.size()-1) {
+            return Point.emptyPoint();
+        }
+        return pointList.get(index);
     }
 }

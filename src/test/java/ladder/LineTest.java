@@ -12,7 +12,7 @@ public class LineTest {
     @DisplayName("라인 생성후 가로줄 겹치느지 여부 테스트")
     void create() {
         int countOfPerson = 5;
-        Line line = new Line(5);
+        Line line = Line.random(5);
 
         assertThat(line.pointListSize()).isEqualTo(countOfPerson);
         assertThat(isOverlapping(line)).isFalse();
