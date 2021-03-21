@@ -46,7 +46,7 @@ public class LineList {
     public LadderNumber endLadderNumber(LadderNumber startLadderNumber) {
         LadderNumber currentLadderNumber = startLadderNumber;
         for (Line line : lineList) {
-            LadderNumber nextLadderNumber = startLadderNumber.next(line);
+            LadderNumber nextLadderNumber = currentLadderNumber.next(line);
             currentLadderNumber = nextLadderNumber;
         }
         return currentLadderNumber;
