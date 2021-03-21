@@ -1,5 +1,6 @@
 package laddarGame.domain;
 
+import laddarGame.dto.LadderDto;
 import laddarGame.dto.PlayersDto;
 
 public class LadderGame {
@@ -15,9 +16,9 @@ public class LadderGame {
     public PlayersDto playersDto() {
         return new PlayersDto(players.plyersDto());
     }
-//
-//    public LadderDto ladderDto() {
-//        return new LadderDto(ladder.linesDto());
-//    }
+
+    public LadderDto ladderDto() {
+        return new LadderDto(ladder.linesDto());
+    }
 }
 

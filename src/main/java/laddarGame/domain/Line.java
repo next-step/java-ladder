@@ -1,5 +1,7 @@
 package laddarGame.domain;
 
+import laddarGame.dto.LineDto;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -56,6 +58,10 @@ public class Line {
 
     public boolean random() {
         return random.nextBoolean();
+    }
+
+    public LineDto lineDto() {
+        return new LineDto(line);
     }
 }
 
