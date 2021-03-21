@@ -1,8 +1,8 @@
 package ladder.controller;
 
+import ladder.domain.LadderGame;
 import ladder.dto.LadderGameResult;
 import ladder.dto.LadderResultDto;
-import ladder.domain.LadderGame;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 

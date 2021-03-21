@@ -71,7 +71,7 @@ public class Line {
     }
 
     public Point point(int index) {
-        if(index < 0 || index > pointList.size()-1) {
+        if (index < 0 || index > pointList.size() - 1) {
             return Point.emptyPoint();
         }
         return pointList.get(index);

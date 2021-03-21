@@ -12,19 +12,20 @@ public class LineList {
 
     private final List<Line> lineList;
 
-    public LineList(){
+    public LineList() {
         this.lineList = new ArrayList<>();
     }
+
     public LineList(List<Line> lineList) {
         this.lineList = lineList;
     }
 
     public static LineList of(LadderGameRequest ladderGameRequest) {
-        return LineList.of(ladderGameRequest.height(),ladderGameRequest.nameList().length);
+        return LineList.of(ladderGameRequest.height(), ladderGameRequest.nameList().length);
     }
 
     public static LineList of(int size, int pointListSize) {
-        List<Line> list = IntStream.range(0,size)
+        List<Line> list = IntStream.range(0, size)
                 .mapToObj(i -> Line.random(pointListSize))
                 .collect(Collectors.toList());
         return new LineList(list);
@@ -37,7 +38,6 @@ public class LineList {
     public int size() {
         return lineList.size();
     }
-
 
     public List<Line> lineList() {
         return Collections.unmodifiableList(new ArrayList<>(lineList));

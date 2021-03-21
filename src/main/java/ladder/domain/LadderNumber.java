@@ -2,7 +2,7 @@ package ladder.domain;
 
 public class LadderNumber {
 
-    private int number;
+    private final int number;
 
     public LadderNumber(int number) {
         this.number = number;

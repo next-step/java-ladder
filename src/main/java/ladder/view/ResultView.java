@@ -21,6 +21,7 @@ public class ResultView {
         System.out.println(MessageConstant.LADDER_RESULT);
         printPlayerNameList(ladderResultDto.playerNameList());
         System.out.println(ladderResultDto.ladderLine());
+        System.out.println(MessageConstant.GAME_RESULT);
         printPrizeNameList(ladderResultDto.prizeNameList());
     }
 
@@ -44,7 +45,6 @@ public class ResultView {
 
 
     public static void printResult(List<LadderGameResult> gameResultList) {
-        System.out.println(MessageConstant.GAME_RESULT);
         gameResultList.stream()
                 .map(gameResult ->
                         String.format("%s"+ NAME_AND_PRIZE_SEPARATOR + "%s", gameResult.playerName(),gameResult.prizeName()))

@@ -8,5 +8,4 @@ public final class MessageConstant {
     public static final String WRONG_INPUT = "잘못입력 하셨습니다. 다시 입력 해주세요";
     public static final String LADDER_RESULT = "사다리 결과";
     public static final String GAME_RESULT = "실행결과";
-
 }

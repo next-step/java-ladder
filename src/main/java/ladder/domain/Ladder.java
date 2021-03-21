@@ -2,9 +2,9 @@ package ladder.domain;
 
 public class Ladder {
 
-    private LadderNumber ladderNumber;
+    private final LadderNumber ladderNumber;
 
-    private Prize prize;
+    private final Prize prize;
 
     public Ladder(int ladderNumber, String prize) {
         this(new LadderNumber(ladderNumber), new Prize(prize));
