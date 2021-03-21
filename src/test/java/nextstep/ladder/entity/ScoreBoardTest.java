@@ -22,20 +22,20 @@ public class ScoreBoardTest {
 		// then
 		assertAll(
 			() -> {
-				assertThat(board.getPrizeResultStr("j"))
+				assertThat(board.getPrizeResultStr("j").getName())
 					.isEqualTo("1000");
 			},
 			() -> {
-				assertThat(board.getPrizeResultStr("y"))
+				assertThat(board.getPrizeResultStr("y").getName())
 					.isEqualTo("10000");
 			},
 			() -> {
-				assertThat(board.getPrizeResultStr("b"))
+				assertThat(board.getPrizeResultStr("b").getName())
 					.isEqualTo("꽝");
 			},
 			() -> {
 				String all = StringUtils.joining("j : 1000\n", "y : 10000\n", "b : 꽝");
-				assertThat(board.getPrizeResultStr("all"))
+				assertThat(board.getAllResult())
 					.isEqualTo(all);
 			}
 		);
