@@ -1,5 +1,7 @@
 package laddarGame.domain;
 
+import laddarGame.dto.PlayerDto;
+
 import java.util.Objects;
 
 public class Player {
@@ -33,5 +35,7 @@ public class Player {
         return Objects.hash(name, position);
     }
 
-
+    public PlayerDto playerDto() {
+        return new PlayerDto(name, position);
+    }
 }

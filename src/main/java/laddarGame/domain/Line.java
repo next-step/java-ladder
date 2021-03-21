@@ -20,7 +20,7 @@ public class Line {
     }
 
     private void valid(List<Boolean> line) {
-        for (int i = 0; i < line.size(); i++) {
+        for (int i = 0; i < line.size() - 1; i++) {
             isDuplicate(line.get(i), line.get(i + 1), conditional());
         }
     }

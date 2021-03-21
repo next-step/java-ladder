@@ -29,4 +29,8 @@ public class Name {
     public int maxNameLength(int maxLength) {
         return Math.max(maxLength, playerName.length());
     }
+
+    public String getName() {
+        return playerName;
+    }
 }

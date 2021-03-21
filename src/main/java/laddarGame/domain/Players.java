@@ -1,7 +1,10 @@
 package laddarGame.domain;
 
+import laddarGame.dto.PlayerDto;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Players {
 
@@ -61,4 +64,9 @@ public class Players {
         return playerList;
     }
 
+    public List<PlayerDto> plyersDto() {
+        return playerList.stream()
+                .map(Player::playerDto)
+                .collect(Collectors.toList());
+    }
 }

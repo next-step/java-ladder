@@ -11,6 +11,11 @@ public class GameController {
         this.ladderGame = new LadderGame(playerNames, ladderHeight);
     }
 
+    public void outPutLadder() {
+//        ladderGame.ladderDto();
+        ladderGame.playersDto();
+    }
+
     public static void main(String[] args) {
         String playerNames = InputView.playerName();
         int ladderHeight = InputView.ladderHeight();
