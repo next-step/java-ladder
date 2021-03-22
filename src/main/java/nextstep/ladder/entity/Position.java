@@ -5,12 +5,24 @@ import java.util.Objects;
 public class Position {
 	private final int position;
 
+	public Position(Position position) {
+		this(position.position);
+	}
+
 	public Position(int position) {
 		this.position = position;
 	}
 
 	Position move(Root root, int rootIndex) {
-		return PositionMoveMatch.getMatchPosition(root, rootIndex, position);
+		return PositionMoveMatch.getMatchPosition(root, rootIndex, this);
+	}
+
+	public Position moveRight() {
+		return new Position(position + 1);
+	}
+
+	public Position moveLeft() {
+		return new Position(position - 1);
 	}
 
 	public int getPosition() {

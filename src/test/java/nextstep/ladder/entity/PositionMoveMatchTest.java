@@ -16,7 +16,7 @@ public class PositionMoveMatchTest {
 		int rootIndex = 0;
 
 		// when
-		Position position1 = PositionMoveMatch.getMatchPosition(root, position, rootIndex);
+		Position position1 = PositionMoveMatch.getMatchPosition(root, rootIndex, new Position(position));
 
 		// then
 		assertThat(position1.getPosition())
@@ -32,7 +32,7 @@ public class PositionMoveMatchTest {
 		int rootIndex = 0;
 
 		// when
-		Position position1 = PositionMoveMatch.getMatchPosition(root, position, rootIndex);
+		Position position1 = PositionMoveMatch.getMatchPosition(root, rootIndex, new Position(position));
 
 		// then
 		assertThat(position1.getPosition())
@@ -48,7 +48,7 @@ public class PositionMoveMatchTest {
 		int rootIndex = 0;
 
 		// when
-		Position position1 = PositionMoveMatch.getMatchPosition(root, position, rootIndex);
+		Position position1 = PositionMoveMatch.getMatchPosition(root, rootIndex, new Position(position));
 
 		// then
 		assertThat(position1.getPosition())
