@@ -12,8 +12,6 @@ public class LadderBoardDto {
 
     private List<String> prizeNameList;
 
-    private static final String LINE_BREAK = "\n";
-
     public LadderBoardDto(LadderBoard ladderBoard) {
         this.lineList = ladderBoard.lineList()
                 .stream().map(LineDto::new)
@@ -23,17 +21,11 @@ public class LadderBoardDto {
                 .collect(Collectors.toList());
     }
 
-    public String ladderLine(){
-        StringBuilder builder = new StringBuilder();
-        for (LineDto line : lineList) {
-            builder.append(line.toString());
-            builder.append(LINE_BREAK);
-        }
-        return builder.toString();
-    }
-
-
     public List<String> prizeNameList() {
         return prizeNameList;
+    }
+
+    public List<LineDto> lineList() {
+        return lineList;
     }
 }

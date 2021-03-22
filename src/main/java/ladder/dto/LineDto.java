@@ -16,12 +16,7 @@ public class LineDto {
                 .collect(Collectors.toList());
     }
 
-    public String toString() {
-        StringBuilder builder = new StringBuilder();
-        for (PointDto point : pointList) {
-            builder.append(point.toString());
-            builder.append(ResultView.VERTICAL_LINE_REPRESENTATION);
-        }
-        return builder.toString();
+    public List<PointDto> pointList() {
+        return pointList;
     }
 }

@@ -11,11 +11,7 @@ public class PointDto {
         this.isFilled = point.isFilled();
     }
 
-    public String toString() {
-        if (isFilled) {
-            return ResultView.FILLED_POINT_REPRESENTATION;
-        }
-        return ResultView.EMPTY_POINT_REPRESENTATION;
+    public boolean isFilled() {
+        return isFilled;
     }
-
 }
