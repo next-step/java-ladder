@@ -1,7 +1,6 @@
 package ladder.dto;
 
 import ladder.domain.Line;
-import ladder.view.ResultView;
 
 import java.util.List;
 import java.util.stream.Collectors;

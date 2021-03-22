@@ -1,7 +1,6 @@
 package ladder.view;
 
 import ladder.dto.LadderGameResult;
-import ladder.dto.LadderResultDto;
 
 import java.util.List;
 
@@ -17,29 +16,21 @@ public class ResultView {
 
     private static final String NAME_AND_PRIZE_SEPARATOR = ":";
 
-    public static void printLadderBoard(LadderResultDto ladderResultDto) {
-        System.out.println(MessageConstant.LADDER_RESULT);
-        printPlayerNameList(ladderResultDto.playerNameList());
-        System.out.println(ladderResultDto.ladderLine());
-        System.out.println(MessageConstant.GAME_RESULT);
-        printPrizeNameList(ladderResultDto.prizeNameList());
-    }
-
-    private static void printPlayerNameList(List<String> playerNameList) {
+    public static void printPlayerNameList(List<String> playerNameList) {
         playerNameList.stream()
                 .map(playerName -> String.format("%" + FIXED_SPACE + "." + FIXED_SPACE + "s", playerName))
                 .forEach(System.out::print);
         printEmptyLine();
     }
 
-    private static void printPrizeNameList(List<String> prizeNameList) {
+    public static void printPrizeNameList(List<String> prizeNameList) {
         prizeNameList.stream()
                 .map(prizeName -> String.format("%" + FIXED_SPACE + "." + FIXED_SPACE + "s", prizeName))
                 .forEach(System.out::print);
         printEmptyLine();
     }
 
-    private static void printEmptyLine() {
+    public static void printEmptyLine() {
         System.out.println();
     }
 
@@ -49,6 +40,16 @@ public class ResultView {
                 .map(gameResult ->
                         String.format("%s"+ NAME_AND_PRIZE_SEPARATOR + "%s", gameResult.playerName(),gameResult.prizeName()))
                 .forEach(System.out::println);
+    }
+
+    public static void printEmptyPoint() {
+        System.out.print(EMPTY_POINT_REPRESENTATION);
+        System.out.print(VERTICAL_LINE_REPRESENTATION);
+    }
+
+    public static void printFilledPoint() {
+        System.out.print(FILLED_POINT_REPRESENTATION);
+        System.out.print(VERTICAL_LINE_REPRESENTATION);
     }
 }
 

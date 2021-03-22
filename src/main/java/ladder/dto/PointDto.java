@@ -1,7 +1,6 @@
 package ladder.dto;
 
 import ladder.domain.Point;
-import ladder.view.ResultView;
 
 public class PointDto {
 
