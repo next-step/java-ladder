@@ -22,23 +22,4 @@ public class LadderTest {
 			})
 			.withMessageMatching(UserExceptionMesssage.NEGATIVE_NOT_AGRRESIVE.getMessage());
 	}
-
-	@Test
-	void LadderTest() {
-		Ladder ladder = new Ladder(new Users("a,b,c,d,e"), 3);
-		System.out.println(ladder);
-		ladder.getUsers().getUsers().forEach(
-			user -> {
-				System.out.println(user.getName() + " " + user.getPosition());
-			}
-		);
-		Ladder ladder2 = ladder.moveLadder();
-		System.out.println(ladder2);
-
-
-
-		ladder2.getUsers().getUsers().forEach(
-			user -> System.out.println(user.getName() + " " + user.getPosition())
-		);
-	}
 }

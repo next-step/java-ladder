@@ -45,8 +45,8 @@ public class User {
 		return this.name;
 	}
 
-	public Position getPosition() {
-		return position;
+	public int getPosition() {
+		return position.getPosition();
 	}
 
 	@Override
