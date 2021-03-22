@@ -26,7 +26,7 @@ public class LadderGame {
     }
 
     public List<LadderGameResult> play(String playerName) {
-        if (playerName.equalsIgnoreCase(ALL_PLAYERS)) {
+        if (ALL_PLAYERS.equalsIgnoreCase(playerName)) {
             return participatingPlayerList.playerList()
                     .stream().map(this::play)
                     .collect(Collectors.toList());
