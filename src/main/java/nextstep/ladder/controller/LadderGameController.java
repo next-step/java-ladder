@@ -4,6 +4,7 @@ import nextstep.ladder.entity.Ladder;
 import nextstep.ladder.entity.PrizeResult;
 import nextstep.ladder.entity.ScoreBoard;
 import nextstep.ladder.entity.Users;
+import nextstep.ladder.exception.GameExitException;
 import nextstep.ladder.views.InputView;
 import nextstep.ladder.views.OutputView;
 
@@ -28,7 +29,7 @@ public class LadderGameController {
 
 		Ladder moveLadder = ladder.moveLadder();
 		ScoreBoard scoreBoard = new ScoreBoard(moveLadder.getUsers(), prizeResult);
-		while(true) {
+		while (true) {
 			String participant = inputView.getParticipant();
 			showResult(scoreBoard, participant);
 		}
@@ -42,8 +43,9 @@ public class LadderGameController {
 	private void showResult(ScoreBoard scoreBoard, String participant) {
 		if ("all".equals(participant)) {
 			outputView.showAllResult(scoreBoard.getAllResult());
-			return;
+			throw new GameExitException();
 		}
 		outputView.showResultParticipant(scoreBoard.getPrizeResultStr(participant));
 	}
 }
+
