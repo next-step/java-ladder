@@ -77,4 +77,16 @@ public class Line {
         return pointList.get(index);
     }
 
+    public LadderNumber nextLadderNumber(LadderNumber currentLadderNumber) {
+        int leftPointIndex = currentLadderNumber.number();
+        if (isFilledAt(leftPointIndex)) {
+            return currentLadderNumber.leftLadderNumber();
+        }
+        int rightPointIndex = leftPointIndex + 1;
+        if (isFilledAt(rightPointIndex)) {
+            return currentLadderNumber.rightLadderNumber();
+        }
+        return currentLadderNumber;
+    }
+
 }

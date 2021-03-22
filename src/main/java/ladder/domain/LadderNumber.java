@@ -23,23 +23,15 @@ public class LadderNumber {
         return number;
     }
 
-    public LadderNumber next(Line line) {
-        int leftPointIndex = number;
-        if (line.isFilledAt(leftPointIndex)) {
-            return leftLadderNumber();
-        }
-        int rightPointIndex = number + 1;
-        if (line.isFilledAt(rightPointIndex)) {
-            return rightLadderNumber();
-        }
-        return this;
-    }
-
-    private LadderNumber leftLadderNumber() {
+    public LadderNumber leftLadderNumber() {
         return new LadderNumber(number - 1);
     }
 
-    private LadderNumber rightLadderNumber() {
+    public LadderNumber rightLadderNumber() {
         return new LadderNumber(number + 1);
+    }
+
+    public int number() {
+        return number;
     }
 }
