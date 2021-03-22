@@ -31,6 +31,6 @@ public class ScoreBoard {
 		return result.entrySet()
 			.stream()
 			.map(entry -> StringUtils.joining(entry.getKey(), " : ", entry.getValue().getName()))
-			.collect(Collectors.joining("\n"));
+			.collect(Collectors.joining(System.lineSeparator()));
 	}
 }
