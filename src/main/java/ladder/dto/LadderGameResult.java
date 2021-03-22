@@ -11,7 +11,7 @@ public class LadderGameResult {
 
     public LadderGameResult(Player player, Prize prize) {
         playerName = player.name();
-        prizeName = prize.toString();
+        prizeName = prize.prizeName();
     }
 
     public String playerName() {

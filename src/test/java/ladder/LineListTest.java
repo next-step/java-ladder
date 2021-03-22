@@ -1,6 +1,6 @@
 package ladder;
 
-import ladder.domain.LadderNumber;
+import ladder.domain.Position;
 import ladder.domain.Line;
 import ladder.domain.LineList;
 import ladder.domain.Point;
@@ -35,10 +35,10 @@ public class LineListTest {
         lineList.add(Arrays.asList(new Point(false), new Point(true), new Point(false), new Point(false)));
 
 
-        assertThat(lineList.endLadderNumber(new LadderNumber(0))).isEqualTo(new LadderNumber(0));
-        assertThat(lineList.endLadderNumber(new LadderNumber(1))).isEqualTo(new LadderNumber(3));
-        assertThat(lineList.endLadderNumber(new LadderNumber(2))).isEqualTo(new LadderNumber(1));
-        assertThat(lineList.endLadderNumber(new LadderNumber(3))).isEqualTo(new LadderNumber(2));
+        assertThat(lineList.endLadderNumber(new Position(0))).isEqualTo(new Position(0));
+        assertThat(lineList.endLadderNumber(new Position(1))).isEqualTo(new Position(3));
+        assertThat(lineList.endLadderNumber(new Position(2))).isEqualTo(new Position(1));
+        assertThat(lineList.endLadderNumber(new Position(3))).isEqualTo(new Position(2));
     }
 
 

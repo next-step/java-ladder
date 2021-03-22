@@ -43,12 +43,12 @@ public class LineList {
         return Collections.unmodifiableList(new ArrayList<>(lineList));
     }
 
-    public LadderNumber endLadderNumber(LadderNumber startLadderNumber) {
-        LadderNumber currentLadderNumber = startLadderNumber;
+    public Position endLadderNumber(Position startPosition) {
+        Position currentPosition = startPosition;
         for (Line line : lineList) {
-            LadderNumber nextLadderNumber = line.nextLadderNumber(currentLadderNumber);
-            currentLadderNumber = nextLadderNumber;
+            Position nextPosition = line.nextLadderNumber(currentPosition);
+            currentPosition = nextPosition;
         }
-        return currentLadderNumber;
+        return currentPosition;
     }
 }

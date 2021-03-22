@@ -1,6 +1,6 @@
 package ladder;
 
-import ladder.domain.LadderNumber;
+import ladder.domain.Position;
 import ladder.domain.Line;
 import ladder.domain.Point;
 import org.assertj.core.api.AssertionsForClassTypes;
@@ -78,24 +78,24 @@ public class LineTest {
     @DisplayName("next시 왼쪽에 연결된 다음 사다리 있을시 이동 되는지 테스트")
     void next_to_left() {
         int number = 2;
-        LadderNumber currentLadderNumber = new LadderNumber(number);
+        Position currentPosition = new Position(number);
         Line line = Line.of(Arrays.asList(new Point(false), new Point(false), new Point(true)));
-        LadderNumber next = line.nextLadderNumber(currentLadderNumber);
-        LadderNumber leftLadderNumber = new LadderNumber(number -1);
+        Position next = line.nextLadderNumber(currentPosition);
+        Position leftPosition = new Position(number -1);
 
-        AssertionsForClassTypes.assertThat(next).isEqualTo(leftLadderNumber);
+        AssertionsForClassTypes.assertThat(next).isEqualTo(leftPosition);
     }
 
     @Test
     @DisplayName("next시 오른쪽에 연결된 다음 사다리 있을시 이동 되는지 테스트")
     void next_to_right() {
         int number = 1;
-        LadderNumber currentLadderNumber = new LadderNumber(number);
+        Position currentPosition = new Position(number);
         Line line = Line.of(Arrays.asList(new Point(false), new Point(false), new Point(true)));
-        LadderNumber next = line.nextLadderNumber(currentLadderNumber);
-        LadderNumber rightLadderNumber = new LadderNumber(number + 1);
+        Position next = line.nextLadderNumber(currentPosition);
+        Position rightPosition = new Position(number + 1);
 
-        AssertionsForClassTypes.assertThat(next).isEqualTo(rightLadderNumber);
+        AssertionsForClassTypes.assertThat(next).isEqualTo(rightPosition);
     }
 
 
@@ -103,12 +103,12 @@ public class LineTest {
     @DisplayName("next시 연결된 라인이 없을시 그대로 인지 테스트")
     void next_same() {
         int number = 2;
-        LadderNumber currentLadderNumber = new LadderNumber(number);
+        Position currentPosition = new Position(number);
         Line line = Line.of(Arrays.asList(new Point(false), new Point(false), new Point(false)));
-        LadderNumber next = line.nextLadderNumber(currentLadderNumber);
-        LadderNumber leftLadderNumber = new LadderNumber(number);
+        Position next = line.nextLadderNumber(currentPosition);
+        Position leftPosition = new Position(number);
 
-        AssertionsForClassTypes.assertThat(next).isEqualTo(leftLadderNumber);
+        AssertionsForClassTypes.assertThat(next).isEqualTo(leftPosition);
     }
 
 }
