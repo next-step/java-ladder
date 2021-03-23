@@ -13,6 +13,7 @@ public class OutputView {
     private static final int MAX_NAME_LENGTH = 5;
     private static final int DEFAULT_LENGTH = 1;
     private static final String BLANK = " ";
+    
     private static int maxNameLength;
 
     public static void print(LinesDto linesDto, PlayersDto playersDto) {
