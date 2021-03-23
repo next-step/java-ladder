@@ -83,7 +83,7 @@ public class LineTest {
         Position next = line.nextLadderNumber(currentPosition);
         Position leftPosition = new Position(number -1);
 
-        AssertionsForClassTypes.assertThat(next).isEqualTo(leftPosition);
+        assertThat(next).isEqualTo(leftPosition);
     }
 
     @Test
@@ -95,7 +95,7 @@ public class LineTest {
         Position next = line.nextLadderNumber(currentPosition);
         Position rightPosition = new Position(number + 1);
 
-        AssertionsForClassTypes.assertThat(next).isEqualTo(rightPosition);
+        assertThat(next).isEqualTo(rightPosition);
     }
 
 
@@ -108,7 +108,7 @@ public class LineTest {
         Position next = line.nextLadderNumber(currentPosition);
         Position leftPosition = new Position(number);
 
-        AssertionsForClassTypes.assertThat(next).isEqualTo(leftPosition);
+        assertThat(next).isEqualTo(leftPosition);
     }
 
 }
