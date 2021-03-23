@@ -11,7 +11,7 @@ class NameTest {
     @Test
     void position() {
         assertThatThrownBy(
-                () -> new Name("SISTER"))
+                () -> new PlayerName("SISTER"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

@@ -4,7 +4,7 @@ import java.util.List;
 
 public class PlayersDto {
 
-    private List<PlayerDto> playerList;
+    private final List<PlayerDto> playerList;
 
     public PlayersDto(List<PlayerDto> playerList) {
         this.playerList = playerList;
@@ -14,5 +14,5 @@ public class PlayersDto {
         return playerList;
     }
 
-    
+
 }

@@ -14,7 +14,7 @@ public class LadderGame {
     }
 
     public PlayersDto playersDto() {
-        return new PlayersDto(players.plyersDto());
+        return new PlayersDto(players.playersDto());
     }
 
     public LinesDto ladderDto() {

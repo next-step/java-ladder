@@ -27,14 +27,4 @@ class PlayersTest {
         assertThrows(IllegalArgumentException.class, () -> new Players(List.of(Player1, Player2)));
     }
 
-    @DisplayName("가장 이름이 긴이름 길이 반환")
-    @Test
-    void maxNameLength() {
-        Player Player1 = new Player("LG", 0);
-        Player Player2 = new Player("SKT", 1);
-
-        Players players = new Players(List.of(Player1, Player2));
-
-        assertEquals(3, players.maxNameLength());
-    }
 }

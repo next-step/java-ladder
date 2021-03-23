@@ -8,7 +8,7 @@ import laddarGame.view.OutputView;
 
 public class GameController {
 
-    private LadderGame ladderGame;
+    private final LadderGame ladderGame;
 
     public GameController(String playerNames, int ladderHeight) {
         this.ladderGame = new LadderGame(playerNames, ladderHeight);

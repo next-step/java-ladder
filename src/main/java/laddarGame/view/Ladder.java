@@ -15,8 +15,8 @@ public enum Ladder {
     }
 
     public static String valueOf(boolean isLadder) {
-        return Arrays.stream(values()).
-                filter(ladder -> ladder.IsLadder() == isLadder)
+        return Arrays.stream(values())
+                .filter(ladder -> ladder.IsLadder() == isLadder)
                 .findAny()
                 .map(Ladder::getDrawPoint)
                 .orElseThrow(() -> new IllegalArgumentException("사다리가 정상적으로 생성되지 않았습니다."));

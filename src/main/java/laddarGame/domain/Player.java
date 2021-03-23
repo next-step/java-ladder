@@ -6,22 +6,18 @@ import java.util.Objects;
 
 public class Player {
 
-    private final Name name;
+    private final PlayerName name;
     private final Position position;
 
     public Player(String name, int position) {
-        this.name = new Name(name);
+        this.name = new PlayerName(name);
         this.position = new Position(position);
     }
 
     public Position getPosition() {
         return position;
     }
-
-    public int maxNameLength(int maxLength) {
-        return name.maxNameLength(maxLength);
-    }
-
+    
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

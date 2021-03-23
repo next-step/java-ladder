@@ -1,16 +1,16 @@
 package laddarGame.dto;
 
-import laddarGame.domain.Name;
+import laddarGame.domain.PlayerName;
 import laddarGame.domain.Position;
 
 import java.util.Objects;
 
 public class PlayerDto {
 
-    private String name;
-    private int position;
+    private final String name;
+    private final int position;
 
-    public PlayerDto(Name name, Position position) {
+    public PlayerDto(PlayerName name, Position position) {
         this.name = name.name();
         this.position = position.position();
     }
@@ -24,8 +24,8 @@ public class PlayerDto {
         return name;
     }
 
-    public int getPosition() {
-        return position;
+    public int getPlayerLength() {
+        return name.length();
     }
 
     @Override

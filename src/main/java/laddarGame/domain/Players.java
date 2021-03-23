@@ -2,20 +2,19 @@ package laddarGame.domain;
 
 import laddarGame.dto.PlayerDto;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Players {
 
     private final List<Player> playerList;
+
     private static final String DELIMITER = ",";
     private static final int ZERO = 0;
 
     public Players(String playerNames) {
-        List<Player> playerList = playerList(nameParser(playerNames));
-        isDuplicatePosition(playerList);
-        this.playerList = playerList;
+        this(playerList(nameParser(playerNames)));
     }
 
     public Players(List<Player> playerList) {
@@ -23,15 +22,13 @@ public class Players {
         this.playerList = playerList;
     }
 
-    private List<Player> playerList(String[] names) {
-        List<Player> players = new ArrayList<>();
-        for (int position = 0; position < names.length; position++) {
-            players.add(new Player(names[position], position));
-        }
-        return players;
+    private static List<Player> playerList(String[] playerNames) {
+        return IntStream.range(ZERO, playerNames.length)
+                .mapToObj(posiotion -> new Player(playerNames[posiotion], posiotion))
+                .collect(Collectors.toList());
     }
 
-    private String[] nameParser(String playerNames) {
+    private static String[] nameParser(String playerNames) {
         return playerNames.split(DELIMITER);
     }
 
@@ -53,19 +50,7 @@ public class Players {
         }
     }
 
-    public int maxNameLength() {
-        int maxLength = ZERO;
-        for (Player player : playerList) {
-            maxLength = player.maxNameLength(maxLength);
-        }
-        return maxLength;
-    }
-
-    public List<Player> toList() {
-        return playerList;
-    }
-
-    public List<PlayerDto> plyersDto() {
+    public List<PlayerDto> playersDto() {
         return playerList.stream()
                 .map(Player::playerDto)
                 .collect(Collectors.toList());
