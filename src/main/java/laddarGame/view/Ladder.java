@@ -3,8 +3,8 @@ package laddarGame.view;
 import java.util.Arrays;
 
 public enum Ladder {
-    LADDER(true, "-----|"),
-    EMPTY(false, "     |");
+    LADDER(true, "|-----"),
+    EMPTY(false, "|     ");
 
     private final boolean isLadder;
     private final String drawPoint;
