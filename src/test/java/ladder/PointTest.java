@@ -11,38 +11,38 @@ public class PointTest {
 
     @Test
     public void first() {
-        assertThat(Point.first(TRUE).move()).isEqualTo(1);
-        assertThat(Point.first(FALSE).move()).isEqualTo(0);
+        assertThat(Point.first(TRUE).movableIndex()).isEqualTo(1);
+        assertThat(Point.first(FALSE).movableIndex()).isEqualTo(0);
     }
 
     @Test
     public void next_stay() {
         Point second = Point.first(FALSE).next(FALSE);
-        assertThat(second.move()).isEqualTo(1);
+        assertThat(second.movableIndex()).isEqualTo(1);
     }
 
     @Test
     public void next_left() {
         Point second = Point.first(TRUE).next(FALSE);
-        assertThat(second.move()).isEqualTo(0);
+        assertThat(second.movableIndex()).isEqualTo(0);
     }
 
     @Test
     public void next_right() {
         Point second = Point.first(FALSE).next(TRUE);
-        assertThat(second.move()).isEqualTo(2);
+        assertThat(second.movableIndex()).isEqualTo(2);
     }
 
     @Test
     public void next() {
         Point second = Point.first(TRUE).next();
-        assertThat(second.move()).isEqualTo(0);
+        assertThat(second.movableIndex()).isEqualTo(0);
     }
 
     @Test
     public void last() {
         Point last = Point.first(FALSE).last();
-        assertThat(last.move()).isEqualTo(1);
+        assertThat(last.movableIndex()).isEqualTo(1);
     }
 
 }

@@ -22,7 +22,7 @@ public class LadderBoard {
     }
 
     public Prize prize(Player player) {
-        Position endPosition = lineList.endLadderNumber(player.startPosition());
+        Position endPosition = lineList.finalPosition(player.startPosition());
         return prizeList.prize(endPosition);
     }
 

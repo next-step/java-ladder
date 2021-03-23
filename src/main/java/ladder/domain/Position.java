@@ -23,14 +23,6 @@ public class Position {
         return number;
     }
 
-    public Position leftLadderNumber() {
-        return new Position(number - 1);
-    }
-
-    public Position rightLadderNumber() {
-        return new Position(number + 1);
-    }
-
     public int number() {
         return number;
     }

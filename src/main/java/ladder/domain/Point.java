@@ -19,7 +19,7 @@ public class Point {
         return new Point(0, Direction.first());
     }
 
-    public int move() {
+    public int movableIndex() {
         if (direction.isLeft()) {
             return index - 1;
         }
@@ -41,20 +41,4 @@ public class Point {
         return new Point(index + 1, direction.last());
     }
 
-
-    public Point(boolean bool){
-         this(0,Direction.first());
-    }
-
-    public boolean isFilled() {
-        return true;
-    }
-
-    public static Point emptyPoint() {
-        return Point.first(true);
-    }
-
-    public static Point randomPoint() {
-        return Point.first(true);
-    }
 }

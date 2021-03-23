@@ -26,13 +26,13 @@ public class LineList {
 
     public static LineList of(int size, int pointListSize) {
         List<Line> list = IntStream.range(0, size)
-                .mapToObj(i -> Line.random(pointListSize))
+                .mapToObj(i -> Line.init(pointListSize))
                 .collect(Collectors.toList());
         return new LineList(list);
     }
 
-    public void add(List<Point> pointList) {
-        lineList.add(Line.of(pointList));
+    public void add(List<Direction> pointList) {
+        lineList.add(Line.ofDirectionList(pointList));
     }
 
     public int size() {
@@ -43,10 +43,10 @@ public class LineList {
         return Collections.unmodifiableList(new ArrayList<>(lineList));
     }
 
-    public Position endLadderNumber(Position startPosition) {
+    public Position finalPosition(Position startPosition) {
         Position currentPosition = startPosition;
         for (Line line : lineList) {
-            Position nextPosition = line.nextLadderNumber(currentPosition);
+            Position nextPosition = line.nextPosition(currentPosition);
             currentPosition = nextPosition;
         }
         return currentPosition;

@@ -29,10 +29,11 @@ public class LadderBoardTest {
     @DisplayName("prize를 통해 결과값 테스트")
     void prize() {
         LineList lineList = new LineList();
-        lineList.add(Arrays.asList(new Point(false), new Point(false), new Point(true), new Point(false)));
-        lineList.add(Arrays.asList(new Point(false), new Point(true), new Point(false), new Point(true)));
-        lineList.add(Arrays.asList(new Point(false), new Point(true), new Point(false), new Point(false)));
-        PrizeList prizeList = new PrizeList(Arrays.asList(new Prize( "꽝"), new Prize("100"), new Prize("200"), new Prize("300")));
+        lineList.add(Arrays.asList(Direction.of(false, false), Direction.of(false, true), Direction.of(true, false), Direction.of(false, false)));
+        lineList.add(Arrays.asList(Direction.of(false, true), Direction.of(true, false), Direction.of(false, true), Direction.of(true, false)));
+        lineList.add(Arrays.asList(Direction.of(false, true), Direction.of(true, false), Direction.of(false, false), Direction.of(false, false)));
+
+        PrizeList prizeList = new PrizeList(Arrays.asList(new Prize("꽝"), new Prize("100"), new Prize("200"), new Prize("300")));
         Player pobi = new Player("pobi", 1);
         Player tax = new Player("tax", 0);
         Prize pobiPrize = new Prize("300");
