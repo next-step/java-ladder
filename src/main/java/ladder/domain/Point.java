@@ -1,6 +1,10 @@
 package ladder.domain;
 
+import java.util.Random;
+
 public class Point {
+
+    private static final Random random = new Random();
 
     private final boolean isFilled;
 
@@ -14,6 +18,10 @@ public class Point {
 
     public static Point filledPoint() {
         return new Point(true);
+    }
+
+    public static Point randomPoint() {
+        return new Point(random.nextBoolean());
     }
 
     public boolean isFilled() {

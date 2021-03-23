@@ -1,55 +1,55 @@
 package ladder.view;
 
-import ladder.domain.LadderBoard;
-import ladder.domain.Line;
-import ladder.domain.Point;
+import ladder.dto.LadderGameResult;
 
 import java.util.List;
 
 public class ResultView {
 
-    private static String EMPTY_POINT_REPRESENTATION = "     ";
+    public static final String EMPTY_POINT_REPRESENTATION = "     ";
 
-    private static String FILLED_POINT_REPRESENTATION = "-----";
+    public static final String FILLED_POINT_REPRESENTATION = "-----";
 
-    private static String VERTICAL_LINE_REPRESENTATION = "|";
+    public static final String VERTICAL_LINE_REPRESENTATION = "|";
 
-    private static int FIXED_PLAYER_NAME_SPACE = 6;
+    private static final int FIXED_SPACE = 6;
 
-    public static void printLadderBoard(LadderBoard ladderBoard) {
-        System.out.println(MessageConstant.GAME_RESULT);
-        printPlayerNameList(ladderBoard.playerNameList());
-        for (Line line : ladderBoard.lineList()) {
-            printLine(line);
-            printEmptyLine();
-        }
-    }
+    private static final String NAME_AND_PRIZE_SEPARATOR = ":";
 
-    private static void printPlayerNameList(List<String> playerNameList) {
+    public static void printPlayerNameList(List<String> playerNameList) {
         playerNameList.stream()
-                .map(playerName -> String.format("%" + FIXED_PLAYER_NAME_SPACE + "." + FIXED_PLAYER_NAME_SPACE + "s", playerName))
+                .map(playerName -> String.format("%" + FIXED_SPACE + "." + FIXED_SPACE + "s", playerName))
                 .forEach(System.out::print);
         printEmptyLine();
     }
 
-    private static void printEmptyLine() {
+    public static void printPrizeNameList(List<String> prizeNameList) {
+        prizeNameList.stream()
+                .map(prizeName -> String.format("%" + FIXED_SPACE + "." + FIXED_SPACE + "s", prizeName))
+                .forEach(System.out::print);
+        printEmptyLine();
+    }
+
+    public static void printEmptyLine() {
         System.out.println();
     }
 
-    private static void printLine(Line line) {
-        List<Point> pointList = line.getPointList();
-        for (Point point : pointList) {
-            System.out.print(pointRepresentation(point));
-            System.out.print(VERTICAL_LINE_REPRESENTATION);
-        }
+
+    public static void printResult(List<LadderGameResult> gameResultList) {
+        gameResultList.stream()
+                .map(gameResult ->
+                        String.format("%s"+ NAME_AND_PRIZE_SEPARATOR + "%s", gameResult.playerName(),gameResult.prizeName()))
+                .forEach(System.out::println);
     }
 
-    private static String pointRepresentation(Point point) {
-        if (point.isFilled()) {
-            return FILLED_POINT_REPRESENTATION;
-        }
-        return EMPTY_POINT_REPRESENTATION;
+    public static void printEmptyPoint() {
+        System.out.print(EMPTY_POINT_REPRESENTATION);
+        System.out.print(VERTICAL_LINE_REPRESENTATION);
     }
 
+    public static void printFilledPoint() {
+        System.out.print(FILLED_POINT_REPRESENTATION);
+        System.out.print(VERTICAL_LINE_REPRESENTATION);
+    }
 }
 

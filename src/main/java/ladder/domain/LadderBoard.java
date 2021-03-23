@@ -1,29 +1,36 @@
 package ladder.domain;
 
+import ladder.dto.LadderGameRequest;
+
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class LadderBoard {
 
-    private List<String> playerNameList;
+    private final LineList lineList;
 
-    private List<Line> lineList;
+    private final LadderList ladderList;
 
-    public LadderBoard(PlayerList participatingPlayerList, LineList lineList) {
-        playerNameList = participatingPlayerList.playerList()
-                .stream()
-                .map(Player::name)
-                .collect(Collectors.toList());
-       this.lineList = lineList.lineList();
+    public LadderBoard(LineList lineList, LadderList ladderList) {
+        this.lineList = lineList;
+        this.ladderList = ladderList;
     }
 
-    public List<String> playerNameList() {
-        return playerNameList;
+    public static LadderBoard of(LadderGameRequest ladderGameRequest) {
+        LineList lineList = LineList.of(ladderGameRequest);
+        LadderList ladderList = LadderList.of(ladderGameRequest.prizeList());
+        return new LadderBoard(lineList, ladderList);
+    }
+
+    public Prize prize(Player player) {
+        LadderNumber endLadderNumber = lineList.endLadderNumber(player.startLadderNumber());
+        return ladderList.prize(endLadderNumber);
     }
 
     public List<Line> lineList() {
-        return lineList;
+        return lineList.lineList();
     }
 
-
+    public List<Ladder> ladderList() {
+        return ladderList.ladderList();
+    }
 }

@@ -1,21 +1,24 @@
 package ladder.domain;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class PlayerList {
 
-    List<Player> playerList = new ArrayList<>();
+    private final List<Player> playerList;
 
-    public void addBulk(String[] nameArray) {
-        Arrays.stream(nameArray)
-                .forEach(this::add);
+    public PlayerList(List<Player> playerList) {
+        this.playerList = playerList;
     }
 
-    private void add(String name) {
-        playerList.add(new Player(name));
+    public static PlayerList of(String[] nameList) {
+        List<Player> list = IntStream.range(0, nameList.length)
+                .mapToObj(i -> new Player(nameList[i], i))
+                .collect(Collectors.toList());
+        return new PlayerList(list);
     }
 
     public int size() {
@@ -24,5 +27,12 @@ public class PlayerList {
 
     public List<Player> playerList() {
         return Collections.unmodifiableList(new ArrayList<>(playerList));
+    }
+
+    public Player player(String playerName) {
+        return playerList.stream()
+                .filter(player -> player.isMatch(playerName))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("참가하지 않는 플레이어 이름 입니다."));
     }
 }

@@ -1,35 +1,29 @@
 package ladder.domain;
 
-import java.util.Objects;
-
 public class Player {
 
     private final Name name;
 
-    public Player(String name) {
-        this(new Name(name));
+    private final LadderNumber startLadderNumber;
+
+    public Player(String name, int ladderNumber) {
+        this(new Name(name), new LadderNumber(ladderNumber));
     }
 
-    public Player(Name name) {
+    public Player(Name name, LadderNumber ladderNumber) {
         this.name = name;
+        this.startLadderNumber = ladderNumber;
     }
 
     public String name() {
         return name.toString();
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Player player = (Player) o;
-
-        return Objects.equals(name, player.name);
+    public boolean isMatch(String playerName) {
+        return name.equals(new Name(playerName));
     }
 
-    @Override
-    public int hashCode() {
-        return name != null ? name.hashCode() : 0;
+    public LadderNumber startLadderNumber() {
+        return startLadderNumber;
     }
 }
