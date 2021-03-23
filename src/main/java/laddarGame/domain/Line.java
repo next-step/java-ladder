@@ -1,6 +1,7 @@
 package laddarGame.domain;
 
 import laddarGame.dto.LineDto;
+import laddarGame.exception.ContinuousLadderCreateException;
 
 import java.util.List;
 import java.util.stream.IntStream;
@@ -20,7 +21,7 @@ public class Line {
 
     public Line(List<Boolean> line) {
         if (valid(line)) {
-            throw new IllegalArgumentException();
+            throw new ContinuousLadderCreateException("이동하는 부분이 연속적으로 생성되면 안됩니다.");
         }
         this.line = line;
     }

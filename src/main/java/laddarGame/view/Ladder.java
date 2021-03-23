@@ -16,14 +16,14 @@ public enum Ladder {
 
     public static String valueOf(boolean isLadder) {
         return Arrays.stream(values())
-                .filter(ladder -> ladder.IsLadder() == isLadder)
+                .filter(ladder -> ladder.IsLadder(isLadder))
                 .findAny()
                 .map(Ladder::getDrawPoint)
-                .orElseThrow(() -> new IllegalArgumentException("사다리가 정상적으로 생성되지 않았습니다."));
+                .orElseGet(() -> EMPTY.drawPoint);
     }
 
-    public boolean IsLadder() {
-        return isLadder;
+    public boolean IsLadder(boolean isLadder) {
+        return this.isLadder == isLadder;
     }
 
     public String getDrawPoint() {

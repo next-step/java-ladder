@@ -9,7 +9,7 @@ class PositionTest {
 
     @DisplayName("포지션이 같으면 동일 선상이다.")
     @Test
-    void samePotision() {
+    void samePosition() {
         assertEquals(new Position(1), new Position(1));
     }
 }

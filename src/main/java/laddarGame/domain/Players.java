@@ -1,6 +1,7 @@
 package laddarGame.domain;
 
 import laddarGame.dto.PlayerDto;
+import laddarGame.exception.DuplicatePositionException;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,7 +25,7 @@ public class Players {
 
     private static List<Player> playerList(String[] playerNames) {
         return IntStream.range(ZERO, playerNames.length)
-                .mapToObj(posiotion -> new Player(playerNames[posiotion], posiotion))
+                .mapToObj(position -> new Player(playerNames[position], position))
                 .collect(Collectors.toList());
     }
 
@@ -46,7 +47,7 @@ public class Players {
     public void isDuplicatePosition(List<Player> playerList) {
         int distinctCount = distinctCount(playerList);
         if (distinctCount != playerList.size()) {
-            throw new IllegalArgumentException("같은 포지션에 두명이 있을 수 없습니다.");
+            throw new DuplicatePositionException("같은 포지션에 두명이 있을 수 없습니다.");
         }
     }
 
