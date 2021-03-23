@@ -7,7 +7,7 @@ public class PointDto {
     private boolean isFilled;
 
     public PointDto(Point point) {
-//        this.isFilled = point.isFilled();
+        this.isFilled = point.hasLeftDirection();
     }
 
     public boolean isFilled() {

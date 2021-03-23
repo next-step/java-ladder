@@ -29,6 +29,14 @@ public class Point {
         return index;
     }
 
+    public boolean hasLeftDirection() {
+        return direction.isLeft();
+    }
+
+    public boolean hasRightDirection() {
+        return direction.isRight();
+    }
+
     public Point next(Boolean right) {
         return new Point(index + 1, direction.next(right));
     }
