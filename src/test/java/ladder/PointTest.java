@@ -39,4 +39,10 @@ public class PointTest {
         assertThat(second.move()).isEqualTo(0);
     }
 
+    @Test
+    public void last() {
+        Point last = Point.first(FALSE).last();
+        assertThat(last.move()).isEqualTo(1);
+    }
+
 }

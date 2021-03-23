@@ -15,6 +15,10 @@ public class Point {
         return new Point(0, Direction.first(right));
     }
 
+    public static Point first() {
+        return new Point(0, Direction.first());
+    }
+
     public int move() {
         if (direction.isLeft()) {
             return index - 1;
@@ -31,6 +35,10 @@ public class Point {
 
     public Point next() {
         return new Point(index + 1, direction.next());
+    }
+
+    public Point last() {
+        return new Point(index + 1, direction.last());
     }
 
 
