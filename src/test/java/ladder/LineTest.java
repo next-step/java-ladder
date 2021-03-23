@@ -36,6 +36,14 @@ public class LineTest {
         );
     }
 
+    @Test
+    @DisplayName("이전 포인트의 우측 방향과 다음 포인트의 좌측방향이 다른 포인트 리스트로 생성시 예외 발생 테스트")
+    void create_with_invalid_pointList() {
+        assertThatIllegalArgumentException().isThrownBy(() ->
+                Line.ofDirectionList(Arrays.asList(Direction.of(false, true), Direction.of(false, true), Direction.of(true, false)))
+        );
+    }
+
 
     @Test
     @DisplayName("next시 왼쪽에 연결된 다음 point 있을시 이동 되는지 테스트")

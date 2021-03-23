@@ -10,8 +10,23 @@ public class Line {
     private final List<Point> pointList;
 
     private Line(List<Point> pointList) {
-        validatePointSize(pointList);
+        validatePointListSize(pointList);
+        validateInvalidPointList(pointList);
         this.pointList = pointList;
+    }
+
+    private void validateInvalidPointList(List<Point> pointList) {
+        for (int i = 1; i < pointList.size(); i++) {
+            Point previousPoint = pointList.get(i - 1);
+            Point currentPoint = pointList.get(i);
+            validateDirectionOf(previousPoint, currentPoint);
+        }
+    }
+
+    private void validateDirectionOf(Point previousPoint, Point currentPoint) {
+        if (previousPoint.hasRightDirection() != currentPoint.hasLeftDirection()) {
+            throw new IllegalArgumentException("연속된 point의 우측방향과 좌측방향이 다를수 없습니다.");
+        }
     }
 
     public static Line init(int pointCount) {
@@ -27,9 +42,9 @@ public class Line {
     }
 
     private static void initBody(List<Point> pointList, int pointCount) {
-        Point firstPoint = pointList.get(0);
         for (int i = 0; i < pointCount - 2; i++) {
-            pointList.add(firstPoint.next());
+            Point previousPoint = pointList.get(pointList.size() - 1);
+            pointList.add(previousPoint.next());
         }
     }
 
@@ -51,7 +66,7 @@ public class Line {
     }
 
 
-    public void validatePointSize(List<Point> pointList) {
+    public void validatePointListSize(List<Point> pointList) {
         if (pointList.size() < MIN_POINT_COUNT) {
             throw new IllegalArgumentException("숫자가 너무 작습니다.");
         }
