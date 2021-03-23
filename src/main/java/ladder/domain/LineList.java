@@ -12,10 +12,6 @@ public class LineList {
 
     private final List<Line> lineList;
 
-    public LineList() {
-        this.lineList = new ArrayList<>();
-    }
-
     public LineList(List<Line> lineList) {
         this.lineList = lineList;
     }
@@ -31,10 +27,6 @@ public class LineList {
         return new LineList(list);
     }
 
-    public void add(List<Direction> pointList) {
-        lineList.add(Line.ofDirectionList(pointList));
-    }
-
     public int size() {
         return lineList.size();
     }
@@ -46,8 +38,7 @@ public class LineList {
     public Position finalPosition(Position startPosition) {
         Position currentPosition = startPosition;
         for (Line line : lineList) {
-            Position nextPosition = line.nextPosition(currentPosition);
-            currentPosition = nextPosition;
+            currentPosition = line.nextPosition(currentPosition);
         }
         return currentPosition;
     }

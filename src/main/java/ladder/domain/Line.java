@@ -81,8 +81,16 @@ public class Line {
     }
 
     public Position nextPosition(Position currentPosition) {
-        int movableIndex = pointList.get(currentPosition.number()).movableIndex();
+        int pointIndex = currentPosition.number();
+        validateIndexRange(pointIndex);
+        int movableIndex = pointList.get(pointIndex).movableIndex();
         return new Position(movableIndex);
+    }
+
+    private void validateIndexRange(int pointIndex) {
+        if (pointIndex < 0 || pointIndex > pointListSize() - 1) {
+            throw new IllegalArgumentException("범위를 벗어나는 position 입니다.");
+        }
     }
 
 }

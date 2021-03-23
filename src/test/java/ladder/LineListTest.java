@@ -29,10 +29,10 @@ public class LineListTest {
     @Test
     @DisplayName("finalPosition 사다리타기 실행후 결과 테스트")
     void finalPosition() {
-        LineList lineList = new LineList();
-        lineList.add(Arrays.asList(Direction.of(false, false), Direction.of(false, true), Direction.of(true, false), Direction.of(false, false)));
-        lineList.add(Arrays.asList(Direction.of(false, true), Direction.of(true, false), Direction.of(false, true), Direction.of(true, false)));
-        lineList.add(Arrays.asList(Direction.of(false, true), Direction.of(true, false), Direction.of(false, false), Direction.of(false, false)));
+        Line firstLine = Line.ofDirectionList(Arrays.asList(Direction.of(false, false), Direction.of(false, true), Direction.of(true, false), Direction.of(false, false)));
+        Line secondLine = Line.ofDirectionList(Arrays.asList(Direction.of(false, true), Direction.of(true, false), Direction.of(false, true), Direction.of(true, false)));
+        Line thirdLine = Line.ofDirectionList(Arrays.asList(Direction.of(false, true), Direction.of(true, false), Direction.of(false, false), Direction.of(false, false)));
+        LineList lineList = new LineList(Arrays.asList(firstLine,secondLine,thirdLine));
 
         assertThat(lineList.finalPosition(new Position(0))).isEqualTo(new Position(0));
         assertThat(lineList.finalPosition(new Position(1))).isEqualTo(new Position(3));
