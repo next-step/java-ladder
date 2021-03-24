@@ -1,31 +1,48 @@
 package ladder;
 
 import ladder.domain.Point;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class PointTest {
 
     @Test
-    @DisplayName("라인이 없는 좌표 라인이 있는 좌표 생성 테스트")
-    void create_with_new() {
-        Point emptyPoint = new Point(false);
-        Point filledPoint = new Point( true);
-
-        assertThat(emptyPoint.isFilled()).isFalse();
-        assertThat(filledPoint.isFilled()).isTrue();
+    public void first() {
+        assertThat(Point.first(TRUE).movableIndex()).isEqualTo(1);
+        assertThat(Point.first(FALSE).movableIndex()).isEqualTo(0);
     }
 
     @Test
-    @DisplayName("라인이 없는 좌표 라인이 있는 좌표 static 생성 테스트")
-    void create_static() {
-        Point emptyPoint = Point.emptyPoint();
-        Point filledPoint = Point.filledPoint();
+    public void next_stay() {
+        Point second = Point.first(FALSE).next(FALSE);
+        assertThat(second.movableIndex()).isEqualTo(1);
+    }
 
-        assertThat(emptyPoint.isFilled()).isFalse();
-        assertThat(filledPoint.isFilled()).isTrue();
+    @Test
+    public void next_left() {
+        Point second = Point.first(TRUE).next(FALSE);
+        assertThat(second.movableIndex()).isEqualTo(0);
+    }
+
+    @Test
+    public void next_right() {
+        Point second = Point.first(FALSE).next(TRUE);
+        assertThat(second.movableIndex()).isEqualTo(2);
+    }
+
+    @Test
+    public void next() {
+        Point second = Point.first(TRUE).next();
+        assertThat(second.movableIndex()).isEqualTo(0);
+    }
+
+    @Test
+    public void last() {
+        Point last = Point.first(FALSE).last();
+        assertThat(last.movableIndex()).isEqualTo(1);
     }
 
 }

@@ -4,15 +4,15 @@ public class Player {
 
     private final Name name;
 
-    private final LadderNumber startLadderNumber;
+    private final Position startPosition;
 
     public Player(String name, int ladderNumber) {
-        this(new Name(name), new LadderNumber(ladderNumber));
+        this(new Name(name), new Position(ladderNumber));
     }
 
-    public Player(Name name, LadderNumber ladderNumber) {
+    public Player(Name name, Position position) {
         this.name = name;
-        this.startLadderNumber = ladderNumber;
+        this.startPosition = position;
     }
 
     public String name() {
@@ -23,7 +23,7 @@ public class Player {
         return name.equals(new Name(playerName));
     }
 
-    public LadderNumber startLadderNumber() {
-        return startLadderNumber;
+    public Position startPosition() {
+        return startPosition;
     }
 }

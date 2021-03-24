@@ -10,6 +10,10 @@ public class Prize {
         this.prize = prize;
     }
 
+    public String prizeName() {
+        return prize;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -23,10 +27,5 @@ public class Prize {
     @Override
     public int hashCode() {
         return prize != null ? prize.hashCode() : 0;
-    }
-
-    @Override
-    public String toString() {
-        return prize;
     }
 }

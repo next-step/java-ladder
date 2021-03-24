@@ -1,9 +1,9 @@
 package ladder;
 
-import ladder.domain.LadderNumber;
+import ladder.domain.Direction;
 import ladder.domain.Line;
 import ladder.domain.LineList;
-import ladder.domain.Point;
+import ladder.domain.Position;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -27,18 +27,17 @@ public class LineListTest {
     }
 
     @Test
-    @DisplayName("endLadderNumber로 사다리타기 실행후 결과 테스트")
-    void endLadderNumber() {
-        LineList lineList = new LineList();
-        lineList.add(Arrays.asList(new Point(false), new Point(false), new Point(true), new Point(false)));
-        lineList.add(Arrays.asList(new Point(false), new Point(true), new Point(false), new Point(true)));
-        lineList.add(Arrays.asList(new Point(false), new Point(true), new Point(false), new Point(false)));
+    @DisplayName("finalPosition 사다리타기 실행후 결과 테스트")
+    void finalPosition() {
+        Line firstLine = Line.ofDirectionList(Arrays.asList(Direction.of(false, false), Direction.of(false, true), Direction.of(true, false), Direction.of(false, false)));
+        Line secondLine = Line.ofDirectionList(Arrays.asList(Direction.of(false, true), Direction.of(true, false), Direction.of(false, true), Direction.of(true, false)));
+        Line thirdLine = Line.ofDirectionList(Arrays.asList(Direction.of(false, true), Direction.of(true, false), Direction.of(false, false), Direction.of(false, false)));
+        LineList lineList = new LineList(Arrays.asList(firstLine,secondLine,thirdLine));
 
-
-        assertThat(lineList.endLadderNumber(new LadderNumber(0))).isEqualTo(new LadderNumber(0));
-        assertThat(lineList.endLadderNumber(new LadderNumber(1))).isEqualTo(new LadderNumber(3));
-        assertThat(lineList.endLadderNumber(new LadderNumber(2))).isEqualTo(new LadderNumber(1));
-        assertThat(lineList.endLadderNumber(new LadderNumber(3))).isEqualTo(new LadderNumber(2));
+        assertThat(lineList.finalPosition(new Position(0))).isEqualTo(new Position(0));
+        assertThat(lineList.finalPosition(new Position(1))).isEqualTo(new Position(3));
+        assertThat(lineList.finalPosition(new Position(2))).isEqualTo(new Position(1));
+        assertThat(lineList.finalPosition(new Position(3))).isEqualTo(new Position(2));
     }
 
 

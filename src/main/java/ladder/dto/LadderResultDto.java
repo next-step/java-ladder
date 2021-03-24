@@ -1,6 +1,6 @@
 package ladder.dto;
 
-import ladder.domain.Ladder;
+import ladder.domain.Prize;
 import ladder.domain.LadderBoard;
 import ladder.domain.Player;
 import ladder.domain.PlayerList;
@@ -21,8 +21,8 @@ public class LadderResultDto {
                 .stream()
                 .map(Player::name)
                 .collect(Collectors.toList());
-        prizeNameList = ladderBoard.ladderList()
-                .stream().map(Ladder::prizeName)
+        prizeNameList = ladderBoard.prizeList()
+                .stream().map(Prize::prizeName)
                 .collect(Collectors.toList());
         lineList = ladderBoard.lineList()
                 .stream().map(LineDto::new)

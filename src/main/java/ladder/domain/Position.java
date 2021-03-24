@@ -1,10 +1,10 @@
 package ladder.domain;
 
-public class LadderNumber {
+public class Position {
 
     private final int number;
 
-    public LadderNumber(int number) {
+    public Position(int number) {
         this.number = number;
     }
 
@@ -13,7 +13,7 @@ public class LadderNumber {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        LadderNumber that = (LadderNumber) o;
+        Position that = (Position) o;
 
         return number == that.number;
     }
@@ -21,14 +21,6 @@ public class LadderNumber {
     @Override
     public int hashCode() {
         return number;
-    }
-
-    public LadderNumber leftLadderNumber() {
-        return new LadderNumber(number - 1);
-    }
-
-    public LadderNumber rightLadderNumber() {
-        return new LadderNumber(number + 1);
     }
 
     public int number() {

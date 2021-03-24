@@ -8,29 +8,29 @@ public class LadderBoard {
 
     private final LineList lineList;
 
-    private final LadderList ladderList;
+    private final PrizeList prizeList;
 
-    public LadderBoard(LineList lineList, LadderList ladderList) {
+    public LadderBoard(LineList lineList, PrizeList prizeList) {
         this.lineList = lineList;
-        this.ladderList = ladderList;
+        this.prizeList = prizeList;
     }
 
     public static LadderBoard of(LadderGameRequest ladderGameRequest) {
         LineList lineList = LineList.of(ladderGameRequest);
-        LadderList ladderList = LadderList.of(ladderGameRequest.prizeList());
-        return new LadderBoard(lineList, ladderList);
+        PrizeList prizeList = PrizeList.of(ladderGameRequest.prizeList());
+        return new LadderBoard(lineList, prizeList);
     }
 
     public Prize prize(Player player) {
-        LadderNumber endLadderNumber = lineList.endLadderNumber(player.startLadderNumber());
-        return ladderList.prize(endLadderNumber);
+        Position endPosition = lineList.finalPosition(player.startPosition());
+        return prizeList.prize(endPosition);
     }
 
     public List<Line> lineList() {
         return lineList.lineList();
     }
 
-    public List<Ladder> ladderList() {
-        return ladderList.ladderList();
+    public List<Prize> prizeList() {
+        return prizeList.prizeList();
     }
 }
