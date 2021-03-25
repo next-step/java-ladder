@@ -38,8 +38,8 @@ class LinesTest {
 
         assertEquals(new Player("SKT", 0), resultPlayers.getPlayer(0));
         assertEquals(new Player("TS", 1), resultPlayers.getPlayer(1));
-        assertEquals(new Player("KT", 2), resultPlayers.getPlayer(2));
-        assertEquals(new Player("LG", 3), resultPlayers.getPlayer(3));
+        assertEquals(new Player("LG", 2), resultPlayers.getPlayer(2));
+        assertEquals(new Player("KT", 3), resultPlayers.getPlayer(3));
 
 
     }
