@@ -34,4 +34,8 @@ public class Position {
     public void leftMove() {
         this.position = position - 1;
     }
+
+    public int compare(Position position) {
+        return this.position - position.position;
+    }
 }

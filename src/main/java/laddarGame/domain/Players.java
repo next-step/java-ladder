@@ -4,12 +4,13 @@ import laddarGame.dto.PlayerDto;
 import laddarGame.exception.DuplicatePositionException;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
+import static java.util.stream.Collectors.toList;
 
 public class Players {
 
-    private final List<Player> playerList;
+    private List<Player> playerList;
 
     private static final String DELIMITER = ",";
     private static final int ZERO = 0;
@@ -26,7 +27,7 @@ public class Players {
     private static List<Player> playerList(String[] playerNames) {
         return IntStream.range(ZERO, playerNames.length)
                 .mapToObj(position -> new Player(playerNames[position], position))
-                .collect(Collectors.toList());
+                .collect(toList());
     }
 
     private static String[] nameParser(String playerNames) {
@@ -54,7 +55,7 @@ public class Players {
     public List<PlayerDto> playersDto() {
         return playerList.stream()
                 .map(Player::playerDto)
-                .collect(Collectors.toList());
+                .collect(toList());
     }
 
     public Player getPlayer(int index) {
@@ -64,5 +65,12 @@ public class Players {
     public void movePoint(List<Point> line) {
         IntStream.range(0, line.size() - 1)
                 .forEach(index -> line.get(index).move(getPlayer(index), getPlayer(index + 1)));
+        sorted();
+    }
+
+    private void sorted() {
+        this.playerList = playerList.stream()
+                .sorted(Player::compare)
+                .collect(toList());
     }
 }

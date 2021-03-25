@@ -42,4 +42,8 @@ public class Player {
     public PlayerDto playerDto() {
         return new PlayerDto(name, position);
     }
+
+    public int compare(Player player2) {
+        return position.compare(player2.getPosition());
+    }
 }
