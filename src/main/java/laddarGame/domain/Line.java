@@ -10,7 +10,7 @@ import static java.util.stream.Collectors.toList;
 
 public class Line {
 
-    private final List<Boolean> line;
+    private final List<Point> line;
 
     public static final int ONE = 1;
     public static final int ZERO = 0;
@@ -23,7 +23,9 @@ public class Line {
         if (valid(line)) {
             throw new ContinuousLadderCreateException("이동하는 부분이 연속적으로 생성되면 안됩니다.");
         }
-        this.line = line;
+        this.line = line.stream().
+                map(Point::of).
+                collect(toList());
     }
 
     private boolean valid(List<Boolean> line) {
