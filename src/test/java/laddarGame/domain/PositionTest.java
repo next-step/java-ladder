@@ -12,4 +12,20 @@ class PositionTest {
     void samePosition() {
         assertEquals(new Position(1), new Position(1));
     }
+
+    @DisplayName("오른쪽으로 이동한다.")
+    @Test
+    void rightMove() {
+        Position position = new Position(1);
+
+        assertEquals(new Position(2), position.rightMove());
+    }
+
+    @DisplayName("왼쪽으로 이동한다.")
+    @Test
+    void leftMove() {
+        Position position = new Position(1);
+
+        assertEquals(new Position(0), position.leftMove());
+    }
 }

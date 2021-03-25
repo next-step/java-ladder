@@ -25,7 +25,7 @@ class LineTest {
 
         LineDto lineDto = line.lineDto();
 
-        assertEquals(new LineDto(List.of(true, false, false)), lineDto);
+        assertEquals(new LineDto(List.of(Point.of(true), Point.of(false), Point.of(false))), lineDto);
     }
 
 }
