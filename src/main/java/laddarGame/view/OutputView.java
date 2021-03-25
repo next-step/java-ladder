@@ -54,4 +54,7 @@ public class OutputView {
         int blankLength = MAX_NAME_LENGTH - name.length();
         return name + BLANK.repeat(blankLength) + BLANK;
     }
+
+    public static void printMatchResult() {
+    }
 }

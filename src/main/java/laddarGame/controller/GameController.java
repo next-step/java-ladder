@@ -9,9 +9,11 @@ import laddarGame.view.OutputView;
 public class GameController {
 
     private final LadderGame ladderGame;
+    private final MatchOfPrize matchOfPrize;
 
-    public GameController(String playerNames, int ladderHeight) {
+    public GameController(String playerNames, int ladderHeight, String prizeList) {
         this.ladderGame = new LadderGame(playerNames, ladderHeight);
+        this.matchOfPrize = new MatchOfPrize(prizeList);
     }
 
     public void outPutLadder() {
@@ -24,14 +26,18 @@ public class GameController {
         return ladderGame.play();
     }
 
-
     public static void main(String[] args) {
         String playerNames = InputView.playerName();
+        String prizeList = InputView.prize();
         int ladderHeight = InputView.ladderHeight();
-        GameController gameController = new GameController(playerNames, ladderHeight);
+        GameController gameController = new GameController(playerNames, ladderHeight, prizeList);
         gameController.outPutLadder();
+
+        while (true) {
+            String player = InputView.prizeOfPlayer();
+            //gameController.matchOfPrize(player);
+            OutputView.printMatchResult();
+        }
     }
-
-
 }
 
