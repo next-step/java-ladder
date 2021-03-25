@@ -51,5 +51,9 @@ public class Line {
     public LineDto lineDto() {
         return new LineDto(line);
     }
+
+    public void move(Players players) {
+        players.movePoint(line);
+    }
 }
 

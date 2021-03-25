@@ -56,4 +56,13 @@ public class Players {
                 .map(Player::playerDto)
                 .collect(Collectors.toList());
     }
+
+    public Player getPlayer(int index) {
+        return playerList.get(index);
+    }
+
+    public void movePoint(List<Point> line) {
+        IntStream.range(0, line.size() - 1)
+                .forEach(index -> line.get(index).move(getPlayer(index), getPlayer(index + 1)));
+    }
 }
