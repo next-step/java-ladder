@@ -20,5 +20,9 @@ public class LadderGame {
     public LinesDto ladderDto() {
         return new LinesDto(lines.linesDto());
     }
+
+    public static LadderCreateStrategy createStrategy() {
+        return LadderCreateStrategy.getInstance();
+    }
 }
 

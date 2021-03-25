@@ -3,10 +3,9 @@ package laddarGame.domain;
 import laddarGame.dto.LineDto;
 
 import java.util.List;
-import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
-import static laddarGame.domain.Line.ZERO;
 
 //각 사다리 라인을 관리하는 일급컬렉션
 public class Lines {
@@ -18,8 +17,8 @@ public class Lines {
     }
 
     public static List<Line> createLines(int playerCount, int ladderHeight) {
-        return IntStream.range(ZERO, ladderHeight)
-                .mapToObj(index -> new Line(playerCount))
+        return Stream.generate(() -> new Line(playerCount))
+                .limit(ladderHeight)
                 .collect(toList());
     }
 

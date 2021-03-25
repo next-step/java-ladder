@@ -39,7 +39,7 @@ public class Line {
     }
 
     public static List<Boolean> createLine(int playerCount) {
-        LadderCreateStrategy conditional = LadderCreateStrategy.of();
+        LadderCreateStrategy conditional = LadderGame.createStrategy();
         final boolean[] lastPoint = new boolean[playerCount];
         return IntStream.rangeClosed(ONE, playerCount - ONE)
                 .mapToObj(i -> lastPoint[i] = conditional.test(lastPoint[i - ONE]))
