@@ -26,4 +26,12 @@ public class Position {
     public int position() {
         return position;
     }
+
+    public Position rightMove() {
+        return new Position(position + 1);
+    }
+
+    public Position leftMove() {
+        return new Position(position - 1);
+    }
 }
