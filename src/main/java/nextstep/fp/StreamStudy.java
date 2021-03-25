@@ -5,7 +5,9 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 public class StreamStudy {
@@ -26,6 +28,15 @@ public class StreamStudy {
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
         // TODO 이 부분에 구현한다.
+        List<String> top100Words = words.stream()
+                .filter(word->word.length()>12)
+                .map(word->word.toLowerCase(Locale.ROOT))
+                .distinct()
+                .sorted((word1, word2)->word2.length()-word1.length())
+                .collect(Collectors.toList())
+                .subList(0, 100);
+        System.out.println(top100Words);
+
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
