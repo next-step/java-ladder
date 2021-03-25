@@ -1,6 +1,5 @@
 package nextstep.optional;
 
-import javax.swing.text.html.Option;
 import java.util.Optional;
 
 public class User {
@@ -25,14 +24,14 @@ public class User {
     }
 
     public static boolean ageIsInRange1(User user) {
-        return Optional.ofNullable(user).map(userInStream->userInStream.age)
-                .filter(age->(age>=30 && age<=45))
+        return Optional.ofNullable(user).map(userInStream -> userInStream.age)
+                .filter(age -> (age >= 30 && age <= 45))
                 .isPresent();
     }
 
     public static boolean ageIsInRange2(User user) {
-        return Optional.ofNullable(user).map(userInStream->userInStream.age)
-                .filter(age->(age>=30 && age<=45))
+        return Optional.ofNullable(user).map(userInStream -> userInStream.age)
+                .filter(age -> (age >= 30 && age <= 45))
                 .isPresent();
     }
 
