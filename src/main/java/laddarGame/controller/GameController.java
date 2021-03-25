@@ -20,11 +20,18 @@ public class GameController {
         OutputView.print(linesDto, playersDto);
     }
 
+    public PlayersDto play() {
+        return ladderGame.play();
+    }
+
+
     public static void main(String[] args) {
         String playerNames = InputView.playerName();
         int ladderHeight = InputView.ladderHeight();
         GameController gameController = new GameController(playerNames, ladderHeight);
         gameController.outPutLadder();
     }
+
+
 }
 
