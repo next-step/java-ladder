@@ -36,8 +36,8 @@ class LineTest {
 
         line.move(players);
 
-        assertEquals(players.getPlayer(0), new Player("LG", 1));
-        assertEquals(players.getPlayer(1), new Player("SKT", 0));
+        assertEquals(players.getPlayer(0), new Player("SKT", 0));
+        assertEquals(players.getPlayer(1), new Player("LG", 1));
         assertEquals(players.getPlayer(2), new Player("KT", 2));
         assertEquals(players.getPlayer(3), new Player("TS", 3));
 
