@@ -27,5 +27,4 @@ class LineTest {
 
         assertEquals(new LineDto(List.of(Point.of(true), Point.of(false), Point.of(false))), lineDto);
     }
-
 }

@@ -17,15 +17,15 @@ class PositionTest {
     @Test
     void rightMove() {
         Position position = new Position(1);
-
-        assertEquals(new Position(2), position.rightMove());
+        position.rightMove();
+        assertEquals(new Position(2), position);
     }
 
     @DisplayName("왼쪽으로 이동한다.")
     @Test
     void leftMove() {
         Position position = new Position(1);
-
-        assertEquals(new Position(0), position.leftMove());
+        position.leftMove();
+        assertEquals(new Position(0), position);
     }
 }

@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Position {
 
-    private final int position;
+    private int position;
 
     public Position(int position) {
         this.position = position;
@@ -27,11 +27,11 @@ public class Position {
         return position;
     }
 
-    public Position rightMove() {
-        return new Position(position + 1);
+    public void rightMove() {
+        this.position = position + 1;
     }
 
-    public Position leftMove() {
-        return new Position(position - 1);
+    public void leftMove() {
+        this.position = position - 1;
     }
 }

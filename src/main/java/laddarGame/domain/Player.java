@@ -17,7 +17,15 @@ public class Player {
     public Position getPosition() {
         return position;
     }
-    
+
+    public void rightMove() {
+        position.rightMove();
+    }
+
+    public void leftMove() {
+        position.leftMove();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
