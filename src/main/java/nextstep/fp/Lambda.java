@@ -1,8 +1,16 @@
 package nextstep.fp;
 
 import java.util.List;
+import java.util.stream.IntStream;
+
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
 
 public class Lambda {
+
+    private Lambda() {
+    }
+
     public static void printAllOld(List<Integer> numbers) {
         System.out.println("printAllOld");
 
@@ -18,39 +26,26 @@ public class Lambda {
     }
 
     public static void runThread() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("Hello from thread");
-            }
-        }).start();
+        new Thread(() -> System.out.println("Hello from thread")).start();
     }
 
     public static int sumAll(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            total += number;
-        }
-        return total;
+        return numbers.stream()
+                      .flatMapToInt(IntStream::of)
+                      .sum();
+    }
+
+    public static int sumAll(List<Integer> numbers, Conditional c) {
+        return numbers.stream()
+                      .filter(c::test)
+                      .collect(collectingAndThen(toList(), Lambda::sumAll));
     }
 
     public static int sumAllEven(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number % 2 == 0) {
-                total += number;
-            }
-        }
-        return total;
+        return sumAll(numbers, n -> n % 2 == 0);
     }
 
     public static int sumAllOverThree(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number > 3) {
-                total += number;
-            }
-        }
-        return total;
+        return sumAll(numbers, n -> n > 3);
     }
 }
