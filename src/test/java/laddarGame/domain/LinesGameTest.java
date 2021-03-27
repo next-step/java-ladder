@@ -18,4 +18,5 @@ class LinesGameTest {
         assertEquals(new PlayerDto("LG", 0), playersDto.getPlayerList().get(0));
         assertEquals(new PlayerDto("SKT", 1), playersDto.getPlayerList().get(1));
     }
+
 }

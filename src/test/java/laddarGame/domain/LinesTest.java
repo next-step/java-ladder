@@ -34,12 +34,12 @@ class LinesTest {
         Players players = createPlayers();
         Lines lines = new Lines(createLines());
 
-        Players resultPlayers = lines.play(players);
+        List<String> resultPlayers = lines.play(players);
 
-        assertEquals(new Player("SKT", 0), resultPlayers.getPlayer(0));
-        assertEquals(new Player("TS", 1), resultPlayers.getPlayer(1));
-        assertEquals(new Player("LG", 2), resultPlayers.getPlayer(2));
-        assertEquals(new Player("KT", 3), resultPlayers.getPlayer(3));
+        assertEquals("SKT", resultPlayers.get(0));
+        assertEquals("TS", resultPlayers.get(1));
+        assertEquals("LG", resultPlayers.get(2));
+        assertEquals("KT", resultPlayers.get(3));
 
 
     }
