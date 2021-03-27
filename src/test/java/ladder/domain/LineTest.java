@@ -39,4 +39,18 @@ public class LineTest {
 
         //then
     }
+
+    @ParameterizedTest
+    @ValueSource(ints = {2,3,4})
+    @DisplayName("마지막은 포인트는 false 로 끝나야한다.")
+    public void islastPointFalseTest(int countOfPerson) throws Exception {
+        //given
+
+        //when
+        Line line = new Line(countOfPerson);
+        List<Boolean> points = line.readOnlyPoints();
+        
+        //then
+        assertThat(points.get(points.size()-1)).isFalse();
+    }
 }
