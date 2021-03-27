@@ -2,6 +2,8 @@ package ladder.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
@@ -10,25 +12,25 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 
 public class LineTest {
 
-    @Test
+    @ParameterizedTest
+    @ValueSource(ints = {3,4,5})
     @DisplayName("참여자 만큼 라인 포인트 생성")
-    public void createLinePointTest() throws Exception {
+    public void createLinePointTest(int countOfPerson) throws Exception {
         //given
-        int countOfPerson = 3;
 
         //when
-        Line line = new Line(3);
+        Line line = new Line(countOfPerson);
         int size = line.readOnlyPoints().size();
 
         //then
         assertThat(size).isEqualTo(countOfPerson);
     }
 
-    @Test
+    @ParameterizedTest
+    @ValueSource(ints = {0,1})
     @DisplayName("참여자 2명 미만 일시 에러")
-    public void personTwoUnderException() throws Exception {
+    public void personTwoUnderException(int countOfPersion) throws Exception {
         //given
-        int countOfPersion = 1;
 
         //when
         assertThatIllegalArgumentException().isThrownBy(() -> {
@@ -36,6 +38,5 @@ public class LineTest {
         });
 
         //then
-
     }
 }
