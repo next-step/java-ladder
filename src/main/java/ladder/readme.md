@@ -4,4 +4,11 @@
 feat(step2): generate controller
 메인 클래스와 컨트롤러를 생성
 
+feat(step2): add participants input view
+인풋 뷰, 서비스, Exception 클래스 생성
+이름을 받아서 검증
+
+refact(step2): move service logic to domain
+participant 도메인으로 이름 검증 로직 이동
+participantList 일급 컬렉션을 통해 팩토리 패턴으로 participant 리스트 생성
 ```
