@@ -20,4 +20,8 @@ feat(step2): add base ladder map
 사다리의 위치 정보를 초기화
 사다리 세로줄을 완성
 사다리 맵 상단에 이름 추가
+
+feat(step2): add horizontal link on ladder map
+사다리의 가로줄을 랜덤으로 추가
+결과 출력 화면 추가
 ```
