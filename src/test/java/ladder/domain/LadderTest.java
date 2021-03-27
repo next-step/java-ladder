@@ -26,4 +26,18 @@ public class LadderTest {
         //then
         assertThat(lines.size()).isEqualTo(ladderSize) ;
     }
+
+
+    @ParameterizedTest
+    @ValueSource(ints = {0,-1})
+    @DisplayName("사다리 길이 유효성 확인")
+    public void ladderSizeExceptionTest(int ladderSize) throws Exception {
+        //given
+        int countOfPerson = 5;
+
+        //when
+        assertThatIllegalArgumentException().isThrownBy(() -> {
+            new Ladder(ladderSize, countOfPerson);
+        });
+    }
 }
