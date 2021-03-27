@@ -1,4 +1,7 @@
-package ladder;
+package ladder.view;
+
+import ladder.domain.Line;
+import ladder.dto.Name;
 
 import java.util.List;
 

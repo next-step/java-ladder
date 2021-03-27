@@ -1,4 +1,9 @@
-package ladder;
+package ladder.controller;
+
+import ladder.dto.InputManagement;
+import ladder.domain.Ladder;
+import ladder.view.InputView;
+import ladder.view.ResultView;
 
 public class LadderController {
 

@@ -1,4 +1,4 @@
-package ladder;
+package ladder.dto;
 
 public class Name {
 
