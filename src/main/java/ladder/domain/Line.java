@@ -24,8 +24,6 @@ public class Line {
         isPersonUnderTwo(countOfPerson);
         this.pointStrategy = pointStrategy;
         this.points = createPoints(countOfPerson);
-        points.stream()
-                .forEach(System.out::println);
     }
 
     private void isPersonUnderTwo(int countOfPerson) {
@@ -42,15 +40,12 @@ public class Line {
         if (points.isEmpty()) {
             recursionPoint(maxSize, addPoint(points, pointStrategy.isPoint()));
         }
-
         if (maxSize == points.size()) {
             return addPoint(points, Boolean.FALSE);
         }
-
         if (!isMaxSize(maxSize, points) && !points.get(points.size()-MINUS_INDEX_SIZE)) {
             recursionPoint(maxSize, addPoint(points, pointStrategy.isPoint()));
         }
-
         if (!isMaxSize(maxSize, points) && points.get(points.size()-MINUS_INDEX_SIZE)) {
             recursionPoint(maxSize, addPoint(points, Boolean.FALSE));
         }
