@@ -8,17 +8,17 @@ public class ParticipantList {
 
     private List<Participant> participants;
 
-    public ParticipantList(String participantString){
+    public ParticipantList(String participantString) {
         this.participants = participants(participantString);
     }
 
-    private List<Participant> participants(String participantString){
+    private List<Participant> participants(String participantString) {
         return Arrays.stream(participantString.split(","))
                 .map(Participant::new)
                 .collect(Collectors.toList());
     }
 
-    public List<String> dto(){
+    public List<String> dto() {
         return this.participants.stream()
                 .map(Participant::name)
                 .collect(Collectors.toList());

@@ -11,4 +11,8 @@ feat(step2): add participants input view
 refact(step2): move service logic to domain
 participant 도메인으로 이름 검증 로직 이동
 participantList 일급 컬렉션을 통해 팩토리 패턴으로 participant 리스트 생성
+
+feat(step2): add maximum ladder height input view
+사다리 높이를 인풋으로 받음
+인풋은 서비스로 전달되고 도메인을 통해 검증됨
 ```

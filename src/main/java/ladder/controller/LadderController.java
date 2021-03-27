@@ -14,5 +14,8 @@ public class LadderController {
     public void generateLadder() {
         String participants = inputView.participants();
         List<String> verifiedParticipants = ladderService.verifiedParticipants(participants);
+
+        int maximumLadderHeight = inputView.maximumLadderHeight();
+        int verifiedMaximumLadderHeight = ladderService.verifiedMaximumLadderHeight(maximumLadderHeight);
     }
 }

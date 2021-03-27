@@ -68,4 +68,22 @@ class LadderServiceTest {
         assertThat(thrown.errorCode()).isEqualTo(ErrorCode.INVALID_PARTICIPANTS_NAME);
     }
 
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 99999, 0x7fffffff})
+    @DisplayName("정상적인 이름들을 승인할 수 있다")
+    void validatesLadderHeights(int inputInteger) {
+        BDDMockito.given(inputView.maximumLadderHeight()).willReturn(inputInteger);
+        int verifiedMaximumLadderHeight = ladderService.verifiedMaximumLadderHeight(inputInteger);
+        assertThat(verifiedMaximumLadderHeight).isEqualTo(inputInteger);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {0, -1, -2, -3, -4, -5, -6, -7, -8, -9, -10, -99999, 0x80000000})
+    @DisplayName("0이나 음수를 사다리 높이로 주면 INVALID_LADDER_HEIGHT을 던진다")
+    void negativeInputThrowsException(int inputInteger) {
+        BDDMockito.given(inputView.maximumLadderHeight()).willReturn(inputInteger);
+        CustomException thrown = assertThrows(CustomException.class, () -> ladderService.verifiedMaximumLadderHeight(inputInteger));
+        assertThat(thrown.errorCode()).isEqualTo(ErrorCode.INVALID_LADDER_HEIGHT);
+    }
+
 }

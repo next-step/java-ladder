@@ -2,7 +2,8 @@ package ladder.exception;
 
 public enum ErrorCode {
     INVALID_PARTICIPANTS_INPUT("I001", "Participants list should be Alphabet separated by comma"),
-    INVALID_PARTICIPANTS_NAME("I002", "Participants cannot have name longer than 5 characters");
+    INVALID_PARTICIPANTS_NAME("I002", "Participants cannot have name longer than 5 characters"),
+    INVALID_LADDER_HEIGHT("L001", "Ladder height should be positive integer");
 
     private final String code;
     private final String message;

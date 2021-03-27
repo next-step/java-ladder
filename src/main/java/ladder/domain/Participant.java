@@ -28,7 +28,7 @@ public class Participant {
         return Pattern.matches("[A-Za-z, ]+", participantString);
     }
 
-    public String name(){
+    public String name() {
         return this.name;
     }
 }
