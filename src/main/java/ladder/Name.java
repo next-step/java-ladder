@@ -2,7 +2,7 @@ package ladder;
 
 public class Name {
 
-    private String name;
+    private final String name;
 
     public Name(String name) {
         if (name.length() > 5) {
@@ -10,5 +10,9 @@ public class Name {
         }
 
         this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 }
