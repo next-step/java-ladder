@@ -28,7 +28,7 @@ public class LineTest {
     @DisplayName("참여자 2명 미만 일시 에러")
     public void personTwoUnderException() throws Exception {
         //given
-        int countOfPersion = 2;
+        int countOfPersion = 1;
 
         //when
         assertThatIllegalArgumentException().isThrownBy(() -> {

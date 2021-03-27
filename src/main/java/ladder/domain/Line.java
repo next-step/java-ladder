@@ -6,12 +6,21 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Line {
+    private static final String MINIMUM_PERSON_ERRRO = "2명 이상 참여해야합니다.";
+    private static final int MINIMUM_PERSON = 2;
     private static final int POINT_START_INDEX = 0;
+
     private final List<Boolean> points;
 
     public Line (int countOfPerson) {
-        // 라인의 좌표 값에 선이 있는지 유무를 판단하는 로직 추가
+        isPersonUnderTwo(countOfPerson);
         this.points = createPoints(countOfPerson);
+    }
+
+    private void isPersonUnderTwo(int countOfPerson) {
+        if (MINIMUM_PERSON > countOfPerson) {
+            throw new IllegalArgumentException(MINIMUM_PERSON_ERRRO);
+        }
     }
 
     private List<Boolean> createPoints(int countOfPerson) {
