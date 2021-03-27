@@ -34,10 +34,10 @@ public class Line {
                 .forEach(this::update);
     }
 
-    public void update(int i) {
+    public void update(int index) {
         boolean isLine = random.nextBoolean();
-        if (isValidate(Arrays.asList(points.get(i - 1), isLine))) {
-            points.set(i, isLine);
+        if (isValidate(Arrays.asList(points.get(index - 1), isLine))) {
+            points.set(index, isLine);
         }
     }
 
