@@ -1,7 +1,10 @@
 package laddarGame.controller;
 
 import laddarGame.domain.LadderGame;
+import laddarGame.domain.MatchOfPrize;
+import laddarGame.domain.PrizesDto;
 import laddarGame.dto.LinesDto;
+import laddarGame.dto.MatchOfPrizeDto;
 import laddarGame.dto.PlayersDto;
 import laddarGame.view.InputView;
 import laddarGame.view.OutputView;
@@ -19,25 +22,30 @@ public class GameController {
     public void outPutLadder() {
         LinesDto linesDto = ladderGame.ladderDto();
         PlayersDto playersDto = ladderGame.playersDto();
-        OutputView.print(linesDto, playersDto);
+        PrizesDto prizesDto = matchOfPrize.allPrize();
+        OutputView.print(linesDto, playersDto, prizesDto);
     }
 
-    public PlayersDto play() {
-        return ladderGame.play();
+    public void play() {
+        matchOfPrize.match(ladderGame.play());
+    }
+
+    public MatchOfPrizeDto match(String player) {
+        if (player.equals("all")) {
+            return matchOfPrize.all();
+        }
+        return matchOfPrize.getPrizeResult(player);
     }
 
     public static void main(String[] args) {
-        String playerNames = InputView.playerName();
-        String prizeList = InputView.prize();
-        int ladderHeight = InputView.ladderHeight();
-        GameController gameController = new GameController(playerNames, ladderHeight, prizeList);
+        GameController gameController = new GameController(InputView.playerName(), InputView.ladderHeight(), InputView.prize());
         gameController.outPutLadder();
-
+        gameController.play();
         while (true) {
             String player = InputView.prizeOfPlayer();
-            //gameController.matchOfPrize(player);
-            OutputView.printMatchResult();
+            OutputView.printMatchPrize(gameController.match(player));
         }
     }
+
 }
 

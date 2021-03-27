@@ -1,11 +1,10 @@
 package laddarGame.view;
 
-import laddarGame.dto.LineDto;
-import laddarGame.dto.LinesDto;
-import laddarGame.dto.PlayerDto;
-import laddarGame.dto.PlayersDto;
+import laddarGame.domain.PrizesDto;
+import laddarGame.dto.*;
 
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 
 public class OutputView {
@@ -16,13 +15,19 @@ public class OutputView {
 
     private static int maxNameLength;
 
-    public static void print(LinesDto linesDto, PlayersDto playersDto) {
+    public static void print(LinesDto linesDto, PlayersDto playersDto, PrizesDto prizesDto) {
         printPlayer(playersDto);
         maxNameLength = maxNameLength(playersDto);
         linesDto.getLineDto()
                 .stream()
                 .map(LineDto::getLine)
                 .forEach(OutputView::printLadder);
+        printPrize(prizesDto);
+    }
+
+    private static void printPrize(PrizesDto prizesDto) {
+        prizesDto.getPrizeList().forEach(prize -> System.out.print(prize + BLANK.repeat(MAX_NAME_LENGTH - prize.length()) + BLANK));
+        System.out.println();
     }
 
     private static int maxNameLength(PlayersDto playersDto) {
@@ -55,6 +60,27 @@ public class OutputView {
         return name + BLANK.repeat(blankLength) + BLANK;
     }
 
-    public static void printMatchResult() {
+    public static void printMatchPrize(MatchOfPrizeDto matchOfPrizeDto) {
+        System.out.println("실행결과");
+        List<String> playerList = matchOfPrizeDto.getPlayerList();
+        Iterator<String> prizes = matchOfPrizeDto.getPrizeList().iterator();
+
+        if (playerList.size() > DEFAULT_LENGTH) {
+            printAllPrize(playerList, prizes);
+        }
+        if (playerList.size() == DEFAULT_LENGTH) {
+            printOnePrize(prizes.next());
+        }
+
+        System.out.println();
+    }
+
+    public static void printOnePrize(String prize) {
+        System.out.println(prize);
+    }
+
+
+    public static void printAllPrize(List<String> playerList, Iterator<String> prizes) {
+        playerList.forEach(player -> System.out.println(player + " : " + prizes.next()));
     }
 }
