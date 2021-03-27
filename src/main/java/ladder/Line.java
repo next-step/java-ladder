@@ -1,9 +1,7 @@
 package ladder;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Line {
 
@@ -17,5 +15,9 @@ public class Line {
 
     public List<Boolean> getPoints() {
         return points;
+    }
+
+    public boolean isValidate(List<Boolean> points) {
+        return !points.get(0) || !points.get(1);
     }
 }
