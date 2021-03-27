@@ -21,9 +21,9 @@ public class Lambda {
         new Thread(() -> System.out.println("Hello from thread")).start();
     }
 
-    public static int sumAll(List<Integer> numbers, Conditional c) {
+    public static int sumAll(List<Integer> numbers, Conditional conditional) {
         return numbers.stream()
-                .filter(c::test)
+                .filter(conditional::test)
                 .mapToInt(Integer::intValue)
                 .sum();
     }
