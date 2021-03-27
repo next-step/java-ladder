@@ -14,7 +14,7 @@ public enum LineEnum {
         this.line = line;
     }
 
-    public static String of(Boolean isPoint) {
+    public static String ofLine(Boolean isPoint) {
         return Arrays.stream(values())
                 .filter(line -> line.isPoint == isPoint)
                 .findFirst()

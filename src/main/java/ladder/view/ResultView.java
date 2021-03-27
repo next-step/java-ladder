@@ -44,6 +44,6 @@ public class ResultView {
         if (index == points.size()-1) {
             return;
         }
-        System.out.print(LineEnum.of(points.get(index)));
+        System.out.print(LineEnum.ofLine(points.get(index)));
     }
 }
