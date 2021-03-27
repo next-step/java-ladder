@@ -20,6 +20,6 @@ public class LadderTest {
         List<Line> lines = ladder.readOnlyLines();
 
         //then
-        assertThat(lines.size()).isEqual(ladderSize) ;
+        assertThat(lines.size()).isEqualTo(ladderSize) ;
     }
 }

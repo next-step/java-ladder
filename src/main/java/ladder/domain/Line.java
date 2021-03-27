@@ -11,7 +11,6 @@ public class Line {
     private static final String MINIMUM_PERSON_ERRRO = "2명 이상 참여해야합니다.";
     private static final int MINIMUM_PERSON = 2;
     private static final int MINUS_INDEX_SIZE = 1;
-    private static final int POINT_START_INDEX = 0;
 
     private final PointStrategy pointStrategy;
     private final List<Boolean> points;
