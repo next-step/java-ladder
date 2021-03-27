@@ -5,8 +5,8 @@ import java.util.stream.Collectors;
 
 public class InputManagement {
 
-    private List<Name> names;
-    private int height;
+    private final List<Name> names;
+    private final int height;
 
     public InputManagement(List<String> names, int height) {
         this.names = names.stream()

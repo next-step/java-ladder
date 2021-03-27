@@ -4,13 +4,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.IntStream;
 
 public class Line {
 
+    private static final int MIN_PERSON = 2;
+    private static final int FIRST_INDEX = 0;
+    private static final int SECOND_INDEX = 1;
+    private static final Random random = new Random();
     private final List<Boolean> points = new ArrayList<>();
 
     public Line(int countOfPerson) {
-        if (countOfPerson < 2) {
+        if (countOfPerson < MIN_PERSON) {
             throw new IllegalArgumentException();
         }
 
@@ -24,18 +29,18 @@ public class Line {
     }
 
     public void draw() {
-        Random random = new Random();
+        points.set(FIRST_INDEX, random.nextBoolean());
+        IntStream.range(1, points.size() - 1).forEach(this::update);
+    }
 
-        points.set(0, random.nextBoolean());
-        for (int i = 1; i < points.size() - 1; i++) {
-            boolean isLine = random.nextBoolean();
-            if (isValidate(Arrays.asList(points.get(i - 1), isLine))) {
-                points.set(i, isLine);
-            }
+    public void update(int i) {
+        boolean isLine = random.nextBoolean();
+        if (isValidate(Arrays.asList(points.get(i - 1), isLine))) {
+            points.set(i, isLine);
         }
     }
 
     public boolean isValidate(List<Boolean> points) {
-        return !points.get(0) || !points.get(1);
+        return !points.get(FIRST_INDEX) || !points.get(SECOND_INDEX);
     }
 }

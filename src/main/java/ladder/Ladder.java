@@ -18,8 +18,6 @@ public class Ladder {
     }
 
     public void drawLine() {
-        for (Line line : ladder) {
-            line.draw();
-        }
+        ladder.forEach(Line::draw);
     }
 }
