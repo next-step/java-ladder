@@ -10,6 +10,10 @@ public class Line {
     private final List<Boolean> points = new ArrayList<>();
 
     public Line(int countOfPerson) {
+        if (countOfPerson < 2) {
+            throw new IllegalArgumentException();
+        }
+
         for (int i = 0; i < countOfPerson; i++) {
             points.add(Boolean.FALSE);
         }
