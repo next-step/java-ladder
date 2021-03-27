@@ -3,6 +3,8 @@ package laddarGame.domain;
 import laddarGame.dto.LinesDto;
 import laddarGame.dto.PlayersDto;
 
+import java.util.List;
+
 public class LadderGame {
 
     private final Lines lines;
@@ -25,8 +27,8 @@ public class LadderGame {
         return new LinesDto(lines.linesDto());
     }
 
-    public PlayersDto play() {
-        return playersDto(lines.play(players));
+    public List<String> play() {
+        return lines.play(players);
     }
 
     public static LadderCreateStrategy createStrategy() {

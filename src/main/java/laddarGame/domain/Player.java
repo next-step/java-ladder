@@ -6,12 +6,16 @@ import java.util.Objects;
 
 public class Player {
 
-    private final PlayerName name;
+    private final PlayerName playerName;
     private final Position position;
 
     public Player(String name, int position) {
-        this.name = new PlayerName(name);
+        this.playerName = new PlayerName(name);
         this.position = new Position(position);
+    }
+
+    public String playerName() {
+        return playerName.name();
     }
 
     public Position getPosition() {
@@ -31,16 +35,16 @@ public class Player {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Player player = (Player) o;
-        return Objects.equals(name, player.name) && Objects.equals(position, player.position);
+        return Objects.equals(playerName, player.playerName) && Objects.equals(position, player.position);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, position);
+        return Objects.hash(playerName, position);
     }
 
     public PlayerDto playerDto() {
-        return new PlayerDto(name, position);
+        return new PlayerDto(playerName, position);
     }
 
     public int compare(Player player2) {

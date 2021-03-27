@@ -69,4 +69,10 @@ public class Players {
                 .sorted(Player::compare)
                 .collect(toList());
     }
+
+    public List<String> getPlayerName() {
+        return playerList.stream()
+                .map(Player::playerName)
+                .collect(toList());
+    }
 }

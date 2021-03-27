@@ -32,8 +32,8 @@ public class Lines {
                 .collect(toList());
     }
 
-    public Players play(Players players) {
+    public List<String> play(Players players) {
         lines.forEach(line -> line.move(players));
-        return players;
+        return players.getPlayerName();
     }
 }
