@@ -10,7 +10,9 @@ public class LadderController {
     }
 
     public void run() {
-        ladder = new Ladder(inputView.inputNames().size(), inputView.inputHeight());
+        InputManagement inputManagement = new InputManagement(inputView.inputNames(), inputView.inputHeight());
+
+        ladder = new Ladder(inputManagement.getNames().size(), inputView.inputHeight());
         ladder.drawLine();
     }
 }
