@@ -30,7 +30,8 @@ public class Line {
 
     public void draw() {
         points.set(FIRST_INDEX, random.nextBoolean());
-        IntStream.range(1, points.size() - 1).forEach(this::update);
+        IntStream.range(1, points.size() - 1)
+                .forEach(this::update);
     }
 
     public void update(int i) {

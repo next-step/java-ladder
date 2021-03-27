@@ -23,7 +23,8 @@ public class ResultView {
     }
 
     public void printLadder(Line line) {
-        line.getPoints().forEach(point -> System.out.print(content(point)));
+        line.getPoints()
+                .forEach(point -> System.out.print(content(point)));
         System.out.println();
     }
 
