@@ -20,12 +20,12 @@ public class Line {
     }
 
     public Line(int countOfPerson, PointStrategy pointStrategy) {
-        isPersonUnderTwo(countOfPerson);
+        isCountOfPersonUnderTwo(countOfPerson);
         this.pointStrategy = pointStrategy;
         this.points = createPoints(countOfPerson);
     }
 
-    private void isPersonUnderTwo(int countOfPerson) {
+    private void isCountOfPersonUnderTwo(int countOfPerson) {
         if (MINIMUM_PERSON > countOfPerson) {
             throw new IllegalArgumentException(MINIMUM_PERSON_ERRRO);
         }
