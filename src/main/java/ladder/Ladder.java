@@ -16,4 +16,10 @@ public class Ladder {
     public List<Line> getLadder() {
         return ladder;
     }
+
+    public void drawLine() {
+        for (Line line : ladder) {
+            line.draw();
+        }
+    }
 }

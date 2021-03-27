@@ -1,7 +1,9 @@
 package ladder;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 public class Line {
 
@@ -15,6 +17,18 @@ public class Line {
 
     public List<Boolean> getPoints() {
         return points;
+    }
+
+    public void draw() {
+        Random random = new Random();
+
+        points.set(0, random.nextBoolean());
+        for (int i = 1; i < points.size() - 1; i++) {
+            boolean isLine = random.nextBoolean();
+            if (isValidate(Arrays.asList(points.get(i - 1), isLine))) {
+                points.set(i, isLine);
+            }
+        }
     }
 
     public boolean isValidate(List<Boolean> points) {
