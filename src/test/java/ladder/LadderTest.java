@@ -7,10 +7,11 @@ import org.junit.jupiter.api.Test;
 class LadderTest {
 
     @Test
-    @DisplayName("사다리의 높이는 5로 설계한다.")
-    void ladderHeight_5() {
+    @DisplayName("입력된 높이만큼의 사다리를 생성한다.")
+    void ladderHeight() {
         int countOfPerson = 4;
-        Ladder ladder = new Ladder(countOfPerson);
+        int height = 5;
+        Ladder ladder = new Ladder(countOfPerson, height);
         Assertions.assertThat(ladder.getLadder().size()).isEqualTo(5);
     }
 }
