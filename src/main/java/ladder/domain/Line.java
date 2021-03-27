@@ -22,17 +22,13 @@ public class Line {
     public Line(int countOfPerson, PointStrategy pointStrategy) {
         isCountOfPersonUnderTwo(countOfPerson);
         this.pointStrategy = pointStrategy;
-        this.points = createPoints(countOfPerson);
+        this.points = recursionPoint((countOfPerson-MINUS_INDEX_SIZE), new ArrayList<>());
     }
 
     private void isCountOfPersonUnderTwo(int countOfPerson) {
         if (MINIMUM_PERSON > countOfPerson) {
             throw new IllegalArgumentException(MINIMUM_PERSON_ERROR);
         }
-    }
-
-    private List<Boolean> createPoints(int countOfPerson) {
-        return recursionPoint((countOfPerson-MINUS_INDEX_SIZE), new ArrayList<>());
     }
 
     private List<Boolean> recursionPoint(int downGradeMaxSize, List<Boolean> points) {
