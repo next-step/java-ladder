@@ -1,9 +1,11 @@
 package laddarGame.domain;
 
 import laddarGame.dto.MatchOfPrizeDto;
+import laddarGame.exception.NonMatchPlayerException;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public class MatchOfPrize {
 
@@ -14,8 +16,8 @@ public class MatchOfPrize {
         this.prizes = new Prizes(prizeList);
     }
 
-    public void match(List<String> resultPlayerList) {
-        this.resultPrizeResult = prizes.match(resultPlayerList);
+    public void match(List<String> playerList) {
+        this.resultPrizeResult = prizes.match(playerList);
     }
 
     public MatchOfPrizeDto all() {
@@ -23,6 +25,13 @@ public class MatchOfPrize {
     }
 
     public MatchOfPrizeDto getPrizeResult(String player) {
-        return MatchOfPrizeDto.of(player, resultPrizeResult.get(player));
+        String prize = Optional.ofNullable(resultPrizeResult)
+                .map(map -> map.get(player))
+                .orElseThrow(() -> new NonMatchPlayerException(player + "는 없는 플레이어 입니다."));
+        return MatchOfPrizeDto.of(player, prize);
+    }
+
+    public PrizesDto allPrize() {
+        return prizes.toDto();
     }
 }

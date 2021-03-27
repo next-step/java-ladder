@@ -27,9 +27,13 @@ public class Prizes {
         return prizeList.stream().map(Prize::getPrize).collect(toMap(prize -> players.next(), prize -> prize));
     }
 
-    private void valid(List<String> players) {
-        if (prizeList.size() != players.size()) {
+    private void valid(List<String> playerList) {
+        if (prizeList.size() != playerList.size()) {
             throw new PrizeAndPlayerNotSameCountException("플레이어 수와 상품 수가 같아야 합니다.");
         }
+    }
+
+    public PrizesDto toDto() {
+        return new PrizesDto(prizeList);
     }
 }

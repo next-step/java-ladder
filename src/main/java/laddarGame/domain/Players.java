@@ -14,6 +14,7 @@ public class Players {
     private List<Player> playerList;
 
     private static final int ZERO = 0;
+    private static final int ONE = 1;
 
     public Players(String playerNames) {
         this(playerList(Parser.nameParser(playerNames)));
@@ -59,8 +60,8 @@ public class Players {
     }
 
     public void movePoint(List<Point> line) {
-        IntStream.range(0, line.size() - 1)
-                .forEach(index -> line.get(index).move(getPlayer(index), getPlayer(index + 1)));
+        IntStream.range(ZERO, line.size() - ONE)
+                .forEach(index -> line.get(index).move(getPlayer(index), getPlayer(index + ONE)));
         sorted();
     }
 
