@@ -38,11 +38,10 @@ public class Line {
         if (downGradeMaxSize == points.size()) {
             return addPoint(points, Boolean.FALSE);
         }
-        if (!isMaxSize(downGradeMaxSize, points) && !points.get(points.size()-MINUS_INDEX_SIZE)) {
-            recursionPoint(downGradeMaxSize, addPoint(points, pointStrategy.isPoint()));
-        }
-        if (!isMaxSize(downGradeMaxSize, points) && points.get(points.size()-MINUS_INDEX_SIZE)) {
-            recursionPoint(downGradeMaxSize, addPoint(points, Boolean.FALSE));
+        if (!isMaxSize(downGradeMaxSize, points)) {
+            Boolean point = points.get(points.size()-MINUS_INDEX_SIZE)
+                                    ? false : pointStrategy.isPoint();
+            recursionPoint(downGradeMaxSize, addPoint(points, point));
         }
         return points;
     }
