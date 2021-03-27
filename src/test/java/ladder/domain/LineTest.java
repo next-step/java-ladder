@@ -53,4 +53,18 @@ public class LineTest {
         //then
         assertThat(points.get(points.size()-1)).isFalse();
     }
+
+    @Test
+    @DisplayName("모든 포인트 False 확인")
+    public void allPointFalseTest() throws Exception {
+        //given
+        Line line = new Line(5, () -> false);
+
+        //when
+        boolean result = line.readOnlyPoints().stream()
+                            .noneMatch(p -> p);
+
+        //then
+        assertThat(result).isTrue();
+    }
 }
