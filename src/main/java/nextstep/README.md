@@ -20,7 +20,8 @@
 <pre><code>public int sumAll(List<Integer> numbers,
     Conditional c) {
     // c.test(number)를 활용해 구현할 수 있다.
-}</code></pre>
+}
+</code></pre>
 - 익명 클래스를 자바 8의 람다를 활용해 구현한다.
 
 ## 스트림(stream)
