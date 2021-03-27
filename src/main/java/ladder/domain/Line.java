@@ -8,7 +8,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class Line {
-    private static final String MINIMUM_PERSON_ERRRO = "2명 이상 참여해야합니다.";
+    private static final String MINIMUM_PERSON_ERROR = "2명 이상 참여해야합니다.";
     private static final int MINIMUM_PERSON = 2;
     private static final int MINUS_INDEX_SIZE = 1;
 
@@ -27,7 +27,7 @@ public class Line {
 
     private void isCountOfPersonUnderTwo(int countOfPerson) {
         if (MINIMUM_PERSON > countOfPerson) {
-            throw new IllegalArgumentException(MINIMUM_PERSON_ERRRO);
+            throw new IllegalArgumentException(MINIMUM_PERSON_ERROR);
         }
     }
 
@@ -35,24 +35,24 @@ public class Line {
         return recursionPoint((countOfPerson-MINUS_INDEX_SIZE), new ArrayList<>());
     }
 
-    private List<Boolean> recursionPoint(int maxSize, List<Boolean> points) {
+    private List<Boolean> recursionPoint(int downGradeMaxSize, List<Boolean> points) {
         if (points.isEmpty()) {
-            recursionPoint(maxSize, addPoint(points, pointStrategy.isPoint()));
+            recursionPoint(downGradeMaxSize, addPoint(points, pointStrategy.isPoint()));
         }
-        if (maxSize == points.size()) {
+        if (downGradeMaxSize == points.size()) {
             return addPoint(points, Boolean.FALSE);
         }
-        if (!isMaxSize(maxSize, points) && !points.get(points.size()-MINUS_INDEX_SIZE)) {
-            recursionPoint(maxSize, addPoint(points, pointStrategy.isPoint()));
+        if (!isMaxSize(downGradeMaxSize, points) && !points.get(points.size()-MINUS_INDEX_SIZE)) {
+            recursionPoint(downGradeMaxSize, addPoint(points, pointStrategy.isPoint()));
         }
-        if (!isMaxSize(maxSize, points) && points.get(points.size()-MINUS_INDEX_SIZE)) {
-            recursionPoint(maxSize, addPoint(points, Boolean.FALSE));
+        if (!isMaxSize(downGradeMaxSize, points) && points.get(points.size()-MINUS_INDEX_SIZE)) {
+            recursionPoint(downGradeMaxSize, addPoint(points, Boolean.FALSE));
         }
         return points;
     }
 
-    private boolean isMaxSize(int maxSize, List<Boolean> points) {
-        return maxSize <= points.size();
+    private boolean isMaxSize(int downGradeMaxSize, List<Boolean> points) {
+        return downGradeMaxSize <= points.size();
     }
 
     private List<Boolean> addPoint(List<Boolean> points, boolean isPoint) {
