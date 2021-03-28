@@ -12,11 +12,11 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 public class WinningTest {
 
     @ParameterizedTest
-    @CsvSource(value = {"꽝,꽝,3000,4000:3", "중식,양식,일식,한식,국밥,국밥,국밥:7"}, delimiter = ':')
+    @CsvSource(value = {"꽝,꽝,3000,4000:4", "중식,양식,일식,한식,국밥,국밥,국밥:7"}, delimiter = ':')
     @DisplayName("문자열 split 확인")
     public void createWinnerTest(String inputWinning, int check) throws Exception {
         //given
-        Winning winning = new Winning(inputWinning);
+        Winning winning = new Winning(inputWinning, check);
 
         //when
         int countOfWinning = winning.readOnlyWinning().size();
@@ -24,4 +24,6 @@ public class WinningTest {
         //then
         assertThat(countOfWinning).isEqualTo(check);
     }
+
+
 }
