@@ -3,14 +3,16 @@ package ladder.domain;
 import ladder.strategy.Point;
 import ladder.strategy.PointStrategy;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Line {
     private static final String MINIMUM_PERSON_ERROR = "2명 이상 참여해야합니다.";
     private static final int MINIMUM_PERSON = 2;
-    private static final int MINUS_INDEX_SIZE = 1;
+    private static final int DEFAULT_FIRST_INDEX = 0;
+    private static final int MINUS_ONE_INDEX = 1;
 
     private final PointStrategy pointStrategy;
     private final List<Boolean> points;
@@ -20,42 +22,40 @@ public class Line {
     }
 
     public Line(int countOfPerson, PointStrategy pointStrategy) {
-        isCountOfPersonUnderTwo(countOfPerson);
+        validCountOfPersonUnderTwo(countOfPerson);
         this.pointStrategy = pointStrategy;
-        this.points = recursionPoint((countOfPerson-MINUS_INDEX_SIZE), new ArrayList<>());
+        this.points = createPoints(countOfPerson);
     }
 
-    private void isCountOfPersonUnderTwo(int countOfPerson) {
+    private void validCountOfPersonUnderTwo(int countOfPerson) {
         if (MINIMUM_PERSON > countOfPerson) {
             throw new IllegalArgumentException(MINIMUM_PERSON_ERROR);
         }
     }
 
-    private List<Boolean> recursionPoint(int downGradeMaxSize, List<Boolean> points) {
-        if (points.isEmpty()) {
-            recursionPoint(downGradeMaxSize, addPoint(points, pointStrategy.isPoint()));
-        }
-        if (downGradeMaxSize == points.size()) {
-            return addPoint(points, Boolean.FALSE);
-        }
-        if (!isMaxSize(downGradeMaxSize, points)) {
-            Boolean point = points.get(points.size()-MINUS_INDEX_SIZE)
-                                    ? false : pointStrategy.isPoint();
-            recursionPoint(downGradeMaxSize, addPoint(points, point));
-        }
-        return points;
-    }
-
-    private boolean isMaxSize(int downGradeMaxSize, List<Boolean> points) {
-        return downGradeMaxSize <= points.size();
-    }
-
-    private List<Boolean> addPoint(List<Boolean> points, boolean isPoint) {
-        points.add(isPoint);
-        return points;
+    private List<Boolean> createPoints(int countOfPerson) {
+        Boolean[] isExistBefore = {false};
+        return IntStream.range(DEFAULT_FIRST_INDEX, countOfPerson)
+                .mapToObj(index -> {
+                    if (index == (countOfPerson - MINUS_ONE_INDEX)) {
+                        return false;
+                    }
+                    isExistBefore[DEFAULT_FIRST_INDEX] = !isExistBefore[DEFAULT_FIRST_INDEX]
+                                                    ? pointStrategy.isPoint() : false;
+                    return isExistBefore[DEFAULT_FIRST_INDEX];
+                }).collect(Collectors.toList());
     }
 
     public List<Boolean> readOnlyPoints() {
         return Collections.unmodifiableList(points);
+    }
+
+    public int lineMoving(int pointIndex) {
+        if (pointIndex > DEFAULT_FIRST_INDEX
+                && points.get(pointIndex - MINUS_ONE_INDEX)) {
+            return --pointIndex;
+        }
+        return points.get(pointIndex) ?
+                ++pointIndex : pointIndex;
     }
 }

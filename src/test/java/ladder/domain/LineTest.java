@@ -10,6 +10,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
+@DisplayName("라인")
 public class LineTest {
 
     @ParameterizedTest
@@ -29,12 +30,12 @@ public class LineTest {
     @ParameterizedTest
     @ValueSource(ints = {0,1})
     @DisplayName("참여자 2명 미만 일시 에러")
-    public void personTwoUnderException(int countOfPersion) throws Exception {
+    public void personTwoUnderException(int countOfPerson) throws Exception {
         //given
 
         //when
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            new Line(countOfPersion);
+            new Line(countOfPerson);
         });
 
         //then
@@ -66,5 +67,44 @@ public class LineTest {
 
         //then
         assertThat(result).isTrue();
+    }
+
+    @Test
+    @DisplayName("사다리타기 우측 이동 테스트")
+    public void rightLineMovingTest() throws Exception {
+        //given
+        Line line = new Line(5, () -> true);
+
+        //when
+        int index = line.lineMoving(0);
+
+        //then
+        assertThat(index).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("사다리타기 좌측 이동 테스트")
+    public void leftLineMovingMoveTest() throws Exception {
+        //given
+        Line line = new Line(5, () -> true);
+
+        //when
+        int index = line.lineMoving(1);
+
+        //then
+        assertThat(index).isEqualTo(0);
+    }
+
+    @Test
+    @DisplayName("사다리타기 아래 이동 테스트")
+    public void nonelineMovingMoveTest() throws Exception {
+        //given
+        Line line = new Line(5, () -> true);
+
+        //when
+        int index = line.lineMoving(4);
+
+        //then
+        assertThat(index).isEqualTo(4);
     }
 }
