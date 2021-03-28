@@ -1,14 +1,13 @@
 package ladder.view;
 
 import ladder.domain.Line;
+import ladder.domain.LineState;
 import ladder.dto.Name;
 
 import java.util.List;
 
 public class ResultView {
 
-    private static final String LINE = "-----";
-    private static final String NON_LINE = "     ";
     private static final String BOUNDARY = "|";
     private static final String BLANK = " ";
 
@@ -24,15 +23,7 @@ public class ResultView {
 
     public void printLadder(Line line) {
         line.getPoints()
-                .forEach(point -> System.out.print(content(point)));
+                .forEach(point -> System.out.print(BOUNDARY + LineState.state(point)));
         System.out.println();
-    }
-
-    public String content(Boolean point) {
-        System.out.print(BOUNDARY);
-        if (point) {
-            return LINE;
-        }
-        return NON_LINE;
     }
 }
