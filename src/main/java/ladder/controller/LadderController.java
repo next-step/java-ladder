@@ -14,7 +14,7 @@ public class LadderController {
     }
 
     public void run() {
-        InputManagement inputManagement = new InputManagement(inputView.inputNames(), inputView.inputHeight());
+        InputManagement inputManagement = new InputManagement(inputView.names(), inputView.height());
 
         Ladder ladder = new Ladder(inputManagement.getNames().size(), inputManagement.getHeight());
         ladder.drawLine();
