@@ -33,13 +33,13 @@ public class Line {
                 .forEach(index -> update(index, drawStrategy.drawValue()));
     }
 
-    public void update(int index, boolean isLine) {
+    private void update(int index, boolean isLine) {
         if (isValidate(Arrays.asList(points.get(index - 1), isLine))) {
             points.set(index, isLine);
         }
     }
 
-    public boolean isValidate(List<Boolean> points) {
+    private boolean isValidate(List<Boolean> points) {
         return !points.get(FIRST_INDEX) || !points.get(SECOND_INDEX);
     }
 }
