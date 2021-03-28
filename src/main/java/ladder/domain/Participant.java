@@ -6,6 +6,9 @@ import ladder.exception.ErrorCode;
 import java.util.regex.Pattern;
 
 public class Participant {
+
+    public static final int MAX_LENGTH = 5;
+
     private String name;
 
     public Participant(String name) {
@@ -21,7 +24,7 @@ public class Participant {
 
 
     private boolean validNameLength(String name) {
-        return name.length() <= 5;
+        return name.length() <= MAX_LENGTH;
     }
 
     private boolean validCharacters(String participantString) {

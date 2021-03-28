@@ -1,24 +1,23 @@
 package ladder.domain.ladderMap;
 
-import ladder.domain.Ladder;
+import ladder.domain.Height;
 import ladder.domain.ParticipantList;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class LadderMap {
-    private String names;
+
+    private ParticipantList participantList;
     private Plane plane;
 
-    public LadderMap(ParticipantList participantList, Ladder ladder){
-        this.names = participantList.flattenedNames();
+    public LadderMap(ParticipantList participantList, Height ladder) {
+        this.participantList = participantList;
         this.plane = new Plane(participantList, ladder);
     }
 
-    public List<String> dto(){
-        List<String> ladderMap = new ArrayList<>();
-        ladderMap.add(names);
-        ladderMap.addAll(plane.dto());
-        return ladderMap;
+    public ParticipantList participantList() {
+        return this.participantList;
+    }
+
+    public Plane plane(){
+        return this.plane;
     }
 }

@@ -1,6 +1,8 @@
 package ladder.controller;
 
-import ladder.service.LadderService;
+import ladder.domain.Height;
+import ladder.domain.ParticipantList;
+import ladder.domain.ladderMap.LadderMap;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
@@ -11,16 +13,15 @@ public class LadderController {
     private InputView inputView = new InputView();
     private ResultView resultView = new ResultView();
 
-    private LadderService ladderService = new LadderService();
-
     public void generateLadder() {
-        String participants = inputView.participants();
-        List<String> verifiedParticipants = ladderService.verifiedParticipants(participants);
+        String participants = inputView.getParticipants();
+        ParticipantList verifiedParticipants = new ParticipantList(participants);
 
-        int maximumLadderHeight = inputView.maximumLadderHeight();
-        int verifiedMaximumLadderHeight = ladderService.verifiedMaximumLadderHeight(maximumLadderHeight);
+        int maximumLadderHeight = inputView.getMaximumLadderHeight();
+        Height verifiedHeight = new Height(maximumLadderHeight);
 
-        List<String> ladderMap = ladderService.ladderMap(verifiedParticipants, verifiedMaximumLadderHeight);
+        LadderMap ladderMap = new LadderMap(verifiedParticipants, verifiedHeight);
         resultView.printLadderMap(ladderMap);
     }
+
 }

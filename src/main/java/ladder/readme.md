@@ -130,4 +130,9 @@ feat(step2): add base ladder map
 feat(step2): add horizontal link on ladder map
 사다리의 가로줄을 랜덤으로 추가
 결과 출력 화면 추가
+
+refact(step2): add code review points
+라인 로직을 링크와 포인트로 분리 
+서비스를 삭제하고 컨트롤러를 이용하여 도메인 접근
+결과 출력 화면에서 도메인 접근
 ```

@@ -1,17 +1,17 @@
 package ladder.exception;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CustomException extends RuntimeException {
 
-    public static Logger logger = LoggerFactory.getLogger("Logback logger");
+    public static Logger logger = Logger.getGlobal();
 
     private final ErrorCode errorCode;
 
     public CustomException(ErrorCode errorCode) {
         this.errorCode = errorCode;
-        logger.error(String.valueOf(this.errorCode));
+        logger.log(Level.SEVERE, String.valueOf(this.errorCode));
     }
 
     public ErrorCode errorCode() {

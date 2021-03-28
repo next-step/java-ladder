@@ -11,21 +11,6 @@ repositories {
 dependencies {
     testCompile('org.junit.jupiter:junit-jupiter:5.6.0')
     testCompile('org.assertj:assertj-core:3.15.0')
-
-    //slf4j
-    compile 'ch.qos.logback:logback-classic:1.2.3'
-    compile 'ch.qos.logback.contrib:logback-json-classic:0.1.5'
-    compile 'ch.qos.logback.contrib:logback-jackson:0.1.5'
-    compile 'com.fasterxml.jackson.core:jackson-databind:2.9.5'
-    compile 'org.codehaus.janino:janino:3.0.8'
-    testCompile 'ch.qos.logback:logback-classic:1.2.3'
-    testCompile 'ch.qos.logback.contrib:logback-json-classic:0.1.5'
-    testCompile 'ch.qos.logback.contrib:logback-jackson:0.1.5'
-    testCompile 'com.fasterxml.jackson.core:jackson-databind:2.9.5'
-    testCompile 'org.codehaus.janino:janino:3.0.8'
-
-    //mockito
-    testCompile "org.mockito:mockito-core:2.+"
 }
 
 test {

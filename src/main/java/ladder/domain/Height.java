@@ -3,10 +3,10 @@ package ladder.domain;
 import ladder.exception.CustomException;
 import ladder.exception.ErrorCode;
 
-public class Ladder {
+public class Height {
     private int height;
 
-    public Ladder(int height){
+    public Height(int height){
         if(!validHeight(height)){
             throw new CustomException(ErrorCode.INVALID_LADDER_HEIGHT);
         }
