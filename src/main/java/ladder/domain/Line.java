@@ -18,9 +18,8 @@ public class Line {
             throw new IllegalArgumentException();
         }
 
-        for (int i = 0; i < countOfPerson; i++) {
-            points.add(NON_LINE);
-        }
+        IntStream.range(0, countOfPerson)
+                .forEach(index -> points.add(NON_LINE));
     }
 
     public List<Boolean> getPoints() {
