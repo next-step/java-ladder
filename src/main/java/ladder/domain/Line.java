@@ -50,7 +50,7 @@ public class Line {
         return Collections.unmodifiableList(points);
     }
 
-    public int moveLine(int pointIndex) {
+    public int lineMoving(int pointIndex) {
         if (pointIndex > DEFAULT_FIRST_INDEX
                 && points.get(pointIndex - MINUS_ONE_INDEX)) {
             return --pointIndex;

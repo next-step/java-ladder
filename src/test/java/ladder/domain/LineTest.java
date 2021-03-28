@@ -70,14 +70,40 @@ public class LineTest {
 
     @Test
     @DisplayName("사다리타기 우측 이동 테스트")
-    public void lineMoveTest() throws Exception {
+    public void rightLineMovingTest() throws Exception {
         //given
         Line line = new Line(5, () -> true);
 
         //when
-        int index = line.moveLine(0);
+        int index = line.lineMoving(0);
 
         //then
         assertThat(index).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("사다리타기 좌측 이동 테스트")
+    public void leftLineMovingMoveTest() throws Exception {
+        //given
+        Line line = new Line(5, () -> true);
+
+        //when
+        int index = line.lineMoving(1);
+
+        //then
+        assertThat(index).isEqualTo(0);
+    }
+
+    @Test
+    @DisplayName("사다리타기 아래 이동 테스트")
+    public void nonelineMovingMoveTest() throws Exception {
+        //given
+        Line line = new Line(5, () -> true);
+
+        //when
+        int index = line.lineMoving(4);
+
+        //then
+        assertThat(index).isEqualTo(4);
     }
 }
