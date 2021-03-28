@@ -33,7 +33,7 @@ public class PersonTest {
 
         //when
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            Person person = new Person(inputPerson);
+            new Person(inputPerson);
         });
 
         //then
@@ -47,7 +47,7 @@ public class PersonTest {
 
         //when
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            Person person = new Person(inputPerson);
+            new Person(inputPerson);
         });
 
         //then
