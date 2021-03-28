@@ -1,5 +1,6 @@
 package ladder;
 
+import ladder.domain.FixedDraw;
 import ladder.domain.Line;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -31,12 +32,11 @@ class LineTest {
     void notOverlapInSameLine() {
         int countOfPerson = 2;
         Line line = new Line(countOfPerson);
-        line.getPoints().set(0, true);
-        line.getPoints().set(1, true);
 
-        boolean isValidLine = line.isValidate(line.getPoints());
+        line.draw(new FixedDraw());
 
-        Assertions.assertThat(isValidLine).isEqualTo(false);
+        Assertions.assertThat(line.getPoints().get(0)).isEqualTo(true);
+        Assertions.assertThat(line.getPoints().get(1)).isEqualTo(false);
     }
 }
 

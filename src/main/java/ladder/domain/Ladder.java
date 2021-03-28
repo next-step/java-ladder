@@ -18,6 +18,6 @@ public class Ladder {
     }
 
     public void drawLine() {
-        ladder.forEach(Line::draw);
+        ladder.forEach(line -> line.draw(new RandomDraw()));
     }
 }
