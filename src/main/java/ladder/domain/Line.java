@@ -10,6 +10,7 @@ public class Line {
     private static final int MIN_PERSON = 2;
     private static final int FIRST_INDEX = 0;
     private static final int SECOND_INDEX = 1;
+    private static final boolean NON_LINE = false;
     private final List<Boolean> points = new ArrayList<>();
 
     public Line(int countOfPerson) {
@@ -18,7 +19,7 @@ public class Line {
         }
 
         for (int i = 0; i < countOfPerson; i++) {
-            points.add(Boolean.FALSE);
+            points.add(NON_LINE);
         }
     }
 
