@@ -3,6 +3,7 @@ package ladder.view;
 import ladder.domain.Ladder;
 import ladder.domain.Line;
 import ladder.domain.LineEnum;
+import ladder.domain.Person;
 
 import java.util.List;
 import java.util.stream.IntStream;
@@ -16,8 +17,8 @@ public class ResultView {
         System.out.println(RUN_RESULT);
     }
 
-    public void printPerson(List<String> person) {
-        person.stream()
+    public void printPerson(Person person) {
+        person.readOnlyPerson().stream()
                 .forEach(this::printName);
         System.out.println(EMPTY);
     }
