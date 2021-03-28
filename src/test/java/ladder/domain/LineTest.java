@@ -29,12 +29,12 @@ public class LineTest {
     @ParameterizedTest
     @ValueSource(ints = {0,1})
     @DisplayName("참여자 2명 미만 일시 에러")
-    public void personTwoUnderException(int countOfPersion) throws Exception {
+    public void personTwoUnderException(int countOfPerson) throws Exception {
         //given
 
         //when
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            new Line(countOfPersion);
+            new Line(countOfPerson);
         });
 
         //then
