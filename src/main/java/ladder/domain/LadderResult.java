@@ -17,9 +17,7 @@ public class LadderResult {
         Map<String, String> result = new HashMap<>();
         int[] lineIndex = {DEFAULT_INDEX};
         person.readOnlyPerson().stream()
-                .forEach(index -> {
-                    result.put(index, ladderResult(lineIndex[DEFAULT_INDEX]++, winning, ladder));
-                });
+                .forEach(index -> result.put(index, ladderResult(lineIndex[DEFAULT_INDEX]++, winning, ladder)));
         
         return new LadderResult(result);
     }
