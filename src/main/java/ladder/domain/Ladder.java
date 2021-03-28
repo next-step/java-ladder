@@ -12,6 +12,10 @@ public class Ladder {
 
     private List<Line> lines;
 
+    public Ladder(List<Line> lines) {
+        this.lines = lines;
+    }
+
     public Ladder(int ladderSize, int countOfPerson) {
         validLadderSizeUnderOne(ladderSize);
         this.lines = createLadder(ladderSize, countOfPerson);
