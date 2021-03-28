@@ -24,10 +24,17 @@ public class Line {
 
     private List<Link> links(ParticipantList participantList) {
         Link.init();
-        return IntStream.range(0, participantList.size()-1)
+        return IntStream.range(0, participantList.size() - 1)
                 .mapToObj(Link::new)
-                .filter(line->!line.empty())
+                .filter(link -> !link.empty())
                 .collect(Collectors.toList());
     }
 
+    public List<Link> links() {
+        return this.links;
+    }
+
+    public List<Point> points() {
+        return this.points;
+    }
 }

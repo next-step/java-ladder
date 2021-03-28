@@ -17,7 +17,7 @@ public class LadderMap {
         return this.participantList;
     }
 
-    public Plane plane(){
+    public Plane plane() {
         return this.plane;
     }
 }

@@ -22,7 +22,6 @@ public class Participant {
         this.name = trimmedName;
     }
 
-
     private boolean validNameLength(String name) {
         return name.length() <= MAX_LENGTH;
     }
