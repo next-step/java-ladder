@@ -21,7 +21,7 @@ public class InputView {
     private List<String> stringToList(String inputText) {
         isEmpty(inputText);
         return Arrays.stream(inputText.split(","))
-                .map(this::isNameLengthFiveOver)
+                .map(this::validNameLengthFiveOver)
                 .collect(Collectors.toList());
     }
 
@@ -32,7 +32,7 @@ public class InputView {
         }
     }
 
-    private String isNameLengthFiveOver(String name) {
+    private String validNameLengthFiveOver(String name) {
         if (name.isEmpty()
                 || name.length() > NAME_MAX_LENGTH) {
             throw new IllegalArgumentException(NAME_MAX_LENGTH_ERROR);

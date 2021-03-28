@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import ladder.constant.LadderConstants;
 import ladder.strategy.Point;
 import ladder.strategy.PointStrategy;
 
@@ -11,7 +12,6 @@ import java.util.stream.IntStream;
 public class Line {
     private static final String MINIMUM_PERSON_ERROR = "2명 이상 참여해야합니다.";
     private static final int MINIMUM_PERSON = 2;
-    private static final int FIRST_INDEX = 0;
 
     private final PointStrategy pointStrategy;
     private final List<Boolean> points;
@@ -21,12 +21,12 @@ public class Line {
     }
 
     public Line(int countOfPerson, PointStrategy pointStrategy) {
-        isCountOfPersonUnderTwo(countOfPerson);
+        validCountOfPersonUnderTwo(countOfPerson);
         this.pointStrategy = pointStrategy;
         this.points = createPoints(countOfPerson);
     }
 
-    private void isCountOfPersonUnderTwo(int countOfPerson) {
+    private void validCountOfPersonUnderTwo(int countOfPerson) {
         if (MINIMUM_PERSON > countOfPerson) {
             throw new IllegalArgumentException(MINIMUM_PERSON_ERROR);
         }
@@ -34,11 +34,14 @@ public class Line {
 
     private List<Boolean> createPoints(int countOfPerson) {
         Boolean[] isExistBefore = {false};
-        return IntStream.range(FIRST_INDEX, countOfPerson)
+        return IntStream.range(LadderConstants.DEFAULT_FIRST_INDEX, countOfPerson)
                 .mapToObj(index -> {
-                    isExistBefore[FIRST_INDEX] = !isExistBefore[FIRST_INDEX]
-                            ? pointStrategy.isPoint() : false;
-                    return isExistBefore[FIRST_INDEX];
+                    if (index == (countOfPerson - LadderConstants.MINUS_ONE_INDEX)) {
+                        return false;
+                    }
+                    isExistBefore[LadderConstants.DEFAULT_FIRST_INDEX] = !isExistBefore[LadderConstants.DEFAULT_FIRST_INDEX]
+                                                    ? pointStrategy.isPoint() : false;
+                    return isExistBefore[LadderConstants.DEFAULT_FIRST_INDEX];
                 }).collect(Collectors.toList());
     }
 
