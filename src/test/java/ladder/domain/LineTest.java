@@ -67,4 +67,17 @@ public class LineTest {
         //then
         assertThat(result).isTrue();
     }
+
+    @Test
+    @DisplayName("사다리타기 우측 이동 테스트")
+    public void lineMoveTest() throws Exception {
+        //given
+        Line line = new Line(5, () -> true);
+
+        //when
+        int index = line.moveLine(0);
+
+        //then
+        assertThat(index).isEqualTo(1);
+    }
 }
