@@ -1,15 +1,14 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
-import ladder.domain.Line;
-import ladder.domain.LineEnum;
-import ladder.domain.Person;
+import ladder.domain.*;
 
 import java.util.List;
+import java.util.Scanner;
 import java.util.stream.IntStream;
 
 public class ResultView {
     private static final String RUN_RESULT = "실행 결과";
+    private static final String LADDER_RESULT = "결과를 보고 싶은 사람은?";
     private static final String EMPTY = "";
     private static final String LINE = "|";
 
@@ -19,11 +18,11 @@ public class ResultView {
 
     public void printPerson(Person person) {
         person.readOnlyPerson().stream()
-                .forEach(this::printName);
+                .forEach(this::printNameAndWinning);
         System.out.println(EMPTY);
     }
 
-    private void printName(String name) {
+    private void printNameAndWinning(String name) {
         System.out.print(String.format("%6s", name));
     }
 
@@ -46,5 +45,48 @@ public class ResultView {
             return;
         }
         System.out.print(LineEnum.ofLine(points.get(index)));
+    }
+
+    public void printWinning(Winning winning) {
+        winning.readOnlyWinning().stream()
+                .forEach(this::printNameAndWinning);
+        System.out.println(EMPTY);
+    }
+
+    public void printLadderResult(LadderResult ladderResult) {
+        Scanner scanner = new Scanner(System.in);
+        boolean isResult = true;
+
+        while(isResult) {
+            System.out.println(EMPTY);
+            System.out.println(LADDER_RESULT);
+            isResult = printResults(scanner.next(), ladderResult);
+        }
+    }
+
+    private boolean printResults(String name, LadderResult ladderResult) {
+        System.out.println(EMPTY);
+        System.out.println(RUN_RESULT);
+        if ("all".equals(name)) {
+            ladderResult.readOnlyResults()
+                    .keySet()
+                    .stream()
+                    .forEach(keys -> {
+                        String key = keys.toString();
+                        printResult(key, ladderResult.resultOfLadder(key));
+                    });
+            return false;
+        }
+        try {
+            printResult(name, ladderResult.resultOfLadder(name));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println(EMPTY);
+        }
+        return true;
+    }
+
+    private void printResult(String name, String winning) {
+        System.out.println(name + " : " + winning);
     }
 }

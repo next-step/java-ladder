@@ -2,6 +2,7 @@ package ladder.domain;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -47,5 +48,17 @@ public class LadderResultTest {
         //when
         //then
         assertThat(record.resultOfLadder(name)).isEqualTo(result);
+    }
+
+    @Test
+    @DisplayName("잘못된 참여자 예외 확인")
+    public void resultExceptionTest() throws Exception {
+        //given
+        LadderResult record = LadderResult.of(person, winning, createladder(true));
+        //when
+        assertThatIllegalArgumentException().isThrownBy(() -> {
+            record.resultOfLadder("ddd");
+        });
+        //then
     }
 }
