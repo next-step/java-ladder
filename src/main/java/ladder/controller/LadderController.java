@@ -5,8 +5,6 @@ import ladder.domain.Person;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
-import java.util.List;
-
 public class LadderController {
     public void start() {
         InputView inputView = new InputView();
