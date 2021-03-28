@@ -11,6 +11,7 @@ public class ResultView {
     private static final String LADDER_RESULT = "결과를 보고 싶은 사람은?";
     private static final String EMPTY = "";
     private static final String LINE = "|";
+    private static final String ALL_RESULT_KEYWORD = "all";
 
     public ResultView() {
         System.out.println(RUN_RESULT);
@@ -67,7 +68,7 @@ public class ResultView {
     private boolean printResults(String name, LadderResult ladderResult) {
         System.out.println(EMPTY);
         System.out.println(RUN_RESULT);
-        if ("all".equals(name)) {
+        if (ALL_RESULT_KEYWORD.equals(name)) {
             ladderResult.readOnlyResults()
                     .keySet()
                     .stream()
