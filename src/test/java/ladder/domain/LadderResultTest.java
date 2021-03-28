@@ -10,7 +10,7 @@ import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.*;
 
-@DisplayName("결과")
+@DisplayName("사다리 결과")
 public class LadderResultTest {
 
     private Person person;

@@ -8,6 +8,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
+@DisplayName("사다리")
 public class LadderTest {
 
     @ParameterizedTest
