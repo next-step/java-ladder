@@ -1,4 +1,4 @@
-package ladder.domain.ladderMap;
+package ladder.domain.ladder;
 
 import ladder.domain.participant.ParticipantList;
 import org.junit.jupiter.api.DisplayName;

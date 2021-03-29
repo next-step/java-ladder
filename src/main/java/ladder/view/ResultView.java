@@ -1,12 +1,13 @@
 package ladder.view;
 
+import ladder.constants.Constants;
 import ladder.domain.game.Game;
 import ladder.domain.game.GameResult;
+import ladder.domain.ladder.Line;
+import ladder.domain.ladder.Link;
+import ladder.domain.ladder.Plane;
 import ladder.domain.participant.Participant;
 import ladder.domain.participant.ParticipantList;
-import ladder.domain.ladderMap.Line;
-import ladder.domain.ladderMap.Link;
-import ladder.domain.ladderMap.Plane;
 import ladder.domain.result.Result;
 import ladder.domain.result.ResultList;
 
@@ -45,7 +46,7 @@ public class ResultView {
         int resultLength = result.result().length();
         StringBuilder parsedResult = new StringBuilder();
         parsedResult.append(BLANK);
-        for (int count = 0; count < Participant.MAX_LENGTH - resultLength; count++) {
+        for (int count = Constants.ZERO; count < Participant.MAX_LENGTH - resultLength; count++) {
             parsedResult.append(BLANK);
         }
         parsedResult.append(result.result());
@@ -69,7 +70,7 @@ public class ResultView {
     }
 
     private StringBuilder addHorizontalLine(StringBuilder toAddHorizontalLine, Link link) {
-        for (int count = 0; count < VERTICAL_INDEX; count++) {
+        for (int count = Constants.ZERO; count < VERTICAL_INDEX; count++) {
             toAddHorizontalLine.setCharAt(DIVIDER + link.from() * DIVIDER + count, HORIZONTAL);
         }
         return toAddHorizontalLine;
@@ -77,7 +78,7 @@ public class ResultView {
 
     private String addVerticalLines(Line line) {
         StringBuilder verticalLineAdded = new StringBuilder();
-        for (int count = 0; count < line.points().size(); count++) {
+        for (int count = Constants.ZERO; count < line.points().size(); count++) {
             verticalLineAdded.append(VERTICAL_ADDED);
         }
         return String.valueOf(verticalLineAdded);
@@ -99,7 +100,7 @@ public class ResultView {
             parsedName.append(participant.name());
             return String.valueOf(parsedName);
         }
-        for (int count = 0; count < Participant.MAX_LENGTH - participantNameLength; count++) {
+        for (int count = Constants.ZERO; count < Participant.MAX_LENGTH - participantNameLength; count++) {
             parsedName.append(BLANK);
         }
         parsedName.append(participant.name());
@@ -113,7 +114,7 @@ public class ResultView {
 
     public void printAllResults(GameResult gameResult) {
         System.out.println("실행 결과");
-        for(Map.Entry<String, String> entry: gameResult.result().entrySet()){
+        for (Map.Entry<String, String> entry : gameResult.result().entrySet()) {
             System.out.printf("%s : %s%n", entry.getKey(), entry.getValue());
         }
     }

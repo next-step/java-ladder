@@ -1,4 +1,4 @@
-package ladder.domain.ladderMap;
+package ladder.domain.ladder;
 
 import ladder.exception.CustomException;
 import ladder.exception.ErrorCode;

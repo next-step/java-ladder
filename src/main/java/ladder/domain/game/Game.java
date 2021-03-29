@@ -1,6 +1,6 @@
 package ladder.domain.game;
 
-import ladder.domain.ladderMap.LadderMap;
+import ladder.domain.ladder.LadderMap;
 import ladder.domain.participant.ParticipantList;
 import ladder.domain.result.ResultList;
 

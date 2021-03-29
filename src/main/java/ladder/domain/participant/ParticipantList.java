@@ -1,6 +1,6 @@
 package ladder.domain.participant;
 
-import ladder.domain.participant.Participant;
+import ladder.constants.Constants;
 import ladder.exception.CustomException;
 import ladder.exception.ErrorCode;
 
@@ -23,8 +23,8 @@ public class ParticipantList {
                 .collect(Collectors.toList());
     }
 
-    public String getName(int index){
-        if(index<0 || index>this.participants.size()){
+    public String getName(int index) {
+        if (index < Constants.ZERO || index > this.participants.size()) {
             throw new CustomException(ErrorCode.INVALID_PARTICIPANT_INDEX);
         }
         return this.participants.get(index)

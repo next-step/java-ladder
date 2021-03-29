@@ -1,5 +1,6 @@
-package ladder.domain.ladderMap;
+package ladder.domain.ladder;
 
+import ladder.constants.Constants;
 import ladder.domain.participant.ParticipantList;
 
 import java.util.List;
@@ -24,7 +25,7 @@ public class Line {
 
     private List<Link> links(ParticipantList participantList) {
         Link.init();
-        return IntStream.range(0, participantList.size() - 1)
+        return IntStream.range(Constants.ZERO, participantList.size() - 1)
                 .mapToObj(Link::new)
                 .filter(link -> !link.empty())
                 .collect(Collectors.toList());

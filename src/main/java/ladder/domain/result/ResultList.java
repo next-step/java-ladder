@@ -1,5 +1,6 @@
 package ladder.domain.result;
 
+import ladder.constants.Constants;
 import ladder.domain.participant.ParticipantList;
 import ladder.exception.CustomException;
 import ladder.exception.ErrorCode;
@@ -27,7 +28,7 @@ public class ResultList {
     }
 
     public Result get(int index) {
-        if (index < 0 || index >= this.results.size()) {
+        if (index < Constants.ZERO || index >= this.results.size()) {
             throw new CustomException(ErrorCode.INVALID_RESULT_INDEX);
         }
         return results.get(index);
@@ -61,7 +62,7 @@ public class ResultList {
     }
 
     public String getResult(int index) {
-        if (index < 0 || index >= this.results.size()) {
+        if (index < Constants.ZERO || index >= this.results.size()) {
             throw new CustomException(ErrorCode.INVALID_RESULT_INDEX);
         }
         return this.results.get(index).result();

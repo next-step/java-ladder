@@ -1,5 +1,6 @@
-package ladder.domain.ladderMap;
+package ladder.domain.ladder;
 
+import ladder.constants.Constants;
 import ladder.exception.CustomException;
 import ladder.exception.ErrorCode;
 
@@ -26,7 +27,7 @@ public class Link {
     }
 
     private boolean valid(int fromIndex) {
-        return fromIndex >= 0;
+        return fromIndex >= Constants.ZERO;
     }
 
     public static void init() {

@@ -1,15 +1,13 @@
 package ladder.controller;
 
-import ladder.domain.Height;
 import ladder.domain.game.Game;
 import ladder.domain.game.GameResult;
-import ladder.domain.ladderMap.LadderMap;
+import ladder.domain.ladder.Height;
+import ladder.domain.ladder.LadderMap;
 import ladder.domain.participant.ParticipantList;
 import ladder.domain.result.ResultList;
 import ladder.view.InputView;
 import ladder.view.ResultView;
-
-import java.util.Map;
 
 public class LadderController {
 
@@ -53,7 +51,7 @@ public class LadderController {
     }
 
     private boolean printAndShouldStop(GameResult gameResult, String queryName) {
-        if (gameResult.shouldStop(queryName)) {
+        if (GameResult.shouldStop(queryName)) {
             resultView.printAllResults(gameResult);
             return true;
         }

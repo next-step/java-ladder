@@ -10,4 +10,11 @@ public class Util {
                 .map(String::trim)
                 .collect(Collectors.toList());
     }
+
+    public static List<Integer> parsedIntegerList(String string) {
+        return Arrays.stream(string.split(","))
+                .map(String::trim)
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+    }
 }
