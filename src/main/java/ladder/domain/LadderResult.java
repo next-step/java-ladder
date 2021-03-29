@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,7 +15,7 @@ public class LadderResult {
     public static LadderResult of(Persons person, Winnings winning, Ladder ladder) {
         Map<Person, Winning> result = new HashMap<>();
         int[] lineIndex = {DEFAULT_INDEX};
-        person.readOnlyPersons().stream()
+        person.readOnlyPersons()
                 .forEach(index -> result.put(index, ladderResult(lineIndex[DEFAULT_INDEX]++, winning, ladder)));
         
         return new LadderResult(result);
@@ -24,7 +23,7 @@ public class LadderResult {
 
     private static Winning ladderResult(int nameIndex, Winnings winning, Ladder ladder) {
         int[] lineIndex = { nameIndex };
-        ladder.readOnlyLines().stream()
+        ladder.readOnlyLines()
                 .forEach(line -> lineIndex[DEFAULT_INDEX] = line.lineMoving(lineIndex[DEFAULT_INDEX]));
 
         return winning.readOnlyWinning().get(lineIndex[DEFAULT_INDEX]);
@@ -37,9 +36,5 @@ public class LadderResult {
                 .orElseThrow(() -> new IllegalArgumentException(KEY_ERROR));
 
         return results.get(person1);
-    }
-
-    public Map readOnlyResults() {
-        return Collections.unmodifiableMap(results);
     }
 }

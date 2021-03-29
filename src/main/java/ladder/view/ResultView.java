@@ -21,7 +21,7 @@ public class ResultView {
     }
 
     public void printPersons() {
-        persons.readOnlyPersons().stream()
+        persons.readOnlyPersons()
                 .forEach(this::printName);
         System.out.println(EMPTY);
     }
@@ -31,7 +31,7 @@ public class ResultView {
     }
 
     public void printLadder(Ladder ladder) {
-        ladder.readOnlyLines().stream()
+        ladder.readOnlyLines()
                 .forEach(this::printLine);
     }
 
@@ -52,7 +52,7 @@ public class ResultView {
     }
 
     public void printWinnings(Winnings winning) {
-        winning.readOnlyWinning().stream()
+        winning.readOnlyWinning()
                 .forEach(this::printWinning);
         System.out.println(EMPTY);
     }
@@ -60,6 +60,7 @@ public class ResultView {
     private void printWinning(Winning winning) {
         System.out.print(String.format("%6s", winning.winning()));
     }
+
     public void printLadderResult(LadderResult ladderResult) {
         Scanner scanner = new Scanner(System.in);
         boolean isResult = true;
@@ -75,7 +76,7 @@ public class ResultView {
         System.out.println(EMPTY);
         System.out.println(RUN_RESULT);
         if (ALL_RESULT_KEYWORD.equals(name)) {
-            persons.readOnlyPersons().stream()
+            persons.readOnlyPersons()
                     .forEach(person -> {
                         String key = person.name();
                         printResult(key, ladderResult.resultOfLadder(key));
