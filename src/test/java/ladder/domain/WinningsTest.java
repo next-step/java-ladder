@@ -25,6 +25,21 @@ public class WinningsTest {
         assertThat(countOfWinning).isEqualTo(countOfPerson);
     }
 
+    @ParameterizedTest
+    @CsvSource(value = {"꽝,꽝,3000,4000:4:꽝:0", "중식,양식,일식,한식,국밥,국밥,국밥:7:국밥:6"}, delimiter = ':')
+    @DisplayName("결과 찾기 확인")
+    public void findWinngingTest(String inputWinnings, int countOfPerson, String inputWinning, int findIndex) throws Exception {
+        //given
+        Winnings winnings = new Winnings(inputWinnings, countOfPerson);
+        Winning result = new Winning(inputWinning);
+
+        //when
+        Winning winning = winnings.findWinning(findIndex);
+
+        //then
+        assertThat(winning.equals(result)).isTrue();
+    }
+
     @Test
     @DisplayName("결과 미입력 예외")
     public void emptyExceptionTest() throws Exception {

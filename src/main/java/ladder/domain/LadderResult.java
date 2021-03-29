@@ -26,7 +26,7 @@ public class LadderResult {
         ladder.readOnlyLines()
                 .forEach(line -> lineIndex[DEFAULT_INDEX] = line.lineMoving(lineIndex[DEFAULT_INDEX]));
 
-        return winning.readOnlyWinning().get(lineIndex[DEFAULT_INDEX]);
+        return winning.findWinning(lineIndex[DEFAULT_INDEX]);
     }
 
     public Winning resultOfLadder(String name) {

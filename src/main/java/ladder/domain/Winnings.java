@@ -40,4 +40,8 @@ public class Winnings {
     public List<Winning> readOnlyWinning() {
         return Collections.unmodifiableList(winnings);
     }
+
+    public Winning findWinning(int lineIndex) {
+        return winnings.get(lineIndex);
+    }
 }
