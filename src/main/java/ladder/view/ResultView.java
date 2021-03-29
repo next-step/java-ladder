@@ -13,22 +13,25 @@ public class ResultView {
     private static final String LINE = "|";
     private static final String ALL_RESULT_KEYWORD = "all";
 
-    public ResultView() {
+    private final Persons persons;
+
+    public ResultView(Persons persons) {
         System.out.println(RUN_RESULT);
+        this.persons = persons;
     }
 
-    public void printPerson(Person person) {
-        person.readOnlyPerson().stream()
-                .forEach(this::printNameAndWinning);
+    public void printPersons() {
+        persons.readOnlyPersons()
+                .forEach(this::printName);
         System.out.println(EMPTY);
     }
 
-    private void printNameAndWinning(String name) {
-        System.out.print(String.format("%6s", name));
+    private void printName(Person person) {
+        System.out.print(String.format("%6s", person.name()));
     }
 
     public void printLadder(Ladder ladder) {
-        ladder.readOnlyLines().stream()
+        ladder.readOnlyLines()
                 .forEach(this::printLine);
     }
 
@@ -48,10 +51,14 @@ public class ResultView {
         System.out.print(LineEnum.ofLine(points.get(index)));
     }
 
-    public void printWinning(Winning winning) {
-        winning.readOnlyWinning().stream()
-                .forEach(this::printNameAndWinning);
+    public void printWinnings(Winnings winning) {
+        winning.readOnlyWinning()
+                .forEach(this::printWinning);
         System.out.println(EMPTY);
+    }
+
+    private void printWinning(Winning winning) {
+        System.out.print(String.format("%6s", winning.winning()));
     }
 
     public void printLadderResult(LadderResult ladderResult) {
@@ -69,11 +76,9 @@ public class ResultView {
         System.out.println(EMPTY);
         System.out.println(RUN_RESULT);
         if (ALL_RESULT_KEYWORD.equals(name)) {
-            ladderResult.readOnlyResults()
-                    .keySet()
-                    .stream()
-                    .forEach(keys -> {
-                        String key = keys.toString();
+            persons.readOnlyPersons()
+                    .forEach(person -> {
+                        String key = person.name();
                         printResult(key, ladderResult.resultOfLadder(key));
                     });
             return false;
@@ -87,7 +92,7 @@ public class ResultView {
         return true;
     }
 
-    private void printResult(String name, String winning) {
-        System.out.println(name + " : " + winning);
+    private void printResult(String name, Winning winning) {
+        System.out.println(name + " : " + winning.winning());
     }
 }

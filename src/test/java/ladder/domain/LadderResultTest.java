@@ -13,18 +13,18 @@ import static org.assertj.core.api.Assertions.*;
 @DisplayName("사다리 결과")
 public class LadderResultTest {
 
-    private Person person;
-    private Winning winning;
+    private Persons person;
+    private Winnings winning;
 
     @BeforeEach
     void setUp() {
-        person = new Person("pobi,honux,crong,jk");
-        winning = new Winning("꽝,5000,꽝,3000", person.countOfPerson());
+        person = new Persons("pobi,honux,crong,jk");
+        winning = new Winnings("꽝,5000,꽝,3000", person.countOfPersons());
     }
 
     public Ladder createladder(boolean isPoint) {
         return new Ladder(Arrays.asList(
-                new Line(person.countOfPerson(), () -> isPoint))
+                new Line(person.countOfPersons(), () -> isPoint))
         );
     }
 
@@ -36,7 +36,7 @@ public class LadderResultTest {
         LadderResult record = LadderResult.of(person, winning, createladder(false));
         //when
         //then
-        assertThat(record.resultOfLadder(name)).isEqualTo(result);
+        assertThat(record.resultOfLadder(name).winning()).isEqualTo(result);
     }
 
     @ParameterizedTest
@@ -47,7 +47,7 @@ public class LadderResultTest {
         LadderResult record = LadderResult.of(person, winning, createladder(true));
         //when
         //then
-        assertThat(record.resultOfLadder(name)).isEqualTo(result);
+        assertThat(record.resultOfLadder(name).winning()).isEqualTo(result);
     }
 
     @Test

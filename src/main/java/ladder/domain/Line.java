@@ -40,22 +40,32 @@ public class Line {
                     if (index == (countOfPerson - MINUS_ONE_INDEX)) {
                         return false;
                     }
-                    isExistBefore[DEFAULT_FIRST_INDEX] = !isExistBefore[DEFAULT_FIRST_INDEX]
-                                                    ? pointStrategy.isPoint() : false;
+                    isExistBefore[DEFAULT_FIRST_INDEX] = isCurrentPoint(isExistBefore[DEFAULT_FIRST_INDEX]);
                     return isExistBefore[DEFAULT_FIRST_INDEX];
                 }).collect(Collectors.toList());
     }
 
-    public List<Boolean> readOnlyPoints() {
-        return Collections.unmodifiableList(points);
+    private boolean isCurrentPoint(Boolean isExistBefore) {
+        return !isExistBefore ? pointStrategy.isPoint() : false;
     }
 
     public int lineMoving(int pointIndex) {
-        if (pointIndex > DEFAULT_FIRST_INDEX
-                && points.get(pointIndex - MINUS_ONE_INDEX)) {
+        if (isMoveBefore(pointIndex)) {
             return --pointIndex;
         }
-        return points.get(pointIndex) ?
-                ++pointIndex : pointIndex;
+        return isMoveAfter(pointIndex) ? ++pointIndex : pointIndex;
+    }
+
+    private boolean isMoveAfter(int pointIndex) {
+        return points.get(pointIndex);
+    }
+
+    private boolean isMoveBefore(int pointIndex) {
+        return pointIndex > DEFAULT_FIRST_INDEX
+                && isMoveAfter(pointIndex - MINUS_ONE_INDEX);
+    }
+
+    public List<Boolean> readOnlyPoints() {
+        return Collections.unmodifiableList(points);
     }
 }
