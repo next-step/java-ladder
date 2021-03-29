@@ -17,7 +17,26 @@ public class Ladder {
         return ladder;
     }
 
-    public void drawLine() {
-        ladder.forEach(line -> line.draw(new RandomDraw()));
+    public void drawLine(DrawStrategy drawStrategy) {
+        ladder.forEach(line -> line.draw(drawStrategy));
+    }
+
+    public int result(int startIndex) {
+        int resultIndex = startIndex;
+        for (Line line : ladder) {
+            resultIndex += resultOneLine(line, resultIndex);
+        }
+
+        return resultIndex;
+    }
+
+    private int resultOneLine(Line line, int index) {
+        if (line.getPoints().get(index)) {
+            return  1;
+        }
+        if (index != 0 && line.getPoints().get(index - 1)) {
+            return  - 1;
+        }
+        return 0;
     }
 }
