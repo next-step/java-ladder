@@ -1,9 +1,7 @@
 package laddarGame.view;
 
-import laddarGame.domain.PrizesDto;
 import laddarGame.dto.*;
 
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -13,11 +11,8 @@ public class OutputView {
     private static final int DEFAULT_LENGTH = 1;
     private static final String BLANK = " ";
 
-    private static int maxNameLength;
-
     public static void print(LinesDto linesDto, PlayersDto playersDto, PrizesDto prizesDto) {
         printPlayer(playersDto);
-        maxNameLength = maxNameLength(playersDto);
         linesDto.getLineDto()
                 .stream()
                 .map(LineDto::getLine)
@@ -30,23 +25,13 @@ public class OutputView {
         System.out.println();
     }
 
-    private static int maxNameLength(PlayersDto playersDto) {
-        return playersDto.getPlayerList()
-                .stream()
-                .max(Comparator.comparing(PlayerDto::getPlayerLength))
-                .map(PlayerDto::getPlayerLength)
-                .orElse(DEFAULT_LENGTH);
-    }
-
     private static void printLadder(List<Boolean> line) {
-        System.out.print(BLANK.repeat(maxNameLength));
         line.forEach(point -> System.out.print(point ? "|-----" : "|     "));
         System.out.print("|\n");
     }
 
     public static void printPlayer(PlayersDto playersDto) {
-        System.out.println("실행 결과");
-        System.out.print(BLANK);
+        System.out.println("사다리 결과");
         playersDto.getPlayerList()
                 .stream()
                 .map(OutputView::toName)
@@ -55,9 +40,8 @@ public class OutputView {
     }
 
     public static String toName(PlayerDto playerDto) {
-        String name = playerDto.getName();
-        int blankLength = MAX_NAME_LENGTH - name.length();
-        return name + BLANK.repeat(blankLength) + BLANK;
+        int blankLength = MAX_NAME_LENGTH - playerDto.getNameLength();
+        return playerDto.getName() + BLANK.repeat(blankLength) + BLANK;
     }
 
     public static void printMatchPrize(MatchOfPrizeDto matchOfPrizeDto) {
@@ -66,21 +50,12 @@ public class OutputView {
         Iterator<String> prizes = matchOfPrizeDto.getPrizeList().iterator();
 
         if (playerList.size() > DEFAULT_LENGTH) {
-            printAllPrize(playerList, prizes);
+            playerList.forEach(player -> System.out.println(player + " : " + prizes.next()));
         }
         if (playerList.size() == DEFAULT_LENGTH) {
-            printOnePrize(prizes.next());
+            System.out.println(prizes.next());
         }
 
         System.out.println();
-    }
-
-    public static void printOnePrize(String prize) {
-        System.out.println(prize);
-    }
-
-
-    public static void printAllPrize(List<String> playerList, Iterator<String> prizes) {
-        playerList.forEach(player -> System.out.println(player + " : " + prizes.next()));
     }
 }
