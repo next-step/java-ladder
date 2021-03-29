@@ -7,14 +7,14 @@ import java.util.Map;
 public class LadderResult {
     private static final String KEY_ERROR = "참여자를 잘못 입력했습니다.";
     private static final int DEFAULT_INDEX = 0;
-    private final Map<String, String> results;
+    private final Map<Person, Winning> results;
 
     private LadderResult(Map results) {
         this.results = results;
     }
 
-    public static LadderResult of(Persons person, Winning winning, Ladder ladder) {
-        Map<String, String> result = new HashMap<>();
+    public static LadderResult of(Persons person, Winnings winning, Ladder ladder) {
+        Map<Person, Winning> result = new HashMap<>();
         int[] lineIndex = {DEFAULT_INDEX};
         person.readOnlyPersons().stream()
                 .forEach(index -> result.put(index, ladderResult(lineIndex[DEFAULT_INDEX]++, winning, ladder)));
@@ -22,7 +22,7 @@ public class LadderResult {
         return new LadderResult(result);
     }
 
-    private static String ladderResult(int nameIndex, Winning winning, Ladder ladder) {
+    private static Winning ladderResult(int nameIndex, Winnings winning, Ladder ladder) {
         int[] lineIndex = { nameIndex };
         ladder.readOnlyLines().stream()
                 .forEach(line -> lineIndex[DEFAULT_INDEX] = line.lineMoving(lineIndex[DEFAULT_INDEX]));
@@ -30,11 +30,13 @@ public class LadderResult {
         return winning.readOnlyWinning().get(lineIndex[DEFAULT_INDEX]);
     }
 
-    public String resultOfLadder(String name) {
-        if (!results.containsKey(name)) {
-            throw new IllegalArgumentException(KEY_ERROR);
-        }
-        return results.get(name);
+    public Winning resultOfLadder(String name) {
+        Person person1 = results.keySet().stream()
+                .filter(person -> person.isName(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(KEY_ERROR));
+
+        return results.get(person1);
     }
 
     public Map readOnlyResults() {
