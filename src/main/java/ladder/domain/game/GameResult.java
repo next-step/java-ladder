@@ -4,10 +4,12 @@ import ladder.domain.participant.ParticipantList;
 import ladder.domain.result.ResultList;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class GameResult {
 
     private static final String ALL = "@all";
+    private static final String DOES_NOT_EXIST_STATEMENT = "Participant does not exist. Try again";
 
     HashMap<String, String> result;
 
@@ -18,7 +20,18 @@ public class GameResult {
         }
     }
 
+    public Map<String, String> result(){
+        return this.result;
+    }
+
     public String result(String query) {
-        return "";
+        if(!this.result.containsKey(query)){
+            return DOES_NOT_EXIST_STATEMENT;
+        }
+        return this.result.get(query);
+    }
+
+    public boolean shouldStop(String queryName) {
+        return queryName.equals(ALL);
     }
 }

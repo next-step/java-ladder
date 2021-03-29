@@ -10,6 +10,8 @@ import ladder.domain.ladderMap.Plane;
 import ladder.domain.result.Result;
 import ladder.domain.result.ResultList;
 
+import java.util.Map;
+
 public class ResultView {
 
     private static final String BLANK = " ";
@@ -104,4 +106,15 @@ public class ResultView {
         return String.valueOf(parsedName);
     }
 
+    public void printResult(String result) {
+        System.out.println("실행 결과");
+        System.out.println(result);
+    }
+
+    public void printAllResults(GameResult gameResult) {
+        System.out.println("실행 결과");
+        for(Map.Entry<String, String> entry: gameResult.result().entrySet()){
+            System.out.printf("%s : %s%n", entry.getKey(), entry.getValue());
+        }
+    }
 }

@@ -8,7 +8,7 @@ public class InputView {
 
     public String getParticipants() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        System.out.println("이름이 알파벳이나 숫자가 아닐 경우 프로그램을 실행하지 않습니다");
+        System.out.println("*이름이 알파벳이나 숫자가 아닐 경우 프로그램을 실행하지 않습니다");
         return scanner.nextLine();
     }
 
@@ -24,8 +24,8 @@ public class InputView {
 
     public String getNameQuery() {
         System.out.println("결과를 보고 싶은 사람은?");
-        System.out.println("모든 사람들의 결과를 보기 위해서는 @all을 입력해주세요");
-        System.out.println("프로그램을 종료하기 위해서는 @quit를 입력해주세요");
+        System.out.println("*모든 사람들의 결과를 보기 위해서는 @all을 입력해주세요");
+        System.out.println("*@all을 출력하고 나면 프로그램이 종료됩니다");
         return scanner.nextLine();
     }
 }

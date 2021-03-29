@@ -111,4 +111,8 @@ feat(step3): add result input and domain
 feat(step3): add ladderMap traversing logic
 사다리맵을 타고내려갈 수 있는 기능 추가
 결과를 gameMap에 저장
+
+feat(step3): add result query logic
+결과 조회 조건 추가
+결과 출력 메소드 추가
 ```
