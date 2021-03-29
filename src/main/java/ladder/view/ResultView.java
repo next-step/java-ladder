@@ -1,7 +1,7 @@
 package ladder.view;
 
-import ladder.domain.Participant;
-import ladder.domain.ParticipantList;
+import ladder.domain.participant.Participant;
+import ladder.domain.participant.ParticipantList;
 import ladder.domain.ladderMap.LadderMap;
 import ladder.domain.ladderMap.Line;
 import ladder.domain.ladderMap.Link;

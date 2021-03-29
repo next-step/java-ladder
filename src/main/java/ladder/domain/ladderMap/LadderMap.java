@@ -1,7 +1,7 @@
 package ladder.domain.ladderMap;
 
 import ladder.domain.Height;
-import ladder.domain.ParticipantList;
+import ladder.domain.participant.ParticipantList;
 
 public class LadderMap {
 

@@ -1,6 +1,6 @@
 package ladder.domain.ladderMap;
 
-import ladder.domain.ParticipantList;
+import ladder.domain.participant.ParticipantList;
 
 import java.util.List;
 import java.util.stream.Collectors;
