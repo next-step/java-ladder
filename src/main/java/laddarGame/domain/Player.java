@@ -2,7 +2,11 @@ package laddarGame.domain;
 
 import laddarGame.dto.PlayerDto;
 
+import java.util.List;
 import java.util.Objects;
+
+import static laddarGame.domain.Line.ONE;
+import static laddarGame.domain.Line.ZERO;
 
 public class Player {
 
@@ -14,6 +18,11 @@ public class Player {
         this.position = new Position(position);
     }
 
+    public Player(PlayerName playerName, Position position) {
+        this.playerName = playerName;
+        this.position = position;
+    }
+
     public String playerName() {
         return playerName.name();
     }
@@ -22,12 +31,18 @@ public class Player {
         return position;
     }
 
-    public void rightMove() {
-        position.rightMove();
+
+    public PlayerDto playerDto() {
+        return new PlayerDto(playerName, position);
     }
 
-    public void leftMove() {
-        position.leftMove();
+    public int compare(Player otherPlayer) {
+        return position.compare(otherPlayer.getPosition());
+    }
+
+    public Player move(List<Point> points, int maxPosition) {
+        Position movePosition = position.move(points.get(ZERO), points.get(ONE), maxPosition);
+        return new Player(this.playerName, movePosition);
     }
 
     @Override
@@ -41,13 +56,5 @@ public class Player {
     @Override
     public int hashCode() {
         return Objects.hash(playerName, position);
-    }
-
-    public PlayerDto playerDto() {
-        return new PlayerDto(playerName, position);
-    }
-
-    public int compare(Player player2) {
-        return position.compare(player2.getPosition());
     }
 }

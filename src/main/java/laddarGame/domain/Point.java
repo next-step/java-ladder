@@ -24,13 +24,4 @@ public class Point {
     public boolean toBoolean() {
         return point;
     }
-
-    public void move(Player player, Player nextPlayer) {
-        if (point) {
-            player.rightMove();
-            player.getPosition().position();
-            nextPlayer.leftMove();
-            nextPlayer.getPosition().position();
-        }
-    }
 }

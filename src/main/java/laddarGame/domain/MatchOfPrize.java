@@ -1,6 +1,7 @@
 package laddarGame.domain;
 
 import laddarGame.dto.MatchOfPrizeDto;
+import laddarGame.dto.PrizesDto;
 import laddarGame.exception.NonMatchPlayerException;
 
 import java.util.List;

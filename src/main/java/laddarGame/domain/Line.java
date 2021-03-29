@@ -6,6 +6,7 @@ import laddarGame.exception.ContinuousLadderCreateException;
 import java.util.List;
 import java.util.stream.IntStream;
 
+import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
 
 public class Line {
@@ -43,7 +44,7 @@ public class Line {
     public static List<Boolean> createLine(int playerCount) {
         LadderCreateStrategy conditional = LadderGame.createStrategy();
         final boolean[] lastPoint = new boolean[playerCount];
-        return IntStream.rangeClosed(ONE, playerCount - ONE)
+        return IntStream.range(ONE, playerCount)
                 .mapToObj(i -> lastPoint[i] = conditional.test(lastPoint[i - ONE]))
                 .collect(toList());
     }
@@ -52,8 +53,22 @@ public class Line {
         return new LineDto(line);
     }
 
-    public void move(Players players) {
-        players.movePoint(line);
+    public List<Point> getPoint(int index) {
+        if (index == ZERO) {
+            return List.of(line.get(index), line.get(index));
+        }
+        if (index == line.size()) {
+            return List.of(line.get(index - ONE), line.get(index - ONE));
+        }
+        return List.of(line.get(index - ONE), line.get(index));
     }
+
+    public Players play(Players players) {
+        return IntStream.range(ZERO, players.playerCount())
+                .mapToObj(i -> players.getPlayer(i).move(getPoint(i), players.playerCount() - ONE))
+                .sorted(Player::compare)
+                .collect(collectingAndThen(toList(), Players::new));
+    }
+
 }
 

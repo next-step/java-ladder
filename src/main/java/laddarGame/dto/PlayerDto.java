@@ -24,7 +24,7 @@ public class PlayerDto {
         return name;
     }
 
-    public int getPlayerLength() {
+    public int getNameLength() {
         return name.length();
     }
 

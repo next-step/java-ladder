@@ -1,5 +1,6 @@
 package laddarGame.domain;
 
+import laddarGame.dto.PrizesDto;
 import laddarGame.exception.PrizeAndPlayerNotSameCountException;
 import laddarGame.util.Parser;
 

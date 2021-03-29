@@ -34,12 +34,12 @@ class LineTest {
         Line line = new Line(List.of(true, false, false, true));
         Players players = createPlayers();
 
-        line.move(players);
+        Players movePlayers = line.play(players);
 
-        assertEquals(players.getPlayer(0), new Player("SKT", 0));
-        assertEquals(players.getPlayer(1), new Player("LG", 1));
-        assertEquals(players.getPlayer(2), new Player("KT", 2));
-        assertEquals(players.getPlayer(3), new Player("TS", 3));
+        assertEquals(movePlayers.getPlayer(0), new Player("SKT", 0));
+        assertEquals(movePlayers.getPlayer(1), new Player("LG", 1));
+        assertEquals(movePlayers.getPlayer(2), new Player("KT", 2));
+        assertEquals(movePlayers.getPlayer(3), new Player("TS", 3));
 
     }
 

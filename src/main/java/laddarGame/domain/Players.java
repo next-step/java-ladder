@@ -8,13 +8,11 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.toList;
+import static laddarGame.domain.Line.ZERO;
 
 public class Players {
 
-    private List<Player> playerList;
-
-    private static final int ZERO = 0;
-    private static final int ONE = 1;
+    private final List<Player> playerList;
 
     public Players(String playerNames) {
         this(playerList(Parser.nameParser(playerNames)));
@@ -59,21 +57,11 @@ public class Players {
         return playerList.get(index);
     }
 
-    public void movePoint(List<Point> line) {
-        IntStream.range(ZERO, line.size() - ONE)
-                .forEach(index -> line.get(index).move(getPlayer(index), getPlayer(index + ONE)));
-        sorted();
-    }
-
-    private void sorted() {
-        this.playerList = playerList.stream()
-                .sorted(Player::compare)
-                .collect(toList());
-    }
 
     public List<String> getPlayerName() {
         return playerList.stream()
                 .map(Player::playerName)
                 .collect(toList());
     }
+
 }
