@@ -1,6 +1,5 @@
 package ladder;
 
-import ladder.domain.FixedDraw;
 import ladder.domain.Line;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -33,7 +32,7 @@ class LineTest {
         int countOfPerson = 2;
         Line line = new Line(countOfPerson);
 
-        line.draw(new FixedDraw());
+        line.draw(() -> true);
 
         Assertions.assertThat(line.getPoints().get(0)).isEqualTo(true);
         Assertions.assertThat(line.getPoints().get(1)).isEqualTo(false);
