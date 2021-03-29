@@ -51,11 +51,18 @@ public class Line {
     }
 
     public int lineMoving(int pointIndex) {
-        if (pointIndex > DEFAULT_FIRST_INDEX
-                && points.get(pointIndex - MINUS_ONE_INDEX)) {
+        if (isMoveBefore(pointIndex)) {
             return --pointIndex;
         }
-        return points.get(pointIndex) ?
-                ++pointIndex : pointIndex;
+        return isMoveAfter(pointIndex) ? ++pointIndex : pointIndex;
+    }
+
+    private Boolean isMoveAfter(int pointIndex) {
+        return points.get(pointIndex);
+    }
+
+    private boolean isMoveBefore(int pointIndex) {
+        return pointIndex > DEFAULT_FIRST_INDEX
+                && isMoveAfter(pointIndex - MINUS_ONE_INDEX);
     }
 }

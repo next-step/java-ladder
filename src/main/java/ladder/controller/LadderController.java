@@ -2,7 +2,7 @@ package ladder.controller;
 
 import ladder.domain.Ladder;
 import ladder.domain.LadderResult;
-import ladder.domain.Person;
+import ladder.domain.Persons;
 import ladder.domain.Winning;
 import ladder.view.InputView;
 import ladder.view.ResultView;
@@ -14,9 +14,9 @@ public class LadderController {
         String inputWinning = inputView.winning();
         int ladderSize = inputView.ladderSize();
 
-        Person person = new Person(inputPerson);
-        Winning winning = new Winning(inputWinning, person.countOfPerson());
-        Ladder ladder = new Ladder(ladderSize, person.countOfPerson());
+        Persons person = new Persons(inputPerson);
+        Winning winning = new Winning(inputWinning, person.countOfPersons());
+        Ladder ladder = new Ladder(ladderSize, person.countOfPersons());
 
         LadderResult ladderResult = LadderResult.of(person, winning, ladder);
 

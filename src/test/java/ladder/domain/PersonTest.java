@@ -15,10 +15,10 @@ public class PersonTest {
     @DisplayName("문자열 split 확인")
     public void createPersonTest(String inputPerson, int check) throws Exception {
         //given
-        Person person = new Person(inputPerson);
+        Persons person = new Persons(inputPerson);
 
         //when
-        int countOfPerson = person.countOfPerson();
+        int countOfPerson = person.countOfPersons();
 
         //then
         assertThat(countOfPerson).isEqualTo(check);
@@ -32,7 +32,7 @@ public class PersonTest {
 
         //when
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            new Person(inputPerson);
+            new Persons(inputPerson);
         });
 
         //then
@@ -46,7 +46,7 @@ public class PersonTest {
 
         //when
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            new Person(inputPerson);
+            new Persons(inputPerson);
         });
 
         //then

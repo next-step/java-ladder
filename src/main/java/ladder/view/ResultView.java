@@ -17,8 +17,8 @@ public class ResultView {
         System.out.println(RUN_RESULT);
     }
 
-    public void printPerson(Person person) {
-        person.readOnlyPerson().stream()
+    public void printPerson(Persons person) {
+        person.readOnlyPersons().stream()
                 .forEach(this::printNameAndWinning);
         System.out.println(EMPTY);
     }

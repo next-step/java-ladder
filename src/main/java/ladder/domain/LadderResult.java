@@ -13,10 +13,10 @@ public class LadderResult {
         this.results = results;
     }
 
-    public static LadderResult of(Person person, Winning winning, Ladder ladder) {
+    public static LadderResult of(Persons person, Winning winning, Ladder ladder) {
         Map<String, String> result = new HashMap<>();
         int[] lineIndex = {DEFAULT_INDEX};
-        person.readOnlyPerson().stream()
+        person.readOnlyPersons().stream()
                 .forEach(index -> result.put(index, ladderResult(lineIndex[DEFAULT_INDEX]++, winning, ladder)));
         
         return new LadderResult(result);
