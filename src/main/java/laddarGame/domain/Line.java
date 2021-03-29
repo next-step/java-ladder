@@ -21,24 +21,21 @@ public class Line {
     }
 
     public Line(List<Boolean> line) {
-        if (valid(line)) {
-            throw new ContinuousLadderCreateException("이동하는 부분이 연속적으로 생성되면 안됩니다.");
-        }
+        valid(line);
         this.line = line.stream().
                 map(Point::of).
                 collect(toList());
     }
 
-    private boolean valid(List<Boolean> line) {
-        return IntStream.range(ZERO, line.size() - ONE)
-                .filter(index -> isContinueTrue(line.get(index), line.get(index + ONE)))
-                .boxed()
-                .findFirst()
-                .isPresent();
+    private void valid(List<Boolean> line) {
+        IntStream.range(ZERO, line.size() - ONE)
+                .forEach(index -> isContinueTrue(line.get(index), line.get(index + ONE)));
     }
 
-    private boolean isContinueTrue(Boolean point, Boolean otherPoint) {
-        return point && otherPoint;
+    private void isContinueTrue(Boolean point, Boolean otherPoint) {
+        if (point && otherPoint) {
+            throw new ContinuousLadderCreateException("이동하는 부분이 연속적으로 생성되면 안됩니다.");
+        }
     }
 
     public static List<Boolean> createLine(int playerCount) {
