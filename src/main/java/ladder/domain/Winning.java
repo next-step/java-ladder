@@ -7,13 +7,13 @@ import java.util.Map;
 
 public class Winning {
 
-    private final Map<Name, Integer> winning = new LinkedHashMap<>();
+    private final Map<Name, String> winning = new LinkedHashMap<>();
 
-    public Map<Name, Integer> getWinning() {
+    public Map<Name, String> getWinning() {
         return winning;
     }
 
-    public void record(Name name, int resultIndex) {
-        winning.put(name, resultIndex);
+    public void record(Name name, String result) {
+        winning.put(name, result);
     }
 }
