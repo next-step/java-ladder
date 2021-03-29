@@ -19,4 +19,11 @@ public class Plane {
     public List<Line> lines() {
         return this.lines;
     }
+
+    protected int traverse(int index) {
+        for (int count = 0; count < lines.size(); count++) {
+            index = lines().get(count).movedIndex(index);
+        }
+        return index;
+    }
 }

@@ -16,6 +16,23 @@ public class ResultList {
         this.results = results(stringResults, participantList);
     }
 
+    public ResultList(ResultList resultList, List<Integer> resultIndices) {
+        this.results = results(resultList, resultIndices);
+    }
+
+    private List<Result> results(ResultList resultList, List<Integer> resultIndices) {
+        return resultIndices.stream()
+                .map(resultList::get)
+                .collect(Collectors.toList());
+    }
+
+    public Result get(int index) {
+        if (index < 0 || index >= this.results.size()) {
+            throw new CustomException(ErrorCode.INVALID_RESULT_INDEX);
+        }
+        return results.get(index);
+    }
+
     private List<Result> results(String stringResults, ParticipantList participantList) {
         List<Result> parsedResultList = splitResults(stringResults);
         if (!lengthEqual(parsedResultList, participantList)) {
@@ -37,5 +54,16 @@ public class ResultList {
 
     public int size() {
         return this.results.size();
+    }
+
+    public List<Result> resultList() {
+        return this.results;
+    }
+
+    public String getResult(int index) {
+        if (index < 0 || index >= this.results.size()) {
+            throw new CustomException(ErrorCode.INVALID_RESULT_INDEX);
+        }
+        return this.results.get(index).result();
     }
 }

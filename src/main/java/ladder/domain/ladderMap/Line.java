@@ -37,4 +37,12 @@ public class Line {
     public List<Point> points() {
         return this.points;
     }
+
+    protected int movedIndex(int index) {
+        return this.links.stream()
+                .filter(link -> (link.from() == index || link.to() == index))
+                .map(link -> link.matchedValue(index))
+                .findFirst()
+                .orElse(index);
+    }
 }

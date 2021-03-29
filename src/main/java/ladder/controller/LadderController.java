@@ -1,6 +1,8 @@
 package ladder.controller;
 
+import ladder.domain.game.Game;
 import ladder.domain.Height;
+import ladder.domain.game.GameResult;
 import ladder.domain.participant.ParticipantList;
 import ladder.domain.ladderMap.LadderMap;
 import ladder.domain.result.ResultList;
@@ -18,7 +20,11 @@ public class LadderController {
         Height verifiedHeight = height();
 
         LadderMap ladderMap = new LadderMap(verifiedParticipants, verifiedHeight);
-        resultView.printLadderMap(ladderMap);
+        Game game = new Game(ladderMap, resultList);
+        resultView.printGameMap(game);
+
+        GameResult gameResult = game.run();
+        inputView.getNameQuery();
     }
 
     private ParticipantList participantList(){
@@ -35,6 +41,5 @@ public class LadderController {
         int maximumLadderHeight = inputView.getMaximumLadderHeight();
         return new Height(maximumLadderHeight);
     }
-
 
 }

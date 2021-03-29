@@ -1,11 +1,14 @@
 package ladder.view;
 
+import ladder.domain.game.Game;
+import ladder.domain.game.GameResult;
 import ladder.domain.participant.Participant;
 import ladder.domain.participant.ParticipantList;
-import ladder.domain.ladderMap.LadderMap;
 import ladder.domain.ladderMap.Line;
 import ladder.domain.ladderMap.Link;
 import ladder.domain.ladderMap.Plane;
+import ladder.domain.result.Result;
+import ladder.domain.result.ResultList;
 
 public class ResultView {
 
@@ -16,13 +19,35 @@ public class ResultView {
     private static final int DIVIDER = 6;
     private static final int VERTICAL_INDEX = 5;
 
-    public void printLadderMap(LadderMap ladderMap) {
-        System.out.println("실행 결과");
+    public void printGameMap(Game game) {
+        System.out.println("사다리 결과");
 
-        String parsedNames = parsedNames(ladderMap.participantList());
+        String parsedNames = parsedNames(game.ladderMap().participantList());
         System.out.println(parsedNames);
 
-        printPlane(ladderMap.plane());
+        printPlane(game.ladderMap().plane());
+
+        String parsedResults = parsedResults(game.resultList());
+        System.out.println(parsedResults);
+    }
+
+    private String parsedResults(ResultList resultList) {
+        StringBuilder parsedResults = new StringBuilder();
+        for (Result result : resultList.resultList()) {
+            parsedResults.append(parsedResult(result));
+        }
+        return String.valueOf(parsedResults);
+    }
+
+    private String parsedResult(Result result) {
+        int resultLength = result.result().length();
+        StringBuilder parsedResult = new StringBuilder();
+        parsedResult.append(BLANK);
+        for (int count = 0; count < Participant.MAX_LENGTH - resultLength; count++) {
+            parsedResult.append(BLANK);
+        }
+        parsedResult.append(result.result());
+        return String.valueOf(parsedResult);
     }
 
     private void printPlane(Plane plane) {
@@ -66,16 +91,17 @@ public class ResultView {
 
     private String parsedName(Participant participant) {
         int participantNameLength = participant.name().length();
-        StringBuilder blankSpace = new StringBuilder();
-        blankSpace.append(BLANK);
+        StringBuilder parsedName = new StringBuilder();
+        parsedName.append(BLANK);
         if (participantNameLength == Participant.MAX_LENGTH) {
-            blankSpace.append(participant.name());
-            return String.valueOf(blankSpace);
+            parsedName.append(participant.name());
+            return String.valueOf(parsedName);
         }
         for (int count = 0; count < Participant.MAX_LENGTH - participantNameLength; count++) {
-            blankSpace.append(BLANK);
+            parsedName.append(BLANK);
         }
-        blankSpace.append(participant.name());
-        return String.valueOf(blankSpace);
+        parsedName.append(participant.name());
+        return String.valueOf(parsedName);
     }
+
 }

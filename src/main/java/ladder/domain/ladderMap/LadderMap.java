@@ -3,6 +3,10 @@ package ladder.domain.ladderMap;
 import ladder.domain.Height;
 import ladder.domain.participant.ParticipantList;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 public class LadderMap {
 
     private ParticipantList participantList;
@@ -19,5 +23,11 @@ public class LadderMap {
 
     public Plane plane() {
         return this.plane;
+    }
+
+    public List<Integer> traverse() {
+        return IntStream.range(0, participantList().size())
+                .mapToObj(plane::traverse)
+                .collect(Collectors.toList());
     }
 }

@@ -1,6 +1,8 @@
 package ladder.domain.participant;
 
 import ladder.domain.participant.Participant;
+import ladder.exception.CustomException;
+import ladder.exception.ErrorCode;
 
 import java.util.Arrays;
 import java.util.List;
@@ -19,6 +21,14 @@ public class ParticipantList {
                 .map(String::trim)
                 .map(Participant::new)
                 .collect(Collectors.toList());
+    }
+
+    public String getName(int index){
+        if(index<0 || index>this.participants.size()){
+            throw new CustomException(ErrorCode.INVALID_PARTICIPANT_INDEX);
+        }
+        return this.participants.get(index)
+                .name();
     }
 
     public List<Participant> participants() {
