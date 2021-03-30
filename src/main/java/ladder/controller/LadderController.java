@@ -1,5 +1,6 @@
 package ladder.controller;
 
+import ladder.domain.Count;
 import ladder.domain.RandomDraw;
 import ladder.domain.Winning;
 import ladder.dto.InputManagement;
@@ -40,10 +41,12 @@ public class LadderController {
         resultView.printResultList(results);
 
         int isRemainTurn = inputManagement.getNames().size();
+        Count count = new Count(isRemainTurn);
         String person = "";
-        do {
+        while (count.isCountRemaining()) {
             person = inputView.person();
+            count.update(person);
             resultView.printResult(winning, person);
-        } while (--isRemainTurn > 0 && !person.equals("all"));
+        }
     }
 }
