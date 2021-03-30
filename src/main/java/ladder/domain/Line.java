@@ -26,6 +26,10 @@ public class Line {
         return points;
     }
 
+    public boolean point(int index) {
+        return points.get(index);
+    }
+
     public void draw(DrawStrategy drawStrategy) {
         points.set(FIRST_INDEX, drawStrategy.drawValue());
         IntStream.range(1, points.size() - 1)

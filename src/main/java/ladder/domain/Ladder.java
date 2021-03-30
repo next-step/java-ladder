@@ -31,10 +31,10 @@ public class Ladder {
     }
 
     private int resultOneLine(Line line, int index) {
-        if (line.getPoints().get(index)) {
+        if (line.point(index)) {
             return  1;
         }
-        if (index != 0 && line.getPoints().get(index - 1)) {
+        if (index != 0 && line.point(index - 1)) {
             return  - 1;
         }
         return 0;
