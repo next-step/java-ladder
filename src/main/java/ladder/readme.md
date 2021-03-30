@@ -83,4 +83,9 @@ feat(move strategy judge): add left move judge
 
 feat(move strategy judge): add right or still judge
 가만히 있거나 오른쪽 이동을 지시하는 심판 코드 추가
+
+<h3>Line</h3>
+
+feat(line): add line initialization code
+라인 초기화 코드 추가
 ```

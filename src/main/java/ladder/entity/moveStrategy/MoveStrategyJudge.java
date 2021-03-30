@@ -11,10 +11,10 @@ public class MoveStrategyJudge {
     public static final Random random = new Random();
 
     public static MoveStrategy strategy(Link preLink) {
-        if (preLink.goesRight()) {
-            return new MoveLeft();
+        if (preLink==null || !preLink.goesRight()){
+            return stillOrRight();
         }
-        return stillOrRight();
+        return new MoveLeft();
     }
 
     private static MoveStrategy stillOrRight() {

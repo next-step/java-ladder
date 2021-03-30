@@ -19,6 +19,10 @@ public class Link {
         return this.to.isGreaterThan(this.from);
     }
 
+    public boolean goesLeft(){
+        return this.from.isGreaterThan(this.to);
+    }
+
     public Point from() {
         return from;
     }
