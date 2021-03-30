@@ -55,6 +55,10 @@ public class Line {
         return stillLinks;
     }
 
+    public List<Point> points() {
+        return points;
+    }
+
     public List<Link> links() {
         return links;
     }

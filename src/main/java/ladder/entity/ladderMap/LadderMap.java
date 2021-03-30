@@ -21,4 +21,12 @@ public class LadderMap {
                 .mapToObj(count->new Line(participantList))
                 .collect(Collectors.toList());
     }
+
+    public ParticipantList participantList() {
+        return participantList;
+    }
+
+    public List<Line> lines() {
+        return lines;
+    }
 }

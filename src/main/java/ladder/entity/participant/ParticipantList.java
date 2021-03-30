@@ -28,6 +28,10 @@ public class ParticipantList {
         return this.participants.get(index);
     }
 
+    public List<Participant> participants() {
+        return participants;
+    }
+
     public int size() {
         return this.participants.size();
     }

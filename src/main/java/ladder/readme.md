@@ -98,4 +98,7 @@ feat(ladder map): add ladder map initialization code
 
 feat(view): add controller and input view code
 컨트롤러, 참여자리스트, 결과 리스트 인풋 코드 추가
+
+feat(view): add height input and ladder view code
+높이 입력 및 사다리 출력 코드 추가
 ```
