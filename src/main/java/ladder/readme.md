@@ -6,4 +6,12 @@ tdd로 기능을 재구현하기 위해 이전에 작성한 코드를 모두 삭
 
 feat(participant): make participant generation test code
 참가자의 이름을 잘 생성하는지 테스트 코드 생성
+
+feat(participant): generate codes that meet the test code needs
+참가자의 이름을 실제로 생성하는 코드 생성
+
+feat(participant): add test codes to test white space in input
+띄어쓰기가 양옆으로 있는 인풋 테스트 코드 생성
+
+
 ```
