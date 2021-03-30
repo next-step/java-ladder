@@ -5,7 +5,8 @@ public enum ErrorCode {
     INVALID_PARTICIPANT_INDEX("PL001", "Participant Index Not In Range"),
     INVALID_LADDER_HEIGHT("LA001", "Ladder Height Must Be Positive"),
     INVALID_POINT_INDEX("P001", "Point Index Cannot Be Negative"),
-    INVALID_RESULT_INDEX("RC001", "Result Index Not In Range");
+    INVALID_RESULT_INDEX("RC001", "Result Index Not In Range"),
+    INVALID_RESULT_SIZE("RC002", "Result Size Does Not Match Participant Size");
 
     private final String code;
     private final String message;

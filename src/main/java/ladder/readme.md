@@ -93,4 +93,9 @@ feat(line): add line initialization code
 
 feat(ladder map): add ladder map initialization code
 사다리맵 초기화 코드 추가
+
+<h3>View</h3>
+
+feat(view): add controller and input view code
+컨트롤러, 참여자리스트, 결과 리스트 인풋 코드 추가
 ```
