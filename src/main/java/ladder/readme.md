@@ -47,4 +47,9 @@ feat(point): add point generation code
 
 feat(point): add point validation code
 점의 인덱스를 검증하는 코드 추가
+
+<h3>Link</h3>
+
+feat(link): add still link generation code
+가만히 있는 링크 생성 코드 추가
 ```
