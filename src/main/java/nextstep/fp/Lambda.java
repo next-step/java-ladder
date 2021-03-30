@@ -31,13 +31,7 @@ public class Lambda {
         return sumAll(numbers, conditional);
     }
 
-    public static int sumAllOverThree(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number > 3) {
-                total += number;
-            }
-        }
-        return total;
+    public static int sumAllOverThree(List<Integer> numbers, Conditional conditional) {
+        return sumAll(numbers, conditional);
     }
 }

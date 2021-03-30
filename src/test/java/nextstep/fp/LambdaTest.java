@@ -49,9 +49,10 @@ public class LambdaTest {
         assertThat(sum).isEqualTo(12);
     }
 
+    @DisplayName(value = "sumAllOverThree 3 이상 값에 대한 연산 처리 할 수 있는 filter를 람다로 작성 테스트")
     @Test
-    public void sumAllOverThree() throws Exception {
-        int sum = Lambda.sumAllOverThree(numbers);
+    public void sumAllOverThree() {
+        int sum = Lambda.sumAllOverThree(numbers, number -> number > 3);
         assertThat(sum).isEqualTo(15);
     }
 }
