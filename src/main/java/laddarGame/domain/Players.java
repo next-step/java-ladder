@@ -2,20 +2,20 @@ package laddarGame.domain;
 
 import laddarGame.dto.PlayerDto;
 import laddarGame.exception.DuplicatePositionException;
+import laddarGame.util.Parser;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
+import static java.util.stream.Collectors.toList;
+import static laddarGame.domain.Line.ZERO;
 
 public class Players {
 
     private final List<Player> playerList;
 
-    private static final String DELIMITER = ",";
-    private static final int ZERO = 0;
-
     public Players(String playerNames) {
-        this(playerList(nameParser(playerNames)));
+        this(playerList(Parser.nameParser(playerNames)));
     }
 
     public Players(List<Player> playerList) {
@@ -26,11 +26,7 @@ public class Players {
     private static List<Player> playerList(String[] playerNames) {
         return IntStream.range(ZERO, playerNames.length)
                 .mapToObj(position -> new Player(playerNames[position], position))
-                .collect(Collectors.toList());
-    }
-
-    private static String[] nameParser(String playerNames) {
-        return playerNames.split(DELIMITER);
+                .collect(toList());
     }
 
     public int playerCount() {
@@ -54,6 +50,18 @@ public class Players {
     public List<PlayerDto> playersDto() {
         return playerList.stream()
                 .map(Player::playerDto)
-                .collect(Collectors.toList());
+                .collect(toList());
     }
+
+    public Player getPlayer(int index) {
+        return playerList.get(index);
+    }
+
+
+    public List<String> getPlayerName() {
+        return playerList.stream()
+                .map(Player::playerName)
+                .collect(toList());
+    }
+
 }

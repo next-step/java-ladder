@@ -25,7 +25,33 @@ class LineTest {
 
         LineDto lineDto = line.lineDto();
 
-        assertEquals(new LineDto(List.of(true, false, false)), lineDto);
+        assertEquals(new LineDto(List.of(Point.of(true), Point.of(false), Point.of(false))), lineDto);
     }
 
+    @DisplayName("사다리 라인에 따라 플레이어가 이동한다.")
+    @Test
+    void move() {
+        Line line = new Line(List.of(true, false, false, true));
+        Players players = createPlayers();
+
+        Players movePlayers = line.play(players);
+
+        assertEquals(movePlayers.getPlayer(0), new Player("SKT", 0));
+        assertEquals(movePlayers.getPlayer(1), new Player("LG", 1));
+        assertEquals(movePlayers.getPlayer(2), new Player("KT", 2));
+        assertEquals(movePlayers.getPlayer(3), new Player("TS", 3));
+
+    }
+
+    Players createPlayers() {
+        return new Players(
+                List.of(new Player("LG", 0)
+                        , new Player("SKT", 1)
+                        , new Player("KT", 2)
+                        , new Player("TS", 3)));
+    }
+
+    Line createLine(boolean first, boolean second, boolean third, boolean fourth) {
+        return new Line(List.of(first, second, third, fourth));
+    }
 }

@@ -17,7 +17,11 @@ public class LadderCreateStrategy implements CreateStrategy {
     private LadderCreateStrategy() {
     }
 
-    public static LadderCreateStrategy of() {
-        return new LadderCreateStrategy();
+    private static class StrategyHolder {
+        public static final LadderCreateStrategy INSTANCE = new LadderCreateStrategy();
+    }
+
+    public static LadderCreateStrategy getInstance() {
+        return StrategyHolder.INSTANCE;
     }
 }
