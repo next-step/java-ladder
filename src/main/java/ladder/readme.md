@@ -60,4 +60,9 @@ feat(link): add left and right link generation code
 
 refact(step4): restructure packages
 공통의 주제로 패키지 세분화
+
+<h3>ResultCase</h3>
+
+feat(result case): add result case generation code
+결과 생성 코드 추가
 ```
