@@ -24,6 +24,7 @@ public class StreamStudyTest {
         assertThat(result).isEqualTo(1946);
     }
 
+    @DisplayName(value = "파일 내에 존재하는 단어를 가장 긴 순으로 100개를 소문자로 출력")
     @Test
     public void printLongestWordTop100() throws Exception {
         StreamStudy.printLongestWordTop100();
