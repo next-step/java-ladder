@@ -15,4 +15,10 @@ feat(participant): add test codes to test white space in input
 
 feat(participant): add codes that meet the test codes
 띄어쓰기를 제거하는 코드 생성
+
+feat(participant): add participant name validation
+5글자 이상 인풋에 대헤서는 에러를 던지는 코드 추가
+
+feat(participantList): add participantList generation
+참가자 컬렉션을 만드는 코드 추가
 ```
