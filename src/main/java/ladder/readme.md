@@ -44,4 +44,7 @@ feat(ladder height): add ladder height validation code
 
 feat(point): add point generation code
 점을 만드는 코드 추가
+
+feat(point): add point validation code
+점의 인덱스를 검증하는 코드 추가
 ```
