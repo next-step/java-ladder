@@ -22,6 +22,20 @@ public class LadderMap {
                 .collect(Collectors.toList());
     }
 
+    public List<Point> traverse(){
+        return IntStream.range(0, participantList().size())
+                .mapToObj(Point::new)
+                .map(this::traverseThroughLines)
+                .collect(Collectors.toList());
+    }
+
+    private Point traverseThroughLines(Point point){
+        for(Line line:lines){
+            point = line.traverseLinks(point);
+        }
+        return point;
+    }
+
     public ParticipantList participantList() {
         return participantList;
     }
