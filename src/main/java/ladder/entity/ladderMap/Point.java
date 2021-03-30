@@ -8,7 +8,7 @@ import java.util.Objects;
 
 public class Point {
 
-    private int index;
+    private final int index;
 
     public Point(int index) {
         this.index = verifiedIndex(index);

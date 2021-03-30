@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class ResultCase {
 
-    private String result;
+    private final String result;
 
     public ResultCase(String result){
         this.result = result.trim();

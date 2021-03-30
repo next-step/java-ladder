@@ -7,8 +7,8 @@ public enum ErrorCode {
     INVALID_POINT_INDEX("P001", "Point Index Cannot Be Negative"),
     INVALID_RESULT_INDEX("RC001", "Result Index Not In Range");
 
-    private String code;
-    private String message;
+    private final String code;
+    private final String message;
 
     ErrorCode(String code, String message) {
         this.code = code;

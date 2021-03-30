@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 public class ParticipantList {
 
-    private List<Participant> participants;
+    private final List<Participant> participants;
 
     public ParticipantList(String stringNames) {
         this.participants = verifiedParticipants(stringNames);

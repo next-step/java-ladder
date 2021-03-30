@@ -5,7 +5,7 @@ import ladder.exception.ErrorCode;
 
 public class LadderHeight {
 
-    private int height;
+    private final int height;
 
     public LadderHeight(int height) {
         this.height = verifiedHeight(height);

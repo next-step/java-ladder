@@ -3,8 +3,8 @@ package ladder.entity.ladderMap;
 import ladder.entity.moveStrategy.MoveStrategy;
 
 public class Link {
-    private Point from;
-    private Point to;
+    private final Point from;
+    private final Point to;
 
     public Link(Point from, MoveStrategy moveStrategy) {
         this.from = from;

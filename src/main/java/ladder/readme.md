@@ -66,6 +66,13 @@ refact(step4): restructure packages
 feat(result case): add result case generation code
 결과 생성 코드 추가
 
+<h3>ResultCaseList</h3>
+
 feat(result case list): add result case list generation code
 결과 컬렉션 생성 코드 추가
+
+<h3>Refactor</h3>
+
+refact(step4): add final to instance variables
+인스턴스 변수 상수화
 ```

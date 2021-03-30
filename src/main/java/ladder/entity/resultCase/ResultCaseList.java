@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 public class ResultCaseList {
 
-    private List<ResultCase> resultCases;
+    private final List<ResultCase> resultCases;
 
     public ResultCaseList(String resultCases){
         this.resultCases = verifiedResultCases(resultCases);

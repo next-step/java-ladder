@@ -7,7 +7,7 @@ import java.util.Objects;
 
 public class Participant {
 
-    private String name;
+    private final String name;
 
     public Participant(String name) {
         this.name = verifiedName(name);
