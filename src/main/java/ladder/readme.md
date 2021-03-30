@@ -65,4 +65,7 @@ refact(step4): restructure packages
 
 feat(result case): add result case generation code
 결과 생성 코드 추가
+
+feat(result case list): add result case list generation code
+결과 컬렉션 생성 코드 추가
 ```
