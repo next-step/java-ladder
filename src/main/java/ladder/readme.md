@@ -116,4 +116,9 @@ feat(line): add traversal method
 
 feat(ladder map): add ladder traversal method
 사다리맵 전체 순회 코드 추가
+
+<h3>Game & GameResult</h3>
+
+feat(game & game result): add game and result method
+사다리타기 활성화, 결과를 담는 코드 추가
 ```

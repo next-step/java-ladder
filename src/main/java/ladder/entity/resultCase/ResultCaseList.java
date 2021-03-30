@@ -1,5 +1,6 @@
 package ladder.entity.resultCase;
 
+import ladder.entity.ladderMap.Point;
 import ladder.entity.participant.ParticipantList;
 import ladder.exception.CustomException;
 import ladder.exception.ErrorCode;
@@ -16,6 +17,16 @@ public class ResultCaseList {
         this.resultCases = verifiedResultCases(participantList, resultCases);
     }
 
+    public ResultCaseList(ResultCaseList resultCaseList, List<Point> pointList) {
+        this.resultCases = results(resultCaseList, pointList);
+    }
+
+    private List<ResultCase> results(ResultCaseList resultList, List<Point> resultIndices) {
+        return resultIndices.stream()
+                .map(resultList::get)
+                .collect(Collectors.toList());
+    }
+
     private List<ResultCase> verifiedResultCases(ParticipantList participantList, String resultCases){
         List<ResultCase> resultCaseList = Arrays.stream(resultCases.split(","))
                 .map(ResultCase::new)
@@ -24,6 +35,11 @@ public class ResultCaseList {
             throw new CustomException(ErrorCode.INVALID_RESULT_SIZE);
         }
         return resultCaseList;
+    }
+
+    public ResultCase get(Point point){
+        int index = point.index();
+        return get(index);
     }
 
     public ResultCase get(int index){
