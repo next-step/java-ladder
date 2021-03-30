@@ -80,4 +80,7 @@ refact(step4): add final to instance variables
 
 feat(move strategy judge): add left move judge
 왼쪽 이동을 지시하는 심판 코드 추가
+
+feat(move strategy judge): add right or still judge
+가만히 있거나 오른쪽 이동을 지시하는 심판 코드 추가
 ```
