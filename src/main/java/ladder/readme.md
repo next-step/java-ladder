@@ -39,4 +39,9 @@ feat(ladder height): add ladder height generation code
 
 feat(ladder height): add ladder height validation code
 사다리 높이를 검증하는 코드 추가
+
+<h3>Point</h3>
+
+feat(point): add point generation code
+점을 만드는 코드 추가
 ```
