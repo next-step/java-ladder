@@ -1,4 +1,4 @@
-package ladder.entity;
+package ladder.entity.participant;
 
 import ladder.exception.CustomException;
 import ladder.exception.ErrorCode;

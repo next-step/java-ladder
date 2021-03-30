@@ -1,5 +1,6 @@
-package ladder.entity;
+package ladder.entity.ladderMap;
 
+import ladder.entity.moveStrategy.MoveStrategy;
 import ladder.exception.CustomException;
 import ladder.exception.ErrorCode;
 
@@ -9,23 +10,23 @@ public class Point {
 
     private int index;
 
-    public Point(int index){
+    public Point(int index) {
         this.index = verifiedIndex(index);
     }
 
-    private int verifiedIndex(int index){
-        if(index<0){
+    private int verifiedIndex(int index) {
+        if (index < 0) {
             throw new CustomException(ErrorCode.INVALID_POINT_INDEX);
         }
         return index;
     }
 
-    public int index(){
+    public int index() {
         return this.index;
     }
 
-    public Point move(MoveStrategy moveStrategy){
-        return new Point(this.index+moveStrategy.move().direction());
+    public Point move(MoveStrategy moveStrategy) {
+        return new Point(this.index + moveStrategy.move().direction());
     }
 
     @Override

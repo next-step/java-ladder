@@ -55,4 +55,9 @@ feat(link): add still link generation code
 
 feat(link): add left and right link generation code
 왼쪽, 오른쪽으로 움직이는 링크 추가
+
+<h3>Refactor</h3>
+
+refact(step4): restructure packages
+공통의 주제로 패키지 세분화
 ```

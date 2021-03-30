@@ -1,5 +1,8 @@
-package ladder.entity;
+package ladder.entity.ladderMap;
 
+import ladder.entity.moveStrategy.MoveLeft;
+import ladder.entity.moveStrategy.MoveRight;
+import ladder.entity.moveStrategy.MoveStill;
 import ladder.exception.CustomException;
 import ladder.exception.ErrorCode;
 import org.junit.jupiter.params.ParameterizedTest;

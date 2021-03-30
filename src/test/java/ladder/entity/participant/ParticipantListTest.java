@@ -1,4 +1,4 @@
-package ladder.entity;
+package ladder.entity.participant;
 
 import ladder.Util;
 import org.assertj.core.api.SoftAssertions;

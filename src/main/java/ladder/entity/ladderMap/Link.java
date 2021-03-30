@@ -1,10 +1,12 @@
-package ladder.entity;
+package ladder.entity.ladderMap;
+
+import ladder.entity.moveStrategy.MoveStrategy;
 
 public class Link {
     private Point from;
     private Point to;
 
-    public Link(Point from, MoveStrategy moveStrategy){
+    public Link(Point from, MoveStrategy moveStrategy) {
         this.from = from;
         this.to = from.move(moveStrategy);
     }

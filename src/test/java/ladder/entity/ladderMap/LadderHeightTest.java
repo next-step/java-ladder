@@ -1,8 +1,7 @@
-package ladder.entity;
+package ladder.entity.ladderMap;
 
 import ladder.exception.CustomException;
 import ladder.exception.ErrorCode;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 

@@ -1,6 +1,6 @@
 package ladder;
 
-import ladder.entity.Participant;
+import ladder.entity.participant.Participant;
 
 import java.util.Arrays;
 import java.util.List;
