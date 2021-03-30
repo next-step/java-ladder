@@ -15,4 +15,18 @@ class LadderTest {
         Ladder ladder = new Ladder(countOfPerson, height);
         Assertions.assertThat(ladder.getLadder().size()).isEqualTo(5);
     }
+
+    @Test
+    @DisplayName("개인별 결과를 알 수 있다.")
+    void canKnowResultPerPerson() {
+        int countOfPerson = 2;
+        int height = 3;
+        Ladder ladder = new Ladder(countOfPerson, height);
+        ladder.drawLine(() -> true);
+
+        int startIndex = 0;
+        int resultIndex = ladder.result(startIndex);
+
+        Assertions.assertThat(resultIndex).isEqualTo(1);
+    }
 }
