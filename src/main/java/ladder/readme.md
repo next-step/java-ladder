@@ -1,8 +1,13 @@
 # 커밋 로그 해설
 > 프로젝트 진행 과정을 한 눈에 확인하기 위해 제작. 자세한 내용은 실제 커밋에 나와있습니다.
 ```html
+
+<h3>Preparation</h3>
+
 feat(step4): rm -rf step3 codes
 tdd로 기능을 재구현하기 위해 이전에 작성한 코드를 모두 삭제
+
+<h3>Participant</h3>
 
 feat(participant): make participant generation test code
 참가자의 이름을 잘 생성하는지 테스트 코드 생성
@@ -19,6 +24,13 @@ feat(participant): add codes that meet the test codes
 feat(participant): add participant name validation
 5글자 이상 인풋에 대헤서는 에러를 던지는 코드 추가
 
+<h3>Participant List</h3>
+
 feat(participantList): add participantList generation
 참가자 컬렉션을 만드는 코드 추가
+
+feat(participantList): add participant get and size
+참가자 조회 및 규모 조회 코드 추가
+
+<h3></h3>
 ```

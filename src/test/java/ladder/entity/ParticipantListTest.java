@@ -7,7 +7,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
-public class ParticipantListTest {
+class ParticipantListTest {
 
     @ParameterizedTest
     @ValueSource(strings = {
