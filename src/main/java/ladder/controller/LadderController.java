@@ -33,7 +33,7 @@ public class LadderController {
         int startIndex = 0;
         for (Name name : inputManagement.getNames()) {
             int resultIndex = ladder.result(startIndex++);
-            winning.record(name, results.getResults().get(resultIndex));
+            winning.record(name, results.result(resultIndex));
         }
 
         resultView.print(inputManagement.getNames(), ladder.getLadder());
