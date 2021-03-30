@@ -52,4 +52,7 @@ feat(point): add point validation code
 
 feat(link): add still link generation code
 가만히 있는 링크 생성 코드 추가
+
+feat(link): add left and right link generation code
+왼쪽, 오른쪽으로 움직이는 링크 추가
 ```
