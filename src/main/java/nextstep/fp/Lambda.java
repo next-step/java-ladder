@@ -27,14 +27,8 @@ public class Lambda {
                 .reduce(0, Integer::sum);
     }
 
-    public static int sumAllEven(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number % 2 == 0) {
-                total += number;
-            }
-        }
-        return total;
+    public static int sumAllEven(List<Integer> numbers, Conditional conditional) {
+        return sumAll(numbers, conditional);
     }
 
     public static int sumAllOverThree(List<Integer> numbers) {

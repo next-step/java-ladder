@@ -42,9 +42,10 @@ public class LambdaTest {
         assertThat(sum).isEqualTo(21);
     }
 
+    @DisplayName(value = "sumAllEven 짝수에 대한 filter를 람다로 작성하여 연산 테스트")
     @Test
-    public void sumAllEven() throws Exception {
-        int sum = Lambda.sumAllEven(numbers);
+    public void sumAllEven() {
+        int sum = Lambda.sumAllEven(numbers, (number) -> number % 2 == 0);
         assertThat(sum).isEqualTo(12);
     }
 
