@@ -13,5 +13,6 @@ feat(participant): generate codes that meet the test code needs
 feat(participant): add test codes to test white space in input
 띄어쓰기가 양옆으로 있는 인풋 테스트 코드 생성
 
-
+feat(participant): add codes that meet the test codes
+띄어쓰기를 제거하는 코드 생성
 ```
