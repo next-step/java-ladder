@@ -33,16 +33,17 @@ public class ResultView {
 
     public void printResultList(Results results) {
         results.getResults()
-                .forEach(result -> System.out.print(result + BLANK));
+                .forEach(result -> System.out.print(result.getResult() + BLANK));
         System.out.println();
     }
 
     public void printResult(Winning winning, String person) {
         System.out.println("실행 결과.");
         if (!person.equals("all")) {
-            System.out.println(Optional.ofNullable(winning.getWinning()
-                    .get(new Name(person)))
-                    .orElseThrow(IllegalArgumentException::new));
+            System.out.println(Optional.ofNullable(winning
+                    .result(new Name(person)))
+                    .orElseThrow(IllegalArgumentException::new)
+                    .getResult());
             return;
         }
         printResultPeople(winning);
@@ -51,6 +52,6 @@ public class ResultView {
     private void printResultPeople(Winning winning) {
         winning.getWinning()
                 .keySet()
-                .forEach(name -> System.out.println(name.getName() + SEPARATOR + winning.getWinning().get(name)));
+                .forEach(name -> System.out.println(name.getName() + SEPARATOR + winning.result(name).getResult()));
     }
 }

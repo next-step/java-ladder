@@ -14,6 +14,10 @@ public class Winning {
         return winning;
     }
 
+    public Result result(Name name) {
+        return winning.get(name);
+    }
+
     public void record(Name name, Result result) {
         winning.put(name, result);
     }
