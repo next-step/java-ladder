@@ -1,2 +1,5 @@
-package nextstep.fp;public class Conditional {
+package nextstep.fp;
+
+public interface Conditional {
+    boolean test(Integer number);
 }
