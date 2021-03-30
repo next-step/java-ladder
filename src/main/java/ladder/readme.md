@@ -75,4 +75,9 @@ feat(result case list): add result case list generation code
 
 refact(step4): add final to instance variables
 인스턴스 변수 상수화
+
+<h3>MoveStrategyJudge</h3>
+
+feat(move strategy judge): add left move judge
+왼쪽 이동을 지시하는 심판 코드 추가
 ```

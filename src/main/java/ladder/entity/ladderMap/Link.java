@@ -11,6 +11,14 @@ public class Link {
         this.to = from.move(moveStrategy);
     }
 
+    public boolean staysStill(){
+        return this.from==this.to;
+    }
+
+    public boolean goesRight(){
+        return this.to.isGreaterThan(this.from);
+    }
+
     public Point from() {
         return from;
     }

@@ -41,4 +41,8 @@ public class Point {
     public int hashCode() {
         return Objects.hash(index);
     }
+
+    public boolean isGreaterThan(Point from) {
+        return this.index>from.index();
+    }
 }
