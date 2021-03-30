@@ -55,6 +55,14 @@ public class Line {
         return stillLinks;
     }
 
+    public Point traverseLinks(Point point){
+        return this.links.stream()
+                .filter(link->link.isTo(point))
+                .map(Link::to)
+                .findFirst()
+                .orElse(point);
+    }
+
     public List<Point> points() {
         return points;
     }

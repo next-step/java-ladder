@@ -57,4 +57,16 @@ class LinkTest {
         CustomException thrown = assertThrows(CustomException.class, () -> new Link(point, moveRight));
         assertThat(thrown.errorCode()).isEqualTo(ErrorCode.INVALID_POINT_INDEX);
     }
+
+    @ParameterizedTest
+    @ValueSource(ints = {0,1,2,3,4,5,6,7,8})
+    void canTellIsTo(int index){
+        Point point = new Point(index);
+        MoveRight moveRight = new MoveRight();
+        Link link = new Link(point, moveRight);
+
+        Point right = new Point(index+1);
+        assertThat(link.isTo(right)).isTrue();
+    }
+
 }

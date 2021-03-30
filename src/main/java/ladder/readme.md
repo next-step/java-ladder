@@ -106,4 +106,9 @@ feat(view): add height input and ladder view code
 
 feat(ladder map): add ladder map line verification code
 사다리맵 검증 코드 추가
+
+<h3>Line</h3>
+
+feat(line): add traversal method
+이동한 점을 반환하는 코드 추가
 ```

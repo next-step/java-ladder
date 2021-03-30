@@ -23,6 +23,10 @@ public class Link {
         return this.from.isGreaterThan(this.to);
     }
 
+    public boolean isTo(Point point){
+        return this.to.equals(point);
+    }
+
     public Point from() {
         return from;
     }
