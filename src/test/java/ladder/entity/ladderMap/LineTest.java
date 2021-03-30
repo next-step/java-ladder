@@ -7,22 +7,10 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
-public class LineTest {
-
-    /*
-
-    private final List<Point> points;
-    private final List<Link> links;
-
-    public Line(ParticipantList participantList) {
-        this.points = points(participantList);
-        this.links = links(points);
-    }
-
-     */
+class LineTest {
 
     @ParameterizedTest
-    @ValueSource(strings = "a,b,c,d,e")
+    @ValueSource(strings = {"a,b,c,d,e", "a"})
     void canGenerateLine(String input){
         ParticipantList participantList = new ParticipantList(input);
         Line line = new Line(participantList);

@@ -88,4 +88,9 @@ feat(move strategy judge): add right or still judge
 
 feat(line): add line initialization code
 라인 초기화 코드 추가
+
+<h3>LadderMap</h3>
+
+feat(ladder map): add ladder map initialization code
+사다리맵 초기화 코드 추가
 ```

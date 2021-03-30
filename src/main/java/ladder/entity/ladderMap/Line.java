@@ -28,6 +28,9 @@ public class Line {
 
     private List<Link> links(List<Point> points) {
         List<Link> stillLinks = stillLinks(points);
+        if(stillLinks.isEmpty()){
+            return stillLinks;
+        }
         return updatedLinks(points, stillLinks);
     }
 
