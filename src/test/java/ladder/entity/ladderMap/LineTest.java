@@ -14,8 +14,11 @@ class LineTest {
     void canGenerateLine(String input){
         ParticipantList participantList = new ParticipantList(input);
         Line line = new Line(participantList);
-        List<Link> links = line.links();
+        verifyLine(line);
+    }
 
+    void verifyLine(Line line){
+        List<Link> links = line.links();
         SoftAssertions softAssertions = new SoftAssertions();
         for(int index = 0;index<links.size()-1;index++){
             Link preLink = links.get(index);
