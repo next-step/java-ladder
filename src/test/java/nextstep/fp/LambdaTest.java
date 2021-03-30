@@ -38,21 +38,21 @@ public class LambdaTest {
     @DisplayName(value = "sumAll 전체 숫자를 합산하도록 람다식 작성 테스트")
     @Test
     public void sumAll() {
-        int sum = Lambda.sumAll(numbers, (number) -> true);
+        int sum = Lambda.sumAllCondition(numbers, (number) -> true);
         assertThat(sum).isEqualTo(21);
     }
 
     @DisplayName(value = "sumAllEven 짝수에 대한 filter를 람다로 작성하여 연산 테스트")
     @Test
     public void sumAllEven() {
-        int sum = Lambda.sumAllEven(numbers, (number) -> number % 2 == 0);
+        int sum = Lambda.sumAllCondition(numbers, (number) -> number % 2 == 0);
         assertThat(sum).isEqualTo(12);
     }
 
     @DisplayName(value = "sumAllOverThree 3 이상 값에 대한 연산 처리 할 수 있는 filter를 람다로 작성 테스트")
     @Test
     public void sumAllOverThree() {
-        int sum = Lambda.sumAllOverThree(numbers, number -> number > 3);
+        int sum = Lambda.sumAllCondition(numbers, number -> number > 3);
         assertThat(sum).isEqualTo(15);
     }
 }
