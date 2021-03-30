@@ -26,7 +26,7 @@ public class LadderMapTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"a,b,c,d,e:2"}, delimiter = ':')
+    @CsvSource(value = {"a,b,c,d,e:10"}, delimiter = ':')
     void canTraverseThroughLadderMap(String participantString, int height){
         ParticipantList participantList = new ParticipantList(participantString);
         LadderHeight ladderHeight = new LadderHeight(height);

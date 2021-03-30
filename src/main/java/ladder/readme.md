@@ -121,4 +121,9 @@ feat(ladder map): add ladder traversal method
 
 feat(game & game result): add game and result method
 사다리타기 활성화, 결과를 담는 코드 추가
+
+<h3>view</h3>
+
+feat(view): add result view method
+결과 출력 코드 추가
 ```

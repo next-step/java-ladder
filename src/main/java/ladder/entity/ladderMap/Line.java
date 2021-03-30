@@ -49,7 +49,7 @@ public class Line {
 
     private List<Link> stillLinks(List<Point> points) {
         List<Link> stillLinks = new ArrayList<>();
-        for (int index = 0; index < points.size() - 1; index++) {
+        for (int index = 0; index < points.size(); index++) {
             stillLinks.add(new Link(points.get(index), new MoveStill()));
         }
         return stillLinks;
@@ -58,7 +58,7 @@ public class Line {
     public Point traverseLinks(Point point){
         return this.links.stream()
                 .filter(link->link.isTo(point))
-                .map(Link::to)
+                .map(Link::from)
                 .findFirst()
                 .orElse(point);
     }

@@ -37,6 +37,10 @@ public class ResultCaseList {
         return resultCaseList;
     }
 
+    public List<ResultCase> resultCases() {
+        return resultCases;
+    }
+
     public ResultCase get(Point point){
         int index = point.index();
         return get(index);
