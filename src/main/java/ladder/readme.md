@@ -32,5 +32,8 @@ feat(participantList): add participantList generation
 feat(participantList): add participant get and size
 참가자 조회 및 규모 조회 코드 추가
 
-<h3></h3>
+<h3>Ladder Height</h3>
+
+feat(ladder height): add ladder height generation code
+사다리 높이를 만드는 코드 추가
 ```
