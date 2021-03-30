@@ -1,6 +1,7 @@
-package ladder.domain.ladderMap;
+package ladder.domain.ladder;
 
-import ladder.domain.ParticipantList;
+import ladder.constants.Constants;
+import ladder.domain.participant.ParticipantList;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,7 +25,7 @@ public class Line {
 
     private List<Link> links(ParticipantList participantList) {
         Link.init();
-        return IntStream.range(0, participantList.size() - 1)
+        return IntStream.range(Constants.ZERO, participantList.size() - 1)
                 .mapToObj(Link::new)
                 .filter(link -> !link.empty())
                 .collect(Collectors.toList());
@@ -36,5 +37,13 @@ public class Line {
 
     public List<Point> points() {
         return this.points;
+    }
+
+    protected int movedIndex(int index) {
+        return this.links.stream()
+                .filter(link -> (link.from() == index || link.to() == index))
+                .map(link -> link.matchedValue(index))
+                .findFirst()
+                .orElse(index);
     }
 }

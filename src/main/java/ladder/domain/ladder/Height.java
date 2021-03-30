@@ -1,5 +1,6 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
+import ladder.constants.Constants;
 import ladder.exception.CustomException;
 import ladder.exception.ErrorCode;
 
@@ -14,7 +15,7 @@ public class Height {
     }
 
     private boolean validHeight(int height) {
-        return height > 0;
+        return height > Constants.ZERO;
     }
 
     public int height() {

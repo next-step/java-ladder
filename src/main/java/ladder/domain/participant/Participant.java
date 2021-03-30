@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.participant;
 
 import ladder.exception.CustomException;
 import ladder.exception.ErrorCode;
@@ -12,14 +12,13 @@ public class Participant {
     private String name;
 
     public Participant(String name) {
-        String trimmedName = name.trim();
-        if (!validCharacters(trimmedName)) {
+        if (!validCharacters(name)) {
             throw new CustomException(ErrorCode.INVALID_PARTICIPANTS_INPUT);
         }
-        if (!validNameLength(trimmedName)) {
+        if (!validNameLength(name)) {
             throw new CustomException(ErrorCode.INVALID_PARTICIPANTS_NAME);
         }
-        this.name = trimmedName;
+        this.name = name;
     }
 
     private boolean validNameLength(String name) {

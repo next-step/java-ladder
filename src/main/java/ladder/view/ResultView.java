@@ -1,11 +1,17 @@
 package ladder.view;
 
-import ladder.domain.Participant;
-import ladder.domain.ParticipantList;
-import ladder.domain.ladderMap.LadderMap;
-import ladder.domain.ladderMap.Line;
-import ladder.domain.ladderMap.Link;
-import ladder.domain.ladderMap.Plane;
+import ladder.constants.Constants;
+import ladder.domain.game.Game;
+import ladder.domain.game.GameResult;
+import ladder.domain.ladder.Line;
+import ladder.domain.ladder.Link;
+import ladder.domain.ladder.Plane;
+import ladder.domain.participant.Participant;
+import ladder.domain.participant.ParticipantList;
+import ladder.domain.result.Result;
+import ladder.domain.result.ResultList;
+
+import java.util.Map;
 
 public class ResultView {
 
@@ -16,13 +22,35 @@ public class ResultView {
     private static final int DIVIDER = 6;
     private static final int VERTICAL_INDEX = 5;
 
-    public void printLadderMap(LadderMap ladderMap) {
-        System.out.println("실행 결과");
+    public void printGameMap(Game game) {
+        System.out.println("사다리 결과");
 
-        String parsedNames = parsedNames(ladderMap.participantList());
+        String parsedNames = parsedNames(game.ladderMap().participantList());
         System.out.println(parsedNames);
 
-        printPlane(ladderMap.plane());
+        printPlane(game.ladderMap().plane());
+
+        String parsedResults = parsedResults(game.resultList());
+        System.out.println(parsedResults);
+    }
+
+    private String parsedResults(ResultList resultList) {
+        StringBuilder parsedResults = new StringBuilder();
+        for (Result result : resultList.resultList()) {
+            parsedResults.append(parsedResult(result));
+        }
+        return String.valueOf(parsedResults);
+    }
+
+    private String parsedResult(Result result) {
+        int resultLength = result.result().length();
+        StringBuilder parsedResult = new StringBuilder();
+        parsedResult.append(BLANK);
+        for (int count = Constants.ZERO; count < Participant.MAX_LENGTH - resultLength; count++) {
+            parsedResult.append(BLANK);
+        }
+        parsedResult.append(result.result());
+        return String.valueOf(parsedResult);
     }
 
     private void printPlane(Plane plane) {
@@ -42,7 +70,7 @@ public class ResultView {
     }
 
     private StringBuilder addHorizontalLine(StringBuilder toAddHorizontalLine, Link link) {
-        for (int count = 0; count < VERTICAL_INDEX; count++) {
+        for (int count = Constants.ZERO; count < VERTICAL_INDEX; count++) {
             toAddHorizontalLine.setCharAt(DIVIDER + link.from() * DIVIDER + count, HORIZONTAL);
         }
         return toAddHorizontalLine;
@@ -50,7 +78,7 @@ public class ResultView {
 
     private String addVerticalLines(Line line) {
         StringBuilder verticalLineAdded = new StringBuilder();
-        for (int count = 0; count < line.points().size(); count++) {
+        for (int count = Constants.ZERO; count < line.points().size(); count++) {
             verticalLineAdded.append(VERTICAL_ADDED);
         }
         return String.valueOf(verticalLineAdded);
@@ -66,16 +94,28 @@ public class ResultView {
 
     private String parsedName(Participant participant) {
         int participantNameLength = participant.name().length();
-        StringBuilder blankSpace = new StringBuilder();
-        blankSpace.append(BLANK);
+        StringBuilder parsedName = new StringBuilder();
+        parsedName.append(BLANK);
         if (participantNameLength == Participant.MAX_LENGTH) {
-            blankSpace.append(participant.name());
-            return String.valueOf(blankSpace);
+            parsedName.append(participant.name());
+            return String.valueOf(parsedName);
         }
-        for (int count = 0; count < Participant.MAX_LENGTH - participantNameLength; count++) {
-            blankSpace.append(BLANK);
+        for (int count = Constants.ZERO; count < Participant.MAX_LENGTH - participantNameLength; count++) {
+            parsedName.append(BLANK);
         }
-        blankSpace.append(participant.name());
-        return String.valueOf(blankSpace);
+        parsedName.append(participant.name());
+        return String.valueOf(parsedName);
+    }
+
+    public void printResult(String result) {
+        System.out.println("실행 결과");
+        System.out.println(result);
+    }
+
+    public void printAllResults(GameResult gameResult) {
+        System.out.println("실행 결과");
+        for (Map.Entry<String, String> entry : gameResult.result().entrySet()) {
+            System.out.printf("%s : %s%n", entry.getKey(), entry.getValue());
+        }
     }
 }
