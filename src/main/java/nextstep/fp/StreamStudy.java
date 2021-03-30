@@ -14,12 +14,9 @@ public class StreamStudy {
         String contents = new String(Files.readAllBytes(Paths
                 .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
-
-        long count = 0;
-        for (String w : words) {
-            if (w.length() > 12) count++;
-        }
-        return count;
+        return words.stream()
+                .filter(s -> s.length() > 12)
+                .count();
     }
 
     public static void printLongestWordTop100() throws IOException {

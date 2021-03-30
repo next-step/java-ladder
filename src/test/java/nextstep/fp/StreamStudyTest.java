@@ -1,6 +1,7 @@
 package nextstep.fp;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -16,10 +17,11 @@ public class StreamStudyTest {
         numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
     }
 
+    @DisplayName(value = "파일 내에 word 전체 갯수 확인 테스트")
     @Test
     public void countWords() throws Exception {
         long result = StreamStudy.countWords();
-        System.out.println("result : " + result);
+        assertThat(result).isEqualTo(1946);
     }
 
     @Test
