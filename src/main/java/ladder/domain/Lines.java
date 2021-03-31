@@ -8,9 +8,9 @@ public class Lines {
 
   private final List<Line> lines;
 
-  public Lines(int lineNumber, int countOfPerson) {
+  public Lines(int height, int countOfPerson) {
     lines = new ArrayList<>();
-    for (int i = 0; i < lineNumber; i++) {
+    for (int i = 0; i < height; i++) {
       lines.add(new Line(countOfPerson));
     }
   }
@@ -18,6 +18,7 @@ public class Lines {
   public Lines(List<Line> lines) {
     this.lines = lines;
   }
+
 
   @Override
   public boolean equals(Object o) {
