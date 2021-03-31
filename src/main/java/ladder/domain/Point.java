@@ -2,7 +2,7 @@ package ladder.domain;
 
 public class Point {
 
-  boolean point;
+  private final boolean point;
 
   public Point(boolean point) {
     this.point = point;

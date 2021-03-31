@@ -1,7 +1,5 @@
 package ladder.view;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
@@ -11,10 +9,10 @@ public class InputView {
   private static final String COMMA = ",";
   private static final String INPUT_HEIGHT = "최대 사다리 높이는 몇 개인가요?";
 
-  public List<String> inputNames() {
+  public String[] inputNames() {
     System.out.println(INPUT_NAMES);
     String names = scanner.nextLine();
-    return Arrays.asList(names.split(COMMA));
+    return names.split(COMMA);
   }
 
   public int inputHeight() {

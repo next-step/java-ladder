@@ -7,13 +7,17 @@ import java.util.Random;
 
 public class Line {
 
-  private List<Point> points;
+  private final List<Point> points;
 
   public Line(int countOfPerson) {
     points = new ArrayList<>();
-    for (int i = 0; i< countOfPerson; i++) {
+    for (int i = 0; i < countOfPerson; i++) {
       points.add(makePoint());
     }
+  }
+
+  public Line(List<Point> points) {
+    this.points = points;
   }
 
   private Point makePoint() {
@@ -31,9 +35,6 @@ public class Line {
 
   }
 
-  public Line(List<Point> points) {
-    this.points = points;
-  }
 
   @Override
   public boolean equals(Object o) {
@@ -50,5 +51,9 @@ public class Line {
   @Override
   public int hashCode() {
     return Objects.hash(points);
+  }
+
+  public List<Point> getPoints() {
+    return points;
   }
 }

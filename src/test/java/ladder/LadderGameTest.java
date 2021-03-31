@@ -15,12 +15,14 @@ public class LadderGameTest {
   @Test
   @DisplayName("LadderGame 객체 테스트")
   public void create() {
-    List<String> names = Arrays.asList(new String[]{"pobi", "honux", "crong", "jk"});
+    String[] names = new String[]{"pobi", "honux", "crong", "jk"};
     LadderGame ladderGame = new LadderGame(5, names);
 
     Users users = new Users(names);
 
     assertThat(ladderGame.getUsers()).isEqualTo(users);
   }
+
+
 
 }

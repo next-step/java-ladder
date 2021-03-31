@@ -6,12 +6,16 @@ import java.util.Objects;
 
 public class Users {
 
-  List<User> users;
+  private final List<User> users;
 
-  public Users(List<String> names) {
+  public Users(List<User> users){
+    this.users = users;
+  }
+
+  public Users(String[] names) {
     users = new ArrayList<>();
-    for (int i = 0; i< names.size(); i++) {
-      users.add(new User(names.get(i)));
+    for (String name : names) {
+      users.add(new User(name));
     }
   }
 
@@ -30,5 +34,9 @@ public class Users {
   @Override
   public int hashCode() {
     return Objects.hash(users);
+  }
+
+  public List<User> getUsers() {
+    return users;
   }
 }

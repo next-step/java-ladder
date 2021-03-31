@@ -9,12 +9,14 @@ public class Application {
 
   public static void main(String[] args) {
     InputView inputView = new InputView();
-    ResultView ResultView = new ResultView();
+    ResultView resultView = new ResultView();
 
-    List<String> names = inputView.inputNames();
+    String[] names = inputView.inputNames();
     int height = inputView.inputHeight();
 
     LadderGame ladderGame = new LadderGame(height, names);
+
+    resultView.printLadder(ladderGame);
 
   }
 }

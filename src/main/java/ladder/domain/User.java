@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class User {
 
-  String name;
+  private final String name;
 
   public User(String name) {
     this.name = name;
@@ -25,5 +25,9 @@ public class User {
   @Override
   public int hashCode() {
     return Objects.hash(name);
+  }
+
+  public String getName() {
+    return name;
   }
 }

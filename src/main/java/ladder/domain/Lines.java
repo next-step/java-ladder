@@ -6,11 +6,11 @@ import java.util.Objects;
 
 public class Lines {
 
-  List<Line> lines;
+  private final List<Line> lines;
 
   public Lines(int lineNumber, int countOfPerson) {
     lines = new ArrayList<>();
-    for (int i = 0; i< lineNumber; i++) {
+    for (int i = 0; i < lineNumber; i++) {
       lines.add(new Line(countOfPerson));
     }
   }
@@ -34,5 +34,9 @@ public class Lines {
   @Override
   public int hashCode() {
     return Objects.hash(lines);
+  }
+
+  public List<Line> getLines() {
+    return lines;
   }
 }
