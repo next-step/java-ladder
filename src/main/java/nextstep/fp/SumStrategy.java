@@ -1,7 +1,7 @@
 package nextstep.fp;
 
-public interface Conditional {
+public interface SumStrategy {
 
-  boolean test(Integer number);
+  boolean addable(Integer number);
 
 }
