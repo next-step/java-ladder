@@ -3,10 +3,12 @@ package nextstep.ladder.domain;
 import java.util.Objects;
 
 public class Name {
+
+    private static final int NAME_MAX_SIZE = 5;
     private final String name;
 
     public Name(final String name) {
-        if(name.length() > 5) {
+        if(name.length() > NAME_MAX_SIZE) {
             throw new IllegalArgumentException("이름은 최대 5글자까지 부여할 수 있습니다.");
         }
         this.name = name;

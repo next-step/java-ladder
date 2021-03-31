@@ -1,7 +1,7 @@
 package nextstep.ladder.domain;
 
 public class LadderRideResult {
-    public static Object of(String participants, int height) {
+    public static Object valueOf(Participants participants, Height height) {
         return null;
     }
 }
