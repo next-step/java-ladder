@@ -1,10 +1,12 @@
 package nextstep.ladder;
 
 import nextstep.ladder.domain.Height;
-import nextstep.ladder.domain.LadderRideResult;
+import nextstep.ladder.service.Ladder;
 import nextstep.ladder.domain.Participants;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
+
+import java.util.Objects;
 
 public class LadderRideGame {
 
@@ -15,15 +17,18 @@ public class LadderRideGame {
         Participants participants = checkUsers(inputView.inputParticipants());
         Height height = checkHeight(inputView.inputLadderHeight());
 
-        resultView.printResult(LadderRideResult.valueOf(participants, height));
+        resultView.printResult(Ladder.valueOf(participants, height));
     }
 
     private Height checkHeight(int inputLadderHeight) {
-        return null;
+        return Height.valueOf(inputLadderHeight);
     }
 
     private Participants checkUsers(String inputParticipants) {
-        return null;
+        if(Objects.isNull(inputParticipants) || inputParticipants.isEmpty()) {
+            throw new IllegalArgumentException("입력 값이 없습니다.");
+        }
+        return Participants.valueOf(inputParticipants);
     }
 
 }
