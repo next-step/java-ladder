@@ -1,11 +1,11 @@
 package ladder.controller;
 
-import ladder.domain.game.Game;
-import ladder.domain.game.GameResult;
-import ladder.domain.ladder.Height;
-import ladder.domain.ladder.LadderMap;
-import ladder.domain.participant.ParticipantList;
-import ladder.domain.result.ResultList;
+import ladder.entity.game.Game;
+import ladder.entity.game.GameResult;
+import ladder.entity.ladderMap.LadderHeight;
+import ladder.entity.ladderMap.LadderMap;
+import ladder.entity.participant.ParticipantList;
+import ladder.entity.resultCase.ResultCaseList;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
@@ -14,32 +14,17 @@ public class LadderController {
     private InputView inputView = new InputView();
     private ResultView resultView = new ResultView();
 
-    public void generateLadder() {
-        ParticipantList verifiedParticipants = participantList();
-        ResultList resultList = resultList(verifiedParticipants);
-        Height verifiedHeight = height();
+    public void run(){
+        ParticipantList participantList = participantList();
+        ResultCaseList resultCaseList = resultCaseList(participantList);
+        LadderHeight ladderHeight = ladderHeight();
 
-        LadderMap ladderMap = new LadderMap(verifiedParticipants, verifiedHeight);
-        Game game = new Game(ladderMap, resultList);
+        LadderMap ladderMap = new LadderMap(participantList, ladderHeight);
+        Game game = new Game(ladderMap, resultCaseList);
         resultView.printGameMap(game);
 
         GameResult gameResult = game.run();
         getAndPrintNameQueries(gameResult);
-    }
-
-    private ParticipantList participantList() {
-        String participants = inputView.getParticipants();
-        return new ParticipantList(participants);
-    }
-
-    private ResultList resultList(ParticipantList participantList) {
-        String results = inputView.getResults();
-        return new ResultList(results, participantList);
-    }
-
-    private Height height() {
-        int maximumLadderHeight = inputView.getMaximumLadderHeight();
-        return new Height(maximumLadderHeight);
     }
 
     private void getAndPrintNameQueries(GameResult gameResult) {
@@ -59,4 +44,18 @@ public class LadderController {
         return false;
     }
 
+    private ParticipantList participantList(){
+        String participants = inputView.getParticipants();
+        return new ParticipantList(participants);
+    }
+
+    private ResultCaseList resultCaseList(ParticipantList participantList){
+        String results = inputView.getResults();
+        return new ResultCaseList(participantList, results);
+    }
+
+    private LadderHeight ladderHeight(){
+        int maximumLadderHeight = inputView.getMaximumLadderHeight();
+        return new LadderHeight(maximumLadderHeight);
+    }
 }
