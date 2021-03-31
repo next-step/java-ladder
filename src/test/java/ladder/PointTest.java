@@ -15,5 +15,5 @@ public class PointTest {
     Point notUsedPoint = new Point(false);
     assertThat(notUsedPoint.isUsed()).isEqualTo(false);
   }
-  
+
 }

@@ -2,7 +2,6 @@ package ladder;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
-import ladder.domain.LadderGame;
 import ladder.domain.Users;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
