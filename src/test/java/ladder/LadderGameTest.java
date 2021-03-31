@@ -29,6 +29,7 @@ public class LadderGameTest {
     LadderGame ladderGame = new LadderGame(5, names);
     Users users = new Users(names);
     assertThat(ladderGame.getUsers()).isEqualTo(users);
+    assertThat(ladderGame.getLines().size()).isEqualTo(5);
   }
 
   @ParameterizedTest

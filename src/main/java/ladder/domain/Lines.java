@@ -40,4 +40,8 @@ public class Lines {
   public List<Line> getLines() {
     return lines;
   }
+
+  public int size() {
+    return lines.size();
+  }
 }
