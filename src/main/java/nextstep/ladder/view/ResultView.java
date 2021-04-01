@@ -1,9 +1,6 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Name;
-import nextstep.ladder.domain.Participants;
+import nextstep.ladder.domain.*;
 
 import java.util.stream.Collectors;
 
@@ -50,13 +47,13 @@ public class ResultView {
         return line.points()
                 .stream()
                 .map(this::renderPerPoint)
-                .collect(Collectors.joining(LADDER_VERTICAL_LINE, EMPTY_LINE,LADDER_VERTICAL_LINE));
+                .collect(Collectors.joining(LADDER_VERTICAL_LINE, EMPTY_LINE, LADDER_VERTICAL_LINE));
     }
 
-    private String renderPerPoint(Boolean pointFlag) {
-        if(pointFlag) {
-            return String.format(STRING_NAME_FORMAT, LADDER_HORIZON);
+    private String renderPerPoint(Point point) {
+        if(point.isExist()) {
+            return LADDER_HORIZON;
         }
-        return String.format(STRING_NAME_FORMAT, LADDER_EMPTY);
+        return LADDER_EMPTY;
     }
 }
