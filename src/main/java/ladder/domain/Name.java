@@ -12,6 +12,10 @@ public class Name {
     this.name = name;
   }
 
+  public String getName() {
+    return name;
+  }
+
   private void validateName(String name) {
     if (name.length() > Constant.MAX_NAME_LENGTH) {
       throw new IllegalArgumentException("이름은 5자를 넘을 수 없습니다.");
