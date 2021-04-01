@@ -14,6 +14,10 @@ public class Point {
         return new Point(flag);
     }
 
+    public static Point initFalse() {
+        return new Point(false);
+    }
+
     public boolean isExist() {
         return flag;
     }
