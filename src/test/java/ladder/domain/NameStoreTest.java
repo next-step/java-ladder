@@ -22,7 +22,16 @@ public class NameStoreTest {
   void validateInputNamesTest() {
     String inputNames = null;
 
-    assertThatThrownBy(() -> NameStore.validateInputNames(inputNames))
+    assertThatThrownBy(() -> NameStore.createPlayers(inputNames))
+        .isInstanceOf(IllegalArgumentException.class);
+  }
+
+  @Test
+  @DisplayName("[NameStore] 최소 참가자 검증 테스트")
+  void validateMinPlayersTest() {
+    String inputNames = "pobi";
+
+    assertThatThrownBy(() -> NameStore.createPlayers(inputNames))
         .isInstanceOf(IllegalArgumentException.class);
   }
 }
