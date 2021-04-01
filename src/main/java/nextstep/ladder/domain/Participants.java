@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -23,6 +24,14 @@ public class Participants {
 
     public static Participants valueOf(final String users) {
         return new Participants(users);
+    }
+
+    public int size() {
+        return users.size();
+    }
+
+    public List<Name> getUsers() {
+        return Collections.unmodifiableList(users);
     }
 
     @Override
