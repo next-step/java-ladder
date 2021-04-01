@@ -10,7 +10,7 @@ public class Name {
 
     public Name(final String name) {
         if(name.length() > NAME_MAX_SIZE || name.length() < NAME_MIN_SIZE) {
-            throw new IllegalArgumentException("이름은 최대 5글자까지 부여할 수 있습니다.");
+            throw new IllegalArgumentException("이름은 한 글자 이상 최대 5글자까지 부여할 수 있습니다.");
         }
         this.name = name;
     }
