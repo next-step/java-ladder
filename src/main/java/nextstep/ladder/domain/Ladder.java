@@ -1,8 +1,4 @@
-package nextstep.ladder.service;
-
-import nextstep.ladder.domain.Height;
-import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Participants;
+package nextstep.ladder.domain;
 
 import java.util.Collections;
 import java.util.List;

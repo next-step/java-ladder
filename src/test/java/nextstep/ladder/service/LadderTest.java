@@ -1,6 +1,7 @@
 package nextstep.ladder.service;
 
 import nextstep.ladder.domain.Height;
+import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Participants;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

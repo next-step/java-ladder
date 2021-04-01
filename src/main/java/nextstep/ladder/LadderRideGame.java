@@ -1,7 +1,7 @@
 package nextstep.ladder;
 
 import nextstep.ladder.domain.Height;
-import nextstep.ladder.service.Ladder;
+import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Participants;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
