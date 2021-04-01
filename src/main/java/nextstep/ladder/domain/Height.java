@@ -3,7 +3,7 @@ package nextstep.ladder.domain;
 import java.util.Objects;
 
 public class Height {
-    public static final int MIN_HEIGHT = 0;
+    public static final int MIN_HEIGHT = 1;
     private final int value;
 
     public Height(int value) {
@@ -12,9 +12,13 @@ public class Height {
 
     public static Height valueOf(int value) {
         if(value < MIN_HEIGHT) {
-            throw new IllegalArgumentException("높이가 0보다 작을 수는 없습니다.");
+            throw new IllegalArgumentException("높이가 1보다 작을 수는 없습니다.");
         }
         return new Height(value);
+    }
+
+    public int size() {
+        return value;
     }
 
     @Override
