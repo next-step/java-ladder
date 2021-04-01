@@ -3,10 +3,7 @@ package ladder.util;
 public class InputValidator {
 
   public static boolean isEmptyOrBlank(String input) {
-    if (isEmpty(input) || isBlank(input)) {
-      return true;
-    }
-    return false;
+    return isEmpty(input) || isBlank(input);
   }
 
   public static boolean isEmpty(String input) {
