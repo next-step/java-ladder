@@ -2,6 +2,7 @@ package nextstep.ladder.generator;
 
 import nextstep.ladder.domain.Point;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -14,7 +15,7 @@ public class DefaultLineGenerator implements LineGenerator {
     @Override
     public List<Point> createLine(final int countOfPerson) {
 
-        List<Point> points = Arrays.asList(Point.initFalse());
+        List<Point> points = new ArrayList<>(Arrays.asList(Point.initFalse()));
         IntStream.rangeClosed(1, countOfPerson)
                 .forEach(value -> points.add(point()));
         return points;
