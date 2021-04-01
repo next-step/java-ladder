@@ -16,8 +16,9 @@ public class DefaultLineGenerator implements LineGenerator {
     public List<Point> createLine(final int countOfPerson) {
 
         List<Point> points = new ArrayList<>(Arrays.asList(Point.initFalse()));
-        IntStream.rangeClosed(1, countOfPerson)
+        IntStream.rangeClosed(1, countOfPerson - 1)
                 .forEach(value -> points.add(point()));
+
         return points;
     }
 
