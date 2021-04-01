@@ -7,16 +7,16 @@ import java.util.stream.IntStream;
 public class Line {
 
     private static final int MIN_PERSON = 2;
-    private static final int FIRST_INDEX = 0;
+    private static final boolean LINE = true;
+    private static final boolean NON_LINE = false;
+    private final int countOfPerson;
     private final List<Point> points = new ArrayList<>();
 
     public Line(int countOfPerson) {
         if (countOfPerson < MIN_PERSON) {
             throw new IllegalArgumentException();
         }
-
-        IntStream.range(0, countOfPerson)
-                .forEach(index -> points.add(new Point()));
+        this.countOfPerson = countOfPerson;
     }
 
     public List<Point> getPoints() {
@@ -24,24 +24,21 @@ public class Line {
     }
 
     public void draw(DrawStrategy drawStrategy) {
-        points.set(FIRST_INDEX, new Point(drawStrategy.drawValue()));
-        IntStream.range(1, points.size() - 1)
+        points.add(new Point(drawStrategy.drawValue()));
+        IntStream.range(0, countOfPerson - 2)
                 .forEach(index -> update(index, drawStrategy.drawValue()));
+        points.add(new Point(points.get(countOfPerson - 2).isPoint(), NON_LINE));
     }
 
     private void update(int index, boolean isLine) {
-        if (points.get(index - 1).isValidate(isLine)) {
-            points.set(index, new Point(isLine));
+        if (points.get(index).isValidate(isLine)) {
+            points.add(new Point(points.get(index).isPoint(), isLine));
+            return;
         }
+        points.add(new Point(LINE, NON_LINE));
     }
 
     public int result(int index) {
-        if (points.get(index).isPoint()) {
-            return  1;
-        }
-        if (index != 0 && points.get(index - 1).isPoint()) {
-            return  - 1;
-        }
-        return 0;
+        return points.get(index).direction();
     }
 }

@@ -24,6 +24,7 @@ class LineTest {
     @DisplayName("한 라인의 축은 사람 수 만큼 생성된다.")
     void oneLineComposedByCountPeople(int countOfPerson) {
         Line line = new Line(countOfPerson);
+        line.draw(() -> true);
         Assertions.assertThat(line.getPoints().size()).isEqualTo(countOfPerson);
     }
 
