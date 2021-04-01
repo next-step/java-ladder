@@ -1,55 +1,62 @@
 package nextstep.ladder.view;
 
+import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Name;
 import nextstep.ladder.domain.Participants;
-import nextstep.ladder.domain.Ladder;
 
-import java.util.List;
+import java.util.stream.Collectors;
 
 public class ResultView {
 
-    public static final String STRING_NAME_FORMAT = "%6s";
+    private static final String STRING_NAME_FORMAT = "%5s";
+    private static final String GUIDE_HEAD_LINE = "실행 결과";
+    private static final String LADDER_VERTICAL_LINE = "|";
+    private static final String LADDER_HORIZON = "-----";
+    private static final String LADDER_EMPTY = "     ";
+    private static final String EMPTY_LINE = "";
 
     public void printResult(Ladder ladder, Participants participants) {
-        StringBuilder printBuilder = new StringBuilder();
 
-        printHeader(printBuilder);
-        printNames(participants, printBuilder);
-        printLadder(ladder, printBuilder);
-
-        System.out.println(printBuilder.toString());
+        printHeader();
+        printNames(participants);
+        printLadder(ladder);
     }
 
-    private void printHeader(StringBuilder printBuilder) {
-        printBuilder.append("실행 결과").append(System.lineSeparator());
+    private void printHeader() {
+        System.out.println(GUIDE_HEAD_LINE);
     }
 
-    private void printNames(Participants participants, StringBuilder builder) {
+    private void printNames(Participants participants) {
         participants.getUsers()
-                .forEach(name -> builder.append(parseName(name)));
-        builder.append(System.lineSeparator());
+                .stream()
+                .map(this::parseName)
+                .forEach(System.out::print);
+        System.out.println();
     }
 
     private String parseName(Name name) {
         return String.format(STRING_NAME_FORMAT, name);
     }
 
-    private void printLadder(Ladder ladder, StringBuilder builder) {
+    private void printLadder(Ladder ladder) {
         ladder.lines()
-                .forEach(line -> createLadder(builder, line));
+                .stream()
+                .map(this::renderLadder)
+                .forEach(System.out::println);
     }
 
-    private void createLadder(StringBuilder builder, Line line) {
-        List<Boolean> points = line.points();
-        points.forEach(aBoolean -> builder.append(extracted(aBoolean)));
-        builder.append(System.lineSeparator());
+    private String renderLadder(Line line) {
+        return line.points()
+                .stream()
+                .map(this::renderPerPoint)
+                .collect(Collectors.joining(LADDER_VERTICAL_LINE, EMPTY_LINE,LADDER_VERTICAL_LINE));
     }
 
-    private String extracted(Boolean pointFlag) {
+    private String renderPerPoint(Boolean pointFlag) {
         if(pointFlag) {
-            return String.format(STRING_NAME_FORMAT, "-----|");
+            return String.format(STRING_NAME_FORMAT, LADDER_HORIZON);
         }
-        return String.format(STRING_NAME_FORMAT, "     |");
+        return String.format(STRING_NAME_FORMAT, LADDER_EMPTY);
     }
 }
