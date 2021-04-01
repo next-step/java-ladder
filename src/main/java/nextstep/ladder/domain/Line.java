@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -24,6 +25,10 @@ public class Line {
 
     public static Line valueOf(final Participants participants) {
         return new Line(participants.size());
+    }
+
+    public List<Boolean> points() {
+        return Collections.unmodifiableList(points);
     }
 
     @Override
