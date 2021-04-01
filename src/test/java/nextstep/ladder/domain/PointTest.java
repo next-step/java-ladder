@@ -46,6 +46,6 @@ class PointTest {
                 () -> assertThatThrownBy(() -> rightPoint.connectTo(otherPoint))
                         .isInstanceOf(RuntimeException.class)
         );
-
     }
+
 }
