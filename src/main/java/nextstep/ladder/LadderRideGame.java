@@ -17,7 +17,9 @@ public class LadderRideGame {
         Participants participants = checkUsers(inputView.inputParticipants());
         Height height = checkHeight(inputView.inputLadderHeight());
 
-        resultView.printResult(Ladder.valueOf(participants, height));
+        Ladder ladder = Ladder.valueOf(participants, height);
+
+        resultView.printResult(ladder, participants);
     }
 
     private Height checkHeight(int inputLadderHeight) {
