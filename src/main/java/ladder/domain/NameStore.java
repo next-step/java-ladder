@@ -10,7 +10,11 @@ public class NameStore {
 
   public static List<Name> createPlayers(String inputNames) {
     validateInputNames(inputNames);
-    return stringToList(inputNames).stream()
+
+    List<String> players = stringToList(inputNames);
+    validateMinPlayers(players);
+
+    return players.stream()
         .map(Name::new)
         .collect(Collectors.toList());
   }
@@ -23,9 +27,15 @@ public class NameStore {
     return inputNames.split(Constant.REGEX);
   }
 
-  public static void validateInputNames(String inputNames) {
+  private static void validateInputNames(String inputNames) {
     if (InputValidator.isEmptyOrBlank(inputNames)) {
       throw new IllegalArgumentException("유효하지 않은 입력값입니다.");
+    }
+  }
+
+  private static void validateMinPlayers(List<String> players) {
+    if (players.size() < Constant.MIN_PLAYER) {
+      throw new IllegalArgumentException("참가자는 최소 " + Constant.MIN_PLAYER + "명 이상이어야 합니다.");
     }
   }
 }
