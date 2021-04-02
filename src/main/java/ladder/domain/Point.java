@@ -4,9 +4,6 @@ import java.util.Objects;
 
 public class Point {
 
-    private static final int RIGHT = 1;
-    private static final int LEFT = - 1;
-    private static final int STAY = 0;
     private static final boolean NON_LINE = false;
     private final boolean left;
     private final boolean point;
