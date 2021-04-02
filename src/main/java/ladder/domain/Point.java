@@ -33,14 +33,14 @@ public class Point {
         return !point || !isLine;
     }
 
-    public int direction() {
+    public Direction direction() {
         if (point) {
-            return RIGHT;
+            return Direction.LIGHT;
         }
         if (left) {
-            return LEFT;
+            return Direction.LEFT;
         }
-        return STAY;
+        return Direction.STAY;
     }
 
     @Override

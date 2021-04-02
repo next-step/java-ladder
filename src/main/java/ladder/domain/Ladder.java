@@ -24,7 +24,7 @@ public class Ladder {
     public int result(int startIndex) {
         int resultIndex = startIndex;
         for (Line line : ladder) {
-            resultIndex += line.result(resultIndex);
+            resultIndex += line.result(resultIndex).direction();
         }
 
         return resultIndex;

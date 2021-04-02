@@ -38,7 +38,7 @@ public class Line {
         points.add(new Point(LINE, NON_LINE));
     }
 
-    public int result(int index) {
+    public Direction result(int index) {
         return points.get(index).direction();
     }
 }
