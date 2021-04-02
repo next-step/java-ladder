@@ -67,7 +67,7 @@ class LineTest {
             Arrays.asList(false, true, false, false, true, false, false)
         );
 
-        assertThat(line.extractConnections()).isEqualToComparingFieldByField(connections);
+        assertThat(line.export()).isEqualToComparingFieldByField(connections);
     }
 
 }
