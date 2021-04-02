@@ -14,7 +14,7 @@ public class Line {
   }
 
   public Point connectPoint(ConnectStrategy connectStrategy) {
-    if (points.size() == 0) {
+    if (points.isEmpty()) {
       return Point.DISCONNECT;
     }
 
