@@ -8,8 +8,8 @@ public class Name {
   private final String name;
 
   public Name(String name) {
-    validateName(name);
-    this.name = name;
+    validateName(name.trim());
+    this.name = name.trim();
   }
 
   public String getName() {
