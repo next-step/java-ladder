@@ -3,11 +3,10 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
-import ladder.constant.Constant;
-import ladder.util.InputValidator;
 
 public class Ladder {
 
+  private static final int MIN_LADDER_HEIGHT = 2;
   private final List<Line> ladder = new ArrayList<>();
 
   public Ladder(Players players, int height) {
@@ -23,9 +22,9 @@ public class Ladder {
   }
 
   private void validateHeight(int height) {
-    if (InputValidator.isMinHeight(height)) {
+    if (height < MIN_LADDER_HEIGHT) {
       throw new IllegalArgumentException(
-          "사다리의 높이는 최소 " + Constant.MIN_LADDER_HEIGHT + " 이상이여야 합니다.");
+          "사다리의 높이는 최소 " + MIN_LADDER_HEIGHT + " 이상이여야 합니다.");
     }
   }
 }

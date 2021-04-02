@@ -1,10 +1,10 @@
 package ladder.domain;
 
 import java.util.Objects;
-import ladder.constant.Constant;
 
 public class Name {
 
+  private static final int MAX_NAME_LENGTH = 5;
   private final String name;
 
   public Name(String name) {
@@ -17,7 +17,7 @@ public class Name {
   }
 
   private void validateName(String name) {
-    if (name.length() > Constant.MAX_NAME_LENGTH) {
+    if (name.length() > MAX_NAME_LENGTH) {
       throw new IllegalArgumentException("이름은 5자를 넘을 수 없습니다.");
     }
   }
