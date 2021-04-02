@@ -1,5 +1,6 @@
 package nextstep.ladder.domain.line;
 
+import nextstep.ladder.dto.Connections;
 import nextstep.ladder.util.StreamUtils;
 
 import java.util.Collections;
