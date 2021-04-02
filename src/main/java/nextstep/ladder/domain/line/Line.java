@@ -2,7 +2,9 @@ package nextstep.ladder.domain.line;
 
 import nextstep.ladder.util.StreamUtils;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Line {
 
@@ -10,7 +12,7 @@ public class Line {
 
     private final List<Point> points;
 
-    public Line(List<Point> points) {
+    Line(List<Point> points) {
         validatePointsSize(points);
         validatePoints(points);
         this.points = points;
@@ -34,6 +36,19 @@ public class Line {
 
     private boolean isInvalidPair(Point firstPoint, Point secondPoint) {
         return firstPoint.isConnectedTo(secondPoint) ^ secondPoint.isConnectedTo(firstPoint);
+    }
+
+    public Connections extractConnections() {
+        List<Boolean> connections =
+            StreamUtils.pairStream(Collections.unmodifiableList(points))
+                       .map(pointPair -> isConnectedEachOther(pointPair.getFirst(), pointPair.getSecond()))
+                       .collect(Collectors.toList());
+
+        return new Connections(connections);
+    }
+
+    private boolean isConnectedEachOther(Point firstPoint, Point secondPoint) {
+        return firstPoint.isConnectedTo(secondPoint) && secondPoint.isConnectedTo(firstPoint);
     }
 
 }
