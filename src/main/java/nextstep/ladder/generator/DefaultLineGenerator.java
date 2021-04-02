@@ -16,13 +16,22 @@ public class DefaultLineGenerator implements LineGenerator {
     public List<Point> createLine(final int countOfPerson) {
 
         List<Point> points = new ArrayList<>(Arrays.asList(Point.initFalse()));
-        IntStream.rangeClosed(1, countOfPerson - 1)
-                .forEach(value -> points.add(point()));
+        // 초기 값 설정으로 1부터 시작
+        IntStream.range(points.size(), countOfPerson)
+                .forEach(value -> checkExistOfLine(points, value));
 
         return points;
     }
 
-    private Point point() {
+    private void checkExistOfLine(List<Point> points, int value) {
+        Point point = points.get(value - 1);
+        points.add(point(point.isExist()));
+    }
+
+    private Point point(boolean point) {
+        if(point) {
+            return Point.initFalse();
+        }
         return Point.of(RANDOM.nextBoolean());
     }
 }
