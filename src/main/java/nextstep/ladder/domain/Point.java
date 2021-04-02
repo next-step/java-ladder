@@ -34,4 +34,9 @@ public class Point {
     public int hashCode() {
         return Objects.hash(flag);
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(flag);
+    }
 }
