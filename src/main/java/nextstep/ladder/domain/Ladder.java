@@ -40,4 +40,9 @@ public class Ladder {
     public int hashCode() {
         return Objects.hash(lines);
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(lines);
+    }
 }
