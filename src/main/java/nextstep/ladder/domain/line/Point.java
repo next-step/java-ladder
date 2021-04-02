@@ -1,28 +1,29 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.line;
 
-import nextstep.ladder.domain.exception.PointAlreadyConnectedException;
+import nextstep.ladder.domain.line.exception.PointAlreadyConnectedException;
 
 public class Point {
 
     private Point connectedPoint;
 
-    public Point() {
+    Point() {
         connectedPoint = this;
     }
 
-    public void connectTo(Point point) {
+    void connectTo(Point point) {
         if (connectedPoint != this) {
             throw new PointAlreadyConnectedException();
         }
 
         connectedPoint = point;
-        if (!point.isConnectedAnotherPoint()) {
-            point.connectTo(this);
-        }
     }
 
     public boolean isConnectedAnotherPoint() {
         return connectedPoint != this;
+    }
+
+    public boolean isConnectedTo(Point point) {
+        return connectedPoint == point;
     }
 
 }

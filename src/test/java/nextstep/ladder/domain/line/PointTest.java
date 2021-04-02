@@ -1,4 +1,4 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.line;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -24,10 +24,11 @@ class PointTest {
         Point rightPoint = new Point();
 
         leftPoint.connectTo(rightPoint);
+        rightPoint.connectTo(leftPoint);
 
         assertAll(
-                () -> assertThat(leftPoint.isConnectedAnotherPoint()).isTrue(),
-                () -> assertThat(rightPoint.isConnectedAnotherPoint()).isTrue()
+            () -> assertThat(leftPoint.isConnectedAnotherPoint()).isTrue(),
+            () -> assertThat(rightPoint.isConnectedAnotherPoint()).isTrue()
         );
     }
 
@@ -39,12 +40,13 @@ class PointTest {
         Point otherPoint = new Point();
 
         leftPoint.connectTo(rightPoint);
+        rightPoint.connectTo(leftPoint);
 
         assertAll(
-                () -> assertThatThrownBy(() -> leftPoint.connectTo(otherPoint))
-                        .isInstanceOf(RuntimeException.class),
-                () -> assertThatThrownBy(() -> rightPoint.connectTo(otherPoint))
-                        .isInstanceOf(RuntimeException.class)
+            () -> assertThatThrownBy(() -> leftPoint.connectTo(otherPoint))
+                .isInstanceOf(RuntimeException.class),
+            () -> assertThatThrownBy(() -> rightPoint.connectTo(otherPoint))
+                .isInstanceOf(RuntimeException.class)
         );
     }
 
