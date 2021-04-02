@@ -3,11 +3,11 @@ package ladder;
 public class Linker {
     private final LinkSelector linkSelector;
 
-    public Linker(LinkSelector linkSelector) {
-        if (linkSelector == null) {
-            linkSelector = () -> Link.OPEN;
-        }
+    public Linker() {
+        this(() -> Link.OPEN);
+    }
 
+    public Linker(LinkSelector linkSelector) {
         this.linkSelector = linkSelector;
     }
 
