@@ -3,6 +3,7 @@ package nextstep.ladder.domain.line;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 class LineTest {
 
     static List<Point> oneWayConnectedPoints() {
-        List<Point> points = separatedPoints();
+        List<Point> points = separatedPoints(4);
 
         points.get(3)
               .connectTo(points.get(2));
@@ -22,9 +23,9 @@ class LineTest {
         return points;
     }
 
-    static List<Point> separatedPoints() {
+    static List<Point> separatedPoints(int limit) {
         return Stream.generate(Point::new)
-                     .limit(4)
+                     .limit(limit)
                      .collect(Collectors.toList());
     }
 
@@ -47,4 +48,29 @@ class LineTest {
 
         assertThatThrownBy(() -> new Line(points)).isInstanceOf(RuntimeException.class);
     }
+
+    @Test
+    @DisplayName("지점 간 연결 정보를 담은 객체를 추출한다.")
+    void extractConnection() {
+        List<Point> points = separatedPoints(8);
+        points.get(1)
+              .connectTo(points.get(2));
+        points.get(2)
+              .connectTo(points.get(1));
+
+        points.get(4)
+              .connectTo(points.get(5));
+        points.get(5)
+              .connectTo(points.get(4));
+
+        Line line = new Line(points);
+
+        // 0 1, 1 2, 2 3, 3 4, 4 5, 5 6, 6 7
+        Connections connections = new Connections(
+            Arrays.asList(false, true, false, false, true, false, false)
+        );
+
+        assertThat(line.extractConnections()).isEqaulTo(connections);
+    }
+
 }
