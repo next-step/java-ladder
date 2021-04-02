@@ -7,7 +7,7 @@ import ladder.domain.Point;
 public class ResultView {
 
   public static void showPlayers(Players players) {
-    System.out.println("\n실행 결과\n");
+    System.out.println(System.lineSeparator() + "실행 결과" + System.lineSeparator());
     players.names().stream()
         .map(name -> String.format("%6s", name.getName()))
         .forEach(System.out::print);
