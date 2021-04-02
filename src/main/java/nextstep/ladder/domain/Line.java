@@ -15,7 +15,7 @@ public class Line {
         this(countOfPerson, new DefaultLineGenerator());
     }
 
-    public Line(final int countOfPerson, LineGenerator generator) {
+    public Line(final int countOfPerson, final LineGenerator generator) {
         this.points = generator.createLine(countOfPerson);
     }
 
@@ -23,7 +23,7 @@ public class Line {
         return new Line(count);
     }
 
-    public static Line valueOf(final int count, LineGenerator generator) {
+    public static Line valueOf(final int count, final LineGenerator generator) {
         return new Line(count, generator);
     }
 
@@ -31,7 +31,7 @@ public class Line {
         return new Line(participants.size());
     }
 
-    public static Line valueOf(final Participants participants, LineGenerator generator) {
+    public static Line valueOf(final Participants participants, final LineGenerator generator) {
         return new Line(participants.size(), generator);
     }
 
