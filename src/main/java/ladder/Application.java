@@ -19,6 +19,8 @@ public class Application {
     LadderGameController ladderGameController
         = new LadderGameController(height, names, prizes);
 
+    ladderGameController.play();
+
     resultView.printLadder(ladderGameController.getLadderGame());
 
   }

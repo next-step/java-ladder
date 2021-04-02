@@ -5,6 +5,7 @@ import java.util.LinkedHashSet;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Users {
 
@@ -12,10 +13,9 @@ public class Users {
   private static final String INVALID_DUPLICATED_NAME = "중복된 이름은 사용할 수 없습니다.";
 
   public Users(String[] names) {
-    users = new LinkedHashSet<>();
-    for (String name : names) {
-      users.add(new User(name));
-    }
+    this.users = IntStream.range(0, names.length)
+        .mapToObj(position -> new User(names[position],position))
+        .collect(Collectors.toSet());
     validateDuplicatedName(names.length);
   }
 

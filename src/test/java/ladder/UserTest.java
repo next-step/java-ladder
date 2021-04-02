@@ -9,7 +9,7 @@ public class UserTest {
   @Test
   @DisplayName("유저 이름 확인")
   public void create() {
-    User user = new User("dayeon");
+    User user = new User("dayeon",0);
     assertThat(user.getName()).isEqualTo("dayeon");
   }
 }

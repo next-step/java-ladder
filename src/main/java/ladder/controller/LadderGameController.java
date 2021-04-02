@@ -21,4 +21,8 @@ public class LadderGameController {
   public LadderGame getLadderGame() {
     return ladderGame;
   }
+
+  public void play() {
+
+  }
 }

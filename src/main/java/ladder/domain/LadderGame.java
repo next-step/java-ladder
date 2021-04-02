@@ -29,4 +29,6 @@ public class LadderGame {
   public Lines getLines() {
     return lines;
   }
+
+
 }

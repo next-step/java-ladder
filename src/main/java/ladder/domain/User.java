@@ -5,9 +5,11 @@ import java.util.Objects;
 public class User {
 
   private final String name;
+  private final int position;
 
-  public User(String name) {
+  public User(String name, int position) {
     this.name = name;
+    this.position = position;
   }
 
   @Override
