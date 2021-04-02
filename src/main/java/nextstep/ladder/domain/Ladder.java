@@ -2,12 +2,15 @@ package nextstep.ladder.domain;
 
 import nextstep.ladder.domain.line.Line;
 import nextstep.ladder.domain.line.LineFactory;
+import nextstep.ladder.dto.Connections;
+import nextstep.ladder.dto.Exportable;
+import nextstep.ladder.dto.LadderDto;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Ladder {
+public class Ladder implements Exportable<LadderDto> {
 
     private static final int MINIMUM_HEIGHT = 1;
     private static final int MINIMUM_WIDTH = 2;
@@ -35,5 +38,12 @@ public class Ladder {
         }
     }
 
-
+    @Override
+    public LadderDto export() {
+        List<Connections> connectionsList = lines.stream()
+                                                 .map(Line::export)
+                                                 .collect(Collectors.toList());
+        
+        return new LadderDto(connectionsList);
+    }
 }
