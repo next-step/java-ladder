@@ -4,36 +4,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
+import ladder.domain.generator.Generator;
+import ladder.domain.generator.PointsGenerator;
 
 public class Line {
 
   private final List<Point> points;
 
   public Line(int countOfPerson) {
-    points = new ArrayList<>();
-    for (int i = 0; i < countOfPerson; i++) {
-      points.add(makePoint());
-    }
+    this.points = makePoints(new PointsGenerator(countOfPerson));
   }
 
   public Line(List<Point> points) {
     this.points = points;
   }
 
-  private Point makePoint() {
-    Random random = new Random();
-    if (points.size() == 0) {
-      return new Point(false);
-    }
-
-    Point prePoint = points.get(points.size() - 1);
-    if (prePoint.isUsed()) {
-      return new Point(false);
-    }
-
-    return new Point(random.nextBoolean());
-
+  public List<Point> makePoints(Generator generator) {
+    return generator.makePoints();
   }
+
 
   public int size() {
     return points.size();

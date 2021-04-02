@@ -1,12 +1,10 @@
 package ladder.view;
 
-import java.util.List;
 import java.util.stream.Collectors;
 import ladder.domain.LadderGame;
 import ladder.domain.Line;
 import ladder.domain.Lines;
 import ladder.domain.Point;
-import ladder.domain.User;
 import ladder.domain.Users;
 
 public class ResultView {
