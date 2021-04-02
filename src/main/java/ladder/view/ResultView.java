@@ -1,5 +1,6 @@
 package ladder.view;
 
+import java.util.List;
 import java.util.stream.Collectors;
 import ladder.domain.LadderGame;
 import ladder.domain.Line;
@@ -22,8 +23,7 @@ public class ResultView {
   }
 
   private String printLadderDetail(Lines lines) {
-
-    return lines.getLines()
+    return lines.getLines().stream()
         .map(line -> printPoints(line) + System.lineSeparator())
         .collect(Collectors.joining());
   }

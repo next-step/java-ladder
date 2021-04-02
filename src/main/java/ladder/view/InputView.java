@@ -10,12 +10,16 @@ public class InputView {
 
   public String[] inputNames() {
     System.out.println(INPUT_NAMES);
-    String names = scanner.nextLine();
-    return names.split(",");
+    return scanner.nextLine().split(",");
   }
 
   public int inputHeight() {
     System.out.println(INPUT_HEIGHT);
     return scanner.nextInt();
+  }
+
+  public String[] inputPrizes() {
+    System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+    return scanner.nextLine().split(",");
   }
 }

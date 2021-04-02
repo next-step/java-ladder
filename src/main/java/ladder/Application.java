@@ -1,6 +1,7 @@
 package ladder;
 
 import java.util.List;
+import ladder.controller.LadderGameController;
 import ladder.domain.LadderGame;
 import ladder.view.InputView;
 import ladder.view.ResultView;
@@ -12,11 +13,13 @@ public class Application {
     ResultView resultView = new ResultView();
 
     String[] names = inputView.inputNames();
+    String[] prizes = inputView.inputPrizes();
     int height = inputView.inputHeight();
 
-    LadderGame ladderGame = new LadderGame(height, names);
+    LadderGameController ladderGameController
+        = new LadderGameController(height, names, prizes);
 
-    resultView.printLadder(ladderGame);
+    resultView.printLadder(ladderGameController.getLadderGame());
 
   }
 }

@@ -27,14 +27,14 @@ public class Point {
   }
 
   @Override
-  public int hashCode() {
-    return Objects.hash(point);
-  }
-
-  @Override
   public String toString() {
     return "Point{" +
         "point=" + point +
         '}';
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(point);
   }
 }

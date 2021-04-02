@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
+import ladder.domain.generator.Generator;
+import ladder.domain.generator.PointsGenerator;
 
 public class Lines {
 
@@ -11,8 +13,9 @@ public class Lines {
 
   public Lines(int height, int countOfPerson) {
     lines = new ArrayList<>();
+    Generator generator = new PointsGenerator(countOfPerson);
     for (int i = 0; i < height; i++) {
-      lines.add(new Line(countOfPerson));
+      lines.add(new Line(generator));
     }
   }
 
@@ -33,8 +36,8 @@ public class Lines {
     return Objects.hash(lines);
   }
 
-  public Stream<Line> getLines() {
-    return lines.stream();
+  public List<Line> getLines() {
+    return lines;
   }
 
   public int size() {
