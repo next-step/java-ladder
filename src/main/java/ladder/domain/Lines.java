@@ -3,6 +3,7 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Stream;
 
 public class Lines {
 
@@ -14,11 +15,6 @@ public class Lines {
       lines.add(new Line(countOfPerson));
     }
   }
-
-  public Lines(List<Line> lines) {
-    this.lines = lines;
-  }
-
 
   @Override
   public boolean equals(Object o) {
@@ -37,8 +33,8 @@ public class Lines {
     return Objects.hash(lines);
   }
 
-  public List<Line> getLines() {
-    return lines;
+  public Stream<Line> getLines() {
+    return lines.stream();
   }
 
   public int size() {

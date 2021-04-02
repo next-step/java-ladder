@@ -5,10 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import ladder.domain.Point;
-import ladder.domain.generator.Generator;
 
 public class PointsGenerator implements Generator {
-
 
   private static final Random random = new Random();
   private final List<Point> points;
@@ -21,18 +19,15 @@ public class PointsGenerator implements Generator {
 
   @Override
   public List<Point> makePoints() {
-
     for (int i = 0; i< countOfPoint; i++) {
       points.add(makePoint());
     }
-
     return points;
   }
 
   private Point makePoint() {
-    if (points.size() == 0) {
+    if (points.isEmpty()) {
       return new Point(false);
-
     }
 
     Point prePoint = points.get(points.size() - 1);
@@ -40,8 +35,8 @@ public class PointsGenerator implements Generator {
       return new Point(false);
 
     }
-
     return new Point(random.nextBoolean());
-
   }
+
+
 }

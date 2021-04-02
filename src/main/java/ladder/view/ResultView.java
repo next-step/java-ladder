@@ -14,7 +14,6 @@ public class ResultView {
   private static final String RESULT = "실행결과";
   private static final String NAMES_FORMAT = "%s   ";
   private static final String VERTICAL_LINE = "|";
-  private static final String LINE_BREAK = "\n";
 
   public void printLadder(LadderGame ladderGame) {
     System.out.println(RESULT);
@@ -23,8 +22,9 @@ public class ResultView {
   }
 
   private String printLadderDetail(Lines lines) {
-    return lines.getLines().stream()
-        .map(line -> printPoints(line) + LINE_BREAK)
+
+    return lines.getLines()
+        .map(line -> printPoints(line) + System.lineSeparator())
         .collect(Collectors.joining());
   }
 

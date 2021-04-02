@@ -6,7 +6,7 @@ public class LadderGame {
 
   private final Users users;
   private final Lines lines;
-  private final String INVALID_HEIGHT = "높이는 양수여야합니다.";
+  private static final String INVALID_HEIGHT = "높이는 양수여야합니다.";
 
   public LadderGame(int height, String[] userNames) {
     this(new Lines(height, userNames.length), new Users(userNames));
