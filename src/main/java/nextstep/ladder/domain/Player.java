@@ -1,9 +1,8 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.dto.Exportable;
 import nextstep.ladder.dto.PlayerDto;
 
-public class Player implements Exportable<PlayerDto> {
+public class Player {
 
     private static final int NAME_MAXIMUM_LENGTH = 5;
 
@@ -20,7 +19,6 @@ public class Player implements Exportable<PlayerDto> {
         }
     }
 
-    @Override
     public PlayerDto export() {
         return new PlayerDto(name);
     }

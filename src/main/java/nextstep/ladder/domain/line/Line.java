@@ -1,14 +1,12 @@
 package nextstep.ladder.domain.line;
 
 import nextstep.ladder.dto.Connections;
-import nextstep.ladder.dto.Exportable;
 import nextstep.ladder.util.StreamUtils;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Line implements Exportable<Connections> {
+public class Line {
 
     private static final int MINIMUM_POINTS_SIZE = 2;
 
@@ -40,10 +38,9 @@ public class Line implements Exportable<Connections> {
         return firstPoint.isConnectedTo(secondPoint) ^ secondPoint.isConnectedTo(firstPoint);
     }
 
-    @Override
-    public Connections export() {
+    public Connections exportConnections() {
         List<Boolean> connections =
-            StreamUtils.pairStream(Collections.unmodifiableList(points))
+            StreamUtils.pairStream(points)
                        .map(pointPair -> isConnectedEachOther(pointPair.getFirst(), pointPair.getSecond()))
                        .collect(Collectors.toList());
 
