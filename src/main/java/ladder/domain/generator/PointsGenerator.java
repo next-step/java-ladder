@@ -21,6 +21,7 @@ public class PointsGenerator implements Generator {
       Point p = makePoint(points);
       points.add(p);
     }
+
     return points;
   }
 

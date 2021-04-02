@@ -44,4 +44,26 @@ public class Lines {
     return lines.size();
   }
 
+  public User result(User user) {
+    for (Line line : lines) {
+      user = resultByOneLine(line, user);
+    }
+    return user;
+  }
+
+  public User resultByOneLine(Line line, User user) {
+
+    int userIdx = user.getPoisition();
+    if ( userIdx+1 <= line.getPoints().size()-1 && line.point(userIdx + 1) == true) {
+      return new User(user.getName(),user.getPoisition() + 1);
+    }
+
+    if (userIdx >= 0 && line.point(userIdx) == true) {
+
+      return new User(user.getName(), user.getPoisition() - 1);
+    }
+
+    return new User(user.getName(), user.getPoisition());
+  }
+
 }

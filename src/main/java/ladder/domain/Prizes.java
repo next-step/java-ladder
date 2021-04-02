@@ -15,4 +15,7 @@ public class Prizes {
         .collect(Collectors.toList());
   }
 
+  public List<Prize> getPrizes() {
+    return prizes;
+  }
 }

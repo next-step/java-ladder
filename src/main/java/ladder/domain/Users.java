@@ -1,7 +1,10 @@
 package ladder.domain;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -9,18 +12,19 @@ import java.util.stream.IntStream;
 
 public class Users {
 
-  private final Set<User> users;
+  private final List<User> users;
   private static final String INVALID_DUPLICATED_NAME = "중복된 이름은 사용할 수 없습니다.";
 
   public Users(String[] names) {
     this.users = IntStream.range(0, names.length)
         .mapToObj(position -> new User(names[position],position))
-        .collect(Collectors.toSet());
-    validateDuplicatedName(names.length);
+        .collect(Collectors.toList());
+    validateDuplicatedName(names);
   }
 
-  private void validateDuplicatedName(int nameSize) {
-    if (nameSize != users.size()) {
+  private void validateDuplicatedName(String[] names) {
+    Set<String> hs = new HashSet(users);
+    if (hs.size() != names.length) {
       throw new IllegalArgumentException(INVALID_DUPLICATED_NAME);
     }
   }
@@ -42,7 +46,7 @@ public class Users {
     return Objects.hash(users);
   }
 
-  public Set<User> getUsers() {
+  public List<User> getUsers() {
     return users;
   }
 }
