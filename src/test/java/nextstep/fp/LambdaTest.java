@@ -39,7 +39,7 @@ class LambdaTest {
 
     @Test
     void sumAllEven() {
-        int sum = Lambda.sumAllEven(numbers);
+        int sum = Lambda.sumAllMatchingCondition(numbers, x -> x % 2 == 0);
         assertThat(sum).isEqualTo(12);
     }
 
