@@ -44,7 +44,7 @@ public class Users {
     return Objects.hash(users);
   }
 
-  public Stream<User> getUsers() {
+  public Stream<User> users() {
     return users.stream();
   }
 
@@ -52,7 +52,7 @@ public class Users {
     return users.size();
   }
 
-  public User findPlayerByIndex(int index) {
+  public User findUserByIndex(int index) {
     return users.get(index);
   }
 }

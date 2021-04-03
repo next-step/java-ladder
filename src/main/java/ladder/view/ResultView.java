@@ -57,7 +57,7 @@ public class ResultView {
   }
 
   private String printName(Users users) {
-    return users.getUsers()
+    return users.users()
         .map(user -> user.name())
         .map(name -> String.format(NAMES_FORMAT, name))
         .collect(Collectors.joining());
