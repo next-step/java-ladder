@@ -3,6 +3,7 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Stream;
 import ladder.domain.generator.Generator;
 import ladder.domain.generator.PointsGenerator;
 
@@ -35,12 +36,8 @@ public class Lines {
     return Objects.hash(lines);
   }
 
-  public List<Line> getLines() {
-    return lines;
-  }
-
-  public int size() {
-    return lines.size();
+  public Stream<Line> getLines() {
+    return lines.stream();
   }
 
   public int goThroughLinesFrom(int position) {

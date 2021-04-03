@@ -33,7 +33,4 @@ public class User {
     return name;
   }
 
-  public int getPoisition() {
-    return position;
-  }
 }

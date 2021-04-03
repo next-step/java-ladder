@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Prizes {
 
@@ -15,7 +16,11 @@ public class Prizes {
         .collect(Collectors.toList());
   }
 
-  public List<Prize> getPrizes() {
-    return prizes;
+  public Stream<Prize> getPrizes() {
+    return prizes.stream();
+  }
+
+  public Prize find(int finalPosition) {
+    return prizes.get(finalPosition);
   }
 }

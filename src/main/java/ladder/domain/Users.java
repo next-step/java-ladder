@@ -6,6 +6,7 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Users {
 
@@ -43,8 +44,8 @@ public class Users {
     return Objects.hash(users);
   }
 
-  public List<User> getUsers() {
-    return users;
+  public Stream<User> getUsers() {
+    return users.stream();
   }
 
   public int numberOfUsers() {

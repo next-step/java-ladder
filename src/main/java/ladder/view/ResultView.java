@@ -33,13 +33,13 @@ public class ResultView {
 
 
   private String printLadderDetail(Lines lines) {
-    return lines.getLines().stream()
+    return lines.getLines()
         .map(line -> printPoints(line) + System.lineSeparator())
         .collect(Collectors.joining());
   }
 
   private String printPoints(Line line) {
-    return line.getPoints().stream()
+    return line.getPoints()
         .map(point -> printUsedOrNot(point) + VERTICAL_LINE)
         .collect(Collectors.joining());
   }
@@ -53,14 +53,14 @@ public class ResultView {
 
 
   private String printPrize(Prizes prizes) {
-    return prizes.getPrizes().stream()
+    return prizes.getPrizes()
         .map(prize -> prize.getPrize())
         .map(prize -> String.format(NAMES_FORMAT,prize))
         .collect(Collectors.joining());
   }
 
   private String printName(Users users) {
-    return users.getUsers().stream()
+    return users.getUsers()
         .map(user -> user.getName())
         .map(name -> String.format(NAMES_FORMAT, name))
         .collect(Collectors.joining());

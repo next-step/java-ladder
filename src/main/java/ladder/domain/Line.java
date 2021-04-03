@@ -1,8 +1,8 @@
 package ladder.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Stream;
 import ladder.domain.generator.Generator;
 
 public class Line {
@@ -34,8 +34,8 @@ public class Line {
     return Objects.hash(points);
   }
 
-  public List<Point> getPoints() {
-    return points;
+  public Stream<Point> getPoints() {
+    return points.stream();
   }
 
   public int travel(int position) {
