@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -14,14 +15,14 @@ public class Users {
   private static final String INVALID_DUPLICATED_NAME = "중복된 이름은 사용할 수 없습니다.";
 
   public Users(String[] names) {
+    validateDuplicatedName(names);
     this.users = IntStream.range(0, names.length)
         .mapToObj(position -> new User(names[position], position))
         .collect(Collectors.toList());
-    validateDuplicatedName(names);
   }
 
   private void validateDuplicatedName(String[] names) {
-    Set<String> hs = new HashSet(users);
+    Set<String> hs = new HashSet(Arrays.asList(names));
     if (hs.size() != names.length) {
       throw new IllegalArgumentException(INVALID_DUPLICATED_NAME);
     }
