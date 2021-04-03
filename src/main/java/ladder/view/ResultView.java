@@ -25,10 +25,10 @@ public class ResultView {
 
   public void printLadder(LadderGame ladderGame) {
     System.out.println(RESULT);
-    System.out.println(printName(ladderGame.getUsers()));
+    System.out.println(printName(ladderGame.getGameInfo().getUsers()));
     String ladder = printLadderDetail(ladderGame.getLines());
     System.out.println(ladder.substring(0,ladder.length()-1));
-    System.out.println(printPrize(ladderGame.getPrizes()));
+    System.out.println(printPrize(ladderGame.getGameInfo().getPrizes()));
   }
 
 

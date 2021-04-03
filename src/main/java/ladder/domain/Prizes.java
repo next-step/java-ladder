@@ -23,4 +23,8 @@ public class Prizes {
   public Prize find(int finalPosition) {
     return prizes.get(finalPosition);
   }
+
+  public int numberOfPrizes() {
+    return prizes.size();
+  }
 }

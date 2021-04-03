@@ -17,10 +17,13 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class LadderGameTest {
 
   private String[] names;
+  private String[] prizes;
 
   @BeforeEach
   void setUp() {
-    names = new String[]{"pobi", "honux", "crong", "jk"};
+    names = new String[]{"pobi", "honux", "crong"};
+    prizes = new String[]{"꽝","3000","2000"};
+
   }
 
   @ParameterizedTest
@@ -28,7 +31,7 @@ public class LadderGameTest {
   @DisplayName("높이가 음수이거나 0인 경우 확인")
   public void validateHeight(int number) {
     assertThatThrownBy(() -> {
-      LadderGame ladderGame = new LadderGame(number, names);
+      LadderGame ladderGame = new LadderGame(number, names, prizes);
     }).isInstanceOf(IllegalArgumentException.class);
 
   }

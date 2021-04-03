@@ -2,30 +2,24 @@ package ladder.domain;
 
 public class LadderGame {
 
-  private final Users users;
+  private final GameInfo gameInfo;
   private final Lines lines;
-  private final Prizes prizes;
   private static final String INVALID_HEIGHT = "높이는 양수여야합니다.";
 
   public LadderGame(int height, String[] userNames,String[] prizes) {
-    this(new Lines(height, userNames.length), new Users(userNames),new Prizes(prizes));
+    this(new GameInfo(userNames, prizes), new Lines(height, userNames.length));
     validateHeight(height);
   }
 
-  public LadderGame(Lines lines, Users users,Prizes prizes) {
+  public LadderGame(GameInfo gameInfo, Lines lines) {
+    this.gameInfo = gameInfo;
     this.lines = lines;
-    this.users = users;
-    this.prizes = prizes;
   }
 
   private void validateHeight(int height) {
     if (height <= 0) {
       throw new IllegalArgumentException(INVALID_HEIGHT);
     }
-  }
-
-  public Users getUsers() {
-    return users;
   }
 
   public Lines getLines() {
@@ -35,18 +29,17 @@ public class LadderGame {
   public PrizeResult play() {
 
     PrizeResult prizeResult = new PrizeResult();
-    int numberOfUsers = users.numberOfUsers();
-
+    int numberOfUsers = gameInfo.numberOfUsers();
     for (int index = 0; index < numberOfUsers; index++) {
-      User user = users.findPlayerByIndex(index);
+      User user = gameInfo.findPlayerByIndex(index);
       int finalPosition = lines.goThroughLinesFrom(index);
-      Prize prize = prizes.find(finalPosition);
+      Prize prize = gameInfo.findPrizeByPosition(finalPosition);
       prizeResult.put(user,prize);
     }
     return prizeResult;
   }
 
-  public Prizes getPrizes() {
-    return prizes;
+  public GameInfo getGameInfo() {
+    return gameInfo;
   }
 }
