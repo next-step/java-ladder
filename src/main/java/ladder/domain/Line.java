@@ -34,7 +34,7 @@ public class Line {
     return Objects.hash(points);
   }
 
-  public Stream<Point> getPoints() {
+  public Stream<Point> points() {
     return points.stream();
   }
 

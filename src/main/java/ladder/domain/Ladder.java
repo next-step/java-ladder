@@ -36,7 +36,7 @@ public class Ladder {
     return Objects.hash(lines);
   }
 
-  public Stream<Line> getLines() {
+  public Stream<Line> lines() {
     return lines.stream();
   }
 

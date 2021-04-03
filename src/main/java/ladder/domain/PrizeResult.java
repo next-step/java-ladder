@@ -11,7 +11,7 @@ public class PrizeResult {
     prizeResult.put(user, prize);
   }
 
-  public Map<User, Prize> getResult() {
+  public Map<User, Prize> result() {
     return prizeResult;
   }
 }

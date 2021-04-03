@@ -21,7 +21,7 @@ public class LineTest {
       points.add(new Point(tmp.get(i)));
     }
     Line line = new Line(() -> points);
-    assertThat(line.getPoints().count()).isEqualTo(4);
+    assertThat(line.points().count()).isEqualTo(4);
   }
 
 

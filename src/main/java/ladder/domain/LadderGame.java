@@ -22,7 +22,7 @@ public class LadderGame {
     }
   }
 
-  public Ladder getLines() {
+  public Ladder ladder() {
     return ladder;
   }
 
