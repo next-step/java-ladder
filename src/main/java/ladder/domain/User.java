@@ -5,13 +5,13 @@ import java.util.Objects;
 public class User {
 
   private final Name name;
-  private final int position;
+  private final Position position;
 
   public User(String name, int position) {
-    this(new Name(name), position);
+    this(new Name(name), new Position(position));
   }
 
-  public User(Name name, int position) {
+  public User(Name name, Position position) {
     this.name = name;
     this.position = position;
   }

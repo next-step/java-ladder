@@ -40,7 +40,7 @@ public class Ladder {
     return lines.stream();
   }
 
-  public int goThroughLinesFrom(int position) {
+  public Position goThroughLinesFrom(Position position) {
     for (Line line : lines) {
       position = line.travel(position);
     }

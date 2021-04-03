@@ -20,8 +20,8 @@ public class Prizes {
     return prizes.stream();
   }
 
-  public Prize find(int finalPosition) {
-    return prizes.get(finalPosition);
+  public Prize find(Position position) {
+    return prizes.get(position.position());
   }
 
   public int numberOfPrizes() {

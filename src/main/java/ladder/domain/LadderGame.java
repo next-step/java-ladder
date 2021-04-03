@@ -32,7 +32,7 @@ public class LadderGame {
     int numberOfUsers = gameInfo.numberOfUsers();
     for (int index = 0; index < numberOfUsers; index++) {
       User user = gameInfo.findUserByIndex(index);
-      int finalPosition = ladder.goThroughLinesFrom(index);
+      Position finalPosition = ladder.goThroughLinesFrom(new Position(index));
       Prize prize = gameInfo.findPrizeByPosition(finalPosition);
       prizeResult.put(user, prize);
     }

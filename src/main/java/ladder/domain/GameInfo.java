@@ -34,7 +34,7 @@ public class GameInfo {
     return users.findPlayerByIndex(index);
   }
 
-  public Prize findPrizeByPosition(int finalPosition) {
+  public Prize findPrizeByPosition(Position finalPosition) {
     return prizes.find(finalPosition);
   }
 
