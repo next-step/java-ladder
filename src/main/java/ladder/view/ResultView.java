@@ -74,7 +74,7 @@ public class ResultView {
   }
 
   public void printEachResult(PrizeResult prizeResult,String userName) {
-    System.out.println("실행 결과");
+    System.out.println(RESULT);
     String result = "";
     for (Entry<User, Prize> prizeMap : prizeResult.getResult().entrySet()) {
       if (prizeMap.getKey().getName().equals(userName)) {
