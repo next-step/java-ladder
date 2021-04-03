@@ -1,37 +1,31 @@
 package ladder.domain;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Users {
 
   private final List<User> users;
   private static final String INVALID_DUPLICATED_NAME = "중복된 이름은 사용할 수 없습니다.";
 
-  public Users(List<User> users){
-    validateDuplicatedName(users);
-    this.users = users;
-  }
-
   public Users(String[] names) {
-    users = new ArrayList<>();
-    for (String name : names) {
-      users.add(new User(name));
-    }
-    validateDuplicatedName(users);
+    validateDuplicatedName(names);
+    this.users = IntStream.range(0, names.length)
+        .mapToObj(position -> new User(names[position], position))
+        .collect(Collectors.toList());
   }
 
-  private void validateDuplicatedName(List<User> users) {
-    Set<User> userSet = new HashSet<>();
-    users.forEach(user -> userSet.add(user));
-    if (userSet.size() != users.size()) {
+  private void validateDuplicatedName(String[] names) {
+    Set<String> hs = new HashSet(Arrays.asList(names));
+    if (hs.size() != names.length) {
       throw new IllegalArgumentException(INVALID_DUPLICATED_NAME);
     }
-
-
   }
 
   @Override
@@ -51,7 +45,15 @@ public class Users {
     return Objects.hash(users);
   }
 
-  public List<User> getUsers() {
-    return users;
+  public Stream<User> users() {
+    return users.stream();
+  }
+
+  public int numberOfUsers() {
+    return users.size();
+  }
+
+  public User findUserByIndex(int index) {
+    return users.get(index);
   }
 }

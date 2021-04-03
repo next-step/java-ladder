@@ -1,21 +1,19 @@
 package ladder.domain;
 
-import java.util.List;
-
 public class LadderGame {
 
-  private final Users users;
-  private final Lines lines;
-  private final String INVALID_HEIGHT = "높이는 양수여야합니다.";
+  private final GameInfo gameInfo;
+  private final Ladder ladder;
+  private static final String INVALID_HEIGHT = "높이는 양수여야합니다.";
 
-  public LadderGame(int height, String[] userNames) {
-    this(new Lines(height, userNames.length), new Users(userNames));
+  public LadderGame(int height, String[] userNames, String[] prizes) {
+    this(new GameInfo(userNames, prizes), new Ladder(height, userNames.length));
     validateHeight(height);
   }
 
-  public LadderGame(Lines lines, Users users) {
-    this.lines = lines;
-    this.users = users;
+  public LadderGame(GameInfo gameInfo, Ladder ladder) {
+    this.gameInfo = gameInfo;
+    this.ladder = ladder;
   }
 
   private void validateHeight(int height) {
@@ -24,11 +22,24 @@ public class LadderGame {
     }
   }
 
-  public Users getUsers() {
-    return users;
+  public Ladder ladder() {
+    return ladder;
   }
 
-  public Lines getLines() {
-    return lines;
+  public PrizeResult play() {
+
+    PrizeResult prizeResult = new PrizeResult();
+    int numberOfUsers = gameInfo.numberOfUsers();
+    for (int index = 0; index < numberOfUsers; index++) {
+      User user = gameInfo.findUserByIndex(index);
+      Position finalPosition = ladder.goThroughLinesFrom(new Position(index));
+      Prize prize = gameInfo.findPrizeByPosition(finalPosition);
+      prizeResult.put(user, prize);
+    }
+    return prizeResult;
+  }
+
+  public GameInfo getGameInfo() {
+    return gameInfo;
   }
 }

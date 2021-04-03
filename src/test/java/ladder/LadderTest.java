@@ -1,15 +1,18 @@
 package ladder;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import ladder.domain.User;
+
+import ladder.domain.Ladder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class UserTest {
+public class LadderTest {
+
   @Test
-  @DisplayName("유저 이름 확인")
+  @DisplayName("Ladder 생성 확인")
   public void create() {
-    User user = new User("dayeon",0);
-    assertThat(user.name()).isEqualTo("dayeon");
+    Ladder ladder = new Ladder(5,4);
+    assertThat(ladder.size()).isEqualTo(5);
   }
+
 }

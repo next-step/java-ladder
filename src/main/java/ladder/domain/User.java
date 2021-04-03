@@ -4,10 +4,16 @@ import java.util.Objects;
 
 public class User {
 
-  private final String name;
+  private final Name name;
+  private final Position position;
 
-  public User(String name) {
+  public User(String name, int position) {
+    this(new Name(name), new Position(position));
+  }
+
+  public User(Name name, Position position) {
     this.name = name;
+    this.position = position;
   }
 
   @Override
@@ -27,7 +33,8 @@ public class User {
     return Objects.hash(name);
   }
 
-  public String getName() {
-    return name;
+  public String name() {
+    return name.name();
   }
+
 }
