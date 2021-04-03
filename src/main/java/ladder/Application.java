@@ -25,11 +25,13 @@ public class Application {
       if (result.equals("-1")) {
         break;
       }
+
       if (result.equals("all")) {
         resultView.printAllResult(prizeResult);
-      } else {
-        resultView.printEachResult(prizeResult, result);
+        continue;
       }
+
+      resultView.printEachResult(prizeResult, result);
     }
   }
 }
