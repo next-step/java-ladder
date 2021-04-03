@@ -16,15 +16,16 @@ class LadderTest {
     int height = 4;
     String input = "bong,dong,jung";
     String[] names = input.split(",");
-    Ladder ladder = Ladder.create(names, height);
     //when
-    List<Person> persons = ladder.getPersons();
+    Ladder ladder = Ladder.generate(names, height);
     //then
+    List<Person> persons = ladder.getPersons();
+    List<Line> lines = ladder.getLines();
     assertAll(
-        () -> assertEquals(ladder.getHeight(), height),
         () -> assertEquals(persons.get(0).getName(), "bong"),
         () -> assertEquals(persons.get(1).getName(), "dong"),
-        () -> assertEquals(persons.get(2).getName(), "jung")
+        () -> assertEquals(persons.get(2).getName(), "jung"),
+        () -> assertEquals(lines.size(), height)
     );
   }
 }
