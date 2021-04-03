@@ -1,6 +1,7 @@
 package ladder;
 
 import ladder.domain.Line;
+import ladder.domain.Point;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,6 +24,7 @@ class LineTest {
     @DisplayName("한 라인의 축은 사람 수 만큼 생성된다.")
     void oneLineComposedByCountPeople(int countOfPerson) {
         Line line = new Line(countOfPerson);
+        line.draw(() -> true);
         Assertions.assertThat(line.getPoints().size()).isEqualTo(countOfPerson);
     }
 
@@ -34,8 +36,8 @@ class LineTest {
 
         line.draw(() -> true);
 
-        Assertions.assertThat(line.getPoints().get(0)).isEqualTo(true);
-        Assertions.assertThat(line.getPoints().get(1)).isEqualTo(false);
+        Assertions.assertThat(line.getPoints().get(0)).isEqualTo(new Point(true));
+        Assertions.assertThat(line.getPoints().get(1)).isEqualTo(new Point(false));
     }
 }
 

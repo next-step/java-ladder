@@ -15,9 +15,9 @@ public enum LineState {
         this.display = display;
     }
 
-    public static String state(boolean point) {
+    public static String state(Point point) {
         return Arrays.stream(values())
-                .filter(value -> value.isLine == point)
+                .filter(value -> value.isLine == point.isPoint())
                 .findFirst()
                 .orElseThrow(IllegalArgumentException::new)
                 .display;
