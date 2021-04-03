@@ -14,4 +14,8 @@ public class Prize {
         "prize='" + prize + '\'' +
         '}';
   }
+
+  public String getPrize() {
+    return prize;
+  }
 }

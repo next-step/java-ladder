@@ -17,9 +17,21 @@ public class Application {
 
     LadderGame ladderGame = new LadderGame(height,names,prizes);
 
-    ladderGame.play();
-
     resultView.printLadder(ladderGame);
 
+    PrizeResult prizeResult = ladderGame.play();
+
+    while(true) {
+      String result = inputView.inputResult();
+      if (result.equals("-1")) {
+        break;
+      }
+
+      if (result.equals("all")) {
+        resultView.printAllResult(prizeResult);
+      } else {
+        resultView.printEachResult(prizeResult, result);
+      }
+    }
   }
 }

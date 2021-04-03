@@ -22,4 +22,9 @@ public class InputView {
     System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
     return scanner.nextLine().split(",");
   }
+
+  public String inputResult() {
+    System.out.println("결과를 보고 싶은 사람은?(게임을 종료하려면 -1을 입력하시고 전체 결과를 보려면 all을 입력하세요.");
+    return scanner.next();
+  }
 }

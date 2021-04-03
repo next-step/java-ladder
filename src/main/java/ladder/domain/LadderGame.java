@@ -36,7 +36,7 @@ public class LadderGame {
     return lines;
   }
 
-  public void play() {
+  public PrizeResult play() {
 
     PrizeResult prizeResult = new PrizeResult();
     int numberOfUsers = users.numberOfUsers();
@@ -47,5 +47,10 @@ public class LadderGame {
       Prize prize = prizes.getPrizes().get(finalPosition);
       prizeResult.put(user,prize);
     }
+    return prizeResult;
+  }
+
+  public Prizes getPrizes() {
+    return prizes;
   }
 }

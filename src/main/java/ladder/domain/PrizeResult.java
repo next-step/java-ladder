@@ -12,4 +12,7 @@ public class PrizeResult {
     prizeResult.put(user,prize);
   }
 
+  public Map<User,Prize> getResult() {
+    return prizeResult;
+  }
 }
