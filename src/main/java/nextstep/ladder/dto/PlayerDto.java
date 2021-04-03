@@ -2,14 +2,14 @@ package nextstep.ladder.dto;
 
 public class PlayerDto {
 
-    private final String name;
+    private final NameDto nameDto;
 
-    public PlayerDto(String name) {
-        this.name = name;
+    public PlayerDto(NameDto nameDto) {
+        this.nameDto = nameDto;
     }
 
-    public String getName() {
-        return name;
+    public String getNameDto() {
+        return nameDto.getName();
     }
 
 }

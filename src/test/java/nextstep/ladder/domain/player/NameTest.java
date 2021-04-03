@@ -1,4 +1,4 @@
-package nextstep.ladder.domain.line.player;
+package nextstep.ladder.domain.player;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

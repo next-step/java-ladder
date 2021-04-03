@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.domain.player.Player;
 import nextstep.ladder.dto.LadderDto;
 import nextstep.ladder.dto.PlayerDto;
 
