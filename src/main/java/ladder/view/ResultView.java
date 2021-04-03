@@ -58,7 +58,7 @@ public class ResultView {
 
   private String printName(Users users) {
     return users.getUsers()
-        .map(user -> user.getName())
+        .map(user -> user.name())
         .map(name -> String.format(NAMES_FORMAT, name))
         .collect(Collectors.joining());
   }
@@ -67,14 +67,14 @@ public class ResultView {
     prizeResult.getResult()
         .entrySet()
         .forEach(result -> System.out.println(
-            result.getKey().getName() + " : " + result.getValue().getPrize()));
+            result.getKey().name() + " : " + result.getValue().getPrize()));
   }
 
   public void printEachResult(PrizeResult prizeResult, String userName) {
     System.out.println(RESULT);
     String result = "";
     for (Entry<User, Prize> prizeMap : prizeResult.getResult().entrySet()) {
-      if (prizeMap.getKey().getName().equals(userName)) {
+      if (prizeMap.getKey().name().equals(userName)) {
         result = prizeMap.getValue().getPrize();
         break;
       }

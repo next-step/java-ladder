@@ -4,10 +4,14 @@ import java.util.Objects;
 
 public class User {
 
-  private final String name;
+  private final Name name;
   private final int position;
 
   public User(String name, int position) {
+    this(new Name(name), position);
+  }
+
+  public User(Name name, int position) {
     this.name = name;
     this.position = position;
   }
@@ -29,8 +33,8 @@ public class User {
     return Objects.hash(name);
   }
 
-  public String getName() {
-    return name;
+  public String name() {
+    return name.name();
   }
 
 }
