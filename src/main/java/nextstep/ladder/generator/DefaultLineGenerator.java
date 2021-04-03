@@ -15,7 +15,7 @@ public class DefaultLineGenerator implements LineGenerator {
     @Override
     public List<Point> createLine(final int countOfPerson) {
 
-        List<Point> points = new ArrayList<>(Arrays.asList(Point.initFalse()));
+        List<Point> points = new ArrayList<>(Arrays.asList(Point.init()));
         // 초기 값 설정으로 1부터 시작
         IntStream.range(points.size(), countOfPerson)
                 .forEach(value -> addNextPoint(points, value));
@@ -30,7 +30,7 @@ public class DefaultLineGenerator implements LineGenerator {
 
     private Point point(boolean point) {
         if(point) {
-            return Point.initFalse();
+            return Point.init();
         }
         return Point.of(RANDOM.nextBoolean());
     }

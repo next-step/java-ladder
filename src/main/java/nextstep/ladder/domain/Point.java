@@ -14,7 +14,7 @@ public class Point {
         return new Point(flag);
     }
 
-    public static Point initFalse() {
+    public static Point init() {
         return new Point(false);
     }
 
