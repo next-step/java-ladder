@@ -1,13 +1,10 @@
 package ladder.view;
 
-import java.util.List;
-import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import ladder.domain.LadderGame;
 import ladder.domain.Line;
-import ladder.domain.Lines;
+import ladder.domain.Ladder;
 import ladder.domain.Point;
 import ladder.domain.Prize;
 import ladder.domain.PrizeResult;
@@ -32,8 +29,8 @@ public class ResultView {
   }
 
 
-  private String printLadderDetail(Lines lines) {
-    return lines.getLines()
+  private String printLadderDetail(Ladder ladder) {
+    return ladder.getLines()
         .map(line -> printPoints(line) + System.lineSeparator())
         .collect(Collectors.joining());
   }

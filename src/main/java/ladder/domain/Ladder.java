@@ -7,11 +7,11 @@ import java.util.stream.Stream;
 import ladder.domain.generator.Generator;
 import ladder.domain.generator.PointsGenerator;
 
-public class Lines {
+public class Ladder {
 
   private final List<Line> lines;
 
-  public Lines(int height, int countOfPerson) {
+  public Ladder(int height, int countOfPerson) {
     lines = new ArrayList<>();
     Generator generator = new PointsGenerator(countOfPerson);
     for (int i = 0; i < height; i++) {
@@ -27,8 +27,8 @@ public class Lines {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Lines lines1 = (Lines) o;
-    return Objects.equals(lines, lines1.lines);
+    Ladder ladder1 = (Ladder) o;
+    return Objects.equals(lines, ladder1.lines);
   }
 
   @Override
@@ -45,5 +45,9 @@ public class Lines {
       position = line.travel(position);
     }
     return position;
+  }
+
+  public int size() {
+    return lines.size();
   }
 }
