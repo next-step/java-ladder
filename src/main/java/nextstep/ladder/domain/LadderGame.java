@@ -16,7 +16,7 @@ public class LadderGame {
                                   .map(Player::new)
                                   .collect(Collectors.toList());
 
-        ladder = new Ladder(ladderHeight, players.size());
+        ladder = Ladder.of(ladderHeight, players.size());
     }
 
     public List<PlayerDto> getPlayers() {

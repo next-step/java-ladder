@@ -19,7 +19,7 @@ public class InputView {
     }
 
     private String getUserInput() {
-        Scanner scanner = new Scanner(System.in).useDelimiter("\n");
+        Scanner scanner = new Scanner(System.in).useDelimiter(System.lineSeparator());
         return scanner.next();
     }
 

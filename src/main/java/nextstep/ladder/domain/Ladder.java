@@ -16,22 +16,28 @@ public class Ladder {
 
     private final List<Line> lines;
 
-    public Ladder(int height, int width) {
+    private Ladder(List<Line> lines) {
+        this.lines = lines;
+    }
+
+    public static Ladder of(int height, int width) {
         validateHeight(height);
         validateWidth(width);
 
-        lines = Stream.generate(() -> LineFactory.createLine(width))
-                      .limit(height)
-                      .collect(Collectors.toList());
+        List<Line> lines = Stream.generate(() -> LineFactory.createLine(width))
+                                 .limit(height)
+                                 .collect(Collectors.toList());
+
+        return new Ladder(lines);
     }
 
-    private void validateHeight(int height) {
+    private static void validateHeight(int height) {
         if (height < MINIMUM_HEIGHT) {
             throw new IllegalArgumentException("사다리 높이는 1 이상이어야 합니다.");
         }
     }
 
-    private void validateWidth(int width) {
+    private static void validateWidth(int width) {
         if (width < MINIMUM_WIDTH) {
             throw new IllegalArgumentException("사다리 너비는 2 이상이어야 합니다.");
         }
