@@ -37,19 +37,7 @@ public class Line {
   public Stream<Point> points() {
     return points.stream();
   }
-/*
-  public int travel(int position) {
-    if (position + 1 <= points.size() - 1 && points.get(position + 1).isUsed()) {
-      return position + 1;
-    }
 
-    if (position >= 0 && points.get(position).isUsed()) {
-      return position - 1;
-    }
-    return position;
-
-  }
-*/
   public Position travel(Position position) {
 
     if (position.isRightMove(points)) {
