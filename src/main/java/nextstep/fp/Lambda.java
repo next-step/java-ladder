@@ -38,7 +38,10 @@ public class Lambda {
     }
 
     public static int sumAllMatchingCondition(List<Integer> numbers, Conditional conditional) {
-        return numbers.stream().filter(conditional::test).mapToInt(Integer::intValue).sum();
+        return numbers.stream()
+            .filter(conditional::test)
+            .mapToInt(Integer::intValue)
+            .sum();
     }
 
     public static int sumAllEven(List<Integer> numbers) {
