@@ -37,16 +37,16 @@ public class User {
 
     public static boolean ageIsInRange2(User user) {
         return Optional.ofNullable(user)
-                .filter(User::isExistUserAge)
-                .filter(User::isValidRangeAge)
+                .filter(u -> user.isExistUserAge(u))
+                .filter(u -> user.isValidRangeAge(u))
                 .isPresent();
     }
 
-    private static boolean isValidRangeAge(User u) {
+    private boolean isValidRangeAge(User u) {
         return u.getAge() >= 30 && u.getAge() <= 45;
     }
 
-    private static boolean isExistUserAge(User u) {
+    private boolean isExistUserAge(User u) {
         return u.getAge() != null;
     }
 
