@@ -133,3 +133,10 @@ public class Line {
 - 다시 생각하기
   - 라인이 겹치지 않도록 해야 한다.
   - 라인을 중복하지않게 하기 위한 방법 최선인가?
+
+> 사다리(생성) 1차 피드백
+
+- [x] [문자열 상수 관리](https://github.com/next-step/java-ladder/pull/841#discussion_r606647457)
+- [x] [메서드 명에 대한 정의](https://github.com/next-step/java-ladder/pull/841#discussion_r606647603)
+- [x] [메서드 명에 대한 정의 2](https://github.com/next-step/java-ladder/pull/841#discussion_r606647666) 
+- [x] [객체의 책임 확인](https://github.com/next-step/java-ladder/pull/841#discussion_r606647697)
