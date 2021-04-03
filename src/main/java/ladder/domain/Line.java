@@ -38,11 +38,15 @@ public class Line {
     return points;
   }
 
-  public boolean point(int idx) {
-    return points.get(idx).isUsed();
-  }
+  public int travel(int position) {
+    if (position+1 <= points.size()-1 && points.get(position + 1).isUsed()) {
+      return position+1;
+    }
 
-  public int size() {
-    return points.size();
+    if ( position >= 0 && points.get(position).isUsed()) {
+      return position-1;
+    }
+    return position;
+
   }
 }

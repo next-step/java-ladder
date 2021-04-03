@@ -3,7 +3,6 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Stream;
 import ladder.domain.generator.Generator;
 import ladder.domain.generator.PointsGenerator;
 
@@ -44,26 +43,10 @@ public class Lines {
     return lines.size();
   }
 
-  public User result(User user) {
+  public int goThroughLinesFrom(int position) {
     for (Line line : lines) {
-      user = resultByOneLine(line, user);
+      position = line.travel(position);
     }
-    return user;
+    return position;
   }
-
-  public User resultByOneLine(Line line, User user) {
-
-    int userIdx = user.getPoisition();
-    if ( userIdx+1 <= line.getPoints().size()-1 && line.point(userIdx + 1) == true) {
-      return new User(user.getName(),user.getPoisition() + 1);
-    }
-
-    if (userIdx >= 0 && line.point(userIdx) == true) {
-
-      return new User(user.getName(), user.getPoisition() - 1);
-    }
-
-    return new User(user.getName(), user.getPoisition());
-  }
-
 }

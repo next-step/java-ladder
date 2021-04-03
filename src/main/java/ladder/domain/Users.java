@@ -49,4 +49,12 @@ public class Users {
   public List<User> getUsers() {
     return users;
   }
+  
+  public int numberOfUsers() {
+    return users.size();
+  }
+
+  public User findPlayerByIndex(int index) {
+    return users.get(index);
+  }
 }

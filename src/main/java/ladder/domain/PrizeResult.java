@@ -7,6 +7,7 @@ public class PrizeResult {
 
   private final Map<User, Prize> prizeResult = new LinkedHashMap<>();
 
+
   public void put(User user,Prize prize) {
     prizeResult.put(user,prize);
   }

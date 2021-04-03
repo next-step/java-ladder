@@ -1,5 +1,9 @@
 package ladder.domain;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class LadderGame {
 
   private final Users users;
@@ -33,11 +37,15 @@ public class LadderGame {
   }
 
   public void play() {
-    PrizeResult prizeResult = new PrizeResult();
-    for (User user : users.getUsers()) {
-      user = lines.result(user);
-      prizeResult.put(user,prizes.getPrizes().get(user.getPoisition()));
-    }
 
+    PrizeResult prizeResult = new PrizeResult();
+    int numberOfUsers = users.numberOfUsers();
+
+    for (int index = 0; index < numberOfUsers; index++) {
+      User user = users.findPlayerByIndex(index);
+      int finalPosition = lines.goThroughLinesFrom(index);
+      Prize prize = prizes.getPrizes().get(finalPosition);
+      prizeResult.put(user,prize);
+    }
   }
 }
