@@ -9,7 +9,7 @@ class LadderTest {
     @DisplayName("입력한 높이 만큼 사다리를 생성한다.")
     @Test
     void testCase1() {
-        Ladder ladder = Ladder.initLadder(5, 5, RandomPointStrategy.getInstance());
+        Ladder ladder = Ladder.of(5, 5, RandomPointStrategy.getInstance());
 
         Assertions.assertThat(ladder.size()).isEqualTo(5);
     }

@@ -14,7 +14,7 @@ public class Ladder {
         this.ladderLines = ladderLines;
     }
 
-    public static Ladder initLadder(int height, int playerCount, CreatePointStrategy createPointStrategy) {
+    public static Ladder of(int height, int playerCount, CreatePointStrategy createPointStrategy) {
         return Stream.generate(() -> LadderLine.initLadderLine(playerCount, createPointStrategy))
                 .limit(height)
                 .collect(Collectors.collectingAndThen(toList(), Ladder::new));
