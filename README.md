@@ -134,6 +134,8 @@ public class Line {
   - 라인이 겹치지 않도록 해야 한다.
   - 라인을 중복하지않게 하기 위한 방법 최선인가?
 
+![Ladder Step2 Diagram](docs/ladder2.png)
+
 > 사다리(생성) 1차 피드백
 
 - [x] [문자열 상수 관리](https://github.com/next-step/java-ladder/pull/841#discussion_r606647457)
