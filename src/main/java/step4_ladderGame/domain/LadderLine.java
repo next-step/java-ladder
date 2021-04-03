@@ -13,8 +13,8 @@ public class LadderLine {
         this.points = points;
     }
 
-    public static LadderLine initLadderLine(int playerCount, CreatePointStrategy createStrategy) {
-        return new LadderLine(createStrategy.createPoint(playerCount), playerCount);
+    public static LadderLine of(int playerCount, RandomPointStrategy randomCreateStrategy) {
+        return new LadderLine(((CreatePointStrategy) randomCreateStrategy).createPoint(playerCount), playerCount);
     }
 
     public int size() {

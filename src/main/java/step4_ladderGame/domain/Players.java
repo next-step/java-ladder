@@ -8,14 +8,12 @@ import static java.util.stream.Collectors.toList;
 public class Players {
 
     private final List<Player> players;
-    private final static String DELIMITER = ",";
 
     private Players(List<Player> players) {
         this.players = players;
     }
 
-    public static Players of(String PlayerNames) {
-        String[] names = PlayerNames.split(DELIMITER);
+    public static Players of(String[] names) {
         List<Player> players = IntStream.range(0, names.length)
                 .mapToObj(index -> Player.of(names[index], index))
                 .collect(toList());

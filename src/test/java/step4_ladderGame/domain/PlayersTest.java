@@ -10,11 +10,11 @@ class PlayersTest {
     @DisplayName("입력 받은 이름 만큼 플레이어를 만든다.")
     @Test
     void testCase() {
-        Players players = Players.of("LG,SKT,KT");
+        Players players = Players.of(new String[]{"LG", "SKT", "KT"});
 
         assertThat(players.size()).isEqualTo(3);
         assertThat(players.getPlayer(0)).isEqualTo(Player.of("LG", 0));
     }
 
-    
+
 }
