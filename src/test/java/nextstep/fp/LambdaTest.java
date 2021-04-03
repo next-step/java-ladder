@@ -45,7 +45,7 @@ class LambdaTest {
 
     @Test
     void sumAllOverThree() {
-        int sum = Lambda.sumAllOverThree(numbers);
+        int sum = Lambda.sumAllMatchingCondition(numbers, x -> x > 3);
         assertThat(sum).isEqualTo(15);
     }
 }
