@@ -10,7 +10,12 @@ public class InputView {
 
     public List<String> receivePlayerNames() {
         printMessage("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        return Arrays.asList(getUserInput().split(DELIMITER));
+        return getListOfString();
+    }
+
+    public List<String> receiveRewards() {
+        printMessage("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        return getListOfString();
     }
 
     public int receiveLadderHeight() {
@@ -18,9 +23,18 @@ public class InputView {
         return Integer.parseInt(getUserInput());
     }
 
+    public String receiveNameForSeeingResult() {
+        printMessage("결과를 보고 싶은 사람은?");
+        return getUserInput();
+    }
+
     private String getUserInput() {
         Scanner scanner = new Scanner(System.in).useDelimiter(System.lineSeparator());
         return scanner.next();
+    }
+
+    private List<String> getListOfString() {
+        return Arrays.asList(getUserInput().split(DELIMITER));
     }
 
     private void printMessage(String message) {
