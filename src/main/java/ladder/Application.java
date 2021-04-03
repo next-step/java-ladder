@@ -15,18 +15,16 @@ public class Application {
     String[] prizes = inputView.inputPrizes();
     int height = inputView.inputHeight();
 
-    LadderGame ladderGame = new LadderGame(height,names,prizes);
-
+    LadderGame ladderGame = new LadderGame(height, names, prizes);
     resultView.printLadder(ladderGame);
 
     PrizeResult prizeResult = ladderGame.play();
 
-    while(true) {
+    while (true) {
       String result = inputView.inputResult();
       if (result.equals("-1")) {
         break;
       }
-
       if (result.equals("all")) {
         resultView.printAllResult(prizeResult);
       } else {

@@ -6,7 +6,7 @@ public class LadderGame {
   private final Ladder ladder;
   private static final String INVALID_HEIGHT = "높이는 양수여야합니다.";
 
-  public LadderGame(int height, String[] userNames,String[] prizes) {
+  public LadderGame(int height, String[] userNames, String[] prizes) {
     this(new GameInfo(userNames, prizes), new Ladder(height, userNames.length));
     validateHeight(height);
   }
@@ -31,10 +31,10 @@ public class LadderGame {
     PrizeResult prizeResult = new PrizeResult();
     int numberOfUsers = gameInfo.numberOfUsers();
     for (int index = 0; index < numberOfUsers; index++) {
-      User user = gameInfo.findPlayerByIndex(index);
+      User user = gameInfo.findUserByIndex(index);
       int finalPosition = ladder.goThroughLinesFrom(index);
       Prize prize = gameInfo.findPrizeByPosition(finalPosition);
-      prizeResult.put(user,prize);
+      prizeResult.put(user, prize);
     }
     return prizeResult;
   }

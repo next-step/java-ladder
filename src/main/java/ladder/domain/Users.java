@@ -15,7 +15,7 @@ public class Users {
 
   public Users(String[] names) {
     this.users = IntStream.range(0, names.length)
-        .mapToObj(position -> new User(names[position],position))
+        .mapToObj(position -> new User(names[position], position))
         .collect(Collectors.toList());
     validateDuplicatedName(names);
   }

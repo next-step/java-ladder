@@ -17,7 +17,7 @@ public class PointsGenerator implements Generator {
   @Override
   public List<Point> makePoints() {
     List<Point> points = new ArrayList<>();
-    for (int i = 0; i< countOfPoint; i++) {
+    for (int i = 0; i < countOfPoint; i++) {
       Point p = makePoint(points);
       points.add(p);
     }

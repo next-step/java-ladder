@@ -24,7 +24,7 @@ public class ResultView {
     System.out.println(RESULT);
     System.out.println(printName(ladderGame.getGameInfo().getUsers()));
     String ladder = printLadderDetail(ladderGame.getLines());
-    System.out.println(ladder.substring(0,ladder.length()-1));
+    System.out.println(ladder.substring(0, ladder.length() - 1));
     System.out.println(printPrize(ladderGame.getGameInfo().getPrizes()));
   }
 
@@ -52,7 +52,7 @@ public class ResultView {
   private String printPrize(Prizes prizes) {
     return prizes.getPrizes()
         .map(prize -> prize.getPrize())
-        .map(prize -> String.format(NAMES_FORMAT,prize))
+        .map(prize -> String.format(NAMES_FORMAT, prize))
         .collect(Collectors.joining());
   }
 
@@ -70,7 +70,7 @@ public class ResultView {
             result.getKey().getName() + " : " + result.getValue().getPrize()));
   }
 
-  public void printEachResult(PrizeResult prizeResult,String userName) {
+  public void printEachResult(PrizeResult prizeResult, String userName) {
     System.out.println(RESULT);
     String result = "";
     for (Entry<User, Prize> prizeMap : prizeResult.getResult().entrySet()) {

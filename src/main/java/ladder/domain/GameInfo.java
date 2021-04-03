@@ -1,11 +1,12 @@
 package ladder.domain;
 
 public class GameInfo {
+
   private final Users users;
   private final Prizes prizes;
   private static final String INVALID_GAME_INFO = "유저 수와 입력한 결과는 같은 개수여야 합니다.";
 
-  public GameInfo (String[] userName, String[] prizes) {
+  public GameInfo(String[] userName, String[] prizes) {
     this(new Users(userName), new Prizes(prizes));
     validateUserAndPrize();
   }
@@ -29,7 +30,7 @@ public class GameInfo {
     return users.numberOfUsers();
   }
 
-  public User findPlayerByIndex(int index) {
+  public User findUserByIndex(int index) {
     return users.findPlayerByIndex(index);
   }
 
