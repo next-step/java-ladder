@@ -14,10 +14,7 @@ public enum Point {
   }
 
   public static Point getPoint(boolean isConnected) {
-    if (isConnected) {
-      return CONNECT;
-    }
-    return DISCONNECT;
+    return isConnected ? CONNECT : DISCONNECT;
   }
 
   public boolean isConnected() {
