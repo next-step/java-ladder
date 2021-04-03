@@ -41,5 +41,8 @@ public class Point {
         return Point.of(current, false);
     }
 
+    public Direction move() {
+        return Direction.valueOf(prev, current);
+    }
 }
 

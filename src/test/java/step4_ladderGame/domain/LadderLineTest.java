@@ -10,8 +10,11 @@ class LadderLineTest {
     @Test
     void testCase1() {
         int playerCount = 5;
-        LadderLine line = LadderLine.initLadderLine(playerCount);
+
+        LadderLine line = LadderLine.initLadderLine(playerCount, RandomPointStrategy.getInstance());
 
         Assertions.assertThat(line.size()).isEqualTo(5);
     }
+    
+
 }
