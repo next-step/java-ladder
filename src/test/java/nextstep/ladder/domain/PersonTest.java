@@ -13,8 +13,11 @@ class PersonTest {
   @Test
   @DisplayName("5자 이하 이름을 가진 사람을 생성한다.")
   void create() {
+    //given
     String name = "bongs";
+    //when
     Person person = Person.create(name);
+    //then
     assertAll(
         () -> assertThat(person).isNotNull(),
         () -> assertEquals(person.getName(), name)
@@ -24,7 +27,9 @@ class PersonTest {
   @Test
   @DisplayName("5자를 초과하는 이름으로 사람을 생성하려고 하면 Exception을 발생시킨다.")
   void create_fail() {
+    //given
     String name = "bonggu";
+    //when//then
     assertThatIllegalArgumentException()
         .isThrownBy(() -> Person.create(name))
         .withMessage("name length > 5.");
