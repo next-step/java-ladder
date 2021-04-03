@@ -17,6 +17,8 @@ public class ResultView {
         printHeader();
         printNames(participants);
         printLadder(ladder);
+        // TODO 사다리 결과 출력
+        printLadderResult();
     }
 
     private void printHeader() {
@@ -42,6 +44,10 @@ public class ResultView {
                 .forEach(System.out::println);
     }
 
+    private void printLadderResult() {
+
+    }
+
     private String renderLadder(Line line) {
         return line.points()
                 .stream()
@@ -54,5 +60,15 @@ public class ResultView {
             return LADDER_HORIZON;
         }
         return LADDER_EMPTY;
+    }
+
+    // TODO 사다리 타기 결과 정보 출력
+    public void printUser(String user, LadderResult ladderResult) {
+
+        printUserResult();
+    }
+
+    private void printUserResult() {
+
     }
 }
