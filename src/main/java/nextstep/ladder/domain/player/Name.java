@@ -11,7 +11,7 @@ public class Name {
 
     private final String nameStr;
 
-    public Name(String nameStr) {
+    Name(String nameStr) {
         validate(nameStr);
         this.nameStr = nameStr;
     }
