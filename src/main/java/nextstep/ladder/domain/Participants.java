@@ -8,21 +8,19 @@ import java.util.stream.Collectors;
 
 public class Participants {
 
-    private static final String SPLIT_DELIMITER = ",";
     private final List<Name> users;
 
-    private Participants(final String users) {
+    private Participants(final String... users) {
         this.users = parseUsers(users);
     }
 
-    private List<Name> parseUsers(final String users) {
-        return Arrays.stream(users.split(SPLIT_DELIMITER))
-                .map(String::trim)
+    private List<Name> parseUsers(String... users) {
+        return Arrays.stream(users)
                 .map(Name::of)
                 .collect(Collectors.toList());
     }
 
-    public static Participants valueOf(final String users) {
+    public static Participants valueOf(final String... users) {
         return new Participants(users);
     }
 

@@ -11,10 +11,11 @@ class ParticipantsTest {
     @Test
     void create_참여자() {
         // given
-        Participants participants = Participants.valueOf("user1,user2,user3");
+        Participants participants = Participants.valueOf("user1", "user2", "user3");
         // when
-        Participants expected = Participants.valueOf("user1, user2, user3");
+        Participants expected = Participants.valueOf("user1", "user2", "user3");
         // then
         assertThat(participants).isEqualTo(expected);
     }
+
 }

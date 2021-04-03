@@ -26,7 +26,7 @@ class LineTest {
     @Test
     void create_랜덤_전략_테스트() {
         // given
-        LineGenerator lineGenerator = countOfPerson -> Arrays.asList(Point.initFalse(), Point.of(true));
+        LineGenerator lineGenerator = countOfPerson -> Arrays.asList(Point.init(), Point.of(true));
         // when
         Line line = Line.valueOf(2, lineGenerator);
         List<Point> points = line.points();

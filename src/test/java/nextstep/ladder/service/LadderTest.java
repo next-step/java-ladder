@@ -17,7 +17,7 @@ class LadderTest {
     @Test
     void create_생성_테스트() {
         // given
-        Participants participants = Participants.valueOf("12345,1234");
+        Participants participants = Participants.valueOf("12345", "1234");
         Height height = Height.valueOf(2);
         // when
         List<Line> ladder = Ladder.valueOf(participants, height).lines();
