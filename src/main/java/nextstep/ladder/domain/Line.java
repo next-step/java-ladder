@@ -1,18 +1,15 @@
 package nextstep.ladder.domain;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Line {
 
     private static final String PLAYER_COUNT_VALIDATE_MESSAGE = "참여자는 2명 이상이여야 합니다";
-    private static final int CREATE_START_INDEX = 0;
     private static final int MINIMUM_PLAYER_BOUND = 2;
 
-    private final List<Boolean> points;
+    private final List<Point> points;
 
     public Line(int countOfPerson) {
         validatePersonCount(countOfPerson);
@@ -25,14 +22,10 @@ public class Line {
         }
     }
 
-    private List<Boolean> createPoints(int countOfPerson) {
-        return IntStream.range(CREATE_START_INDEX, countOfPerson)
-                .mapToObj(this::createPoint)
+    private List<Point> createPoints(int countOfPerson) {
+        return Stream.generate(Point::new)
+                .limit(countOfPerson)
                 .collect(Collectors.toList());
-    }
-
-    private Boolean createPoint(int idx) {
-        return Boolean.FALSE;
     }
 
     public int pointSize() {
