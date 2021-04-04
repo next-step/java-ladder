@@ -20,6 +20,10 @@ public enum Point {
     }
 
     public boolean getConnection() {
-        return connection;
+        return this.connection;
+    }
+
+    public String view() {
+        return this.view;
     }
 }
