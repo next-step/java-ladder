@@ -41,10 +41,10 @@ public class LineTest {
 
         // when & then
         for (int i = 0; i < input; i++) {
-            if (i % 2 == 0) {
+            if (i % 2 == 1) {
                 assertThat(points.get(i).getConnection()).isTrue();
             }
-            if (i % 2 == 1) {
+            if (i % 2 == 0) {
                 assertThat(points.get(i).getConnection()).isFalse();
             }
         }

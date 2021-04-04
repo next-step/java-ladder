@@ -22,14 +22,12 @@ public class Line {
     }
 
     public void draw(ConnectStrategy connectStrategy) {
-        points.add(Point.from(connectStrategy.connectable()));
+        points.add(Point.DISCONNECT);
 
         IntStream.range(0, countOfPlayers - 1)
-            .forEach((index) -> points.add(connect(index, connectStrategy.connectable())));
-
-        if (points.size() > MIN_WIDTH + 1) {
-            points.add(Point.DISCONNECT);
-        }
+            .forEach((index) -> {
+                points.add(connect(index, connectStrategy.connectable()));
+            });
     }
 
     private Point connect(int index, boolean connectable) {
