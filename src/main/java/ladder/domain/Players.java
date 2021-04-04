@@ -12,10 +12,18 @@ public class Players {
 	}
 
 	public Players(Player... args) {
+		validatePlayerSize(args.length);
 		this.players = Arrays.stream(args).collect(Collectors.toList());
 	}
 
 	public List<Player> getPlayers() {
 		return players;
+	}
+
+
+	private void validatePlayerSize(int playerSize) {
+		if (playerSize <= 1) {
+			throw new IllegalArgumentException("참여자는 최소 2명 이상이어야 합니다.");
+		}
 	}
 }

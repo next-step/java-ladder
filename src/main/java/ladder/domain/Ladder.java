@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,10 +13,17 @@ public class Ladder {
 	}
 
 	public Ladder(Line... args) {
+		validateLadderSize(args.length);
 		this.ladder = Arrays.stream(args).collect(Collectors.toList());
 	}
 
 	public List<Line> getLadder() {
 		return ladder;
+	}
+
+	private void validateLadderSize(int ladderSize) {
+		if (ladderSize < 3) {
+			throw new IllegalArgumentException("사다리 높이는 최소 3이상이어야 합니다");
+		}
 	}
 }

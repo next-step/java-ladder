@@ -14,17 +14,13 @@ public class RandomLineStrategy implements LineStrategy {
 		final boolean[] previousLine = {false};
 		IntStream.range(0, countOfPerson).forEach((n) -> {
 			Boolean line = random.nextBoolean();
-			if (!line) {
-				points.add(false);
-				previousLine[0] = false;
-			}
-			if (line && !previousLine[0]) {
+			if (line && !previousLine[0] && n != (countOfPerson - 1)) {
 				points.add(true);
 				previousLine[0] = true;
+				return;
 			}
-			if (line && previousLine[0]) {
-				previousLine[0] = false;
-			}
+			points.add(false);
+			previousLine[0] = false;
 		});
 		return points;
 	}
