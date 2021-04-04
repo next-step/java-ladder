@@ -8,15 +8,15 @@ import java.util.stream.Collectors;
 
 public class Participants {
 
-    private final List<Name> users;
+    private final List<User> users;
 
     private Participants(final String... users) {
         this.users = parseUsers(users);
     }
 
-    private List<Name> parseUsers(String... users) {
+    private List<User> parseUsers(String... users) {
         return Arrays.stream(users)
-                .map(Name::of)
+                .map(User::valueOf)
                 .collect(Collectors.toList());
     }
 
@@ -28,7 +28,7 @@ public class Participants {
         return users.size();
     }
 
-    public List<Name> getUsers() {
+    public List<User> getUsers() {
         return Collections.unmodifiableList(users);
     }
 
