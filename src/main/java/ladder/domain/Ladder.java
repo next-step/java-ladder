@@ -20,7 +20,7 @@ public class Ladder {
         }
     }
 
-    public void drawLadder(ConnectStrategy connectStrategy) {
+    public void draw(ConnectStrategy connectStrategy) {
         ladder.forEach(line -> line.draw(connectStrategy));
     }
 
