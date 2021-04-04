@@ -6,7 +6,7 @@ import java.util.stream.IntStream;
 import static java.util.stream.Collectors.toList;
 
 public class Players {
-
+    
     private final List<Player> players;
 
     private Players(List<Player> players) {

@@ -1,24 +1,31 @@
 package step4_ladderGame.domain;
 
 import java.util.List;
+import java.util.stream.IntStream;
+
+import static java.util.stream.Collectors.toList;
 
 public class LadderLine {
 
-    private final List<Point> points;
+    private final List<Stair> stairs;
 
-    private LadderLine(List<Point> points, int playerCount) {
-        if (points.size() != playerCount) {
+    private LadderLine(List<Stair> Stair, int playerCount) {
+        if (Stair.size() != playerCount) {
             throw new IllegalArgumentException("사다리 라인 수와 플레이어 수가 맞지 않습니다.");
         }
-        this.points = points;
+        this.stairs = Stair;
     }
 
     public static LadderLine of(int playerCount, RandomPointStrategy randomCreateStrategy) {
-        return new LadderLine(((CreatePointStrategy) randomCreateStrategy).createPoint(playerCount), playerCount);
+        List<Point> points = ((CreatePointStrategy) randomCreateStrategy).createPoint(playerCount);
+        List<Stair> stairs = IntStream.range(0, playerCount)
+                .mapToObj(index -> Stair.of(Position.of(index), points.get(index)))
+                .collect(toList());
+        return new LadderLine(stairs, playerCount);
     }
 
     public int size() {
-        return points.size();
+        return stairs.size();
     }
 
 }

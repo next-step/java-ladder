@@ -33,4 +33,12 @@ public class Position {
     public int hashCode() {
         return Objects.hash(position);
     }
+
+    public Position right() {
+        return new Position(position + 1);
+    }
+
+    public Position left() {
+        return new Position(position - 1);
+    }
 }
