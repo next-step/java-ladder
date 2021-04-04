@@ -18,11 +18,6 @@ public class Line {
         create(countOfPlayers, conditionStrategy);
     }
 
-    public Line (List<Point> points) {
-        validation(points.size());
-        this.points = points;
-    }
-
     private void validation(int countOfPerson) {
         if (countOfPerson < MIN_PERSON) {
             throw new IllegalArgumentException("참여자는 최소 2명 이상이어야 합니다.");
