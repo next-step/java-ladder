@@ -3,6 +3,9 @@ package nextstep.fp;
 import java.util.List;
 
 public class Lambda {
+
+    private Lambda() {}
+
     public static void printAllOld(List<Integer> numbers) {
         System.out.println("printAllOld");
 
@@ -32,6 +35,13 @@ public class Lambda {
             total += number;
         }
         return total;
+    }
+
+    public static int sumAllMatchingCondition(List<Integer> numbers, Conditional conditional) {
+        return numbers.stream()
+            .filter(conditional::test)
+            .mapToInt(Integer::intValue)
+            .sum();
     }
 
     public static int sumAllEven(List<Integer> numbers) {
