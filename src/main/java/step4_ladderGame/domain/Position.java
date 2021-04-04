@@ -17,8 +17,12 @@ public class Position {
         return new Position(position);
     }
 
-    public int toInt() {
-        return position;
+    public Position right() {
+        return new Position(position + 1);
+    }
+
+    public Position left() {
+        return new Position(position - 1);
     }
 
     @Override
@@ -34,11 +38,7 @@ public class Position {
         return Objects.hash(position);
     }
 
-    public Position right() {
-        return new Position(position + 1);
-    }
-
-    public Position left() {
-        return new Position(position - 1);
+    public boolean isSame(Position position) {
+        return this.position == position.position;
     }
 }

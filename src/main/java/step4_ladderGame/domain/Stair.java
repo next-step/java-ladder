@@ -28,5 +28,7 @@ public class Stair {
         return position;
     }
 
-
+    public boolean isSamePosition(Position position) {
+        return this.position.equals(position);
+    }
 }

@@ -9,11 +9,15 @@ public class LadderLine {
 
     private final List<Stair> stairs;
 
-    private LadderLine(List<Stair> Stair, int playerCount) {
-        if (Stair.size() != playerCount) {
+    private LadderLine(List<Stair> stairs, int playerCount) {
+        if (stairs.size() != playerCount) {
             throw new IllegalArgumentException("사다리 라인 수와 플레이어 수가 맞지 않습니다.");
         }
-        this.stairs = Stair;
+        this.stairs = stairs;
+    }
+
+    private LadderLine(List<Stair> stairs) {
+        this.stairs = stairs;
     }
 
     public static LadderLine of(int playerCount, RandomPointStrategy randomCreateStrategy) {
@@ -24,8 +28,19 @@ public class LadderLine {
         return new LadderLine(stairs, playerCount);
     }
 
+    public static LadderLine of(List<Stair> stairs) {
+        return new LadderLine(stairs);
+    }
+
+
     public int size() {
         return stairs.size();
     }
 
+    public Player move(Player player) {
+        return stairs.stream()
+                .filter(stair -> stair.isSamePosition(player.getPosition()))
+                .map(stair -> player.move(stair.move()))
+                .collect(toList()).get(0);
+    }
 }

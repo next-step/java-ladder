@@ -16,6 +16,10 @@ public class Player {
         return new Player(Name.of(name), Position.of(position));
     }
 
+    public Position getPosition() {
+        return position;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -27,5 +31,9 @@ public class Player {
     @Override
     public int hashCode() {
         return Objects.hash(name, position);
+    }
+
+    public Player move(Position position) {
+        return new Player(this.name, position);
     }
 }
