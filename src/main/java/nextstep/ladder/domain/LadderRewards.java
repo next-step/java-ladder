@@ -9,11 +9,11 @@ public class LadderRewards {
 
     private final List<String> ladderRewards;
 
-    private LadderRewards(String... ladderRewards) {
+    private LadderRewards(final String... ladderRewards) {
         this.ladderRewards = Arrays.asList(ladderRewards);
     }
 
-    public static LadderRewards valueOf(String... ladderRewards) {
+    public static LadderRewards valueOf(final String... ladderRewards) {
         return new LadderRewards(ladderRewards);
     }
 
@@ -22,7 +22,7 @@ public class LadderRewards {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) return true;
         if (!(o instanceof LadderRewards)) return false;
         final LadderRewards that = (LadderRewards) o;
