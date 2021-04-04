@@ -11,9 +11,9 @@ class PointTest {
     @Test
     void create_Point_생성테스트() {
         // given
-        Point point = Point.of(true);
+        Point point = Point.valueOf(true);
         // when
-        Point expected = Point.of(true);
+        Point expected = Point.valueOf(true);
         // then
         assertThat(point).isEqualTo(expected);
     }

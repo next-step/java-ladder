@@ -10,7 +10,7 @@ public class Point {
         this.flag = flag;
     }
 
-    public static Point of(boolean flag) {
+    public static Point valueOf(final boolean flag) {
         return new Point(flag);
     }
 
@@ -26,7 +26,7 @@ public class Point {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Point)) return false;
-        Point point = (Point) o;
+        final Point point = (Point) o;
         return flag == point.flag;
     }
 
