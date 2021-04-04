@@ -31,18 +31,9 @@ public class Lambda {
     }
 
     private static int sum(List<Integer> numbers, SumStrategy sumStrategy) {
-        int total = 0;
-        for (int number : numbers) {
-            total = addTotal(total, number, sumStrategy);
-        }
-        return total;
-    }
-
-    private static int addTotal(int total, int number, SumStrategy strategy) {
-        if (strategy.addable(number)) {
-            total += number;
-        }
-        return total;
+        return numbers.stream()
+            .filter(sumStrategy::addable)
+            .reduce(0, (x, y) -> x + y);
     }
 
     public static int sumAllEven(List<Integer> numbers) {
