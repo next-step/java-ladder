@@ -10,7 +10,7 @@ import ladder.domain.Ladder;
 public class LadderTest {
 
     @Test
-    void 생성() {
+    void 생성_테스트() {
         // given
         int height = 5;
         int countOfPerson = 5;
@@ -20,7 +20,7 @@ public class LadderTest {
     }
 
     @Test
-    void 높이_유효성() {
+    void 높이_유효성_테스트() {
         // given
         int height = 0;
         int countOfPerson = 5;
