@@ -7,18 +7,40 @@ import java.util.stream.IntStream;
 
 public class Line {
     private static final int MIN_WIDTH = 2;
+    private final int countOfPlayers;
     private final List<Point> points = new ArrayList<>();
 
     public Line(int countOfPerson) {
         valid(countOfPerson);
-        IntStream.range(0, countOfPerson)
-            .forEach((index) -> points.add(new Point()));
+        this.countOfPlayers = countOfPerson;
     }
 
     private void valid(int countOfPerson) {
         if (countOfPerson < MIN_WIDTH) {
-            throw new IllegalArgumentException("참여자의 수는 최소 2명 이상이여야 합니다.");
+            throw new IllegalArgumentException("참여자의 수는 최소 " + MIN_WIDTH + "명 이상이여야 합니다.");
         }
+    }
+
+    public void draw(ConnectStrategy connectStrategy) {
+        points.add(Point.from(connectStrategy.connectable()));
+
+        IntStream.range(0, countOfPlayers - 1)
+            .forEach((index) -> points.add(connect(index, connectStrategy.connectable())));
+
+        if (points.size() > MIN_WIDTH + 1) {
+            points.add(Point.DISCONNECT);
+        }
+    }
+
+    private Point connect(int index, boolean connectable) {
+        if (points.get(index).getConnection()) {
+            return Point.DISCONNECT;
+        }
+        return Point.from(connectable);
+    }
+
+    public List<Point> getPoints() {
+        return this.points;
     }
 
     @Override
