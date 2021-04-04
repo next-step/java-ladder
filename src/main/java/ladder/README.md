@@ -30,8 +30,7 @@
 
 
 - 포인트
-    - 이전 Point (true/false)
-    - 현재 Point (true/false)
+    - Point (true/false)
 
 
 - 동작
