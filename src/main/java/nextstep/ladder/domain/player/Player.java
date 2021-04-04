@@ -10,6 +10,10 @@ public class Player {
         this.name = new Name(name);
     }
 
+    public boolean hasName(Name targetName) {
+        return name.equals(targetName);
+    }
+
     public PlayerDto export() {
         return new PlayerDto(name.export());
     }
