@@ -10,7 +10,7 @@ public class Ladder {
 
     private final List<LadderLine> ladderLines;
 
-    public Ladder(List<LadderLine> ladderLines) {
+    private Ladder(List<LadderLine> ladderLines) {
         this.ladderLines = ladderLines;
     }
 
@@ -20,7 +20,19 @@ public class Ladder {
                 .collect(Collectors.collectingAndThen(toList(), Ladder::new));
     }
 
+    public static Ladder of(List<LadderLine> ladderLines) {
+        return new Ladder(ladderLines);
+    }
+
     public int size() {
         return ladderLines.size();
+    }
+
+
+    public Player move(Player player) {
+        final Player[] movePlayer = {player};
+        return ladderLines.stream()
+                .map(line -> movePlayer[0] = line.move(movePlayer[0]))
+                .collect(Collectors.toList()).get(0);
     }
 }

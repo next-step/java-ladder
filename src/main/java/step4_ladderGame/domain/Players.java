@@ -3,10 +3,11 @@ package step4_ladderGame.domain;
 import java.util.List;
 import java.util.stream.IntStream;
 
+import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
 
 public class Players {
-    
+
     private final List<Player> players;
 
     private Players(List<Player> players) {
@@ -30,5 +31,11 @@ public class Players {
 
     public int size() {
         return players.size();
+    }
+
+    public Players play(Ladder ladder) {
+        return players.stream()
+                .map(ladder::move)
+                .collect(collectingAndThen(toList(), Players::new));
     }
 }
