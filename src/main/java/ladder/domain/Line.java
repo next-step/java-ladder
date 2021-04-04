@@ -6,7 +6,7 @@ import java.util.Objects;
 import java.util.stream.IntStream;
 
 public class Line {
-    private static final int MIN_HEIGHT = 2;
+    private static final int MIN_WIDTH = 2;
     private final List<Point> points = new ArrayList<>();
 
     public Line(int countOfPerson) {
@@ -16,7 +16,7 @@ public class Line {
     }
 
     private void valid(int countOfPerson) {
-        if (countOfPerson < MIN_HEIGHT) {
+        if (countOfPerson < MIN_WIDTH) {
             throw new IllegalArgumentException("참여자의 수는 최소 2명 이상이여야 합니다.");
         }
     }
