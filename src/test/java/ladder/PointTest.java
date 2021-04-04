@@ -10,7 +10,7 @@ public class PointTest {
 
     @Test
     void 생성() {
-        Point point = new Point();
-        assertThat(point).isEqualTo(new Point(false));
+        assertThat(Point.from(true)).isEqualTo(Point.CONNECT);
+        assertThat(Point.from(false)).isEqualTo(Point.DISCONNECT);
     }
 }
