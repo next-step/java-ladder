@@ -11,11 +11,11 @@ public class Line {
 
     private final List<Point> points;
 
-    public Line(final int countOfPerson) {
+    private Line(final int countOfPerson) {
         this(countOfPerson, new DefaultLineGenerator());
     }
 
-    public Line(final int countOfPerson, final LineGenerator generator) {
+    private Line(final int countOfPerson, final LineGenerator generator) {
         this.points = generator.createLine(countOfPerson);
     }
 
@@ -37,6 +37,26 @@ public class Line {
 
     public List<Point> points() {
         return Collections.unmodifiableList(points);
+    }
+
+    public Position move(final Position userPosition) {
+        int currentPosition = userPosition.currentPosition();
+
+        if(isMoveLeft(currentPosition)) {
+            return userPosition.left();
+        }
+        if(isMoveRight(currentPosition)) {
+            return userPosition.right();
+        }
+        return userPosition;
+    }
+
+    private boolean isMoveRight(int currentPosition) {
+        return points.get(currentPosition + 1).isExist();
+    }
+
+    private boolean isMoveLeft(int currentPosition) {
+        return points.get(currentPosition).isExist();
     }
 
     @Override
