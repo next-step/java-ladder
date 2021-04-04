@@ -12,7 +12,7 @@ public class Name {
     }
 
     private void valid(String name) {
-        if (name == null || name == "" || name.length() > MAX_NAME_LENGTH) {
+        if (name == null || name.isEmpty() || name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException("참여자의 이름은 최대 5글자 이하입니다.");
         }
     }
