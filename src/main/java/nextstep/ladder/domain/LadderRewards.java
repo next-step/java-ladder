@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -14,6 +15,10 @@ public class LadderRewards {
 
     public static LadderRewards valueOf(String... ladderRewards) {
         return new LadderRewards(ladderRewards);
+    }
+
+    public List<String> getLadderRewards() {
+        return Collections.unmodifiableList(ladderRewards);
     }
 
     @Override
