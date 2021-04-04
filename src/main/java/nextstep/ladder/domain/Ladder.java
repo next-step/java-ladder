@@ -4,14 +4,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class Ladder {
     public final static int MIN_HEIGHT = 1;
     private final ConditionStrategy randomCondition = new RandomCondition();
     private List<Line> lines = new ArrayList<>();
 
-    public Ladder(int countOfPlayers, int ladderHeight) {
+    private Ladder(int countOfPlayers, int ladderHeight) {
         validation(ladderHeight);
         create(countOfPlayers, ladderHeight);
     }

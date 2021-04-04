@@ -1,17 +1,12 @@
 package nextstep.ladder.domain;
 
-import com.sun.javafx.collections.UnmodifiableListSet;
-
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class Line {
     public final static int START_INDEX = 1;
     public final static int MIN_PERSON = 2;
 
-    private List<Point> points = new ArrayList<>();
+    private final List<Point> points = new ArrayList<>();
 
     public Line (int countOfPlayers, ConditionStrategy conditionStrategy) {
         validation(countOfPlayers);

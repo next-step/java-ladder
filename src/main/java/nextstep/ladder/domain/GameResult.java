@@ -9,8 +9,8 @@ public class GameResult {
         this.players = players;
     }
 
-    public String playersNames() {
-        return players.names();
+    public Players players() {
+        return players;
     }
 
     public Ladder ladder() {

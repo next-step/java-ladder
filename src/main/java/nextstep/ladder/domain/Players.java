@@ -3,10 +3,10 @@ package nextstep.ladder.domain;
 import nextstep.ladder.utils.StringUtils;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Players {
     public final static String NAME_SEPARATOR = ",";
@@ -37,10 +37,8 @@ public class Players {
         return new Players(value);
     }
 
-    public String names() {
-        return players.stream()
-                .map(Player::name)
-                .collect(Collectors.joining(" "));
+    public List<Player> names() {
+        return Collections.unmodifiableList(players);
     }
 
     @Override

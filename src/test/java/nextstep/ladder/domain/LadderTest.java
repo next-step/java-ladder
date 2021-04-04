@@ -14,7 +14,7 @@ class LadderTest {
     @DisplayName(value = "사다리 객체 생성")
     @CsvSource(value = {"3:3", "4:4", "5:5"}, delimiter = ':')
     void ladderCreate(int input, int result) {
-        assertThat(new Ladder(2, input)
+        assertThat(Ladder.of(2, input)
                 .size())
                 .isEqualTo(result);
     }
@@ -24,7 +24,7 @@ class LadderTest {
     void ladderArgumentsException() {
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> {
-                    new Ladder(2, 0);
+                    Ladder.of(2, 0);
                 }).withMessageMatching("사다리의 최소 높이는 1보다 커야 합니다.");
     }
 }

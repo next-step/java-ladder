@@ -8,25 +8,20 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
-import static org.junit.jupiter.api.Assertions.*;
 
 class LineTest {
     private ConditionStrategy conditionStrategy;
-    private List<Point> points = new ArrayList<>();
+    private Line line;
 
     @BeforeEach
     @DisplayName(value = "공통 사용 변수 초기화")
     void setUp() {
         conditionStrategy = new RandomCondition();
 
-        points.add(new Point(false, true));
-        points.add(new Point(true, false));
-        points.add(new Point(false, true));
-        points.add(new Point(true, false));
+        line = new Line(4, () -> true);
     }
 
     @ParameterizedTest
@@ -50,9 +45,21 @@ class LineTest {
     @Test
     @DisplayName(value = "라인 생성")
     void lineCreate() {
-        assertThat(new Line(4, () -> true)
-                .points()
-                .toString())
-                .isEqualTo(points.toString());
+        // given
+        List<Point> points = line.points();
+
+        List<Point> newPoints = new ArrayList<Point>() {
+            {
+                add(new Point(false, true));
+                add(new Point(true, false));
+                add(new Point(false, true));
+                add(new Point(true, false));
+            }
+        };
+
+
+        // when & then
+        assertThat(points)
+                .isEqualTo(newPoints);
     }
 }

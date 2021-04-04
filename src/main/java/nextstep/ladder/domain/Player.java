@@ -23,7 +23,7 @@ public class Player {
     }
 
     public String name() {
-        return StringUtils.generateBlank(MAX_LENGTH - name.length()) + name;
+        return name;
     }
 
     @Override
