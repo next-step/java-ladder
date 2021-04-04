@@ -33,10 +33,10 @@ public class StreamStudy {
 
         return words.stream()
                     .filter(word -> word.length() > 12)
-                    .sorted(Comparator.comparing(String::length).reversed())
                     .distinct()
                     .limit(100)
                     .map(String::toLowerCase)
+                    .sorted(Comparator.comparing(String::length).reversed())
                     .collect(Collectors.toList());
     }
 
@@ -58,7 +58,7 @@ public class StreamStudy {
 
         return numbers.stream()
                 .filter(num -> num > 3)
-                .map(num -> num * 2)
-                .reduce(0, (a, b) -> a + b);
+                .mapToInt(Integer::intValue)
+                .reduce(0, Integer::sum) * 2;
     }
 }
