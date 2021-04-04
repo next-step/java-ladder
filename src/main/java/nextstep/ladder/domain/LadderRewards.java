@@ -9,7 +9,7 @@ public class LadderRewards {
 
     private final List<String> ladderRewards;
 
-    public LadderRewards(String... ladderRewards) {
+    private LadderRewards(String... ladderRewards) {
         this.ladderRewards = Arrays.asList(ladderRewards);
     }
 
