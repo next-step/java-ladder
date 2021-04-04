@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -22,5 +23,11 @@ public class Ladder {
         if (height < HEIGHT_MINIMUM_BOUND) {
             throw new IllegalArgumentException(HEIGHT_VALIDATE_MESSAGE);
         }
+    }
+
+    public List<String> readOnlyLadder() {
+        return Collections.unmodifiableList(lines.stream()
+                .map(Line::drawLine)
+                .collect(Collectors.toList()));
     }
 }
