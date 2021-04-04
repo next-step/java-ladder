@@ -15,7 +15,7 @@ public class InputView {
         return in.nextLine();
     }
 
-    public String inputLadderResult() {
+    public String inputLadderRewards() {
         System.out.println(GUIDE_LADDER_INPUT_RESULT);
         return in.nextLine();
     }
