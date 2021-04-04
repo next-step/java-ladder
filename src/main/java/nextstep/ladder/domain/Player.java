@@ -13,7 +13,7 @@ public class Player {
         this.name = name;
     }
 
-    public void validation(final String name) {
+    private void validation(final String name) {
         if (StringUtils.isEmpty(name)) {
             throw new IllegalArgumentException("공백은 허용되지 않습니다.");
         }
@@ -37,5 +37,12 @@ public class Player {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "name='" + name + '\'' +
+                '}';
     }
 }

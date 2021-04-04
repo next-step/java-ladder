@@ -13,7 +13,7 @@ public class GameResult {
         return players.names();
     }
 
-    public String ladder() {
-        return ladder.toString();
+    public Ladder ladder() {
+        return ladder;
     }
 }

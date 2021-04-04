@@ -4,16 +4,17 @@ import nextstep.ladder.utils.StringUtils;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Players {
-    public final static int FIRST_POSITION = 1;
+    public final static String NAME_SEPARATOR = ",";
     private List<Player> players;
 
     public Players(String value) {
         validation(value);
-        players = generatePlayers(value.split(","));
+        players = generatePlayers(value.split(NAME_SEPARATOR));
     }
 
     public void validation(String value) {
@@ -32,9 +33,33 @@ public class Players {
         return players.size();
     }
 
+    public static Players from(String value) {
+        return new Players(value);
+    }
+
     public String names() {
         return players.stream()
                 .map(Player::name)
                 .collect(Collectors.joining(" "));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Players players1 = (Players) o;
+        return Objects.equals(players, players1.players);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(players);
+    }
+
+    @Override
+    public String toString() {
+        return "Players{" +
+                "players=" + players +
+                '}';
     }
 }

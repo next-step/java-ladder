@@ -26,7 +26,7 @@ public class InputView {
         return value(PLAYERS_NAME);
     }
 
-    public static String maxLadderLength() {
-        return value(MAX_LADDER_LENGTH);
+    public static int maxLadderLength() {
+        return Integer.parseInt(value(MAX_LADDER_LENGTH));
     }
 }

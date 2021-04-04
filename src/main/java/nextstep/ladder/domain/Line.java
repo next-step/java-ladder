@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import com.sun.javafx.collections.UnmodifiableListSet;
+
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -8,13 +10,17 @@ import java.util.stream.Stream;
 public class Line {
     public final static int START_INDEX = 1;
     public final static int MIN_PERSON = 2;
-    private final ConditionStrategy conditionStrategy = () -> new Random().nextBoolean();
 
     private List<Point> points = new ArrayList<>();
 
-    public Line (int countOfPlayers) {
+    public Line (int countOfPlayers, ConditionStrategy conditionStrategy) {
         validation(countOfPlayers);
-        create(countOfPlayers);
+        create(countOfPlayers, conditionStrategy);
+    }
+
+    public Line (List<Point> points) {
+        validation(points.size());
+        this.points = points;
     }
 
     private void validation(int countOfPerson) {
@@ -23,35 +29,41 @@ public class Line {
         }
     }
 
-    private void create(int countOfPlayers) {
+    private void create(int countOfPlayers, ConditionStrategy conditionStrategy) {
         points.add(Point.first(conditionStrategy.randomBoolean()));
 
-        IntStream.range(START_INDEX, countOfPlayers - 1)
-                .forEach(i -> points.add(generatePoint(points.get(i - 1), conditionStrategy)));
+        for (int i = START_INDEX; i < countOfPlayers - 1; i++) {
+            points.add(points.get(i - 1).next(conditionStrategy.randomBoolean()));
+        }
 
         points.add(Point.last(points.get(points.size() - 1).current()));
-    }
-
-    private Point generatePoint(Point previous, ConditionStrategy conditionStrategy) {
-        while (true) {
-            boolean current = conditionStrategy.randomBoolean();
-            if (isPass(previous.current(), current)) {
-                return new Point(previous.current(), current);
-            }
-        }
-    }
-
-    private boolean isPass(boolean previous, boolean current) {
-        return !(previous && current);
     }
 
     public int size() {
         return points.size();
     }
 
+    public List<Point> points(){
+        return Collections.unmodifiableList(points);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Line line = (Line) o;
+        return Objects.equals(points, line.points);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(points);
+    }
+
+    @Override
     public String toString() {
-        return points.stream()
-                .map(Point::toString)
-                .collect(Collectors.joining());
+        return "Line{" +
+                "points=" + points +
+                '}';
     }
 }
