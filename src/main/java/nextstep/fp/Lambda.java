@@ -26,19 +26,11 @@ public class Lambda {
         }).start();
     }
 
-    private static int sum(List<Integer> numbers, SumStrategy sumStrategy) {
-        int total = 0;
-        for (int number : numbers) {
-            total = add(total, number, sumStrategy);
-        }
-        return total;
-    }
-
-    private static int add(int total, int number, SumStrategy sumStrategy) {
-        if (sumStrategy.sumAble(number)) {
-            total += number;
-        }
-        return total;
+    private static int sum(List<Integer> numbers, AdditionalCondition additionalCondition) {
+        return numbers.stream()
+            .filter(additionalCondition::addable)
+            .mapToInt(number -> number)
+            .sum();
     }
 
     public static int sumAll(List<Integer> numbers) {
