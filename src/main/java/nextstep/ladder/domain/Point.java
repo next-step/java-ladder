@@ -2,10 +2,13 @@ package nextstep.ladder.domain;
 
 public class Point {
 
-    private Point connectedPoint;
+    private boolean connected;
 
-    public Point() {
+    public Point(boolean connected) {
+        this.connected = connected;
     }
 
-
+    public boolean connectable() {
+        return !connected;
+    }
 }

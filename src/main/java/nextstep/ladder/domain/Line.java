@@ -1,8 +1,6 @@
 package nextstep.ladder.domain;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Line {
 
@@ -23,9 +21,7 @@ public class Line {
     }
 
     private List<Point> createPoints(int countOfPerson) {
-        return Stream.generate(Point::new)
-                .limit(countOfPerson)
-                .collect(Collectors.toList());
+        return PointGenerator.generate(countOfPerson);
     }
 
     public int pointSize() {
