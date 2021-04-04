@@ -32,6 +32,6 @@ public class DefaultLineGenerator implements LineGenerator {
         if(point) {
             return Point.init();
         }
-        return Point.of(RANDOM.nextBoolean());
+        return Point.valueOf(RANDOM.nextBoolean());
     }
 }
