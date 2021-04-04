@@ -1,7 +1,7 @@
 package nextstep.ladder.domain;
 
 public class Player {
-
+    private static final String NAME_VALIDATE_MESSAGE = "이름은 1글자 이상, 5글자 이하입니다";
     private static final int NAME_LENGTH_BOUND = 5;
 
     private final String name;
@@ -13,7 +13,7 @@ public class Player {
 
     private void validateName() {
         if (name.trim().isEmpty() || name.length() > NAME_LENGTH_BOUND) {
-            throw new IllegalArgumentException("이름은 1글자 이상, 5글자 이하입니다");
+            throw new IllegalArgumentException(NAME_VALIDATE_MESSAGE);
         }
     }
 

@@ -18,6 +18,6 @@ public class LineTest {
     @DisplayName("플레이어가 2명 미만이라면 예외를 발생시킨다")
     @Test
     void createLineExceptionTest() {
-        assertThatThrownBy(() -> new Line(1)).isInstanceOf(RuntimeException.class);
+        assertThatThrownBy(() -> new Line(1)).isInstanceOf(IllegalArgumentException.class);
     }
 }
