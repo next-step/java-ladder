@@ -23,12 +23,16 @@ public class Position {
         return new Position(value - MOVABLE_COUNT);
     }
 
+    public Position right() {
+        return new Position(value + MOVABLE_COUNT);
+    }
+
     private boolean isValidPositionBound() {
         return value < 1;
     }
 
-    public Position right() {
-        return new Position(value + MOVABLE_COUNT);
+    public int currentPosition() {
+        return value;
     }
 
     @Override
@@ -42,5 +46,10 @@ public class Position {
     @Override
     public int hashCode() {
         return Objects.hash(value);
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(value);
     }
 }
