@@ -10,7 +10,7 @@ public class Ladder {
 
     private final List<Line> lines;
 
-    public Ladder(Participants participants, Height height) {
+    private Ladder(Participants participants, Height height) {
         this.lines = createLadder(participants, height);
     }
 
