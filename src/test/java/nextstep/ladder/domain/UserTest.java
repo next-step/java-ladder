@@ -6,22 +6,22 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
-class NameTest {
+class UserTest {
     @DisplayName("사용자 명 생성 테스트")
     @Test
     void create_사용자_명() {
         // given
-        Name name = Name.of("seok");
+        User user = User.valueOf("seok");
         // when
-        Name expected = Name.of("seok");
+        User expected = User.valueOf("seok");
         // then
-        assertThat(name).isEqualTo(expected);
+        assertThat(user).isEqualTo(expected);
     }
 
     @DisplayName("사용자 명 생성시 예외 테스트")
     @Test
     void create_Exception() {
         assertThatExceptionOfType(IllegalArgumentException.class)
-        .isThrownBy(() -> Name.of("123456"));
+        .isThrownBy(() -> User.valueOf("123456"));
     }
 }
