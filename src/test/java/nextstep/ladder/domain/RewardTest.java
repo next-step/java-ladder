@@ -25,6 +25,7 @@ class RewardTest {
     @DisplayName("꽝 또는 정수가 아니면 예외 처리한다.")
     void throwExceptionIfUnsupportedString() {
         assertAll(
+            () -> assertThatCode(() -> new Reward("1000")).doesNotThrowAnyException(),
             () -> assertThatCode(() -> new Reward("꽝")).doesNotThrowAnyException(),
             () -> assertThatThrownBy(() -> new Reward("오만원")).isInstanceOf(RuntimeException.class)
         );
