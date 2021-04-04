@@ -17,7 +17,7 @@ public class ResultView {
         printHeader();
         printNames(participants);
         printLadder(ladder);
-        // TODO 사다리 결과 출력
+        // DONE 사다리 보상 출력
         printLadderRewards(ladderRewards);
     }
 
@@ -33,8 +33,8 @@ public class ResultView {
         System.out.println();
     }
 
-    private String parseName(Name name) {
-        return String.format(STRING_FORMAT_RENDDER, name);
+    private String parseName(User user) {
+        return String.format(STRING_FORMAT_RENDDER, user);
     }
 
     private void printLadder(Ladder ladder) {
