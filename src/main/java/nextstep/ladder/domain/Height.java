@@ -9,11 +9,11 @@ public class Height {
 
     private final int value;
 
-    private Height(int value) {
+    private Height(final int value) {
         this.value = value;
     }
 
-    public static Height valueOf(int value) {
+    public static Height valueOf(final int value) {
         if(value < MIN_HEIGHT) {
             throw new IllegalArgumentException(GUIDE_ERR_HEIGHT_LESS_THAN);
         }
@@ -25,7 +25,7 @@ public class Height {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) return true;
         if (!(o instanceof Height)) return false;
         final Height height = (Height) o;
