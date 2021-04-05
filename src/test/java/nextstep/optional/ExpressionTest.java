@@ -14,9 +14,10 @@ class ExpressionTest {
 
   @Test
   void notValidExpression() {
+    String expression = "&";
     assertThatIllegalArgumentException()
         .isThrownBy(() -> {
-          Expression.of("&");
-        });
+          Expression.of(expression);
+        }).withMessage(expression + Expression.ILLEGAL_EXPRESSION);
   }
 }

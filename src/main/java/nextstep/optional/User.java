@@ -37,10 +37,13 @@ public class User {
 
     public static boolean ageIsInRange2(User sourceUser) {
         return Optional.ofNullable(sourceUser)
-            .filter(user -> user.getAge() != null)
-            .filter(user -> user.getAge() >= 30)
-            .filter(user -> user.getAge() <= 45)
+            .map(User::getAge)
+            .filter(User::isBetweenRange)
             .isPresent();
+    }
+
+    private static boolean isBetweenRange(int age) {
+        return age >= 30 && age <= 45;
     }
 
     @Override
