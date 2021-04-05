@@ -2,12 +2,13 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.domain.*;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class ResultView {
 
-    private static final String STRING_FORMAT_RENDDER = "%6s";
-    private static final String GUIDE_HEAD_LINE = "실행 결과";
+    private static final String STRING_FORMAT_RENDER = "%6s";
+    private static final String GUIDE_HEAD_LINE = "\n사다리 타기 결과\n";
     private static final String LADDER_VERTICAL_LINE = "|";
     private static final String LADDER_HORIZON = "-----";
     private static final String LADDER_EMPTY = "     ";
@@ -17,8 +18,8 @@ public class ResultView {
         printHeader();
         printNames(participants);
         printLadder(ladder);
-        // DONE 사다리 보상 출력
         printLadderRewards(ladderRewards);
+        System.out.println();
     }
 
     private void printHeader() {
@@ -34,7 +35,7 @@ public class ResultView {
     }
 
     private String parseName(User user) {
-        return String.format(STRING_FORMAT_RENDDER, user);
+        return String.format(STRING_FORMAT_RENDER, user);
     }
 
     private void printLadder(Ladder ladder) {
@@ -53,7 +54,7 @@ public class ResultView {
     }
 
     private String parseFormat(Reward ladderReward) {
-        return String.format(STRING_FORMAT_RENDDER, ladderReward);
+        return String.format(STRING_FORMAT_RENDER, ladderReward);
     }
 
     private String renderLadder(Line line) {
@@ -70,13 +71,13 @@ public class ResultView {
         return LADDER_EMPTY;
     }
 
-    // TODO 사다리 타기 결과 정보 출력
-    public void printUser(String user, LadderRewards ladderRewards) {
-
-        printUserResult();
+    public void printUserResult(List<String> allUser) {
+        System.out.println("\n실행 결과");
+        allUser.forEach(System.out::println);
     }
 
-    private void printUserResult() {
-
+    public void printUserResult(String user) {
+        System.out.println("\n실행 결과");
+        System.out.println(user);
     }
 }
