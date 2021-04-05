@@ -4,9 +4,13 @@ import java.util.Objects;
 
 public final class Person {
 
-  private final String name;
+  private final Name name;
 
   public Person(final String name) {
+    this(new Name(name));
+  }
+
+  public Person(final Name name) {
     this.name = name;
   }
 
@@ -28,6 +32,6 @@ public final class Person {
   }
 
   public String getName() {
-    return name;
+    return name.getName();
   }
 }

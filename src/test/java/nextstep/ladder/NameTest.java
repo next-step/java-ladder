@@ -1,6 +1,7 @@
 package nextstep.ladder;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,6 +18,9 @@ class NameTest {
     final Name name = new Name(nameSource);
 
     //then
-    assertThat(name).isEqualTo(new Name(nameSource));
+    assertAll(
+        () -> assertThat(name).isEqualTo(new Name(nameSource)),
+        () -> assertThat(name.getName()).isEqualTo(nameSource)
+    );
   }
 }
