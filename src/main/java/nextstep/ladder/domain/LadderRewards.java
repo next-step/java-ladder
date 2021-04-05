@@ -31,6 +31,10 @@ public class LadderRewards {
         return Collections.unmodifiableList(ladderRewards);
     }
 
+    public Reward findReward(Position endPosition) {
+        return ladderRewards.get(endPosition.currentPosition());
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) return true;
@@ -38,9 +42,9 @@ public class LadderRewards {
         final LadderRewards that = (LadderRewards) o;
         return Objects.equals(ladderRewards, that.ladderRewards);
     }
-
     @Override
     public int hashCode() {
         return Objects.hash(ladderRewards);
     }
+
 }

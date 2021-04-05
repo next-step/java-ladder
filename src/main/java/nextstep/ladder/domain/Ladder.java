@@ -42,6 +42,13 @@ public class Ladder {
         return Collections.unmodifiableList(lines);
     }
 
+    public Position findEndPosition(Position endPosition) {
+        for(Line line : lines) {
+            endPosition = line.move(endPosition);
+        }
+        return endPosition;
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) return true;

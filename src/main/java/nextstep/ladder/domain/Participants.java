@@ -48,4 +48,14 @@ public class Participants {
     public String toString() {
         return String.valueOf(users);
     }
+
+    public Map<User, Reward> findReward(Ladder ladder, LadderRewards ladderRewards) {
+        Map<User, Reward> result = new HashMap<>();
+        // TODO 스트림으로 한 번에 할 수 있을 것 같은데
+        users.forEach(user -> {
+            Position endPosition = ladder.findEndPosition(user.position());
+            result.put(user, ladderRewards.findReward(endPosition));
+        });
+        return result;
+    }
 }
