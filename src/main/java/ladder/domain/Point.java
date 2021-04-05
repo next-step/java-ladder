@@ -13,7 +13,7 @@ public enum Point {
         this.view = view;
     }
 
-    private static Point randomPoint() {
+    public static Point randomPoint() {
         if(RandomGenerator.randomInt() == 1){
             return RIGHT;
         }
