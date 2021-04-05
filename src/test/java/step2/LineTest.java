@@ -15,7 +15,7 @@ public class LineTest {
     }
 
     @Test
-    @DisplayName("라인에 선이 있는지 테스트")
+    @DisplayName("같은 라인에서는 연속으로 줄이 만들어 질 수 없다")
     void existLine() {
         Line line = new Line();
 
@@ -25,5 +25,11 @@ public class LineTest {
                 return false;
             }
         })).isEqualTo(new Point(false));
+    }
+
+    @Test
+    @DisplayName("같은 라인에서는 연속으로 줄이 만들어 질 수 없다")
+    void sameLineNotCreatedTest() {
+
     }
 }

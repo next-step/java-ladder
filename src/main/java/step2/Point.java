@@ -3,6 +3,9 @@ package step2;
 import java.util.Objects;
 
 public class Point {
+    private static final boolean LEFT = false;
+    private static final boolean RIGHT = true;
+
     private final boolean point;
 
     public Point(boolean point) {
@@ -13,6 +16,12 @@ public class Point {
         return point;
     }
 
+    public boolean move(boolean currentPoint) {
+        if (currentPoint) {
+            return RIGHT;
+        }
+        return LEFT;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -26,4 +35,5 @@ public class Point {
     public int hashCode() {
         return Objects.hash(point);
     }
+
 }
