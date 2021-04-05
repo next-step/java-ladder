@@ -6,17 +6,17 @@ import java.util.stream.Collectors;
 
 public class Participants {
 
-    private final List<User> users;
+    private final Set<User> users;
 
     private Participants(final String... users) {
         this.users = parseUsers(users);
     }
 
-    private List<User> parseUsers(final String... users) {
+    private Set<User> parseUsers(final String... users) {
         AtomicInteger index = new AtomicInteger();
         return Arrays.stream(users)
                 .map(user -> User.valueOf(user, index.getAndIncrement()))
-                .collect(Collectors.toList());
+                .collect(Collectors.toCollection(LinkedHashSet::new));
     }
 
     public static Participants valueOf(final String... users) {
@@ -27,8 +27,18 @@ public class Participants {
         return users.size();
     }
 
-    public List<User> getUsers() {
-        return Collections.unmodifiableList(users);
+    public Set<User> getUsers() {
+        return Collections.unmodifiableSet(users);
+    }
+
+    public LadderResult findReward(final Ladder ladder, final LadderRewards ladderRewards) {
+        Map<User, Reward> result = new HashMap<>();
+        // TODO 스트림으로 한 번에 할 수 있을 것 같은데
+        users.forEach(user -> {
+            Position endPosition = ladder.findEndPosition(user.position());
+            result.put(user, ladderRewards.findReward(endPosition));
+        });
+        return LadderResult.valueOf(result);
     }
 
     @Override
@@ -47,15 +57,5 @@ public class Participants {
     @Override
     public String toString() {
         return String.valueOf(users);
-    }
-
-    public Map<User, Reward> findReward(Ladder ladder, LadderRewards ladderRewards) {
-        Map<User, Reward> result = new HashMap<>();
-        // TODO 스트림으로 한 번에 할 수 있을 것 같은데
-        users.forEach(user -> {
-            Position endPosition = ladder.findEndPosition(user.position());
-            result.put(user, ladderRewards.findReward(endPosition));
-        });
-        return result;
     }
 }

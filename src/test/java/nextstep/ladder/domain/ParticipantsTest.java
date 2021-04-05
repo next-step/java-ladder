@@ -4,7 +4,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.provider.Arguments;
 
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -29,11 +31,12 @@ class ParticipantsTest {
         // given
         Participants participants = Participants.valueOf("user1", "user2");
         // when
-        List<User> users = participants.getUsers();
+        Set<User> users = participants.getUsers();
+        Iterator<User> iterator = users.iterator();
         // then
         assertAll(
-                () -> assertThat(users.get(0).position()).isEqualTo(Position.valueOf(0)),
-                () -> assertThat(users.get(1).position()).isEqualTo(Position.valueOf(1))
+                () -> assertThat(iterator.next().position()).isEqualTo(Position.valueOf(0)),
+                () -> assertThat(iterator.next().position()).isEqualTo(Position.valueOf(1))
         );
     }
 }
