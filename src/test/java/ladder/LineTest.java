@@ -1,5 +1,8 @@
 package ladder;
 
+import ladder.domain.Line;
+import ladder.domain.Link;
+import ladder.domain.Linker;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -30,5 +33,14 @@ public class LineTest {
                 .filter(link -> link == Link.OPEN)
                 .count();
         assertThat(numberOfOpen).isEqualTo(numberOfPlayer / 2);
+    }
+
+    @Test
+    @DisplayName("생성된 링크 개수는 '플레이어수-1' ")
+    void When_Link_Then_NumberOfLinkIsOneLessThanNumberOfPlayer() {
+        Linker closedLinker = new Linker(() -> Link.CLOSE);
+        Line line = new Line(numberOfPlayer, closedLinker);
+
+        assertThat(line.link().size()).isEqualTo(numberOfPlayer - 1);
     }
 }
