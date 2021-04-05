@@ -202,7 +202,7 @@ jk : 5000
     - 이름 -> 사다리 -> 결과값 순서대로 출력
   3. 결과를 보고 싶은 사람 출력
     - 참여자 내에 존재하는지 확인, **실제 사다리 타기** 
-  4. 실행 결과 출력
+  4. 실행 결과(LadderResult) 출력
     - 결과 보고 싶은 사람 입력으로 계산된 결과 값 출력
   5. 결과를 보고 싶은 사람 출력
     - 전체 all 출력 
@@ -219,3 +219,5 @@ jk : 5000
 false   | true  | false |
 false   | false | true  |
 ```
+
+![Ladder Step3 Diagram](docs/ladder3.png)
