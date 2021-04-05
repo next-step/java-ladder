@@ -37,12 +37,12 @@ public class Position {
     public int hashCode() {
         return Objects.hash(position);
     }
-
-    public boolean isSame(Position position) {
-        return this.position == position.position;
-    }
-
+    
     public int toInt() {
         return position;
+    }
+
+    public int compare(Position otherPosition) {
+        return position - otherPosition.position;
     }
 }

@@ -32,7 +32,6 @@ public class Stair {
         return this.position.equals(position);
     }
 
-    // false ture  true false  false ture  true false
     public boolean toDto() {
         return point.current();
     }

@@ -15,4 +15,5 @@ public class Prize {
     public String toString() {
         return prize;
     }
+
 }

@@ -34,8 +34,7 @@ public class LadderLine {
     public static LadderLine of(List<Stair> stairs) {
         return new LadderLine(stairs);
     }
-
-
+    
     public int size() {
         return stairs.size();
     }

@@ -20,15 +20,18 @@ public class RandomPointStrategy implements CreatePointStrategy {
     public List<Point> createPoint(int playerCount) {
         List<Point> points = new ArrayList<>();
         Point point = firstPoint(points);
-        nextPoint(point, points, playerCount);
-        lastPoint(point, points);
+        Point next = nextPoint(point, points, playerCount);
+        lastPoint(next, points);
         return points;
     }
 
-    private void nextPoint(Point point, List<Point> points, int playerCount) {
+    private Point nextPoint(Point point, List<Point> points, int playerCount) {
+        Point next = point;
         for (int i = 0; i < playerCount - 2; i++) {
-            points.add(point.next(test(random.nextBoolean())));
+            next = next.next(test(next.current()));
+            points.add(next);
         }
+        return next;
     }
 
     private void lastPoint(Point point, List<Point> points) {

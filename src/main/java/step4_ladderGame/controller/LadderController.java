@@ -50,7 +50,7 @@ public class LadderController {
         do {
             message = InputView.prizeOfPlayer();
             OutputView.printMatchPrize(ladderController.returnMatchResult(message));
-        } while (message.equals(ALL));
+        } while (!message.equals(ALL));
     }
 
 

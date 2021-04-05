@@ -36,7 +36,8 @@ public class Ladder {
         final Player[] movePlayer = {player};
         return ladderLines.stream()
                 .map(line -> movePlayer[0] = line.move(movePlayer[0]))
-                .collect(Collectors.toList()).get(0);
+                .skip(ladderLines.size() - 1)
+                .collect(toList()).get(0);
     }
 
     public LadderDto toDto() {

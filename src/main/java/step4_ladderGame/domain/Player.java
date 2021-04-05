@@ -14,8 +14,13 @@ public class Player {
         this.position = position;
     }
 
+    private Player(String name, int position) {
+        this.name = Name.of(name);
+        this.position = Position.of(position);
+    }
+
     public static Player of(String name, int position) {
-        return new Player(Name.of(name), Position.of(position));
+        return new Player(name, position);
     }
 
     public Position getPosition() {
@@ -42,4 +47,13 @@ public class Player {
     public PlayerDto toDto() {
         return new PlayerDto(name.toString(), position.toInt());
     }
+
+    public String name() {
+        return name.toString();
+    }
+
+    public int sorted(Player otherPlayer) {
+        return position.compare(otherPlayer.position);
+    }
+
 }

@@ -46,4 +46,11 @@ public class Players {
                 .map(Player::toDto)
                 .collect(collectingAndThen(toList(), PlayersDto::new));
     }
+    
+    public String isPlayerPosition(Position position) {
+        return players.stream()
+                .filter(player -> player.getPosition().equals(position))
+                .map(Player::name)
+                .collect(toList()).get(0);
+    }
 }

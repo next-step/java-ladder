@@ -15,7 +15,7 @@ public enum Direction {
         this.prev = prev;
         this.current = current;
     }
-    
+
     public static Direction valueOf(boolean prev, boolean current) {
         return Arrays.stream(Direction.values()).
                 filter(direction -> direction.same(prev, current))
@@ -23,7 +23,7 @@ public enum Direction {
                 .orElseThrow(() -> new IllegalArgumentException("연속된 사다리 연결 point 생성은 불가합니다."));
     }
 
-    public boolean same(boolean prev, boolean current) {
+    private boolean same(boolean prev, boolean current) {
         return this.prev == prev && this.current == current;
     }
 }
