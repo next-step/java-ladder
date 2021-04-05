@@ -32,7 +32,7 @@ public class User {
         return position;
     }
 
-    public boolean match(User user) {
+    public boolean match(final User user) {
         return name.equals(user.name);
     }
 

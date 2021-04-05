@@ -6,5 +6,5 @@ import java.util.List;
 
 @FunctionalInterface
 public interface LineGenerator {
-    List<Point> createLine(int countOfPerson);
+    List<Point> createLine(final int countOfPerson);
 }

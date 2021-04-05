@@ -23,7 +23,7 @@ public class Point {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) return true;
         if (!(o instanceof Point)) return false;
         final Point point = (Point) o;

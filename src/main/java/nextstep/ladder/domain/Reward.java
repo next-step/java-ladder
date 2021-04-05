@@ -7,23 +7,23 @@ public class Reward {
     public static final String GUIDE_ERR_REWARD_EMPTY = "값이 존재하지 않습니다.";
     private final String value;
 
-    public Reward(String value) {
+    private Reward(final String value) {
         this.value = value;
     }
 
-    public static Reward valueOf(String reward) {
+    public static Reward valueOf(final String reward) {
         if(isNullOrEmpty(reward)) {
             throw new IllegalArgumentException(GUIDE_ERR_REWARD_EMPTY);
         }
         return new Reward(reward);
     }
 
-    private static boolean isNullOrEmpty(String reward) {
+    private static boolean isNullOrEmpty(final String reward) {
         return Objects.isNull(reward) || reward.isEmpty();
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) return true;
         if (!(o instanceof Reward)) return false;
         final Reward reward = (Reward) o;

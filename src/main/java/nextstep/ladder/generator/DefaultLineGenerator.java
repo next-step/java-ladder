@@ -23,12 +23,12 @@ public class DefaultLineGenerator implements LineGenerator {
         return points;
     }
 
-    private void addNextPoint(List<Point> points, int value) {
+    private void addNextPoint(final List<Point> points, final int value) {
         Point point = points.get(value - 1);
         points.add(point(point.isExist()));
     }
 
-    private Point point(boolean point) {
+    private Point point(final boolean point) {
         if(point) {
             return Point.init();
         }

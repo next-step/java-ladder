@@ -12,27 +12,27 @@ public class Ladder {
 
     private final List<Line> lines;
 
-    private Ladder(Line... lines) {
+    private Ladder(final Line... lines) {
         this.lines = Arrays.asList(lines);
     }
 
-    public static Ladder valueOf(Participants participants, Height height) {
+    public static Ladder valueOf(final Participants participants, final Height height) {
         Line[] ladder = createLadder(participants, height);
         return new Ladder(ladder);
     }
 
-    private static Line[] createLadder(Participants participants, Height height) {
+    private static Line[] createLadder(final Participants participants, final Height height) {
         return Stream.generate(() -> Line.valueOf(participants))
                 .limit(height.size())
                 .toArray(Line[]::new);
     }
 
-    public static Ladder valueOf(Participants participants, Height height, LineGenerator generator) {
+    public static Ladder valueOf(final Participants participants, final Height height, final LineGenerator generator) {
         Line[] ladder = createLadder(participants, height, generator);
         return new Ladder(ladder);
     }
 
-    private static Line[] createLadder(Participants participants, Height height, LineGenerator generator) {
+    private static Line[] createLadder(final Participants participants, final Height height, final LineGenerator generator) {
         return Stream.generate(() -> Line.valueOf(participants, generator))
                 .limit(height.size())
                 .toArray(Line[]::new);
