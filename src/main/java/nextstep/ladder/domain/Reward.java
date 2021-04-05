@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class Reward {
 
+    public static final String GUIDE_ERR_REWARD_EMPTY = "값이 존재하지 않습니다.";
     private final String value;
 
     public Reward(String value) {
@@ -11,7 +12,14 @@ public class Reward {
     }
 
     public static Reward valueOf(String reward) {
+        if(isNullOrEmpty(reward)) {
+            throw new IllegalArgumentException(GUIDE_ERR_REWARD_EMPTY);
+        }
         return new Reward(reward);
+    }
+
+    private static boolean isNullOrEmpty(String reward) {
+        return Objects.isNull(reward) || reward.isEmpty();
     }
 
     @Override

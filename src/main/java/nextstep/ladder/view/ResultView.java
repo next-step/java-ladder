@@ -52,7 +52,7 @@ public class ResultView {
         System.out.println();
     }
 
-    private String parseFormat(String ladderReward) {
+    private String parseFormat(Reward ladderReward) {
         return String.format(STRING_FORMAT_RENDDER, ladderReward);
     }
 
