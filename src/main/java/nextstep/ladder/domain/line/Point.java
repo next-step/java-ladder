@@ -26,4 +26,8 @@ public class Point {
         return connectedPoint == point;
     }
 
+    public Point getConnectedPoint() {
+        return connectedPoint;
+    }
+
 }

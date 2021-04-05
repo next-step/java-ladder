@@ -1,10 +1,12 @@
 package nextstep.ladder.domain.line;
 
+import nextstep.ladder.domain.line.exception.UnknownPointException;
 import nextstep.ladder.dto.Connections;
 import nextstep.ladder.util.StreamUtils;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Line {
 
@@ -49,6 +51,21 @@ public class Line {
 
     private boolean isConnectedEachOther(Point firstPoint, Point secondPoint) {
         return firstPoint.isConnectedTo(secondPoint) && secondPoint.isConnectedTo(firstPoint);
+    }
+
+    public int nextPosition(int position) {
+        return traverse(points.get(position));
+    }
+
+    private int traverse(Point point) {
+        return getPosition(point.getConnectedPoint());
+    }
+
+    private int getPosition(Point target) {
+        return IntStream.range(0, points.size())
+                        .filter(i -> points.get(i) == target)
+                        .findFirst()
+                        .orElseThrow(UnknownPointException::new);
     }
 
 }

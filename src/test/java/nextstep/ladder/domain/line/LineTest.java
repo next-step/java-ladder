@@ -80,10 +80,10 @@ class LineTest {
         Line line = new Line(points);
 
         assertAll(
-            () -> assertThat(line.passThrough(0)).isZero(),
-            () -> assertThat(line.passThrough(1)).isEqualTo(2),
-            () -> assertThat(line.passThrough(2)).isEqualTo(1),
-            () -> assertThat(line.passThrough(3)).isEqualTo(3)
+            () -> assertThat(line.nextPosition(0)).isZero(),
+            () -> assertThat(line.nextPosition(1)).isEqualTo(2),
+            () -> assertThat(line.nextPosition(2)).isEqualTo(1),
+            () -> assertThat(line.nextPosition(3)).isEqualTo(3)
         );
     }
 
