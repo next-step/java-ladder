@@ -7,6 +7,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
+import static nextstep.ladder.domain.Position.MOVABLE_COUNT;
+
 public class Line {
 
     private final List<Point> points;
@@ -52,7 +54,13 @@ public class Line {
     }
 
     private boolean isMoveRight(int currentPosition) {
-        return points.get(currentPosition + 1).isExist();
+        int nextPosition = currentPosition + MOVABLE_COUNT;
+        return isLadderBound(nextPosition)
+                && points.get(nextPosition).isExist();
+    }
+
+    private boolean isLadderBound(int nextPosition) {
+        return nextPosition < points.size();
     }
 
     private boolean isMoveLeft(int currentPosition) {
