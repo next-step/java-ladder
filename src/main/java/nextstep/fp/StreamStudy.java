@@ -29,7 +29,7 @@ public class StreamStudy {
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
         words.stream()
-            .filter(w -> w.length() > 12)
+            .filter(word -> word.length() > 12)
             .sorted(Comparator.comparing(String::length).reversed())
             .distinct()
             .limit(100)
@@ -38,17 +38,19 @@ public class StreamStudy {
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
-        return numbers.stream().map(x -> 2 * x).collect(Collectors.toList());
+        return numbers.stream()
+            .map(number -> 2 * number)
+            .collect(Collectors.toList());
     }
 
     public static long sumAll(List<Integer> numbers) {
-        return numbers.stream().reduce(0, (x, y) -> x + y);
+        return numbers.stream().reduce(0, Integer::sum);
     }
 
     public static long sumOverThreeAndDouble(List<Integer> numbers) {
         return numbers.stream()
-            .filter(x -> x > 3)
-            .map(x -> x * 2)
+            .filter(number -> number > 3)
+            .map(number -> number * 2)
             .mapToInt(Integer::intValue)
             .sum();
     }

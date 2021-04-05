@@ -28,18 +28,18 @@ public class User {
         boolean isInRange = false;
 
         if (user != null && user.getAge() != null
-                && (user.getAge() >= 30
-                && user.getAge() <= 45)) {
+            && (user.getAge() >= 30
+            && user.getAge() <= 45)) {
             isInRange = true;
         }
         return isInRange;
     }
 
-    public static boolean ageIsInRange2(User user) {
-        return Optional.ofNullable(user)
-            .filter(u -> u.getAge() != null)
-            .filter(u -> u.getAge() >= 30)
-            .filter(u -> u.getAge() <= 45)
+    public static boolean ageIsInRange2(User sourceUser) {
+        return Optional.ofNullable(sourceUser)
+            .filter(user -> user.getAge() != null)
+            .filter(user -> user.getAge() >= 30)
+            .filter(user -> user.getAge() <= 45)
             .isPresent();
     }
 
