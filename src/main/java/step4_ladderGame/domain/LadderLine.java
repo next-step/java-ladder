@@ -1,8 +1,11 @@
 package step4_ladderGame.domain;
 
+import step4_ladderGame.dto.LadderLineDto;
+
 import java.util.List;
 import java.util.stream.IntStream;
 
+import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
 
 public class LadderLine {
@@ -42,5 +45,11 @@ public class LadderLine {
                 .filter(stair -> stair.isSamePosition(player.getPosition()))
                 .map(stair -> player.move(stair.move()))
                 .collect(toList()).get(0);
+    }
+
+    public LadderLineDto toDto() {
+        return stairs.stream()
+                .map(Stair::toDto)
+                .collect(collectingAndThen(toList(), LadderLineDto::new));
     }
 }

@@ -1,5 +1,7 @@
 package step4_ladderGame.domain;
 
+import step4_ladderGame.dto.PlayersDto;
+
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -37,5 +39,11 @@ public class Players {
         return players.stream()
                 .map(ladder::move)
                 .collect(collectingAndThen(toList(), Players::new));
+    }
+
+    public PlayersDto toDto() {
+        return players.stream()
+                .map(Player::toDto)
+                .collect(collectingAndThen(toList(), PlayersDto::new));
     }
 }

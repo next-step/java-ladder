@@ -1,5 +1,7 @@
 package step4_ladderGame.domain;
 
+import step4_ladderGame.dto.PlayerDto;
+
 import java.util.Objects;
 
 public class Player {
@@ -35,5 +37,9 @@ public class Player {
 
     public Player move(Position position) {
         return new Player(this.name, position);
+    }
+
+    public PlayerDto toDto() {
+        return new PlayerDto(name.toString(), position.toInt());
     }
 }

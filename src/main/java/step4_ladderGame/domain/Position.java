@@ -41,4 +41,8 @@ public class Position {
     public boolean isSame(Position position) {
         return this.position == position.position;
     }
+
+    public int toInt() {
+        return position;
+    }
 }

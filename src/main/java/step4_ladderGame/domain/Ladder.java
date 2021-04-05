@@ -1,9 +1,12 @@
 package step4_ladderGame.domain;
 
+import step4_ladderGame.dto.LadderDto;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
 
 public class Ladder {
@@ -34,5 +37,11 @@ public class Ladder {
         return ladderLines.stream()
                 .map(line -> movePlayer[0] = line.move(movePlayer[0]))
                 .collect(Collectors.toList()).get(0);
+    }
+
+    public LadderDto toDto() {
+        return ladderLines.stream()
+                .map(LadderLine::toDto)
+                .collect(collectingAndThen(toList(), LadderDto::new));
     }
 }
