@@ -1,5 +1,6 @@
 package ladder.view;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class InputView {
@@ -13,6 +14,9 @@ public class InputView {
     public static String[] enterPlayers(){
         System.out.println(MESSAGE_PLAYERS);
         String[] players = scanner.nextLine().split(DELIMITER_COMMA);
+        players = Arrays.stream(players)
+                .map(String::trim)
+                .toArray(String[]::new);
         return players;
     }
 
