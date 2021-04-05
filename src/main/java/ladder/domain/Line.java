@@ -26,10 +26,12 @@ public class Line {
     private void generateLine(){
         Point tmpPoint = Point.randomPoint();
         line.add(tmpPoint);
-        for(int i = 1; i < numberOfPlayers; i++){
+        for(int i = 1; i < numberOfPlayers-1; i++){
             tmpPoint = Point.next(tmpPoint);
             line.add(tmpPoint);
         }
+        tmpPoint = Point.last(tmpPoint);
+        line.add(tmpPoint);
     }
 
     @Override

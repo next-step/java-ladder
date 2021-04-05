@@ -27,6 +27,13 @@ public enum Point {
         return randomPoint();
     }
 
+    public static Point last(Point point) {
+        if (point.move == 1) {
+            return LEFT;
+        }
+        return DOWN;
+    }
+
     @Override
     public String toString() {
         return view;
