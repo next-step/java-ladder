@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 public class Participants {
@@ -14,9 +15,10 @@ public class Participants {
         this.users = parseUsers(users);
     }
 
-    private List<User> parseUsers(String... users) {
+    private List<User> parseUsers(final String... users) {
+        AtomicInteger index = new AtomicInteger();
         return Arrays.stream(users)
-                .map(User::valueOf)
+                .map(user -> User.valueOf(user, index.getAndIncrement()))
                 .collect(Collectors.toList());
     }
 
