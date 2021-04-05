@@ -2,6 +2,9 @@ package ladder;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -44,8 +47,18 @@ public class PlayerTest {
 	@Test
 	@DisplayName("플레이어 목록 작성 테스트2")
 	void generatePlayers2Test() {
-		Players players = new Players(new Player("pobi"), new Player("honux"), new Player("crong"),
-			new Player("jk"));
+		Player player1 = new Player("pobi");
+		Player player2 = new Player("honux");
+		Player player3 = new Player("crong");
+		Player player4 = new Player("jk");
+
+		List<Player> inputPlayers = new ArrayList<>();
+		inputPlayers.add(player1);
+		inputPlayers.add(player2);
+		inputPlayers.add(player3);
+		inputPlayers.add(player4);
+
+		Players players = new Players(inputPlayers);
 		assertThat(players.getPlayers()).containsExactly(new Player("pobi"), new Player("honux"), new Player("crong"),
 			new Player("jk"));
 	}

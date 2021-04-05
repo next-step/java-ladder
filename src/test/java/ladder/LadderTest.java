@@ -42,7 +42,12 @@ public class LadderTest {
 			points.add(false);
 			return points;
 		}, 4);
-		Ladder ladder = new Ladder(line1, line2, line3);
+		List<Line> lines = new ArrayList<>();
+		lines.add(line1);
+		lines.add(line2);
+		lines.add(line3);
+
+		Ladder ladder = new Ladder(lines);
 
 		assertThat(ladder.getLadder()).containsExactly(line1, line2, line3);
 		assertThat(ladder.getLadder()).hasSize(3);
