@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 class PersonTest {
 
   @Test
-  @DisplayName("사람의 이름을 가지고 생성할 수 있다.")
+  @DisplayName("이름을 가지고 생성할 수 있다.")
   void create() {
     //given
     final String name = "pobi";
