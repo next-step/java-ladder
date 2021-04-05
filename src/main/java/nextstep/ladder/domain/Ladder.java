@@ -42,11 +42,11 @@ public class Ladder {
         return Collections.unmodifiableList(lines);
     }
 
-    public Position findEndPosition(Position endPosition) {
+    public Position findEndPosition(Position movePosition) {
         for(Line line : lines) {
-            endPosition = line.move(endPosition);
+            movePosition = line.move(movePosition);
         }
-        return endPosition;
+        return movePosition;
     }
 
     @Override
