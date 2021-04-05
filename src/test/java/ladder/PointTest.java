@@ -8,10 +8,8 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class PointTest {
-
     @ParameterizedTest(name = "point_Next_RIGHT_Test")
     @MethodSource("point_Next_RIGHT_Provider")
     public void point_Next_RIGHT_Test(Point point, Point expected) {
@@ -37,5 +35,4 @@ public class PointTest {
                 Arguments.of(Point.DOWN, Point.LEFT)
         );
     }
-
 }

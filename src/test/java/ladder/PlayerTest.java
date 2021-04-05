@@ -7,7 +7,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class PlayerTest {
-
     @ParameterizedTest(name = "이름_길이_Test")
     @ValueSource(strings = {"manager", "notebook"})
     public void 이름_길이_Test(String input) {
@@ -23,5 +22,4 @@ public class PlayerTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이름은 공백을 포함할 수 없습니다.");
     }
-
 }

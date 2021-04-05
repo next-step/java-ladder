@@ -2,10 +2,8 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class Line {
-
     private static final int MIN_WIDTH = 2;
     private static final String MESSAGE_MIN_NUMBER_OF_PLAYERS = "참여자는 2명 이상이어야 합니다.";
     private final int numberOfPlayers;
@@ -42,5 +40,4 @@ public class Line {
         }
         return result.toString();
     }
-
 }

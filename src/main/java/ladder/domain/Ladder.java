@@ -36,7 +36,4 @@ public class Ladder {
         }
         return result.toString();
     }
-
-
-
 }

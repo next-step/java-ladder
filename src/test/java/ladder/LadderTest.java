@@ -1,7 +1,6 @@
 package ladder;
 
 import ladder.domain.Ladder;
-import ladder.domain.Line;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;

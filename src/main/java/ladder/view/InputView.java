@@ -37,7 +37,4 @@ public class InputView {
         System.out.println(MESSAGE_HEIGHT);
         return checkNumeric(scanner.nextLine());
     }
-
-
-
 }
