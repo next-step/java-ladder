@@ -22,8 +22,8 @@ public final class Name {
     if (!(o instanceof Name)) {
       return false;
     }
-    Name name1 = (Name) o;
-    return Objects.equals(name, name1.name);
+    Name otherName = (Name) o;
+    return Objects.equals(name, otherName.name);
   }
 
   @Override
