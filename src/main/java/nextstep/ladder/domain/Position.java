@@ -4,8 +4,9 @@ import java.util.Objects;
 
 public class Position {
 
+    private static final String GUIDE_ERR_POSITION_BOUND = "왼쪽으로 이동할 수 없습니다.";
     public static final int MOVABLE_COUNT = 1;
-    public static final String GUIDE_ERR_POSITION_BOUND = "왼쪽으로 이동할 수 없습니다.";
+
     private final int value;
 
     private Position(final int value) {
