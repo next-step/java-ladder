@@ -13,6 +13,10 @@ public class Players {
                             .collect(Collectors.toList());
     }
 
+    public int numberOfPlayer(){
+        return players.size();
+    }
+
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
