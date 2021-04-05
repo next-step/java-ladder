@@ -20,6 +20,22 @@ class PersonTest {
     //then
     assertAll(
         () -> assertThat(pobi).isEqualTo(new Person(name)),
+        () -> assertThat(pobi.personName()).isEqualTo(name)
+    );
+  }
+
+  @Test
+  @DisplayName("이름 객체를 가지고 생성할 수 있다.")
+  void createWithName() {
+    //given
+    final Name name = new Name("pobi");
+
+    //when
+    final Person pobi = new Person(name);
+
+    //then
+    assertAll(
+        () -> assertThat(pobi).isEqualTo(new Person(name)),
         () -> assertThat(pobi.getName()).isEqualTo(name)
     );
   }

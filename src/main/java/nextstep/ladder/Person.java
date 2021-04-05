@@ -14,6 +14,14 @@ public final class Person {
     this.name = name;
   }
 
+  public Name getName() {
+    return name;
+  }
+
+  public String personName() {
+    return name.getName();
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -29,9 +37,5 @@ public final class Person {
   @Override
   public int hashCode() {
     return Objects.hash(name);
-  }
-
-  public String getName() {
-    return name.getName();
   }
 }
