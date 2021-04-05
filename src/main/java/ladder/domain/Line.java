@@ -17,8 +17,8 @@ public class Line {
         generateLine();
     }
 
-    private void validate(int numberOfPerson) {
-        if (numberOfPerson < MIN_WIDTH) {
+    private void validate(int numberOfPlayers) {
+        if (numberOfPlayers < MIN_WIDTH) {
             throw new IllegalArgumentException(MESSAGE_MIN_NUMBER_OF_PLAYERS);
         }
     }

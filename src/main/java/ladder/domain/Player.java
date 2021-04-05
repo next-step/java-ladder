@@ -3,6 +3,8 @@ package ladder.domain;
 import java.util.regex.Pattern;
 
 public class Player {
+    private static final String MESSAGE_MAX_NAME_LENGTH = "이름은 최대 5글자입니다.";
+    private static final String MESSAGE_NAME_NON_BLANK = "이름은 공백을 포함할 수 없습니다.";
     private static final int MAX_NAME_LENGTH = 5;
     private static final String BLANK = " ";
     private final static Pattern PATTERN_NON_BLANK = Pattern.compile("\\A\\S+\\Z");
@@ -16,13 +18,13 @@ public class Player {
 
     private void checkNameLength(String name){
         if (name.length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException("이름은 최대 5글자입니다");
+            throw new IllegalArgumentException(MESSAGE_MAX_NAME_LENGTH);
         }
     }
 
     private void checkNameBlank(String name){
         if (!PATTERN_NON_BLANK.matcher(name).matches()) {
-            throw new IllegalArgumentException("이름은 공백을 포함할 수 없습니다");
+            throw new IllegalArgumentException(MESSAGE_NAME_NON_BLANK);
         }
     }
 

@@ -13,7 +13,7 @@ public class PlayerTest {
     public void 이름_길이_Test(String input) {
         assertThatThrownBy(() -> new Player(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("이름은 최대 5글자입니다");
+                .hasMessage("이름은 최대 5글자입니다.");
     }
 
     @ParameterizedTest(name = "이름_공백_Test")
@@ -21,7 +21,7 @@ public class PlayerTest {
     public void 이름_공백_Test(String input) {
         assertThatThrownBy(() -> new Player(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("이름은 공백을 포함할 수 없습니다");
+                .hasMessage("이름은 공백을 포함할 수 없습니다.");
     }
 
 }
