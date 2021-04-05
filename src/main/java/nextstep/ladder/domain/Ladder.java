@@ -7,30 +7,25 @@ import java.util.stream.Stream;
 
 public class Ladder {
 
-  private List<Person> persons;
+  private Persons persons;
 
-  private List<Line> lines;
+  private Lines lines;
 
-  public Ladder() {
+  private Ladder(String[] names, int height) {
+    this.persons = new Persons(Arrays.stream(names).map(Person::generate).collect(Collectors.toList()));
+    this.lines = new Lines(
+        Stream.generate(() -> Line.generate(persons.size())).limit(height).collect(Collectors.toList()));
   }
 
   public static Ladder generate(String[] names, int height) {
-    Ladder ladder = new Ladder();
-    ladder.persons = Arrays.stream(names)
-        .map(Person::create)
-        .collect(Collectors.toList());
-    ladder.lines
-        = Stream.generate(() -> Line.generate(ladder.persons.size()))
-        .limit(height)
-        .collect(Collectors.toList());
-    return ladder;
+    return new Ladder(names, height);
   }
 
   public List<Person> getPersons() {
-    return persons;
+    return persons.getPersons();
   }
 
   public List<Line> getLines() {
-    return lines;
+    return lines.getLines();
   }
 }
