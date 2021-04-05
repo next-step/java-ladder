@@ -6,6 +6,7 @@ public class Participant {
 
     private static final String NAME_EMPTY_EXCEPTION = "이름으로 빈값이 올 수 없습니다.";
     private static final String NAME_LENGTH_MAX_FIVE = "이름의 길이는 5글자까지 허용됩니다.";
+    private static final int NAME_MAX_LENGTH = 5;
 
     private String name;
 
@@ -23,7 +24,7 @@ public class Participant {
             throw new LadderException(NAME_EMPTY_EXCEPTION);
         }
 
-        if (name.length() > 5) {
+        if (name.length() > NAME_MAX_LENGTH) {
             throw new LadderException(NAME_LENGTH_MAX_FIVE);
         }
     }
