@@ -15,7 +15,6 @@ public class LineTest {
         Linker linker = new Linker(() -> Link.CLOSE);
 
         assertDoesNotThrow(() -> {
-
             new Line(numberOfPlayer, linker);
         });
     }

@@ -8,7 +8,6 @@ public class Line {
 
     public Line(int numberOfPlayer, Linker linker) {
         link = new ArrayList<>();
-
         link.add(linker.link());
         for (int i = 1; i < numberOfPlayer; i++) {
             link.add(linker.link(link.get(i - 1)));
