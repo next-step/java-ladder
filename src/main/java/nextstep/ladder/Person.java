@@ -28,6 +28,6 @@ public final class Person {
   }
 
   public String getName() {
-    return null;
+    return name;
   }
 }
