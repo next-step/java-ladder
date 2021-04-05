@@ -1,8 +1,8 @@
 package nextstep.ladder.domain;
 
 public class GameResult {
-    private Ladder ladder;
-    private Players players;
+    private final Ladder ladder;
+    private final Players players;
 
     public GameResult(Ladder ladder, Players players) {
         this.ladder = ladder;

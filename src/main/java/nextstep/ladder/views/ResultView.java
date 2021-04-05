@@ -12,9 +12,9 @@ public class ResultView {
 
     public static void showLadder(GameResult result) {
         String stringBuilder = "실행 결과" +
-                "\n" +
+                ENTER +
                 getPlayersNames(result.players()) +
-                "\n" +
+                ENTER +
                 getLadder(result.ladder());
         System.out.println(stringBuilder);
     }
