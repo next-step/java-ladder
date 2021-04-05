@@ -14,7 +14,7 @@ class PersonTest {
     final String name = "pobi";
 
     //when
-    Person pobi = new Person(name);
+    final Person pobi = new Person(name);
 
     //then
     assertThat(pobi).isEqualTo(new Person(name));
