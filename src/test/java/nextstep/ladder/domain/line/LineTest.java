@@ -70,4 +70,21 @@ class LineTest {
         assertThat(line.exportConnections()).isEqualToComparingFieldByField(connections);
     }
 
+    @Test
+    @DisplayName("연결된 지점을 횡단한다. 연결되지 않은 지점은 그대로 통과한다.")
+    void traversePoints() {
+        List<Point> points = separatedPoints(4);
+        points.get(1).connectTo(points.get(2));
+        points.get(2).connectTo(points.get(1));
+
+        Line line = new Line(points);
+
+        assertAll(
+            () -> assertThat(line.passThrough(0)).isZero(),
+            () -> assertThat(line.passThrough(1)).isEqualTo(2),
+            () -> assertThat(line.passThrough(2)).isEqualTo(1),
+            () -> assertThat(line.passThrough(3)).isEqualTo(3)
+        );
+    }
+
 }
