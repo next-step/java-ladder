@@ -1,6 +1,7 @@
 package step4_ladderGame.domain;
 
 import step4_ladderGame.dto.LadderLineDto;
+import step4_ladderGame.exception.LadderAndPlayerNotSameCountException;
 
 import java.util.List;
 import java.util.stream.IntStream;
@@ -14,7 +15,7 @@ public class LadderLine {
 
     private LadderLine(List<Stair> stairs, int playerCount) {
         if (stairs.size() != playerCount) {
-            throw new IllegalArgumentException("사다리 라인 수와 플레이어 수가 맞지 않습니다.");
+            throw new LadderAndPlayerNotSameCountException("사다리 라인 수와 플레이어 수가 맞지 않습니다.");
         }
         this.stairs = stairs;
     }
@@ -34,7 +35,7 @@ public class LadderLine {
     public static LadderLine of(List<Stair> stairs) {
         return new LadderLine(stairs);
     }
-    
+
     public int size() {
         return stairs.size();
     }

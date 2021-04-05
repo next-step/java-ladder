@@ -1,5 +1,7 @@
 package step4_ladderGame.domain;
 
+import step4_ladderGame.exception.OverMaxNameLengthException;
+
 import java.util.Objects;
 
 public class Name {
@@ -10,7 +12,7 @@ public class Name {
 
     private Name(String name) {
         if (name.length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException("플레이어 이름은 5글자를 초과할 수 없습니다.");
+            throw new OverMaxNameLengthException("플레이어 이름은 5글자를 초과할 수 없습니다.");
         }
         this.name = name;
     }

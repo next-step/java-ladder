@@ -1,5 +1,7 @@
 package step4_ladderGame.domain;
 
+import step4_ladderGame.exception.ContinuousLadderCreateException;
+
 import java.util.Arrays;
 
 public enum Direction {
@@ -20,7 +22,7 @@ public enum Direction {
         return Arrays.stream(Direction.values()).
                 filter(direction -> direction.same(prev, current))
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException("연속된 사다리 연결 point 생성은 불가합니다."));
+                .orElseThrow(() -> new ContinuousLadderCreateException("연속된 사다리 연결 point 생성은 불가합니다."));
     }
 
     private boolean same(boolean prev, boolean current) {

@@ -2,6 +2,7 @@ package step4_ladderGame.domain;
 
 import step4_ladderGame.dto.MatchOfPrizeDto;
 import step4_ladderGame.dto.PrizesDto;
+import step4_ladderGame.exception.NonMatchPlayerException;
 
 import java.util.Arrays;
 import java.util.Map;
@@ -41,7 +42,7 @@ public class MatchOfPrize {
     public MatchOfPrizeDto getPrizeResult(String player) {
         String prize = Optional.ofNullable(matchResult)
                 .map(map -> map.get(player))
-                .orElseThrow(() -> new IllegalArgumentException(player + "는 없는 플레이어 입니다."));
+                .orElseThrow(() -> new NonMatchPlayerException(player + "는 없는 플레이어 입니다."));
         return MatchOfPrizeDto.of(player, prize);
     }
 }

@@ -1,5 +1,7 @@
 package step4_ladderGame.domain;
 
+import step4_ladderGame.exception.WrongRangePositionException;
+
 import java.util.Objects;
 
 public class Position {
@@ -8,7 +10,7 @@ public class Position {
 
     private Position(int position) {
         if (position < 0) {
-            throw new IllegalArgumentException("포지션은 0이상이여야 합니다.");
+            throw new WrongRangePositionException("포지션은 0이상이여야 합니다.");
         }
         this.position = position;
     }
@@ -37,7 +39,7 @@ public class Position {
     public int hashCode() {
         return Objects.hash(position);
     }
-    
+
     public int toInt() {
         return position;
     }
