@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class User {
 
+    public static final String GUIDE_ERR_USER_MAX_SIZE = "이름은 한 글자 이상 최대 5글자까지 부여할 수 있습니다.";
     private static final int NAME_MAX_SIZE = 5;
     private static final int NAME_MIN_SIZE = 1;
     private final String name;
@@ -19,7 +20,7 @@ public class User {
 
     private User(final String name, final Position position) {
         if(name.length() > NAME_MAX_SIZE || name.length() < NAME_MIN_SIZE) {
-            throw new IllegalArgumentException("이름은 한 글자 이상 최대 5글자까지 부여할 수 있습니다.");
+            throw new IllegalArgumentException(GUIDE_ERR_USER_MAX_SIZE);
         }
         this.name = name;
         this.position = position;
@@ -31,6 +32,10 @@ public class User {
 
     public static User valueOf(final String name, final int position) {
         return new User(name, position);
+    }
+
+    public Position position() {
+        return position;
     }
 
     @Override
@@ -49,6 +54,6 @@ public class User {
 
     @Override
     public String toString() {
-        return String.format("%s, %s", name, position);
+        return String.valueOf(name);
     }
 }
