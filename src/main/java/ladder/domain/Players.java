@@ -15,6 +15,10 @@ public class Players {
 
     @Override
     public String toString() {
-        return players.toString();
+        StringBuilder result = new StringBuilder();
+        for(int i = 0; i < players.size(); i++){
+            result.append(players.get(i).toString());
+        }
+        return result.toString();
     }
 }
