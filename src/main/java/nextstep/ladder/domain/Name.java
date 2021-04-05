@@ -9,19 +9,23 @@ public class Name {
     private static final int NAME_MIN_SIZE = 1;
     private final String value;
 
-    public Name(String name) {
+    private Name(final String name) {
         this.value = name;
     }
 
-    public static Name valueOf(String name) {
-        if(name.length() > NAME_MAX_SIZE || name.length() < NAME_MIN_SIZE) {
-            throw new IllegalArgumentException(GUIDE_ERR_USER_MAX_SIZE);
-        }
+    public static Name valueOf(final String name) {
+        checkNameRange(name);
         return new Name(name);
     }
 
+    private static void checkNameRange(final String name) {
+        if(name.length() > NAME_MAX_SIZE || name.length() < NAME_MIN_SIZE) {
+            throw new IllegalArgumentException(GUIDE_ERR_USER_MAX_SIZE);
+        }
+    }
+
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) return true;
         if (!(o instanceof Name)) return false;
         final Name name = (Name) o;

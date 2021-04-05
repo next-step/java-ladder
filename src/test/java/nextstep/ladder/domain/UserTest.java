@@ -18,13 +18,6 @@ class UserTest {
         assertThat(user).isEqualTo(expected);
     }
 
-    @DisplayName("사용자 명 생성시 예외 테스트")
-    @Test
-    void create_Exception() {
-        assertThatExceptionOfType(IllegalArgumentException.class)
-        .isThrownBy(() -> User.valueOf("123456"));
-    }
-
     @DisplayName("사용자 명 및 위치 정보 입력 테스트")
     @Test
     void create_사용자명_기본_위치정보() {
