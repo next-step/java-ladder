@@ -5,6 +5,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,7 +30,7 @@ public class StreamStudy {
         words.stream()
                 .filter(word -> word.length() > 12)
                 .distinct()
-                .sorted()
+                .sorted(Comparator.comparingInt(String::length).reversed())
                 .limit(100)
                 .forEach(word -> System.out.println(word.toLowerCase()));
     }
