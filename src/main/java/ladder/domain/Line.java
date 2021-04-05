@@ -3,7 +3,7 @@ package ladder.domain;
 import java.util.List;
 
 public class Line {
-	List<Boolean> points;
+	private final List<Boolean> points;
 
 	public Line(int countOfPerson) {
 		this(new RandomLineStrategy(), countOfPerson);
