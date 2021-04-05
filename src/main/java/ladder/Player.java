@@ -1,8 +1,11 @@
 package ladder;
 
+import java.util.regex.Pattern;
+
 public class Player {
     private static final int MAX_NAME_LENGTH = 5;
     private static final String BLANK = " ";
+    private final static Pattern PATTERN_NON_BLANK = Pattern.compile("\\A\\S+\\Z");
     private final String name;
 
     public Player(String name){
@@ -18,7 +21,7 @@ public class Player {
     }
 
     private void checkNameBlank(String name){
-        if (!name.equals(name.trim())) {
+        if (!PATTERN_NON_BLANK.matcher(name).matches()) {
             throw new IllegalArgumentException("이름은 공백을 포함할 수 없습니다");
         }
     }
