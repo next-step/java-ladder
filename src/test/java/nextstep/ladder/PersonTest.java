@@ -1,6 +1,7 @@
 package nextstep.ladder;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,6 +18,9 @@ class PersonTest {
     final Person pobi = new Person(name);
 
     //then
-    assertThat(pobi).isEqualTo(new Person(name));
+    assertAll(
+        () -> assertThat(pobi).isEqualTo(new Person(name)),
+        () -> assertThat(pobi.getName()).isEqualTo(name)
+    );
   }
 }
