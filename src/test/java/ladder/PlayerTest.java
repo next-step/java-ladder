@@ -22,7 +22,7 @@ public class PlayerTest {
 	void generatePlayerInvalidTest() {
 		assertThatIllegalArgumentException().isThrownBy(() -> {
 			new Player("pobi12");
-		});
+		}).withMessage("Player Name은 최대 5자입니다.");
 	}
 
 	@Test
@@ -30,7 +30,7 @@ public class PlayerTest {
 	void generatePlayerInvalid2Test() {
 		assertThatIllegalArgumentException().isThrownBy(() -> {
 			new Player(" ");
-		});
+		}).withMessage("Player Name은 최소 1자 이상이어야 합니다.");
 	}
 
 	@Test

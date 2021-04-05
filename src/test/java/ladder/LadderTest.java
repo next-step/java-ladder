@@ -45,14 +45,20 @@ public class LadderTest {
 		Ladder ladder = new Ladder(line1, line2, line3);
 
 		assertThat(ladder.getLadder()).containsExactly(line1, line2, line3);
-		assertThat(ladder.getLadder().size()).isEqualTo(3);
+		assertThat(ladder.getLadder()).hasSize(3);
 	}
 
 	@Test
 	@DisplayName("사다리 생성 테스트2")
 	void ladderMake2Test() {
 		Ladder ladder = new Ladder(4, 5);
-		assertThat(ladder.getLadder().size()).isEqualTo(5);
-		assertThat(ladder.getLadder().get(0).getLine().size()).isEqualTo(4);
+		assertThat(ladder.getLadder()).hasSize(5);
+		assertThat(ladder.getLadder().get(0).getPoints()).hasSize(4);
+		assertThat(ladder.getLadder().get(0).getPoints().get(3)).isEqualTo(false);
+		assertThat(ladder.getLadder().get(1).getPoints().get(3)).isEqualTo(false);
+		assertThat(ladder.getLadder().get(2).getPoints().get(3)).isEqualTo(false);
+		assertThat(ladder.getLadder().get(3).getPoints().get(3)).isEqualTo(false);
+		assertThat(ladder.getLadder().get(4).getPoints().get(3)).isEqualTo(false);
+
 	}
 }

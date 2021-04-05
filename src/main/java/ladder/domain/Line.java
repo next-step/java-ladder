@@ -13,7 +13,7 @@ public class Line {
 		this.points = lineStrategy.points(countOfPerson);
 	}
 
-	public List<Boolean> getLine() {
+	public List<Boolean> getPoints() {
 		return points;
 	}
 }

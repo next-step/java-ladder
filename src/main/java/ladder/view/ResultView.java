@@ -23,7 +23,7 @@ public class ResultView {
 	public void printLadder(Ladder ladder) {
 		ladder.getLadder().forEach((line) -> {
 			System.out.print(String.format("%5s", ""));
-			line.getLine().forEach(points -> {
+			line.getPoints().forEach(points -> {
 				if (points) {
 					System.out.print(String.format("%-6s", "|-----"));
 				}

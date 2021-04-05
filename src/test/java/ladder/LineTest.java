@@ -23,14 +23,14 @@ public class LineTest {
 			points.add(false);
 			return points;
 		}, 4);
-		assertThat(line.getLine().size()).isEqualTo(4);
-		assertThat(line.getLine()).containsExactly(false, true, false, false);
+		assertThat(line.getPoints().size()).isEqualTo(4);
+		assertThat(line.getPoints()).containsExactly(false, true, false, false);
 	}
 
 	@Test
 	@DisplayName("라인 생성 랜덤 테스트")
 	void lineMakeRandomTest() {
 		Line line = new Line(5);
-		assertThat(line.getLine().size()).isEqualTo(5);
+		assertThat(line.getPoints().size()).isEqualTo(5);
 	}
 }

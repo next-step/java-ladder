@@ -6,7 +6,8 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
-	List<Line> ladder;
+	private final List<Line> ladder;
+	private static final int LADDER_MAX_SIZE = 3;
 
 	public Ladder(int countOfPerson, int ladderSize) {
 		this(IntStream.range(0, ladderSize).mapToObj((n) -> new Line(countOfPerson)).toArray(Line[]::new));
@@ -22,7 +23,7 @@ public class Ladder {
 	}
 
 	private void validateLadderSize(int ladderSize) {
-		if (ladderSize < 3) {
+		if (ladderSize < LADDER_MAX_SIZE) {
 			throw new IllegalArgumentException("사다리 높이는 최소 3이상이어야 합니다");
 		}
 	}
