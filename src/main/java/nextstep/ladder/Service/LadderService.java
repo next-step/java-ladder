@@ -7,7 +7,8 @@ import nextstep.ladder.domain.Participants;
 
 public class LadderService {
 
-    public static LadderResult rideLadder(Participants participants, Ladder ladder, LadderRewards ladderRewards) {
+    public static LadderResult rideLadder(
+            final Participants participants, final Ladder ladder, final LadderRewards ladderRewards) {
         return participants.findReward(ladder, ladderRewards);
     }
 }

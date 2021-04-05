@@ -53,17 +53,17 @@ public class Line {
         return userPosition;
     }
 
-    private boolean isMoveRight(int currentPosition) {
+    private boolean isMoveRight(final int currentPosition) {
         int nextPosition = currentPosition + MOVABLE_COUNT;
         return isLadderBound(nextPosition)
                 && points.get(nextPosition).isExist();
     }
 
-    private boolean isLadderBound(int nextPosition) {
+    private boolean isLadderBound(final int nextPosition) {
         return nextPosition < points.size();
     }
 
-    private boolean isMoveLeft(int currentPosition) {
+    private boolean isMoveLeft(final int currentPosition) {
         return points.get(currentPosition).isExist();
     }
 
