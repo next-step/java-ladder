@@ -21,7 +21,7 @@ public class LadderRewards {
         return new LadderRewards(parseRewards(ladderRewards));
     }
 
-    private static Reward[] parseRewards(String[] ladderRewards) {
+    private static Reward[] parseRewards(final String[] ladderRewards) {
         return Arrays.stream(ladderRewards)
                 .map(Reward::valueOf)
                 .toArray(Reward[]::new);
@@ -31,7 +31,7 @@ public class LadderRewards {
         return Collections.unmodifiableList(ladderRewards);
     }
 
-    public Reward findReward(Position endPosition) {
+    public Reward findReward(final Position endPosition) {
         return ladderRewards.get(endPosition.currentPosition());
     }
 
