@@ -7,26 +7,25 @@ import java.util.Objects;
 import java.util.stream.IntStream;
 
 public class Line {
-    private static final int MIN_WIDTH = 2;
+    private static final int MIN_PERSON = 2;
 
-    private final int countOfPlayers;
     private final List<Point> points = new ArrayList<>();
 
-    public Line(int countOfPerson) {
+    public Line(int countOfPerson, ConnectStrategy connectStrategy) {
         validate(countOfPerson);
-        this.countOfPlayers = countOfPerson;
+        create(countOfPerson, connectStrategy);
     }
 
     private void validate(int countOfPerson) {
-        if (countOfPerson < MIN_WIDTH) {
-            throw new IllegalArgumentException("참여자의 수는 최소 " + MIN_WIDTH + "명 이상이여야 합니다.");
+        if (countOfPerson < MIN_PERSON) {
+            throw new IllegalArgumentException("참여자의 수는 최소 " + MIN_PERSON + "명 이상이여야 합니다.");
         }
     }
 
-    public void draw(ConnectStrategy connectStrategy) {
+    private void create(int countOfPerson, ConnectStrategy connectStrategy) {
         points.add(Point.DISCONNECT);
 
-        IntStream.range(0, countOfPlayers - 1)
+        IntStream.range(0, countOfPerson - 1)
             .forEach((index) -> {
                 points.add(connect(index, connectStrategy.connectable()));
             });
