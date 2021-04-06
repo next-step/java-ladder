@@ -1,10 +1,12 @@
 package nextstep.ladder.wrapper;
 
-import nextstep.ladder.domain.*;
+import nextstep.ladder.domain.Position;
+import nextstep.ladder.domain.Reward;
+import nextstep.ladder.domain.User;
 
 import java.util.*;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Participants {
 
@@ -15,9 +17,8 @@ public class Participants {
     }
 
     private Set<User> parseUsers(final String... users) {
-        AtomicInteger index = new AtomicInteger();
-        return Arrays.stream(users)
-                .map(user -> User.valueOf(user, index.getAndIncrement()))
+        return IntStream.range(0, users.length)
+                .mapToObj(value -> User.valueOf(users[value], value))
                 .collect(Collectors.toCollection(LinkedHashSet::new));
     }
 
