@@ -23,9 +23,9 @@ public class LadderGameController {
 
     public void start() {
 
-        Participants participants = checkUsers(inputView.inputParticipants());
-        LadderRewards ladderRewards = checkLadderRewards(inputView.inputLadderRewards(), participants.size());
-        Height height = checkHeight(inputView.inputLadderHeight());
+        Participants participants = processUsers(inputView.inputParticipants());
+        LadderRewards ladderRewards = processLadderRewards(inputView.inputLadderRewards(), participants.size());
+        Height height = processHeight(inputView.inputLadderHeight());
 
         Ladder ladder = Ladder.valueOf(participants, height);
 
@@ -48,7 +48,7 @@ public class LadderGameController {
         return false;
     }
 
-    private LadderRewards checkLadderRewards(String inputResult, int participantSize) {
+    private LadderRewards processLadderRewards(String inputResult, int participantSize) {
         String[] ladderRewards = parseStringToArrays(inputResult);
         if(ladderRewards.length != participantSize) {
             throw new IllegalArgumentException(GUIDE_ERR_NOT_EQUALS_SIZE);
@@ -56,24 +56,24 @@ public class LadderGameController {
         return LadderRewards.valueOf(ladderRewards);
     }
 
-    private Height checkHeight(String inputLadderHeight) {
+    private Height processHeight(String inputLadderHeight) {
         checkNullOrEmpty(inputLadderHeight);
         return Height.valueOf(Integer.parseInt(inputLadderHeight));
     }
 
-    private Participants checkUsers(String inputParticipants) {
+    private Participants processUsers(String inputParticipants) {
         checkNullOrEmpty(inputParticipants);
         return Participants.valueOf(parseStringToArrays(inputParticipants));
     }
 
-    private void checkNullOrEmpty(String inputLadderHeight) {
-        if (Objects.isNull(inputLadderHeight) || inputLadderHeight.isEmpty()) {
+    private void checkNullOrEmpty(String inputValue) {
+        if (Objects.isNull(inputValue) || inputValue.isEmpty()) {
             throw new IllegalArgumentException(GUIDE_ERR_INPUT_DATA);
         }
     }
 
-    private String[] parseStringToArrays(final String users) {
-        return Arrays.stream(users.split(SPLIT_DELIMITER))
+    private String[] parseStringToArrays(final String words) {
+        return Arrays.stream(words.split(SPLIT_DELIMITER))
                 .map(String::trim)
                 .toArray(String[]::new);
     }
