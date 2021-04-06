@@ -1,6 +1,6 @@
 package nextstep.ladder.exception;
 
-import nextstep.ladder.Name;
+import nextstep.ladder.domain.Name;
 
 public class OverNameLengthLimitException extends LadderException {
 
