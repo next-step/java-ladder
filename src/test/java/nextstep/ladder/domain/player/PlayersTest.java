@@ -1,5 +1,6 @@
 package nextstep.ladder.domain.player;
 
+import nextstep.ladder.dto.PlayerDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -7,21 +8,28 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class PlayersTest {
 
     @Test
     @DisplayName("참가자 이름으로 검색한다.")
     void searchPlayerByName() {
-        List<Player> playerList =
-                Arrays.asList(
-                        new Player("pobi"),
-                        new Player("honux"),
-                        new Player("crong"),
-                        new Player("jk"));
+        List<String> playerNameList = Arrays.asList("pobi", "honux", "crong", "jk");
 
-        Players players = new Players(playerList);
-        assertThat(players.searchBy(new Name("jk"))).hasValue(playerList.get(3));
+        Players players = Players.of(playerNameList);
+        PlayerDto jk = players.searchBy(new Name("jk"))
+                              .export();
+        assertThat(jk.getNameDto()).isEqualTo("jk");
     }
 
+    @Test
+    @DisplayName("주어진 이름을 가진 참가자가 없으면 예외 처리한다.")
+    void throwExceptionIfPlayerThatHasNameNotExist() {
+        List<String> playerNameList = Arrays.asList("pobi", "honux", "crong", "jk");
+        Players players = Players.of(playerNameList);
+
+        assertThatThrownBy(() -> players.searchBy(new Name("tdd"))).isInstanceOf(RuntimeException.class);
+    }
+    
 }
