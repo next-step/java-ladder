@@ -7,11 +7,9 @@ public class Players {
 
     private final List<String> names;
 
-    public Players(List<String> playerName) {
-        if (playerName.stream().anyMatch(name -> name.length() > MAX_NAME)) {
-            throw new IllegalArgumentException("이름의 길이는 최대 5자입니다");
-        }
-        this.names = playerName;
+    public Players(List<String> names) {
+        verifyNames(names);
+        this.names = names;
     }
 
     public List<String> names() {
@@ -20,5 +18,16 @@ public class Players {
 
     public int count() {
         return names.size();
+    }
+
+    private void verifyNames(List<String> playerName) {
+        if (isOverLength(playerName)) {
+            throw new IllegalArgumentException("이름의 길이는 최대 5자입니다");
+        }
+    }
+
+    private boolean isOverLength(List<String> playerName) {
+        return playerName.stream()
+                .anyMatch(name -> name.length() > MAX_NAME);
     }
 }
