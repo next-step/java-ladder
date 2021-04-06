@@ -28,7 +28,7 @@ public class LineTest {
         Linker closedLinker = new Linker(() -> Link.CLOSE);
         Line line = new Line(numberOfPlayer, closedLinker);
 
-        int numberOfOpen = (int) line.link()
+        int numberOfOpen = (int) line.links()
                 .stream()
                 .filter(link -> link == Link.OPEN)
                 .count();
@@ -41,6 +41,6 @@ public class LineTest {
         Linker closedLinker = new Linker(() -> Link.CLOSE);
         Line line = new Line(numberOfPlayer, closedLinker);
 
-        assertThat(line.link().size()).isEqualTo(numberOfPlayer - 1);
+        assertThat(line.links().size()).isEqualTo(numberOfPlayer - 1);
     }
 }

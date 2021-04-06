@@ -3,7 +3,7 @@ package ladder.view;
 import ladder.domain.Ladder;
 import ladder.domain.Line;
 import ladder.domain.Link;
-import ladder.domain.Player;
+import ladder.domain.Players;
 
 import java.util.Arrays;
 import java.util.List;
@@ -24,14 +24,14 @@ public class View {
         return height;
     }
 
-    public static void printResult(Player player, Ladder ladder) {
+    public static void printResult(Players players, Ladder ladder) {
         System.out.println("실행결과");
-        printPlayer(player);
+        printPlayer(players);
         printLadder(ladder);
     }
 
-    private static void printPlayer(Player player) {
-        printNames(player.name());
+    private static void printPlayer(Players players) {
+        printNames(players.names());
     }
 
     private static void printNames(List<String> players) {
@@ -40,12 +40,12 @@ public class View {
     }
 
     private static void printLadder(Ladder ladder) {
-        ladder.line().forEach(View::printLine);
+        ladder.lines().forEach(View::printLine);
     }
 
     private static void printLine(Line line) {
         System.out.print("     ");
-        line.link().forEach(View::printLink);
+        line.links().forEach(View::printLink);
         System.out.print("|\n");
     }
 

@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
-    private final List<Line> line;
+    private final List<Line> lines;
 
     public Ladder(int height, int numberOfPlayer, Linker linker) {
-        line = new ArrayList<>();
+        lines = new ArrayList<>();
 
         for (int i = 0; i < height; i++) {
-            line.add(new Line(numberOfPlayer, linker));
+            lines.add(new Line(numberOfPlayer, linker));
         }
     }
 
-    public List<Line> line() {
-        return line;
+    public List<Line> lines() {
+        return lines;
     }
 }

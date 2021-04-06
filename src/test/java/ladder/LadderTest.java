@@ -25,7 +25,7 @@ public class LadderTest {
         Linker linker = new Linker(() -> Link.OPEN);
         Ladder ladder = new Ladder(5, 3, linker);
 
-        List<Line> line = ladder.line();
+        List<Line> line = ladder.lines();
         assertThat(line.size()).isEqualTo(5);
     }
 }

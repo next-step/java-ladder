@@ -1,6 +1,6 @@
 package ladder;
 
-import ladder.domain.Player;
+import ladder.domain.Players;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -11,14 +11,14 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-public class PlayerTest {
+public class PlayersTest {
     @Test
     @DisplayName("Player 클래스 생성 테스트")
     void Given_Names_When_New_Then_InstanceCreated() {
         List<String> playerNames = Arrays.asList("a", "b", "c", "d", "e");
 
         assertDoesNotThrow(() -> {
-            new Player(playerNames);
+            new Players(playerNames);
         });
     }
 
@@ -27,15 +27,15 @@ public class PlayerTest {
         List<String> playerNames = Arrays.asList("6chars");
 
         assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> new Player(playerNames));
+                .isThrownBy(() -> new Players(playerNames));
     }
 
     @Test
     void When_Count_Then_NumberOfPlayers() {
         List<String> playerNames = Arrays.asList("a", "b", "c", "d", "e");
 
-        Player player = new Player(playerNames);
+        Players players = new Players(playerNames);
 
-        assertThat(player.count()).isEqualTo(playerNames.size());
+        assertThat(players.count()).isEqualTo(playerNames.size());
     }
 }

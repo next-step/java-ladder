@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-    private final List<Link> link;
+    private final List<Link> links;
 
     public Line(int numberOfPlayer, Linker linker) {
-        link = new ArrayList<>();
-        link.add(linker.link());
-        for (int i = 1; i < numberOfPlayer-1; i++) {
-            link.add(linker.link(link.get(i - 1)));
+        links = new ArrayList<>();
+        links.add(linker.link());
+        for (int i = 1; i < numberOfPlayer - 1; i++) {
+            links.add(linker.link(links.get(i - 1)));
         }
     }
 
-    public List<Link> link() {
-        return link;
+    public List<Link> links() {
+        return links;
     }
 }

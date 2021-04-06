@@ -3,7 +3,7 @@ package ladder;
 import ladder.domain.Ladder;
 import ladder.domain.Link;
 import ladder.domain.Linker;
-import ladder.domain.Player;
+import ladder.domain.Players;
 import ladder.view.View;
 
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.List;
 public class LadderControl {
     public void play() {
         List<String> names = View.names();
-        Player player = new Player(names);
+        Players players = new Players(names);
 
         int height = View.height();
 
@@ -20,7 +20,7 @@ public class LadderControl {
             return Link.values()[selected];
         });
 
-        Ladder ladder = new Ladder(height, player.count(), linker);
-        View.printResult(player, ladder);
+        Ladder ladder = new Ladder(height, players.count(), linker);
+        View.printResult(players, ladder);
     }
 }
