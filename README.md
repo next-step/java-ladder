@@ -7,3 +7,9 @@
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
+
+## 기능 정의
+- 플레이어 생성 (최대 5자리)
+- 가로 라인 객체 생성 (중복되지 않도록) 
+- 사다리 객체 생성
+- UI 구현
