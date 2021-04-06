@@ -32,7 +32,7 @@ public class LineTest {
                 .stream()
                 .filter(link -> link == Link.OPEN)
                 .count();
-        assertThat(numberOfOpen).isEqualTo(numberOfPlayer / 2);
+        assertThat(numberOfOpen).isEqualTo((numberOfPlayer-1) / 2);
     }
 
     @Test

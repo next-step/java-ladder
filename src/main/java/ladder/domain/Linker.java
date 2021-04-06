@@ -8,6 +8,10 @@ public class Linker {
     }
 
     public Linker(LinkSelector linkSelector) {
+        if (linkSelector == null) {
+            linkSelector = () -> Link.OPEN;
+        }
+
         this.linkSelector = linkSelector;
     }
 
