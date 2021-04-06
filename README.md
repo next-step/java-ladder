@@ -229,4 +229,5 @@ false   | false | true  |
     - Point (boolean)
       - Point는 그 자체 만으로 의미를 갖는지? -> 처음부터 객체를 구성했다면 도메인에 대한 이해가 높았을 것이다.
 
-- Direction
+- Cyclic dependency 를 해결하는 방법
+  - FactoryBean 역할을 하는 클래스를 만들어야 한다.

@@ -9,6 +9,8 @@ import nextstep.ladder.wrapper.Participants;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static java.lang.System.out;
+
 public class ResultView {
 
     private static final String STRING_FORMAT_RENDER = "%6s";
@@ -23,19 +25,19 @@ public class ResultView {
         printNames(participants);
         printLadder(ladder);
         printLadderRewards(ladderRewards);
-        System.out.println();
+        out.println();
     }
 
     private void printHeader() {
-        System.out.println(GUIDE_HEAD_LINE);
+        out.println(GUIDE_HEAD_LINE);
     }
 
     private void printNames(final Participants participants) {
         participants.getUsers()
                 .stream()
                 .map(this::parseName)
-                .forEach(System.out::print);
-        System.out.println();
+                .forEach(out::print);
+        out.println();
     }
 
     private String parseName(final User user) {
@@ -46,15 +48,15 @@ public class ResultView {
         ladder.lines()
                 .stream()
                 .map(this::renderLadder)
-                .forEach(System.out::println);
+                .forEach(out::println);
     }
 
     private void printLadderRewards(final LadderRewards ladderRewards) {
-        ladderRewards.getLadderRewards()
+        ladderRewards.getRewards()
                 .stream()
                 .map(this::parseFormat)
-                .forEach(System.out::print);
-        System.out.println();
+                .forEach(out::print);
+        out.println();
     }
 
     private String parseFormat(final Reward ladderReward) {
@@ -76,12 +78,12 @@ public class ResultView {
     }
 
     public void printUserResult(final List<String> allUser) {
-        System.out.println("\n실행 결과");
-        allUser.forEach(System.out::println);
+        out.println("\n실행 결과");
+        allUser.forEach(out::println);
     }
 
     public void printUserResult(final String user) {
-        System.out.println("\n실행 결과");
-        System.out.println(user);
+        out.println("\n실행 결과");
+        out.println(user);
     }
 }

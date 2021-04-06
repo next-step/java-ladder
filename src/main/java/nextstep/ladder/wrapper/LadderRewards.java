@@ -10,10 +10,10 @@ import java.util.Objects;
 
 public class LadderRewards {
 
-    private final List<Reward> ladderRewards;
+    private final List<Reward> rewards;
 
-    private LadderRewards(final Reward... ladderRewards) {
-        this.ladderRewards = Arrays.asList(ladderRewards);
+    private LadderRewards(final Reward... rewards) {
+        this.rewards = Arrays.asList(rewards);
     }
 
     public static LadderRewards valueOf(final Reward... ladderRewards) {
@@ -30,12 +30,12 @@ public class LadderRewards {
                 .toArray(Reward[]::new);
     }
 
-    public List<Reward> getLadderRewards() {
-        return Collections.unmodifiableList(ladderRewards);
+    public List<Reward> getRewards() {
+        return Collections.unmodifiableList(rewards);
     }
 
     public Reward findReward(final Position endPosition) {
-        return ladderRewards.get(endPosition.currentPosition());
+        return rewards.get(endPosition.currentPosition());
     }
 
     @Override
@@ -43,11 +43,11 @@ public class LadderRewards {
         if (this == o) return true;
         if (!(o instanceof LadderRewards)) return false;
         final LadderRewards that = (LadderRewards) o;
-        return Objects.equals(ladderRewards, that.ladderRewards);
+        return Objects.equals(rewards, that.rewards);
     }
     @Override
     public int hashCode() {
-        return Objects.hash(ladderRewards);
+        return Objects.hash(rewards);
     }
 
 }

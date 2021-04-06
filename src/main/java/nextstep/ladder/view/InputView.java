@@ -2,6 +2,8 @@ package nextstep.ladder.view;
 
 import java.util.Scanner;
 
+import static java.lang.System.out;
+
 public class InputView {
 
     public static final String GUIDE_LADDER_INPUT_PARTICIPANTS = "참여할 사람 이름을 입력하세요. (이름은 쉼표( , )로 구분하세요.";
@@ -11,22 +13,22 @@ public class InputView {
     private final Scanner in = new Scanner(System.in);
 
     public String inputParticipants() {
-        System.out.println(GUIDE_LADDER_INPUT_PARTICIPANTS);
+        out.println(GUIDE_LADDER_INPUT_PARTICIPANTS);
         return in.nextLine();
     }
 
     public String inputLadderRewards() {
-        System.out.println(GUIDE_LADDER_INPUT_RESULT);
+        out.println(GUIDE_LADDER_INPUT_RESULT);
         return in.nextLine();
     }
 
     public String inputLadderHeight() {
-        System.out.println(GUIDE_LADDER_INPUT_LADDER_SIZE);
+        out.println(GUIDE_LADDER_INPUT_LADDER_SIZE);
         return in.nextLine();
     }
 
     public String inputUserResult() {
-        System.out.println(GUIDE_LADDER_INPUT_USER);
+        out.println(GUIDE_LADDER_INPUT_USER);
         return in.nextLine();
     }
 }
