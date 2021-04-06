@@ -14,16 +14,14 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 public class LadderTest {
     @Test
     void When_New_Then_Created() {
-        Linker linker = new Linker(() -> Link.OPEN);
         assertDoesNotThrow(() -> {
-            new Ladder(5, 5, linker);
+            new Ladder(5, 5, () -> Link.OPEN);
         });
     }
 
     @Test
     void When_Line_Then_LineSizeIsEqualToHeight() {
-        Linker linker = new Linker(() -> Link.OPEN);
-        Ladder ladder = new Ladder(5, 3, linker);
+        Ladder ladder = new Ladder(5, 3, () -> Link.OPEN);
 
         List<Line> line = ladder.lines();
         assertThat(line.size()).isEqualTo(5);

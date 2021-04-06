@@ -6,8 +6,9 @@ import java.util.List;
 public class Ladder {
     private final List<Line> lines;
 
-    public Ladder(int height, int numberOfPlayer, Linker linker) {
+    public Ladder(int height, int numberOfPlayer, LinkSelector linkSelector) {
         lines = new ArrayList<>();
+        Linker linker = new Linker(linkSelector);
 
         for (int i = 0; i < height; i++) {
             lines.add(new Line(numberOfPlayer, linker));

@@ -12,8 +12,7 @@ public class LadderControl {
 
         int height = View.height();
 
-        Linker linker = new Linker(new RandomLinkSelector());
-        Ladder ladder = new Ladder(height, players.count(), linker);
+        Ladder ladder = new Ladder(height, players.count(), new RandomLinkSelector());
         View.printResult(players, ladder);
     }
 }
