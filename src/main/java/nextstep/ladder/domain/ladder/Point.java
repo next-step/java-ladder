@@ -1,6 +1,6 @@
-package nextstep.ladder.domain.line;
+package nextstep.ladder.domain.ladder;
 
-import nextstep.ladder.domain.line.exception.PointAlreadyConnectedException;
+import nextstep.ladder.domain.ladder.exception.PointAlreadyConnectedException;
 
 public class Point {
 

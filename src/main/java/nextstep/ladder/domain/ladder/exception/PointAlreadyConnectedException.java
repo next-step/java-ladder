@@ -1,4 +1,4 @@
-package nextstep.ladder.domain.line.exception;
+package nextstep.ladder.domain.ladder.exception;
 
 public class PointAlreadyConnectedException extends RuntimeException {
 

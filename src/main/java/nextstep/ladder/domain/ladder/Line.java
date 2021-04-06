@@ -1,6 +1,6 @@
-package nextstep.ladder.domain.line;
+package nextstep.ladder.domain.ladder;
 
-import nextstep.ladder.domain.line.exception.UnknownPointException;
+import nextstep.ladder.domain.ladder.exception.UnknownPointException;
 import nextstep.ladder.dto.Connections;
 import nextstep.ladder.util.StreamUtils;
 
