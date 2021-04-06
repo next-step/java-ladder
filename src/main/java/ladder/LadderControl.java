@@ -1,9 +1,6 @@
 package ladder;
 
-import ladder.domain.Ladder;
-import ladder.domain.Link;
-import ladder.domain.Linker;
-import ladder.domain.Players;
+import ladder.domain.*;
 import ladder.view.View;
 
 import java.util.List;
@@ -15,11 +12,7 @@ public class LadderControl {
 
         int height = View.height();
 
-        Linker linker = new Linker(() -> {
-            int selected = (int) Math.round(Math.random());
-            return Link.values()[selected];
-        });
-
+        Linker linker = new Linker(new RandomLinkSelector());
         Ladder ladder = new Ladder(height, players.count(), linker);
         View.printResult(players, ladder);
     }
