@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class Bar {
 
+    private static final Bar BAR = Bar.valueOf(false);
     public final boolean flag;
 
     private Bar(final boolean flag) {
@@ -15,7 +16,7 @@ public class Bar {
     }
 
     public static Bar init() {
-        return new Bar(false);
+        return BAR;
     }
 
     public boolean isExist() {
