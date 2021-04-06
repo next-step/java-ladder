@@ -1,5 +1,7 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.wrapper;
 
+import nextstep.ladder.domain.Height;
+import nextstep.ladder.domain.Position;
 import nextstep.ladder.generator.LineGenerator;
 
 import java.util.Arrays;

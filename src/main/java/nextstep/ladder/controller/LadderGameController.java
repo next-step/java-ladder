@@ -4,6 +4,10 @@ import nextstep.ladder.Service.LadderService;
 import nextstep.ladder.domain.*;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
+import nextstep.ladder.wrapper.Ladder;
+import nextstep.ladder.wrapper.LadderResult;
+import nextstep.ladder.wrapper.LadderRewards;
+import nextstep.ladder.wrapper.Participants;
 
 import java.util.*;
 

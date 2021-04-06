@@ -1,4 +1,6 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.wrapper;
+
+import nextstep.ladder.domain.*;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;

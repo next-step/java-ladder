@@ -1,13 +1,13 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.wrapper;
 
+import nextstep.ladder.domain.Position;
+import nextstep.ladder.domain.User;
+import nextstep.ladder.wrapper.Participants;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.provider.Arguments;
 
 import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
-import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;

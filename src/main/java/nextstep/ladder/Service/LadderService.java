@@ -1,9 +1,9 @@
 package nextstep.ladder.Service;
 
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.LadderResult;
-import nextstep.ladder.domain.LadderRewards;
-import nextstep.ladder.domain.Participants;
+import nextstep.ladder.wrapper.Ladder;
+import nextstep.ladder.wrapper.LadderResult;
+import nextstep.ladder.wrapper.LadderRewards;
+import nextstep.ladder.wrapper.Participants;
 
 public class LadderService {
 

@@ -1,5 +1,6 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.wrapper;
 
+import nextstep.ladder.wrapper.LadderRewards;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

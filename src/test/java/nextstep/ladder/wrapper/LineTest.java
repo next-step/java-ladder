@@ -1,6 +1,9 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.wrapper;
 
+import nextstep.ladder.domain.Point;
+import nextstep.ladder.domain.Position;
 import nextstep.ladder.generator.LineGenerator;
+import nextstep.ladder.wrapper.Line;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

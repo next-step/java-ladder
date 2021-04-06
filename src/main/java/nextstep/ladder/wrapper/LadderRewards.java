@@ -1,4 +1,7 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.wrapper;
+
+import nextstep.ladder.domain.Position;
+import nextstep.ladder.domain.Reward;
 
 import java.util.Arrays;
 import java.util.Collections;

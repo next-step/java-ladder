@@ -1,4 +1,7 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.wrapper;
+
+import nextstep.ladder.domain.Reward;
+import nextstep.ladder.domain.User;
 
 import java.util.List;
 import java.util.Map;
