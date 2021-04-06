@@ -1,6 +1,7 @@
 package nextstep.ladder;
 
 import java.util.Objects;
+import nextstep.ladder.exception.OverNameLengthLimitException;
 
 public final class Name {
 
@@ -9,7 +10,14 @@ public final class Name {
   private final String name;
 
   public Name(final String name) {
+    validateNameLength(name);
     this.name = name;
+  }
+
+  private void validateNameLength(String name) {
+    if (name.length() > MAX_LENGTH) {
+      throw new OverNameLengthLimitException();
+    }
   }
 
   public String getName() {
