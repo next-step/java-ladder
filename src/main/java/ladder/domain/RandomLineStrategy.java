@@ -5,28 +5,29 @@ import java.util.List;
 import java.util.Random;
 
 public class RandomLineStrategy implements LineStrategy {
-	Random random = new Random();
+    Random random = new Random();
 
-	@Override
-	public List<Boolean> points(int countOfPerson) {
-		List<Boolean> points = new ArrayList<>();
-		boolean previousLine = false;
+    @Override
+    public List<Boolean> points(int countOfPerson) {
+        List<Boolean> points = new ArrayList<>();
 
-		for (int i = 0; i < countOfPerson; i++) {
-			previousLine = addPoints(points, previousLine, countOfPerson, i);
-		}
+        boolean previousLine = false;
 
-		return points;
-	}
+        for (int i = 0; i < countOfPerson; i++) {
+            boolean point = calculatePoint(previousLine, countOfPerson, i);
+            points.add(point);
+            previousLine = point;
+        }
 
-	private boolean addPoints(List<Boolean> points, boolean previousLine, int countOfPerson, int i) {
-		boolean line = random.nextBoolean();
-		if (line && !previousLine && i != (countOfPerson - 1)) {
-			points.add(true);
-			return true;
-		}
-		points.add(false);
-		return false;
-	}
+        return points;
+    }
+
+    private boolean calculatePoint(boolean previousLine, int countOfPerson, int i) {
+        boolean line = random.nextBoolean();
+        if (line && !previousLine && i != (countOfPerson - 1)) {
+            return true;
+        }
+        return false;
+    }
 
 }

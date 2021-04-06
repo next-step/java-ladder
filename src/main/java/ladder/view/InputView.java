@@ -6,12 +6,10 @@ public class InputView {
 	Scanner scanner = new Scanner(System.in);
 
 	public String getString(String text) {
-		String input = getInput(text);
-		return input;
+		return getInput(text);
 	}
 	public Integer getInt(String text) {
-		String input = getInput(text);
-		return Integer.valueOf(input);
+		return Integer.valueOf(getInput(text));
 	}
 
 	private String getInput(String text) {

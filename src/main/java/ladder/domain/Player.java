@@ -3,10 +3,11 @@ package ladder.domain;
 import java.util.Objects;
 
 public class Player {
-	private final String playerName;
 	private static final int PLAYER_NAME_MAX_SIZE = 5;
 	private static final String PLAYER_NAME_MAX_SIZE_ERROR_MSG = "Player Name은 최대 5자입니다.";
 	private static final String PLAYER_NAME_MIN_SIZE_ERROR_MSG = "Player Name은 최소 1자 이상이어야 합니다.";
+
+	private final String playerName;
 
 	public Player(String playerName) {
 		validatePlayerName(playerName);
