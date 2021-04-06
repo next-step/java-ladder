@@ -2,12 +2,10 @@ package nextstep.ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.IntStream;
 
 public class Line {
 
-  private static final Random RANDOM = new Random();
   private List<Boolean> points = new ArrayList<>();
 
   public Line() {
@@ -19,10 +17,6 @@ public class Line {
         .mapToObj(i -> line.isLine(i, lineStrategy))
         .forEach(line::addPoint);
     return line;
-  }
-
-  public static Line generate(int countOfPerson) {
-    return generate(countOfPerson, () -> RANDOM.nextBoolean());
   }
 
   private void addPoint(boolean line) {
@@ -38,6 +32,16 @@ public class Line {
 
   public List<Boolean> getPoints() {
     return points;
+  }
+
+  public int move(int position) {
+    if (points.get(position - 1)) {
+      return position - 1;
+    }
+    if (points.size() != position && points.get(position)) {
+      return position + 1;
+    }
+    return position;
   }
 
 }

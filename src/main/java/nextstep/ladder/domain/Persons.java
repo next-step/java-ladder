@@ -18,4 +18,12 @@ public class Persons {
   public int size() {
     return persons.size();
   }
+
+  public String getName(int position) {
+    return persons.get(position).getName();
+  }
+
+  public int getIndex(String name) {
+    return persons.indexOf(Person.generate(name));
+  }
 }
