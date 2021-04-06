@@ -7,8 +7,8 @@ public class LadderController {
 
     public static void main(String[] args) {
         String[] userName = InputView.getUserName();
-        int ladderMaxHeight = InputView.getLadderHeight();
+        int ladderHeight = InputView.getLadderHeight();
 
-        LadderGame ladderGame = LadderGame.of(ladderMaxHeight, userName);
+        LadderGame ladderGame = LadderGame.of(ladderHeight, userName);
     }
 }
