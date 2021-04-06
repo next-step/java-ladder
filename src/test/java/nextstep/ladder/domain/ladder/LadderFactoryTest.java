@@ -1,6 +1,5 @@
 package nextstep.ladder.domain.ladder;
 
-import nextstep.ladder.domain.line.RandomLineFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -27,6 +26,5 @@ class LadderFactoryTest {
     void throwExceptionIfWidthIsInvalid() {
         assertThatThrownBy(() -> ladderFactory.createLadder(1, 1)).isInstanceOf(RuntimeException.class);
     }
-
 
 }

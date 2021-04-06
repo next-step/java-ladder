@@ -1,6 +1,5 @@
 package nextstep.ladder.domain.ladder;
 
-import nextstep.ladder.domain.line.Line;
 import nextstep.ladder.dto.Connections;
 import nextstep.ladder.dto.LadderDto;
 

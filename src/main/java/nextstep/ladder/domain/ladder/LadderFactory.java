@@ -1,8 +1,5 @@
 package nextstep.ladder.domain.ladder;
 
-import nextstep.ladder.domain.line.Line;
-import nextstep.ladder.domain.line.RandomLineFactory;
-
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
