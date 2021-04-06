@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 public class Player {
     private static final String SEPARATOR = ",";
+
     private final List<Name> players;
 
     public Player(String names) {

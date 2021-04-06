@@ -7,6 +7,7 @@ import java.util.stream.IntStream;
 
 public class Ladder {
     private static final int MIN_HEIGHT = 1;
+
     private final List<Line> ladder = new ArrayList<>();
 
     public Ladder(int countOfPerson, int height) {

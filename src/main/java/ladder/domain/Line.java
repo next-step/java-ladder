@@ -8,6 +8,7 @@ import java.util.stream.IntStream;
 
 public class Line {
     private static final int MIN_WIDTH = 2;
+
     private final int countOfPlayers;
     private final List<Point> points = new ArrayList<>();
 
