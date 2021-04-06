@@ -1,6 +1,6 @@
 package nextstep.ladder.wrapper;
 
-import nextstep.ladder.domain.Point;
+import nextstep.ladder.domain.Bar;
 import nextstep.ladder.domain.Position;
 import nextstep.ladder.generator.DefaultLineGenerator;
 import nextstep.ladder.generator.LineGenerator;
@@ -13,14 +13,14 @@ import static nextstep.ladder.domain.Position.MOVABLE_COUNT;
 
 public class Line {
 
-    private final List<Point> points;
+    private final List<Bar> bars;
 
     private Line(final int countOfPerson) {
         this(countOfPerson, new DefaultLineGenerator());
     }
 
     private Line(final int countOfPerson, final LineGenerator generator) {
-        this.points = generator.createLine(countOfPerson);
+        this.bars = generator.createLine(countOfPerson);
     }
 
     public static Line valueOf(final int count) {
@@ -39,8 +39,8 @@ public class Line {
         return new Line(participants.size(), generator);
     }
 
-    public List<Point> points() {
-        return Collections.unmodifiableList(points);
+    public List<Bar> points() {
+        return Collections.unmodifiableList(bars);
     }
 
     public Position move(final Position userPosition) {
@@ -58,15 +58,15 @@ public class Line {
     private boolean isMoveRight(final int currentPosition) {
         int nextPosition = currentPosition + MOVABLE_COUNT;
         return isLadderBound(nextPosition)
-                && points.get(nextPosition).isExist();
+                && bars.get(nextPosition).isExist();
     }
 
     private boolean isLadderBound(final int nextPosition) {
-        return nextPosition < points.size();
+        return nextPosition < bars.size();
     }
 
     private boolean isMoveLeft(final int currentPosition) {
-        return points.get(currentPosition).isExist();
+        return bars.get(currentPosition).isExist();
     }
 
     @Override
@@ -74,16 +74,16 @@ public class Line {
         if (this == o) return true;
         if (!(o instanceof Line)) return false;
         final Line line = (Line) o;
-        return Objects.equals(points, line.points);
+        return Objects.equals(bars, line.bars);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(points);
+        return Objects.hash(bars);
     }
 
     @Override
     public String toString() {
-        return String.valueOf(points);
+        return String.valueOf(bars);
     }
 }

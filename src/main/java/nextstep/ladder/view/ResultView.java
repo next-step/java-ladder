@@ -68,8 +68,8 @@ public class ResultView {
                 .collect(Collectors.joining(LADDER_VERTICAL_LINE, EMPTY_LINE, LADDER_VERTICAL_LINE));
     }
 
-    private String renderPerPoint(final Point point) {
-        if(point.isExist()) {
+    private String renderPerPoint(final Bar bar) {
+        if(bar.isExist()) {
             return LADDER_HORIZON;
         }
         return LADDER_EMPTY;

@@ -1,9 +1,8 @@
 package nextstep.ladder.wrapper;
 
-import nextstep.ladder.domain.Point;
+import nextstep.ladder.domain.Bar;
 import nextstep.ladder.domain.Position;
 import nextstep.ladder.generator.LineGenerator;
-import nextstep.ladder.wrapper.Line;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -34,14 +33,14 @@ class LineTest {
     @Test
     void create_랜덤_전략_테스트() {
         // given
-        LineGenerator lineGenerator = countOfPerson -> Arrays.asList(Point.init(), Point.valueOf(true));
+        LineGenerator lineGenerator = countOfPerson -> Arrays.asList(Bar.init(), Bar.valueOf(true));
         // when
         Line line = Line.valueOf(2, lineGenerator);
-        List<Point> points = line.points();
+        List<Bar> bars = line.points();
         // then
         assertAll(
-                () -> assertThat(points.get(0).isExist()).isFalse(),
-                () -> assertThat(points.get(1).isExist()).isTrue()
+                () -> assertThat(bars.get(0).isExist()).isFalse(),
+                () -> assertThat(bars.get(1).isExist()).isTrue()
         );
     }
 
@@ -49,9 +48,9 @@ class LineTest {
     @Test
     void check_point_값_확인_테스트() {
         // given
-        Line line = Line.valueOf(2, countOfPerson -> Arrays.asList(Point.init(), Point.valueOf(true), Point.init()));
+        Line line = Line.valueOf(2, countOfPerson -> Arrays.asList(Bar.init(), Bar.valueOf(true), Bar.init()));
         // when
-        Point[] expected = {Point.init(), Point.valueOf(true), Point.init()};
+        Bar[] expected = {Bar.init(), Bar.valueOf(true), Bar.init()};
         // then
         assertThat(line.points()).containsExactly(expected);
     }
@@ -74,7 +73,7 @@ class LineTest {
     @MethodSource(value = "ladderMovedTestCase")
     void move_테스트(Position actual, Position expected) {
         // given
-        LineGenerator lineGenerator = countOfPerson -> Arrays.asList(Point.init(), Point.valueOf(true), Point.init());
+        LineGenerator lineGenerator = countOfPerson -> Arrays.asList(Bar.init(), Bar.valueOf(true), Bar.init());
         Line line = Line.valueOf(3, lineGenerator);
         // when
         Position movedPosition = line.move(actual);

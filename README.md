@@ -104,7 +104,7 @@ pobi  honux crong   jk
 
 ```java
 public class Line {
-    private List<Boolean> points = new ArrayList<>();
+    private List<Boolean> bars = new ArrayList<>();
 
     public Line (int countOfPerson) {
         // 라인의 좌표 값에 선이 있는지 유무를 판단하는 로직 추가
@@ -221,3 +221,12 @@ false   | false | true  |
 ```
 
 ![Ladder Step3 Diagram](docs/ladder3.png)
+
+
+## 사다리 타기 피드백
+- Ladder를 작은 단위로 쪼갠다.
+  - Line (List<Point>)
+    - Point (boolean)
+      - Point는 그 자체 만으로 의미를 갖는지? -> 처음부터 객체를 구성했다면 도메인에 대한 이해가 높았을 것이다.
+
+- Direction

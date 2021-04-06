@@ -38,14 +38,14 @@ class LadderTest {
         Ladder ladder = Ladder.valueOf(
                 participants,
                 height,
-                countOfPerson -> Arrays.asList(Point.init(), Point.valueOf(true), Point.valueOf(false)));
+                countOfPerson -> Arrays.asList(Bar.init(), Bar.valueOf(true), Bar.valueOf(false)));
         Line line = ladder.lines().get(0);
-        List<Point> points = line.points();
+        List<Bar> bars = line.points();
         // then
         assertAll(
-                () -> assertThat(points.get(0)).isEqualTo(Point.init()),
-                () -> assertThat(points.get(1)).isEqualTo(Point.valueOf(true)),
-                () -> assertThat(points.get(2)).isEqualTo(Point.valueOf(false))
+                () -> assertThat(bars.get(0)).isEqualTo(Bar.init()),
+                () -> assertThat(bars.get(1)).isEqualTo(Bar.valueOf(true)),
+                () -> assertThat(bars.get(2)).isEqualTo(Bar.valueOf(false))
         );
     }
 }

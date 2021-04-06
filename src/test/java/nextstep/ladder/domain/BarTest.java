@@ -5,16 +5,16 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class PointTest {
+class BarTest {
 
     @DisplayName("Point 객체 생성 테스트")
     @Test
     void create_Point_생성테스트() {
         // given
-        Point point = Point.valueOf(true);
+        Bar bar = Bar.valueOf(true);
         // when
-        Point expected = Point.valueOf(true);
+        Bar expected = Bar.valueOf(true);
         // then
-        assertThat(point).isEqualTo(expected);
+        assertThat(bar).isEqualTo(expected);
     }
 }

@@ -2,20 +2,20 @@ package nextstep.ladder.domain;
 
 import java.util.Objects;
 
-public class Point {
+public class Bar {
 
     public final boolean flag;
 
-    private Point(final boolean flag) {
+    private Bar(final boolean flag) {
         this.flag = flag;
     }
 
-    public static Point valueOf(final boolean flag) {
-        return new Point(flag);
+    public static Bar valueOf(final boolean flag) {
+        return new Bar(flag);
     }
 
-    public static Point init() {
-        return new Point(false);
+    public static Bar init() {
+        return new Bar(false);
     }
 
     public boolean isExist() {
@@ -25,9 +25,9 @@ public class Point {
     @Override
     public boolean equals(final Object o) {
         if (this == o) return true;
-        if (!(o instanceof Point)) return false;
-        final Point point = (Point) o;
-        return flag == point.flag;
+        if (!(o instanceof Bar)) return false;
+        final Bar bar = (Bar) o;
+        return flag == bar.flag;
     }
 
     @Override
