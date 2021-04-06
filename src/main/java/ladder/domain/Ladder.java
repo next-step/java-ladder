@@ -9,12 +9,12 @@ public class Ladder {
     private final List<Line> ladder = new ArrayList<>();
 
     public Ladder(int countOfPerson, int height) {
-        valid(height);
+        validate(height);
         IntStream.range(0, height)
             .forEach((index) -> ladder.add(new Line(countOfPerson)));
     }
 
-    private void valid(int height) {
+    private void validate(int height) {
         if (height < MIN_HEIGHT) {
             throw new IllegalArgumentException("사디리 높이는 최소 1이상이여야 합니다.");
         }

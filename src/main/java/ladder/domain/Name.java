@@ -7,11 +7,11 @@ public class Name {
     private final String name;
 
     public Name(String name) {
-        valid(name);
+        validate(name);
         this.name = name;
     }
 
-    private void valid(String name) {
+    private void validate(String name) {
         if (name == null || name.isEmpty() || name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException("참여자의 이름은 최대 5글자 이하입니다.");
         }

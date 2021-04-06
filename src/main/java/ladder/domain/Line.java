@@ -11,11 +11,11 @@ public class Line {
     private final List<Point> points = new ArrayList<>();
 
     public Line(int countOfPerson) {
-        valid(countOfPerson);
+        validate(countOfPerson);
         this.countOfPlayers = countOfPerson;
     }
 
-    private void valid(int countOfPerson) {
+    private void validate(int countOfPerson) {
         if (countOfPerson < MIN_WIDTH) {
             throw new IllegalArgumentException("참여자의 수는 최소 " + MIN_WIDTH + "명 이상이여야 합니다.");
         }
