@@ -1,18 +1,12 @@
 package nextstep.ladder.domain;
 
-import java.util.Arrays;
-import java.util.stream.Collectors;
-
 public class LadderGame {
 
     private final Participants participants;
     private final int ladderMaxHeight;
 
     private LadderGame(final int ladderMaxHeight, final String[] userName) {
-        this.participants = Participants.of(Arrays.stream(userName)
-                .map(Participant::of)
-                .collect(Collectors.toList())
-        );
+        this.participants = Participants.of(userName);
         this.ladderMaxHeight = ladderMaxHeight;
     }
 
