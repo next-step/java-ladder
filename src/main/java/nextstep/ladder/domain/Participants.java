@@ -12,10 +12,6 @@ public class Participants {
         this.participants = participants;
     }
 
-    public static Participants of(final List<Participant> participants) {
-        return new Participants(participants);
-    }
-
     public static Participants of(final String[] userName) {
         return new Participants(Arrays.stream(userName)
                 .map(Participant::of)
