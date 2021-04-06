@@ -3,7 +3,6 @@ package ladder;
 import ladder.domain.Ladder;
 import ladder.domain.Line;
 import ladder.domain.Link;
-import ladder.domain.Linker;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
