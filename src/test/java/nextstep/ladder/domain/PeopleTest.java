@@ -13,7 +13,7 @@ class PeopleTest {
   @DisplayName("Person 목록을 받아서 People을 생성한다.")
   void create() {
     //given
-    List<Person> peopleSource = Lists.list(
+    final List<Person> peopleSource = Lists.list(
         new Person("pobi"),
         new Person("crong"),
         new Person("honux"),
@@ -21,9 +21,22 @@ class PeopleTest {
     );
 
     //when
-    People people = new People(peopleSource);
+    final People people = new People(peopleSource);
 
     //then
     assertThat(people).isEqualTo(new People(peopleSource));
+  }
+
+  @Test
+  @DisplayName("이름 배열을 받아서 People을 생성한다.")
+  void createWithStringArray() {
+    //given
+    final String[] names = new String[]{"pobi", "crong", "honux", "jk"};
+
+    //when
+    final People people = new People(names);
+
+    //then
+    assertThat(people).isEqualTo(new People(names));
   }
 }

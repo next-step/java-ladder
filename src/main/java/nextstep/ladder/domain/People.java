@@ -1,11 +1,20 @@
 package nextstep.ladder.domain;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public final class People {
 
   private final List<Person> people;
+
+  public People(final String[] names) {
+    this(Arrays.stream(names)
+        .map(Person::new)
+        .collect(Collectors.toList())
+    );
+  }
 
   public People(final List<Person> people) {
     this.people = people;
