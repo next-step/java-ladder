@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.IntStream;
@@ -38,7 +39,7 @@ public class Line {
     }
 
     public List<Point> getPoints() {
-        return this.points;
+        return Collections.unmodifiableList(this.points);
     }
 
     @Override
