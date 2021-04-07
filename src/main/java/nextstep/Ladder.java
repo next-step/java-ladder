@@ -16,8 +16,8 @@ public class Ladder {
         this.coordinates = new ArrayList<>();
     }
 
-    public void add(int width) throws DuplicateException {
-        Coordinate coordinate = new Coordinate(width, this.height);
+    public void add(String name, int width) throws DuplicateException {
+        Coordinate coordinate = new Coordinate(name, width, this.height);
         if (contains(coordinate)) {
             throw new DuplicateException("Duplicate");
         }

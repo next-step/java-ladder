@@ -13,8 +13,8 @@ class LadderTest {
     void isDuplicate() {
         Ladder ladder = new Ladder(0);
         assertThatThrownBy(() -> {
-            ladder.add(1);
-            ladder.add(1);
+            ladder.add("bong", 1);
+            ladder.add("big", 1);
         }).isInstanceOf(DuplicateException.class);
     }
 
@@ -22,9 +22,9 @@ class LadderTest {
     @DisplayName("게임?")
     void game() throws DuplicateException {
         Ladder ladder = new Ladder(2);
-        ladder.add(1);
-        ladder.add(2);
-        ladder.add(3);
+        ladder.add("bong", 1);
+        ladder.add("big", 2);
+        ladder.add("cptbong", 3);
         ladder.move();
         assertThat(ladder.heights()).contains(2);
     }

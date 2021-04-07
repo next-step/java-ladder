@@ -1,10 +1,12 @@
 package nextstep;
 
 public class Coordinate {
+    private final String name;
     private final int width;
     private int height;
 
-    public Coordinate(int width, int height) {
+    public Coordinate(String name, int width, int height) {
+        this.name = name;
         this.width = width;
         this.height = height;
     }

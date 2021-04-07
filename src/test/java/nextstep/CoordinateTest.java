@@ -9,8 +9,8 @@ class CoordinateTest {
     @Test
     @DisplayName("좌표값검증")
     void coordinate() {
-        Coordinate coordinate1 = new Coordinate(1, 1);
-        Coordinate coordinate2 = new Coordinate(1, 2);
+        Coordinate coordinate1 = new Coordinate("bong", 1, 1);
+        Coordinate coordinate2 = new Coordinate("big", 1, 2);
         assertThat(coordinate1).isNotEqualTo(coordinate2);
     }
 }
