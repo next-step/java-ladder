@@ -1,20 +1,18 @@
 package nextstep.ladder.domain;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 public final class Ladder {
 
   private final LadderHeight ladderHeight;
   private final People people;
-  private final List<Line> lines;
+  private final Lines lines;
 
   public Ladder(final int height, final String[] names) {
-    this(new LadderHeight(height), new People(names), new ArrayList<>());
+    this(new LadderHeight(height), new People(names), new LadderLines(height, names));
   }
 
-  public Ladder(LadderHeight ladderHeight, People people, List<Line> lines) {
+  public Ladder(LadderHeight ladderHeight, People people, Lines lines) {
     this.ladderHeight = ladderHeight;
     this.people = people;
     this.lines = lines;
