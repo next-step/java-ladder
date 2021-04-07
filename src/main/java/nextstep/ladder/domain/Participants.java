@@ -3,6 +3,7 @@ package nextstep.ladder.domain;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Participants {
 
@@ -17,5 +18,9 @@ public class Participants {
                 .map(Participant::of)
                 .collect(Collectors.toList())
         );
+    }
+
+    public Stream<Participant> stream() {
+        return participants.stream();
     }
 }

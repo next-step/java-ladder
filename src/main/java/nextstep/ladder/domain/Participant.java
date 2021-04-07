@@ -24,8 +24,12 @@ public class Participant {
             throw new LadderException(NAME_EMPTY_EXCEPTION);
         }
 
-        if (name.length() > NAME_MAX_LENGTH) {
+        if (name.trim().length() > NAME_MAX_LENGTH) {
             throw new LadderException(NAME_LENGTH_MAX_FIVE);
         }
+    }
+
+    public String getName() {
+        return name;
     }
 }

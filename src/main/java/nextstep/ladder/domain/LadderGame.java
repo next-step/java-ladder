@@ -7,7 +7,7 @@ public class LadderGame {
 
     private static final int LADDER_HEIGHT_MIN = 1;
     private static final String LADDER_HEIGHT_MIN_MESSAGE = "사다리의 최소 높이는 1입니다.";
-    private static final LineGenerator lineGenerator = LineGenerator.getInstance();
+    private static final LineGenerator LINE_GENERATOR = LineGenerator.getInstance();
     private final Participants participants;
     private final Lines lines;
 
@@ -19,7 +19,7 @@ public class LadderGame {
 
     public static LadderGame of(final int ladderHeight, final String[] userName) {
         int width = userName.length - 1;
-        List<Line> lines = lineGenerator.generateLines(ladderHeight, width);
+        List<Line> lines = LINE_GENERATOR.generateLines(ladderHeight, width);
 
         return new LadderGame(ladderHeight, userName, lines);
     }
@@ -28,5 +28,13 @@ public class LadderGame {
         if (ladderHeight < LADDER_HEIGHT_MIN) {
             throw new LadderException(LADDER_HEIGHT_MIN_MESSAGE);
         }
+    }
+
+    public Participants getParticipants() {
+        return participants;
+    }
+
+    public Lines getLines() {
+        return lines;
     }
 }
