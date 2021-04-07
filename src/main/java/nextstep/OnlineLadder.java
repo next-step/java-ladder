@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-public class OnlineLadder {
-    private final List<Coordinate> coordinates;
+public class OnlineLadder implements Ladder {
+    protected final List<Coordinate> coordinates;
     private final int height;
 
     public OnlineLadder(int height) {
@@ -19,6 +19,7 @@ public class OnlineLadder {
         this.coordinates.add(coordinate);
     }
 
+    @Override
     public void move() {
         Random rand = new Random();
         coordinates.get(rand.nextInt(coordinates.size())).move();

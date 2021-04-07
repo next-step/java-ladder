@@ -9,11 +9,15 @@ class OnlineLadderTest {
     @Test
     @DisplayName("게임?")
     void game() {
-        OnlineLadder ladder = new OnlineLadder(2);
+        Ladder ladder = new OnlineLadder(2) {
+            @Override
+            public void move() {
+                coordinates.get(0).move();
+            }
+        };
         ladder.add("bong");
         ladder.add("big");
-        ladder.add("cptbong");
         ladder.move();
-        assertThat(ladder.heights()).contains(2);
+        assertThat(ladder.heights()).contains(1);
     }
 }
