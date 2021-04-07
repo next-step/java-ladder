@@ -13,12 +13,14 @@ public class Ladder {
     }
 
     public void add(Coordinate coordinate) throws DuplicateException {
-        if (coordinates.contains(coordinate)) {
+        if (contains(coordinate)) {
             throw new DuplicateException("Duplicate");
         }
         this.coordinates.add(coordinate);
     }
 
-    private void isDuplicate(Coordinate coordinate) {}
+    private boolean contains(Coordinate coordinate) {
+        return this.coordinates.contains(coordinate);
+    }
 
 }
