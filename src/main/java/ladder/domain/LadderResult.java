@@ -18,6 +18,10 @@ public class LadderResult {
 		return results.get(playerName);
 	}
 
+	public Map<String, String> getAllResult() {
+		return results;
+	}
+
 	private void mappingResultToPlayer(Ladder ladder, Players players, InputResult inputResult,
 		int playerStartPosition) {
 		int position = playerStartPosition;
