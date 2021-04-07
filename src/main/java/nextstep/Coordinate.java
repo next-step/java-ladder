@@ -1,8 +1,8 @@
 package nextstep;
 
 public class Coordinate {
-    int width;
-    int height;
+    private final int width;
+    private final int height;
 
     public Coordinate(int width, int height) {
         this.width = width;
