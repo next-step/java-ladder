@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class InputResult {
-	List<String> inputResults;
+	private final List<String> inputResults;
 
 	public InputResult(String inputResults, int playerSize) {
 		validateInputResult(inputResults, playerSize);
