@@ -1,11 +1,12 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.view.dto.PlayerNamesDto;
+
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Players {
-
-    private static final String NAME_DELIMITER = " ";
 
     private List<Player> players;
 
@@ -23,10 +24,7 @@ public class Players {
         return players.size();
     }
 
-    public String readOnlyPlayerNames() {
-        List<String> playerNames = players.stream()
-                .map(Player::getName)
-                .collect(Collectors.toList());
-        return String.join(NAME_DELIMITER, playerNames);
+    public PlayerNamesDto readOnlyPlayerNames() {
+        return new PlayerNamesDto(Collections.unmodifiableList(players));
     }
 }
