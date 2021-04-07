@@ -223,6 +223,14 @@ false   | false | true  |
 ![Ladder Step3 Diagram](docs/ladder3.png)
 
 
+> 사다리 타기 3단계 피드백
+
+- [x] [AtomicInteger의 사용 이유](https://github.com/next-step/java-ladder/pull/859#discussion_r607832479)
+- [x] [메서드명 정의](https://github.com/next-step/java-ladder/pull/859#discussion_r607838227)
+- [x] [객체의 책임](https://github.com/next-step/java-ladder/pull/859#discussion_r607842860)
+- [x] [인터페이스 활용](https://github.com/next-step/java-ladder/pull/859#discussion_r607845484)
+
+
 ## 사다리 타기 피드백
 - Ladder를 작은 단위로 쪼갠다.
   - Line (List<Point>)
