@@ -1,10 +1,8 @@
 package nextstep.ladder.generator;
 
-import nextstep.ladder.domain.Bar;
-
-import java.util.List;
+import nextstep.ladder.wrapper.Line;
 
 @FunctionalInterface
 public interface LineGenerator {
-    List<Bar> createLine(final int countOfPerson);
+    Line createLine(final int countOfPerson);
 }

@@ -1,6 +1,7 @@
 package nextstep.ladder.generator;
 
 import nextstep.ladder.domain.Bar;
+import nextstep.ladder.wrapper.Line;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,14 +14,13 @@ public class DefaultLineGenerator implements LineGenerator {
     private static final Random RANDOM = new Random();
 
     @Override
-    public List<Bar> createLine(final int countOfPerson) {
+    public Line createLine(final int countOfPerson) {
 
         List<Bar> bars = new ArrayList<>(Arrays.asList(Bar.init()));
-        // 초기 값 설정으로 1부터 시작
         IntStream.range(bars.size(), countOfPerson)
                 .forEach(value -> addNextPoint(bars, value));
 
-        return bars;
+        return Line.valueOf(bars);
     }
 
     private void addNextPoint(final List<Bar> bars, final int value) {
