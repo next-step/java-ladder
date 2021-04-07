@@ -19,5 +19,4 @@ class PersonCountTest {
     //then
     assertThat(personCount).isEqualTo(new PersonCount(countOfPerson));
   }
-
 }
