@@ -3,7 +3,6 @@ package nextstep.ladder.domain;
 import nextstep.ladder.exception.LadderException;
 import nextstep.ladder.strategy.LineConnectionRandomStrategy;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -22,7 +21,7 @@ public class LadderGame {
     }
 
     public static LadderGame of(final int ladderHeight, final String[] userName) {
-        int width = userName.length - 1;
+        int width = userName.length;
         List<Line> lines = IntStream.range(0, ladderHeight)
                 .mapToObj(h -> Line.of(width, new LineConnectionRandomStrategy()))
                 .collect(Collectors.toList());
