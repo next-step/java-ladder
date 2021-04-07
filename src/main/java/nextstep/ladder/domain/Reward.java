@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.dto.RewardDto;
+
 public class Reward {
 
     private static final int MINIMUM_AMOUNT = 0;
@@ -33,6 +35,10 @@ public class Reward {
         if (!rewardStr.equals(LOSING_STRING)) {
             throw new IllegalArgumentException("정수가 아닌 문자열은 '꽝' 만 허용됩니다.");
         }
+    }
+
+    public RewardDto export() {
+        return new RewardDto(rewardStr);
     }
 
 }
