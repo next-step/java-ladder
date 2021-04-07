@@ -1,8 +1,10 @@
 package nextstep.ladder.generator;
 
-import nextstep.ladder.wrapper.Line;
+import nextstep.ladder.domain.Bar;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -14,8 +16,9 @@ class DefaultLineGeneratorTest {
         // given
         DefaultLineGenerator defaultLineGenerator = new DefaultLineGenerator();
         // when
-        Line line = defaultLineGenerator.createLine(3);
+        List<Bar> actual = defaultLineGenerator.createLine(3).points().bars();
+        List<Bar> expected = defaultLineGenerator.createLine(3).points().bars();
         // then
-        assertThat(line).isEqualTo(defaultLineGenerator.createLine(3));
+        assertThat(actual.size()).isEqualTo(expected.size());
     }
 }
