@@ -53,6 +53,4 @@ public class LadderGameController {
         resultView.printUserResult(ladderResult.findOf(findUser));
         return false;
     }
-
-
 }
