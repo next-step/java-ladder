@@ -1,29 +1,27 @@
 package ladder.domain;
 
-public enum Point {
-    CONNECT(true, "-----|"),
-    DISCONNECT(false, "     |");
+import java.util.HashMap;
+import java.util.Map;
 
-    private final boolean connection;
-    private final String view;
+public class Point {
 
-    Point(boolean connection, String view) {
-        this.connection = connection;
-        this.view = view;
+    private final boolean point;
+    private static final Map<Boolean, Point> points = new HashMap<>();
+
+    static {
+        points.put(true, new Point(true));
+        points.put(false, new Point(false));
     }
 
-    public static Point from(boolean connection) {
-        if (connection) {
-            return CONNECT;
-        }
-        return DISCONNECT;
+    private Point(boolean point) {
+        this.point = point;
     }
 
-    public boolean getConnection() {
-        return this.connection;
+    public static Point from(boolean point) {
+        return points.get(point);
     }
 
-    public String view() {
-        return this.view;
+    public boolean toBoolean() {
+        return point;
     }
 }

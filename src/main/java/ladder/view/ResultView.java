@@ -6,6 +6,8 @@ import ladder.domain.Point;
 
 public class ResultView {
     private static final String MESSAGE_RESULT = "실행결과";
+    private static final String CONNECT = "-----|";
+    private static final String DIS_CONNECT = "     |";
 
     private ResultView() {
     }
@@ -20,9 +22,9 @@ public class ResultView {
 
     public static void printLadder(Ladder ladder) {
         ladder.getLadder().forEach(line -> {
-            line.getPoints().stream()
-                .map(Point::view)
-                .forEach(System.out::print);
+            line.getPoint().stream()
+                .map(Point::toBoolean)
+                .forEach(point -> System.out.print(point ? CONNECT : DIS_CONNECT));
             System.out.println();
         });
     }

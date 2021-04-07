@@ -9,7 +9,7 @@ import java.util.stream.IntStream;
 public class Line {
     private static final int MIN_PERSON = 2;
 
-    private final List<Point> points = new ArrayList<>();
+    private final List<Point> line = new ArrayList<>();
 
     public Line(int countOfPerson, ConnectStrategy connectStrategy) {
         validate(countOfPerson);
@@ -23,23 +23,23 @@ public class Line {
     }
 
     private void create(int countOfPerson, ConnectStrategy connectStrategy) {
-        points.add(Point.DISCONNECT);
+        line.add(Point.from(false));
 
         IntStream.range(0, countOfPerson - 1)
             .forEach((index) -> {
-                points.add(connect(index, connectStrategy.connectable()));
+                line.add(connect(index, connectStrategy.connectable()));
             });
     }
 
     private Point connect(int index, boolean connectable) {
-        if (points.get(index).getConnection()) {
-            return Point.DISCONNECT;
+        if (line.get(index).toBoolean()) {
+            return Point.from(false);
         }
         return Point.from(connectable);
     }
 
-    public List<Point> getPoints() {
-        return Collections.unmodifiableList(this.points);
+    public List<Point> getPoint() {
+        return Collections.unmodifiableList(this.line);
     }
 
     @Override
@@ -48,12 +48,12 @@ public class Line {
             return true;
         if (o == null || getClass() != o.getClass())
             return false;
-        Line line = (Line)o;
-        return Objects.equals(points, line.points);
+        Line line1 = (Line)o;
+        return Objects.equals(line, line1.line);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(points);
+        return Objects.hash(line);
     }
 }
