@@ -1,20 +1,21 @@
 package ladder.domain;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
 
   private static final int MIN_LADDER_HEIGHT = 2;
-  private final List<Line> ladder = new ArrayList<>();
+  private final List<Line> ladder;
 
   public Ladder(Players players, int height) {
     validateHeight(height);
     int countOfPerson = players.names().size();
 
-    IntStream.range(0, height)
-        .forEach(i -> ladder.add(new Line(countOfPerson)));
+    ladder = IntStream.range(0, height)
+        .mapToObj(i -> new Line(countOfPerson))
+        .collect(Collectors.toList());
   }
 
   public List<Line> lines() {
