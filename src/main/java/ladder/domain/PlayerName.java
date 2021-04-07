@@ -2,6 +2,8 @@ package ladder.domain;
 
 import java.util.Objects;
 
+import ladder.exception.MaximumNameLengthException;
+
 public class PlayerName {
     private static final int MAX_NAME_LENGTH = 5;
 
@@ -13,7 +15,7 @@ public class PlayerName {
 
     private String validate(String playerName) {
         if (playerName == null || playerName.isEmpty() || playerName.length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException("참여자의 이름은 최대 5글자 이하입니다.");
+            throw new MaximumNameLengthException("참여자의 이름은 최대 5글자 이하입니다.");
         }
         return playerName;
     }

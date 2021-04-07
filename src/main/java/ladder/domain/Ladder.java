@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
+import ladder.exception.MinimumLadderHeightException;
+
 public class Ladder {
     private static final int MIN_HEIGHT = 1;
     private final ConnectStrategy connectStrategy = new RandomConnectStrategy();
@@ -17,7 +19,7 @@ public class Ladder {
 
     private void validate(int height) {
         if (height < MIN_HEIGHT) {
-            throw new IllegalArgumentException("사디리 높이는 최소 1이상이여야 합니다.");
+            throw new MinimumLadderHeightException("사디리 높이는 최소 1이상이여야 합니다.");
         }
     }
 

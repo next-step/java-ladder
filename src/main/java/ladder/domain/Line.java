@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.IntStream;
 
+import ladder.exception.MinimumParticipantException;
+
 public class Line {
     private static final int MIN_PERSON = 2;
 
@@ -18,7 +20,7 @@ public class Line {
 
     private void validate(int countOfPerson) {
         if (countOfPerson < MIN_PERSON) {
-            throw new IllegalArgumentException("참여자의 수는 최소 " + MIN_PERSON + "명 이상이여야 합니다.");
+            throw new MinimumParticipantException("참여자의 수는 최소 " + MIN_PERSON + "명 이상이여야 합니다.");
         }
     }
 
