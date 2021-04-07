@@ -10,9 +10,19 @@ public class Client {
 
         int ladderCount = Integer.parseInt(ladderCountString);
         String[] names = namesString.split(",");
-        Ladder ladder = new Ladder(ladderCount);
+        OnlineLadder ladder = new OnlineLadder(ladderCount);
         for (String name : names) {
             ladder.add(name);
         }
+        for (Integer height : ladder.heights()) {
+            System.out.println("height = " + height);
+        }
+        System.out.println("");
+        ladder.move();
+        for (Integer height : ladder.heights()) {
+            System.out.println("height = " + height);
+            System.out.println("");
+        }
+
     }
 }
