@@ -25,23 +25,23 @@ class LineTest {
   @DisplayName("사람의 수를 입력받아서 Line을 생성한다.")
   void create() {
     //given
-    final int countOfPerson = 2;
+    final PersonCount personCount = new PersonCount(2);
 
     //when
-    final Line line = new Line(countOfPerson, lineCreationStrategy);
+    final Line line = new Line(personCount, lineCreationStrategy);
 
     //then
-    assertThat(line).isEqualTo(new Line(countOfPerson, lineCreationStrategy));
+    assertThat(line).isEqualTo(new Line(personCount, lineCreationStrategy));
   }
 
   @Test
   @DisplayName("사람의 수는 최소 2명이어야 한다.")
   void createFailWhenUnderTwoPerson() {
     assertAll(
-        () -> assertThatThrownBy(() -> new Line(0, lineCreationStrategy))
+        () -> assertThatThrownBy(() -> new Line(new PersonCount(0), lineCreationStrategy))
             .isInstanceOf(PersonCountTooLowException.class)
             .hasMessage(PersonCountTooLowException.PERSON_COUNT_TOO_LOW),
-        () -> assertThatThrownBy(() -> new Line(1, lineCreationStrategy))
+        () -> assertThatThrownBy(() -> new Line(new PersonCount(1), lineCreationStrategy))
             .isInstanceOf(PersonCountTooLowException.class)
             .hasMessage(PersonCountTooLowException.PERSON_COUNT_TOO_LOW)
     );

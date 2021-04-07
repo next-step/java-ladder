@@ -1,13 +1,23 @@
 package nextstep.ladder.domain;
 
 import java.util.Objects;
+import nextstep.ladder.exception.PersonCountTooLowException;
 
 public final class PersonCount {
+
+  public static final int MIN = 2;
 
   private final int personCount;
 
   public PersonCount(final int countOfPerson) {
+    validatePersonCount(countOfPerson);
     this.personCount = countOfPerson;
+  }
+
+  private void validatePersonCount(final int countOfPerson) {
+    if (countOfPerson < MIN) {
+      throw new PersonCountTooLowException();
+    }
   }
 
   @Override
