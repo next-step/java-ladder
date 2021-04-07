@@ -2,6 +2,8 @@ package ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -33,5 +35,39 @@ public class LineTest {
     Point point = line.connectPoint(() -> true);
 
     assertThat(point).isEqualTo(Point.CONNECT);
+  }
+
+  @Test
+  @DisplayName("[Line] 오른쪽으로 이동 테스트")
+  void move_right_test() {
+    /*
+    *   user1   user2
+    *       |-----|
+    *   user1은 오른쪽으로 이동
+    * */
+    Line line = new Line(2, () -> true);
+
+    assertThat(line.move(0)).isEqualTo(1);
+  }
+
+  @Test
+  @DisplayName("[Line] 왼쪽으로 이동 테스트")
+  void move_left_test() {
+    /*
+     *   user1   user2
+     *       |-----|
+     *   user2은 왼쪽으로 이동
+     * */
+    Line line = new Line(2, () -> true);
+
+    assertThat(line.move(1)).isEqualTo(-1);
+  }
+
+  @Test
+  @DisplayName("[Line] 연결되지 않은 경우 테스트")
+  void move_stay_test() {
+    Line line = new Line(2, () -> false);
+
+    assertThat(line.move(0)).isEqualTo(0);
   }
 }
