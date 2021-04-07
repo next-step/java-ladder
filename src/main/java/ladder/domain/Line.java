@@ -27,7 +27,7 @@ public class Line {
 
         IntStream.range(0, countOfPerson - 1)
             .forEach((index) -> {
-                line.add(connect(index, connectStrategy.connectable()));
+                line.add(Point.from(connectStrategy.connectable(line.get(index).toBoolean())));
             });
     }
 

@@ -20,7 +20,12 @@ public class LineTest {
 
     @BeforeEach
     void setUp() {
-        connectStrategy = () -> true;
+        connectStrategy = (connect) -> {
+            if (connect) {
+                return false;
+            }
+            return true;
+        };
     }
 
     @Test
