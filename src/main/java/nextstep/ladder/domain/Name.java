@@ -14,14 +14,10 @@ public class Name {
     }
 
     public static Name valueOf(final String name) {
-        checkNameRange(name);
-        return new Name(name);
-    }
-
-    private static void checkNameRange(final String name) {
         if(name.length() > NAME_MAX_SIZE || name.length() < NAME_MIN_SIZE) {
             throw new IllegalArgumentException(GUIDE_ERR_USER_MAX_SIZE);
         }
+        return new Name(name);
     }
 
     @Override
