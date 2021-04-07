@@ -2,25 +2,25 @@ package ladder.domain;
 
 import java.util.Objects;
 
-public class Name {
+public class PlayerName {
     private static final int MAX_NAME_LENGTH = 5;
 
-    private final String name;
+    private final String playerName;
 
-    public Name(String name) {
-        validate(name);
-        this.name = name;
+    public PlayerName(String playerName) {
+        validate(playerName);
+        this.playerName = playerName;
     }
 
-    private void validate(String name) {
-        if (name == null || name.isEmpty() || name.length() > MAX_NAME_LENGTH) {
+    private void validate(String playerName) {
+        if (playerName == null || playerName.isEmpty() || playerName.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException("참여자의 이름은 최대 5글자 이하입니다.");
         }
     }
 
     @Override
     public String toString() {
-        return name;
+        return playerName;
     }
 
     @Override
@@ -29,12 +29,12 @@ public class Name {
             return true;
         if (o == null || getClass() != o.getClass())
             return false;
-        Name name1 = (Name)o;
-        return Objects.equals(name, name1.name);
+        PlayerName that = (PlayerName)o;
+        return Objects.equals(playerName, that.playerName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(playerName);
     }
 }

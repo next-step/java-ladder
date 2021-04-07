@@ -8,16 +8,16 @@ import java.util.stream.Collectors;
 public class Player {
     private static final String SEPARATOR = ",";
 
-    private final List<Name> players;
+    private final List<PlayerName> players;
 
     public Player(String names) {
         players = Arrays.stream(names.split(SEPARATOR))
             .map(String::trim)
-            .map(Name::new)
+            .map(PlayerName::new)
             .collect(Collectors.toList());
     }
 
-    public List<Name> getNames() {
+    public List<PlayerName> getNames() {
         return Collections.unmodifiableList(players);
     }
 }

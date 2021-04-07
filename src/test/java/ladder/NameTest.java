@@ -5,21 +5,21 @@ import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import ladder.domain.Name;
+import ladder.domain.PlayerName;
 
 public class NameTest {
 
     @Test
     void 생성_테스트() {
         // given
-        Name name = new Name("dhlee");
+        PlayerName playerName = new PlayerName("dhlee");
         // when & then
-        assertThat(name).isEqualTo(new Name("dhlee"));
+        assertThat(playerName).isEqualTo(new PlayerName("dhlee"));
     }
 
     @Test
     void 이름길이_유효성_테스트() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> new Name(""));
-        Assertions.assertThrows(IllegalArgumentException.class, () -> new Name("example"));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new PlayerName(""));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new PlayerName("example"));
     }
 }
