@@ -18,13 +18,14 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 
 class LineTest {
 
+
     @DisplayName("Line 생성 테스트")
     @Test
     void create_라인_생성테스트() {
         // given
-        Line line = Line.valueOf(2);
+        Line line = Line.valueOf(Bar.init(), Bar.valueOf(true));
         // when
-        Line expected = Line.valueOf(2);
+        Line expected = Line.valueOf(Bar.init(), Bar.valueOf(true));
         // then
         assertThat(line).isEqualTo(expected);
     }
@@ -33,10 +34,9 @@ class LineTest {
     @Test
     void create_랜덤_전략_테스트() {
         // given
-        LineGenerator lineGenerator = countOfPerson -> Arrays.asList(Bar.init(), Bar.valueOf(true));
+        Line line = Line.valueOf(Bar.init(), Bar.valueOf(true));
         // when
-        Line line = Line.valueOf(2, lineGenerator);
-        List<Bar> bars = line.points();
+        List<Bar> bars = line.points().bars();
         // then
         assertAll(
                 () -> assertThat(bars.get(0).isExist()).isFalse(),
@@ -48,36 +48,11 @@ class LineTest {
     @Test
     void check_point_값_확인_테스트() {
         // given
-        Line line = Line.valueOf(2, countOfPerson -> Arrays.asList(Bar.init(), Bar.valueOf(true), Bar.init()));
+        Line line = Line.valueOf(Bar.init(), Bar.valueOf(true), Bar.init());
         // when
         Bar[] expected = {Bar.init(), Bar.valueOf(true), Bar.init()};
         // then
-        assertThat(line.points()).containsExactly(expected);
+        assertThat(line.points().bars()).contains(expected);
     }
 
-    private static Stream<Arguments> ladderMovedTestCase() {
-        /**
-         * user1  user2  user3
-         *      |-----|     |
-         *
-         * 상황에서 이동 테스트
-         */
-        return Stream.of(
-                Arguments.of(Position.valueOf(0), Position.valueOf(1)), // 1 -> 0
-                Arguments.of(Position.valueOf(1), Position.valueOf(0)) // 0 -> 1
-        );
-    }
-
-    @DisplayName("|-----| 인 사다리에서 이동이 가능한지 테스트")
-    @ParameterizedTest
-    @MethodSource(value = "ladderMovedTestCase")
-    void move_테스트(Position actual, Position expected) {
-        // given
-        LineGenerator lineGenerator = countOfPerson -> Arrays.asList(Bar.init(), Bar.valueOf(true), Bar.init());
-        Line line = Line.valueOf(3, lineGenerator);
-        // when
-        Position movedPosition = line.move(actual);
-        // then
-        assertThat(movedPosition).isEqualTo(expected);
-    }
 }
