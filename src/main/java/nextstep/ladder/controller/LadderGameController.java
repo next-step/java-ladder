@@ -9,7 +9,7 @@ import nextstep.ladder.wrapper.LadderResult;
 import nextstep.ladder.wrapper.LadderRewards;
 import nextstep.ladder.wrapper.Participants;
 
-import static nextstep.ladder.controller.LadderParameterHandler.parseArgumentResolver;
+import static nextstep.ladder.controller.LadderParameterHelper.parseArgumentResolver;
 
 public class LadderGameController {
 
