@@ -20,16 +20,6 @@ public class LadderRewards {
         return new LadderRewards(ladderRewards);
     }
 
-    public static LadderRewards valueOf(final String... ladderRewards) {
-        return new LadderRewards(parseRewards(ladderRewards));
-    }
-
-    private static Reward[] parseRewards(final String[] ladderRewards) {
-        return Arrays.stream(ladderRewards)
-                .map(Reward::valueOf)
-                .toArray(Reward[]::new);
-    }
-
     public List<Reward> getRewards() {
         return Collections.unmodifiableList(rewards);
     }

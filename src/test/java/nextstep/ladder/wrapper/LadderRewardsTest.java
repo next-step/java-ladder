@@ -1,6 +1,6 @@
 package nextstep.ladder.wrapper;
 
-import nextstep.ladder.wrapper.LadderRewards;
+import nextstep.ladder.domain.Reward;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,9 +12,10 @@ class LadderRewardsTest {
     @Test
     void create_생성_테스트() {
         // given
-        LadderRewards ladderRewards = LadderRewards.valueOf("꽝", "5000");
+        Reward[] paramRewards = {Reward.valueOf("꽝"), Reward.valueOf("5000")};
+        LadderRewards ladderRewards = LadderRewards.valueOf(paramRewards);
         // when
-        LadderRewards expected = LadderRewards.valueOf("꽝", "5000");
+        LadderRewards expected = LadderRewards.valueOf(paramRewards);
         // then
         assertThat(ladderRewards).isEqualTo(expected);
     }
