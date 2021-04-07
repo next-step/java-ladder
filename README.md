@@ -231,6 +231,8 @@ false   | false | true  |
 - [x] [인터페이스 활용](https://github.com/next-step/java-ladder/pull/859#discussion_r607845484)
 
 
+![Ladder Step3 Feedback Diagram](docs/ladder3_1.png)
+
 ## 사다리 타기 피드백
 - Ladder를 작은 단위로 쪼갠다.
   - Line (List<Point>)
