@@ -9,7 +9,7 @@ import nextstep.ladder.wrapper.Participants;
 import java.util.Arrays;
 import java.util.Objects;
 
-public class LadderParameterProcessor {
+public final class LadderParameterProcessor {
 
     private static final String GUIDE_ERR_NOT_EQUALS_SIZE = "참여자 수에 일치하는 결과 값을 입력해야 합니다.";
     private static final String GUIDE_ERR_INPUT_DATA = "입력 값이 없습니다.";

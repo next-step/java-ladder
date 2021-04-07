@@ -2,7 +2,7 @@ package nextstep.ladder.controller;
 
 import java.util.function.Supplier;
 
-public class LadderParameterHandler {
+public final class LadderParameterHandler {
     private LadderParameterHandler() {}
 
     static <T> T parseArgumentResolver(Supplier<T> method) {
