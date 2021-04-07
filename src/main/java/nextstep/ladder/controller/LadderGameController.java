@@ -9,32 +9,37 @@ import nextstep.ladder.wrapper.LadderResult;
 import nextstep.ladder.wrapper.LadderRewards;
 import nextstep.ladder.wrapper.Participants;
 
-import java.util.*;
+import static nextstep.ladder.controller.LadderParameterHandler.parseArgumentResolver;
 
 public class LadderGameController {
 
-    private static final String SPLIT_DELIMITER = ",";
-    public static final String GUIDE_ERR_NOT_EQUALS_SIZE = "참여자 수에 일치하는 결과 값을 입력해야 합니다.";
-    public static final String GUIDE_ERR_INPUT_DATA = "입력 값이 없습니다.";
     public static final String GUIDE_LADDER_END_SIGNATURE = "all";
+    private final LadderParameterProcessor processor;
+    private final ResultView resultView;
 
-    private final InputView inputView = new InputView();
-    private final ResultView resultView = new ResultView();
+    public LadderGameController(InputView inputView, ResultView resultView) {
+        this(new LadderParameterProcessor(inputView), resultView);
+    }
+
+    public LadderGameController(LadderParameterProcessor processor, ResultView resultView) {
+        this.processor = processor;
+        this.resultView = resultView;
+    }
 
     public void start() {
 
-        Participants participants = processUsers(inputView.inputParticipants());
-        LadderRewards ladderRewards = processLadderRewards(inputView.inputLadderRewards(), participants.size());
-        Height height = processHeight(inputView.inputLadderHeight());
-
+        Participants participants = parseArgumentResolver(processor::processUsers);
+        LadderRewards rewards =
+                parseArgumentResolver(() -> processor.processLadderRewards(participants.size()));
+        Height height = parseArgumentResolver(processor::processHeight);
         Ladder ladder = Ladder.valueOf(participants, height);
 
-        LadderResult rewardResult = LadderService.rideLadder(participants, ladder, ladderRewards);
-        resultView.printResult(ladder, participants, ladderRewards);
+        LadderResult rewardResult = LadderService.rideLadder(participants, ladder, rewards);
+        resultView.printResult(ladder, participants, rewards);
 
         String user;
         do {
-            user = inputView.inputUserResult();
+            user = parseArgumentResolver(processor::inputUserResult);
         } while (!isOneOrAll(rewardResult, user));
     }
 
@@ -48,33 +53,5 @@ public class LadderGameController {
         return false;
     }
 
-    private LadderRewards processLadderRewards(String inputResult, int participantSize) {
-        String[] ladderRewards = parseStringToArrays(inputResult);
-        if(ladderRewards.length != participantSize) {
-            throw new IllegalArgumentException(GUIDE_ERR_NOT_EQUALS_SIZE);
-        }
-        return LadderRewards.valueOf(ladderRewards);
-    }
 
-    private Height processHeight(String inputLadderHeight) {
-        checkNullOrEmpty(inputLadderHeight);
-        return Height.valueOf(Integer.parseInt(inputLadderHeight));
-    }
-
-    private Participants processUsers(String inputParticipants) {
-        checkNullOrEmpty(inputParticipants);
-        return Participants.valueOf(parseStringToArrays(inputParticipants));
-    }
-
-    private void checkNullOrEmpty(String inputValue) {
-        if (Objects.isNull(inputValue) || inputValue.isEmpty()) {
-            throw new IllegalArgumentException(GUIDE_ERR_INPUT_DATA);
-        }
-    }
-
-    private String[] parseStringToArrays(final String words) {
-        return Arrays.stream(words.split(SPLIT_DELIMITER))
-                .map(String::trim)
-                .toArray(String[]::new);
-    }
 }
