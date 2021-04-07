@@ -20,12 +20,12 @@ public class LadderRewards {
         return new LadderRewards(ladderRewards);
     }
 
-    public List<Reward> getRewards() {
-        return Collections.unmodifiableList(rewards);
-    }
-
     public Reward findReward(final Position endPosition) {
         return rewards.get(endPosition.currentPosition());
+    }
+
+    public List<Reward> getRewards() {
+        return Collections.unmodifiableList(rewards);
     }
 
     @Override

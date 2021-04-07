@@ -19,11 +19,11 @@ public class Line {
         this.bars = Bars.valueOf(bars);
     }
 
-    public static Line valueOf(Bar... bars) {
+    public static Line valueOf(final Bar... bars) {
         return new Line(bars);
     }
 
-    public static Line valueOf(List<Bar> bars) {
+    public static Line valueOf(final List<Bar> bars) {
         return new Line(bars);
     }
 

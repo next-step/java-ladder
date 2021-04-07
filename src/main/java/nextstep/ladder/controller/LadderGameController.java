@@ -17,11 +17,11 @@ public class LadderGameController {
     private final ResultView resultView;
     private final LineGenerator generator;
 
-    public LadderGameController(InputView inputView, ResultView resultView) {
+    public LadderGameController(final InputView inputView, final ResultView resultView) {
         this(new LadderParameterProcessor(inputView), resultView, new DefaultLineGenerator());
     }
 
-    public LadderGameController(LadderParameterProcessor processor, ResultView resultView, LineGenerator generator) {
+    public LadderGameController(final LadderParameterProcessor processor, final ResultView resultView, final LineGenerator generator) {
         this.processor = processor;
         this.resultView = resultView;
         this.generator = generator;
@@ -34,23 +34,23 @@ public class LadderGameController {
         Height height = parseArgumentResolver(processor::processHeight);
 
         Ladder ladder = LadderFactory.valueOf(participants, height, generator);
-        LadderResult rewardResult = LadderFactory.rideLadder(participants, ladder, rewards);
+        LadderResult ladderResult = LadderFactory.rideLadder(participants, ladder, rewards);
 
         resultView.printResult(ladder, participants, rewards);
 
         String user;
         do {
             user = parseArgumentResolver(processor::inputUserResult);
-        } while (!isOneOrAll(rewardResult, user));
+        } while (!isOneOrAll(ladderResult, user));
     }
 
-    private boolean isOneOrAll(LadderResult rewardResult, String user) {
+    private boolean isOneOrAll(final LadderResult ladderResult, final String user) {
         if(user.equals(GUIDE_LADDER_END_SIGNATURE)) {
-            resultView.printUserResult(rewardResult.findAll());
+            resultView.printUserResult(ladderResult.findAll());
             return true;
         }
         User findUser = User.valueOf(user);
-        resultView.printUserResult(rewardResult.findOf(findUser));
+        resultView.printUserResult(ladderResult.findOf(findUser));
         return false;
     }
 

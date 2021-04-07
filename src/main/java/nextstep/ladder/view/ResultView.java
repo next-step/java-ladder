@@ -13,9 +13,10 @@ import static java.lang.System.out;
 
 public class ResultView {
 
-    private static final String STRING_FORMAT_RENDER = "%6s";
-    private static final String GUIDE_HEAD_LINE = "\n사다리 타기 결과\n";
     private static final String LADDER_VERTICAL_LINE = "|";
+    private static final String STRING_FORMAT_RENDER = "%6s";
+    public static final String GUIDE_LADDER_RESULT = "\n실행 결과";
+    private static final String GUIDE_HEAD_LINE = "\n사다리 타기 결과\n";
     private static final String LADDER_HORIZON = "-----";
     private static final String LADDER_EMPTY = "     ";
     private static final String EMPTY_LINE = "";
@@ -64,7 +65,7 @@ public class ResultView {
     }
 
     private String renderLadder(final Line line) {
-        return line.points()
+        return line.points().bars()
                 .stream()
                 .map(this::renderPerPoint)
                 .collect(Collectors.joining(LADDER_VERTICAL_LINE, EMPTY_LINE, LADDER_VERTICAL_LINE));
@@ -78,12 +79,12 @@ public class ResultView {
     }
 
     public void printUserResult(final List<String> allUser) {
-        out.println("\n실행 결과");
+        out.println(GUIDE_LADDER_RESULT);
         allUser.forEach(out::println);
     }
 
     public void printUserResult(final String user) {
-        out.println("\n실행 결과");
+        out.println(GUIDE_LADDER_RESULT);
         out.println(user);
     }
 }

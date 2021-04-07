@@ -19,15 +19,15 @@ public class Ladder {
         return new Ladder(lines);
     }
 
-    public List<Line> lines() {
-        return Collections.unmodifiableList(lines);
-    }
-
     public Position findEndPosition(Position movePosition) {
         for(Line line : lines) {
             movePosition = line.move(movePosition);
         }
         return movePosition;
+    }
+
+    public List<Line> lines() {
+        return Collections.unmodifiableList(lines);
     }
 
     @Override

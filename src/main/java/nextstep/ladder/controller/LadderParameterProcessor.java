@@ -17,7 +17,7 @@ public final class LadderParameterProcessor {
 
     private final InputView inputView;
 
-    LadderParameterProcessor(InputView inputView) {
+    LadderParameterProcessor(final InputView inputView) {
         this.inputView = inputView;
     }
 
@@ -27,7 +27,7 @@ public final class LadderParameterProcessor {
         return Participants.valueOf(parseStringToArrays(participants));
     }
 
-    LadderRewards processLadderRewards(int participantSize) {
+    LadderRewards processLadderRewards(final int participantSize) {
         String[] ladderRewards = parseStringToArrays(inputView.inputLadderRewards());
         Reward[] rewards = parseRewards(ladderRewards);
         if(ladderRewards.length != participantSize) {
@@ -55,7 +55,7 @@ public final class LadderParameterProcessor {
                 .toArray(Reward[]::new);
     }
 
-    private void checkNullOrEmpty(String inputValue) {
+    private void checkNullOrEmpty(final String inputValue) {
         if (Objects.isNull(inputValue) || inputValue.isEmpty()) {
             throw new IllegalArgumentException(GUIDE_ERR_INPUT_DATA);
         }

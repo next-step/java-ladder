@@ -14,15 +14,15 @@ public class Bars {
 
     private final List<Bar> line;
 
-    private Bars(List<Bar> bars) {
+    private Bars(final List<Bar> bars) {
         this.line = bars;
     }
 
-    public static Bars valueOf(List<Bar> bars) {
+    public static Bars valueOf(final List<Bar> bars) {
         return new Bars(bars);
     }
 
-    public static Bars valueOf(Bar... bars) {
+    public static Bars valueOf(final Bar... bars) {
         return new Bars(Arrays.asList(bars));
     }
 
@@ -30,7 +30,7 @@ public class Bars {
         return Collections.unmodifiableList(line);
     }
 
-    public Position move(Position userPosition) {
+    public Position move(final Position userPosition) {
         int currentPosition = userPosition.currentPosition();
 
         if(isMoveLeft(currentPosition)) {
@@ -56,7 +56,7 @@ public class Bars {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) return true;
         if (!(o instanceof Bars)) return false;
         final Bars bars1 = (Bars) o;
