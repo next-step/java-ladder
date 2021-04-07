@@ -2,6 +2,7 @@ package nextstep.ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -36,8 +37,13 @@ class LineTest {
   @Test
   @DisplayName("사람의 수는 최소 2명이어야 한다.")
   void createFailWhenUnderTwoPerson() {
-    assertThatThrownBy(() -> new Line(0, lineCreationStrategy))
-        .isInstanceOf(PersonCountTooLowException.class)
-        .hasMessage(PersonCountTooLowException.PERSON_COUNT_TOO_LOW);
+    assertAll(
+        () -> assertThatThrownBy(() -> new Line(0, lineCreationStrategy))
+            .isInstanceOf(PersonCountTooLowException.class)
+            .hasMessage(PersonCountTooLowException.PERSON_COUNT_TOO_LOW),
+        () -> assertThatThrownBy(() -> new Line(1, lineCreationStrategy))
+            .isInstanceOf(PersonCountTooLowException.class)
+            .hasMessage(PersonCountTooLowException.PERSON_COUNT_TOO_LOW)
+    );
   }
 }
