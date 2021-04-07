@@ -21,7 +21,7 @@ public class LadderGame {
     }
 
     public static LadderGame of(final int ladderHeight, final String[] userName) {
-        int width = userName.length;
+        int width = userName.length - 1;
         List<Line> lines = IntStream.range(0, ladderHeight)
                 .mapToObj(h -> Line.of(width, new LineConnectionRandomStrategy()))
                 .collect(Collectors.toList());

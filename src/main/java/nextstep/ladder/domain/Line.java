@@ -5,6 +5,7 @@ import nextstep.ladder.strategy.LineConnectionStrategy;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Line {
 
@@ -25,5 +26,9 @@ public class Line {
                 }).collect(Collectors.toList());
 
         return new Line(line);
+    }
+
+    public Stream<Boolean> stream() {
+        return line.stream();
     }
 }
