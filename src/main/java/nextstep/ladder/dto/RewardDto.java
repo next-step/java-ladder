@@ -8,7 +8,7 @@ public class RewardDto {
         this.reward = reward;
     }
 
-    public String getReward() {
+    public String getRewardString() {
         return reward;
     }
 }
