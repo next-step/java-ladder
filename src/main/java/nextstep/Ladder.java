@@ -4,6 +4,8 @@ import nextstep.exception.DuplicateException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class Ladder {
     private final List<Coordinate> coordinates;
@@ -27,9 +29,14 @@ public class Ladder {
     }
 
     public void move() {
+        Optional<Coordinate> first = coordinates.stream()
+                .findFirst();
+        first.get().move();
     }
 
     public List<Integer> heights() {
-        return null;
+        return coordinates.stream()
+                .map(Coordinate::getHeight)
+                .collect(Collectors.toList());
     }
 }
