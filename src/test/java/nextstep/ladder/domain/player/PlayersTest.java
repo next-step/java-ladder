@@ -18,9 +18,9 @@ class PlayersTest {
         List<String> playerNameList = Arrays.asList("pobi", "honux", "crong", "jk");
 
         Players players = Players.of(playerNameList);
-        PlayerDto jk = players.searchBy(new Name("jk"))
+        PlayerDto jk = players.searchBy("jk")
                               .export();
-        assertThat(jk.getNameDto()).isEqualTo("jk");
+        assertThat(jk.getName()).isEqualTo("jk");
     }
 
     @Test
@@ -29,7 +29,7 @@ class PlayersTest {
         List<String> playerNameList = Arrays.asList("pobi", "honux", "crong", "jk");
         Players players = Players.of(playerNameList);
 
-        assertThatThrownBy(() -> players.searchBy(new Name("tdd"))).isInstanceOf(RuntimeException.class);
+        assertThatThrownBy(() -> players.searchBy("tdd")).isInstanceOf(RuntimeException.class);
     }
     
 }

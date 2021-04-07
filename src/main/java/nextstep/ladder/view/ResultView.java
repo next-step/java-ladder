@@ -19,7 +19,7 @@ public class ResultView {
 
     public void printPlayers(List<PlayerDto> players) {
         List<String> paddedNameList = players.stream()
-                                             .map(player -> padToLeft(player.getNameDto(), STRING_ELEMENT_SIZE))
+                                             .map(player -> padToLeft(player.getName(), STRING_ELEMENT_SIZE))
                                              .collect(Collectors.toList());
 
         System.out.println(String.join(WHITE_SPACE, paddedNameList));

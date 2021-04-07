@@ -17,6 +17,13 @@ class PlayerTest {
     }
 
     @Test
+    @DisplayName("특정 이름은 사용할 수 없다.")
+    void throwExceptionIfUseForbiddenName() {
+        assertThatThrownBy(() -> new Player("all", 0)).isInstanceOf(RuntimeException.class);
+    }
+
+
+    @Test
     @DisplayName("참가자가 사다리를 탄다.")
     void passThroughLadder() {
         Ladder ladder = FakeLadder.ladder();
@@ -25,4 +32,5 @@ class PlayerTest {
 
         assertThat(player.passThrough(ladder)).isZero();
     }
+
 }

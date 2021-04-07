@@ -5,20 +5,42 @@ import nextstep.ladder.dto.PlayerDto;
 
 public class Player {
 
-    private final Name name;
+    private static final int NAME_MAXIMUM_LENGTH = 5;
+    private static final String FORBIDDEN_NAME = "all";
+
+    private final String name;
     private final int position;
 
     public Player(String name, int position) {
-        this.name = new Name(name);
+        validate(name);
+
+        this.name = name;
         this.position = position;
     }
 
-    public boolean hasName(Name targetName) {
+    private void validate(String name) {
+        validateLength(name);
+        validateName(name);
+    }
+
+    private void validateLength(String name) {
+        if (name == null || name.length() > NAME_MAXIMUM_LENGTH) {
+            throw new IllegalArgumentException("이름은 다섯 글자까지 허용됩니다.");
+        }
+    }
+
+    private void validateName(String name) {
+        if (name.equals(FORBIDDEN_NAME)) {
+            throw new IllegalArgumentException("all 은 이름으로 사용할 수 없습니다.");
+        }
+    }
+
+    public boolean hasName(String targetName) {
         return name.equals(targetName);
     }
 
     public PlayerDto export() {
-        return new PlayerDto(name.export());
+        return new PlayerDto(name);
     }
 
     public int passThrough(Ladder ladder) {
