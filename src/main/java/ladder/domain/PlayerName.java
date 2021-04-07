@@ -8,14 +8,14 @@ public class PlayerName {
     private final String playerName;
 
     public PlayerName(String playerName) {
-        validate(playerName);
-        this.playerName = playerName;
+        this.playerName = validate(playerName.trim());
     }
 
-    private void validate(String playerName) {
+    private String validate(String playerName) {
         if (playerName == null || playerName.isEmpty() || playerName.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException("참여자의 이름은 최대 5글자 이하입니다.");
         }
+        return playerName;
     }
 
     @Override

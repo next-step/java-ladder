@@ -12,7 +12,6 @@ public class Player {
 
     public Player(String names) {
         players = Arrays.stream(names.split(SEPARATOR))
-            .map(String::trim)
             .map(PlayerName::new)
             .collect(Collectors.toList());
     }
