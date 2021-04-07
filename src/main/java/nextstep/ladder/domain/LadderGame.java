@@ -1,28 +1,32 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.domain.ladder.Ladder;
+import nextstep.ladder.domain.player.Name;
 import nextstep.ladder.domain.player.Players;
 import nextstep.ladder.dto.LadderDto;
-import nextstep.ladder.dto.PlayerDto;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LadderGame {
 
     private final Players players;
-    private final Ladder ladder;
+    private final LadderBoard ladderBoard;
 
-    public LadderGame(Players players, Ladder ladder) {
+    public LadderGame(Players players, LadderBoard ladderBoard) {
         this.players = players;
-        this.ladder = ladder;
+        this.ladderBoard = ladderBoard;
     }
 
-    public List<PlayerDto> getPlayers() {
-        return players.export();
+    public Reward getReward(Name playerName) {
+        return ladderBoard.getReward(players.searchBy(playerName));
+    }
+
+    public List<Reward> getRewards(List<Name> playerNameList) {
+        return playerNameList.stream().map(this::getReward).collect(Collectors.toList());
     }
 
     public LadderDto getLadder() {
-        return ladder.export();
+        return ladderBoard.getLadder();
     }
 
 }
