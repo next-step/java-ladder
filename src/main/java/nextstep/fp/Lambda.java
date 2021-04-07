@@ -32,8 +32,8 @@ public class Lambda {
 
     private static int sumWithCondition(List<Integer> numbers, SumCondition condition) {
         return numbers.stream()
-                .filter(n -> condition.test(n))
-                .reduce(0, (subtotal, n) -> subtotal + n);
+                .filter(condition::test)
+                .reduce(0, Integer::sum);
     }
 
     public static int sumAll(List<Integer> numbers) {
