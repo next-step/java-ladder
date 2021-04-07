@@ -2,7 +2,7 @@ package nextstep;
 
 import nextstep.view.InputView;
 
-public class Client {
+public class LadderGameClient {
     public static void main(String[] args) {
         InputView inputView = new InputView();
         String namesString = inputView.inputQuestion("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
