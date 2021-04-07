@@ -1,10 +1,11 @@
 package nextstep.ladder.wrapper;
 
-import nextstep.ladder.domain.Position;
-import nextstep.ladder.domain.Reward;
 import nextstep.ladder.domain.User;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.LinkedHashSet;
+import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -32,16 +33,6 @@ public class Participants {
 
     public Set<User> getUsers() {
         return Collections.unmodifiableSet(users);
-    }
-
-    public LadderResult findReward(final Ladder ladder, final LadderRewards ladderRewards) {
-        Map<User, Reward> result = new HashMap<>();
-        // TODO 스트림으로 한 번에 할 수 있을 것 같은데
-        users.forEach(user -> {
-            Position endPosition = ladder.findEndPosition(user.position());
-            result.put(user, ladderRewards.findReward(endPosition));
-        });
-        return LadderResult.valueOf(result);
     }
 
     @Override
