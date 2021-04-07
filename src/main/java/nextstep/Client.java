@@ -11,6 +11,8 @@ public class Client {
         int ladderCount = Integer.parseInt(ladderCountString);
         String[] names = namesString.split(",");
         Ladder ladder = new Ladder(ladderCount);
-//        ladder.add();
+        for (String name : names) {
+            ladder.add(name);
+        }
     }
 }

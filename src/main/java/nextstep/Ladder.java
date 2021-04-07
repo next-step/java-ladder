@@ -1,7 +1,5 @@
 package nextstep;
 
-import nextstep.exception.DuplicateException;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -16,16 +14,9 @@ public class Ladder {
         this.coordinates = new ArrayList<>();
     }
 
-    public void add(String name, int width) throws DuplicateException {
-        Coordinate coordinate = new Coordinate(name, width, this.height);
-        if (contains(coordinate)) {
-            throw new DuplicateException("Duplicate");
-        }
+    public void add(String name) {
+        Coordinate coordinate = new Coordinate(name, coordinates.size()+1, this.height);
         this.coordinates.add(coordinate);
-    }
-
-    private boolean contains(Coordinate coordinate) {
-        return this.coordinates.contains(coordinate);
     }
 
     public void move() {
