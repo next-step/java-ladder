@@ -1,13 +1,21 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.domain.player.Name;
+import nextstep.ladder.domain.player.Player;
 import nextstep.ladder.domain.player.Players;
-import nextstep.ladder.dto.LadderDto;
+import nextstep.ladder.dto.LadderBoardDto;
+import nextstep.ladder.dto.LadderGameReport;
+import nextstep.ladder.dto.PlayerDto;
+import nextstep.ladder.dto.RewardDto;
+import nextstep.ladder.util.Pair;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.function.Predicate;
+
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
 
 public class LadderGame {
+
+    private static final String ALL = "all";
 
     private final Players players;
     private final LadderBoard ladderBoard;
@@ -17,16 +25,25 @@ public class LadderGame {
         this.ladderBoard = ladderBoard;
     }
 
-    public Reward getReward(Name playerName) {
-        return ladderBoard.getReward(players.searchBy(playerName));
+    public LadderGameReport getResult(String name) {
+        Predicate<Player> query = name.equals(ALL) ? ignored -> true : player -> player.hasName(name);
+
+        return getResult(query);
     }
 
-    public List<Reward> getRewards(List<Name> playerNameList) {
-        return playerNameList.stream().map(this::getReward).collect(Collectors.toList());
+    private LadderGameReport getResult(Predicate<Player> playerQuery) {
+        return players.getResult(ladderBoard, playerQuery)
+                      .stream()
+                      .map(pair -> makeResultPair(pair.getFirst(), pair.getSecond()))
+                      .collect(collectingAndThen(toList(), LadderGameReport::new));
     }
 
-    public LadderDto getLadder() {
-        return ladderBoard.getLadder();
+    private Pair<PlayerDto, RewardDto> makeResultPair(Player player, Reward reward) {
+        return new Pair<>(player.export(), reward.export());
+    }
+
+    public LadderBoardDto exportLadderBoard() {
+        return ladderBoard.export();
     }
 
 }

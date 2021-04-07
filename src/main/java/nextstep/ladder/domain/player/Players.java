@@ -1,9 +1,13 @@
 package nextstep.ladder.domain.player;
 
+import nextstep.ladder.domain.LadderBoard;
+import nextstep.ladder.domain.Reward;
 import nextstep.ladder.domain.player.exception.UnknownPlayerException;
 import nextstep.ladder.dto.PlayerDto;
+import nextstep.ladder.util.Pair;
 
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.collectingAndThen;
@@ -23,7 +27,14 @@ public class Players {
                         .collect(collectingAndThen(toList(), Players::new));
     }
 
-    public Player searchBy(Name name) {
+    public List<Pair<Player, Reward>> getResult(LadderBoard ladderBoard, Predicate<Player> query) {
+        return playerList.stream()
+                         .filter(query)
+                         .map(player -> new Pair<>(player, ladderBoard.getReward(player)))
+                         .collect(toList());
+    }
+
+    public Player searchBy(String name) {
         return playerList.stream()
                          .filter(player -> player.hasName(name))
                          .findFirst()

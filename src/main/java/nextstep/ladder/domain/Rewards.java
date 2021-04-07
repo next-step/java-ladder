@@ -15,10 +15,10 @@ public class Rewards {
         this.rewardList = rewardList;
     }
 
-    public static Rewards of(List<String> rewardStrStringList) {
-        return rewardStrStringList.stream()
-                                  .map(Reward::new)
-                                  .collect(collectingAndThen(toList(), Rewards::new));
+    public static Rewards of(List<String> rewardStringList) {
+        return rewardStringList.stream()
+                               .map(Reward::new)
+                               .collect(collectingAndThen(toList(), Rewards::new));
     }
 
     public Reward getReward(int position) {
