@@ -14,8 +14,8 @@ public class Line {
         this.line = line;
     }
 
-    public static Line of(final int participantCount, LineConnectionStrategy lineConnectionStrategy) {
-        List<Boolean> line = lineGenerator.generateLine(participantCount, lineConnectionStrategy);
+    public static Line of(final int width, LineConnectionStrategy lineConnectionStrategy) {
+        List<Boolean> line = lineGenerator.generateLine(width, lineConnectionStrategy);
         return new Line(line);
     }
 

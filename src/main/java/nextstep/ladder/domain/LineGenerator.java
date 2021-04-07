@@ -22,9 +22,9 @@ public class LineGenerator {
         private static final LineGenerator instance = new LineGenerator();
     }
 
-    public List<Boolean> generateLine(int participantCount, LineConnectionStrategy lineConnectionStrategy) {
+    public List<Boolean> generateLine(int width, LineConnectionStrategy lineConnectionStrategy) {
         boolean[] previousLine = {false};
-        List<Boolean> line = IntStream.range(LINE_START_POINT, participantCount)
+        List<Boolean> line = IntStream.range(LINE_START_POINT, width)
                 .mapToObj(i -> {
                     previousLine[LINE_START_POINT] = lineConnectionStrategy.createLine(previousLine[LINE_START_POINT]);
                     return previousLine[LINE_START_POINT];
