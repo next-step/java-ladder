@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,12 +18,7 @@ public class Players {
         return players.size();
     }
 
-    @Override
-    public String toString() {
-        StringBuilder result = new StringBuilder();
-        for(int i = 0; i < players.size(); i++){
-            result.append(players.get(i).toString());
-        }
-        return result.toString();
+    public List<Player> players(){
+        return Collections.unmodifiableList(players);
     }
 }

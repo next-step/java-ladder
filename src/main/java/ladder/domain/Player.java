@@ -28,13 +28,7 @@ public class Player {
         }
     }
 
-    @Override
-    public String toString() {
-        StringBuilder result = new StringBuilder();
-        for(int i = 0; i <= MAX_NAME_LENGTH - name.length(); i++){
-            result.append(BLANK);
-        }
-        result.append(name);
-        return result.toString();
+    public String name(){
+        return name;
     }
 }

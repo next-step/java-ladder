@@ -13,8 +13,16 @@ public class ResultView {
         System.out.println();
         System.out.println(MESSAGE_RESULT);
         System.out.println();
-        System.out.println(players);
+        printPlayers(players);
         System.out.println(ladder);
+    }
+
+    private static void printPlayers(Players players){
+        players.players()
+                .stream()
+                .map(player -> String.format("%6s", player.name()))
+                .forEach(System.out::print);
+        System.out.println();
     }
 
 }
