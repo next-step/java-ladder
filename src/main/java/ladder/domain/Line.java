@@ -29,4 +29,22 @@ public class Line {
   public List<Point> points() {
     return points;
   }
+
+  public int move(int index) {
+    return moveRight(index) + moveLeft(index);
+  }
+
+  private int moveRight(int index) {
+    if (index + 1 != points().size() && points.get(index + 1).isConnected()) {
+      return 1;
+    }
+    return 0;
+  }
+
+  private int moveLeft(int index) {
+    if (points.get(index).isConnected()) {
+      return -1;
+    }
+    return 0;
+  }
 }
