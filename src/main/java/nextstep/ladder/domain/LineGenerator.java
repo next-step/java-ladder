@@ -14,12 +14,12 @@ public class LineGenerator {
     private LineGenerator() {
     }
 
-    public static LineGenerator getInstance() {
-        return LazyHolder.instance;
+    private static class LazyHolder {
+        private static final LineGenerator INSTANCE = new LineGenerator();
     }
 
-    private static class LazyHolder {
-        private static final LineGenerator instance = new LineGenerator();
+    public static LineGenerator getInstance() {
+        return LazyHolder.INSTANCE;
     }
 
     public List<Boolean> generateLine(int width, LineConnectionStrategy lineConnectionStrategy) {

@@ -4,7 +4,6 @@ import java.util.List;
 
 public class LadderGame {
 
-    private static final LineGenerator LINE_GENERATOR = LineGenerator.getInstance();
     private final Participants participants;
     private final Lines lines;
 
@@ -14,9 +13,10 @@ public class LadderGame {
     }
 
     public static LadderGame of(final LadderHeight ladderHeight, final List<String> userName) {
+        LineGenerator lineGenerator = LineGenerator.getInstance();
         int width = userName.size() - 1;
         int height = ladderHeight.getLadderHeight();
-        List<Line> lines = LINE_GENERATOR.generateLines(height, width);
+        List<Line> lines = lineGenerator.generateLines(height, width);
 
         return new LadderGame(userName, lines);
     }

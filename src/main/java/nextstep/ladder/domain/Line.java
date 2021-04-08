@@ -6,7 +6,6 @@ import nextstep.ladder.strategy.LineConnectionStrategy;
 
 public class Line {
 
-    private static final LineGenerator LINE_GENERATOR = LineGenerator.getInstance();
     private List<Boolean> line;
 
     private Line(final List<Boolean> line) {
@@ -14,7 +13,8 @@ public class Line {
     }
 
     public static Line of(final int width, LineConnectionStrategy lineConnectionStrategy) {
-        List<Boolean> line = LINE_GENERATOR.generateLine(width, lineConnectionStrategy);
+        LineGenerator lineGenerator = LineGenerator.getInstance();
+        List<Boolean> line = lineGenerator.generateLine(width, lineConnectionStrategy);
         return new Line(line);
     }
 
