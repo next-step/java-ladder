@@ -7,6 +7,8 @@ import ladder.view.ResultView;
 
 public class Application {
 
+  private static final String RESULT_ALL = "all";
+
   public static void main(String[] args) {
     InputView inputView = new InputView();
     ResultView resultView = new ResultView();
@@ -22,13 +24,10 @@ public class Application {
 
     while (true) {
       String result = inputView.inputResult();
-      if (result.equals("-1")) {
-        break;
-      }
 
-      if (result.equals("all")) {
+      if (result.equals(RESULT_ALL)) {
         resultView.printAllResult(prizeResult);
-        continue;
+        break;
       }
 
       resultView.printEachResult(prizeResult, result);

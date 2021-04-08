@@ -4,6 +4,7 @@ import java.util.regex.Pattern;
 
 public class Name {
   private final String name;
+  private final Pattern pattern = Pattern.compile(INVALID_PATTERN_REGEX);
   private final static String INVALID_PATTERN_REGEX = "^[가-힣a-zA-Z]*$";
   private final static String INVALID_NAME = "영어와 한글만 입력하세요.";
 
@@ -13,7 +14,7 @@ public class Name {
   }
 
   private void validateName() {
-    if(!Pattern.matches(INVALID_PATTERN_REGEX,name)) {
+    if(!pattern.matcher(name).matches()) {
       throw new IllegalArgumentException(INVALID_NAME);
     }
   }

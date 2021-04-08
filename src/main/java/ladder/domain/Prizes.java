@@ -20,7 +20,7 @@ public class Prizes {
   }
 
   public Prize find(Position position) {
-    return prizes.get(position.position());
+    return prizes.get(position.value());
   }
 
   public int numberOfPrizes() {
