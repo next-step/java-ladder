@@ -3,13 +3,12 @@ package ladder;
 import ladder.domain.Line;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class LineTest {
     @Test
-    public void Line_참여자수_Test(){
-        assertThatThrownBy(() -> new Line(1))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("참여자는 2명 이상이어야 합니다.");
+    public void Line_Point_수_Test(){
+        Line line = new Line(10);
+        assertThat(line.points().size()).isEqualTo(10);
     }
 }
