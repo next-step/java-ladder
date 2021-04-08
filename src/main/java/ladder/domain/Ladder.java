@@ -16,6 +16,17 @@ public class Ladder {
     }
   }
 
+  public Stream<Line> getLines() {
+    return lines.stream();
+  }
+
+  public Position goThroughLinesFrom(Position position) {
+    for (Line line : lines) {
+      position = line.move(position);
+    }
+    return position;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -31,17 +42,6 @@ public class Ladder {
   @Override
   public int hashCode() {
     return Objects.hash(lines);
-  }
-
-  public Stream<Line> lines() {
-    return lines.stream();
-  }
-
-  public Position goThroughLinesFrom(Position position) {
-    for (Line line : lines) {
-      position = line.move(position);
-    }
-    return position;
   }
 
   @Override

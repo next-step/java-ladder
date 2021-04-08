@@ -15,12 +15,12 @@ public class Prizes {
         .collect(Collectors.toList());
   }
 
-  public Stream<Prize> prizes() {
+  public Stream<Prize> getPrizes() {
     return prizes.stream();
   }
 
   public Prize find(Position position) {
-    return prizes.get(position.value());
+    return prizes.get(position.getValue());
   }
 
   public int numberOfPrizes() {

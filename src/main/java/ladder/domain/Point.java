@@ -38,6 +38,10 @@ public class Point {
     return new Point(new Position(0), Direction.first(right));
   }
 
+  public boolean isDirectionRight() {
+    return direction.isRight();
+  }
+
   @Override
   public String toString() {
     return "Point{" +
@@ -46,7 +50,4 @@ public class Point {
         '}';
   }
 
-  public boolean isDirectionRight() {
-    return direction.isRight();
-  }
 }

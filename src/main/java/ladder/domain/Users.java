@@ -15,7 +15,6 @@ public class Users {
 
   public Users(String[] names) {
     validateDuplicatedName(names);
-
     this.users = new ArrayList<>();
     for (int i = 0; i < names.length; i++) {
       users.add(new User(names[i]));
@@ -28,6 +27,18 @@ public class Users {
     if (hs.size() != names.length) {
       throw new IllegalArgumentException(INVALID_DUPLICATED_NAME);
     }
+  }
+
+  public Stream<User> getUsers() {
+    return users.stream();
+  }
+
+  public int numberOfUsers() {
+    return users.size();
+  }
+
+  public User findUserByIndex(int index) {
+    return users.get(index);
   }
 
   @Override
@@ -47,15 +58,4 @@ public class Users {
     return Objects.hash(users);
   }
 
-  public Stream<User> users() {
-    return users.stream();
-  }
-
-  public int numberOfUsers() {
-    return users.size();
-  }
-
-  public User findUserByIndex(int index) {
-    return users.get(index);
-  }
 }

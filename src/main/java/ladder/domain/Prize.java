@@ -15,7 +15,7 @@ public class Prize {
         '}';
   }
 
-  public String prize() {
+  public String getPrize() {
     return prize;
   }
 }

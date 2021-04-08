@@ -22,22 +22,22 @@ public class ResultView {
 
   public void printLadder(LadderGame ladderGame) {
     System.out.println(RESULT);
-    System.out.println(printName(ladderGame.getGameInfo().users()));
-    String ladder = printLadderDetail(ladderGame.ladder());
+    System.out.println(printName(ladderGame.getGameInfo().getUsers()));
+    String ladder = printLadderDetail(ladderGame.getLadder());
     System.out.println(ladder.substring(0, ladder.length() - 1));
-    System.out.println(printPrize(ladderGame.getGameInfo().prizes()));
+    System.out.println(printPrize(ladderGame.getGameInfo().getPrizes()));
   }
 
 
   private String printLadderDetail(Ladder ladder) {
-    return ladder.lines()
+    return ladder.getLines()
         .map(line -> EMPTY + printPoints(line) + System.lineSeparator())
         .collect(Collectors.joining());
   }
 
 
   private String printPoints(Line line) {
-    return line.points()
+    return line.getPoints()
         .map(point -> VERTICAL_LINE + printUsedOrNot(point))
         .collect(Collectors.joining());
   }
@@ -50,32 +50,32 @@ public class ResultView {
   }
 
   private String printPrize(Prizes prizes) {
-    return prizes.prizes()
-        .map(prize -> prize.prize())
+    return prizes.getPrizes()
+        .map(prize -> prize.getPrize())
         .map(prize -> String.format(NAME_AND_PRIZE_FORMAT, prize))
         .collect(Collectors.joining());
   }
 
   private String printName(Users users) {
-    return users.users()
-        .map(user -> user.name())
+    return users.getUsers()
+        .map(user -> user.getName())
         .map(name -> String.format(NAME_AND_PRIZE_FORMAT, name))
         .collect(Collectors.joining());
   }
 
   public void printAllResult(PrizeResult prizeResult) {
-    prizeResult.result()
+    prizeResult.getPrizeResult()
         .entrySet()
         .forEach(result -> System.out.println(
-            result.getKey().name() + " : " + result.getValue().prize()));
+            result.getKey().getName() + " : " + result.getValue().getPrize()));
   }
 
   public void printEachResult(PrizeResult prizeResult, String userName) {
     System.out.println(RESULT);
     String result = "";
-    for (Entry<User, Prize> prizeMap : prizeResult.result().entrySet()) {
-      if (prizeMap.getKey().name().equals(userName)) {
-        result = prizeMap.getValue().prize();
+    for (Entry<User, Prize> prizeMap : prizeResult.getPrizeResult().entrySet()) {
+      if (prizeMap.getKey().getName().equals(userName)) {
+        result = prizeMap.getValue().getPrize();
         break;
       }
     }

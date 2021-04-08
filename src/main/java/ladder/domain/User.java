@@ -14,6 +14,10 @@ public class User {
     this.name = name;
   }
 
+  public String getName() {
+    return name.getName();
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -30,9 +34,4 @@ public class User {
   public int hashCode() {
     return Objects.hash(name);
   }
-
-  public String name() {
-    return name.name();
-  }
-
 }

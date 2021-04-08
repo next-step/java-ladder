@@ -18,7 +18,7 @@ public class Position {
     return new Position(value - 1);
   }
 
-  public int value() {
+  public int getValue() {
     return value;
   }
 

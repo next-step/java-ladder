@@ -32,12 +32,12 @@ public class Line {
     return Objects.hash(points);
   }
 
-  public Stream<Point> points() {
+  public Stream<Point> getPoints() {
     return points.stream();
   }
 
   public Position move(Position position) {
-    return points.get(position.value()).move();
+    return points.get(position.getValue()).move();
   }
 
   public static Line init(int sizeOfPerson) {
