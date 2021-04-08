@@ -11,7 +11,7 @@ public final class LadderHeight {
   }
 
   public int toInt() {
-    return 0;
+    return ladderHeight;
   }
 
   @Override
