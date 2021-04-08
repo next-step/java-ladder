@@ -1,5 +1,7 @@
 package nextstep.ladder.view;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
@@ -12,9 +14,9 @@ public class InputView {
     private InputView() {
     }
 
-    public static String[] getUserName() {
+    public static List<String> getUserName() {
         System.out.println(LADDER_USERNAME_INPUT_MESSAGE);
-        return scanner.nextLine().split(LADDER_USERNAME_DELIMITER);
+        return Arrays.asList(scanner.nextLine().split(LADDER_USERNAME_DELIMITER));
     }
 
     public static int getLadderHeight() {

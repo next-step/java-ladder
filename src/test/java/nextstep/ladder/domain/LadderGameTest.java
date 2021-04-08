@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import java.util.Arrays;
+import java.util.List;
 import nextstep.ladder.exception.LadderException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -16,7 +18,7 @@ class LadderGameTest {
     @DisplayName("사다리 높이가 최솟값을 만족하지 못할 경우")
     @ParameterizedTest
     @MethodSource("provideLadderHeightUnderMin")
-    void ladderGame_of(int ladderHeight, String[] userName) {
+    void ladderGame_of(int ladderHeight, List<String> userName) {
         assertThatThrownBy(() -> {
             LadderGame ladderGame = LadderGame.of(ladderHeight, userName);
         }).isInstanceOf(LadderException.class)
@@ -25,8 +27,8 @@ class LadderGameTest {
 
     private static Stream<Arguments> provideLadderHeightUnderMin() {
         return Stream.of(
-                Arguments.of(0, new String[]{"poby", "james", "john"}),
-                Arguments.of(0, new String[]{"poby", "james", "john"})
+                Arguments.of(0, Arrays.asList("poby", "james", "john")),
+                Arguments.of(-1, Arrays.asList("poby", "james", "john"))
         );
     }
 }

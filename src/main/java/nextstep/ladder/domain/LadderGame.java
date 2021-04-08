@@ -11,14 +11,14 @@ public class LadderGame {
     private final Participants participants;
     private final Lines lines;
 
-    private LadderGame(final int ladderHeight, final String[] userName, final List<Line> lines) {
+    private LadderGame(final int ladderHeight, final List<String> userName, final List<Line> lines) {
         validation(ladderHeight);
         this.participants = Participants.of(userName);
         this.lines = Lines.of(lines);
     }
 
-    public static LadderGame of(final int ladderHeight, final String[] userName) {
-        int width = userName.length - 1;
+    public static LadderGame of(final int ladderHeight, final List<String> userName) {
+        int width = userName.size() - 1;
         List<Line> lines = LINE_GENERATOR.generateLines(ladderHeight, width);
 
         return new LadderGame(ladderHeight, userName, lines);
