@@ -31,4 +31,8 @@ public class Players {
     public boolean notIncludePlayer(Player player) {
         return !players.contains(player);
     }
+
+    public int position(Player player) {
+        return players.indexOf(player);
+    }
 }
