@@ -36,7 +36,6 @@ public class DirectionTest {
   }
 
   @Test
-  @DisplayName("")
   public void next_random_false() {
     for (int i = 0; i < 100; i++) {
       Direction.first(FALSE).next();

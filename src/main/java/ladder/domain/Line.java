@@ -52,6 +52,8 @@ public class Line {
     return position;
   }
 
+
+
   public int move(int position) {
     return points.get(position).move();
   }
