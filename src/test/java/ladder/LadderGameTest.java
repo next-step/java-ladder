@@ -18,7 +18,6 @@ public class LadderGameTest {
   void setUp() {
     names = new String[]{"pobi", "honux", "crong"};
     prizes = new String[]{"꽝", "3000", "2000"};
-
   }
 
   @ParameterizedTest
@@ -28,8 +27,6 @@ public class LadderGameTest {
     assertThatThrownBy(() -> {
       LadderGame ladderGame = new LadderGame(number, names, prizes);
     }).isInstanceOf(IllegalArgumentException.class);
-
   }
-
 
 }

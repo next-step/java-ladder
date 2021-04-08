@@ -21,7 +21,7 @@ public class DirectionTest {
   }
 
   @Test
-  @DisplayName("각 포인트의 좌우가 true이면 안됨")
+  @DisplayName("각 Direction의 좌우가 true이면 안됨")
   public void init_invalid() {
     assertThatThrownBy(() -> {
       Direction.of(TRUE, TRUE);
@@ -29,7 +29,7 @@ public class DirectionTest {
   }
 
   @Test
-  @DisplayName("첫번째 포인트가 TRUE이면 다음 포인트는 FALSE여야함")
+  @DisplayName("왼쪽 Direction이 TRUE이면 오른쪽 Direction은 FALSE여야함")
   public void next_random_true() {
     Direction next = Direction.first(TRUE).next();
     assertThat(next).isEqualTo(Direction.of(TRUE, FALSE));
@@ -37,6 +37,7 @@ public class DirectionTest {
   }
 
   @Test
+  @DisplayName("next 메서드 확인")
   public void next_random_false() {
     for (int i = 0; i < 100; i++) {
       Direction.first(FALSE).next();
@@ -44,24 +45,28 @@ public class DirectionTest {
   }
 
   @Test
+  @DisplayName("next 후 Direction 확인")
   public void next_true() {
     Direction next = Direction.of(TRUE, FALSE).next(TRUE);
     assertThat(next).isEqualTo(Direction.of(FALSE, TRUE));
   }
 
   @Test
+  @DisplayName("next 후 Direction 확인")
   public void next_false() {
     Direction next = Direction.of(FALSE, TRUE).next(FALSE);
     assertThat(next).isEqualTo(Direction.of(TRUE, FALSE));
   }
 
   @Test
+  @DisplayName("첫번째 Direction 확인")
   public void first() {
     Direction first = Direction.first(TRUE);
     assertThat(first.isLeft()).isEqualTo(FALSE);
   }
 
   @Test
+  @DisplayName("마지막 Direction 확인")
   public void last() {
     Direction last = Direction.first(TRUE).last();
     assertThat(last).isEqualTo(Direction.of(TRUE, FALSE));
