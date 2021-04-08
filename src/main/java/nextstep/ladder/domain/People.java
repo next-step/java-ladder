@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -27,6 +28,10 @@ public final class People {
 
   public PersonCount personCount() {
     return new PersonCount(people.size());
+  }
+
+  public List<Person> personList() {
+    return Collections.unmodifiableList(people);
   }
 
   @Override
