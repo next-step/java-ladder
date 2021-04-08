@@ -43,3 +43,20 @@
 - view
     - InputView
     - ResultView
+
+## 구현 후(구조)
+- controller
+    - LadderController
+- domain
+    - Height
+    - Ladder
+    - Line
+    - Name
+    - Person
+    - Persons
+- util
+    - StringUtils
+- view
+    - BaseView
+    - InputView
+    - ResultView
