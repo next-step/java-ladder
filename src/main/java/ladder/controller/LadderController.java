@@ -1,5 +1,6 @@
 package ladder.controller;
 
+import ladder.domain.Height;
 import ladder.domain.Persons;
 import ladder.view.InputView;
 
@@ -8,6 +9,6 @@ public class LadderController {
 
     public void run() {
         Persons persons = Persons.from(inputView.inputPersonNames());
-        System.out.println(persons.toString());
+        Height height = Height.from(inputView.inputLadderHeight());
     }
 }

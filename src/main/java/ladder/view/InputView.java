@@ -11,4 +11,9 @@ public class InputView implements BaseView {
         String[] personNames = scanner.nextLine().split(PERSON_SEPARATOR);
         return personNames;
     }
+
+    public int inputLadderHeight() {
+        printlnMessageAfterNewLine("최대 사다리 높이는 몇 개 인가요?");
+        return scanner.nextInt();
+    }
 }
