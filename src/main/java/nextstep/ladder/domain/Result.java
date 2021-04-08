@@ -2,19 +2,19 @@ package nextstep.ladder.domain;
 
 import java.util.Objects;
 
-public class Person {
+public class Result {
 
   private String name;
 
-  private Person(String name) {
+  private Result(String name) {
     if (name.length() > Ladder.MAX_NAME_LENGTH) {
       throw new IllegalArgumentException("name length > 5.");
     }
     this.name = name;
   }
 
-  public static Person generate(String name) {
-    return new Person(name);
+  public static Result generate(String name) {
+    return new Result(name);
   }
 
   public String getName() {
@@ -29,8 +29,8 @@ public class Person {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Person person = (Person) o;
-    return Objects.equals(name, person.name);
+    Result result = (Result) o;
+    return Objects.equals(name, result.name);
   }
 
   @Override

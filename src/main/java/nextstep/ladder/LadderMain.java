@@ -6,27 +6,21 @@ import nextstep.ladder.view.ResultView;
 
 public class LadderMain {
 
+  private static final String ALL = "all";
+
   public static void main(String[] args) {
     String[] personNames = InputView.getPersonNames();
     String[] results = InputView.getResult();
-    checkInput(personNames, results);
     int height = InputView.getLadderHeight();
-
-    Ladder ladder = Ladder.generate(personNames, height);
+    Ladder ladder = Ladder.generate(personNames, height, results);
     ResultView.printLadderGame(ladder, results);
 
-    String resultName = InputView.getResultName();
-    while (!resultName.equals("all")) {
-      ResultView.printResult(ladder, results, resultName);
-      resultName = InputView.getResultName();
+    String personName = InputView.getResultPersonName();
+    while (!personName.equals(ALL)) {
+      ResultView.printResult(ladder, personName);
+      personName = InputView.getResultPersonName();
     }
-    ResultView.printResult(ladder, results);
-  }
-
-  private static void checkInput(String[] personNames, String[] results) {
-    if (personNames.length != results.length) {
-      throw new IllegalArgumentException();
-    }
+    ResultView.printResult(ladder);
   }
 
 }

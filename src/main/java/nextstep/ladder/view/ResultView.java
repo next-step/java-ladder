@@ -6,6 +6,7 @@ import java.util.stream.IntStream;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Person;
+import nextstep.ladder.domain.Result;
 
 public class ResultView {
 
@@ -75,16 +76,16 @@ public class ResultView {
     return NOT_LINE;
   }
 
-  public static void printResult(Ladder ladder, String[] results, String resultName) {
-    int resultIndex = ladder.result(resultName);
-    System.out.println(results[resultIndex]);
+  public static void printResult(Ladder ladder, String personName) {
+    Result result = ladder.result(personName);
+    System.out.println(result.getName());
   }
 
-  public static void printResult(Ladder ladder, String[] results) {
+  public static void printResult(Ladder ladder) {
     ladder.getPersons().forEach(person -> {
       String name = person.getName();
       System.out.print(name + COLON);
-      printResult(ladder, results, name);
+      printResult(ladder, name);
     });
   }
 }

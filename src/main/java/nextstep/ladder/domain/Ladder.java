@@ -1,34 +1,40 @@
 package nextstep.ladder.domain;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Ladder {
 
+  public static final int MAX_NAME_LENGTH = 5;
   private static final Random RANDOM = new Random();
 
   private Persons persons;
   private Lines lines;
+  private Results results;
 
-  private Ladder(String[] names, int height, LineStrategy lineStrategy) {
-    this.persons = new Persons(Arrays.stream(names).map(Person::generate).collect(Collectors.toList()));
-    this.lines = new Lines(
-        Stream.generate(() -> Line.generate(persons.size(), lineStrategy)).limit(height).collect(Collectors.toList()));
+  private Ladder(String[] names, int height, String[] results, LineStrategy lineStrategy) {
+    checkInput(names, results);
+    this.persons = Persons.from(names);
+    this.lines = Lines.setup(names.length, height, lineStrategy);
+    this.results = Results.from(results);
   }
 
-  private Ladder(String[] names, int height) {
-    this(names, height, () -> RANDOM.nextBoolean());
+  private static void checkInput(String[] personNames, String[] results) {
+    if (personNames.length != results.length) {
+      throw new IllegalArgumentException("person.size != result.size");
+    }
   }
 
-  public static Ladder generate(String[] names, int height) {
-    return new Ladder(names, height);
+  private Ladder(String[] names, int height, String[] results) {
+    this(names, height, results, () -> RANDOM.nextBoolean());
   }
 
-  public static Ladder generate(String[] names, int height, LineStrategy lineStrategy) {
-    return new Ladder(names, height, lineStrategy);
+  public static Ladder generate(String[] names, int height, String[] results) {
+    return new Ladder(names, height, results);
+  }
+
+  public static Ladder generate(String[] names, int height, String[] results, LineStrategy lineStrategy) {
+    return new Ladder(names, height, results, lineStrategy);
   }
 
   public List<Person> getPersons() {
@@ -39,13 +45,16 @@ public class Ladder {
     return lines.getLines();
   }
 
-  public int result(String name) {
+  public Result result(String name) {
+    if (!persons.contains(name)) {
+      throw new IllegalArgumentException();
+    }
     int position = persons.getIndex(name) + 1;
     return result(position);
   }
 
-  private int result(int start) {
-    int resultPosition = lines.result(start);
-    return resultPosition - 1;
+  private Result result(int start) {
+    int resultPosition = lines.findFinalPosition(start) - 1;
+    return results.getResult(resultPosition);
   }
 }

@@ -6,6 +6,7 @@ import java.util.stream.IntStream;
 
 public class Line {
 
+  public static final int MOVE_LENGTH = 1;
   private List<Boolean> points = new ArrayList<>();
 
   public Line() {
@@ -24,7 +25,9 @@ public class Line {
   }
 
   private boolean isLine(int index, LineStrategy lineStrategy) {
-    if (index == 0 || points.get(index - 1)) {
+    boolean isFirstPosition = index == 0;
+    boolean isAlreadyLinedLeftSide = points.get(index - 1);
+    if (isFirstPosition || isAlreadyLinedLeftSide) {
       return false;
     }
     return lineStrategy.isLine();
@@ -35,12 +38,16 @@ public class Line {
   }
 
   public int move(int position) {
-    if (points.get(position - 1)) {
-      return position - 1;
+    Boolean movableLeft = points.get(position - 1);
+    if (movableLeft) {
+      return position - MOVE_LENGTH;
     }
-    if (points.size() != position && points.get(position)) {
-      return position + 1;
+
+    boolean movableRight = points.size() != position && points.get(position);
+    if (movableRight) {
+      return position + MOVE_LENGTH;
     }
+
     return position;
   }
 

@@ -29,7 +29,7 @@ public class InputView {
     return Integer.parseInt(SCANNER.nextLine());
   }
 
-  public static String getResultName() {
+  public static String getResultPersonName() {
     System.out.println(INPUT_RESULT_NAME);
     return SCANNER.nextLine();
   }
