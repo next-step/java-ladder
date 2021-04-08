@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.util.StringUtils;
+
 import java.util.Objects;
 
 public class Name {
@@ -15,6 +17,9 @@ public class Name {
         if (name.length() > MAX_NAME_LENGTH) {
             throw new RuntimeException(String.format("이름은 최대 %d자 까지 가능합니다.", MAX_NAME_LENGTH));
         }
+        if (StringUtils.isBlank(name)) {
+            throw new RuntimeException("이름은 공백을 입력할 수 없습니다.");
+        }
         return new Name(name);
     }
 
@@ -29,5 +34,10 @@ public class Name {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(name);
     }
 }
