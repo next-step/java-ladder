@@ -20,6 +20,10 @@ public final class People {
     this.people = people;
   }
 
+  public PersonCount personCount() {
+    return new PersonCount(people.size());
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {

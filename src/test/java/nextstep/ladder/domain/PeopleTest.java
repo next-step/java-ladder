@@ -2,6 +2,7 @@ package nextstep.ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.List;
 import nextstep.ladder.exception.OverNameLengthLimitException;
@@ -39,7 +40,10 @@ class PeopleTest {
     final People people = new People(names);
 
     //then
-    assertThat(people).isEqualTo(new People(names));
+    assertAll(
+        () -> assertThat(people).isEqualTo(new People(names)),
+        () -> assertThat(people.personCount()).isEqualTo(new PersonCount(names.length))
+    );
   }
 
   @Test
