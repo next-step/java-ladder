@@ -1,21 +1,21 @@
 package ladder.domain;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import ladder.constant.Constant;
-import ladder.util.InputValidator;
 
 public class Ladder {
 
-  private final List<Line> ladder = new ArrayList<>();
+  private static final int MIN_LADDER_HEIGHT = 2;
+  private final List<Line> ladder;
 
   public Ladder(Players players, int height) {
     validateHeight(height);
     int countOfPerson = players.names().size();
 
-    IntStream.range(0, height)
-        .forEach(i -> ladder.add(new Line(countOfPerson)));
+    ladder = IntStream.range(0, height)
+        .mapToObj(i -> new Line(countOfPerson))
+        .collect(Collectors.toList());
   }
 
   public List<Line> lines() {
@@ -23,9 +23,9 @@ public class Ladder {
   }
 
   private void validateHeight(int height) {
-    if (InputValidator.isMinHeight(height)) {
+    if (height < MIN_LADDER_HEIGHT) {
       throw new IllegalArgumentException(
-          "사다리의 높이는 최소 " + Constant.MIN_LADDER_HEIGHT + " 이상이여야 합니다.");
+          "사다리의 높이는 최소 " + MIN_LADDER_HEIGHT + " 이상이여야 합니다.");
     }
   }
 }

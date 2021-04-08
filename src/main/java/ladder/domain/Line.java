@@ -9,12 +9,16 @@ public class Line {
   private final List<Point> points = new ArrayList<>();
 
   public Line(int countOfPerson) {
+    this(countOfPerson, new RandomConnect());
+  }
+
+  public Line(int countOfPerson, ConnectStrategy connectStrategy) {
     IntStream.range(0, countOfPerson)
-        .forEach(i -> points.add(connectPoint(new RandomConnect())));
+        .forEach(i -> points.add(connectPoint(connectStrategy)));
   }
 
   public Point connectPoint(ConnectStrategy connectStrategy) {
-    if (points.size() == 0) {
+    if (points.isEmpty()) {
       return Point.DISCONNECT;
     }
 
@@ -28,5 +32,23 @@ public class Line {
 
   public List<Point> points() {
     return points;
+  }
+
+  public int move(int index) {
+    return moveRight(index) + moveLeft(index);
+  }
+
+  private int moveRight(int index) {
+    if (index + 1 != points().size() && points.get(index + 1).isConnected()) {
+      return 1;
+    }
+    return 0;
+  }
+
+  private int moveLeft(int index) {
+    if (points.get(index).isConnected()) {
+      return -1;
+    }
+    return 0;
   }
 }
