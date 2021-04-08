@@ -16,7 +16,7 @@ class PersonTest {
     //given
     String name = "bongs";
     //when
-    Person person = Person.create(name);
+    Person person = Person.generate(name);
     //then
     assertAll(
         () -> assertThat(person).isNotNull(),
@@ -31,7 +31,7 @@ class PersonTest {
     String name = "bonggu";
     //when//then
     assertThatIllegalArgumentException()
-        .isThrownBy(() -> Person.create(name))
+        .isThrownBy(() -> Person.generate(name))
         .withMessage("name length > 5.");
   }
 }

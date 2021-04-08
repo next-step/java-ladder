@@ -2,12 +2,11 @@ package nextstep.ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.IntStream;
 
 public class Line {
 
-  private static final Random RANDOM = new Random();
+  public static final int MOVE_LENGTH = 1;
   private List<Boolean> points = new ArrayList<>();
 
   public Line() {
@@ -21,16 +20,14 @@ public class Line {
     return line;
   }
 
-  public static Line generate(int countOfPerson) {
-    return generate(countOfPerson, () -> RANDOM.nextBoolean());
-  }
-
   private void addPoint(boolean line) {
     points.add(line);
   }
 
   private boolean isLine(int index, LineStrategy lineStrategy) {
-    if (index == 0 || points.get(index - 1)) {
+    boolean isFirstPosition = index == 0;
+    boolean isAlreadyLinedLeftSide = points.get(index - 1);
+    if (isFirstPosition || isAlreadyLinedLeftSide) {
       return false;
     }
     return lineStrategy.isLine();
@@ -38,6 +35,20 @@ public class Line {
 
   public List<Boolean> getPoints() {
     return points;
+  }
+
+  public int move(int position) {
+    Boolean movableLeft = points.get(position - 1);
+    if (movableLeft) {
+      return position - MOVE_LENGTH;
+    }
+
+    boolean movableRight = points.size() != position && points.get(position);
+    if (movableRight) {
+      return position + MOVE_LENGTH;
+    }
+
+    return position;
   }
 
 }

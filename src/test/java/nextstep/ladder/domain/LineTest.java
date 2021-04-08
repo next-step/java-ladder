@@ -15,6 +15,7 @@ class LineTest {
     Line line = Line.generate(5, () -> true);
     //then
     List<Boolean> points = line.getPoints();
+    System.out.println(points);
     assertAll(
         () -> assertFalse(points.get(0)),
         () -> assertTrue(points.get(1)),
@@ -23,4 +24,5 @@ class LineTest {
         () -> assertFalse(points.get(4))
     );
   }
+
 }

@@ -1,36 +1,60 @@
 package nextstep.ladder.domain;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.Random;
 
 public class Ladder {
 
-  private List<Person> persons;
+  public static final int MAX_NAME_LENGTH = 5;
+  private static final Random RANDOM = new Random();
 
-  private List<Line> lines;
+  private Persons persons;
+  private Lines lines;
+  private Results results;
 
-  public Ladder() {
+  private Ladder(String[] names, int height, String[] results, LineStrategy lineStrategy) {
+    checkInput(names, results);
+    this.persons = Persons.from(names);
+    this.lines = Lines.setup(names.length, height, lineStrategy);
+    this.results = Results.from(results);
   }
 
-  public static Ladder generate(String[] names, int height) {
-    Ladder ladder = new Ladder();
-    ladder.persons = Arrays.stream(names)
-        .map(Person::create)
-        .collect(Collectors.toList());
-    ladder.lines
-        = Stream.generate(() -> Line.generate(ladder.persons.size()))
-        .limit(height)
-        .collect(Collectors.toList());
-    return ladder;
+  private static void checkInput(String[] personNames, String[] results) {
+    if (personNames.length != results.length) {
+      throw new IllegalArgumentException("person.size != result.size");
+    }
+  }
+
+  private Ladder(String[] names, int height, String[] results) {
+    this(names, height, results, () -> RANDOM.nextBoolean());
+  }
+
+  public static Ladder generate(String[] names, int height, String[] results) {
+    return new Ladder(names, height, results);
+  }
+
+  public static Ladder generate(String[] names, int height, String[] results, LineStrategy lineStrategy) {
+    return new Ladder(names, height, results, lineStrategy);
   }
 
   public List<Person> getPersons() {
-    return persons;
+    return persons.getPersons();
   }
 
   public List<Line> getLines() {
-    return lines;
+    return lines.getLines();
+  }
+
+  public Result result(String name) {
+    if (!persons.contains(name)) {
+      throw new IllegalArgumentException();
+    }
+    int position = persons.getIndex(name) + 1;
+    return result(position);
+  }
+
+  private Result result(int start) {
+    int resultPosition = lines.findFinalPosition(start) - 1;
+    return results.getResult(resultPosition);
   }
 }
