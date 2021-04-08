@@ -20,7 +20,7 @@ public class Direction {
 
   private Direction(boolean left, boolean right) {
     if (left && right) {
-      throw new IllegalStateException();
+      throw new IllegalArgumentException();
     }
 
     this.left = left;
