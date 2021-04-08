@@ -32,12 +32,7 @@ public class Line {
         points.add(tmpPoint);
     }
 
-    @Override
-    public String toString() {
-        StringBuilder result = new StringBuilder();
-        for(int i = 0; i < points.size(); i++){
-            result.append(points.get(i).toString());
-        }
-        return result.toString();
+    public List<Point> points(){
+        return points.points();
     }
 }

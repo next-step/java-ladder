@@ -1,6 +1,8 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
@@ -27,13 +29,7 @@ public class Ladder {
         }
     }
 
-    @Override
-    public String toString() {
-        StringBuilder result = new StringBuilder();
-        for(int i = 0; i < height; i++){
-            result.append(lines.get(i).toString());
-            result.append(System.lineSeparator());
-        }
-        return result.toString();
+    public List<Line> lines(){
+        return lines.lines();
     }
 }

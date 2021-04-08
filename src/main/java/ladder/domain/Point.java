@@ -1,16 +1,14 @@
 package ladder.domain;
 
 public enum Point {
-    LEFT(-1, "--|"),
-    DOWN(0, "     |"),
-    RIGHT(1, "     |---");
+    LEFT(-1),
+    DOWN(0),
+    RIGHT(1);
 
     private final int move;
-    private final String view;
 
-    Point(int move, String view) {
+    Point(int move) {
         this.move = move;
-        this.view = view;
     }
 
     public static Point randomPoint() {
@@ -32,10 +30,5 @@ public enum Point {
             return LEFT;
         }
         return DOWN;
-    }
-
-    @Override
-    public String toString() {
-        return view;
     }
 }

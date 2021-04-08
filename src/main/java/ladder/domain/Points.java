@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Points {
@@ -10,12 +11,7 @@ public class Points {
         points.add(point);
     }
 
-    public int size(){
-        return points.size();
+    public List<Point> points(){
+        return Collections.unmodifiableList(points);
     }
-
-    public Point get(int index){
-        return points.get(index);
-    }
-
 }
