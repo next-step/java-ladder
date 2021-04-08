@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -19,7 +20,11 @@ public final class LadderLines implements Lines {
 
   @Override
   public List<Line> lines() {
-    return null;
+    List<Line> lines = new ArrayList<>();
+    for (int i = 0; i < ladderHeight.toInt(); i++) {
+      lines.add(new Line(personCount, new RandomLineCreationStrategy()));
+    }
+    return lines;
   }
 
   @Override
