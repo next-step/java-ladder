@@ -4,20 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
-import ladder.domain.generator.Generator;
-import ladder.domain.generator.PointsGenerator;
 
 public class Ladder {
 
   private final List<Line> lines;
 
   public Ladder(int height, int countOfPerson) {
-
     lines = new ArrayList<>();
-    for (int i = 0; i< height; i++) {
+    for (int i = 0; i < height; i++) {
       lines.add(Line.init(countOfPerson));
     }
-
   }
 
   @Override
@@ -48,7 +44,10 @@ public class Ladder {
     return position;
   }
 
-  public int size() {
-    return lines.size();
+  @Override
+  public String toString() {
+    return "Ladder{" +
+        "lines=" + lines +
+        '}';
   }
 }

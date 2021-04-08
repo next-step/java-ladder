@@ -6,26 +6,18 @@ import java.util.Objects;
 import ladder.domain.generator.Generator;
 import ladder.domain.generator.PointsGenerator;
 
-/*
-* 각 Point의 좌/우 방향을 Direction으로 추상화
-*
-각 Point의 좌/우 방향 정보를 가진다.
-현재 Point에서 다음 Point를 생성하는 역할
-*
-* */
 public class Direction {
   private final boolean left;
   private final boolean right;
-  private Generator generator = new PointsGenerator();
+  private static final String INVALID_DIRECTION = "유효하지 않은 방향입니다.";
 
   private Direction(boolean left, boolean right) {
     if (left && right) {
-      throw new IllegalArgumentException();
+      throw new IllegalArgumentException(INVALID_DIRECTION);
     }
 
     this.left = left;
     this.right = right;
-    System.out.println(this);
   }
 
   public boolean isRight() {
@@ -41,9 +33,11 @@ public class Direction {
   }
 
   public Direction next() {
+    Generator generator = new PointsGenerator();
     if (this.right) {
       return next(FALSE);
     }
+
     return next(generator.generatePoint());
   }
 

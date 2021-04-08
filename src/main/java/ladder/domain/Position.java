@@ -19,29 +19,6 @@ public class Position {
     return new Position(position - 1);
   }
 
-  public Position first() {
-    return new Position(0);
-  }
-
-  public boolean isRightMove(List<Point> points) {
-    /*if (position + 1 <= points.size() - 1 && points.get(position + 1).isUsed()) {
-      return true;
-    }
-    return false;
-    */
-    return false;
-  }
-
-  public boolean isLeftMove(List<Point> points) {
-    /*
-    if (position >= 0 && points.get(position).isUsed()) {
-      return true;
-    }
-    return false;
-     */
-    return false;
-  }
-
   public int position() {
     return position;
   }
@@ -61,5 +38,12 @@ public class Position {
   @Override
   public int hashCode() {
     return Objects.hash(position);
+  }
+
+  @Override
+  public String toString() {
+    return "Position{" +
+        "position=" + position +
+        '}';
   }
 }

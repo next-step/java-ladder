@@ -3,6 +3,7 @@ package ladder.domain;
 import java.util.Objects;
 
 public class Point {
+
   private final Position position;
   private final Direction direction;
 
@@ -12,9 +13,6 @@ public class Point {
   }
 
   public Position move() {
-    System.out.println("is left? " + direction.isLeft());
-    System.out.println("is right? " + direction.isRight());
-
     if (direction.isRight()) {
       return position.rightMove();
     }

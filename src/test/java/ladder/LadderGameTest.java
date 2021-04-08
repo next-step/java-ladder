@@ -17,12 +17,12 @@ public class LadderGameTest {
   @BeforeEach
   void setUp() {
     names = new String[]{"pobi", "honux", "crong"};
-    prizes = new String[]{"꽝","3000","2000"};
+    prizes = new String[]{"꽝", "3000", "2000"};
 
   }
 
   @ParameterizedTest
-  @ValueSource(ints = {0,-1,-3})
+  @ValueSource(ints = {0, -1, -3})
   @DisplayName("높이가 음수이거나 0인 경우 확인")
   public void validateHeight(int number) {
     assertThatThrownBy(() -> {

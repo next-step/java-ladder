@@ -17,7 +17,7 @@ public class ResultView {
   private static final String HYPHEN = "-----";
   private static final String EMPTY = "     ";
   private static final String RESULT = "실행결과";
-  private static final String NAMES_FORMAT = "%6s";
+  private static final String NAME_AND_PRIZE_FORMAT = "%6s";
   private static final String VERTICAL_LINE = "|";
 
   public void printLadder(LadderGame ladderGame) {
@@ -36,34 +36,30 @@ public class ResultView {
   }
 
 
-
   private String printPoints(Line line) {
-
     return line.points()
         .map(point -> VERTICAL_LINE + printUsedOrNot(point))
         .collect(Collectors.joining());
   }
 
   private String printUsedOrNot(Point point) {
-   
     if (point.isDirectionRight()) {
       return HYPHEN;
     }
     return EMPTY;
   }
 
-
   private String printPrize(Prizes prizes) {
     return prizes.prizes()
         .map(prize -> prize.prize())
-        .map(prize -> String.format(NAMES_FORMAT, prize))
+        .map(prize -> String.format(NAME_AND_PRIZE_FORMAT, prize))
         .collect(Collectors.joining());
   }
 
   private String printName(Users users) {
     return users.users()
         .map(user -> user.name())
-        .map(name -> String.format(NAMES_FORMAT, name))
+        .map(name -> String.format(NAME_AND_PRIZE_FORMAT, name))
         .collect(Collectors.joining());
   }
 

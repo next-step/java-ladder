@@ -10,7 +10,6 @@ import ladder.domain.generator.PointsGenerator;
 public class Line {
 
   private final List<Point> points;
-  private static Generator generator = new PointsGenerator();
 
   public Line(List<Point> points) {
     this.points = points;
@@ -36,21 +35,6 @@ public class Line {
   public Stream<Point> points() {
     return points.stream();
   }
-
-  public Position travel(Position position) {
-
-    if (position.isRightMove(points)) {
-      return position.rightMove();
-    }
-
-    if (position.isLeftMove(points)) {
-      return position.leftMove();
-    }
-
-    return position;
-  }
-
-
 
   public Position move(Position position) {
     return points.get(position.position()).move();
@@ -78,6 +62,7 @@ public class Line {
   }
 
   private static Point initFirst(List<Point> points) {
+    Generator generator = new PointsGenerator();
     Point point = Point.first(generator.generatePoint());
     points.add(point);
     return point;

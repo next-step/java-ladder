@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 
 public class DirectionTest {
+
   @Test
   @DisplayName("Direction 생성 확인")
   public void init() {
@@ -45,13 +46,13 @@ public class DirectionTest {
   @Test
   public void next_true() {
     Direction next = Direction.of(TRUE, FALSE).next(TRUE);
-    assertThat(next).isEqualTo(Direction.of(FALSE,TRUE));
+    assertThat(next).isEqualTo(Direction.of(FALSE, TRUE));
   }
 
   @Test
   public void next_false() {
     Direction next = Direction.of(FALSE, TRUE).next(FALSE);
-    assertThat(next).isEqualTo(Direction.of(TRUE,FALSE));
+    assertThat(next).isEqualTo(Direction.of(TRUE, FALSE));
   }
 
   @Test
@@ -63,6 +64,6 @@ public class DirectionTest {
   @Test
   public void last() {
     Direction last = Direction.first(TRUE).last();
-    assertThat(last).isEqualTo(Direction.of(TRUE,FALSE));
+    assertThat(last).isEqualTo(Direction.of(TRUE, FALSE));
   }
 }

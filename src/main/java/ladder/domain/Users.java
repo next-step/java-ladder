@@ -19,7 +19,7 @@ public class Users {
     validateDuplicatedName(names);
 
     this.users = new ArrayList<>();
-    for (int i = 0; i< names.length; i++) {
+    for (int i = 0; i < names.length; i++) {
       users.add(new User(names[i]));
     }
 
