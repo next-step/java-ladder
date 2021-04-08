@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import java.util.List;
 import java.util.Objects;
 
 public final class LadderLines implements Lines {
@@ -14,6 +15,11 @@ public final class LadderLines implements Lines {
   public LadderLines(LadderHeight ladderHeight, PersonCount personCount) {
     this.ladderHeight = ladderHeight;
     this.personCount = personCount;
+  }
+
+  @Override
+  public List<Line> lines() {
+    return null;
   }
 
   @Override
