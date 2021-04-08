@@ -27,4 +27,8 @@ public class Players {
     public PlayerNamesDto readOnlyPlayerNames() {
         return new PlayerNamesDto(Collections.unmodifiableList(players));
     }
+
+    public boolean notIncludePlayer(Player player) {
+        return !players.contains(player);
+    }
 }
