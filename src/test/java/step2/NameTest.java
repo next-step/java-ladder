@@ -3,6 +3,7 @@ package step2;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
+import step2.domain.Name;
 
 public class NameTest {
 
