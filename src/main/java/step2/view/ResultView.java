@@ -1,6 +1,6 @@
 package step2.view;
 
-import step2.*;
+import step2.domain.*;
 
 import java.util.List;
 

@@ -1,10 +1,10 @@
-package step2;
+package step2.controller;
 
+import step2.domain.Height;
+import step2.domain.Lines;
+import step2.domain.Persons;
 import step2.view.InputView;
 import step2.view.ResultView;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class LadderGame {
     InputView inputView = new InputView();
@@ -15,7 +15,7 @@ public class LadderGame {
         Persons persons = new Persons(participants);
         int height = inputView.inputHeight();
 
-        Lines lines = Lines.Lines(new Height(height), persons.personList().size());
+        Lines lines = Lines.lines(new Height(height), persons.personList().size());
         resultView.printPerson(persons);
         resultView.printLadder(lines);
 
