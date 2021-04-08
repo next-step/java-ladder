@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.List;
 import nextstep.ladder.exception.OverNameLengthLimitException;
+import nextstep.ladder.exception.PersonCountTooLowException;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -57,5 +58,18 @@ class PeopleTest {
     assertThatThrownBy(() -> new People(names))
         .isInstanceOf(OverNameLengthLimitException.class)
         .hasMessage(OverNameLengthLimitException.OVER_NAME_LENGTH_LIMIT);
+  }
+
+  @Test
+  @DisplayName("인원이 2명 이하인 경우 생성에 실패한다.")
+  void createFailWhenUnderPersonLimit() {
+    //given
+    final String[] names = new String[]{"pobi"};
+
+    //when
+    //then
+    assertThatThrownBy(() -> new People(names))
+        .isInstanceOf(PersonCountTooLowException.class)
+        .hasMessage(PersonCountTooLowException.PERSON_COUNT_TOO_LOW);
   }
 }

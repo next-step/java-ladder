@@ -18,6 +18,11 @@ public final class People {
 
   public People(final List<Person> people) {
     this.people = people;
+    validateSize();
+  }
+
+  private void validateSize() {
+    personCount();
   }
 
   public PersonCount personCount() {
