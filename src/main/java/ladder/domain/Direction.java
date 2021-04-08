@@ -3,6 +3,8 @@ package ladder.domain;
 import static java.lang.Boolean.FALSE;
 
 import java.util.Objects;
+import ladder.domain.generator.Generator;
+import ladder.domain.generator.PointsGenerator;
 
 /*
 * 각 Point의 좌/우 방향을 Direction으로 추상화
@@ -14,6 +16,7 @@ import java.util.Objects;
 public class Direction {
   private final boolean left;
   private final boolean right;
+  private Generator generator = new PointsGenerator();
 
   private Direction(boolean left, boolean right) {
     if (left && right) {
@@ -41,7 +44,7 @@ public class Direction {
     if (this.right) {
       return next(FALSE);
     }
-    return next(generatePoint());
+    return next(generator.generatePoint());
   }
 
   public static Direction of(boolean first, boolean second) {

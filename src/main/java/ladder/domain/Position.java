@@ -20,16 +20,21 @@ public class Position {
   }
 
   public boolean isRightMove(List<Point> points) {
-    if (position + 1 <= points.size() - 1 && points.get(position + 1).isUsed()) {
+    /*if (position + 1 <= points.size() - 1 && points.get(position + 1).isUsed()) {
       return true;
     }
+    return false;
+    */
     return false;
   }
 
   public boolean isLeftMove(List<Point> points) {
+    /*
     if (position >= 0 && points.get(position).isUsed()) {
       return true;
     }
+    return false;
+     */
     return false;
   }
 

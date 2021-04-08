@@ -12,11 +12,12 @@ public class Ladder {
   private final List<Line> lines;
 
   public Ladder(int height, int countOfPerson) {
+
     lines = new ArrayList<>();
-    Generator generator = new PointsGenerator(countOfPerson);
-    for (int i = 0; i < height; i++) {
-      lines.add(new Line(generator));
+    for (int i = 0; i< height; i++) {
+      lines.add(Line.init(countOfPerson));
     }
+
   }
 
   @Override

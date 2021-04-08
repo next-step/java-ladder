@@ -5,14 +5,12 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
 import ladder.domain.generator.Generator;
+import ladder.domain.generator.PointsGenerator;
 
 public class Line {
 
   private final List<Point> points;
-
-  public Line(Generator generator) {
-    this(generator.makePoints());
-  }
+  private static Generator generator = new PointsGenerator();
 
   public Line(List<Point> points) {
     this.points = points;
@@ -80,7 +78,7 @@ public class Line {
   }
 
   private static Point initFirst(List<Point> points) {
-    Point point = Point.first(generatePoint());
+    Point point = Point.first(generator.generatePoint());
     points.add(point);
     return point;
   }

@@ -42,9 +42,11 @@ public class ResultView {
   }
 
   private String printUsedOrNot(Point point) {
-    if (point.isUsed()) {
+    /*if (point.isUsed()) {
       return HYPHEN;
     }
+    return EMPTY;
+    */
     return EMPTY;
   }
 
