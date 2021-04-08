@@ -9,10 +9,6 @@ public final class LadderLines implements Lines {
   private final LadderHeight ladderHeight;
   private final PersonCount personCount;
 
-  public LadderLines(LadderHeight ladderHeight, People people) {
-    this(ladderHeight, people.personCount());
-  }
-
   public LadderLines(LadderHeight ladderHeight, PersonCount personCount) {
     this.ladderHeight = ladderHeight;
     this.personCount = personCount;

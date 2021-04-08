@@ -1,22 +1,20 @@
 package nextstep.ladder.domain;
 
+import java.util.List;
 import java.util.Objects;
 
 public final class Ladder {
 
   private final LadderHeight ladderHeight;
   private final People people;
-  private final Lines lines;
 
   public Ladder(LadderHeight ladderHeight, People people) {
-    this(ladderHeight, people, new LadderLines(ladderHeight, people));
-
-  }
-
-  public Ladder(LadderHeight ladderHeight, People people, Lines lines) {
     this.ladderHeight = ladderHeight;
     this.people = people;
-    this.lines = lines;
+  }
+
+  public List<Line> lines() {
+    return new LadderLines(ladderHeight, people.personCount()).lines();
   }
 
   @Override
@@ -28,12 +26,11 @@ public final class Ladder {
       return false;
     }
     Ladder ladder = (Ladder) o;
-    return Objects.equals(ladderHeight, ladder.ladderHeight) && Objects.equals(people, ladder.people)
-        && Objects.equals(lines, ladder.lines);
+    return Objects.equals(ladderHeight, ladder.ladderHeight) && Objects.equals(people, ladder.people);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(ladderHeight, people, lines);
+    return Objects.hash(ladderHeight, people);
   }
 }
