@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -16,9 +17,12 @@ public class Users {
 
   public Users(String[] names) {
     validateDuplicatedName(names);
-    this.users = IntStream.range(0, names.length)
-        .mapToObj(position -> new User(names[position], position))
-        .collect(Collectors.toList());
+
+    this.users = new ArrayList<>();
+    for (int i = 0; i< names.length; i++) {
+      users.add(new User(names[i]));
+    }
+
   }
 
   private void validateDuplicatedName(String[] names) {
