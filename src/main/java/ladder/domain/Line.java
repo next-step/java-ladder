@@ -11,15 +11,28 @@ public class Line {
         generateLine();
     }
 
-    private void generateLine(){
+    private Point generateFirstPoint(){
         Point tmpPoint = Point.randomPoint();
         points.add(tmpPoint);
+        return tmpPoint;
+    }
+
+    private Point generateIntermediatePoint(Point tmpPoint){
         for(int i = 1; i < numberOfPlayers-1; i++){
             tmpPoint = Point.next(tmpPoint);
             points.add(tmpPoint);
         }
-        tmpPoint = Point.last(tmpPoint);
-        points.add(tmpPoint);
+        return tmpPoint;
+    }
+
+    private void generateLastPoint(Point tmpPoint){
+        points.add(Point.last(tmpPoint));
+    }
+
+    private void generateLine(){
+        Point tmpPoint = generateFirstPoint();
+        tmpPoint = generateIntermediatePoint(tmpPoint);
+        generateLastPoint(tmpPoint);
     }
 
     public List<Point> points(){
