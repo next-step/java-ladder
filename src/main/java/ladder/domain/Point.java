@@ -50,4 +50,7 @@ public class Point {
         '}';
   }
 
+  public boolean isDirectionRight() {
+    return direction.isRight();
+  }
 }
