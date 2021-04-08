@@ -16,14 +16,14 @@ public class Line {
         List<Boolean> points = new ArrayList<>();
         Boolean beforePoint = Boolean.FALSE;
         for (int i = 0; i < countOfPerson; i++) {
-            Boolean point = getPoint(beforePoint, supplier);
+            Boolean point = generatePoint(beforePoint, supplier);
             points.add(point);
             beforePoint = point;
         }
         return new Line(points);
     }
 
-    private static Boolean getPoint(final Boolean beforePoint, Supplier<Boolean> supplier) {
+    private static Boolean generatePoint(final Boolean beforePoint, Supplier<Boolean> supplier) {
         if (beforePoint) {
             return Boolean.FALSE;
         }

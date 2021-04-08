@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 class LineTest {
 
     @Test
-    @DisplayName("point true는 연속으로 생성되지 않는다")
+    @DisplayName("point가 true를 연속으로 생성되지않는다")
     void true_continuously_impossible() {
         // given
         Line line = Line.of(5, () -> Boolean.TRUE);
@@ -30,7 +30,7 @@ class LineTest {
     }
 
     @Test
-    @DisplayName("point false는 연속으로 생성 가능하다")
+    @DisplayName("point가 false는 연속으로 생성 가능하다")
     void false_continuously_possible() {
         // given
         Line line = Line.of(5, () -> Boolean.FALSE);
