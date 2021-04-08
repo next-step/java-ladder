@@ -1,29 +1,35 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Point;
+import nextstep.ladder.domain.*;
 import nextstep.ladder.view.dto.LadderDto;
 import nextstep.ladder.view.dto.PlayerNamesDto;
+import nextstep.ladder.view.dto.RewardsDto;
 
 public class ResultView {
 
-    private static final String END_LINE = "|";
     private static final String CONNECTED = "|-----";
     private static final String NOT_CONNECTED = "|     ";
+    private static final String NAME_OUTPUT_FORMAT = "%5s";
+    private static final String SHOW_RESULT_MESSAGE = "\n실행 결과";
 
     private ResultView() {
     }
 
     public static void showPlayers(PlayerNamesDto players) {
         for (String name : players.names()) {
-            System.out.print(name);
+            System.out.print(String.format(NAME_OUTPUT_FORMAT, name));
         }
         System.out.println();
     }
 
-    public static void showLadder(LadderDto ladderDto) {
+    public static void showLadder(LadderDto ladderDto, Rewards rewards) {
         ladderDto.lines()
                 .forEach(ResultView::showLine);
+        rewards.readOnlyRewards()
+                .stream()
+                .map(r -> String.format("%5s", r.getReward()))
+                .forEach(System.out::print);
+        System.out.println("\n");
     }
 
     private static void showLine(Line line) {
@@ -31,10 +37,22 @@ public class ResultView {
                 .stream()
                 .map(ResultView::convertPoint)
                 .forEach(System.out::print);
-        System.out.println(END_LINE);
+        System.out.println();
     }
 
     private static String convertPoint(Point point) {
         return point.isConnected() ? CONNECTED : NOT_CONNECTED;
+    }
+
+    public static void showResultOfPlayer(Reward reward) {
+        System.out.println(SHOW_RESULT_MESSAGE);
+        System.out.println(reward.getReward());
+        System.out.println();
+    }
+
+    public static void showResultOfAll(RewardsDto rewardsDto) {
+        System.out.println(SHOW_RESULT_MESSAGE);
+        rewardsDto.readRewards()
+                .forEach(System.out::println);
     }
 }
