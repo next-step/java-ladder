@@ -1,14 +1,12 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.dto.Connections;
-import nextstep.ladder.dto.LadderDto;
-import nextstep.ladder.dto.PlayerDto;
+import nextstep.ladder.dto.*;
+import nextstep.ladder.util.Pair;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static nextstep.ladder.util.StringUtils.padToLeft;
-import static nextstep.ladder.util.StringUtils.repeat;
+import static nextstep.ladder.util.StringUtils.*;
 
 public class ResultView {
 
@@ -19,17 +17,22 @@ public class ResultView {
 
     public void printPlayers(List<PlayerDto> players) {
         List<String> paddedNameList = players.stream()
-                                             .map(player -> padToLeft(player.getName(), STRING_ELEMENT_SIZE))
-                                             .collect(Collectors.toList());
+            .map(player -> padToLeft(player.getName(), STRING_ELEMENT_SIZE))
+            .collect(Collectors.toList());
 
         System.out.println(String.join(WHITE_SPACE, paddedNameList));
     }
 
-    public void printLadder(LadderDto ladder) {
+    public void printLadderBoard(LadderBoardDto ladderBoardDto) {
+        printLadder(ladderBoardDto.getLadderDto());
+        printRewards(ladderBoardDto.getRewardsDto());
+    }
+
+    private void printLadder(LadderDto ladder) {
         ladder.getConnectionsList()
-              .stream()
-              .map(this::depictConnections)
-              .forEach(System.out::println);
+            .stream()
+            .map(this::depictConnections)
+            .forEach(System.out::println);
     }
 
     private String depictConnections(Connections connections) {
@@ -46,6 +49,35 @@ public class ResultView {
 
     private String selectSymbol(boolean connected) {
         return connected ? HYPHEN : WHITE_SPACE;
+    }
+
+    private void printRewards(RewardsDto rewardsDto) {
+        List<String> paddedRewards = rewardsDto.getRewards()
+            .stream()
+            .map(reward -> padToRight(reward.getRewardString(), STRING_ELEMENT_SIZE))
+            .collect(Collectors.toList());
+
+        System.out.println(String.join(WHITE_SPACE, paddedRewards));
+    }
+
+    public void printLadderGameReport(LadderGameReport report) {
+        List<Pair<PlayerDto, RewardDto>> results = report.getResults();
+
+        System.out.println("실행 결과");
+        if (results.size() == 1) {
+            Pair<PlayerDto, RewardDto> pair = results.get(0);
+            System.out.println(pair.getSecond()
+                .getRewardString());
+        } else {
+            results.forEach(pair -> {
+                String name = pair.getFirst()
+                    .getName();
+                String reward = pair.getSecond()
+                    .getRewardString();
+
+                System.out.println(name + " : " + reward);
+            });
+        }
     }
 
 }
