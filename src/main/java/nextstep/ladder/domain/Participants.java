@@ -2,7 +2,6 @@ package nextstep.ladder.domain;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Participants {
 
@@ -14,12 +13,13 @@ public class Participants {
 
     public static Participants of(final List<String> userName) {
         return new Participants(userName.stream()
-                .map(Participant::of)
-                .collect(Collectors.toList())
+            .map(Participant::of)
+            .collect(Collectors.toList())
         );
     }
 
-    public Stream<Participant> stream() {
-        return participants.stream();
+    public List<Participant> toList() {
+        return participants.stream()
+            .collect(Collectors.toList());
     }
 }

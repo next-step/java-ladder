@@ -1,9 +1,10 @@
 package nextstep.ladder.domain;
 
 import java.util.List;
-import java.util.stream.Stream;
+import java.util.stream.Collectors;
 
 public class Lines {
+
     private List<Line> lines;
 
     private Lines(final List<Line> lines) {
@@ -14,7 +15,8 @@ public class Lines {
         return new Lines(lines);
     }
 
-    public Stream<Line> stream() {
-        return lines.stream();
+    public List<Line> toList() {
+        return lines.stream()
+            .collect(Collectors.toList());
     }
 }

@@ -1,9 +1,8 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.strategy.LineConnectionStrategy;
-
 import java.util.List;
-import java.util.stream.Stream;
+import java.util.stream.Collectors;
+import nextstep.ladder.strategy.LineConnectionStrategy;
 
 public class Line {
 
@@ -19,7 +18,8 @@ public class Line {
         return new Line(line);
     }
 
-    public Stream<Boolean> stream() {
-        return line.stream();
+    public List<Boolean> toList() {
+        return line.stream()
+            .collect(Collectors.toList());
     }
 }

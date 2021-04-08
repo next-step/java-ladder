@@ -1,13 +1,11 @@
 package nextstep.ladder.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-
-import java.util.List;
-import java.util.stream.Collectors;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 class LinesTest {
 
@@ -19,8 +17,7 @@ class LinesTest {
         List<Line> listLine = lineGenerator.generateLines(ladderHeight, width);
 
         Lines lines = Lines.of(listLine);
-        List<Line> generatedLine = lines.stream()
-                .collect(Collectors.toList());
+        List<Line> generatedLine = lines.toList();
 
         assertThat(generatedLine.size()).isEqualTo(linesSize);
     }
