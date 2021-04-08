@@ -7,13 +7,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 class NameTest {
-    @DisplayName("사용자 명 생성 테스트")
+
+    @DisplayName("Name 생성 테스트")
     @Test
-    void create_사용자_명() {
+    void create_생성테스트() {
         // given
-        Name name = Name.of("seok");
+        Name name = Name.valueOf("seok");
         // when
-        Name expected = Name.of("seok");
+        Name expected = Name.valueOf("seok");
         // then
         assertThat(name).isEqualTo(expected);
     }
@@ -22,6 +23,6 @@ class NameTest {
     @Test
     void create_Exception() {
         assertThatExceptionOfType(IllegalArgumentException.class)
-        .isThrownBy(() -> Name.of("123456"));
+                .isThrownBy(() -> Name.valueOf("123456"));
     }
 }

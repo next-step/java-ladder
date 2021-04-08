@@ -1,6 +1,7 @@
 package nextstep.ladder.generator;
 
-import nextstep.ladder.domain.Point;
+import nextstep.ladder.domain.Bar;
+import nextstep.ladder.wrapper.Line;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,25 +14,24 @@ public class DefaultLineGenerator implements LineGenerator {
     private static final Random RANDOM = new Random();
 
     @Override
-    public List<Point> createLine(final int countOfPerson) {
+    public Line createLine(final int countOfPerson) {
 
-        List<Point> points = new ArrayList<>(Arrays.asList(Point.initFalse()));
-        // 초기 값 설정으로 1부터 시작
-        IntStream.range(points.size(), countOfPerson)
-                .forEach(value -> checkExistOfLine(points, value));
+        List<Bar> bars = new ArrayList<>(Arrays.asList(Bar.init()));
+        IntStream.range(bars.size(), countOfPerson)
+                .forEach(value -> addNextPoint(bars, value));
 
-        return points;
+        return Line.valueOf(bars);
     }
 
-    private void checkExistOfLine(List<Point> points, int value) {
-        Point point = points.get(value - 1);
-        points.add(point(point.isExist()));
+    private void addNextPoint(final List<Bar> bars, final int value) {
+        Bar bar = bars.get(value - 1);
+        bars.add(point(bar.isExist()));
     }
 
-    private Point point(boolean point) {
+    private Bar point(final boolean point) {
         if(point) {
-            return Point.initFalse();
+            return Bar.init();
         }
-        return Point.of(RANDOM.nextBoolean());
+        return Bar.valueOf(RANDOM.nextBoolean());
     }
 }

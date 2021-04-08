@@ -104,7 +104,7 @@ pobi  honux crong   jk
 
 ```java
 public class Line {
-    private List<Boolean> points = new ArrayList<>();
+    private List<Boolean> bars = new ArrayList<>();
 
     public Line (int countOfPerson) {
         // 라인의 좌표 값에 선이 있는지 유무를 판단하는 로직 추가
@@ -133,3 +133,111 @@ public class Line {
 - 다시 생각하기
   - 라인이 겹치지 않도록 해야 한다.
   - 라인을 중복하지않게 하기 위한 방법 최선인가?
+
+![Ladder Step2 Diagram](docs/ladder2.png)
+
+> 사다리(생성) 1차 피드백
+
+- [x] [문자열 상수 관리](https://github.com/next-step/java-ladder/pull/841#discussion_r606647457)
+- [x] [메서드 명에 대한 정의](https://github.com/next-step/java-ladder/pull/841#discussion_r606647603)
+- [x] [메서드 명에 대한 정의 2](https://github.com/next-step/java-ladder/pull/841#discussion_r606647666) 
+- [x] [객체의 책임 확인](https://github.com/next-step/java-ladder/pull/841#discussion_r606647697)
+
+## 3단계 - 사다리(게임 실행)
+
+- 기능 요구사항
+  - 사다리 실행 결과를 출력해야 한다.
+  - 개인별 이름을 입력하면 개인별 결과를 출력하고, "all"을 입력하면 전체 참여자의 실행 결과를 출력한다.
+
+- 프로그래밍 요구사항
+  - 자바 8의 스트림과 람다를 적용해 프로그래밍한다.
+  - 규칙 6: 모든 엔티티를 작게 유지한다.
+  - 규칙 7: **3개 이상의 인스턴스 변수를 가진 클래스를 쓰지 않는다.**
+
+- 게임 화면
+```text
+참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)
+pobi,honux,crong,jk
+
+실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)
+꽝,5000,꽝,3000
+
+최대 사다리 높이는 몇 개인가요?
+5
+
+사다리 결과
+
+pobi  honux crong   jk
+    |-----|     |-----|
+    |     |-----|     |
+    |-----|     |     |
+    |     |-----|     |
+    |-----|     |-----|
+꽝    5000  꽝    3000
+
+결과를 보고 싶은 사람은?
+pobi
+
+실행 결과
+꽝
+
+결과를 보고 싶은 사람은?
+all
+
+실행 결과
+pobi : 꽝
+honux : 3000
+crong : 꽝
+jk : 5000
+```
+- 힌트
+  - 각 로직을 구현하기 위해 필요한 데이터를 가지는 객체를 분리하기 위해 노력해본다. 
+  - 로직 구현에 필요한 데이터를 가지는 객체를 잘 분리하면 의외로 쉽게 문제를 해결할 수 있다.
+  - 각 객체가 2개 이하의 인스턴스 변수만을 가지도록 구현해 본다.
+
+- 코드 구현 전 시나리오 작성하기
+  1. 실행보상(LadderRewards) 입력
+    - 결과 값 받아서 쉼표 기준으로 split 처리 후 result에 전달하기
+  2. 사다리결과 출력
+    - 이름 -> 사다리 -> 결과값 순서대로 출력
+  3. 결과를 보고 싶은 사람 출력
+    - 참여자 내에 존재하는지 확인, **실제 사다리 타기** 
+  4. 실행 결과(LadderResult) 출력
+    - 결과 보고 싶은 사람 입력으로 계산된 결과 값 출력
+  5. 결과를 보고 싶은 사람 출력
+    - 전체 all 출력 
+  6. 실행 결과 전체 출력
+    - 전체 결과 값 출력
+
+- 사다리 타기 로직 필요한 내용 살펴보기
+  - 이동에 대한 값을 관리할 객체의 필요성을 느낌 -> Position
+  - 참여자의 `시작 위치`를 설정하는 것이 필요할 것 같다. -> User(name, Position)
+  - Ladder의 List<Line>을 모두 반복한 뒤 결과 index를 저장하여 매핑된 사다리 보상과 매핑해야할 듯
+
+```text
+    user1   user2   user3
+false   | true  | false |
+false   | false | true  |
+```
+
+![Ladder Step3 Diagram](docs/ladder3.png)
+
+
+> 사다리 타기 3단계 피드백
+
+- [x] [AtomicInteger의 사용 이유](https://github.com/next-step/java-ladder/pull/859#discussion_r607832479)
+- [x] [메서드명 정의](https://github.com/next-step/java-ladder/pull/859#discussion_r607838227)
+- [x] [객체의 책임](https://github.com/next-step/java-ladder/pull/859#discussion_r607842860)
+- [x] [인터페이스 활용](https://github.com/next-step/java-ladder/pull/859#discussion_r607845484)
+
+
+![Ladder Step3 Feedback Diagram](docs/ladder3_1.png)
+
+## 사다리 타기 피드백
+- Ladder를 작은 단위로 쪼갠다.
+  - Line (List<Point>)
+    - Point (boolean)
+      - Point는 그 자체 만으로 의미를 갖는지? -> 처음부터 객체를 구성했다면 도메인에 대한 이해가 높았을 것이다.
+
+- Cyclic dependency 를 해결하는 방법
+  - FactoryBean 역할을 하는 클래스를 만들어야 한다.

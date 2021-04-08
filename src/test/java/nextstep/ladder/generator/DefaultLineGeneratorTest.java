@@ -1,6 +1,6 @@
 package nextstep.ladder.generator;
 
-import nextstep.ladder.domain.Point;
+import nextstep.ladder.domain.Bar;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -16,9 +16,9 @@ class DefaultLineGeneratorTest {
         // given
         DefaultLineGenerator defaultLineGenerator = new DefaultLineGenerator();
         // when
-        List<Point> line = defaultLineGenerator.createLine(3);
+        List<Bar> actual = defaultLineGenerator.createLine(3).points().bars();
+        List<Bar> expected = defaultLineGenerator.createLine(3).points().bars();
         // then
-        assertThat(line.get(0).isExist()).isFalse(); // 첫 번째 값은 false로 고정
-        assertThat(line.size()).isEqualTo(3);
+        assertThat(actual.size()).isEqualTo(expected.size());
     }
 }

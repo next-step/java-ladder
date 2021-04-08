@@ -1,28 +1,29 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.wrapper;
 
-import java.util.Arrays;
+import nextstep.ladder.domain.User;
+
 import java.util.Collections;
-import java.util.List;
+import java.util.LinkedHashSet;
 import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Participants {
 
-    private static final String SPLIT_DELIMITER = ",";
-    private final List<Name> users;
+    private final Set<User> users;
 
-    private Participants(final String users) {
+    private Participants(final String... users) {
         this.users = parseUsers(users);
     }
 
-    private List<Name> parseUsers(final String users) {
-        return Arrays.stream(users.split(SPLIT_DELIMITER))
-                .map(String::trim)
-                .map(Name::of)
-                .collect(Collectors.toList());
+    private Set<User> parseUsers(final String... users) {
+        return IntStream.range(0, users.length)
+                .mapToObj(value -> User.valueOf(users[value], value))
+                .collect(Collectors.toCollection(LinkedHashSet::new));
     }
 
-    public static Participants valueOf(final String users) {
+    public static Participants valueOf(final String... users) {
         return new Participants(users);
     }
 
@@ -30,8 +31,8 @@ public class Participants {
         return users.size();
     }
 
-    public List<Name> getUsers() {
-        return Collections.unmodifiableList(users);
+    public Set<User> getUsers() {
+        return Collections.unmodifiableSet(users);
     }
 
     @Override

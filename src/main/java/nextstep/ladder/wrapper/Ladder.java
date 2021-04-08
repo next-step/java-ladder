@@ -1,27 +1,29 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.wrapper;
 
+import nextstep.ladder.domain.Position;
+
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Ladder {
 
     private final List<Line> lines;
 
-    public Ladder(Participants participants, Height height) {
-        this.lines = createLadder(participants, height);
+    private Ladder(final Line... lines) {
+        this.lines = Arrays.asList(lines);
     }
 
-    public static Ladder valueOf(Participants participants, Height height) {
-        return new Ladder(participants, height);
+    public static Ladder valueOf(final Line... lines) {
+        return new Ladder(lines);
     }
 
-    private List<Line> createLadder(Participants participants, Height height) {
-        return Stream.generate(() -> Line.valueOf(participants))
-                .limit(height.size())
-                .collect(Collectors.toList());
+    public Position findEndPosition(Position movePosition) {
+        for(Line line : lines) {
+            movePosition = line.move(movePosition);
+        }
+        return movePosition;
     }
 
     public List<Line> lines() {
