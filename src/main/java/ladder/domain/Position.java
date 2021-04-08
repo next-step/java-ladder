@@ -19,6 +19,10 @@ public class Position {
     return new Position(position - 1);
   }
 
+  public Position first() {
+    return new Position(0);
+  }
+
   public boolean isRightMove(List<Point> points) {
     /*if (position + 1 <= points.size() - 1 && points.get(position + 1).isUsed()) {
       return true;

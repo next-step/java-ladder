@@ -43,7 +43,7 @@ public class Ladder {
 
   public Position goThroughLinesFrom(Position position) {
     for (Line line : lines) {
-      position = line.travel(position);
+      position = line.move(position);
     }
     return position;
   }

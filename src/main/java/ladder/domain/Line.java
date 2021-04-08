@@ -52,8 +52,8 @@ public class Line {
 
 
 
-  public int move(int position) {
-    return points.get(position).move();
+  public Position move(Position position) {
+    return points.get(position.position()).move();
   }
 
   public static Line init(int sizeOfPerson) {

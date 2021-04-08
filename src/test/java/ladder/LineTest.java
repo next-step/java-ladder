@@ -52,6 +52,6 @@ public class LineTest {
   @Test
   public void move() {
     Line line = Line.init(2);
-    System.out.println("ladder result : " + line.move(0));
+    System.out.println("ladder result : " + line.move(new Position(0)));
   }
 }
