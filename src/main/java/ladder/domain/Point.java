@@ -3,39 +3,51 @@ package ladder.domain;
 import java.util.Objects;
 
 public class Point {
+  private final int index;
+  private final Direction direction;
 
-  private final boolean point;
-
-  public Point(boolean point) {
-    this.point = point;
+  public Point(int index, Direction direction) {
+    this.index = index;
+    this.direction = direction;
   }
 
-  public boolean isUsed() {
-    return point;
+  public int move() {
+    System.out.println("is left? " + direction.isLeft());
+    System.out.println("is right? " + direction.isRight());
+
+    if (direction.isRight()) {
+      return index + 1;
+    }
+
+    if (direction.isLeft()) {
+      return index - 1;
+    }
+
+    return this.index;
   }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    Point point1 = (Point) o;
-    return point == point1.point;
+  public Point next() {
+    return new Point(index + 1, direction.next());
+  }
+
+  public Point next(Boolean right) {
+    return new Point(index + 1, direction.next(right));
+  }
+
+  public Point last() {
+    return new Point(index + 1, direction.last());
+  }
+
+  public static Point first(Boolean right) {
+    return new Point(0, Direction.first(right));
   }
 
   @Override
   public String toString() {
     return "Point{" +
-        "point=" + point +
+        "index=" + index +
+        ", direction=" + direction +
         '}';
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(point);
   }
 
 }

@@ -42,4 +42,16 @@ public class LineTest {
     assertThat(line.travel(position)).isEqualTo(new Position(1));
 
   }
+
+  @Test
+  public void init() {
+    int sizeOfPerson = 5;
+    System.out.println(Line.init(sizeOfPerson));
+  }
+
+  @Test
+  public void move() {
+    Line line = Line.init(2);
+    System.out.println("ladder result : " + line.move(0));
+  }
 }
