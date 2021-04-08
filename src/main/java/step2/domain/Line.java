@@ -1,4 +1,4 @@
-package step2;
+package step2.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +9,10 @@ public class Line {
     private static final RandomGenerator randomGenerator = new RandomGenerator();
     private List<Point> points = new ArrayList<>();
     public Line(){}
+
+    public Line(List<Point> points) {
+        this.points = points;
+    }
 
     public Line generate(int countOfPerson) {
         return generate(countOfPerson, () -> randomGenerator.number());

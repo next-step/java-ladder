@@ -1,10 +1,10 @@
-package step2;
+package step2.domain;
 
 import java.util.Objects;
 
 public class Point {
-    private static final boolean LEFT = false;
-    private static final boolean RIGHT = true;
+    public static final boolean LEFT = false;
+    public static final boolean RIGHT = true;
 
     private final boolean point;
 

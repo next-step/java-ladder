@@ -1,6 +1,4 @@
-package step2;
-
-import java.util.Objects;
+package step2.domain;
 
 public class Height {
     private final int height;

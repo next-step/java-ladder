@@ -1,6 +1,6 @@
 package step2;
 
-import java.util.Random;
+import step2.controller.LadderGame;
 
 public class main {
 

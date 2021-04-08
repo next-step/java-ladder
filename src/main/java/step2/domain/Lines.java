@@ -1,4 +1,4 @@
-package step2;
+package step2.domain;
 
 import java.util.List;
 import java.util.Objects;
@@ -11,7 +11,11 @@ public class Lines {
 
     public Lines() {}
 
-    public static Lines Lines(Height height, int personCount) {
+    public Lines(final List<Line> lines) {
+        this.lines = lines;
+    }
+
+    public static Lines lines(Height height, int personCount) {
         Lines lines = new Lines();
         Line line = new Line();
 
