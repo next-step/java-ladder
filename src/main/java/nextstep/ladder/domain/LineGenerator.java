@@ -32,8 +32,8 @@ public class LineGenerator {
         return line;
     }
 
-    public List<Line> generateLines(int ladderHeight, int width) {
-        return IntStream.range(0, ladderHeight)
+    public List<Line> generateLines(int height, int width) {
+        return IntStream.range(0, height)
                 .mapToObj(h -> Line.of(width, new LineConnectionRandomStrategy()))
                 .collect(Collectors.toList());
     }

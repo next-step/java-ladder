@@ -30,8 +30,8 @@ class LineGeneratorTest {
     @DisplayName("라인생성기로 Lines 생성")
     @ParameterizedTest
     @CsvSource(value = {"3:3:3", "4:3:4", "5:6:5"}, delimiter = ':')
-    void generateLines(int ladderHeight, int width, int expected) {
-        List<Line> lines = lineGenerator.generateLines(ladderHeight, width);
+    void generateLines(int height, int width, int expected) {
+        List<Line> lines = lineGenerator.generateLines(height, width);
         assertThat(lines.size()).isEqualTo(expected);
     }
 }
