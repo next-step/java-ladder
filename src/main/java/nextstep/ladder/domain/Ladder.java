@@ -8,8 +8,9 @@ public final class Ladder {
   private final People people;
   private final Lines lines;
 
-  public Ladder(final int height, final String[] names) {
-    this(new LadderHeight(height), new People(names), new LadderLines(height, names));
+  public Ladder(LadderHeight ladderHeight, People people) {
+    this(ladderHeight, people, new LadderLines(ladderHeight, people));
+
   }
 
   public Ladder(LadderHeight ladderHeight, People people, Lines lines) {

@@ -9,8 +9,8 @@ public final class LadderLines implements Lines {
   private final LadderHeight ladderHeight;
   private final PersonCount personCount;
 
-  public LadderLines(int height, String[] names) {
-    this(new LadderHeight(height), new PersonCount(names.length));
+  public LadderLines(LadderHeight ladderHeight, People people) {
+    this(ladderHeight, people.personCount());
   }
 
   public LadderLines(LadderHeight ladderHeight, PersonCount personCount) {

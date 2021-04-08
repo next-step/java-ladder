@@ -10,19 +10,20 @@ import org.junit.jupiter.api.Test;
 class LadderLinesTest {
 
   final int height = 3;
-  final String[] names = new String[]{"pobi", "crong", "honux", "jk"};
+  final LadderHeight ladderHeight = new LadderHeight(height);
+  final People people = new People(new String[]{"pobi", "crong", "honux", "jk"});
 
   LadderLines ladderLines;
 
   @BeforeEach
   void setUp() {
-    ladderLines = new LadderLines(height, names);
+    ladderLines = new LadderLines(ladderHeight, people);
   }
 
   @Test
   @DisplayName("높이와, 이름 목록을 받아서 생성한다.")
   void create() {
-    assertThat(ladderLines).isEqualTo(new LadderLines(height, names));
+    assertThat(ladderLines).isEqualTo(new LadderLines(ladderHeight, people));
   }
 
   @Test

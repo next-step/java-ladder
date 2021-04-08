@@ -11,13 +11,15 @@ class LadderTest {
   @DisplayName("높이와 이름을 입력받아 사다리를 생성한다.")
   void create() {
     // given
-    final String[] names = new String[]{"pobi", "crong", "honux", "jk"};
     final int height = 3;
+    final LadderHeight ladderHeight = new LadderHeight(height);
+    final String[] names = new String[]{"pobi", "crong", "honux", "jk"};
+    final People people = new People(names);
 
     // when
-    final Ladder ladder = new Ladder(height, names);
+    final Ladder ladder = new Ladder(ladderHeight, people);
 
     // then
-    assertThat(ladder).isEqualTo(new Ladder(height, names));
+    assertThat(ladder).isEqualTo(new Ladder(ladderHeight, people));
   }
 }
