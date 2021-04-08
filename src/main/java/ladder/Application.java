@@ -24,12 +24,10 @@ public class Application {
 
     while (true) {
       String result = inputView.inputResult();
-
       if (result.equals(RESULT_ALL)) {
         resultView.printAllResult(prizeResult);
         break;
       }
-
       resultView.printEachResult(prizeResult, result);
     }
   }
