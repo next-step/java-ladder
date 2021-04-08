@@ -9,18 +9,34 @@ class StringUtilsTest {
 
     @Test
     @DisplayName("특정 문자열울 좌측에 끼워넣는다.")
-    void paddingString() {
+    void paddingStringToLeft() {
         String str = "test";
 
         assertThat(StringUtils.padToLeft(str, 10)).isEqualTo("      test");
     }
 
     @Test
-    @DisplayName("원본 문자열이 충분히 길면 그대로 반환한다.")
-    void nothingToDoIfStringIsTooLong() {
+    @DisplayName("좌측 padding 사용 시 원본 문자열이 충분히 길면 그대로 반환한다.")
+    void nothingToDoIfStringIsTooLongWhenUseAddLeftPad() {
         String str = "tdd forever";
 
         assertThat(StringUtils.padToLeft(str, 10)).isEqualTo(str);
+    }
+
+    @Test
+    @DisplayName("특정 문자열울 우측에 끼워넣는다.")
+    void paddingStringToRight() {
+        String str = "test";
+
+        assertThat(StringUtils.padToRight(str, 10)).isEqualTo("test      ");
+    }
+
+    @Test
+    @DisplayName("우측 padding 사용 시 원본 문자열이 충분히 길면 그대로 반환한다.")
+    void nothingToDoIfStringIsTooLongWhenUseAddRightPad() {
+        String str = "tdd forever";
+
+        assertThat(StringUtils.padToRight(str, 10)).isEqualTo(str);
     }
 
     @Test
