@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,6 +18,9 @@ class LadderHeightTest {
     final LadderHeight ladderHeight = new LadderHeight(heightSource);
 
     // then
-    assertThat(ladderHeight).isEqualTo(new LadderHeight(heightSource));
+    assertAll(
+        () -> assertThat(ladderHeight).isEqualTo(new LadderHeight(heightSource)),
+        () -> assertThat(ladderHeight.toInt()).isEqualTo(heightSource)
+    );
   }
 }
