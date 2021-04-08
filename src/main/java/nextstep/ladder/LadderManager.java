@@ -6,5 +6,6 @@ public final class LadderManager {
 
   public static void main(String[] args) {
     final String[] names = InputView.inputNames();
+    final int height = InputView.inputLadderHeight();
   }
 }
