@@ -24,8 +24,7 @@ class LineTest {
             () -> assertThat(points.get(0)).isTrue(),
             () -> assertThat(points.get(1)).isFalse(),
             () -> assertThat(points.get(2)).isTrue(),
-            () -> assertThat(points.get(3)).isFalse(),
-            () -> assertThat(points.get(4)).isTrue()
+            () -> assertThat(points.get(3)).isFalse()
         );
     }
 
@@ -43,8 +42,7 @@ class LineTest {
             () -> assertThat(points.get(0)).isFalse(),
             () -> assertThat(points.get(1)).isFalse(),
             () -> assertThat(points.get(2)).isFalse(),
-            () -> assertThat(points.get(3)).isFalse(),
-            () -> assertThat(points.get(4)).isFalse()
+            () -> assertThat(points.get(3)).isFalse()
         );
     }
 }

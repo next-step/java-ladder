@@ -15,7 +15,7 @@ public class Line {
     public static Line of(final int countOfPerson, Supplier<Boolean> supplier) {
         List<Boolean> points = new ArrayList<>();
         Boolean beforePoint = Boolean.FALSE;
-        for (int i = 0; i < countOfPerson; i++) {
+        for (int i = 0; i < countOfPerson - 1; i++) {
             Boolean point = generatePoint(beforePoint, supplier);
             points.add(point);
             beforePoint = point;
