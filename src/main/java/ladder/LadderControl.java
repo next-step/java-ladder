@@ -10,9 +10,14 @@ public class LadderControl {
         List<String> names = View.names();
         Players players = new Players(names);
 
+        List<String> items = View.resultItems();
+        ResultItems resultItems = new ResultItems(items, players.count());
+
         int height = View.height();
 
         Ladder ladder = new Ladder(height, players.count(), new RandomLinkSelector());
         View.printResult(players, ladder);
+
+        String expectedPlayer = View.expectedPlayer();
     }
 }

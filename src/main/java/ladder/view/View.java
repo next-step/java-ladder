@@ -14,7 +14,7 @@ public class View {
 
     public static List<String> names() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        return Arrays.asList(scanner.nextLine().split(","));
+        return getStrings(",");
     }
 
     public static int height() {
@@ -22,6 +22,16 @@ public class View {
         int height = scanner.nextInt();
         scanner.nextLine();
         return height;
+    }
+
+    public static List<String> resultItems() {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        return getStrings(",");
+    }
+
+    public static String expectedPlayer() {
+        System.out.println("결과를 보고 싶은 사람은?");
+        return scanner.nextLine();
     }
 
     public static void printResult(Players players, Ladder ladder) {
@@ -55,5 +65,9 @@ public class View {
             linkSymbol = "|     ";
         }
         System.out.print(linkSymbol);
+    }
+
+    private static List<String> getStrings(String delimiter) {
+        return Arrays.asList(scanner.nextLine().split(delimiter));
     }
 }
