@@ -1,6 +1,5 @@
 package ladder.view;
 
-import ladder.domain.ExecutionResults;
 import java.util.HashMap;
 import java.util.List;
 

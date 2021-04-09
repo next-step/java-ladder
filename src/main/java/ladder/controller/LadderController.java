@@ -69,5 +69,4 @@ public class LadderController {
         printExecutionResult();
         printExecutionResult();
     }
-
 }
