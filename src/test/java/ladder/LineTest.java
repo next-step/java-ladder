@@ -68,11 +68,11 @@ public class LineTest {
         List<Point> points = line.getPoint();
         List<Point> comparePoints = new ArrayList<Point>() {
             {
-                add(Point.from(false));
-                add(Point.from(true));
-                add(Point.from(false));
-                add(Point.from(true));
-                add(Point.from(false));
+                add(Point.of(0, false));
+                add(Point.of(1, true));
+                add(Point.of(2, false));
+                add(Point.of(3, true));
+                add(Point.of(4, false));
             }
         };
 

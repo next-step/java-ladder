@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import java.util.Objects;
+
 public class Point {
     private final boolean point;
     private final LineNumber lineNumber;
@@ -39,4 +41,18 @@ public class Point {
         return prevCompare(prevPoint).nextCompare(nextPoint);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        Point point1 = (Point)o;
+        return point == point1.point && Objects.equals(lineNumber, point1.lineNumber);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(point, lineNumber);
+    }
 }
