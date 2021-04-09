@@ -29,7 +29,7 @@ public class Users {
     }
   }
 
-  public Stream<User> getUsers() {
+  public Stream<User> stream() {
     return users.stream();
   }
 

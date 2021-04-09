@@ -19,6 +19,7 @@ public class ResultView {
   private static final String RESULT = "실행결과";
   private static final String NAME_AND_PRIZE_FORMAT = "%6s";
   private static final String VERTICAL_LINE = "|";
+  private static final String ALL= "all";
 
   public void printLadder(LadderGame ladderGame) {
     System.out.println(RESULT);
@@ -30,14 +31,14 @@ public class ResultView {
 
 
   private String printLadderDetail(Ladder ladder) {
-    return ladder.getLines()
+    return ladder.stream()
         .map(line -> EMPTY + printPoints(line) + System.lineSeparator())
         .collect(Collectors.joining());
   }
 
 
   private String printPoints(Line line) {
-    return line.getPoints()
+    return line.stream()
         .map(point -> VERTICAL_LINE + printUsedOrNot(point))
         .collect(Collectors.joining());
   }
@@ -50,14 +51,14 @@ public class ResultView {
   }
 
   private String printPrize(Prizes prizes) {
-    return prizes.getPrizes()
+    return prizes.stream()
         .map(prize -> prize.getPrize())
         .map(prize -> String.format(NAME_AND_PRIZE_FORMAT, prize))
         .collect(Collectors.joining());
   }
 
   private String printName(Users users) {
-    return users.getUsers()
+    return users.stream()
         .map(user -> user.getName())
         .map(name -> String.format(NAME_AND_PRIZE_FORMAT, name))
         .collect(Collectors.joining());
@@ -73,13 +74,20 @@ public class ResultView {
   public void printEachResult(PrizeResult prizeResult, String userName) {
     System.out.println(RESULT);
     String result = "";
-    for (Entry<User, Prize> prizeMap : prizeResult.getPrizeResult().entrySet()) {
-      if (prizeMap.getKey().getName().equals(userName)) {
-        result = prizeMap.getValue().getPrize();
-        break;
-      }
+    Prize prize = prizeResult.getPrizeResult().get(new User(userName));
+    if (prize != null) {
+      result = prize.getPrize();
     }
     System.out.println(result);
+  }
 
+  public boolean printResult(String input, PrizeResult prizeResult) {
+    if (input.equals(ALL)) {
+      printAllResult(prizeResult);
+      return true;
+    }
+
+    printEachResult(prizeResult, input);
+    return false;
   }
 }

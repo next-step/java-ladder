@@ -15,7 +15,7 @@ public class Prizes {
         .collect(Collectors.toList());
   }
 
-  public Stream<Prize> getPrizes() {
+  public Stream<Prize> stream() {
     return prizes.stream();
   }
 

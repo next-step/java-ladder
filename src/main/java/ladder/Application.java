@@ -23,12 +23,10 @@ public class Application {
     PrizeResult prizeResult = ladderGame.play();
 
     while (true) {
-      String result = inputView.inputResult();
-      if (result.equals(RESULT_ALL)) {
-        resultView.printAllResult(prizeResult);
+      String input = inputView.inputResult();
+      if (resultView.printResult(input, prizeResult)) {
         break;
       }
-      resultView.printEachResult(prizeResult, result);
     }
   }
 }

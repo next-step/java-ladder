@@ -16,7 +16,7 @@ public class Ladder {
     }
   }
 
-  public Stream<Line> getLines() {
+  public Stream<Line> stream() {
     return lines.stream();
   }
 
