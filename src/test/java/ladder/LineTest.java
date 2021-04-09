@@ -6,6 +6,8 @@ import ladder.domain.Linker;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
@@ -32,7 +34,7 @@ public class LineTest {
                 .stream()
                 .filter(link -> link == Link.OPEN)
                 .count();
-        assertThat(numberOfOpen).isEqualTo((numberOfPlayer-1) / 2);
+        assertThat(numberOfOpen).isEqualTo((numberOfPlayer - 1) / 2);
     }
 
     @Test
@@ -42,5 +44,15 @@ public class LineTest {
         Line line = new Line(numberOfPlayer, closedLinker);
 
         assertThat(line.links().size()).isEqualTo(numberOfPlayer - 1);
+    }
+
+    @Test
+    @DisplayName("Link 유무에 따라 Point가 이동하는지 테스트")
+    void When_EndPoint_Then_() {
+        Line line = new Line(Arrays.asList(Link.CLOSE, Link.OPEN));
+
+        assertThat(line.endPoint(0)).isEqualTo(1);
+        assertThat(line.endPoint(1)).isEqualTo(0);
+        assertThat(line.endPoint(2)).isEqualTo(2);
     }
 }

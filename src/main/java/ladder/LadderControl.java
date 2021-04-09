@@ -18,6 +18,11 @@ public class LadderControl {
         Ladder ladder = new Ladder(height, players.count(), new RandomLinkSelector());
         View.printResult(players, ladder);
 
-        String expectedPlayer = View.expectedPlayer();
+        LadderResult ladderResult = ladder.result(players, goals);
+
+        while (true) {
+            String expectedPlayer = View.expectedPlayer();
+            View.resultElements(ladderResult.result(expectedPlayer));
+        }
     }
 }
