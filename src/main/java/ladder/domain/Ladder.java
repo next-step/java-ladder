@@ -31,4 +31,11 @@ public class Ladder {
     public List<Line> getLadder() {
         return Collections.unmodifiableList(this.ladder);
     }
+
+    public LineNumber matchResult(LineNumber lineNumber) {
+        for(Line line : ladder) {
+            lineNumber = line.matchPoint(lineNumber).getLineNumber();
+        }
+        return lineNumber;
+    }
 }

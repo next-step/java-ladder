@@ -22,7 +22,7 @@ public class PointTest {
     }
 
     @Test
-    void 이전_현재_연결_테스트() {
+    void 이전_현재_이동_테스트() {
         // given
         Point point = Point.of(0, false);
         Point prevPoint = Point.of(1, true);
@@ -31,7 +31,7 @@ public class PointTest {
     }
 
     @Test
-    void 이전_현재_연결_테스트_2() {
+    void 이전_현재_이동_테스트_2() {
         // given
         Point point = Point.of(0, true);
         Point prevPoint = Point.of(1, true);
@@ -40,7 +40,7 @@ public class PointTest {
     }
 
     @Test
-    void 다음_현재_연결_테스트() {
+    void 다음_현재_이동_테스트() {
         // given
         Point point = Point.of(0, false);
         Point nextPoint = Point.of(1, true);
@@ -49,7 +49,7 @@ public class PointTest {
     }
 
     @Test
-    void 다음_현재_연결_테스트_2() {
+    void 다음_현재_이동_테스트_2() {
         // given
         Point point = Point.of(0, false);
         Point nextPoint = Point.of(1, false);
@@ -58,7 +58,7 @@ public class PointTest {
     }
 
     @Test
-    void 이전_현재_다음_연결_테스트() {
+    void 이전_현재_다음_이동_테스트() {
         // given
         Point prevPoint = Point.of(0, false);
         Point point = Point.of(1, true);
@@ -68,7 +68,7 @@ public class PointTest {
     }
 
     @Test
-    void 이전_현재_다음_연결_테스트_2() {
+    void 이전_현재_다음_이동_테스트_2() {
         // given
         Point prevPoint = Point.of(0, true);
         Point point = Point.of(1, false);

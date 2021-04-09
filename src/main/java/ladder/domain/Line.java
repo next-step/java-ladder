@@ -33,6 +33,19 @@ public class Line {
             });
     }
 
+    public Point matchPoint(LineNumber lineNumber) {
+        int number = lineNumber.getLineNumber();
+        Point curPoint = line.get(number);
+
+        if (number == 0) {
+            return curPoint.nextCompare(line.get(number + 1));
+        }
+        if (number == line.size() - 1) {
+            return curPoint.prevCompare(line.get(number - 1));
+        }
+        return curPoint.compare(line.get(number - 1), line.get(number + 1));
+    }
+
     public List<Point> getPoint() {
         return Collections.unmodifiableList(this.line);
     }
