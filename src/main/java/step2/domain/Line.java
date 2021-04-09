@@ -11,6 +11,7 @@ public class Line {
     public Line(){}
 
     public Line(List<Point> points) {
+        sameLineValidation(points);
         this.points = points;
     }
 
@@ -38,7 +39,26 @@ public class Line {
         return new Point(numberGenerator.number());
     }
 
+    public void sameLineValidation(List<Point> points) {
+        if (points.size() > 1) {
+            validateList(points);
+        }
+    }
+
+    private void validateList(List<Point> points) {
+        for (int i = 1; i < points.size(); i++) {
+            compare(points, i);
+        }
+    }
+
+    private void compare(List<Point> points, int index) {
+        if (points.get(index -1).equals(points.get(index))) {
+            throw new IllegalArgumentException("같은 라인에는 연속적으로 라인이 생성될 수 없습니다.");
+        }
+    }
+
     public List<Point> getPoints() {
+        sameLineValidation(points);
         return points;
     }
 

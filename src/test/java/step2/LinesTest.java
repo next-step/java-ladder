@@ -2,6 +2,7 @@ package step2;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import step2.domain.Height;
 import step2.domain.Line;
 import step2.domain.Lines;
 import step2.domain.Point;
@@ -24,17 +25,17 @@ public class LinesTest {
     @Test
     @DisplayName("사다리 생성 결과 테스트")
     void createLadder() {
-        Lines lines = new Lines(createLineList());
-        assertThat(lines.lines().size()).isEqualTo(3);
+//        Lines lines = new Lines(createLineList());
+        int height = 3;
+        Lines lines = Lines.lines(new Height(height), 3);
+        assertThat(lines.lines().size()).isEqualTo(height);
     }
 
     public List<Line> createLineList() {
         List<Line> lines = new ArrayList<>();
-        lines.add(new Line(Arrays.asList(new Point(true), new Point(true), new Point(true))));
-        lines.add(new Line(Arrays.asList(new Point(true), new Point(true), new Point(true))));
-        lines.add(new Line(Arrays.asList(new Point(true), new Point(true), new Point(true))));
+        lines.add(new Line(Arrays.asList(new Point(true), new Point(false), new Point(true))));
+        lines.add(new Line(Arrays.asList(new Point(true), new Point(false), new Point(true))));
+        lines.add(new Line(Arrays.asList(new Point(true), new Point(false), new Point(true))));
         return lines;
     }
-
-
 }
