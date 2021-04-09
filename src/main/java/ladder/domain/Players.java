@@ -30,4 +30,8 @@ public class Players {
         return playerName.stream()
                 .anyMatch(name -> name.length() > MAX_NAME);
     }
+
+    public String name(int index) {
+        return names().get(index);
+    }
 }
