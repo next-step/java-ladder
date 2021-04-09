@@ -9,7 +9,7 @@ public class LadderStatistics {
     private final static String MESSAGE_IMPROPER_PLAYER = "참여한 사람의 결과만 확인할 수 있습니다.";
     private final Map<Player, String> LadderResults;
 
-    public LadderStatistics(HashMap ladderResults){
+    public LadderStatistics(Map ladderResults){
         LadderResults = ladderResults;
     }
 

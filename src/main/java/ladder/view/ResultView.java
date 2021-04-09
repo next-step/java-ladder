@@ -1,5 +1,6 @@
 package ladder.view;
 
+import ladder.domain.ExecutionResults;
 import ladder.domain.Ladder;
 import ladder.domain.Players;
 import ladder.domain.Point;
@@ -20,7 +21,10 @@ public class ResultView {
     private ResultView() {
     }
 
-    private static void printPlayers(Players players){
+    public static void printPlayers(Players players){
+        System.out.println();
+        System.out.println(MESSAGE_LADDER_RESULT);
+        System.out.println();
         players.players()
                 .stream()
                 .map(player -> String.format("%6s", player.name()))
@@ -28,7 +32,7 @@ public class ResultView {
         System.out.println();
     }
 
-    private static void printLadder(Ladder ladder){
+    public static void printLadder(Ladder ladder){
         ladder.lines()
                 .stream()
                 .forEach(line -> {
@@ -38,11 +42,11 @@ public class ResultView {
                 });
     }
 
-    public static void printResult(Players players, Ladder ladder) {
+    public static void printResult(ExecutionResults executionResults) {
+        executionResults.executionResults()
+                .stream()
+                .map(result -> String.format("%6s", result))
+                .forEach(System.out::print);
         System.out.println();
-        System.out.println(MESSAGE_LADDER_RESULT);
-        System.out.println();
-        printPlayers(players);
-        printLadder(ladder);
     }
 }

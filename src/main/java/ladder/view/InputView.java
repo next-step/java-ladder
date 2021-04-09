@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 public class InputView {
     private final static String MESSAGE_PLAYERS = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
     private final static String MESSAGE_EXECUTION_RESULTS = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
+    private final static String MESSAGE_PLAYER_YOU_WANT = "결과를 보고 싶은 사람은?";
     private final static String MESSAGE_HEIGHT = "최대 사다리 높이는 몇 개인가요?";
     private final static String DELIMITER_COMMA = ",";
     private final static String MESSAGE_CHECK_NUMERIC = "높이 값은 정수여야 합니다.";
@@ -46,5 +47,11 @@ public class InputView {
         System.out.println();
         System.out.println(MESSAGE_HEIGHT);
         return checkNumeric(scanner.nextLine());
+    }
+
+    public static String enterPlayerYouWant(){
+        System.out.println();
+        System.out.println(MESSAGE_PLAYER_YOU_WANT);
+        return scanner.nextLine();
     }
 }
