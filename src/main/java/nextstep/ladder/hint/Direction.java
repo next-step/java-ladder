@@ -53,8 +53,8 @@ public class Direction {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Direction pair = (Direction) o;
+        if (!(o instanceof Direction)) return false;
+        final Direction pair = (Direction) o;
         return left == pair.left &&
                 right == pair.right;
     }
