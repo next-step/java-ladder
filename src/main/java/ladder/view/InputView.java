@@ -35,6 +35,7 @@ public class InputView {
     }
 
     public static String[] enterExecutionResults(){
+        System.out.println();
         System.out.println(MESSAGE_EXECUTION_RESULTS);
         String[] results = scanner.nextLine().split(DELIMITER_COMMA);
         results = Arrays.stream(results)

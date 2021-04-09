@@ -20,7 +20,7 @@ public class LadderStatistics {
     }
 
     public Map<Player, String> results(Player player){
-        if(player.equals(ALL_PLAYERS)){
+        if(player.name().equalsIgnoreCase(ALL_PLAYERS)){
             return Collections.unmodifiableMap(LadderResults);
         }
         validate(player);
