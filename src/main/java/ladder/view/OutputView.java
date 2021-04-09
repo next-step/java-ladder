@@ -9,6 +9,7 @@ public class OutputView {
     public void printLadderGenerationResult(LadderGenerationResponse response) {
         System.out.println("\n실행결과\n");
         printParticipants(response.getParticipants(), response.getLadderWidth());
+        // TODO: printLadder
     }
 
     private void printParticipants(List<String> participants, int ladderWidth) {
