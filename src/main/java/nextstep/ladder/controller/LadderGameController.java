@@ -55,11 +55,10 @@ public class LadderGameController {
 
     private LadderRewards inputRewards(final int participantSize) {
         String[] ladderRewards = parseStringToArrays(inputView.inputLadderRewards());
-        Reward[] rewards = parseRewards(ladderRewards);
         if(ladderRewards.length != participantSize) {
             throw new IllegalArgumentException(GUIDE_ERR_NOT_EQUALS_SIZE);
         }
-        return LadderRewards.valueOf(rewards);
+        return LadderRewards.valueOf(ladderRewards);
     }
 
     private Height inputHeight() {
@@ -68,17 +67,10 @@ public class LadderGameController {
         return Height.valueOf(Integer.parseInt(ladderHeight));
     }
 
-
     private String inputUserResult() {
         String userResult = inputView.inputUserResult();
         checkNullOrEmpty(userResult);
         return userResult;
-    }
-
-    private Reward[] parseRewards(final String[] ladderRewards) {
-        return Arrays.stream(ladderRewards)
-                .map(Reward::valueOf)
-                .toArray(Reward[]::new);
     }
 
     private void checkNullOrEmpty(final String inputValue) {
