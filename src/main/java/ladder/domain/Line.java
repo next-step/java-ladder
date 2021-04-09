@@ -63,7 +63,7 @@ public class Line {
     }
 
     private Point generatePoint() {
-        return new Point(lineWriteStrategy.write());
+        return new Point(this.lineWriteStrategy.write());
     }
 
     private Point generateEmptyPoint() {
@@ -71,6 +71,6 @@ public class Line {
     }
 
     public List<Point> getPointList() {
-        return pointList;
+        return this.pointList;
     }
 }
