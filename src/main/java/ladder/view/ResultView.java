@@ -7,8 +7,10 @@ import ladder.domain.Results;
 
 public class ResultView {
 
+  private static final String separator = System.lineSeparator();
+
   public static void showPlayers(Players players) {
-    System.out.println(System.lineSeparator() + "사다리 결과" + System.lineSeparator());
+    System.out.println(separator + "사다리 결과" + separator);
     players.names().stream()
         .map(name -> String.format("%6s", name.getName()))
         .forEach(System.out::print);
@@ -30,12 +32,12 @@ public class ResultView {
   }
 
   public static void showResultOfPerson(Results results, String name) {
-    System.out.println(System.lineSeparator() + "실행 결과");
+    System.out.println(separator + "실행 결과");
     System.out.println(results.findOne(name));
   }
 
   public static void showResultAll(Results results) {
-    System.out.println(System.lineSeparator() + "실행 결과");
+    System.out.println(separator + "실행 결과");
     results.gameResult().entrySet()
         .stream()
         .map(e -> String.format("%s : %s", e.getKey().getName(), e.getValue().getResult()))
