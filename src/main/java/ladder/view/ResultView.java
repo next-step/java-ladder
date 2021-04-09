@@ -10,7 +10,7 @@ public class ResultView implements BaseView {
     private static final String POINT_TRUE_CHARACTER = "-----";
     private static final String POINT_FALSE_CHARACTER = "     ";
     private static final String LINE_CHARACTER  = "|";
-    private static final String LINE_PRINT_START_BLANK = "      ";
+    private static final String SPACE_INPUT_CRITERIA = "%6s";
 
     public void printResult(Persons persons, Ladder ladder) {
         printlnMessageAfterNewLine("실행결과");
@@ -21,7 +21,7 @@ public class ResultView implements BaseView {
     private void printPersons(Persons persons) {
         printNewLine();
         persons.getPersons().stream()
-                .forEach(person -> printMessage(String.format("%6s", person.toString())));
+                .forEach(person -> printMessage(String.format(SPACE_INPUT_CRITERIA, person.toString())));
         printNewLine();
     }
 
@@ -32,11 +32,10 @@ public class ResultView implements BaseView {
 
     private void printLine(Line line) {
         StringBuilder builder = new StringBuilder();
-        builder.append(LINE_PRINT_START_BLANK + LINE_CHARACTER);
+        builder.append(String.format(SPACE_INPUT_CRITERIA, LINE_CHARACTER));
         builder.append(line.getPoints().stream()
                 .map(point -> getPointCharacter(point))
                 .collect(Collectors.joining(LINE_CHARACTER)));
-        builder.append(LINE_CHARACTER);
         printlnMessage(builder.toString());
     }
 

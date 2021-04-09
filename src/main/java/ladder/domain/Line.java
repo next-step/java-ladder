@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.function.Supplier;
 
 public class Line {
+    private final static Boolean LAST_POINT = Boolean.FALSE;
+
     private final List<Boolean> points;
 
     private Line(final List<Boolean> points) {
@@ -20,6 +22,7 @@ public class Line {
             points.add(point);
             beforePoint = point;
         }
+        points.add(LAST_POINT);
         return new Line(points);
     }
 

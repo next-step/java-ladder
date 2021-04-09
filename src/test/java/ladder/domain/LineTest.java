@@ -24,6 +24,7 @@ class LineTest {
             () -> assertThat(points.get(0)).isTrue(),
             () -> assertThat(points.get(1)).isFalse(),
             () -> assertThat(points.get(2)).isTrue(),
+            () -> assertThat(points.get(3)).isFalse(),
             () -> assertThat(points.get(3)).isFalse()
         );
     }
@@ -42,7 +43,25 @@ class LineTest {
             () -> assertThat(points.get(0)).isFalse(),
             () -> assertThat(points.get(1)).isFalse(),
             () -> assertThat(points.get(2)).isFalse(),
+            () -> assertThat(points.get(3)).isFalse(),
             () -> assertThat(points.get(3)).isFalse()
+        );
+    }
+
+    @Test
+    @DisplayName("마지막 point는 false로 생성된다")
+    void last_point_is_false() {
+        // given
+        Line line = Line.of(3, () -> Boolean.TRUE);
+
+        // when
+        List<Boolean> points = line.getPoints();
+
+        // then
+        assertAll(
+                () -> assertThat(points.get(0)).isTrue(),
+                () -> assertThat(points.get(1)).isFalse(),
+                () -> assertThat(points.get(2)).isFalse()
         );
     }
 }
