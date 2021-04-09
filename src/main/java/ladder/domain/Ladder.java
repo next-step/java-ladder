@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Ladder {
@@ -20,6 +22,37 @@ public class Ladder {
         }
     }
 
+    private void initPlayersPosition(Players players, HashMap<Player, Integer> playersPosition){
+        List<Player> playersList = players.players();
+        for(int i = 0; i < playersList.size(); i++){
+            playersPosition.put(playersList.get(i), i);
+        }
+    }
+
+    private void movePlayersPosition(HashMap<Player, Integer> playersPosition){
+        List<Line> lines = this.lines.lines();
+        for(int i = 0; i < lines.size(); i++){
+            move(lines.get(i).points(), playersPosition);
+        }
+    }
+
+    private void move(List<Point> points, HashMap<Player, Integer> playersPosition){
+        for(Player player : playersPosition.keySet()){
+            int position = playersPosition.get(player);
+            position += points.get(position).move();
+            playersPosition.put(player,position);
+        }
+    }
+
+    private HashMap<Player, String> playersResults(HashMap<Player, Integer> playersPosition, ExecutionResults executionResults){
+        HashMap<Player, String> playersResults = new HashMap<>();
+        List<String> executionResultsList = executionResults.executionResults();
+        for(Player player : playersPosition.keySet()) {
+            playersResults.put(player, executionResultsList.get(playersPosition.get(player)));
+        }
+        return playersResults;
+    }
+
     public void generateLadder(int numberOfPlayers, int height) {
         for(int i=0; i<height; i++){
             lines.add(new Line(numberOfPlayers));
@@ -28,5 +61,12 @@ public class Ladder {
 
     public List<Line> lines(){
         return lines.lines();
+    }
+
+    public LadderStatistics ladderStatistics(Players players, ExecutionResults executionResults){
+        HashMap<Player, Integer> playersPosition = new HashMap<>();
+        initPlayersPosition(players,playersPosition);
+        movePlayersPosition(playersPosition);
+        return new LadderStatistics(playersResults(playersPosition, executionResults));
     }
 }
