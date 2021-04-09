@@ -5,15 +5,28 @@ import java.util.Objects;
 public class LineNumber {
     private final int number;
 
-    public LineNumber(int number) {
+    private LineNumber(int number) {
         validate(number);
         this.number = number;
+    }
+
+    public static LineNumber valueOf(int number) {
+        return new LineNumber(number);
     }
 
     private void validate(int number) {
         if (number < 0) {
             throw new IllegalArgumentException("유효하지 않은 라인 번호 입니다.");
         }
+    }
+
+    public int getLineNumber() {
+        return this.number;
+    }
+
+    @Override
+    public String toString() {
+        return Integer.toString(number);
     }
 
     @Override

@@ -7,11 +7,11 @@ public class Player {
     private final LineNumber lineNumber;
 
     public Player(String name, int number) {
-        lineNumber = new LineNumber(number);
+        lineNumber = LineNumber.valueOf(number);
         playerName = new PlayerName(name);
     }
 
-    public PlayerName getNames() {
+    public PlayerName getPlayerName() {
         return playerName;
     }
 

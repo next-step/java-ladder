@@ -10,12 +10,12 @@ import ladder.domain.LineNumber;
 public class LineNumberTest {
     @Test
     void 생성_테스트() {
-        LineNumber lineNumber = new LineNumber(0);
-        assertThat(lineNumber).isEqualTo(new LineNumber(0));
+        LineNumber lineNumber = LineNumber.valueOf(0);
+        assertThat(lineNumber).isEqualTo(LineNumber.valueOf(0));
     }
 
     @Test
     void 유효성_테스트() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> new LineNumber(-1));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> LineNumber.valueOf(-1));
     }
 }
