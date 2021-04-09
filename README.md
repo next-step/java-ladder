@@ -233,11 +233,14 @@ false   | false | true  |
 
 ![Ladder Step3 Feedback Diagram](docs/ladder3_1.png)
 
+
 > 사다리 타기 3단계 2차 피드백
 
 - [x] [전략 패턴에 대한 이슈](https://github.com/next-step/java-ladder/pull/859#discussion_r609632110)
 - [x] [SRP 규칙 위반](https://github.com/next-step/java-ladder/pull/859#discussion_r609641620)
 - [x] [과연 필요한 클래스인가?](https://github.com/next-step/java-ladder/pull/859#discussion_r609644819)
+
+![Ladder Step3 Feedback2 Diagram](docs/ladder3_2.png)
 
 ## 사다리 타기 피드백
 - Ladder를 작은 단위로 쪼갠다.
