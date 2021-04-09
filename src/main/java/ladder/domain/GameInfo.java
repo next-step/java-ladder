@@ -22,7 +22,7 @@ public class GameInfo {
     }
   }
 
-  public Users users() {
+  public Users getUsers() {
     return users;
   }
 
@@ -38,7 +38,7 @@ public class GameInfo {
     return prizes.find(finalPosition);
   }
 
-  public Prizes prizes() {
+  public Prizes getPrizes() {
     return prizes;
   }
 }

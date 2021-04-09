@@ -1,40 +1,25 @@
 package ladder.domain;
 
-import java.util.List;
 import java.util.Objects;
 
 public class Position {
 
-  private final int position;
+  private final int value;
 
-  public Position(int position) {
-    this.position = position;
+  public Position(int value) {
+    this.value = value;
   }
 
   public Position rightMove() {
-    return new Position(position + 1);
+    return new Position(value + 1);
   }
 
   public Position leftMove() {
-    return new Position(position - 1);
+    return new Position(value - 1);
   }
 
-  public boolean isRightMove(List<Point> points) {
-    if (position + 1 <= points.size() - 1 && points.get(position + 1).isUsed()) {
-      return true;
-    }
-    return false;
-  }
-
-  public boolean isLeftMove(List<Point> points) {
-    if (position >= 0 && points.get(position).isUsed()) {
-      return true;
-    }
-    return false;
-  }
-
-  public int position() {
-    return position;
+  public int getValue() {
+    return value;
   }
 
   @Override
@@ -46,11 +31,18 @@ public class Position {
       return false;
     }
     Position position1 = (Position) o;
-    return position == position1.position;
+    return value == position1.value;
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(position);
+    return Objects.hash(value);
+  }
+
+  @Override
+  public String toString() {
+    return "Position{" +
+        "position=" + value +
+        '}';
   }
 }

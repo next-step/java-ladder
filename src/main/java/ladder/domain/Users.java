@@ -1,12 +1,11 @@
 package ladder.domain;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Users {
@@ -16,9 +15,11 @@ public class Users {
 
   public Users(String[] names) {
     validateDuplicatedName(names);
-    this.users = IntStream.range(0, names.length)
-        .mapToObj(position -> new User(names[position], position))
-        .collect(Collectors.toList());
+    this.users = new ArrayList<>();
+    for (int i = 0; i < names.length; i++) {
+      users.add(new User(names[i]));
+    }
+
   }
 
   private void validateDuplicatedName(String[] names) {
@@ -26,6 +27,18 @@ public class Users {
     if (hs.size() != names.length) {
       throw new IllegalArgumentException(INVALID_DUPLICATED_NAME);
     }
+  }
+
+  public Stream<User> stream() {
+    return users.stream();
+  }
+
+  public int numberOfUsers() {
+    return users.size();
+  }
+
+  public User findUserByIndex(int index) {
+    return users.get(index);
   }
 
   @Override
@@ -45,15 +58,4 @@ public class Users {
     return Objects.hash(users);
   }
 
-  public Stream<User> users() {
-    return users.stream();
-  }
-
-  public int numberOfUsers() {
-    return users.size();
-  }
-
-  public User findUserByIndex(int index) {
-    return users.get(index);
-  }
 }

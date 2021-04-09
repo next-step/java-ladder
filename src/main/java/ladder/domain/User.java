@@ -5,15 +5,17 @@ import java.util.Objects;
 public class User {
 
   private final Name name;
-  private final Position position;
 
-  public User(String name, int position) {
-    this(new Name(name), new Position(position));
+  public User(String name) {
+    this(new Name(name));
   }
 
-  public User(Name name, Position position) {
+  public User(Name name) {
     this.name = name;
-    this.position = position;
+  }
+
+  public String getName() {
+    return name.getName();
   }
 
   @Override
@@ -32,9 +34,4 @@ public class User {
   public int hashCode() {
     return Objects.hash(name);
   }
-
-  public String name() {
-    return name.name();
-  }
-
 }
