@@ -9,9 +9,9 @@ import static nextstep.ladder.domain.ladder.Ladder.MINIMUM_WIDTH;
 
 public class LadderFactory {
 
-    private final RandomLineFactory lineFactory;
+    private final LineFactory lineFactory;
 
-    public LadderFactory(RandomLineFactory lineFactory) {
+    public LadderFactory(LineFactory lineFactory) {
         this.lineFactory = lineFactory;
     }
 
