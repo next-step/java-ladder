@@ -5,11 +5,11 @@ import java.util.Objects;
 import static java.lang.Boolean.FALSE;
 import static nextstep.ladder.generator.RandomValueGenerator.generatePoint;
 
-public class Direction {
+public class HintDirection {
     private final boolean left;
     private final boolean right;
 
-    private Direction(boolean left, boolean right) {
+    private HintDirection(boolean left, boolean right) {
         if (left && right) {
             throw new IllegalStateException();
         }
@@ -27,34 +27,34 @@ public class Direction {
         return this.left;
     }
 
-    public Direction next(boolean nextRight) {
+    public HintDirection next(boolean nextRight) {
         return of(this.right, nextRight);
     }
 
-    public Direction next() {
+    public HintDirection next() {
         if (this.right) {
             return next(FALSE);
         }
         return next(generatePoint());
     }
 
-    public static Direction of(boolean first, boolean second) {
-        return new Direction(first, second);
+    public static HintDirection of(boolean first, boolean second) {
+        return new HintDirection(first, second);
     }
 
-    public static Direction first(boolean right) {
+    public static HintDirection first(boolean right) {
         return of(FALSE, right);
     }
 
-    public Direction last() {
+    public HintDirection last() {
         return of(this.right, FALSE);
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Direction)) return false;
-        final Direction pair = (Direction) o;
+        if (!(o instanceof HintDirection)) return false;
+        final HintDirection pair = (HintDirection) o;
         return left == pair.left &&
                 right == pair.right;
     }

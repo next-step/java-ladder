@@ -9,15 +9,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.assertj.core.internal.bytebuddy.matcher.ElementMatchers.is;
 
-class DirectionTest {
+class HintDirectionTest {
 
     @DisplayName("방향 생성 테스트")
     @Test
     void init() {
         // given
-        Direction actual = Direction.of(true, false);
+        HintDirection actual = HintDirection.of(true, false);
         // when
-        Direction expected = Direction.of(true, false);
+        HintDirection expected = HintDirection.of(true, false);
         // then
         assertThat(actual).isEqualTo(expected);
     }
@@ -26,16 +26,16 @@ class DirectionTest {
     @Test
     void init_invalid() {
         assertThatExceptionOfType(IllegalStateException.class)
-                .isThrownBy(() -> Direction.of(TRUE, TRUE));
+                .isThrownBy(() -> HintDirection.of(TRUE, TRUE));
     }
 
     @DisplayName("방향 first로 생성 시 next() 호출 값 확인 테스트")
     @Test
     void next_random_true() {
         // given
-        Direction next = Direction.first(TRUE).next();
+        HintDirection next = HintDirection.first(TRUE).next();
         // when
-        Direction expected = Direction.of(TRUE, FALSE);
+        HintDirection expected = HintDirection.of(TRUE, FALSE);
         // then
         assertThat(next).isEqualTo(expected);
     }
@@ -44,7 +44,7 @@ class DirectionTest {
     @Test
     void next_random_false() {
         for (int i = 0; i < 100; i++) {
-            Direction.first(FALSE).next();
+            HintDirection.first(FALSE).next();
         }
     }
 
@@ -52,9 +52,9 @@ class DirectionTest {
     @Test
     void next_true() {
         // given
-        Direction next = Direction.of(TRUE, FALSE).next(TRUE);
+        HintDirection next = HintDirection.of(TRUE, FALSE).next(TRUE);
         // when
-        Direction expected = Direction.of(FALSE, TRUE);
+        HintDirection expected = HintDirection.of(FALSE, TRUE);
         // then
         assertThat(next).isEqualTo(expected);
     }
@@ -63,9 +63,9 @@ class DirectionTest {
     @Test
     void next_false() {
         // given
-        Direction next = Direction.of(FALSE, TRUE).next(FALSE);
+        HintDirection next = HintDirection.of(FALSE, TRUE).next(FALSE);
         // when
-        Direction expected = Direction.of(TRUE, FALSE);
+        HintDirection expected = HintDirection.of(TRUE, FALSE);
         // then
         assertThat(next).isEqualTo(expected);
     }
@@ -74,7 +74,7 @@ class DirectionTest {
     @Test
     void first() {
         // given
-        Direction first = Direction.first(TRUE);
+        HintDirection first = HintDirection.first(TRUE);
         // when
         boolean actual = first.isLeft();
         // then
@@ -85,9 +85,9 @@ class DirectionTest {
     @Test
     void last() {
         // given
-        Direction last = Direction.first(TRUE).last();
+        HintDirection last = HintDirection.first(TRUE).last();
         // when
-        Direction expected = Direction.of(TRUE, FALSE);
+        HintDirection expected = HintDirection.of(TRUE, FALSE);
         // then
         assertThat(last).isEqualTo(expected);
     }

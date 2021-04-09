@@ -9,14 +9,14 @@ import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 import static org.assertj.core.api.Assertions.assertThat;
 
-class PointTest {
+class HintPointTest {
 
     @DisplayName("Point move 테스트")
     @ParameterizedTest(name = "Point 초기값 설정 {0} 및 move 시 결과 값 {1} 테스트")
     @CsvSource(value = {"TRUE, 1", "FALSE, 0"})
     void first(Boolean actual, int expected) {
         // when
-        int point = Point.first(actual).move();
+        int point = HintPoint.first(actual).move();
         // then
         assertThat(point).isEqualTo(expected);
     }
@@ -24,7 +24,7 @@ class PointTest {
     @DisplayName("Point move 좌우 이동 불가 테스트")
     @Test
     void next_stay() {
-        Point second = Point.first(FALSE).next(FALSE);
+        HintPoint second = HintPoint.first(FALSE).next(FALSE);
         // then
         assertThat(second.move()).isEqualTo(1);
     }
@@ -33,7 +33,7 @@ class PointTest {
     @Test
     void next_left() {
         // given
-        Point second = Point.first(TRUE).next(FALSE);
+        HintPoint second = HintPoint.first(TRUE).next(FALSE);
         // when
         int move = second.move();
         // then
@@ -44,7 +44,7 @@ class PointTest {
     @Test
     void next_right() {
         // given
-        Point second = Point.first(FALSE).next(TRUE);
+        HintPoint second = HintPoint.first(FALSE).next(TRUE);
         // when
         int move = second.move();
         // then
@@ -55,7 +55,7 @@ class PointTest {
     @Test
     void next() {
         // given
-        Point second = Point.first(TRUE).next();
+        HintPoint second = HintPoint.first(TRUE).next();
         // when
         int move = second.move();
         // then
