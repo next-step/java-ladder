@@ -83,8 +83,7 @@ public class LadderResultTest {
 	@DisplayName("결과 계산")
 	void calculateResultTest() {
 		InputResult inputResult = new InputResult("꽝,5000,꽝,3000", players.size());
-		LadderResult ladderResult = new LadderResult();
-		ladderResult.calculateResult(ladder, players, inputResult);
+		LadderResult ladderResult = new LadderResult(ladder, players, inputResult);
 		assertThat(ladderResult.getResult("pobi")).isEqualTo("꽝");
 		assertThat(ladderResult.getResult("honux")).isEqualTo("3000");
 		assertThat(ladderResult.getResult("crong")).isEqualTo("꽝");

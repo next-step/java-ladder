@@ -19,13 +19,21 @@ public class Ladder {
 		this.ladder = lines;
 	}
 
-	public List<Line> getLadder() {
-		return ladder;
-	}
-
 	private void validateLadderSize(int ladderSize) {
 		if (ladderSize < LADDER_MIN_SIZE) {
 			throw new IllegalArgumentException(LADDER_MIN_SIZE_ERROR_MSG);
 		}
+	}
+
+	public List<Line> getLadder() {
+		return ladder;
+	}
+
+	public int moveLine(int startPosition) {
+		int currentPosition = startPosition;
+		for (int line = 0; line < ladder.size(); line++) {
+			currentPosition += this.ladder.get(line).movePoint(currentPosition);
+		}
+		return currentPosition;
 	}
 }

@@ -41,7 +41,7 @@ public class ResultView {
 
 	public void printInputResult(InputResult inputResults) {
 		for (String inputResult : inputResults.getInputResults()) {
-			String formatString = String.format("%6s", inputResult.toString());
+			String formatString = String.format("%6s", inputResult);
 			System.out.print(formatString);
 		}
 		System.out.println();
@@ -56,6 +56,7 @@ public class ResultView {
 			return;
 		}
 		printPlayerResult(ladderResult.getResult(inputResultName));
+		System.out.println();
 	}
 
 	private void printAllPlayerResult(Map<String, String> allResult) {

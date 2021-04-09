@@ -18,19 +18,26 @@ public class Controller {
 
 		try {
 			LadderResult ladderResult = playLadderGame(inputName, inputResult, inputLadderSize);
-			String inputResultName = inputView.getString("결과를 보고 싶은 사람은?");
-			resultView.printFinalResult(ladderResult, inputResultName);
+			resultPrint(ladderResult);
 		} catch (IllegalArgumentException exception) {
 			System.out.println(exception.getMessage());
+		}
+	}
+
+	private void resultPrint(LadderResult ladderResult) {
+		String inputResultName = new String();
+		while (!inputResultName.equals("all")) {
+			inputResultName = inputView.getString("결과를 보고 싶은 사람은?");
+			resultView.printFinalResult(ladderResult, inputResultName);
 		}
 	}
 
 	private LadderResult playLadderGame(String inputName, String inputResult, Integer inputLadderSize) {
 		Players players = new Players(inputName);
 		InputResult inputResults = new InputResult(inputResult, players.size());
-		LadderResult ladderResult = new LadderResult();
 		Ladder ladder = makeLadder(players, inputLadderSize, inputResults);
-		ladderResult.calculateResult(ladder, players, inputResults);
+		LadderResult ladderResult = new LadderResult(ladder, players, inputResults);
+
 		return ladderResult;
 	}
 

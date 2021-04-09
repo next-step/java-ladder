@@ -33,4 +33,7 @@ public class Players {
 		}
 	}
 
+	public String getPlayerName(int playerStartPosition) {
+		return players.get(playerStartPosition).toString();
+	}
 }

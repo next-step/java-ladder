@@ -33,4 +33,22 @@ public class LineTest {
 		Line line = new Line(5);
 		assertThat(line.getPoints().size()).isEqualTo(5);
 	}
+
+	@Test
+	@DisplayName("라인 이동 테스트")
+	void lineMoveTest() {
+		Line line = new Line(countOfPerson -> {
+			List<Boolean> points = new ArrayList<>();
+			points.add(false);
+			points.add(true);
+			points.add(false);
+			points.add(false);
+			return points;
+		}, 4);
+
+		assertThat(line.movePoint(0)).isEqualTo(0);
+		assertThat(line.movePoint(1)).isEqualTo(1);
+		assertThat(line.movePoint(2)).isEqualTo(-1);
+		assertThat(line.movePoint(3)).isEqualTo(0);
+	}
 }
