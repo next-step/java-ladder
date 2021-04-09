@@ -33,7 +33,7 @@ public class PrizesTest {
         String test = "꽝,500, 꽝, 3000";
         Prizes prizes = new Prizes(test, 4);
         // when & then
-        assertThat(prizes.match(LineNumber.valueOf(1))).isEqualTo(new Prize(1, "500"));
+        assertThat(prizes.matchNumber(LineNumber.valueOf(1))).isEqualTo(new Prize(1, "500"));
     }
 
     @Test
@@ -42,6 +42,6 @@ public class PrizesTest {
         String test = "꽝,500, 꽝, 3000";
         Prizes prizes = new Prizes(test, 4);
         // when & then
-        Assertions.assertThrows(IllegalArgumentException.class, () -> prizes.match(LineNumber.valueOf(5)));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> prizes.matchNumber(LineNumber.valueOf(5)));
     }
 }

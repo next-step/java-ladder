@@ -26,7 +26,7 @@ public class Prizes {
         return Collections.unmodifiableList(this.prizes);
     }
 
-    public Prize match(LineNumber number) {
+    public Prize matchNumber(LineNumber number) {
         return prizes.stream().filter(prize -> number.equals(prize.getLineNumber()))
             .findFirst()
             .orElseThrow(() -> new IllegalArgumentException("유효하지 않은 상품번호 입니다."));
