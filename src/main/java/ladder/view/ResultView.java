@@ -15,7 +15,7 @@ public class ResultView {
     private ResultView() {
     }
 
-    public static void printParticipantNames(Players players) {
+    public static void printPlayerNames(Players players) {
         System.out.println(MESSAGE_RESULT);
         players.getPlayers().stream().forEach(player -> {
             System.out.print(String.format("%6s", player.getPlayerName()));
