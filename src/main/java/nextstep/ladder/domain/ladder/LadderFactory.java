@@ -4,10 +4,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static nextstep.ladder.domain.ladder.Ladder.MINIMUM_HEIGHT;
-import static nextstep.ladder.domain.ladder.Ladder.MINIMUM_WIDTH;
-
 public class LadderFactory {
+
+    private static final int MINIMUM_HEIGHT = 1;
+    private static final int MINIMUM_WIDTH = 2;
 
     private final LineFactory lineFactory;
 

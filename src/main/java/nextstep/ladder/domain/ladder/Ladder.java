@@ -8,9 +8,6 @@ import java.util.stream.Collectors;
 
 public class Ladder {
 
-    static final int MINIMUM_HEIGHT = 1;
-    static final int MINIMUM_WIDTH = 2;
-
     private final List<Line> lines;
 
     Ladder(List<Line> lines) {
