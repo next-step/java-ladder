@@ -16,6 +16,7 @@ public class LadderController {
     private Ladder ladder;
     private LadderStatistics ladderStatistics;
     private final static Map<Point, String> printPoints = new HashMap<>();
+    private final static String ALL_PLAYERS = "all";
 
     static {
         printPoints.put(Point.LEFT, "--|");
@@ -51,13 +52,24 @@ public class LadderController {
         ResultView.printResult(executionResults.executionResults());
     }
 
-    private void printExecutionResult(){
-        Map<Player, String> resultsPlayer = ladderStatistics.results(new Player(InputView.enterPlayerYouWant()));
-        HashMap<String, String> resultsString = new HashMap<>();
+    private void printExecutionResultByConversion(Map<Player, String> resultsPlayer){
+        HashMap<String, String> results = new HashMap<>();
         for(Player player : resultsPlayer.keySet()){
-            resultsString.put(player.name(),resultsPlayer.get(player));
+            results.put(player.name(),resultsPlayer.get(player));
         }
-        ResultView.printExecutionResult(resultsString);
+        ResultView.printExecutionResult(results);
+    }
+
+    private void printExecutionResult(){
+        String playerName = InputView.enterPlayerYouWant();
+        Map<Player, String> resultsPlayer;
+        if(playerName.equalsIgnoreCase(ALL_PLAYERS)){
+            resultsPlayer = ladderStatistics.resultsOfAll();
+            printExecutionResultByConversion(resultsPlayer);
+            return;
+        }
+        resultsPlayer = ladderStatistics.results(new Player(playerName));
+        printExecutionResultByConversion(resultsPlayer);
     }
 
     public void run(){
