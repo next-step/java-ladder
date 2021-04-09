@@ -7,6 +7,7 @@ import ladder.domain.Point;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ResultView {
@@ -25,13 +26,12 @@ public class ResultView {
     private ResultView() {
     }
 
-    public static void printPlayers(Players players){
+    public static void printPlayers(List<String> players){
         System.out.println();
         System.out.println(MESSAGE_LADDER_RESULT);
         System.out.println();
-        players.players()
-                .stream()
-                .map(player -> String.format("%6s", player.name()))
+        players.stream()
+                .map(player -> String.format("%6s", player))
                 .forEach(System.out::print);
         System.out.println();
     }

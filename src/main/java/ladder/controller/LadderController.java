@@ -5,7 +5,9 @@ import ladder.view.InputView;
 import ladder.view.ResultView;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class LadderController {
 
@@ -20,6 +22,14 @@ public class LadderController {
         ladder = new Ladder(players.numberOfPlayer(), InputView.enterHeight());
     }
 
+    private void printPlayers(){
+        List<String> playersList = players.players()
+                                        .stream()
+                                        .map(player -> player.name())
+                                        .collect(Collectors.toList());
+        ResultView.printPlayers(playersList);
+    }
+
     private void printExecutionResult(){
         Map<Player, String> resultsPlayer = ladderStatistics.results(new Player(InputView.enterPlayerYouWant()));
         HashMap<String, String> resultsString = new HashMap<>();
@@ -30,7 +40,7 @@ public class LadderController {
     }
 
     public void run(){
-        ResultView.printPlayers(players);
+        printPlayers();
         ResultView.printLadder(ladder);
         ResultView.printResult(executionResults);
 
