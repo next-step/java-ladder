@@ -1,9 +1,6 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
-import ladder.domain.Line;
-import ladder.domain.Link;
-import ladder.domain.Players;
+import ladder.domain.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -69,5 +66,9 @@ public class View {
 
     private static List<String> getStrings(String delimiter) {
         return Arrays.asList(scanner.nextLine().split(delimiter));
+    }
+
+    public static void resultElements(List<ResultElement> results) {
+        results.forEach(resultElement -> System.out.printf("%s : %s\n", resultElement.name(), resultElement.goal()));
     }
 }
