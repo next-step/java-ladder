@@ -30,6 +30,13 @@ public class Players {
         }
     }
 
+    public Player findPlayer(String name) {
+        return players.stream()
+            .filter(player -> player.getPlayerName().equals(new PlayerName(name)))
+            .findFirst()
+            .orElseThrow(() -> new NotFoundException("존재하지 않는 참가자입니다."));
+    }
+
     public int playerCount() {
         return players.size();
     }
