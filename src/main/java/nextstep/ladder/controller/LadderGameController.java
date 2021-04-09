@@ -1,12 +1,15 @@
 package nextstep.ladder.controller;
 
+import nextstep.ladder.domain.Height;
+import nextstep.ladder.domain.User;
 import nextstep.ladder.generator.DefaultLineGenerator;
 import nextstep.ladder.generator.LineGenerator;
-import nextstep.ladder.service.LadderFactory;
-import nextstep.ladder.domain.*;
+import nextstep.ladder.service.Ladder;
+import nextstep.ladder.service.LadderResult;
+import nextstep.ladder.service.LadderRewards;
+import nextstep.ladder.service.Participants;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
-import nextstep.ladder.wrapper.*;
 
 import static nextstep.ladder.controller.LadderParameterHelper.parseArgumentResolver;
 
@@ -15,16 +18,15 @@ public class LadderGameController {
     public static final String GUIDE_LADDER_END_SIGNATURE = "all";
     private final LadderParameterProcessor processor;
     private final ResultView resultView;
-    private final LineGenerator generator;
+    private final LineGenerator generator = new DefaultLineGenerator();
 
     public LadderGameController(final InputView inputView, final ResultView resultView) {
-        this(new LadderParameterProcessor(inputView), resultView, new DefaultLineGenerator());
+        this(new LadderParameterProcessor(inputView), resultView);
     }
 
-    public LadderGameController(final LadderParameterProcessor processor, final ResultView resultView, final LineGenerator generator) {
+    public LadderGameController(final LadderParameterProcessor processor, final ResultView resultView) {
         this.processor = processor;
         this.resultView = resultView;
-        this.generator = generator;
     }
 
     public void start() {
@@ -33,8 +35,8 @@ public class LadderGameController {
                 parseArgumentResolver(() -> processor.processLadderRewards(participants.size()));
         Height height = parseArgumentResolver(processor::processHeight);
 
-        Ladder ladder = LadderFactory.valueOf(participants, height, generator);
-        LadderResult ladderResult = LadderFactory.rideLadder(participants, ladder, rewards);
+        Ladder ladder = Ladder.valueOf(participants, height, generator);
+        LadderResult ladderResult = LadderResult.rideLadder(participants, ladder, rewards);
 
         resultView.printResult(ladder, participants, rewards);
 

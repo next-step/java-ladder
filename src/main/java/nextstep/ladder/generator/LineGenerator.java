@@ -1,6 +1,6 @@
 package nextstep.ladder.generator;
 
-import nextstep.ladder.wrapper.Line;
+import nextstep.ladder.service.Line;
 
 @FunctionalInterface
 public interface LineGenerator {

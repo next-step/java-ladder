@@ -3,8 +3,6 @@ package nextstep.ladder.service;
 import nextstep.ladder.domain.Bar;
 import nextstep.ladder.domain.Height;
 import nextstep.ladder.domain.Position;
-import nextstep.ladder.wrapper.Ladder;
-import nextstep.ladder.wrapper.Line;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

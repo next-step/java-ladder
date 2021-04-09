@@ -1,8 +1,7 @@
-package nextstep.ladder.wrapper;
+package nextstep.ladder.service;
 
 import nextstep.ladder.domain.Position;
 import nextstep.ladder.domain.User;
-import nextstep.ladder.wrapper.Participants;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

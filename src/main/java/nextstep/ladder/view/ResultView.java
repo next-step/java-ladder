@@ -1,10 +1,10 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.domain.*;
-import nextstep.ladder.wrapper.Ladder;
-import nextstep.ladder.wrapper.LadderRewards;
-import nextstep.ladder.wrapper.Line;
-import nextstep.ladder.wrapper.Participants;
+import nextstep.ladder.service.Ladder;
+import nextstep.ladder.service.LadderRewards;
+import nextstep.ladder.service.Line;
+import nextstep.ladder.service.Participants;
 
 import java.util.List;
 import java.util.stream.Collectors;

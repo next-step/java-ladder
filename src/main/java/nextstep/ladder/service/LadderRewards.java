@@ -1,4 +1,4 @@
-package nextstep.ladder.wrapper;
+package nextstep.ladder.service;
 
 import nextstep.ladder.domain.Position;
 import nextstep.ladder.domain.Reward;

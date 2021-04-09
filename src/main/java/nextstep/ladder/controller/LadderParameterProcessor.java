@@ -3,8 +3,8 @@ package nextstep.ladder.controller;
 import nextstep.ladder.domain.Height;
 import nextstep.ladder.domain.Reward;
 import nextstep.ladder.view.InputView;
-import nextstep.ladder.wrapper.LadderRewards;
-import nextstep.ladder.wrapper.Participants;
+import nextstep.ladder.service.LadderRewards;
+import nextstep.ladder.service.Participants;
 
 import java.util.Arrays;
 import java.util.Objects;
