@@ -1,7 +1,5 @@
 package ladder.domain;
 
-import java.util.Objects;
-
 public class ResultElement {
     private final String name;
     private final String goal;
