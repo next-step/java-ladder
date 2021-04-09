@@ -9,6 +9,7 @@ import ladder.exception.MinimumLadderHeightException;
 
 public class Ladder {
     private static final int MIN_HEIGHT = 1;
+
     private final ConnectStrategy connectStrategy = new RandomConnectStrategy();
     private final List<Line> ladder = new ArrayList<>();
 
