@@ -16,4 +16,21 @@ public class Line {
 	public List<Boolean> getPoints() {
 		return points;
 	}
+
+	public int movePoint(int startPoint) {
+		if (isMove(startPoint)) {
+			return 1;
+		}
+		if (isMove(startPoint - 1)) {
+			return -1;
+		}
+		return 0;
+	}
+
+	private boolean isMove(int currentPosition) {
+		if (currentPosition < 0) {
+			return false;
+		}
+		return this.points.get(currentPosition);
+	}
 }

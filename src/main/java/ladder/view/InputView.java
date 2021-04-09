@@ -8,6 +8,7 @@ public class InputView {
 	public String getString(String text) {
 		return getInput(text);
 	}
+
 	public Integer getInt(String text) {
 		return Integer.valueOf(getInput(text));
 	}
