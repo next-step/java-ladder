@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ResultView {
-    private final static String MESSAGE_RESULT = "실행결과";
+    private final static String MESSAGE_LADDER_RESULT = "사다리 결과";
     private final static Map<Point, String> printPoints = new HashMap<>();
 
     static {
@@ -40,7 +40,7 @@ public class ResultView {
 
     public static void printResult(Players players, Ladder ladder) {
         System.out.println();
-        System.out.println(MESSAGE_RESULT);
+        System.out.println(MESSAGE_LADDER_RESULT);
         System.out.println();
         printPlayers(players);
         printLadder(ladder);
