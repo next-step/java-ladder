@@ -16,8 +16,16 @@ public class Persons {
     public static Persons from(String[] personNames) {
         List<Person> persons = Arrays.stream(personNames)
                 .map(name -> Person.from(name))
+                .distinct()
                 .collect(Collectors.toList());
+        validate(personNames, persons);
         return new Persons(persons);
+    }
+
+    private static void validate(String[] personNames, List<Person> persons) {
+        if (personNames.length != persons.size()) {
+            throw new RuntimeException("참여할 사람 이름은 중복으로 입력할 수 없습니다.");
+        }
     }
 
     public List<Person> getPersons() {

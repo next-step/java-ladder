@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class PersonsTest {
 
@@ -30,5 +31,13 @@ class PersonsTest {
 
         // then
         assertThat(personSize).isEqualTo(personNames.length);
+    }
+
+    @Test
+    @DisplayName("참여할 사람 이름 중복입력시 예외 발생한다.")
+    void name_duplicate_exception() {
+        String[] personNames = "pobi,honux,pobi,jk".split(",");
+        assertThatThrownBy(() -> Persons.from(personNames))
+                .isInstanceOf(RuntimeException.class);
     }
 }
