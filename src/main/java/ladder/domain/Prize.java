@@ -2,6 +2,8 @@ package ladder.domain;
 
 import java.util.Objects;
 
+import ladder.exception.MinimumNameLengthException;
+
 public class Prize {
     private final LineNumber lineNumber;
     private final String prize;
@@ -13,13 +15,17 @@ public class Prize {
 
     private String validate(String prize) {
         if (prize == null || prize.isEmpty()) {
-            throw new IllegalArgumentException("유효하지 않은 상품입니다.");
+            throw new MinimumNameLengthException("유효하지 않은 상품입니다.");
         }
         return prize;
     }
 
     public LineNumber getLineNumber() {
         return this.lineNumber;
+    }
+
+    public String getPrize() {
+        return this.prize;
     }
 
     @Override

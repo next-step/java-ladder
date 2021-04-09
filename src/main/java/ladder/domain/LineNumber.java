@@ -2,6 +2,8 @@ package ladder.domain;
 
 import java.util.Objects;
 
+import ladder.exception.NaturalNumberException;
+
 public class LineNumber {
     private final int number;
 
@@ -16,7 +18,7 @@ public class LineNumber {
 
     private void validate(int number) {
         if (number < 0) {
-            throw new IllegalArgumentException("유효하지 않은 라인 번호 입니다.");
+            throw new NaturalNumberException("유효하지 않은 라인 번호 입니다.");
         }
     }
 
