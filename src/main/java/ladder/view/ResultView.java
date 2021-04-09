@@ -2,10 +2,8 @@ package ladder.view;
 
 import ladder.domain.ExecutionResults;
 import ladder.domain.Ladder;
-import ladder.domain.Players;
 import ladder.domain.Point;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,14 +34,12 @@ public class ResultView {
         System.out.println();
     }
 
-    public static void printLadder(Ladder ladder){
-        ladder.lines()
-                .stream()
-                .forEach(line -> {
-                    line.points()
-                            .forEach(point -> System.out.print(printPoints.get(point)));
-                    System.out.println();
-                });
+    public static void printPoint(String point){
+        System.out.print(point);
+    }
+
+    public static void printEmptyLine(){
+        System.out.println();
     }
 
     public static void printResult(ExecutionResults executionResults) {
