@@ -1,22 +1,13 @@
 package ladder.domain;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
-
 public class Player {
-    private static final String SEPARATOR = ",";
+    private final PlayerName player;
 
-    private final List<PlayerName> players;
-
-    public Player(String names) {
-        players = Arrays.stream(names.split(SEPARATOR))
-            .map(PlayerName::new)
-            .collect(Collectors.toList());
+    public Player(String name) {
+        player = new PlayerName(name);
     }
 
-    public List<PlayerName> getNames() {
-        return Collections.unmodifiableList(players);
+    public PlayerName getNames() {
+        return player;
     }
 }
