@@ -1,25 +1,14 @@
 package ladder.view;
 
 import ladder.domain.ExecutionResults;
-import ladder.domain.Ladder;
-import ladder.domain.Point;
-
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class ResultView {
     private final static String MESSAGE_LADDER_RESULT = "사다리 결과";
     private final static String MESSAGE_EXECUTION_RESULT = "실행결과";
     private final static int singleSize = 1;
     private final static int firstIndex = 0;
-    private final static Map<Point, String> printPoints = new HashMap<>();
-
-    static {
-        printPoints.put(Point.LEFT, "--|");
-        printPoints.put(Point.DOWN, "     |");
-        printPoints.put(Point.RIGHT, "     |---");
-    }
 
     private ResultView() {
     }
@@ -42,8 +31,8 @@ public class ResultView {
         System.out.println();
     }
 
-    public static void printResult(ExecutionResults executionResults) {
-        executionResults.executionResults()
+    public static void printResult(List<String> executionResults) {
+        executionResults
                 .stream()
                 .map(result -> String.format("%6s", result))
                 .forEach(System.out::print);

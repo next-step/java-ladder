@@ -47,6 +47,10 @@ public class LadderController {
                 });
     }
 
+    private void printResult(){
+        ResultView.printResult(executionResults.executionResults());
+    }
+
     private void printExecutionResult(){
         Map<Player, String> resultsPlayer = ladderStatistics.results(new Player(InputView.enterPlayerYouWant()));
         HashMap<String, String> resultsString = new HashMap<>();
@@ -59,7 +63,7 @@ public class LadderController {
     public void run(){
         printPlayers();
         printLadder();
-        ResultView.printResult(executionResults);
+        printResult();
 
         ladderStatistics = ladder.ladderStatistics(players, executionResults);
         printExecutionResult();
