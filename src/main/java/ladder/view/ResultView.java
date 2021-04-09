@@ -42,6 +42,6 @@ public class ResultView {
     }
 
     private static void printMatchResult(Player player, Prize prize) {
-        System.out.println(String.format("%s : %s", player, prize.getPrize()));
+        System.out.println(String.format("%s : %s", player.getPlayerName(), prize.getPrize()));
     }
 }
