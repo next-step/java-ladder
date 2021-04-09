@@ -4,12 +4,17 @@
 package ladder.domain;
 
 import java.util.Objects;
+import java.util.Set;
 
 public class Player {
     private Name name;
 
     public Player(Name name) {
         this.name = name;
+    }
+
+    public void addName(Set<Name> names) {
+        names.add(name);
     }
 
     @Override
@@ -24,4 +29,6 @@ public class Player {
     public int hashCode() {
         return Objects.hash(name);
     }
+
+
 }

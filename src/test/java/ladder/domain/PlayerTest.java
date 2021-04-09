@@ -3,6 +3,9 @@ package ladder.domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class PlayerTest {
@@ -21,4 +24,11 @@ public class PlayerTest {
         assertThat(player).isEqualTo(new Player(name));
     }
 
+    @Test
+    void 플레이어의이름을_추가한다() {
+        Set<Name> names = new HashSet<>();
+        player.addName(names);
+
+        assertThat(names).contains(name);
+    }
 }
