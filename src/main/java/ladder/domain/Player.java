@@ -6,7 +6,7 @@ public class Player {
     private final PlayerName playerName;
     private final LineNumber lineNumber;
 
-    public Player(String name, int number) {
+    public Player(int number, String name) {
         lineNumber = LineNumber.valueOf(number);
         playerName = new PlayerName(name);
     }
