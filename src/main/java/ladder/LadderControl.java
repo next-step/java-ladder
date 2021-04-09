@@ -11,7 +11,7 @@ public class LadderControl {
         Players players = new Players(names);
 
         List<String> items = View.resultItems();
-        ResultItems resultItems = new ResultItems(items, players.count());
+        Goals goals = new Goals(items, players.count());
 
         int height = View.height();
 
