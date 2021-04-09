@@ -1,18 +1,18 @@
 package ladder.domain;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Players {
     private static final String SEPARATOR = ",";
 
-    private final List<Player> players;
+    private final List<Player> players = new ArrayList<>();
 
     public Players(String names) {
-        players = Arrays.stream(names.split(SEPARATOR))
-            .map(Player::new)
-            .collect(Collectors.toList());
+        String[] splitNames = names.split(SEPARATOR);
+        for (int i = 0; i < splitNames.length; i++) {
+            players.add(new Player(splitNames[i], i));
+        }
     }
 
     public int playerCount() {
