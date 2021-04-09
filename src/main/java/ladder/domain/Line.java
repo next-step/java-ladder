@@ -14,9 +14,13 @@ public class Line {
     private final LineWriteStrategy lineWriteStrategy;
 
     public Line(int pointCount) {
+        this(pointCount, new RandomLineWriteStrategy());
+    }
+
+    public Line(int pointCount, LineWriteStrategy lineWriteStrategy) {
         validatePointCount(pointCount);
         this.pointList = generatePointList(pointCount);
-        this.lineWriteStrategy = new RandomLineWriteStrategy();
+        this.lineWriteStrategy = lineWriteStrategy;
     }
 
     private void validatePointCount(int pointCount) {
