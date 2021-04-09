@@ -1,27 +1,42 @@
 package ladder.domain;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class Point {
-
     private final boolean point;
-    private static final Map<Boolean, Point> points = new HashMap<>();
+    private final LineNumber lineNumber;
 
-    static {
-        points.put(true, new Point(true));
-        points.put(false, new Point(false));
-    }
-
-    private Point(boolean point) {
+    private Point(int index, boolean point) {
+        this.lineNumber = LineNumber.valueOf(index);
         this.point = point;
     }
 
-    public static Point from(boolean point) {
-        return points.get(point);
+    public static Point of(int index, boolean point) {
+        return new Point(index, point);
     }
 
     public boolean toBoolean() {
         return point;
     }
+
+    public LineNumber getLineNumber() {
+        return lineNumber;
+    }
+
+    public Point prevCompare(Point prevPoint) {
+        if (toBoolean()) {
+            return prevPoint;
+        }
+        return this;
+    }
+
+    public Point nextCompare(Point nextPoint) {
+        if (!toBoolean() && nextPoint.toBoolean()) {
+            return nextPoint;
+        }
+        return this;
+    }
+
+    public Point compare(Point prevPoint, Point nextPoint) {
+        return prevCompare(prevPoint).nextCompare(nextPoint);
+    }
+
 }
