@@ -10,17 +10,17 @@ public class Line {
     private static final int FIRST_POINT_INDEX = 0;
     private static final int FIRST_MIDDLE_POINT_INDEX = 1;
 
-    private final List<Point> pointList;
     private final LineWriteStrategy lineWriteStrategy;
+    private final List<Point> pointList;
 
     public Line(int pointCount) {
-        this(pointCount, new RandomLineWriteStrategy());
+        this(new RandomLineWriteStrategy(), pointCount);
     }
 
-    public Line(int pointCount, LineWriteStrategy lineWriteStrategy) {
+    public Line(LineWriteStrategy lineWriteStrategy, int pointCount) {
         validatePointCount(pointCount);
-        this.pointList = generatePointList(pointCount);
         this.lineWriteStrategy = lineWriteStrategy;
+        this.pointList = generatePointList(pointCount);
     }
 
     private void validatePointCount(int pointCount) {
