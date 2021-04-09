@@ -19,4 +19,10 @@ public class PlayersTest {
         String test = "dhlee, ,gisun";
         Assertions.assertThrows(IllegalArgumentException.class, () -> new Players(test));
     }
+
+    @Test
+    void 생성_중복_테스트() {
+        String test = "dhlee, dhlee";
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new Players(test));
+    }
 }
