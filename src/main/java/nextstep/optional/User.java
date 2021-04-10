@@ -1,29 +1,36 @@
 package nextstep.optional;
 
-public class User {
-    private String name;
-    private Integer age;
+import java.util.Optional;
+
+public final class User {
+
+    public static final int MINIMUM_AGE = 30;
+    public static final int MAXIMUM_AGE = 45;
+
+    private final String name;
+    private final Integer age;
 
     public User(String name, Integer age) {
         this.name = name;
         this.age = age;
     }
 
-    public String getName() {
+    public final String getName() {
         return name;
     }
 
-    public Integer getAge() {
+    public final Integer getAge() {
         return age;
     }
 
-    public boolean matchName(String name) {
+    public final boolean matchName(String name) {
         return this.name.equals(name);
     }
 
-    public static boolean ageIsInRange1(User user) {
+    public static final boolean ageIsInRange1(User user) {
         boolean isInRange = false;
 
+        // 해당 메서드를 기준으로 새로운 메서드를 만드므로 수정 x
         if (user != null && user.getAge() != null
                 && (user.getAge() >= 30
                 && user.getAge() <= 45)) {
@@ -32,8 +39,15 @@ public class User {
         return isInRange;
     }
 
-    public static boolean ageIsInRange2(User user) {
-        return false;
+    public static final boolean ageIsInRange2(User user) {
+        return Optional.ofNullable(user)
+                .map(User::getAge)
+                .filter(User::isAgeInRange)
+                .isPresent();
+    }
+
+    private static final boolean isAgeInRange(Integer age) {
+        return age >= MINIMUM_AGE && age <= MAXIMUM_AGE;
     }
 
     @Override
