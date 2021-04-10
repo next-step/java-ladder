@@ -13,6 +13,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import ladder.domain.ConnectStrategy;
 import ladder.domain.Line;
+import ladder.domain.LineNumber;
 import ladder.domain.Point;
 
 public class LineTest {
@@ -68,15 +69,36 @@ public class LineTest {
         List<Point> points = line.getPoint();
         List<Point> comparePoints = new ArrayList<Point>() {
             {
-                add(Point.from(false));
-                add(Point.from(true));
-                add(Point.from(false));
-                add(Point.from(true));
-                add(Point.from(false));
+                add(Point.of(0, false));
+                add(Point.of(1, true));
+                add(Point.of(2, false));
+                add(Point.of(3, true));
+                add(Point.of(4, false));
             }
         };
 
         // when & then
         assertThat(points).isEqualTo(comparePoints);
+    }
+
+    @Test
+    void 인덱스별_이동_테스트() {
+        // given
+        Line line = new Line(5, connectStrategy);
+        List<Point> comparePoints = new ArrayList<Point>() {
+            {
+                add(Point.of(0, false));
+                add(Point.of(1, true));
+                add(Point.of(2, false));
+                add(Point.of(3, true));
+                add(Point.of(4, false));
+            }
+        };
+        // when & then
+        assertThat(line.matchPoint(LineNumber.valueOf(0))).isEqualTo(Point.of(1, true));
+        assertThat(line.matchPoint(LineNumber.valueOf(1))).isEqualTo(Point.of(0, false));
+        assertThat(line.matchPoint(LineNumber.valueOf(2))).isEqualTo(Point.of(3, true));
+        assertThat(line.matchPoint(LineNumber.valueOf(3))).isEqualTo(Point.of(2, false));
+        assertThat(line.matchPoint(LineNumber.valueOf(4))).isEqualTo(Point.of(4, false));
     }
 }

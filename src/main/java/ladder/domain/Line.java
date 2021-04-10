@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.IntStream;
 
-import ladder.exception.MinimumParticipantException;
+import ladder.exception.MinimumPlayerCountException;
 
 public class Line {
     private static final int MIN_PERSON = 2;
@@ -20,24 +20,30 @@ public class Line {
 
     private void validate(int countOfPerson) {
         if (countOfPerson < MIN_PERSON) {
-            throw new MinimumParticipantException("참여자의 수는 최소 " + MIN_PERSON + "명 이상이여야 합니다.");
+            throw new MinimumPlayerCountException("참여자의 수는 최소 " + MIN_PERSON + "명 이상이여야 합니다.");
         }
     }
 
     private void create(int countOfPerson, ConnectStrategy connectStrategy) {
-        line.add(Point.from(false));
+        line.add(Point.of(0,false));
 
         IntStream.range(0, countOfPerson - 1)
             .forEach((index) -> {
-                line.add(Point.from(connectStrategy.connectable(line.get(index).toBoolean())));
+                line.add(Point.of(index + 1, connectStrategy.connectable(line.get(index).toBoolean())));
             });
     }
 
-    private Point connect(int index, boolean connectable) {
-        if (line.get(index).toBoolean()) {
-            return Point.from(false);
+    public Point matchPoint(LineNumber lineNumber) {
+        int number = lineNumber.getLineNumber();
+        Point curPoint = line.get(number);
+
+        if (number == 0) {
+            return curPoint.nextCompare(line.get(number + 1));
         }
-        return Point.from(connectable);
+        if (number == line.size() - 1) {
+            return curPoint.prevCompare(line.get(number - 1));
+        }
+        return curPoint.compare(line.get(number - 1), line.get(number + 1));
     }
 
     public List<Point> getPoint() {

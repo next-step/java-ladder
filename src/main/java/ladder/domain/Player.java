@@ -1,22 +1,37 @@
 package ladder.domain;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Objects;
 
 public class Player {
-    private static final String SEPARATOR = ",";
+    private final PlayerName playerName;
+    private final LineNumber lineNumber;
 
-    private final List<PlayerName> players;
-
-    public Player(String names) {
-        players = Arrays.stream(names.split(SEPARATOR))
-            .map(PlayerName::new)
-            .collect(Collectors.toList());
+    public Player(int number, String name) {
+        lineNumber = LineNumber.valueOf(number);
+        playerName = new PlayerName(name);
     }
 
-    public List<PlayerName> getNames() {
-        return Collections.unmodifiableList(players);
+    public PlayerName getPlayerName() {
+        return playerName;
+    }
+
+    public LineNumber getLineNumber() {
+        return lineNumber;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        Player player = (Player)o;
+        return Objects.equals(playerName, player.playerName) && Objects.equals(lineNumber,
+            player.lineNumber);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(playerName, lineNumber);
     }
 }

@@ -11,15 +11,15 @@ public class PlayerTest {
 
     @Test
     void 생성_테스트() {
-        String test = "dhlee, pobi, gisun";
-        Player player = new Player(test);
-        assertThat(player.getNames().size()).isEqualTo(3);
+        String test = "dhlee";
+        Player player = new Player(0, test);
+        assertThat(player).isEqualTo(new Player(0, " dhlee  "));
     }
 
 
     @Test
     void 생성_유효성_테스트() {
-        String test = "dhlee, ,gisun";
-        Assertions.assertThrows(IllegalArgumentException.class, () -> new Player(test));
+        String test = " ";
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new Player(0, test));
     }
 }

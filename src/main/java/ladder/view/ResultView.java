@@ -1,8 +1,11 @@
 package ladder.view;
 
 import ladder.domain.Ladder;
+import ladder.domain.MatchResult;
 import ladder.domain.Player;
+import ladder.domain.Players;
 import ladder.domain.Point;
+import ladder.domain.Prize;
 
 public class ResultView {
     private static final String MESSAGE_RESULT = "실행결과";
@@ -12,11 +15,11 @@ public class ResultView {
     private ResultView() {
     }
 
-    public static void printParticipantNames(Player player) {
+    public static void printPlayerNames(Players players) {
         System.out.println(MESSAGE_RESULT);
-        player.getNames().stream()
-            .map(name -> String.format("%6s", name))
-            .forEach(System.out::print);
+        players.getPlayers().stream().forEach(player -> {
+            System.out.print(String.format("%6s", player.getPlayerName()));
+        });
         System.out.println();
     }
 
@@ -27,5 +30,18 @@ public class ResultView {
                 .forEach(point -> System.out.print(point ? CONNECT : DIS_CONNECT));
             System.out.println();
         });
+    }
+
+    public static void printMatchOfPrize(Prize prize) {
+        System.out.println(prize.getPrize());
+    }
+
+    public static void printAllMatchOfPrize(MatchResult matchResult) {
+        System.out.println(MESSAGE_RESULT);
+        matchResult.getMatchResult().forEach(ResultView::printMatchResult);
+    }
+
+    private static void printMatchResult(Player player, Prize prize) {
+        System.out.println(String.format("%s : %s", player.getPlayerName(), prize.getPrize()));
     }
 }
