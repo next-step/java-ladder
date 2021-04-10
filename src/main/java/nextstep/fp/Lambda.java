@@ -1,5 +1,7 @@
 package nextstep.fp;
 
+import nextstep.fp.strategy.Conditional;
+
 import java.util.List;
 
 public class Lambda {
@@ -53,4 +55,5 @@ public class Lambda {
         }
         return total;
     }
+
 }
