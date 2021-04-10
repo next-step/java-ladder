@@ -9,14 +9,13 @@ public class Height {
     private final int height;
 
     public Height(final String height) {
-        isParsable(height);
-        this.height = Integer.parseInt(height);
+        this.height = toInt(height);
         validateHeight();
     }
 
-    private static void isParsable(String inputHeight) {
+    private static int toInt(String inputHeight) {
         try {
-            Integer.parseInt(inputHeight);
+            return Integer.parseInt(inputHeight);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(HEIGHT_NOT_PARSABLE_MESSAGE);
         }
