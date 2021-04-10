@@ -1,6 +1,5 @@
 package nextstep.ladder.domain.player;
 
-import nextstep.ladder.dto.PlayerDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -18,9 +17,8 @@ class PlayersTest {
         List<String> playerNameList = Arrays.asList("pobi", "honux", "crong", "jk");
 
         Players players = Players.of(playerNameList);
-        PlayerDto jk = players.searchBy("jk")
-                              .export();
-        assertThat(jk.getName()).isEqualTo("jk");
+        Player jk = players.getPlayerBy("jk");
+        assertThat(jk.exportName()).isEqualTo("jk");
     }
 
     @Test
@@ -29,7 +27,7 @@ class PlayersTest {
         List<String> playerNameList = Arrays.asList("pobi", "honux", "crong", "jk");
         Players players = Players.of(playerNameList);
 
-        assertThatThrownBy(() -> players.searchBy("tdd")).isInstanceOf(RuntimeException.class);
+        assertThatThrownBy(() -> players.getPlayerBy("tdd")).isInstanceOf(RuntimeException.class);
     }
-    
+
 }

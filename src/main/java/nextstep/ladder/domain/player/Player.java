@@ -1,50 +1,32 @@
 package nextstep.ladder.domain.player;
 
-import nextstep.ladder.domain.ladder.Ladder;
-import nextstep.ladder.dto.PlayerDto;
+import nextstep.ladder.domain.ladder.Lane;
 
 public class Player {
 
-    private static final int NAME_MAXIMUM_LENGTH = 5;
-    private static final String FORBIDDEN_NAME = "all";
+    private final PlayerName playerName;
+    private final Lane lane;
 
-    private final String name;
-    private final int position;
-
-    public Player(String name, int position) {
-        validate(name);
-
-        this.name = name;
-        this.position = position;
+    private Player(PlayerName playerName, Lane lane) {
+        this.playerName = playerName;
+        this.lane = lane;
     }
 
-    private void validate(String name) {
-        validateLength(name);
-        validateName(name);
-    }
-
-    private void validateLength(String name) {
-        if (name == null || name.length() > NAME_MAXIMUM_LENGTH) {
-            throw new IllegalArgumentException("이름은 다섯 글자까지 허용됩니다.");
-        }
-    }
-
-    private void validateName(String name) {
-        if (name.equals(FORBIDDEN_NAME)) {
-            throw new IllegalArgumentException("all 은 이름으로 사용할 수 없습니다.");
-        }
+    public static Player of(String name, int index) {
+        return new Player(new PlayerName(name), Lane.wrap(index));
     }
 
     public boolean hasName(String targetName) {
-        return name.equals(targetName);
+        return playerName.equals(new PlayerName(targetName));
     }
 
-    public PlayerDto export() {
-        return new PlayerDto(name);
+    public Lane getLane() {
+        return lane;
     }
 
-    public int passThrough(Ladder ladder) {
-        return ladder.passThrough(position);
+    public String exportName() {
+        return playerName.export();
     }
+
 
 }

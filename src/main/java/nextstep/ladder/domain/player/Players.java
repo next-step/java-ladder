@@ -1,14 +1,9 @@
 package nextstep.ladder.domain.player;
 
-import nextstep.ladder.domain.LadderBoard;
-import nextstep.ladder.domain.Reward;
-import nextstep.ladder.domain.player.exception.UnknownPlayerException;
-import nextstep.ladder.dto.PlayerDto;
-import nextstep.ladder.util.Pair;
-
 import java.util.List;
-import java.util.function.Predicate;
+import java.util.NoSuchElementException;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
@@ -23,32 +18,19 @@ public class Players {
 
     public static Players of(List<String> playerNames) {
         return IntStream.range(0, playerNames.size())
-                        .mapToObj(i -> new Player(playerNames.get(i), i))
+                        .mapToObj(i -> Player.of(playerNames.get(i), i))
                         .collect(collectingAndThen(toList(), Players::new));
     }
 
-    public List<Pair<Player, Reward>> getResult(LadderBoard ladderBoard, Predicate<Player> query) {
-        return playerList.stream()
-                         .filter(query)
-                         .map(player -> new Pair<>(player, ladderBoard.getReward(player)))
-                         .collect(toList());
-    }
-
-    public Player searchBy(String name) {
+    public Player getPlayerBy(String name) {
         return playerList.stream()
                          .filter(player -> player.hasName(name))
                          .findFirst()
-                         .orElseThrow(UnknownPlayerException::new);
+                         .orElseThrow(NoSuchElementException::new);
     }
 
-    public int getSize() {
-        return playerList.size();
-    }
-
-    public List<PlayerDto> export() {
-        return playerList.stream()
-                         .map(Player::export)
-                         .collect(toList());
+    public Stream<Player> stream() {
+        return playerList.stream();
     }
 
 }

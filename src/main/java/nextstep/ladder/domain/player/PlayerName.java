@@ -1,7 +1,6 @@
 package nextstep.ladder.domain.player;
 
 import java.util.Objects;
-import nextstep.ladder.dto.PlayerNameDto;
 
 public class PlayerName {
 
@@ -9,10 +8,16 @@ public class PlayerName {
     private static final String FORBIDDEN_NAME = "all";
 
     private final String name;
+    private final int lane;
 
-    public PlayerName(String name) {
+    public PlayerName(String name, int lane) {
         validate(name);
         this.name = name;
+        this.lane = lane;
+    }
+
+    public PlayerName(String name) {
+        this(name, 0);
     }
 
     private void validate(String name) {
@@ -32,8 +37,12 @@ public class PlayerName {
         }
     }
 
-    public PlayerNameDto export() {
-        return new PlayerNameDto(name);
+    public int getLane() {
+        return lane;
+    }
+
+    public String export() {
+        return name;
     }
 
     @Override
