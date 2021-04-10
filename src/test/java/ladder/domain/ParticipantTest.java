@@ -3,6 +3,7 @@ package ladder.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -27,7 +28,17 @@ class ParticipantTest {
         // given when then
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Participant("abcdef"))
-                .withMessageMatching("참가자 이름은 최대 5글자까지 부여할 수 있습니다.");
+                .withMessageMatching("참가자 이름은 최대 5글자까지 입력할 수 있습니다.");
+    }
+
+    @Test
+    @DisplayName("참가자 정상생성 테스트")
+    void create() {
+        // given when
+        Participant participant = new Participant("pobi");
+
+        // then
+        assertThat("pobi").isEqualTo(participant.getName());
     }
 
 }
