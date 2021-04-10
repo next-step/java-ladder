@@ -3,12 +3,10 @@ package ladder;
 import java.util.Objects;
 
 public class Point {
-    private final int index;
     private final String position;
     private String direction;
 
-    public Point(int index, String position) {
-        this.index = index;
+    public Point(String position) {
         this.position = position;
     }
 
@@ -28,16 +26,28 @@ public class Point {
         return direction.equals("RIGHT");
     }
 
+    public void setDirection(String direction) {
+        this.direction = direction;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Point point = (Point) o;
-        return index == point.index && Objects.equals(position, point.position);
+        return Objects.equals(position, point.position) && Objects.equals(direction, point.direction);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(index, position);
+        return Objects.hash(position, direction);
+    }
+
+    @Override
+    public String toString() {
+        return "Point{" +
+                "position='" + position + '\'' +
+                ", direction='" + direction + '\'' +
+                '}';
     }
 }
