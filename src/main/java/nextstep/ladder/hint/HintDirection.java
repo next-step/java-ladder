@@ -10,7 +10,7 @@ public class HintDirection {
     private final boolean left;
     private final boolean right;
 
-    private HintDirection(boolean left, boolean right) {
+    private HintDirection(final boolean left, final boolean right) {
         if (left && right) {
             throw new IllegalStateException(GUIDE_ERR_DIRECTION_REPEAT_TRUE);
         }
@@ -27,7 +27,7 @@ public class HintDirection {
         return this.left;
     }
 
-    public HintDirection next(boolean nextRight) {
+    public HintDirection next(final boolean nextRight) {
         return of(this.right, nextRight);
     }
 
@@ -38,11 +38,11 @@ public class HintDirection {
         return next(generatePoint());
     }
 
-    public static HintDirection of(boolean first, boolean second) {
+    public static HintDirection of(final boolean first, final boolean second) {
         return new HintDirection(first, second);
     }
 
-    public static HintDirection first(boolean right) {
+    public static HintDirection first(final boolean right) {
         return of(FALSE, right);
     }
 
@@ -51,7 +51,7 @@ public class HintDirection {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) return true;
         if (!(o instanceof HintDirection)) return false;
         final HintDirection pair = (HintDirection) o;

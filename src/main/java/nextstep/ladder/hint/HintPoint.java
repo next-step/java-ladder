@@ -4,7 +4,7 @@ public class HintPoint {
     private final int index;
     private final HintDirection hintDirection;
 
-    public HintPoint(int index, HintDirection hintDirection) {
+    public HintPoint(final int index, final HintDirection hintDirection) {
         this.index = index;
         this.hintDirection = hintDirection;
     }
@@ -24,7 +24,7 @@ public class HintPoint {
         return new HintPoint(index + 1, hintDirection.next());
     }
 
-    public HintPoint next(Boolean right) {
+    public HintPoint next(final Boolean right) {
         return new HintPoint(index + 1, hintDirection.next(right));
     }
 
@@ -32,7 +32,7 @@ public class HintPoint {
         return new HintPoint(index + 1, hintDirection.last());
     }
 
-    public static HintPoint first(Boolean right) {
+    public static HintPoint first(final Boolean right) {
         return new HintPoint(0, HintDirection.first(right));
     }
 
