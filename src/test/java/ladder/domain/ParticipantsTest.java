@@ -52,7 +52,7 @@ class ParticipantsTest {
         Participants participants = new Participants("pobi,honux,crong,jk");
 
         // then
-        assertThat(4).isEqualTo(participants.getParticipantList().size());
+        assertThat(4).isEqualTo(participants.getCount());
     }
 
     @Test

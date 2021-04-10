@@ -37,4 +37,8 @@ public class Participants {
     public List<Participant> getParticipantList() {
         return participantList;
     }
+
+    public int getCount() {
+        return participantList.size();
+    }
 }
