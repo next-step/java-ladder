@@ -17,7 +17,6 @@ public class HintDirection {
 
         this.left = left;
         this.right = right;
-        System.out.println(this);
     }
 
     public boolean isRight() {
@@ -67,9 +66,6 @@ public class HintDirection {
 
     @Override
     public String toString() {
-        return "Direction{" +
-                "left=" + left +
-                ", right=" + right +
-                '}';
+        return String.format("%s : %s", left, right);
     }
 }
