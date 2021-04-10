@@ -52,24 +52,16 @@ public class LadderController {
         ResultView.printResult(executionResults.executionResults());
     }
 
-    private void printExecutionResultByConversion(Map<Player, String> resultsPlayer) {
-        HashMap<String, String> results = new HashMap<>();
-        for (Player player : resultsPlayer.keySet()) {
-            results.put(player.name(), resultsPlayer.get(player));
-        }
-        ResultView.printExecutionResult(results);
-    }
-
     private void printExecutionResult() {
         String playerName = InputView.enterPlayerYouWant();
-        Map<Player, String> resultsPlayer;
-        if (playerName.equalsIgnoreCase(ALL_PLAYERS)) {
-            resultsPlayer = ladderStatistics.resultsOfAll();
-            printExecutionResultByConversion(resultsPlayer);
+        Map<String, String> results;
+        if(playerName.equalsIgnoreCase(ALL_PLAYERS)){
+            results = ladderStatistics.resultsOfAll();
+            ResultView.printExecutionResult(results);
             return;
         }
-        resultsPlayer = ladderStatistics.results(new Player(playerName));
-        printExecutionResultByConversion(resultsPlayer);
+        results = ladderStatistics.results(new Player(playerName));
+        ResultView.printExecutionResult(results);
     }
 
     public void run() {

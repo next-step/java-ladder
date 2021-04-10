@@ -1,7 +1,7 @@
 package ladder.view;
 
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ResultView {
     private final static String MESSAGE_LADDER_RESULT = "사다리 결과";
@@ -38,7 +38,7 @@ public class ResultView {
         System.out.println();
     }
 
-    public static void printExecutionResult(HashMap<String, String> result){
+    public static void printExecutionResult(Map<String, String> result){
         System.out.println();
         System.out.println(MESSAGE_EXECUTION_RESULT);
         if(result.size() == singleSize){

@@ -8,7 +8,7 @@ public class LadderStatistics {
     private final static String MESSAGE_IMPROPER_PLAYER = "참여한 사람의 결과만 확인할 수 있습니다.";
     private final Map<Player, String> LadderResults;
 
-    public LadderStatistics(Map ladderResults){
+    public LadderStatistics(Map<Player, String> ladderResults){
         LadderResults = ladderResults;
     }
 
@@ -17,15 +17,18 @@ public class LadderStatistics {
             throw new IllegalArgumentException(MESSAGE_IMPROPER_PLAYER);
         }
     }
-
-    public Map<Player, String> results(Player player){
+    public Map<String, String> results(Player player){
         validate(player);
-        Map<Player, String> result = new HashMap<>();
-        result.put(player, LadderResults.get(player));
+        Map<String, String> result = new HashMap<>();
+        result.put(player.name(), LadderResults.get(player));
         return Collections.unmodifiableMap(result);
     }
-    public Map<Player, String> resultsOfAll(){
-        return Collections.unmodifiableMap(LadderResults);
-    }
 
+    public Map<String, String> resultsOfAll(){
+        Map<String, String> result = new HashMap<>();
+        for(Player player : LadderResults.keySet()){
+            result.put(player.name(), LadderResults.get(player));
+        }
+        return Collections.unmodifiableMap(result);
+    }
 }
