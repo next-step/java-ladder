@@ -6,12 +6,13 @@ import static java.lang.Boolean.FALSE;
 import static nextstep.ladder.generator.RandomValueGenerator.generatePoint;
 
 public class HintDirection {
+    public static final String GUIDE_ERR_DIRECTION_REPEAT_TRUE = "연속된 방향을 입력할 수 없습니다.";
     private final boolean left;
     private final boolean right;
 
     private HintDirection(boolean left, boolean right) {
         if (left && right) {
-            throw new IllegalStateException();
+            throw new IllegalStateException(GUIDE_ERR_DIRECTION_REPEAT_TRUE);
         }
 
         this.left = left;
