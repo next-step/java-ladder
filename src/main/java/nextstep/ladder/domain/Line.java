@@ -2,6 +2,7 @@ package nextstep.ladder.domain;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Line {
 
@@ -12,6 +13,12 @@ public class Line {
     private static final int STAY = 0;
 
     private final List<Point> points;
+
+    protected Line(List<Boolean> points) {
+        this.points = points.stream()
+                .map(Point::new)
+                .collect(Collectors.toUnmodifiableList());
+    }
 
     public Line(int countOfPerson) {
         validatePersonCount(countOfPerson);

@@ -12,11 +12,16 @@ public class Ladder {
 
     private final List<Line> lines;
 
-    public Ladder(Height height, int countOfPerson) {
-        lines = Stream.generate(()->new Line(countOfPerson))
-                .limit(height.value())
-                .collect(Collectors.toList());
+    protected Ladder(List<Line> lines) {
+        this.lines = lines;
     }
+
+    public Ladder(Height height, int countOfPerson) {
+        this(Stream.generate(() -> new Line(countOfPerson))
+                .limit(height.value())
+                .collect(Collectors.toList()));
+    }
+
 
     public LadderDto readOnlyLadder() {
         return new LadderDto(Collections.unmodifiableList(lines));
