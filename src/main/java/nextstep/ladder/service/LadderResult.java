@@ -3,6 +3,7 @@ package nextstep.ladder.service;
 import nextstep.ladder.domain.Position;
 import nextstep.ladder.domain.Reward;
 import nextstep.ladder.domain.User;
+import nextstep.ladder.hint.HintLadder;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -31,6 +32,23 @@ public class LadderResult {
 
         for (User user : users) {
             Position rewardPosition = ladder.findEndPosition(user.position());
+            Reward reward = ladderRewards.findReward(rewardPosition.currentPosition());
+            result.put(user, reward);
+        }
+
+        return LadderResult.valueOf(result);
+    }
+
+    public static LadderResult rideLadder(
+            final Participants participants, final HintLadder ladder, final LadderRewards ladderRewards) {
+
+        Map<User, Reward> result = new LinkedHashMap<>();
+        Set<User> users = participants.getUsers();
+
+        for (User user : users) {
+
+            int movePosition = user.position().currentPosition();
+            int rewardPosition = ladder.findEndPosition(movePosition);
             Reward reward = ladderRewards.findReward(rewardPosition);
             result.put(user, reward);
         }

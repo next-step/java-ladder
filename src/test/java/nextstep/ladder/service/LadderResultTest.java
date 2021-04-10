@@ -1,11 +1,15 @@
 package nextstep.ladder.service;
 
+import nextstep.ladder.domain.Height;
 import nextstep.ladder.domain.Reward;
 import nextstep.ladder.domain.User;
+import nextstep.ladder.hint.HintLadder;
+import nextstep.ladder.hint.HintLadderLine;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -30,7 +34,7 @@ class LadderResultTest {
 
     @DisplayName("사다리 타기 전체 결과 테스트")
     @Test
-    void testCase2() {
+    void rideLadder_테스트() {
         Map<User, Reward> given = new HashMap<>();
         given.put(User.valueOf("seok", 0), Reward.valueOf("good"));
         given.put(User.valueOf("rae", 1), Reward.valueOf("not good"));
@@ -38,5 +42,20 @@ class LadderResultTest {
         LadderResult ladderResult = LadderResult.valueOf(given);
 
         assertThat(ladderResult.findAll()).contains("seok : good");
+    }
+
+    @DisplayName("NextStep 버전의 사다리 타기 테스트")
+    @Test
+    void findOf_next_step_버전의_사다리_타기_테스트() {
+        // given
+        Participants participants = Participants.valueOf("kim", "seok", "rae");
+        Height height = Height.valueOf(3);
+        LadderRewards rewards = LadderRewards.valueOf("꽝", "1000", "5000");
+        HintLadder ladder = HintLadder.valueOf(participants, height);
+        // when
+        LadderResult ladderResult = LadderResult.rideLadder(participants, ladder, rewards);
+        String reward = ladderResult.findOf(User.valueOf("kim"));
+        // then
+        assertThat(reward).isIn("꽝", "1000", "5000");
     }
 }
