@@ -18,12 +18,7 @@ public class Lambda {
     }
 
     public static void runThread() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("Hello from thread");
-            }
-        }).start();
+        new Thread(() -> System.out.println("Hello from thread")).start();
     }
 
     public static int sumAll(List<Integer> numbers) {
@@ -39,12 +34,9 @@ public class Lambda {
     }
 
     public static int sumAll(List<Integer> numbers, Conditional condition) {
-        int total = 0;
-        for (Integer number : numbers) {
-            if (condition.test(number)) {
-                total += number;
-            }
-        }
-        return total;
+        return numbers.stream()
+                .filter(condition::test)
+                .mapToInt(number -> number)
+                .sum();
     }
 }
