@@ -24,21 +24,21 @@ public class LadderController {
         printPoints.put(Point.RIGHT, "     |---");
     }
 
-    public LadderController(){
+    public LadderController() {
         players = new Players(InputView.enterPlayers());
         executionResults = new ExecutionResults(players.numberOfPlayer(), InputView.enterExecutionResults());
         ladder = new Ladder(players.numberOfPlayer(), InputView.enterHeight());
     }
 
-    private void printPlayers(){
+    private void printPlayers() {
         List<String> playersList = players.players()
-                                        .stream()
-                                        .map(player -> player.name())
-                                        .collect(Collectors.toList());
+                .stream()
+                .map(player -> player.name())
+                .collect(Collectors.toList());
         ResultView.printPlayers(playersList);
     }
 
-    private void printLadder(){
+    private void printLadder() {
         ladder.lines()
                 .stream()
                 .forEach(line -> {
@@ -48,22 +48,22 @@ public class LadderController {
                 });
     }
 
-    private void printResult(){
+    private void printResult() {
         ResultView.printResult(executionResults.executionResults());
     }
 
-    private void printExecutionResultByConversion(Map<Player, String> resultsPlayer){
+    private void printExecutionResultByConversion(Map<Player, String> resultsPlayer) {
         HashMap<String, String> results = new HashMap<>();
-        for(Player player : resultsPlayer.keySet()){
-            results.put(player.name(),resultsPlayer.get(player));
+        for (Player player : resultsPlayer.keySet()) {
+            results.put(player.name(), resultsPlayer.get(player));
         }
         ResultView.printExecutionResult(results);
     }
 
-    private void printExecutionResult(){
+    private void printExecutionResult() {
         String playerName = InputView.enterPlayerYouWant();
         Map<Player, String> resultsPlayer;
-        if(playerName.equalsIgnoreCase(ALL_PLAYERS)){
+        if (playerName.equalsIgnoreCase(ALL_PLAYERS)) {
             resultsPlayer = ladderStatistics.resultsOfAll();
             printExecutionResultByConversion(resultsPlayer);
             return;
@@ -72,7 +72,7 @@ public class LadderController {
         printExecutionResultByConversion(resultsPlayer);
     }
 
-    public void run(){
+    public void run() {
         printPlayers();
         printLadder();
         printResult();
