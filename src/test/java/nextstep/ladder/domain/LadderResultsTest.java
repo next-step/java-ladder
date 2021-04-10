@@ -12,8 +12,9 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
-class LadderTest {
+class LadderResultsTest {
     private Ladder ladder;
+    private Results results;
 
     @BeforeEach
     void setUp() {
@@ -26,31 +27,25 @@ class LadderTest {
             }
         };
         ladder = new Ladder(lines);
-    }
-
-    @ParameterizedTest
-    @DisplayName(value = "사다리 객체 생성")
-    @CsvSource(value = {"3:3", "4:4", "5:5"}, delimiter = ':')
-    void ladderCreate(int input, int result) {
-        assertThat(Ladder.of(2, input)
-                .size())
-                .isEqualTo(result);
+        results = Results.from("꽝,5000,꽝,3000");
     }
 
     @Test
-    @DisplayName(value = "허용 되지 않은 인자값")
-    void ladderArgumentsException() {
+    @DisplayName(value = "사다리 결과 객체 생성")
+    void ladderResultsArgumentException() {
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> {
-                    Ladder.of(2, 0);
-                }).withMessageMatching("사다리의 최소 높이는 1보다 커야 합니다.");
+                    new LadderResults(ladder, Results.from(""));
+                }).withMessageMatching("사다리 결과는 사다리 참가자 수와 같아야 합니다.");
     }
 
     @ParameterizedTest
-    @DisplayName(value = "사다리 출발 위치의 결과")
-    @CsvSource(value = {"0:1", "1:0", "2:3", "3:2"}, delimiter = ':')
-    void resultPosition(int startPosition, int result) {
-        assertThat(ladder.resultPosition(startPosition))
+    @DisplayName(value = "사다리 실행 결과 확인")
+    @CsvSource(value = {"0:5000", "1:꽝", "2:3000", "3:꽝"}, delimiter = ':')
+    void ladderResult(int startPosition, String result) {
+        LadderResults ladderResults = new LadderResults(ladder, results);
+
+        assertThat(ladderResults.getLadderResult(startPosition))
                 .isEqualTo(result);
     }
 }

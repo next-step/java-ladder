@@ -1,15 +1,26 @@
 package nextstep.ladder.domain;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PlayersTest {
+    private Players players;
+
+    @BeforeEach
+    void setUp() {
+        players = Players.from("james,kim,jade,lee,choi");
+    }
+
     @ParameterizedTest
     @DisplayName(value = "참가자 생성 인원수")
     @CsvSource(value = {"james,kim,jade,lee,choi:5", "james,kim:2"}, delimiter = ':')
@@ -26,5 +37,31 @@ class PlayersTest {
                 .isThrownBy(() -> {
                     new Players("");
                 }).withMessageMatching("참가자의 이름은 비어있는 값 일 수 없습니다.");
+    }
+
+    @ParameterizedTest
+    @DisplayName(value = "참가자 이름에 맞는 참가자 객체 반환")
+    @CsvSource(value = {"james:0", "kim:1", "jade:2", "lee:3", "choi:4"}, delimiter = ':')
+    void playerEquals(String input, int position) {
+        assertThat(players.player(input))
+                .isEqualTo(new Player(input, position));
+    }
+
+    @Test
+    @DisplayName(value = "참가자 이름 리스트 반환")
+    void playerNames() {
+        List<String> names = new ArrayList<String>() {
+            {
+                add("james");
+                add("kim");
+                add("jade");
+                add("lee");
+                add("choi");
+            }
+        };
+
+        assertThat(players.names()
+                .containsAll(names))
+                .isEqualTo(true);
     }
 }

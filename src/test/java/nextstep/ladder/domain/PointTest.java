@@ -1,29 +1,39 @@
 package nextstep.ladder.domain;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
-import static org.junit.jupiter.api.Assertions.*;
 
 class PointTest {
+
     @ParameterizedTest
-    @DisplayName(value = "좌표 방향")
-    @CsvSource(value = {"false:true:RIGHT", "true:false:LEFT", "false:false:DOWN"}, delimiter = ':')
-    void nextDirection(boolean previous, boolean current, String result) {
-        Point point = new Point(previous, current);
-        assertThat(point.nextDirection()).isEqualTo(Direction.valueOf(result));
+    @DisplayName(value = "첫번째 좌표 생성")
+    @CsvSource(value = {"true:RIGHT", "false:DOWN"}, delimiter = ':')
+    void first(boolean input, String direction) {
+        Point first = Point.first(input);
+        assertThat(new Point(Direction.valueOf(direction), 0))
+                .isEqualTo(first);
     }
 
-    @Test
-    @DisplayName(value = "좌표 생성 인자 유효성 검증")
-    void pointArgumentsException() {
-        assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> {
-                    new Point(true, true);
-                }).withMessageMatching("유효하지 않은 입력값 입니다.");
+    @ParameterizedTest
+    @DisplayName(value = "다음 좌표 생성")
+    @CsvSource(value = {"true:false:LEFT", "false:true:RIGHT", "false:false:DOWN"}, delimiter = ':')
+    void next(boolean input, boolean nextInput, String direction) {
+        Point point = Point.first(input);
+        Point next = point.next(nextInput);
+        assertThat(new Point(Direction.valueOf(direction), 1))
+                .isEqualTo(next);
+    }
+
+    @ParameterizedTest
+    @DisplayName(value = "마지막 좌표 생성")
+    @CsvSource(value = {"true:LEFT", "false:DOWN"}, delimiter = ':')
+    void last(boolean input, String direction) {
+        Point point = Point.first(input);
+        Point last = Point.last(point);
+        assertThat(new Point(Direction.valueOf(direction), 1))
+                .isEqualTo(last);
     }
 }

@@ -50,10 +50,10 @@ class LineTest {
 
         List<Point> newPoints = new ArrayList<Point>() {
             {
-                add(new Point(false, true));
-                add(new Point(true, false));
-                add(new Point(false, true));
-                add(new Point(true, false));
+                add(new Point(Direction.RIGHT, 0));
+                add(new Point(Direction.LEFT, 1));
+                add(new Point(Direction.RIGHT, 2));
+                add(new Point(Direction.LEFT, 3));
             }
         };
 
