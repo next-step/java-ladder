@@ -21,7 +21,7 @@ public class Players {
         Player matchedPlayer = players.stream()
                 .filter(player -> player.equals(position))
                 .findFirst()
-                .get();
+                .orElseThrow(() -> new IllegalArgumentException("조건에 맞는 참가자를 찾을 수 없습니다."));
 
         if (matchedPlayer.equals(players.get(0))) {
             return "FIRST";
@@ -31,6 +31,10 @@ public class Players {
             return "LAST";
         }
         return "BODY";
+    }
+
+    public List<Player> allPlayers() {
+        return players;
     }
 
     @Override
