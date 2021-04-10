@@ -1,17 +1,17 @@
 package nextstep.optional;
 
-public class Computer {
-    private Soundcard soundcard;
+public final class Computer {
+    private final Soundcard soundcard;
 
     public Computer(Soundcard soundcard) {
         this.soundcard = soundcard;
     }
 
-    public Soundcard getSoundcard() {
+    public final Soundcard getSoundcard() {
         return soundcard;
     }
 
-    public static class Soundcard {
+    public static final class Soundcard {
         private USB usb;
 
         public Soundcard(USB usb) {
@@ -19,12 +19,12 @@ public class Computer {
             this.usb = usb;
         }
 
-        public USB getUsb() {
+        public final USB getUsb() {
             return usb;
         }
     }
 
-    public static class USB {
+    public static final class USB {
         private String version;
 
         public USB(String version) {
@@ -32,7 +32,7 @@ public class Computer {
             this.version = version;
         }
 
-        public String getVersion() {
+        public final String getVersion() {
             return this.version;
         }
     }
