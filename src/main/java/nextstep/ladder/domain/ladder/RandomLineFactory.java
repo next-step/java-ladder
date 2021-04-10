@@ -5,7 +5,7 @@ import nextstep.ladder.util.StreamUtils;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.stream.IntStream;
 
 public class RandomLineFactory implements LineFactory {
 
@@ -13,9 +13,9 @@ public class RandomLineFactory implements LineFactory {
 
     @Override
     public Line createLine(int numberOfPoints) {
-        List<Point> points = Stream.generate(Point::new)
-                                   .limit(numberOfPoints)
-                                   .collect(Collectors.toList());
+        List<Point> points = IntStream.range(0, numberOfPoints)
+                                      .mapToObj(Point::of)
+                                      .collect(Collectors.toList());
 
         StreamUtils.pairStream(points)
                    .forEach(pair -> tryToConnect(pair.getFirst(), pair.getSecond()));

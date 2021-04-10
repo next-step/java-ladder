@@ -5,9 +5,15 @@ import nextstep.ladder.domain.ladder.exception.PointAlreadyConnectedException;
 public class Point {
 
     private Point connectedPoint;
+    private final Lane lane;
 
-    Point() {
-        connectedPoint = this;
+    Point(Lane lane) {
+        this.connectedPoint = this;
+        this.lane = lane;
+    }
+
+    static Point of(int index) {
+        return new Point(Lane.wrap(index));
     }
 
     void connectTo(Point point) {
@@ -29,5 +35,7 @@ public class Point {
     public Point getConnectedPoint() {
         return connectedPoint;
     }
+
+    public Lane getLane() { return lane; }
 
 }

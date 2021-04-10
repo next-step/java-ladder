@@ -14,12 +14,9 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public int passThrough(int position) {
-        for (Line line : lines) {
-            position = line.nextPosition(position);
-        }
-
-        return position;
+    public Lane passThrough(Lane startLane) {
+        return lines.stream()
+                    .reduce(startLane, (lane, line) -> line.traverse(lane), (nextLane, currentLane) -> nextLane);
     }
 
     public LadderDto export() {

@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -25,17 +25,17 @@ class LineTest {
         return points;
     }
 
-    static List<Point> separatedPoints(int limit) {
-        return Stream.generate(Point::new)
-                     .limit(limit)
-                     .collect(Collectors.toList());
+    static List<Point> separatedPoints(int numberOfPoints) {
+        return IntStream.range(0, numberOfPoints)
+                        .mapToObj(Point::of)
+                        .collect(Collectors.toList());
     }
 
     @Test
     @DisplayName("라인이 가진 지점이 너무 적으면 예외 처리한다.")
     void throwExceptionIfLineHasFewPoints() {
         List<Point> emptyPointList = Collections.emptyList();
-        List<Point> singlePointList = Collections.singletonList(new Point());
+        List<Point> singlePointList = Collections.singletonList(Point.of(0));
 
         assertAll(
             () -> assertThatThrownBy(() -> new Line(emptyPointList)).isInstanceOf(RuntimeException.class),
@@ -80,10 +80,10 @@ class LineTest {
         Line line = new Line(points);
 
         assertAll(
-            () -> assertThat(line.nextPosition(0)).isZero(),
-            () -> assertThat(line.nextPosition(1)).isEqualTo(2),
-            () -> assertThat(line.nextPosition(2)).isEqualTo(1),
-            () -> assertThat(line.nextPosition(3)).isEqualTo(3)
+            () -> assertThat(line.traverse(Lane.wrap(0))).isEqualTo(Lane.wrap(0)),
+            () -> assertThat(line.traverse(Lane.wrap(1))).isEqualTo(Lane.wrap(2)),
+            () -> assertThat(line.traverse(Lane.wrap(2))).isEqualTo(Lane.wrap(1)),
+            () -> assertThat(line.traverse(Lane.wrap(3))).isEqualTo(Lane.wrap(3))
         );
     }
 

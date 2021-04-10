@@ -12,7 +12,7 @@ class PointTest {
     @Test
     @DisplayName("최초에는 어느 지점과도 연결되지 않는다.")
     void shouldNotConnectAnyPointOriginally() {
-        Point point = new Point();
+        Point point = Point.of(0);
 
         assertThat(point.isConnectedAnotherPoint()).isFalse();
     }
@@ -20,8 +20,8 @@ class PointTest {
     @Test
     @DisplayName("다른 지점과 연결할 수 있다.")
     void connectToAnotherPoint() {
-        Point leftPoint = new Point();
-        Point rightPoint = new Point();
+        Point leftPoint = Point.of(0);
+        Point rightPoint = Point.of(1);
 
         leftPoint.connectTo(rightPoint);
         rightPoint.connectTo(leftPoint);
@@ -35,9 +35,9 @@ class PointTest {
     @Test
     @DisplayName("이미 연결된 지점을 다른 지점과 다시 연결할 수 없다.")
     void shouldNotConnectIfPointAlreadyConnect() {
-        Point leftPoint = new Point();
-        Point rightPoint = new Point();
-        Point otherPoint = new Point();
+        Point leftPoint = Point.of(0);
+        Point rightPoint = Point.of(1);
+        Point otherPoint = Point.of(2);
 
         leftPoint.connectTo(rightPoint);
         rightPoint.connectTo(leftPoint);

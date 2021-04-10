@@ -49,9 +49,7 @@ class LadderTest {
     }
 
     private static List<Point> fourPoints() {
-        return Stream.generate(Point::new)
-            .limit(4)
-            .collect(Collectors.toList());
+        return LineTest.separatedPoints(4);
     }
 
     private static void connectPoints(List<Point> points, int leftPointPosition, int rightPointPosition) {
@@ -67,10 +65,10 @@ class LadderTest {
         Ladder ladder = ladder();
 
         assertAll(
-            () -> assertThat(ladder.passThrough(0)).isZero(),
-            () -> assertThat(ladder.passThrough(1)).isEqualTo(3),
-            () -> assertThat(ladder.passThrough(2)).isEqualTo(2),
-            () -> assertThat(ladder.passThrough(3)).isEqualTo(1)
+            () -> assertThat(ladder.passThrough(Lane.wrap(0))).isEqualTo(Lane.wrap(0)),
+            () -> assertThat(ladder.passThrough(Lane.wrap(1))).isEqualTo(Lane.wrap(3)),
+            () -> assertThat(ladder.passThrough(Lane.wrap(2))).isEqualTo(Lane.wrap(2)),
+            () -> assertThat(ladder.passThrough(Lane.wrap(3))).isEqualTo(Lane.wrap(1))
         );
     }
 
