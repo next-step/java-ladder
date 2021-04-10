@@ -25,7 +25,7 @@ public class Ladder {
     public int positionOfResult(int startPosition) {
         int position = startPosition;
         for (Line line : lines) {
-            position += line.moveWhich(position);
+            position = line.moveWhich(position);
         }
         return position;
     }

@@ -38,17 +38,29 @@ public class Line {
 
     public int moveWhich(int idx) {
         if (idx >= points.size()) {
-            return LEFT;
+            return moveLeft(idx);
         }
         if (idx < 0) {
-            return RIGHT;
+            return moveRight(idx);
         }
         if (points.get(idx).isConnected()) {
-            return RIGHT;
+            return moveRight(idx);
         }
         if (idx > 0 && points.get(idx - 1).isConnected()) {
-            return LEFT;
+            return moveLeft(idx);
         }
-        return STAY;
+        return bypass(idx);
+    }
+
+    private int bypass(int idx) {
+        return idx + STAY;
+    }
+
+    private int moveLeft(int idx) {
+        return idx + LEFT;
+    }
+
+    private int moveRight(int idx) {
+        return idx + RIGHT;
     }
 }
