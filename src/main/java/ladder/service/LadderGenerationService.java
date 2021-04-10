@@ -5,7 +5,7 @@ import ladder.domain.Participants;
 
 public class LadderGenerationService {
 
-    public LadderGame generateLadder(String participantNames, int ladderHeight) {
+    public LadderGame generateLadderGame(String participantNames, int ladderHeight) {
         return new LadderGame(new Participants(participantNames), ladderHeight);
     }
 }
