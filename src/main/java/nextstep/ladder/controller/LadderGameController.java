@@ -1,10 +1,10 @@
 package nextstep.ladder.controller;
 
 import nextstep.ladder.domain.Height;
-import nextstep.ladder.domain.Reward;
 import nextstep.ladder.domain.User;
 import nextstep.ladder.generator.DefaultLineGenerator;
 import nextstep.ladder.generator.LineGenerator;
+import nextstep.ladder.hint.HintLadder;
 import nextstep.ladder.service.Ladder;
 import nextstep.ladder.service.LadderResult;
 import nextstep.ladder.service.LadderRewards;
@@ -40,6 +40,22 @@ public class LadderGameController {
         LadderResult ladderResult = LadderResult.rideLadder(participants, ladder, rewards);
 
         resultView.printResult(ladder, participants, rewards);
+
+        String user;
+        do {
+            user = inputUserResult();
+        } while (!isOneOrAll(ladderResult, user));
+    }
+
+    public void hintStart() {
+        Participants participants = inputParticipants();
+        LadderRewards rewards = inputRewards(participants.size());
+        Height height = inputHeight();
+
+        HintLadder hintLadder = HintLadder.valueOf(participants, height);
+        LadderResult ladderResult = LadderResult.rideLadder(participants, hintLadder, rewards);
+
+        resultView.printResult(hintLadder, participants, rewards);
 
         String user;
         do {

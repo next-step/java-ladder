@@ -1,6 +1,9 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.domain.*;
+import nextstep.ladder.hint.HintLadder;
+import nextstep.ladder.hint.HintLadderLine;
+import nextstep.ladder.hint.HintPoint;
 import nextstep.ladder.service.Ladder;
 import nextstep.ladder.service.LadderRewards;
 import nextstep.ladder.service.Line;
@@ -22,6 +25,14 @@ public class ResultView {
     private static final String EMPTY_LINE = "";
 
     public void printResult(final Ladder ladder, final Participants participants, final LadderRewards ladderRewards) {
+        printHeader();
+        printNames(participants);
+        printLadder(ladder);
+        printLadderRewards(ladderRewards);
+        out.println();
+    }
+
+    public void printResult(final HintLadder ladder, final Participants participants, final LadderRewards ladderRewards) {
         printHeader();
         printNames(participants);
         printLadder(ladder);
@@ -52,6 +63,13 @@ public class ResultView {
                 .forEach(out::println);
     }
 
+    private void printLadder(final HintLadder ladder) {
+        ladder.lines()
+                .stream()
+                .map(this::renderLadder)
+                .forEach(out::println);
+    }
+
     private void printLadderRewards(final LadderRewards ladderRewards) {
         ladderRewards.getRewards()
                 .stream()
@@ -71,8 +89,22 @@ public class ResultView {
                 .collect(Collectors.joining(LADDER_VERTICAL_LINE, EMPTY_LINE, LADDER_VERTICAL_LINE));
     }
 
+    private String renderLadder(final HintLadderLine line) {
+        return line.points()
+                .stream()
+                .map(this::renderPerPoint)
+                .collect(Collectors.joining(LADDER_VERTICAL_LINE, EMPTY_LINE, LADDER_VERTICAL_LINE));
+    }
+
     private String renderPerPoint(final Bar bar) {
         if(bar.isExist()) {
+            return LADDER_HORIZON;
+        }
+        return LADDER_EMPTY;
+    }
+
+    private String renderPerPoint(final HintPoint point) {
+        if(point.isLeft()) {
             return LADDER_HORIZON;
         }
         return LADDER_EMPTY;

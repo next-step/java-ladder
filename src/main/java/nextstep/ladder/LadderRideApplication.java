@@ -10,6 +10,7 @@ public class LadderRideApplication {
         ResultView resultView = new ResultView();
 
         LadderGameController ladderGameController = new LadderGameController(inputView, resultView);
-        ladderGameController.start();
+        ladderGameController.hintStart();
+
     }
 }
