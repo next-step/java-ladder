@@ -6,24 +6,24 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class PointTest {
-    @DisplayName("인덱스,위치정보 인자를 받아 인스턴스가 정상적으로 생성된다.")
+    @DisplayName("위치정보를 인자로 받아 인스턴스가 정상적으로 생성된다.")
     @Test
-    void create_인덱스위치() {
-        Point pointIndex = new Point(1, "FIRST");
-        assertThat(pointIndex).isEqualTo(new Point(1, "FIRST"));
+    void create_위치() {
+        Point pointIndex = new Point("FIRST");
+        assertThat(pointIndex).isEqualTo(new Point("FIRST"));
     }
 
     @DisplayName("첫번째 Point 여부를 반환한다.")
     @Test
     void first() {
-        Point point = new Point(1, "FIRST");
+        Point point = new Point("FIRST");
         assertThat(point.isFirst()).isTrue();
     }
 
     @DisplayName("마지막 Point 여부를 반환한다.")
     @Test
     void last() {
-        Point point = new Point(4, "LAST");
+        Point point = new Point("LAST");
         assertThat(point.isLast()).isTrue();
     }
 }
