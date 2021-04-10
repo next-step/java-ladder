@@ -2,33 +2,36 @@ package ladder.domain;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Persons {
-    private final Set<Person> persons;
+    private final List<Person> persons;
 
-    private Persons(final Set<Person> persons) {
+    private Persons(final List<Person> persons) {
         this.persons = persons;
     }
 
     public static Persons from(String[] personNames) {
-        Set<Person> persons = Arrays.stream(personNames)
-                .map(name -> Person.from(name))
-                .collect(Collectors.toSet());
-        validate(personNames, persons);
-        return new Persons(persons);
+        validate(personNames.length, (int) Arrays.stream(personNames)
+                                                 .distinct()
+                                                 .count());
+        return Arrays.stream(personNames)
+                .map(Person::from)
+                .distinct()
+                .collect(Collectors.collectingAndThen(Collectors.toList(),
+                        Persons::new));
     }
 
-    private static void validate(String[] personNames, Set<Person> persons) {
-        if (personNames.length != persons.size()) {
+    private static void validate(int originalSize, int distinctSize) {
+        if (originalSize != distinctSize) {
             throw new RuntimeException("참여할 사람 이름은 중복으로 입력할 수 없습니다.");
         }
     }
 
-    public Set<Person> getPersons() {
-        return Collections.unmodifiableSet(persons);
+    public List<Person> getPersons() {
+        return Collections.unmodifiableList(persons);
     }
 
     @Override

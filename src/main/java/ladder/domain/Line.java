@@ -1,36 +1,39 @@
 package ladder.domain;
 
+import ladder.strategy.PointStrategy;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.function.Supplier;
 
 public class Line {
-    private final static Boolean LAST_POINT = Boolean.FALSE;
-
     private final List<Boolean> points;
 
     private Line(final List<Boolean> points) {
         this.points = points;
     }
 
-    public static Line of(final int countOfPerson, Supplier<Boolean> supplier) {
+    public static Line of(final int countOfPerson, PointStrategy pointStrategy) {
         List<Boolean> points = new ArrayList<>();
         Boolean beforePoint = Boolean.FALSE;
-        for (int i = 0; i < countOfPerson - 1; i++) {
-            Boolean point = generatePoint(beforePoint, supplier);
+        for (int i = 0; i < countOfPerson; i++) {
+            Boolean point = generatePoint(beforePoint, pointStrategy, isLastIndex(i, countOfPerson));
             points.add(point);
             beforePoint = point;
         }
-        points.add(LAST_POINT);
         return new Line(points);
     }
 
-    private static Boolean generatePoint(final Boolean beforePoint, Supplier<Boolean> supplier) {
-        if (beforePoint) {
+    private static Boolean generatePoint(final Boolean beforePoint, PointStrategy pointStrategy,
+                                         final boolean isLastIndex) {
+        if (beforePoint || isLastIndex) {
             return Boolean.FALSE;
         }
-        return supplier.get();
+        return pointStrategy.generator();
+    }
+
+    private static boolean isLastIndex(int index, int countOfPerson) {
+        return index + 1 == countOfPerson;
     }
 
     public List<Boolean> getPoints() {

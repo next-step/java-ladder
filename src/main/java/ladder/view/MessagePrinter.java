@@ -1,21 +1,21 @@
 package ladder.view;
 
-public interface BaseView {
+public class MessagePrinter {
 
-    default void printlnMessageAfterNewLine(String message) {
+    public static void printlnMessageAfterNewLine(String message) {
         System.out.print(System.lineSeparator());
         System.out.println(message);
     }
 
-    default void printlnMessage(String message) {
+    public static void printlnMessage(String message) {
         System.out.println(message);
     }
 
-    default void printMessage(String message) {
+    public static void printMessage(String message) {
         System.out.print(message);
     }
 
-    default void printNewLine() {
+    public static void printNewLine() {
         System.out.print(System.lineSeparator());
     }
 }
