@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.domain.generator.Players;
+
 import java.util.List;
 
 public class GameResult {
@@ -24,7 +26,7 @@ public class GameResult {
     }
 
     public Player player(String name) {
-        return players.player(name);
+        return players.player(name.trim());
     }
 
     public String playerResult(int position) {

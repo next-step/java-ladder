@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.domain.generator.CollectionGenerator;
+import nextstep.ladder.domain.generator.Results;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -27,7 +29,7 @@ class LadderResultsTest {
             }
         };
         ladder = new Ladder(lines);
-        results = Results.from("꽝,5000,꽝,3000");
+        results = CollectionGenerator.results("꽝,5000,꽝,3000");
     }
 
     @Test
@@ -35,7 +37,7 @@ class LadderResultsTest {
     void ladderResultsArgumentException() {
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> {
-                    new LadderResults(ladder, Results.from(""));
+                    new LadderResults(ladder, CollectionGenerator.results("S,F"));
                 }).withMessageMatching("사다리 결과는 사다리 참가자 수와 같아야 합니다.");
     }
 

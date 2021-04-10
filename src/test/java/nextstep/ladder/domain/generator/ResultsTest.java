@@ -1,5 +1,7 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.generator;
 
+import nextstep.ladder.domain.Result;
+import nextstep.ladder.domain.generator.Results;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +15,7 @@ class ResultsTest {
 
     @BeforeEach
     void setUp() {
-        results = Results.from("꽝,5000,꽝,3000");
+        results = Results.from(new String[] {"꽝", "5000", "꽝", "3000"});
     }
 
     @Test

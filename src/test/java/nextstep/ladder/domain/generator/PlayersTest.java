@@ -1,5 +1,7 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.generator;
 
+import nextstep.ladder.domain.Player;
+import nextstep.ladder.domain.generator.Players;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,21 +13,20 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
-import static org.junit.jupiter.api.Assertions.*;
 
 class PlayersTest {
     private Players players;
 
     @BeforeEach
     void setUp() {
-        players = Players.from("james,kim,jade,lee,choi");
+        players = Players.from(new String[]{"james", "kim", "jade", "lee", "choi"});
     }
 
     @ParameterizedTest
     @DisplayName(value = "참가자 생성 인원수")
     @CsvSource(value = {"james,kim,jade,lee,choi:5", "james,kim:2"}, delimiter = ':')
     void playersCount(String input, int result) {
-        assertThat(new Players(input)
+        assertThat(new Players(input.split(","))
                 .countOfPlayers())
                 .isEqualTo(result);
     }
@@ -35,8 +36,8 @@ class PlayersTest {
     void playersArgumentsException() {
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> {
-                    new Players("");
-                }).withMessageMatching("참가자의 이름은 비어있는 값 일 수 없습니다.");
+                    new Players(new String[]{""});
+                });
     }
 
     @ParameterizedTest
