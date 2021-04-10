@@ -5,6 +5,7 @@ import nextstep.ladder.domain.player.Players;
 import nextstep.ladder.dto.LadderBoardDto;
 import nextstep.ladder.dto.LadderGameReport;
 import nextstep.ladder.dto.PlayerDto;
+import nextstep.ladder.dto.PlayerNamesDto;
 
 import java.util.Collections;
 
@@ -43,6 +44,10 @@ public class LadderGame {
 
     public LadderBoardDto exportLadderBoard() {
         return ladderBoard.export();
+    }
+
+    public PlayerNamesDto exportPlayerNames() {
+        return players.exportNames();
     }
 
 }

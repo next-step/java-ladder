@@ -1,5 +1,7 @@
 package nextstep.ladder.domain.player;
 
+import nextstep.ladder.dto.PlayerNamesDto;
+
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.IntStream;
@@ -33,4 +35,9 @@ public class Players {
         return playerList.stream();
     }
 
+    public PlayerNamesDto exportNames() {
+        return playerList.stream()
+                         .map(Player::exportName)
+                         .collect(collectingAndThen(toList(), PlayerNamesDto::new));
+    }
 }

@@ -1,5 +1,8 @@
 package nextstep.ladder.dto;
 
+import nextstep.ladder.domain.ladder.Ladder;
+import nextstep.ladder.domain.reward.Rewards;
+
 public class LadderBoardDto {
 
     private final LadderDto ladderDto;
@@ -8,6 +11,10 @@ public class LadderBoardDto {
     public LadderBoardDto(LadderDto ladderDto, RewardsDto rewardsDto) {
         this.ladderDto = ladderDto;
         this.rewardsDto = rewardsDto;
+    }
+
+    public static LadderBoardDto of(Ladder ladder, Rewards rewards) {
+        return new LadderBoardDto(ladder.export(), rewards.export());
     }
 
     public LadderDto getLadderDto() {

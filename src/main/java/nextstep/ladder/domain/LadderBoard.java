@@ -21,7 +21,7 @@ public class LadderBoard {
     }
 
     public LadderBoardDto export() {
-        return new LadderBoardDto(ladder.export(), rewards.export());
+        return LadderBoardDto.of(ladder, rewards);
     }
 
 }

@@ -14,10 +14,11 @@ public class ResultView {
     private static final String WHITE_SPACE = " ";
     private static final String HYPHEN = "-";
 
-    public void printPlayers(List<PlayerDto> players) {
-        List<String> paddedNameList = players.stream()
-            .map(player -> padToLeft(player.getName(), STRING_ELEMENT_SIZE))
-            .collect(Collectors.toList());
+    public void printPlayers(PlayerNamesDto dto) {
+        List<String> paddedNameList = dto.getPlayerNames()
+                                         .stream()
+                                         .map(playerName -> padToLeft(playerName, STRING_ELEMENT_SIZE))
+                                         .collect(Collectors.toList());
 
         System.out.println(String.join(WHITE_SPACE, paddedNameList));
     }
