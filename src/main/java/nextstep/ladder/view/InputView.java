@@ -1,5 +1,6 @@
 package nextstep.ladder.view;
 
+import nextstep.ladder.controller.Query;
 import nextstep.ladder.domain.Height;
 import nextstep.ladder.domain.Player;
 
@@ -29,9 +30,9 @@ public class InputView {
         return new Height(SCANNER.nextLine());
     }
 
-    public static Player getPlayer() {
+    public static Query getResultQuery() {
         System.out.println(GET_RESULT_NAME_MESSAGE);
-        return new Player(SCANNER.nextLine());
+        return new Query(SCANNER.nextLine());
     }
 
     public static List<String> getRewards() {

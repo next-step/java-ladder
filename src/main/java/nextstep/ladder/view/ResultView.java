@@ -2,6 +2,7 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.domain.*;
 import nextstep.ladder.view.dto.LadderDto;
+import nextstep.ladder.view.dto.RewardDto;
 import nextstep.ladder.view.dto.RewardsDto;
 
 import java.util.List;
@@ -28,7 +29,7 @@ public class ResultView {
                 .forEach(ResultView::showLine);
         rewards.readOnlyRewards()
                 .stream()
-                .map(r -> String.format("%5s", r.getReward()))
+                .map(ResultView::convertRewardFormat)
                 .forEach(System.out::print);
         System.out.println("\n");
     }
@@ -45,7 +46,7 @@ public class ResultView {
         return point.isConnected() ? CONNECTED : NOT_CONNECTED;
     }
 
-    public static void showResultOfPlayer(Reward reward) {
+    public static void showResultOfPlayer(RewardDto reward) {
         System.out.println(SHOW_RESULT_MESSAGE);
         System.out.println(reward.getReward());
         System.out.println();
@@ -55,5 +56,9 @@ public class ResultView {
         System.out.println(SHOW_RESULT_MESSAGE);
         rewardsDto.readRewards()
                 .forEach(System.out::println);
+    }
+
+    private static String convertRewardFormat(Reward r) {
+        return String.format("%5s", r.getReward());
     }
 }

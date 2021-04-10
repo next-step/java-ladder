@@ -10,7 +10,7 @@ import java.util.List;
 public class LadderMachine {
 
     private static final String ILLEGAL_PLAYER_MESSAGE = "없는 참가자 입니다.";
-    private static final String GAME_END_QUERY = "all";
+    private static final String ILLEGAL_REWARD_LENGTH_MESSAGE = "결과는 참가자 수와 다를 수 없습니다";
 
     private Ladder ladder;
     private Rewards rewards;
@@ -20,6 +20,7 @@ public class LadderMachine {
         Players players = Players.from(playerNames);
         List<String> rewards = InputView.getRewards();
         this.rewards = Rewards.from(rewards);
+        validateRewards(players);
         Height height = InputView.getHeightOfLadder();
         this.ladder = new Ladder(height, players.countOfPerson());
         ResultView.showPlayers(players.readOnlyPlayerNames());
@@ -27,29 +28,44 @@ public class LadderMachine {
         showResult(players);
     }
 
-    private void showResult(Players players) {
-        boolean isRunning = true;
-        while (isRunning) {
-            Player player = InputView.getPlayer();
-            validatePlayer(players, player);
-            isRunning = findResultOrEnd(players, player);
+    private void validateRewards(Players players) {
+        if (players.countOfPerson() != rewards.countOfReward()) {
+            throw new IllegalArgumentException(ILLEGAL_REWARD_LENGTH_MESSAGE);
         }
     }
 
-    private void validatePlayer(Players players, Player player) {
-        if (!player.getName().equals(GAME_END_QUERY) && players.notIncludePlayer(player)) {
+    private void showResult(Players players) {
+        boolean isRunning = true;
+        Rewards reArrangeRewards = Rewards.of(rewards, ladder.positionOfAllResult());
+        RewardsDto rewardsDto = RewardsDto.of(players.readOnlyPlayerNames(), reArrangeRewards);
+        while (isRunning) {
+            Query query = InputView.getResultQuery();
+            validateQuery(players, query);
+            showQueryResult(rewardsDto, query);
+            isRunning = isContinue(query);
+        }
+    }
+
+    private void validateQuery(Players players, Query query) {
+        if (query.isNotEndQuery() && queryNotInPlayers(players, query)) {
             throw new IllegalArgumentException(ILLEGAL_PLAYER_MESSAGE);
         }
     }
 
-    private boolean findResultOrEnd(Players players, Player player) {
-        if (GAME_END_QUERY.equals(player.getName())) {
-            Rewards reArrangeRewards = Rewards.of(rewards, ladder.positionOfAllResult());
-            ResultView.showResultOfAll(RewardsDto.of(players.readOnlyPlayerNames(), reArrangeRewards));
-            return false;
+    private boolean queryNotInPlayers(Players players, Query query) {
+        Player queryPlayer = Player.from(query);
+        return players.notIncludePlayer(queryPlayer);
+    }
+
+    private void showQueryResult(RewardsDto rewardsDto, Query query) {
+        if (query.isAll()) {
+            ResultView.showResultOfAll(rewardsDto);
+            return;
         }
-        int startPosition = players.position(player);
-        ResultView.showResultOfPlayer(rewards.positionOfReward(ladder.positionOfResult(startPosition)));
-        return true;
+        ResultView.showResultOfPlayer(rewardsDto.findQueryResult(query));
+    }
+
+    private boolean isContinue(Query query) {
+        return query.isNotEndQuery();
     }
 }

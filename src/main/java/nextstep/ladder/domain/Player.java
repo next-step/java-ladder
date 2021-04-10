@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.controller.Query;
+
 import java.util.Objects;
 
 public class Player {
@@ -11,6 +13,10 @@ public class Player {
     public Player(final String name) {
         this.name = name;
         validateName();
+    }
+
+    public static Player from(Query query) {
+        return new Player(query.query());
     }
 
     private void validateName() {

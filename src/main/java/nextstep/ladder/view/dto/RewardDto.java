@@ -17,4 +17,12 @@ public class RewardDto {
     public String reward() {
         return String.format(REWARD_RESULT_FORMAT, this.name, this.reward);
     }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public String getReward() {
+        return reward;
+    }
 }

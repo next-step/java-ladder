@@ -34,4 +34,8 @@ public class Rewards {
     public List<Reward> readOnlyRewards() {
         return Collections.unmodifiableList(rewards);
     }
+
+    public int countOfReward() {
+        return rewards.size();
+    }
 }
