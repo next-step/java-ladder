@@ -56,4 +56,11 @@ public class Lambda {
         return total;
     }
 
+    public static final int sumAllByConditional(List<Integer> numbers, Conditional conditional) {
+        return numbers.stream()
+                .filter(conditional::test)
+                .mapToInt(Integer::intValue)
+                .sum();
+    }
+
 }
