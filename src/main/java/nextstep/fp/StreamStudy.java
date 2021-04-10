@@ -33,10 +33,11 @@ public class StreamStudy {
             Comparator
               .comparingInt(String::length)
               .reversed()
-          ).forEach(word ->
+          )
+          .limit(100)
+          .forEach(word ->
             System.out.println(word.toLowerCase())
           );
-        // TODO 이 부분에 구현한다.
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
