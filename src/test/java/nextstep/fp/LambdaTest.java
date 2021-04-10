@@ -33,22 +33,19 @@ public class LambdaTest {
 
     @Test
     public void sumAll() throws Exception {
-        Conditional condition = (Integer number)->true;
-        int sum = Lambda.sum(numbers, condition);
+        int sum = Lambda.sum(numbers, (Integer number)->true);
         assertThat(sum).isEqualTo(21);
     }
 
     @Test
     public void sumAllEven() throws Exception {
-        Conditional condition = (Integer number)-> number%2==0;
-        int sum = Lambda.sum(numbers, condition);
+        int sum = Lambda.sum(numbers, (Integer number)-> number%2==0);
         assertThat(sum).isEqualTo(12);
     }
 
     @Test
     public void sumAllOverThree() throws Exception {
-        Conditional condition = (Integer number) -> number>3;
-        int sum = Lambda.sum(numbers, condition);
+        int sum = Lambda.sum(numbers, (Integer number) -> number>3);
         assertThat(sum).isEqualTo(15);
     }
 }
