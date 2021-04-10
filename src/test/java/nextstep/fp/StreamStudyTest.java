@@ -1,6 +1,7 @@
 package nextstep.fp;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -45,4 +46,5 @@ public class StreamStudyTest {
         long sum = StreamStudy.sumOverThreeAndDouble(numbers);
         assertThat(sum).isEqualTo(36);
     }
+
 }
