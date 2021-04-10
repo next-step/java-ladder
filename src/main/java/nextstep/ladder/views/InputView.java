@@ -18,6 +18,7 @@ public class InputView {
     }
 
     private static String value(String description) {
+        System.out.println();
         System.out.println(description);
         String value = new Scanner(System.in).nextLine();
         emptyValidation(value);

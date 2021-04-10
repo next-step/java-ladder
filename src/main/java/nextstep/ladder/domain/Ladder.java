@@ -7,12 +7,17 @@ import java.util.Objects;
 
 public class Ladder {
     public final static int MIN_HEIGHT = 1;
+    public final static int FIRST_INDEX = 0;
     private final ConditionStrategy randomCondition = new RandomCondition();
     private List<Line> lines = new ArrayList<>();
 
     private Ladder(int countOfPlayers, int ladderHeight) {
         validation(ladderHeight);
         create(countOfPlayers, ladderHeight);
+    }
+
+    public Ladder(List<Line> lines) {
+        this.lines = lines;
     }
 
     private void validation(int ladderHeight) {
@@ -25,6 +30,19 @@ public class Ladder {
         for (int i = 0; i < ladderHeight; i++) {
             lines.add(new Line(countOfPerson, randomCondition));
         }
+    }
+
+    public int resultPosition(int startPosition) {
+        for (int i = 0; i < lines().size(); i++) {
+            Line line = lines.get(i);
+            startPosition += line.nextPosition(startPosition);
+        }
+        return startPosition;
+    }
+
+    public int pointSize() {
+        return lines.get(FIRST_INDEX)
+                .size();
     }
 
     public int size() {

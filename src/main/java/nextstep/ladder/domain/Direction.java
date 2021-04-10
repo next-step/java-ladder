@@ -5,9 +5,13 @@ public enum Direction {
     RIGHT(1),
     LEFT(-1);
 
-    public int nextIndex;
+    private final int nextIndex;
 
     Direction(int nextIndex) {
         this.nextIndex = nextIndex;
+    }
+
+    public int nextIndex() {
+        return nextIndex;
     }
 }

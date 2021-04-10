@@ -2,15 +2,15 @@ package nextstep.ladder.domain;
 
 import nextstep.ladder.utils.StringUtils;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Players {
     public final static String NAME_SEPARATOR = ",";
-    private List<Player> players;
+    private final List<Player> players;
 
     public Players(String value) {
         validation(value);
@@ -24,8 +24,8 @@ public class Players {
     }
 
     private List<Player> generatePlayers(String[] values) {
-        return Arrays.stream(values)
-                .map(Player::new)
+        return IntStream.range(0, values.length)
+                .mapToObj(position -> new Player(values[position], position))
                 .collect(Collectors.toList());
     }
 
@@ -37,7 +37,20 @@ public class Players {
         return new Players(value);
     }
 
-    public List<Player> names() {
+    public List<String> names() {
+        return players.stream()
+                .map(Player::name)
+                .collect(Collectors.toList());
+    }
+
+    public Player player(String name) {
+        return players.stream()
+                .filter(player -> name.equals(player.name()))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("참가자 이름을 확인해 주세요."));
+    }
+
+    public List<Player> players() {
         return Collections.unmodifiableList(players);
     }
 
