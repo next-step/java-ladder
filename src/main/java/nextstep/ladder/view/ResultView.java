@@ -2,8 +2,9 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.domain.*;
 import nextstep.ladder.view.dto.LadderDto;
-import nextstep.ladder.view.dto.PlayerNamesDto;
 import nextstep.ladder.view.dto.RewardsDto;
+
+import java.util.List;
 
 public class ResultView {
 
@@ -15,8 +16,8 @@ public class ResultView {
     private ResultView() {
     }
 
-    public static void showPlayers(PlayerNamesDto players) {
-        for (String name : players.names()) {
+    public static void showPlayers(List<String> players) {
+        for (String name : players) {
             System.out.print(String.format(NAME_OUTPUT_FORMAT, name));
         }
         System.out.println();

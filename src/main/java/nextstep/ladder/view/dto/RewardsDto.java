@@ -14,11 +14,10 @@ public class RewardsDto {
         this.rewards = rewards;
     }
 
-    public static RewardsDto of(PlayerNamesDto players, Rewards reArrangeRewards) {
+    public static RewardsDto of(List<String> players, Rewards reArrangeRewards) {
         List<RewardDto> rewardDtoList = new ArrayList<>();
-        List<String> playerNames = players.names();
-        for (int idx = 0; idx < playerNames.size(); idx++) {
-            rewardDtoList.add(new RewardDto(playerNames.get(idx), reArrangeRewards.positionOfReward(idx)));
+        for (int idx = 0; idx < players.size(); idx++) {
+            rewardDtoList.add(new RewardDto(players.get(idx), reArrangeRewards.positionOfReward(idx)));
         }
         return new RewardsDto(rewardDtoList);
     }

@@ -1,8 +1,5 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.view.dto.PlayerNamesDto;
-
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,8 +21,10 @@ public class Players {
         return players.size();
     }
 
-    public PlayerNamesDto readOnlyPlayerNames() {
-        return new PlayerNamesDto(Collections.unmodifiableList(players));
+    public List<String> readOnlyPlayerNames() {
+        return players.stream()
+                .map(Player::getName)
+                .collect(Collectors.toUnmodifiableList());
     }
 
     public boolean notIncludePlayer(Player player) {
