@@ -22,7 +22,7 @@ public final class ComputerStore {
         return version;
     }
 
-    public static String getVersionOptional(Computer computer) {
+    public static final String getVersionOptional(Computer computer) {
         return Optional.ofNullable(computer)
                 .map(Computer::getSoundcard)
                 .map(Soundcard::getUsb)

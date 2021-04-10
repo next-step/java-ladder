@@ -15,6 +15,7 @@ public final class User {
         this.age = age;
     }
 
+    // 사용을 하지 않아서 리팩터링 중에 지울까 고민했는데, 우선 놔두겠습니다!
     public final String getName() {
         return name;
     }

@@ -22,33 +22,40 @@ public class LambdaTest {
         numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
     }
 
+    @DisplayName("주어진 리스트를 전부 출력할 수 있는지 테스트(오래된 버전)")
     @Test
     public void printAllOld() throws Exception {
         Lambda.printAllOld(numbers);
     }
 
+    @DisplayName("주어진 리스트를 전부 출력할 수 있는지 테스트(람다 버전)")
     @Test
     public void printAllLambda() throws Exception {
         Lambda.printAllLambda(numbers);
     }
 
+    // 이 부분도 테스트를 진행해야 하는건가요?
+    @DisplayName("Lambda 인스턴스가 쓰레드가 실행 가능한지 테스트")
     @Test
     public void runThread() throws Exception {
         Lambda.runThread();
     }
 
+    @DisplayName("리스트의 존재하는 모든 값들을 더한 누적값 테스트")
     @Test
     public void sumAll() throws Exception {
         int sum = Lambda.sumAll(numbers);
         assertThat(sum).isEqualTo(21);
     }
 
+    @DisplayName("리스트의 존재하는 짝수 값들을 더한 누적값 테스트")
     @Test
     public void sumAllEven() throws Exception {
         int sum = Lambda.sumAllEven(numbers);
         assertThat(sum).isEqualTo(12);
     }
 
+    @DisplayName("리스트의 존재하는 3초과의 값들을 더한 누적값 테스트")
     @Test
     public void sumAllOverThree() throws Exception {
         int sum = Lambda.sumAllOverThree(numbers);
