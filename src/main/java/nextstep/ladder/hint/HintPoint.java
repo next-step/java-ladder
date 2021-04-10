@@ -10,9 +10,6 @@ public class HintPoint {
     }
 
     public int move() {
-        System.out.println("is left? " + hintDirection.isLeft());
-        System.out.println("is right? " + hintDirection.isRight());
-
         if (hintDirection.isRight()) {
             return index + 1;
         }
@@ -20,7 +17,6 @@ public class HintPoint {
         if (hintDirection.isLeft()) {
             return index - 1;
         }
-
         return this.index;
     }
 
@@ -40,11 +36,12 @@ public class HintPoint {
         return new HintPoint(0, HintDirection.first(right));
     }
 
+    public boolean isLeft() {
+        return hintDirection.isLeft();
+    }
+
     @Override
     public String toString() {
-        return "Point{" +
-                "index=" + index +
-                ", direction=" + hintDirection +
-                '}';
+        return String.format("%s : %s", index, hintDirection);
     }
 }

@@ -61,4 +61,15 @@ class HintPointTest {
         // then
         assertThat(move).isZero();
     }
+
+    @DisplayName("Point isLeft() 코드로 출력 조건 테스트")
+    @Test
+    void isLeft_테스트() {
+        // given
+        HintPoint point = HintPoint.first(TRUE).next();
+        // when
+        boolean left = point.isLeft();
+        // then
+        assertThat(left).isTrue();
+    }
 }
