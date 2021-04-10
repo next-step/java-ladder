@@ -1,6 +1,7 @@
 package nextstep.ladder.hint;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static nextstep.ladder.generator.RandomValueGenerator.generatePoint;
@@ -45,10 +46,12 @@ public class HintLadderLine {
         return hintPoint;
     }
 
+    public List<HintPoint> points() {
+        return Collections.unmodifiableList(hintPoints);
+    }
+
     @Override
     public String toString() {
-        return "LadderLine{" +
-                "points=" + hintPoints +
-                '}';
+        return String.valueOf(hintPoints);
     }
 }
