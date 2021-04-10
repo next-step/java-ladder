@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.domain.ladder.LadderFactory;
+import nextstep.ladder.domain.ladder.RandomLineFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +18,9 @@ class LadderGameMakerTest {
         List<String> playerNames = Arrays.asList("crong", "honux", "jk");
         List<String> rewardStrings = Arrays.asList("꽝", "3000", "5000", "꽝");
 
-        assertThatThrownBy(() -> LadderGameMaker.makeRandomLadderGame(playerNames, rewardStrings, 1))
+        LadderGameMaker ladderGameMaker = new LadderGameMaker(new LadderFactory(new RandomLineFactory()));
+
+        assertThatThrownBy(() -> ladderGameMaker.makeRandomLadderGame(playerNames, rewardStrings, 1))
             .isInstanceOf(RuntimeException.class);
     }
     

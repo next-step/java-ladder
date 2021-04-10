@@ -9,15 +9,18 @@ import java.util.List;
 
 public class LadderGameController {
 
-    private final InputView inputView = new InputView();
-    private final ResultView resultView = new ResultView();
+    private final LadderGameMaker ladderGameMaker;
 
-    public void run() {
+    public LadderGameController(LadderGameMaker ladderGameMaker) {
+        this.ladderGameMaker = ladderGameMaker;
+    }
+
+    public void run(InputView inputView, ResultView resultView) {
         List<String> playerNames = inputView.receivePlayerNames();
         List<String> rewardStrings = inputView.receiveRewards();
         int ladderHeight = inputView.receiveLadderHeight();
 
-        LadderGame ladderGame = LadderGameMaker.makeRandomLadderGame(playerNames, rewardStrings, ladderHeight);
+        LadderGame ladderGame = ladderGameMaker.makeRandomLadderGame(playerNames, rewardStrings, ladderHeight);
 
         resultView.printPlayers(ladderGame.exportPlayerNames());
         resultView.printLadderBoard(ladderGame.exportLadderBoard());
