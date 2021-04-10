@@ -12,7 +12,7 @@ public class LastElementStrategy implements LadderStrategy {
     @Override
     public String direction() {
         if (previousPoint.haveRightDirection()) {
-            return "RIGHT";
+            return "LEFT";
         }
         return "";
     }
