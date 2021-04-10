@@ -1,7 +1,7 @@
 package nextstep.ladder.dto;
 
-import nextstep.ladder.domain.Reward;
 import nextstep.ladder.domain.player.Player;
+import nextstep.ladder.domain.reward.Reward;
 
 public class PlayerDto {
 

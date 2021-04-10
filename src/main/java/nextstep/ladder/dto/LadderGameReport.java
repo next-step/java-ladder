@@ -1,18 +1,16 @@
 package nextstep.ladder.dto;
 
-import nextstep.ladder.util.Pair;
-
 import java.util.List;
 
 public class LadderGameReport {
 
-    private final List<Pair<PlayerDto, RewardDto>> results;
+    private final List<PlayerDto> playerDtoList;
 
-    public LadderGameReport(List<Pair<PlayerDto, RewardDto>> results) {
-        this.results = results;
+    public LadderGameReport(List<PlayerDto> playerDtoList) {
+        this.playerDtoList = playerDtoList;
     }
 
-    public List<Pair<PlayerDto, RewardDto>> getResults() {
-        return results;
+    public List<PlayerDto> getPlayerDtoList() {
+        return playerDtoList;
     }
 }

@@ -1,7 +1,6 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.dto.*;
-import nextstep.ladder.util.Pair;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -53,30 +52,21 @@ public class ResultView {
 
     private void printRewards(RewardsDto rewardsDto) {
         List<String> paddedRewards = rewardsDto.getRewards()
-            .stream()
-            .map(reward -> padToRight(reward.getRewardString(), STRING_ELEMENT_SIZE))
-            .collect(Collectors.toList());
+                                               .stream()
+                                               .map(reward -> padToRight(reward, STRING_ELEMENT_SIZE))
+                                               .collect(Collectors.toList());
 
         System.out.println(String.join(WHITE_SPACE, paddedRewards));
     }
 
     public void printLadderGameReport(LadderGameReport report) {
-        List<Pair<PlayerDto, RewardDto>> results = report.getResults();
+        List<PlayerDto> playerDtoList = report.getPlayerDtoList();
 
         System.out.println("실행 결과");
-        if (results.size() == 1) {
-            Pair<PlayerDto, RewardDto> pair = results.get(0);
-            System.out.println(pair.getSecond()
-                .getRewardString());
+        if (playerDtoList.size() == 1) {
+            System.out.println(playerDtoList.get(0).getReward());
         } else {
-            results.forEach(pair -> {
-                String name = pair.getFirst()
-                    .getName();
-                String reward = pair.getSecond()
-                    .getRewardString();
-
-                System.out.println(name + " : " + reward);
-            });
+            playerDtoList.forEach(playerDto -> System.out.println(playerDto.getName() + " : " + playerDto.getReward()));
         }
     }
 

@@ -1,7 +1,9 @@
 package nextstep.ladder.domain;
 
 import nextstep.ladder.domain.ladder.Ladder;
-import nextstep.ladder.domain.player.Player;
+import nextstep.ladder.domain.ladder.Lane;
+import nextstep.ladder.domain.reward.Reward;
+import nextstep.ladder.domain.reward.Rewards;
 import nextstep.ladder.dto.LadderBoardDto;
 
 public class LadderBoard {
@@ -14,8 +16,8 @@ public class LadderBoard {
         this.rewards = rewards;
     }
 
-    public Reward getReward(Player player) {
-        return rewards.getReward(player.passThrough(ladder));
+    public Reward getReward(Lane lane) {
+        return rewards.getReward(ladder.passThrough(lane));
     }
 
     public LadderBoardDto export() {

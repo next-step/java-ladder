@@ -5,10 +5,8 @@ import nextstep.ladder.domain.player.Players;
 import nextstep.ladder.dto.LadderBoardDto;
 import nextstep.ladder.dto.LadderGameReport;
 import nextstep.ladder.dto.PlayerDto;
-import nextstep.ladder.dto.RewardDto;
-import nextstep.ladder.util.Pair;
 
-import java.util.function.Predicate;
+import java.util.Collections;
 
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
@@ -25,21 +23,22 @@ public class LadderGame {
         this.ladderBoard = ladderBoard;
     }
 
-    public LadderGameReport getResult(String name) {
-        Predicate<Player> query = name.equals(ALL) ? ignored -> true : player -> player.hasName(name);
-
-        return getResult(query);
+    public LadderGameReport makeResultReport(String playerName) {
+        return playerName.equals(ALL) ? getAllResults() : getResult(playerName);
     }
 
-    private LadderGameReport getResult(Predicate<Player> playerQuery) {
-        return players.getResult(ladderBoard, playerQuery)
-                      .stream()
-                      .map(pair -> makeResultPair(pair.getFirst(), pair.getSecond()))
+    public LadderGameReport getAllResults() {
+        return players.stream()
+                      .map(player -> PlayerDto.of(player, ladderBoard.getReward(player.getLane())))
                       .collect(collectingAndThen(toList(), LadderGameReport::new));
     }
 
-    private Pair<PlayerDto, RewardDto> makeResultPair(Player player, Reward reward) {
-        return new Pair<>(player.export(), reward.export());
+    public LadderGameReport getResult(String playerName) {
+        Player player = players.getPlayerBy(playerName);
+
+        PlayerDto playerDto = PlayerDto.of(player, ladderBoard.getReward(player.getLane()));
+
+        return new LadderGameReport(Collections.singletonList(playerDto));
     }
 
     public LadderBoardDto exportLadderBoard() {

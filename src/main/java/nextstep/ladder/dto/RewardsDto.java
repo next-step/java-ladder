@@ -4,13 +4,13 @@ import java.util.List;
 
 public class RewardsDto {
 
-    private final List<RewardDto> rewards;
+    private final List<String> rewards;
 
-    public RewardsDto(List<RewardDto> rewards) {
+    public RewardsDto(List<String> rewards) {
         this.rewards = rewards;
     }
 
-    public List<RewardDto> getRewards() {
+    public List<String> getRewards() {
         return rewards;
     }
 }
