@@ -38,14 +38,16 @@ public class LadderController {
         ResultView.printPlayers(playersList);
     }
 
+    private void printLine(Line line) {
+        line.points()
+                .forEach(point -> ResultView.printPoint(printPoints.get(point)));
+        ResultView.printEmptyLine();
+    }
+
     private void printLadder() {
         ladder.lines()
                 .stream()
-                .forEach(line -> {
-                    line.points()
-                            .forEach(point -> ResultView.printPoint(printPoints.get(point)));
-                    ResultView.printEmptyLine();
-                });
+                .forEach(this::printLine);
     }
 
     private void printResult() {
@@ -55,7 +57,7 @@ public class LadderController {
     private void printExecutionResult() {
         String playerName = InputView.enterPlayerYouWant();
         Map<String, String> results;
-        if(playerName.equalsIgnoreCase(ALL_PLAYERS)){
+        if (playerName.equalsIgnoreCase(ALL_PLAYERS)) {
             results = ladderStatistics.resultsOfAll();
             ResultView.printExecutionResult(results);
             return;
