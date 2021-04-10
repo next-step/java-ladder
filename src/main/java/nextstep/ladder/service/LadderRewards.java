@@ -1,6 +1,5 @@
 package nextstep.ladder.service;
 
-import nextstep.ladder.domain.Position;
 import nextstep.ladder.domain.Reward;
 
 import java.util.Arrays;
@@ -31,8 +30,8 @@ public class LadderRewards {
                 .toArray(Reward[]::new);
     }
 
-    public Reward findReward(final Position endPosition) {
-        return rewards.get(endPosition.currentPosition());
+    public Reward findReward(final int endPosition) {
+        return rewards.get(endPosition);
     }
 
     public List<Reward> getRewards() {
