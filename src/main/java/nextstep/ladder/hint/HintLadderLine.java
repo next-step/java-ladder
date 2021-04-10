@@ -9,7 +9,7 @@ import static nextstep.ladder.generator.RandomValueGenerator.generatePoint;
 public class HintLadderLine {
     private final List<HintPoint> hintPoints;
 
-    public HintLadderLine(final List<HintPoint> hintPoints) {
+    private HintLadderLine(final List<HintPoint> hintPoints) {
         this.hintPoints = hintPoints;
     }
 
