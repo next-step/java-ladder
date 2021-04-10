@@ -4,7 +4,8 @@ import java.util.Objects;
 
 public class Point {
     private final int index;
-    private String position;
+    private final String position;
+    private String direction;
 
     public Point(int index, String position) {
         this.index = index;
@@ -21,6 +22,10 @@ public class Point {
 
     private boolean position(String position) {
         return this.position.equals(position);
+    }
+
+    public boolean haveRightDirection() {
+        return direction.equals("RIGHT");
     }
 
     @Override
