@@ -1,4 +1,4 @@
-package step2;
+package step2.domain;
 
 import java.util.Objects;
 
@@ -9,6 +9,10 @@ public class Height {
     public Height(int height) {
         checkMinimumHeight(height);
         this.height = height;
+    }
+
+    public int height() {
+        return height;
     }
 
     private void checkMinimumHeight(int height) {
