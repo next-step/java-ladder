@@ -19,9 +19,11 @@ class OnlineLadderTest {
     @Test
     @DisplayName("사다리그리기테스트")
     void ladderString() {
-        Ladder ladder = new OnlineLadder(2);
-        ladder.add("bong");
-        ladder.add("big");
-        ladder.move();
+        Coordinates coordinates = new Coordinates();
+        coordinates.add(new Coordinate("bong", 0, 0));
+        coordinates.add(new Coordinate("big", 0, 0));
+
+        Ladder ladder = new OnlineLadder(2, coordinates);
+        assertThat(ladder.ladderString()).contains("-----");
     }
 }

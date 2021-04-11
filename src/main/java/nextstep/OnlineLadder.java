@@ -14,6 +14,11 @@ public class OnlineLadder extends Ladder {
         this.coordinates = new Coordinates();
     }
 
+    public OnlineLadder(int height, Coordinates coordinates) {
+        this.height = height;
+        this.coordinates = coordinates;
+    }
+
     public void add(String name) {
         Coordinate coordinate = new Coordinate(name, coordinates.size()+ ADD_NUMBER, DEFAULT_HEIGHT);
         this.coordinates.add(coordinate);
