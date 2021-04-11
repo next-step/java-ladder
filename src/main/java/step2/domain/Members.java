@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 public class Members {
     private static final String DEFAULT_REGEX = ",";
     private static final int MIN_MEMBER_COUNT = 2;
+    private static final String MEMBERS_MIN_SIZE_TWO_EXCEPTION_MESSAGE = "두 명 이상의 사용자가 참여해야 합니다.";
 
     private final List<Member> members;
 
@@ -30,13 +31,13 @@ public class Members {
 
     private static void validationNames(String paramNames) {
         if (StringUtils.isEmpty(paramNames)) {
-            throw new IllegalArgumentException("이름을 입력해주세요.");
+            throw new IllegalArgumentException(Member.INPUT_NAME_EXCEPTION_MESSAGE);
         }
     }
 
-    private static void validationMembers(String[] paramNames){
-        if(paramNames.length < MIN_MEMBER_COUNT){
-            throw new IllegalArgumentException("두 명 이상의 사용자가 참석해야 합니다.");
+    private static void validationMembers(String[] paramNames) {
+        if (paramNames.length < MIN_MEMBER_COUNT) {
+            throw new IllegalArgumentException(MEMBERS_MIN_SIZE_TWO_EXCEPTION_MESSAGE);
         }
     }
 
@@ -44,5 +45,9 @@ public class Members {
         return members.size();
     }
 
-
+    public List<String> getNames() {
+        return members.stream()
+                .map(Member::getName)
+                .collect(Collectors.toList());
+    }
 }
