@@ -11,7 +11,7 @@ public class Line {
     private List<Boolean> points = new ArrayList<>();
 
     public Line (int countOfPerson) {
-        for (int i = 0; i < countOfPerson; i++) {
+        for (int i = 0; i <= countOfPerson; i++) {
             points.add(false);
         }
     }

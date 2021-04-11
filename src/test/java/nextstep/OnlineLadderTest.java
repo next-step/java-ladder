@@ -20,6 +20,6 @@ class OnlineLadderTest {
         Ladder ladder3 = new OnlineLadder(2, 2, new String[]{"bong", "big"});
         ladder3.lineMark(2, 1);
         assertThat(ladder3.ladderString(1)).isNotEqualTo("|     |-----|     |");
-        assertThat(ladder3.ladderString(1)).isEqualTo("|     |-----|     |");
+        assertThat(ladder3.ladderString(2)).isEqualTo("|     |-----|     |");
     }
 }
