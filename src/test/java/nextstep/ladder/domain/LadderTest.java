@@ -27,13 +27,13 @@ class LadderTest {
 
   @BeforeEach
   void setUp() {
-    ladder = new Ladder(ladderHeight, people);
+    ladder = new Ladder(people, ladderHeight);
   }
 
   @Test
   @DisplayName("높이와, 이름 목록을 받아서 생성한다.")
   void create() {
-    assertThat(ladder).isEqualTo(new Ladder(ladderHeight, people));
+    assertThat(ladder).isEqualTo(new Ladder(people, ladderHeight));
   }
 
   @Test

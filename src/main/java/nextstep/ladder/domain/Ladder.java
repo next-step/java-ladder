@@ -6,10 +6,10 @@ import java.util.Objects;
 
 public final class Ladder {
 
-  private final LadderHeight ladderHeight;
   private final People people;
+  private final LadderHeight ladderHeight;
 
-  public Ladder(LadderHeight ladderHeight, People people) {
+  public Ladder(People people, LadderHeight ladderHeight) {
     this.ladderHeight = ladderHeight;
     this.people = people;
   }

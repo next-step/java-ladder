@@ -10,10 +10,7 @@ import nextstep.ladder.io.ResultView;
 public final class LadderManager {
 
   public static void main(String[] args) {
-    People people = getPeople();
-    LadderHeight ladderHeight = getLadderHeight();
-
-    final Ladder ladder = new Ladder(ladderHeight, people);
+    final Ladder ladder = new Ladder(getPeople(), getLadderHeight());
     ResultView.printLadder(ladder);
   }
 
