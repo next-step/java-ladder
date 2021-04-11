@@ -35,11 +35,15 @@ public final class ResultView {
   private static void printLines(List<Line> lines) {
     StringBuilder linesBuilder = new StringBuilder();
     for (Line line : lines) {
-      for (Point point : line.points()) {
-        linesBuilder.append(point.draw());
-      }
+      printLine(linesBuilder, line);
       linesBuilder.append(LINE_SEPARATOR);
     }
     System.out.println(linesBuilder);
+  }
+
+  private static void printLine(StringBuilder linesBuilder, Line line) {
+    for (Point point : line.points()) {
+      linesBuilder.append(point.draw());
+    }
   }
 }
