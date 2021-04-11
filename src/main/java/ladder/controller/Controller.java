@@ -36,9 +36,7 @@ public class Controller {
 		Players players = new Players(inputName);
 		InputResult inputResults = new InputResult(inputResult, players.size());
 		Ladder ladder = makeLadder(players, inputLadderSize, inputResults);
-		LadderResult ladderResult = new LadderResult(ladder, players, inputResults);
-
-		return ladderResult;
+		return new LadderResult(ladder, players, inputResults);
 	}
 
 	private Ladder makeLadder(Players players, Integer inputLadderSize, InputResult inputResults) {

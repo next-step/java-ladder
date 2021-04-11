@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LadderResult {
+	private static final String NO_EXISTS_PLAYER = "존재하지 않는 플레이어입니다.";
+
 	private final Map<String, String> results = new HashMap<>();
 
 	public LadderResult(Ladder ladder, Players players, InputResult inputResults) {
@@ -18,7 +20,7 @@ public class LadderResult {
 	}
 
 	public String getResult(String playerName) {
-		return results.get(playerName);
+		return results.getOrDefault(playerName,NO_EXISTS_PLAYER);
 	}
 
 	public Map<String, String> getAllResult() {
