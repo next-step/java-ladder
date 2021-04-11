@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public final class LadderLines implements Lines {
+public final class LadderLines {
 
   private final LadderHeight ladderHeight;
   private final PersonCount personCount;
@@ -14,7 +14,6 @@ public final class LadderLines implements Lines {
     this.personCount = personCount;
   }
 
-  @Override
   public List<Line> lines() {
     List<Line> lines = new ArrayList<>();
     for (int i = 0; i < ladderHeight.toInt(); i++) {
