@@ -23,9 +23,17 @@ class OnlineLadderTest {
         coordinates.add(new Coordinate("bong", 0, 0));
         coordinates.add(new Coordinate("big", 0, 0));
 
-        Ladder ladder = new OnlineLadder(2, coordinates, 2);
-        assertThat(ladder.ladderString()).isEqualTo("          ");
-        ladder.move();
-        assertThat(ladder.ladderString()).contains("-----");
+        Ladder ladder1 = new OnlineLadder(2, coordinates, 3);
+        ladder1.lineMark(0, 2);
+        assertThat(ladder1.ladderString(0)).isEqualTo("|     |     |-----|");
+
+        Ladder ladder2 = new OnlineLadder(2, coordinates, 3);
+        ladder2.lineMark(0, 1);
+        assertThat(ladder2.ladderString(0)).isEqualTo("|     |-----|     |");
+
+        Ladder ladder3 = new OnlineLadder(2, coordinates, 3);
+        ladder3.lineMark(1, 1);
+        assertThat(ladder3.ladderString(0)).isNotEqualTo("|     |-----|     |");
+        assertThat(ladder3.ladderString(1)).isEqualTo("|     |-----|     |");
     }
 }

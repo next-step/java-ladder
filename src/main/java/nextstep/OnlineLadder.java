@@ -21,8 +21,8 @@ public class OnlineLadder extends Ladder {
         this.height = height;
         this.coordinates = coordinates;
         this.lines = new ArrayList<>(countOfPerson);
-        for (Line line : lines) {
-            line = new Line(countOfPerson);
+        for (int i = 0; i <= countOfPerson; i++) {
+            this.lines.add(new Line(countOfPerson));
         }
     }
 
@@ -36,12 +36,15 @@ public class OnlineLadder extends Ladder {
         coordinates.move(RAND.nextInt(coordinates.size()));
     }
 
+    public void lineMark(int height, int target) {
+        this.lines.get(height).mark(target);
+    }
+
     public List<Integer> heights() {
         return coordinates.heights();
     }
 
-    public String ladderString() {
-        Integer max = Collections.max(this.heights());
-        return null;
+    public String ladderString(int i) {
+        return this.lines.get(i).lineString();
     }
 }

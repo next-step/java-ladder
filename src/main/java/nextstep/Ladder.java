@@ -6,5 +6,6 @@ public abstract class Ladder {
     abstract void add(String name);
     abstract void move();
     abstract List<Integer> heights();
-    abstract String ladderString();
+    abstract String ladderString(int i);
+    abstract void lineMark(int height, int target);
 }

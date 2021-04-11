@@ -24,7 +24,7 @@ public class ResultView implements ConsoleView {
     }
 
     public void print(OnlineLadder ladder) {
-        System.out.print(ladder.ladderString());
+        System.out.print(ladder.ladderString(0));
         System.out.println();
     }
 
