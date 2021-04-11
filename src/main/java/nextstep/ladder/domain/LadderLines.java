@@ -14,10 +14,10 @@ public final class LadderLines {
     this.personCount = personCount;
   }
 
-  public List<Line> lines() {
+  public List<Line> lines(final LineCreationStrategy lineCreationStrategy) {
     List<Line> lines = new ArrayList<>();
     for (int i = 0; i < ladderHeight.toInt(); i++) {
-      lines.add(new Line(personCount, new RandomLineCreationStrategy()));
+      lines.add(new Line(personCount, lineCreationStrategy));
     }
     return lines;
   }
