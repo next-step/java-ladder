@@ -40,6 +40,14 @@ public class OnlineLadder extends Ladder {
         this.lines.get(height).mark(target);
     }
 
+    public void lineMark(int height) {
+        int size = lines.get(height).getPoints().size();
+        int target = RAND.nextInt(size);
+        System.out.println("size = " + size);
+        System.out.println("target = " + target);
+        this.lines.get(height).mark(target);
+    }
+
     public List<Integer> heights() {
         return coordinates.heights();
     }

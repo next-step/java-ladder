@@ -11,15 +11,13 @@ public class Line {
     private List<Boolean> points = new ArrayList<>();
 
     public Line (int countOfPerson) {
-        for (int i = 0; i < countOfPerson * PER_DOT; i++) {
+        for (int i = 0; i < countOfPerson; i++) {
             points.add(false);
         }
     }
 
     public void mark(int target) {
-        for (int i = target * PER_DOT; i < target * PER_DOT + PER_DOT; i++) {
-            points.set(i, true);
-        }
+        points.set(target, true);
     }
 
     public List<Boolean> getPoints() {
@@ -29,9 +27,7 @@ public class Line {
     public String lineString() {
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < points.size(); i++) {
-            if (i % PER_DOT == 0) {
-                stringBuilder.append("|");
-            }
+            stringBuilder.append("|");
             if (points.get(i)) {
                 stringBuilder.append(HORIZON);
             } else {
