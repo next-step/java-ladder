@@ -44,7 +44,7 @@ public class OnlineLadder extends Ladder {
         return coordinates.heights();
     }
 
-    public String ladderString(int i) {
-        return this.lines.get(i).lineString();
+    public String ladderString(int targetHeight) {
+        return this.lines.get(targetHeight).lineString();
     }
 }
