@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Ladder implements Iterable<Line> {
+
     private final List<Line> lines;
 
     private Ladder(List<Line> lines) {

@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Line implements Iterable<Point> {
 
-    private List<Point> points;
+    private final List<Point> points;
 
     private Line(List<Point> points) {
         this.points = points;

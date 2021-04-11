@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 public class Point {
+
     private final boolean point;
     private final BooleanStrategy booleanStrategy;
 
