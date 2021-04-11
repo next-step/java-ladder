@@ -38,4 +38,21 @@ class DirectionTest {
         assertThat(Direction.right().next()).isEqualTo(Direction.of(true, false));
     }
 
+    @Test
+    @DisplayName("좌측 방향인지 확인한다.")
+    void checkIsLeft() {
+        assertThat(Direction.left().isLeft()).isTrue();
+    }
+
+    @Test
+    @DisplayName("우측 방향인지 확인한다.")
+    void checkIsRight() {
+        assertThat(Direction.right().isRight()).isTrue();
+    }
+
+    @Test
+    @DisplayName("직선 방향인지 확인한다.")
+    void checkIsStraight() {
+        assertThat(Direction.straight().isStraight()).isTrue();
+    }
 }

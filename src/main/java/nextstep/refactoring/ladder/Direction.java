@@ -38,12 +38,32 @@ public class Direction {
         return Direction.of(false, true);
     }
 
+    public static Direction first() {
+        return new Direction(false, RANDOM.nextBoolean());
+    }
+
+    public Direction last() {
+        return new Direction(right, false);
+    }
+
     public Direction next() {
         return right ? Direction.left() : next(RANDOM.nextBoolean());
     }
 
     public Direction next(boolean isTurnRight) {
         return isTurnRight ? Direction.right() : Direction.straight();
+    }
+
+    public boolean isLeft() {
+        return left;
+    }
+
+    public boolean isRight() {
+        return right;
+    }
+
+    public boolean isStraight() {
+        return !(left || right);
     }
 
     @Override
