@@ -13,9 +13,9 @@ public class OutputView {
 
     public void printLadderGenerationResult(LadderGenerationResponse response) {
         System.out.println(System.lineSeparator() + "실행결과");
-        printParticipants(response.getParticipantNameList(), response.getLadderWidth());
+        printParticipants(response.getParticipantNames(), response.getLadderWidth());
         System.out.println();
-        printLadder(response.getLadderLineList(), response.getLadderWidth());
+        printLadder(response.getLadderLines(), response.getLadderWidth());
     }
 
     private void printParticipants(List<String> participants, int ladderWidth) {
@@ -40,7 +40,7 @@ public class OutputView {
 
     private String writeLine(LadderLine ladderLine, int ladderWidth) {
         StringBuilder line = new StringBuilder();
-        for (Boolean point : ladderLine.getPointList()) {
+        for (Boolean point : ladderLine.getPoints()) {
             line.append(POINT).append(writeHorizon(convertToHorizon(point), ladderWidth));
         }
         return line.toString();

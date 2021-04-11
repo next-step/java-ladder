@@ -4,25 +4,25 @@ import java.util.List;
 
 public class LadderGenerationResponse {
 
-    private final List<String> participantNameList;
+    private final List<String> participantNames;
     private final int ladderWidth;
-    private final List<LadderLine> ladderLineList;
+    private final List<LadderLine> ladderLines;
 
-    public LadderGenerationResponse(List<String> participantNameList, int ladderWidth, List<LadderLine> ladderLineList) {
-        this.participantNameList = participantNameList;
+    public LadderGenerationResponse(List<String> participantNames, int ladderWidth, List<LadderLine> ladderLines) {
+        this.participantNames = participantNames;
         this.ladderWidth = ladderWidth;
-        this.ladderLineList = ladderLineList;
+        this.ladderLines = ladderLines;
     }
 
-    public List<String> getParticipantNameList() {
-        return participantNameList;
+    public List<String> getParticipantNames() {
+        return participantNames;
     }
 
     public int getLadderWidth() {
         return ladderWidth;
     }
 
-    public List<LadderLine> getLadderLineList() {
-        return ladderLineList;
+    public List<LadderLine> getLadderLines() {
+        return ladderLines;
     }
 }

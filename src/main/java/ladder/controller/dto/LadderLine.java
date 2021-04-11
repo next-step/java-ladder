@@ -4,13 +4,13 @@ import java.util.List;
 
 public class LadderLine {
 
-    private final List<Boolean> pointList;
+    private final List<Boolean> points;
 
-    public LadderLine(List<Boolean> pointList) {
-        this.pointList = pointList;
+    public LadderLine(List<Boolean> points) {
+        this.points = points;
     }
 
-    public List<Boolean> getPointList() {
-        return pointList;
+    public List<Boolean> getPoints() {
+        return points;
     }
 }

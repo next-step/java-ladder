@@ -26,8 +26,8 @@ class LadderGenerationControllerTest {
         LadderGenerationResponse response = controller.generateLadder(request);
 
         // then
-        assertThat(4).isEqualTo(response.getParticipantNameList().size());
-        for (String name : response.getParticipantNameList()) {
+        assertThat(4).isEqualTo(response.getParticipantNames().size());
+        for (String name : response.getParticipantNames()) {
             assertThat(Arrays.asList(participantNames.split(",")).contains(name)).isTrue();
         }
     }
@@ -45,7 +45,7 @@ class LadderGenerationControllerTest {
         LadderGenerationResponse response = controller.generateLadder(request);
 
         // then
-        assertThat(ladderHeight).isEqualTo(response.getLadderLineList().size());
+        assertThat(ladderHeight).isEqualTo(response.getLadderLines().size());
     }
 
     @Test
