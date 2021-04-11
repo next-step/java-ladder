@@ -36,7 +36,6 @@ public final class ResultView {
     StringBuilder linesBuilder = new StringBuilder();
     for (Line line : lines) {
       printLine(linesBuilder, line);
-      linesBuilder.append(LINE_SEPARATOR);
     }
     System.out.println(linesBuilder);
   }
@@ -45,5 +44,6 @@ public final class ResultView {
     for (Point point : line.points()) {
       linesBuilder.append(point.draw());
     }
+    linesBuilder.append(LINE_SEPARATOR);
   }
 }
