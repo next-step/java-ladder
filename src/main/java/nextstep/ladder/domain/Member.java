@@ -13,4 +13,9 @@ public class Member {
         }
         return new Member(name);
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
