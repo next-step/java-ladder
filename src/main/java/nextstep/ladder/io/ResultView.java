@@ -29,7 +29,7 @@ public final class ResultView {
     for (Person person : personList) {
       peopleBuilder.append(StringUtils.padLeft(person.personName(), Name.MAX_LENGTH + 1));
     }
-    System.out.println(peopleBuilder.toString());
+    System.out.println(peopleBuilder);
   }
 
   private static void printLines(List<Line> lines) {
