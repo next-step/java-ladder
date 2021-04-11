@@ -23,7 +23,7 @@ public class Line {
     }
 
     public void makeLine() {
-        Point comparePoint = new Point("DEFAULT");
+        Point comparePoint = new Point(Position.DEFAULT);
         for (Point point : points) {
             point.setDirection(LadderGenerator.generate(point, comparePoint));
             comparePoint = point;

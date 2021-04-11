@@ -17,20 +17,20 @@ public class Players {
         return new Players(players);
     }
 
-    public String playerPosition(Player position) {
+    public Position playerPosition(Player position) {
         Player matchedPlayer = players.stream()
                 .filter(player -> player.equals(position))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("조건에 맞는 참가자를 찾을 수 없습니다."));
 
         if (matchedPlayer.equals(players.get(0))) {
-            return "FIRST";
+            return Position.FIRST;
         }
 
         if (matchedPlayer.equals(players.get(players.size() - 1))) {
-            return "LAST";
+            return Position.LAST;
         }
-        return "BODY";
+        return Position.BODY;
     }
 
     public List<Player> allPlayers() {

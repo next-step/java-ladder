@@ -3,22 +3,22 @@ package ladder;
 import java.util.Objects;
 
 public class Point {
-    private final String position;
+    private final Position position;
     private String direction;
 
-    public Point(String position) {
+    public Point(Position position) {
         this.position = position;
     }
 
     public boolean isFirst() {
-        return position("FIRST");
+        return position(Position.FIRST);
     }
 
     public boolean isLast() {
-        return position("LAST");
+        return position(Position.LAST);
     }
 
-    private boolean position(String position) {
+    private boolean position(Position position) {
         return this.position.equals(position);
     }
 
@@ -46,7 +46,7 @@ public class Point {
     @Override
     public String toString() {
         return "Point{" +
-                "position='" + position + '\'' +
+                "position=" + position +
                 ", direction='" + direction + '\'' +
                 '}';
     }
