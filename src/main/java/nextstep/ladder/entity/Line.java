@@ -4,25 +4,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-    private final List<Boolean> point;
+    private final List<Direction> point;
 
     public Line(int countOfPerson, int height) {
         this.point = initPoint(countOfPerson, height);
     }
 
-    public boolean getPointIndex(int index){
+    public Direction getPointIndex(int index){
         return point.get(index);
     }
 
-    private List<Boolean> initPoint(int countOfPerson, int height) {
-        List<Boolean> initPoint = new ArrayList<>();
-        boolean point = countOfPerson % 2 == 0;
+    // todo 사다리 라인 잘 그려지는지 여부 테스트
 
-        initPoint.add(point);
+    private List<Direction> initPoint(int countOfPerson, int height) {
+        List<Direction> initPoint = new ArrayList<>();
+        Direction direction = Direction.NONE;
+        if(countOfPerson % 2 == 0) {
+            direction = Direction.RIGHT;
+        }
+        initPoint.add(direction);
 
         for (int i = 1; i < height; i++) {
-            point = !point;
-            initPoint.add(point);
+            if (direction.equals(Direction.RIGHT)) {
+               direction = Direction.NONE;
+            } else {
+                direction = Direction.RIGHT;
+            }
+            initPoint.add(direction);
         }
 
         return initPoint;

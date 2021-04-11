@@ -1,7 +1,9 @@
 package nextstep.ladder.view;
 
+import nextstep.ladder.entity.Direction;
 import nextstep.ladder.entity.Line;
 import nextstep.ladder.entity.User;
+import nextstep.ladder.entity.Users;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,17 +13,19 @@ public class ResultView {
 
     private ResultView() {}
 
-    private static String nameFormat(User user) {
-        return String.format("%-5s", user.getName());
+    private static String nameFormat(String username) {
+        return String.format("%-5s", username);
     }
 
     public static void printStart() {
         System.out.println("\n실행결과\n");
     }
 
-    public static void printUser(List<User> userList) {
-        System.out.println(userList.stream().map(ResultView::nameFormat)
-                                            .collect(Collectors.joining(" ")));
+    public static void printUser(List<String> userNames) {
+
+        System.out.println(userNames.stream()
+                .map(ResultView::nameFormat)
+                .collect(Collectors.joining(" ")));
     }
 
     public static void printLadder(int height, List<Line> lines) {
@@ -40,7 +44,8 @@ public class ResultView {
     }
 
     private static String width(Line line, int lineHeightIndex) {
-        return line.getPointIndex(lineHeightIndex) ? "-----" : "     ";
+        if (line.getPointIndex(lineHeightIndex).equals(Direction.RIGHT)) return "-----";
+        return "     ";
     }
 
 
