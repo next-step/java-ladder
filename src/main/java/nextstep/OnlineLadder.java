@@ -6,6 +6,7 @@ import java.util.Random;
 public class OnlineLadder extends Ladder {
     private final int height;
     private final Coordinates coordinates;
+    public static final Random RAND = new Random();
 
     public OnlineLadder(int height) {
         this.height = height;
@@ -19,8 +20,7 @@ public class OnlineLadder extends Ladder {
 
     @Override
     public void move() {
-        Random rand = new Random();
-        coordinates.move(rand.nextInt(coordinates.size()));
+        coordinates.move(RAND.nextInt(coordinates.size()));
     }
 
     public List<Integer> heights() {
