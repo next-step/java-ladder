@@ -5,13 +5,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class StringUtil {
+    public static final String COMMA = ",";
 
     private StringUtil() {
     }
 
-    public static List<String> split(String input, String delimiter) {
-        checkDelimiter(input, delimiter);
-        return Arrays.stream(input.split(delimiter))
+    public static List<String> splitWithComma(String input) {
+        checkDelimiter(input, COMMA);
+        return Arrays.stream(input.split(COMMA))
                 .map(String::trim)
                 .collect(Collectors.toList());
     }
