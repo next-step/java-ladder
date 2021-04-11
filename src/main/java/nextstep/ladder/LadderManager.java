@@ -22,7 +22,7 @@ public final class LadderManager {
 
   private static People getPeople() {
     try {
-      return new People(InputView.inputNames());
+      return People.from(InputView.inputNames());
     } catch (LadderException e) {
       System.err.println(e.getMessage());
       return getPeople();

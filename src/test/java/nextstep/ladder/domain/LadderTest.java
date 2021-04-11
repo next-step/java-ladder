@@ -15,7 +15,7 @@ class LadderTest {
     final int height = 3;
     final LadderHeight ladderHeight = new LadderHeight(height);
     final String[] names = new String[]{"pobi", "crong", "honux", "jk"};
-    final People people = new People(names);
+    final People people = People.from(names);
 
     // when
     final Ladder ladder = new Ladder(ladderHeight, people);

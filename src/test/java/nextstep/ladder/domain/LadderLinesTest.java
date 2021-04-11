@@ -11,7 +11,7 @@ class LadderLinesTest {
 
   final int height = 3;
   final LadderHeight ladderHeight = new LadderHeight(height);
-  final People people = new People(new String[]{"pobi", "crong", "honux", "jk"});
+  final People people = People.from(new String[]{"pobi", "crong", "honux", "jk"});
 
   LadderLines ladderLines;
 

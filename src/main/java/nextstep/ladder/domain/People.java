@@ -10,16 +10,16 @@ public final class People {
 
   private final List<Person> people;
 
-  public People(final String[] names) {
-    this(Arrays.stream(names)
+  private People(final List<Person> people) {
+    this.people = people;
+    validateSize();
+  }
+
+  public static People from(final String[] names) {
+    return new People(Arrays.stream(names)
         .map(Person::new)
         .collect(Collectors.toList())
     );
-  }
-
-  public People(final List<Person> people) {
-    this.people = people;
-    validateSize();
   }
 
   private void validateSize() {
