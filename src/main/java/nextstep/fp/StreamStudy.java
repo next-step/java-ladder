@@ -5,6 +5,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,7 +34,7 @@ public class StreamStudy {
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
         words.stream().filter(word -> word.length() > TOP_100_MIN_LENGTH)
-                .sorted()
+                .sorted(Comparator.comparing(String::length))
                 .distinct()
                 .limit(TOP_100_LIMIT_COUNT)
                 .map(String::toLowerCase)
