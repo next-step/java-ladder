@@ -1,10 +1,10 @@
 package nextstep.ladder.domain.reward;
 
-public class BlankReward implements RewardString {
+class BlankReward implements RewardString {
 
     static final String BLANK_REWARD_STRING = "꽝";
 
-    public BlankReward(String reward) {
+    BlankReward(String reward) {
         validate(reward);
     }
 

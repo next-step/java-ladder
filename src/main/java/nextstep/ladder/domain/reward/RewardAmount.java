@@ -1,6 +1,6 @@
 package nextstep.ladder.domain.reward;
 
-public class RewardAmount implements RewardString {
+class RewardAmount implements RewardString {
 
     private static final int MINIMUM_AMOUNT = 0;
     private static final int MAXIMUM_AMOUNT = 9999;
