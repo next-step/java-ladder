@@ -11,7 +11,7 @@ public class LineTest {
     void makeLine() {
         Players players = Players.of(Arrays.asList("kong", "dal", "apple", "red", "blue"));
         Line ladderLine = Line.init(players);
-        ladderLine.makeLine();
-        System.out.println(ladderLine);
+        LineResult lineResult = ladderLine.makeLine();
+        System.out.println(lineResult);
     }
 }
