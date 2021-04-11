@@ -2,7 +2,10 @@ package nextstep.fp;
 
 import java.util.Objects;
 
-public class Car {
+public final class Car {
+
+    public static final int INCREASE_STEP = 1;
+
     private final String name;
     private final int position;
 
@@ -11,9 +14,9 @@ public class Car {
         this.position = position;
     }
 
-    public Car move(MoveStrategy moveStrategy) {
+    public final Car move(MoveStrategy moveStrategy) {
         if (moveStrategy.isMovable()) {
-            return new Car(name, position + 1);
+            return new Car(name, position + INCREASE_STEP);
         }
         return this;
     }
