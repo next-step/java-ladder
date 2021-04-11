@@ -24,7 +24,7 @@ public class ResultView {
     }
 
     public static void printLadder(Ladder ladder) {
-        ladder.lines().forEach(ResultView::printLine);
+        ladder.forEach(ResultView::printLine);
     }
 
     private static void printLine(Line line) {
