@@ -9,12 +9,7 @@ class OnlineLadderTest {
     @Test
     @DisplayName("게임?")
     void game() {
-        Ladder ladder = new OnlineLadder(2) {
-            @Override
-            public void move() {
-                coordinates.get(0).move();
-            }
-        };
+        Ladder ladder = new OnlineLadder(2);
         ladder.add("bong");
         ladder.add("big");
         ladder.move();

@@ -1,17 +1,15 @@
 package nextstep;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
 
 public class OnlineLadder extends Ladder {
-    protected final List<Coordinate> coordinates;
     private final int height;
+    private final Coordinates coordinates;
 
     public OnlineLadder(int height) {
         this.height = height;
-        this.coordinates = new ArrayList<>();
+        this.coordinates = new Coordinates();
     }
 
     public void add(String name) {
@@ -22,12 +20,10 @@ public class OnlineLadder extends Ladder {
     @Override
     public void move() {
         Random rand = new Random();
-        coordinates.get(rand.nextInt(coordinates.size())).move();
+        coordinates.move(rand.nextInt(coordinates.size()));
     }
 
     public List<Integer> heights() {
-        return coordinates.stream()
-                .map(Coordinate::getHeight)
-                .collect(Collectors.toList());
+        return coordinates.heights();
     }
 }
