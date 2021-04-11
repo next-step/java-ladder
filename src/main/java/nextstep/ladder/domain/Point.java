@@ -26,7 +26,7 @@ public final class Point {
   }
 
   public String draw() {
-    return "";
+    return point ? LINE : NOT_LINE;
   }
 
   @Override
