@@ -30,7 +30,8 @@ public class StreamStudy {
                 .filter(word -> word.length() > 12)
                 .limit(100)
                 .sorted((o1, o2) -> o2.length() - o1.length())
-                .forEach(word -> System.out.println(word.toLowerCase()));
+                .map(String::toLowerCase)
+                .forEach(System.out::println);
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
@@ -41,11 +42,10 @@ public class StreamStudy {
         return numbers.stream().reduce(0, (x, y) -> x + y);
     }
 
-    public static long sumOverThreeAndDouble(List<Integer> numbers, Conditional conditional) {
+    public static long sumOverThreeAndDouble(List<Integer> numbers) {
         return numbers.stream()
-                .filter(conditional::test)
+                .filter(number -> number > 3)
                 .mapToLong(number -> number * 2)
-                .reduce(Long::sum)
-                .orElseThrow(IllegalArgumentException::new);
+                .reduce(0, Long::sum);
     }
 }
