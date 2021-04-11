@@ -11,6 +11,9 @@ public class ResultView {
     public static final String VERTICAL_AND_HORIZONTAL_POINT = "-----|";
 
     public static void print(Members members, Ladder ladder) {
+        System.out.println();
+        System.out.println("실행결과");
+        System.out.println();
         printMembers(members);
         printLadder(ladder);
     }
