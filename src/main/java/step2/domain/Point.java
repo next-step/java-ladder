@@ -1,6 +1,4 @@
-package step2;
-
-import step2.domain.Location;
+package step2.domain;
 
 import java.util.Objects;
 
@@ -14,12 +12,40 @@ public class Point {
         this.location = location;
     }
 
+    public int move() {
+        if (location.isRight()) {
+            return point + 1;
+        }
+
+        if (location.isLeft()) {
+            return point - 1;
+        }
+
+        return this.point;
+    }
+
     public Point currentPoint() {
         return new Point(this.point, this.location);
     }
 
-    public Point first() {
-        return new Point(0, location.first());
+    public static Point first(boolean right) {
+        return new Point(0, Location.first(right));
+    }
+
+    public Point next() {
+        return new Point(point + 1, location.next());
+    }
+
+    public Point next(boolean right) {
+        return new Point(point + 1, location.next(right));
+    }
+
+    public Point last() {
+        return new Point(point + 1, location.last());
+    }
+
+    public Location location() {
+        return location;
     }
 
     @Override
@@ -35,15 +61,11 @@ public class Point {
         return Objects.hash(point, location);
     }
 
-    public int move() {
-        if (location.isRight()) {
-            return point + 1;
-        }
-
-        if (location.isLeft()) {
-            return point - 1;
-        }
-
-        return this.point;
+    @Override
+    public String toString() {
+        return "[" +
+                point +
+                ", " + location +
+                "]";
     }
 }
