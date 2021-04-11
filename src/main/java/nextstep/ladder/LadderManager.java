@@ -11,10 +11,7 @@ public final class LadderManager {
 
   public static void main(String[] args) {
     People people = getPeople();
-    ResultView.printNewLine();
-
     LadderHeight ladderHeight = getLadderHeight();
-    ResultView.printNewLine();
 
     final Ladder ladder = new Ladder(ladderHeight, people);
     ResultView.printLadder(ladder);

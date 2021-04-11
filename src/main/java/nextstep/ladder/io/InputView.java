@@ -14,6 +14,7 @@ public final class InputView {
   }
 
   public static int inputLadderHeight() {
+    System.out.println();
     System.out.println("최대 사다리 높이는 몇인가요? (정수만 입력해주세요.)");
     return Integer.parseInt(SCANNER.nextLine());
   }
