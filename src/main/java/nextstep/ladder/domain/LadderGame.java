@@ -1,30 +1,54 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.dto.LadderDto;
-import nextstep.ladder.dto.PlayerDto;
+import nextstep.ladder.domain.player.Player;
+import nextstep.ladder.domain.player.Players;
+import nextstep.ladder.dto.*;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Collections;
+
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
 
 public class LadderGame {
 
-    private final List<Player> players;
-    private final Ladder ladder;
+    private static final String ALL = "all";
 
-    public LadderGame(List<String> playerNames, int ladderHeight) {
-        this.players = playerNames.stream()
-                                  .map(Player::new)
-                                  .collect(Collectors.toList());
+    private final Players players;
+    private final LadderBoard ladderBoard;
 
-        ladder = new Ladder(ladderHeight, players.size());
+    public LadderGame(Players players, LadderBoard ladderBoard) {
+        this.players = players;
+        this.ladderBoard = ladderBoard;
     }
 
-    public List<PlayerDto> getPlayers() {
-        return players.stream().map(Player::export).collect(Collectors.toList());
+    public LadderGameReport makeResultReport(String playerName) {
+        return playerName.equals(ALL) ? getAllResults() : getResult(playerName);
     }
 
-    public LadderDto getLadder() {
-        return ladder.export();
+    private LadderGameReport getAllResults() {
+        return players.stream()
+                      .map(player -> PlayerDto.of(player, ladderBoard.getReward(player.getLane())))
+                      .collect(collectingAndThen(toList(), LadderGameReport::new));
+    }
+
+    private LadderGameReport getResult(String playerName) {
+        Player player = players.getPlayerBy(playerName);
+
+        PlayerDto playerDto = PlayerDto.of(player, ladderBoard.getReward(player.getLane()));
+
+        return new LadderGameReport(Collections.singletonList(playerDto));
+    }
+
+    public LadderDto exportLadder() {
+        return ladderBoard.exportLadder();
+    }
+
+    public RewardsDto exportRewards() {
+        return ladderBoard.exportRewards();
+    }
+
+    public PlayerNamesDto exportPlayerNames() {
+        return players.exportNames();
     }
 
 }

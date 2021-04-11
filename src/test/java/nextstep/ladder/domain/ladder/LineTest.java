@@ -1,4 +1,4 @@
-package nextstep.ladder.domain.line;
+package nextstep.ladder.domain.ladder;
 
 import nextstep.ladder.dto.Connections;
 import org.junit.jupiter.api.DisplayName;
@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -25,17 +25,17 @@ class LineTest {
         return points;
     }
 
-    static List<Point> separatedPoints(int limit) {
-        return Stream.generate(Point::new)
-                     .limit(limit)
-                     .collect(Collectors.toList());
+    static List<Point> separatedPoints(int numberOfPoints) {
+        return IntStream.range(0, numberOfPoints)
+                        .mapToObj(Point::of)
+                        .collect(Collectors.toList());
     }
 
     @Test
     @DisplayName("라인이 가진 지점이 너무 적으면 예외 처리한다.")
     void throwExceptionIfLineHasFewPoints() {
         List<Point> emptyPointList = Collections.emptyList();
-        List<Point> singlePointList = Collections.singletonList(new Point());
+        List<Point> singlePointList = Collections.singletonList(Point.of(0));
 
         assertAll(
             () -> assertThatThrownBy(() -> new Line(emptyPointList)).isInstanceOf(RuntimeException.class),
@@ -68,6 +68,23 @@ class LineTest {
         );
 
         assertThat(line.exportConnections()).isEqualToComparingFieldByField(connections);
+    }
+
+    @Test
+    @DisplayName("연결된 지점을 횡단한다. 연결되지 않은 지점은 그대로 통과한다.")
+    void traversePoints() {
+        List<Point> points = separatedPoints(4);
+        points.get(1).connectTo(points.get(2));
+        points.get(2).connectTo(points.get(1));
+
+        Line line = new Line(points);
+
+        assertAll(
+            () -> assertThat(line.traverse(Lane.wrap(0))).isEqualTo(Lane.wrap(0)),
+            () -> assertThat(line.traverse(Lane.wrap(1))).isEqualTo(Lane.wrap(2)),
+            () -> assertThat(line.traverse(Lane.wrap(2))).isEqualTo(Lane.wrap(1)),
+            () -> assertThat(line.traverse(Lane.wrap(3))).isEqualTo(Lane.wrap(3))
+        );
     }
 
 }

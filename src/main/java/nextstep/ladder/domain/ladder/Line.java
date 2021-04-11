@@ -1,4 +1,4 @@
-package nextstep.ladder.domain.line;
+package nextstep.ladder.domain.ladder;
 
 import nextstep.ladder.dto.Connections;
 import nextstep.ladder.util.StreamUtils;
@@ -49,6 +49,12 @@ public class Line {
 
     private boolean isConnectedEachOther(Point firstPoint, Point secondPoint) {
         return firstPoint.isConnectedTo(secondPoint) && secondPoint.isConnectedTo(firstPoint);
+    }
+
+    public Lane traverse(Lane lane) {
+        Point point = points.get(lane.unwrap());
+
+        return point.getConnectedPoint().getLane();
     }
 
 }
