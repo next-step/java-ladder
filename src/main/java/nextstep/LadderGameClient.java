@@ -16,17 +16,5 @@ public class LadderGameClient {
         String[] names = namesString.split(",");
         OnlineLadder ladder = new OnlineLadder(ladderCount);
         resultView.printAll(ladder, names);
-//        for (String name : names) {
-//            ladder.add(name);
-//        }
-//        ladder.move();
-//        resultView.print(ladder);
-//
-//        ladder.move();
-//        resultView.print(ladder);
-//
-//        ladder.move();
-//        resultView.print(ladder);
-
     }
 }
