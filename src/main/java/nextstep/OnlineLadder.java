@@ -1,12 +1,12 @@
 package nextstep;
 
 import java.util.List;
-import java.util.Random;
+
+import static nextstep.constant.Constant.*;
 
 public class OnlineLadder extends Ladder {
     private final int height;
     private final Coordinates coordinates;
-    public static final Random RAND = new Random();
 
     public OnlineLadder(int height) {
         this.height = height;
@@ -14,7 +14,7 @@ public class OnlineLadder extends Ladder {
     }
 
     public void add(String name) {
-        Coordinate coordinate = new Coordinate(name, coordinates.size()+1, 0);
+        Coordinate coordinate = new Coordinate(name, coordinates.size()+ ADD_NUMBER, DEFAULT_HEIGHT);
         this.coordinates.add(coordinate);
     }
 
