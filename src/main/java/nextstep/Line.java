@@ -1,9 +1,11 @@
 package nextstep;
 
+import nextstep.constant.Constant;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import static nextstep.constant.Constant.PER_DOT;
+import static nextstep.constant.Constant.*;
 
 public class Line {
     private List<Boolean> points = new ArrayList<>();
@@ -22,5 +24,23 @@ public class Line {
 
     public List<Boolean> getPoints() {
         return points;
+    }
+
+    public String lineString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < points.size(); i++) {
+            if (i % PER_DOT == 0) {
+                stringBuilder.append("|");
+            }
+            if (points.get(i)) {
+                stringBuilder.append(HORIZON);
+            } else {
+                stringBuilder.append(EMPTY);
+            }
+            if (i == points.size() - 1) {
+                stringBuilder.append("|");
+            }
+        }
+        return stringBuilder.toString();
     }
 }

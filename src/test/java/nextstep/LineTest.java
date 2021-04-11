@@ -26,4 +26,13 @@ class LineTest {
         }
         assertThat(line.getPoints()).isEqualTo(aspected);
     }
+
+    @Test
+    @DisplayName("라인그리기테스트")
+    void draw() {
+        int countOfPerson = 3;
+        Line line = new Line(countOfPerson);
+        line.mark(2);
+        assertThat(line.lineString()).isEqualTo("|     |     |-----|");
+    }
 }
