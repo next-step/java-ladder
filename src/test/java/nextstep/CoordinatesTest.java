@@ -10,5 +10,10 @@ class CoordinatesTest {
     @DisplayName("좌표값들검증")
     void coordinates() {
         Coordinates coordinates = new Coordinates();
+        coordinates.add(new Coordinate("bong", 0, 0));
+        coordinates.add(new Coordinate("big", 0, 0));
+        coordinates.move(0);
+        assertThat(coordinates.heights().get(0)).isEqualTo(1);
+        assertThat(coordinates.heights().get(1)).isEqualTo(0);
     }
 }
