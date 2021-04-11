@@ -1,5 +1,6 @@
 package nextstep.ladder.controller;
 
+import nextstep.ladder.entity.Ladder;
 import nextstep.ladder.entity.Lines;
 import nextstep.ladder.entity.Users;
 import nextstep.ladder.view.InputView;
@@ -13,11 +14,13 @@ public class LadderController {
 
         Users users = new Users(userInput);
 
-        Lines lines = new Lines(users.userCount(), ladderHeight);
+//        Lines lines = new Lines(users.userCount());
+        Ladder ladder = new Ladder(users.userCount(), ladderHeight);
+
 
         ResultView.printStart();
         ResultView.printUser(users.userNames());
-        ResultView.printLadder(ladderHeight, lines.getLines());
+        ResultView.printLadder(ladder);
 
     }
 }

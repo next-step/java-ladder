@@ -1,38 +1,28 @@
 package nextstep.ladder.entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Line {
-    private final List<Direction> point;
+    private final Direction lineDirection;
 
-    public Line(int countOfPerson, int height) {
-        this.point = initPoint(countOfPerson, height);
+    public Line(Direction direction) {
+        this.lineDirection = direction(direction);
     }
 
-    public Direction getPointIndex(int index){
-        return point.get(index);
+    public Direction getLineDirection() {
+        return lineDirection;
     }
 
-    // todo 사다리 라인 잘 그려지는지 여부 테스트
+    public Direction direction(Direction direction) {
 
-    private List<Direction> initPoint(int countOfPerson, int height) {
-        List<Direction> initPoint = new ArrayList<>();
-        Direction direction = Direction.NONE;
-        if(countOfPerson % 2 == 0) {
-            direction = Direction.RIGHT;
-        }
-        initPoint.add(direction);
+        DrawRule randomDrawRule = new RandomDrawRule();
 
-        for (int i = 1; i < height; i++) {
-            if (direction.equals(Direction.RIGHT)) {
-               direction = Direction.NONE;
-            } else {
-                direction = Direction.RIGHT;
-            }
-            initPoint.add(direction);
+        if (direction.equals(Direction.RIGHT)) {
+            return Direction.LEFT;
         }
 
-        return initPoint;
+        if (direction.equals(Direction.LEFT)) {
+            return Direction.NONE;
+        }
+
+        return randomDrawRule.isDrawable();
     }
 }

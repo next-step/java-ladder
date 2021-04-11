@@ -1,8 +1,7 @@
 package nextstep.ladder.entity;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Lines {
     private final List<Line> lines;
@@ -11,17 +10,26 @@ public class Lines {
         this.lines = lines;
     }
 
-    public Lines(int userCount, int ladderHeight) {
-        this(initLines(userCount, ladderHeight));
+    public Lines(int userCount) {
+        this(initLines(userCount));
     }
 
     public List<Line> getLines() {
         return lines;
     }
 
-    private static List<Line> initLines(int userCount, int ladderHeight) {
-        return IntStream.range(0, userCount)
-                .mapToObj(countOfPerson -> new Line(countOfPerson, ladderHeight))
-                .collect(Collectors.toList());
+    private static List<Line> initLines(int userCount) {
+
+        Direction direction = Direction.NONE;
+
+        List<Line> list = new ArrayList<>();
+
+        for (int i = 0; i < userCount; i++) {
+            Line line = new Line(direction);
+            direction = line.getLineDirection();
+            list.add(line);
+        }
+
+        return list;
     }
 }

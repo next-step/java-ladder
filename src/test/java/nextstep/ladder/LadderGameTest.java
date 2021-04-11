@@ -1,5 +1,6 @@
 package nextstep.ladder;
 
+import nextstep.ladder.entity.Direction;
 import nextstep.ladder.entity.Line;
 import nextstep.ladder.entity.User;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,8 +18,8 @@ public class LadderGameTest {
 
     @BeforeEach
     public void setup(){
-        firstLine = new Line(0, 5);
-        secondLine = new Line(1, 5);
+        firstLine = new Line(Direction.NONE);
+        secondLine = new Line(Direction.RIGHT);
     }
 
     @Test
@@ -30,17 +31,17 @@ public class LadderGameTest {
             );
     }
 
-    @ParameterizedTest
-    @CsvSource(value = {"0:true", "1:false", "2:true", "3:false", "4:true"}, delimiter = ':')
-    @DisplayName("사다리 홀수 라인")
-    public void oddLineInit(int value, boolean expected){
-        assertThat(firstLine.getPointIndex(value)).isEqualTo(expected);
-    }
-
-    @ParameterizedTest
-    @CsvSource(value = {"0:false", "1:true", "2:false", "3:true", "4:false"}, delimiter = ':')
-    @DisplayName("사다리 짝수 라인")
-    public void evenLineInit(int value, boolean expected){
-        assertThat(secondLine.getPointIndex(value)).isEqualTo(expected);
-    }
+//    @ParameterizedTest
+//    @CsvSource(value = {"0:true", "1:false", "2:true", "3:false", "4:true"}, delimiter = ':')
+//    @DisplayName("사다리 홀수 라인")
+//    public void oddLineInit(int value, boolean expected){
+//        assertThat(firstLine.getPointIndex(value)).isEqualTo(expected);
+//    }
+//
+//    @ParameterizedTest
+//    @CsvSource(value = {"0:false", "1:true", "2:false", "3:true", "4:false"}, delimiter = ':')
+//    @DisplayName("사다리 짝수 라인")
+//    public void evenLineInit(int value, boolean expected){
+//        assertThat(secondLine.getPointIndex(value)).isEqualTo(expected);
+//    }
 }

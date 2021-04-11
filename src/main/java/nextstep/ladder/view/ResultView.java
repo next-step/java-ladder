@@ -1,9 +1,9 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.entity.Direction;
+import nextstep.ladder.entity.Ladder;
 import nextstep.ladder.entity.Line;
-import nextstep.ladder.entity.User;
-import nextstep.ladder.entity.Users;
+import nextstep.ladder.entity.Lines;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,23 +28,22 @@ public class ResultView {
                 .collect(Collectors.joining(" ")));
     }
 
-    public static void printLadder(int height, List<Line> lines) {
-        IntStream.range(0, height)
-                .forEach(lineHeightIndex -> printOneWidth(lines, lineHeightIndex));
+    public static void printLadder(Ladder ladder) {
+        ladder.getLinesList().stream().map(Lines::getLines).forEach(ResultView::printOneWidth);
     }
 
-    private static void printOneWidth(List<Line> lines, int lineHeightIndex) {
+    private static void printOneWidth(List<Line> lines) {
 
         for (int j = 0; j < lines.size() - 1; j++) {
             System.out.print("|");
-            System.out.print(width(lines.get(j), lineHeightIndex));
+            System.out.print(width(lines.get(j)));
         }
 
         System.out.println("|");
     }
 
-    private static String width(Line line, int lineHeightIndex) {
-        if (line.getPointIndex(lineHeightIndex).equals(Direction.RIGHT)) return "-----";
+    private static String width(Line line) {
+        if (line.getLineDirection().equals(Direction.RIGHT)) return "-----";
         return "     ";
     }
 
