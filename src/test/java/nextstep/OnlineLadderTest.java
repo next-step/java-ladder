@@ -19,5 +19,9 @@ class OnlineLadderTest {
     @Test
     @DisplayName("사다리그리기테스트")
     void ladderString() {
+        Ladder ladder = new OnlineLadder(2);
+        ladder.add("bong");
+        ladder.add("big");
+        ladder.move();
     }
 }
