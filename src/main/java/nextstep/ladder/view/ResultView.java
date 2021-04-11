@@ -9,25 +9,27 @@ import java.util.stream.IntStream;
 
 public class ResultView {
 
+    private ResultView() {}
+
     private static String nameFormat(User user) {
         return String.format("%-5s", user.getName());
     }
 
-    public void printStart() {
+    public static void printStart() {
         System.out.println("\n실행결과\n");
     }
 
-    public void printUser(List<User> userList) {
+    public static void printUser(List<User> userList) {
         System.out.println(userList.stream().map(ResultView::nameFormat)
                                             .collect(Collectors.joining(" ")));
     }
 
-    public void printLadder(int height, List<Line> lines) {
+    public static void printLadder(int height, List<Line> lines) {
         IntStream.range(0, height)
                 .forEach(lineHeightIndex -> printOneWidth(lines, lineHeightIndex));
     }
 
-    private void printOneWidth(List<Line> lines, int lineHeightIndex) {
+    private static void printOneWidth(List<Line> lines, int lineHeightIndex) {
 
         for (int j = 0; j < lines.size() - 1; j++) {
             System.out.print("|");
@@ -37,7 +39,7 @@ public class ResultView {
         System.out.println("|");
     }
 
-    private String width(Line line, int lineHeightIndex) {
+    private static String width(Line line, int lineHeightIndex) {
         return line.getPointIndex(lineHeightIndex) ? "-----" : "     ";
     }
 

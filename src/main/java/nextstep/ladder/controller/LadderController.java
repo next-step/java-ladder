@@ -2,6 +2,7 @@ package nextstep.ladder.controller;
 
 import nextstep.ladder.entity.Line;
 import nextstep.ladder.entity.User;
+import nextstep.ladder.util.StringUtil;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
@@ -9,16 +10,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class LadderGame {
-    InputView inputView = new InputView();
-    ResultView resultView = new ResultView();
-
+public class LadderController {
     public void start() {
 
-        String userInput = inputView.user();
-        int ladderHeight = inputView.ladderHeight();
+        String userInput = InputView.user();
+        int ladderHeight = InputView.ladderHeight();
 
-        String[] userList = userInput.split(",");
+        String[] userList = StringUtil.splitCommaByString(userInput);
         int userCount = userList.length;
 
         List<User> users = IntStream.range(0, userCount)
@@ -29,9 +27,9 @@ public class LadderGame {
                 .mapToObj(countOfPerson -> new Line(countOfPerson, ladderHeight))
                 .collect(Collectors.toList());
 
-        resultView.printStart();
-        resultView.printUser(users);
-        resultView.printLadder(ladderHeight, lines);
+        ResultView.printStart();
+        ResultView.printUser(users);
+        ResultView.printLadder(ladderHeight, lines);
 
     }
 }
