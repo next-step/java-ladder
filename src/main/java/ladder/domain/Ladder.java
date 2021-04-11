@@ -14,7 +14,7 @@ public class Ladder {
     int countOfPerson = players.names().size();
 
     ladder = IntStream.range(0, height)
-        .mapToObj(i -> new Line(countOfPerson))
+        .mapToObj(i -> Line.init(countOfPerson, new RandomConnect()))
         .collect(Collectors.toList());
   }
 

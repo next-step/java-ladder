@@ -20,7 +20,7 @@ public class LadderResult {
   private int position(int start) {
     int index = start;
     for (Line line : ladder.lines()) {
-      index += line.move(index);
+      index = line.move(index);
     }
     return index;
   }
