@@ -1,7 +1,5 @@
 package nextstep;
 
-import nextstep.constant.Constant;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,13 +9,19 @@ public class Line {
     private List<Boolean> points = new ArrayList<>();
 
     public Line (int countOfPerson) {
-        for (int i = 0; i <= countOfPerson; i++) {
+        for (int i = 0; i < countOfPerson; i++) {
             points.add(false);
         }
     }
 
     public void mark(int target) {
         points.set(target, true);
+    }
+
+    public void mark() {
+        for (int i = 0; i < points.size(); i++) {
+            points.set(i, RAND.nextBoolean());
+        }
     }
 
     public List<Boolean> getPoints() {

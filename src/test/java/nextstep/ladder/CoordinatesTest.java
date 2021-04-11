@@ -1,5 +1,7 @@
-package nextstep;
+package nextstep.ladder;
 
+import nextstep.Coordinate;
+import nextstep.Coordinates;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

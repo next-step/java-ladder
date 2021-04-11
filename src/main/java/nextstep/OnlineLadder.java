@@ -19,9 +19,7 @@ public class OnlineLadder extends Ladder {
     }
 
     public void lineMark(int targetVertical) {
-        int size = lines.size();
-        int targetHorizon = RAND.nextInt(size);
-        this.lines.mark(targetVertical, targetHorizon);
+        this.lines.mark(targetVertical);
     }
 
 
