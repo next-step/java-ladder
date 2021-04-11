@@ -4,11 +4,8 @@ import nextstep.Line;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
-import static nextstep.constant.Constant.PER_DOT;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LineTest {

@@ -22,6 +22,12 @@ public class Line {
         for (int i = 0; i < points.size(); i++) {
             points.set(i, RAND.nextBoolean());
         }
+        long count = points.stream()
+                .filter(s -> s == true)
+                .count();
+        if (count == 0) {
+            points.set((RAND.nextInt(points.size())), true);
+        }
     }
 
     public List<Boolean> getPoints() {
