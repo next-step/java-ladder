@@ -7,7 +7,6 @@ public class Lines {
     private final List<Line> lines;
 
     public Lines(int vertical, int countOfPerson) {
-        System.out.println("countOfPerson = " + countOfPerson);
         this.lines = new ArrayList<>();
         for (int i = 0; i < vertical; i++) {
             this.lines.add(new Line(countOfPerson));
@@ -15,7 +14,12 @@ public class Lines {
     }
 
     public void mark(int targetVertical) {
-        this.lines.get(targetVertical).mark();
+        try {
+            this.lines.get(targetVertical).mark();
+        } catch (IllegalArgumentException e) {
+            this.lines.get(targetVertical).reMark(this.lines.get(targetVertical - 1));
+        }
+
     }
 
     public void mark(int targetVertical, int targetHorizon) {

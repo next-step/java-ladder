@@ -1,7 +1,5 @@
 package nextstep;
 
-import static nextstep.constant.Constant.RAND;
-
 public class OnlineLadder extends Ladder {
     private final Lines lines;
     private final Players players;

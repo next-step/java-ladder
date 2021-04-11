@@ -2,6 +2,11 @@ package nextstep;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.OptionalInt;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import static nextstep.constant.Constant.*;
 
@@ -22,11 +27,42 @@ public class Line {
         for (int i = 0; i < points.size(); i++) {
             points.set(i, RAND.nextBoolean());
         }
-        long count = points.stream()
+        long trueCount = points.stream()
                 .filter(s -> s == true)
                 .count();
-        if (count == 0) {
-            points.set((RAND.nextInt(points.size())), true);
+
+        if (trueCount == 0) {
+            markOneRandom();
+        }
+
+        long falseCount = points.stream()
+                .filter(s -> s == false)
+                .count();
+
+        if (falseCount == 0) {
+            throw new IllegalArgumentException("Have to redraw");
+        }
+    }
+
+    private void markOneRandom() {
+        points.set((RAND.nextInt(points.size())), true);
+    }
+
+    public void reMark(Line top) {
+        OptionalInt first = IntStream.range(0, top.points.size())
+                .filter(i -> top.points.get(i))
+                .findFirst();
+        if (first.getAsInt() == 0) {
+            this.points.set(first.getAsInt() + 1, true);
+            this.points.stream()
+                    .skip(first.getAsInt() + 1)
+                    .forEach(p -> p = false);
+        }
+        if (first.getAsInt() == this.points.size()) {
+            this.points.set(first.getAsInt() - 1, true);
+            this.points.stream()
+                    .skip(first.getAsInt() - 1)
+                    .forEach(p -> p = false);
         }
     }
 
