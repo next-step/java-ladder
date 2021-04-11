@@ -14,7 +14,7 @@ public class LadderGameClient {
         int ladderCount = Integer.parseInt(ladderCountString);
         ResultView resultView = new ResultView(ladderCount);
         String[] names = namesString.split(",");
-        OnlineLadder ladder = new OnlineLadder(ladderCount, null, names.length);
+        OnlineLadder ladder = new OnlineLadder(ladderCount, names.length, names);
         for (int i = 0; i < ladderCount; i++) {
             ladder.lineMark(i);
         }

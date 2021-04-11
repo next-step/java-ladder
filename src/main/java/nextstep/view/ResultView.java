@@ -23,18 +23,19 @@ public class ResultView implements ConsoleView {
         System.out.println(str);
     }
 
-    public void print(OnlineLadder ladder) {
-        System.out.print(ladder.ladderString(0));
+    public void print(OnlineLadder ladder, int targetHeight) {
+        System.out.print(ladder.ladderString(targetHeight));
         System.out.println();
     }
 
     public void printAll(OnlineLadder ladder, String[] names) {
         for (String name : names) {
-            ladder.add(name);
+            System.out.print(name + " ");
         }
+        System.out.println();
         for (int i = 0; i < this.ladderCount; i++) {
-            ladder.move();
-            this.print(ladder);
+//            ladder.move();
+            this.print(ladder, i);
         }
     }
 }
