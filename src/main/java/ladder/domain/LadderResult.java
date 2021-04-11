@@ -11,13 +11,13 @@ public class LadderResult {
   }
 
   public void result(Players players) {
-    int countOfPerson = players.names().size();
-    for (int i = 0; i < countOfPerson; i++) {
-      results.put(players.player(i), position(i));
+    int index = 0;
+    for (Name name : players.names()) {
+      results.put(name, findResultIndex(index++));
     }
   }
 
-  private int position(int start) {
+  private int findResultIndex(int start) {
     int index = start;
     for (Line line : ladder.lines()) {
       index = line.move(index);
