@@ -26,7 +26,13 @@ public class Line {
             points.add(points.get(i - 1).next(conditionStrategy.randomBoolean()));
         }
 
-        points.add(Point.last(points.get(points.size() - 1).current()));
+        points.add(Point.last(points.get(points.size() - 1)));
+    }
+
+    public int nextPosition(int position) {
+        return points.get(position)
+                .direction()
+                .nextIndex();
     }
 
     public int size() {

@@ -3,50 +3,45 @@ package nextstep.ladder.domain;
 import java.util.Objects;
 
 public class Point {
-    private final boolean previous;
-    private final boolean current;
+    private final static int FIRST_POSITION = 0;
+    private final static int NEXT_INCREASE_VALUE = 1;
 
-    public Point(boolean previous, boolean current) {
-        validation(previous, current);
-        this.previous = previous;
-        this.current = current;
+    private final Direction direction;
+    private final int position;
+
+    public Point(Direction direction, int position) {
+        this.direction = direction;
+        this.position = position;
     }
 
-    private void validation(boolean previous, boolean current) {
-        if (previous && current) {
-            throw new IllegalArgumentException("유효하지 않은 입력값 입니다.");
-        }
+    public Direction direction() {
+        return direction;
     }
 
-    public boolean current() {
-        return current;
-    }
-
-    public Direction nextDirection() {
-        if (previous) {
-            return Direction.LEFT;
-        }
-
-        if (current) {
-            return Direction.RIGHT;
-        }
-
-        return Direction.DOWN;
+    public int position() {
+        return position;
     }
 
     public static Point first(boolean current) {
-        return new Point(false, current);
+        return new Point(createDirection(current), FIRST_POSITION);
     }
 
-    public static Point last(boolean previous) {
-        return new Point(previous, false);
+    public static Point last(Point previousPoint) {
+        if (Direction.RIGHT.equals(previousPoint.direction()))
+            return new Point(Direction.LEFT, previousPoint.position() + NEXT_INCREASE_VALUE);
+        return new Point(Direction.DOWN, previousPoint.position() + NEXT_INCREASE_VALUE);
     }
 
-    public Point next(boolean nextCurrent) {
-        if (current) {
-            return new Point(true, false);
-        }
-        return new Point(false, nextCurrent);
+    public Point next(boolean next) {
+        if (Direction.RIGHT.equals(this.direction))
+            return new Point(Direction.LEFT, position + NEXT_INCREASE_VALUE);
+        return new Point(createDirection(next), position + NEXT_INCREASE_VALUE);
+    }
+
+    public static Direction createDirection(boolean current) {
+        if (current)
+            return Direction.RIGHT;
+        return Direction.DOWN;
     }
 
     @Override
@@ -54,19 +49,19 @@ public class Point {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Point point = (Point) o;
-        return previous == point.previous && current == point.current;
+        return position == point.position && direction == point.direction;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(previous, current);
+        return Objects.hash(direction, position);
     }
 
     @Override
     public String toString() {
         return "Point{" +
-                "previous=" + previous +
-                ", current=" + current +
+                "direction=" + direction +
+                ", position=" + position +
                 '}';
     }
 }

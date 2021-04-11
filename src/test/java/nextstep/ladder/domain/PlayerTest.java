@@ -13,7 +13,7 @@ class PlayerTest {
     void playerArgumentException(String input) {
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> {
-                    new Player(input);
+                    new Player(input, 1);
                 });
     }
 }
