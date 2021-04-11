@@ -18,7 +18,7 @@ public class LadderController {
         Persons persons = Persons.from(inputView.inputPersonNames());
         Height height = Height.from(inputView.inputLadderHeight());
 
-        Ladder ladder = Ladder.of(height.getHeight(), persons.getPersons().size(), () -> random.nextBoolean());
+        Ladder ladder = Ladder.of(height.getHeight(), persons.getPersons().size(), random::nextBoolean);
         resultView.printResult(persons, ladder);
     }
 }
