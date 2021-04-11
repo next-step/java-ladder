@@ -95,6 +95,21 @@
     - 외부에서 주입받는 방법을 하고 싶었지만, 그렇게하면 이 클래스의 클라이언트인 컨트롤러가 가져야 할 필드의 수가 세 개가 된다.
     - View 를 하나로 통합하는 방법을 고려해봐야 하는지?
   
+#### 변경 사항
+
+- DTO
+  - `LadderBoard` 를 `LadderBoardDto` 로 표현하지 않고, `Ladder` 와 `Rewards` 를 각각 노출함
+  - `Player` 를 표현하기 위해 `PlayerDto` 에서만 `Reward` 를 가지고 있도록 변경하여 `Pair` 를 제거함
+- `LadderGame` 생성
+  - `LadderGameMaker` -> `LadderFactory` -> `LineFactory` 로 이어지는 의존성을 Injection으로 처리
+- `Reward`
+  - `Reward` 의 문자열 검증은 `RewardString` 인터페이스와 그 구체 클래스에 책임으로 넘김
+- `Lane`
+  - 사다리의 세로 선을 `Lane` 으로 추상화
+  - `Point`, `Player`, `Reward` 등 사다리와 관련된 객체에 속성으로 사용 
+  - `Line` 에서 `Point` 간 이동을 구현하기 위해 사용한 레퍼런스 비교를 `Lane` 비교로 변경
+  
+  
   
 
 
