@@ -12,7 +12,7 @@ public class OutputView {
     private static final String POINT = "|";
 
     public void printLadderGenerationResult(LadderGenerationResponse response) {
-        System.out.println("\n실행결과");
+        System.out.println(System.lineSeparator() + "실행결과");
         printParticipants(response.getParticipantNameList(), response.getLadderWidth());
         System.out.println();
         printLadder(response.getLadderLineList(), response.getLadderWidth());
