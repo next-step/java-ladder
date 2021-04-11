@@ -10,25 +10,34 @@ public class Lines {
         this.lines = lines;
     }
 
+    public Lines(int userCount, DrawRule drawRule) {
+        this(initLines(userCount, drawRule));
+    }
+
     public Lines(int userCount) {
-        this(initLines(userCount));
+        this(initLines(userCount, new RandomDrawRule()));
     }
 
-    public List<Line> getLines() {
-        return lines;
+    public Line positionLine(int position) {
+        return lines.get(position);
     }
 
-    private static List<Line> initLines(int userCount) {
+    public int getLineSize() {
+        return lines.size();
+    }
 
-        Direction direction = Direction.NONE;
+    private static List<Line> initLines(int userCount, DrawRule rule) {
 
         List<Line> list = new ArrayList<>();
+        Direction direction = Direction.NONE;
 
-        for (int i = 0; i < userCount; i++) {
-            Line line = new Line(direction);
+        for (int i = 0; i < userCount - 1; i++) {
+            Line line = new Line(direction, rule);
             direction = line.getLineDirection();
             list.add(line);
         }
+
+        list.add(new Line(direction, new LastPointNoneDrawRule()));
 
         return list;
     }

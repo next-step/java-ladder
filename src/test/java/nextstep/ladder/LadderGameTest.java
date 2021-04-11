@@ -1,8 +1,6 @@
 package nextstep.ladder;
 
-import nextstep.ladder.entity.Direction;
-import nextstep.ladder.entity.Line;
-import nextstep.ladder.entity.User;
+import nextstep.ladder.entity.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,13 +11,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class LadderGameTest {
-    Line firstLine;
-    Line secondLine;
+    Lines firstLine;
+    Lines secondLine;
 
     @BeforeEach
     public void setup(){
-        firstLine = new Line(Direction.NONE);
-        secondLine = new Line(Direction.RIGHT);
+        firstLine = new Lines(5, new AlwaysDrawRule());
+        secondLine = new Lines(5, new LastPointNoneDrawRule());
     }
 
     @Test
@@ -31,17 +29,17 @@ public class LadderGameTest {
             );
     }
 
-//    @ParameterizedTest
-//    @CsvSource(value = {"0:true", "1:false", "2:true", "3:false", "4:true"}, delimiter = ':')
-//    @DisplayName("사다리 홀수 라인")
-//    public void oddLineInit(int value, boolean expected){
-//        assertThat(firstLine.getPointIndex(value)).isEqualTo(expected);
-//    }
-//
-//    @ParameterizedTest
-//    @CsvSource(value = {"0:false", "1:true", "2:false", "3:true", "4:false"}, delimiter = ':')
-//    @DisplayName("사다리 짝수 라인")
-//    public void evenLineInit(int value, boolean expected){
-//        assertThat(secondLine.getPointIndex(value)).isEqualTo(expected);
-//    }
+    @ParameterizedTest
+    @CsvSource(value = {"0:RIGHT", "1:LEFT", "2:RIGHT", "3:LEFT", "4:NONE"}, delimiter = ':')
+    @DisplayName("사다리 게임 조건 하에 무조건 그리기")
+    public void alwaysDrawLine(int value, Direction expectedDirection){
+        assertThat(firstLine.positionLine(value).getLineDirection()).isEqualTo(expectedDirection);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"0:NONE", "1:NONE", "2:NONE", "3:NONE", "4:NONE"}, delimiter = ':')
+    @DisplayName("라인 안 그리기")
+    public void noneDrawLine(int value, Direction expectedDirection){
+        assertThat(secondLine.positionLine(value).getLineDirection()).isEqualTo(expectedDirection);
+    }
 }

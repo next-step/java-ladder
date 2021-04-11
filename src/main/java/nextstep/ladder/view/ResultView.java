@@ -11,7 +11,8 @@ import java.util.stream.IntStream;
 
 public class ResultView {
 
-    private ResultView() {}
+    private ResultView() {
+    }
 
     private static String nameFormat(String username) {
         return String.format("%-5s", username);
@@ -29,17 +30,24 @@ public class ResultView {
     }
 
     public static void printLadder(Ladder ladder) {
-        ladder.getLinesList().stream().map(Lines::getLines).forEach(ResultView::printOneWidth);
+        for (Lines lines : ladder.getLinesList()) {
+            printOneWidth(lines);
+        }
     }
 
-    private static void printOneWidth(List<Line> lines) {
+    private static void printOneWidth(Lines lines) {
+        int lineSize = lines.getLineSize();
 
-        for (int j = 0; j < lines.size() - 1; j++) {
-            System.out.print("|");
-            System.out.print(width(lines.get(j)));
-        }
+        IntStream.range(0, lineSize - 1)
+                .mapToObj(lines::positionLine)
+                .forEach(ResultView::printLine);
 
         System.out.println("|");
+    }
+
+    private static void printLine(Line line) {
+        System.out.print("|");
+        System.out.print(width(line));
     }
 
     private static String width(Line line) {
