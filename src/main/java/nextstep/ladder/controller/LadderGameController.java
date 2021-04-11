@@ -23,7 +23,8 @@ public class LadderGameController {
         LadderGame ladderGame = ladderGameMaker.makeRandomLadderGame(playerNames, rewardStrings, ladderHeight);
 
         resultView.printPlayers(ladderGame.exportPlayerNames());
-        resultView.printLadderBoard(ladderGame.exportLadderBoard());
+        resultView.printLadder(ladderGame.exportLadder());
+        resultView.printRewards(ladderGame.exportRewards());
 
         String targetName = inputView.receiveNameForSeeingResult();
         resultView.printLadderGameReport(ladderGame.makeResultReport(targetName));

@@ -2,10 +2,7 @@ package nextstep.ladder.domain;
 
 import nextstep.ladder.domain.player.Player;
 import nextstep.ladder.domain.player.Players;
-import nextstep.ladder.dto.LadderBoardDto;
-import nextstep.ladder.dto.LadderGameReport;
-import nextstep.ladder.dto.PlayerDto;
-import nextstep.ladder.dto.PlayerNamesDto;
+import nextstep.ladder.dto.*;
 
 import java.util.Collections;
 
@@ -42,8 +39,12 @@ public class LadderGame {
         return new LadderGameReport(Collections.singletonList(playerDto));
     }
 
-    public LadderBoardDto exportLadderBoard() {
-        return ladderBoard.export();
+    public LadderDto exportLadder() {
+        return ladderBoard.exportLadder();
+    }
+
+    public RewardsDto exportRewards() {
+        return ladderBoard.exportRewards();
     }
 
     public PlayerNamesDto exportPlayerNames() {

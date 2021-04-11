@@ -23,12 +23,7 @@ public class ResultView {
         System.out.println(String.join(WHITE_SPACE, paddedNameList));
     }
 
-    public void printLadderBoard(LadderBoardDto ladderBoardDto) {
-        printLadder(ladderBoardDto.getLadderDto());
-        printRewards(ladderBoardDto.getRewardsDto());
-    }
-
-    private void printLadder(LadderDto ladder) {
+    public void printLadder(LadderDto ladder) {
         ladder.getConnectionsList()
             .stream()
             .map(this::depictConnections)
@@ -51,7 +46,7 @@ public class ResultView {
         return connected ? HYPHEN : WHITE_SPACE;
     }
 
-    private void printRewards(RewardsDto rewardsDto) {
+    public void printRewards(RewardsDto rewardsDto) {
         List<String> paddedRewards = rewardsDto.getRewards()
                                                .stream()
                                                .map(reward -> padToRight(reward, STRING_ELEMENT_SIZE))
