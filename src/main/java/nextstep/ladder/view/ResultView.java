@@ -29,7 +29,7 @@ public class ResultView {
 
     private static void printLine(Line line) {
         System.out.print(VERTICAL_POINT);
-        line.points().forEach(ResultView::printPoint);
+        line.forEach(ResultView::printPoint);
         System.out.println();
     }
 

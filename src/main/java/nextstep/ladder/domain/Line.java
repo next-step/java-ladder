@@ -1,9 +1,10 @@
 package nextstep.ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-public class Line {
+public class Line implements Iterable<Point> {
 
     private List<Point> points;
 
@@ -23,7 +24,12 @@ public class Line {
         return new Line(points);
     }
 
-    public List<Point> points() {
-        return points;
+    public static Line from(List<Point> points) {
+        return new Line(points);
+    }
+
+    @Override
+    public Iterator<Point> iterator() {
+        return points.iterator();
     }
 }

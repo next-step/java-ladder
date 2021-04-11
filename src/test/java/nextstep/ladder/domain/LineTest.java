@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.StreamSupport;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -25,22 +26,21 @@ public class LineTest {
         points.add(Point.from(true));
         points.add(Point.from(false));
 
-        assertThat(Line.from(5, () -> true).points()).usingRecursiveComparison().isEqualTo(points);
+        assertThat(Line.from(5, () -> true)).usingRecursiveComparison().isEqualTo(Line.from(points));
     }
 
     @DisplayName("가로라인은 겹치지 않아야 한다.")
     @ParameterizedTest
     @ValueSource(ints = {5, 10, 100})
     void pointsNotContinuousTrue(int countOfPerson) {
-        List<Point> points = Line.from(countOfPerson, new RandomBooleanStrategy()).points();
+        Line line = Line.from(countOfPerson, new RandomBooleanStrategy());
 
-        for (int i = 0; i < points.size(); i++) {
-            if (i == 0) {
-                continue;
-            }
-            if (points.get(i - 1).value()) {
-                assertThat(points.get(i)).usingRecursiveComparison().isEqualTo(Point.from(false));
-            }
-        }
+        StreamSupport.stream(line.spliterator(), false)
+            .reduce((x, y) -> {
+                if (x.value()) {
+                    assertThat(y.value()).isEqualTo(false);
+                }
+                return y;
+            });
     }
 }
