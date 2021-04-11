@@ -13,7 +13,7 @@ class PointTest {
         assertThatCode(() -> Point.from(new RandomBooleanStrategy())).doesNotThrowAnyException();
     }
 
-    @DisplayName("가로라인은 겹치지 않아야 한다.")
+    @DisplayName("true Point가 생성되면 다음 Point는 ture 일 수 없다.")
     @Test
     void nextPoint() {
         Point truePoint = Point.from(true);
