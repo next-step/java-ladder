@@ -6,12 +6,12 @@ public final class Person {
 
   private final Name name;
 
-  public Person(final String name) {
-    this(new Name(name));
+  private Person(final Name name) {
+    this.name = name;
   }
 
-  public Person(final Name name) {
-    this.name = name;
+  public static Person valueOf(final String name) {
+    return new Person(new Name(name));
   }
 
   public Name getName() {

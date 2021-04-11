@@ -17,35 +17,19 @@ class PersonTest {
     final String name = "pobi";
 
     //when
-    final Person pobi = new Person(name);
+    final Person pobi = Person.valueOf(name);
 
     //then
     assertAll(
-        () -> assertThat(pobi).isEqualTo(new Person(name)),
+        () -> assertThat(pobi).isEqualTo(Person.valueOf(name)),
         () -> assertThat(pobi.personName()).isEqualTo(name)
-    );
-  }
-
-  @Test
-  @DisplayName("이름 객체를 가지고 생성할 수 있다.")
-  void createWithName() {
-    //given
-    final Name name = new Name("pobi");
-
-    //when
-    final Person pobi = new Person(name);
-
-    //then
-    assertAll(
-        () -> assertThat(pobi).isEqualTo(new Person(name)),
-        () -> assertThat(pobi.getName()).isEqualTo(name)
     );
   }
 
   @Test
   @DisplayName("이름의 최대 글자를 초과한 경우 생성에 실패한다.")
   void createFailWhenOverNameLengthLimit() {
-    assertThatThrownBy(() -> new Person("123456"))
+    assertThatThrownBy(() -> Person.valueOf("123456"))
         .isInstanceOf(OverNameLengthLimitException.class)
         .hasMessage(OverNameLengthLimitException.OVER_NAME_LENGTH_LIMIT);
   }

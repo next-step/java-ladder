@@ -18,7 +18,7 @@ public final class People {
 
   public static People from(final String[] names) {
     return new People(Arrays.stream(names)
-        .map(Person::new)
+        .map(Person::valueOf)
         .collect(Collectors.toList())
     );
   }
