@@ -22,7 +22,7 @@ public class LadderGenerationController {
     }
 
     private LadderGenerationResponse assembleResponse(LadderGame ladderGame) {
-        return new LadderGenerationResponse(assembleParticipantNameList(ladderGame.getParticipants()), LadderConstants.LADDER_HORIZON_WIDTH, assembleLadderLineList(ladderGame.getLineList()));
+        return new LadderGenerationResponse(assembleParticipantNameList(ladderGame.getParticipants()), LadderGame.LADDER_HORIZON_WIDTH, assembleLadderLineList(ladderGame.getLineList()));
     }
 
     private List<String> assembleParticipantNameList(Participants participants) {

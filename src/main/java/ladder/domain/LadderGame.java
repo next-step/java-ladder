@@ -8,6 +8,7 @@ import java.util.stream.IntStream;
 public class LadderGame {
 
     private static final int MIN_LADDER_HEIGHT = 1;
+    public static final int LADDER_HORIZON_WIDTH = 5;
 
     private final Participants participants;
     private final List<Line> lineList;
