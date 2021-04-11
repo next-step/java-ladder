@@ -29,6 +29,10 @@ public class Position {
         return new Position(index + 1);
     }
 
+    public int getIndex() {
+        return index;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
