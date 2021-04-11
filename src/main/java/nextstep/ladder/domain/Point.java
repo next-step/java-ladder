@@ -4,6 +4,9 @@ import java.util.Objects;
 
 public final class Point {
 
+  public static final String LINE = "-----|";
+  public static final String NOT_LINE = "     |";
+
   private final boolean point;
 
   private Point(boolean point) {
@@ -20,6 +23,10 @@ public final class Point {
 
   public static Point tail() {
     return new Point(false);
+  }
+
+  public String draw() {
+    return "";
   }
 
   @Override

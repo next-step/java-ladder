@@ -29,4 +29,21 @@ class PointTest {
         () -> assertThat(tail).isEqualTo(Point.tail())
     );
   }
+
+  @Test
+  @DisplayName("true일 때, 가로선이 그려지고, false면 그려지지 않는다.")
+  void draw() {
+    // given
+    final boolean canCreate = true;
+
+    // when
+    final Point canDraw = Point.head(canCreate);
+    final Point cannotDraw = Point.body(canDraw, canCreate);
+
+    // then
+    assertAll(
+        () -> assertThat(canDraw.draw()).isEqualTo(Point.LINE),
+        () -> assertThat(cannotDraw.draw()).isEqualTo(Point.NOT_LINE)
+    );
+  }
 }
