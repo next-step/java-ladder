@@ -17,6 +17,10 @@ public class Direction {
         return new Direction(direction);
     }
 
+    public String getDirection() {
+        return direction;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -22,12 +22,17 @@ public class Line {
         return new Line(points);
     }
 
-    public void makeLine() {
+    public LineResult makeLine() {
+        LineResult lineResult = new LineResult();
         Point comparePoint = new Point(Position.DEFAULT);
         for (Point point : points) {
-            point.setDirection(LadderGenerator.generate(point, comparePoint));
+            Direction direction = LadderGenerator.generate(point, comparePoint);
+            point.setDirection(direction);
             comparePoint = point;
+
+            lineResult.add(point.toPointResult());
         }
+        return lineResult;
     }
 
     @Override

@@ -30,6 +30,10 @@ public class Point {
         this.direction = direction;
     }
 
+    public PointResult toPointResult() {
+        return new PointResult(position, direction);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
