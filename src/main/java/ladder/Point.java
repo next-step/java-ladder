@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Point {
     private final Position position;
-    private String direction;
+    private Direction direction;
 
     public Point(Position position) {
         this.position = position;
@@ -23,10 +23,10 @@ public class Point {
     }
 
     public boolean haveRightDirection() {
-        return direction.equals("RIGHT");
+        return direction.equals(Direction.RIGHT);
     }
 
-    public void setDirection(String direction) {
+    public void setDirection(Direction direction) {
         this.direction = direction;
     }
 
@@ -47,7 +47,7 @@ public class Point {
     public String toString() {
         return "Point{" +
                 "position=" + position +
-                ", direction='" + direction + '\'' +
+                ", direction=" + direction +
                 '}';
     }
 }

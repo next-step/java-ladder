@@ -10,15 +10,15 @@ public class BodyElementStrategy implements LadderStrategy {
     }
 
     @Override
-    public String direction() {
+    public Direction direction() {
         if (previousPoint.haveRightDirection()) {
-            return "LEFT";
+            return Direction.LEFT;
         }
 
         if (RandomUtil.trueOrFalse()) {
-            return "RIGHT";
+            return Direction.RIGHT;
         }
 
-        return "";
+        return Direction.NO_DIRECTION;
     }
 }

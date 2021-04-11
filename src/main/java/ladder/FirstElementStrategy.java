@@ -8,10 +8,10 @@ public class FirstElementStrategy implements LadderStrategy {
     }
 
     @Override
-    public String direction() {
+    public Direction direction() {
         if (RandomUtil.trueOrFalse()) {
-            return "RIGHT";
+            return Direction.RIGHT;
         }
-        return "";
+        return Direction.NO_DIRECTION;
     }
 }

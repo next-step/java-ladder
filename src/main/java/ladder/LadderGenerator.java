@@ -1,7 +1,7 @@
 package ladder;
 
 public class LadderGenerator {
-    public static String generate(Point point, Point previousPoint) {
+    public static Direction generate(Point point, Point previousPoint) {
         if (point.isFirst()) {
             return generate(new FirstElementStrategy(point));
         }
@@ -11,7 +11,7 @@ public class LadderGenerator {
         return generate(new BodyElementStrategy(point, previousPoint));
     }
 
-    private static String generate(LadderStrategy strategy) {
+    private static Direction generate(LadderStrategy strategy) {
         return strategy.direction();
     }
 }
