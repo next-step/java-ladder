@@ -17,7 +17,7 @@ public final class Ladder {
   public List<Line> lines(final LineCreationStrategy lineCreationStrategy) {
     List<Line> lines = new ArrayList<>();
     for (int i = 0; i < ladderHeight.toInt(); i++) {
-      lines.add(new Line(lineCreationStrategy));
+      lines.add(new Line(lineCreationStrategy, people.personCount()));
     }
     return lines;
   }

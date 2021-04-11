@@ -34,6 +34,10 @@ public final class People {
     return Collections.unmodifiableList(people);
   }
 
+  public int personCount() {
+    return people.size();
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
