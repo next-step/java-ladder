@@ -27,13 +27,13 @@ class LadderLinesTest {
 
   @BeforeEach
   void setUp() {
-    ladderLines = new LadderLines(ladderHeight, new PersonCount(people.personList().size()));
+    ladderLines = new LadderLines(ladderHeight, people);
   }
 
   @Test
   @DisplayName("높이와, 이름 목록을 받아서 생성한다.")
   void create() {
-    assertThat(ladderLines).isEqualTo(new LadderLines(ladderHeight, new PersonCount(people.personList().size())));
+    assertThat(ladderLines).isEqualTo(new LadderLines(ladderHeight, people));
   }
 
   @Test

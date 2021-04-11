@@ -7,17 +7,17 @@ import java.util.Objects;
 public final class LadderLines {
 
   private final LadderHeight ladderHeight;
-  private final PersonCount personCount;
+  private final People people;
 
-  public LadderLines(LadderHeight ladderHeight, PersonCount personCount) {
+  public LadderLines(LadderHeight ladderHeight, People people) {
     this.ladderHeight = ladderHeight;
-    this.personCount = personCount;
+    this.people = people;
   }
 
   public List<Line> lines(final LineCreationStrategy lineCreationStrategy) {
     List<Line> lines = new ArrayList<>();
     for (int i = 0; i < ladderHeight.toInt(); i++) {
-      lines.add(new Line(personCount, lineCreationStrategy));
+      lines.add(new Line(lineCreationStrategy));
     }
     return lines;
   }
@@ -31,12 +31,11 @@ public final class LadderLines {
       return false;
     }
     LadderLines that = (LadderLines) o;
-    return Objects.equals(ladderHeight, that.ladderHeight) && Objects
-        .equals(personCount, that.personCount);
+    return Objects.equals(ladderHeight, that.ladderHeight) && Objects.equals(people, that.people);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(ladderHeight, personCount);
+    return Objects.hash(ladderHeight, people);
   }
 }

@@ -7,11 +7,11 @@ public final class Line {
 
   private final List<Point> points;
 
-  public Line(final PersonCount personCount, final LineCreationStrategy lineCreationStrategy) {
-    this(personCount, lineCreationStrategy.create());
+  public Line(final LineCreationStrategy lineCreationStrategy) {
+    this(lineCreationStrategy.create());
   }
 
-  public Line(final PersonCount personCount, final List<Point> points) {
+  public Line(final List<Point> points) {
     this.points = points;
   }
 

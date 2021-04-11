@@ -9,6 +9,8 @@ import nextstep.ladder.exception.PersonCountTooLowException;
 
 public final class People {
 
+  public static final int MINIMUM_PERSON_COUNT = 2;
+
   private final List<Person> people;
 
   private People(final List<Person> people) {
@@ -24,7 +26,7 @@ public final class People {
   }
 
   private void validateSize(final List<Person> people) {
-    if (people.size() < PersonCount.MIN) {
+    if (people.size() < MINIMUM_PERSON_COUNT) {
       throw new PersonCountTooLowException();
     }
   }

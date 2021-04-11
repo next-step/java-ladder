@@ -1,12 +1,9 @@
 package nextstep.ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import nextstep.ladder.exception.PersonCountTooLowException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -24,26 +21,6 @@ class LineTest {
   @Test
   @DisplayName("사람의 수를 입력받아서 Line을 생성한다.")
   void create() {
-    //given
-    final PersonCount personCount = new PersonCount(2);
-
-    //when
-    final Line line = new Line(personCount, lineCreationStrategy);
-
-    //then
-    assertThat(line).isEqualTo(new Line(personCount, lineCreationStrategy));
-  }
-
-  @Test
-  @DisplayName("사람의 수는 최소 2명이어야 한다.")
-  void createFailWhenUnderTwoPerson() {
-    assertAll(
-        () -> assertThatThrownBy(() -> new Line(new PersonCount(0), lineCreationStrategy))
-            .isInstanceOf(PersonCountTooLowException.class)
-            .hasMessage(PersonCountTooLowException.PERSON_COUNT_TOO_LOW),
-        () -> assertThatThrownBy(() -> new Line(new PersonCount(1), lineCreationStrategy))
-            .isInstanceOf(PersonCountTooLowException.class)
-            .hasMessage(PersonCountTooLowException.PERSON_COUNT_TOO_LOW)
-    );
+    assertThat(new Line(lineCreationStrategy)).isEqualTo(new Line(lineCreationStrategy));
   }
 }

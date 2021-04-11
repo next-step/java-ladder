@@ -2,7 +2,6 @@ package nextstep.ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertAll;
 
 import nextstep.ladder.exception.OverNameLengthLimitException;
 import nextstep.ladder.exception.PersonCountTooLowException;
@@ -21,10 +20,7 @@ class PeopleTest {
     final People people = People.from(names);
 
     //then
-    assertAll(
-        () -> assertThat(people).isEqualTo(People.from(names)),
-        () -> assertThat(new PersonCount(people.personList().size())).isEqualTo(new PersonCount(names.length))
-    );
+    assertThat(people).isEqualTo(People.from(names));
   }
 
   @Test

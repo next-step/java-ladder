@@ -19,8 +19,7 @@ public final class Ladder {
   }
 
   public List<Line> lines() {
-    return Collections.unmodifiableList(new LadderLines(ladderHeight, new PersonCount(people.personList().size()))
-        .lines(new RandomLineCreationStrategy()));
+    return Collections.unmodifiableList(new LadderLines(ladderHeight, people).lines(new RandomLineCreationStrategy()));
   }
 
   @Override
