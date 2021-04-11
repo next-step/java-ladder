@@ -9,7 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class LadderLinesTest {
+class LadderTest {
 
   final int height = 3;
   final LadderHeight ladderHeight = new LadderHeight(height);
@@ -23,17 +23,17 @@ class LadderLinesTest {
         .collect(Collectors.toList());
   }
 
-  LadderLines ladderLines;
+  Ladder ladder;
 
   @BeforeEach
   void setUp() {
-    ladderLines = new LadderLines(ladderHeight, people);
+    ladder = new Ladder(ladderHeight, people);
   }
 
   @Test
   @DisplayName("높이와, 이름 목록을 받아서 생성한다.")
   void create() {
-    assertThat(ladderLines).isEqualTo(new LadderLines(ladderHeight, people));
+    assertThat(ladder).isEqualTo(new Ladder(ladderHeight, people));
   }
 
   @Test
@@ -41,7 +41,7 @@ class LadderLinesTest {
   void lines() {
     // given
     // when
-    final List<Line> lines = ladderLines.lines(lineCreationStrategy);
+    final List<Line> lines = ladder.lines(lineCreationStrategy);
 
     // then
     assertThat(lines).hasSize(height);

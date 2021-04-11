@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public final class LadderLines {
+public final class Ladder {
 
   private final LadderHeight ladderHeight;
   private final People people;
 
-  public LadderLines(LadderHeight ladderHeight, People people) {
+  public Ladder(LadderHeight ladderHeight, People people) {
     this.ladderHeight = ladderHeight;
     this.people = people;
   }
@@ -31,10 +31,10 @@ public final class LadderLines {
     if (this == o) {
       return true;
     }
-    if (!(o instanceof LadderLines)) {
+    if (!(o instanceof Ladder)) {
       return false;
     }
-    LadderLines that = (LadderLines) o;
+    Ladder that = (Ladder) o;
     return Objects.equals(ladderHeight, that.ladderHeight) && Objects.equals(people, that.people);
   }
 

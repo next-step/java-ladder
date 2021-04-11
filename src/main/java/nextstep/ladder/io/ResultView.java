@@ -1,7 +1,7 @@
 package nextstep.ladder.io;
 
 import java.util.List;
-import nextstep.ladder.domain.LadderLines;
+import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Name;
 import nextstep.ladder.domain.People;
@@ -13,12 +13,12 @@ public final class ResultView {
 
   private ResultView() {}
 
-  public static void printLadder(LadderLines ladderLines) {
+  public static void printLadder(Ladder ladder) {
     System.out.println();
     System.out.println("실행결과");
     System.out.println();
-    printPeople(ladderLines.people());
-    printLines(ladderLines.lines(new RandomLineCreationStrategy()));
+    printPeople(ladder.people());
+    printLines(ladder.lines(new RandomLineCreationStrategy()));
   }
 
   private static void printPeople(People people) {
