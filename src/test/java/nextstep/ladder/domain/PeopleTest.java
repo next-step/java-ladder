@@ -23,7 +23,7 @@ class PeopleTest {
     //then
     assertAll(
         () -> assertThat(people).isEqualTo(People.from(names)),
-        () -> assertThat(people.personCount()).isEqualTo(new PersonCount(names.length))
+        () -> assertThat(new PersonCount(people.personList().size())).isEqualTo(new PersonCount(names.length))
     );
   }
 

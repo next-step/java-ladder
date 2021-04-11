@@ -5,14 +5,15 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import nextstep.ladder.exception.PersonCountTooLowException;
 
 public final class People {
 
   private final List<Person> people;
 
   private People(final List<Person> people) {
+    validateSize(people);
     this.people = people;
-    validateSize();
   }
 
   public static People from(final String[] names) {
@@ -22,12 +23,10 @@ public final class People {
     );
   }
 
-  private void validateSize() {
-    personCount();
-  }
-
-  public PersonCount personCount() {
-    return new PersonCount(people.size());
+  private void validateSize(final List<Person> people) {
+    if (people.size() < PersonCount.MIN) {
+      throw new PersonCountTooLowException();
+    }
   }
 
   public List<Person> personList() {
