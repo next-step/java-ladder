@@ -4,11 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-    private List<LadderEnum> points = new ArrayList<>();
+    private List<Point> points = new ArrayList<>();
 
     public Line(int countOfPerson) {
-        for (int i = 0; i < countOfPerson; i++) {
+        points.add(firstPoint());
+        points.add(lastPoint());
+    }
 
-        }
+
+    private Point firstPoint() {
+        return new Point(true);
+    }
+
+    private Point lastPoint() {
+        return new Point(false);
     }
 }
