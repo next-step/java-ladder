@@ -1,7 +1,12 @@
 package nextstep.ladder.controller;
 
+import nextstep.ladder.domain.Players;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
+
+import java.util.List;
+
+import static nextstep.ladder.utils.StringUtil.*;
 
 public class LadderController {
     private final InputView inputView;
@@ -13,10 +18,11 @@ public class LadderController {
     }
 
     public void run() {
-        createPlayers();
+        Players players = createPlayers();
     }
 
-    private void createPlayers() {
-        String players = inputView.players();
+    private Players createPlayers() {
+        List<String> playerNames = splitWithComma(inputView.players());
+        return Players.from(playerNames);
     }
 }
