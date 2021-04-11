@@ -21,10 +21,6 @@ public final class Point {
     return new Point(!before.point && canCreate);
   }
 
-  public static Point tail(boolean canCreate) {
-    return new Point(canCreate);
-  }
-
   public String draw() {
     return point ? LINE : NOT_LINE;
   }

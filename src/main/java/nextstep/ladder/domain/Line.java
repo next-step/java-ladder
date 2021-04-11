@@ -17,12 +17,11 @@ public final class Line {
     List<Point> points = new ArrayList<>();
     Point before = Point.head();
 
-    for (int i = 1; i < personCount - 1; i++) {
+    for (int i = 1; i < personCount; i++) {
       points.add(before);
       before = Point.body(before, lineCreationStrategy.canCreate());
     }
     points.add(before);
-    points.add(Point.tail(lineCreationStrategy.canCreate()));
     return points;
   }
 
