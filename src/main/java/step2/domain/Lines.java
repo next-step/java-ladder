@@ -1,4 +1,4 @@
-package step2;
+package step2.domain;
 
 import step2.domain.Line;
 
@@ -16,12 +16,25 @@ public class Lines {
         this.lines = createLines(height, countOfPerson);
     }
 
+    public Lines(List<Line> lines) {
+        this.lines = lines;
+    }
+
     private List<Line> createLines(int height, int countOfPerson) {
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < height; i++) {
             lines.add(new Line(countOfPerson));
+
         }
         return lines;
+    }
+
+    public int eachPositionResult(int position) {
+        for (Line line : lines) {
+            position = line.move(position);
+        }
+
+        return position;
     }
 
     public List<Line> lines() {
