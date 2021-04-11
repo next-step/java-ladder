@@ -34,7 +34,7 @@ class LineTest {
         Line line = new Line(pointCount);
 
         // then
-        assertThat(pointCount).isEqualTo(line.getPointList().size());
+        assertThat(pointCount).isEqualTo(line.getPoints().size());
     }
 
     @Test
@@ -44,7 +44,7 @@ class LineTest {
         Line line = new Line(() -> false, 10);
 
         // then
-        for (Point point : line.getPointList()) {
+        for (Point point : line.getPoints()) {
             assertThat(point.hasLine()).isFalse();
         }
     }
@@ -57,14 +57,14 @@ class LineTest {
 
         // then
         assertAll(
-                () -> assertThat(line.getPointList().get(0).hasLine()).isTrue(),
+                () -> assertThat(line.getPoints().get(0).hasLine()).isTrue(),
                 () -> {
-                    for (int i = 1; i < line.getPointList().size()-1; i++) {
-                        boolean prevHasLine = line.getPointList().get(i-1).hasLine();
-                        assertThat(line.getPointList().get(i).hasLine()).isNotEqualTo(prevHasLine);
+                    for (int i = 1; i < line.getPoints().size()-1; i++) {
+                        boolean prevHasLine = line.getPoints().get(i-1).hasLine();
+                        assertThat(line.getPoints().get(i).hasLine()).isNotEqualTo(prevHasLine);
                     }
                 },
-                () -> assertThat(line.getPointList().get(line.getPointList().size()-1).hasLine()).isFalse()
+                () -> assertThat(line.getPoints().get(line.getPoints().size()-1).hasLine()).isFalse()
         );
     }
 

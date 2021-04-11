@@ -58,7 +58,7 @@ class LadderGameTest {
         LadderGame ladderGame = new LadderGame(participants, 5);
 
         // then
-        for (Participant participant : ladderGame.getParticipants().getParticipantList()) {
+        for (Participant participant : ladderGame.getParticipants().getParticipants()) {
             assertThat(Arrays.asList(participantNames.split(",")).contains(participant.getName())).isTrue();
         }
     }
@@ -71,12 +71,12 @@ class LadderGameTest {
 
         // when
         LadderGame ladderGame = new LadderGame(participants, 5);
-        List<Line> lineList = ladderGame.getLineList();
+        List<Line> lineList = ladderGame.getLines();
 
         // then
         assertAll(
                 () -> assertThat(5).isEqualTo(lineList.size()),
-                () -> lineList.forEach(line -> assertThat(4).isEqualTo(line.getPointList().size()))
+                () -> lineList.forEach(line -> assertThat(4).isEqualTo(line.getPoints().size()))
         );
     }
 
@@ -88,7 +88,7 @@ class LadderGameTest {
 
         // when
         LadderGame ladderGame = new LadderGame(participants, 5);
-        List<Line> lineList = ladderGame.getLineList();
+        List<Line> lineList = ladderGame.getLines();
 
         // then
         assertThrows(UnsupportedOperationException.class, () -> lineList.add(new Line(5)));

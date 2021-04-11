@@ -34,7 +34,7 @@ class LadderGenerationServiceTest {
         LadderGame ladderGame = service.generateLadderGame("pobi,honux,crong,jk", 5);
 
         // then
-        assertThat(5).isEqualTo(ladderGame.getLineList().size());
+        assertThat(5).isEqualTo(ladderGame.getLines().size());
     }
 
     @Test

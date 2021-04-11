@@ -22,11 +22,11 @@ public class LadderGenerationController {
     }
 
     private LadderGenerationResponse assembleResponse(LadderGame ladderGame) {
-        return new LadderGenerationResponse(assembleParticipantNameList(ladderGame.getParticipants()), LadderGame.LADDER_HORIZON_WIDTH, assembleLadderLineList(ladderGame.getLineList()));
+        return new LadderGenerationResponse(assembleParticipantNameList(ladderGame.getParticipants()), LadderGame.LADDER_HORIZON_WIDTH, assembleLadderLineList(ladderGame.getLines()));
     }
 
     private List<String> assembleParticipantNameList(Participants participants) {
-        return participants.getParticipantList().stream()
+        return participants.getParticipants().stream()
                 .map(Participant::getName)
                 .collect(Collectors.toList());
     }
@@ -38,7 +38,7 @@ public class LadderGenerationController {
     }
 
     private LadderLine assembleLadderLine(Line line) {
-        List<Boolean> pointList = line.getPointList().stream().map(Point::hasLine).collect(Collectors.toList());
+        List<Boolean> pointList = line.getPoints().stream().map(Point::hasLine).collect(Collectors.toList());
         return new LadderLine(pointList);
     }
 }

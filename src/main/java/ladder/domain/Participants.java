@@ -10,14 +10,14 @@ public class Participants {
 
     private static final String NAME_DELIMITER = ",";
 
-    private final List<Participant> participantList;
+    private final List<Participant> participants;
 
     public Participants(String participantNames) {
         this(generateParticipantList(participantNames));
     }
 
-    private Participants(List<Participant> participantList) {
-        this.participantList = participantList;
+    private Participants(List<Participant> participants) {
+        this.participants = participants;
     }
 
     private static List<Participant> generateParticipantList(String participantNames) {
@@ -34,11 +34,11 @@ public class Participants {
         }
     }
 
-    public List<Participant> getParticipantList() {
-        return participantList;
+    public List<Participant> getParticipants() {
+        return participants;
     }
 
     public int getCount() {
-        return participantList.size();
+        return participants.size();
     }
 }

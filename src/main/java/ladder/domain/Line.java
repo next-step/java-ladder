@@ -11,7 +11,7 @@ public class Line {
     private static final int FIRST_MIDDLE_POINT_INDEX = 1;
 
     private final LineWriteStrategy lineWriteStrategy;
-    private final List<Point> pointList;
+    private final List<Point> points;
 
     public Line(int pointCount) {
         this(new RandomLineWriteStrategy(), pointCount);
@@ -20,7 +20,7 @@ public class Line {
     public Line(LineWriteStrategy lineWriteStrategy, int pointCount) {
         validatePointCount(pointCount);
         this.lineWriteStrategy = lineWriteStrategy;
-        this.pointList = generatePointList(pointCount);
+        this.points = generatePointList(pointCount);
     }
 
     private void validatePointCount(int pointCount) {
@@ -70,7 +70,7 @@ public class Line {
         return new Point(EMPTY_LINE);
     }
 
-    public List<Point> getPointList() {
-        return this.pointList;
+    public List<Point> getPoints() {
+        return this.points;
     }
 }

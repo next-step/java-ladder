@@ -63,7 +63,7 @@ class ParticipantsTest {
         Participants participants = new Participants(participantNames);
 
         // then
-        for (Participant participant : participants.getParticipantList()) {
+        for (Participant participant : participants.getParticipants()) {
             boolean present = Arrays.stream(participantNames.split(",")).anyMatch(participantName -> participantName.equals(participant.getName()));
             assertThat(present).isTrue();
         }

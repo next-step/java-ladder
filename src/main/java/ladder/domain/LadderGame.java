@@ -11,15 +11,15 @@ public class LadderGame {
     public static final int LADDER_HORIZON_WIDTH = 5;
 
     private final Participants participants;
-    private final List<Line> lineList;
+    private final List<Line> lines;
 
     public LadderGame(Participants participants, int ladderHeight) {
         this(participants, generateLineList(participants, ladderHeight));
     }
 
-    private LadderGame(Participants participants, List<Line> lineList) {
+    private LadderGame(Participants participants, List<Line> lines) {
         this.participants = participants;
-        this.lineList = lineList;
+        this.lines = lines;
     }
 
     private static List<Line> generateLineList(Participants participants, int ladderHeight) {
@@ -42,7 +42,7 @@ public class LadderGame {
         return participants;
     }
 
-    public List<Line> getLineList() {
-        return Collections.unmodifiableList(lineList);
+    public List<Line> getLines() {
+        return Collections.unmodifiableList(lines);
     }
 }
