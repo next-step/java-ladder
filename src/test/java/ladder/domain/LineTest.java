@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -8,6 +7,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 class LineTest {
 
@@ -56,12 +56,16 @@ class LineTest {
         Line line = new Line(() -> true, 10);
 
         // then
-        Assertions.assertThat(line.getPointList().get(0).hasLine()).isTrue();
-        for (int i = 1; i < line.getPointList().size()-1; i++) {
-            boolean prevHasLine = line.getPointList().get(i-1).hasLine();
-            Assertions.assertThat(line.getPointList().get(i).hasLine()).isNotEqualTo(prevHasLine);
-        }
-        Assertions.assertThat(line.getPointList().get(line.getPointList().size()-1).hasLine()).isFalse();
+        assertAll(
+                () -> assertThat(line.getPointList().get(0).hasLine()).isTrue(),
+                () -> {
+                    for (int i = 1; i < line.getPointList().size()-1; i++) {
+                        boolean prevHasLine = line.getPointList().get(i-1).hasLine();
+                        assertThat(line.getPointList().get(i).hasLine()).isNotEqualTo(prevHasLine);
+                    }
+                },
+                () -> assertThat(line.getPointList().get(line.getPointList().size()-1).hasLine()).isFalse()
+        );
     }
 
 }
