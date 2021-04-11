@@ -3,8 +3,13 @@ package nextstep.ladder.view;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Members;
+import nextstep.ladder.domain.Point;
 
 public class ResultView {
+
+    public static final String VERTICAL_POINT = "     |";
+    public static final String VERTICAL_AND_HORIZONTAL_POINT = "-----|";
+
     public static void print(Members members, Ladder ladder) {
         printMembers(members);
         printLadder(ladder);
@@ -20,15 +25,16 @@ public class ResultView {
     }
 
     private static void printLine(Line line) {
-        System.out.print("     |");
-        line.points().forEach(point -> {
-            if (point.value()) {
-                System.out.print("-----|");
-            }
-            if (!point.value()) {
-                System.out.print("     |");
-            }
-        });
+        System.out.print(VERTICAL_POINT);
+        line.points().forEach(ResultView::printPoint);
         System.out.println();
+    }
+
+    private static void printPoint(Point point) {
+        if (point.value()) {
+            System.out.print(VERTICAL_AND_HORIZONTAL_POINT);
+            return;
+        }
+        System.out.print(VERTICAL_POINT);
     }
 }
