@@ -13,16 +13,16 @@ public final class Point {
     this.point = point;
   }
 
-  public static Point head(boolean canCreate) {
-    return new Point(canCreate);
+  public static Point head() {
+    return new Point(false);
   }
 
   public static Point body(Point before, boolean canCreate) {
     return new Point(!before.point && canCreate);
   }
 
-  public static Point tail() {
-    return new Point(false);
+  public static Point tail(boolean canCreate) {
+    return new Point(canCreate);
   }
 
   public String draw() {

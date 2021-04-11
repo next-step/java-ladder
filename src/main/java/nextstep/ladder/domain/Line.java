@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -14,14 +15,14 @@ public final class Line {
 
   private List<Point> createPoints(LineCreationStrategy lineCreationStrategy, int personCount) {
     List<Point> points = new ArrayList<>();
-    Point before = Point.head(lineCreationStrategy.canCreate());
+    Point before = Point.head();
 
     for (int i = 1; i < personCount - 1; i++) {
       points.add(before);
       before = Point.body(before, lineCreationStrategy.canCreate());
     }
     points.add(before);
-    points.add(Point.tail());
+    points.add(Point.tail(lineCreationStrategy.canCreate()));
     return points;
   }
 

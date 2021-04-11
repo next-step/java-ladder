@@ -15,18 +15,18 @@ class PointTest {
     final boolean canCreate = true;
 
     // when
-    final Point head = Point.head(canCreate);
+    final Point head = Point.head();
     final Point body1 = Point.body(head, canCreate);
     final Point body2 = Point.body(body1, canCreate);
-    final Point tail = Point.tail();
+    final Point tail = Point.tail(canCreate);
 
     // then
     assertAll(
-        () -> assertThat(head).isEqualTo(Point.head(canCreate)),
+        () -> assertThat(head).isEqualTo(Point.head()),
         () -> assertThat(body1).isEqualTo(Point.body(head, canCreate)),
         () -> assertThat(body2).isEqualTo(Point.body(body1, canCreate)),
         () -> assertThat(body2).isNotEqualTo(Point.body(head, canCreate)),
-        () -> assertThat(tail).isEqualTo(Point.tail())
+        () -> assertThat(tail).isEqualTo(Point.tail(canCreate))
     );
   }
 
@@ -37,8 +37,8 @@ class PointTest {
     final boolean canCreate = true;
 
     // when
-    final Point canDraw = Point.head(canCreate);
-    final Point cannotDraw = Point.body(canDraw, canCreate);
+    final Point cannotDraw = Point.head();
+    final Point canDraw = Point.body(cannotDraw, canCreate);
 
     // then
     assertAll(
