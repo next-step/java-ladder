@@ -14,9 +14,14 @@ public final class Line {
 
   private List<Point> createPoints(LineCreationStrategy lineCreationStrategy, int personCount) {
     List<Point> points = new ArrayList<>();
-    for (int i = 0; i < personCount; i++) {
-      points.add(new Point(lineCreationStrategy.canCreate()));
+    Point before = Point.head(lineCreationStrategy.canCreate());
+
+    for (int i = 1; i < personCount - 1; i++) {
+      points.add(before);
+      before = Point.body(before, lineCreationStrategy.canCreate());
     }
+    points.add(before);
+    points.add(Point.tail());
     return points;
   }
 

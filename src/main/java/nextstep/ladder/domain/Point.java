@@ -6,8 +6,20 @@ public final class Point {
 
   private final boolean point;
 
-  public Point(boolean point) {
+  private Point(boolean point) {
     this.point = point;
+  }
+
+  public static Point head(boolean canCreate) {
+    return new Point(canCreate);
+  }
+
+  public static Point body(Point before, boolean canCreate) {
+    return new Point(!before.point && canCreate);
+  }
+
+  public static Point tail() {
+    return new Point(false);
   }
 
   @Override
