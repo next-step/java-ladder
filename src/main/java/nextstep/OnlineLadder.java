@@ -1,5 +1,6 @@
 package nextstep;
 
+import java.util.Collections;
 import java.util.List;
 
 import static nextstep.constant.Constant.*;
@@ -25,5 +26,10 @@ public class OnlineLadder extends Ladder {
 
     public List<Integer> heights() {
         return coordinates.heights();
+    }
+
+    public String ladderString() {
+        Integer max = Collections.max(this.heights());
+        return null;
     }
 }

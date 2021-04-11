@@ -7,9 +7,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class ResultView implements ConsoleView {
-    private static final String HORIZON = "-----";
-    private static final String VERTICAL = "|";
-    private static final String EMPTY = "     ";
     private List<Integer> beforeHeight;
     private final int ladderCount;
 
@@ -27,16 +24,8 @@ public class ResultView implements ConsoleView {
     }
 
     public void print(OnlineLadder ladder) {
-        Integer max = Collections.max(ladder.heights());
-        for(int i = 0; i < ladder.heights().size(); i++) {
-            if (beforeHeight.get(i) != ladder.heights().get(i) && ladder.heights().get(i).equals(max)) {
-                System.out.print(HORIZON + VERTICAL);
-            } else {
-                System.out.print(EMPTY + VERTICAL);
-            }
-        }
+        System.out.print(ladder.ladderString());
         System.out.println();
-        this.beforeHeight = ladder.heights();
     }
 
     public void printAll(OnlineLadder ladder, String[] names) {

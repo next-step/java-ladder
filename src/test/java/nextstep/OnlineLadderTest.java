@@ -15,4 +15,9 @@ class OnlineLadderTest {
         ladder.move();
         assertThat(ladder.heights()).contains(1);
     }
+
+    @Test
+    @DisplayName("사다리그리기테스트")
+    void ladderString() {
+    }
 }
