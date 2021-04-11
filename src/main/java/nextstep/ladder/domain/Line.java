@@ -26,6 +26,10 @@ public final class Line {
     return points;
   }
 
+  public List<Point> points() {
+    return Collections.unmodifiableList(points);
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
