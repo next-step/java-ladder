@@ -11,17 +11,17 @@ public class LineTest {
 
     @Test
     void create() {
-        assertThatCode(() -> Line.from(5)).doesNotThrowAnyException();
+        assertThatCode(() -> Line.from(5, new RandomBooleanStrategy())).doesNotThrowAnyException();
     }
 
     @Test
     void points() {
-        List<Boolean> points = new ArrayList<>();
-        points.add(true);
-        points.add(false);
-        points.add(true);
-        points.add(false);
+        List<Point> points = new ArrayList<>();
+        points.add(Point.from(true));
+        points.add(Point.from(false));
+        points.add(Point.from(true));
+        points.add(Point.from(false));
 
-        assertThat(Line.from(5).points()).isEqualTo(points);
+        assertThat(Line.from(5, () -> true).points()).usingRecursiveComparison().isEqualTo(points);
     }
 }
