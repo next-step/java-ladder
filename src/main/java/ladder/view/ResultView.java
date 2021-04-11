@@ -1,48 +1,52 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
-import ladder.domain.Players;
-import ladder.domain.Point;
-
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ResultView {
-    private final static String MESSAGE_RESULT = "실행결과";
-    private final static Map<Point, String> printPoints = new HashMap<>();
-
-    static {
-        printPoints.put(Point.LEFT, "--|");
-        printPoints.put(Point.DOWN, "     |");
-        printPoints.put(Point.RIGHT, "     |---");
-    }
+    private final static String MESSAGE_LADDER_RESULT = "사다리 결과";
+    private final static String MESSAGE_EXECUTION_RESULT = "실행결과";
+    private final static int singleSize = 1;
+    private final static int firstIndex = 0;
 
     private ResultView() {
     }
 
-    private static void printPlayers(Players players){
-        players.players()
-                .stream()
-                .map(player -> String.format("%6s", player.name()))
+    public static void printPlayers(List<String> players){
+        System.out.println();
+        System.out.println(MESSAGE_LADDER_RESULT);
+        System.out.println();
+        players.stream()
+                .map(player -> String.format("%6s", player))
                 .forEach(System.out::print);
         System.out.println();
     }
 
-    private static void printLadder(Ladder ladder){
-        ladder.lines()
-                .stream()
-                .forEach(line -> {
-                    line.points()
-                            .forEach(point -> System.out.print(printPoints.get(point)));
-                    System.out.println();
-                });
+    public static void printPoint(String point){
+        System.out.print(point);
     }
 
-    public static void printResult(Players players, Ladder ladder) {
+    public static void printEmptyLine(){
         System.out.println();
-        System.out.println(MESSAGE_RESULT);
+    }
+
+    public static void printResult(List<String> executionResults) {
+        executionResults
+                .stream()
+                .map(result -> String.format("%6s", result))
+                .forEach(System.out::print);
         System.out.println();
-        printPlayers(players);
-        printLadder(ladder);
+    }
+
+    public static void printExecutionResult(Map<String, String> result){
+        System.out.println();
+        System.out.println(MESSAGE_EXECUTION_RESULT);
+        if(result.size() == singleSize){
+            System.out.println(result.values().toArray()[firstIndex]);
+            return;
+        }
+        for(String player : result.keySet()) {
+            System.out.println(String.format("%s : %s", player, result.get(player)));
+        }
     }
 }

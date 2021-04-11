@@ -31,4 +31,8 @@ public enum Point {
         }
         return DOWN;
     }
+
+    public int move(){
+        return move;
+    }
 }
