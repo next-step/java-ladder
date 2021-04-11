@@ -23,7 +23,9 @@ class OnlineLadderTest {
         coordinates.add(new Coordinate("bong", 0, 0));
         coordinates.add(new Coordinate("big", 0, 0));
 
-        Ladder ladder = new OnlineLadder(2, coordinates);
+        Ladder ladder = new OnlineLadder(2, coordinates, 2);
+        assertThat(ladder.ladderString()).isEqualTo("          ");
+        ladder.move();
         assertThat(ladder.ladderString()).contains("-----");
     }
 }

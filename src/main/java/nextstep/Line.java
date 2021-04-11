@@ -3,11 +3,23 @@ package nextstep;
 import java.util.ArrayList;
 import java.util.List;
 
+import static nextstep.constant.Constant.PER_DOT;
+
 public class Line {
     private List<Boolean> points = new ArrayList<>();
 
+
     public Line (int countOfPerson) {
-        // 라인의 좌표 값에 선이 있는지 유무를 판단하는 로직 추가
+        for (int i = 0; i < countOfPerson * PER_DOT; i++) {
+            points.add(false);
+        }
+    }
+
+    public void mark(int target) {
+        points.stream()
+                .skip(target)
+                .limit(target + PER_DOT)
+                .forEach(System.out::println);
     }
 
 }

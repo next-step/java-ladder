@@ -1,5 +1,6 @@
 package nextstep;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -8,15 +9,21 @@ import static nextstep.constant.Constant.*;
 public class OnlineLadder extends Ladder {
     private final int height;
     private final Coordinates coordinates;
+    private final List<Line> lines;
 
     public OnlineLadder(int height) {
         this.height = height;
         this.coordinates = new Coordinates();
+        this.lines = new ArrayList<>();
     }
 
-    public OnlineLadder(int height, Coordinates coordinates) {
+    public OnlineLadder(int height, Coordinates coordinates, int countOfPerson) {
         this.height = height;
         this.coordinates = coordinates;
+        this.lines = new ArrayList<>(countOfPerson);
+        for (Line line : lines) {
+            line = new Line(countOfPerson);
+        }
     }
 
     public void add(String name) {
