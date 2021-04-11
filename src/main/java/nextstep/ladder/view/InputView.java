@@ -21,6 +21,7 @@ public class InputView {
     }
 
     public String height() {
+        System.out.println();
         System.out.println(INPUT_HEIGHT);
         String height = scanner.nextLine().trim();
         PreCondition.checkNullOrEmpty(height);
