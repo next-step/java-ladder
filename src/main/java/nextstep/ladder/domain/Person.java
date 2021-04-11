@@ -14,10 +14,6 @@ public final class Person {
     return new Person(new Name(name));
   }
 
-  public Name getName() {
-    return name;
-  }
-
   public String personName() {
     return name.getName();
   }
