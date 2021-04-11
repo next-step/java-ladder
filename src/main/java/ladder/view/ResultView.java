@@ -1,13 +1,18 @@
 package ladder.view;
 
+import java.util.stream.Collectors;
 import ladder.domain.Ladder;
 import ladder.domain.Players;
-import ladder.domain.Point;
 import ladder.domain.Results;
+import ladder.domain.Line;
+import ladder.domain.Point;
 
 public class ResultView {
 
   private static final String separator = System.lineSeparator();
+  private static final String VERTICAL = "|";
+  private static final String CONNECT = "-----";
+  private static final String DISCONNECT = "     ";
 
   public static void showPlayers(Players players) {
     System.out.println(separator + "사다리 결과" + separator);
@@ -18,17 +23,24 @@ public class ResultView {
   }
 
   public static void showLadder(Ladder ladder, Results results) {
-    ladder.lines().forEach(line -> {
-      line.points().stream()
-          .map(Point::pedal)
-          .forEach(System.out::print);
-      System.out.println();
-    });
+    ladder.lines().stream()
+        .map(line -> DISCONNECT + showLine(line) + separator)
+        .forEach(System.out::print);
 
     results.result().stream()
         .map(result -> String.format("%6s", result.getResult()))
         .forEach(System.out::print);
     System.out.println();
+  }
+
+  private static String showLine(Line line) {
+    return line.points().stream()
+        .map(point -> VERTICAL + hasPedal(point))
+        .collect(Collectors.joining());
+  }
+
+  private static String hasPedal(Point point) {
+    return point.isRight() ? CONNECT : DISCONNECT;
   }
 
   public static void showResultOfPerson(Results results, String name) {
