@@ -8,7 +8,6 @@ import static nextstep.constant.Constant.PER_DOT;
 public class Line {
     private List<Boolean> points = new ArrayList<>();
 
-
     public Line (int countOfPerson) {
         for (int i = 0; i < countOfPerson * PER_DOT; i++) {
             points.add(false);
@@ -16,10 +15,12 @@ public class Line {
     }
 
     public void mark(int target) {
-        points.stream()
-                .skip(target)
-                .limit(target + PER_DOT)
-                .forEach(System.out::println);
+        for (int i = target * PER_DOT; i < target * PER_DOT + PER_DOT; i++) {
+            points.set(i, true);
+        }
     }
 
+    public List<Boolean> getPoints() {
+        return points;
+    }
 }

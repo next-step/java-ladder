@@ -18,12 +18,12 @@ class LineTest {
         line.mark(2);
         List<Boolean> aspected = new ArrayList<>();
         for (int i = 0; i < countOfPerson * PER_DOT; i++) {
-            if (i >= 5 && i < 10) {
+            if (i >= 10 && i <= 15) {
                 aspected.add(true);
             } else {
                 aspected.add(false);
             }
         }
-        assertThat(line).isEqualTo(aspected);
+        assertThat(line.getPoints()).isEqualTo(aspected);
     }
 }
