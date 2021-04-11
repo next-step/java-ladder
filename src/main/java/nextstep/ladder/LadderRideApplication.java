@@ -11,6 +11,5 @@ public class LadderRideApplication {
 
         LadderGameController ladderGameController = new LadderGameController(inputView, resultView);
         ladderGameController.hintStart();
-
     }
 }

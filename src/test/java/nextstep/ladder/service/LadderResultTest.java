@@ -43,19 +43,4 @@ class LadderResultTest {
 
         assertThat(ladderResult.findAll()).contains("seok : good");
     }
-
-    @DisplayName("NextStep 버전의 사다리 타기 테스트")
-    @Test
-    void findOf_next_step_버전의_사다리_타기_테스트() {
-        // given
-        Participants participants = Participants.valueOf("kim", "seok", "rae");
-        Height height = Height.valueOf(3);
-        LadderRewards rewards = LadderRewards.valueOf("꽝", "1000", "5000");
-        HintLadder ladder = HintLadder.valueOf(participants, height);
-        // when
-        LadderResult ladderResult = LadderResult.rideLadder(participants, ladder, rewards);
-        String reward = ladderResult.findOf(User.valueOf("kim"));
-        // then
-        assertThat(reward).isIn("꽝", "1000", "5000");
-    }
 }

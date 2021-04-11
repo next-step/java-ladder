@@ -1,6 +1,8 @@
 package nextstep.ladder.controller;
 
 import nextstep.ladder.domain.Height;
+import nextstep.ladder.domain.Position;
+import nextstep.ladder.domain.Reward;
 import nextstep.ladder.domain.User;
 import nextstep.ladder.generator.DefaultLineGenerator;
 import nextstep.ladder.generator.LineGenerator;
@@ -12,8 +14,7 @@ import nextstep.ladder.service.Participants;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
-import java.util.Arrays;
-import java.util.Objects;
+import java.util.*;
 
 public class LadderGameController {
 
@@ -37,7 +38,7 @@ public class LadderGameController {
         Height height = inputHeight();
 
         Ladder ladder = Ladder.valueOf(participants, height, generator);
-        LadderResult ladderResult = LadderResult.rideLadder(participants, ladder, rewards);
+        LadderResult ladderResult = rideLadder(participants, ladder, rewards);
 
         resultView.printResult(ladder, participants, rewards);
 
@@ -53,7 +54,7 @@ public class LadderGameController {
         Height height = inputHeight();
 
         HintLadder hintLadder = HintLadder.valueOf(participants, height);
-        LadderResult ladderResult = LadderResult.rideLadder(participants, hintLadder, rewards);
+        LadderResult ladderResult = rideLadder(participants, hintLadder, rewards);
 
         resultView.printResult(hintLadder, participants, rewards);
 
@@ -61,6 +62,35 @@ public class LadderGameController {
         do {
             user = inputUserResult();
         } while (!isOneOrAll(ladderResult, user));
+    }
+
+    public LadderResult rideLadder(
+            final Participants participants, final Ladder ladder, final LadderRewards ladderRewards) {
+
+        Map<User, Reward> result = new LinkedHashMap<>();
+        Set<User> users = participants.getUsers();
+
+        for (User user : users) {
+            Position rewardPosition = ladder.findEndPosition(user.position());
+            Reward reward = ladderRewards.findReward(rewardPosition.currentPosition());
+            result.put(user, reward);
+        }
+
+        return LadderResult.valueOf(result);
+    }
+    private LadderResult rideLadder(Participants participants, HintLadder hintLadder, LadderRewards rewards) {
+        Map<User, Reward> result = new LinkedHashMap<>();
+        Set<User> users = participants.getUsers();
+
+        for (User user : users) {
+
+            int movePosition = user.position().currentPosition();
+            int rewardPosition = hintLadder.findEndPosition(movePosition);
+            Reward reward = rewards.findReward(rewardPosition);
+            result.put(user, reward);
+        }
+
+        return LadderResult.valueOf(result);
     }
 
     private Participants inputParticipants() {
