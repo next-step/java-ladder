@@ -6,7 +6,6 @@ import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Name;
 import nextstep.ladder.domain.People;
 import nextstep.ladder.domain.Person;
-import nextstep.ladder.domain.RandomLineCreationStrategy;
 import nextstep.ladder.utils.StringUtils;
 
 public final class ResultView {
@@ -18,7 +17,7 @@ public final class ResultView {
     System.out.println("실행결과");
     System.out.println();
     printPeople(ladder.people());
-    printLines(ladder.lines(new RandomLineCreationStrategy()));
+    printLines(ladder.lines());
   }
 
   private static void printPeople(People people) {

@@ -13,24 +13,19 @@ class LadderTest {
   final LadderHeight ladderHeight = new LadderHeight(height);
   final People people = People.from(new String[]{"pobi", "crong", "honux", "jk"});
 
-  LineCreationStrategy lineCreationStrategy;
-
-  @BeforeEach
-  void setUpLineCreationStrategy() {
-    lineCreationStrategy = () -> false;
-  }
+  LineCreationStrategy lineCreationStrategy = () -> false;
 
   Ladder ladder;
 
   @BeforeEach
   void setUp() {
-    ladder = new Ladder(people, ladderHeight);
+    ladder = new Ladder(people, ladderHeight, lineCreationStrategy);
   }
 
   @Test
   @DisplayName("높이와, 이름 목록을 받아서 생성한다.")
   void create() {
-    assertThat(ladder).isEqualTo(new Ladder(people, ladderHeight));
+    assertThat(ladder).isEqualTo(new Ladder(people, ladderHeight, lineCreationStrategy));
   }
 
   @Test
@@ -38,7 +33,7 @@ class LadderTest {
   void lines() {
     // given
     // when
-    final List<Line> lines = ladder.lines(lineCreationStrategy);
+    final List<Line> lines = ladder.lines();
 
     // then
     assertThat(lines).hasSize(height);
