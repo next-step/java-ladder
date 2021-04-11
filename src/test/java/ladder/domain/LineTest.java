@@ -17,15 +17,15 @@ class LineTest {
         Line line = Line.of(5, () -> Boolean.TRUE);
 
         // when
-        List<Boolean> points = line.getPoints();
+        List<Point> points = line.getPoints();
 
         // then
         assertAll(
-            () -> assertThat(points.get(0)).isTrue(),
-            () -> assertThat(points.get(1)).isFalse(),
-            () -> assertThat(points.get(2)).isTrue(),
-            () -> assertThat(points.get(3)).isFalse(),
-            () -> assertThat(points.get(3)).isFalse()
+            () -> assertThat(points.get(0).getPoint()).isTrue(),
+            () -> assertThat(points.get(1).getPoint()).isFalse(),
+            () -> assertThat(points.get(2).getPoint()).isTrue(),
+            () -> assertThat(points.get(3).getPoint()).isFalse(),
+            () -> assertThat(points.get(3).getPoint()).isFalse()
         );
     }
 
@@ -36,15 +36,15 @@ class LineTest {
         Line line = Line.of(5, () -> Boolean.FALSE);
 
         // when
-        List<Boolean> points = line.getPoints();
+        List<Point> points = line.getPoints();
 
         // then
         assertAll(
-            () -> assertThat(points.get(0)).isFalse(),
-            () -> assertThat(points.get(1)).isFalse(),
-            () -> assertThat(points.get(2)).isFalse(),
-            () -> assertThat(points.get(3)).isFalse(),
-            () -> assertThat(points.get(3)).isFalse()
+            () -> assertThat(points.get(0).getPoint()).isFalse(),
+            () -> assertThat(points.get(1).getPoint()).isFalse(),
+            () -> assertThat(points.get(2).getPoint()).isFalse(),
+            () -> assertThat(points.get(3).getPoint()).isFalse(),
+            () -> assertThat(points.get(3).getPoint()).isFalse()
         );
     }
 
@@ -55,13 +55,13 @@ class LineTest {
         Line line = Line.of(3, () -> Boolean.TRUE);
 
         // when
-        List<Boolean> points = line.getPoints();
+        List<Point> points = line.getPoints();
 
         // then
         assertAll(
-                () -> assertThat(points.get(0)).isTrue(),
-                () -> assertThat(points.get(1)).isFalse(),
-                () -> assertThat(points.get(2)).isFalse()
+                () -> assertThat(points.get(0).getPoint()).isTrue(),
+                () -> assertThat(points.get(1).getPoint()).isFalse(),
+                () -> assertThat(points.get(2).getPoint()).isFalse()
         );
     }
 }

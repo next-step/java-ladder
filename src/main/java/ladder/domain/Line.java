@@ -9,13 +9,13 @@ import java.util.stream.Collector;
 import java.util.stream.Stream;
 
 public class Line {
-    private final List<Boolean> points;
+    private final List<Point> points;
 
     private Line() {
         this(new ArrayList<>());
     }
 
-    private Line(final List<Boolean> points) {
+    private Line(final List<Point> points) {
         this.points = points;
     }
 
@@ -32,17 +32,18 @@ public class Line {
     }
 
     private void add(Boolean point, int totalCount) {
+        int index = points.size();
         if (isFirst()) {
-            points.add(point);
+            points.add(Point.from(index, point));
             return;
         }
 
         if (mustFalse(totalCount)) {
-            points.add(Boolean.FALSE);
+            points.add(Point.from(index, Boolean.FALSE));
             return;
         }
 
-        points.add(point);
+        points.add(Point.from(index, point));
     }
 
     private boolean mustFalse(int totalCount) {
@@ -58,10 +59,10 @@ public class Line {
     }
 
     private boolean peekLast() {
-        return points.get(points.size() - 1);
+        return points.get(points.size() - 1).getPoint();
     }
 
-    public List<Boolean> getPoints() {
+    public List<Point> getPoints() {
         return Collections.unmodifiableList(points);
     }
 }
