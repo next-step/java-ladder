@@ -1,46 +1,31 @@
-package step2.domain;
+package step2;
 
+import step2.domain.Line;
+
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.stream.IntStream;
 
 public class Lines {
 
-    private List<Line> lines;
+    private final List<Line> lines;
 
-    public Lines() {}
-
-    public Lines(final List<Line> lines) {
-        this.lines = lines;
+    public Lines(int height, int countOfPerson) {
+        this.lines = createLines(height, countOfPerson);
     }
 
-    public static Lines lines(Height height, int personCount) {
-        Lines lines = new Lines();
-        Line line = new Line();
-
-        lines.lines =
-                Stream.generate(() -> line.generate(personCount))
-                .limit(height.height())
-                .collect(Collectors.toList());
-
+    private List<Line> createLines(int height, int countOfPerson) {
+        List<Line> lines = new ArrayList<>();
+        for (int i = 0; i < height; i++) {
+            lines.add(new Line(countOfPerson));
+        }
         return lines;
     }
 
     public List<Line> lines() {
-        return this.lines;
+        return Collections.unmodifiableList(lines);
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Lines lines1 = (Lines) o;
-        return Objects.equals(lines, lines1.lines);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(lines);
-    }
 }

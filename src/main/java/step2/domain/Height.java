@@ -1,14 +1,20 @@
-package step2.domain;
+package step2;
+
+import java.util.Objects;
 
 public class Height {
+    private static final String MINIMUM_HEIGHT_ERROR = "사다리의 높이는 최소 2 이상이어야 합니다.";
     private final int height;
 
     public Height(int height) {
+        checkMinimumHeight(height);
         this.height = height;
     }
 
-    public int height() {
-        return this.height;
+    private void checkMinimumHeight(int height) {
+        if (height < 2) {
+            throw new IllegalArgumentException(MINIMUM_HEIGHT_ERROR);
+        }
     }
 
     @Override
@@ -19,4 +25,8 @@ public class Height {
         return height == height1.height;
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(height);
+    }
 }
