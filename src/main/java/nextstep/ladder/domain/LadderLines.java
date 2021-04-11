@@ -22,6 +22,10 @@ public final class LadderLines {
     return lines;
   }
 
+  public People people() {
+    return people;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {

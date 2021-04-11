@@ -1,23 +1,24 @@
 package nextstep.ladder.io;
 
 import java.util.List;
-import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.LadderLines;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Name;
 import nextstep.ladder.domain.People;
 import nextstep.ladder.domain.Person;
+import nextstep.ladder.domain.RandomLineCreationStrategy;
 import nextstep.ladder.utils.StringUtils;
 
 public final class ResultView {
 
   private ResultView() {}
 
-  public static void printLadder(Ladder ladder) {
+  public static void printLadder(LadderLines ladderLines) {
     System.out.println();
     System.out.println("실행결과");
     System.out.println();
-    printPeople(ladder.people());
-    printLines(ladder.lines());
+    printPeople(ladderLines.people());
+    printLines(ladderLines.lines(new RandomLineCreationStrategy()));
   }
 
   private static void printPeople(People people) {

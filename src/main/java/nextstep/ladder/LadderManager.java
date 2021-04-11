@@ -1,7 +1,7 @@
 package nextstep.ladder;
 
-import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.LadderHeight;
+import nextstep.ladder.domain.LadderLines;
 import nextstep.ladder.domain.People;
 import nextstep.ladder.exception.LadderException;
 import nextstep.ladder.io.InputView;
@@ -13,7 +13,7 @@ public final class LadderManager {
     People people = getPeople();
     LadderHeight ladderHeight = getLadderHeight();
 
-    final Ladder ladder = new Ladder(ladderHeight, people);
+    final LadderLines ladder = new LadderLines(ladderHeight, people);
     ResultView.printLadder(ladder);
   }
 
