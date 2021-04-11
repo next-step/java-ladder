@@ -1,5 +1,6 @@
 package step2.controller;
 
+
 import step2.domain.Height;
 import step2.domain.Lines;
 import step2.domain.Persons;
@@ -15,9 +16,8 @@ public class LadderGame {
         Persons persons = new Persons(participants);
         int height = inputView.inputHeight();
 
-        Lines lines = Lines.lines(new Height(height), persons.personList().size());
         resultView.printPerson(persons);
-        resultView.printLadder(lines);
+        resultView.printLadder(new Lines(new Height(height).height(), persons.personList().size()));
 
     }
 }
