@@ -28,13 +28,13 @@ public class LadderGame {
         return playerName.equals(ALL) ? getAllResults() : getResult(playerName);
     }
 
-    public LadderGameReport getAllResults() {
+    private LadderGameReport getAllResults() {
         return players.stream()
                       .map(player -> PlayerDto.of(player, ladderBoard.getReward(player.getLane())))
                       .collect(collectingAndThen(toList(), LadderGameReport::new));
     }
 
-    public LadderGameReport getResult(String playerName) {
+    private LadderGameReport getResult(String playerName) {
         Player player = players.getPlayerBy(playerName);
 
         PlayerDto playerDto = PlayerDto.of(player, ladderBoard.getReward(player.getLane()));
