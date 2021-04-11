@@ -14,7 +14,7 @@ public class Line implements Iterable<Point> {
 
     public static Line from(int countOfPerson, BooleanStrategy booleanStrategy) {
         List<Point> points = new ArrayList<>();
-        points.add(Point.from(booleanStrategy.value()));
+        points.add(Point.from(booleanStrategy));
         for (int i = 0; i < countOfPerson - 2; i++) {
             points.add(points.get(i).nextPoint());
         }
