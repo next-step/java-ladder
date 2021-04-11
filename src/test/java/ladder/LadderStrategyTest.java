@@ -9,7 +9,7 @@ public class LadderStrategyTest {
     @DisplayName("사다리그리기전략의 방향결정 테스트")
     @Test
     void direction() {
-        LadderStrategy strategy = () -> "RIGHT";
-        assertThat(strategy.direction()).isEqualTo("RIGHT");
+        LadderStrategy strategy = () -> Direction.RIGHT;
+        assertThat(strategy.direction()).isEqualTo(Direction.RIGHT);
     }
 }
