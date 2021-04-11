@@ -19,10 +19,9 @@ public final class People {
   }
 
   public static People from(final String[] names) {
-    return new People(Arrays.stream(names)
+    return Arrays.stream(names)
         .map(Person::valueOf)
-        .collect(Collectors.toList())
-    );
+        .collect(Collectors.collectingAndThen(Collectors.toList(), People::new));
   }
 
   private void validateSize(final List<Person> people) {
