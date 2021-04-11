@@ -39,9 +39,9 @@ public class Line {
         for (int i = 0; i < points.size(); i++) {
             stringBuilder.append("|");
             if (points.get(i)) {
-                stringBuilder.append(HORIZON);
+                stringBuilder.append(HORIZON_LADDER_STRING);
             } else {
-                stringBuilder.append(EMPTY);
+                stringBuilder.append(EMPTY_LADDER_STRING);
             }
             if (i == points.size() - 1) {
                 stringBuilder.append("|");
