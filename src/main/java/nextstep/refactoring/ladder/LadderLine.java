@@ -4,6 +4,7 @@ import nextstep.refactoring.ladder.engine.Line;
 import nextstep.refactoring.ladder.engine.Point;
 import nextstep.refactoring.ladder.engine.Position;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -23,6 +24,22 @@ public class LadderLine implements Line {
 
     public static Line of(List<Point> points) {
         validate(points);
+        return new LadderLine(points);
+    }
+
+    public static Line init(int numberOfPoints) {
+        List<Point> points = new ArrayList<>();
+
+        LadderPoint point = LadderPoint.first();
+        points.add(point);
+
+        for (int i = 0; i < numberOfPoints - 1; i++) {
+            point = point.next();
+            points.add(point);
+        }
+
+        points.add(point.last());
+
         return new LadderLine(points);
     }
 
