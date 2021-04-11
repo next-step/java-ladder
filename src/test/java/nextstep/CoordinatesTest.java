@@ -15,5 +15,13 @@ class CoordinatesTest {
         coordinates.move(0);
         assertThat(coordinates.heights().get(0)).isEqualTo(1);
         assertThat(coordinates.heights().get(1)).isEqualTo(0);
+
+        coordinates.move(0);
+        assertThat(coordinates.heights().get(0)).isEqualTo(2);
+        assertThat(coordinates.heights().get(1)).isEqualTo(0);
+
+        coordinates.move(1);
+        assertThat(coordinates.heights().get(0)).isEqualTo(2);
+        assertThat(coordinates.heights().get(1)).isEqualTo(1);
     }
 }
