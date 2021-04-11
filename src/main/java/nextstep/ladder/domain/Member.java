@@ -1,6 +1,8 @@
 package nextstep.ladder.domain;
 
 public class Member {
+
+    public static final int NAME_MAX_LENGTH = 5;
     public final String name;
 
     private Member(String name) {
@@ -8,7 +10,7 @@ public class Member {
     }
 
     public static Member from(String name) {
-        if (name.length() > 5) {
+        if (name.length() > NAME_MAX_LENGTH) {
             throw new IllegalArgumentException("참여자 이름은 5글자 이하여야 합니다.");
         }
         return new Member(name);
