@@ -1,7 +1,7 @@
 package nextstep.ladder;
 
-import nextstep.Ladder;
-import nextstep.OnlineLadder;
+import nextstep.model.Ladder;
+import nextstep.model.OnlineLadder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

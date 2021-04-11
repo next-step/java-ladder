@@ -1,6 +1,6 @@
 package nextstep.ladder;
 
-import nextstep.Players;
+import nextstep.model.Players;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

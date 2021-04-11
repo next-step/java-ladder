@@ -1,4 +1,4 @@
-package nextstep;
+package nextstep.model;
 
 import java.util.ArrayList;
 import java.util.List;

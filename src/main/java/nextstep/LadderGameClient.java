@@ -1,5 +1,6 @@
 package nextstep;
 
+import nextstep.model.OnlineLadder;
 import nextstep.view.InputView;
 import nextstep.view.ResultView;
 
@@ -15,9 +16,10 @@ public class LadderGameClient {
         ResultView resultView = new ResultView(ladderCount);
         String[] names = namesString.split(",");
         OnlineLadder ladder = new OnlineLadder(ladderCount, names.length - 1, names);
-        for (int i = 0; i < ladderCount; i++) {
-            ladder.lineMark(i);
-        }
-        resultView.printAll(ladder, names);
+        resultView.printAll(ladder);
+
+        OnlineLadder ladder2 = new OnlineLadder(ladderCount, names.length - 1, names);
+        resultView.printAll(ladder2);
+        resultView.printAll(ladder2);
     }
 }

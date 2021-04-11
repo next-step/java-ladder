@@ -1,12 +1,9 @@
-package nextstep;
+package nextstep.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.OptionalInt;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 import static nextstep.constant.Constant.*;
 
@@ -38,7 +35,6 @@ public class Line {
         long falseCount = points.stream()
                 .filter(s -> s == false)
                 .count();
-
         if (falseCount == 0) {
             throw new IllegalArgumentException("Have to redraw");
         }

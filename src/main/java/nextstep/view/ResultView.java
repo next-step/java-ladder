@@ -1,6 +1,6 @@
 package nextstep.view;
 
-import nextstep.OnlineLadder;
+import nextstep.model.OnlineLadder;
 
 import static nextstep.constant.Constant.EMPTY_LADDER_STRING;
 
@@ -21,11 +21,8 @@ public class ResultView implements ConsoleView {
         System.out.println();
     }
 
-    public void printAll(OnlineLadder ladder, String[] names) {
-        for (String name : names) {
-            System.out.print(name + EMPTY_LADDER_STRING);
-        }
-        System.out.println();
+    public void printAll(OnlineLadder ladder) {
+        System.out.println(ladder.playersString());
         for (int i = 0; i < this.ladderCount; i++) {
             this.print(ladder, i);
         }

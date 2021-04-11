@@ -1,9 +1,10 @@
-package nextstep;
+package nextstep.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class Players {
     private final List<String> names;
@@ -20,8 +21,8 @@ public class Players {
             this.names.add(name);
         }
     }
-
     public String names() {
-        return names.toString();
+        return names.stream()
+                .collect(Collectors.joining(" ","",""));
     }
 }

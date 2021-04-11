@@ -1,4 +1,4 @@
-package nextstep;
+package nextstep.model;
 
 public class OnlineLadder extends Ladder {
     private final Lines lines;
@@ -9,7 +9,7 @@ public class OnlineLadder extends Ladder {
         this.height = maxVertical;
         this.lines = new Lines(maxVertical, countOfPerson);
         this.players = new Players(names);
-
+        this.lineMarkAll();
     }
 
     public void lineMark(int targetVertical, int targetHorizon) {
@@ -20,8 +20,17 @@ public class OnlineLadder extends Ladder {
         this.lines.mark(targetVertical);
     }
 
+    public void lineMarkAll() {
+        for (int i = 0; i < this.height; i++) {
+            this.lines.mark(i);
+        }
+    }
 
     public String ladderString(int targetVertical) {
         return this.lines.lineString(targetVertical);
+    }
+
+    public String playersString() {
+        return this.players.names();
     }
 }
