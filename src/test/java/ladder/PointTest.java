@@ -9,21 +9,21 @@ public class PointTest {
     @DisplayName("위치정보를 인자로 받아 인스턴스가 정상적으로 생성된다.")
     @Test
     void create_위치() {
-        Point pointIndex = new Point("FIRST");
-        assertThat(pointIndex).isEqualTo(new Point("FIRST"));
+        Point pointIndex = new Point(Position.FIRST);
+        assertThat(pointIndex).isEqualTo(new Point(Position.FIRST));
     }
 
     @DisplayName("첫번째 Point 여부를 반환한다.")
     @Test
     void first() {
-        Point point = new Point("FIRST");
+        Point point = new Point(Position.FIRST);
         assertThat(point.isFirst()).isTrue();
     }
 
     @DisplayName("마지막 Point 여부를 반환한다.")
     @Test
     void last() {
-        Point point = new Point("LAST");
+        Point point = new Point(Position.LAST);
         assertThat(point.isLast()).isTrue();
     }
 }

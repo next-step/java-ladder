@@ -19,8 +19,8 @@ public class PlayersTest {
     @Test
     void position() {
         Players players = Players.of(Arrays.asList("test1", "test2", "test3", "test4"));
-        assertThat(players.playerPosition(new Player("test1"))).isEqualTo("FIRST");
-        assertThat(players.playerPosition(new Player("test2"))).isEqualTo("BODY");
-        assertThat(players.playerPosition(new Player("test4"))).isEqualTo("LAST");
+        assertThat(players.playerPosition(new Player("test1"))).isEqualTo(Position.FIRST);
+        assertThat(players.playerPosition(new Player("test2"))).isEqualTo(Position.BODY);
+        assertThat(players.playerPosition(new Player("test4"))).isEqualTo(Position.LAST);
     }
 }
