@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-public class OnlineLadder implements Ladder {
+public class OnlineLadder extends Ladder {
     protected final List<Coordinate> coordinates;
     private final int height;
 
