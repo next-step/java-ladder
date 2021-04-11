@@ -6,16 +6,16 @@ import java.util.List;
 
 public class ResultView {
 
-    private static final String LINE = "-----|";
+    private static final String LINE = "|-----";
     private static final String BLANK = " ";
-    private static final String NO_LINE = "     |";
+    private static final String NO_LINE = "|     ";
     private static final int MAX_LENGTH = 6;
 
 
     public void printPerson(Persons persons) {
         persons.personList()
                 .stream()
-                .map(Person::of)
+                .map(Person::name)
                 .forEach(name -> {
                     int blank = MAX_LENGTH - name.length();
                     printBlank(blank);
@@ -33,23 +33,22 @@ public class ResultView {
     public void printLadder(Lines lines) {
 
         lines.lines().stream()
-                .map(Line::getPoints)
+                .map(Line::row)
                 .forEach(ResultView::printLine);
     }
 
     private static void printLine(List<Point> points) {
         points.forEach(
-                point -> System.out.print(getLine(point.currentPoint()))
+                point -> System.out.print(getLine(point))
         );
         System.out.println(BLANK);
     }
 
-    private static String getLine(boolean currentPoint) {
-        if (currentPoint) {
+    private static String getLine(Point point) {
+        Location location = point.location();
+        if (location.isRight()) {
             return LINE;
         }
         return NO_LINE;
     }
-
-
 }
