@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.domain.engine.LadderResults;
+
 import java.util.HashMap;
 import java.util.List;
 
@@ -62,10 +64,10 @@ public class Ladder {
         return lines.lines();
     }
 
-    public LadderStatistics ladderStatistics(Players players, ExecutionResults executionResults){
+    public LadderResults ladderResults(Players players, ExecutionResults executionResults){
         HashMap<Player, Integer> playersPosition = new HashMap<>();
         initPlayersPosition(players,playersPosition);
         movePlayersPosition(playersPosition);
-        return new LadderStatistics(playersResults(playersPosition, executionResults));
+        return new LadderResults(playersResults(playersPosition, executionResults));
     }
 }

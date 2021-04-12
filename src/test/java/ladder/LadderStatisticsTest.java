@@ -1,6 +1,6 @@
 package ladder;
 
-import ladder.domain.LadderStatistics;
+import ladder.domain.engine.LadderResults;
 import ladder.domain.Player;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +14,7 @@ public class LadderStatisticsTest {
         HashMap playersResult = new HashMap();
         playersResult.put(new Player("crong"), "꽝");
         playersResult.put(new Player("pobi"), "1500");
-        LadderStatistics ladderStatistics = new LadderStatistics(playersResult);
+        LadderResults ladderStatistics = new LadderResults(playersResult);
         assertThatThrownBy(() -> ladderStatistics.results(new Player("rupy")))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("참여한 사람의 결과만 확인할 수 있습니다.");
