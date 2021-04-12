@@ -3,6 +3,7 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.IntStream;
 
 import ladder.exception.NotEqualCountException;
 import ladder.exception.NotFoundException;
@@ -14,9 +15,8 @@ public class Prizes {
     public Prizes(String stringPrizes, int countOfPerson) {
         String[] splitPrizes = StringSpliter.split(stringPrizes);
         validate(splitPrizes.length, countOfPerson);
-        for (int i = 0; i < splitPrizes.length; i++) {
-            prizes.add(new Prize(i, splitPrizes[i]));
-        }
+        IntStream.range(0, splitPrizes.length)
+            .forEach(i -> prizes.add(new Prize(i, splitPrizes[i])));
     }
     private void validate(int size, int countOfPerson) {
         if (size != countOfPerson) {

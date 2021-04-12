@@ -1,8 +1,10 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.IntStream;
 
 import ladder.exception.DuplicateNameException;
 import ladder.exception.NotFoundException;
@@ -13,15 +15,16 @@ public class Players {
 
     public Players(String names) {
         String[] splitNames = StringSpliter.split(names);
-        for (int i = 0; i < splitNames.length; i++) {
-            validate(splitNames[i]);
-            players.add(new Player(i, splitNames[i]));
-        }
+        IntStream.range(0, splitNames.length)
+            .forEach(i -> {
+                validate(splitNames[i]);
+                players.add(new Player(i, splitNames[i]));
+            });
     }
 
     private void validate(String name) {
         boolean isExists = players.stream()
-            .filter(player -> player.getPlayerName().equals(new PlayerName(name)))
+            .filter(player -> player.isNameEqual(new PlayerName(name)))
             .findFirst()
             .isPresent();
 

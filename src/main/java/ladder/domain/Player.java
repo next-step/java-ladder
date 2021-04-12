@@ -19,6 +19,10 @@ public class Player {
         return lineNumber;
     }
 
+    public boolean isNameEqual(PlayerName playerName) {
+        return this.playerName.equals(playerName);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o)
