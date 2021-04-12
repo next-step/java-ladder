@@ -20,11 +20,12 @@ public class LadderGenerationController {
     public LadderGenerationResponse generateLadder(LadderGenerationRequest request) {
         Participants participants = service.registerParticipants(request.getParticipantNames());
         Ladder ladder = service.generateLadder(participants.getCount(), request.getLadderHeight());
-        return assembleResponse(participants, ladder);
+        GameResults gameResults = service.generateGameResults(request.getGameResults(), participants.getCount());
+        return assembleResponse(participants, ladder, gameResults);
     }
 
-    private LadderGenerationResponse assembleResponse(Participants participants, Ladder ladder) {
-        return new LadderGenerationResponse(assembleParticipantNameList(participants), Ladder.LADDER_HORIZON_WIDTH, assembleLadderLineList(ladder.getLines()), assembleGameResults());
+    private LadderGenerationResponse assembleResponse(Participants participants, Ladder ladder, GameResults gameResults) {
+        return new LadderGenerationResponse(assembleParticipantNameList(participants), Ladder.LADDER_HORIZON_WIDTH, assembleLadderLineList(ladder.getLines()), assembleGameResults(gameResults));
     }
 
     private List<String> assembleParticipantNameList(Participants participants) {
@@ -44,8 +45,7 @@ public class LadderGenerationController {
         return new LadderLine(pointList);
     }
 
-    private List<String> assembleGameResults() {
-        // TODO : 게임결과 출력 메서드 구현
-        return null;
+    private List<String> assembleGameResults(GameResults gameResults) {
+        return gameResults.getGameResults();
     }
 }

@@ -63,4 +63,23 @@ class LadderGenerationControllerTest {
         // then
         assertThat(Ladder.LADDER_HORIZON_WIDTH).isEqualTo(response.getLadderWidth());
     }
+
+    @Test
+    @DisplayName("게임생성 결과 검증")
+    void gameResults() {
+        // given
+        String participantNames = "pobi,honux,crong,jk";
+        int ladderHeight = 5;
+        String gameResults = "꽝,5000,꽝,3000";
+        LadderGenerationRequest request = new LadderGenerationRequest(participantNames, ladderHeight, gameResults);
+        LadderGenerationController controller = new LadderGenerationController();
+
+        // when
+        LadderGenerationResponse response = controller.generateLadder(request);
+
+        // then
+        for (String gameResult : response.getGameResults()) {
+            assertThat(Arrays.asList(gameResults.split(",")).contains(gameResult)).isTrue();
+        }
+    }
 }
