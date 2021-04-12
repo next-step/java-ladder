@@ -30,8 +30,9 @@ public class Lambda {
         return total;
     }
 
-    public static int sumAllEven(List<Integer> numbers, Conditional conditional) {
+    public static int sumAllEven(List<Integer> numbers) {
         int total = 0;
+        Conditional conditional;
         for (int number : numbers) {
             conditional = num -> num % 2 == 0;
             if (conditional.test(number)) {
@@ -41,8 +42,9 @@ public class Lambda {
         return total;
     }
 
-    public static int sumAllOverThree(List<Integer> numbers, Conditional conditional) {
+    public static int sumAllOverThree(List<Integer> numbers) {
         int total = 0;
+        Conditional conditional;
         for (int number : numbers) {
             conditional = (num) -> num > 3;
             if (conditional.test(number)) {
