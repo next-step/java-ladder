@@ -33,11 +33,9 @@ public class StreamStudy {
             Comparator
               .comparingInt(String::length)
               .reversed()
-          )
+          ).map(String::toLowerCase)
           .limit(100)
-          .forEach(word ->
-            System.out.println(word.toLowerCase())
-          );
+          .forEach(System.out::println);
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
@@ -53,7 +51,7 @@ public class StreamStudy {
 
     public static long sumOverThreeAndDouble(List<Integer> numbers) {
         return numbers.stream()
-          .filter(number -> number>3)
+          .filter(number -> number > 3)
           .mapToLong(number -> number * 2)
           .sum();
     }
