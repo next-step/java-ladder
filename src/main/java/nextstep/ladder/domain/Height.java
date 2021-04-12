@@ -13,6 +13,10 @@ public class Height {
         this.height = height;
     }
 
+    public int value() {
+        return height;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
