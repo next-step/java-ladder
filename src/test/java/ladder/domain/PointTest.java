@@ -21,4 +21,14 @@ class PointTest {
         assertThat(point).isNotNull();
     }
 
+    @DisplayName("Point가 첫번째로 와야할 Point를 반환하는지 테스트")
+    @Test
+    void 반환_첫번째값() {
+        // when
+        Point point = Point.first();
+
+        // then
+        assertThat(point).isNotNull();
+    }
+
 }

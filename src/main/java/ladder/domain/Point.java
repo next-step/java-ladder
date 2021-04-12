@@ -11,4 +11,5 @@ public final class Point {
     public static final Point of(boolean point) {
         return new Point(point);
     }
+
 }

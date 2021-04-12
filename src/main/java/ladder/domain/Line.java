@@ -1,9 +1,9 @@
 package ladder.domain;
 
+import ladder.strategy.LineGenerateStrategy;
+
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public final class Line {
 
@@ -17,16 +17,23 @@ public final class Line {
         return new Line(points);
     }
 
-    public static final Line of(int countPerson) {
-        return of(generatePoints(countPerson));
+    public static final Line of(int countPerson, LineGenerateStrategy strategy) {
+        return of(generatePoints(countPerson, strategy));
     }
 
-    private static final List<Point> generatePoints(int countPerson) {
-        Random random = new Random();
-        return IntStream.range(0, countPerson)
-                .mapToObj(i -> random.nextBoolean())
-                .map(Point::of)
-                .collect(Collectors.toList());
+    private static final List<Point> generatePoints(int countPerson, LineGenerateStrategy strategy) {
+        List<Point> points = new ArrayList<>();
+        points.add(Point.first());
+        for (int beforeIndex = 0; beforeIndex < countPerson - 1; beforeIndex++) {
+            points.add(generatePoint(points.get(beforeIndex), strategy));
+        }
+    }
+
+    private static Point generatePoint(Point before, LineGenerateStrategy strategy) {
+        if (before.isTrue()) {
+            return Point.of(false);
+        }
+        return Point.of(strategy.generateLine());
     }
 
 }
