@@ -18,11 +18,13 @@ public class LadderGenerationController {
     }
 
     public LadderGenerationResponse generateLadder(LadderGenerationRequest request) {
-        return assembleResponse(service.generateLadderGame(request.getParticipantNames(), request.getLadderHeight()));
+        Participants participants = service.registerParticipants(request.getParticipantNames());
+        Ladder ladder = service.generateLadder(participants.getCount(), request.getLadderHeight());
+        return assembleResponse(participants, ladder);
     }
 
-    private LadderGenerationResponse assembleResponse(LadderGame ladderGame) {
-        return new LadderGenerationResponse(assembleParticipantNameList(ladderGame.getParticipants()), LadderGame.LADDER_HORIZON_WIDTH, assembleLadderLineList(ladderGame.getLines()), assembleGameResults());
+    private LadderGenerationResponse assembleResponse(Participants participants, Ladder ladder) {
+        return new LadderGenerationResponse(assembleParticipantNameList(participants), Ladder.LADDER_HORIZON_WIDTH, assembleLadderLineList(ladder.getLines()), assembleGameResults());
     }
 
     private List<String> assembleParticipantNameList(Participants participants) {

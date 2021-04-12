@@ -2,7 +2,7 @@ package ladder.controller;
 
 import ladder.controller.dto.LadderGenerationRequest;
 import ladder.controller.dto.LadderGenerationResponse;
-import ladder.domain.LadderGame;
+import ladder.domain.Ladder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -61,6 +61,6 @@ class LadderGenerationControllerTest {
         LadderGenerationResponse response = controller.generateLadder(request);
 
         // then
-        assertThat(LadderGame.LADDER_HORIZON_WIDTH).isEqualTo(response.getLadderWidth());
+        assertThat(Ladder.LADDER_HORIZON_WIDTH).isEqualTo(response.getLadderWidth());
     }
 }
