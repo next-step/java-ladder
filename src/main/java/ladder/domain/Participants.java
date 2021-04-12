@@ -24,12 +24,12 @@ public final class Participants {
         }
     }
 
-    public static final Participants of(String names) {
-        return of(stringToParticipantList(names));
-    }
-
     public static final Participants of(List<Participant> participants) {
         return new Participants(participants);
+    }
+
+    public static final Participants of(String names) {
+        return of(stringToParticipantList(names));
     }
 
     private static final List<Participant> stringToParticipantList(String names) {

@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ParticipantsTest {
 
-    @DisplayName("Participants 인스턴스 생성 여부 테스트")
+    @DisplayName("Participants 인스턴스 null 입력시 예외처리 여부 테스트")
     @Test
     void 생성() {
         // given
