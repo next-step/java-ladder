@@ -7,11 +7,11 @@ import java.util.Optional;
 public class Line {
     private final List<Point> points;
 
-    public Line(List<Point> points) {
+    private Line(List<Point> points) {
         this.points = points;
     }
 
-    public static Line init(Players players) {
+    public static Line of(Players players) {
         List<Point> points = new ArrayList<>();
         Optional.ofNullable(players)
                 .map(Players::allPlayers)
