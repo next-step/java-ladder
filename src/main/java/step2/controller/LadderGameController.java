@@ -14,7 +14,7 @@ public class LadderGameController {
     public void run() {
         RequestLadderDTO requestLadderDTO = exportRequestLadderDTO();
 
-        Members members = exportRequestLadderDTO().getMembers();
+        Members members = requestLadderDTO.getMembers();
         Ladder ladder = Ladder.of(members.getSize(), requestLadderDTO.getLadderHeight());
 
         ResponseMembersDTO responseMembersDTO = exportResponseMembersDTO(members);
@@ -34,9 +34,7 @@ public class LadderGameController {
     }
 
     private void printLadder(Ladder ladder) {
-        for (Line line : ladder.getLadder()) {
-            printLine(line);
-        }
+        ladder.getLadder().forEach(this::printLine);
     }
 
     private void printLine(Line line) {

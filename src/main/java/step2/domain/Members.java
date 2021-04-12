@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 public class Members {
     private static final String DEFAULT_REGEX = ",";
     private static final int MIN_MEMBER_COUNT = 2;
-    private static final String MEMBERS_MIN_SIZE_TWO_EXCEPTION_MESSAGE = "두 명 이상의 사용자가 참여해야 합니다.";
+    public static final String MEMBERS_MIN_SIZE_TWO_EXCEPTION_MESSAGE = "두 명 이상의 사용자가 참여해야 합니다.";
 
     private final List<Member> members;
 
