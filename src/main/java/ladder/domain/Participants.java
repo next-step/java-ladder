@@ -11,11 +11,11 @@ public final class Participants {
 
     public static final String REGEX = ",";
 
-    private final List<Participant> Participants;
+    private final List<Participant> people;
 
-    private Participants(List<Participant> participants) {
-        validateNull(participants);
-        Participants = participants;
+    private Participants(List<Participant> people) {
+        validateNull(people);
+        this.people = people;
     }
 
     private final void validateNull(List<Participant> participants) {
@@ -37,5 +37,9 @@ public final class Participants {
                 .map(String::trim)
                 .map(Participant::of)
                 .collect(Collectors.toList());
+    }
+
+    public final int countOfPerson() {
+        return people.size();
     }
 }

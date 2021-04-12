@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.strategy.LineGenerateStrategy;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -14,7 +16,7 @@ public final class Ladder {
 
     public static final Ladder from(Participants participants, int height) {
         return new Ladder(IntStream.range(0, height)
-                .mapToObj(Line.of(participants.getCount(), ()->true))
+                .mapToObj(i-> Line.of(participants.countOfPerson(), ()-> true))
                 .collect(Collectors.toList())
         );
     }
