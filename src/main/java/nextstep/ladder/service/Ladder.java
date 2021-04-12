@@ -1,11 +1,14 @@
-package nextstep.ladder.wrapper;
+package nextstep.ladder.service;
 
+import nextstep.ladder.domain.Height;
 import nextstep.ladder.domain.Position;
+import nextstep.ladder.generator.LineGenerator;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Stream;
 
 public class Ladder {
 
@@ -17,6 +20,14 @@ public class Ladder {
 
     public static Ladder valueOf(final Line... lines) {
         return new Ladder(lines);
+    }
+
+    public static Ladder valueOf(
+            final Participants participants, final Height height, final LineGenerator generator) {
+        Line[] lines = Stream.generate(() -> generator.createLine(participants.size()))
+                .limit(height.size())
+                .toArray(Line[]::new);
+        return Ladder.valueOf(lines);
     }
 
     public Position findEndPosition(Position movePosition) {

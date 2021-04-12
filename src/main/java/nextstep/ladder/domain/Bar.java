@@ -2,9 +2,11 @@ package nextstep.ladder.domain;
 
 import java.util.Objects;
 
+import static java.lang.Boolean.FALSE;
+
 public class Bar {
 
-    private static final Bar BAR = Bar.valueOf(false);
+    private static final Bar BAR = Bar.valueOf(FALSE);
     public final boolean flag;
 
     private Bar(final boolean flag) {

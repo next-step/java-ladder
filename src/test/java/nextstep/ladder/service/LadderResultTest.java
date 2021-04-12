@@ -1,12 +1,15 @@
-package nextstep.ladder.wrapper;
+package nextstep.ladder.service;
 
+import nextstep.ladder.domain.Height;
 import nextstep.ladder.domain.Reward;
 import nextstep.ladder.domain.User;
-import nextstep.ladder.wrapper.LadderResult;
+import nextstep.ladder.hint.HintLadder;
+import nextstep.ladder.hint.HintLadderLine;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -31,7 +34,7 @@ class LadderResultTest {
 
     @DisplayName("사다리 타기 전체 결과 테스트")
     @Test
-    void testCase2() {
+    void rideLadder_테스트() {
         Map<User, Reward> given = new HashMap<>();
         given.put(User.valueOf("seok", 0), Reward.valueOf("good"));
         given.put(User.valueOf("rae", 1), Reward.valueOf("not good"));

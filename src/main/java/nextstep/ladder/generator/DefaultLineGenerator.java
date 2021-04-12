@@ -1,7 +1,7 @@
 package nextstep.ladder.generator;
 
 import nextstep.ladder.domain.Bar;
-import nextstep.ladder.wrapper.Line;
+import nextstep.ladder.service.Line;
 
 import java.util.ArrayList;
 import java.util.Arrays;

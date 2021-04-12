@@ -1,6 +1,5 @@
-package nextstep.ladder.wrapper;
+package nextstep.ladder.service;
 
-import nextstep.ladder.domain.Position;
 import nextstep.ladder.domain.Reward;
 
 import java.util.Arrays;
@@ -20,8 +19,19 @@ public class LadderRewards {
         return new LadderRewards(ladderRewards);
     }
 
-    public Reward findReward(final Position endPosition) {
-        return rewards.get(endPosition.currentPosition());
+    public static LadderRewards valueOf(final String... ladderRewards) {
+        Reward[] rewards = parseRewards(ladderRewards);
+        return new LadderRewards(rewards);
+    }
+
+    private static Reward[] parseRewards(final String[] ladderRewards) {
+        return Arrays.stream(ladderRewards)
+                .map(Reward::valueOf)
+                .toArray(Reward[]::new);
+    }
+
+    public Reward findReward(final int endPosition) {
+        return rewards.get(endPosition);
     }
 
     public List<Reward> getRewards() {
