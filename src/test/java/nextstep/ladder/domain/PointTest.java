@@ -40,8 +40,8 @@ class PointTest {
 
     // then
     assertAll(
-        () -> assertThat(canDraw.draw()).isEqualTo(Point.LINE),
-        () -> assertThat(cannotDraw.draw()).isEqualTo(Point.NOT_LINE)
+        () -> assertThat(canDraw.canDraw()).isEqualTo(Point.body(cannotDraw, canCreate).canDraw()),
+        () -> assertThat(cannotDraw.canDraw()).isEqualTo(Point.head().canDraw())
     );
   }
 }

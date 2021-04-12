@@ -12,6 +12,8 @@ import nextstep.ladder.utils.StringUtils;
 public final class ResultView {
 
   public static final String LINE_SEPARATOR = System.lineSeparator();
+  public static final String LINE = "-----|";
+  public static final String EMPTY_LINE = "     |";
 
   private ResultView() {}
 
@@ -42,7 +44,7 @@ public final class ResultView {
 
   private static void printLine(StringBuilder linesBuilder, Line line) {
     for (Point point : line.points()) {
-      linesBuilder.append(point.draw());
+      linesBuilder.append(point.canDraw() ? LINE : EMPTY_LINE);
     }
     linesBuilder.append(LINE_SEPARATOR);
   }
