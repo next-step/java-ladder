@@ -12,18 +12,18 @@ public class LineTest {
 
     @Test
     void create() {
-        assertThatCode(() -> Line.from(5, new RandomBooleanStrategy())).doesNotThrowAnyException();
+        assertThatCode(() -> Line.of(5, new RandomBooleanStrategy())).doesNotThrowAnyException();
     }
 
     @DisplayName("가로라인은 겹치지 않아야 한다.")
     @Test
     void points() {
         List<Point> points = new ArrayList<>();
-        points.add(Point.from(true));
-        points.add(Point.from(false));
-        points.add(Point.from(true));
-        points.add(Point.from(false));
+        points.add(Point.of(true));
+        points.add(Point.of(false));
+        points.add(Point.of(true));
+        points.add(Point.of(false));
 
-        assertThat(Line.from(5, () -> true)).usingRecursiveComparison().isEqualTo(Line.from(points));
+        assertThat(Line.of(5, () -> true)).usingRecursiveComparison().isEqualTo(Line.of(points));
     }
 }

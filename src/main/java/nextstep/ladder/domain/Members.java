@@ -14,9 +14,9 @@ public class Members implements Iterable<Member> {
         this.members = members;
     }
 
-    public static Members from(String names) {
+    public static Members of(String names) {
         return new Members(Arrays.stream(names.split(DILIMETER))
-            .map(Member::from)
+            .map(Member::of)
             .collect(Collectors.toList()));
     }
 

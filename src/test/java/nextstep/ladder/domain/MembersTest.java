@@ -8,6 +8,6 @@ public class MembersTest {
 
     @Test
     void create() {
-        assertThatCode(() -> Members.from("pobi,honux,crong,jk")).doesNotThrowAnyException();
+        assertThatCode(() -> Members.of("pobi,honux,crong,jk")).doesNotThrowAnyException();
     }
 }

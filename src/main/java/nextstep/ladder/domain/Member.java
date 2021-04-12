@@ -9,7 +9,7 @@ public class Member {
         this.name = name;
     }
 
-    public static Member from(String name) {
+    public static Member of(String name) {
         if (name.length() > NAME_MAX_LENGTH) {
             throw new NameLengthExceededException("참여자 이름은 " + NAME_MAX_LENGTH + "글자 이하여야 합니다.");
         }

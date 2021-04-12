@@ -10,12 +10,12 @@ class MemberTest {
 
     @Test
     void create() {
-        assertThatCode(() -> Member.from("pobi")).doesNotThrowAnyException();
+        assertThatCode(() -> Member.of("pobi")).doesNotThrowAnyException();
     }
 
     @DisplayName("참여자 이름은 최대 5글자")
     @Test
     void validNameLength() {
-        assertThatThrownBy(() -> Member.from("pobi77")).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> Member.of("pobi77")).isInstanceOf(IllegalArgumentException.class);
     }
 }

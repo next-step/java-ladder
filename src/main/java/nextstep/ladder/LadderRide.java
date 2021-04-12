@@ -8,7 +8,7 @@ import nextstep.ladder.view.ResultView;
 public class LadderRide {
 
     public static void main(String[] args) {
-        Members members = Members.from(InputView.names());
+        Members members = Members.of(InputView.names());
         Ladder ladder = Ladder.of(members.size(), InputView.height());
         ResultView.print(members, ladder);
     }

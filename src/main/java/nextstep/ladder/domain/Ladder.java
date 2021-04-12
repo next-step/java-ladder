@@ -16,7 +16,7 @@ public class Ladder implements Iterable<Line> {
     public static Ladder of(int count, int height) {
         List<Line> lines = new ArrayList<>();
         IntStream.range(0, height)
-            .forEach(i -> lines.add(Line.from(count, new RandomBooleanStrategy())));
+            .forEach(i -> lines.add(Line.of(count, new RandomBooleanStrategy())));
         return new Ladder(lines);
     }
 

@@ -13,15 +13,15 @@ public class Line implements Iterable<Point> {
         this.points = points;
     }
 
-    public static Line from(int countOfPerson, BooleanStrategy booleanStrategy) {
+    public static Line of(int countOfPerson, BooleanStrategy booleanStrategy) {
         List<Point> points = new ArrayList<>();
-        points.add(Point.from(booleanStrategy));
+        points.add(Point.of(booleanStrategy));
         IntStream.range(0, countOfPerson - 2)
             .forEach(i -> points.add(points.get(i).nextPoint()));
         return new Line(points);
     }
 
-    public static Line from(List<Point> points) {
+    public static Line of(List<Point> points) {
         return new Line(points);
     }
 

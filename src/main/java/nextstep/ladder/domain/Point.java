@@ -10,19 +10,19 @@ public class Point {
         this.booleanStrategy = booleanStrategy;
     }
 
-    public static Point from(boolean point) {
+    public static Point of(boolean point) {
         return new Point(point, new RandomBooleanStrategy());
     }
 
-    public static Point from(BooleanStrategy booleanStrategy) {
+    public static Point of(BooleanStrategy booleanStrategy) {
         return new Point(booleanStrategy.value(), booleanStrategy);
     }
 
     public Point nextPoint() {
         if (point) {
-            return from(false);
+            return of(false);
         }
-        return from(booleanStrategy.value());
+        return of(booleanStrategy.value());
     }
 
     public boolean value() {
