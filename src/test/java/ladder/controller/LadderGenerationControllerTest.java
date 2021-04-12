@@ -19,7 +19,7 @@ class LadderGenerationControllerTest {
         // given
         String participantNames = "pobi,honux,crong,jk";
         int ladderHeight = 5;
-        LadderGenerationRequest request = new LadderGenerationRequest(participantNames, ladderHeight);
+        LadderGenerationRequest request = new LadderGenerationRequest(participantNames, ladderHeight, "꽝,5000,꽝,3000");
         LadderGenerationController controller = new LadderGenerationController();
 
         // when
@@ -38,7 +38,7 @@ class LadderGenerationControllerTest {
         // given
         String participantNames = "pobi,honux,crong,jk";
         int ladderHeight = 5;
-        LadderGenerationRequest request = new LadderGenerationRequest(participantNames, ladderHeight);
+        LadderGenerationRequest request = new LadderGenerationRequest(participantNames, ladderHeight, "꽝,5000,꽝,3000");
         LadderGenerationController controller = new LadderGenerationController();
 
         // when
@@ -54,7 +54,7 @@ class LadderGenerationControllerTest {
         // given
         String participantNames = "pobi,honux,crong,jk";
         int ladderHeight = 5;
-        LadderGenerationRequest request = new LadderGenerationRequest(participantNames, ladderHeight);
+        LadderGenerationRequest request = new LadderGenerationRequest(participantNames, ladderHeight, "꽝,5000,꽝,3000");
         LadderGenerationController controller = new LadderGenerationController();
 
         // when

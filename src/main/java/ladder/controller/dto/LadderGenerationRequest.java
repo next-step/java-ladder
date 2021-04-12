@@ -4,10 +4,12 @@ public class LadderGenerationRequest {
 
     private final String participantNames;
     private final int ladderHeight;
+    private final String gameResults;
 
-    public LadderGenerationRequest(String participantNames, int ladderHeight) {
+    public LadderGenerationRequest(String participantNames, int ladderHeight, String gameResults) {
         this.participantNames = participantNames;
         this.ladderHeight = ladderHeight;
+        this.gameResults = gameResults;
     }
 
     public String getParticipantNames() {
@@ -16,5 +18,9 @@ public class LadderGenerationRequest {
 
     public int getLadderHeight() {
         return ladderHeight;
+    }
+
+    public String getGameResults() {
+        return gameResults;
     }
 }
