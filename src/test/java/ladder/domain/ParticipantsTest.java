@@ -3,25 +3,21 @@ package ladder.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
-class LineTest {
+class ParticipantsTest {
 
-    @DisplayName("Line 인스턴스 생성 여부 테스트")
+    @DisplayName("Participants 인스턴스 생성 여부 테스트")
     @Test
     void 생성() {
         // given
-        List<Boolean> points = new ArrayList<>();
+        String names = "pobi,honux,crong,jk";
 
         // when
-        Line line = Line.of(points);
+        Participants participants = Participants.of(names);
 
         // then
-        assertThat(line).isNotNull();
+        assertThat(participants).isNotNull();
     }
-
 }
