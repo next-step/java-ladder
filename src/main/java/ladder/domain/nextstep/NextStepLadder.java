@@ -1,29 +1,15 @@
 package ladder.domain.nextstep;
 
-import ladder.domain.engine.ExecutionResults;
-import ladder.domain.engine.LadderResults;
-import ladder.domain.engine.Player;
-import ladder.domain.engine.Players;
+import ladder.domain.engine.*;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-public class NextStepLadder {
-    private static final int MIN_HEIGHT = 1;
-    private static final String MESSAGE_MIN_HEIGHT = "사다리 높이는 1이상이어야 합니다.";
-    private final Lines lines = new Lines();
-    private final int height;
-
-    public NextStepLadder(int numberOfPlayers, int height) {
-        validate(height);
-        this.height = height;
-        generateLadder(numberOfPlayers, height);
-    }
-
-    private void validate(int height) {
-        if (height < MIN_HEIGHT) {
-            throw new IllegalArgumentException(MESSAGE_MIN_HEIGHT);
-        }
+public class NextStepLadder implements Ladder {
+    private final List<Line> lines;
+    protected NextStepLadder(List<Line> lines) {
+        this.lines = lines;
     }
 
     private void initPlayersPosition(Players players, HashMap<Player, Integer> playersPosition){
@@ -34,17 +20,16 @@ public class NextStepLadder {
     }
 
     private void movePlayersPosition(HashMap<Player, Integer> playersPosition){
-        List<NextStepLine> lines = this.lines.lines();
+        List<Line> lines = this.lines;
         for(int i = 0; i < lines.size(); i++){
-            move(lines.get(i).points(), playersPosition);
+            move(lines.get(i), playersPosition);
         }
     }
 
-    private void move(List<Point> points, HashMap<Player, Integer> playersPosition){
+    private void move(Line line, HashMap<Player, Integer> playersPosition){
         for(Player player : playersPosition.keySet()){
             int position = playersPosition.get(player);
-            position += points.get(position).move();
-            playersPosition.put(player,position);
+            playersPosition.put(player,line.move(position));
         }
     }
 
@@ -57,16 +42,11 @@ public class NextStepLadder {
         return playersResults;
     }
 
-    public void generateLadder(int numberOfPlayers, int height) {
-        for(int i=0; i<height; i++){
-            lines.add(new NextStepLine(numberOfPlayers));
-        }
+    public List<Line> lines(){
+        return Collections.unmodifiableList(lines);
     }
 
-    public List<NextStepLine> lines(){
-        return lines.lines();
-    }
-
+    @Override
     public LadderResults ladderResults(Players players, ExecutionResults executionResults){
         HashMap<Player, Integer> playersPosition = new HashMap<>();
         initPlayersPosition(players,playersPosition);

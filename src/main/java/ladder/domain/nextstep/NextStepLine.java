@@ -1,41 +1,25 @@
 package ladder.domain.nextstep;
 
+import ladder.domain.engine.Line;
+import ladder.domain.engine.Player;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
-public class NextStepLine {
-    private final int numberOfPlayers;
-    private final Points points = new Points();
+public class NextStepLine implements Line {
+    private final List<Point> points ;
 
-    public NextStepLine(int numberOfPlayers) {
-        this.numberOfPlayers = numberOfPlayers;
-        generateLine();
-    }
-
-    private Point generateFirstPoint(){
-        Point tmpPoint = Point.randomPoint();
-        points.add(tmpPoint);
-        return tmpPoint;
-    }
-
-    private Point generateIntermediatePoint(Point tmpPoint){
-        for(int i = 1; i < numberOfPlayers-1; i++){
-            tmpPoint = Point.next(tmpPoint);
-            points.add(tmpPoint);
-        }
-        return tmpPoint;
-    }
-
-    private void generateLastPoint(Point tmpPoint){
-        points.add(Point.last(tmpPoint));
-    }
-
-    private void generateLine(){
-        Point tmpPoint = generateFirstPoint();
-        tmpPoint = generateIntermediatePoint(tmpPoint);
-        generateLastPoint(tmpPoint);
+    public NextStepLine(List<Point> points){
+        this.points = points;
     }
 
     public List<Point> points(){
-        return points.points();
+        return Collections.unmodifiableList(points);
+    }
+
+    public int move(int position){
+         return position += points.get(position).move();
     }
 }
