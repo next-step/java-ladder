@@ -1,11 +1,8 @@
 package nextstep.fp;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Lambda {
-    private static final int FILTER_MIN_VALUE = 3;
-    private static final int DOUBLE = 2;
     private static final int ZERO = 0;
 
     public static void printAllOld(List<Integer> numbers) {
@@ -32,14 +29,8 @@ public class Lambda {
     }
 
     public static int sumAll(List<Integer> numbers, Conditional conditional) {
-        return conditional.sum(numbers);
-    }
-
-    public static int sumAllEven(List<Integer> numbers, Conditional conditional) {
-        return conditional.sum(numbers.stream().filter(number -> number % DOUBLE == ZERO).collect(Collectors.toList()));
-    }
-
-    public static int sumAllOverThree(List<Integer> numbers, Conditional conditional) {
-        return conditional.sum(numbers.stream().filter(number -> number > FILTER_MIN_VALUE).collect(Collectors.toList()));
+        return numbers.stream()
+                .filter(conditional::filter)
+                .reduce(ZERO, Integer::sum);
     }
 }
