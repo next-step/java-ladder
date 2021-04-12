@@ -8,14 +8,14 @@ import java.util.HashMap;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class LadderStatisticsTest {
+public class LadderResultsTest {
     @Test
     public void 올바른_참여자_Test(){
         HashMap playersResult = new HashMap();
         playersResult.put(new Player("crong"), "꽝");
         playersResult.put(new Player("pobi"), "1500");
-        LadderResults ladderStatistics = new LadderResults(playersResult);
-        assertThatThrownBy(() -> ladderStatistics.results(new Player("rupy")))
+        LadderResults ladderResults = new LadderResults(playersResult);
+        assertThatThrownBy(() -> ladderResults.results(new Player("rupy")))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("참여한 사람의 결과만 확인할 수 있습니다.");
     }
