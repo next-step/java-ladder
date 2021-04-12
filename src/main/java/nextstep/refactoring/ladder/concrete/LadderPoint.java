@@ -1,4 +1,4 @@
-package nextstep.refactoring.ladder;
+package nextstep.refactoring.ladder.concrete;
 
 import nextstep.refactoring.ladder.engine.Point;
 import nextstep.refactoring.ladder.engine.Position;

@@ -1,5 +1,6 @@
-package nextstep.refactoring.ladder;
+package nextstep.refactoring.ladder.concrete;
 
+import nextstep.refactoring.ladder.concrete.Direction;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

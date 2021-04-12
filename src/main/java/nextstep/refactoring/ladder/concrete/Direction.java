@@ -1,4 +1,4 @@
-package nextstep.refactoring.ladder;
+package nextstep.refactoring.ladder.concrete;
 
 import java.util.Objects;
 import java.util.Random;
