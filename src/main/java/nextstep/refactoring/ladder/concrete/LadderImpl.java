@@ -6,8 +6,6 @@ import nextstep.refactoring.ladder.engine.Line;
 import nextstep.refactoring.ladder.engine.Position;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class LadderImpl implements Ladder {
 
@@ -15,14 +13,6 @@ public class LadderImpl implements Ladder {
 
     public LadderImpl(List<Line> lines) {
         this.lines = lines;
-    }
-
-    public static Ladder of(int height, int numberOfPoints) {
-        List<Line> lines = IntStream.of(0, height)
-                                      .mapToObj(ignored -> LadderLine.init(numberOfPoints))
-                                      .collect(Collectors.toList());
-
-        return new LadderImpl(lines);
     }
 
     @Override

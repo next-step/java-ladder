@@ -1,9 +1,5 @@
 package nextstep.refactoring.ladder.concrete;
 
-import nextstep.refactoring.ladder.concrete.Direction;
-import nextstep.refactoring.ladder.concrete.LadderImpl;
-import nextstep.refactoring.ladder.concrete.LadderLine;
-import nextstep.refactoring.ladder.concrete.LadderPoint;
 import nextstep.refactoring.ladder.engine.Ladder;
 import nextstep.refactoring.ladder.engine.Line;
 
@@ -22,26 +18,26 @@ public class TestLadder {
     }
 
     public static Line twoConnectedLine() {
-        return LadderLine.of(LadderPoint.of(0, Direction.right()),
-            LadderPoint.of(1, Direction.left()),
-            LadderPoint.of(2, Direction.right()),
-            LadderPoint.of(3, Direction.left())
+        return LadderLine.of(Point.of(0, Direction.right()),
+            Point.of(1, Direction.left()),
+            Point.of(2, Direction.right()),
+            Point.of(3, Direction.left())
         );
     }
 
     public static Line middleConnectedLine() {
-        return LadderLine.of(LadderPoint.of(0, Direction.straight()),
-            LadderPoint.of(1, Direction.right()),
-            LadderPoint.of(2, Direction.left()),
-            LadderPoint.of(3, Direction.straight())
+        return LadderLine.of(Point.of(0, Direction.straight()),
+            Point.of(1, Direction.right()),
+            Point.of(2, Direction.left()),
+            Point.of(3, Direction.straight())
         );
     }
 
     public static Line firstConnectedLine() {
-        return LadderLine.of(LadderPoint.of(0, Direction.right()),
-            LadderPoint.of(1, Direction.left()),
-            LadderPoint.of(2, Direction.straight()),
-            LadderPoint.of(3, Direction.straight())
+        return LadderLine.of(Point.of(0, Direction.right()),
+            Point.of(1, Direction.left()),
+            Point.of(2, Direction.straight()),
+            Point.of(3, Direction.straight())
         );
     }
 

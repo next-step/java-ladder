@@ -1,7 +1,5 @@
 package nextstep.refactoring.ladder.concrete;
 
-import nextstep.refactoring.ladder.concrete.Direction;
-import nextstep.refactoring.ladder.concrete.LadderPoint;
 import nextstep.refactoring.ladder.engine.Position;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -9,14 +7,14 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
-class LadderPointTest {
+class PointTest {
 
     @Test
     @DisplayName("연결된 지점으로 이동한다.")
     void traverse() {
-        LadderPoint firstPoint = LadderPoint.of(0, Direction.right());
-        LadderPoint secondPoint = firstPoint.next();
-        LadderPoint thirdPoint = secondPoint.next(false);
+        Point firstPoint = Point.of(0, Direction.right());
+        Point secondPoint = firstPoint.next();
+        Point thirdPoint = secondPoint.next(false);
 
         assertAll(
             () -> assertThat(firstPoint.traverse()).isEqualTo(Position.of(1)),

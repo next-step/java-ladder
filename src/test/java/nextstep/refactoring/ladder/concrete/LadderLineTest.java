@@ -1,8 +1,5 @@
 package nextstep.refactoring.ladder.concrete;
 
-import nextstep.refactoring.ladder.concrete.Direction;
-import nextstep.refactoring.ladder.concrete.LadderLine;
-import nextstep.refactoring.ladder.concrete.LadderPoint;
 import nextstep.refactoring.ladder.engine.Line;
 import nextstep.refactoring.ladder.engine.Position;
 import org.junit.jupiter.api.DisplayName;
@@ -20,7 +17,7 @@ class LadderLineTest {
     @DisplayName("최소 두 개의 지점이 있어야 한다.")
     void lineHasPointsAtLeastTwo() {
         assertAll(
-            () -> assertThatThrownBy(() -> LadderLine.of(LadderPoint.of(0, Direction.right()))),
+            () -> assertThatThrownBy(() -> LadderLine.of(Point.of(0, Direction.right()))),
             () -> assertThatThrownBy(() -> LadderLine.of(Collections.emptyList()))
         );
     }
@@ -28,8 +25,8 @@ class LadderLineTest {
     @Test
     @DisplayName("현재 위치에서 연결된 지점이 있는 경우 이동한다.")
     void movePoint() {
-        LadderPoint first = LadderPoint.of(0, Direction.right());
-        LadderPoint second = first.next();
+        Point first = Point.of(0, Direction.right());
+        Point second = first.next();
         Line line = LadderLine.of(first, second);
 
         assertThat(line.move(Position.of(0))).isEqualTo(Position.of(1));
