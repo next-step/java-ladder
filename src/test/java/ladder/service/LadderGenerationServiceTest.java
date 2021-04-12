@@ -1,14 +1,21 @@
 package ladder.service;
 
+import ladder.domain.GameResults;
 import ladder.domain.Ladder;
 import ladder.domain.Participants;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 class LadderGenerationServiceTest {
 
@@ -74,6 +81,79 @@ class LadderGenerationServiceTest {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> service.generateLadder(ladderWidth, 5))
                 .withMessageMatching("사다리의 너비는 최소 2 이상이어야 합니다.");
+    }
+
+    @ParameterizedTest
+    @NullAndEmptySource
+    @DisplayName("게임결과 생성 - null 또는 공백입력")
+    void nullOrEmpty(String gameResultNames) {
+        // given
+        LadderGenerationService service = new LadderGenerationService();
+
+        // when then
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> service.generateGameResults(gameResultNames, 5))
+                .withMessageMatching("게임 결과를 입력해 주세요.");
+    }
+
+    @Test
+    @DisplayName("게임 결과와 참가자 수가 일치하지 않을 때")
+    void participantsCount_invalid() {
+        // given
+        LadderGenerationService service = new LadderGenerationService();
+
+        // when then
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> service.generateGameResults("꽝,5000,꽝,3000", 5))
+                .withMessageMatching("게임 결과 수는 참가자 수와 같아야 합니다.");
+    }
+
+    @Test
+    @DisplayName("게임 결과에 빈 값 또는 공백 존재")
+    void gameResultNames_hasEmpty() {
+        // given
+        LadderGenerationService service = new LadderGenerationService();
+
+        // when then
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> service.generateGameResults("꽝,,   ,3000", 4))
+                .withMessageMatching("유효하지 않은 결과값이 존재합니다. 입력값을 확인해주세요.");
+    }
+
+    @Test
+    @DisplayName("게임결과 정상생성 테스트")
+    void gameResults() {
+        // given
+        LadderGenerationService service = new LadderGenerationService();
+        String gameResultNames = "꽝,5000,꽝,3000";
+
+        // when
+        GameResults gameResults = service.generateGameResults(gameResultNames, 4);
+
+        // then
+        assertAll(
+                () -> assertThat(4).isEqualTo(gameResults.getGameResults().size()),
+                () ->  {
+                    for (String gameResult : gameResults.getGameResults()) {
+                        assertThat(Arrays.stream(gameResultNames.split(",")).collect(Collectors.toList()).contains(gameResult)).isTrue();
+                    }
+                }
+        );
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"0:꽝", "1:5000", "2:꽝", "3:3000"}, delimiter = ':')
+    @DisplayName("게임결과 단건조회 테스트")
+    void getGameResult(int ladderExitNumber, String gameResult) {
+        // given
+        LadderGenerationService service = new LadderGenerationService();
+        String gameResultNames = "꽝,5000,꽝,3000";
+
+        // when
+        GameResults gameResults = service.generateGameResults(gameResultNames, 4);
+
+        // then
+        assertThat(gameResult).isEqualTo(gameResults.getGameResult(ladderExitNumber));
     }
 
 }
