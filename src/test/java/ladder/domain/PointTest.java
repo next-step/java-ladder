@@ -31,4 +31,21 @@ class PointTest {
         assertThat(point).isNotNull();
     }
 
+    @DisplayName("Point 인스턴스가 소유한 값이 true 인지 여부 테스트")
+    @Test
+    void 반환_소유값_참인지_여부() {
+        // when
+        boolean trueValue = true;
+        boolean falseValue = false;
+
+        Point truePoint = Point.of(trueValue);
+        Point falsePoint = Point.of(falseValue);
+
+        // then
+        assertAll(
+                () -> assertThat(truePoint.isTrue).isTrue(),
+                () -> assertThat(truePoint.isTrue).isFalse()
+        );
+    }
+
 }
