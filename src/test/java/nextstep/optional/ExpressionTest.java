@@ -17,6 +17,6 @@ public class ExpressionTest {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> {
                     Expression.of("&");
-                });
+                }).isInstanceOf(IllegalArgumentException.class);
     }
 }
