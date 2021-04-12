@@ -34,7 +34,7 @@ public class StreamStudy {
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
         words.stream().filter(word -> word.length() > TOP_100_MIN_LENGTH)
-                .sorted(Comparator.comparing(String::length))
+                .sorted(Comparator.comparing(String::length).reversed())
                 .distinct()
                 .limit(TOP_100_LIMIT_COUNT)
                 .map(String::toLowerCase)
