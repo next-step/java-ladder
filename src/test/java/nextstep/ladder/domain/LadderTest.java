@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,7 +14,7 @@ class LadderTest {
   final LadderHeight ladderHeight = new LadderHeight(height);
   final People people = People.from(new String[]{"pobi", "crong", "honux", "jk"});
 
-  LineCreationStrategy lineCreationStrategy = () -> false;
+  LineCreationStrategy lineCreationStrategy = () -> true;
 
   Ladder ladder;
 
@@ -32,10 +33,17 @@ class LadderTest {
   @DisplayName("Line 목록을 반환한다.")
   void lines() {
     // given
+    final Line expectedLine = new Line(lineCreationStrategy, people.personCount());
+
     // when
     final List<Line> lines = ladder.lines();
 
     // then
-    assertThat(lines).hasSize(height);
+    assertAll(
+        () -> assertThat(lines).hasSize(height),
+        () -> assertThat(lines.get(0)).isEqualTo(expectedLine),
+        () -> assertThat(lines.get(1)).isEqualTo(expectedLine),
+        () -> assertThat(lines.get(2)).isEqualTo(expectedLine)
+    );
   }
 }
