@@ -1,5 +1,6 @@
 package ladder.controller;
 
+import ladder.domain.ExecutionResults;
 import ladder.domain.Height;
 import ladder.domain.Ladder;
 import ladder.domain.Persons;
@@ -16,9 +17,12 @@ public class LadderController {
 
     public void run() {
         Persons persons = Persons.from(inputView.inputPersonNames());
+        ExecutionResults executionResults = ExecutionResults.from(inputView.inputExecutionResults(), persons.getCountOfPerson());
         Height height = Height.from(inputView.inputLadderHeight());
 
         Ladder ladder = Ladder.of(height.getHeight(), persons.getPersons().size(), random::nextBoolean);
-        resultView.printResult(persons, ladder);
+        resultView.printPersons(persons);
+        resultView.printLadder(ladder);
+        resultView.printExecutionResults(executionResults);
     }
 }

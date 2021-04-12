@@ -1,5 +1,6 @@
 package ladder.view;
 
+import ladder.domain.ExecutionResults;
 import ladder.domain.Ladder;
 import ladder.domain.Persons;
 
@@ -17,27 +18,24 @@ public class ResultView {
         this.messagePrinter = new MessagePrinter();
     }
 
-    public void printResult(Persons persons, Ladder ladder) {
-        messagePrinter.println(System.lineSeparator() + "실행결과");
-        printPersons(persons);
-        printLadder(ladder);
-    }
-
-    private void printPersons(Persons persons) {
+    public void printPersons(Persons persons) {
+        messagePrinter.println(System.lineSeparator() + "사다리 결과");
         StringBuilder builder = new StringBuilder();
         builder.append(System.lineSeparator());
-        persons.getPersons().stream()
-                .forEach(person -> builder.append(String.format(SPACE_INPUT_CRITERIA, person.toString())));
+        persons.getPersons()
+                .stream()
+                .forEach(person ->
+                        builder.append(String.format(SPACE_INPUT_CRITERIA, person.toString())));
         messagePrinter.println(builder.toString());
     }
 
-    private void printLadder(Ladder ladder) {
+    public void printLadder(Ladder ladder) {
         StringBuilder builder = new StringBuilder();
         ladder.getLines().stream()
                 .forEach(line -> {
                     builder.append(String.format(SPACE_INPUT_CRITERIA, LINE_CHARACTER));
                     builder.append(line.getPoints().stream()
-                            .map(point -> getPointCharacter(point))
+                            .map(point -> getPointCharacter(point.getPoint()))
                             .collect(Collectors.joining(LINE_CHARACTER)));
                     builder.append(System.lineSeparator());
                 });
@@ -49,5 +47,14 @@ public class ResultView {
             return POINT_TRUE_CHARACTER;
         }
         return POINT_FALSE_CHARACTER;
+    }
+
+    public void printExecutionResults(ExecutionResults executionResults) {
+        StringBuilder builder = new StringBuilder();
+        executionResults.getExecutionResults()
+                .stream()
+                .forEach(executionResult ->
+                        builder.append(String.format(SPACE_INPUT_CRITERIA, executionResult)));
+        messagePrinter.println(builder.toString());
     }
 }

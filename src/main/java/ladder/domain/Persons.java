@@ -27,6 +27,14 @@ public class Persons {
                                 CollectionsUtils.checkSize(persons, personNames.length))));
     }
 
+    public int getCountOfPerson() {
+        return persons.size();
+    }
+
+    public Person getPerson(int index) {
+        return persons.get(index);
+    }
+
     public List<Person> getPersons() {
         return Collections.unmodifiableList(persons);
     }
