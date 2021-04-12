@@ -1,7 +1,9 @@
 package ladder.domain.nextstep;
 
-import ladder.domain.engine.Ladder;
+import ladder.domain.engine.ExecutionResults;
 import ladder.domain.engine.LadderResults;
+import ladder.domain.engine.Player;
+import ladder.domain.engine.Players;
 
 import java.util.HashMap;
 import java.util.List;

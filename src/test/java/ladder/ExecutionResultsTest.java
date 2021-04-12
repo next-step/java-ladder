@@ -1,6 +1,6 @@
 package ladder;
 
-import ladder.domain.nextstep.ExecutionResults;
+import ladder.domain.engine.ExecutionResults;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;

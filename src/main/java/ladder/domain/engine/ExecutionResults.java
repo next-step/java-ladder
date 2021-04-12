@@ -1,4 +1,4 @@
-package ladder.domain.nextstep;
+package ladder.domain.engine;
 
 import java.util.Arrays;
 import java.util.Collections;

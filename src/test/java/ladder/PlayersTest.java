@@ -1,6 +1,6 @@
 package ladder;
 
-import ladder.domain.nextstep.Players;
+import ladder.domain.engine.Players;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
