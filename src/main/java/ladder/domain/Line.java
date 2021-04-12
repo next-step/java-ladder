@@ -1,16 +1,25 @@
 package ladder.domain;
 
+import ladder.exception.PointListNullPointerException;
 import ladder.strategy.LineGenerateStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public final class Line {
 
     private final List<Point> points;
 
     private Line(List<Point> points) {
+        validateNull(points);
         this.points = points;
+    }
+
+    private final void validateNull(List<Point> points) {
+        if (Objects.isNull(points)) {
+            throw new PointListNullPointerException();
+        }
     }
 
     public static final Line of(List<Point> points) {
