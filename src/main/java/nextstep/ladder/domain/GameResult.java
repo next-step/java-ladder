@@ -1,48 +1,19 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.domain.generator.Players;
-
-import java.util.List;
-
 public class GameResult {
-    private final LadderResults ladderResults;
-    private final Players players;
+    private final String name;
+    private final String reward;
 
-    public GameResult(LadderResults ladderResults, Players players) {
-        this.ladderResults = ladderResults;
-        this.players = players;
+    public GameResult(final String name, final String reward) {
+        this.name = name;
+        this.reward = reward;
     }
 
-    public static GameResult of(LadderResults ladderResults, Players players) {
-        return new GameResult(ladderResults, players);
+    public String name() {
+        return name;
     }
 
-    public List<Line> ladderLines() {
-        return ladderResults.getLines();
-    }
-
-    public List<String> playerNames() {
-        return players.names();
-    }
-
-    public Player player(String name) {
-        return players.player(name.trim());
-    }
-
-    public String playerResult(int position) {
-        return ladderResults.getLadderResult(position);
-    }
-
-    public List<Player> players() {
-        return players.players();
-    }
-
-    public String ladderResult(int position) {
-        return ladderResults.getLadderResult(position);
-    }
-
-    public List<String> resultValues() {
-        return ladderResults.results()
-                .values();
+    public String reward() {
+        return reward;
     }
 }

@@ -1,6 +1,8 @@
 package nextstep.ladder.views;
 
 import nextstep.ladder.domain.*;
+import nextstep.ladder.domain.generator.Line;
+import nextstep.ladder.domain.generator.Point;
 import nextstep.ladder.utils.StringUtils;
 
 import java.util.List;
@@ -13,33 +15,26 @@ public class ResultView {
     private final static String BLANK_SEPARATOR = " ";
     private final static String ENTER = System.lineSeparator();
 
-    public static void showLadder(GameResult result) {
+    public static void showPlayersNames(List<String> names) {
         String stringBuilder = ENTER +
                 "사다리 결과" +
                 ENTER +
-                getPlayersNames(result.playerNames()) +
-                ENTER +
-                getLadder(result.ladderLines()) +
-                ENTER +
-                getResultValues(result.resultValues())
-                ;
+                names.stream()
+                        .map(ResultView::getPlayerName)
+                        .collect(Collectors.joining(BLANK_SEPARATOR));
         System.out.println(stringBuilder);
-    }
-
-    private static String getPlayersNames(List<String> names) {
-        return names.stream()
-                .map(ResultView::getPlayerName)
-                .collect(Collectors.joining(BLANK_SEPARATOR));
     }
 
     private static String getPlayerName(String name) {
         return StringUtils.generateBlank(DISPLAY_BLANK_LENGTH - name.length()) + name;
     }
 
-    private static String getLadder(List<Line> lines) {
-        return lines.stream()
-                .map(ResultView::getLine)
-                .collect(Collectors.joining(ENTER));
+    public static void showLadder(List<Line> lines) {
+        String stringBuilder = ENTER +
+                lines.stream()
+                        .map(ResultView::getLine)
+                        .collect(Collectors.joining(ENTER));
+        System.out.println(stringBuilder);
     }
 
     private static String getLine(Line line) {
@@ -56,27 +51,26 @@ public class ResultView {
                 .displayChar;
     }
 
-    private static String getResultValues(List<String> values) {
-        return values.stream()
+    public static void showResultValues(List<String> values) {
+        String stringBuilder = values.stream()
                 .map(ResultView::getResultValue)
                 .collect(Collectors.joining(BLANK_SEPARATOR));
+        System.out.println(stringBuilder);
     }
 
     private static String getResultValue(String value) {
         return StringUtils.generateBlank(DISPLAY_BLANK_LENGTH - value.length()) + value;
     }
 
-    public static void showPlayerResult(GameResult result, String name) {
-        Player player = result.player(name);
+    public static void showPlayerResult(GameResult result) {
         System.out.println(ENTER + RESULT_TITLE);
-        System.out.println(result.playerResult(player.position()));
+        System.out.println(result.reward());
     }
 
-    public static void showAllResults(GameResult result) {
+    public static void showAllResults(List<GameResult> gameResults) {
         System.out.println(ENTER + RESULT_TITLE);
-        result.players()
-                .forEach(player -> System.out.println(player.name() +
-                        RESULT_SEPARATOR +
-                        result.ladderResult(player.position())));
+        gameResults.forEach(gameResult -> System.out.println(gameResult.name() +
+                RESULT_SEPARATOR +
+                gameResult.reward()));
     }
 }

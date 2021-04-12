@@ -10,6 +10,8 @@ public class InputView {
     private final static String GAME_RESULT = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private final static String CHOOSE_PLAYER_RESULT = "결과를 보고 싶은 사람은?";
 
+    private final static Scanner scanner = new Scanner(System.in);
+
     private InputView() { }
 
     private static void emptyValidation(String value) {
@@ -20,7 +22,7 @@ public class InputView {
     private static String value(String description) {
         System.out.println();
         System.out.println(description);
-        String value = new Scanner(System.in).nextLine();
+        String value = scanner.nextLine();
         emptyValidation(value);
         return value;
     }

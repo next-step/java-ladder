@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.domain.generator.Line;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

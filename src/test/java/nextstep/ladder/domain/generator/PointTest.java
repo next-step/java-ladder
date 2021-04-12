@@ -1,5 +1,7 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.generator;
 
+import nextstep.ladder.domain.Direction;
+import nextstep.ladder.domain.generator.Point;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;

@@ -1,4 +1,6 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.generator;
+
+import nextstep.ladder.domain.Direction;
 
 import java.util.Objects;
 
@@ -9,7 +11,7 @@ public class Point {
     private final Direction direction;
     private final int position;
 
-    public Point(Direction direction, int position) {
+    protected Point(Direction direction, int position) {
         this.direction = direction;
         this.position = position;
     }
@@ -27,20 +29,23 @@ public class Point {
     }
 
     public static Point last(Point previousPoint) {
-        if (Direction.RIGHT.equals(previousPoint.direction()))
+        if (Direction.RIGHT.equals(previousPoint.direction())) {
             return new Point(Direction.LEFT, previousPoint.position() + NEXT_INCREASE_VALUE);
+        }
         return new Point(Direction.DOWN, previousPoint.position() + NEXT_INCREASE_VALUE);
     }
 
     public Point next(boolean next) {
-        if (Direction.RIGHT.equals(this.direction))
+        if (Direction.RIGHT.equals(this.direction)) {
             return new Point(Direction.LEFT, position + NEXT_INCREASE_VALUE);
+        }
         return new Point(createDirection(next), position + NEXT_INCREASE_VALUE);
     }
 
     public static Direction createDirection(boolean current) {
-        if (current)
+        if (current) {
             return Direction.RIGHT;
+        }
         return Direction.DOWN;
     }
 

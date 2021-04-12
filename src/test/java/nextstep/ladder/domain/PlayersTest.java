@@ -1,7 +1,7 @@
-package nextstep.ladder.domain.generator;
+package nextstep.ladder.domain;
 
 import nextstep.ladder.domain.Player;
-import nextstep.ladder.domain.generator.Players;
+import nextstep.ladder.domain.Players;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,14 +19,14 @@ class PlayersTest {
 
     @BeforeEach
     void setUp() {
-        players = Players.from(new String[]{"james", "kim", "jade", "lee", "choi"});
+        players = Players.from("james,kim,jade,lee,choi");
     }
 
     @ParameterizedTest
     @DisplayName(value = "참가자 생성 인원수")
     @CsvSource(value = {"james,kim,jade,lee,choi:5", "james,kim:2"}, delimiter = ':')
     void playersCount(String input, int result) {
-        assertThat(new Players(input.split(","))
+        assertThat(Players.from(input)
                 .countOfPlayers())
                 .isEqualTo(result);
     }
@@ -36,7 +36,7 @@ class PlayersTest {
     void playersArgumentsException() {
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> {
-                    new Players(new String[]{""});
+                    Players.from("");
                 });
     }
 

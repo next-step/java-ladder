@@ -1,7 +1,6 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.domain.generator.CollectionGenerator;
-import nextstep.ladder.domain.generator.Results;
+import nextstep.ladder.domain.generator.Line;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -29,7 +28,7 @@ class LadderResultsTest {
             }
         };
         ladder = new Ladder(lines);
-        results = CollectionGenerator.results("꽝,5000,꽝,3000");
+        results = Results.from("꽝,5000,꽝,3000");
     }
 
     @Test
@@ -37,7 +36,7 @@ class LadderResultsTest {
     void ladderResultsArgumentException() {
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> {
-                    new LadderResults(ladder, CollectionGenerator.results("S,F"));
+                    LadderResults.of(ladder, Results.from("S,F"));
                 }).withMessageMatching("사다리 결과는 사다리 참가자 수와 같아야 합니다.");
     }
 
@@ -45,7 +44,7 @@ class LadderResultsTest {
     @DisplayName(value = "사다리 실행 결과 확인")
     @CsvSource(value = {"0:5000", "1:꽝", "2:3000", "3:꽝"}, delimiter = ':')
     void ladderResult(int startPosition, String result) {
-        LadderResults ladderResults = new LadderResults(ladder, results);
+        LadderResults ladderResults = LadderResults.of(ladder, results);
 
         assertThat(ladderResults.getLadderResult(startPosition))
                 .isEqualTo(result);

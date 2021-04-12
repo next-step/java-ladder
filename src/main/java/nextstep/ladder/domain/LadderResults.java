@@ -1,6 +1,6 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.domain.generator.Results;
+import nextstep.ladder.domain.generator.Line;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ public class LadderResults {
     private final Ladder ladder;
     private final Results results;
 
-    public LadderResults(Ladder ladder, Results results) {
+    private LadderResults(Ladder ladder, Results results) {
         validation(ladder, results);
         this.ladder = ladder;
         this.results = results;

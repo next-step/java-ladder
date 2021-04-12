@@ -1,6 +1,6 @@
-package nextstep.ladder.domain.generator;
+package nextstep.ladder.domain;
 
-import nextstep.ladder.domain.Player;
+import nextstep.ladder.utils.StringUtils;
 
 import java.util.Collections;
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.stream.IntStream;
 public class Players {
     private final List<Player> players;
 
-    protected Players(String[] values) {
+    private Players(String[] values) {
         players = generatePlayers(values);
     }
 
@@ -25,8 +25,8 @@ public class Players {
         return players.size();
     }
 
-    protected static Players from(String[] values) {
-        return new Players(values);
+    public static Players from(String value) {
+        return new Players(StringUtils.stringToArrays(value));
     }
 
     public List<String> names() {

@@ -1,4 +1,6 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.generator;
+
+import nextstep.ladder.domain.ConditionStrategy;
 
 import java.util.*;
 
