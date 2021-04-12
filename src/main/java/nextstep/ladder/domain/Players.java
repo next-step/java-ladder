@@ -30,4 +30,8 @@ public class Players {
     public List<Player> allPlayers() {
         return players;
     }
+
+    public int countOfPlayer() {
+        return players.size();
+    }
 }
