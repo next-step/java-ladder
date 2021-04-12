@@ -2,11 +2,17 @@ package ladder.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ParticipantsTest {
 
@@ -88,6 +94,32 @@ class ParticipantsTest {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Participants("pobi,honux,jk,all"))
                 .withMessageMatching("all 은 사용할 수 없는 이름입니다.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"sam"})
+    @NullAndEmptySource
+    @DisplayName("참가자 번호조회 - 존재하지 않는 참가자")
+    void getParticipantNumber_noSearch(String participantName) {
+        // given
+        Participants participants = new Participants("pobi,honux,crong,jk");
+
+        // when then
+        assertThrows(NoSuchElementException.class, () -> participants.getParticipantNumber(participantName), participantName + " 은 존재하지 않는 참가자 입니다.");
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"pobi:0", "honux:1", "crong:2", "jk:3"}, delimiter = ':')
+    @DisplayName("참가자 번호조회")
+    void getParticipantNumber(String participantName, int validationNumber) {
+        // given
+        Participants participants = new Participants("pobi,honux,crong,jk");
+
+        // when
+        int participantNumber = participants.getParticipantNumber(participantName);
+
+        // then
+        assertThat(validationNumber).isEqualTo(participantNumber);
     }
 
 }
