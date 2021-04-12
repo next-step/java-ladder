@@ -3,7 +3,7 @@ package nextstep.ladder.view;
 import nextstep.ladder.entity.Direction;
 import nextstep.ladder.entity.Ladder;
 import nextstep.ladder.entity.Line;
-import nextstep.ladder.entity.Lines;
+import nextstep.ladder.entity.LinesOfOneHeight;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,16 +30,16 @@ public class ResultView {
     }
 
     public static void printLadder(Ladder ladder) {
-        for (Lines lines : ladder.getLinesList()) {
-            printOneWidth(lines);
+        for (LinesOfOneHeight linesOfOneHeight : ladder.getLines()) {
+            printOneWidth(linesOfOneHeight);
         }
     }
 
-    private static void printOneWidth(Lines lines) {
-        int lineSize = lines.getLineSize();
+    private static void printOneWidth(LinesOfOneHeight linesOfOneHeight) {
+        int lineSize = linesOfOneHeight.getLineSize();
 
         IntStream.range(0, lineSize - 1)
-                .mapToObj(lines::positionLine)
+                .mapToObj(linesOfOneHeight::positionLine)
                 .forEach(ResultView::printLine);
 
         System.out.println("|");

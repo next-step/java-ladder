@@ -3,18 +3,18 @@ package nextstep.ladder.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Lines {
+public class LinesOfOneHeight {
     private final List<Line> lines;
 
-    public Lines(List<Line> lines) {
+    public LinesOfOneHeight(List<Line> lines) {
         this.lines = lines;
     }
 
-    public Lines(int userCount, DrawRule drawRule) {
+    public LinesOfOneHeight(int userCount, DrawRule drawRule) {
         this(initLines(userCount, drawRule));
     }
 
-    public Lines(int userCount) {
+    public LinesOfOneHeight(int userCount) {
         this(initLines(userCount, new RandomDrawRule()));
     }
 

@@ -5,23 +5,23 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
-    private final List<Lines> linesList;
+    private final List<LinesOfOneHeight> linesOfOneHeightList;
 
-    public Ladder(List<Lines> lines) {
-        this.linesList = lines;
+    public Ladder(List<LinesOfOneHeight> lines) {
+        this.linesOfOneHeightList = lines;
     }
 
-    public List<Lines> getLinesList() {
-        return linesList;
+    public List<LinesOfOneHeight> getLines() {
+        return linesOfOneHeightList;
     }
 
     public Ladder(int userCount , int ladderHeight) {
         this(lines(userCount, ladderHeight));
     }
 
-    private static List<Lines> lines(int userCount, int ladderHeight) {
+    private static List<LinesOfOneHeight> lines(int userCount, int ladderHeight) {
         return IntStream.range(0, ladderHeight)
-                .mapToObj(ladderIndex -> new Lines(userCount))
+                .mapToObj(ladderIndex -> new LinesOfOneHeight(userCount))
                 .collect(Collectors.toList());
     }
 }
