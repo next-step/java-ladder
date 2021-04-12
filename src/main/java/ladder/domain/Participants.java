@@ -34,6 +34,7 @@ public final class Participants {
 
     private static final List<Participant> stringToParticipantList(String names) {
         return Arrays.stream(names.split(REGEX))
+                .map(String::trim)
                 .map(Participant::of)
                 .collect(Collectors.toList());
     }

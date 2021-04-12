@@ -32,7 +32,7 @@ public final class Line {
 
     private static Point generatePoint(Point before, LineGenerateStrategy strategy) {
         if (before.isTrue()) {
-            return Point.of(false);
+            return Point.of(Boolean.FALSE);
         }
         return Point.of(strategy.generateLine());
     }
