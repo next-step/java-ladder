@@ -4,7 +4,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class LadderTest {
 
@@ -12,11 +11,11 @@ class LadderTest {
     @Test
     void 생성() {
         // given
-        Participants participants = Participants.of("pobi,honux,crong,jk");
+        People people = People.of("pobi,honux,crong,jk");
         int height = 5;
 
         // when
-        Ladder ladder = Ladder.from(participants, height);
+        Ladder ladder = Ladder.from(people, height);
 
         // then
         assertThat(ladder).isNotNull();

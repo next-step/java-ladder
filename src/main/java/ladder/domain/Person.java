@@ -2,13 +2,13 @@ package ladder.domain;
 
 import ladder.exception.InvalidNameSizeException;
 
-public final class Participant {
+public final class Person {
 
     public static final int MAXIMUM_NAME_SIZE = 5;
 
     private final String name;
 
-    private Participant(String name) {
+    private Person(String name) {
         validateSize(name);
         this.name = name;
     }
@@ -19,7 +19,7 @@ public final class Participant {
         }
     }
 
-    public static final Participant of(String name) {
-        return new Participant(name);
+    public static final Person of(String name) {
+        return new Person(name);
     }
 }

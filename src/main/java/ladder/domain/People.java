@@ -7,35 +7,35 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public final class Participants {
+public final class People {
 
     public static final String REGEX = ",";
 
-    private final List<Participant> people;
+    private final List<Person> people;
 
-    private Participants(List<Participant> people) {
+    private People(List<Person> people) {
         validateNull(people);
         this.people = people;
     }
 
-    private final void validateNull(List<Participant> participants) {
-        if (Objects.isNull(participants)) {
+    private final void validateNull(List<Person> people) {
+        if (Objects.isNull(people)) {
             throw new ParticipantListNullPointerException();
         }
     }
 
-    public static final Participants of(List<Participant> participants) {
-        return new Participants(participants);
+    public static final People of(List<Person> people) {
+        return new People(people);
     }
 
-    public static final Participants of(String names) {
+    public static final People of(String names) {
         return of(stringToParticipantList(names));
     }
 
-    private static final List<Participant> stringToParticipantList(String names) {
+    private static final List<Person> stringToParticipantList(String names) {
         return Arrays.stream(names.split(REGEX))
                 .map(String::trim)
-                .map(Participant::of)
+                .map(Person::of)
                 .collect(Collectors.toList());
     }
 
