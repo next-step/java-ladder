@@ -67,9 +67,9 @@ class LineTest {
         );
     }
 
-    @DisplayName("move시 point가 true일 경우 오른쪽(인덱스 1증가)으로 이동한다")
+    @DisplayName("move시 point에 맞게 index가 이동한다")
     @ParameterizedTest
-    @CsvSource(value = {"0,1", "1,1", "2,3", "3,3", "4,4"})
+    @CsvSource(value = {"0,1", "1,0", "2,3", "3,2", "4,4"})
     void move(int index, int expectedIndex) {
         // given
         Line line = Line.of(5, () -> Boolean.TRUE);

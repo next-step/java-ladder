@@ -32,7 +32,10 @@ public class Line {
     }
 
     public int move(final int index) {
-        return points.get(index).move();
+        if (index == 0) {
+            return points.get(index).move();
+        }
+        return points.get(index).move(points.get(index - 1).getPoint());
     }
 
     private void add(Boolean point, int totalCount) {
