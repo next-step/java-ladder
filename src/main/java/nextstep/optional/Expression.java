@@ -9,6 +9,7 @@ enum Expression {
   TIMES("*"),
   DIVIDE("/");
 
+  public static final String ILLEGAL_EXPRESSION = "는 사칙연산에 해당하지 않는 표현식입니다.";
   private final String expression;
 
   Expression(String expression) {
@@ -21,8 +22,8 @@ enum Expression {
 
   static Expression of(String expression) {
     return Arrays.stream(values())
-        .filter(v -> matchExpression(v, expression))
+        .filter(value -> matchExpression(value, expression))
         .findFirst()
-        .orElseThrow(() -> new IllegalArgumentException(expression + "는 사칙연산에 해당하지 않는 표현식입니다."));
+        .orElseThrow(() -> new IllegalArgumentException(expression + ILLEGAL_EXPRESSION));
   }
 }
