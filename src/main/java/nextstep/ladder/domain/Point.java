@@ -10,6 +10,10 @@ public class Point {
         this.booleanStrategy = booleanStrategy;
     }
 
+    public static Point of(boolean point, BooleanStrategy booleanStrategy) {
+        return new Point(point, booleanStrategy);
+    }
+
     public static Point of(boolean point) {
         return new Point(point, new RandomBooleanStrategy());
     }
@@ -20,9 +24,9 @@ public class Point {
 
     public Point nextPoint() {
         if (point) {
-            return of(false);
+            return of(false, booleanStrategy);
         }
-        return of(booleanStrategy.value());
+        return of(booleanStrategy);
     }
 
     public boolean value() {
