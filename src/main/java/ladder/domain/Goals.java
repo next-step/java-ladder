@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Goals {
     private final List<String> goals;
@@ -20,6 +21,19 @@ public class Goals {
 
     public List<String> goals() {
         return goals;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Goals goals1 = (Goals) o;
+        return Objects.equals(goals, goals1.goals);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(goals);
     }
 
     private void verifyGoals(List<String> goals, int numberOfPlayers) {
