@@ -2,6 +2,7 @@ package ladder.domain;
 
 import ladder.exception.PointListNullPointerException;
 import ladder.strategy.LineGenerateStrategy;
+import ladder.strategy.RandomLineGenerateStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,10 @@ public final class Line {
 
     public static final Line of(List<Point> points) {
         return new Line(points);
+    }
+
+    public static final Line of(int countPerson) {
+        return of(countPerson, RandomLineGenerateStrategy.getInstance());
     }
 
     public static final Line of(int countPerson, LineGenerateStrategy strategy) {
