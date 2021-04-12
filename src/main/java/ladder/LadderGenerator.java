@@ -3,12 +3,12 @@ package ladder;
 public class LadderGenerator {
     public static Direction generate(Point point, Point previousPoint) {
         if (point.isFirst()) {
-            return generate(new FirstElementStrategy(point));
+            return generate(new FirstElementStrategy());
         }
         if (point.isLast()) {
-            return generate(new LastElementStrategy(point, previousPoint));
+            return generate(new LastElementStrategy(previousPoint));
         }
-        return generate(new BodyElementStrategy(point, previousPoint));
+        return generate(new BodyElementStrategy(previousPoint));
     }
 
     private static Direction generate(LadderStrategy strategy) {

@@ -2,9 +2,11 @@ package ladder;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 public class ResultView {
-    public static final String INIT_INDENT = "    ";
+    public static final String ONE_INDENT = " ";
+    public static final String INIT_INDENT = indent();
 
     private final Players players;
     private final List<LineResult> lineResults;
@@ -62,5 +64,11 @@ public class ResultView {
 
     private String padLeft(String inputString) {
         return String.format("%1$" + Player.MAX_SIZE + "s", inputString);
+    }
+
+    private static String indent() {
+        return Stream.generate(() -> ONE_INDENT)
+                .limit(Player.MAX_SIZE - 1)
+                .reduce("", (a, b) -> a + b);
     }
 }
