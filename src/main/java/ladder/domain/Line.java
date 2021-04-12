@@ -25,10 +25,14 @@ public class Line {
                 .collect(Collector.of(
                         Line::new,
                         (line, point) -> line.add(point, countOfPerson),
-                        (a,b) -> {
+                        (a, b) -> {
                             throw new UnsupportedOperationException();
                         }
                 ));
+    }
+
+    public int move(final int index) {
+        return points.get(index).move();
     }
 
     private void add(Boolean point, int totalCount) {

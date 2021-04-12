@@ -2,6 +2,8 @@ package ladder.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
@@ -63,5 +65,20 @@ class LineTest {
                 () -> assertThat(points.get(1).getPoint()).isFalse(),
                 () -> assertThat(points.get(2).getPoint()).isFalse()
         );
+    }
+
+    @DisplayName("move시 point가 true일 경우 오른쪽(인덱스 1증가)으로 이동한다")
+    @ParameterizedTest
+    @CsvSource(value = {"0,1", "1,1", "2,3", "3,3", "4,4"})
+    void move(int index, int expectedIndex) {
+        // given
+        Line line = Line.of(5, () -> Boolean.TRUE);
+
+        // when
+        int movedIndex = line.move(index);
+
+        // then
+        assertThat(movedIndex).isEqualTo(expectedIndex);
+
     }
 }
