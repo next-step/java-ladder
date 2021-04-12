@@ -1,5 +1,7 @@
 package ladder.view;
 
+import ladder.controller.dto.LadderGameResponse;
+import ladder.controller.dto.LadderGameTotalResultResponse;
 import ladder.controller.dto.LadderGenerationResponse;
 import ladder.controller.dto.LadderLine;
 
@@ -61,5 +63,19 @@ public class OutputView {
             horizons.append(horizon);
         }
         return horizons.toString();
+    }
+
+    public void printGameResult(LadderGameResponse response) {
+        System.out.println(System.lineSeparator() + "실행 결과");
+        System.out.println(response.getGameResult());
+    }
+
+    public void printGameResults(LadderGameTotalResultResponse response) {
+        System.out.println(System.lineSeparator() + "실행 결과");
+        List<String> participantNames = response.getParticipantNames();
+        List<String> gameResults = response.getGameResults();
+        for (int i = 0; i < participantNames.size(); i++) {
+            System.out.println(participantNames.get(i) + " : " + gameResults.get(i));
+        }
     }
 }
