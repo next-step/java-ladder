@@ -27,24 +27,13 @@ public class LadderResultTest {
     }
 
     @Test
-    @DisplayName("ResutlElement add 테스트")
-    void When_Add_Then_NoException() {
-        LadderResult ladderResult = new LadderResult();
-        ResultElement resultElement = new ResultElement("name", "goal");
-
-        assertDoesNotThrow(() -> ladderResult.add(resultElement));
-    }
-
-    @Test
     @DisplayName("특정 플레이어의 결과값 가지고 오기")
     void Given_PlayerName_When_Result_Then_RightValue() {
         LadderResult ladderResult = new LadderResult(givenResultElements);
 
-        List<ResultElement> results = ladderResult.result("a");
+        LadderResult results = ladderResult.result("a");
 
-        assertThat(results.size()).isEqualTo(1);
-        assertThat(results.get(0).name()).isEqualTo("a");
-        assertThat(results.get(0).goal()).isEqualTo("1");
+        assertThat(results).isEqualTo(new LadderResult(givenResultElements.get(0)));
     }
 
     @Test
@@ -52,8 +41,8 @@ public class LadderResultTest {
     void Given_AllPlayer_When_Result_Then_RightValue() {
         LadderResult ladderResult = new LadderResult(givenResultElements);
 
-        List<ResultElement> results = ladderResult.result("all");
+        LadderResult allResults = ladderResult.result("all");
 
-        assertThat(results).isEqualTo(givenResultElements);
+        assertThat(allResults).isEqualTo(ladderResult);
     }
 }

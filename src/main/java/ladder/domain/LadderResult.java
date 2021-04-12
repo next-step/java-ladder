@@ -1,15 +1,12 @@
 package ladder.domain;
 
-import ladder.domain.ResultElement;
-
 import java.util.*;
 import java.util.stream.Collectors;
-
 
 public class LadderResult {
     private static final String EVERY_PLAYER = "all";
 
-    private final List<ResultElement> results;
+    private final List<ResultElement> resultElements;
 
     public LadderResult() {
         this(Arrays.asList());
@@ -20,22 +17,34 @@ public class LadderResult {
     }
 
     public LadderResult(List<ResultElement> resultElements) {
-        this.results = new ArrayList<>();
-        this.results.addAll(resultElements);
+        this.resultElements = resultElements;
     }
 
-    public void add(ResultElement resultElement) {
-        results.add(resultElement);
+    public List<ResultElement> elements() {
+        return Collections.unmodifiableList(resultElements);
     }
 
-    public List<ResultElement> result(String playerName) {
+    public LadderResult result(String playerName) {
         if (playerName.equals(EVERY_PLAYER)) {
-            return results;
+            return this;
         }
 
-        List<ResultElement> result = results.stream()
+        List<ResultElement> filteredResultElements = resultElements.stream()
                 .filter(resultElement -> resultElement.nameEquals(playerName))
                 .collect(Collectors.toList());
-        return Collections.unmodifiableList(result);
+        return new LadderResult(filteredResultElements);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LadderResult that = (LadderResult) o;
+        return Objects.equals(resultElements, that.resultElements);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(resultElements);
     }
 }

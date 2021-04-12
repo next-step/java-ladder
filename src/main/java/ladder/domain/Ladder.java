@@ -2,7 +2,6 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class Ladder {
     private final List<Line> lines;
@@ -25,14 +24,13 @@ public class Ladder {
     }
 
     public LadderResult result(Players players, Goals goals) {
-        LadderResult ladderResult = new LadderResult();
-
+        List<ResultElement> resultElements = new ArrayList<>();
         for (int topPoint = 0; topPoint < players.count(); topPoint++) {
             int bottomPoint = bottomPoint(topPoint);
-            ladderResult.add(new ResultElement(players.name(topPoint), goals.item(bottomPoint)));
+            resultElements.add(new ResultElement(players.name(topPoint), goals.item(bottomPoint)));
         }
 
-        return ladderResult;
+        return new LadderResult(resultElements);
     }
 
     private int bottomPoint(int point) {

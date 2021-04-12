@@ -28,16 +28,19 @@ public class LadderTest {
     @Test
     void When_Result_Then_() {
         Line firstLine = new Line(Arrays.asList(Link.CLOSE, Link.OPEN));
-        Line secondtLine = new Line(Arrays.asList(Link.OPEN, Link.CLOSE));
-        Ladder ladder = new Ladder(Arrays.asList(firstLine, secondtLine));
+        Line secondLine = new Line(Arrays.asList(Link.OPEN, Link.CLOSE));
+        Ladder ladder = new Ladder(Arrays.asList(firstLine, secondLine));
 
-        Players players = new Players(Arrays.asList("fir", "sed", "thr"));
+        Players players = new Players(Arrays.asList("a", "b", "c"));
         Goals goals = new Goals(Arrays.asList("1", "2", "3"));
+
+        LadderResult expected = new LadderResult(Arrays.asList(
+                new ResultElement("a", "3"),
+                new ResultElement("b", "1"),
+                new ResultElement("c", "2")));
 
         LadderResult ladderResult = ladder.result(players, goals);
 
-        assertThat(ladderResult.result("fir").get(0).goal()).isEqualTo("3");
-        assertThat(ladderResult.result("sed").get(0).goal()).isEqualTo("1");
-        assertThat(ladderResult.result("thr").get(0).goal()).isEqualTo("2");
+        assertThat(ladderResult).isEqualTo(expected);
     }
 }

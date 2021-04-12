@@ -68,7 +68,7 @@ public class View {
         return Arrays.asList(scanner.nextLine().split(delimiter));
     }
 
-    public static void resultElements(List<ResultElement> results) {
-        results.forEach(resultElement -> System.out.printf("%s : %s\n", resultElement.name(), resultElement.goal()));
+    public static void resultElements(LadderResult results) {
+        results.elements().forEach(resultElement -> System.out.printf("%s : %s\n", resultElement.name(), resultElement.goal()));
     }
 }
