@@ -1,27 +1,44 @@
 package ladder.domain;
 
-public enum Point {
+public class Point {
 
-  CONNECT(true, "-----|"),
-  DISCONNECT(false, "     |");
+  private final int index;
+  private final Direction direction;
 
-  private final boolean isConnected;
-  private final String pedal;
-
-  Point(boolean isConnected, String pedal) {
-    this.isConnected = isConnected;
-    this.pedal = pedal;
+  public Point(int index, Direction direction) {
+    this.index = index;
+    this.direction = direction;
   }
 
-  public static Point getPoint(boolean isConnected) {
-    return isConnected ? CONNECT : DISCONNECT;
+  public int move() {
+    if (direction.isRight()) {
+      return index + 1;
+    }
+
+    if (direction.isLeft()) {
+      return index - 1;
+    }
+
+    return this.index;
   }
 
-  public boolean isConnected() {
-    return isConnected;
+  public static Point first(Boolean right) {
+    return new Point(0, Direction.first(right));
   }
 
-  public String pedal() {
-    return pedal;
+  public Point next(ConnectStrategy connectStrategy) {
+    return new Point(index + 1, direction.next(connectStrategy));
+  }
+
+  public Point next(Boolean right) {
+    return new Point(index + 1, direction.next(right));
+  }
+
+  public Point last() {
+    return new Point(index + 1, direction.last());
+  }
+
+  public boolean isRight() {
+    return direction.isRight();
   }
 }

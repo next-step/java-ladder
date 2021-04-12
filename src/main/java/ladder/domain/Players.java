@@ -14,8 +14,4 @@ public class Players {
   public List<Name> names() {
     return Collections.unmodifiableList(players);
   }
-
-  public Name player(int index) {
-    return players.get(index);
-  }
 }
