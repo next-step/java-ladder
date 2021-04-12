@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NextStepLineGenerator implements LineGenerator {
-
     private void generateFirstPoint(List<NextStepPoint> points){
         NextStepPoint tmpPoint = NextStepPoint.randomPoint();
         points.add(tmpPoint);

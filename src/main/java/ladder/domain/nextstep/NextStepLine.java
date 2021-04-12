@@ -18,6 +18,6 @@ public class NextStepLine implements Line {
     }
 
     public int move(int position){
-         return position += points.get(position).move();
+         return position + points.get(position).move();
     }
 }
