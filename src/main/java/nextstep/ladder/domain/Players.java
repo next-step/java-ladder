@@ -31,6 +31,12 @@ public class Players {
         return players;
     }
 
+    public String names() {
+        return players.stream()
+                .map(Player::name)
+                .collect(Collectors.joining(" "));
+    }
+
     public int countOfPlayer() {
         return players.size();
     }
