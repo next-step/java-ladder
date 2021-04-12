@@ -1,5 +1,6 @@
 package ladder.domain.nextstep;
 
+import ladder.domain.engine.Ladder;
 import ladder.domain.engine.LadderResults;
 
 import java.util.HashMap;
