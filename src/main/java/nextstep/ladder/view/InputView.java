@@ -1,8 +1,7 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.controller.Query;
+import nextstep.ladder.domain.Query;
 import nextstep.ladder.domain.Height;
-import nextstep.ladder.domain.Player;
 
 import java.util.Arrays;
 import java.util.List;

@@ -1,6 +1,6 @@
 package nextstep.ladder.view.dto;
 
-import nextstep.ladder.controller.Query;
+import nextstep.ladder.domain.Query;
 import nextstep.ladder.domain.Rewards;
 
 import java.util.List;

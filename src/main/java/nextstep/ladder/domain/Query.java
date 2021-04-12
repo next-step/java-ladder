@@ -1,4 +1,4 @@
-package nextstep.ladder.controller;
+package nextstep.ladder.domain;
 
 
 public class Query {

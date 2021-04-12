@@ -35,15 +35,15 @@ public class LadderMachine {
     }
 
     private void showResult(Players players) {
-        boolean isRunning = true;
         Rewards reArrangeRewards = Rewards.of(rewards, ladder.positionOfAllResult());
         RewardsDto rewardsDto = RewardsDto.of(players.readOnlyPlayerNames(), reArrangeRewards);
-        while (isRunning) {
-            Query query = InputView.getResultQuery();
+        Query query = InputView.getResultQuery();
+        while (query.isNotEndQuery()) {
             validateQuery(players, query);
-            showQueryResult(rewardsDto, query);
-            isRunning = isContinue(query);
+            ResultView.showResultOfPlayer(rewardsDto.findQueryResult(query));
+            query = InputView.getResultQuery();
         }
+        ResultView.showResultOfAll(rewardsDto);
     }
 
     private void validateQuery(Players players, Query query) {
@@ -55,17 +55,5 @@ public class LadderMachine {
     private boolean queryNotInPlayers(Players players, Query query) {
         Player queryPlayer = Player.from(query);
         return players.notIncludePlayer(queryPlayer);
-    }
-
-    private void showQueryResult(RewardsDto rewardsDto, Query query) {
-        if (query.isAll()) {
-            ResultView.showResultOfAll(rewardsDto);
-            return;
-        }
-        ResultView.showResultOfPlayer(rewardsDto.findQueryResult(query));
-    }
-
-    private boolean isContinue(Query query) {
-        return query.isNotEndQuery();
     }
 }

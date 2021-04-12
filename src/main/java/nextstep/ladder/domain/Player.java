@@ -1,7 +1,5 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.controller.Query;
-
 import java.util.Objects;
 
 public class Player {
