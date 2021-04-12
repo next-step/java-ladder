@@ -4,20 +4,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-    private final List<Boolean> points;
+    private final List<Point> points;
 
     public Line(int countOfPerson) {
         points = new ArrayList<>(4);
+        for (int i = 0; i < countOfPerson; i++) {
+            points.add(new Point(i));
+        }
     }
 
     public int getPointsSize() {
-        return 0;
+        return points.size();
     }
 
-    public void createBridge(int i) {
+    public void createBridge(int createAt) {
+        if (createAt >= points.size() - 1 || createAt < 0) {
+            throw new IllegalStateException("해당 지점에 사다리를 지을 수 없습니다: " + createAt);
+        }
+        if (!points.get(createAt).equals(new Point(createAt))) {
+            throw new IllegalStateException("해당 지점에 사다리가 존재합니다: " + createAt);
+        }
+        points.set(createAt, new Point(createAt + 1));
+        points.set(createAt + 1, new Point(createAt));
     }
 
-    public boolean move(int i) {
-        return false;
+    public Point move(int from) {
+        return points.get(from);
     }
 }

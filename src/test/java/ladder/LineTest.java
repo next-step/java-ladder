@@ -62,12 +62,24 @@ public class LineTest {
     }
 
     @Test
+    @DisplayName("음수 지점에 사다리를 지을 수 없습니다.")
+    void createBridgeAtStrangePointTest() {
+        Line line = new Line(4);
+        int createAt = -1;
+
+        assertThatIllegalStateException()
+                .isThrownBy(() -> line.createBridge(createAt))
+                .withMessage("해당 지점에 사다리를 지을 수 없습니다: " + createAt);
+    }
+
+    @Test
     @DisplayName("마지막 지점에는 사다리를 지을 수 없습니다.")
     void createBridgeAtFinalPointTest() {
         Line line = new Line(4);
+        int createAt = 3;
 
         assertThatIllegalStateException()
-                .isThrownBy(() -> line.createBridge(3))
-                .withMessageMatching("마지막 점에는 사다리를 지을 수 없습니다: \\d+");
+                .isThrownBy(() -> line.createBridge(createAt))
+                .withMessage("해당 지점에 사다리를 지을 수 없습니다: " + createAt);
     }
 }
