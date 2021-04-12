@@ -15,7 +15,28 @@ public class Ladder {
         }
     }
 
+    public Ladder(List<Line> lines) {
+        this.lines = lines;
+    }
+
     public List<Line> lines() {
         return lines;
+    }
+
+    public LadderResult result(Players players, Goals goals) {
+        List<ResultElement> resultElements = new ArrayList<>();
+        for (int topPoint = 0; topPoint < players.count(); topPoint++) {
+            int bottomPoint = bottomPoint(topPoint);
+            resultElements.add(new ResultElement(players.name(topPoint), goals.item(bottomPoint)));
+        }
+
+        return new LadderResult(resultElements);
+    }
+
+    private int bottomPoint(int point) {
+        for (Line line : lines) {
+            point = line.endPoint(point);
+        }
+        return point;
     }
 }

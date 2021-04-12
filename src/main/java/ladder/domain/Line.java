@@ -6,6 +6,10 @@ import java.util.List;
 public class Line {
     private final List<Link> links;
 
+    public Line(List<Link> links) {
+        this.links = links;
+    }
+
     public Line(int numberOfPlayer, Linker linker) {
         links = new ArrayList<>();
 
@@ -19,7 +23,26 @@ public class Line {
         return links;
     }
 
-    private Link previousLink(int currentIndex) {
-        return links.get(currentIndex - 1);
+    private Link previousLink(int point) {
+        if (point <= 0) {
+            return Link.OPEN;
+        }
+
+        return links.get(point - 1);
+    }
+
+    private Link currentLink(int point) {
+        if (point >= links.size()) {
+            return Link.OPEN;
+        }
+        return links.get(point);
+    }
+
+    public int endPoint(int startPoint) {
+        if (currentLink(startPoint) == Link.CLOSE)
+            return startPoint + 1;
+        if (previousLink(startPoint) == Link.CLOSE)
+            return startPoint - 1;
+        return startPoint;
     }
 }

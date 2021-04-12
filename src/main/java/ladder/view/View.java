@@ -1,9 +1,6 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
-import ladder.domain.Line;
-import ladder.domain.Link;
-import ladder.domain.Players;
+import ladder.domain.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,7 +11,7 @@ public class View {
 
     public static List<String> names() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        return Arrays.asList(scanner.nextLine().split(","));
+        return getStrings(",");
     }
 
     public static int height() {
@@ -24,18 +21,33 @@ public class View {
         return height;
     }
 
-    public static void printResult(Players players, Ladder ladder) {
+    public static List<String> resultItems() {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        return getStrings(",");
+    }
+
+    public static String expectedPlayer() {
+        System.out.println("결과를 보고 싶은 사람은?");
+        return scanner.nextLine();
+    }
+
+    public static void printResult(Players players, Goals goals, Ladder ladder) {
         System.out.println("실행결과");
         printPlayer(players);
         printLadder(ladder);
+        printGoal(goals);
+    }
+
+    private static void printGoal(Goals goals) {
+        printListString(goals.goals());
     }
 
     private static void printPlayer(Players players) {
-        printNames(players.names());
+        printListString(players.names());
     }
 
-    private static void printNames(List<String> players) {
-        players.forEach(player -> System.out.printf("%6s", player));
+    private static void printListString(List<String> strings) {
+        strings.forEach(player -> System.out.printf("%6s", player));
         System.out.println();
     }
 
@@ -55,5 +67,13 @@ public class View {
             linkSymbol = "|     ";
         }
         System.out.print(linkSymbol);
+    }
+
+    private static List<String> getStrings(String delimiter) {
+        return Arrays.asList(scanner.nextLine().split(delimiter));
+    }
+
+    public static void resultElements(LadderResult results) {
+        results.elements().forEach(resultElement -> System.out.printf("%s : %s\n", resultElement.name(), resultElement.goal()));
     }
 }

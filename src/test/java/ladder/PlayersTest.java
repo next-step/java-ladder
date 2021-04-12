@@ -38,4 +38,12 @@ public class PlayersTest {
 
         assertThat(players.count()).isEqualTo(playerNames.size());
     }
+
+    @Test
+    void When_Name_Then_ReturnPlayerName() {
+        List<String> playerNames = Arrays.asList("a", "b", "c", "d", "e");
+        Players players = new Players(playerNames);
+
+        assertThat(players.name(0)).isEqualTo("a");
+    }
 }
