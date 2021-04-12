@@ -1,91 +1,51 @@
 package nextstep.ladder.view;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.IntStream;
 import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Line;
+import nextstep.ladder.domain.LadderLine;
+import nextstep.ladder.domain.LadderMatcher;
 import nextstep.ladder.domain.Person;
-import nextstep.ladder.domain.Result;
+import nextstep.ladder.domain.Persons;
+import nextstep.ladder.domain.Results;
 
 public class ResultView {
 
-  private static final String RESULT_MESSAGE = "실행결과";
-  private static final String BLANK = " ";
-  private static final String LINE = "-----|";
-  private static final String NOT_LINE = "     |";
-  private static final int MAX_LENGTH = 6;
-  private static final String COLON = " : ";
+  public static final String PERSON_AND_RESULT_FORMAT = "%6s";
+  public static final String BLANK = " ";
+  public static final String LADDER_RESULT_FORMAT = "%s : %s";
 
-  public static void printLadderGame(Ladder ladder, String[] results) {
-    printResultFormat();
-    printPersons(ladder);
-    printLadder(ladder);
-    printResult(results);
+  public static void printLadderGame(LadderMatcher ladderMatcher) {
+    printNames(ladderMatcher.getPersons());
+    printLadder(ladderMatcher.getLadder());
+    printResult(ladderMatcher.getResults());
   }
 
-  private static void printResultFormat() {
-    System.out.println(RESULT_MESSAGE);
+  public static void printLadder(Ladder ladder) {
+    List<LadderLine> lines = ladder.getLines();
+    lines.forEach(System.out::println);
+  }
+
+  private static void printNames(Persons persons) {
+    persons.getPersons()
+        .forEach(person -> System.out.print(String.format(PERSON_AND_RESULT_FORMAT, person.getName())));
     System.out.println(BLANK);
   }
 
-  private static void printPersons(Ladder ladder) {
-    ladder.getPersons().stream()
-        .map(Person::getName)
-        .forEach(name -> {
-          int blankCount = getBlankCount(name);
-          printBlank(blankCount);
-          System.out.print(name);
-        });
+  private static void printResult(Results results) {
+    results.getResults()
+        .forEach(result -> System.out.print(String.format(PERSON_AND_RESULT_FORMAT, result.getName())));
     System.out.println(BLANK);
   }
-
-  private static int getBlankCount(String name) {
-    int blankCount = MAX_LENGTH - name.length();
-    return blankCount;
+  
+  public static void printLadderResult(LadderMatcher ladderMatcher, String startName) {
+    String result = ladderMatcher.findResultByPersonName(startName);
+    String message = String.format(LADDER_RESULT_FORMAT, startName, result);
+    System.out.println(message);
   }
 
-  private static void printBlank(int blankCount) {
-    IntStream.range(0, blankCount).forEach(i -> System.out.print(BLANK));
-  }
-
-  private static void printLadder(Ladder ladder) {
-    ladder.getLines().stream()
-        .map(Line::getPoints)
-        .forEach(ResultView::printLine);
-  }
-
-  private static void printResult(String[] results) {
-    Arrays.stream(results).forEach(result -> {
-      int blankCount = getBlankCount(result);
-      printBlank(blankCount);
-      System.out.print(result);
-    });
-    System.out.println(BLANK);
-  }
-
-  private static void printLine(List<Boolean> points) {
-    points.forEach(point -> System.out.print(getLineString(point)));
-    System.out.println(BLANK);
-  }
-
-  private static String getLineString(boolean isLine) {
-    if (isLine) {
-      return LINE;
-    }
-    return NOT_LINE;
-  }
-
-  public static void printResult(Ladder ladder, String personName) {
-    Result result = ladder.result(personName);
-    System.out.println(result.getName());
-  }
-
-  public static void printResult(Ladder ladder) {
-    ladder.getPersons().forEach(person -> {
-      String name = person.getName();
-      System.out.print(name + COLON);
-      printResult(ladder, name);
-    });
+  public static void printLadderResults(LadderMatcher ladderMatcher) {
+    Persons persons = ladderMatcher.getPersons();
+    persons.getPersons().stream().map(Person::getName)
+        .forEach(name -> printLadderResult(ladderMatcher, name));
   }
 }

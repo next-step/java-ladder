@@ -5,20 +5,21 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-class PersonTest {
+public class ResultTest {
 
   @Test
   void generate() {
-    String name = "bong";
-    Person person = Person.generate(name);
-    assertEquals(person.getName(), name);
+    String name = "꽝";
+    Result result = Result.generate(name);
+    assertEquals(result.getName(), name);
   }
 
   @Test
   void generate_fail_over_length() {
-    String name ="bonggu";
+    String name ="꽝입니다요.";
     assertThatIllegalArgumentException()
-        .isThrownBy(() -> Person.generate(name))
+        .isThrownBy(() -> Result.generate(name))
         .withMessage("name.length < 6");
   }
+
 }
