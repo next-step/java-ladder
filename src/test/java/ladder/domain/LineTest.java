@@ -31,7 +31,7 @@ class LineTest {
         int countOfPerson = 4;
 
         // when
-        Line line = new Line(countOfPerson);
+        Line line = Line.of(countOfPerson);
 
         // then
         assertThat(line).isNotNull();

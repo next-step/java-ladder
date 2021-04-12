@@ -1,8 +1,9 @@
 package ladder.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public final class Line {
 
@@ -12,16 +13,20 @@ public final class Line {
         this.points = points;
     }
 
-    public Line(int countPerson) {
-        List<Point> tempPoints = new ArrayList<>();
-        for(int i=0; i < countPerson; i++) {
-            tempPoints.add(Point.of(new Random().nextBoolean()));
-        }
-        this.points = tempPoints;
-    }
-
     public static final Line of(List<Point> points) {
         return new Line(points);
+    }
+
+    public static final Line of(int countPerson) {
+        return of(generatePoints(countPerson));
+    }
+
+    private static final List<Point> generatePoints(int countPerson) {
+        Random random = new Random();
+        return IntStream.range(0, countPerson)
+                .mapToObj(i -> random.nextBoolean())
+                .map(Point::of)
+                .collect(Collectors.toList());
     }
 
 }
