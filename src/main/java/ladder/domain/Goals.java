@@ -5,12 +5,12 @@ import java.util.List;
 public class Goals {
     private final List<String> goals;
 
-    public Goals(List<String> goals, int numberOfPlayers) {
-        this(goals);
-        verifyGoals(goals, numberOfPlayers);
+    public Goals(List<String> goals) {
+        this(goals, goals.size());
     }
 
-    public Goals(List<String> goals) {
+    public Goals(List<String> goals, int numberOfPlayers) {
+        verifyGoals(goals, numberOfPlayers);
         this.goals = goals;
     }
 
