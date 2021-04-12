@@ -16,8 +16,7 @@ public class Member {
         return new Member(name);
     }
 
-    @Override
-    public String toString() {
+    public String value() {
         return name;
     }
 }

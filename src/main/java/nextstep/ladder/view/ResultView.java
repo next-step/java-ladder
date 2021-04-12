@@ -19,7 +19,7 @@ public class ResultView {
     }
 
     private static void printMembers(Members members) {
-        members.forEach(member -> System.out.printf("%6s", member));
+        members.forEach(member -> System.out.printf("%6s", member.value()));
         System.out.println();
     }
 
