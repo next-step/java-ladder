@@ -1,4 +1,6 @@
-package ladder;
+package ladder.view;
+
+import ladder.domain.Players;
 
 import java.util.Scanner;
 

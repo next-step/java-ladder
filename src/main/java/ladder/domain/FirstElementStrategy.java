@@ -1,4 +1,6 @@
-package ladder;
+package ladder.domain;
+
+import ladder.util.RandomUtil;
 
 public class FirstElementStrategy implements LadderStrategy {
 

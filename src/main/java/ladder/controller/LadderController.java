@@ -1,4 +1,9 @@
-package ladder;
+package ladder.controller;
+
+import ladder.domain.Line;
+import ladder.domain.LineResult;
+import ladder.view.InputView;
+import ladder.view.ResultView;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,9 +1,11 @@
-package ladder;
+package ladder.domain;
 
-public class LastElementStrategy implements LadderStrategy {
+import ladder.util.RandomUtil;
+
+public class BodyElementStrategy implements LadderStrategy {
     private final Point previousPoint;
 
-    public LastElementStrategy(Point previousPoint) {
+    public BodyElementStrategy(Point previousPoint) {
         this.previousPoint = previousPoint;
     }
 
@@ -12,6 +14,11 @@ public class LastElementStrategy implements LadderStrategy {
         if (previousPoint.haveRightDirection()) {
             return Direction.LEFT;
         }
+
+        if (RandomUtil.trueOrFalse()) {
+            return Direction.RIGHT;
+        }
+
         return Direction.NO_DIRECTION;
     }
 }

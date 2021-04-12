@@ -1,5 +1,7 @@
 package ladder;
 
+import ladder.domain.Direction;
+import ladder.domain.LadderStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

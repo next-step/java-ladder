@@ -1,4 +1,4 @@
-package ladder;
+package ladder.domain;
 
 public class Position {
     public static final Position FIRST = Position.of("FIRST");

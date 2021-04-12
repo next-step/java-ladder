@@ -1,4 +1,4 @@
-package ladder;
+package ladder.domain;
 
 public class LadderGenerator {
     public static Direction generate(Point point, Point previousPoint) {

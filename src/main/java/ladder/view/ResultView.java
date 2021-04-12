@@ -1,4 +1,6 @@
-package ladder;
+package ladder.view;
+
+import ladder.domain.*;
 
 import java.util.List;
 import java.util.Optional;
