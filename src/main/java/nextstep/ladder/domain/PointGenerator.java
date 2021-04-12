@@ -5,6 +5,8 @@ import nextstep.ladder.util.RandomUtil;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Supplier;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class PointGenerator {
@@ -13,16 +15,24 @@ public class PointGenerator {
 
     private List<Point> points;
 
-    protected PointGenerator() {}
-
     protected PointGenerator(List<Boolean> points) {
         this.points = points.stream()
                 .map(Point::new)
                 .collect(Collectors.toUnmodifiableList());
     }
 
+    protected PointGenerator() {
+        this(new ArrayList<>());
+    }
+
+    public List<Point> generate(Supplier<List<Boolean>> points) {
+        this.points = points.get()
+                .stream()
+                .map(Point::new)
+                .collect(Collectors.toList());
+    }
+
     public List<Point> generate(int countOfPerson) {
-        this.points = new ArrayList<>();
         this.points.add(createFirstPoint(RandomUtil::getRandomBoolean));
         for (int idx = START_IDX; idx < countOfPerson - 1; idx++) {
             this.points.add(createPoint(idx, RandomUtil::getRandomBoolean));
@@ -36,10 +46,10 @@ public class PointGenerator {
     }
 
     private Point createPoint(int idx, ConnectStrategy connectStrategy) {
-        if (connectStrategy.connectable() && leftPointConnectable(idx)) {
-            return new Point(connectStrategy.connectable());
+        if (!connectStrategy.connectable()) {
+            return new Point(false);
         }
-        return new Point(false);
+        return new Point(leftPointConnectable(idx));
     }
 
     private boolean leftPointConnectable(int idx) {
