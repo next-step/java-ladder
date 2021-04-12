@@ -22,7 +22,7 @@ public class LadderGenerationController {
     }
 
     private LadderGenerationResponse assembleResponse(LadderGame ladderGame) {
-        return new LadderGenerationResponse(assembleParticipantNameList(ladderGame.getParticipants()), LadderGame.LADDER_HORIZON_WIDTH, assembleLadderLineList(ladderGame.getLines()));
+        return new LadderGenerationResponse(assembleParticipantNameList(ladderGame.getParticipants()), LadderGame.LADDER_HORIZON_WIDTH, assembleLadderLineList(ladderGame.getLines()), assembleGameResults());
     }
 
     private List<String> assembleParticipantNameList(Participants participants) {
@@ -40,5 +40,10 @@ public class LadderGenerationController {
     private LadderLine assembleLadderLine(Line line) {
         List<Boolean> pointList = line.getPoints().stream().map(Point::hasLine).collect(Collectors.toList());
         return new LadderLine(pointList);
+    }
+
+    private List<String> assembleGameResults() {
+        // TODO : 게임결과 출력 메서드 구현
+        return null;
     }
 }
