@@ -39,4 +39,18 @@ class ParticipantsTest {
                 .hasMessage("List<Participant>가 null 입니다.");
 
     }
+
+    @DisplayName("Participants 인스턴스가 소유한 사람들의 숫자 반환 테스트")
+    @Test
+    void 반환() {
+        // given
+        String names = "pobi,honux,crong,jk";
+
+        // when
+        Participants participants = Participants.of(names);
+        int actual = participants.countOfPerson();
+
+        // when
+        assertThat(actual).isEqualTo(4);
+    }
 }
