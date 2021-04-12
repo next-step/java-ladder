@@ -73,4 +73,29 @@ public class Line {
     public List<Point> getPoints() {
         return this.points;
     }
+
+    public int getLinkPointIndex(int index) {
+        if (isInvalidIndex(index)) {
+            throw new IllegalArgumentException("유효하지 않은 인덱스 입니다.");
+        }
+        if (isLinkedWithRight(index)) {
+            return ++index;
+        }
+        if (isLinkedWithLeft(index)) {
+            return --index;
+        }
+        return index;
+    }
+
+    private boolean isInvalidIndex(int index) {
+        return index < FIRST_POINT_INDEX || index >= points.size();
+    }
+
+    private boolean isLinkedWithRight(int index) {
+        return points.get(index).hasLine();
+    }
+
+    private boolean isLinkedWithLeft(int index) {
+        return index >= MIN_POINT_COUNT && points.get(index - 1).hasLine();
+    }
 }

@@ -59,12 +59,29 @@ class LineTest {
         assertAll(
                 () -> assertThat(line.getPoints().get(0).hasLine()).isTrue(),
                 () -> {
-                    for (int i = 1; i < line.getPoints().size()-1; i++) {
-                        boolean prevHasLine = line.getPoints().get(i-1).hasLine();
+                    for (int i = 1; i < line.getPoints().size() - 1; i++) {
+                        boolean prevHasLine = line.getPoints().get(i - 1).hasLine();
                         assertThat(line.getPoints().get(i).hasLine()).isNotEqualTo(prevHasLine);
                     }
                 },
-                () -> assertThat(line.getPoints().get(line.getPoints().size()-1).hasLine()).isFalse()
+                () -> assertThat(line.getPoints().get(line.getPoints().size() - 1).hasLine()).isFalse()
+        );
+    }
+
+    @Test
+    @DisplayName("연결 포인트 조회 - 유효하지 않은 인덱스")
+    void getLinkPointIndex_invalidIndex() {
+        // given
+        Line line = new Line(() -> true, 10);
+
+        // when then
+        assertAll(
+                () -> assertThatIllegalArgumentException()
+                        .isThrownBy(() -> line.getLinkPointIndex(-1))
+                        .withMessageMatching("유효하지 않은 인덱스 입니다."),
+                () -> assertThatIllegalArgumentException()
+                        .isThrownBy(() -> line.getLinkPointIndex(10))
+                        .withMessageMatching("유효하지 않은 인덱스 입니다.")
         );
     }
 
