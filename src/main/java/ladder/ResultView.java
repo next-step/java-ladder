@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 public class ResultView {
+    public static final String INIT_INDENT = "    ";
+
     private final Players players;
     private final List<LineResult> lineResults;
 
@@ -14,7 +16,7 @@ public class ResultView {
 
     public void printOutLineResult() {
         for (LineResult lineResult : lineResults) {
-            StringBuilder line = new StringBuilder("    ");
+            StringBuilder line = new StringBuilder(INIT_INDENT);
             for (PointResult pointResult : lineResult.getPointResults()) {
                 String result = "";
                 result = result.concat(printOfDirection(pointResult.getDirection()));
@@ -29,7 +31,7 @@ public class ResultView {
         Optional.of(players)
                 .map(Players::allPlayers)
                 .orElseThrow(IllegalArgumentException::new)
-                .forEach(player -> System.out.print(padLeft(player.getName(), Player.MAX_SIZE, ' ') + " "));
+                .forEach(player -> System.out.print(padLeft(player.getName()) + " "));
     }
 
     private String printOfDirection(Direction direction) {
@@ -45,7 +47,7 @@ public class ResultView {
         if (direction.equals(Direction.NO_DIRECTION)) {
             return printString.replace("-", " ");
         }
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException("일치하는 방향이 존재하지 않습니다.");
     }
 
     private String printOfPosition(Position position, String inputString) {
@@ -58,7 +60,7 @@ public class ResultView {
         return inputString;
     }
 
-    private String padLeft(String inputString, int length, char replaceChar) {
-        return String.format("%1$" + length + "s", inputString).replace(' ', replaceChar);
+    private String padLeft(String inputString) {
+        return String.format("%1$" + Player.MAX_SIZE + "s", inputString);
     }
 }
