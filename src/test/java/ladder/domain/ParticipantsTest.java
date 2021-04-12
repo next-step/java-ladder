@@ -69,4 +69,25 @@ class ParticipantsTest {
         }
     }
 
+    @Test
+    @DisplayName("중복된 이름 입력")
+    void create_duplicatedNames() {
+        // given
+        String participantNames = "pobi,honux,jk,jk";
+
+        // when then
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new Participants(participantNames))
+                .withMessageMatching("중복된 이름이 존재합니다. 참가자명을 다시 입력해 주세요.");
+    }
+
+    @Test
+    @DisplayName("all 키워드 입력")
+    void create_inputAll() {
+        // given when then
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new Participants("pobi,honux,jk,all"))
+                .withMessageMatching("all 은 사용할 수 없는 이름입니다.");
+    }
+
 }
