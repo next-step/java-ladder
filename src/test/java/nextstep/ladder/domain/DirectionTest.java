@@ -14,22 +14,21 @@ public class DirectionTest {
     @BeforeEach
     void setUp() {
         toLeftDirection = new Direction(true, false);
-        toRightDirection = Direction.first(() -> true);
-        noneDirection = Direction.first(() -> false);
+        toRightDirection = new Direction(false, true);
+        noneDirection = new Direction(false, false);
     }
 
     @Test
     @DisplayName("좌, 우 방향이 존재 유무를 가지는 좌표의 방향 객체 생성한다.")
     public void create() throws Exception {
-        Direction direction = new Direction(false, false);
-        assertThat(direction).isEqualTo(new Direction(false, false));
+        assertThat(noneDirection).isEqualTo(new Direction(false, false));
     }
 
     @Test
     @DisplayName("첫 번째 좌표의 방향 객체를 생성한다.")
     public void first() throws Exception {
-        assertThat(toRightDirection).isEqualTo(new Direction(false, true));
-        assertThat(noneDirection).isEqualTo(new Direction(false, false));
+        assertThat(Direction.first(() -> true)).isEqualTo(new Direction(false, true));
+        assertThat(Direction.first(() -> false)).isEqualTo(new Direction(false, false));
     }
 
     @Test
