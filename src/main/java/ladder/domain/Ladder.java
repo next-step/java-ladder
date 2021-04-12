@@ -12,9 +12,13 @@ public final class Ladder {
         this.ladder = ladder;
     }
 
+    public static final Ladder from(List<Line> ladder) {
+        return new Ladder(ladder);
+    }
+
     public static final Ladder from(People people, int height) {
-        return new Ladder(IntStream.range(0, height)
-                .mapToObj(i-> Line.of(people.countOfPerson()))
+        return from(IntStream.range(0, height)
+                .mapToObj(i -> Line.of(people.countOfPerson()))
                 .collect(Collectors.toList())
         );
     }
