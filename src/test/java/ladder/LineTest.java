@@ -60,4 +60,14 @@ public class LineTest {
                 .isThrownBy(() -> line.createBridge(1))
                 .withMessageMatching("해당 지점에 사다리가 존재합니다: \\d+");
     }
+
+    @Test
+    @DisplayName("마지막 지점에는 사다리를 지을 수 없습니다.")
+    void createBridgeAtFinalPointTest() {
+        Line line = new Line(4);
+
+        assertThatIllegalStateException()
+                .isThrownBy(() -> line.createBridge(3))
+                .withMessageMatching("마지막 점에는 사다리를 지을 수 없습니다: \\d+");
+    }
 }
