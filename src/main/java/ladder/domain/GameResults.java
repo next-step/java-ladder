@@ -15,7 +15,7 @@ public class GameResults {
         this(generateGameResults(gameResultNames, participantsCount));
     }
 
-    private GameResults(List<String> gameResults) {
+    public GameResults(List<String> gameResults) {
         this.gameResults = gameResults;
     }
 
