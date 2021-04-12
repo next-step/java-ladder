@@ -6,7 +6,7 @@ import nextstep.ladder.strategy.RandomConnectStrategy;
 import java.util.Objects;
 
 public class Direction {
-    public static final String CHECK_CONTIONUOUS = "가로 라인이 겹치는 지 확인해주세요.";
+    private static final String CHECK_CONTIONUOUS = "가로 라인이 겹치는 지 확인해주세요.";
     private final boolean left;
     private final boolean right;
 
@@ -48,6 +48,22 @@ public class Direction {
 
     public Direction last() {
         return new Direction(right, false);
+    }
+
+    public boolean hasAnyDirection() {
+        return left | right;
+    }
+
+    public int move() {
+        if (left) {
+            return -1;
+        }
+
+        if (right) {
+            return 1;
+        }
+
+        return 0;
     }
 
     @Override
