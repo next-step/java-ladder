@@ -1,4 +1,4 @@
-package nextstep.refactoring.laddergame.concrete.player;
+package nextstep.refactoring.laddergame.engine.player;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

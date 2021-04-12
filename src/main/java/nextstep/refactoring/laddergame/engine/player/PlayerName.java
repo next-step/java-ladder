@@ -1,4 +1,4 @@
-package nextstep.refactoring.laddergame.concrete.player;
+package nextstep.refactoring.laddergame.engine.player;
 
 import java.util.Objects;
 

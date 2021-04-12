@@ -1,4 +1,4 @@
-package nextstep.refactoring.laddergame.concrete.reward;
+package nextstep.refactoring.laddergame.engine.reward;
 
 public class RewardString {
 
