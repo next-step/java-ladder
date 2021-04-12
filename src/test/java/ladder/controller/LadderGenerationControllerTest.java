@@ -19,7 +19,7 @@ class LadderGenerationControllerTest {
         // given
         String participantNames = "pobi,honux,crong,jk";
         int ladderHeight = 5;
-        LadderGenerationRequest request = new LadderGenerationRequest(participantNames, ladderHeight, "꽝,5000,꽝,3000");
+        LadderGenerationRequest request = new LadderGenerationRequest(participantNames, "꽝,5000,꽝,3000", ladderHeight);
         LadderGenerationController controller = new LadderGenerationController();
 
         // when
@@ -38,7 +38,7 @@ class LadderGenerationControllerTest {
         // given
         String participantNames = "pobi,honux,crong,jk";
         int ladderHeight = 5;
-        LadderGenerationRequest request = new LadderGenerationRequest(participantNames, ladderHeight, "꽝,5000,꽝,3000");
+        LadderGenerationRequest request = new LadderGenerationRequest(participantNames, "꽝,5000,꽝,3000", ladderHeight);
         LadderGenerationController controller = new LadderGenerationController();
 
         // when
@@ -54,7 +54,7 @@ class LadderGenerationControllerTest {
         // given
         String participantNames = "pobi,honux,crong,jk";
         int ladderHeight = 5;
-        LadderGenerationRequest request = new LadderGenerationRequest(participantNames, ladderHeight, "꽝,5000,꽝,3000");
+        LadderGenerationRequest request = new LadderGenerationRequest(participantNames, "꽝,5000,꽝,3000", ladderHeight);
         LadderGenerationController controller = new LadderGenerationController();
 
         // when
@@ -71,7 +71,7 @@ class LadderGenerationControllerTest {
         String participantNames = "pobi,honux,crong,jk";
         int ladderHeight = 5;
         String gameResults = "꽝,5000,꽝,3000";
-        LadderGenerationRequest request = new LadderGenerationRequest(participantNames, ladderHeight, gameResults);
+        LadderGenerationRequest request = new LadderGenerationRequest(participantNames, gameResults, ladderHeight);
         LadderGenerationController controller = new LadderGenerationController();
 
         // when

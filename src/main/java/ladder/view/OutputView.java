@@ -12,19 +12,21 @@ public class OutputView {
     private static final String POINT = "|";
 
     public void printLadderGenerationResult(LadderGenerationResponse response) {
-        System.out.println(System.lineSeparator() + "실행결과");
-        printParticipants(response.getParticipantNames(), response.getLadderWidth());
+        System.out.println(System.lineSeparator() + "사다리 결과");
+        printHeaderAndFooter(response.getParticipantNames(), response.getLadderWidth());
         System.out.println();
         printLadder(response.getLadderLines(), response.getLadderWidth());
+        printHeaderAndFooter(response.getGameResults(), response.getLadderWidth());
+        System.out.println();
     }
 
-    private void printParticipants(List<String> participants, int ladderWidth) {
+    private void printHeaderAndFooter(List<String> participants, int ladderWidth) {
         for (String participant : participants) {
-            System.out.print(printParticipant(participant, ladderWidth));
+            System.out.print(printHeaderAndFooterElement(participant, ladderWidth));
         }
     }
 
-    private String printParticipant(String participant, int ladderWidth) {
+    private String printHeaderAndFooterElement(String participant, int ladderWidth) {
         StringBuilder result = new StringBuilder(participant);
         for (int i = 0; i < ladderWidth - participant.length() + 1; i++) {
             result.insert(0, EMPTY_HORIZON);

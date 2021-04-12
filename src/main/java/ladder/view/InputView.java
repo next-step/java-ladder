@@ -13,7 +13,7 @@ public class InputView {
     }
 
     public LadderGenerationRequest inputLadderGeneration() {
-        return new LadderGenerationRequest(inputParticipants(), inputLadderHeight(), inputGameResults());
+        return new LadderGenerationRequest(inputParticipants(), inputGameResults(), inputLadderHeight());
     }
 
     private String inputParticipants() {
@@ -21,13 +21,13 @@ public class InputView {
         return scanner.next();
     }
 
+    private String inputGameResults() {
+        System.out.println(System.lineSeparator() + "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        return scanner.next();
+    }
+
     private int inputLadderHeight() {
         System.out.println(System.lineSeparator() + "최대 사다리 높이는 몇 개인가요?");
         return scanner.nextInt();
-    }
-
-    private String inputGameResults() {
-        // TODO: inputGameResults 구현
-        return "꽝,5000,꽝,3000";
     }
 }
