@@ -11,7 +11,7 @@ public class Member {
 
     public static Member from(String name) {
         if (name.length() > NAME_MAX_LENGTH) {
-            throw new IllegalArgumentException("참여자 이름은 5글자 이하여야 합니다.");
+            throw new NameLengthExceededException("참여자 이름은 " + NAME_MAX_LENGTH + "글자 이하여야 합니다.");
         }
         return new Member(name);
     }
