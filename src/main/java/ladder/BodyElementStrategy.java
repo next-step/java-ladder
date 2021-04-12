@@ -1,11 +1,9 @@
 package ladder;
 
 public class BodyElementStrategy implements LadderStrategy {
-    private final Point point;
     private final Point previousPoint;
 
-    public BodyElementStrategy(Point point, Point previousPoint) {
-        this.point = point;
+    public BodyElementStrategy(Point previousPoint) {
         this.previousPoint = previousPoint;
     }
 
