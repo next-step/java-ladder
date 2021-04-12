@@ -39,7 +39,7 @@ public final class Line {
         return points;
     }
 
-    private static Point generatePoint(Point before, LineGenerateStrategy strategy) {
+    private static final Point generatePoint(Point before, LineGenerateStrategy strategy) {
         if (before.isTrue()) {
             return Point.of(Boolean.FALSE);
         }
