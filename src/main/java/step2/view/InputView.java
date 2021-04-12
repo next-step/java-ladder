@@ -7,9 +7,10 @@ public class InputView {
 
   private static final Scanner scanner = new Scanner(System.in);
 
-  private InputView(){}
+  private InputView() {
+  }
 
-  public static String nameInputEvent(){
+  public static String nameInputEvent() {
     System.out.println(INPUT_MESSAGE);
     return scanner.nextLine();
   }
