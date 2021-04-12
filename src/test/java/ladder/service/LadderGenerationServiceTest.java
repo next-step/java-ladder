@@ -1,6 +1,7 @@
 package ladder.service;
 
-import ladder.domain.LadderGame;
+import ladder.domain.Ladder;
+import ladder.domain.Participants;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -18,10 +19,10 @@ class LadderGenerationServiceTest {
         LadderGenerationService service = new LadderGenerationService();
 
         // when
-        LadderGame ladderGame = service.generateLadderGame("pobi,honux,crong,jk", 5);
+        Participants participants = service.registerParticipants("pobi,honux,crong,jk");
 
         // then
-        assertThat(4).isEqualTo(ladderGame.getParticipants().getCount());
+        assertThat(4).isEqualTo(participants.getCount());
     }
 
     @Test
@@ -31,10 +32,10 @@ class LadderGenerationServiceTest {
         LadderGenerationService service = new LadderGenerationService();
 
         // when
-        LadderGame ladderGame = service.generateLadderGame("pobi,honux,crong,jk", 5);
+        Ladder ladder = service.generateLadder(4, 5);
 
         // then
-        assertThat(5).isEqualTo(ladderGame.getLines().size());
+        assertThat(5).isEqualTo(ladder.getLines().size());
     }
 
     @Test
@@ -45,7 +46,7 @@ class LadderGenerationServiceTest {
 
         // when then
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> service.generateLadderGame(null, 5))
+                .isThrownBy(() -> service.registerParticipants(null))
                 .withMessageMatching("참가자 이름을 입력해 주세요.");
     }
 
@@ -58,8 +59,21 @@ class LadderGenerationServiceTest {
 
         // when then
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> service.generateLadderGame("pobi,honux,crong,jk", ladderHeight))
+                .isThrownBy(() -> service.generateLadder(4, ladderHeight))
                 .withMessageMatching("사다리의 높이는 최소 1 이상이어야 합니다.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {0, -1, 1})
+    @DisplayName("사다리 너비")
+    void validateLadderWidth(int ladderWidth) {
+        // given
+        LadderGenerationService service = new LadderGenerationService();
+
+        // when then
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> service.generateLadder(ladderWidth, 5))
+                .withMessageMatching("사다리의 너비는 최소 2 이상이어야 합니다.");
     }
 
 }
