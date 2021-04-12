@@ -10,9 +10,9 @@ public class Line {
     private final List<Point> points;
     private final ConnectStrategy connectStrategy;
 
-    public Line(int countOfPlayer, ConnectStrategy connectStrategy) {
+    public Line(CountOfPlayer countOfPlayer, ConnectStrategy connectStrategy) {
         this.connectStrategy = connectStrategy;
-        this.points = create(countOfPlayer);
+        this.points = create(countOfPlayer.number());
     }
 
     private List<Point> create(int countOfPlayer) {

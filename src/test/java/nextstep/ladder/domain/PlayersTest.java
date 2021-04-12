@@ -21,7 +21,7 @@ public class PlayersTest {
     @DisplayName("플레이어의 수를 반환한다.")
     public void countOfPlayer() throws Exception {
         Players players = new Players("pobi", "dobi");
-        int countOfPlayers = players.countOfPlayer();
-        assertThat(countOfPlayers).isEqualTo(2);
+        CountOfPlayer countOfPlayer = players.countOfPlayer();
+        assertThat(countOfPlayer.number()).isEqualTo(2);
     }
 }

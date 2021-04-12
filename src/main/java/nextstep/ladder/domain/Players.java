@@ -37,7 +37,7 @@ public class Players {
                 .collect(Collectors.joining(" "));
     }
 
-    public int countOfPlayer() {
-        return players.size();
+    public CountOfPlayer countOfPlayer() {
+        return new CountOfPlayer(players.size());
     }
 }
