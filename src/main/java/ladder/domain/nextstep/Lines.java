@@ -1,17 +1,17 @@
-package ladder.domain;
+package ladder.domain.nextstep;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Lines {
-    private final List<Line> lines = new ArrayList<>();
+    private final List<NextStepLine> lines = new ArrayList<>();
 
-    public void add(Line line){
+    public void add(NextStepLine line){
         lines.add(line);
     }
 
-    public List<Line> lines(){
+    public List<NextStepLine> lines(){
         return Collections.unmodifiableList(lines);
     }
 }

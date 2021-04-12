@@ -1,4 +1,6 @@
-package ladder.domain;
+package ladder.domain.nextstep;
+
+import ladder.domain.nextstep.Point;
 
 import java.util.ArrayList;
 import java.util.Collections;

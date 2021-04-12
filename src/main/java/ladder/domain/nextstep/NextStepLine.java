@@ -1,12 +1,12 @@
-package ladder.domain;
+package ladder.domain.nextstep;
 
 import java.util.List;
 
-public class Line {
+public class NextStepLine {
     private final int numberOfPlayers;
     private final Points points = new Points();
 
-    public Line(int numberOfPlayers) {
+    public NextStepLine(int numberOfPlayers) {
         this.numberOfPlayers = numberOfPlayers;
         generateLine();
     }

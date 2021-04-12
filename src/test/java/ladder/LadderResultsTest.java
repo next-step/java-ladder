@@ -1,7 +1,7 @@
 package ladder;
 
 import ladder.domain.engine.LadderResults;
-import ladder.domain.Player;
+import ladder.domain.nextstep.Player;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;

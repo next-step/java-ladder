@@ -1,17 +1,17 @@
-package ladder.domain;
+package ladder.domain.nextstep;
 
 import ladder.domain.engine.LadderResults;
 
 import java.util.HashMap;
 import java.util.List;
 
-public class Ladder {
+public class NextStepLadder {
     private static final int MIN_HEIGHT = 1;
     private static final String MESSAGE_MIN_HEIGHT = "사다리 높이는 1이상이어야 합니다.";
     private final Lines lines = new Lines();
     private final int height;
 
-    public Ladder(int numberOfPlayers, int height) {
+    public NextStepLadder(int numberOfPlayers, int height) {
         validate(height);
         this.height = height;
         generateLadder(numberOfPlayers, height);
@@ -31,7 +31,7 @@ public class Ladder {
     }
 
     private void movePlayersPosition(HashMap<Player, Integer> playersPosition){
-        List<Line> lines = this.lines.lines();
+        List<NextStepLine> lines = this.lines.lines();
         for(int i = 0; i < lines.size(); i++){
             move(lines.get(i).points(), playersPosition);
         }
@@ -56,11 +56,11 @@ public class Ladder {
 
     public void generateLadder(int numberOfPlayers, int height) {
         for(int i=0; i<height; i++){
-            lines.add(new Line(numberOfPlayers));
+            lines.add(new NextStepLine(numberOfPlayers));
         }
     }
 
-    public List<Line> lines(){
+    public List<NextStepLine> lines(){
         return lines.lines();
     }
 

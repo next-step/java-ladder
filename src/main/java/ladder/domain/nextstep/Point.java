@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.nextstep;
 
 public enum Point {
     LEFT(-1),

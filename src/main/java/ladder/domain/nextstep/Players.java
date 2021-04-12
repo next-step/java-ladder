@@ -1,4 +1,6 @@
-package ladder.domain;
+package ladder.domain.nextstep;
+
+import ladder.domain.nextstep.Player;
 
 import java.util.Arrays;
 import java.util.Collections;

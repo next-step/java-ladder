@@ -1,7 +1,7 @@
 package ladder.controller;
 
-import ladder.domain.*;
 import ladder.domain.engine.LadderResults;
+import ladder.domain.nextstep.*;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
@@ -14,7 +14,7 @@ public class LadderController {
 
     private Players players;
     private ExecutionResults executionResults;
-    private Ladder ladder;
+    private NextStepLadder ladder;
     private LadderResults ladderResults;
     private final static Map<Point, String> printPoints = new HashMap<>();
     private final static String ALL_PLAYERS = "all";
@@ -28,7 +28,7 @@ public class LadderController {
     public LadderController() {
         players = new Players(InputView.enterPlayers());
         executionResults = new ExecutionResults(players.numberOfPlayer(), InputView.enterExecutionResults());
-        ladder = new Ladder(players.numberOfPlayer(), InputView.enterHeight());
+        ladder = new NextStepLadder(players.numberOfPlayer(), InputView.enterHeight());
     }
 
     private void printPlayers() {
@@ -39,7 +39,7 @@ public class LadderController {
         ResultView.printPlayers(playersList);
     }
 
-    private void printLine(Line line) {
+    private void printLine(NextStepLine line) {
         line.points()
                 .forEach(point -> ResultView.printPoint(printPoints.get(point)));
         ResultView.printEmptyLine();
