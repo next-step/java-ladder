@@ -60,7 +60,7 @@ public class Participants {
         return participants.size();
     }
 
-    public int getParticipantNumber(String name) {
+    public int getEntranceNumber(String name) {
         return participants.indexOf(findParticipant(name));
     }
 

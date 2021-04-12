@@ -99,24 +99,24 @@ class ParticipantsTest {
     @ParameterizedTest
     @ValueSource(strings = {"sam"})
     @NullAndEmptySource
-    @DisplayName("참가자 번호조회 - 존재하지 않는 참가자")
-    void getParticipantNumber_noSearch(String participantName) {
+    @DisplayName("사다리 입구 번호조회 - 존재하지 않는 참가자")
+    void getEntranceNumber_noSearch(String participantName) {
         // given
         Participants participants = new Participants("pobi,honux,crong,jk");
 
         // when then
-        assertThrows(NoSuchElementException.class, () -> participants.getParticipantNumber(participantName), participantName + " 은 존재하지 않는 참가자 입니다.");
+        assertThrows(NoSuchElementException.class, () -> participants.getEntranceNumber(participantName), participantName + " 은 존재하지 않는 참가자 입니다.");
     }
 
     @ParameterizedTest
     @CsvSource(value = {"pobi:0", "honux:1", "crong:2", "jk:3"}, delimiter = ':')
-    @DisplayName("참가자 번호조회")
-    void getParticipantNumber(String participantName, int validationNumber) {
+    @DisplayName("사다리 입구 번호조회 - 정상 테스트")
+    void getEntranceNumber(String participantName, int validationNumber) {
         // given
         Participants participants = new Participants("pobi,honux,crong,jk");
 
         // when
-        int participantNumber = participants.getParticipantNumber(participantName);
+        int participantNumber = participants.getEntranceNumber(participantName);
 
         // then
         assertThat(validationNumber).isEqualTo(participantNumber);
