@@ -3,6 +3,8 @@ package nextstep.ladder.domain;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.Map;
+import nextstep.ladder.view.ResultView;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -17,7 +19,7 @@ class LadderMatcherTest {
     Persons persons = Persons.generate(personNames);
     String[] resultNames = new String[]{"1", "2", "3"};
     Results results = Results.generate(resultNames);
-    LadderMatcher.generate(persons, results, 5);
+    LadderMatcher.generate(persons, results);
   }
 
   @Test
@@ -29,7 +31,7 @@ class LadderMatcherTest {
     Results results = Results.generate(resultNames);
 
     assertThatIllegalArgumentException()
-        .isThrownBy(() -> LadderMatcher.generate(persons, results, 5))
+        .isThrownBy(() -> LadderMatcher.generate(persons, results))
         .withMessage("not matched count.");
   }
 
@@ -41,8 +43,12 @@ class LadderMatcherTest {
     Persons persons = Persons.generate(personNames);
     String[] resultNames = new String[]{"1", "2", "3"};
     Results results = Results.generate(resultNames);
-    LadderMatcher ladderMatcher = LadderMatcher.generate(persons, results, 5, () -> true);
-    String result = ladderMatcher.findResultByPersonName(name);
-    assertEquals(result, expected);
+
+    LadderMatcher ladderMatcher = LadderMatcher.generate(persons, results);
+    Ladder ladder = Ladder.generate(personNames.length, 5, () -> true);
+    ResultView.printLadderGame(ladderMatcher, ladder);
+
+    Map<String, String> moveResult = ladderMatcher.getMoveResult(ladder);
+    assertEquals(moveResult.get(name), expected);
   }
 }

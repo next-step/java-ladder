@@ -1,30 +1,26 @@
 package nextstep.ladder.domain;
 
-import java.util.Random;
-import nextstep.ladder.DirectionStrategy;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LadderMatcher {
 
-  private static final Random RANDOM = new Random();
   private Persons persons;
   private Results results;
-  private Ladder ladder;
 
-  private LadderMatcher(Persons persons, Results results, int height, DirectionStrategy directionStrategy) {
+  private LadderMatcher(Persons persons, Results results) {
     if (persons.size() != results.size()) {
       throw new IllegalArgumentException("not matched count.");
     }
-    this.ladder = Ladder.generate(persons.size(), height, directionStrategy);
     this.persons = persons;
     this.results = results;
   }
 
-  public static LadderMatcher generate(Persons persons, Results results, int height) {
-    return new LadderMatcher(persons, results, height, () -> RANDOM.nextBoolean());
-  }
-
-  public static LadderMatcher generate(Persons persons, Results results, int height, DirectionStrategy directionStrategy) {
-    return new LadderMatcher(persons, results, height, directionStrategy);
+  public static LadderMatcher generate(Persons persons, Results results) {
+    return new LadderMatcher(persons, results);
   }
 
   public Persons getPersons() {
@@ -35,14 +31,22 @@ public class LadderMatcher {
     return results;
   }
 
-  public Ladder getLadder() {
-    return ladder;
-  }
+  public Map<String, String> getMoveResult(Ladder ladder) {
+    List<String> keys = persons.getPersons().stream()
+        .map(Person::getName)
+        .collect(Collectors.toList());
 
-  public String findResultByPersonName(String name) {
-    int startIndex = persons.findIndex(name);
-    int resultIndex = ladder.move(startIndex);
-    Result result = results.findResult(resultIndex);
-    return result.getName();
+    int size = persons.size();
+    List<String> values = IntStream.range(0, size)
+        .mapToObj(index -> {
+          int resultIndex = ladder.move(index);
+          return results.findResult(resultIndex);
+        })
+        .map(Result::getName)
+        .collect(Collectors.toList());
+
+    Map<String, String> moveResult = new HashMap<>();
+    IntStream.range(0, size).forEach(i -> moveResult.put(keys.get(i), values.get(i)));
+    return moveResult;
   }
 }

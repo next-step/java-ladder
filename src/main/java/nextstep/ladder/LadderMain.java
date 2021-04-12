@@ -1,5 +1,7 @@
 package nextstep.ladder;
 
+import java.util.Map;
+import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.LadderMatcher;
 import nextstep.ladder.domain.Persons;
 import nextstep.ladder.domain.Results;
@@ -15,16 +17,19 @@ public class LadderMain {
     String[] resultNames = InputView.getResults();
     Results results = Results.generate(resultNames);
 
+    LadderMatcher ladderMatcher = LadderMatcher.generate(persons, results);
+
     int ladderHeight = InputView.getLadderHeight();
-    LadderMatcher ladderMatcher = LadderMatcher.generate(persons, results, ladderHeight);
-    ResultView.printLadderGame(ladderMatcher);
+    Ladder ladder = Ladder.generate(persons.size(), ladderHeight);
+    ResultView.printLadderGame(ladderMatcher, ladder);
+    Map<String, String> moveResult = ladderMatcher.getMoveResult(ladder);
 
     String startName = InputView.getStartName();
     while (!startName.equals("all")) {
-      ResultView.printLadderResult(ladderMatcher, startName);
+      ResultView.printLadderResult(moveResult, startName);
       startName = InputView.getStartName();
     }
-    ResultView.printLadderResults(ladderMatcher);
+    ResultView.printLadderResults(moveResult);
   }
 
 }

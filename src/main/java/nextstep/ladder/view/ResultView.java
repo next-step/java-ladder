@@ -1,10 +1,10 @@
 package nextstep.ladder.view;
 
 import java.util.List;
+import java.util.Map;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.LadderLine;
 import nextstep.ladder.domain.LadderMatcher;
-import nextstep.ladder.domain.Person;
 import nextstep.ladder.domain.Persons;
 import nextstep.ladder.domain.Results;
 
@@ -14,9 +14,9 @@ public class ResultView {
   public static final String BLANK = " ";
   public static final String LADDER_RESULT_FORMAT = "%s : %s";
 
-  public static void printLadderGame(LadderMatcher ladderMatcher) {
+  public static void printLadderGame(LadderMatcher ladderMatcher, Ladder ladder) {
     printNames(ladderMatcher.getPersons());
-    printLadder(ladderMatcher.getLadder());
+    printLadder(ladder);
     printResult(ladderMatcher.getResults());
   }
 
@@ -37,15 +37,13 @@ public class ResultView {
     System.out.println(BLANK);
   }
   
-  public static void printLadderResult(LadderMatcher ladderMatcher, String startName) {
-    String result = ladderMatcher.findResultByPersonName(startName);
+  public static void printLadderResult(Map<String, String> moveResult, String startName) {
+    String result = moveResult.get(startName);
     String message = String.format(LADDER_RESULT_FORMAT, startName, result);
     System.out.println(message);
   }
 
-  public static void printLadderResults(LadderMatcher ladderMatcher) {
-    Persons persons = ladderMatcher.getPersons();
-    persons.getPersons().stream().map(Person::getName)
-        .forEach(name -> printLadderResult(ladderMatcher, name));
+  public static void printLadderResults(Map<String, String> moveResult) {
+    moveResult.forEach((key, value) -> System.out.println(String.format("%s : %s", key, value)));
   }
 }
