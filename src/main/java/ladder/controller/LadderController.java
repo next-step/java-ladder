@@ -1,9 +1,7 @@
 package ladder.controller;
 
-import ladder.domain.engine.ExecutionResults;
-import ladder.domain.engine.LadderResults;
-import ladder.domain.engine.Player;
-import ladder.domain.engine.Players;
+import ladder.domain.engine.*;
+import ladder.domain.factory.LadderFactoryBean;
 import ladder.domain.nextstep.*;
 import ladder.view.InputView;
 import ladder.view.ResultView;
@@ -17,21 +15,21 @@ public class LadderController {
 
     private Players players;
     private ExecutionResults executionResults;
-    private NextStepLadder ladder;
+    private Ladder ladder;
     private LadderResults ladderResults;
-    private final static Map<Point, String> printPoints = new HashMap<>();
+    private final static Map<NextStepPoint, String> printPoints = new HashMap<>();
     private final static String ALL_PLAYERS = "all";
 
     static {
-        printPoints.put(Point.LEFT, "--|");
-        printPoints.put(Point.DOWN, "     |");
-        printPoints.put(Point.RIGHT, "     |---");
+        printPoints.put(NextStepPoint.LEFT, "--|");
+        printPoints.put(NextStepPoint.DOWN, "     |");
+        printPoints.put(NextStepPoint.RIGHT, "     |---");
     }
 
     public LadderController() {
         players = new Players(InputView.enterPlayers());
         executionResults = new ExecutionResults(players.numberOfPlayer(), InputView.enterExecutionResults());
-        ladder = new NextStepLadder(players.numberOfPlayer(), InputView.enterHeight());
+        ladder = LadderFactoryBean.LadderFactory().generateLadder(players.numberOfPlayer(), InputView.enterHeight());
     }
 
     private void printPlayers() {
@@ -42,7 +40,7 @@ public class LadderController {
         ResultView.printPlayers(playersList);
     }
 
-    private void printLine(NextStepLine line) {
+    private void printLine(Line line) {
         line.points()
                 .forEach(point -> ResultView.printPoint(printPoints.get(point)));
         ResultView.printEmptyLine();

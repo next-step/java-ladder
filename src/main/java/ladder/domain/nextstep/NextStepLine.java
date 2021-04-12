@@ -1,13 +1,15 @@
 package ladder.domain.nextstep;
 
 import ladder.domain.engine.Line;
+import ladder.domain.engine.Point;
+
 import java.util.Collections;
 import java.util.List;
 
 public class NextStepLine implements Line {
-    private final List<Point> points ;
+    private final List<NextStepPoint> points ;
 
-    public NextStepLine(List<Point> points){
+    public NextStepLine(List<NextStepPoint> points){
         this.points = points;
     }
 

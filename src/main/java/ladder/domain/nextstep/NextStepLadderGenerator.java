@@ -3,6 +3,7 @@ package ladder.domain.nextstep;
 import ladder.domain.engine.Ladder;
 import ladder.domain.engine.LadderGenerator;
 import ladder.domain.engine.Line;
+import ladder.domain.engine.LineGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,10 +11,10 @@ import java.util.List;
 public class NextStepLadderGenerator implements LadderGenerator {
     private static final int MIN_HEIGHT = 1;
     private static final String MESSAGE_MIN_HEIGHT = "사다리 높이는 1이상이어야 합니다.";
-    private NextStepLineGenerator lineGenerator;
+    private LineGenerator lineGenerator;
 
-    public NextStepLadderGenerator(){
-        this.lineGenerator = new NextStepLineGenerator();
+    public NextStepLadderGenerator(LineGenerator lineGenerator){
+        this.lineGenerator = lineGenerator;
     }
 
     private void validate(int height) {
