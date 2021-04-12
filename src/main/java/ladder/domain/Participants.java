@@ -11,6 +11,7 @@ public class Participants {
 
     private static final String NAME_DELIMITER = ",";
     public static final String ALL_PARTICIPANTS = "all";
+    public static final int MIN_ENTRANCE_NUMBER = 0;
 
     private final List<Participant> participants;
 
@@ -18,8 +19,15 @@ public class Participants {
         this(generateParticipants(participantNames));
     }
 
-    private Participants(List<Participant> participants) {
+    public Participants(List<Participant> participants) {
+        validateParticipants(participants);
         this.participants = participants;
+    }
+
+    private void validateParticipants(List<Participant> participants) {
+        if (participants == null || participants.size() == 0) {
+            throw new IllegalArgumentException("참가자 정보를 입력해 주세요.");
+        }
     }
 
     private static List<Participant> generateParticipants(String participantNames) {

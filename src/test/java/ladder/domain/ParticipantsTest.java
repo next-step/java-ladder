@@ -7,6 +7,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 
@@ -17,12 +18,12 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class ParticipantsTest {
 
     @Test
-    @DisplayName("참가자명 미입력")
+    @DisplayName("참가자 미입력")
     void nameIsBlank() {
         // given when then
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new Participants(null))
-                .withMessageMatching("참가자 이름을 입력해 주세요.");
+                .isThrownBy(() -> new Participants(new ArrayList<>()))
+                .withMessageMatching("참가자 정보를 입력해 주세요.");
 
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Participants(" "))
