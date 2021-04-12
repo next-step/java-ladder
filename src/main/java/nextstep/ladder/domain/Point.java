@@ -6,6 +6,9 @@ public class Point {
     private final int index;
 
     public Point(int index) {
+        if (index < 0) {
+            throw new IllegalArgumentException("음수 지점은 불가능합니다.");
+        }
         this.index = index;
     }
 

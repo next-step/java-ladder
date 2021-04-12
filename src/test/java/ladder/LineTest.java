@@ -1,6 +1,7 @@
 package ladder;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.Assertions.assertThatIllegalStateException;
 
 import nextstep.ladder.domain.Line;
@@ -81,5 +82,13 @@ public class LineTest {
         assertThatIllegalStateException()
                 .isThrownBy(() -> line.createBridge(createAt))
                 .withMessage("해당 지점에 사다리를 지을 수 없습니다: " + createAt);
+    }
+
+    @Test
+    @DisplayName("Line 생성 시 인원은 적어도 1명 이상이어야 합니다.")
+    void createLineWithInvalidCountOfPerson() {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new Line(0))
+                .withMessage("인원은 적어도 1명 이상이어야 합니다: " + 0);
     }
 }

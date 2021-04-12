@@ -7,6 +7,9 @@ public class Line {
     private final List<Point> points;
 
     public Line(int countOfPerson) {
+        if (countOfPerson < 1) {
+            throw new IllegalArgumentException("인원은 적어도 1명 이상이어야 합니다: " + countOfPerson);
+        }
         points = new ArrayList<>(4);
         for (int i = 0; i < countOfPerson; i++) {
             points.add(new Point(i));
