@@ -2,6 +2,8 @@ package ladder.view;
 
 import java.util.Scanner;
 
+import static java.lang.Integer.valueOf;
+
 public final class InputView {
 
     private static final Scanner SCANNER = new Scanner(System.in);
@@ -10,6 +12,11 @@ public final class InputView {
     public final String inputParticipantsByClient() {
         System.out.println(INPUT_PARTICIPANTS_MESSAGE);
         return SCANNER.nextLine();
+    }
+
+    public final int inputLadderHeightByClient() {
+        System.out.println(INPUT_PARTICIPANTS_MESSAGE);
+        return valueOf(SCANNER.nextLine());
     }
 
 }
