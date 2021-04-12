@@ -18,6 +18,10 @@ public class Goals {
         return goals.get(index);
     }
 
+    public List<String> goals() {
+        return goals;
+    }
+
     private void verifyGoals(List<String> goals, int numberOfPlayers) {
         if (goals.size() != numberOfPlayers) {
             throw new IllegalArgumentException("실행 결과 수는 참여자 수와 같아야 합니다");

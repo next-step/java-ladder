@@ -16,7 +16,7 @@ public class LadderControl {
         int height = View.height();
 
         Ladder ladder = new Ladder(height, players.count(), new RandomLinkSelector());
-        View.printResult(players, ladder);
+        View.printResult(players, goals, ladder);
 
         LadderResult ladderResult = ladder.result(players, goals);
 

@@ -31,18 +31,23 @@ public class View {
         return scanner.nextLine();
     }
 
-    public static void printResult(Players players, Ladder ladder) {
+    public static void printResult(Players players, Goals goals, Ladder ladder) {
         System.out.println("실행결과");
         printPlayer(players);
         printLadder(ladder);
+        printGoal(goals);
+    }
+
+    private static void printGoal(Goals goals) {
+        printListString(goals.goals());
     }
 
     private static void printPlayer(Players players) {
-        printNames(players.names());
+        printListString(players.names());
     }
 
-    private static void printNames(List<String> players) {
-        players.forEach(player -> System.out.printf("%6s", player));
+    private static void printListString(List<String> strings) {
+        strings.forEach(player -> System.out.printf("%6s", player));
         System.out.println();
     }
 
