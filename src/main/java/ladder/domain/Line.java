@@ -27,6 +27,7 @@ public final class Line {
         for (int beforeIndex = 0; beforeIndex < countPerson - 1; beforeIndex++) {
             points.add(generatePoint(points.get(beforeIndex), strategy));
         }
+        return points;
     }
 
     private static Point generatePoint(Point before, LineGenerateStrategy strategy) {

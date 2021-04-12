@@ -23,7 +23,7 @@ class LineTest {
         // then
         assertThat(line).isNotNull();
     }
-
+/*
     @DisplayName("Line 인스턴스 참가자 수로 생성 여부 테스트")
     @Test
     void 생성_참가자_수() {
@@ -36,5 +36,5 @@ class LineTest {
         // then
         assertThat(line).isNotNull();
     }
-
+*/
 }
