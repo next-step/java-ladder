@@ -1,33 +1,43 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.view.dto.LadderDto;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Ladder {
 
-    private static final int HEIGHT_MINIMUM_BOUND = 1;
-    private static final String HEIGHT_VALIDATE_MESSAGE = "사다리의 높이는 1 이상이어야 합니다.";
-
     private final List<Line> lines;
 
-    public Ladder(int height, int countOfPerson) {
-        validateHeight(height);
-        lines = Stream.generate(()->new Line(countOfPerson))
-                .limit(height)
-                .collect(Collectors.toList());
+    protected Ladder(List<Line> lines) {
+        this.lines = lines;
     }
 
-    private void validateHeight(int height) {
-        if (height < HEIGHT_MINIMUM_BOUND) {
-            throw new IllegalArgumentException(HEIGHT_VALIDATE_MESSAGE);
-        }
-    }
-
-    public List<String> readOnlyLadder() {
-        return Collections.unmodifiableList(lines.stream()
-                .map(Line::drawLine)
+    public Ladder(Height height, int countOfPerson) {
+        this(Stream.generate(() -> new Line(countOfPerson))
+                .limit(height.value())
                 .collect(Collectors.toList()));
+    }
+
+
+    public LadderDto readOnlyLadder() {
+        return new LadderDto(Collections.unmodifiableList(lines));
+    }
+
+    public int positionOfResult(int startPosition) {
+        int position = startPosition;
+        for (Line line : lines) {
+            position = line.moveWhich(position);
+        }
+        return position;
+    }
+
+    public List<Integer> positionOfAllResult() {
+        return IntStream.range(0, lines.size())
+                .mapToObj(this::positionOfResult)
+                .collect(Collectors.toUnmodifiableList());
     }
 }

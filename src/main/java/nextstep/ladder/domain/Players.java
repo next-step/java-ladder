@@ -5,8 +5,6 @@ import java.util.stream.Collectors;
 
 public class Players {
 
-    private static final String NAME_DELIMITER = " ";
-
     private List<Player> players;
 
     private Players(List<Player> players) {
@@ -23,10 +21,17 @@ public class Players {
         return players.size();
     }
 
-    public String readOnlyPlayerNames() {
-        List<String> playerNames = players.stream()
+    public List<String> readOnlyPlayerNames() {
+        return players.stream()
                 .map(Player::getName)
-                .collect(Collectors.toList());
-        return String.join(NAME_DELIMITER, playerNames);
+                .collect(Collectors.toUnmodifiableList());
+    }
+
+    public boolean notIncludePlayer(Player player) {
+        return !players.contains(player);
+    }
+
+    public int position(Player player) {
+        return players.indexOf(player);
     }
 }
