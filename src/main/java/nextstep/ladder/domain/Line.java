@@ -3,6 +3,7 @@ package nextstep.ladder.domain;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Line implements Iterable<Point> {
 
@@ -15,9 +16,8 @@ public class Line implements Iterable<Point> {
     public static Line from(int countOfPerson, BooleanStrategy booleanStrategy) {
         List<Point> points = new ArrayList<>();
         points.add(Point.from(booleanStrategy));
-        for (int i = 0; i < countOfPerson - 2; i++) {
-            points.add(points.get(i).nextPoint());
-        }
+        IntStream.range(0, countOfPerson - 2)
+            .forEach(i -> points.add(points.get(i).nextPoint()));
         return new Line(points);
     }
 

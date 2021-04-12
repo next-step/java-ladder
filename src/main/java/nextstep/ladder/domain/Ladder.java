@@ -3,6 +3,7 @@ package nextstep.ladder.domain;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Ladder implements Iterable<Line> {
 
@@ -14,9 +15,8 @@ public class Ladder implements Iterable<Line> {
 
     public static Ladder of(int count, int height) {
         List<Line> lines = new ArrayList<>();
-        for (int i = 0; i < height; i++) {
-            lines.add(Line.from(count, new RandomBooleanStrategy()));
-        }
+        IntStream.range(0, height)
+            .forEach(i -> lines.add(Line.from(count, new RandomBooleanStrategy())));
         return new Ladder(lines);
     }
 
