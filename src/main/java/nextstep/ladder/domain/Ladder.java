@@ -27,4 +27,10 @@ public class Ladder {
     public List<Line> lines() {
         return Collections.unmodifiableList(lines);
     }
+
+    public String draw() {
+        return lines.stream()
+                .map(line -> "   " + line.draw())
+                .collect(Collectors.joining("\n"));
+    }
 }
