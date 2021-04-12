@@ -2,6 +2,8 @@ package ladder.domain;
 
 public final class Point {
 
+    public static final boolean FALSE = false;
+
     private final boolean point;
 
     private Point(boolean point) {
@@ -12,4 +14,7 @@ public final class Point {
         return new Point(point);
     }
 
+    public static final Point first() {
+        return new Point(FALSE);
+    }
 }
