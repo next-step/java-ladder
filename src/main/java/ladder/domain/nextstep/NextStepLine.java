@@ -1,10 +1,6 @@
 package ladder.domain.nextstep;
 
 import ladder.domain.engine.Line;
-import ladder.domain.engine.Player;
-
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
