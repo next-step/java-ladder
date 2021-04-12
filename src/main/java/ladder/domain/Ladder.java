@@ -21,6 +21,14 @@ public class Ladder {
                         Ladder::new));
     }
 
+    public int getResultIndex(int startIndex) {
+        int resultIndex = startIndex;
+        for (Line line : lines) {
+            resultIndex = line.move(resultIndex);
+        }
+        return resultIndex;
+    }
+
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
     }

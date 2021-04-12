@@ -1,5 +1,6 @@
 package ladder.controller;
 
+import ladder.domain.ExecutionResultMap;
 import ladder.domain.ExecutionResults;
 import ladder.domain.Height;
 import ladder.domain.Ladder;
@@ -24,5 +25,11 @@ public class LadderController {
         resultView.printPersons(persons);
         resultView.printLadder(ladder);
         resultView.printExecutionResults(executionResults);
+
+        ExecutionResultMap executionResultMap = ExecutionResultMap.of(persons, executionResults, ladder);
+        while (true) {
+            String personName = inputView.inputPersonName();
+            resultView.printExecutionResult(executionResultMap, personName);
+        }
     }
 }

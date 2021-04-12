@@ -1,5 +1,6 @@
 package ladder.view;
 
+import ladder.domain.ExecutionResultMap;
 import ladder.domain.ExecutionResults;
 import ladder.domain.Ladder;
 import ladder.domain.Persons;
@@ -55,6 +56,26 @@ public class ResultView {
                 .stream()
                 .forEach(executionResult ->
                         builder.append(String.format(SPACE_INPUT_CRITERIA, executionResult)));
+        messagePrinter.println(builder.toString());
+    }
+
+    public void printExecutionResult(ExecutionResultMap executionResultMap, String personName) {
+        if (personName.equals("all")) {
+            printAllExecutionResult(executionResultMap);
+            System.exit(0);
+        }
+        StringBuilder builder = new StringBuilder();
+        builder.append(System.lineSeparator() + "실행결과");
+        builder.append(System.lineSeparator() + executionResultMap.getExecutionResult(personName));
+        messagePrinter.println(builder.toString());
+    }
+
+    private void printAllExecutionResult(ExecutionResultMap executionResultMap) {
+        StringBuilder builder = new StringBuilder();
+        builder.append(System.lineSeparator() + "실행결과");
+        for (String personName : executionResultMap.getExecutionResultMap().keySet()) {
+            builder.append(System.lineSeparator() + personName + " : " + executionResultMap.getExecutionResult(personName));
+        }
         messagePrinter.println(builder.toString());
     }
 }
