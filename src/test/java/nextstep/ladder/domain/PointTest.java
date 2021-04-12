@@ -17,6 +17,6 @@ class PointTest {
     @Test
     void nextPoint() {
         Point truePoint = Point.of(true);
-        assertThat(truePoint.nextPoint()).usingRecursiveComparison().isEqualTo(Point.of(false));
+        assertThat(truePoint.nextPoint(new RandomBooleanStrategy())).usingRecursiveComparison().isEqualTo(Point.of(false));
     }
 }

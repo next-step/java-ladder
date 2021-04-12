@@ -2,5 +2,5 @@ package nextstep.ladder.domain;
 
 public interface BooleanStrategy {
 
-    boolean value();
+    boolean value(boolean value);
 }

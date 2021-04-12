@@ -3,30 +3,21 @@ package nextstep.ladder.domain;
 public class Point {
 
     private final boolean point;
-    private final BooleanStrategy booleanStrategy;
 
-    private Point(boolean point, BooleanStrategy booleanStrategy) {
+    private Point(boolean point) {
         this.point = point;
-        this.booleanStrategy = booleanStrategy;
-    }
-
-    public static Point of(boolean point, BooleanStrategy booleanStrategy) {
-        return new Point(point, booleanStrategy);
     }
 
     public static Point of(boolean point) {
-        return new Point(point, new RandomBooleanStrategy());
+        return new Point(point);
     }
 
     public static Point of(BooleanStrategy booleanStrategy) {
-        return new Point(booleanStrategy.value(), booleanStrategy);
+        return new Point(booleanStrategy.value(false));
     }
 
-    public Point nextPoint() {
-        if (point) {
-            return of(false, booleanStrategy);
-        }
-        return of(booleanStrategy);
+    public Point nextPoint(BooleanStrategy booleanStrategy) {
+        return of(booleanStrategy.value(point));
     }
 
     public boolean value() {
