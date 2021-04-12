@@ -3,10 +3,14 @@ package ladder.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 class LineTest {
@@ -50,6 +54,15 @@ class LineTest {
     }
 
     @Test
+    @DisplayName("라인 생성 - 라인쓰기 전략 미입력")
+    void lineCreate_writeStrategyIsNull() {
+        // given when then
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new Line(null, 5))
+                .withMessageMatching("라인 쓰기 형식을 입력해 주세요.");
+    }
+
+    @Test
     @DisplayName("겹치는 라인 생성 방지 - 항상 라인을 그리는 전략 활용")
     void lineCreate_alwaysLineWrite() {
         // given when
@@ -83,6 +96,20 @@ class LineTest {
                         .isThrownBy(() -> line.getLinkPointIndex(10))
                         .withMessageMatching("유효하지 않은 인덱스 입니다.")
         );
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"0:1", "1:0", "2:2", "3:4", "4:3"}, delimiter = ':')
+    @DisplayName("연결 포인트 조회 - 인덱스별 정상조회")
+    void getLinkPointIndex(int inputIndex, int outputIndex) {
+        // given
+        List<Point> points = Stream.of(true, false, false, true, false).map(Point::new).collect(Collectors.toList());
+
+        // when
+        Line line = new Line(points);
+
+        // then
+        assertThat(outputIndex).isEqualTo(line.getLinkPointIndex(inputIndex));
     }
 
 }

@@ -10,7 +10,6 @@ public class Line {
     private static final int FIRST_POINT_INDEX = 0;
     private static final int FIRST_MIDDLE_POINT_INDEX = 1;
 
-    private final LineWriteStrategy lineWriteStrategy;
     private final List<Point> points;
 
     public Line(int pointCount) {
@@ -18,55 +17,65 @@ public class Line {
     }
 
     public Line(LineWriteStrategy lineWriteStrategy, int pointCount) {
-        validatePointCount(pointCount);
-        this.lineWriteStrategy = lineWriteStrategy;
-        this.points = generatePointList(pointCount);
+        this(generatePoints(lineWriteStrategy, pointCount));
     }
 
-    private void validatePointCount(int pointCount) {
+    public Line(List<Point> points) {
+        this.points = points;
+    }
+
+    private static List<Point> generatePoints(LineWriteStrategy lineWriteStrategy, int pointCount) {
+        validateLineWriteStrategy(lineWriteStrategy);
+        validatePointCount(pointCount);
+        List<Point> points = new ArrayList<>();
+        points.add(generateFirstPoint(lineWriteStrategy));
+        points.addAll(generateMiddlePoints(points.get(FIRST_POINT_INDEX), lineWriteStrategy, pointCount));
+        points.add(generateLastPoint());
+        return points;
+    }
+
+    private static void validateLineWriteStrategy(LineWriteStrategy lineWriteStrategy) {
+        if (lineWriteStrategy == null) {
+            throw new IllegalArgumentException("라인 쓰기 형식을 입력해 주세요.");
+        }
+    }
+
+    private static void validatePointCount(int pointCount) {
         if (pointCount < MIN_POINT_COUNT) {
             throw new IllegalArgumentException("라인 생성을 위해서는 최소 두 개의 점이 필요합니다.");
         }
     }
 
-    private List<Point> generatePointList(int pointCount) {
-        List<Point> points = new ArrayList<>();
-        points.add(generateFirstPoint());
-        points.addAll(generateMiddlePoints(points.get(FIRST_POINT_INDEX), pointCount));
-        points.add(generateLastPoint());
-        return points;
+    private static Point generateFirstPoint(LineWriteStrategy lineWriteStrategy) {
+        return generatePoint(lineWriteStrategy);
     }
 
-    private Point generateFirstPoint() {
-        return generatePoint();
-    }
-
-    private List<Point> generateMiddlePoints(Point firstPoint, int pointCount) {
+    private static List<Point> generateMiddlePoints(Point firstPoint, LineWriteStrategy lineWriteStrategy, int pointCount) {
         List<Point> middlePoints = new ArrayList<>();
         Point middlePoint = firstPoint;
         for (int i = FIRST_MIDDLE_POINT_INDEX; i < pointCount - 1; i++) {
-            middlePoint = generateMiddlePoint(middlePoint);
+            middlePoint = generateMiddlePoint(middlePoint, lineWriteStrategy);
             middlePoints.add(middlePoint);
         }
         return middlePoints;
     }
 
-    private Point generateMiddlePoint(Point currentPoint) {
+    private static Point generateMiddlePoint(Point currentPoint, LineWriteStrategy lineWriteStrategy) {
         if (currentPoint.hasLine()) {
             return generateEmptyPoint();
         }
-        return generatePoint();
+        return generatePoint(lineWriteStrategy);
     }
 
-    private Point generateLastPoint() {
+    private static Point generateLastPoint() {
         return generateEmptyPoint();
     }
 
-    private Point generatePoint() {
-        return new Point(this.lineWriteStrategy.write());
+    private static Point generatePoint(LineWriteStrategy lineWriteStrategy) {
+        return new Point(lineWriteStrategy.write());
     }
 
-    private Point generateEmptyPoint() {
+    private static Point generateEmptyPoint() {
         return new Point(EMPTY_LINE);
     }
 
@@ -96,6 +105,6 @@ public class Line {
     }
 
     private boolean isLinkedWithLeft(int index) {
-        return index >= MIN_POINT_COUNT && points.get(index - 1).hasLine();
+        return index >= FIRST_MIDDLE_POINT_INDEX && points.get(index - 1).hasLine();
     }
 }
