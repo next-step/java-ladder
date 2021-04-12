@@ -15,7 +15,7 @@ class LineTest {
     @Test
     void 생성() {
         // given
-        List<Boolean> points = new ArrayList<>();
+        List<Point> points = new ArrayList<>();
 
         // when
         Line line = Line.of(points);

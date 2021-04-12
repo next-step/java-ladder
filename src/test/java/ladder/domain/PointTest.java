@@ -20,4 +20,5 @@ class PointTest {
         // then
         assertThat(point).isNotNull();
     }
+
 }
