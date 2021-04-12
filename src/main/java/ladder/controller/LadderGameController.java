@@ -2,6 +2,7 @@ package ladder.controller;
 
 import ladder.controller.dto.LadderGameRequest;
 import ladder.controller.dto.LadderGameResponse;
+import ladder.controller.dto.LadderGameTotalResultResponse;
 import ladder.controller.dto.LadderLine;
 import ladder.domain.*;
 import ladder.service.LadderGameService;
@@ -22,6 +23,13 @@ public class LadderGameController {
         Ladder ladder = new Ladder(generateLines(request.getLadderLines()));
         GameResults gameResults = new GameResults(request.getGameResults());
         return new LadderGameResponse(service.inquiryGameResult(participants, ladder, gameResults, request.getInquiryTargetName()));
+    }
+
+    public LadderGameTotalResultResponse inquiryGameResults(LadderGameRequest request) {
+        Participants participants = new Participants(generateParticipants(request.getParticipantNames()));
+        Ladder ladder = new Ladder(generateLines(request.getLadderLines()));
+        GameResults gameResults = new GameResults(request.getGameResults());
+        return new LadderGameTotalResultResponse(request.getParticipantNames(), service.inquiryGameResults(participants, ladder, gameResults));
     }
 
     private List<Participant> generateParticipants(List<String> participantNames) {
