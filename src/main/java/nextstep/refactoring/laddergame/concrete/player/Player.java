@@ -9,7 +9,7 @@ public class Player {
     }
 
     public static Player of(String name) {
-        return new Player(new PlayerName(name));
+        return new Player(PlayerName.of(name));
     }
 
 }

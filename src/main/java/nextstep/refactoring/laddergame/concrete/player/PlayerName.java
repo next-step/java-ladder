@@ -9,12 +9,16 @@ public class PlayerName {
 
     private final String name;
 
-    public PlayerName(String name) {
-        validate(name);
+    private PlayerName(String name) {
         this.name = name;
     }
 
-    private void validate(String name) {
+    public static PlayerName of(String name) {
+        validate(name);
+        return new PlayerName(name);
+    }
+
+    private static void validate(String name) {
         if (name == null || name.length() < MINIMUM_LENGTH || name.length() > MAXIMUM_LENGTH) {
             throw new IllegalArgumentException("참가자 이름은 최소 한 글자, 최대 다섯 글자여야 합니다.");
         }

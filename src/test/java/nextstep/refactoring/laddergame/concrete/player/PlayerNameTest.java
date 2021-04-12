@@ -13,15 +13,15 @@ class PlayerNameTest {
     void notAllowExceedFiveLength() {
         String invalidName = "banana";
 
-        assertThatThrownBy(() -> new PlayerName(invalidName)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> PlayerName.of(invalidName)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     @DisplayName("최소 한 글자가 아니면 예외 처리한다.")
     void throwExceptionIfNameIsTooShort() {
         assertAll(
-            () -> assertThatThrownBy(() -> new PlayerName(null)).isInstanceOf(IllegalArgumentException.class),
-            () -> assertThatThrownBy(() -> new PlayerName("")).isInstanceOf(IllegalArgumentException.class)
+            () -> assertThatThrownBy(() -> PlayerName.of(null)).isInstanceOf(IllegalArgumentException.class),
+            () -> assertThatThrownBy(() -> PlayerName.of("")).isInstanceOf(IllegalArgumentException.class)
         );
     }
 
