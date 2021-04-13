@@ -3,6 +3,7 @@ package ladder.domain;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collector;
 import java.util.stream.IntStream;
 
@@ -37,10 +38,9 @@ public class ExecutionResultMap {
     }
 
     public String getExecutionResult(String personName) {
-        String executionResult = executionResultMap.get(personName);
-        if (executionResult == null) {
-            throw new RuntimeException("참여하지 않은 사람은 입력할 수 없습니다.");
-        }
+        String executionResult = Optional.ofNullable(executionResultMap.get(personName))
+                                         .orElseThrow(() ->
+                                                 new RuntimeException("참여하지 않은 사람은 입력할 수 없습니다."));
         return executionResult;
     }
 
