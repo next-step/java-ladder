@@ -1,6 +1,6 @@
-package step2;
+package step3;
 
-import step2.controller.LadderGame;
+import step3.controller.LadderGame;
 
 public class main {
 

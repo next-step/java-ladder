@@ -1,11 +1,10 @@
-package step2.controller;
+package step3.controller;
 
 
-import step2.domain.Height;
-import step2.domain.Lines;
-import step2.domain.Persons;
-import step2.view.InputView;
-import step2.view.ResultView;
+import step3.Result;
+import step3.domain.*;
+import step3.view.InputView;
+import step3.view.ResultView;
 
 public class LadderGame {
     InputView inputView = new InputView();
@@ -14,10 +13,23 @@ public class LadderGame {
     public void game() {
         String participants = inputView.inputParticipant();
         Persons persons = new Persons(participants);
+        ExecutionResults executionResults = new ExecutionResults(inputView.inputExecutionResult());
         int height = inputView.inputHeight();
 
         resultView.printPerson(persons);
-        resultView.printLadder(new Lines(new Height(height).height(), persons.personList().size()));
+        Lines lines = new Lines(new Height(height), persons.personList().size());
+        resultView.printLadder(lines);
+        Result result = lines.result(persons, executionResults);
+        resultView.executionResultLine(result);
 
+        while (true) {
+            String resultName = inputView.inputPerson();
+            Person person = new Person(resultName);
+            if (resultName.equals("all")) {
+                resultView.printAllExecutionResult(result);
+                System.exit(0);
+            }
+            resultView.printExecutionResult(result, person);
+        }
     }
 }
