@@ -9,11 +9,19 @@ import java.util.stream.Collectors;
 public class Points {
     private final List<Point> points;
 
+    public Points(int countOfPlayer, ConnectStrategy connectStrategy) {
+        this(new CountOfPlayer(countOfPlayer), connectStrategy);
+    }
+
+    public Points(CountOfPlayer countOfPlayer, ConnectStrategy connectStrategy) {
+        this(createWith(countOfPlayer, connectStrategy));
+    }
+
     public Points(List<Point> points) {
         this.points = points;
     }
 
-    public static Points createWith(CountOfPlayer countOfPlayer, ConnectStrategy connectStrategy) {
+    public static List<Point> createWith(CountOfPlayer countOfPlayer, ConnectStrategy connectStrategy) {
         List<Point> points = new ArrayList<>(countOfPlayer.number());
         Point point = Point.first(connectStrategy);
         points.add(point);
@@ -25,7 +33,7 @@ public class Points {
 
         points.add(point.last());
 
-        return new Points(points);
+        return points;
     }
 
     public List<Point> points() {

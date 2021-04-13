@@ -24,7 +24,7 @@ public class Lines {
 
     public static List<Line> createWith(CountOfPlayer countOfPlayer, Height height) {
         return IntStream.range(0, height.value())
-                .mapToObj((i) -> Points.createWith(countOfPlayer, new RandomConnectStrategy()))
+                .mapToObj((i) -> new Points(countOfPlayer, new RandomConnectStrategy()))
                 .map(Line::new)
                 .collect(Collectors.toList());
     }

@@ -11,7 +11,7 @@ public class LineTest {
     @Test
     @DisplayName("좌표 값들을 인자로 받아 사다리 라인을 생성한다.")
     public void create() throws Exception {
-        Line line = new Line(Points.createWith(new CountOfPlayer(4), new RandomConnectStrategy()));
+        Line line = new Line(new Points(4, new RandomConnectStrategy()));
         assertThat(line.points().points()).hasSize(4);
     }
 }

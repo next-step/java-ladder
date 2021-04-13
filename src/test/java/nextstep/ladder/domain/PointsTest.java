@@ -14,7 +14,7 @@ public class PointsTest {
     @DisplayName("플레이어 인원 수와 연결 전략을 인수로 받아 플레이어 인원 수 만큼의 좌표를 생성한다.")
     public void create() throws Exception {
         //given
-        Points points = Points.createWith(new CountOfPlayer(4), new RandomConnectStrategy());
+        Points points = new Points(4, new RandomConnectStrategy());
 
         //when
         List<Point> result = points.points();
