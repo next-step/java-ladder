@@ -1,4 +1,4 @@
-package step2.domain;
+package step3.domain;
 
 import java.util.Objects;
 
@@ -22,10 +22,6 @@ public class Point {
         }
 
         return this.point;
-    }
-
-    public Point currentPoint() {
-        return new Point(this.point, this.location);
     }
 
     public static Point first(boolean right) {

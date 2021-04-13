@@ -1,4 +1,4 @@
-package step2.domain;
+package step3.domain;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 
 public class Persons {
     private static final String COMMA = ",";
-    private static final int MAX_PARTICIPANT = 2;
     private List<Person> persons;
 
     public Persons(String persons) {
@@ -18,9 +17,8 @@ public class Persons {
         this.persons = persons;
     }
 
-    public static List<Person> createPersons(String inputNames) {
+    public List<Person> createPersons(String inputNames) {
         String[] inputPersons = inputNames.trim().split(COMMA);
-
         return Arrays.asList(inputPersons)
                 .stream()
                 .map(Person::new)

@@ -1,8 +1,9 @@
-package step2.domain;
+package step3.domain;
 
 import java.util.Objects;
 
 public class Height {
+    public static final int MINIMUM_HEIGHT = 2;
     private static final String MINIMUM_HEIGHT_ERROR = "사다리의 높이는 최소 2 이상이어야 합니다.";
     private final int height;
 
@@ -16,7 +17,7 @@ public class Height {
     }
 
     private void checkMinimumHeight(int height) {
-        if (height < 2) {
+        if (height < MINIMUM_HEIGHT) {
             throw new IllegalArgumentException(MINIMUM_HEIGHT_ERROR);
         }
     }

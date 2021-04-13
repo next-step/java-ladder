@@ -1,11 +1,9 @@
-package step2.domain;
+package step3.domain;
 
-import javafx.geometry.Pos;
-
-import javax.swing.text.Position;
-import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
 
 public class Line {
     private final List<Point> points;
@@ -19,8 +17,6 @@ public class Line {
         this.points = points;
     }
 
-
-
     public List<Point> createLine(int countOfPerson, PositionGenerator positionGenerator) {
         List<Point> points = new ArrayList<>();
         Point first = Point.first(positionGenerator.generate());
@@ -31,10 +27,14 @@ public class Line {
         return points;
     }
 
-    private List<Point> body(int countOfPerson, Point first) {
-        return IntStream.range(1, countOfPerson-1)
-                .mapToObj(i -> first.next())
-                .collect(Collectors.toList());
+    private List<Point> body(int countOfPerson, Point point) {
+
+        List<Point> points = new ArrayList<>();
+        for (int i = 1; i < countOfPerson - 1; i++) {
+            point = point.next();
+            points.add(point);
+        }
+        return points;
     }
 
     private void tail(Point point, List<Point> points) {

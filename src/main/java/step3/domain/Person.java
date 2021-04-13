@@ -1,4 +1,4 @@
-package step2.domain;
+package step3.domain;
 
 import java.util.Objects;
 
@@ -22,10 +22,6 @@ public class Person {
         }
     }
 
-    public String name() {
-        return name;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -37,5 +33,11 @@ public class Person {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+    @Override
+    public String toString() {
+        return name + "";
+
     }
 }
