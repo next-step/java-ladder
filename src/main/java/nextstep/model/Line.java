@@ -45,19 +45,20 @@ public class Line {
     }
 
     public void reMark(Line top) {
-        OptionalInt first = IntStream.range(0, top.points.size())
+        int first = IntStream.range(0, top.points.size())
                 .filter(i -> top.points.get(i))
-                .findFirst();
-        if (first.getAsInt() == 0) {
-            this.points.set(first.getAsInt() + 1, true);
+                .findFirst()
+                .orElse(0);
+        if (first == 0) {
+            this.points.set(first + 1, true);
             this.points.stream()
-                    .skip(first.getAsInt() + 1)
+                    .skip(first + 1)
                     .forEach(p -> p = false);
         }
-        if (first.getAsInt() == this.points.size()) {
-            this.points.set(first.getAsInt() - 1, true);
+        if (first == this.points.size()) {
+            this.points.set(first - 1, true);
             this.points.stream()
-                    .skip(first.getAsInt() - 1)
+                    .skip(first - 1)
                     .forEach(p -> p = false);
         }
     }
