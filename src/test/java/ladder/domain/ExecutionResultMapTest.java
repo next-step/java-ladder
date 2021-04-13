@@ -14,12 +14,14 @@ class ExecutionResultMapTest {
     private Persons persons;
     private ExecutionResults executionResults;
     private Ladder ladder;
+    private LadderExecutionResults ladderExecutionResults;
 
     @BeforeEach
     void setUp() {
         this.persons = Persons.from("pobi,honux,crong,jk".split(","));
         this.executionResults = ExecutionResults.from("꽝,5000,꽝,3000".split(","), 4);
         this.ladder = Ladder.of(3, 4, () -> Boolean.TRUE);
+        this.ladderExecutionResults = LadderExecutionResults.of(ladder, executionResults);
     }
 
     @DisplayName("사람 이름을 입력하면 최종 사다리 결과값이 반환한다")
@@ -27,7 +29,7 @@ class ExecutionResultMapTest {
     @CsvSource(value = {"pobi,5000", "honux,꽝", "crong,3000", "jk,꽝"})
     void getExecutionResult(String personName, String expectedExecutionResult) {
         // given
-        ExecutionResultMap executionResultMap = ExecutionResultMap.of(persons, executionResults, ladder);
+        ExecutionResultMap executionResultMap = ExecutionResultMap.of(persons, ladderExecutionResults);
 
         // when
         String executionResult = executionResultMap.getExecutionResult(personName);
@@ -39,7 +41,7 @@ class ExecutionResultMapTest {
     @DisplayName("참여자에 없는 사람을 입력하면 예외 발생한다")
     @Test
     void getExecutionResult_exception() {
-        ExecutionResultMap executionResultMap = ExecutionResultMap.of(persons, executionResults, ladder);
+        ExecutionResultMap executionResultMap = ExecutionResultMap.of(persons, ladderExecutionResults);
 
         assertThatThrownBy(() -> executionResultMap.getExecutionResult("test"))
                 .isInstanceOf(RuntimeException.class)

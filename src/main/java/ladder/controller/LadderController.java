@@ -4,6 +4,7 @@ import ladder.domain.ExecutionResultMap;
 import ladder.domain.ExecutionResults;
 import ladder.domain.Height;
 import ladder.domain.Ladder;
+import ladder.domain.LadderExecutionResults;
 import ladder.domain.Persons;
 import ladder.view.InputView;
 import ladder.view.ResultView;
@@ -26,7 +27,8 @@ public class LadderController {
         resultView.printLadder(ladder);
         resultView.printExecutionResults(executionResults);
 
-        ExecutionResultMap executionResultMap = ExecutionResultMap.of(persons, executionResults, ladder);
+        LadderExecutionResults ladderExecutionResults = LadderExecutionResults.of(ladder, executionResults);
+        ExecutionResultMap executionResultMap = ExecutionResultMap.of(persons, ladderExecutionResults);
         while (true) {
             String personName = inputView.inputPersonName();
             checkSystemExit(personName, executionResultMap);

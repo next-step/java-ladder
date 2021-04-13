@@ -18,15 +18,15 @@ public class ExecutionResultMap {
         this.executionResultMap = executionResultMap;
     }
 
-    public static ExecutionResultMap of(Persons persons, ExecutionResults executionResults, Ladder ladder) {
+    public static ExecutionResultMap of(Persons persons, LadderExecutionResults ladderExecutionResults) {
         return IntStream.range(0, persons.getCountOfPerson())
                 .boxed()
                 .collect(Collector.of(
                         ExecutionResultMap::new,
-                        (executionResultMap, index) -> {
-                            int resultIndex = ladder.getResultIndex(index);
-                            executionResultMap.add(persons.getPerson(index), executionResults.getExecutionResult(resultIndex));
-                        },
+                        (executionResultMap, index) ->
+                                executionResultMap.add(
+                                        persons.getPerson(index),
+                                        ladderExecutionResults.getExecutionResult(index)),
                         (a, b) -> {
                             throw new UnsupportedOperationException();
                         }
