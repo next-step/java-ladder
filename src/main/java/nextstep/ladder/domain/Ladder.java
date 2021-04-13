@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.util.BinaryOperators;
 import nextstep.ladder.view.dto.LadderDto;
 
 import java.util.Collections;
@@ -28,12 +29,12 @@ public class Ladder {
     }
 
     public int positionOfResult(int startPosition) {
-        int position = startPosition;
-        for (Line line : lines) {
-            position = line.moveWhich(position);
-        }
-        return position;
+        return lines.stream()
+                .reduce(startPosition,
+                        (position, line) -> line.moveWhich(position),
+                        BinaryOperators.nope());
     }
+
 
     public List<Integer> positionOfAllResult() {
         return IntStream.range(0, lines.size())
