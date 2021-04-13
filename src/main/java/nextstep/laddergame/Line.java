@@ -14,8 +14,7 @@ public class Line {
   }
 
   public static Line createLine(int countOfPerson) {
-    return new LineGenerator()
-        .generate(countOfPerson);
+    return LineGenerator.generate(countOfPerson);
   }
 
   @Override
