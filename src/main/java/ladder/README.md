@@ -41,7 +41,7 @@ pobi  honux crong   jk
 
 ### domain
 
-- `사람 이름 (PersonName)`
+- `이름 (Name)`
     - 최대 5글자의 `문자열(String)`을 가진다.
 - `포인트 (Point)`
     - `사다리 라인 (LadderLine)`에서 서로 연결할 수 있는 한 포인트를 나타낸다.
