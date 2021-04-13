@@ -14,9 +14,6 @@ public class LadderController {
         Users users = new Users(userInput);
         Ladder ladder = new Ladder(users.userCount(), ladderHeight);
 
-        ResultView.printStart();
-        ResultView.printUser(users.userNames());
-        ResultView.printLadder(ladder);
-
+        ResultView.printResult(users.userNames(), ladder);
     }
 }

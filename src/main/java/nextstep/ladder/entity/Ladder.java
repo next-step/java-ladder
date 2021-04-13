@@ -12,10 +12,6 @@ public class Ladder {
         this.linesOfOneHeightList = lines;
     }
 
-    public List<LinesOfOneHeight> getLines() {
-        return Collections.unmodifiableList(linesOfOneHeightList);
-    }
-
     public Ladder(int userCount , int ladderHeight) {
         this(lines(userCount, ladderHeight));
     }
@@ -24,5 +20,9 @@ public class Ladder {
         return IntStream.range(0, ladderHeight)
                 .mapToObj(ladderIndex -> new LinesOfOneHeight(userCount))
                 .collect(Collectors.toList());
+    }
+
+    public List<LinesOfOneHeight> getLines() {
+        return Collections.unmodifiableList(linesOfOneHeightList);
     }
 }

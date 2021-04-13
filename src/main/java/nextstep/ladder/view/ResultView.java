@@ -11,6 +11,8 @@ import java.util.stream.IntStream;
 
 public class ResultView {
 
+    static final String HEIGHT_PRINT_SYMBOL = "|";
+
     private ResultView() {
     }
 
@@ -18,8 +20,15 @@ public class ResultView {
         return String.format("%-5s", username);
     }
 
+    public static void printResult(List<String> userNames, Ladder ladder) {
+        printStart();
+        printUser(userNames);
+        printLadder(ladder);
+    }
+
     public static void printStart() {
-        System.out.println("\n실행결과\n");
+        String lineSeparator = System.lineSeparator();
+        System.out.println(lineSeparator + "실행결과" + lineSeparator);
     }
 
     public static void printUser(List<String> userNames) {
@@ -42,18 +51,22 @@ public class ResultView {
                 .mapToObj(linesOfOneHeight::positionLine)
                 .forEach(ResultView::printLine);
 
-        System.out.println("|");
+
+        System.out.println(HEIGHT_PRINT_SYMBOL);
     }
 
     private static void printLine(Line line) {
-        System.out.print("|");
+        System.out.print(HEIGHT_PRINT_SYMBOL);
         System.out.print(width(line));
     }
 
     private static String width(Line line) {
-        if (line.getLineDirection().equals(Direction.RIGHT)) return "-----";
+        if (line.getLineDirection().equals(Direction.RIGHT)) {
+            return "-----";
+        }
         return "     ";
     }
+
 
 
 }
