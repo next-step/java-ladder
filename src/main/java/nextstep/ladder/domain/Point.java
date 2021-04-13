@@ -41,6 +41,10 @@ public class Point {
         return direction.hasRightDirection();
     }
 
+    public boolean isNotLast(int countOfPlayer) {
+        return index + 1 != countOfPlayer - 1;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
