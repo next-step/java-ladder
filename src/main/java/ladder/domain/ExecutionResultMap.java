@@ -19,7 +19,7 @@ public class ExecutionResultMap {
 
     public static ExecutionResultMap of(Persons persons, ExecutionResults executionResults, Ladder ladder) {
         return IntStream.range(0, persons.getCountOfPerson())
-                .mapToObj(Integer::new)
+                .boxed()
                 .collect(Collector.of(
                         ExecutionResultMap::new,
                         (executionResultMap, index) -> {
