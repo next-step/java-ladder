@@ -6,7 +6,7 @@ import java.util.List;
 public class Line {
     private static final int MIDDLE_FIRST_INDEX = 1;
 
-    private static List<Point> points;
+    private List<Point> points;
 
     private Line(List<Point> points){
         this.points = points;
@@ -14,10 +14,15 @@ public class Line {
 
     public static Line of(int countOfPerson, BooleanGenerator booleanGenerator) {
         validateLine(countOfPerson);
-        createFirstPoint(booleanGenerator);
-        createMiddlePoint(countOfPerson, booleanGenerator);
-        createLastPoint();
-        return new Line(points);
+        return createPoints(countOfPerson, booleanGenerator);
+    }
+
+    private static Line createPoints(int countOfPerson, BooleanGenerator booleanGenerator) {
+        List<Point> newPoint = new ArrayList<>();
+        createFirstPoint(booleanGenerator, newPoint);
+        createMiddlePoint(countOfPerson, booleanGenerator, newPoint);
+        createLastPoint(newPoint);
+        return new Line(newPoint);
     }
 
     private static void validateLine(int countOfPerson) {
@@ -26,11 +31,11 @@ public class Line {
         }
     }
 
-    private static void createFirstPoint(BooleanGenerator booleanGenerator) {
+    private static void createFirstPoint(BooleanGenerator booleanGenerator, List<Point> points) {
         points.add(Point.first(booleanGenerator));
     }
 
-    private static void createMiddlePoint(int countOfPerson, BooleanGenerator booleanGenerator) {
+    private static void createMiddlePoint(int countOfPerson, BooleanGenerator booleanGenerator, List<Point> points) {
         for (int i = MIDDLE_FIRST_INDEX; i < countOfPerson - 1; i++) {
             if (points.get(i - 1).hasLine()) {
                 points.add(new Point(false));
@@ -40,7 +45,7 @@ public class Line {
         }
     }
 
-    private static void createLastPoint() {
+    private static void createLastPoint(List<Point> points) {
         points.add(Point.last());
     }
 
