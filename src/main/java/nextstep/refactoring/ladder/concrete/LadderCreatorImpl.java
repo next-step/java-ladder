@@ -20,6 +20,6 @@ public class LadderCreatorImpl implements LadderCreator {
     public Ladder create(int height, int width) {
         return Stream.generate(() -> lineCreator.create(width))
                      .limit(height)
-                     .collect(collectingAndThen(toList(), LadderImpl::new));
+                     .collect(collectingAndThen(toList(), lines -> new LadderImpl(lines, width)));
     }
 }

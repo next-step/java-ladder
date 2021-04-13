@@ -19,9 +19,30 @@ public class Reward implements Positionable {
         return new Reward(RewardString.of(rewardString), position);
     }
 
+    public static Reward of(String rewardString, int position) {
+        return Reward.of(rewardString, Position.of(position));
+    }
+
     @Override
     public Position getPosition() {
         return position;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Reward)) {
+            return false;
+        }
+        Reward reward = (Reward) o;
+        return Objects.equals(rewardString, reward.rewardString) && Objects
+            .equals(getPosition(), reward.getPosition());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(rewardString, getPosition());
+    }
 }

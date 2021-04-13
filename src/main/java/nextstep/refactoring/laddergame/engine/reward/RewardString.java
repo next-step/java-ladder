@@ -1,5 +1,7 @@
 package nextstep.refactoring.laddergame.engine.reward;
 
+import java.util.Objects;
+
 public class RewardString {
 
     private static final String BLANK_REWARD_STRING = "꽝";
@@ -21,5 +23,20 @@ public class RewardString {
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof RewardString)) {
+            return false;
+        }
+        RewardString that = (RewardString) o;
+        return Objects.equals(string, that.string);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(string);
+    }
 }

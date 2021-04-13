@@ -14,7 +14,7 @@ public class TestLadder {
             firstConnectedLine(),
             middleConnectedLine(),
             twoConnectedLine()
-        ));
+        ), 4);
     }
 
     public static Line twoConnectedLine() {

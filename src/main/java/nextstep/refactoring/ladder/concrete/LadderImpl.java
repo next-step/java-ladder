@@ -10,9 +10,11 @@ import java.util.List;
 public class LadderImpl implements Ladder {
 
     private final List<Line> lines;
+    private final int numberOfPositions;
 
-    public LadderImpl(List<Line> lines) {
+    public LadderImpl(List<Line> lines, int numberOfPositions) {
         this.lines = lines;
+        this.numberOfPositions = numberOfPositions;
     }
 
     @Override
@@ -23,5 +25,10 @@ public class LadderImpl implements Ladder {
                                       (next, current) -> next);
 
         return new LadderResult(startPosition, lastPosition);
+    }
+
+    @Override
+    public int numberOfPositions() {
+        return numberOfPositions;
     }
 }

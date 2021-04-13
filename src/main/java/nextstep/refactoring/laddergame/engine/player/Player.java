@@ -19,6 +19,11 @@ public class Player implements Positionable {
         return new Player(PlayerName.of(name), position);
     }
 
+    public static Player of(String name, int position) {
+        return Player.of(name, Position.of(position));
+    }
+
+
     @Override
     public Position getPosition() {
         return position;
@@ -26,5 +31,23 @@ public class Player implements Positionable {
 
     public boolean hasName(PlayerName playerName) {
         return name.equals(playerName);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Player)) {
+            return false;
+        }
+        Player player = (Player) o;
+        return Objects.equals(name, player.name) && Objects
+            .equals(getPosition(), player.getPosition());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, getPosition());
     }
 }
