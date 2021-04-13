@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -20,6 +21,10 @@ public class Names {
 
     public Names(List<Name> names) {
         this.names = names;
+    }
+
+    public List<Name> names() {
+        return Collections.unmodifiableList(names);
     }
 
     @Override
