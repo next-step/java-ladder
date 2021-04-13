@@ -1,14 +1,9 @@
-package step2;
+package step3;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import step2.domain.Line;
 import step2.domain.Location;
-import step2.domain.Point;
-
-import java.util.Arrays;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
