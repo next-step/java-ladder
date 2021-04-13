@@ -1,14 +1,14 @@
-package ladder.domain;
+package ladder.domain.engine;
 
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LadderStatistics {
+public class LadderResults {
     private final static String MESSAGE_IMPROPER_PLAYER = "참여한 사람의 결과만 확인할 수 있습니다.";
     private final Map<Player, String> LadderResults;
 
-    public LadderStatistics(Map<Player, String> ladderResults){
+    public LadderResults(Map<Player, String> ladderResults){
         LadderResults = ladderResults;
     }
 

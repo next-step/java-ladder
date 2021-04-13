@@ -1,6 +1,8 @@
 package ladder.controller;
 
-import ladder.domain.*;
+import ladder.domain.engine.*;
+import ladder.domain.factory.LadderFactoryBean;
+import ladder.domain.nextstep.*;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
@@ -14,20 +16,20 @@ public class LadderController {
     private Players players;
     private ExecutionResults executionResults;
     private Ladder ladder;
-    private LadderStatistics ladderStatistics;
-    private final static Map<Point, String> printPoints = new HashMap<>();
+    private LadderResults ladderResults;
+    private final static Map<NextStepPoint, String> printPoints = new HashMap<>();
     private final static String ALL_PLAYERS = "all";
 
     static {
-        printPoints.put(Point.LEFT, "--|");
-        printPoints.put(Point.DOWN, "     |");
-        printPoints.put(Point.RIGHT, "     |---");
+        printPoints.put(NextStepPoint.LEFT, "--|");
+        printPoints.put(NextStepPoint.DOWN, "     |");
+        printPoints.put(NextStepPoint.RIGHT, "     |---");
     }
 
     public LadderController() {
         players = new Players(InputView.enterPlayers());
         executionResults = new ExecutionResults(players.numberOfPlayer(), InputView.enterExecutionResults());
-        ladder = new Ladder(players.numberOfPlayer(), InputView.enterHeight());
+        ladder = LadderFactoryBean.LadderFactory().generateLadder(players.numberOfPlayer(), InputView.enterHeight());
     }
 
     private void printPlayers() {
@@ -58,11 +60,11 @@ public class LadderController {
         String playerName = InputView.enterPlayerYouWant();
         Map<String, String> results;
         if (playerName.equalsIgnoreCase(ALL_PLAYERS)) {
-            results = ladderStatistics.resultsOfAll();
+            results = ladderResults.resultsOfAll();
             ResultView.printExecutionResult(results);
             return;
         }
-        results = ladderStatistics.results(new Player(playerName));
+        results = ladderResults.results(new Player(playerName));
         ResultView.printExecutionResult(results);
     }
 
@@ -71,7 +73,7 @@ public class LadderController {
         printLadder();
         printResult();
 
-        ladderStatistics = ladder.ladderStatistics(players, executionResults);
+        ladderResults = ladder.ladderResults(players, executionResults);
         printExecutionResult();
         printExecutionResult();
     }

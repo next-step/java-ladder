@@ -1,31 +1,33 @@
-package ladder.domain;
+package ladder.domain.nextstep;
 
-public enum Point {
+import ladder.domain.engine.Point;
+
+public enum NextStepPoint implements Point {
     LEFT(-1),
     DOWN(0),
     RIGHT(1);
 
     private final int move;
 
-    Point(int move) {
+    NextStepPoint(int move) {
         this.move = move;
     }
 
-    public static Point randomPoint() {
+    public static NextStepPoint randomPoint() {
         if(RandomGenerator.randomInt() == 1){
             return RIGHT;
         }
         return DOWN;
     }
 
-    public static Point next(Point point) {
+    public static NextStepPoint next(NextStepPoint point) {
         if (point.move == 1) {
             return LEFT;
         }
         return randomPoint();
     }
 
-    public static Point last(Point point) {
+    public static NextStepPoint last(NextStepPoint point) {
         if (point.move == 1) {
             return LEFT;
         }

@@ -1,4 +1,6 @@
-package ladder.domain;
+package ladder.domain.engine;
+
+import ladder.domain.engine.Player;
 
 import java.util.Arrays;
 import java.util.Collections;
