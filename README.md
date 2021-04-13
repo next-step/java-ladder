@@ -21,44 +21,25 @@
 
 ## 기능 목록
 - 참가자 입력
-    - 이름은 , 로 구분
+    - 이름은 쉼표(,) 로 구분
     - 이름은 최대 5글자까지 부여 가능
-    - 참가자 이름 중복 예외 처리 
+    - 참가자 이름 중복 예외 처리
+  
+- 실행 결과 입력
+    - 결과는 쉼표(,)로 구분
+    - 참가자 수와 동일
+  
 - 최대 사다리 높이 입력
-    - 최소 높이 1
+    - 최소 높이 체크 
+  
 - 사다리 생성
     - 이동 flag값 연속으로 true 설정 불가능
-- 실행 결과 출력
+  
+- 참가자, 사다리, 결과 출력
     - 이름 5자 기준으로 공백포함 출력
     - 생성 된 사다리 출력
-    
-## 구현 전(구조)
-- controller
-    - LadderController
-- domain
-    - Person
-    - Name
-    - Persons
-    - Ladder
-    - Line
-    - Point
-- view
-    - InputView
-    - ResultView
-
-## 구현 후(구조)
-- controller
-    - LadderController
-- domain
-    - Height
-    - Ladder
-    - Line
-    - Name
-    - Person
-    - Persons
-- util
-    - StringUtils
-- view
-    - BaseView
-    - InputView
-    - ResultView
+  
+- 결과 출력 원하는 참가자 입력 및 출력
+    - 참가자 or all 입력 가능
+    - 참가자 입력시 해당 참가자의 결과
+    - all 입력시 모든 참가자의 결과

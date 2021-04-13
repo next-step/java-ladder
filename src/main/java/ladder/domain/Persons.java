@@ -1,10 +1,14 @@
 package ladder.domain;
 
+import ladder.util.CollectionsUtils;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
 
 public class Persons {
     private final List<Person> persons;
@@ -14,20 +18,21 @@ public class Persons {
     }
 
     public static Persons from(String[] personNames) {
-        validate(personNames.length, (int) Arrays.stream(personNames)
-                                                 .distinct()
-                                                 .count());
         return Arrays.stream(personNames)
                 .map(Person::from)
                 .distinct()
-                .collect(Collectors.collectingAndThen(Collectors.toList(),
-                        Persons::new));
+                .collect(collectingAndThen(
+                        toList(),
+                        persons -> new Persons(
+                                CollectionsUtils.checkSize(persons, personNames.length))));
     }
 
-    private static void validate(int originalSize, int distinctSize) {
-        if (originalSize != distinctSize) {
-            throw new RuntimeException("참여할 사람 이름은 중복으로 입력할 수 없습니다.");
-        }
+    public int getCountOfPerson() {
+        return persons.size();
+    }
+
+    public Person getPerson(int index) {
+        return persons.get(index);
     }
 
     public List<Person> getPersons() {

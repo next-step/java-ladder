@@ -23,13 +23,13 @@ class NameTest {
     }
 
     @Test
-    @DisplayName("이름 5자 초과시 예외 발생한다.")
+    @DisplayName("이름을 5자 초과 입력하면 예외 발생한다")
     void validate_name_length() {
         assertThatThrownBy(() -> Name.from("soonho"))
                 .isInstanceOf(RuntimeException.class);
     }
 
-    @DisplayName("이름에 공백을 입력하면 예외 발생한다.")
+    @DisplayName("이름에 공백을 입력하면 예외 발생한다")
     @ParameterizedTest
     @NullAndEmptySource
     void validate_name_blank(String input) {

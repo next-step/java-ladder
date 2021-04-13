@@ -21,7 +21,7 @@ class PersonsTest {
     }
 
     @Test
-    @DisplayName("입력한 이름 수 만큼 사람이 생성된다")
+    @DisplayName("사람들 이름을 입력하면 Persons 객체를 생성한다")
     void create_size() {
         // given
         String[] personNames = "pobi,honux,crong,jk".split(",");
@@ -34,7 +34,7 @@ class PersonsTest {
     }
 
     @Test
-    @DisplayName("참여할 사람 이름 중복입력시 예외 발생한다.")
+    @DisplayName("참여 사람 이름 중복 입력하면 예외 발생한다")
     void name_duplicate_exception() {
         String[] personNames = "pobi,honux,pobi,jk".split(",");
         assertThatThrownBy(() -> Persons.from(personNames))
