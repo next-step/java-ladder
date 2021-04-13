@@ -5,10 +5,10 @@ import java.util.List;
 
 public class Ladder {
     private static final String MIN_LADDER_HEIGHT_EXCEPTION_MESSAGE = "사다리 높이는 1이상 이여야 합니다.";
-    private final List<Line> ladder;
+    private final List<Line> lines;
 
-    private Ladder(List<Line> ladder) {
-        this.ladder = ladder;
+    private Ladder(List<Line> lines) {
+        this.lines = lines;
     }
 
     public static Ladder of(int countOfPerson, int ladderHeight, BooleanGenerator booleanGenerator) {
@@ -35,11 +35,11 @@ public class Ladder {
         }
     }
 
-    public List<Line> getLadder() {
-        return ladder;
+    public List<Line> getLines() {
+        return lines;
     }
 
     public int getLadderRowSize() {
-        return ladder.size();
+        return lines.size();
     }
 }

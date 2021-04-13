@@ -35,7 +35,7 @@ public class LadderGameController {
     }
 
     private void printLadder(Ladder ladder) {
-        ladder.getLadder().forEach(this::printLine);
+        ladder.getLines().forEach(this::printLine);
     }
 
     private void printLine(Line line) {
