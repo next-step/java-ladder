@@ -22,4 +22,8 @@ public final class LadderHeight {
     public static final LadderHeight valueOf(int height) {
         return new LadderHeight(height);
     }
+
+    public final int toInt() {
+        return height;
+    }
 }
