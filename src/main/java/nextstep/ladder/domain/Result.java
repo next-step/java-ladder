@@ -4,6 +4,8 @@ import java.util.Objects;
 
 public final class Result {
 
+  public static final int MAX_LENGTH = 5;
+
   private final String result;
 
   public Result(String result) {
