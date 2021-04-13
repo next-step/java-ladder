@@ -7,6 +7,10 @@ import java.util.Objects;
 
 public class Direction {
     private static final String CHECK_CONTIONUOUS = "가로 라인이 겹치는 지 확인해주세요.";
+    private static final int MOVE_LEFT = -1;
+    private static final int MOVE_RIGHT = 1;
+    private static final int STAY = 0;
+
     private final boolean left;
     private final boolean right;
 
@@ -60,14 +64,14 @@ public class Direction {
 
     public int move() {
         if (left) {
-            return -1;
+            return MOVE_LEFT;
         }
 
         if (right) {
-            return 1;
+            return MOVE_RIGHT;
         }
 
-        return 0;
+        return STAY;
     }
 
     @Override
