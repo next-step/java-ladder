@@ -8,6 +8,6 @@ public class LadderTest {
 
     @Test
     void create() {
-        assertThatCode(() -> Ladder.of(5, 5)).doesNotThrowAnyException();
+        assertThatCode(() -> Ladder.of(5, 5, new RandomBooleanStrategy())).doesNotThrowAnyException();
     }
 }

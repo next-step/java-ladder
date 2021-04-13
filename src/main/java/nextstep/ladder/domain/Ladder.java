@@ -13,10 +13,10 @@ public class Ladder implements Iterable<Line> {
         this.lines = lines;
     }
 
-    public static Ladder of(int count, int height) {
+    public static Ladder of(int count, int height, BooleanStrategy booleanStrategy) {
         List<Line> lines = new ArrayList<>();
         IntStream.range(0, height)
-            .forEach(i -> lines.add(Line.of(count, new RandomBooleanStrategy())));
+            .forEach(i -> lines.add(Line.of(count, booleanStrategy)));
         return new Ladder(lines);
     }
 
