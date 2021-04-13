@@ -20,12 +20,9 @@ class ExecutionResultMapTest {
         this.persons = Persons.from("pobi,honux,crong,jk".split(","));
         this.executionResults = ExecutionResults.from("꽝,5000,꽝,3000".split(","), 4);
         this.ladder = Ladder.of(3, 4, () -> Boolean.TRUE);
-        // TRUE FALSE TRUE FALSE
-        // TRUE FALSE TRUE FALSE
-        // TRUE FALSE TRUE FALSE
     }
 
-    @DisplayName("참여한 사람 이름을 입력하면 최종 사다리 결과값이 반환된다")
+    @DisplayName("사람 이름을 입력하면 최종 사다리 결과값이 반환한다")
     @ParameterizedTest
     @CsvSource(value = {"pobi,5000", "honux,꽝", "crong,3000", "jk,꽝"})
     void getExecutionResult(String personName, String expectedExecutionResult) {
@@ -39,7 +36,7 @@ class ExecutionResultMapTest {
         assertThat(executionResult).isEqualTo(expectedExecutionResult);
     }
 
-    @DisplayName("참여하지 않은 사람을 입력하면 예외 발생한다")
+    @DisplayName("참여자에 없는 사람을 입력하면 예외 발생한다")
     @Test
     void getExecutionResult_exception() {
         ExecutionResultMap executionResultMap = ExecutionResultMap.of(persons, executionResults, ladder);

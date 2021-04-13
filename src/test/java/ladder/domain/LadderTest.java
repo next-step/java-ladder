@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class LadderTest {
 
-    @DisplayName("사다리 높이에 맞게 라인이 생성된다")
+    @DisplayName("사다리 높이를 입력하면 높이에 맞게 라인이 생성된다")
     @ParameterizedTest
     @ValueSource(ints = {1,2,3,4,5})
     void line_size(int height) {
@@ -23,7 +23,7 @@ class LadderTest {
         assertThat(ladder.getLines().size()).isEqualTo(height);
     }
 
-    @DisplayName("사다리 최종 결과 index가 반환된다")
+    @DisplayName("index를 입력하면 사다리 최종 결과를 반환한다")
     @ParameterizedTest
     @CsvSource(value = {"0,1", "1,0", "2,3", "3,2", "4,4"})
     void getResultIndex(int startIndex, int expectedResultIndex) {
@@ -38,11 +38,6 @@ class LadderTest {
         // TRUE FALSE TRUE FALSE FALSE
         // TRUE FALSE TRUE FALSE FALSE
         // TRUE FALSE TRUE FALSE FALSE
-        // 0 -> 1
-        // 1 -> 0
-        // 2 -> 3
-        // 3 -> 2
-        // 4 -> 4
 
         // then
         assertThat(ladder.getResultIndex(startIndex)).isEqualTo(expectedResultIndex);

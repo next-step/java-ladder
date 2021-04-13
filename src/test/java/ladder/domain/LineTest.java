@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 class LineTest {
 
     @Test
-    @DisplayName("point가 true를 연속으로 생성되지않는다")
+    @DisplayName("pointStrategy가 true 고정일때 Line 객체를 생성하면 point가 true를 연속으로 생성 안 한다")
     void true_continuously_impossible() {
         // given
         Line line = Line.of(5, () -> Boolean.TRUE);
@@ -32,7 +32,7 @@ class LineTest {
     }
 
     @Test
-    @DisplayName("point가 false는 연속으로 생성 가능하다")
+    @DisplayName("pointStrategy가 false 고정일때 Line 객체를 생성하면 모든 point가 false로 생성한다")
     void false_continuously_possible() {
         // given
         Line line = Line.of(5, () -> Boolean.FALSE);
@@ -51,7 +51,7 @@ class LineTest {
     }
 
     @Test
-    @DisplayName("마지막 point는 false로 생성된다")
+    @DisplayName("Line 객체를 생성하면 마지막 Point는 false로 생성한다")
     void last_point_is_false() {
         // given
         Line line = Line.of(3, () -> Boolean.TRUE);
@@ -67,7 +67,7 @@ class LineTest {
         );
     }
 
-    @DisplayName("move시 point에 맞게 index가 이동한다")
+    @DisplayName("|----|    |----|    | 일때 move하면 point에 맞게 index가 이동한다")
     @ParameterizedTest
     @CsvSource(value = {"0,1", "1,0", "2,3", "3,2", "4,4"})
     void move(int index, int expectedIndex) {
