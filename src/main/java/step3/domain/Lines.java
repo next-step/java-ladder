@@ -1,18 +1,14 @@
-package step2.domain;
+package step3.domain;
 
-import step2.domain.Line;
+import step3.Result;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.*;
 
 public class Lines {
 
     private final List<Line> lines;
 
-    public Lines(int height, int countOfPerson) {
+    public Lines(Height height, int countOfPerson) {
         this.lines = createLines(height, countOfPerson);
     }
 
@@ -20,9 +16,9 @@ public class Lines {
         this.lines = lines;
     }
 
-    private List<Line> createLines(int height, int countOfPerson) {
+    private List<Line> createLines(Height height, int countOfPerson) {
         List<Line> lines = new ArrayList<>();
-        for (int i = 0; i < height; i++) {
+        for (int i = 0; i < height.height(); i++) {
             lines.add(new Line(countOfPerson));
 
         }
@@ -35,6 +31,23 @@ public class Lines {
         }
 
         return position;
+    }
+
+    public Result result(Persons persons, ExecutionResults executionResults) {
+        Map<Person, ExecutionResult> resultMap = new HashMap<>();
+
+        for (int i = 0; i < persons.personList().size(); i++) {
+            resultMap.put(persons.personList().get(i), executionResults.oneResult(eachPositionResult(i)));
+        }
+        return new Result(resultMap);
+    }
+
+    public ExecutionResult eachPositionResult2(int position, ExecutionResults results) {
+        for (Line line : lines) {
+            position = line.move(position);
+        }
+
+        return results.oneResult(position);
     }
 
     public List<Line> lines() {
