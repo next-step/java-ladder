@@ -20,11 +20,4 @@ public class PlayerTest {
     public void checkNameLength() throws Exception {
         assertThatIllegalArgumentException().isThrownBy(() -> new Player("myname"));
     }
-
-    @Test
-    @DisplayName("5자 미만의 이름 뒤에 공백을 추가하여 5자리의 이름으로 반환한다.")
-    public void addBlankInName() throws Exception {
-        Player player = new Player("hi");
-        assertThat(player.name()).isEqualTo("hi   ");
-    }
 }
