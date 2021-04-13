@@ -5,8 +5,6 @@ import nextstep.ladder.strategy.ConnectStrategy;
 import java.util.Objects;
 
 public class Point {
-    private static final String CONNECTED = "-----";
-    private static final String UNCONNECTED = "     ";
     private final int index;
     private final Direction direction;
 
@@ -39,12 +37,8 @@ public class Point {
         return index + direction.move();
     }
 
-    public String draw() {
-        if (direction.move() == 1) {
-            return CONNECTED;
-        }
-
-        return UNCONNECTED;
+    public boolean hasRightDirection() {
+        return direction.hasRightDirection();
     }
 
     @Override
