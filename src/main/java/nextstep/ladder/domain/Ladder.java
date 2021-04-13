@@ -20,7 +20,7 @@ public class Ladder {
 
     private List<Line> create() {
         return IntStream.range(0, height.value())
-                .mapToObj((i) -> new Line(countOfPlayer, new RandomConnectStrategy()))
+                .mapToObj((i) -> new Line(Points.createWith(countOfPlayer, new RandomConnectStrategy())))
                 .collect(Collectors.toList());
     }
 
@@ -30,7 +30,8 @@ public class Ladder {
 
     public List<List<Boolean>> linesConnection() {
         return lines.stream()
-                .map(Line::pointsConnection)
+                .map(Line::points)
+                .map(Points::pointsConnection)
                 .collect(Collectors.toList());
     }
 }
