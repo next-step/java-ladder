@@ -1,7 +1,7 @@
 /*
  * 두 포인트간의 연결을 관리하는 클래스
  * */
-package ladder.domain;
+package laddergame.domain.ladder;
 
 public class Link<P, N> {
     private P now;

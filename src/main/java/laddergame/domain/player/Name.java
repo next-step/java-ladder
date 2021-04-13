@@ -1,11 +1,11 @@
 /*
  * 사다리타기 게임 참여자의 이름을 담당하는 클래스
  * */
-package ladder.domain;
+package laddergame.domain.player;
 
 import java.util.Objects;
 
-import static ladder.util.Message.ILLEGAL_NAME;
+import static laddergame.util.Message.ILLEGAL_NAME;
 
 public class Name {
     private static final int MAXIMUM_NAME_LENGTH = 5;

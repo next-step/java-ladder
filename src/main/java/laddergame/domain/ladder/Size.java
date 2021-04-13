@@ -1,12 +1,12 @@
 /*
 * 사다리의 가로와 높이를 담당하는 원시값 포장 클래스
 * */
-package ladder.domain;
+package laddergame.domain.ladder;
 
 import java.util.Objects;
 import java.util.stream.IntStream;
 
-import static ladder.util.Message.ILLEGAL_HEIGHT;
+import static laddergame.util.Message.ILLEGAL_HEIGHT;
 
 public class Size {
     private static final int MAXIMUM_HEIGHT = 10;

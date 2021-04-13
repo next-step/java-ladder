@@ -1,12 +1,12 @@
 /*
  * 사다리타기 게임 참여자목록을 담당하는 클래스
  * */
-package ladder.domain;
+package laddergame.domain.player;
 
 import java.util.*;
 
-import static ladder.util.Message.ILLEGAL_DUPLICATE_NAME;
-import static ladder.util.Message.ILLEGAL_EMPTY_PLAYER;
+import static laddergame.util.Message.ILLEGAL_DUPLICATE_NAME;
+import static laddergame.util.Message.ILLEGAL_EMPTY_PLAYER;
 
 public class Players {
 

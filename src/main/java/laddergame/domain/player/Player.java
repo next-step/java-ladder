@@ -1,7 +1,7 @@
 /*
  * 사다리타기 게임 참여자를 담당하는 클래스
  * */
-package ladder.domain;
+package laddergame.domain.player;
 
 import java.util.Objects;
 import java.util.Set;

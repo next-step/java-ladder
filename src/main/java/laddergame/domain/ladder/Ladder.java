@@ -1,7 +1,7 @@
 /*
 * 사다리를 담당하는 클래스
 * */
-package ladder.domain;
+package laddergame.domain.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
