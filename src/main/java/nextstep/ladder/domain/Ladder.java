@@ -28,9 +28,9 @@ public class Ladder {
         return Collections.unmodifiableList(lines);
     }
 
-    public String draw() {
+    public List<List<Boolean>> linesConnection() {
         return lines.stream()
-                .map(line -> "   " + line.draw())
-                .collect(Collectors.joining("\n"));
+                .map(Line::pointsConnection)
+                .collect(Collectors.toList());
     }
 }
