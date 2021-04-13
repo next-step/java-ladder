@@ -34,12 +34,10 @@ public class Line {
         return points;
     }
 
-    public String draw() {
-        String points = this.points.stream()
-                .map(Point::draw)
+    public List<Boolean> pointsConnection() {
+        return this.points.stream()
+                .map(Point::hasRightDirection)
                 .limit(points().size() - 1)
-                .collect(Collectors.joining("|"));
-
-        return "|" + points + "|";
+                .collect(Collectors.toList());
     }
 }
