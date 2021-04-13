@@ -10,4 +10,11 @@ public class LadderTest {
     void create() {
         assertThatCode(() -> Ladder.of(5, 5, new RandomBooleanStrategy())).doesNotThrowAnyException();
     }
+
+    @Test
+    void result() {
+        Ladder ladder = Ladder.of(5, 5, new RandomBooleanStrategy());
+
+        assertThatCode(() -> ladder.result(1)).doesNotThrowAnyException();
+    }
 }
