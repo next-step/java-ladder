@@ -3,6 +3,7 @@ package nextstep.ladder.domain;
 import nextstep.ladder.strategy.ConnectStrategy;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -37,7 +38,7 @@ public class Points {
     }
 
     public List<Point> points() {
-        return points;
+        return Collections.unmodifiableList(points);
     }
 
     public List<Boolean> pointsConnection() {
