@@ -19,6 +19,6 @@ public class LadderController {
         Players players = new Players(inputView.players());
         Height height = new Height(inputView.height());
         Ladder ladder = new Ladder(height, players.countOfPlayer());
-        resultView.printResult(players.names(), ladder.draw());
+        resultView.printResult(players.names(), ladder.linesConnection());
     }
 }
