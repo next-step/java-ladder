@@ -4,12 +4,15 @@ import step2.model.name.Names;
 import step2.view.InputView;
 
 public class LadderGame {
-  public LadderGame() {
 
+  private final InputView inputView;
+
+  public LadderGame(InputView inputView) {
+    this.inputView = inputView;
   }
 
   public void run(){
-    String inputNames = InputView.nameInputEvent();
+    String inputNames = inputView.nameInputEvent();
     Names names = matchNames(inputNames);
   }
 

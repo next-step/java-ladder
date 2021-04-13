@@ -21,6 +21,10 @@ public class Names {
     return builder.build();
   }
 
+  public boolean isNameContains(Name name){
+    return names.contains(name);
+  }
+
   static class Builder{
     private List<Name> names;
 
