@@ -29,7 +29,15 @@ public class LadderController {
         ExecutionResultMap executionResultMap = ExecutionResultMap.of(persons, executionResults, ladder);
         while (true) {
             String personName = inputView.inputPersonName();
+            checkSystemExit(personName, executionResultMap);
             resultView.printExecutionResult(executionResultMap, personName);
+        }
+    }
+
+    private void checkSystemExit(String personName, ExecutionResultMap executionResultMap) {
+        if (personName.equals("all")) {
+            resultView.printAllExecutionResult(executionResultMap);
+            System.exit(0);
         }
     }
 }

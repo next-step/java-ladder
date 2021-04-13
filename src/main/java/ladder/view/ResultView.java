@@ -60,17 +60,13 @@ public class ResultView {
     }
 
     public void printExecutionResult(ExecutionResultMap executionResultMap, String personName) {
-        if (personName.equals("all")) {
-            printAllExecutionResult(executionResultMap);
-            System.exit(0);
-        }
         StringBuilder builder = new StringBuilder();
         builder.append(System.lineSeparator() + "실행결과");
         builder.append(System.lineSeparator() + executionResultMap.getExecutionResult(personName));
         messagePrinter.println(builder.toString());
     }
 
-    private void printAllExecutionResult(ExecutionResultMap executionResultMap) {
+    public void printAllExecutionResult(ExecutionResultMap executionResultMap) {
         StringBuilder builder = new StringBuilder();
         builder.append(System.lineSeparator() + "실행결과");
         for (String personName : executionResultMap.getExecutionResultMap().keySet()) {
