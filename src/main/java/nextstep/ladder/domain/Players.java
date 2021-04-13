@@ -4,8 +4,20 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static nextstep.ladder.utils.StringUtil.splitWithComma;
+
 public class Players {
     private final List<Player> players;
+
+    public Players(String names) {
+        this(convertToPlayers(splitWithComma(names)));
+    }
+
+    private static List<Player> convertToPlayers(List<String> names) {
+        return names.stream()
+                .map(Player::new)
+                .collect(Collectors.toList());
+    }
 
     public Players(String... names) {
         this(convertToPlayers(names));
@@ -19,12 +31,6 @@ public class Players {
 
     public Players(List<Player> players) {
         this.players = players;
-    }
-
-    public static Players from(List<String> names) {
-        return new Players(names.stream()
-                .map(Player::new)
-                .collect(Collectors.toList()));
     }
 
     public List<Player> allPlayers() {
