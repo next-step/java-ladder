@@ -14,12 +14,16 @@ public final class Person {
     }
 
     private final void validateSize(String name) {
-        if(name.length() > MAXIMUM_NAME_SIZE) {
+        if (name.length() > MAXIMUM_NAME_SIZE) {
             throw new InvalidNameSizeException();
         }
     }
 
     public static final Person of(String name) {
         return new Person(name);
+    }
+
+    public final String getName() {
+        return name;
     }
 }
