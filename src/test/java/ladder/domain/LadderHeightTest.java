@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import ladder.exception.InputNegativeNumberException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +17,7 @@ class LadderHeightTest {
         int height = 5;
 
         // when
-        LadderHeight ladderHeight = LadderHeight.valueOf(5);
+        LadderHeight ladderHeight = LadderHeight.valueOf(height);
 
         // then
         assertThat(ladderHeight).isNotNull();
@@ -29,9 +30,23 @@ class LadderHeightTest {
         int height = -1;
 
         // when
-        assertThatThrownBy(()->LadderHeight.valueOf(5))
+        assertThatThrownBy(()->LadderHeight.valueOf(height))
                 .isInstanceOf(InputNegativeNumberException.class)
                 .hasMessage("음수의 값이 입력되었습니다.");
 
+    }
+
+
+    @DisplayName("LadderHeight 인스턴스 소유한 값 반환 테스트")
+    @Test
+    void 반환_소유값() {
+        // given
+        int expected = 5;
+
+        // when
+        LadderHeight ladderHeight = LadderHeight.valueOf(expected);
+        int actual = ladderHeight.toInt();
+
+        assertThat(actual).isEqualTo(expected);
     }
 }
