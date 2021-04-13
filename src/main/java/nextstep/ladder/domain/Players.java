@@ -37,10 +37,10 @@ public class Players {
         return players;
     }
 
-    public String names() {
+    public List<String> names() {
         return players.stream()
                 .map(Player::name)
-                .collect(Collectors.joining(" "));
+                .collect(Collectors.toList());
     }
 
     public CountOfPlayer countOfPlayer() {

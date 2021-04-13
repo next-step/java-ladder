@@ -1,13 +1,19 @@
 package nextstep.ladder.view;
 
+import java.util.List;
+
 public class ResultView {
     public static final String RESULT = "실행결과";
 
-    public void printResult(String names, String lines) {
+    public void printResult(List<String> names, String lines) {
         printResultPhrase();
-        System.out.println(names);
+        printPlayerNames(names);
         System.out.println(lines);
+    }
 
+    private void printPlayerNames(List<String> names) {
+        names.forEach(name -> System.out.print(name + " "));
+        System.out.println();
     }
 
     private void printResultPhrase() {
