@@ -1,8 +1,11 @@
 package nextstep.refactoring.laddergame.engine;
 
-public interface LadderGameResult<I, O> {
+import nextstep.refactoring.laddergame.engine.player.Player;
+import nextstep.refactoring.laddergame.engine.reward.Reward;
 
-    I getInput();
-    O getOutput();
+public interface LadderGameResult {
+
+    Player getPlayer();
+    Reward getReward();
 
 }

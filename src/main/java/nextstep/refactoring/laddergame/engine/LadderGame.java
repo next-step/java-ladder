@@ -1,12 +1,14 @@
 package nextstep.refactoring.laddergame.engine;
 
-import nextstep.refactoring.ladder.engine.Position;
+import nextstep.refactoring.laddergame.engine.player.Player;
+import nextstep.refactoring.laddergame.engine.reward.Reward;
 
 import java.util.List;
 
-public interface LadderGame<I extends Positionable, O extends Positionable> {
+public interface LadderGame {
 
-    LadderGameResult<I, O> getResult(LadderCompatible<I> input, LadderCompatible<O> output, Position position);
-    List<LadderGameResult<I, O>>  getAllResult(LadderCompatible<I> input, LadderCompatible<O> output);
+    List<LadderGameResult> getResult(LadderCompatibleList<Player> playerList,
+                                    LadderCompatibleList<Reward> rewardList,
+                                    PlayerNameKeyword keyword);
 
 }
