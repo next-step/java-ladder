@@ -56,7 +56,6 @@ public class Lines {
                             bottomLine.getPoints().set(i - 1, true);
                         }
                     } else {
-                        System.out.println(i + "..." + target);
                         if (!topLine.getPoints().get(target)) {
                             bottomLine.getPoints().set(target, true);
                         }
