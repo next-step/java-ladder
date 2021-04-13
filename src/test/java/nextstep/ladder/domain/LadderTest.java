@@ -1,16 +1,26 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.strategy.RandomConnectStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import java.util.List;
+
+import static org.assertj.core.api.BDDAssertions.then;
 
 public class LadderTest {
 
     @Test
-    @DisplayName("입력받은 사다리 높이 수 만큼 라인을 생성한다.")
+    @DisplayName("라인 목록을 인자로 받아 사다리를 생성한다.")
     public void create() throws Exception {
-        Ladder ladder = new Ladder(4, 5);
-        assertThat(ladder.height()).isEqualTo(5);
+        //given
+        AllPointsForLines allPointsForLines = new AllPointsForLines(new RandomConnectStrategy());
+        List<Points> allPoints = allPointsForLines.allPoints(4, 5);
+        Lines lines = Lines.from(allPoints);
+
+        //when
+        Ladder ladder = new Ladder(lines);
+
+        then(ladder.height()).isEqualTo(5);
     }
 }
