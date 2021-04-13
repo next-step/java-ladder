@@ -4,5 +4,5 @@ import java.util.List;
 import nextstep.ladder.domain.Line;
 
 public interface BridgeBuilder {
-    void build(List<Line> ladderLines);
+    List<String> build(List<Line> ladderLines);
 }

@@ -1,6 +1,8 @@
 package nextstep.ladder.domain.strategy;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import nextstep.ladder.domain.Line;
 
 public class UserBuilder implements BridgeBuilder {
@@ -11,7 +13,17 @@ public class UserBuilder implements BridgeBuilder {
     }
 
     @Override
-    public void build(List<Line> ladderLines) {
+    public List<String> build(List<Line> ladderLines) {
         // TODO buildMap에 따라 사다리 긋기
+        for (int i = 0; i < ladderLines.size(); i++) {
+            ladderLines.get(i).createBridge(parseListOfInteger(buildMap.get(i)));
+        }
+        return buildMap;
+    }
+
+    private List<Integer> parseListOfInteger(String mapLine) {
+        return Arrays.stream(mapLine.split(","))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
     }
 }

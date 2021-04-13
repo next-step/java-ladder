@@ -7,8 +7,8 @@ public class Line {
     private final List<Point> points;
 
     public Line(int countOfPerson) {
-        if (countOfPerson < 1) {
-            throw new IllegalArgumentException("인원은 적어도 1명 이상이어야 합니다: " + countOfPerson);
+        if (countOfPerson < 2) {
+            throw new IllegalArgumentException("인원은 적어도 2명 이상이어야 합니다: " + countOfPerson);
         }
         points = new ArrayList<>(4);
         for (int i = 0; i < countOfPerson; i++) {
@@ -29,6 +29,10 @@ public class Line {
         }
         points.set(createAt, new Point(createAt + 1));
         points.set(createAt + 1, new Point(createAt));
+    }
+
+    public void createBridge(List<Integer> createAtList) {
+        createAtList.forEach(this::createBridge);
     }
 
     public Point move(int from) {
