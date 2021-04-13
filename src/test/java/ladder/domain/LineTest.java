@@ -1,13 +1,17 @@
 package ladder.domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 class LineTest {
 
@@ -34,7 +38,7 @@ class LineTest {
         Line line = new Line(pointCount);
 
         // then
-        assertThat(pointCount).isEqualTo(line.getPointList().size());
+        assertThat(pointCount).isEqualTo(line.getPoints().size());
     }
 
     @Test
@@ -44,9 +48,18 @@ class LineTest {
         Line line = new Line(() -> false, 10);
 
         // then
-        for (Point point : line.getPointList()) {
+        for (Point point : line.getPoints()) {
             assertThat(point.hasLine()).isFalse();
         }
+    }
+
+    @Test
+    @DisplayName("라인 생성 - 라인쓰기 전략 미입력")
+    void lineCreate_writeStrategyIsNull() {
+        // given when then
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new Line(null, 5))
+                .withMessageMatching("라인 쓰기 형식을 입력해 주세요.");
     }
 
     @Test
@@ -56,12 +69,47 @@ class LineTest {
         Line line = new Line(() -> true, 10);
 
         // then
-        Assertions.assertThat(line.getPointList().get(0).hasLine()).isTrue();
-        for (int i = 1; i < line.getPointList().size()-1; i++) {
-            boolean prevHasLine = line.getPointList().get(i-1).hasLine();
-            Assertions.assertThat(line.getPointList().get(i).hasLine()).isNotEqualTo(prevHasLine);
-        }
-        Assertions.assertThat(line.getPointList().get(line.getPointList().size()-1).hasLine()).isFalse();
+        assertAll(
+                () -> assertThat(line.getPoints().get(0).hasLine()).isTrue(),
+                () -> {
+                    for (int i = 1; i < line.getPoints().size() - 1; i++) {
+                        boolean prevHasLine = line.getPoints().get(i - 1).hasLine();
+                        assertThat(line.getPoints().get(i).hasLine()).isNotEqualTo(prevHasLine);
+                    }
+                },
+                () -> assertThat(line.getPoints().get(line.getPoints().size() - 1).hasLine()).isFalse()
+        );
+    }
+
+    @Test
+    @DisplayName("연결 포인트 조회 - 유효하지 않은 인덱스")
+    void getLinkPointIndex_invalidIndex() {
+        // given
+        Line line = new Line(() -> true, 10);
+
+        // when then
+        assertAll(
+                () -> assertThatIllegalArgumentException()
+                        .isThrownBy(() -> line.getLinkPointIndex(-1))
+                        .withMessageMatching("유효하지 않은 인덱스 입니다."),
+                () -> assertThatIllegalArgumentException()
+                        .isThrownBy(() -> line.getLinkPointIndex(10))
+                        .withMessageMatching("유효하지 않은 인덱스 입니다.")
+        );
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"0:1", "1:0", "2:2", "3:4", "4:3"}, delimiter = ':')
+    @DisplayName("연결 포인트 조회 - 인덱스별 정상조회")
+    void getLinkPointIndex(int inputIndex, int outputIndex) {
+        // given
+        List<Point> points = Stream.of(true, false, false, true, false).map(Point::new).collect(Collectors.toList());
+
+        // when
+        Line line = new Line(points);
+
+        // then
+        assertThat(outputIndex).isEqualTo(line.getLinkPointIndex(inputIndex));
     }
 
 }

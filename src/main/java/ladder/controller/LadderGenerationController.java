@@ -18,15 +18,18 @@ public class LadderGenerationController {
     }
 
     public LadderGenerationResponse generateLadder(LadderGenerationRequest request) {
-        return assembleResponse(service.generateLadderGame(request.getParticipantNames(), request.getLadderHeight()));
+        Participants participants = service.registerParticipants(request.getParticipantNames());
+        Ladder ladder = service.generateLadder(participants.getCount(), request.getLadderHeight());
+        GameResults gameResults = service.generateGameResults(request.getGameResults(), participants.getCount());
+        return assembleResponse(participants, ladder, gameResults);
     }
 
-    private LadderGenerationResponse assembleResponse(LadderGame ladderGame) {
-        return new LadderGenerationResponse(assembleParticipantNameList(ladderGame.getParticipants()), LadderConstants.LADDER_HORIZON_WIDTH, assembleLadderLineList(ladderGame.getLineList()));
+    private LadderGenerationResponse assembleResponse(Participants participants, Ladder ladder, GameResults gameResults) {
+        return new LadderGenerationResponse(assembleParticipantNameList(participants), Ladder.LADDER_HORIZON_WIDTH, assembleLadderLineList(ladder.getLines()), assembleGameResults(gameResults));
     }
 
     private List<String> assembleParticipantNameList(Participants participants) {
-        return participants.getParticipantList().stream()
+        return participants.getParticipants().stream()
                 .map(Participant::getName)
                 .collect(Collectors.toList());
     }
@@ -38,7 +41,11 @@ public class LadderGenerationController {
     }
 
     private LadderLine assembleLadderLine(Line line) {
-        List<Boolean> pointList = line.getPointList().stream().map(Point::hasLine).collect(Collectors.toList());
+        List<Boolean> pointList = line.getPoints().stream().map(Point::hasLine).collect(Collectors.toList());
         return new LadderLine(pointList);
+    }
+
+    private List<String> assembleGameResults(GameResults gameResults) {
+        return gameResults.getGameResults();
     }
 }
