@@ -9,7 +9,7 @@ public class LadderGame {
     private static final InputView INPUT_VIEW;
 
     static {
-        INPUT_VIEW = new InputView();
+        INPUT_VIEW = InputView.getInstance();
     }
 
     public static void main(String[] args) {
