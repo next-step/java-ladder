@@ -54,6 +54,10 @@ public class Direction {
         return left || right;
     }
 
+    public boolean hasRightDirection() {
+        return right;
+    }
+
     public int move() {
         if (left) {
             return -1;
