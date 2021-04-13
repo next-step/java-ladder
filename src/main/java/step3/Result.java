@@ -1,14 +1,13 @@
-package step3.domain;
+package step3;
+
+import step3.domain.ExecutionResult;
+import step3.domain.Person;
 
 import java.util.*;
 
 public class Result {
     private static final String NOT_EXIST_NAME = "존재하지 않는 이름입니다.";
     private final Map<Person, ExecutionResult> resultMap;
-
-    public Result() {
-        resultMap = new HashMap<>();
-    }
 
     public Result(Map<Person, ExecutionResult> resultMap) {
         this.resultMap = resultMap;
