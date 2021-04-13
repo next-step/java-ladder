@@ -9,6 +9,8 @@ import java.util.stream.IntStream;
 
 public final class Ladder {
 
+    public static final int START_INCLUSIVE = 0;
+
     private final List<Line> ladder;
 
     public Ladder(List<Line> ladder) {
@@ -26,8 +28,8 @@ public final class Ladder {
         }
     }
 
-    public static final Ladder from(People people, int height) {
-        return from(IntStream.range(0, height)
+    public static final Ladder from(People people, LadderHeight height) {
+        return from(IntStream.range(START_INCLUSIVE, height.toInt())
                 .mapToObj(i -> Line.of(people.countOfPerson()))
                 .collect(Collectors.toList())
         );

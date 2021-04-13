@@ -7,8 +7,11 @@ import ladder.strategy.RandomLineGenerateStrategy;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.IntStream;
 
 public final class Line {
+
+    public static final int START_INCLUSIVE = 0;
 
     private final List<Point> points;
 
@@ -38,9 +41,8 @@ public final class Line {
     private static final List<Point> generatePoints(int countPerson, LineGenerateStrategy strategy) {
         List<Point> points = new ArrayList<>();
         points.add(Point.first());
-        for (int beforeIndex = 0; beforeIndex < countPerson - 1; beforeIndex++) {
-            points.add(generatePoint(points.get(beforeIndex), strategy));
-        }
+        IntStream.range(START_INCLUSIVE, countPerson-1)
+                .forEach(beforeIndex -> points.add(generatePoint(points.get(beforeIndex), strategy)));
         return points;
     }
 

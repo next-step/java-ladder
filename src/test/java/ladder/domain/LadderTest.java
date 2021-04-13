@@ -16,7 +16,7 @@ class LadderTest {
     void 생성() {
         // given
         People people = People.of("pobi,honux,crong,jk");
-        int height = 5;
+        LadderHeight height = LadderHeight.valueOf(5);
 
         // when
         Ladder ladder = Ladder.from(people, height);
