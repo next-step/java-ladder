@@ -1,6 +1,8 @@
 package nextstep.ladder.domain;
 
 import java.util.Objects;
+import nextstep.ladder.exception.EmptyStringNotAllowedException;
+import nextstep.ladder.exception.OverResultLengthLimitException;
 
 public final class Result {
 
@@ -9,7 +11,22 @@ public final class Result {
   private final String result;
 
   public Result(String result) {
+    validateEmptyString(result);
+    validateLength(result);
+
     this.result = result;
+  }
+
+  private void validateEmptyString(String result) {
+    if (result.isEmpty()) {
+      throw new EmptyStringNotAllowedException();
+    }
+  }
+
+  private void validateLength(String result) {
+    if (result.length() > MAX_LENGTH) {
+      throw new OverResultLengthLimitException();
+    }
   }
 
   @Override
