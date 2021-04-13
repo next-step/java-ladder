@@ -14,21 +14,6 @@ public final class People {
 
     private final List<Person> people;
 
-    private People(List<Person> people) {
-        validateNull(people);
-        this.people = people;
-    }
-
-    private final void validateNull(List<Person> people) {
-        if (Objects.isNull(people)) {
-            throw new ParticipantListNullPointerException();
-        }
-    }
-
-    public static final People of(List<Person> people) {
-        return new People(people);
-    }
-
     public static final People of(String names) {
         return of(stringToParticipantList(names));
     }
@@ -38,6 +23,22 @@ public final class People {
                 .map(String::trim)
                 .map(Person::of)
                 .collect(Collectors.toList());
+    }
+
+    public static final People of(List<Person> people) {
+        return new People(people);
+    }
+
+    private People(List<Person> people) {
+        validateNull(people);
+        this.people = people;
+    }
+
+
+    private final void validateNull(List<Person> people) {
+        if (Objects.isNull(people)) {
+            throw new ParticipantListNullPointerException();
+        }
     }
 
     public final int countOfPerson() {

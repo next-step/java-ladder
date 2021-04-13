@@ -4,12 +4,12 @@ public final class Point {
 
     private final boolean point;
 
-    private Point(boolean point) {
-        this.point = point;
-    }
-
     public static final Point of(boolean point) {
         return new Point(point);
+    }
+
+    private Point(boolean point) {
+        this.point = point;
     }
 
     public static final Point first() {
@@ -17,6 +17,6 @@ public final class Point {
     }
 
     public final boolean isTrue() {
-        return  point == Boolean.TRUE;
+        return point == Boolean.TRUE;
     }
 }

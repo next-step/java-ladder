@@ -8,6 +8,10 @@ public final class LadderHeight {
 
     private final int height;
 
+    public static final LadderHeight valueOf(int height) {
+        return new LadderHeight(height);
+    }
+
     public LadderHeight(int height) {
         validateNegative(height);
         this.height = height;
@@ -17,10 +21,6 @@ public final class LadderHeight {
         if (height < ZERO) {
             throw new InputNegativeNumberException();
         }
-    }
-
-    public static final LadderHeight valueOf(int height) {
-        return new LadderHeight(height);
     }
 
     public final int toInt() {

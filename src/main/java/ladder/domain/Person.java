@@ -8,6 +8,10 @@ public final class Person {
 
     private final String name;
 
+    public static final Person of(String name) {
+        return new Person(name);
+    }
+
     private Person(String name) {
         validateSize(name);
         this.name = name;
@@ -17,10 +21,6 @@ public final class Person {
         if (name.length() > MAXIMUM_NAME_SIZE) {
             throw new InvalidNameSizeException();
         }
-    }
-
-    public static final Person of(String name) {
-        return new Person(name);
     }
 
     public final String getName() {
