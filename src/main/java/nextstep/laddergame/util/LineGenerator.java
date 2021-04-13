@@ -13,18 +13,18 @@ public class LineGenerator extends Random {
 
   }
 
-  public static List<Boolean> createLine(int countOfPerson, DrawStrategy strategy) {
+  public static List<Boolean> createLine(int countOfMembers, DrawStrategy strategy) {
     List<Boolean> points = new ArrayList<>();
 
-    IntStream.range(0, countOfPerson)
+    IntStream.range(0, countOfMembers)
         .mapToObj(index -> drawLine(isRowContinuousTrue(points, index), strategy))
         .forEach(points::add);
 
     return points;
   }
 
-  public static List<Boolean> generate(int countOfPerson) {
-    return createLine(countOfPerson, RANDOM::nextBoolean);
+  public static List<Boolean> generate(int countOfMembers) {
+    return createLine(countOfMembers, RANDOM::nextBoolean);
   }
 
   private static boolean isRowContinuousTrue(List<Boolean> points, int index) {

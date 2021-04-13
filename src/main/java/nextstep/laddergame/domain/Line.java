@@ -10,8 +10,8 @@ public class Line {
     this.points = points;
   }
 
-  public static Line createLine(int countOfPerson) {
-    return new Line(LineGenerator.generate(countOfPerson));
+  public static Line createLine(int countOfMembers) {
+    return new Line(LineGenerator.generate(countOfMembers));
   }
 
   public int size() {
