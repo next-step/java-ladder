@@ -27,11 +27,11 @@ public class ResultView {
 	public void printLadder(Ladder ladder) {
 		ladder.getLadder().forEach((line) -> {
 			System.out.print(String.format("%5s", ""));
-			line.getPoints().forEach(points -> {
-				if (points) {
+			line.getCrosses().forEach(cross -> {
+				if (cross.current()) {
 					System.out.print(String.format("%-6s", "|-----"));
 				}
-				if (!points) {
+				if (!cross.current()) {
 					System.out.print(String.format("%-6s", "|"));
 				}
 			});

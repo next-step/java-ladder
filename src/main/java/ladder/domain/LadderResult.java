@@ -20,7 +20,7 @@ public class LadderResult {
 	}
 
 	public String getResult(String playerName) {
-		return results.getOrDefault(playerName,NO_EXISTS_PLAYER);
+		return results.getOrDefault(playerName, NO_EXISTS_PLAYER);
 	}
 
 	public Map<String, String> getAllResult() {
