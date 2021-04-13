@@ -1,4 +1,14 @@
 package ladder.domain;
 
-public class LadderHeight {
+public final class LadderHeight {
+
+    private final int height;
+
+    public LadderHeight(int height) {
+        this.height = height;
+    }
+
+    public static final LadderHeight valueOf(int height) {
+        return new LadderHeight(height);
+    }
 }

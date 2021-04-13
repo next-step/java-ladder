@@ -26,8 +26,6 @@ public final class ResultView {
                 .forEach(stringBuilder::append);
         stringBuilder.append("\n");
 
-        ladder
-
     }
 
 }
