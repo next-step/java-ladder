@@ -1,0 +1,42 @@
+package ladder.domain;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.IntStream;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+public class LineTest {
+    private static final int COUNT_OF_PERSON = 6;
+    private Line line;
+    private List<Point> points = new ArrayList<>();
+
+    @BeforeEach
+    void setUp() {
+        line = new Line(COUNT_OF_PERSON);
+        IntStream.range(0, COUNT_OF_PERSON)
+                .forEach(i -> points.add(new Point()));
+    }
+
+    @Test
+    void 라인의선을_이웃하지않게_생성() {
+        line = new Line(points);
+        line.connect(() -> true);
+
+        points.stream().forEach(point ->
+                assertThat(point.isLinked()).isTrue());
+    }
+
+    @Test
+    void 라인의선을_생성하지않음() {
+        line = new Line(points);
+        line.connect(() -> false);
+
+        points.stream().forEach(point ->
+                assertThat(point.isLinked()).isFalse());
+    }
+
+}
