@@ -7,8 +7,8 @@ public class Person {
   private String name;
 
   private Person(String name) {
-    if (name.length() > Ladder.MAX_NAME_LENGTH) {
-      throw new IllegalArgumentException("name length > 5.");
+    if (name.length() > 5) {
+      throw new IllegalArgumentException("name.length < 6");
     }
     this.name = name;
   }

@@ -12,18 +12,22 @@ public class Results {
     this.results = results;
   }
 
-  public static Results from(String[] results) {
-    return new Results(Arrays.stream(results)
+  public static Results generate(String[] names) {
+    List<Result> results = Arrays.stream(names)
         .map(Result::generate)
-        .collect(Collectors.toList()));
+        .collect(Collectors.toList());
+    return new Results(results);
+  }
+
+  public List<Result> getResults() {
+    return results;
   }
 
   public int size() {
     return results.size();
   }
 
-  public Result getResult(int index) {
+  public Result findResult(int index) {
     return results.get(index);
   }
-
 }

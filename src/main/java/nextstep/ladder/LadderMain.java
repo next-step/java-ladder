@@ -1,26 +1,35 @@
 package nextstep.ladder;
 
+import java.util.Map;
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.LadderMatcher;
+import nextstep.ladder.domain.Persons;
+import nextstep.ladder.domain.Results;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
 public class LadderMain {
 
-  private static final String ALL = "all";
-
   public static void main(String[] args) {
-    String[] personNames = InputView.getPersonNames();
-    String[] results = InputView.getResult();
-    int height = InputView.getLadderHeight();
-    Ladder ladder = Ladder.generate(personNames, height, results);
-    ResultView.printLadderGame(ladder, results);
+    String[] personNames = InputView.getNames();
+    Persons persons = Persons.generate(personNames);
 
-    String personName = InputView.getResultPersonName();
-    while (!personName.equals(ALL)) {
-      ResultView.printResult(ladder, personName);
-      personName = InputView.getResultPersonName();
+    String[] resultNames = InputView.getResults();
+    Results results = Results.generate(resultNames);
+
+    LadderMatcher ladderMatcher = LadderMatcher.generate(persons, results);
+
+    int ladderHeight = InputView.getLadderHeight();
+    Ladder ladder = Ladder.generate(persons.size(), ladderHeight);
+    ResultView.printLadderGame(ladderMatcher, ladder);
+    Map<String, String> moveResult = ladderMatcher.getMoveResult(ladder);
+
+    String startName = InputView.getStartName();
+    while (!startName.equals("all")) {
+      ResultView.printLadderResult(moveResult, startName);
+      startName = InputView.getStartName();
     }
-    ResultView.printResult(ladder);
+    ResultView.printLadderResults(moveResult);
   }
 
 }
