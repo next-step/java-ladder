@@ -9,7 +9,7 @@ public class Player {
 
     public Player(String name) {
         checkNameLength(name);
-        this.name = name;;
+        this.name = name;
     }
 
     private void checkNameLength(String name) {
