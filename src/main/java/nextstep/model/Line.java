@@ -20,6 +20,27 @@ public class Line {
         points.set(target, true);
     }
 
+    public void initMark() {
+        for (int i = 0; i < points.size(); i++) {
+            points.set(i, RAND.nextBoolean());
+        }
+
+        long trueCount = points.stream()
+                .filter(s -> s == true)
+                .count();
+
+        if (trueCount == 0) {
+            markOneRandom();
+        }
+
+        long falseCount = points.stream()
+                .filter(s -> s == false)
+                .count();
+        if (falseCount == 0) {
+            this.initMark();
+        }
+    }
+
     public void mark() {
         for (int i = 0; i < points.size(); i++) {
             points.set(i, RAND.nextBoolean());
@@ -81,5 +102,12 @@ public class Line {
             }
         }
         return stringBuilder.toString();
+    }
+
+    @Override
+    public String toString() {
+        return "Line{" +
+                "points=" + points +
+                '}';
     }
 }

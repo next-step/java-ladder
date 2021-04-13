@@ -21,8 +21,9 @@ public class OnlineLadder extends Ladder {
     }
 
     public void lineMarkAll() {
-        for (int i = 0; i < this.height; i++) {
-            this.lines.mark(i);
+        this.lines.initMark();
+        for (int i = 0; i < this.height - 1; i++) {
+            this.lines.markSecond(i, i + 1);
         }
     }
 
