@@ -11,10 +11,6 @@ public class Ladder {
         this.ladder = ladder;
     }
 
-    public static Ladder of(int countOfPerson, int ladderHeight) {
-        return of(countOfPerson, ladderHeight, new RandomGenerator());
-    }
-
     public static Ladder of(int countOfPerson, int ladderHeight, BooleanGenerator booleanGenerator) {
         validateLadder(countOfPerson, ladderHeight);
         List<Line> newLadder = createLadder(countOfPerson, ladderHeight, booleanGenerator);

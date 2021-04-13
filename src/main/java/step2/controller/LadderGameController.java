@@ -4,6 +4,7 @@ import step2.domain.Ladder;
 import step2.domain.Line;
 import step2.domain.Members;
 import step2.domain.Point;
+import step2.domain.RandomGenerator;
 import step2.dto.RequestLadderDTO;
 import step2.dto.ResponseLadderDTO;
 import step2.dto.ResponseMembersDTO;
@@ -15,7 +16,7 @@ public class LadderGameController {
         RequestLadderDTO requestLadderDTO = exportRequestLadderDTO();
 
         Members members = requestLadderDTO.getMembers();
-        Ladder ladder = Ladder.of(members.getSize(), requestLadderDTO.getLadderHeight());
+        Ladder ladder = Ladder.of(members.getSize(), requestLadderDTO.getLadderHeight(), new RandomGenerator());
 
         ResponseMembersDTO responseMembersDTO = exportResponseMembersDTO(members);
         ResultView.printMembers(responseMembersDTO);
