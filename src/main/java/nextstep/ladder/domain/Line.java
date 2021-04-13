@@ -29,4 +29,18 @@ public class Line implements Iterable<Point> {
     public Iterator<Point> iterator() {
         return points.iterator();
     }
+
+    public int nextHorizontalNumber(int horizontalNumber) {
+        if (horizontalNumber > 0) {
+            if (points.get(horizontalNumber - 1).value()) {
+                return --horizontalNumber;
+            }
+        }
+        if (horizontalNumber < points.size() - 1) {
+            if (points.get(horizontalNumber).value()) {
+                return ++horizontalNumber;
+            }
+        }
+        return horizontalNumber;
+    }
 }
