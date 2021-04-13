@@ -2,11 +2,11 @@ package step3.domain;
 
 import java.util.Objects;
 
-public class Result {
+public class ExecutionResult {
 
     private final String result;
 
-    public Result(String result) {
+    public ExecutionResult(String result) {
         this.result = result;
     }
 
@@ -14,7 +14,7 @@ public class Result {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Result result1 = (Result) o;
+        ExecutionResult result1 = (ExecutionResult) o;
         return Objects.equals(result, result1.result);
     }
 
