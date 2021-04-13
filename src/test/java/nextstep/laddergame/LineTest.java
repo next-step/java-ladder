@@ -2,6 +2,7 @@ package nextstep.laddergame;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import nextstep.laddergame.domain.Line;
 import org.junit.jupiter.api.Test;
 
 class LineTest {
