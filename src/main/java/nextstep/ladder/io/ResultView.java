@@ -7,6 +7,7 @@ import nextstep.ladder.domain.Name;
 import nextstep.ladder.domain.People;
 import nextstep.ladder.domain.Person;
 import nextstep.ladder.domain.Point;
+import nextstep.ladder.domain.Result;
 import nextstep.ladder.utils.StringUtils;
 
 public final class ResultView {
@@ -39,7 +40,7 @@ public final class ResultView {
     for (Line line : lines) {
       printLine(linesBuilder, line);
     }
-    System.out.println(linesBuilder);
+    System.out.print(linesBuilder);
   }
 
   private static void printLine(StringBuilder linesBuilder, Line line) {
@@ -47,5 +48,13 @@ public final class ResultView {
       linesBuilder.append(point.canDraw() ? LINE : EMPTY_LINE);
     }
     linesBuilder.append(LINE_SEPARATOR);
+  }
+
+  public static void printResults(List<Result> results) {
+    StringBuilder resultsBuilder = new StringBuilder();
+    for (Result result : results) {
+      resultsBuilder.append(StringUtils.padLeft(result.result(), Result.MAX_LENGTH + 1));
+    }
+    System.out.println(resultsBuilder);
   }
 }

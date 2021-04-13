@@ -29,6 +29,10 @@ public final class Result {
     }
   }
 
+  public String result() {
+    return result;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {

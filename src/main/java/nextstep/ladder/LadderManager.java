@@ -22,6 +22,7 @@ public final class LadderManager {
 
     final Ladder ladder = new Ladder(people, ladderHeight, new RandomLineCreationStrategy());
     ResultView.printLadder(ladder);
+    ResultView.printResults(results);
   }
 
   private static People getPeople() {
