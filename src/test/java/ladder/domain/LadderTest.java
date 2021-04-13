@@ -19,7 +19,7 @@ class LadderTest {
         LadderHeight height = LadderHeight.valueOf(5);
 
         // when
-        Ladder ladder = Ladder.from(people, height);
+        Ladder ladder = Ladder.from(people, height, ()-> true);
 
         // then
         assertThat(ladder).isNotNull();

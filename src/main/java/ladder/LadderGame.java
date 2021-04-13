@@ -3,6 +3,7 @@ package ladder;
 import ladder.domain.Ladder;
 import ladder.domain.LadderHeight;
 import ladder.domain.People;
+import ladder.strategy.RandomLineGenerateStrategy;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
@@ -19,7 +20,7 @@ public class LadderGame {
     public static void main(String[] args) {
         People people = People.of(INPUT_VIEW.inputParticipantsByClient());
         LadderHeight height = LadderHeight.valueOf(INPUT_VIEW.inputLadderHeightByClient());
-        Ladder ladder = Ladder.from(people, height);
+        Ladder ladder = Ladder.from(people, height, RandomLineGenerateStrategy.getInstance());
         RESULT_VIEW.printLadder(people, ladder);
     }
 }

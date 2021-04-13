@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import ladder.exception.LineListNullPointerException;
+import ladder.strategy.LineGenerateStrategy;
 
 import java.util.List;
 import java.util.Objects;
@@ -28,9 +29,9 @@ public final class Ladder {
         }
     }
 
-    public static final Ladder from(People people, LadderHeight height) {
+    public static final Ladder from(People people, LadderHeight height, LineGenerateStrategy strategy) {
         return from(IntStream.range(START_INCLUSIVE, height.toInt())
-                .mapToObj(i -> Line.of(people.countOfPerson()))
+                .mapToObj(i -> Line.of(people.countOfPerson(), strategy))
                 .collect(Collectors.toList())
         );
     }

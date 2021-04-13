@@ -30,10 +30,6 @@ public final class Line {
         return new Line(points);
     }
 
-    public static final Line of(int countPerson) {
-        return of(countPerson, RandomLineGenerateStrategy.getInstance());
-    }
-
     public static final Line of(int countPerson, LineGenerateStrategy strategy) {
         return of(generatePoints(countPerson, strategy));
     }
