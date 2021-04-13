@@ -11,7 +11,10 @@ import nextstep.ladder.io.ResultView;
 public final class LadderManager {
 
   public static void main(String[] args) {
-    final Ladder ladder = new Ladder(getPeople(), getLadderHeight(), new RandomLineCreationStrategy());
+    final People people = getPeople();
+    final LadderHeight ladderHeight = getLadderHeight();
+
+    final Ladder ladder = new Ladder(people, ladderHeight, new RandomLineCreationStrategy());
     ResultView.printLadder(ladder);
   }
 
