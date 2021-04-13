@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.stream.Collector;
 import java.util.stream.Stream;
 
+import static ladder.util.BinaryOperations.nope;
+
 public class Line {
     private final List<Point> points;
 
@@ -25,9 +27,7 @@ public class Line {
                 .collect(Collector.of(
                         Line::new,
                         (line, point) -> line.add(point, countOfPerson),
-                        (a, b) -> {
-                            throw new UnsupportedOperationException();
-                        }
+                        nope()
                 ));
     }
 

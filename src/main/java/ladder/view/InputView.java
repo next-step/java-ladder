@@ -18,17 +18,17 @@ public class InputView {
     }
 
     public String[] inputExecutionResults() {
-        messagePrinter.println(System.lineSeparator() + "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        messagePrinter.println(String.format("%n실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)"));
         return scanner.nextLine().split(INPUT_SEPARATOR);
     }
 
     public int inputLadderHeight() {
-        messagePrinter.println(System.lineSeparator() + "최대 사다리 높이는 몇 개 인가요?");
+        messagePrinter.println(String.format("%n최대 사다리 높이는 몇 개 인가요?"));
         return Integer.parseInt(scanner.nextLine());
     }
 
     public String inputPersonName() {
-        messagePrinter.println(System.lineSeparator() + "결과를 보고 싶은 사람은?");
+        messagePrinter.println(String.format("%n결과를 보고 싶은 사람은?"));
         return scanner.nextLine();
     }
 }

@@ -20,7 +20,7 @@ public class ResultView {
     }
 
     public void printPersons(Persons persons) {
-        messagePrinter.println(System.lineSeparator() + "사다리 결과");
+        messagePrinter.println(String.format("%n사다리 결과"));
         StringBuilder builder = new StringBuilder();
         builder.append(System.lineSeparator());
         persons.getPersons()
