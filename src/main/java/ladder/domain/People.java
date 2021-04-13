@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public final class People {
 
@@ -41,5 +42,9 @@ public final class People {
 
     public final int countOfPerson() {
         return people.size();
+    }
+
+    public final Stream<Person> stream() {
+        return people.stream();
     }
 }
