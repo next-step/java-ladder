@@ -1,37 +1,27 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.strategy.RandomConnectStrategy;
-
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Ladder {
-    private final List<Line> lines;
-    private final Height height;
-    private final CountOfPlayer countOfPlayer;
+    private final Lines lines;
 
-    public Ladder(Height height, CountOfPlayer countOfPlayer) {
-        this.height = height;
-        this.countOfPlayer = countOfPlayer;
-        this.lines = create();
+    public Ladder(int countOfPlayer, int height) {
+        this(new CountOfPlayer(countOfPlayer), new Height(height));
     }
 
-    private List<Line> create() {
-        return IntStream.range(0, height.value())
-                .mapToObj((i) -> new Line(Points.createWith(countOfPlayer, new RandomConnectStrategy())))
-                .collect(Collectors.toList());
+    public Ladder(CountOfPlayer countOfPlayer, Height height) {
+        this(new Lines(countOfPlayer, height));
     }
 
-    public List<Line> lines() {
-        return Collections.unmodifiableList(lines);
+    public Ladder(Lines lines) {
+        this.lines = lines;
+    }
+
+    public int height() {
+        return lines.size();
     }
 
     public List<List<Boolean>> linesConnection() {
-        return lines.stream()
-                .map(Line::points)
-                .map(Points::pointsConnection)
-                .collect(Collectors.toList());
+        return lines.linesConnection();
     }
 }

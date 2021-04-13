@@ -13,7 +13,7 @@ public class LinesTest {
     @DisplayName("사다리 높이를 인수로 해당 수 만큼의 라인을 생성한다.")
     public void create() throws Exception {
         //given
-        Lines lines = Lines.createWith(new CountOfPlayer(4), new Height(5));
+        Lines lines = new Lines(4, 5);
 
         //when
         List<Line> result = lines.lines();
