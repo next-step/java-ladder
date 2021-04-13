@@ -11,12 +11,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LineTest {
     private static final int COUNT_OF_PERSON = 6;
+    private Size size = new Size(5, COUNT_OF_PERSON);
     private Line line;
     private List<Point> points = new ArrayList<>();
 
     @BeforeEach
     void setUp() {
-        line = new Line(COUNT_OF_PERSON);
+        line = new Line(size);
         IntStream.range(0, COUNT_OF_PERSON)
                 .forEach(i -> points.add(new Point()));
     }
