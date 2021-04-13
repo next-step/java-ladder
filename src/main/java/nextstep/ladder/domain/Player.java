@@ -5,6 +5,7 @@ import java.util.Objects;
 public class Player {
     private static final String CHECK_NAME_LENGTH = "이름이 5자를 초과하는지 확인해주세요.";
     private static final int NAME_LENGTH_MIN = 5;
+
     private final String name;
 
     public Player(String name) {
