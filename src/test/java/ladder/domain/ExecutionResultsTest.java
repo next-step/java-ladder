@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -8,17 +7,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ExecutionResultsTest {
-    private String[] executionResults;
-    private int countOfPerson;
-
-    @BeforeEach
-    void setUp() {
-        this.executionResults = "꽝,5000,꽝,3000".split(",");
-        this.countOfPerson = 4;
-    }
 
     @Test
     void create() {
+        // given
+        String[] executionResults = "꽝,5000,꽝,3000".split(",");
+        int countOfPerson = 4;
+
         // when
         ExecutionResults expectedExecutionResults = ExecutionResults.from(executionResults, countOfPerson);
 
@@ -27,8 +22,10 @@ class ExecutionResultsTest {
     }
 
     @Test
-    @DisplayName("인원수만큼 실행결과를 입력하지않으면 예외가 발생한다")
+    @DisplayName("인원수와 실행결과수가 다를때 실행결과 객체를 생성하면 예외가 발생한다")
     void size_exception() {
+        String[] executionResults = "꽝,5000,꽝,3000".split(",");
+
         assertThatThrownBy(() -> ExecutionResults.from(executionResults, 5))
                 .isInstanceOf(RuntimeException.class);
     }
@@ -36,6 +33,10 @@ class ExecutionResultsTest {
     @Test
     @DisplayName("입력한 실행결과 개수만큼 실행결과가 생성된다")
     void create_size() {
+        // given
+        String[] executionResults = "꽝,5000,꽝,3000".split(",");
+        int countOfPerson = 4;
+
         // when
         int expectedSize = ExecutionResults.from(executionResults, countOfPerson).getExecutionResults().size();
 
@@ -47,6 +48,8 @@ class ExecutionResultsTest {
     @DisplayName("원하는 index의 실행 결과가 반환된다")
     void getExecutionResult() {
         // given
+        String[] executionResults = "꽝,5000,꽝,3000".split(",");
+        int countOfPerson = 4;
         int index = 1;
 
         // when
