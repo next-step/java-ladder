@@ -10,4 +10,11 @@ public class CollectionsUtils {
         }
         return list;
     }
+
+    public static <T> T[] checkSize(T[] arr, int expectedSize) {
+        if (arr.length != expectedSize) {
+            throw new IllegalArgumentException("예상하는 크기와 같지 않습니다.");
+        }
+        return arr;
+    }
 }

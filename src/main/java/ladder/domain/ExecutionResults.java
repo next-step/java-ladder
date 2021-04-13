@@ -1,7 +1,5 @@
 package ladder.domain;
 
-import ladder.util.CollectionsUtils;
-
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -9,6 +7,7 @@ import java.util.Objects;
 
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
+import static ladder.util.CollectionsUtils.checkSize;
 
 public class ExecutionResults {
     private final List<String> executionResults;
@@ -18,11 +17,11 @@ public class ExecutionResults {
     }
 
     public static ExecutionResults from(String[] executionResults, int countOfPerson) {
-        return Arrays.stream(executionResults)
+        return Arrays.stream(checkSize(executionResults, countOfPerson))
                 .collect(collectingAndThen(
                         toList(),
-                        executionResultList -> new ExecutionResults(
-                                CollectionsUtils.checkSize(executionResultList, countOfPerson))));
+                        ExecutionResults::new
+                ));
     }
 
     public String getExecutionResult(int index) {
