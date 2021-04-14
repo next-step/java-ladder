@@ -26,7 +26,7 @@ public class Line {
         LineResult lineResult = new LineResult();
         Point comparePoint = new Point(Position.DEFAULT);
         for (Point point : points) {
-            Direction direction = LadderGenerator.generate(point, comparePoint);
+            Direction direction = PointGenerator.generate(point, comparePoint);
             point.setDirection(direction);
             comparePoint = point;
 

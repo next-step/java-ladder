@@ -1,6 +1,6 @@
 package ladder.domain;
 
-public class LadderGenerator {
+public class PointGenerator {
     public static Direction generate(Point point, Point previousPoint) {
         if (point.isFirst()) {
             return generate(new FirstElementStrategy());
