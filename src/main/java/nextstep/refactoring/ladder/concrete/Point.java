@@ -21,7 +21,7 @@ public class Point {
     }
 
     public Point last() {
-        return Point.of(0, direction.last());
+        return Point.of(position.getIndex() + 1, direction.last());
     }
 
     public Point next() {
@@ -41,6 +41,6 @@ public class Point {
             return position.getRight();
         }
 
-        return position;
+        return Position.of(position.getIndex());
     }
 }

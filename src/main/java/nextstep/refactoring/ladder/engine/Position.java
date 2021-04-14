@@ -22,11 +22,11 @@ public class Position {
     }
 
     public Position getLeft() {
-        return new Position(index - 1);
+        return Position.of(index - 1);
     }
 
     public Position getRight() {
-        return new Position(index + 1);
+        return Position.of(index + 1);
     }
 
     public int getIndex() {

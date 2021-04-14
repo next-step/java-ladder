@@ -14,7 +14,7 @@ class PointTest {
     void traverse() {
         Point firstPoint = Point.of(0, Direction.right());
         Point secondPoint = firstPoint.next();
-        Point thirdPoint = secondPoint.next(false);
+        Point thirdPoint = secondPoint.last();
 
         assertAll(
             () -> assertThat(firstPoint.traverse()).isEqualTo(Position.of(1)),
