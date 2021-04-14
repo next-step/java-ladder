@@ -34,20 +34,9 @@ public class LinesTest {
     void onePersonResultTest() {
         Lines lines = new Lines(createLine());
         ExecutionResults results = new ExecutionResults(Arrays.asList(new ExecutionResult("꽝"), new ExecutionResult("5000"), new ExecutionResult("3000")));
-        assertThat(lines.eachPositionResult2(0, results)).isEqualTo(results.oneResult(2));
-        assertThat(lines.eachPositionResult2(1, results)).isEqualTo(results.oneResult(0));
-        assertThat(lines.eachPositionResult2(2, results)).isEqualTo(results.oneResult(1));
-    }
-
-    @Test
-    @DisplayName("모든 사람의 결과 반환 테스트")
-    void allPersonResultTest() {
-        Lines lines = new Lines(createLine());
-        Persons persons = new Persons(Arrays.asList(new Person("aa"), new Person("bb"), new Person("cc")));
-        ExecutionResults results = new ExecutionResults(Arrays.asList(new ExecutionResult("꽝"), new ExecutionResult("5000"), new ExecutionResult("3000")));
-        Result result = lines.result(persons, results);
-        assertThat(result.get(new Person("aa"))).isEqualTo(new ExecutionResult("3000"));
-        assertThat(lines.eachPositionResult2(0, results)).isEqualTo(results.oneResult(2));
+        assertThat(lines.eachPositionExecutionResult(0, results)).isEqualTo(results.getOneResult(2));
+        assertThat(lines.eachPositionExecutionResult(1, results)).isEqualTo(results.getOneResult(0));
+        assertThat(lines.eachPositionExecutionResult(2, results)).isEqualTo(results.getOneResult(1));
     }
 
     public List<Line> createLine() {

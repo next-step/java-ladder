@@ -28,7 +28,7 @@ public class ExecutionResultsTest {
     @DisplayName("포지션에 따른 결과 값 반환")
     void returnOfOnePosition() {
         ExecutionResults results = new ExecutionResults(Arrays.asList(new ExecutionResult("꽝"), new ExecutionResult("5000")));
-        assertThat(results.oneResult(1)).isEqualTo(new ExecutionResult("5000"));
+        assertThat(results.getOneResult(1)).isEqualTo(new ExecutionResult("5000"));
     }
 
 }

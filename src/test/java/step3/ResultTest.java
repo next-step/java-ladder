@@ -2,49 +2,42 @@ package step3;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import step3.domain.ExecutionResult;
-import step3.domain.Person;
+import step3.domain.*;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class ResultTest {
 
     @Test
-    @DisplayName("존재하지 않는 이름 예외처리")
-    void notExistNameTest() {
-        Map<Person, ExecutionResult> resultMap = new HashMap<>();
-        resultMap.put(new Person("poby"), new ExecutionResult("꽝"));
-        resultMap.put(new Person("jun"), new ExecutionResult("3000"));
-        Result result = new Result(resultMap);
-        assertThatThrownBy(() -> result.get(new Person("aa")))
-                .isInstanceOf(IllegalArgumentException.class);
+    @DisplayName("각 포지션에 대한 마지막 포지션 값 테스트")
+    void onePositionResultTest() {
+        Lines lines = new Lines(createLine());
+        ExecutionResults results = new ExecutionResults(Arrays.asList(new ExecutionResult("꽝"), new ExecutionResult("5000"), new ExecutionResult("3000")));
+        Result result = new Result(lines, results);
+
+
+        assertThat(result.getMoveResult()).isEqualTo(Arrays.asList(2,0,1));
     }
 
     @Test
-    @DisplayName("결과 값 매칭 테스트")
-    void matchTest() {
-        Map<Person, ExecutionResult> resultMap = new HashMap<>();
-        resultMap.put(new Person("poby"), new ExecutionResult("꽝"));
-        resultMap.put(new Person("jun"), new ExecutionResult("3000"));
+    @DisplayName("포지션이 이동한 결과값에 따른 실행결과 조회 테스트")
+    void getExecutionResultListTest() {
+        Lines lines = new Lines(createLine());
+        ExecutionResults results = new ExecutionResults(Arrays.asList(new ExecutionResult("꽝"), new ExecutionResult("5000"), new ExecutionResult("3000")));
+        Result result = new Result(lines, results);
 
-        Result result = new Result(resultMap);
-        assertThat(result.get(new Person("poby"))).isEqualTo(new ExecutionResult("꽝"));
+        assertThat(result.getExecutionResult()).isEqualTo(new ExecutionResults(Arrays.asList(new ExecutionResult("3000"), new ExecutionResult("꽝"), new ExecutionResult("5000"))));
     }
 
-    @Test
-    @DisplayName("모든 결과 값 매칭 테스트")
-    void allMatchTest() {
-        Map<Person, ExecutionResult> resultMap = new HashMap<>();
-        resultMap.put(new Person("poby"), new ExecutionResult("꽝"));
-        resultMap.put(new Person("jun"), new ExecutionResult("3000"));
-
-        Result result = new Result(resultMap);
-        assertThat(result.all().contains( new ExecutionResult("꽝"))).isTrue();
-        assertThat(result.all().contains( new ExecutionResult("3000"))).isTrue();
-        assertThat(result.all().contains( new ExecutionResult("500000"))).isFalse();
+    public List<Line> createLine() {
+        List<Line> lines = new ArrayList<>();
+        lines.add(new Line(Arrays.asList(Point.first(true), Point.first(true).next(false), Point.first(true).next(false).last())));
+        lines.add(new Line(Arrays.asList(Point.first(false), Point.first(false).next(false), Point.first(false).next(false).last())));
+        lines.add(new Line(Arrays.asList(Point.first(false), Point.first(false).next(true), Point.first(false).next(true).last())));
+        return lines;
     }
 }
