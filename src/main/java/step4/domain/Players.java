@@ -43,7 +43,7 @@ public class Players {
         return players.size();
     }
 
-    public List<Player> getPlayers() {
+    public List<Player> players() {
         return this.players;
     }
 

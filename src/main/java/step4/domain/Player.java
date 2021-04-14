@@ -15,6 +15,14 @@ public class Player {
         return this.playerName.equals(playerName);
     }
 
+    public Position playerPosition() {
+        return this.position;
+    }
+
+    public PlayerName playerName() {
+        return this.playerName;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o)
