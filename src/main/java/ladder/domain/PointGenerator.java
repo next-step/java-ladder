@@ -3,15 +3,15 @@ package ladder.domain;
 public class PointGenerator {
     public static Direction generate(Point point, Point previousPoint) {
         if (point.isFirst()) {
-            return generate(new FirstElementStrategy());
+            return generate(new FirstPointStrategy());
         }
         if (point.isLast()) {
-            return generate(new LastElementStrategy(previousPoint));
+            return generate(new LastPointStrategy(previousPoint));
         }
-        return generate(new BodyElementStrategy(previousPoint));
+        return generate(new BodyPointStrategy(previousPoint));
     }
 
-    private static Direction generate(LadderStrategy strategy) {
+    private static Direction generate(PointStrategy strategy) {
         return strategy.direction();
     }
 }

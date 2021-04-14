@@ -2,10 +2,10 @@ package ladder.domain;
 
 import ladder.util.RandomUtil;
 
-public class BodyElementStrategy implements LadderStrategy {
+public class BodyPointStrategy implements PointStrategy {
     private final Point previousPoint;
 
-    public BodyElementStrategy(Point previousPoint) {
+    public BodyPointStrategy(Point previousPoint) {
         this.previousPoint = previousPoint;
     }
 

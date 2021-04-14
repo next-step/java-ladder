@@ -1,5 +1,5 @@
 package ladder.domain;
 
-public interface LadderStrategy {
+public interface PointStrategy {
     Direction direction();
 }

@@ -2,9 +2,9 @@ package ladder.domain;
 
 import ladder.util.RandomUtil;
 
-public class FirstElementStrategy implements LadderStrategy {
+public class FirstPointStrategy implements PointStrategy {
 
-    public FirstElementStrategy() {
+    public FirstPointStrategy() {
     }
 
     @Override

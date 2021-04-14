@@ -1,9 +1,9 @@
 package ladder.domain;
 
-public class LastElementStrategy implements LadderStrategy {
+public class LastPointStrategy implements PointStrategy {
     private final Point previousPoint;
 
-    public LastElementStrategy(Point previousPoint) {
+    public LastPointStrategy(Point previousPoint) {
         this.previousPoint = previousPoint;
     }
 
