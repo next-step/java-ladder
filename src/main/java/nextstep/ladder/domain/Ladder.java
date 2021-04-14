@@ -1,44 +1,29 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.util.BinaryOperators;
-import nextstep.ladder.view.dto.LadderDto;
-
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Ladder {
 
     private final List<Line> lines;
 
-    protected Ladder(List<Line> lines) {
+    private Ladder(List<Line> lines) {
         this.lines = lines;
     }
 
-    public Ladder(Height height, int countOfPerson) {
-        this(Stream.generate(() -> new Line(countOfPerson))
+    public static Ladder of(Height height, Players players) {
+        List<Line> lines = Stream.generate(() -> generateLine(players.countOfPerson()))
                 .limit(height.value())
-                .collect(Collectors.toList()));
+                .collect(Collectors.toList());
+        return new Ladder(lines);
     }
 
-
-    public LadderDto readOnlyLadder() {
-        return new LadderDto(Collections.unmodifiableList(lines));
+    private static Line generateLine(int countOfPerson) {
+        return Line.init(countOfPerson);
     }
 
-    public int positionOfResult(int startPosition) {
-        return lines.stream()
-                .reduce(startPosition,
-                        (position, line) -> line.moveWhich(position),
-                        BinaryOperators.nope());
-    }
-
-
-    public List<Integer> positionOfAllResult() {
-        return IntStream.range(0, lines.size())
-                .mapToObj(this::positionOfResult)
-                .collect(Collectors.toUnmodifiableList());
+    public int height() {
+        return lines.size();
     }
 }
