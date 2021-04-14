@@ -11,10 +11,11 @@ public class PlayResult {
     }
 
     public void addResult(Player player, Prize prize) {
+        result.put(player, prize);
     }
 
     public Prize matchPlayer(Player matchPlayer) {
-        return null;
+        return result.get(matchPlayer);
     }
 
     public Map<Player, Prize> getResult() {
