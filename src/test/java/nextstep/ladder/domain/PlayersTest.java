@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class PlayersTest {
 
@@ -23,5 +24,13 @@ public class PlayersTest {
         Players players = new Players("pobi", "dobi");
         CountOfPlayer countOfPlayer = players.countOfPlayer();
         assertThat(countOfPlayer.number()).isEqualTo(2);
+    }
+
+    @Test
+    @DisplayName("중복되는 이름을 가진 플레이어가 있을 경우 예외가 발생한다.")
+    public void validateDuplication() throws Exception {
+        assertThatIllegalArgumentException().isThrownBy(() ->
+                new Players("pobi", "pobi"))
+                .withMessage("중복되는 이름의 플레이어가 존재하는 지 확인해주세요.");
     }
 }
