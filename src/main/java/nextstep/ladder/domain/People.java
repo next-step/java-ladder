@@ -42,6 +42,10 @@ public final class People {
     return people.contains(person);
   }
 
+  public void validContains(Person person) {
+
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {

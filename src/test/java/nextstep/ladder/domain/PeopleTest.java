@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 
 import nextstep.ladder.exception.OverNameLengthLimitException;
 import nextstep.ladder.exception.PersonCountTooLowException;
+import nextstep.ladder.exception.PersonNotFoundException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -63,6 +64,24 @@ class PeopleTest {
     assertAll(
         () -> assertThat(people.contains(containedPerson)).isTrue(),
         () -> assertThat(people.contains(notContainedPerson)).isFalse()
+    );
+  }
+
+  @Test
+  @DisplayName("해당 Person이 People에 포함되어 있다면 그대로 진행하고, 아니면 예외를 반환한다.")
+  void validContains() {
+    //given
+    final People people = People.from(new String[]{"pobi", "crong", "honux", "jk"});
+    final Person containedPerson = Person.valueOf("pobi");
+    final Person notContainedPerson = Person.valueOf("dion");
+
+    //when
+    //then
+    assertAll(
+        () -> people.validContains(containedPerson),
+        () -> assertThatThrownBy(() -> people.validContains(notContainedPerson))
+            .isInstanceOf(PersonNotFoundException.class)
+            .hasMessage(PersonNotFoundException.PERSON_NOT_FOUND + notContainedPerson.personName())
     );
   }
 }
