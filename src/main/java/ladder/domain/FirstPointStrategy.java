@@ -14,4 +14,9 @@ public class FirstPointStrategy implements PointStrategy {
         }
         return Direction.NO_DIRECTION;
     }
+
+    @Override
+    public PointNew point() {
+        return new PointNew(0, new DirectionNew(false, RandomUtil.trueOrFalse()));
+    }
 }
