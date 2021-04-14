@@ -1,4 +1,4 @@
-package nextstep.laddergame.util;
+package nextstep.laddergame;
 
 @FunctionalInterface
 public interface DrawStrategy {

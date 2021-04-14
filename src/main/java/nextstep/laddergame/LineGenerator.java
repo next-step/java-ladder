@@ -1,30 +1,26 @@
-package nextstep.laddergame.util;
+package nextstep.laddergame;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.IntStream;
+import nextstep.laddergame.domain.Line;
 
-public class LineGenerator extends Random {
+public class LineGenerator {
 
-  private static final Random RANDOM = new Random();
+  private final int countOfMembers;
 
-  private LineGenerator() {
-
+  public LineGenerator(int countOfMembers) {
+    this.countOfMembers = countOfMembers;
   }
 
-  public static List<Boolean> createLine(int countOfMembers, DrawStrategy strategy) {
+  public Line generate(DrawStrategy strategy) {
     List<Boolean> points = new ArrayList<>();
 
     IntStream.range(0, countOfMembers)
         .mapToObj(index -> drawLine(isRowContinuousTrue(points, index), strategy))
         .forEach(points::add);
 
-    return points;
-  }
-
-  public static List<Boolean> generate(int countOfMembers) {
-    return createLine(countOfMembers, RANDOM::nextBoolean);
+    return new Line(points);
   }
 
   private static boolean isRowContinuousTrue(List<Boolean> points, int index) {
