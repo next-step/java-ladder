@@ -89,6 +89,6 @@ public class LineTest {
     void createLineWithInvalidCountOfPerson() {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Line(0))
-                .withMessage("인원은 적어도 1명 이상이어야 합니다: " + 0);
+                .withMessage("인원은 적어도 2명 이상이어야 합니다: " + 0);
     }
 }
