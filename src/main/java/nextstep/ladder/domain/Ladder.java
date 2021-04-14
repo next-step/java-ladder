@@ -2,6 +2,7 @@ package nextstep.ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import nextstep.ladder.domain.strategy.BridgeBuilder;
 
 public class Ladder {
@@ -28,6 +29,18 @@ public class Ladder {
     }
 
     public List<String> build() {
-        return bridgeBuilder.build(lines);
+        List<String> buildMap = new ArrayList<>();
+
+        for (int i = 0; i < lines.size(); i++) {
+            lines.get(i).createBridge(bridgeBuilder.getBuildPoints(i));
+            buildMap.add(buildPointsToString(bridgeBuilder.getBuildPoints(i)));
+        }
+        return buildMap;
+    }
+
+    private String buildPointsToString(List<Integer> buildPoints) {
+        return buildPoints.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining(","));
     }
 }
