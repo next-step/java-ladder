@@ -2,13 +2,13 @@ package step4.domain;
 
 import static org.assertj.core.api.Assertions.*;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import step4.exception.MinimumPlayerCountException;
 
 public class LadderLineTest {
 
@@ -17,7 +17,7 @@ public class LadderLineTest {
         // given
         int countOfPerson = 1;
         // when & then
-        Assertions.assertThrows(IllegalArgumentException.class, () -> LadderLine.init(countOfPerson));
+        Assertions.assertThrows(MinimumPlayerCountException.class, () -> LadderLine.init(countOfPerson));
     }
 
     @Test
@@ -26,7 +26,7 @@ public class LadderLineTest {
         Point first = Point.first(true);
         List<Point> points = Arrays.asList(first);
         // when & then
-        Assertions.assertThrows(IllegalArgumentException.class, () -> new LadderLine(points));
+        Assertions.assertThrows(MinimumPlayerCountException.class, () -> new LadderLine(points));
     }
 
     @Test

@@ -6,18 +6,26 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import step4.exception.MinimumPlayerCountException;
+
 public class LadderLine {
+    private static final int MIN_PERSON = 2;
+
     private final List<Point> points;
 
     public LadderLine(List<Point> points) {
+        validate(points.size());
         this.points = points;
     }
 
-    public Position move(Position position) {
-        return points.get(position.toNumber()).move();
+    private static void validate(int sizeOfPerson) {
+        if (sizeOfPerson < MIN_PERSON) {
+            throw new MinimumPlayerCountException("참여자의 수는 최소 " + MIN_PERSON + "명 이상이여야 합니다.");
+        }
     }
 
     public static LadderLine init(int sizeOfPerson) {
+        validate(sizeOfPerson);
         List<Point> points = new ArrayList<>();
         Point point = initFirst(points);
         point = initBody(sizeOfPerson, points, point);
@@ -42,6 +50,10 @@ public class LadderLine {
         Point point = Point.first(generatePoint());
         points.add(point);
         return point;
+    }
+
+    public Position move(Position position) {
+        return points.get(position.toNumber()).move();
     }
 
     public List<Point> points() {
