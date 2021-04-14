@@ -1,6 +1,7 @@
 package laddergame.controller;
 
 import laddergame.domain.ladder.Ladder;
+import laddergame.domain.ladder.RandomLadderStrategy;
 import laddergame.domain.ladder.Size;
 import laddergame.domain.player.Players;
 
@@ -19,7 +20,7 @@ public class LadderGame {
 
         Size size = new Size(inputHeight(), names.size());
         Ladder ladder = makeLadder(size);
-        ladder.makeLink(strategy());
+        ladder.makeLink(new RandomLadderStrategy());
 
         printNames(players);
         printLadder(ladder);

@@ -17,18 +17,10 @@ public class LadderFactoryTest {
     private LadderFactory factory;
 
     @Test
-    void 참여자한명생성() {
-        String name = "참여이름";
-        Player player = LadderFactory.enrollOne("참여이름");
-
-        assertThat(player).isEqualTo(new Player(new Name(name)));
-    }
-
-    @Test
     void 참여자여러명생성() {
         List<String> names = Arrays.asList("참여1", "참여2", "참여3", "참여4");
         List<Player> playerList = names.stream()
-                .map(LadderFactory::enrollOne)
+                .map(name -> new Player(new Name(name)))
                 .collect(Collectors.toList());
 
         Players players = LadderFactory.enroll(names);
