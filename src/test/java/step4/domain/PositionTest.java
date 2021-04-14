@@ -5,6 +5,8 @@ import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import step4.exception.NaturalNumberException;
+
 public class PositionTest {
     @Test
     void 생성_테스트() {
@@ -14,6 +16,6 @@ public class PositionTest {
 
     @Test
     void 유효성_테스트() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> Position.valueOf(-1));
+        Assertions.assertThrows(NaturalNumberException.class, () -> Position.valueOf(-1));
     }
 }
