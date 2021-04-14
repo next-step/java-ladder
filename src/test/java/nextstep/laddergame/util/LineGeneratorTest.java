@@ -22,7 +22,7 @@ class LineGeneratorTest {
     Line line = new LineGenerator(countOfPerson).generate(() -> true);
     //when
     //then
-    assertArrayEquals(line.line().toArray(), result.toArray());
+    assertArrayEquals(line.points().toArray(), result.toArray());
   }
 
   static Stream<Arguments> generateData() {
