@@ -17,11 +17,10 @@ public class Name {
         this.name = name;
     }
 
-    public boolean validName(String name) {
+    public void validName(String name) {
         if (emptyName(name) || name.length() > MAXIMUM_NAME_LENGTH) {
             throw new IllegalArgumentException(ILLEGAL_NAME);
         }
-        return true;
     }
 
     private boolean emptyName(String name) {

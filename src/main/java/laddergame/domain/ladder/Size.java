@@ -20,11 +20,10 @@ public class Size {
         this.width = width;
     }
 
-    private boolean validHeight(int height) {
+    private void validHeight(int height) {
         if (height > MAXIMUM_HEIGHT) {
             throw new IllegalArgumentException(ILLEGAL_HEIGHT);
         }
-        return true;
     }
 
     public IntStream heightRange() {
