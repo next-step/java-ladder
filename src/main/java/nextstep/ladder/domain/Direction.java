@@ -3,7 +3,7 @@ package nextstep.ladder.domain;
 import java.util.Objects;
 
 import static java.lang.Boolean.FALSE;
-import static nextstep.ladder.domain.PointGenerator.generatePoint;
+import static nextstep.ladder.util.PointGenerator.generatePoint;
 
 public class Direction {
 
