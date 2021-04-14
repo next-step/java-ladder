@@ -33,6 +33,6 @@ public class PointTest {
     @Test
     public void next() {
         Point second = Point.first(TRUE).next();
-        assertThat(second.move()).isEqualTo(1);
+        assertThat(second.move()).isEqualTo(0);
     }
 }
