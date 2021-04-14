@@ -3,13 +3,13 @@ package nextstep.refactoring.view.console;
 import nextstep.refactoring.ladder.engine.dto.LadderDto;
 import nextstep.refactoring.ladder.engine.dto.LineDto;
 import nextstep.refactoring.laddergame.engine.player.PlayersDto;
+import nextstep.refactoring.laddergame.engine.reward.RewardsDto;
 import nextstep.refactoring.view.interfaces.ResultView;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static nextstep.ladder.util.StringUtils.padToLeft;
-import static nextstep.ladder.util.StringUtils.repeat;
+import static nextstep.ladder.util.StringUtils.*;
 
 public class ConsoleResultView implements ResultView {
 
@@ -27,6 +27,16 @@ public class ConsoleResultView implements ResultView {
                                                 .collect(Collectors.toList());
 
         System.out.println(String.join(WHITE_SPACE, paddedNameList));
+    }
+
+    @Override
+    public void printRewards(RewardsDto rewardsDto) {
+        List<String> paddedRewards = rewardsDto.rewards()
+                                               .stream()
+                                               .map(reward -> padToRight(reward, STRING_ELEMENT_SIZE))
+                                               .collect(Collectors.toList());
+
+        System.out.println(String.join(WHITE_SPACE, paddedRewards));
     }
 
     @Override
