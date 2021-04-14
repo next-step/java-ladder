@@ -12,8 +12,8 @@ public class PointTest {
     @DisplayName("첫번째 포인트를 생성한다")
     @Test
     public void firstInitTest() {
-        assertThat(Point.first(TRUE).move()).isEqualTo(0);
-        assertThat(Point.first(FALSE).move()).isEqualTo(1);
+        assertThat(Point.first(TRUE).move()).isEqualTo(1);
+        assertThat(Point.first(FALSE).move()).isEqualTo(0);
     }
 
     @DisplayName("다음칸으로 이동하지 않는 포인트를 생성한다")
