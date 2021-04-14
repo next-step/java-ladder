@@ -41,9 +41,9 @@ public class LadderTest {
         // when
         Ladder ladder = Ladder.of(Arrays.asList(first, second, third));
         // then
-        assertThat(ladder.play(0)).isEqualTo(1);
-        assertThat(ladder.play(1)).isEqualTo(0);
-        assertThat(ladder.play(2)).isEqualTo(2);
+        assertThat(ladder.play(Position.valueOf(0))).isEqualTo(Position.valueOf(1));
+        assertThat(ladder.play(Position.valueOf(1))).isEqualTo(Position.valueOf(0));
+        assertThat(ladder.play(Position.valueOf(2))).isEqualTo(Position.valueOf(2));
     }
 
     private Point left(int position) {

@@ -9,16 +9,16 @@ public class Point {
         this.direction = direction;
     }
 
-    public int move() {
+    public Position move() {
         if (direction.isRight()) {
-            return index + 1;
+            return Position.valueOf(index + 1);
         }
 
         if (direction.isLeft()) {
-            return index - 1;
+            return Position.valueOf(index - 1);
         }
 
-        return this.index;
+        return Position.valueOf(this.index);
     }
 
     public Point next() {

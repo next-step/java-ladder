@@ -38,7 +38,7 @@ public class Ladder {
         return lines;
     }
 
-    public int play(int position) {
+    public Position play(Position position) {
         for (LadderLine line : lines) {
             position = line.move(position);
         }

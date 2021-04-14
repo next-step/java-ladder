@@ -22,6 +22,10 @@ public class Position {
         }
     }
 
+    public int toNumber() {
+        return this.position;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o)

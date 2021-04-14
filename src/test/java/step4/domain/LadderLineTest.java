@@ -17,8 +17,8 @@ public class LadderLineTest {
         List<Point> points = Arrays.asList(first, next, last);
         LadderLine ladderLine = new LadderLine(points);
         // when & then
-        assertThat(ladderLine.move(0)).isEqualTo(1);
-        assertThat(ladderLine.move(1)).isEqualTo(0);
-        assertThat(ladderLine.move(2)).isEqualTo(2);
+        assertThat(ladderLine.move(Position.valueOf(0))).isEqualTo(Position.valueOf(1));
+        assertThat(ladderLine.move(Position.valueOf(1))).isEqualTo(Position.valueOf(0));
+        assertThat(ladderLine.move(Position.valueOf(2))).isEqualTo(Position.valueOf(2));
     }
 }
