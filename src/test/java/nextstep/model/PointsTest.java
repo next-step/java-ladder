@@ -10,17 +10,17 @@ class PointsTest {
     @Test
     @DisplayName("생성")
     void constructor() {
-        Points points = new Points();
+        Points points = new Points(1);
         assertThat(points).isNotNull();
     }
 
     @Test
     @DisplayName("입력테스트")
     void add() {
-        Points points = new Points();
-        points.add(false);
-        points.add(true);
-        points.add(false);
+        Points points = new Points(3);
+        points.markOne(0, false);
+        points.markOne(1, true);
+        points.markOne(2,false);
         assertThat(points.size()).isEqualTo(3);
     }
 }

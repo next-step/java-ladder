@@ -53,7 +53,7 @@ public class Lines {
                     continue;
                 }
                 if (!topLine.getPoints().get(target)) {
-                    bottomLine.getPoints().set(target, true);
+                    bottomLine.getPoints().markOne(target, true);
                 }
             }
         }
