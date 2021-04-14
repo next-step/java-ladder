@@ -43,8 +43,8 @@ class PointTest {
 
         // then
         assertAll(
-                () -> assertThat(truePoint.isTrue()).isTrue(),
-                () -> assertThat(falsePoint.isTrue()).isFalse()
+                () -> assertThat(truePoint.hasPoint()).isTrue(),
+                () -> assertThat(falsePoint.hasPoint()).isFalse()
         );
     }
 

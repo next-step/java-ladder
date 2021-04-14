@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 
 public final class Ladder {
 
-    public static final int START_INCLUSIVE = 0;
+    private static final int START_INCLUSIVE = 0;
 
     private final List<Line> ladder;
 

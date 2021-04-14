@@ -4,7 +4,7 @@ import ladder.exception.InvalidNameSizeException;
 
 public final class Person {
 
-    public static final int MAXIMUM_NAME_SIZE = 5;
+    private static final int MAXIMUM_NAME_SIZE = 5;
 
     private final String name;
 

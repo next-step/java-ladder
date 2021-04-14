@@ -10,17 +10,14 @@ import java.util.stream.Stream;
 
 public final class People {
 
-    public static final String REGEX = ",";
-
     private final List<Person> people;
 
-    public static final People of(String names) {
-        return of(stringToParticipantList(names));
+    public static final People of(String[] names) {
+        return of(mapToPersonList(names));
     }
 
-    private static final List<Person> stringToParticipantList(String names) {
-        return Arrays.stream(names.split(REGEX))
-                .map(String::trim)
+    private static final List<Person> mapToPersonList(String[] names) {
+        return Arrays.stream(names)
                 .map(Person::of)
                 .collect(Collectors.toList());
     }

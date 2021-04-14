@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 
 public final class Line {
 
-    public static final int START_INCLUSIVE = 0;
+    private static final int START_INCLUSIVE = 0;
 
     private final List<Point> points;
 
@@ -43,7 +43,7 @@ public final class Line {
     }
 
     private static final Point generatePoint(Point before, LineGenerateStrategy strategy) {
-        if (before.isTrue()) {
+        if (before.hasPoint()) {
             return Point.of(Boolean.FALSE);
         }
         return Point.of(strategy.generateLine());

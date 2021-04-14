@@ -7,11 +7,11 @@ import ladder.domain.Person;
 
 public final class ResultView {
 
-    public static final String EXECUTION_RESULT_MESSAGE = "실행결과";
-    public static final String NAME_FORMAT = "%6s";
-    public static final String LINE_FORMAT = "%6s";
-    public static final String CROSS_LINE = "-----|";
-    public static final String NORMAL_LINE = "     |";
+    private static final String EXECUTION_RESULT_MESSAGE = "실행결과";
+    private static final String NAME_FORMAT = "%6s";
+    private static final String LINE_FORMAT = "%6s";
+    private static final String CROSS_LINE = "-----|";
+    private static final String NORMAL_LINE = "     |";
 
     private static class ResultViewHolder {
         private static final ResultView instance = new ResultView();
@@ -38,14 +38,13 @@ public final class ResultView {
     private final void printLine(Line line) {
         StringBuilder stringBuilder = new StringBuilder();
         line.stream()
-                .map(point -> point.isTrue())
-                .map(this::mappingLine)
+                .map(point -> point.hasPoint())
+                .map(this::mapToLine)
                 .forEach(stringBuilder::append);
         System.out.println(stringBuilder);
     }
 
-    // 3항 연산자 사용이 오히려 가독성을 해쳐서 if문으로 작성했습니다.
-    private final String mappingLine(Boolean lineResult) {
+    private final String mapToLine(Boolean lineResult) {
         if (lineResult) {
             return String.format(LINE_FORMAT, CROSS_LINE);
         }

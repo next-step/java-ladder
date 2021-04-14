@@ -16,7 +16,7 @@ public final class Point {
         return new Point(Boolean.FALSE);
     }
 
-    public final boolean isTrue() {
+    public final boolean hasPoint() {
         return point == Boolean.TRUE;
     }
 }

@@ -15,7 +15,7 @@ class PeopleTest {
     @Test
     void 생성() {
         // given
-        String names = "pobi,honux,crong,jk";
+        String[] names = "pobi,honux,crong,jk".split(",");
 
         // when
         People people = People.of(names);
@@ -41,7 +41,7 @@ class PeopleTest {
     @Test
     void 반환() {
         // given
-        String names = "pobi,honux,crong,jk";
+        String[] names = "pobi,honux,crong,jk".split(",");
 
         // when
         People people = People.of(names);

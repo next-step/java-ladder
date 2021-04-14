@@ -15,7 +15,7 @@ class LadderTest {
     @Test
     void 생성() {
         // given
-        People people = People.of("pobi,honux,crong,jk");
+        People people = People.of("pobi,honux,crong,jk".split(","));
         LadderHeight height = LadderHeight.valueOf(5);
 
         // when

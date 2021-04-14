@@ -4,7 +4,7 @@ import ladder.exception.InputNegativeNumberException;
 
 public final class LadderHeight {
 
-    public static final int ZERO = 0;
+    private static final int ZERO = 0;
 
     private final int height;
 
