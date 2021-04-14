@@ -1,7 +1,5 @@
 package step3.domain;
 
-import step3.Result;
-
 import java.util.*;
 
 public class Lines {
@@ -29,25 +27,15 @@ public class Lines {
         for (Line line : lines) {
             position = line.move(position);
         }
-
         return position;
     }
 
-    public Result result(Persons persons, ExecutionResults executionResults) {
-        Map<Person, ExecutionResult> resultMap = new HashMap<>();
-
-        for (int i = 0; i < persons.personList().size(); i++) {
-            resultMap.put(persons.personList().get(i), executionResults.oneResult(eachPositionResult(i)));
-        }
-        return new Result(resultMap);
-    }
-
-    public ExecutionResult eachPositionResult2(int position, ExecutionResults results) {
+    public ExecutionResult eachPositionExecutionResult(int position, ExecutionResults results) {
         for (Line line : lines) {
             position = line.move(position);
         }
 
-        return results.oneResult(position);
+        return results.getOneResult(position);
     }
 
     public List<Line> lines() {

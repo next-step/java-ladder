@@ -27,8 +27,12 @@ public class ExecutionResults {
         this.results = results;
     }
 
-    public ExecutionResult oneResult(int position) {
+    public ExecutionResult getOneResult(int position) {
         return results.get(position);
+    }
+
+    public int size() {
+        return results.size();
     }
 
     @Override
@@ -47,5 +51,9 @@ public class ExecutionResults {
     @Override
     public String toString() {
         return  results + "";
+    }
+
+    public List<ExecutionResult> all() {
+        return results;
     }
 }
