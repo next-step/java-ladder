@@ -50,3 +50,8 @@
 ### Players
 - 여러 Player 가진다.
 - 입력한 사람의 수 만큼 Player 생성
+
+
+### Position
+- index 정보를 가짐
+- 유효성 체크
