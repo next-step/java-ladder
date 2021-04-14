@@ -28,7 +28,7 @@ public class LineTest {
         line = new Line(points);
         line.connect(() -> true);
 
-        points.stream().forEach(point ->
+        points.forEach(point ->
                 assertThat(point.isLinked()).isTrue());
         assertThat(line.isConnect()).containsAll(Collections.singleton(true));
     }
@@ -38,7 +38,7 @@ public class LineTest {
         line = new Line(points);
         line.connect(() -> false);
 
-        points.stream().forEach(point ->
+        points.forEach(point ->
                 assertThat(point.isLinked()).isFalse());
         assertThat(line.isConnect()).containsAll(Collections.singleton(false));
     }

@@ -19,4 +19,9 @@ public class Ladder {
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
     }
+
+
+    public void makeLink(LadderStrategy strategy) {
+        lines.forEach(line -> line.connect(strategy));
+    }
 }

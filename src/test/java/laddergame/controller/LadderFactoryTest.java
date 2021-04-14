@@ -1,4 +1,4 @@
-package laddergame.domain;
+package laddergame.controller;
 
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.ladder.Size;

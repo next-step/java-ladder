@@ -1,6 +1,8 @@
-package laddergame.domain;
+package laddergame.controller;
 
 import laddergame.domain.ladder.Ladder;
+import laddergame.domain.ladder.LadderStrategy;
+import laddergame.domain.ladder.RandomLadderStrategy;
 import laddergame.domain.ladder.Size;
 import laddergame.domain.player.Name;
 import laddergame.domain.player.Player;
@@ -13,6 +15,7 @@ import static java.util.stream.Collectors.toCollection;
 
 public class LadderFactory {
 
+    private static final LadderStrategy strategy = new RandomLadderStrategy();
 
     public static Player enrollOne(String name) {
         Name playerName = new Name(name);
@@ -27,5 +30,9 @@ public class LadderFactory {
 
     public static Ladder makeLadder(Size size) {
         return new Ladder(size);
+    }
+
+    public static LadderStrategy strategy() {
+        return strategy;
     }
 }

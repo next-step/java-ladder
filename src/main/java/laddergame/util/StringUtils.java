@@ -12,7 +12,8 @@ public class StringUtils {
 
     public static String fitName(String name) {
         StringBuilder fit = new StringBuilder();
-        while (fit.length() + name.length() < NAME_WIDTH - 1) {
+        fit.append(SPACE);
+        while (fit.length() + name.length() < NAME_WIDTH) {
             fit.append(SPACE);
         }
         fit.append(name);

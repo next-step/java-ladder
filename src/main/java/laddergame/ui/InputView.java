@@ -2,6 +2,7 @@ package laddergame.ui;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 import static java.util.stream.Collectors.toCollection;
@@ -14,7 +15,7 @@ public class InputView {
         sc = new Scanner(System.in);
     }
 
-    public ArrayList<String> inputNames() {
+    public static List<String> inputNames() {
         System.out.println(INPUT_NAMES);
         String input = sc.nextLine();
         String names[] = input.split(",");
@@ -22,12 +23,12 @@ public class InputView {
                 .collect(toCollection(ArrayList::new));
     }
 
-    public int inputHeight() {
+    public static int inputHeight() {
         System.out.println(INPUT_HEIGHT);
         return Integer.parseInt(sc.nextLine());
     }
 
-    public void close() {
+    public static void close() {
         sc.close();
     }
 }

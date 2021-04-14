@@ -27,7 +27,7 @@ public class Line {
     public void connect(LadderStrategy strategy) {
         Link<Point, Point> link = new Link<>();
         link.pair(points.get(0));
-        points.stream().forEach(point -> {
+        points.forEach(point -> {
             link.pair(point);
             link.link(strategy);
         });

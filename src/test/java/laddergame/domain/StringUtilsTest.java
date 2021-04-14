@@ -15,7 +15,7 @@ public class StringUtilsTest {
     @Test
     void 이름공백조정() {
         String name = "이름";
-        String predict = "  이름 ";
+        String predict = "   이름 ";
 
         assertThat(StringUtils.fitName(name)).isEqualTo(predict);
     }
