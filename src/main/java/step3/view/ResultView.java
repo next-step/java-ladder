@@ -1,6 +1,6 @@
 package step3.view;
 
-import step3.Result;
+import step3.domain.Result;
 import step3.domain.*;
 
 import java.util.List;
@@ -37,7 +37,6 @@ public class ResultView {
         lines.lines().stream()
                 .map(Line::row)
                 .forEach(ResultView::printLine);
-        System.out.println(BLANK);
     }
 
     private static void printLine(List<Point> points) {
@@ -56,8 +55,8 @@ public class ResultView {
         return NO_LINE;
     }
 
-    public void executionResultLine(Result result) {
-        result.all()
+    public void executionResultLine(ExecutionResults executionResults) {
+        executionResults.all()
                 .stream()
                 .map(ExecutionResult::toString)
                 .forEach(name -> {
@@ -68,19 +67,19 @@ public class ResultView {
         System.out.println(BLANK);
     }
 
-    public void printExecutionResult(Result result, Person person) {
+    public void printExecutionResult(Result result, int index) {
         System.out.println("실행 결과");
-        System.out.println(result.get(person));
+        System.out.println(result.getExecutionResult().getOneResult(index));
         System.out.println(BLANK);
     }
 
-    public void printAllExecutionResult(Result result) {
+    public void printAllExecutionResult(Result result, Persons persons) {
 
         System.out.println("실행 결과");
-        result.of()
-                .forEach((k, v) -> {
-                    System.out.println(k.toString() + " : " + result.get(k));
-                });
+        for (int i = 0; i < persons.size(); i++) {
+            System.out.println(persons.get(i) + " : " + result.getExecutionResult().getOneResult(i));
+        }
+
         System.out.println(BLANK);
     }
 }
