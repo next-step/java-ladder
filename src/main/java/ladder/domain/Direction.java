@@ -2,6 +2,8 @@ package ladder.domain;
 
 public class Direction {
 
+    private static final boolean EMPTY = false;
+
     private final boolean left;
     private final boolean right;
 
@@ -19,5 +21,9 @@ public class Direction {
 
     public boolean isRight() {
         return right;
+    }
+
+    public static Direction first(boolean right) {
+        return new Direction(EMPTY, right);
     }
 }

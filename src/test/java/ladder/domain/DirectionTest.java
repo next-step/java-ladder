@@ -28,4 +28,14 @@ class DirectionTest {
         assertThat(direction.isRight()).isFalse();
     }
 
+    @Test
+    @DisplayName("첫 번째 방향은 왼쪽라인을 가지고 있지 않음.")
+    void firstDirection() {
+        // given
+        Direction first = Direction.first(true);
+
+        // when then
+        assertThat(first.isLeft()).isFalse();
+    }
+
 }
