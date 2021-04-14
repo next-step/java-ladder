@@ -6,6 +6,7 @@ import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
 import java.util.List;
+import java.util.Map;
 
 public class LadderController {
     private final InputView inputView;
@@ -28,5 +29,6 @@ public class LadderController {
         resultView.printNames(players.names());
         resultView.printLadder(ladder.linesConnection());
         resultView.printNames(prizes.names());
+        Map<String, String> matchedResult = ladder.map(players.names(), prizes.names());
     }
 }

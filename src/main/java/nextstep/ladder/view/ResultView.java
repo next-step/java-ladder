@@ -6,16 +6,20 @@ import java.util.stream.IntStream;
 
 public class ResultView {
     private static final int NAME_LENGTH_STANDARD = 5;
-    private static final String RESULT = "실행결과";
+    private static final String RESULT = "사다리 결과";
     private static final String DELIMITER = "|";
     private static final String CONNECTED = "-----";
     private static final String UNCONNECTED = "     ";
-    private static final String BLANK = "   ";
 
-    public void printResult(List<String> names, List<List<Boolean>> lines) {
-        printResultPhrase();
-        printPlayerNames(convertNames(names));
-        lines.forEach(this::printLine);
+    public void printResultPhrase() {
+        System.out.println();
+        System.out.println(RESULT);
+        System.out.println();
+    }
+
+    public void printNames(List<String> names) {
+        convertNames(names).forEach(name -> System.out.print(name + " "));
+        System.out.println();
     }
 
     private List<String> convertNames(List<String> names) {
@@ -34,9 +38,8 @@ public class ResultView {
         return name + stringBuilder.toString();
     }
 
-    private void printPlayerNames(List<String> names) {
-        names.forEach(name -> System.out.print(name + " "));
-        System.out.println();
+    public void printLadder(List<List<Boolean>> lines) {
+        lines.forEach(this::printLine);
     }
 
     private void printLine(List<Boolean> points) {
@@ -50,12 +53,6 @@ public class ResultView {
                 })
                 .collect(Collectors.joining(DELIMITER));
 
-        System.out.println(BLANK + DELIMITER + line + DELIMITER);
-    }
-
-    private void printResultPhrase() {
-        System.out.println();
-        System.out.println(RESULT);
-        System.out.println();
+        System.out.println("   " + DELIMITER + line + DELIMITER);
     }
 }
