@@ -3,6 +3,9 @@ package nextstep.ladder.domain;
 import java.util.Objects;
 
 public class LadderHeight {
+    private static final int HEIGHT_MIN = 1;
+    private static final String CHECK_HEIGHT = "사다리 높이가 1미만인지 확인해주세요.";
+
     private final int height;
 
     public LadderHeight(String height) {
@@ -10,7 +13,14 @@ public class LadderHeight {
     }
 
     public LadderHeight(int height) {
+        validateLength(height);
         this.height = height;
+    }
+
+    private void validateLength(int height) {
+        if (height < HEIGHT_MIN) {
+            throw new IllegalArgumentException(CHECK_HEIGHT);
+        }
     }
 
     public int value() {
