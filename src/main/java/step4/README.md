@@ -26,7 +26,7 @@
 
 ### LadderLine
 - 사다리 한 Line 추상화
-- 사다리 게임에서 한 Line을 LadderLine으로 이름을 붙이고 다음과 같이 구현
+- 사다리 게임에서 한 Line을 LadderLine으로 이름을 붙임
 - 사다리 Line의 모든 Point 초기화와 이동을 담당
 
 
@@ -35,3 +35,18 @@
 - 여러 LadderLine 가진다.
 - 사람의 수 만큼 라인 생성
 - 사다리 생성과 라인별 이동을 담당
+
+
+### PlayerName
+- Player 이름 정보를 가짐
+- 이름의 길이 유효성 체크
+
+
+### Player
+- 게임 이용자
+- 이름과 위치 정보를 가짐
+
+
+### Players
+- 여러 Player 가진다.
+- 입력한 사람의 수 만큼 Player 생성
