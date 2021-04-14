@@ -13,7 +13,7 @@ public class UserBuilderTest {
     @DisplayName("미리 입력한 곳에 사다리 만들기")
     void createLadderPreDefined() {
         List<String> predefined = Arrays.asList("0,2", "1", "0", "1", "0,2");
-        Ladder ladder = new Ladder(5, 4, new BridgeBuilder(predefined));
+        Ladder ladder = new Ladder(predefined.size(), 4, new BridgeBuilder(predefined));
 
         ResultView.printResult(ladder.build(), 4);
     }
