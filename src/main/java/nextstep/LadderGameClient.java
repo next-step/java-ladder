@@ -17,9 +17,5 @@ public class LadderGameClient {
         String[] names = namesString.split(",");
         OnlineLadder ladder = new OnlineLadder(ladderCount, names.length - 1, names);
         resultView.printAll(ladder);
-
-        OnlineLadder ladder2 = new OnlineLadder(ladderCount, names.length - 1, names);
-        resultView.printAll(ladder2);
-        resultView.printAll(ladder2);
     }
 }

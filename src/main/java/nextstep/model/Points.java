@@ -32,6 +32,12 @@ public class Points {
             Random random = new Random();
             this.points.set(i, random.nextBoolean());
         }
+        long count = this.points.stream()
+                .filter(p -> p)
+                .count();
+        if (count == 0) {
+            this.markRandom();
+        }
     }
 
     public boolean get(int i) {
@@ -69,5 +75,12 @@ public class Points {
     @Override
     public int hashCode() {
         return Objects.hash(points);
+    }
+
+    @Override
+    public String toString() {
+        return "Points{" +
+                "points=" + points +
+                '}';
     }
 }
