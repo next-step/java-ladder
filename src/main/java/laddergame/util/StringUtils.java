@@ -30,12 +30,11 @@ public class StringUtils {
         return fit.toString();
     }
 
-    private static StringBuilder fitConnect(Boolean connected, StringBuilder fit) {
+    private static void fitConnect(Boolean connected, StringBuilder fit) {
         if (connected) {
             fit.append(LINK + LINE_POINT);
-            return fit;
+            return;
         }
         fit.append(NOT_LINK + LINE_POINT);
-        return fit;
     }
 }

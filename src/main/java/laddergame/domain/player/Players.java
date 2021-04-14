@@ -20,7 +20,7 @@ public class Players {
 
     private boolean validPlayers(List<Player> playerList) {
         Set<Name> names = new HashSet<>();
-        playerList.stream().forEach(player -> player.addName(names));
+        playerList.forEach(player -> player.addName(names));
         if (names.size() != playerList.size()) {
             throw new IllegalArgumentException(ILLEGAL_DUPLICATE_NAME);
         }
