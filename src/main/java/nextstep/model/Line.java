@@ -2,7 +2,6 @@ package nextstep.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.OptionalInt;
 import java.util.stream.IntStream;
 
 import static nextstep.constant.Constant.*;

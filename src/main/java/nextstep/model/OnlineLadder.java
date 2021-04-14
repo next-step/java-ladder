@@ -16,10 +16,6 @@ public class OnlineLadder extends Ladder {
         this.lines.mark(targetVertical, targetHorizon);
     }
 
-    public void lineMark(int targetVertical) {
-        this.lines.mark(targetVertical);
-    }
-
     public void lineMarkAll() {
         this.lines.initMark();
         for (int i = 0; i < this.height - 1; i++) {

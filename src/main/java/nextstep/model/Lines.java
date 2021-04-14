@@ -29,10 +29,6 @@ public class Lines {
         this.lines.get(targetVertical).mark(targetHorizon);
     }
 
-    public int size() {
-        return this.lines.size();
-    }
-
     public String lineString(int targetVertical) {
         return this.lines.get(targetVertical).lineString();
     }
@@ -46,21 +42,18 @@ public class Lines {
         Line bottomLine = this.lines.get(bottom);
         for (int i = 0; i < countOfPerson; i++) {
             if (topLine.getPoints().get(i)) {
-                if (i == 0 && !topLine.getPoints().get(i + 1)) {
-                    bottomLine.getPoints().set(i + 1, true);
-                } else if(!bottomLine.getPoints().get(i)) {
-                    Random random = new Random();
-                    int target = random.nextBoolean() ? i - 1 : i + 1;
-                    if ( i + 1 == countOfPerson) {
-                        if (!topLine.getPoints().get(i - 1)) {
-                            bottomLine.getPoints().set(i - 1, true);
-                        }
-                    } else {
-                        if (!topLine.getPoints().get(target)) {
-                            bottomLine.getPoints().set(target, true);
-                        }
-                    }
-
+                Random random = new Random();
+                boolean nextBoolean = random.nextBoolean();
+                int target = nextBoolean ? i - 1 : i + 1;
+                if (target < 0 || target >= countOfPerson) {
+                    nextBoolean = !nextBoolean;
+                    target = nextBoolean ? i - 1 : i + 1;
+                }
+                if (target < 0 || target >= countOfPerson) {
+                    continue;
+                }
+                if (!topLine.getPoints().get(target)) {
+                    bottomLine.getPoints().set(target, true);
                 }
             }
         }
