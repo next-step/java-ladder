@@ -2,6 +2,7 @@ package step4.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.IntStream;
 
 import step4.exception.DuplicateNameException;
@@ -10,13 +11,21 @@ import step4.util.StringSpliter;
 public class Players {
     private final List<Player> players = new ArrayList<>();
 
-    public Players(String names) {
-        String[] splitNames = StringSpliter.split(names);
-        IntStream.range(0, splitNames.length)
+    private Players(String[] names) {
+        IntStream.range(0, names.length)
             .forEach(i -> {
-                validate(splitNames[i]);
-                players.add(new Player(i, splitNames[i]));
+                validate(names[i]);
+                players.add(new Player(i, names[i]));
             });
+    }
+
+    public static Players of(String names) {
+        String[] splitNames = StringSpliter.split(names);
+        return new Players(splitNames);
+    }
+
+    public static Players of(String[] names) {
+        return new Players(names);
     }
 
     private void validate(String name) {
@@ -32,5 +41,24 @@ public class Players {
 
     public int playerCount() {
         return players.size();
+    }
+
+    public List<Player> getPlayers() {
+        return this.players;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        Players players1 = (Players)o;
+        return Objects.equals(players, players1.players);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(players);
     }
 }

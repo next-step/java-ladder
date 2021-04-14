@@ -7,15 +7,26 @@ import org.junit.jupiter.api.Test;
 
 import step4.exception.NotEqualCountException;
 import step4.exception.NotFoundException;
+import step4.util.StringSpliter;
 
 public class PrizesTest {
     @Test
     void 생성_테스트() {
         // given
         String test = "꽝,500, 꽝, 3000";
-        Prizes prizes = new Prizes(test, 4);
+        Prizes prizes = Prizes.of(test, 4);
         // when & then
         assertThat(prizes.getPrizes().size()).isEqualTo(4);
+    }
+
+    @Test
+    void 생성_테스트_2() {
+        // given
+        String test = "꽝,500, 꽝, 3000";
+        Prizes prizes = Prizes.of(test, 4);
+        Prizes comparePrizes = Prizes.of(StringSpliter.split(test), 4);
+        // when & then
+        assertThat(prizes).isEqualTo(comparePrizes);
     }
 
     @Test
@@ -23,14 +34,14 @@ public class PrizesTest {
         // given
         String test = "꽝,500, 꽝, 3000";
         // when & then
-        Assertions.assertThrows(NotEqualCountException.class, () -> new Prizes(test, 3));
+        Assertions.assertThrows(NotEqualCountException.class, () -> Prizes.of(test, 3));
     }
 
     @Test
     void 결과_매칭_테스트() {
         // given
         String test = "꽝,500, 꽝, 3000";
-        Prizes prizes = new Prizes(test, 4);
+        Prizes prizes = Prizes.of(test, 4);
         // when & then
         assertThat(prizes.matchPosition(Position.valueOf(1))).isEqualTo(new Prize(1, "500"));
     }
@@ -39,7 +50,7 @@ public class PrizesTest {
     void 존재하지않는_상품_테스트() {
         // given
         String test = "꽝,500, 꽝, 3000";
-        Prizes prizes = new Prizes(test, 4);
+        Prizes prizes = Prizes.of(test, 4);
         // when & then
         Assertions.assertThrows(NotFoundException.class, () -> prizes.matchPosition(Position.valueOf(5)));
     }
