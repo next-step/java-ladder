@@ -6,7 +6,6 @@ import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
 import java.util.List;
-import java.util.Map;
 
 public class LadderController {
     private final InputView inputView;
@@ -21,17 +20,25 @@ public class LadderController {
         Players players = new Players(inputView.players());
         Prizes prizes = new Prizes(players.countOfPlayer(), inputView.prizes());
         Height height = new Height(inputView.height());
+
         AllPointsForLines allPointsForLines = new AllPointsForLines(new RandomDirectionStrategy());
         List<Points> allPoints = allPointsForLines.allPoints(players.countOfPlayer(), height);
         Lines lines = Lines.from(allPoints);
         Ladder ladder = new Ladder(lines);
+        printLadderResult(players, prizes, ladder);
+
+        MatchedResult matchedResult = ladder.map(players.names(), prizes.names());
+        printResultOfTarget(matchedResult, inputView.targetPlayer());
+    }
+
+    private void printLadderResult(Players players, Prizes prizes, Ladder ladder) {
         resultView.printResultPhrase();
         resultView.printNames(players.names());
         resultView.printLadder(ladder.linesConnection());
         resultView.printNames(prizes.names());
-        MatchedResult matchedResult = ladder.map(players.names(), prizes.names());
-        String targetPlayerName = inputView.targetPlayer();
+    }
 
+    private void printResultOfTarget(MatchedResult matchedResult, String targetPlayerName) {
         if (matchedResult.isAll(targetPlayerName)) {
             resultView.printAllResult(matchedResult.all());
         }
