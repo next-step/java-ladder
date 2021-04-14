@@ -4,6 +4,7 @@ import nextstep.ladder.strategy.RandomDirectionStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.BDDAssertions.then;
@@ -20,5 +21,19 @@ public class PointsTest {
         List<Point> result = points.points();
 
         then(result).hasSize(4);
+    }
+
+    @Test
+    @DisplayName("좌표 인덱스를 인자로 받아 해당 좌표를 찾는다.")
+    public void findByIndex() throws Exception {
+        //given
+        Point firstPoint = new Point(0, new Direction(false, true));
+        Point secondPoint = new Point(1, new Direction(true, false));
+        Points points = new Points(Arrays.asList(firstPoint, secondPoint));
+
+        //when
+        Point point = points.findByIndex(0);
+
+        then(point).isEqualTo(firstPoint);
     }
 }
