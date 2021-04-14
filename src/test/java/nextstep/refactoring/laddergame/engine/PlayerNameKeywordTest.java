@@ -1,7 +1,7 @@
 package nextstep.refactoring.laddergame.engine;
 
-import nextstep.refactoring.laddergame.concrete.Players;
 import nextstep.refactoring.laddergame.engine.player.Player;
+import nextstep.refactoring.laddergame.engine.player.Players;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

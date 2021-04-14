@@ -33,6 +33,10 @@ public class Player implements Positionable {
         return name.equals(playerName);
     }
 
+    public String getName() {
+        return name.getName();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

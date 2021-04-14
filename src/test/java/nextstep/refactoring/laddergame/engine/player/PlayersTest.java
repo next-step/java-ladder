@@ -1,16 +1,14 @@
-package nextstep.refactoring.laddergame.concrete;
+package nextstep.refactoring.laddergame.engine.player;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.util.NoSuchElementException;
 import nextstep.refactoring.ladder.concrete.TestLadder;
 import nextstep.refactoring.ladder.engine.Ladder;
 import nextstep.refactoring.ladder.engine.Position;
-import nextstep.refactoring.laddergame.engine.player.Player;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 class PlayersTest {
 

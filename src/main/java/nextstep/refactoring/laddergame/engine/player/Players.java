@@ -1,9 +1,10 @@
-package nextstep.refactoring.laddergame.concrete;
+package nextstep.refactoring.laddergame.engine.player;
 
 import nextstep.refactoring.ladder.engine.Ladder;
 import nextstep.refactoring.ladder.engine.Position;
+import nextstep.refactoring.laddergame.concrete.player.PlayersDtoImpl;
 import nextstep.refactoring.laddergame.engine.LadderCompatibleList;
-import nextstep.refactoring.laddergame.engine.player.Player;
+import nextstep.refactoring.view.interfaces.ViewObject;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.stream.Stream;
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
 
-public class Players implements LadderCompatibleList<Player> {
+public class Players implements LadderCompatibleList<Player>, ViewObject<PlayersDto> {
 
     private final List<Player> playerList;
 
@@ -46,4 +47,10 @@ public class Players implements LadderCompatibleList<Player> {
         return playerList.size() != ladder.numberOfPositions();
     }
 
+    @Override
+    public PlayersDto export() {
+        return playerList.stream()
+                         .map(Player::getName)
+                         .collect(collectingAndThen(toList(), PlayersDtoImpl::new));
+    }
 }
