@@ -9,4 +9,12 @@ public class Points {
     public Points() {
         this.points = new ArrayList<>();
     }
+
+    public void add(boolean point) {
+        points.add(point);
+    }
+
+    public int size() {
+        return this.points.size();
+    }
 }
