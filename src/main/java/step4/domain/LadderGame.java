@@ -1,5 +1,8 @@
 package step4.domain;
 
+import step4.dto.LaddersDto;
+import step4.dto.PlayersDto;
+
 public class LadderGame {
     private final Ladder ladder;
     private final Players players;
@@ -22,5 +25,13 @@ public class LadderGame {
             playResult.addResult(player, prizes.matchPosition(ladder.play(position)));
         }
         return playResult;
+    }
+
+    public LaddersDto toLaddersDto() {
+        return new LaddersDto(this.ladder.ladderLines());
+    }
+
+    public PlayersDto toPlayersDto() {
+        return new PlayersDto(this.players.players());
     }
 }

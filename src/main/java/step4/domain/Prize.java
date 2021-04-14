@@ -20,8 +20,12 @@ public class Prize {
         return prize;
     }
 
-    public Position getPosition() {
+    public Position position() {
         return this.position;
+    }
+
+    public String prize() {
+        return this.prize;
     }
 
     @Override

@@ -37,6 +37,10 @@ public class Point {
         return new Point(0, Direction.first(right));
     }
 
+    public Direction direction() {
+        return this.direction;
+    }
+
     @Override
     public String toString() {
         return "Point{" +

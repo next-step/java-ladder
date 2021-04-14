@@ -16,7 +16,7 @@ public class PrizesTest {
         String test = "꽝,500, 꽝, 3000";
         Prizes prizes = Prizes.of(test, 4);
         // when & then
-        assertThat(prizes.getPrizes().size()).isEqualTo(4);
+        assertThat(prizes.prizes().size()).isEqualTo(4);
     }
 
     @Test

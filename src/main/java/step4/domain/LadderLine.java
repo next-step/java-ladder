@@ -3,6 +3,7 @@ package step4.domain;
 import static step4.util.LadderPointGenerator.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LadderLine {
@@ -41,6 +42,10 @@ public class LadderLine {
         Point point = Point.first(generatePoint());
         points.add(point);
         return point;
+    }
+
+    public List<Point> points() {
+        return Collections.unmodifiableList(this.points);
     }
 
     @Override

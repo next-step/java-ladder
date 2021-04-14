@@ -1,6 +1,7 @@
 package step4.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -47,5 +48,9 @@ public class Ladder {
 
     public int ladderHeight() {
         return this.lines.size();
+    }
+
+    public List<LadderLine> ladderLines() {
+        return Collections.unmodifiableList(this.lines);
     }
 }

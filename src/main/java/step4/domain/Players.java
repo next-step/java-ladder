@@ -1,6 +1,7 @@
 package step4.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.IntStream;
@@ -44,7 +45,7 @@ public class Players {
     }
 
     public List<Player> players() {
-        return this.players;
+        return Collections.unmodifiableList(this.players);
     }
 
     @Override
