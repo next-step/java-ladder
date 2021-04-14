@@ -23,6 +23,10 @@ public class Reward implements Positionable {
         return Reward.of(rewardString, Position.of(position));
     }
 
+    public String getRewardString() {
+        return rewardString.toString();
+    }
+
     @Override
     public Position getPosition() {
         return position;
