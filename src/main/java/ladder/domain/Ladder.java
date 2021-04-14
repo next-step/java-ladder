@@ -1,11 +1,24 @@
 package ladder.domain;
 
+import ladder.factories.LadderLineFactory;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Ladder {
     private final List<LadderLine> lines;
+
+    public Ladder(int width, int height) {
+        this(
+                Stream.generate(
+                        () -> LadderLineFactory.createAuto(width))
+                        .limit(height)
+                        .collect(Collectors.toList())
+        );
+    }
 
     public Ladder(List<LadderLine> lines) {
         this.lines = lines;

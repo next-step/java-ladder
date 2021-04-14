@@ -27,6 +27,10 @@ public class Names {
         return Collections.unmodifiableList(names);
     }
 
+    public int count() {
+        return names.size();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
