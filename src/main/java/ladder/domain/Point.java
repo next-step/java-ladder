@@ -39,4 +39,18 @@ public class Point {
 		}
 		return Direction.PASS;
 	}
+
+	public boolean isRight() {
+		if (current) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean isLeft() {
+		if (left) {
+			return true;
+		}
+		return false;
+	}
 }

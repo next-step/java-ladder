@@ -33,7 +33,7 @@ public class LineTest {
 	@DisplayName("라인 생성 랜덤 테스트")
 	void lineMakeRandomTest() {
 		Line line = new Line(5);
-		assertThat(line.getCrosses().size()).isEqualTo(5);
+		assertThat(line.getCrosses()).hasSize(5);
 	}
 
 	@Test

@@ -14,10 +14,10 @@ public class Cross {
 	}
 
 	public int move() {
-		if (point.move() == Direction.RIGHT) {
+		if (point.isRight()) {
 			return position + 1;
 		}
-		if (point.move() == Direction.LEFT) {
+		if (point.isLeft()) {
 			return position - 1;
 		}
 		return position;
