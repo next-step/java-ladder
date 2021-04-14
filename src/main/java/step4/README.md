@@ -71,3 +71,7 @@
 ### PlayResult
 - 게임 수행 결과
 - Player 별 Prize 매칭 결과
+
+
+### LadderGame
+- 사다리 생성 및 실행 서비스
