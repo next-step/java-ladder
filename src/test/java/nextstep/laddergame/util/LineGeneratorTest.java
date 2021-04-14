@@ -1,27 +1,37 @@
 package nextstep.laddergame.util;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
+import nextstep.laddergame.LineGenerator;
+import nextstep.laddergame.domain.Line;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 class LineGeneratorTest {
 
   @ParameterizedTest
-  @CsvSource({"1, [true]",
-              "2, '[true, false]'",
-              "3, '[true, false, true]'",
-              "4, '[true, false, true, false]'",
-              "5, '[true, false, true, false, true]'"})
-  @DisplayName("랜덤 값이 항상 true일 경우 여러개가 입력되면 제대로 결과대로 그려지는가")
-  public void generateCountOfPerson1(int countOfPerson, String result) throws Exception {
+  @MethodSource("generateData")
+  @DisplayName("랜덤 값이 항상 true일 조건에서 예상된 결과대로 Line이 생성된다")
+  public void generateCountOfPerson1(int countOfPerson, List<String> result) throws Exception {
     //given
-    List<Boolean> line = LineGenerator.createLine(countOfPerson, () -> true);
+    Line line = new LineGenerator(countOfPerson).generate(() -> true);
     //when
-    String s = line.toString();
     //then
-    assertEquals(s, result);
+    assertArrayEquals(line.line().toArray(), result.toArray());
+  }
+
+  static Stream<Arguments> generateData() {
+    return Stream.of(
+        Arguments.of(1, Arrays.asList(true)),
+        Arguments.of(2, Arrays.asList(true, false)),
+        Arguments.of(3, Arrays.asList(true, false, true)),
+        Arguments.of(4, Arrays.asList(true, false, true, false)),
+        Arguments.of(5, Arrays.asList(true, false, true, false, true))
+    );
   }
 }
