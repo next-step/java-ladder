@@ -16,6 +16,14 @@ public class Name {
     this.name = name.trim();
   }
 
+  public String name() {
+    return name;
+  }
+
+  public int size() {
+    return name.length();
+  }
+
   private void checkName(String name) {
     Optional.ofNullable(name).orElseThrow(() -> new InvalidNameException(INVALID_NAME_EXCEPTION_MESSAGE));
     String nameWithTrim = name.trim();

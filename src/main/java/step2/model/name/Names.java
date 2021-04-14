@@ -1,49 +1,48 @@
 package step2.model.name;
 
-import java.util.ArrayList;
+import step2.error.InvalidNameException;
+
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Names {
   private static final String SPLIT_DELIMITER = ",";
+  private static final int MINIMUM_NAMES_LENGTH = 2;
 
   private final List<Name> names;
 
-  private Names(List<Name> names){
+  private Names(List<Name> names) {
     this.names = names;
   }
 
-  public static Names initNames(String names){
-    Builder builder = new Builder();
+  public static Names initNames(String names) {
+    String[] splittedNames = names.split(SPLIT_DELIMITER);
+    checkNamesLength(splittedNames.length);
 
-    Arrays.stream(names.split(SPLIT_DELIMITER)).forEach(builder::addName);
-    return builder.build();
+    List<Name> madeNames = Arrays.stream(splittedNames)
+      .map(name -> new Name(name.trim()))
+      .collect(Collectors.toList());
+    return new Names(madeNames);
   }
 
-  public boolean isNameContains(Name name){
+  private static void checkNamesLength(int length) {
+    if (length < MINIMUM_NAMES_LENGTH) {
+      throw new InvalidNameException("");
+    }
+  }
+
+  public Stream<Name> stream() {
+    return names.stream();
+  }
+
+  public int size() {
+    return names.size();
+  }
+
+  public boolean isNameContains(Name name) {
     return names.contains(name);
   }
 
-  static class Builder{
-    private List<Name> names;
-
-    public Builder(){
-      this(new ArrayList<>());
-    }
-
-    Builder(List<Name> names){
-      this.names = names;
-    }
-
-    public Builder addName(String name){
-      names.add(new Name(name));
-      return this;
-    }
-
-    public Names build(){
-      names = Collections.unmodifiableList(names);
-      return new Names(names);
-    }
-  }
 }
