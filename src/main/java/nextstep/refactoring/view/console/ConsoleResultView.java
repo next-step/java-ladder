@@ -2,6 +2,8 @@ package nextstep.refactoring.view.console;
 
 import nextstep.refactoring.ladder.engine.dto.LadderDto;
 import nextstep.refactoring.ladder.engine.dto.LineDto;
+import nextstep.refactoring.laddergame.engine.LadderGameResultDto;
+import nextstep.refactoring.laddergame.engine.LadderGameResultsDto;
 import nextstep.refactoring.laddergame.engine.player.PlayersDto;
 import nextstep.refactoring.laddergame.engine.reward.RewardsDto;
 import nextstep.refactoring.view.interfaces.ResultView;
@@ -17,7 +19,6 @@ public class ConsoleResultView implements ResultView {
     private static final String POINT = "|";
     private static final String WHITE_SPACE = " ";
     private static final String HYPHEN = "-";
-
 
     @Override
     public void printPlayers(PlayersDto playersDto) {
@@ -59,6 +60,19 @@ public class ConsoleResultView implements ResultView {
 
     private String selectSymbol(boolean connection) {
         return connection ? HYPHEN : WHITE_SPACE;
+    }
+
+    @Override
+    public void printLadderGameResults(LadderGameResultsDto ladderGameResultsDto) {
+        List<LadderGameResultDto> ladderGameResultDtoList = ladderGameResultsDto.ladderGameResults();
+
+        System.out.println("실행 결과");
+        if (ladderGameResultDtoList.size() == 1) {
+            System.out.println(ladderGameResultDtoList.get(0).reward());
+        } else {
+            ladderGameResultDtoList.forEach(ladderGameResultDto ->
+                System.out.println(ladderGameResultDto.playerName() + " : " + ladderGameResultDto.reward()));
+        }
     }
 
 }
