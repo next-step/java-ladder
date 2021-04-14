@@ -1,15 +1,12 @@
 package nextstep.refactoring.view.interfaces;
 
-import nextstep.ladder.domain.player.Players;
-import nextstep.refactoring.ladder.engine.Ladder;
-import nextstep.refactoring.laddergame.concrete.Rewards;
-import nextstep.refactoring.laddergame.engine.LadderGameResults;
+import nextstep.refactoring.ladder.engine.dto.LadderDto;
 
 public interface ResultView {
 
-    void printPlayers(Dto<Players> playersDto);
-    void printRewards(Dto<Rewards> playersDto);
-    void printLadder(Dto<Ladder> ladderDto);
-    void printLadderGameResults(Dto<LadderGameResults> ladderGameResultsDto);
+//    void printPlayers(Dto<Players> playersDto);
+//    void printRewards(Dto<Rewards> playersDto);
+    void printLadder(LadderDto ladderDto);
+//    void printLadderGameResults(LadderGameResultsDto ladderGameResultsDto);
 
 }
