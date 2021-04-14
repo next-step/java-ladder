@@ -3,7 +3,6 @@ package nextstep.refactoring.view.console;
 import nextstep.refactoring.ladder.engine.dto.LadderDto;
 import nextstep.refactoring.ladder.engine.dto.LineDto;
 import nextstep.refactoring.laddergame.engine.LadderGameResultDto;
-import nextstep.refactoring.laddergame.engine.LadderGameResultsDto;
 import nextstep.refactoring.laddergame.engine.player.PlayersDto;
 import nextstep.refactoring.laddergame.engine.reward.RewardsDto;
 import nextstep.refactoring.view.interfaces.ResultView;
@@ -63,9 +62,7 @@ public class ConsoleResultView implements ResultView {
     }
 
     @Override
-    public void printLadderGameResults(LadderGameResultsDto ladderGameResultsDto) {
-        List<LadderGameResultDto> ladderGameResultDtoList = ladderGameResultsDto.ladderGameResults();
-
+    public void printLadderGameResults(List<LadderGameResultDto> ladderGameResultDtoList) {
         System.out.println("실행 결과");
         if (ladderGameResultDtoList.size() == 1) {
             System.out.println(ladderGameResultDtoList.get(0).reward());
