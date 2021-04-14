@@ -1,6 +1,7 @@
 package nextstep.refactoring.laddergame.concrete;
 
 import nextstep.refactoring.laddergame.engine.LadderGameResult;
+import nextstep.refactoring.laddergame.engine.LadderGameResultDto;
 import nextstep.refactoring.laddergame.engine.player.Player;
 import nextstep.refactoring.laddergame.engine.reward.Reward;
 
@@ -37,5 +38,10 @@ public class LadderGameResultImpl implements LadderGameResult {
     @Override
     public int hashCode() {
         return Objects.hash(player, reward);
+    }
+
+    @Override
+    public LadderGameResultDto export() {
+        return LadderGameResultDtoImpl.of(this);
     }
 }
