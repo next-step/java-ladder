@@ -2,6 +2,7 @@ package nextstep.ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import nextstep.ladder.exception.OverNameLengthLimitException;
 import nextstep.ladder.exception.PersonCountTooLowException;
@@ -47,5 +48,21 @@ class PeopleTest {
     assertThatThrownBy(() -> People.from(names))
         .isInstanceOf(PersonCountTooLowException.class)
         .hasMessage(PersonCountTooLowException.PERSON_COUNT_TOO_LOW);
+  }
+
+  @Test
+  @DisplayName("해당 Person이 People에 포함되어 있다면 true, 아니면 false를 반환한다.")
+  void contains() {
+    //given
+    final People people = People.from(new String[]{"pobi", "crong", "honux", "jk"});
+    final Person containedPerson = Person.valueOf("pobi");
+    final Person notContainedPerson = Person.valueOf("dion");
+
+    //when
+    //then
+    assertAll(
+        () -> assertThat(people.contains(containedPerson)).isTrue(),
+        () -> assertThat(people.contains(notContainedPerson)).isFalse()
+    );
   }
 }

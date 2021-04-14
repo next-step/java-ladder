@@ -38,6 +38,10 @@ public final class People {
     return people.size();
   }
 
+  public boolean contains(Person person) {
+    return false;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
