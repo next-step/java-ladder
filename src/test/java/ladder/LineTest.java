@@ -85,7 +85,7 @@ public class LineTest {
     }
 
     @Test
-    @DisplayName("Line 생성 시 인원은 적어도 1명 이상이어야 합니다.")
+    @DisplayName("Line 생성 시 인원은 적어도 2명 이상이어야 합니다.")
     void createLineWithInvalidCountOfPerson() {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Line(0))
