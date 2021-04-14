@@ -2,14 +2,14 @@ package nextstep.ladder.domain;
 
 import java.util.Objects;
 
-public class Height {
+public class LadderHeight {
     private final int height;
 
-    public Height(String height) {
+    public LadderHeight(String height) {
         this(Integer.valueOf(height));
     }
 
-    public Height(int height) {
+    public LadderHeight(int height) {
         this.height = height;
     }
 
@@ -21,8 +21,8 @@ public class Height {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Height height = (Height) o;
-        return this.height == height.height;
+        LadderHeight ladderHeight = (LadderHeight) o;
+        return this.height == ladderHeight.height;
     }
 
     @Override

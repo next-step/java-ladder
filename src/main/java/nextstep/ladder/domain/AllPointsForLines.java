@@ -15,11 +15,11 @@ public class AllPointsForLines {
     }
 
     public List<Points> allPoints(int countOfPlayer, int height) {
-        return allPoints(new CountOfPlayer(countOfPlayer), new Height(height));
+        return allPoints(new CountOfPlayer(countOfPlayer), new LadderHeight(height));
     }
 
-    public List<Points> allPoints(CountOfPlayer countOfPlayer, Height height) {
-        List<Points> allPoints = IntStream.range(0, height.value())
+    public List<Points> allPoints(CountOfPlayer countOfPlayer, LadderHeight ladderHeight) {
+        List<Points> allPoints = IntStream.range(0, ladderHeight.value())
                 .mapToObj((i) -> new Points(countOfPlayer, directionStrategy))
                 .collect(Collectors.toList());
 
