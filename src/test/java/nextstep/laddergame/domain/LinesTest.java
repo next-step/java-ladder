@@ -1,36 +1,38 @@
 package nextstep.laddergame.domain;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 
 class LinesTest {
 
   @Test
-  @DisplayName("사다리의 높이와 인원 수를 입력받은 것을 토대로 라인을 그릴 수 있는가")
+  @DisplayName("높이와 인원 수를 입력을 받아서 Lines를 생성할 수 있다")
   public void create() throws Exception {
     //given
     Lines lines = Lines.createLines(5, 4);
 
     //when
-    int dimension = lines.dimension();
-
     //then
-    assertEquals(dimension, 20);
+    assertNotNull(lines);
   }
 
-  @ParameterizedTest
-  @CsvSource({"0, 1", "1, 0", "0, 0"})
-  @DisplayName("허용되지 않은 값이 들어올 경우 익셉션이 발생하는가")
-  public void createException(int height, int countOfMembers) throws IOException {
+  @Test
+  @DisplayName("빈 리스트로 Line을 생성할 경우 익셉션이 발생한다")
+  public void createException() throws IOException {
     //given
+    List<Boolean> points = new ArrayList<>();
+
     //when
     IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
-        () -> Lines.createLines(height, countOfMembers));
+        () -> new Line(points));
 
     //then
     assertTrue(thrown.getMessage().contains("ERROR"));

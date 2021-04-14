@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MembersTest {
   @Test
-  @DisplayName("여러개의 이름을 입력받은 다음에 Members를 생성할 수 있는가")
+  @DisplayName("이름 목록으로 Members 객체를 생성하면 목록 개수를 제공한다")
   public void create() throws Exception {
     //given
     String s = "pobi,honux,crong,jk";
@@ -23,8 +23,8 @@ class MembersTest {
   }
 
   @ParameterizedTest
-  @ValueSource(strings = {"", "a,a"})
-  @DisplayName("허용되지 않은 값이 입력될 경우 Exception이 발생하는가")
+  @ValueSource(strings = {"a,a", "a,b,c,d,d"})
+  @DisplayName("이름 목록을 중복으로 넣을 경우 Exception이 발생한다")
   public void createException(String userNames) throws Exception {
     //given
     String[] split = userNames.split(",");
