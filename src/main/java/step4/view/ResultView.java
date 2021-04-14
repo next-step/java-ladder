@@ -7,6 +7,8 @@ import step4.domain.Player;
 import step4.domain.Point;
 import step4.domain.Prize;
 import step4.dto.LaddersDto;
+import step4.dto.PlayResultDto;
+import step4.dto.PlayResultsDto;
 import step4.dto.PlayersDto;
 import step4.dto.PrizesDto;
 
@@ -36,7 +38,7 @@ public class ResultView {
         lines.forEach(line -> {
             line.points().stream()
                 .map(Point::direction)
-                .forEach(direction -> System.out.print(direction.isRight() ? CONNECT : DIS_CONNECT));
+                .forEach(direction -> System.out.print(direction.isLeft() ? CONNECT : DIS_CONNECT));
             System.out.println();
         });
     }
@@ -46,5 +48,19 @@ public class ResultView {
             System.out.print(String.format("%6s", prize.prize()));
         });
         System.out.println();
+    }
+
+    public static void printAllMatchOfPrize(PlayResultsDto playResultsDto) {
+        System.out.println(MESSAGE_RESULT);
+        playResultsDto.getResult().forEach(ResultView::printMatchResult);
+    }
+
+    private static void printMatchResult(Player player, Prize prize) {
+        System.out.println(String.format("%s : %s", player.playerName(), prize.prize()));
+    }
+
+    public static void printMatchOfPrize(PlayResultDto playResultDto) {
+        System.out.println(MESSAGE_RESULT);
+        System.out.println(playResultDto.getPrize());
     }
 }
