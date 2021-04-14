@@ -1,11 +1,17 @@
 package nextstep.refactoring.ladder.concrete;
 
+import nextstep.refactoring.ladder.concrete.dto.LadderDtoImpl;
 import nextstep.refactoring.ladder.engine.Ladder;
 import nextstep.refactoring.ladder.engine.LadderResult;
 import nextstep.refactoring.ladder.engine.Line;
 import nextstep.refactoring.ladder.engine.Position;
+import nextstep.refactoring.ladder.engine.dto.LadderDto;
+import nextstep.refactoring.view.interfaces.ViewObject;
 
 import java.util.List;
+
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
 
 public class LadderImpl implements Ladder {
 
@@ -30,5 +36,12 @@ public class LadderImpl implements Ladder {
     @Override
     public int numberOfPositions() {
         return numberOfPositions;
+    }
+
+    @Override
+    public LadderDto export() {
+        return lines.stream()
+                    .map(ViewObject::export)
+                    .collect(collectingAndThen(toList(), LadderDtoImpl::new));
     }
 }
