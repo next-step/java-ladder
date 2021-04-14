@@ -2,11 +2,21 @@ package ladder.views;
 
 import ladder.domain.*;
 
+import java.util.List;
+
 public class OutputView {
+    private static final String POINT = "|";
+
+    public static void printResultMessage() {
+        System.out.println("\n실행 결과");
+    }
+
     public static void print(Names names) {
+        System.out.println();
         for (final Name name : names.names()) {
-            System.out.printf("%-" + Name.MAX_NAME_LENGTH + 1 + "s\n", name.name());
+            System.out.printf("%-" + (Name.MAX_NAME_LENGTH + 1) + "s", name.name());
         }
+        System.out.println();
     }
 
     public static void print(Ladder ladder) {
@@ -16,19 +26,26 @@ public class OutputView {
     }
 
     private static void print(LadderLine ladderLine) {
+        final List<Point> points = ladderLine.points();
+
         final StringBuffer sb = new StringBuffer();
-        sb.append("    ");
-        for (final Point point : ladderLine.points()) {
-            sb.append(view(point));
+
+        for (int i = 0; i < points.size(); i++) {
+            sb.append(view(points.get(i), i == points.size() - 1));
         }
+
         System.out.println(sb);
     }
 
-    private static String view(Point point) {
-        if (point == Point.BEGIN) {
-            return "|-----";
+    private static String view(Point point, boolean last) {
+        if (last) {
+            return POINT;
         }
 
-        return "|     ";
+        if (point == Point.BEGIN) {
+            return POINT + "-----";
+        }
+
+        return POINT + "     ";
     }
 }
