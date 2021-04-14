@@ -17,11 +17,11 @@ public class Point {
         return new Point(0, Direction.first(connectStrategy));
     }
 
-    public Point next() {
-        return new Point(index + 1, direction.next());
-    }
-
     public Point next(ConnectStrategy connectStrategy) {
+        if (direction.rightSide()) {
+            return new Point(index + 1, direction.unConnectedNext());
+        }
+
         return new Point(index + 1, direction.next(connectStrategy));
     }
 

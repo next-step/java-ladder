@@ -42,7 +42,7 @@ public class DirectionTest {
     public void next() throws Exception {
         assertThat(toLeftDirection.next(() -> false)).isEqualTo(new Direction(false, false));
         assertThat(toLeftDirection.next(() -> true)).isEqualTo(new Direction(false, true));
-        assertThat(toRightDirection.next()).isEqualTo(new Direction(true, false));
+        assertThat(toRightDirection.unConnectedNext()).isEqualTo(new Direction(true, false));
         assertThat(noneDirection.next(() -> true)).isEqualTo(new Direction(false, true));
         assertThat(noneDirection.next(() -> false)).isEqualTo(new Direction(false, false));
     }

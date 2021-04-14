@@ -66,7 +66,7 @@ public class PointTest {
     @DisplayName("다음 좌표를 반환한다.")
     public void next() throws Exception {
         //when
-        Point leftTrue = pointWithRightDirection.next();
+        Point leftTrue = pointWithRightDirection.next(() -> false);
         Point allFalse = pointWithNone.next(() -> false);
         Point rightTrue = pointWithNone.next(() -> true);
 

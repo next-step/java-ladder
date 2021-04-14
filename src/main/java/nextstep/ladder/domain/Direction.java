@@ -1,7 +1,6 @@
 package nextstep.ladder.domain;
 
 import nextstep.ladder.strategy.ConnectStrategy;
-import nextstep.ladder.strategy.RandomConnectStrategy;
 
 import java.util.Objects;
 
@@ -34,12 +33,8 @@ public class Direction {
         return new Direction(false, false);
     }
 
-    public Direction next() {
-        if (right) {
-            return next(() -> false);
-        }
-
-        return next(new RandomConnectStrategy());
+    public Direction unConnectedNext() {
+        return new Direction(true, false);
     }
 
     public Direction next(ConnectStrategy connectStrategy) {

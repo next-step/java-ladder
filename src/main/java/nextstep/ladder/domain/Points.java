@@ -28,7 +28,7 @@ public class Points {
         points.add(point);
 
         while (point.isNotLast(countOfPlayer.number())) {
-            point = point.next();
+            point = point.next(connectStrategy);
             points.add(point);
         }
 
