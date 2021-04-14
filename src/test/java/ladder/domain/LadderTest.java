@@ -12,10 +12,10 @@ public class LadderTest {
     @Test
     public void create() {
         final List<LadderLine> ladderLines = Arrays.asList(
-                LadderLineFactory.createAuto(5),
-                LadderLineFactory.createAuto(5),
-                LadderLineFactory.createAuto(5),
-                LadderLineFactory.createAuto(5)
+                LadderLineFactory.from(5),
+                LadderLineFactory.from(5),
+                LadderLineFactory.from(5),
+                LadderLineFactory.from(5)
         );
 
         assertThat(new Ladder(ladderLines)).isEqualTo(new Ladder(ladderLines));

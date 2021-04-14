@@ -14,7 +14,7 @@ public class Ladder {
     public Ladder(int width, int height) {
         this(
                 Stream.generate(
-                        () -> LadderLineFactory.createAuto(width))
+                        () -> LadderLineFactory.from(width))
                         .limit(height)
                         .collect(Collectors.toList())
         );
