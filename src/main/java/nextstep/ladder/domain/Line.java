@@ -1,73 +1,51 @@
 package nextstep.ladder.domain;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+
+import static nextstep.ladder.util.PointGenerator.generatePoint;
 
 public class Line {
 
-    private static final String PLAYER_COUNT_VALIDATE_MESSAGE = "참여자는 2명 이상이여야 합니다";
-    private static final int MINIMUM_PLAYER_BOUND = 2;
-    private static final int RIGHT = 1;
-    private static final int LEFT = -1;
-    private static final int STAY = 0;
-
     private final List<Point> points;
 
-    protected Line(List<Boolean> points) {
-        this.points = points.stream()
-                .map(Point::new)
-                .collect(Collectors.toUnmodifiableList());
+    private Line(List<Point> points) {
+        this.points = points;
     }
 
-    public Line(int countOfPerson) {
-        validatePersonCount(countOfPerson);
-        this.points = createPoints(countOfPerson);
+    public static Line init(int sizeOfPerson) {
+        List<Point> points = new ArrayList<>();
+        Point point = initFirst(points);
+        point = initBody(sizeOfPerson, points, point);
+        initLast(points, point);
+        return new Line(points);
     }
 
-    private void validatePersonCount(int countOfPerson) {
-        if (countOfPerson < MINIMUM_PLAYER_BOUND) {
-            throw new IllegalArgumentException(PLAYER_COUNT_VALIDATE_MESSAGE);
+    private static Point initBody(int sizeOfPerson, List<Point> points, Point point) {
+        for (int i = 1; i < sizeOfPerson - 1; i++) {
+            point = point.next();
+            points.add(point);
         }
+        return point;
     }
 
-    private List<Point> createPoints(int countOfPerson) {
-        return new PointGenerator().generate(countOfPerson);
+    private static void initLast(List<Point> points, Point point) {
+        point = point.last();
+        points.add(point);
     }
 
-    public int pointSize() {
-        return points.size();
+    private static Point initFirst(List<Point> points) {
+        Point point = Point.first(generatePoint());
+        points.add(point);
+        return point;
     }
 
-    public List<Point> readOnlyPoints() {
-        return Collections.unmodifiableList(points);
+    public int move(int position) {
+        return points.get(position).move();
     }
 
-    public int moveWhich(int idx) {
-        if (idx >= points.size()) {
-            return moveLeft(idx);
-        }
-        if (idx < 0) {
-            return moveRight(idx);
-        }
-        if (points.get(idx).isConnected()) {
-            return moveRight(idx);
-        }
-        if (idx > 0 && points.get(idx - 1).isConnected()) {
-            return moveLeft(idx);
-        }
-        return bypass(idx);
-    }
-
-    private int bypass(int idx) {
-        return idx + STAY;
-    }
-
-    private int moveLeft(int idx) {
-        return idx + LEFT;
-    }
-
-    private int moveRight(int idx) {
-        return idx + RIGHT;
+    public int size() {
+        return -1;
     }
 }
+
