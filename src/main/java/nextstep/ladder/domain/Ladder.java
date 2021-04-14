@@ -6,17 +6,7 @@ import nextstep.ladder.domain.strategy.BridgeBuilder;
 
 public class Ladder {
     private final List<Line> lines = new ArrayList<>();
-    private final BridgeBuilder bridgeBuilder;
-
-    public Ladder(int height, int countOfPerson, BridgeBuilder bridgeBuilder) {
-        if (height < 1) {
-            throw new IllegalArgumentException("사다리 높이는 1 이상이어야 합니다: " + height);
-        }
-        for (int i = 0; i < height; i++) {
-            lines.add(new Line(countOfPerson));
-        }
-        this.bridgeBuilder = bridgeBuilder;
-    }
+    private BridgeBuilder bridgeBuilder;
 
     public Ladder(int height, int countOfPerson) {
         if (height < 1) {
@@ -26,6 +16,11 @@ public class Ladder {
             lines.add(new Line(countOfPerson));
         }
         this.bridgeBuilder = new BridgeBuilder(height, countOfPerson);
+    }
+
+    public Ladder(int height, int countOfPerson, BridgeBuilder bridgeBuilder) {
+        this(height, countOfPerson);
+        this.bridgeBuilder = bridgeBuilder;
     }
 
     public int getHeight() {
