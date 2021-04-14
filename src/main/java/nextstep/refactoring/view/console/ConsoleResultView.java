@@ -2,10 +2,13 @@ package nextstep.refactoring.view.console;
 
 import nextstep.refactoring.ladder.engine.dto.LadderDto;
 import nextstep.refactoring.ladder.engine.dto.LineDto;
+import nextstep.refactoring.laddergame.engine.player.PlayersDto;
 import nextstep.refactoring.view.interfaces.ResultView;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+import static nextstep.ladder.util.StringUtils.padToLeft;
 import static nextstep.ladder.util.StringUtils.repeat;
 
 public class ConsoleResultView implements ResultView {
@@ -14,6 +17,17 @@ public class ConsoleResultView implements ResultView {
     private static final String POINT = "|";
     private static final String WHITE_SPACE = " ";
     private static final String HYPHEN = "-";
+
+
+    @Override
+    public void printPlayers(PlayersDto playersDto) {
+        List<String> paddedNameList = playersDto.nameList()
+                                                .stream()
+                                                .map(name -> padToLeft(name, STRING_ELEMENT_SIZE))
+                                                .collect(Collectors.toList());
+
+        System.out.println(String.join(WHITE_SPACE, paddedNameList));
+    }
 
     @Override
     public void printLadder(LadderDto ladderDto) {
