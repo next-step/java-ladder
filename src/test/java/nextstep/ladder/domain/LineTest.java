@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import nextstep.ladder.strategy.RandomConnectStrategy;
+import nextstep.ladder.strategy.RandomDirectionStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +12,7 @@ public class LineTest {
     @Test
     @DisplayName("좌표 값들을 인자로 받아 사다리 라인을 생성한다.")
     public void create() throws Exception {
-        Line line = new Line(new Points(4, new RandomConnectStrategy()));
+        Line line = new Line(new Points(4, new RandomDirectionStrategy()));
         assertThat(line.points().points()).hasSize(4);
     }
 }

@@ -1,6 +1,6 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.strategy.ConnectStrategy;
+import nextstep.ladder.strategy.DirectionStrategy;
 
 import java.util.Objects;
 
@@ -13,16 +13,16 @@ public class Point {
         this.direction = direction;
     }
 
-    public static Point first(ConnectStrategy connectStrategy) {
-        return new Point(0, Direction.first(connectStrategy));
+    public static Point first(DirectionStrategy directionStrategy) {
+        return new Point(0, Direction.first(directionStrategy));
     }
 
-    public Point next(ConnectStrategy connectStrategy) {
+    public Point next(DirectionStrategy directionStrategy) {
         if (direction.rightSide()) {
             return new Point(index + 1, direction.unConnectedNext());
         }
 
-        return new Point(index + 1, direction.next(connectStrategy));
+        return new Point(index + 1, direction.next(directionStrategy));
     }
 
     public Point last() {

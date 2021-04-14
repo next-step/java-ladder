@@ -1,6 +1,6 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.strategy.RandomConnectStrategy;
+import nextstep.ladder.strategy.RandomDirectionStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +14,7 @@ public class LinesTest {
     @DisplayName("각 라인의 좌표들을 인자로 받아 모든 라인을 생성한다,")
     public void create() throws Exception {
         //given
-        AllPointsForLines allPointsForLines = new AllPointsForLines(new RandomConnectStrategy());
+        AllPointsForLines allPointsForLines = new AllPointsForLines(new RandomDirectionStrategy());
         List<Points> allPoints = allPointsForLines.allPoints(4, 5);
         Lines lines = Lines.from(allPoints);
 

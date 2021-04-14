@@ -1,6 +1,6 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.strategy.ConnectStrategy;
+import nextstep.ladder.strategy.DirectionStrategy;
 
 import java.util.Objects;
 
@@ -25,24 +25,16 @@ public class Direction {
         }
     }
 
-    public static Direction first(ConnectStrategy connectStrategy) {
-        if (connectStrategy.isConnectable()) {
-            return new Direction(false, true);
-        }
-
-        return new Direction(false, false);
+    public static Direction first(DirectionStrategy directionStrategy) {
+        return directionStrategy.createFirstDirection();
     }
 
     public Direction unConnectedNext() {
         return new Direction(true, false);
     }
 
-    public Direction next(ConnectStrategy connectStrategy) {
-        if (connectStrategy.isConnectable()) {
-            return new Direction(right, true);
-        }
-
-        return new Direction(right, false);
+    public Direction next(DirectionStrategy directionStrategy) {
+        return directionStrategy.createNextDirection(this);
     }
 
     public Direction last() {

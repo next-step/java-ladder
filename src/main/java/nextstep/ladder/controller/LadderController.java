@@ -2,6 +2,7 @@ package nextstep.ladder.controller;
 
 import nextstep.ladder.domain.*;
 import nextstep.ladder.strategy.RandomConnectStrategy;
+import nextstep.ladder.strategy.RandomDirectionStrategy;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
@@ -19,7 +20,7 @@ public class LadderController {
     public void run() {
         Players players = new Players(inputView.players());
         Height height = new Height(inputView.height());
-        AllPointsForLines allPointsForLines = new AllPointsForLines(new RandomConnectStrategy());
+        AllPointsForLines allPointsForLines = new AllPointsForLines(new RandomDirectionStrategy());
         List<Points> allPoints = allPointsForLines.allPoints(players.countOfPlayer(), height);
         Lines lines = Lines.from(allPoints);
         Ladder ladder = new Ladder(lines);

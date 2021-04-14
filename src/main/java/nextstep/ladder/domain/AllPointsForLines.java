@@ -1,6 +1,6 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.strategy.ConnectStrategy;
+import nextstep.ladder.strategy.DirectionStrategy;
 
 import java.util.Collections;
 import java.util.List;
@@ -8,10 +8,10 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class AllPointsForLines {
-    private final ConnectStrategy connectStrategy;
+    private final DirectionStrategy directionStrategy;
 
-    public AllPointsForLines(ConnectStrategy connectStrategy) {
-        this.connectStrategy = connectStrategy;
+    public AllPointsForLines(DirectionStrategy directionStrategy) {
+        this.directionStrategy = directionStrategy;
     }
 
     public List<Points> allPoints(int countOfPlayer, int height) {
@@ -20,7 +20,7 @@ public class AllPointsForLines {
 
     public List<Points> allPoints(CountOfPlayer countOfPlayer, Height height) {
         List<Points> allPoints = IntStream.range(0, height.value())
-                .mapToObj((i) -> new Points(countOfPlayer, connectStrategy))
+                .mapToObj((i) -> new Points(countOfPlayer, directionStrategy))
                 .collect(Collectors.toList());
 
         return Collections.unmodifiableList(allPoints);

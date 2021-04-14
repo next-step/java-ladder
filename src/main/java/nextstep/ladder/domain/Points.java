@@ -1,6 +1,6 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.strategy.ConnectStrategy;
+import nextstep.ladder.strategy.DirectionStrategy;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,25 +10,25 @@ import java.util.stream.Collectors;
 public class Points {
     private final List<Point> points;
 
-    public Points(int countOfPlayer, ConnectStrategy connectStrategy) {
-        this(new CountOfPlayer(countOfPlayer), connectStrategy);
+    public Points(int countOfPlayer, DirectionStrategy directionStrategy) {
+        this(new CountOfPlayer(countOfPlayer), directionStrategy);
     }
 
-    public Points(CountOfPlayer countOfPlayer, ConnectStrategy connectStrategy) {
-        this(createWith(countOfPlayer, connectStrategy));
+    public Points(CountOfPlayer countOfPlayer, DirectionStrategy directionStrategy) {
+        this(createWith(countOfPlayer, directionStrategy));
     }
 
     public Points(List<Point> points) {
         this.points = points;
     }
 
-    public static List<Point> createWith(CountOfPlayer countOfPlayer, ConnectStrategy connectStrategy) {
+    public static List<Point> createWith(CountOfPlayer countOfPlayer, DirectionStrategy directionStrategy) {
         List<Point> points = new ArrayList<>(countOfPlayer.number());
-        Point point = Point.first(connectStrategy);
+        Point point = Point.first(directionStrategy);
         points.add(point);
 
         while (point.isNotLast(countOfPlayer.number())) {
-            point = point.next(connectStrategy);
+            point = point.next(directionStrategy);
             points.add(point);
         }
 

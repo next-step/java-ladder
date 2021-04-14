@@ -25,26 +25,9 @@ public class DirectionTest {
     }
 
     @Test
-    @DisplayName("첫 번째 좌표의 방향 객체를 생성한다.")
-    public void first() throws Exception {
-        assertThat(Direction.first(() -> true)).isEqualTo(new Direction(false, true));
-        assertThat(Direction.first(() -> false)).isEqualTo(new Direction(false, false));
-    }
-
-    @Test
     @DisplayName("좌, 우 방향이 모두 존재할 경우 예외가 발생한다.")
     public void validateContinuous() throws Exception {
         assertThatIllegalArgumentException().isThrownBy(() -> new Direction(true, true)).withMessage("가로 라인이 겹치는 지 확인해주세요.");
-    }
-
-    @Test
-    @DisplayName("현재 방향 객체 값을 기반으로 다음 방향 객체를 생성한다.")
-    public void next() throws Exception {
-        assertThat(toLeftDirection.next(() -> false)).isEqualTo(new Direction(false, false));
-        assertThat(toLeftDirection.next(() -> true)).isEqualTo(new Direction(false, true));
-        assertThat(toRightDirection.unConnectedNext()).isEqualTo(new Direction(true, false));
-        assertThat(noneDirection.next(() -> true)).isEqualTo(new Direction(false, true));
-        assertThat(noneDirection.next(() -> false)).isEqualTo(new Direction(false, false));
     }
 
     @Test
