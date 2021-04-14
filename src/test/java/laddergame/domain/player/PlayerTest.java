@@ -31,4 +31,9 @@ public class PlayerTest {
 
         assertThat(names).contains(name);
     }
+
+    @Test
+    void 플레이어프린트() {
+        System.out.println(player);
+    }
 }

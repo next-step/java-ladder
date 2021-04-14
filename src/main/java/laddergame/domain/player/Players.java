@@ -34,6 +34,10 @@ public class Players {
         return true;
     }
 
+    public List<Player> getPlayers() {
+        return Collections.unmodifiableList(players);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -46,4 +50,5 @@ public class Players {
     public int hashCode() {
         return Objects.hash(players);
     }
+
 }

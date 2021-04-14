@@ -3,6 +3,8 @@
  * */
 package laddergame.domain.ladder;
 
+import static laddergame.util.Message.ILLEGAL_LINK;
+
 public class Link<P, N> {
     private P now;
     private N next;
@@ -38,14 +40,31 @@ public class Link<P, N> {
 
     /* 전략에 따라서 한 쌍을 연결한다. */
     public void link(LadderStrategy strategy) {
-        if (!haveAll() || !(now instanceof Point) || !(next instanceof Point)) {
-            return;
-        }
-        if (strategy.test() && !((Point) now).isLinked()) {
+        if (validLink() && strategy.test()) {
             ((Point) now).link((Point) next);
             ((Point) next).link((Point) now);
         }
     }
+
+    public boolean isLink() {
+        validLink();
+        if (((Point) now).isLinkedWith((Point) next) &&
+                ((Point) next).isLinkedWith((Point) now)) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean validLink() {
+        if (!haveAll() || !(now instanceof Point) || !(next instanceof Point)) {
+            throw new IllegalArgumentException(ILLEGAL_LINK);
+        }
+        if (((Point) now).isLinked() || (Point) now == (Point) next) {
+            return false;
+        }
+        return true;
+    }
+
 
     public boolean hasNow() {
         return now != null;

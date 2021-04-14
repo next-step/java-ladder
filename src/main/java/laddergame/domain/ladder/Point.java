@@ -19,6 +19,6 @@ public class Point {
     }
 
     public boolean isLinkedWith(Point check) {
-        return linkPoint == check;
+        return isLinked() && linkPoint == check;
     }
 }

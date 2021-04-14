@@ -1,8 +1,5 @@
 package laddergame.domain.player;
 
-import laddergame.domain.player.Name;
-import laddergame.domain.player.Player;
-import laddergame.domain.player.Players;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -11,6 +8,7 @@ import org.junit.jupiter.params.provider.NullAndEmptySource;
 import java.util.ArrayList;
 import java.util.List;
 
+import static laddergame.util.StringUtils.fitName;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -49,5 +47,13 @@ public class PlayersTest {
         assertThatThrownBy(() -> {
             new Players((List<Player>) input);
         }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 플레이어목록프린트() {
+        List<Player> playerList = players.getPlayers();
+        playerList.stream()
+                .forEach(player -> System.out.print(fitName(player.toString())));
+        System.out.println();
     }
 }

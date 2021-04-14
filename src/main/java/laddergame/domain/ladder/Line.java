@@ -6,6 +6,8 @@ package laddergame.domain.ladder;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.util.stream.Collectors.toCollection;
+
 public class Line {
     private List<Point> points = new ArrayList<>();
 
@@ -24,9 +26,19 @@ public class Line {
     /* 전략에 따라서 라인의 포인트들을 연결한다. */
     public void connect(LadderStrategy strategy) {
         Link<Point, Point> link = new Link<>();
+        link.pair(points.get(0));
         points.stream().forEach(point -> {
             link.pair(point);
             link.link(strategy);
         });
+    }
+
+    public List<Boolean> isConnect() {
+        Link<Point, Point> link = new Link<>();
+        link.pair(points.get(0));
+        return points.stream().map(point -> {
+            link.pair(point);
+            return link.isLink();
+        }).collect(toCollection(ArrayList::new));
     }
 }

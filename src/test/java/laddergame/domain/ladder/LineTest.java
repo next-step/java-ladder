@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -29,6 +30,7 @@ public class LineTest {
 
         points.stream().forEach(point ->
                 assertThat(point.isLinked()).isTrue());
+        assertThat(line.isConnect()).containsAll(Collections.singleton(true));
     }
 
     @Test
@@ -38,6 +40,7 @@ public class LineTest {
 
         points.stream().forEach(point ->
                 assertThat(point.isLinked()).isFalse());
+        assertThat(line.isConnect()).containsAll(Collections.singleton(false));
     }
 
 }
