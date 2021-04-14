@@ -27,5 +27,6 @@ public class LadderController {
         resultView.printResultPhrase();
         resultView.printNames(players.names());
         resultView.printLadder(ladder.linesConnection());
+        resultView.printNames(prizes.names());
     }
 }
