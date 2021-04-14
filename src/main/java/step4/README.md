@@ -55,3 +55,19 @@
 ### Position
 - index 정보를 가짐
 - 유효성 체크
+
+
+### Prize
+- 게임 상품
+- 상품과 위치 정보를 가짐
+
+
+### Prizes
+- 여러 Prize 가진다.
+- 입력한 상품의 수 만큼 Prize 생성
+- Player 수와 상품 수 체크
+
+
+### PlayResult
+- 게임 수행 결과
+- Player 별 Prize 매칭 결과
