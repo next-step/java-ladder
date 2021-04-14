@@ -1,6 +1,5 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.strategy.RandomConnectStrategy;
 import nextstep.ladder.strategy.RandomDirectionStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

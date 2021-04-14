@@ -1,7 +1,6 @@
 package nextstep.ladder.controller;
 
 import nextstep.ladder.domain.*;
-import nextstep.ladder.strategy.RandomConnectStrategy;
 import nextstep.ladder.strategy.RandomDirectionStrategy;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
