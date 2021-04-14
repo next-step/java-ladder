@@ -36,14 +36,7 @@ public class Members {
         .count();
   }
 
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-
-    members.stream()
-        .map(Member::toString)
-        .forEach(sb::append);
-
-    return sb.toString();
+  public List<Member> names() {
+    return this.members;
   }
 }

@@ -21,9 +21,8 @@ public class Member {
     }
   }
 
-  @Override
-  public String toString() {
-    return name + "\t";
+  public String name() {
+    return this.name;
   }
 
   @Override

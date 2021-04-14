@@ -15,9 +15,11 @@ public class Ladder {
         Lines.createLines(height, members.size() - 1));
   }
 
-  @Override
-  public String toString() {
-    return members.toString() + "\n"
-        + lines.toString();
+  public Lines lines() {
+    return this.lines;
+  }
+
+  public Members members() {
+    return this.members;
   }
 }
