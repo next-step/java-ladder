@@ -5,6 +5,9 @@ import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import step4.exception.NotEqualCountException;
+import step4.exception.NotFoundException;
+
 public class PrizesTest {
     @Test
     void 생성_테스트() {
@@ -20,7 +23,7 @@ public class PrizesTest {
         // given
         String test = "꽝,500, 꽝, 3000";
         // when & then
-        Assertions.assertThrows(IllegalArgumentException.class, () -> new Prizes(test, 3));
+        Assertions.assertThrows(NotEqualCountException.class, () -> new Prizes(test, 3));
     }
 
     @Test
@@ -38,6 +41,6 @@ public class PrizesTest {
         String test = "꽝,500, 꽝, 3000";
         Prizes prizes = new Prizes(test, 4);
         // when & then
-        Assertions.assertThrows(IllegalArgumentException.class, () -> prizes.matchPosition(Position.valueOf(5)));
+        Assertions.assertThrows(NotFoundException.class, () -> prizes.matchPosition(Position.valueOf(5)));
     }
 }

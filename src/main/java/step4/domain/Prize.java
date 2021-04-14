@@ -20,6 +20,10 @@ public class Prize {
         return prize;
     }
 
+    public Position getPosition() {
+        return this.position;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o)
