@@ -18,6 +18,7 @@ public class OnlineLadder extends Ladder {
 
     public void lineMarkAll() {
         this.lines.initMark();
+        this.lines.markWithoutFirst();
         for (int i = 0; i < this.height - 1; i++) {
             this.lines.markSecond(i, i + 1);
         }

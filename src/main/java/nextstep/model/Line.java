@@ -1,6 +1,9 @@
 package nextstep.model;
 
-import static nextstep.constant.Constant.*;
+import java.util.Objects;
+
+import static nextstep.constant.Constant.EMPTY_LADDER_STRING;
+import static nextstep.constant.Constant.HORIZON_LADDER_STRING;
 
 public class Line {
     private final Points points;
@@ -9,28 +12,19 @@ public class Line {
         this.points = new Points(countOfPerson);
     }
 
-    public void mark(int target) {
+    public void markOne(int target) {
         points.markOne(target, true);
     }
 
-    public void initMark() {
-        for (int i = 0; i < points.size(); i++) {
-            points.markOne(i, RAND.nextBoolean());
-        }
+
+    public void markRandom() {
+        this.points.markRandom();
     }
 
-    public void mark() {
-        for (int i = 0; i < points.size(); i++) {
-            points.markOne(i, RAND.nextBoolean());
-        }
+    public void markRandom(Line line) {
+        this.points.markBottom(line.getPoints());
     }
 
-    private void markOneRandom() {
-        points.markOne((RAND.nextInt(points.size())), true);
-    }
-
-    public void reMark(Line top) {
-    }
 
     public Points getPoints() {
         return this.points;
@@ -57,5 +51,18 @@ public class Line {
         return "Line{" +
                 "points=" + points +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Line line = (Line) o;
+        return Objects.equals(points, line.points);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(points);
     }
 }

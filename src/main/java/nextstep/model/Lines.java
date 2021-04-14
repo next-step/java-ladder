@@ -3,6 +3,7 @@ package nextstep.model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Lines {
     private final List<Line> lines;
@@ -16,17 +17,8 @@ public class Lines {
         }
     }
 
-    public void mark(int targetVertical) {
-        try {
-            this.lines.get(targetVertical).mark();
-        } catch (IllegalArgumentException e) {
-            this.lines.get(targetVertical).reMark(this.lines.get(targetVertical - 1));
-        }
-
-    }
-
     public void mark(int targetVertical, int targetHorizon) {
-        this.lines.get(targetVertical).mark(targetHorizon);
+        this.lines.get(targetVertical).markOne(targetHorizon);
     }
 
     public String lineString(int targetVertical) {
@@ -34,7 +26,7 @@ public class Lines {
     }
 
     public void initMark() {
-        this.lines.get(0).initMark();
+        this.lines.get(0).markRandom();
     }
 
     public void markSecond(int top, int bottom) {
@@ -57,5 +49,16 @@ public class Lines {
                 }
             }
         }
+    }
+
+    public void markWithoutFirst() {
+        AtomicInteger i = new AtomicInteger(1);
+        this.lines.stream()
+                .forEach(l -> {
+                    if (i.get() < this.lines.size()) {{
+                        Line line = this.lines.get(i.getAndIncrement());
+                        l.markRandom(line);
+                    }}
+                });
     }
 }

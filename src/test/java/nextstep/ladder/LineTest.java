@@ -1,6 +1,7 @@
 package nextstep.ladder;
 
 import nextstep.model.Line;
+import nextstep.model.Points;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,8 +15,8 @@ class LineTest {
     void mark() {
         int countOfPerson = 3;
         Line line = new Line(countOfPerson);
-        line.mark(2);
-        assertThat(line.getPoints()).isEqualTo(Arrays.asList(false, false, true));
+        line.markOne(2);
+        assertThat(line.getPoints()).isEqualTo(new Points(Arrays.asList(false, false, true)));
     }
 
     @Test
@@ -23,7 +24,7 @@ class LineTest {
     void draw() {
         int countOfPerson = 3;
         Line line = new Line(countOfPerson);
-        line.mark(2);
+        line.markOne(2);
         assertThat(line.lineString()).isEqualTo("|     |     |-----|");
     }
 }
