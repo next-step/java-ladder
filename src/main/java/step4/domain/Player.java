@@ -1,5 +1,6 @@
 package step4.domain;
 
+import java.util.Objects;
 
 public class Player {
     private final PlayerName playerName;
@@ -11,7 +12,22 @@ public class Player {
     }
 
     public boolean isNameEqual(PlayerName playerName) {
-        return true;
+        return this.playerName.equals(playerName);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        Player player = (Player)o;
+        return Objects.equals(playerName, player.playerName) && Objects.equals(position,
+            player.position);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(playerName, position);
+    }
 }

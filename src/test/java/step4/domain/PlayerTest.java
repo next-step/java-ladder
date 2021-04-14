@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import step4.exception.MinimumNameLengthException;
+import step4.exception.NaturalNumberException;
 
 public class PlayerTest {
 
@@ -21,10 +22,8 @@ public class PlayerTest {
 
     @Test
     void 생성_유효성_테스트() {
-        // given
-        String test = " ";
-        // when & then
-        Assertions.assertThrows(MinimumNameLengthException.class, () -> new Player(0, test));
+        Assertions.assertThrows(MinimumNameLengthException.class, () -> new Player(0, ""));
+        Assertions.assertThrows(NaturalNumberException.class, () -> new Player(-1, "test"));
     }
 
     @Test
