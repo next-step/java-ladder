@@ -47,4 +47,8 @@ public class Points {
                 .limit(points().size() - 1)
                 .collect(Collectors.toList());
     }
+
+    public Point findByIndex(int pointIndex) {
+        return points.get(pointIndex);
+    }
 }
