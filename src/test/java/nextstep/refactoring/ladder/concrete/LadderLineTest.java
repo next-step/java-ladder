@@ -32,4 +32,32 @@ class LadderLineTest {
         assertThat(line.move(Position.of(0))).isEqualTo(Position.of(1));
     }
 
+    @Test
+    @DisplayName("라인의 길이를 반환한다.")
+    void getWidth() {
+        Point first = Point.of(0, Direction.right());
+        Point second = first.next();
+        Point third = second.next();
+
+        Line line = LadderLine.of(first, second, third);
+
+        assertThat(line.getWidth()).isEqualTo(3);
+    }
+
+    @Test
+    @DisplayName("라인의 특정 지점이 우측 지점과 연결되어 있는지 확인한다.")
+    void name() {
+        Point first = Point.of(0, Direction.right());
+        Point second = first.next();
+        Point third = Point.of(2, Direction.straight());
+
+        Line line = LadderLine.of(first, second, third);
+
+        assertAll(
+            () -> assertThat(line.isConnectedToRight(Position.of(0))).isTrue(),
+            () -> assertThat(line.isConnectedToRight(Position.of(1))).isFalse(),
+            () -> assertThat(line.isConnectedToRight(Position.of(2))).isFalse()
+        );
+    }
+
 }

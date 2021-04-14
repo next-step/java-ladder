@@ -1,7 +1,7 @@
 package nextstep.refactoring.view.interfaces;
 
-public interface ViewObject<D> {
+public interface ViewObject<D extends Dto> {
 
-    Dto<D> export();
+    D export();
 
 }

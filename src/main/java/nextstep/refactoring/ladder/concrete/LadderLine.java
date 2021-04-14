@@ -1,7 +1,9 @@
 package nextstep.refactoring.ladder.concrete;
 
+import nextstep.refactoring.ladder.concrete.dto.LineDtoImpl;
 import nextstep.refactoring.ladder.engine.Line;
 import nextstep.refactoring.ladder.engine.Position;
+import nextstep.refactoring.ladder.engine.dto.LineDto;
 
 import java.util.Arrays;
 import java.util.List;
@@ -34,5 +36,27 @@ public class LadderLine implements Line {
     @Override
     public Position move(Position position) {
         return points.get(position.getIndex()).traverse();
+    }
+
+    @Override
+    public int getWidth() {
+        return points.size();
+    }
+
+    @Override
+    public boolean isConnectedToRight(Position position) {
+        if (position.getIndex() == getWidth() - 1) {
+            return false;
+        }
+        
+        Point point = points.get(position.getIndex());
+        Position neighborPosition = point.traverse();
+
+        return position.getRight().equals(neighborPosition);
+    }
+
+    @Override
+    public LineDto export() {
+        return LineDtoImpl.of(this);
     }
 }
