@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.IntStream;
 
-import step4.dto.PrizesDto;
 import step4.exception.NotEqualCountException;
 import step4.exception.NotFoundException;
 import step4.util.StringSpliter;
@@ -59,9 +58,5 @@ public class Prizes {
     @Override
     public int hashCode() {
         return Objects.hash(prizes);
-    }
-
-    public PrizesDto toPrizeDto() {
-        return new PrizesDto(this.prizes);
     }
 }

@@ -7,6 +7,7 @@ import java.util.Objects;
 import java.util.stream.IntStream;
 
 import step4.exception.DuplicateNameException;
+import step4.exception.NotFoundException;
 import step4.util.StringSpliter;
 
 public class Players {
@@ -38,6 +39,13 @@ public class Players {
         if (isExists) {
             throw new DuplicateNameException("동일한 이름을 가진 참여자가 존재합니다.");
         }
+    }
+
+    public Player findPlayer(String playerName) {
+        return players.stream()
+            .filter(player -> player.playerName().equals(new PlayerName(playerName)))
+            .findFirst()
+            .orElseThrow(() -> new NotFoundException("존재하지 않는 참가자입니다."));
     }
 
     public int playerCount() {
