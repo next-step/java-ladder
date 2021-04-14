@@ -20,7 +20,7 @@ public class Ladder {
         return lines.linesConnection();
     }
 
-    public Map<String, String> map(List<String> players, List<String> prizes) {
+    public MatchedResult map(List<String> players, List<String> prizes) {
         Map<String, String> result = new LinkedHashMap<>();
 
         IntStream.range(0, players.size())
@@ -29,7 +29,7 @@ public class Ladder {
                         prizes.get(findLastIndex(playerIndex)))
                 );
 
-        return result;
+        return new MatchedResult(result);
     }
 
     private int findLastIndex(int pointIndex) {

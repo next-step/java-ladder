@@ -29,6 +29,6 @@ public class LadderController {
         resultView.printNames(players.names());
         resultView.printLadder(ladder.linesConnection());
         resultView.printNames(prizes.names());
-        Map<String, String> matchedResult = ladder.map(players.names(), prizes.names());
+        MatchedResult matchedResult = ladder.map(players.names(), prizes.names());
     }
 }

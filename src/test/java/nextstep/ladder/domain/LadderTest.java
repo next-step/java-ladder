@@ -39,7 +39,7 @@ public class LadderTest {
         Prizes prizes = new Prizes(4, "꽝", "5000", "꽝", "3000");
 
         //when
-        Map<String, String> matchedResult = ladder.map(players.names(), prizes.names());
+        MatchedResult matchedResult = ladder.map(players.names(), prizes.names());
 
         then(matchedResult.size()).isEqualTo(4);
     }
