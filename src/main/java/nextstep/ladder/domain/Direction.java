@@ -21,7 +21,7 @@ public class Direction {
     }
 
     private void validateContinuous(boolean left, boolean right) {
-        if (left & right) {
+        if (left && right) {
             throw new IllegalArgumentException(CHECK_CONTIONUOUS);
         }
     }
@@ -72,6 +72,10 @@ public class Direction {
         }
 
         return STAY;
+    }
+
+    public boolean rightSide() {
+        return right;
     }
 
     @Override
