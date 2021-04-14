@@ -39,7 +39,7 @@ public final class People {
   }
 
   public boolean contains(Person person) {
-    return false;
+    return people.contains(person);
   }
 
   @Override
