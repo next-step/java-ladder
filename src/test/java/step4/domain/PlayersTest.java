@@ -3,7 +3,9 @@ package step4.domain;
 import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;;
+import org.junit.jupiter.api.Test;
+import step4.exception.DuplicateNameException;
+import step4.exception.MinimumNameLengthException;
 
 public class PlayersTest {
     @Test
@@ -19,7 +21,7 @@ public class PlayersTest {
         // given
         String test = "dhlee, ,gisun";
         // when & then
-        Assertions.assertThrows(IllegalArgumentException.class, () -> new Players(test));
+        Assertions.assertThrows(MinimumNameLengthException.class, () -> new Players(test));
     }
 
     @Test
@@ -27,6 +29,6 @@ public class PlayersTest {
         // given
         String test = "dhlee, dhlee";
         // when & then
-        Assertions.assertThrows(IllegalArgumentException.class, () -> new Players(test));
+        Assertions.assertThrows(DuplicateNameException.class, () -> new Players(test));
     }
 }
