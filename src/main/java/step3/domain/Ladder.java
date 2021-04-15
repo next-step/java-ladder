@@ -2,15 +2,15 @@ package step3.domain;
 
 import java.util.*;
 
-public class Lines {
+public class Ladder {
 
     private final List<Line> lines;
 
-    public Lines(Height height, int countOfPerson) {
+    public Ladder(Height height, int countOfPerson) {
         this.lines = createLines(height, countOfPerson);
     }
 
-    public Lines(List<Line> lines) {
+    public Ladder(List<Line> lines) {
         this.lines = lines;
     }
 
@@ -36,6 +36,14 @@ public class Lines {
         }
 
         return results.getOneResult(position);
+    }
+
+    public ExecutionResults getExecutionResult(ExecutionResults executionResults) {
+        List<ExecutionResult> executionResultsList = new ArrayList<>();
+        for (int i = 0; i < executionResults.size(); i++) {
+            executionResultsList.add(eachPositionExecutionResult(i, executionResults));
+        }
+        return new ExecutionResults(executionResultsList);
     }
 
     public List<Line> lines() {
