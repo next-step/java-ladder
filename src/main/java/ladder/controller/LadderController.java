@@ -6,11 +6,6 @@ import ladder.view.InputView;
 import ladder.view.ResultView;
 
 public class LadderController {
-    private final InputView inputView = new InputView();
-
-    public LadderController() {
-    }
-
     public void startLadderGame() {
         try {
             InputView inputView = new InputView();
