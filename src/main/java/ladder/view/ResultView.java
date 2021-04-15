@@ -23,9 +23,16 @@ public class ResultView {
     }
 
     public void showLadderDrawResult() {
+        printHeader();
         printPlayers();
         printNewLine();
         printLadder();
+    }
+
+    private void printHeader() {
+        printNewLine();
+        System.out.println("실행결과");
+        printNewLine();
     }
 
     private void printLadder() {
@@ -38,9 +45,16 @@ public class ResultView {
         sb.append(indent());
         points.forEach(point -> {
             sb.append(ROOT);
-            sb.append(point.hasRightDirection() ? times(DASH) : times(SPACE));
+            sb.append(makeRightLine(point));
         });
         System.out.println(sb);
+    }
+
+    private String makeRightLine(Point point) {
+        if (point.hasRightDirection()) {
+            return times(DASH);
+        }
+        return times(SPACE);
     }
 
     private void printNewLine() {
