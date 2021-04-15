@@ -12,23 +12,23 @@ public class Line {
         this.points = points;
     }
 
-    public Line(int playersCount) {
-        this.points = init(playersCount);
+    public Line(int count) {
+        this.points = init(count);
     }
 
-    private List<Point> init(int playersCount) {
+    private List<Point> init(int count) {
         List<Point> points = new ArrayList<>();
 
         PointGenerator pointGenerator = new PointGenerator(points);
         Point point = pointGenerator.first();
-        Point lastBodyPoint = pointGenerator.body(bodyCount(playersCount), point);
+        Point lastBodyPoint = pointGenerator.body(bodyCount(count), point);
         pointGenerator.last(lastBodyPoint);
 
         return points;
     }
 
-    private int bodyCount(int playersCount) {
-        return playersCount - (FIRST_POINT_COUNT + LAST_POINT_COUNT);
+    private int bodyCount(int count) {
+        return count - (FIRST_POINT_COUNT + LAST_POINT_COUNT);
     }
 
     public int move(int positionIndex) {
