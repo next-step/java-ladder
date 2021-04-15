@@ -6,11 +6,13 @@ import java.util.stream.Collectors;
 import nextstep.ladder.domain.strategy.BridgeBuilder;
 
 public class Ladder {
+    static final int LADDER_MIN_HEIGHT = 5;
+
     private final List<Line> lines = new ArrayList<>();
     private BridgeBuilder bridgeBuilder;
 
     public Ladder(int height, int countOfPerson) {
-        if (height < 1) {
+        if (height < LADDER_MIN_HEIGHT) {
             throw new IllegalArgumentException("사다리 높이는 1 이상이어야 합니다: " + height);
         }
         for (int i = 0; i < height; i++) {
