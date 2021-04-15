@@ -3,15 +3,15 @@ package ladder.domain;
 import java.util.List;
 
 public class PointGenerator {
-    private final List<Point> pointsNew;
+    private final List<Point> points;
 
-    public PointGenerator(List<Point> pointsNew) {
-        this.pointsNew = pointsNew;
+    public PointGenerator(List<Point> points) {
+        this.points = points;
     }
 
     public Point first() {
         Point firstPoint = generate2(new FirstPointStrategy());
-        pointsNew.add(firstPoint);
+        points.add(firstPoint);
         return firstPoint;
     }
 
@@ -19,7 +19,7 @@ public class PointGenerator {
         Point previousPoint = firstPoint;
         for (int i = 0; i < count; i++) {
             Point currentPoint = generate2(new BodyPointStrategy(previousPoint));
-            pointsNew.add(currentPoint);
+            points.add(currentPoint);
             previousPoint = currentPoint;
         }
         return previousPoint;
@@ -27,7 +27,7 @@ public class PointGenerator {
 
     public Point last(Point previousPoint) {
         Point lastPoint = generate2(new LastPointStrategy(previousPoint));
-        pointsNew.add(lastPoint);
+        points.add(lastPoint);
         return lastPoint;
     }
 
