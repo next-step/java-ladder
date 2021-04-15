@@ -13,11 +13,11 @@ public class LadderController {
     }
 
     public ResultView startLadderGame() {
-        LineResults lineResults1 = new LineResults();
+        LineResults lineResults = new LineResults();
         for (int i = 0; i < inputView.getLadderHeight(); i++) {
             Line ladderLine = new Line(inputView.playersCount());
-            lineResults1.add(ladderLine);
+            lineResults.add(ladderLine);
         }
-        return new ResultView(inputView.getPlayers(), lineResults1);
+        return new ResultView(inputView.getPlayers(), lineResults);
     }
 }
