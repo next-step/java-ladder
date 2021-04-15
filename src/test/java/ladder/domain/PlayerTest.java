@@ -21,7 +21,7 @@ class PlayerTest {
     // given
 
     // when
-    final boolean validName = Player.isValidName(name);
+    final boolean validName = Player.MAX_VALUE_LENGTH >= name.length();
 
     // then
     assertAll("사다리 게임 참가자를 생성한다.",
@@ -38,8 +38,6 @@ class PlayerTest {
 
   static Stream<Arguments> playerNameArguments() {
     return Stream.of(
-            Arguments.of(""),
-            Arguments.of(" "),
             Arguments.of("gmoon"),
             Arguments.of("123456")
     );

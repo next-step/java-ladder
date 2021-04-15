@@ -1,34 +1,18 @@
 package ladder.domain;
 
-import ladder.util.StringUtil;
-
 import java.util.Objects;
 
 public class Player {
-  private static final String EXCEPTION_MESSAGE_FORMAT = "이름(%s)은 %d 길이를 초과했습니다.";
-  private static final int MAX_VALUE_LENGTH = 5;
+  public static final int MAX_VALUE_LENGTH = 5;
 
-  private final String value;
+  private final Name value;
 
-  private Player(String value) {
+  private Player(Name value) {
     this.value = value;
   }
 
   public static Player create(String name) {
-    checkNameLength(name);
-    return new Player(name);
-  }
-
-  public static boolean isValidName(String name) {
-    return !StringUtil.isBlank(name)
-            && name.length() <= MAX_VALUE_LENGTH;
-  }
-
-  private static void checkNameLength(String name) {
-    if (!isValidName(name)) {
-      throw new IllegalArgumentException(String.format(EXCEPTION_MESSAGE_FORMAT
-              , name, MAX_VALUE_LENGTH));
-    }
+    return new Player(Name.ofBlankSafeWithCheckLength(name, MAX_VALUE_LENGTH));
   }
 
   @Override
