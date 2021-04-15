@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-    private List<Point> pointsNew;
+    private List<Point> points;
 
-    public Line(List<Point> pointsNew) {
-        this.pointsNew = pointsNew;
+    public Line(List<Point> points) {
+        this.points = points;
     }
 
     public Line(int playersCount) {
-        this.pointsNew = init(playersCount);
+        this.points = init(playersCount);
     }
 
     private List<Point> init(int playersCount) {
@@ -26,13 +26,13 @@ public class Line {
     }
 
     public int move(int positionIndex) {
-        return pointsNew.get(positionIndex).move();
+        return points.get(positionIndex).move();
     }
 
     @Override
     public String toString() {
         return "Line{" +
-                "pointsNew=" + pointsNew +
+                "pointsNew=" + points +
                 '}';
     }
 }
