@@ -3,7 +3,6 @@ package nextstep.view;
 import nextstep.constant.Constant;
 import nextstep.model.OnlineLadder;
 
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.IntStream;
 
 import static nextstep.constant.Constant.EMPTY_LADDER_STRING;
@@ -40,6 +39,7 @@ public class ResultView implements ConsoleView {
     }
 
     public void printAll(OnlineLadder ladder) {
+        System.out.println(ladder.players().spacedNames());
         IntStream.range(0, this.ladderCount)
                 .forEach((index) -> this.print(ladder, index));
     }

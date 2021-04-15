@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static nextstep.constant.Constant.EMPTY_LADDER_STRING;
+
 public class Players {
     private final List<String> names;
 
@@ -19,8 +21,8 @@ public class Players {
             this.names.add(name);
         }
     }
-    public String names() {
+    public String spacedNames() {
         return names.stream()
-                .collect(Collectors.joining(" ","",""));
+                .collect(Collectors.joining(EMPTY_LADDER_STRING,"",""));
     }
 }

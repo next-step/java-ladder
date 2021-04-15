@@ -18,4 +18,8 @@ public class OnlineLadder extends Ladder {
     public Points points(int row) {
         return this.lines.points(row);
     }
+
+    public Players players() {
+        return players;
+    }
 }
