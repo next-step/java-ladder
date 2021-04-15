@@ -21,9 +21,12 @@ public class LineResults {
     public int arrivalPoint(int startLine, int startPoint) {
         int currentPoint = startPoint;
         for (int i = startLine; i < lineResults.size(); i++) {
-            int movedPoint = lineResults.get(i).move(currentPoint);
-            currentPoint = movedPoint;
+            currentPoint = lineResults.get(i).move(currentPoint);
         }
         return currentPoint;
+    }
+
+    public List<Line> getLineResults() {
+        return lineResults;
     }
 }

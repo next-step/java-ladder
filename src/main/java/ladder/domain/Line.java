@@ -29,10 +29,14 @@ public class Line {
         return points.get(positionIndex).move();
     }
 
+    public List<Point> getPoints() {
+        return points;
+    }
+
     @Override
     public String toString() {
         return "Line{" +
-                "pointsNew=" + points +
+                "points=" + points +
                 '}';
     }
 }
