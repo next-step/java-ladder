@@ -37,7 +37,7 @@ public class Point {
         return new Point(index + 1, direction.last());
     }
 
-    public static Point first(Boolean right) {
+    public static Point first(final Boolean right) {
         return new Point(0, Direction.first(right));
     }
 

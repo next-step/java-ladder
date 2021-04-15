@@ -31,11 +31,11 @@ public class ExecutionResultMap {
                 ));
     }
 
-    private void add(Person person, String executionResult) {
+    private void add(final Person person, final String executionResult) {
         this.executionResultMap.put(person.toString(), executionResult);
     }
 
-    public String getExecutionResult(String personName) {
+    public String getExecutionResult(final String personName) {
         return Optional.ofNullable(executionResultMap.get(personName))
                 .orElseThrow(() -> new RuntimeException("참여하지 않은 사람은 입력할 수 없습니다."));
     }

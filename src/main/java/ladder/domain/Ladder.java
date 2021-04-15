@@ -22,7 +22,7 @@ public class Ladder {
                         Ladder::new));
     }
 
-    public int getResultIndex(int startIndex) {
+    public int getResultIndex(final int startIndex) {
         int resultIndex = startIndex;
         for (LadderLine ladderLine : ladderLines) {
             resultIndex = ladderLine.move(resultIndex);

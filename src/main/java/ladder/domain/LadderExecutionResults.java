@@ -13,7 +13,7 @@ public class LadderExecutionResults {
         return new LadderExecutionResults(ladder, executionResults);
     }
 
-    public String getExecutionResult(int index) {
+    public String getExecutionResult(final int index) {
         return executionResults.getExecutionResult(ladder.getResultIndex(index));
     }
 }

@@ -10,7 +10,7 @@ public class Direction {
     private final boolean left;
     private final boolean right;
 
-    private Direction(boolean left, boolean right) {
+    private Direction(final boolean left, final boolean right) {
         if (left && right) {
             throw new IllegalArgumentException("잘못된 방향입니다.");
         }
@@ -19,7 +19,7 @@ public class Direction {
         this.right = right;
     }
 
-    public static Direction of(boolean first, boolean second) {
+    public static Direction of(final boolean first, final boolean second) {
         return new Direction(first, second);
     }
 
@@ -31,7 +31,7 @@ public class Direction {
         return this.left;
     }
 
-    public Direction next(boolean nextRight) {
+    public Direction next(final boolean nextRight) {
         return of(this.right, nextRight);
     }
 
@@ -43,7 +43,7 @@ public class Direction {
         return next(pointStrategy.generator());
     }
 
-    public static Direction first(boolean right) {
+    public static Direction first(final boolean right) {
         return of(FALSE, right);
     }
 

@@ -14,7 +14,7 @@ public class LadderLine {
         this.points = points;
     }
 
-    public static LadderLine of(int countOfPerson, PointStrategy pointStrategy) {
+    public static LadderLine of(final int countOfPerson, PointStrategy pointStrategy) {
         List<Point> points = new ArrayList<>();
         Point point = initFirst(points, pointStrategy);
         for (int i = 1; i < countOfPerson - 1; i++) {
@@ -25,12 +25,12 @@ public class LadderLine {
         return new LadderLine(points);
     }
 
-    private static void initLast(List<Point> points, Point point) {
+    private static void initLast(final List<Point> points, Point point) {
         point = point.last();
         points.add(point);
     }
 
-    private static Point initFirst(List<Point> points, PointStrategy pointStrategy) {
+    private static Point initFirst(final List<Point> points, final PointStrategy pointStrategy) {
         Point point = Point.first(pointStrategy.generator());
         points.add(point);
         return point;
