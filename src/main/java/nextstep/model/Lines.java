@@ -15,14 +15,6 @@ public class Lines {
         }
     }
 
-    public void mark(int targetVertical, int targetHorizon) {
-        this.lines.get(targetVertical).markOne(targetHorizon);
-    }
-
-    public String lineString(int targetVertical) {
-        return this.lines.get(targetVertical).lineString();
-    }
-
     public void initMark() {
         this.lines.get(0).markRandom();
     }
@@ -32,5 +24,9 @@ public class Lines {
             Line top = this.lines.get(i - 1);
             this.lines.get(i).markRandom(top);
         }
+    }
+
+    public Points points(int row) {
+        return this.lines.get(row).getPoints();
     }
 }

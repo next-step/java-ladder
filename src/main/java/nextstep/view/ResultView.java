@@ -1,10 +1,16 @@
 package nextstep.view;
 
+import nextstep.constant.Constant;
 import nextstep.model.OnlineLadder;
 
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.IntStream;
+
 import static nextstep.constant.Constant.EMPTY_LADDER_STRING;
+import static nextstep.constant.Constant.HORIZON_LADDER_STRING;
 
 public class ResultView implements ConsoleView {
+
     private final int ladderCount;
 
     public ResultView(int ladderCount) {
@@ -17,14 +23,19 @@ public class ResultView implements ConsoleView {
     }
 
     public void print(OnlineLadder ladder, int targetHeight) {
-        System.out.print(ladder.ladderString(targetHeight));
+        StringBuilder stringBuilder = new StringBuilder();
+        ladder.points(targetHeight).points().stream()
+                .forEach(point -> {
+                    stringBuilder.append(Constant.SPLIT_LADDER_STRING);
+                    stringBuilder.append( (point) ? HORIZON_LADDER_STRING : EMPTY_LADDER_STRING);
+                });
+        stringBuilder.append("|");
+        System.out.print(stringBuilder.toString());
         System.out.println();
     }
 
     public void printAll(OnlineLadder ladder) {
-        System.out.println(ladder.playersString());
-        for (int i = 0; i < this.ladderCount; i++) {
-            this.print(ladder, i);
-        }
+        IntStream.range(0, this.ladderCount)
+                .forEach((index) -> this.print(ladder, index));
     }
 }

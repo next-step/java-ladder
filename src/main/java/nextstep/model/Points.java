@@ -44,6 +44,10 @@ public class Points {
         return this.points.get(i);
     }
 
+    public List<Boolean> points() {
+        return points;
+    }
+
     public void markBottom(Points top) {
         for (int i = 0; i < top.size(); i++) {
             if (top.get(i)) {
