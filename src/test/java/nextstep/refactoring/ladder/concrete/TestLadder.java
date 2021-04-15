@@ -8,7 +8,7 @@ import java.util.Arrays;
 public class TestLadder {
 
     public static Ladder ladder() {
-        return new LadderImpl(Arrays.asList(
+        return new Ladder(Arrays.asList(
             twoConnectedLine(),
             middleConnectedLine(),
             firstConnectedLine(),
