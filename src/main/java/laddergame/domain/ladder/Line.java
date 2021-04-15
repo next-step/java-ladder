@@ -25,7 +25,7 @@ public class Line {
 
     /* 전략에 따라서 라인의 포인트들을 연결한다. */
     public void connect(LadderStrategy strategy) {
-        Link<Point, Point> link = new Link<>();
+        PointLink link = new PointLink();
         link.pair(points.get(0));
         points.forEach(point -> {
             link.pair(point);
@@ -34,7 +34,7 @@ public class Line {
     }
 
     public List<Boolean> isConnect() {
-        Link<Point, Point> link = new Link<>();
+        PointLink link = new PointLink();
         link.pair(points.get(0));
         return points.stream().map(point -> {
             link.pair(point);

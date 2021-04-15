@@ -18,20 +18,18 @@ public class Players {
         this.players = playerList;
     }
 
-    private boolean validPlayers(List<Player> playerList) {
+    private void validPlayers(List<Player> playerList) {
         Set<Name> names = new HashSet<>();
         playerList.forEach(player -> player.addName(names));
         if (names.size() != playerList.size()) {
             throw new IllegalArgumentException(ILLEGAL_DUPLICATE_NAME);
         }
-        return true;
     }
 
-    private boolean emptyPlayers(List<Player> playerList) {
+    private void emptyPlayers(List<Player> playerList) {
         if (playerList == null || playerList.isEmpty() || playerList.size() == 0) {
             throw new IllegalArgumentException(ILLEGAL_EMPTY_PLAYER);
         }
-        return true;
     }
 
     public List<Player> getPlayers() {

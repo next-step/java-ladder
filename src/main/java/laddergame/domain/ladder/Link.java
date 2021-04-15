@@ -3,68 +3,38 @@
  * */
 package laddergame.domain.ladder;
 
-import static laddergame.util.Message.ILLEGAL_LINK;
-
-public class Link<P, N> {
-    private P now;
-    private N next;
+public class Link<T> {
+    protected T now;
+    protected T next;
 
     /* 두 Point를 가지는 한쌍을 생성한다. */
-    public void pair(P newPair) {
+    public void pair(T newPair) {
         switchPair(newPair);
         next(newPair);
         now(newPair);
     }
 
     /* 현재 포인트가 비어있다면 now에 넣는다. */
-    private void now(P newPair) {
+    private void now(T newPair) {
         if (!hasNow()) {
             this.now = newPair;
         }
     }
 
     /* 다음 포인트만 비어있다면 next에 넣는다. */
-    private void next(P newPair) {
+    private void next(T newPair) {
         if (hasNow() && !hasNext()) {
-            this.next = (N) newPair;
+            this.next = newPair;
         }
     }
 
     /* 두 포인트가 넣어져있다면 다음을 현재로, 그리고 새로운 포인트를 다음에 넣는다. */
-    private void switchPair(P newPair) {
+    private void switchPair(T newPair) {
         if (haveAll()) {
-            this.now = (P) this.next;
-            this.next = (N) newPair;
+            this.now = this.next;
+            this.next = newPair;
         }
     }
-
-    /* 전략에 따라서 한 쌍을 연결한다. */
-    public void link(LadderStrategy strategy) {
-        if (validLink() && strategy.test()) {
-            ((Point) now).link((Point) next);
-            ((Point) next).link((Point) now);
-        }
-    }
-
-    public boolean isLink() {
-        validLink();
-        if (((Point) now).isLinkedWith((Point) next) &&
-                ((Point) next).isLinkedWith((Point) now)) {
-            return true;
-        }
-        return false;
-    }
-
-    private boolean validLink() {
-        if (!haveAll() || !(now instanceof Point) || !(next instanceof Point)) {
-            throw new IllegalArgumentException(ILLEGAL_LINK);
-        }
-        if (((Point) now).isLinked() || (Point) now == (Point) next) {
-            return false;
-        }
-        return true;
-    }
-
 
     public boolean hasNow() {
         return now != null;
@@ -78,11 +48,11 @@ public class Link<P, N> {
         return hasNow() && hasNext();
     }
 
-    public boolean isNow(P now) {
+    public boolean isNow(T now) {
         return hasNow() && this.now == now;
     }
 
-    public boolean isNext(N next) {
+    public boolean isNext(T next) {
         return hasNext() && this.next == next;
     }
 

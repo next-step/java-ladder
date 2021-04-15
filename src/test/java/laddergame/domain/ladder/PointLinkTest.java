@@ -5,15 +5,15 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class LinkTest {
+public class PointLinkTest {
 
     private Point point = new Point();
     private Point linkPoint = new Point();
-    private Link<Point, Point> link;
+    private PointLink link;
 
     @BeforeEach
     void setUp() {
-        link = new Link<>();
+        link = new PointLink();
         link.pair(point);
     }
 
