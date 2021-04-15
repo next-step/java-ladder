@@ -13,34 +13,28 @@ public class ResultView {
     private static final String LINE_CHARACTER  = "|";
     private static final String SPACE_INPUT_CRITERIA = "%6s";
 
-    private MessagePrinter messagePrinter;
-
-    public ResultView() {
-        this.messagePrinter = new MessagePrinter();
-    }
-
     public void printPersons(Persons persons) {
-        messagePrinter.println(String.format("%n사다리 결과"));
+        System.out.println(String.format("%n사다리 결과"));
         StringBuilder builder = new StringBuilder();
         builder.append(System.lineSeparator());
         persons.getPersons()
                 .stream()
                 .forEach(person ->
                         builder.append(String.format(SPACE_INPUT_CRITERIA, person.toString())));
-        messagePrinter.println(builder.toString());
+        System.out.println(builder.toString());
     }
 
     public void printLadder(Ladder ladder) {
         StringBuilder builder = new StringBuilder();
-        ladder.getLines().stream()
-                .forEach(line -> {
+        ladder.getLadderLines().stream()
+                .forEach(ladderLine -> {
                     builder.append(String.format(SPACE_INPUT_CRITERIA, LINE_CHARACTER));
-                    builder.append(line.getPoints().stream()
-                            .map(point -> getPointCharacter(point.getPoint()))
+                    builder.append(ladderLine.getPoints().stream()
+                            .map(point -> getPointCharacter(point.isRight()))
                             .collect(Collectors.joining(LINE_CHARACTER)));
                     builder.append(System.lineSeparator());
                 });
-        messagePrinter.println(builder.toString());
+        System.out.println(builder.toString());
     }
 
     private String getPointCharacter(Boolean point) {
@@ -56,14 +50,14 @@ public class ResultView {
                 .stream()
                 .forEach(executionResult ->
                         builder.append(String.format(SPACE_INPUT_CRITERIA, executionResult)));
-        messagePrinter.println(builder.toString());
+        System.out.println(builder.toString());
     }
 
     public void printExecutionResult(ExecutionResultMap executionResultMap, String personName) {
         StringBuilder builder = new StringBuilder();
         builder.append(System.lineSeparator() + "실행결과");
         builder.append(System.lineSeparator() + executionResultMap.getExecutionResult(personName));
-        messagePrinter.println(builder.toString());
+        System.out.println(builder.toString());
     }
 
     public void printAllExecutionResult(ExecutionResultMap executionResultMap) {
@@ -72,6 +66,6 @@ public class ResultView {
         for (String personName : executionResultMap.getExecutionResultMap().keySet()) {
             builder.append(System.lineSeparator() + personName + " : " + executionResultMap.getExecutionResult(personName));
         }
-        messagePrinter.println(builder.toString());
+        System.out.println(builder.toString());
     }
 }
