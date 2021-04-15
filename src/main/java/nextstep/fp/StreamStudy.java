@@ -31,10 +31,10 @@ public class StreamStudy {
         // TODO 이 부분에 구현한다.
         words.stream()
                 .filter(w -> w.length() > 12)
-                .sorted(Comparator.comparing(String::length).reversed())
                 .distinct()
-                .map(String::toLowerCase)
+                .sorted(Comparator.comparing(String::length).reversed())
                 .limit(100)
+                .map(String::toLowerCase)
                 .forEach(System.out::println);
     }
 
