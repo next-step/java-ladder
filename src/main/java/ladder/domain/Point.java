@@ -41,16 +41,10 @@ public class Point {
 	}
 
 	public boolean isRight() {
-		if (current) {
-			return true;
-		}
-		return false;
+		return current;
 	}
 
 	public boolean isLeft() {
-		if (left) {
-			return true;
-		}
 		return false;
 	}
 }
