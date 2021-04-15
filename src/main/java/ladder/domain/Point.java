@@ -3,6 +3,8 @@ package ladder.domain;
 import java.util.Objects;
 
 public class Point {
+    private final static int VARIATION_UNIT = 1;
+
     private final int index;
     private final Direction direction;
 
@@ -12,7 +14,7 @@ public class Point {
     }
 
     public int nextIndex() {
-        return index + 1;
+        return increaseIndex(index);
     }
 
     public boolean hasRightDirection() {
@@ -29,12 +31,20 @@ public class Point {
 
     public int move() {
         if (direction.hasRightDirection()) {
-            return index + 1;
+            return increaseIndex(index);
         }
         if (direction.hasLeftDirection()) {
-            return index - 1;
+            return decreaseIndex(index);
         }
         return index;
+    }
+
+    private int increaseIndex(int index) {
+        return index + VARIATION_UNIT;
+    }
+
+    private int decreaseIndex(int index) {
+        return index - VARIATION_UNIT;
     }
 
     @Override
