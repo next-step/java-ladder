@@ -3,21 +3,21 @@ package ladder.domain;
 import ladder.util.RandomUtil;
 
 public class BodyPointStrategy implements PointStrategy {
-    private final PointNew previousPointNew;
+    private final Point previousPoint;
 
-    public BodyPointStrategy(PointNew previousPointNew) {
-        this.previousPointNew = previousPointNew;
+    public BodyPointStrategy(Point previousPoint) {
+        this.previousPoint = previousPoint;
     }
 
     @Override
-    public PointNew point() {
-        if (previousPointNew.hasRightDirection()) {
-            return new PointNew(previousPointNew.nextIndex(), new DirectionNew(false, false));
+    public Point point() {
+        if (previousPoint.hasRightDirection()) {
+            return new Point(previousPoint.nextIndex(), new Direction(false, false));
         }
-        if (previousPointNew.hasLeftDirection()) {
-            return new PointNew(previousPointNew.nextIndex(), new DirectionNew(false, RandomUtil.trueOrFalse()));
+        if (previousPoint.hasLeftDirection()) {
+            return new Point(previousPoint.nextIndex(), new Direction(false, RandomUtil.trueOrFalse()));
         }
         boolean trueOrFalse = RandomUtil.trueOrFalse();
-        return new PointNew(previousPointNew.nextIndex(), new DirectionNew(trueOrFalse, !trueOrFalse));
+        return new Point(previousPoint.nextIndex(), new Direction(trueOrFalse, !trueOrFalse));
     }
 }

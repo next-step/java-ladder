@@ -15,18 +15,18 @@ public class LineResultsTest {
         Players players = Players.of(Arrays.asList("1", "2", "3"));
 
         int index = 0;
-        PointNew pointNew1 = new PointNew(index++, new DirectionNew(false, true));
-        PointNew pointNew2 = new PointNew(index++, new DirectionNew(true, false));
-        PointNew pointNew3 = new PointNew(index++, new DirectionNew(false, false));
+        Point point1 = new Point(index++, new Direction(false, true));
+        Point point2 = new Point(index++, new Direction(true, false));
+        Point point3 = new Point(index++, new Direction(false, false));
 
-        Line ladderLine1 = new Line(Arrays.asList(pointNew1, pointNew2, pointNew3));
+        Line ladderLine1 = new Line(Arrays.asList(point1, point2, point3));
 
         index = 0;
-        PointNew pointNew4 = new PointNew(index++, new DirectionNew(false, false));
-        PointNew pointNew5 = new PointNew(index++, new DirectionNew(false, true));
-        PointNew pointNew6 = new PointNew(index++, new DirectionNew(true, false));
+        Point point4 = new Point(index++, new Direction(false, false));
+        Point point5 = new Point(index++, new Direction(false, true));
+        Point point6 = new Point(index++, new Direction(true, false));
 
-        Line ladderLine2 = new Line(Arrays.asList(pointNew4, pointNew5, pointNew6));
+        Line ladderLine2 = new Line(Arrays.asList(point4, point5, point6));
 
         LineResults lineResults = new LineResults();
         lineResults.add(ladderLine1);

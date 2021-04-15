@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-    private List<PointNew> pointsNew;
+    private List<Point> pointsNew;
 
-    public Line(List<PointNew> pointsNew) {
+    public Line(List<Point> pointsNew) {
         this.pointsNew = pointsNew;
     }
 
@@ -14,12 +14,12 @@ public class Line {
         this.pointsNew = init(playersCount);
     }
 
-    private List<PointNew> init(int playersCount) {
-        List<PointNew> pointsNew = new ArrayList<>();
+    private List<Point> init(int playersCount) {
+        List<Point> pointsNew = new ArrayList<>();
 
         PointGenerator pointGenerator = new PointGenerator(pointsNew);
-        PointNew pointNew = pointGenerator.first();
-        PointNew lastBodyPoint = pointGenerator.body(playersCount - 2, pointNew);
+        Point point = pointGenerator.first();
+        Point lastBodyPoint = pointGenerator.body(playersCount - 2, point);
         pointGenerator.last(lastBodyPoint);
 
         return pointsNew;

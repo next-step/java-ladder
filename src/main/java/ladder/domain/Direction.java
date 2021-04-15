@@ -2,11 +2,11 @@ package ladder.domain;
 
 import java.util.Objects;
 
-public class DirectionNew {
+public class Direction {
     private final boolean left;
     private final boolean right;
 
-    public DirectionNew(boolean left, boolean right) {
+    public Direction(boolean left, boolean right) {
         if (left && right) {
             throw new IllegalArgumentException("양쪽 방향을 동시에 가질 수 없습니다.");
         }
@@ -30,7 +30,7 @@ public class DirectionNew {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        DirectionNew that = (DirectionNew) o;
+        Direction that = (Direction) o;
         return left == that.left && right == that.right;
     }
 

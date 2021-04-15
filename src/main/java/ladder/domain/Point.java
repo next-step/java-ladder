@@ -2,13 +2,13 @@ package ladder.domain;
 
 import java.util.Objects;
 
-public class PointNew {
+public class Point {
     private final int index;
-    private final DirectionNew directionNew;
+    private final Direction direction;
 
-    public PointNew(int index, DirectionNew directionNew) {
+    public Point(int index, Direction direction) {
         this.index = index;
-        this.directionNew = directionNew;
+        this.direction = direction;
     }
 
     public int nextIndex() {
@@ -16,22 +16,22 @@ public class PointNew {
     }
 
     public boolean hasRightDirection() {
-        return directionNew.hasRightDirection();
+        return direction.hasRightDirection();
     }
 
     public boolean hasLeftDirection() {
-        return directionNew.hasLeftDirection();
+        return direction.hasLeftDirection();
     }
 
     public boolean hasDirection() {
-        return directionNew.hasDirection();
+        return direction.hasDirection();
     }
 
     public int move() {
-        if (directionNew.hasRightDirection()) {
+        if (direction.hasRightDirection()) {
             return index + 1;
         }
-        if (directionNew.hasLeftDirection()) {
+        if (direction.hasLeftDirection()) {
             return index - 1;
         }
         return index;
@@ -41,12 +41,12 @@ public class PointNew {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        PointNew pointNew = (PointNew) o;
-        return index == pointNew.index && Objects.equals(directionNew, pointNew.directionNew);
+        Point point = (Point) o;
+        return index == point.index && Objects.equals(direction, point.direction);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(index, directionNew);
+        return Objects.hash(index, direction);
     }
 }

@@ -3,17 +3,17 @@ package ladder.domain;
 import ladder.util.RandomUtil;
 
 public class LastPointStrategy implements PointStrategy {
-    private final PointNew previousPointNew;
+    private final Point previousPoint;
 
-    public LastPointStrategy(PointNew previousPointNew) {
-        this.previousPointNew = previousPointNew;
+    public LastPointStrategy(Point previousPoint) {
+        this.previousPoint = previousPoint;
     }
 
     @Override
-    public PointNew point() {
-        if (previousPointNew.hasDirection()) {
-            return new PointNew(previousPointNew.nextIndex(), new DirectionNew(false, false));
+    public Point point() {
+        if (previousPoint.hasDirection()) {
+            return new Point(previousPoint.nextIndex(), new Direction(false, false));
         }
-        return new PointNew(previousPointNew.nextIndex(), new DirectionNew(RandomUtil.trueOrFalse(), false));
+        return new Point(previousPoint.nextIndex(), new Direction(RandomUtil.trueOrFalse(), false));
     }
 }

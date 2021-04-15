@@ -1,9 +1,9 @@
 package ladder;
 
-import ladder.domain.DirectionNew;
+import ladder.domain.Direction;
 import ladder.domain.Line;
 import ladder.domain.Players;
-import ladder.domain.PointNew;
+import ladder.domain.Point;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -26,13 +26,13 @@ public class LineTest {
     @Test
     void line() {
         int index = 0;
-        PointNew pointNew1 = new PointNew(index++, new DirectionNew(false, true));
-        PointNew pointNew2 = new PointNew(index++, new DirectionNew(true, false));
-        PointNew pointNew3 = new PointNew(index++, new DirectionNew(false, true));
-        PointNew pointNew4 = new PointNew(index++, new DirectionNew(true, false));
-        PointNew pointNew5 = new PointNew(index++, new DirectionNew(false, false));
+        Point point1 = new Point(index++, new Direction(false, true));
+        Point point2 = new Point(index++, new Direction(true, false));
+        Point point3 = new Point(index++, new Direction(false, true));
+        Point point4 = new Point(index++, new Direction(true, false));
+        Point point5 = new Point(index++, new Direction(false, false));
 
-        Line ladderLine = new Line(Arrays.asList(pointNew1, pointNew2, pointNew3, pointNew4, pointNew5));
+        Line ladderLine = new Line(Arrays.asList(point1, point2, point3, point4, point5));
 
         assertThat(ladderLine.move(0)).isEqualTo(1);
         assertThat(ladderLine.move(2)).isEqualTo(3);

@@ -8,7 +8,7 @@ public class FirstPointStrategy implements PointStrategy {
     }
 
     @Override
-    public PointNew point() {
-        return new PointNew(0, new DirectionNew(false, RandomUtil.trueOrFalse()));
+    public Point point() {
+        return new Point(0, new Direction(false, RandomUtil.trueOrFalse()));
     }
 }
