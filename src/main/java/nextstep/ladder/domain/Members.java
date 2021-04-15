@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Members implements Iterable<Member> {
 
@@ -27,5 +28,12 @@ public class Members implements Iterable<Member> {
     @Override
     public Iterator<Member> iterator() {
         return members.iterator();
+    }
+
+    public int findHorizontalNumber(Member member) {
+        return IntStream.range(0, members.size())
+            .filter(i -> member.equals(members.get(i)))
+            .findFirst()
+            .orElseThrow(() -> new RuntimeException("참가자가 아닙니다."));
     }
 }
