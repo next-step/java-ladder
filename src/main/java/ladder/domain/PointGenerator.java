@@ -10,7 +10,7 @@ public class PointGenerator {
     }
 
     public Point first() {
-        Point firstPoint = generate2(new FirstPointStrategy());
+        Point firstPoint = generate(new FirstPointStrategy());
         points.add(firstPoint);
         return firstPoint;
     }
@@ -18,20 +18,19 @@ public class PointGenerator {
     public Point body(int count, Point firstPoint) {
         Point previousPoint = firstPoint;
         for (int i = 0; i < count; i++) {
-            Point currentPoint = generate2(new BodyPointStrategy(previousPoint));
+            Point currentPoint = generate(new BodyPointStrategy(previousPoint));
             points.add(currentPoint);
             previousPoint = currentPoint;
         }
         return previousPoint;
     }
 
-    public Point last(Point previousPoint) {
-        Point lastPoint = generate2(new LastPointStrategy(previousPoint));
+    public void last(Point previousPoint) {
+        Point lastPoint = generate(new LastPointStrategy(previousPoint));
         points.add(lastPoint);
-        return lastPoint;
     }
 
-    private Point generate2(PointStrategy pointStrategy) {
+    private Point generate(PointStrategy pointStrategy) {
         return pointStrategy.point();
     }
 }
