@@ -18,11 +18,11 @@ public class LadderLine implements Line {
         this.points = points;
     }
 
-    public static Line of(Point... points) {
+    public static LadderLine of(Point... points) {
         return LadderLine.of(Arrays.asList(points));
     }
 
-    public static Line of(List<Point> points) {
+    public static LadderLine of(List<Point> points) {
         validate(points);
         return new LadderLine(points);
     }
