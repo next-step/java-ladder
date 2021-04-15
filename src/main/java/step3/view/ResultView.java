@@ -1,6 +1,5 @@
 package step3.view;
 
-import step3.domain.Result;
 import step3.domain.*;
 
 import java.util.List;
@@ -32,7 +31,7 @@ public class ResultView {
         }
     }
 
-    public void printLadder(Lines lines) {
+    public void printLadder(Ladder lines) {
 
         lines.lines().stream()
                 .map(Line::row)
@@ -67,17 +66,17 @@ public class ResultView {
         System.out.println(BLANK);
     }
 
-    public void printExecutionResult(Result result, int index) {
+    public void printExecutionResult(ExecutionResults result, int index) {
         System.out.println("실행 결과");
-        System.out.println(result.getExecutionResult().getOneResult(index));
+        System.out.println(result.getOneResult(index));
         System.out.println(BLANK);
     }
 
-    public void printAllExecutionResult(Result result, Persons persons) {
+    public void printAllExecutionResult(ExecutionResults result, Persons persons) {
 
         System.out.println("실행 결과");
         for (int i = 0; i < persons.size(); i++) {
-            System.out.println(persons.get(i) + " : " + result.getExecutionResult().getOneResult(i));
+            System.out.println(persons.get(i) + " : " + result.getOneResult(i));
         }
 
         System.out.println(BLANK);

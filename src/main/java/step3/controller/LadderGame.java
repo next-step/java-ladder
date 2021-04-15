@@ -1,7 +1,6 @@
 package step3.controller;
 
 
-import step3.domain.Result;
 import step3.domain.*;
 import step3.view.InputView;
 import step3.view.ResultView;
@@ -17,21 +16,20 @@ public class LadderGame {
         int height = inputView.inputHeight();
 
         resultView.printPerson(persons);
-        Lines lines = new Lines(new Height(height), persons.personList().size());
+        Ladder lines = new Ladder(new Height(height), persons.personList().size());
         resultView.printLadder(lines);
 
-        Result result = new Result(lines, executionResults);
         resultView.executionResultLine(executionResults);
         
         while (true) {
             String resultName = inputView.inputPerson();
             int personIndex = persons.getPersonIndex(new Person(resultName));
-            checkInputAll(persons, result, resultName);
-            resultView.printExecutionResult(result, personIndex);
+            checkInputAll(persons, lines.getExecutionResult(executionResults), resultName);
+            resultView.printExecutionResult(lines.getExecutionResult(executionResults), personIndex);
         }
     }
 
-    private void checkInputAll(Persons persons, Result result, String resultName) {
+    private void checkInputAll(Persons persons, ExecutionResults result, String resultName) {
         if (resultName.equals("all")) {
             resultView.printAllExecutionResult(result, persons);
             System.exit(0);
