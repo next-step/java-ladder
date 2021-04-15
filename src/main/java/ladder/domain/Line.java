@@ -17,14 +17,14 @@ public class Line {
     }
 
     private List<Point> init(int playersCount) {
-        List<Point> pointsNew = new ArrayList<>();
+        List<Point> points = new ArrayList<>();
 
-        PointGenerator pointGenerator = new PointGenerator(pointsNew);
+        PointGenerator pointGenerator = new PointGenerator(points);
         Point point = pointGenerator.first();
         Point lastBodyPoint = pointGenerator.body(bodyCount(playersCount), point);
         pointGenerator.last(lastBodyPoint);
 
-        return pointsNew;
+        return points;
     }
 
     private int bodyCount(int playersCount) {
