@@ -17,4 +17,13 @@ public class LineResults {
     public void add(Line line) {
         lineResults.add(line);
     }
+
+    public int arrivalPoint(int startLine, int startPoint) {
+        int currentPoint = startPoint;
+        for (int i = startLine; i < lineResults.size(); i++) {
+            int movedPoint = lineResults.get(i).move(currentPoint);
+            currentPoint = movedPoint;
+        }
+        return currentPoint;
+    }
 }
