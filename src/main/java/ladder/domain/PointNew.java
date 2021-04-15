@@ -24,4 +24,14 @@ public class PointNew {
     public boolean hasDirection() {
         return directionNew.hasDirection();
     }
+
+    public int move() {
+        if (directionNew.hasRightDirection()) {
+            return index + 1;
+        }
+        if (directionNew.hasLeftDirection()) {
+            return index - 1;
+        }
+        return index;
+    }
 }

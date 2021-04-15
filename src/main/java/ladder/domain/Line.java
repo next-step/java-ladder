@@ -2,14 +2,12 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class Line {
-    private List<Point> points;
     private List<PointNew> pointsNew;
 
-    public Line(List<Point> points) {
-        this.points = points;
+    public Line(List<PointNew> pointsNew) {
+        this.pointsNew = pointsNew;
     }
 
     public Line(int playersCount) {
@@ -27,22 +25,14 @@ public class Line {
         return pointsNew;
     }
 
-    public static Line of(Players players) {
-        List<Point> points = new ArrayList<>();
-        Optional.ofNullable(players)
-                .map(Players::allPlayers)
-                .orElseThrow(IllegalArgumentException::new)
-                .stream()
-                .map(player -> new Point(players.playerPosition(player)))
-                .forEach(points::add);
-        return new Line(points);
+    public int move(int positionIndex) {
+        return pointsNew.get(positionIndex).move();
     }
 
     @Override
     public String toString() {
         return "Line{" +
-                "points=" + points +
-                ", pointsNew=" + pointsNew +
+                "pointsNew=" + pointsNew +
                 '}';
     }
 }
