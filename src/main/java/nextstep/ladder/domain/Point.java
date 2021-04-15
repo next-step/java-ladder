@@ -8,7 +8,7 @@ public class Point {
     private final int index;
     private final Direction direction;
 
-    public Point(int index, Direction direction) {
+    private Point(int index, Direction direction) {
         this.index = index;
         this.direction = direction;
     }
@@ -29,12 +29,12 @@ public class Point {
         return new Point(index + 1, direction.last());
     }
 
-    public boolean isConnected() {
-        return direction.hasAnyDirection();
-    }
-
     public int move() {
         return index + direction.move();
+    }
+
+    public boolean hasLeftDirection() {
+        return direction.hasLeftDirection();
     }
 
     public boolean hasRightDirection() {

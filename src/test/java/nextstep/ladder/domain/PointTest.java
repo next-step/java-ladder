@@ -33,37 +33,20 @@ public class PointTest {
     }
 
     @Test
-    @DisplayName("라인의 좌표와 방향을 인자로 받아 해당 좌표의 연결 상태를 나타내는 객체를 생성한다.")
-    public void create() throws Exception {
-        //given
-        Point point = new Point(0, Direction.first(connectableTrueStrategy));
-        Point unConnectedPoint = new Point(0, Direction.first(connectableFalseStrategy));
-
-        //when
-        boolean connected = point.isConnected();
-        boolean unConnected = unConnectedPoint.isConnected();
-
-        then(connected).isTrue();
-        then(unConnected).isFalse();
-    }
-
-    @Test
     @DisplayName("현재 좌표에서 연결 방향으로 이동한다.")
     public void move() throws Exception {
-        //given
-        Point point = new Point(0, Direction.first(connectableTrueStrategy));
-
-        //when
-        int movedPoint = point.move();
-
-        then(movedPoint).isEqualTo(1);
+        assertThat(pointWithRightDirection.move()).isEqualTo(1);
+        assertThat(pointWithNone.move()).isEqualTo(0);
     }
 
     @Test
     @DisplayName("라인의 첫 번째 좌표를 생성한다.")
     public void first() throws Exception {
-        Point point = Point.first(connectableTrueStrategy);
-        assertThat(point).isEqualTo(new Point(0, Direction.first(connectableTrueStrategy)));
+        Point rightDirectionPoint = Point.first(connectableTrueStrategy);
+        Point noneDirectionPoint = Point.first(connectableFalseStrategy);
+
+        assertThat(rightDirectionPoint).isEqualTo(pointWithRightDirection);
+        assertThat(noneDirectionPoint).isEqualTo(pointWithNone);
     }
 
     @Test
@@ -73,8 +56,8 @@ public class PointTest {
         Point leftTrue = pointWithRightDirection.last();
         Point leftFalse = pointWithNone.last();
 
-        then(leftTrue).isEqualTo(new Point(1, new Direction(true, false)));
-        then(leftFalse).isEqualTo(new Point(1, new Direction(false, false)));
+        then(leftTrue.hasLeftDirection()).isTrue();
+        then(leftFalse.hasLeftDirection()).isFalse();
     }
 
     @Test
@@ -85,20 +68,22 @@ public class PointTest {
         Point allFalse = pointWithNone.next(connectableFalseStrategy);
         Point rightTrue = pointWithNone.next(connectableTrueStrategy);
 
-        then(leftTrue).isEqualTo(new Point(1, new Direction(true, false)));
-        then(allFalse).isEqualTo(new Point(1, new Direction(false, false)));
-        then(rightTrue).isEqualTo(new Point(1, new Direction(false, true)));
+        then(leftTrue.move()).isEqualTo(0);
+        then(allFalse.move()).isEqualTo(1);
+        then(rightTrue.move()).isEqualTo(2);
     }
 
     @Test
     @DisplayName("오른쪽 방향을 가지고 있다면 참을 반환한다.")
     public void hasRightDirection() throws Exception {
-        //when
-        boolean rightTrue = pointWithRightDirection.hasRightDirection();
-        boolean rightFalse = pointWithNone.hasRightDirection();
+        assertThat(pointWithRightDirection.hasRightDirection()).isTrue();
+        assertThat(pointWithNone.hasRightDirection()).isFalse();
+    }
 
-        //then
-        then(rightTrue).isTrue();
-        then(rightFalse).isFalse();
+    @Test
+    @DisplayName("왼쪽 방향을 가지고 있다면 참을 반환한다.")
+    public void hasLeftDirection() throws Exception {
+        assertThat(pointWithRightDirection.hasLeftDirection()).isFalse();
+        assertThat(pointWithNone.hasLeftDirection()).isFalse();
     }
 }

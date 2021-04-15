@@ -27,13 +27,22 @@ public class PointsTest {
     @DisplayName("좌표 인덱스를 인자로 받아 해당 좌표를 찾는다.")
     public void findByIndex() throws Exception {
         //given
-        Point firstPoint = new Point(0, new Direction(false, true));
-        Point secondPoint = new Point(1, new Direction(true, false));
+        Point firstPoint = Point.first(directionStrategy());
+        Point secondPoint = firstPoint.next(directionStrategy());
         Points points = new Points(Arrays.asList(firstPoint, secondPoint));
 
         //when
         Point point = points.findByIndex(0);
 
         then(point).isEqualTo(firstPoint);
+    }
+
+    private RandomDirectionStrategy directionStrategy() {
+        return new RandomDirectionStrategy() {
+            @Override
+            public boolean isConnectable() {
+                return true;
+            }
+        };
     }
 }
