@@ -27,8 +27,8 @@ class DirectionTest {
         Direction direction = new Direction(true, false);
 
         // then
-        assertThat(direction.hasLeftLine()).isTrue();
-        assertThat(direction.hasRightLine()).isFalse();
+        assertThat(direction.isLeft()).isTrue();
+        assertThat(direction.isRight()).isFalse();
     }
 
     @Test
@@ -38,7 +38,7 @@ class DirectionTest {
         Direction first = Direction.first(true);
 
         // when then
-        assertThat(first.hasLeftLine()).isFalse();
+        assertThat(first.isLeft()).isFalse();
     }
 
     @ParameterizedTest
@@ -58,12 +58,39 @@ class DirectionTest {
         // then
         assertAll(
                 () -> {
-                    assertThat(nextEmpty.hasLeftLine()).isFalse();
-                    assertThat(write).isEqualTo(nextEmpty.hasRightLine());
-                    assertThat(nextLeft.hasLeftLine()).isFalse();
-                    assertThat(write).isEqualTo(nextLeft.hasRightLine());
-                    assertThat(nextRight.hasLeftLine()).isTrue();
-                    assertThat(nextRight.hasRightLine()).isFalse();
+                    assertThat(nextEmpty.isLeft()).isFalse();
+                    assertThat(write).isEqualTo(nextEmpty.isRight());
+                    assertThat(nextLeft.isLeft()).isFalse();
+                    assertThat(write).isEqualTo(nextLeft.isRight());
+                    assertThat(nextRight.isLeft()).isTrue();
+                    assertThat(nextRight.isRight()).isFalse();
+                }
+        );
+    }
+
+    @ParameterizedTest
+    @ValueSource(booleans = {true, false})
+    @DisplayName("last 테스트")
+    void last(boolean write) {
+        // given
+        Direction emptyDirection = new Direction(false, false);
+        Direction leftLineDirection = new Direction(true, false);
+        Direction rightLineDirection = new Direction(false, true);
+
+        // when
+        Direction lastEmpty = emptyDirection.last();
+        Direction lastLeft = leftLineDirection.last();
+        Direction lastRight = rightLineDirection.last();
+
+        // then
+        assertAll(
+                () -> {
+                    assertThat(lastEmpty.isRight()).isFalse();
+                    assertThat(lastLeft.isRight()).isFalse();
+                    assertThat(lastRight.isRight()).isFalse();
+                    assertThat(lastEmpty.isLeft()).isFalse();
+                    assertThat(lastLeft.isLeft()).isFalse();
+                    assertThat(lastRight.isLeft()).isTrue();
                 }
         );
     }

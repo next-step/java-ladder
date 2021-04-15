@@ -5,13 +5,13 @@ public class Direction {
     private static final boolean LINE = true;
     private static final boolean EMPTY = false;
 
-    private final boolean hasLeftLine;
-    private final boolean hasRightLine;
+    private final boolean left;
+    private final boolean right;
 
-    public Direction(boolean hasLeftLine, boolean hasRightLine) {
-        validate(hasLeftLine, hasRightLine);
-        this.hasLeftLine = hasLeftLine;
-        this.hasRightLine = hasRightLine;
+    public Direction(boolean left, boolean right) {
+        validate(left, right);
+        this.left = left;
+        this.right = right;
     }
 
     private void validate(boolean hasLeftLine, boolean hasRightLine) {
@@ -20,12 +20,12 @@ public class Direction {
         }
     }
 
-    public boolean hasLeftLine() {
-        return hasLeftLine;
+    public boolean isLeft() {
+        return left;
     }
 
-    public boolean hasRightLine() {
-        return hasRightLine;
+    public boolean isRight() {
+        return right;
     }
 
     public static Direction first(boolean right) {
@@ -33,9 +33,13 @@ public class Direction {
     }
 
     public Direction next(boolean right) {
-        if (this.hasRightLine) {
+        if (this.right) {
             return new Direction(LINE, EMPTY);
         }
         return new Direction(EMPTY, right);
+    }
+
+    public Direction last() {
+        return new Direction(this.right, EMPTY);
     }
 }
