@@ -3,6 +3,7 @@ package ladder.domain;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public final class LadderResults {
 
@@ -24,4 +25,13 @@ public final class LadderResults {
         return new LadderResults(ladderResults);
     }
 
+    public String get(int i) {
+        return ladderResults.get(i);
+    }
+
+    public List<Integer> values() {
+        return IntStream.range(0, ladderResults.size())
+                .boxed()
+                .collect(Collectors.toList());
+    }
 }

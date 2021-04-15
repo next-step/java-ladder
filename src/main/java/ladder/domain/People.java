@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public final class People {
@@ -45,4 +46,9 @@ public final class People {
     public final Stream<Person> stream() {
         return people.stream();
     }
+
+    public Person get(Integer i) {
+        return people.get(i);
+    }
+
 }

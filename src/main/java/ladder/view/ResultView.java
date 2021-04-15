@@ -1,9 +1,6 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
-import ladder.domain.Line;
-import ladder.domain.People;
-import ladder.domain.Person;
+import ladder.domain.*;
 
 public final class ResultView {
 
@@ -24,11 +21,16 @@ public final class ResultView {
         return ResultViewHolder.instance;
     }
 
-    public final void printLadderStatus(People people, Ladder ladder) {
+    public final void printLadderStatus(People people, Ladder ladder, LadderResults results) {
         System.out.println(EXECUTION_RESULT_MESSAGE);
         printPeopleName(people);
         printLadder(ladder);
+        int lo = people.countOfPerson();
+        for(int i=0; i < lo; i++) {
+            System.out.print(String.format(NAME_FORMAT, results.get(i)));
+        }
     }
+
 
     private final void printLadder(Ladder ladder) {
         ladder.stream()

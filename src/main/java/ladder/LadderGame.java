@@ -8,6 +8,9 @@ import ladder.strategy.RandomLineGenerateStrategy;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
+import java.util.Map;
+import java.util.Set;
+
 public class LadderGame {
 
     private static final InputView INPUT_VIEW;
@@ -23,7 +26,13 @@ public class LadderGame {
         LadderResults results = LadderResults.of(INPUT_VIEW.inputLadderResultsByClient());
         LadderHeight height = LadderHeight.valueOf(INPUT_VIEW.inputLadderHeightByClient());
         Ladder ladder = Ladder.from(people, height, RandomLineGenerateStrategy.getInstance());
-        // 결과 = ladder.run();
-        RESULT_VIEW.printLadderStatus(people, ladder);
+        Map<String, String> map = ladder.run(people, results);
+        Set<String> names = map.keySet();
+        names.stream().forEach(key -> {
+            System.out.print(key+" : ");
+            System.out.println(map.get(key));
+        });
+
+        RESULT_VIEW.printLadderStatus(people, ladder, results);
     }
 }

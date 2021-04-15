@@ -53,4 +53,16 @@ public final class Line {
         return points.stream();
     }
 
+    public final void run(List<Integer> list) {
+        int before = list.get(0);
+        for(int i=1; i < list.size(); i++) {
+            int now = list.get(i);
+            if(points.get(i).hasPoint()) {
+                list.set(i-1, now);
+                list.set(i, before);
+                continue;
+            }
+            before = now;
+        }
+    }
 }

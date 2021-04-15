@@ -3,8 +3,11 @@ package ladder.domain;
 import ladder.exception.LineListNullPointerException;
 import ladder.strategy.LineGenerateStrategy;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -37,11 +40,18 @@ public final class Ladder {
         }
     }
 
-    /*
-    * private final 결과 run() {
-    *     ladder.forEach(run);
-    * }
-    * */
+    public final Map<String, String> run(People people, LadderResults results) {
+        List<Integer> list = results.values();         // people에게 줄건지 리절트에 줄건지 잘 생각하자
+        ladder.forEach(line -> line.run(list));
+        Map<String, String> map = new HashMap<>();
+        IntStream.range(START_INCLUSIVE, list.size())
+                .forEach(index -> {
+                    Person person = people.get(list.get(index));
+                    String result = results.get(index);
+                    map.put(person.getName(), result);
+                });
+        return map;
+    }
 
     public final Stream<Line> stream() {
         return ladder.stream();
