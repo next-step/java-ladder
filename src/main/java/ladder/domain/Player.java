@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.util.StringUtil;
+
 import java.util.Objects;
 
 public class Player {
@@ -18,8 +20,7 @@ public class Player {
   }
 
   public static boolean isValidName(String name) {
-    return name != null
-            && !name.isEmpty()
+    return !StringUtil.isBlank(name)
             && name.length() <= MAX_VALUE_LENGTH;
   }
 
