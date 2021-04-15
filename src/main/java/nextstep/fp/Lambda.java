@@ -26,7 +26,7 @@ public class Lambda {
     public static int sum(List<Integer> numbers, Conditional condition){
         return numbers
           .stream()
-          .filter(condition::test)
+          .filter(condition::checkCondition)
           .reduce(0, Integer::sum);
     }
 }
