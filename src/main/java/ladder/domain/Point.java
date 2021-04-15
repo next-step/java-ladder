@@ -2,7 +2,7 @@ package ladder.domain;
 
 public class Point {
 
-    private static final int FIRST_INDEX = 0;
+    public static final int FIRST_INDEX = 0;
 
     private final int index;
     private final Direction direction;
