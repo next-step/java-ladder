@@ -8,23 +8,27 @@ public class RandomLineStrategy implements LineStrategy {
 	Random random = new Random();
 
 	@Override
-	public List<Boolean> points(int countOfPerson) {
-		List<Boolean> points = new ArrayList<>();
+	public List<Cross> crosses(int countOfPerson) {
+		List<Cross> crosses = new ArrayList<>();
 
-		boolean previousLine = false;
+		boolean previousPoint = random.nextBoolean();
+		Point point = Point.first(previousPoint);
+		crosses.add(new Cross(0, point));
 
-		for (int i = 0; i < countOfPerson; i++) {
-			boolean point = calculatePoint(previousLine, countOfPerson, i);
-			points.add(point);
-			previousLine = point;
+		for (int i = 1; i < countOfPerson - 1; i++) {
+			boolean randomPoint = calculatePoint(previousPoint);
+			point = point.next(randomPoint);
+			crosses.add(new Cross(i, point));
+			previousPoint = randomPoint;
 		}
+		crosses.add(new Cross(countOfPerson - 1, point.last()));
 
-		return points;
+		return crosses;
 	}
 
-	private boolean calculatePoint(boolean previousLine, int countOfPerson, int i) {
+	private boolean calculatePoint(boolean previousPoint) {
 		boolean line = random.nextBoolean();
-		return line && !previousLine && i != (countOfPerson - 1);
+		return line && !previousPoint;
 	}
 
 }

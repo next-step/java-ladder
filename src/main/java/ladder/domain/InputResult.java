@@ -10,7 +10,7 @@ public class InputResult {
 	public InputResult(String inputResults, int playerSize) {
 		validateInputResult(inputResults, playerSize);
 		this.inputResults = Arrays.stream(inputResults.split(","))
-			.map(inputResult -> inputResult.trim())
+			.map(String::trim)
 			.collect(Collectors.toList());
 	}
 

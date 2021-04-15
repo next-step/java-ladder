@@ -9,8 +9,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import ladder.domain.Cross;
 import ladder.domain.Ladder;
 import ladder.domain.Line;
+import ladder.domain.Point;
 
 public class LadderTest {
 	private Line line1;
@@ -21,31 +23,35 @@ public class LadderTest {
 	@BeforeEach
 	void setUp() {
 		line1 = new Line(countOfPerson -> {
-			List<Boolean> points = new ArrayList<>();
-			points.add(true);
-			points.add(false);
-			points.add(true);
-			points.add(false);
-			return points;
+			Point first = Point.first(true);
+			List<Cross> crosses = new ArrayList<>();
+			crosses.add(new Cross(0, first));
+			crosses.add(new Cross(1, first.next(false)));
+			crosses.add(new Cross(2, first.next(false).next(true)));
+			crosses.add(new Cross(3, first.next(false).next(true).last()));
+			return crosses;
 		}, 4);
 
 		line2 = new Line(countOfPerson -> {
-			List<Boolean> points = new ArrayList<>();
-			points.add(false);
-			points.add(true);
-			points.add(false);
-			points.add(false);
-			return points;
+			Point first = Point.first(false);
+			List<Cross> crosses = new ArrayList<>();
+			crosses.add(new Cross(0, first));
+			crosses.add(new Cross(1, first.next(true)));
+			crosses.add(new Cross(2, first.next(true).next(false)));
+			crosses.add(new Cross(3, first.next(true).next(false).last()));
+			return crosses;
 		}, 4);
 
 		line3 = new Line(countOfPerson -> {
-			List<Boolean> points = new ArrayList<>();
-			points.add(false);
-			points.add(true);
-			points.add(false);
-			points.add(false);
-			return points;
+			Point first = Point.first(false);
+			List<Cross> crosses = new ArrayList<>();
+			crosses.add(new Cross(0, first));
+			crosses.add(new Cross(1, first.next(true)));
+			crosses.add(new Cross(2, first.next(true).next(false)));
+			crosses.add(new Cross(3, first.next(true).next(false).last()));
+			return crosses;
 		}, 4);
+
 		List<Line> lines = new ArrayList<>();
 		lines.add(line1);
 		lines.add(line2);
@@ -66,12 +72,7 @@ public class LadderTest {
 	void ladderMake2Test() {
 		Ladder ladder = new Ladder(4, 5);
 		assertThat(ladder.getLadder()).hasSize(5);
-		assertThat(ladder.getLadder().get(0).getPoints()).hasSize(4);
-		assertThat(ladder.getLadder().get(0).getPoints().get(3)).isEqualTo(false);
-		assertThat(ladder.getLadder().get(1).getPoints().get(3)).isEqualTo(false);
-		assertThat(ladder.getLadder().get(2).getPoints().get(3)).isEqualTo(false);
-		assertThat(ladder.getLadder().get(3).getPoints().get(3)).isEqualTo(false);
-		assertThat(ladder.getLadder().get(4).getPoints().get(3)).isEqualTo(false);
+		assertThat(ladder.getLadder().get(0).getCrosses()).hasSize(4);
 
 	}
 

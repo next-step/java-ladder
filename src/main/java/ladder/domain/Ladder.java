@@ -31,8 +31,8 @@ public class Ladder {
 
 	public int moveLine(int startPosition) {
 		int currentPosition = startPosition;
-		for (int line = 0; line < ladder.size(); line++) {
-			currentPosition += this.ladder.get(line).movePoint(currentPosition);
+		for (Line value : ladder) {
+			currentPosition = value.movePoint(currentPosition);
 		}
 		return currentPosition;
 	}
