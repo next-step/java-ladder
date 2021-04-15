@@ -1,7 +1,6 @@
 package ladder;
 
 import ladder.domain.Line;
-import ladder.domain.LineResult;
 import ladder.domain.Players;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,8 +12,7 @@ public class LineTest {
     @Test
     void makeLine() {
         Players players = Players.of(Arrays.asList("kong", "dal", "apple", "red", "blue"));
-        Line ladderLine = Line.of(players);
-        LineResult lineResult = ladderLine.makeLine();
-        System.out.println(lineResult);
+        Line ladderLine = new Line(players.count());
+        System.out.println(ladderLine);
     }
 }

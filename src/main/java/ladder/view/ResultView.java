@@ -2,6 +2,7 @@ package ladder.view;
 
 import ladder.domain.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -12,10 +13,12 @@ public class ResultView {
 
     private final Players players;
     private final List<LineResult> lineResults;
+    private LineResults lineResults2;
 
-    public ResultView(Players players, List<LineResult> lineResults) {
+    public ResultView(Players players, LineResults lineResults) {
         this.players = players;
-        this.lineResults = lineResults;
+        this.lineResults2 = lineResults;
+        this.lineResults = new ArrayList<>();
     }
 
     public void printOutLineResult() {

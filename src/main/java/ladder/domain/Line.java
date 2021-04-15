@@ -18,7 +18,7 @@ public class Line {
 
     private List<PointNew> init(int playersCount) {
         List<PointNew> pointsNew = new ArrayList<>();
-        
+
         PointGenerator pointGenerator = new PointGenerator(pointsNew);
         PointNew pointNew = pointGenerator.first();
         PointNew lastBodyPoint = pointGenerator.body(playersCount - 2, pointNew);
@@ -38,23 +38,11 @@ public class Line {
         return new Line(points);
     }
 
-    public LineResult makeLine() {
-        LineResult lineResult = new LineResult();
-        Point comparePoint = new Point(Position.DEFAULT);
-        for (Point point : points) {
-            Direction direction = PointGenerator.generate(point, comparePoint);
-            point.setDirection(direction);
-            comparePoint = point;
-
-            lineResult.add(point.toPointResult());
-        }
-        return lineResult;
-    }
-
     @Override
     public String toString() {
         return "Line{" +
                 "points=" + points +
+                ", pointsNew=" + pointsNew +
                 '}';
     }
 }

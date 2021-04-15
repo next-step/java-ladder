@@ -32,4 +32,8 @@ public class InputView {
     public Players getPlayers() {
         return players;
     }
+
+    public int playersCount() {
+        return players.count();
+    }
 }
