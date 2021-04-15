@@ -37,6 +37,12 @@ public final class Ladder {
         }
     }
 
+    /*
+    * private final 결과 run() {
+    *     ladder.forEach(run);
+    * }
+    * */
+
     public final Stream<Line> stream() {
         return ladder.stream();
     }

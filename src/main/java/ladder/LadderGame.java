@@ -21,6 +21,7 @@ public class LadderGame {
         People people = People.of(INPUT_VIEW.inputParticipantsByClient());
         LadderHeight height = LadderHeight.valueOf(INPUT_VIEW.inputLadderHeightByClient());
         Ladder ladder = Ladder.from(people, height, RandomLineGenerateStrategy.getInstance());
+        // 결과 = ladder.run();
         RESULT_VIEW.printLadderStatus(people, ladder);
     }
 }
