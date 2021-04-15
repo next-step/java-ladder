@@ -9,8 +9,6 @@ import org.junit.jupiter.params.provider.CsvSource;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -25,11 +23,36 @@ class LadderGameServiceTest {
 
         Participants participants = new Participants("pobi,honux,crong,jk");
         List<Line> lines = new ArrayList<>();
-        lines.add(new Line(Stream.of(true, false, true, false).map(Point::new).collect(Collectors.toList())));
-        lines.add(new Line(Stream.of(false, true, false, false).map(Point::new).collect(Collectors.toList())));
-        lines.add(new Line(Stream.of(true, false, false, false).map(Point::new).collect(Collectors.toList())));
-        lines.add(new Line(Stream.of(false, true, false, false).map(Point::new).collect(Collectors.toList())));
-        lines.add(new Line(Stream.of(true, false, true, false).map(Point::new).collect(Collectors.toList())));
+        lines.add(new Line(Arrays.asList(
+                new Point(0, new Direction(false, true)),
+                new Point(1, new Direction(true, false)),
+                new Point(2, new Direction(false, true)),
+                new Point(3, new Direction(true, false))
+        )));
+        lines.add(new Line(Arrays.asList(
+                new Point(0, new Direction(false, false)),
+                new Point(1, new Direction(false, true)),
+                new Point(2, new Direction(true, false)),
+                new Point(3, new Direction(false, false))
+        )));
+        lines.add(new Line(Arrays.asList(
+                new Point(0, new Direction(false, true)),
+                new Point(1, new Direction(true, false)),
+                new Point(2, new Direction(false, false)),
+                new Point(3, new Direction(false, false))
+        )));
+        lines.add(new Line(Arrays.asList(
+                new Point(0, new Direction(false, false)),
+                new Point(1, new Direction(false, true)),
+                new Point(2, new Direction(true, false)),
+                new Point(3, new Direction(false, false))
+        )));
+        lines.add(new Line(Arrays.asList(
+                new Point(0, new Direction(false, true)),
+                new Point(1, new Direction(true, false)),
+                new Point(2, new Direction(false, true)),
+                new Point(3, new Direction(true, false))
+        )));
         Ladder ladder = new Ladder(lines);
         GameResults gameResults = new GameResults("꽝,5000,꽝,3000", participants.getCount());
 
@@ -49,11 +72,36 @@ class LadderGameServiceTest {
 
         Participants participants = new Participants("pobi,honux,crong,jk");
         List<Line> lines = new ArrayList<>();
-        lines.add(new Line(Stream.of(true, false, true, false).map(Point::new).collect(Collectors.toList())));
-        lines.add(new Line(Stream.of(false, true, false, false).map(Point::new).collect(Collectors.toList())));
-        lines.add(new Line(Stream.of(true, false, false, false).map(Point::new).collect(Collectors.toList())));
-        lines.add(new Line(Stream.of(false, true, false, false).map(Point::new).collect(Collectors.toList())));
-        lines.add(new Line(Stream.of(true, false, true, false).map(Point::new).collect(Collectors.toList())));
+        lines.add(new Line(Arrays.asList(
+                new Point(0, new Direction(false, true)),
+                new Point(1, new Direction(true, false)),
+                new Point(2, new Direction(false, true)),
+                new Point(3, new Direction(true, false))
+        )));
+        lines.add(new Line(Arrays.asList(
+                new Point(0, new Direction(false, false)),
+                new Point(1, new Direction(false, true)),
+                new Point(2, new Direction(true, false)),
+                new Point(3, new Direction(false, false))
+        )));
+        lines.add(new Line(Arrays.asList(
+                new Point(0, new Direction(false, true)),
+                new Point(1, new Direction(true, false)),
+                new Point(2, new Direction(false, false)),
+                new Point(3, new Direction(false, false))
+        )));
+        lines.add(new Line(Arrays.asList(
+                new Point(0, new Direction(false, false)),
+                new Point(1, new Direction(false, true)),
+                new Point(2, new Direction(true, false)),
+                new Point(3, new Direction(false, false))
+        )));
+        lines.add(new Line(Arrays.asList(
+                new Point(0, new Direction(false, true)),
+                new Point(1, new Direction(true, false)),
+                new Point(2, new Direction(false, true)),
+                new Point(3, new Direction(true, false))
+        )));
         Ladder ladder = new Ladder(lines);
         GameResults gameResults = new GameResults("꽝,5000,꽝,3000", participants.getCount());
 
