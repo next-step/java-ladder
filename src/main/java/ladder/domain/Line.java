@@ -6,7 +6,7 @@ import java.util.List;
 public class Line {
     private final static int FIRST_POINT_COUNT = 1;
     private final static int LAST_POINT_COUNT = 1;
-    private List<Point> points;
+    private final List<Point> points;
 
     public Line(List<Point> points) {
         this.points = points;
