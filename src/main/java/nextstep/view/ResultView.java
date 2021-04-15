@@ -23,6 +23,12 @@ public class ResultView implements ConsoleView {
     }
 
     public void print(OnlineLadder ladder, int targetHeight) {
+        String draw = render(ladder, targetHeight);
+        System.out.print(draw);
+        System.out.println();
+    }
+
+    private String render(OnlineLadder ladder, int targetHeight) {
         StringBuilder stringBuilder = new StringBuilder();
         ladder.points(targetHeight).points().stream()
                 .forEach(point -> {
@@ -30,8 +36,7 @@ public class ResultView implements ConsoleView {
                     stringBuilder.append( (point) ? HORIZON_LADDER_STRING : EMPTY_LADDER_STRING);
                 });
         stringBuilder.append("|");
-        System.out.print(stringBuilder.toString());
-        System.out.println();
+        return stringBuilder.toString();
     }
 
     public void printAll(OnlineLadder ladder) {
