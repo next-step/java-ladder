@@ -32,8 +32,8 @@ public class LineResultsTest {
         lineResults.add(ladderLine1);
         lineResults.add(ladderLine2);
 
-        assertThat(players.playerName(lineResults.arrival(0, 0))).isEqualTo("3");
-        assertThat(players.playerName(lineResults.arrival(0, 1))).isEqualTo("1");
-        assertThat(players.playerName(lineResults.arrival(0, 2))).isEqualTo("2");
+        assertThat(players.playerName(lineResults.arrivalPoint(0, 0))).isEqualTo("3");
+        assertThat(players.playerName(lineResults.arrivalPoint(0, 1))).isEqualTo("1");
+        assertThat(players.playerName(lineResults.arrivalPoint(0, 2))).isEqualTo("2");
     }
 }
