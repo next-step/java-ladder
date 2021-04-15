@@ -24,4 +24,12 @@ public class Ladder implements Iterable<Line> {
     public Iterator<Line> iterator() {
         return lines.iterator();
     }
+
+    public int result(int horizontalNumber) {
+        int result = horizontalNumber;
+        for (Line line : lines) {
+            result = line.nextHorizontalNumber(result);
+        }
+        return result;
+    }
 }
