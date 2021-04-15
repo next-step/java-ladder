@@ -108,6 +108,21 @@ pobi  honux crong   jk
 
 </details>
 
+<details>
+    <summary> 2단계 피드백 </summary>
+
+> [피드백 링크](https://github.com/next-step/java-ladder/pull/911)
+> 1. 접근 지정자는 항상 최소화하기  
+>  -> 외부에서 사용하지 않는다면 되도록 **private** 으로 선언
+> 2. ``void`` type return이 가능한 로직은 되도록 ``void``로 선언 
+> 3. ``.forEach()`` ``.stream().forEach()``? [참고링크](https://www.baeldung.com/java-collection-stream-foreach)  
+>   -> 1) ``.forEach()``는 컬렉션의 iterator 사용(항목 처리순서가 정해져있음),  
+     반면 ``stream().forEach()`` 는 처리순서가 정의되어있지 않음
+>   -> 2) ``.forEach()``는 컬렉션의 요소 수정 가능,  
+>     반면 ``stream().forEach()``는 컬렉션에서 구조적으로 수정이 일어나면 ❌❌
+> 4. ``for-loop`` 와  ``stream()``의 성능차이? [참고링크](https://homoefficio.github.io/2016/06/26/for-loop-%EB%A5%BC-Stream-forEach-%EB%A1%9C-%EB%B0%94%EA%BE%B8%EC%A7%80-%EB%A7%90%EC%95%84%EC%95%BC-%ED%95%A0-3%EA%B0%80%EC%A7%80-%EC%9D%B4%EC%9C%A0/)
+</details>
+
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)/github.com/nextstep-step/nextstep-docs/tree/master/codereview)
