@@ -1,10 +1,8 @@
 package nextstep.refactoring.ladder.engine.dto;
 
-import nextstep.refactoring.view.interfaces.Dto;
-
 import java.util.List;
 
-public interface LineDto extends Dto {
+public interface LineDto {
 
     List<Boolean> connectionList();
 
