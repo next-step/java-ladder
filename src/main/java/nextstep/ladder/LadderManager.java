@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.LadderHeight;
 import nextstep.ladder.domain.People;
+import nextstep.ladder.domain.Person;
 import nextstep.ladder.domain.RandomLineCreationStrategy;
 import nextstep.ladder.domain.Result;
 import nextstep.ladder.exception.LadderException;
@@ -15,6 +16,8 @@ import nextstep.ladder.io.ResultView;
 
 public final class LadderManager {
 
+  public static final String ALL = "all";
+
   public static void main(String[] args) {
     final People people = getPeople();
     final List<Result> results = getResults(people.personCount());
@@ -23,6 +26,14 @@ public final class LadderManager {
     final Ladder ladder = new Ladder(people, ladderHeight, new RandomLineCreationStrategy());
     ResultView.printLadder(ladder);
     ResultView.printResults(results);
+
+    String name = InputView.inputPersonNameForResult();
+    while (!ALL.equals(name)) {
+      Person personForResult = getPersonForResult(people, name);
+      // 개인 결과 출력
+      name = InputView.inputPersonNameForResult();
+    }
+    // 전체 결과 출력
   }
 
   private static People getPeople() {
@@ -61,6 +72,18 @@ public final class LadderManager {
     } catch (LadderException e) {
       System.err.println(e.getMessage());
       return getLadderHeight();
+    }
+  }
+
+  private static Person getPersonForResult(People people, String name) {
+    try {
+      final Person person = Person.valueOf(name);
+      people.validContains(person);
+
+      return person;
+    } catch (LadderException e) {
+      System.err.println(e.getMessage());
+      return getPersonForResult(people, InputView.inputPersonNameForResult());
     }
   }
 }
