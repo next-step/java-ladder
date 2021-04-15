@@ -15,7 +15,7 @@ public class ExecutionResults {
         this.results = createResult(inputPersons);
     }
 
-    public List<ExecutionResult> createResult(String inputResults) {
+    private List<ExecutionResult> createResult(String inputResults) {
         String[] results = inputResults.trim().split(COMMA);
         return Arrays.asList(results)
                 .stream()
