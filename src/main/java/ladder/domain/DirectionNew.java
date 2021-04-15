@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import java.util.Objects;
+
 public class DirectionNew {
     private final boolean left;
     private final boolean right;
@@ -22,5 +24,18 @@ public class DirectionNew {
 
     public boolean hasDirection() {
         return left || right;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DirectionNew that = (DirectionNew) o;
+        return left == that.left && right == that.right;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(left, right);
     }
 }

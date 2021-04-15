@@ -49,6 +49,10 @@ public class Players {
         return players.size();
     }
 
+    public String playerName(int index) {
+        return players.get(index).getName();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

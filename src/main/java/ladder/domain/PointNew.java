@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import java.util.Objects;
+
 public class PointNew {
     private final int index;
     private final DirectionNew directionNew;
@@ -33,5 +35,18 @@ public class PointNew {
             return index - 1;
         }
         return index;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PointNew pointNew = (PointNew) o;
+        return index == pointNew.index && Objects.equals(directionNew, pointNew.directionNew);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(index, directionNew);
     }
 }

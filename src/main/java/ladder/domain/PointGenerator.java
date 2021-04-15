@@ -9,20 +9,6 @@ public class PointGenerator {
         this.pointsNew = pointsNew;
     }
 
-    public static Direction generate(Point point, Point previousPoint) {
-        if (point.isFirst()) {
-            return generate(new FirstPointStrategy());
-        }
-        if (point.isLast()) {
-            return generate(new LastPointStrategy(previousPoint));
-        }
-        return generate(new BodyPointStrategy(previousPoint));
-    }
-
-    private static Direction generate(PointStrategy strategy) {
-        return strategy.direction();
-    }
-
     public PointNew first() {
         PointNew firstPoint = generate2(new FirstPointStrategy());
         pointsNew.add(firstPoint);
