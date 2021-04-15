@@ -5,10 +5,26 @@ import java.util.List;
 import java.util.Optional;
 
 public class Line {
-    private final List<Point> points;
+    private List<Point> points;
+    private List<PointNew> pointsNew;
 
-    private Line(List<Point> points) {
+    public Line(List<Point> points) {
         this.points = points;
+    }
+
+    public Line(int playersCount) {
+        this.pointsNew = init(playersCount);
+    }
+
+    private List<PointNew> init(int playersCount) {
+        List<PointNew> pointsNew = new ArrayList<>();
+        
+        PointGenerator pointGenerator = new PointGenerator(pointsNew);
+        PointNew pointNew = pointGenerator.first();
+        PointNew lastBodyPoint = pointGenerator.body(playersCount - 2, pointNew);
+        pointGenerator.last(lastBodyPoint);
+
+        return pointsNew;
     }
 
     public static Line of(Players players) {
