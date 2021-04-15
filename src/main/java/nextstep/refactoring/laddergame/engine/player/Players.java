@@ -2,7 +2,6 @@ package nextstep.refactoring.laddergame.engine.player;
 
 import nextstep.refactoring.ladder.engine.Ladder;
 import nextstep.refactoring.ladder.engine.Position;
-import nextstep.refactoring.laddergame.concrete.player.PlayersDtoImpl;
 import nextstep.refactoring.laddergame.engine.LadderCompatibleList;
 import nextstep.refactoring.view.interfaces.ViewObject;
 
@@ -51,6 +50,6 @@ public class Players implements LadderCompatibleList<Player>, ViewObject<Players
     public PlayersDto export() {
         return playerList.stream()
                          .map(Player::getName)
-                         .collect(collectingAndThen(toList(), PlayersDtoImpl::new));
+                         .collect(collectingAndThen(toList(), PlayersDto::new));
     }
 }

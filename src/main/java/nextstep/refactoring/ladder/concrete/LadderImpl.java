@@ -1,6 +1,5 @@
 package nextstep.refactoring.ladder.concrete;
 
-import nextstep.refactoring.ladder.concrete.dto.LadderDtoImpl;
 import nextstep.refactoring.ladder.engine.Ladder;
 import nextstep.refactoring.ladder.engine.LadderResult;
 import nextstep.refactoring.ladder.engine.Line;
@@ -42,6 +41,6 @@ public class LadderImpl implements Ladder {
     public LadderDto export() {
         return lines.stream()
                     .map(ViewObject::export)
-                    .collect(collectingAndThen(toList(), LadderDtoImpl::new));
+                    .collect(collectingAndThen(toList(), LadderDto::new));
     }
 }

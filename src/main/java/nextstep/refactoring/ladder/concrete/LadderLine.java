@@ -1,6 +1,5 @@
 package nextstep.refactoring.ladder.concrete;
 
-import nextstep.refactoring.ladder.concrete.dto.LineDtoImpl;
 import nextstep.refactoring.ladder.engine.Line;
 import nextstep.refactoring.ladder.engine.Position;
 import nextstep.refactoring.ladder.engine.dto.LineDto;
@@ -57,6 +56,6 @@ public class LadderLine implements Line {
 
     @Override
     public LineDto export() {
-        return LineDtoImpl.of(this);
+        return LineDto.of(this);
     }
 }

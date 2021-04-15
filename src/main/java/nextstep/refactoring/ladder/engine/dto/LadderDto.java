@@ -1,9 +1,19 @@
 package nextstep.refactoring.ladder.engine.dto;
 
+import java.util.Collections;
 import java.util.List;
 
-public interface LadderDto {
+public class LadderDto {
 
-    List<LineDto> lineDtoList();
+    private final List<LineDto> lineDtoList;
+
+    public LadderDto(List<LineDto> lineDtoList) {
+        this.lineDtoList = lineDtoList;
+    }
+
+    public List<LineDto> lineDtoList() {
+        return Collections.unmodifiableList(lineDtoList);
+
+    }
 
 }

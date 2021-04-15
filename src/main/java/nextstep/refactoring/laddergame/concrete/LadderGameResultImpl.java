@@ -41,7 +41,7 @@ public class LadderGameResultImpl implements LadderGameResult {
     }
 
     @Override
-    public LadderGameResultDto export() {
-        return LadderGameResultDtoImpl.of(this);
+    public nextstep.refactoring.laddergame.engine.LadderGameResultDto export() {
+        return LadderGameResultDto.of(this);
     }
 }

@@ -2,7 +2,6 @@ package nextstep.refactoring.laddergame.engine.reward;
 
 import nextstep.refactoring.ladder.engine.Ladder;
 import nextstep.refactoring.ladder.engine.Position;
-import nextstep.refactoring.laddergame.concrete.reward.RewardsDtoImpl;
 import nextstep.refactoring.laddergame.engine.LadderCompatibleList;
 import nextstep.refactoring.view.interfaces.ViewObject;
 
@@ -51,6 +50,6 @@ public class Rewards implements LadderCompatibleList<Reward>, ViewObject<Rewards
     public RewardsDto export() {
         return rewardList.stream()
                          .map(Reward::getRewardString)
-                         .collect(collectingAndThen(toList(), RewardsDtoImpl::new));
+                         .collect(collectingAndThen(toList(), RewardsDto::new));
     }
 }
