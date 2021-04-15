@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-    private final static int FIRST_POINT_COUNT = 1;
-    private final static int LAST_POINT_COUNT = 1;
+    private static final int FIRST_POINT_COUNT = 1;
+    private static final int LAST_POINT_COUNT = 1;
+
     private final List<Point> points;
 
     public Line(List<Point> points) {
@@ -17,14 +18,14 @@ public class Line {
     }
 
     private List<Point> init(int count) {
-        List<Point> points = new ArrayList<>();
+        List<Point> initPoints = new ArrayList<>();
 
-        PointGenerator pointGenerator = new PointGenerator(points);
+        PointGenerator pointGenerator = new PointGenerator(initPoints);
         Point point = pointGenerator.first();
         Point lastBodyPoint = pointGenerator.body(bodyCount(count), point);
         pointGenerator.last(lastBodyPoint);
 
-        return points;
+        return initPoints;
     }
 
     private int bodyCount(int count) {

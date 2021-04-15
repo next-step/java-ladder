@@ -3,7 +3,7 @@ package ladder.domain;
 import java.util.Objects;
 
 public class Point {
-    private final static int VARIATION_UNIT = 1;
+    private static final int VARIATION_UNIT = 1;
 
     private final int index;
     private final Direction direction;

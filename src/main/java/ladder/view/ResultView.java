@@ -36,7 +36,7 @@ public class ResultView {
     }
 
     private void printLadder() {
-        lineResults.getLineResults()
+        lineResults.getLines()
                 .forEach(line -> printLine(line.getPoints()));
     }
 
