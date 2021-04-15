@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 class StringUtilTest {
@@ -34,5 +36,34 @@ class StringUtilTest {
     // then
     assertThat(randomString.length())
             .isEqualTo(targetLength);
+  }
+
+  @Test
+  @DisplayName("null 경우 \"\" 문자열을 반환한다.")
+  void defaultString() {
+    assertThat(StringUtil.defaultString(null)).isEqualTo("");
+  }
+
+  @Test
+  @DisplayName("null safe한 trim")
+  void trim() {
+    assertThat(StringUtil.trim(null)).isEqualTo("");
+  }
+
+  @Test
+  @DisplayName("문자열을 입력시  list로 반환한다.")
+  void toList() {
+    // given
+    String split = ",";
+    String input = "gmoon, dodo";
+
+    // when
+    List<String> actual = StringUtil.toList(input);
+
+    // then
+    assertThat(actual)
+            .isNotEmpty()
+            .hasSize(2)
+            .contains("gmoon", "dodo");
   }
 }
