@@ -52,7 +52,7 @@ public class Prizes {
 
     public List<String> names() {
         return prizeList.stream()
-                .map(Prize::name)
+                .map(Prize::value)
                 .collect(Collectors.toList());
     }
 }

@@ -9,7 +9,7 @@ public class Prize {
         this.prize = prize;
     }
 
-    public String name() {
+    public String value() {
         return prize;
     }
 
