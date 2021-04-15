@@ -1,8 +1,6 @@
 package ladder;
 
-import ladder.domain.Player;
 import ladder.domain.Players;
-import ladder.domain.Position;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -16,14 +14,5 @@ public class PlayersTest {
     void create() {
         Players players = Players.of(Arrays.asList("test1", "test2", "test3"));
         assertThat(players).isEqualTo(Players.of(Arrays.asList("test1", "test2", "test3")));
-    }
-
-    @DisplayName("위치정보를 반환한다.")
-    @Test
-    void position() {
-        Players players = Players.of(Arrays.asList("test1", "test2", "test3", "test4"));
-        assertThat(players.playerPosition(new Player("test1"))).isEqualTo(Position.FIRST);
-        assertThat(players.playerPosition(new Player("test2"))).isEqualTo(Position.BODY);
-        assertThat(players.playerPosition(new Player("test4"))).isEqualTo(Position.LAST);
     }
 }
