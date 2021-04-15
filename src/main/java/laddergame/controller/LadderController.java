@@ -11,7 +11,7 @@ import java.util.List;
 
 import static java.util.stream.Collectors.toCollection;
 
-public class LadderFactory {
+public class LadderController {
     private static Player enrollOne(String name) {
         Name playerName = new Name(name);
         return new Player(playerName);
@@ -19,7 +19,7 @@ public class LadderFactory {
 
     public static Players enroll(List<String> names) {
         return new Players(names.stream()
-                .map(LadderFactory::enrollOne)
+                .map(LadderController::enrollOne)
                 .collect(toCollection(ArrayList::new)));
     }
 

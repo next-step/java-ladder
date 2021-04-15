@@ -7,7 +7,7 @@ import laddergame.domain.player.Players;
 
 import java.util.List;
 
-import static laddergame.controller.LadderFactory.*;
+import static laddergame.controller.LadderController.*;
 import static laddergame.ui.InputView.inputHeight;
 import static laddergame.ui.InputView.inputNames;
 import static laddergame.ui.ResultView.printLadder;

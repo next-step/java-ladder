@@ -13,8 +13,8 @@ import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class LadderFactoryTest {
-    private LadderFactory factory;
+public class LadderControllerTest {
+    private LadderController factory;
 
     @Test
     void 참여자여러명생성() {
@@ -23,7 +23,7 @@ public class LadderFactoryTest {
                 .map(name -> new Player(new Name(name)))
                 .collect(Collectors.toList());
 
-        Players players = LadderFactory.enroll(names);
+        Players players = LadderController.enroll(names);
 
         assertThat(players).isEqualTo(new Players(playerList));
     }
@@ -31,7 +31,7 @@ public class LadderFactoryTest {
     @Test
     void 사다리생성() {
         Size size = new Size(5, 6);
-        Ladder ladder = LadderFactory.makeLadder(size);
+        Ladder ladder = LadderController.makeLadder(size);
 
     }
 
