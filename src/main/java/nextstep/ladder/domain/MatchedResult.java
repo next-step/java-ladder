@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import java.util.Map;
+import java.util.Objects;
 
 public class MatchedResult {
     private static final String CHECK_TARGET_PLAYER = "입력하신 플레이어가 존재하지 않습니다.";
@@ -13,7 +14,7 @@ public class MatchedResult {
     }
 
     public boolean isAll(String target) {
-        return ALL.equals(target);
+        return Objects.equals(target, ALL);
     }
 
     public Iterable<? extends Map.Entry<String, String>> all() {
