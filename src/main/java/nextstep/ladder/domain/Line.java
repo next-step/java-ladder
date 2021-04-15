@@ -31,16 +31,20 @@ public class Line implements Iterable<Point> {
     }
 
     public int nextHorizontalNumber(int horizontalNumber) {
-        if (horizontalNumber > 0) {
-            if (points.get(horizontalNumber - 1).value()) {
-                return --horizontalNumber;
-            }
+        if (pointOnTheLeft(horizontalNumber)) {
+            return --horizontalNumber;
         }
-        if (horizontalNumber < points.size() - 1) {
-            if (points.get(horizontalNumber).value()) {
-                return ++horizontalNumber;
-            }
+        if (pointOnTheRight(horizontalNumber)) {
+            return ++horizontalNumber;
         }
         return horizontalNumber;
+    }
+
+    private boolean pointOnTheLeft(int horizontalNumber) {
+        return horizontalNumber > 0 && points.get(horizontalNumber -1).value();
+    }
+
+    private boolean pointOnTheRight(int horizontalNumber) {
+        return horizontalNumber < points.size() && points.get(horizontalNumber).value();
     }
 }
