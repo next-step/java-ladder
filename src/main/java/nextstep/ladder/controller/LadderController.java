@@ -28,7 +28,7 @@ public class LadderController {
         printLadderResult(players, prizes, ladder);
 
         MatchedResult matchedResult = ladder.map(players.names(), prizes.names());
-        printResultOfTarget(matchedResult, inputView.targetPlayer());
+        resultView.printmappedResult(matchedResult, inputView.targetPlayer());
     }
 
     private void printLadderResult(Players players, Prizes prizes, Ladder ladder) {
@@ -36,15 +36,5 @@ public class LadderController {
         resultView.printNames(players.names());
         resultView.printLadder(ladder.linesConnection());
         resultView.printNames(prizes.names());
-    }
-
-    private void printResultOfTarget(MatchedResult matchedResult, String targetPlayerName) {
-        if (matchedResult.isAll(targetPlayerName)) {
-            resultView.printAllResult(matchedResult.all());
-        }
-
-        if (!matchedResult.isAll(targetPlayerName) && matchedResult.containsKey(targetPlayerName)) {
-            resultView.printResultOfTarget(matchedResult.get(targetPlayerName));
-        }
     }
 }

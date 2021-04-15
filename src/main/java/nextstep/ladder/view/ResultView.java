@@ -1,5 +1,7 @@
 package nextstep.ladder.view;
 
+import nextstep.ladder.domain.MatchedResult;
+
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -58,7 +60,17 @@ public class ResultView {
         System.out.println("   " + DELIMITER + line + DELIMITER);
     }
 
-    public void printAllResult(Iterable<? extends Map.Entry<String, String>> allResult) {
+    public void printmappedResult(MatchedResult matchedResult, String targetPlayerName) {
+        if (matchedResult.isAll(targetPlayerName)) {
+            printAllResult(matchedResult.all());
+        }
+
+        if (!matchedResult.isAll(targetPlayerName) && matchedResult.containsKey(targetPlayerName)) {
+            printResultOfTarget(matchedResult.get(targetPlayerName));
+        }
+    }
+
+    private void printAllResult(Iterable<? extends Map.Entry<String, String>> allResult) {
         System.out.println();
         System.out.println(PRIZE_RESULT);
         allResult.forEach(entry ->
@@ -66,7 +78,7 @@ public class ResultView {
         );
     }
 
-    public void printResultOfTarget(String targetPlayer) {
+    private void printResultOfTarget(String targetPlayer) {
         System.out.println();
         System.out.println(PRIZE_RESULT);
         System.out.println(targetPlayer);
