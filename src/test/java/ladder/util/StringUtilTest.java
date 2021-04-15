@@ -1,6 +1,7 @@
 package ladder.util;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 
@@ -19,5 +20,19 @@ class StringUtilTest {
 
     // then
     assertThat(isBlank).isTrue();
+  }
+
+  @Test
+  @DisplayName("랜덤 문자열을 생성한다.")
+  void generatedRandomString() {
+    // given
+    int targetLength = 4;
+
+    // when
+    String randomString = StringUtil.generatedRandomString(targetLength);
+
+    // then
+    assertThat(randomString.length())
+            .isEqualTo(targetLength);
   }
 }

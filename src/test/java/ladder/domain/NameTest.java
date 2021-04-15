@@ -1,11 +1,10 @@
 package ladder.domain;
 
+import ladder.util.StringUtil;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
-
-import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
@@ -32,17 +31,11 @@ class NameTest {
     int maxLength = 5;
 
     // when
-    String actual = generatedRandomString(maxLength + 1);
+    String actual = StringUtil.generatedRandomString(maxLength + 1);
 
     // then
     assertThatIllegalArgumentException()
             .isThrownBy(() -> Name.ofBlankSafeWithCheckLength(actual, maxLength));
   }
 
-  String generatedRandomString(int targetLength) {
-    return new Random().ints('a', 'z' + 1)
-            .limit(targetLength)
-            .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
-            .toString();
-  }
 }
