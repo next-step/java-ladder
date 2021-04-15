@@ -12,15 +12,6 @@ public class Users {
             new User("jk", 40),
             new User("honux", 45));
 
-//    User getUser(String name) {
-//        for (User user : users) {
-//            if (user.matchName(name)) {
-//                return user;
-//            }
-//        }
-//        return DEFAULT_USER;
-//    }
-
     User getUser(String name) {
         return users.stream()
                 .filter(user -> user.matchName(name))
