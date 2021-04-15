@@ -1,8 +1,4 @@
 package step2.domain;
-
-import javafx.geometry.Pos;
-
-import javax.swing.text.Position;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
