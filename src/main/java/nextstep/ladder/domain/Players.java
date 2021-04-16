@@ -9,9 +9,9 @@ public class Players {
 
     public Players(List<String> names) {
         playerList = new ArrayList<>(names.size());
-        names.stream()
-                .map(Player::new)
-                .forEach(playerList::add);
+        for (int i = 0; i < names.size(); i++) {
+            playerList.add(new Player(names.get(i), new Point(i)));
+        }
     }
 
     public List<String> getAllPlayerNames() {
@@ -22,5 +22,13 @@ public class Players {
 
     public int getPlayerCount() {
         return playerList.size();
+    }
+
+    public void movePlayer(Point from, Point to) {
+        Player player = playerList.stream()
+                .filter(p -> p.isPlayerInPosition(from))
+                .findFirst()
+                .orElseThrow(() -> new IllegalStateException("해당 위치에 있는 플레이어가 없습니다."));
+        player.move(to);
     }
 }
