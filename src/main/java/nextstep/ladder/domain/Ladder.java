@@ -1,12 +1,31 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.strategy.DirectionStrategy;
+
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
     private final Lines lines;
+
+    public Ladder(int countOfPlayer, int ladderHeight, DirectionStrategy directionStrategy) {
+        this(new CountOfPlayer(countOfPlayer), new LadderHeight(ladderHeight), directionStrategy);
+    }
+
+    public Ladder(CountOfPlayer countOfPlayer, LadderHeight ladderHeight, DirectionStrategy directionStrategy) {
+        this(createWith(countOfPlayer, ladderHeight, directionStrategy));
+    }
+
+    private static Lines createWith(CountOfPlayer countOfPlayer, LadderHeight ladderHeight, DirectionStrategy directionStrategy) {
+        List<Line> lines = IntStream.range(0, ladderHeight.value())
+                .mapToObj((i) -> new Line(countOfPlayer, directionStrategy))
+                .collect(Collectors.toList());
+
+        return new Lines(lines);
+    }
 
     public Ladder(Lines lines) {
         this.lines = lines;
