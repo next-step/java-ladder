@@ -5,27 +5,27 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Prizes implements Iterable<Member> {
+public class Prizes implements Iterable<Prize> {
 
     public static final String DILIMETER = ",";
-    private final List<Member> members;
+    private final List<Prize> prizes;
 
-    private Prizes(List<Member> members) {
-        this.members = members;
+    private Prizes(List<Prize> prizes) {
+        this.prizes = prizes;
     }
 
     public static Prizes of(String names) {
         return new Prizes(Arrays.stream(names.split(DILIMETER))
-            .map(Member::of)
+            .map(Prize::of)
             .collect(Collectors.toList()));
     }
 
     public int size() {
-        return members.size();
+        return prizes.size();
     }
 
     @Override
-    public Iterator<Member> iterator() {
-        return members.iterator();
+    public Iterator<Prize> iterator() {
+        return prizes.iterator();
     }
 }
