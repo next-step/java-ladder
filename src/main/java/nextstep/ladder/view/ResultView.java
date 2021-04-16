@@ -4,6 +4,7 @@ import nextstep.ladder.domain.MatchedResult;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -14,6 +15,7 @@ public class ResultView {
     private static final String CONNECTED = "-----";
     private static final String UNCONNECTED = "     ";
     private static final String PRIZE_RESULT = "실행 결과";
+    private static final String ALL = "all";
 
     public void printResultPhrase() {
         System.out.println();
@@ -61,13 +63,17 @@ public class ResultView {
     }
 
     public void printmappedResult(MatchedResult matchedResult, String targetPlayerName) {
-        if (matchedResult.isAll(targetPlayerName)) {
+        if (isAll(targetPlayerName)) {
             printAllResult(matchedResult.all());
         }
 
-        if (!matchedResult.isAll(targetPlayerName) && matchedResult.containsKey(targetPlayerName)) {
+        if (!isAll(targetPlayerName) && matchedResult.containsKey(targetPlayerName)) {
             printResultOfTarget(matchedResult.get(targetPlayerName));
         }
+    }
+
+    public boolean isAll(String target) {
+        return Objects.equals(target, ALL);
     }
 
     private void printAllResult(Iterable<? extends Map.Entry<String, String>> allResult) {

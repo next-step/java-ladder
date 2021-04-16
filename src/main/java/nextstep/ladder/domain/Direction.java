@@ -1,11 +1,13 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.exception.LadderException;
 import nextstep.ladder.strategy.DirectionStrategy;
 
 import java.util.Objects;
 
+import static nextstep.ladder.exception.LadderExceptionMessage.CHECK_CONTIONUOUS_POINT;
+
 public class Direction {
-    private static final String CHECK_CONTIONUOUS = "가로 라인이 겹치는 지 확인해주세요.";
     private static final int MOVE_LEFT = -1;
     private static final int MOVE_RIGHT = 1;
     private static final int STAY = 0;
@@ -21,7 +23,7 @@ public class Direction {
 
     private void validateContinuous(boolean left, boolean right) {
         if (left && right) {
-            throw new IllegalArgumentException(CHECK_CONTIONUOUS);
+            throw new LadderException(CHECK_CONTIONUOUS_POINT);
         }
     }
 

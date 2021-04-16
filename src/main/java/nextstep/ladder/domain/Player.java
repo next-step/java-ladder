@@ -1,9 +1,12 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.exception.LadderException;
+
 import java.util.Objects;
 
+import static nextstep.ladder.exception.LadderExceptionMessage.CHECK_NAME_LENGTH;
+
 public class Player {
-    private static final String CHECK_NAME_LENGTH = "이름이 5자를 초과하는지 확인해주세요.";
     private static final int NAME_LENGTH_MIN = 5;
 
     private final String name;
@@ -15,7 +18,7 @@ public class Player {
 
     private void checkNameLength(String name) {
         if (name.length() > NAME_LENGTH_MIN) {
-            throw new IllegalArgumentException(CHECK_NAME_LENGTH);
+            throw new LadderException(CHECK_NAME_LENGTH);
         }
     }
 

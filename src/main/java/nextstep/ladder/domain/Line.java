@@ -1,28 +1,45 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.strategy.DirectionStrategy;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Line {
-    private final int index;
-    private final Points points;
+    private final CrossingPoints crossingPoints;
 
-    public Line(int index, Points points) {
-        this.index = index;
-        this.points = points;
+    public Line(int countOfPlayer, DirectionStrategy directionStrategy) {
+        this(new CountOfPlayer(countOfPlayer), directionStrategy);
     }
 
-    public Points points() {
-        return points;
+    public Line(CountOfPlayer countOfPlayer, DirectionStrategy directionStrategy) {
+        this(createWith(countOfPlayer, directionStrategy));
     }
 
-    public int index() {
-        return index;
+    private static CrossingPoints createWith(CountOfPlayer countOfPlayer, DirectionStrategy directionStrategy) {
+        List<CrossingPoint> crossingPoints = new ArrayList<>(countOfPlayer.number());
+        CrossingPoint crossingPoint = CrossingPoint.first(directionStrategy);
+        crossingPoints.add(crossingPoint);
+
+        while (crossingPoint.isNotLast(countOfPlayer.number())) {
+            crossingPoint = crossingPoint.next(directionStrategy);
+            crossingPoints.add(crossingPoint);
+        }
+
+        crossingPoints.add(crossingPoint.last());
+
+        return new CrossingPoints(crossingPoints);
     }
 
-    public boolean isNotLast(int totalSize) {
-        return index != totalSize - 1;
+    public Line(CrossingPoints crossingPoints) {
+        this.crossingPoints = crossingPoints;
     }
 
-    public int nextPointIndexFrom(int pointIndex) {
-        Point point = points.findByIndex(pointIndex);
-        return point.move();
+    public int move(int index) {
+        return crossingPoints.move(index);
+    }
+
+    public CrossingPoints crossingPoints() {
+        return crossingPoints;
     }
 }
