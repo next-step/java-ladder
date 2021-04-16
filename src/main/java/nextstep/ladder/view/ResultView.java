@@ -1,9 +1,9 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.entity.Direction;
-import nextstep.ladder.entity.Ladder;
-import nextstep.ladder.entity.Line;
-import nextstep.ladder.entity.LinesOfOneHeight;
+import nextstep.ladder.entity.ladder.Direction;
+import nextstep.ladder.entity.ladder.Ladder;
+import nextstep.ladder.entity.ladder.Line;
+import nextstep.ladder.entity.ladder.LinesOfOneHeight;
 
 import java.util.List;
 import java.util.stream.Collectors;

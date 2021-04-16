@@ -1,6 +1,6 @@
-package nextstep.ladder;
+package nextstep.ladder.user;
 
-import nextstep.ladder.entity.Users;
+import nextstep.ladder.entity.user.Users;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

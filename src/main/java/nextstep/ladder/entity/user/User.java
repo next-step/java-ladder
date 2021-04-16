@@ -1,4 +1,4 @@
-package nextstep.ladder.entity;
+package nextstep.ladder.entity.user;
 
 import java.util.Objects;
 

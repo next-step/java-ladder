@@ -1,4 +1,7 @@
-package nextstep.ladder.entity;
+package nextstep.ladder.entity.ladder;
+
+import nextstep.ladder.entity.draw.DrawRule;
+import nextstep.ladder.entity.draw.RandomDrawRule;
 
 public class Line {
     private final Direction lineDirection;
@@ -16,6 +19,6 @@ public class Line {
     }
 
     public Direction direction(Direction direction, DrawRule drawRule) {
-        return direction.equals(Direction.RIGHT) ? Direction.LEFT : drawRule.nextDirection();
+        return direction.equals(Direction.RIGHT) ? Direction.LEFT : Direction.direction(drawRule.drawRule());
     }
 }

@@ -1,4 +1,4 @@
-package nextstep.ladder.entity;
+package nextstep.ladder.entity.ladder;
 
 import java.util.Collections;
 import java.util.List;

@@ -1,6 +1,10 @@
-package nextstep.ladder;
+package nextstep.ladder.ladder;
 
-import nextstep.ladder.entity.*;
+import nextstep.ladder.entity.draw.AlwaysDrawRule;
+import nextstep.ladder.entity.draw.RandomDrawRule;
+import nextstep.ladder.entity.ladder.Direction;
+import nextstep.ladder.entity.ladder.NoneDrawRule;
+import nextstep.ladder.entity.ladder.Line;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -28,6 +32,6 @@ public class LineTest {
     @ParameterizedTest
     @CsvSource(value = {"RIGHT:LEFT", "LEFT:NONE", "NONE:NONE"}, delimiter = ':')
     public void lastPointLine(Direction direction, Direction expectedNextDirection){
-        assertThat(new Line(direction, new LastPointNoneDrawRule()).getLineDirection()).isEqualTo(expectedNextDirection);
+        assertThat(new Line(direction, new NoneDrawRule()).getLineDirection()).isEqualTo(expectedNextDirection);
     }
 }

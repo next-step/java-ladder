@@ -1,4 +1,4 @@
-package nextstep.ladder.entity;
+package nextstep.ladder.entity.user;
 
 import nextstep.ladder.util.StringUtil;
 

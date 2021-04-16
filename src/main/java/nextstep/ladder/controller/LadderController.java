@@ -1,7 +1,7 @@
 package nextstep.ladder.controller;
 
-import nextstep.ladder.entity.Ladder;
-import nextstep.ladder.entity.Users;
+import nextstep.ladder.entity.ladder.Ladder;
+import nextstep.ladder.entity.user.Users;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 

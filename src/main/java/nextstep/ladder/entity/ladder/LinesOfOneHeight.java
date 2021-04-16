@@ -1,4 +1,7 @@
-package nextstep.ladder.entity;
+package nextstep.ladder.entity.ladder;
+
+import nextstep.ladder.entity.draw.DrawRule;
+import nextstep.ladder.entity.draw.RandomDrawRule;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +40,7 @@ public class LinesOfOneHeight {
             list.add(line);
         }
 
-        list.add(new Line(direction, new LastPointNoneDrawRule()));
+        list.add(new Line(direction, new NoneDrawRule()));
 
         return list;
     }
