@@ -40,18 +40,26 @@ public class DirectionTest {
     }
 
     @Test
-    @DisplayName("좌,우 둘 중 한 방향이라도 존재한다면 참을 반환한다.")
-    public void hasAnyDirection() throws Exception {
-        assertThat(toLeftDirection.hasAnyDirection()).isTrue();
-        assertThat(toRightDirection.hasAnyDirection()).isTrue();
-        assertThat(noneDirection.hasAnyDirection()).isFalse();
-    }
-
-    @Test
     @DisplayName("좌, 우 연결 방향에 따른 정수 값을 반환한다.")
     public void move() throws Exception {
         assertThat(toLeftDirection.move()).isEqualTo(-1);
         assertThat(toRightDirection.move()).isEqualTo(1);
         assertThat(noneDirection.move()).isEqualTo(0);
+    }
+
+    @Test
+    @DisplayName("오른쪽 방향을 가지고 있다면 참을 반환한다.")
+    public void hasRightDirection() throws Exception {
+        assertThat(toLeftDirection.hasRightDirection()).isFalse();
+        assertThat(toRightDirection.hasRightDirection()).isTrue();
+        assertThat(noneDirection.hasRightDirection()).isFalse();
+    }
+
+    @Test
+    @DisplayName("왼쪽 방향을 가지고 있다면 참을 반환한다.")
+    public void hasLeftDirection() throws Exception {
+        assertThat(toLeftDirection.hasLeftDirection()).isTrue();
+        assertThat(toRightDirection.hasLeftDirection()).isFalse();
+        assertThat(noneDirection.hasLeftDirection()).isFalse();
     }
 }

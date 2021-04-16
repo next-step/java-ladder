@@ -41,8 +41,8 @@ public class Direction {
         return new Direction(right, false);
     }
 
-    public boolean hasAnyDirection() {
-        return left || right;
+    public boolean hasLeftDirection() {
+        return left;
     }
 
     public boolean hasRightDirection() {

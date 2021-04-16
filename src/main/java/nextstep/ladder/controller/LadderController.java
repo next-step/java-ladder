@@ -18,11 +18,23 @@ public class LadderController {
 
     public void run() {
         Players players = new Players(inputView.players());
-        Height height = new Height(inputView.height());
+        Prizes prizes = new Prizes(players.countOfPlayer(), inputView.prizes());
+        LadderHeight ladderHeight = new LadderHeight(inputView.height());
+
         AllPointsForLines allPointsForLines = new AllPointsForLines(new RandomDirectionStrategy());
-        List<Points> allPoints = allPointsForLines.allPoints(players.countOfPlayer(), height);
+        List<Points> allPoints = allPointsForLines.allPoints(players.countOfPlayer(), ladderHeight);
         Lines lines = Lines.from(allPoints);
         Ladder ladder = new Ladder(lines);
-        resultView.printResult(players.names(), ladder.linesConnection());
+        printLadderResult(players, prizes, ladder);
+
+        MatchedResult matchedResult = ladder.map(players.names(), prizes.names());
+        resultView.printmappedResult(matchedResult, inputView.targetPlayer());
+    }
+
+    private void printLadderResult(Players players, Prizes prizes, Ladder ladder) {
+        resultView.printResultPhrase();
+        resultView.printNames(players.names());
+        resultView.printLadder(ladder.linesConnection());
+        resultView.printNames(prizes.names());
     }
 }

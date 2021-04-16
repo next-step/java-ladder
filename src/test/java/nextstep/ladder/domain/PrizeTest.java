@@ -5,12 +5,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class HeightTest {
+public class PrizeTest {
 
     @Test
-    @DisplayName("높이를 입력받아 높이 객체를 생성한다.")
+    @DisplayName("결과 내용을 입력받아 결과 객체를 생성한다.")
     public void create() throws Exception {
-        Height height = new Height("5");
-        assertThat(height).isEqualTo(new Height(5));
+        Prize prize = new Prize("꽝");
+        assertThat(prize).isEqualTo(new Prize("꽝"));
     }
 }
