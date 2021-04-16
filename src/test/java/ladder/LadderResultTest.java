@@ -6,6 +6,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -53,11 +55,11 @@ public class LadderResultTest {
     void prizeResultAll() {
         LadderResult ladderResult = new LadderResult(players, lineResults);
 
-        assertThat(ladderResult.playersPrizeAll(prize))
-                .allSatisfy((player, result) -> {
-                    assertThat(player.equals("red") && result.equals("5000"));
-                    assertThat(player.equals("blue") && result.equals("꽝"));
-                    assertThat(player.equals("black") && result.equals("1000"));
-                });
+        Map<String, String> resultMap = new HashMap<>();
+        resultMap.put("red", "5000");
+        resultMap.put("blue", "꽝");
+        resultMap.put("black", "1000");
+
+        assertThat(ladderResult.playersPrizeAll(prize)).containsExactlyEntriesOf(resultMap);
     }
 }
