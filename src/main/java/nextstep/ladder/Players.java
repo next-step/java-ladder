@@ -2,6 +2,7 @@ package nextstep.ladder;
 
 import nextstep.ladder.utils.StringUtils;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -12,7 +13,7 @@ public class Players {
 
     private Players(String[] values) {
         validation(values);
-        this.players = createPlayers(values);
+        this.players = generatePlayers(values);
     }
 
     private void validation(String[] values) {
@@ -21,13 +22,21 @@ public class Players {
         }
     }
 
-    private List<Player> createPlayers(String[] values) {
+    private List<Player> generatePlayers(String[] values) {
         return IntStream.range(0, values.length)
                 .mapToObj(position -> Player.of(values[position], position))
                 .collect(Collectors.toList());
     }
 
-    public static Players of(String value) {
+    public List<Player> players() {
+        return Collections.unmodifiableList(players);
+    }
+
+    public int size() {
+        return players.size();
+    }
+
+    public static Players from(String value) {
         return new Players(StringUtils.stringToArray(value));
     }
 

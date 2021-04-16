@@ -22,11 +22,11 @@ public class Player {
         }
     }
 
-    public String getName() {
+    public String name() {
         return name;
     }
 
-    public int getPosition() {
+    public int position() {
         return position;
     }
 
