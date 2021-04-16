@@ -6,18 +6,19 @@ import java.util.stream.Collectors;
 
 public class LadderGame {
     private final List<Player> playerList;
-    private final Ladder ladder;
+    private Ladder ladder;
 
     public LadderGame(List<String> names, int height) {
+        this(names);
         ladder = new Ladder(height, names.size());
-        playerList = new ArrayList<>(names.size());
-        for (int i = 0; i < names.size(); i++) {
-            playerList.add(new Player(names.get(i), new Point(i)));
-        }
     }
 
     public LadderGame(List<String> names, Ladder ladder) {
+        this(names);
         this.ladder = ladder;
+    }
+
+    private LadderGame(List<String> names) {
         playerList = new ArrayList<>(names.size());
         for (int i = 0; i < names.size(); i++) {
             playerList.add(new Player(names.get(i), new Point(i)));
