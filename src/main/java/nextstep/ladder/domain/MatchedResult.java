@@ -1,10 +1,13 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.exception.LadderException;
+
 import java.util.Map;
 import java.util.Objects;
 
+import static nextstep.ladder.exception.LadderExceptionMessage.CHECK_TARGET_PLAYER_NAME;
+
 public class MatchedResult {
-    private static final String CHECK_TARGET_PLAYER = "입력하신 플레이어가 존재하지 않습니다.";
     private static final String ALL = "all";
 
     private final Map<String, String> matchedResult;
@@ -23,7 +26,7 @@ public class MatchedResult {
 
     public boolean containsKey(String targetPlayerName) {
         if (!matchedResult.containsKey(targetPlayerName)) {
-            throw new IllegalArgumentException(CHECK_TARGET_PLAYER);
+            throw new LadderException(CHECK_TARGET_PLAYER_NAME);
         }
 
         return matchedResult.containsKey(targetPlayerName);

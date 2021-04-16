@@ -1,14 +1,15 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.exception.LadderException;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static nextstep.ladder.exception.LadderExceptionMessage.CHECK_PRIZES_LENGTH;
 import static nextstep.ladder.utils.StringUtil.splitWithComma;
 
 public class Prizes {
-    private static final String CHECK_LENGTH = "결과 목록의 길이는 플레이어 목록의 길이와 같아야합니다.";
-
     private final List<Prize> prizeList;
 
     public Prizes(int countOfPlayer, String... prizes) {
@@ -42,7 +43,7 @@ public class Prizes {
 
     private void validateLength(int countOfPlayer, int countOfPrize) {
         if (countOfPlayer != countOfPrize) {
-            throw new IllegalArgumentException(CHECK_LENGTH);
+            throw new LadderException(CHECK_PRIZES_LENGTH);
         }
     }
 

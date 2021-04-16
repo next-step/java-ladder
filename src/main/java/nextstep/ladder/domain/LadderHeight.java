@@ -1,10 +1,13 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.exception.LadderException;
+
 import java.util.Objects;
+
+import static nextstep.ladder.exception.LadderExceptionMessage.CHECK_LADDER_HEIGHT;
 
 public class LadderHeight {
     private static final int HEIGHT_MIN = 1;
-    private static final String CHECK_HEIGHT = "사다리 높이가 1미만인지 확인해주세요.";
 
     private final int height;
 
@@ -19,7 +22,7 @@ public class LadderHeight {
 
     private void validateLength(int height) {
         if (height < HEIGHT_MIN) {
-            throw new IllegalArgumentException(CHECK_HEIGHT);
+            throw new LadderException(CHECK_LADDER_HEIGHT);
         }
     }
 
