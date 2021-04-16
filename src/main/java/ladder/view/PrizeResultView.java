@@ -30,6 +30,6 @@ public class PrizeResultView {
 
     public void printResultAll() {
         Map<String, String> allResult = ladderResult.playersPrizeAll(prize);
-        allResult.forEach((s, s2) -> System.out.println(s + " : " + s2));
+        allResult.forEach((player, result) -> System.out.println(player + " : " + result));
     }
 }
