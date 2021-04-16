@@ -1,9 +1,6 @@
 package ladder.view;
 
-import ladder.domain.LadderResult;
-import ladder.domain.Player;
-import ladder.domain.Players;
-import ladder.domain.Point;
+import ladder.domain.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -64,6 +61,11 @@ public class ResultView {
                 .map(Players::allPlayers)
                 .orElseThrow(IllegalArgumentException::new)
                 .forEach(player -> System.out.print(padLeft(player.getName(), Player.MAX_SIZE + 1)));
+    }
+
+    public void printPrize(Prize prize) {
+        prize.getHitResults()
+                .forEach(hit -> System.out.print(padLeft(hit, Player.MAX_SIZE + 1)));
     }
 
     private String padLeft(String inputString, int padCount) {
