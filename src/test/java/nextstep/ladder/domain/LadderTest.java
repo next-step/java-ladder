@@ -6,22 +6,21 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.BDDAssertions.then;
 
 public class LadderTest {
-    private AllPointsForLines allPointsForLines;
-    private List<Points> allPoints;
+    private AllCrossingPointsForLines allCrossingPointsForLines;
+    private List<CrossingPoints> allCrossingPoints;
     private Lines lines;
     private Ladder ladder;
 
     @BeforeEach
     void setUp() {
-        allPointsForLines = new AllPointsForLines(new RandomDirectionStrategy());
-        allPoints = allPointsForLines.allPoints(4, 5);
-        lines = Lines.from(allPoints);
+        allCrossingPointsForLines = new AllCrossingPointsForLines(new RandomDirectionStrategy());
+        allCrossingPoints = allCrossingPointsForLines.allCrossingPoints(4, 5);
+        lines = Lines.from(allCrossingPoints);
         ladder = new Ladder(lines);
     }
 

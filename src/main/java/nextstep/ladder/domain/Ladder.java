@@ -26,22 +26,19 @@ public class Ladder {
         IntStream.range(0, players.size())
                 .forEach((playerIndex) -> result.put(
                         players.get(playerIndex),
-                        prizes.get(findLastIndex(playerIndex)))
+                        prizes.get(move(playerIndex)))
                 );
 
         return new MatchedResult(result);
     }
 
-    private int findLastIndex(int pointIndex) {
-        Line currentLine = lines.firstLine();
+    private int move(int pointIndex) {
+        int lastPointIndex = pointIndex;
 
-        while (currentLine.isNotLast(lines.size())) {
-            pointIndex = currentLine.nextPointIndexFrom(pointIndex);
-            currentLine = lines.nextLine(currentLine.index());
+        for (Line line : lines.lines()) {
+            lastPointIndex = line.move(lastPointIndex);
         }
 
-        pointIndex = currentLine.nextPointIndexFrom(pointIndex);
-
-        return pointIndex;
+        return lastPointIndex;
     }
 }
