@@ -16,7 +16,7 @@ public class PrizeTest {
     void prizeMappingTestByPlayerPosition() {
         Prizes prizes = new Prizes(Arrays.asList("꽝", "5000", "꽝", "3000"));
 
-        Prize prize = prizes.givePrizeTo(new Player("pobi", new Point(1)));
+        Prize prize = prizes.givePrizeTo(new Player("pobi", new Point(0)));
 
         assertThat(prize).isEqualTo(new Prize("꽝"));
     }
