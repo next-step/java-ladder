@@ -12,8 +12,8 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public int height() {
-        return lines.size();
+    public LadderHeight height() {
+        return new LadderHeight(lines.size());
     }
 
     public List<List<Boolean>> linesConnection() {

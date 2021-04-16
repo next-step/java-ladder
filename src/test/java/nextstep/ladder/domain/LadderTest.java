@@ -27,7 +27,7 @@ public class LadderTest {
     @Test
     @DisplayName("라인 목록을 인자로 받아 사다리를 생성한다.")
     public void create() throws Exception {
-        assertThat(ladder.height()).isEqualTo(5);
+        assertThat(ladder.height().value()).isEqualTo(5);
     }
 
     @Test
