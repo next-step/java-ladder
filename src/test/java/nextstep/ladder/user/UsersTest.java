@@ -1,6 +1,5 @@
 package nextstep.ladder.user;
 
-import nextstep.ladder.entity.user.User;
 import nextstep.ladder.entity.user.Users;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -27,7 +26,7 @@ public class UsersTest {
     @Test
     @DisplayName("문자열 split 하여 참여자 시작 위치 가져오기")
     public void userStartPositions(){
-        assertThat(users.startPositions("all")).containsExactly(0, 1, 2, 3, 4);
+        assertThat(users.startPositions()).containsExactly(0, 1, 2, 3, 4);
     }
 
     @Test
@@ -39,7 +38,7 @@ public class UsersTest {
     @Test
     @DisplayName("이름으로 시작 위치 찾기")
     public void userPosition(){
-        assertThat(users.startPositions("BBB").get(0)).isEqualTo(1);
+        assertThat(users.startPosition("BBB")).isEqualTo(1);
     }
 
     @Test
@@ -47,7 +46,7 @@ public class UsersTest {
     public void userPositionNotFound(){
         assertThatIllegalArgumentException()
                 .isThrownBy(() ->
-                        users.startPositions("TEST")
+                        users.startPosition("TEST")
                 ).withMessageMatching("게임에 참여한 참여자의 이름이 아닙니다.");
     }
 }

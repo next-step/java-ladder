@@ -2,16 +2,19 @@ package nextstep.ladder.controller;
 
 import nextstep.ladder.entity.ladder.Ladder;
 import nextstep.ladder.entity.ladder.LadderResults;
-import nextstep.ladder.entity.user.User;
 import nextstep.ladder.entity.user.Users;
+import nextstep.ladder.service.LadderResultService;
+import nextstep.ladder.service.MultiLadderResultService;
+import nextstep.ladder.service.SingleLadderResultService;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class LadderController {
+
+    static final String RESULT_ALL_NAME = "all";
+
     public void start() {
 
         String usersInput = InputView.user();
@@ -19,36 +22,25 @@ public class LadderController {
         int ladderHeight = InputView.ladderHeight();
 
         Users users = new Users(usersInput);
-        Ladder ladder = new Ladder(users.userCount(), ladderHeight);
-        LadderResults ladderResults = new LadderResults(resultsInput);
+        int userCount = users.userCount();
+
+        Ladder ladder = new Ladder(userCount, ladderHeight);
 
         ResultView.printResult(users.userNames(), ladder);
 
         String resultMember = InputView.resultMember();
 
-        List<Integer> startPositions = users.startPositions(resultMember);
+        LadderResults ladderResults = new LadderResults(resultsInput, userCount);
 
-        ResultView.gameResult(startPositions.size() == 1
-                                ? singleResult(ladder, ladderResults, startPositions)
-                                : multiResults(users, ladder, ladderResults, startPositions));
+        LadderResultService ladderResultService = new SingleLadderResultService(resultMember);
 
-    }
-
-    private List<String> singleResult(Ladder ladder, LadderResults ladderResults, List<Integer> startPositions) {
-        return startPositions.stream()
-                .map(startPosition -> ladderResults.positionResult(ladder.gameEndPosition(startPosition)))
-                .collect(Collectors.toList());
-    }
-
-    private List<String> multiResults(Users users, Ladder ladder, LadderResults ladderResults, List<Integer> startPositions) {
-        List<String> gameResults = new ArrayList<>();
-
-        for (Integer startPosition : startPositions) {
-            User user = users.startPositionUser(startPosition);
-            String gameResult = ladderResults.positionResult(ladder.gameEndPosition(startPosition));
-            gameResults.add(user.name() + " : " + gameResult);
+        if (resultMember.equalsIgnoreCase(RESULT_ALL_NAME)) {
+            ladderResultService = new MultiLadderResultService();
         }
 
-        return gameResults;
+        List<String> gameResults = ladderResultService.result(users, ladderResults, ladder);
+
+        ResultView.gameResult(gameResults);
+
     }
 }

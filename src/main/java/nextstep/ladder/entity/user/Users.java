@@ -32,7 +32,7 @@ public class Users {
                 .collect(Collectors.toList());
     }
 
-    private List<Integer> startPositions() {
+    public List<Integer> startPositions() {
         return users.stream().map(User::startPosition)
                 .collect(Collectors.toList());
     }
@@ -41,15 +41,10 @@ public class Users {
         return this.users.size();
     }
 
-    public List<Integer> startPositions(String userName) {
-
-        if (userName.equalsIgnoreCase("all")) {
-            return startPositions();
-        }
-
-        return Collections.singletonList(users.stream()
+    public int startPosition(String userName) {
+        return users.stream()
                 .filter(user -> user.name().equals(userName))
                 .findFirst().map(User::startPosition)
-                .orElseThrow(() -> new IllegalArgumentException("게임에 참여한 참여자의 이름이 아닙니다.")));
+                .orElseThrow(() -> new IllegalArgumentException("게임에 참여한 참여자의 이름이 아닙니다."));
     }
 }

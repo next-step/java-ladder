@@ -8,6 +8,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class LadderResultsTest {
 
@@ -16,13 +17,22 @@ public class LadderResultsTest {
 
     @BeforeEach
     void setup() {
-        ladderResults = new LadderResults(resultsInput);
+        ladderResults = new LadderResults(resultsInput, 4);
     }
 
     @Test
     @DisplayName("사다리 게임 결과 리스트 생성")
     public void ladderResultCreate(){
-        assertThat(ladderResults.equals(new LadderResults(resultsInput))).isTrue();
+        assertThat(ladderResults.equals(new LadderResults(resultsInput, 4))).isTrue();
+    }
+
+    @Test
+    @DisplayName("사다리 게임 결과 리스트 생성 실패")
+    public void ladderResultCreateFail(){
+        assertThatIllegalArgumentException()
+                .isThrownBy(() ->
+                        new LadderResults(resultsInput, 5)
+                ).withMessageMatching("당첨 결과는 유저 수와 같아야 합니다.");
     }
 
     @ParameterizedTest

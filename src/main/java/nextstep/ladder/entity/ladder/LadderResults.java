@@ -10,13 +10,17 @@ import java.util.stream.Collectors;
 public class LadderResults {
     private final List<LadderResult> ladderResults;
 
-    public LadderResults(String resultsInput) {
-        this.ladderResults = ladderResultsByString(resultsInput);
+    public LadderResults(String resultsInput, int userCount) {
+        this.ladderResults = ladderResultsByString(resultsInput, userCount);
     }
 
-    private List<LadderResult> ladderResultsByString(String resultsInput) {
+    private List<LadderResult> ladderResultsByString(String resultsInput, int userCount) {
 
         String[] results = StringUtil.splitCommaByString(resultsInput);
+
+        if (userCount != results.length) {
+            throw new IllegalArgumentException("당첨 결과는 유저 수와 같아야 합니다.");
+        }
 
         return Arrays.stream(results)
                 .map(LadderResult::new)
@@ -25,6 +29,10 @@ public class LadderResults {
 
     public String positionResult(int position) {
         return ladderResults.get(position).result();
+    }
+
+    public String positionResult(String name, int position) {
+        return name + " : " + ladderResults.get(position).result();
     }
 
     @Override
