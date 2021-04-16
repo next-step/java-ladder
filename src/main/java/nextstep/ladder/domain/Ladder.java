@@ -45,4 +45,12 @@ public class Ladder {
                 .map(String::valueOf)
                 .collect(Collectors.joining(","));
     }
+
+    public Player rideLadder(Player startingPlayer) {
+        Player player = startingPlayer;
+        for (Line line : lines) {
+            player = line.movePlayerToNewPoint(player);
+        }
+        return player;
+    }
 }
