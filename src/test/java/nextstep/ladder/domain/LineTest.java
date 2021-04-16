@@ -10,28 +10,6 @@ import static org.assertj.core.api.BDDAssertions.then;
 
 public class LineTest {
 
-    @Test
-    @DisplayName("좌표 값들을 인자로 받아 사다리 라인을 생성한다.")
-    public void create() throws Exception {
-        Line line = new Line(new CrossingPoints(4, new RandomDirectionStrategy()));
-        assertThat(line.crossingPoints().crossingPoints()).hasSize(4);
-    }
-
-    @Test
-    @DisplayName("이동을 시작할 위치를 인자로 받아 해당 위치에서 이동한 위치를 반환한다.")
-    public void move() throws Exception {
-        //given
-        Line firstLine = new Line(new CrossingPoints(4, connectableTrueStrategy));
-        Line secondline = new Line(new CrossingPoints(4, connectableFalseStrategy));
-
-        //when
-        int right = firstLine.move(0);
-        int stay = secondline.move(0);
-
-        then(right).isEqualTo(1);
-        then(stay).isEqualTo(0);
-    }
-
     private DirectionStrategy connectableTrueStrategy = new RandomDirectionStrategy() {
         @Override
         public boolean isConnectable() {
@@ -45,4 +23,26 @@ public class LineTest {
             return false;
         }
     };
+
+    @Test
+    @DisplayName("플레이어 수와 방향 생성 전략을 인자로 받아 사다리 라인을 생성한다.")
+    public void create() throws Exception {
+        Line line = new Line(4, new RandomDirectionStrategy());
+        assertThat(line.crossingPoints().crossingPoints()).hasSize(4);
+    }
+
+    @Test
+    @DisplayName("이동을 시작할 위치를 인자로 받아 해당 위치에서 이동한 위치를 반환한다.")
+    public void move() throws Exception {
+        //given
+        Line firstLine = new Line(4, connectableTrueStrategy);
+        Line secondline = new Line(4, connectableFalseStrategy);
+
+        //when
+        int right = firstLine.move(0);
+        int stay = secondline.move(0);
+
+        then(right).isEqualTo(1);
+        then(stay).isEqualTo(0);
+    }
 }
