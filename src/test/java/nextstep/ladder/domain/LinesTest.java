@@ -14,9 +14,9 @@ public class LinesTest {
     @DisplayName("각 라인의 좌표들을 인자로 받아 모든 라인을 생성한다.")
     public void create() throws Exception {
         //given
-        AllCrossingPointsForLines allCrossingPointsForLines = new AllCrossingPointsForLines(new RandomDirectionStrategy());
-        List<CrossingPoints> allCrossPoints = allCrossingPointsForLines.allCrossingPoints(4, 5);
-        Lines lines = Lines.from(allCrossPoints);
+        CrossingPointsCreator crossingPointsCreator = new CrossingPointsCreator(new RandomDirectionStrategy());
+        List<CrossingPoints> crossPointsForLines = crossingPointsCreator.create(4, 5);
+        Lines lines = Lines.from(crossPointsForLines);
 
         //when
         List<Line> result = lines.lines();

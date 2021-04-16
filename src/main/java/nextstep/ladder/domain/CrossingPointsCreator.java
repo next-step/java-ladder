@@ -7,18 +7,18 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class AllCrossingPointsForLines {
+public class CrossingPointsCreator {
     private final DirectionStrategy directionStrategy;
 
-    public AllCrossingPointsForLines(DirectionStrategy directionStrategy) {
+    public CrossingPointsCreator(DirectionStrategy directionStrategy) {
         this.directionStrategy = directionStrategy;
     }
 
-    public List<CrossingPoints> allCrossingPoints(int countOfPlayer, int height) {
-        return allCrossingPoints(new CountOfPlayer(countOfPlayer), new LadderHeight(height));
+    public List<CrossingPoints> create(int countOfPlayer, int height) {
+        return create(new CountOfPlayer(countOfPlayer), new LadderHeight(height));
     }
 
-    public List<CrossingPoints> allCrossingPoints(CountOfPlayer countOfPlayer, LadderHeight ladderHeight) {
+    public List<CrossingPoints> create(CountOfPlayer countOfPlayer, LadderHeight ladderHeight) {
         List<CrossingPoints> allCrosses = IntStream.range(0, ladderHeight.value())
                 .mapToObj((i) -> new CrossingPoints(countOfPlayer, directionStrategy))
                 .collect(Collectors.toList());

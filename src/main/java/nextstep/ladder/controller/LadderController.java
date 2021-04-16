@@ -20,10 +20,9 @@ public class LadderController {
         Players players = new Players(inputView.players());
         Prizes prizes = new Prizes(players.countOfPlayer(), inputView.prizes());
         LadderHeight ladderHeight = new LadderHeight(inputView.height());
-
-        AllCrossingPointsForLines allCrossingPointsForLines = new AllCrossingPointsForLines(new RandomDirectionStrategy());
-        List<CrossingPoints> allCrossingPoints = allCrossingPointsForLines.allCrossingPoints(players.countOfPlayer(), ladderHeight);
-        Lines lines = Lines.from(allCrossingPoints);
+        CrossingPointsCreator crossingPointsCreator = new CrossingPointsCreator(new RandomDirectionStrategy());
+        List<CrossingPoints> crossingPointsForLines = crossingPointsCreator.create(players.countOfPlayer(), ladderHeight);
+        Lines lines = Lines.from(crossingPointsForLines);
         Ladder ladder = new Ladder(lines);
         printLadderResult(players, prizes, ladder);
 

@@ -11,16 +11,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.BDDAssertions.then;
 
 public class LadderTest {
-    private AllCrossingPointsForLines allCrossingPointsForLines;
-    private List<CrossingPoints> allCrossingPoints;
+    private CrossingPointsCreator crossingPointsCreator;
+    private List<CrossingPoints> crossingPointsForLines;
     private Lines lines;
     private Ladder ladder;
 
     @BeforeEach
     void setUp() {
-        allCrossingPointsForLines = new AllCrossingPointsForLines(new RandomDirectionStrategy());
-        allCrossingPoints = allCrossingPointsForLines.allCrossingPoints(4, 5);
-        lines = Lines.from(allCrossingPoints);
+        crossingPointsCreator = new CrossingPointsCreator(new RandomDirectionStrategy());
+        crossingPointsForLines = crossingPointsCreator.create(4, 5);
+        lines = Lines.from(crossingPointsForLines);
         ladder = new Ladder(lines);
     }
 
