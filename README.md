@@ -121,6 +121,11 @@ pobi  honux crong   jk
 >   -> 2) ``.forEach()``는 컬렉션의 요소 수정 가능,  
 >     반면 ``stream().forEach()``는 컬렉션에서 구조적으로 수정이 일어나면 ❌❌
 > 4. ``for-loop`` 와  ``stream()``의 성능차이? [참고링크](https://homoefficio.github.io/2016/06/26/for-loop-%EB%A5%BC-Stream-forEach-%EB%A1%9C-%EB%B0%94%EA%BE%B8%EC%A7%80-%EB%A7%90%EC%95%84%EC%95%BC-%ED%95%A0-3%EA%B0%80%EC%A7%80-%EC%9D%B4%EC%9C%A0/)
+> 5. ``Link``, ``PointLink`` 상속구조와 LSP 원칙?
+>   -> LSP 원칙은 하위 타입은 언제든지 상위 타입으로 교체되어도 문제가 없어야한다는 원칙  
+>   -> PointLink가 Link의 역할을 잘 수행하고 있는지, PointLink를 Link로 대체하게되어도 문제 없는지 고민  
+>   -> [SOLID](https://www.nextree.co.kr/p6960/) 에서는 LSP를 만족시키지 못한다면 Composition 생각해보라는 조언을 적음.  
+>     -> 이 부분에 대해 고민을 좀 더 해봐야겠음!
 </details>
 
 
