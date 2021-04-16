@@ -5,7 +5,7 @@ import ladder.domain.ExecutionResults;
 import ladder.domain.Ladder;
 import ladder.domain.Persons;
 
-import java.util.stream.Collectors;
+import static java.util.stream.Collectors.joining;
 
 public class ResultView {
     private static final String POINT_TRUE_CHARACTER = "-----";
@@ -14,27 +14,24 @@ public class ResultView {
     private static final String SPACE_INPUT_CRITERIA = "%6s";
 
     public void printPersons(Persons persons) {
-        System.out.println(String.format("%n사다리 결과"));
-        StringBuilder builder = new StringBuilder();
-        builder.append(System.lineSeparator());
-        persons.getPersons()
+        System.out.printf("%n사다리 결과%n");
+        String personString = persons.getPersons()
                 .stream()
-                .forEach(person ->
-                        builder.append(String.format(SPACE_INPUT_CRITERIA, person.toString())));
-        System.out.println(builder.toString());
+                .map(person -> String.format(SPACE_INPUT_CRITERIA, person.toString()))
+                .collect(joining());
+        System.out.printf(String.format("%s", personString));
     }
 
     public void printLadder(Ladder ladder) {
-        StringBuilder builder = new StringBuilder();
-        ladder.getLadderLines().stream()
+        ladder.getLadderLines()
+                .stream()
                 .forEach(ladderLine -> {
-                    builder.append(String.format(SPACE_INPUT_CRITERIA, LINE_CHARACTER));
-                    builder.append(ladderLine.getPoints().stream()
+                    String ladderLineStringString = String.format(SPACE_INPUT_CRITERIA, LINE_CHARACTER);
+                    String ladderLineString = ladderLine.getPoints().stream()
                             .map(point -> getPointCharacter(point.isRight()))
-                            .collect(Collectors.joining(LINE_CHARACTER)));
-                    builder.append(System.lineSeparator());
+                            .collect(joining(LINE_CHARACTER));
+                    System.out.printf(String.format("%n%s%s", ladderLineStringString, ladderLineString));
                 });
-        System.out.println(builder.toString());
     }
 
     private String getPointCharacter(Boolean point) {
@@ -45,27 +42,24 @@ public class ResultView {
     }
 
     public void printExecutionResults(ExecutionResults executionResults) {
-        StringBuilder builder = new StringBuilder();
-        executionResults.getExecutionResults()
+        String executionResultString = executionResults.getExecutionResults()
                 .stream()
-                .forEach(executionResult ->
-                        builder.append(String.format(SPACE_INPUT_CRITERIA, executionResult)));
-        System.out.println(builder.toString());
+                .map(executionResult -> String.format(SPACE_INPUT_CRITERIA, executionResult))
+                .collect(joining());
+        System.out.printf(String.format("%n%s%n", executionResultString));
     }
 
     public void printExecutionResult(ExecutionResultMap executionResultMap, String personName) {
-        StringBuilder builder = new StringBuilder();
-        builder.append(System.lineSeparator() + "실행결과");
-        builder.append(System.lineSeparator() + executionResultMap.getExecutionResult(personName));
-        System.out.println(builder.toString());
+        System.out.printf("%n실행결과");
+        System.out.printf(String.format("%n%s%n", executionResultMap.getExecutionResult(personName)));
     }
 
     public void printAllExecutionResult(ExecutionResultMap executionResultMap) {
-        StringBuilder builder = new StringBuilder();
-        builder.append(System.lineSeparator() + "실행결과");
-        for (String personName : executionResultMap.getExecutionResultMap().keySet()) {
-            builder.append(System.lineSeparator() + personName + " : " + executionResultMap.getExecutionResult(personName));
-        }
-        System.out.println(builder.toString());
+        System.out.printf("%n실행결과");
+        executionResultMap.getExecutionResultMap()
+                .keySet()
+                .forEach(personName ->
+                        System.out.printf(String.format("%n%s : %s", personName,
+                                executionResultMap.getExecutionResult(personName))));
     }
 }

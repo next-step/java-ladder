@@ -12,17 +12,17 @@ public class InputView {
     }
 
     public String[] inputExecutionResults() {
-        System.out.println(String.format("%n실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)"));
+        System.out.printf("%n실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)%n");
         return scanner.nextLine().split(INPUT_SEPARATOR);
     }
 
     public int inputLadderHeight() {
-        System.out.println(String.format("%n최대 사다리 높이는 몇 개 인가요?"));
+        System.out.printf("%n최대 사다리 높이는 몇 개 인가요?%n");
         return Integer.parseInt(scanner.nextLine());
     }
 
     public String inputPersonName() {
-        System.out.println(String.format("%n결과를 보고 싶은 사람은?"));
+        System.out.printf("%n결과를 보고 싶은 사람은?%n");
         return scanner.nextLine();
     }
 }
