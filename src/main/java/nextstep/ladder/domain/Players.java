@@ -31,4 +31,11 @@ public class Players {
                 .orElseThrow(() -> new IllegalStateException("해당 위치에 있는 플레이어가 없습니다."));
         player.move(to);
     }
+
+    public Player findPlayerByName(String name) {
+        return playerList.stream()
+                .filter(p -> p.getName().equals(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("해당 이름을 가진 플레이어가 없습니다."));
+    }
 }
