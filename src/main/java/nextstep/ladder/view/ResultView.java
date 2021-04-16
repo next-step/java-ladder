@@ -12,6 +12,9 @@ import java.util.stream.IntStream;
 public class ResultView {
 
     static final String HEIGHT_PRINT_SYMBOL = "|";
+    static final String DRAW_LINE = "-----";
+    static final String NONE_DRAW_LINE = "     ";
+    static final String lineSeparator = System.lineSeparator();
 
     private ResultView() {
     }
@@ -27,8 +30,8 @@ public class ResultView {
     }
 
     public static void printStart() {
-        String lineSeparator = System.lineSeparator();
-        System.out.println(lineSeparator + "실행결과" + lineSeparator);
+
+        System.out.println(lineSeparator + "사다리 결과" + lineSeparator);
     }
 
     public static void printUser(List<String> userNames) {
@@ -61,12 +64,18 @@ public class ResultView {
     }
 
     private static String width(Line line) {
-        if (line.getLineDirection().equals(Direction.RIGHT)) {
-            return "-----";
+
+        if (line.lineDirection().equals(Direction.RIGHT)) {
+            return DRAW_LINE;
         }
-        return "     ";
+
+        return NONE_DRAW_LINE;
     }
 
-
-
+    public static void gameResult(List<String> gameResults) {
+        System.out.println(lineSeparator + "실행결과");
+        for (String gameResult : gameResults) {
+            System.out.println(gameResult);
+        }
+    }
 }

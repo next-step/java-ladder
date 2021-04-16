@@ -13,7 +13,7 @@ public class UserTest {
     public void nameLength(){
         assertThatIllegalArgumentException()
                 .isThrownBy(() ->
-                        new User("nameLengthOver")
+                        new User("nameLengthOver", 1)
                 ).withMessageMatching("이름은 5자를 초과 할 수 없습니다.");
     }
 
@@ -21,9 +21,10 @@ public class UserTest {
     @DisplayName("유저 생성")
     public void createUser(){
         String name = "TEST";
+        int startPosition = 1;
 
-        User user = new User(name);
+        User user = new User(name, startPosition);
 
-        assertThat(user.equals(new User(name))).isTrue();
+        assertThat(user.equals(new User(name, startPosition))).isTrue();
     }
 }

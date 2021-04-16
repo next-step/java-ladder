@@ -3,16 +3,23 @@ package nextstep.ladder.entity.user;
 import java.util.Objects;
 
 public class User {
-    private final String name;
     private static final int MAX_NAME_SIZE = 5;
 
-    public User(String name) {
+    private final String name;
+    private final int startPosition;
+
+    public User(String name, int startPosition) {
         nameValid(name);
         this.name = name;
+        this.startPosition = startPosition;
     }
 
-    public String getName() {
+    public String name() {
         return name;
+    }
+
+    public int startPosition() {
+        return startPosition;
     }
 
     private void nameValid(String name) {

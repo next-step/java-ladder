@@ -25,4 +25,16 @@ public class Ladder {
     public List<LinesOfOneHeight> getLines() {
         return Collections.unmodifiableList(linesOfOneHeightList);
     }
+
+    public int gameEndPosition(int startPosition) {
+        int gameEndPosition = startPosition;
+
+        for (LinesOfOneHeight linesOfOneHeight : linesOfOneHeightList) {
+            gameEndPosition = linesOfOneHeight.nextHeightPosition(gameEndPosition);
+        }
+
+        return gameEndPosition;
+    }
+
+
 }

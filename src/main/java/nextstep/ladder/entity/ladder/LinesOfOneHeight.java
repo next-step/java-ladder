@@ -36,12 +36,25 @@ public class LinesOfOneHeight {
 
         for (int i = 0; i < userCount - 1; i++) {
             Line line = new Line(direction, rule);
-            direction = line.getLineDirection();
+            direction = line.lineDirection();
             list.add(line);
         }
 
         list.add(new Line(direction, new NoneDrawRule()));
 
         return list;
+    }
+
+    public int nextHeightPosition(int currentPosition) {
+
+        if (positionLine(currentPosition).lineDirection().equals(Direction.RIGHT)) {
+            return currentPosition + 1;
+        }
+
+        if (positionLine(currentPosition).lineDirection().equals(Direction.LEFT)) {
+            return currentPosition - 1;
+        }
+
+        return currentPosition;
     }
 }
