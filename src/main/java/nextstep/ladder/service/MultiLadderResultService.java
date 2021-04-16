@@ -4,17 +4,21 @@ import nextstep.ladder.entity.ladder.Ladder;
 import nextstep.ladder.entity.ladder.LadderResults;
 import nextstep.ladder.entity.user.User;
 import nextstep.ladder.entity.user.Users;
-import nextstep.ladder.view.ResultView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MultiLadderResultService implements LadderResultService {
+
+    private final Users users;
+
+    public MultiLadderResultService(Users users) {
+        this.users = users;
+    }
+
     @Override
-    public List<String> result(Users users, LadderResults ladderResults, Ladder ladder) {
-
+    public List<String> result(LadderResults ladderResults, Ladder ladder) {
         List<Integer> startPositions = users.startPositions();
-
         List<String> gameResults = new ArrayList<>();
 
         for (Integer startPosition : startPositions) {

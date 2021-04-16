@@ -32,13 +32,13 @@ public class LadderController {
 
         LadderResults ladderResults = new LadderResults(resultsInput, userCount);
 
-        LadderResultService ladderResultService = new SingleLadderResultService(resultMember);
+        LadderResultService ladderResultService = new SingleLadderResultService(users.startPosition(resultMember));
 
         if (resultMember.equalsIgnoreCase(RESULT_ALL_NAME)) {
-            ladderResultService = new MultiLadderResultService();
+            ladderResultService = new MultiLadderResultService(users);
         }
 
-        List<String> gameResults = ladderResultService.result(users, ladderResults, ladder);
+        List<String> gameResults = ladderResultService.result(ladderResults, ladder);
 
         ResultView.gameResult(gameResults);
 
