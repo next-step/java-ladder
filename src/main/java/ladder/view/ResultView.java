@@ -1,6 +1,6 @@
 package ladder.view;
 
-import ladder.domain.LineResults;
+import ladder.domain.LadderResult;
 import ladder.domain.Player;
 import ladder.domain.Players;
 import ladder.domain.Point;
@@ -14,12 +14,10 @@ public class ResultView {
     private static final String DASH = "-";
     private static final String ROOT = "|";
 
-    private final Players players;
-    private LineResults lineResults;
+    private final LadderResult ladderResult;
 
-    public ResultView(Players players, LineResults lineResults) {
-        this.players = players;
-        this.lineResults = lineResults;
+    public ResultView(LadderResult ladderResult) {
+        this.ladderResult = ladderResult;
     }
 
     public void showLadderDrawResult() {
@@ -31,12 +29,12 @@ public class ResultView {
 
     private void printHeader() {
         printNewLine();
-        System.out.println("실행결과");
+        System.out.println("사다리 결과");
         printNewLine();
     }
 
     private void printLadder() {
-        lineResults.getLines()
+        ladderResult.getLines()
                 .forEach(line -> printLine(line.getPoints()));
     }
 
@@ -62,7 +60,7 @@ public class ResultView {
     }
 
     private void printPlayers() {
-        Optional.of(players)
+        Optional.of(ladderResult.getPlayers())
                 .map(Players::allPlayers)
                 .orElseThrow(IllegalArgumentException::new)
                 .forEach(player -> System.out.print(padLeft(player.getName(), Player.MAX_SIZE + 1)));
