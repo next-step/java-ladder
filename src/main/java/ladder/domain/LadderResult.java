@@ -35,6 +35,9 @@ public class LadderResult {
     }
 
     public String playersPrize(Player player, Prize prize) {
+        if (players.index(player) < 0) {
+            throw new IllegalArgumentException("입력한 사람은 참가자에 없습니다.");
+        }
         int arrivalIndex = ladderMap.getArrivalIndex(players.index(player));
         return prize.prizeOfIndex(arrivalIndex);
     }
