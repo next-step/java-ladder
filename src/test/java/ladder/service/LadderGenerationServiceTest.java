@@ -1,6 +1,6 @@
 package ladder.service;
 
-import ladder.domain.GameResults;
+import ladder.domain.MatchingItems;
 import ladder.domain.Ladder;
 import ladder.domain.Participants;
 import org.junit.jupiter.api.DisplayName;
@@ -128,13 +128,13 @@ class LadderGenerationServiceTest {
         String gameResultNames = "꽝,5000,꽝,3000";
 
         // when
-        GameResults gameResults = service.generateGameResults(gameResultNames, 4);
+        MatchingItems matchingItems = service.generateGameResults(gameResultNames, 4);
 
         // then
         assertAll(
-                () -> assertThat(4).isEqualTo(gameResults.getGameResults().size()),
+                () -> assertThat(4).isEqualTo(matchingItems.getMatchingItems().size()),
                 () ->  {
-                    for (String gameResult : gameResults.getGameResults()) {
+                    for (String gameResult : matchingItems.getMatchingItems()) {
                         assertThat(Arrays.stream(gameResultNames.split(",")).collect(Collectors.toList()).contains(gameResult)).isTrue();
                     }
                 }
@@ -150,10 +150,10 @@ class LadderGenerationServiceTest {
         String gameResultNames = "꽝,5000,꽝,3000";
 
         // when
-        GameResults gameResults = service.generateGameResults(gameResultNames, 4);
+        MatchingItems matchingItems = service.generateGameResults(gameResultNames, 4);
 
         // then
-        assertThat(gameResult).isEqualTo(gameResults.getGameResult(ladderExitNumber));
+        assertThat(gameResult).isEqualTo(matchingItems.getGameResult(ladderExitNumber));
     }
 
 }
