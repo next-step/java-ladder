@@ -9,22 +9,22 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-class LadderGenerationTest {
+class LineGenerationTest {
 
     private int size;
-    private LadderGeneration ladderGeneration;
+    private LineGeneration lineGeneration;
 
     @BeforeEach
     void init() {
         size = 10;
-        ladderGeneration = new LadderGeneration(size);
+        lineGeneration = new LineGeneration(size);
     }
 
 
     @DisplayName("points가 전부 false일 경우")
     @Test
     void getPointsAllfalseTest() {
-        List<Boolean> points = ladderGeneration.getPoints(condition -> false);
+        List<Boolean> points = lineGeneration.getPoints(condition -> false);
         List<Boolean> expectedPoints = IntStream.range(0, size)
                 .mapToObj(index -> false)
                 .collect(Collectors.toList());
@@ -35,7 +35,7 @@ class LadderGenerationTest {
     @DisplayName("points가 전부 true일 경우")
     @Test
     void getPointsAllTrueTest() {
-        List<Boolean> points = ladderGeneration.getPoints(condition -> true);
+        List<Boolean> points = lineGeneration.getPoints(condition -> true);
         List<Boolean> expectedPoints = IntStream.range(0, size)
                 .mapToObj(index -> true)
                 .collect(Collectors.toList());
@@ -47,7 +47,7 @@ class LadderGenerationTest {
     @Test
     void getPointsShuffleTest() {
         CustomCondition customCondition = new CustomCondition();
-        List<Boolean> points = ladderGeneration.getPoints(customCondition);
+        List<Boolean> points = lineGeneration.getPoints(customCondition);
 
         List<Boolean> expectedPoints = IntStream.range(0, size)
                 .mapToObj(index -> {

@@ -1,15 +1,19 @@
 package step2.domain;
 
 
+import java.util.Random;
+
 public class PointCondition implements Condition {
     private boolean condition;
+    private Random random;
 
-    public PointCondition(boolean condition) {
+    public PointCondition() {
         this.condition = false;
+        this.random = new Random();
     }
 
-    public boolean getCondition(boolean condition) {
-        this.condition = validate(condition);
+    public boolean getCondition() {
+        this.condition = validate(random.nextBoolean());
 
         return this.condition;
     }

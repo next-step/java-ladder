@@ -7,18 +7,16 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 
-public class LadderGeneration {
+public class PointsGeneration {
     private final int size;
 
-    public LadderGeneration(int size) {
+    public PointsGeneration(int size) {
         this.size = size;
     }
 
     public List<Boolean> getPoints(Condition condition) {
-        Random random = new Random();
-
         return IntStream.range(0, size)
-                .mapToObj(index -> condition.getCondition(random.nextBoolean()))
+                .mapToObj(index -> condition.getCondition())
                 .collect(Collectors.toList());
     }
 }
