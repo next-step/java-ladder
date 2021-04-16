@@ -45,13 +45,4 @@ public class MatchedResultTest {
     public void validateInvalidTarget() throws Exception {
         assertThatIllegalArgumentException().isThrownBy(() -> matchedResult.containsKey("none"));
     }
-
-    @Test
-    @DisplayName("입력받은 플레이어 이름이 \"all\"일 경우 참을 반환한다.")
-    public void isAll() throws Exception {
-        //when
-        boolean result = matchedResult.isAll("all");
-
-        then(result).isTrue();
-    }
 }
