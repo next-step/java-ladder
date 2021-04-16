@@ -5,18 +5,18 @@ import common.utils.StringUtils;
 import java.util.Arrays;
 import java.util.List;
 
-public class GameResults {
+public class MatchingItems {
 
     private static final String NAME_DELIMITER = ",";
 
-    private final List<String> gameResults;
+    private final List<String> matchingItems;
 
-    public GameResults(String gameResultNames, int participantsCount) {
+    public MatchingItems(String gameResultNames, int participantsCount) {
         this(generateGameResults(gameResultNames, participantsCount));
     }
 
-    public GameResults(List<String> gameResults) {
-        this.gameResults = gameResults;
+    public MatchingItems(List<String> matchingItems) {
+        this.matchingItems = matchingItems;
     }
 
     private static List<String> generateGameResults(String gameResultNames, int participantsCount) {
@@ -48,11 +48,11 @@ public class GameResults {
         return gameResults.stream().anyMatch(StringUtils::isBlank);
     }
 
-    public List<String> getGameResults() {
-        return gameResults;
+    public List<String> getMatchingItems() {
+        return matchingItems;
     }
 
     public String getGameResult(int ladderExitNumber) {
-        return gameResults.get(ladderExitNumber);
+        return matchingItems.get(ladderExitNumber);
     }
 }
