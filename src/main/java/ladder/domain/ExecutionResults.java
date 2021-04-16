@@ -12,11 +12,11 @@ import static ladder.util.CollectionsUtils.checkSize;
 public class ExecutionResults {
     private final List<String> executionResults;
 
-    private ExecutionResults(List<String> executionResults) {
+    private ExecutionResults(final List<String> executionResults) {
         this.executionResults = executionResults;
     }
 
-    public static ExecutionResults from(String[] executionResults, int countOfPerson) {
+    public static ExecutionResults from(final String[] executionResults, final int countOfPerson) {
         return Arrays.stream(checkSize(executionResults, countOfPerson))
                 .collect(collectingAndThen(
                         toList(),
@@ -24,7 +24,7 @@ public class ExecutionResults {
                 ));
     }
 
-    public String getExecutionResult(int index) {
+    public String getExecutionResult(final int index) {
         return executionResults.get(index);
     }
 

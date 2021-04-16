@@ -4,8 +4,11 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.BiConsumer;
 import java.util.stream.Collector;
 import java.util.stream.IntStream;
+
+import static ladder.util.BinaryOperations.nope;
 
 public class ExecutionResultMap {
     private Map<String, String> executionResultMap;
@@ -18,30 +21,27 @@ public class ExecutionResultMap {
         this.executionResultMap = executionResultMap;
     }
 
-    public static ExecutionResultMap of(Persons persons, LadderExecutionResults ladderExecutionResults) {
+    public static ExecutionResultMap of(final Persons persons, final LadderExecutionResults ladderExecutionResults) {
         return IntStream.range(0, persons.getCountOfPerson())
                 .boxed()
                 .collect(Collector.of(
                         ExecutionResultMap::new,
-                        (executionResultMap, index) ->
-                                executionResultMap.add(
-                                        persons.getPerson(index),
-                                        ladderExecutionResults.getExecutionResult(index)),
-                        (a, b) -> {
-                            throw new UnsupportedOperationException();
-                        }
+                        doSomething(persons, ladderExecutionResults),
+                        nope()
                 ));
     }
 
-    private void add(Person person, String executionResult) {
+    private static BiConsumer<ExecutionResultMap, Integer> doSomething(Persons persons, LadderExecutionResults ladderExecutionResults) {
+        return (executionResultMap, index) -> executionResultMap.add(persons.getPerson(index), ladderExecutionResults.getExecutionResult(index));
+    }
+
+    private void add(final Person person, final String executionResult) {
         this.executionResultMap.put(person.toString(), executionResult);
     }
 
-    public String getExecutionResult(String personName) {
-        String executionResult = Optional.ofNullable(executionResultMap.get(personName))
-                                         .orElseThrow(() ->
-                                                 new RuntimeException("참여하지 않은 사람은 입력할 수 없습니다."));
-        return executionResult;
+    public String getExecutionResult(final String personName) {
+        return Optional.ofNullable(executionResultMap.get(personName))
+                .orElseThrow(() -> new RuntimeException("참여하지 않은 사람은 입력할 수 없습니다."));
     }
 
     public Map<String, String> getExecutionResultMap() {

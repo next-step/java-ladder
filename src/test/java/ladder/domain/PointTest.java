@@ -1,65 +1,64 @@
 package ladder.domain;
 
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class PointTest {
 
     @Test
-    @DisplayName("Line의 첫 인덱스가 true일때 이동하면 index가 증가한다")
-    void move_first_index() {
-        // given
-        int index = 0;
-        Point point = Point.from(index, true);
-
-        // when
-        int expectedIndex = point.move();
-
-        // then
-        assertThat(++index).isEqualTo(expectedIndex);
+    public void first() {
+        assertThat(Point.first(TRUE).move()).isEqualTo(1);
+        assertThat(Point.first(FALSE).move()).isEqualTo(0);
     }
 
     @Test
-    @DisplayName("현재 Point가 true일때 이동하면 index가 증가한다")
-    void move_right() {
+    public void next_stay() {
         // given
-        int index = 1;
-        Point point = Point.from(index, true);
+        Point point = Point.first(FALSE);
 
         // when
-        int expectedIndex = point.move(false);
+        Point second = point.next(() -> false);
 
         // then
-        assertThat(++index).isEqualTo(expectedIndex);
+        assertThat(second.move()).isEqualTo(1);
     }
 
     @Test
-    @DisplayName("현재 Point가 false이고 이전 Point가 true일때 이동하면 index가 감소한다")
-    void move_left() {
+    public void next_left() {
         // given
-        int index = 1;
-        Point point = Point.from(1, false);
+        Point point = Point.first(TRUE);
 
         // when
-        int expectedIndex = point.move(true);
+        Point second = point.next(() -> false);
 
         // then
-        assertThat(--index).isEqualTo(expectedIndex);
+        assertThat(second.move()).isEqualTo(0);
     }
 
     @Test
-    @DisplayName("이전과 현재 Point가 모두 false 일때 이동하면 index는 변하지 않는다")
-    void not_move() {
+    public void next_right() {
         // given
-        int index = 1;
-        Point point = Point.from(1, false);
+        Point point = Point.first(FALSE);
 
         // when
-        int expectedIndex = point.move(false);
+        Point second = point.next(() -> true);
 
         // then
-        assertThat(index).isEqualTo(expectedIndex);
+        assertThat(second.move()).isEqualTo(2);
+    }
+
+    @Test
+    public void next() {
+        // given
+        Point point = Point.first(TRUE);
+
+        // when
+        Point second = point.next(() -> true);
+
+        // then
+        assertThat(second.move()).isEqualTo(0);
     }
 }

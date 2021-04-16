@@ -20,7 +20,7 @@ class LadderTest {
         Ladder ladder = Ladder.of(height, countOfPerson, () -> Boolean.TRUE);
 
         // then
-        assertThat(ladder.getLines().size()).isEqualTo(height);
+        assertThat(ladder.getLadderLines().size()).isEqualTo(height);
     }
 
     @DisplayName("index를 입력하면 사다리 최종 결과를 반환한다")
@@ -33,11 +33,6 @@ class LadderTest {
 
         // when
         Ladder ladder = Ladder.of(height, countOfPerson, () -> Boolean.TRUE);
-        // TRUE FALSE TRUE FALSE FALSE
-        // TRUE FALSE TRUE FALSE FALSE
-        // TRUE FALSE TRUE FALSE FALSE
-        // TRUE FALSE TRUE FALSE FALSE
-        // TRUE FALSE TRUE FALSE FALSE
 
         // then
         assertThat(ladder.getResultIndex(startIndex)).isEqualTo(expectedResultIndex);

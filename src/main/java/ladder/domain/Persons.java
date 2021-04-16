@@ -17,7 +17,7 @@ public class Persons {
         this.persons = persons;
     }
 
-    public static Persons from(String[] personNames) {
+    public static Persons from(final String[] personNames) {
         return Arrays.stream(personNames)
                 .map(Person::from)
                 .distinct()
@@ -31,7 +31,7 @@ public class Persons {
         return persons.size();
     }
 
-    public Person getPerson(int index) {
+    public Person getPerson(final int index) {
         return persons.get(index);
     }
 
