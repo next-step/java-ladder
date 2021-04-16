@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.BiConsumer;
 import java.util.stream.Collector;
 import java.util.stream.IntStream;
 
@@ -25,10 +26,13 @@ public class ExecutionResultMap {
                 .boxed()
                 .collect(Collector.of(
                         ExecutionResultMap::new,
-                        (executionResultMap, index) ->
-                                executionResultMap.add(persons.getPerson(index), ladderExecutionResults.getExecutionResult(index)),
+                        doSomething(persons, ladderExecutionResults),
                         nope()
                 ));
+    }
+
+    private static BiConsumer<ExecutionResultMap, Integer> doSomething(Persons persons, LadderExecutionResults ladderExecutionResults) {
+        return (executionResultMap, index) -> executionResultMap.add(persons.getPerson(index), ladderExecutionResults.getExecutionResult(index));
     }
 
     private void add(final Person person, final String executionResult) {
