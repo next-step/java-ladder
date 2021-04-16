@@ -12,12 +12,8 @@ public class BodyPointStrategy implements PointStrategy {
     @Override
     public Point point() {
         if (previousPoint.hasRightDirection()) {
-            return new Point(previousPoint.nextIndex(), new Direction(false, false));
+            return new Point(previousPoint.nextIndex(), new Direction(true, false));
         }
-        if (previousPoint.hasLeftDirection()) {
-            return new Point(previousPoint.nextIndex(), new Direction(false, RandomUtil.trueOrFalse()));
-        }
-        boolean trueOrFalse = RandomUtil.trueOrFalse();
-        return new Point(previousPoint.nextIndex(), new Direction(trueOrFalse, !trueOrFalse));
+        return new Point(previousPoint.nextIndex(), new Direction(false, RandomUtil.trueOrFalse()));
     }
 }
