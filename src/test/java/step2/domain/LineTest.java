@@ -8,49 +8,20 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 class LineTest {
 
-    @DisplayName("사다리가 생성됬을 경우")
+    @DisplayName("사다리 포인트 테스트")
     @Test
     void lineCreatedTest() {
-        int size = 2;
+        CustomCondition customCondition = new CustomCondition();
         List<Boolean> expectedPoints = IntStream.range(0, 2)
-                .mapToObj(index -> true)
+                .mapToObj(index -> customCondition.getCondition())
                 .collect(Collectors.toList());
 
         Line line = new Line(expectedPoints);
-        Assertions.assertEquals(line.toString(), "|-----|-----");
+
+        Assertions.assertEquals(line.getPoint(0), true);
+        Assertions.assertEquals(line.getPoint(1), false);
     }
-
-    @DisplayName("사다리가 생성이 안됬을 경우")
-    @Test
-    void lineNotCreatedTest() {
-        int size = 2;
-        List<Boolean> expectedPoints = IntStream.range(0, 2)
-                .mapToObj(index -> false)
-                .collect(Collectors.toList());
-
-        Line line = new Line(expectedPoints);
-        Assertions.assertEquals(line.toString(), "|     |     ");
-    }
-    
-    @DisplayName("사다리가 생성여부가 섞였을경우 테스트")
-    @Test
-    void lineTest() {
-        int size = 2;
-        List<Boolean> expectedPoints = IntStream.range(0, size)
-                .mapToObj(index -> {
-                    if (index % 2 == 0) {
-                        return true;
-                    }
-                    return false;
-                })
-                .collect(Collectors.toList());
-
-        Line line = new Line(expectedPoints);
-        Assertions.assertEquals(line.toString(), "|-----|     ");
-    }
-
 }
