@@ -33,8 +33,8 @@ public class InputView {
         return value(LADDER_RESULTS);
     }
 
-    public static String ladderHeight() {
-        return value(LADDER_HEIGHT);
+    public static int ladderHeight() {
+        return Integer.parseInt(value(LADDER_HEIGHT));
     }
 
     public static String choicePlayer() {
