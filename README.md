@@ -26,8 +26,7 @@
     * 주 생성자 : Layers(List\<Layer\>)
     * 부 생성자 : Layers(int height)
     * 메소드
-        *
-*
+        * int finalLine(int startLine)
 
 ### 기능 요구사항
 
