@@ -12,9 +12,9 @@ import java.util.Map;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderResultTest {
-    Players players;
-    Ladder ladder = new Ladder();
-    Prize prize;
+    private Players players;
+    private final Ladder ladder = new Ladder();
+    private Prize prize;
 
     @BeforeEach
     void ladder() {
