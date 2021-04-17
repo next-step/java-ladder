@@ -32,6 +32,10 @@ public final class Ladder {
     return people;
   }
 
+  public int findResultIndex(Person person) {
+    return 0;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {

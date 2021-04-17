@@ -46,4 +46,22 @@ class LadderTest {
         () -> assertThat(lines.get(2)).isEqualTo(expectedLine)
     );
   }
+
+  @Test
+  @DisplayName("사람을 입력받고, 해당하는 결과 인덱스를 반환한다.")
+  void findResultIndex() {
+    // given
+    final String name = "pobi";
+    final Person pobi = Person.valueOf(name);
+
+    // when
+    final int resultIndex = ladder.findResultIndex(pobi);
+
+    // then
+    assertAll(
+        () -> assertThat(resultIndex).isEqualTo(ladder.findResultIndex(Person.valueOf(name))),
+        () -> assertThat(resultIndex).isNotEqualTo(ladder.findResultIndex(Person.valueOf("honux")))
+    );
+
+  }
 }
