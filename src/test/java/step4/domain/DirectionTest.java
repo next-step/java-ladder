@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class DirectionTest {
+
     @Test
     public void init() {
         assertThat(Direction.of(true, false)).isEqualTo(Direction.of(true, false));
@@ -19,7 +20,7 @@ public class DirectionTest {
 
     @Test
     public void next_random_true() {
-        Direction next = Direction.first(TRUE).next();
+        Direction next = Direction.first(TRUE).next(new RandomDirectionStrategy());
         assertThat(next).isEqualTo(Direction.of(TRUE, FALSE));
     }
 
@@ -41,7 +42,7 @@ public class DirectionTest {
         assertThat(first.isLeft()).isFalse();
     }
 
-	@Test
+    @Test
     public void last() {
         Direction last = Direction.first(TRUE).last();
         assertThat(last).isEqualTo(Direction.of(TRUE, FALSE));

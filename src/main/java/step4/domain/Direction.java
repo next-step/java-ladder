@@ -1,7 +1,6 @@
 package step4.domain;
 
 import static java.lang.Boolean.*;
-import static step4.util.LadderPointGenerator.*;
 
 import java.util.Objects;
 
@@ -29,11 +28,8 @@ public class Direction {
         return of(this.right, nextRight);
     }
 
-    public Direction next() {
-        if (this.right) {
-            return next(FALSE);
-        }
-        return next(generatePoint());
+    public Direction next(DirectionStrategy directionStrategy) {
+        return directionStrategy.next(this);
     }
 
     public static Direction of(boolean first, boolean second) {

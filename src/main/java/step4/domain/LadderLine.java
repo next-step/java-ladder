@@ -35,7 +35,7 @@ public class LadderLine {
 
     private static Point initBody(int sizeOfPerson, List<Point> points, Point point) {
         for (int i = 1; i < sizeOfPerson - 1; i++) {
-            point = point.next();
+            point = point.next(new RandomDirectionStrategy());
             points.add(point);
         }
         return point;

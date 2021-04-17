@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 public class PointTest {
+
     @Test
     public void first() {
         assertThat(Point.first(TRUE).move()).isEqualTo(Position.valueOf(1));
@@ -32,7 +33,7 @@ public class PointTest {
 
     @Test
     public void next() {
-        Point second = Point.first(TRUE).next();
+        Point second = Point.first(TRUE).next(new RandomDirectionStrategy());
         assertThat(second.move()).isEqualTo(Position.valueOf(0));
     }
 }

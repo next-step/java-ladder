@@ -21,8 +21,8 @@ public class Point {
         return Position.valueOf(this.index);
     }
 
-    public Point next() {
-        return new Point(index + 1, direction.next());
+    public Point next(DirectionStrategy directionStrategy) {
+        return new Point(index + 1, direction.next(directionStrategy));
     }
 
     public Point next(Boolean right) {
