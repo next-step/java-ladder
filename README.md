@@ -20,13 +20,23 @@
     * 주 생성자 : Layer(List\<Boolean> aisle)
     * 부 생성자 : Layer(int line)
     * 메소드
-        * int nextLine(int nowLine)
-* Layers
+        * (미구현)int nextLine(int nowLine)
+* Ladder
     * instance : List<Layer> layers;
     * 주 생성자 : Layers(List\<Layer\>)
     * 부 생성자 : Layers(int height)
     * 메소드
-        * int finalLine(int startLine)
+        * (미구현)int finalLine(int startLine)
+
+### 서비스 상세
+
+* LadderGame
+    * run()
+* RandomBooleanGenerator
+    * static 변수 : DEFAULT_PROBABILITY
+    * 메소드
+        * static boolean randomBoolean(int trueProbability)
+        * static boolean randomBoolean()
 
 ### 기능 요구사항
 
