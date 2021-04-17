@@ -19,8 +19,7 @@ public class LadderGame {
         Players players = enroll(names);
 
         Size size = new Size(inputHeight(), names.size());
-        Ladder ladder = makeLadder(size);
-        ladder.makeLink(new RandomLadderStrategy());
+        Ladder ladder = makeLadder(size, new RandomLadderStrategy());
 
         printNames(players);
         printLadder(ladder);

@@ -1,6 +1,7 @@
 package laddergame.controller;
 
 import laddergame.domain.ladder.Ladder;
+import laddergame.domain.ladder.LadderStrategy;
 import laddergame.domain.ladder.Size;
 import laddergame.domain.player.Name;
 import laddergame.domain.player.Player;
@@ -23,8 +24,10 @@ public class LadderController {
                 .collect(toCollection(ArrayList::new)));
     }
 
-    public static Ladder makeLadder(Size size) {
-        return new Ladder(size);
+    public static Ladder makeLadder(Size size, LadderStrategy strategy) {
+        Ladder ladder = new Ladder(size);
+        ladder.makeLink(strategy);
+        return ladder;
     }
 
 }
