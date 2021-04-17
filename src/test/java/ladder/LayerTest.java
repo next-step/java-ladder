@@ -14,7 +14,8 @@ public class LayerTest {
     @Test
     @DisplayName("복도 생성 확률 100프로, |-------|         |-------|         |-------| 형태")
     public void Layer() {
-        // given 
+        // given
+        final int line = 6;
         List<Boolean> expectAisles = Arrays.asList(true, false, true, false, true);
         RandomBoolean randomTrueBoolean = new RandomBooleanGenerator() {
             @Override
@@ -25,7 +26,7 @@ public class LayerTest {
         Layer expectLayer = new Layer(expectAisles);
 
         // when 
-        Layer resultLayer = new Layer(6, randomTrueBoolean);
+        Layer resultLayer = new Layer(line, randomTrueBoolean);
 
         // then
         Assertions.assertThat(resultLayer).isEqualToComparingFieldByField(expectLayer);
