@@ -25,7 +25,7 @@ public class StringUtils {
 
     public static String fitLine(Line line) {
         StringBuilder fit = new StringBuilder();
-        line.isConnect().stream()
+        line.isConnect()
                 .forEach(connected -> fitConnect(connected, fit));
         return fit.toString();
     }
