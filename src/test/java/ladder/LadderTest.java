@@ -40,8 +40,8 @@ public class LadderTest {
 
         // UI로 확인
         System.out.println("<1>");
-        ResultView.printResult(predefined, 4);
+        ResultView.printLadderResult(predefined, 4);
         System.out.println("<2>");
-        ResultView.printResult(created, 4);
+        ResultView.printLadderResult(created, 4);
     }
 }

@@ -25,4 +25,9 @@ public class Prize {
     public int hashCode() {
         return Objects.hash(prize);
     }
+
+    @Override
+    public String toString() {
+        return prize;
+    }
 }

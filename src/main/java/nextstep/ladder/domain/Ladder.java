@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import nextstep.ladder.domain.strategy.BridgeBuilder;
 
 public class Ladder {
-    static final int LADDER_MIN_HEIGHT = 5;
+    static final int LADDER_MIN_HEIGHT = 1;
 
     private final List<Line> lines = new ArrayList<>();
     private BridgeBuilder bridgeBuilder;
