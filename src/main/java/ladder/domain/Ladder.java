@@ -39,18 +39,18 @@ public final class Ladder {
         }
     }
 
-    public final Map<String, String> run(People people, LadderResults results) {
+    public final LadderResultBoard run(People people, LadderResults results) {
         List<Integer> list = people.values();
         ladder.forEach(line -> line.run(list));
 
-        Map<String, String> map = new HashMap<>();
+        Map<Person, String> map = new HashMap<>();
         IntStream.range(START_INCLUSIVE, list.size())
                 .forEach(index -> {
                     Person person = people.get(list.get(index));
                     String result = results.get(index);
-                    map.put(person.getName(), result);
+                    map.put(person, result);
                 });
-        return map;
+        return LadderResultBoard.of(map);
     }
 
     public final Stream<Line> stream() {

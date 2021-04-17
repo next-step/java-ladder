@@ -27,17 +27,9 @@ public class LadderGame {
         Ladder ladder = Ladder.from(creationInformation, RandomLineGenerateStrategy.getInstance());
         RESULT_VIEW.printLadderStatus(people, ladder, results);
 
-        Map<String, String> map = ladder.run(people, results);
-        printResultForTest(map);
+        LadderResultBoard ladderResultBoard = ladder.run(people, results);
 
     }
 
-    private static void printResultForTest(Map<String, String> map) {
-        Set<String> names = map.keySet();
-        names.stream().forEach(key -> {
-            System.out.print(key+" : ");
-            System.out.println(map.get(key));
-        });
-    }
 
 }
