@@ -9,8 +9,6 @@ import nextstep.ladder.domain.Player;
 import nextstep.ladder.domain.LadderGame;
 import nextstep.ladder.domain.Players;
 import nextstep.ladder.domain.Point;
-import nextstep.ladder.domain.PrizeMapper;
-import nextstep.ladder.domain.Prizes;
 import nextstep.ladder.domain.strategy.BridgeBuilder;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
