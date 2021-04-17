@@ -50,7 +50,7 @@ public final class People {
   }
 
   public int indexOf(Person person) {
-    return 0;
+    return people.indexOf(person);
   }
 
   @Override
