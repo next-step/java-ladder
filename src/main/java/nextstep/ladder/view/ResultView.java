@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ResultView {
-    public static void printResult(List<String> result, int countOfPerson) {
+    public static void printLadderResult(List<String> result, int countOfPerson) {
         result.stream()
                 .map(line -> drawLadderByLine(line, countOfPerson))
                 .forEach(System.out::println);
@@ -31,8 +31,13 @@ public class ResultView {
         return "     ";
     }
 
-    public static void printPlayersName(List<String> names) {
-        System.out.println("실행결과");
+    public static void printResultList(List<String> result) {
+        System.out.println("실행 결과");
+        result.stream()
+                .forEach(System.out::println);
+    }
+
+    public static void printObjectsName(List<String> names) {
         names.stream()
                 .map(ResultView::paddingName)
                 .forEach(System.out::print);
