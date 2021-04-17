@@ -28,7 +28,7 @@ public class LadderTest {
 
         // when
         Ladder resultLadder = new Ladder(line, height, randomTrueBoolean);
-        
+
         // then
         Assertions.assertThat(resultLadder).isEqualTo(expectLadder);
     }
