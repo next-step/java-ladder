@@ -47,13 +47,5 @@ public class LadderGameTest {
         assertThat(honux.isPlayerInPosition(new Point(3))).isEqualTo(true);
         assertThat(crong.isPlayerInPosition(new Point(2))).isEqualTo(true);
         assertThat(jk.isPlayerInPosition(new Point(1))).isEqualTo(true);
-
-        Prizes prizes = new Prizes(Arrays.asList("꽝", "5000", "꽝", "3000"));
-        PrizeMapper prizeMapper = new PrizeMapper(prizes, players);
-
-        System.out.println(prizeMapper.getPlayerPrizeResult("pobi").get(0));
-        System.out.println(prizeMapper.getPlayerPrizeResult("honux").get(0));
-        System.out.println(prizeMapper.getPlayerPrizeResult("crong").get(0));
-        System.out.println(prizeMapper.getPlayerPrizeResult("jk").get(0));
     }
 }
