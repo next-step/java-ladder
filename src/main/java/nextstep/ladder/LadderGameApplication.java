@@ -1,10 +1,10 @@
 package nextstep.ladder;
 
-import nextstep.ladder.controller.LadderGameController;
+import nextstep.ladder.controller.LadderGame;
 
 public class LadderGameApplication {
     public static void main(String[] args) {
-        LadderGameController ladderGameController = new LadderGameController();
-        ladderGameController.start();
+        LadderGame ladderGame = new LadderGame();
+        ladderGame.run();
     }
 }

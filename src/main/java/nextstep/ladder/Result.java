@@ -1,4 +1,4 @@
-package nextstep.ladder.domain;
+package nextstep.ladder;
 
 import java.util.Objects;
 
@@ -7,7 +7,7 @@ public class Result {
     private final String value;
     private final int position;
 
-    public Result(final String value, final int position) {
+    private Result(final String value, final int position) {
         validation(position);
         this.value = value;
         this.position = position;
@@ -22,8 +22,8 @@ public class Result {
         return value;
     }
 
-    public int position() {
-        return position;
+    public static Result of(String name, int position) {
+        return new Result(name, position);
     }
 
     @Override
