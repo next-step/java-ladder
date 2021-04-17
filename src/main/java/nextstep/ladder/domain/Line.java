@@ -30,8 +30,23 @@ public final class Line {
   }
 
   public int nextPointIndex(int pointIndex) {
-    final int maxPosition = points.size();
-    return 0;
+    final Point currentPoint = points.get(pointIndex);
+
+    if (currentPoint.hasLine()) {
+      return pointIndex - 1;
+    }
+
+    final int nextPointIndex = pointIndex + 1;
+    if (nextPointIndex == points.size()) {
+      return pointIndex;
+    }
+
+    final Point nextPoint = points.get(nextPointIndex);
+    if (nextPoint.hasLine()) {
+      return nextPointIndex;
+    }
+
+    return pointIndex;
   }
 
   @Override
