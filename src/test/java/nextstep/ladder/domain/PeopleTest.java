@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import nextstep.ladder.exception.OverNameLengthLimitException;
 import nextstep.ladder.exception.PersonCountTooLowException;
 import nextstep.ladder.exception.PersonNotFoundException;
+import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -83,5 +84,22 @@ class PeopleTest {
             .isInstanceOf(PersonNotFoundException.class)
             .hasMessage(PersonNotFoundException.PERSON_NOT_FOUND + notContainedPerson.personName())
     );
+  }
+
+  @Test
+  @DisplayName("사람을 입력받아 해당 인덱스를 반환한다.")
+  void indexOf() {
+    // given
+    final String pobiName = "pobi";
+    final String[] names = {"dion", pobiName, "crong", "honux", "jk"};
+    final People people = People.from(names);
+    final Person pobi = Person.valueOf(pobiName);
+    final int index = Lists.list(names).indexOf(pobiName);
+
+    // when
+    final int actualIndex = people.indexOf(pobi);
+
+    // then
+    assertThat(actualIndex).isEqualTo(index);
   }
 }

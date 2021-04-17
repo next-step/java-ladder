@@ -49,6 +49,10 @@ public final class People {
     }
   }
 
+  public int indexOf(Person person) {
+    return 0;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
