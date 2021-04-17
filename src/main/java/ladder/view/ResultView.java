@@ -4,9 +4,11 @@ import ladder.domain.Ladder;
 import ladder.domain.Layer;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class ResultView {
     private final static String PRINT_RESULT = "실행결과";
+    private final static int AISLE_WIDTH = 6;
 
     public static void printLadder(Ladder ladder, List<String> users) {
         StringBuilder sb = new StringBuilder();
@@ -19,8 +21,19 @@ public class ResultView {
     private static String printUsers(List<String> users) {
         StringBuilder sb = new StringBuilder();
         users.stream()
-                .forEach(user -> sb.append(user).append("  "));
+                .forEach(user -> sb.append(user).append(printWhiteSpace(user)));
         sb.append(System.lineSeparator());
+        return sb.toString();
+    }
+
+    private static String printWhiteSpace(String user) {
+        if (user.length() > AISLE_WIDTH + 1) {
+            return "";
+        }
+        int nullSpace = AISLE_WIDTH + 1 - user.length();
+        StringBuilder sb = new StringBuilder();
+        IntStream.rangeClosed(0, nullSpace)
+                .forEach(i -> sb.append(" "));
         return sb.toString();
     }
 
@@ -33,10 +46,16 @@ public class ResultView {
     }
 
     private static String printAisle(boolean aisle) {
+        StringBuilder sb = new StringBuilder();
+
         if (aisle) {
-            return "-----";
+            IntStream.rangeClosed(0, AISLE_WIDTH)
+                    .forEach(i -> sb.append("-"));
+            return sb.toString();
         }
-        return "     ";
+        IntStream.rangeClosed(0, AISLE_WIDTH)
+                .forEach(i -> sb.append(" "));
+        return sb.toString();
     }
 
 
