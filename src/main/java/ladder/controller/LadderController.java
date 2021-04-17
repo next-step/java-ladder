@@ -1,9 +1,6 @@
 package ladder.controller;
 
-import ladder.domain.Ladder;
-import ladder.domain.LadderResult;
-import ladder.domain.Line;
-import ladder.domain.Players;
+import ladder.domain.*;
 import ladder.view.InputView;
 import ladder.view.PrizeInputView;
 import ladder.view.PrizeResultView;
@@ -17,7 +14,7 @@ public class LadderController {
 
             Ladder ladder = new Ladder();
             for (int i = 0; i < inputView.getLadderHeight(); i++) {
-                Line ladderLine = new Line(inputView.playersCount());
+                Line ladderLine = new LineGenerator().generate(inputView.playersCount());
                 ladder.add(ladderLine);
             }
 
