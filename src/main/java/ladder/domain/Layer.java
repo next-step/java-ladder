@@ -22,6 +22,10 @@ public final class Layer {
         this.aisles = aisles;
     }
 
+    public boolean hasAisle(int index) {
+        return aisles.get(index);
+    }
+
     private static List<Boolean> generateAisles(int line, RandomBoolean randomBoolean) {
         List<Boolean> result = new ArrayList<>();
         result.add(randomBoolean.randomBoolean());

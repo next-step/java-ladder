@@ -3,12 +3,13 @@ package ladder;
 import ladder.domain.Layer;
 import ladder.service.RandomBoolean;
 import ladder.service.RandomBooleanGenerator;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class LayerTest {
     @Test
@@ -29,6 +30,21 @@ public class LayerTest {
         Layer resultLayer = new Layer(line, randomTrueBoolean);
 
         // then
-        Assertions.assertThat(resultLayer).isEqualToComparingFieldByField(expectLayer);
+        assertThat(resultLayer).isEqualToComparingFieldByField(expectLayer);
+    }
+
+    @Test
+    public void hasAisle() {
+        // given
+        List<Boolean> expectAisles = Arrays.asList(true, false, true, false, true);
+        Layer expectLayer = new Layer(expectAisles);
+        // when
+
+        // then
+        assertThat(expectLayer.hasAisle(0)).isTrue();
+        assertThat(expectLayer.hasAisle(1)).isFalse();
+        assertThat(expectLayer.hasAisle(2)).isTrue();
+        assertThat(expectLayer.hasAisle(3)).isFalse();
+        assertThat(expectLayer.hasAisle(4)).isTrue();
     }
 }

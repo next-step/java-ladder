@@ -23,6 +23,7 @@ public class Ladder {
         this.ladder = layers;
     }
 
+
     private static List<Layer> generateLayers(int line, int height, RandomBoolean randomBoolean) {
         return IntStream.range(0, height)
                 .mapToObj(i -> new Layer(line, randomBoolean))
