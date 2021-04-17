@@ -1,12 +1,12 @@
-package ladder;
+package step4.domain;
 
 import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import ladder.domain.Player;
-import ladder.domain.PlayerName;
+import step4.exception.MinimumNameLengthException;
+import step4.exception.NaturalNumberException;
 
 public class PlayerTest {
 
@@ -22,10 +22,8 @@ public class PlayerTest {
 
     @Test
     void 생성_유효성_테스트() {
-        // given
-        String test = " ";
-        // when & then
-        Assertions.assertThrows(IllegalArgumentException.class, () -> new Player(0, test));
+        Assertions.assertThrows(MinimumNameLengthException.class, () -> new Player(0, ""));
+        Assertions.assertThrows(NaturalNumberException.class, () -> new Player(-1, "test"));
     }
 
     @Test
