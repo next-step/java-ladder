@@ -10,12 +10,12 @@ public class InputView {
 
     private final static Scanner scanner = new Scanner(System.in);
 
-    public List<String> getUsers() {
+    public static List<String> getUsers() {
         System.out.println(GET_USERS);
         return Arrays.asList(scanner.nextLine().split(","));
     }
 
-    public int getLadderHeight() {
+    public static int getLadderHeight() {
         System.out.println(GET_LADDER_HEIGHT);
         return Integer.parseInt(scanner.nextLine());
     }
