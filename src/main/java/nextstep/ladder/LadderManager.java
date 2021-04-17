@@ -31,7 +31,8 @@ public final class LadderManager {
     while (!ALL.equals(name)) {
       Person personForResult = getPersonForResult(people, name);
       final Result result = results.get(ladder.findResultIndex(personForResult));
-      ResultView.printPersonAndResult(personForResult, result);
+
+      ResultView.printResult(result);
       name = InputView.inputPersonNameForResult();
     }
     // 전체 결과 출력

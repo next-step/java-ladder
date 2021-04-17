@@ -58,7 +58,9 @@ public final class ResultView {
     System.out.println(resultsBuilder);
   }
 
-  public static void printPersonAndResult(Person personForResult, Result result) {
-    System.out.println(personForResult.personName() + " : " + result.result());
+  public static void printResult(Result result) {
+    System.out.println();
+    System.out.println("실행 결과");
+    System.out.println(result.result());
   }
 }
