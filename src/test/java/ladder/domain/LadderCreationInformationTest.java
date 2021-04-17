@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 class LadderCreationInformationTest {
 
@@ -63,7 +62,23 @@ class LadderCreationInformationTest {
 
         // when
         LadderCreationInformation ladderCreationInformation = LadderCreationInformation.from(people, ladderHeight);
-        int actual = ladderCreationInformation.row();
+        int actual = ladderCreationInformation.width();
+
+        // then
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    @DisplayName("LadderCreationInformation 인스턴스가 사다리 높이 정보 반환 여부 테스트")
+    @Test
+    void 반환_height() {
+        // given
+        int expected = 5;
+        People people = People.of("abcd,efgh,hijk".split(","));
+        LadderHeight ladderHeight = LadderHeight.valueOf(expected);
+
+        // when
+        LadderCreationInformation ladderCreationInformation = LadderCreationInformation.from(people, ladderHeight);
+        int actual = ladderCreationInformation.height();
 
         // then
         assertThat(actual).isEqualTo(expected);
