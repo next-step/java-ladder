@@ -8,13 +8,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class RandomBooleanTest {
     @Test
-    public void RandomBoolean() {
+    public void RandomBooleanTrueTest() {
         // given
         RandomBoolean randomBoolean = new RandomBooleanGenerator() {
-            @Override
-            public boolean randomBoolean() {
-                return true;
-            }
+            private final int DEFAULT_PROBABILITY = 100;
         };
         // when
         boolean resultRandomBoolean = randomBoolean.randomBoolean();
@@ -24,14 +21,16 @@ public class RandomBooleanTest {
     }
 
     @Test
-    public void 확률설정테스트() {
+    public void RandomBooleanFalseTest() {
         // given
-        RandomBoolean randomBoolean = new RandomBooleanGenerator();
+        RandomBoolean randomBoolean = new RandomBooleanGenerator() {
+            private final int DEFAULT_PROBABILITY = 0;
+        };
+
         // when
-        boolean expectTrueRandomBoolean = randomBoolean.randomBoolean(100);
-        boolean expectFalseRandomBoolean = randomBoolean.randomBoolean(0);
+        boolean resultRandomBoolean = randomBoolean.randomBoolean();
+
         // then
-        assertThat(expectTrueRandomBoolean).isTrue();
-        assertThat(expectFalseRandomBoolean).isFalse();
+        assertThat(resultRandomBoolean).isFalse();
     }
 }
