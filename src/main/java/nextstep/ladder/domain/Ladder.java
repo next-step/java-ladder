@@ -26,10 +26,6 @@ public class Ladder {
         this.bridgeBuilder = bridgeBuilder;
     }
 
-    public int getHeight() {
-        return lines.size();
-    }
-
     public List<String> build() {
         List<String> buildMap = new ArrayList<>();
 

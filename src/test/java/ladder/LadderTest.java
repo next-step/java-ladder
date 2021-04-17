@@ -21,14 +21,6 @@ public class LadderTest {
     }
 
     @Test
-    @DisplayName("사다리를 만들고, 높이가 일치한지 확인한다.")
-    void checkLadderHeight() {
-        Ladder ladder = new Ladder(5, 2);
-
-        assertThat(ladder.getHeight()).isEqualTo(5);
-    }
-
-    @Test
     @DisplayName("미리 입력된 사다리를 그려주는지 확인한다.")
     void preDefinedLadderBuildTest() {
         List<String> predefined = Arrays.asList("0,2", "1", "0", "1", "0,2");
