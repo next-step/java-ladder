@@ -1,9 +1,6 @@
 package ladder;
 
-import ladder.domain.Ladder;
-import ladder.domain.LadderHeight;
-import ladder.domain.LadderResults;
-import ladder.domain.People;
+import ladder.domain.*;
 import ladder.strategy.RandomLineGenerateStrategy;
 import ladder.view.InputView;
 import ladder.view.ResultView;
@@ -25,14 +22,22 @@ public class LadderGame {
         People people = People.of(INPUT_VIEW.inputParticipantsByClient());
         LadderResults results = LadderResults.of(INPUT_VIEW.inputLadderResultsByClient());
         LadderHeight height = LadderHeight.valueOf(INPUT_VIEW.inputLadderHeightByClient());
-        Ladder ladder = Ladder.from(people, height, RandomLineGenerateStrategy.getInstance());
+
+        LadderCreationInformation creationInformation = LadderCreationInformation.from(people, height);
+        Ladder ladder = Ladder.from(creationInformation, RandomLineGenerateStrategy.getInstance());
+        RESULT_VIEW.printLadderStatus(people, ladder, results);
+
         Map<String, String> map = ladder.run(people, results);
+        printResultForTest(map);
+
+    }
+
+    private static void printResultForTest(Map<String, String> map) {
         Set<String> names = map.keySet();
         names.stream().forEach(key -> {
             System.out.print(key+" : ");
             System.out.println(map.get(key));
         });
-
-        RESULT_VIEW.printLadderStatus(people, ladder, results);
     }
+
 }

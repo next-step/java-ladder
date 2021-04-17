@@ -17,9 +17,9 @@ class LadderTest {
         // given
         People people = People.of("pobi,honux,crong,jk".split(","));
         LadderHeight height = LadderHeight.valueOf(5);
-
+        LadderCreationInformation creationInformation = LadderCreationInformation.from(people, height);
         // when
-        Ladder ladder = Ladder.from(people, height, ()-> true);
+        Ladder ladder = Ladder.from(creationInformation, () -> true);
 
         // then
         assertThat(ladder).isNotNull();

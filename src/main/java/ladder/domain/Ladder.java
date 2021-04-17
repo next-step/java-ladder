@@ -17,15 +17,15 @@ public final class Ladder {
 
     private final List<Line> ladder;
 
-    public static final Ladder from(List<Line> ladder) {
-        return new Ladder(ladder);
-    }
-
-    public static final Ladder from(People people, LadderHeight height, LineGenerateStrategy strategy) {
-        return from(IntStream.range(START_INCLUSIVE, height.height())
-                .mapToObj(i -> Line.of(people.size(), strategy))
+    public static final Ladder from(LadderCreationInformation creationInformation, LineGenerateStrategy strategy) {
+        return from(IntStream.range(START_INCLUSIVE, creationInformation.width())
+                .mapToObj(i -> Line.of(creationInformation.height(), strategy))
                 .collect(Collectors.toList())
         );
+    }
+
+    public static final Ladder from(List<Line> ladder) {
+        return new Ladder(ladder);
     }
 
     public Ladder(List<Line> ladder) {
@@ -42,6 +42,7 @@ public final class Ladder {
     public final Map<String, String> run(People people, LadderResults results) {
         List<Integer> list = people.values();
         ladder.forEach(line -> line.run(list));
+
         Map<String, String> map = new HashMap<>();
         IntStream.range(START_INCLUSIVE, list.size())
                 .forEach(index -> {
