@@ -50,4 +50,22 @@ class LadderCreationInformationTest {
                 .isInstanceOf(LadderHeightNullPointerException.class)
                 .hasMessage("LadderHeight 인스턴스가 null 입니다.");
     }
+
+
+    @DisplayName("LadderCreationInformation 인스턴스가 사다리 가로 정보 반환 여부 테스트")
+    @Test
+    void 반환_width() {
+        // given
+        String names = "abcd,efgh,hijk";
+        int expected = names.length();
+        People people = People.of(names.split(","));
+        LadderHeight ladderHeight = LadderHeight.valueOf(5);
+
+        // when
+        LadderCreationInformation ladderCreationInformation = LadderCreationInformation.from(people, ladderHeight);
+        int actual = ladderCreationInformation.row();
+
+        // then
+        assertThat(actual).isEqualTo(expected);
+    }
 }
