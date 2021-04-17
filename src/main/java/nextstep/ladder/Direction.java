@@ -11,7 +11,7 @@ public class Direction {
 
     private Direction(boolean left, boolean right) {
         if (left && right) {
-            throw new IllegalStateException();
+            throw new IllegalStateException("유효하지 않은 상태 값 입니다.");
         }
 
         this.left = left;

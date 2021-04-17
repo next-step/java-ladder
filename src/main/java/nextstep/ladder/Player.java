@@ -22,16 +22,16 @@ public class Player {
         }
     }
 
+    public static Player of(String name, int position) {
+        return new Player(name, position);
+    }
+
     public String name() {
         return name;
     }
 
     public int position() {
         return position;
-    }
-
-    public static Player of(String name, int position) {
-        return new Player(name, position);
     }
 
     @Override

@@ -22,6 +22,10 @@ public class Players {
         }
     }
 
+    public static Players from(String value) {
+        return new Players(StringUtils.stringToArray(value));
+    }
+
     private List<Player> generatePlayers(String[] values) {
         return IntStream.range(0, values.length)
                 .mapToObj(position -> Player.of(values[position], position))
@@ -34,10 +38,6 @@ public class Players {
 
     public int size() {
         return players.size();
-    }
-
-    public static Players from(String value) {
-        return new Players(StringUtils.stringToArray(value));
     }
 
 }

@@ -21,6 +21,10 @@ public class Results {
         }
     }
 
+    public static Results from(String value) {
+        return new Results(StringUtils.stringToArray(value));
+    }
+
     private List<Result> generateResults(String[] values) {
         return IntStream.range(0, values.length)
                 .mapToObj(position -> Result.of(values[position].trim(), position))
@@ -33,16 +37,12 @@ public class Results {
                 .collect(Collectors.toList());
     }
 
-    public int size() {
-        return results.size();
-    }
-
-    public static Results from(String value) {
-        return new Results(StringUtils.stringToArray(value));
-    }
-
     public String result(int position) {
         return results.get(position)
                 .value();
+    }
+
+    public int size() {
+        return results.size();
     }
 }

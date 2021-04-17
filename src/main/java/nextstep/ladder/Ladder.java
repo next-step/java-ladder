@@ -23,14 +23,14 @@ public class Ladder {
         }
     }
 
+    public static Ladder of(int sizeOfPlayer, int ladderHeight) {
+        return new Ladder(sizeOfPlayer, ladderHeight);
+    }
+
     private List<LadderLine> createLadderLines(int sizeOfPlayer, int ladderHeight) {
         return IntStream.range(0, ladderHeight)
                 .mapToObj(idx -> LadderLine.init(sizeOfPlayer))
                 .collect(Collectors.toList());
-    }
-
-    public int sizeOfPlayers() {
-        return sizeOfPlayers;
     }
 
     public int lastLadderPosition(int position) {
@@ -44,8 +44,8 @@ public class Ladder {
         return Collections.unmodifiableList(ladderLines);
     }
 
-    public static Ladder of(int sizeOfPlayer, int ladderHeight) {
-        return new Ladder(sizeOfPlayer, ladderHeight);
+    public int sizeOfPlayers() {
+        return sizeOfPlayers;
     }
 
     @Override

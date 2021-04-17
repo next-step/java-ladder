@@ -23,6 +23,10 @@ public class GameResults {
         return new GameResult(player.name(), reward);
     }
 
+    public static GameResults of(LadderResult ladderResult, Players players) {
+        return new GameResults(ladderResult, players);
+    }
+
     public GameResult getPlayerResult(String name) {
         return gameResults.stream()
                 .filter(gameResult -> gameResult.name().equals(name))
@@ -32,9 +36,5 @@ public class GameResults {
 
     public List<GameResult> gameResults() {
         return Collections.unmodifiableList(gameResults);
-    }
-
-    public static GameResults of(LadderResult ladderResult, Players players) {
-        return new GameResults(ladderResult, players);
     }
 }

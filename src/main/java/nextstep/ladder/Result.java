@@ -22,10 +22,6 @@ public class Result {
         return value;
     }
 
-    public int position() {
-        return position;
-    }
-
     public static Result of(String name, int position) {
         return new Result(name, position);
     }
