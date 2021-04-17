@@ -28,4 +28,8 @@ public class Prizes {
                 .map(Prize::toString)
                 .collect(Collectors.toList());
     }
+
+    public int getPrizeCount() {
+        return prizes.size();
+    }
 }

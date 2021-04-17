@@ -16,8 +16,8 @@ public class Main {
 
         Players players = createPlayers(Arrays.asList(info.get(0).split(",")));
         Prizes prizes =  createPrizes(Arrays.asList(info.get(1).split(",")));
-        LadderGame game = createGame(players, Integer.parseInt(info.get(2)));
         PrizeMapper prizeMapper = createPrizeMapper(prizes, players);
+        LadderGame game = createGame(players, Integer.parseInt(info.get(2)));
 
         printLadderResult(game);
         printPrizeResult(prizes);

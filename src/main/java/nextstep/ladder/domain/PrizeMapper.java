@@ -9,6 +9,9 @@ public class PrizeMapper {
     private final Players players;
 
     public PrizeMapper(Prizes prizes, Players players) {
+        if (players.getPlayerCount() != prizes.getPrizeCount()) {
+            throw new IllegalArgumentException("Prize 개수와 Player 참가자 수는 반드시 같아야 합니다.");
+        }
         this.prizes = prizes;
         this.players = players;
     }
