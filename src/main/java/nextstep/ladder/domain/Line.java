@@ -29,6 +29,11 @@ public final class Line {
     return Collections.unmodifiableList(points);
   }
 
+  public int nextPointIndex(int pointIndex) {
+    final int maxPosition = points.size();
+    return 0;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {

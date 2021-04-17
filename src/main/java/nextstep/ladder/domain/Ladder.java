@@ -32,7 +32,8 @@ public final class Ladder {
     return people;
   }
 
-  public int findResultIndex(Person person) {
+  public int findResultIndex(final Person person) {
+    final int personIndex = people.indexOf(person);
     return 0;
   }
 
