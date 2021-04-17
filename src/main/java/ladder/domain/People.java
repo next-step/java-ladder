@@ -47,8 +47,8 @@ public final class People {
         return people.stream();
     }
 
-    public Person get(Integer i) {
-        return people.get(i);
+    public Person get(int index) {
+        return people.get(index);
     }
 
     public List<Integer> values() {

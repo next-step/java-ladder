@@ -13,4 +13,8 @@ public final class LadderResultBoard {
     public static final LadderResultBoard of(Map<Person, String> resultBoard) {
         return new LadderResultBoard(resultBoard);
     }
+
+    public String findResult(Person person) {
+        return resultBoard.get(person);
+    }
 }

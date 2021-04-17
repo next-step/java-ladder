@@ -3,6 +3,8 @@ package ladder.domain;
 import ladder.exception.InvalidIdentifierNameException;
 import ladder.exception.InvalidNameSizeException;
 
+import java.util.Objects;
+
 public final class Person {
 
     private static final String INVALID_IDENTIFIER = "all";
@@ -34,5 +36,18 @@ public final class Person {
 
     public final String getName() {
         return name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return Objects.equals(name, person.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }
