@@ -22,6 +22,10 @@ public final class Point {
     return point;
   }
 
+  public boolean hasLine() {
+    return false;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
