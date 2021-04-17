@@ -36,4 +36,8 @@ public final class LadderCreationInformation {
     public final int width() {
         return people.size();
     }
+
+    public final int height() {
+        return ladderHeight.height();
+    }
 }

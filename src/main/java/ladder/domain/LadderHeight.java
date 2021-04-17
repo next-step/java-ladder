@@ -23,7 +23,7 @@ public final class LadderHeight {
         }
     }
 
-    public final int toInt() {
+    public final int height() {
         return height;
     }
 }
