@@ -33,9 +33,7 @@
 * LadderGame
     * run()
 * RandomBooleanGenerator
-    * static 변수 : DEFAULT_PROBABILITY
     * 메소드
-        * static boolean randomBoolean(int trueProbability)
         * static boolean randomBoolean()
 
 ### 기능 요구사항
