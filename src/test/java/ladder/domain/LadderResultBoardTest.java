@@ -3,6 +3,7 @@ package ladder.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -14,7 +15,7 @@ class LadderResultBoardTest {
     @Test
     void 생성() {
         // given
-        Map<String, String> resultBoard = new Map<String, String>;
+        Map<String, String> resultBoard = new HashMap<>();
 
         // when
         LadderResultBoard ladderResultBoard = LadderResultBoard.of(resultBoard);
