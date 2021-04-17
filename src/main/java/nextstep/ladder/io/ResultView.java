@@ -15,6 +15,7 @@ public final class ResultView {
   public static final String LINE_SEPARATOR = System.lineSeparator();
   public static final String LINE = "-----|";
   public static final String EMPTY_LINE = "     |";
+  public static final String RESULT_MESSAGE = "실행 결과";
 
   private ResultView() {}
 
@@ -60,7 +61,18 @@ public final class ResultView {
 
   public static void printResult(Result result) {
     System.out.println();
-    System.out.println("실행 결과");
+    System.out.println(RESULT_MESSAGE);
     System.out.println(result.result());
+  }
+
+  public static void printAllResults(People people, List<Result> allResults) {
+    StringBuilder allResultsBuilder = new StringBuilder(LINE_SEPARATOR).append(RESULT_MESSAGE).append(LINE_SEPARATOR);
+    for (int i = 0; i < allResults.size(); i++) {
+      allResultsBuilder.append(people.personList().get(i).personName())
+          .append(" : ")
+          .append(allResults.get(i).result())
+          .append(LINE_SEPARATOR);
+    }
+    System.out.print(allResultsBuilder);
   }
 }

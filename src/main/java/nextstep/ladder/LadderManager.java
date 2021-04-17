@@ -35,7 +35,7 @@ public final class LadderManager {
       ResultView.printResult(result);
       name = InputView.inputPersonNameForResult();
     }
-    // 전체 결과 출력
+    ResultView.printAllResults(people, ladder.findAllResults(results));
   }
 
   private static People getPeople() {
