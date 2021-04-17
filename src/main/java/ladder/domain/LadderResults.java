@@ -28,10 +28,4 @@ public final class LadderResults {
     public String get(int i) {
         return ladderResults.get(i);
     }
-
-    public List<Integer> values() {
-        return IntStream.range(0, ladderResults.size())
-                .boxed()
-                .collect(Collectors.toList());
-    }
 }

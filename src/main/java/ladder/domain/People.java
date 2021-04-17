@@ -51,4 +51,10 @@ public final class People {
         return people.get(i);
     }
 
+    public List<Integer> values() {
+        return IntStream.range(0, countOfPerson())
+                .boxed()
+                .collect(Collectors.toList());
+    }
+
 }

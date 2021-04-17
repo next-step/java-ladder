@@ -41,7 +41,7 @@ public final class Ladder {
     }
 
     public final Map<String, String> run(People people, LadderResults results) {
-        List<Integer> list = results.values();         // people에게 줄건지 리절트에 줄건지 잘 생각하자
+        List<Integer> list = people.values();
         ladder.forEach(line -> line.run(list));
         Map<String, String> map = new HashMap<>();
         IntStream.range(START_INCLUSIVE, list.size())
