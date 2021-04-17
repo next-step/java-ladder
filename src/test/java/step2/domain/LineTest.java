@@ -4,10 +4,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-
 
 class LineTest {
 
@@ -15,11 +11,7 @@ class LineTest {
     @Test
     void lineCreatedTest() {
         CustomCondition customCondition = new CustomCondition();
-        List<Boolean> expectedPoints = IntStream.range(0, 2)
-                .mapToObj(index -> customCondition.getCondition())
-                .collect(Collectors.toList());
-
-        Line line = new Line(expectedPoints);
+        Line line = Line.of(2, customCondition);
 
         Assertions.assertEquals(line.getPoint(0), true);
         Assertions.assertEquals(line.getPoint(1), false);
