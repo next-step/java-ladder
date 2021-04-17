@@ -7,7 +7,7 @@ import ladder.error.InvalidNameException;
 
 import static org.assertj.core.api.Assertions.*;
 
-class NameTest {
+class PlayerTest {
   @ParameterizedTest
   @ValueSource(strings = {"boltas", "xtxtxtxtxxtxtxtx"})
   @DisplayName("이름 제한 크기 벗어나 생성 실패")

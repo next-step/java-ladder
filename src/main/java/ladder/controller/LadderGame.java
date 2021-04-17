@@ -3,6 +3,7 @@ package ladder.controller;
 import ladder.model.Height;
 import ladder.model.line.Ladder;
 import ladder.model.member.Players;
+import ladder.model.prize.Prizes;
 import ladder.strategy.RandomLadderPointsStrategy;
 import ladder.view.InputView;
 import ladder.view.ResultView;
@@ -21,9 +22,11 @@ public class LadderGame {
   public void run() {
 
     Players players = Players.initNames(inputView.nameInputEvent());
+    Prizes prizes = Prizes.makePrizes(inputView.prizeInputEvent(), players.size());
     Height height = new Height(inputView.heightInputEvent());
 
     Ladder ladder = Ladder.makeLadder(height, players.size(), new RandomLadderPointsStrategy());
-    resultView.showResult(players, ladder);
+    resultView.showLadder(players, ladder, prizes);
+    String checker = inputView.checkerEvent();
   }
 }
