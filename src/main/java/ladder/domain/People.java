@@ -11,6 +11,8 @@ import java.util.stream.Stream;
 
 public final class People {
 
+    private static final int START_INCLUSIVE = 0;
+
     private final List<Person> people;
 
     public static final People of(String[] names) {
@@ -52,7 +54,7 @@ public final class People {
     }
 
     public List<Integer> values() {
-        return IntStream.range(0, size())
+        return IntStream.range(START_INCLUSIVE, size())
                 .boxed()
                 .collect(Collectors.toList());
     }

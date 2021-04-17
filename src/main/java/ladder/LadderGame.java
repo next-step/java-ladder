@@ -28,7 +28,6 @@ public class LadderGame {
         RESULT_VIEW.printLadderStatus(people, ladder, results);
 
         LadderResultBoard ladderResultBoard = ladder.run(people, results);
-
     }
 
 

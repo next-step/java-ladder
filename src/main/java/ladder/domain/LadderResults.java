@@ -24,7 +24,7 @@ public final class LadderResults {
         return new LadderResults(ladderResults);
     }
 
-    public String get(int i) {
-        return ladderResults.get(i);
+    public String get(int index) {
+        return ladderResults.get(index);
     }
 }

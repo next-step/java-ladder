@@ -11,7 +11,8 @@ import java.util.stream.Stream;
 
 public final class Line {
 
-    private static final int START_INCLUSIVE = 0;
+    private static final int ZERO = 0;
+    private static final int ONE = 1;
 
     private final List<Point> points;
 
@@ -37,7 +38,7 @@ public final class Line {
     private static final List<Point> generatePoints(int countPerson, LineGenerateStrategy strategy) {
         List<Point> points = new ArrayList<>();
         points.add(Point.first());
-        IntStream.range(START_INCLUSIVE, countPerson-1)
+        IntStream.range(ZERO, countPerson - ONE)
                 .forEach(beforeIndex -> points.add(generatePoint(points.get(beforeIndex), strategy)));
         return points;
     }
@@ -54,15 +55,15 @@ public final class Line {
     }
 
     public final void run(List<Integer> list) {
-        int before = list.get(0);
-        for(int i=1; i < list.size(); i++) {
-            int now = list.get(i);
-            if(points.get(i).hasPoint()) {
-                list.set(i-1, now);
-                list.set(i, before);
+        int beforePosition = list.get(ZERO);
+        for (int index = ONE; index < list.size(); index++) {
+            int nowPosition = list.get(index);
+            if (points.get(index).hasPoint()) {
+                list.set(index - ONE, nowPosition);
+                list.set(index, beforePosition);
                 continue;
             }
-            before = now;
+            beforePosition = nowPosition;
         }
     }
 }
