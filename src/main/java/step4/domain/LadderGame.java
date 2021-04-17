@@ -2,27 +2,23 @@ package step4.domain;
 
 import step4.dto.LaddersDto;
 import step4.dto.PlayersDto;
-import step4.dto.PrizesDto;
 
 public class LadderGame {
     private final Ladder ladder;
     private final Players players;
-    private final Prizes prizes;
 
-    private LadderGame(Ladder ladder, Players players, Prizes prizes) {
+    private LadderGame(Ladder ladder, Players players) {
         this.ladder = ladder;
         this.players = players;
-        this.prizes = prizes;
     }
 
-    public static LadderGame of(String[] names, int height, String[] inputPrizes) {
+    public static LadderGame of(String[] names, int height) {
         Players players = Players.of(names);
         Ladder ladder = Ladder.of(players.playerCount(), height);
-        Prizes prizes = Prizes.of(inputPrizes, names.length);
-        return new LadderGame(ladder, players, prizes);
+        return new LadderGame(ladder, players);
     }
 
-    public PlayResult play() {
+    public PlayResult play(Prizes prizes) {
         PlayResult playResult = new PlayResult();
         for(Player player : players.players()) {
             Position position = player.playerPosition();
@@ -41,9 +37,5 @@ public class LadderGame {
 
     public PlayersDto toPlayersDto() {
         return new PlayersDto(this.players.players());
-    }
-
-    public PrizesDto toPrizeDto() {
-        return new PrizesDto(this.prizes.prizes());
     }
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.IntStream;
 
+import step4.dto.PrizesDto;
 import step4.exception.NotEqualCountException;
 import step4.exception.NotFoundException;
 import step4.util.StringSpliter;
@@ -43,6 +44,10 @@ public class Prizes {
             .filter(prize -> position.equals(prize.position()))
             .findFirst()
             .orElseThrow(() -> new NotFoundException("유효하지 않은 상품번호 입니다."));
+    }
+
+    public PrizesDto toPrizeDto() {
+        return new PrizesDto(prizes());
     }
 
     @Override
