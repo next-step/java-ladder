@@ -11,7 +11,10 @@ public class RandomBooleanTest {
     public void RandomBooleanTrueTest() {
         // given
         RandomBoolean randomBoolean = new RandomBooleanGenerator() {
-            private final int DEFAULT_PROBABILITY = 100;
+            @Override
+            public boolean randomBoolean() {
+                return true;
+            }
         };
         // when
         boolean resultRandomBoolean = randomBoolean.randomBoolean();
@@ -24,7 +27,10 @@ public class RandomBooleanTest {
     public void RandomBooleanFalseTest() {
         // given
         RandomBoolean randomBoolean = new RandomBooleanGenerator() {
-            private final int DEFAULT_PROBABILITY = 0;
+            @Override
+            public boolean randomBoolean() {
+                return false;
+            }
         };
 
         // when
