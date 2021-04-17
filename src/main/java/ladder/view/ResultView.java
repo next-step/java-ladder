@@ -12,8 +12,10 @@ public class ResultView {
     private static final String ROOT = "|";
 
     private final LadderResult ladderResult;
+    private final Players players;
 
-    public ResultView(LadderResult ladderResult) {
+    public ResultView(Players players, LadderResult ladderResult) {
+        this.players = players;
         this.ladderResult = ladderResult;
     }
 
@@ -57,7 +59,7 @@ public class ResultView {
     }
 
     private void printPlayers() {
-        Optional.of(ladderResult.getPlayers())
+        Optional.of(players)
                 .map(Players::allPlayers)
                 .orElseThrow(IllegalArgumentException::new)
                 .forEach(player -> System.out.print(padLeft(player.getName(), Player.MAX_SIZE + 1)));

@@ -43,23 +43,23 @@ public class LadderResultTest {
     @DisplayName("참가자의 실행 결과를 반환한다.")
     @Test
     void prizeResult() {
-        LadderResult ladderResult = new LadderResult(players, ladder);
+        LadderResult ladderResult = new LadderResult(players.count(), ladder);
 
-        assertThat(ladderResult.playersPrize(new Player("red"), prize)).isEqualTo("5000");
-        assertThat(ladderResult.playersPrize(new Player("blue"), prize)).isEqualTo("꽝");
-        assertThat(ladderResult.playersPrize(new Player("black"), prize)).isEqualTo("1000");
+        assertThat(ladderResult.playersPrize(new PrizePlayer(players, new Player("red")), prize)).isEqualTo("5000");
+        assertThat(ladderResult.playersPrize(new PrizePlayer(players, new Player("blue")), prize)).isEqualTo("꽝");
+        assertThat(ladderResult.playersPrize(new PrizePlayer(players, new Player("black")), prize)).isEqualTo("1000");
     }
 
     @DisplayName("모든 참가자의 실행 결과를 반환한다.")
     @Test
     void prizeResultAll() {
-        LadderResult ladderResult = new LadderResult(players, ladder);
+        LadderResult ladderResult = new LadderResult(players.count(), ladder);
 
         Map<String, String> resultMap = new HashMap<>();
         resultMap.put("red", "5000");
         resultMap.put("blue", "꽝");
         resultMap.put("black", "1000");
 
-        assertThat(ladderResult.playersPrizeAll(prize)).containsExactlyEntriesOf(resultMap);
+        assertThat(ladderResult.playersPrizeAll(new PrizePlayer(players), prize)).containsExactlyEntriesOf(resultMap);
     }
 }

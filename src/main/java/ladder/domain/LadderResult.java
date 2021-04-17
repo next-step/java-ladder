@@ -6,19 +6,17 @@ import java.util.Map;
 import java.util.stream.IntStream;
 
 public class LadderResult {
-    private final Players players;
     private final Ladder ladder;
     private final LadderMap ladderMap;
 
-    public LadderResult(Players players, Ladder ladder) {
-        this.players = players;
+    public LadderResult(int count, Ladder ladder) {
         this.ladder = ladder;
-        this.ladderMap = makeMap();
+        this.ladderMap = makeMap(count);
     }
 
-    private LadderMap makeMap() {
+    private LadderMap makeMap(int count) {
         Map<Integer, Integer> radderMap = new HashMap<>();
-        IntStream.range(0, players.count())
+        IntStream.range(0, count)
                 .forEach(index -> {
                     int arrivalIndex = ladder.arrivalPoint(0, index);
                     radderMap.put(index, arrivalIndex);
@@ -26,26 +24,23 @@ public class LadderResult {
         return new LadderMap(radderMap);
     }
 
-    public Players getPlayers() {
-        return players;
-    }
-
     public List<Line> getLines() {
         return ladder.getLines();
     }
 
-    public String playersPrize(Player player, Prize prize) {
-        if (players.index(player) < 0) {
-            throw new IllegalArgumentException("입력한 사람은 참가자에 없습니다.");
-        }
-        int arrivalIndex = ladderMap.getArrivalIndex(players.index(player));
+    public String playersPrize(PrizePlayer prizePlayer, Prize prize) {
+        return playersPrize(prizePlayer.index(), prize);
+    }
+
+    public String playersPrize(int index, Prize prize) {
+        int arrivalIndex = ladderMap.getArrivalIndex(index);
         return prize.prizeOfIndex(arrivalIndex);
     }
 
-    public Map<String, String> playersPrizeAll(Prize prize) {
+    public Map<String, String> playersPrizeAll(PrizePlayer prizePlayer, Prize prize) {
         Map<String, String> playersPrizeMap = new HashMap<>();
-        players.allPlayers()
-                .forEach(player -> playersPrizeMap.put(player.getName(), playersPrize(player, prize)));
+        prizePlayer.allPlayers()
+                .forEach(player -> playersPrizeMap.put(player.getName(), playersPrize(prizePlayer.indexOf(player), prize)));
         return playersPrizeMap;
     }
 }

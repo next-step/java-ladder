@@ -1,8 +1,6 @@
 package ladder.view;
 
-import ladder.domain.LadderResult;
-import ladder.domain.Player;
-import ladder.domain.Prize;
+import ladder.domain.*;
 
 import java.util.Map;
 
@@ -15,21 +13,21 @@ public class PrizeResultView {
         this.prize = prize;
     }
 
-    public void printPrizeResult(PrizeInputView inputView) {
+    public void printPrizeResult(PrizeInputView inputView, Players players) {
         System.out.println("실행 결과");
         if (inputView.isAll()) {
-            printResultAll();
+            printResultAll(players);
             return;
         }
-        printResult(inputView.getPlayerName());
+        printResult(players, inputView.getPlayerName());
     }
 
-    public void printResult(String playerName) {
-        System.out.println(ladderResult.playersPrize(new Player(playerName), prize));
+    public void printResult(Players players, String playerName) {
+        System.out.println(ladderResult.playersPrize(new PrizePlayer(players, new Player(playerName)), prize));
     }
 
-    public void printResultAll() {
-        Map<String, String> allResult = ladderResult.playersPrizeAll(prize);
+    public void printResultAll(Players players) {
+        Map<String, String> allResult = ladderResult.playersPrizeAll(new PrizePlayer(players), prize);
         allResult.forEach((player, result) -> System.out.println(player + " : " + result));
     }
 }

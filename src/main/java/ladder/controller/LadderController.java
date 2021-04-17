@@ -22,9 +22,9 @@ public class LadderController {
             }
 
             Players players = inputView.getPlayers();
-            LadderResult ladderResult = new LadderResult(players, ladder);
+            LadderResult ladderResult = new LadderResult(players.count(), ladder);
 
-            ResultView resultView = new ResultView(ladderResult);
+            ResultView resultView = new ResultView(players, ladderResult);
             resultView.showLadderDrawResult();
             resultView.printPrize(inputView.getPrize());
 
@@ -32,7 +32,7 @@ public class LadderController {
             PrizeResultView prizeResultView = new PrizeResultView(ladderResult, inputView.getPrize());
             while (!prizeInputView.isAll()) {
                 prizeInputView.inputPlayerNameForPrize();
-                prizeResultView.printPrizeResult(prizeInputView);
+                prizeResultView.printPrizeResult(prizeInputView, players);
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
