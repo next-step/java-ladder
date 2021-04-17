@@ -62,6 +62,5 @@ class LadderTest {
         () -> assertThat(resultIndex).isEqualTo(ladder.findResultIndex(Person.valueOf(name))),
         () -> assertThat(resultIndex).isNotEqualTo(ladder.findResultIndex(Person.valueOf("honux")))
     );
-
   }
 }

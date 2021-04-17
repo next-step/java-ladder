@@ -34,7 +34,11 @@ public final class Ladder {
 
   public int findResultIndex(final Person person) {
     final int personIndex = people.indexOf(person);
-    return 0;
+    int resultIndex = personIndex;
+    for (Line line : lines) {
+      resultIndex = line.nextPointIndex(personIndex);
+    }
+    return resultIndex;
   }
 
   @Override
