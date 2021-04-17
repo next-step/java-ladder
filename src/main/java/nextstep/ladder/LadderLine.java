@@ -3,8 +3,7 @@ package nextstep.ladder;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import static nextstep.ladder.LadderPointGenerator.generatePoint;
+import java.util.Objects;
 
 public class LadderLine {
     private final static int MIN_LENGTH = 2;
@@ -25,17 +24,17 @@ public class LadderLine {
         return points.get(position).move();
     }
 
-    public static LadderLine init(int sizeOfPerson) {
+    public static LadderLine init(int sizeOfPerson, DrawRule drawRule) {
         List<Point> points = new ArrayList<>();
-        Point point = initFirst(points);
-        point = initBody(sizeOfPerson, points, point);
+        Point point = initFirst(points, drawRule);
+        point = initBody(sizeOfPerson, points, point, drawRule);
         initLast(points, point);
         return new LadderLine(points);
     }
 
-    private static Point initBody(int sizeOfPerson, List<Point> points, Point point) {
+    private static Point initBody(int sizeOfPerson, List<Point> points, Point point, DrawRule drawRule) {
         for (int i = 1; i < sizeOfPerson - 1; i++) {
-            point = point.next();
+            point = point.next(drawRule);
             points.add(point);
         }
         return point;
@@ -46,14 +45,27 @@ public class LadderLine {
         points.add(point);
     }
 
-    private static Point initFirst(List<Point> points) {
-        Point point = Point.first(generatePoint());
+    private static Point initFirst(List<Point> points, DrawRule drawRule) {
+        Point point = Point.first(drawRule.isDrawable());
         points.add(point);
         return point;
     }
 
     public List<Point> points() {
         return Collections.unmodifiableList(points);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LadderLine that = (LadderLine) o;
+        return Objects.equals(points, that.points);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(points);
     }
 
     @Override

@@ -2,9 +2,10 @@ package nextstep.ladder;
 
 import java.util.Random;
 
-public class LadderPointGenerator {
+public class LadderPointGenerator implements DrawRule {
     private static final Random random = new Random();
-    public static boolean generatePoint() {
+    @Override
+    public boolean isDrawable() {
         return random.nextBoolean();
     }
 }

@@ -8,8 +8,9 @@ public class LadderGame {
     private final static String ALL_RESULT = "all";
 
     public void run() {
+        LadderPointGenerator ladderPointGenerator = new LadderPointGenerator();
         Players players = Players.from(InputView.playerNames());
-        Ladder ladder = Ladder.of(players.size(), InputView.ladderHeight());
+        Ladder ladder = Ladder.of(players.size(), InputView.ladderHeight(), ladderPointGenerator);
         Results results = Results.from(InputView.ladderResults());
         LadderResult ladderResult = LadderResult.of(ladder, results);
         GameResults gameResults = GameResults.of(ladderResult, players);

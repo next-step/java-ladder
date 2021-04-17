@@ -3,7 +3,6 @@ package nextstep.ladder;
 import java.util.Objects;
 
 import static java.lang.Boolean.FALSE;
-import static nextstep.ladder.LadderPointGenerator.generatePoint;
 
 public class Direction {
     private final boolean left;
@@ -30,11 +29,12 @@ public class Direction {
         return of(this.right, nextRight);
     }
 
-    public Direction next() {
+    public Direction next(DrawRule drawRule) {
         if (this.right) {
             return next(FALSE);
+
         }
-        return next(generatePoint());
+        return next(drawRule.isDrawable());
     }
 
     public static Direction of(boolean first, boolean second) {

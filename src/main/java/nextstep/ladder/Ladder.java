@@ -11,9 +11,9 @@ public class Ladder {
     private final List<LadderLine> ladderLines;
     private final int sizeOfPlayers;
 
-    private Ladder(int sizeOfPlayers, int ladderHeight) {
+    private Ladder(int sizeOfPlayers, int ladderHeight, DrawRule drawRule) {
         validation(sizeOfPlayers, ladderHeight);
-        this.ladderLines = createLadderLines(sizeOfPlayers, ladderHeight);
+        this.ladderLines = createLadderLines(sizeOfPlayers, ladderHeight, drawRule);
         this.sizeOfPlayers = sizeOfPlayers;
     }
 
@@ -23,13 +23,13 @@ public class Ladder {
         }
     }
 
-    public static Ladder of(int sizeOfPlayer, int ladderHeight) {
-        return new Ladder(sizeOfPlayer, ladderHeight);
+    public static Ladder of(int sizeOfPlayer, int ladderHeight, DrawRule drawRule) {
+        return new Ladder(sizeOfPlayer, ladderHeight, drawRule);
     }
 
-    private List<LadderLine> createLadderLines(int sizeOfPlayer, int ladderHeight) {
+    private List<LadderLine> createLadderLines(int sizeOfPlayer, int ladderHeight, DrawRule drawRule) {
         return IntStream.range(0, ladderHeight)
-                .mapToObj(idx -> LadderLine.init(sizeOfPlayer))
+                .mapToObj(idx -> LadderLine.init(sizeOfPlayer, drawRule))
                 .collect(Collectors.toList());
     }
 
