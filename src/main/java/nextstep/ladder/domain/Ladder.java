@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public final class Ladder {
 
@@ -41,7 +42,10 @@ public final class Ladder {
   }
 
   public List<Result> findAllResults(List<Result> results) {
-    return null;
+    return people.personList().stream()
+        .map(this::findResultIndex)
+        .map(results::get)
+        .collect(Collectors.toList());
   }
 
   @Override
