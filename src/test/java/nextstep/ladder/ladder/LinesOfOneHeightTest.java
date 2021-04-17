@@ -13,6 +13,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LinesOfOneHeightTest {
+
     LinesOfOneHeight firstLines;
     LinesOfOneHeight secondLines;
 
@@ -36,13 +37,17 @@ public class LinesOfOneHeightTest {
         assertThat(secondLines.positionLine(value).lineDirection()).isEqualTo(expectedDirection);
     }
 
-    @Test
+    @ParameterizedTest
+    @CsvSource(value = {"0:1", "1:0", "2:3", "3:2", "4:4"}, delimiter = ':')
     @DisplayName("다음 높이의 참여자 위치")
-    public void nextHeightPosition(){
+    public void nextHeightPosition(int currentPosition, int nextHeightPosition){
+        assertThat(firstLines.nextHeightPosition(currentPosition)).isEqualTo(nextHeightPosition);
+    }
 
-        assertThat(firstLines.nextHeightPosition(0)).isEqualTo(1);
-        assertThat(firstLines.nextHeightPosition(1)).isEqualTo(0);
-
-        assertThat(secondLines.nextHeightPosition(0)).isEqualTo(0);
+    @ParameterizedTest
+    @CsvSource(value = {"0:0", "1:1", "2:2", "3:3", "4:4"}, delimiter = ':')
+    @DisplayName("다음 높이의 참여자 위치가 같을 때")
+    public void nextHeightSamePosition(int currentPosition, int nextHeightPosition){
+        assertThat(secondLines.nextHeightPosition(currentPosition)).isEqualTo(nextHeightPosition);
     }
 }

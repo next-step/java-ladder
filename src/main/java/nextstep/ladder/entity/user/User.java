@@ -1,10 +1,10 @@
 package nextstep.ladder.entity.user;
 
+import nextstep.ladder.common.Constants;
+
 import java.util.Objects;
 
 public class User {
-    private static final int MAX_NAME_SIZE = 5;
-
     private final String name;
     private final int startPosition;
 
@@ -23,9 +23,8 @@ public class User {
     }
 
     private void nameValid(String name) {
-
-        if (name.length() > MAX_NAME_SIZE) {
-            throw new IllegalArgumentException("이름은 5자를 초과 할 수 없습니다.");
+        if (name.length() > Constants.MAX_NAME_SIZE) {
+            throw new IllegalArgumentException(Constants.NAME_LENGTH_OVER_MESSAGE);
         }
     }
 

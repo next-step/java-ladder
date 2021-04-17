@@ -1,5 +1,6 @@
 package nextstep.ladder.entity.ladder;
 
+import nextstep.ladder.common.Constants;
 import nextstep.ladder.util.StringUtil;
 
 import java.util.Arrays;
@@ -8,6 +9,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class LadderResults {
+
     private final List<LadderResult> ladderResults;
 
     public LadderResults(String resultsInput, int userCount) {
@@ -19,7 +21,7 @@ public class LadderResults {
         String[] results = StringUtil.splitCommaByString(resultsInput);
 
         if (userCount != results.length) {
-            throw new IllegalArgumentException("당첨 결과는 유저 수와 같아야 합니다.");
+            throw new IllegalArgumentException(Constants.LADDER_RESULT_INPUT_ERROR_MESSAGE);
         }
 
         return Arrays.stream(results)
@@ -32,7 +34,7 @@ public class LadderResults {
     }
 
     public String positionResult(String name, int position) {
-        return name + " : " + ladderResults.get(position).result();
+        return name + Constants.USER_AND_POSITION_APPEND_STRING + ladderResults.get(position).result();
     }
 
     @Override

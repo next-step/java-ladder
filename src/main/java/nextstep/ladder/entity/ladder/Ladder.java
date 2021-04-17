@@ -27,6 +27,7 @@ public class Ladder {
     }
 
     public int gameEndPosition(int startPosition) {
+
         int gameEndPosition = startPosition;
 
         for (LinesOfOneHeight linesOfOneHeight : linesOfOneHeightList) {

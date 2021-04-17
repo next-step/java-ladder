@@ -18,14 +18,10 @@ public class MultiLadderResultService implements LadderResultService {
 
     @Override
     public List<String> result(LadderResults ladderResults, Ladder ladder) {
-        List<Integer> startPositions = users.startPositions();
         List<String> gameResults = new ArrayList<>();
 
-        for (Integer startPosition : startPositions) {
-            User user = users.startPositionUser(startPosition);
-
-            String gameResult = ladderResults.positionResult(user.name(), ladder.gameEndPosition(startPosition));
-
+        for (User user : users.users()) {
+            String gameResult = ladderResults.positionResult(user.name(), ladder.gameEndPosition(user.startPosition()));
             gameResults.add(gameResult);
         }
 

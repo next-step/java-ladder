@@ -1,7 +1,9 @@
 package nextstep.ladder.entity.user;
 
+import nextstep.ladder.common.Constants;
 import nextstep.ladder.util.StringUtil;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -22,18 +24,13 @@ public class Users {
                 .collect(Collectors.toList());
     }
 
-    public User startPositionUser(int startPosition) {
-        return users.get(startPosition);
-    }
-
     public List<String> userNames() {
         return users.stream().map(User::name)
                 .collect(Collectors.toList());
     }
 
-    public List<Integer> startPositions() {
-        return users.stream().map(User::startPosition)
-                .collect(Collectors.toList());
+    public List<User> users(){
+        return Collections.unmodifiableList(users);
     }
 
     public int userCount() {
@@ -44,6 +41,6 @@ public class Users {
         return users.stream()
                 .filter(user -> user.name().equals(userName))
                 .findFirst().map(User::startPosition)
-                .orElseThrow(() -> new IllegalArgumentException("게임에 참여한 참여자의 이름이 아닙니다."));
+                .orElseThrow(() -> new IllegalArgumentException(Constants.USER_NOT_FOUND_MESSAGE));
     }
 }

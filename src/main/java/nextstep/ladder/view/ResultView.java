@@ -14,7 +14,9 @@ public class ResultView {
     static final String HEIGHT_PRINT_SYMBOL = "|";
     static final String DRAW_LINE = "-----";
     static final String NONE_DRAW_LINE = "     ";
-    static final String lineSeparator = System.lineSeparator();
+    static final String LINE_SEPARATOR = System.lineSeparator();
+    static final String LADDER_RESULT_MESSAGE = "사다리 결과";
+    static final String GAME_RESULT_MESSAGE = "실행결과";;
 
     private ResultView() {
     }
@@ -23,15 +25,14 @@ public class ResultView {
         return String.format("%-5s", username);
     }
 
-    public static void printResult(List<String> userNames, Ladder ladder) {
+    public static void printLadderResult(List<String> userNames, Ladder ladder) {
         printStart();
         printUser(userNames);
         printLadder(ladder);
     }
 
     public static void printStart() {
-
-        System.out.println(lineSeparator + "사다리 결과" + lineSeparator);
+        System.out.println(LINE_SEPARATOR + LADDER_RESULT_MESSAGE + LINE_SEPARATOR);
     }
 
     public static void printUser(List<String> userNames) {
@@ -72,8 +73,9 @@ public class ResultView {
         return NONE_DRAW_LINE;
     }
 
-    public static void gameResult(List<String> gameResults) {
-        System.out.println(lineSeparator + "실행결과");
+    public static void printGameResult(List<String> gameResults) {
+        System.out.println(LINE_SEPARATOR + GAME_RESULT_MESSAGE);
+
         for (String gameResult : gameResults) {
             System.out.println(gameResult);
         }

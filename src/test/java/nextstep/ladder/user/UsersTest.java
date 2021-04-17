@@ -1,9 +1,12 @@
 package nextstep.ladder.user;
 
+import nextstep.ladder.common.Constants;
 import nextstep.ladder.entity.user.Users;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
@@ -24,21 +27,16 @@ public class UsersTest {
     }
 
     @Test
-    @DisplayName("문자열 split 하여 참여자 시작 위치 가져오기")
-    public void userStartPositions(){
-        assertThat(users.startPositions()).containsExactly(0, 1, 2, 3, 4);
-    }
-
-    @Test
     @DisplayName("문자열 split 하여 참여자 수 가져오기")
     public void userCount(){
         assertThat(users.userCount()).isEqualTo(5);
     }
 
-    @Test
+    @ParameterizedTest
+    @CsvSource(value = {"AAA:0", "BBB:1", "CCC:2", "DDD:3", "EEE:4"}, delimiter = ':')
     @DisplayName("이름으로 시작 위치 찾기")
-    public void userPosition(){
-        assertThat(users.startPosition("BBB")).isEqualTo(1);
+    public void userPosition(String userName, int startPosition){
+        assertThat(users.startPosition(userName)).isEqualTo(startPosition);
     }
 
     @Test
@@ -47,6 +45,6 @@ public class UsersTest {
         assertThatIllegalArgumentException()
                 .isThrownBy(() ->
                         users.startPosition("TEST")
-                ).withMessageMatching("게임에 참여한 참여자의 이름이 아닙니다.");
+                ).withMessageMatching(Constants.USER_NOT_FOUND_MESSAGE);
     }
 }

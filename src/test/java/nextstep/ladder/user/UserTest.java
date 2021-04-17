@@ -1,5 +1,6 @@
 package nextstep.ladder.user;
 
+import nextstep.ladder.common.Constants;
 import nextstep.ladder.entity.user.User;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,7 +15,7 @@ public class UserTest {
         assertThatIllegalArgumentException()
                 .isThrownBy(() ->
                         new User("nameLengthOver", 1)
-                ).withMessageMatching("이름은 5자를 초과 할 수 없습니다.");
+                ).withMessageMatching(Constants.NAME_LENGTH_OVER_MESSAGE);
     }
 
     @Test

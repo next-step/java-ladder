@@ -6,5 +6,5 @@ import nextstep.ladder.entity.ladder.LadderResults;
 import java.util.List;
 
 public interface LadderResultService {
-    List<String> result( LadderResults ladderResults, Ladder ladder);
+    List<String> result(LadderResults ladderResults, Ladder ladder);
 }

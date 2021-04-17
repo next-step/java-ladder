@@ -3,7 +3,7 @@ package nextstep.ladder.service;
 import nextstep.ladder.entity.ladder.Ladder;
 import nextstep.ladder.entity.ladder.LadderResults;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class SingleLadderResultService implements LadderResultService {
@@ -15,8 +15,6 @@ public class SingleLadderResultService implements LadderResultService {
 
     @Override
     public List<String> result(LadderResults ladderResults, Ladder ladder) {
-        List<String> gameResults = new ArrayList<>();
-        gameResults.add(ladderResults.positionResult(ladder.gameEndPosition(position)));
-        return gameResults;
+        return Collections.singletonList(ladderResults.positionResult(ladder.gameEndPosition(position)));
     }
 }
