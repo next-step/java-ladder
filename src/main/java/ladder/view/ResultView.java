@@ -25,7 +25,7 @@ public final class ResultView {
         System.out.println(EXECUTION_RESULT_MESSAGE);
         printPeopleName(people);
         printLadder(ladder);
-        int lo = people.countOfPerson();
+        int lo = people.size();
         for(int i=0; i < lo; i++) {
             System.out.print(String.format(NAME_FORMAT, results.get(i)));
         }

@@ -56,9 +56,9 @@ class LadderCreationInformationTest {
     @Test
     void 반환_width() {
         // given
-        String names = "abcd,efgh,hijk";
-        int expected = names.length();
-        People people = People.of(names.split(","));
+        String[] names = "abcd,efgh,hijk".split(",");
+        int expected = names.length;
+        People people = People.of(names);
         LadderHeight ladderHeight = LadderHeight.valueOf(5);
 
         // when

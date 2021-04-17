@@ -39,7 +39,7 @@ public final class People {
         }
     }
 
-    public final int countOfPerson() {
+    public final int size() {
         return people.size();
     }
 
@@ -52,7 +52,7 @@ public final class People {
     }
 
     public List<Integer> values() {
-        return IntStream.range(0, countOfPerson())
+        return IntStream.range(0, size())
                 .boxed()
                 .collect(Collectors.toList());
     }

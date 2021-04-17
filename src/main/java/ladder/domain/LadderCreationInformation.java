@@ -33,4 +33,7 @@ public final class LadderCreationInformation {
         }
     }
 
+    public final int row() {
+        return people.size();
+    }
 }

@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -24,7 +23,7 @@ public final class Ladder {
 
     public static final Ladder from(People people, LadderHeight height, LineGenerateStrategy strategy) {
         return from(IntStream.range(START_INCLUSIVE, height.toInt())
-                .mapToObj(i -> Line.of(people.countOfPerson(), strategy))
+                .mapToObj(i -> Line.of(people.size(), strategy))
                 .collect(Collectors.toList())
         );
     }

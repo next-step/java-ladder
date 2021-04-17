@@ -45,7 +45,7 @@ class PeopleTest {
 
         // when
         People people = People.of(names);
-        int actual = people.countOfPerson();
+        int actual = people.size();
 
         // when
         assertThat(actual).isEqualTo(4);
