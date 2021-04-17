@@ -23,7 +23,7 @@ public final class Point {
   }
 
   public boolean hasLine() {
-    return false;
+    return point;
   }
 
   @Override
