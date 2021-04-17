@@ -16,7 +16,7 @@ public class ResultView {
     static final String NONE_DRAW_LINE = "     ";
     static final String LINE_SEPARATOR = System.lineSeparator();
     static final String LADDER_RESULT_MESSAGE = "사다리 결과";
-    static final String GAME_RESULT_MESSAGE = "실행결과";;
+    static final String GAME_RESULT_MESSAGE = "실행결과";
 
     private ResultView() {
     }
