@@ -6,6 +6,7 @@ import ladder.service.RandomBooleanGenerator;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Stream;
 
 public final class Layer {
     private final List<Boolean> aisles;
@@ -24,6 +25,10 @@ public final class Layer {
 
     public boolean hasAisle(int index) {
         return aisles.get(index);
+    }
+
+    public Stream<Boolean> stream() {
+        return this.aisles.stream();
     }
 
     private static List<Boolean> generateAisles(int line, RandomBoolean randomBoolean) {

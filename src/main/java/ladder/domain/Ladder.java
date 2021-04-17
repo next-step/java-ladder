@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Ladder {
     private final List<Layer> ladder;
@@ -23,6 +24,9 @@ public class Ladder {
         this.ladder = layers;
     }
 
+    public Stream<Layer> stream() {
+        return this.ladder.stream();
+    }
 
     private static List<Layer> generateLayers(int line, int height, RandomBoolean randomBoolean) {
         return IntStream.range(0, height)
