@@ -7,12 +7,12 @@ import java.util.stream.IntStream;
 
 public class LadderResult {
     private final Players players;
-    private final LineResults lineResults;
+    private final Ladder ladder;
     private final LadderMap ladderMap;
 
-    public LadderResult(Players players, LineResults lineResults) {
+    public LadderResult(Players players, Ladder ladder) {
         this.players = players;
-        this.lineResults = lineResults;
+        this.ladder = ladder;
         this.ladderMap = makeMap();
     }
 
@@ -20,7 +20,7 @@ public class LadderResult {
         Map<Integer, Integer> radderMap = new HashMap<>();
         IntStream.range(0, players.count())
                 .forEach(index -> {
-                    int arrivalIndex = lineResults.arrivalPoint(0, index);
+                    int arrivalIndex = ladder.arrivalPoint(0, index);
                     radderMap.put(index, arrivalIndex);
                 });
         return new LadderMap(radderMap);
@@ -31,7 +31,7 @@ public class LadderResult {
     }
 
     public List<Line> getLines() {
-        return lineResults.getLines();
+        return ladder.getLines();
     }
 
     public String playersPrize(Player player, Prize prize) {

@@ -1,8 +1,8 @@
 package ladder;
 
 import ladder.domain.Direction;
+import ladder.domain.Ladder;
 import ladder.domain.Line;
-import ladder.domain.LineResults;
 import ladder.domain.Point;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -12,13 +12,13 @@ import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class LineResultsTest {
-    LineResults lineResults = new LineResults();
+public class LadderTest {
+    Ladder ladder = new Ladder();
 
     @BeforeEach
     void ladder() {
         int index = 0;
-        
+
         Point point1 = new Point(index++, new Direction(false, true));
         Point point2 = new Point(index++, new Direction(true, false));
         Point point3 = new Point(index++, new Direction(false, false));
@@ -32,15 +32,15 @@ public class LineResultsTest {
 
         Line ladderLine2 = new Line(Arrays.asList(point4, point5, point6));
 
-        lineResults.add(ladderLine1);
-        lineResults.add(ladderLine2);
+        ladder.add(ladderLine1);
+        ladder.add(ladderLine2);
     }
 
     @DisplayName("포인트를 입력 받아 사다리 라인을 그리고 이동결과를 반환한다.")
     @Test
     void arrival() {
-        assertThat(lineResults.arrivalPoint(0, 0)).isEqualTo(2);
-        assertThat(lineResults.arrivalPoint(0, 1)).isEqualTo(0);
-        assertThat(lineResults.arrivalPoint(0, 2)).isEqualTo(1);
+        assertThat(ladder.arrivalPoint(0, 0)).isEqualTo(2);
+        assertThat(ladder.arrivalPoint(0, 1)).isEqualTo(0);
+        assertThat(ladder.arrivalPoint(0, 2)).isEqualTo(1);
     }
 }

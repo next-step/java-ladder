@@ -3,14 +3,14 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LineResults {
+public class Ladder {
     private final List<Line> lines;
 
-    public LineResults() {
+    public Ladder() {
         this(new ArrayList<>());
     }
 
-    public LineResults(List<Line> lines) {
+    public Ladder(List<Line> lines) {
         this.lines = lines;
     }
 
