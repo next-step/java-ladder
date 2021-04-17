@@ -2,6 +2,7 @@ package step2.domain;
 
 import step2.exception.IllegalPlayerName;
 
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -26,5 +27,20 @@ public class Player {
                 .collect(Collectors.joining());
 
         return blank + name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Player)) return false;
+
+        Player player = (Player) o;
+
+        return Objects.equals(name, player.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return name != null ? name.hashCode() : 0;
     }
 }
