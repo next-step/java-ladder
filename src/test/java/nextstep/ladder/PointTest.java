@@ -2,6 +2,8 @@ package nextstep.ladder;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Random;
+
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 import static org.hamcrest.CoreMatchers.is;
@@ -34,7 +36,7 @@ public class PointTest {
 
     @Test
     public void next() {
-        Point second = Point.first(TRUE).next();
+        Point second = Point.first(TRUE).next(() -> new Random().nextBoolean());
         assertThat(second.move(), is(0));
     }
 }
