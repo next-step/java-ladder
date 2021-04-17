@@ -1,4 +1,4 @@
-package nextstep.ladder.entity;
+package nextstep.ladder.entity.ladder;
 
 public enum Direction {
     RIGHT(1),
@@ -9,5 +9,9 @@ public enum Direction {
 
     Direction(int directionPoint) {
         this.directionPoint = directionPoint;
+    }
+
+    static Direction direction(boolean drawRule) {
+        return drawRule ? Direction.RIGHT : NONE;
     }
 }

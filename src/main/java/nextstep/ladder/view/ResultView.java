@@ -1,9 +1,9 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.entity.Direction;
-import nextstep.ladder.entity.Ladder;
-import nextstep.ladder.entity.Line;
-import nextstep.ladder.entity.LinesOfOneHeight;
+import nextstep.ladder.entity.ladder.Direction;
+import nextstep.ladder.entity.ladder.Ladder;
+import nextstep.ladder.entity.ladder.Line;
+import nextstep.ladder.entity.ladder.LinesOfOneHeight;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,6 +12,11 @@ import java.util.stream.IntStream;
 public class ResultView {
 
     static final String HEIGHT_PRINT_SYMBOL = "|";
+    static final String DRAW_LINE = "-----";
+    static final String NONE_DRAW_LINE = "     ";
+    static final String LINE_SEPARATOR = System.lineSeparator();
+    static final String LADDER_RESULT_MESSAGE = "사다리 결과";
+    static final String GAME_RESULT_MESSAGE = "실행결과";
 
     private ResultView() {
     }
@@ -20,15 +25,14 @@ public class ResultView {
         return String.format("%-5s", username);
     }
 
-    public static void printResult(List<String> userNames, Ladder ladder) {
+    public static void printLadderResult(List<String> userNames, Ladder ladder) {
         printStart();
         printUser(userNames);
         printLadder(ladder);
     }
 
     public static void printStart() {
-        String lineSeparator = System.lineSeparator();
-        System.out.println(lineSeparator + "실행결과" + lineSeparator);
+        System.out.println(LINE_SEPARATOR + LADDER_RESULT_MESSAGE + LINE_SEPARATOR);
     }
 
     public static void printUser(List<String> userNames) {
@@ -61,12 +65,19 @@ public class ResultView {
     }
 
     private static String width(Line line) {
-        if (line.getLineDirection().equals(Direction.RIGHT)) {
-            return "-----";
+
+        if (line.lineDirection().equals(Direction.RIGHT)) {
+            return DRAW_LINE;
         }
-        return "     ";
+
+        return NONE_DRAW_LINE;
     }
 
+    public static void printGameResult(List<String> gameResults) {
+        System.out.println(LINE_SEPARATOR + GAME_RESULT_MESSAGE);
 
-
+        for (String gameResult : gameResults) {
+            System.out.println(gameResult);
+        }
+    }
 }
