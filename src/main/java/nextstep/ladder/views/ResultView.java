@@ -36,7 +36,7 @@ public class ResultView {
                         .stream()
                         .map(ResultView::getLadderLine)
                         .collect(Collectors.joining(ENTER));
-        System.out.println(stringBuilder + ENTER);
+        System.out.println(stringBuilder);
     }
 
     private static String getLadderLine(LadderLine ladderLine) {
@@ -63,7 +63,7 @@ public class ResultView {
                 .stream()
                 .map(ResultView::getResultValue)
                 .collect(Collectors.joining(BLANK_SEPARATOR));
-        System.out.println(stringBuilder);
+        System.out.println(stringBuilder + ENTER);
     }
 
     private static String getResultValue(String value) {
