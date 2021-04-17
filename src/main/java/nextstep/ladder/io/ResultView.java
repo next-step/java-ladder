@@ -20,7 +20,7 @@ public final class ResultView {
 
   public static void printLadder(Ladder ladder) {
     System.out.println();
-    System.out.println("실행결과");
+    System.out.println("사다리 결과");
     System.out.println();
     printPeople(ladder.people());
     printLines(ladder.lines());
@@ -56,5 +56,9 @@ public final class ResultView {
       resultsBuilder.append(StringUtils.padLeft(result.result(), Result.MAX_LENGTH + 1));
     }
     System.out.println(resultsBuilder);
+  }
+
+  public static void printPersonAndResult(Person personForResult, Result result) {
+    System.out.println(personForResult.personName() + " : " + result.result());
   }
 }
