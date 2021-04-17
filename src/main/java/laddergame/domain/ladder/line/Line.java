@@ -1,7 +1,10 @@
 /*
  * 사다리의 가로줄을 의미하는 클래스
  * */
-package laddergame.domain.ladder;
+package laddergame.domain.ladder.line;
+
+import laddergame.domain.ladder.LadderStrategy;
+import laddergame.domain.ladder.Size;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package laddergame.domain.ladder;
+package laddergame.domain.ladder.line;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -20,6 +20,7 @@ public class PointTest {
     @Test
     @DisplayName("포인트 생성시엔 아무와도 연결되지 않는다.")
     void 포인트를생성() {
+        assertThat(point).isEqualTo(new Point());
         assertThat(point.isLinked()).isFalse();
     }
 

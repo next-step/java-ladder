@@ -3,6 +3,8 @@
  * */
 package laddergame.domain.ladder;
 
+import laddergame.domain.ladder.line.Line;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

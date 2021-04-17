@@ -1,12 +1,12 @@
 package laddergame.util;
 
-import laddergame.domain.ladder.Line;
+import laddergame.domain.ladder.line.Line;
 
 public class StringUtils {
     public static final int NAME_WIDTH = 5;
     public static final String SPACE = " ";
-    public static final String LINK = "-----";
-    public static final String NOT_LINK = "     ";
+    public static final String LINKING = "-----";
+    public static final String NOT_LINKING = "     ";
     public static final String LINE_POINT = "|";
 
 
@@ -32,9 +32,9 @@ public class StringUtils {
 
     private static void fitConnect(Boolean connected, StringBuilder fit) {
         if (connected) {
-            fit.append(LINK + LINE_POINT);
+            fit.append(LINKING + LINE_POINT);
             return;
         }
-        fit.append(NOT_LINK + LINE_POINT);
+        fit.append(NOT_LINKING + LINE_POINT);
     }
 }

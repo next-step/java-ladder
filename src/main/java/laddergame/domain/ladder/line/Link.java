@@ -1,11 +1,11 @@
 /*
  * 두 포인트간의 연결을 관리하는 클래스
  * */
-package laddergame.domain.ladder;
+package laddergame.domain.ladder.line;
 
 public class Link<T> {
-    protected T now;
-    protected T next;
+    private T now;
+    private T next;
 
     /* 두 Point를 가지는 한쌍을 생성한다. */
     public void pair(T newPair) {
@@ -48,12 +48,14 @@ public class Link<T> {
         return hasNow() && hasNext();
     }
 
-    public boolean isNow(T now) {
-        return hasNow() && this.now == now;
+    public boolean isNow(T check) {
+        return now == check;
     }
 
-    public boolean isNext(T next) {
-        return hasNext() && this.next == next;
+    public boolean isNext(T check) {
+        return next == check;
     }
 
+    public T getNow() { return now; }
+    public T getNext() { return next; }
 }

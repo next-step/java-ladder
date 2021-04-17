@@ -1,5 +1,8 @@
-package laddergame.domain.ladder;
+package laddergame.domain.ladder.line;
 
+import laddergame.domain.ladder.Size;
+import laddergame.domain.ladder.line.Line;
+import laddergame.domain.ladder.line.Point;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
