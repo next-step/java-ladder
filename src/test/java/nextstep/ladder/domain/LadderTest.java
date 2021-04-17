@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.List;
+import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -62,5 +63,19 @@ class LadderTest {
         () -> assertThat(resultIndex).isEqualTo(ladder.findResultIndex(Person.valueOf(name))),
         () -> assertThat(resultIndex).isNotEqualTo(ladder.findResultIndex(Person.valueOf("honux")))
     );
+  }
+
+  @Test
+  @DisplayName("결과 목록을 입력받고, 사다리를 탄 후의 결과 목록을 반환한다.")
+  void findAllResults() {
+    // given
+    final List<Result> results = Lists.list(new Result("100"), new Result("200"), new Result("꽝"), new Result("5000"));
+    final List<Result> expected = Lists.list(new Result("200"), new Result("100"), new Result("5000"), new Result("꽝"));
+
+    // when
+    final List<Result> allResults = ladder.findAllResults(results);
+
+    // then
+    assertThat(allResults).isEqualTo(expected);
   }
 }

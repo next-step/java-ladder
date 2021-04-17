@@ -40,6 +40,10 @@ public final class Ladder {
     return resultIndex;
   }
 
+  public List<Result> findAllResults(List<Result> results) {
+    return null;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
