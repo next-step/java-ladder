@@ -33,4 +33,8 @@ public class LadderGame {
     public Player findPlayerByName(String name) {
         return players.findPlayerByName(name);
     }
+
+    public int getPlayerCount() {
+        return players.getPlayerCount();
+    }
 }

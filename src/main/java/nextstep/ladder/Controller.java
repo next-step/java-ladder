@@ -1,29 +1,40 @@
 package nextstep.ladder;
 
-import java.util.Arrays;
 import java.util.List;
 import nextstep.ladder.domain.LadderGame;
 import nextstep.ladder.domain.Players;
 import nextstep.ladder.domain.PrizeMapper;
 import nextstep.ladder.domain.Prizes;
-import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
 public class Controller {
-    public static void main(String[] args) {
-        List<String> info = InputView.getInfoFromClient();
+    public static Players createPlayers(List<String> playerNames) {
+        return new Players(playerNames);
+    }
 
-        Players players = new Players(Arrays.asList(info.get(0).split(",")));
-        LadderGame ladderGame = new LadderGame(players, Integer.parseInt(info.get(2)));
-        Prizes prizes = new Prizes(Arrays.asList(info.get(1).split(",")));
+    public static Prizes createPrizes(List<String> prizeNames) {
+        return new Prizes(prizeNames);
+    }
 
+    public static LadderGame createGame(Players players, int height) {
+        return new LadderGame(players, height);
+    }
+
+    public static PrizeMapper createPrizeMapper(Prizes prizes, Players players) {
+        return new PrizeMapper(prizes, players);
+    }
+
+    public static void printLadderResult(LadderGame ladderGame) {
         ResultView.printObjectsName(ladderGame.getAllPlayerNames());
-        ResultView.printLadderResult(ladderGame.build(), players.getPlayerCount());
-        ResultView.printObjectsName(prizes.getAllPrizesName());
+        ResultView.printLadderResult(ladderGame.build(), ladderGame.getPlayerCount());
         ladderGame.start();
+    }
 
-        String input = InputView.getPlayerResult();
-        PrizeMapper prizeMapper = new PrizeMapper(prizes, players);
+    public static void printPrizeResult(Prizes prizes) {
+        ResultView.printObjectsName(prizes.getAllPrizesName());
+    }
+
+    public static void printGameResult(String input, PrizeMapper prizeMapper) {
         ResultView.printResultList(prizeMapper.getPlayerPrizeResult(input));
     }
 }
