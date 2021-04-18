@@ -35,8 +35,7 @@ public class PlayersTest {
         Players players = new Players(Arrays.asList("pobi", "honux", "crong", "jk"));
         Player pobi = players.findPlayerByName("pobi");
 
-        pobi = pobi.move(new Point(100));
-        players.updatePlayerPoint(0, pobi.getPoint());
+        players.updatePlayerPoint(pobi, new Point(100));
 
         assertThat(players.findPlayerByName("pobi").isPlayerInPosition(new Point(100))).isEqualTo(true);
     }
@@ -48,8 +47,7 @@ public class PlayersTest {
         Players players = new Players(Arrays.asList("pobi", "honux", "crong", "jk"));
         Player pobi = players.findPlayerByName("pobi");
 
-        pobi = pobi.move(new Point(100));
-        players.updatePlayerPoint(0, pobi.getPoint());
+        players.updatePlayerPoint(pobi, new Point(100));
 
         assertThat(players.getPlayerByIndex(0)).isEqualTo(new Player("pobi", new Point(100)));
     }
