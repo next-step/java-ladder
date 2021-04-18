@@ -29,6 +29,10 @@ public class Players {
         return players.indexOf(player);
     }
 
+    public int index(String playerName) {
+        return index(new Player(playerName));
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

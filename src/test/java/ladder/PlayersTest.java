@@ -1,6 +1,5 @@
 package ladder;
 
-import ladder.domain.Player;
 import ladder.domain.Players;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,6 +20,6 @@ public class PlayersTest {
     @Test
     void index() {
         Players players = Players.of(Arrays.asList("test1", "test2", "test3"));
-        assertThat(players.index(new Player("test1"))).isEqualTo(0);
+        assertThat(players.index("test1")).isEqualTo(0);
     }
 }
