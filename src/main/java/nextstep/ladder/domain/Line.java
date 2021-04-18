@@ -2,7 +2,6 @@ package nextstep.ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class Line {
     static final int PLAYERS_MIN_COUNT = 2;
@@ -42,11 +41,7 @@ public class Line {
         return points.get(from);
     }
 
-    public Player movePlayerToNewPoint(Player player) {
-        return IntStream.range(0, points.size())
-                .filter(i -> player.isPlayerInPosition(new Point(i)))
-                .mapToObj(i -> player.move(moveFrom(i)))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("플레이어의 Point값이 잘못되었습니다."));
+    public Point moveFrom(Point from) {
+        return moveFrom(from.getIndex());
     }
 }

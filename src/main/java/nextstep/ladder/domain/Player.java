@@ -28,6 +28,10 @@ public class Player {
         return point.equals(at);
     }
 
+    public Point getPoint() {
+        return point;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

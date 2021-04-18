@@ -42,11 +42,11 @@ public class Ladder {
                 .collect(Collectors.joining(","));
     }
 
-    public Player rideLadder(Player startingPlayer) {
-        Player player = startingPlayer;
+    public Point rideLadder(Point startPoint) {
+        Point point = startPoint;
         for (Line line : lines) {
-            player = line.movePlayerToNewPoint(player);
+            point = line.moveFrom(point);
         }
-        return player;
+        return point;
     }
 }

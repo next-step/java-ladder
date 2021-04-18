@@ -31,11 +31,15 @@ public class Players {
                 .collect(Collectors.toList());
     }
 
-    public void updatePlayerPoint(int index, Player playerWithNewPoint) {
-        playerList.set(index, playerWithNewPoint);
+    public void updatePlayerPoint(int index, Point newPoint) {
+        playerList.set(index, getPlayerByIndex(index).move(newPoint));
     }
 
     public Player getPlayerByIndex(int index) {
         return playerList.get(index);
+    }
+
+    public Point getPlayerPointByIndex(int index) {
+        return playerList.get(index).getPoint();
     }
 }

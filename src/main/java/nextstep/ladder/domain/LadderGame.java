@@ -26,7 +26,7 @@ public class LadderGame {
 
     public void start() {
         for (int i = 0; i < players.getPlayerCount(); i++) {
-            players.updatePlayerPoint(i, ladder.rideLadder(players.getPlayerByIndex(i)));
+            players.updatePlayerPoint(i, ladder.rideLadder(players.getPlayerPointByIndex(i)));
         }
     }
 
