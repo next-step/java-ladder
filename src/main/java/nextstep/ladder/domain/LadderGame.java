@@ -11,11 +11,6 @@ public class LadderGame {
         ladder = new Ladder(height, players.getPlayerCount());
     }
 
-    public LadderGame(Players players, Ladder ladder) {
-        this.players = players;
-        this.ladder = ladder;
-    }
-
     public List<String> build() {
         return ladder.build();
     }
