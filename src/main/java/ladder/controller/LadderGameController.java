@@ -20,7 +20,7 @@ public class LadderGameController {
         this.gameService = new LadderGameService();
     }
 
-    public LadderGenerationResponse generateLadderGame(LadderGenerationRequest request) {
+    public LadderGenerationResponse executeLadderGame(LadderGenerationRequest request) {
         Participants participants = generationService.registerParticipants(request.getParticipantNames());
         Ladder ladder = generationService.generateLadder(participants.getCount(), request.getLadderHeight());
         MatchingItems matchingItems = generationService.generateMatchingItems(request.getMatchingItems(), participants.getCount());
