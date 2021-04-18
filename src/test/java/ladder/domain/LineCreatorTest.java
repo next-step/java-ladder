@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import ladder.strategy.LineGenerateStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -18,4 +19,6 @@ class LineCreatorTest {
         // then
         assertThat(lineCreator).isNotNull();
     }
+
+
 }
