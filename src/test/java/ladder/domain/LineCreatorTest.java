@@ -20,5 +20,20 @@ class LineCreatorTest {
         assertThat(lineCreator).isNotNull();
     }
 
+    @DisplayName("LineCreator 인스턴스가 Line 만든 후 반환 하는지 여부 테스트")
+    @Test
+    void 반환() {
+        // given
+        int countOfPerson = 5;
+        LineGenerateStrategy strategy = () -> true;
+
+        // when
+        LineCreator lineCreator = LineCreator.getInstance();
+        Line line = lineCreator.create(countOfPerson, strategy);
+
+        // then
+        assertThat(line).isNotNull();
+    }
+
 
 }
