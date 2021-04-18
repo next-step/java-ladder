@@ -97,7 +97,7 @@ class LadderGameControllerTest {
         LadderGenerationResponse ladderGenerationResponse = controller.generateLadder(request);
 
         // then
-        for (LadderGameResult gameResponse : ladderGenerationResponse.getGameResponses()) {
+        for (LadderGameResult gameResponse : ladderGenerationResponse.getLadderGameResults()) {
             assertThat(Arrays.asList(participantNames.split(",")).contains(gameResponse.getParticipantName())).isTrue();
             assertThat(Arrays.asList(gameResults.split(",")).contains(gameResponse.getGameResult())).isTrue();
         }

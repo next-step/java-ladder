@@ -16,10 +16,10 @@ public class LadderApplication {
         while (true) {
             String inputInquiryTargetName  = inputView.inputInquiryTargetName();
             if ("all".equals(inputInquiryTargetName)) {
-                outputView.printGameResults(ladderGenerationResponse.getGameResponses());
+                outputView.printGameResults(ladderGenerationResponse.getLadderGameResults());
                 break;
             }
-            outputView.printGameResult(ladderGenerationResponse.getGameResponses(), inputInquiryTargetName);
+            outputView.printGameResult(ladderGenerationResponse.getLadderGameResults(), inputInquiryTargetName);
         }
     }
 }
