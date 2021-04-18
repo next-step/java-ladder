@@ -22,6 +22,7 @@ public class PlayerTest {
     @Test
     void 플레이어를생성() {
         assertThat(player).isEqualTo(new Player(name));
+        assertThat(player.checkName(new Name(pName))).isTrue();
     }
 
     @Test

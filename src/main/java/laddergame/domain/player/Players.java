@@ -4,9 +4,9 @@
 package laddergame.domain.player;
 
 import java.util.*;
+import java.util.stream.IntStream;
 
-import static laddergame.util.Message.ILLEGAL_DUPLICATE_NAME;
-import static laddergame.util.Message.ILLEGAL_EMPTY_PLAYER;
+import static laddergame.util.Message.*;
 
 public class Players {
 
@@ -16,6 +16,13 @@ public class Players {
         emptyPlayers(playerList);
         validPlayers(playerList);
         this.players = playerList;
+    }
+
+    public int whoseName(Name findName) {
+        return IntStream.range(0, players.size())
+                .filter(i -> players.get(i).checkName(findName))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(ILLEGAL_FIND_NAME));
     }
 
     private void validPlayers(List<Player> playerList) {
@@ -30,6 +37,14 @@ public class Players {
         if (playerList == null || playerList.isEmpty() || playerList.size() == 0) {
             throw new IllegalArgumentException(ILLEGAL_EMPTY_PLAYER);
         }
+    }
+
+    public int getNumber() {
+        return players.size();
+    }
+
+    public Player getOne(int index) {
+        return players.get(index);
     }
 
     public List<Player> getPlayers() {
@@ -48,5 +63,4 @@ public class Players {
     public int hashCode() {
         return Objects.hash(players);
     }
-
 }

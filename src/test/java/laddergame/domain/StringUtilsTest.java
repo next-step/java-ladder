@@ -1,6 +1,6 @@
 package laddergame.domain;
 
-import laddergame.domain.ladder.Line;
+import laddergame.domain.ladder.line.Line;
 import laddergame.domain.ladder.Size;
 import laddergame.util.StringUtils;
 import org.junit.jupiter.api.Test;
@@ -17,7 +17,7 @@ public class StringUtilsTest {
         String name = "이름";
         String predict = "   이름 ";
 
-        assertThat(StringUtils.fitName(name)).isEqualTo(predict);
+        assertThat(StringUtils.fitSpace(name)).isEqualTo(predict);
     }
 
     @Test

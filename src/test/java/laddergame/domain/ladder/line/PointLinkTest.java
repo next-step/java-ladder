@@ -1,5 +1,7 @@
-package laddergame.domain.ladder;
+package laddergame.domain.ladder.line;
 
+import laddergame.domain.ladder.line.Point;
+import laddergame.domain.ladder.line.PointLink;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -37,7 +39,6 @@ public class PointLinkTest {
         link.link(() -> true);
 
         assertThat(point.isLinkedWith(linkPoint)).isTrue();
-        assertThat(linkPoint.isLinkedWith(point)).isTrue();
     }
 
     @Test
