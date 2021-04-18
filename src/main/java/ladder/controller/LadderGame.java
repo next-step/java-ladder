@@ -13,6 +13,7 @@ import ladder.view.ResultView;
 import java.util.Scanner;
 
 public class LadderGame {
+  private static final String ALL = "all";
 
   private final InputView inputView;
   private final ResultView resultView = new ResultView();
@@ -35,7 +36,7 @@ public class LadderGame {
 
   private void alertResult(LadderTotalResults result) {
     String checker = inputView.checkerEvent();
-    while (!checker.equals("all")) {
+    while (!checker.toLowerCase().equals(ALL)) {
       resultView.showResult(result.findByPlayer(new Player(checker)));
       checker = inputView.checkerEvent();
     }
