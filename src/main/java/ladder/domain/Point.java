@@ -14,7 +14,7 @@ public class Point {
     }
 
     public int nextIndex() {
-        return increment(index);
+        return right(index);
     }
 
     public boolean hasRightDirection() {
@@ -31,19 +31,19 @@ public class Point {
 
     public int move() {
         if (direction.hasRightDirection()) {
-            return increment(index);
+            return right(index);
         }
         if (direction.hasLeftDirection()) {
-            return decrement(index);
+            return left(index);
         }
         return index;
     }
 
-    private int increment(int index) {
+    private int right(int index) {
         return index + VARIATION_UNIT;
     }
 
-    private int decrement(int index) {
+    private int left(int index) {
         return index - VARIATION_UNIT;
     }
 
