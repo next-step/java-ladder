@@ -71,7 +71,7 @@ class DirectionTest {
     @ParameterizedTest
     @ValueSource(booleans = {true, false})
     @DisplayName("last 테스트")
-    void last(boolean write) {
+    void last() {
         // given
         Direction emptyDirection = new Direction(false, false);
         Direction leftLineDirection = new Direction(true, false);
