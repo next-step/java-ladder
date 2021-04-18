@@ -30,6 +30,10 @@ public final class Layer {
         return new Layer(result);
     }
 
+    public int nextLine(int nowLine) {
+        return 0;
+    }
+
     private static boolean generateAisle(boolean previousAisle, RandomBoolean randomBoolean) {
         if (randomBoolean.randomBoolean() && !previousAisle) {
             return true;

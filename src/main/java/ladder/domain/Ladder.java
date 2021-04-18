@@ -30,6 +30,10 @@ public class Ladder {
         return this.layers;
     }
 
+    public int finalLine(int startLine) {
+        return 0;
+    }
+
     private static List<Layer> generateLayers(int line, int height, RandomBoolean randomBoolean) {
         return IntStream.range(0, height)
                 .mapToObj(i -> Layer.valueOf(line, randomBoolean))

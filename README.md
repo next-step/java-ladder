@@ -18,16 +18,14 @@
 * Layer
     * 인스턴스 변수 : List\<Boolean\> aisles;
     * 주 생성자 : Layer(List\<Boolean> aisle)
-    * 부 생성자 : Layer(int line, RandomBoolean randomBoolean)
     * 메소드
-        * (미구현)int nextLine(int nowLine)
+        * int nextLine(int nowLine)
         * boolean hasAisle(int index)
 * Ladder
-    * instance : List<Layer> layers;
+    * instance : List\<Layer\> layers;
     * 주 생성자 : Layers(List\<Layer\>)
-    * 부 생성자 : Layers(int height)
     * 메소드
-        * (미구현)int finalLine(int startLine)
+        * int finalLine(int startLine)
 
 ### 서비스 상세
 
