@@ -13,7 +13,7 @@ import java.util.Arrays;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderTest {
-    Ladder ladder = new Ladder();
+    private final Ladder ladder = new Ladder();
 
     @BeforeEach
     void ladder() {
