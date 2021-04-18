@@ -1,5 +1,7 @@
 package ladder.domain.ladder;
 
+import ladder.domain.creator.LadderCreator;
+import ladder.domain.participant.People;
 import ladder.exception.LineListNullPointerException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -37,20 +39,21 @@ class LadderTest {
                 .hasMessage("List<Line>이 null 입니다.");
     }
 
-//    @DisplayName("Ladder 인스턴스가 LadderResultBoard 반환하는지 테스트")
-//    @Test
-//    void 반환_LadderResultBoard() {
-//        // given
-//        People people = People.of("pobi,honux,crong,jk".split(","));
-//        LadderHeight height = LadderHeight.valueOf(5);
-//        LadderResults ladderResults = LadderResults.of("꽝,꽝,5000,3000".split(","));
-//        LadderCreationInformation creationInformation = LadderCreationInformation.from(people, height);
-//
-//        // when
-//        Ladder ladder = Ladder.from(creationInformation, () -> true);
-//        LadderResultBoard resultBoard = ladder.run(people, ladderResults);
-//
-//        // then
-//        assertThat(resultBoard).isNotNull();
-//    }
+    @DisplayName("Ladder 인스턴스가 LadderResultBoard 반환하는지 테스트")
+    @Test
+    void 반환_LadderResultBoard() {
+        // given
+        People people = People.of("pobi,honux,crong,jk".split(","));
+        LadderHeight height = LadderHeight.valueOf(5);
+        LadderResults ladderResults = LadderResults.of("꽝,꽝,5000,3000".split(","));
+        LadderCreationInformation creationInformation = LadderCreationInformation.from(people, height);
+        LadderCreator ladderCreator = LadderCreator.getInstance();
+
+        // when
+        Ladder ladder = ladderCreator.create(creationInformation, () -> true);
+        LadderResultBoard resultBoard = ladder.run(people, ladderResults);
+
+        // then
+        assertThat(resultBoard).isNotNull();
+    }
 }

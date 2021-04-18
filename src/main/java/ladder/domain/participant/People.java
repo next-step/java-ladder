@@ -51,8 +51,4 @@ public final class People {
         return people.get(index);
     }
 
-    public final List<Person> values() {
-        return Collections.unmodifiableList(people);
-    }
-
 }

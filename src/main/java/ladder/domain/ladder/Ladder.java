@@ -50,4 +50,17 @@ public final class Ladder {
     public final Stream<Line> stream() {
         return ladder.stream();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ladder ladder1 = (Ladder) o;
+        return Objects.equals(ladder, ladder1.ladder);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ladder);
+    }
 }
