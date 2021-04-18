@@ -4,7 +4,7 @@ import ladder.service.dto.LadderGameResult;
 
 import java.util.List;
 
-public class LadderGenerationResponse {
+public class LadderGameResponse {
 
     private final List<String> participantNames;
     private final int ladderWidth;
@@ -12,7 +12,7 @@ public class LadderGenerationResponse {
     private final List<String> matchingItems;
     private final List<LadderGameResult> ladderGameResults;
 
-    public LadderGenerationResponse(List<String> participantNames, int ladderWidth, List<LadderLine> ladderLines, List<String> matchingItems, List<LadderGameResult> ladderGameResults) {
+    public LadderGameResponse(List<String> participantNames, int ladderWidth, List<LadderLine> ladderLines, List<String> matchingItems, List<LadderGameResult> ladderGameResults) {
         this.participantNames = participantNames;
         this.ladderWidth = ladderWidth;
         this.ladderLines = ladderLines;

@@ -1,6 +1,6 @@
 package ladder.view;
 
-import ladder.controller.dto.LadderGenerationRequest;
+import ladder.controller.dto.LadderGameRequest;
 
 import java.util.Scanner;
 
@@ -12,8 +12,8 @@ public class InputView {
         scanner = new Scanner(System.in);
     }
 
-    public LadderGenerationRequest inputLadderGeneration() {
-        return new LadderGenerationRequest(inputParticipants(), inputGameResults(), inputLadderHeight());
+    public LadderGameRequest inputLadderGeneration() {
+        return new LadderGameRequest(inputParticipants(), inputGameResults(), inputLadderHeight());
     }
 
     private String inputParticipants() {

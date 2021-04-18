@@ -1,7 +1,7 @@
 package ladder.controller;
 
-import ladder.controller.dto.LadderGenerationRequest;
-import ladder.controller.dto.LadderGenerationResponse;
+import ladder.controller.dto.LadderGameRequest;
+import ladder.controller.dto.LadderGameResponse;
 import ladder.controller.dto.LadderLine;
 import ladder.domain.*;
 import ladder.service.LadderGameService;
@@ -20,15 +20,15 @@ public class LadderGameController {
         this.gameService = new LadderGameService();
     }
 
-    public LadderGenerationResponse executeLadderGame(LadderGenerationRequest request) {
+    public LadderGameResponse executeLadderGame(LadderGameRequest request) {
         Participants participants = generationService.registerParticipants(request.getParticipantNames());
         Ladder ladder = generationService.generateLadder(participants.getCount(), request.getLadderHeight());
         MatchingItems matchingItems = generationService.generateMatchingItems(request.getMatchingItems(), participants.getCount());
         return assembleResponse(participants, ladder, matchingItems);
     }
 
-    private LadderGenerationResponse assembleResponse(Participants participants, Ladder ladder, MatchingItems matchingItems) {
-        return new LadderGenerationResponse(
+    private LadderGameResponse assembleResponse(Participants participants, Ladder ladder, MatchingItems matchingItems) {
+        return new LadderGameResponse(
                 assembleParticipantNameList(participants),
                 Ladder.LADDER_HORIZON_WIDTH,
                 assembleLadderLineList(ladder.getLines()),

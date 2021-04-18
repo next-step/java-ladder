@@ -1,8 +1,8 @@
 package ladder.controller;
 
 import ladder.service.dto.LadderGameResult;
-import ladder.controller.dto.LadderGenerationRequest;
-import ladder.controller.dto.LadderGenerationResponse;
+import ladder.controller.dto.LadderGameRequest;
+import ladder.controller.dto.LadderGameResponse;
 import ladder.domain.Ladder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,11 +19,11 @@ class LadderGameControllerTest {
         // given
         String participantNames = "pobi,honux,crong,jk";
         int ladderHeight = 5;
-        LadderGenerationRequest request = new LadderGenerationRequest(participantNames, "꽝,5000,꽝,3000", ladderHeight);
+        LadderGameRequest request = new LadderGameRequest(participantNames, "꽝,5000,꽝,3000", ladderHeight);
         LadderGameController controller = new LadderGameController();
 
         // when
-        LadderGenerationResponse response = controller.executeLadderGame(request);
+        LadderGameResponse response = controller.executeLadderGame(request);
 
         // then
         assertThat(4).isEqualTo(response.getParticipantNames().size());
@@ -38,11 +38,11 @@ class LadderGameControllerTest {
         // given
         String participantNames = "pobi,honux,crong,jk";
         int ladderHeight = 5;
-        LadderGenerationRequest request = new LadderGenerationRequest(participantNames, "꽝,5000,꽝,3000", ladderHeight);
+        LadderGameRequest request = new LadderGameRequest(participantNames, "꽝,5000,꽝,3000", ladderHeight);
         LadderGameController controller = new LadderGameController();
 
         // when
-        LadderGenerationResponse response = controller.executeLadderGame(request);
+        LadderGameResponse response = controller.executeLadderGame(request);
 
         // then
         assertThat(ladderHeight).isEqualTo(response.getLadderLines().size());
@@ -54,11 +54,11 @@ class LadderGameControllerTest {
         // given
         String participantNames = "pobi,honux,crong,jk";
         int ladderHeight = 5;
-        LadderGenerationRequest request = new LadderGenerationRequest(participantNames, "꽝,5000,꽝,3000", ladderHeight);
+        LadderGameRequest request = new LadderGameRequest(participantNames, "꽝,5000,꽝,3000", ladderHeight);
         LadderGameController controller = new LadderGameController();
 
         // when
-        LadderGenerationResponse response = controller.executeLadderGame(request);
+        LadderGameResponse response = controller.executeLadderGame(request);
 
         // then
         assertThat(Ladder.LADDER_HORIZON_WIDTH).isEqualTo(response.getLadderWidth());
@@ -71,11 +71,11 @@ class LadderGameControllerTest {
         String participantNames = "pobi,honux,crong,jk";
         int ladderHeight = 5;
         String gameResults = "꽝,5000,꽝,3000";
-        LadderGenerationRequest request = new LadderGenerationRequest(participantNames, gameResults, ladderHeight);
+        LadderGameRequest request = new LadderGameRequest(participantNames, gameResults, ladderHeight);
         LadderGameController controller = new LadderGameController();
 
         // when
-        LadderGenerationResponse response = controller.executeLadderGame(request);
+        LadderGameResponse response = controller.executeLadderGame(request);
 
         // then
         for (String gameResult : response.getMatchingItems()) {
@@ -90,14 +90,14 @@ class LadderGameControllerTest {
         String participantNames = "pobi,honux,crong,jk";
         int ladderHeight = 5;
         String gameResults = "꽝,5000,꽝,3000";
-        LadderGenerationRequest request = new LadderGenerationRequest(participantNames, gameResults, ladderHeight);
+        LadderGameRequest request = new LadderGameRequest(participantNames, gameResults, ladderHeight);
         LadderGameController controller = new LadderGameController();
 
         // when
-        LadderGenerationResponse ladderGenerationResponse = controller.executeLadderGame(request);
+        LadderGameResponse ladderGameResponse = controller.executeLadderGame(request);
 
         // then
-        for (LadderGameResult gameResult : ladderGenerationResponse.getLadderGameResults()) {
+        for (LadderGameResult gameResult : ladderGameResponse.getLadderGameResults()) {
             assertThat(Arrays.asList(participantNames.split(",")).contains(gameResult.getParticipantName())).isTrue();
             assertThat(Arrays.asList(gameResults.split(",")).contains(gameResult.getGameResult())).isTrue();
         }

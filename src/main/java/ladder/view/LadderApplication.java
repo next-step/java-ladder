@@ -1,7 +1,7 @@
 package ladder.view;
 
 import ladder.controller.LadderGameController;
-import ladder.controller.dto.LadderGenerationResponse;
+import ladder.controller.dto.LadderGameResponse;
 
 public class LadderApplication {
 
@@ -10,16 +10,16 @@ public class LadderApplication {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
 
-        LadderGenerationResponse ladderGenerationResponse = gameController.executeLadderGame(inputView.inputLadderGeneration());
-        outputView.printLadderGenerationResult(ladderGenerationResponse);
+        LadderGameResponse ladderGameResponse = gameController.executeLadderGame(inputView.inputLadderGeneration());
+        outputView.printLadderGenerationResult(ladderGameResponse);
 
         while (true) {
             String inputInquiryTargetName  = inputView.inputInquiryTargetName();
             if ("all".equals(inputInquiryTargetName)) {
-                outputView.printGameResults(ladderGenerationResponse.getLadderGameResults());
+                outputView.printGameResults(ladderGameResponse.getLadderGameResults());
                 break;
             }
-            outputView.printGameResult(ladderGenerationResponse.getLadderGameResults(), inputInquiryTargetName);
+            outputView.printGameResult(ladderGameResponse.getLadderGameResults(), inputInquiryTargetName);
         }
     }
 }

@@ -1,7 +1,7 @@
 package ladder.view;
 
 import ladder.service.dto.LadderGameResult;
-import ladder.controller.dto.LadderGenerationResponse;
+import ladder.controller.dto.LadderGameResponse;
 import ladder.controller.dto.LadderLine;
 
 import java.util.List;
@@ -12,7 +12,7 @@ public class OutputView {
     private static final String HORIZON = "-";
     private static final String POINT = "|";
 
-    public void printLadderGenerationResult(LadderGenerationResponse response) {
+    public void printLadderGenerationResult(LadderGameResponse response) {
         System.out.println(System.lineSeparator() + "사다리 결과");
         printHeaderAndFooter(response.getParticipantNames(), response.getLadderWidth());
         System.out.println();

@@ -1,12 +1,12 @@
 package ladder.controller.dto;
 
-public class LadderGenerationRequest {
+public class LadderGameRequest {
 
     private final String participantNames;
     private final String matchingItems;
     private final int ladderHeight;
 
-    public LadderGenerationRequest(String participantNames, String matchingItems, int ladderHeight) {
+    public LadderGameRequest(String participantNames, String matchingItems, int ladderHeight) {
         this.participantNames = participantNames;
         this.ladderHeight = ladderHeight;
         this.matchingItems = matchingItems;
