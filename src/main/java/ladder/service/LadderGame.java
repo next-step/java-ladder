@@ -10,7 +10,7 @@ public class LadderGame {
     public static void run() {
         List<String> users = InputView.getUsers();
         int height = InputView.getLadderHeight();
-        Ladder ladder = new Ladder(users.size(), height);
+        Ladder ladder = Ladder.valueOf(users.size(), height);
         ResultView.printLadder(ladder, users);
     }
 }

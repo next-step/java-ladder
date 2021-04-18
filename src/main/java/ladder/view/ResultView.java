@@ -13,7 +13,7 @@ public class ResultView {
     public static void printLadder(Ladder ladder, List<String> users) {
         StringBuilder sb = new StringBuilder();
         sb.append(printUsers(users));
-        ladder.stream()
+        ladder.getLayers().stream()
                 .forEach(layer -> sb.append(printLayer(layer)));
         System.out.println(sb.toString());
     }
@@ -39,7 +39,7 @@ public class ResultView {
 
     private static String printLayer(Layer layer) {
         StringBuilder sb = new StringBuilder();
-        layer.stream()
+        layer.getAisles().stream()
                 .forEach(aisle -> sb.append("|").append(printAisle(aisle)));
         sb.append("|").append(System.lineSeparator());
         return sb.toString();

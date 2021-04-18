@@ -27,7 +27,7 @@ public class LayerTest {
         Layer expectLayer = new Layer(expectAisles);
 
         // when 
-        Layer resultLayer = new Layer(line, randomTrueBoolean);
+        Layer resultLayer = Layer.valueOf(line, randomTrueBoolean);
 
         // then
         assertThat(resultLayer).isEqualToComparingFieldByField(expectLayer);

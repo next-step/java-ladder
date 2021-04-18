@@ -23,11 +23,11 @@ public class LadderTest {
         // given
         final int line = 6;
         final int height = 3;
-        Layer trueLayer = new Layer(line, randomTrueBoolean);
+        Layer trueLayer = Layer.valueOf(line, randomTrueBoolean);
         Ladder expectLadder = new Ladder(Arrays.asList(trueLayer, trueLayer, trueLayer));
 
         // when
-        Ladder resultLadder = new Ladder(line, height, randomTrueBoolean);
+        Ladder resultLadder = Ladder.valueOf(line, height, randomTrueBoolean);
 
         // then
         Assertions.assertThat(resultLadder).isEqualTo(expectLadder);

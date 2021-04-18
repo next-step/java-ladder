@@ -1,23 +1,13 @@
 package ladder.domain;
 
 import ladder.service.RandomBoolean;
-import ladder.service.RandomBooleanGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Stream;
 
 public final class Layer {
     private final List<Boolean> aisles;
-
-    public Layer(int line) {
-        this(generateAisles(line, new RandomBooleanGenerator()));
-    }
-
-    public Layer(int line, RandomBoolean randomBoolean) {
-        this(generateAisles(line, randomBoolean));
-    }
 
     public Layer(List<Boolean> aisles) {
         this.aisles = aisles;
@@ -27,17 +17,17 @@ public final class Layer {
         return aisles.get(index);
     }
 
-    public Stream<Boolean> stream() {
-        return this.aisles.stream();
+    public List<Boolean> getAisles() {
+        return this.aisles;
     }
 
-    private static List<Boolean> generateAisles(int line, RandomBoolean randomBoolean) {
+    public static Layer valueOf(int line, RandomBoolean randomBoolean) {
         List<Boolean> result = new ArrayList<>();
         result.add(randomBoolean.randomBoolean());
         for (int i = 1; i < line - 1; i++) {
             result.add(generateAisle(result.get(i - 1), randomBoolean));
         }
-        return result;
+        return new Layer(result);
     }
 
     private static boolean generateAisle(boolean previousAisle, RandomBoolean randomBoolean) {

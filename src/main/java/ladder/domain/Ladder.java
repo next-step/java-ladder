@@ -7,30 +7,32 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class Ladder {
-    private final List<Layer> ladder;
-
-    public Ladder(int line, int height) {
-        this(generateLayers(line, height, new RandomBooleanGenerator()));
-    }
-
-    public Ladder(int line, int height, RandomBoolean randomBoolean) {
-        this(generateLayers(line, height, randomBoolean));
-    }
+    private final List<Layer> layers;
 
     public Ladder(List<Layer> layers) {
-        this.ladder = layers;
+        this.layers = layers;
     }
 
-    public Stream<Layer> stream() {
-        return this.ladder.stream();
+    public static Ladder valueOf(int line, int height) {
+        return Ladder.valueOf(line, height, new RandomBooleanGenerator());
+    }
+
+    public static Ladder valueOf(int line, int height, RandomBoolean randomBoolean) {
+        List<Layer> layers = IntStream.range(0, height)
+                .mapToObj(i -> Layer.valueOf(line, randomBoolean))
+                .collect(Collectors.toList());
+        return new Ladder(layers);
+    }
+
+    public List<Layer> getLayers() {
+        return this.layers;
     }
 
     private static List<Layer> generateLayers(int line, int height, RandomBoolean randomBoolean) {
         return IntStream.range(0, height)
-                .mapToObj(i -> new Layer(line, randomBoolean))
+                .mapToObj(i -> Layer.valueOf(line, randomBoolean))
                 .collect(Collectors.toList());
     }
 
@@ -43,11 +45,11 @@ public class Ladder {
             return false;
         }
         Ladder ladder1 = (Ladder) o;
-        return Objects.equals(ladder, ladder1.ladder);
+        return Objects.equals(layers, ladder1.layers);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ladder);
+        return Objects.hash(layers);
     }
 }
