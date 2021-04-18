@@ -22,9 +22,9 @@ public class LadderMachine {
         this.rewards = Rewards.from(rewards);
         validateRewards(players);
         Height height = InputView.getHeightOfLadder();
-        this.ladder = new Ladder(height, players.countOfPerson());
+        this.ladder = Ladder.of(height, players);
         ResultView.showPlayers(players.readOnlyPlayerNames());
-        ResultView.showLadder(ladder.readOnlyLadder(), this.rewards);
+        ResultView.showLadder(ladder, this.rewards);
         showResult(players);
     }
 
@@ -35,7 +35,7 @@ public class LadderMachine {
     }
 
     private void showResult(Players players) {
-        Rewards reArrangeRewards = Rewards.of(rewards, ladder.positionOfAllResult());
+        Rewards reArrangeRewards = Rewards.of(rewards, ladder.allResult());
         RewardsDto rewardsDto = RewardsDto.of(players.readOnlyPlayerNames(), reArrangeRewards);
         Query query = InputView.getResultQuery();
         while (query.isNotEndQuery()) {

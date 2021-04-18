@@ -35,4 +35,8 @@ public class Point {
     public Point last() {
         return new Point(index + 1, direction.last());
     }
+
+    public boolean isRight() {
+        return direction.isRight();
+    }
 }

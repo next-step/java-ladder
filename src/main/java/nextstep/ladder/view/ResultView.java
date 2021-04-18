@@ -1,7 +1,6 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.domain.*;
-import nextstep.ladder.view.dto.LadderDto;
 import nextstep.ladder.view.dto.RewardDto;
 import nextstep.ladder.view.dto.RewardsDto;
 
@@ -11,7 +10,8 @@ public class ResultView {
 
     private static final String CONNECTED = "|-----";
     private static final String NOT_CONNECTED = "|     ";
-    private static final String NAME_OUTPUT_FORMAT = "%5s";
+    private static final String NAME_OUTPUT_FORMAT = "%3s";
+    private static final String REWARD_OUTPUT_FORMAT = "%3s";
     private static final String SHOW_RESULT_MESSAGE = "\n실행 결과";
 
     private ResultView() {
@@ -19,13 +19,13 @@ public class ResultView {
 
     public static void showPlayers(List<String> players) {
         for (String name : players) {
-            System.out.print(String.format(NAME_OUTPUT_FORMAT, name));
+            System.out.printf(NAME_OUTPUT_FORMAT, name);
         }
         System.out.println();
     }
 
-    public static void showLadder(LadderDto ladderDto, Rewards rewards) {
-        ladderDto.lines()
+    public static void showLadder(Ladder ladder, Rewards rewards) {
+        ladder.lines()
                 .forEach(ResultView::showLine);
         rewards.readOnlyRewards()
                 .stream()
@@ -35,7 +35,7 @@ public class ResultView {
     }
 
     private static void showLine(Line line) {
-        line.readOnlyPoints()
+        line.points()
                 .stream()
                 .map(ResultView::convertPoint)
                 .forEach(System.out::print);
@@ -43,7 +43,7 @@ public class ResultView {
     }
 
     private static String convertPoint(Point point) {
-        return point.isConnected() ? CONNECTED : NOT_CONNECTED;
+        return point.isRight() ? CONNECTED : NOT_CONNECTED;
     }
 
     public static void showResultOfPlayer(RewardDto reward) {
@@ -59,6 +59,6 @@ public class ResultView {
     }
 
     private static String convertRewardFormat(Reward r) {
-        return String.format("%5s", r.getReward());
+        return String.format(REWARD_OUTPUT_FORMAT, r.getReward());
     }
 }

@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static nextstep.ladder.util.PointGenerator.generatePoint;
@@ -45,7 +46,11 @@ public class Line {
     }
 
     public int size() {
-        return -1;
+        return points.size();
+    }
+
+    public List<Point> points() {
+        return Collections.unmodifiableList(points);
     }
 }
 
