@@ -25,7 +25,7 @@ public class LineTest {
 
         line.createBridge(0);
 
-        assertThat(line.moveFrom(0)).isEqualTo(new Point(1));
+        assertThat(line.moveFrom(new Point(0))).isEqualTo(new Point(1));
     }
 
     @Test
@@ -35,7 +35,7 @@ public class LineTest {
 
         line.createBridge(0);
 
-        assertThat(line.moveFrom(1)).isEqualTo(new Point(0));
+        assertThat(line.moveFrom(new Point(1))).isEqualTo(new Point(0));
     }
 
     @Test

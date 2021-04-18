@@ -37,11 +37,7 @@ public class Line {
         createAtList.forEach(this::createBridge);
     }
 
-    public Point moveFrom(int from) {
-        return points.get(from);
-    }
-
     public Point moveFrom(Point from) {
-        return moveFrom(from.getIndex());
+        return points.get(from.getIndex());
     }
 }
