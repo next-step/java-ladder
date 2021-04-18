@@ -31,4 +31,5 @@ class LineTest {
 
     Assertions.assertThat(pointSize).isEqualTo(2);
   }
+
 }

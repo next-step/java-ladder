@@ -75,4 +75,5 @@ class PointsTest {
     InterimResults movedResult = points.move(interimResults);
     Assertions.assertThat(movedResult.interimResults().get(0).resultIndex()).isEqualTo(0);
   }
+
 }

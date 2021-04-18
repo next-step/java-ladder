@@ -35,4 +35,5 @@ class PlayerTest {
 
     assertThat(new Player(name)).isEqualTo(targetPlayer);
   }
+
 }
