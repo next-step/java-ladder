@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 public class PrizeTest {
     @Test
     @DisplayName("플레이어 위치에 따라 상을 출력하도록 한다.")
-    void prizeMappingTestByPlayerPosition() {
+    void prizeGivingTestByPlayerPosition() {
         Prizes prizes = new Prizes(Arrays.asList("꽝", "5000", "꽝", "3000"));
 
         Prize prize = prizes.givePrizeTo(new Player("pobi", new Point(0)));
