@@ -26,4 +26,8 @@ public class Participants {
       throw new IllegalArgumentException("null or 빈값이 들어올 수 없습니다.");
     }
   }
+
+  public int numberOfParticipants() {
+    return participants.size();
+  }
 }

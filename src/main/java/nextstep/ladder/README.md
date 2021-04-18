@@ -24,6 +24,7 @@
     - public static Participants makeByString(String str)
     - private static assureNotEmpty(String str);
   - method
+    - public int numberOfParticipants();
 - ## User.class
   - field
     - string name
