@@ -23,6 +23,10 @@ public class GameHelperTest {
     @Test
     public void finalLineTest() {
         // given
+        final int line = 6;
+        final int height = 3;
+        Ladder ladder = Ladder.valueOf(line, height, randomTrueBoolean);
+
         final List<String> top = Arrays.asList("a", "b", "c", "d", "e", "f");
         final List<String> bottom = Arrays.asList("1등", "2등", "3등", "4등", "5등", "6등");
         GameHelper gameHelper = new GameHelper(top, bottom);
@@ -34,12 +38,8 @@ public class GameHelperTest {
         expectResult.put("e", "6등");
         expectResult.put("f", "5등");
 
-        final int line = 6;
-        final int height = 3;
-        Ladder ladder = Ladder.valueOf(line, height, randomTrueBoolean);
-
         //when
-        Map<String, String> result = gameHelper.getResult(ladder);
+        Map<String, String> result = gameHelper.gameResult(ladder);
 
         // then
         Assertions.assertThat(result).isEqualTo(expectResult);
