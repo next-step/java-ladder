@@ -1,6 +1,7 @@
 package ladder.service;
 
 import ladder.domain.*;
+import ladder.service.dto.LadderGameResult;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -55,11 +56,11 @@ class LadderGameServiceTest {
         MatchingItems matchingItems = new MatchingItems("꽝,5000,꽝,3000", participants.getCount());
 
         // when
-        List<String> inquiryGameResults = service.executeGame(participants, ladder, matchingItems);
+        List<LadderGameResult> gameResults = service.executeGame(participants, ladder, matchingItems);
 
         // then
         for (int i = 0; i < expectedList.size(); i++) {
-            assertThat(expectedList.get(i)).isEqualTo(inquiryGameResults.get(i));
+            assertThat(expectedList.get(i)).isEqualTo(gameResults.get(i).getGameResult());
         }
     }
 }

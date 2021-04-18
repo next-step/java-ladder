@@ -1,6 +1,5 @@
 package ladder.controller;
 
-import ladder.controller.dto.LadderGameResult;
 import ladder.controller.dto.LadderGenerationRequest;
 import ladder.controller.dto.LadderGenerationResponse;
 import ladder.controller.dto.LadderLine;
@@ -8,7 +7,6 @@ import ladder.domain.*;
 import ladder.service.LadderGameService;
 import ladder.service.LadderGenerationService;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,7 +33,7 @@ public class LadderGameController {
                 Ladder.LADDER_HORIZON_WIDTH,
                 assembleLadderLineList(ladder.getLines()),
                 assembleGameResults(matchingItems),
-                assembleLadderGameResponses(participants, gameService.executeGame(participants, ladder, matchingItems)));
+                gameService.executeGame(participants, ladder, matchingItems));
     }
 
     private List<String> assembleParticipantNameList(Participants participants) {
@@ -58,18 +56,5 @@ public class LadderGameController {
     private List<String> assembleGameResults(MatchingItems matchingItems) {
         return matchingItems.getMatchingItems();
     }
-
-    private List<LadderGameResult> assembleLadderGameResponses(Participants participants, List<String> gameResults) {
-        List<LadderGameResult> ladderGameRespons = new ArrayList<>();
-        for (int i = 0; i < participants.getParticipants().size(); i++) {
-            ladderGameRespons.add(assembleLadderGameResponse(participants.getParticipants().get(i), gameResults.get(i)));
-        }
-        return ladderGameRespons;
-    }
-
-    private LadderGameResult assembleLadderGameResponse(Participant participant, String gameResult) {
-        return new LadderGameResult(participant.getName(), gameResult);
-    }
-
 
 }

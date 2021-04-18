@@ -1,4 +1,4 @@
-package ladder.controller.dto;
+package ladder.service.dto;
 
 public class LadderGameResult {
 

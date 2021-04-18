@@ -1,6 +1,6 @@
 package ladder.view;
 
-import ladder.controller.dto.LadderGameResult;
+import ladder.service.dto.LadderGameResult;
 import ladder.controller.dto.LadderGenerationResponse;
 import ladder.controller.dto.LadderLine;
 
