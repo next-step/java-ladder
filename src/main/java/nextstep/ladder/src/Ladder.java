@@ -5,13 +5,15 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
+  private static final String SPACE = "     ";
+  
   private final List<Floor> ladder;
 
   public Ladder(List<Floor> ladder) {
     this.ladder = ladder;
   }
 
-  public Ladder makeLadderBySize(int height, int width) {
+  public static Ladder makeLadderBySize(int height, int width) {
     return new Ladder(
       IntStream.range(0,  height)
       .boxed()
@@ -19,4 +21,10 @@ public class Ladder {
       .collect(Collectors.toList())
     );
   }
+
+  public String ui() {
+    return ladder.stream()
+      .map(floor -> SPACE + floor.ui())
+      .collect(Collectors.joining("\n"));
+  } 
 }
