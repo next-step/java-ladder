@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import nextstep.ladder.exception.PersonCountTooLowException;
+import nextstep.ladder.exception.PersonNotFoundException;
 
 public final class People {
 
@@ -36,6 +37,20 @@ public final class People {
 
   public int personCount() {
     return people.size();
+  }
+
+  public boolean contains(Person person) {
+    return people.contains(person);
+  }
+
+  public void validContains(Person person) {
+    if (!contains(person)) {
+      throw new PersonNotFoundException(person);
+    }
+  }
+
+  public int indexOf(Person person) {
+    return people.indexOf(person);
   }
 
   @Override

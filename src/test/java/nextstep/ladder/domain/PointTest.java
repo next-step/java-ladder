@@ -40,8 +40,25 @@ class PointTest {
 
     // then
     assertAll(
-        () -> assertThat(canDraw.draw()).isEqualTo(Point.LINE),
-        () -> assertThat(cannotDraw.draw()).isEqualTo(Point.NOT_LINE)
+        () -> assertThat(canDraw.canDraw()).isEqualTo(Point.body(cannotDraw, canCreate).canDraw()),
+        () -> assertThat(cannotDraw.canDraw()).isEqualTo(Point.head().canDraw())
+    );
+  }
+
+  @Test
+  @DisplayName("선이 있는지 없는지 반환한다.")
+  void hasLine() {
+    // given
+    final boolean canCreate = true;
+
+    // when
+    final Point head = Point.head();
+    final Point body = Point.body(head, canCreate);
+
+    // then
+    assertAll(
+        () -> assertThat(head.hasLine()).isFalse(),
+        () -> assertThat(body.hasLine()).isTrue()
     );
   }
 }

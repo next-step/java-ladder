@@ -4,20 +4,20 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public final class Ladder {
 
   private final People people;
-  private final LadderHeight ladderHeight;
   private final List<Line> lines;
 
   public Ladder(People people, LadderHeight ladderHeight, LineCreationStrategy lineCreationStrategy) {
-    this.ladderHeight = ladderHeight;
     this.people = people;
-    this.lines = createLines(lineCreationStrategy);
+    this.lines = createLines(lineCreationStrategy, ladderHeight);
   }
 
-  public List<Line> createLines(final LineCreationStrategy lineCreationStrategy) {
+  public List<Line> createLines(final LineCreationStrategy lineCreationStrategy,
+      LadderHeight ladderHeight) {
     List<Line> lines = new ArrayList<>();
     for (int i = 0; i < ladderHeight.toInt(); i++) {
       lines.add(new Line(lineCreationStrategy, people.personCount()));
@@ -33,6 +33,21 @@ public final class Ladder {
     return people;
   }
 
+  public int findResultIndex(final Person person) {
+    int resultIndex = people.indexOf(person);
+    for (Line line : lines) {
+      resultIndex = line.nextPointIndex(resultIndex);
+    }
+    return resultIndex;
+  }
+
+  public List<Result> findAllResults(List<Result> results) {
+    return people.personList().stream()
+        .map(this::findResultIndex)
+        .map(results::get)
+        .collect(Collectors.toList());
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -41,12 +56,12 @@ public final class Ladder {
     if (!(o instanceof Ladder)) {
       return false;
     }
-    Ladder that = (Ladder) o;
-    return Objects.equals(ladderHeight, that.ladderHeight) && Objects.equals(people, that.people);
+    Ladder ladder = (Ladder) o;
+    return Objects.equals(people, ladder.people) && Objects.equals(lines, ladder.lines);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(ladderHeight, people);
+    return Objects.hash(people, lines);
   }
 }

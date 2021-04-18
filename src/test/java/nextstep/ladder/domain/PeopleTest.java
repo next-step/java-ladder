@@ -2,9 +2,12 @@ package nextstep.ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import nextstep.ladder.exception.OverNameLengthLimitException;
 import nextstep.ladder.exception.PersonCountTooLowException;
+import nextstep.ladder.exception.PersonNotFoundException;
+import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -47,5 +50,56 @@ class PeopleTest {
     assertThatThrownBy(() -> People.from(names))
         .isInstanceOf(PersonCountTooLowException.class)
         .hasMessage(PersonCountTooLowException.PERSON_COUNT_TOO_LOW);
+  }
+
+  @Test
+  @DisplayName("해당 Person이 People에 포함되어 있다면 true, 아니면 false를 반환한다.")
+  void contains() {
+    //given
+    final People people = People.from(new String[]{"pobi", "crong", "honux", "jk"});
+    final Person containedPerson = Person.valueOf("pobi");
+    final Person notContainedPerson = Person.valueOf("dion");
+
+    //when
+    //then
+    assertAll(
+        () -> assertThat(people.contains(containedPerson)).isTrue(),
+        () -> assertThat(people.contains(notContainedPerson)).isFalse()
+    );
+  }
+
+  @Test
+  @DisplayName("해당 Person이 People에 포함되어 있다면 그대로 진행하고, 아니면 예외를 반환한다.")
+  void validContains() {
+    //given
+    final People people = People.from(new String[]{"pobi", "crong", "honux", "jk"});
+    final Person containedPerson = Person.valueOf("pobi");
+    final Person notContainedPerson = Person.valueOf("dion");
+
+    //when
+    //then
+    assertAll(
+        () -> people.validContains(containedPerson),
+        () -> assertThatThrownBy(() -> people.validContains(notContainedPerson))
+            .isInstanceOf(PersonNotFoundException.class)
+            .hasMessage(PersonNotFoundException.PERSON_NOT_FOUND + notContainedPerson.personName())
+    );
+  }
+
+  @Test
+  @DisplayName("사람을 입력받아 해당 인덱스를 반환한다.")
+  void indexOf() {
+    // given
+    final String pobiName = "pobi";
+    final String[] names = {"dion", pobiName, "crong", "honux", "jk"};
+    final People people = People.from(names);
+    final Person pobi = Person.valueOf(pobiName);
+    final int index = Lists.list(names).indexOf(pobiName);
+
+    // when
+    final int actualIndex = people.indexOf(pobi);
+
+    // then
+    assertThat(actualIndex).isEqualTo(index);
   }
 }

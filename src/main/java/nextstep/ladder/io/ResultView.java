@@ -7,17 +7,21 @@ import nextstep.ladder.domain.Name;
 import nextstep.ladder.domain.People;
 import nextstep.ladder.domain.Person;
 import nextstep.ladder.domain.Point;
+import nextstep.ladder.domain.Result;
 import nextstep.ladder.utils.StringUtils;
 
 public final class ResultView {
 
   public static final String LINE_SEPARATOR = System.lineSeparator();
+  public static final String LINE = "-----|";
+  public static final String EMPTY_LINE = "     |";
+  public static final String RESULT_MESSAGE = "실행 결과";
 
   private ResultView() {}
 
   public static void printLadder(Ladder ladder) {
     System.out.println();
-    System.out.println("실행결과");
+    System.out.println("사다리 결과");
     System.out.println();
     printPeople(ladder.people());
     printLines(ladder.lines());
@@ -37,13 +41,38 @@ public final class ResultView {
     for (Line line : lines) {
       printLine(linesBuilder, line);
     }
-    System.out.println(linesBuilder);
+    System.out.print(linesBuilder);
   }
 
   private static void printLine(StringBuilder linesBuilder, Line line) {
     for (Point point : line.points()) {
-      linesBuilder.append(point.draw());
+      linesBuilder.append(point.canDraw() ? LINE : EMPTY_LINE);
     }
     linesBuilder.append(LINE_SEPARATOR);
+  }
+
+  public static void printResults(List<Result> results) {
+    StringBuilder resultsBuilder = new StringBuilder();
+    for (Result result : results) {
+      resultsBuilder.append(StringUtils.padLeft(result.result(), Result.MAX_LENGTH + 1));
+    }
+    System.out.println(resultsBuilder);
+  }
+
+  public static void printResult(Result result) {
+    System.out.println();
+    System.out.println(RESULT_MESSAGE);
+    System.out.println(result.result());
+  }
+
+  public static void printAllResults(People people, List<Result> allResults) {
+    StringBuilder allResultsBuilder = new StringBuilder(LINE_SEPARATOR).append(RESULT_MESSAGE).append(LINE_SEPARATOR);
+    for (int i = 0; i < allResults.size(); i++) {
+      allResultsBuilder.append(people.personList().get(i).personName())
+          .append(" : ")
+          .append(allResults.get(i).result())
+          .append(LINE_SEPARATOR);
+    }
+    System.out.print(allResultsBuilder);
   }
 }

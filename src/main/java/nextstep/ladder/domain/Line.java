@@ -29,6 +29,26 @@ public final class Line {
     return Collections.unmodifiableList(points);
   }
 
+  public int nextPointIndex(int pointIndex) {
+    final Point currentPoint = points.get(pointIndex);
+
+    if (currentPoint.hasLine()) {
+      return pointIndex - 1;
+    }
+
+    final int nextPointIndex = pointIndex + 1;
+    if (nextPointIndex == points.size()) {
+      return pointIndex;
+    }
+
+    final Point nextPoint = points.get(nextPointIndex);
+    if (nextPoint.hasLine()) {
+      return nextPointIndex;
+    }
+
+    return pointIndex;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
