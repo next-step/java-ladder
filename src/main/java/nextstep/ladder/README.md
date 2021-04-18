@@ -4,8 +4,10 @@
 
 - ## Ladder.class
   - field
+    - List<Floor> ladder;
   - constructor
-    - Ladder(int height, int width)
+    - Ladder(List<Floor> ladder);
+    - makeLadderBySize(int height, int width);
   - method
 - ## Floor.class
   - field
