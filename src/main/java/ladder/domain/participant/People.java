@@ -49,7 +49,7 @@ public final class People {
 
     public final List<String> values() {
         List<String> values = people.stream()
-                .map(Person::getName)
+                .map(Person::name)
                 .collect(Collectors.toList());
         values.add(ALL_COMMAND);
         return values;

@@ -34,7 +34,7 @@ public final class Person {
         }
     }
 
-    public final String getName() {
+    public final String name() {
         return name;
     }
 

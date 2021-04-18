@@ -26,7 +26,7 @@ public final class LadderResults {
         return new LadderResults(ladderResults);
     }
 
-    public LadderResults(List<String> ladderResults) {
+    private LadderResults(List<String> ladderResults) {
         validateNull(ladderResults);
         this.ladderResults = ladderResults;
     }

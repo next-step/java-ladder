@@ -15,7 +15,7 @@ public final class LadderCreator {
         private static final LadderCreator LADDER_CREATOR = new LadderCreator();
     }
 
-    public LadderCreator() {
+    private LadderCreator() {
     }
 
     public static final LadderCreator getInstance() {

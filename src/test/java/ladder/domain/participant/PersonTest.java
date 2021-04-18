@@ -57,7 +57,7 @@ class PersonTest {
 
         // when
         Person person = Person.of(expected);
-        String actual = person.getName();
+        String actual = person.name();
 
         assertThat(actual).isEqualTo(expected);
     }

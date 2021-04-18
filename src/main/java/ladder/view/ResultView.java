@@ -50,8 +50,6 @@ public final class ResultView {
         System.out.println(stringBuilder);
     }
 
-
-
     private final void printLine(Line line) {
         StringBuilder stringBuilder = new StringBuilder();
         line.stream()
@@ -71,7 +69,7 @@ public final class ResultView {
     private final void printPeopleName(People people) {
         StringBuilder stringBuilder = new StringBuilder();
         people.stream()
-                .map(Person::getName)
+                .map(Person::name)
                 .map(name -> String.format(NAME_FORMAT, name))
                 .forEach(stringBuilder::append);
         System.out.println(stringBuilder);
@@ -79,7 +77,7 @@ public final class ResultView {
 
     public final void printLadderGameResult(Person person, LadderResultBoard ladderResultBoard) {
         StringBuilder stringBuilder = new StringBuilder();
-        String result = String.format(RESULT_FORMAT, person.getName(), ladderResultBoard.findResultByPerson(person));
+        String result = String.format(RESULT_FORMAT, person.name(), ladderResultBoard.findResultByPerson(person));
         stringBuilder.append(result);
         System.out.println(stringBuilder);
     }
@@ -88,7 +86,7 @@ public final class ResultView {
         printExecutionResult();
         StringBuilder stringBuilder = new StringBuilder();
         people.stream().forEach(person -> {
-                    String result = String.format(RESULT_FORMAT, person.getName(), ladderResultBoard.findResultByPerson(person));
+                    String result = String.format(RESULT_FORMAT, person.name(), ladderResultBoard.findResultByPerson(person));
                     stringBuilder.append(result);
                 }
         );

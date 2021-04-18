@@ -8,7 +8,7 @@ public final class LadderResultBoard {
 
     private final Map<Person, String> resultBoard;
 
-    public LadderResultBoard(Map<Person, String> resultBoard) {
+    private LadderResultBoard(Map<Person, String> resultBoard) {
         this.resultBoard = resultBoard;
     }
 

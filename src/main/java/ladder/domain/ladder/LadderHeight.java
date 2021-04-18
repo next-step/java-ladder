@@ -12,7 +12,7 @@ public final class LadderHeight {
         return new LadderHeight(height);
     }
 
-    public LadderHeight(int height) {
+    private LadderHeight(int height) {
         validateNegative(height);
         this.height = height;
     }
