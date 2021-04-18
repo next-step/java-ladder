@@ -11,16 +11,20 @@
   - field
     - List<Bridge> floor
   - constructor
+    - Floor(List<Bridge> floor);
+    - public static Floor makeByWidth(int width);
   - method
 - ## Bridge.class
   - field
-    - boolean bridge
+    - boolean isBridge
   - constructor
+    - Bridge(boolean isBridge);
   - method
 - ## Participants.class
   - field
     - List<User> participants
   - constructor
+    - Participants(List<User> participants);
     - public static Participants makeByString(String str)
     - private static assureNotEmpty(String str);
   - method
