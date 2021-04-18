@@ -28,7 +28,7 @@ class LadderResultsTest {
     @Test
     void 검증_null() {
         // given
-        List<String> results = null
+        List<String> results = null;
 
         // when
         assertThatThrownBy(()-> LadderResults.of(results))
