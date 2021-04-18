@@ -3,13 +3,14 @@ package ladder.domain.participant;
 import ladder.exception.ParticipantListNullPointerException;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public final class People {
+
+    private static final String ALL_COMMAND = "all";
 
     private final List<Person> people;
 
@@ -32,23 +33,30 @@ public final class People {
         this.people = people;
     }
 
-
     private final void validateNull(List<Person> people) {
         if (Objects.isNull(people)) {
             throw new ParticipantListNullPointerException();
         }
     }
 
-    public final int countOfPerson() {
-        return people.size();
-    }
-
     public final Stream<Person> stream() {
         return people.stream();
     }
 
-    public Person get(int index) {
+    public final Person person(int index) {
         return people.get(index);
+    }
+
+    public final List<String> values() {
+        List<String> values = people.stream()
+                .map(Person::getName)
+                .collect(Collectors.toList());
+        values.add(ALL_COMMAND);
+        return values;
+    }
+
+    public final int countOfPerson() {
+        return people.size();
     }
 
 }

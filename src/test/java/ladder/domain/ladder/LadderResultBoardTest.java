@@ -36,7 +36,7 @@ class LadderResultBoardTest {
 
         // when
         LadderResultBoard ladderResultBoard = LadderResultBoard.of(resultBoard);
-        String actual = ladderResultBoard.findResult(Person.of("userB"));
+        String actual = ladderResultBoard.findResultByPerson(Person.of("userB"));
 
         // then
         assertThat(actual).isEqualTo(expected);

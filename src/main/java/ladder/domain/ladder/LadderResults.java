@@ -37,13 +37,17 @@ public final class LadderResults {
         }
     }
 
-    public String get(int index) {
+    public final String get(int index) {
         return ladderResults.get(index);
     }
 
-    public List<Integer> values() {
+    public final List<Integer> values() {
         return IntStream.range(START_INCLUSIVE, ladderResults.size())
                 .boxed()
                 .collect(Collectors.toList());
+    }
+
+    public final int size() {
+        return ladderResults.size();
     }
 }

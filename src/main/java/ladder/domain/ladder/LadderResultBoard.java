@@ -16,7 +16,7 @@ public final class LadderResultBoard {
         return new LadderResultBoard(resultBoard);
     }
 
-    public String findResult(Person person) {
+    public final String findResultByPerson(Person person) {
         return resultBoard.get(person);
     }
 }

@@ -10,8 +10,8 @@ import java.util.stream.IntStream;
 
 public final class LineCreator {
 
-    public static final int START_INCLUSIVE = 0;
-    public static final int ONE = 1;
+    private static final int START_INCLUSIVE = 0;
+    private static final int ONE = 1;
 
     private static final class LineCreatorHolder {
         private static final LineCreator instance = new LineCreator();

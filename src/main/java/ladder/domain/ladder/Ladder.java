@@ -21,7 +21,7 @@ public final class Ladder {
         return new Ladder(ladder);
     }
 
-    public Ladder(List<Line> ladder) {
+    private Ladder(List<Line> ladder) {
         validateNull(ladder);
         this.ladder = ladder;
     }
@@ -39,7 +39,7 @@ public final class Ladder {
         Map<Person, String> map = new HashMap<>();
         IntStream.range(START_INCLUSIVE, list.size())
                 .forEach(index -> {
-                    Person person = people.get(list.get(index));
+                    Person person = people.person(list.get(index));
                     String result = results.get(index);
                     map.put(person, result);
                 });

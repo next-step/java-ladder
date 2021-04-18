@@ -45,6 +45,4 @@ public final class InputView {
     }
 
 
-
-
 }
