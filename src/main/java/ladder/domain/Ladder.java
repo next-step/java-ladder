@@ -20,8 +20,8 @@ public final class Ladder {
     private final List<Line> ladder;
 
     public static final Ladder from(LadderCreationInformation creationInformation, LineGenerateStrategy strategy) {
-        return from(IntStream.range(START_INCLUSIVE, creationInformation.width())
-                .mapToObj(i -> Line.of(creationInformation.height(), strategy))
+        return from(IntStream.range(START_INCLUSIVE, creationInformation.height())
+                .mapToObj(i -> Line.of(creationInformation.width(), strategy))
                 .collect(Collectors.toList())
         );
     }
@@ -42,7 +42,7 @@ public final class Ladder {
     }
 
     public final LadderResultBoard run(People people, LadderResults results) {
-        List<Integer> list = people.values();
+        List<Integer> list = results.values();
         ladder.forEach(line -> line.run(list));
 
         Map<Person, String> map = new HashMap<>();

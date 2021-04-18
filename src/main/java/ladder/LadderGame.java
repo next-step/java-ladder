@@ -28,6 +28,17 @@ public class LadderGame {
         RESULT_VIEW.printLadderStatus(people, ladder, results);
 
         LadderResultBoard ladderResultBoard = ladder.run(people, results);
+        extracted(people, ladderResultBoard);
+    }
+
+    private static void extracted(People people, LadderResultBoard ladderResultBoard) {
+        String command = INPUT_VIEW.inputResultPersonByClient();
+        if (!command.equals("all")) {
+            RESULT_VIEW.printResult(Person.of(command), ladderResultBoard);
+            extracted(people, ladderResultBoard);
+            return;
+        }
+        RESULT_VIEW.printResultAll(people, ladderResultBoard);
     }
 
 

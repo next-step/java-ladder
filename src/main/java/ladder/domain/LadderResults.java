@@ -3,8 +3,11 @@ package ladder.domain;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public final class LadderResults {
+
+    private static final int START_INCLUSIVE = 0;
 
     private final List<String> ladderResults;
 
@@ -26,5 +29,11 @@ public final class LadderResults {
 
     public String get(int index) {
         return ladderResults.get(index);
+    }
+
+    public List<Integer> values() {
+        return IntStream.range(START_INCLUSIVE, ladderResults.size())
+                .boxed()
+                .collect(Collectors.toList());
     }
 }

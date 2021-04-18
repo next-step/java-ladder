@@ -3,15 +3,13 @@ package ladder.domain;
 import ladder.exception.ParticipantListNullPointerException;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public final class People {
-
-    private static final int START_INCLUSIVE = 0;
 
     private final List<Person> people;
 
@@ -41,7 +39,7 @@ public final class People {
         }
     }
 
-    public final int size() {
+    public final int countOfPerson() {
         return people.size();
     }
 
@@ -53,10 +51,8 @@ public final class People {
         return people.get(index);
     }
 
-    public List<Integer> values() {
-        return IntStream.range(START_INCLUSIVE, size())
-                .boxed()
-                .collect(Collectors.toList());
+    public final List<Person> values() {
+        return Collections.unmodifiableList(people);
     }
 
 }
