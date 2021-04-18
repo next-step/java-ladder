@@ -10,6 +10,7 @@ public class Members {
     private static final String DEFAULT_REGEX = ",";
     private static final int MIN_MEMBER_COUNT = 2;
     public static final String MEMBERS_MIN_SIZE_TWO_EXCEPTION_MESSAGE = "두 명 이상의 사용자가 참여해야 합니다.";
+    private static final int NOT_FOUND = -1;
 
     private final List<Member> members;
 
@@ -49,5 +50,21 @@ public class Members {
         return members.stream()
                 .map(Member::getName)
                 .collect(Collectors.toList());
+    }
+
+    public int indexOf(Member member) {
+        if(member.isAll()){
+            return -1;
+        }
+
+        int memberIndex = NOT_FOUND;
+
+        for (int i = 0; i < members.size(); i++) {
+            if (members.get(i).equals(member)) {
+                memberIndex = i;
+                return memberIndex;
+            }
+        }
+        return memberIndex;
     }
 }

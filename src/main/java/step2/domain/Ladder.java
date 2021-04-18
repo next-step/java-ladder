@@ -42,4 +42,12 @@ public class Ladder {
     public int getLadderRowSize() {
         return lines.size();
     }
+
+    public int getResultOfMember(int index) {
+        int currentPosition = index;
+        for (Line line : lines) {
+            currentPosition = line.move(currentPosition);
+        }
+        return currentPosition;
+    }
 }

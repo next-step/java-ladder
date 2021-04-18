@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
+    private static final int FIRST_INDEX = 0;
     private static final int MIDDLE_FIRST_INDEX = 1;
 
-    private List<Point> points;
+    private final List<Point> points;
 
-    private Line(List<Point> points){
+    private Line(List<Point> points) {
         this.points = points;
     }
 
@@ -18,35 +19,34 @@ public class Line {
     }
 
     private static Line createPoints(int countOfPerson, BooleanGenerator booleanGenerator) {
-        List<Point> newPoint = new ArrayList<>();
-        createFirstPoint(booleanGenerator, newPoint);
-        createMiddlePoint(countOfPerson, booleanGenerator, newPoint);
-        createLastPoint(newPoint);
-        return new Line(newPoint);
+        List<Point> newPoints = new ArrayList<>();
+        Point point = createFirstPoint(booleanGenerator, newPoints);
+        createMiddlePoint(countOfPerson, booleanGenerator, newPoints, point);
+        createLastPoint(newPoints, point);
+        return new Line(newPoints);
     }
 
     private static void validateLine(int countOfPerson) {
-        if(countOfPerson < 2){
+        if (countOfPerson < 2) {
             throw new IllegalArgumentException(Members.MEMBERS_MIN_SIZE_TWO_EXCEPTION_MESSAGE);
         }
     }
 
-    private static void createFirstPoint(BooleanGenerator booleanGenerator, List<Point> points) {
-        points.add(Point.first(booleanGenerator));
+    private static Point createFirstPoint(BooleanGenerator booleanGenerator, List<Point> points) {
+        Point point = Point.first(FIRST_INDEX, Direction.first(booleanGenerator));
+        points.add(point);
+        return point;
     }
 
-    private static void createMiddlePoint(int countOfPerson, BooleanGenerator booleanGenerator, List<Point> points) {
+    private static void createMiddlePoint(int countOfPerson, BooleanGenerator booleanGenerator, List<Point> points, Point point) {
         for (int i = MIDDLE_FIRST_INDEX; i < countOfPerson - 1; i++) {
-            if (points.get(i - 1).hasLine()) {
-                points.add(new Point(false));
-                continue;
-            }
-            points.add(new Point(booleanGenerator.nextBoolean()));
+            point = Point.middle(point, booleanGenerator);
+            points.add(point);
         }
     }
 
-    private static void createLastPoint(List<Point> points) {
-        points.add(Point.last());
+    private static void createLastPoint(List<Point> points, Point point) {
+        points.add(Point.last(point));
     }
 
     public List<Point> getLine() {
@@ -55,5 +55,9 @@ public class Line {
 
     public int getLineSize() {
         return points.size();
+    }
+
+    public int move(int index) {
+        return points.get(index).move();
     }
 }

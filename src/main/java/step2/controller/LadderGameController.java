@@ -1,10 +1,6 @@
 package step2.controller;
 
-import step2.domain.Ladder;
-import step2.domain.Line;
-import step2.domain.Members;
-import step2.domain.Point;
-import step2.domain.RandomGenerator;
+import step2.domain.*;
 import step2.dto.RequestLadderDTO;
 import step2.dto.ResponseLadderDTO;
 import step2.dto.ResponseMembersDTO;
@@ -22,12 +18,18 @@ public class LadderGameController {
         ResultView.printMembers(responseMembersDTO);
 
         printLadder(ladder);
+
+        Member member = new Member(InputView.inputMatchMemberName());
+        Match match = new Match(member, members, ladder);
+        match.getMatchOfAll(exportRequestLadderDTO().getResults());
     }
 
     private RequestLadderDTO exportRequestLadderDTO() {
         Members members = Members.of(InputView.inputLadderGameMember());
+        Results results = Results.of(InputView.inputLadderGameResult());
         int ladderHeight = InputView.inputLadderHeight();
-        return new RequestLadderDTO(members, ladderHeight);
+
+        return new RequestLadderDTO(members, ladderHeight, results);
     }
 
     private ResponseMembersDTO exportResponseMembersDTO(Members members) {
