@@ -31,7 +31,11 @@ public class Ladder {
     }
 
     public int finalLine(int startLine) {
-        return 0;
+        int nowLine = startLine;
+        for (Layer layer : layers) {
+            nowLine = layer.nextLine(nowLine);
+        }
+        return nowLine;
     }
 
     private static List<Layer> generateLayers(int line, int height, RandomBoolean randomBoolean) {
