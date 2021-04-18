@@ -69,7 +69,6 @@ class LadderGameServiceTest {
     @DisplayName("사다리게임 실행결과는 수정 불가능")
     void gameResultsIsUnmodifiable() {
         // given
-        List<String> expectedList = Arrays.asList("꽝", "3000", "꽝", "5000");
         LadderGameService service = new LadderGameService();
 
         Participants participants = new Participants("pobi,honux,crong,jk");
