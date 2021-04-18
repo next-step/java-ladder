@@ -29,20 +29,20 @@ public class LadderGameController {
 
     private LadderGameResponse assembleResponse(Participants participants, Ladder ladder, MatchingItems matchingItems) {
         return new LadderGameResponse(
-                assembleParticipantNameList(participants),
+                assembleParticipantNames(participants),
                 Ladder.LADDER_HORIZON_WIDTH,
-                assembleLadderLineList(ladder.getLines()),
+                assembleLadderLines(ladder.getLines()),
                 assembleMatchingItems(matchingItems),
                 gameService.executeGame(participants, ladder, matchingItems));
     }
 
-    private List<String> assembleParticipantNameList(Participants participants) {
+    private List<String> assembleParticipantNames(Participants participants) {
         return participants.getParticipants().stream()
                 .map(Participant::getName)
                 .collect(Collectors.toList());
     }
 
-    private List<LadderLine> assembleLadderLineList(List<Line> lineList) {
+    private List<LadderLine> assembleLadderLines(List<Line> lineList) {
         return lineList.stream()
                 .map(this::assembleLadderLine)
                 .collect(Collectors.toList());
