@@ -2,6 +2,7 @@ package step2.domain;
 
 import step2.exception.IllegalPlayerName;
 
+
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;

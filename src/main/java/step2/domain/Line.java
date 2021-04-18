@@ -16,7 +16,7 @@ public class Line {
                 .mapToObj(index -> condition.getCondition())
                 .collect(Collectors.collectingAndThen(Collectors.toList(), Line::new));
     }
-
+  
     public int getSize() {
         return points.size();
     }

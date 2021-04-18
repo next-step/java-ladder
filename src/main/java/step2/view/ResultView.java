@@ -34,7 +34,7 @@ public class ResultView {
     public static void printLadderEnd() {
         System.out.print("|");
     }
-
+  
     public static void printPlayer(Players players) {
         players.getPlayers()
                 .stream()

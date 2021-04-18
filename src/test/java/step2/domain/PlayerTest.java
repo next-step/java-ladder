@@ -13,5 +13,4 @@ public class PlayerTest {
     void playerTest() {
         assertThrows(IllegalPlayerName.class, () -> new Player("kingTiger", 0));
     }
-
 }
