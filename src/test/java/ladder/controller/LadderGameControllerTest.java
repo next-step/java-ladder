@@ -23,7 +23,7 @@ class LadderGameControllerTest {
         LadderGameController controller = new LadderGameController();
 
         // when
-        LadderGenerationResponse response = controller.generateLadder(request);
+        LadderGenerationResponse response = controller.generateLadderGame(request);
 
         // then
         assertThat(4).isEqualTo(response.getParticipantNames().size());
@@ -42,7 +42,7 @@ class LadderGameControllerTest {
         LadderGameController controller = new LadderGameController();
 
         // when
-        LadderGenerationResponse response = controller.generateLadder(request);
+        LadderGenerationResponse response = controller.generateLadderGame(request);
 
         // then
         assertThat(ladderHeight).isEqualTo(response.getLadderLines().size());
@@ -58,7 +58,7 @@ class LadderGameControllerTest {
         LadderGameController controller = new LadderGameController();
 
         // when
-        LadderGenerationResponse response = controller.generateLadder(request);
+        LadderGenerationResponse response = controller.generateLadderGame(request);
 
         // then
         assertThat(Ladder.LADDER_HORIZON_WIDTH).isEqualTo(response.getLadderWidth());
@@ -75,7 +75,7 @@ class LadderGameControllerTest {
         LadderGameController controller = new LadderGameController();
 
         // when
-        LadderGenerationResponse response = controller.generateLadder(request);
+        LadderGenerationResponse response = controller.generateLadderGame(request);
 
         // then
         for (String gameResult : response.getMatchingItems()) {
@@ -94,7 +94,7 @@ class LadderGameControllerTest {
         LadderGameController controller = new LadderGameController();
 
         // when
-        LadderGenerationResponse ladderGenerationResponse = controller.generateLadder(request);
+        LadderGenerationResponse ladderGenerationResponse = controller.generateLadderGame(request);
 
         // then
         for (LadderGameResult gameResult : ladderGenerationResponse.getLadderGameResults()) {

@@ -10,7 +10,7 @@ public class LadderApplication {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
 
-        LadderGenerationResponse ladderGenerationResponse = gameController.generateLadder(inputView.inputLadderGeneration());
+        LadderGenerationResponse ladderGenerationResponse = gameController.generateLadderGame(inputView.inputLadderGeneration());
         outputView.printLadderGenerationResult(ladderGenerationResponse);
 
         while (true) {
