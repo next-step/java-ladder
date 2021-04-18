@@ -21,8 +21,9 @@ public final class LadderCreator {
     }
 
     public final Ladder create(LadderCreationInformation creationInformation, LineGenerateStrategy strategy) {
+        LineCreator lineCreator = LineCreator.getInstance();
         return Ladder.from(IntStream.range(START_INCLUSIVE, creationInformation.height())
-                .mapToObj(i -> Line.of(creationInformation.width(), strategy))
+                .mapToObj(i -> lineCreator.create(creationInformation.width(), strategy))
                 .collect(Collectors.toList())
         );
     }

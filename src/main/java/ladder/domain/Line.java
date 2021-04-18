@@ -31,25 +31,6 @@ public final class Line {
         return new Line(points);
     }
 
-    public static final Line of(int countPerson, LineGenerateStrategy strategy) {
-        return of(generatePoints(countPerson, strategy));
-    }
-
-    private static final List<Point> generatePoints(int countPerson, LineGenerateStrategy strategy) {
-        List<Point> points = new ArrayList<>();
-        points.add(Point.first());
-        IntStream.range(ZERO, countPerson - ONE)
-                .forEach(beforeIndex -> points.add(generatePoint(points.get(beforeIndex), strategy)));
-        return points;
-    }
-
-    private static final Point generatePoint(Point before, LineGenerateStrategy strategy) {
-        if (before.hasPoint()) {
-            return Point.of(Boolean.FALSE);
-        }
-        return Point.of(strategy.generateLine());
-    }
-
     public final Stream<Point> stream() {
         return points.stream();
     }

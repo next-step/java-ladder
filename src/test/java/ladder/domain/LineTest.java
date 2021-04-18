@@ -38,17 +38,5 @@ class LineTest {
                 .hasMessage("List<Point>가 null 입니다.");
     }
 
-    @DisplayName("Line 인스턴스 참가자 수로 생성 여부 테스트")
-    @Test
-    void 생성_참가자_수() {
-        // given
-        int countOfPerson = 4;
-
-        // when
-        Line line = Line.of(countOfPerson, () -> true);
-
-        // then
-        assertThat(line).isNotNull();
-    }
 
 }
