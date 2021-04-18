@@ -4,7 +4,7 @@ import java.util.Random;
 import java.util.StringJoiner;
 
 public class MapBuilder {
-    static final Random random = new Random();
+    private static final Random random = new Random();
 
     public static String createRandomBridge(int countOfPerson) {
         int lastIndex = Integer.MAX_VALUE;

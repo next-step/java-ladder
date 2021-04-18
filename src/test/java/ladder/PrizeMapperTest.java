@@ -34,7 +34,7 @@ public class PrizeMapperTest {
 
     @Test
     @DisplayName("플레이어가 마지막으로 가진 Point에 따라 상이 주어진다.")
-    void x() {
+    void prizeMapperTest() {
         Prizes prizes = new Prizes(Arrays.asList("꽝", "5000", "꽝", "3000"));
         PrizeMapper prizeMapper = new PrizeMapper(prizes, players);
 
