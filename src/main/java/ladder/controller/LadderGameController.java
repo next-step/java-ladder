@@ -1,53 +1,75 @@
 package ladder.controller;
 
-import ladder.controller.dto.LadderGameRequest;
 import ladder.controller.dto.LadderGameResponse;
-import ladder.controller.dto.LadderGameTotalResultResponse;
+import ladder.controller.dto.LadderGenerationRequest;
+import ladder.controller.dto.LadderGenerationResponse;
 import ladder.controller.dto.LadderLine;
 import ladder.domain.*;
 import ladder.service.LadderGameService;
+import ladder.service.LadderGenerationService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class LadderGameController {
 
-    private final LadderGameService service;
+    private final LadderGenerationService generationService;
+    private final LadderGameService gameService;
 
     public LadderGameController() {
-        this.service = new LadderGameService();
+        this.generationService = new LadderGenerationService();
+        this.gameService = new LadderGameService();
     }
 
-    public LadderGameResponse inquiryGameResult(LadderGameRequest request) {
-        Participants participants = new Participants(generateParticipants(request.getParticipantNames()));
-        Ladder ladder = new Ladder(generateLines(request.getLadderLines()));
-        GameResults gameResults = new GameResults(request.getGameResults());
-        return new LadderGameResponse(service.inquiryGameResult(participants, ladder, gameResults, request.getInquiryTargetName()));
+    public LadderGenerationResponse generateLadder(LadderGenerationRequest request) {
+        Participants participants = generationService.registerParticipants(request.getParticipantNames());
+        Ladder ladder = generationService.generateLadder(participants.getCount(), request.getLadderHeight());
+        MatchingItems matchingItems = generationService.generateGameResults(request.getGameResults(), participants.getCount());
+        return assembleResponse(participants, ladder, matchingItems);
     }
 
-    public LadderGameTotalResultResponse inquiryGameResults(LadderGameRequest request) {
-        Participants participants = new Participants(generateParticipants(request.getParticipantNames()));
-        Ladder ladder = new Ladder(generateLines(request.getLadderLines()));
-        GameResults gameResults = new GameResults(request.getGameResults());
-        return new LadderGameTotalResultResponse(request.getParticipantNames(), service.inquiryGameResults(participants, ladder, gameResults));
+    private LadderGenerationResponse assembleResponse(Participants participants, Ladder ladder, MatchingItems matchingItems) {
+        return new LadderGenerationResponse(
+                assembleParticipantNameList(participants),
+                Ladder.LADDER_HORIZON_WIDTH,
+                assembleLadderLineList(ladder.getLines()),
+                assembleGameResults(matchingItems),
+                assembleLadderGameResponses(participants, gameService.executeGame(participants, ladder, matchingItems)));
     }
 
-    private List<Participant> generateParticipants(List<String> participantNames) {
-        return participantNames.stream()
-                .map(Participant::new)
+    private List<String> assembleParticipantNameList(Participants participants) {
+        return participants.getParticipants().stream()
+                .map(Participant::getName)
                 .collect(Collectors.toList());
     }
 
-    private List<Line> generateLines(List<LadderLine> ladderLines) {
-        return ladderLines.stream()
-                .map(ladderLine -> new Line(generatePoints(ladderLine.getPoints())))
+    private List<LadderLine> assembleLadderLineList(List<Line> lineList) {
+        return lineList.stream()
+                .map(this::assembleLadderLine)
                 .collect(Collectors.toList());
     }
 
-    private List<Point> generatePoints(List<Boolean> points) {
-        return points.stream()
-                .map(Point::new)
-                .collect(Collectors.toList());
+    private LadderLine assembleLadderLine(Line line) {
+        List<Boolean> pointList = line.getPoints().stream().map(Point::hasRightLine).collect(Collectors.toList());
+        return new LadderLine(pointList);
     }
+
+    private List<String> assembleGameResults(MatchingItems matchingItems) {
+        return matchingItems.getMatchingItems();
+    }
+
+    private List<LadderGameResponse> assembleLadderGameResponses(Participants participants, List<String> gameResults) {
+        List<LadderGameResponse> ladderGameResponses = new ArrayList<>();
+        for (int i = 0; i < participants.getParticipants().size(); i++) {
+            ladderGameResponses.add(assembleLadderGameResponse(participants.getParticipants().get(i), gameResults.get(i)));
+        }
+        return ladderGameResponses;
+    }
+
+    private LadderGameResponse assembleLadderGameResponse(Participant participant, String gameResult) {
+        return new LadderGameResponse(participant.getName(), gameResult);
+    }
+
 
 }

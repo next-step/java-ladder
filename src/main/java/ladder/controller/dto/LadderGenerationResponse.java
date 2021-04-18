@@ -8,12 +8,14 @@ public class LadderGenerationResponse {
     private final int ladderWidth;
     private final List<LadderLine> ladderLines;
     private final List<String> gameResults;
+    private final List<LadderGameResponse> gameResponses;
 
-    public LadderGenerationResponse(List<String> participantNames, int ladderWidth, List<LadderLine> ladderLines, List<String> gameResults) {
+    public LadderGenerationResponse(List<String> participantNames, int ladderWidth, List<LadderLine> ladderLines, List<String> gameResults, List<LadderGameResponse> gameResponses) {
         this.participantNames = participantNames;
         this.ladderWidth = ladderWidth;
         this.ladderLines = ladderLines;
         this.gameResults = gameResults;
+        this.gameResponses = gameResponses;
     }
 
     public List<String> getParticipantNames() {
@@ -30,5 +32,9 @@ public class LadderGenerationResponse {
 
     public List<String> getGameResults() {
         return gameResults;
+    }
+
+    public List<LadderGameResponse> getGameResponses() {
+        return gameResponses;
     }
 }
