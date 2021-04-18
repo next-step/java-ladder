@@ -20,6 +20,7 @@
   - constructor
     - Bridge(boolean isBridge);
   - method
+    - public boolean isBridge();
 - ## Participants.class
   - field
     - List<User> participants

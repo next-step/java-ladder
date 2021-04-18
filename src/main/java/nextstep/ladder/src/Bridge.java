@@ -6,4 +6,12 @@ public class Bridge {
   public Bridge(boolean isBridge) {
     this.isBridge = isBridge;
   }
+
+  public Bridge(MakeBridge makeBridge) {
+    this.isBridge = makeBridge.make();
+  }
+
+  public boolean isBridge() {
+    return isBridge;
+  }
 }
