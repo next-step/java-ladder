@@ -32,7 +32,7 @@ public class LadderGameController {
                 assembleParticipantNameList(participants),
                 Ladder.LADDER_HORIZON_WIDTH,
                 assembleLadderLineList(ladder.getLines()),
-                assembleGameResults(matchingItems),
+                assembleMatchingItems(matchingItems),
                 gameService.executeGame(participants, ladder, matchingItems));
     }
 
@@ -53,7 +53,7 @@ public class LadderGameController {
         return new LadderLine(pointList);
     }
 
-    private List<String> assembleGameResults(MatchingItems matchingItems) {
+    private List<String> assembleMatchingItems(MatchingItems matchingItems) {
         return matchingItems.getMatchingItems();
     }
 
