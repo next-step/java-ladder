@@ -1,11 +1,11 @@
-package ladder.domain;
+package ladder.domain.creator;
 
+import ladder.domain.ladder.Line;
 import ladder.strategy.LineGenerateStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class LineCreatorTest {
 

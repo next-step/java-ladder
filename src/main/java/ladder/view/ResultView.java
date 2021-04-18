@@ -1,6 +1,11 @@
 package ladder.view;
 
-import ladder.domain.*;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.LadderResultBoard;
+import ladder.domain.ladder.LadderResults;
+import ladder.domain.ladder.Line;
+import ladder.domain.participant.People;
+import ladder.domain.participant.Person;
 
 import java.util.stream.IntStream;
 

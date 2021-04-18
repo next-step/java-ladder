@@ -1,5 +1,9 @@
-package ladder.domain;
+package ladder.domain.creator;
 
+import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.LadderCreationInformation;
+import ladder.domain.ladder.LadderHeight;
+import ladder.domain.participant.People;
 import ladder.strategy.LineGenerateStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

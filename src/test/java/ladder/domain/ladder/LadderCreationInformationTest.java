@@ -1,5 +1,6 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
+import ladder.domain.participant.People;
 import ladder.exception.LadderHeightNullPointerException;
 import ladder.exception.PeopleNullPointerException;
 import org.junit.jupiter.api.DisplayName;

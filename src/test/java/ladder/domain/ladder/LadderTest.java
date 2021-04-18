@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
 import ladder.exception.LineListNullPointerException;
 import org.junit.jupiter.api.DisplayName;

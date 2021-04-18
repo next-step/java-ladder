@@ -1,5 +1,7 @@
-package ladder.domain;
+package ladder.domain.creator;
 
+import ladder.domain.ladder.Line;
+import ladder.domain.ladder.Point;
 import ladder.strategy.LineGenerateStrategy;
 
 import java.util.ArrayList;

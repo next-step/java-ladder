@@ -1,6 +1,9 @@
 package ladder;
 
-import ladder.domain.*;
+import ladder.domain.creator.LadderCreator;
+import ladder.domain.ladder.*;
+import ladder.domain.participant.People;
+import ladder.domain.participant.Person;
 import ladder.strategy.RandomLineGenerateStrategy;
 import ladder.view.InputView;
 import ladder.view.ResultView;

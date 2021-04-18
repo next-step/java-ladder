@@ -1,12 +1,9 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
 import ladder.exception.PointListNullPointerException;
-import ladder.strategy.LineGenerateStrategy;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public final class Line {

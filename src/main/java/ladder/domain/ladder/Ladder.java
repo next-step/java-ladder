@@ -1,15 +1,13 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
+import ladder.domain.participant.People;
+import ladder.domain.participant.Person;
 import ladder.exception.LineListNullPointerException;
-import ladder.strategy.LineGenerateStrategy;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
