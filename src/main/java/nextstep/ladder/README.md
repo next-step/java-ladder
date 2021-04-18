@@ -1,0 +1,34 @@
+# 사다리 기능정의
+
+---
+
+- ## Ladder.class
+  - field
+  - constructor
+    - Ladder(int height, int width)
+  - method
+- ## Floor.class
+  - field
+    - List<Bridge> floor
+  - constructor
+  - method
+- ## Bridge.class
+  - field
+    - boolean bridge
+  - constructor
+  - method
+- ## Participants.class
+  - field
+    - List<User> participants
+  - constructor
+    - public static Participants makeByString(String str)
+    - private static assureNotEmpty(String str);
+  - method
+- ## User.class
+  - field
+    - string name
+  - constructor
+    - User(String name)
+  - method
+    - public static Participants makeByString(String str)
+    - public String name()
