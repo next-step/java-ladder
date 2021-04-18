@@ -1,5 +1,5 @@
 /*
- * 두 포인트간의 연결을 관리하는 클래스
+ * 두 가지 동일한 type을 한 쌍으로 관리하는 클래스
  * */
 package laddergame.domain.ladder.line;
 

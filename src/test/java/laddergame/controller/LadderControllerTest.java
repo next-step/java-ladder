@@ -31,7 +31,7 @@ public class LadderControllerTest {
     @Test
     void 사다리생성() {
         Size size = new Size(5, 6);
-        Ladder ladder = LadderController.makeLadder(size);
+        Ladder ladder = LadderController.makeLadder(size, () -> true);
 
     }
 
