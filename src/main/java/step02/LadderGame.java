@@ -16,9 +16,7 @@ public class LadderGame {
     }
 
     public void showLadderGameResult() {
-        LadderGameDTO ladderGameDTO = new LadderGameDTO();
-        ladderGameDTO.setLadder(ladder);
-        ladderGameDTO.setUsers(users);
+        LadderGameDTO ladderGameDTO = new LadderGameDTO(ladder, users);
         ResultView.showLadderResult(ladderGameDTO);
     }
 }

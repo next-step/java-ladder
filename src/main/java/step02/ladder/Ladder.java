@@ -27,6 +27,10 @@ public class Ladder {
         return lines.size();
     }
 
+    public List<Line> getLadderLine() {
+        return lines;
+    }
+
     public boolean isHasLine(int xPoint, int yPoint) {
         return lines.get(yPoint).isHasLine(xPoint);
     }

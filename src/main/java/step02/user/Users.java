@@ -13,10 +13,6 @@ public class Users {
         this.names = splitName(names);
     }
 
-    public Users(List<Name> names) {
-        this.names = names;
-    }
-
     public static List<Name> splitName(String names) {
         return Arrays.stream(names.split(REGEX))
                 .map(Name::new).collect(Collectors.toList());

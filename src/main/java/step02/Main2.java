@@ -5,5 +5,4 @@ public class Main2 {
         LadderGame ladderGame = new LadderGame();
         ladderGame.showLadderGameResult();
     }
-
 }

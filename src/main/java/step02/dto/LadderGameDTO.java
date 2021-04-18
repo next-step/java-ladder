@@ -4,19 +4,16 @@ import step02.ladder.Ladder;
 import step02.user.Users;
 
 public class LadderGameDTO {
-    private Ladder ladder;
-    private Users users;
+    private final Ladder ladder;
+    private final Users users;
 
-    public void setLadder(Ladder ladder) {
+    public LadderGameDTO(Ladder ladder, Users users) {
         this.ladder = ladder;
+        this.users = users;
     }
 
     public Ladder getLadder() {
         return ladder;
-    }
-
-    public void setUsers(Users users) {
-        this.users = users;
     }
 
     public Users getUsers() {

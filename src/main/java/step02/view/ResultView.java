@@ -15,7 +15,8 @@ public class ResultView {
     private static final String BLANK = " ";
 
 
-    private ResultView() {}
+    private ResultView() {
+    }
 
     public static void showLadderResult(LadderGameDTO ladderGameDTO) {
         showResultTitle();
@@ -43,6 +44,18 @@ public class ResultView {
     }
 
     public static void showLadder(Ladder ladder) {
+//        Stream.of(ladder.getLadderLine())
+//                .forEach((lines, y) -> {
+//                    lines.forEach((line, x) -> {
+//                        if (ladder.isHasLine(x, y)) {
+//                            System.out.print(RESULT_LINE + RESULT_LADDER_HAS_LINE);
+//                        } else {
+//                            System.out.print(RESULT_LINE + RESULT_LADDER_HAS_NO_LINE);
+//                        }
+//                    });
+//                });
+
+
         for (int y = 0; y < ladder.getYLineCount(); y++) {
             System.out.print(RESULT_LADDER_HAS_NO_LINE);
             for (int x = 0; x < ladder.getXLineCount(); x++) {
