@@ -19,13 +19,6 @@ public final class Ladder {
 
     private final List<Line> ladder;
 
-    public static final Ladder from(LadderCreationInformation creationInformation, LineGenerateStrategy strategy) {
-        return from(IntStream.range(START_INCLUSIVE, creationInformation.height())
-                .mapToObj(i -> Line.of(creationInformation.width(), strategy))
-                .collect(Collectors.toList())
-        );
-    }
-
     public static final Ladder from(List<Line> ladder) {
         return new Ladder(ladder);
     }

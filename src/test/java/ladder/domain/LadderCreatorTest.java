@@ -4,25 +4,21 @@ import ladder.strategy.LineGenerateStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
-class LadderCreateModuleTest {
+class LadderCreatorTest {
 
-    @DisplayName("LadderCreateModule 인스턴스 생성 여부 테스트")
+    @DisplayName("LadderCreator 인스턴스 생성 여부 테스트")
     @Test
     void 생성() {
         // when
-        LadderCreateModule ladderCreateModule = LadderCreateModule.getInstance();
+        LadderCreator ladderCreator = LadderCreator.getInstance();
 
         // then
-        assertThat(ladderCreateModule).isNotNull();
+        assertThat(ladderCreator).isNotNull();
     }
 
-    @DisplayName("LadderCreateModule 인스턴스가 사다리를 생성하는지 테스트")
+    @DisplayName("LadderCreator 인스턴스가 사다리를 생성하는지 테스트")
     @Test
     void 반환_사다리() {
         // given
@@ -32,9 +28,8 @@ class LadderCreateModuleTest {
         LineGenerateStrategy strategy = () -> true;
 
         // when
-        LadderCreateModule ladderCreateModule = LadderCreateModule.getInstance();
-        Ladder ladder = ladderCreateModule.create(creationInformation, strategy);
-
+        LadderCreator ladderCreator = LadderCreator.getInstance();
+        Ladder ladder = ladderCreator.create(creationInformation, strategy);
 
         // then
         assertThat(ladder).isNotNull();

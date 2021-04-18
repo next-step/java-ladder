@@ -5,9 +5,6 @@ import ladder.strategy.RandomLineGenerateStrategy;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
-import java.util.Map;
-import java.util.Set;
-
 public class LadderGame {
 
     private static final InputView INPUT_VIEW;
@@ -24,7 +21,10 @@ public class LadderGame {
         LadderHeight height = LadderHeight.valueOf(INPUT_VIEW.inputLadderHeightByClient());
 
         LadderCreationInformation creationInformation = LadderCreationInformation.from(people, height);
-        Ladder ladder = Ladder.from(creationInformation, RandomLineGenerateStrategy.getInstance());
+
+        LadderCreator ladderCreator = LadderCreator.getInstance();
+        Ladder ladder = ladderCreator.create(creationInformation, RandomLineGenerateStrategy.getInstance());
+
         RESULT_VIEW.printLadderStatus(people, ladder, results);
 
         LadderResultBoard ladderResultBoard = ladder.run(people, results);
