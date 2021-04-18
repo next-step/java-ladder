@@ -1,8 +1,6 @@
 package laddergame.controller;
 
-import laddergame.domain.ladder.Ladder;
-import laddergame.domain.ladder.LadderStrategy;
-import laddergame.domain.ladder.Size;
+import laddergame.domain.ladder.*;
 import laddergame.domain.player.Name;
 import laddergame.domain.player.Player;
 import laddergame.domain.player.Players;
@@ -30,4 +28,9 @@ public class LadderController {
         return ladder;
     }
 
+    public static Results makeResults(List<String> results) {
+        return new Results(results.stream()
+                .map(result -> new Result(result))
+                .collect(toCollection(ArrayList::new)));
+    }
 }
