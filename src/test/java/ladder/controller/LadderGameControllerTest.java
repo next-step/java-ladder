@@ -78,7 +78,7 @@ class LadderGameControllerTest {
         LadderGenerationResponse response = controller.generateLadder(request);
 
         // then
-        for (String gameResult : response.getGameResults()) {
+        for (String gameResult : response.getMatchingItems()) {
             assertThat(Arrays.asList(gameResults.split(",")).contains(gameResult)).isTrue();
         }
     }

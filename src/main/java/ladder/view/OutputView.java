@@ -1,7 +1,6 @@
 package ladder.view;
 
 import ladder.controller.dto.LadderGameResponse;
-import ladder.controller.dto.LadderGameTotalResultResponse;
 import ladder.controller.dto.LadderGenerationResponse;
 import ladder.controller.dto.LadderLine;
 
@@ -18,7 +17,7 @@ public class OutputView {
         printHeaderAndFooter(response.getParticipantNames(), response.getLadderWidth());
         System.out.println();
         printLadder(response.getLadderLines(), response.getLadderWidth());
-        printHeaderAndFooter(response.getGameResults(), response.getLadderWidth());
+        printHeaderAndFooter(response.getMatchingItems(), response.getLadderWidth());
         System.out.println();
     }
 
@@ -65,17 +64,21 @@ public class OutputView {
         return horizons.toString();
     }
 
-    public void printGameResult(LadderGameResponse response) {
-        System.out.println(System.lineSeparator() + "실행 결과");
-        System.out.println(response.getGameResult());
+    public void printGameResult(List<LadderGameResponse> gameResponses, String inputInquiryTargetName) {
+        for (LadderGameResponse gameResponse : gameResponses) {
+            if(inputInquiryTargetName.equals(gameResponse.getParticipantName())) {
+                System.out.println(System.lineSeparator() + "실행 결과");
+                System.out.println(gameResponse.getGameResult());
+                return;
+            }
+        }
+        System.out.println("존재하지 않는 참가자입니다.");
     }
 
-    public void printGameResults(LadderGameTotalResultResponse response) {
+    public void printGameResults(List<LadderGameResponse> gameResponses) {
         System.out.println(System.lineSeparator() + "실행 결과");
-        List<String> participantNames = response.getParticipantNames();
-        List<String> gameResults = response.getGameResults();
-        for (int i = 0; i < participantNames.size(); i++) {
-            System.out.println(participantNames.get(i) + " : " + gameResults.get(i));
+        for (LadderGameResponse gameResponse : gameResponses) {
+            System.out.println(gameResponse.getParticipantName() + " : " + gameResponse.getGameResult());
         }
     }
 }
