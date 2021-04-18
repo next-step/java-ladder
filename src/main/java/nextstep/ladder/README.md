@@ -2,42 +2,56 @@
 
 ---
 
-- ## Ladder.class
-  - field
-    - List<Floor> ladder;
-  - constructor
-    - Ladder(List<Floor> ladder);
-    - makeLadderBySize(int height, int width);
-  - method
-- ## Floor.class
-  - field
-    - List<Bridge> floor
-  - constructor
-    - Floor(List<Bridge> floor);
-    - public static Floor makeByWidth(int width);
-  - method
-    - public List<Bridge> floor();
-- ## Bridge.class
-  - field
-    - boolean isBridge
-  - constructor
-    - Bridge(boolean isBridge);
-  - method
-    - public boolean isBridge();
-- ## Participants.class
-  - field
-    - List<User> participants
-  - constructor
-    - Participants(List<User> participants);
-    - public static Participants makeByString(String str)
-    - private static assureNotEmpty(String str);
-  - method
-    - public int numberOfParticipants();
-- ## User.class
-  - field
-    - string name
-  - constructor
-    - User(String name)
-  - method
-    - public static Participants makeByString(String str)
-    - public String name()
+- ## enum
+  - ## BridgeUi.java
+    - field
+      - boolean isBridge;
+      - String ui;
+    - constructor
+      - public BridgeUi fromIsBridge(Bridge bridge);
+    - method
+      - public String ui();
+- ## class
+  - ## Ladder.java
+    - field
+      - List<Floor> ladder;
+    - constructor
+      - Ladder(List<Floor> ladder);
+      - makeLadderBySize(int height, int width);
+    - method
+      - public String ui();
+  - ## Floor.java
+    - field
+      - List<Bridge> floor
+    - constructor
+      - Floor(List<Bridge> floor);
+      - public static Floor makeByWidth(int width);
+    - method
+      - public List<Bridge> floor();
+      - public String ui();
+  - ## Bridge.java
+    - field
+      - boolean isBridge
+    - constructor
+      - Bridge(boolean isBridge);
+      - Bridge(MakeBridge makeBridge);
+    - method
+      - public boolean isBridge();
+  - ## Participants.java
+    - field
+      - List<User> participants
+    - constructor
+      - Participants(List<User> participants);
+      - public static Participants makeByString(String str)
+    - method
+      - private static assureNotEmpty(String str);
+      - public int numberOfParticipants();
+      - public String name();
+  - ## User.java
+    - field
+      - string name
+    - constructor
+      - User(String name)
+    - method
+      - private static assureNotEmpty(String str);
+      - public String name()
