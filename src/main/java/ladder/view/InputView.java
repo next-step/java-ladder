@@ -19,7 +19,7 @@ public class InputView {
     return scanner.nextLine();
   }
 
-  public String prizeInputEvent(){
+  public String prizeInputEvent() {
     System.out.println(PRIZE_MESSAGE);
     return scanner.nextLine();
   }
@@ -29,7 +29,7 @@ public class InputView {
     return scanner.nextInt();
   }
 
-  public String checkerEvent(){
+  public String checkerEvent() {
     System.out.println(CHECKER_MESSAGE);
     return scanner.next();
   }

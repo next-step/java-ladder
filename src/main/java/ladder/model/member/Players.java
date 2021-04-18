@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 public class Players {
   private static final String SPLIT_DELIMITER = ",";
   private static final int MINIMUM_NAMES_LENGTH = 2;
+  private static final String PLAYERS_LENGTH_EXCEPTION_MESSAGE = "참가자의 수는 최소 2명입니다.";
 
   private final List<Player> players;
 
@@ -28,8 +29,12 @@ public class Players {
 
   private static void checkNamesLength(int length) {
     if (length < MINIMUM_NAMES_LENGTH) {
-      throw new InvalidNameException("");
+      throw new InvalidNameException(PLAYERS_LENGTH_EXCEPTION_MESSAGE);
     }
+  }
+
+  public Player findSpecificPlayer(int index) {
+    return players.get(index);
   }
 
   public List<Player> specificPlayers() {

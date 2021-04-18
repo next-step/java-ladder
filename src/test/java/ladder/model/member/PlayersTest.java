@@ -1,5 +1,6 @@
 package ladder.model.member;
 
+import ladder.error.InvalidNameException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -16,4 +17,12 @@ class PlayersTest {
 
     Assertions.assertThat(players.isNameContains(targetPlayer)).isTrue();
   }
+
+  @ParameterizedTest
+  @CsvSource(value = {"vat"}, delimiter = ':')
+  @DisplayName("하나만 들어왔을 때 테스트")
+  void invalidNameTest(String inputNames) {
+    Assertions.assertThatThrownBy(() -> Players.initNames(inputNames)).isInstanceOf(InvalidNameException.class).hasMessage("참가자의 수는 최소 2명입니다.");
+  }
+
 }

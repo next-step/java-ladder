@@ -14,7 +14,7 @@ public class Prize {
 
   public Prize(String prize) {
     checkPrize(prize);
-    this.prize = prize;
+    this.prize = prize.trim();
   }
 
   public String prize() {

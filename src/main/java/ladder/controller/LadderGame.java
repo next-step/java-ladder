@@ -1,9 +1,11 @@
 package ladder.controller;
 
 import ladder.model.Height;
-import ladder.model.line.Ladder;
+import ladder.model.Ladder;
+import ladder.model.member.Player;
 import ladder.model.member.Players;
 import ladder.model.prize.Prizes;
+import ladder.model.result.LadderTotalResults;
 import ladder.strategy.RandomLadderPointsStrategy;
 import ladder.view.InputView;
 import ladder.view.ResultView;
@@ -27,6 +29,16 @@ public class LadderGame {
 
     Ladder ladder = Ladder.makeLadder(height, players.size(), new RandomLadderPointsStrategy());
     resultView.showLadder(players, ladder, prizes);
+
+    alertResult(ladder.calculateLadderResults(players, prizes));
+  }
+
+  private void alertResult(LadderTotalResults result) {
     String checker = inputView.checkerEvent();
+    while (!checker.equals("all")) {
+      resultView.showResult(result.findByPlayer(new Player(checker)));
+      checker = inputView.checkerEvent();
+    }
+    resultView.showResult(result);
   }
 }

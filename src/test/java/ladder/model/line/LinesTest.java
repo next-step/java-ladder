@@ -1,19 +1,19 @@
 package ladder.model.line;
 
+import ladder.model.Height;
+import ladder.strategy.LadderPointsStrategy;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import ladder.model.Height;
-import ladder.strategy.LadderPointsStrategy;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class LinesTest {
   LadderPointsStrategy strategy;
 
   @BeforeEach
-  void setup(){
+  void setup() {
     strategy = new LadderPointsStrategy() {
       @Override
       public boolean makeFirstPoint() {
