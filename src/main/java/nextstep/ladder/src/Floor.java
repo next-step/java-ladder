@@ -23,4 +23,11 @@ public class Floor {
   public List<Bridge> floor() {
     return floor;
   }
+
+  public String ui() {
+    String str = floor.stream()
+      .map(bridge -> BridgeUi.fromIsBridge(bridge).ui())
+      .collect(Collectors.joining("|"));
+    return "|" + str + "|";
+  }
 }
