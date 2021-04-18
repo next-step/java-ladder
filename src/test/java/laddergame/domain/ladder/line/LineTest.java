@@ -1,8 +1,6 @@
 package laddergame.domain.ladder.line;
 
 import laddergame.domain.ladder.Size;
-import laddergame.domain.ladder.line.Line;
-import laddergame.domain.ladder.line.Point;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -21,14 +19,13 @@ public class LineTest {
 
     @BeforeEach
     void setUp() {
-        line = new Line(size);
         IntStream.range(0, COUNT_OF_PERSON)
                 .forEach(i -> points.add(new Point()));
+        line = new Line(points);
     }
 
     @Test
     void 라인의선을_이웃하지않게_생성() {
-        line = new Line(points);
         line.connect(() -> true);
 
         points.forEach(point ->
@@ -38,7 +35,6 @@ public class LineTest {
 
     @Test
     void 라인의선을_생성하지않음() {
-        line = new Line(points);
         line.connect(() -> false);
 
         points.forEach(point ->
@@ -46,4 +42,23 @@ public class LineTest {
         assertThat(line.isConnect()).containsAll(Collections.singleton(false));
     }
 
+    @Test
+    void 한칸을이동() {
+        line.connect(() -> true);
+
+        int index = line.moveOne(1);
+        int index2 = line.moveOne(0);
+        assertThat(index).isEqualTo(0);
+        assertThat(index2).isEqualTo(1);
+    }
+
+    @Test
+    void 한칸을이동하지않음() {
+        line.connect(() -> false);
+
+        int index = line.moveOne(1);
+        int index2 = line.moveOne(0);
+        assertThat(index).isEqualTo(1);
+        assertThat(index2).isEqualTo(0);
+    }
 }

@@ -12,6 +12,7 @@ import java.util.List;
 import static java.util.stream.Collectors.toCollection;
 
 public class Line {
+    private static final int CHECK_INDEX = 1;
     private List<Point> points = new ArrayList<>();
 
     public Line(Size size) {
@@ -41,5 +42,29 @@ public class Line {
             link.pair(point);
             return link.isLink();
         }).collect(toCollection(ArrayList::new));
+    }
+
+    public int moveOne(int index) {
+        if (index > 0 && checkBefore(index)) {
+            return index - CHECK_INDEX;
+        }
+        if (index < points.size() - CHECK_INDEX && checkAfter(index)) {
+            return index + CHECK_INDEX;
+        }
+        return index;
+    }
+
+    private boolean checkBefore(int index) {
+        PointLink link = new PointLink();
+        link.pair(points.get(index - CHECK_INDEX));
+        link.pair(points.get(index));
+        return link.isLink();
+    }
+
+    private boolean checkAfter(int index) {
+        PointLink link = new PointLink();
+        link.pair(points.get(index));
+        link.pair(points.get(index + CHECK_INDEX));
+        return link.isLink();
     }
 }
