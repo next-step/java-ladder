@@ -14,7 +14,7 @@ public class LadderGenerationService {
         return new Ladder(participantsCount, ladderHeight);
     }
 
-    public MatchingItems generateGameResults(String gameResultNames, int participantsCount) {
+    public MatchingItems generateMatchingItems(String gameResultNames, int participantsCount) {
         return new MatchingItems(gameResultNames, participantsCount);
     }
 }

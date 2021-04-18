@@ -92,7 +92,7 @@ class LadderGenerationServiceTest {
 
         // when then
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> service.generateGameResults(gameResultNames, 5))
+                .isThrownBy(() -> service.generateMatchingItems(gameResultNames, 5))
                 .withMessageMatching("게임 결과를 입력해 주세요.");
     }
 
@@ -104,7 +104,7 @@ class LadderGenerationServiceTest {
 
         // when then
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> service.generateGameResults("꽝,5000,꽝,3000", 5))
+                .isThrownBy(() -> service.generateMatchingItems("꽝,5000,꽝,3000", 5))
                 .withMessageMatching("게임 결과 수는 참가자 수와 같아야 합니다.");
     }
 
@@ -116,7 +116,7 @@ class LadderGenerationServiceTest {
 
         // when then
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> service.generateGameResults("꽝,,   ,3000", 4))
+                .isThrownBy(() -> service.generateMatchingItems("꽝,,   ,3000", 4))
                 .withMessageMatching("유효하지 않은 결과값이 존재합니다. 입력값을 확인해주세요.");
     }
 
@@ -128,7 +128,7 @@ class LadderGenerationServiceTest {
         String gameResultNames = "꽝,5000,꽝,3000";
 
         // when
-        MatchingItems matchingItems = service.generateGameResults(gameResultNames, 4);
+        MatchingItems matchingItems = service.generateMatchingItems(gameResultNames, 4);
 
         // then
         assertAll(
@@ -150,7 +150,7 @@ class LadderGenerationServiceTest {
         String gameResultNames = "꽝,5000,꽝,3000";
 
         // when
-        MatchingItems matchingItems = service.generateGameResults(gameResultNames, 4);
+        MatchingItems matchingItems = service.generateMatchingItems(gameResultNames, 4);
 
         // then
         assertThat(gameResult).isEqualTo(matchingItems.getGameResult(ladderExitNumber));
