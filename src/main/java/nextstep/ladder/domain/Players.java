@@ -34,10 +34,6 @@ public class Players {
                 .collect(Collectors.toList());
     }
 
-    public Player getPlayerByIndex(int index) {
-        return playerList.get(index);
-    }
-
     public int findPlayerIndex(Player player) {
         return IntStream.range(0, playerList.size())
                 .filter(i -> player.equals(playerList.get(i)))

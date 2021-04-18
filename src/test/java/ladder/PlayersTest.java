@@ -40,18 +40,6 @@ public class PlayersTest {
         assertThat(players.findPlayerByName("pobi").isPlayerInPosition(new Point(100))).isEqualTo(true);
     }
 
-
-    @Test
-    @DisplayName("처음 배치된 List 인덱스 번호는 플레이어의 Point가 바뀌어도 끝까지 보존된다.")
-    void playersIndexTest() {
-        Players players = new Players(Arrays.asList("pobi", "honux", "crong", "jk"));
-        Player pobi = players.findPlayerByName("pobi");
-
-        players.updatePlayerPoint(pobi, new Point(100));
-
-        assertThat(players.getPlayerByIndex(0)).isEqualTo(new Player("pobi", new Point(100)));
-    }
-
     @Test
     @DisplayName("참가한 플레이어의 인원 수를 표기할 수 있다.")
     void playersCountTest() {
