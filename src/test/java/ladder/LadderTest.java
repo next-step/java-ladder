@@ -39,8 +39,8 @@ public class LadderTest {
     @DisplayName("포인트를 입력 받아 사다리 라인을 그리고 이동결과를 반환한다.")
     @Test
     void arrival() {
-        assertThat(ladder.arrivalPoint(0, 0)).isEqualTo(2);
-        assertThat(ladder.arrivalPoint(0, 1)).isEqualTo(0);
-        assertThat(ladder.arrivalPoint(0, 2)).isEqualTo(1);
+        assertThat(ladder.arrivalPoint(0)).isEqualTo(2);
+        assertThat(ladder.arrivalPoint(1)).isEqualTo(0);
+        assertThat(ladder.arrivalPoint(2)).isEqualTo(1);
     }
 }

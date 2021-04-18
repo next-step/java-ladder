@@ -18,10 +18,10 @@ public class Ladder {
         lines.add(line);
     }
 
-    public int arrivalPoint(int startLine, int startPoint) {
+    public int arrivalPoint(int startPoint) {
         int currentPoint = startPoint;
-        for (int i = startLine; i < lines.size(); i++) {
-            currentPoint = lines.get(i).move(currentPoint);
+        for (Line line : lines) {
+            currentPoint = line.move(currentPoint);
         }
         return currentPoint;
     }

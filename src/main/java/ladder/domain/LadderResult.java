@@ -18,7 +18,7 @@ public class LadderResult {
         Map<Integer, Integer> radderMap = new HashMap<>();
         IntStream.range(0, count)
                 .forEach(index -> {
-                    int arrivalIndex = ladder.arrivalPoint(0, index);
+                    int arrivalIndex = ladder.arrivalPoint(index);
                     radderMap.put(index, arrivalIndex);
                 });
         return new LadderMap(radderMap);
