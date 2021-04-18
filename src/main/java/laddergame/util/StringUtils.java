@@ -3,11 +3,12 @@ package laddergame.util;
 import laddergame.domain.ladder.line.Line;
 
 public class StringUtils {
-    public static final int NAME_WIDTH = 5;
-    public static final String SPACE = " ";
-    public static final String LINKING = "-----";
-    public static final String NOT_LINKING = "     ";
-    public static final String LINE_POINT = "|";
+    private static final int NAME_WIDTH = 5;
+    private static final String SPACE = " ";
+    private static final String LINKING = "-----";
+    private static final String NOT_LINKING = "     ";
+    private static final String LINE_POINT = "|";
+    private static final String ALL = "all";
 
 
     public static String fitName(String name) {
@@ -36,5 +37,9 @@ public class StringUtils {
             return;
         }
         fit.append(NOT_LINKING + LINE_POINT);
+    }
+
+    public static boolean isAll(String name) {
+        return name == ALL;
     }
 }

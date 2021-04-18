@@ -40,7 +40,7 @@ public class LadderTest {
     @Test
     @DisplayName("시작지점부터 사다리의 마지막지점까지 이동")
     void 사다리따라서이동() {
-        ladder = makeLadder(new Size(5, 4));
+        ladder = makeTestLadder(new Size(5, 4));
 
         assertThat(ladder.move(0)).isEqualTo(2);
         assertThat(ladder.move(1)).isEqualTo(3);
@@ -56,7 +56,7 @@ public class LadderTest {
     * |-----|     |-----|
     * 이런 형태의 지그재그 사다리 제작하는 테스트용 함수 (결과: 0 -> 2, 1 -> 3, 2 -> 0, 3 -> 1)
     * */
-    private Ladder makeLadder(Size testSize) {
+    public static Ladder makeTestLadder(Size testSize) {
         List<Line> lineList = new ArrayList<>();
         List<Point> points = makePoints(Arrays.asList(false, true, true, false));
         testSize.heightRange()
@@ -74,7 +74,7 @@ public class LadderTest {
     }
 
     /* true인 지점간 연결하는 함수 */
-    private List<Point> makePoints(List<Boolean> checkList) {
+    private static List<Point> makePoints(List<Boolean> checkList) {
         List<Point> points = new ArrayList<>();
         checkList.forEach(i -> points.add(new Point()));
 
@@ -87,4 +87,5 @@ public class LadderTest {
                 });
         return points;
     }
+
 }
