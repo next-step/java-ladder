@@ -8,7 +8,7 @@ public class Bridge {
   }
 
   public Bridge(MakeBridge makeBridge) {
-    this.isBridge = makeBridge.make();
+    this(makeBridge.make());
   }
 
   public boolean isBridge() {
