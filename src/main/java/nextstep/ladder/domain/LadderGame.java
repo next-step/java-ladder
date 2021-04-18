@@ -29,10 +29,6 @@ public class LadderGame {
                 .forEach(player -> players.updatePlayerPoint(player, ladder.rideLadder(player.getPoint())));
     }
 
-    public Player findPlayerByName(String name) {
-        return players.findPlayerByName(name);
-    }
-
     public int getPlayerCount() {
         return players.getPlayerCount();
     }

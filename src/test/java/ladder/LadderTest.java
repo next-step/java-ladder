@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.Arrays;
 import java.util.List;
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.Point;
 import nextstep.ladder.domain.strategy.BridgeBuilder;
 import nextstep.ladder.view.ResultView;
 import org.assertj.core.api.Assertions;
@@ -35,5 +36,19 @@ public class LadderTest {
         ResultView.printLadderResult(predefined, 4);
         System.out.println("<2>");
         ResultView.printLadderResult(created, 4);
+    }
+
+    @Test
+    @DisplayName("미리 입력된 사다리를 타고 최종 Point를 확인한다.")
+    void rideLadderBuildTest() {
+        List<String> predefined = Arrays.asList("0,2", "1", "0", "1", "0,2");
+        Ladder ladder = new Ladder(5, 4, new BridgeBuilder(predefined));
+
+        ladder.build();
+
+        assertThat(ladder.rideLadder(new Point(0))).isEqualTo(new Point(0));
+        assertThat(ladder.rideLadder(new Point(1))).isEqualTo(new Point(3));
+        assertThat(ladder.rideLadder(new Point(2))).isEqualTo(new Point(2));
+        assertThat(ladder.rideLadder(new Point(3))).isEqualTo(new Point(1));
     }
 }
