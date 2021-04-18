@@ -17,6 +17,6 @@ class OnlineLadderTest {
     @DisplayName("당첨자")
     void winner() {
         OnlineLadder onlineLadder = new OnlineLadder(2, 3, new String[]{"bong", "big", "il"});
-//        onlineLadder.winner(new Players());
+        assertThat(onlineLadder.winner(new Player("bong"))).isEqualTo("..............");
     }
 }

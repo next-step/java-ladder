@@ -1,6 +1,7 @@
 package nextstep;
 
 import nextstep.model.OnlineLadder;
+import nextstep.model.Player;
 import nextstep.view.InputView;
 import nextstep.view.ResultView;
 
@@ -22,11 +23,11 @@ public class LadderGameClient {
         resultView.printAll(ladder);
 
         String whoWinner = inputView.inputQuestion("결과를 보고 싶은 사람은?");
-        String winner = ladder.winner(whoWinner);
+        String winner = ladder.winner(new Player(whoWinner));
         resultView.print(winner);
 
         whoWinner = inputView.inputQuestion("결과를 보고 싶은 사람은?");
-        winner = ladder.winner(whoWinner);
+        winner = ladder.winner(new Player(whoWinner));
         resultView.print(winner);
     }
 }
