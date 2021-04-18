@@ -73,7 +73,9 @@ public class LayerTest {
 
         // when
         int resultNextLine = layer.nextLine(previousLine);
+
         // then
         assertThat(resultNextLine).isEqualTo(expectNextLine);
     }
+
 }
