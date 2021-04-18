@@ -39,6 +39,7 @@ public class ResultView implements ConsoleView {
     }
 
     public void printAll(OnlineLadder ladder) {
+        System.out.println("사다리 결과");
         System.out.println(ladder.players().spacedNames());
         IntStream.range(0, this.ladderCount)
                 .forEach((index) -> this.print(ladder, index));

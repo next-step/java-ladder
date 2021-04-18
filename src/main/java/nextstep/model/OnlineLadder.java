@@ -22,4 +22,8 @@ public class OnlineLadder extends Ladder {
     public Players players() {
         return players;
     }
+
+    public String winner(String whoWinner) {
+        return null;
+    }
 }
