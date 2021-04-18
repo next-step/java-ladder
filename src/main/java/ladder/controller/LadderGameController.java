@@ -1,6 +1,6 @@
 package ladder.controller;
 
-import ladder.controller.dto.LadderGameResponse;
+import ladder.controller.dto.LadderGameResult;
 import ladder.controller.dto.LadderGenerationRequest;
 import ladder.controller.dto.LadderGenerationResponse;
 import ladder.controller.dto.LadderLine;
@@ -59,16 +59,16 @@ public class LadderGameController {
         return matchingItems.getMatchingItems();
     }
 
-    private List<LadderGameResponse> assembleLadderGameResponses(Participants participants, List<String> gameResults) {
-        List<LadderGameResponse> ladderGameResponses = new ArrayList<>();
+    private List<LadderGameResult> assembleLadderGameResponses(Participants participants, List<String> gameResults) {
+        List<LadderGameResult> ladderGameRespons = new ArrayList<>();
         for (int i = 0; i < participants.getParticipants().size(); i++) {
-            ladderGameResponses.add(assembleLadderGameResponse(participants.getParticipants().get(i), gameResults.get(i)));
+            ladderGameRespons.add(assembleLadderGameResponse(participants.getParticipants().get(i), gameResults.get(i)));
         }
-        return ladderGameResponses;
+        return ladderGameRespons;
     }
 
-    private LadderGameResponse assembleLadderGameResponse(Participant participant, String gameResult) {
-        return new LadderGameResponse(participant.getName(), gameResult);
+    private LadderGameResult assembleLadderGameResponse(Participant participant, String gameResult) {
+        return new LadderGameResult(participant.getName(), gameResult);
     }
 
 

@@ -1,6 +1,6 @@
 package ladder.controller;
 
-import ladder.controller.dto.LadderGameResponse;
+import ladder.controller.dto.LadderGameResult;
 import ladder.controller.dto.LadderGenerationRequest;
 import ladder.controller.dto.LadderGenerationResponse;
 import ladder.domain.Ladder;
@@ -97,7 +97,7 @@ class LadderGameControllerTest {
         LadderGenerationResponse ladderGenerationResponse = controller.generateLadder(request);
 
         // then
-        for (LadderGameResponse gameResponse : ladderGenerationResponse.getGameResponses()) {
+        for (LadderGameResult gameResponse : ladderGenerationResponse.getGameResponses()) {
             assertThat(Arrays.asList(participantNames.split(",")).contains(gameResponse.getParticipantName())).isTrue();
             assertThat(Arrays.asList(gameResults.split(",")).contains(gameResponse.getGameResult())).isTrue();
         }

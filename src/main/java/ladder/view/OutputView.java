@@ -1,6 +1,6 @@
 package ladder.view;
 
-import ladder.controller.dto.LadderGameResponse;
+import ladder.controller.dto.LadderGameResult;
 import ladder.controller.dto.LadderGenerationResponse;
 import ladder.controller.dto.LadderLine;
 
@@ -64,8 +64,8 @@ public class OutputView {
         return horizons.toString();
     }
 
-    public void printGameResult(List<LadderGameResponse> gameResponses, String inputInquiryTargetName) {
-        for (LadderGameResponse gameResponse : gameResponses) {
+    public void printGameResult(List<LadderGameResult> gameResponses, String inputInquiryTargetName) {
+        for (LadderGameResult gameResponse : gameResponses) {
             if(inputInquiryTargetName.equals(gameResponse.getParticipantName())) {
                 System.out.println(System.lineSeparator() + "실행 결과");
                 System.out.println(gameResponse.getGameResult());
@@ -75,9 +75,9 @@ public class OutputView {
         System.out.println("존재하지 않는 참가자입니다.");
     }
 
-    public void printGameResults(List<LadderGameResponse> gameResponses) {
+    public void printGameResults(List<LadderGameResult> gameResponses) {
         System.out.println(System.lineSeparator() + "실행 결과");
-        for (LadderGameResponse gameResponse : gameResponses) {
+        for (LadderGameResult gameResponse : gameResponses) {
             System.out.println(gameResponse.getParticipantName() + " : " + gameResponse.getGameResult());
         }
     }

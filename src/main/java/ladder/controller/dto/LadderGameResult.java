@@ -1,11 +1,11 @@
 package ladder.controller.dto;
 
-public class LadderGameResponse {
+public class LadderGameResult {
 
     private final String participantName;
     private final String gameResult;
 
-    public LadderGameResponse(String participantName, String gameResult) {
+    public LadderGameResult(String participantName, String gameResult) {
         this.participantName = participantName;
         this.gameResult = gameResult;
     }
