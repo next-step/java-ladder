@@ -11,7 +11,7 @@ public class StringUtils {
     private static final String ALL = "all";
 
 
-    public static String fitName(String name) {
+    public static String fitSpace(String name) {
         StringBuilder fit = new StringBuilder();
         fit.append(SPACE);
         while (fit.length() + name.length() < NAME_WIDTH) {
@@ -39,7 +39,7 @@ public class StringUtils {
         fit.append(NOT_LINKING + LINE_POINT);
     }
 
-    public static boolean isAll(String name) {
-        return name == ALL;
+    public static boolean isAll(String input) {
+        return input.equals(ALL);
     }
 }

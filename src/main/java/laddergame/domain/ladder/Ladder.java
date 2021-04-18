@@ -27,11 +27,9 @@ public class Ladder {
         return Collections.unmodifiableList(lines);
     }
 
-
     public void makeLink(LadderStrategy strategy) {
         lines.forEach(line -> line.connect(strategy));
     }
-
 
     public int move(int index) {
         for (Line line : lines) {

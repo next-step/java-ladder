@@ -33,7 +33,7 @@ public class LadderControllerTest {
         moveIndexList = Arrays.asList(2, 3, 0, 1);
         resultList = Arrays.asList(new Result("꽝"), new Result("1000"), new Result("2000"), new Result("3000"));
         results = new Results(resultList);
-        LadderController.statistics(ladder, results);
+        LadderController.setStatistics(ladder, results);
     }
 
     @Test

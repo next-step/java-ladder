@@ -21,7 +21,7 @@ public class Size {
     }
 
     private void validHeight(int height) {
-        if (height > MAXIMUM_HEIGHT) {
+        if (height > MAXIMUM_HEIGHT || height < 0) {
             throw new IllegalArgumentException(ILLEGAL_HEIGHT);
         }
     }

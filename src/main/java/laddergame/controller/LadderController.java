@@ -15,7 +15,6 @@ import static java.util.stream.Collectors.toCollection;
 import static laddergame.util.StringUtils.isAll;
 
 public class LadderController {
-    private static final int MATCH_ALL = -1;
     private static LadderStatistics statistics;
 
     private static Player enrollOne(String name) {
@@ -41,7 +40,7 @@ public class LadderController {
                 .collect(toCollection(ArrayList::new)));
     }
 
-    public static void statistics(Ladder ladder, Results results) {
+    public static void setStatistics(Ladder ladder, Results results) {
         statistics = new LadderStatistics(ladder, results);
     }
 

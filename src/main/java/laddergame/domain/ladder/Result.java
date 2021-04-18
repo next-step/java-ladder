@@ -16,7 +16,7 @@ public class Result {
     }
 
     private void validEmpty(String result) {
-        if (result == null || result.isEmpty() || result == "") {
+        if (result == null || result.isEmpty() || result.equals("")) {
             throw new IllegalArgumentException(ILLEGAL_RESULT);
         }
     }

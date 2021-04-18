@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
-import static laddergame.util.StringUtils.fitName;
+import static laddergame.util.StringUtils.fitSpace;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -70,7 +70,7 @@ public class PlayersTest {
     void 플레이어목록프린트() {
         List<Player> playerList = players.getPlayers();
         playerList.stream()
-                .forEach(player -> System.out.print(fitName(player.toString())));
+                .forEach(player -> System.out.print(fitSpace(player.toString())));
         System.out.println();
     }
 

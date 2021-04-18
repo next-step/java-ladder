@@ -17,7 +17,7 @@ public class StringUtilsTest {
         String name = "이름";
         String predict = "   이름 ";
 
-        assertThat(StringUtils.fitName(name)).isEqualTo(predict);
+        assertThat(StringUtils.fitSpace(name)).isEqualTo(predict);
     }
 
     @Test

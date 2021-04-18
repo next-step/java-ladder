@@ -10,8 +10,7 @@ import java.util.List;
 
 import static laddergame.controller.LadderController.*;
 import static laddergame.ui.InputView.*;
-import static laddergame.ui.ResultView.printLadder;
-import static laddergame.ui.ResultView.printNames;
+import static laddergame.ui.ResultView.*;
 
 public class LadderGame {
     public static void main(String[] args) {
@@ -21,8 +20,12 @@ public class LadderGame {
 
         Size size = new Size(inputHeight(), names.size());
         Ladder ladder = makeLadder(size, new RandomLadderStrategy());
+        setStatistics(ladder, results);
 
         printNames(players);
         printLadder(ladder);
+        printResult(results);
+        printWantResult(matchPlayer(players, inputWantName()));
+        close();
     }
 }

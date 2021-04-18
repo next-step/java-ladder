@@ -30,7 +30,6 @@ public class Point {
         return isLinked() && linkStatus.isLinkedWith(check.linkStatus);
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
