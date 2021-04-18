@@ -19,4 +19,8 @@ public class Floor {
       .collect(Collectors.toList())
     );
   }
+
+  public List<Bridge> floor() {
+    return floor;
+  }
 }

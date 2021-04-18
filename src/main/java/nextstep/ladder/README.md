@@ -14,6 +14,7 @@
     - Floor(List<Bridge> floor);
     - public static Floor makeByWidth(int width);
   - method
+    - public List<Bridge> floor();
 - ## Bridge.class
   - field
     - boolean isBridge
