@@ -22,6 +22,10 @@ public class Line {
     }
 
     public boolean getPoint(int count) {
+        if (count == points.size()) {
+            count--;
+        }
+
         return this.points.get(count);
     }
 }

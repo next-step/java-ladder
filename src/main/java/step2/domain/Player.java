@@ -11,22 +11,36 @@ public class Player {
     public static final int NAME_MAX_SIZE = 5;
 
     private final String name;
+    private final int count;
 
-    public Player(String player) {
+    public Player(String player, int count) {
+        PlayerNameValidate(player);
+
+        this.name = player;
+        this.count = count;
+    }
+
+    private void PlayerNameValidate(String player) {
         if (player.length() > NAME_MAX_SIZE) {
             throw new IllegalPlayerName("이름이 5글자를 초과할수 없습니다.");
         }
-
-        this.name = player;
     }
 
     public String getName() {
+        return name;
+    }
+
+    public String getNameWithBlank() {
         int blankSize = FULL_LENGTH - name.length();
         String blank = Stream.generate(() -> " ")
                 .limit(blankSize)
                 .collect(Collectors.joining());
 
         return blank + name;
+    }
+
+    public int getCount() {
+        return count;
     }
 
     @Override

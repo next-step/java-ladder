@@ -1,6 +1,8 @@
 package step2.domain;
 
 
+import step2.exception.IllegalPositionException;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -23,5 +25,17 @@ public class Lines {
 
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
+    }
+
+    public int getResultPosition(Position position) {
+        return lines.stream()
+                .map(line -> {
+                    MovePosition movePosition =
+                            MovePosition.of(line.getSize(), position.getPosition());
+
+                    return movePosition.getPosition(line, position);
+                })
+                .reduce((first, second) -> second)
+                .orElseThrow(() -> new IllegalPositionException("잘못된 포지션입니다."));
     }
 }
