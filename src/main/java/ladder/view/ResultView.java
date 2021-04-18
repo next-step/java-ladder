@@ -1,9 +1,6 @@
 package ladder.view;
 
-import ladder.domain.LineResults;
-import ladder.domain.Player;
-import ladder.domain.Players;
-import ladder.domain.Point;
+import ladder.domain.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,22 +11,29 @@ public class ResultView {
     private static final String DASH = "-";
     private static final String ROOT = "|";
 
+    private final LadderResult ladderResult;
     private final Players players;
-    private LineResults lineResults;
 
-    public ResultView(Players players, LineResults lineResults) {
+    public ResultView(Players players, LadderResult ladderResult) {
         this.players = players;
-        this.lineResults = lineResults;
+        this.ladderResult = ladderResult;
     }
 
     public void showLadderDrawResult() {
+        printHeader();
         printPlayers();
         printNewLine();
         printLadder();
     }
 
+    private void printHeader() {
+        printNewLine();
+        System.out.println("사다리 결과");
+        printNewLine();
+    }
+
     private void printLadder() {
-        lineResults.getLineResults()
+        ladderResult.getLines()
                 .forEach(line -> printLine(line.getPoints()));
     }
 
@@ -38,9 +42,16 @@ public class ResultView {
         sb.append(indent());
         points.forEach(point -> {
             sb.append(ROOT);
-            sb.append(point.hasRightDirection() ? times(DASH) : times(SPACE));
+            sb.append(makeRightLine(point));
         });
         System.out.println(sb);
+    }
+
+    private String makeRightLine(Point point) {
+        if (point.hasRightDirection()) {
+            return times(DASH);
+        }
+        return times(SPACE);
     }
 
     private void printNewLine() {
@@ -52,6 +63,11 @@ public class ResultView {
                 .map(Players::allPlayers)
                 .orElseThrow(IllegalArgumentException::new)
                 .forEach(player -> System.out.print(padLeft(player.getName(), Player.MAX_SIZE + 1)));
+    }
+
+    public void printPrize(Prize prize) {
+        prize.getHitResults()
+                .forEach(hit -> System.out.print(padLeft(hit, Player.MAX_SIZE + 1)));
     }
 
     private String padLeft(String inputString, int padCount) {

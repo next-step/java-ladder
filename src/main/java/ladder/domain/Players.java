@@ -25,8 +25,8 @@ public class Players {
         return players.size();
     }
 
-    public String playerName(int index) {
-        return players.get(index).getName();
+    public int index(Player player) {
+        return players.indexOf(player);
     }
 
     @Override

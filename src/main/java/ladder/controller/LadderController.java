@@ -1,28 +1,36 @@
 package ladder.controller;
 
-import ladder.domain.Line;
-import ladder.domain.LineResults;
+import ladder.domain.*;
 import ladder.view.InputView;
+import ladder.view.PrizeInputView;
+import ladder.view.PrizeResultView;
 import ladder.view.ResultView;
 
 public class LadderController {
-    private final InputView inputView = new InputView();
-
-    public LadderController() {
-    }
-
     public void startLadderGame() {
         try {
             InputView inputView = new InputView();
-            inputView.inputPlayer();
-            inputView.inputLadderHeight();
+            inputView.inputLadderCondition();
 
-            LineResults lineResults = new LineResults();
+            Ladder ladder = new Ladder();
             for (int i = 0; i < inputView.getLadderHeight(); i++) {
-                Line ladderLine = new Line(inputView.playersCount());
-                lineResults.add(ladderLine);
+                Line ladderLine = new LineGenerator().generate(inputView.playersCount());
+                ladder.add(ladderLine);
             }
-            new ResultView(inputView.getPlayers(), lineResults).showLadderDrawResult();
+
+            Players players = inputView.getPlayers();
+            LadderResult ladderResult = new LadderResult(players.count(), ladder);
+
+            ResultView resultView = new ResultView(players, ladderResult);
+            resultView.showLadderDrawResult();
+            resultView.printPrize(inputView.getPrize());
+
+            PrizeInputView prizeInputView = new PrizeInputView();
+            PrizeResultView prizeResultView = new PrizeResultView(ladderResult, inputView.getPrize());
+            while (!prizeInputView.isAll()) {
+                prizeInputView.inputPlayerNameForPrize();
+                prizeResultView.printPrizeResult(prizeInputView, players);
+            }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

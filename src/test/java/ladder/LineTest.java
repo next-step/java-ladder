@@ -1,9 +1,6 @@
 package ladder;
 
-import ladder.domain.Direction;
-import ladder.domain.Line;
-import ladder.domain.Players;
-import ladder.domain.Point;
+import ladder.domain.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +13,7 @@ public class LineTest {
     @Test
     void line_자동() {
         Players players = Players.of(Arrays.asList("kong", "dal", "apple", "red", "blue"));
-        Line ladderLine = new Line(players.count());
+        Line ladderLine = new LineGenerator().generate(players.count());
 
         assertThat(ladderLine.move(0) == 0 || ladderLine.move(0) == 1).isTrue();
         assertThat(ladderLine.move(4) == 3 || ladderLine.move(4) == 4).isTrue();
