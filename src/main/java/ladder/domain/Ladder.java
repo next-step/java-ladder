@@ -38,11 +38,6 @@ public class Ladder {
         return nowLine;
     }
 
-    private static List<Layer> generateLayers(int line, int height, RandomBoolean randomBoolean) {
-        return IntStream.range(0, height)
-                .mapToObj(i -> Layer.valueOf(line, randomBoolean))
-                .collect(Collectors.toList());
-    }
 
     @Override
     public boolean equals(Object o) {

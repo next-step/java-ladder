@@ -15,7 +15,7 @@ public class ResultView {
         sb.append(printUsers(users));
         ladder.getLayers().stream()
                 .forEach(layer -> sb.append(printLayer(layer)));
-        System.out.println(sb.toString());
+        System.out.println(sb);
     }
 
     private static String printUsers(List<String> users) {
