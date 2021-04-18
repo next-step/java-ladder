@@ -39,6 +39,10 @@ public class Players {
         }
     }
 
+    public int getNumber() {
+        return players.size();
+    }
+
     public Player getOne(int index) {
         return players.get(index);
     }

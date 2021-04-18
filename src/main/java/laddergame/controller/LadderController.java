@@ -6,13 +6,17 @@ import laddergame.domain.player.Player;
 import laddergame.domain.player.Players;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.toCollection;
 import static laddergame.util.StringUtils.isAll;
 
 public class LadderController {
     private static final int MATCH_ALL = -1;
+    private static LadderStatistics statistics;
 
     private static Player enrollOne(String name) {
         Name playerName = new Name(name);
@@ -37,15 +41,22 @@ public class LadderController {
                 .collect(toCollection(ArrayList::new)));
     }
 
-    public static LadderStatistics statistics(Ladder ladder, Results results) {
-        return new LadderStatistics(ladder, results);
+    public static void statistics(Ladder ladder, Results results) {
+        statistics = new LadderStatistics(ladder, results);
     }
 
-    public static int matchPlayer(Players players, String name) {
+    public static Map<Player, Result> matchPlayer(Players players, String name) {
+        Map<Player, Result> result = new LinkedHashMap<>();
+
         if (isAll(name)) {
-            return MATCH_ALL;
+            List<Result> resultList = statistics.matchAll(players.getNumber());
+            IntStream.range(0, players.getNumber())
+                    .forEach(i -> result.put(players.getOne(i), resultList.get(i)));
+            return result;
         }
-        return players.whoseName(new Name(name));
+        int index = players.whoseName(new Name(name));
+        result.put(players.getOne(index), statistics.matchOne(index));
+        return result;
     }
 
 }
