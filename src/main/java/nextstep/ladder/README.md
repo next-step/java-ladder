@@ -2,65 +2,65 @@
 
 ---
 
-## 수정사항
-
-- 사람의 이름은 5글자 제한
-- 사다리의 폭이 사람의 글자수에 따라 동적으로 변해야 한다.
-- 사다리의 bridge 가 존재하는 양 옆에는 다른 bridge 가 존재할 수 없다.
-
----
-
-- ## enum
-  - ## BridgeUi.java
-    - field
-      - boolean isBridge;
-      - String ui;
-    - constructor
-      - public BridgeUi fromIsBridge(Bridge bridge);
-    - method
-      - public String ui();
 - ## class
+  - ## Ui.java
+    - field
+      - private static final String SPACE = " ";
+      - private final String bridge;
+      - private final String notBridge;
+    - constructor
+      - public Ui(String bridge, String notBridge);
+      - public Ui(int size);
+    - method
+      - public String bridgeUi(boolean isBridge);
+      - public String floorUi(Floor floor);
+      - public String ladderUi(Ladder ladder);
+      - public String participantsUi(Participants participants);
   - ## Ladder.java
     - field
-      - List<Floor> ladder;
+      - private static final int MIN_HEIGHT = 1;
+      - private static final int MIN_WIDTH = 1;
+      - private final List<Floor> ladder;
     - constructor
-      - Ladder(List<Floor> ladder);
-      - makeLadderBySize(int height, int width);
+      - public Ladder(List<Floor> ladder);
+      - public static Ladder makeLadderBySize(int height, int width);
     - method
-      - public String ui();
+      - public checkSize(int height, int width);
+      - public List<Floor> ladder();
   - ## Floor.java
     - field
-      - List<Bridge> floor
+      - private final List<Bridge> floor
     - constructor
-      - Floor(List<Bridge> floor);
+      - public Floor(List<Bridge> floor);
       - public static Floor makeByWidth(int width);
     - method
       - public Bridge createBridge(Bridge lastBridge);
       - public List<Bridge> floor();
-      - public String ui();
   - ## Bridge.java
     - field
-      - boolean isBridge
+      - private final boolean isBridge;
     - constructor
-      - Bridge(boolean isBridge);
-      - Bridge(MakeBridge makeBridge);
+      - public Bridge(boolean isBridge);
+      - public Bridge(MakeBridge makeBridge);
     - method
       - public boolean isBridge();
   - ## Participants.java
     - field
-      - List<User> participants
+      - private final List<User> participants;
     - constructor
-      - Participants(List<User> participants);
-      - public static Participants makeByString(String str)
+      - public Participants(List<User> participants);
+      - public static Participants makeByString(String str);
     - method
       - private static assureNotEmpty(String str);
       - public int numberOfParticipants();
-      - public String name();
+      - public List<User> participants();
+      - public int maxNameLength();
   - ## User.java
     - field
-      - string name
+      - private final String name;
     - constructor
-      - User(String name)
+      - public User(String name)
     - method
       - private static assureNotEmpty(String str);
-      - public String name()
+      - private static checkMaxLength(String name);
+      - public String name();
