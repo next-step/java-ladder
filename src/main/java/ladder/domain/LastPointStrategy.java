@@ -10,8 +10,8 @@ public class LastPointStrategy implements PointStrategy {
     @Override
     public Point point() {
         if (previousPoint.hasRightDirection()) {
-            return new Point(previousPoint.nextIndex(), new Direction(true, false));
+            return new Point(previousPoint.next(), new Direction(true, false));
         }
-        return new Point(previousPoint.nextIndex(), new Direction(false, false));
+        return new Point(previousPoint.next(), new Direction(false, false));
     }
 }

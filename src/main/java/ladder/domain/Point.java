@@ -13,7 +13,7 @@ public class Point {
         this.direction = direction;
     }
 
-    public int nextIndex() {
+    public int next() {
         return right(index);
     }
 

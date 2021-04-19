@@ -19,7 +19,7 @@ public class PointTest {
     @Test
     void nextIndex() {
         Point point = new Point(0, new Direction(false, false));
-        assertThat(point.nextIndex()).isEqualTo(1);
+        assertThat(point.next()).isEqualTo(1);
     }
 
     @DisplayName("포인트가 오른쪽 방향을 가지고 있다면 true를 반환한다.")

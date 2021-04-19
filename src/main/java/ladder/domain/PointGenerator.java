@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.util.RandomUtil;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +23,7 @@ public class PointGenerator {
     }
 
     private static Point first(List<Point> points) {
-        Point firstPoint = generate(new FirstPointStrategy());
+        Point firstPoint = generate(new FirstPointStrategy(RandomUtil.trueOrFalse()));
         points.add(firstPoint);
         return firstPoint;
     }
@@ -29,7 +31,7 @@ public class PointGenerator {
     private static Point body(int count, Point firstPoint, List<Point> points) {
         Point previousPoint = firstPoint;
         for (int i = 0; i < count; i++) {
-            Point currentPoint = generate(new BodyPointStrategy(previousPoint));
+            Point currentPoint = generate(new BodyPointStrategy(previousPoint, RandomUtil.trueOrFalse()));
             points.add(currentPoint);
             previousPoint = currentPoint;
         }
