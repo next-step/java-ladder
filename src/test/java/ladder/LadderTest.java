@@ -46,9 +46,9 @@ public class LadderTest {
 
         ladder.build();
 
-        assertThat(ladder.rideLadder(new Point(0))).isEqualTo(new Point(0));
-        assertThat(ladder.rideLadder(new Point(1))).isEqualTo(new Point(3));
-        assertThat(ladder.rideLadder(new Point(2))).isEqualTo(new Point(2));
-        assertThat(ladder.rideLadder(new Point(3))).isEqualTo(new Point(1));
+        assertThat(ladder.ride(new Point(0))).isEqualTo(new Point(0));
+        assertThat(ladder.ride(new Point(1))).isEqualTo(new Point(3));
+        assertThat(ladder.ride(new Point(2))).isEqualTo(new Point(2));
+        assertThat(ladder.ride(new Point(3))).isEqualTo(new Point(1));
     }
 }

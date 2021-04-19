@@ -1,30 +1,27 @@
 package nextstep.ladder.domain;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.IntStream;
 
 public class LadderGame {
-    private final Players players;
+    private final PrizeMapper prizeMapper;
     private final Ladder ladder;
 
-    public LadderGame(Players players, int height) {
-        this.players = players;
-        ladder = new Ladder(height, players.getPlayerCount());
+    public LadderGame(PrizeMapper prizeMapper, int height) {
+        this.prizeMapper = prizeMapper;
+        ladder = new Ladder(height, prizeMapper.getPlayerCount());
     }
 
     public List<String> build() {
         return ladder.build();
     }
 
-    public List<String> getAllPlayerNames() {
-        return players.getAllPlayerNames();
-    }
-
-    public void start() {
-        players.stream()
-                .forEach(player -> players.updatePlayerPoint(player, ladder.rideLadder(player.getPoint())));
-    }
-
-    public int getPlayerCount() {
-        return players.getPlayerCount();
+    public Map<Player, Prize> start() {
+        Map<Point, Point> mapper = new LinkedHashMap<>();
+        IntStream.range(0, prizeMapper.getPlayerCount())
+                .forEach(i -> mapper.put(new Point(i), ladder.ride(new Point(i))));
+        return prizeMapper.getPlayersPrizes(mapper);
     }
 }

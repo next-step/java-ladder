@@ -6,7 +6,6 @@ import java.util.Arrays;
 import java.util.List;
 import nextstep.ladder.domain.Player;
 import nextstep.ladder.domain.Players;
-import nextstep.ladder.domain.Point;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -26,18 +25,7 @@ public class PlayersTest {
     void findPlayerTestByName() {
         Players players = new Players(Arrays.asList("pobi", "honux", "crong", "jk"));
 
-        assertThat(players.findPlayerByName("pobi")).isEqualTo(new Player("pobi", new Point(0)));
-    }
-
-    @Test
-    @DisplayName("초기 Point 0에 위치한 플레이어 pobi를, Point 100으로 옮긴다.")
-    void updatePlayerPositionTest() {
-        Players players = new Players(Arrays.asList("pobi", "honux", "crong", "jk"));
-        Player pobi = players.findPlayerByName("pobi");
-
-        players.updatePlayerPoint(pobi, new Point(100));
-
-        assertThat(players.findPlayerByName("pobi").isPlayerInPosition(new Point(100))).isEqualTo(true);
+        assertThat(players.findPlayerByName("pobi")).isEqualTo(new Player("pobi"));
     }
 
     @Test

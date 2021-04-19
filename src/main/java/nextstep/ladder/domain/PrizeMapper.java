@@ -2,7 +2,6 @@ package nextstep.ladder.domain;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.stream.IntStream;
 
 public class PrizeMapper {
     private final Prizes prizes;
@@ -16,22 +15,14 @@ public class PrizeMapper {
         this.players = players;
     }
 
-    public Prize getPrizeByPlayerName(String name) {
-        return getPrizeByPlayer(players.findPlayerByName(name));
-    }
-
-    private Prize getPrizeByPlayer(Player player) {
-        return IntStream.range(0, prizes.getPrizeCount())
-                .filter(i -> player.isPlayerInPosition(new Point(i)))
-                .mapToObj(prizes::get)
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("플레이어 위치에 맞는 Prize을 찾을 수 없습니다."));
-    }
-
-    public Map<Player, Prize> getAllPlayersPrizes() {
+    public Map<Player, Prize> getPlayersPrizes(Map<Point, Point> prizePair) {
         Map<Player, Prize> prizeMap = new LinkedHashMap<>();
-        players.stream()
-                .forEach(player -> prizeMap.put(player, getPrizeByPlayer(player)));
+        prizePair.keySet().stream()
+                .forEach(point -> prizeMap.put(players.get(point.getIndex()), prizes.get(prizePair.get(point).getIndex())));
         return prizeMap;
+    }
+
+    public int getPlayerCount() {
+        return players.getPlayerCount();
     }
 }

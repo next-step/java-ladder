@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import nextstep.ladder.domain.strategy.BridgeBuilder;
 
 public class Ladder {
-    static final int LADDER_MIN_HEIGHT = 1;
+    private static final int LADDER_MIN_HEIGHT = 1;
 
     private final List<Line> lines = new ArrayList<>();
     private BridgeBuilder bridgeBuilder;
@@ -42,7 +42,7 @@ public class Ladder {
                 .collect(Collectors.joining(","));
     }
 
-    public Point rideLadder(Point startPoint) {
+    public Point ride(Point startPoint) {
         Point point = startPoint;
         for (Line line : lines) {
             point = line.moveFrom(point);

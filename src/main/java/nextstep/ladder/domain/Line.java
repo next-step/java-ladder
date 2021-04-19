@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-    static final int PLAYERS_MIN_COUNT = 2;
+    private static final int PLAYERS_MIN_COUNT = 2;
 
     private final List<Point> points;
 

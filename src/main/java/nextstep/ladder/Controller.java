@@ -17,48 +17,22 @@ public class Controller {
     public void run() {
         List<String> info = InputView.getInfoFromClient();
 
-        Players players = createPlayers(Arrays.asList(info.get(0).split(",")));
-        Prizes prizes =  createPrizes(Arrays.asList(info.get(1).split(",")));
-        PrizeMapper prizeMapper = createPrizeMapper(prizes, players);
-        LadderGame game = createGame(players, Integer.parseInt(info.get(2)));
+        Players players = new Players(Arrays.asList(info.get(0).split(",")));
+        Prizes prizes = new Prizes(Arrays.asList(info.get(1).split(",")));
+        PrizeMapper prizeMapper = new PrizeMapper(prizes, players);
+        LadderGame game = new LadderGame(prizeMapper, Integer.parseInt(info.get(2)));
 
-        printLadderResult(game);
-        printPrizeResult(prizes);
-        printGameResult(InputView.getPlayerResult(), prizeMapper);
-    }
+        ResultView.printObjectsName(players.getAllPlayerNames());
+        ResultView.printLadderResult(game.build(), players.getPlayerCount());
 
-    private Players createPlayers(List<String> playerNames) {
-        return new Players(playerNames);
-    }
-
-    private Prizes createPrizes(List<String> prizeNames) {
-        return new Prizes(prizeNames);
-    }
-
-    private LadderGame createGame(Players players, int height) {
-        return new LadderGame(players, height);
-    }
-
-    private PrizeMapper createPrizeMapper(Prizes prizes, Players players) {
-        return new PrizeMapper(prizes, players);
-    }
-
-    private void printLadderResult(LadderGame ladderGame) {
-        ResultView.printObjectsName(ladderGame.getAllPlayerNames());
-        ResultView.printLadderResult(ladderGame.build(), ladderGame.getPlayerCount());
-        ladderGame.start();
-    }
-
-    private void printPrizeResult(Prizes prizes) {
         ResultView.printObjectsName(prizes.getAllPrizesName());
-    }
 
-    private void printGameResult(String input, PrizeMapper prizeMapper) {
+        String input = InputView.getPlayerResult();
         if ("all".equals(input)) {
-            ResultView.printResultList(mapperToStringDto(prizeMapper.getAllPlayersPrizes()));
+            ResultView.printResultList(mapperToStringDto(game.start()));
             return;
         }
-        ResultView.printResultList(Arrays.asList(prizeMapper.getPrizeByPlayerName(input).toString()));
+        ResultView.printResultList(Arrays.asList(game.start().get(players.findPlayerByName(input)).toString()));
     }
 
     private List<String> mapperToStringDto(Map<?, ?> mapper) {
