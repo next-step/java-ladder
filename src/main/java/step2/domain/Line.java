@@ -19,13 +19,13 @@ public class Line {
     }
 
     private void createLine(int countOfPerson) {
-        points.add(lineStrategy.firstPoint());
+        points.add(lineStrategy.next());
         for (int prevPoint = 0; prevPoint < countOfPerson - 2; ++prevPoint) {
             LadderType prevType = points.get(prevPoint);
-            points.add(prevType.next(lineStrategy));
+            points.add(lineStrategy.next(prevType));
         }
         LadderType prevLast = points.get(countOfPerson - 2);
-        points.add(prevLast.last(lineStrategy));
+        points.add(lineStrategy.last(prevLast));
     }
 
     @Override

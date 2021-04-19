@@ -11,7 +11,7 @@ public class RandomLineStrategy implements LineStrategy {
     private static final Random random = new Random();
 
     @Override
-    public LadderType firstPoint() {
+    public LadderType next() {
         int rand = random.nextInt(2);
         if (rand == 1) {
             return EMPTY;
@@ -24,10 +24,6 @@ public class RandomLineStrategy implements LineStrategy {
         if (prev == RIGHT) {
             return LEFT;
         }
-        int rand = random.nextInt(2);
-        if (rand == 1) {
-            return EMPTY;
-        }
-        return RIGHT;
+        return next();
     }
 }

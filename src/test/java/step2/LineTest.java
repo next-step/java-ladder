@@ -17,7 +17,7 @@ public class LineTest {
     void createLine() {
         Line line = new Line(4, new LineStrategy() {
             @Override
-            public LadderType firstPoint() {
+            public LadderType next() {
                 return EMPTY;
             }
 
@@ -37,7 +37,7 @@ public class LineTest {
     void createLine2() {
         Line line = new Line(4, new LineStrategy() {
             @Override
-            public LadderType firstPoint() {
+            public LadderType next() {
                 return RIGHT;
             }
 

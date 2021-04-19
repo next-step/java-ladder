@@ -17,12 +17,4 @@ public enum LadderType {
     public String ladder() {
         return this.ladder;
     }
-
-    public LadderType next(LineStrategy lineStrategy) {
-        return lineStrategy.next(this);
-    }
-
-    public LadderType last(LineStrategy lineStrategy) {
-        return lineStrategy.last(this);
-    }
 }
