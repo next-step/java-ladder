@@ -8,17 +8,25 @@ import static org.assertj.core.api.Assertions.assertThat;
 class PointTest {
 
     @Test
-    @DisplayName("첫번째 포인트 생성 테스트")
-    void firstTest() {
+    @DisplayName("첫 번째 Point생성 테스트")
+    void createFirstPointTest() {
+        Point firstPoint = Point.first(0, new FixedGenerator(true));
+        assertThat(firstPoint).isEqualTo(Point.first(0, new FixedGenerator(true)));
     }
 
     @Test
-    @DisplayName("마지막 포인트 생성 테스트")
-    void lastTest() {
+    void middle() {
     }
 
     @Test
-    @DisplayName("포인트의 true, false 테스트")
-    void hasLineTest(){
+    void last() {
+    }
+
+    @Test
+    void move() {
+    }
+
+    @Test
+    void hasLine() {
     }
 }
