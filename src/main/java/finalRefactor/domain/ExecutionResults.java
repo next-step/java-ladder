@@ -1,4 +1,4 @@
-package step3.domain;
+package finalRefactor.domain;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -35,6 +35,10 @@ public class ExecutionResults {
         return results.size();
     }
 
+    public List<ExecutionResult> all() {
+        return results;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -50,10 +54,8 @@ public class ExecutionResults {
 
     @Override
     public String toString() {
-        return  results + "";
-    }
-
-    public List<ExecutionResult> all() {
-        return results;
+        return "ExecutionResults{" +
+                "results=" + results +
+                '}';
     }
 }
