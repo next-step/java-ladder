@@ -3,7 +3,6 @@ package nextstep.ladder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import nextstep.ladder.domain.LadderGame;
@@ -30,13 +29,13 @@ public class Controller {
 
         String input = InputView.getPlayerResult();
         if ("all".equals(input)) {
-            ResultView.printResultList(mapperToStringDto(game.start()));
+            ResultView.printResultList(prizeMapToStringDto(game.start()));
             return;
         }
         ResultView.printResultList(Arrays.asList(game.start().get(players.findPlayerByName(input))));
     }
 
-    private List<String> mapperToStringDto(PrizeMap map) {
+    private List<String> prizeMapToStringDto(PrizeMap map) {
         List<String> keys = map.keySet().stream()
                 .map(Object::toString)
                 .collect(Collectors.toList());
