@@ -2,6 +2,14 @@
 
 ---
 
+## 수정사항
+
+- 사람의 이름은 5글자 제한
+- 사다리의 폭이 사람의 글자수에 따라 동적으로 변해야 한다.
+- 사다리의 bridge 가 존재하는 양 옆에는 다른 bridge 가 존재할 수 없다.
+
+---
+
 - ## enum
   - ## BridgeUi.java
     - field
@@ -27,6 +35,7 @@
       - Floor(List<Bridge> floor);
       - public static Floor makeByWidth(int width);
     - method
+      - public Bridge createBridge(Bridge lastBridge);
       - public List<Bridge> floor();
       - public String ui();
   - ## Bridge.java

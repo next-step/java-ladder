@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -43,4 +44,17 @@ public class FloorTest {
       )
     );
   }
+
+  @RepeatedTest(value = 100)
+  @DisplayName("bridge not overlap")
+  public void bridgeNotOverlap() {
+    final int WIDTH = 10;
+    List<Bridge> floor = Floor.makeByWidht(WIDTH).floor();
+    
+    for(int i = 1; i < WIDTH; i++) {
+      boolean bool = floor.get(i - 1).isBridge() && floor.get(i).isBridge();
+      assertThat(bool).isFalse();
+    }
+  }
+  
 }
