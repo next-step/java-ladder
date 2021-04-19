@@ -1,19 +1,7 @@
 package step2.controller;
 
-import step2.domain.Ladder;
-import step2.domain.Line;
-import step2.domain.Match;
-import step2.domain.Member;
-import step2.domain.Members;
-import step2.domain.Point;
-import step2.domain.RandomGenerator;
-import step2.domain.Result;
-import step2.domain.Results;
-import step2.dto.RequestLadderDTO;
-import step2.dto.ResponseLadderDTO;
-import step2.dto.ResponseMatchDTO;
-import step2.dto.ResponseMembersDTO;
-import step2.dto.ResponseResultDTO;
+import step2.domain.*;
+import step2.dto.*;
 import step2.view.InputView;
 import step2.view.ResultView;
 

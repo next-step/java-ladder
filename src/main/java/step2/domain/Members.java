@@ -64,7 +64,7 @@ public class Members {
         return memberIndex;
     }
 
-    public String getMemberOfIndex(int index){
+    public String getMemberOfIndex(int index) {
         return members.get(index).getName();
     }
 }

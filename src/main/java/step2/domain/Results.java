@@ -7,6 +7,7 @@ import java.util.List;
 
 public class Results {
     private static final String DEFAULT_REGEX = ",";
+
     private final List<Result> results;
 
     private Results(List<Result> results) {
@@ -27,7 +28,7 @@ public class Results {
 
     private static void validationResult(String str) {
         if (StringUtils.isEmpty(str)) {
-            throw new IllegalArgumentException("실행결과는 빈 칸을 입력하실 수 없습니다.");
+            throw new IllegalArgumentException(Result.RESULT_IS_NOT_BLANK_EXCEPTION_MESSAGE);
         }
     }
 

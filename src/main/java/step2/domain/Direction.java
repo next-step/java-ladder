@@ -16,7 +16,7 @@ public class Direction {
     }
 
     public static Direction middle(boolean isLeft, BooleanGenerator booleanGenerator) {
-        if(isLeft){
+        if (isLeft) {
             return new Direction(true, false);
         }
         return new Direction(false, booleanGenerator.nextBoolean());

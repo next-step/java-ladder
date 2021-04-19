@@ -38,4 +38,8 @@ public class Match {
     public Map<String, String> getMatch() {
         return match;
     }
+
+    public String getResultByMember(String memberName) {
+        return match.get(memberName);
+    }
 }

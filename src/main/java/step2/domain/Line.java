@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-    private static final int FIRST_INDEX = 0;
     private static final int MIDDLE_FIRST_INDEX = 1;
 
     private final List<Point> points;
@@ -22,7 +21,7 @@ public class Line {
         List<Point> newPoints = new ArrayList<>();
         Point point = createFirstPoint(booleanGenerator, newPoints);
         createMiddlePoint(countOfPerson, booleanGenerator, newPoints, point);
-        createLastPoint(newPoints, point);
+        createLastPoint(newPoints);
         return new Line(newPoints);
     }
 
@@ -33,7 +32,7 @@ public class Line {
     }
 
     private static Point createFirstPoint(BooleanGenerator booleanGenerator, List<Point> points) {
-        Point point = Point.first(FIRST_INDEX, booleanGenerator);
+        Point point = Point.first(booleanGenerator);
         points.add(point);
         return point;
     }
@@ -45,8 +44,8 @@ public class Line {
         }
     }
 
-    private static void createLastPoint(List<Point> points, Point point) {
-        points.add(Point.last(point));
+    private static void createLastPoint(List<Point> points) {
+        points.add(Point.last(points.get(points.size() - 1)));
     }
 
     public List<Point> getLine() {
