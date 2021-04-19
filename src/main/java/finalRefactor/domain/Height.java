@@ -1,4 +1,4 @@
-package step3.domain;
+package finalRefactor.domain;
 
 import java.util.Objects;
 
@@ -12,7 +12,7 @@ public class Height {
         this.height = height;
     }
 
-    public int height() {
+    public int getValue() {
         return height;
     }
 
