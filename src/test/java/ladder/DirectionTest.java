@@ -31,15 +31,4 @@ public class DirectionTest {
 
         assertThat(directionRight.hasRightDirection()).isTrue();
     }
-
-    @DisplayName("왼쪽 또는 오른쪽 방향을 가지고 있으면 true를 반환한다.")
-    @Test
-    void hasDirection() {
-        Direction direction1 = new Direction(false, true);
-        Direction direction2 = new Direction(true, false);
-
-        assertThat(direction1.hasDirection()).isTrue();
-        assertThat(direction2.hasDirection()).isTrue();
-    }
-
 }
