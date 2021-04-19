@@ -1,6 +1,6 @@
-package step3.domain;
+package finalRefactor.domain;
 
 public interface PositionGenerator {
 
-    public boolean generate();
+    boolean generate();
 }
