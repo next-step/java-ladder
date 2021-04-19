@@ -16,9 +16,25 @@ class LineTest {
 
     @Test
     @DisplayName("최소 인원수 테스트")
-    void memberMinCountTest(){
+    void memberMinCountTest() {
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> Line.of(0, new RandomGenerator()))
                 .withMessage("두 명 이상의 사용자가 참여해야 합니다.");
+    }
+
+    @Test
+    @DisplayName("지정한 위치에서 우측으로 이동하면 index 1 증가")
+    void movingLineTest() {
+        Line line = Line.of(2, new FixedGenerator(true));
+
+        assertThat(line.move(0)).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("지정한 위치에서 좌측으로 이동하면 index 1감소")
+    void movingLeftLineTest(){
+        Line line = Line.of(3, new FixedGenerator(true));
+
+        assertThat(line.move(1)).isEqualTo(0);
     }
 }
