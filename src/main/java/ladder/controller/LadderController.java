@@ -1,8 +1,6 @@
 package ladder.controller;
 
 import ladder.domain.Ladder;
-import ladder.domain.LadderResult;
-import ladder.domain.Players;
 import ladder.view.InputView;
 import ladder.view.PrizeInputView;
 import ladder.view.PrizeResultView;
@@ -16,18 +14,14 @@ public class LadderController {
 
             Ladder ladder = Ladder.makeLadder(inputView.playersCount(), inputView.getLadderHeight());
 
-            Players players = inputView.getPlayers();
-            LadderResult ladderResult = new LadderResult(players.count(), ladder);
-
-            ResultView resultView = new ResultView(players, ladderResult);
-            resultView.showLadderDrawResult();
-            resultView.printPrize(inputView.getPrize());
+            ResultView resultView = new ResultView(inputView.getPlayers(), ladder);
+            resultView.showLadderDrawResult(inputView.getPrize());
 
             PrizeInputView prizeInputView = new PrizeInputView();
-            PrizeResultView prizeResultView = new PrizeResultView(ladderResult, inputView.getPrize());
+            PrizeResultView prizeResultView = new PrizeResultView(resultView, inputView.getPrize());
             while (!prizeInputView.isAll()) {
                 prizeInputView.inputPlayerNameForPrize();
-                prizeResultView.printPrizeResult(prizeInputView, players);
+                prizeResultView.printPrizeResult(prizeInputView, inputView.getPlayers());
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
