@@ -1,19 +1,19 @@
-package step3.controller;
+package finalRefactor.controller;
 
 
-import step3.domain.*;
-import step3.view.InputView;
-import step3.view.ResultView;
+import finalRefactor.domain.*;
+import finalRefactor.view.InputView;
+import finalRefactor.view.ResultView;
 
 public class LadderGame {
-    InputView inputView = new InputView();
-    ResultView resultView = new ResultView();
+    private InputView inputView = new InputView();
+    private ResultView resultView = new ResultView();
 
     public void start() {
         String participants = inputView.inputParticipant();
         Persons persons = new Persons(participants);
         ExecutionResults executionResults = new ExecutionResults(inputView.inputExecutionResult());
-        int height = inputView.inputHeight();
+        int height = inputView.inputgetValue();
 
         resultView.printPerson(persons);
         Ladder lines = new Ladder(new Height(height), persons.personList().size());
