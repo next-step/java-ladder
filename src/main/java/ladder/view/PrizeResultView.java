@@ -8,8 +8,8 @@ public class PrizeResultView {
     private final LadderResult ladderResult;
     private final Prize prize;
 
-    public PrizeResultView(ResultView resultView, Prize prize) {
-        this.ladderResult = resultView.getLadderResult();
+    public PrizeResultView(LadderResult ladderResult, Prize prize) {
+        this.ladderResult = ladderResult;
         this.prize = prize;
     }
 
