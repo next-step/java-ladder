@@ -7,10 +7,11 @@ public class Main {
   public static void main(String[] args) {
     Participants participants = Participants.makeByString(InputView.participants());
     Ladder ladder = Ladder.makeLadderBySize(InputView.height(), participants.numberOfParticipants() - 1);
+    Ui ui = new Ui(participants.maxNameLength());
 
     System.out.println("실행결과");
 
     ResultView.users(participants);
-    ResultView.ladder(ladder);
+    ResultView.ladder(ladder, ui);
   }
 }
