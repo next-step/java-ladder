@@ -6,6 +6,7 @@ import static step2.domain.LadderType.LEFT;
 import static step2.domain.LadderType.RIGHT;
 
 import java.util.List;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import step2.domain.LadderType;
 import step2.domain.Line;
@@ -14,7 +15,8 @@ import step2.domain.LineStrategy;
 public class LineTest {
 
     @Test
-    void createLine() {
+    @DisplayName("사다리 생성전략 기본값이 EMPTY")
+    void createLineByEmpty() {
         Line line = new Line(4, new LineStrategy() {
             @Override
             public LadderType next() {
@@ -34,7 +36,8 @@ public class LineTest {
     }
 
     @Test
-    void createLine2() {
+    @DisplayName("사다리 생성전략 기본값이 RIGHT")
+    void createLineByRight() {
         Line line = new Line(4, new LineStrategy() {
             @Override
             public LadderType next() {
