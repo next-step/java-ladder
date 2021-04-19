@@ -4,7 +4,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ui {
-  private static final String SPACE = "     ";
+  private static final String SPACE = "   ";
 
   private final String bridge;
   private final String notBridge;
@@ -27,11 +27,6 @@ public class Ui {
     );
   }
 
-  // public int minSize(int size) {
-  //   if(size < 3) {
-  //   }
-  // }
-
   public String bridgeUi(boolean isBridge) {
     if(isBridge) {
       return bridge;
@@ -50,7 +45,14 @@ public class Ui {
   public String ladderUi(Ladder ladder) {
     return ladder.ladder()
       .stream()
-      .map(floor -> SPACE + floorUi(floor))
+      .map(floor -> SPACE + SPACE + floorUi(floor))
       .collect(Collectors.joining("\n"));
+  }
+
+  public String participantsUi(Participants participants) {
+    String users = participants.participants().stream()
+      .map(user -> String.format("%" + (bridge.length() + 1) + "s", user.name()))
+      .collect(Collectors.joining(""));
+    return SPACE + users;
   }
 }

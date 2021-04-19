@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Participants {
-  private static final int SPACE_SIZE = 6;
-  private static final String SPACE = "";
 
   private final List<User> participants;
 
@@ -34,11 +32,8 @@ public class Participants {
     return participants.size();
   }
 
-  public String names() {
-    String users = participants.stream()
-      .map(user -> String.format("%" + SPACE_SIZE + "s", user.name()))
-      .collect(Collectors.joining(""));
-    return SPACE + users;
+  public List<User> participants() {
+    return participants;
   }
 
   public int maxNameLength() {
