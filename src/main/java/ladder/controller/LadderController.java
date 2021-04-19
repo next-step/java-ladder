@@ -12,7 +12,7 @@ public class LadderController {
             InputView inputView = new InputView();
             inputView.inputLadderCondition();
 
-            Ladder ladder = Ladder.makeLadder(inputView.playersCount(), inputView.getLadderHeight());
+            Ladder ladder = Ladder.make(inputView.playersCount(), inputView.getLadderHeight());
 
             ResultView resultView = new ResultView(inputView.getPlayers(), ladder);
             resultView.showLadderDrawResult(inputView.getPrize());

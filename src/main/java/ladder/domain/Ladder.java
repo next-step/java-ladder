@@ -23,7 +23,7 @@ public class Ladder {
         return lines;
     }
 
-    public static Ladder makeLadder(int pointCount, int lineCount) {
+    public static Ladder make(int pointCount, int lineCount) {
         List<Line> ladderLine = new ArrayList<>();
         IntStream.range(0, lineCount)
                 .forEach(line -> ladderLine.add(Line.init(pointCount)));
