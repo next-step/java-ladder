@@ -18,7 +18,7 @@ public class LadderGame {
         return ladder.build();
     }
 
-    public Map<Player, Prize> start() {
+    public PrizeMap start() {
         Map<Point, Point> mapper = new LinkedHashMap<>();
         IntStream.range(0, prizeMapper.getPlayerCount())
                 .forEach(i -> mapper.put(new Point(i), ladder.ride(new Point(i))));

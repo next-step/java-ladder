@@ -1,6 +1,5 @@
 package nextstep.ladder.domain;
 
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class PrizeMapper {
@@ -15,9 +14,9 @@ public class PrizeMapper {
         this.players = players;
     }
 
-    public Map<Player, Prize> getPlayersPrizes(Map<Point, Point> prizePair) {
-        Map<Player, Prize> prizeMap = new LinkedHashMap<>();
-        prizePair.keySet().stream()
+    public PrizeMap getPlayersPrizes(Map<Point, Point> prizePair) {
+        PrizeMap prizeMap = new PrizeMap();
+        prizePair.keySet()
                 .forEach(point -> prizeMap.put(players.get(point.getIndex()), prizes.get(prizePair.get(point).getIndex())));
         return prizeMap;
     }

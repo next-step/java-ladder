@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import nextstep.ladder.domain.LadderGame;
 import nextstep.ladder.domain.Players;
+import nextstep.ladder.domain.PrizeMap;
 import nextstep.ladder.domain.PrizeMapper;
 import nextstep.ladder.domain.Prizes;
 import nextstep.ladder.view.InputView;
@@ -32,19 +33,19 @@ public class Controller {
             ResultView.printResultList(mapperToStringDto(game.start()));
             return;
         }
-        ResultView.printResultList(Arrays.asList(game.start().get(players.findPlayerByName(input)).toString()));
+        ResultView.printResultList(Arrays.asList(game.start().get(players.findPlayerByName(input))));
     }
 
-    private List<String> mapperToStringDto(Map<?, ?> mapper) {
-        List<String> keys = mapper.keySet().stream()
+    private List<String> mapperToStringDto(PrizeMap map) {
+        List<String> keys = map.keySet().stream()
                 .map(Object::toString)
                 .collect(Collectors.toList());
-        List<String> values = mapper.values().stream()
+        List<String> values = map.values().stream()
                 .map(Object::toString)
                 .collect(Collectors.toList());
         List<String> combined = new ArrayList<>();
 
-        IntStream.range(0, mapper.size())
+        IntStream.range(0, map.size())
                 .forEach(i -> combined.add(keys.get(i) + " : " + values.get(i)));
         return combined;
     }
