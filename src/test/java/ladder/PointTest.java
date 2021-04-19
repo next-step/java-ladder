@@ -1,7 +1,9 @@
 package ladder;
 
 import ladder.domain.Direction;
+import ladder.domain.FirstPointStrategy;
 import ladder.domain.Point;
+import ladder.domain.PointStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -15,35 +17,11 @@ public class PointTest {
                 .isEqualTo(new Point(0, new Direction(false, false)));
     }
 
-    @DisplayName("다음 포인트의 인덱스를 반환한다.")
-    @Test
-    void nextIndex() {
-        Point point = new Point(0, new Direction(false, false));
-        assertThat(point.next()).isEqualTo(1);
-    }
-
     @DisplayName("포인트가 오른쪽 방향을 가지고 있다면 true를 반환한다.")
     @Test
     void hasRightDirection() {
         Point point = new Point(0, new Direction(false, true));
         assertThat(point.hasRightDirection()).isTrue();
-    }
-
-    @DisplayName("포인트가 왼쪽 방향을 가지고 있다면 true를 반환한다.")
-    @Test
-    void hasLeftDirection() {
-        Point point = new Point(0, new Direction(true, false));
-        assertThat(point.hasLeftDirection()).isTrue();
-    }
-
-    @DisplayName("포인트가 왼쪽 또는 오른쪽 방향을 가지고 있다면 true를 반환한다.")
-    @Test
-    void hasDirection() {
-        Point point1 = new Point(0, new Direction(false, true));
-        Point point2 = new Point(0, new Direction(true, false));
-
-        assertThat(point1.hasDirection()).isTrue();
-        assertThat(point2.hasDirection()).isTrue();
     }
 
     @DisplayName("포인트가 움직인 후의 결과 인덱스를 반환한다.")
@@ -56,5 +34,32 @@ public class PointTest {
         assertThat(point1.move()).isEqualTo(2);
         assertThat(point2.move()).isEqualTo(0);
         assertThat(point3.move()).isEqualTo(1);
+    }
+
+    @DisplayName("양쪽 방향이 없을경우 자신의 인덱스를 반환한다.")
+    @Test
+    void pass() {
+        PointStrategy strategy = new FirstPointStrategy(false);
+        Point secondPoint = strategy.point().next(false);
+
+        assertThat(secondPoint.move()).isEqualTo(1);
+    }
+
+    @DisplayName("왼쪽 방향의 경우 자신의 이전 인덱스를 반환한다.")
+    @Test
+    void left() {
+        PointStrategy strategy = new FirstPointStrategy(true);
+        Point secondPoint = strategy.point().next(false);
+
+        assertThat(secondPoint.move()).isEqualTo(0);
+    }
+
+    @DisplayName("오른쪽 방향의 경우 자신의 다음 인덱스를 반환한다.")
+    @Test
+    void right() {
+        PointStrategy strategy = new FirstPointStrategy(false);
+        Point secondPoint = strategy.point().next(true);
+
+        assertThat(secondPoint.move()).isEqualTo(2);
     }
 }
