@@ -5,15 +5,15 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-public class Line {
+public class LadderLine {
     private final List<Point> points;
     private final RandomGenerator randomGenerator = new RandomGenerator();
 
-    public Line(int countOfPerson) {
+    public LadderLine(int countOfPerson) {
         this.points = createLine(countOfPerson, randomGenerator);
     }
 
-    public Line(List<Point> points) {
+    public LadderLine(List<Point> points) {
         this.points = points;
     }
 
@@ -53,7 +53,7 @@ public class Line {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Line line = (Line) o;
+        LadderLine line = (LadderLine) o;
         return Objects.equals(points, line.points) && Objects.equals(randomGenerator, line.randomGenerator);
     }
 
