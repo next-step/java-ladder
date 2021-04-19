@@ -10,14 +10,9 @@ import java.util.Scanner;
 public class InputView {
     private static final String DELIMITER = ",";
 
-    private final Scanner scanner;
     private Players players;
     private int ladderHeight;
     private Prize prize;
-
-    public InputView() {
-        scanner = new Scanner(System.in);
-    }
 
     public void inputLadderCondition() {
         inputPlayer();
@@ -26,12 +21,14 @@ public class InputView {
     }
 
     private void inputPlayer() {
+        Scanner scanner = new Scanner(System.in);
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         String inputPlayers = scanner.nextLine();
         players = Players.of(Arrays.asList(StringUtil.split(inputPlayers.trim(), DELIMITER)));
     }
 
     private void inputPrize() {
+        Scanner scanner = new Scanner(System.in);
         System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
         String inputPrize = scanner.nextLine();
 
@@ -44,6 +41,7 @@ public class InputView {
     }
 
     private void inputLadderHeight() {
+        Scanner scanner = new Scanner(System.in);
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         ladderHeight = scanner.nextInt();
     }
