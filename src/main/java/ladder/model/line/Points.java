@@ -10,6 +10,11 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class Points {
+  private static final int UNDER_ONE = -1;
+  private static final int ZERO = 0;
+  private static final int ONE = 1;
+
+
   private final List<Boolean> points;
 
   private Points(List<Boolean> points) {
@@ -25,42 +30,27 @@ public class Points {
     return new Points(Collections.unmodifiableList(makingPoints));
   }
 
-  public InterimResults move(InterimResults interimResults) {
-
-    InterimResult firstInterimResult = interimResults.interimResults().stream().filter(interimResult -> interimResult.resultIndex() == 0).findFirst().get();
-
-    interimResults
-      .interimResults()
-      .stream()
-      .filter(interimResult -> interimResult.firstIndex() == firstInterimResult.firstIndex())
-      .forEach(interimResult ->
-        interimResult.move(checkMoveOrStop(false, points.get(interimResult.resultIndex())))
-      );
-
-    interimResults
-      .interimResults()
-      .stream()
-      .filter(interimResult -> interimResult.firstIndex() != firstInterimResult.firstIndex())
-      .forEach(interimResult ->
-        interimResult.move(checkMoveOrStop(points.get(interimResult.resultIndex() - 1), points.get(interimResult.resultIndex())))
-      );
-
-    return interimResults;
-  }
-
-  private int checkMoveOrStop(boolean leftCursor, boolean currentCursor) {
-    if (leftCursor) {
-      return -1;
-    }
-    if (currentCursor) {
-      return +1;
-    }
-
-    return 0;
-  }
-
   public List<Boolean> specificPoints() {
     return points;
   }
 
+  public int checkMoveOrStop(int leftCursor, int currentCursor) {
+    if (points.get(leftCursor)) {
+      return UNDER_ONE;
+    }
+    if (points.get(currentCursor)) {
+      return ONE;
+    }
+
+    return ZERO;
+  }
+
+  public int checkMoveOrStop(int currentCursor) {
+
+    if (points.get(currentCursor)) {
+      return ONE;
+    }
+
+    return ZERO;
+  }
 }

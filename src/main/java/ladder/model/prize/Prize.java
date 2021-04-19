@@ -8,6 +8,8 @@ import java.util.Optional;
 public class Prize {
   private static final String ZERO_SYMBOL = "꽝";
   private static final String NUMBER_PATTERN = "^[0-9]+$";
+  private static final int ZERO = 0;
+  private static final int LENGTH_LIMIT = 5;
   private static final String INVALID_PRIZE_FORMAT_EXCEPTION_MESSAGE = "잘못된 결과를 입력했습니다.";
 
   private final String prize;
@@ -23,7 +25,8 @@ public class Prize {
 
   private void checkPrize(String prize) {
     Optional.ofNullable(prize)
-      .filter(value -> value.matches(NUMBER_PATTERN) || value.equals(ZERO_SYMBOL))
+      .map(String::trim)
+      .filter(value -> value.length() > ZERO && value.length() <= LENGTH_LIMIT)
       .orElseThrow(() ->
         new InvalidPrizeFormatException(INVALID_PRIZE_FORMAT_EXCEPTION_MESSAGE)
       );

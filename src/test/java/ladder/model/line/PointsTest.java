@@ -1,11 +1,9 @@
 package ladder.model.line;
 
-import ladder.model.result.InterimResults;
 import ladder.strategy.LadderPointsStrategy;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -41,10 +39,11 @@ class PointsTest {
     Assertions.assertThat(points.specificPoints().size()).isEqualTo(countOfPerson);
   }
 
-  @Test
+  @ParameterizedTest
+  @CsvSource(value = "4")
   @DisplayName("포인트 이동 테스트")
-  void movingTest() {
-    Points points = Points.makePoints(4, new LadderPointsStrategy() {
+  void pointMovingTest(int countOfPerson) {
+    Points points = Points.makePoints(countOfPerson, new LadderPointsStrategy() {
       @Override
       public boolean makeFirstPoint() {
         return true;
@@ -61,19 +60,15 @@ class PointsTest {
       }
     });
 
-    InterimResults interimResults = InterimResults.makeInterimResults(2);
-    InterimResults movedResult = points.move(interimResults);
-    Assertions.assertThat(movedResult.interimResults().get(0).resultIndex()).isEqualTo(1);
+    Assertions.assertThat(points.checkMoveOrStop(0)).isEqualTo(1);
   }
 
-  @Test
+  @ParameterizedTest
+  @CsvSource(value = "4")
   @DisplayName("포인트 정지 테스트")
-  void stoppingTest() {
-    Points points = Points.makePoints(4, strategy);
+  void pointStopTest(int countOfPerson) {
+    Points points = Points.makePoints(countOfPerson, strategy);
 
-    InterimResults interimResults = InterimResults.makeInterimResults(2);
-    InterimResults movedResult = points.move(interimResults);
-    Assertions.assertThat(movedResult.interimResults().get(0).resultIndex()).isEqualTo(0);
+    Assertions.assertThat(points.checkMoveOrStop(0)).isEqualTo(0);
   }
-
 }

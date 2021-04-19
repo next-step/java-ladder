@@ -11,7 +11,7 @@ public class Line {
   }
 
   public InterimResults move(InterimResults interimResults) {
-    return points.move(interimResults);
+    return interimResults.move(points);
   }
 
   public Points points() {

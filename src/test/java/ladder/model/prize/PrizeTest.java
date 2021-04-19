@@ -19,7 +19,7 @@ class PrizeTest {
   }
 
   @ParameterizedTest
-  @ValueSource(strings = {"깡", "a122", "32a"})
+  @ValueSource(strings = {"안녕하세요오", "안녕히가세요", ""})
   @DisplayName("생성 불가능할 때 생성")
   void invalidMakeTest(String prize) {
     assertThatThrownBy(() ->
