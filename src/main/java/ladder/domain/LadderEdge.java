@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class LadderEdge {
-
     private final Players players;
     private final Rewards rewards;
 

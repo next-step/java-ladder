@@ -27,18 +27,31 @@
     * 메소드
         * int finalLine(int startLine)
 
-* GameHelper
+* LadderEdge
     * instance
-        * List\<String\> top
-        * List\<String\> bottom
-    * 주 생성자 : Layers(top, bottom)
+        * Players
+        * Rewards
+
+* LadderGame
+    * instance
+        * gameResult
     * 메소드
-        * Map<String, String> gameResult(Ladder ladder)
+        * Reward findReward(Player player)
+
+* Players
+    * instance : List<Player> players
+
+* Player
+    * instance : String player
+
+* Rewards
+    * instance : List<Reward> rewards
+
+* Reward
+    * instance : String reward
 
 ### 서비스 상세
 
-* LadderGame
-    * run()
 * RandomBooleanGenerator
     * 메소드
         * static boolean randomBoolean()
