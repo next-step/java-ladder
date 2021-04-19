@@ -2,20 +2,21 @@ package ladder;
 
 import ladder.domain.Ladder;
 import ladder.domain.LadderEdge;
+import ladder.domain.Players;
+import ladder.domain.Rewards;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
-import java.util.List;
 import java.util.Map;
 
 public class LadderMain {
     public static void main(String[] args) {
-        List<String> top = InputView.getTop();
-        List<String> bottom = InputView.getBottom();
-        LadderEdge ladderEdge = new LadderEdge(top, bottom);
+        Players players = Players.valueOf(InputView.getPlayers());
+        Rewards rewards = Rewards.valueOf(InputView.getRewards());
+        LadderEdge ladderEdge = new LadderEdge(players, rewards);
 
         int height = InputView.getLadderHeight();
-        Ladder ladder = Ladder.valueOf(top.size(), height);
+        Ladder ladder = Ladder.valueOf(ladderEdge.playerSize(), height);
         ResultView.printLadder(ladder, ladderEdge);
 
         Map<String, String> gameResult = ladderEdge.gameResult(ladder);

@@ -1,9 +1,6 @@
 package ladder;
 
-import ladder.domain.Ladder;
-import ladder.domain.LadderEdge;
-import ladder.domain.Player;
-import ladder.domain.Reward;
+import ladder.domain.*;
 import ladder.service.RandomBoolean;
 import ladder.service.RandomBooleanGenerator;
 import org.assertj.core.api.Assertions;
@@ -11,7 +8,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class LadderGameTest {
@@ -29,22 +25,25 @@ public class LadderGameTest {
         final int height = 3;
         Ladder ladder = Ladder.valueOf(line, height, randomTrueBoolean);
 
-        final List<Player> players = Arrays.asList(new Player("a"), new Player("b"), new Player("c"), new Player("d"), new Player("e"), new Player("f"));
-        final List<Reward> rewards = Arrays.asList(new Reward("1등"), new Reward("2등"), new Reward("3등"), new Reward("4등"), new Reward("5등"), new Reward("6등"));
+        final Players players = Players.valueOf(Arrays.asList("a", "b", "c", "d", "e", "f"));
+        final Rewards rewards = Rewards.valueOf(Arrays.asList("1등", "2등", "3등", "4등", "5등", "6등"));
+
         LadderEdge ladderEdge = new LadderEdge(players, rewards);
 
-        Map<String, String> expectResult = new HashMap<>();
-        expectResult.put("a", "2등");
-        expectResult.put("b", "1등");
-        expectResult.put("c", "4등");
-        expectResult.put("d", "3등");
-        expectResult.put("e", "6등");
-        expectResult.put("f", "5등");
+        Map<Player, Reward> expectResult = new HashMap<>();
+        expectResult.put(new Player("a"), new Reward("2등"));
+        expectResult.put(new Player("b"), new Reward("1등"));
+        expectResult.put(new Player("c"), new Reward("4등"));
+        expectResult.put(new Player("d"), new Reward("3등"));
+        expectResult.put(new Player("e"), new Reward("6등"));
+        expectResult.put(new Player("f"), new Reward("5등"));
+
+        LadderGame expectLadderGame = new LadderGame(expectResult);
 
         //when
-        Map<String, String> result = ladderEdge.gameResult(ladder);
+        LadderGame resultLadderGame = LadderGame.valueOf(ladderEdge, ladder);
 
         // then
-        Assertions.assertThat(result).isEqualTo(expectResult);
+        Assertions.assertThat(resultLadderGame).isEqualTo(expectLadderGame);
     }
 }
