@@ -1,29 +1,41 @@
 package step2.domain;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Match {
-    private static final int NOT_FOUND = -1;
-    private final int matchIndex;
+    private final Map<String, String> match;
 
-    public Match(Member member, Members members, Ladder ladder) {
-        int memberIndex = getMatchMemberIndex(member, members);
-        this.matchIndex = ladder.getResultOfMember(memberIndex);
+    private Match(Map<String, String> match) {
+        this.match = match;
     }
 
-    private int getMatchMemberIndex(Member member, Members members) {
-        int memberIndex = members.indexOf(member);
-        if (memberIndex == NOT_FOUND) {
-            throw new IllegalArgumentException("해당 사용자는 사다리 게임에 참여하지 않았습니다.");
+    public static Match findOfResults(Members members, Ladder ladder, Results results, Member findMember) {
+        if (findMember.isAllByName()) {
+            return findMatchResultOfAll(members, ladder, results);
         }
-        return memberIndex;
+        Map<String, String> returnMap = findResultsMatchingOfMember(members, ladder, results, findMember);
+        return new Match(returnMap);
     }
 
-    public String getMatchOfResult(Results results) {
-        return results.getResultOfMember(this.matchIndex);
+    private static Map<String, String> findResultsMatchingOfMember(Members members, Ladder ladder, Results results, Member findMember) {
+        Map<String, String> returnMap = new HashMap<>();
+        int memberIndex = members.indexOf(findMember);
+        int matchingOfResultIndex = ladder.getEndIndexByStartIndex(memberIndex);
+        returnMap.put(members.getMemberOfIndex(memberIndex), results.getResultOfMember(matchingOfResultIndex));
+        return returnMap;
     }
 
-    public List<Result> getMatchOfAll(Results results) {
-        return results.getResultOfAllMember();
+    private static Match findMatchResultOfAll(Members members, Ladder ladder, Results results) {
+        Map<String, String> returnMap = new HashMap<>();
+        for (int i = 0; i < members.getSize(); i++) {
+            int matchingOfResultIndex = ladder.getEndIndexByStartIndex(i);
+            returnMap.put(members.getMemberOfIndex(i), results.getResultOfMember(matchingOfResultIndex));
+        }
+        return new Match(returnMap);
+    }
+
+    public Map<String, String> getMatch() {
+        return match;
     }
 }

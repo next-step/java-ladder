@@ -33,7 +33,7 @@ public class Line {
     }
 
     private static Point createFirstPoint(BooleanGenerator booleanGenerator, List<Point> points) {
-        Point point = Point.first(FIRST_INDEX, Direction.first(booleanGenerator));
+        Point point = Point.first(FIRST_INDEX, booleanGenerator);
         points.add(point);
         return point;
     }

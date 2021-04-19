@@ -53,10 +53,6 @@ public class Members {
     }
 
     public int indexOf(Member member) {
-        if(member.isAll()){
-            return -1;
-        }
-
         int memberIndex = NOT_FOUND;
 
         for (int i = 0; i < members.size(); i++) {
@@ -66,5 +62,9 @@ public class Members {
             }
         }
         return memberIndex;
+    }
+
+    public String getMemberOfIndex(int index){
+        return members.get(index).getName();
     }
 }

@@ -1,11 +1,13 @@
 package step2.domain;
 
+import java.util.Objects;
+
 public class Point {
     private static final int NEXT_INDEX = 1;
     private final int index;
     private final Direction direction;
 
-    public Point(int index, Direction direction) {
+    private Point(int index, Direction direction) {
         if (direction.isLeft() && direction.isRight()) {
             throw new IllegalArgumentException("양 쪽으로 갈 수 없습니다.");
         }
@@ -13,8 +15,8 @@ public class Point {
         this.direction = direction;
     }
 
-    public static Point first(int index, Direction direction) {
-        return new Point(index, direction);
+    public static Point first(int index, BooleanGenerator booleanGenerator) {
+        return new Point(index, Direction.first(booleanGenerator));
     }
 
     public static Point middle(Point point, BooleanGenerator booleanGenerator) {
@@ -39,4 +41,16 @@ public class Point {
         return direction.isRight();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Point point = (Point) o;
+        return index == point.index && Objects.equals(direction, point.direction);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(index, direction);
+    }
 }

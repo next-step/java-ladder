@@ -43,7 +43,7 @@ public class Ladder {
         return lines.size();
     }
 
-    public int getResultOfMember(int index) {
+    public int getEndIndexByStartIndex(int index) {
         int currentPosition = index;
         for (Line line : lines) {
             currentPosition = line.move(currentPosition);

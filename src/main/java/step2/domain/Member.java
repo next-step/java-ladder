@@ -44,7 +44,7 @@ public class Member {
         return Objects.hash(name);
     }
 
-    public boolean isAll() {
+    public boolean isAllByName() {
         return ALL_MEMBER.equals(name);
     }
 }

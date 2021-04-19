@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Results {
+    private static final String DEFAULT_REGEX = ",";
     private final List<Result> results;
 
     private Results(List<Result> results) {
@@ -15,7 +16,7 @@ public class Results {
     public static Results of(String str) {
         validationResult(str);
 
-        String[] resultArr = str.split(",");
+        String[] resultArr = str.split(DEFAULT_REGEX);
         List<Result> newResults = new ArrayList<>();
         for (String result : resultArr) {
             Result newResult = new Result(result);
@@ -34,10 +35,7 @@ public class Results {
         return results.get(index).getResult();
     }
 
-    public List<Result> getResultOfAllMember() {
-        List<Result> newResults = new ArrayList<>();
-        for (int i = 0; i < results.size(); i++) {
-
-        }
+    public List<Result> getResults() {
+        return results;
     }
 }
