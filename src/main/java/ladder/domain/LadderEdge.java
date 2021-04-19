@@ -5,15 +5,14 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class GameHelper {
+public class LadderEdge {
 
-    private final List<String> top;
-    private final List<String> bottom;
+    private final Players players;
+    private final Rewards rewards;
 
-    public GameHelper(List<String> top, List<String> bottom) {
-        this.top = top;
-        this.bottom = bottom;
-
+    public LadderEdge(Players players, Rewards rewards) {
+        this.players = players;
+        this.rewards = rewards;
     }
 
     public Map<String, String> gameResult(Ladder ladder) {

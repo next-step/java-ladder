@@ -1,7 +1,7 @@
 package ladder.view;
 
-import ladder.domain.GameHelper;
 import ladder.domain.Ladder;
+import ladder.domain.LadderEdge;
 import ladder.domain.Layer;
 
 import java.util.List;
@@ -13,13 +13,13 @@ public class ResultView {
     private final static String PRINT_RESULT = "실행결과";
     private final static int AISLE_WIDTH = 6;
 
-    public static void printLadder(Ladder ladder, GameHelper gameHelper) {
+    public static void printLadder(Ladder ladder, LadderEdge ladderEdge) {
         System.out.println(PRINT_LADDER_RESULT);
         StringBuilder sb = new StringBuilder();
-        sb.append(printEdge(gameHelper.getTop()));
+        sb.append(printEdge(ladderEdge.getTop()));
         ladder.getLayers().stream()
                 .forEach(layer -> sb.append(printLayer(layer)));
-        sb.append(printEdge(gameHelper.getBottom()));
+        sb.append(printEdge(ladderEdge.getBottom()));
         System.out.println(sb);
     }
 
