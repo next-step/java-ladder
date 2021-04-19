@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -19,5 +20,30 @@ public class LadderGame {
                         index -> ladderEdge.reward(ladder.finalLine(index))
                 ));
         return new LadderGame(result);
+    }
+
+    public Reward findReward(Player player) {
+        return gameResult.get(player);
+    }
+
+    public Map<Player, Reward> gameResult() {
+        return this.gameResult;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        LadderGame that = (LadderGame) o;
+        return Objects.equals(gameResult, that.gameResult);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(gameResult);
     }
 }

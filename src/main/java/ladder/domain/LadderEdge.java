@@ -1,5 +1,8 @@
 package ladder.domain;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class LadderEdge {
 
     private final Players players;
@@ -20,5 +23,19 @@ public class LadderEdge {
 
     public Reward reward(int index) {
         return this.rewards.getReward(index);
+    }
+
+    public List<String> players() {
+        return this.players.players()
+                .stream()
+                .map(player -> player.toString())
+                .collect(Collectors.toList());
+    }
+
+    public List<String> rewards() {
+        return this.rewards.rewards()
+                .stream()
+                .map(reward -> reward.toString())
+                .collect(Collectors.toList());
     }
 }
