@@ -1,16 +1,20 @@
-package step3.domain;
+package finalRefactor.domain;
 
 import java.util.Objects;
 import java.util.Random;
 
-public class Location {
+public class Direction {
     private final boolean left;
     private final boolean right;
 
-    public Location(boolean left, boolean right) {
+    private Direction(boolean left, boolean right) {
         validation(left, right);
         this.left = left;
         this.right = right;
+    }
+
+    public static Direction of(boolean left, boolean right) {
+        return new Direction(left, right);
     }
 
     private void validation(boolean left, boolean right) {
@@ -27,11 +31,11 @@ public class Location {
         return right;
     }
 
-    public static Location first(boolean right) {
-        return new Location(false, right);
+    public static Direction first(boolean right) {
+        return new Direction(false, right);
     }
 
-    public Location next() {
+    public Direction next() {
         if (right) {
             return next(false);
         }
@@ -39,12 +43,12 @@ public class Location {
         return next(generatePoint());
     }
 
-    public Location next(boolean nextRight) {
-        return new Location(this.right, nextRight);
+    public Direction next(boolean nextRight) {
+        return new Direction(this.right, nextRight);
     }
 
-    public Location last() {
-        return new Location(this.right, false);
+    public Direction last() {
+        return new Direction(this.right, false);
     }
     private boolean generatePoint() {
         Random random = new Random();
@@ -55,7 +59,7 @@ public class Location {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Location location = (Location) o;
+        Direction location = (Direction) o;
         return left == location.left && right == location.right;
     }
 
