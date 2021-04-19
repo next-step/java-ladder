@@ -2,18 +2,18 @@ package ladder.domain;
 
 public class BodyPointStrategy implements PointStrategy {
     private final Point previousPoint;
-    private final boolean right;
+    private final boolean nextRight;
 
-    public BodyPointStrategy(Point previousPoint, boolean right) {
+    public BodyPointStrategy(Point previousPoint, boolean nextRight) {
         this.previousPoint = previousPoint;
-        this.right = right;
+        this.nextRight = nextRight;
     }
 
     @Override
     public Point point() {
         if (previousPoint.hasRightDirection()) {
-            return new Point(previousPoint.next(), new Direction(true, false));
+            return previousPoint.next(false);
         }
-        return new Point(previousPoint.next(), new Direction(false, right));
+        return previousPoint.next(nextRight);
     }
 }

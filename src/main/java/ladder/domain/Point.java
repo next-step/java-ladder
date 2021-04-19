@@ -13,20 +13,12 @@ public class Point {
         this.direction = direction;
     }
 
-    public int next() {
-        return right(index);
+    public Point next(boolean nextRight) {
+        return new Point(right(index), direction.next(nextRight));
     }
 
     public boolean hasRightDirection() {
         return direction.hasRightDirection();
-    }
-
-    public boolean hasLeftDirection() {
-        return direction.hasLeftDirection();
-    }
-
-    public boolean hasDirection() {
-        return direction.hasDirection();
     }
 
     public int move() {

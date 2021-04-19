@@ -1,14 +1,14 @@
 package ladder.domain;
 
 public class FirstPointStrategy implements PointStrategy {
-    private final boolean right;
+    private final boolean nextRight;
 
-    public FirstPointStrategy(boolean right) {
-        this.right = right;
+    public FirstPointStrategy(boolean nextRight) {
+        this.nextRight = nextRight;
     }
 
     @Override
     public Point point() {
-        return new Point(0, new Direction(false, right));
+        return new Point(0, new Direction(false, nextRight));
     }
 }
