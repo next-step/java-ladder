@@ -26,4 +26,13 @@ public class ParticipantsTest {
 
     assertThat(participants.numberOfParticipants()).isEqualTo(numberOfParticipants);
   }
+
+  @ParameterizedTest
+  @CsvSource(value = {"tim,first,ted:5"}, delimiter = ':')
+  @DisplayName("participants names max length")
+  public void calcNamesMaxLength(String users, int max) {
+    int calcMax = Participants.makeByString(users).maxNameLength();
+    
+    assertThat(calcMax).isEqualTo(max);
+  }
 }
