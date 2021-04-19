@@ -5,7 +5,6 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
-  private static final String SPACE = "     ";
   private static final int MIN_HEIGHT = 1;
   private static final int MIN_WIDTH = 1;
   
@@ -34,9 +33,7 @@ public class Ladder {
     }
   }
 
-  public String ui() {
-    return ladder.stream()
-      .map(floor -> SPACE + floor.ui())
-      .collect(Collectors.joining("\n"));
+  public List<Floor> ladder() {
+    return ladder;
   }
 }

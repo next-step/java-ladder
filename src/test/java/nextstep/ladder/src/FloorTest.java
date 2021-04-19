@@ -23,28 +23,6 @@ public class FloorTest {
     assertThat(floor.floor().size()).isEqualTo(size);
   }
 
-  @ParameterizedTest
-  @MethodSource("uiArguments")
-  @DisplayName("floor ui test")
-  public void ui(List<Bridge> floor, String ui) {
-    String str = new Floor(floor).ui();
-
-    assertThat(str).isEqualTo(ui);
-  }
-
-  private static Stream<Arguments> uiArguments() {
-    return Stream.of(
-      Arguments.of(
-        Arrays.asList(new Bridge(true), new Bridge(true)),
-        "|-----|-----|"
-      ),
-      Arguments.of(
-        Arrays.asList(new Bridge(true), new Bridge(false)),
-        "|-----|     |"
-      )
-    );
-  }
-
   @RepeatedTest(value = 100)
   @DisplayName("bridge not overlap")
   public void bridgeNotOverlap() {
