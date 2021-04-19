@@ -24,6 +24,10 @@ public class Prizes implements Iterable<Prize> {
         return prizes.size();
     }
 
+    public Prize findByIndex(int index) {
+        return prizes.get(index);
+    }
+
     @Override
     public Iterator<Prize> iterator() {
         return prizes.iterator();
