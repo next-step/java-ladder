@@ -4,6 +4,7 @@ import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Members;
 import nextstep.ladder.domain.Point;
+import nextstep.ladder.domain.Prize;
 import nextstep.ladder.domain.Prizes;
 
 public class ResultView {
@@ -18,6 +19,13 @@ public class ResultView {
         printMembers(members);
         printLadder(ladder);
         printPrizes(prizes);
+        System.out.println();
+    }
+
+    public static void printResult(Prize prize) {
+        System.out.println();
+        System.out.println("실행결과");
+        System.out.println(prize.value());
         System.out.println();
     }
 
