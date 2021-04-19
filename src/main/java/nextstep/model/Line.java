@@ -30,22 +30,6 @@ public class Line {
         return this.points;
     }
 
-    public String lineString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < points.size(); i++) {
-            stringBuilder.append("|");
-            if (points.get(i)) {
-                stringBuilder.append(HORIZON_LADDER_STRING);
-            } else {
-                stringBuilder.append(EMPTY_LADDER_STRING);
-            }
-            if (i == points.size() - 1) {
-                stringBuilder.append("|");
-            }
-        }
-        return stringBuilder.toString();
-    }
-
     @Override
     public String toString() {
         return "Line{" +

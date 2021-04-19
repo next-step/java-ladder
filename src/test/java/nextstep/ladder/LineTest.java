@@ -18,13 +18,4 @@ class LineTest {
         line.markOne(2);
         assertThat(line.getPoints()).isEqualTo(new Points(Arrays.asList(false, false, true)));
     }
-
-    @Test
-    @DisplayName("라인그리기테스트")
-    void draw() {
-        int countOfPerson = 3;
-        Line line = new Line(countOfPerson);
-        line.markOne(2);
-        assertThat(line.lineString()).isEqualTo("|     |     |-----|");
-    }
 }

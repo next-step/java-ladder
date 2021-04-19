@@ -10,20 +10,16 @@ public class OnlineLadder extends Ladder {
         this.lineMarkAll();
     }
 
-    public void lineMark(int targetVertical, int targetHorizon) {
-        this.lines.mark(targetVertical, targetHorizon);
-    }
-
     public void lineMarkAll() {
         this.lines.initMark();
         this.lines.markWithoutFirst();
     }
 
-    public String ladderString(int targetVertical) {
-        return this.lines.lineString(targetVertical);
+    public Points points(int row) {
+        return this.lines.points(row);
     }
 
-    public String playersString() {
-        return this.players.names();
+    public Players players() {
+        return players;
     }
 }
