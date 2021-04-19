@@ -1,43 +1,50 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.view.dto.LadderDto;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+import static nextstep.ladder.util.BinaryOperators.nope;
+
 public class Ladder {
 
     private final List<Line> lines;
 
-    protected Ladder(List<Line> lines) {
+    private Ladder(List<Line> lines) {
         this.lines = lines;
     }
 
-    public Ladder(Height height, int countOfPerson) {
-        this(Stream.generate(() -> new Line(countOfPerson))
+    public static Ladder of(Height height, Players players) {
+        List<Line> lines = Stream.generate(() -> generateLine(players.countOfPerson()))
                 .limit(height.value())
-                .collect(Collectors.toList()));
+                .collect(Collectors.toList());
+        return new Ladder(lines);
     }
 
-
-    public LadderDto readOnlyLadder() {
-        return new LadderDto(Collections.unmodifiableList(lines));
+    private static Line generateLine(int countOfPerson) {
+        return Line.init(countOfPerson);
     }
 
-    public int positionOfResult(int startPosition) {
-        int position = startPosition;
-        for (Line line : lines) {
-            position = line.moveWhich(position);
-        }
-        return position;
+    public int height() {
+        return lines.size();
     }
 
-    public List<Integer> positionOfAllResult() {
-        return IntStream.range(0, lines.size())
-                .mapToObj(this::positionOfResult)
-                .collect(Collectors.toUnmodifiableList());
+    public List<Integer> allResult() {
+        return IntStream.range(0, lines.get(0).size())
+                .mapToObj(this::result)
+                .collect(Collectors.toList());
+    }
+
+    private int result(int position) {
+        return lines.stream()
+                .reduce(position,
+                        (startPosition, line) -> line.move(startPosition),
+                        nope());
+    }
+
+    public List<Line> lines() {
+        return Collections.unmodifiableList(lines);
     }
 }

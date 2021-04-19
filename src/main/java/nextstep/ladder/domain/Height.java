@@ -8,9 +8,13 @@ public class Height {
 
     private final int height;
 
-    public Height(final String height) {
-        this.height = toInt(height);
+    public Height(final int height) {
+        this.height = height;
         validateHeight();
+    }
+
+    public Height(final String height) {
+        this(toInt(height));
     }
 
     private static int toInt(String inputHeight) {
