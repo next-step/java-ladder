@@ -12,18 +12,18 @@ public class ParticipantsTest {
   @ParameterizedTest
   @NullAndEmptySource
   @DisplayName("exception with empty or null")
-  public void assureNotEmpty(String str) {
+  public void assureNotEmpty(String users) {
     assertThatThrownBy(() -> {
-      Participants.makeByString(str);
+      Participants.makeByString(users);
     }).isInstanceOf(IllegalArgumentException.class);
   }
 
   @ParameterizedTest
   @CsvSource(value = {"민호,철수:2", "민호,철수 , 수지,영수:4"}, delimiter = ':')
   @DisplayName("check number of participants")
-  public void assureNotEmpty(String str, int num) {
-    Participants participants = Participants.makeByString(str);
+  public void assureNotEmpty(String users, int numberOfParticipants) {
+    Participants participants = Participants.makeByString(users);
 
-    assertThat(participants.numberOfParticipants()).isEqualTo(num);
+    assertThat(participants.numberOfParticipants()).isEqualTo(numberOfParticipants);
   }
 }

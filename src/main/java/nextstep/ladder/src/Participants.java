@@ -14,18 +14,18 @@ public class Participants {
     this.participants = participants;
   }
 
-  public static Participants makeByString(String str) {
-    assureNotEmpty(str);
+  public static Participants makeByString(String users) {
+    assureNotEmpty(users);
     return new Participants(
-      Arrays.stream(str.split(","))
+      Arrays.stream(users.split(","))
       .map(String::trim)
       .map(User::new)
       .collect(Collectors.toList())
     );
   }
 
-  private static void assureNotEmpty(String str) {
-    if(str == null || str.equals("")) {
+  private static void assureNotEmpty(String users) {
+    if(users == null || users.equals("")) {
       throw new IllegalArgumentException("null or 빈값이 들어올 수 없습니다.");
     }
   }
@@ -35,9 +35,9 @@ public class Participants {
   }
 
   public String names() {
-    String str = participants.stream()
+    String users = participants.stream()
       .map(user -> String.format("%" + SPACE_SIZE + "s", user.name()))
       .collect(Collectors.joining(""));
-    return SPACE + str;
+    return SPACE + users;
   }
 }
