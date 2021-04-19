@@ -14,10 +14,10 @@ public class LadderGame {
     public void game() {
         String participants = inputView.inputParticipant();
         Persons persons = new Persons(participants);
-        int height = inputView.inputHeight();
+        int height = inputView.inputgetValue();
 
         resultView.printPerson(persons);
-        resultView.printLadder(new Lines(new Height(height).height(), persons.personList().size()));
+        resultView.printLadder(new Lines(new Height(height).getValue(), persons.personList().size()));
 
     }
 }

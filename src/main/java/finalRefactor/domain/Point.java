@@ -1,13 +1,13 @@
-package step3.domain;
+package finalRefactor.domain;
 
 import java.util.Objects;
 
 public class Point {
 
     private final int point;
-    private final Location location;
+    private final Direction location;
 
-    public Point(int point, Location location) {
+    public Point(int point, Direction location) {
         this.point = point;
         this.location = location;
     }
@@ -25,7 +25,7 @@ public class Point {
     }
 
     public static Point first(boolean right) {
-        return new Point(0, Location.first(right));
+        return new Point(0, Direction.first(right));
     }
 
     public Point next() {
@@ -40,7 +40,7 @@ public class Point {
         return new Point(point + 1, location.last());
     }
 
-    public Location location() {
+    public Direction location() {
         return location;
     }
 

@@ -1,4 +1,4 @@
-package step3;
+package finalRefactor;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,7 +11,7 @@ public class HeightTest {
 
     @Test
     @DisplayName("사다리 높이 클래스 생성")
-    void createHeight() {
+    void creategetValue() {
         Height height = new Height(3);
         assertThat(height).isEqualTo(new Height(3));
     }

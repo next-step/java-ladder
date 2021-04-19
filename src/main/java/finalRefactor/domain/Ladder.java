@@ -1,37 +1,37 @@
-package step3.domain;
+package finalRefactor.domain;
 
 import java.util.*;
 
 public class Ladder {
 
-    private final List<Line> lines;
+    private final List<LadderLine> lines;
 
     public Ladder(Height height, int countOfPerson) {
         this.lines = createLines(height, countOfPerson);
     }
 
-    public Ladder(List<Line> lines) {
+    public Ladder(List<LadderLine> lines) {
         this.lines = lines;
     }
 
-    private List<Line> createLines(Height height, int countOfPerson) {
-        List<Line> lines = new ArrayList<>();
-        for (int i = 0; i < height.height(); i++) {
-            lines.add(new Line(countOfPerson));
+    private List<LadderLine> createLines(Height height, int countOfPerson) {
+        List<LadderLine> lines = new ArrayList<>();
+        for (int i = 0; i < height.getValue(); i++) {
+            lines.add(new LadderLine(countOfPerson));
 
         }
         return lines;
     }
 
     public int eachPositionResult(int position) {
-        for (Line line : lines) {
+        for (LadderLine line : lines) {
             position = line.move(position);
         }
         return position;
     }
 
     public ExecutionResult eachPositionExecutionResult(int position, ExecutionResults results) {
-        for (Line line : lines) {
+        for (LadderLine line : lines) {
             position = line.move(position);
         }
 
@@ -46,7 +46,7 @@ public class Ladder {
         return new ExecutionResults(executionResultsList);
     }
 
-    public List<Line> lines() {
+    public List<LadderLine> lines() {
         return Collections.unmodifiableList(lines);
     }
 

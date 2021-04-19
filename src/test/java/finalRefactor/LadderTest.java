@@ -1,8 +1,8 @@
-package step3;
+package finalRefactor;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import step3.domain.*;
+import finalRefactor.domain.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -47,11 +47,11 @@ public class LadderTest {
         assertThat(lines.getExecutionResult(results)).isEqualTo(new ExecutionResults(Arrays.asList(new ExecutionResult("3000"), new ExecutionResult("꽝"), new ExecutionResult("5000"))));
     }
 
-    public List<Line> createLine() {
-        List<Line> lines = new ArrayList<>();
-        lines.add(new Line(Arrays.asList(Point.first(true), Point.first(true).next(false), Point.first(true).next(false).last())));
-        lines.add(new Line(Arrays.asList(Point.first(false), Point.first(false).next(false), Point.first(false).next(false).last())));
-        lines.add(new Line(Arrays.asList(Point.first(false), Point.first(false).next(true), Point.first(false).next(true).last())));
+    public List<LadderLine> createLine() {
+        List<LadderLine> lines = new ArrayList<>();
+        lines.add(new LadderLine(Arrays.asList(Point.first(true), Point.first(true).next(false), Point.first(true).next(false).last())));
+        lines.add(new LadderLine(Arrays.asList(Point.first(false), Point.first(false).next(false), Point.first(false).next(false).last())));
+        lines.add(new LadderLine(Arrays.asList(Point.first(false), Point.first(false).next(true), Point.first(false).next(true).last())));
         return lines;
     }
 

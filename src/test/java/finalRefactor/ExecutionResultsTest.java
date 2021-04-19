@@ -1,9 +1,9 @@
-package step3;
+package finalRefactor;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import step3.domain.ExecutionResult;
-import step3.domain.ExecutionResults;
+import finalRefactor.domain.ExecutionResult;
+import finalRefactor.domain.ExecutionResults;
 
 import java.util.Arrays;
 
