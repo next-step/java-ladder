@@ -5,19 +5,18 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderResultTest {
     private Players players;
-    private final Ladder ladder = new Ladder();
+    private Ladder ladder;
     private Prize prize;
 
     @BeforeEach
     void ladder() {
+        List<Line> lines = new ArrayList<>();
         players = Players.of(Arrays.asList("red", "blue", "black"));
         prize = Prize.of(Arrays.asList("꽝", "1000", "5000"));
 
@@ -36,8 +35,10 @@ public class LadderResultTest {
 
         Line ladderLine2 = new Line(Arrays.asList(point4, point5, point6));
 
-        ladder.add(ladderLine1);
-        ladder.add(ladderLine2);
+        lines.add(ladderLine1);
+        lines.add(ladderLine2);
+
+        ladder = new Ladder(lines);
     }
 
     @DisplayName("참가자의 실행 결과를 반환한다.")

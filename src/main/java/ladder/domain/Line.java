@@ -17,6 +17,10 @@ public class Line {
         return points;
     }
 
+    public static Line init(int count) {
+        return new LineGenerator(count).generate();
+    }
+
     @Override
     public String toString() {
         return "Line{" +

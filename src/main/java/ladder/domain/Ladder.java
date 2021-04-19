@@ -2,20 +2,13 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Ladder {
     private final List<Line> lines;
 
-    public Ladder() {
-        this(new ArrayList<>());
-    }
-
     public Ladder(List<Line> lines) {
         this.lines = lines;
-    }
-
-    public void add(Line line) {
-        lines.add(line);
     }
 
     public int arrivalPoint(int startPoint) {
@@ -28,5 +21,12 @@ public class Ladder {
 
     public List<Line> getLines() {
         return lines;
+    }
+
+    public static Ladder makeLadder(int pointCount, int lineCount) {
+        List<Line> ladderLine = new ArrayList<>();
+        IntStream.range(0, lineCount)
+                .forEach(line -> ladderLine.add(Line.init(pointCount)));
+        return new Ladder(ladderLine);
     }
 }

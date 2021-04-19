@@ -7,12 +7,18 @@ public class LineGenerator {
     private static final int FIRST_POINT_COUNT = 1;
     private static final int LAST_POINT_COUNT = 1;
 
-    public Line generate(int count) {
+    private final int pointCount;
+
+    public LineGenerator(int pointCount) {
+        this.pointCount = pointCount;
+    }
+
+    public Line generate() {
         List<Point> initPoints = new ArrayList<>();
 
         PointGenerator pointGenerator = new PointGenerator(initPoints);
         Point point = pointGenerator.first();
-        Point lastBodyPoint = pointGenerator.body(bodyCount(count), point);
+        Point lastBodyPoint = pointGenerator.body(bodyCount(pointCount), point);
         pointGenerator.last(lastBodyPoint);
 
         return new Line(initPoints);
