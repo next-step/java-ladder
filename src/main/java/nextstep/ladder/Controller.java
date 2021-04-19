@@ -1,7 +1,11 @@
 package nextstep.ladder;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import nextstep.ladder.domain.LadderGame;
 import nextstep.ladder.domain.Players;
 import nextstep.ladder.domain.PrizeMapper;
@@ -50,6 +54,24 @@ public class Controller {
     }
 
     private void printGameResult(String input, PrizeMapper prizeMapper) {
-        ResultView.printResultList(prizeMapper.getPlayerPrizeResult(input));
+        if ("all".equals(input)) {
+            ResultView.printResultList(mapperToStringDto(prizeMapper.getAllPlayersPrizes()));
+            return;
+        }
+        ResultView.printResultList(Arrays.asList(prizeMapper.getPrizeByPlayerName(input).toString()));
+    }
+
+    private List<String> mapperToStringDto(Map<?, ?> mapper) {
+        List<String> keys = mapper.keySet().stream()
+                .map(Object::toString)
+                .collect(Collectors.toList());
+        List<String> values = mapper.values().stream()
+                .map(Object::toString)
+                .collect(Collectors.toList());
+        List<String> combined = new ArrayList<>();
+
+        IntStream.range(0, mapper.size())
+                .forEach(i -> combined.add(keys.get(i) + " : " + values.get(i)));
+        return combined;
     }
 }

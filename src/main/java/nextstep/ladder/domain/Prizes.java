@@ -3,7 +3,6 @@ package nextstep.ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Prizes {
     private final List<Prize> prizes;
@@ -15,12 +14,8 @@ public class Prizes {
                 .forEach(prizes::add);
     }
 
-    public Prize givePrizeTo(Player player) {
-        return IntStream.range(0, prizes.size())
-                .filter(i -> player.isPlayerInPosition(new Point(i)))
-                .mapToObj(prizes::get)
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("플레이어 위치에 맞는 Prize을 찾을 수 없습니다."));
+    public Prize get(int i) {
+        return prizes.get(i);
     }
 
     public List<String> getAllPrizesName() {

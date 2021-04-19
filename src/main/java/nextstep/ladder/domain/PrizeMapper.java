@@ -1,8 +1,8 @@
 package nextstep.ladder.domain;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.stream.IntStream;
 
 public class PrizeMapper {
     private final Prizes prizes;
@@ -16,17 +16,22 @@ public class PrizeMapper {
         this.players = players;
     }
 
-    public List<String> getPlayerPrizeResult(String name) {
-        if ("all".equals(name)) {
-            return getAllPlayersPrize();
-        }
-        return Arrays.asList(prizes.givePrizeTo(players.findPlayerByName(name)).toString());
+    public Prize getPrizeByPlayerName(String name) {
+        return getPrizeByPlayer(players.findPlayerByName(name));
     }
 
-    private List<String> getAllPlayersPrize() {
-        return players.getAllPlayerNames().stream()
-                .map(players::findPlayerByName)
-                .map(player -> player.getName() + " : " + prizes.givePrizeTo(player))
-                .collect(Collectors.toList());
+    private Prize getPrizeByPlayer(Player player) {
+        return IntStream.range(0, prizes.getPrizeCount())
+                .filter(i -> player.isPlayerInPosition(new Point(i)))
+                .mapToObj(prizes::get)
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("플레이어 위치에 맞는 Prize을 찾을 수 없습니다."));
+    }
+
+    public Map<Player, Prize> getAllPlayersPrizes() {
+        Map<Player, Prize> prizeMap = new LinkedHashMap<>();
+        players.stream()
+                .forEach(player -> prizeMap.put(player, getPrizeByPlayer(player)));
+        return prizeMap;
     }
 }
