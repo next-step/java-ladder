@@ -2,12 +2,16 @@ package nextstep.ladder.src;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
 
 public class FloorTest {
   @ParameterizedTest
@@ -19,16 +23,21 @@ public class FloorTest {
     assertThat(floor.floor().size()).isEqualTo(size);
   }
 
-  @RepeatedTest(value = 100)
-  @DisplayName("bridge not overlap")
-  public void bridgeNotOverlap() {
-    final int WIDTH = 10;
-    List<Bridge> floor = Floor.makeByWidht(WIDTH).floor();
-    
-    for(int i = 1; i < WIDTH; i++) {
-      boolean bool = floor.get(i - 1).isBridge() && floor.get(i).isBridge();
-      assertThat(bool).isFalse();
-    }
+  @ParameterizedTest
+  @MethodSource("overlapBridgeFloor")
+  @DisplayName("bridge overlap exception")
+  public void bridgeOverlapException(List<Bridge> floor) {
+    assertThatThrownBy(() -> {
+      new Floor(floor);
+    }).isInstanceOf(IllegalArgumentException.class);
   }
+
+  private static Stream<Arguments> overlapBridgeFloor() {
+    return Stream.of(
+      Arguments.of(
+        Arrays.asList(new Bridge(true), new Bridge(true))
+      )
+    );
+  }  
   
 }
