@@ -50,11 +50,11 @@ public class LadderTest {
         assertThat(ladder.arrivalPoint(2)).isEqualTo(1);
     }
 
-    @DisplayName("2층까지의 사다리 생성 후 첫번째 포인트는 0 또는 1을 반환한다.")
+    @DisplayName("1층까지의 사다리 생성 후 첫번째 포인트는 0 또는 1을 반환한다.")
     @Test
     void generate() {
         int pointCount = 4;
-        int lineCount = 2;
+        int lineCount = 1;
 
         Ladder ladder = Ladder.make(pointCount, lineCount);
 
