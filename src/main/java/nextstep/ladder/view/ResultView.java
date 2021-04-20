@@ -71,7 +71,7 @@ public class ResultView {
         return NONE_DRAW_LINE;
     }
 
-    public static void printGameSingleResult(List<GameResult> gameResults) {
+    public static void printSingleUserGameResult(List<GameResult> gameResults) {
 
         System.out.println(LINE_SEPARATOR + GAME_RESULT_MESSAGE);
 
@@ -80,7 +80,7 @@ public class ResultView {
         }
     }
 
-    public static void printGameResult(List<GameResult> gameResults) {
+    public static void printAllUserGameResult(List<GameResult> gameResults) {
 
         System.out.println(LINE_SEPARATOR + GAME_RESULT_MESSAGE);
 

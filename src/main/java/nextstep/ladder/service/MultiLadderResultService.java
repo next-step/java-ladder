@@ -7,7 +7,9 @@ import nextstep.ladder.entity.user.User;
 import nextstep.ladder.entity.user.Users;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MultiLadderResultService implements LadderResultService {
 
@@ -19,12 +21,8 @@ public class MultiLadderResultService implements LadderResultService {
 
     @Override
     public List<GameResult> result(LadderResults ladderResults, Ladder ladder) {
-        List<GameResult> gameResults = new ArrayList<>();
-
-        for (User user : users.users()) {
-            gameResults.add(ladderResults.positionResult(user.name(), ladder.gameEndPosition(user.startPosition())));
-        }
-
-        return gameResults;
+        return Collections.unmodifiableList(users.users().stream()
+                .map(user -> ladderResults.positionResult(user.name(), ladder.gameEndPosition(user.startPosition())))
+                .collect(Collectors.toList()));
     }
 }
