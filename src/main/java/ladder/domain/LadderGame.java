@@ -31,7 +31,12 @@ public class LadderGame {
     }
 
     public String printGameResult() {
-        return "";
+        StringBuilder sb = new StringBuilder();
+        this.gameResult.keySet()
+                .forEach(key -> sb.append(
+                        String.format("%s : %s", key, this.gameResult.get(key)))
+                        .append(System.lineSeparator()));
+        return sb.toString();
     }
 
     @Override

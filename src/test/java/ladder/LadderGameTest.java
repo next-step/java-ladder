@@ -65,6 +65,6 @@ public class LadderGameTest {
         String printGameResult = ladderGame.printGameResult();
 
         //then
-        assertThat(printGameResult).isEqualTo(expectPrintGameResult);
+        assertThat(printGameResult).isEqualTo(expectPrintGameResult.toString());
     }
 }
