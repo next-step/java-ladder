@@ -1,6 +1,9 @@
 package ladder.domain;
 
+import ladder.view.ResultView;
+
 import java.util.Objects;
+import java.util.stream.IntStream;
 
 public class Player {
     private final String player;
@@ -9,8 +12,16 @@ public class Player {
         this.player = player;
     }
 
-    public String whiteSpacePlayer() {
-        return "";
+    public String withWhiteSpacePlayer() {
+        if (player.length() > ResultView.AISLE_WIDTH + 1) {
+            return "";
+        }
+        int nullSpace = ResultView.AISLE_WIDTH + 1 - player.length();
+        StringBuilder sb = new StringBuilder();
+        sb.append(player);
+        IntStream.rangeClosed(0, nullSpace)
+                .forEach(i -> sb.append(" "));
+        return sb.toString();
     }
 
     @Override

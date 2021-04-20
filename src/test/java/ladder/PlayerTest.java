@@ -12,12 +12,12 @@ public class PlayerTest {
     @Test
     public void whiteSpacePlayer() {
         //given
-        String expectPlayer = "a      ";
+        String expectPlayer = "a       ";
         Player player = new Player("a");
 
         //when
-        String resultPlayer = player.whiteSpacePlayer();
-        
+        String resultPlayer = player.withWhiteSpacePlayer();
+
         //then
         assertThat(resultPlayer).isEqualTo(expectPlayer);
     }
@@ -25,7 +25,7 @@ public class PlayerTest {
     @Test
     public void getAllPlayerTest() {
         //given
-        String expectEdge = "a      b      c      d      ";
+        String expectEdge = "a       b       c       d       ";
         Players players = Players.valueOf(Arrays.asList("a", "b", "c", "d"));
 
         //when

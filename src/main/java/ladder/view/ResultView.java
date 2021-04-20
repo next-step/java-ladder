@@ -8,7 +8,7 @@ import java.util.stream.IntStream;
 public class ResultView {
     private final static String PRINT_LADDER_RESULT = "사다리 결과";
     private final static String PRINT_RESULT = "실행결과";
-    private final static int AISLE_WIDTH = 6;
+    public final static int AISLE_WIDTH = 6;
 
     public static void printLadder(Ladder ladder, LadderEdge ladderEdge) {
         System.out.println(PRINT_LADDER_RESULT);
