@@ -82,7 +82,7 @@ public class LayerTest {
     public void printLayer() {
         //given
         Layer layer = new Layer(Arrays.asList(true, false, true, false, true));
-        String expectLayer = "|------|      |------|      |------|";
+        String expectLayer = "|-------|       |-------|       |-------|";
         //when
         String resultLayer = layer.printLayer();
         //then

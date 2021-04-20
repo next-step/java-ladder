@@ -1,10 +1,12 @@
 package ladder.domain;
 
 import ladder.service.RandomBoolean;
+import ladder.view.ResultView;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.IntStream;
 
 public final class Layer {
     private final List<Boolean> aisles;
@@ -38,6 +40,27 @@ public final class Layer {
             return nowLine + 1;
         }
         return nowLine;
+    }
+
+    public String printLayer() {
+        StringBuilder sb = new StringBuilder();
+        this.aisles.stream()
+                .forEach(aisle -> sb.append("|").append(printAisle(aisle)));
+        sb.append("|");
+        return sb.toString();
+    }
+
+    private String printAisle(boolean aisle) {
+        StringBuilder sb = new StringBuilder();
+
+        if (aisle) {
+            IntStream.rangeClosed(0, ResultView.AISLE_WIDTH)
+                    .forEach(i -> sb.append("-"));
+            return sb.toString();
+        }
+        IntStream.rangeClosed(0, ResultView.AISLE_WIDTH)
+                .forEach(i -> sb.append(" "));
+        return sb.toString();
     }
 
     private boolean hasLeftAisle(int line) {
@@ -84,7 +107,5 @@ public final class Layer {
         return Objects.hash(aisles);
     }
 
-    public String printLayer() {
-        return "";
-    }
+
 }
