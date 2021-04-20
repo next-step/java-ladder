@@ -45,15 +45,15 @@ public final class Ladder {
         List<Integer> list = results.values();
         ladder.forEach(line -> line.run(list));
 
-        Map<Person, String> map = new HashMap<>();
+        Map<Person, String> resultMap = new HashMap<>();
         IntStream.range(START_INCLUSIVE, list.size())
                 .forEach(index -> {
                     Person person = people.person(list.get(index));
                     String result = results.get(index);
-                    map.put(person, result);
+                    resultMap.put(person, result);
                 });
 
-        return LadderResultBoard.of(map);
+        return LadderResultBoard.of(resultMap);
     }
 
     public final Stream<Line> stream() {
