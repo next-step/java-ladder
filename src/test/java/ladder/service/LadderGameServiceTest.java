@@ -1,7 +1,6 @@
 package ladder.service;
 
 import ladder.domain.*;
-import ladder.controller.dto.LadderGameResult;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -12,6 +11,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -158,11 +158,11 @@ class LadderGameServiceTest {
         assertThat(gameResult).isEqualTo(matchingItems.getGameResult(ladderExitNumber));
     }
 
-    @Test
+    @ParameterizedTest
+    @CsvSource(value = {"pobi:꽝", "honux:3000", "crong:꽝", "jk:5000"}, delimiter = ':')
     @DisplayName("사다리게임 결과 리스트 조회")
-    void inquiryGameResults() {
+    void inquiryGameResults(String participant, String matchingItem) {
         // given
-        List<String> expectedList = Arrays.asList("꽝", "3000", "꽝", "5000");
         LadderGameService service = new LadderGameService();
 
         Participants participants = new Participants("pobi,honux,crong,jk");
@@ -201,12 +201,10 @@ class LadderGameServiceTest {
         MatchingItems matchingItems = new MatchingItems("꽝,5000,꽝,3000", participants.getCount());
 
         // when
-        List<LadderGameResult> gameResults = service.executeGame(participants, ladder, matchingItems);
+        Map<Participant, String> gameResults = service.executeGame(participants, ladder, matchingItems);
 
         // then
-        for (int i = 0; i < expectedList.size(); i++) {
-            assertThat(expectedList.get(i)).isEqualTo(gameResults.get(i).getMatchingItem());
-        }
+        assertThat(gameResults.get(new Participant(participant))).isEqualTo(matchingItem);
     }
 
     @Test
@@ -251,10 +249,10 @@ class LadderGameServiceTest {
         MatchingItems matchingItems = new MatchingItems("꽝,5000,꽝,3000", participants.getCount());
 
         // when
-        List<LadderGameResult> gameResults = service.executeGame(participants, ladder, matchingItems);
+        Map<Participant, String> gameResults = service.executeGame(participants, ladder, matchingItems);
 
         // then
-        assertThrows(UnsupportedOperationException.class, () -> gameResults.add(new LadderGameResult("test", "1000")));
-        assertThrows(UnsupportedOperationException.class, () -> gameResults.remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> gameResults.put(new Participant("test"), "꽝"));
+        assertThrows(UnsupportedOperationException.class, () -> gameResults.remove(new Participant("honux")));
     }
 }

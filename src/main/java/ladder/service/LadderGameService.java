@@ -4,11 +4,10 @@ import ladder.domain.Ladder;
 import ladder.domain.MatchingItems;
 import ladder.domain.Participant;
 import ladder.domain.Participants;
-import ladder.controller.dto.LadderGameResult;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class LadderGameService {
 
@@ -24,12 +23,12 @@ public class LadderGameService {
         return new MatchingItems(gameResultNames, participantsCount);
     }
 
-    public List<LadderGameResult> executeGame(Participants participants, Ladder ladder, MatchingItems matchingItems) {
-        List<LadderGameResult> gameResults = new ArrayList<>();
+    public Map<Participant, String> executeGame(Participants participants, Ladder ladder, MatchingItems matchingItems) {
+        Map<Participant, String> gameResults = new HashMap<>();
         int entranceNumber = Participants.MIN_ENTRANCE_NUMBER;
         for (Participant participant : participants.getParticipants()) {
-            gameResults.add(new LadderGameResult(participant.getName(), matchingItems.getGameResult(ladder.getExitNumber(entranceNumber++))));
+            gameResults.put(participant, matchingItems.getGameResult(ladder.getExitNumber(entranceNumber++)));
         }
-        return Collections.unmodifiableList(gameResults);
+        return Collections.unmodifiableMap(gameResults);
     }
 }

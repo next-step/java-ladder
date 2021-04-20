@@ -1,14 +1,12 @@
 package ladder.controller;
 
-import ladder.controller.dto.LadderGameRequest;
-import ladder.controller.dto.LadderGameResponse;
-import ladder.controller.dto.LadderGenerationResult;
-import ladder.controller.dto.LadderLine;
+import ladder.controller.dto.*;
 import ladder.domain.*;
 import ladder.service.LadderGameService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class LadderGameController {
@@ -23,7 +21,8 @@ public class LadderGameController {
         Participants participants = gameService.registerParticipants(request.getParticipantNames());
         Ladder ladder = gameService.generateLadder(participants.getCount(), request.getLadderHeight());
         MatchingItems matchingItems = gameService.generateMatchingItems(request.getMatchingItems(), participants.getCount());
-        return new LadderGameResponse(assembleLadderGenerationResult(participants, ladder, matchingItems),gameService.executeGame(participants, ladder, matchingItems));
+        Map<Participant, String> gameResults = gameService.executeGame(participants, ladder, matchingItems);
+        return new LadderGameResponse(assembleLadderGenerationResult(participants, ladder, matchingItems), assembleGameResults(gameResults));
     }
 
     private LadderGenerationResult assembleLadderGenerationResult(Participants participants, Ladder ladder, MatchingItems matchingItems) {
@@ -51,4 +50,9 @@ public class LadderGameController {
         return new LadderLine(pointList);
     }
 
+    private List<LadderGameResult> assembleGameResults(Map<Participant, String> gameResults) {
+        List<LadderGameResult> ladderGameResults = new ArrayList<>();
+        gameResults.forEach((participant, matchingItem) -> ladderGameResults.add(new LadderGameResult(participant.getName(), matchingItem)));
+        return ladderGameResults;
+    }
 }
