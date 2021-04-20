@@ -1,4 +1,4 @@
-package nextstep.ladder.src;
+package nextstep.ladder.src.domain;
 
 public class User {
   private final String name;

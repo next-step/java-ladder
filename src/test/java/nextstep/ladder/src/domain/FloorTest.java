@@ -1,4 +1,4 @@
-package nextstep.ladder.src;
+package nextstep.ladder.src.domain;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;

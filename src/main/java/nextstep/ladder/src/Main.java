@@ -2,6 +2,9 @@ package nextstep.ladder.src;
 
 import nextstep.ladder.src.common.InputView;
 import nextstep.ladder.src.common.ResultView;
+import nextstep.ladder.src.common.Ui;
+import nextstep.ladder.src.domain.Ladder;
+import nextstep.ladder.src.domain.Participants;
 
 public class Main {
   public static void main(String[] args) {

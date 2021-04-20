@@ -1,8 +1,10 @@
-package nextstep.ladder.src;
+package nextstep.ladder.src.domain;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
+
+import nextstep.ladder.src.MakeBridgeByRandom;
 
 public class Floor {
   private final List<Bridge> floor;

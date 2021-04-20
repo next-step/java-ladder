@@ -1,4 +1,6 @@
-package nextstep.ladder.src;
+package nextstep.ladder.src.domain;
+
+import nextstep.ladder.src.MakeBridge;
 
 public class Bridge {
   private final boolean isBridge;

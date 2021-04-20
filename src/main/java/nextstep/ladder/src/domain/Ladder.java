@@ -1,4 +1,4 @@
-package nextstep.ladder.src;
+package nextstep.ladder.src.domain;
 
 import java.util.List;
 import java.util.stream.Collectors;

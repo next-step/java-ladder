@@ -1,7 +1,11 @@
-package nextstep.ladder.src;
+package nextstep.ladder.src.common;
 
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
+import nextstep.ladder.src.domain.Floor;
+import nextstep.ladder.src.domain.Ladder;
+import nextstep.ladder.src.domain.Participants;
 
 public class Ui {
   private static final String SPACE = "   ";

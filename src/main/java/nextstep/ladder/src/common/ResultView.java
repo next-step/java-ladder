@@ -1,8 +1,7 @@
 package nextstep.ladder.src.common;
 
-import nextstep.ladder.src.Ladder;
-import nextstep.ladder.src.Participants;
-import nextstep.ladder.src.Ui;
+import nextstep.ladder.src.domain.Ladder;
+import nextstep.ladder.src.domain.Participants;
 
 public class ResultView {
   public static void users(Participants participants, Ui ui) {
