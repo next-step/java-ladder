@@ -22,12 +22,12 @@ public class LadderGameClient {
         OnlineLadder ladder = new OnlineLadder(ladderCount, names.length - 1, names);
         resultView.printAll(ladder);
 
-//        String whoWinner = inputView.inputQuestion("결과를 보고 싶은 사람은?");
-//        String winner = ladder.winner(new Player(whoWinner));
-//        resultView.print(winner);
-//
-//        whoWinner = inputView.inputQuestion("결과를 보고 싶은 사람은?");
-//        winner = ladder.winner(new Player(whoWinner));
-//        resultView.print(winner);
+        String targetPerson = inputView.inputQuestion("결과를 보고 싶은 사람은?");
+        int winner = ladder.start(new Player(targetPerson));
+        resultView.print(winners[winner]);
+
+        targetPerson = inputView.inputQuestion("결과를 보고 싶은 사람은?");
+        winner = ladder.start(new Player(targetPerson));
+        resultView.print(winners[winner]);
     }
 }

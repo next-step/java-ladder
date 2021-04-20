@@ -31,10 +31,11 @@ class OnlineLadderTest {
     void winner() {
         int maxVertical = 3;
         OnlineLadder onlineLadder = new OnlineLadder(maxVertical, 3, new String[]{"bong", "big", "il"});
-        IntStream.range(0, maxVertical)
-                .forEach(i -> System.out.println(onlineLadder.points(i)));
         assertThatThrownBy(() -> {
             onlineLadder.start(new Player("cong"));
         }).isInstanceOf(IllegalArgumentException.class);
+
+        int resultIndex = onlineLadder.start(new Player("bong"));
+        System.out.println("resultIndex = " + resultIndex);
     }
 }
