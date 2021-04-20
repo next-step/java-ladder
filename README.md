@@ -17,11 +17,11 @@
 * LadderGameController : 사다리게임 실행 및 결과조회를 위한 API 진입소스
 * LadderGameRequest : 사다리게임 참가자, 매칭결과, 사다리 생성정보 와 같이 개임실행에 필요한 입력정보를 저장하고 있는 dto 클래스
 * LadderGameResponse : 사다리게임 생성 및 실행결과 정보를 저장하고 있는 출력 dto 클래스
+* LadderGenerationResult : 사다리게임 생성정보를 저장하고 있는 출력 dto 클래스
 * LadderLine : 사다리 한 줄 출력에 필요한 정보를 저장하고 있는 출력 dto 클래스
-### [Service Layer]
-* LadderGenerationService : 사다리게임 도메인 오브젝트 생성 처리를 위한 서비스 클래스
-* LadderGameService : 사다리게임 실행 및 게임 실행결과 반환처리를 위한 서비스 클래스
 * LadderGameResult : 사다리게임 참가자와 게임실행결과의 매핑정보를 저장하고 있는 dto 클래스
+### [Service Layer]
+* LadderGameService : 사다리게임 생성 및 게임 실행결과 반환처리를 위한 서비스 클래스
 ### [Domain Layer]
 * Participants : 사다리게임 참가자 목록을 표현하기 위한 일급컬렉션 도메인 클래스
 * Participant : 사다리게임 참가자 한 명을 표현하기 위한 도메인 클래스
