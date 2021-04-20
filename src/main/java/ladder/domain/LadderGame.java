@@ -30,6 +30,10 @@ public class LadderGame {
         return this.gameResult;
     }
 
+    public String printGameResult() {
+        return "";
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
