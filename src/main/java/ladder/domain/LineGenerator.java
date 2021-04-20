@@ -2,10 +2,12 @@ package ladder.domain;
 
 public class LineGenerator {
 
-    private LineGenerator() {
-    }
+    public Line generate(int pointCount) {
+        PointGenerator pointGenerator = PointGenerator.of(pointCount);
+        Point firstPoint = pointGenerator.first();
+        Point lastBodyPoint = pointGenerator.body(firstPoint);
+        pointGenerator.last(lastBodyPoint);
 
-    public static Line generate(int pointCount) {
-        return new Line(PointGenerator.makePoints(pointCount));
+        return new Line(pointGenerator.toPoints());
     }
 }

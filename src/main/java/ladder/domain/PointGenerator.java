@@ -9,28 +9,27 @@ public class PointGenerator {
     private static final int FIRST_POINT_COUNT = 1;
     private static final int LAST_POINT_COUNT = 1;
 
-    private PointGenerator() {
+    private final List<Point> points;
+    private final int pointCount;
+
+    private PointGenerator(int pointCount) {
+        this.points = new ArrayList<>();
+        this.pointCount = pointCount;
     }
 
-    public static List<Point> makePoints(int count) {
-        List<Point> points = new ArrayList<>();
-
-        Point firstPoint = first(points);
-        Point lastBodyPoint = body(bodyCount(count), firstPoint, points);
-        last(lastBodyPoint, points);
-
-        return points;
+    public static PointGenerator of(int pointCount) {
+        return new PointGenerator(pointCount);
     }
 
-    private static Point first(List<Point> points) {
+    public Point first() {
         Point firstPoint = generate(new FirstPointStrategy(RandomUtil.trueOrFalse()));
         points.add(firstPoint);
         return firstPoint;
     }
 
-    private static Point body(int count, Point firstPoint, List<Point> points) {
+    public Point body(Point firstPoint) {
         Point previousPoint = firstPoint;
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < bodyCount(); i++) {
             Point currentPoint = generate(new BodyPointStrategy(previousPoint, RandomUtil.trueOrFalse()));
             points.add(currentPoint);
             previousPoint = currentPoint;
@@ -38,16 +37,20 @@ public class PointGenerator {
         return previousPoint;
     }
 
-    private static void last(Point previousPoint, List<Point> points) {
+    public void last(Point previousPoint) {
         Point lastPoint = generate(new LastPointStrategy(previousPoint));
         points.add(lastPoint);
     }
 
-    private static Point generate(PointStrategy pointStrategy) {
+    private Point generate(PointStrategy pointStrategy) {
         return pointStrategy.point();
     }
 
-    private static int bodyCount(int count) {
-        return count - (FIRST_POINT_COUNT + LAST_POINT_COUNT);
+    private int bodyCount() {
+        return pointCount - (FIRST_POINT_COUNT + LAST_POINT_COUNT);
+    }
+
+    public List<Point> toPoints() {
+        return points;
     }
 }

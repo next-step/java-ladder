@@ -18,7 +18,8 @@ public class Line {
     }
 
     public static Line init(int count) {
-        return LineGenerator.generate(count);
+        LineGenerator lineGenerator = new LineGenerator();
+        return lineGenerator.generate(count);
     }
 
     @Override
