@@ -83,4 +83,8 @@ public final class Layer {
     public int hashCode() {
         return Objects.hash(aisles);
     }
+
+    public String printLayer() {
+        return "";
+    }
 }
