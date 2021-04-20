@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
+    private static final int PLAYERS_MIN_COUNT = 2;
+
     private final List<Point> points;
 
     public Line(int countOfPerson) {
-        if (countOfPerson < 2) {
+        if (countOfPerson < PLAYERS_MIN_COUNT) {
             throw new IllegalArgumentException("인원은 적어도 2명 이상이어야 합니다: " + countOfPerson);
         }
         points = new ArrayList<>(4);
@@ -35,7 +37,7 @@ public class Line {
         createAtList.forEach(this::createBridge);
     }
 
-    public Point move(int from) {
-        return points.get(from);
+    public Point moveFrom(Point from) {
+        return points.get(from.getIndex());
     }
 }

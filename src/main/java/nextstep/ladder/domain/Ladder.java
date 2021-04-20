@@ -6,11 +6,13 @@ import java.util.stream.Collectors;
 import nextstep.ladder.domain.strategy.BridgeBuilder;
 
 public class Ladder {
+    private static final int LADDER_MIN_HEIGHT = 1;
+
     private final List<Line> lines = new ArrayList<>();
     private BridgeBuilder bridgeBuilder;
 
     public Ladder(int height, int countOfPerson) {
-        if (height < 1) {
+        if (height < LADDER_MIN_HEIGHT) {
             throw new IllegalArgumentException("사다리 높이는 1 이상이어야 합니다: " + height);
         }
         for (int i = 0; i < height; i++) {
@@ -22,10 +24,6 @@ public class Ladder {
     public Ladder(int height, int countOfPerson, BridgeBuilder bridgeBuilder) {
         this(height, countOfPerson);
         this.bridgeBuilder = bridgeBuilder;
-    }
-
-    public int getHeight() {
-        return lines.size();
     }
 
     public List<String> build() {
@@ -42,5 +40,13 @@ public class Ladder {
         return buildPoints.stream()
                 .map(String::valueOf)
                 .collect(Collectors.joining(","));
+    }
+
+    public Point ride(Point startPoint) {
+        Point point = startPoint;
+        for (Line line : lines) {
+            point = line.moveFrom(point);
+        }
+        return point;
     }
 }

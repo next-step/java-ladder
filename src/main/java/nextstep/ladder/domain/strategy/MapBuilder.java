@@ -4,6 +4,8 @@ import java.util.Random;
 import java.util.StringJoiner;
 
 public class MapBuilder {
+    private static final Random random = new Random();
+
     public static String createRandomBridge(int countOfPerson) {
         int lastIndex = Integer.MAX_VALUE;
         StringJoiner stringJoiner = new StringJoiner(",");
@@ -20,7 +22,6 @@ public class MapBuilder {
     }
 
     private static int markPoint(StringJoiner stringJoiner, int lastIndex, int currentIndex) {
-        Random random = new Random();
         if (Math.abs(lastIndex - currentIndex) >= 2 && random.nextBoolean()) {
             stringJoiner.add(String.valueOf(currentIndex));
             return currentIndex;
