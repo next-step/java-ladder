@@ -23,7 +23,15 @@ public class OnlineLadder extends Ladder {
         return players;
     }
 
-    public String winner(Player whoWinner) {
+    public String start(Player whoWinner) {
+        int playerIndex = this.filter(whoWinner);
+        if (playerIndex < 0) {
+            throw new IllegalArgumentException("No user");
+        }
         return null;
+    }
+
+    public int filter(Player playerName) {
+        return this.players.filter(playerName);
     }
 }

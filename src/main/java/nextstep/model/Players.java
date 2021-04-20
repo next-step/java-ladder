@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static nextstep.constant.Constant.EMPTY_LADDER_STRING;
 
@@ -25,5 +26,17 @@ public class Players {
         return this.players.stream()
                 .map(p -> p.player())
                 .collect(Collectors.joining(EMPTY_LADDER_STRING,"",""));
+    }
+
+    public int filter(Player player) {
+        int indexOf = -1;
+        for (int i = 0; i < this.players.size(); i++) {
+            if (this.players.get(i).equals(player)) {
+                indexOf = i;
+                break;
+            }
+
+        }
+        return indexOf;
     }
 }

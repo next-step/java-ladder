@@ -3,7 +3,10 @@ package nextstep.model;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.stream.IntStream;
+
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class OnlineLadderTest {
     @Test
@@ -14,9 +17,24 @@ class OnlineLadderTest {
     }
 
     @Test
+    @DisplayName("마지막줄 인덱스 이름으로 찾기")
+    void lastIndex() {
+        int maxVertical = 3;
+        OnlineLadder onlineLadder = new OnlineLadder(maxVertical, 3, new String[]{"bong", "big", "il"});
+        IntStream.range(0, maxVertical)
+                .forEach(i -> System.out.println(onlineLadder.points(i)));
+        assertThat(onlineLadder.filter(new Player("bong"))).isEqualTo(0);
+    }
+
+    @Test
     @DisplayName("당첨자")
     void winner() {
-        OnlineLadder onlineLadder = new OnlineLadder(2, 3, new String[]{"bong", "big", "il"});
-        assertThat(onlineLadder.winner(new Player("bong"))).isEqualTo("..............");
+        int maxVertical = 3;
+        OnlineLadder onlineLadder = new OnlineLadder(maxVertical, 3, new String[]{"bong", "big", "il"});
+        IntStream.range(0, maxVertical)
+                .forEach(i -> System.out.println(onlineLadder.points(i)));
+        assertThatThrownBy(() -> {
+            onlineLadder.start(new Player("cong"));
+        }).isInstanceOf(IllegalArgumentException.class);
     }
 }
