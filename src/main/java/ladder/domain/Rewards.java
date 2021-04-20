@@ -25,6 +25,9 @@ public class Rewards {
         return this.rewards;
     }
 
+    public String getAllReward() {
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -41,4 +44,5 @@ public class Rewards {
     public int hashCode() {
         return Objects.hash(rewards);
     }
+
 }

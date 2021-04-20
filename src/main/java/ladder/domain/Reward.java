@@ -9,6 +9,10 @@ public class Reward {
         this.reward = reward;
     }
 
+    public String withWhiteSpaceReward() {
+        return "";
+    }
+
     @Override
     public String toString() {
         return reward;
