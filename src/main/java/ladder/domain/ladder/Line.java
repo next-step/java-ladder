@@ -1,9 +1,14 @@
 package ladder.domain.ladder;
 
+import ladder.domain.participant.People;
 import ladder.exception.PointListNullPointerException;
+import ladder.strategy.LineGenerateStrategy;
+import ladder.strategy.RandomLineGenerateStrategy;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public final class Line {
@@ -16,6 +21,21 @@ public final class Line {
     private Line(List<Point> points) {
         validateNull(points);
         this.points = points;
+    }
+
+    public static Line of(People people, LineGenerateStrategy strategy) {
+        List<Point> points = new ArrayList<>();
+        points.add(Point.first());
+        IntStream.range(ZERO, people.countOfPerson() - ONE)
+                .forEach(beforeIndex -> points.add(generatePoint(points.get(beforeIndex), strategy)));
+        return Line.of(points);
+    }
+
+    private static final Point generatePoint(Point before, LineGenerateStrategy strategy) {
+        if (before.hasPoint()) {
+            return Point.of(Boolean.FALSE);
+        }
+        return Point.of(strategy.generateLine());
     }
 
     private final void validateNull(List<Point> points) {

@@ -1,6 +1,5 @@
 package ladder;
 
-import ladder.domain.creator.LadderCreator;
 import ladder.domain.ladder.*;
 import ladder.domain.participant.People;
 import ladder.domain.participant.Person;
@@ -29,14 +28,9 @@ public final class LadderGame {
         LadderResults results = getInputLadderResults(people);
         LadderHeight height = getInputLadderHeight();
 
-        LadderCreator ladderCreator = LadderCreator.getInstance();
-        LadderCreationInformation creationInformation = LadderCreationInformation.from(people, height);
-        Ladder ladder = ladderCreator.create(creationInformation, RandomLineGenerateStrategy.getInstance());
+        Ladder ladder = Ladder.from(people, height, RandomLineGenerateStrategy.getInstance());
 
-        RESULT_VIEW.printExecutionResult();
-        RESULT_VIEW.printPeople(people);
-        RESULT_VIEW.printLadder(ladder);
-        RESULT_VIEW.printLadderResult(results);
+        RESULT_VIEW.printLadderStatus(people, ladder, results);
 
         LadderResultBoard ladderResultBoard = ladder.run(people, results);
         printLadderResultBoard(people, ladderResultBoard);
@@ -110,6 +104,4 @@ public final class LadderGame {
                 .findFirst()
                 .orElseThrow(() -> new NoSuchPersonException());
     }
-
-
 }

@@ -3,11 +3,13 @@ package ladder.domain.ladder;
 import ladder.domain.participant.People;
 import ladder.domain.participant.Person;
 import ladder.exception.LineListNullPointerException;
+import ladder.strategy.LineGenerateStrategy;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -24,6 +26,13 @@ public final class Ladder {
     private Ladder(List<Line> ladder) {
         validateNull(ladder);
         this.ladder = ladder;
+    }
+
+    public static final Ladder from(People people, LadderHeight height, LineGenerateStrategy strategy) {
+        return from(IntStream.range(START_INCLUSIVE, height.height())
+                .mapToObj(i -> Line.of(people, strategy))
+                .collect(Collectors.toList())
+        );
     }
 
     private final void validateNull(List<Line> ladder) {

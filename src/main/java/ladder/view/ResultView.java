@@ -31,19 +31,27 @@ public final class ResultView {
         return ResultViewHolder.instance;
     }
 
-    public final void printExecutionResult() {
+
+    public final void printLadderStatus(People people, Ladder ladder, LadderResults results) {
+        printExecutionResult();
+        printPeople(people);
+        printLadder(ladder);
+        printLadderResult(results);
+    }
+
+    private final void printExecutionResult() {
         System.out.println(EXECUTION_RESULT_MESSAGE);
     }
 
-    public final void printLadder(Ladder ladder) {
+    private final void printLadder(Ladder ladder) {
         ladder.stream().forEach(this::printLine);
     }
 
-    public final void printPeople(People people) {
+    private final void printPeople(People people) {
         printPeopleName(people);
     }
 
-    public final void printLadderResult(LadderResults results) {
+    private final void printLadderResult(LadderResults results) {
         StringBuilder stringBuilder = new StringBuilder();
         IntStream.range(ZERO, results.size())
                 .forEach(index -> stringBuilder.append(String.format(NAME_FORMAT, results.get(index))));
