@@ -1,44 +1,29 @@
 package nextstep.ladder.src.common;
 
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 import nextstep.ladder.src.domain.Floor;
 import nextstep.ladder.src.domain.Ladder;
 import nextstep.ladder.src.domain.Participants;
 
 public class Ui {
-  private static final String SPACE = "   ";
+  private static final String SPACE = "     ";
 
-  private final String bridge;
-  private final String notBridge;
+  private static final int STRING_SIZE = 5;
 
-  public Ui(String bridge, String notBridge) {
-    this.bridge = bridge;
-    this.notBridge = notBridge;
-  }
+  private static final String bridge = "-----";
+  private static final String notBridge = "     ";
 
-  public Ui(int size) {
-    this(
-      IntStream.range(0, size)
-        .boxed()
-        .map(i -> "-")
-        .collect(Collectors.joining("")),
-      IntStream.range(0, size)
-        .boxed()
-        .map(i -> " ")
-        .collect(Collectors.joining(""))
-    );
-  }
+  public Ui() {}
 
-  public String bridgeUi(boolean isBridge) {
+  public static String bridgeUi(boolean isBridge) {
     if(isBridge) {
       return bridge;
     }
     return notBridge;
   }
 
-  public String floorUi(Floor floor) {
+  public static String floorUi(Floor floor) {
     String str = floor.floor()
       .stream()
       .map(bridge -> bridgeUi(bridge.isBridge()))
@@ -46,17 +31,17 @@ public class Ui {
     return "|" + str + "|";
   }
 
-  public String ladderUi(Ladder ladder) {
+  public static String ladderUi(Ladder ladder) {
     return ladder.ladder()
       .stream()
-      .map(floor -> SPACE + SPACE + floorUi(floor))
+      .map(floor -> SPACE + floorUi(floor))
       .collect(Collectors.joining("\n"));
   }
 
-  public String participantsUi(Participants participants) {
+  public static String participantsUi(Participants participants) {
     String users = participants.participants().stream()
-      .map(user -> String.format("%" + (bridge.length() + 1) + "s", user.name()))
-      .collect(Collectors.joining(""));
-    return SPACE + users;
+      .map(user -> String.format("%" + STRING_SIZE + "s", user.name()))
+      .collect(Collectors.joining(" "));
+    return users;
   }
 }
