@@ -26,6 +26,10 @@ public class Rewards {
     }
 
     public String getAllReward() {
+        StringBuilder sb = new StringBuilder();
+        rewards.stream()
+                .forEach(reward -> sb.append(reward.withWhiteSpaceReward()));
+        return sb.toString();
     }
 
     @Override
