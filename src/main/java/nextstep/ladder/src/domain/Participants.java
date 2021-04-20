@@ -39,6 +39,13 @@ public class Participants {
   public int maxNameLength() {
     return participants.stream()
       .map(user -> user.name().length())
-      .reduce(0, (max, no) -> max < no ? no : max);
+      .reduce(0, (max, no) -> biggerNumber(max, no));
+  }
+
+  private int biggerNumber(int numberA, int numberB) {
+    if(numberA > numberB) {
+      return numberA;
+    }
+    return numberB;
   }
 }
