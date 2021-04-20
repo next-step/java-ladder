@@ -11,8 +11,8 @@ public class AisleTest {
         //given
         Aisle existAisle = new Aisle(true);
         Aisle nonExistAisle = new Aisle(false);
-        String expectExistAisle = "------";
-        String expectNonExistAisle = "      ";
+        String expectExistAisle = "-------";
+        String expectNonExistAisle = "       ";
 
         //when
         String resultExistAisle = existAisle.printAisle();
