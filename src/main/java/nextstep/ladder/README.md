@@ -1,0 +1,76 @@
+# 사다리 기능정의
+
+---
+
+## 기능 요구사항
+
+- 사다리 게임에 참여하는 사람에 이름을 최대5글자까지 부여할 수 있다. 사다리를 출력할 때 사람 이름도 같이 출력한다.
+- 사람 이름은 쉼표(,)를 기준으로 구분한다.
+- 사람 이름을 5자 기준으로 출력하기 때문에 사다리 폭도 넓어져야 한다.
+- 사다리 타기가 정상적으로 동작하려면 라인이 겹치지 않도록 해야 한다.
+  - |-----|-----| 모양과 같이 가로 라인이 겹치는 경우 어느 방향으로 이동할지 결정할 수 없다.
+
+---
+
+- ## class
+  - ## Ui.java
+    - field
+      - private static final String SPACE = " ";
+      - private final String bridge;
+      - private final String notBridge;
+    - constructor
+      - public Ui(String bridge, String notBridge);
+      - public Ui(int size);
+    - method
+      - public String bridgeUi(boolean isBridge);
+      - public String floorUi(Floor floor);
+      - public String ladderUi(Ladder ladder);
+      - public String participantsUi(Participants participants);
+  - ## Ladder.java
+    - field
+      - private static final int MIN_HEIGHT = 1;
+      - private static final int MIN_WIDTH = 1;
+      - private final List<Floor> ladder;
+    - constructor
+      - public Ladder(List<Floor> ladder);
+      - public static Ladder makeLadderBySize(int height, int width);
+    - method
+      - public checkSize(int height, int width);
+      - public List<Floor> ladder();
+  - ## Floor.java
+    - field
+      - private final List<Bridge> floor
+    - constructor
+      - public Floor(List<Bridge> floor);
+      - public static Floor makeByWidth(int width);
+    - method
+      - public Bridge createBridge(Bridge lastBridge);
+      - public List<Bridge> floor();
+  - ## Bridge.java
+    - field
+      - private final boolean isBridge;
+    - constructor
+      - public Bridge(boolean isBridge);
+      - public Bridge(MakeBridge makeBridge);
+    - method
+      - public boolean isBridge();
+  - ## Participants.java
+    - field
+      - private final List<User> participants;
+    - constructor
+      - public Participants(List<User> participants);
+      - public static Participants makeByString(String str);
+    - method
+      - private static assureNotEmpty(String str);
+      - public int numberOfParticipants();
+      - public List<User> participants();
+      - public int maxNameLength();
+  - ## User.java
+    - field
+      - private final String name;
+    - constructor
+      - public User(String name)
+    - method
+      - private static assureNotEmpty(String str);
+      - private static checkMaxLength(String name);
+      - public String name();
