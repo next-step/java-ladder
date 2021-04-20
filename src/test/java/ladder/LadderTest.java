@@ -69,9 +69,9 @@ public class LadderTest {
     public void printLadder() {
         //given
         //given
-        Layer layer1 = new Layer(Arrays.asList(true, false, true, false, true));
+        Layer layer1 = Layer.valueOf(Arrays.asList(true, false, true, false, true));
         String printLayer1 = "|-------|       |-------|       |-------|";
-        Layer layer2 = new Layer(Arrays.asList(true, false, true, false, false));
+        Layer layer2 = Layer.valueOf(Arrays.asList(true, false, true, false, false));
         String printLayer2 = "|-------|       |-------|       |       |";
         Ladder ladder = new Ladder(Arrays.asList(layer1, layer2, layer1));
         StringBuilder expectLadder = new StringBuilder();

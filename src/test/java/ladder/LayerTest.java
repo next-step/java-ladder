@@ -29,7 +29,7 @@ public class LayerTest {
                 return true;
             }
         };
-        Layer expectLayer = new Layer(expectAisles);
+        Layer expectLayer = Layer.valueOf(expectAisles);
 
         // when 
         Layer resultLayer = Layer.valueOf(line, randomTrueBoolean);
@@ -42,7 +42,7 @@ public class LayerTest {
     public void hasAisle() {
         // given
         List<Boolean> expectAisles = Arrays.asList(true, false, true, false, true);
-        Layer expectLayer = new Layer(expectAisles);
+        Layer expectLayer = Layer.valueOf(expectAisles);
         // when
 
         // then
@@ -69,7 +69,7 @@ public class LayerTest {
     public void nextLine(int previousLine, int expectNextLine) {
         // given
         List<Boolean> aisles = Arrays.asList(true, false, true, false, true);
-        Layer layer = new Layer(aisles);
+        Layer layer = Layer.valueOf(aisles);
 
         // when
         int resultNextLine = layer.nextLine(previousLine);
@@ -81,7 +81,7 @@ public class LayerTest {
     @Test
     public void printLayer() {
         //given
-        Layer layer = new Layer(Arrays.asList(true, false, true, false, true));
+        Layer layer = Layer.valueOf(Arrays.asList(true, false, true, false, true));
         String expectLayer = "|-------|       |-------|       |-------|";
         //when
         String resultLayer = layer.printLayer();

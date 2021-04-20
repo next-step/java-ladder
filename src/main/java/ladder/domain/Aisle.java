@@ -3,6 +3,7 @@ package ladder.domain;
 import ladder.service.RandomBoolean;
 import ladder.view.ResultView;
 
+import java.util.Objects;
 import java.util.stream.IntStream;
 
 public class Aisle {
@@ -36,4 +37,20 @@ public class Aisle {
         return new Aisle(false);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Aisle aisle1 = (Aisle) o;
+        return aisle == aisle1.aisle;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(aisle);
+    }
 }
