@@ -12,6 +12,18 @@ import java.util.List;
 
 public class LadderGameService {
 
+    public Participants registerParticipants(String participantNames) {
+        return new Participants(participantNames);
+    }
+
+    public Ladder generateLadder(int participantsCount, int ladderHeight) {
+        return new Ladder(participantsCount, ladderHeight);
+    }
+
+    public MatchingItems generateMatchingItems(String gameResultNames, int participantsCount) {
+        return new MatchingItems(gameResultNames, participantsCount);
+    }
+
     public List<LadderGameResult> executeGame(Participants participants, Ladder ladder, MatchingItems matchingItems) {
         List<LadderGameResult> gameResults = new ArrayList<>();
         int entranceNumber = Participants.MIN_ENTRANCE_NUMBER;

@@ -5,25 +5,22 @@ import ladder.controller.dto.LadderGameResponse;
 import ladder.controller.dto.LadderLine;
 import ladder.domain.*;
 import ladder.service.LadderGameService;
-import ladder.service.LadderGenerationService;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class LadderGameController {
-
-    private final LadderGenerationService generationService;
+    
     private final LadderGameService gameService;
 
     public LadderGameController() {
-        this.generationService = new LadderGenerationService();
         this.gameService = new LadderGameService();
     }
 
     public LadderGameResponse executeLadderGame(LadderGameRequest request) {
-        Participants participants = generationService.registerParticipants(request.getParticipantNames());
-        Ladder ladder = generationService.generateLadder(participants.getCount(), request.getLadderHeight());
-        MatchingItems matchingItems = generationService.generateMatchingItems(request.getMatchingItems(), participants.getCount());
+        Participants participants = gameService.registerParticipants(request.getParticipantNames());
+        Ladder ladder = gameService.generateLadder(participants.getCount(), request.getLadderHeight());
+        MatchingItems matchingItems = gameService.generateMatchingItems(request.getMatchingItems(), participants.getCount());
         return assembleResponse(participants, ladder, matchingItems);
     }
 
