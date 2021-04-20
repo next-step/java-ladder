@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class PlayerTest {
     @Test
-    public void whiteSpacePlayer() {
+    public void withWhiteSpacePlayer() {
         //given
         String expectPlayer = "a       ";
         Player player = new Player("a");

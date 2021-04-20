@@ -30,7 +30,10 @@ public class Players {
     }
 
     public String getAllPlayer() {
-        return "";
+        StringBuilder sb = new StringBuilder();
+        players.stream()
+                .forEach(player -> sb.append(player.withWhiteSpacePlayer()));
+        return sb.toString();
     }
 
     @Override
