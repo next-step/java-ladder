@@ -8,6 +8,8 @@ import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class LadderTest {
 
@@ -48,21 +50,18 @@ class LadderTest {
     );
   }
 
-  @Test
+  @ParameterizedTest
+  @CsvSource({"pobi,1", "crong,0", "honux,3", "jk,2"})
   @DisplayName("사람을 입력받고, 해당하는 결과 인덱스를 반환한다.")
-  void findResultIndex() {
+  void findResultIndex(final String name, final int result) {
     // given
-    final String name = "pobi";
-    final Person pobi = Person.valueOf(name);
+    final Person person = Person.valueOf(name);
 
     // when
-    final int resultIndex = ladder.findResultIndex(pobi);
+    final int resultIndex = ladder.findResultIndex(person);
 
     // then
-    assertAll(
-        () -> assertThat(resultIndex).isEqualTo(ladder.findResultIndex(Person.valueOf(name))),
-        () -> assertThat(resultIndex).isNotEqualTo(ladder.findResultIndex(Person.valueOf("honux")))
-    );
+    assertThat(resultIndex).isEqualTo(result);
   }
 
   @Test
