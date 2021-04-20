@@ -22,17 +22,9 @@ public class ResultView {
     public static void printResult(String findResult, LadderGame ladderGame) {
         System.out.println(PRINT_RESULT);
         if (findResult.equals("all")) {
-            printResultAll(ladderGame);
+            System.out.println(ladderGame.printGameResult());
             return;
         }
         System.out.println(ladderGame.findReward(new Player(findResult)));
     }
-
-    private static void printResultAll(LadderGame ladderGame) {
-        ladderGame.gameResult()
-                .keySet()
-                .forEach(key -> System.out.println(
-                        String.format("%s : %s", key, ladderGame.findReward(key))));
-    }
-
 }
