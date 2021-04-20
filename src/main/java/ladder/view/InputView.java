@@ -2,63 +2,40 @@ package ladder.view;
 
 import ladder.domain.Players;
 import ladder.domain.Prize;
-import ladder.util.StringUtil;
 
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.List;
 
 public class InputView {
-    private static final String DELIMITER = ",";
+    private static final String ALL = "ALL";
 
-    private Players players;
-    private int ladderHeight;
-    private Prize prize;
+    private final InputScanner inputScanner;
 
-    public void inputLadderCondition() {
-        inputPlayer();
-        inputPrize();
-        inputLadderHeight();
+    public InputView() {
+        this.inputScanner = new InputScanner();
     }
 
-    private void inputPlayer() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        String inputPlayers = scanner.nextLine();
-        players = Players.of(Arrays.asList(StringUtil.split(inputPlayers.trim(), DELIMITER)));
+    public Players inputPlayer() {
+        return Players.of(inputScanner.scannerPlayers());
     }
 
-    private void inputPrize() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
-        String inputPrize = scanner.nextLine();
-
-        String[] splitPrize = StringUtil.split(inputPrize.trim(), DELIMITER);
-        if (splitPrize.length != players.count()) {
+    public Prize inputPrize(int playersCount) {
+        List<String> splitPrize = inputScanner.scannerPrizes();
+        if (splitPrize.size() != playersCount) {
             throw new IllegalArgumentException("실행 결과는 참가자 수 만큼 입력해 주세요.");
         }
 
-        prize = Prize.of(Arrays.asList(StringUtil.split(inputPrize.trim(), DELIMITER)));
+        return Prize.of(splitPrize);
     }
 
-    private void inputLadderHeight() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
-        ladderHeight = scanner.nextInt();
+    public int inputLadderHeight() {
+        return inputScanner.scannerLadderHeight();
     }
 
-    public int getLadderHeight() {
-        return ladderHeight;
+    public String inputPlayerNameForPrize() {
+        return inputScanner.scannerPlayerNameForPrize();
     }
 
-    public Players getPlayers() {
-        return players;
-    }
-
-    public int playersCount() {
-        return players.count();
-    }
-
-    public Prize getPrize() {
-        return prize;
+    public boolean isAll(String playerName) {
+        return ALL.equalsIgnoreCase(playerName);
     }
 }

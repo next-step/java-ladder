@@ -13,13 +13,13 @@ public class PrizeResultView {
         this.prize = prize;
     }
 
-    public void printPrizeResult(PrizeInputView inputView, Players players) {
+    public void printPrizeResult(boolean isAll, String prizePlayer, Players players) {
         System.out.println("실행 결과");
-        if (inputView.isAll()) {
+        if (isAll) {
             printResultAll(players);
             return;
         }
-        printResult(players, inputView.getPlayerName());
+        printResult(players, prizePlayer);
     }
 
     public void printResult(Players players, String playerName) {
