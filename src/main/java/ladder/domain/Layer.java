@@ -9,13 +9,9 @@ import java.util.stream.Collectors;
 
 public final class Layer {
     private final List<Aisle> aisles;
-    
+
     public Layer(List<Aisle> aisles) {
         this.aisles = aisles;
-    }
-
-    public boolean hasAisle(int index) {
-        return aisles.get(index).isExistAisle();
     }
 
     public static Layer valueOf(List<Boolean> aisles) {
@@ -31,6 +27,10 @@ public final class Layer {
             result.add(Aisle.generateAisle(result.get(i - 1), randomBoolean));
         }
         return new Layer(result);
+    }
+
+    public boolean hasAisle(int index) {
+        return aisles.get(index).isExistAisle();
     }
 
     public int nextLine(int nowLine) {
