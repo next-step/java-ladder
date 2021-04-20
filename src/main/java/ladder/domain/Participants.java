@@ -51,12 +51,10 @@ public class Participants {
     private static void validateDuplicate(List<Participant> participants) {
         int count = participants.size();
         int distinctCount = (int) participants.stream()
-                .map(Participant::getName)
-                .collect(Collectors.toList()).stream()
                 .distinct()
                 .count();
         if (count > distinctCount) {
-            throw new IllegalArgumentException("중복된 이름이 존재합니다. 참가자명을 다시 입력해 주세요.");
+            throw new IllegalArgumentException("중복된 참가자가 존재합니다. 참가자명을 다시 입력해 주세요.");
         }
     }
 

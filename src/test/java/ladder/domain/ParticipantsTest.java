@@ -85,7 +85,7 @@ class ParticipantsTest {
         // when then
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Participants(participantNames))
-                .withMessageMatching("중복된 이름이 존재합니다. 참가자명을 다시 입력해 주세요.");
+                .withMessageMatching("중복된 참가자가 존재합니다. 참가자명을 다시 입력해 주세요.");
     }
 
     @Test
