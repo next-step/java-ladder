@@ -22,7 +22,7 @@ public class LadderGameController {
         Ladder ladder = gameService.generateLadder(participants.getCount(), request.getLadderHeight());
         MatchingItems matchingItems = gameService.generateMatchingItems(request.getMatchingItems(), participants.getCount());
         Map<Participant, String> gameResults = gameService.executeGame(participants, ladder, matchingItems);
-        return new LadderGameResponse(assembleLadderGenerationResult(participants, ladder, matchingItems), assembleGameResults(gameResults));
+        return new LadderGameResponse(assembleLadderGenerationResult(participants, ladder, matchingItems), assembleGameResults(participants, gameResults));
     }
 
     private LadderGenerationResult assembleLadderGenerationResult(Participants participants, Ladder ladder, MatchingItems matchingItems) {
@@ -50,9 +50,9 @@ public class LadderGameController {
         return new LadderLine(pointList);
     }
 
-    private List<LadderGameResult> assembleGameResults(Map<Participant, String> gameResults) {
-        List<LadderGameResult> ladderGameResults = new ArrayList<>();
-        gameResults.forEach((participant, matchingItem) -> ladderGameResults.add(new LadderGameResult(participant.getName(), matchingItem)));
-        return ladderGameResults;
+    private List<LadderGameResult> assembleGameResults(Participants participants, Map<Participant, String> gameResults) {
+        return participants.getParticipants().stream()
+                .map(participant -> new LadderGameResult(participant.getName(), gameResults.get(participant)))
+                .collect(Collectors.toList());
     }
 }
