@@ -1,6 +1,7 @@
 package nextstep.ladder.controller;
 
 import nextstep.ladder.common.Constants;
+import nextstep.ladder.entity.ladder.GameResult;
 import nextstep.ladder.entity.ladder.Ladder;
 import nextstep.ladder.entity.ladder.LadderResults;
 import nextstep.ladder.entity.user.Users;
@@ -25,17 +26,21 @@ public class LadderController {
 
         ResultView.printLadderResult(users.userNames(), ladder);
 
-        String resultMember = InputView.resultMember();
+        while (true) {
+            String resultMember = InputView.resultMember();
+            LadderResultService ladderResultService;
 
-        LadderResultService ladderResultService = new SingleLadderResultService(users.startPosition(resultMember));
+            if (resultMember.equalsIgnoreCase(Constants.RESULT_ALL_NAME)) {
+                ladderResultService = new MultiLadderResultService(users);
+                List<GameResult> gameResults = ladderResultService.result(new LadderResults(inputLadderResult, userCount), ladder);
+                ResultView.printGameResult(gameResults);
+                break;
+            }
 
-        if (resultMember.equalsIgnoreCase(Constants.RESULT_ALL_NAME)) {
-            ladderResultService = new MultiLadderResultService(users);
+            ladderResultService = new SingleLadderResultService(resultMember, users.startPosition(resultMember));
+            List<GameResult> gameResults = ladderResultService.result(new LadderResults(inputLadderResult, userCount), ladder);
+            ResultView.printGameSingleResult(gameResults);
+
         }
-
-        List<String> gameResults = ladderResultService.result(new LadderResults(inputLadderResult, userCount), ladder);
-
-        ResultView.printGameResult(gameResults);
-
     }
 }

@@ -22,10 +22,6 @@ public class Ladder {
                 .collect(Collectors.toList());
     }
 
-    public List<LinesOfOneHeight> getLines() {
-        return Collections.unmodifiableList(linesOfOneHeightList);
-    }
-
     public int gameEndPosition(int startPosition) {
 
         int gameEndPosition = startPosition;
@@ -37,5 +33,8 @@ public class Ladder {
         return gameEndPosition;
     }
 
+    public List<LinesOfOneHeight> getLines() {
+        return Collections.unmodifiableList(linesOfOneHeightList);
+    }
 
 }

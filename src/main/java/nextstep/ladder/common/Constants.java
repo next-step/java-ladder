@@ -5,6 +5,7 @@ public class Constants {
     private Constants() {}
 
     public static final int MAX_NAME_SIZE = 5;
+    public static final int ALL_START_POSITION = -1;
 
     public static final String RESULT_ALL_NAME = "all";
     public static final String SPLIT_SYMBOL = ",";

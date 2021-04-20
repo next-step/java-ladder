@@ -1,5 +1,6 @@
 package nextstep.ladder.service;
 
+import nextstep.ladder.entity.ladder.GameResult;
 import nextstep.ladder.entity.ladder.Ladder;
 import nextstep.ladder.entity.ladder.LadderResults;
 import nextstep.ladder.entity.user.User;
@@ -17,12 +18,11 @@ public class MultiLadderResultService implements LadderResultService {
     }
 
     @Override
-    public List<String> result(LadderResults ladderResults, Ladder ladder) {
-        List<String> gameResults = new ArrayList<>();
+    public List<GameResult> result(LadderResults ladderResults, Ladder ladder) {
+        List<GameResult> gameResults = new ArrayList<>();
 
         for (User user : users.users()) {
-            String gameResult = ladderResults.positionResult(user.name(), ladder.gameEndPosition(user.startPosition()));
-            gameResults.add(gameResult);
+            gameResults.add(ladderResults.positionResult(user.name(), ladder.gameEndPosition(user.startPosition())));
         }
 
         return gameResults;

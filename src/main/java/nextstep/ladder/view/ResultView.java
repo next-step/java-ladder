@@ -1,9 +1,7 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.entity.ladder.Direction;
-import nextstep.ladder.entity.ladder.Ladder;
-import nextstep.ladder.entity.ladder.Line;
-import nextstep.ladder.entity.ladder.LinesOfOneHeight;
+import nextstep.ladder.common.Constants;
+import nextstep.ladder.entity.ladder.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -73,11 +71,21 @@ public class ResultView {
         return NONE_DRAW_LINE;
     }
 
-    public static void printGameResult(List<String> gameResults) {
+    public static void printGameSingleResult(List<GameResult> gameResults) {
+
         System.out.println(LINE_SEPARATOR + GAME_RESULT_MESSAGE);
 
-        for (String gameResult : gameResults) {
-            System.out.println(gameResult);
+        for (GameResult gameResult : gameResults) {
+            System.out.println(gameResult.getReward());
+        }
+    }
+
+    public static void printGameResult(List<GameResult> gameResults) {
+
+        System.out.println(LINE_SEPARATOR + GAME_RESULT_MESSAGE);
+
+        for (GameResult gameResult : gameResults) {
+            System.out.println(gameResult.getName() + Constants.USER_AND_POSITION_APPEND_STRING + gameResult.getReward());
         }
     }
 }

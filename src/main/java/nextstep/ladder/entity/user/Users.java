@@ -29,7 +29,7 @@ public class Users {
                 .collect(Collectors.toList());
     }
 
-    public List<User> users(){
+    public List<User> users() {
         return Collections.unmodifiableList(users);
     }
 
@@ -38,6 +38,11 @@ public class Users {
     }
 
     public int startPosition(String userName) {
+
+        if (userName.equals(Constants.RESULT_ALL_NAME)) {
+            return Constants.ALL_START_POSITION;
+        }
+
         return users.stream()
                 .filter(user -> user.name().equals(userName))
                 .findFirst().map(User::startPosition)

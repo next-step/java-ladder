@@ -1,10 +1,9 @@
 package nextstep.ladder.ladder;
 
-import nextstep.ladder.entity.draw.AlwaysDrawRule;
 import nextstep.ladder.entity.draw.RandomDrawRule;
 import nextstep.ladder.entity.ladder.Direction;
-import nextstep.ladder.entity.ladder.NoneDrawRule;
 import nextstep.ladder.entity.ladder.Line;
+import nextstep.ladder.entity.ladder.NoneDrawRule;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -17,7 +16,7 @@ public class LineTest {
     @Test
     @DisplayName("지점에서 오른쪽 방향으로 가는 라인")
     public void rightDirectionLine(){
-        Line rightDirectionLine = new Line(Direction.NONE, new AlwaysDrawRule());
+        Line rightDirectionLine = new Line(Direction.NONE, () -> true);
         assertThat(rightDirectionLine.lineDirection()).isEqualTo(Direction.RIGHT);
     }
 

@@ -1,12 +1,10 @@
 package nextstep.ladder.ladder;
 
-import nextstep.ladder.entity.draw.AlwaysDrawRule;
 import nextstep.ladder.entity.ladder.Direction;
-import nextstep.ladder.entity.ladder.NoneDrawRule;
 import nextstep.ladder.entity.ladder.LinesOfOneHeight;
+import nextstep.ladder.entity.ladder.NoneDrawRule;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -19,7 +17,7 @@ public class LinesOfOneHeightTest {
 
     @BeforeEach
     public void setup(){
-        firstLines = new LinesOfOneHeight(5, new AlwaysDrawRule());
+        firstLines = new LinesOfOneHeight(5, () -> true);
         secondLines = new LinesOfOneHeight(5, new NoneDrawRule());
     }
 
