@@ -1,5 +1,6 @@
 package ladder.controller;
 
+import ladder.controller.dto.LadderGenerationResult;
 import ladder.service.dto.LadderGameResult;
 import ladder.controller.dto.LadderGameRequest;
 import ladder.controller.dto.LadderGameResponse;
@@ -24,9 +25,10 @@ class LadderGameControllerTest {
 
         // when
         LadderGameResponse response = controller.executeLadderGame(request);
+        LadderGenerationResult generationResult = response.getLadderGenerationResult();
 
         // then
-        assertThat(ladderHeight).isEqualTo(response.getLadderLines().size());
+        assertThat(ladderHeight).isEqualTo(generationResult.getLadderLines().size());
     }
 
     @Test
@@ -40,9 +42,10 @@ class LadderGameControllerTest {
 
         // when
         LadderGameResponse response = controller.executeLadderGame(request);
+        LadderGenerationResult generationResult = response.getLadderGenerationResult();
 
         // then
-        assertThat(Ladder.LADDER_HORIZON_WIDTH).isEqualTo(response.getLadderWidth());
+        assertThat(Ladder.LADDER_HORIZON_WIDTH).isEqualTo(generationResult.getLadderWidth());
     }
 
     @Test

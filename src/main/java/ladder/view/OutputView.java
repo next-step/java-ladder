@@ -1,5 +1,6 @@
 package ladder.view;
 
+import ladder.controller.dto.LadderGenerationResult;
 import ladder.service.dto.LadderGameResult;
 import ladder.controller.dto.LadderGameResponse;
 import ladder.controller.dto.LadderLine;
@@ -14,22 +15,22 @@ public class OutputView {
 
     public void printLadderGenerationResult(LadderGameResponse response) {
         System.out.println(System.lineSeparator() + "사다리 결과");
-        printParticipants(response.getLadderGameResults(), response.getLadderWidth());
+        printParticipants(response.getLadderGenerationResult());
         System.out.println();
-        printLadder(response.getLadderLines(), response.getLadderWidth());
-        printMatchingItems(response.getLadderGameResults(), response.getLadderWidth());
+        printLadder(response.getLadderGenerationResult());
+        printMatchingItems(response.getLadderGenerationResult());
         System.out.println();
     }
 
-    private void printParticipants(List<LadderGameResult> ladderGameResults, int ladderWidth) {
-        for (LadderGameResult gameResult : ladderGameResults) {
-            System.out.print(printHeaderAndFooterElement(gameResult.getParticipantName(), ladderWidth));
+    private void printParticipants(LadderGenerationResult ladderGenerationResult) {
+        for (String participant : ladderGenerationResult.getParticipants()) {
+            System.out.print(printHeaderAndFooterElement(participant, ladderGenerationResult.getLadderWidth()));
         }
     }
 
-    private void printMatchingItems(List<LadderGameResult> ladderGameResults, int ladderWidth) {
-        for (LadderGameResult gameResult : ladderGameResults) {
-            System.out.print(printHeaderAndFooterElement(gameResult.getMatchingItem(), ladderWidth));
+    private void printMatchingItems(LadderGenerationResult ladderGenerationResult) {
+        for (String matchingItem : ladderGenerationResult.getMatchingItems()) {
+            System.out.print(printHeaderAndFooterElement(matchingItem, ladderGenerationResult.getLadderWidth()));
         }
     }
 
@@ -41,9 +42,9 @@ public class OutputView {
         return result.toString();
     }
 
-    private void printLadder(List<LadderLine> ladderLineList, int ladderWidth) {
-        for (LadderLine ladderLine : ladderLineList) {
-            System.out.println(writeHorizon(EMPTY_HORIZON, ladderWidth) + writeLine(ladderLine, ladderWidth));
+    private void printLadder(LadderGenerationResult ladderGenerationResult) {
+        for (LadderLine ladderLine : ladderGenerationResult.getLadderLines()) {
+            System.out.println(writeHorizon(EMPTY_HORIZON, ladderGenerationResult.getLadderWidth()) + writeLine(ladderLine, ladderGenerationResult.getLadderWidth()));
         }
     }
 
