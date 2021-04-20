@@ -41,7 +41,7 @@ public class Ladder {
     public String printLadder() {
         StringBuilder sb = new StringBuilder();
         this.layers.stream()
-                .forEach(layer -> sb.append(layer).append(System.lineSeparator()));
+                .forEach(layer -> sb.append(layer.printLayer()).append(System.lineSeparator()));
         return sb.toString();
     }
 
