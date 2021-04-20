@@ -18,4 +18,7 @@ public class Line {
     return points;
   }
 
+  public static Line init(int sizeOfPerson){
+    List<Point>
+  }
 }
