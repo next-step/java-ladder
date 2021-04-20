@@ -19,10 +19,6 @@ public final class Layer {
         return aisles.get(index);
     }
 
-    public List<Boolean> getAisles() {
-        return this.aisles;
-    }
-
     public static Layer valueOf(int line, RandomBoolean randomBoolean) {
         List<Boolean> result = new ArrayList<>();
         result.add(randomBoolean.randomBoolean());
