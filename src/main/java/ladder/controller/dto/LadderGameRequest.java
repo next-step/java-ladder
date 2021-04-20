@@ -1,34 +1,26 @@
 package ladder.controller.dto;
 
-import java.util.List;
-
 public class LadderGameRequest {
 
-    private final List<String> participantNames;
-    private final List<LadderLine> ladderLines;
-    private final List<String> gameResults;
-    private final String inquiryTargetName;
+    private final String participantNames;
+    private final String matchingItems;
+    private final int ladderHeight;
 
-    public LadderGameRequest(List<String> participantNames, List<LadderLine> ladderLines, List<String> gameResults, String inquiryTargetName) {
+    public LadderGameRequest(String participantNames, String matchingItems, int ladderHeight) {
         this.participantNames = participantNames;
-        this.ladderLines = ladderLines;
-        this.gameResults = gameResults;
-        this.inquiryTargetName = inquiryTargetName;
+        this.ladderHeight = ladderHeight;
+        this.matchingItems = matchingItems;
     }
 
-    public List<String> getParticipantNames() {
+    public String getParticipantNames() {
         return participantNames;
     }
 
-    public List<LadderLine> getLadderLines() {
-        return ladderLines;
+    public String getMatchingItems() {
+        return matchingItems;
     }
 
-    public List<String> getGameResults() {
-        return gameResults;
-    }
-
-    public String getInquiryTargetName() {
-        return inquiryTargetName;
+    public int getLadderHeight() {
+        return ladderHeight;
     }
 }

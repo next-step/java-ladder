@@ -1,8 +1,8 @@
 package ladder.view;
 
+import ladder.controller.dto.LadderGenerationResult;
+import ladder.controller.dto.LadderGameResult;
 import ladder.controller.dto.LadderGameResponse;
-import ladder.controller.dto.LadderGameTotalResultResponse;
-import ladder.controller.dto.LadderGenerationResponse;
 import ladder.controller.dto.LadderLine;
 
 import java.util.List;
@@ -13,32 +13,38 @@ public class OutputView {
     private static final String HORIZON = "-";
     private static final String POINT = "|";
 
-    public void printLadderGenerationResult(LadderGenerationResponse response) {
+    public void printLadderGenerationResult(LadderGameResponse response) {
         System.out.println(System.lineSeparator() + "사다리 결과");
-        printHeaderAndFooter(response.getParticipantNames(), response.getLadderWidth());
+        printParticipants(response.getLadderGenerationResult());
         System.out.println();
-        printLadder(response.getLadderLines(), response.getLadderWidth());
-        printHeaderAndFooter(response.getGameResults(), response.getLadderWidth());
+        printLadder(response.getLadderGenerationResult());
+        printMatchingItems(response.getLadderGenerationResult());
         System.out.println();
     }
 
-    private void printHeaderAndFooter(List<String> participants, int ladderWidth) {
-        for (String participant : participants) {
-            System.out.print(printHeaderAndFooterElement(participant, ladderWidth));
+    private void printParticipants(LadderGenerationResult ladderGenerationResult) {
+        for (String participant : ladderGenerationResult.getParticipants()) {
+            System.out.print(printHeaderAndFooterElement(participant, ladderGenerationResult.getLadderWidth()));
         }
     }
 
-    private String printHeaderAndFooterElement(String participant, int ladderWidth) {
-        StringBuilder result = new StringBuilder(participant);
-        for (int i = 0; i < ladderWidth - participant.length() + 1; i++) {
+    private void printMatchingItems(LadderGenerationResult ladderGenerationResult) {
+        for (String matchingItem : ladderGenerationResult.getMatchingItems()) {
+            System.out.print(printHeaderAndFooterElement(matchingItem, ladderGenerationResult.getLadderWidth()));
+        }
+    }
+
+    private String printHeaderAndFooterElement(String element, int ladderWidth) {
+        StringBuilder result = new StringBuilder(element);
+        for (int i = 0; i < ladderWidth - element.length() + 1; i++) {
             result.insert(0, EMPTY_HORIZON);
         }
         return result.toString();
     }
 
-    private void printLadder(List<LadderLine> ladderLineList, int ladderWidth) {
-        for (LadderLine ladderLine : ladderLineList) {
-            System.out.println(writeHorizon(EMPTY_HORIZON, ladderWidth) + writeLine(ladderLine, ladderWidth));
+    private void printLadder(LadderGenerationResult ladderGenerationResult) {
+        for (LadderLine ladderLine : ladderGenerationResult.getLadderLines()) {
+            System.out.println(writeHorizon(EMPTY_HORIZON, ladderGenerationResult.getLadderWidth()) + writeLine(ladderLine, ladderGenerationResult.getLadderWidth()));
         }
     }
 
@@ -65,17 +71,21 @@ public class OutputView {
         return horizons.toString();
     }
 
-    public void printGameResult(LadderGameResponse response) {
-        System.out.println(System.lineSeparator() + "실행 결과");
-        System.out.println(response.getGameResult());
+    public void printGameResult(List<LadderGameResult> gameResponses, String inputInquiryTargetName) {
+        for (LadderGameResult gameResponse : gameResponses) {
+            if(inputInquiryTargetName.equals(gameResponse.getParticipantName())) {
+                System.out.println(System.lineSeparator() + "실행 결과");
+                System.out.println(gameResponse.getMatchingItem());
+                return;
+            }
+        }
+        System.out.println("존재하지 않는 참가자입니다.");
     }
 
-    public void printGameResults(LadderGameTotalResultResponse response) {
+    public void printGameResults(List<LadderGameResult> gameResponses) {
         System.out.println(System.lineSeparator() + "실행 결과");
-        List<String> participantNames = response.getParticipantNames();
-        List<String> gameResults = response.getGameResults();
-        for (int i = 0; i < participantNames.size(); i++) {
-            System.out.println(participantNames.get(i) + " : " + gameResults.get(i));
+        for (LadderGameResult gameResponse : gameResponses) {
+            System.out.println(gameResponse.getParticipantName() + " : " + gameResponse.getMatchingItem());
         }
     }
 }

@@ -1,8 +1,6 @@
 package ladder.view;
 
 import ladder.controller.dto.LadderGameRequest;
-import ladder.controller.dto.LadderGenerationRequest;
-import ladder.controller.dto.LadderGenerationResponse;
 
 import java.util.Scanner;
 
@@ -14,8 +12,8 @@ public class InputView {
         scanner = new Scanner(System.in);
     }
 
-    public LadderGenerationRequest inputLadderGeneration() {
-        return new LadderGenerationRequest(inputParticipants(), inputGameResults(), inputLadderHeight());
+    public LadderGameRequest inputLadderGeneration() {
+        return new LadderGameRequest(inputParticipants(), inputGameResults(), inputLadderHeight());
     }
 
     private String inputParticipants() {
@@ -33,8 +31,8 @@ public class InputView {
         return scanner.nextInt();
     }
 
-    public LadderGameRequest inputLadderGame(LadderGenerationResponse generationResponse) {
+    public String inputInquiryTargetName() {
         System.out.println(System.lineSeparator() + "결과를 보고 싶은 사람은?");
-        return new LadderGameRequest(generationResponse.getParticipantNames(), generationResponse.getLadderLines(), generationResponse.getGameResults(), scanner.next());
+        return scanner.next();
     }
 }

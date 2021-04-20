@@ -1,14 +1,22 @@
 package ladder.controller.dto;
 
+import java.util.List;
+
 public class LadderGameResponse {
 
-    private final String gameResult;
+    private final LadderGenerationResult ladderGenerationResult;
+    private final List<LadderGameResult> ladderGameResults;
 
-    public LadderGameResponse(String gameResult) {
-        this.gameResult = gameResult;
+    public LadderGameResponse(LadderGenerationResult ladderGenerationResult, List<LadderGameResult> ladderGameResults) {
+        this.ladderGenerationResult = ladderGenerationResult;
+        this.ladderGameResults = ladderGameResults;
     }
 
-    public String getGameResult() {
-        return gameResult;
+    public LadderGenerationResult getLadderGenerationResult() {
+        return ladderGenerationResult;
+    }
+
+    public List<LadderGameResult> getLadderGameResults() {
+        return ladderGameResults;
     }
 }

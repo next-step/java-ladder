@@ -6,11 +6,11 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 class LineTest {
@@ -49,7 +49,7 @@ class LineTest {
 
         // then
         for (Point point : line.getPoints()) {
-            assertThat(point.hasLine()).isFalse();
+            assertThat(point.hasRightLine()).isFalse();
         }
     }
 
@@ -70,14 +70,14 @@ class LineTest {
 
         // then
         assertAll(
-                () -> assertThat(line.getPoints().get(0).hasLine()).isTrue(),
+                () -> assertThat(line.getPoints().get(0).hasRightLine()).isTrue(),
                 () -> {
                     for (int i = 1; i < line.getPoints().size() - 1; i++) {
-                        boolean prevHasLine = line.getPoints().get(i - 1).hasLine();
-                        assertThat(line.getPoints().get(i).hasLine()).isNotEqualTo(prevHasLine);
+                        boolean prevHasRightLine = line.getPoints().get(i - 1).hasRightLine();
+                        assertThat(line.getPoints().get(i).hasRightLine()).isNotEqualTo(prevHasRightLine);
                     }
                 },
-                () -> assertThat(line.getPoints().get(line.getPoints().size() - 1).hasLine()).isFalse()
+                () -> assertThat(line.getPoints().get(line.getPoints().size() - 1).hasRightLine()).isFalse()
         );
     }
 
@@ -103,7 +103,12 @@ class LineTest {
     @DisplayName("연결 포인트 조회 - 인덱스별 정상조회")
     void getLinkPointIndex(int inputIndex, int outputIndex) {
         // given
-        List<Point> points = Stream.of(true, false, false, true, false).map(Point::new).collect(Collectors.toList());
+        List<Point> points = new ArrayList<>();
+        points.add(new Point(0, new Direction(false, true)));
+        points.add(new Point(1, new Direction(true, false)));
+        points.add(new Point(2, new Direction(false, false)));
+        points.add(new Point(3, new Direction(false, true)));
+        points.add(new Point(4, new Direction(true, false)));
 
         // when
         Line line = new Line(points);

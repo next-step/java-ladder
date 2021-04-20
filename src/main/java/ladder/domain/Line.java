@@ -6,8 +6,6 @@ import java.util.List;
 public class Line {
 
     private static final int MIN_POINT_COUNT = 2;
-    private static final boolean EMPTY_LINE = false;
-    private static final int FIRST_POINT_INDEX = 0;
     private static final int FIRST_MIDDLE_POINT_INDEX = 1;
 
     private final List<Point> points;
@@ -29,8 +27,8 @@ public class Line {
         validatePointCount(pointCount);
         List<Point> points = new ArrayList<>();
         points.add(generateFirstPoint(lineWriteStrategy));
-        points.addAll(generateMiddlePoints(points.get(FIRST_POINT_INDEX), lineWriteStrategy, pointCount));
-        points.add(generateLastPoint());
+        points.addAll(generateMiddlePoints(points.get(Point.FIRST_INDEX), lineWriteStrategy, pointCount));
+        points.add(generateLastPoint(points));
         return points;
     }
 
@@ -47,36 +45,21 @@ public class Line {
     }
 
     private static Point generateFirstPoint(LineWriteStrategy lineWriteStrategy) {
-        return generatePoint(lineWriteStrategy);
+        return Point.first(lineWriteStrategy.write());
     }
 
     private static List<Point> generateMiddlePoints(Point firstPoint, LineWriteStrategy lineWriteStrategy, int pointCount) {
         List<Point> middlePoints = new ArrayList<>();
         Point middlePoint = firstPoint;
         for (int i = FIRST_MIDDLE_POINT_INDEX; i < pointCount - 1; i++) {
-            middlePoint = generateMiddlePoint(middlePoint, lineWriteStrategy);
+            middlePoint = middlePoint.next(lineWriteStrategy.write());
             middlePoints.add(middlePoint);
         }
         return middlePoints;
     }
 
-    private static Point generateMiddlePoint(Point currentPoint, LineWriteStrategy lineWriteStrategy) {
-        if (currentPoint.hasLine()) {
-            return generateEmptyPoint();
-        }
-        return generatePoint(lineWriteStrategy);
-    }
-
-    private static Point generateLastPoint() {
-        return generateEmptyPoint();
-    }
-
-    private static Point generatePoint(LineWriteStrategy lineWriteStrategy) {
-        return new Point(lineWriteStrategy.write());
-    }
-
-    private static Point generateEmptyPoint() {
-        return new Point(EMPTY_LINE);
+    private static Point generateLastPoint(List<Point> points) {
+        return points.get(points.size() - 1).last();
     }
 
     public List<Point> getPoints() {
@@ -87,24 +70,11 @@ public class Line {
         if (isInvalidIndex(index)) {
             throw new IllegalArgumentException("유효하지 않은 인덱스 입니다.");
         }
-        if (isLinkedWithRight(index)) {
-            return ++index;
-        }
-        if (isLinkedWithLeft(index)) {
-            return --index;
-        }
-        return index;
+        return points.get(index).move();
     }
 
     private boolean isInvalidIndex(int index) {
-        return index < FIRST_POINT_INDEX || index >= points.size();
+        return index < Point.FIRST_INDEX || index >= points.size();
     }
 
-    private boolean isLinkedWithRight(int index) {
-        return points.get(index).hasLine();
-    }
-
-    private boolean isLinkedWithLeft(int index) {
-        return index >= FIRST_MIDDLE_POINT_INDEX && points.get(index - 1).hasLine();
-    }
 }
