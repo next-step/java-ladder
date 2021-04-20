@@ -15,13 +15,13 @@ public class LadderController {
             Prize prize = inputView.inputPrize(players.count());
             int ladderHeight = inputView.inputLadderHeight();
 
-            Ladder ladder = Ladder.make(players.count(), ladderHeight);
+            Ladder ladder = new Ladder(players.count(), ladderHeight);
 
             LadderResultView ladderResultView = new LadderResultView(players, ladder);
             ladderResultView.showLadderDrawResult(prize);
 
             PrizeResultView prizeResultView = new PrizeResultView(ladderResultView.getLadderResult(), prize);
-            
+
             System.out.println();
             String prizePlayerName;
             boolean isAll = false;

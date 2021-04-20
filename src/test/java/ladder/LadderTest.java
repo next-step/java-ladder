@@ -56,7 +56,7 @@ public class LadderTest {
         int pointCount = 4;
         int lineCount = 1;
 
-        Ladder ladder = Ladder.make(pointCount, lineCount);
+        Ladder ladder = new Ladder(pointCount, lineCount);
 
         assertThat(ladder.arrivalPoint(0) == 0 || ladder.arrivalPoint(0) == 1).isTrue();
     }
