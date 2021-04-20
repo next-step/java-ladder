@@ -9,6 +9,10 @@ public class Player {
         this.player = player;
     }
 
+    public String whiteSpacePlayer() {
+        return "";
+    }
+
     @Override
     public String toString() {
         return player;
