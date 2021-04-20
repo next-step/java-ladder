@@ -8,7 +8,8 @@ public class MakeBridgeByRandom implements MakeBridge {
 
   @Override
   public boolean make() {
-    if(new Random().nextInt(MAX_NUM) == STANDARD_NUM) {
+    int randomNumber = new Random().nextInt(MAX_NUM);
+    if(randomNumber == STANDARD_NUM) {
       return true;
     }
     return false;
