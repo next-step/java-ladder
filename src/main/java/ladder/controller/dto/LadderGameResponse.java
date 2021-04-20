@@ -6,34 +6,22 @@ import java.util.List;
 
 public class LadderGameResponse {
 
-    private final List<String> participantNames;
-    private final int ladderWidth;
     private final List<LadderLine> ladderLines;
-    private final List<String> matchingItems;
+    private final int ladderWidth;
     private final List<LadderGameResult> ladderGameResults;
 
-    public LadderGameResponse(List<String> participantNames, int ladderWidth, List<LadderLine> ladderLines, List<String> matchingItems, List<LadderGameResult> ladderGameResults) {
-        this.participantNames = participantNames;
-        this.ladderWidth = ladderWidth;
+    public LadderGameResponse(List<LadderLine> ladderLines, int ladderWidth, List<LadderGameResult> ladderGameResults) {
         this.ladderLines = ladderLines;
-        this.matchingItems = matchingItems;
+        this.ladderWidth = ladderWidth;
         this.ladderGameResults = ladderGameResults;
-    }
-
-    public List<String> getParticipantNames() {
-        return participantNames;
-    }
-
-    public int getLadderWidth() {
-        return ladderWidth;
     }
 
     public List<LadderLine> getLadderLines() {
         return ladderLines;
     }
 
-    public List<String> getMatchingItems() {
-        return matchingItems;
+    public int getLadderWidth() {
+        return ladderWidth;
     }
 
     public List<LadderGameResult> getLadderGameResults() {

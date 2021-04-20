@@ -26,17 +26,9 @@ public class LadderGameController {
 
     private LadderGameResponse assembleResponse(Participants participants, Ladder ladder, MatchingItems matchingItems) {
         return new LadderGameResponse(
-                assembleParticipantNames(participants),
-                Ladder.LADDER_HORIZON_WIDTH,
                 assembleLadderLines(ladder.getLines()),
-                assembleMatchingItems(matchingItems),
+                Ladder.LADDER_HORIZON_WIDTH,
                 gameService.executeGame(participants, ladder, matchingItems));
-    }
-
-    private List<String> assembleParticipantNames(Participants participants) {
-        return participants.getParticipants().stream()
-                .map(Participant::getName)
-                .collect(Collectors.toList());
     }
 
     private List<LadderLine> assembleLadderLines(List<Line> lineList) {
@@ -48,10 +40,6 @@ public class LadderGameController {
     private LadderLine assembleLadderLine(Line line) {
         List<Boolean> pointList = line.getPoints().stream().map(Point::hasRightLine).collect(Collectors.toList());
         return new LadderLine(pointList);
-    }
-
-    private List<String> assembleMatchingItems(MatchingItems matchingItems) {
-        return matchingItems.getMatchingItems();
     }
 
 }

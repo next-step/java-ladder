@@ -3,18 +3,18 @@ package ladder.service.dto;
 public class LadderGameResult {
 
     private final String participantName;
-    private final String gameResult;
+    private final String matchingItem;
 
-    public LadderGameResult(String participantName, String gameResult) {
+    public LadderGameResult(String participantName, String matchingItem) {
         this.participantName = participantName;
-        this.gameResult = gameResult;
+        this.matchingItem = matchingItem;
     }
 
     public String getParticipantName() {
         return participantName;
     }
 
-    public String getGameResult() {
-        return gameResult;
+    public String getMatchingItem() {
+        return matchingItem;
     }
 }

@@ -14,22 +14,28 @@ public class OutputView {
 
     public void printLadderGenerationResult(LadderGameResponse response) {
         System.out.println(System.lineSeparator() + "사다리 결과");
-        printHeaderAndFooter(response.getParticipantNames(), response.getLadderWidth());
+        printParticipants(response.getLadderGameResults(), response.getLadderWidth());
         System.out.println();
         printLadder(response.getLadderLines(), response.getLadderWidth());
-        printHeaderAndFooter(response.getMatchingItems(), response.getLadderWidth());
+        printMatchingItems(response.getLadderGameResults(), response.getLadderWidth());
         System.out.println();
     }
 
-    private void printHeaderAndFooter(List<String> participants, int ladderWidth) {
-        for (String participant : participants) {
-            System.out.print(printHeaderAndFooterElement(participant, ladderWidth));
+    private void printParticipants(List<LadderGameResult> ladderGameResults, int ladderWidth) {
+        for (LadderGameResult gameResult : ladderGameResults) {
+            System.out.print(printHeaderAndFooterElement(gameResult.getParticipantName(), ladderWidth));
         }
     }
 
-    private String printHeaderAndFooterElement(String participant, int ladderWidth) {
-        StringBuilder result = new StringBuilder(participant);
-        for (int i = 0; i < ladderWidth - participant.length() + 1; i++) {
+    private void printMatchingItems(List<LadderGameResult> ladderGameResults, int ladderWidth) {
+        for (LadderGameResult gameResult : ladderGameResults) {
+            System.out.print(printHeaderAndFooterElement(gameResult.getMatchingItem(), ladderWidth));
+        }
+    }
+
+    private String printHeaderAndFooterElement(String element, int ladderWidth) {
+        StringBuilder result = new StringBuilder(element);
+        for (int i = 0; i < ladderWidth - element.length() + 1; i++) {
             result.insert(0, EMPTY_HORIZON);
         }
         return result.toString();
@@ -68,7 +74,7 @@ public class OutputView {
         for (LadderGameResult gameResponse : gameResponses) {
             if(inputInquiryTargetName.equals(gameResponse.getParticipantName())) {
                 System.out.println(System.lineSeparator() + "실행 결과");
-                System.out.println(gameResponse.getGameResult());
+                System.out.println(gameResponse.getMatchingItem());
                 return;
             }
         }
@@ -78,7 +84,7 @@ public class OutputView {
     public void printGameResults(List<LadderGameResult> gameResponses) {
         System.out.println(System.lineSeparator() + "실행 결과");
         for (LadderGameResult gameResponse : gameResponses) {
-            System.out.println(gameResponse.getParticipantName() + " : " + gameResponse.getGameResult());
+            System.out.println(gameResponse.getParticipantName() + " : " + gameResponse.getMatchingItem());
         }
     }
 }

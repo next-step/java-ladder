@@ -205,7 +205,7 @@ class LadderGameServiceTest {
 
         // then
         for (int i = 0; i < expectedList.size(); i++) {
-            assertThat(expectedList.get(i)).isEqualTo(gameResults.get(i).getGameResult());
+            assertThat(expectedList.get(i)).isEqualTo(gameResults.get(i).getMatchingItem());
         }
     }
 
