@@ -30,11 +30,14 @@ public class Ladder {
         return this.layers;
     }
 
-    private static List<Layer> generateLayers(int line, int height, RandomBoolean randomBoolean) {
-        return IntStream.range(0, height)
-                .mapToObj(i -> Layer.valueOf(line, randomBoolean))
-                .collect(Collectors.toList());
+    public int finalLine(int startLine) {
+        int nowLine = startLine;
+        for (Layer layer : layers) {
+            nowLine = layer.nextLine(nowLine);
+        }
+        return nowLine;
     }
+
 
     @Override
     public boolean equals(Object o) {

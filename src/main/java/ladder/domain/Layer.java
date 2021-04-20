@@ -30,6 +30,36 @@ public final class Layer {
         return new Layer(result);
     }
 
+    public int nextLine(int nowLine) {
+        if (hasLeftAisle(nowLine)) {
+            return nowLine - 1;
+        }
+        if (hasRightAisle(nowLine)) {
+            return nowLine + 1;
+        }
+        return nowLine;
+    }
+
+    private boolean hasLeftAisle(int line) {
+        if (line <= 0) {
+            return false;
+        }
+        if (aisles.get(line - 1)) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean hasRightAisle(int line) {
+        if (line >= aisles.size()) {
+            return false;
+        }
+        if (aisles.get(line)) {
+            return true;
+        }
+        return false;
+    }
+
     private static boolean generateAisle(boolean previousAisle, RandomBoolean randomBoolean) {
         if (randomBoolean.randomBoolean() && !previousAisle) {
             return true;

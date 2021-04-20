@@ -11,44 +11,61 @@
 
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
 
-## 2단계 - 사다리(생성)
+## 3단계 - 사다리(게임 실행)
 
 ### 도메인 상세
 
 * Layer
     * 인스턴스 변수 : List\<Boolean\> aisles;
     * 주 생성자 : Layer(List\<Boolean> aisle)
-    * 부 생성자 : Layer(int line, RandomBoolean randomBoolean)
     * 메소드
-        * (미구현)int nextLine(int nowLine)
+        * int nextLine(int nowLine)
         * boolean hasAisle(int index)
 * Ladder
-    * instance : List<Layer> layers;
+    * instance : List\<Layer\> layers;
     * 주 생성자 : Layers(List\<Layer\>)
-    * 부 생성자 : Layers(int height)
     * 메소드
-        * (미구현)int finalLine(int startLine)
+        * int finalLine(int startLine)
+
+* LadderEdge
+    * instance
+        * Players
+        * Rewards
+
+* LadderGame
+    * instance
+        * gameResult
+    * 메소드
+        * Reward findReward(Player player)
+
+* Players
+    * instance : List<Player> players
+
+* Player
+    * instance : String player
+
+* Rewards
+    * instance : List<Reward> rewards
+
+* Reward
+    * instance : String reward
 
 ### 서비스 상세
 
-* LadderGame
-    * run()
 * RandomBooleanGenerator
     * 메소드
         * static boolean randomBoolean()
 
 ### 기능 요구사항
 
-* 사다리 게임에 참여하는 사람에 이름을 최대5글자까지 부여할 수 있다. 사다리를 출력할 때 사람 이름도 같이 출력한다.
-* 사람 이름은 쉼표(,)를 기준으로 구분한다.
-* 사람 이름을 5자 기준으로 출력하기 때문에 사다리 폭도 넓어져야 한다.
-* 사다리 타기가 정상적으로 동작하려면 라인이 겹치지 않도록 해야 한다.
-* |-----|-----| 모양과 같이 가로 라인이 겹치는 경우 어느 방향으로 이동할지 결정할 수 없다.
+* 사다리 실행 결과를 출력해야 한다.
+* 개인별 이름을 입력하면 개인별 결과를 출력하고, "all"을 입력하면 전체 참여자의 실행 결과를 출력한다.
 
 ### 프로그래밍 요구사항
 
 * 자바 8의 스트림과 람다를 적용해 프로그래밍한다.
 * 규칙 6: 모든 엔티티를 작게 유지한다.
+* 규칙 7: 3개 이상의 인스턴스 변수를 가진 클래스를 쓰지 않는다.
 
 ### 실행 결과
 
@@ -58,10 +75,13 @@
 참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)
 pobi,honux,crong,jk
 
+실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)
+꽝,5000,꽝,3000
+
 최대 사다리 높이는 몇 개인가요?
 5
 
-실행결과
+사다리 결과
 
 pobi  honux crong   jk
     |-----|     |-----|
@@ -69,23 +89,25 @@ pobi  honux crong   jk
     |-----|     |     |
     |     |-----|     |
     |-----|     |-----|
+꽝    5000  꽝    3000
+
+결과를 보고 싶은 사람은?
+pobi
+
+실행 결과
+꽝
+
+결과를 보고 싶은 사람은?
+all
+
+실행 결과
+pobi : 꽝
+honux : 3000
+crong : 꽝
+jk : 5000
 ```
 
 ### 힌트
 
-* 2차원 배열을 ArrayList, Generic을 적용해 구현하면 ArrayList<ArrayList<Boolean>>와 같이 이해하기 어려운 코드가 추가된다.
-* 사다리 게임에서 한 라인의 좌표 값을 가지는 객체를 추가해 구현해 본다.
-
-```
-public class Line {
-private List<Boolean> points = new ArrayList<>();
-
-    public Line (int countOfPerson) {
-        // 라인의 좌표 값에 선이 있는지 유무를 판단하는 로직 추가
-    }
-
-    [...]
-}
-```
-
-* 위와 같이 Line 객체를 추가하면 ArrayList<ArrayList<Boolean>> 코드를 ArrayList<Line>과 같이 구현하는 것이 가능해 진다.
+* 각 로직을 구현하기 위해 필요한 데이터를 가지는 객체를 분리하기 위해 노력해본다. 로직 구현에 필요한 데이터를 가지는 객체를 잘 분리하면 의외로 쉽게 문제를 해결할 수 있다.
+* 각 객체가 2개 이하의 인스턴스 변수만을 가지도록 구현해 본다.

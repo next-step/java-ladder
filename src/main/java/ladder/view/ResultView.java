@@ -1,27 +1,44 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
-import ladder.domain.Layer;
+import ladder.domain.*;
 
 import java.util.List;
 import java.util.stream.IntStream;
 
 public class ResultView {
+    private final static String PRINT_LADDER_RESULT = "사다리 결과";
     private final static String PRINT_RESULT = "실행결과";
     private final static int AISLE_WIDTH = 6;
 
-    public static void printLadder(Ladder ladder, List<String> users) {
+    public static void printLadder(Ladder ladder, LadderEdge ladderEdge) {
+        System.out.println(PRINT_LADDER_RESULT);
         StringBuilder sb = new StringBuilder();
-        sb.append(printUsers(users));
+        sb.append(printEdge(ladderEdge.players()));
         ladder.getLayers().stream()
                 .forEach(layer -> sb.append(printLayer(layer)));
-        System.out.println(sb.toString());
+        sb.append(printEdge(ladderEdge.rewards()));
+        System.out.println(sb);
     }
 
-    private static String printUsers(List<String> users) {
+    public static void printResult(String findResult, LadderGame ladderGame) {
+        System.out.println(PRINT_RESULT);
+        if (findResult.equals("all")) {
+            printResultAll(ladderGame);
+            return;
+        }
+        System.out.println(ladderGame.findReward(new Player(findResult)));
+    }
+
+    private static void printResultAll(LadderGame ladderGame) {
+        ladderGame.gameResult()
+                .keySet()
+                .forEach(key -> System.out.println(
+                        String.format("%s : %s", key, ladderGame.findReward(key))));
+    }
+
+    private static String printEdge(List<String> edge) {
         StringBuilder sb = new StringBuilder();
-        users.stream()
-                .forEach(user -> sb.append(user).append(printWhiteSpace(user)));
+        edge.forEach(s -> sb.append(s).append(printWhiteSpace(s)));
         sb.append(System.lineSeparator());
         return sb.toString();
     }
