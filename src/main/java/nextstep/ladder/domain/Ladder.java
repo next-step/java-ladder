@@ -1,10 +1,10 @@
 package nextstep.ladder.domain;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public final class Ladder {
 
@@ -18,11 +18,9 @@ public final class Ladder {
 
   public List<Line> createLines(final LineCreationStrategy lineCreationStrategy,
       LadderHeight ladderHeight) {
-    List<Line> lines = new ArrayList<>();
-    for (int i = 0; i < ladderHeight.toInt(); i++) {
-      lines.add(new Line(lineCreationStrategy, people.personCount()));
-    }
-    return lines;
+    return Stream.generate(() -> new Line(lineCreationStrategy, people().personCount()))
+        .limit(ladderHeight.toInt())
+        .collect(Collectors.toList());
   }
 
   public List<Line> lines() {
