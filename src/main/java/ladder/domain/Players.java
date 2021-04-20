@@ -29,6 +29,10 @@ public class Players {
         return this.players;
     }
 
+    public String getAllPlayer() {
+        return "";
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
