@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 public final class Layer {
     private final List<Aisle> aisles;
-
+    
     public Layer(List<Aisle> aisles) {
         this.aisles = aisles;
     }
