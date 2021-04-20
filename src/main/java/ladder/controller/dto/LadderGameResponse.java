@@ -1,7 +1,5 @@
 package ladder.controller.dto;
 
-import ladder.service.dto.LadderGameResult;
-
 import java.util.List;
 
 public class LadderGameResponse {

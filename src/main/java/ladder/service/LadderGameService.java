@@ -4,7 +4,7 @@ import ladder.domain.Ladder;
 import ladder.domain.MatchingItems;
 import ladder.domain.Participant;
 import ladder.domain.Participants;
-import ladder.service.dto.LadderGameResult;
+import ladder.controller.dto.LadderGameResult;
 
 import java.util.ArrayList;
 import java.util.Collections;

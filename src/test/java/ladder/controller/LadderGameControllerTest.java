@@ -1,7 +1,7 @@
 package ladder.controller;
 
 import ladder.controller.dto.LadderGenerationResult;
-import ladder.service.dto.LadderGameResult;
+import ladder.controller.dto.LadderGameResult;
 import ladder.controller.dto.LadderGameRequest;
 import ladder.controller.dto.LadderGameResponse;
 import ladder.domain.Ladder;
