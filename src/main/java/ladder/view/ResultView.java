@@ -1,8 +1,9 @@
 package ladder.view;
 
-import ladder.domain.*;
-
-import java.util.stream.IntStream;
+import ladder.domain.Ladder;
+import ladder.domain.LadderEdge;
+import ladder.domain.LadderGame;
+import ladder.domain.Player;
 
 public class ResultView {
     private final static String PRINT_LADDER_RESULT = "사다리 결과";
@@ -13,8 +14,7 @@ public class ResultView {
         System.out.println(PRINT_LADDER_RESULT);
         StringBuilder sb = new StringBuilder();
         sb.append(ladderEdge.getAllPlayer()).append(System.lineSeparator());
-        ladder.getLayers().stream()
-                .forEach(layer -> sb.append(printLayer(layer)));
+        sb.append(ladder.printLadder());
         sb.append(ladderEdge.getAllReward()).append(System.lineSeparator());
         System.out.println(sb);
     }
@@ -34,27 +34,5 @@ public class ResultView {
                 .forEach(key -> System.out.println(
                         String.format("%s : %s", key, ladderGame.findReward(key))));
     }
-
-    private static String printLayer(Layer layer) {
-        StringBuilder sb = new StringBuilder();
-        layer.getAisles().stream()
-                .forEach(aisle -> sb.append("|").append(printAisle(aisle)));
-        sb.append("|").append(System.lineSeparator());
-        return sb.toString();
-    }
-
-    private static String printAisle(boolean aisle) {
-        StringBuilder sb = new StringBuilder();
-
-        if (aisle) {
-            IntStream.rangeClosed(0, AISLE_WIDTH)
-                    .forEach(i -> sb.append("-"));
-            return sb.toString();
-        }
-        IntStream.rangeClosed(0, AISLE_WIDTH)
-                .forEach(i -> sb.append(" "));
-        return sb.toString();
-    }
-
 
 }
