@@ -46,6 +46,10 @@ public final class Ladder {
         .collect(Collectors.toList());
   }
 
+  public GameResults gameResults(People people, List<Result> results) {
+    return null;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {

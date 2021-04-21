@@ -3,7 +3,9 @@ package nextstep.ladder.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -76,5 +78,30 @@ class LadderTest {
 
     // then
     assertThat(allResults).isEqualTo(expected);
+  }
+
+  @Test
+  @DisplayName("사람목록과 결과목록을 받아서 게임 결과를 반환한다.")
+  void gameResults() {
+    // given
+    final String pobiName = "pobi";
+    final String crongName = "crong";
+    final String honuxName = "honux";
+    final String jkName = "jk";
+    final People people = People.from(new String[]{pobiName, crongName, honuxName, jkName});
+
+    final List<Result> results = Lists.list(new Result("100"), new Result("200"), new Result("꽝"), new Result("5000"));
+
+    final Map<Person, Result> allResults = new HashMap<>();
+    allResults.put(Person.valueOf(pobiName), new Result("200"));
+    allResults.put(Person.valueOf(crongName), new Result("100"));
+    allResults.put(Person.valueOf(honuxName), new Result("5000"));
+    allResults.put(Person.valueOf(jkName), new Result("꽝"));
+
+    // when
+    final GameResults gameResults = ladder.gameResults(people, results);
+
+    // then
+    assertThat(gameResults.allResults()).isEqualTo(allResults);
   }
 }
