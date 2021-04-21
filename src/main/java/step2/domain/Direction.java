@@ -11,19 +11,19 @@ public class Direction {
         this.right = right;
     }
 
-    public static Direction first(BooleanGenerator booleanGenerator) {
-        return new Direction(false, booleanGenerator.nextBoolean());
+    public static Direction first(boolean right) {
+        return new Direction(false, right);
     }
 
-    public static Direction middle(boolean isLeft, BooleanGenerator booleanGenerator) {
-        if (isLeft) {
+    public Direction middle(boolean right) {
+        if (this.right) {
             return new Direction(true, false);
         }
-        return new Direction(false, booleanGenerator.nextBoolean());
+        return new Direction(false, right);
     }
 
-    public static Direction last(boolean left) {
-        return new Direction(left, false);
+    public Direction last() {
+        return new Direction(this.right, false);
     }
 
     public boolean isLeft() {

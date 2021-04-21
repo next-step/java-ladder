@@ -19,15 +19,15 @@ public class Point {
     }
 
     public static Point first(BooleanGenerator booleanGenerator) {
-        return new Point(FIRST_INDEX, Direction.first(booleanGenerator));
+        return new Point(FIRST_INDEX, Direction.first(booleanGenerator.nextBoolean()));
     }
 
     public static Point middle(Point point, BooleanGenerator booleanGenerator) {
-        return new Point(point.index + NEXT_INDEX, Direction.middle(point.direction.isRight(), booleanGenerator));
+        return new Point(point.index + NEXT_INDEX, point.direction.middle(booleanGenerator.nextBoolean()));
     }
 
     public static Point last(Point point) {
-        return new Point(point.index + NEXT_INDEX, Direction.last(point.direction.isRight()));
+        return new Point(point.index + NEXT_INDEX, point.direction.last());
     }
 
     public int move() {

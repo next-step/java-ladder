@@ -28,9 +28,6 @@ public class Ladder {
     }
 
     private static void validateLadder(int countOfPerson, int ladderHeight) {
-        if (countOfPerson < 2) {
-            throw new IllegalArgumentException(Members.MEMBERS_MIN_SIZE_TWO_EXCEPTION_MESSAGE);
-        }
         if (ladderHeight < 1) {
             throw new IllegalArgumentException(Ladder.MIN_LADDER_HEIGHT_EXCEPTION_MESSAGE);
         }
@@ -44,7 +41,7 @@ public class Ladder {
         return lines.size();
     }
 
-    public int getEndIndexByStartIndex(int index) {
+    public int move(int index) {
         int currentPosition = index;
         for (Line line : lines) {
             currentPosition = line.move(currentPosition);

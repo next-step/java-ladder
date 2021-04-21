@@ -21,7 +21,7 @@ public class Match {
     private static Map<String, String> findResultsMatchingOfMember(Members members, Ladder ladder, Results results, Member findMember) {
         Map<String, String> returnMap = new HashMap<>();
         int memberIndex = members.indexOf(findMember);
-        int matchingOfResultIndex = ladder.getEndIndexByStartIndex(memberIndex);
+        int matchingOfResultIndex = ladder.move(memberIndex);
         returnMap.put(members.getMemberOfIndex(memberIndex), results.getResultOfMember(matchingOfResultIndex));
         return returnMap;
     }
@@ -29,7 +29,7 @@ public class Match {
     private static Match findMatchResultOfAll(Members members, Ladder ladder, Results results) {
         Map<String, String> returnMap = new HashMap<>();
         for (int i = 0; i < members.getSize(); i++) {
-            int matchingOfResultIndex = ladder.getEndIndexByStartIndex(i);
+            int matchingOfResultIndex = ladder.move(i);
             returnMap.put(members.getMemberOfIndex(i), results.getResultOfMember(matchingOfResultIndex));
         }
         return new Match(returnMap);
