@@ -54,4 +54,4 @@
 - [ ] `Line` 목록을 포장하는 `Lines` 일급컬렉션 생성 => 추후 Ladder가 이 역할을 수행
 - [x] `GameResult` 라는 사람과 결과를 연결짓는 클래스 선언
 - [x] `GameResults` 라는 일급컬렉션을 생성(`Map`형태여야 성능을 좋게 할 수 있겠다.)
-- [ ] `Ladder`에서 `People`과, `Results`를 받아서 `GameResults`를 반환하도록 변경
+- [x] `Ladder`에서 `People`과, `Results`를 받아서 `GameResults`를 반환하도록 변경
