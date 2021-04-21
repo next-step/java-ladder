@@ -2,6 +2,7 @@ package nextstep.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 import static nextstep.constant.Constant.*;
 
@@ -36,16 +37,28 @@ public class Lines {
         int focus = playerIndex;
 
         int index = 0;
-        int limit = countOfPerson - 1;
-        String arrow = (playerIndex == 0) ? RIGHT : LEFT;
+        int limit = countOfPerson;
+        int loopCount = 0;
         while (index < this.lines.size()) {
+            if (loopCount > 10) {
+                break;
+            }
+            loopCount++;
             Line line = this.lines.get(index);
             Points points = line.getPoints();
+
+            long falseCount = points.points().stream()
+                    .filter(p -> !p)
+                    .count();
+            if (falseCount == 0) {
+                index++;
+                continue;
+            }
 
             if (focus == 0) {
                 if (points.get(focus)) {
                     focus++;
-                    arrow = RIGHT;
+                    index++;
                 } else {
                     index++;
                 }
@@ -53,41 +66,27 @@ public class Lines {
             }
 
             if (focus == limit) {
-                if (points.get(focus)) {
+                if (points.get(focus - 1)) {
                     focus--;
-                    arrow = LEFT;
+                    index++;
                 } else {
                     index++;
                 }
                 continue;
             }
 
-            if (arrow.equals(LEFT)) {
-                if (points.get(focus)) {
-                    focus--;
-                    if (focus == 0) {
-                        arrow = RIGHT;
-                    } else {
-                        arrow = RIGHT;
-                    }
-                } else {
-                    index++;
-                }
+            if (points.get(focus)) {
+                focus++;
+                index++;
                 continue;
             }
-            if (arrow.equals(RIGHT)) {
-                if (points.get(focus)) {
-                    focus++;
-                    if (focus == limit) {
-                        arrow = LEFT;
-                    } else {
-                        arrow = RIGHT;
-                    }
-                } else {
-                    index++;
-                }
+            if (points.get(focus - 1)) {
+                focus--;
+                index++;
                 continue;
             }
+
+            index++;
         }
         return focus;
     }

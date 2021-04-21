@@ -28,14 +28,17 @@ public class Points {
     }
 
     public void markRandom() {
+        boolean prevBool = false;
         for (int i = 0; i < this.points.size(); i++) {
             Random random = new Random();
-            this.points.set(i, random.nextBoolean());
+            boolean element = random.nextBoolean();
+            this.points.set(i, (prevBool && element) ? false : element);
+            prevBool = element;
         }
         long count = this.points.stream()
                 .filter(p -> p)
                 .count();
-        if (count == 0) {
+        if (count == 0 || count == this.points.size() ) {
             this.markRandom();
         }
     }
