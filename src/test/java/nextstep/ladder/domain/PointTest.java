@@ -7,6 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class PointTest {
 
@@ -104,5 +105,19 @@ class PointTest {
 
     // then
     assertThat(actual).isEqualTo(position);
+  }
+
+  @ParameterizedTest
+  @ValueSource(booleans = {true, false})
+  @DisplayName("이전 Point가 RIGHT면, 무조건 다음 Point는 LEFT여야한다.")
+  void when_before_point_is_right_next_point_always_left(boolean nextRight) {
+    // given
+    final Point next = Point.head(true).next(nextRight);
+
+    // when
+    final int actual = next.move();
+
+    // then
+    assertThat(actual).isEqualTo(0);
   }
 }
