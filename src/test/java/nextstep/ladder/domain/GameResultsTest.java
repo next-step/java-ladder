@@ -60,11 +60,12 @@ class GameResultsTest {
     // given
     final Map<Person, Result> results = Maps.newHashMap(Person.valueOf("pobi"), new Result("1000"));
     final GameResults gameResults = new GameResults(results);
+    final String nonExistUserName = "hello";
 
     // when
     // then
-    assertThatThrownBy(() -> gameResults.resultOf("hello"))
+    assertThatThrownBy(() -> gameResults.resultOf(nonExistUserName))
         .isInstanceOf(PersonNotFoundException.class)
-        .hasMessage(PersonNotFoundException.PERSON_NOT_FOUND);
+        .hasMessage(PersonNotFoundException.PERSON_NOT_FOUND + nonExistUserName);
   }
 }

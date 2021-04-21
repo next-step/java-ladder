@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import nextstep.ladder.exception.PersonNotFoundException;
 
 public final class GameResults {
 
@@ -22,7 +23,17 @@ public final class GameResults {
   }
 
   public Result resultOf(String personName) {
-    return gameResults.get(Person.valueOf(personName));
+    final Person person = Person.valueOf(personName);
+
+    validatePersonExists(person);
+
+    return gameResults.get(person);
+  }
+
+  private void validatePersonExists(Person person) {
+    if (!gameResults.containsKey(person)) {
+      throw new PersonNotFoundException(person);
+    }
   }
 
   @Override
