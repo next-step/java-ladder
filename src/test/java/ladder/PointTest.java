@@ -12,28 +12,53 @@ class PointTest {
     @DisplayName("Point 인스턴스에 첫번째 지점 생성 테스트")
     @Test
     void first() {
-        Point point = Point.first(true);
+        // given
+        boolean current = true;
+
+        // when
+        Point point = Point.first(current);
+
+        // then
         assertThat(point.move()).isEqualTo(Direction.RIGHT);
     }
 
     @DisplayName("Point 인스턴스가 다음 지점 Point 인스턴스 생성 테스트")
     @Test
     void next() {
-        Point point = Point.first(true).next(false);
+        // given
+        boolean current = true;
+        boolean next = false;
+
+        // when
+        Point point = Point.first(current).next(next);
+
+        // then
         assertThat(point.move()).isEqualTo(Direction.LEFT);
     }
 
     @DisplayName("Point 인스턴스에 마지막 지점 생성 테스트")
     @Test
     void last() {
-        Point point = Point.first(true).next(false).last();
+        // given
+        boolean current = true;
+        boolean next = false;
+
+        // when
+        Point point = Point.first(current).next(next).last();
+
+        // then
         assertThat(point.move()).isEqualTo(Direction.PASS);
     }
 
     @DisplayName("Point 인스턴스에 부적절한 값 입력시 예외처리 여부 테스트")
     @Test
     void invalid() {
-        assertThatThrownBy(() -> Point.first(true).next(true))
+        // given
+        boolean current = true;
+        boolean next = true;
+
+        // when and then
+        assertThatThrownBy(() -> Point.first(current).next(next))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("상태 값이 유효하지 않습니다.");
     }
@@ -41,21 +66,42 @@ class PointTest {
     @DisplayName("Point 인스턴스의 다음 이동이 Direction.LEFT 인지 확인")
     @Test
     void left() {
-        Point point = Point.first(true).next(false);
+        // given
+        boolean current = true;
+        boolean next = false;
+
+        // when
+        Point point = Point.first(current).next(next);
+
+        // then
         assertThat(point.move()).isEqualTo(Direction.LEFT);
     }
 
     @DisplayName("Point 인스턴스의 다음 이동이 Direction.RIGHT 인지 확인")
     @Test
     void right() {
-        Point point = Point.first(false).next(true);
+        // given
+        boolean current = false;
+        boolean next = true;
+
+        // when
+        Point point = Point.first(current).next(next);
+
+        // then
         assertThat(point.move()).isEqualTo(Direction.RIGHT);
     }
 
     @DisplayName("Point 인스턴스의 다음 이동이 Direction.PASS 인지 확인")
     @Test
     void pass() {
-        Point point = Point.first(false).next(false);
+        // given
+        boolean current = false;
+        boolean next = false;
+
+        // when
+        Point point = Point.first(current).next(next);
+
+        // then
         assertThat(point.move()).isEqualTo(Direction.PASS);
     }
 }
