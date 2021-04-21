@@ -14,6 +14,9 @@ public final class Cross {
         if (point.move() == Direction.RIGHT) {
             return position + 1;
         }
-        return 0;
+        if (point.move() == Direction.LEFT) {
+            return position - 1;
+        }
+        return position;
     }
 }

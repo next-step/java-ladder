@@ -23,4 +23,13 @@ class CrossTest {
         Cross cross = new Cross(1, left);
         assertThat(cross.move()).isEqualTo(0);
     }
+
+
+    @DisplayName("Cross 인스턴스가 왼쪽으로 이동하는지 테스트")
+    @Test
+    void pass() {
+        Point pass = Point.first(false);
+        Cross cross = new Cross(1, pass);
+        assertThat(cross.move()).isEqualTo(1);
+    }
 }
