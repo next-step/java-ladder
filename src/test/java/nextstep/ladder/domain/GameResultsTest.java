@@ -1,9 +1,11 @@
 package nextstep.ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.HashMap;
 import java.util.Map;
+import nextstep.ladder.exception.PersonNotFoundException;
 import org.assertj.core.util.Maps;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -50,5 +52,19 @@ class GameResultsTest {
 
     // then
     assertThat(gameResult).isEqualTo(result);
+  }
+
+  @Test
+  @DisplayName("존재하지 않는 사람을 조회하면 사람을 찾지 못했다는 예외가 발생한다.")
+  void resultNonExistPerson() {
+    // given
+    final Map<Person, Result> results = Maps.newHashMap(Person.valueOf("pobi"), new Result("1000"));
+    final GameResults gameResults = new GameResults(results);
+
+    // when
+    // then
+    assertThatThrownBy(() -> gameResults.resultOf("hello"))
+        .isInstanceOf(PersonNotFoundException.class)
+        .hasMessage(PersonNotFoundException.PERSON_NOT_FOUND);
   }
 }
