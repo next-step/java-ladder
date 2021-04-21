@@ -39,6 +39,10 @@ public class Depth {
     return values;
   }
 
+  public int width() {
+    return values.size();
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
