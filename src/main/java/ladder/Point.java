@@ -14,6 +14,9 @@ public final class Point {
         if(current) {
             return Direction.RIGHT;
         }
+        if(left) {
+            return Direction.LEFT;
+        }
         return Direction.PASS;
     }
 }
