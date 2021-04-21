@@ -45,7 +45,7 @@ public final class Point {
   }
 
   public Point next(boolean right) {
-    final int nextIndex = this.index + 1;
+    final int nextIndex = getNextIndex();
 
     if (direction == Direction.RIGHT) {
       return createLeftDirectionPoint(nextIndex);
@@ -57,7 +57,16 @@ public final class Point {
   }
 
   public Point tail() {
-    return null;
+    final int nextIndex = getNextIndex();
+
+    if (direction == Direction.RIGHT) {
+      return createLeftDirectionPoint(nextIndex);
+    }
+    return createNoneDirectionPoint(nextIndex);
+  }
+
+  private int getNextIndex() {
+    return this.index + 1;
   }
 
   public boolean canDraw() {
