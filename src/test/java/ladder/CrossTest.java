@@ -15,4 +15,12 @@ class CrossTest {
         Cross cross = new Cross(1, right);
         assertThat(cross.move()).isEqualTo(2);
     }
+
+    @DisplayName("Cross 인스턴스가 왼쪽으로 이동하는지 테스트")
+    @Test
+    void left() {
+        Point left = Point.first(true).next(false);
+        Cross cross = new Cross(1, left);
+        assertThat(cross.move()).isEqualTo(0);
+    }
 }
