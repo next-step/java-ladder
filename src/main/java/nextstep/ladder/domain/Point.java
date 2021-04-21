@@ -4,10 +4,17 @@ import java.util.Objects;
 
 public final class Point {
 
-  private final boolean point;
+  private boolean point;
+  private int index;
+  private Direction direction;
 
   private Point(boolean point) {
     this.point = point;
+  }
+
+  private Point(int index, Direction direction) {
+    this.index = index;
+    this.direction = direction;
   }
 
   public static Point head() {
@@ -19,7 +26,10 @@ public final class Point {
   }
 
   public static Point head(boolean headRight) {
-    return null;
+    if (headRight) {
+      return new Point(0, Direction.RIGHT);
+    }
+    return new Point(0, Direction.NONE);
   }
 
   public Point next(boolean right) {
@@ -39,7 +49,7 @@ public final class Point {
   }
 
   public int move() {
-    return 0;
+    return direction.move(index);
   }
 
   @Override
