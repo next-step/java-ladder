@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -16,11 +17,10 @@ public class Ladder {
     }
 
     public int arrivalPoint(int startPoint) {
-        int currentPoint = startPoint;
-        for (Line line : lines) {
-            currentPoint = line.move(currentPoint);
-        }
-        return currentPoint;
+        AtomicInteger currentPoint = new AtomicInteger(startPoint);
+        lines.forEach(line -> currentPoint.set(line.move(currentPoint.get())));
+
+        return currentPoint.get();
     }
 
     public List<Line> getLines() {
@@ -29,6 +29,7 @@ public class Ladder {
 
     public List<Line> make(int with, int lineCount) {
         LineGeneratorFactory lineGeneratorFactory = new LineGeneratorFactory();
+
         return Stream.generate(() -> {
             LineGenerator lineGenerator = lineGeneratorFactory.lineGenerator();
             return lineGenerator.generate(with);
