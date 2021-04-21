@@ -1,5 +1,5 @@
 package ladder;
 
 public enum Direction {
-    PASS
+    RIGHT, PASS
 }

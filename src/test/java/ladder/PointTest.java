@@ -8,10 +8,17 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PointTest {
 
+    @DisplayName("Point 인스턴스의 다음 이동이 Direction.RIGHT 인지 확인")
+    @Test
+    void right() {
+        Point point = new Point(false, true);
+        assertThat(point.move()).isEqualTo(Direction.RIGHT);
+    }
+
     @DisplayName("Point 인스턴스의 다음 이동이 Direction.PASS 인지 확인")
     @Test
     void pass() {
-        Point point = new Point(false, true);
+        Point point = new Point(false, false);
         assertThat(point.move()).isEqualTo(Direction.PASS);
     }
 }
