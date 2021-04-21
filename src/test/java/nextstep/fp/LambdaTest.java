@@ -48,4 +48,6 @@ public class LambdaTest {
         int sum = Lambda.sumAllOverThree(numbers);
         assertThat(sum).isEqualTo(15);
     }
+
+
 }
