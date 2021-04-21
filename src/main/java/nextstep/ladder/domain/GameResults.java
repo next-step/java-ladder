@@ -16,6 +16,10 @@ public final class GameResults {
     this.gameResults = gameResults;
   }
 
+  public Map<Person, Result> allResults() {
+    return null;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
