@@ -1,12 +1,12 @@
 package nextstep.ladder.ladder;
 
-import nextstep.ladder.entity.draw.AlwaysDrawRule;
 import nextstep.ladder.entity.ladder.Ladder;
 import nextstep.ladder.entity.ladder.LinesOfOneHeight;
 import nextstep.ladder.entity.ladder.NoneDrawRule;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,11 +23,11 @@ public class LadderTest {
 
     @BeforeEach
     public void setup(){
-        firstLines = new LinesOfOneHeight(5, new AlwaysDrawRule());
+        firstLines = new LinesOfOneHeight(5, () -> true);
         secondLines = new LinesOfOneHeight(5, new NoneDrawRule());
-        threeLines = new LinesOfOneHeight(5, new AlwaysDrawRule());
+        threeLines = new LinesOfOneHeight(5, () -> true);
         fourthLines = new LinesOfOneHeight(5, new NoneDrawRule());
-        fifthLines = new LinesOfOneHeight(5, new AlwaysDrawRule());
+        fifthLines = new LinesOfOneHeight(5, () -> true);
 
         List<LinesOfOneHeight> linesOfOneHeights= new ArrayList<>();
         linesOfOneHeights.add(firstLines);
@@ -39,9 +39,10 @@ public class LadderTest {
         ladder = new Ladder(linesOfOneHeights);
     }
 
-    @Test
+    @ParameterizedTest
+    @CsvSource(value = {"0,1", "1,0", "2,3", "3,2", "4,4"})
     @DisplayName("게임 종료 후 참여자 위치")
-    public void gameEndPosition(){
-        assertThat(ladder.gameEndPosition(0)).isEqualTo(1);
+    public void gameEndPosition(int startPosition, int gameEndPosition) {
+        assertThat(ladder.gameEndPosition(startPosition)).isEqualTo(gameEndPosition);
     }
 }

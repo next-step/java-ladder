@@ -20,21 +20,25 @@ public class LadderResults {
 
         String[] results = StringUtil.splitCommaByString(resultsInput);
 
-        if (userCount != results.length) {
-            throw new IllegalArgumentException(Constants.LADDER_RESULT_INPUT_ERROR_MESSAGE);
-        }
+        ladderInputValid(userCount, results);
 
         return Arrays.stream(results)
                 .map(LadderResult::new)
                 .collect(Collectors.toList());
     }
 
+    private void ladderInputValid(int userCount, String[] results) {
+        if (userCount != results.length) {
+            throw new IllegalArgumentException(Constants.LADDER_RESULT_INPUT_ERROR_MESSAGE);
+        }
+    }
+
     public String positionResult(int position) {
         return ladderResults.get(position).result();
     }
 
-    public String positionResult(String name, int position) {
-        return name + Constants.USER_AND_POSITION_APPEND_STRING + ladderResults.get(position).result();
+    public GameResult positionResult(String name, int position) {
+        return new GameResult(name, ladderResults.get(position).result());
     }
 
     @Override

@@ -1,10 +1,10 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.entity.ladder.Direction;
-import nextstep.ladder.entity.ladder.Ladder;
-import nextstep.ladder.entity.ladder.Line;
-import nextstep.ladder.entity.ladder.LinesOfOneHeight;
+import nextstep.ladder.common.Constants;
+import nextstep.ladder.entity.ladder.*;
+import nextstep.ladder.util.StringUtil;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -21,8 +21,8 @@ public class ResultView {
     private ResultView() {
     }
 
-    private static String nameFormat(String username) {
-        return String.format("%-5s", username);
+    private static String rewardFormat(String username) {
+        return String.format("%-6s", username);
     }
 
     public static void printLadderResult(List<String> userNames, Ladder ladder) {
@@ -36,10 +36,8 @@ public class ResultView {
     }
 
     public static void printUser(List<String> userNames) {
-
-        System.out.println(userNames.stream()
-                .map(ResultView::nameFormat)
-                .collect(Collectors.joining(" ")));
+        userNames.stream().map(ResultView::rewardFormat).forEach(System.out::print);
+        System.out.println();
     }
 
     public static void printLadder(Ladder ladder) {
@@ -73,11 +71,29 @@ public class ResultView {
         return NONE_DRAW_LINE;
     }
 
-    public static void printGameResult(List<String> gameResults) {
+    public static void printSingleUserGameResult(List<GameResult> gameResults) {
+
         System.out.println(LINE_SEPARATOR + GAME_RESULT_MESSAGE);
 
-        for (String gameResult : gameResults) {
-            System.out.println(gameResult);
+        for (GameResult gameResult : gameResults) {
+            System.out.println(gameResult.getReward());
         }
+    }
+
+    public static void printAllUserGameResult(List<GameResult> gameResults) {
+
+        System.out.println(LINE_SEPARATOR + GAME_RESULT_MESSAGE);
+
+        for (GameResult gameResult : gameResults) {
+            System.out.println(gameResult.getName() + Constants.USER_AND_POSITION_APPEND_STRING + gameResult.getReward());
+        }
+    }
+
+    public static void printReward(String inputLadderResult) {
+        Arrays.stream(StringUtil.splitCommaByString(inputLadderResult))
+                .map(ResultView::rewardFormat)
+                .forEach(System.out::print);
+
+        System.out.println();
     }
 }

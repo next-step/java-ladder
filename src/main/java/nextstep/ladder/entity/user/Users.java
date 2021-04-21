@@ -29,7 +29,7 @@ public class Users {
                 .collect(Collectors.toList());
     }
 
-    public List<User> users(){
+    public List<User> users() {
         return Collections.unmodifiableList(users);
     }
 
