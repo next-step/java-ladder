@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public final class Ladder {
@@ -47,7 +48,19 @@ public final class Ladder {
   }
 
   public GameResults gameResults(People people, List<Result> results) {
-    return null;
+    final List<Person> personList = people.personList();
+    final List<Result> gameResults = getGameResults(results, personList);
+
+    return new GameResults(IntStream.range(0, Math.min(people.personCount(), results.size()))
+        .boxed()
+        .collect(Collectors.toMap(personList::get, gameResults::get)));
+  }
+
+  private List<Result> getGameResults(List<Result> results, List<Person> personList) {
+    return personList.stream()
+        .map(this::findResultIndex)
+        .map(results::get)
+        .collect(Collectors.toList());
   }
 
   @Override
