@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -17,7 +18,7 @@ public final class GameResults {
   }
 
   public Map<Person, Result> allResults() {
-    return null;
+    return Collections.unmodifiableMap(gameResults);
   }
 
   @Override
