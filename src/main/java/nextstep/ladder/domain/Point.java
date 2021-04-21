@@ -18,12 +18,28 @@ public final class Point {
     return new Point(!before.point && canCreate);
   }
 
+  public static Point head(boolean headRight) {
+    return null;
+  }
+
+  public Point next(boolean right) {
+    return null;
+  }
+
+  public Point tail() {
+    return null;
+  }
+
   public boolean canDraw() {
     return point;
   }
 
   public boolean hasLine() {
     return point;
+  }
+
+  public int move() {
+    return 0;
   }
 
   @Override
