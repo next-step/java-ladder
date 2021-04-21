@@ -6,7 +6,7 @@ public final class Point {
     private final boolean current;
 
     public Point(boolean left, boolean current) {
-        if(left && current) {
+        if (left && current) {
             throw new IllegalArgumentException("상태 값이 유효하지 않습니다.");
         }
         this.left = left;
@@ -18,12 +18,17 @@ public final class Point {
     }
 
     public final Direction move() {
-        if(current) {
+        if (current) {
             return Direction.RIGHT;
         }
-        if(left) {
+        if (left) {
             return Direction.LEFT;
         }
         return Direction.PASS;
     }
+
+    public final Point next(boolean current) {
+        return new Point(this.current, current);
+    }
+
 }
