@@ -3,6 +3,7 @@ package nextstep.fp;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -17,11 +18,11 @@ public class StreamStudyTest {
     }
 
     @Test
-    public void countWords() throws Exception {
-        long result = StreamStudy.countWords();
-        System.out.println("result : " + result);
+    public void countWordsTest() throws IOException {
+        long count = StreamStudy.countWords(s->s.length()>12);
+        System.out.println(count);
+        assertThat(count).isEqualTo(1946);
     }
-
     @Test
     public void printLongestWordTop100() throws Exception {
         StreamStudy.printLongestWordTop100();
