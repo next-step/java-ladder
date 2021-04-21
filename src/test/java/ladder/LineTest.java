@@ -14,8 +14,8 @@ public class LineTest {
     void line_자동() {
         Players players = Players.of(Arrays.asList("kong", "dal", "apple", "red", "blue"));
         LineGeneratorFactory factory = new LineGeneratorFactory();
-        LineGeneratorInterface lineGeneratorInterface = factory.lineGenerator();
-        Line ladderLine = lineGeneratorInterface.generate(players.count());
+        LineGenerator lineGenerator = factory.lineGenerator();
+        Line ladderLine = lineGenerator.generate(players.count());
 
         assertThat(ladderLine.move(0) == 0 || ladderLine.move(0) == 1).isTrue();
         assertThat(ladderLine.move(4) == 3 || ladderLine.move(4) == 4).isTrue();

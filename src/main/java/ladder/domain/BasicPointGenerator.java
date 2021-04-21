@@ -5,13 +5,13 @@ import ladder.util.RandomUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PointGeneratorImpl implements PointGeneratorInterface {
+public class BasicPointGenerator implements PointGenerator {
     private static final int FIRST_POINT_COUNT = 1;
     private static final int LAST_POINT_COUNT = 1;
 
     private final List<Point> points;
 
-    public PointGeneratorImpl() {
+    public BasicPointGenerator() {
         this.points = new ArrayList<>();
     }
 

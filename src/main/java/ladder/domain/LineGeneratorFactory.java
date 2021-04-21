@@ -1,8 +1,8 @@
 package ladder.domain;
 
 public class LineGeneratorFactory {
-    public LineGeneratorInterface lineGenerator() {
-        PointGeneratorInterface pointGeneratorInterface = new PointGeneratorImpl();
-        return new LineGeneratorImpl(pointGeneratorInterface);
+    public LineGenerator lineGenerator() {
+        PointGenerator pointGenerator = new BasicPointGenerator();
+        return new BasicLineGenerator(pointGenerator);
     }
 }

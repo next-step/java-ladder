@@ -30,8 +30,8 @@ public class Ladder {
     public List<Line> make(int with, int lineCount) {
         LineGeneratorFactory lineGeneratorFactory = new LineGeneratorFactory();
         return Stream.generate(() -> {
-            LineGeneratorInterface lineGeneratorInterface = lineGeneratorFactory.lineGenerator();
-            return lineGeneratorInterface.generate(with);
+            LineGenerator lineGenerator = lineGeneratorFactory.lineGenerator();
+            return lineGenerator.generate(with);
         }).limit(lineCount).collect(Collectors.toList());
     }
 }
