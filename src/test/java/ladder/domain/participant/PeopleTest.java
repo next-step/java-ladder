@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.participant;
 
 import ladder.exception.ParticipantListNullPointerException;
 import org.junit.jupiter.api.DisplayName;
@@ -11,11 +11,11 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class PeopleTest {
 
-    @DisplayName("People 인스턴스 null 입력시 예외처리 여부 테스트")
+    @DisplayName("People 인스턴스 생성 여부 테스트")
     @Test
     void 생성() {
         // given
-        String names = "pobi,honux,crong,jk";
+        String[] names = "pobi,honux,crong,jk".split(",");
 
         // when
         People people = People.of(names);
@@ -24,7 +24,7 @@ class PeopleTest {
         assertThat(people).isNotNull();
     }
 
-    @DisplayName("People 인스턴스 생성 여부 테스트")
+    @DisplayName("People 인스턴스 null 입력시 예외처리 테스트")
     @Test
     void 검증() {
         // given
@@ -41,7 +41,7 @@ class PeopleTest {
     @Test
     void 반환() {
         // given
-        String names = "pobi,honux,crong,jk";
+        String[] names = "pobi,honux,crong,jk".split(",");
 
         // when
         People people = People.of(names);

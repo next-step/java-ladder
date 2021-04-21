@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.participant;
 
 import ladder.exception.ParticipantListNullPointerException;
 
@@ -10,17 +10,16 @@ import java.util.stream.Stream;
 
 public final class People {
 
-    public static final String REGEX = ",";
+    private static final String ALL_COMMAND = "all";
 
     private final List<Person> people;
 
-    public static final People of(String names) {
-        return of(stringToParticipantList(names));
+    public static final People of(String[] names) {
+        return of(mapToPersonList(names));
     }
 
-    private static final List<Person> stringToParticipantList(String names) {
-        return Arrays.stream(names.split(REGEX))
-                .map(String::trim)
+    private static final List<Person> mapToPersonList(String[] names) {
+        return Arrays.stream(names)
                 .map(Person::of)
                 .collect(Collectors.toList());
     }
@@ -34,18 +33,30 @@ public final class People {
         this.people = people;
     }
 
-
     private final void validateNull(List<Person> people) {
         if (Objects.isNull(people)) {
             throw new ParticipantListNullPointerException();
         }
     }
 
+    public final Stream<Person> stream() {
+        return people.stream();
+    }
+
+    public final Person person(int index) {
+        return people.get(index);
+    }
+
+    public final List<String> values() {
+        List<String> values = people.stream()
+                .map(Person::name)
+                .collect(Collectors.toList());
+        values.add(ALL_COMMAND);
+        return values;
+    }
+
     public final int countOfPerson() {
         return people.size();
     }
 
-    public final Stream<Person> stream() {
-        return people.stream();
-    }
 }

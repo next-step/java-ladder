@@ -1,15 +1,17 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
+import ladder.domain.participant.People;
 import ladder.exception.PointListNullPointerException;
+import ladder.strategy.LineGenerateStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 class LineTest {
 
@@ -38,17 +40,20 @@ class LineTest {
                 .hasMessage("List<Point>가 null 입니다.");
     }
 
-    @DisplayName("Line 인스턴스 참가자 수로 생성 여부 테스트")
+    @DisplayName("Line 인스턴스가 전략에 맞게끔 Line 인스턴스를 만드는지 테스트")
     @Test
-    void 생성_참가자_수() {
+    void 검증_반환값() {
         // given
-        int countOfPerson = 4;
+        Line expected = Line.of(Arrays.asList(Point.of(false), Point.of(true), Point.of(false)));
+        People people = People.of("a, b, c".split(","));
+        LineGenerateStrategy strategy = () -> true;
 
         // when
-        Line line = Line.of(countOfPerson, () -> true);
+        Line actual = Line.of(people, strategy);
 
         // then
-        assertThat(line).isNotNull();
+        assertThat(actual).isEqualTo(expected);
     }
+
 
 }

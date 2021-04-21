@@ -1,5 +1,6 @@
-package ladder.domain;
+package ladder.domain.participant;
 
+import ladder.exception.InvalidIdentifierNameException;
 import ladder.exception.InvalidNameSizeException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -35,6 +36,19 @@ class PersonTest {
 
     }
 
+    @DisplayName("Person 인스턴스에 all 입력시 예외처리 테스트")
+    @Test
+    void 검증_all() {
+        // given
+        String name = "all";
+
+        // when and then
+        assertThatThrownBy(() -> Person.of(name))
+                .isInstanceOf(InvalidIdentifierNameException.class)
+                .hasMessage("all 이란 이름은 사용할 수 없습니다.");
+
+    }
+
     @DisplayName("Person 인스턴스의 이름을 반환하는 기능 테스트")
     @Test
     void 반환() {
@@ -43,7 +57,7 @@ class PersonTest {
 
         // when
         Person person = Person.of(expected);
-        String actual = person.getName();
+        String actual = person.name();
 
         assertThat(actual).isEqualTo(expected);
     }

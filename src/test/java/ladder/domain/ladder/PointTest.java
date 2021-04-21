@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -43,8 +43,8 @@ class PointTest {
 
         // then
         assertAll(
-                () -> assertThat(truePoint.isTrue()).isTrue(),
-                () -> assertThat(falsePoint.isTrue()).isFalse()
+                () -> assertThat(truePoint.hasPoint()).isTrue(),
+                () -> assertThat(falsePoint.hasPoint()).isFalse()
         );
     }
 
