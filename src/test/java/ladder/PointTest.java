@@ -8,6 +8,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PointTest {
 
+    @DisplayName("Point 인스턴스의 다음 이동이 Direction.LEFT 인지 확인")
+    @Test
+    void left() {
+        Point point = new Point(true, false);
+        assertThat(point.move()).isEqualTo(Direction.LEFT);
+    }
+
     @DisplayName("Point 인스턴스의 다음 이동이 Direction.RIGHT 인지 확인")
     @Test
     void right() {
