@@ -1,11 +1,19 @@
 package ladder;
 
-public class Point {
+public final class Point {
+
+    private final boolean left;
+    private final boolean current;
 
     public Point(boolean left, boolean current) {
+        this.left = left;
+        this.current = current;
     }
 
-    public Direction move() {
+    public final Direction move() {
+        if(current) {
+            return Direction.RIGHT;
+        }
         return Direction.PASS;
     }
 }
