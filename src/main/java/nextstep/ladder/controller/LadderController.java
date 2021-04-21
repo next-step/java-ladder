@@ -21,6 +21,7 @@ public class LadderController {
         Ladder ladder = new Ladder(userCount, InputView.ladderHeight());
 
         ResultView.printLadderResult(users.userNames(), ladder);
+        ResultView.printReward(inputLadderResult);
 
         while (true) {
             String resultMember = InputView.resultMember();
