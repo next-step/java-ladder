@@ -1,35 +1,34 @@
 package ladder.controller;
 
-import ladder.domain.*;
+import ladder.domain.Ladder;
+import ladder.domain.Players;
+import ladder.domain.Prize;
 import ladder.view.InputView;
-import ladder.view.PrizeInputView;
+import ladder.view.LadderResultView;
 import ladder.view.PrizeResultView;
-import ladder.view.ResultView;
 
 public class LadderController {
     public void startLadderGame() {
         try {
             InputView inputView = new InputView();
-            inputView.inputLadderCondition();
+            Players players = inputView.inputPlayer();
+            Prize prize = inputView.inputPrize(players.count());
+            int ladderHeight = inputView.inputLadderHeight();
 
-            Ladder ladder = new Ladder();
-            for (int i = 0; i < inputView.getLadderHeight(); i++) {
-                Line ladderLine = new LineGenerator().generate(inputView.playersCount());
-                ladder.add(ladderLine);
-            }
+            Ladder ladder = new Ladder(players.count(), ladderHeight);
 
-            Players players = inputView.getPlayers();
-            LadderResult ladderResult = new LadderResult(players.count(), ladder);
+            LadderResultView ladderResultView = new LadderResultView(players, ladder);
+            ladderResultView.showLadderDrawResult(prize);
 
-            ResultView resultView = new ResultView(players, ladderResult);
-            resultView.showLadderDrawResult();
-            resultView.printPrize(inputView.getPrize());
+            PrizeResultView prizeResultView = new PrizeResultView(ladderResultView.getLadderResult(), prize);
 
-            PrizeInputView prizeInputView = new PrizeInputView();
-            PrizeResultView prizeResultView = new PrizeResultView(ladderResult, inputView.getPrize());
-            while (!prizeInputView.isAll()) {
-                prizeInputView.inputPlayerNameForPrize();
-                prizeResultView.printPrizeResult(prizeInputView, players);
+            System.out.println();
+            String prizePlayerName;
+            boolean isAll = false;
+            while (!isAll) {
+                prizePlayerName = inputView.inputPlayerNameForPrize();
+                isAll = prizePlayerName.equalsIgnoreCase("ALL");
+                prizeResultView.printPrizeResult(isAll, prizePlayerName, players);
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());

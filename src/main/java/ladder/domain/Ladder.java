@@ -1,32 +1,38 @@
 package ladder.domain;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Ladder {
     private final List<Line> lines;
-
-    public Ladder() {
-        this(new ArrayList<>());
-    }
 
     public Ladder(List<Line> lines) {
         this.lines = lines;
     }
 
-    public void add(Line line) {
-        lines.add(line);
+    public Ladder(int with, int lineCount) {
+        this.lines = make(with, lineCount);
     }
 
-    public int arrivalPoint(int startLine, int startPoint) {
-        int currentPoint = startPoint;
-        for (int i = startLine; i < lines.size(); i++) {
-            currentPoint = lines.get(i).move(currentPoint);
-        }
-        return currentPoint;
+    public int arrivalPoint(int startPoint) {
+        AtomicInteger currentPoint = new AtomicInteger(startPoint);
+        lines.forEach(line -> currentPoint.set(line.move(currentPoint.get())));
+
+        return currentPoint.get();
     }
 
     public List<Line> getLines() {
         return lines;
+    }
+
+    public List<Line> make(int width, int lineCount) {
+        LineGeneratorFactory lineGeneratorFactory = new LineGeneratorFactory();
+
+        return Stream.generate(() -> {
+            LineGenerator lineGenerator = lineGeneratorFactory.lineGenerator();
+            return lineGenerator.generate(width);
+        }).limit(lineCount).collect(Collectors.toList());
     }
 }

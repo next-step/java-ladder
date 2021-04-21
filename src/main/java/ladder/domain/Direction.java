@@ -22,8 +22,8 @@ public class Direction {
         return left;
     }
 
-    public boolean hasDirection() {
-        return left || right;
+    public Direction next(boolean nextRight) {
+        return new Direction(this.right, nextRight);
     }
 
     @Override

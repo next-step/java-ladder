@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-public class ResultView {
+public class LadderResultView {
     private static final String SPACE = " ";
     private static final String DASH = "-";
     private static final String ROOT = "|";
@@ -14,16 +14,17 @@ public class ResultView {
     private final LadderResult ladderResult;
     private final Players players;
 
-    public ResultView(Players players, LadderResult ladderResult) {
+    public LadderResultView(Players players, Ladder ladder) {
         this.players = players;
-        this.ladderResult = ladderResult;
+        this.ladderResult = new LadderResult(players.count(), ladder);
     }
 
-    public void showLadderDrawResult() {
+    public void showLadderDrawResult(Prize prize) {
         printHeader();
         printPlayers();
         printNewLine();
         printLadder();
+        printPrize(prize);
     }
 
     private void printHeader() {
@@ -87,5 +88,9 @@ public class ResultView {
             sb.append(target);
         }
         return sb.toString();
+    }
+
+    public LadderResult getLadderResult() {
+        return ladderResult;
     }
 }

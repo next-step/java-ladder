@@ -13,37 +13,29 @@ public class Point {
         this.direction = direction;
     }
 
-    public int nextIndex() {
-        return increment(index);
+    public Point next(boolean nextRight) {
+        return new Point(right(index), direction.next(nextRight));
     }
 
     public boolean hasRightDirection() {
         return direction.hasRightDirection();
     }
 
-    public boolean hasLeftDirection() {
-        return direction.hasLeftDirection();
-    }
-
-    public boolean hasDirection() {
-        return direction.hasDirection();
-    }
-
     public int move() {
         if (direction.hasRightDirection()) {
-            return increment(index);
+            return right(index);
         }
         if (direction.hasLeftDirection()) {
-            return decrement(index);
+            return left(index);
         }
         return index;
     }
 
-    private int increment(int index) {
+    private int right(int index) {
         return index + VARIATION_UNIT;
     }
 
-    private int decrement(int index) {
+    private int left(int index) {
         return index - VARIATION_UNIT;
     }
 
