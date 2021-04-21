@@ -11,8 +11,7 @@ import java.util.stream.Collectors;
 
 public class StreamStudy {
 
-
-    public static List<String> exceedTwelveWords() throws IOException{
+    public static List<String> exceedTwelveWords() throws IOException {
         String contents = new String(Files.readAllBytes(Paths
                 .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
         return Arrays.asList(contents.split("[\\P{L}]+"));
@@ -27,9 +26,9 @@ public class StreamStudy {
         words.stream()
                 .map(String::toLowerCase)
                 .distinct()
-                .sorted((x,y)-> Integer.compare(y.length(),x.length()))
+                .sorted((x, y) -> Integer.compare(y.length(), x.length()))
                 .collect(Collectors.toList())
-                .subList(0,99)
+                .subList(0, 99)
                 .forEach(System.out::println);
     }
 

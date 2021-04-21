@@ -1,8 +1,12 @@
 package nextstep.optional;
 
+import java.util.Optional;
+
 public class User {
     private String name;
     private Integer age;
+    private static final int MAX_FIND_AGE = 45;
+    private static final int MIN_FIND_AGE = 30;
 
     public User(String name, Integer age) {
         this.name = name;
@@ -25,15 +29,18 @@ public class User {
         boolean isInRange = false;
 
         if (user != null && user.getAge() != null
-                && (user.getAge() >= 30
-                && user.getAge() <= 45)) {
+                && (user.getAge() >= MIN_FIND_AGE
+                && user.getAge() <= MAX_FIND_AGE)) {
             isInRange = true;
         }
         return isInRange;
     }
 
     public static boolean ageIsInRange2(User user) {
-        return false;
+        return Optional.ofNullable(user)
+                .map(User::getAge)
+                .filter(userAge-> userAge>=MIN_FIND_AGE)
+                .filter(userAge-> userAge <=MAX_FIND_AGE).isPresent();
     }
 
     @Override
