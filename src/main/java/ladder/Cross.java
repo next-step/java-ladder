@@ -10,7 +10,7 @@ public final class Cross {
         this.point = point;
     }
 
-    public int move() {
+    public final int move() {
         if (point.move() == Direction.RIGHT) {
             return position + 1;
         }
