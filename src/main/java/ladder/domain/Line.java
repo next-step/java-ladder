@@ -18,6 +18,14 @@ public class Line {
     return empty();
   }
 
+  public Line newNextLine(LineRule lineRule) {
+    if (this.isEmpty()) {
+      return generate(lineRule);
+    }
+
+    return empty();
+  }
+
   private static Line empty() {
     return new Line(false);
   }
