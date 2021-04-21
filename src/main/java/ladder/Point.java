@@ -31,4 +31,7 @@ public final class Point {
         return new Point(this.current, current);
     }
 
+    public final Point last() {
+        return new Point(this.current, false);
+    }
 }
