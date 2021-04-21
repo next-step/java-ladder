@@ -36,6 +36,10 @@ public final class GameResults {
     }
   }
 
+  public int size() {
+    return gameResults.size();
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {

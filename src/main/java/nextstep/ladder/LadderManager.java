@@ -3,10 +3,10 @@ package nextstep.ladder;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import nextstep.ladder.domain.GameResults;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.LadderHeight;
 import nextstep.ladder.domain.People;
-import nextstep.ladder.domain.Person;
 import nextstep.ladder.domain.RandomLineCreationStrategy;
 import nextstep.ladder.domain.Result;
 import nextstep.ladder.exception.LadderException;
@@ -23,19 +23,20 @@ public final class LadderManager {
     final List<Result> results = getResults(people.personCount());
     final LadderHeight ladderHeight = getLadderHeight();
 
-    final Ladder ladder = new Ladder(people, ladderHeight, new RandomLineCreationStrategy());
-    ResultView.printLadder(ladder);
+    final Ladder ladder = new Ladder(ladderHeight, new RandomLineCreationStrategy(), people.personCount());
+    ResultView.printLadder(ladder, people);
     ResultView.printResults(results);
+
+    final GameResults gameResults = ladder.gameResults(people, results);
 
     String name = InputView.inputPersonNameForResult();
     while (!ALL.equals(name)) {
-      Person personForResult = getPersonForResult(people, name);
-      final Result result = results.get(ladder.findResultIndex(personForResult));
+      final Result result = getResult(gameResults, name);
 
       ResultView.printResult(result);
       name = InputView.inputPersonNameForResult();
     }
-    ResultView.printAllResults(people, ladder.findAllResults(results));
+    ResultView.printGameResults(people, gameResults);
   }
 
   private static People getPeople() {
@@ -77,15 +78,12 @@ public final class LadderManager {
     }
   }
 
-  private static Person getPersonForResult(People people, String name) {
+  private static Result getResult(GameResults gameResults, String name) {
     try {
-      final Person person = Person.valueOf(name);
-      people.validContains(person);
-
-      return person;
+      return gameResults.resultOf(name);
     } catch (LadderException e) {
       System.err.println(e.getMessage());
-      return getPersonForResult(people, InputView.inputPersonNameForResult());
+      return getResult(gameResults, InputView.inputPersonNameForResult());
     }
   }
 }

@@ -9,42 +9,22 @@ import java.util.stream.Stream;
 
 public final class Ladder {
 
-  private final People people;
   private final List<Line> lines;
 
-  public Ladder(People people, LadderHeight ladderHeight, LineCreationStrategy lineCreationStrategy) {
-    this.people = people;
-    this.lines = createLines(lineCreationStrategy, ladderHeight);
+  public Ladder(LadderHeight ladderHeight, LineCreationStrategy lineCreationStrategy, int personCount) {
+    this.lines = createLines(lineCreationStrategy, ladderHeight, personCount);
   }
 
-  public List<Line> createLines(final LineCreationStrategy lineCreationStrategy,
-      LadderHeight ladderHeight) {
-    return Stream.generate(() -> new Line(lineCreationStrategy, people().personCount()))
+  public List<Line> createLines(final LineCreationStrategy lineCreationStrategy, LadderHeight ladderHeight,
+      int personCount) {
+
+    return Stream.generate(() -> new Line(lineCreationStrategy, personCount))
         .limit(ladderHeight.toInt())
         .collect(Collectors.toList());
   }
 
   public List<Line> lines() {
     return Collections.unmodifiableList(lines);
-  }
-
-  public People people() {
-    return people;
-  }
-
-  public int findResultIndex(final Person person) {
-    int resultIndex = people.indexOf(person);
-    for (Line line : lines) {
-      resultIndex = line.nextPointIndex(resultIndex);
-    }
-    return resultIndex;
-  }
-
-  public List<Result> findAllResults(List<Result> results) {
-    return people.personList().stream()
-        .map(this::findResultIndex)
-        .map(results::get)
-        .collect(Collectors.toList());
   }
 
   public GameResults gameResults(People people, List<Result> results) {
@@ -56,11 +36,19 @@ public final class Ladder {
         .collect(Collectors.toMap(personList::get, gameResults::get)));
   }
 
-  private List<Result> getGameResults(List<Result> results, List<Person> personList) {
-    return personList.stream()
-        .map(this::findResultIndex)
+  private List<Result> getGameResults(List<Result> results, List<Person> people) {
+    return people.stream()
+        .map(person -> findResultIndex(people, person))
         .map(results::get)
         .collect(Collectors.toList());
+  }
+
+  private int findResultIndex(final List<Person> people, final Person person) {
+    int resultIndex = people.indexOf(person);
+    for (Line line : lines) {
+      resultIndex = line.nextPointIndex(resultIndex);
+    }
+    return resultIndex;
   }
 
   @Override
@@ -68,15 +56,15 @@ public final class Ladder {
     if (this == o) {
       return true;
     }
-    if (!(o instanceof Ladder)) {
+    if (o == null || getClass() != o.getClass()) {
       return false;
     }
     Ladder ladder = (Ladder) o;
-    return Objects.equals(people, ladder.people) && Objects.equals(lines, ladder.lines);
+    return Objects.equals(lines, ladder.lines);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(people, lines);
+    return Objects.hash(lines);
   }
 }
