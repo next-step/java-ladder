@@ -26,7 +26,7 @@ class PointTest {
     @DisplayName("Point 인스턴스에 부적절한 값 입력시 예외처리 여부 테스트")
     @Test
     void invalid() {
-        assertThatThrownBy(()-> new Point(true, true))
+        assertThatThrownBy(()-> Point.first(true).next(true))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("상태 값이 유효하지 않습니다.");
     }
@@ -34,21 +34,21 @@ class PointTest {
     @DisplayName("Point 인스턴스의 다음 이동이 Direction.LEFT 인지 확인")
     @Test
     void left() {
-        Point point = new Point(true, false);
+        Point point = Point.first(true).next(false);
         assertThat(point.move()).isEqualTo(Direction.LEFT);
     }
 
     @DisplayName("Point 인스턴스의 다음 이동이 Direction.RIGHT 인지 확인")
     @Test
     void right() {
-        Point point = new Point(false, true);
+        Point point = Point.first(false).next(true);
         assertThat(point.move()).isEqualTo(Direction.RIGHT);
     }
 
     @DisplayName("Point 인스턴스의 다음 이동이 Direction.PASS 인지 확인")
     @Test
     void pass() {
-        Point point = new Point(false, false);
+        Point point = Point.first(false).next(false);
         assertThat(point.move()).isEqualTo(Direction.PASS);
     }
 }

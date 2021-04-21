@@ -5,7 +5,7 @@ public final class Point {
     private final boolean left;
     private final boolean current;
 
-    public Point(boolean left, boolean current) {
+    private Point(boolean left, boolean current) {
         if (left && current) {
             throw new IllegalArgumentException("상태 값이 유효하지 않습니다.");
         }
