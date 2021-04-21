@@ -27,13 +27,33 @@ public final class Point {
 
   public static Point head(boolean headRight) {
     if (headRight) {
-      return new Point(0, Direction.RIGHT);
+      return createRightDirectionPoint(0);
     }
-    return new Point(0, Direction.NONE);
+    return createNoneDirectionPoint(0);
+  }
+
+  private static Point createRightDirectionPoint(int index) {
+    return new Point(index, Direction.RIGHT);
+  }
+
+  private static Point createNoneDirectionPoint(int index) {
+    return new Point(index, Direction.NONE);
+  }
+
+  private static Point createLeftDirectionPoint(int index) {
+    return new Point(index, Direction.LEFT);
   }
 
   public Point next(boolean right) {
-    return null;
+    final int nextIndex = this.index + 1;
+
+    if (direction == Direction.RIGHT) {
+      return createLeftDirectionPoint(nextIndex);
+    }
+    if (right) {
+      return createRightDirectionPoint(nextIndex);
+    }
+    return createNoneDirectionPoint(nextIndex);
   }
 
   public Point tail() {
