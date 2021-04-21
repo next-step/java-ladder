@@ -4,25 +4,12 @@ import java.util.Objects;
 
 public final class Point {
 
-  private boolean point;
-  private int index;
-  private Direction direction;
-
-  private Point(boolean point) {
-    this.point = point;
-  }
+  private final int index;
+  private final Direction direction;
 
   private Point(int index, Direction direction) {
     this.index = index;
     this.direction = direction;
-  }
-
-  public static Point head() {
-    return new Point(false);
-  }
-
-  public static Point body(Point before, boolean canCreate) {
-    return new Point(!before.point && canCreate);
   }
 
   public static Point head(boolean headRight) {
@@ -70,11 +57,7 @@ public final class Point {
   }
 
   public boolean canDraw() {
-    return point;
-  }
-
-  public boolean hasLine() {
-    return point;
+    return direction == Direction.LEFT;
   }
 
   public int move() {
@@ -86,15 +69,15 @@ public final class Point {
     if (this == o) {
       return true;
     }
-    if (!(o instanceof Point)) {
+    if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Point point1 = (Point) o;
-    return point == point1.point;
+    Point point = (Point) o;
+    return index == point.index && direction == point.direction;
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(point);
+    return Objects.hash(index, direction);
   }
 }
