@@ -1,5 +1,5 @@
 package ladder.domain;
 
 public interface LineGenerator {
-    Line generate(int with);
+    Line generate(int width);
 }

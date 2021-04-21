@@ -27,12 +27,12 @@ public class Ladder {
         return lines;
     }
 
-    public List<Line> make(int with, int lineCount) {
+    public List<Line> make(int width, int lineCount) {
         LineGeneratorFactory lineGeneratorFactory = new LineGeneratorFactory();
 
         return Stream.generate(() -> {
             LineGenerator lineGenerator = lineGeneratorFactory.lineGenerator();
-            return lineGenerator.generate(with);
+            return lineGenerator.generate(width);
         }).limit(lineCount).collect(Collectors.toList());
     }
 }

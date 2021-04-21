@@ -16,9 +16,9 @@ public class BasicPointGenerator implements PointGenerator {
     }
 
     @Override
-    public List<Point> generate(int with) {
+    public List<Point> generate(int width) {
         Point firstPoint = first();
-        Point lastBodyPoint = body(bodyCount(with), firstPoint);
+        Point lastBodyPoint = body(bodyCount(width), firstPoint);
         last(lastBodyPoint);
         return points;
     }

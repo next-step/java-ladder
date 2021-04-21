@@ -10,8 +10,8 @@ public class BasicLineGenerator implements LineGenerator {
     }
 
     @Override
-    public Line generate(int with) {
-        List<Point> points = pointGenerator.generate(with);
+    public Line generate(int width) {
+        List<Point> points = pointGenerator.generate(width);
         return new Line(points);
     }
 }
