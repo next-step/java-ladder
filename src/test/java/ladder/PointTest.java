@@ -16,6 +16,12 @@ class PointTest {
         assertThat(point.move()).isEqualTo(Direction.RIGHT);
     }
 
+    @DisplayName("Point 인스턴스가 다음 지점 Point 인스턴스 생성 테스트")
+    @Test
+    void next() {
+        Point point  = Point.first(true).next(false);
+        assertThat(point.move()).isEqualTo(Direction.LEFT);
+    }
 
     @DisplayName("Point 인스턴스에 부적절한 값 입력시 예외처리 여부 테스트")
     @Test
