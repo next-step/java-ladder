@@ -21,6 +21,10 @@ public final class GameResults {
     return Collections.unmodifiableMap(gameResults);
   }
 
+  public Result resultOf(String personName) {
+    return null;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {

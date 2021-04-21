@@ -35,4 +35,20 @@ class GameResultsTest {
     // then
     assertThat(allResults).isEqualTo(results);
   }
+
+  @Test
+  @DisplayName("이름에 결과를 반환한다.")
+  void result() {
+    // given
+    final String pobiName = "pobi";
+    final Result result = new Result("1000");
+    final Map<Person, Result> results = Maps.newHashMap(Person.valueOf(pobiName), result);
+    final GameResults gameResults = new GameResults(results);
+
+    // when
+    final Result gameResult = gameResults.resultOf(pobiName);
+
+    // then
+    assertThat(gameResult).isEqualTo(result);
+  }
 }
