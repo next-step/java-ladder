@@ -37,7 +37,7 @@ class GameResultsTest {
   }
 
   @Test
-  @DisplayName("이름에 결과를 반환한다.")
+  @DisplayName("이름에 해당하는 결과를 반환한다.")
   void result() {
     // given
     final String pobiName = "pobi";

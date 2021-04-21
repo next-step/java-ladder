@@ -22,7 +22,7 @@ public final class GameResults {
   }
 
   public Result resultOf(String personName) {
-    return null;
+    return gameResults.get(Person.valueOf(personName));
   }
 
   @Override
