@@ -12,7 +12,7 @@ public class Ladder {
     }
 
     public Ladder(int with, int lineCount) {
-        this.lines = make(with, lineCount);
+        this.lines = make2(with, lineCount);
     }
 
     public int arrivalPoint(int startPoint) {
@@ -31,5 +31,15 @@ public class Ladder {
         return Stream.generate(() -> Line.init(with))
                 .limit(lineCount)
                 .collect(Collectors.toList());
+    }
+
+    public List<Line> make2(int with, int lineCount) {
+        LineGeneratorFactory lineGeneratorFactory = new LineGeneratorFactory();
+        List<Line> lines = Stream.generate(() -> {
+            LineGeneratorInterface lineGeneratorInterface = lineGeneratorFactory.lineGenerator();
+            return lineGeneratorInterface.generate(with);
+        }).limit(lineCount).collect(Collectors.toList());
+
+        return lines;
     }
 }
