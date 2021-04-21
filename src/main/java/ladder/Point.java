@@ -2,7 +2,7 @@ package ladder;
 
 public class Point {
 
-    public Point(boolean b, boolean b1) {
+    public Point(boolean left, boolean current) {
     }
 
     public Direction move() {
