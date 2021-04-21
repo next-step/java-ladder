@@ -14,9 +14,4 @@ public class Name {
     public String value() {
         return this.value;
     }
-
-    @Override
-    public String toString() {
-        return String.format("%6s",value);
-    }
 }

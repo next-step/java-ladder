@@ -15,9 +15,4 @@ public class User {
     public Name name() {
         return this.name;
     }
-
-    @Override
-    public String toString() {
-        return name.toString();
-    }
 }
