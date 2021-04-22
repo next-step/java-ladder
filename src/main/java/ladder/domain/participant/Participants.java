@@ -36,5 +36,8 @@ public final class Participants {
         }
     }
 
+    public final int countOfParticipants() {
+        return participants.size();
+    }
 
 }

@@ -50,6 +50,5 @@ class ParticipantsTest {
 
         // then
         assertThat(actual).isEqualTo(3);
-
     }
 }
