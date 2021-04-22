@@ -22,12 +22,12 @@ public class Point {
         return new Point(FIRST_INDEX, Direction.first(booleanGenerator.nextBoolean()));
     }
 
-    public static Point middle(Point point, BooleanGenerator booleanGenerator) {
-        return new Point(point.index + NEXT_INDEX, point.direction.middle(booleanGenerator.nextBoolean()));
+    public Point middle(BooleanGenerator booleanGenerator) {
+        return new Point(this.index + NEXT_INDEX, this.direction.middle(booleanGenerator.nextBoolean()));
     }
 
-    public static Point last(Point point) {
-        return new Point(point.index + NEXT_INDEX, point.direction.last());
+    public Point last() {
+        return new Point(this.index + NEXT_INDEX, this.direction.last());
     }
 
     public int move() {

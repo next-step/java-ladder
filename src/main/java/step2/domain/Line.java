@@ -39,13 +39,13 @@ public class Line {
 
     private static void createMiddlePoint(int countOfPerson, BooleanGenerator booleanGenerator, List<Point> points, Point point) {
         for (int i = MIDDLE_FIRST_INDEX; i < countOfPerson - 1; i++) {
-            point = Point.middle(point, booleanGenerator);
+            point = point.middle(booleanGenerator);
             points.add(point);
         }
     }
 
     private static void createLastPoint(List<Point> points) {
-        points.add(Point.last(points.get(points.size() - 1)));
+        points.add(points.get(points.size() - 1).last());
     }
 
     public List<Point> getLine() {
