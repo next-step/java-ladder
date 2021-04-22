@@ -31,10 +31,25 @@ class ParticipantsTest {
         // given
         List<Participant> participantList = null;
 
-        // when
+        // when and then
         assertThatThrownBy(() -> Participants.of(participantList))
                 .isInstanceOf(ParticipantListNullPointerException.class)
                 .hasMessage("List<Participant>가 null 입니다.");
+
+    }
+
+    @DisplayName("Participants 인스턴스가 소유한 값의 크기 반환 테스트")
+    @Test
+    void 반환_사이즈() {
+        // given
+        String[] names = "a,b,c".split(",");
+
+        // when
+        Participants participants = Participants.of(names);
+        int actual = participants.countOfParticipants();
+
+        // then
+        assertThat(actual).isEqualTo(3);
 
     }
 }
