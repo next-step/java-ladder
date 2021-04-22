@@ -31,7 +31,7 @@ class ParticipantTest {
         String name = "woojae";
 
         // when and then
-        assertThatThrownBy(()-> Participant.of(name))
+        assertThatThrownBy(() -> Participant.of(name))
                 .isInstanceOf(InvalidNameSizeException.class)
                 .hasMessage("woojae와 같이 5글자가 초과된 이름은 사용할 수 없습니다.");
     }
@@ -43,8 +43,21 @@ class ParticipantTest {
         String name = "all";
 
         // when and then
-        assertThatThrownBy(()-> Participant.of(name))
+        assertThatThrownBy(() -> Participant.of(name))
                 .isInstanceOf(InvalidIdentifierNameException.class)
                 .hasMessage("all과 같은 특정 명령어는 이름으로 사용할 수 없습니다.");
+    }
+
+    @DisplayName("Participant 인스턴스가 이름을 반환하는지 테스트")
+    @Test
+    void 반환_이름() {
+        // given
+        String expected = "wojir";
+
+        // when and then
+        Participant participant = Participant.of(expected);
+        String actual = participant.name();
+
+        assertThat(actual).isEqualTo(expected);
     }
 }

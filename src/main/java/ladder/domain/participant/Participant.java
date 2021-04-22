@@ -5,8 +5,8 @@ import ladder.exception.InvalidNameSizeException;
 
 public final class Participant {
 
+    private static final String INVALID_IDENTIFIER = "all";
     private static final int MINIMUM_SIZE = 5;
-    public static final String INVALID_IDENTIFIER = "all";
 
     private final String name;
 
