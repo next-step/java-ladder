@@ -60,4 +60,17 @@ class ParticipantTest {
 
         assertThat(actual).isEqualTo(expected);
     }
+
+    @DisplayName("Participant 인스턴스가 동일한 이름을 같다고 비교하는지 테스트")
+    @Test
+    void 비교_동일한_이름() {
+        // given
+        String name = "wojir";
+
+        // when and then
+        Participant actual = Participant.of(name);
+        Participant expected = Participant.of(name);
+
+        assertThat(actual).isEqualTo(expected);
+    }
 }
