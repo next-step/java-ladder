@@ -4,45 +4,39 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-    private final List<Link> links;
+    private final List<Point> points;
+
+    public Line(int numberOfPlayer) {
+        points = new ArrayList<>();
+
+        Point point = Point.first();
+        points.add(point);
+
+        for (int i = 1; i < numberOfPlayer - 1; i++) {
+            point = point.next();
+            points.add(point);
+        }
+
+        points.add(point.last());
+    }
 
     public Line(List<Link> links) {
-        this.links = links;
-    }
+        points = new ArrayList<>();
+        Point point = Point.first(links.get(0));
+        points.add(point);
 
-    public Line(int numberOfPlayer, Linker linker) {
-        links = new ArrayList<>();
-
-        links.add(linker.link());
-        for (int linkIndex = 1; linkIndex < numberOfPlayer - 1; linkIndex++) {
-            links.add(linker.link(previousLink(linkIndex)));
+        for (int i = 1; i < links.size(); i++) {
+            point = point.next(links.get(i));
+            points.add(point);
         }
+        points.add(point.last());
     }
 
-    public List<Link> links() {
-        return links;
+    public int move(int position) {
+        return points.get(position).move();
     }
 
-    private Link previousLink(int point) {
-        if (point <= 0) {
-            return Link.OPEN;
-        }
-
-        return links.get(point - 1);
-    }
-
-    private Link currentLink(int point) {
-        if (point >= links.size()) {
-            return Link.OPEN;
-        }
-        return links.get(point);
-    }
-
-    public int endPoint(int startPoint) {
-        if (currentLink(startPoint) == Link.CLOSE)
-            return startPoint + 1;
-        if (previousLink(startPoint) == Link.CLOSE)
-            return startPoint - 1;
-        return startPoint;
+    public List<Point> points() {
+        return points;
     }
 }

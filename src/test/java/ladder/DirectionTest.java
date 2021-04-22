@@ -23,21 +23,21 @@ public class DirectionTest {
     }
 
     @Test
-    void Given_MoveToLeft_When_Move_Then_Left() {
+    void Given_MoveToLeft_When_Move_Then_Right() {
         Direction direction = Direction.of(Link.OPEN, Link.CLOSE);
 
         int moved = direction.move();
 
-        assertThat(moved).isEqualTo(0);
+        assertThat(moved).isEqualTo(1);
     }
 
     @Test
-    void Given_MoveToRight_When_Move_Then_Right() {
+    void Given_MoveToRight_When_Move_Then_Left() {
         Direction direction = Direction.of(Link.CLOSE, Link.OPEN);
 
         int moved = direction.move();
 
-        assertThat(moved).isEqualTo(1);
+        assertThat(moved).isEqualTo(0);
     }
 
     @Test

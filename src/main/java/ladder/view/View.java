@@ -57,13 +57,13 @@ public class View {
 
     private static void printLine(Line line) {
         System.out.print("     ");
-        line.links().forEach(View::printLink);
+        line.points().forEach(View::printPoint);
         System.out.print("|\n");
     }
 
-    private static void printLink(Link link) {
+    private static void printPoint(Point point) {
         String linkSymbol = "|-----";
-        if (link == Link.OPEN) {
+        if (point.isOpen()) {
             linkSymbol = "|     ";
         }
         System.out.print(linkSymbol);

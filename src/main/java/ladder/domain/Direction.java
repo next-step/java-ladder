@@ -1,7 +1,6 @@
 package ladder.domain;
 
 import java.util.Objects;
-import java.util.Random;
 
 public class Direction {
     private final Link left;
@@ -25,7 +24,7 @@ public class Direction {
     }
 
     public static Direction first() {
-        return first(RandomLinkSelector2.link());
+        return first(RandomLinkSelector.link());
     }
 
     public Direction last() {
@@ -41,7 +40,11 @@ public class Direction {
             return of(this.right, Link.OPEN);
         }
 
-        return of(this.right, RandomLinkSelector2.link());
+        return of(this.right, RandomLinkSelector.link());
+    }
+
+    public Link right() {
+        return this.right;
     }
 
     public int move() {
