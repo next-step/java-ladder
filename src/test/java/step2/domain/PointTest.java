@@ -8,23 +8,45 @@ import static org.assertj.core.api.Assertions.assertThat;
 class PointTest {
 
     @Test
-    @DisplayName("첫번째 포인트 생성 테스트")
-    void firstTest() {
-        assertThat(Point.first(new FixedGenerator(false))).isEqualTo(new Point(false));
-        assertThat(Point.first(new FixedGenerator(true))).isEqualTo(new Point(true));
+    @DisplayName("첫 번째 Point생성 테스트")
+    void createFirstPointTest() {
+        Point firstPoint = Point.first(new FixedGenerator(true));
+        assertThat(firstPoint).isEqualTo(Point.first(new FixedGenerator(true)));
     }
 
     @Test
-    @DisplayName("마지막 포인트 생성 테스트")
-    void lastTest() {
-        assertThat(Point.last()).isEqualTo(new Point(false));
-        assertThat(Point.last()).isNotEqualTo(new Point(true));
+    @DisplayName("중간 Point생성 테스트")
+    void createMiddlePointTest() {
+        Point firstPoint = Point.first(new FixedGenerator(false));
+        Point middlePoint = firstPoint.middle(new FixedGenerator(true));
+
+        assertThat(middlePoint).isEqualTo(firstPoint.middle(new FixedGenerator(true)));
     }
 
     @Test
-    @DisplayName("포인트의 true, false 테스트")
-    void hasLineTest(){
-        assertThat(new Point(false).hasLine()).isFalse();
-        assertThat(new Point(true).hasLine()).isTrue();
+    @DisplayName("마지막 Point생성 테스트")
+    void createLastPointTest() {
+        Point firstPoint = Point.first(new FixedGenerator(false));
+        Point middlePoint = firstPoint.middle(new FixedGenerator(true));
+        Point lastPoint = middlePoint.last();
+
+        assertThat(lastPoint).isEqualTo(middlePoint.last());
+    }
+
+    @Test
+    @DisplayName("point가 오른쪽으로 이동하면 인덱스가 1 증가")
+    void movingRightPointTest() {
+        Point firstPoint = Point.first(new FixedGenerator(true));
+        assertThat(firstPoint.move()).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("point가 왼쪽으로 이동하면 인덱스가 1감소")
+    void movingLeftPointTest(){
+        Point firstPoint = Point.first(new FixedGenerator(true));
+        Point middlePoint = firstPoint.middle(new FixedGenerator(false));
+
+        assertThat(firstPoint.move()).isEqualTo(1);
+        assertThat(middlePoint.move()).isEqualTo(0);
     }
 }

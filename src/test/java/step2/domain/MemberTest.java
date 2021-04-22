@@ -24,6 +24,6 @@ class MemberTest {
     void memberNameTest2(String name){
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> new Member(name))
-                .withMessage("이름을 입력해주세요.");
+                .withMessage("이름은 공백이 될 수 없습니다.");
     }
 }
