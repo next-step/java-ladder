@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class DirectionTest {
 
@@ -24,5 +26,12 @@ class DirectionTest {
         () -> assertThat(left.move(index)).isEqualTo(index - 1),
         () -> assertThat(right.move(index)).isEqualTo(index + 1)
     );
+  }
+
+  @ParameterizedTest
+  @CsvSource({"true,RIGHT", "false,NONE"})
+  @DisplayName("true면 RIGHT를, false면 NONE을 반환한다.")
+  void valueOf(boolean isRight, Direction direction) {
+    assertThat(Direction.valueOf(isRight)).isEqualTo(direction);
   }
 }
