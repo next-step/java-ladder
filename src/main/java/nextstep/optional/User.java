@@ -39,8 +39,8 @@ public class User {
     public static boolean ageIsInRange2(User user) {
         return Optional.ofNullable(user)
                 .map(User::getAge)
-                .filter(userAge-> userAge>=MIN_FIND_AGE)
-                .filter(userAge-> userAge <=MAX_FIND_AGE).isPresent();
+                .filter(age-> age>=MIN_FIND_AGE && age <=MAX_FIND_AGE)
+                .isPresent();
     }
 
     @Override
