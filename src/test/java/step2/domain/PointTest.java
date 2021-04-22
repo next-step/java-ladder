@@ -18,18 +18,19 @@ class PointTest {
     @DisplayName("중간 Point생성 테스트")
     void createMiddlePointTest() {
         Point firstPoint = Point.first(new FixedGenerator(false));
-        Point middlePoint = Point.middle(firstPoint, new FixedGenerator(true));
+        Point middlePoint = firstPoint.middle(new FixedGenerator(true));
 
-        assertThat(middlePoint).isEqualTo(Point.middle(firstPoint, new FixedGenerator(true)));
+        assertThat(middlePoint).isEqualTo(firstPoint.middle(new FixedGenerator(true)));
     }
 
     @Test
     @DisplayName("마지막 Point생성 테스트")
     void createLastPointTest() {
         Point firstPoint = Point.first(new FixedGenerator(false));
-        Point lastPoint = Point.last(firstPoint);
+        Point middlePoint = firstPoint.middle(new FixedGenerator(true));
+        Point lastPoint = middlePoint.last();
 
-        assertThat(lastPoint).isEqualTo(Point.middle(firstPoint, new FixedGenerator(false)));
+        assertThat(lastPoint).isEqualTo(middlePoint.last());
     }
 
     @Test
@@ -43,7 +44,7 @@ class PointTest {
     @DisplayName("point가 왼쪽으로 이동하면 인덱스가 1감소")
     void movingLeftPointTest(){
         Point firstPoint = Point.first(new FixedGenerator(true));
-        Point middlePoint = Point.middle(firstPoint, new FixedGenerator(false));
+        Point middlePoint = firstPoint.middle(new FixedGenerator(false));
 
         assertThat(firstPoint.move()).isEqualTo(1);
         assertThat(middlePoint.move()).isEqualTo(0);
