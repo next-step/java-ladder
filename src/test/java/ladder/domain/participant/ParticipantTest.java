@@ -1,5 +1,6 @@
 package ladder.domain.participant;
 
+import ladder.exception.InvalidNameSizeException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -31,6 +32,6 @@ class ParticipantTest {
         // when
         assertThatThrownBy(()-> Participant.of(name))
                 .isInstanceOf(InvalidNameSizeException.class)
-                .hasMessage("");
+                .hasMessage("woojae와 같이 5글자가 초과된 이름은 사용할 수 없습니다.");
     }
 }
