@@ -1,5 +1,6 @@
 package ladder.domain.participant;
 
+import ladder.exception.ParticipantListNullPointerException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
