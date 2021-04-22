@@ -13,47 +13,35 @@ public final class Point {
   }
 
   public static Point head(boolean headRight) {
-    if (headRight) {
-      return createRightDirectionPoint(0);
-    }
-    return createNoneDirectionPoint(0);
+    return Point.of(0, Direction.valueOf(headRight));
   }
 
-  private static Point createRightDirectionPoint(int index) {
-    return new Point(index, Direction.RIGHT);
-  }
-
-  private static Point createNoneDirectionPoint(int index) {
-    return new Point(index, Direction.NONE);
-  }
-
-  private static Point createLeftDirectionPoint(int index) {
-    return new Point(index, Direction.LEFT);
+  private static Point of(int index, Direction direction) {
+    return new Point(index, direction);
   }
 
   public Point next(boolean right) {
-    final int nextIndex = getNextIndex();
-
-    if (direction == Direction.RIGHT) {
-      return createLeftDirectionPoint(nextIndex);
-    }
-    if (right) {
-      return createRightDirectionPoint(nextIndex);
-    }
-    return createNoneDirectionPoint(nextIndex);
+    return nextPoint(right);
   }
 
   public Point tail() {
-    final int nextIndex = getNextIndex();
-
-    if (direction == Direction.RIGHT) {
-      return createLeftDirectionPoint(nextIndex);
-    }
-    return createNoneDirectionPoint(nextIndex);
+    return nextPoint(false);
   }
 
-  private int getNextIndex() {
+  private Point nextPoint(boolean isRight) {
+    return Point.of(nextIndex(), nextDirection(isRight));
+  }
+
+  private int nextIndex() {
     return this.index + 1;
+  }
+
+  private Direction nextDirection(boolean isRight) {
+    if (direction == Direction.RIGHT) {
+      return Direction.LEFT;
+    }
+
+    return Direction.valueOf(isRight);
   }
 
   public boolean canDraw() {

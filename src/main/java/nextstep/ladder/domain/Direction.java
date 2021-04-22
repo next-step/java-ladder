@@ -14,6 +14,13 @@ public enum Direction {
     this.expression = expression;
   }
 
+  public static Direction valueOf(boolean isRight) {
+    if (isRight) {
+      return Direction.RIGHT;
+    }
+    return Direction.NONE;
+  }
+
   public int move(final int index) {
     return expression.apply(index);
   }
