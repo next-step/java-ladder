@@ -17,8 +17,8 @@ public class LadderRide {
         ResultView.print(members, ladder, prizes);
         String name = InputView.name();
         while (!"all".equals(name)) {
-            name = InputView.name();
             ResultView.printResult(prizes.findByIndex(ladder.result(members.findHorizontalNumber(Member.of(name)))));
+            name = InputView.name();
         }
     }
 }
