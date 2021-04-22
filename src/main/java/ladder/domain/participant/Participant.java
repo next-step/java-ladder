@@ -10,7 +10,7 @@ public final class Participant {
 
     private final String name;
 
-    public static final Participant of(String name) {
+    public static final Participant of(final String name) {
         return new Participant(name);
     }
 
@@ -20,16 +20,19 @@ public final class Participant {
         this.name = name;
     }
 
-    private final void validateSize(String name) {
+    private final void validateSize(final String name) {
         if (name.length() > MINIMUM_SIZE) {
             throw new InvalidNameSizeException(name);
         }
     }
 
-    private final void validateInvalidIdentifier(String name) {
+    private final void validateInvalidIdentifier(final String name) {
         if (name.equals(INVALID_IDENTIFIER)) {
             throw new InvalidIdentifierNameException(name);
         }
     }
 
+    public final String name() {
+        return name;
+    }
 }
