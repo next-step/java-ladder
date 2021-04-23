@@ -16,7 +16,7 @@ class PointTest {
         Direction right = Direction.first(true);
 
         // when
-        Point point = new Point(position, right);
+        Point point = Point.from(position, right);
 
         // then
         assertThat(point.move()).isEqualTo(executed);
@@ -31,7 +31,7 @@ class PointTest {
         Direction left = Direction.first(true).next(false);
 
         // when
-        Point point = new Point(position, left);
+        Point point = Point.from(position, left);
 
         // then
         assertThat(point.move()).isEqualTo(executed);
@@ -47,9 +47,11 @@ class PointTest {
         Direction pass = Direction.first(false);
 
         // when
-        Point point = new Point(position, pass);
+        Point point = Point.from(position, pass);
 
         // then
         assertThat(point.move()).isEqualTo(executed);
     }
+
+
 }

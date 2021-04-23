@@ -1,5 +1,8 @@
 package ladder.domain.ladder;
 
+import ladder.domain.strategy.CrossGenerateStrategy;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public final class Line {
@@ -10,17 +13,30 @@ public final class Line {
         this.line = line;
     }
 
-//    public static final Line of(int sizeOfPerson) {
-//        return of(init(sizeOfPerson));
+//    public static Line of(int sizeOfPerson, CrossGenerateStrategy strategy) {
 //    }
 //
-//    private static List<Point> init(int sizeOfPerson) {
+
+//    private static List<Point> init(int sizeOfPerson, CrossGenerateStrategy strategy) {
 //        List<Point> points = new ArrayList<>();
 //        Point point = initFirst(points);
 //        point = initBody(sizeOfPerson, points, point);
 //        initLast(points, point);
 //        return new LadderLine(points);
 //    }
+//
+//    private static Point initFirst(List<Point> points, CrossGenerateStrategy strategy) {
+//        Point point = Point.first(strategy.generate());
+//        points.add(point);
+//        return point;
+//    }
+
+//
+//    private static void initLast(List<Point> points, Point point) {
+//        point = point.last();
+//        points.add(point);
+//    }
+
 //
 //    public static final Line of(List<Point> line) {
 //        return null;
@@ -34,15 +50,6 @@ public final class Line {
 //        return point;
 //    }
 //
-//    private static void initLast(List<Point> points, Point point) {
-//        point = point.last();
-//        points.add(point);
-//    }
-//
-//    private static Point initFirst(List<Point> points) {
-//        Point point = Point.first(generatePoint());
-//        points.add(point);
-//        return point;
-//    }
+
 
 }
