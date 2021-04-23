@@ -60,7 +60,7 @@ class DirectionTest {
         // when and then
         assertThatThrownBy(() -> Direction.first(current).next(next))
                 .isInstanceOf(IllegalBooleanArgumentsException.class)
-                .hasMessage("(true, true)는 알맞은 boolean 타입의 매개변수가 아닙니다.");
+                .hasMessage("(true, true)는 알맞은 boolean 타입의 인자값이 아닙니다.");
     }
 
     @DisplayName("Direction 인스턴스의 다음 이동이 Direction.LEFT 인지 확인")

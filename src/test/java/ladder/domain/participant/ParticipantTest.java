@@ -33,7 +33,7 @@ class ParticipantTest {
         // when and then
         assertThatThrownBy(() -> Participant.of(name))
                 .isInstanceOf(InvalidNameSizeException.class)
-                .hasMessage("woojae와 같이 5글자가 초과된 이름은 사용할 수 없습니다.");
+                .hasMessage("(woojae)와 같이 5글자가 초과된 이름은 사용할 수 없습니다.");
     }
 
     @DisplayName("Participant 인스턴스가 특정 명령어 주입시 예외처리 여부 테스트")
@@ -45,7 +45,7 @@ class ParticipantTest {
         // when and then
         assertThatThrownBy(() -> Participant.of(name))
                 .isInstanceOf(InvalidIdentifierNameException.class)
-                .hasMessage("all과 같은 특정 명령어는 이름으로 사용할 수 없습니다.");
+                .hasMessage("(all)과 같은 특정 명령어는 이름으로 사용할 수 없습니다.");
     }
 
     @DisplayName("Participant 인스턴스가 이름을 반환하는지 테스트")

@@ -35,7 +35,7 @@ class HeadingTest {
     void 생성_부적절한_값() {
         assertThatThrownBy(() -> Heading.valueOf(true, true))
                 .isInstanceOf(IllegalBooleanArgumentsException.class)
-                .hasMessage("(true, true)는 알맞은 boolean 타입의 매개변수가 아닙니다.");
+                .hasMessage("(true, true)는 알맞은 boolean 타입의 인자값이 아닙니다.");
     }
 
     @DisplayName("Heading 열거형이 각각의 상수에 맞게끔 다음 이동 인덱스 반환 테스트")
