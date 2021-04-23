@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Award {
   private final List<Name> prizes;
@@ -28,8 +29,9 @@ public class Award {
         .collect(Collectors.toList()), memberSize);
   }
 
-  public List<Name> prizes() {
-    return this.prizes;
+  public Stream<String> prizes() {
+    return prizes.stream()
+        .map(Name::name);
   }
 
   public Name prize(int index) {

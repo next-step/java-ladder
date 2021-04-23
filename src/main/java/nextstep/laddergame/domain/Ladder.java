@@ -23,11 +23,11 @@ public class Ladder {
     return this.members;
   }
 
-  public int find(Name member) {
+  public int match(Name member) {
     return lines.next(candidate(member));
   }
 
-  public int[] findAll(Members members) {
+  public int[] matches(Members members) {
     return lines.nextAll(members);
   }
 
