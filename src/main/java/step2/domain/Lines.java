@@ -29,12 +29,7 @@ public class Lines {
 
     public Position getResultPosition(Position position) {
         return lines.stream()
-                .map(line -> {
-                    int movePosition = line.movePosition(position.getValue());
-                    position.move(movePosition);
-
-                    return position;
-                })
+                .map(line -> line.movePosition(position))
                 .reduce((first, second) -> second)
                 .orElseThrow(() -> new IllegalPositionException("잘못된 포지션입니다."));
     }

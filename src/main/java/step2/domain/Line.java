@@ -42,16 +42,17 @@ public class Line {
         return false;
     }
 
-    public int movePosition(int position) {
-        if (getForwardPoint(position)) {
-            return 1;
+    public Position movePosition(Position position) {
+
+        if (getForwardPoint(position.getValue())) {
+            return position.move(1);
         }
 
-        if (getBackwardPoint(position)) {
-            return -1;
+        if (getBackwardPoint(position.getValue())) {
+            return position.move(-1);
         }
 
-        return 0;
+        return position.move(0);
     }
 
     private boolean getForwardPoint(int position) {

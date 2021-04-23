@@ -12,33 +12,14 @@ public class Position {
         return new Position(position);
     }
 
-    public void move(int movePosition) {
-        position += movePosition;
-    }
-
-    public int getBackwardValue() {
-        return position - 1;
+    public Position move(int movePosition) {
+        return new Position(position += movePosition);
     }
 
     public int getValue() {
         return position;
     }
 
-    public boolean isForwardMoveable(int size) {
-        if (position == size) {
-            return false;
-        }
-
-        return true;
-    }
-
-    public boolean isBackwardMoveable() {
-        if (position - 1 < 0) {
-            return false;
-        }
-
-        return true;
-    }
 
     @Override
     public boolean equals(Object o) {
