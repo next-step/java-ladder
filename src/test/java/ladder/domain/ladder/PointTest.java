@@ -36,9 +36,9 @@ class PointTest {
     void 기능_다음_포인트_반환() {
 
         assertAll(
-                () -> assertThat(Point.first(TRUE).next(FALSE)).isEqualTo(0),
-                () -> assertThat(Point.first(FALSE).next(FALSE)).isEqualTo(1),
-                () -> assertThat(Point.first(FALSE).next(TRUE)).isEqualTo(2)
+                () -> assertThat(Point.first(TRUE).next(FALSE).move()).isEqualTo(0),
+                () -> assertThat(Point.first(FALSE).next(FALSE).move()).isEqualTo(1),
+                () -> assertThat(Point.first(FALSE).next(TRUE).move()).isEqualTo(2)
         );
     }
 

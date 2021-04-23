@@ -37,11 +37,15 @@ public final class Point {
         return heading.go(position);
     }
 
-    public static final Point first(boolean current) {
+    public static final Point first(final boolean current) {
         return new Point(ZERO, Direction.first(current));
     }
 
     public final Point last() {
         return new Point(position + INCREASE, direction.last());
+    }
+
+    public final Point next(final boolean current) {
+        return new Point(position + INCREASE, direction.next(current));
     }
 }
