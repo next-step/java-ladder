@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class PointTest {
 
-    @DisplayName("Cross 인스턴스가 오른쪽으로 이동하는지 테스트")
+    @DisplayName("Point 인스턴스가 오른쪽으로 이동하는지 테스트")
     @Test
     void right() {
         // given
@@ -22,7 +22,7 @@ class PointTest {
         assertThat(point.move()).isEqualTo(executed);
     }
 
-    @DisplayName("Cross 인스턴스가 왼쪽으로 이동하는지 테스트")
+    @DisplayName("Point 인스턴스가 왼쪽으로 이동하는지 테스트")
     @Test
     void left() {
         // given
@@ -38,7 +38,7 @@ class PointTest {
     }
 
 
-    @DisplayName("Cross 인스턴스가 그대로 아래로 이동하는지 테스트")
+    @DisplayName("Point 인스턴스가 그대로 아래로 이동하는지 테스트")
     @Test
     void pass() {
         // given

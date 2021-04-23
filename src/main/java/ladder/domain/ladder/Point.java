@@ -5,7 +5,7 @@ public final class Point {
     private final int position;
     private final Direction direction;
 
-    public Point(int position, Direction direction) {
+    public Point(final int position, Direction direction) {
         this.position = position;
         this.direction = direction;
     }

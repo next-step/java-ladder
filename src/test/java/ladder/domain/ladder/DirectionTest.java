@@ -1,5 +1,6 @@
 package ladder.domain.ladder;
 
+import ladder.exception.IllegalBooleanArgumentsException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -8,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class DirectionTest {
 
-    @DisplayName("Point 인스턴스에 첫번째 지점 생성 테스트")
+    @DisplayName("Direction 인스턴스에 첫번째 지점 생성 테스트")
     @Test
     void first() {
         // given
@@ -21,7 +22,7 @@ class DirectionTest {
         assertThat(direction.move()).isEqualTo(Heading.RIGHT);
     }
 
-    @DisplayName("Point 인스턴스가 다음 지점 Point 인스턴스 생성 테스트")
+    @DisplayName("Direction 인스턴스가 다음 지점 Point 인스턴스 생성 테스트")
     @Test
     void next() {
         // given
@@ -35,7 +36,7 @@ class DirectionTest {
         assertThat(direction.move()).isEqualTo(Heading.LEFT);
     }
 
-    @DisplayName("Point 인스턴스에 마지막 지점 생성 테스트")
+    @DisplayName("Direction 인스턴스에 마지막 지점 생성 테스트")
     @Test
     void last() {
         // given
@@ -49,7 +50,7 @@ class DirectionTest {
         assertThat(direction.move()).isEqualTo(Heading.PASS);
     }
 
-    @DisplayName("Point 인스턴스에 부적절한 값 입력시 예외처리 여부 테스트")
+    @DisplayName("Direction 인스턴스에 부적절한 값 입력시 예외처리 여부 테스트")
     @Test
     void invalid() {
         // given
@@ -58,11 +59,11 @@ class DirectionTest {
 
         // when and then
         assertThatThrownBy(() -> Direction.first(current).next(next))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("상태 값이 유효하지 않습니다.");
+                .isInstanceOf(IllegalBooleanArgumentsException.class)
+                .hasMessage("(true, true)는 알맞은 boolean 타입의 매개변수가 아닙니다.");
     }
 
-    @DisplayName("Point 인스턴스의 다음 이동이 Direction.LEFT 인지 확인")
+    @DisplayName("Direction 인스턴스의 다음 이동이 Direction.LEFT 인지 확인")
     @Test
     void left() {
         // given
@@ -76,7 +77,7 @@ class DirectionTest {
         assertThat(direction.move()).isEqualTo(Heading.LEFT);
     }
 
-    @DisplayName("Point 인스턴스의 다음 이동이 Direction.RIGHT 인지 확인")
+    @DisplayName("Direction 인스턴스의 다음 이동이 Direction.RIGHT 인지 확인")
     @Test
     void right() {
         // given
@@ -90,7 +91,7 @@ class DirectionTest {
         assertThat(direction.move()).isEqualTo(Heading.RIGHT);
     }
 
-    @DisplayName("Point 인스턴스의 다음 이동이 Direction.PASS 인지 확인")
+    @DisplayName("Direction 인스턴스의 다음 이동이 Direction.PASS 인지 확인")
     @Test
     void pass() {
         // given

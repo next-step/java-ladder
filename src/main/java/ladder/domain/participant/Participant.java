@@ -16,7 +16,7 @@ public final class Participant {
         return new Participant(name);
     }
 
-    private Participant(String name) {
+    private Participant(final String name) {
         validateSize(name);
         validateInvalidIdentifier(name);
         this.name = name;

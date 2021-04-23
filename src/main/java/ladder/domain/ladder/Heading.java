@@ -20,7 +20,7 @@ public enum Heading {
         this.current = current;
     }
 
-    public static Heading valueOf(final boolean left, final boolean current) {
+    public static final Heading valueOf(final boolean left, final boolean current) {
         return Arrays.stream(Heading.values())
                 .filter(heading -> isStateSame(heading, left, current))
                 .findFirst()
