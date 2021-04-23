@@ -5,8 +5,11 @@ import ladder.exception.InputNegativeNumberException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.InstanceOfAssertFactories.BOOLEAN;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 class PointTest {
@@ -55,20 +58,20 @@ class PointTest {
     @DisplayName("Point 인스턴스가 첫번째 Point를 반환하는 기능 테스트")
     @Test
     void 기능_첫번째_포인트_반환() {
-        // given
-        boolean current = false;
-        Direction direction = Direction.first(current);
 
-        // when
-        Point first = Point.first(false);
-        Point expected = Point.from(0, direction);
-
-        // then
+        // when and then
         assertAll(
-                // () -> assertThat(first).isEqualTo(expected),
-                () -> assertThat(first).isNotNull()
+                () -> assertThat(Point.first(TRUE).move()).isEqualTo(1),
+                () -> assertThat(Point.first(FALSE).move()).isEqualTo(0)
         );
+    }
 
+    @DisplayName("Point 인스턴스가 마지막 Point를 반환하는 기능 테스트")
+    @Test
+    void 기능_마지막_포인트_반환() {
+        // when and then
+        assertThat(Point.first(TRUE).last().move()).isEqualTo(0);
+        assertThat(Point.first(FALSE).last().move()).isEqualTo(1);
     }
 
 
