@@ -32,7 +32,7 @@ class LadderHeightTest {
         // when and then
         assertThatThrownBy(() -> LadderHeight.valueOf(height))
                 .isInstanceOf(InputNegativeNumberException.class)
-                .hasMessage("(%-1)이라는 음수의 값이 입력되었습니다.");
+                .hasMessage("(-1)이라는 음수의 값이 입력되었습니다.");
     }
 
 }

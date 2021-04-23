@@ -1,14 +1,27 @@
 package ladder.domain.ladder;
 
+import ladder.exception.InputNegativeNumberException;
+
 public final class LadderHeight {
 
-    private final int height;
+    private static final int ZERO = 0;
 
-    private LadderHeight(final int height) {
-        this.height = height;
-    }
+    private final int height;
 
     public static LadderHeight valueOf(final int height) {
         return new LadderHeight(height);
     }
+
+    private LadderHeight(final int height) {
+        validateNegative(height);
+        this.height = height;
+    }
+
+    private final void validateNegative(int height) {
+        if (height < ZERO) {
+            throw new InputNegativeNumberException(height);
+        }
+    }
+
+
 }
