@@ -4,7 +4,10 @@ import ladder.domain.strategy.LineGenerateStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LineTest {
 
@@ -20,6 +23,19 @@ class LineTest {
 
         // then
         assertThat(line).isNotNull();
+    }
+
+    @DisplayName("Line 인스턴스에 null 주입시 예외처리 여부 테스트")
+    @Test
+    void 검증_null() {
+        // given
+        List<Point> pointList = null;
+
+        // when and then
+        assertThatThrownBy(() -> Line.from(pointList))
+                .isInstanceOf(PointListNullPointerException.class)
+                .hasMessage("List<Point>가 null 입니다.");
+
     }
 
 }
