@@ -1,8 +1,6 @@
 package ladder.domain.ladder;
 
-import ladder.domain.strategy.CrossGenerateStrategy;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public final class Line {

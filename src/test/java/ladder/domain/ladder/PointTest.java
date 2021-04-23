@@ -51,6 +51,22 @@ class PointTest {
                 .hasMessage("Direction이 null 입니다.");
     }
 
+    @DisplayName("Point 인스턴스가 첫번째 Point를 반환하는 기능 테스트")
+    @Test
+    void 기능_첫번째_포인트_반환() {
+        // given
+        boolean current = false;
+        Direction direction = Direction.first(current);
+
+        // when
+        Point first = Point.first(false);
+        Point expected = Point.from(0, direction);
+
+        // then
+        assertThat(first).isNotNull();
+
+    }
+
 
     @DisplayName("Point 인스턴스가 오른쪽으로 이동하는지 테스트")
     @Test

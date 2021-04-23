@@ -12,7 +12,7 @@ public final class Point {
     private final int position;
     private final Direction direction;
 
-    public final static Point from(final int position, final Direction direction) {
+    public static final Point from(final int position, final Direction direction) {
         return new Point(position, direction);
     }
 
