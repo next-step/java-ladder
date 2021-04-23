@@ -14,10 +14,10 @@ class PointTest {
     void 생성() {
         // given
         int position = 0;
-        Direction pass = Direction.first(false);
+        Direction direction = Direction.first(false);
 
         // when
-        Point point = Point.from(position, pass);
+        Point point = Point.from(position, direction);
 
         // then
         assertThat(point).isNotNull();
@@ -25,15 +25,29 @@ class PointTest {
 
     @DisplayName("Point 인스턴스 position 값으로 음수 입력시 예외처리 여부 테스트")
     @Test
-    void 검증() {
+    void 검증_음수() {
         // given
         int position = -1;
-        Direction pass = Direction.first(false);
+        Direction direction = Direction.first(false);
 
         // when
-        assertThatThrownBy(() -> Point.from(position, pass))
+        assertThatThrownBy(() -> Point.from(position, direction))
                 .isInstanceOf(InputNegativeNumberException.class)
                 .hasMessage("(-1)이라는 음수의 값이 입력되었습니다.");
+    }
+
+
+    @DisplayName("Point 인스턴스 position 값으로 null 입력시 예외처리 여부 테스트")
+    @Test
+    void 검증_null() {
+        // given
+        int position = 0;
+        Direction direction = null;
+
+        // when
+        assertThatThrownBy(() -> Point.from(position, direction))
+                .isInstanceOf(InputNegativeNumberException.class)
+                .hasMessage("Direction이 null 입니다.");
     }
 
 
