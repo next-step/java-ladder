@@ -18,10 +18,15 @@ public enum Heading {
         this.current = current;
     }
 
-
+    public static Heading valueOf(boolean left, boolean current) {
+        return Arrays.stream(Heading.values())
+                .filter(heading -> isStateSame(heading, left, current))
+                .findFirst()
+                .orElseThrow(IllegalArgumentException::new);
+    }
 
     private static final boolean isStateSame(Heading heading, boolean left, boolean current) {
-        return (heading.current && current) && (heading.left && left);
+        return (heading.left == left) && (heading.current == current);
     }
 
     public final int go(int position) {
