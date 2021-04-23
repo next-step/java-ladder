@@ -35,10 +35,26 @@ class HeadingTest {
     @DisplayName("Heading enum 부적절한 값 입력시 예외처리 여부 테스트")
     @Test
     void 생성_부적절한_값() {
-        assertThatThrownBy(()-> Heading.valueOf(true, true))
+        assertThatThrownBy(() -> Heading.valueOf(true, true))
                 .isInstanceOf(IllegalBooleanArgumentsException.class)
                 .hasMessage("(true, true)는 알맞은 boolean 타입의 매개변수가 아닙니다.");
     }
 
+    public final int go(int position) {
+        return Math.addExact(position, change);
+    }
+
+    @DisplayName("Heading 열거형이 각각의 상수에 맞게끔 다음 이동 인덱스 반환 테스트")
+    @Test
+    void 이동() {
+        // given
+        int position = 1;
+
+        assertAll(
+                () -> assertThat(Heading.RIGHT.move(position)).isEqualTo(2),
+                () -> assertThat(Heading.LEFT.move(position)).isEqualTo(0),
+                () -> assertThat(Heading.PASS.move(position)).isEqualTo(1)
+        );
+    }
 
 }

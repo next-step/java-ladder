@@ -31,7 +31,5 @@ public enum Heading {
         return (heading.left == left) && (heading.current == current);
     }
 
-    public final int go(int position) {
-        return Math.addExact(position, change);
-    }
+
 }
