@@ -56,6 +56,60 @@ public class LineTest {
         assertOtherPoints(RIGHT, line.points());
     }
 
+    @Test
+    @DisplayName("사다리타입이 RIGHT이면 col이 1증가")
+    void increaseColByRIGHT() {
+        Line line = new Line(4, new LineStrategy() {
+            @Override
+            public LadderType next() {
+                return RIGHT;
+            }
+
+            @Override
+            public LadderType next(LadderType prev) {
+                return this.next();
+            }
+        });
+
+        assertEquals(2, line.next(1));
+    }
+
+    @Test
+    @DisplayName("사다리타입이 LEFT이면 col이 1감소")
+    void increaseColByLEFT() {
+        Line line = new Line(4, new LineStrategy() {
+            @Override
+            public LadderType next() {
+                return LEFT;
+            }
+
+            @Override
+            public LadderType next(LadderType prev) {
+                return this.next();
+            }
+        });
+
+        assertEquals(0, line.next(1));
+    }
+
+    @Test
+    @DisplayName("사다리타입이 EMPTY이면 col이 그대로")
+    void increaseColByEMPTY() {
+        Line line = new Line(4, new LineStrategy() {
+            @Override
+            public LadderType next() {
+                return EMPTY;
+            }
+
+            @Override
+            public LadderType next(LadderType prev) {
+                return this.next();
+            }
+        });
+
+        assertEquals(1, line.next(1));
+    }
+
     private void assertFirstPoint(LadderType expected, LadderType firstPoint) {
         assertEquals(expected, firstPoint);
     }
