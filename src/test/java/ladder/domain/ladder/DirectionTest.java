@@ -27,10 +27,9 @@ class DirectionTest {
     void 기능_다음_Direction_생성_이전이_FALSE() {
         // given
         boolean current = false;
-        boolean next = true;
 
         // when
-        Direction direction = Direction.first(current).next(next);
+        Direction direction = Direction.first(current).next(() -> true);
 
         // then
         assertThat(direction.move()).isEqualTo(Heading.RIGHT);
@@ -43,7 +42,7 @@ class DirectionTest {
         boolean current = true;
 
         // when
-        Direction direction = Direction.first(current).next(()-> false);
+        Direction direction = Direction.first(current).next(() -> false);
 
         // then
         assertThat(direction.move()).isEqualTo(Heading.LEFT);
@@ -54,10 +53,9 @@ class DirectionTest {
     void last() {
         // given
         boolean current = true;
-        boolean next = false;
 
         // when
-        Direction direction = Direction.first(current).next(next).last();
+        Direction direction = Direction.first(current).next(() -> false).last();
 
         // then
         assertThat(direction.move()).isEqualTo(Heading.PASS);
@@ -68,10 +66,9 @@ class DirectionTest {
     void invalid() {
         // given
         boolean current = true;
-        boolean next = true;
 
         // when and then
-        assertThatThrownBy(() -> Direction.first(current).next(next))
+        assertThatThrownBy(() -> Direction.first(current).next(() -> true))
                 .isInstanceOf(IllegalBooleanArgumentsException.class)
                 .hasMessage("(true, true)는 알맞은 boolean 타입의 인자값이 아닙니다.");
     }
@@ -81,10 +78,9 @@ class DirectionTest {
     void left() {
         // given
         boolean current = true;
-        boolean next = false;
 
         // when
-        Direction direction = Direction.first(current).next(next);
+        Direction direction = Direction.first(current).next(() -> false);
 
         // then
         assertThat(direction.move()).isEqualTo(Heading.LEFT);
@@ -95,10 +91,9 @@ class DirectionTest {
     void right() {
         // given
         boolean current = false;
-        boolean next = true;
 
         // when
-        Direction direction = Direction.first(current).next(next);
+        Direction direction = Direction.first(current).next(() -> true);
 
         // then
         assertThat(direction.move()).isEqualTo(Heading.RIGHT);
@@ -109,10 +104,9 @@ class DirectionTest {
     void pass() {
         // given
         boolean current = false;
-        boolean next = false;
 
         // when
-        Direction direction = Direction.first(current).next(next);
+        Direction direction = Direction.first(current).next(() -> false);
 
         // then
         assertThat(direction.move()).isEqualTo(Heading.PASS);

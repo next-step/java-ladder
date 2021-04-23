@@ -5,6 +5,7 @@ import ladder.exception.PointListNullPointerException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -37,6 +38,26 @@ class LineTest {
                 .isInstanceOf(PointListNullPointerException.class)
                 .hasMessage("List<Point>가 null 입니다.");
 
+    }
+
+    @DisplayName("Line 인스턴스가 원하는 인스턴스를 생성하는지 테스트")
+    @Test
+    void 비교() {
+        // given
+        int sizeOfPerson = 3;
+        LineGenerateStrategy strategy = () -> true;
+
+        Point first = Point.first(true);
+        Point second = first.next(strategy);
+        Point third = second.next(strategy);
+        List<Point> pointList = Arrays.asList(first, second, third);
+
+        // when
+        Line actual = Line.of(sizeOfPerson, strategy);
+        Line expected = Line.of(pointList);
+
+        // then
+        assertThat(actual).isEqualTo(expected);
     }
 
 }

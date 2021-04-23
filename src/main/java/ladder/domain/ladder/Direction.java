@@ -30,7 +30,7 @@ public final class Direction {
         return Heading.valueOf(left, current);
     }
 
-    public final Direction next(final boolean current) {
+    private final Direction next(final boolean current) {
         return new Direction(this.current, current);
     }
 

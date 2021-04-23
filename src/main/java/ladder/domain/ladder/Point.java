@@ -50,9 +50,6 @@ public final class Point {
         return new Point(position + INCREASE, direction.next(strategy));
     }
 
-    public final Point next(final boolean current) {
-        return new Point(position + INCREASE, direction.next(current));
-    }
 
 
 }

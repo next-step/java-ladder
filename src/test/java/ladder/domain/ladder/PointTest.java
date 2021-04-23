@@ -53,14 +53,6 @@ class PointTest {
         assertThat(point.move()).isEqualTo(1);
     }
 
-    @DisplayName("Point 인스턴스가 부적절한 값 입력시 예외처리 여부 테스트")
-    @Test
-    void 검증_부적절한_값() {
-        assertThatThrownBy(()-> Point.first(TRUE).next(TRUE))
-                .isInstanceOf(IllegalBooleanArgumentsException.class)
-                .hasMessage("(true, true)는 알맞은 boolean 타입의 인자값이 아닙니다.");
-    }
-
     @DisplayName("Point 인스턴스가 이전이 TRUE 일때, 다음 Point를 반환하는 기능 테스트")
     @Test
     void 기능_다음_포인트_반환_이전이_TRUE() {
