@@ -16,6 +16,13 @@ public class Users {
         createUsers(names);
     }
 
+    public User find(String searchUser) {
+        return users.stream()
+            .filter(user -> user.name().value().equals(searchUser))
+            .findFirst()
+            .orElseThrow(IllegalArgumentException::new);
+    }
+
     public int size() {
         return users.size();
     }

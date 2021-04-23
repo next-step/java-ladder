@@ -14,4 +14,17 @@ public class Name {
     public String value() {
         return this.value;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof String) {
+            return value.equals(obj);
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return value.hashCode();
+    }
 }
