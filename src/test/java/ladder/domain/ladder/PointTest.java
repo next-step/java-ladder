@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class PointTest {
 
@@ -11,7 +12,7 @@ class PointTest {
     @Test
     void 생성() {
         // given
-        int position = 1;
+        int position = 0;
         Direction pass = Direction.first(false);
 
         // when
@@ -19,6 +20,19 @@ class PointTest {
 
         // then
         assertThat(point).isNotNull();
+    }
+
+    @DisplayName("Point 인스턴스 position 값으로 음수 입력시 예외처리 여부 테스트")
+    @Test
+    void 검증() {
+        // given
+        int position = -1;
+        Direction pass = Direction.first(false);
+
+        // when
+        assertThatThrownBy(() -> Point.from(position, pass))
+                .isInstanceOf(InputNegativeNumberException.class)
+                .hasMessage("(-1)이라는 음수의 값이 입력되었습니다.");
     }
 
 
