@@ -47,16 +47,16 @@ public class Direction {
         return this.right;
     }
 
-    public int move() {
+    public Side move() {
         if (isLeft()) {
-            return 0;
+            return Side.LEFT;
         }
 
         if (isRight()) {
-            return 1;
+            return Side.RIGHT;
         }
 
-        return 2;
+        return Side.STRAIGHT;
     }
 
     boolean isStraight() {

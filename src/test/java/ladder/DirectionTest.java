@@ -2,6 +2,7 @@ package ladder;
 
 import ladder.domain.Direction;
 import ladder.domain.Link;
+import ladder.domain.Side;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -26,18 +27,18 @@ public class DirectionTest {
     void Given_MoveToLeft_When_Move_Then_Right() {
         Direction direction = Direction.of(Link.OPEN, Link.CLOSE);
 
-        int moved = direction.move();
+        Side moveSide = direction.move();
 
-        assertThat(moved).isEqualTo(1);
+        assertThat(moveSide).isEqualTo(Side.RIGHT);
     }
 
     @Test
     void Given_MoveToRight_When_Move_Then_Left() {
         Direction direction = Direction.of(Link.CLOSE, Link.OPEN);
 
-        int moved = direction.move();
+        Side moveSide = direction.move();
 
-        assertThat(moved).isEqualTo(0);
+        assertThat(moveSide).isEqualTo(Side.LEFT);
     }
 
     @Test
