@@ -36,6 +36,7 @@ class LadderTest {
         // given
         List<Line> nullLines = null;
 
+        // when and then
         assertThatThrownBy(() -> Ladder.from(nullLines))
                 .isInstanceOf(LineListNullPointerException.class)
                 .hasMessage("List<Line>이 null 입니다.");
@@ -44,6 +45,7 @@ class LadderTest {
     @DisplayName("Ladder 인스턴스가 Stream<Line> 반환하는지 테스트")
     @Test
     void 반환_stream() {
+        // given
         Participants participants = Participants.of("a,b,c".split(","));
         LadderHeight ladderHeight = LadderHeight.valueOf(5);
         LineGenerateStrategy strategy = () -> true;
@@ -51,6 +53,7 @@ class LadderTest {
         // when
         Ladder ladder = Ladder.from(participants, ladderHeight, strategy);
 
+        // then
         assertAll(
                 () -> assertThat(ladder.stream()).isNotNull(),
                 () -> assertThat(ladder.stream()).isInstanceOf(Stream.class)
