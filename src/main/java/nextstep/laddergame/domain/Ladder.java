@@ -23,7 +23,7 @@ public class Ladder {
     return this.members;
   }
 
-  public int find(Member member) {
+  public int find(Name member) {
     return lines.next(candidate(member));
   }
 
@@ -31,7 +31,7 @@ public class Ladder {
     return lines.nextAll(members);
   }
 
-  private int candidate(Member member) {
+  private int candidate(Name member) {
     return members.names()
         .indexOf(member);
   }
