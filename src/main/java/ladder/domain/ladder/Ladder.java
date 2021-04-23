@@ -2,8 +2,10 @@ package ladder.domain.ladder;
 
 import ladder.domain.participant.Participants;
 import ladder.domain.strategy.LineGenerateStrategy;
+import ladder.exception.LineListNullPointerException;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -25,6 +27,13 @@ public final class Ladder {
     }
 
     private Ladder(final List<Line> lines) {
+        validateNull(lines);
         this.lines = lines;
+    }
+
+    private final void validateNull(final List<Line> lines) {
+        if (Objects.isNull(lines)) {
+            throw new LineListNullPointerException();
+        }
     }
 }

@@ -2,6 +2,7 @@ package ladder.domain.ladder;
 
 import ladder.domain.participant.Participants;
 import ladder.domain.strategy.LineGenerateStrategy;
+import ladder.exception.LineListNullPointerException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
