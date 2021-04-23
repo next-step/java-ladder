@@ -27,13 +27,13 @@ public class Lines {
         return Collections.unmodifiableList(lines);
     }
 
-    public int getResultPosition(Position position) {
+    public Position getResultPosition(Position position) {
         return lines.stream()
                 .map(line -> {
-                    MovePosition movePosition =
-                            MovePosition.of(line.getSize(), position.getPosition());
+                    int movePosition = line.movePosition(position.getValue());
+                    position.move(movePosition);
 
-                    return movePosition.getPosition(line, position);
+                    return position;
                 })
                 .reduce((first, second) -> second)
                 .orElseThrow(() -> new IllegalPositionException("잘못된 포지션입니다."));

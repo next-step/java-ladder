@@ -7,31 +7,53 @@ public class Position {
         this.position = position;
     }
 
-    private void goPosition() {
-        position++;
+    public static Position of(Position firstPosition, Position secondPosition) {
+        int position = firstPosition.getValue() + secondPosition.getValue();
+        return new Position(position);
     }
 
-    private void backPosition() {
-        position--;
+    public void move(int movePosition) {
+        position += movePosition;
     }
 
-    public int getPosition() {
+    public int getBackwardValue() {
+        return position - 1;
+    }
+
+    public int getValue() {
         return position;
     }
 
-    public int previous(Line line) {
-        if (line.getPoint(position -1)) {
-            backPosition();
+    public boolean isForwardMoveable(int size) {
+        if (position == size) {
+            return false;
         }
 
-        return position;
+        return true;
     }
 
-    public int next(Line line) {
-        if (line.getPoint(position)) {
-            goPosition();
+    public boolean isBackwardMoveable() {
+        if (position - 1 < 0) {
+            return false;
         }
 
+        return true;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Position)) return false;
+
+        Position position1 = (Position) o;
+
+        return position == position1.position;
+    }
+
+    @Override
+    public int hashCode() {
         return position;
     }
+
+
 }

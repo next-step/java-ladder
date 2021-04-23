@@ -23,7 +23,7 @@ public class Players {
         String[] splitPlayers = players.split(SPLIT_COMMA);
 
         return IntStream.range(0, splitPlayers.length)
-                .mapToObj(index -> new Player(splitPlayers[index], index))
+                .mapToObj(index -> new Player(splitPlayers[index], new Position(index)))
                 .collect(collectingAndThen(toList(), Players::new));
     }
 
@@ -49,13 +49,10 @@ public class Players {
 
     public Players getResult(Lines lines) {
         return players.stream()
-                .map(player -> {
-                    Position position = new Position(player.getCount());
-                    return new Player(
-                            player.getName(),
-                            lines.getResultPosition(position));
-                }).collect(Collectors.collectingAndThen(Collectors.toList(), Players::new));
+                .map(player ->
+                        new Player(
+                                player.getName(),
+                                lines.getResultPosition(player.getPosition())))
+                .collect(Collectors.collectingAndThen(Collectors.toList(), Players::new));
     }
-
-
 }

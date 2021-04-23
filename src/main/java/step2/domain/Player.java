@@ -12,13 +12,13 @@ public class Player {
     public static final int NAME_MAX_SIZE = 5;
 
     private final String name;
-    private final int count;
+    private Position position;
 
-    public Player(String player, int count) {
+    public Player(String player, Position position) {
         PlayerNameValidate(player);
 
         this.name = player;
-        this.count = count;
+        this.position = position;
     }
 
     private void PlayerNameValidate(String player) {
@@ -40,8 +40,8 @@ public class Player {
         return blank + name;
     }
 
-    public int getCount() {
-        return count;
+    public Position getPosition() {
+        return position;
     }
 
     @Override

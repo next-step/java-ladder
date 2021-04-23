@@ -19,7 +19,7 @@ public class Award {
         return players.stream()
                 .collect(toMap(
                         identity(),
-                        player -> prizes.get(player.getCount())));
+                        player -> prizes.get(player.getPosition().getValue())));
     }
 
 }
