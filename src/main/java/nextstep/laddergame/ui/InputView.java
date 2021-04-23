@@ -3,7 +3,9 @@ package nextstep.laddergame.ui;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import nextstep.laddergame.domain.Award;
 import nextstep.laddergame.domain.Members;
+import nextstep.laddergame.domain.Name;
 
 public class InputView {
 
@@ -20,4 +22,14 @@ public class InputView {
     return Integer.parseInt(reader.readLine());
   }
 
+  public Award enteredAward(int size) throws IOException {
+    System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+    return Award.createPrizes(reader.readLine()
+        .split(","), size);
+  }
+
+  public Name enteredFindResult() throws IOException {
+    System.out.println("결과를 보고 싶은 사람은?");
+    return new Name(reader.readLine());
+  }
 }
