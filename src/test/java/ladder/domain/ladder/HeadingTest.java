@@ -3,6 +3,8 @@ package ladder.domain.ladder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -23,9 +25,9 @@ class HeadingTest {
     void 생성_valueOf() {
 
         assertAll(
-                () -> assertThat(Heading.valueOf(false, false)).isEqualTo(Heading.PASS),
                 () -> assertThat(Heading.valueOf(false, true)).isEqualTo(Heading.RIGHT),
-                () -> assertThat(Heading.valueOf(true, false)).isEqualTo(Heading.LEFT)
+                () -> assertThat(Heading.valueOf(true, false)).isEqualTo(Heading.LEFT),
+                () -> assertThat(Heading.valueOf(false, false)).isEqualTo(Heading.PASS)
         );
     }
 
