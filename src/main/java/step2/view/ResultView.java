@@ -26,7 +26,7 @@ public class ResultView {
 
     private static void printLine(Line line) {
         IntStream.range(0, line.getSize())
-                .mapToObj(line::getPoint)
+                .mapToObj(line::isMoveable)
                 .map(point -> point ? LADDER_MOVE : LADDER_STOP)
                 .forEach(System.out::print);
     }
