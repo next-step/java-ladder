@@ -7,6 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 class LineTest {
@@ -27,14 +28,14 @@ class LineTest {
         CustomCondition customCondition = new CustomCondition();
         Line line = Line.of(2, customCondition);
 
-        int firstMovePosition = line.movePosition(0);
-        int secondMovePosition = line.movePosition(1);
-        int thirdMovePosition = line.movePosition(2);
+        Position firstMovePosition = line.movePosition(new Position(0));
+        Position secondMovePosition = line.movePosition(new Position(1));
+        Position thirdMovePosition = line.movePosition(new Position(2));
 
         Assertions.assertAll(
-                () -> assertEquals(firstMovePosition, 1),
-                () -> assertEquals(secondMovePosition, -1),
-                () -> assertEquals(thirdMovePosition, 0)
+                () -> assertTrue(firstMovePosition.equals(new Position(1))),
+                () -> assertTrue(secondMovePosition.equals(new Position(0))),
+                () -> assertTrue(thirdMovePosition.equals(new Position(2)))
         );
     }
 }
