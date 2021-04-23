@@ -1,5 +1,7 @@
 package ladder.domain.ladder;
 
+import ladder.exception.IllegalBooleanArgumentsException;
+
 import java.util.Arrays;
 
 public enum Heading {
@@ -22,7 +24,7 @@ public enum Heading {
         return Arrays.stream(Heading.values())
                 .filter(heading -> isStateSame(heading, left, current))
                 .findFirst()
-                .orElseThrow(IllegalArgumentException::new);
+                .orElseThrow(()-> new IllegalBooleanArgumentsException(left, current));
     }
 
     private static final boolean isStateSame(Heading heading, boolean left, boolean current) {
