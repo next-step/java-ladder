@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 class PointTest {
 
@@ -63,7 +64,10 @@ class PointTest {
         Point expected = Point.from(0, direction);
 
         // then
-        assertThat(first).isNotNull();
+        assertAll(
+                // () -> assertThat(first).isEqualTo(expected),
+                () -> assertThat(first).isNotNull()
+        );
 
     }
 

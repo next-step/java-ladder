@@ -40,5 +40,8 @@ public final class Point {
         return heading.go(position);
     }
 
+    public static final Point first(boolean current) {
+        return Point.from(0, Direction.first(current));
+    }
 
 }
