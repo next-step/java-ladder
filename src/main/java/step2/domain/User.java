@@ -17,7 +17,15 @@ public class User {
     }
 
     @Override
-    public String toString() {
-        return name.toString();
+    public boolean equals(Object obj) {
+        if (obj instanceof User) {
+            return name.equals(((User) obj).name);
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode();
     }
 }

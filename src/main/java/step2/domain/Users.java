@@ -7,7 +7,6 @@ import static step2.view.ViewConstants.COMMA;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Users {
 
@@ -17,20 +16,24 @@ public class Users {
         createUsers(names);
     }
 
+    public User find(String searchUser) {
+        return users.stream()
+            .filter(user -> user.name().value().equals(searchUser))
+            .findFirst()
+            .orElseThrow(IllegalArgumentException::new);
+    }
+
     public int size() {
         return users.size();
+    }
+
+    public List<User> value() {
+        return this.users;
     }
 
     private void createUsers(String names) {
         Arrays.stream(names.split(COMMA))
             .map(User::new)
             .collect(collectingAndThen(toList(), users::addAll));
-    }
-
-    @Override
-    public String toString() {
-        return users.stream()
-            .map(User::toString)
-            .collect(Collectors.joining());
     }
 }

@@ -1,13 +1,10 @@
 package step2.domain;
 
-public class Name {
+public class Product {
 
     private final String value;
 
-    public Name(String value) {
-        if (value.length() > 5) {
-            throw new IllegalArgumentException("이름은 5자 이하입니다");
-        }
+    public Product(String value) {
         this.value = value;
     }
 

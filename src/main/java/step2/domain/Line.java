@@ -2,7 +2,6 @@ package step2.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Line {
 
@@ -14,24 +13,22 @@ public class Line {
         createLine(countOfPerson);
     }
 
+    public int next(int col) {
+        LadderType ladderType = points.get(col);
+        return ladderType.nextCol(col);
+    }
+
     public List<LadderType> points() {
         return this.points;
     }
 
     private void createLine(int countOfPerson) {
-        points.add(lineStrategy.firstPoint());
+        points.add(lineStrategy.next());
         for (int prevPoint = 0; prevPoint < countOfPerson - 2; ++prevPoint) {
             LadderType prevType = points.get(prevPoint);
-            points.add(prevType.next(lineStrategy));
+            points.add(lineStrategy.next(prevType));
         }
         LadderType prevLast = points.get(countOfPerson - 2);
-        points.add(prevLast.last(lineStrategy));
-    }
-
-    @Override
-    public String toString() {
-        return points.stream()
-            .map(LadderType::ladder)
-            .collect(Collectors.joining());
+        points.add(lineStrategy.last(prevLast));
     }
 }
