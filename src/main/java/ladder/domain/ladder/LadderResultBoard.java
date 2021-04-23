@@ -15,4 +15,8 @@ public final class LadderResultBoard {
     public static final LadderResultBoard of(final Map<Participant, String> resultBoard) {
         return new LadderResultBoard(resultBoard);
     }
+
+    public final String findResultByParticipant(final Participant participant) {
+        return resultBoard.get(participant);
+    }
 }
