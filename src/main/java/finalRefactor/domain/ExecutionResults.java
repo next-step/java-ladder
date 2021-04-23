@@ -39,6 +39,22 @@ public class ExecutionResults {
         return results;
     }
 
+    public ExecutionResult eachPositionExecutionResult(int position, Ladder ladder) {
+        for (LadderLine line : ladder.lines()) {
+            position = line.move(position);
+        }
+
+        return results.get(position);
+    }
+
+    public ExecutionResults getExecutionResult(Ladder ladder) {
+        List<ExecutionResult> executionResultsList = new ArrayList<>();
+        for (int i = 0; i < ladder.size() - 1; i++) {
+            executionResultsList.add(eachPositionExecutionResult(i, ladder));
+        }
+        return new ExecutionResults(executionResultsList);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
