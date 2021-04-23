@@ -14,6 +14,7 @@ import nextstep.laddergame.domain.Members;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
 
 class LadderTest {
@@ -51,8 +52,8 @@ class LadderTest {
 
     //then
     assertAll(
-        () -> assertEquals(ladder.find(members.names().get(0)), 1),
-        () -> assertEquals(ladder.find(members.names().get(1)), 0)
+        () -> assertEquals(ladder.match(members.names().get(0)), 1),
+        () -> assertEquals(ladder.match(members.names().get(1)), 0)
     );
   }
 
@@ -73,7 +74,7 @@ class LadderTest {
     Ladder ladder = new Ladder(members, lines);
 
     //then
-    assertEquals(Arrays.stream(ladder.findAll(members))
+    assertEquals(Arrays.stream(ladder.matches(members))
         .distinct()
         .count(), result);
   }
