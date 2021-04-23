@@ -24,13 +24,26 @@ class DirectionTest {
 
     @DisplayName("Direction 인스턴스가 다음 지점 Point 인스턴스 생성 테스트")
     @Test
-    void next() {
+    void 기능_다음_Direction_생성_이전이_FALSE() {
         // given
-        boolean current = true;
-        boolean next = false;
+        boolean current = false;
+        boolean next = true;
 
         // when
         Direction direction = Direction.first(current).next(next);
+
+        // then
+        assertThat(direction.move()).isEqualTo(Heading.LEFT);
+    }
+
+    @DisplayName("Direction 인스턴스가 이전이 true 일때, false를 가진 다음 Point 인스턴스 생성 테스트")
+    @Test
+    void 기능_다음_Direction_생성_이전이_TRUE() {
+        // given
+        boolean current = true;
+
+        // when
+        Direction direction = Direction.first(current).next();
 
         // then
         assertThat(direction.move()).isEqualTo(Heading.LEFT);
