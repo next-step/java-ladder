@@ -14,22 +14,26 @@ public enum Heading {
     final boolean left;
     final boolean current;
 
-    Heading(int change, boolean left, boolean current) {
+    Heading(final int change, final boolean left, final boolean current) {
         this.change = change;
         this.left = left;
         this.current = current;
     }
 
-    public static Heading valueOf(boolean left, boolean current) {
+    public static Heading valueOf(final boolean left, final boolean current) {
         return Arrays.stream(Heading.values())
                 .filter(heading -> isStateSame(heading, left, current))
                 .findFirst()
-                .orElseThrow(()-> new IllegalBooleanArgumentsException(left, current));
+                .orElseThrow(() -> new IllegalBooleanArgumentsException(left, current));
     }
 
-    private static final boolean isStateSame(Heading heading, boolean left, boolean current) {
+    private static final boolean isStateSame(final Heading heading, final boolean left, final boolean current) {
         return (heading.left == left) && (heading.current == current);
     }
 
+
+    public final int go(final int position) {
+        return Math.addExact(position, change);
+    }
 
 }

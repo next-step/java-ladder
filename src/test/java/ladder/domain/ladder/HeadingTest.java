@@ -40,10 +40,6 @@ class HeadingTest {
                 .hasMessage("(true, true)는 알맞은 boolean 타입의 매개변수가 아닙니다.");
     }
 
-    public final int go(int position) {
-        return Math.addExact(position, change);
-    }
-
     @DisplayName("Heading 열거형이 각각의 상수에 맞게끔 다음 이동 인덱스 반환 테스트")
     @Test
     void 이동() {
@@ -51,9 +47,9 @@ class HeadingTest {
         int position = 1;
 
         assertAll(
-                () -> assertThat(Heading.RIGHT.move(position)).isEqualTo(2),
-                () -> assertThat(Heading.LEFT.move(position)).isEqualTo(0),
-                () -> assertThat(Heading.PASS.move(position)).isEqualTo(1)
+                () -> assertThat(Heading.RIGHT.go(position)).isEqualTo(2),
+                () -> assertThat(Heading.LEFT.go(position)).isEqualTo(0),
+                () -> assertThat(Heading.PASS.go(position)).isEqualTo(1)
         );
     }
 
