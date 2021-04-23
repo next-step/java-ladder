@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LadderResultBoardTest {
@@ -23,6 +24,19 @@ class LadderResultBoardTest {
 
         // then
         assertThat(ladderResultBoard).isNotNull();
+    }
+
+    @DisplayName("LadderResultBoard 인스턴스 null 입력시 예외처리 여부 테스트")
+    @Test
+    void 검증_null() {
+        // given
+        Map<Participant, String> resultBoard = null;
+
+        // when and then
+        assertThatThrownBy(() -> LadderResultBoard.of(resultBoard))
+                .isInstanceOf(ResultMapNullPointerException.class)
+                .hasMessage("Map<Participant, String>가 null 입니다.");
+
     }
 
     @DisplayName("LadderResultBoard 인스턴스 특정 사람에 대한 결과 반환 테스트")
