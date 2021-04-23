@@ -32,16 +32,25 @@ class PointTest {
         assertThat(Point.first(FALSE).last().move()).isEqualTo(1);
     }
 
-
-    @DisplayName("Point 인스턴스가 다음 Point를 반환하는 기능 테스트")
+    @DisplayName("Point 인스턴스가 제자리로 이동하는지 테스트")
     @Test
-    void 기능_다음_포인트_반환() {
+    public void 기능_제자리_이동() {
+        Point point = Point.first(FALSE);
+        assertThat(point.move()).isEqualTo(0);
+    }
 
-        assertAll(
-                () -> assertThat(Point.first(TRUE).next(FALSE).move()).isEqualTo(0),
-                () -> assertThat(Point.first(FALSE).next(FALSE).move()).isEqualTo(1),
-                () -> assertThat(Point.first(FALSE).next(TRUE).move()).isEqualTo(2)
-        );
+    @DisplayName("Point 인스턴스가 왼쪽으로 이동하는지 테스트")
+    @Test
+    public void 기능_왼쪽으로_이동() {
+        Point point = Point.first(TRUE).last();
+        assertThat(point.move()).isEqualTo(0);
+    }
+
+    @DisplayName("Point 인스턴스가 오른쪽으로 이동하는지 테스트")
+    @Test
+    public void 기능_오른쪽으로_이동() {
+        Point point = Point.first(TRUE);
+        assertThat(point.move()).isEqualTo(1);
     }
 
     @DisplayName("Point 인스턴스가 부적절한 값 입력시 예외처리 여부 테스트")
@@ -57,84 +66,5 @@ class PointTest {
     void 기능_다음_포인트_반환_이전이_TRUE() {
         assertThat(Point.first(TRUE).next().move()).isEqualTo(0);
     }
-
-
-//    @DisplayName("Point 인스턴스가 오른쪽으로 이동하는지 테스트")
-//    @Test
-//    void 기능_오른쪽_이동() {
-//        // given
-//        int position = 1;
-//        int executed = 2;
-//        Direction right = Direction.first(true);
-//
-//        // when
-//        Point point = Point.from(position, right);
-//
-//        // then
-//        assertThat(point.move()).isEqualTo(executed);
-//    }
-//
-//    @DisplayName("Point 인스턴스가 왼쪽으로 이동하는지 테스트")
-//    @Test
-//    void 기능_왼쪽_이동() {
-//        // given
-//        int position = 1;
-//        int executed = 0;
-//        Direction left = Direction.first(true).next(false);
-//
-//        // when
-//        Point point = Point.from(position, left);
-//
-//        // then
-//        assertThat(point.move()).isEqualTo(executed);
-//    }
-//
-//
-//    @DisplayName("Point 인스턴스가 그대로 아래로 이동하는지 테스트")
-//    @Test
-//    void 기능_아래로_이동() {
-//        // given
-//        int position = 1;
-//        int executed = 1;
-//        Direction pass = Direction.first(false);
-//
-//        // when
-//        Point point = Point.from(position, pass);
-//
-//        // then
-//        assertThat(point.move()).isEqualTo(executed);
-//    }
-
-
-//    @Test
-//    public void first() {
-//        assertThat(Point.first(TRUE).move(), is(1));
-//        assertThat(Point.first(FALSE).move(), is(0));
-//    }
-//
-//    @Test
-//    public void next_stay() {
-//        Point second = Point.first(FALSE).next(FALSE);
-//        assertThat(second.move(), is(1));
-//    }
-//
-//    @Test
-//    public void next_left() {
-//        Point second = Point.first(TRUE).next(FALSE);
-//        assertThat(second.move(), is(0));
-//    }
-//
-//    @Test
-//    public void next_right() {
-//        Point second = Point.first(FALSE).next(TRUE);
-//        assertThat(second.move(), is(2));
-//    }
-//
-//    @Test
-//    public void next() {
-//        Point second = Point.first(TRUE).next();
-//        assertThat(second.move(), is(0));
-//    }
-
 
 }
