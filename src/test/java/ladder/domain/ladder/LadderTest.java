@@ -7,9 +7,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 class LadderTest {
 
@@ -38,5 +40,22 @@ class LadderTest {
                 .isInstanceOf(LineListNullPointerException.class)
                 .hasMessage("List<Line>이 null 입니다.");
     }
+
+    @DisplayName("Ladder 인스턴스가 Stream<Line> 반환하는지 테스트")
+    @Test
+    void 반환_stream() {
+        Participants participants = Participants.of("a,b,c".split(","));
+        LadderHeight ladderHeight = LadderHeight.valueOf(5);
+        LineGenerateStrategy strategy = () -> true;
+
+        // when
+        Ladder ladder = Ladder.from(participants, ladderHeight, strategy);
+
+        assertAll(
+                () -> assertThat(ladder.stream()).isNotNull(),
+                () -> assertThat(ladder.stream()).isInstanceOf(Stream.class)
+        );
+    }
+
 
 }
