@@ -1,6 +1,7 @@
 package nextstep.ladder.io;
 
 import java.util.List;
+import nextstep.ladder.domain.GameResults;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Name;
@@ -19,11 +20,11 @@ public final class ResultView {
 
   private ResultView() {}
 
-  public static void printLadder(Ladder ladder) {
+  public static void printLadder(Ladder ladder, People people) {
     System.out.println();
     System.out.println("사다리 결과");
     System.out.println();
-    printPeople(ladder.people());
+    printPeople(people);
     printLines(ladder.lines());
   }
 
@@ -65,14 +66,16 @@ public final class ResultView {
     System.out.println(result.result());
   }
 
-  public static void printAllResults(People people, List<Result> allResults) {
-    StringBuilder allResultsBuilder = new StringBuilder(LINE_SEPARATOR).append(RESULT_MESSAGE).append(LINE_SEPARATOR);
-    for (int i = 0; i < allResults.size(); i++) {
-      allResultsBuilder.append(people.personList().get(i).personName())
+  public static void printGameResults(People people, GameResults gameResults) {
+    StringBuilder gameResultsBuilder = new StringBuilder(LINE_SEPARATOR).append(RESULT_MESSAGE).append(LINE_SEPARATOR);
+
+    for (Person person : people.personList()) {
+      String personName = person.personName();
+      gameResultsBuilder.append(personName)
           .append(" : ")
-          .append(allResults.get(i).result())
+          .append(gameResults.resultOf(personName).result())
           .append(LINE_SEPARATOR);
     }
-    System.out.print(allResultsBuilder);
+    System.out.print(gameResultsBuilder);
   }
 }

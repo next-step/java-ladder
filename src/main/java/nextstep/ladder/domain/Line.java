@@ -15,13 +15,15 @@ public final class Line {
 
   private List<Point> createPoints(LineCreationStrategy lineCreationStrategy, int personCount) {
     List<Point> points = new ArrayList<>();
-    Point before = Point.head();
-
-    for (int i = 1; i < personCount; i++) {
-      points.add(before);
-      before = Point.body(before, lineCreationStrategy.canCreate());
-    }
+    Point before = Point.head(lineCreationStrategy.canCreate());
     points.add(before);
+
+    for (int i = 1; i < personCount - 1; i++) {
+      before = before.next(lineCreationStrategy.canCreate());
+      points.add(before);
+    }
+    points.add(before.tail());
+
     return points;
   }
 
@@ -31,22 +33,7 @@ public final class Line {
 
   public int nextPointIndex(int pointIndex) {
     final Point currentPoint = points.get(pointIndex);
-
-    if (currentPoint.hasLine()) {
-      return pointIndex - 1;
-    }
-
-    final int nextPointIndex = pointIndex + 1;
-    if (nextPointIndex == points.size()) {
-      return pointIndex;
-    }
-
-    final Point nextPoint = points.get(nextPointIndex);
-    if (nextPoint.hasLine()) {
-      return nextPointIndex;
-    }
-
-    return pointIndex;
+    return currentPoint.move();
   }
 
   @Override
