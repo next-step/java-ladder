@@ -45,7 +45,13 @@ public final class Point {
         return new Point(position + INCREASE, direction.last());
     }
 
+    public final Point next() {
+        return new Point(position + INCREASE, direction.next());
+    }
+
     public final Point next(final boolean current) {
         return new Point(position + INCREASE, direction.next(current));
     }
+
+
 }
