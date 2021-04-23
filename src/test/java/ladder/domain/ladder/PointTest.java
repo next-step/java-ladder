@@ -1,5 +1,6 @@
 package ladder.domain.ladder;
 
+import ladder.exception.DirectionNullPointerException;
 import ladder.exception.InputNegativeNumberException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -46,7 +47,7 @@ class PointTest {
 
         // when
         assertThatThrownBy(() -> Point.from(position, direction))
-                .isInstanceOf(InputNegativeNumberException.class)
+                .isInstanceOf(DirectionNullPointerException.class)
                 .hasMessage("Direction이 null 입니다.");
     }
 

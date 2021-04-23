@@ -1,6 +1,9 @@
 package ladder.domain.ladder;
 
+import ladder.exception.DirectionNullPointerException;
 import ladder.exception.InputNegativeNumberException;
+
+import java.util.Objects;
 
 public final class Point {
 
@@ -15,8 +18,15 @@ public final class Point {
 
     public Point(final int position, final Direction direction) {
         validateNegative(position);
+        validateNull(direction);
         this.position = position;
         this.direction = direction;
+    }
+
+    private final void validateNull(final Direction direction) {
+        if (Objects.isNull(direction)) {
+            throw new DirectionNullPointerException();
+        }
     }
 
     private final void validateNegative(final int position) {
