@@ -1,5 +1,6 @@
 package ladder.domain.ladder;
 
+import ladder.domain.participant.Participants;
 import ladder.domain.strategy.LineGenerateStrategy;
 import ladder.exception.PointListNullPointerException;
 import org.junit.jupiter.api.DisplayName;
@@ -19,11 +20,11 @@ class LineTest {
     @Test
     void 생성() {
         // given
-        int sizeOfPerson = 5;
+        Participants participants = Participants.of("a,b,c,".split(","));
         LineGenerateStrategy strategy = () -> true;
 
         // when
-        Line line = Line.of(sizeOfPerson, strategy);
+        Line line = Line.of(participants, strategy);
 
         // then
         assertThat(line).isNotNull();
@@ -46,16 +47,16 @@ class LineTest {
     @Test
     void 비교() {
         // given
-        int sizeOfPerson = 3;
+        Participants participants = Participants.of("a,b,c,".split(","));
         LineGenerateStrategy strategy = () -> true;
 
         Point first = Point.first(true);
         Point second = first.next(strategy);
-        Point third = second.next(strategy);
+        Point third = second.last();
         List<Point> pointList = Arrays.asList(first, second, third);
 
         // when
-        Line actual = Line.of(sizeOfPerson, strategy);
+        Line actual = Line.of(participants, strategy);
         Line expected = Line.of(pointList);
 
         // then
@@ -66,11 +67,11 @@ class LineTest {
     @Test
     void 반환_stream() {
         // given
-        int sizeOfPerson = 5;
+        Participants participants = Participants.of("a,b,c,".split(","));
         LineGenerateStrategy strategy = () -> true;
 
         // when
-        Line line = Line.of(sizeOfPerson, strategy);
+        Line line = Line.of(participants, strategy);
 
         // then
         assertAll(

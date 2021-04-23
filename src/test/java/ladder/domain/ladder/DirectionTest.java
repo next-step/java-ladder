@@ -61,18 +61,6 @@ class DirectionTest {
         assertThat(direction.move()).isEqualTo(Heading.PASS);
     }
 
-    @DisplayName("Direction 인스턴스에 부적절한 값 입력시 예외처리 여부 테스트")
-    @Test
-    void invalid() {
-        // given
-        boolean current = true;
-
-        // when and then
-        assertThatThrownBy(() -> Direction.first(current).next(() -> true))
-                .isInstanceOf(IllegalBooleanArgumentsException.class)
-                .hasMessage("(true, true)는 알맞은 boolean 타입의 인자값이 아닙니다.");
-    }
-
     @DisplayName("Direction 인스턴스의 다음 이동이 Direction.LEFT 인지 확인")
     @Test
     void left() {

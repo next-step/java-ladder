@@ -1,5 +1,6 @@
 package ladder.domain.ladder;
 
+import ladder.domain.participant.Participants;
 import ladder.domain.strategy.LineGenerateStrategy;
 import ladder.exception.PointListNullPointerException;
 
@@ -16,8 +17,8 @@ public final class Line {
 
     private final List<Point> line;
 
-    public static final Line of(final int countOfPerson, final LineGenerateStrategy strategy) {
-        return of(init(countOfPerson, strategy));
+    public static final Line of(final Participants participants, final LineGenerateStrategy strategy) {
+        return of(init(participants, strategy));
     }
 
     public static final Line of(final List<Point> line) {
@@ -35,12 +36,13 @@ public final class Line {
         }
     }
 
-    private static final List<Point> init(final int countOfPerson, final LineGenerateStrategy strategy) {
+    private static final List<Point> init(final Participants participants, final LineGenerateStrategy strategy) {
+        final int countOfParticipants = participants.countOfParticipants();
         List<Point> points = new ArrayList<>();
         points.add(getFirst(strategy));
-        IntStream.range(START_INCLUSIVE, countOfPerson - TWO)
+        IntStream.range(START_INCLUSIVE, countOfParticipants - TWO)
                 .forEach(before -> points.add(getNext(strategy, points, before)));
-        points.add(getLast(countOfPerson, points));
+        points.add(getLast(countOfParticipants, points));
         return points;
     }
 
@@ -52,8 +54,8 @@ public final class Line {
         return points.get(before).next(strategy);
     }
 
-    private static final Point getLast(final int countOfPerson, final List<Point> points) {
-        return points.get(countOfPerson - TWO).last();
+    private static final Point getLast(final int countOfParticipants, final List<Point> points) {
+        return points.get(countOfParticipants - TWO).last();
     }
 
     public final Stream<Point> stream() {

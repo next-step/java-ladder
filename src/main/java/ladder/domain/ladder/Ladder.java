@@ -14,7 +14,7 @@ public final class Ladder {
 
     public static final Ladder from(final Participants participants, final LadderHeight ladderHeight, final LineGenerateStrategy strategy) {
         return from(IntStream.range(START_INCLUSIVE, ladderHeight.height())
-                .mapToObj(i -> Line.of(participants.countOfParticipants(), strategy))
+                .mapToObj(i -> Line.of(participants, strategy))
                 .collect(Collectors.toList())
         );
     }
