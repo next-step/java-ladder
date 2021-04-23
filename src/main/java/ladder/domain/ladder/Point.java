@@ -8,15 +8,12 @@ import java.util.Objects;
 public final class Point {
 
     private static final int ZERO = 0;
+    private static final int INCREASE = 1;
 
     private final int position;
     private final Direction direction;
 
-    public static final Point from(final int position, final Direction direction) {
-        return new Point(position, direction);
-    }
-
-    public Point(final int position, final Direction direction) {
+    private Point(final int position, final Direction direction) {
         validateNegative(position);
         validateNull(direction);
         this.position = position;
@@ -41,7 +38,10 @@ public final class Point {
     }
 
     public static final Point first(boolean current) {
-        return Point.from(0, Direction.first(current));
+        return new Point(ZERO, Direction.first(current));
     }
 
+    public final Point last() {
+        return new Point(position + INCREASE, direction.last());
+    }
 }

@@ -1,59 +1,15 @@
 package ladder.domain.ladder;
 
-import ladder.exception.DirectionNullPointerException;
-import ladder.exception.InputNegativeNumberException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.assertj.core.api.InstanceOfAssertFactories.BOOLEAN;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 class PointTest {
 
-    @DisplayName("Point 인스턴스가 생성 여부 테스트")
-    @Test
-    void 생성() {
-        // given
-        int position = 0;
-        Direction direction = Direction.first(false);
-
-        // when
-        Point point = Point.from(position, direction);
-
-        // then
-        assertThat(point).isNotNull();
-    }
-
-    @DisplayName("Point 인스턴스 position 값으로 음수 입력시 예외처리 여부 테스트")
-    @Test
-    void 검증_음수() {
-        // given
-        int position = -1;
-        Direction direction = Direction.first(false);
-
-        // when
-        assertThatThrownBy(() -> Point.from(position, direction))
-                .isInstanceOf(InputNegativeNumberException.class)
-                .hasMessage("(-1)이라는 음수의 값이 입력되었습니다.");
-    }
-
-
-    @DisplayName("Point 인스턴스 position 값으로 null 입력시 예외처리 여부 테스트")
-    @Test
-    void 검증_null() {
-        // given
-        int position = 0;
-        Direction direction = null;
-
-        // when
-        assertThatThrownBy(() -> Point.from(position, direction))
-                .isInstanceOf(DirectionNullPointerException.class)
-                .hasMessage("Direction이 null 입니다.");
-    }
 
     @DisplayName("Point 인스턴스가 첫번째 Point를 반환하는 기능 테스트")
     @Test
@@ -75,51 +31,94 @@ class PointTest {
     }
 
 
-    @DisplayName("Point 인스턴스가 오른쪽으로 이동하는지 테스트")
+    @DisplayName("Point 인스턴스가 다음 Point를 반환하는 기능 테스트")
     @Test
-    void 기능_오른쪽_이동() {
-        // given
-        int position = 1;
-        int executed = 2;
-        Direction right = Direction.first(true);
+    void 기능_다음_포인트_반환() {
 
-        // when
-        Point point = Point.from(position, right);
-
-        // then
-        assertThat(point.move()).isEqualTo(executed);
-    }
-
-    @DisplayName("Point 인스턴스가 왼쪽으로 이동하는지 테스트")
-    @Test
-    void 기능_왼쪽_이동() {
-        // given
-        int position = 1;
-        int executed = 0;
-        Direction left = Direction.first(true).next(false);
-
-        // when
-        Point point = Point.from(position, left);
-
-        // then
-        assertThat(point.move()).isEqualTo(executed);
+        assertAll(
+                () -> assertThat(Point.first(TRUE).next(FALSE)).isEqualTo(0),
+                () -> assertThat(Point.first(FALSE).next(FALSE)).isEqualTo(1),
+                () -> assertThat(Point.first(FALSE).next(TRUE)).isEqualTo(2)
+        );
     }
 
 
-    @DisplayName("Point 인스턴스가 그대로 아래로 이동하는지 테스트")
-    @Test
-    void 기능_아래로_이동() {
-        // given
-        int position = 1;
-        int executed = 1;
-        Direction pass = Direction.first(false);
+//    @DisplayName("Point 인스턴스가 오른쪽으로 이동하는지 테스트")
+//    @Test
+//    void 기능_오른쪽_이동() {
+//        // given
+//        int position = 1;
+//        int executed = 2;
+//        Direction right = Direction.first(true);
+//
+//        // when
+//        Point point = Point.from(position, right);
+//
+//        // then
+//        assertThat(point.move()).isEqualTo(executed);
+//    }
+//
+//    @DisplayName("Point 인스턴스가 왼쪽으로 이동하는지 테스트")
+//    @Test
+//    void 기능_왼쪽_이동() {
+//        // given
+//        int position = 1;
+//        int executed = 0;
+//        Direction left = Direction.first(true).next(false);
+//
+//        // when
+//        Point point = Point.from(position, left);
+//
+//        // then
+//        assertThat(point.move()).isEqualTo(executed);
+//    }
+//
+//
+//    @DisplayName("Point 인스턴스가 그대로 아래로 이동하는지 테스트")
+//    @Test
+//    void 기능_아래로_이동() {
+//        // given
+//        int position = 1;
+//        int executed = 1;
+//        Direction pass = Direction.first(false);
+//
+//        // when
+//        Point point = Point.from(position, pass);
+//
+//        // then
+//        assertThat(point.move()).isEqualTo(executed);
+//    }
 
-        // when
-        Point point = Point.from(position, pass);
 
-        // then
-        assertThat(point.move()).isEqualTo(executed);
-    }
+//    @Test
+//    public void first() {
+//        assertThat(Point.first(TRUE).move(), is(1));
+//        assertThat(Point.first(FALSE).move(), is(0));
+//    }
+//
+//    @Test
+//    public void next_stay() {
+//        Point second = Point.first(FALSE).next(FALSE);
+//        assertThat(second.move(), is(1));
+//    }
+//
+//    @Test
+//    public void next_left() {
+//        Point second = Point.first(TRUE).next(FALSE);
+//        assertThat(second.move(), is(0));
+//    }
+//
+//    @Test
+//    public void next_right() {
+//        Point second = Point.first(FALSE).next(TRUE);
+//        assertThat(second.move(), is(2));
+//    }
+//
+//    @Test
+//    public void next() {
+//        Point second = Point.first(TRUE).next();
+//        assertThat(second.move(), is(0));
+//    }
 
 
 }
