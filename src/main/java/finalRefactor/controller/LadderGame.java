@@ -13,19 +13,18 @@ public class LadderGame {
         String participants = inputView.inputParticipant();
         Persons persons = new Persons(participants);
         ExecutionResults executionResults = new ExecutionResults(inputView.inputExecutionResult());
-        int height = inputView.inputgetValue();
+        int height = inputView.inputHeight();
 
         resultView.printPerson(persons);
         Ladder lines = new Ladder(new Height(height), persons.personList().size());
         resultView.printLadder(lines);
-
         resultView.executionResultLine(executionResults);
         
         while (true) {
             String resultName = inputView.inputPerson();
             int personIndex = persons.getPersonIndex(new Person(resultName));
-            checkInputAll(persons, lines.getExecutionResult(executionResults), resultName);
-            resultView.printExecutionResult(lines.getExecutionResult(executionResults), personIndex);
+            checkInputAll(persons, executionResults.getExecutionResult(lines), resultName);
+            resultView.printExecutionResult(executionResults.getExecutionResult(lines), personIndex);
         }
     }
 
