@@ -16,7 +16,7 @@ public class InputView {
         return scanner.next();
     }
 
-    public int inputgetValue() {
+    public int inputHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         return scanner.nextInt();
     }
