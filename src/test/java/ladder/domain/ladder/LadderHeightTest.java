@@ -45,6 +45,7 @@ class LadderHeightTest {
         LadderHeight ladderHeight = LadderHeight.valueOf(expected);
         int actual = ladderHeight.height();
 
+        // then
         assertThat(actual).isEqualTo(expected);
     }
 
