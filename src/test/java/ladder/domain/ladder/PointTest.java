@@ -1,11 +1,13 @@
 package ladder.domain.ladder;
 
+import ladder.exception.IllegalBooleanArgumentsException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 class PointTest {
@@ -40,6 +42,14 @@ class PointTest {
                 () -> assertThat(Point.first(FALSE).next(FALSE).move()).isEqualTo(1),
                 () -> assertThat(Point.first(FALSE).next(TRUE).move()).isEqualTo(2)
         );
+    }
+
+    @DisplayName("Point 인스턴스가 부적절한 값 입력시 예외처리 여부 테스트")
+    @Test
+    void 검증_부적절한_값() {
+        assertThatThrownBy(()-> Point.first(TRUE).next(TRUE))
+                .isInstanceOf(IllegalBooleanArgumentsException.class)
+                .hasMessage("(true, true)는 알맞은 boolean 타입의 인자값이 아닙니다.");
     }
 
 
