@@ -19,13 +19,39 @@ public class Lines {
         .collect(Collectors.toList()));
   }
 
+  public List<Line> entireLine() {
+    return this.entireLine;
+  }
+
   private static void validateSize(int sizeOfLines) {
     if(sizeOfLines <= 0) {
       throw new IllegalArgumentException("ERROR : 0 혹은 0보다 낮은 수를 입력할 수 없습니다.");
     }
   }
 
-  public List<Line> entireLine() {
-    return this.entireLine;
+  public int next(int index) {
+    int position = 0;
+    while(!isLast(position)) {
+      index = current(position).next(index);
+      position++;
+    }
+    return index;
+  }
+
+  public int[] nextAll(Members members) {
+    int[] results = new int[members.size()];
+    for(int i = 0; i < members.size(); i++) {
+      results[i] = next(i);
+    }
+    return results;
+  }
+
+  private Line current(int index) {
+    return this.entireLine()
+        .get(index);
+  }
+
+  public boolean isLast(int index) {
+    return this.entireLine().size() == index;
   }
 }

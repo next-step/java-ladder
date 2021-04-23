@@ -22,4 +22,17 @@ public class Ladder {
   public Members members() {
     return this.members;
   }
+
+  public int find(Member member) {
+    return lines.next(candidate(member));
+  }
+
+  public int[] findAll(Members members) {
+    return lines.nextAll(members);
+  }
+
+  private int candidate(Member member) {
+    return members.names()
+        .indexOf(member);
+  }
 }

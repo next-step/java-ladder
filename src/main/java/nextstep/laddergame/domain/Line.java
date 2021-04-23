@@ -27,8 +27,53 @@ public class Line {
     return this.points;
   }
 
-
   public int size() {
     return points.size();
+  }
+
+  public int next(int index) {
+    return move(index);
+  }
+
+  private int move(int index) {
+    if(isFirst(index) && !(isLast(index)))
+      return hasNextPoint(index);
+    if(!isFirst(index) && isLast(index))
+      return hasPreviousPoint(index);
+    if(!isFirst(index) && !isLast(index))
+      return hasNextOrPreviousPoint(index);
+
+    return index;
+  }
+
+  private int hasNextOrPreviousPoint(int index) {
+    if(points.get(index -1)) {
+      return --index;
+    } else if(points.get(index)){
+      return ++index;
+    }
+    return index;
+  }
+
+  private int hasNextPoint(int index) {
+    if(points.get(index)) {
+      return ++index;
+    }
+    return index;
+  }
+
+  private int hasPreviousPoint(int index) {
+    if(points.get(index - 1)) {
+      return --index;
+    }
+    return index;
+  }
+
+  private boolean isFirst(int index) {
+    return index == 0;
+  }
+
+  private boolean isLast(int index) {
+    return points.size() == index;
   }
 }
