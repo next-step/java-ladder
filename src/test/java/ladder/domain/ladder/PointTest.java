@@ -52,6 +52,12 @@ class PointTest {
                 .hasMessage("(true, true)는 알맞은 boolean 타입의 인자값이 아닙니다.");
     }
 
+    @DisplayName("Point 인스턴스가 이전이 TRUE 일때, 다음 Point를 반환하는 기능 테스트")
+    @Test
+    void 기능_다음_포인트_반환_이전이_TRUE() {
+        assertThat(Point.first(TRUE).next().move()).isEqualTo(0);
+    }
+
 
 //    @DisplayName("Point 인스턴스가 오른쪽으로 이동하는지 테스트")
 //    @Test

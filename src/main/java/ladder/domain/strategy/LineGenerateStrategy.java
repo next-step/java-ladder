@@ -1,5 +1,5 @@
 package ladder.domain.strategy;
 
-public interface CrossGenerateStrategy {
+public interface LineGenerateStrategy {
     boolean generate();
 }

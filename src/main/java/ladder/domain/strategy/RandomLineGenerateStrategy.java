@@ -2,13 +2,13 @@ package ladder.domain.strategy;
 
 import java.util.Random;
 
-public final class RandomCrossGenerateStrategy implements CrossGenerateStrategy {
+public final class RandomLineGenerateStrategy implements LineGenerateStrategy {
 
     private static final class RandomCrossGenerateStrategyHolder {
-        private static final RandomCrossGenerateStrategy instance = new RandomCrossGenerateStrategy();
+        private static final RandomLineGenerateStrategy instance = new RandomLineGenerateStrategy();
     }
 
-    public static final RandomCrossGenerateStrategy getInstance() {
+    public static final RandomLineGenerateStrategy getInstance() {
         return RandomCrossGenerateStrategyHolder.instance;
     }
 
