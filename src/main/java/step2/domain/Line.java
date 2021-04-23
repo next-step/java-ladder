@@ -13,6 +13,11 @@ public class Line {
         createLine(countOfPerson);
     }
 
+    public int next(int col) {
+        LadderType ladderType = points.get(col);
+        return ladderType.nextCol(col);
+    }
+
     public List<LadderType> points() {
         return this.points;
     }
