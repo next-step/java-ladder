@@ -40,4 +40,9 @@ public final class Participants {
         return participants.size();
     }
 
+    public final List<String> values() {
+        return participants.stream()
+                .map(Participant::name)
+                .collect(Collectors.toList());
+    }
 }

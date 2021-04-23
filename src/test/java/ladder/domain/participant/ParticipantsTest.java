@@ -55,7 +55,7 @@ class ParticipantsTest {
         assertThat(actual).isEqualTo(3);
     }
 
-    @DisplayName("Participants 인스턴스가 소유한 참가자 이름 반환")
+    @DisplayName("Participants 인스턴스가 소유한 참가자 이름 반환 테스트")
     @Test
     void 반환_참가자_이름들() {
         // given
