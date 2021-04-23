@@ -7,17 +7,16 @@ import java.util.Objects;
 
 public class LadderLine {
     private final List<Point> points;
-    private final RandomGenerator randomGenerator = new RandomGenerator();
-
-    public LadderLine(int countOfPerson) {
-        this.points = createLine(countOfPerson, randomGenerator);
-    }
 
     public LadderLine(List<Point> points) {
         this.points = points;
     }
 
-    public List<Point> createLine(int countOfPerson, PositionGenerator positionGenerator) {
+    public LadderLine(int countOfPerson) {
+        this(createLine(countOfPerson, new RandomGenerator()));
+    }
+
+    public static List<Point> createLine(int countOfPerson, PositionGenerator positionGenerator) {
         List<Point> points = new ArrayList<>();
         Point first = Point.first(positionGenerator.generate());
         points.add(first);
@@ -27,7 +26,7 @@ public class LadderLine {
         return points;
     }
 
-    private List<Point> body(int countOfPerson, Point point) {
+    private static List<Point> body(int countOfPerson, Point point) {
 
         List<Point> points = new ArrayList<>();
         for (int i = 1; i < countOfPerson - 1; i++) {
@@ -37,7 +36,7 @@ public class LadderLine {
         return points;
     }
 
-    private void tail(Point point, List<Point> points) {
+    private static void tail(Point point, List<Point> points) {
         points.add(point.last());
     }
 
@@ -53,13 +52,13 @@ public class LadderLine {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        LadderLine line = (LadderLine) o;
-        return Objects.equals(points, line.points) && Objects.equals(randomGenerator, line.randomGenerator);
+        LadderLine that = (LadderLine) o;
+        return Objects.equals(points, that.points);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(points, randomGenerator);
+        return Objects.hash(points);
     }
 
     @Override
