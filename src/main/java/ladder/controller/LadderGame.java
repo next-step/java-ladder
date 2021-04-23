@@ -36,7 +36,7 @@ public class LadderGame {
 
   private void alertResult(LadderTotalResults result) {
     String checker = inputView.checkerEvent();
-    while (!checker.toLowerCase().equals(ALL)) {
+    while (!checker.equalsIgnoreCase(ALL)) {
       resultView.showResult(result.findByPlayer(new Player(checker)));
       checker = inputView.checkerEvent();
     }

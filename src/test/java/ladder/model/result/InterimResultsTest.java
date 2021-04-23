@@ -1,7 +1,9 @@
 package ladder.model.result;
 
+import ladder.model.line.Points;
 import ladder.model.member.Players;
 import ladder.model.prize.Prizes;
+import ladder.strategy.LadderPointsStrategy;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -20,7 +22,7 @@ class InterimResultsTest {
   @Test
   @DisplayName("생성 테스트")
   void createTest() {
-    Assertions.assertThat(interimResults.interimResults.size()).isEqualTo(size);
+    Assertions.assertThat(interimResults.interimResults().size()).isEqualTo(size);
   }
 
   @Test
@@ -34,5 +36,56 @@ class InterimResultsTest {
 
     Assertions.assertThat(interimResults.toLadderTotalResult(players, prizes).results().size()).isEqualTo(size);
   }
+
+  @Test
+  @DisplayName("포인트 이동 테스트")
+  void movingTest() {
+    Points points = Points.makePoints(4, new LadderPointsStrategy() {
+      @Override
+      public boolean makeFirstPoint() {
+        return true;
+      }
+
+      @Override
+      public boolean makeMiddlePoints(boolean leftPoint) {
+        return true;
+      }
+
+      @Override
+      public boolean makeLastPoint() {
+        return false;
+      }
+    });
+
+    InterimResults interimResults = InterimResults.makeInterimResults(2);
+    InterimResults movedResult = interimResults.move(points);
+    Assertions.assertThat(movedResult.interimResults().get(0).resultIndex()).isEqualTo(1);
+  }
+
+  @Test
+  @DisplayName("포인트 정지 테스트")
+  void stoppingTest() {
+    Points points = Points.makePoints(4, new LadderPointsStrategy() {
+      @Override
+      public boolean makeFirstPoint() {
+        return false;
+      }
+
+      @Override
+      public boolean makeMiddlePoints(boolean leftPoint) {
+        return false;
+      }
+
+      @Override
+      public boolean makeLastPoint() {
+        return false;
+      }
+    });
+
+    InterimResults interimResults = InterimResults.makeInterimResults(2);
+    InterimResults movedResult = interimResults.move(points);
+    Assertions.assertThat(movedResult.interimResults().get(0).resultIndex()).isEqualTo(0);
+  }
+
 
 }
