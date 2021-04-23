@@ -33,7 +33,7 @@ class DirectionTest {
         Direction direction = Direction.first(current).next(next);
 
         // then
-        assertThat(direction.move()).isEqualTo(Heading.LEFT);
+        assertThat(direction.move()).isEqualTo(Heading.RIGHT);
     }
 
     @DisplayName("Direction 인스턴스가 이전이 true 일때, false를 가진 다음 Point 인스턴스 생성 테스트")

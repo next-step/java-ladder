@@ -36,4 +36,8 @@ public final class Direction {
     public final Direction last() {
         return new Direction(this.current, FALSE);
     }
+
+    public final Direction next() {
+        return new Direction(this.current, FALSE);
+    }
 }
