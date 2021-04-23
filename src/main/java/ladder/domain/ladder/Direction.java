@@ -1,6 +1,6 @@
 package ladder.domain.ladder;
 
-import ladder.domain.strategy.LineGenerateStrategy;
+import ladder.strategy.LineGenerateStrategy;
 import ladder.exception.IllegalBooleanArgumentsException;
 
 import java.util.Objects;

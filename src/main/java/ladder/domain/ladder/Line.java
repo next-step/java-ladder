@@ -1,7 +1,7 @@
 package ladder.domain.ladder;
 
 import ladder.domain.participant.Participants;
-import ladder.domain.strategy.LineGenerateStrategy;
+import ladder.strategy.LineGenerateStrategy;
 import ladder.exception.PointListNullPointerException;
 
 import java.util.ArrayList;

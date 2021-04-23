@@ -1,4 +1,4 @@
-package ladder.domain.strategy;
+package ladder.strategy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
