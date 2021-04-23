@@ -24,4 +24,7 @@ public final class LadderHeight {
     }
 
 
+    public final int height() {
+        return height;
+    }
 }

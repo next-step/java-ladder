@@ -35,4 +35,17 @@ class LadderHeightTest {
                 .hasMessage("(-1)이라는 음수의 값이 입력되었습니다.");
     }
 
+    @DisplayName("LadderHeight 인스턴스가 소유한 값을 반환하는지 테스트")
+    @Test
+    void 반환() {
+        // given
+        int expected = 5;
+
+        // when
+        LadderHeight ladderHeight = LadderHeight.valueOf(expected);
+        int actual = ladderHeight.height();
+
+        assertThat(actual).isEqualTo(expected);
+    }
+
 }
