@@ -4,9 +4,9 @@ import java.util.List;
 
 public final class Line {
 
-    private final List<Direction> line;
+    private final List<Point> line;
 
-    public Line(List<Direction> line) {
+    public Line(List<Point> line) {
         this.line = line;
     }
 
