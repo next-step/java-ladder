@@ -10,6 +10,7 @@ import java.util.stream.IntStream;
 public final class Ladder {
 
     private static final int START_INCLUSIVE = 0;
+
     private final List<Line> lines;
 
     public static final Ladder from(final Participants participants, final LadderHeight ladderHeight, final LineGenerateStrategy strategy) {
