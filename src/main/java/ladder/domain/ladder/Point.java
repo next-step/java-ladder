@@ -50,6 +50,16 @@ public final class Point {
         return new Point(position + INCREASE, direction.next(strategy));
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Point point = (Point) o;
+        return position == point.position && Objects.equals(direction, point.direction);
+    }
 
-
+    @Override
+    public int hashCode() {
+        return Objects.hash(position, direction);
+    }
 }

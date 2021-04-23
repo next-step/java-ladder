@@ -3,6 +3,8 @@ package ladder.domain.ladder;
 import ladder.domain.strategy.LineGenerateStrategy;
 import ladder.exception.IllegalBooleanArgumentsException;
 
+import java.util.Objects;
+
 import static java.lang.Boolean.FALSE;
 
 public final class Direction {
@@ -43,5 +45,18 @@ public final class Direction {
             return next(FALSE);
         }
         return next(strategy.generate());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Direction direction = (Direction) o;
+        return left == direction.left && current == direction.current;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(left, current);
     }
 }

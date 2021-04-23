@@ -59,4 +59,13 @@ class PointTest {
         assertThat(Point.first(TRUE).next(()-> false).move()).isEqualTo(0);
     }
 
+    @DisplayName("Point 인스턴스가 값을 기준으로 동일한지 판단 여부 테스트")
+    @Test
+    void 비교() {
+        Point actual = Point.first(TRUE);
+        Point expected = Point.first(TRUE);
+
+        assertThat(actual).isEqualTo(expected);
+    }
+
 }

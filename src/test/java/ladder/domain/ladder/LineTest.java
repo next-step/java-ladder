@@ -7,9 +7,11 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 class LineTest {
 
@@ -60,4 +62,21 @@ class LineTest {
         assertThat(actual).isEqualTo(expected);
     }
 
+    @DisplayName("Line 인스턴스가 Stream<List<Point>를 반환하는지 테스트")
+    @Test
+    void 반환_stream() {
+        // given
+        int sizeOfPerson = 5;
+        LineGenerateStrategy strategy = () -> true;
+
+        // when
+        Line line = Line.of(sizeOfPerson, strategy);
+
+        // then
+        assertAll(
+                () -> assertThat(line.stream()).isInstanceOf(Stream.class),
+                () -> assertThat(line.stream()).isNotNull()
+        );
+
+    }
 }

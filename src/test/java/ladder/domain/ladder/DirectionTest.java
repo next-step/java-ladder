@@ -111,4 +111,18 @@ class DirectionTest {
         // then
         assertThat(direction.move()).isEqualTo(Heading.PASS);
     }
+
+    @DisplayName("Direction 인스턴스가 값을 기준으로 동일한 인스턴스인지 판단 여부 테스트")
+    @Test
+    void 비교() {
+        // given
+        boolean current = false;
+
+        // when
+        Direction actual = Direction.first(current);
+        Direction expected = Direction.first(current);
+
+        // then
+        assertThat(actual).isEqualTo(expected);
+    }
 }
