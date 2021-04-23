@@ -11,6 +11,6 @@ public class PlayerTest {
     @DisplayName("글자수 5자 초과시 익셉션 테스트")
     @Test
     void playerTest() {
-        assertThrows(IllegalPlayerName.class, () -> new Player("kingTiger", 0));
+        assertThrows(IllegalPlayerName.class, () -> new Player("kingTiger", new Position(0)));
     }
 }

@@ -19,9 +19,9 @@ class PlayersTest {
         Players players = Players.of(names);
 
         assertAll(
-                () -> assertTrue(players.getPlayers().contains(new Player(split[0], 0))),
-                () -> assertTrue(players.getPlayers().contains(new Player(split[1], 1))),
-                () -> assertTrue(players.getPlayers().contains(new Player(split[2], 2)))
+                () -> assertTrue(players.getPlayers().contains(new Player(split[0], new Position(0)))),
+                () -> assertTrue(players.getPlayers().contains(new Player(split[1], new Position(1)))),
+                () -> assertTrue(players.getPlayers().contains(new Player(split[2], new Position(2))))
         );
     }
 
@@ -41,9 +41,9 @@ class PlayersTest {
         Player cc = result.getPlayers().get(2);
 
         Assertions.assertAll(
-                () -> assertEquals(aa, new Player("aa", 1)),
-                () -> assertEquals(bb, new Player("bb", 0)),
-                () -> assertEquals(cc, new Player("cc", 2))
+                () -> assertEquals(aa, new Player("aa", new Position(1))),
+                () -> assertEquals(bb, new Player("bb", new Position(0))),
+                () -> assertEquals(cc, new Player("cc", new Position(2)))
         );
     }
 
