@@ -43,7 +43,7 @@ class DirectionTest {
         boolean current = true;
 
         // when
-        Direction direction = Direction.first(current).next();
+        Direction direction = Direction.first(current).next(()-> false);
 
         // then
         assertThat(direction.move()).isEqualTo(Heading.LEFT);

@@ -1,5 +1,6 @@
 package ladder.domain.ladder;
 
+import ladder.domain.strategy.LineGenerateStrategy;
 import ladder.exception.DirectionNullPointerException;
 import ladder.exception.InputNegativeNumberException;
 
@@ -45,8 +46,8 @@ public final class Point {
         return new Point(position + INCREASE, direction.last());
     }
 
-    public final Point next() {
-        return new Point(position + INCREASE, direction.next());
+    public final Point next(LineGenerateStrategy strategy) {
+        return new Point(position + INCREASE, direction.next(strategy));
     }
 
     public final Point next(final boolean current) {

@@ -64,7 +64,7 @@ class PointTest {
     @DisplayName("Point 인스턴스가 이전이 TRUE 일때, 다음 Point를 반환하는 기능 테스트")
     @Test
     void 기능_다음_포인트_반환_이전이_TRUE() {
-        assertThat(Point.first(TRUE).next().move()).isEqualTo(0);
+        assertThat(Point.first(TRUE).next(()-> false).move()).isEqualTo(0);
     }
 
 }

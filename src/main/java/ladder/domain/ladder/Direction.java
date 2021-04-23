@@ -1,5 +1,6 @@
 package ladder.domain.ladder;
 
+import ladder.domain.strategy.LineGenerateStrategy;
 import ladder.exception.IllegalBooleanArgumentsException;
 
 import static java.lang.Boolean.FALSE;
@@ -37,7 +38,10 @@ public final class Direction {
         return new Direction(this.current, FALSE);
     }
 
-    public final Direction next() {
-        return new Direction(this.current, FALSE);
+    public final Direction next(LineGenerateStrategy strategy) {
+        if (this.current) {
+            return next(FALSE);
+        }
+        return next(strategy.generate());
     }
 }

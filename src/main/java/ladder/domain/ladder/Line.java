@@ -1,53 +1,49 @@
 package ladder.domain.ladder;
 
+import ladder.domain.strategy.LineGenerateStrategy;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public final class Line {
 
+    private static final int START_INCLUSIVE = 0;
+    private static final int TWO = 2;
+
     private final List<Point> line;
 
-    public Line(List<Point> line) {
+    public static final Line from(final int countOfPerson, final LineGenerateStrategy strategy) {
+        return from(init(countOfPerson, strategy));
+    }
+
+    public static final Line from(final List<Point> line) {
+        return new Line(line);
+    }
+
+    public Line(final List<Point> line) {
         this.line = line;
     }
 
-//    public static Line of(int sizeOfPerson, CrossGenerateStrategy strategy) {
-//    }
-//
+    private static final List<Point> init(int countOfPerson, LineGenerateStrategy strategy) {
+        List<Point> points = new ArrayList<>();
+        points.add(getFirst(strategy));
+        IntStream.range(START_INCLUSIVE, countOfPerson - TWO)
+                .forEach(before -> points.add(getNext(strategy, points, before)));
+        points.add(getLast(countOfPerson, points));
+        return points;
+    }
 
-//    private static List<Point> init(int sizeOfPerson, CrossGenerateStrategy strategy) {
-//        List<Point> points = new ArrayList<>();
-//        Point point = initFirst(points);
-//        point = initBody(sizeOfPerson, points, point);
-//        initLast(points, point);
-//        return new LadderLine(points);
-//    }
-//
-//    private static Point initFirst(List<Point> points, CrossGenerateStrategy strategy) {
-//        Point point = Point.first(strategy.generate());
-//        points.add(point);
-//        return point;
-//    }
+    private static final Point getFirst(final LineGenerateStrategy strategy) {
+        return Point.first(strategy.generate());
+    }
 
-//
-//    private static void initLast(List<Point> points, Point point) {
-//        point = point.last();
-//        points.add(point);
-//    }
+    private static final Point getNext(final LineGenerateStrategy strategy, final List<Point> points, final int before) {
+        return points.get(before).next(strategy);
+    }
 
-//
-//    public static final Line of(List<Point> line) {
-//        return null;
-//    }
-//
-//    private static final Point initBody(int sizeOfPerson, List<Point> points, Point point) {
-//        for (int i = 1; i < sizeOfPerson - 1; i++) {
-//            point = point.next();
-//            points.add(point);
-//        }
-//        return point;
-//    }
-//
-
+    private static final Point getLast(final int countOfPerson, final List<Point> points) {
+        return points.get(countOfPerson - TWO).last();
+    }
 
 }
