@@ -60,15 +60,15 @@ public class Direction {
     }
 
     boolean isStraight() {
-        return left == Link.OPEN && right == Link.OPEN;
+        return left.isOpened() && right.isOpened();
     }
 
     boolean isRight() {
-        return left == Link.OPEN && right == Link.CLOSE;
+        return left.isOpened() && right.isClosed();
     }
 
     boolean isLeft() {
-        return left == Link.CLOSE && right == Link.OPEN;
+        return left.isClosed() && right.isOpened();
     }
 
     @Override
