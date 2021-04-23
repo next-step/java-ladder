@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public final class Line {
 
@@ -55,6 +56,10 @@ public final class Line {
         return points.get(countOfPerson - TWO).last();
     }
 
+    public final Stream<Point> stream() {
+        return line.stream();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -67,4 +72,6 @@ public final class Line {
     public int hashCode() {
         return Objects.hash(line);
     }
+
+
 }
