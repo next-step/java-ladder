@@ -34,9 +34,9 @@ public class LadderTest {
     void onePersonResultTest() {
         Ladder lines = new Ladder(createLine());
         ExecutionResults results = new ExecutionResults(Arrays.asList(new ExecutionResult("꽝"), new ExecutionResult("5000"), new ExecutionResult("3000")));
-        assertThat(lines.eachPositionExecutionResult(0, results)).isEqualTo(results.getOneResult(2));
-        assertThat(lines.eachPositionExecutionResult(1, results)).isEqualTo(results.getOneResult(0));
-        assertThat(lines.eachPositionExecutionResult(2, results)).isEqualTo(results.getOneResult(1));
+        assertThat(results.eachPositionExecutionResult(0, lines)).isEqualTo(results.getOneResult(2));
+        assertThat(results.eachPositionExecutionResult(1, lines)).isEqualTo(results.getOneResult(0));
+        assertThat(results.eachPositionExecutionResult(2, lines)).isEqualTo(results.getOneResult(1));
     }
 
     @Test
@@ -44,7 +44,7 @@ public class LadderTest {
     void allPersonResultTest() {
         Ladder lines = new Ladder(createLine());
         ExecutionResults results = new ExecutionResults(Arrays.asList(new ExecutionResult("꽝"), new ExecutionResult("5000"), new ExecutionResult("3000")));
-        assertThat(lines.getExecutionResult(results)).isEqualTo(new ExecutionResults(Arrays.asList(new ExecutionResult("3000"), new ExecutionResult("꽝"), new ExecutionResult("5000"))));
+        assertThat(results.getExecutionResult(lines)).isEqualTo(new ExecutionResults(Arrays.asList(new ExecutionResult("3000"), new ExecutionResult("꽝"), new ExecutionResult("5000"))));
     }
 
     public List<LadderLine> createLine() {
