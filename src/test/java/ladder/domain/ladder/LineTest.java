@@ -1,6 +1,7 @@
 package ladder.domain.ladder;
 
 import ladder.domain.strategy.LineGenerateStrategy;
+import ladder.exception.PointListNullPointerException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +20,7 @@ class LineTest {
         LineGenerateStrategy strategy = () -> true;
 
         // when
-        Line line = Line.from(sizeOfPerson, strategy);
+        Line line = Line.of(sizeOfPerson, strategy);
 
         // then
         assertThat(line).isNotNull();
@@ -32,7 +33,7 @@ class LineTest {
         List<Point> pointList = null;
 
         // when and then
-        assertThatThrownBy(() -> Line.from(pointList))
+        assertThatThrownBy(() -> Line.of(pointList))
                 .isInstanceOf(PointListNullPointerException.class)
                 .hasMessage("List<Point>가 null 입니다.");
 
