@@ -15,12 +15,12 @@ import java.util.stream.Stream;
 
 public final class Ladder {
 
-    private static final int START_INCLUSIVE = 0;
+    public static final int ZERO = 0;
 
     private final List<Line> lines;
 
     public static final Ladder from(final Participants participants, final LadderHeight ladderHeight, final LineGenerateStrategy strategy) {
-        return from(IntStream.range(START_INCLUSIVE, ladderHeight.height())
+        return from(IntStream.range(ZERO, ladderHeight.height())
                 .mapToObj(i -> Line.of(participants, strategy))
                 .collect(Collectors.toList())
         );
@@ -45,19 +45,24 @@ public final class Ladder {
         return lines.stream();
     }
 
-//    public final LadderResultBoard run(Participants participants, LadderResults ladderResults) {
-//        List<Integer> list = results.values();
-//        lines.forEach(line -> line.);
-//        ladder.forEach(line -> line.run(list));
-//
-//        Map<Participant, String> resultMap = new HashMap<>();
-//        IntStream.range(START_INCLUSIVE, list.size())
-//                .forEach(index -> {
-//                    Participant participant = Participants.person(list.get(index));
-//                    String result = results.get(index);
-//                    resultMap.put(person, result);
-//                });
-//
-//        return LadderResultBoard.of(resultMap);
-//    }
+    public final LadderResultBoard run(Participants participants, LadderResults ladderResults) {
+        Map<Participant, String> resultMap = new HashMap<>();
+        IntStream.range(ZERO, participants.countOfParticipants())
+                .forEach(index -> {
+                    final int now = move(index);
+                    Participant participant = participants.findByIndex(now);
+                    String result = ladderResults.findByIndex(index);
+                    resultMap.put(participant, result);
+                });
+        return LadderResultBoard.of(resultMap);
+    }
+
+    private final int move(final int index) {
+        int now = index;
+        for (int i = ZERO; i < lines.size(); i++) {
+            now = lines.get(i).move(now);
+        }
+        return now;
+    }
+
 }

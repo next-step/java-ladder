@@ -51,4 +51,8 @@ public final class Participants {
     public final Stream<Participant> stream() {
         return participants.stream();
     }
+
+    public Participant findByIndex(final int index) {
+        return participants.get(index);
+    }
 }

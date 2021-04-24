@@ -36,6 +36,10 @@ public final class Line {
         }
     }
 
+    public final int move(final int position) {
+        return line.get(position).move();
+    }
+
     private static final List<Point> init(final Participants participants, final LineGenerateStrategy strategy) {
         final int countOfParticipants = participants.countOfParticipants();
         List<Point> points = new ArrayList<>();
@@ -56,10 +60,6 @@ public final class Line {
 
     private static final Point getLast(final int countOfParticipants, final List<Point> points) {
         return points.get(countOfParticipants - TWO).last();
-    }
-
-    public final int move(final int position) {
-        return line.get(position).move();
     }
 
     public final Stream<Point> stream() {

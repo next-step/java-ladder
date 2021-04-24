@@ -34,4 +34,7 @@ public final class LadderResults {
         }
     }
 
+    public final String findByIndex(final int index) {
+        return results.get(index);
+    }
 }
