@@ -34,8 +34,8 @@ public final class Point {
     }
 
     public final int move() {
-        Heading heading = direction.move();
-        return heading.go(position);
+        Heading heading = direction.heading();
+        return heading.move(position);
     }
 
     public static final Point first(final boolean current) {
@@ -50,6 +50,10 @@ public final class Point {
         return new Point(position + INCREASE, direction.next(strategy));
     }
 
+    public final boolean isLeft() {
+        return direction.heading().equals(Heading.LEFT);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -62,4 +66,6 @@ public final class Point {
     public int hashCode() {
         return Objects.hash(position, direction);
     }
+
+
 }

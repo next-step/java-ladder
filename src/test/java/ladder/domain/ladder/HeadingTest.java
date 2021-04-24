@@ -45,9 +45,9 @@ class HeadingTest {
         int position = 1;
 
         assertAll(
-                () -> assertThat(Heading.RIGHT.go(position)).isEqualTo(2),
-                () -> assertThat(Heading.LEFT.go(position)).isEqualTo(0),
-                () -> assertThat(Heading.PASS.go(position)).isEqualTo(1)
+                () -> assertThat(Heading.RIGHT.move(position)).isEqualTo(2),
+                () -> assertThat(Heading.LEFT.move(position)).isEqualTo(0),
+                () -> assertThat(Heading.PASS.move(position)).isEqualTo(1)
         );
     }
 

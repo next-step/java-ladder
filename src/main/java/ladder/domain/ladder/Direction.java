@@ -28,7 +28,7 @@ public final class Direction {
         return new Direction(FALSE, current);
     }
 
-    public final Heading move() {
+    public final Heading heading() {
         return Heading.valueOf(left, current);
     }
 

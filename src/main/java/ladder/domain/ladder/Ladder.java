@@ -45,13 +45,13 @@ public final class Ladder {
         return lines.stream();
     }
 
-    public final LadderResultBoard run(Participants participants, LadderResults ladderResults) {
+    public final LadderResultBoard run(final Participants participants, final LadderResults ladderResults) {
         Map<Participant, String> resultMap = new HashMap<>();
         IntStream.range(ZERO, participants.countOfParticipants())
                 .forEach(index -> {
                     final int now = move(index);
-                    Participant participant = participants.findByIndex(now);
-                    String result = ladderResults.findByIndex(index);
+                    Participant participant = participants.findByIndex(index);
+                    String result = ladderResults.findByIndex(now);
                     resultMap.put(participant, result);
                 });
         return LadderResultBoard.of(resultMap);

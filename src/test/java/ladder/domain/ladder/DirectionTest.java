@@ -1,6 +1,5 @@
 package ladder.domain.ladder;
 
-import ladder.exception.IllegalBooleanArgumentsException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +18,7 @@ class DirectionTest {
         Direction direction = Direction.first(current);
 
         // then
-        assertThat(direction.move()).isEqualTo(Heading.RIGHT);
+        assertThat(direction.heading()).isEqualTo(Heading.RIGHT);
     }
 
     @DisplayName("Direction 인스턴스가 다음 지점 Point 인스턴스 생성 테스트")
@@ -32,7 +31,7 @@ class DirectionTest {
         Direction direction = Direction.first(current).next(() -> true);
 
         // then
-        assertThat(direction.move()).isEqualTo(Heading.RIGHT);
+        assertThat(direction.heading()).isEqualTo(Heading.RIGHT);
     }
 
     @DisplayName("Direction 인스턴스가 이전이 true 일때, false를 가진 다음 Point 인스턴스 생성 테스트")
@@ -45,7 +44,7 @@ class DirectionTest {
         Direction direction = Direction.first(current).next(() -> false);
 
         // then
-        assertThat(direction.move()).isEqualTo(Heading.LEFT);
+        assertThat(direction.heading()).isEqualTo(Heading.LEFT);
     }
 
     @DisplayName("Direction 인스턴스에 마지막 지점 생성 테스트")
@@ -58,7 +57,7 @@ class DirectionTest {
         Direction direction = Direction.first(current).next(() -> false).last();
 
         // then
-        assertThat(direction.move()).isEqualTo(Heading.PASS);
+        assertThat(direction.heading()).isEqualTo(Heading.PASS);
     }
 
     @DisplayName("Direction 인스턴스의 다음 이동이 Direction.LEFT 인지 확인")
@@ -71,7 +70,7 @@ class DirectionTest {
         Direction direction = Direction.first(current).next(() -> false);
 
         // then
-        assertThat(direction.move()).isEqualTo(Heading.LEFT);
+        assertThat(direction.heading()).isEqualTo(Heading.LEFT);
     }
 
     @DisplayName("Direction 인스턴스의 다음 이동이 Direction.RIGHT 인지 확인")
@@ -84,7 +83,7 @@ class DirectionTest {
         Direction direction = Direction.first(current).next(() -> true);
 
         // then
-        assertThat(direction.move()).isEqualTo(Heading.RIGHT);
+        assertThat(direction.heading()).isEqualTo(Heading.RIGHT);
     }
 
     @DisplayName("Direction 인스턴스의 다음 이동이 Direction.PASS 인지 확인")
@@ -97,7 +96,7 @@ class DirectionTest {
         Direction direction = Direction.first(current).next(() -> false);
 
         // then
-        assertThat(direction.move()).isEqualTo(Heading.PASS);
+        assertThat(direction.heading()).isEqualTo(Heading.PASS);
     }
 
     @DisplayName("Direction 인스턴스가 값을 기준으로 동일한 인스턴스인지 판단 여부 테스트")

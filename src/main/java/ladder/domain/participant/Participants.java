@@ -10,6 +10,8 @@ import java.util.stream.Stream;
 
 public final class Participants {
 
+    private static final String ALL = "all";
+
     private final List<Participant> participants;
 
     public static final Participants of(final String[] names) {
@@ -42,9 +44,11 @@ public final class Participants {
     }
 
     public final List<String> values() {
-        return participants.stream()
+        List<String> values = participants.stream()
                 .map(Participant::name)
                 .collect(Collectors.toList());
+        values.add(ALL);
+        return values;
     }
 
     public final Stream<Participant> stream() {

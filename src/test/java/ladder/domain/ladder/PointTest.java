@@ -56,7 +56,7 @@ class PointTest {
     @DisplayName("Point 인스턴스가 이전이 TRUE 일때, 다음 Point를 반환하는 기능 테스트")
     @Test
     void 기능_다음_포인트_반환_이전이_TRUE() {
-        assertThat(Point.first(TRUE).next(()-> false).move()).isEqualTo(0);
+        assertThat(Point.first(TRUE).next(() -> false).move()).isEqualTo(0);
     }
 
     @DisplayName("Point 인스턴스가 값을 기준으로 동일한지 판단 여부 테스트")
@@ -66,6 +66,17 @@ class PointTest {
         Point expected = Point.first(TRUE);
 
         assertThat(actual).isEqualTo(expected);
+    }
+
+    @DisplayName("Point 인스턴스가 왼쪽으로 이동하는지 확인 여부 테스트")
+    @Test
+    void 비교_특정_포인트_왼쪽_이동_확인() {
+        Point actualOne = Point.first(TRUE).next(() -> FALSE);
+        Point actualTwo = Point.first(FALSE).next(() -> TRUE).next(() -> false);
+
+        assertAll(
+                () -> assertThat(actualOne.isLeft()).isTrue(),
+                () -> assertThat(actualTwo.isLeft()).isTrue());
     }
 
 }

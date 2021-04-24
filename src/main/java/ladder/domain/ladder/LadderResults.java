@@ -3,6 +3,7 @@ package ladder.domain.ladder;
 import ladder.exception.StringListNullPointerException;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -36,5 +37,9 @@ public final class LadderResults {
 
     public final String findByIndex(final int index) {
         return results.get(index);
+    }
+
+    public final int size() {
+        return results.size();
     }
 }

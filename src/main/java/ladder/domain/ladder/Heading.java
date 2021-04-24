@@ -32,7 +32,7 @@ public enum Heading {
     }
 
 
-    public final int go(final int position) {
+    public final int move(final int position) {
         return Math.addExact(position, change);
     }
 
