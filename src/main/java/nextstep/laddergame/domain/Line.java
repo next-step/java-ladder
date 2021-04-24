@@ -36,37 +36,37 @@ public class Line {
   }
 
   private int move(int index) {
-    if(isFirst(index) && !(isLast(index)))
-      return hasNextPoint(index);
-    if(!isFirst(index) && isLast(index))
-      return hasPreviousPoint(index);
-    if(!isFirst(index) && !isLast(index))
-      return hasNextOrPreviousPoint(index);
-
-    return index;
+    if(isFirst(index))
+      return hasFrontPoint(index);
+    if(isLast(index))
+      return hasBehindPoint(index);
+    return hasNextOrPreviousPoint(index);
   }
 
   private int hasNextOrPreviousPoint(int index) {
-    if(points.get(index -1)) {
-      return --index;
-    } else if(points.get(index)){
-      return ++index;
-    }
+    if(hasSamePoint(index, hasFrontPoint(index)))
+      return hasFrontPoint(index);
+    if(hasSamePoint(index, hasBehindPoint(index)))
+      return hasBehindPoint(index);
     return index;
   }
 
-  private int hasNextPoint(int index) {
-    if(points.get(index)) {
-      return ++index;
-    }
-    return index;
+  private boolean hasSamePoint(int currentPoint, int nextOrPreviousPoint) {
+    return currentPoint != nextOrPreviousPoint;
   }
 
-  private int hasPreviousPoint(int index) {
-    if(points.get(index - 1)) {
-      return --index;
-    }
-    return index;
+  private int hasFrontPoint(int index) {
+    int currentPoint = index;
+    if(points.get(index))
+      return ++currentPoint;
+    return currentPoint;
+  }
+
+  private int hasBehindPoint(int index) {
+    int currentPoint = index;
+    if(points.get(index - 1))
+      return --currentPoint;
+    return currentPoint;
   }
 
   private boolean isFirst(int index) {

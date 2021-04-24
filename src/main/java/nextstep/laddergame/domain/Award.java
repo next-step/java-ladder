@@ -38,12 +38,12 @@ public class Award {
     return this.prizes.get(index);
   }
 
-  public Award prizes(int[] indexes) {
-    List<Name> tempPrizes = new ArrayList<>();
-    for(int index : indexes) {
-      tempPrizes.add(prizes.get(index));
-    }
-    return new Award(tempPrizes, memberSize);
+  public Award prizes(List<Integer> indexes) {
+    List<Name> collect = indexes.stream()
+        .map(prizes::get)
+        .collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
+
+    return new Award(collect, collect.size());
   }
 
   public int size() {

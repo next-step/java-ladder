@@ -29,21 +29,12 @@ public class Lines {
     }
   }
 
-  public int next(int index) {
-    int position = 0;
-    while(!isLast(position)) {
-      index = current(position).next(index);
-      position++;
-    }
-    return index;
-  }
-
-  public int[] nextAll(Members members) {
-    int[] results = new int[members.size()];
-    for(int i = 0; i < members.size(); i++) {
-      results[i] = next(i);
-    }
-    return results;
+  public int next(int memberIndex) {
+    return IntStream.range(0, last())
+        .mapToObj((index) -> current(index)
+            .next(memberIndex))
+        .findFirst()
+        .orElseThrow(IllegalArgumentException::new);
   }
 
   private Line current(int index) {
@@ -51,7 +42,7 @@ public class Lines {
         .get(index);
   }
 
-  public boolean isLast(int index) {
-    return this.entireLine().size() == index;
+  public int last() {
+    return this.entireLine().size();
   }
 }
