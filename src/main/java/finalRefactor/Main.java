@@ -1,8 +1,8 @@
-package step3;
+package finalRefactor;
 
-import step3.controller.LadderGame;
+import finalRefactor.controller.LadderGame;
 
-public class main {
+public class Main {
 
     public static void main(String[] args) {
         LadderGame game = new LadderGame();

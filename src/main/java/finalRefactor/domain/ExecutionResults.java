@@ -1,4 +1,4 @@
-package step3.domain;
+package finalRefactor.domain;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -35,6 +35,27 @@ public class ExecutionResults {
         return results.size();
     }
 
+    public List<ExecutionResult> all() {
+        return results;
+    }
+
+    public ExecutionResult eachPositionExecutionResult(int position, Ladder ladder) {
+
+        for (LadderLine line : ladder.lines()) {
+            position = line.move(position);
+        }
+
+        return results.get(position);
+    }
+
+    public ExecutionResults getExecutionResult(Ladder ladder) {
+        List<ExecutionResult> executionResultsList = new ArrayList<>();
+        for (int i = 0; i < ladder.lineSize(); i++) {
+            executionResultsList.add(eachPositionExecutionResult(i, ladder));
+        }
+        return new ExecutionResults(executionResultsList);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -50,10 +71,8 @@ public class ExecutionResults {
 
     @Override
     public String toString() {
-        return  results + "";
-    }
-
-    public List<ExecutionResult> all() {
-        return results;
+        return "ExecutionResults{" +
+                "results=" + results +
+                '}';
     }
 }

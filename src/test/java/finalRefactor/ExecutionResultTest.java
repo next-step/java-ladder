@@ -1,8 +1,8 @@
-package step3;
+package finalRefactor;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import step3.domain.ExecutionResult;
+import finalRefactor.domain.ExecutionResult;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

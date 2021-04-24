@@ -1,4 +1,4 @@
-package step3.view;
+package finalRefactor.view;
 
 import java.util.Scanner;
 

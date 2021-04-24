@@ -1,4 +1,4 @@
-package step3.domain;
+package finalRefactor.domain;
 
 import java.util.Arrays;
 import java.util.Collections;

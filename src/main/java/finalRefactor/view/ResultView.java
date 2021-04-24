@@ -1,6 +1,6 @@
-package step3.view;
+package finalRefactor.view;
 
-import step3.domain.*;
+import finalRefactor.domain.*;
 
 import java.util.List;
 
@@ -34,7 +34,7 @@ public class ResultView {
     public void printLadder(Ladder lines) {
 
         lines.lines().stream()
-                .map(Line::row)
+                .map(LadderLine::row)
                 .forEach(ResultView::printLine);
     }
 
@@ -47,7 +47,7 @@ public class ResultView {
     }
 
     private static String getLine(Point point) {
-        Location location = point.location();
+        Direction location = point.location();
         if (location.isRight()) {
             return LINE;
         }
