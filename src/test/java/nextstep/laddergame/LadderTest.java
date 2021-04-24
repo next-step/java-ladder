@@ -3,9 +3,7 @@ package nextstep.laddergame;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.Arrays;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import nextstep.laddergame.domain.Ladder;
@@ -14,7 +12,6 @@ import nextstep.laddergame.domain.Members;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
 
 class LadderTest {
@@ -74,7 +71,9 @@ class LadderTest {
     Ladder ladder = new Ladder(members, lines);
 
     //then
-    assertEquals(Arrays.stream(ladder.matches(members))
+
+    assertEquals(ladder.matches(members)
+        .stream()
         .distinct()
         .count(), result);
   }
