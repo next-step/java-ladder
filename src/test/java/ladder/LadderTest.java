@@ -1,5 +1,6 @@
 package ladder;
 
+import ladder.domain.Handle;
 import ladder.domain.Ladder;
 import ladder.domain.Layer;
 import ladder.service.RandomBoolean;
@@ -11,6 +12,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -69,9 +71,10 @@ public class LadderTest {
     public void printLadder() {
         //given
         //given
-        Layer layer1 = Layer.valueOf(Arrays.asList(true, false, true, false, true));
+        List<Handle> handles = Arrays.asList(Handle.EXIST, Handle.NON_EXIST, Handle.EXIST, Handle.NON_EXIST, Handle.EXIST);
+        Layer layer1 = Layer.valueOf(handles);
         String printLayer1 = "|-------|       |-------|       |-------|";
-        Layer layer2 = Layer.valueOf(Arrays.asList(true, false, true, false, false));
+        Layer layer2 = Layer.valueOf(handles);
         String printLayer2 = "|-------|       |-------|       |       |";
         Ladder ladder = new Ladder(Arrays.asList(layer1, layer2, layer1));
         StringBuilder expectLadder = new StringBuilder();

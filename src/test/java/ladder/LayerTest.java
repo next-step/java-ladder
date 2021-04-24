@@ -1,5 +1,6 @@
 package ladder;
 
+import ladder.domain.Handle;
 import ladder.domain.Layer;
 import ladder.service.RandomBoolean;
 import ladder.service.RandomBooleanGenerator;
@@ -22,35 +23,20 @@ public class LayerTest {
     public void Layer() {
         // given
         final int line = 6;
-        List<Boolean> expectAisles = Arrays.asList(true, false, true, false, true);
+        List<Handle> expectHandles = Arrays.asList(Handle.EXIST, Handle.NON_EXIST, Handle.EXIST, Handle.NON_EXIST, Handle.EXIST);
         RandomBoolean randomTrueBoolean = new RandomBooleanGenerator() {
             @Override
             public boolean randomBoolean() {
                 return true;
             }
         };
-        Layer expectLayer = Layer.valueOf(expectAisles);
+        Layer expectLayer = Layer.valueOf(expectHandles);
 
         // when 
         Layer resultLayer = Layer.valueOf(line, randomTrueBoolean);
 
         // then
         assertThat(resultLayer).isEqualToComparingFieldByField(expectLayer);
-    }
-
-    @Test
-    public void hasAisle() {
-        // given
-        List<Boolean> expectAisles = Arrays.asList(true, false, true, false, true);
-        Layer expectLayer = Layer.valueOf(expectAisles);
-        // when
-
-        // then
-        assertThat(expectLayer.hasAisle(0)).isTrue();
-        assertThat(expectLayer.hasAisle(1)).isFalse();
-        assertThat(expectLayer.hasAisle(2)).isTrue();
-        assertThat(expectLayer.hasAisle(3)).isFalse();
-        assertThat(expectLayer.hasAisle(4)).isTrue();
     }
 
     private static Stream<Arguments> nextLineTestParameters() {
@@ -68,8 +54,8 @@ public class LayerTest {
     @MethodSource("nextLineTestParameters")
     public void nextLine(int previousLine, int expectNextLine) {
         // given
-        List<Boolean> aisles = Arrays.asList(true, false, true, false, true);
-        Layer layer = Layer.valueOf(aisles);
+        List<Handle> handles = Arrays.asList(Handle.EXIST, Handle.NON_EXIST, Handle.EXIST, Handle.NON_EXIST, Handle.EXIST);
+        Layer layer = Layer.valueOf(handles);
 
         // when
         int resultNextLine = layer.nextLine(previousLine);
@@ -81,7 +67,8 @@ public class LayerTest {
     @Test
     public void printLayer() {
         //given
-        Layer layer = Layer.valueOf(Arrays.asList(true, false, true, false, true));
+        List<Handle> handles = Arrays.asList(Handle.EXIST, Handle.NON_EXIST, Handle.EXIST, Handle.NON_EXIST, Handle.EXIST);
+        Layer layer = Layer.valueOf(handles);
         String expectLayer = "|-------|       |-------|       |-------|";
         //when
         String resultLayer = layer.printLayer();

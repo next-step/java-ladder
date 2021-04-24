@@ -29,10 +29,6 @@ public final class Layer {
         return new Layer(result);
     }
 
-    public boolean hasAisle(int index) {
-        return aisles.get(index).isExistAisle();
-    }
-
     public int nextLine(int nowLine) {
         if (hasLeftAisle(nowLine)) {
             return nowLine - 1;

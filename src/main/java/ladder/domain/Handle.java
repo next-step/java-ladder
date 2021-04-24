@@ -3,8 +3,8 @@ package ladder.domain;
 import ladder.service.RandomBoolean;
 
 public enum Handle {
-    EXIST("------"),
-    NON_EXIST("      ");
+    EXIST("-------"),
+    NON_EXIST("       ");
 
     private final String exposure;
 
@@ -30,5 +30,4 @@ public enum Handle {
     public String printHandle() {
         return this.exposure;
     }
-
 }
