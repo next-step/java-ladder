@@ -60,5 +60,25 @@ class LadderTest {
         );
     }
 
+    @DisplayName("Ladder 인스턴스가 LadderResultBoard 반환하는지 테스트")
+    @Test
+    void 반환_LadderResultBoard() {
+        // given
+        Participants participants = Participants.of("pobi,honux,crong,jk".split(","));
+        LadderHeight height = LadderHeight.valueOf(5);
+        LadderResults ladderResults = LadderResults.of("꽝,꽝,5000,3000".split(","));
+
+        // when
+        Ladder ladder = Ladder.from(participants, height, () -> true);
+
+
+        // then
+        assertAll(
+                () -> assertThat(ladder.run(participants, ladderResults)).isNotNull(),
+                () -> assertThat(ladder.run(participants, ladderResults)).isInstanceOf(LadderResultBoard.class)
+        );
+
+    }
+
 
 }
