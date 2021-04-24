@@ -10,7 +10,7 @@ class DirectionTest {
 
     @DisplayName("Direction 인스턴스에 첫번째 지점 생성 테스트")
     @Test
-    void first() {
+    void 생성_첫_Direction() {
         // given
         boolean current = true;
 
@@ -49,7 +49,7 @@ class DirectionTest {
 
     @DisplayName("Direction 인스턴스에 마지막 지점 생성 테스트")
     @Test
-    void last() {
+    void 생성_마지막_Direction() {
         // given
         boolean current = true;
 
@@ -62,7 +62,7 @@ class DirectionTest {
 
     @DisplayName("Direction 인스턴스의 다음 이동이 Direction.LEFT 인지 확인")
     @Test
-    void left() {
+    void 검증_왼쪽() {
         // given
         boolean current = true;
 
@@ -75,7 +75,7 @@ class DirectionTest {
 
     @DisplayName("Direction 인스턴스의 다음 이동이 Direction.RIGHT 인지 확인")
     @Test
-    void right() {
+    void 검증_오른쪽() {
         // given
         boolean current = false;
 
@@ -88,7 +88,7 @@ class DirectionTest {
 
     @DisplayName("Direction 인스턴스의 다음 이동이 Direction.PASS 인지 확인")
     @Test
-    void pass() {
+    void 검증_지나가기() {
         // given
         boolean current = false;
 
