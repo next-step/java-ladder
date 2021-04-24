@@ -1,13 +1,12 @@
 package step02.user;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Users {
     private final static String REGEX = ",";
-    private List<Name> names = new ArrayList<>();
+    private final List<Name> names;
 
     public Users(String names) {
         this.names = splitName(names);

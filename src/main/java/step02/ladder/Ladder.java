@@ -1,30 +1,28 @@
 package step02.ladder;
 
-import step02.utils.Validation;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
-    private static final int ZERO = 0;
     private final List<Line> lines = new ArrayList<>();
+    private final LineCount yCount;
+    private final LineCount xCount;
 
-    public Ladder(int xLineCount, int yLineCount) throws IllegalAccessException {
-        Validation.checkZeroLine(yLineCount);
-        for (int i = 0; i < yLineCount; i++) {
-            lines.add(new Line(xLineCount));
+    public Ladder(int xCount, int yCount) throws IllegalAccessException {
+        this.yCount = new LineCount(yCount);
+        this.xCount = new LineCount(xCount);
+
+        for (int i = 0; i < yCount; i++) {
+            lines.add(new Line(xCount));
         }
     }
 
     public int getYLineCount() {
-        if (lines.size() > ZERO) {
-            return lines.get(ZERO).getLadderHeight();
-        }
-        return ZERO;
+        return yCount.getCount();
     }
 
     public int getXLineCount() {
-        return lines.size();
+        return xCount.getCount();
     }
 
     public List<Line> getLadderLine() {
@@ -33,6 +31,10 @@ public class Ladder {
 
     public boolean isHasLine(int xPoint, int yPoint) {
         return lines.get(yPoint).isHasLine(xPoint);
+    }
+
+    public boolean isUserHasLine(int xPoint) {
+        return lines.stream().noneMatch(line -> line.isHasLine(xPoint));
     }
 }
 

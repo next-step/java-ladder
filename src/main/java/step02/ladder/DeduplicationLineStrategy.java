@@ -4,11 +4,6 @@ import java.util.Random;
 
 public class DeduplicationLineStrategy {
 
-//    public boolean makeLine(LineStrategy lineStrategy) {
-//        // line 자체를 받아서 여기서 중복 체크 등을 진행하게끔 하면?
-//
-//    }
-
     public boolean makeLine(boolean isBeforeLineHasLine) {
         return isHasLine(isBeforeLineHasLine);
     }

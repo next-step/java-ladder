@@ -34,7 +34,7 @@ public class ResultView {
         for (Name name : users.getUserNames()) {
             System.out.print(showNameWithBlank(name));
         }
-        System.out.println();
+        System.out.print(BRAKE_LINE);
     }
 
     private static String showNameWithBlank(Name name) {
@@ -48,8 +48,8 @@ public class ResultView {
     public static void showLadder(Ladder ladder) {
         ladder.getLadderLine().forEach(line -> {
             System.out.print(RESULT_LADDER_HAS_NO_LINE);
-            for (int y = 0; y < ladder.getYLineCount(); y++) {
-                checkShowLadder(line, y);
+            for (int x = 0; x < ladder.getXLineCount(); x++) {
+                checkShowLadder(line, x);
             }
             System.out.print(BRAKE_LINE);
         });
