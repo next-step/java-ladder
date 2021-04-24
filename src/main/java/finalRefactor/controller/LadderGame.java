@@ -23,7 +23,6 @@ public class LadderGame {
         while (true) {
             String resultName = inputView.inputPerson();
             int personIndex = persons.getPersonIndex(new Person(resultName));
-
             checkInputAll(persons, executionResults.getExecutionResult(ladder), resultName);
             resultView.printExecutionResult(executionResults.getExecutionResult(ladder), personIndex);
         }
