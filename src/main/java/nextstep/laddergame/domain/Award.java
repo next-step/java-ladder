@@ -8,11 +8,9 @@ import java.util.stream.Stream;
 
 public class Award {
   private final List<Name> prizes;
-  private final int memberSize;
 
   public Award(List<Name> prizes, int memberSize) {
     hasEqualSize(prizes, memberSize);
-    this.memberSize = memberSize;
     this.prizes = prizes;
   }
 
