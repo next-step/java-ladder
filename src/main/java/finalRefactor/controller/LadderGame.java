@@ -16,15 +16,16 @@ public class LadderGame {
         int height = inputView.inputHeight();
 
         resultView.printPerson(persons);
-        Ladder lines = new Ladder(new Height(height), persons.personList().size());
-        resultView.printLadder(lines);
+        Ladder ladder = new Ladder(new Height(height), persons.personList().size());
+        resultView.printLadder(ladder);
         resultView.executionResultLine(executionResults);
         
         while (true) {
             String resultName = inputView.inputPerson();
             int personIndex = persons.getPersonIndex(new Person(resultName));
-            checkInputAll(persons, executionResults.getExecutionResult(lines), resultName);
-            resultView.printExecutionResult(executionResults.getExecutionResult(lines), personIndex);
+
+            checkInputAll(persons, executionResults.getExecutionResult(ladder), resultName);
+            resultView.printExecutionResult(executionResults.getExecutionResult(ladder), personIndex);
         }
     }
 
