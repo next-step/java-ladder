@@ -8,36 +8,37 @@ import java.util.Objects;
 public class LadderLine {
     private final List<Point> points;
 
+    public LadderLine() {
+        points = new ArrayList<>();
+    }
+
     public LadderLine(List<Point> points) {
         this.points = points;
     }
 
-    public LadderLine(int countOfPerson) {
-        this(createLine(countOfPerson, new RandomGenerator()));
-    }
-
-    public static List<Point> createLine(int countOfPerson, PositionGenerator positionGenerator) {
-        List<Point> points = new ArrayList<>();
+    public Point first(PositionGenerator positionGenerator) {
         Point first = Point.first(positionGenerator.generate());
         points.add(first);
-        List<Point> body = body(countOfPerson, first);
-        points.addAll(body);
-        tail(points.get(countOfPerson - 2), points);
-        return points;
+        return first;
     }
 
-    private static List<Point> body(int countOfPerson, Point point) {
-
-        List<Point> points = new ArrayList<>();
+    public void body(int countOfPerson, Point point) {
         for (int i = 1; i < countOfPerson - 1; i++) {
             point = point.next();
             points.add(point);
         }
-        return points;
     }
 
-    private static void tail(Point point, List<Point> points) {
+    public void tail(Point point) {
         points.add(point.last());
+    }
+
+    public Point get(int index) {
+        return points.get(index);
+    }
+
+    public int size() {
+        return points.size();
     }
 
     public List<Point> row() {
