@@ -91,8 +91,12 @@ class LineTest {
 
         // when
         Line line = Line.of(participants, strategy);
+        Line line2 = Line.of(participants, () -> false);
 
         // then
-        assertThat(line.move(0)).isEqualTo(1);
+        assertAll(
+                () -> assertThat(line.move(0)).isEqualTo(1),
+                () -> assertThat(line2.move(0)).isEqualTo(0)
+        );
     }
 }
