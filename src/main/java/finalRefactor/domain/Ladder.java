@@ -1,6 +1,8 @@
 package finalRefactor.domain;
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Ladder {
 
@@ -11,16 +13,21 @@ public class Ladder {
     }
 
     public Ladder(Height height, int countOfPerson) {
-        this(createLines(height, countOfPerson));
+        lines = createLadder(height, countOfPerson);
     }
 
-    private static List<LadderLine> createLines(Height height, int countOfPerson) {
-        List<LadderLine> lines = new ArrayList<>();
-        for (int i = 0; i < height.getValue(); i++) {
-            lines.add(new LadderLine(countOfPerson));
+    private List<LadderLine> createLadder(Height height, int countOfPerson) {
+        return Stream.generate(() -> createLine(countOfPerson, new RandomGenerator()))
+                .limit(height.getValue())
+                .collect(Collectors.toList());
+    }
 
-        }
-        return lines;
+    private LadderLine createLine(int countOfPerson, PositionGenerator positionGenerator) {
+        LadderLine ladderLine = new LadderLine();
+        Point first = ladderLine.first(new RandomGenerator());
+        ladderLine.body(countOfPerson, first);
+        ladderLine.tail(ladderLine.get(ladderLine.size() - 1));
+        return ladderLine;
     }
 
     public int eachPositionResult(int position) {
@@ -29,6 +36,10 @@ public class Ladder {
             position = line.move(position);
         }
         return position;
+    }
+
+    public int lineSize() {
+        return lines.get(0).size();
     }
 
     public List<LadderLine> lines() {
