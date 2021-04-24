@@ -3,25 +3,39 @@ package step2.domain;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 class LineTest {
 
     @DisplayName("사다리 포인트 테스트")
-    @Test
-    void lineCreatedTest() {
+    @ParameterizedTest
+    @CsvSource(value = {"0:true", "1:false", "2:false"}, delimiter = ':')
+    void lineCreatedTest(int count, boolean actual) {
         CustomCondition customCondition = new CustomCondition();
-        List<Boolean> expectedPoints = IntStream.range(0, 2)
-                .mapToObj(index -> customCondition.getCondition())
-                .collect(Collectors.toList());
+        Line line = Line.of(2, customCondition);
 
-        Line line = new Line(expectedPoints);
+        Assertions.assertEquals(line.isMoveable(count), actual);
+    }
+    
+    @DisplayName("거리 계산 테스트")
+    @Test
+    void movePositionTest() {
+        CustomCondition customCondition = new CustomCondition();
+        Line line = Line.of(2, customCondition);
 
-        Assertions.assertEquals(line.getPoint(0), true);
-        Assertions.assertEquals(line.getPoint(1), false);
+        Position firstMovePosition = line.movePosition(new Position(0));
+        Position secondMovePosition = line.movePosition(new Position(1));
+        Position thirdMovePosition = line.movePosition(new Position(2));
+
+        Assertions.assertAll(
+                () -> assertTrue(firstMovePosition.equals(new Position(1))),
+                () -> assertTrue(secondMovePosition.equals(new Position(0))),
+                () -> assertTrue(thirdMovePosition.equals(new Position(2)))
+        );
     }
 }

@@ -4,20 +4,18 @@ import step2.domain.*;
 import step2.view.InputView;
 import step2.view.ResultView;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.IntStream;
+import java.util.Map;
 
-import static java.util.stream.Collectors.*;
 
 public class LadderController {
 
-    public static final String SPLIT_COMMA = ",";
+    public static Players getPlayers() {
+        return Players.of(InputView.getPlayers());
+    }
 
-    public static List<Player> getPlayers() {
-        return Arrays.stream(InputView.getPlayers().split(SPLIT_COMMA))
-                .map(Player::new)
-                .collect(toList());
+    public static Prizes getPrizes(int playerSize) {
+        return Prizes.of(InputView.getPrizes(), playerSize);
     }
 
     public static int getHeight() {
@@ -25,30 +23,34 @@ public class LadderController {
     }
 
     public static Lines createLines(int size, int height) {
-        PointsGeneration pointsGeneration = new PointsGeneration(size-1);
-
-        return IntStream.range(0, height)
-                .mapToObj(index -> getLine(pointsGeneration))
-                .collect(collectingAndThen(toList(), Lines::new));
+        return Lines.of(height, size, new PointCondition());
     }
 
-    private static Line getLine(PointsGeneration pointsGeneration) {
-        PointCondition pointCondition = new PointCondition();
-        List<Boolean> points = pointsGeneration.getPoints(pointCondition);
-
-        return new Line(points);
-    }
-
-    public static void showResult(List<Player> players, Lines lines) {
+    public static void showResult(Players players, Lines lines, Prizes prizes) {
         ResultView.printPlayer(players);
-        printLadder(lines);
+        ResultView.printLadder(lines);
+        ResultView.printPrizes(prizes);
     }
 
-    private static void printLadder(Lines lines) {
-        lines.getLines().forEach(line -> {
-            ResultView.printLadderStart();
-            ResultView.printLadder(line);
-            ResultView.printLadderEnd();
-        });
+    public static String getPlayerName() {
+        return InputView.getPlayer();
+    }
+
+    public static Players getPlayersByname(Players players, String playerName) {
+        List<Player> playersByName = players.getPlayersByName(playerName);
+        return new Players(playersByName);
+    }
+
+    public static Players getLadderResults(Players players, Lines lines) {
+        return players.getResult(lines);
+    }
+
+    public static Map<Player, String> getAward(Players players, Prizes prizes) {
+        Award award = new Award(players.getPlayers(), prizes.getPrizes());
+        return award.getAward();
+    }
+
+    public static void showAward(Map<Player, String> award) {
+        ResultView.printLadderAward(award);
     }
 }
