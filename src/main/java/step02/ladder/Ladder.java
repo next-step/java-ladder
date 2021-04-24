@@ -16,14 +16,14 @@ public class Ladder {
         }
     }
 
-    public int getXLineCount() {
+    public int getYLineCount() {
         if (lines.size() > ZERO) {
             return lines.get(ZERO).getLadderHeight();
         }
         return ZERO;
     }
 
-    public int getYLineCount() {
+    public int getXLineCount() {
         return lines.size();
     }
 

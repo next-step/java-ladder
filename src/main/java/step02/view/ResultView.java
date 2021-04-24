@@ -2,6 +2,7 @@ package step02.view;
 
 import step02.dto.LadderGameDTO;
 import step02.ladder.Ladder;
+import step02.ladder.Line;
 import step02.user.Name;
 import step02.user.Users;
 
@@ -13,6 +14,7 @@ public class ResultView {
 
     private static final int MAX_LENGTH_NAME = 5;
     private static final String BLANK = " ";
+    private static final String BRAKE_LINE = "\n";
 
 
     private ResultView() {
@@ -44,29 +46,20 @@ public class ResultView {
     }
 
     public static void showLadder(Ladder ladder) {
-//        Stream.of(ladder.getLadderLine())
-//                .forEach((lines, y) -> {
-//                    lines.forEach((line, x) -> {
-//                        if (ladder.isHasLine(x, y)) {
-//                            System.out.print(RESULT_LINE + RESULT_LADDER_HAS_LINE);
-//                        } else {
-//                            System.out.print(RESULT_LINE + RESULT_LADDER_HAS_NO_LINE);
-//                        }
-//                    });
-//                });
-
-
-        for (int y = 0; y < ladder.getYLineCount(); y++) {
+        ladder.getLadderLine().forEach(line -> {
             System.out.print(RESULT_LADDER_HAS_NO_LINE);
-            for (int x = 0; x < ladder.getXLineCount(); x++) {
-                if (ladder.isHasLine(x, y)) {
-                    System.out.print(RESULT_LINE + RESULT_LADDER_HAS_LINE);
-                } else {
-                    System.out.print(RESULT_LINE + RESULT_LADDER_HAS_NO_LINE);
-                }
+            for (int y = 0; y < ladder.getYLineCount(); y++) {
+                checkShowLadder(line, y);
             }
-            System.out.println("");
-        }
+            System.out.print(BRAKE_LINE);
+        });
     }
 
+    private static void checkShowLadder(Line line, int yPoint) {
+        if (line.isHasLine(yPoint)) {
+            System.out.print(RESULT_LINE + RESULT_LADDER_HAS_LINE);
+        } else {
+            System.out.print(RESULT_LINE + RESULT_LADDER_HAS_NO_LINE);
+        }
+    }
 }
