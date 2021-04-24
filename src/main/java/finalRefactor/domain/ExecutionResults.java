@@ -40,6 +40,7 @@ public class ExecutionResults {
     }
 
     public ExecutionResult eachPositionExecutionResult(int position, Ladder ladder) {
+
         for (LadderLine line : ladder.lines()) {
             position = line.move(position);
         }
@@ -49,7 +50,7 @@ public class ExecutionResults {
 
     public ExecutionResults getExecutionResult(Ladder ladder) {
         List<ExecutionResult> executionResultsList = new ArrayList<>();
-        for (int i = 0; i < ladder.size() - 1; i++) {
+        for (int i = 0; i < ladder.lineSize(); i++) {
             executionResultsList.add(eachPositionExecutionResult(i, ladder));
         }
         return new ExecutionResults(executionResultsList);
