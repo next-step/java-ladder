@@ -3,7 +3,6 @@ package ladder.domain;
 import ladder.view.ResultView;
 
 import java.util.Objects;
-import java.util.stream.IntStream;
 
 public class Reward {
     private final String reward;
@@ -16,12 +15,7 @@ public class Reward {
         if (reward.length() > ResultView.AISLE_WIDTH + 1) {
             return "";
         }
-        int nullSpace = ResultView.AISLE_WIDTH + 1 - reward.length();
-        StringBuilder sb = new StringBuilder();
-        sb.append(reward);
-        IntStream.rangeClosed(0, nullSpace)
-                .forEach(i -> sb.append(" "));
-        return sb.toString();
+        return String.format("%-8s", reward);
     }
 
     @Override
