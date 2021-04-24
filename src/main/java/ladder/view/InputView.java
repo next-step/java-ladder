@@ -13,7 +13,7 @@ public final class InputView {
     private static final String INPUT_RESULT_PERSON_MESSAGE = "결과를 보고 싶은 사람은?";
     private static final String REGEX = ",";
 
-    private static class InputViewHolder {
+    private static final class InputViewHolder {
         private static final InputView instance = new InputView();
     }
 

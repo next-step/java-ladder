@@ -17,12 +17,11 @@ public final class LadderHeight {
         this.height = height;
     }
 
-    private final void validateNegative(int height) {
+    private final void validateNegative(final int height) {
         if (height < ZERO) {
             throw new InputNegativeNumberException(height);
         }
     }
-
 
     public final int height() {
         return height;
