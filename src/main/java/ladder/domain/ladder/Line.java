@@ -58,6 +58,10 @@ public final class Line {
         return points.get(countOfParticipants - TWO).last();
     }
 
+//    public int move(int position) {
+//        return line.get(position).move();
+//    }
+
     public final Stream<Point> stream() {
         return line.stream();
     }

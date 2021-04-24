@@ -63,7 +63,7 @@ class LineTest {
         assertThat(actual).isEqualTo(expected);
     }
 
-    @DisplayName("Line 인스턴스가 Stream<List<Point>를 반환하는지 테스트")
+    @DisplayName("Line 인스턴스가 Stream<Point>를 반환하는지 테스트")
     @Test
     void 반환_stream() {
         // given
@@ -79,5 +79,20 @@ class LineTest {
                 () -> assertThat(line.stream()).isNotNull()
         );
 
+    }
+
+
+    @DisplayName("Line 인스턴스가 특정 point 위치를 이동시키는지 테스트")
+    @Test
+    void 기능_이동() {
+        // given
+        Participants participants = Participants.of("a,b,c,".split(","));
+        LineGenerateStrategy strategy = () -> true;
+
+        // when
+        Line line = Line.of(participants, strategy);
+
+        // then
+        assertThat(line.move(0)).isEqualTo(1);
     }
 }
