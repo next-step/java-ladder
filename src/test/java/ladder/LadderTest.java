@@ -13,20 +13,21 @@ public class LadderTest {
     @Test
     void When_New_Then_Created() {
         assertDoesNotThrow(() -> {
-            new Ladder(5, 5, () -> Link.OPEN);
+            new Ladder(5, 5);
         });
     }
 
+
     @Test
     void When_Line_Then_LineSizeIsEqualToHeight() {
-        Ladder ladder = new Ladder(5, 3, () -> Link.OPEN);
+        Ladder ladder = new Ladder(5, 3);
 
         List<Line> line = ladder.lines();
         assertThat(line.size()).isEqualTo(5);
     }
 
     @Test
-    void When_Result_Then_() {
+    void When_Result_Then_2() {
         Line firstLine = new Line(Arrays.asList(Link.CLOSE, Link.OPEN));
         Line secondLine = new Line(Arrays.asList(Link.OPEN, Link.CLOSE));
         Ladder ladder = new Ladder(Arrays.asList(firstLine, secondLine));
@@ -43,4 +44,5 @@ public class LadderTest {
 
         assertThat(ladderResult).isEqualTo(expected);
     }
+
 }
