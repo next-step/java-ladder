@@ -37,4 +37,12 @@ public class LadderEdge {
                 .map(reward -> reward.toString())
                 .collect(Collectors.toList());
     }
+
+    public String getAllPlayer() {
+        return this.players.getAllPlayer();
+    }
+
+    public String getAllReward() {
+        return this.rewards.getAllReward();
+    }
 }

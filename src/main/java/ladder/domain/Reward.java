@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.view.ResultView;
+
 import java.util.Objects;
 
 public class Reward {
@@ -7,6 +9,13 @@ public class Reward {
 
     public Reward(String reward) {
         this.reward = reward;
+    }
+
+    public String withWhiteSpaceReward() {
+        if (reward.length() > ResultView.AISLE_WIDTH + 1) {
+            return "";
+        }
+        return String.format("%-8s", reward);
     }
 
     @Override

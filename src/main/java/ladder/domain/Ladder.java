@@ -38,6 +38,12 @@ public class Ladder {
         return nowLine;
     }
 
+    public String printLadder() {
+        StringBuilder sb = new StringBuilder();
+        this.layers.stream()
+                .forEach(layer -> sb.append(layer.printLayer()).append(System.lineSeparator()));
+        return sb.toString();
+    }
 
     @Override
     public boolean equals(Object o) {

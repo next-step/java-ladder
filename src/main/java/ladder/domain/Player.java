@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.view.ResultView;
+
 import java.util.Objects;
 
 public class Player {
@@ -7,6 +9,13 @@ public class Player {
 
     public Player(String player) {
         this.player = player;
+    }
+
+    public String withWhiteSpacePlayer() {
+        if (player.length() > ResultView.AISLE_WIDTH + 1) {
+            return "";
+        }
+        return String.format("%-8s", player);
     }
 
     @Override

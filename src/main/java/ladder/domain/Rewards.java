@@ -25,6 +25,13 @@ public class Rewards {
         return this.rewards;
     }
 
+    public String getAllReward() {
+        StringBuilder sb = new StringBuilder();
+        rewards.stream()
+                .forEach(reward -> sb.append(reward.withWhiteSpaceReward()));
+        return sb.toString();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -41,4 +48,5 @@ public class Rewards {
     public int hashCode() {
         return Objects.hash(rewards);
     }
+
 }

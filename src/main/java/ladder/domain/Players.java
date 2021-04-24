@@ -29,6 +29,13 @@ public class Players {
         return this.players;
     }
 
+    public String getAllPlayer() {
+        StringBuilder sb = new StringBuilder();
+        players.stream()
+                .forEach(player -> sb.append(player.withWhiteSpacePlayer()));
+        return sb.toString();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

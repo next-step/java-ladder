@@ -30,6 +30,15 @@ public class LadderGame {
         return this.gameResult;
     }
 
+    public String printGameResult() {
+        StringBuilder sb = new StringBuilder();
+        this.gameResult.keySet()
+                .forEach(key -> sb.append(
+                        String.format("%s : %s", key, this.gameResult.get(key)))
+                        .append(System.lineSeparator()));
+        return sb.toString();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
