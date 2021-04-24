@@ -19,12 +19,18 @@ public enum Handle {
         return Handle.NON_EXIST;
     }
 
+    public static Handle valueOf(RandomBoolean randomBoolean) {
+        if (randomBoolean.randomBoolean()) {
+            return Handle.EXIST;
+        }
+        return Handle.NON_EXIST;
+    }
+
     public boolean isExist() {
         if (this.exposure.equals(EXIST.exposure)) {
             return true;
         }
         return false;
-
     }
 
     public String printHandle() {

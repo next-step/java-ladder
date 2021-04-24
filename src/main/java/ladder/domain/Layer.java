@@ -5,35 +5,32 @@ import ladder.service.RandomBoolean;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 public final class Layer {
-    private final List<Aisle> aisles;
+    private final List<Handle> handles;
 
-    public Layer(List<Aisle> aisles) {
-        this.aisles = aisles;
-    }
-
-    public static Layer valueOf(List<Boolean> aisles) {
-        return new Layer(aisles.stream()
-                .map(aisle -> new Aisle(aisle))
-                .collect(Collectors.toList()));
+    private Layer(List<Handle> handles) {
+        this.handles = handles;
     }
 
     public static Layer valueOf(int line, RandomBoolean randomBoolean) {
-        List<Aisle> result = new ArrayList<>();
-        result.add(new Aisle(randomBoolean.randomBoolean()));
+        List<Handle> result = new ArrayList<>();
+        result.add(Handle.valueOf(randomBoolean));
         for (int i = 1; i < line - 1; i++) {
-            result.add(Aisle.generateAisle(result.get(i - 1), randomBoolean));
+            result.add(Handle.valueOf(result.get(i - 1), randomBoolean));
         }
         return new Layer(result);
     }
 
+    public static Layer valueOf(List<Handle> handles) {
+        return new Layer(handles);
+    }
+
     public int nextLine(int nowLine) {
-        if (hasLeftAisle(nowLine)) {
+        if (hasLeftHandle(nowLine)) {
             return nowLine - 1;
         }
-        if (hasRightAisle(nowLine)) {
+        if (hasRightHandle(nowLine)) {
             return nowLine + 1;
         }
         return nowLine;
@@ -41,27 +38,27 @@ public final class Layer {
 
     public String printLayer() {
         StringBuilder sb = new StringBuilder();
-        this.aisles.stream()
-                .forEach(aisle -> sb.append("|").append(aisle.printAisle()));
+        this.handles.stream()
+                .forEach(handle -> sb.append("|").append(handle.printHandle()));
         sb.append("|");
         return sb.toString();
     }
 
-    private boolean hasLeftAisle(int line) {
+    private boolean hasLeftHandle(int line) {
         if (line <= 0) {
             return false;
         }
-        if (aisles.get(line - 1).isExistAisle()) {
+        if (handles.get(line - 1).isExist()) {
             return true;
         }
         return false;
     }
 
-    private boolean hasRightAisle(int line) {
-        if (line >= aisles.size()) {
+    private boolean hasRightHandle(int line) {
+        if (line >= handles.size()) {
             return false;
         }
-        if (aisles.get(line).isExistAisle()) {
+        if (handles.get(line).isExist()) {
             return true;
         }
         return false;
@@ -76,13 +73,11 @@ public final class Layer {
             return false;
         }
         Layer layer = (Layer) o;
-        return Objects.equals(aisles, layer.aisles);
+        return Objects.equals(handles, layer.handles);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(aisles);
+        return Objects.hash(handles);
     }
-
-
 }

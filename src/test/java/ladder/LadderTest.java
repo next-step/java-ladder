@@ -71,11 +71,13 @@ public class LadderTest {
     public void printLadder() {
         //given
         //given
-        List<Handle> handles = Arrays.asList(Handle.EXIST, Handle.NON_EXIST, Handle.EXIST, Handle.NON_EXIST, Handle.EXIST);
-        Layer layer1 = Layer.valueOf(handles);
+        List<Handle> handles1 = Arrays.asList(Handle.EXIST, Handle.NON_EXIST, Handle.EXIST, Handle.NON_EXIST, Handle.EXIST);
         String printLayer1 = "|-------|       |-------|       |-------|";
-        Layer layer2 = Layer.valueOf(handles);
+        Layer layer1 = Layer.valueOf(handles1);
+        List<Handle> handles2 = Arrays.asList(Handle.EXIST, Handle.NON_EXIST, Handle.EXIST, Handle.NON_EXIST, Handle.NON_EXIST);
         String printLayer2 = "|-------|       |-------|       |       |";
+        Layer layer2 = Layer.valueOf(handles2);
+
         Ladder ladder = new Ladder(Arrays.asList(layer1, layer2, layer1));
         StringBuilder expectLadder = new StringBuilder();
         expectLadder.append(printLayer1).append(System.lineSeparator())
