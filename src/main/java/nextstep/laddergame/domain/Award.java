@@ -1,6 +1,5 @@
 package nextstep.laddergame.domain;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,8 +8,8 @@ import java.util.stream.Stream;
 public class Award {
   private final List<Name> prizes;
 
-  public Award(List<Name> prizes, int memberSize) {
-    hasEqualSize(prizes, memberSize);
+  public Award(List<Name> prizes, int expectedSize) {
+    hasEqualSize(prizes, expectedSize);
     this.prizes = prizes;
   }
 
@@ -19,7 +18,6 @@ public class Award {
       throw new IllegalArgumentException("ERROR : 당첨 목록의 개수는 생성된 멤버의 인원 수와 같아야합니다.");
     }
   }
-
 
   public static Award createPrizes(String[] prizeNames, int memberSize) {
     return new Award(Arrays.stream(prizeNames)
@@ -36,10 +34,10 @@ public class Award {
     return this.prizes.get(index);
   }
 
-  public Award prizes(List<Integer> indexes) {
-    List<Name> collect = indexes.stream()
+  public Award prizes(List<Integer> memberSize) {
+    List<Name> collect = memberSize.stream()
         .map(prizes::get)
-        .collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
+        .collect(Collectors.toList());
 
     return new Award(collect, collect.size());
   }

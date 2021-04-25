@@ -31,12 +31,20 @@ public class LadderBoard {
     return IntStream.range(0, ladder.members().size())
         .boxed()
         .collect(Collectors.toMap(
-            index -> ladder.members()
-                .names()
-                .get(index),
-            index -> award.prizes(ladder.matches(
-                ladder().members()))
-                .prize(index)
+            this::memberName,
+            this::prizeName
         ));
+  }
+
+  private Name prizeName(Integer index) {
+    return award.prizes(ladder.matches(
+        ladder().members()))
+        .prize(index);
+  }
+
+  private Name memberName(Integer index) {
+    return ladder.members()
+        .names()
+        .get(index);
   }
 }

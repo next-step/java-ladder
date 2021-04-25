@@ -41,14 +41,12 @@ public class LadderController {
   }
 
   private void repeatablePrintLadderResult(LadderBoard ladderBoard) throws IOException {
-    while (true) {
-        Name targetMember = findTargetName();
-        if (isAll(targetMember)) {
-          new OutputView().printAllLadderResult(ladderBoard);
-          break;
-        }
+    Name targetMember = findTargetName();
+    while (!isAll(targetMember)) {
         new OutputView().printLadderResult(targetMember, ladderBoard);
+        targetMember = findTargetName();
     }
+    new OutputView().printAllLadderResult(ladderBoard);
   }
 
   private boolean isAll(Name targetMember) {
