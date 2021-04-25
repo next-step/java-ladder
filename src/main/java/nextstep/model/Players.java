@@ -39,4 +39,8 @@ public class Players {
         }
         return indexOf;
     }
+
+    public List<Player> players() {
+        return this.players;
+    }
 }

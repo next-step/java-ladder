@@ -1,20 +1,19 @@
 package nextstep.model;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import static nextstep.constant.Constant.ALL;
 
 public class OnlineLadder extends Ladder {
     private final Lines lines;
     private final Players players;
-    private Map<Player, Integer> result;
+    private final LadderResult ladderResult;
+    private String[] result;
 
-    public OnlineLadder(int maxVertical, int countOfPerson, String[] names) {
+    public OnlineLadder(int maxVertical, int countOfPerson, String[] names, String resultString) {
         this.lines = new Lines(maxVertical, countOfPerson);
         this.players = new Players(names);
         this.lineMarkAll();
-        this.result = new HashMap<>();
+        this.result = resultString.split(",");
+        ladderResult = new LadderResult(names, resultString);
     }
 
     public void lineMarkAll() {
@@ -30,17 +29,24 @@ public class OnlineLadder extends Ladder {
         return players;
     }
 
-    public int start(Player whoWinner) {
-        if (whoWinner.equals(ALL)) {
-
+    public LadderResult start(Player whoWinner) {
+        if (whoWinner.player().equalsIgnoreCase(ALL)) {
+            for (Player player : this.players.players()) {
+                draw(player);
+            }
+            return this.ladderResult;
         }
-        int playerIndex = this.filter(whoWinner);
+        draw(whoWinner);
+        return ladderResult;
+    }
+
+    private void draw(Player player) {
+        int playerIndex = this.filter(player);
         if (playerIndex < 0) {
             throw new IllegalArgumentException("No user");
         }
         int playerResult = this.lines.start(playerIndex);
-        result.put(whoWinner, playerResult);
-        return playerResult;
+        this.ladderResult.addValue(player, result[playerResult]);
     }
 
     public int filter(Player playerName) {
