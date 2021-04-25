@@ -13,7 +13,7 @@ public class Ladder {
         this.xCount = new LineCount(xCount);
 
         for (int i = 0; i < yCount; i++) {
-            lines.add(new Line(xCount));
+            lines.add(new Line(xCount, new DeduplicationLineStrategy()));
         }
     }
 

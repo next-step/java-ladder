@@ -9,25 +9,19 @@ public class Line {
 
     private final List<Boolean> point = new ArrayList<>();
 
-    public Line(int xCount) {
-        for (int i = ZERO; i < xCount; i++) {
-            makeLine(xCount, i);
+    public Line(int height, LineStrategy lineStrategy) {
+        for (int i = ZERO; i < height; i++) {
+            makeLine(height, i, lineStrategy);
         }
     }
 
-    private void makeLine(int height, int yPoint) {
-        if (yPoint == ZERO) {
-            point.add(new DeduplicationLineStrategy().makeFirstLine());
-            return;
+    private void makeLine(int height, int yIndex, LineStrategy lineStrategy) {
+        boolean beforePoint = true;
+        if (yIndex > ZERO) {
+            beforePoint = point.get(yIndex - ONE);
         }
-        if (yPoint < height - ONE) {
-            boolean beforePoint = point.get(yPoint - ONE);
-            point.add(new DeduplicationLineStrategy().makeLine(beforePoint));
-            return;
-        }
-        if (yPoint >= height - ONE) {
-            point.add(new DeduplicationLineStrategy().makeLastLine());
-        }
+        point.add(lineStrategy.makeLine(height - ONE, yIndex, beforePoint));
+
     }
 
     public boolean isHasLine(int indexPoint) {

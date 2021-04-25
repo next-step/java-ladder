@@ -12,6 +12,6 @@ public class DeduplicationLineTest {
     @DisplayName("중복 라인이 만들어지지 않는 테스트")
     void makeLine() {
         DeduplicationLineStrategy deduplicationLine = new DeduplicationLineStrategy();
-        assertThat(deduplicationLine.makeLine(true)).isEqualTo(false);
+        assertThat(deduplicationLine.makeLine(10,1, true)).isEqualTo(false);
     }
 }

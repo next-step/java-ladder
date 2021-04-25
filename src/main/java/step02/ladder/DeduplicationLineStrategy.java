@@ -2,17 +2,17 @@ package step02.ladder;
 
 import java.util.Random;
 
-public class DeduplicationLineStrategy {
+public class DeduplicationLineStrategy implements LineStrategy {
+    private final static int ZERO = 0;
 
-    public boolean makeLine(boolean isBeforeLineHasLine) {
-        return isHasLine(isBeforeLineHasLine);
-    }
-
-    public boolean makeFirstLine() {
-        return randomCreateLine();
-    }
-
-    public boolean makeLastLine() {
+    @Override
+    public boolean makeLine(int height, int yPoint, boolean isBeforeLineHasLine) {
+        if (yPoint == ZERO) {
+            return randomCreateLine();
+        }
+        if(yPoint < height) {
+            return isHasLine(isBeforeLineHasLine);
+        }
         return false;
     }
 
@@ -27,4 +27,6 @@ public class DeduplicationLineStrategy {
         Random random = new Random();
         return random.nextBoolean();
     }
+
+
 }
