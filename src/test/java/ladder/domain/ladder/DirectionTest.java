@@ -4,7 +4,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class DirectionTest {
 
@@ -12,10 +11,10 @@ class DirectionTest {
     @Test
     void 생성_첫_Direction() {
         // given
-        boolean current = true;
+        boolean right = true;
 
         // when
-        Direction direction = Direction.first(current);
+        Direction direction = Direction.first(right);
 
         // then
         assertThat(direction.heading()).isEqualTo(Heading.RIGHT);
@@ -25,10 +24,10 @@ class DirectionTest {
     @Test
     void 기능_다음_Direction_생성_이전이_FALSE() {
         // given
-        boolean current = false;
+        boolean right = false;
 
         // when
-        Direction direction = Direction.first(current).next(() -> true);
+        Direction direction = Direction.first(right).next(() -> true);
 
         // then
         assertThat(direction.heading()).isEqualTo(Heading.RIGHT);
@@ -38,10 +37,10 @@ class DirectionTest {
     @Test
     void 기능_다음_Direction_생성_이전이_TRUE() {
         // given
-        boolean current = true;
+        boolean right = true;
 
         // when
-        Direction direction = Direction.first(current).next(() -> false);
+        Direction direction = Direction.first(right).next(() -> false);
 
         // then
         assertThat(direction.heading()).isEqualTo(Heading.LEFT);
@@ -51,10 +50,10 @@ class DirectionTest {
     @Test
     void 생성_마지막_Direction() {
         // given
-        boolean current = true;
+        boolean right = true;
 
         // when
-        Direction direction = Direction.first(current).next(() -> false).last();
+        Direction direction = Direction.first(right).next(() -> false).last();
 
         // then
         assertThat(direction.heading()).isEqualTo(Heading.PASS);
@@ -64,10 +63,10 @@ class DirectionTest {
     @Test
     void 검증_왼쪽() {
         // given
-        boolean current = true;
+        boolean right = true;
 
         // when
-        Direction direction = Direction.first(current).next(() -> false);
+        Direction direction = Direction.first(right).next(() -> false);
 
         // then
         assertThat(direction.heading()).isEqualTo(Heading.LEFT);
@@ -77,10 +76,10 @@ class DirectionTest {
     @Test
     void 검증_오른쪽() {
         // given
-        boolean current = false;
+        boolean right = false;
 
         // when
-        Direction direction = Direction.first(current).next(() -> true);
+        Direction direction = Direction.first(right).next(() -> true);
 
         // then
         assertThat(direction.heading()).isEqualTo(Heading.RIGHT);
@@ -90,10 +89,10 @@ class DirectionTest {
     @Test
     void 검증_지나가기() {
         // given
-        boolean current = false;
+        boolean right = false;
 
         // when
-        Direction direction = Direction.first(current).next(() -> false);
+        Direction direction = Direction.first(right).next(() -> false);
 
         // then
         assertThat(direction.heading()).isEqualTo(Heading.PASS);
@@ -103,11 +102,11 @@ class DirectionTest {
     @Test
     void 비교() {
         // given
-        boolean current = false;
+        boolean right = false;
 
         // when
-        Direction actual = Direction.first(current);
-        Direction expected = Direction.first(current);
+        Direction actual = Direction.first(right);
+        Direction expected = Direction.first(right);
 
         // then
         assertThat(actual).isEqualTo(expected);

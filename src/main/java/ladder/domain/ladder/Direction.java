@@ -10,38 +10,44 @@ import static java.lang.Boolean.FALSE;
 public final class Direction {
 
     private final boolean left;
-    private final boolean current;
+    private final boolean right;
 
-    private Direction(final boolean left, final boolean current) {
-        validateArguments(left, current);
+    private Direction(final boolean left, final boolean right) {
+        validateArguments(left, right);
         this.left = left;
-        this.current = current;
+        this.right = right;
     }
 
-    private final void validateArguments(final boolean left, final boolean current) {
-        if (left && current) {
-            throw new IllegalBooleanArgumentsException(left, current);
+    private final void validateArguments(final boolean left, final boolean right) {
+        if (left && right) {
+            throw new IllegalBooleanArgumentsException(left, right);
         }
     }
 
-    public static final Direction first(final boolean current) {
-        return new Direction(FALSE, current);
+    public static final Direction first(final boolean right) {
+        return new Direction(FALSE, right);
     }
 
     public final Heading heading() {
-        return Heading.valueOf(left, current);
+        if (this.left) {
+            return Heading.LEFT;
+        }
+        if (this.right) {
+            return Heading.RIGHT;
+        }
+        return Heading.PASS;
     }
 
-    private final Direction next(final boolean current) {
-        return new Direction(this.current, current);
+    private final Direction next(final boolean right) {
+        return new Direction(this.right, right);
     }
 
     public final Direction last() {
-        return new Direction(this.current, FALSE);
+        return new Direction(this.right, FALSE);
     }
 
     public final Direction next(LineGenerateStrategy strategy) {
-        if (this.current) {
+        if (this.right) {
             return next(FALSE);
         }
         return next(strategy.generate());
@@ -52,11 +58,11 @@ public final class Direction {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Direction direction = (Direction) o;
-        return left == direction.left && current == direction.current;
+        return left == direction.left && right == direction.right;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(left, current);
+        return Objects.hash(left, right);
     }
 }

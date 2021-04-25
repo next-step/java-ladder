@@ -38,8 +38,8 @@ public final class Point {
         return heading.move(position);
     }
 
-    public static final Point first(final boolean current) {
-        return new Point(ZERO, Direction.first(current));
+    public static final Point first(final boolean right) {
+        return new Point(ZERO, Direction.first(right));
     }
 
     public final Point last() {
