@@ -1,5 +1,6 @@
 package ladder;
 
+import ladder.domain.LadderGame;
 import ladder.domain.Name;
 import ladder.domain.User;
 import ladder.domain.Users;
@@ -20,6 +21,11 @@ public class LadderMain {
         Arrays.stream(userNames).forEach(username -> userList.add(new User(username)));
 
         Users users = new Users(userList);
+        users.checkDuplicateUser2();
+
+
+
+        LadderGame ladderGame = new LadderGame(users);
 
 
         OutputView outputView = new OutputView();
