@@ -10,6 +10,7 @@ public class InputView {
     private static final String INPUT_RESULTS = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String INPUT_WANT_NAME = "결과를 보고 싶은 사람은? (개인 혹은 all 입력)";
     private static Scanner sc;
+
     static {
         sc = new Scanner(System.in);
     }

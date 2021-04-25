@@ -12,8 +12,7 @@ public class StringUtils {
 
 
     public static String fitSpace(String name) {
-        StringBuilder fit = new StringBuilder();
-        fit.append(SPACE);
+        StringBuilder fit = new StringBuilder(SPACE);
         while (fit.length() + name.length() < NAME_WIDTH) {
             fit.append(SPACE);
         }
@@ -37,9 +36,5 @@ public class StringUtils {
             return;
         }
         fit.append(NOT_LINKING + LINE_POINT);
-    }
-
-    public static boolean isAll(String input) {
-        return input.equals(ALL);
     }
 }

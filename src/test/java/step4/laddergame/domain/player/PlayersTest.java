@@ -50,22 +50,6 @@ public class PlayersTest {
     }
 
     @Test
-    @DisplayName("플레이어의 이름이 일치하는 순번쨰 index를 반환한다.")
-    void 이름이일치인덱스반환() {
-        int index = 2;
-        Name findName = new Name("이름" + index);
-        int findIndex = players.whoseName(findName);
-        assertThat(findIndex).isEqualTo(index);
-    }
-
-    @Test
-    void 없는이름찾기() {
-        assertThatThrownBy(() -> {
-            players.whoseName(new Name("없는이름"));
-        }).isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
     @DisplayName("플레이어의 순서와 결과리스트의 순서대로 결과맵에 매치한다.")
     void 결과매치() {
         Map<Player, Result> winning = new LinkedHashMap<>();

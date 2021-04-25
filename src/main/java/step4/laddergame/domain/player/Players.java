@@ -7,14 +7,12 @@ import com.google.common.collect.Streams;
 import step4.laddergame.domain.ladder.Result;
 
 import java.util.*;
-import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.toCollection;
 
 public class Players {
     private static final String ILLEGAL_DUPLICATE_NAME = "참여자의 이름은 중복될 수 없습니다.";
     private static final String ILLEGAL_EMPTY_PLAYER = "참여자는 한 명 이상이어야합니다.";
-    private static final String ILLEGAL_FIND_NAME = "결과를 보고싶은 사람의 이름이 목록에는 없습니다.";
 
     private final List<Player> players;
 
@@ -28,13 +26,6 @@ public class Players {
         return new Players(nameList.stream()
                 .map(name -> Player.of(name))
                 .collect(toCollection(ArrayList::new)));
-    }
-
-    public int whoseName(Name findName) {
-        return IntStream.range(0, players.size())
-                .filter(i -> players.get(i).checkName(findName))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(ILLEGAL_FIND_NAME));
     }
 
     private void validPlayers(List<Player> playerList) {

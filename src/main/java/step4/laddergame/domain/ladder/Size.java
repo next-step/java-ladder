@@ -1,6 +1,6 @@
 /*
-* 사다리의 가로와 높이를 담당하는 원시값 포장 클래스
-* */
+ * 사다리의 가로와 높이를 담당하는 원시값 포장 클래스
+ * */
 package step4.laddergame.domain.ladder;
 
 import java.util.Objects;

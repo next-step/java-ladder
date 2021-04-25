@@ -10,6 +10,7 @@ import java.util.Map;
 
 public class LadderWinning {
     private static final String ILLEGAL_FIND_NAME = "결과를 보고싶은 사람의 이름이 목록에는 없습니다.";
+
     private final Map<Player, Result> winning;
 
     public LadderWinning() {

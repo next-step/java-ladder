@@ -8,6 +8,7 @@ import java.util.Objects;
 public class Point {
     private static final int INIT_INDEX = 0;
     private static final int MOVE_INDEX = 1;
+
     private final int index;
     private final Direction direction;
 

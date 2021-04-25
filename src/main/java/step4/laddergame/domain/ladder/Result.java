@@ -1,6 +1,6 @@
 /*
-* 결과 하나를 의미하는 클래스
-* */
+ * 결과 하나를 의미하는 클래스
+ * */
 package step4.laddergame.domain.ladder;
 
 import java.util.Objects;
@@ -21,7 +21,7 @@ public class Result {
     }
 
     private void validResult(String result) {
-        if(isEmpty(result) || result.length() > MAXIMUM_RESULT_LENGTH) {
+        if (isEmpty(result) || result.length() > MAXIMUM_RESULT_LENGTH) {
             throw new IllegalArgumentException(ILLEGAL_RESULT);
         }
     }

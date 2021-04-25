@@ -21,9 +21,6 @@ public class Player {
         names.add(name);
     }
 
-    public boolean checkName(Name name) {
-        return this.name.equals(name);
-    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

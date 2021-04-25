@@ -14,7 +14,6 @@ public class SizeTest {
     @Test
     void 높이를생성(){
         size = new Size(height, width);
-
         assertThat(size).isEqualTo(new Size(height, width));
     }
 

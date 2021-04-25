@@ -1,6 +1,6 @@
 /*
-* 각 지점의 좌/우 연결정보를 관리하고 다음 점 생성을 담당하는 클래스
-* */
+ * 각 지점의 좌/우 연결정보를 관리하고 다음 점 생성을 담당하는 클래스
+ * */
 package step4.laddergame.domain.ladder;
 
 import java.util.Objects;

@@ -27,7 +27,7 @@ public class Ladder {
 
     private int move(int index) {
         int now = index;
-        for(LadderLine ladderLine : ladderLines) {
+        for (LadderLine ladderLine : ladderLines) {
             now = ladderLine.move(now);
         }
         return now;
