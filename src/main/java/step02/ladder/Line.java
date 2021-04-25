@@ -6,6 +6,7 @@ import java.util.List;
 public class Line {
     private final static int ZERO = 0;
     private final static int ONE = 1;
+
     private final List<Boolean> point = new ArrayList<>();
 
     public Line(int xCount) {

@@ -1,5 +1,7 @@
 package step02.user;
 
+import step02.utils.ExceptionSupplier;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,7 +16,8 @@ public class Users {
 
     public static List<Name> splitName(String names) {
         return Arrays.stream(names.split(REGEX))
-                .map(Name::new).collect(Collectors.toList());
+                .map(name -> ExceptionSupplier.wrap(() -> new Name(name)))
+                .collect(Collectors.toList());
     }
 
     public int getUserCount() {
