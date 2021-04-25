@@ -10,7 +10,6 @@ repositories {
 
 dependencies {
     testCompile('org.junit.jupiter:junit-jupiter:5.6.0')
-    testCompile('org.hamcrest:hamcrest-all')
     testCompile('org.assertj:assertj-core:3.15.0')
 }
 
