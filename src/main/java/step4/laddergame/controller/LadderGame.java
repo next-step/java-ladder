@@ -23,7 +23,7 @@ public class LadderGame {
         printResult(results);
         while (true) {
             String name = inputWantName();
-            if (name != "all") {
+            if (!name.equals("all")) {
                 printWantResult(winning.findOne(name));
                 continue;
             }
