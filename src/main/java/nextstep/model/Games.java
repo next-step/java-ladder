@@ -31,7 +31,9 @@ public class Games {
     }
 
     public boolean isRightTrue(Points points) {
-        System.out.println(focus + "...points.toString() = " + points.toString());
+        if (isRightBlock()) {
+            return false;
+        }
         boolean isTrue = points.get(focus);
         if (isTrue) {
             toRightFocus();
@@ -40,11 +42,21 @@ public class Games {
     }
 
     public boolean isLeftTrue(Points points) {
-        if (focus == 0) return false;
+        if (isLeftBlock()) {
+            return false;
+        }
         boolean isTrue = points.get(focus - 1);
         if (isTrue) {
             toLeftFocus();
         }
         return isTrue;
+    }
+
+    @Override
+    public String toString() {
+        return "Games{" +
+                "limit=" + limit +
+                ", focus=" + focus +
+                '}';
     }
 }

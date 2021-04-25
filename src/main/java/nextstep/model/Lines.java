@@ -31,7 +31,7 @@ public class Lines {
     }
 
     public int start(int playerIndex) {
-        Games games = new Games(playerIndex, countOfPerson);
+        Games games = new Games(countOfPerson, playerIndex);
 
         int index = 0;
         while (index < this.lines.size()) {
@@ -41,25 +41,30 @@ public class Lines {
             long falseCount = points.points().stream()
                     .filter(p -> !p)
                     .count();
-            index++;
+
             if (falseCount == 0) {
+                index++;
                 continue;
             }
 
             if (games.isLeftBlock()) {
-                games.toRightFocus();
+                games.isRightTrue(points);
+                index++;
                 continue;
             }
 
             if (games.isRightBlock()) {
-                games.toLeftFocus();
+                games.isLeftTrue(points);
+                index++;
                 continue;
             }
 
             if (games.isRightTrue(points)) {
+                index++;
                 continue;
             }
             if (games.isLeftTrue(points)) {
+                index++;
                 continue;
             }
 

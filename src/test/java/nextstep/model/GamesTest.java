@@ -43,7 +43,7 @@ class GamesTest {
     @DisplayName("이동해도 되는지 테스트")
     void isTrue() {
         Points points = new Points(Arrays.asList(false, true, false));
-        Games games = new Games(3, 1);
+        Games games = new Games(points.size(), 1);
         games.toLeftFocus();
         games.toLeftFocus();
         games.toLeftFocus();
