@@ -2,9 +2,6 @@ package nextstep.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
-
-import static nextstep.constant.Constant.*;
 
 public class Lines {
     private final List<Line> lines;
@@ -34,60 +31,40 @@ public class Lines {
     }
 
     public int start(int playerIndex) {
-        int focus = playerIndex;
+        Games games = new Games(playerIndex, countOfPerson);
 
         int index = 0;
-        int limit = countOfPerson;
-        int loopCount = 0;
         while (index < this.lines.size()) {
-            if (loopCount > 10) {
-                break;
-            }
-            loopCount++;
             Line line = this.lines.get(index);
             Points points = line.getPoints();
 
             long falseCount = points.points().stream()
                     .filter(p -> !p)
                     .count();
+            index++;
             if (falseCount == 0) {
-                index++;
                 continue;
             }
 
-            if (focus == 0) {
-                if (points.get(focus)) {
-                    focus++;
-                    index++;
-                } else {
-                    index++;
-                }
+            if (games.isLeftBlock()) {
+                games.toRightFocus();
                 continue;
             }
 
-            if (focus == limit) {
-                if (points.get(focus - 1)) {
-                    focus--;
-                    index++;
-                } else {
-                    index++;
-                }
+            if (games.isRightBlock()) {
+                games.toLeftFocus();
                 continue;
             }
 
-            if (points.get(focus)) {
-                focus++;
-                index++;
+            if (games.isRightTrue(points)) {
                 continue;
             }
-            if (points.get(focus - 1)) {
-                focus--;
-                index++;
+            if (games.isLeftTrue(points)) {
                 continue;
             }
 
             index++;
         }
-        return focus;
+        return games.focus;
     }
 }

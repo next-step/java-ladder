@@ -41,7 +41,7 @@ public class OnlineLadder extends Ladder {
     }
 
     private void draw(Player player) {
-        int playerIndex = this.filter(player);
+        int playerIndex = this.filterByPlayerName(player);
         if (playerIndex < 0) {
             throw new IllegalArgumentException("No user");
         }
@@ -49,7 +49,7 @@ public class OnlineLadder extends Ladder {
         this.ladderResult.addValue(player, result[playerResult]);
     }
 
-    public int filter(Player playerName) {
-        return this.players.filter(playerName);
+    public int filterByPlayerName(Player playerName) {
+        return this.players.filterResultIndex(playerName);
     }
 }

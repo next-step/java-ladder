@@ -23,7 +23,7 @@ class OnlineLadderTest {
         OnlineLadder onlineLadder = new OnlineLadder(maxVertical, 3, new String[]{"bong", "big", "il"}, "1,2,3");
         IntStream.range(0, maxVertical)
                 .forEach(i -> System.out.println(onlineLadder.points(i)));
-        assertThat(onlineLadder.filter(new Player("bong"))).isEqualTo(0);
+        assertThat(onlineLadder.filterByPlayerName(new Player("bong"))).isEqualTo(0);
     }
 
     @Test

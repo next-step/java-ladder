@@ -3,6 +3,7 @@ package nextstep.model;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.OptionalInt;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -13,11 +14,6 @@ public class Players {
 
     public Players(String[] names) {
         this.players = new ArrayList<>();
-        boolean match = Arrays.stream(names)
-                .anyMatch(s -> s.length() > 5);
-        if (match) {
-            throw new IllegalArgumentException("사람의 이름은 최대5글자까지 부여할 수 있습니다.");
-        }
         for (String name : names) {
             this.players.add(new Player(name));
         }
@@ -28,16 +24,11 @@ public class Players {
                 .collect(Collectors.joining(EMPTY_LADDER_STRING,"",""));
     }
 
-    public int filter(Player player) {
-        int indexOf = -1;
-        for (int i = 0; i < this.players.size(); i++) {
-            if (this.players.get(i).equals(player)) {
-                indexOf = i;
-                break;
-            }
-
-        }
-        return indexOf;
+    public int filterResultIndex(Player player) {
+        OptionalInt indexOpt = IntStream.range(0, this.players.size())
+                .filter(i -> player.equals(this.players.get(i)))
+                .findFirst();
+        return indexOpt.getAsInt();
     }
 
     public List<Player> players() {
