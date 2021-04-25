@@ -23,7 +23,7 @@ public class ResultView {
     public static void showLadderResult(LadderGameDTO ladderGameDTO) {
         showResultTitle();
         showUserNames(ladderGameDTO.getUsers());
-        showLadder(ladderGameDTO.getLadder());
+        showLadder(ladderGameDTO);
     }
 
     private static void showResultTitle() {
@@ -45,10 +45,10 @@ public class ResultView {
         return builder.append(name.getName()).toString();
     }
 
-    public static void showLadder(Ladder ladder) {
-        ladder.getLadderLine().forEach(line -> {
+    public static void showLadder(LadderGameDTO ladderGameDTO) {
+        ladderGameDTO.getLadder().getLadderLine().forEach(line -> {
             System.out.print(RESULT_LADDER_HAS_NO_LINE);
-            for (int x = 0; x < ladder.getXLineCount(); x++) {
+            for (int x = 0; x < ladderGameDTO.getUserCount(); x++) {
                 checkShowLadder(line, x);
             }
             System.out.print(BRAKE_LINE);

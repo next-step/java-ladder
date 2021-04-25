@@ -19,4 +19,8 @@ public class LadderGameDTO {
     public Users getUsers() {
         return users;
     }
+
+    public int getUserCount() {
+        return users.getUserCount();
+    }
 }
