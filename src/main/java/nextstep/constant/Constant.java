@@ -8,4 +8,5 @@ public class Constant {
     public static final String SPLIT_LADDER_STRING = "|";
     public static final String LEFT = "LEFT";
     public static final String RIGHT = "RIGHT";
+    public static final String ALL = "all";
 }

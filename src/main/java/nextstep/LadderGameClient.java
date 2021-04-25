@@ -25,9 +25,11 @@ public class LadderGameClient {
         String targetPerson = inputView.inputQuestion("결과를 보고 싶은 사람은?");
         int winner = ladder.start(new Player(targetPerson));
         resultView.print(winners[winner]);
+        resultView.print("실행 결과");
 
         targetPerson = inputView.inputQuestion("결과를 보고 싶은 사람은?");
         winner = ladder.start(new Player(targetPerson));
+        resultView.print("실행 결과");
         resultView.print(winners[winner]);
     }
 }
