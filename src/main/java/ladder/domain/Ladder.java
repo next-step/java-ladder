@@ -1,7 +1,5 @@
 package ladder.domain;
 
-import ladder.factories.LadderLineFactory;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -14,7 +12,7 @@ public class Ladder {
     public Ladder(int width, int height) {
         this(
                 Stream.generate(
-                        () -> LadderLineFactory.from(width))
+                        () -> LadderLine.from(width))
                         .limit(height)
                         .collect(Collectors.toList())
         );

@@ -42,7 +42,7 @@ public class OutputView {
             return POINT;
         }
 
-        if (point == Point.BEGIN) {
+        if (point.right()) {
             return POINT + "-----";
         }
 

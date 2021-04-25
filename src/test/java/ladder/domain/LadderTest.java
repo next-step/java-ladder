@@ -1,23 +1,25 @@
 package ladder.domain;
 
-import ladder.factories.LadderLineFactory;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
 
 public class LadderTest {
     @Test
     public void create() {
+        final int width = 5;
+
         final List<LadderLine> ladderLines = Arrays.asList(
-                LadderLineFactory.from(5),
-                LadderLineFactory.from(5),
-                LadderLineFactory.from(5),
-                LadderLineFactory.from(5)
+                LadderLine.from(width),
+                LadderLine.from(width),
+                LadderLine.from(width),
+                LadderLine.from(width)
         );
 
-        assertThat(new Ladder(ladderLines)).isEqualTo(new Ladder(ladderLines));
+        assertThatCode(() -> new Ladder(ladderLines))
+                .doesNotThrowAnyException();
     }
 }
