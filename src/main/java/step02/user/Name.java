@@ -6,8 +6,8 @@ import java.util.Objects;
 
 public class Name {
     private final static String ERROR_NAME_LENGTH = "이름은 %d~%d글자 이내로 입력해주세요";
-    private final static int MAX_NAME_LENGTH = 5;
-    private final static int MIN_NAME_LENGTH = 1;
+    private final static int MAX_LENGTH = 5;
+    private final static int MIN_LENGTH = 1;
     private final static int ZERO = 0;
 
     private final String name;
@@ -17,18 +17,18 @@ public class Name {
         this.name = name;
     }
 
+    private void checkNameLength(String name) throws OutOfNameLengthException {
+        if (name.length() <= ZERO || name.length() > MAX_LENGTH) {
+            throw new OutOfNameLengthException(String.format(ERROR_NAME_LENGTH, MIN_LENGTH, MAX_LENGTH));
+        }
+    }
+
     public String getName() {
         return name;
     }
 
     public int getNameLength() {
         return name.length();
-    }
-
-    public static void checkNameLength(String name) throws OutOfNameLengthException {
-        if (name.length() <= ZERO || name.length() > MAX_NAME_LENGTH) {
-            throw new OutOfNameLengthException(String.format(ERROR_NAME_LENGTH, MIN_NAME_LENGTH, MAX_NAME_LENGTH));
-        }
     }
 
     @Override

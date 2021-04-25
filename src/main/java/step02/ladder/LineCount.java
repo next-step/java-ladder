@@ -13,13 +13,13 @@ public class LineCount {
         this.count = count;
     }
 
-    public int getCount() {
-        return count;
-    }
-
-    public static void checkZeroLine(int height) throws ZeroHeightException {
+    private void checkZeroLine(int height) throws ZeroHeightException {
         if (height <= ZERO) {
             throw new ZeroHeightException(ERROR_ZERO_LINE);
         }
+    }
+
+    public int getCount() {
+        return count;
     }
 }
