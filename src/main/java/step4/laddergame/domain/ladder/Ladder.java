@@ -3,6 +3,9 @@ package step4.laddergame.domain.ladder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.IntStream;
+
+import static java.util.stream.Collectors.toCollection;
 
 public class Ladder {
     private final List<LadderLine> ladderLines;
@@ -19,6 +22,20 @@ public class Ladder {
             );
         }
         return new Ladder(ladderLines);
+    }
+
+    private int move(int index) {
+        int now = index;
+        for(LadderLine ladderLine : ladderLines) {
+            now = ladderLine.move(now);
+        }
+        return now;
+    }
+
+    public List<Integer> moveAll() {
+        return IntStream.rangeClosed(0, ladderLines.size())
+                .mapToObj(this::move)
+                .collect(toCollection(ArrayList::new));
     }
 
     @Override

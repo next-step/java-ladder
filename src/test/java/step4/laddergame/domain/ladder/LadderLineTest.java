@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderLineTest {
     private List<Point> pointList = new ArrayList<>();
-    private int numberOfPeople = 5;
+    private int numberOfPeople = 6;
 
     @BeforeEach
     void setUp() {
@@ -50,7 +50,8 @@ public class LadderLineTest {
                 Arguments.of(1, 0),
                 Arguments.of(2, 3),
                 Arguments.of(3, 2),
-                Arguments.of(4, 4)
+                Arguments.of(4, 5),
+                Arguments.of(5, 4)
                 );
     }
 }
