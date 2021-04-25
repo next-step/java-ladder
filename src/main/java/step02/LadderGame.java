@@ -1,6 +1,7 @@
 package step02;
 
 import step02.dto.LadderGameDTO;
+import step02.ladder.DeduplicationLineStrategy;
 import step02.ladder.Ladder;
 import step02.user.Users;
 import step02.view.InputView;
@@ -12,7 +13,7 @@ public class LadderGame {
 
     public LadderGame() throws IllegalAccessException {
         users = new Users(InputView.inputUserName());
-        ladder = new Ladder(users.getUserCount(), InputView.inputLadderHeight());
+        ladder = new Ladder(users.getUserCount(), InputView.inputLadderHeight(), new DeduplicationLineStrategy());
     }
 
     public void showLadderGameResult() {

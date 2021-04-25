@@ -8,12 +8,12 @@ public class Ladder {
     private final LineCount yCount;
     private final LineCount xCount;
 
-    public Ladder(int xCount, int yCount) throws IllegalAccessException {
+    public Ladder(int xCount, int yCount, LineStrategy lineStrategy) throws IllegalAccessException {
         this.yCount = new LineCount(yCount);
         this.xCount = new LineCount(xCount);
 
         for (int i = 0; i < yCount; i++) {
-            lines.add(new Line(xCount, new DeduplicationLineStrategy()));
+            lines.add(new Line(xCount, lineStrategy));
         }
     }
 
@@ -27,14 +27,6 @@ public class Ladder {
 
     public List<Line> getLadderLine() {
         return lines;
-    }
-
-    public boolean isHasLine(int xPoint, int yPoint) {
-        return lines.get(yPoint).isHasLine(xPoint);
-    }
-
-    public boolean isUserHasLine(int xPoint) {
-        return lines.stream().noneMatch(line -> line.isHasLine(xPoint));
     }
 }
 
