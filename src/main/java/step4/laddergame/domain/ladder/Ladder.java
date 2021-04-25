@@ -34,7 +34,7 @@ public class Ladder {
     }
 
     public List<Integer> moveAll() {
-        return IntStream.rangeClosed(0, ladderLines.size())
+        return IntStream.range(0, ladderLines.get(0).size())
                 .mapToObj(this::move)
                 .collect(toCollection(ArrayList::new));
     }

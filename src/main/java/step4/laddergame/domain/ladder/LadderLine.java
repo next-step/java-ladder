@@ -51,6 +51,10 @@ public class LadderLine {
                 .collect(Collectors.toList());
     }
 
+    public int size() {
+        return points.size();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

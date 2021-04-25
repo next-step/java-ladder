@@ -8,7 +8,6 @@ import java.util.List;
 import static step4.laddergame.ui.InputView.*;
 import static step4.laddergame.ui.ResultView.*;
 
-
 public class LadderGame {
     public static void main(String[] args) {
         List<String> names = inputNames();
