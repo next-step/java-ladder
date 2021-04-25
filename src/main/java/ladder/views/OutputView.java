@@ -6,6 +6,8 @@ import java.util.List;
 
 public class OutputView {
     private static final String POINT = "|";
+    public static final String CONNECTION_LINE = "-----";
+    public static final String EMPTY_SPACE = "     ";
 
     public static void printResultMessage() {
         System.out.println("\n실행 결과");
@@ -28,7 +30,7 @@ public class OutputView {
     private static void print(LadderLine ladderLine) {
         final List<Point> points = ladderLine.points();
 
-        final StringBuffer sb = new StringBuffer();
+        final StringBuilder sb = new StringBuilder();
 
         for (int i = 0; i < points.size(); i++) {
             sb.append(view(points.get(i), i == points.size() - 1));
@@ -43,9 +45,9 @@ public class OutputView {
         }
 
         if (point.right()) {
-            return POINT + "-----";
+            return POINT + CONNECTION_LINE;
         }
 
-        return POINT + "     ";
+        return POINT + EMPTY_SPACE;
     }
 }
