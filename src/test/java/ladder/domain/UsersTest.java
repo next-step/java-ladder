@@ -15,7 +15,10 @@ public class UsersTest {
 
         assertThatThrownBy(()->{
             Users users = new Users(userList);
-        }).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("중복된 User가 있습니다.");
+            users.checkDuplicateUser();
+
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("중복된 User가 있습니다.");
     }
 
     @Test

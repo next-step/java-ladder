@@ -19,6 +19,9 @@ public class Users {
         }
     }
 
+    public int userCount() {
+        return this.userList.size();
+    }
 
 
 }

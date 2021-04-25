@@ -1,9 +1,6 @@
 package ladder;
 
-import ladder.domain.LadderGame;
-import ladder.domain.Name;
-import ladder.domain.User;
-import ladder.domain.Users;
+import ladder.domain.*;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -25,10 +22,15 @@ public class LadderMain {
 
         int ladderHeight = inputView.inputLadderHeight();
 
-        LadderGame ladderGame = new LadderGame(users,ladderHeight);
+        Ladder ladder = new Ladder(ladderHeight, userList.size());
+
+        LadderGame ladderGame = new LadderGame(users, ladderHeight);
 
 
         OutputView outputView = new OutputView();
         outputView.printPaticipateInUsers(userNames);
+
+
+        outputView.printLadder(ladder.toString());
     }
 }
