@@ -27,15 +27,4 @@ public class UsersTest {
         assertThat(userList.size()).isEqualTo(2);
     }
 
-    @Test
-    @DisplayName("중복된 User가 있으면 에러코드 내는지 테스트")
-    void duplicationUserTest2(){
-        List<User> userList = Arrays.asList(new User("test"),new User("test"));
-
-        assertThatThrownBy(()->{
-            Users users = new Users(userList);
-            users.checkDuplicateUser2();
-        }).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("중복된 User가 있습니다.");
-    }
-
 }

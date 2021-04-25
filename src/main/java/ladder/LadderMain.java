@@ -21,11 +21,11 @@ public class LadderMain {
         Arrays.stream(userNames).forEach(username -> userList.add(new User(username)));
 
         Users users = new Users(userList);
-        users.checkDuplicateUser2();
+        users.checkDuplicateUser();
 
+        int ladderHeight = inputView.inputLadderHeight();
 
-
-        LadderGame ladderGame = new LadderGame(users);
+        LadderGame ladderGame = new LadderGame(users,ladderHeight);
 
 
         OutputView outputView = new OutputView();

@@ -19,14 +19,6 @@ public class Users {
         }
     }
 
-    public void checkDuplicateUser2() {
-
-        userList.forEach(u -> {
-            if (this.userList.contains(u)) {
-                throw new IllegalArgumentException("중복된 User가 있습니다. 중복된 USER : "+ u.name());
-            }
-        });
-    }
 
 
 }
