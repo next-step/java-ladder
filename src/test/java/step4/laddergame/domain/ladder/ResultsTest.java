@@ -1,5 +1,6 @@
 package step4.laddergame.domain.ladder;
 
+import com.google.common.collect.Streams;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +25,11 @@ public class ResultsTest {
     }
 
     @Test
-    void 결과하나가져오기() {
-        assertThat(results.getOne(0)).isEqualTo(resultList.get(0));
+    void 이동결과매치() {
+        List<Integer> moveResult = Arrays.asList(1, 0, 2);
+        List<Result> matchList = results.match(moveResult);
+        Streams.forEachPair(matchList.stream(), moveResult.stream(), (matching, moveIndex) -> {
+            assertThat(matching).isEqualTo(resultList.get(moveIndex));
+        });
     }
 }

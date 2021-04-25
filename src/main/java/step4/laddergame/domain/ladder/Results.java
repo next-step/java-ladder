@@ -11,10 +11,10 @@ import java.util.Objects;
 import static java.util.stream.Collectors.toCollection;
 
 public class Results {
-    private final List<Result> resultList;
+    private final List<Result> results;
 
     public Results(List<Result> resultList) {
-        this.resultList = resultList;
+        this.results = resultList;
     }
 
     public static Results of(List<String> resultList) {
@@ -24,23 +24,25 @@ public class Results {
     }
 
     public List<Result> getResultList() {
-        return Collections.unmodifiableList(resultList);
+        return Collections.unmodifiableList(results);
     }
 
-    public Result getOne(int index) {
-        return resultList.get(index);
+    public List<Result> match(List<Integer> moveResult) {
+        return moveResult.stream()
+                .map(moveIndex -> results.get(moveIndex))
+                .collect(toCollection(ArrayList::new));
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Results results = (Results) o;
-        return Objects.equals(resultList, results.resultList);
+        Results results1 = (Results) o;
+        return Objects.equals(results, results1.results);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(resultList);
+        return Objects.hash(results);
     }
 }

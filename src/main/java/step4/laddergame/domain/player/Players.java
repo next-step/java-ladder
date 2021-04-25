@@ -3,6 +3,9 @@
  * */
 package step4.laddergame.domain.player;
 
+import com.google.common.collect.Streams;
+import step4.laddergame.domain.ladder.Result;
+
 import java.util.*;
 import java.util.stream.IntStream;
 
@@ -48,12 +51,10 @@ public class Players {
         }
     }
 
-    public int getNumber() {
-        return players.size();
-    }
-
-    public Player getOne(int index) {
-        return players.get(index);
+    public void match(List<Result> resultList, Map<Player, Result> winning) {
+        Streams.forEachPair(players.stream(), resultList.stream(),
+                (player, result) -> winning.put(player, result)
+        );
     }
 
     public List<Player> getPlayers() {
@@ -72,4 +73,5 @@ public class Players {
     public int hashCode() {
         return Objects.hash(players);
     }
+
 }
