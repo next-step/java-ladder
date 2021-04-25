@@ -15,6 +15,10 @@ public class Player {
     return new Player(Name.ofBlankSafeWithCheckLength(name, MAX_VALUE_LENGTH));
   }
 
+  public String name() {
+    return value.getValue();
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;

@@ -24,6 +24,10 @@ public class Players {
     return values;
   }
 
+  public int totalSize() {
+    return values.size();
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;

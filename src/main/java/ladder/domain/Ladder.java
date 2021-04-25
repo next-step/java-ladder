@@ -48,6 +48,10 @@ public class Ladder {
     return this.values.get(0).width();
   }
 
+  public List<Depth> getDepth() {
+    return values;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
