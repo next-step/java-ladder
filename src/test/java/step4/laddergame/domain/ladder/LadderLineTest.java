@@ -8,19 +8,22 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
+import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderLineTest {
     private List<Point> pointList = new ArrayList<>();
     private int numberOfPeople = 6;
+    private List<Boolean> connected = Arrays.asList(FALSE, TRUE, FALSE, TRUE, FALSE, TRUE);
 
     @BeforeEach
     void setUp() {
-        // |-----|     |-----|     | 띄엄띄엄 연결된 점들 생성
+        // |-----|     |-----|     |-----| 띄엄띄엄 연결된 점들 생성
         Point now = Point.first(TRUE);
         pointList.add(now);
         for (int i = 1; i < numberOfPeople - 1; i++) {
@@ -34,6 +37,7 @@ public class LadderLineTest {
     void 연결된라인을생성() {
         LadderLine line = LadderLine.init(numberOfPeople, () -> true);
         assertThat(line).isEqualTo(new LadderLine(pointList));
+        assertThat(line.isConnect()).isEqualTo(connected);
     }
 
     @ParameterizedTest

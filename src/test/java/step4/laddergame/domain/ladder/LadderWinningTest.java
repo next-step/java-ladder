@@ -2,7 +2,6 @@ package step4.laddergame.domain.ladder;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import step4.laddergame.domain.player.Player;
 import step4.laddergame.domain.player.Players;
 
 import java.util.Arrays;
@@ -25,6 +24,6 @@ public class LadderWinningTest {
     void 플레이어전체결과매치() {
         List<Result> resultList = Arrays.asList(Result.of("결과1"), Result.of("결과2"), Result.of("결과3"), Result.of("결과4"), Result.of("결과5"), Result.of("결과6"));
         winning = LadderWinning.of(players, resultList);
-        assertThat(winning.findOne(Player.of("이름3"))).isEqualTo(resultList.get(3-1));
+        assertThat(winning.findOne("이름3")).isEqualTo(resultList.get(3-1));
     }
 }

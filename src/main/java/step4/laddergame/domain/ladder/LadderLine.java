@@ -6,6 +6,7 @@ package step4.laddergame.domain.ladder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class LadderLine {
     private final List<Point> points;
@@ -44,6 +45,12 @@ public class LadderLine {
         return points.get(index).move();
     }
 
+    public List<Boolean> isConnect() {
+        return points.stream()
+                .map(Point::isLinkedLeft)
+                .collect(Collectors.toList());
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -56,6 +63,5 @@ public class LadderLine {
     public int hashCode() {
         return Objects.hash(points);
     }
-
 
 }

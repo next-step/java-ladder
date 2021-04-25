@@ -1,6 +1,7 @@
 package step4.laddergame.domain.ladder;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.IntStream;
@@ -36,6 +37,10 @@ public class Ladder {
         return IntStream.rangeClosed(0, ladderLines.size())
                 .mapToObj(this::move)
                 .collect(toCollection(ArrayList::new));
+    }
+
+    public List<LadderLine> getLines() {
+        return Collections.unmodifiableList(ladderLines);
     }
 
     @Override

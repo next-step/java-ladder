@@ -42,6 +42,10 @@ public class Point {
         return new Point(index + 1, direction.last());
     }
 
+    public Boolean isLinkedLeft() {
+        return direction.isLeft();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

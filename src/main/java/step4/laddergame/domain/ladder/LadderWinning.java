@@ -25,8 +25,8 @@ public class LadderWinning {
         return new LadderWinning(winning);
     }
 
-    public Result findOne(Player player) {
-        return winning.get(player);
+    public Result findOne(String name) {
+        return winning.get(Player.of(name));
     }
 
     public Map<Player, Result> getWinning() {
