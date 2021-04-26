@@ -45,6 +45,14 @@ public class Direction {
     return new Direction(first, second);
   }
 
+  public boolean isRight() {
+    return this.right;
+  }
+
+  public boolean isLeft() {
+    return this.left;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -54,11 +62,11 @@ public class Direction {
       return false;
     }
     Direction direction = (Direction) o;
-    return left == direction.left && right == direction.right;
+    return isLeft() == direction.isLeft() && isRight() == direction.isRight();
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(left, right);
+    return Objects.hash(isLeft(), isRight());
   }
 }
