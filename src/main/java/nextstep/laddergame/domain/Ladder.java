@@ -1,5 +1,9 @@
 package nextstep.laddergame.domain;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 public class Ladder {
 
   private final Members members;
@@ -21,5 +25,20 @@ public class Ladder {
 
   public Members members() {
     return this.members;
+  }
+
+  public int match(Name member) {
+    return lines.next(candidate(member));
+  }
+
+  public List<Integer> matches(Members members) {
+    return IntStream.range(0, members.size())
+        .mapToObj(lines::next)
+        .collect(Collectors.toList());
+  }
+
+  private int candidate(Name member) {
+    return members.names()
+        .indexOf(member);
   }
 }

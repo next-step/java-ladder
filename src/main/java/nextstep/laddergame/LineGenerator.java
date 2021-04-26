@@ -1,8 +1,8 @@
 package nextstep.laddergame;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
+import java.util.stream.Collector;
+import java.util.stream.Stream;
 import nextstep.laddergame.domain.Line;
 
 public class LineGenerator {
@@ -14,13 +14,12 @@ public class LineGenerator {
   }
 
   public Line generate(DrawStrategy strategy) {
-    List<Boolean> points = new ArrayList<>();
-
-    IntStream.range(0, countOfMembers)
-        .mapToObj(index -> drawLine(isRowContinuousTrue(points, index), strategy))
-        .forEach(points::add);
-
-    return new Line(points);
+    return Stream.generate(strategy::isLine)
+        .limit(countOfMembers)
+        .collect(Collector.of(ProtoLine::new,
+                              ProtoLine::add,
+                              ProtoLine::merge,
+                              ProtoLine::toLine));
   }
 
   private static boolean isRowContinuousTrue(List<Boolean> points, int index) {

@@ -1,10 +1,13 @@
 package nextstep.laddergame.ui;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
+import nextstep.laddergame.domain.Award;
 import nextstep.laddergame.domain.Ladder;
+import nextstep.laddergame.domain.LadderBoard;
 import nextstep.laddergame.domain.Line;
-import nextstep.laddergame.domain.Member;
+import nextstep.laddergame.domain.Name;
 
 public class OutputView {
 
@@ -12,19 +15,20 @@ public class OutputView {
   private static final String FALSE_LINE = "|     ";
   private static final String END_LINE = "|\n";
   private static final String BLANK = "   ";
+  private static final String SEPARATOR = " : ";
 
-  public void printNames(Ladder ladder) {
+  private void printNames(Ladder ladder) {
     String names = ladder
         .members()
         .names()
         .stream()
-        .map(Member::name)
+        .map(Name::name)
         .collect(Collectors.joining("\t"));
 
     System.out.println(names);
   }
 
-  public void printLadderLine(Ladder ladder) {
+  private void printLadderLine(Ladder ladder) {
     ladder.lines()
         .entireLine()
         .stream()
@@ -32,7 +36,7 @@ public class OutputView {
         .forEach(OutputView::printLine);
   }
 
-  public static void printLine(List<Boolean> line) {
+  private static void printLine(List<Boolean> line) {
     StringBuilder sb = new StringBuilder();
     sb.append(BLANK);
     line.forEach(point -> sb.append(hasPoint(point)));
@@ -40,15 +44,36 @@ public class OutputView {
     System.out.print(sb.toString());
   }
 
-  public static String hasPoint(boolean point) {
+  private void printAward(Award award) {
+    System.out.println(award.prizes()
+        .collect(Collectors.joining("\t")));
+  }
+
+  private static String hasPoint(boolean point) {
     if(point) {
       return TRUE_LINE;
     }
     return FALSE_LINE;
   }
 
-  public void printLadder(Ladder ladder) {
+  public void printLadder(Ladder ladder, Award award) {
     printNames(ladder);
     printLadderLine(ladder);
+    printAward(award);
+  }
+
+  public void printLadderResult(Name member, LadderBoard ladderBoard) {
+    System.out.println(ladderBoard.findOne(member));
+  }
+
+  public void printAllLadderResult(LadderBoard ladderBoard) {
+    printMemberAndPrize(ladderBoard.findAll());
+  }
+
+  private void printMemberAndPrize(Map<Name, Name> resultAll) {
+    resultAll.keySet()
+        .stream()
+        .map(key -> key.name() + SEPARATOR + resultAll.get(key).name())
+        .forEach(System.out::println);
   }
 }

@@ -7,16 +7,16 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class MemberTest {
+class NameTest {
   @Test
   @DisplayName("이름을 입력받아서 Member를 생성한다")
   public void create() throws Exception {
     //given
-    Member member = new Member("abcd");
+    Name name = new Name("abcd");
 
     //when
     //then
-    assertNotNull(member);
+    assertNotNull(name);
   }
 
   @ParameterizedTest
@@ -26,7 +26,7 @@ class MemberTest {
     //given
     //when
     IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
-        () -> new Member(value));
+        () -> new Name(value));
     //then
     assertTrue(thrown.getMessage().contains("ERROR"));
   }
