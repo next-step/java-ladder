@@ -29,4 +29,47 @@ public class Lines {
     public Points points(int row) {
         return this.lines.get(row).getPoints();
     }
+
+    public int start(int playerIndex) {
+        Games games = new Games(countOfPerson, playerIndex);
+
+        int index = 0;
+        while (index < this.lines.size()) {
+            Line line = this.lines.get(index);
+            Points points = line.getPoints();
+
+            long falseCount = points.points().stream()
+                    .filter(p -> !p)
+                    .count();
+
+            if (falseCount == 0) {
+                index++;
+                continue;
+            }
+
+            if (games.isLeftBlock()) {
+                games.isRightTrue(points);
+                index++;
+                continue;
+            }
+
+            if (games.isRightBlock()) {
+                games.isLeftTrue(points);
+                index++;
+                continue;
+            }
+
+            if (games.isRightTrue(points)) {
+                index++;
+                continue;
+            }
+            if (games.isLeftTrue(points)) {
+                index++;
+                continue;
+            }
+
+            index++;
+        }
+        return games.focus;
+    }
 }
