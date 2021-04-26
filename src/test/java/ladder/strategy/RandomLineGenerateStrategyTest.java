@@ -4,29 +4,26 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class RandomLineGenerateStrategyTest {
 
-    @DisplayName("RandomLineGenerateStrategy 인스턴스 생성 여부 테스트")
+    @DisplayName("RandomLineGenerate 인스턴스 생성 여부 테스트")
     @Test
     void 생성() {
         // when
-        RandomLineGenerateStrategy randomLineGenerateStrategy = RandomLineGenerateStrategy.getInstance();
+        RandomLineGenerateStrategy strategy = RandomLineGenerateStrategy.getInstance();
 
         // then
-        assertThat(randomLineGenerateStrategy).isNotNull();
+        assertThat(strategy).isNotNull();
     }
 
-    @DisplayName("RandomLineGenerateStrategy 인스턴스 생성 여부 테스트")
+    @DisplayName("RandomLineGenerate 인스턴스가 boolean 타입 반환하는지 테스트")
     @Test
-    void 반환() {
+    void 반환_타입() {
         // when
-        RandomLineGenerateStrategy randomLineGenerateStrategy = RandomLineGenerateStrategy.getInstance();
-        boolean actual = randomLineGenerateStrategy.generateLine();
+        RandomLineGenerateStrategy strategy = RandomLineGenerateStrategy.getInstance();
 
         // then
-        assertThat(randomLineGenerateStrategy.generateLine()).isInstanceOf(Boolean.class);
+        assertThat(strategy.generate()).isInstanceOf(Boolean.class);
     }
-
 }

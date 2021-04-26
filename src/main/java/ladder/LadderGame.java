@@ -1,10 +1,10 @@
 package ladder;
 
 import ladder.domain.ladder.*;
-import ladder.domain.participant.People;
-import ladder.domain.participant.Person;
-import ladder.exception.NoSuchPersonException;
-import ladder.exception.PeopleAndResultsSizeMissMatchException;
+import ladder.domain.participant.Participant;
+import ladder.domain.participant.Participants;
+import ladder.exception.NoSuchParticipantException;
+import ladder.exception.ParticipantsAndResultsSizeMissMatchException;
 import ladder.strategy.RandomLineGenerateStrategy;
 import ladder.view.InputView;
 import ladder.view.ResultView;
@@ -24,41 +24,41 @@ public final class LadderGame {
     }
 
     public static final void main(String[] args) {
-        People people = getInputParticipants();
-        LadderResults results = getInputLadderResults(people);
+        Participants participants = getInputParticipants();
+        LadderResults results = getInputLadderResults(participants);
         LadderHeight height = getInputLadderHeight();
 
-        Ladder ladder = Ladder.from(people, height, RandomLineGenerateStrategy.getInstance());
+        Ladder ladder = Ladder.from(participants, height, RandomLineGenerateStrategy.getInstance());
 
-        RESULT_VIEW.printLadderStatus(people, ladder, results);
+        RESULT_VIEW.printLadderStatus(participants, ladder, results);
 
-        LadderResultBoard ladderResultBoard = ladder.run(people, results);
-        printLadderResultBoard(people, ladderResultBoard);
+        LadderResultBoard ladderResultBoard = ladder.run(participants, results);
+        printLadderResultBoard(participants, ladderResultBoard);
     }
 
-    private static final People getInputParticipants() {
+    private static final Participants getInputParticipants() {
         try {
-            return People.of(INPUT_VIEW.inputParticipantsByClient());
+            return Participants.of(INPUT_VIEW.inputParticipantsByClient());
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return getInputParticipants();
         }
     }
 
-    private static final LadderResults getInputLadderResults(People people) {
+    private static final LadderResults getInputLadderResults(final Participants participants) {
         try {
             String[] ladderResults = INPUT_VIEW.inputLadderResultsByClient();
-            validateSize(people, ladderResults);
+            validateSize(participants, ladderResults);
             return LadderResults.of(ladderResults);
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return getInputLadderResults(people);
+            return getInputLadderResults(participants);
         }
     }
 
-    private static final void validateSize(People people, String[] ladderResults) {
-        if (ladderResults.length != people.countOfPerson()) {
-            throw new PeopleAndResultsSizeMissMatchException();
+    private static final void validateSize(final Participants participants, final String[] ladderResults) {
+        if (ladderResults.length != participants.countOfParticipants()) {
+            throw new ParticipantsAndResultsSizeMissMatchException();
         }
     }
 
@@ -72,36 +72,36 @@ public final class LadderGame {
         }
     }
 
-    private static final void printLadderResultBoard(People people, LadderResultBoard ladderResultBoard) {
-        String command = getCommand(people);
+    private static final void printLadderResultBoard(final Participants participants, final LadderResultBoard ladderResultBoard) {
+        String command = getCommand(participants);
         if (isNotCommandAll(command)) {
-            RESULT_VIEW.printLadderGameResult(Person.of(command), ladderResultBoard);
-            printLadderResultBoard(people, ladderResultBoard);
+            RESULT_VIEW.printLadderGameResult(Participant.of(command), ladderResultBoard);
+            printLadderResultBoard(participants, ladderResultBoard);
             return;
         }
-        RESULT_VIEW.printLadderGameResultAll(people, ladderResultBoard);
+        RESULT_VIEW.printLadderGameResultAll(participants, ladderResultBoard);
     }
 
     private static final boolean isNotCommandAll(String command) {
         return (!command.equals(ALL_COMMAND));
     }
 
-    private static final String getCommand(People people) {
+    private static final String getCommand(final Participants participants) {
         try {
-            List<String> names = people.values();
+            List<String> names = participants.values();
             String command = INPUT_VIEW.inputResultPersonByClient();
             validateAvailableName(names, command);
             return command;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return getCommand(people);
+            return getCommand(participants);
         }
     }
 
-    private static final String validateAvailableName(List<String> names, String command) {
+    private static final String validateAvailableName(final List<String> names, final String command) {
         return names.stream()
                 .filter(name -> name.equals(command))
                 .findFirst()
-                .orElseThrow(() -> new NoSuchPersonException());
+                .orElseThrow(() -> new NoSuchParticipantException());
     }
 }

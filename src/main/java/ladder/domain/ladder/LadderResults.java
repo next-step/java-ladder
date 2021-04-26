@@ -6,48 +6,39 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public final class LadderResults {
 
-    private static final int START_INCLUSIVE = 0;
+    private final List<String> results;
 
-    private final List<String> ladderResults;
-
-    public static final LadderResults of(String[] ladderResults) {
-        return of(mapToLadderResultList(ladderResults));
+    public static final LadderResults of(final String[] results) {
+        return of(toList(results));
     }
 
-    private static final List<String> mapToLadderResultList(String[] ladderResults) {
-        return Arrays.stream(ladderResults).collect(Collectors.toList());
+    private static final List<String> toList(final String[] results) {
+        return Arrays.stream(results).collect(Collectors.toList());
     }
 
-    public static final LadderResults of(List<String> ladderResults) {
-        return new LadderResults(ladderResults);
+    public static final LadderResults of(final List<String> results) {
+        return new LadderResults(results);
     }
 
-    private LadderResults(List<String> ladderResults) {
-        validateNull(ladderResults);
-        this.ladderResults = ladderResults;
+    private LadderResults(final List<String> results) {
+        validateNull(results);
+        this.results = results;
     }
 
-    private final void validateNull(List<String> ladderResults) {
-        if (Objects.isNull(ladderResults)) {
+    private final void validateNull(final List<String> results) {
+        if (Objects.isNull(results)) {
             throw new StringListNullPointerException();
         }
     }
 
-    public final String get(int index) {
-        return ladderResults.get(index);
-    }
-
-    public final List<Integer> values() {
-        return IntStream.range(START_INCLUSIVE, ladderResults.size())
-                .boxed()
-                .collect(Collectors.toList());
+    public final String findByIndex(final int index) {
+        return results.get(index);
     }
 
     public final int size() {
-        return ladderResults.size();
+        return results.size();
     }
 }

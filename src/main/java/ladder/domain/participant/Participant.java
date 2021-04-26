@@ -5,32 +5,32 @@ import ladder.exception.InvalidNameSizeException;
 
 import java.util.Objects;
 
-public final class Person {
+public final class Participant {
 
     private static final String INVALID_IDENTIFIER = "all";
-    private static final int MAXIMUM_NAME_SIZE = 5;
+    private static final int MINIMUM_SIZE = 5;
 
     private final String name;
 
-    public static final Person of(String name) {
-        return new Person(name);
+    public static final Participant of(final String name) {
+        return new Participant(name);
     }
 
-    private Person(String name) {
+    private Participant(final String name) {
         validateSize(name);
         validateInvalidIdentifier(name);
         this.name = name;
     }
 
-    private final void validateInvalidIdentifier(String name) {
-        if (name.equals(INVALID_IDENTIFIER)) {
-            throw new InvalidIdentifierNameException(name);
+    private final void validateSize(final String name) {
+        if (name.length() > MINIMUM_SIZE) {
+            throw new InvalidNameSizeException(name);
         }
     }
 
-    private final void validateSize(String name) {
-        if (name.length() > MAXIMUM_NAME_SIZE) {
-            throw new InvalidNameSizeException();
+    private final void validateInvalidIdentifier(final String name) {
+        if (name.equals(INVALID_IDENTIFIER)) {
+            throw new InvalidIdentifierNameException(name);
         }
     }
 
@@ -42,8 +42,8 @@ public final class Person {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Person person = (Person) o;
-        return Objects.equals(name, person.name);
+        Participant that = (Participant) o;
+        return Objects.equals(name, that.name);
     }
 
     @Override

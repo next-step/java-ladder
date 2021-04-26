@@ -1,11 +1,16 @@
 package ladder.exception;
 
-public final class InvalidNameSizeException extends RuntimeException{
+public final class InvalidNameSizeException extends RuntimeException {
 
-    private final String message = "이름이 5글자를 초과했습니다.";
+    private final String EXCEPTION_FORMAT_MESSAGE = "(%s)와 같이 5글자가 초과된 이름은 사용할 수 없습니다.";
+
+    public InvalidNameSizeException(final String message) {
+        super(message);
+    }
 
     @Override
-    public final String getMessage() {
-        return message;
+    public String getMessage() {
+        return String.format(EXCEPTION_FORMAT_MESSAGE, super.getMessage());
     }
+
 }

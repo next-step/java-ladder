@@ -1,9 +1,9 @@
 package ladder.domain.ladder;
 
-import ladder.domain.participant.People;
-import ladder.domain.participant.Person;
-import ladder.exception.LineListNullPointerException;
+import ladder.domain.participant.Participant;
+import ladder.domain.participant.Participants;
 import ladder.strategy.LineGenerateStrategy;
+import ladder.exception.LineListNullPointerException;
 
 import java.util.HashMap;
 import java.util.List;
@@ -15,61 +15,54 @@ import java.util.stream.Stream;
 
 public final class Ladder {
 
-    private static final int START_INCLUSIVE = 0;
+    private static final int ZERO = 0;
 
-    private final List<Line> ladder;
+    private final List<Line> lines;
 
-    public static final Ladder from(List<Line> ladder) {
-        return new Ladder(ladder);
-    }
-
-    private Ladder(List<Line> ladder) {
-        validateNull(ladder);
-        this.ladder = ladder;
-    }
-
-    public static final Ladder from(People people, LadderHeight height, LineGenerateStrategy strategy) {
-        return from(IntStream.range(START_INCLUSIVE, height.height())
-                .mapToObj(i -> Line.of(people, strategy))
+    public static final Ladder from(final Participants participants, final LadderHeight ladderHeight, final LineGenerateStrategy strategy) {
+        return from(IntStream.range(ZERO, ladderHeight.height())
+                .mapToObj(i -> Line.of(participants, strategy))
                 .collect(Collectors.toList())
         );
     }
 
-    private final void validateNull(List<Line> ladder) {
-        if (Objects.isNull(ladder)) {
+    public static final Ladder from(final List<Line> lines) {
+        return new Ladder(lines);
+    }
+
+    private Ladder(final List<Line> lines) {
+        validateNull(lines);
+        this.lines = lines;
+    }
+
+    private final void validateNull(final List<Line> lines) {
+        if (Objects.isNull(lines)) {
             throw new LineListNullPointerException();
         }
     }
 
-    public final LadderResultBoard run(People people, LadderResults results) {
-        List<Integer> list = results.values();
-        ladder.forEach(line -> line.run(list));
+    public final Stream<Line> stream() {
+        return lines.stream();
+    }
 
-        Map<Person, String> resultMap = new HashMap<>();
-        IntStream.range(START_INCLUSIVE, list.size())
+    public final LadderResultBoard run(final Participants participants, final LadderResults ladderResults) {
+        Map<Participant, String> resultMap = new HashMap<>();
+        IntStream.range(ZERO, participants.countOfParticipants())
                 .forEach(index -> {
-                    Person person = people.person(list.get(index));
-                    String result = results.get(index);
-                    resultMap.put(person, result);
+                    final int now = move(index);
+                    Participant participant = participants.findByIndex(index);
+                    String result = ladderResults.findByIndex(now);
+                    resultMap.put(participant, result);
                 });
-
         return LadderResultBoard.of(resultMap);
     }
 
-    public final Stream<Line> stream() {
-        return ladder.stream();
+    private final int move(final int index) {
+        int now = index;
+        for (int i = ZERO; i < lines.size(); i++) {
+            now = lines.get(i).move(now);
+        }
+        return now;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Ladder ladder1 = (Ladder) o;
-        return Objects.equals(ladder, ladder1.ladder);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(ladder);
-    }
 }

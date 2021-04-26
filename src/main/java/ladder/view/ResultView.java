@@ -4,8 +4,8 @@ import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.LadderResultBoard;
 import ladder.domain.ladder.LadderResults;
 import ladder.domain.ladder.Line;
-import ladder.domain.participant.People;
-import ladder.domain.participant.Person;
+import ladder.domain.participant.Participants;
+import ladder.domain.participant.Participant;
 
 import java.util.stream.IntStream;
 
@@ -20,7 +20,7 @@ public final class ResultView {
 
     private static final int ZERO = 0;
 
-    private static class ResultViewHolder {
+    private static final class ResultViewHolder {
         private static final ResultView instance = new ResultView();
     }
 
@@ -31,10 +31,9 @@ public final class ResultView {
         return ResultViewHolder.instance;
     }
 
-
-    public final void printLadderStatus(People people, Ladder ladder, LadderResults results) {
+    public final void printLadderStatus(final Participants participants, final Ladder ladder, final LadderResults results) {
         printExecutionResult();
-        printPeople(people);
+        printParticipants(participants);
         printLadder(ladder);
         printLadderResult(results);
     }
@@ -43,62 +42,70 @@ public final class ResultView {
         System.out.println(EXECUTION_RESULT_MESSAGE);
     }
 
-    private final void printLadder(Ladder ladder) {
+    private final void printLadder(final Ladder ladder) {
         ladder.stream().forEach(this::printLine);
     }
 
-    private final void printPeople(People people) {
-        printPeopleName(people);
+    private final void printParticipants(final Participants participants) {
+        printParticipantsName(participants);
     }
 
-    private final void printLadderResult(LadderResults results) {
+    private final void printLadderResult(final LadderResults results) {
         StringBuilder stringBuilder = new StringBuilder();
         IntStream.range(ZERO, results.size())
-                .forEach(index -> stringBuilder.append(String.format(NAME_FORMAT, results.get(index))));
+                .forEach(index -> stringBuilder.append(formatLadderResult(results, index)));
         System.out.println(stringBuilder);
     }
 
-    private final void printLine(Line line) {
+    private final String formatLadderResult(final LadderResults results, final int index) {
+        return String.format(NAME_FORMAT, results.findByIndex(index));
+    }
+
+    private final void printLine(final Line line) {
         StringBuilder stringBuilder = new StringBuilder();
         line.stream()
-                .map(point -> point.hasPoint())
+                .map(point -> point.isLeft())
                 .map(this::mapToLine)
                 .forEach(stringBuilder::append);
         System.out.println(stringBuilder);
     }
 
-    private final String mapToLine(Boolean lineResult) {
+    private final String mapToLine(final Boolean lineResult) {
         if (lineResult) {
             return String.format(LINE_FORMAT, CROSS_LINE);
         }
         return String.format(LINE_FORMAT, NORMAL_LINE);
     }
 
-    private final void printPeopleName(People people) {
+    private final void printParticipantsName(final Participants participants) {
         StringBuilder stringBuilder = new StringBuilder();
-        people.stream()
-                .map(Person::name)
+        participants.stream()
+                .map(Participant::name)
                 .map(name -> String.format(NAME_FORMAT, name))
                 .forEach(stringBuilder::append);
         System.out.println(stringBuilder);
     }
 
-    public final void printLadderGameResult(Person person, LadderResultBoard ladderResultBoard) {
+    public final void printLadderGameResult(final Participant participant, final LadderResultBoard ladderResultBoard) {
         StringBuilder stringBuilder = new StringBuilder();
-        String result = String.format(RESULT_FORMAT, person.name(), ladderResultBoard.findResultByPerson(person));
+        String result = formatLadderGameResult(ladderResultBoard, participant);
         stringBuilder.append(result);
         System.out.println(stringBuilder);
     }
 
-    public final void printLadderGameResultAll(People people, LadderResultBoard ladderResultBoard) {
+    public final void printLadderGameResultAll(final Participants participants, final LadderResultBoard ladderResultBoard) {
         printExecutionResult();
         StringBuilder stringBuilder = new StringBuilder();
-        people.stream().forEach(person -> {
-                    String result = String.format(RESULT_FORMAT, person.name(), ladderResultBoard.findResultByPerson(person));
+        participants.stream().forEach(participant -> {
+                    String result = formatLadderGameResult(ladderResultBoard, participant);
                     stringBuilder.append(result);
                 }
         );
         System.out.println(stringBuilder);
+    }
+
+    private final String formatLadderGameResult(final LadderResultBoard ladderResultBoard, final Participant participant) {
+        return String.format(RESULT_FORMAT, participant.name(), ladderResultBoard.findResultByParticipant(participant));
     }
 
 }

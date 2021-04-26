@@ -1,17 +1,18 @@
 package ladder.domain.ladder;
 
-import ladder.domain.participant.People;
-import ladder.exception.PointListNullPointerException;
+import ladder.domain.participant.Participants;
 import ladder.strategy.LineGenerateStrategy;
+import ladder.exception.PointListNullPointerException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 class LineTest {
 
@@ -19,10 +20,11 @@ class LineTest {
     @Test
     void 생성() {
         // given
-        List<Point> points = new ArrayList<>();
+        Participants participants = Participants.of("a,b,c,".split(","));
+        LineGenerateStrategy strategy = () -> true;
 
         // when
-        Line line = Line.of(points);
+        Line line = Line.of(participants, strategy);
 
         // then
         assertThat(line).isNotNull();
@@ -30,30 +32,71 @@ class LineTest {
 
     @DisplayName("Line 인스턴스에 null 주입시 예외처리 여부 테스트")
     @Test
-    void 검증_NULL() {
+    void 검증_null() {
         // given
-        List<Point> points = null;
+        List<Point> pointList = null;
 
         // when and then
-        assertThatThrownBy(() -> Line.of(points))
+        assertThatThrownBy(() -> Line.of(pointList))
                 .isInstanceOf(PointListNullPointerException.class)
                 .hasMessage("List<Point>가 null 입니다.");
+
     }
 
-    @DisplayName("Line 인스턴스가 전략에 맞게끔 Line 인스턴스를 만드는지 테스트")
+    @DisplayName("Line 인스턴스가 원하는 인스턴스를 생성하는지 테스트")
     @Test
-    void 검증_반환값() {
+    void 비교() {
         // given
-        Line expected = Line.of(Arrays.asList(Point.of(false), Point.of(true), Point.of(false)));
-        People people = People.of("a, b, c".split(","));
+        Participants participants = Participants.of("a,b,c,".split(","));
         LineGenerateStrategy strategy = () -> true;
 
+        Point first = Point.first(true);
+        Point second = first.next(strategy);
+        Point third = second.last();
+        List<Point> pointList = Arrays.asList(first, second, third);
+
         // when
-        Line actual = Line.of(people, strategy);
+        Line actual = Line.of(participants, strategy);
+        Line expected = Line.of(pointList);
 
         // then
         assertThat(actual).isEqualTo(expected);
     }
 
+    @DisplayName("Line 인스턴스가 Stream<Point>를 반환하는지 테스트")
+    @Test
+    void 반환_stream() {
+        // given
+        Participants participants = Participants.of("a,b,c,".split(","));
+        LineGenerateStrategy strategy = () -> true;
 
+        // when
+        Line line = Line.of(participants, strategy);
+
+        // then
+        assertAll(
+                () -> assertThat(line.stream()).isInstanceOf(Stream.class),
+                () -> assertThat(line.stream()).isNotNull()
+        );
+
+    }
+
+
+    @DisplayName("Line 인스턴스가 특정 point 위치를 이동시키는지 테스트")
+    @Test
+    void 기능_이동() {
+        // given
+        Participants participants = Participants.of("a,b,c,".split(","));
+        LineGenerateStrategy strategy = () -> true;
+
+        // when
+        Line line = Line.of(participants, strategy);
+        Line line2 = Line.of(participants, () -> false);
+
+        // then
+        assertAll(
+                () -> assertThat(line.move(0)).isEqualTo(1),
+                () -> assertThat(line2.move(0)).isEqualTo(0)
+        );
+    }
 }

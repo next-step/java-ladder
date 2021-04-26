@@ -1,9 +1,8 @@
 package ladder.domain.ladder;
 
-import ladder.domain.participant.People;
-import ladder.exception.PointListNullPointerException;
+import ladder.domain.participant.Participants;
 import ladder.strategy.LineGenerateStrategy;
-import ladder.strategy.RandomLineGenerateStrategy;
+import ladder.exception.PointListNullPointerException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,68 +12,72 @@ import java.util.stream.Stream;
 
 public final class Line {
 
-    private static final int ZERO = 0;
-    private static final int ONE = 1;
+    private static final int START_INCLUSIVE = 0;
+    private static final int TWO = 2;
 
-    private final List<Point> points;
+    private final List<Point> line;
 
-    private Line(List<Point> points) {
-        validateNull(points);
-        this.points = points;
+    public static final Line of(final Participants participants, final LineGenerateStrategy strategy) {
+        return of(init(participants, strategy));
     }
 
-    public static Line of(People people, LineGenerateStrategy strategy) {
-        List<Point> points = new ArrayList<>();
-        points.add(Point.first());
-        IntStream.range(ZERO, people.countOfPerson() - ONE)
-                .forEach(beforeIndex -> points.add(generatePoint(points.get(beforeIndex), strategy)));
-        return Line.of(points);
+    public static final Line of(final List<Point> line) {
+        return new Line(line);
     }
 
-    private static final Point generatePoint(Point before, LineGenerateStrategy strategy) {
-        if (before.hasPoint()) {
-            return Point.of(Boolean.FALSE);
-        }
-        return Point.of(strategy.generateLine());
+    public Line(final List<Point> line) {
+        validateNull(line);
+        this.line = line;
     }
 
-    private final void validateNull(List<Point> points) {
-        if (Objects.isNull(points)) {
+    private final void validateNull(final List<Point> line) {
+        if (Objects.isNull(line)) {
             throw new PointListNullPointerException();
         }
     }
 
-    public static final Line of(List<Point> points) {
-        return new Line(points);
+    public final int move(final int position) {
+        return line.get(position).move();
+    }
+
+    private static final List<Point> init(final Participants participants, final LineGenerateStrategy strategy) {
+        final int countOfParticipants = participants.countOfParticipants();
+        List<Point> points = new ArrayList<>();
+        points.add(getFirst(strategy));
+        IntStream.range(START_INCLUSIVE, countOfParticipants - TWO)
+                .forEach(before -> points.add(getNext(strategy, points, before)));
+        points.add(getLast(countOfParticipants, points));
+        return points;
+    }
+
+    private static final Point getFirst(final LineGenerateStrategy strategy) {
+        return Point.first(strategy.generate());
+    }
+
+    private static final Point getNext(final LineGenerateStrategy strategy, final List<Point> points, final int before) {
+        return points.get(before).next(strategy);
+    }
+
+    private static final Point getLast(final int countOfParticipants, final List<Point> points) {
+        return points.get(countOfParticipants - TWO).last();
     }
 
     public final Stream<Point> stream() {
-        return points.stream();
-    }
-
-    public final void run(List<Integer> list) {
-        int beforePosition = list.get(ZERO);
-        for (int index = ONE; index < list.size(); index++) {
-            int nowPosition = list.get(index);
-            if (points.get(index).hasPoint()) {
-                list.set(index - ONE, nowPosition);
-                list.set(index, beforePosition);
-                continue;
-            }
-            beforePosition = nowPosition;
-        }
+        return line.stream();
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Line line = (Line) o;
-        return Objects.equals(points, line.points);
+        Line line1 = (Line) o;
+        return Objects.equals(line, line1.line);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(points);
+        return Objects.hash(line);
     }
+
+
 }

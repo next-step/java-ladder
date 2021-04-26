@@ -1,37 +1,71 @@
 package ladder.domain.ladder;
 
+import ladder.strategy.LineGenerateStrategy;
+import ladder.exception.DirectionNullPointerException;
+import ladder.exception.InputNegativeNumberException;
+
 import java.util.Objects;
 
 public final class Point {
 
-    private final boolean point;
+    private static final int ZERO = 0;
+    private static final int INCREASE = 1;
 
-    public static final Point of(boolean point) {
-        return new Point(point);
+    private final int position;
+    private final Direction direction;
+
+    private Point(final int position, final Direction direction) {
+        validateNegative(position);
+        validateNull(direction);
+        this.position = position;
+        this.direction = direction;
     }
 
-    private Point(boolean point) {
-        this.point = point;
+    private final void validateNull(final Direction direction) {
+        if (Objects.isNull(direction)) {
+            throw new DirectionNullPointerException();
+        }
     }
 
-    public static final Point first() {
-        return new Point(Boolean.FALSE);
+    private final void validateNegative(final int position) {
+        if (position < ZERO) {
+            throw new InputNegativeNumberException(position);
+        }
     }
 
-    public final boolean hasPoint() {
-        return point == Boolean.TRUE;
+    public final int move() {
+        Heading heading = direction.heading();
+        return heading.move(position);
+    }
+
+    public static final Point first(final boolean right) {
+        return new Point(ZERO, Direction.first(right));
+    }
+
+    public final Point last() {
+        return new Point(position + INCREASE, direction.last());
+    }
+
+    public final Point next(LineGenerateStrategy strategy) {
+        return new Point(position + INCREASE, direction.next(strategy));
+    }
+
+    public final boolean isLeft() {
+        return direction.heading().equals(Heading.LEFT);
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Point point1 = (Point) o;
-        return point == point1.point;
+        Point point = (Point) o;
+        return position == point.position && Objects.equals(direction, point.direction);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(point);
+        return Objects.hash(position, direction);
     }
+
+
 }

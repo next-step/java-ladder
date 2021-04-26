@@ -13,7 +13,7 @@ public final class InputView {
     private static final String INPUT_RESULT_PERSON_MESSAGE = "결과를 보고 싶은 사람은?";
     private static final String REGEX = ",";
 
-    private static class InputViewHolder {
+    private static final class InputViewHolder {
         private static final InputView instance = new InputView();
     }
 
@@ -26,23 +26,22 @@ public final class InputView {
 
     public final String[] inputParticipantsByClient() {
         System.out.println(INPUT_PARTICIPANTS_MESSAGE);
-        return SCANNER.nextLine().split(REGEX);
+        return SCANNER.nextLine().trim().split(REGEX);
     }
 
     public final String[] inputLadderResultsByClient() {
         System.out.println(INPUT_LADDER_RESULTS_MESSAGE);
-        return SCANNER.nextLine().split(REGEX);
+        return SCANNER.nextLine().trim().split(REGEX);
     }
 
     public final int inputLadderHeightByClient() {
         System.out.println(INPUT_LADDER_HEIGHT_MESSAGE);
-        return valueOf(SCANNER.nextLine());
+        return valueOf(SCANNER.nextLine().trim());
     }
 
     public final String inputResultPersonByClient() {
         System.out.println(INPUT_RESULT_PERSON_MESSAGE);
-        return SCANNER.nextLine();
+        return SCANNER.nextLine().trim();
     }
-
 
 }
