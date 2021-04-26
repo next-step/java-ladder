@@ -1,7 +1,7 @@
 /*
  * 사다리타기 게임 참여자를 담당하는 클래스
  * */
-package laddergame.domain.player;
+package step4.laddergame.domain.player;
 
 import java.util.Objects;
 import java.util.Set;
@@ -13,13 +13,14 @@ public class Player {
         this.name = name;
     }
 
+    public static Player of(String name) {
+        return new Player(new Name(name));
+    }
+
     public void addName(Set<Name> names) {
         names.add(name);
     }
 
-    public boolean checkName(Name name) {
-        return this.name.equals(name);
-    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
