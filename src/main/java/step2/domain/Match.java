@@ -15,6 +15,7 @@ public class Match {
             return findMatchResultOfAll(members, ladder, results);
         }
         Map<String, String> returnMap = findResultsMatchingOfMember(members, ladder, results, findMember);
+
         return new Match(returnMap);
     }
 
@@ -23,6 +24,7 @@ public class Match {
         int memberIndex = members.indexOf(findMember);
         int matchingOfResultIndex = ladder.move(memberIndex);
         returnMap.put(members.getMemberOfIndex(memberIndex), results.getResultOfMember(matchingOfResultIndex));
+
         return returnMap;
     }
 

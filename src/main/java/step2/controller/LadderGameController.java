@@ -10,7 +10,7 @@ public class LadderGameController {
         RequestLadderDTO requestLadderDTO = exportRequestLadderDTO();
 
         Members members = requestLadderDTO.getMembers();
-        Ladder ladder = Ladder.of(members.getSize(), requestLadderDTO.getLadderHeight(), new RandomGenerator());
+        Ladder ladder = Ladder.create(members.getSize(), requestLadderDTO.getLadderHeight(), new RandomGenerator());
 
         ResponseMembersDTO responseMembersDTO = exportResponseMembersDTO(members);
         ResultView.printMembers(responseMembersDTO);

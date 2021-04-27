@@ -7,6 +7,9 @@ public class Direction {
     private final boolean right;
 
     private Direction(boolean left, boolean right) {
+        if (left && right) {
+            throw new IllegalStateException();
+        }
         this.left = left;
         this.right = right;
     }
@@ -15,7 +18,7 @@ public class Direction {
         return new Direction(false, right);
     }
 
-    public Direction middle(boolean right) {
+    public Direction next(boolean right) {
         if (this.right) {
             return new Direction(true, false);
         }
@@ -46,4 +49,5 @@ public class Direction {
     public int hashCode() {
         return Objects.hash(left, right);
     }
+
 }

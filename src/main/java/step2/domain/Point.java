@@ -11,9 +11,6 @@ public class Point {
     private final Direction direction;
 
     private Point(int index, Direction direction) {
-        if (direction.isLeft() && direction.isRight()) {
-            throw new IllegalArgumentException(LEFT_AND_RIGHT_NOT_TRUE);
-        }
         this.index = index;
         this.direction = direction;
     }
@@ -22,8 +19,8 @@ public class Point {
         return new Point(FIRST_INDEX, Direction.first(booleanGenerator.nextBoolean()));
     }
 
-    public Point middle(BooleanGenerator booleanGenerator) {
-        return new Point(this.index + NEXT_INDEX, this.direction.middle(booleanGenerator.nextBoolean()));
+    public Point next(BooleanGenerator booleanGenerator) {
+        return new Point(this.index + NEXT_INDEX, this.direction.next(booleanGenerator.nextBoolean()));
     }
 
     public Point last() {
