@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import ladder.exception.DepthLineOutOfBoundsException;
 import ladder.rule.LineRule;
 
 import java.util.ArrayList;
@@ -8,9 +9,6 @@ import java.util.List;
 import java.util.Objects;
 
 public class Depth {
-  private static final String ERROR_INVALID_LINE_COUNT_FORMAT = "최소 그릴 수 있는 라인 갯수(%d)가 아닙니다.";
-  private static final int MIN_OF_LINE_COUNT = 1;
-  
   private final List<Line> values;
 
   private Depth(List<Line> values) {
@@ -30,9 +28,7 @@ public class Depth {
   }
 
   private static void checkValidLineCount(int countOfLine) {
-    if (MIN_OF_LINE_COUNT > countOfLine) {
-      throw new IllegalArgumentException(String.format(ERROR_INVALID_LINE_COUNT_FORMAT, MIN_OF_LINE_COUNT));
-    }
+    DepthLineOutOfBoundsException.verify(countOfLine);
   }
 
   public List<Line> getValues() {

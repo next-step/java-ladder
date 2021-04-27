@@ -1,11 +1,12 @@
 package ladder.domain;
 
+import ladder.exception.DepthLineOutOfBoundsException;
 import ladder.rule.LineRule;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 class DepthTest {
@@ -40,7 +41,9 @@ class DepthTest {
   @Test
   @DisplayName("사다리타기 깊이(높이)는 최소 1개 이상의 라인이 필요하다.")
   void generate_error() {
-    assertThatThrownBy(() -> Depth.generate(LineRule.drawing(), 0))
-            .isInstanceOf(IllegalArgumentException.class);
+    assertThatExceptionOfType(DepthLineOutOfBoundsException.class)
+            .isThrownBy(() -> Depth.generate(LineRule.drawing(), 0))
+            .withMessageMatching("최소 그릴 수 있는 라인 갯수\\(\\d+\\)가 아닙니다.")
+    ;
   }
 }
