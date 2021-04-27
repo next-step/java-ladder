@@ -23,10 +23,12 @@ class LadderTest {
 
     // when
     Ladder ladder = Ladder.generate(height, width);
-    System.out.println(ladder);
+
     // then
-    assertThat(ladder.height()).isEqualTo(height);
-    assertThat(ladder.width()).isEqualTo(width);
+    assertAll(
+            () -> assertThat(ladder.height()).isEqualTo(height),
+            () -> assertThat(ladder.width()).isEqualTo(width)
+    );
   }
 
   @Test
