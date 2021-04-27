@@ -14,11 +14,15 @@ import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
 public class Controller {
+    private static final int INPUT_PLAYER_NUMBER = 0;
+    private static final int INPUT_PRIZE_NUMBER = 1;
+    private static final String INPUT_RESULT_ALL = "all";
+
     public void run() {
         List<String> info = InputView.getInfoFromClient();
 
-        Players players = new Players(Arrays.asList(info.get(0).split(",")));
-        Prizes prizes = new Prizes(Arrays.asList(info.get(1).split(",")));
+        Players players = new Players(Arrays.asList(info.get(INPUT_PLAYER_NUMBER).split(",")));
+        Prizes prizes = new Prizes(Arrays.asList(info.get(INPUT_PRIZE_NUMBER).split(",")));
         PrizeMapper prizeMapper = new PrizeMapper(prizes, players);
         LadderGame game = new LadderGame(prizeMapper, Integer.parseInt(info.get(2)));
 
@@ -28,7 +32,7 @@ public class Controller {
         ResultView.printObjectsName(prizes.getAllPrizesName());
 
         String input = InputView.getPlayerResult();
-        if ("all".equals(input)) {
+        if (INPUT_RESULT_ALL.equals(input)) {
             ResultView.printResultList(prizeMapToStringDto(game.start()));
             return;
         }
