@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.IntStream;
 
 public class Depth {
   private final List<Line> values;
@@ -18,14 +19,15 @@ public class Depth {
   public static Depth generate(LineRule lineRule, int countOfLine) {
     checkValidLineCount(countOfLine);
     List<Line> values = new ArrayList<>(countOfLine);
-    values.add(Line.generate(lineRule));
-
-    for (int i = 1; i < countOfLine; i++) {
-      Line front = values.get(i - 1);
-      values.add(front.newNextLine(lineRule));
-    }
+    IntStream.range(0, countOfLine)
+            .mapToObj(i -> Line.generate(lineRule))
+            .reduce(Line.generate(lineRule), (frontLine, nextLine) -> {
+              values.add(frontLine);
+              return frontLine.newNextLine(lineRule);
+            });
     return new Depth(values);
-  }
+
+}
 
   private static void checkValidLineCount(int countOfLine) {
     DepthLineOutOfBoundsException.verify(countOfLine);
