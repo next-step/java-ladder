@@ -43,7 +43,6 @@ class DepthTest {
   void generate_error() {
     assertThatExceptionOfType(DepthLineOutOfBoundsException.class)
             .isThrownBy(() -> Depth.generate(LineRule.drawing(), 0))
-            .withMessageMatching("최소 그릴 수 있는 라인 갯수\\(\\d+\\)가 아닙니다.")
-    ;
+            .withMessageMatching("사다리는 최소 \\d+ 라인 갯수가 필요합니다.");
   }
 }

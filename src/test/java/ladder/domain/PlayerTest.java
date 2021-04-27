@@ -27,7 +27,7 @@ class PlayerTest {
     // given
 
     // when
-    final boolean validName = PlayerNameOverLimitLengthException.MAX >= name.length();
+    final boolean validName = Player.MAX_LENGTH >= name.length();
 
     // then
     assertAll("사다리 게임 참가자를 생성한다.",
@@ -46,12 +46,7 @@ class PlayerTest {
   @ParameterizedTest
   @NullAndEmptySource
   @DisplayName("사다리 게임 참가자 이름은 null or 빈 문자열인 경우 이셉션을 발생한다.")
-  void create_blank_error(String actual) {
-    // given
-
-    // when
-
-    // then
+  void create_error_blank(String actual) {
     assertThatExceptionOfType(PlayerNameBlankException.class)
             .isThrownBy(() -> Player.create(actual))
             .withMessageMatching("이름은 null 또는 빈 문자열을 입력할 수 없습니다.");
@@ -59,9 +54,9 @@ class PlayerTest {
 
   @RepeatedTest(100)
   @DisplayName("사다리 게임 참가자 이름은 길이가 5 초과되면 이셉션을 발생한다.")
-  void create_blank_error() {
+  void create_error_name_length() {
     // given
-    int maxLength = PlayerNameOverLimitLengthException.MAX;
+    int maxLength = Player.MAX_LENGTH;
 
     // when
     String actual = StringUtil.generatedRandomString(maxLength + 1);

@@ -10,6 +10,8 @@ import java.util.Objects;
 import java.util.stream.IntStream;
 
 public class Depth {
+  private static final int MIN_OF_LINE = 1;
+
   private final List<Line> values;
 
   private Depth(List<Line> values) {
@@ -30,7 +32,9 @@ public class Depth {
 }
 
   private static void checkValidLineCount(int countOfLine) {
-    DepthLineOutOfBoundsException.verify(countOfLine);
+    if (MIN_OF_LINE > countOfLine) {
+      throw new DepthLineOutOfBoundsException(MIN_OF_LINE);
+    }
   }
 
   public List<Line> getValues() {

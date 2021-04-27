@@ -36,10 +36,10 @@ class LadderTest {
   void generate_error() {
     assertAll(
             () -> assertThatExceptionOfType(LadderHeightOutOfBoundsException.class)
-                    .isThrownBy(() -> Ladder.generate(0, 1))
+                    .isThrownBy(() -> Ladder.generate(Ladder.MIN_OF_HEIGHT - 1, Ladder.MIN_OF_WIDTH))
                     .withMessageMatching("사다리의 최소 높이는 \\d+ 입니다."),
             () -> assertThatExceptionOfType(LadderWidthOutOfBoundsException.class)
-                    .isThrownBy(() -> Ladder.generate(1, 0))
+                    .isThrownBy(() -> Ladder.generate(Ladder.MIN_OF_HEIGHT, Ladder.MIN_OF_WIDTH - 1))
                     .withMessageMatching("사다리의 최소 폭은 \\d+ 입니다.")
     );
   }
