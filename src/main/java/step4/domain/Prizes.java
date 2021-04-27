@@ -17,12 +17,12 @@ public class Prizes {
     private final List<String> prizes;
 
     public Prizes(List<String> prizes, int playerSize) {
-        validateSize(prizes, playerSize);
+        playerSizeValidate(prizes, playerSize);
 
         this.prizes = prizes;
     }
 
-    private void validateSize(List<String> prizes, int playerSize) {
+    private void playerSizeValidate(List<String> prizes, int playerSize) {
         if (prizes.size() > playerSize) {
             throw new IllegalPlayerSizeException("잘못된 playerSize입니다.");
         }
