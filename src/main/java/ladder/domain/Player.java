@@ -1,22 +1,25 @@
 package ladder.domain;
 
+import ladder.exception.PlayerNameBlankException;
+import ladder.exception.PlayerNameOverLimitLengthException;
+
 import java.util.Objects;
 
 public class Player {
-  public static final int MAX_VALUE_LENGTH = 5;
+  private final String value;
 
-  private final Name value;
-
-  private Player(Name value) {
+  private Player(String value) {
     this.value = value;
   }
 
   public static Player create(String name) {
-    return new Player(Name.ofBlankSafeWithCheckLength(name, MAX_VALUE_LENGTH));
+    PlayerNameBlankException.verify(name);
+    PlayerNameOverLimitLengthException.verify(name);
+    return new Player(name);
   }
 
   public String name() {
-    return value.getValue();
+    return value;
   }
 
   @Override
