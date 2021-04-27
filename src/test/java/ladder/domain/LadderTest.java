@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.exception.LadderHeightOutOfBoundsException;
+import ladder.exception.LadderWidthOutOfBoundsException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
@@ -7,7 +9,8 @@ import org.junit.jupiter.api.Test;
 import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 class LadderTest {
 
@@ -29,8 +32,14 @@ class LadderTest {
   @Test
   @DisplayName("최소 높이와 폭은 1 이상이어야 한다.")
   void generate_error() {
-    assertThatThrownBy(() -> Ladder.generate(0, 0))
-            .isInstanceOf(IllegalArgumentException.class);
+    assertAll(
+            () -> assertThatExceptionOfType(LadderHeightOutOfBoundsException.class)
+                    .isThrownBy(() -> Ladder.generate(0, 1))
+                    .withMessageMatching("사다리의 최소 높이는 \\d+ 입니다."),
+            () -> assertThatExceptionOfType(LadderWidthOutOfBoundsException.class)
+                    .isThrownBy(() -> Ladder.generate(1, 0))
+                    .withMessageMatching("사다리의 최소 폭은 \\d+ 입니다.")
+    );
   }
 
   private int get10LessThenRandomNumber() {
