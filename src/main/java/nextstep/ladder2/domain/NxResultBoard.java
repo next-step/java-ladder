@@ -1,0 +1,18 @@
+package nextstep.ladder2.domain;
+
+import java.util.List;
+
+public class NxResultBoard {
+    private final List<NxResult> resultBoard;
+
+    public NxResultBoard(List<NxResult> resultBoard) {
+        this.resultBoard = resultBoard;
+    }
+
+    public NxResult findResultByPlayer(NxPlayer player) {
+        return resultBoard.stream()
+                .filter(result -> result.findPlayer(player))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("해당 이름을 가진 플레이어가 없습니다."));
+    }
+}
