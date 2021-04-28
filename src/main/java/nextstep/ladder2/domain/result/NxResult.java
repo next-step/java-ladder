@@ -19,4 +19,8 @@ public class NxResult {
     public NxPrize getPrize() {
         return prize;
     }
+
+    public NxPlayer getPlayer() {
+        return player;
+    }
 }

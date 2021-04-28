@@ -20,7 +20,7 @@ public class RandomBuilder implements LadderBuilder {
     private NxLine createLine(int countOfPerson) {
         List<Boolean> booleans = new ArrayList<>();
         boolean prev = false;
-        for(int i = 0; i < countOfPerson; i++) {
+        for(int i = 0; i < countOfPerson - 1; i++) {
             prev = nextBoolean(prev);
             booleans.add(prev);
         }
