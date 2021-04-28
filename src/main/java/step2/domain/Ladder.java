@@ -2,6 +2,8 @@ package step2.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.IntStream;
 
 public class Ladder {
     private static final String MIN_LADDER_HEIGHT_EXCEPTION_MESSAGE = "사다리 높이는 1이상 이여야 합니다.";
@@ -13,16 +15,17 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public static Ladder of(int countOfPerson, int ladderHeight, BooleanGenerator booleanGenerator) {
+    public static Ladder create(int countOfPerson, int ladderHeight, BooleanGenerator booleanGenerator) {
         validateLadder(ladderHeight);
-        List<Line> newLadder = createLadder(countOfPerson, ladderHeight, booleanGenerator);
+        List<Line> newLadder = ladderCreator(countOfPerson, ladderHeight, booleanGenerator);
         return new Ladder(newLadder);
     }
 
-    private static List<Line> createLadder(int countOfPerson, int ladderHeight, BooleanGenerator booleanGenerator) {
+    private static List<Line> ladderCreator(int countOfPerson, int ladderHeight, BooleanGenerator booleanGenerator) {
         List<Line> newLadder = new ArrayList<>();
+
         for (int i = 0; i < ladderHeight; i++) {
-            Line line = Line.of(countOfPerson, booleanGenerator);
+            Line line = Line.init(countOfPerson, booleanGenerator);
             newLadder.add(line);
         }
         return newLadder;

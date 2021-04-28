@@ -12,16 +12,16 @@ public class Line {
         this.points = points;
     }
 
-    public static Line of(int countOfPerson, BooleanGenerator booleanGenerator) {
+    public static Line init(int countOfPerson, BooleanGenerator booleanGenerator) {
         validateLine(countOfPerson);
         return createPoints(countOfPerson, booleanGenerator);
     }
 
     private static Line createPoints(int countOfPerson, BooleanGenerator booleanGenerator) {
         List<Point> newPoints = new ArrayList<>();
-        Point point = createFirstPoint(booleanGenerator, newPoints);
-        createMiddlePoint(countOfPerson, booleanGenerator, newPoints, point);
-        createLastPoint(newPoints);
+        Point point = initFirst(booleanGenerator, newPoints);
+        point = initBody(countOfPerson, booleanGenerator, newPoints, point);
+        initLast(newPoints, point);
         return new Line(newPoints);
     }
 
@@ -31,21 +31,23 @@ public class Line {
         }
     }
 
-    private static Point createFirstPoint(BooleanGenerator booleanGenerator, List<Point> points) {
+    private static Point initFirst(BooleanGenerator booleanGenerator, List<Point> points) {
         Point point = Point.first(booleanGenerator);
         points.add(point);
         return point;
     }
 
-    private static void createMiddlePoint(int countOfPerson, BooleanGenerator booleanGenerator, List<Point> points, Point point) {
+    private static Point initBody(int countOfPerson, BooleanGenerator booleanGenerator, List<Point> points, Point point) {
         for (int i = MIDDLE_FIRST_INDEX; i < countOfPerson - 1; i++) {
-            point = point.middle(booleanGenerator);
+            point = point.next(booleanGenerator);
             points.add(point);
         }
+        return point;
     }
 
-    private static void createLastPoint(List<Point> points) {
-        points.add(points.get(points.size() - 1).last());
+    private static void initLast(List<Point> points, Point point) {
+        point = point.last();
+        points.add(point);
     }
 
     public List<Point> getLine() {

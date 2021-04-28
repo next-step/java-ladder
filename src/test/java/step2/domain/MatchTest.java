@@ -15,7 +15,7 @@ class MatchTest {
     void setUp() {
         members = Members.of("a,b,c");
         results = Results.of("1,2,3");
-        ladder = Ladder.of(3, 2, new FixedGenerator(true));
+        ladder = Ladder.create(3, 2, new FixedGenerator(true));
     }
 
     @ParameterizedTest

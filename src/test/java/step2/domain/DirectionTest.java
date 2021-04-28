@@ -19,7 +19,7 @@ class DirectionTest {
     @DisplayName("중간 Direction이 왼쪽이 true일경우 오른쪽은 false로 고정생성")
     void middleDirectionTest1() {
         Direction firstDirection = Direction.first(true);
-        Direction middleDirection = firstDirection.middle(false);
+        Direction middleDirection = firstDirection.next(false);
         assertThat(middleDirection.isLeft()).isTrue();
         assertThat(middleDirection.isRight()).isFalse();
     }
@@ -37,7 +37,7 @@ class DirectionTest {
     @DisplayName("left가 ture이면 true")
     void isLeftTest() {
         Direction firstDirection = Direction.first(true);
-        Direction middleDirection = firstDirection.middle(false);
+        Direction middleDirection = firstDirection.next(false);
         assertThat(middleDirection.isLeft()).isTrue();
     }
 
