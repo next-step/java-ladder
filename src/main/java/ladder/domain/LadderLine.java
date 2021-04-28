@@ -16,12 +16,16 @@ public class LadderLine {
     }
 
     public static LadderLine from(int width) {
+        return from(width, HalfRandomDirectionDeterminer.getInstance());
+    }
+
+    public static LadderLine from(int width, DirectionDeterminer directionDeterminer) {
         validateMinWidth(width);
 
         final List<Point> points = new ArrayList<>();
 
-        Point point = initFirst(points);
-        point = initBody(width, points, point);
+        Point point = initFirst(points, directionDeterminer);
+        point = initBody(width, points, point, directionDeterminer);
         initLast(points, point);
 
         return new LadderLine(points);
@@ -33,15 +37,15 @@ public class LadderLine {
         }
     }
 
-    private static Point initFirst(List<Point> points) {
-        final Point point = Point.first();
+    private static Point initFirst(List<Point> points, DirectionDeterminer directionDeterminer) {
+        final Point point = Point.first(directionDeterminer);
         points.add(point);
         return point;
     }
 
-    private static Point initBody(int width, List<Point> points, Point point) {
+    private static Point initBody(int width, List<Point> points, Point point, DirectionDeterminer directionDeterminer) {
         for (int i = 1; i < width - 1; i++) {
-            point = point.next();
+            point = point.next(directionDeterminer);
             points.add(point);
         }
         return point;

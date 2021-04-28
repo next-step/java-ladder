@@ -1,31 +1,28 @@
 package ladder.domain;
 
 import java.util.Objects;
-import java.util.Random;
 
 public final class Point {
-    private static final Random random = new Random();
-
     private final Direction direction;
 
     public Point(Direction direction) {
         this.direction = direction;
     }
 
-    private static Point randomPoint() {
-        return random.nextInt(10) > 5 ? new Point(Direction.RIGHT) : new Point(Direction.NONE);
+    private static Direction direction(DirectionDeterminer directionDeterminer) {
+        return directionDeterminer.isRight() ? Direction.RIGHT : Direction.NONE;
     }
 
-    public static Point first() {
-        return randomPoint();
+    public static Point first(DirectionDeterminer directionDeterminer) {
+        return new Point(direction(directionDeterminer));
     }
 
-    public Point next() {
+    public Point next(DirectionDeterminer directionDeterminer) {
         if (direction.right()) {
             return new Point(Direction.LEFT);
         }
 
-        return randomPoint();
+        return new Point(direction(directionDeterminer));
     }
 
     public Point last() {
