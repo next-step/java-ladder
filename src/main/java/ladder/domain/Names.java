@@ -1,12 +1,10 @@
 package ladder.domain;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
-public class Names {
+public class Names implements Iterable<Name>{
     private final List<Name> names;
 
     public Names(String[] names) {
@@ -19,10 +17,6 @@ public class Names {
 
     public Names(List<Name> names) {
         this.names = names;
-    }
-
-    public List<Name> names() {
-        return Collections.unmodifiableList(names);
     }
 
     public int count() {
@@ -40,5 +34,20 @@ public class Names {
     @Override
     public int hashCode() {
         return Objects.hash(names);
+    }
+
+    @Override
+    public Iterator<Name> iterator() {
+        return names.iterator();
+    }
+
+    @Override
+    public void forEach(Consumer<? super Name> action) {
+        names.forEach(action);
+    }
+
+    @Override
+    public Spliterator<Name> spliterator() {
+        return names.spliterator();
     }
 }

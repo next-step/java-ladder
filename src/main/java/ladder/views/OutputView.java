@@ -15,7 +15,7 @@ public class OutputView {
 
     public static void print(Names names) {
         System.out.println();
-        for (final Name name : names.names()) {
+        for (final Name name : names) {
             System.out.printf("%-" + (Name.MAX_NAME_LENGTH + 1) + "s", name.name());
         }
         System.out.println();
