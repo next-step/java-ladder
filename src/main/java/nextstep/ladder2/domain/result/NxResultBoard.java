@@ -1,6 +1,7 @@
-package nextstep.ladder2.domain;
+package nextstep.ladder2.domain.result;
 
 import java.util.List;
+import nextstep.ladder2.domain.player.NxPlayer;
 
 public class NxResultBoard {
     private final List<NxResult> resultBoard;

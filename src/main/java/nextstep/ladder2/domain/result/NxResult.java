@@ -1,4 +1,7 @@
-package nextstep.ladder2.domain;
+package nextstep.ladder2.domain.result;
+
+import nextstep.ladder2.domain.player.NxPlayer;
+import nextstep.ladder2.domain.prize.NxPrize;
 
 public class NxResult {
     private final NxPlayer player;
