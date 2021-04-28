@@ -9,7 +9,7 @@ public class Controller {
 
     public List<String> convertToLadderViewDto(List<NxLine> lines) {
         return lines.stream()
-                .map(NxLine::getRawValue)
+                .map(NxLine::getBridgeValues)
                 .map(this::convertToLineViewDto)
                 .collect(Collectors.toList());
     }

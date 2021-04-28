@@ -40,7 +40,7 @@ public class NxLine {
         }
     }
 
-    public List<Boolean> getRawValue() {
+    public List<Boolean> getBridgeValues() {
         return bridges.stream()
                 .map(NxBridge::isEnabled)
                 .collect(Collectors.toList());
