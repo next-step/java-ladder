@@ -7,13 +7,11 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Names {
-    private static final String DELIMITER = ",";
-
     private final List<Name> names;
 
-    public Names(String namesInput) {
+    public Names(String[] names) {
         this(
-                Arrays.stream(namesInput.split(DELIMITER))
+                Arrays.stream(names)
                         .map(Name::new)
                         .collect(Collectors.toList())
         );
