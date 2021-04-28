@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
 import java.util.List;
-import nextstep.ladder.domain.Player;
 import nextstep.ladder2.domain.player.NxPlayer;
 import nextstep.ladder2.domain.player.NxPlayers;
 import org.junit.jupiter.api.DisplayName;

@@ -2,10 +2,10 @@ package ladder2;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import nextstep.ladder.view.ResultView;
 import nextstep.ladder2.Controller;
 import nextstep.ladder2.domain.NxLadder;
 import nextstep.ladder2.domain.builder.TestBuilder;
+import nextstep.ladder2.view.ResultView;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
