@@ -4,71 +4,41 @@ import ladder.rule.LineRule;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 class LadderResultTest {
 
   @Test
-  @DisplayName("사다리 결과 테스트")
+  @DisplayName("사다리 결과 도메인 생성, 초기 인덱스 값은 각 Player의 인덱스와 동일하다.")
   void generate() {
     // given
     Players players = Players.create("gmoon, guest, test");
-    List<Player> playersValues = players.getValues();
-    Depth depthOfDrawing = Depth.generate(LineRule.drawing(), playersValues.size() - 1);
 
     // when
-    Map<Player, Integer> playerIndexs = getPlayerResultIndexs(playersValues, Arrays.asList(depthOfDrawing, depthOfDrawing));
+    LadderResult actual = LadderResult.generate(players);
 
     // then
-    assertThat(playerIndexs.get(Player.create("gmoon"))).isZero();
-    assertThat(playerIndexs.get(Player.create("guest"))).isEqualTo(1);
-    assertThat(playerIndexs.get(Player.create("test"))).isEqualTo(playerIndexs.get(Player.create("test")));
+    assertAll(() -> assertThat(actual.get(Player.create("gmoon"))).isEqualTo(0),
+            () -> assertThat(actual.get(Player.create("guest"))).isEqualTo(1),
+            () -> assertThat(actual.get(Player.create("test"))).isEqualTo(2));
   }
 
-  private Map<Player, Integer> getPlayerResultIndexs(List<Player> playersValues, List<Depth> depths) {
-    Map<Player, Integer> playerIndexs = playersValues.stream()
-            .collect(Collectors.toMap(Function.identity(), playersValues::indexOf));
+  @Test
+  @DisplayName("사다리 결과 테스트, 참고 LineRule.drawing() true, false를 반환한다.")
+  void run() {
+    // given
+    Players players = Players.create("gmoon, guest, test");
+    LadderResult ladderResult = LadderResult.generate(players);
 
-    for (int i = 0; i < playersValues.size(); i++) {
-      Player key = playersValues.get(i);
-      for (Depth depth : depths) {
-        playerIndexs.put(key, getNextDepthStartIndex(depth, playerIndexs.get(key)));
-      }
-    }
-    return playerIndexs;
-  }
+    // when
+    LadderResult actual = ladderResult.run(Ladder.generate(1, players.totalSize() - 1, LineRule.drawing()));
 
-  private int getNextDepthStartIndex(Depth depth, int i) {
-    final int indexOfLeftLine = i - 1;
-    final int indexOfRightLine = i;
-
-    List<Line> lines = depth.getValues();
-    boolean existOfLeft = existLine(lines, indexOfLeftLine);
-    boolean existOfRight = existLine(lines, indexOfRightLine);
-
-    if (existOfLeft) {
-      return i--;
-    }
-
-    if (existOfRight) {
-      return i++;
-    }
-
-    return i;
-  }
-
-  private boolean existLine(List<Line> lines, int i) {
-    final int firstLineIndex = 0;
-    boolean isValidLineIndexBounds = firstLineIndex <= i && i < lines.size();
-    if (isValidLineIndexBounds) {
-      return !lines.get(i).isEmpty();
-    }
-    return false;
+    // then
+    assertAll(
+            () -> assertThat(actual.get(Player.create("gmoon"))).isEqualTo(1),
+            () -> assertThat(actual.get(Player.create("guest"))).isEqualTo(0),
+            () -> assertThat(actual.get(Player.create("test"))).isEqualTo(2)
+    );
   }
 }
