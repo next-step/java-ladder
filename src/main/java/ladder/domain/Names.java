@@ -23,6 +23,10 @@ public class Names implements Iterable<Name>{
         return names.size();
     }
 
+    public Name get(int index) {
+        return names.get(index);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

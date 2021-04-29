@@ -11,7 +11,7 @@ public class LadderLine {
 
     private final List<Point> points;
 
-    private LadderLine(List<Point> points) {
+    public LadderLine(List<Point> points) {
         this.points = points;
     }
 
@@ -57,6 +57,20 @@ public class LadderLine {
 
     public List<Point> points() {
         return Collections.unmodifiableList(points);
+    }
+
+    public int nextIndex(int currentIndex) {
+        final Point point = points.get(currentIndex);
+
+        if (point.right()) {
+            return currentIndex + 1;
+        }
+
+        if (point.left()) {
+            return currentIndex - 1;
+        }
+
+        return currentIndex;
     }
 
     @Override

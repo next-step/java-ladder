@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
 public class LadderTest {
@@ -21,5 +22,45 @@ public class LadderTest {
 
         assertThatCode(() -> new Ladder(ladderLines))
                 .doesNotThrowAnyException();
+    }
+
+    @Test
+    public void ladderResults() {
+        final Point rightPoint = new Point(Direction.RIGHT);
+        final Point leftPoint = new Point(Direction.LEFT);
+        final Point nonePoint = new Point(Direction.NONE);
+
+        final Name pobi = new Name("pobi");
+        final Name honux = new Name("honux");
+        final Name crong = new Name("crong");
+        final Name jk = new Name("jk");
+
+        final Prize blank = new Prize("꽝");
+        final Prize threeThousand = new Prize("3000");
+        final Prize fiveThousand = new Prize("5000");
+
+        final List<LadderLine> ladderLines = Arrays.asList(
+                new LadderLine(Arrays.asList(rightPoint, leftPoint, rightPoint, leftPoint)),
+                new LadderLine(Arrays.asList(nonePoint, rightPoint, leftPoint, nonePoint)),
+                new LadderLine(Arrays.asList(rightPoint, leftPoint, nonePoint, nonePoint)),
+                new LadderLine(Arrays.asList(nonePoint, rightPoint, leftPoint, nonePoint)),
+                new LadderLine(Arrays.asList(rightPoint, leftPoint, rightPoint, leftPoint))
+        );
+
+        final Ladder ladder = new Ladder(ladderLines);
+
+        final Names names = new Names(Arrays.asList(pobi, honux, crong, jk));
+        final Prizes prizes = new Prizes(Arrays.asList(blank, fiveThousand, blank, threeThousand));
+
+        final LadderResults expected = new LadderResults(Arrays.asList(
+                new LadderResult(pobi, blank),
+                new LadderResult(honux, threeThousand),
+                new LadderResult(crong, blank),
+                new LadderResult(jk, fiveThousand)
+        ));
+
+        final LadderResults actual = ladder.ladderResults(names, prizes);
+
+        assertThat(actual).isEqualTo(expected);
     }
 }

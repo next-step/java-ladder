@@ -37,6 +37,10 @@ public final class Point {
         return direction.right();
     }
 
+    public boolean left() {
+        return direction.left();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

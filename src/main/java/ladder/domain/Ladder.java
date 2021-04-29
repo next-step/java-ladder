@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -24,6 +25,27 @@ public class Ladder {
 
     public List<LadderLine> ladderLines() {
         return Collections.unmodifiableList(lines);
+    }
+
+    public LadderResults ladderResults(Names names, Prizes prizes) {
+        final List<LadderResult> ladderResults = new ArrayList<>();
+
+        for (int i = 0; i < names.count(); i++) {
+            final Name name = names.get(i);
+            final Prize prize = prizes.get(prizeIndex(i));
+
+            ladderResults.add(new LadderResult(name, prize));
+        }
+
+        return new LadderResults(ladderResults);
+    }
+
+    private int prizeIndex(int nameIndex) {
+        for (final LadderLine line : lines) {
+            nameIndex = line.nextIndex(nameIndex);
+        }
+
+        return nameIndex;
     }
 
     @Override
