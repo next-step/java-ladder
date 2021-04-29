@@ -2,6 +2,7 @@ package ladder.domain;
 
 import ladder.exception.LadderHeightOutOfBoundsException;
 import ladder.exception.LadderWidthOutOfBoundsException;
+import ladder.rule.LineRule;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
@@ -22,7 +23,7 @@ class LadderTest {
     int width = get10LessThenRandomNumber();
 
     // when
-    Ladder ladder = Ladder.generate(height, width);
+    Ladder ladder = Ladder.generate(height, width, LineRule.random());
 
     // then
     assertAll(
@@ -36,10 +37,10 @@ class LadderTest {
   void generate_error() {
     assertAll(
             () -> assertThatExceptionOfType(LadderHeightOutOfBoundsException.class)
-                    .isThrownBy(() -> Ladder.generate(Ladder.MIN_OF_HEIGHT - 1, Ladder.MIN_OF_WIDTH))
+                    .isThrownBy(() -> Ladder.generate(Ladder.MIN_OF_HEIGHT - 1, Ladder.MIN_OF_WIDTH, LineRule.random()))
                     .withMessageMatching("사다리의 최소 높이는 \\d+ 입니다."),
             () -> assertThatExceptionOfType(LadderWidthOutOfBoundsException.class)
-                    .isThrownBy(() -> Ladder.generate(Ladder.MIN_OF_HEIGHT, Ladder.MIN_OF_WIDTH - 1))
+                    .isThrownBy(() -> Ladder.generate(Ladder.MIN_OF_HEIGHT, Ladder.MIN_OF_WIDTH - 1, LineRule.random()))
                     .withMessageMatching("사다리의 최소 폭은 \\d+ 입니다.")
     );
   }

@@ -20,11 +20,11 @@ public class Ladder {
     this.values = Collections.unmodifiableList(values);
   }
 
-  public static Ladder generate(final int height, final int width) {
+  public static Ladder generate(final int height, final int width, LineRule lineRule) {
     checkHeight(height);
     checkWidth(width);
     return new Ladder(IntStream.range(0, height)
-            .mapToObj(i -> Depth.generate(LineRule.random(), width))
+            .mapToObj(i -> Depth.generate(lineRule, width))
             .collect(Collectors.toList()));
   }
 

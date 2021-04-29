@@ -2,6 +2,7 @@ package ladder;
 
 import ladder.domain.Ladder;
 import ladder.domain.Players;
+import ladder.rule.LineRule;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
@@ -12,6 +13,6 @@ public class LadderApplication {
 
     int width = players.totalSize() - 1;
     int height = InputView.height();
-    ResultView.print(players, Ladder.generate(height, width));
+    ResultView.print(players, Ladder.generate(height, width, LineRule.random()));
   }
 }
