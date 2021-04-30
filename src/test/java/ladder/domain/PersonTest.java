@@ -5,16 +5,16 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-public class NameTest {
+public class PersonTest {
     @Test
     public void create() {
-        assertThat(new Name("crong")).isEqualTo(new Name("crong"));
+        assertThat(new Person("crong")).isEqualTo(new Person("crong"));
     }
 
     @Test
     public void create_longerThan5() {
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            new Name("longer");
+            new Person("longer");
         });
     }
 }
