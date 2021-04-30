@@ -40,12 +40,12 @@ public class Ladder {
         return new LadderResults(ladderResults);
     }
 
-    private int prizeIndex(int nameIndex) {
+    private int prizeIndex(int personIndex) {
         for (final LadderLine line : lines) {
-            nameIndex = line.nextIndex(nameIndex);
+            personIndex = line.nextIndex(personIndex);
         }
 
-        return nameIndex;
+        return personIndex;
     }
 
     @Override
