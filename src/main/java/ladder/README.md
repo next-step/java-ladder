@@ -41,7 +41,7 @@ pobi  honux crong   jk
 
 ### domain
 
-- `이름 (Name)`
+- `사람 (Person)`
     - 최대 5글자의 `문자열(String)`을 가진다.
 - `방향 (Direction)`
     - 방향을 나타내는 `Enum`이며, 3개의 타입을 가진다.
@@ -131,6 +131,6 @@ jk : 5000
 - `상품 (Prize)`
     - `문자열 (String)`을 가진다.
 - `사다리 결과 (LadderResult)`
-    - `이름 (Name)`과 `상품 (Prize)`를 가진다.
+    - `사람 (Person)`과 `상품 (Prize)`를 가진다.
 - `사다리 (Ladder)`
-    - `이름 (Name)`들과 `상품 (Prize)`들을 입력하면 `게임 결과 (LadderResult)`들을 반환한다.
+    - `사람 (Person)`들과 `상품 (Prize)`들을 입력하면 `게임 결과 (LadderResult)`들을 반환한다.
