@@ -16,9 +16,9 @@ public class OutputView {
         System.out.println("\n사다리 결과");
     }
 
-    public static void print(Names names) {
+    public static void print(People people) {
         System.out.println();
-        for (final Person person : names) {
+        for (final Person person : people) {
             System.out.printf("%-" + (Person.MAX_NAME_LENGTH + 1) + "s", person.name());
         }
         System.out.println();

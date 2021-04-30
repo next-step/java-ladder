@@ -4,12 +4,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
 
-public class NamesTest {
+public class PeopleTest {
     @Test
     public void create() {
         final String[] names = {"pobi", "honux", "crong", "jk"};
 
-        assertThatCode(() -> new Names(names))
+        assertThatCode(() -> new People(names))
                 .doesNotThrowAnyException();
     }
 }

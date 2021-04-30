@@ -27,11 +27,11 @@ public class Ladder {
         return Collections.unmodifiableList(lines);
     }
 
-    public LadderResults ladderResults(Names names, Prizes prizes) {
+    public LadderResults ladderResults(People people, Prizes prizes) {
         final List<LadderResult> ladderResults = new ArrayList<>();
 
-        for (int i = 0; i < names.count(); i++) {
-            final Person person = names.get(i);
+        for (int i = 0; i < people.count(); i++) {
+            final Person person = people.get(i);
             final Prize prize = prizes.get(prizeIndex(i));
 
             ladderResults.add(new LadderResult(person, prize));

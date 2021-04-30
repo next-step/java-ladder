@@ -49,7 +49,7 @@ public class LadderTest {
 
         final Ladder ladder = new Ladder(ladderLines);
 
-        final Names names = new Names(Arrays.asList(pobi, honux, crong, jk));
+        final People people = new People(Arrays.asList(pobi, honux, crong, jk));
         final Prizes prizes = new Prizes(Arrays.asList(blank, fiveThousand, blank, threeThousand));
 
         final LadderResults expected = new LadderResults(Arrays.asList(
@@ -59,7 +59,7 @@ public class LadderTest {
                 new LadderResult(jk, fiveThousand)
         ));
 
-        final LadderResults actual = ladder.ladderResults(names, prizes);
+        final LadderResults actual = ladder.ladderResults(people, prizes);
 
         assertThat(actual).isEqualTo(expected);
     }
