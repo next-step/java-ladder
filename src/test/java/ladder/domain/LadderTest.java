@@ -30,10 +30,10 @@ public class LadderTest {
         final Point leftPoint = new Point(Direction.LEFT);
         final Point nonePoint = new Point(Direction.NONE);
 
-        final Name pobi = new Name("pobi");
-        final Name honux = new Name("honux");
-        final Name crong = new Name("crong");
-        final Name jk = new Name("jk");
+        final Person pobi = new Person("pobi");
+        final Person honux = new Person("honux");
+        final Person crong = new Person("crong");
+        final Person jk = new Person("jk");
 
         final Prize blank = new Prize("꽝");
         final Prize threeThousand = new Prize("3000");

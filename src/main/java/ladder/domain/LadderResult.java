@@ -3,16 +3,16 @@ package ladder.domain;
 import java.util.Objects;
 
 public class LadderResult {
-    private final Name name;
+    private final Person person;
     private final Prize prize;
 
-    public LadderResult(Name name, Prize prize) {
-        this.name = name;
+    public LadderResult(Person person, Prize prize) {
+        this.person = person;
         this.prize = prize;
     }
 
-    public Name name() {
-        return name;
+    public Person name() {
+        return person;
     }
 
     public Prize prize() {
@@ -24,11 +24,11 @@ public class LadderResult {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         LadderResult that = (LadderResult) o;
-        return Objects.equals(name, that.name) && Objects.equals(prize, that.prize);
+        return Objects.equals(person, that.person) && Objects.equals(prize, that.prize);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, prize);
+        return Objects.hash(person, prize);
     }
 }

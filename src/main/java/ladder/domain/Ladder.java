@@ -31,10 +31,10 @@ public class Ladder {
         final List<LadderResult> ladderResults = new ArrayList<>();
 
         for (int i = 0; i < names.count(); i++) {
-            final Name name = names.get(i);
+            final Person person = names.get(i);
             final Prize prize = prizes.get(prizeIndex(i));
 
-            ladderResults.add(new LadderResult(name, prize));
+            ladderResults.add(new LadderResult(person, prize));
         }
 
         return new LadderResults(ladderResults);

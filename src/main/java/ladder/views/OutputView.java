@@ -18,15 +18,15 @@ public class OutputView {
 
     public static void print(Names names) {
         System.out.println();
-        for (final Name name : names) {
-            System.out.printf("%-" + (Name.MAX_NAME_LENGTH + 1) + "s", name.name());
+        for (final Person person : names) {
+            System.out.printf("%-" + (Person.MAX_NAME_LENGTH + 1) + "s", person.name());
         }
         System.out.println();
     }
 
     public static void print(Prizes prizes) {
         for (final Prize prize : prizes) {
-            System.out.printf("%-" + (Name.MAX_NAME_LENGTH + 1) + "s", prize.prize());
+            System.out.printf("%-" + (Person.MAX_NAME_LENGTH + 1) + "s", prize.prize());
         }
         System.out.println();
     }
@@ -74,7 +74,7 @@ public class OutputView {
         }
 
         return ladderResults.stream()
-                .filter(ladderResult -> ladderResult.name().equals(new Name(name)))
+                .filter(ladderResult -> ladderResult.name().equals(new Person(name)))
                 .findFirst()
                 .map(ladderResult -> ladderResult.prize().prize())
                 .orElse(NO_SEARCH_MESSAGE);
