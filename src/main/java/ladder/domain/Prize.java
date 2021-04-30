@@ -9,6 +9,10 @@ public class Prize {
         this.prize = prize;
     }
 
+    public String prize() {
+        return prize;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

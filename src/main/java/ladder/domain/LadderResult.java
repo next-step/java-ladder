@@ -11,6 +11,14 @@ public class LadderResult {
         this.prize = prize;
     }
 
+    public Name name() {
+        return name;
+    }
+
+    public Prize prize() {
+        return prize;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

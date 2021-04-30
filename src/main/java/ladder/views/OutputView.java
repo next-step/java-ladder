@@ -3,20 +3,30 @@ package ladder.views;
 import ladder.domain.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class OutputView {
     private static final String POINT = "|";
-    public static final String CONNECTION_LINE = "-----";
-    public static final String EMPTY_SPACE = "     ";
+    private static final String CONNECTION_LINE = "-----";
+    private static final String EMPTY_SPACE = "     ";
+    private static final String EMPTY_STRING = "";
+    private static final String NO_SEARCH_MESSAGE = "일치하는 사람이 없습니다.";
 
-    public static void printResultMessage() {
-        System.out.println("\n실행 결과");
+    public static void printLadderResultMessage() {
+        System.out.println("\n사다리 결과");
     }
 
     public static void print(Names names) {
         System.out.println();
         for (final Name name : names) {
             System.out.printf("%-" + (Name.MAX_NAME_LENGTH + 1) + "s", name.name());
+        }
+        System.out.println();
+    }
+
+    public static void print(Prizes prizes) {
+        for (final Prize prize : prizes) {
+            System.out.printf("%-" + (Name.MAX_NAME_LENGTH + 1) + "s", prize.prize());
         }
         System.out.println();
     }
@@ -49,5 +59,28 @@ public class OutputView {
         }
 
         return POINT + EMPTY_SPACE;
+    }
+
+    public static void print(LadderResults ladderResults, String name) {
+        System.out.println("\n실행 결과");
+        System.out.println(view(ladderResults, name));
+    }
+
+    private static String view(LadderResults ladderResults, String name) {
+        if (name.equals("all")) {
+            return ladderResults.stream()
+                    .map(OutputView::toString)
+                    .collect(Collectors.joining("\n"));
+        }
+
+        return ladderResults.stream()
+                .filter(ladderResult -> ladderResult.name().equals(new Name(name)))
+                .findFirst()
+                .map(ladderResult -> ladderResult.prize().prize())
+                .orElse(NO_SEARCH_MESSAGE);
+    }
+
+    private static String toString(LadderResult ladderResult) {
+        return String.format("%s : %s", ladderResult.name().name(), ladderResult.prize().prize());
     }
 }

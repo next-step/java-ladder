@@ -2,12 +2,17 @@ package ladder.domain;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Stream;
 
 public class LadderResults {
     private final List<LadderResult> ladderResults;
 
     public LadderResults(List<LadderResult> ladderResults) {
         this.ladderResults = ladderResults;
+    }
+
+    public Stream<LadderResult> stream() {
+        return ladderResults.stream();
     }
 
     @Override
