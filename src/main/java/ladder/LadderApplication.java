@@ -18,7 +18,7 @@ public class LadderApplication {
     int height = InputView.getHeight();
 
     Ladder ladder = Ladder.generate(height, width, LineRule.random());
-    Record record = Record.generate(players).valueOf(ladder);
+    Record record = Record.generate(players, ladder);
 
     ResultView.print(players, ladder, result);
 
@@ -26,7 +26,7 @@ public class LadderApplication {
     do {
       String keyword = InputView.getResultByKeyword();
       isFindAll = InputView.isFindAll(keyword);
-      ResultView.findResultByKeyword(players, record, result, keyword, isFindAll);
+      ResultView.printResultByKeyword(players, record, result, keyword, isFindAll);
     } while (!isFindAll);
   }
 }

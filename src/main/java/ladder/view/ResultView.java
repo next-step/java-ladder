@@ -62,12 +62,17 @@ public final class ResultView {
     return line.isEmpty() ? LINE_EMPTY : LINE_EXISTS;
   }
 
-  public static void findResultByKeyword(Players players, final Record record, final Result result, final String keyword, final boolean isFindAll) {
+  public static void printResultByKeyword(final Players players, final Record record, final Result result, final String keyword, final boolean isFindAll) {
     System.out.println(EXECUTE_RESULT);
-    players.getValues().stream()
+    findResultByKeyword(players, record, result, keyword, isFindAll)
+            .forEach(System.out::println);
+  }
+
+  private static List<String> findResultByKeyword(final Players players, final Record record, final Result result, final String keyword, final boolean isFindAll) {
+    return players.getValues().stream()
             .filter(player -> isFindAll || player.equals(Player.create(keyword)))
             .map(player -> getResultToString(result, record, player, isFindAll))
-            .forEach(System.out::println);
+            .collect(Collectors.toList());
   }
 
   private static String getResultToString(final Result result, final Record record, final Player player, final boolean isUseFindAllFormat) {

@@ -1,7 +1,6 @@
 package ladder.domain;
 
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -15,22 +14,15 @@ public class Record {
     this.values = Collections.unmodifiableMap(values);
   }
 
-  public static Record generate(Players players) {
+  public static Record generate(final Players players, final Ladder ladder) {
     final List<Player> playersValues = players.getValues();
+
     Map<Player, Integer> result = playersValues.stream()
-            .collect(Collectors.toMap(Function.identity(), playersValues::indexOf));
+            .collect(Collectors.toMap(Function.identity(), player -> ladder.getLastDepthStartLineIndex(playersValues.indexOf(player))));
     return new Record(result);
   }
 
-  public Record valueOf(final Ladder ladder) {
-    Map<Player, Integer> copy = new HashMap<>(values)
-            .keySet().stream()
-            .collect(Collectors.toMap(Function.identity(),
-                    key -> ladder.getLastDepthStartLineIndex(get(key))));
-    return new Record(copy);
-  }
-
-  public int get(Player player) {
+  public int getPlayerIndexOf(Player player) {
     return values.getOrDefault(player, 0);
   }
 

@@ -21,4 +21,14 @@ class ResultTest {
             .hasSize(4)
             .containsExactly("꽝", "5000", "꽝", "3000");
   }
+
+  @Test
+  @DisplayName("")
+  void get() {
+    // given
+    Result result = Result.generate("꽝,5000,꽝,3000");
+
+    // then
+//    Record record = Record.generate();
+  }
 }
