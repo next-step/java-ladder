@@ -1,9 +1,6 @@
 package nextstep.model;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.OptionalInt;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -31,7 +28,20 @@ public class Players {
         return indexOpt.getAsInt();
     }
 
+    public Player filter(String name) {
+        Player player = this.players.stream()
+                .filter(p -> p.player().equals(name))
+                .findFirst()
+                .get();
+
+        return player;
+    }
+
     public List<Player> players() {
         return this.players;
+    }
+
+    public int size() {
+        return this.players.size();
     }
 }

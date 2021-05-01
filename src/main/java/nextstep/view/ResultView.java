@@ -1,12 +1,9 @@
 package nextstep.view;
 
-import nextstep.constant.Constant;
-import nextstep.model.OnlineLadder;
+import nextstep.model.Ladder;
+import nextstep.model.Players;
 
-import java.util.stream.IntStream;
-
-import static nextstep.constant.Constant.EMPTY_LADDER_STRING;
-import static nextstep.constant.Constant.HORIZON_LADDER_STRING;
+import java.util.Random;
 
 public class ResultView implements ConsoleView {
 
@@ -21,27 +18,17 @@ public class ResultView implements ConsoleView {
         System.out.println(str);
     }
 
-    public void print(OnlineLadder ladder, int targetHeight) {
-        String draw = render(ladder, targetHeight);
-        System.out.print(draw);
-        System.out.println();
-    }
-
-    private String render(OnlineLadder ladder, int targetHeight) {
-        StringBuilder stringBuilder = new StringBuilder();
-        ladder.points(targetHeight).points().stream()
-                .forEach(point -> {
-                    stringBuilder.append(Constant.SPLIT_LADDER_STRING);
-                    stringBuilder.append( (point) ? HORIZON_LADDER_STRING : EMPTY_LADDER_STRING);
-                });
-        stringBuilder.append("|");
-        return stringBuilder.toString();
-    }
-
-    public void printAll(OnlineLadder ladder) {
+    public void printAll(Ladder ladder, Players players) {
+        Random random = new Random();
+        int move = random.nextInt(players.size());
+        System.out.println("move = " + move);
         System.out.println("사다리 결과");
-        System.out.println(ladder.players().spacedNames());
-        IntStream.range(0, this.ladderCount)
-                .forEach((index) -> this.print(ladder, index));
+        System.out.println(players.spacedNames());
+        for (int i = 0; i < ladder.ladderLines.size(); i++) {
+            move = ladder.ladderLines.get(i).move(move);
+            System.out.println(ladder.ladderLines.get(i).pointsString());
+        }
+
     }
+
 }

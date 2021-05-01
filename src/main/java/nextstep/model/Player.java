@@ -1,6 +1,5 @@
 package nextstep.model;
 
-import java.util.Arrays;
 import java.util.Objects;
 
 public class Player {
