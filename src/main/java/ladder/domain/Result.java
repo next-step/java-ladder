@@ -16,6 +16,10 @@ public class Result {
     return new Result(StringUtil.toList(inputString));
   }
 
+  public String get(Record record, Player player) {
+    return values.get(record.get(player));
+  }
+
   public List<String> getValues() {
     return values;
   }
