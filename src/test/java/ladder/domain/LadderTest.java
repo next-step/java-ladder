@@ -45,6 +45,22 @@ class LadderTest {
     );
   }
 
+  @Test
+  @DisplayName("사다리 마지막 깊이의 시작 지점(인덱스)를 추출한다.")
+  void getLastDepthLineIndex() {
+    // given
+    int width = 2;
+
+    // when
+    Ladder actual = Ladder.generate(Ladder.MIN_OF_HEIGHT, width, LineRule.drawing());
+
+    // then
+    assertAll(
+            () -> assertThat(actual.getLastDepthStartLineIndex(0)).isEqualTo(1),
+            () -> assertThat(actual.getLastDepthStartLineIndex(1)).isEqualTo(0)
+    );
+  }
+
   private int get10LessThenRandomNumber() {
     return new Random().nextInt(10) + 1;
   }

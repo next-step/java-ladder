@@ -28,8 +28,7 @@ public class Depth {
               return frontLine.newNextLine(lineRule);
             });
     return new Depth(values);
-
-}
+  }
 
   private static void checkValidLineCount(int countOfLine) {
     if (MIN_OF_LINE > countOfLine) {
@@ -43,6 +42,32 @@ public class Depth {
 
   public int width() {
     return values.size();
+  }
+
+  public int getNextStartIndex(int index) {
+    final int indexOfLeftLine = index - 1;
+    final int indexOfRightLine = index;
+
+    if (existLine(indexOfLeftLine)) {
+      return --index;
+    }
+
+    if (existLine(indexOfRightLine)) {
+      return ++index;
+    }
+
+    return index;
+  }
+
+  private boolean existLine(int index) {
+    if (isValidIndex(index)) {
+      return !values.get(index).isEmpty();
+    }
+    return false;
+  }
+
+  private boolean isValidIndex(int index) {
+    return 0 <= index && index < values.size();
   }
 
   @Override
