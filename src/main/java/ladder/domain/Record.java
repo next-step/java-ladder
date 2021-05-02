@@ -11,7 +11,7 @@ public class Record {
   private final Map<Player, Integer> values;
 
   private Record(Map<Player, Integer> values) {
-    this.values = Collections.unmodifiableMap(values);
+    this.values = values;
   }
 
   public static Record generate(final Players players, final Ladder ladder) {
@@ -19,7 +19,7 @@ public class Record {
 
     Map<Player, Integer> result = playersValues.stream()
             .collect(Collectors.toMap(Function.identity(), player -> ladder.getLastDepthStartLineIndex(playersValues.indexOf(player))));
-    return new Record(result);
+    return new Record(Collections.unmodifiableMap(result));
   }
 
   public int getPlayerIndexOf(Player player) {
