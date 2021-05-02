@@ -17,18 +17,16 @@ import nextstep.ladder2.view.InputView;
 import nextstep.ladder2.view.ResultView;
 
 public class Controller {
-    private static final int INPUT_PLAYERS_NAME = 0;
-    private static final int INPUT_PRIZES_NAME = 1;
-    private static final int INPUT_LADDER_HEIGHT = 2;
     private static final String INPUT_RESULT_ALL = "all";
 
     public void run() {
-        List<String> info = InputView.getInfoFromClient();
+        InputView inputView = new InputView();
+        inputView.getInfoFromClient();
 
-        NxPlayers players = new NxPlayers(Arrays.asList(info.get(INPUT_PLAYERS_NAME).split(",")));
-        NxPrizes prizes = new NxPrizes(Arrays.asList(info.get(INPUT_PRIZES_NAME).split(",")));
+        NxPlayers players = new NxPlayers(inputView.getPlayersName());
+        NxPrizes prizes = new NxPrizes(inputView.getPrizesName());
         NxPrizeMapper prizeMapper = new NxPrizeMapper(players, prizes);
-        NxLadder ladder = new NxLadder(Integer.parseInt(info.get(INPUT_LADDER_HEIGHT)),
+        NxLadder ladder = new NxLadder(inputView.getLadderHeight(),
                 players.getPlayerCount(), new RandomBuilder());
         NxLadderGame game = new NxLadderGame(ladder, prizeMapper);
 
@@ -39,7 +37,7 @@ public class Controller {
 
         NxResultBoard resultBoard = game.start();
 
-        String input = InputView.getPlayerResult();
+        String input = inputView.getPlayerResult();
         if (INPUT_RESULT_ALL.equals(input)) {
             ResultView.printResultList(convertToAllResultViewDto(resultBoard));
             return;
