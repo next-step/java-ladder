@@ -10,6 +10,8 @@ import java.util.Objects;
 import java.util.stream.IntStream;
 
 public class Depth {
+  private static final int MIN_OF_LINE = 1;
+
   private final List<Line> values;
 
   private Depth(List<Line> values) {
@@ -26,11 +28,12 @@ public class Depth {
               return frontLine.newNextLine(lineRule);
             });
     return new Depth(values);
-
-}
+  }
 
   private static void checkValidLineCount(int countOfLine) {
-    DepthLineOutOfBoundsException.verify(countOfLine);
+    if (MIN_OF_LINE > countOfLine) {
+      throw new DepthLineOutOfBoundsException(MIN_OF_LINE);
+    }
   }
 
   public List<Line> getValues() {
@@ -39,6 +42,30 @@ public class Depth {
 
   public int width() {
     return values.size();
+  }
+
+  public int getNextStartIndex(int index) {
+    final int indexOfLeftLine = index - 1;
+    final int indexOfRightLine = index;
+
+    if (existLine(indexOfLeftLine)) {
+      return --index;
+    }
+
+    if (existLine(indexOfRightLine)) {
+      return ++index;
+    }
+
+    return index;
+  }
+
+  private boolean existLine(int index) {
+    return isValidIndex(index)
+            && !values.get(index).isEmpty();
+  }
+
+  private boolean isValidIndex(int index) {
+    return 0 <= index && index < values.size();
   }
 
   @Override

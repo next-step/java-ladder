@@ -43,7 +43,23 @@ class DepthTest {
   void generate_error() {
     assertThatExceptionOfType(DepthLineOutOfBoundsException.class)
             .isThrownBy(() -> Depth.generate(LineRule.drawing(), 0))
-            .withMessageMatching("최소 그릴 수 있는 라인 갯수\\(\\d+\\)가 아닙니다.")
-    ;
+            .withMessageMatching("사다리는 최소 \\d+ 라인 갯수가 필요합니다.");
+  }
+
+  @Test
+  @DisplayName("깊이의 시작 지점(라인의 index)를 추출한다.")
+  void getNextStartIndex() {
+    // given
+    int countOfLine = 2;
+
+    // when
+    Depth depth = Depth.generate(LineRule.drawing(), countOfLine);
+
+    // then
+    assertAll(
+            () -> assertThat(depth.getNextStartIndex(0)).isEqualTo(1),
+            () -> assertThat(depth.getNextStartIndex(1)).isEqualTo(0),
+            () -> assertThat(depth.getNextStartIndex(2)).isEqualTo(2)
+    );
   }
 }

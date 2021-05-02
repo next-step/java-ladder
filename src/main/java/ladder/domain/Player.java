@@ -2,10 +2,13 @@ package ladder.domain;
 
 import ladder.exception.PlayerNameBlankException;
 import ladder.exception.PlayerNameOverLimitLengthException;
+import ladder.util.StringUtil;
 
 import java.util.Objects;
 
 public class Player {
+  public static final int MAX_LENGTH = 5;
+
   private final String value;
 
   private Player(String value) {
@@ -13,9 +16,21 @@ public class Player {
   }
 
   public static Player create(String name) {
-    PlayerNameBlankException.verify(name);
-    PlayerNameOverLimitLengthException.verify(name);
+    checkBlankName(name);
+    checkNameLength(name);
     return new Player(name);
+  }
+
+  private static void checkBlankName(String name) {
+    if (StringUtil.isBlank(name)) {
+      throw new PlayerNameBlankException();
+    }
+  }
+
+  private static void checkNameLength(String name) {
+    if (name.length() > MAX_LENGTH) {
+      throw new PlayerNameOverLimitLengthException(MAX_LENGTH);
+    }
   }
 
   public String name() {

@@ -11,18 +11,39 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
+  public static final int MIN_OF_HEIGHT = 1;
+  public static final int MIN_OF_WIDTH = 1;
+
   private final List<Depth> values;
 
   private Ladder(List<Depth> values) {
     this.values = Collections.unmodifiableList(values);
   }
 
-  public static Ladder generate(final int height, final int width) {
-    LadderHeightOutOfBoundsException.verify(height);
-    LadderWidthOutOfBoundsException.verify(width);
+  public static Ladder generate(final int height, final int width, LineRule lineRule) {
+    checkHeight(height);
+    checkWidth(width);
     return new Ladder(IntStream.range(0, height)
-            .mapToObj(i -> Depth.generate(LineRule.random(), width))
+            .mapToObj(i -> Depth.generate(lineRule, width))
             .collect(Collectors.toList()));
+  }
+
+  private static void checkHeight(int height) {
+    if (MIN_OF_HEIGHT > height) {
+      throw new LadderHeightOutOfBoundsException(height);
+    }
+  }
+
+  private static void checkWidth(int width) {
+    if (MIN_OF_WIDTH > width) {
+      throw new LadderWidthOutOfBoundsException(width);
+    }
+  }
+
+  public int getLastDepthStartLineIndex(int index) {
+    return values.stream().reduce(index,
+                    (oldIndex, depth) -> depth.getNextStartIndex(oldIndex),
+                    (oldIndex, nextIndex) -> nextIndex);
   }
 
   public int height() {
