@@ -41,10 +41,9 @@ public class Ladder {
   }
 
   public int getLastDepthStartLineIndex(int index) {
-    for (Depth depth : values) {
-      index = depth.getNextStartIndex(index);
-    }
-    return index;
+    return values.stream().reduce(index,
+                    (oldIndex, depth) -> depth.getNextStartIndex(oldIndex),
+                    (oldIndex, nextIndex) -> nextIndex);
   }
 
   public int height() {
