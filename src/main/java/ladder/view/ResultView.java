@@ -14,7 +14,6 @@ import java.util.stream.Collectors;
 public final class ResultView {
   private static final String LADDER_RESULT = "사다리 결과";
   private static final String EXECUTE_RESULT = "실행 결과";
-  private static final String SEPARATOR = "    ";
   private static final String LINE_SEPARATOR = "|";
   private static final String DEPTH_LINES_FORMAT = LINE_SEPARATOR + "%s" + LINE_SEPARATOR;
   private static final String LINE_EXISTS = "--------";
@@ -34,14 +33,24 @@ public final class ResultView {
   private static String getResultString(Result result) {
     return result.getValues()
             .stream()
-            .collect(Collectors.joining(SEPARATOR));
+            .map(ResultView::toStringIncludeRightEmptyLine)
+            .collect(Collectors.joining());
   }
 
   private static String playerNames(Players players) {
     return players.getValues()
             .stream()
             .map(Player::name)
-            .collect(Collectors.joining(SEPARATOR));
+            .map(ResultView::toStringIncludeRightEmptyLine)
+            .collect(Collectors.joining());
+  }
+
+  private static String toStringIncludeRightEmptyLine(String str) {
+    return String.format("%s%s", str , getRightLineEmptyString(str));
+  }
+
+  private static String getRightLineEmptyString(String str) {
+    return LINE_EMPTY.substring(0, LINE_EMPTY.length() - str.length() + 1);
   }
 
   private static List<String> ladder(Ladder ladder) {
@@ -75,7 +84,7 @@ public final class ResultView {
             .collect(Collectors.toList());
   }
 
-  private static String getResultToString(final Result result, final Record record, final Player player, final boolean isUseFindAllFormat) {
+  public static String getResultToString(final Result result, final Record record, final Player player, final boolean isUseFindAllFormat) {
     String resultToString = result.get(record, player);
     if (isUseFindAllFormat) {
       return String.format(EXECUTE_RESULT_FIND_ALL_FORMAT, player.name(), resultToString);

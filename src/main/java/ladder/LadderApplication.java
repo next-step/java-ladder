@@ -9,10 +9,9 @@ import ladder.view.InputView;
 import ladder.view.ResultView;
 
 public class LadderApplication {
-
   public static void main(String[] args) {
-    Players players = InputView.getPlayerNames();
-    Result result = InputView.getResult();
+    Players players = Players.create(InputView.getPlayerNames());
+    Result result = Result.generate(InputView.getResult());
 
     int width = players.totalSize() - 1;
     int height = InputView.getHeight();
@@ -25,8 +24,12 @@ public class LadderApplication {
     boolean isFindAll;
     do {
       String keyword = InputView.getResultByKeyword();
-      isFindAll = InputView.isFindAll(keyword);
+      isFindAll = isFindAll(keyword);
       ResultView.printResultByKeyword(players, record, result, keyword, isFindAll);
     } while (!isFindAll);
+  }
+
+  private static boolean isFindAll(String keyword) {
+    return keyword.equals(InputView.FIND_ALL_KEYWORD);
   }
 }

@@ -60,10 +60,8 @@ public class Depth {
   }
 
   private boolean existLine(int index) {
-    if (isValidIndex(index)) {
-      return !values.get(index).isEmpty();
-    }
-    return false;
+    return isValidIndex(index)
+            && !values.get(index).isEmpty();
   }
 
   private boolean isValidIndex(int index) {
