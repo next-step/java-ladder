@@ -28,7 +28,7 @@ class LinesTest {
   @DisplayName("빈 리스트로 Line을 생성할 경우 익셉션이 발생한다")
   public void createException() throws IOException {
     //given
-    List<Boolean> points = new ArrayList<>();
+    List<Point> points = new ArrayList<>();
 
     //when
     IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
