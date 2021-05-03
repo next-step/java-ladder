@@ -6,9 +6,9 @@ import nextstep.laddergame.LineGenerator;
 
 public class Line {
   private static final Random RANDOM = new Random();
-  private final List<Boolean> points;
+  private final List<Point> points;
 
-  public Line(List<Boolean> points) {
+  public Line(List<Point> points) {
     validateCountOfMembers(points.size());
     this.points = points;
   }
@@ -23,7 +23,7 @@ public class Line {
     }
   }
 
-  public List<Boolean> points() {
+  public List<Point> points() {
     return this.points;
   }
 
@@ -36,44 +36,15 @@ public class Line {
   }
 
   private int move(int index) {
-    if(isFirst(index))
-      return hasFrontPoint(index);
-    if(isLast(index))
-      return hasBehindPoint(index);
-    return hasNextOrPreviousPoint(index);
+    if(points.size() != index)
+      return points.get(index).move();
+    return points.get(index-1).last().move();
   }
 
-  private int hasNextOrPreviousPoint(int index) {
-    if(hasSamePoint(index, hasFrontPoint(index)))
-      return hasFrontPoint(index);
-    if(hasSamePoint(index, hasBehindPoint(index)))
-      return hasBehindPoint(index);
-    return index;
-  }
-
-  private boolean hasSamePoint(int currentPoint, int nextOrPreviousPoint) {
-    return currentPoint != nextOrPreviousPoint;
-  }
-
-  private int hasFrontPoint(int index) {
-    int currentPoint = index;
-    if(points.get(index))
-      return ++currentPoint;
-    return currentPoint;
-  }
-
-  private int hasBehindPoint(int index) {
-    int currentPoint = index;
-    if(points.get(index - 1))
-      return --currentPoint;
-    return currentPoint;
-  }
-
-  private boolean isFirst(int index) {
-    return index == 0;
-  }
-
-  private boolean isLast(int index) {
-    return points.size() == index;
+  @Override
+  public String toString() {
+    return "Line{" +
+        "points=" + points +
+        '}';
   }
 }
