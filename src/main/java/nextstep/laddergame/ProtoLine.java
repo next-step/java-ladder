@@ -3,11 +3,12 @@ package nextstep.laddergame;
 import java.util.ArrayList;
 import java.util.List;
 import nextstep.laddergame.domain.Line;
+import nextstep.laddergame.domain.Point;
 
 public class ProtoLine {
-  private final List<Boolean> points;
+  private final List<Point> points;
 
-  private ProtoLine(List<Boolean> points) {
+  private ProtoLine(List<Point> points) {
     this.points = points;
   }
 
@@ -16,16 +17,24 @@ public class ProtoLine {
   }
 
   protected void add(Boolean next) {
-    if (drewLeft()) {
-      points.add(false);
+    if(points.size() == 0) {
+      points.add(Point.first(next));
       return;
     }
+    Point point = lastOfPoints();
+    if(drawLeft()) {
+      points.add(point.next(false));
+      return;
+    }
+    points.add(point.next(next));
+  }
 
-    points.add(next);
+  private Point lastOfPoints() {
+    return points.get(points.size() - 1);
   }
 
   protected ProtoLine merge(ProtoLine other) {
-    List<Boolean> result = new ArrayList<>(points);
+    List<Point> result = new ArrayList<>(points);
     result.addAll(other.points);
     return new ProtoLine(result);
   }
@@ -34,8 +43,8 @@ public class ProtoLine {
     return new Line(points);
   }
 
-  private Boolean drewLeft() {
-    return !points.isEmpty() && points.get(points.size() - 1);
+  private Boolean drawLeft() {
+    return !points.isEmpty() && lastOfPoints().hasRight();
   }
 
 }
