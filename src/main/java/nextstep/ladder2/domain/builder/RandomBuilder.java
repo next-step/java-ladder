@@ -6,7 +6,7 @@ import java.util.Random;
 import nextstep.ladder2.domain.NxLine;
 
 public class RandomBuilder implements LadderBuilder {
-    private static final Random random = new Random();
+    public static final Random random = new Random();
 
     @Override
     public List<NxLine> build(int height, int countOfPerson) {

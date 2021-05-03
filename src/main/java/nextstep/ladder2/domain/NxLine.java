@@ -8,23 +8,23 @@ public class NxLine {
     private final List<NxBridge> bridges;
 
     public NxLine(List<Boolean> booleans) {
-        for (int i = 0; i < booleans.size() - 1; i++) {
-            isAdjacentTrueValue(booleans.get(i), booleans.get(i + 1));
+        List<Direction> directions = new ArrayList<>();
+        Direction direction = Direction.first(booleans.get(0));
+        directions.add(direction);
+        for (int i = 1; i <= booleans.size() - 1; i++) {
+            direction = direction.next(booleans.get(i));
+            directions.add(direction);
         }
-        bridges = new ArrayList<>(booleans.size());
-        for (int i = 0; i < booleans.size(); i++) {
-            bridges.add(new NxBridge(i, booleans.get(i)));
+        directions.add(direction.last());
+
+        bridges = new ArrayList<>(directions.size());
+        for (int i = 0; i < directions.size(); i++) {
+            bridges.add(new NxBridge(i, directions.get(i)));
         }
     }
 
-    public NxBridge getBridgeByPoint(int pointIndex) {
-        if (bridges.size() == pointIndex) {
-            return getBridge(pointIndex - 1);
-        }
-        if (bridges.get(pointIndex).isEnabled()) {
-            return getBridge(pointIndex);
-        }
-        return getBridge(pointIndex - 1);
+    public int movePosition(int pointIndex) {
+        return getBridge(pointIndex).movePosition();
     }
 
     private NxBridge getBridge(int index) {
@@ -32,12 +32,6 @@ public class NxLine {
             return bridges.get(0);
         }
         return bridges.get(index);
-    }
-
-    private static void isAdjacentTrueValue(boolean prev, boolean next) {
-        if (prev && next) {
-            throw new IllegalArgumentException("한 Line에 Bridge를 인접하여 생성할 수 없습니다.");
-        }
     }
 
     public List<Boolean> getBridgeValues() {

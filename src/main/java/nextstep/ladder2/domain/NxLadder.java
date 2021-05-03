@@ -23,8 +23,7 @@ public class NxLadder {
     public int ride(int startIndex) {
         int updatedIndex = startIndex;
         for (NxLine line : lines) {
-            NxBridge bridge = line.getBridgeByPoint(updatedIndex);
-            updatedIndex = bridge.movePosition(updatedIndex);
+            updatedIndex = line.movePosition(updatedIndex);
         }
         return updatedIndex;
     }

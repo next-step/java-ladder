@@ -2,38 +2,24 @@ package nextstep.ladder2.domain;
 
 public class NxBridge {
     private final int index;
-    private final boolean enabled;
+    private final Direction direction;
 
-    public NxBridge(int index, boolean enabled) {
+    public NxBridge(int index, Direction direction) {
         this.index = index;
-        this.enabled = enabled;
+        this.direction = direction;
     }
 
     public boolean isEnabled() {
-        return enabled;
+        return direction.isRight();
     }
 
-    public int movePosition(int pointIndex) {
-        if (pointIndex > index + 1 || pointIndex < 0) {
-            throw new IllegalArgumentException("Bridge와 연결되지 않은 Index 입니다.");
+    public int movePosition() {
+        if (direction.isLeft()) {
+            return index - 1;
         }
-        if (pointIndex == index) {
-            return moveLeftToRight(pointIndex);
+        if (direction.isRight()) {
+            return index + 1;
         }
-        return moveRightToLeft(pointIndex);
-    }
-
-    private int moveLeftToRight(int pointIndex) {
-        if (enabled) {
-            return pointIndex + 1;
-        }
-        return pointIndex;
-    }
-
-    private int moveRightToLeft(int pointIndex) {
-        if (enabled) {
-            return pointIndex - 1;
-        }
-        return pointIndex;
+        return index;
     }
 }
