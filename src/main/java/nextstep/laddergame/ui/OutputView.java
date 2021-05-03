@@ -8,6 +8,7 @@ import nextstep.laddergame.domain.Ladder;
 import nextstep.laddergame.domain.LadderBoard;
 import nextstep.laddergame.domain.Line;
 import nextstep.laddergame.domain.Name;
+import nextstep.laddergame.domain.Point;
 
 public class OutputView {
 
@@ -36,7 +37,7 @@ public class OutputView {
         .forEach(OutputView::printLine);
   }
 
-  private static void printLine(List<Boolean> line) {
+  private static void printLine(List<Point> line) {
     StringBuilder sb = new StringBuilder();
     sb.append(BLANK);
     line.forEach(point -> sb.append(hasPoint(point)));
@@ -49,10 +50,9 @@ public class OutputView {
         .collect(Collectors.joining("\t")));
   }
 
-  private static String hasPoint(boolean point) {
-    if(point) {
+  private static String hasPoint(Point point) {
+    if(point.hasRight())
       return TRUE_LINE;
-    }
     return FALSE_LINE;
   }
 
