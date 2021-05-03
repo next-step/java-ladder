@@ -1,13 +1,13 @@
-package nextstep.ladder.domain;
+package nextstep.ladder2.domain.player;
 
 import java.util.Objects;
 
-public class Player {
+public class NxPlayer {
     private static final int PLAYER_NAME_MAX_LENGTH = 5;
 
     private final String name;
 
-    public Player(String name) {
+    public NxPlayer(String name) {
         if (name.length() > PLAYER_NAME_MAX_LENGTH) {
             throw new IllegalArgumentException("사람 이름은 최대 5글자까지 입력 가능합니다.");
         }
@@ -31,7 +31,7 @@ public class Player {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Player player = (Player) o;
+        NxPlayer player = (NxPlayer) o;
         return Objects.equals(name, player.name);
     }
 

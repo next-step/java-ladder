@@ -1,4 +1,4 @@
-package nextstep.ladder;
+package nextstep.ladder2;
 
 public class Main {
     public static void main(String[] args) {

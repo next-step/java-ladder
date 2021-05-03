@@ -1,24 +1,24 @@
-package nextstep.ladder.domain;
+package nextstep.ladder2.domain.player;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Players {
-    private final List<Player> playerList;
+public class NxPlayers {
+    private final List<NxPlayer> playerList;
 
-    public Players(List<String> names) {
+    public NxPlayers(List<String> names) {
         playerList = new ArrayList<>(names.size());
         for (int i = 0; i < names.size(); i++) {
-            playerList.add(new Player(names.get(i)));
+            playerList.add(new NxPlayer(names.get(i)));
         }
     }
 
-    public Player get(int i) {
+    public NxPlayer get(int i) {
         return playerList.get(i);
     }
 
-    public Player findPlayerByName(String name) {
+    public NxPlayer findPlayerByName(String name) {
         return playerList.stream()
                 .filter(p -> p.getName().equals(name))
                 .findFirst()
@@ -31,7 +31,7 @@ public class Players {
 
     public List<String> getAllPlayerNames() {
         return playerList.stream()
-                .map(Player::getName)
+                .map(NxPlayer::getName)
                 .collect(Collectors.toList());
     }
 }
