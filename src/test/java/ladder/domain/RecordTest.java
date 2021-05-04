@@ -16,7 +16,7 @@ class RecordTest {
   @ParameterizedTest
   @MethodSource("generateArguments")
   @DisplayName("사다리 결과 기록 테스트, 참고 LineRule.drawing() true, false를 반환한다.")
-  void generate(int height, int indexOfFirstPlayer, int indexOfSecondPlayer) {
+  void generate(int height, Position positionOfFirstPlayer, Position positionOfSecondPlayer) {
     // given
     Players players = Players.create("gmoon, guest, test");
 
@@ -25,17 +25,17 @@ class RecordTest {
 
     // then
     assertAll(
-            () -> assertThat(actual.getPlayerIndexOf(Player.create("gmoon"))).isEqualTo(indexOfFirstPlayer),
-            () -> assertThat(actual.getPlayerIndexOf(Player.create("guest"))).isEqualTo(indexOfSecondPlayer),
-            () -> assertThat(actual.getPlayerIndexOf(Player.create("test"))).isEqualTo(2)
+            () -> assertThat(actual.getPlayerPosition(Player.create("gmoon"))).isEqualTo(positionOfFirstPlayer),
+            () -> assertThat(actual.getPlayerPosition(Player.create("guest"))).isEqualTo(positionOfSecondPlayer),
+            () -> assertThat(actual.getPlayerPosition(Player.create("test"))).isEqualTo(2)
     );
   }
 
   static Stream<Arguments> generateArguments() {
     return Stream.of(
-            Arguments.of(1, 1, 0),
-            Arguments.of(2, 0, 1),
-            Arguments.of(3, 1, 0)
+            Arguments.of(1, new Position(1), new Position(0)),
+            Arguments.of(2, new Position(0), new Position(1)),
+            Arguments.of(3, new Position(1), new Position(0))
     );
   }
 }

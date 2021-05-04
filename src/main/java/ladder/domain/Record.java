@@ -8,22 +8,22 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class Record {
-  private final Map<Player, Integer> values;
+  private final Map<Player, Position> values;
 
-  private Record(Map<Player, Integer> values) {
+  private Record(Map<Player, Position> values) {
     this.values = values;
   }
 
   public static Record generate(final Players players, final Ladder ladder) {
     final List<Player> playersValues = players.getValues();
 
-    Map<Player, Integer> result = playersValues.stream()
-            .collect(Collectors.toMap(Function.identity(), player -> ladder.getLastDepthStartLineIndex(playersValues.indexOf(player))));
+    Map<Player, Position> result = playersValues.stream()
+            .collect(Collectors.toMap(Function.identity(), player -> ladder.getLastDepthStartLinePosition(playersValues.indexOf(player))));
     return new Record(Collections.unmodifiableMap(result));
   }
 
-  public int getPlayerIndexOf(Player player) {
-    return values.getOrDefault(player, 0);
+  public Position getPlayerPosition(Player player) {
+    return values.getOrDefault(player, new Position(0));
   }
 
   @Override

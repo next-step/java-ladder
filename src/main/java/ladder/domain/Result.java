@@ -17,7 +17,7 @@ public class Result {
   }
 
   public String get(Record record, Player player) {
-    return values.get(record.getPlayerIndexOf(player));
+    return values.get(record.getPlayerPosition(player).getValue());
   }
 
   public List<String> getValues() {

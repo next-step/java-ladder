@@ -44,24 +44,22 @@ public class Depth {
     return values.size();
   }
 
-  public int getNextStartIndex(int index) {
-    final int indexOfLeftLine = index - 1;
-    final int indexOfRightLine = index;
-
-    if (existLine(indexOfLeftLine)) {
-      return --index;
+  public Position getNextStartPosition(Position position) {
+    if (existLine(position.left())) {
+      return position.left();
     }
 
-    if (existLine(indexOfRightLine)) {
-      return ++index;
+    if (existLine(position.right())) {
+      return position.right();
     }
 
-    return index;
+    return position;
   }
 
-  private boolean existLine(int index) {
-    return isValidIndex(index)
-            && !values.get(index).isEmpty();
+  private boolean existLine(Position position) {
+    int value = position.getValue();
+    return isValidIndex(value)
+            && !values.get(value).isEmpty();
   }
 
   private boolean isValidIndex(int index) {

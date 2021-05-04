@@ -47,8 +47,8 @@ class DepthTest {
   }
 
   @Test
-  @DisplayName("깊이의 시작 지점(라인의 index)를 추출한다.")
-  void getNextStartIndex() {
+  @DisplayName("깊이의 시작 지점(라인의 위치)를 추출한다.")
+  void getNextStartPosition() {
     // given
     int countOfLine = 2;
 
@@ -57,9 +57,9 @@ class DepthTest {
 
     // then
     assertAll(
-            () -> assertThat(depth.getNextStartIndex(0)).isEqualTo(1),
-            () -> assertThat(depth.getNextStartIndex(1)).isEqualTo(0),
-            () -> assertThat(depth.getNextStartIndex(2)).isEqualTo(2)
+            () -> assertThat(depth.getNextStartPosition(new Position(0))).isEqualTo(new Position(1)),
+            () -> assertThat(depth.getNextStartPosition(new Position(1))).isEqualTo(new Position(0)),
+            () -> assertThat(depth.getNextStartPosition(new Position(2))).isEqualTo(new Position(2))
     );
   }
 }
