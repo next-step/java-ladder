@@ -36,24 +36,9 @@ public class Depth {
     }
   }
 
-  public List<Line> getValues() {
-    return values;
-  }
-
-  public int width() {
-    return values.size();
-  }
-
-  public Position getNextStartPosition(Position position) {
-    if (existLine(position.left())) {
-      return position.left();
-    }
-
-    if (existLine(position.right())) {
-      return position.right();
-    }
-
-    return position;
+  public Position getNextStartPosition(Position currentPosition) {
+    Direction direction = Direction.create(existLine(currentPosition.right()), existLine(currentPosition.left()));
+    return currentPosition.next(direction);
   }
 
   private boolean existLine(Position position) {
@@ -64,6 +49,14 @@ public class Depth {
 
   private boolean isValidIndex(int index) {
     return 0 <= index && index < values.size();
+  }
+
+  public int width() {
+    return values.size();
+  }
+
+  public List<Line> getValues() {
+    return values;
   }
 
   @Override

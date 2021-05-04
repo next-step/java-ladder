@@ -15,6 +15,10 @@ public class Direction {
     return new Direction(Move.valueOf(right, left));
   }
 
+  public int forward(int position) {
+    return value.forward(position);
+  }
+
   public Move getValue() {
     return value;
   }

@@ -19,6 +19,10 @@ public class Position {
     return new Position(Move.LEFT.forward(value));
   }
 
+  public Position next(Direction direction) {
+    return new Position(direction.forward(value));
+  }
+
   public int getValue() {
     return value;
   }
