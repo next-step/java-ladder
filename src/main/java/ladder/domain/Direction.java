@@ -1,7 +1,6 @@
 package ladder.domain;
 
 import ladder.constants.Move;
-import ladder.exception.InvalidDirectionException;
 
 import java.util.Objects;
 
@@ -13,23 +12,7 @@ public class Direction {
   }
 
   public static Direction create(boolean right, boolean left) {
-    checkValidDirection(right, left);
-
-    if (right) {
-      return new Direction(Move.RIGHT);
-    }
-
-    if (left) {
-      return new Direction(Move.LEFT);
-    }
-
-    return new Direction(Move.STAY);
-  }
-
-  private static void checkValidDirection(boolean right, boolean left) {
-    if (right && left) {
-      throw new InvalidDirectionException();
-    }
+    return new Direction(Move.valueOf(right, left));
   }
 
   public Move getValue() {
