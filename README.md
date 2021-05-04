@@ -1,4 +1,44 @@
 # 사다리 게임
+# 4단계 - 사다리 리펙토링
+
+## 1. 기능 요구사항
+
+- 기능 요구사항 3단계와 같다.
+- 추가로 제공되는 객체 설계 힌트를 참고해 철저하게 TDD로 재구현해 본다.
+
+## 2. 실행 결과
+
+- 위 요구사항에 따라 결과는 이전 결과와 같다.
+
+## 3. 객체 추출 힌트
+
+힌트의 자세한 코드는 [4단계 미션 사다리 리펙토링](https://edu.nextstep.camp/s/ApJ4Ca71/ls/r7rUz0Oc)를 참고하자.
+
+### 3.1. LadderLine
+### 사다리 한 Line 추상화
+
+- 사다리 게임에서 한 Line을 LadderLine으로 이름을 붙이고 다음과 같이 구현
+- 사다리 Line의 모든 Point 초기화와 이동을 담당
+
+### 3.2. Point
+### LadderLine의 두 점과 현재 위치를 Point로 추상화
+
+- LadderLine에서 위치와 각 점의 방향을 관리
+
+- 각 Point의 좌/우 방향을 Direction으로 추상화
+- 각 Point의 좌/우 방향 정보를 가진다.
+- 현재 Point에서 다음 Point를 생성하는 역할
+  - LadderLine의 두 점과 현재 위치를 Point로 추상화
+  - LadderLine에서 위치와 각 점의 방향을 관리
+
+### 3.3. Direction
+### 각 Point의 좌/우 방향을 Direction으로 추상화
+
+- 각 Point의 좌/우 방향 정보를 가진다.
+- 현재 Point에서 다음 Point를 생성하는 역할
+
+---
+
 # 3단계 - 사다리(게임 실행)
 
 ## 1. 비즈니스 로직
