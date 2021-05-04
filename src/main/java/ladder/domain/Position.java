@@ -1,11 +1,10 @@
 package ladder.domain;
 
+import ladder.constants.Move;
+
 import java.util.Objects;
 
 public class Position {
-  public static final int RIGHT = 1;
-  public static final int LEFT = -1;
-
   private final int value;
 
   public Position(int value) {
@@ -13,15 +12,11 @@ public class Position {
   }
 
   public Position right() {
-    return new Position(move(RIGHT));
+    return new Position(Move.RIGHT.forward(value));
   }
 
   public Position left() {
-    return new Position(move(LEFT));
-  }
-
-  private int move(int status) {
-    return value + status;
+    return new Position(Move.LEFT.forward(value));
   }
 
   public int getValue() {
