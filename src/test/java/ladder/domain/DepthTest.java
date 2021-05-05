@@ -57,8 +57,8 @@ class DepthTest {
 
     // then
     assertAll(
-            () -> assertThat(depth.getNextStartPosition(new Position(0))).isEqualTo(new Position(1)),
-            () -> assertThat(depth.getNextStartPosition(new Position(1))).isEqualTo(new Position(0)),
+            () -> assertThat(depth.getNextStartPosition(new Position())).isEqualTo(new Position(1)),
+            () -> assertThat(depth.getNextStartPosition(new Position(1))).isEqualTo(new Position()),
             () -> assertThat(depth.getNextStartPosition(new Position(2))).isEqualTo(new Position(2))
     );
   }

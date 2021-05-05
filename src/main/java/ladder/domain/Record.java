@@ -23,7 +23,7 @@ public class Record {
   }
 
   public Position getPlayerPosition(Player player) {
-    return values.getOrDefault(player, new Position(0));
+    return values.getOrDefault(player, new Position());
   }
 
   @Override

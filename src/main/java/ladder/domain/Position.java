@@ -5,7 +5,13 @@ import ladder.constants.Move;
 import java.util.Objects;
 
 public class Position {
+  private static final int MIN = 0;
+
   private final int value;
+
+  public Position() {
+    this(MIN);
+  }
 
   public Position(int value) {
     this.value = value;

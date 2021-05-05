@@ -57,7 +57,7 @@ class LadderTest {
     // then
     assertAll(
             () -> assertThat(actual.getLastDepthStartLinePosition(0)).isEqualTo(new Position(1)),
-            () -> assertThat(actual.getLastDepthStartLinePosition(1)).isEqualTo(new Position(0))
+            () -> assertThat(actual.getLastDepthStartLinePosition(1)).isEqualTo(new Position())
     );
   }
 

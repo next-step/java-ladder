@@ -35,9 +35,9 @@ class RecordTest {
 
   static Stream<Arguments> generateArguments() {
     return Stream.of(
-            Arguments.of(1, new Position(1), new Position(0)),
-            Arguments.of(2, new Position(0), new Position(1)),
-            Arguments.of(3, new Position(1), new Position(0))
+            Arguments.of(1, new Position(1), new Position()),
+            Arguments.of(2, new Position(), new Position(1)),
+            Arguments.of(3, new Position(1), new Position())
     );
   }
 }
