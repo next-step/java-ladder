@@ -9,19 +9,11 @@ public class Users {
         this.userList = userList;
     }
 
-    public List<User> userList() {
-        return this.userList;
-    }
-
     public void checkDuplicateUser() {
-        if (this.userList.stream().map(User::name).distinct().count() != userList.size()) {
+        long checkDistinctUserCount = this.userList.stream().map(User::name).distinct().count();
+        if (checkDistinctUserCount != userList.size()) {
             throw new IllegalArgumentException("중복된 User가 있습니다.");
         }
     }
-
-    public int userCount() {
-        return this.userList.size();
-    }
-
 
 }
