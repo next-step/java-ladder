@@ -5,10 +5,10 @@ import ladder.constants.Move;
 import java.util.Objects;
 
 public class Direction {
-  private final Move value;
+  private final Move move;
 
-  private Direction(Move value) {
-    this.value = value;
+  public Direction(Move move) {
+    this.move = move;
   }
 
   public static Direction create(boolean right, boolean left) {
@@ -16,11 +16,7 @@ public class Direction {
   }
 
   public int forward(int position) {
-    return value.forward(position);
-  }
-
-  public Move getValue() {
-    return value;
+    return move.forward(position);
   }
 
   @Override
@@ -28,18 +24,18 @@ public class Direction {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     Direction direction = (Direction) o;
-    return value == direction.value;
+    return move == direction.move;
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(value);
+    return Objects.hash(move);
   }
 
   @Override
   public String toString() {
     return "Direction{" +
-            "value=" + value +
+            "value=" + move +
             '}';
   }
 }
