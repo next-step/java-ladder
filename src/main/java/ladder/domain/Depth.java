@@ -37,7 +37,7 @@ public class Depth {
   }
 
   public Position getNextStartPosition(Position currentPosition) {
-    Direction direction = Direction.create(existLine(currentPosition.right()), existLine(currentPosition.left()));
+    Direction direction = Direction.create(existLine(currentPosition), existLine(currentPosition.left()));
     return currentPosition.next(direction);
   }
 

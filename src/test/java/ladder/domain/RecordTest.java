@@ -21,13 +21,15 @@ class RecordTest {
     Players players = Players.create("gmoon, guest, test");
 
     // when
-    Record actual = Record.generate(players, Ladder.generate(height, players.totalSize() - 1, LineRule.drawing()));
+    Ladder generate = Ladder.generate(height, players.totalSize() - 1, LineRule.drawing());
+    System.out.println(generate);
+    Record actual = Record.generate(players, generate);
 
     // then
     assertAll(
             () -> assertThat(actual.getPlayerPosition(Player.create("gmoon"))).isEqualTo(positionOfFirstPlayer),
             () -> assertThat(actual.getPlayerPosition(Player.create("guest"))).isEqualTo(positionOfSecondPlayer),
-            () -> assertThat(actual.getPlayerPosition(Player.create("test"))).isEqualTo(2)
+            () -> assertThat(actual.getPlayerPosition(Player.create("test"))).isEqualTo(new Position(2))
     );
   }
 
