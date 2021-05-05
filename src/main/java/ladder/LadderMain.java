@@ -24,12 +24,8 @@ public class LadderMain {
 
         Ladder ladder = new Ladder(ladderHeight, userList.size());
 
-        LadderGame ladderGame = new LadderGame(users, ladderHeight);
-
-
         OutputView outputView = new OutputView();
         outputView.printPaticipateInUsers(userNames);
-
 
         outputView.printLadder(ladder.toString());
     }
