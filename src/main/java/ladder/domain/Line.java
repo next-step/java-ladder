@@ -5,9 +5,9 @@ import java.util.List;
 
 public class Line {
     private List<Boolean> points = new ArrayList<>();
-    private int pointCount = 0;
-    private int widthLadderCount = 0;
-    private int countOfPerson = 0;
+    private int pointCount;
+    private int widthLadderCount;
+    private int countOfPerson;
     private static final String EMPTY_WIDTH_LADDER = "     ";
     private StringBuilder sb = new StringBuilder();
     private final RandomNumber randomNumber = new RandomNumber();
