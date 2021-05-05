@@ -53,7 +53,7 @@ public class Line {
     }
 
     private boolean isHeightLadder(int index) {
-        return index % 2 == 0 ? true : false;
+        return index % 2 == 0;
     }
 
 
