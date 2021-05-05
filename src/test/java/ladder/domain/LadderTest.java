@@ -46,8 +46,8 @@ class LadderTest {
   }
 
   @Test
-  @DisplayName("사다리 마지막 깊이의 시작 지점(인덱스)를 추출한다.")
-  void getLastDepthLineIndex() {
+  @DisplayName("사다리 마지막 깊이의 시작 지점(위치)를 추출한다.")
+  void getLastDepthStartLinePosition() {
     // given
     int width = 2;
 
@@ -56,8 +56,8 @@ class LadderTest {
 
     // then
     assertAll(
-            () -> assertThat(actual.getLastDepthStartLineIndex(0)).isEqualTo(1),
-            () -> assertThat(actual.getLastDepthStartLineIndex(1)).isEqualTo(0)
+            () -> assertThat(actual.getLastDepthStartLinePosition(0)).isEqualTo(new Position(1)),
+            () -> assertThat(actual.getLastDepthStartLinePosition(1)).isEqualTo(new Position())
     );
   }
 
