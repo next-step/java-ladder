@@ -9,36 +9,25 @@ public final class Point {
         this.direction = direction;
     }
 
-    private static Direction direction(DirectionDeterminer directionDeterminer) {
-        return directionDeterminer.isRight() ? Direction.RIGHT : Direction.NONE;
-    }
 
     public static Point first(DirectionDeterminer directionDeterminer) {
-        return new Point(direction(directionDeterminer));
+        return new Point(Direction.first(directionDeterminer));
     }
 
     public Point next(DirectionDeterminer directionDeterminer) {
-        if (direction.right()) {
-            return new Point(Direction.LEFT);
-        }
-
-        return new Point(direction(directionDeterminer));
+        return new Point(direction.next(directionDeterminer));
     }
 
     public Point last() {
-        if (direction.right()) {
-            return new Point(Direction.LEFT);
-        }
-
-        return new Point(Direction.NONE);
+        return new Point(direction.last());
     }
 
     public boolean right() {
-        return direction.right();
+        return direction == Direction.RIGHT;
     }
 
     public boolean left() {
-        return direction.left();
+        return direction == Direction.LEFT;
     }
 
     @Override
