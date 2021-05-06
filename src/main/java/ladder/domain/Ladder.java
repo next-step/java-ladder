@@ -42,7 +42,7 @@ public class Ladder {
 
     private int prizeIndex(int personIndex) {
         for (final LadderLine line : lines) {
-            personIndex = line.nextIndex(personIndex);
+            personIndex = line.move(personIndex);
         }
 
         return personIndex;

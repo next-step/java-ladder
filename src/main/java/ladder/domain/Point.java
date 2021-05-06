@@ -17,6 +17,10 @@ public final class Point {
         return new Point(FIRST_INDEX, Direction.first(directionDeterminer));
     }
 
+    public Point next() {
+        return next(() -> false);
+    }
+
     public Point next(final DirectionDeterminer directionDeterminer) {
         return new Point(index + 1, direction.next(directionDeterminer));
     }
@@ -35,6 +39,10 @@ public final class Point {
         }
 
         return index;
+    }
+
+    public boolean current(final int currentIndex) {
+        return currentIndex == index;
     }
 
     public boolean right() {

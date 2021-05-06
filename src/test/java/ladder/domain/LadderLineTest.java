@@ -18,9 +18,9 @@ public class LadderLineTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"0:1", "1:0", "2:2"}, delimiter = ':')
-    public void nextIndex(String currentIndexInput, String expectedInput) {
-        final int currentIndex = Integer.parseInt(currentIndexInput);
+    @CsvSource(value = {"0:1", "1:0", "2:2", "3:3"}, delimiter = ':')
+    public void move(String indexInput, String expectedInput) {
+        final int index = Integer.parseInt(indexInput);
         final int expected = Integer.parseInt(expectedInput);
 
         final LadderLine ladderLine =
@@ -31,8 +31,23 @@ public class LadderLineTest {
                         new Point(3, Direction.NONE)
                 ));
 
-        final int actual = ladderLine.nextIndex(currentIndex);
+        final int actual = ladderLine.move(index);
 
         assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    public void move_invalid() {
+        assertThatIllegalArgumentException().isThrownBy(() -> {
+            final LadderLine ladderLine =
+                    new LadderLine(Arrays.asList(
+                            new Point(0, Direction.RIGHT),
+                            new Point(1, Direction.LEFT),
+                            new Point(2, Direction.NONE),
+                            new Point(3, Direction.NONE)
+                    ));
+
+            ladderLine.move(5);
+        });
     }
 }
