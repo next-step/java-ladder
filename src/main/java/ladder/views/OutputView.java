@@ -13,7 +13,7 @@ public class OutputView {
     private static final String NO_SEARCH_MESSAGE = "일치하는 사람이 없습니다.";
 
     public static void printLadderResultMessage() {
-        System.out.println("\n사다리 결과");
+        System.out.println(System.lineSeparator() + "사다리 결과");
     }
 
     public static void print(People people) {
@@ -62,7 +62,7 @@ public class OutputView {
     }
 
     public static void print(LadderResults ladderResults, String name) {
-        System.out.println("\n실행 결과");
+        System.out.println(System.lineSeparator() + "실행 결과");
         System.out.println(view(ladderResults, name));
     }
 
@@ -70,7 +70,7 @@ public class OutputView {
         if (name.equals("all")) {
             return ladderResults.stream()
                     .map(OutputView::toString)
-                    .collect(Collectors.joining("\n"));
+                    .collect(Collectors.joining(System.lineSeparator()));
         }
 
         return ladderResults.stream()
