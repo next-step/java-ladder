@@ -60,17 +60,7 @@ public class LadderLine {
     }
 
     public int nextIndex(int currentIndex) {
-        final Point point = points.get(currentIndex);
-
-        if (point.right()) {
-            return currentIndex + 1;
-        }
-
-        if (point.left()) {
-            return currentIndex - 1;
-        }
-
-        return currentIndex;
+        return points.get(currentIndex).move();
     }
 
     @Override

@@ -25,10 +25,10 @@ public class LadderLineTest {
 
         final LadderLine ladderLine =
                 new LadderLine(Arrays.asList(
-                        new Point(Direction.RIGHT),
-                        new Point(Direction.LEFT),
-                        new Point(Direction.NONE),
-                        new Point(Direction.NONE)
+                        new Point(0, Direction.RIGHT),
+                        new Point(1, Direction.LEFT),
+                        new Point(2, Direction.NONE),
+                        new Point(3, Direction.NONE)
                 ));
 
         final int actual = ladderLine.nextIndex(currentIndex);
