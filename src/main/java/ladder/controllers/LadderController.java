@@ -20,8 +20,15 @@ public class LadderController {
         OutputView.print(ladder);
         OutputView.print(prizes);
 
-        while (true) {
-            OutputView.print(ladderResults, InputView.name());
+        print(ladderResults);
+    }
+
+    private static void print(LadderResults ladderResults) {
+        String name = "";
+
+        while (!name.equals("all")) {
+            name = InputView.name();
+            OutputView.print(ladderResults, name);
         }
     }
 }

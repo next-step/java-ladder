@@ -6,20 +6,21 @@ import java.util.List;
 import java.util.Objects;
 
 public class LadderLine {
-    public static final int MIN_WIDTH = 2;
-    public static final String MIN_WIDTH_ERROR_MESSAGE = String.format("width는 %d보다 커야 합니다.", MIN_WIDTH);
+    private static final int MIN_WIDTH = 2;
+    private static final String MIN_WIDTH_ERROR_MESSAGE = String.format("width는 %d보다 커야 합니다.", MIN_WIDTH);
+    private static final String WRONG_INDEX_ERROR_MESSAGE = "잘못된 인덱스입니다.";
 
     private final List<Point> points;
 
-    public LadderLine(List<Point> points) {
+    public LadderLine(final List<Point> points) {
         this.points = points;
     }
 
-    public static LadderLine from(int width) {
+    public static LadderLine from(final int width) {
         return from(width, HalfRandomDirectionDeterminer.getInstance());
     }
 
-    public static LadderLine from(int width, DirectionDeterminer directionDeterminer) {
+    public static LadderLine from(final int width, final DirectionDeterminer directionDeterminer) {
         validateMinWidth(width);
 
         final List<Point> points = new ArrayList<>();
@@ -59,18 +60,12 @@ public class LadderLine {
         return Collections.unmodifiableList(points);
     }
 
-    public int nextIndex(int currentIndex) {
-        final Point point = points.get(currentIndex);
-
-        if (point.right()) {
-            return currentIndex + 1;
-        }
-
-        if (point.left()) {
-            return currentIndex - 1;
-        }
-
-        return currentIndex;
+    public int move(final int index) {
+        return points.stream()
+                .filter(point -> point.current(index))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(WRONG_INDEX_ERROR_MESSAGE))
+                .move();
     }
 
     @Override

@@ -3,42 +3,50 @@ package ladder.domain;
 import java.util.Objects;
 
 public final class Point {
+    private static final int FIRST_INDEX = 0;
+
+    private final int index;
     private final Direction direction;
 
-    public Point(Direction direction) {
+    public Point(final int index, final Direction direction) {
+        this.index = index;
         this.direction = direction;
     }
 
-    private static Direction direction(DirectionDeterminer directionDeterminer) {
-        return directionDeterminer.isRight() ? Direction.RIGHT : Direction.NONE;
+    public static Point first(final DirectionDeterminer directionDeterminer) {
+        return new Point(FIRST_INDEX, Direction.first(directionDeterminer));
     }
 
-    public static Point first(DirectionDeterminer directionDeterminer) {
-        return new Point(direction(directionDeterminer));
+    public Point next() {
+        return next(() -> false);
     }
 
-    public Point next(DirectionDeterminer directionDeterminer) {
-        if (direction.right()) {
-            return new Point(Direction.LEFT);
-        }
-
-        return new Point(direction(directionDeterminer));
+    public Point next(final DirectionDeterminer directionDeterminer) {
+        return new Point(index + 1, direction.next(directionDeterminer));
     }
 
     public Point last() {
-        if (direction.right()) {
-            return new Point(Direction.LEFT);
+        return new Point(index + 1, direction.last());
+    }
+
+    public int move() {
+        if (direction == Direction.RIGHT) {
+            return index + 1;
         }
 
-        return new Point(Direction.NONE);
+        if (direction == Direction.LEFT) {
+            return index - 1;
+        }
+
+        return index;
+    }
+
+    public boolean current(final int currentIndex) {
+        return currentIndex == index;
     }
 
     public boolean right() {
-        return direction.right();
-    }
-
-    public boolean left() {
-        return direction.left();
+        return direction == Direction.RIGHT;
     }
 
     @Override
@@ -53,4 +61,5 @@ public final class Point {
     public int hashCode() {
         return Objects.hash(direction);
     }
+
 }
