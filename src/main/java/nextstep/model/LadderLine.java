@@ -50,17 +50,20 @@ public class LadderLine {
 
     public String pointsString() {
         StringBuilder stringBuilder = new StringBuilder();
-        IntStream.range(0, this.points.size() - 1)
-                .forEach((index) -> {
-                    stringBuilder.append(Constant.SPLIT_LADDER_STRING);
-                    if (points.get(index).getDirection().isRight()) {
-                        stringBuilder.append(HORIZON_LADDER_STRING);
-                    } else {
-                        stringBuilder.append(EMPTY_LADDER_STRING);
-                    }
-                });
+        for (int i = 0; i < this.points.size() - 1; i++) {
+            stringBuilder.append(Constant.SPLIT_LADDER_STRING);
+            direction(stringBuilder, i);
+        }
         stringBuilder.append("|");
         return stringBuilder.toString();
+    }
+
+    private void direction(StringBuilder stringBuilder, int i) {
+        if (points.get(i).getDirection().isRight()) {
+            stringBuilder.append(HORIZON_LADDER_STRING);
+        } else {
+            stringBuilder.append(EMPTY_LADDER_STRING);
+        }
     }
 
     public List<Point> getPoints() {
