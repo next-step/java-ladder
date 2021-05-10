@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static nextstep.constant.Constant.ALL;
-
 public class LadderResult {
     private Map<Player, String> result;
     private List<String> resultList;
@@ -32,31 +30,8 @@ public class LadderResult {
         }
     }
 
-    public LadderResult(String[] names, String resultString) {
-        generateResultList(resultString);
-        int resultListIndex = 0;
-        this.result = new HashMap<>();
-        for (String name : names) {
-            this.result.put(new Player(name), resultList.get(resultListIndex++));
-        }
-    }
-
     public int size() {
         return this.result.size();
-    }
-
-    public void addValue(Player whoWinner, String playerResult) {
-        if (!this.result.containsKey(whoWinner)) {
-            throw new IllegalArgumentException("No user");
-        }
-        this.result.put(whoWinner, playerResult);
-    }
-
-    public String personResult(Player player) {
-        if (player.player().equalsIgnoreCase(ALL)) {
-            return allResult();
-        }
-        return String.valueOf(this.result.get(player));
     }
 
     private void generateResultList(String resultString) {
@@ -70,5 +45,13 @@ public class LadderResult {
             sb.append(entry.getKey().player() + " : " + entry.getValue() + "\n");
         }
         return sb.toString();
+    }
+
+    public String resultByIndex(int index) {
+        return this.resultList.get(index);
+    }
+
+    public void setResult(Player player, String result) {
+        this.result.put(player, result);
     }
 }

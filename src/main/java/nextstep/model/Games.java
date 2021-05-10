@@ -1,62 +1,57 @@
 package nextstep.model;
 
+import java.util.Locale;
+import java.util.stream.IntStream;
+
 public class Games {
-    private final int limit;
-    public int focus;
+    private final Ladder ladder;
 
-    public Games(int limit, int focus) {
-        this.limit = limit;
-        this.focus = focus;
+    public Games(Ladder ladder) {
+        this.ladder = ladder;
     }
 
-    public boolean isLeftBlock() {
-        return this.focus == 0;
+    public String personResult(String[] names, Players players, Player player, LadderResult ladderResult) {
+        if (howMany(names, players, player, ladderResult)) return ladderResult.allResult();
+
+        int resultIndex = start(names, player, ladderResult);
+        return ladderResult.resultByIndex(resultIndex);
     }
 
-    public boolean isRightBlock() {
-        return focus >= limit;
-    }
-
-    public void toLeftFocus() {
-        if (isLeftBlock()) {
-            return;
+    private boolean howMany(String[] names, Players players, Player player, LadderResult ladderResult) {
+        if (player.player().toLowerCase(Locale.ROOT).equals("all")) {
+            for (String name : names) {
+                this.start(names, players.filter(name), ladderResult);
+            }
+            return true;
         }
-        focus--;
-    }
-    public void toRightFocus() {
-        if (isRightBlock()) {
-            return;
-        }
-        focus++;
+        return false;
     }
 
-    public boolean isRightTrue(Points points) {
-        if (isRightBlock()) {
-            return false;
+    private int start(String[] names, Player player, LadderResult ladderResult) {
+        int playerIndex = userIndex(names, player);
+        int resultIndex = playerIndex;
+
+        for (LadderLine ladderLine : this.ladder.ladderLines) {
+            Point point = ladderLine.getPoints().get(resultIndex);
+            if (point.getDirection().isLeft()) {
+                resultIndex--;
+            }
+            if (point.getDirection().isRight()) {
+                resultIndex++;
+            }
         }
-        boolean isTrue = points.get(focus);
-        if (isTrue) {
-            toRightFocus();
-        }
-        return isTrue;
+        ladderResult.setResult(player, ladderResult.resultByIndex(resultIndex));
+        return resultIndex;
     }
 
-    public boolean isLeftTrue(Points points) {
-        if (isLeftBlock()) {
-            return false;
+    private int userIndex(String[] names, Player player) {
+        int playerIndex = IntStream.range(0, names.length)
+                .filter(i -> player.player().equals(names[i]))
+                .findFirst()
+                .getAsInt();
+        if (playerIndex < 0) {
+            throw new IllegalArgumentException("No user");
         }
-        boolean isTrue = points.get(focus - 1);
-        if (isTrue) {
-            toLeftFocus();
-        }
-        return isTrue;
-    }
-
-    @Override
-    public String toString() {
-        return "Games{" +
-                "limit=" + limit +
-                ", focus=" + focus +
-                '}';
+        return playerIndex;
     }
 }
