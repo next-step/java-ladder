@@ -1,9 +1,9 @@
 package nextstep.laddergame.domain;
 
-import java.util.Objects;
-
 import static java.lang.Boolean.FALSE;
 import static nextstep.laddergame.domain.utils.RandomValueGenerator.generate;
+
+import java.util.Objects;
 
 public class Direction {
 
@@ -42,6 +42,9 @@ public class Direction {
   }
 
   public static Direction of(boolean first, boolean second) {
+    if(first && second) {
+      return new Direction(true, FALSE);
+    }
     return new Direction(first, second);
   }
 

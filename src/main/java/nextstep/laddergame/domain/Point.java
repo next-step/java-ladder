@@ -37,10 +37,6 @@ public class Point {
     return position;
   }
 
-  public Point next() {
-    return new Point(position + 1, direction.next());
-  }
-
   public Point next(Boolean right) {
     return new Point(position + 1, direction.next(right));
   }

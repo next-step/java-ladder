@@ -36,7 +36,7 @@ public class Line {
   }
 
   private int move(int index) {
-    if(points.size() != index)
+    if (points.size() != index)
       return points.get(index).move();
     return points.get(index-1).last().move();
   }
