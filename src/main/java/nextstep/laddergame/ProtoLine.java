@@ -17,15 +17,11 @@ public class ProtoLine {
   }
 
   protected void add(Boolean next) {
-    if(points.size() == 0) {
+    if(points.isEmpty()) {
       points.add(Point.first(next));
       return;
     }
     Point point = lastOfPoints();
-    if(drawLeft()) {
-      points.add(point.next(false));
-      return;
-    }
     points.add(point.next(next));
   }
 
@@ -42,9 +38,4 @@ public class ProtoLine {
   protected Line toLine() {
     return new Line(points);
   }
-
-  private Boolean drawLeft() {
-    return !points.isEmpty() && lastOfPoints().hasRight();
-  }
-
 }
