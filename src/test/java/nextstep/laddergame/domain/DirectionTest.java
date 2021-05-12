@@ -8,13 +8,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class DirectionTest {
-  @Test
-  @DisplayName("Direction의 왼쪽과 오른쪽이 둘 다 true이면 익셉션이 발생한다")
-  void invalid() {
-    IllegalStateException thrown = assertThrows(IllegalStateException.class,
-        () -> Direction.of(true, true));
-    assertTrue(thrown.getMessage().contains("ERROR"));
-  }
 
   @Test
   @DisplayName("of()를 통해서 Direction을 생성한다")

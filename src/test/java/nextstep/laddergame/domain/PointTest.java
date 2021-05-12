@@ -57,11 +57,4 @@ class PointTest {
     assertEquals(point.move(), 2);
   }
 
-  @Test
-  @DisplayName("Point의 양쪽 값이 TRUE FALSE이므로 인자 없는 next()의 리턴 값은 왼쪼긍로 이동하기에 0이다")
-  public void next() {
-    Point point = Point.first(TRUE).next();
-    assertEquals(point.move(), 0);
-  }
-
 }
