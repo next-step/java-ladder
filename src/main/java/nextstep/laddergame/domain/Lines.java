@@ -1,6 +1,7 @@
 package nextstep.laddergame.domain;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -30,19 +31,9 @@ public class Lines {
   }
 
   public int next(int memberIndex) {
-    return IntStream.range(0, last())
-        .mapToObj((index) -> current(index)
-            .next(memberIndex))
-        .findFirst()
-        .orElseThrow(IllegalArgumentException::new);
-  }
-
-  private Line current(int index) {
-    return this.entireLine()
-        .get(index);
-  }
-
-  public int last() {
-    return this.entireLine().size();
+    AtomicInteger memberIdx = new AtomicInteger(memberIndex);
+    this.entireLine
+        .forEach(line -> memberIdx.set(line.next(memberIdx.get())));
+    return memberIdx.get();
   }
 }
