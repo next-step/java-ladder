@@ -12,14 +12,14 @@ class RandomNumberTest {
     @DisplayName("RandomNumber로 사다리를 만들수 있는지 확인하는 테스트")
     void makableTest() {
         RandomNumber randomNumber = new RandomNumber();
-        assertThat(randomNumber.makableLadder(5)).isEqualTo(true);
+        assertThat(randomNumber.installableLadder(5)).isEqualTo(true);
     }
 
     @Test
     @DisplayName("RandomNumber로 사다리를 만들수 없는지 확인하는 테스트")
     void makableTest2() {
         RandomNumber randomNumber = new RandomNumber();
-        assertThat(randomNumber.makableLadder(1)).isEqualTo(false);
+        assertThat(randomNumber.installableLadder(1)).isEqualTo(false);
     }
 
 }

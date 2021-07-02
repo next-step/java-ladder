@@ -27,6 +27,6 @@ public class LadderMain {
         OutputView outputView = new OutputView();
         outputView.printPaticipateInUsers(userNames);
 
-        outputView.printLadder(ladder.toString());
+        outputView.printLadder(ladder.lines());
     }
 }

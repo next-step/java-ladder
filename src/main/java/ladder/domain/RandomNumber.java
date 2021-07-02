@@ -8,7 +8,7 @@ public class RandomNumber {
     private static final int RANDOM_RANGE_NUMBER = 10;
 
 
-    public boolean makableLadder(int number) {
+    public boolean installableLadder(int number) {
         return number > MAKE_LADDER_NUMBER;
     }
 

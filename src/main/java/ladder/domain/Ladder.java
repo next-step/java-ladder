@@ -6,20 +6,16 @@ import java.util.List;
 public class Ladder {
 
     private List<Line> lineList;
-
+    private Lines lines;
     public Ladder(int height, int userCount) {
         lineList = new ArrayList<>();
         for (int i = 0; i < height; i++) {
             lineList.add(new Line(userCount));
         }
+        lines = new Lines(lineList);
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        lineList.stream().forEach(line -> {
-            sb.append(line.toString() + "\n");
-        });
-        return sb.toString();
+    public Lines lines(){
+        return this.lines;
     }
 }
