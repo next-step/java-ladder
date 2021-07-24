@@ -9,6 +9,7 @@ import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
 public class LadderRide {
+    private static final String ALL_MEMBERS = "all";
 
     public static void main(String[] args) {
         Members members = Members.of(InputView.names());
@@ -19,7 +20,7 @@ public class LadderRide {
 
         ResultView.print(members, ladder, prizes);
         String name = InputView.name();
-        while (!"all".equals(name)) {
+        while (!ALL_MEMBERS.equals(name)) {
             ResultView.printResult(awards.findWinnerByName(name).prize());
             name = InputView.name();
         }
