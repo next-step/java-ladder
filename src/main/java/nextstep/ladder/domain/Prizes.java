@@ -19,10 +19,6 @@ public class Prizes implements Iterable<Prize> {
             .collect(Collectors.toList()));
     }
 
-    public int size() {
-        return prizes.size();
-    }
-
     public Prize findByIndex(int index) {
         return prizes.get(index);
     }

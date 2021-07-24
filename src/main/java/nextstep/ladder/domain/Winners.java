@@ -14,10 +14,6 @@ public class Winners implements Iterable<Winner> {
         return new Winners(winners);
     }
 
-    public Winner get(int index) {
-        return winners.get(index);
-    }
-
     @Override
     public Iterator<Winner> iterator() {
         return winners.iterator();

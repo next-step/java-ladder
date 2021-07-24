@@ -15,10 +15,6 @@ public class Awards {
             .collect(Collectors.toList()));
     }
 
-    public Winner winner(int index) {
-        return winners.get(index);
-    }
-
     public Winners winners() {
         return winners;
     }
