@@ -24,6 +24,8 @@ public class Awards {
     }
 
     public Winner findWinnerByName(String name) {
-        return null;
+        return StreamSupport.stream(winners.spliterator(), false)
+            .filter(winner -> winner.member().equals(Member.of(name)))
+            .findFirst().orElseThrow(() -> new IllegalArgumentException("참여자를 찾을 수 없습니다."));
     }
 }

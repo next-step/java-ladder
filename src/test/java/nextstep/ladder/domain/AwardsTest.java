@@ -22,4 +22,12 @@ class AwardsTest {
         assertThat(winner.member()).isEqualTo(Member.of("pobi"));
         assertThat(winner.prize()).isEqualTo(Prize.of("5000"));
     }
+
+    @Test
+    void findWinnerByName() {
+        Winner winner = awards.findWinnerByName("pobi");
+
+        assertThat(winner.member()).isEqualTo(Member.of("pobi"));
+        assertThat(winner.prize()).isEqualTo(Prize.of("5000"));
+    }
 }
