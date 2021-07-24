@@ -2,6 +2,7 @@ package nextstep.ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -23,5 +24,12 @@ class AwardsTest {
 
         assertThat(winner.member()).isEqualTo(Member.of("pobi"));
         assertThat(winner.prize()).isEqualTo(Prize.of("5000"));
+    }
+
+    @Test
+    @Order(3)
+    void notfoundWinnerByName() {
+        assertThatThrownBy(() -> awards.findWinnerByName("pobi1")).isInstanceOf(IllegalArgumentException.class)
+            .hasMessageMatching("참여자를 찾을 수 없습니다.");
     }
 }
