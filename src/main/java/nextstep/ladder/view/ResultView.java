@@ -9,7 +9,6 @@ import nextstep.ladder.domain.Prizes;
 import nextstep.ladder.domain.Winners;
 
 public class ResultView {
-
     public static final String VERTICAL_POINT = "     |";
     public static final String VERTICAL_AND_HORIZONTAL_POINT = "-----|";
 

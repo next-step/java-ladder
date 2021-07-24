@@ -1,7 +1,6 @@
 package nextstep.ladder.domain;
 
 public interface BooleanStrategy {
-
     boolean value(boolean value);
 
     class OnlyTrueStrategy implements BooleanStrategy {

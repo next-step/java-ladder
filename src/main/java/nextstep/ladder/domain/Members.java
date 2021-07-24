@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Members implements Iterable<Member> {
-
     public static final String DILIMETER = ",";
     private final List<Member> members;
 

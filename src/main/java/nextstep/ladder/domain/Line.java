@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class Line implements Iterable<Point> {
-
     private final List<Point> points;
 
     private Line(List<Point> points) {
@@ -41,7 +40,7 @@ public class Line implements Iterable<Point> {
     }
 
     private boolean pointOnTheLeft(int horizontalNumber) {
-        return horizontalNumber > 0 && points.get(horizontalNumber -1).value();
+        return horizontalNumber > 0 && points.get(horizontalNumber - 1).value();
     }
 
     private boolean pointOnTheRight(int horizontalNumber) {

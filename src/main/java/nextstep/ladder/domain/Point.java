@@ -1,7 +1,6 @@
 package nextstep.ladder.domain;
 
 public class Point {
-
     private final boolean point;
 
     private Point(boolean point) {

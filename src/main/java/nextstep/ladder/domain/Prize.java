@@ -3,7 +3,6 @@ package nextstep.ladder.domain;
 import java.util.Objects;
 
 public class Prize {
-
     public static final int NAME_MAX_LENGTH = 5;
     public final String name;
 

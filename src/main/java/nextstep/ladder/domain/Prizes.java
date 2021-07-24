@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Prizes implements Iterable<Prize> {
-
     public static final String DILIMETER = ",";
     private final List<Prize> prizes;
 
