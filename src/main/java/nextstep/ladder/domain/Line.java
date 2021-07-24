@@ -24,11 +24,6 @@ public class Line implements Iterable<Point> {
         return new Line(points);
     }
 
-    @Override
-    public Iterator<Point> iterator() {
-        return points.iterator();
-    }
-
     public int nextHorizontalNumber(int horizontalNumber) {
         if (pointOnTheLeft(horizontalNumber)) {
             return --horizontalNumber;
@@ -45,5 +40,10 @@ public class Line implements Iterable<Point> {
 
     private boolean pointOnTheRight(int horizontalNumber) {
         return horizontalNumber < points.size() && points.get(horizontalNumber).value();
+    }
+
+    @Override
+    public Iterator<Point> iterator() {
+        return points.iterator();
     }
 }
