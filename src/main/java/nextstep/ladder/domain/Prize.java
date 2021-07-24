@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import java.util.Objects;
+
 public class Prize {
 
     public static final int NAME_MAX_LENGTH = 5;
@@ -18,5 +20,22 @@ public class Prize {
 
     public String value() {
         return name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Prize)) {
+            return false;
+        }
+        Prize prize = (Prize) o;
+        return Objects.equals(name, prize.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }

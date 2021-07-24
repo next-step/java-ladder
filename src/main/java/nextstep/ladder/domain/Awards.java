@@ -1,18 +1,29 @@
 package nextstep.ladder.domain;
 
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
 public class Awards {
-    public Awards(Members members, Prizes prizes, Ladder ladder) {
+    private Winners winners;
+
+    public Awards() {
     }
 
-    public Awards award() {
-        return null;
+    public void award(Members members, Prizes prizes, Ladder ladder) {
+        winners = Winners.create(StreamSupport.stream(members.spliterator(), false)
+            .map(member -> Winner.of(member, prizes.findByIndex(ladder.result(members.findHorizontalNumber(member)))))
+            .collect(Collectors.toList()));
     }
 
     public Winner winner(int index) {
-        return null;
+        return winners.get(index);
     }
 
-    public Winner winners() {
+    public Winners winners() {
+        return winners;
+    }
+
+    public Winner findWinnerByName(String name) {
         return null;
     }
 }
