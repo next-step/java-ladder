@@ -6,6 +6,7 @@ import nextstep.ladder.domain.Members;
 import nextstep.ladder.domain.Point;
 import nextstep.ladder.domain.Prize;
 import nextstep.ladder.domain.Prizes;
+import nextstep.ladder.domain.Winners;
 
 public class ResultView {
 
@@ -54,6 +55,13 @@ public class ResultView {
 
     private static void printPrizes(Prizes prizes) {
         prizes.forEach(prize -> System.out.printf("%6s", prize.value()));
+        System.out.println();
+    }
+
+    public static void printResult(Winners winners) {
+        System.out.println();
+        System.out.println("실행결과");
+        winners.forEach(winner -> System.out.println(winner.member().name + " : " + winner.prize().name));
         System.out.println();
     }
 }
