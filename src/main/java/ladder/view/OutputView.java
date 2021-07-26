@@ -29,11 +29,11 @@ public class OutputView {
     }
 
     private void drawOneLine(StringBuilder sb, Line line) {
-        sb.append(EMPTY_WIDTH_LADDER);
-        for(Integer onePoint : line.lineInfoList()){
-            drawLadderByType(sb, onePoint);
-        }
-        sb.append("\n");
+//        sb.append(EMPTY_WIDTH_LADDER);
+//        for(Integer onePoint : line.lineInfoList()){
+//            drawLadderByType(sb, onePoint);
+//        }
+//        sb.append("\n");
 
     }
 
