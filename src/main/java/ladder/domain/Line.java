@@ -59,7 +59,7 @@ public class Line {
     }
 
     private boolean StartPosition(int position) {
-        return position < 1;
+        return position < 3;
     }
 
     private void addHeightLine(int position) {
