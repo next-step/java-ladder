@@ -25,10 +25,10 @@ public class StreamStudy {
 
         words.stream()
                 .filter(w -> w.length() > 12)
-                .sorted()
-                .limit(100L)
-                .distinct()
                 .map(String::toLowerCase)
+                .distinct()
+                .sorted()
+                .limit(100)
                 .forEach(System.out::println);
     }
 
