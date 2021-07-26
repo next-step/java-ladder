@@ -11,9 +11,7 @@ import java.util.stream.Collectors;
 public class StreamStudy {
 
     public static long countWords() throws IOException {
-        String contents = new String(Files.readAllBytes(Paths
-                .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
-        List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
+        List<String> words = readWordsFromTextFile();
 
         long count = 0;
         for (String w : words) {
@@ -23,11 +21,21 @@ public class StreamStudy {
     }
 
     public static void printLongestWordTop100() throws IOException {
+        List<String> words = readWordsFromTextFile();
+
+        words.stream()
+                .filter(w -> w.length() > 12)
+                .sorted()
+                .limit(100L)
+                .distinct()
+                .map(String::toLowerCase)
+                .forEach(System.out::println);
+    }
+
+    private static List<String> readWordsFromTextFile() throws IOException {
         String contents = new String(Files.readAllBytes(Paths
                 .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
-        List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
-
-        // TODO 이 부분에 구현한다.
+        return Arrays.asList(contents.split("[\\P{L}]+"));
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
