@@ -27,7 +27,7 @@ public class LadderGame {
         return new LadderGame(ladderGameInitInfo);
     }
 
-    public LadderResult matchResult() {
+    public LadderResult result() {
         return LadderResult.of(players.getNames(), ladder.getSteps());
     }
 }

@@ -1,9 +1,13 @@
 package nextstep.ladder;
 
+import nextstep.ladder.dto.LadderResult;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 import static nextstep.ladder.domain.Fixture.LADDER_GAME_INIT_INFO_2_X_2;
+import static nextstep.ladder.domain.Fixture.TWO_PAYERS_NAMES;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -20,5 +24,17 @@ class LadderGameTest {
     @Test
     void initException() {
         assertThatThrownBy(() -> LadderGame.init(null)).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("사다리 결과를 반환한다")
+    @Test
+    void result() {
+        LadderGame ladderGame = LadderGame.init(LADDER_GAME_INIT_INFO_2_X_2);
+        LadderResult ladderResult = ladderGame.result();
+
+        assertThat(ladderResult.getNames()).isEqualTo(TWO_PAYERS_NAMES);
+
+        ladderResult.getRows()
+                .forEach(rowDto -> assertThat(rowDto.getSteps()).isEqualTo(Arrays.asList(true, false, false)));
     }
 }

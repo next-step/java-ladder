@@ -8,6 +8,7 @@ import nextstep.ladder.domain.player.Players;
 import nextstep.ladder.domain.strategy.StepGenerateStrategy;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class Fixture {
     public static final StepGenerateStrategy ALWAYS_GENERATE_STRATEGY = () -> true;
@@ -23,7 +24,8 @@ public class Fixture {
 
     public static final LadderInitInfo LADDER_INIT_INFO_2_X_2 = LadderInitInfo.init(LADDER_SIZE_2_X_2, ALWAYS_GENERATE_STRATEGY);
 
-    public static final Players TWO_PLAYERS = Players.init(Arrays.asList("nok", "cha"));
+    public static final List<String> TWO_PAYERS_NAMES = Arrays.asList("nokc", "cha");
+    public static final Players TWO_PLAYERS = Players.init(TWO_PAYERS_NAMES);
 
     public static final LadderGameInitInfo LADDER_GAME_INIT_INFO_2_X_2 = LadderGameInitInfo.of(LADDER_INIT_INFO_2_X_2, TWO_PLAYERS);
 
