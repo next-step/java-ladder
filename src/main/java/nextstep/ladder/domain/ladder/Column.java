@@ -19,7 +19,7 @@ public class Column {
     }
 
     public Column initLast() {
-        return null;
+        return new Column(step.initLast());
     }
 
     public boolean hasRightStep() {
