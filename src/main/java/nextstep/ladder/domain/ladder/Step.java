@@ -15,7 +15,7 @@ public enum Step {
         return NONE;
     }
 
-    public Step initMiddle(StepGenerateStrategy stepGenerateStrategy) {
+    public Step initNext(StepGenerateStrategy stepGenerateStrategy) {
         if (isRight()) {
             return LEFT;
         }

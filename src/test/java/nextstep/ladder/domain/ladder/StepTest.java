@@ -34,7 +34,7 @@ class StepTest {
     @MethodSource
     @ParameterizedTest
     void initMiddle(Step prevStep, StepGenerateStrategy stepGenerateStrategy, Step expectedStep) {
-        assertThat(prevStep.initMiddle(stepGenerateStrategy)).isEqualTo(expectedStep);
+        assertThat(prevStep.initNext(stepGenerateStrategy)).isEqualTo(expectedStep);
     }
 
     private static Stream<Arguments> initMiddle() {

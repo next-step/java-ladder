@@ -6,16 +6,16 @@ public class Column {
 
     private final Step step;
 
-    private Column(StepGenerateStrategy stepGenerateStrategy) {
-        this.step = Step.init(stepGenerateStrategy);
+    private Column(Step step) {
+        this.step = step;
     }
 
     public static Column init(StepGenerateStrategy stepGenerateStrategy) {
-        return new Column(stepGenerateStrategy);
+        return new Column(Step.init(stepGenerateStrategy));
     }
 
     public Column initNext(StepGenerateStrategy stepGenerateStrategy) {
-        return null;
+        return new Column(step.initNext(stepGenerateStrategy));
     }
 
     public boolean hasRightStep() {
