@@ -18,11 +18,11 @@ public class Column {
         return new Column(step.initNext(stepGenerateStrategy));
     }
 
-    public boolean hasRightStep() {
-        return step.isRight();
-    }
-
     public Column initLast() {
         return null;
+    }
+
+    public boolean hasRightStep() {
+        return step.isRight();
     }
 }

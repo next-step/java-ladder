@@ -48,6 +48,21 @@ class StepTest {
         );
     }
 
+    @DisplayName("마지막 발판 생성은 이전 컬럼의 발판에 따라 달라진다")
+    @MethodSource
+    @ParameterizedTest
+    void initLast(Step prevStep, Step expectedStep) {
+        assertThat(prevStep.initLast()).isEqualTo(expectedStep);
+    }
+
+    private static Stream<Arguments> initLast() {
+        return Stream.of(
+                Arguments.of(RIGHT, LEFT),
+                Arguments.of(LEFT, NONE),
+                Arguments.of(NONE, NONE)
+        );
+    }
+
     @DisplayName("발판이 오른쪽인지 아닌지 판별한다")
     @MethodSource
     @ParameterizedTest

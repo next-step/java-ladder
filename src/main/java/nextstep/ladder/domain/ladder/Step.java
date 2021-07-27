@@ -26,4 +26,8 @@ public enum Step {
     public boolean isRight() {
         return this == RIGHT;
     }
+
+    public boolean initLast() {
+        return false;
+    }
 }
