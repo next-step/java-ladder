@@ -13,4 +13,8 @@ public class Column {
     public static Column init(StepGenerateStrategy stepGenerateStrategy) {
         return new Column(stepGenerateStrategy);
     }
+
+    public boolean hasRightStep() {
+        return true;
+    }
 }
