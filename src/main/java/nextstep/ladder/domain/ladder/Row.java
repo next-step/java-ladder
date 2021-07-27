@@ -70,7 +70,7 @@ public class Row {
     }
 
     private boolean isLadderWidthOverOne(LadderInitInfo ladderInitInfo) {
-        return ladderInitInfo.isEqualToWidth(ONE);
+        return !ladderInitInfo.isEqualToWidth(ONE);
     }
 
     private Column createNextColumn(StepGenerateStrategy stepGenerateStrategy) {
