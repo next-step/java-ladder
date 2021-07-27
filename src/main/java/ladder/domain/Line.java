@@ -8,11 +8,13 @@ public class Line {
     private int countOfPerson;
     private List<Boolean> points = new ArrayList<>();
     private final RandomNumber randomNumber = new RandomNumber();
+    private static final int FIVE = 5;
 
     private StringBuilder sb = new StringBuilder();
 
     public Line(int countOfPerson) {
         this.countOfPerson = countOfPerson;
+        drawLine();
     }
 
     public void drawLine() {
@@ -51,14 +53,15 @@ public class Line {
     }
 
     private boolean checkAdjacentWidthLine(int position) {
-        return !StartPosition(position) && checkBeforeExistenceWidthLadder(position);
+        return !installedFirstLadderPosition(position) && checkBeforeExistenceWidthLadder(position);
     }
 
     private boolean checkBeforeExistenceWidthLadder(int position) {
-        return this.points.get(position - 2);
+        int beforeLadderPosition = position - 2;
+        return this.points.get(beforeLadderPosition);
     }
 
-    private boolean StartPosition(int position) {
+    private boolean installedFirstLadderPosition(int position) {
         return position < 3;
     }
 
@@ -66,9 +69,8 @@ public class Line {
         points.add(true);
     }
 
-
     private boolean isInstallWidthLadder(int number, int position) {
-        return number > 5 && !checkAdjacentWidthLine(position);
+        return number > FIVE && !checkAdjacentWidthLine(position);
     }
 
 

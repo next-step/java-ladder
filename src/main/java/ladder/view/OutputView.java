@@ -1,5 +1,6 @@
 package ladder.view;
 
+
 import ladder.domain.Line;
 import ladder.domain.Lines;
 
@@ -10,9 +11,7 @@ public class OutputView {
     private static final String WIDTH_LADDER = "-----";
     private static final String HEIGHT_LADDER = "|";
     private static final String EMPTY_WIDTH_LADDER = "     ";
-    private static final int EMPTY_WIDTH_NUMBER = 0;
-    private static final int HEIGHT_NUMBER = 1;
-    private static final int WIDTH_NUMBER = 2;
+
 
 
     public void printPaticipateInUsers(String[] userNames) {
@@ -20,34 +19,57 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printLadder(Lines lines){
+    public void printLadder(Lines lines) {
         StringBuilder sb = new StringBuilder();
-        for(Line line : lines){
-            drawOneLine(sb, line);
+        for (Line line : lines) {
+           sb.append(drawOneLine(line));
         }
         System.out.println(sb.toString());
     }
 
-    private void drawOneLine(StringBuilder sb, Line line) {
-//        sb.append(EMPTY_WIDTH_LADDER);
-//        for(Integer onePoint : line.lineInfoList()){
-//            drawLadderByType(sb, onePoint);
-//        }
-//        sb.append("\n");
+    public StringBuilder drawOneLine(Line line) {
+        StringBuilder sb = new StringBuilder();
+        int position = 0;
+        sb.append(EMPTY_WIDTH_LADDER);
+        for (boolean isLadder : line.points()) {
+            drawLadderByType(sb, isLadder, position++);
+        }
+        sb.append("\n");
+
+        return sb;
 
     }
 
-    private void drawLadderByType(StringBuilder sb, Integer onePoint) {
-        if(onePoint == EMPTY_WIDTH_NUMBER){
-            sb.append(EMPTY_WIDTH_LADDER);
-        }
+    private void drawLadderByType(StringBuilder sb, boolean isLadder, int position) {
 
-        if(onePoint == HEIGHT_NUMBER){
+        if (isDrawHeightLadder(position, isLadder)) {
             sb.append(HEIGHT_LADDER);
         }
 
-        if(onePoint == WIDTH_NUMBER){
+        if (isDrawWidthLadder(position, isLadder)) {
             sb.append(WIDTH_LADDER);
         }
+
+        if (isDrawEmptySpace(position,isLadder)) {
+            sb.append(EMPTY_WIDTH_LADDER);
+        }
+
     }
+
+    private boolean isDrawHeightLadder(int position, boolean isLadder){
+        return isHeightLadder(position) && isLadder;
+    }
+
+    private boolean isDrawWidthLadder(int position, boolean isLadder){
+        return !isHeightLadder(position) && isLadder;
+    }
+
+    private boolean isDrawEmptySpace(int position, boolean isLadder){
+        return !isHeightLadder(position) && !isLadder;
+    }
+
+    private boolean isHeightLadder(int position) {
+        return position % 2 == 0;
+    }
+
 }

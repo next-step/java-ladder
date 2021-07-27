@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import ladder.view.OutputView;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,10 +19,16 @@ class LineTest {
         int countOfPerson = 4;
         line = new Line(countOfPerson);
         line.drawLine();
-        List<Boolean> points = line.points();
-        for(int i=0;i< points.size();i++){
-            System.out.print(points.get(i)+" ");
-        }
+
+        OutputView outputView = new OutputView();
+
+        StringBuilder oneLadder = outputView.drawOneLine(line);
+        System.out.println(oneLadder.toString());
+
+//        List<Boolean> points = line.points();
+//        for(int i=0;i< points.size();i++){
+//            System.out.print(points.get(i)+" ");
+//        }
     }
 
 //    @Test
