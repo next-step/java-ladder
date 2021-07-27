@@ -1,6 +1,7 @@
 package nextstep.ladder.domain.ladder;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import static nextstep.ladder.domain.Fixture.ALWAYS_GENERATE_STRATEGY;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -9,6 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class ColumnTest {
 
     @DisplayName("기본적으로 컬럼은 발판 생성 전략을 가지고 초기화를 한다.")
+    @Test
     void init() {
         assertThat(Column.init(ALWAYS_GENERATE_STRATEGY)).isInstanceOf(Column.class);
     }
