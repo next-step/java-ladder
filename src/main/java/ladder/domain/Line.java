@@ -7,7 +7,7 @@ public class Line {
 
     private int countOfPerson;
     private List<Boolean> points = new ArrayList<>();
-    private final RandomNumber randomNumber = new RandomNumber();
+    private static final RandomNumber randomNumber = new RandomNumber();
     private static final int FIVE = 5;
 
     private StringBuilder sb = new StringBuilder();

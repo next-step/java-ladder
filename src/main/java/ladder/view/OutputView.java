@@ -13,7 +13,6 @@ public class OutputView {
     private static final String EMPTY_WIDTH_LADDER = "     ";
 
 
-
     public void printPaticipateInUsers(String[] userNames) {
         Arrays.stream(userNames).forEach(userName -> System.out.printf("%6s", userName));
         System.out.println();
@@ -22,9 +21,9 @@ public class OutputView {
     public void printLadder(Lines lines) {
         StringBuilder sb = new StringBuilder();
         for (Line line : lines) {
-           sb.append(drawOneLine(line));
+            sb.append(drawOneLine(line));
         }
-        System.out.println(sb.toString());
+        System.out.print(sb.toString());
     }
 
     public StringBuilder drawOneLine(Line line) {
@@ -35,9 +34,12 @@ public class OutputView {
             drawLadderByType(sb, isLadder, position++);
         }
         sb.append("\n");
-
         return sb;
+    }
 
+    public void printResult(String[] inputResult){
+        Arrays.stream(inputResult).forEach(resultName -> System.out.printf("%6s", resultName));
+        System.out.println();
     }
 
     private void drawLadderByType(StringBuilder sb, boolean isLadder, int position) {
@@ -50,21 +52,21 @@ public class OutputView {
             sb.append(WIDTH_LADDER);
         }
 
-        if (isDrawEmptySpace(position,isLadder)) {
+        if (isDrawEmptySpace(position, isLadder)) {
             sb.append(EMPTY_WIDTH_LADDER);
         }
 
     }
 
-    private boolean isDrawHeightLadder(int position, boolean isLadder){
+    private boolean isDrawHeightLadder(int position, boolean isLadder) {
         return isHeightLadder(position) && isLadder;
     }
 
-    private boolean isDrawWidthLadder(int position, boolean isLadder){
+    private boolean isDrawWidthLadder(int position, boolean isLadder) {
         return !isHeightLadder(position) && isLadder;
     }
 
-    private boolean isDrawEmptySpace(int position, boolean isLadder){
+    private boolean isDrawEmptySpace(int position, boolean isLadder) {
         return !isHeightLadder(position) && !isLadder;
     }
 

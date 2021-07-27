@@ -20,6 +20,9 @@ public class LadderMain {
         Users users = new Users(userList);
         users.checkDuplicateUser();
 
+        String[] inputResult = inputView.inputResult();
+
+
         int ladderHeight = inputView.inputLadderHeight();
 
         Ladder ladder = new Ladder(ladderHeight, userList.size());
@@ -28,5 +31,7 @@ public class LadderMain {
         outputView.printPaticipateInUsers(userNames);
 
         outputView.printLadder(ladder.lines());
+
+        outputView.printResult(inputResult);
     }
 }
