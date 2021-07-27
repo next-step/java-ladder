@@ -25,7 +25,7 @@ public class LadderGameInitInfo {
         }
     }
 
-    public static Object of(LadderInitInfo ladderInitInfo, Players players) {
+    public static LadderGameInitInfo of(LadderInitInfo ladderInitInfo, Players players) {
         return new LadderGameInitInfo(ladderInitInfo, players);
     }
 
