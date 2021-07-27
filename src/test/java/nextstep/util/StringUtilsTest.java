@@ -3,6 +3,7 @@ package nextstep.util;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -17,6 +18,8 @@ class StringUtilsTest {
     }
 
     @DisplayName("문자열에 값이 있다면 false 를 반환한다.")
+    @ValueSource(strings = {"nok", "cha", "x"})
+    @ParameterizedTest
     void nonEmpty(String stringValue) {
         assertThat(StringUtils.isEmpty(stringValue)).isFalse();
     }
