@@ -1,7 +1,10 @@
 package nextstep.ladder.domain.ladder;
 
+import nextstep.ladder.dto.RowDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
 
 import static nextstep.ladder.domain.Fixture.LADDER_INIT_INFO_2_X_2;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -25,6 +28,9 @@ class LadderTest {
     @DisplayName("각 행의 사다리 다리를 정보를 반환한다")
     @Test
     void getSteps() {
+        Ladder ladder = Ladder.init(LADDER_INIT_INFO_2_X_2);
 
+        ladder.getSteps()
+                .forEach(rowDto -> assertThat(rowDto.getSteps()).isEqualTo(Arrays.asList(true, false, false)));
     }
 }

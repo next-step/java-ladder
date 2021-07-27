@@ -1,6 +1,7 @@
 package nextstep.ladder.domain.ladder;
 
 import nextstep.ladder.domain.init.LadderInitInfo;
+import nextstep.ladder.dto.RowDto;
 
 import java.util.List;
 import java.util.Objects;
@@ -25,7 +26,15 @@ public class Ladder {
         }
     }
 
-    public static Object init(LadderInitInfo ladderInitInfo) {
+    public static Ladder init(LadderInitInfo ladderInitInfo) {
         return new Ladder(ladderInitInfo);
     }
+
+    public List<RowDto> getSteps() {
+        return rows.stream()
+                .map(Row::toSteps)
+                .map(RowDto::from)
+                .collect(Collectors.toList());
+    }
+
 }
