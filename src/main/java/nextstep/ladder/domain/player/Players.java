@@ -5,7 +5,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Players {
-    private List<Player> players;
+    private final List<Player> players;
 
     private Players(List<String> names) {
         validate(names);
@@ -25,4 +25,9 @@ public class Players {
         return new Players(names);
     }
 
+    public List<String> getNames() {
+        return players.stream()
+                .map(Player::getName)
+                .collect(Collectors.toList());
+    }
 }
