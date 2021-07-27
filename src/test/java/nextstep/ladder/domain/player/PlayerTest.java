@@ -2,6 +2,8 @@ package nextstep.ladder.domain.player;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -15,9 +17,11 @@ class PlayerTest {
         assertThat(Player.init("name")).isInstanceOf(Player.class);
     }
 
-    @DisplayName("플레이어 이름이 5글자를 초과하는 경우 예외를 발생 시킨다")
-    @Test
-    void initException() {
-        assertThatThrownBy(() -> Player.init("nokchax")).isInstanceOf(IllegalArgumentException.class);
+    @DisplayName("플레이어 이름이 null 이거나 비어있거나 5글자를 초과하는 경우 예외를 발생 시킨다")
+    @NullAndEmptySource
+    @ValueSource(strings = {"nokcha", "nokchax"})
+    void initException(String name) {
+        assertThatThrownBy(() -> Player.init(name)).isInstanceOf(IllegalArgumentException.class);
     }
+
 }
