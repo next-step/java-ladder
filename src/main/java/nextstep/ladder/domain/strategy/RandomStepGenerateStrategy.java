@@ -20,7 +20,7 @@ public class RandomStepGenerateStrategy implements StepGenerateStrategy {
         }
     }
 
-    public static Object init(Random random) {
+    public static RandomStepGenerateStrategy init(Random random) {
         return new RandomStepGenerateStrategy(random);
     }
 
