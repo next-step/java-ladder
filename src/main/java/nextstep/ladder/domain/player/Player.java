@@ -4,6 +4,7 @@ import nextstep.util.StringUtils;
 
 public class Player {
     public static final int MAXIMUM_LENGTH_OF_NAME = 5;
+
     private final String name;
 
     private Player(String name) {
