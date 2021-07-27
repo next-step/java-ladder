@@ -2,6 +2,8 @@ package nextstep.ladder.domain.ladder;
 
 import nextstep.ladder.domain.strategy.StepGenerateStrategy;
 
+import java.util.Objects;
+
 public class Column {
 
     private final Step step;
@@ -24,5 +26,18 @@ public class Column {
 
     public boolean hasRightStep() {
         return step.isRight();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Column column = (Column) o;
+        return step == column.step;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(step);
     }
 }
