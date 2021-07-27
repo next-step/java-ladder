@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static nextstep.ladder.domain.Fixture.LADDER_INIT_INFO;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @DisplayName("사다리 한 행을 표현하는 로우 클래스에 대한 테스트")
 class RowTest {
@@ -13,5 +14,11 @@ class RowTest {
     @Test
     void init() {
         assertThat(Row.init(LADDER_INIT_INFO)).isInstanceOf(Row.class);
+    }
+
+    @DisplayName("사다리 초기화 정보 클래스가 null 일 경우 예외를 발생 시킨다")
+    @Test
+    void initException() {
+        assertThatThrownBy(() -> Row.init(null)).isInstanceOf(IllegalArgumentException.class);
     }
 }
