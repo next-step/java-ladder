@@ -30,6 +30,6 @@ class LadderTest {
         Ladder ladder = Ladder.init(LADDER_INIT_INFO_2_X_2);
 
         ladder.getSteps()
-                .forEach(rowDto -> assertThat(rowDto.getSteps()).isEqualTo(Arrays.asList(true, false, false)));
+                .forEach(rowDto -> assertThat(rowDto.getSteps()).isEqualTo(Arrays.asList(true, false)));
     }
 }

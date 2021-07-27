@@ -10,7 +10,9 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Row {
-    private static final int ONE_OFFSET = 1;
+    private static final int ONE = 1;
+    private static final int ZERO = 0;
+    private static final int FIRST_AND_END_EXCEPT_COUNT = 2;
 
     private final List<Column> columns;
 
@@ -20,7 +22,7 @@ public class Row {
 
         createFirst(ladderInitInfo);
         createMiddle(ladderInitInfo);
-        createLast();
+        createLast(ladderInitInfo);
     }
 
     private void validate(LadderInitInfo ladderInitInfo) {
@@ -30,17 +32,41 @@ public class Row {
     }
 
     private void createFirst(LadderInitInfo ladderInitInfo) {
-        columns.add(Column.initFirst(ladderInitInfo.getStepGenerateStrategy()));
+        StepGenerateStrategy stepGenerateStrategy = ladderInitInfo.getStepGenerateStrategy();
+
+        if (isLadderWidthOne(ladderInitInfo)) {
+            stepGenerateStrategy = () -> false;
+        }
+
+        columns.add(Column.initFirst(stepGenerateStrategy));
+    }
+
+    private boolean isLadderWidthOne(LadderInitInfo ladderInitInfo) {
+        return ladderInitInfo.isEqualToWidth(ONE);
     }
 
     private void createMiddle(LadderInitInfo ladderInitInfo) {
-        Stream.generate(() -> createNextColumn(ladderInitInfo.getStepGenerateStrategy()))
-                .limit(ladderInitInfo.getLadderWidth() - ONE_OFFSET)
-                .forEach(columns::add);
+        if (isColumnSizeUnderLadderWidth(ladderInitInfo)) {
+            Stream.generate(() -> createNextColumn(ladderInitInfo.getStepGenerateStrategy()))
+                    .limit(getMiddleColumnLimit(ladderInitInfo))
+                    .forEach(columns::add);
+        }
     }
 
-    private void createLast() {
-        columns.add(createLastColumn());
+    private int getMiddleColumnLimit(LadderInitInfo ladderInitInfo) {
+        int limit = ladderInitInfo.getLadderWidth() - FIRST_AND_END_EXCEPT_COUNT;
+
+        return Math.max(limit, ZERO);
+    }
+
+    private boolean isColumnSizeUnderLadderWidth(LadderInitInfo ladderInitInfo) {
+        return ladderInitInfo.isUnderWidth(columns.size());
+    }
+
+    private void createLast(LadderInitInfo ladderInitInfo) {
+        if (isColumnSizeUnderLadderWidth(ladderInitInfo)) {
+            columns.add(createLastColumn());
+        }
     }
 
     public static Row init(LadderInitInfo ladderInitInfo) {
@@ -56,7 +82,7 @@ public class Row {
     }
 
     private Column getLastColumn() {
-        return columns.get(columns.size() - ONE_OFFSET);
+        return columns.get(columns.size() - ONE);
     }
 
     public List<Boolean> toSteps() {

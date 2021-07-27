@@ -10,19 +10,19 @@ import java.util.stream.Stream;
 import static nextstep.ladder.domain.player.Player.MAXIMUM_LENGTH_OF_NAME;
 
 public class ResultView {
-    private static final int PADDING = 1;
+    private static final int NAME_PADDING = 1;
     private static final String STEP_MARK = "-";
     private static final String BLANK_MARK = " ";
     private static final String COLUMN_MARK = "|";
+    private static final String PADDING = drawStep(BLANK_MARK);
     private static final String RESULT_STATEMENT = "실행결과";
-    private static final String NAME_FORMAT = "%" + (MAXIMUM_LENGTH_OF_NAME + PADDING) + "s";
+    private static final String NAME_FORMAT = "%" + (MAXIMUM_LENGTH_OF_NAME + NAME_PADDING) + "s";
     private static final String COLUMN_WITH_STEP = COLUMN_MARK + drawStep(STEP_MARK);
     private static final String COLUMN_WITHOUT_STEP = COLUMN_MARK + drawStep(BLANK_MARK);
 
     private ResultView() {}
 
     public static void printResult(LadderResult result) {
-        Stream.generate(() -> STEP_MARK).limit(MAXIMUM_LENGTH_OF_NAME).collect(Collectors.joining());
         printStatementAndNewLine(RESULT_STATEMENT);
 
         printPlayers(result.getNames());
@@ -34,6 +34,7 @@ public class ResultView {
     }
 
     private static void printSteps(RowDto rowDto) {
+        printStatement(PADDING);
         rowDto.getSteps()
                 .forEach(step -> printStatement(step ? COLUMN_WITH_STEP : COLUMN_WITHOUT_STEP));
         newLine();
