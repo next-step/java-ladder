@@ -70,7 +70,7 @@ class StepTest {
         assertThatThrownBy(() -> Step.init(null)).isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("첫번째 발판 생성에서 발판 생성 전략이 null 일 경우 예외를 반환한다")
+    @DisplayName("중간 발판 생성에서 발판 생성 전략이 null 일 경우 예외를 반환한다")
     @Test
     void initMiddleException() {
         assertThatThrownBy(() -> LEFT_STEP_COLUMN.initNext(null)).isInstanceOf(IllegalArgumentException.class);
