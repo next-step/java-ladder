@@ -4,7 +4,7 @@ import nextstep.ladder.domain.strategy.StepGenerateStrategy;
 
 import java.util.Objects;
 
-// 하나의 기둥을 뜻함
+// 하나의 기둥을 뜻함 따라서 사다리의 폭이 n 이여도 기둥은 n+1 개 생성
 public class Column {
 
     private final Step step;
