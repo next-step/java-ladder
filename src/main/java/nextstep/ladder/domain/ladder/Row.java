@@ -6,11 +6,11 @@ import nextstep.ladder.domain.strategy.StepGenerateStrategy;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Row {
     private static final int ONE_OFFSET = 1;
-    private static final int FIRST_AND_END_COUNT = 2;
 
     private final List<Column> columns;
 
@@ -35,7 +35,7 @@ public class Row {
 
     private void createMiddle(LadderInitInfo ladderInitInfo) {
         Stream.generate(() -> createNextColumn(ladderInitInfo.getStepGenerateStrategy()))
-                .limit(ladderInitInfo.getLadderWidth() - FIRST_AND_END_COUNT)
+                .limit(ladderInitInfo.getLadderWidth() - ONE_OFFSET)
                 .forEach(columns::add);
     }
 
@@ -59,7 +59,9 @@ public class Row {
         return columns.get(columns.size() - ONE_OFFSET);
     }
 
-    public boolean toSteps() {
-        return false;
+    public List<Boolean> toSteps() {
+        return columns.stream()
+                .map(Column::hasRightStep)
+                .collect(Collectors.toList());
     }
 }

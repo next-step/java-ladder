@@ -44,8 +44,8 @@ class RowTest {
 
     private static Stream<Arguments> toSteps() {
         return Stream.of(
-                Arguments.of(LADDER_INIT_INFO_5_X_5, ALWAYS_GENERATE_STRATEGY, Arrays.asList(true, false, true, false, true, false)),
-                Arguments.of(LADDER_INIT_INFO_5_X_5, NEVER_GENERATE_STRATEGY, Arrays.asList(false, false, false, false, false, false))
+                Arguments.of(LADDER_SIZE_5_X_5, ALWAYS_GENERATE_STRATEGY, Arrays.asList(true, false, true, false, true, false)),
+                Arguments.of(LADDER_SIZE_5_X_5, NEVER_GENERATE_STRATEGY, Arrays.asList(false, false, false, false, false, false))
         );
     }
 }
