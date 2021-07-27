@@ -12,7 +12,7 @@ public class RandomStepGenerateStrategy implements StepGenerateStrategy {
     }
 
     public static Object init(Random random) {
-        return null;
+        return new RandomStepGenerateStrategy(random);
     }
 
     @Override
