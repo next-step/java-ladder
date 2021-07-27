@@ -30,4 +30,5 @@ public class LadderSize {
     public int getHeight() {
         return height;
     }
+
 }
