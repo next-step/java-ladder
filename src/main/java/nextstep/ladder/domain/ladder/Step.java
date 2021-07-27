@@ -14,4 +14,8 @@ public enum Step {
 
         return NONE;
     }
+
+    public boolean isRight() {
+        return this == RIGHT;
+    }
 }

@@ -30,4 +30,19 @@ class StepTest {
         );
     }
 
+    @DisplayName("발판이 오른쪽인지 아닌지 판별한다")
+    @MethodSource
+    @ParameterizedTest
+    void isRight(Step step, boolean expectedValue) {
+        assertThat(step.isRight()).isEqualTo(expectedValue);
+    }
+
+    private static Stream<Arguments> isRight() {
+        return Stream.of(
+                Arguments.of(RIGHT, true),
+                Arguments.of(LEFT, false),
+                Arguments.of(NONE, false)
+        );
+    }
+
 }
