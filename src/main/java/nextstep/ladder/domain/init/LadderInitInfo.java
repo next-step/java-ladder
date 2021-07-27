@@ -51,8 +51,4 @@ public class LadderInitInfo {
     public StepGenerateStrategy getStepGenerateStrategy() {
         return stepGenerateStrategy;
     }
-
-    public boolean isUnderWidth(int size) {
-        return ladderSize.isUnderWidth(size);
-    }
 }

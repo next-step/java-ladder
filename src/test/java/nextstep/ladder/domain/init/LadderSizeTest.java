@@ -52,13 +52,6 @@ class LadderSizeTest {
         );
     }
 
-    @DisplayName("사다리 너비가 주어진 값보다 큰지 비교")
-    @MethodSource
-    @ParameterizedTest
-    void isUnder(int size, boolean expectedValue) {
-        assertThat(LADDER_SIZE_2_X_2.isUnderWidth(size)).isEqualTo(expectedValue);
-    }
-
     private static Stream<Arguments> isUnder() {
         return Stream.of(
                 Arguments.of(2, false),

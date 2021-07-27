@@ -52,11 +52,9 @@ public class Row {
     }
 
     private void createMiddle(LadderInitInfo ladderInitInfo) {
-        if (isColumnSizeUnderLadderWidthSize(ladderInitInfo)) {
-            Stream.generate(() -> createNextColumn(ladderInitInfo.getStepGenerateStrategy()))
-                    .limit(getMiddleColumnLimit(ladderInitInfo))
-                    .forEach(columns::add);
-        }
+        Stream.generate(() -> createNextColumn(ladderInitInfo.getStepGenerateStrategy()))
+                .limit(getMiddleColumnLimit(ladderInitInfo))
+                .forEach(columns::add);
     }
 
     private int getMiddleColumnLimit(LadderInitInfo ladderInitInfo) {
@@ -65,14 +63,14 @@ public class Row {
         return Math.max(limit, ZERO);
     }
 
-    private boolean isColumnSizeUnderLadderWidthSize(LadderInitInfo ladderInitInfo) {
-        return ladderInitInfo.isUnderWidth(columns.size());
-    }
-
     private void createLast(LadderInitInfo ladderInitInfo) {
-        if (isColumnSizeUnderLadderWidthSize(ladderInitInfo)) {
+        if (isLadderWidthOverOne(ladderInitInfo)) {
             columns.add(createLastColumn());
         }
+    }
+
+    private boolean isLadderWidthOverOne(LadderInitInfo ladderInitInfo) {
+        return ladderInitInfo.isEqualToWidth(ONE);
     }
 
     private Column createNextColumn(StepGenerateStrategy stepGenerateStrategy) {

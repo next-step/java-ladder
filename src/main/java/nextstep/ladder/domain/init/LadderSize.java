@@ -34,8 +34,4 @@ public class LadderSize {
     public boolean isEqualToWidth(int size) {
         return width == size;
     }
-
-    public boolean isUnderWidth(int size) {
-        return width > size;
-    }
 }
