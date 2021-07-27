@@ -7,7 +7,11 @@ public enum Step {
     RIGHT,
     NONE;
 
-    public static Step generate(StepGenerateStrategy stepGenerateStrategy) {
-        return null;
+    public static Step init(StepGenerateStrategy stepGenerateStrategy) {
+        if (stepGenerateStrategy.isGenerable()) {
+            return RIGHT;
+        }
+
+        return NONE;
     }
 }

@@ -7,7 +7,7 @@ public class Column {
     private final Step step;
 
     private Column(StepGenerateStrategy stepGenerateStrategy) {
-        this.step = Step.generate(stepGenerateStrategy);
+        this.step = Step.init(stepGenerateStrategy);
     }
 
     public static Column init(StepGenerateStrategy stepGenerateStrategy) {
