@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
+import static nextstep.ladder.domain.init.LadderSize.MINIMUM_LENGTH;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -29,9 +30,9 @@ class LadderSizeTest {
 
     private static Stream<Arguments> initException() {
         return Stream.of(
-                Arguments.of(0, 1),
-                Arguments.of(1, 0),
-                Arguments.of(0, 0)
+                Arguments.of(MINIMUM_LENGTH - 1, MINIMUM_LENGTH),
+                Arguments.of(MINIMUM_LENGTH, MINIMUM_LENGTH - 1),
+                Arguments.of(MINIMUM_LENGTH - 1, MINIMUM_LENGTH - 1)
         );
     }
 }
