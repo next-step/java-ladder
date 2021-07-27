@@ -15,6 +15,6 @@ public class Column {
     }
 
     public boolean hasRightStep() {
-        return true;
+        return step.isRight();
     }
 }

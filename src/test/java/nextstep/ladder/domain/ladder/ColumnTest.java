@@ -10,6 +10,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.Stream;
 
 import static nextstep.ladder.domain.Fixture.ALWAYS_GENERATE_STRATEGY;
+import static nextstep.ladder.domain.Fixture.NEVER_GENERATE_STRATEGY;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("사다리 한 행에서 기둥을 담당하는 컬럼 클래스 테스트")
@@ -32,7 +33,7 @@ class ColumnTest {
     private static Stream<Arguments> hasRightStep() {
         return Stream.of(
                 Arguments.of(ALWAYS_GENERATE_STRATEGY, true),
-                Arguments.of(ALWAYS_GENERATE_STRATEGY, false)
+                Arguments.of(NEVER_GENERATE_STRATEGY, false)
         );
     }
 
