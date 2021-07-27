@@ -21,4 +21,8 @@ public class Column {
     public boolean hasRightStep() {
         return step.isRight();
     }
+
+    public Column initLast() {
+        return null;
+    }
 }

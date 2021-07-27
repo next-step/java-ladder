@@ -66,13 +66,30 @@ class ColumnTest {
         return Stream.of(
                 Arguments.of(RIGHT_STEP_COLUMN, ALWAYS_GENERATE_STRATEGY, false),
                 Arguments.of(RIGHT_STEP_COLUMN, NEVER_GENERATE_STRATEGY, false),
+                Arguments.of(LEFT_STEP_COLUMN, ALWAYS_GENERATE_STRATEGY, true),
+                Arguments.of(LEFT_STEP_COLUMN, NEVER_GENERATE_STRATEGY, false),
                 Arguments.of(NONE_STEP_COLUMN, ALWAYS_GENERATE_STRATEGY, true),
                 Arguments.of(NONE_STEP_COLUMN, NEVER_GENERATE_STRATEGY, false)
         );
     }
 
-    @DisplayName("마지막 컬럼 이전 컬럼의 스텝 종류에 영향을 받아 생성한다.")
-    void initLastColumn() {
+    @DisplayName("마지막 컬럼은 이전 컬럼의 스텝 종류에 영향을 받아 생성한다.")
+    @MethodSource
+    @ParameterizedTest
+    void initLastColumn(Column prevColumn, boolean expectedValue) {
+        Column column = prevColumn.initLast();
 
+        assertThat(column.hasRightStep()).isEqualTo(expectedValue);
+    }
+
+    private static Stream<Arguments> initLastColumn() {
+        return Stream.of(
+                Arguments.of(RIGHT_STEP_COLUMN, false),
+                Arguments.of(RIGHT_STEP_COLUMN, false),
+                Arguments.of(LEFT_STEP_COLUMN, false),
+                Arguments.of(LEFT_STEP_COLUMN, false),
+                Arguments.of(NONE_STEP_COLUMN, false),
+                Arguments.of(NONE_STEP_COLUMN, false)
+        );
     }
 }
