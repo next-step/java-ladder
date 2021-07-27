@@ -15,7 +15,7 @@ public class ResultView {
     private static final String BLANK_MARK = " ";
     private static final String COLUMN_MARK = "|";
     private static final String RESULT_STATEMENT = "실행결과";
-    private static final String NAME_FORMAT = "%" + MAXIMUM_LENGTH_OF_NAME + PADDING + "s";
+    private static final String NAME_FORMAT = "%" + (MAXIMUM_LENGTH_OF_NAME + PADDING) + "s";
     private static final String COLUMN_WITH_STEP = COLUMN_MARK + drawStep(STEP_MARK);
     private static final String COLUMN_WITHOUT_STEP = COLUMN_MARK + drawStep(BLANK_MARK);
 
