@@ -30,6 +30,24 @@ class StepTest {
         );
     }
 
+    @DisplayName("중간 발판 생성은 이전 컬럼의 발판과 전략에 따라 달라진다")
+    @MethodSource
+    @ParameterizedTest
+    void initMiddle(Step prevStep, StepGenerateStrategy stepGenerateStrategy, Step expectedStep) {
+        assertThat(prevStep.initMiddle(stepGenerateStrategy)).isEqualTo(expectedStep);
+    }
+
+    private static Stream<Arguments> initMiddle() {
+        return Stream.of(
+                Arguments.of(RIGHT, ALWAYS_GENERATE_STRATEGY, LEFT),
+                Arguments.of(RIGHT, NEVER_GENERATE_STRATEGY, LEFT),
+                Arguments.of(LEFT, ALWAYS_GENERATE_STRATEGY, RIGHT),
+                Arguments.of(LEFT, NEVER_GENERATE_STRATEGY, NONE),
+                Arguments.of(NONE, ALWAYS_GENERATE_STRATEGY, RIGHT),
+                Arguments.of(NONE, NEVER_GENERATE_STRATEGY, NONE)
+        );
+    }
+
     @DisplayName("발판이 오른쪽인지 아닌지 판별한다")
     @MethodSource
     @ParameterizedTest

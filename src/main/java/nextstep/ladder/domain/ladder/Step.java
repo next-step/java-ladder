@@ -15,6 +15,10 @@ public enum Step {
         return NONE;
     }
 
+    public boolean initMiddle(StepGenerateStrategy stepGenerateStrategy) {
+        return false;
+    }
+
     public boolean isRight() {
         return this == RIGHT;
     }
