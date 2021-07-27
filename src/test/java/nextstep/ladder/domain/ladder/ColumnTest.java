@@ -38,9 +38,18 @@ class ColumnTest {
     }
 
     @DisplayName("첫번 째 컬럼은 오른쪽 발판을 가지거나 발판을 가지지 않는다.")
-    void initFirstColumn() {
-        Column column = Column.init(ALWAYS_GENERATE_STRATEGY);
-        assertThat(column.hasRightStep()).isEqualTo(true);
+    @MethodSource
+    @ParameterizedTest
+    void initFirstColumn(StepGenerateStrategy stepGenerateStrategy, boolean expectedValue) {
+        Column column = Column.init(stepGenerateStrategy);
+        assertThat(column.hasRightStep()).isEqualTo(expectedValue);
+    }
+
+    private static Stream<Arguments> initFirstColumn() {
+        return Stream.of(
+                Arguments.of(ALWAYS_GENERATE_STRATEGY, true),
+                Arguments.of(NEVER_GENERATE_STRATEGY, false)
+        );
     }
 
     @DisplayName("두번째 부터 마지막 전 컬럼 까지는 이전 컬럼의 스텝 종류에 영향을 받아 생성한다.")
