@@ -5,6 +5,7 @@ import nextstep.ladder.domain.strategy.StepGenerateStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Stream;
 
 public class Row {
@@ -14,11 +15,18 @@ public class Row {
     private final List<Column> columns;
 
     private Row(LadderInitInfo ladderInitInfo) {
+        validate(ladderInitInfo);
         columns = new ArrayList<>(ladderInitInfo.getLadderWidth());
 
         createFirst(ladderInitInfo);
         createMiddle(ladderInitInfo);
         createLast();
+    }
+
+    private void validate(LadderInitInfo ladderInitInfo) {
+        if (Objects.isNull(ladderInitInfo)) {
+            throw new IllegalArgumentException("LadderInitInfo can't be null");
+        }
     }
 
     private void createFirst(LadderInitInfo ladderInitInfo) {
