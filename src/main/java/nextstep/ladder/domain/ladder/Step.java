@@ -23,11 +23,15 @@ public enum Step {
         return init(stepGenerateStrategy);
     }
 
-    public boolean isRight() {
-        return this == RIGHT;
+    public Step initLast() {
+        if (isRight()) {
+            return LEFT;
+        }
+
+        return NONE;
     }
 
-    public boolean initLast() {
-        return false;
+    public boolean isRight() {
+        return this == RIGHT;
     }
 }
