@@ -35,6 +35,6 @@ class LadderGameTest {
         assertThat(ladderResult.getNames()).isEqualTo(TWO_PAYERS_NAMES);
 
         ladderResult.getRows()
-                .forEach(rowDto -> assertThat(rowDto.getSteps()).isEqualTo(Arrays.asList(true, false, false)));
+                .forEach(rowDto -> assertThat(rowDto.getSteps()).isEqualTo(Arrays.asList(true, false)));
     }
 }

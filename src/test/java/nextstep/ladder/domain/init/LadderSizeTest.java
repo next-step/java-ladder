@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
+import static nextstep.ladder.domain.Fixture.LADDER_SIZE_2_X_2;
 import static nextstep.ladder.domain.init.LadderSize.MINIMUM_LENGTH;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -33,6 +34,36 @@ class LadderSizeTest {
                 Arguments.of(MINIMUM_LENGTH - 1, MINIMUM_LENGTH),
                 Arguments.of(MINIMUM_LENGTH, MINIMUM_LENGTH - 1),
                 Arguments.of(MINIMUM_LENGTH - 1, MINIMUM_LENGTH - 1)
+        );
+    }
+
+    @DisplayName("사다리 너비가 주어진 값과 같은지 비교")
+    @MethodSource
+    @ParameterizedTest
+    void isEqualTo(int size, boolean expectedValue) {
+        assertThat(LADDER_SIZE_2_X_2.isEqualToWidth(size)).isEqualTo(expectedValue);
+    }
+
+    private static Stream<Arguments> isEqualTo() {
+        return Stream.of(
+                Arguments.of(2, true),
+                Arguments.of(1, false),
+                Arguments.of(3, false)
+        );
+    }
+
+    @DisplayName("사다리 너비가 주어진 값보다 큰지 비교")
+    @MethodSource
+    @ParameterizedTest
+    void isUnder(int size, boolean expectedValue) {
+        assertThat(LADDER_SIZE_2_X_2.isUnderWidth(size)).isEqualTo(expectedValue);
+    }
+
+    private static Stream<Arguments> isUnder() {
+        return Stream.of(
+                Arguments.of(2, false),
+                Arguments.of(1, true),
+                Arguments.of(3, false)
         );
     }
 }
