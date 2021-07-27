@@ -29,6 +29,13 @@ public class LadderGameInitInfo {
         return new LadderGameInitInfo(ladderInitInfo, players);
     }
 
+    public static LadderGameInitInfo of(Players players, int ladderHeight) {
+        LadderSize ladderSize = LadderSize.of(players.getNames().size(), ladderHeight);
+        LadderInitInfo ladderInitInfo = LadderInitInfo.init(ladderSize);
+
+        return new LadderGameInitInfo(ladderInitInfo, players);
+    }
+
     public LadderInitInfo getLadderInitInfo() {
         return ladderInitInfo;
     }

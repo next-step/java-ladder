@@ -4,6 +4,8 @@ import nextstep.ladder.domain.strategy.StepGenerateStrategy;
 
 import java.util.Objects;
 
+import static nextstep.ladder.domain.strategy.RandomStepGenerateStrategy.HALF_PERCENT_STEP_STRATEGY;
+
 public class LadderInitInfo {
 
     private final LadderSize ladderSize;
@@ -28,6 +30,10 @@ public class LadderInitInfo {
 
     public static LadderInitInfo init(LadderSize ladderSize, StepGenerateStrategy stepGenerateStrategy) {
         return new LadderInitInfo(ladderSize, stepGenerateStrategy);
+    }
+
+    public static LadderInitInfo init(LadderSize ladderSize) {
+        return new LadderInitInfo(ladderSize, HALF_PERCENT_STEP_STRATEGY);
     }
 
     public int getLadderWidth() {
