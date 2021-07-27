@@ -1,5 +1,6 @@
 package nextstep.ladder.domain.ladder;
 
+import nextstep.ladder.domain.init.LadderInitInfo;
 import nextstep.ladder.domain.strategy.StepGenerateStrategy;
 
 import java.util.List;
@@ -12,7 +13,7 @@ public class Row {
 
     }
 
-    public static Row init(int ladderWidth, StepGenerateStrategy stepGenerateStrategy) {
-        return new Row(ladderWidth, stepGenerateStrategy);
+    public static boolean init(LadderInitInfo ladderInitInfo) {
+        return false;
     }
 }

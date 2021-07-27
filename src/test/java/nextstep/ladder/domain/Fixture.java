@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.domain.init.LadderInitInfo;
 import nextstep.ladder.domain.init.LadderSize;
 import nextstep.ladder.domain.ladder.Column;
 import nextstep.ladder.domain.strategy.StepGenerateStrategy;
@@ -14,6 +15,9 @@ public class Fixture {
             .initNext(ALWAYS_GENERATE_STRATEGY);
 
     public static final LadderSize LADDER_SIZE_2_X_2 = LadderSize.of(2, 2);
+
+    public static final LadderInitInfo LADDER_INIT_INFO = LadderInitInfo.init(LADDER_SIZE_2_X_2, ALWAYS_GENERATE_STRATEGY);
+
     private Fixture() {}
 
 }
