@@ -14,14 +14,14 @@ class PlayerTest {
     @DisplayName("플레이어는 이름을 가지고 초기화 한다")
     @Test
     void init() {
-        assertThat(Player.init("name")).isInstanceOf(Player.class);
+        assertThat(Player.from("name")).isInstanceOf(Player.class);
     }
 
     @DisplayName("플레이어 이름이 null 이거나 비어있거나 5글자를 초과하는 경우 예외를 발생 시킨다")
     @NullAndEmptySource
     @ValueSource(strings = {"nokcha", "nokchax"})
     void initException(String name) {
-        assertThatThrownBy(() -> Player.init(name)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> Player.from(name)).isInstanceOf(IllegalArgumentException.class);
     }
 
 }

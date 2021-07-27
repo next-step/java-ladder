@@ -23,7 +23,7 @@ public class Player {
         }
     }
 
-    public static Player init(String name) {
+    public static Player from(String name) {
         return new Player(name);
     }
 
