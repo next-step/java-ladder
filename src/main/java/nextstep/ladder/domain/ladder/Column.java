@@ -4,6 +4,7 @@ import nextstep.ladder.domain.strategy.StepGenerateStrategy;
 
 import java.util.Objects;
 
+// 하나의 기둥을 뜻함
 public class Column {
 
     private final Step step;

@@ -58,4 +58,8 @@ public class Row {
     private Column getLastColumn() {
         return columns.get(columns.size() - ONE_OFFSET);
     }
+
+    public boolean toSteps() {
+        return false;
+    }
 }
