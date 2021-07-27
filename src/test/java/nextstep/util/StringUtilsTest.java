@@ -15,4 +15,9 @@ class StringUtilsTest {
     void isEmpty(String stringValue) {
         assertThat(StringUtils.isEmpty(stringValue)).isTrue();
     }
+
+    @DisplayName("문자열에 값이 있다면 false 를 반환한다.")
+    void nonEmpty(String stringValue) {
+        assertThat(StringUtils.isEmpty(stringValue)).isFalse();
+    }
 }
