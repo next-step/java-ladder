@@ -10,7 +10,7 @@ public class Column {
         this.step = step;
     }
 
-    public static Column init(StepGenerateStrategy stepGenerateStrategy) {
+    public static Column initFirst(StepGenerateStrategy stepGenerateStrategy) {
         return new Column(Step.init(stepGenerateStrategy));
     }
 

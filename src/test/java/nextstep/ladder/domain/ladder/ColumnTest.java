@@ -18,14 +18,14 @@ class ColumnTest {
     @DisplayName("기본적으로 컬럼은 발판 생성 전략을 가지고 초기화를 한다.")
     @Test
     void init() {
-        assertThat(Column.init(ALWAYS_GENERATE_STRATEGY)).isInstanceOf(Column.class);
+        assertThat(Column.initFirst(ALWAYS_GENERATE_STRATEGY)).isInstanceOf(Column.class);
     }
 
     @DisplayName("하나의 열에는 오른쪽 발판이 있거나 없다.")
     @MethodSource
     @ParameterizedTest
     void hasRightStep(StepGenerateStrategy stepGenerateStrategy, boolean expectedValue) {
-        Column column = Column.init(stepGenerateStrategy);
+        Column column = Column.initFirst(stepGenerateStrategy);
 
         assertThat(column.hasRightStep()).isEqualTo(expectedValue);
     }
@@ -41,7 +41,7 @@ class ColumnTest {
     @MethodSource
     @ParameterizedTest
     void initFirstColumn(StepGenerateStrategy stepGenerateStrategy, boolean expectedValue) {
-        Column column = Column.init(stepGenerateStrategy);
+        Column column = Column.initFirst(stepGenerateStrategy);
 
         assertThat(column.hasRightStep()).isEqualTo(expectedValue);
     }
