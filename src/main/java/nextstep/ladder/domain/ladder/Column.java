@@ -14,6 +14,10 @@ public class Column {
         return new Column(stepGenerateStrategy);
     }
 
+    public Column initNext(StepGenerateStrategy stepGenerateStrategy) {
+        return null;
+    }
+
     public boolean hasRightStep() {
         return step.isRight();
     }

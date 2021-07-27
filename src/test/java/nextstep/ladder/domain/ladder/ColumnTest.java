@@ -9,8 +9,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-import static nextstep.ladder.domain.Fixture.ALWAYS_GENERATE_STRATEGY;
-import static nextstep.ladder.domain.Fixture.NEVER_GENERATE_STRATEGY;
+import static nextstep.ladder.domain.Fixture.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("사다리 한 행에서 기둥을 담당하는 컬럼 클래스 테스트")
@@ -27,6 +26,7 @@ class ColumnTest {
     @ParameterizedTest
     void hasRightStep(StepGenerateStrategy stepGenerateStrategy, boolean expectedValue) {
         Column column = Column.init(stepGenerateStrategy);
+
         assertThat(column.hasRightStep()).isEqualTo(expectedValue);
     }
 
@@ -42,6 +42,7 @@ class ColumnTest {
     @ParameterizedTest
     void initFirstColumn(StepGenerateStrategy stepGenerateStrategy, boolean expectedValue) {
         Column column = Column.init(stepGenerateStrategy);
+
         assertThat(column.hasRightStep()).isEqualTo(expectedValue);
     }
 
@@ -53,8 +54,21 @@ class ColumnTest {
     }
 
     @DisplayName("두번째 부터 마지막 전 컬럼 까지는 이전 컬럼의 스텝 종류에 영향을 받아 생성한다.")
-    void initMiddleColumn() {
+    @MethodSource
+    @ParameterizedTest
+    void initMiddleColumn(Column prevColumn, StepGenerateStrategy stepGenerateStrategy, boolean expectedValue) {
+        Column column = prevColumn.initNext(stepGenerateStrategy);
 
+        assertThat(column.hasRightStep()).isEqualTo(expectedValue);
+    }
+
+    private static Stream<Arguments> initMiddleColumn() {
+        return Stream.of(
+                Arguments.of(RIGHT_STEP_COLUMN, ALWAYS_GENERATE_STRATEGY, false),
+                Arguments.of(RIGHT_STEP_COLUMN, NEVER_GENERATE_STRATEGY, false),
+                Arguments.of(NONE_STEP_COLUMN, ALWAYS_GENERATE_STRATEGY, true),
+                Arguments.of(NONE_STEP_COLUMN, NEVER_GENERATE_STRATEGY, false)
+        );
     }
 
     @DisplayName("마지막 컬럼 이전 컬럼의 스텝 종류에 영향을 받아 생성한다.")
