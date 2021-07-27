@@ -13,27 +13,27 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @DisplayName("랜덤 발판 생성 전략 클래스 테스트")
-class RandomStepGenerateStrategyTest {
+class RandomGenerateStrategyTest {
 
     @DisplayName("랜덤 객체를 가지고 초기화한다")
     @Test
     void init() {
-        assertThat(RandomStepGenerateStrategy.init(new Random())).isInstanceOf(RandomStepGenerateStrategy.class);
+        assertThat(RandomGenerateStrategy.init(new Random())).isInstanceOf(RandomGenerateStrategy.class);
     }
 
     @DisplayName("랜덤 객체가 null 일 경우 예외를 발생 시킨다")
     @Test
     void initException() {
-        assertThatThrownBy(() -> RandomStepGenerateStrategy.init(null)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> RandomGenerateStrategy.init(null)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("랜덤 객체가 리턴하는 값을 그대로 리턴한다")
     @MethodSource
     @ParameterizedTest
     void isGenerable(Random random, boolean expectedValue) {
-        RandomStepGenerateStrategy randomStepGenerateStrategy = RandomStepGenerateStrategy.init(random);
+        RandomGenerateStrategy randomGenerateStrategy = RandomGenerateStrategy.init(random);
 
-        assertThat(randomStepGenerateStrategy.isGenerable()).isEqualTo(expectedValue);
+        assertThat(randomGenerateStrategy.isGenerable()).isEqualTo(expectedValue);
     }
 
     private static Stream<Arguments> isGenerable() {

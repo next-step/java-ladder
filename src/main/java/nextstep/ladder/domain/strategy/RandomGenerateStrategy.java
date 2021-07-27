@@ -3,12 +3,12 @@ package nextstep.ladder.domain.strategy;
 import java.util.Objects;
 import java.util.Random;
 
-public class RandomStepGenerateStrategy implements StepGenerateStrategy {
-    public static final RandomStepGenerateStrategy HALF_PERCENT_STEP_STRATEGY = new RandomStepGenerateStrategy(new Random());
+public class RandomGenerateStrategy implements StepGenerateStrategy {
+    public static final RandomGenerateStrategy HALF_PERCENT_STEP_STRATEGY = new RandomGenerateStrategy(new Random());
 
     private final Random random;
 
-    private RandomStepGenerateStrategy(Random random) {
+    private RandomGenerateStrategy(Random random) {
         validate(random);
 
         this.random = random;
@@ -20,8 +20,8 @@ public class RandomStepGenerateStrategy implements StepGenerateStrategy {
         }
     }
 
-    public static RandomStepGenerateStrategy init(Random random) {
-        return new RandomStepGenerateStrategy(random);
+    public static RandomGenerateStrategy init(Random random) {
+        return new RandomGenerateStrategy(random);
     }
 
     @Override
