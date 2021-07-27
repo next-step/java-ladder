@@ -22,4 +22,12 @@ public class LadderSize {
     public static LadderSize of(int width, int height) {
         return new LadderSize(width, height);
     }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
 }
