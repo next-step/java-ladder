@@ -8,10 +8,10 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-import static nextstep.ladder.domain.Fixture.ALWAYS_GENERATE_STRATEGY;
-import static nextstep.ladder.domain.Fixture.NEVER_GENERATE_STRATEGY;
+import static nextstep.ladder.domain.Fixture.*;
 import static nextstep.ladder.domain.ladder.Step.*;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @DisplayName("사다리 발판에 대한 테스트")
 class StepTest {
@@ -61,6 +61,20 @@ class StepTest {
                 Arguments.of(LEFT, NONE),
                 Arguments.of(NONE, NONE)
         );
+    }
+
+    @DisplayName("첫번째 발판 생성에서 발판 생성 전략이 null 일 경우 예외를 반환한다")
+    @MethodSource
+    @ParameterizedTest
+    void initException() {
+        assertThatThrownBy(() -> Step.init(null)).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("첫번째 발판 생성에서 발판 생성 전략이 null 일 경우 예외를 반환한다")
+    @MethodSource
+    @ParameterizedTest
+    void initMiddleException() {
+        assertThatThrownBy(() -> RIGHT_STEP_COLUMN.initNext(null)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("발판이 오른쪽인지 아닌지 판별한다")
