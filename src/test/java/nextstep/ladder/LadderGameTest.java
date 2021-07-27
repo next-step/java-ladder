@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static nextstep.ladder.domain.Fixture.LADDER_GAME_INIT_INFO_2_X_2;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @DisplayName("사다리 게임 클래스 테스트")
 class LadderGameTest {
@@ -13,5 +14,11 @@ class LadderGameTest {
     @Test
     void init() {
         assertThat(LadderGame.init(LADDER_GAME_INIT_INFO_2_X_2)).isInstanceOf(LadderGame.class);
+    }
+
+    @DisplayName("사다리 게임 초기화 정보가 null 일 경우 예외를 발생 시킨다")
+    @Test
+    void initException() {
+        assertThatThrownBy(() -> LadderGame.init(null)).isInstanceOf(IllegalArgumentException.class);
     }
 }
