@@ -1,5 +1,6 @@
 package nextstep.ladder.domain.strategy;
 
+import java.util.Objects;
 import java.util.Random;
 
 public class RandomStepGenerateStrategy implements StepGenerateStrategy {
@@ -8,7 +9,15 @@ public class RandomStepGenerateStrategy implements StepGenerateStrategy {
     private final Random random;
 
     private RandomStepGenerateStrategy(Random random) {
+        validate(random);
+
         this.random = random;
+    }
+
+    private void validate(Random random) {
+        if (Objects.isNull(random)) {
+            throw new IllegalArgumentException("Random can't be null");
+        }
     }
 
     public static Object init(Random random) {
