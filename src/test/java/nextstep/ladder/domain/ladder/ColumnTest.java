@@ -53,7 +53,7 @@ class ColumnTest {
         );
     }
 
-    @DisplayName("두번째 부터 마지막 전 컬럼 까지는 이전 컬럼의 스텝 종류에 영향을 받아 생성한다.")
+    @DisplayName("두번째 부터 마지막 전 컬럼 까지는 이전 컬럼의 스텝 종류와 발판 생성 전략에 영향을 받아 생성한다.")
     @MethodSource
     @ParameterizedTest
     void initMiddleColumn(Column prevColumn, StepGenerateStrategy stepGenerateStrategy, boolean expectedValue) {
