@@ -3,11 +3,11 @@ package ladder.domain;
 public class LadderGame {
 
     private Users users;
-    private int ladderHeight;
+    private Lines lines;
 
-    public LadderGame(Users users, int ladderHeight) {
+    public LadderGame(Users users, Lines lines) {
         this.users = users;
-        this.ladderHeight = ladderHeight;
+        this.lines = lines;
     }
 
 }
