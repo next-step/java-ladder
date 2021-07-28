@@ -64,13 +64,9 @@ public class Row {
     }
 
     private void createLast(LadderInitInfo ladderInitInfo) {
-        if (isLadderWidthOverOne(ladderInitInfo)) {
+        if (!isLadderWidthSizeOne(ladderInitInfo)) {
             columns.add(createLastColumn());
         }
-    }
-
-    private boolean isLadderWidthOverOne(LadderInitInfo ladderInitInfo) {
-        return !ladderInitInfo.isEqualToWidth(ONE);
     }
 
     private Column createNextColumn(StepGenerateStrategy stepGenerateStrategy) {
