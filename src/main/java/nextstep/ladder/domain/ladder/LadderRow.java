@@ -10,10 +10,8 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static nextstep.ladder.domain.strategy.NeverGenerateStrategy.NEVER_GENERATE_STRATEGY;
-
 public class LadderRow {
-    private static final int ONE = 1;
+    public static final int ONE = 1;
     private static final int ZERO = 0;
     private static final int FIRST_AND_END_EXCEPT_COUNT = 2;
 
@@ -35,21 +33,7 @@ public class LadderRow {
     }
 
     private void createFirst(LadderInitInfo ladderInitInfo) {
-        StepGenerateStrategy stepGenerateStrategy = selectStepGenerateStrategy(ladderInitInfo);
-
-        row.add(LadderColumn.initFirst(stepGenerateStrategy));
-    }
-
-    private StepGenerateStrategy selectStepGenerateStrategy(LadderInitInfo ladderInitInfo) {
-        if (isLadderWidthSizeOne(ladderInitInfo)) {
-            return NEVER_GENERATE_STRATEGY;
-        }
-
-        return ladderInitInfo.getStepGenerateStrategy();
-    }
-
-    private boolean isLadderWidthSizeOne(LadderInitInfo ladderInitInfo) {
-        return ladderInitInfo.isEqualToWidth(ONE);
+        row.add(LadderColumn.initFirst(ladderInitInfo.getStepGenerateStrategy()));
     }
 
     private void createMiddle(LadderInitInfo ladderInitInfo) {
@@ -65,7 +49,7 @@ public class LadderRow {
     }
 
     private void createLast(LadderInitInfo ladderInitInfo) {
-        if (!isLadderWidthSizeOne(ladderInitInfo)) {
+        if (!ladderInitInfo.isLadderWidthEqualTo(ONE)) {
             row.add(createLastColumn());
         }
     }

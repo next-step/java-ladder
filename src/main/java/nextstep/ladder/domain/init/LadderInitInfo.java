@@ -1,10 +1,13 @@
 package nextstep.ladder.domain.init;
 
+import nextstep.ladder.domain.strategy.NeverGenerateStrategy;
 import nextstep.ladder.domain.strategy.StepGenerateStrategy;
 import nextstep.ladder.exception.NullArgumentException;
 
 import java.util.Objects;
 
+import static nextstep.ladder.domain.ladder.LadderRow.ONE;
+import static nextstep.ladder.domain.strategy.NeverGenerateStrategy.NEVER_GENERATE_STRATEGY;
 import static nextstep.ladder.domain.strategy.RandomGenerateStrategy.HALF_PERCENT_STEP_STRATEGY;
 
 public class LadderInitInfo {
@@ -50,6 +53,14 @@ public class LadderInitInfo {
     }
 
     public StepGenerateStrategy getStepGenerateStrategy() {
+        if (ladderSize.isEqualToWidth(ONE)) {
+            return NEVER_GENERATE_STRATEGY;
+        }
+
         return stepGenerateStrategy;
+    }
+
+    public boolean isLadderWidthEqualTo(int size) {
+        return ladderSize.isEqualToWidth(size);
     }
 }
