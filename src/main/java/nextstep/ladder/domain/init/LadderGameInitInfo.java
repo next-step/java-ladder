@@ -2,6 +2,7 @@ package nextstep.ladder.domain.init;
 
 import nextstep.ladder.domain.player.Players;
 
+import java.util.List;
 import java.util.Objects;
 
 public class LadderGameInitInfo {
@@ -29,7 +30,8 @@ public class LadderGameInitInfo {
         return new LadderGameInitInfo(ladderInitInfo, players);
     }
 
-    public static LadderGameInitInfo of(Players players, int ladderHeight) {
+    public static LadderGameInitInfo of(List<String> playerNames, int ladderHeight) {
+        Players players = Players.init(playerNames);
         LadderSize ladderSize = LadderSize.of(players.getNames().size(), ladderHeight);
         LadderInitInfo ladderInitInfo = LadderInitInfo.init(ladderSize);
 

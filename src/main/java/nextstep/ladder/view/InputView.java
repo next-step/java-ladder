@@ -3,6 +3,7 @@ package nextstep.ladder.view;
 import nextstep.ladder.domain.player.Players;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
@@ -21,6 +22,14 @@ public class InputView {
         return Arrays.stream(readNames())
                 .map(String::trim)
                 .collect(Collectors.collectingAndThen(Collectors.toList(), Players::init));
+    }
+
+    public static List<String> inputParticipantsNames() {
+        printStatement(INPUT_PARTICIPANTS_STATEMENT);
+
+        return Arrays.stream(readNames())
+                .map(String::trim)
+                .collect(Collectors.toList());
     }
 
     public static int inputLadderHeight() {

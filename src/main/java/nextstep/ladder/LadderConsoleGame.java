@@ -1,16 +1,17 @@
 package nextstep.ladder;
 
 import nextstep.ladder.domain.init.LadderGameInitInfo;
-import nextstep.ladder.domain.player.Players;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
+
+import java.util.List;
 
 public class LadderConsoleGame {
 
     public static void main(String[] args) {
-        Players players = InputView.inputParticipants();
+        List<String> playerNames = InputView.inputParticipantsNames();
         int ladderHeight = InputView.inputLadderHeight();
-        LadderGameInitInfo ladderGameInitInfo = LadderGameInitInfo.of(players, ladderHeight);
+        LadderGameInitInfo ladderGameInitInfo = LadderGameInitInfo.of(playerNames, ladderHeight);
 
         LadderGame ladderGame = LadderGame.init(ladderGameInitInfo);
 
