@@ -1,5 +1,6 @@
 package nextstep.ladder.domain.init;
 
+import nextstep.ladder.exception.OutOfRangeArgumentException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -26,7 +27,7 @@ class LadderSizeTest {
     @MethodSource
     @ParameterizedTest
     void initException(int width, int height) {
-        assertThatThrownBy(() -> LadderSize.of(width, height)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> LadderSize.of(width, height)).isInstanceOf(OutOfRangeArgumentException.class);
     }
 
     private static Stream<Arguments> initException() {

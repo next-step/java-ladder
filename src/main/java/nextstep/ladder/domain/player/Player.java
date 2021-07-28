@@ -1,6 +1,7 @@
 package nextstep.ladder.domain.player;
 
 import nextstep.ladder.exception.NullArgumentException;
+import nextstep.ladder.exception.OutOfRangeArgumentException;
 import nextstep.util.StringUtils;
 
 public class Player {
@@ -20,7 +21,7 @@ public class Player {
         }
 
         if (name.length() > MAXIMUM_LENGTH_OF_NAME) {
-            throw new IllegalArgumentException("Name should less than or equal to " + MAXIMUM_LENGTH_OF_NAME);
+            throw OutOfRangeArgumentException.lessThanOrEqualTo(MAXIMUM_LENGTH_OF_NAME, name.length());
         }
     }
 

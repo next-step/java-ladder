@@ -1,6 +1,7 @@
 package nextstep.ladder;
 
 import nextstep.ladder.dto.LadderResult;
+import nextstep.ladder.exception.NullArgumentException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -23,7 +24,7 @@ class LadderGameTest {
     @DisplayName("사다리 게임 초기화 정보가 null 일 경우 예외를 발생 시킨다")
     @Test
     void initException() {
-        assertThatThrownBy(() -> LadderGame.init(null)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> LadderGame.init(null)).isInstanceOf(NullArgumentException.class);
     }
 
     @DisplayName("사다리 결과를 반환한다")
