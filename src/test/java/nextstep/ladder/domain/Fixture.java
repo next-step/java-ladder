@@ -29,7 +29,7 @@ public class Fixture {
     public static final Players TWO_PLAYERS = Players.init(TWO_PAYERS_NAMES);
 
     public static final List<String> TWO_RESULTS_VALUE = Arrays.asList("500", "꽝");
-    public static final Players TWO_RESULTS = Results.init(TWO_RESULTS_VALUE);
+    public static final Results TWO_RESULTS = Results.init(TWO_RESULTS_VALUE);
 
     public static final LadderGameInitInfo LADDER_GAME_INIT_INFO_2_X_2 = LadderGameInitInfo.of(LADDER_INIT_INFO_2_X_2, TWO_PLAYERS);
 
