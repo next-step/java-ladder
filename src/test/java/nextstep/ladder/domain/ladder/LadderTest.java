@@ -1,5 +1,6 @@
 package nextstep.ladder.domain.ladder;
 
+import nextstep.ladder.exception.NullArgumentException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +22,7 @@ class LadderTest {
     @DisplayName("사다리 초기화 정보가 null 일 경우 예외를 발생시킨다")
     @Test
     void initException() {
-        assertThatThrownBy(() -> Ladder.init(null)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> Ladder.init(null)).isInstanceOf(NullArgumentException.class);
     }
 
     @DisplayName("각 행의 사다리 다리를 정보를 반환한다")

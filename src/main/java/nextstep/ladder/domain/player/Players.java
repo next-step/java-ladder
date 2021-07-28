@@ -1,5 +1,7 @@
 package nextstep.ladder.domain.player;
 
+import nextstep.ladder.exception.NullArgumentException;
+
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -17,7 +19,7 @@ public class Players {
 
     private void validate(List<String> names) {
         if (Objects.isNull(names)) {
-            throw new IllegalArgumentException("Names can't be null");
+            throw new NullArgumentException("Names");
         }
     }
 

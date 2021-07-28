@@ -1,6 +1,7 @@
 package nextstep.ladder.domain.ladder;
 
 import nextstep.ladder.domain.strategy.StepGenerateStrategy;
+import nextstep.ladder.exception.NullArgumentException;
 
 import java.util.Objects;
 
@@ -37,7 +38,7 @@ public enum Step {
 
     private static void validate(StepGenerateStrategy stepGenerateStrategy) {
         if (Objects.isNull(stepGenerateStrategy)) {
-            throw new IllegalArgumentException("StepGenerateStrategy can't be null");
+            throw new NullArgumentException(StepGenerateStrategy.class);
         }
     }
 

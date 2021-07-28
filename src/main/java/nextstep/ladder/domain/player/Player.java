@@ -1,5 +1,6 @@
 package nextstep.ladder.domain.player;
 
+import nextstep.ladder.exception.NullArgumentException;
 import nextstep.util.StringUtils;
 
 public class Player {
@@ -15,7 +16,7 @@ public class Player {
 
     private void validate(String name) {
         if (StringUtils.isEmpty(name)) {
-            throw new IllegalArgumentException("Name can't be null or empty");
+            throw new NullArgumentException("Name");
         }
 
         if (name.length() > MAXIMUM_LENGTH_OF_NAME) {

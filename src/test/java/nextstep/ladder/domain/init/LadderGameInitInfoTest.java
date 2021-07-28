@@ -1,6 +1,7 @@
 package nextstep.ladder.domain.init;
 
 import nextstep.ladder.domain.player.Players;
+import nextstep.ladder.exception.NullArgumentException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -27,7 +28,7 @@ class LadderGameInitInfoTest {
     @MethodSource
     @ParameterizedTest
     void initException(LadderInitInfo ladderInitInfo, Players players) {
-        assertThatThrownBy(() -> LadderGameInitInfo.of(ladderInitInfo, players)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> LadderGameInitInfo.of(ladderInitInfo, players)).isInstanceOf(NullArgumentException.class);
     }
 
     private static Stream<Arguments> initException() {

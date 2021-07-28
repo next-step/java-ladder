@@ -1,5 +1,6 @@
 package nextstep.ladder.domain.player;
 
+import nextstep.ladder.exception.NullArgumentException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -20,6 +21,6 @@ class PlayersTest {
     @DisplayName("이름 리스트가 null 일 경우 예외를 발생시킨다")
     @Test
     void initException() {
-        assertThatThrownBy(() -> Players.init(null)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> Players.init(null)).isInstanceOf(NullArgumentException.class);
     }
 }

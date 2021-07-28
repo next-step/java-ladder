@@ -3,6 +3,7 @@ package nextstep.ladder.domain.ladder;
 import nextstep.ladder.domain.init.LadderInitInfo;
 import nextstep.ladder.domain.init.LadderSize;
 import nextstep.ladder.domain.strategy.StepGenerateStrategy;
+import nextstep.ladder.exception.NullArgumentException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -29,7 +30,7 @@ class RowTest {
     @DisplayName("사다리 초기화 정보 클래스가 null 일 경우 예외를 발생 시킨다")
     @Test
     void initException() {
-        assertThatThrownBy(() -> Row.init(null)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> Row.init(null)).isInstanceOf(NullArgumentException.class);
     }
 
     @DisplayName("사다리 한 행의 발판 정보를 반환한다")

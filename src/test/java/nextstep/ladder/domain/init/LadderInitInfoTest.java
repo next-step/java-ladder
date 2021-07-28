@@ -1,6 +1,7 @@
 package nextstep.ladder.domain.init;
 
 import nextstep.ladder.domain.strategy.StepGenerateStrategy;
+import nextstep.ladder.exception.NullArgumentException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -27,7 +28,7 @@ class LadderInitInfoTest {
     @MethodSource
     @ParameterizedTest
     void initException(LadderSize ladderSize, StepGenerateStrategy stepGenerateStrategy) {
-        assertThatThrownBy(() -> LadderInitInfo.init(ladderSize, stepGenerateStrategy)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> LadderInitInfo.init(ladderSize, stepGenerateStrategy)).isInstanceOf(NullArgumentException.class);
     }
 
     private static Stream<Arguments> initException() {

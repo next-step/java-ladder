@@ -1,6 +1,7 @@
 package nextstep.ladder.domain.init;
 
 import nextstep.ladder.domain.strategy.StepGenerateStrategy;
+import nextstep.ladder.exception.NullArgumentException;
 
 import java.util.Objects;
 
@@ -20,11 +21,11 @@ public class LadderInitInfo {
 
     private void validate(LadderSize ladderSize, StepGenerateStrategy stepGenerateStrategy) {
         if (Objects.isNull(ladderSize)) {
-            throw new IllegalArgumentException("LadderSize can't be null");
+            throw new NullArgumentException(LadderSize.class);
         }
 
         if (Objects.isNull(stepGenerateStrategy)) {
-            throw new IllegalArgumentException("StepGenerateStrategy can't be null");
+            throw new NullArgumentException(LadderSize.class);
         }
     }
 

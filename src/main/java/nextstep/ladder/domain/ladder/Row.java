@@ -2,6 +2,7 @@ package nextstep.ladder.domain.ladder;
 
 import nextstep.ladder.domain.init.LadderInitInfo;
 import nextstep.ladder.domain.strategy.StepGenerateStrategy;
+import nextstep.ladder.exception.NullArgumentException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +30,7 @@ public class Row {
 
     private void validate(LadderInitInfo ladderInitInfo) {
         if (Objects.isNull(ladderInitInfo)) {
-            throw new IllegalArgumentException("LadderInitInfo can't be null");
+            throw new NullArgumentException(LadderInitInfo.class);
         }
     }
 

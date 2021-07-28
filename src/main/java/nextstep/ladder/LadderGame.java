@@ -4,6 +4,7 @@ import nextstep.ladder.domain.init.LadderGameInitInfo;
 import nextstep.ladder.domain.ladder.Ladder;
 import nextstep.ladder.domain.player.Players;
 import nextstep.ladder.dto.LadderResult;
+import nextstep.ladder.exception.NullArgumentException;
 
 import java.util.Objects;
 
@@ -19,7 +20,7 @@ public class LadderGame {
 
     private void validate(LadderGameInitInfo ladderGameInitInfo) {
         if (Objects.isNull(ladderGameInitInfo)) {
-            throw new IllegalArgumentException("LadderGameInitInfo can't be null");
+            throw new NullArgumentException(LadderGameInitInfo.class);
         }
     }
 

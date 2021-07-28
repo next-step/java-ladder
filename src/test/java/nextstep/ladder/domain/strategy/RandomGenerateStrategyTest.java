@@ -1,5 +1,6 @@
 package nextstep.ladder.domain.strategy;
 
+import nextstep.ladder.exception.NullArgumentException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -24,7 +25,7 @@ class RandomGenerateStrategyTest {
     @DisplayName("랜덤 객체가 null 일 경우 예외를 발생 시킨다")
     @Test
     void initException() {
-        assertThatThrownBy(() -> RandomGenerateStrategy.init(null)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> RandomGenerateStrategy.init(null)).isInstanceOf(NullArgumentException.class);
     }
 
     @DisplayName("랜덤 객체가 리턴하는 값을 그대로 리턴한다")

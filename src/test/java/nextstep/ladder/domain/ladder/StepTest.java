@@ -1,6 +1,7 @@
 package nextstep.ladder.domain.ladder;
 
 import nextstep.ladder.domain.strategy.StepGenerateStrategy;
+import nextstep.ladder.exception.NullArgumentException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -67,13 +68,13 @@ class StepTest {
     @DisplayName("첫번째 발판 생성에서 발판 생성 전략이 null 일 경우 예외를 반환한다")
     @Test
     void initException() {
-        assertThatThrownBy(() -> Step.init(null)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> Step.init(null)).isInstanceOf(NullArgumentException.class);
     }
 
     @DisplayName("중간 발판 생성에서 발판 생성 전략이 null 일 경우 예외를 반환한다")
     @Test
     void initMiddleException() {
-        assertThatThrownBy(() -> LEFT_STEP_COLUMN.initNext(null)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> LEFT_STEP_COLUMN.initNext(null)).isInstanceOf(NullArgumentException.class);
     }
 
     @DisplayName("발판이 오른쪽인지 아닌지 판별한다")

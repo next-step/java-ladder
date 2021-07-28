@@ -2,6 +2,7 @@ package nextstep.ladder.domain.ladder;
 
 import nextstep.ladder.domain.init.LadderInitInfo;
 import nextstep.ladder.dto.RowDto;
+import nextstep.ladder.exception.NullArgumentException;
 
 import java.util.List;
 import java.util.Objects;
@@ -22,7 +23,7 @@ public class Ladder {
 
     private void validate(LadderInitInfo ladderInitInfo) {
         if (Objects.isNull(ladderInitInfo)) {
-            throw new IllegalArgumentException("LadderInitInfo can't be null");
+            throw new NullArgumentException(LadderInitInfo.class);
         }
     }
 
