@@ -5,7 +5,7 @@ public class NullArgumentException extends IllegalArgumentException {
 
     @SuppressWarnings("rawtypes")
     public NullArgumentException(Class clazz) {
-        super(String.format(MESSAGE_FORMAT, clazz.getName()));
+        super(String.format(MESSAGE_FORMAT, clazz.getSimpleName()));
     }
 
     public NullArgumentException(String target) {
