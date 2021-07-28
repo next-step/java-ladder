@@ -21,8 +21,8 @@ class ResultTest {
     @DisplayName("결과의 값이 null 이거나 비어있거나 5글자를 초과하는 경우 예외를 발생 시킨다")
     @NullAndEmptySource
     @ValueSource(strings = {"100000", "1000000"})
-    void initException(String name) {
-        assertThatThrownBy(() -> Result.from(name)).isInstanceOf(NullArgumentException.class);
+    void initException(String result) {
+        assertThatThrownBy(() -> Result.from(result)).isInstanceOf(NullArgumentException.class);
     }
 
 }
