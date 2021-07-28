@@ -74,7 +74,7 @@ class StepTest {
     @DisplayName("중간 발판 생성에서 발판 생성 전략이 null 일 경우 예외를 반환한다")
     @Test
     void initMiddleException() {
-        assertThatThrownBy(() -> LEFT_STEP_COLUMN.initNext(null)).isInstanceOf(NullArgumentException.class);
+        assertThatThrownBy(() -> LEFT_STEP_LADDER_COLUMN.initNext(null)).isInstanceOf(NullArgumentException.class);
     }
 
     @DisplayName("발판이 오른쪽인지 아닌지 판별한다")

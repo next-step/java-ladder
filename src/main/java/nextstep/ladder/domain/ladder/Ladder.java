@@ -11,12 +11,12 @@ import java.util.stream.Stream;
 
 public class Ladder {
 
-    private final List<Row> rows;
+    private final List<LadderRow> ladderRows;
 
     private Ladder(LadderInitInfo ladderInitInfo) {
         validate(ladderInitInfo);
 
-        rows = Stream.generate(() -> Row.init(ladderInitInfo))
+        ladderRows = Stream.generate(() -> LadderRow.init(ladderInitInfo))
                 .limit(ladderInitInfo.getLadderHeight())
                 .collect(Collectors.toList());
     }
@@ -32,8 +32,8 @@ public class Ladder {
     }
 
     public List<RowDto> getSteps() {
-        return rows.stream()
-                .map(Row::toSteps)
+        return ladderRows.stream()
+                .map(LadderRow::toSteps)
                 .map(RowDto::from)
                 .collect(Collectors.toList());
     }
