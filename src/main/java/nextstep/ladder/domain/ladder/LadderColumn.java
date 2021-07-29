@@ -29,6 +29,10 @@ public class LadderColumn {
         return step.isRight();
     }
 
+    public boolean ride(LadderPosition beforePosition) {
+        return false;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -89,4 +89,21 @@ class LadderColumnTest {
                 Arguments.of(NONE_STEP_LADDER_COLUMN, NONE_STEP_LADDER_COLUMN)
         );
     }
+
+
+    @DisplayName("마지막 컬럼은 이전 컬럼의 스텝 종류에 영향을 받아 생성한다.")
+    @MethodSource
+    @ParameterizedTest
+    void ride(LadderColumn ladderColumn, LadderPosition beforePosition, LadderPosition expectedPosition) {
+
+        assertThat(ladderColumn.ride(beforePosition)).isEqualTo(expectedPosition);
+    }
+
+    private static Stream<Arguments> ride() {
+        return Stream.of(
+                Arguments.of(RIGHT_STEP_LADDER_COLUMN, LEFT_STEP_LADDER_COLUMN),
+                Arguments.of(LEFT_STEP_LADDER_COLUMN, NONE_STEP_LADDER_COLUMN),
+                Arguments.of(NONE_STEP_LADDER_COLUMN, NONE_STEP_LADDER_COLUMN)
+        );
+    }
 }
