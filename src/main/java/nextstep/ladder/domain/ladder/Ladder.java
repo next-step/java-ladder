@@ -38,4 +38,7 @@ public class Ladder {
                 .collect(Collectors.toList());
     }
 
+    public boolean ride() {
+        return false;
+    }
 }

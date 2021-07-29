@@ -33,4 +33,12 @@ class LadderTest {
         ladder.getSteps()
                 .forEach(rowDto -> assertThat(rowDto.getSteps()).isEqualTo(Arrays.asList(true, false)));
     }
+
+    @DisplayName("사다리 타기 결과는 LadderRideResult 를 반환한다")
+    @Test
+    void rideLadder() {
+        Ladder ladder = Ladder.init(LADDER_INIT_INFO_2_X_2);
+
+        assertThat(ladder.ride()).isInstanceOf(LadderRideResult.class);
+    }
 }
