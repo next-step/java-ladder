@@ -8,4 +8,8 @@ public class LadderRideResult {
     public LadderRideResult(List<LadderPosition> positions) {
         this.positions = positions;
     }
+
+    public static Object from(List<LadderPosition> ladderPositions) {
+        return null;
+    }
 }
