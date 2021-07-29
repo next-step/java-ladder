@@ -3,6 +3,11 @@ package nextstep.ladder.domain.ladder;
 import nextstep.ladder.exception.OutOfRangeArgumentException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -21,5 +26,20 @@ class LadderPositionTest {
     @Test
     void initException() {
         assertThatThrownBy(() -> LadderPosition.from(-1)).isInstanceOf(OutOfRangeArgumentException.class);
+    }
+
+    @DisplayName("객체 비교를 위한 equals 테스트")
+    @MethodSource
+    @ParameterizedTest
+    void equals(int position, LadderPosition expectedPosition) {
+        assertThat(LadderPosition.from(position)).isEqualTo(expectedPosition);
+    }
+
+    private static Stream<Arguments> equals() {
+        return Stream.of(
+                Arguments.of(0, LadderPosition.from(0)),
+                Arguments.of(5, LadderPosition.from(5)),
+                Arguments.of(10, LadderPosition.from(10))
+        );
     }
 }
