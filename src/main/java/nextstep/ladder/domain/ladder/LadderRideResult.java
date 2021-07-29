@@ -23,4 +23,7 @@ public class LadderRideResult {
         return new LadderRideResult(ladderPositions);
     }
 
+    public boolean endPositionOf(LadderPosition startPosition) {
+        return false;
+    }
 }

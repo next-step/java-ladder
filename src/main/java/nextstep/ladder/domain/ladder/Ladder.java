@@ -34,14 +34,14 @@ public class Ladder {
         return new Ladder(ladderInitInfo);
     }
 
-    public LadderRideResult rideAll() {
+    public LadderRideResult ride() {
         return IntStream.range(ZERO, ladderWidth())
                 .mapToObj(LadderPosition::from)
-                .map(this::rideAll)
+                .map(this::ride)
                 .collect(Collectors.collectingAndThen(Collectors.toList(), LadderRideResult::from));
     }
 
-    private LadderPosition rideAll(LadderPosition startPosition) {
+    private LadderPosition ride(LadderPosition startPosition) {
         return ladderRows.stream()
                 .reduce(startPosition,
                         (byPosition, ladderRow) -> ladderRow.ride(byPosition),

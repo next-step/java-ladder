@@ -3,10 +3,15 @@ package nextstep.ladder.domain.ladder;
 import nextstep.ladder.exception.NullArgumentException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.Arrays;
+import java.util.stream.Stream;
 
 import static nextstep.ladder.domain.Fixture.LADDER_INIT_INFO_2_X_2;
+import static nextstep.ladder.domain.Fixture.LADDER_INIT_INFO_5_X_5;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -39,6 +44,26 @@ class LadderTest {
     void rideLadder() {
         Ladder ladder = Ladder.init(LADDER_INIT_INFO_2_X_2);
 
-        assertThat(ladder.rideAll()).isInstanceOf(LadderRideResult.class);
+        assertThat(ladder.ride()).isInstanceOf(LadderRideResult.class);
+    }
+
+    @DisplayName("사다리 타기 결과는 확인")
+    @MethodSource
+    @ParameterizedTest
+    void checkRideLadderResult(LadderPosition startPosition, LadderPosition expectedPosition) {
+        Ladder ladder = Ladder.init(LADDER_INIT_INFO_5_X_5);
+
+        LadderRideResult ladderRideResult = ladder.ride();
+        assertThat(ladderRideResult.endPositionOf(startPosition)).isEqualTo(expectedPosition);
+    }
+
+    private static Stream<Arguments> checkRideLadderResult() {
+        return Stream.of(
+                Arguments.of(LadderPosition.from(0), LadderPosition.from(1)),
+                Arguments.of(LadderPosition.from(1), LadderPosition.from(0)),
+                Arguments.of(LadderPosition.from(2), LadderPosition.from(3)),
+                Arguments.of(LadderPosition.from(3), LadderPosition.from(2)),
+                Arguments.of(LadderPosition.from(4), LadderPosition.from(4))
+        );
     }
 }
