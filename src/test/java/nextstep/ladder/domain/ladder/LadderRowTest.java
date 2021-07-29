@@ -62,8 +62,11 @@ class LadderRowTest {
 
     private static Stream<Arguments> ride() {
         return Stream.of(
-                Arguments.of(LADDER_SIZE_5_X_5, ALWAYS_GENERATE_STRATEGY, Arrays.asList(true, false, true, false, false)),
-                Arguments.of(LADDER_SIZE_5_X_5, NEVER_GENERATE_STRATEGY, Arrays.asList(false, false, false, false, false))
+                Arguments.of(LadderPosition.from(0), LadderPosition.from(1)),
+                Arguments.of(LadderPosition.from(1), LadderPosition.from(0)),
+                Arguments.of(LadderPosition.from(2), LadderPosition.from(3)),
+                Arguments.of(LadderPosition.from(3), LadderPosition.from(2)),
+                Arguments.of(LadderPosition.from(4), LadderPosition.from(4))
         );
     }
 }

@@ -70,8 +70,12 @@ public class LadderRow {
         return new LadderRow(ladderInitInfo);
     }
 
-    public boolean ride(LadderPosition curPosition) {
-        return false;
+    public LadderPosition ride(LadderPosition curPosition) {
+        return columnOf(curPosition).ride(curPosition);
+    }
+
+    private LadderColumn columnOf(LadderPosition curPosition) {
+        return row.get(curPosition.toInt());
     }
 
     public List<Boolean> toSteps() {
