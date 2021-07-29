@@ -39,6 +39,6 @@ class LadderTest {
     void rideLadder() {
         Ladder ladder = Ladder.init(LADDER_INIT_INFO_2_X_2);
 
-        assertThat(ladder.ride()).isInstanceOf(LadderRideResult.class);
+        assertThat(ladder.rideAll()).isInstanceOf(LadderRideResult.class);
     }
 }

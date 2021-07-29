@@ -78,6 +78,10 @@ public class LadderRow {
         return row.get(curPosition.toInt());
     }
 
+    public int ladderWidth() {
+        return row.size();
+    }
+
     public List<Boolean> toSteps() {
         return row.stream()
                 .map(LadderColumn::hasRightStep)

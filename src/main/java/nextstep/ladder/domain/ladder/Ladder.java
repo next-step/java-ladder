@@ -4,12 +4,15 @@ import nextstep.ladder.domain.init.LadderInitInfo;
 import nextstep.ladder.dto.RowDto;
 import nextstep.ladder.exception.NullArgumentException;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Ladder {
+    private static final int ZERO = 0;
 
     private final List<LadderRow> ladderRows;
 
@@ -31,6 +34,26 @@ public class Ladder {
         return new Ladder(ladderInitInfo);
     }
 
+    public LadderRideResult rideAll() {
+        return IntStream.range(ZERO, ladderWidth())
+                .mapToObj(LadderPosition::from)
+                .map(this::rideAll)
+                .collect(Collectors.collectingAndThen(Collectors.toList(), LadderRideResult::from));
+    }
+
+    private LadderPosition rideAll(LadderPosition startPosition) {
+        return ladderRows.stream()
+                .reduce(startPosition,
+                        (byPosition, ladderRow) -> ladderRow.ride(byPosition),
+                        (x, y) -> { throw new IllegalStateException("Can't reduce in parallel env"); }
+                );
+    }
+
+    private int ladderWidth() {
+        return ladderRows.get(ZERO)
+                .ladderWidth();
+    }
+
     public List<RowDto> getSteps() {
         return ladderRows.stream()
                 .map(LadderRow::toSteps)
@@ -38,7 +61,4 @@ public class Ladder {
                 .collect(Collectors.toList());
     }
 
-    public boolean ride() {
-        return false;
-    }
 }
