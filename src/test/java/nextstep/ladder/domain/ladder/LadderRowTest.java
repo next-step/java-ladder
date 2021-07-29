@@ -49,4 +49,21 @@ class LadderRowTest {
                 Arguments.of(LADDER_SIZE_5_X_5, NEVER_GENERATE_STRATEGY, Arrays.asList(false, false, false, false, false))
         );
     }
+
+    @DisplayName("사다리 한 행에서 사다리 타기")
+    @MethodSource
+    @ParameterizedTest
+    void ride(LadderPosition curPosition, LadderPosition expectedPosition) {
+        LadderInitInfo ladderInitInfo = LadderInitInfo.init(LADDER_SIZE_5_X_5, ALWAYS_GENERATE_STRATEGY);
+        LadderRow ladderRow = LadderRow.init(ladderInitInfo);
+
+        assertThat(ladderRow.ride(curPosition)).isEqualTo(expectedPosition);
+    }
+
+    private static Stream<Arguments> ride() {
+        return Stream.of(
+                Arguments.of(LADDER_SIZE_5_X_5, ALWAYS_GENERATE_STRATEGY, Arrays.asList(true, false, true, false, false)),
+                Arguments.of(LADDER_SIZE_5_X_5, NEVER_GENERATE_STRATEGY, Arrays.asList(false, false, false, false, false))
+        );
+    }
 }

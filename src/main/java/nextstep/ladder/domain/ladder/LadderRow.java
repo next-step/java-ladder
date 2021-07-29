@@ -70,6 +70,10 @@ public class LadderRow {
         return new LadderRow(ladderInitInfo);
     }
 
+    public boolean ride(LadderPosition curPosition) {
+        return false;
+    }
+
     public List<Boolean> toSteps() {
         return row.stream()
                 .map(LadderColumn::hasRightStep)
