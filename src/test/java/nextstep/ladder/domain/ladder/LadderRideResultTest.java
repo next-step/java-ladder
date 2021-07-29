@@ -1,5 +1,6 @@
 package nextstep.ladder.domain.ladder;
 
+import nextstep.ladder.exception.NullArgumentException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -7,6 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @DisplayName("사다리 위치 그룹 테스트")
 class LadderRideResultTest {
@@ -21,6 +23,6 @@ class LadderRideResultTest {
     @DisplayName("사다리 위치 그룹이 null 일 경우 예외를 발생 시킨다")
     @Test
     void initException() {
-        assertThat(LadderRideResult.from(null)).isInstanceOf(LadderRideResult.class);
+        assertThatThrownBy(() -> LadderRideResult.from(null)).isInstanceOf(NullArgumentException.class);
     }
 }
