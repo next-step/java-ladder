@@ -2,6 +2,8 @@ package nextstep.ladder.domain.ladder;
 
 import nextstep.ladder.exception.OutOfRangeArgumentException;
 
+import java.util.Objects;
+
 public class LadderPosition {
     private static final int ZERO = 0;
 
@@ -20,5 +22,18 @@ public class LadderPosition {
 
     public static LadderPosition from(int position) {
         return new LadderPosition(position);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LadderPosition that = (LadderPosition) o;
+        return position == that.position;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(position);
     }
 }
