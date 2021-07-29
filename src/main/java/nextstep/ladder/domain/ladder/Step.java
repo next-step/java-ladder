@@ -4,11 +4,19 @@ import nextstep.ladder.domain.strategy.StepGenerateStrategy;
 import nextstep.ladder.exception.NullArgumentException;
 
 import java.util.Objects;
+import java.util.function.Function;
 
 public enum Step {
-    LEFT,
-    RIGHT,
-    NONE;
+    LEFT(LadderPosition::moveLeft),
+    RIGHT(LadderPosition::moveRight),
+    NONE(prevPosition -> prevPosition);
+
+    private final Function<LadderPosition, LadderPosition> determinant;
+
+    Step(Function<LadderPosition, LadderPosition> determinant) {
+        this.determinant = determinant;
+    }
+
 
     public static Step init(StepGenerateStrategy stepGenerateStrategy) {
         validate(stepGenerateStrategy);
@@ -44,5 +52,9 @@ public enum Step {
 
     public boolean isRight() {
         return this == RIGHT;
+    }
+
+    public LadderPosition move(LadderPosition ladderPosition) {
+        return determinant.apply(ladderPosition);
     }
 }

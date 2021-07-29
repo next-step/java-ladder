@@ -92,4 +92,19 @@ class StepTest {
         );
     }
 
+    @DisplayName("발판 방향에 따라 위치를 옮겨준다")
+    @MethodSource
+    @ParameterizedTest
+    void move(Step step, LadderPosition ladderPosition, LadderPosition expectedPosition) {
+        assertThat(step.move(ladderPosition)).isEqualTo(expectedPosition);
+    }
+
+    private static Stream<Arguments> move() {
+        return Stream.of(
+                Arguments.of(LEFT, LadderPosition.from(5), LadderPosition.from(4)),
+                Arguments.of(RIGHT, LadderPosition.from(5), LadderPosition.from(6)),
+                Arguments.of(NONE, LadderPosition.from(5), LadderPosition.from(5))
+        );
+    }
+
 }
