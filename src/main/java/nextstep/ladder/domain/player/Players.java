@@ -1,5 +1,6 @@
 package nextstep.ladder.domain.player;
 
+import nextstep.ladder.domain.ladder.LadderPosition;
 import nextstep.ladder.exception.NullArgumentException;
 
 import java.util.List;
@@ -35,5 +36,10 @@ public class Players {
 
     public int numberOfPlayers() {
         return players.size();
+    }
+
+    public String getNameOfPosition(LadderPosition startPosition) {
+        return players.get(startPosition.toInt())
+                .getName();
     }
 }

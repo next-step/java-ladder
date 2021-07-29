@@ -44,10 +44,6 @@ public class LadderInitInfo {
         return ladderSize.getWidth();
     }
 
-    public boolean isEqualToWidth(int width) {
-        return ladderSize.isEqualToWidth(width);
-    }
-
     public int getLadderHeight() {
         return ladderSize.getHeight();
     }

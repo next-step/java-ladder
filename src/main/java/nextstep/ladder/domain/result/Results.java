@@ -1,5 +1,6 @@
 package nextstep.ladder.domain.result;
 
+import nextstep.ladder.domain.ladder.LadderPosition;
 import nextstep.ladder.exception.NullArgumentException;
 
 import java.util.List;
@@ -31,5 +32,10 @@ public class Results {
         return results.stream()
                 .map(Result::getResult)
                 .collect(Collectors.toList());
+    }
+
+    public String getResultOfPosition(LadderPosition endPosition) {
+        return results.get(endPosition.toInt())
+                .getResult();
     }
 }

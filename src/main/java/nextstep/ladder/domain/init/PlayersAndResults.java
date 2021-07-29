@@ -1,5 +1,6 @@
 package nextstep.ladder.domain.init;
 
+import nextstep.ladder.domain.ladder.LadderPosition;
 import nextstep.ladder.domain.player.Players;
 import nextstep.ladder.domain.result.Results;
 import nextstep.ladder.exception.NullArgumentException;
@@ -44,5 +45,17 @@ public class PlayersAndResults {
 
     public Players getPlayers() {
         return players;
+    }
+
+    public Results getResults() {
+        return results;
+    }
+
+    public String getPlayerName(LadderPosition startPosition) {
+        return players.getNameOfPosition(startPosition);
+    }
+
+    public String getResult(LadderPosition endPosition) {
+        return results.getResultOfPosition(endPosition);
     }
 }

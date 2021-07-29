@@ -4,7 +4,6 @@ import nextstep.ladder.domain.init.LadderInitInfo;
 import nextstep.ladder.dto.RowDto;
 import nextstep.ladder.exception.NullArgumentException;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
