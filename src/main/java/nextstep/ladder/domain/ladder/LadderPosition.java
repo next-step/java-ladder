@@ -1,7 +1,13 @@
 package nextstep.ladder.domain.ladder;
 
 public class LadderPosition {
-    public static Object from(int i) {
-        return null;
+    private final int position;
+
+    private LadderPosition(int position) {
+        this.position = position;
+    }
+
+    public static LadderPosition from(int position) {
+        return new LadderPosition(position);
     }
 }
