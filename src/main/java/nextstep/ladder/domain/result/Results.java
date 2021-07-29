@@ -34,7 +34,7 @@ public class Results {
                 .collect(Collectors.toList());
     }
 
-    public String getResultOfPosition(LadderPosition endPosition) {
+    public String getResultAt(LadderPosition endPosition) {
         return results.get(endPosition.toInt())
                 .getResult();
     }

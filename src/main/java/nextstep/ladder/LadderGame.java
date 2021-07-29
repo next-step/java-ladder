@@ -36,7 +36,7 @@ public class LadderGame {
         return new LadderGame(ladderGameInitInfo);
     }
 
-    public MatchResult matchResult() {
+    public MatchResult match() {
         Map<String, String> matchResult = new LinkedHashMap<>();
         LadderRideResult ladderRideResult = ladder.ride();
 
@@ -50,8 +50,8 @@ public class LadderGame {
         return position -> {
             LadderPosition startPosition = LadderPosition.from(position);
             matchResult.put(
-                    playersAndResults.getPlayerName(startPosition),
-                    playersAndResults.getResult(ladderRideResult.endPositionOf(startPosition))
+                    playersAndResults.getPlayerNameAt(startPosition),
+                    playersAndResults.getResultAt(ladderRideResult.endPositionOf(startPosition))
             );
         };
     }

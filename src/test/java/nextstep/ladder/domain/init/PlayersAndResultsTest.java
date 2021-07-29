@@ -11,8 +11,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-import static nextstep.ladder.domain.Fixture.TWO_PLAYERS;
-import static nextstep.ladder.domain.Fixture.TWO_RESULTS;
+import static nextstep.ladder.domain.Fixture.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -23,6 +22,12 @@ class PlayersAndResultsTest {
     @Test
     void init() {
         assertThat(PlayersAndResults.of(TWO_PLAYERS, TWO_RESULTS)).isInstanceOf(PlayersAndResults.class);
+    }
+
+    @DisplayName("참가자 원시값 그룹과 결과 원시값 그룹을 가지고 초기화 한다")
+    @Test
+    void initUsingPrimitives() {
+        assertThat(PlayersAndResults.of(TWO_PLAYERS_NAMES, TWO_RESULTS_VALUE)).isInstanceOf(PlayersAndResults.class);
     }
 
     @DisplayName("참자가 그룹이나 결과값 그룹이 null 일 경우 예외를 발생 시킨다")

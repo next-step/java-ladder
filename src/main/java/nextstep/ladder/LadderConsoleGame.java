@@ -20,7 +20,7 @@ public class LadderConsoleGame {
         LadderGame ladderGame = LadderGame.init(ladderGameInitInfo);
         ResultView.printResult(ladderGame.result());
 
-        MatchResult matchResult = ladderGame.matchResult();
+        MatchResult matchResult = ladderGame.match();
         String playerToSee;
         while (!(playerToSee = InputView.inputPlayerToSee()).equalsIgnoreCase(EXIT)) {
             showResult(matchResult, playerToSee);

@@ -51,11 +51,11 @@ public class PlayersAndResults {
         return results;
     }
 
-    public String getPlayerName(LadderPosition startPosition) {
-        return players.getNameOfPosition(startPosition);
+    public String getPlayerNameAt(LadderPosition startPosition) {
+        return players.getNameAt(startPosition);
     }
 
-    public String getResult(LadderPosition endPosition) {
-        return results.getResultOfPosition(endPosition);
+    public String getResultAt(LadderPosition endPosition) {
+        return results.getResultAt(endPosition);
     }
 }

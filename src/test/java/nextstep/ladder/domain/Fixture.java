@@ -27,13 +27,13 @@ public class Fixture {
     public static final LadderInitInfo LADDER_INIT_INFO_2_X_2 = LadderInitInfo.init(LADDER_SIZE_2_X_2, ALWAYS_GENERATE_STRATEGY);
     public static final LadderInitInfo LADDER_INIT_INFO_5_X_5 = LadderInitInfo.init(LADDER_SIZE_5_X_5, ALWAYS_GENERATE_STRATEGY);
 
-    public static final List<String> TWO_PAYERS_NAMES = Arrays.asList("nokc", "cha");
-    public static final Players TWO_PLAYERS = Players.init(TWO_PAYERS_NAMES);
+    public static final List<String> TWO_PLAYERS_NAMES = Arrays.asList("nokc", "cha");
+    public static final Players TWO_PLAYERS = Players.init(TWO_PLAYERS_NAMES);
 
     public static final List<String> TWO_RESULTS_VALUE = Arrays.asList("500", "꽝");
     public static final Results TWO_RESULTS = Results.init(TWO_RESULTS_VALUE);
 
-    public static final PlayersAndResults TWO_PLAYERS_AND_RESULTS = PlayersAndResults.of(TWO_PLAYERS, TWO_RESULTS);
+    public static final PlayersAndResults TWO_PLAYERS_AND_RESULTS = PlayersAndResults.of(TWO_PLAYERS_NAMES, TWO_RESULTS_VALUE);
     public static final LadderGameInitInfo LADDER_GAME_INIT_INFO_2_X_2 = LadderGameInitInfo.of(TWO_PLAYERS_AND_RESULTS, LADDER_INIT_INFO_2_X_2);
 
     private Fixture() {}

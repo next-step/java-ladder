@@ -1,14 +1,14 @@
 package nextstep.ladder;
 
 import nextstep.ladder.dto.LadderResult;
+import nextstep.ladder.dto.MatchResult;
 import nextstep.ladder.exception.NullArgumentException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
-import static nextstep.ladder.domain.Fixture.LADDER_GAME_INIT_INFO_2_X_2;
-import static nextstep.ladder.domain.Fixture.TWO_PAYERS_NAMES;
+import static nextstep.ladder.domain.Fixture.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -27,15 +27,28 @@ class LadderGameTest {
         assertThatThrownBy(() -> LadderGame.init(null)).isInstanceOf(NullArgumentException.class);
     }
 
-    @DisplayName("사다리 결과를 반환한다")
+    @DisplayName("완성된 사다리 반환한다")
     @Test
     void result() {
         LadderGame ladderGame = LadderGame.init(LADDER_GAME_INIT_INFO_2_X_2);
         LadderResult ladderResult = ladderGame.result();
 
-        assertThat(ladderResult.getNames()).isEqualTo(TWO_PAYERS_NAMES);
+        assertThat(ladderResult.getNames()).isEqualTo(TWO_PLAYERS_NAMES);
+        assertThat(ladderResult.getResults()).isEqualTo(TWO_RESULTS_VALUE);
 
         ladderResult.getRows()
                 .forEach(rowDto -> assertThat(rowDto.getSteps()).isEqualTo(Arrays.asList(true, false)));
+    }
+
+
+    @DisplayName("사다리 타기 결과를 반환한다")
+    @Test
+    void match() {
+        LadderGame ladderGame = LadderGame.init(LADDER_GAME_INIT_INFO_2_X_2);
+        MatchResult matchResult = ladderGame.match();
+
+        assertThat(matchResult.getPlayers()).containsAll(TWO_PLAYERS_NAMES);
+        assertThat(matchResult.getPrize("nokc")).isEqualTo("500");
+        assertThat(matchResult.getPrize("cha")).isEqualTo("꽝");
     }
 }

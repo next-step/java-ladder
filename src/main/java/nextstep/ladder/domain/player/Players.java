@@ -38,7 +38,7 @@ public class Players {
         return players.size();
     }
 
-    public String getNameOfPosition(LadderPosition startPosition) {
+    public String getNameAt(LadderPosition startPosition) {
         return players.get(startPosition.toInt())
                 .getName();
     }

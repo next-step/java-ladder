@@ -1,6 +1,5 @@
 package nextstep.ladder.domain.init;
 
-import nextstep.ladder.domain.strategy.NeverGenerateStrategy;
 import nextstep.ladder.domain.strategy.StepGenerateStrategy;
 import nextstep.ladder.exception.NullArgumentException;
 
