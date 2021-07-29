@@ -1,6 +1,7 @@
 package nextstep.ladder;
 
 import nextstep.ladder.domain.init.LadderGameInitInfo;
+import nextstep.ladder.domain.init.PlayersAndResults;
 import nextstep.ladder.domain.ladder.Ladder;
 import nextstep.ladder.domain.player.Players;
 import nextstep.ladder.dto.LadderResult;
@@ -9,6 +10,7 @@ import nextstep.ladder.exception.NullArgumentException;
 import java.util.Objects;
 
 public class LadderGame {
+    private final PlayersAndResults playersAndResults;
     private final Players players;
     private final Ladder ladder;
 
@@ -16,6 +18,7 @@ public class LadderGame {
         validate(ladderGameInitInfo);
         this.players = ladderGameInitInfo.getPlayers();
         this.ladder = Ladder.init(ladderGameInitInfo.getLadderInitInfo());
+        this.playersAndResults = ladderGameInitInfo.getPlayersAndResults();
     }
 
     private void validate(LadderGameInitInfo ladderGameInitInfo) {

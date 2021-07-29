@@ -4,6 +4,7 @@ import nextstep.ladder.domain.player.Players;
 import nextstep.ladder.domain.result.Results;
 import nextstep.ladder.exception.NullArgumentException;
 
+import java.util.List;
 import java.util.Objects;
 
 public class PlayersAndResults {
@@ -28,5 +29,20 @@ public class PlayersAndResults {
 
     public static PlayersAndResults of(Players players, Results results) {
         return new PlayersAndResults(players, results);
+    }
+
+    public static PlayersAndResults of(List<String> playersNames, List<String> resultsValues) {
+        Players players = Players.init(playersNames);
+        Results results = Results.init(resultsValues);
+
+        return new PlayersAndResults(players, results);
+    }
+
+    public int numberOfPlayers() {
+        return players.numberOfPlayers();
+    }
+
+    public Players getPlayers() {
+        return players;
     }
 }
