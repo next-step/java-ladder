@@ -25,11 +25,17 @@ public class LadderPosition {
     }
 
     public LadderPosition moveLeft() {
+        --position;
         return this;
     }
 
     public LadderPosition moveRight() {
+        ++position;
         return this;
+    }
+
+    public int toInt() {
+        return position;
     }
 
     @Override
