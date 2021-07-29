@@ -18,4 +18,9 @@ class LadderRideResultTest {
         assertThat(LadderRideResult.from(ladderPositions)).isInstanceOf(LadderRideResult.class);
     }
 
+    @DisplayName("사다리 위치 그룹이 null 일 경우 예외를 발생 시킨다")
+    @Test
+    void initException() {
+        assertThat(LadderRideResult.from(null)).isInstanceOf(LadderRideResult.class);
+    }
 }
