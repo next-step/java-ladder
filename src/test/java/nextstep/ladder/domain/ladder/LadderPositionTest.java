@@ -28,6 +28,34 @@ class LadderPositionTest {
         assertThatThrownBy(() -> LadderPosition.from(-1)).isInstanceOf(OutOfRangeArgumentException.class);
     }
 
+    @DisplayName("사다리 위치는 왼쪽으로 이동할 수 있으며, 움직일 경우 위치값이 변경 된다")
+    @MethodSource
+    @ParameterizedTest
+    void moveLeft(LadderPosition ladderPosition, LadderPosition expectedPosition) {
+        assertThat(ladderPosition.moveLeft()).isEqualTo(expectedPosition);
+    }
+
+    private static Stream<Arguments> moveLeft() {
+        return Stream.of(
+                Arguments.of(LadderPosition.from(5), LadderPosition.from(4)),
+                Arguments.of(LadderPosition.from(10), LadderPosition.from(9))
+        );
+    }
+
+    @DisplayName("사다리 위치는 오른쪽으로 이동할 수 있으며, 움직일 경우 위치값이 변경 된다")
+    @MethodSource
+    @ParameterizedTest
+    void moveRight(LadderPosition ladderPosition, LadderPosition expectedPosition) {
+        assertThat(ladderPosition.moveRight()).isEqualTo(expectedPosition);
+    }
+
+    private static Stream<Arguments> moveRight() {
+        return Stream.of(
+                Arguments.of(LadderPosition.from(5), LadderPosition.from(6)),
+                Arguments.of(LadderPosition.from(10), LadderPosition.from(11))
+        );
+    }
+
     @DisplayName("객체 비교를 위한 equals 테스트")
     @MethodSource
     @ParameterizedTest

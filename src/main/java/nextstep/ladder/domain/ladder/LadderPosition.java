@@ -24,6 +24,14 @@ public class LadderPosition {
         return new LadderPosition(position);
     }
 
+    public LadderPosition moveLeft() {
+        return this;
+    }
+
+    public LadderPosition moveRight() {
+        return this;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
