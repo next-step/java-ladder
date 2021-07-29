@@ -29,8 +29,8 @@ public class LadderColumn {
         return step.isRight();
     }
 
-    public boolean ride(LadderPosition beforePosition) {
-        return false;
+    public LadderPosition ride(LadderPosition currentPosition) {
+        return step.move(currentPosition);
     }
 
     @Override

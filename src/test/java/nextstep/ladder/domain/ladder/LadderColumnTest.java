@@ -101,9 +101,9 @@ class LadderColumnTest {
 
     private static Stream<Arguments> ride() {
         return Stream.of(
-                Arguments.of(RIGHT_STEP_LADDER_COLUMN, LEFT_STEP_LADDER_COLUMN),
-                Arguments.of(LEFT_STEP_LADDER_COLUMN, NONE_STEP_LADDER_COLUMN),
-                Arguments.of(NONE_STEP_LADDER_COLUMN, NONE_STEP_LADDER_COLUMN)
+                Arguments.of(RIGHT_STEP_LADDER_COLUMN, LadderPosition.from(5), LadderPosition.from(6)),
+                Arguments.of(LEFT_STEP_LADDER_COLUMN, LadderPosition.from(5), LadderPosition.from(4)),
+                Arguments.of(NONE_STEP_LADDER_COLUMN, LadderPosition.from(5), LadderPosition.from(5))
         );
     }
 }
