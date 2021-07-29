@@ -1,6 +1,8 @@
 package ladder.domain;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Users {
     private List<User> userList;
@@ -29,6 +31,12 @@ public class Users {
                         .filter(user -> user.name().equals(name))
                         .findFirst()
                         .orElseThrow(()-> new IllegalArgumentException("이름에 맞는 User가 없습니다."));
+    }
+
+    public List<String> gameResults(GameResult gameResult) {
+        return this.userList.stream()
+                .map(user -> gameResult.showResult(user.gameResult()))
+                .collect(Collectors.toList());
     }
 
 }

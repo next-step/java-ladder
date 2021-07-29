@@ -10,4 +10,9 @@ public class LadderGame {
         this.lines = lines;
     }
 
+    public Users start(){
+
+        return null;
+    }
+
 }

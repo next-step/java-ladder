@@ -5,11 +5,11 @@ import java.util.Objects;
 public class User {
 
     private Name name;
-    private String gameResult;
+    private int IndexOfGameResult;
 
-    public User(String name,String gameResult){
+    public User(String name,int IndexOfGameResult){
         this(new Name(name));
-        this.gameResult = gameResult;
+        this.IndexOfGameResult = IndexOfGameResult;
     }
 
     public User(String name) {
@@ -24,8 +24,8 @@ public class User {
         return this.name.name();
     }
 
-    public String gameResult(){
-        return this.gameResult;
+    public int gameResult(){
+        return this.IndexOfGameResult;
     }
 
     @Override
