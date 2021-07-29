@@ -17,4 +17,5 @@ class LadderRideResultTest {
         List<LadderPosition> ladderPositions = Arrays.asList(LadderPosition.from(0), LadderPosition.from(1));
         assertThat(LadderRideResult.from(ladderPositions)).isInstanceOf(LadderRideResult.class);
     }
+
 }
