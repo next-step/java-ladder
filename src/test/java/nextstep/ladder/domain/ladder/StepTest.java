@@ -1,6 +1,7 @@
 package nextstep.ladder.domain.ladder;
 
 import nextstep.ladder.domain.strategy.StepGenerateStrategy;
+import nextstep.ladder.exception.NullArgumentException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -67,13 +68,13 @@ class StepTest {
     @DisplayName("첫번째 발판 생성에서 발판 생성 전략이 null 일 경우 예외를 반환한다")
     @Test
     void initException() {
-        assertThatThrownBy(() -> Step.init(null)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> Step.init(null)).isInstanceOf(NullArgumentException.class);
     }
 
     @DisplayName("중간 발판 생성에서 발판 생성 전략이 null 일 경우 예외를 반환한다")
     @Test
     void initMiddleException() {
-        assertThatThrownBy(() -> LEFT_STEP_COLUMN.initNext(null)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> LEFT_STEP_LADDER_COLUMN.initNext(null)).isInstanceOf(NullArgumentException.class);
     }
 
     @DisplayName("발판이 오른쪽인지 아닌지 판별한다")
@@ -88,6 +89,21 @@ class StepTest {
                 Arguments.of(RIGHT, true),
                 Arguments.of(LEFT, false),
                 Arguments.of(NONE, false)
+        );
+    }
+
+    @DisplayName("발판 방향에 따라 위치를 옮겨준다")
+    @MethodSource
+    @ParameterizedTest
+    void move(Step step, LadderPosition ladderPosition, LadderPosition expectedPosition) {
+        assertThat(step.move(ladderPosition)).isEqualTo(expectedPosition);
+    }
+
+    private static Stream<Arguments> move() {
+        return Stream.of(
+                Arguments.of(LEFT, LadderPosition.from(5), LadderPosition.from(4)),
+                Arguments.of(RIGHT, LadderPosition.from(5), LadderPosition.from(6)),
+                Arguments.of(NONE, LadderPosition.from(5), LadderPosition.from(5))
         );
     }
 

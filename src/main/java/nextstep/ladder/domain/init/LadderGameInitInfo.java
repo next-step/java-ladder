@@ -1,46 +1,38 @@
 package nextstep.ladder.domain.init;
 
-import nextstep.ladder.domain.player.Players;
+import nextstep.ladder.exception.NullArgumentException;
 
 import java.util.Objects;
 
 public class LadderGameInitInfo {
     private final LadderInitInfo ladderInitInfo;
-    private final Players players;
+    private final PlayersAndResults playersAndResults;
 
-    private LadderGameInitInfo(LadderInitInfo ladderInitInfo, Players players) {
-        validate(ladderInitInfo, players);
+    private LadderGameInitInfo(LadderInitInfo ladderInitInfo, PlayersAndResults playersAndResults) {
+        validate(ladderInitInfo, playersAndResults);
 
         this.ladderInitInfo = ladderInitInfo;
-        this.players = players;
+        this.playersAndResults = playersAndResults;
     }
-
-    private void validate(LadderInitInfo ladderInitInfo, Players players) {
+    private void validate(LadderInitInfo ladderInitInfo, PlayersAndResults playersAndResults) {
         if (Objects.isNull(ladderInitInfo)) {
-            throw new IllegalArgumentException("LadderInitInfo can't be null");
+            throw new NullArgumentException(LadderInitInfo.class);
         }
 
-        if (Objects.isNull(players)) {
-            throw new IllegalArgumentException("Players can't be null");
+        if (Objects.isNull(playersAndResults)) {
+            throw new NullArgumentException(PlayersAndResults.class);
         }
     }
 
-    public static LadderGameInitInfo of(LadderInitInfo ladderInitInfo, Players players) {
-        return new LadderGameInitInfo(ladderInitInfo, players);
-    }
-
-    public static LadderGameInitInfo of(Players players, int ladderHeight) {
-        LadderSize ladderSize = LadderSize.of(players.getNames().size(), ladderHeight);
-        LadderInitInfo ladderInitInfo = LadderInitInfo.init(ladderSize);
-
-        return new LadderGameInitInfo(ladderInitInfo, players);
+    public static LadderGameInitInfo of(PlayersAndResults playersAndResults, LadderInitInfo ladderInitInfo) {
+        return new LadderGameInitInfo(ladderInitInfo, playersAndResults);
     }
 
     public LadderInitInfo getLadderInitInfo() {
         return ladderInitInfo;
     }
 
-    public Players getPlayers() {
-        return players;
+    public PlayersAndResults getPlayersAndResults() {
+        return playersAndResults;
     }
 }

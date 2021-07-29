@@ -1,13 +1,22 @@
 package nextstep.ladder.domain.ladder;
 
 import nextstep.ladder.domain.strategy.StepGenerateStrategy;
+import nextstep.ladder.exception.NullArgumentException;
 
 import java.util.Objects;
+import java.util.function.Function;
 
 public enum Step {
-    LEFT,
-    RIGHT,
-    NONE;
+    LEFT(LadderPosition::moveLeft),
+    RIGHT(LadderPosition::moveRight),
+    NONE(prevPosition -> prevPosition);
+
+    private final Function<LadderPosition, LadderPosition> determinant;
+
+    Step(Function<LadderPosition, LadderPosition> determinant) {
+        this.determinant = determinant;
+    }
+
 
     public static Step init(StepGenerateStrategy stepGenerateStrategy) {
         validate(stepGenerateStrategy);
@@ -37,11 +46,15 @@ public enum Step {
 
     private static void validate(StepGenerateStrategy stepGenerateStrategy) {
         if (Objects.isNull(stepGenerateStrategy)) {
-            throw new IllegalArgumentException("StepGenerateStrategy can't be null");
+            throw new NullArgumentException(StepGenerateStrategy.class);
         }
     }
 
     public boolean isRight() {
         return this == RIGHT;
+    }
+
+    public LadderPosition move(LadderPosition ladderPosition) {
+        return determinant.apply(ladderPosition);
     }
 }

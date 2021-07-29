@@ -1,5 +1,6 @@
 package nextstep.ladder.domain.player;
 
+import nextstep.ladder.exception.NullArgumentException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
@@ -21,7 +22,7 @@ class PlayerTest {
     @NullAndEmptySource
     @ValueSource(strings = {"nokcha", "nokchax"})
     void initException(String name) {
-        assertThatThrownBy(() -> Player.from(name)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> Player.from(name)).isInstanceOf(NullArgumentException.class);
     }
 
 }

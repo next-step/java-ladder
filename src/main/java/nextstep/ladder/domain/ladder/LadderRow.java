@@ -2,6 +2,7 @@ package nextstep.ladder.domain.ladder;
 
 import nextstep.ladder.domain.init.LadderInitInfo;
 import nextstep.ladder.domain.strategy.StepGenerateStrategy;
+import nextstep.ladder.exception.NullArgumentException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,18 +10,16 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static nextstep.ladder.domain.strategy.NeverGenerateStrategy.NEVER_GENERATE_STRATEGY;
-
-public class Row {
-    private static final int ONE = 1;
+public class LadderRow {
+    public static final int ONE = 1;
     private static final int ZERO = 0;
     private static final int FIRST_AND_END_EXCEPT_COUNT = 2;
 
-    private final List<Column> columns;
+    private final List<LadderColumn> row;
 
-    private Row(LadderInitInfo ladderInitInfo) {
+    private LadderRow(LadderInitInfo ladderInitInfo) {
         validate(ladderInitInfo);
-        columns = new ArrayList<>(ladderInitInfo.getLadderWidth());
+        row = new ArrayList<>(ladderInitInfo.getLadderWidth());
 
         createFirst(ladderInitInfo);
         createMiddle(ladderInitInfo);
@@ -29,32 +28,18 @@ public class Row {
 
     private void validate(LadderInitInfo ladderInitInfo) {
         if (Objects.isNull(ladderInitInfo)) {
-            throw new IllegalArgumentException("LadderInitInfo can't be null");
+            throw new NullArgumentException(LadderInitInfo.class);
         }
     }
 
     private void createFirst(LadderInitInfo ladderInitInfo) {
-        StepGenerateStrategy stepGenerateStrategy = selectStepGenerateStrategy(ladderInitInfo);
-
-        columns.add(Column.initFirst(stepGenerateStrategy));
-    }
-
-    private StepGenerateStrategy selectStepGenerateStrategy(LadderInitInfo ladderInitInfo) {
-        if (isLadderWidthSizeOne(ladderInitInfo)) {
-            return NEVER_GENERATE_STRATEGY;
-        }
-
-        return ladderInitInfo.getStepGenerateStrategy();
-    }
-
-    private boolean isLadderWidthSizeOne(LadderInitInfo ladderInitInfo) {
-        return ladderInitInfo.isEqualToWidth(ONE);
+        row.add(LadderColumn.initFirst(ladderInitInfo.getStepGenerateStrategy()));
     }
 
     private void createMiddle(LadderInitInfo ladderInitInfo) {
         Stream.generate(() -> createNextColumn(ladderInitInfo.getStepGenerateStrategy()))
                 .limit(getMiddleColumnLimit(ladderInitInfo))
-                .forEach(columns::add);
+                .forEach(row::add);
     }
 
     private int getMiddleColumnLimit(LadderInitInfo ladderInitInfo) {
@@ -64,30 +49,42 @@ public class Row {
     }
 
     private void createLast(LadderInitInfo ladderInitInfo) {
-        if (!isLadderWidthSizeOne(ladderInitInfo)) {
-            columns.add(createLastColumn());
+        if (!ladderInitInfo.isLadderWidthEqualTo(ONE)) {
+            row.add(createLastColumn());
         }
     }
 
-    private Column createNextColumn(StepGenerateStrategy stepGenerateStrategy) {
+    private LadderColumn createNextColumn(StepGenerateStrategy stepGenerateStrategy) {
         return getLastColumn().initNext(stepGenerateStrategy);
     }
 
-    private Column createLastColumn() {
+    private LadderColumn createLastColumn() {
         return getLastColumn().initLast();
     }
 
-    private Column getLastColumn() {
-        return columns.get(columns.size() - ONE);
+    private LadderColumn getLastColumn() {
+        return row.get(row.size() - ONE);
     }
 
-    public static Row init(LadderInitInfo ladderInitInfo) {
-        return new Row(ladderInitInfo);
+    public static LadderRow init(LadderInitInfo ladderInitInfo) {
+        return new LadderRow(ladderInitInfo);
+    }
+
+    public LadderPosition ride(LadderPosition curPosition) {
+        return columnOf(curPosition).ride(curPosition);
+    }
+
+    private LadderColumn columnOf(LadderPosition curPosition) {
+        return row.get(curPosition.toInt());
+    }
+
+    public int ladderWidth() {
+        return row.size();
     }
 
     public List<Boolean> toSteps() {
-        return columns.stream()
-                .map(Column::hasRightStep)
+        return row.stream()
+                .map(LadderColumn::hasRightStep)
                 .collect(Collectors.toList());
     }
 }

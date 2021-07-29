@@ -1,5 +1,8 @@
 package nextstep.ladder.domain.player;
 
+import nextstep.ladder.domain.ladder.LadderPosition;
+import nextstep.ladder.exception.NullArgumentException;
+
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -17,7 +20,7 @@ public class Players {
 
     private void validate(List<String> names) {
         if (Objects.isNull(names)) {
-            throw new IllegalArgumentException("Names can't be null");
+            throw new NullArgumentException("Names");
         }
     }
 
@@ -29,5 +32,14 @@ public class Players {
         return players.stream()
                 .map(Player::getName)
                 .collect(Collectors.toList());
+    }
+
+    public int numberOfPlayers() {
+        return players.size();
+    }
+
+    public String getNameAt(LadderPosition startPosition) {
+        return players.get(startPosition.toInt())
+                .getName();
     }
 }

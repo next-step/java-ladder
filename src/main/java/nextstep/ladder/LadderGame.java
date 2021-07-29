@@ -1,25 +1,34 @@
 package nextstep.ladder;
 
 import nextstep.ladder.domain.init.LadderGameInitInfo;
+import nextstep.ladder.domain.init.PlayersAndResults;
 import nextstep.ladder.domain.ladder.Ladder;
-import nextstep.ladder.domain.player.Players;
+import nextstep.ladder.domain.ladder.LadderPosition;
+import nextstep.ladder.domain.ladder.LadderRideResult;
 import nextstep.ladder.dto.LadderResult;
+import nextstep.ladder.dto.MatchResult;
+import nextstep.ladder.exception.NullArgumentException;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
+import java.util.function.IntConsumer;
+import java.util.stream.IntStream;
 
 public class LadderGame {
-    private final Players players;
+    private final PlayersAndResults playersAndResults;
     private final Ladder ladder;
 
     private LadderGame(LadderGameInitInfo ladderGameInitInfo) {
         validate(ladderGameInitInfo);
-        this.players = ladderGameInitInfo.getPlayers();
+
         this.ladder = Ladder.init(ladderGameInitInfo.getLadderInitInfo());
+        this.playersAndResults = ladderGameInitInfo.getPlayersAndResults();
     }
 
     private void validate(LadderGameInitInfo ladderGameInitInfo) {
         if (Objects.isNull(ladderGameInitInfo)) {
-            throw new IllegalArgumentException("LadderGameInitInfo can't be null");
+            throw new NullArgumentException(LadderGameInitInfo.class);
         }
     }
 
@@ -27,7 +36,27 @@ public class LadderGame {
         return new LadderGame(ladderGameInitInfo);
     }
 
+    public MatchResult match() {
+        Map<String, String> matchResult = new LinkedHashMap<>();
+        LadderRideResult ladderRideResult = ladder.ride();
+
+        IntStream.range(0, playersAndResults.numberOfPlayers())
+                .forEach(matchPlayerAndResult(matchResult, ladderRideResult));
+
+        return MatchResult.from(matchResult);
+    }
+
+    private IntConsumer matchPlayerAndResult(Map<String, String> matchResult, LadderRideResult ladderRideResult) {
+        return position -> {
+            LadderPosition startPosition = LadderPosition.from(position);
+            matchResult.put(
+                    playersAndResults.getPlayerNameAt(startPosition),
+                    playersAndResults.getResultAt(ladderRideResult.endPositionOf(startPosition))
+            );
+        };
+    }
+
     public LadderResult result() {
-        return LadderResult.of(players.getNames(), ladder.getSteps());
+        return LadderResult.of(playersAndResults, ladder);
     }
 }

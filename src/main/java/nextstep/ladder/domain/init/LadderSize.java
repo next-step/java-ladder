@@ -1,5 +1,7 @@
 package nextstep.ladder.domain.init;
 
+import nextstep.ladder.exception.OutOfRangeArgumentException;
+
 public class LadderSize {
     protected static final int MINIMUM_LENGTH = 1;
 
@@ -14,8 +16,12 @@ public class LadderSize {
     }
 
     private void validate(int width, int height) {
-        if (width < MINIMUM_LENGTH || height < MINIMUM_LENGTH) {
-            throw new IllegalArgumentException("Ladder size can't be under " + MINIMUM_LENGTH);
+        if (width < MINIMUM_LENGTH) {
+            throw OutOfRangeArgumentException.greaterThanOrEqualTo(MINIMUM_LENGTH, width);
+        }
+
+        if (height < MINIMUM_LENGTH) {
+            throw OutOfRangeArgumentException.greaterThanOrEqualTo(MINIMUM_LENGTH, height);
         }
     }
 

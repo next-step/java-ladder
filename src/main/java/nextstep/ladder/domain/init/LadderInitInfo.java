@@ -1,9 +1,12 @@
 package nextstep.ladder.domain.init;
 
 import nextstep.ladder.domain.strategy.StepGenerateStrategy;
+import nextstep.ladder.exception.NullArgumentException;
 
 import java.util.Objects;
 
+import static nextstep.ladder.domain.ladder.LadderRow.ONE;
+import static nextstep.ladder.domain.strategy.NeverGenerateStrategy.NEVER_GENERATE_STRATEGY;
 import static nextstep.ladder.domain.strategy.RandomGenerateStrategy.HALF_PERCENT_STEP_STRATEGY;
 
 public class LadderInitInfo {
@@ -20,11 +23,11 @@ public class LadderInitInfo {
 
     private void validate(LadderSize ladderSize, StepGenerateStrategy stepGenerateStrategy) {
         if (Objects.isNull(ladderSize)) {
-            throw new IllegalArgumentException("LadderSize can't be null");
+            throw new NullArgumentException(LadderSize.class);
         }
 
         if (Objects.isNull(stepGenerateStrategy)) {
-            throw new IllegalArgumentException("StepGenerateStrategy can't be null");
+            throw new NullArgumentException(LadderSize.class);
         }
     }
 
@@ -40,15 +43,19 @@ public class LadderInitInfo {
         return ladderSize.getWidth();
     }
 
-    public boolean isEqualToWidth(int width) {
-        return ladderSize.isEqualToWidth(width);
-    }
-
     public int getLadderHeight() {
         return ladderSize.getHeight();
     }
 
     public StepGenerateStrategy getStepGenerateStrategy() {
+        if (ladderSize.isEqualToWidth(ONE)) {
+            return NEVER_GENERATE_STRATEGY;
+        }
+
         return stepGenerateStrategy;
+    }
+
+    public boolean isLadderWidthEqualTo(int size) {
+        return ladderSize.isEqualToWidth(size);
     }
 }
