@@ -1,6 +1,5 @@
 package nextstep.ladder.domain.ladder;
 
-import nextstep.ladder.domain.strategy.StepGenerateStrategy;
 import nextstep.ladder.domain.strategy.StepGenerateStrategyTemp;
 
 import java.util.Objects;
@@ -14,24 +13,12 @@ public class LadderColumn {
         this.step = step;
     }
 
-    public static LadderColumn initFirst(StepGenerateStrategy stepGenerateStrategy) {
-        return new LadderColumn(Step.init(stepGenerateStrategy));
-    }
-
     public static LadderColumn initFirst2(StepGenerateStrategyTemp stepGenerateStrategy) {
         return new LadderColumn(stepGenerateStrategy.generateFirst());
     }
 
-    public LadderColumn initNext(StepGenerateStrategy stepGenerateStrategy) {
-        return new LadderColumn(step.initNext(stepGenerateStrategy));
-    }
-
     public LadderColumn initNext2(StepGenerateStrategyTemp stepGenerateStrategy) {
         return new LadderColumn(stepGenerateStrategy.generateMiddle(step));
-    }
-
-    public LadderColumn initLast() {
-        return new LadderColumn(step.initLast());
     }
 
     public LadderColumn initLast2(StepGenerateStrategyTemp stepGenerateStrategy) {

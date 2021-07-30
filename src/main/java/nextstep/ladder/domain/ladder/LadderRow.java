@@ -1,7 +1,6 @@
 package nextstep.ladder.domain.ladder;
 
 import nextstep.ladder.domain.init.LadderInitInfo;
-import nextstep.ladder.domain.strategy.StepGenerateStrategy;
 import nextstep.ladder.domain.strategy.StepGenerateStrategyTemp;
 import nextstep.ladder.exception.NullArgumentException;
 
@@ -22,9 +21,9 @@ public class LadderRow {
         validate(ladderInitInfo);
         row = new ArrayList<>(ladderInitInfo.getLadderWidth());
 
-        createFirst(ladderInitInfo);
-        createMiddle(ladderInitInfo);
-        createLast(ladderInitInfo);
+        createFirst2(ladderInitInfo);
+        createMiddle2(ladderInitInfo);
+        createLast2(ladderInitInfo);
     }
 
     private void validate(LadderInitInfo ladderInitInfo) {
@@ -33,18 +32,8 @@ public class LadderRow {
         }
     }
 
-    private void createFirst(LadderInitInfo ladderInitInfo) {
-        row.add(LadderColumn.initFirst(ladderInitInfo.getStepGenerateStrategy()));
-    }
-
     private void createFirst2(LadderInitInfo ladderInitInfo) {
         row.add(LadderColumn.initFirst2(ladderInitInfo.getStepGenerateStrategy2()));
-    }
-
-    private void createMiddle(LadderInitInfo ladderInitInfo) {
-        Stream.generate(() -> createNextColumn(ladderInitInfo.getStepGenerateStrategy()))
-                .limit(getMiddleColumnLimit(ladderInitInfo))
-                .forEach(row::add);
     }
 
     private void createMiddle2(LadderInitInfo ladderInitInfo) {
@@ -59,28 +48,14 @@ public class LadderRow {
         return Math.max(limit, ZERO);
     }
 
-    private void createLast(LadderInitInfo ladderInitInfo) {
-        if (!ladderInitInfo.isLadderWidthEqualTo(ONE)) {
-            row.add(createLastColumn());
-        }
-    }
-
     private void createLast2(LadderInitInfo ladderInitInfo) {
         if (!ladderInitInfo.isLadderWidthEqualTo(ONE)) {
             row.add(createLastColumn2(ladderInitInfo.getStepGenerateStrategy2()));
         }
     }
 
-    private LadderColumn createNextColumn(StepGenerateStrategy stepGenerateStrategy) {
-        return getLastColumn().initNext(stepGenerateStrategy);
-    }
-
     private LadderColumn createNextColumn2(StepGenerateStrategyTemp stepGenerateStrategy) {
         return getLastColumn().initNext2(stepGenerateStrategy);
-    }
-
-    private LadderColumn createLastColumn() {
-        return getLastColumn().initLast();
     }
 
     private LadderColumn createLastColumn2(StepGenerateStrategyTemp stepGenerateStrategyTemp) {

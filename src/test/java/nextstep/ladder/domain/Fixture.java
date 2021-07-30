@@ -16,9 +16,6 @@ import java.util.List;
 import java.util.Random;
 
 public class Fixture {
-    public static final StepGenerateStrategy ALWAYS_GENERATE_STRATEGY = () -> true;
-    public static final StepGenerateStrategy NEVER_GENERATE_STRATEGY = () -> false;
-
     public static final Random RETURN_TRUE_RANDOM = new Random() {
         @Override
         public boolean nextBoolean() {
@@ -83,21 +80,15 @@ public class Fixture {
         }
     };
 
-    public static final LadderColumn RIGHT_STEP_LADDER_COLUMN = LadderColumn.initFirst(ALWAYS_GENERATE_STRATEGY);
     public static final LadderColumn RIGHT_STEP_LADDER_COLUMN_TEMP = LadderColumn.initFirst2(ALWAYS_GENERATE_STRATEGY_TEMP);
-    public static final LadderColumn NONE_STEP_LADDER_COLUMN = LadderColumn.initFirst(NEVER_GENERATE_STRATEGY);
     public static final LadderColumn NONE_STEP_LADDER_COLUMN_TEMP = LadderColumn.initFirst2(NEVER_GENERATE_STRATEGY_TEMP);
-    public static final LadderColumn LEFT_STEP_LADDER_COLUMN = LadderColumn.initFirst(ALWAYS_GENERATE_STRATEGY)
-            .initNext(ALWAYS_GENERATE_STRATEGY);
     public static final LadderColumn LEFT_STEP_LADDER_COLUMN_TEMP = LadderColumn.initFirst2(ALWAYS_GENERATE_STRATEGY_TEMP)
             .initNext2(ALWAYS_GENERATE_STRATEGY_TEMP);
 
     public static final LadderSize LADDER_SIZE_2_X_2 = LadderSize.of(2, 2);
     public static final LadderSize LADDER_SIZE_5_X_5 = LadderSize.of(5, 5);
 
-    public static final LadderInitInfo LADDER_INIT_INFO_2_X_2 = LadderInitInfo.init(LADDER_SIZE_2_X_2, ALWAYS_GENERATE_STRATEGY);
     public static final LadderInitInfo LADDER_INIT_INFO_2_X_2_TEMP = LadderInitInfo.init(LADDER_SIZE_2_X_2, ALWAYS_GENERATE_STRATEGY_TEMP);
-    public static final LadderInitInfo LADDER_INIT_INFO_5_X_5 = LadderInitInfo.init(LADDER_SIZE_5_X_5, ALWAYS_GENERATE_STRATEGY);
     public static final LadderInitInfo LADDER_INIT_INFO_5_X_5_TEMP = LadderInitInfo.init(LADDER_SIZE_5_X_5, ALWAYS_GENERATE_STRATEGY_TEMP);
 
     public static final List<String> TWO_PLAYERS_NAMES = Arrays.asList("nokc", "cha");
@@ -107,7 +98,7 @@ public class Fixture {
     public static final Gifts TWO_GIFTS = Gifts.init(TWO_GIFTS_VALUES);
 
     public static final PlayersAndGifts TWO_PLAYERS_AND_GIFTS = PlayersAndGifts.of(TWO_PLAYERS_NAMES, TWO_GIFTS_VALUES);
-    public static final LadderGameInitInfo LADDER_GAME_INIT_INFO_2_X_2 = LadderGameInitInfo.of(TWO_PLAYERS_AND_GIFTS, LADDER_INIT_INFO_2_X_2);
+    public static final LadderGameInitInfo LADDER_GAME_INIT_INFO_2_X_2 = LadderGameInitInfo.of(TWO_PLAYERS_AND_GIFTS, LADDER_INIT_INFO_2_X_2_TEMP);
 
     private Fixture() {}
 

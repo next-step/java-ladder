@@ -3,6 +3,7 @@ package nextstep.ladder.domain.ladder;
 import nextstep.ladder.domain.init.LadderInitInfo;
 import nextstep.ladder.domain.init.LadderSize;
 import nextstep.ladder.domain.strategy.StepGenerateStrategy;
+import nextstep.ladder.domain.strategy.StepGenerateStrategyTemp;
 import nextstep.ladder.exception.NullArgumentException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -24,7 +25,7 @@ class LadderRowTest {
     @DisplayName("사다리 한 행은 사다리 초기화 정보 클래스를 가지고 초기화 한다")
     @Test
     void init() {
-        assertThat(LadderRow.init(LADDER_INIT_INFO_2_X_2)).isInstanceOf(LadderRow.class);
+        assertThat(LadderRow.init(LADDER_INIT_INFO_2_X_2_TEMP)).isInstanceOf(LadderRow.class);
     }
 
     @DisplayName("사다리 초기화 정보 클래스가 null 일 경우 예외를 발생 시킨다")
@@ -36,7 +37,7 @@ class LadderRowTest {
     @DisplayName("사다리 한 행의 발판 정보를 반환한다")
     @MethodSource
     @ParameterizedTest
-    void toSteps(LadderSize ladderSize, StepGenerateStrategy stepGenerateStrategy, List<Boolean> expectedSteps) {
+    void toSteps(LadderSize ladderSize, StepGenerateStrategyTemp stepGenerateStrategy, List<Boolean> expectedSteps) {
         LadderInitInfo ladderInitInfo = LadderInitInfo.init(ladderSize, stepGenerateStrategy);
         LadderRow ladderRow = LadderRow.init(ladderInitInfo);
 
@@ -45,8 +46,8 @@ class LadderRowTest {
 
     private static Stream<Arguments> toSteps() {
         return Stream.of(
-                Arguments.of(LADDER_SIZE_5_X_5, ALWAYS_GENERATE_STRATEGY, Arrays.asList(true, false, true, false, false)),
-                Arguments.of(LADDER_SIZE_5_X_5, NEVER_GENERATE_STRATEGY, Arrays.asList(false, false, false, false, false))
+                Arguments.of(LADDER_SIZE_5_X_5, ALWAYS_GENERATE_STRATEGY_TEMP, Arrays.asList(true, false, true, false, false)),
+                Arguments.of(LADDER_SIZE_5_X_5, NEVER_GENERATE_STRATEGY_TEMP, Arrays.asList(false, false, false, false, false))
         );
     }
 
@@ -54,7 +55,7 @@ class LadderRowTest {
     @MethodSource
     @ParameterizedTest
     void ride(LadderPosition curPosition, LadderPosition expectedPosition) {
-        LadderInitInfo ladderInitInfo = LadderInitInfo.init(LADDER_SIZE_5_X_5, ALWAYS_GENERATE_STRATEGY);
+        LadderInitInfo ladderInitInfo = LadderInitInfo.init(LADDER_SIZE_5_X_5, ALWAYS_GENERATE_STRATEGY_TEMP);
         LadderRow ladderRow = LadderRow.init(ladderInitInfo);
 
         assertThat(ladderRow.ride(curPosition)).isEqualTo(expectedPosition);
