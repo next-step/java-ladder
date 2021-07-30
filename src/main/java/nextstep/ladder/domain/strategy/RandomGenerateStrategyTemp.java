@@ -7,6 +7,7 @@ import java.util.Objects;
 import java.util.Random;
 
 public class RandomGenerateStrategyTemp implements StepGenerateStrategyTemp {
+    public static final RandomGenerateStrategyTemp HALF_PERCENT_STEP_STRATEGY_TEMP = new RandomGenerateStrategyTemp(new Random());
 
     private final Random random;
 

@@ -96,7 +96,9 @@ public class Fixture {
     public static final LadderSize LADDER_SIZE_5_X_5 = LadderSize.of(5, 5);
 
     public static final LadderInitInfo LADDER_INIT_INFO_2_X_2 = LadderInitInfo.init(LADDER_SIZE_2_X_2, ALWAYS_GENERATE_STRATEGY);
+    public static final LadderInitInfo LADDER_INIT_INFO_2_X_2_TEMP = LadderInitInfo.init(LADDER_SIZE_2_X_2, ALWAYS_GENERATE_STRATEGY_TEMP);
     public static final LadderInitInfo LADDER_INIT_INFO_5_X_5 = LadderInitInfo.init(LADDER_SIZE_5_X_5, ALWAYS_GENERATE_STRATEGY);
+    public static final LadderInitInfo LADDER_INIT_INFO_5_X_5_TEMP = LadderInitInfo.init(LADDER_SIZE_5_X_5, ALWAYS_GENERATE_STRATEGY_TEMP);
 
     public static final List<String> TWO_PLAYERS_NAMES = Arrays.asList("nokc", "cha");
     public static final Players TWO_PLAYERS = Players.init(TWO_PLAYERS_NAMES);

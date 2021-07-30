@@ -37,8 +37,18 @@ public class LadderRow {
         row.add(LadderColumn.initFirst(ladderInitInfo.getStepGenerateStrategy()));
     }
 
+    private void createFirst2(LadderInitInfo ladderInitInfo) {
+        row.add(LadderColumn.initFirst2(ladderInitInfo.getStepGenerateStrategy2()));
+    }
+
     private void createMiddle(LadderInitInfo ladderInitInfo) {
         Stream.generate(() -> createNextColumn(ladderInitInfo.getStepGenerateStrategy()))
+                .limit(getMiddleColumnLimit(ladderInitInfo))
+                .forEach(row::add);
+    }
+
+    private void createMiddle2(LadderInitInfo ladderInitInfo) {
+        Stream.generate(() -> createNextColumn2(ladderInitInfo.getStepGenerateStrategy2()))
                 .limit(getMiddleColumnLimit(ladderInitInfo))
                 .forEach(row::add);
     }
@@ -55,8 +65,18 @@ public class LadderRow {
         }
     }
 
+    private void createLast2(LadderInitInfo ladderInitInfo) {
+        if (!ladderInitInfo.isLadderWidthEqualTo(ONE)) {
+            row.add(createLastColumn2(ladderInitInfo.getStepGenerateStrategy2()));
+        }
+    }
+
     private LadderColumn createNextColumn(StepGenerateStrategy stepGenerateStrategy) {
         return getLastColumn().initNext(stepGenerateStrategy);
+    }
+
+    private LadderColumn createNextColumn2(StepGenerateStrategyTemp stepGenerateStrategy) {
+        return getLastColumn().initNext2(stepGenerateStrategy);
     }
 
     private LadderColumn createLastColumn() {
