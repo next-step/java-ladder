@@ -20,7 +20,7 @@ class LadderTest {
     @DisplayName("사다리는 사다리 초기화 정보를 가지고 초기화한다")
     @Test
     void init() {
-        assertThat(Ladder.init(LADDER_INIT_INFO_2_X_2_TEMP)).isInstanceOf(Ladder.class);
+        assertThat(Ladder.init(LADDER_INIT_INFO_2_X_2)).isInstanceOf(Ladder.class);
     }
 
     @DisplayName("사다리 초기화 정보가 null 일 경우 예외를 발생시킨다")
@@ -32,7 +32,7 @@ class LadderTest {
     @DisplayName("각 행의 사다리 다리를 정보를 반환한다")
     @Test
     void getSteps() {
-        Ladder ladder = Ladder.init(LADDER_INIT_INFO_2_X_2_TEMP);
+        Ladder ladder = Ladder.init(LADDER_INIT_INFO_2_X_2);
 
         ladder.getSteps()
                 .forEach(rowDto -> assertThat(rowDto.getSteps()).isEqualTo(Arrays.asList(true, false)));
@@ -41,7 +41,7 @@ class LadderTest {
     @DisplayName("사다리 타기 결과는 LadderRideResult 를 반환한다")
     @Test
     void rideLadder() {
-        Ladder ladder = Ladder.init(LADDER_INIT_INFO_2_X_2_TEMP);
+        Ladder ladder = Ladder.init(LADDER_INIT_INFO_2_X_2);
 
         assertThat(ladder.ride()).isInstanceOf(LadderRideResult.class);
     }
@@ -50,7 +50,7 @@ class LadderTest {
     @MethodSource
     @ParameterizedTest
     void checkRideLadderResult(LadderPosition startPosition, LadderPosition expectedPosition) {
-        Ladder ladder = Ladder.init(LADDER_INIT_INFO_5_X_5_TEMP);
+        Ladder ladder = Ladder.init(LADDER_INIT_INFO_5_X_5);
 
         LadderRideResult ladderRideResult = ladder.ride();
         assertThat(ladderRideResult.endPositionOf(startPosition)).isEqualTo(expectedPosition);

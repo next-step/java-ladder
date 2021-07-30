@@ -1,6 +1,9 @@
 package nextstep.ladder.domain.strategy;
 
-@FunctionalInterface
+import nextstep.ladder.domain.ladder.Step;
+
 public interface StepGenerateStrategy {
-    boolean isGenerable();
+    Step generateFirst();
+    Step generateMiddle(Step prevStep);
+    Step generateLast(Step prevStep);
 }

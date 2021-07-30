@@ -22,20 +22,20 @@ class RandomGenerateStrategyTempTest {
     @DisplayName("랜덤 객체를 가지고 초기화한다")
     @Test
     void init() {
-        assertThat(RandomGenerateStrategyTemp.init(new Random())).isInstanceOf(RandomGenerateStrategyTemp.class);
+        assertThat(RandomGenerateStrategy.init(new Random())).isInstanceOf(RandomGenerateStrategy.class);
     }
 
     @DisplayName("랜덤 객체가 null 일 경우 예외를 발생 시킨다")
     @Test
     void initException() {
-        assertThatThrownBy(() -> RandomGenerateStrategyTemp.init(null)).isInstanceOf(NullArgumentException.class);
+        assertThatThrownBy(() -> RandomGenerateStrategy.init(null)).isInstanceOf(NullArgumentException.class);
     }
 
     @DisplayName("랜덤 객체가 특정 값만 반환할 때의 첫번째 열의 발판 생성 테스트")
     @MethodSource
     @ParameterizedTest
     void generateFirst(Random random, Step expectedStep) {
-        RandomGenerateStrategyTemp randomGenerateStrategy = RandomGenerateStrategyTemp.init(random);
+        RandomGenerateStrategy randomGenerateStrategy = RandomGenerateStrategy.init(random);
 
         assertThat(randomGenerateStrategy.generateFirst()).isEqualTo(expectedStep);
     }
@@ -51,7 +51,7 @@ class RandomGenerateStrategyTempTest {
     @MethodSource
     @ParameterizedTest
     void generateMiddle(Step prevStep, Random random, Step expectedStep) {
-        RandomGenerateStrategyTemp randomGenerateStrategy = RandomGenerateStrategyTemp.init(random);
+        RandomGenerateStrategy randomGenerateStrategy = RandomGenerateStrategy.init(random);
 
         assertThat(randomGenerateStrategy.generateMiddle(prevStep)).isEqualTo(expectedStep);
     }
@@ -71,7 +71,7 @@ class RandomGenerateStrategyTempTest {
     @MethodSource
     @ParameterizedTest
     void generateLast(Step prevStep, Random random, Step expectedStep) {
-        RandomGenerateStrategyTemp randomGenerateStrategy = RandomGenerateStrategyTemp.init(random);
+        RandomGenerateStrategy randomGenerateStrategy = RandomGenerateStrategy.init(random);
 
         assertThat(randomGenerateStrategy.generateLast(prevStep)).isEqualTo(expectedStep);
     }
