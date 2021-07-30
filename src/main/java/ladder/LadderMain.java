@@ -7,6 +7,7 @@ import ladder.view.OutputView;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class LadderMain {
 
@@ -15,7 +16,10 @@ public class LadderMain {
         String[] userNames = inputView.inputParticipateInUsers();
 
         List<User> userList = new ArrayList<>();
-        Arrays.stream(userNames).forEach(username -> userList.add(new User(username)));
+
+        AtomicInteger userOfInitIndex = new AtomicInteger();
+
+        Arrays.stream(userNames).forEach(username -> userList.add(new User(username, userOfInitIndex.getAndIncrement())));
 
         Users users = new Users(userList);
         users.checkDuplicateUser();
@@ -28,7 +32,8 @@ public class LadderMain {
         Ladder ladder = new Ladder(ladderHeight, userList.size());
 
         OutputView outputView = new OutputView();
-        outputView.printPaticipateInUsers(userNames);
+        outputView.printIndexParticipateInUsers(userNames);
+        outputView.printParticipateInUsers(userNames);
 
         outputView.printLadder(ladder.lines());
 

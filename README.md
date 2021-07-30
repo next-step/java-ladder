@@ -5,7 +5,7 @@
 * 코드 리뷰 피드백에 대한 개선 작업을 하고 다시 PUSH한다.
 * 모든 피드백을 완료하면 다음 단계를 도전하고 앞의 과정을 반복한다.
   사다리게임
-  =============
+  
 
 ### inputView class
 > * inputParticipateInUsers()
@@ -15,8 +15,10 @@
 
 ### Users class
 > 참가자들의 집합 class
-
-
+>  * gameResults()
+>    > game결과 확인 
+>  * findByName()
+>    > 이름으로 User 찾기
 ### User class
 > 참가자 class
 

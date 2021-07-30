@@ -28,6 +28,11 @@ public class Line {
         return this.points;
     }
 
+    public boolean isGoUser(int position) {
+        return this.points.get(position);
+    }
+
+
     private void drawLineByNumber(int position) {
         if (isEvenNumber(position)) {
             addHeightLine(position);

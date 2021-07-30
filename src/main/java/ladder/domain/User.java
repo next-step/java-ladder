@@ -7,7 +7,7 @@ public class User {
     private Name name;
     private int IndexOfGameResult;
 
-    public User(String name,int IndexOfGameResult){
+    public User(String name, int IndexOfGameResult) {
         this(new Name(name));
         this.IndexOfGameResult = IndexOfGameResult;
     }
@@ -24,7 +24,7 @@ public class User {
         return this.name.name();
     }
 
-    public int gameResult(){
+    public int gameResult() {
         return this.IndexOfGameResult;
     }
 

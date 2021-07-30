@@ -13,10 +13,17 @@ public class OutputView {
     private static final String EMPTY_WIDTH_LADDER = "     ";
 
 
-    public void printPaticipateInUsers(String[] userNames) {
+    public void printParticipateInUsers(String[] userNames) {
         Arrays.stream(userNames).forEach(userName -> System.out.printf("%6s", userName));
         System.out.println();
     }
+    public void printIndexParticipateInUsers(String[] userNames) {
+        for(int i=0; i<userNames.length;i++){
+            System.out.printf("%6s", i);
+        }
+        System.out.println();
+    }
+
 
     public void printLadder(Lines lines) {
         StringBuilder sb = new StringBuilder();
