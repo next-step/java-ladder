@@ -84,9 +84,13 @@ public class Fixture {
     };
 
     public static final LadderColumn RIGHT_STEP_LADDER_COLUMN = LadderColumn.initFirst(ALWAYS_GENERATE_STRATEGY);
+    public static final LadderColumn RIGHT_STEP_LADDER_COLUMN_TEMP = LadderColumn.initFirst2(ALWAYS_GENERATE_STRATEGY_TEMP);
     public static final LadderColumn NONE_STEP_LADDER_COLUMN = LadderColumn.initFirst(NEVER_GENERATE_STRATEGY);
+    public static final LadderColumn NONE_STEP_LADDER_COLUMN_TEMP = LadderColumn.initFirst2(NEVER_GENERATE_STRATEGY_TEMP);
     public static final LadderColumn LEFT_STEP_LADDER_COLUMN = LadderColumn.initFirst(ALWAYS_GENERATE_STRATEGY)
             .initNext(ALWAYS_GENERATE_STRATEGY);
+    public static final LadderColumn LEFT_STEP_LADDER_COLUMN_TEMP = LadderColumn.initFirst2(ALWAYS_GENERATE_STRATEGY_TEMP)
+            .initNext2(ALWAYS_GENERATE_STRATEGY_TEMP);
 
     public static final LadderSize LADDER_SIZE_2_X_2 = LadderSize.of(2, 2);
     public static final LadderSize LADDER_SIZE_5_X_5 = LadderSize.of(5, 5);

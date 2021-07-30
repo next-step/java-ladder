@@ -1,6 +1,7 @@
 package nextstep.ladder.domain.ladder;
 
 import nextstep.ladder.domain.strategy.StepGenerateStrategy;
+import nextstep.ladder.domain.strategy.StepGenerateStrategyTemp;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -21,6 +22,12 @@ class LadderColumnTest {
         assertThat(LadderColumn.initFirst(ALWAYS_GENERATE_STRATEGY)).isInstanceOf(LadderColumn.class);
     }
 
+    @DisplayName("기본적으로 컬럼은 발판 생성 전략을 가지고 초기화를 한다.")
+    @Test
+    void init2() {
+        assertThat(LadderColumn.initFirst2(ALWAYS_GENERATE_STRATEGY_TEMP)).isInstanceOf(LadderColumn.class);
+    }
+
     @DisplayName("하나의 열에는 오른쪽 발판이 있거나 없다.")
     @MethodSource
     @ParameterizedTest
@@ -37,6 +44,22 @@ class LadderColumnTest {
         );
     }
 
+    @DisplayName("하나의 열에는 오른쪽 발판이 있거나 없다.")
+    @MethodSource
+    @ParameterizedTest
+    void hasRightStep2(StepGenerateStrategyTemp stepGenerateStrategy, boolean expectedValue) {
+        LadderColumn ladderColumn = LadderColumn.initFirst2(stepGenerateStrategy);
+
+        assertThat(ladderColumn.hasRightStep()).isEqualTo(expectedValue);
+    }
+
+    private static Stream<Arguments> hasRightStep2() {
+        return Stream.of(
+                Arguments.of(ALWAYS_GENERATE_STRATEGY_TEMP, true),
+                Arguments.of(NEVER_GENERATE_STRATEGY_TEMP, false)
+        );
+    }
+
     @DisplayName("첫번 째 컬럼은 오른쪽 발판을 가지거나 발판을 가지지 않는다.")
     @MethodSource
     @ParameterizedTest
@@ -50,6 +73,22 @@ class LadderColumnTest {
         return Stream.of(
                 Arguments.of(ALWAYS_GENERATE_STRATEGY, RIGHT_STEP_LADDER_COLUMN),
                 Arguments.of(NEVER_GENERATE_STRATEGY, NONE_STEP_LADDER_COLUMN)
+        );
+    }
+
+    @DisplayName("첫번 째 컬럼은 오른쪽 발판을 가지거나 발판을 가지지 않는다.")
+    @MethodSource
+    @ParameterizedTest
+    void initFirstColumn2(StepGenerateStrategyTemp stepGenerateStrategy, LadderColumn expectedLadderColumn) {
+        LadderColumn ladderColumn = LadderColumn.initFirst2(stepGenerateStrategy);
+
+        assertThat(ladderColumn).isEqualTo(expectedLadderColumn);
+    }
+
+    private static Stream<Arguments> initFirstColumn2() {
+        return Stream.of(
+                Arguments.of(ALWAYS_GENERATE_STRATEGY_TEMP, RIGHT_STEP_LADDER_COLUMN),
+                Arguments.of(NEVER_GENERATE_STRATEGY_TEMP, NONE_STEP_LADDER_COLUMN)
         );
     }
 
@@ -73,6 +112,26 @@ class LadderColumnTest {
         );
     }
 
+    @DisplayName("두번째 부터 마지막 전 컬럼 까지는 이전 컬럼의 스텝 종류와 발판 생성 전략에 영향을 받아 생성한다.")
+    @MethodSource
+    @ParameterizedTest
+    void initMiddleColumn2(LadderColumn prevLadderColumn, StepGenerateStrategyTemp stepGenerateStrategy, LadderColumn expectedLadderColumn) {
+        LadderColumn ladderColumn = prevLadderColumn.initNext2(stepGenerateStrategy);
+
+        assertThat(ladderColumn).isEqualTo(expectedLadderColumn);
+    }
+
+    private static Stream<Arguments> initMiddleColumn2() {
+        return Stream.of(
+                Arguments.of(RIGHT_STEP_LADDER_COLUMN, ALWAYS_GENERATE_STRATEGY_TEMP, LEFT_STEP_LADDER_COLUMN),
+                Arguments.of(RIGHT_STEP_LADDER_COLUMN, NEVER_GENERATE_STRATEGY_TEMP, LEFT_STEP_LADDER_COLUMN),
+                Arguments.of(LEFT_STEP_LADDER_COLUMN, ALWAYS_GENERATE_STRATEGY_TEMP, RIGHT_STEP_LADDER_COLUMN),
+                Arguments.of(LEFT_STEP_LADDER_COLUMN, NEVER_GENERATE_STRATEGY_TEMP, NONE_STEP_LADDER_COLUMN),
+                Arguments.of(NONE_STEP_LADDER_COLUMN, ALWAYS_GENERATE_STRATEGY_TEMP, RIGHT_STEP_LADDER_COLUMN),
+                Arguments.of(NONE_STEP_LADDER_COLUMN, NEVER_GENERATE_STRATEGY_TEMP, NONE_STEP_LADDER_COLUMN)
+        );
+    }
+
     @DisplayName("마지막 컬럼은 이전 컬럼의 스텝 종류에 영향을 받아 생성한다.")
     @MethodSource
     @ParameterizedTest
@@ -90,6 +149,25 @@ class LadderColumnTest {
         );
     }
 
+    @DisplayName("마지막 컬럼은 이전 컬럼의 스텝 종류에 영향을 받아 생성한다.")
+    @MethodSource
+    @ParameterizedTest
+    void initLastColumn2(LadderColumn prevLadderColumn, StepGenerateStrategyTemp stepGenerateStrategy, LadderColumn expectedLadderColumn) {
+        LadderColumn ladderColumn = prevLadderColumn.initLast2(stepGenerateStrategy);
+
+        assertThat(ladderColumn).isEqualTo(expectedLadderColumn);
+    }
+
+    private static Stream<Arguments> initLastColumn2() {
+        return Stream.of(
+                Arguments.of(RIGHT_STEP_LADDER_COLUMN, ALWAYS_GENERATE_STRATEGY_TEMP, LEFT_STEP_LADDER_COLUMN),
+                Arguments.of(LEFT_STEP_LADDER_COLUMN, ALWAYS_GENERATE_STRATEGY_TEMP, NONE_STEP_LADDER_COLUMN),
+                Arguments.of(NONE_STEP_LADDER_COLUMN, ALWAYS_GENERATE_STRATEGY_TEMP, NONE_STEP_LADDER_COLUMN),
+                Arguments.of(RIGHT_STEP_LADDER_COLUMN, NEVER_GENERATE_STRATEGY_TEMP, LEFT_STEP_LADDER_COLUMN),
+                Arguments.of(LEFT_STEP_LADDER_COLUMN, NEVER_GENERATE_STRATEGY_TEMP, NONE_STEP_LADDER_COLUMN),
+                Arguments.of(NONE_STEP_LADDER_COLUMN, NEVER_GENERATE_STRATEGY_TEMP, NONE_STEP_LADDER_COLUMN)
+        );
+    }
 
     @DisplayName("마지막 컬럼은 이전 컬럼의 스텝 종류에 영향을 받아 생성한다.")
     @MethodSource

@@ -2,6 +2,7 @@ package nextstep.ladder.domain.ladder;
 
 import nextstep.ladder.domain.init.LadderInitInfo;
 import nextstep.ladder.domain.strategy.StepGenerateStrategy;
+import nextstep.ladder.domain.strategy.StepGenerateStrategyTemp;
 import nextstep.ladder.exception.NullArgumentException;
 
 import java.util.ArrayList;
@@ -60,6 +61,10 @@ public class LadderRow {
 
     private LadderColumn createLastColumn() {
         return getLastColumn().initLast();
+    }
+
+    private LadderColumn createLastColumn2(StepGenerateStrategyTemp stepGenerateStrategyTemp) {
+        return getLastColumn().initLast2(stepGenerateStrategyTemp);
     }
 
     private LadderColumn getLastColumn() {
