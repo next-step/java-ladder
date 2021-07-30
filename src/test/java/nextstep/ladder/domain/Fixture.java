@@ -5,16 +5,83 @@ import nextstep.ladder.domain.init.LadderInitInfo;
 import nextstep.ladder.domain.init.LadderSize;
 import nextstep.ladder.domain.init.PlayersAndGifts;
 import nextstep.ladder.domain.ladder.LadderColumn;
+import nextstep.ladder.domain.ladder.Step;
 import nextstep.ladder.domain.player.Players;
 import nextstep.ladder.domain.gift.Gifts;
 import nextstep.ladder.domain.strategy.StepGenerateStrategy;
+import nextstep.ladder.domain.strategy.StepGenerateStrategyTemp;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 public class Fixture {
     public static final StepGenerateStrategy ALWAYS_GENERATE_STRATEGY = () -> true;
     public static final StepGenerateStrategy NEVER_GENERATE_STRATEGY = () -> false;
+
+    public static final Random RETURN_TRUE_RANDOM = new Random() {
+        @Override
+        public boolean nextBoolean() {
+            return true;
+        }
+    };
+
+    public static final Random RETURN_FALSE_RANDOM = new Random() {
+        @Override
+        public boolean nextBoolean() {
+            return false;
+        }
+    };
+
+    public static final StepGenerateStrategyTemp ALWAYS_GENERATE_STRATEGY_TEMP = new StepGenerateStrategyTemp() {
+        @Override
+        public Step generateFirst() {
+            return Step.RIGHT;
+        }
+
+        @Override
+        public Step generateMiddle(Step prevStep) {
+            if (prevStep.isRight()) {
+                return Step.LEFT;
+            }
+
+            return Step.RIGHT;
+        }
+
+        @Override
+        public Step generateLast(Step prevStep) {
+            if (prevStep.isRight()) {
+                return Step.LEFT;
+            }
+
+            return Step.NONE;
+        }
+    };
+
+    public static final StepGenerateStrategyTemp NEVER_GENERATE_STRATEGY_TEMP = new StepGenerateStrategyTemp() {
+        @Override
+        public Step generateFirst() {
+            return Step.NONE;
+        }
+
+        @Override
+        public Step generateMiddle(Step prevStep) {
+            if (prevStep.isRight()) {
+                return Step.LEFT;
+            }
+
+            return Step.NONE;
+        }
+
+        @Override
+        public Step generateLast(Step prevStep) {
+            if (prevStep.isRight()) {
+                return Step.LEFT;
+            }
+
+            return Step.NONE;
+        }
+    };
 
     public static final LadderColumn RIGHT_STEP_LADDER_COLUMN = LadderColumn.initFirst(ALWAYS_GENERATE_STRATEGY);
     public static final LadderColumn NONE_STEP_LADDER_COLUMN = LadderColumn.initFirst(NEVER_GENERATE_STRATEGY);
