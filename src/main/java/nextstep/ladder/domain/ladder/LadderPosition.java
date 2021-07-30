@@ -7,7 +7,7 @@ import java.util.Objects;
 public class LadderPosition {
     private static final int ZERO = 0;
 
-    private int position;
+    private final int position;
 
     private LadderPosition(int position) {
         validate(position);

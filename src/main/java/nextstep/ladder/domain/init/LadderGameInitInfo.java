@@ -6,33 +6,33 @@ import java.util.Objects;
 
 public class LadderGameInitInfo {
     private final LadderInitInfo ladderInitInfo;
-    private final PlayersAndResults playersAndResults;
+    private final PlayersAndGifts playersAndGifts;
 
-    private LadderGameInitInfo(LadderInitInfo ladderInitInfo, PlayersAndResults playersAndResults) {
-        validate(ladderInitInfo, playersAndResults);
+    private LadderGameInitInfo(LadderInitInfo ladderInitInfo, PlayersAndGifts playersAndGifts) {
+        validate(ladderInitInfo, playersAndGifts);
 
         this.ladderInitInfo = ladderInitInfo;
-        this.playersAndResults = playersAndResults;
+        this.playersAndGifts = playersAndGifts;
     }
-    private void validate(LadderInitInfo ladderInitInfo, PlayersAndResults playersAndResults) {
+    private void validate(LadderInitInfo ladderInitInfo, PlayersAndGifts playersAndGifts) {
         if (Objects.isNull(ladderInitInfo)) {
             throw new NullArgumentException(LadderInitInfo.class);
         }
 
-        if (Objects.isNull(playersAndResults)) {
-            throw new NullArgumentException(PlayersAndResults.class);
+        if (Objects.isNull(playersAndGifts)) {
+            throw new NullArgumentException(PlayersAndGifts.class);
         }
     }
 
-    public static LadderGameInitInfo of(PlayersAndResults playersAndResults, LadderInitInfo ladderInitInfo) {
-        return new LadderGameInitInfo(ladderInitInfo, playersAndResults);
+    public static LadderGameInitInfo of(PlayersAndGifts playersAndGifts, LadderInitInfo ladderInitInfo) {
+        return new LadderGameInitInfo(ladderInitInfo, playersAndGifts);
     }
 
     public LadderInitInfo getLadderInitInfo() {
         return ladderInitInfo;
     }
 
-    public PlayersAndResults getPlayersAndResults() {
-        return playersAndResults;
+    public PlayersAndGifts getPlayersAndGifts() {
+        return playersAndGifts;
     }
 }
