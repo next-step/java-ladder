@@ -5,14 +5,15 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static java.util.Comparator.*;
+import static java.util.Comparator.comparing;
 
 public class StreamStudy {
+
+    private StreamStudy() {
+    }
 
     public static long countWords() throws IOException {
         String contents = new String(Files.readAllBytes(Paths
@@ -49,7 +50,7 @@ public class StreamStudy {
     public static long sumOverThreeAndDouble(List<Integer> numbers) {
         return numbers.stream()
                 .filter(number -> number > 3)
-                .map(n -> n *2)
+                .map(n -> n * 2)
                 .reduce(0, Integer::sum);
     }
 }

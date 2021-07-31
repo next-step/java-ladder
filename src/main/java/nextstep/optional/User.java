@@ -3,8 +3,8 @@ package nextstep.optional;
 import java.util.Optional;
 
 public class User {
-    private String name;
-    private Integer age;
+    private final String name;
+    private final Integer age;
 
     public User(String name, Integer age) {
         this.name = name;

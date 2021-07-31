@@ -3,6 +3,10 @@ package nextstep.fp;
 import java.util.List;
 
 public class Lambda {
+
+    private Lambda() {
+    }
+
     public static void printAllOld(List<Integer> numbers) {
         System.out.println("printAllOld");
 
@@ -21,7 +25,7 @@ public class Lambda {
         new Thread(() -> System.out.println("Hello from thread")).start();
     }
 
-    public static int sumAll(List<Integer> numbers, SumConditional conditional ) {
+    public static int sumAll(List<Integer> numbers, SumConditional conditional) {
         return numbers.stream()
                 .filter(conditional::match)
                 .mapToInt(Integer::intValue)
