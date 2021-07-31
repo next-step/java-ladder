@@ -14,15 +14,15 @@ public class LadderColumn {
     }
 
     public static LadderColumn initFirst(StepGenerateStrategy stepGenerateStrategy) {
-        return new LadderColumn(Step.init(stepGenerateStrategy));
+        return new LadderColumn(stepGenerateStrategy.generateFirst());
     }
 
     public LadderColumn initNext(StepGenerateStrategy stepGenerateStrategy) {
-        return new LadderColumn(step.initNext(stepGenerateStrategy));
+        return new LadderColumn(stepGenerateStrategy.generateMiddle(step));
     }
 
-    public LadderColumn initLast() {
-        return new LadderColumn(step.initLast());
+    public LadderColumn initLast(StepGenerateStrategy stepGenerateStrategy) {
+        return new LadderColumn(stepGenerateStrategy.generateLast(step));
     }
 
     public boolean hasRightStep() {

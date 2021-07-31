@@ -1,7 +1,7 @@
 package nextstep.ladder;
 
 import nextstep.ladder.domain.init.LadderGameInitInfo;
-import nextstep.ladder.domain.init.PlayersAndResults;
+import nextstep.ladder.domain.init.PlayersAndGifts;
 import nextstep.ladder.domain.ladder.Ladder;
 import nextstep.ladder.domain.ladder.LadderPosition;
 import nextstep.ladder.domain.ladder.LadderRideResult;
@@ -16,14 +16,14 @@ import java.util.function.IntConsumer;
 import java.util.stream.IntStream;
 
 public class LadderGame {
-    private final PlayersAndResults playersAndResults;
+    private final PlayersAndGifts playersAndGifts;
     private final Ladder ladder;
 
     private LadderGame(LadderGameInitInfo ladderGameInitInfo) {
         validate(ladderGameInitInfo);
 
         this.ladder = Ladder.init(ladderGameInitInfo.getLadderInitInfo());
-        this.playersAndResults = ladderGameInitInfo.getPlayersAndResults();
+        this.playersAndGifts = ladderGameInitInfo.getPlayersAndGifts();
     }
 
     private void validate(LadderGameInitInfo ladderGameInitInfo) {
@@ -40,23 +40,23 @@ public class LadderGame {
         Map<String, String> matchResult = new LinkedHashMap<>();
         LadderRideResult ladderRideResult = ladder.ride();
 
-        IntStream.range(0, playersAndResults.numberOfPlayers())
-                .forEach(matchPlayerAndResult(matchResult, ladderRideResult));
+        IntStream.range(0, playersAndGifts.numberOfPlayers())
+                .forEach(matchPlayerAndGift(matchResult, ladderRideResult));
 
         return MatchResult.from(matchResult);
     }
 
-    private IntConsumer matchPlayerAndResult(Map<String, String> matchResult, LadderRideResult ladderRideResult) {
+    private IntConsumer matchPlayerAndGift(Map<String, String> matchResult, LadderRideResult ladderRideResult) {
         return position -> {
             LadderPosition startPosition = LadderPosition.from(position);
             matchResult.put(
-                    playersAndResults.getPlayerNameAt(startPosition),
-                    playersAndResults.getResultAt(ladderRideResult.endPositionOf(startPosition))
+                    playersAndGifts.getPlayerNameAt(startPosition),
+                    playersAndGifts.getGiftAt(ladderRideResult.endPositionOf(startPosition))
             );
         };
     }
 
     public LadderResult result() {
-        return LadderResult.of(playersAndResults, ladder);
+        return LadderResult.of(playersAndGifts, ladder);
     }
 }

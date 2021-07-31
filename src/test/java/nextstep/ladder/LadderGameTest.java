@@ -34,7 +34,7 @@ class LadderGameTest {
         LadderResult ladderResult = ladderGame.result();
 
         assertThat(ladderResult.getNames()).isEqualTo(TWO_PLAYERS_NAMES);
-        assertThat(ladderResult.getResults()).isEqualTo(TWO_RESULTS_VALUE);
+        assertThat(ladderResult.getGifts()).isEqualTo(TWO_GIFTS_VALUES);
 
         ladderResult.getRows()
                 .forEach(rowDto -> assertThat(rowDto.getSteps()).isEqualTo(Arrays.asList(true, false)));
@@ -48,7 +48,7 @@ class LadderGameTest {
         MatchResult matchResult = ladderGame.match();
 
         assertThat(matchResult.getPlayers()).containsAll(TWO_PLAYERS_NAMES);
-        assertThat(matchResult.getPrize("nokc")).isEqualTo("500");
-        assertThat(matchResult.getPrize("cha")).isEqualTo("꽝");
+        assertThat(matchResult.getGift("nokc")).isEqualTo("500");
+        assertThat(matchResult.getGift("cha")).isEqualTo("꽝");
     }
 }

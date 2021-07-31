@@ -21,7 +21,7 @@ public class ResultView {
     private static final String VALUE_FORMAT = "%" + (MAXIMUM_LENGTH_OF_NAME + NAME_PADDING) + "s";
     private static final String COLUMN_WITH_STEP = COLUMN_MARK + drawStep(STEP_MARK);
     private static final String COLUMN_WITHOUT_STEP = COLUMN_MARK + drawStep(BLANK_MARK);
-    private static final String PLAYER_AND_RESULT_FORMAT = "%s : %s";
+    private static final String PLAYER_AND_GIFT_FORMAT = "%s : %s";
     private static final String PLAYER_NOT_PARTICIPATED_FORMAT = "%s 는 참가하지 않았습니다.";
 
     private ResultView() {}
@@ -31,7 +31,7 @@ public class ResultView {
 
         printInputValue(result.getNames());
         printLadder(result.getRows());
-        printInputValue(result.getResults());
+        printInputValue(result.getGifts());
     }
 
     private static void printLadder(List<RowDto> rowDtos) {
@@ -79,17 +79,17 @@ public class ResultView {
             return;
         }
 
-        printPlayerAndResult(playerToSee, matchResult.getPrize(playerToSee));
+        printPlayerAndGift(playerToSee, matchResult.getGift(playerToSee));
     }
 
     public static void printAllMatchResult(MatchResult matchResult) {
         printStatementAndNewLine(RIDE_RESULT_STATEMENT);
 
         matchResult.getPlayers()
-                .forEach(player -> printPlayerAndResult(player, matchResult.getPrize(player)));
+                .forEach(player -> printPlayerAndGift(player, matchResult.getGift(player)));
     }
 
-    private static void printPlayerAndResult(String player, String result) {
-        printStatementAndNewLine(String.format(PLAYER_AND_RESULT_FORMAT, player, result));
+    private static void printPlayerAndGift(String player, String gift) {
+        printStatementAndNewLine(String.format(PLAYER_AND_GIFT_FORMAT, player, gift));
     }
 }

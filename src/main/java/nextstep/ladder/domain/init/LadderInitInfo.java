@@ -7,7 +7,7 @@ import java.util.Objects;
 
 import static nextstep.ladder.domain.ladder.LadderRow.ONE;
 import static nextstep.ladder.domain.strategy.NeverGenerateStrategy.NEVER_GENERATE_STRATEGY;
-import static nextstep.ladder.domain.strategy.RandomGenerateStrategy.HALF_PERCENT_STEP_STRATEGY;
+import static nextstep.ladder.domain.strategy.RandomGenerateStrategy.HALF_PERCENT_STEP_STRATEGY_TEMP;
 
 public class LadderInitInfo {
 
@@ -27,7 +27,7 @@ public class LadderInitInfo {
         }
 
         if (Objects.isNull(stepGenerateStrategy)) {
-            throw new NullArgumentException(LadderSize.class);
+            throw new NullArgumentException(StepGenerateStrategy.class);
         }
     }
 
@@ -36,7 +36,7 @@ public class LadderInitInfo {
     }
 
     public static LadderInitInfo init(LadderSize ladderSize) {
-        return new LadderInitInfo(ladderSize, HALF_PERCENT_STEP_STRATEGY);
+        return new LadderInitInfo(ladderSize, HALF_PERCENT_STEP_STRATEGY_TEMP);
     }
 
     public int getLadderWidth() {

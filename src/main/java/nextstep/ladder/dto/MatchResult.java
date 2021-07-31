@@ -18,7 +18,7 @@ public class MatchResult {
         return matchResult.keySet();
     }
 
-    public String getPrize(String player) {
+    public String getGift(String player) {
         return matchResult.get(player);
     }
 

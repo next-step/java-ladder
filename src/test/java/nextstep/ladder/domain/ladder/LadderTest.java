@@ -10,8 +10,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
-import static nextstep.ladder.domain.Fixture.LADDER_INIT_INFO_2_X_2;
-import static nextstep.ladder.domain.Fixture.LADDER_INIT_INFO_5_X_5;
+import static nextstep.ladder.domain.Fixture.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

@@ -1,5 +1,6 @@
 package nextstep.ladder.domain.ladder;
 
+import nextstep.ladder.domain.Fixture;
 import nextstep.ladder.domain.strategy.StepGenerateStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -64,32 +65,34 @@ class LadderColumnTest {
 
     private static Stream<Arguments> initMiddleColumn() {
         return Stream.of(
-                Arguments.of(RIGHT_STEP_LADDER_COLUMN, ALWAYS_GENERATE_STRATEGY, LEFT_STEP_LADDER_COLUMN),
-                Arguments.of(RIGHT_STEP_LADDER_COLUMN, NEVER_GENERATE_STRATEGY, LEFT_STEP_LADDER_COLUMN),
-                Arguments.of(LEFT_STEP_LADDER_COLUMN, ALWAYS_GENERATE_STRATEGY, RIGHT_STEP_LADDER_COLUMN),
-                Arguments.of(LEFT_STEP_LADDER_COLUMN, NEVER_GENERATE_STRATEGY, NONE_STEP_LADDER_COLUMN),
-                Arguments.of(NONE_STEP_LADDER_COLUMN, ALWAYS_GENERATE_STRATEGY, RIGHT_STEP_LADDER_COLUMN),
-                Arguments.of(NONE_STEP_LADDER_COLUMN, NEVER_GENERATE_STRATEGY, NONE_STEP_LADDER_COLUMN)
+                Arguments.of(Fixture.RIGHT_STEP_LADDER_COLUMN, ALWAYS_GENERATE_STRATEGY, Fixture.LEFT_STEP_LADDER_COLUMN),
+                Arguments.of(Fixture.RIGHT_STEP_LADDER_COLUMN, NEVER_GENERATE_STRATEGY, Fixture.LEFT_STEP_LADDER_COLUMN),
+                Arguments.of(Fixture.LEFT_STEP_LADDER_COLUMN, ALWAYS_GENERATE_STRATEGY, Fixture.RIGHT_STEP_LADDER_COLUMN),
+                Arguments.of(Fixture.LEFT_STEP_LADDER_COLUMN, NEVER_GENERATE_STRATEGY, Fixture.NONE_STEP_LADDER_COLUMN),
+                Arguments.of(Fixture.NONE_STEP_LADDER_COLUMN, ALWAYS_GENERATE_STRATEGY, Fixture.RIGHT_STEP_LADDER_COLUMN),
+                Arguments.of(Fixture.NONE_STEP_LADDER_COLUMN, NEVER_GENERATE_STRATEGY, Fixture.NONE_STEP_LADDER_COLUMN)
         );
     }
 
     @DisplayName("마지막 컬럼은 이전 컬럼의 스텝 종류에 영향을 받아 생성한다.")
     @MethodSource
     @ParameterizedTest
-    void initLastColumn(LadderColumn prevLadderColumn, LadderColumn expectedLadderColumn) {
-        LadderColumn ladderColumn = prevLadderColumn.initLast();
+    void initLastColumn(LadderColumn prevLadderColumn, StepGenerateStrategy stepGenerateStrategy, LadderColumn expectedLadderColumn) {
+        LadderColumn ladderColumn = prevLadderColumn.initLast(stepGenerateStrategy);
 
         assertThat(ladderColumn).isEqualTo(expectedLadderColumn);
     }
 
     private static Stream<Arguments> initLastColumn() {
         return Stream.of(
-                Arguments.of(RIGHT_STEP_LADDER_COLUMN, LEFT_STEP_LADDER_COLUMN),
-                Arguments.of(LEFT_STEP_LADDER_COLUMN, NONE_STEP_LADDER_COLUMN),
-                Arguments.of(NONE_STEP_LADDER_COLUMN, NONE_STEP_LADDER_COLUMN)
+                Arguments.of(Fixture.RIGHT_STEP_LADDER_COLUMN, ALWAYS_GENERATE_STRATEGY, Fixture.LEFT_STEP_LADDER_COLUMN),
+                Arguments.of(Fixture.LEFT_STEP_LADDER_COLUMN, ALWAYS_GENERATE_STRATEGY, Fixture.NONE_STEP_LADDER_COLUMN),
+                Arguments.of(Fixture.NONE_STEP_LADDER_COLUMN, ALWAYS_GENERATE_STRATEGY, Fixture.NONE_STEP_LADDER_COLUMN),
+                Arguments.of(Fixture.RIGHT_STEP_LADDER_COLUMN, NEVER_GENERATE_STRATEGY, Fixture.LEFT_STEP_LADDER_COLUMN),
+                Arguments.of(Fixture.LEFT_STEP_LADDER_COLUMN, NEVER_GENERATE_STRATEGY, Fixture.NONE_STEP_LADDER_COLUMN),
+                Arguments.of(Fixture.NONE_STEP_LADDER_COLUMN, NEVER_GENERATE_STRATEGY, Fixture.NONE_STEP_LADDER_COLUMN)
         );
     }
-
 
     @DisplayName("마지막 컬럼은 이전 컬럼의 스텝 종류에 영향을 받아 생성한다.")
     @MethodSource
@@ -101,9 +104,9 @@ class LadderColumnTest {
 
     private static Stream<Arguments> ride() {
         return Stream.of(
-                Arguments.of(RIGHT_STEP_LADDER_COLUMN, LadderPosition.from(5), LadderPosition.from(6)),
-                Arguments.of(LEFT_STEP_LADDER_COLUMN, LadderPosition.from(5), LadderPosition.from(4)),
-                Arguments.of(NONE_STEP_LADDER_COLUMN, LadderPosition.from(5), LadderPosition.from(5))
+                Arguments.of(Fixture.RIGHT_STEP_LADDER_COLUMN, LadderPosition.from(5), LadderPosition.from(6)),
+                Arguments.of(Fixture.LEFT_STEP_LADDER_COLUMN, LadderPosition.from(5), LadderPosition.from(4)),
+                Arguments.of(Fixture.NONE_STEP_LADDER_COLUMN, LadderPosition.from(5), LadderPosition.from(5))
         );
     }
 }

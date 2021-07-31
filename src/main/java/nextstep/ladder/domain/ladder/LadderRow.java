@@ -50,7 +50,7 @@ public class LadderRow {
 
     private void createLast(LadderInitInfo ladderInitInfo) {
         if (!ladderInitInfo.isLadderWidthEqualTo(ONE)) {
-            row.add(createLastColumn());
+            row.add(createLastColumn(ladderInitInfo.getStepGenerateStrategy()));
         }
     }
 
@@ -58,8 +58,8 @@ public class LadderRow {
         return getLastColumn().initNext(stepGenerateStrategy);
     }
 
-    private LadderColumn createLastColumn() {
-        return getLastColumn().initLast();
+    private LadderColumn createLastColumn(StepGenerateStrategy stepGenerateStrategy) {
+        return getLastColumn().initLast(stepGenerateStrategy);
     }
 
     private LadderColumn getLastColumn() {

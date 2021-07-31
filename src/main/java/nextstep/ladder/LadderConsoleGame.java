@@ -3,7 +3,7 @@ package nextstep.ladder;
 import nextstep.ladder.domain.init.LadderGameInitInfo;
 import nextstep.ladder.domain.init.LadderInitInfo;
 import nextstep.ladder.domain.init.LadderSize;
-import nextstep.ladder.domain.init.PlayersAndResults;
+import nextstep.ladder.domain.init.PlayersAndGifts;
 import nextstep.ladder.dto.MatchResult;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
@@ -29,14 +29,14 @@ public class LadderConsoleGame {
 
     private static LadderGameInitInfo inputInitInfo() {
         List<String> playerNames = InputView.inputParticipantsNames();
-        List<String> results = InputView.inputResults();
+        List<String> gifts = InputView.inputGifts();
         int ladderHeight = InputView.inputLadderHeight();
 
-        PlayersAndResults playersAndResults = PlayersAndResults.of(playerNames, results);
-        LadderSize ladderSize = LadderSize.of(playersAndResults.numberOfPlayers(), ladderHeight);
+        PlayersAndGifts playersAndGifts = PlayersAndGifts.of(playerNames, gifts);
+        LadderSize ladderSize = LadderSize.of(playersAndGifts.numberOfPlayers(), ladderHeight);
         LadderInitInfo ladderInitInfo = LadderInitInfo.init(ladderSize);
 
-        return LadderGameInitInfo.of(playersAndResults, ladderInitInfo);
+        return LadderGameInitInfo.of(playersAndGifts, ladderInitInfo);
     }
 
     private static void showResult(MatchResult matchResult, String playerToSee) {
