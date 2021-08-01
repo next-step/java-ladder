@@ -18,10 +18,10 @@ public class UserTest {
 
     @Test
     public void whenFiltersWithOptional_thenCorrect() {
-        assertThat(ageIsInRange2(new User("crong", 35))).isTrue();
-        assertThat(ageIsInRange2(new User("crong", 48))).isFalse();
-        assertThat(ageIsInRange2(new User("crong", null))).isFalse();
-        assertThat(ageIsInRange2(new User("crong", 29))).isFalse();
-        assertThat(ageIsInRange2(null)).isFalse();
+        assertThat(ageIsInRange2(new User("crong", 35))).isPresent();
+        assertThat(ageIsInRange2(new User("crong", 48))).isEmpty();
+        assertThat(ageIsInRange2(new User("crong", null))).isEmpty();
+        assertThat(ageIsInRange2(new User("crong", 29))).isEmpty();
+        assertThat(ageIsInRange2(null)).isEmpty();
     }
 }

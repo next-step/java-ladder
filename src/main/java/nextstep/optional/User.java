@@ -1,5 +1,8 @@
 package nextstep.optional;
 
+import java.util.Objects;
+import java.util.Optional;
+
 public class User {
     private String name;
     private Integer age;
@@ -32,8 +35,17 @@ public class User {
         return isInRange;
     }
 
-    public static boolean ageIsInRange2(User user) {
-        return false;
+    public static Optional<User> ageIsInRange2(User user) {
+        Optional<User> optionalUser = Optional.ofNullable(user);
+
+        return optionalUser.filter(User::isMiddleRange);
+    }
+
+    private boolean isMiddleRange() {
+        Integer age = getAge();
+        if (Objects.isNull(age))
+            return false;
+        return age >= 30 && age <= 45;
     }
 
     @Override
