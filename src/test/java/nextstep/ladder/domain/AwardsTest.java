@@ -29,7 +29,7 @@ class AwardsTest {
     @Test
     @Order(3)
     void notfoundWinnerByName() {
-        assertThatThrownBy(() -> awards.findWinnerByName("pobi1")).isInstanceOf(IllegalArgumentException.class)
+        assertThatThrownBy(() -> awards.findWinnerByName("pobi1")).isInstanceOf(MemberNotFoundException.class)
             .hasMessageMatching("참여자를 찾을 수 없습니다.");
     }
 }
