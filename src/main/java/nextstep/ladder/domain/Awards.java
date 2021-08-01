@@ -22,8 +22,9 @@ public class Awards {
     }
 
     public Winner findWinnerByName(String name) {
+        Member member = Member.of(name);
         return StreamSupport.stream(winners.spliterator(), false)
-            .filter(winner -> winner.member().equals(Member.of(name)))
+            .filter(winner -> winner.member().equals(member))
             .findFirst().orElseThrow(() -> new MemberNotFoundException("참여자를 찾을 수 없습니다."));
     }
 }
