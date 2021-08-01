@@ -1,9 +1,11 @@
 package nextstep.ladder.domain;
 
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
+
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Prizes implements Iterable<Prize> {
     public static final String DILIMETER = ",";
@@ -14,9 +16,9 @@ public class Prizes implements Iterable<Prize> {
     }
 
     public static Prizes of(String names) {
-        return new Prizes(Arrays.stream(names.split(DILIMETER))
+        return Arrays.stream(names.split(DILIMETER))
             .map(Prize::of)
-            .collect(Collectors.toList()));
+            .collect(collectingAndThen(toList(), Prizes::new));
     }
 
     public Prize findByIndex(int index) {
