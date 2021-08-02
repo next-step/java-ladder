@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import java.util.Objects;
+
 public class Rope {
     private final boolean value;
 
@@ -21,6 +23,19 @@ public class Rope {
 
     public static Rope empty() {
         return InnerLazyClass.EMPTY;
+    }
+
+    @Override
+    public boolean equals(Object compareValue) {
+        if (this == compareValue) return true;
+        if (compareValue == null || getClass() != compareValue.getClass()) return false;
+        Rope rope = (Rope) compareValue;
+        return value == rope.value;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
     }
 
     private static class InnerLazyClass {

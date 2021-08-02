@@ -1,12 +1,9 @@
 package ladder.view;
 
-
-import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public final class DosInputView implements InputView {
     private final Scanner scanner;
@@ -41,14 +38,9 @@ public final class DosInputView implements InputView {
 
     @Override
     public List<String> inputPlayerNames() {
-        List<String> playerNames = RegexPatterns.DELIMITER.split(
+        return RegexPatterns.DELIMITER.split(
                 inputLine(Text.INPUT_PLAYER_NAMES)
         );
-        if (playerNames.size() != new HashSet<>(playerNames).size()) {
-            System.out.println(Text.OVERLAP_PLAYER_NAMES);
-            return inputPlayerNames();
-        }
-        return playerNames;
     }
 
     @Override
@@ -59,7 +51,6 @@ public final class DosInputView implements InputView {
 
     private enum Text {
         NOT_NUMBER_FORMAT("숫자의 형식이 아닙니다. 다시 입력 해주세요."),
-        OVERLAP_PLAYER_NAMES("중복되 이름이 존재합니다. 다시 입력 해주세요."),
         INPUT_PLAYER_NAMES("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)"),
         INPUT_LINE_HEIGHT("최대 사다리 높이는 몇 개인가요?");
 

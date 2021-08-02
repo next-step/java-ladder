@@ -1,11 +1,11 @@
 package ladder.domain;
 
 import ladder.exception.DuplicateKeyException;
-import ladder.view.DosInputView;
 
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 
 public class Players implements Iterable<Player> {
     private final List<Player> players;
@@ -29,5 +29,18 @@ public class Players implements Iterable<Player> {
 
     public int size() {
         return players.size();
+    }
+
+    @Override
+    public boolean equals(Object compareValue) {
+        if (this == compareValue) return true;
+        if (compareValue == null || getClass() != compareValue.getClass()) return false;
+        Players players1 = (Players) compareValue;
+        return Objects.equals(players, players1.players);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(players);
     }
 }

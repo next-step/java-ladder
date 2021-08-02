@@ -4,6 +4,7 @@ import ladder.exception.InvalidRopeException;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.IntStream;
 
 public class LadderLine implements Iterable<Rope> {
@@ -30,5 +31,18 @@ public class LadderLine implements Iterable<Rope> {
     @Override
     public Iterator<Rope> iterator() {
         return ropes.iterator();
+    }
+
+    @Override
+    public boolean equals(Object compareValue) {
+        if (this == compareValue) return true;
+        if (compareValue == null || getClass() != compareValue.getClass()) return false;
+        LadderLine ropes1 = (LadderLine) compareValue;
+        return Objects.equals(ropes, ropes1.ropes);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ropes);
     }
 }

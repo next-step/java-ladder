@@ -3,7 +3,6 @@ package ladder.domain;
 import ladder.exception.DuplicateKeyException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Arrays;
@@ -12,7 +11,6 @@ import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 class PlayersTest {
     private List<Player> nameToPlayerList(String names) {

@@ -3,13 +3,10 @@ package ladder;
 import ladder.view.DosResultView;
 import ladder.view.FakeInputView;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
-import static org.junit.jupiter.api.Assertions.*;
 
 class LadderSolutionTest {
     @CsvSource(value = {

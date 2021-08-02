@@ -17,7 +17,7 @@ public class DosResultView implements ResultView {
         printEmptyLine();
     }
 
-    public void printLadder(Ladder ladder) {
+    private void printLadder(Ladder ladder) {
         ladder.forEach(this::printLadderLine);
     }
 
@@ -28,9 +28,12 @@ public class DosResultView implements ResultView {
         printEmptyLine();
     }
 
-    private void printRope(Rope Rope) {
-        Text ropeText = Rope.exist() ? Text.PRESENT_ROPE : Text.EMPTY_ROPE;
-        System.out.print(ropeText);
+    private void printRope(Rope rope) {
+        System.out.print(ropeText(rope));
+    }
+
+    private Text ropeText(Rope rope) {
+        return rope.exist() ? Text.PRESENT_ROPE : Text.EMPTY_ROPE;
     }
 
     @Override

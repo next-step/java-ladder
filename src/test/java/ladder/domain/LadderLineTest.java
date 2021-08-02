@@ -1,7 +1,5 @@
 package ladder.domain;
 
-import ladder.domain.LadderLine;
-import ladder.domain.Rope;
 import ladder.exception.InvalidRopeException;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;

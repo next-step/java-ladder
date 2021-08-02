@@ -1,9 +1,9 @@
 package ladder;
 
 import ladder.domain.Ladder;
-import ladder.domain.LadderLine;
 import ladder.domain.Player;
 import ladder.domain.Players;
+import ladder.exception.DuplicateKeyException;
 import ladder.exception.InvalidRopeException;
 import ladder.exception.OutOfLengthException;
 import ladder.view.DosInputView;
@@ -11,7 +11,6 @@ import ladder.view.DosResultView;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 public class LadderSolution {
@@ -35,10 +34,10 @@ public class LadderSolution {
             Players players = inputPlayers();
             int lineHeight = inputView.inputLineHeight();
 
-            Ladder ladder = Ladder.generate(players.size(), lineHeight);
+            Ladder ladder = Ladder.randomGenerate(players.size(), lineHeight);
 
             resultView.printResult(players, ladder);
-        } catch (InvalidRopeException | OutOfLengthException e) {
+        } catch (DuplicateKeyException | InvalidRopeException | OutOfLengthException e) {
             resultView.printException(e);
         } catch (Exception e) {
             resultView.printException(
