@@ -27,4 +27,5 @@ public class Players {
                 .map(Player::getName)
                 .collect(Collectors.toList());
     }
+
 }
