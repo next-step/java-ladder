@@ -13,6 +13,10 @@ public class Player {
         this.name = name;
     }
 
+    public static Player of(String name) {
+        return new Player(name);
+    }
+
     public String getName() {
         return name;
     }
