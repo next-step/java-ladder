@@ -23,6 +23,10 @@ public class Players {
         return Collections.unmodifiableList(players);
     }
 
+    public int count() {
+        return players.size();
+    }
+
     private static List<Player> toMap(String names) {
         String[] split = StringUtil.split(names);
 
