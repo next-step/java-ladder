@@ -1,9 +1,9 @@
 package nextstep.ladder.domain;
 
-import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Stream;
 
-public class Winners implements Iterable<Winner> {
+public class Winners {
     private List<Winner> winners;
 
     public Winners(List<Winner> winners) {
@@ -14,8 +14,7 @@ public class Winners implements Iterable<Winner> {
         return new Winners(winners);
     }
 
-    @Override
-    public Iterator<Winner> iterator() {
-        return winners.iterator();
+    public Stream<Winner> stream() {
+        return winners.stream();
     }
 }

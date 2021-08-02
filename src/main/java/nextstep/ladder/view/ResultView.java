@@ -30,12 +30,14 @@ public class ResultView {
     }
 
     private static void printMembers(Members members) {
-        members.forEach(member -> System.out.printf("%6s", member.value()));
+        members.names()
+            .forEach(name -> System.out.printf("%6s", name));
         System.out.println();
     }
 
     public static void printLadder(Ladder ladder) {
-        ladder.forEach(ResultView::printLine);
+        ladder.stream()
+            .forEach(ResultView::printLine);
     }
 
     private static void printLine(Line line) {
@@ -53,14 +55,16 @@ public class ResultView {
     }
 
     private static void printPrizes(Prizes prizes) {
-        prizes.forEach(prize -> System.out.printf("%6s", prize.value()));
+        prizes.names().stream()
+            .forEach(name -> System.out.printf("%6s", name));
         System.out.println();
     }
 
     public static void printResult(Winners winners) {
         System.out.println();
         System.out.println("실행결과");
-        winners.forEach(winner -> System.out.println(winner.member().name + " : " + winner.prize().name));
+        winners.stream()
+            .forEach(winner -> System.out.println(winner.member().name + " : " + winner.prize().name));
         System.out.println();
     }
 }

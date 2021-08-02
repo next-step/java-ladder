@@ -1,11 +1,11 @@
 package nextstep.ladder.domain;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
-public class Ladder implements Iterable<Line> {
+public class Ladder {
     private final List<Line> lines;
 
     private Ladder(List<Line> lines) {
@@ -19,16 +19,15 @@ public class Ladder implements Iterable<Line> {
         return new Ladder(lines);
     }
 
-    @Override
-    public Iterator<Line> iterator() {
-        return lines.iterator();
-    }
-
     public int result(int horizontalNumber) {
         int result = horizontalNumber;
         for (Line line : lines) {
             result = line.nextHorizontalNumber(result);
         }
         return result;
+    }
+
+    public Stream<Line> stream() {
+        return lines.stream();
     }
 }

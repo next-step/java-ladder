@@ -4,10 +4,10 @@ import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
 
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class Prizes implements Iterable<Prize> {
+public class Prizes {
     public static final String DILIMETER = ",";
     private final List<Prize> prizes;
 
@@ -25,8 +25,9 @@ public class Prizes implements Iterable<Prize> {
         return prizes.get(index);
     }
 
-    @Override
-    public Iterator<Prize> iterator() {
-        return prizes.iterator();
+    public List<String> names() {
+        return prizes.stream()
+            .map(Prize::value)
+            .collect(Collectors.toList());
     }
 }

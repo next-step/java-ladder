@@ -1,12 +1,12 @@
 package nextstep.ladder.domain;
 
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
-public class Members implements Iterable<Member> {
+public class Members {
     public static final String DILIMETER = ",";
     private final List<Member> members;
 
@@ -24,9 +24,10 @@ public class Members implements Iterable<Member> {
         return members.size();
     }
 
-    @Override
-    public Iterator<Member> iterator() {
-        return members.iterator();
+    public List<String> names() {
+        return members.stream()
+            .map(Member::value)
+            .collect(Collectors.toList());
     }
 
     public int findHorizontalNumber(Member member) {
@@ -34,5 +35,9 @@ public class Members implements Iterable<Member> {
             .filter(i -> member.equals(members.get(i)))
             .findFirst()
             .orElseThrow(() -> new RuntimeException("참가자가 아닙니다."));
+    }
+
+    public Stream<Member> stream() {
+        return members.stream();
     }
 }
