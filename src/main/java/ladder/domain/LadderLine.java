@@ -2,10 +2,11 @@ package ladder.domain;
 
 import ladder.exception.InvalidRopeException;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.IntStream;
 
-public class LadderLine {
+public class LadderLine implements Iterable<Rope> {
     private final List<Rope> ropes;
 
     public LadderLine(List<Rope> ropes) {
@@ -24,5 +25,10 @@ public class LadderLine {
 
     public int ropeSize() {
         return ropes.size();
+    }
+
+    @Override
+    public Iterator<Rope> iterator() {
+        return ropes.iterator();
     }
 }

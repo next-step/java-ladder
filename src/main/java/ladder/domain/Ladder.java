@@ -40,7 +40,7 @@ public class Ladder implements Iterable<LadderLine> {
 
     private static LadderLine randomLadderLine(int ropeSize) {
         int ropePosition = random.nextInt(2);
-        List<Rope> ropes = IntStream.rangeClosed(0, ropeSize)
+        List<Rope> ropes = IntStream.range(0, ropeSize - 1)
                 .mapToObj(iRopeCount ->
                         iRopeCount % 2 == ropePosition ? newRope() : Rope.empty())
                 .collect(Collectors.toList());
