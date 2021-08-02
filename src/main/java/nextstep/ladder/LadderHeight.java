@@ -17,6 +17,10 @@ public class LadderHeight {
         return new LadderHeight(height);
     }
 
+    public int getHeight() {
+        return height;
+    }
+
     private void validate(int height) {
         if (height <= MIN_HEIGHT_COUNT) {
             throw new IllegalLadderHeightException(height);
