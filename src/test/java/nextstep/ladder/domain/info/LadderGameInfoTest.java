@@ -16,7 +16,7 @@ class LadderGameInfoTest {
     public void make_LadderGameInfo_using_players_and_ladderinfo() throws Exception {
         //arrange
         Players players = Players.of(Arrays.asList("aa","bbb"));
-        LadderInfo ladderInfo = new LadderInfo();
+        LadderInfo ladderInfo = LadderInfo.of(LadderSize.of(1, 1));
 
         //act
         LadderGameInfo ladderGameInfo = LadderGameInfo.of(players, ladderInfo);
@@ -30,7 +30,7 @@ class LadderGameInfoTest {
     public void throw_exception_when_players_null() throws Exception {
         //arrange
         Players players = null;
-        LadderInfo ladderInfo = new LadderInfo();
+        LadderInfo ladderInfo = LadderInfo.of(LadderSize.of(1, 1));
 
         //act, assert
         assertThatIllegalArgumentException().isThrownBy(() -> LadderGameInfo.of(players, ladderInfo));
