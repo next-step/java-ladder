@@ -1,4 +1,4 @@
-package nextstep.ladder;
+package nextstep.ladder.ladder;
 
 import nextstep.ladder.strategy.LadderStrategy;
 import nextstep.ladder.strategy.RandomLadderStrategy;

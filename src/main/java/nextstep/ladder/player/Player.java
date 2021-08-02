@@ -1,4 +1,4 @@
-package nextstep.ladder;
+package nextstep.ladder.player;
 
 import nextstep.ladder.exception.IllegalPlayerNameSizeException;
 

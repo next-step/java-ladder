@@ -1,6 +1,7 @@
-package nextstep.ladder;
+package nextstep.ladder.ladder;
 
 import nextstep.ladder.exception.IllegalLadderHeightException;
+import nextstep.ladder.ladder.LadderHeight;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
