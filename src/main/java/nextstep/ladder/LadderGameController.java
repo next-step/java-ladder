@@ -4,7 +4,7 @@ import nextstep.ladder.view.InputView;
 
 import java.util.List;
 
-public class LadderController {
+public class LadderGameController {
 
     public static void main(String[] args) {
         List<String> playerNames = InputView.inputPlayers();
