@@ -6,8 +6,8 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class InputView {
-    private static final String INPUT_PARTICIPANTS_STATEMENT = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
-    private static final String INPUT_LADDER_HEIGHT_STATEMENT = "최대 사다리 높이는 몇 개인가요?";
+    private static final String INPUT_PLAYERS = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
+    private static final String INPUT_LADDER_HEIGHT = "최대 사다리 높이는 몇 개인가요?";
     private static final String NAMES_DELIMITER = ",";
 
     private static final Scanner SCANNER = new Scanner(System.in);
@@ -15,7 +15,7 @@ public class InputView {
     private InputView() {}
 
     public static List<String> inputPlayers() {
-        printStatement(INPUT_PARTICIPANTS_STATEMENT);
+        print(INPUT_PLAYERS);
 
         return Arrays.stream(getPlayerNames())
                 .map(String::trim)
@@ -23,7 +23,7 @@ public class InputView {
     }
 
     public static int inputLadderHeight() {
-        printStatement(INPUT_LADDER_HEIGHT_STATEMENT);
+        print(INPUT_LADDER_HEIGHT);
 
         return getIntValue();
     }
@@ -36,7 +36,7 @@ public class InputView {
         return Integer.parseInt(SCANNER.nextLine().trim());
     }
 
-    private static void printStatement(String statement) {
+    private static void print(String statement) {
         System.out.println(statement);
     }
 }
