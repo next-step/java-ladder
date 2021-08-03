@@ -32,10 +32,10 @@ public class StreamStudy {
         // 추출한 100개의 단어를 출력한다. 모든 단어는 소문자로 출력해야 한다.
         words.stream()
              .filter(w -> w.length() > 12)
-             .sorted(Comparator.comparingInt(String::length).reversed())
              .distinct()
-             .map(w -> w.toLowerCase(Locale.ROOT))
              .limit(100)
+             .sorted(Comparator.comparingInt(String::length).reversed())
+             .map(w -> w.toLowerCase(Locale.ROOT))
              .forEach(System.out::println);
     }
 

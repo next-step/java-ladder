@@ -22,4 +22,11 @@ public class Lambda {
     public static int sumAll(List<Integer> numbers, Conditional c) {
         return numbers.stream().mapToInt(number -> number).filter(c).sum();
     }
+
+    public static int sumAllEven(List<Integer> numbers, Conditional c) {
+        return sumAll(numbers, c);
+    }
+    public static int sumAllOverThree(List<Integer> numbers, Conditional c) {
+        return sumAll(numbers, c);
+    }
 }
