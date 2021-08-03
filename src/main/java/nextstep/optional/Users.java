@@ -18,12 +18,9 @@ public class Users {
     }
 
     User getUser(String name) {
-//        Optional.of(users.stream().findFirst().get()).orElse(DEFAULT_USER);
-        for (User user : users) {
-            if (user.matchName(name)) {
-                return user;
-            }
-        }
-        return DEFAULT_USER;
+        return users.stream()
+                .filter(user -> user.matchName(name))
+                .findFirst()
+                .orElse(DEFAULT_USER);
     }
 }
