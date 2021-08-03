@@ -11,5 +11,6 @@ public class LadderGameController {
         List<Name> playerNames = InputView.inputPlayerName().stream()
             .map(Name::create)
             .collect(Collectors.toList());
+        int ladderHeight = InputView.inputLadderHeight();
     }
 }
