@@ -10,9 +10,9 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder implements Iterable<LadderLine> {
-    private final List<LadderLine> ladderLines;
-
     private static final Random random = new Random();
+
+    private final List<LadderLine> ladderLines;
 
     public Ladder(List<LadderLine> ladderLines) {
         validateRopeSizeOfLadderLine(ladderLines);

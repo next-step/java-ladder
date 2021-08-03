@@ -9,10 +9,6 @@ public class Rope {
         this.value = value;
     }
 
-    public boolean isPresent() {
-        return value;
-    }
-
     public static Rope of(Boolean value) {
         return value ? InnerLazyClass.PRESENT : InnerLazyClass.EMPTY;
     }
@@ -23,6 +19,10 @@ public class Rope {
 
     public static Rope empty() {
         return InnerLazyClass.EMPTY;
+    }
+
+    public boolean isPresent() {
+        return value;
     }
 
     @Override
