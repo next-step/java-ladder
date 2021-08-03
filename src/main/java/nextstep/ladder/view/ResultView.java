@@ -7,6 +7,12 @@ import nextstep.ladder.domain.Lines;
 
 public class ResultView {
 
+    private static final String LINE_FLAG = "-----";
+    private static final String LINE_BLANK = "     ";
+    private static final String LINE_DELIMITER = "|";
+
+    private static final String LINE_PREFIX = LINE_BLANK + LINE_DELIMITER;
+
     public static void printPlayerNames(List<String> playerNames) {
         playerNames.forEach(name -> System.out.printf("%6s", name));
         System.out.println();
@@ -16,17 +22,20 @@ public class ResultView {
         List<String> printString = new ArrayList<>();
 
         for (int i = 0; i < lines.getHeight(); i++) {
-            printString.add(
-                "     |" + lines.getExists(i).stream()
-                .map(e -> {
-                    if (e) {
-                        return "-----";
-                    }
-
-                    return "     ";
-                }).collect(Collectors.joining("|")) + "|");
+            printString.add(LINE_PREFIX + createLineBody(lines, i) + LINE_DELIMITER);
         }
 
         printString.forEach(System.out::println);
+    }
+
+    private static String createLineBody(Lines lines, int i) {
+        return lines.getExists(i).stream()
+            .map(e -> {
+                if (e) {
+                    return LINE_FLAG;
+                }
+
+                return LINE_BLANK;
+            }).collect(Collectors.joining(LINE_DELIMITER));
     }
 }
