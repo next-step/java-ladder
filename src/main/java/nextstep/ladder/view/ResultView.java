@@ -17,7 +17,7 @@ public class ResultView {
     private static final String PILLAR_STRING = "|";
     private static final String PADDING = makeMaxLengthStringWith(BLANK_STRING);
     private static final String PILLAR_WITH_LINE = PILLAR_STRING + makeMaxLengthStringWith(LINE_STRING);
-    private static final String PILLAR_WITHOUT_LINE = PILLAR_STRING + makeMaxLengthStringWith(BLANK_STRING);
+    private static final String PILLAR_WITH_BLANK = PILLAR_STRING + makeMaxLengthStringWith(BLANK_STRING);
 
     private ResultView() {}
 
@@ -51,7 +51,7 @@ public class ResultView {
 
     private static void printLine(LadderFigure ladderFigure) {
         ladderFigure.getLines()
-                .forEach(line -> print(line ? PILLAR_WITH_LINE : PILLAR_WITHOUT_LINE));
+                .forEach(line -> print(line ? PILLAR_WITH_LINE : PILLAR_WITH_BLANK));
     }
 
     private static void print(String statement) {
