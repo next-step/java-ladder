@@ -10,16 +10,24 @@ import nextstep.ladder.view.ResultView;
 public class LadderGameController {
 
     public static void main(String[] args) {
-        List<Name> playerNames = InputView.inputPlayerName().stream()
-            .map(Name::create)
-            .collect(Collectors.toList());
+        List<Name> playerNames = createPlayerNames();
         int ladderHeight = InputView.inputLadderHeight();
 
         Lines lines = Lines.of(ladderHeight, playerNames.size());
 
-        ResultView.printPlayerNames(playerNames.stream()
-            .map(Name::getName)
-            .collect(Collectors.toList()));
+        ResultView.printPlayerNames(createPrintPlayerNamesDto(playerNames));
         ResultView.printLadders(lines);
+    }
+
+    private static List<String> createPrintPlayerNamesDto(List<Name> playerNames) {
+        return playerNames.stream()
+            .map(Name::getName)
+            .collect(Collectors.toList());
+    }
+
+    private static List<Name> createPlayerNames() {
+        return InputView.inputPlayerName().stream()
+            .map(Name::create)
+            .collect(Collectors.toList());
     }
 }
