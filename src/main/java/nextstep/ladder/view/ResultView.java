@@ -1,8 +1,8 @@
 package nextstep.ladder.view;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import nextstep.ladder.domain.Lines;
 import nextstep.ladder.view.dto.PrintPlayerNamesDto;
 
@@ -20,23 +20,20 @@ public class ResultView {
     }
 
     public static void printLadders(Lines lines) {
-        List<String> printString = new ArrayList<>();
-
-        for (int i = 0; i < lines.getHeight(); i++) {
-            printString.add(LINE_PREFIX + createLineBody(lines, i) + LINE_DELIMITER);
-        }
-
-        printString.forEach(System.out::println);
+        IntStream.range(0, lines.getHeight())
+            .mapToObj(i -> createLineBody(lines.getExists(i)))
+            .map(s -> LINE_PREFIX + s)
+            .forEach(System.out::println);
     }
 
-    private static String createLineBody(Lines lines, int i) {
-        return lines.getExists(i).stream()
+    private static String createLineBody(List<Boolean> lineExists) {
+        return lineExists.stream()
             .map(e -> {
                 if (e) {
                     return LINE_FLAG;
                 }
 
                 return LINE_BLANK;
-            }).collect(Collectors.joining(LINE_DELIMITER));
+            }).collect(Collectors.joining(LINE_DELIMITER)) + LINE_DELIMITER;
     }
 }
