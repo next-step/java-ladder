@@ -13,11 +13,9 @@ class LineExistsGeneratorTest {
     @Test
     public void generator_prevTrue() {
         // given
-        boolean prev = true;
 
         // when
-        boolean exists = LineExistsGenerator.generate(prev);
-        int asdf = 1;
+        boolean exists = new DefaultLineExistsGenerator().generate(true);
 
         // then
         assertThat(exists).isFalse();
@@ -29,10 +27,9 @@ class LineExistsGeneratorTest {
     @Test
     public void generator_prevFalse() {
         // given
-        boolean prev = false;
 
         // when
-        Stream<Boolean> currentStream = Stream.generate(() -> LineExistsGenerator.generate(prev))
+        Stream<Boolean> currentStream = Stream.generate(() -> new DefaultLineExistsGenerator().generate(false))
             .limit(100);
 
         // then
