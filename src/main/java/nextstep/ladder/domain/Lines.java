@@ -2,6 +2,7 @@ package nextstep.ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lines {
 
@@ -26,7 +27,17 @@ public class Lines {
         return lines.size();
     }
 
+    public int getHeight() {
+        return height;
+    }
+
     public List<Line> getLines() {
         return lines;
+    }
+
+    public List<Boolean> getExists(int index) {
+        return lines.stream()
+            .map(line -> line.lineExists(index))
+            .collect(Collectors.toList());
     }
 }
