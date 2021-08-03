@@ -1,7 +1,7 @@
 package nextstep.ladder;
 
 import nextstep.ladder.ladder.Ladder;
-import nextstep.ladder.ladder.LadderHeight;
+import nextstep.ladder.ladder.LadderBound;
 import nextstep.ladder.player.Players;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
@@ -13,7 +13,7 @@ public class App {
         int height = InputView.getInputMaxLadderHeight();
 
         Players players = Players.of(playerNames);
-        Ladder ladder = Ladder.of(LadderHeight.of(height), players.count() - 1);
+        Ladder ladder = Ladder.of(LadderBound.of(players.count() - 1, height));
 
         ResultView.print(players, ladder);
     }

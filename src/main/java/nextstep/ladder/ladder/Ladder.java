@@ -18,10 +18,10 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public static Ladder of(LadderHeight height, int countOfPerson) {
+    public static Ladder of(LadderBound bound) {
         LadderStrategy strategy = new RandomLadderStrategy();
-        List<Line> collect = IntStream.range(START_INDEX, height.getHeight())
-                .mapToObj(s -> Line.of(countOfPerson, strategy))
+        List<Line> collect = IntStream.range(START_INDEX, bound.getHeight())
+                .mapToObj(s -> Line.of(bound.getWidth(), strategy))
                 .collect(Collectors.toList());
         return new Ladder(collect);
     }
