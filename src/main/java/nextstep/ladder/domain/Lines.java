@@ -9,11 +9,20 @@ public class Lines {
     private final int height;
     private final List<Line> lines = new ArrayList<>();
 
-    public Lines(int height) {
+    private Lines(int height) {
         this.height = height;
     }
 
-    public void add() {
+    public static Lines of(int height, int playerCount) {
+        Lines lines = new Lines(height);
+        for (int i = 0; i < playerCount - 1; i++) {
+            lines.add();
+        }
+
+        return lines;
+    }
+
+    private void add() {
         if (lines.isEmpty()) {
             lines.add(Line.of(height));
             return;

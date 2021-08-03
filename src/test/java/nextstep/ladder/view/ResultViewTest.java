@@ -11,10 +11,7 @@ class ResultViewTest {
     @Test
     public void printLadders() {
         // given
-        Lines lines = new Lines(10);
-        for (int i = 0; i < 6; i++) {
-            lines.add();
-        }
+        Lines lines = Lines.of(10, 6);
 
         // when
         ResultView.printLadders(lines);
