@@ -8,12 +8,14 @@ public class Line {
     private int countOfPerson;
     private List<Boolean> points = new ArrayList<>();
     private static final RandomNumber randomNumber = new RandomNumber();
+    private static int maxCountofLadder;
     private static final int FIVE = 5;
 
     private StringBuilder sb = new StringBuilder();
 
     public Line(int countOfPerson) {
         this.countOfPerson = countOfPerson;
+        maxCountofLadder = countOfPerson * 2 - 1;
         drawLine();
     }
 
@@ -28,10 +30,43 @@ public class Line {
         return this.points;
     }
 
-    public boolean isGoUser(int position) {
-        return this.points.get(position);
+    public int findRoute(int startPosition) {
+        int movablePosition = startPosition;
+
+        if (isInstalledLadder(startPosition - 1)) {
+            movablePosition = moveLeft(movablePosition);
+        }
+
+        if (isInstalledLadder(startPosition + 1)) {
+            movablePosition = moveRight(movablePosition);
+        }
+
+        return movablePosition;
     }
 
+    private int moveLeft(int movablePosition) {
+        while (movablePosition > 0 && isInstalledLadder(movablePosition--)) {
+
+        }
+
+        return movablePosition;
+    }
+
+    private int moveRight(int movablePosition) {
+        while (movablePosition > 0 && isInstalledLadder(movablePosition++)) {
+
+        }
+
+        return movablePosition;
+    }
+
+
+    private boolean isInstalledLadder(int position) {
+        if (position < 0 || position >= maxCountofLadder) {
+            return false;
+        }
+        return this.points.get(position);
+    }
 
     private void drawLineByNumber(int position) {
         if (isEvenNumber(position)) {

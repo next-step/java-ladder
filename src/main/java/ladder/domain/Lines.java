@@ -11,9 +11,9 @@ public class Lines implements Iterable<Line> {
         this.lineList = lineList;
     }
 
-    public boolean checkGoUser(int row,int position){
-        return this.line(row).isGoUser(position);
-    }
+//    public boolean checkGoUser(int row,int position){
+//        return this.line(row).isGoUser(position);
+//    }
 
     private Line line(int row){
         return this.lineList.get(row);

@@ -1,15 +1,17 @@
 package ladder.domain;
 
+import ladder.enums.Direction;
+
 import java.util.Objects;
 
 public class User {
 
     private Name name;
-    private int IndexOfGameResult;
+    private int position;
 
-    public User(String name, int IndexOfGameResult) {
+    public User(String name, int position) {
         this(new Name(name));
-        this.IndexOfGameResult = IndexOfGameResult;
+        this.position = position;
     }
 
     public User(String name) {
@@ -25,8 +27,14 @@ public class User {
     }
 
     public int gameResult() {
-        return this.IndexOfGameResult;
+        return this.position;
     }
+
+    public void move(String direction){
+        this.position += Direction.valueOf(direction).number();
+    }
+
+
 
     @Override
     public boolean equals(Object o) {

@@ -34,12 +34,15 @@ public class OutputView {
     }
 
     public StringBuilder drawOneLine(Line line) {
-        StringBuilder sb = new StringBuilder();
+
         int position = 0;
+        StringBuilder sb = new StringBuilder();
         sb.append(EMPTY_WIDTH_LADDER);
+
         for (boolean isLadder : line.points()) {
             drawLadderByType(sb, isLadder, position++);
         }
+
         sb.append("\n");
         return sb;
     }
