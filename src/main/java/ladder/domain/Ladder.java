@@ -56,7 +56,7 @@ public class Ladder implements Iterable<LadderLine> {
 
     private static Rope newRandomRope(int ropePosition, int ropeCount) {
         return ropeCount % 2 == ropePosition ?
-                Rope.of(random.nextBoolean()) : Rope.empty();
+                Rope.of(random.nextInt(100) < 80) : Rope.empty();
     }
 
     @Override
