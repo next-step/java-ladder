@@ -3,7 +3,6 @@ package nextstep.ladder.domain.info;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static nextstep.ladder.domain.strategy.LineCreateStrategyFactory.getRandomLineCreateStrategy;
 import static nextstep.ladder.fixture.Fixture.CREATE_STRATEGY;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
