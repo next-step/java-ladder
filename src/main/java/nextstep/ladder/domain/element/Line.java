@@ -20,7 +20,7 @@ public enum Line {
     }
 
     public Line makeNext(LineCreateStrategy lineCreateStrategy) {
-        if (isPrevLineRight()) {
+        if (isRight()) {
             return LEFT;
         }
 
@@ -28,24 +28,20 @@ public enum Line {
     }
 
     public Line makeEnd() {
-        if (isPrevLineRight()) {
+        if (isRight()) {
             return LEFT;
         }
 
         return NONE;
     }
 
-    private boolean isPrevLineRight() {
-        return isRight();
+    public boolean isRight() {
+        return this == RIGHT;
     }
 
     private static void validate(LineCreateStrategy lineCreateStrategy) {
         if (Objects.isNull(lineCreateStrategy)) {
             throw new IllegalArgumentException("LineCreateStrategy는 null이면 안됩니다");
         }
-    }
-
-    public boolean isRight() {
-        return this == RIGHT;
     }
 }
