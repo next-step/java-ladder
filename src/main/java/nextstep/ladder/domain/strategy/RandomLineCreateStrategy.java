@@ -3,7 +3,7 @@ package nextstep.ladder.domain.strategy;
 import java.util.Objects;
 import java.util.Random;
 
-public class RandomLineCreateStrategy implements LineCreateStrategy{
+public class RandomLineCreateStrategy implements LineCreateStrategy {
 
     private final Random random;
 
