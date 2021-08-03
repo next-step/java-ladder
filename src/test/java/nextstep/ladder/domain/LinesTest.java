@@ -12,7 +12,7 @@ class LinesTest {
     @DisplayName("[성공] 생성")
     @ParameterizedTest
     @CsvSource(value = {
-        "5,2"
+        "10,5"
     })
     public void create(int height, int playerCount) {
         // given
@@ -21,6 +21,7 @@ class LinesTest {
         Lines lines = Lines.of(height, playerCount);
 
         // then
-        assertThat(lines.size()).isEqualTo(playerCount - 1);
+        assertThat(lines.size()).isEqualTo(height);
+        assertThat(lines.getLines().get(0).size()).isEqualTo(playerCount);
     }
 }

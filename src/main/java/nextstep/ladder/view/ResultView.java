@@ -20,7 +20,7 @@ public class ResultView {
     }
 
     public static void printLadders(Lines lines) {
-        IntStream.range(0, lines.getHeight())
+        IntStream.range(0, lines.size())
             .mapToObj(i -> createLineBody(lines.getExists(i)))
             .map(s -> LINE_PREFIX + s)
             .forEach(System.out::println);
