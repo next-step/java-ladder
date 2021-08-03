@@ -29,7 +29,7 @@ public class Lines {
         }
 
         Line prev = lines.get(lines.size() - 1);
-        lines.add(Line.of(prev));
+        lines.add(Line.of(height));
     }
 
     public int size() {

@@ -1,30 +1,31 @@
 package nextstep.ladder.domain;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Line {
 
+    private final LineExistsGenerator lineExistsGenerator;
     private final List<Boolean> exists;
 
-    public Line(List<Boolean> exists) {
+    private Line(LineExistsGenerator generator, List<Boolean> exists) {
+        this.lineExistsGenerator = generator;
         this.exists = exists;
     }
 
-    public static Line of(int height) {
-        List<Boolean> exists = Stream
-            .generate(() -> LineExistsGenerator.generate(false))
-            .limit(height)
-            .collect(Collectors.toList());
+    private Line(LineExistsGenerator generator, int playerCount) {
+        this.lineExistsGenerator = generator;
 
-        return new Line(exists);
+        List<Boolean> exists = new ArrayList<>();
+        exists.add(false);
+        for (int i = 1; i < playerCount; i++) {
+            exists.add(lineExistsGenerator.generate(exists.get(i - 1)));
+        }
+        this.exists = exists;
     }
 
-    public static Line of(Line prev) {
-        return new Line(prev.exists.stream()
-            .map(LineExistsGenerator::generate)
-            .collect(Collectors.toList()));
+    public static Line of(int playerCount) {
+        return new Line(new DefaultLineExistsGenerator(), playerCount);
     }
 
     public int size() {
