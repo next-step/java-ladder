@@ -10,10 +10,10 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 
 class LadderSolutionTest {
     @CsvSource(value = {
-            "A ,B,C ,D,E,F|5|10",
-            "A,B ,C,D,E|5|10",
-            "A, B,C, D|5|10",
-            "A ,B,C ,D,E,F,G,PP,QQ,QWRA,AA,BB|5|10"
+            "A ,B,C ,D,E,F|5",
+            "A,B ,C,D,E|5|",
+            "A, B,C, D|5",
+            "A ,B,C ,D,E,F,G,PP,QQ,QWRA,AA,BB|100"
     }, delimiter = '|')
     @DisplayName("통합 테스트")
     @ParameterizedTest
