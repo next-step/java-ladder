@@ -1,6 +1,5 @@
 package nextstep.ladder.player;
 
-import nextstep.ladder.player.Players;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

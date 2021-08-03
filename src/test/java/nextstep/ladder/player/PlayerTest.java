@@ -1,7 +1,6 @@
 package nextstep.ladder.player;
 
 import nextstep.ladder.exception.IllegalPlayerNameSizeException;
-import nextstep.ladder.player.Player;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

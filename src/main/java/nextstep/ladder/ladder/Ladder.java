@@ -1,7 +1,6 @@
 package nextstep.ladder.ladder;
 
 import nextstep.ladder.strategy.LadderStrategy;
-import nextstep.ladder.strategy.RandomLadderStrategy;
 
 import java.util.Collections;
 import java.util.List;

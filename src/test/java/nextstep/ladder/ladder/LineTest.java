@@ -1,6 +1,5 @@
 package nextstep.ladder.ladder;
 
-import nextstep.ladder.ladder.Line;
 import nextstep.ladder.strategy.RandomLadderStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
