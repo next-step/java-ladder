@@ -24,10 +24,6 @@ public class Line {
         return new Line(pointList);
     }
 
-    public List<Boolean> getPoints() {
-        return Collections.unmodifiableList(points);
-    }
-
     private static void addPoint(List<Boolean> pointList, LadderStrategy strategy) {
         boolean previousPoint = false;
         if (!pointList.isEmpty()) {
@@ -38,5 +34,9 @@ public class Line {
             return;
         }
         pointList.add(strategy.creatable());
+    }
+
+    public List<Boolean> getPoints() {
+        return Collections.unmodifiableList(points);
     }
 }

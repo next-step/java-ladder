@@ -16,7 +16,7 @@ public class Players {
     }
 
     public static Players of(String names) {
-        return new Players(toMap(names));
+        return new Players(toList(names));
     }
 
     public List<Player> getPlayers() {
@@ -27,7 +27,7 @@ public class Players {
         return players.size();
     }
 
-    private static List<Player> toMap(String names) {
+    private static List<Player> toList(String names) {
         String[] split = StringUtil.split(names);
 
         return Arrays.stream(split)
