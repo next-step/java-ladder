@@ -20,7 +20,7 @@ public enum Line {
     }
 
     public Line makeNext(LineCreateStrategy lineCreateStrategy) {
-        if (checkPrevLine()) {
+        if (isPrevLineRight()) {
             return LEFT;
         }
 
@@ -28,14 +28,14 @@ public enum Line {
     }
 
     public Line makeEnd() {
-        if (checkPrevLine()) {
+        if (isPrevLineRight()) {
             return LEFT;
         }
 
         return NONE;
     }
 
-    private boolean checkPrevLine() {
+    private boolean isPrevLineRight() {
         return isRight();
     }
 
