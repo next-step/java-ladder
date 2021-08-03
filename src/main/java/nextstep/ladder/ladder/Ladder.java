@@ -18,8 +18,7 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public static Ladder of(LadderBound bound) {
-        LadderStrategy strategy = new RandomLadderStrategy();
+    public static Ladder of(LadderBound bound, LadderStrategy strategy) {
         List<Line> collect = IntStream.range(START_INDEX, bound.getHeight())
                 .mapToObj(s -> Line.of(bound.getWidth(), strategy))
                 .collect(Collectors.toList());

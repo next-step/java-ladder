@@ -1,5 +1,6 @@
 package nextstep.ladder;
 
+import nextstep.ladder.factory.LadderFactory;
 import nextstep.ladder.ladder.Ladder;
 import nextstep.ladder.ladder.LadderBound;
 import nextstep.ladder.player.Players;
@@ -13,7 +14,7 @@ public class App {
         int height = InputView.getInputMaxLadderHeight();
 
         Players players = Players.of(playerNames);
-        Ladder ladder = Ladder.of(LadderBound.of(players.count() - 1, height));
+        Ladder ladder = Ladder.of(LadderBound.of(players.count() - 1, height), LadderFactory.randomLadderStrategy());
 
         ResultView.print(players, ladder);
     }
