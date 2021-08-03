@@ -6,6 +6,7 @@ import nextstep.ladder.domain.Lines;
 import nextstep.ladder.domain.common.Name;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
+import nextstep.ladder.view.dto.PrintPlayerNamesDto;
 
 public class LadderGameController {
 
@@ -15,14 +16,8 @@ public class LadderGameController {
 
         Lines lines = Lines.of(ladderHeight, playerNames.size());
 
-        ResultView.printPlayerNames(createPrintPlayerNamesDto(playerNames));
+        ResultView.printPlayerNames(new PrintPlayerNamesDto(playerNames));
         ResultView.printLadders(lines);
-    }
-
-    private static List<String> createPrintPlayerNamesDto(List<Name> playerNames) {
-        return playerNames.stream()
-            .map(Name::getName)
-            .collect(Collectors.toList());
     }
 
     private static List<Name> createPlayerNames() {

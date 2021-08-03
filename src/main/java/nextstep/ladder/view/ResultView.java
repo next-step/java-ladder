@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import nextstep.ladder.domain.Lines;
+import nextstep.ladder.view.dto.PrintPlayerNamesDto;
 
 public class ResultView {
 
@@ -13,8 +14,8 @@ public class ResultView {
 
     private static final String LINE_PREFIX = LINE_BLANK + LINE_DELIMITER;
 
-    public static void printPlayerNames(List<String> playerNames) {
-        playerNames.forEach(name -> System.out.printf("%6s", name));
+    public static void printPlayerNames(PrintPlayerNamesDto dto) {
+        dto.getPlayerNames().forEach(name -> System.out.printf("%6s", name));
         System.out.println();
     }
 
