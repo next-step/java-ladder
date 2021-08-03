@@ -1,6 +1,6 @@
 package nextstep.ladder.domain.player;
 
-import nextstep.ladder.utils.StringUtils;
+import java.util.Objects;
 
 public class Player {
     public static final int MAXIMUM_LENGTH_OF_NAME = 5;
@@ -14,7 +14,7 @@ public class Player {
     }
 
     private void validate(String name) {
-        if (StringUtils.isEmpty(name)) {
+        if (isEmpty(name)) {
             throw new IllegalArgumentException("이름은 null이거나 비어있을수 없습니다.");
         }
 
@@ -29,5 +29,9 @@ public class Player {
 
     public String getName() {
         return name;
+    }
+
+    private boolean isEmpty(String stringValue) {
+        return Objects.isNull(stringValue) || stringValue.isEmpty();
     }
 }

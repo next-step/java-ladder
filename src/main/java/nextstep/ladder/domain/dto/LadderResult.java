@@ -4,11 +4,11 @@ import java.util.List;
 
 public class LadderResult {
     private final List<String> playerNames;
-    private final List<LadderFigure> planes;
+    private final List<LadderFigure> ladderFigures;
 
-    private LadderResult(List<String> playerNames, List<LadderFigure> planes) {
+    private LadderResult(List<String> playerNames, List<LadderFigure> ladderFigures) {
         this.playerNames = playerNames;
-        this.planes = planes;
+        this.ladderFigures = ladderFigures;
     }
 
     public static LadderResult of(List<String> playerNames, List<LadderFigure> planes) {
@@ -19,7 +19,7 @@ public class LadderResult {
         return playerNames;
     }
 
-    public List<LadderFigure> getPlanes() {
-        return planes;
+    public List<LadderFigure> getLadderFigures() {
+        return ladderFigures;
     }
 }

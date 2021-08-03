@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static nextstep.ladder.fixture.Fixture.CREATE_STRATEGY;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
@@ -17,7 +18,7 @@ class LadderTest {
     public void make_Ladder() throws Exception {
         //arrange
         LadderSize ladderSize = LadderSize.of(1, 1);
-        LadderInfo ladderInfo = LadderInfo.of(ladderSize);
+        LadderInfo ladderInfo = LadderInfo.of(ladderSize, CREATE_STRATEGY);
 
         //act
         Ladder ladder = Ladder.create(ladderInfo);
@@ -38,7 +39,7 @@ class LadderTest {
     public void should_return_ladder_plane_figures() throws Exception {
         //arrange
         LadderSize ladderSize = LadderSize.of(3, 5);
-        LadderInfo ladderInfo = LadderInfo.of(ladderSize);
+        LadderInfo ladderInfo = LadderInfo.of(ladderSize, CREATE_STRATEGY);
         Ladder ladder = Ladder.create(ladderInfo);
 
         //act

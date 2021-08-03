@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
 
+import static nextstep.ladder.fixture.Fixture.CREATE_STRATEGY;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
@@ -16,7 +17,7 @@ class LadderGameInfoTest {
     public void make_LadderGameInfo_using_playernames_and_ladderinfo() throws Exception {
         //arrange
         List<String> playerNames = Arrays.asList("aa","bbb");
-        LadderInfo ladderInfo = LadderInfo.of(LadderSize.of(1, 1));
+        LadderInfo ladderInfo = LadderInfo.of(LadderSize.of(1, 1), CREATE_STRATEGY);
 
         //act
         LadderGameInfo ladderGameInfo = LadderGameInfo.of(playerNames, ladderInfo);
@@ -44,7 +45,7 @@ class LadderGameInfoTest {
     public void throw_exception_when_players_null() throws Exception {
         //arrange
         List<String> playerNames = null;
-        LadderInfo ladderInfo = LadderInfo.of(LadderSize.of(1, 1));
+        LadderInfo ladderInfo = LadderInfo.of(LadderSize.of(1, 1), CREATE_STRATEGY);
 
         //act, assert
         assertThatIllegalArgumentException().isThrownBy(() -> LadderGameInfo.of(playerNames, ladderInfo));

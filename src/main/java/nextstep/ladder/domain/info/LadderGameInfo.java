@@ -5,6 +5,8 @@ import nextstep.ladder.domain.player.Players;
 import java.util.List;
 import java.util.Objects;
 
+import static nextstep.ladder.domain.strategy.LineCreateStrategyFactory.getRandomLineCreateStrategy;
+
 public class LadderGameInfo {
     private final Players players;
     private final LadderInfo ladderInfo;
@@ -32,7 +34,7 @@ public class LadderGameInfo {
 
     public static LadderGameInfo of(List<String> playerNames, int ladderHeight) {
         LadderSize ladderSize = LadderSize.of(getLadderWidth(playerNames), ladderHeight);
-        LadderInfo ladderInitInfo = LadderInfo.of(ladderSize);
+        LadderInfo ladderInitInfo = LadderInfo.of(ladderSize, getRandomLineCreateStrategy());
 
         return new LadderGameInfo(playerNames, ladderInitInfo);
     }

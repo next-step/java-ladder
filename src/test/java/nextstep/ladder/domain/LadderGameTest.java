@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
 
+import static nextstep.ladder.fixture.Fixture.CREATE_STRATEGY;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
@@ -19,7 +20,7 @@ public class LadderGameTest {
     public void make_LadderGame_using_ladderinfo() throws Exception {
         //arrange
         List<String> playerNames = Arrays.asList("a", "bb", "ccc");
-        LadderInfo ladderInfo = LadderInfo.of(LadderSize.of(1, 1));
+        LadderInfo ladderInfo = LadderInfo.of(LadderSize.of(1, 1), CREATE_STRATEGY);
         LadderGameInfo ladderGameInfo = LadderGameInfo.of(playerNames, ladderInfo);
 
         //act
