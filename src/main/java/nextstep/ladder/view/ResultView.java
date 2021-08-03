@@ -11,8 +11,7 @@ import static nextstep.ladder.domain.player.Player.MAXIMUM_LENGTH_OF_NAME;
 
 public class ResultView {
     private static final String RESULT_STATEMENT = "실행결과";
-    private static final int EXTRA_PADDING = 1;
-    private static final String NAME_FORMAT = "%" + (MAXIMUM_LENGTH_OF_NAME + EXTRA_PADDING) + "s";
+    private static final String NAME_FORMAT = "%" + (MAXIMUM_LENGTH_OF_NAME + 1) + "s";
     private static final String LINE_STRING = "-";
     private static final String BLANK_STRING = " ";
     private static final String PILLAR_STRING = "|";
