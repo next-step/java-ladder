@@ -1,5 +1,6 @@
 package nextstep.ladder.view.dto;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import nextstep.ladder.domain.common.Name;
@@ -15,6 +16,6 @@ public class PrintPlayerNamesDto {
     }
 
     public List<String> getPlayerNames() {
-        return playerNames;
+        return Collections.unmodifiableList(playerNames);
     }
 }

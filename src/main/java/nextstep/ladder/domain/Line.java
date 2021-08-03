@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Line {
@@ -37,6 +38,6 @@ public class Line {
     }
 
     public List<Boolean> getExists() {
-        return exists;
+        return Collections.unmodifiableList(exists);
     }
 }
