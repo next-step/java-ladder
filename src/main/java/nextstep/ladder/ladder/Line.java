@@ -39,4 +39,24 @@ public class Line {
     public List<Boolean> getPoints() {
         return Collections.unmodifiableList(points);
     }
+
+    public MoveType findDirection(int index) {
+        boolean left = findPoint(index - 1);
+        boolean right = findPoint(index);
+        return MoveType.findMatchType(left, right);
+    }
+
+    private boolean findPoint(int index) {
+        if (index < START_INDEX || index > points.size()) {
+            return false;
+        }
+        return points.get(index);
+    }
+
+    @Override
+    public String toString() {
+        return "Line{" +
+                "points=" + points +
+                '}';
+    }
 }
