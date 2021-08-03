@@ -36,11 +36,7 @@ public enum Line {
     }
 
     private boolean checkPrevLine() {
-        if (isRight()) {
-            return true;
-        }
-
-        return false;
+        return isRight();
     }
 
     private static void validate(LineCreateStrategy lineCreateStrategy) {

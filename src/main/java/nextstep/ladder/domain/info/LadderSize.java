@@ -1,7 +1,7 @@
 package nextstep.ladder.domain.info;
 
 public class LadderSize {
-    protected static final int MIN = 1;
+    public static final int MIN = 1;
 
     private final int width;
     private final int height;
@@ -29,5 +29,9 @@ public class LadderSize {
 
     public int getHeight() {
         return height;
+    }
+
+    public boolean isMinWidth() {
+        return width == MIN;
     }
 }
