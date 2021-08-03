@@ -1,6 +1,7 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.domain.Lines;
+import nextstep.ladder.view.dto.PrintLinesDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +15,7 @@ class ResultViewTest {
         Lines lines = Lines.of(10, 6);
 
         // when
-        ResultView.printLadders(lines);
+        ResultView.printLadders(new PrintLinesDto(lines));
 
         // then
 
