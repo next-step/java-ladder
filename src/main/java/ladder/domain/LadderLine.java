@@ -18,7 +18,7 @@ public class LadderLine implements Iterable<Rope> {
     private void validateContinuousRope(List<Rope> ropes) {
         boolean valid = IntStream.range(0, ropes.size() - 1)
                 .noneMatch(iRopeIndex ->
-                        ropes.get(iRopeIndex).exist() && ropes.get(iRopeIndex + 1).exist()
+                        ropes.get(iRopeIndex).isPresent() && ropes.get(iRopeIndex + 1).isPresent()
                 );
         if (!valid)
             throw new InvalidRopeException("이어지는 로프가 있습니다.");

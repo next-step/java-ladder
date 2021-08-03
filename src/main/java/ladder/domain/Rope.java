@@ -9,7 +9,7 @@ public class Rope {
         this.value = value;
     }
 
-    public boolean exist() {
+    public boolean isPresent() {
         return value;
     }
 

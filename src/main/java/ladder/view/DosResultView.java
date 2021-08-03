@@ -33,7 +33,7 @@ public class DosResultView implements ResultView {
     }
 
     private Text ropeText(Rope rope) {
-        return rope.exist() ? Text.PRESENT_ROPE : Text.EMPTY_ROPE;
+        return rope.isPresent() ? Text.PRESENT_ROPE : Text.EMPTY_ROPE;
     }
 
     @Override
