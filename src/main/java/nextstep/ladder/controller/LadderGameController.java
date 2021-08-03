@@ -1,7 +1,6 @@
 package nextstep.ladder.controller;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import nextstep.ladder.domain.Lines;
 import nextstep.ladder.domain.common.Name;
 import nextstep.ladder.view.InputView;
@@ -11,18 +10,12 @@ import nextstep.ladder.view.dto.PrintPlayerNamesDto;
 public class LadderGameController {
 
     public static void main(String[] args) {
-        List<Name> playerNames = createPlayerNames();
+        List<String> playerNames = InputView.inputPlayerName();
         int ladderHeight = InputView.inputLadderHeight();
 
         Lines lines = Lines.of(ladderHeight, playerNames.size());
 
-        ResultView.printPlayerNames(new PrintPlayerNamesDto(playerNames));
+        ResultView.printPlayerNames(new PrintPlayerNamesDto(Name.of(playerNames)));
         ResultView.printLadders(lines);
-    }
-
-    private static List<Name> createPlayerNames() {
-        return InputView.inputPlayerName().stream()
-            .map(Name::create)
-            .collect(Collectors.toList());
     }
 }

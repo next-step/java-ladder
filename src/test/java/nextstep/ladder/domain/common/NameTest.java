@@ -20,7 +20,7 @@ class NameTest {
         // given
 
         // when
-        Name createName = Name.create(name);
+        Name createName = Name.of(name);
 
         // then
         assertThat(createName.getName()).isEqualTo(name);
@@ -35,7 +35,7 @@ class NameTest {
         // given
 
         // when
-        Assertions.assertThrows(InvalidNameException.class, () -> Name.create(name));
+        Assertions.assertThrows(InvalidNameException.class, () -> Name.of(name));
 
         // then
     }
