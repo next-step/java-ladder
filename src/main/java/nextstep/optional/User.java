@@ -1,6 +1,9 @@
 package nextstep.optional;
 
+import java.util.Optional;
+
 public class User {
+
     private String name;
     private Integer age;
 
@@ -33,7 +36,11 @@ public class User {
     }
 
     public static boolean ageIsInRange2(User user) {
-        return false;
+        return Optional.ofNullable(user)
+                .map(User::getAge)
+                .filter(age -> age >= 30)
+                .filter(age -> age <= 45)
+                .isPresent();
     }
 
     @Override
@@ -47,23 +54,30 @@ public class User {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
+        if (this == obj) {
             return true;
-        if (obj == null)
+        }
+        if (obj == null) {
             return false;
-        if (getClass() != obj.getClass())
+        }
+        if (getClass() != obj.getClass()) {
             return false;
+        }
         User other = (User) obj;
         if (age == null) {
-            if (other.age != null)
+            if (other.age != null) {
                 return false;
-        } else if (!age.equals(other.age))
+            }
+        } else if (!age.equals(other.age)) {
             return false;
+        }
         if (name == null) {
-            if (other.name != null)
+            if (other.name != null) {
                 return false;
-        } else if (!name.equals(other.name))
+            }
+        } else if (!name.equals(other.name)) {
             return false;
+        }
         return true;
     }
 }
