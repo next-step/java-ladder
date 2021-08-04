@@ -14,7 +14,8 @@ public class InputView {
 
     private static final Scanner SCANNER = new Scanner(System.in);
 
-    private InputView() {}
+    private InputView() {
+    }
 
     public static List<String> inputPlayers() {
         print(INPUT_PLAYERS);

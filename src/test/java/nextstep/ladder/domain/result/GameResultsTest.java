@@ -1,10 +1,8 @@
 package nextstep.ladder.domain.result;
 
-import nextstep.ladder.domain.player.Players;
+import nextstep.ladder.domain.play.PlayerPosition;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 import java.util.Arrays;
 import java.util.List;
@@ -39,6 +37,20 @@ class GameResultsTest {
 
         //assert
         assertThat(values).containsExactly("a", "bb", "ccc");
+    }
+
+    @DisplayName("GameResult 값을 반환한다")
+    @Test
+    void should_return_game_result_with_position() {
+        //arrange
+        GameResults gameResults = GameResults.of(Arrays.asList("a", "bb", "ccc"));
+        PlayerPosition playerPosition = PlayerPosition.of(0);
+
+        //act
+        String result = gameResults.getResultAt(playerPosition);
+
+        //assert
+        assertThat(result).isEqualTo("a");
     }
 
 }

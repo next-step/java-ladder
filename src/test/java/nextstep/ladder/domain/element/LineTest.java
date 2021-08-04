@@ -1,5 +1,6 @@
 package nextstep.ladder.domain.element;
 
+import nextstep.ladder.domain.play.PlayerPosition;
 import nextstep.ladder.domain.strategy.LineCreateStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -115,6 +116,50 @@ class LineTest {
 
         //assert
         assertThat(line).isEqualTo(Line.NONE);
+    }
+
+    @DisplayName("right Line일 경우 move 할 때 포지션이 1 더해진다")
+    @Test
+    public void shold_move_RIGHT() throws Exception {
+        //arrange
+        Line line = Line.make(() -> true);
+        PlayerPosition playerPosition = PlayerPosition.of(1);
+
+        //act
+        PlayerPosition position = line.move(playerPosition);
+
+        //assert
+        assertThat(position).isEqualTo(PlayerPosition.of(2));
+    }
+
+    @DisplayName("left Line일 경우 move 할 때 포지션이 1 빼진다")
+    @Test
+    public void shold_move_LEFT() throws Exception {
+        //arrange
+        Line prevLine = Line.make(() -> true);
+        Line line = prevLine.makeNext(() -> true);
+        PlayerPosition playerPosition = PlayerPosition.of(1);
+
+        //act
+        PlayerPosition position = line.move(playerPosition);
+
+        //assert
+        assertThat(position).isEqualTo(PlayerPosition.of(0));
+    }
+
+    @DisplayName("none Line일 경우 move 할 때 포지션이 그대로 이다")
+    @Test
+    public void shold_move_NONE() throws Exception {
+        //arrange
+        Line prevLine = Line.make(() -> false);
+        Line line = prevLine.makeEnd();
+        PlayerPosition playerPosition = PlayerPosition.of(1);
+
+        //act
+        PlayerPosition position = line.move(playerPosition);
+
+        //assert
+        assertThat(position).isEqualTo(PlayerPosition.of(1));
     }
 
 }

@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.domain.play.PlayerPosition;
 import nextstep.ladder.domain.player.Players;
 import nextstep.ladder.domain.result.GameResults;
 
@@ -44,4 +45,17 @@ public class GameElement {
     public GameResults getGameResults() {
         return gameResults;
     }
+
+    public int getPlayerCount() {
+        return players.count();
+    }
+
+    public String getPlayerNameAt(PlayerPosition startPosition) {
+        return players.getNameAt(startPosition);
+    }
+
+    public String getResultAt(PlayerPosition endPosition) {
+        return gameResults.getResultAt(endPosition);
+    }
+
 }

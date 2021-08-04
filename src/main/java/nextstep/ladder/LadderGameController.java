@@ -1,6 +1,7 @@
 package nextstep.ladder;
 
 import nextstep.ladder.domain.LadderGame;
+import nextstep.ladder.domain.dto.LadderPlayerGameResult;
 import nextstep.ladder.domain.info.LadderGameInfo;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
@@ -8,16 +9,36 @@ import nextstep.ladder.view.ResultView;
 import java.util.List;
 
 public class LadderGameController {
-
     public static void main(String[] args) {
         List<String> playerNames = InputView.inputPlayers();
         List<String> resultCategories = InputView.inputGameResults();
         int ladderHeight = InputView.inputLadderHeight();
 
-        LadderGameInfo ladderGameInfo = LadderGameInfo.of(playerNames, resultCategories, ladderHeight);
+        LadderGame ladderGame = makeLadderGame(playerNames, resultCategories, ladderHeight);
+        printLadderResult(ladderGame);
 
-        LadderGame ladderGame = LadderGame.of(ladderGameInfo);
-        ResultView.printResult(ladderGame.result());
+        LadderPlayerGameResult gameResult = playLadderGame(ladderGame);
+        printGameResult(gameResult);
+    }
+
+    private static LadderGame makeLadderGame(List<String> playerNames, List<String> resultCategories, int ladderHeight) {
+        LadderGameInfo ladderGameInfo = LadderGameInfo.of(playerNames, resultCategories, ladderHeight);
+        return LadderGame.of(ladderGameInfo);
+    }
+
+    private static void printLadderResult(LadderGame ladderGame) {
+        ResultView.printLadderResult(ladderGame.resultLadderFigure());
+    }
+
+    private static LadderPlayerGameResult playLadderGame(LadderGame ladderGame) {
+        return ladderGame.play();
+    }
+
+    private static void printGameResult(LadderPlayerGameResult gameResult) {
+        String player;
+        while (!(player = InputView.inputGameResultOfPlayer()).isEmpty()) {
+            ResultView.printPlayerGameResult(player, gameResult);
+        }
     }
 
 }

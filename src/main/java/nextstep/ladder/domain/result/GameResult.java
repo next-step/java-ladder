@@ -27,7 +27,7 @@ public class GameResult {
         return new GameResult(result);
     }
 
-    public String getResult() {
+    public String result() {
         return result;
     }
 

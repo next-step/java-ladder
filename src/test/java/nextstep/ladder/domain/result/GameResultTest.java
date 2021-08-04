@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 
 class GameResultTest {
 
-    @DisplayName("결과 String으로 GameResultTest 객체를 만들 수 있다")
+    @DisplayName("결과 String으로 GameResult 객체를 만들 수 있다")
     @Test
     void should_make_game_result() {
         //arrange, act, assert
@@ -31,4 +31,12 @@ class GameResultTest {
     void should_throw_exception(String value) {
         assertThatIllegalArgumentException().isThrownBy(() -> GameResult.of(value));
     }
+
+    @DisplayName("GameResult의경우 result value를 반환 가능하다")
+    @Test
+    void should_return_value() {
+        //arrange, act, assert
+        assertThat(GameResult.of("aaa").result()).isEqualTo("aaa");
+    }
+
 }

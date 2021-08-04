@@ -1,11 +1,18 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.domain.dto.LadderPlayerGameResult;
 import nextstep.ladder.domain.dto.LadderResult;
 import nextstep.ladder.domain.element.Ladder;
 import nextstep.ladder.domain.info.LadderGameInfo;
-import nextstep.ladder.domain.player.Players;
+import nextstep.ladder.domain.play.PlayResult;
+import nextstep.ladder.domain.play.PlayerPosition;
+import nextstep.ladder.domain.dto.PlayerRecord;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
+import java.util.function.IntConsumer;
+import java.util.stream.IntStream;
 
 public class LadderGame {
     private final GameElement gameElement;
@@ -28,7 +35,33 @@ public class LadderGame {
         return new LadderGame(ladderGameInfo);
     }
 
-    public LadderResult result() {
+    public LadderResult resultLadderFigure() {
         return LadderResult.of(gameElement, ladder.getFigures());
+    }
+
+    public LadderPlayerGameResult play() {
+        PlayResult playResult = playLadderGame();
+        return LadderPlayerGameResult.of(makePlayerGameResult(playResult));
+    }
+
+    private PlayResult playLadderGame() {
+        return ladder.move();
+    }
+
+    private Map<String, PlayerRecord> makePlayerGameResult(PlayResult playResult) {
+        Map<String, PlayerRecord> playerGameResult = new LinkedHashMap<>();
+        IntStream.range(0, gameElement.getPlayerCount())
+                .forEach(makeResult(playerGameResult, playResult));
+        return playerGameResult;
+    }
+
+    private IntConsumer makeResult(Map<String, PlayerRecord> playerGameResult, PlayResult playResult) {
+        return playerPosition -> {
+            PlayerPosition position = PlayerPosition.of(playerPosition);
+            playerGameResult.put(
+                    gameElement.getPlayerNameAt(position),
+                    PlayerRecord.of(gameElement.getResultAt(playResult.result(position)))
+            );
+        };
     }
 }
