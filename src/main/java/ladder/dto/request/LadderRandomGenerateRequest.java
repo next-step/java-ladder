@@ -1,4 +1,4 @@
-package ladder.dto;
+package ladder.dto.request;
 
 import ladder.domain.Prize;
 

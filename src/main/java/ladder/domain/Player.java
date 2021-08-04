@@ -4,15 +4,13 @@ import java.util.Objects;
 
 public class Player {
     private final Name name;
-    private final Prize prize;
-
-    private Player(Name name, Prize prize) {
-        this.name = name;
-        this.prize = prize;
-    }
 
     public Player(Name name) {
-        this(name, null);
+        this.name = name;
+    }
+
+    public boolean checkName(Name name) {
+        return this.name.equals(name);
     }
 
     @Override

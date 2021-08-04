@@ -1,7 +1,5 @@
 package ladder;
 
-import ladder.domain.Name;
-import ladder.domain.Prize;
 import ladder.view.DosResultView;
 import ladder.view.FakeInputView;
 import org.junit.jupiter.api.DisplayName;
@@ -16,17 +14,22 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 
 class LadderSolutionTest {
     @CsvSource(value = {
-            "A ,B,C ,D,E,F|5|1,2,3,4,5,6",
-            "A,B ,C,D,E|5|1,2,3,4,5",
-            "A, B,C, D|5|1,2,3,4",
-            "A ,B,C ,D,E,F,G,PP,QQ,QWRA,AA,BB|100|1,2,3,4,5,6,7,8,9,10,11,12"
+            "pobi,honux,crong,jk|5|꽝,5000,꽝,3000|pobi,all",
+            "A ,B,C ,D,E,F|5|1,2,3,4,5,6|A,B,all",
+            "A,B ,C,D,E|5|1,2,3,4,5|A,B,all",
+            "A, B,C, D|5|1,2,3,4|A,B,all",
+            "A ,B,C ,D,E,F,G,PP,QQ,QWRA,AA,BB|100|1,2,3,4,5,6,7,8,9,10,11,12|A,B,all"
     }, delimiter = '|')
     @DisplayName("통합 테스트")
     @ParameterizedTest
-    void run(String playerNames, int lineHeight, String prizeNames) {
+    void run(String playerNames, int lineHeight, String prizeNames, String inputPrizeOwnerNames) {
+        List<String> inputPrizeOwnerNameList =
+                Arrays.stream(inputPrizeOwnerNames.split(","))
+                .collect(Collectors.toList());
+
         assertThatCode(() ->
             new LadderSolution(
-                    new FakeInputView(playerNames, lineHeight, prizeNames),
+                    new FakeInputView(playerNames, lineHeight, prizeNames, inputPrizeOwnerNameList),
                     new DosResultView()
             ).run()
         ).doesNotThrowAnyException();

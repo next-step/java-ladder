@@ -5,14 +5,29 @@ import ladder.exception.InvalidRopeException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class LadderLine implements Iterable<Rope> {
+    private static final int FIRST_ROPE_INDEX = 0;
     private final List<Rope> ropes;
 
-    public LadderLine(List<Rope> ropes) {
+    private LadderLine(List<Rope> ropes) {
         validateContinuousRope(ropes);
         this.ropes = ropes;
+    }
+
+    public static LadderLine of(List<Rope> ropes) {
+        return new LadderLine(ropes);
+    }
+
+    public static LadderLine randomGenerate(int ropeSize) {
+        List<Rope> ropes = Stream.iterate(Rope.empty(), Rope::next)
+                .limit(ropeSize)
+                .collect(Collectors.toList());
+
+        return new LadderLine(ropes);
     }
 
     private void validateContinuousRope(List<Rope> ropes) {
@@ -27,6 +42,27 @@ public class LadderLine implements Iterable<Rope> {
 
     public int ropeSize() {
         return ropes.size();
+    }
+
+    public MoveDirection moveDirection(int ropeIndex) {
+        // 로프의 방향은 왼쪽으로만 존재한다.
+        // 로프가 오른쪽에 존재한다면 오른쪽으로 이동해야 하고, 현재 위치에 존재한다면 왼쪽으로 이동해야 한다.
+        // 하나의 로프로 왼쪽과 오른쪽 모두 이동할 수 있다.
+        if (ropeIndex > FIRST_ROPE_INDEX && isLeftMovable(ropeIndex)) {
+            return MoveDirection.LEFT;
+        }
+        if (ropeIndex < ropes.size() - 1 && isRightMovable(ropeIndex)) {
+            return MoveDirection.RIGHT;
+        }
+        return MoveDirection.NOT;
+    }
+
+    private boolean isLeftMovable(int ropeIndex) {
+        return this.ropes.get(ropeIndex).isPresent();
+    }
+
+    private boolean isRightMovable(int ropeIndex) {
+        return this.ropes.get(ropeIndex + 1).isPresent();
     }
 
     @Override

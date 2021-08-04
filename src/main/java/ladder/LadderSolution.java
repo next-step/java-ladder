@@ -1,8 +1,9 @@
 package ladder;
 
 import ladder.domain.*;
-import ladder.dto.LadderRandomGenerateRequest;
-import ladder.dto.LadderRequest;
+import ladder.dto.request.LadderRandomGenerateRequest;
+import ladder.dto.request.LadderRequest;
+import ladder.dto.response.LadderResult;
 import ladder.exception.DuplicateKeyException;
 import ladder.exception.InvalidRopeException;
 import ladder.exception.OutOfLengthException;
@@ -12,6 +13,7 @@ import ladder.view.InputView;
 import ladder.view.ResultView;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class LadderSolution {
@@ -34,8 +36,11 @@ public class LadderSolution {
         try {
             Players players = inputPlayers();
             Ladder ladder = inputLadder(players.size());
+            LadderResult ladderResult = ladder.result(players);
 
-            resultView.printResult(players, ladder);
+            resultView.printResult(ladderResult, players);
+
+            displayPrizes(ladderResult, players);
         } catch (DuplicateKeyException | InvalidRopeException | OutOfLengthException e) {
             resultView.printException(e);
         }/* catch (Exception e) {
@@ -66,5 +71,21 @@ public class LadderSolution {
         );
 
         return Ladder.randomGenerate(ladderRandomGenerateRequest);
+    }
+
+    private void displayPrizes(LadderResult ladderResult, Players players) {
+        String inputPlayerName;
+        do {
+            inputPlayerName = inputView.inputPrizeOwnerName();
+
+            players.findByName(new Name(inputPlayerName))
+                    .ifPresent(iPlayer -> {
+                        resultView.printPrize(
+                                ladderResult,
+                                iPlayer
+                        );
+                    });
+        } while(!inputPlayerName.equals("all"));
+        resultView.printPrizeAll(ladderResult, players);
     }
 }

@@ -1,17 +1,14 @@
 package ladder.domain;
 
-import ladder.dto.LadderRandomGenerateRequest;
-import ladder.dto.LadderRequest;
+import ladder.dto.request.LadderRandomGenerateRequest;
+import ladder.dto.response.LadderResult;
 import ladder.exception.InvalidPrizeException;
 import ladder.exception.InvalidRopeException;
 
-import java.util.Iterator;
+import java.util.*;
 import java.util.List;
-import java.util.Objects;
-import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class Ladder implements Iterable<LadderLine> {
     private final List<LadderLine> ladderLines;
@@ -43,26 +40,41 @@ public class Ladder implements Iterable<LadderLine> {
         }
     }
 
+    public static Ladder of(List<LadderLine> ladderLines, List<Prize> prizes) {
+        return new Ladder(ladderLines, prizes);
+    }
+
     public static Ladder randomGenerate(LadderRandomGenerateRequest request) {
         // 사다리 자동 생성 메서드
         // 줄당 로프 갯수와 총 사다리 높이를 입력하면 랜덤으로 사다리를 생성 합니다.
         List<LadderLine> ladderLines = IntStream.rangeClosed(0, request.lineHeight())
-                .mapToObj(i -> newRandomLadderLine(request.ropeSize()))
+                .mapToObj(iLineCount -> LadderLine.randomGenerate(request.ropeSize()))
                 .collect(Collectors.toList());
 
         return new Ladder(ladderLines, request.prizes());
     }
 
-    public static Ladder of(List<LadderLine> ladderLines, List<Prize> prizes) {
-        return new Ladder(ladderLines, prizes);
+    public List<Prize> prizes() {
+        return Collections.unmodifiableList(this.prizes);
     }
 
-    private static LadderLine newRandomLadderLine(int ropeSize) {
-        List<Rope> ropes = Stream.iterate(Rope.empty(), Rope::next)
-                .limit(ropeSize)
-                .collect(Collectors.toList());
+    public LadderResult result(Players players) {
+        Map<Player, Prize> resultValues =
+                IntStream.range(0, players.size())
+                .boxed()
+                .collect(Collectors.toMap(
+                        players::get, this::rideLadderLines
+                ));
 
-        return new LadderLine(ropes);
+        return new LadderResult(this, resultValues);
+    }
+
+    private Prize rideLadderLines(int playerStartIndex) {
+        LadderPoint ladderPoint = new LadderPoint(playerStartIndex);
+        for (LadderLine iLadderLine : this.ladderLines) {
+            ladderPoint = ladderPoint.move(iLadderLine);
+        }
+        return ladderPoint.prize(prizes());
     }
 
     @Override
