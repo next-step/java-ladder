@@ -23,6 +23,10 @@ public class Prizes {
         return prizeNames;
     }
 
+    public int count() {
+        return prizeNames.length;
+    }
+
     private void indexValidate(int index) {
         int length = prizeNames.length - 1;
         if (index > length || index < 0) {

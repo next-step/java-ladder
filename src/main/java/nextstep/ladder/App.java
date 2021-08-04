@@ -1,10 +1,7 @@
 package nextstep.ladder;
 
 import nextstep.ladder.factory.LadderFactory;
-import nextstep.ladder.ladder.Ladder;
-import nextstep.ladder.ladder.LadderBound;
-import nextstep.ladder.ladder.LadderGame;
-import nextstep.ladder.ladder.Prizes;
+import nextstep.ladder.ladder.*;
 import nextstep.ladder.player.Players;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
@@ -12,18 +9,23 @@ import nextstep.ladder.view.ResultView;
 public class App {
 
     public static void main(String[] args) {
-        String playerNames = InputView.getInputPlayerName();
-        String prizesNames = InputView.getInputLadderPrize();
+        LadderPrizes ladderPrizes = getLadderPrizes();
         int height = InputView.getInputMaxLadderHeight();
 
-        Players players = Players.of(playerNames);
+        Players players = ladderPrizes.getPlayers();
+        Prizes prizes = ladderPrizes.getPrizes();
         Ladder ladder = Ladder.of(LadderBound.of(players.count() - 1, height), LadderFactory.randomLadderStrategy());
-        Prizes prizes = Prizes.of(prizesNames);
 
         LadderGame ladderGame = new LadderGame(players, ladder);
         ladderGame.play();
         ResultView.printLadder(players, ladder, prizes);
         ResultView.printPlayerResult(ladderGame, prizes);
 
+    }
+
+    private static LadderPrizes getLadderPrizes() {
+        String playerNames = InputView.getInputPlayerName();
+        String prizesNames = InputView.getInputLadderPrize();
+        return LadderPrizes.of(playerNames, prizesNames);
     }
 }
