@@ -47,16 +47,9 @@ public class Line {
     }
 
     private boolean findPoint(int index) {
-        if (index < START_INDEX || index > points.size()) {
+        if (index < START_INDEX || index >= points.size()) {
             return false;
         }
         return points.get(index);
-    }
-
-    @Override
-    public String toString() {
-        return "Line{" +
-                "points=" + points +
-                '}';
     }
 }

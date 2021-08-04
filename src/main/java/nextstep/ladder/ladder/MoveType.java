@@ -4,13 +4,15 @@ import java.util.Arrays;
 import java.util.function.BiPredicate;
 
 public enum MoveType {
-    LEFT((left, right) -> left && !right),
-    RIGHT((left, right) -> !left  && right),
-    NEXT((left, right) -> !left && !right);
+    LEFT(-1,(left, right) -> left && !right),
+    RIGHT(1,(left, right) -> !left  && right),
+    STOP(0,(left, right) -> !left && !right);
 
+    private final int moveValue;
     private final BiPredicate<Boolean, Boolean> predicate;
 
-    MoveType(BiPredicate<Boolean, Boolean> predicate) {
+    MoveType(int moveValue, BiPredicate<Boolean, Boolean> predicate) {
+        this.moveValue = moveValue;
         this.predicate = predicate;
     }
 
@@ -18,6 +20,10 @@ public enum MoveType {
         return Arrays.stream(values())
                 .filter(type -> type.predicate.test(left, right))
                 .findFirst()
-                .orElse(NEXT);
+                .orElse(STOP);
+    }
+
+    public int getMoveValue() {
+        return moveValue;
     }
 }

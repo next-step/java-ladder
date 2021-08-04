@@ -1,5 +1,6 @@
 package nextstep.ladder.ladder;
 
+import nextstep.ladder.player.Player;
 import nextstep.ladder.strategy.LadderStrategy;
 
 import java.util.Collections;
@@ -26,5 +27,12 @@ public class Ladder {
 
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
+    }
+
+    public void move(Player player) {
+        lines.forEach(line -> {
+            MoveType direction = line.findDirection(player.getPosition());
+            player.move(direction.getMoveValue());
+        });
     }
 }
