@@ -20,8 +20,9 @@ public class LadderGameTest {
     public void make_LadderGame_using_ladderinfo() throws Exception {
         //arrange
         List<String> playerNames = Arrays.asList("a", "bb", "ccc");
+        List<String> gameResults = Arrays.asList("11", "222");
         LadderInfo ladderInfo = LadderInfo.of(LadderSize.of(1, 1), CREATE_STRATEGY);
-        LadderGameInfo ladderGameInfo = LadderGameInfo.of(playerNames, ladderInfo);
+        LadderGameInfo ladderGameInfo = LadderGameInfo.of(playerNames, gameResults, ladderInfo);
 
         //act
         LadderGame ladderGame = LadderGame.of(ladderGameInfo);

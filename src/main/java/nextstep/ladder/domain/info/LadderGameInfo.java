@@ -1,6 +1,8 @@
 package nextstep.ladder.domain.info;
 
+import nextstep.ladder.domain.GameElement;
 import nextstep.ladder.domain.player.Players;
+import nextstep.ladder.domain.result.GameResults;
 
 import java.util.List;
 import java.util.Objects;
@@ -8,19 +10,26 @@ import java.util.Objects;
 import static nextstep.ladder.domain.strategy.LineCreateStrategyFactory.getRandomLineCreateStrategy;
 
 public class LadderGameInfo {
-    private final Players players;
+    private final GameElement gameElement;
     private final LadderInfo ladderInfo;
 
-    private LadderGameInfo(List<String> players, LadderInfo ladderInfo) {
-        validate(players, ladderInfo);
+    private LadderGameInfo(List<String> playerNames, List<String> gameResultNames, LadderInfo ladderInfo) {
+        validate(playerNames, gameResultNames, ladderInfo);
 
-        this.players = Players.of(players);
+        Players players = Players.of(playerNames);
+        GameResults gameResults = GameResults.of(gameResultNames);
+
+        this.gameElement = GameElement.of(players, gameResults);
         this.ladderInfo = ladderInfo;
     }
 
-    private void validate(List<String> players, LadderInfo ladderInfo) {
+    private void validate(List<String> players, List<String> gameResults, LadderInfo ladderInfo) {
         if (Objects.isNull(players)) {
             throw new IllegalArgumentException("Players는 null이면 안됩니다");
+        }
+
+        if (Objects.isNull(gameResults)) {
+            throw new IllegalArgumentException("gameResults는 null이면 안됩니다");
         }
 
         if (Objects.isNull(ladderInfo)) {
@@ -28,15 +37,15 @@ public class LadderGameInfo {
         }
     }
 
-    public static LadderGameInfo of(List<String> playerNames, LadderInfo ladderInfo) {
-        return new LadderGameInfo(playerNames, ladderInfo);
+    public static LadderGameInfo of(List<String> playerNames, List<String> gameResults, LadderInfo ladderInfo) {
+        return new LadderGameInfo(playerNames, gameResults, ladderInfo);
     }
 
-    public static LadderGameInfo of(List<String> playerNames, int ladderHeight) {
+    public static LadderGameInfo of(List<String> playerNames, List<String> gameResults, int ladderHeight) {
         LadderSize ladderSize = LadderSize.of(getLadderWidth(playerNames), ladderHeight);
-        LadderInfo ladderInitInfo = LadderInfo.of(ladderSize, getRandomLineCreateStrategy());
+        LadderInfo ladderInfo = LadderInfo.of(ladderSize, getRandomLineCreateStrategy());
 
-        return new LadderGameInfo(playerNames, ladderInitInfo);
+        return new LadderGameInfo(playerNames, gameResults, ladderInfo);
     }
 
     private static int getLadderWidth(List<String> players) {
@@ -44,7 +53,15 @@ public class LadderGameInfo {
     }
 
     public Players getPlayers() {
-        return players;
+        return gameElement.getPlayers();
+    }
+
+    public GameResults getGameResults() {
+        return gameElement.getGameResults();
+    }
+
+    public GameElement getGameElement() {
+        return gameElement;
     }
 
     public LadderInfo getLadderInfo() {

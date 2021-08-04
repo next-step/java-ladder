@@ -11,8 +11,12 @@ public class LadderGameController {
 
     public static void main(String[] args) {
         List<String> playerNames = InputView.inputPlayers();
+        List<String> resultCategories = InputView.inputGameResults();
         int ladderHeight = InputView.inputLadderHeight();
-        LadderGame ladderGame = LadderGame.of(LadderGameInfo.of(playerNames, ladderHeight));
+
+        LadderGameInfo ladderGameInfo = LadderGameInfo.of(playerNames, resultCategories, ladderHeight);
+
+        LadderGame ladderGame = LadderGame.of(ladderGameInfo);
         ResultView.printResult(ladderGame.result());
     }
 

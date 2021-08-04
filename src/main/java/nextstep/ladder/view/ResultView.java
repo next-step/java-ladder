@@ -24,11 +24,12 @@ public class ResultView {
     public static void printResult(LadderResult result) {
         print(RESULT_STATEMENT);
         printNextLine();
-        printPlayers(result.getPlayerNames());
+        printStringValues(result.getPlayerNames());
         printLadder(result.getLadderFigures());
+        printStringValues(result.getGameResults());
     }
 
-    private static void printPlayers(List<String> playerNames) {
+    private static void printStringValues(List<String> playerNames) {
         printPlayer(playerNames);
         printNextLine();
     }

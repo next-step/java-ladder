@@ -8,13 +8,13 @@ import nextstep.ladder.domain.player.Players;
 import java.util.Objects;
 
 public class LadderGame {
-    private final Players players;
+    private final GameElement gameElement;
     private final Ladder ladder;
 
     private LadderGame(LadderGameInfo ladderGameInfo) {
         validate(ladderGameInfo);
 
-        this.players = ladderGameInfo.getPlayers();
+        this.gameElement = ladderGameInfo.getGameElement();
         this.ladder = Ladder.create(ladderGameInfo.getLadderInfo());
     }
 
@@ -29,6 +29,6 @@ public class LadderGame {
     }
 
     public LadderResult result() {
-        return LadderResult.of(players.getNames(), ladder.getFigures());
+        return LadderResult.of(gameElement, ladder.getFigures());
     }
 }
