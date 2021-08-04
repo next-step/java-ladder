@@ -15,7 +15,7 @@ import static org.assertj.core.api.Assertions.*;
 class LadderTest {
     @DisplayName("사다리 정상 생성")
     @Test
-    void ctorTest() {
+    void ofTest() {
         LadderLine line = new LadderLine(
                 Stream.of(true, false, true)
                         .map(Rope::of)
@@ -23,7 +23,7 @@ class LadderTest {
         );
 
         assertThatCode(() ->
-                new Ladder(
+                Ladder.of(
                         Arrays.asList(line, line, line, line)
                 )
         ).doesNotThrowAnyException();
@@ -44,7 +44,7 @@ class LadderTest {
         );
 
         assertThatThrownBy(() ->
-                new Ladder(
+                Ladder.of(
                         Arrays.asList(threeRopeLine, fourRopeLine, threeRopeLine, fourRopeLine)
                 )
         ).isInstanceOf(InvalidRopeException.class);

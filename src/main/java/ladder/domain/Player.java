@@ -16,7 +16,7 @@ public class Player {
 
     private void validateNameLength(String name) {
         if (name.length() > MAX_NAME_LENGTH) {
-            throw new OutOfLengthException("플레이어 이름의 길이는 5자를 초과할 수 없습니다.");
+            throw new OutOfLengthException("플레이어 이름의 길이는 " + MAX_NAME_LENGTH + "자를 초과할 수 없습니다.");
         }
     }
 

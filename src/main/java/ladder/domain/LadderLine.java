@@ -20,8 +20,9 @@ public class LadderLine implements Iterable<Rope> {
                 .noneMatch(iRopeIndex ->
                         ropes.get(iRopeIndex).isPresent() && ropes.get(iRopeIndex + 1).isPresent()
                 );
-        if (!valid)
+        if (!valid) {
             throw new InvalidRopeException("이어지는 로프가 있습니다.");
+        }
     }
 
     public int ropeSize() {

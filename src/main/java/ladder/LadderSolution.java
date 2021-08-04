@@ -47,10 +47,10 @@ public class LadderSolution {
     }
 
     private Players inputPlayers() {
-        return new Players(
-                inputView.inputPlayerNames().stream()
+        return inputView.inputPlayerNames().stream()
                         .map(Player::new)
-                        .collect(Collectors.toList())
-        );
+                        .collect(Collectors.collectingAndThen(
+                                Collectors.toList(), Players::new
+                        ));
     }
 }

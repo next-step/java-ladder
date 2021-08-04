@@ -14,7 +14,7 @@ public class Ladder implements Iterable<LadderLine> {
 
     private final List<LadderLine> ladderLines;
 
-    public Ladder(List<LadderLine> ladderLines) {
+    private Ladder(List<LadderLine> ladderLines) {
         validateRopeSizeOfLadderLine(ladderLines);
 
         this.ladderLines = ladderLines;
@@ -38,6 +38,10 @@ public class Ladder implements Iterable<LadderLine> {
                 .mapToObj(i -> newRandomLadderLine(ropeSize))
                 .collect(Collectors.toList());
 
+        return new Ladder(ladderLines);
+    }
+
+    public static Ladder of(List<LadderLine> ladderLines) {
         return new Ladder(ladderLines);
     }
 
