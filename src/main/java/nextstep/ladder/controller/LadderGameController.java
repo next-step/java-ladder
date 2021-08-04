@@ -14,7 +14,7 @@ import nextstep.ladder.view.dto.PrintResultDto;
 
 public class LadderGameController {
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         final List<Name> playerNames = createPlayerNames();
         final List<Result> results = createResults();
         final int ladderHeight = InputView.inputLadderHeight();
@@ -24,6 +24,12 @@ public class LadderGameController {
         ResultView.printPlayerNames(new PrintPlayerNamesDto(playerNames));
         ResultView.printLadders(new PrintLinesDto(lines));
         ResultView.printResults(new PrintResultDto(results));
+
+        String resultPlayerName = "";
+
+        while (!resultPlayerName.equals("all")) {
+            resultPlayerName = InputView.inputResultPlayerName();
+        }
     }
 
     private static List<Result> createResults() {
