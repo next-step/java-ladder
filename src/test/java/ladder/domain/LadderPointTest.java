@@ -14,7 +14,7 @@ class LadderPointTest {
     void move() {
         LadderLine ladderLine = LadderLine.of(
                 Stream.of(false, true, false, false, false)
-                .map(Rope::new)
+                .map(Rope::of)
                 .collect(Collectors.toList())
         );
         assertThat(new LadderPoint(0).move(ladderLine))

@@ -8,7 +8,7 @@ public class Rope {
 
     private final boolean value;
 
-    protected Rope(boolean value) {
+    private Rope(boolean value) {
         this.value = value;
     }
 
