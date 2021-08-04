@@ -11,18 +11,18 @@ import java.util.List;
 public class LadderGameController {
     public static void main(String[] args) {
         List<String> playerNames = InputView.inputPlayers();
-        List<String> resultCategories = InputView.inputGameResults();
+        List<String> gameResults = InputView.inputGameResults();
         int ladderHeight = InputView.inputLadderHeight();
 
-        LadderGame ladderGame = makeLadderGame(playerNames, resultCategories, ladderHeight);
+        LadderGame ladderGame = makeLadderGame(playerNames, gameResults, ladderHeight);
         printLadderResult(ladderGame);
 
         LadderPlayerGameResult gameResult = playLadderGame(ladderGame);
         printGameResult(gameResult);
     }
 
-    private static LadderGame makeLadderGame(List<String> playerNames, List<String> resultCategories, int ladderHeight) {
-        LadderGameInfo ladderGameInfo = LadderGameInfo.of(playerNames, resultCategories, ladderHeight);
+    private static LadderGame makeLadderGame(List<String> playerNames, List<String> gameResults, int ladderHeight) {
+        LadderGameInfo ladderGameInfo = LadderGameInfo.of(playerNames, gameResults, ladderHeight);
         return LadderGame.of(ladderGameInfo);
     }
 
