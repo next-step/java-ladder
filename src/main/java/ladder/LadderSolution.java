@@ -13,7 +13,6 @@ import ladder.view.InputView;
 import ladder.view.ResultView;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class LadderSolution {
@@ -79,12 +78,9 @@ public class LadderSolution {
             inputPlayerName = inputView.inputPrizeOwnerName();
 
             players.findByName(new Name(inputPlayerName))
-                    .ifPresent(iPlayer -> {
-                        resultView.printPrize(
-                                ladderResult,
-                                iPlayer
-                        );
-                    });
+                    .ifPresent(iPlayer ->
+                            resultView.printPrize(ladderResult, iPlayer)
+                    );
         } while(!inputPlayerName.equals("all"));
         resultView.printPrizeAll(ladderResult, players);
     }
