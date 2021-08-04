@@ -4,9 +4,9 @@ import java.util.Arrays;
 import java.util.function.BiPredicate;
 
 public enum MoveType {
-    LEFT(-1,(left, right) -> left && !right),
-    RIGHT(1,(left, right) -> !left  && right),
-    STOP(0,(left, right) -> !left && !right);
+    LEFT(-1, (left, right) -> left && !right),
+    RIGHT(1, (left, right) -> !left && right),
+    STOP(0, (left, right) -> !left && !right);
 
     private final int moveValue;
     private final BiPredicate<Boolean, Boolean> predicate;

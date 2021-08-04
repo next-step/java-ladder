@@ -1,9 +1,6 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.ladder.Ladder;
-import nextstep.ladder.ladder.LadderGame;
-import nextstep.ladder.ladder.Prizes;
-import nextstep.ladder.ladder.LadderType;
+import nextstep.ladder.ladder.*;
 import nextstep.ladder.player.Players;
 
 import java.util.Arrays;
@@ -20,11 +17,32 @@ public class ResultView {
     }
 
 
-    public static void printLadder(Players players, Ladder ladder, Prizes prizes) {
+    public static void printLadder(LadderPrizes ladderPrizes, Ladder ladder) {
+        Players players = ladderPrizes.getPlayers();
+        players.play(ladder);
         System.out.println("사다리 결과");
         printPlayerName(players);
         printLadder(ladder);
-        printPrize(prizes);
+        printPrize(ladderPrizes.getPrizes());
+    }
+
+    public static void printPlayerResult(LadderPrizes ladderPrizes) {
+        String playerName = InputView.getInputPlayerResult();
+        while (!ESCAPE_CONDITION.equals(playerName)) {
+            String playerPrize = ladderPrizes.findPlayerPrize(playerName);
+            System.out.println(playerPrize);
+            playerName = InputView.getInputPlayerResult();
+        }
+        printAllPlayerResult(ladderPrizes, ladderPrizes.getPlayers());
+    }
+
+    private static void printAllPlayerResult(LadderPrizes ladderPrizes, Players players) {
+        players.getPlayers()
+                .forEach(player -> {
+                            String name = player.getName();
+                            System.out.println(name + ":" + ladderPrizes.findPlayerPrize(name));
+                        }
+                );
     }
 
     private static void printPlayerName(Players players) {
@@ -43,7 +61,7 @@ public class ResultView {
                 });
     }
 
-    private static void printLine(nextstep.ladder.ladder.Line line) {
+    private static void printLine(Line line) {
         line.getPoints()
                 .forEach(t -> {
                     LadderType type = LadderType.findByType(t);
@@ -62,20 +80,5 @@ public class ResultView {
             return LADDER_BLANK;
         }
         return PRIZE_BLANK;
-    }
-
-    public static void printPlayerResult(LadderGame ladderGame, Prizes prizes) {
-        String playerName = InputView.getInputPlayerResult();
-        while (!ESCAPE_CONDITION.equals(playerName)) {
-            String playerPrize = ladderGame.findPlayerPrize(prizes, playerName);
-            System.out.println(playerPrize);
-            playerName = InputView.getInputPlayerResult();
-        }
-        ladderGame.getPlayers()
-                .forEach(player -> {
-                            String name = player.getName();
-                            System.out.println(name + ":" + ladderGame.findPlayerPrize(prizes, name));
-                        }
-                );
     }
 }

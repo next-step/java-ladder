@@ -1,6 +1,7 @@
 package nextstep.ladder.ladder;
 
 import nextstep.ladder.exception.NotMatchedSizeException;
+import nextstep.ladder.player.Player;
 import nextstep.ladder.player.Players;
 
 public class LadderPrizes {
@@ -30,5 +31,10 @@ public class LadderPrizes {
 
     public Prizes getPrizes() {
         return prizes;
+    }
+
+    public String findPlayerPrize(String playerName) {
+        Player player = players.findByName(playerName);
+        return prizes.findPrize(player.getPosition());
     }
 }

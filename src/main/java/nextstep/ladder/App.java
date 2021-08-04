@@ -1,8 +1,9 @@
 package nextstep.ladder;
 
 import nextstep.ladder.factory.LadderFactory;
-import nextstep.ladder.ladder.*;
-import nextstep.ladder.player.Players;
+import nextstep.ladder.ladder.Ladder;
+import nextstep.ladder.ladder.LadderBound;
+import nextstep.ladder.ladder.LadderPrizes;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
@@ -10,16 +11,11 @@ public class App {
 
     public static void main(String[] args) {
         LadderPrizes ladderPrizes = getLadderPrizes();
-        int height = InputView.getInputMaxLadderHeight();
+        LadderBound ladderBound = getLadderBound(ladderPrizes.getPlayers().count());
+        Ladder ladder = Ladder.of(ladderBound, LadderFactory.randomLadderStrategy());
 
-        Players players = ladderPrizes.getPlayers();
-        Prizes prizes = ladderPrizes.getPrizes();
-        Ladder ladder = Ladder.of(LadderBound.of(players.count() - 1, height), LadderFactory.randomLadderStrategy());
-
-        LadderGame ladderGame = new LadderGame(players, ladder);
-        ladderGame.play();
-        ResultView.printLadder(players, ladder, prizes);
-        ResultView.printPlayerResult(ladderGame, prizes);
+        ResultView.printLadder(ladderPrizes, ladder);
+        ResultView.printPlayerResult(ladderPrizes);
 
     }
 
@@ -27,5 +23,10 @@ public class App {
         String playerNames = InputView.getInputPlayerName();
         String prizesNames = InputView.getInputLadderPrize();
         return LadderPrizes.of(playerNames, prizesNames);
+    }
+
+    private static LadderBound getLadderBound(int count) {
+        int height = InputView.getInputMaxLadderHeight();
+        return LadderBound.of(count - 1, height);
     }
 }
