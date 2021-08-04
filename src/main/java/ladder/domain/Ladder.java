@@ -6,7 +6,6 @@ import ladder.exception.InvalidPrizeException;
 import ladder.exception.InvalidRopeException;
 
 import java.util.*;
-import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 

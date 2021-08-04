@@ -4,6 +4,7 @@ import ladder.domain.*;
 import ladder.dto.response.LadderResult;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class DosResultView implements ResultView {
     @Override
@@ -42,7 +43,7 @@ public class DosResultView implements ResultView {
 
     private void printLadderPrizes(List<Prize> prizes) {
         prizes.forEach(this::printLadderPrize);
-        printEmptyLine();
+        printEmptyLine(2);
     }
 
     private void printLadderPrize(Prize prize) {
@@ -59,6 +60,7 @@ public class DosResultView implements ResultView {
         printResultTitle();
 
         System.out.println(ladderResult.prize(player));
+        printEmptyLine();
     }
 
     @Override
@@ -74,12 +76,16 @@ public class DosResultView implements ResultView {
     }
 
     private void printResultTitle() {
-        printEmptyLine();
         System.out.println(Text.RESULT_TITLE);
     }
 
+    private void printEmptyLine(int size) {
+        IntStream.range(0, size)
+                .forEach(i -> System.out.println());
+    }
+
     private void printEmptyLine() {
-        System.out.println();
+        printEmptyLine(1);
     }
 
     private enum Text {
