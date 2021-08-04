@@ -2,25 +2,19 @@ package ladder.domain;
 
 import java.util.Objects;
 
-public class Player {
+public class Prize {
     private final Name name;
-    private final Prize prize;
 
-    private Player(Name name, Prize prize) {
+    public Prize(Name name) {
         this.name = name;
-        this.prize = prize;
-    }
-
-    public Player(Name name) {
-        this(name, null);
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Player player = (Player) o;
-        return Objects.equals(name, player.name);
+        Prize prize = (Prize) o;
+        return Objects.equals(name, prize.name);
     }
 
     @Override

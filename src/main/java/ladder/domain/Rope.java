@@ -1,11 +1,14 @@
 package ladder.domain;
 
 import java.util.Objects;
+import java.util.Random;
 
 public class Rope {
+    private static final Random random = new Random();
+
     private final boolean value;
 
-    private Rope(boolean value) {
+    protected Rope(boolean value) {
         this.value = value;
     }
 
@@ -23,6 +26,12 @@ public class Rope {
 
     public boolean isPresent() {
         return value;
+    }
+
+    public Rope next() {
+        if (this.equals(present()))
+            return empty();
+        return of(random.nextBoolean());
     }
 
     @Override

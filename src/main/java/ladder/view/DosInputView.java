@@ -1,5 +1,7 @@
 package ladder.view;
 
+import ladder.dto.LadderRequest;
+
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
@@ -25,6 +27,12 @@ public final class DosInputView implements InputView {
         return input;
     }
 
+    private List<String> inputList(Text guideText) {
+        return RegexPatterns.DELIMITER.split(
+                inputLine(Text.INPUT_PLAYER_NAMES)
+        );
+    }
+
     private int inputNumber(Text guideText) {
         String input = inputLine(guideText);
 
@@ -38,13 +46,18 @@ public final class DosInputView implements InputView {
 
     @Override
     public List<String> inputPlayerNames() {
-        return RegexPatterns.DELIMITER.split(
-                inputLine(Text.INPUT_PLAYER_NAMES)
-        );
+        return inputList(Text.INPUT_PLAYER_NAMES);
     }
 
     @Override
-    public int inputLineHeight() {
+    public LadderRequest inputLadderRequest() {
+        return new LadderRequest(
+                inputList(Text.INPUT_PRIZE_NAMES),
+                inputLineHeight()
+        );
+    }
+
+    private int inputLineHeight() {
         return inputNumber(Text.INPUT_LINE_HEIGHT);
     }
 
@@ -52,6 +65,7 @@ public final class DosInputView implements InputView {
     private enum Text {
         NOT_NUMBER_FORMAT("숫자의 형식이 아닙니다. 다시 입력 해주세요."),
         INPUT_PLAYER_NAMES("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)"),
+        INPUT_PRIZE_NAMES("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)"),
         INPUT_LINE_HEIGHT("최대 사다리 높이는 몇 개인가요?");
 
         private final String str;

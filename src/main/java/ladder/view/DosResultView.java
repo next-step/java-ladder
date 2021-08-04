@@ -22,7 +22,6 @@ public class DosResultView implements ResultView {
     }
 
     private void printLadderLine(LadderLine ladderLine) {
-        System.out.print(Text.EMPTY_ROPE);
         ladderLine.forEach(this::printRope);
 
         printEmptyLine();
