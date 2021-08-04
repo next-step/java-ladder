@@ -3,33 +3,24 @@ package nextstep.ladder.view;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import nextstep.ladder.view.exception.InvalidParseIntegerException;
 
 public class InputView {
 
-    private static final SimpleInputAssist playerNames = string -> {
-        if (string.isEmpty()) {
-            return "pobi,honux,crong,jk,hyune";
-        }
+    private static final Function<String, String> playerNamesAssist = string ->
+        (string.isEmpty()) ? "pobi,honux,crong,jk,hyune" : string;
 
-        return string;
-    };
-
-    private static final SimpleInputAssist ladderHeight = string -> {
-        if (string.isEmpty()) {
-            return "10";
-        }
-
-        return string;
-    };
+    private static final Function<String, String> ladderHeightAssist = string ->
+        (string.isEmpty()) ? "10" : string;
 
     private static final Scanner scanner = new Scanner(System.in);
 
     public static List<String> inputPlayerName() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         String input = scanner.nextLine();
-        input = playerNames.assist(input);
+        input = playerNamesAssist.apply(input);
 
         return Arrays.stream(input.split(","))
             .collect(Collectors.toList());
@@ -38,7 +29,7 @@ public class InputView {
     public static int inputLadderHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         String input = scanner.nextLine();
-        input = ladderHeight.assist(input);
+        input = ladderHeightAssist.apply(input);
 
         return parseInteger(input);
     }
