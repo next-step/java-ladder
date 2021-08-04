@@ -16,7 +16,7 @@ class LadderGameInfoTest {
     @Test
     public void make_LadderGameInfo_using_playernames_and_ladderinfo() throws Exception {
         //arrange
-        List<String> playerNames = Arrays.asList("aa","bbb");
+        List<String> playerNames = Arrays.asList("aa", "bbb");
         LadderInfo ladderInfo = LadderInfo.of(LadderSize.of(1, 1), CREATE_STRATEGY);
 
         //act
@@ -30,7 +30,7 @@ class LadderGameInfoTest {
     @Test
     public void make_LadderGameInfo_using_playernames_and_ladderheight() throws Exception {
         //arrange
-        List<String> playerNames = Arrays.asList("aa","bbb");
+        List<String> playerNames = Arrays.asList("aa", "bbb");
         int ladderHeight = 1;
 
         //act
@@ -55,7 +55,7 @@ class LadderGameInfoTest {
     @Test
     public void throw_exception_when_ladderinfo_null() throws Exception {
         //arrange
-        List<String> playerNames = Arrays.asList("aa","bbb");
+        List<String> playerNames = Arrays.asList("aa", "bbb");
         LadderInfo ladderInfo = null;
 
         //act, assert
