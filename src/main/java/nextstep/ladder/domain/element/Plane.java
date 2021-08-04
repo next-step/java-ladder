@@ -41,7 +41,7 @@ public class Plane {
 
     private void createPillars(LadderInfo ladderInfo) {
         IntStream.range(0, ladderInfo.getLadderWidth())
-                .forEach(idx-> pillars.add(createPillar(ladderInfo, idx)));
+                .forEach(idx -> pillars.add(createPillar(ladderInfo, idx)));
     }
 
     private Pillar createPillar(LadderInfo ladderInfo, int idx) {
