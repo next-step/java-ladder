@@ -1,30 +1,19 @@
 package ladder.domain;
 
-import ladder.exception.OutOfLengthException;
-
 import java.util.Objects;
 
 public class Player {
-    private static final int MAX_NAME_LENGTH = 5;
+    private final Name name;
 
-    private final String name;
-
-    public Player(String name) {
-        validateNameLength(name);
+    public Player(Name name) {
         this.name = name;
     }
 
-    private void validateNameLength(String name) {
-        if (name.length() > MAX_NAME_LENGTH) {
-            throw new OutOfLengthException("플레이어 이름의 길이는 " + MAX_NAME_LENGTH + "자를 초과할 수 없습니다.");
-        }
-    }
-
     @Override
-    public boolean equals(Object compareValue) {
-        if (this == compareValue) return true;
-        if (compareValue == null || getClass() != compareValue.getClass()) return false;
-        Player player = (Player) compareValue;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Player player = (Player) o;
         return Objects.equals(name, player.name);
     }
 
@@ -33,7 +22,8 @@ public class Player {
         return Objects.hash(name);
     }
 
+    @Override
     public String toString() {
-        return name;
+        return name.toString();
     }
 }

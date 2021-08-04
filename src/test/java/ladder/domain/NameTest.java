@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class PlayerTest {
+class NameTest {
     @ValueSource(strings = {
             "pobi",
             "honux",
@@ -18,7 +18,7 @@ class PlayerTest {
     @DisplayName("이름 5자 테스트 성공")
     @ParameterizedTest
     public void ctorTest(String name) {
-        assertThatCode(() -> new Player(name))
+        assertThatCode(() -> new Name(name))
                 .doesNotThrowAnyException();
     }
 
@@ -31,7 +31,7 @@ class PlayerTest {
     @DisplayName("이름 5자 초과 테스트")
     @ParameterizedTest
     public void ctorExceptionTest(String name) {
-        assertThatThrownBy(() -> new Player(name))
+        assertThatThrownBy(() -> new Name(name))
                 .isInstanceOf(OutOfLengthException.class);
     }
 }

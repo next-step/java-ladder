@@ -15,6 +15,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class PlayersTest {
     private List<Player> nameToPlayerList(String names) {
         return Arrays.stream(names.split(","))
+                .map(Name::new)
                 .map(Player::new)
                 .collect(Collectors.toList());
     }

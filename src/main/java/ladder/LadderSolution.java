@@ -1,6 +1,7 @@
 package ladder;
 
 import ladder.domain.Ladder;
+import ladder.domain.Name;
 import ladder.domain.Player;
 import ladder.domain.Players;
 import ladder.exception.DuplicateKeyException;
@@ -48,9 +49,10 @@ public class LadderSolution {
 
     private Players inputPlayers() {
         return inputView.inputPlayerNames().stream()
-                        .map(Player::new)
-                        .collect(Collectors.collectingAndThen(
-                                Collectors.toList(), Players::new
-                        ));
+                .map(Name::new)
+                .map(Player::new)
+                .collect(Collectors.collectingAndThen(
+                        Collectors.toList(), Players::new
+                ));
     }
 }
