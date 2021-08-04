@@ -11,11 +11,14 @@ public class LadderGame {
         ResultView resultView = new ResultView();
 
         String persons = inputView.initPerson();
-        List<String> people = HumanMaker.of(persons);
+        LadderName ladderName = new LadderName(persons);
 
         int maxLadderHeight = inputView.maxLadderHeight();
 
-        resultView.printName(people);
+        resultView.printName(ladderName);
+
+        //TODO: 해결
+        List<String> people = HumanMaker.of(persons);
         resultView.println(maxLadderHeight, people);
     }
 }

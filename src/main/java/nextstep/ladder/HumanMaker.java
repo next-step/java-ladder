@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+//TODO: 삭제할건지 생각
 public class HumanMaker {
 
     private final List<String> ladders;
@@ -13,8 +14,8 @@ public class HumanMaker {
     }
 
 
-    public static List<String> of(String s) {
-        return new HumanMaker(Arrays.stream(s.split(","))
+    public static List<String> of(String names) {
+        return new HumanMaker(Arrays.stream(names.split(","))
                                      .map(Validation::lengthValidation)
                                      .collect(Collectors.toList())).getLadders();
     }

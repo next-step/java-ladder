@@ -2,6 +2,7 @@ package nextstep.ladder;
 
 import java.util.Random;
 
+//TODO: 해결
 public class Line {
     private static final Random random = new Random();
     private static final String LINE = "-----|";
