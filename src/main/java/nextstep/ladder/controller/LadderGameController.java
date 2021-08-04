@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import nextstep.ladder.domain.Lines;
 import nextstep.ladder.domain.common.Name;
+import nextstep.ladder.domain.common.Result;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 import nextstep.ladder.view.dto.PrintLinesDto;
@@ -14,6 +15,7 @@ public class LadderGameController {
 
     public static void main(String[] args) {
         final List<Name> playerNames = createPlayerNames();
+        final List<Result> results = createResults();
         final int ladderHeight = InputView.inputLadderHeight();
 
         final Lines lines = Lines.of(ladderHeight, playerNames.size());
@@ -22,10 +24,14 @@ public class LadderGameController {
         ResultView.printLadders(new PrintLinesDto(lines));
     }
 
-    private static List<Name> createPlayerNames() {
-        final String playerNames = InputView.inputPlayerName();
+    private static List<Result> createResults() {
+        return Arrays.stream(InputView.inputResults().split(","))
+            .map(Result::of)
+            .collect(Collectors.toList());
+    }
 
-        return Arrays.stream(playerNames.split(","))
+    private static List<Name> createPlayerNames() {
+        return Arrays.stream(InputView.inputPlayerName().split(","))
             .map(Name::of)
             .collect(Collectors.toList());
     }
