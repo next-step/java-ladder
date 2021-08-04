@@ -19,6 +19,10 @@ public class LadderPrize {
         return prizes[index];
     }
 
+    public String[] getPrizes() {
+        return prizes;
+    }
+
     private void indexValidate(int index) {
         int length = prizes.length - 1;
         if (index > length || index < 0) {

@@ -1,6 +1,9 @@
 package nextstep.ladder.ladder;
 
+import nextstep.ladder.player.Player;
 import nextstep.ladder.player.Players;
+
+import java.util.List;
 
 public class LadderGame {
 
@@ -14,5 +17,14 @@ public class LadderGame {
 
     public void play() {
         players.getPlayers().forEach(ladder::move);
+    }
+
+    public String findPlayerPrize(LadderPrize prize, String playerName) {
+        Player player = players.findByName(playerName);
+        return prize.findPrize(player.getPosition());
+    }
+
+    public List<Player> getPlayers() {
+        return players.getPlayers();
     }
 }
