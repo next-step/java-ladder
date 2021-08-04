@@ -2,8 +2,6 @@ package nextstep.ladder.domain.result;
 
 import nextstep.ladder.utils.StringUtils;
 
-import java.util.Objects;
-
 public class GameResult {
     private static final int MAX_LENGTH_OF_RESULT = 5;
 
