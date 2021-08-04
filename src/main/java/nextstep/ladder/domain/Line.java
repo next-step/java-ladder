@@ -33,10 +33,6 @@ public class Line {
         return exists.size();
     }
 
-    public boolean lineExists(int index) {
-        return exists.get(index);
-    }
-
     public List<Boolean> getExists() {
         return Collections.unmodifiableList(exists);
     }
