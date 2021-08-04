@@ -10,6 +10,7 @@ import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 import nextstep.ladder.view.dto.PrintLinesDto;
 import nextstep.ladder.view.dto.PrintPlayerNamesDto;
+import nextstep.ladder.view.dto.PrintResultDto;
 
 public class LadderGameController {
 
@@ -22,6 +23,7 @@ public class LadderGameController {
 
         ResultView.printPlayerNames(new PrintPlayerNamesDto(playerNames));
         ResultView.printLadders(new PrintLinesDto(lines));
+        ResultView.printResults(new PrintResultDto(results));
     }
 
     private static List<Result> createResults() {
