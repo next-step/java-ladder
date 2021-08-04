@@ -2,7 +2,7 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.ladder.Ladder;
 import nextstep.ladder.ladder.LadderGame;
-import nextstep.ladder.ladder.LadderPrize;
+import nextstep.ladder.ladder.Prizes;
 import nextstep.ladder.ladder.LadderType;
 import nextstep.ladder.player.Players;
 
@@ -20,11 +20,11 @@ public class ResultView {
     }
 
 
-    public static void printLadder(Players players, Ladder ladder, LadderPrize prize) {
+    public static void printLadder(Players players, Ladder ladder, Prizes prizes) {
         System.out.println("사다리 결과");
         printPlayerName(players);
         printLadder(ladder);
-        printPrize(prize);
+        printPrize(prizes);
     }
 
     private static void printPlayerName(Players players) {
@@ -51,8 +51,8 @@ public class ResultView {
                 });
     }
 
-    private static void printPrize(LadderPrize prize) {
-        Arrays.stream(prize.getPrizes())
+    private static void printPrize(Prizes prizes) {
+        Arrays.stream(prizes.getPrizeNames())
                 .forEach(name -> System.out.printf(name + getPrizeBlank(name)));
         System.out.println("\n");
     }
@@ -64,17 +64,17 @@ public class ResultView {
         return PRIZE_BLANK;
     }
 
-    public static void printPlayerResult(LadderGame ladderGame, LadderPrize prize) {
+    public static void printPlayerResult(LadderGame ladderGame, Prizes prizes) {
         String playerName = InputView.getInputPlayerResult();
         while (!ESCAPE_CONDITION.equals(playerName)) {
-            String playerPrize = ladderGame.findPlayerPrize(prize, playerName);
+            String playerPrize = ladderGame.findPlayerPrize(prizes, playerName);
             System.out.println(playerPrize);
             playerName = InputView.getInputPlayerResult();
         }
         ladderGame.getPlayers()
                 .forEach(player -> {
                             String name = player.getName();
-                            System.out.println(name + ":" + ladderGame.findPlayerPrize(prize, name));
+                            System.out.println(name + ":" + ladderGame.findPlayerPrize(prizes, name));
                         }
                 );
     }

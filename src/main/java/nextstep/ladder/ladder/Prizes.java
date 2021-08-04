@@ -2,29 +2,29 @@ package nextstep.ladder.ladder;
 
 import nextstep.ladder.util.StringUtil;
 
-public class LadderPrize {
+public class Prizes {
 
-    private final String[] prizes;
+    private final String[] prizeNames;
 
-    private LadderPrize(String[] prizes) {
-        this.prizes = prizes;
+    private Prizes(String[] prizeNames) {
+        this.prizeNames = prizeNames;
     }
 
-    public static LadderPrize of(String prizes) {
-        return new LadderPrize(StringUtil.split(prizes));
+    public static Prizes of(String prizes) {
+        return new Prizes(StringUtil.split(prizes));
     }
 
     public String findPrize(int index) {
         indexValidate(index);
-        return prizes[index];
+        return prizeNames[index];
     }
 
-    public String[] getPrizes() {
-        return prizes;
+    public String[] getPrizeNames() {
+        return prizeNames;
     }
 
     private void indexValidate(int index) {
-        int length = prizes.length - 1;
+        int length = prizeNames.length - 1;
         if (index > length || index < 0) {
             throw new IndexOutOfBoundsException("상품 정보는 0부터 " + length + "까지 조회 가능합니다.");
         }

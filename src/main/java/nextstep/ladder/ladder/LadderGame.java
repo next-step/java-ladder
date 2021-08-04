@@ -19,9 +19,9 @@ public class LadderGame {
         players.getPlayers().forEach(ladder::move);
     }
 
-    public String findPlayerPrize(LadderPrize prize, String playerName) {
+    public String findPlayerPrize(Prizes prizes, String playerName) {
         Player player = players.findByName(playerName);
-        return prize.findPrize(player.getPosition());
+        return prizes.findPrize(player.getPosition());
     }
 
     public List<Player> getPlayers() {

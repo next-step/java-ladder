@@ -4,7 +4,7 @@ import nextstep.ladder.factory.LadderFactory;
 import nextstep.ladder.ladder.Ladder;
 import nextstep.ladder.ladder.LadderBound;
 import nextstep.ladder.ladder.LadderGame;
-import nextstep.ladder.ladder.LadderPrize;
+import nextstep.ladder.ladder.Prizes;
 import nextstep.ladder.player.Players;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
@@ -18,12 +18,12 @@ public class App {
 
         Players players = Players.of(playerNames);
         Ladder ladder = Ladder.of(LadderBound.of(players.count() - 1, height), LadderFactory.randomLadderStrategy());
-        LadderPrize prize = LadderPrize.of(prizesNames);
+        Prizes prizes = Prizes.of(prizesNames);
 
         LadderGame ladderGame = new LadderGame(players, ladder);
         ladderGame.play();
-        ResultView.printLadder(players, ladder, prize);
-        ResultView.printPlayerResult(ladderGame, prize);
+        ResultView.printLadder(players, ladder, prizes);
+        ResultView.printPlayerResult(ladderGame, prizes);
 
     }
 }
