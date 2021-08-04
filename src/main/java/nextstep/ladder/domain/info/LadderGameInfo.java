@@ -32,6 +32,10 @@ public class LadderGameInfo {
             throw new IllegalArgumentException("gameResults는 null이면 안됩니다");
         }
 
+        if (players.size() != gameResults.size()) {
+            throw new IllegalArgumentException("플레이어와 게임결과 개수는 같아야합니다");
+        }
+
         if (Objects.isNull(ladderInfo)) {
             throw new IllegalArgumentException("LadderInfo는 null이면 안됩니다");
         }

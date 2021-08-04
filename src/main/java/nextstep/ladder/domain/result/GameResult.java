@@ -1,5 +1,7 @@
 package nextstep.ladder.domain.result;
 
+import nextstep.ladder.utils.StringUtils;
+
 import java.util.Objects;
 
 public class GameResult {
@@ -14,7 +16,7 @@ public class GameResult {
     }
 
     private void validate(String result) {
-        if (isEmpty(result)) {
+        if (StringUtils.isEmpty(result)) {
             throw new IllegalArgumentException("result는 null이거나 비어있을수 없습니다.");
         }
 
@@ -31,7 +33,4 @@ public class GameResult {
         return result;
     }
 
-    private boolean isEmpty(String stringValue) {
-        return Objects.isNull(stringValue) || stringValue.isEmpty();
-    }
 }
