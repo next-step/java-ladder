@@ -1,53 +1,43 @@
 package nextstep.ladder;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class LadderName {
-    private List<String> ladderNames;
     private static final int LETTER_LIMIT = 5;
     private static final String SPACE = " ";
 
-    public static LadderName make(String ladderNames) {
-        return new LadderName(ladderNames);
+    private String laddername;
+
+    public LadderName(String ladderName) {
+        this.laddername = ladderName;
     }
 
-
-    private LadderName(final String ladderNames) {
-        this.inputValidation(ladderNames);
-        this.ladderNames = Arrays.stream(ladderNames.split(","))
-                           .map(this::lengthValidation)
-                           .map(this::fitLength)
-                           .collect(Collectors.toList());
+    public static List<LadderName> of(String ladderNames) {
+        List<LadderName> list = new ArrayList<>();
+        Arrays.stream(ladderNames.split(","))
+                .map(LadderName::lengthValidation)
+                .map(LadderName::fitLength)
+                .forEach(name -> list.add(new LadderName(name)));
+        return list;
     }
 
-
-    private String fitLength(String name) {
+    private static String fitLength(String name) {
         if(name.length() < LETTER_LIMIT) {
             name = fitLength(SPACE.concat(name));
         }
+        System.out.println(name.length());
 
         return name;
     }
 
-    private String inputValidation(String ladderNames) {
-        if (Objects.isNull(ladderNames) || ladderNames.equals("")) {
-            throw new IllegalArgumentException("이름을 공백으로 할 수 없습니다.");
-        }
-        return ladderNames;
-    }
-
-    private String lengthValidation(String name) {
-        if(name.length() > 5) {
+    private static String lengthValidation(String name) {
+        if(name.length() > LETTER_LIMIT) {
             throw new StringLengthException();
         }
         return name;
-    }
-
-    public int size(){
-        return this.ladderNames.size();
     }
 
     @Override
@@ -55,18 +45,16 @@ public class LadderName {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         LadderName that = (LadderName) o;
-        return Objects.equals(ladderNames, that.ladderNames);
+        return Objects.equals(laddername, that.laddername);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ladderNames);
+        return Objects.hash(laddername);
     }
 
     @Override
     public String toString() {
-        return "LadderName{" +
-                "ladderNames=" + ladderNames +
-                '}';
+        return laddername;
     }
 }
