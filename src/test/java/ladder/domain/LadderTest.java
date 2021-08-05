@@ -3,7 +3,6 @@ package ladder.domain;
 import ladder.domain.point.FakeDirectionGenerator;
 import ladder.domain.line.BasicLadderLineGenerator;
 import ladder.factory.FakeGeneratorFactoryBean;
-import ladder.factory.GeneratorFactoryBean;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -21,7 +20,7 @@ public class LadderTest {
         ).changeInstance();
     }
 
-    @CsvSource({"0,1", "1,0", "2,2", "3,4", "4,3", "5,5"})
+    @CsvSource({"0,1", "1,0", "2,3", "3,2", "4,5", "5,4"})
     @DisplayName("3개의 라인과 6개의 포인트를 사용해 move 테스트")
     @ParameterizedTest
     void moveTest(int index, int correctIndex) {

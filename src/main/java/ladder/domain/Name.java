@@ -1,9 +1,7 @@
 package ladder.domain;
 
-
 import ladder.exception.OutOfSizeException;
 import ladder.util.StringLength;
-
 import java.util.Objects;
 
 public class Name {

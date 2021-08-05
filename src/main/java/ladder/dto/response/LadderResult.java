@@ -3,7 +3,6 @@ package ladder.dto.response;
 import ladder.domain.Ladder;
 import ladder.domain.player.Player;
 import ladder.domain.Prize;
-
 import java.util.Iterator;
 import java.util.Map;
 

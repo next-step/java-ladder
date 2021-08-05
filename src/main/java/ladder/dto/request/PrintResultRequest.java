@@ -3,7 +3,6 @@ package ladder.dto.request;
 import ladder.domain.Ladder;
 import ladder.domain.player.Players;
 import ladder.domain.Prize;
-
 import java.util.List;
 
 public class PrintResultRequest {

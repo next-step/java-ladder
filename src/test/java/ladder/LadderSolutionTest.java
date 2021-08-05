@@ -1,16 +1,13 @@
 package ladder;
 
-import ladder.core.LadderLineGenerator;
 import ladder.domain.line.BasicLadderLineGenerator;
 import ladder.domain.point.FakeDirectionGenerator;
 import ladder.domain.view.FakeInputView;
 import ladder.factory.FakeGeneratorFactoryBean;
-import ladder.factory.GeneratorFactoryBean;
 import ladder.view.DosResultView;
 import ladder.view.InputView;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -32,6 +29,7 @@ class LadderSolutionTest {
 
     @CsvSource(value = {
             "pobi,honux,crong,jk,jae,won,ㅈ,ㅃ,aa|5|꽝,5000,꽝,3000,꽝,3000,3000,꽝,3000|pobi,all",
+            "pobi,honux,crong,jk,jae,won,ㅈ,ㅃ,aa,TT|5|꽝,5000,꽝,3000,꽝,3000,3000,꽝,3000,끝|pobi,all"
     }, delimiter = '|')
     @ParameterizedTest
     @DisplayName("통합 테스트")

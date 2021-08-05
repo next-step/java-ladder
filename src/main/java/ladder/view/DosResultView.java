@@ -1,6 +1,5 @@
 package ladder.view;
 
-
 import ladder.core.LadderLine;
 import ladder.domain.Ladder;
 import ladder.domain.player.Player;
@@ -14,6 +13,19 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public final class DosResultView implements ResultView {
+    private void printResultTitle() {
+        System.out.println(Text.RESULT_TITLE);
+    }
+
+    private void printEmptyLine(int size) {
+        IntStream.range(0, size)
+                .forEach(i -> System.out.println());
+    }
+
+    private void printEmptyLine() {
+        printEmptyLine(1);
+    }
+
     @Override
     public void printResult(PrintResultRequest request) {
         printResultTitle();
@@ -80,19 +92,6 @@ public final class DosResultView implements ResultView {
                                 Text.PRIZE_ALL.format(iPlayer, ladderResult.prize(iPlayer))
                         )
         );
-    }
-
-    private void printResultTitle() {
-        System.out.println(Text.RESULT_TITLE);
-    }
-
-    private void printEmptyLine(int size) {
-        IntStream.range(0, size)
-                .forEach(i -> System.out.println());
-    }
-
-    private void printEmptyLine() {
-        printEmptyLine(1);
     }
 
     private enum Text {

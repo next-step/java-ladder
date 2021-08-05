@@ -4,7 +4,6 @@ import ladder.core.DirectionGenerator;
 import ladder.core.LadderLineGenerator;
 import ladder.domain.line.BasicLadderLineGenerator;
 import ladder.domain.point.UnconnectedRandomDirectionGenerator;
-
 import java.util.Objects;
 
 public class GeneratorFactoryBean {
@@ -14,7 +13,7 @@ public class GeneratorFactoryBean {
         return InnerLazyClass.instance;
     }
 
-    public synchronized static void setInstance(GeneratorFactoryBean ladderFactoryBean) {
+    public static void setInstance(GeneratorFactoryBean ladderFactoryBean) {
         if (Objects.isNull(ladderFactoryBean))
             throw new NullPointerException();
 

@@ -13,7 +13,7 @@ public class FakeDirectionGenerator implements DirectionGenerator {
             return Direction.of(DirectionValue.LEFT);
         }
         if (current.isLeft()) {
-            return Direction.of(DirectionValue.EMPTY);
+            return Direction.of(DirectionValue.RIGHT);
         }
 
         throw new RuntimeException("DirectionValue 검사가 제대로 이루지지 않았습니다.");
