@@ -1,4 +1,4 @@
-package nextstep.ladder;
+package nextstep.ladder.exception;
 
 public class InputNullException extends IllegalArgumentException{
     public InputNullException() {
