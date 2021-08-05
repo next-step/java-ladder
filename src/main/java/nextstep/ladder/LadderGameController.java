@@ -7,6 +7,7 @@ import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 public class LadderGameController {
     public static void main(String[] args) {
@@ -17,7 +18,7 @@ public class LadderGameController {
         LadderGame ladderGame = makeLadderGame(playerNames, gameResults, ladderHeight);
         printLadderResult(ladderGame);
 
-        LadderPlayerGameResult gameResult = playLadderGame(ladderGame);
+        LadderPlayerGameResult gameResult = ladderGame.play();
         printGameResult(gameResult);
     }
 
@@ -30,14 +31,11 @@ public class LadderGameController {
         ResultView.printLadderResult(ladderGame.resultLadderFigure());
     }
 
-    private static LadderPlayerGameResult playLadderGame(LadderGame ladderGame) {
-        return ladderGame.play();
-    }
-
     private static void printGameResult(LadderPlayerGameResult gameResult) {
-        String player;
-        while (!(player = InputView.inputGameResultOfPlayer()).isEmpty()) {
+        String player = InputView.inputGameResultOfPlayer();
+        while (!player.isEmpty()) {
             ResultView.printPlayerGameResult(player, gameResult);
+            player = InputView.inputGameResultOfPlayer();
         }
     }
 

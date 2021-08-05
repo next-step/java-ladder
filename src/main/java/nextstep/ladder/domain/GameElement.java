@@ -50,12 +50,12 @@ public class GameElement {
         return players.count();
     }
 
-    public String getPlayerNameAt(PlayerPosition startPosition) {
-        return players.getNameAt(startPosition);
+    public String getPlayerNameAt(PlayerPosition position) {
+        return players.getNameAt(position);
     }
 
-    public String getResultAt(PlayerPosition endPosition) {
-        return gameResults.getResultAt(endPosition);
+    public String getResultAt(PlayerPosition position) {
+        return gameResults.getResultAt(position);
     }
 
 }
