@@ -56,14 +56,6 @@ public class LadderGameInfo {
         return players.size();
     }
 
-    public Players getPlayers() {
-        return gameElement.getPlayers();
-    }
-
-    public GameResults getGameResults() {
-        return gameElement.getGameResults();
-    }
-
     public GameElement getGameElement() {
         return gameElement;
     }
