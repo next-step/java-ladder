@@ -2,7 +2,7 @@ package ladder.domain.point;
 
 import ladder.core.DirectionGenerator;
 
-import java.util.Random;
+import java.util.*;
 
 import static ladder.domain.point.DirectionValue.*;
 
@@ -11,17 +11,9 @@ public class UnconnectedRandomDirectionGenerator implements DirectionGenerator {
 
     @Override
     public Direction next(final Direction current) {
-        if (current.isRight()) { // 오른쪽으로 열린 줄을 닫아준다.
-            return Direction.of(LEFT);
-        }
-        if (current.isLeft()) { // 이어지지 않게 한다.
-            return Direction.of(EMPTY);
-        }
-
-        // EMPTY 이거나, 오른쪽으로 열거나
-        DirectionValue directionValue =
-                random.nextBoolean() ? EMPTY : RIGHT;
-        return Direction.of(directionValue);
+        return NextTemplate.of(current)
+                .orElseThrow(NullPointerException::new)
+                .next();
     }
 
     @Override
@@ -36,5 +28,41 @@ public class UnconnectedRandomDirectionGenerator implements DirectionGenerator {
         return Direction.of(
                 current.isRight() ? LEFT : EMPTY
         );
+    }
+
+    private enum NextTemplate {
+        LEFT(Direction.of(DirectionValue.LEFT),
+                Collections.singletonList(Direction.of(DirectionValue.EMPTY))
+        ),
+        RIGHT(Direction.of(DirectionValue.RIGHT),
+                Collections.singletonList(Direction.of(DirectionValue.LEFT))
+        ),
+        EMPTY(Direction.of(DirectionValue.EMPTY),
+                Arrays.asList(Direction.of(DirectionValue.EMPTY), Direction.of(DirectionValue.LEFT), Direction.of(DirectionValue.RIGHT))
+        );
+
+        private static final Random random = new Random();
+
+        private final Direction matchesDirection;
+        private final List<Direction> data;
+
+        NextTemplate(final Direction matchesDirection, final List<Direction> data) {
+            this.matchesDirection = matchesDirection;
+            this.data = data;
+        }
+
+        public Direction next() {
+            return data.get(
+                    random.nextInt(data.size()
+                    )
+            );
+        }
+
+        private static Optional<NextTemplate> of(Direction direction) {
+            return Arrays.stream(values())
+                    .filter(iNextTemplate ->
+                            iNextTemplate.matchesDirection.equals(direction)
+                    ).findFirst();
+        }
     }
 }

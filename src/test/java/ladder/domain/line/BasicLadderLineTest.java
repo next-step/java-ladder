@@ -2,11 +2,6 @@ package ladder.domain.line;
 
 import ladder.core.LadderLine;
 import ladder.core.LadderLineGenerator;
-import ladder.domain.point.FakeDirectionGenerator;
-import ladder.domain.line.BasicLadderLine;
-import ladder.domain.line.BasicLadderLineGenerator;
-import ladder.factory.FakeGeneratorFactoryBean;
-import ladder.factory.GeneratorFactoryBean;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -20,13 +15,7 @@ public class BasicLadderLineTest {
 
     @BeforeAll
     public static void setUp() {
-        // RIGHT-LEFT-EMPTY 순으로 반복해서 생성해주는 생성기로 교체
-        new FakeGeneratorFactoryBean(
-                new FakeDirectionGenerator(),
-                new BasicLadderLineGenerator()
-        ).changeInstance();
-
-        ladderLineGenerator = GeneratorFactoryBean.getInstance().ladderLineGenerator();
+        ladderLineGenerator = new BasicLadderLineGenerator();
     }
 
     @ValueSource(ints = {

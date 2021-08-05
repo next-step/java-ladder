@@ -20,11 +20,12 @@ public class UnconnectedRandomDirectionGeneratorTest {
     }
 
     @Test
-    @DisplayName("fist()는 isEmpty || isRight True")
+    @DisplayName("first()는 isEmpty || isRight True")
     public void firstTest() {
-        Direction direction = generator.first();
-        assertThat(direction.isEmpty() || direction.isRight())
-                .isTrue();
+        IntStream.rangeClosed(0, 1000).forEach(i -> {
+            Direction direction = generator.first();
+            assertThat(direction.isEmpty() || direction.isRight()).isTrue();
+        });
     }
 
     @Test
@@ -43,31 +44,27 @@ public class UnconnectedRandomDirectionGeneratorTest {
                 .isTrue();
     }
 
-    @DisplayName("오른쪽으로 열었으면 바로 다음 포인트에서 왼쪽으로 닫아야한다.")
+    @DisplayName("오른쪽으로 열었으면 다음에 왼쪽이 나와야한다.")
     @Test
     public void rightNextClosedTest() {
-        assertThat(
+        IntStream.rangeClosed(0, 1000).forEach(i -> assertThat(
                 generator.next(
                         Direction.of(RIGHT)
                 )
-        ).isEqualTo(
-                Direction.of(LEFT)
-        );
+        ).isEqualTo(Direction.of(LEFT)));
     }
 
-    @DisplayName("LEFT의 다음은 EMPTY만 올 수 있다.")
+    @DisplayName("왼쪽으로 닫았으면 무조건 EMPTY가 나와야한다.")
     @Test
     public void leftNextTest() {
-        IntStream.rangeClosed(0, 1000)
-                .mapToObj(i -> generator.next(Direction.of(LEFT)))
-                .map(Direction::isEmpty)
-                .distinct()
-                .forEach(isEmpty ->
-                        assertThat(isEmpty).isTrue()
-                );
+        IntStream.rangeClosed(0, 1000).forEach(i -> assertThat(
+                generator.next(
+                        Direction.of(LEFT)
+                )
+        ).isEqualTo(Direction.of(EMPTY)));
     }
 
-    @DisplayName("EMPTY의 다음에는 RIGHT나 EMPTY만 올 수 있다.")
+    @DisplayName("EMPTY의 다음에는 모두 올 수 있다.")
     @Test
     public void emptyNextTest() {
         assertThat(
@@ -78,6 +75,6 @@ public class UnconnectedRandomDirectionGeneratorTest {
                     .limit(1000)
                     .distinct()
                     .count()
-        ).isEqualTo(2);
+        ).isEqualTo(3);
     }
 }

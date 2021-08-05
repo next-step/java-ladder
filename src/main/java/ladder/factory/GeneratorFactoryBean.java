@@ -14,7 +14,7 @@ public class GeneratorFactoryBean {
         return InnerLazyClass.instance;
     }
 
-    public static void setInstance(GeneratorFactoryBean ladderFactoryBean) {
+    public synchronized static void setInstance(GeneratorFactoryBean ladderFactoryBean) {
         if (Objects.isNull(ladderFactoryBean))
             throw new NullPointerException();
 
@@ -30,8 +30,9 @@ public class GeneratorFactoryBean {
     }
 
     private static class InnerLazyClass {
+        private static GeneratorFactoryBean instance = new GeneratorFactoryBean();
+
         private static final DirectionGenerator DIRECTION_GENERATOR = new UnconnectedRandomDirectionGenerator();
         private static final LadderLineGenerator LADDER_LINE_GENERATOR = new BasicLadderLineGenerator();
-        private static GeneratorFactoryBean instance = new GeneratorFactoryBean();
     }
 }

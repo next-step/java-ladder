@@ -26,13 +26,21 @@ public final class LadderPoint {
     }
 
     public int move(final int index) {
-        if (direction.isLeft()) {
+        if (isLeft()) {
             return index - 1;
         }
-        if (direction.isRight()) {
+        if (isRight()) {
             return index + 1;
         }
         return index;
+    }
+
+    public boolean isLeft() {
+        return direction.isLeft();
+    }
+
+    public boolean isRight() {
+        return direction.isRight();
     }
 
     public boolean checkIndex(final int index) {

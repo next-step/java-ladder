@@ -3,6 +3,7 @@ package ladder.domain;
 import ladder.domain.point.FakeDirectionGenerator;
 import ladder.domain.line.BasicLadderLineGenerator;
 import ladder.factory.FakeGeneratorFactoryBean;
+import ladder.factory.GeneratorFactoryBean;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -28,7 +29,8 @@ public class LadderTest {
         int pointSize = 6;
 
         Ladder ladder = Ladder.generate(lineSize, pointSize);
-        assertThat(ladder.move(index))
+        int expert = ladder.move(index);
+        assertThat(expert)
                 .isEqualTo(correctIndex);
     }
 }
