@@ -1,38 +1,26 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.LadderName;
-import nextstep.ladder.Line;
-
-import java.util.Random;
+import nextstep.ladder.domain.LadderLineStrategy;
+import nextstep.ladder.domain.LadderNames;
+import nextstep.ladder.domain.Lines;
 
 public class ResultView {
-    private static final Random random = new Random();
-    private static final String LINE = "-----|";
-    private static final String NONE_LINE = "     |";
-    private static final int DIVIDE_NUMBER = 2;
-    private static final int DO_NOT_MAKE_ZERO = 1;
-
-
-    public void print(LadderName ladderName, int maxLadderHeight) {
-        printLadderName(ladderName);
-        println(ladderName, maxLadderHeight);
+    public void print(LadderNames ladderNames, int maxLadderHeight) {
+        printLadderName(ladderNames);
+        printLadderLines(ladderNames, maxLadderHeight);
     }
 
-    public void println(LadderName ladderName, int maxLadderHeight) {
+    public void printLadderLines(LadderNames ladderNames, int maxLadderHeight) {
         for(int i = 0; i < maxLadderHeight; i++) {
-            System.out.println(new Line(ladderName.size(), () -> random.nextInt(DIVIDE_NUMBER) + DO_NOT_MAKE_ZERO));
+            printLines(new Lines(ladderNames.size(), new LadderLineStrategy()));
         }
     }
 
-    public void printLadderName(LadderName ladderName) {
-        System.out.println(ladderName.toString().replaceAll("\\[|\\]", "").replaceAll(",", ""));
+    private void printLines(Lines lines) {
+        System.out.println(lines.getLines().toString().replaceAll("\\[|\\]", "").replaceAll(", ", ""));
     }
 
-    public static String addNoneLine() {
-        return NONE_LINE;
-    }
-
-    public static String addLine() {
-        return LINE;
+    public void printLadderName(LadderNames ladderNames) {
+        System.out.println(ladderNames.toString().replaceAll("\\[|\\]", "").replaceAll(",", ""));
     }
 }

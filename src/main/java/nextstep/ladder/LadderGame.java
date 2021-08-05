@@ -1,5 +1,6 @@
 package nextstep.ladder;
 
+import nextstep.ladder.domain.LadderNames;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
