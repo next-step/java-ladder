@@ -32,10 +32,15 @@ public class LadderGameController {
 
     private static void printGameResult(LadderPlayerGameResult gameResult) {
         String player = InputView.inputGameResultOfPlayer();
-        while (!player.isEmpty()) {
+
+        while (isGameRunning(player)) {
             ResultView.printPlayerGameResult(player, gameResult);
             player = InputView.inputGameResultOfPlayer();
         }
+    }
+
+    private static boolean isGameRunning(String player) {
+        return !player.isEmpty();
     }
 
 }
