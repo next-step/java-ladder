@@ -1,4 +1,6 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
+
+import nextstep.ladder.exception.InputNullException;
 
 import java.util.List;
 import java.util.Objects;

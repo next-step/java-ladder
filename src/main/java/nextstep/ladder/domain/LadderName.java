@@ -1,4 +1,6 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
+
+import nextstep.ladder.exception.StringLengthException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,7 +30,6 @@ public class LadderName {
         if(name.length() < LETTER_LIMIT) {
             name = fitLength(SPACE.concat(name));
         }
-        System.out.println(name.length());
 
         return name;
     }

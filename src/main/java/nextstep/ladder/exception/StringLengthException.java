@@ -1,4 +1,4 @@
-package nextstep.ladder;
+package nextstep.ladder.exception;
 
 public class StringLengthException extends IllegalArgumentException {
     private static final int LETTER_LIMIT = 5;
