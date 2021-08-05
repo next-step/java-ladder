@@ -9,7 +9,7 @@ import java.util.function.Function;
 public enum Line {
     LEFT(PlayerPosition::moveLeft),
     RIGHT(PlayerPosition::moveRight),
-    NONE(position -> position);
+    STAY(position -> position);
 
     private final Function<PlayerPosition, PlayerPosition> move;
 
@@ -24,7 +24,7 @@ public enum Line {
             return RIGHT;
         }
 
-        return NONE;
+        return STAY;
     }
 
     public Line makeNext(LineCreateStrategy lineCreateStrategy) {
@@ -40,7 +40,7 @@ public enum Line {
             return LEFT;
         }
 
-        return NONE;
+        return STAY;
     }
 
     public boolean isRight() {
