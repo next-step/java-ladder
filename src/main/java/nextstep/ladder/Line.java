@@ -1,39 +1,59 @@
 package nextstep.ladder;
 
+import nextstep.ladder.view.ResultView;
+
+import java.util.Objects;
 import java.util.Random;
 
-//TODO: 해결
 public class Line {
     private static final Random random = new Random();
-    private static final String LINE = "-----|";
-    private static final String NONE_LINE = "     |";
 
+    private final RandomNum randomNum;
 
-    private static String lines;
+    private String lines;
 
-    public static String drawLine(int maxNum) {
+    public Line(int maxNum, RandomNum randomNum) {
+        this.randomNum = randomNum;
+        this.lines = drawLine(maxNum);
+    }
+
+    private String drawLine(int maxNum) {
         lines = "    |";
 
         for (int i = 1; i < maxNum; i++) {
-            oddOrEven(random.nextInt(2) + 1);
+            int randomNumber = randomNum.generateRandomNumber();
+            oddOrEven(() -> randomNumber % 2 == 0);
         }
 
         return lines;
     }
 
-    private static void oddOrEven(int number) {
-        if (number % 2 == 0) {
-            previousCheck();
-            return;
+    private String oddOrEven(AddLines addLines) {
+        if (addLines.draw()) {
+            return previousCheck(() -> lines.charAt(lines.length() - 2) == '-');
         }
-        lines += NONE_LINE;
+        return lines += ResultView.addNoneLine();
     }
 
-    private static void previousCheck() {
-        if (lines.charAt(lines.length() - 2) == '-') {
-            lines += NONE_LINE;
-            return;
+    private String previousCheck(AddLines addLines) {
+
+        if (addLines.draw()) {
+            return lines += ResultView.addNoneLine();
         }
-        lines += LINE;
+        return lines += ResultView.addLine();
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Line line = (Line) o;
+        return Objects.equals(lines, line.lines);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(lines);
     }
 }

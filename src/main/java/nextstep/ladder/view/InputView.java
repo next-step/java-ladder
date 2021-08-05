@@ -1,7 +1,5 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.Validation;
-
 import java.util.Scanner;
 
 public class InputView {
@@ -9,7 +7,7 @@ public class InputView {
 
     public String initPerson() {
         System.out.println("참여할 사람 이름을 입력하세요.");
-        return Validation.inputValidation(sc.nextLine());
+        return sc.nextLine();
     }
 
     public int maxLadderHeight() {
