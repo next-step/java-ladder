@@ -1,8 +1,9 @@
 package ladder.exception;
 
 public class OutOfLengthException extends RuntimeException {
+    private static final String DEFAULT_MESSAGE = "유효한 문자열의 길이가 아닙니다.";
     public OutOfLengthException() {
-        super();
+        super(DEFAULT_MESSAGE);
     }
 
     public OutOfLengthException(String message) {

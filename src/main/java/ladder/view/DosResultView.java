@@ -1,13 +1,18 @@
 package ladder.view;
 
 import ladder.domain.*;
+import ladder.dto.response.LadderResult;
+
+import java.util.List;
+import java.util.stream.IntStream;
 
 public class DosResultView implements ResultView {
     @Override
-    public void printResult(Players players, Ladder ladder) {
-        System.out.println(Text.RESULT_TITLE);
+    public void printResult(LadderResult ladderResult, Players players) {
+        printResultTitle();
+
         printPlayers(players);
-        printLadder(ladder);
+        printLadder(ladderResult.ladder());
     }
 
     private void printPlayers(Players players) {
@@ -19,10 +24,10 @@ public class DosResultView implements ResultView {
 
     private void printLadder(Ladder ladder) {
         ladder.forEach(this::printLadderLine);
+        printLadderPrizes(ladder.prizes());
     }
 
     private void printLadderLine(LadderLine ladderLine) {
-        System.out.print(Text.EMPTY_ROPE);
         ladderLine.forEach(this::printRope);
 
         printEmptyLine();
@@ -36,20 +41,60 @@ public class DosResultView implements ResultView {
         return rope.isPresent() ? Text.PRESENT_ROPE : Text.EMPTY_ROPE;
     }
 
+    private void printLadderPrizes(List<Prize> prizes) {
+        prizes.forEach(this::printLadderPrize);
+        printEmptyLine(2);
+    }
+
+    private void printLadderPrize(Prize prize) {
+        System.out.print(Text.PRIZE.format(prize));
+    }
+
     @Override
     public void printException(Exception e) {
         System.out.println(e.getMessage());
     }
 
+    @Override
+    public void printPrize(LadderResult ladderResult, Player player) {
+        printResultTitle();
+
+        System.out.println(ladderResult.prize(player));
+        printEmptyLine();
+    }
+
+    @Override
+    public void printPrizeAll(LadderResult ladderResult, Players players) {
+        printResultTitle();
+
+        players.forEach(
+                iPlayer ->
+                        System.out.println(
+                                Text.PRIZE_ALL.format(iPlayer, ladderResult.prize(iPlayer))
+                        )
+        );
+    }
+
+    private void printResultTitle() {
+        System.out.println(Text.RESULT_TITLE);
+    }
+
+    private void printEmptyLine(int size) {
+        IntStream.range(0, size)
+                .forEach(i -> System.out.println());
+    }
+
     private void printEmptyLine() {
-        System.out.println();
+        printEmptyLine(1);
     }
 
     private enum Text {
         RESULT_TITLE("실행결과\n"),
         PLAYER("%5s "),
+        PRIZE("%-5s "),
         PRESENT_ROPE("-----|"),
-        EMPTY_ROPE("     |");
+        EMPTY_ROPE("     |"),
+        PRIZE_ALL("%s : %s");
 
         private final String str;
 

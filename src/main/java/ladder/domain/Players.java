@@ -2,10 +2,7 @@ package ladder.domain;
 
 import ladder.exception.DuplicateKeyException;
 
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class Players implements Iterable<Player> {
     private final List<Player> players;
@@ -20,6 +17,16 @@ public class Players implements Iterable<Player> {
         if (players.size() != new HashSet<>(players).size()) {
             throw new DuplicateKeyException("중복된 이름이 존재 합니다.");
         }
+    }
+
+    public Player get(int index) {
+        return this.players.get(index);
+    }
+
+    public Optional<Player> findByName(Name name) {
+        return players.stream()
+                .filter(iPlayer -> iPlayer.checkName(name))
+                .findFirst();
     }
 
     @Override

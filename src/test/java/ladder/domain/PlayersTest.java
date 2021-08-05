@@ -2,6 +2,7 @@ package ladder.domain;
 
 import ladder.exception.DuplicateKeyException;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -9,12 +10,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.assertj.core.api.Assertions.assertThatCode;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 class PlayersTest {
     private List<Player> nameToPlayerList(String names) {
         return Arrays.stream(names.split(","))
+                .map(Name::new)
                 .map(Player::new)
                 .collect(Collectors.toList());
     }
@@ -39,5 +40,18 @@ class PlayersTest {
         assertThatThrownBy(() ->
                 new Players(nameToPlayerList(names))
         ).isInstanceOf(DuplicateKeyException.class);
+    }
+
+    @DisplayName("이름으로 찾기 테스트")
+    @Test
+    public void findByNameTest() {
+        assertThat(
+            new Players(
+                    Arrays.asList(
+                            new Player(new Name("pp")),
+                            new Player(new Name("pq"))
+                    )
+            ).findByName(new Name("pp"))
+        ).isPresent();
     }
 }
