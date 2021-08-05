@@ -25,7 +25,7 @@ class PlayersTest {
     void player_move() {
         Players players = Players.of("pobi,honux,crong,jk");
         Ladder ladder = Ladder.of(LadderBound.of(players.count() - 1, 5), new AlwaysAddLadderStrategy());
-        players.play(ladder);
+        players.getPlayers().forEach(ladder::move);
 
         List<Player> playersList = players.getPlayers();
 

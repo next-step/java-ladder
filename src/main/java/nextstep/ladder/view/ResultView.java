@@ -19,11 +19,16 @@ public class ResultView {
 
     public static void printLadder(LadderPrizes ladderPrizes, Ladder ladder) {
         Players players = ladderPrizes.getPlayers();
-        players.play(ladder);
+        play(players, ladder);
         System.out.println("사다리 결과");
         printPlayerName(players);
         printLadder(ladder);
         printPrize(ladderPrizes.getPrizes());
+    }
+
+    public static void play(Players players, Ladder ladder) {
+        players.getPlayers()
+                .forEach(ladder::move);
     }
 
     public static void printPlayerResult(LadderPrizes ladderPrizes) {

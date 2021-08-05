@@ -1,7 +1,6 @@
 package nextstep.ladder.player;
 
 import nextstep.ladder.exception.NotFoundPlayerNameException;
-import nextstep.ladder.ladder.Ladder;
 import nextstep.ladder.util.StringUtil;
 
 import java.util.Collections;
@@ -38,10 +37,6 @@ public class Players {
 
     public List<Player> getPlayers() {
         return Collections.unmodifiableList(players);
-    }
-
-    public void play(Ladder ladder) {
-        players.forEach(ladder::move);
     }
 
     public int count() {
