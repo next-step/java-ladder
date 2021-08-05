@@ -23,11 +23,21 @@ public final class Point {
         return newLinkPoint(direction.last());
     }
 
-    private Point newLinkPoint(Direction direction) {
+    private Point newLinkPoint(final Direction direction) {
         return new Point(index + 1, direction);
     }
 
-    public boolean checkIndex(int index) {
+    public int move(final int index) {
+        if (direction.isLeft()) {
+            return index - 1;
+        }
+        if (direction.isRight()) {
+            return index + 1;
+        }
+        return index;
+    }
+
+    public boolean checkIndex(final int index) {
         return this.index == index;
     }
 }

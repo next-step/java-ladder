@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 import static ladder.domain.direction.DirectionValue.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
-class UnconnectedRandomDirectionGeneratorTest {
+public class UnconnectedRandomDirectionGeneratorTest {
     private static DirectionGenerator generator;
 
     @BeforeAll

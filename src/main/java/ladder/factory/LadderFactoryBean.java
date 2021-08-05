@@ -5,14 +5,14 @@ import ladder.domain.direction.UnconnectedRandomDirectionGenerator;
 
 import java.util.Objects;
 
-public final class LadderFactoryBean {
-    private LadderFactoryBean() {}
+public class LadderFactoryBean {
+    protected LadderFactoryBean() {}
 
     public static LadderFactoryBean getInstance() {
         return InnerLazyClass.instance;
     }
 
-    public void setInstance(LadderFactoryBean ladderFactoryBean) {
+    public static void setInstance(LadderFactoryBean ladderFactoryBean) {
         if (Objects.isNull(ladderFactoryBean))
             throw new NullPointerException();
 
