@@ -30,11 +30,9 @@ public class User {
         return this.position;
     }
 
-    public void move(String direction){
-        this.position += Direction.valueOf(direction).number();
+    public int position(){
+        return this.position;
     }
-
-
 
     @Override
     public boolean equals(Object o) {

@@ -33,11 +33,11 @@ public class Line {
     public int findRoute(int startPosition) {
         int movablePosition = startPosition;
 
-        if (isInstalledLadder(startPosition - 1)) {
+        if (startPosition - 1 >= 0 && isInstalledLadder(startPosition - 1)) {
             movablePosition = moveLeft(movablePosition);
         }
 
-        if (isInstalledLadder(startPosition + 1)) {
+        if (startPosition + 1 <= maxCountofLadder && isInstalledLadder(startPosition + 1)) {
             movablePosition = moveRight(movablePosition);
         }
 
@@ -45,16 +45,17 @@ public class Line {
     }
 
     private int moveLeft(int movablePosition) {
-        while (movablePosition > 0 && isInstalledLadder(movablePosition--)) {
 
+        while (isInstalledLadder(movablePosition - 1)) {
+            movablePosition--;
         }
 
         return movablePosition;
     }
 
     private int moveRight(int movablePosition) {
-        while (movablePosition > 0 && isInstalledLadder(movablePosition++)) {
-
+        while (isInstalledLadder(movablePosition + 1)) {
+            movablePosition++;
         }
 
         return movablePosition;
@@ -62,7 +63,7 @@ public class Line {
 
 
     private boolean isInstalledLadder(int position) {
-        if (position < 0 || position >= maxCountofLadder) {
+        if (position < 0 || position > maxCountofLadder - 1) {
             return false;
         }
         return this.points.get(position);

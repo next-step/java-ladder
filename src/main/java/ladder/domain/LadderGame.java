@@ -12,6 +12,12 @@ public class LadderGame {
 
     public Users start(){
 
+        User newUser;
+        for(User user : this.users.userList()){
+            newUser = new User(user.name(),lines.calulateGameResult(user.position()));
+        }
+
+
         return null;
     }
 

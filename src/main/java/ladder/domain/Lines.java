@@ -11,9 +11,14 @@ public class Lines implements Iterable<Line> {
         this.lineList = lineList;
     }
 
-//    public boolean checkGoUser(int row,int position){
-//        return this.line(row).isGoUser(position);
-//    }
+    public int calulateGameResult(int startPosition){
+        int resultPosition = startPosition;
+        for(Line line : this){
+            resultPosition = line.findRoute(resultPosition);
+        }
+
+        return resultPosition;
+    }
 
     private Line line(int row){
         return this.lineList.get(row);

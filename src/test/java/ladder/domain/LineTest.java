@@ -34,7 +34,9 @@ class LineTest {
         StringBuilder oneLadder = outputView.drawOneLine(line);
         System.out.println(oneLadder.toString());
 
-        int result = line.findRoute(2);
+        int startPosition = 0;
+        System.out.println("startPosition: " +startPosition);
+        int result = line.findRoute( startPosition);
         System.out.println(result);
 
 
