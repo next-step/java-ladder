@@ -1,4 +1,4 @@
-package ladder.domain.direction;
+package ladder.domain.point;
 
 public enum DirectionValue {
     LEFT, RIGHT, EMPTY

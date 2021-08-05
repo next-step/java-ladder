@@ -1,10 +1,10 @@
-package ladder.domain.direction;
+package ladder.domain.point;
 
 import ladder.core.DirectionGenerator;
 
 import java.util.Random;
 
-import static ladder.domain.direction.DirectionValue.*;
+import static ladder.domain.point.DirectionValue.*;
 
 public class UnconnectedRandomDirectionGenerator implements DirectionGenerator {
     private static final Random random = new Random();

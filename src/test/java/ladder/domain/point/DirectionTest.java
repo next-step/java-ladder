@@ -1,13 +1,7 @@
-package ladder.domain.direction;
+package ladder.domain.point;
 
-import ladder.domain.direction.Direction;
-import ladder.domain.direction.DirectionValue;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
-
-import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

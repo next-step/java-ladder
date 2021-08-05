@@ -1,4 +1,4 @@
-package ladder.domain.direction;
+package ladder.domain.point;
 
 import ladder.core.DirectionGenerator;
 import org.junit.jupiter.api.BeforeAll;
@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-import static ladder.domain.direction.DirectionValue.*;
+import static ladder.domain.point.DirectionValue.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class UnconnectedRandomDirectionGeneratorTest {

@@ -1,14 +1,14 @@
-package ladder.domain.direction;
+package ladder.domain.point;
 
 import ladder.core.DirectionGenerator;
-import ladder.factory.LadderFactoryBean;
+import ladder.factory.GeneratorFactoryBean;
 
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static ladder.domain.direction.DirectionValue.*;
+import static ladder.domain.point.DirectionValue.*;
 
 public final class Direction {
     private final DirectionValue value;
@@ -69,6 +69,6 @@ public final class Direction {
                                 iDirectionValue -> iDirectionValue, Direction::new
                         ));
 
-        private static final DirectionGenerator GENERATOR = LadderFactoryBean.getInstance().directionGenerator();
+        private static final DirectionGenerator GENERATOR = GeneratorFactoryBean.getInstance().directionGenerator();
     }
 }

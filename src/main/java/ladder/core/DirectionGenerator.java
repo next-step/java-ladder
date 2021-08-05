@@ -1,6 +1,6 @@
 package ladder.core;
 
-import ladder.domain.direction.Direction;
+import ladder.domain.point.Direction;
 
 public interface DirectionGenerator {
     Direction next(Direction current);
