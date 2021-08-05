@@ -10,15 +10,19 @@ import java.util.List;
 
 public class LadderGameController {
     public static void main(String[] args) {
-        List<String> playerNames = InputView.inputPlayers();
-        List<String> gameResults = InputView.inputGameResults();
-        int ladderHeight = InputView.inputLadderHeight();
-
-        LadderGame ladderGame = makeLadderGame(playerNames, gameResults, ladderHeight);
+        LadderGame ladderGame = createLadderGame();
         printLadderResult(ladderGame);
 
         LadderPlayerGameResult gameResult = ladderGame.play();
         printGameResult(gameResult);
+    }
+
+    private static LadderGame createLadderGame() {
+        List<String> playerNames = InputView.inputPlayers();
+        List<String> gameResults = InputView.inputGameResults();
+        int ladderHeight = InputView.inputLadderHeight();
+        LadderGame ladderGame = makeLadderGame(playerNames, gameResults, ladderHeight);
+        return ladderGame;
     }
 
     private static LadderGame makeLadderGame(List<String> playerNames, List<String> gameResults, int ladderHeight) {
