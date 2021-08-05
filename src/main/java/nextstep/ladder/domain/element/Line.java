@@ -1,13 +1,21 @@
 package nextstep.ladder.domain.element;
 
+import nextstep.ladder.domain.play.PlayerPosition;
 import nextstep.ladder.domain.strategy.LineCreateStrategy;
 
 import java.util.Objects;
+import java.util.function.Function;
 
 public enum Line {
-    LEFT,
-    RIGHT,
-    NONE;
+    LEFT(PlayerPosition::moveLeft),
+    RIGHT(PlayerPosition::moveRight),
+    NONE(position -> position);
+
+    private final Function<PlayerPosition, PlayerPosition> move;
+
+    Line(Function<PlayerPosition, PlayerPosition> move) {
+        this.move = move;
+    }
 
     public static Line make(LineCreateStrategy lineCreateStrategy) {
         validate(lineCreateStrategy);
@@ -37,6 +45,10 @@ public enum Line {
 
     public boolean isRight() {
         return this == RIGHT;
+    }
+
+    public PlayerPosition move(PlayerPosition position) {
+        return move.apply(position);
     }
 
     private static void validate(LineCreateStrategy lineCreateStrategy) {

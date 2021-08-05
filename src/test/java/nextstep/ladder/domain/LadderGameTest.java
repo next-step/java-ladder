@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.domain.dto.LadderPlayerGameResult;
 import nextstep.ladder.domain.info.LadderGameInfo;
 import nextstep.ladder.domain.info.LadderInfo;
 import nextstep.ladder.domain.info.LadderSize;
@@ -20,8 +21,9 @@ public class LadderGameTest {
     public void make_LadderGame_using_ladderinfo() throws Exception {
         //arrange
         List<String> playerNames = Arrays.asList("a", "bb", "ccc");
+        List<String> gameResults = Arrays.asList("11", "222");
         LadderInfo ladderInfo = LadderInfo.of(LadderSize.of(1, 1), CREATE_STRATEGY);
-        LadderGameInfo ladderGameInfo = LadderGameInfo.of(playerNames, ladderInfo);
+        LadderGameInfo ladderGameInfo = LadderGameInfo.of(playerNames, gameResults, ladderInfo);
 
         //act
         LadderGame ladderGame = LadderGame.of(ladderGameInfo);
@@ -38,6 +40,23 @@ public class LadderGameTest {
 
         //act, assert
         assertThatIllegalArgumentException().isThrownBy(() -> LadderGame.of(ladderGameInfo));
+    }
+
+    @DisplayName("사다리 게임을 진행하고 LadderPlayerGameResult를 반환받는다")
+    @Test
+    public void should_play_ladder_game() throws Exception {
+        //arrange
+        List<String> playerNames = Arrays.asList("a", "bb", "ccc");
+        List<String> gameResults = Arrays.asList("11", "222");
+        LadderInfo ladderInfo = LadderInfo.of(LadderSize.of(1, 1), CREATE_STRATEGY);
+        LadderGameInfo ladderGameInfo = LadderGameInfo.of(playerNames, gameResults, ladderInfo);
+        LadderGame ladderGame = LadderGame.of(ladderGameInfo);
+
+        //act
+        LadderPlayerGameResult result = ladderGame.play();
+
+        //assert
+        assertThat(result.getPlayers()).containsAll(Arrays.asList("a", "bb", "ccc"));
     }
 
 }

@@ -3,6 +3,7 @@ package nextstep.ladder.domain.element;
 import nextstep.ladder.domain.dto.LadderFigure;
 import nextstep.ladder.domain.info.LadderInfo;
 import nextstep.ladder.domain.info.LadderSize;
+import nextstep.ladder.domain.play.PlayResult;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -11,6 +12,7 @@ import java.util.List;
 import static nextstep.ladder.fixture.Fixture.CREATE_STRATEGY;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 class LadderTest {
     @DisplayName("LadderInfo와 함께 Ladder 생성한다")
@@ -47,5 +49,20 @@ class LadderTest {
 
         //assert
         assertThat(ladderFigures.get(0).getLines()).contains(true, false);
+    }
+
+    @DisplayName("Ladder move움직임에대한 PlayResult를 반환한다 ")
+    @Test
+    public void should_return_play_result() throws Exception {
+        //arrange
+        LadderSize ladderSize = LadderSize.of(3, 5);
+        LadderInfo ladderInfo = LadderInfo.of(ladderSize, CREATE_STRATEGY);
+        Ladder ladder = Ladder.create(ladderInfo);
+
+        //act
+        PlayResult playResult = ladder.move();
+
+        //assert
+        assertThat(playResult).isInstanceOf(PlayResult.class);
     }
 }

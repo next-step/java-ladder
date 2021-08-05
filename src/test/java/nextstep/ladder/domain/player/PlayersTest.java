@@ -1,5 +1,6 @@
 package nextstep.ladder.domain.player;
 
+import nextstep.ladder.domain.play.PlayerPosition;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -39,5 +40,32 @@ class PlayersTest {
 
         //assert
         assertThat(names).containsExactly("a", "bb", "ccc");
+    }
+
+    @DisplayName("플레이어 count를 반환한다")
+    @Test
+    void should_return_players_count() {
+        //arrange
+        Players players = Players.of(Arrays.asList("a", "bb", "ccc"));
+
+        //act
+        int count = players.count();
+
+        //assert
+        assertThat(count).isEqualTo(3);
+    }
+
+    @DisplayName("플레이어 name을 position에 맞게 반환한다")
+    @Test
+    void should_return_players_name_at_position() {
+        //arrange
+        Players players = Players.of(Arrays.asList("a", "bb", "ccc"));
+        PlayerPosition playerPosition = PlayerPosition.of(0);
+
+        //act
+        String name = players.getNameAt(playerPosition);
+
+        //assert
+        assertThat(name).isEqualTo("a");
     }
 }

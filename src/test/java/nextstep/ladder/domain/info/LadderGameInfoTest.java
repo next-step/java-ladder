@@ -16,11 +16,12 @@ class LadderGameInfoTest {
     @Test
     public void make_LadderGameInfo_using_playernames_and_ladderinfo() throws Exception {
         //arrange
-        List<String> playerNames = Arrays.asList("aa","bbb");
+        List<String> playerNames = Arrays.asList("aa", "bbb");
+        List<String> gameResults = Arrays.asList("11", "222");
         LadderInfo ladderInfo = LadderInfo.of(LadderSize.of(1, 1), CREATE_STRATEGY);
 
         //act
-        LadderGameInfo ladderGameInfo = LadderGameInfo.of(playerNames, ladderInfo);
+        LadderGameInfo ladderGameInfo = LadderGameInfo.of(playerNames, gameResults, ladderInfo);
 
         //assert
         assertThat(ladderGameInfo).isInstanceOf(LadderGameInfo.class);
@@ -30,11 +31,12 @@ class LadderGameInfoTest {
     @Test
     public void make_LadderGameInfo_using_playernames_and_ladderheight() throws Exception {
         //arrange
-        List<String> playerNames = Arrays.asList("aa","bbb");
+        List<String> playerNames = Arrays.asList("aa", "bbb");
+        List<String> gameResults = Arrays.asList("11", "222");
         int ladderHeight = 1;
 
         //act
-        LadderGameInfo ladderGameInfo = LadderGameInfo.of(playerNames, ladderHeight);
+        LadderGameInfo ladderGameInfo = LadderGameInfo.of(playerNames, gameResults, ladderHeight);
 
         //assert
         assertThat(ladderGameInfo).isInstanceOf(LadderGameInfo.class);
@@ -45,20 +47,34 @@ class LadderGameInfoTest {
     public void throw_exception_when_players_null() throws Exception {
         //arrange
         List<String> playerNames = null;
+        List<String> gameResults = Arrays.asList("11", "222");
         LadderInfo ladderInfo = LadderInfo.of(LadderSize.of(1, 1), CREATE_STRATEGY);
 
         //act, assert
-        assertThatIllegalArgumentException().isThrownBy(() -> LadderGameInfo.of(playerNames, ladderInfo));
+        assertThatIllegalArgumentException().isThrownBy(() -> LadderGameInfo.of(playerNames, gameResults, ladderInfo));
+    }
+
+    @DisplayName("GameResults가 null이면 LadderGameInfo를 만들 수 없고 IllegalArgumentException을 던진다")
+    @Test
+    public void throw_exception_when_game_results_null() throws Exception {
+        //arrange
+        List<String> playerNames = Arrays.asList("aa", "bbb");
+        List<String> gameResults = null;
+        LadderInfo ladderInfo = LadderInfo.of(LadderSize.of(1, 1), CREATE_STRATEGY);
+
+        //act, assert
+        assertThatIllegalArgumentException().isThrownBy(() -> LadderGameInfo.of(playerNames, gameResults, ladderInfo));
     }
 
     @DisplayName("LadderInfo가 nul이면 LadderGameInfo를 만들 수 없고 IllegalArgumentException을 던진다")
     @Test
     public void throw_exception_when_ladderinfo_null() throws Exception {
         //arrange
-        List<String> playerNames = Arrays.asList("aa","bbb");
+        List<String> playerNames = Arrays.asList("aa", "bbb");
+        List<String> gameResults = Arrays.asList("11", "222");
         LadderInfo ladderInfo = null;
 
         //act, assert
-        assertThatIllegalArgumentException().isThrownBy(() -> LadderGameInfo.of(playerNames, ladderInfo));
+        assertThatIllegalArgumentException().isThrownBy(() -> LadderGameInfo.of(playerNames, gameResults, ladderInfo));
     }
 }

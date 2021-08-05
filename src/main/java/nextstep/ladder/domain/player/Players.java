@@ -1,5 +1,7 @@
 package nextstep.ladder.domain.player;
 
+import nextstep.ladder.domain.play.PlayerPosition;
+
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -26,6 +28,14 @@ public class Players {
         return players.stream()
                 .map(Player::getName)
                 .collect(Collectors.toList());
+    }
+
+    public int count() {
+        return players.size();
+    }
+
+    public String getNameAt(PlayerPosition position) {
+        return players.get(position.getValue()).getName();
     }
 
 }

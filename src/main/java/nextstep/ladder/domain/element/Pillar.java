@@ -1,5 +1,6 @@
 package nextstep.ladder.domain.element;
 
+import nextstep.ladder.domain.play.PlayerPosition;
 import nextstep.ladder.domain.strategy.LineCreateStrategy;
 
 public class Pillar {
@@ -24,6 +25,10 @@ public class Pillar {
 
     public boolean hasRightLine() {
         return line.isRight();
+    }
+
+    public PlayerPosition move(PlayerPosition position) {
+        return line.move(position);
     }
 
     @Override

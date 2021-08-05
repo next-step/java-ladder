@@ -1,6 +1,7 @@
 package nextstep.ladder.domain.element;
 
 import nextstep.ladder.domain.info.LadderInfo;
+import nextstep.ladder.domain.play.PlayerPosition;
 import nextstep.ladder.domain.strategy.LineCreateStrategyFactory;
 
 import java.util.ArrayList;
@@ -39,9 +40,17 @@ public class Plane {
                 .collect(Collectors.toList());
     }
 
+    public int width() {
+        return pillars.size();
+    }
+
+    public PlayerPosition move(PlayerPosition position) {
+        return pillars.get(position.getValue()).move(position);
+    }
+
     private void createPillars(LadderInfo ladderInfo) {
         IntStream.range(0, ladderInfo.getLadderWidth())
-                .forEach(idx-> pillars.add(createPillar(ladderInfo, idx)));
+                .forEach(idx -> pillars.add(createPillar(ladderInfo, idx)));
     }
 
     private Pillar createPillar(LadderInfo ladderInfo, int idx) {
