@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 class LineTest {
 
@@ -29,10 +30,11 @@ class LineTest {
     @Test
     void get_direction() {
         Line line = Line.of(3, () -> true);
-        System.out.println(line);
 
-        assertThat(line.findDirection(0)).isEqualTo(MoveType.RIGHT);
-        assertThat(line.findDirection(1)).isEqualTo(MoveType.LEFT);
-        assertThat(line.findDirection(2)).isEqualTo(MoveType.RIGHT);
+        assertAll(
+                () -> assertThat(line.findDirection(0)).isEqualTo(MoveType.RIGHT),
+                () -> assertThat(line.findDirection(1)).isEqualTo(MoveType.LEFT),
+                () -> assertThat(line.findDirection(2)).isEqualTo(MoveType.RIGHT)
+        );
     }
 }

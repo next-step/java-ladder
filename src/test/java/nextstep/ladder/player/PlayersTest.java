@@ -1,8 +1,8 @@
 package nextstep.ladder.player;
 
-import nextstep.ladder.factory.LadderFactory;
 import nextstep.ladder.ladder.Ladder;
 import nextstep.ladder.ladder.LadderBound;
+import nextstep.ladder.ladder.stub.AlwaysAddLadderStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +24,7 @@ class PlayersTest {
     @Test
     void player_move() {
         Players players = Players.of("pobi,honux,crong,jk");
-        Ladder ladder = Ladder.of(LadderBound.of(players.count() - 1, 5), LadderFactory.alwaysAddLadderStrategy());
+        Ladder ladder = Ladder.of(LadderBound.of(players.count() - 1, 5), new AlwaysAddLadderStrategy());
         players.play(ladder);
 
         List<Player> playersList = players.getPlayers();

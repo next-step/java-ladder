@@ -1,9 +1,9 @@
 package nextstep.ladder;
 
-import nextstep.ladder.factory.LadderFactory;
 import nextstep.ladder.ladder.Ladder;
 import nextstep.ladder.ladder.LadderBound;
 import nextstep.ladder.ladder.LadderPrizes;
+import nextstep.ladder.strategy.RandomLadderStrategy;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
@@ -12,7 +12,7 @@ public class App {
     public static void main(String[] args) {
         LadderPrizes ladderPrizes = getLadderPrizes();
         LadderBound ladderBound = getLadderBound(ladderPrizes.getPlayers().count());
-        Ladder ladder = Ladder.of(ladderBound, LadderFactory.randomLadderStrategy());
+        Ladder ladder = Ladder.of(ladderBound, new RandomLadderStrategy());
 
         ResultView.printLadder(ladderPrizes, ladder);
         ResultView.printPlayerResult(ladderPrizes);
