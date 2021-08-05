@@ -69,6 +69,6 @@ public final class Direction {
                                 iDirectionValue -> iDirectionValue, Direction::new
                         ));
 
-        private static final DirectionGenerator GENERATOR = LadderFactoryBean.directionGenerator();
+        private static final DirectionGenerator GENERATOR = LadderFactoryBean.getInstance().directionGenerator();
     }
 }
