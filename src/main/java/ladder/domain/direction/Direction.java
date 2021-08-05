@@ -25,8 +25,8 @@ public final class Direction {
         return InnerLazyClass.GENERATOR.first();
     }
 
-    public static Direction last(Direction current) {
-        return InnerLazyClass.GENERATOR.last(current);
+    public Direction last() {
+        return InnerLazyClass.GENERATOR.last(this);
     }
 
     public Direction next() {
