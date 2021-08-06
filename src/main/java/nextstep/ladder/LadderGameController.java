@@ -10,15 +10,19 @@ import java.util.List;
 
 public class LadderGameController {
     public static void main(String[] args) {
+        LadderGame ladderGame = createLadderGame();
+        printLadderResult(ladderGame);
+
+        LadderPlayerGameResult gameResult = ladderGame.play();
+        printGameResult(gameResult);
+    }
+
+    private static LadderGame createLadderGame() {
         List<String> playerNames = InputView.inputPlayers();
         List<String> gameResults = InputView.inputGameResults();
         int ladderHeight = InputView.inputLadderHeight();
-
         LadderGame ladderGame = makeLadderGame(playerNames, gameResults, ladderHeight);
-        printLadderResult(ladderGame);
-
-        LadderPlayerGameResult gameResult = playLadderGame(ladderGame);
-        printGameResult(gameResult);
+        return ladderGame;
     }
 
     private static LadderGame makeLadderGame(List<String> playerNames, List<String> gameResults, int ladderHeight) {
@@ -30,15 +34,17 @@ public class LadderGameController {
         ResultView.printLadderResult(ladderGame.resultLadderFigure());
     }
 
-    private static LadderPlayerGameResult playLadderGame(LadderGame ladderGame) {
-        return ladderGame.play();
+    private static void printGameResult(LadderPlayerGameResult gameResult) {
+        String player = InputView.inputGameResultOfPlayer();
+
+        while (isGameRunning(player)) {
+            ResultView.printPlayerGameResult(player, gameResult);
+            player = InputView.inputGameResultOfPlayer();
+        }
     }
 
-    private static void printGameResult(LadderPlayerGameResult gameResult) {
-        String player;
-        while (!(player = InputView.inputGameResultOfPlayer()).isEmpty()) {
-            ResultView.printPlayerGameResult(player, gameResult);
-        }
+    private static boolean isGameRunning(String player) {
+        return !player.isEmpty();
     }
 
 }

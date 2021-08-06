@@ -2,13 +2,13 @@ package nextstep.ladder.domain;
 
 import nextstep.ladder.domain.dto.LadderPlayerGameResult;
 import nextstep.ladder.domain.dto.LadderResult;
+import nextstep.ladder.domain.dto.PlayerRecord;
 import nextstep.ladder.domain.element.Ladder;
 import nextstep.ladder.domain.info.LadderGameInfo;
 import nextstep.ladder.domain.play.PlayResult;
 import nextstep.ladder.domain.play.PlayerPosition;
-import nextstep.ladder.domain.dto.PlayerRecord;
 
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.IntConsumer;
@@ -49,7 +49,7 @@ public class LadderGame {
     }
 
     private Map<String, PlayerRecord> makePlayerGameResult(PlayResult playResult) {
-        Map<String, PlayerRecord> playerGameResult = new LinkedHashMap<>();
+        Map<String, PlayerRecord> playerGameResult = new HashMap<>();
         IntStream.range(0, gameElement.getPlayerCount())
                 .forEach(makeResult(playerGameResult, playResult));
         return playerGameResult;

@@ -50,7 +50,7 @@ class LineTest {
         Line line = Line.make(lineCreateStrategy);
 
         //assert
-        assertThat(line).isEqualTo(Line.NONE);
+        assertThat(line).isEqualTo(Line.STAY);
     }
 
     @DisplayName("사다리의 가로Line 다음번생성(이전Line이있을경우)은 이전 Line이 Right일경우 LEFT를 반환해야한다")
@@ -89,7 +89,7 @@ class LineTest {
         Line line = prevLine.makeNext(() -> false);
 
         //assert
-        assertThat(line).isEqualTo(Line.NONE);
+        assertThat(line).isEqualTo(Line.STAY);
     }
 
     @DisplayName("사다리의 가로Line 마지막막생성(이전Line이있을경우)은 이전 Line이 Right 일경우 LEFT반환")
@@ -115,7 +115,7 @@ class LineTest {
         Line line = prevLine.makeEnd();
 
         //assert
-        assertThat(line).isEqualTo(Line.NONE);
+        assertThat(line).isEqualTo(Line.STAY);
     }
 
     @DisplayName("right Line일 경우 move 할 때 포지션이 1 더해진다")
