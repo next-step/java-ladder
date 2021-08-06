@@ -1,6 +1,5 @@
 package nextstep.ladder.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -8,24 +7,40 @@ public class Lines {
 
     private List<Line> lines;
 
-    public Lines(int maxNum, LineStrategy lineStrategy) {
-        this.lines = new ArrayList<>();
-        this.lines = drawLine(maxNum, lineStrategy);
+    public Lines(List<Line> lines, int maxNum, LineCreationStrategy lineCreationStrategy) {
+        this.lines = lines;
+        this.lines = drawLine(maxNum, lineCreationStrategy);
     }
 
-    private List<Line> drawLine(int maxNum, LineStrategy lineStrategy) {
-        lines.add(Line.INITLINE);
+    public static Lines of (List<Line> lines, int maxNum, LineCreationStrategy lineCreationStrategy) {
+        return new Lines(lines, maxNum, lineCreationStrategy);
+    }
+
+    private List<Line> drawLine(int maxNum, LineCreationStrategy lineCreationStrategy) {
 
         for (int i = 1; i < maxNum; i++) {
-            boolean isCreate = true;
-            if (lineStrategy.createLine()) {
-                previousCheck(new IsOrNoneAddLines());
-                isCreate = false;
-            }
-            isNotCreateLine(isCreate);
+            drawLine(lineCreationStrategy);
         }
 
         return lines;
+    }
+
+    private void drawLine(LineCreationStrategy lineCreationStrategy) {
+        boolean isCreate = true;
+        if (lineCreationStrategy.createLine()) {
+            previousCheck(new LadderLineCreationStrategy());
+            isCreate = false;
+        }
+        isNotCreateLine(isCreate);
+    }
+
+    private void previousCheck(LineCreationStrategy lineCreationStrategy) {
+
+        if (lineCreationStrategy.isOrNoneDrawLines(lines.get(lines.size() - 1))) {
+            lines.add(Line.NONELINE);
+            return;
+        }
+        lines.add(Line.ISLINE);
     }
 
     private void isNotCreateLine(boolean isCreate) {
@@ -34,14 +49,6 @@ public class Lines {
         }
     }
 
-    private void previousCheck(AddLines addLines) {
-
-        if (addLines.draw(lines)) {
-            lines.add(Line.NONELINE);
-            return;
-        }
-        lines.add(Line.ISLINE);
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -56,11 +63,7 @@ public class Lines {
         return Objects.hash(lines);
     }
 
-    public List<String> getLines() {
-        List<String> list = new ArrayList<>();
-        for(Line line : lines) {
-            list.add(line.getLine());
-        }
-        return list;
+    public List<Line> getLines() {
+        return lines;
     }
 }
