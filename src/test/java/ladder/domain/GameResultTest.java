@@ -16,15 +16,15 @@ class GameResultTest {
     public void gameResultTest(){
 
         List<String> result = Arrays.asList("꽝","100","200","300");
-        GameResult gameResult = new GameResult(result);
-
-        assertAll(
-                ()->  assertThat(gameResult.showResult(0)).isEqualTo("꽝"),
-                ()->  assertThat(gameResult.showResult(1)).isEqualTo("100"),
-                ()->  assertThat(gameResult.showResult(2)).isEqualTo("200"),
-                ()->  assertThat(gameResult.showResult(3)).isEqualTo("300")
-
-        );
+//        GameResult gameResult = new GameResult(result);
+//
+//        assertAll(
+//                ()->  assertThat(gameResult.showResult(0)).isEqualTo("꽝"),
+//                ()->  assertThat(gameResult.showResult(1)).isEqualTo("100"),
+//                ()->  assertThat(gameResult.showResult(2)).isEqualTo("200"),
+//                ()->  assertThat(gameResult.showResult(3)).isEqualTo("300")
+//
+//        );
 
 
     }

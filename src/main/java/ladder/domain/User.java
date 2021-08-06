@@ -26,10 +26,6 @@ public class User {
         return this.name.name();
     }
 
-    public int gameResult() {
-        return this.position;
-    }
-
     public int position(){
         return this.position;
     }

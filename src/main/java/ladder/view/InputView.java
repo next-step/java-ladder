@@ -21,4 +21,9 @@ public class InputView {
         return sc.nextLine().split(",");
     }
 
+    public String inputShowUserResult(){
+        System.out.println("결과를 보고 싶은 사람은?");
+        return sc.nextLine();
+    }
+
 }

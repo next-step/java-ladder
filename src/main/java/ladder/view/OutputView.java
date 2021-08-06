@@ -3,9 +3,11 @@ package ladder.view;
 
 import ladder.domain.Line;
 import ladder.domain.Lines;
+import ladder.domain.User;
 
 import java.util.Arrays;
 import java.util.List;
+
 
 public class OutputView {
     private static final String WIDTH_LADDER = "-----";
@@ -17,12 +19,8 @@ public class OutputView {
         Arrays.stream(userNames).forEach(userName -> System.out.printf("%6s", userName));
         System.out.println();
     }
-    public void printIndexParticipateInUsers(String[] userNames) {
-        for(int i=0; i<userNames.length;i++){
-            System.out.printf("%6s", i);
-        }
-        System.out.println();
-    }
+
+
 
 
     public void printLadder(Lines lines) {
@@ -47,7 +45,7 @@ public class OutputView {
         return sb;
     }
 
-    public void printResult(String[] inputResult){
+    public void printResult(String[] inputResult) {
         Arrays.stream(inputResult).forEach(resultName -> System.out.printf("%6s", resultName));
         System.out.println();
     }
@@ -67,6 +65,13 @@ public class OutputView {
         }
 
     }
+
+    public void printGameResult(List<User> userList) {
+        for (User user : userList) {
+            System.out.println(user.name() + " : " + user.position());
+        }
+    }
+
 
     private boolean isDrawHeightLadder(int position, boolean isLadder) {
         return isHeightLadder(position) && isLadder;

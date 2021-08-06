@@ -5,14 +5,14 @@ import java.util.List;
 
 public class GameResult {
 
-    private List<String> gameResults;
+    private String[] gameResults;
 
-    public GameResult(List<String> gameResults){
+    public GameResult(String[] gameResults) {
         this.gameResults = gameResults;
     }
 
-    public String showResult(int index){
-        return this.gameResults.get(index);
+    public String showResult(int index) {
+        return this.gameResults[index / 2];
     }
 
 

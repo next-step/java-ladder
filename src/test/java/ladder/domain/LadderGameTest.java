@@ -43,7 +43,7 @@ class LadderGameTest {
 
         users = ladderGame.start();
 
-        assertThat(users.findByName("tom").gameResult()).isEqualTo("꽝");
+        assertThat(users.findByName("tom").position()).isEqualTo("꽝");
 
     }
 
@@ -55,9 +55,9 @@ class LadderGameTest {
 
         users = ladderGame.start();
 
-        GameResult gameResult = new GameResult(Arrays.asList("꽝", "100", "200", "300"));
-        List<String> results = users.gameResults(gameResult);
-        assertThat(results).containsExactly("꽝", "100", "200", "300");
+//        GameResult gameResult = new GameResult(Arrays.asList("꽝", "100", "200", "300"));
+//        List<Integer> results = users.gameResults(gameResult);
+//        assertThat(results).containsExactly("꽝", "100", "200", "300");
 
     }
 

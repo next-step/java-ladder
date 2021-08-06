@@ -1,5 +1,8 @@
 package ladder.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LadderGame {
 
     private Users users;
@@ -10,15 +13,17 @@ public class LadderGame {
         this.lines = lines;
     }
 
-    public Users start(){
+    public Users start() {
 
-        User newUser;
-        for(User user : this.users.userList()){
-            newUser = new User(user.name(),lines.calulateGameResult(user.position()));
+        List<User> userResults = new ArrayList<>();
+
+        for (User user : this.users.userList()) {
+            int startPosition = lines.calulateGameResult(user.position());
+            User newUser = new User(user.name(), startPosition);
+            userResults.add(newUser);
         }
 
-
-        return null;
+        return new Users(userResults);
     }
 
 }

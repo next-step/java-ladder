@@ -11,6 +11,10 @@ public class Users {
         this.userList = userList;
     }
 
+
+    public Users(Users users){
+        this(users.userList());
+    }
     public int count() {
         return this.userList.size();
     }
@@ -33,10 +37,9 @@ public class Users {
                         .orElseThrow(()-> new IllegalArgumentException("이름에 맞는 User가 없습니다."));
     }
 
-    public List<String> gameResults(GameResult gameResult) {
-        return this.userList.stream()
-                .map(user -> gameResult.showResult(user.gameResult()))
-                .collect(Collectors.toList());
+    public Integer gameResult(String name){
+        User user = this.findByName(name);
+        return user.position();
     }
 
 }
