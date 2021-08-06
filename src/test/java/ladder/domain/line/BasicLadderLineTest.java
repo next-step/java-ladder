@@ -1,7 +1,5 @@
 package ladder.domain.line;
 
-import ladder.core.LadderLine;
-import ladder.core.LadderLineGenerator;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -10,22 +8,15 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class BasicLadderLineTest {
-    private static LadderLineGenerator ladderLineGenerator;
-
-    @BeforeAll
-    public static void setUp() {
-        ladderLineGenerator = new BasicLadderLineGenerator();
-    }
-
+class BasicLadderLineTest {
     @ValueSource(ints = {
             10, 100, 1000
     })
     @DisplayName("generate 갯수 테스트")
     @ParameterizedTest
-    public void generateTest(int size) {
+    void generateTest(int size) {
         assertThat(
-                ladderLineGenerator.generate(size).size()
+                LadderLine.generate(size).size()
         ).isEqualTo(size);
     }
 
@@ -33,7 +24,7 @@ public class BasicLadderLineTest {
     @DisplayName("move가 정상적으로 움직였는지 테스트")
     @ParameterizedTest
     void moveTest(int pointSize, int index, int correctIndex) {
-        LadderLine line = ladderLineGenerator.generate(pointSize);
+        LadderLine line = LadderLine.generate(pointSize);
         assertThat(
                 line.move(index)
         ).isEqualTo(correctIndex);

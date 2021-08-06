@@ -1,12 +1,12 @@
 package ladder.domain.point;
 
-import ladder.core.DirectionGenerator;
+import ladder.core.DirectionCreateStrategy;
 
 import java.util.*;
 
-import static ladder.domain.point.DirectionValue.*;
+import static ladder.domain.point.Direction.*;
 
-public class UnconnectedRandomDirectionGenerator implements DirectionGenerator {
+public class UnconnectedRandomDirectionCreateStrategy implements DirectionCreateStrategy {
     private static final Random random = new Random();
 
     @Override
@@ -18,30 +18,24 @@ public class UnconnectedRandomDirectionGenerator implements DirectionGenerator {
 
     @Override
     public Direction first() {
-        return Direction.of(
-                random.nextBoolean() ? RIGHT : EMPTY
-        );
+        return random.nextBoolean() ? RIGHT : EMPTY;
     }
 
     @Override
     public Direction last(Direction current) {
-        return Direction.of(
-                current.isRight() ? LEFT : EMPTY
-        );
+        return current.isRight() ? LEFT : EMPTY;
     }
 
     private enum NextTemplate {
-        LEFT(Direction.of(DirectionValue.LEFT),
-                Collections.singletonList(Direction.of(DirectionValue.EMPTY))
+        LEFT(Direction.LEFT,
+                Collections.singletonList(Direction.EMPTY)
         ),
-        RIGHT(Direction.of(DirectionValue.RIGHT),
-                Collections.singletonList(Direction.of(DirectionValue.LEFT))
+        RIGHT(Direction.RIGHT,
+                Collections.singletonList(Direction.LEFT)
         ),
-        EMPTY(Direction.of(DirectionValue.EMPTY),
-                Arrays.asList(Direction.of(DirectionValue.EMPTY), Direction.of(DirectionValue.LEFT), Direction.of(DirectionValue.RIGHT))
+        EMPTY(Direction.EMPTY,
+                Arrays.asList(Direction.EMPTY, Direction.LEFT, Direction.RIGHT)
         );
-
-        private static final Random random = new Random();
 
         private final Direction matchesDirection;
         private final List<Direction> data;

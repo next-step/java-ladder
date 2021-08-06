@@ -2,7 +2,7 @@ package ladder.core;
 
 import ladder.domain.point.Direction;
 
-public interface DirectionGenerator {
+public interface DirectionCreateStrategy {
     Direction next(Direction current);
 
     Direction first();

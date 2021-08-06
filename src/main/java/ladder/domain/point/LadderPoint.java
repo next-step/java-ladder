@@ -1,6 +1,10 @@
 package ladder.domain.point;
 
+import ladder.core.DirectionCreateStrategy;
+
 public final class LadderPoint {
+    private static DirectionCreateStrategy directionCreateStrategy = new UnconnectedRandomDirectionCreateStrategy();
+
     private final int index;
     private final Direction direction;
 
@@ -10,15 +14,19 @@ public final class LadderPoint {
     }
 
     public static LadderPoint first() {
-        return new LadderPoint(0, Direction.first());
+        return new LadderPoint(0, directionCreateStrategy.first());
+    }
+
+    public static void setDirectionCreateStrategy(DirectionCreateStrategy directionCreateStrategy) {
+        LadderPoint.directionCreateStrategy = directionCreateStrategy;
     }
 
     public LadderPoint next() {
-        return newLinkPoint(direction.next());
+        return newLinkPoint(directionCreateStrategy.next(direction));
     }
 
     public LadderPoint last() {
-        return newLinkPoint(direction.last());
+        return newLinkPoint(directionCreateStrategy.last(direction));
     }
 
     private LadderPoint newLinkPoint(final Direction direction) {

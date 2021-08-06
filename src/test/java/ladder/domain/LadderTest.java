@@ -1,8 +1,7 @@
 package ladder.domain;
 
-import ladder.domain.point.FakeDirectionGenerator;
-import ladder.domain.line.BasicLadderLineGenerator;
-import ladder.factory.FakeGeneratorFactoryBean;
+import ladder.domain.point.FakeDirectionCreateStrategy;
+import ladder.domain.point.LadderPoint;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -13,11 +12,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class LadderTest {
     @BeforeAll
     public static void setUp() {
-        // RIGHT-LEFT-EMPTY 순으로 반복해서 생성해주는 생성기로 교체
-        new FakeGeneratorFactoryBean(
-                new FakeDirectionGenerator(),
-                new BasicLadderLineGenerator()
-        ).changeInstance();
+        // RIGHT-LEFT-EMPTY 순으로 반복해서 생성해주는 생성 전략으로 교체
+        LadderPoint.setDirectionCreateStrategy(
+                new FakeDirectionCreateStrategy()
+        );
     }
 
     @CsvSource({"0,1", "1,0", "2,3", "3,2", "4,5", "5,4"})

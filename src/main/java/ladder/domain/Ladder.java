@@ -1,11 +1,9 @@
 package ladder.domain;
 
-import ladder.core.LadderLine;
-import ladder.core.LadderLineGenerator;
+import ladder.domain.line.LadderLine;
 import ladder.domain.player.Player;
 import ladder.domain.player.Players;
 import ladder.dto.response.LadderResult;
-import ladder.factory.GeneratorFactoryBean;
 
 import java.util.Iterator;
 import java.util.List;
@@ -22,7 +20,7 @@ public class Ladder implements Iterable<LadderLine> {
     }
 
     public static Ladder generate(final int lineSize, final int pointSize) {
-        return Stream.generate(() -> InnerLazyClass.LINE_GENERATOR.generate(pointSize))
+        return Stream.generate(() -> LadderLine.generate(pointSize))
                 .limit(lineSize)
                 .collect(Collectors.collectingAndThen(
                         Collectors.toList(), Ladder::new
@@ -37,21 +35,17 @@ public class Ladder implements Iterable<LadderLine> {
     }
 
     public LadderResult result(Players players, List<Prize> prizes) {
-        Map<Player, Prize> resultMap = IntStream.range(0, players.size())
+        Map<Player, Prize> data = IntStream.range(0, players.size())
                 .boxed()
                 .collect(Collectors.toMap(
                         players::get,
                         index -> prizes.get(this.move(index))
                 ));
-        return new LadderResult(this, resultMap);
+        return new LadderResult(this, data);
     }
 
     @Override
     public Iterator<LadderLine> iterator() {
         return ladderLines.iterator();
-    }
-
-    private static class InnerLazyClass {
-        private static final LadderLineGenerator LINE_GENERATOR = GeneratorFactoryBean.getInstance().ladderLineGenerator();
     }
 }
