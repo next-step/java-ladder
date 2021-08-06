@@ -1,7 +1,7 @@
 package nextstep.ladder.ladder;
 
+import nextstep.ladder.player.Player;
 import nextstep.ladder.strategy.LadderStrategy;
-import nextstep.ladder.strategy.RandomLadderStrategy;
 
 import java.util.Collections;
 import java.util.List;
@@ -18,15 +18,21 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public static Ladder of(LadderHeight height, int countOfPerson) {
-        LadderStrategy strategy = new RandomLadderStrategy();
-        List<Line> collect = IntStream.range(START_INDEX, height.getHeight())
-                .mapToObj(s -> Line.of(countOfPerson, strategy))
+    public static Ladder of(LadderBound bound, LadderStrategy strategy) {
+        List<Line> collect = IntStream.range(START_INDEX, bound.getHeight())
+                .mapToObj(s -> Line.of(bound.getWidth(), strategy))
                 .collect(Collectors.toList());
         return new Ladder(collect);
     }
 
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
+    }
+
+    public void move(Player player) {
+        lines.forEach(line -> {
+            MoveType direction = line.findDirection(player.getPosition());
+            player.move(direction.getMoveValue());
+        });
     }
 }

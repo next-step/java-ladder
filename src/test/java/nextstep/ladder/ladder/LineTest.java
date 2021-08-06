@@ -1,6 +1,5 @@
 package nextstep.ladder.ladder;
 
-import nextstep.ladder.ladder.Line;
 import nextstep.ladder.strategy.RandomLadderStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -8,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 class LineTest {
 
@@ -24,5 +24,17 @@ class LineTest {
         List<Boolean> points = line.getPoints();
 
         assertThat(points.get(1)).isFalse();
+    }
+
+    @DisplayName("인덱스에 해당하는 방향 정보를 리턴한다.")
+    @Test
+    void get_direction() {
+        Line line = Line.of(3, () -> true);
+
+        assertAll(
+                () -> assertThat(line.findDirection(0)).isEqualTo(MoveType.RIGHT),
+                () -> assertThat(line.findDirection(1)).isEqualTo(MoveType.LEFT),
+                () -> assertThat(line.findDirection(2)).isEqualTo(MoveType.RIGHT)
+        );
     }
 }

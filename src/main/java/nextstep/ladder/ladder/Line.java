@@ -24,10 +24,6 @@ public class Line {
         return new Line(pointList);
     }
 
-    public List<Boolean> getPoints() {
-        return Collections.unmodifiableList(points);
-    }
-
     private static void addPoint(List<Boolean> pointList, LadderStrategy strategy) {
         boolean previousPoint = false;
         if (!pointList.isEmpty()) {
@@ -38,5 +34,22 @@ public class Line {
             return;
         }
         pointList.add(strategy.creatable());
+    }
+
+    public List<Boolean> getPoints() {
+        return Collections.unmodifiableList(points);
+    }
+
+    public MoveType findDirection(int index) {
+        boolean left = findPoint(index - 1);
+        boolean right = findPoint(index);
+        return MoveType.findMatchType(left, right);
+    }
+
+    private boolean findPoint(int index) {
+        if (index < START_INDEX || index >= points.size()) {
+            return false;
+        }
+        return points.get(index);
     }
 }

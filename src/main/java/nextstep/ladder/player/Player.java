@@ -7,18 +7,28 @@ public class Player {
     private static final int MAX_NAME_LENGTH = 5;
 
     private final String name;
+    private int position;
 
-    private Player(String name) {
+    private Player(String name, int position) {
         validate(name);
         this.name = name;
+        this.position = position;
     }
 
-    public static Player of(String name) {
-        return new Player(name);
+    public static Player of(String name, int position) {
+        return new Player(name, position);
     }
 
     public String getName() {
         return name;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void move(int moveValue) {
+        position += moveValue;
     }
 
     private void validate(String name) {
