@@ -1,7 +1,5 @@
 package ladder.domain.point;
 
-import ladder.core.DirectionCreateStrategy;
-
 public final class LadderPoint {
     private static DirectionCreateStrategy directionCreateStrategy = new UnconnectedRandomDirectionCreateStrategy();
 

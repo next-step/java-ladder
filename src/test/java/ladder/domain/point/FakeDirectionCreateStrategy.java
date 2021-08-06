@@ -1,7 +1,5 @@
 package ladder.domain.point;
 
-import ladder.core.DirectionCreateStrategy;
-
 import static ladder.domain.point.Direction.*;
 
 // 랜덤 요소를 배제한 Right - Left - Empty를 반복 생성하는 Fake 객체

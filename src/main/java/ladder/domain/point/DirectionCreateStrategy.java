@@ -1,4 +1,4 @@
-package ladder.core;
+package ladder.domain.point;
 
 import ladder.domain.point.Direction;
 

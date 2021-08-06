@@ -1,7 +1,5 @@
 package ladder.domain.point;
 
-import ladder.core.DirectionCreateStrategy;
-
 import java.util.*;
 
 import static ladder.domain.point.Direction.*;
