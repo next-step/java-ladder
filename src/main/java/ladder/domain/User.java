@@ -1,7 +1,5 @@
 package ladder.domain;
 
-import ladder.enums.Direction;
-
 import java.util.Objects;
 
 public class User {

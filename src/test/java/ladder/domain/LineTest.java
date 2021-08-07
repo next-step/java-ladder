@@ -39,8 +39,6 @@ class LineTest {
         int result = line.findRoute( startPosition);
         System.out.println(result);
 
-
     }
-
 
 }

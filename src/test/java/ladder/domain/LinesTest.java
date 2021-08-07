@@ -24,11 +24,7 @@ class LinesTest {
         Ladder ladder = new Ladder(ladderHeight, userList.size());
         Lines lines = ladder.lines();
 
-
         OutputView outputView = new OutputView();
-
-
-//        outputView.printParticipateInUsers();
 
         for(Line line : lines){
             StringBuilder oneLadder = outputView.drawOneLine(line);
@@ -38,7 +34,6 @@ class LinesTest {
         System.out.println("startPosition: " +startPosition);
         int result = lines.calulateGameResult(startPosition);
         System.out.println("result: " + result);
-
 
     }
 }

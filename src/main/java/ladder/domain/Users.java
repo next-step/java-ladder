@@ -1,10 +1,9 @@
 package ladder.domain;
 
-import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class Users {
+public class Users implements Iterable<User> {
     private List<User> userList;
 
     public Users(List<User> userList) {
@@ -12,9 +11,10 @@ public class Users {
     }
 
 
-    public Users(Users users){
+    public Users(Users users) {
         this(users.userList());
     }
+
     public int count() {
         return this.userList.size();
     }
@@ -32,14 +32,13 @@ public class Users {
 
     public User findByName(String name) {
         return this.userList.stream()
-                        .filter(user -> user.name().equals(name))
-                        .findFirst()
-                        .orElseThrow(()-> new IllegalArgumentException("이름에 맞는 User가 없습니다."));
+                .filter(user -> user.name().equals(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("이름에 맞는 User가 없습니다."));
     }
 
-    public Integer gameResult(String name){
-        User user = this.findByName(name);
-        return user.position();
+    @Override
+    public Iterator<User> iterator() {
+        return this.userList.iterator();
     }
-
 }

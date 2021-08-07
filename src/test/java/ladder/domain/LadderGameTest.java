@@ -42,22 +42,14 @@ class LadderGameTest {
         LadderGame ladderGame = new LadderGame(users, lines);
 
         users = ladderGame.start();
+        String[] inputResult = new String[]{"꽝","0","100","200"};
+        User tom = users.findByName("tom");
+        GameResult gameResult= new GameResult(inputResult);
 
-        assertThat(users.findByName("tom").position()).isEqualTo("꽝");
+        tom = new User(tom.name(),0);
 
-    }
-
-    @Test
-    @DisplayName("사다리 게임 한사람 결과 확인")
-    public void gameAllResultTest() {
-
-        LadderGame ladderGame = new LadderGame(users, lines);
-
-        users = ladderGame.start();
-
-//        GameResult gameResult = new GameResult(Arrays.asList("꽝", "100", "200", "300"));
-//        List<Integer> results = users.gameResults(gameResult);
-//        assertThat(results).containsExactly("꽝", "100", "200", "300");
+        gameResult.showResult(tom.position());
+        assertThat(gameResult.showResult(tom.position())).isEqualTo("꽝");
 
     }
 

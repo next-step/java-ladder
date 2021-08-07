@@ -3,10 +3,9 @@ package ladder.view;
 
 import ladder.domain.Line;
 import ladder.domain.Lines;
-import ladder.domain.User;
 
 import java.util.Arrays;
-import java.util.List;
+import java.util.Map;
 
 
 public class OutputView {
@@ -19,8 +18,6 @@ public class OutputView {
         Arrays.stream(userNames).forEach(userName -> System.out.printf("%6s", userName));
         System.out.println();
     }
-
-
 
 
     public void printLadder(Lines lines) {
@@ -66,10 +63,17 @@ public class OutputView {
 
     }
 
-    public void printGameResult(List<User> userList) {
-        for (User user : userList) {
-            System.out.println(user.name() + " : " + user.position());
-        }
+    public void printUserResult(String result) {
+        System.out.println("실행결과");
+        System.out.println(result);
+    }
+
+
+    public void printUserResults(Map<String, String> results) {
+        System.out.println("실행결과");
+        results.forEach((user, gameResult) -> {
+            System.out.println(user + " : " + gameResult);
+        });
     }
 
 

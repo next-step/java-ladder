@@ -4,9 +4,7 @@ import ladder.domain.*;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class LadderMain {
@@ -33,10 +31,6 @@ public class LadderMain {
 
 
         OutputView outputView = new OutputView();
-        for (User user : users.userList()) {
-            System.out.printf("%6s", user.position());
-        }
-        System.out.println();
 
         outputView.printParticipateInUsers(userNames);
 
@@ -48,16 +42,19 @@ public class LadderMain {
         users = ladderGame.start();
 
         String inputShowUserName = inputView.inputShowUserResult();
-        users.findByName(inputShowUserName);
-//        GameResult gameResult = new GameResult(inputResult);
-//
-//        if(inputShowUser.equals("all") || inputShowUser.equals("ALL")){
-//
-//            outputView.printGameResult(users.userList());
-//        }
+
+        GameResult gameResult = new GameResult(inputResult);
 
 
+        if(inputShowUserName.equals("all") || inputShowUserName.equals("ALL")){
+            Map<String,String> gameResults = gameResult.allResults(users);
+            outputView.printUserResults(gameResults);
+        }
 
+        if(!(inputShowUserName.equals("all") || inputShowUserName.equals("ALL"))){
+            User user = users.findByName(inputShowUserName);
+            outputView.printUserResult(gameResult.showResult(user.position()));
+        }
 
     }
 }
