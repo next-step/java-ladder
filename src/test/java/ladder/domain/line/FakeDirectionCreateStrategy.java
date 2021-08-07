@@ -1,4 +1,7 @@
-package ladder.domain.point;
+package ladder.domain.line;
+
+import ladder.domain.line.DirectionCreateStrategy;
+import ladder.domain.point.Direction;
 
 import static ladder.domain.point.Direction.*;
 

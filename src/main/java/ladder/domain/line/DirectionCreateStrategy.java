@@ -1,4 +1,6 @@
-package ladder.domain.point;
+package ladder.domain.line;
+
+import ladder.domain.point.Direction;
 
 public interface DirectionCreateStrategy {
     Direction next(Direction current);

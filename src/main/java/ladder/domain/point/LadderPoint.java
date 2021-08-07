@@ -27,10 +27,6 @@ public final class LadderPoint {
         return direction.isRight();
     }
 
-    public boolean isEmpty() {
-        return direction.isEmpty();
-    }
-
     public boolean checkIndex(final int index) {
         return this.index == index;
     }

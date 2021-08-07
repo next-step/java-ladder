@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
+import static ladder.exception.InvalidDirectionException.*;
+
 public class LadderLine implements Iterable<LadderPoint> {
     private final List<LadderPoint> points;
 
@@ -17,18 +19,22 @@ public class LadderLine implements Iterable<LadderPoint> {
         this.points = points;
     }
 
+    public static LadderLineBuilder builder() {
+        return new LadderLineBuilder();
+    }
+
     private void validatePoints(final List<LadderPoint> points) {
         if (isPointNotOpened(points)) {
-            throw new InvalidDirectionException("왼쪽으로 닫혀있는 줄은 바로 전줄에서 열었어야 합니다.");
+            throw new InvalidDirectionException(ErrorType.NOT_OPENED);
         }
         if (isPointNotClosed(points)) {
-            throw new InvalidDirectionException("오른쪽으로 열려있는 줄은 바로 다음줄에서 닫아야 합니다.");
+            throw new InvalidDirectionException(ErrorType.NOT_CLOSED);
         }
         if (isPointFirstClosed(points)) {
-            throw new InvalidDirectionException("첫번째 줄은 닫힐 수 없습니다.");
+            throw new InvalidDirectionException(ErrorType.FIRST_CLOSED);
         }
         if (isPointLastOpened(points)) {
-            throw new InvalidDirectionException("마지막 줄은 열려있을 수 없습니다.");
+            throw new InvalidDirectionException(ErrorType.LAST_OPENED);
         }
     }
 
@@ -61,18 +67,10 @@ public class LadderLine implements Iterable<LadderPoint> {
         return point.move();
     }
 
-    public static LadderLineBuilder builder() {
-        return new LadderLineBuilder();
-    }
-
     private Optional<LadderPoint> findByIndex(final int index) {
         return points.stream()
                 .filter(iPoint -> iPoint.checkIndex(index))
                 .findFirst();
-    }
-
-    public int size() {
-        return points.size();
     }
 
     @Override

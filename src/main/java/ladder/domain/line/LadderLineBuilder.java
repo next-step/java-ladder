@@ -1,7 +1,6 @@
 package ladder.domain.line;
 
 import ladder.domain.point.Direction;
-import ladder.domain.point.DirectionCreateStrategy;
 import ladder.domain.point.LadderPoint;
 import ladder.exception.OutOfSizeException;
 
@@ -26,14 +25,6 @@ public class LadderLineBuilder {
         return new Auto(directionCreateStrategy);
     }
 
-    private void addLinkPoints(List<Direction> directions) {
-        directions.forEach(this::addLinkPoint);
-    }
-
-    private void addLinkPoint(Direction direction) {
-        directions.add(direction);
-    }
-
     private LadderLine finalBuild() {
         return IntStream.range(0, directions.size())
                 .mapToObj(index ->
@@ -50,7 +41,7 @@ public class LadderLineBuilder {
         private Manuel() {}
 
         public Manuel next(Direction direction) {
-            addLinkPoint(direction);
+            directions.add(direction);
 
             return this;
         }
@@ -83,11 +74,11 @@ public class LadderLineBuilder {
                             .limit(pointSize - 1)
                             .collect(Collectors.toList());
 
-            addLinkPoints(newPoints);
+            directions.addAll(newPoints);
         }
 
         private void addLastPoints() {
-            addLinkPoint(
+            directions.add(
                     directionCreateStrategy.last(
                             directions.get(directions.size() - 1)
                     )

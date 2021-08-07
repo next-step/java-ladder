@@ -1,7 +1,7 @@
 package ladder.domain;
 
 import ladder.domain.line.LadderLine;
-import ladder.domain.point.FakeDirectionCreateStrategy;
+import ladder.domain.line.FakeDirectionCreateStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;

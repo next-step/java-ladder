@@ -1,4 +1,7 @@
-package ladder.domain.point;
+package ladder.domain.line;
+
+import ladder.domain.line.DirectionCreateStrategy;
+import ladder.domain.point.Direction;
 
 import java.util.*;
 
@@ -26,13 +29,13 @@ public class RandomDirectionCreateStrategy implements DirectionCreateStrategy {
 
     private enum NextTemplate {
         LEFT(Direction.LEFT,
-                Collections.singletonList(Direction.EMPTY)
+                Arrays.asList(Direction.EMPTY, Direction.RIGHT)
         ),
         RIGHT(Direction.RIGHT,
                 Collections.singletonList(Direction.LEFT)
         ),
         EMPTY(Direction.EMPTY,
-                Arrays.asList(Direction.EMPTY, Direction.LEFT, Direction.RIGHT)
+                Arrays.asList(Direction.EMPTY, Direction.RIGHT)
         );
 
         private final Direction matchesDirection;

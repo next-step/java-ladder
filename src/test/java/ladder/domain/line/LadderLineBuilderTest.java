@@ -1,7 +1,6 @@
 package ladder.domain.line;
 
 import ladder.domain.point.Direction;
-import ladder.domain.point.RandomDirectionCreateStrategy;
 import ladder.exception.OutOfSizeException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

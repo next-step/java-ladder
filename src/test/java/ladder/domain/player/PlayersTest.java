@@ -15,7 +15,7 @@ class PlayersTest {
     @ValueSource(strings = {"AA,BB"})
     @ParameterizedTest
     @DisplayName("생성 성공")
-    public void ctorTest(String strNames) {
+    void ctorTest(String strNames) {
         assertThatCode(() -> new Players(toList(strNames)))
                 .doesNotThrowAnyException();
     }
@@ -23,7 +23,7 @@ class PlayersTest {
     @ValueSource(strings = {"AA,AA"})
     @ParameterizedTest
     @DisplayName("중복 이름 생성 실패")
-    public void ctorTest_IllegalState(String strNames) {
+    void ctorTest_IllegalState(String strNames) {
         assertThatThrownBy(() -> new Players(toList(strNames)))
                 .isInstanceOf(IllegalStateException.class);
     }
