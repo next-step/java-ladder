@@ -1,11 +1,8 @@
 package ladder;
 
-import ladder.domain.point.FakeDirectionCreateStrategy;
-import ladder.domain.point.LadderPoint;
 import ladder.domain.view.FakeInputView;
 import ladder.view.DosResultView;
 import ladder.view.InputView;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -17,14 +14,6 @@ import java.util.stream.Collectors;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
 class LadderSolutionTest {
-    @BeforeAll
-    public static void setUp() {
-        // RIGHT-LEFT-EMPTY 순으로 반복해서 생성해주는 생성 전략으로 교체
-        LadderPoint.setDirectionCreateStrategy(
-                new FakeDirectionCreateStrategy()
-        );
-    }
-
     @CsvSource(value = {
             "pobi,honux,crong,jk,jae,won,ㅈ,ㅃ,aa|5|꽝,5000,꽝,3000,꽝,3000,3000,꽝,3000|pobi,all",
             "pobi,honux,crong,jk,jae,won,ㅈ,ㅃ,aa,TT|5|꽝,5000,꽝,3000,꽝,3000,3000,꽝,3000,끝|pobi,all"

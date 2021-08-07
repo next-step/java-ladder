@@ -15,7 +15,7 @@ public class UnconnectedRandomDirectionCreateStrategyTest {
 
     @BeforeAll
     public static void setUp() {
-        generator = new UnconnectedRandomDirectionCreateStrategy();
+        generator = new RandomDirectionCreateStrategy();
     }
 
     @Test

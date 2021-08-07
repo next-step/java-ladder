@@ -6,14 +6,19 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LadderPointTest {
-    @DisplayName("Point의 next를 호출할때마다 index가 올라간 Point를 반환해야 한다.")
+    @DisplayName("오른쪽 Point 요청시 index가 + 1 되어야 한다.")
     @Test
-    void checkIndexTest() {
-        LadderPoint point = LadderPoint.first();
-        for (int index = 1; index < 100; index++) {
-            point = point.next();
-            assertThat(point.checkIndex(index))
-                    .isTrue();
-        }
+    void moveRightTest() {
+        LadderPoint point = new LadderPoint(0, Direction.RIGHT);
+        assertThat(point.move())
+                .isEqualTo(1);
+    }
+
+    @DisplayName("왼쪽 Point 요청시 index가 - 1 되어야 한다.")
+    @Test
+    void moveLeftTest() {
+        LadderPoint point = new LadderPoint(1, Direction.LEFT);
+        assertThat(point.move())
+                .isZero();
     }
 }

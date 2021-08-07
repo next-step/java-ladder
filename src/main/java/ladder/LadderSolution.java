@@ -1,8 +1,10 @@
 package ladder;
 
 import ladder.domain.*;
+import ladder.domain.line.LadderLine;
 import ladder.domain.player.Player;
 import ladder.domain.player.Players;
+import ladder.domain.point.RandomDirectionCreateStrategy;
 import ladder.dto.request.PrintResultRequest;
 import ladder.dto.response.LadderResult;
 import ladder.view.DosInputView;
@@ -12,6 +14,7 @@ import ladder.view.ResultView;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public final class LadderSolution {
     public static void main(String[] args) {
@@ -67,7 +70,24 @@ public final class LadderSolution {
     private Ladder inputLadder(int playerSize) {
         int lineHeight = inputView.inputLineHeight();
 
-        return Ladder.generate(lineHeight, playerSize);
+        return newLadder(lineHeight, playerSize);
+    }
+
+    private Ladder newLadder(int lineHeight, int pointSize) {
+        return Stream.generate(() -> newLadderLine(pointSize))
+                .limit(lineHeight)
+                .collect(
+                        Collectors.collectingAndThen(
+                                Collectors.toList(), Ladder::new
+                        )
+                );
+    }
+
+    private LadderLine newLadderLine(int pointSize) {
+        return LadderLine.builder()
+                .auto(new RandomDirectionCreateStrategy())
+                .pointSize(pointSize)
+                .build();
     }
 
     private void displayPrizes(LadderResult ladderResult, Players players) {

@@ -8,11 +8,11 @@ import java.util.Map;
 
 public class LadderResult implements Iterable<Map.Entry<Player, Prize>> {
     private final Ladder ladder;
-    private final Map<Player, Prize> data;
+    private final Map<Player, Prize> prizeOfEachPlayer;
 
     public LadderResult(Ladder ladder, Map<Player, Prize> data) {
         this.ladder = ladder;
-        this.data = data;
+        this.prizeOfEachPlayer = data;
     }
 
     public Ladder ladder() {
@@ -20,11 +20,11 @@ public class LadderResult implements Iterable<Map.Entry<Player, Prize>> {
     }
 
     public Prize prize(Player player) {
-        return data.get(player);
+        return prizeOfEachPlayer.get(player);
     }
 
     @Override
     public Iterator<Map.Entry<Player, Prize>> iterator() {
-        return data.entrySet().iterator();
+        return prizeOfEachPlayer.entrySet().iterator();
     }
 }

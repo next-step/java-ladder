@@ -4,7 +4,7 @@ import java.util.*;
 
 import static ladder.domain.point.Direction.*;
 
-public class UnconnectedRandomDirectionCreateStrategy implements DirectionCreateStrategy {
+public class RandomDirectionCreateStrategy implements DirectionCreateStrategy {
     private static final Random random = new Random();
 
     @Override
@@ -45,8 +45,7 @@ public class UnconnectedRandomDirectionCreateStrategy implements DirectionCreate
 
         public Direction next() {
             return data.get(
-                    random.nextInt(data.size()
-                    )
+                    random.nextInt(data.size())
             );
         }
 

@@ -1,7 +1,5 @@
 package ladder.domain.point;
 
-import ladder.domain.point.Direction;
-
 public interface DirectionCreateStrategy {
     Direction next(Direction current);
 
