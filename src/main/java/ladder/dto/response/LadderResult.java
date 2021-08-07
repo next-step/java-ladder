@@ -10,9 +10,9 @@ public class LadderResult implements Iterable<Map.Entry<Player, Prize>> {
     private final Ladder ladder;
     private final Map<Player, Prize> prizeOfEachPlayer;
 
-    public LadderResult(Ladder ladder, Map<Player, Prize> data) {
+    public LadderResult(Ladder ladder, Map<Player, Prize> prizeOfEachPlayer) {
         this.ladder = ladder;
-        this.prizeOfEachPlayer = data;
+        this.prizeOfEachPlayer = prizeOfEachPlayer;
     }
 
     public Ladder ladder() {
