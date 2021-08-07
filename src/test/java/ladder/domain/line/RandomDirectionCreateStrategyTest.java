@@ -12,7 +12,7 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static ladder.domain.point.Direction.*;
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 public class RandomDirectionCreateStrategyTest {
     private static DirectionCreateStrategy directionCreateStrategy;
@@ -28,10 +28,12 @@ public class RandomDirectionCreateStrategyTest {
     @DisplayName("pointSize의 크기가 2 이상이라면 어떠한 경우에도 정상적으로 생성 되어야 함")
     @ParameterizedTest
     void buildTest(int pointSize) {
-        LadderLine.builder()
-                .auto(directionCreateStrategy)
-                .pointSize(pointSize)
-                .build();
+        assertThatCode(() ->
+                LadderLine.builder()
+                        .auto(directionCreateStrategy)
+                        .pointSize(pointSize)
+                        .build()
+        ).doesNotThrowAnyException();
     }
 
     @Test
