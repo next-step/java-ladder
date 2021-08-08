@@ -4,6 +4,7 @@
 !gradle/wrapper/gradle-wrapper.jar
 /out/
 /target/
+/src/report/
 
 ### STS ###
 .apt_generated
