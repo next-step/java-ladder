@@ -13,8 +13,8 @@ public class MembersTest {
     }
 
     @Test
-    void findHorizontalNumber() {
+    void findPosition() {
         Members members = Members.of("pobi,honux,crong,jk");
-        assertThat(members.findHorizontalNumber(Member.of("honux"))).isEqualTo(1);
+        assertThat(members.findPosition(Member.of("honux"))).isEqualTo(1);
     }
 }

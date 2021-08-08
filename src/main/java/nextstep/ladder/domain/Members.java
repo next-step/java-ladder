@@ -30,7 +30,7 @@ public class Members {
             .collect(Collectors.toList());
     }
 
-    public int findHorizontalNumber(Member member) {
+    public int findPosition(Member member) {
         return IntStream.range(0, members.size())
             .filter(i -> member.equals(members.get(i)))
             .findFirst()

@@ -14,7 +14,7 @@ public class LineTest {
     }
 
     @Test
-    void nextHorizontalNumber() {
+    void nextPosition() {
         Line line = Line.of(Arrays.asList(Point.of(true), Point.of(false), Point.of(true), Point.of(false)));
 
         assertThat(line.nextPosition(0)).isEqualTo(1);

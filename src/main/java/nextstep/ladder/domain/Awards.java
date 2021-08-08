@@ -11,7 +11,7 @@ public class Awards {
 
     public void award(Members members, Prizes prizes, Ladder ladder) {
         winners = members.stream()
-            .map(member -> Winner.of(member, prizes.findByIndex(ladder.result(members.findHorizontalNumber(member)))))
+            .map(member -> Winner.of(member, prizes.findByIndex(ladder.result(members.findPosition(member)))))
             .collect(collectingAndThen(toList(), Winners::create));
     }
 
