@@ -50,22 +50,4 @@ class DirectionTest {
         Direction last = Direction.first(TRUE).last();
         assertThat(last).isEqualTo(Direction.of(TRUE, FALSE));
     }
-
-    @DisplayName("좌표의 left 가 false 이고 current 가 true 이면 1을 리턴한다.")
-    @Test
-    void move_right() {
-        assertThat(Direction.of(FALSE, TRUE).move()).isEqualTo(1);
-    }
-
-    @DisplayName("좌표의 left 가 true 이고 current 가 false 이면 -1을 리턴한다.")
-    @Test
-    void move_left() {
-        assertThat(Direction.of(TRUE, FALSE).move()).isEqualTo(-1);
-    }
-
-    @DisplayName("좌표의 left 가 false 이고 current 가 false 이면 0을 리턴한다.")
-    @Test
-    void move_next() {
-        assertThat(Direction.of(FALSE, FALSE).move()).isZero();
-    }
 }
