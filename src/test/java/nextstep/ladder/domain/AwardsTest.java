@@ -14,7 +14,7 @@ class AwardsTest {
     @Order(1)
     void award() {
         assertThatCode(() -> awards.award(Members.of("pobi,honux,crong,jk"), Prizes.of("꽝,5000,꽝,3000"),
-            Ladder.of(4, 1, new BooleanStrategy.OnlyTrueStrategy()))).doesNotThrowAnyException();
+            Ladder.of(4, 1, value -> true))).doesNotThrowAnyException();
     }
 
     @Test
