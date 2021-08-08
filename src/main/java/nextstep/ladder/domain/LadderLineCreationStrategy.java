@@ -8,11 +8,6 @@ public class LadderLineCreationStrategy implements LineCreationStrategy {
         return getRandomNum();
     }
 
-    @Override
-    public boolean isOrNoneDrawLines(Line line) {
-        return line.isExist();
-    }
-
     private boolean getRandomNum() {
         Random random = new Random();
         return random.nextBoolean();
