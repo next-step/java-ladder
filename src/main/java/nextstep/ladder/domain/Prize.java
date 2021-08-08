@@ -11,10 +11,14 @@ public class Prize {
     }
 
     public static Prize of(String name) {
+        validName(name);
+        return new Prize(name);
+    }
+
+    private static void validName(String name) {
         if (name.length() > NAME_MAX_LENGTH) {
             throw new NameLengthExceededException("상품의 이름은 " + NAME_MAX_LENGTH + "글자 이하여야 합니다.");
         }
-        return new Prize(name);
     }
 
     public String value() {
