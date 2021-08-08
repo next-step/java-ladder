@@ -15,6 +15,10 @@ public class Prizes {
         this.prizes = prizes;
     }
 
+    public static Prizes of(List<Prize> prizes) {
+        return new Prizes(prizes);
+    }
+
     public static Prizes of(String names) {
         return Arrays.stream(names.split(DILIMETER))
             .map(Prize::of)
