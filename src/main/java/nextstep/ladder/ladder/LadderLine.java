@@ -1,6 +1,7 @@
 package nextstep.ladder.ladder;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static nextstep.ladder.util.RandomValueGenerator.generate;
@@ -30,6 +31,10 @@ public class LadderLine {
 
     public int move(int position) {
         return points.get(position).move();
+    }
+
+    public List<Point> getPoints() {
+        return Collections.unmodifiableList(points);
     }
 
     int size() {

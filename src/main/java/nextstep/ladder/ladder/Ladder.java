@@ -2,6 +2,7 @@ package nextstep.ladder.ladder;
 
 import nextstep.ladder.ladder.dto.LadderResult;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -32,6 +33,10 @@ public class Ladder {
         IntStream.range(START_INDEX, width)
                 .forEach(index -> result.put(index, getTarget(index)));
         return result;
+    }
+
+    public List<LadderLine> getLines() {
+        return Collections.unmodifiableList(lines);
     }
 
     private int getTarget(int position) {

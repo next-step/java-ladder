@@ -3,6 +3,7 @@ package nextstep.ladder.ladder;
 import nextstep.ladder.util.StringUtil;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,6 +25,10 @@ public class Prizes {
     public String findPrize(int index) {
         indexValidate(index);
         return prizeNames.get(index);
+    }
+
+    public List<String> getPrizeNames() {
+        return Collections.unmodifiableList(prizeNames);
     }
 
     private void indexValidate(int index) {

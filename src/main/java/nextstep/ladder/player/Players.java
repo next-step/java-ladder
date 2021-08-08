@@ -39,4 +39,8 @@ public class Players {
     public List<Player> getPlayers() {
         return Collections.unmodifiableList(players);
     }
+
+    public int count() {
+        return players.size();
+    }
 }
