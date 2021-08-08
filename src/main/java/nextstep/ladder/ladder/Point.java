@@ -38,4 +38,12 @@ public class Point {
     public Point last() {
         return new Point(index + 1, direction.last());
     }
+
+    @Override
+    public String toString() {
+        return "Point{" +
+                "index=" + index +
+                ", direction=" + direction +
+                '}';
+    }
 }
