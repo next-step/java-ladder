@@ -24,22 +24,26 @@ public class Line implements Iterable<Point> {
         return new Line(points);
     }
 
-    public int nextHorizontalNumber(int horizontalNumber) {
-        if (pointOnTheLeft(horizontalNumber)) {
-            return --horizontalNumber;
-        }
-        if (pointOnTheRight(horizontalNumber)) {
-            return ++horizontalNumber;
-        }
-        return horizontalNumber;
+    public int nextPosition(int position) {
+        return position + move(position);
     }
 
-    private boolean pointOnTheLeft(int horizontalNumber) {
-        return horizontalNumber > 0 && points.get(horizontalNumber - 1).value();
+    private int move(int position) {
+        if (pointOnTheLeft(position)) {
+            return -1;
+        }
+        if (pointOnTheRight(position)) {
+            return 1;
+        }
+        return 0;
     }
 
-    private boolean pointOnTheRight(int horizontalNumber) {
-        return horizontalNumber < points.size() && points.get(horizontalNumber).value();
+    private boolean pointOnTheLeft(int position) {
+        return position > 0 && points.get(position - 1).value();
+    }
+
+    private boolean pointOnTheRight(int position) {
+        return position < points.size() && points.get(position).value();
     }
 
     @Override

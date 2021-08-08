@@ -19,10 +19,10 @@ public class Ladder {
         return new Ladder(lines);
     }
 
-    public int result(int horizontalNumber) {
-        int result = horizontalNumber;
+    public int result(int position) {
+        int result = position;
         for (Line line : lines) {
-            result = line.nextHorizontalNumber(result);
+            result = line.nextPosition(result);
         }
         return result;
     }
