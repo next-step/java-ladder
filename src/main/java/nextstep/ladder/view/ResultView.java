@@ -4,7 +4,6 @@ import nextstep.ladder.domain.LadderLineCreationStrategy;
 import nextstep.ladder.domain.LadderNames;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Lines;
-import nextstep.ladder.exception.InitLineCreationException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,15 +29,8 @@ public class ResultView {
                 .collect(Collectors.toList());
     }
 
-    private static boolean isInitLine(Line line) {
-        if(line == Line.INITLINE) {
-            return true;
-        }
-        throw new InitLineCreationException();
-    }
-
     private static String drawLine(Line line) {
-        if (isInitLine(line)) {
+        if (line == Line.INITLINE) {
             return INIT_LINE;
         }
 
