@@ -28,18 +28,15 @@ public class Players {
                 .collect(Collectors.toList());
     }
 
-    public Player findByName(String name) {
+    public int findByName(String name) {
         return players.stream()
                 .filter(player -> player.getName().equals(name))
                 .findFirst()
+                .map(Player::getPosition)
                 .orElseThrow(() -> new NotFoundPlayerNameException(name));
     }
 
     public List<Player> getPlayers() {
         return Collections.unmodifiableList(players);
-    }
-
-    public int count() {
-        return players.size();
     }
 }

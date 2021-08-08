@@ -27,10 +27,6 @@ public class Player {
         return position;
     }
 
-    public void move(int moveValue) {
-        position += moveValue;
-    }
-
     private void validate(String name) {
         if (name.length() > MAX_NAME_LENGTH) {
             throw new IllegalPlayerNameSizeException(name);
