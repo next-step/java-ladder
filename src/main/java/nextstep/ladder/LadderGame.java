@@ -9,6 +9,6 @@ public class LadderGame {
         InputView inputView = new InputView();
         ResultView resultView = new ResultView();
 
-        resultView.print(LadderNames.make(inputView.initPerson()), inputView.maxLadderHeight());
+        resultView.print(LadderNames.of(inputView.initPerson()), inputView.maxLadderHeight());
     }
 }

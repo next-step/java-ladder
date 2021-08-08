@@ -1,42 +1,37 @@
 package nextstep.ladder.domain;
 
 import nextstep.ladder.exception.InputNullException;
-import nextstep.ladder.exception.StringLengthException;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
+
 public class LadderNames {
-    private static final int LETTER_LIMIT = 5;
 
     private List<LadderName> ladderNames;
 
-    public static LadderNames make(String ladderName) {
-        return new LadderNames(ladderName);
+    private LadderNames(List<LadderName> ladderNames) {
+        this.ladderNames = ladderNames;
     }
 
-    private LadderNames(final String ladderNames) {
+    public static LadderNames of(List<LadderName> ladderNames) {
+        return new LadderNames(ladderNames);
+    }
+
+    public static LadderNames of(String ladderNames) {
         inputValidation(ladderNames);
-        List<LadderName> list = new ArrayList<>();
-        Arrays.stream(ladderNames.split(","))
-                .map(this::lengthValidation)
-                .forEach(name -> list.add(new LadderName(name)));
-        this.ladderNames = list;
+        return Arrays.stream(ladderNames.split(","))
+                .map(LadderName::of)
+                .collect(collectingAndThen(toList(), LadderNames::of));
     }
 
-    private void inputValidation(String ladderNames) {
-        if (Objects.isNull(ladderNames) || ladderNames.equals("")) {
+    private static void inputValidation(String ladderNames) {
+        if (Objects.isNull(ladderNames) || ladderNames.isEmpty()) {
             throw new InputNullException();
         }
-    }
-
-    private String lengthValidation(String name) {
-        if(name.length() > LETTER_LIMIT) {
-            throw new StringLengthException();
-        }
-        return name;
     }
 
     public int size() {
