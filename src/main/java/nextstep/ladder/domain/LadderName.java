@@ -1,12 +1,26 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.exception.StringLengthException;
+
 import java.util.Objects;
 
 public class LadderName {
+    private static final int LETTER_LIMIT = 5;
     private String laddername;
 
     public LadderName(String ladderName) {
         this.laddername = ladderName;
+    }
+
+    public static LadderName of(String ladderName) {
+        lengthValidation(ladderName);
+        return new LadderName(ladderName);
+    }
+
+    private static void lengthValidation(String name) {
+        if(name.length() > LETTER_LIMIT) {
+            throw new StringLengthException();
+        }
     }
 
     @Override
