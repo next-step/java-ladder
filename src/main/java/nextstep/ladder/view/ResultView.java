@@ -25,7 +25,6 @@ public class ResultView {
     }
 
     private static List<String> makeLine(List<Line> lines) {
-
         return lines.stream()
                 .map(ResultView::drawLine)
                 .collect(Collectors.toList());
@@ -41,7 +40,7 @@ public class ResultView {
     private static String drawLine(Line line) {
         if (isInitLine(line)) {
             return INIT_LINE;
-        };
+        }
 
         if(line.isExist()) {
             return IS_LINE;
