@@ -28,7 +28,11 @@ public class Lines {
     private void drawLine(LineCreationStrategy lineCreationStrategy) {
         boolean isCreate = true;
         if (lineCreationStrategy.createLine()) {
-            previousCheck(new LadderLineCreationStrategy());
+            isCreate = lines.get(lines.size() - 1).isExist();
+            boolean isOrNone = isCreate;
+
+            previousCheck(() -> isOrNone);
+
             isCreate = false;
         }
         isNotCreateLine(isCreate);
@@ -36,7 +40,7 @@ public class Lines {
 
     private void previousCheck(LineCreationStrategy lineCreationStrategy) {
 
-        if (lineCreationStrategy.isOrNoneDrawLines(lines.get(lines.size() - 1))) {
+        if (lineCreationStrategy.createLine()) {
             lines.add(Line.NONELINE);
             return;
         }

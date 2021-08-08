@@ -1,43 +1,23 @@
 package nextstep.ladder;
 
 import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.LineCreationStrategy;
 import nextstep.ladder.domain.Lines;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LinesTest {
-    LineCreationStrategy trueLineCreationStrategy;
-    LineCreationStrategy falseLineCreationStrategy;
+    List<Line> list;
 
     @BeforeEach
     void setUp() {
-        trueLineCreationStrategy = new LineCreationStrategy() {
-            @Override
-            public boolean createLine() {
-                return true;
-            }
-
-            @Override
-            public boolean isOrNoneDrawLines(Line line) {
-                return false;
-            }
-        };
-
-        falseLineCreationStrategy = new LineCreationStrategy() {
-            @Override
-            public boolean createLine() {
-                return false;
-            }
-
-            @Override
-            public boolean isOrNoneDrawLines(Line line) {
-                return false;
-            }
-        };
+        list = new ArrayList<>();
+        list.add(Line.INITLINE);
     }
 
     @Test
@@ -46,8 +26,8 @@ public class LinesTest {
         int height = 5;
 
         for(int i = 0; i < height; i++) {
-            Lines lines = Lines.of(Line.initLine(), 4, trueLineCreationStrategy);
-            assertThat(lines).isEqualTo(Lines.of(Line.initLine(), 4, trueLineCreationStrategy));
+            Lines lines = Lines.of(list, 4, () -> true);
+            assertThat(lines).isEqualTo(Lines.of(list, 4, () -> true));
         }
     }
 
@@ -57,8 +37,8 @@ public class LinesTest {
         int height = 5;
 
         for(int i = 0; i < height; i++) {
-            Lines lines = Lines.of(Line.initLine(), 3, falseLineCreationStrategy);
-            assertThat(lines).isEqualTo(Lines.of(Line.initLine(), 3, falseLineCreationStrategy));
+            Lines lines = Lines.of(list, 3, () -> false);
+            assertThat(lines).isEqualTo(Lines.of(list, 3, () -> false));
         }
     }
 

@@ -10,6 +10,9 @@ import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
 
 public class LadderNames {
+    private static final String REPLACE_STRING =  "\\[|\\]";
+    private static final String SPLIT_STRING = ",";
+    private static final String TRANSFER_STRING = "";
 
     private List<LadderName> ladderNames;
 
@@ -23,7 +26,7 @@ public class LadderNames {
 
     public static LadderNames of(String ladderNames) {
         inputValidation(ladderNames);
-        return Arrays.stream(ladderNames.split(","))
+        return Arrays.stream(ladderNames.split(SPLIT_STRING))
                 .map(LadderName::of)
                 .collect(collectingAndThen(toList(), LadderNames::of));
     }
@@ -53,6 +56,6 @@ public class LadderNames {
 
     @Override
     public String toString() {
-        return ladderNames.toString().replaceAll("\\[|\\]", "");
+        return ladderNames.toString().replaceAll(REPLACE_STRING, TRANSFER_STRING);
     }
 }
