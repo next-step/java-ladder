@@ -75,7 +75,7 @@ public class ResultView {
     }
 
     private static void printPrize(Prizes prizes) {
-        Arrays.stream(prizes.getPrizeNames())
+        prizes.getPrizeNames()
                 .forEach(name -> System.out.printf(name + getPrizeBlank(name)));
         System.out.println("\n");
     }
