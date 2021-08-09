@@ -26,7 +26,7 @@ public class ResultView {
     private static String createLineBody(final PrintLineDto dto) {
         return dto.getExists().stream()
             .map(e -> e ? LINE_FLAG : LINE_BLANK)
-            .collect(Collectors.joining(LINE_DELIMITER)) + LINE_DELIMITER;
+            .collect(Collectors.joining(LINE_DELIMITER));
     }
 
     public static void printResults(final PrintResultDto dto) {
