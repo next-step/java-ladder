@@ -12,10 +12,10 @@ class ResultViewTest {
     @Test
     public void printLadders() {
         // given
-        Lines lines = Lines.of(10, 6);
+        final Lines lines = Lines.of(10, 6);
 
         // when
-        ResultView.printLadders(new PrintLinesDto(lines));
+        ResultView.printLadders(new PrintLinesDto(lines.getLines()));
 
         // then
 
