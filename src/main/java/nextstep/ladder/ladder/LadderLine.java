@@ -10,8 +10,12 @@ public class LadderLine {
 
     private final List<Point> points;
 
-    public LadderLine(List<Point> points) {
+    private LadderLine(List<Point> points) {
         this.points = points;
+    }
+
+    public static LadderLine of(List<Point> points) {
+        return new LadderLine(points);
     }
 
     public static LadderLine of(int sizeOfPerson) {

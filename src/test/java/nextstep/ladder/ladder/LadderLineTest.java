@@ -27,7 +27,7 @@ class LadderLineTest {
                 first.next(FALSE),
                 first.next(FALSE).next(TRUE)
         );
-        LadderLine line = new LadderLine(points);
+        LadderLine line = LadderLine.of(points);
 
         assertThat(line.move(0)).isEqualTo(1);
         assertThat(line.move(1)).isZero();

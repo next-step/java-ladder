@@ -15,13 +15,13 @@ class LadderTest {
     @DisplayName("사다리 게임 플레이")
     @Test
     void test() {
-        LadderLine first = new LadderLine(
+        LadderLine first = LadderLine.of(
                 Arrays.asList(right(0), left(1), straight(2))
         );
-        LadderLine second = new LadderLine(
+        LadderLine second = LadderLine.of(
                 Arrays.asList(straight(0), right(1), left(2))
         );
-        LadderLine third = new LadderLine(
+        LadderLine third = LadderLine.of(
                 Arrays.asList(right(0), left(1), straight(2))
         );
 
