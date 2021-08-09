@@ -25,6 +25,15 @@ public class Lines {
         return lines.size();
     }
 
+    public int goal(final int start) {
+        int goal = start;
+        for (final Line line : lines) {
+            goal = line.next(goal);
+        }
+
+        return goal;
+    }
+
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
     }
