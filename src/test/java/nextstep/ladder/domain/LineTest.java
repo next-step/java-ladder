@@ -92,7 +92,7 @@ class LineTest {
         );
     }
 
-    @DisplayName("[성공] 다음 가로줄로 이동")
+    @DisplayName("[성공] 다음 가로줄로 이동시 인덱스")
     @ParameterizedTest
     @MethodSource("nextLine")
     public void next(final Line line, final int current, final int expected) {
