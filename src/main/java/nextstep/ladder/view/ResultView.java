@@ -2,9 +2,9 @@ package nextstep.ladder.view;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import nextstep.ladder.domain.common.Name;
 import nextstep.ladder.view.dto.PrintLineDto;
 import nextstep.ladder.view.dto.PrintLinesDto;
+import nextstep.ladder.view.dto.PrintNameWithResultDto;
 import nextstep.ladder.view.dto.PrintPlayerNamesDto;
 import nextstep.ladder.view.dto.PrintResultDto;
 
@@ -40,10 +40,13 @@ public class ResultView {
         System.out.printf("%6s", dto.getValue());
     }
 
-    public static void printlnResultWithPlayerName(final Name name, final PrintResultDto dto) {
+    public static void printNameWithResult(final PrintNameWithResultDto dto) {
         System.out.println("실행 결과");
-        System.out.print(name.getName() + " : ");
-        printResult(dto);
-        System.out.println();
+        System.out.println(dto.getName().getName() + " : " + dto.getResult().getValue());
+    }
+
+    public static void printNameWithResults(final List<PrintNameWithResultDto> dtos) {
+        System.out.println("실행 결과");
+        dtos.forEach(dto -> System.out.println(dto.getName().getName() + " : " + dto.getResult().getValue()));
     }
 }

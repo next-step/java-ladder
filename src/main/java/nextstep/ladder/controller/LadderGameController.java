@@ -10,6 +10,7 @@ import nextstep.ladder.domain.common.Result;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 import nextstep.ladder.view.dto.PrintLinesDto;
+import nextstep.ladder.view.dto.PrintNameWithResultDto;
 import nextstep.ladder.view.dto.PrintPlayerNamesDto;
 import nextstep.ladder.view.dto.PrintResultDto;
 
@@ -17,18 +18,22 @@ public class LadderGameController {
 
     public static void main(final String[] args) {
         final LadderGame game = createLadderGame();
-        printLadder(game);
 
+        printLadder(game);
+        printResultPlayer(game);
+        ResultView.printNameWithResults(game.getPlayerNames().stream()
+            .map(n -> new PrintNameWithResultDto(n, game.getResult(n)))
+            .collect(Collectors.toList()));
+    }
+
+    private static void printResultPlayer(final LadderGame game) {
         String resultPlayerName = InputView.inputResultPlayerName();
 
         while (!resultPlayerName.equals("all")) {
             final Result result = game.getResult(Name.of(resultPlayerName));
-            ResultView.printlnResultWithPlayerName(Name.of(resultPlayerName), new PrintResultDto(result));
+            ResultView.printNameWithResult(new PrintNameWithResultDto(Name.of(resultPlayerName), result));
             resultPlayerName = InputView.inputResultPlayerName();
         }
-
-        game.getPlayerNames()
-            .forEach(n -> ResultView.printlnResultWithPlayerName(n, new PrintResultDto(game.getResult(n))));
     }
 
     private static void printLadder(final LadderGame game) {
