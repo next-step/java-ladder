@@ -16,12 +16,14 @@ public class LadderGame {
         this.results = results;
     }
 
-    public LadderGame of(final Lines lines, final List<Name> playerNames, final List<Result> results) {
+    public static LadderGame of(final Lines lines, final List<Name> playerNames, final List<Result> results) {
         return new LadderGame(lines, playerNames, results);
     }
 
-    public Result play(final Name playerName) {
+    public Result getResult(final Name playerName) {
         final int index = playerNames.indexOf(playerName);
-        return null;
+        final int goal = lines.goal(index);
+
+        return results.get(goal);
     }
 }
