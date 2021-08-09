@@ -1,5 +1,6 @@
 package nextstep.ladder.domain.common;
 
+import java.util.Objects;
 import nextstep.ladder.domain.common.exception.InvalidNameException;
 
 public class Name {
@@ -25,5 +26,22 @@ public class Name {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Name)) {
+            return false;
+        }
+        final Name name1 = (Name) o;
+        return Objects.equals(getName(), name1.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName());
     }
 }

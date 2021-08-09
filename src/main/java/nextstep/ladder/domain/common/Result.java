@@ -1,5 +1,6 @@
 package nextstep.ladder.domain.common;
 
+import java.util.Objects;
 import nextstep.ladder.domain.common.exception.InvalidResultException;
 
 public class Result {
@@ -29,5 +30,22 @@ public class Result {
 
     public String getValue() {
         return value;
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Result)) {
+            return false;
+        }
+        final Result result = (Result) o;
+        return Objects.equals(getValue(), result.getValue());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getValue());
     }
 }
