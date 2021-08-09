@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import java.util.Collections;
 import java.util.List;
 import nextstep.ladder.domain.common.Name;
 import nextstep.ladder.domain.common.Result;
@@ -25,5 +26,17 @@ public class LadderGame {
         final int goal = lines.goal(index);
 
         return results.get(goal);
+    }
+
+    public Lines getLines() {
+        return lines;
+    }
+
+    public List<Name> getPlayerNames() {
+        return Collections.unmodifiableList(playerNames);
+    }
+
+    public List<Result> getResults() {
+        return Collections.unmodifiableList(results);
     }
 }
