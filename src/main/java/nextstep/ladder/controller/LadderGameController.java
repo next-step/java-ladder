@@ -19,17 +19,24 @@ public class LadderGameController {
         final LadderGame game = createLadderGame();
         printLadder(game);
 
-        String resultPlayerName = "";
+        String resultPlayerName = InputView.inputResultPlayerName();
 
         while (!resultPlayerName.equals("all")) {
+            final Result result = game.getResult(Name.of(resultPlayerName));
+            ResultView.printlnResultWithPlayerName(Name.of(resultPlayerName), new PrintResultDto(result));
             resultPlayerName = InputView.inputResultPlayerName();
         }
+
+        game.getPlayerNames()
+            .forEach(n -> ResultView.printlnResultWithPlayerName(n, new PrintResultDto(game.getResult(n))));
     }
 
     private static void printLadder(final LadderGame game) {
         ResultView.printPlayerNames(new PrintPlayerNamesDto(game.getPlayerNames()));
         ResultView.printLadders(new PrintLinesDto(game.getLines().getLines()));
-        ResultView.printResults(new PrintResultDto(game.getResults()));
+        ResultView.printlnResults(game.getResults().stream()
+            .map(PrintResultDto::new)
+            .collect(Collectors.toList()));
     }
 
     private static LadderGame createLadderGame() {
