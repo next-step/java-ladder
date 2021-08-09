@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.List;
 import nextstep.ladder.domain.common.Name;
 import nextstep.ladder.domain.common.Result;
+import nextstep.ladder.domain.exception.NotExistsPlayerNameException;
 
 public class LadderGame {
 
@@ -22,6 +23,10 @@ public class LadderGame {
     }
 
     public Result getResult(final Name playerName) {
+        if (!playerNames.contains(playerName)) {
+            throw new NotExistsPlayerNameException();
+        }
+
         final int index = playerNames.indexOf(playerName);
         final int goal = lines.goal(index);
 
