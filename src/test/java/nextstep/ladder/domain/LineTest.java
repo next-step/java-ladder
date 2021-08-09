@@ -9,6 +9,7 @@ import java.util.stream.Stream;
 import nextstep.ladder.domain.exception.InvalidCreateLineException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -74,5 +75,33 @@ class LineTest {
         assertThat(line.getExists().stream()
             .distinct()
             .count()).isEqualTo(2);
+    }
+
+    public static Stream<Arguments> nextLine() {
+        return Stream.of(
+            Arguments.of(Line.of(Arrays.asList(false, true, false, false, true, false)), 0, 1),
+            Arguments.of(Line.of(Arrays.asList(false, true, false, false, true, false)), 1, 0),
+            Arguments.of(Line.of(Arrays.asList(false, true, false, false, true, false)), 2, 2),
+            Arguments.of(Line.of(Arrays.asList(false, true, false, false, true, false)), 3, 4),
+            Arguments.of(Line.of(Arrays.asList(false, false, true, false, true, false)), 4, 3),
+            Arguments.of(Line.of(Arrays.asList(false, false, true, false, true, false)), 0, 0),
+            Arguments.of(Line.of(Arrays.asList(false, false, true, false, true, false)), 1, 2),
+            Arguments.of(Line.of(Arrays.asList(false, false, true, false, true, false)), 2, 1),
+            Arguments.of(Line.of(Arrays.asList(false, false, true, false, true, false)), 3, 4),
+            Arguments.of(Line.of(Arrays.asList(false, false, true, false, true, false)), 4, 3)
+        );
+    }
+
+    @DisplayName("[성공] 다음 가로줄로 이동")
+    @ParameterizedTest
+    @MethodSource("nextLine")
+    public void next(final Line line, final int current, final int expected) {
+        // given
+
+        // when
+        final int next = line.next(current);
+
+        // then
+        assertThat(next).isEqualTo(expected);
     }
 }

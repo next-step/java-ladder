@@ -47,6 +47,18 @@ public class Line {
         return new Line(new DefaultLineExistsGenerator(), playerCount);
     }
 
+    public int next(final int index) {
+        if (exists.get(index)) {
+            return index - 1;
+        }
+
+        if (exists.get(index + 1)) {
+            return index + 1;
+        }
+
+        return index;
+    }
+
     public int size() {
         return exists.size();
     }
