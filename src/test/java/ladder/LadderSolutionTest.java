@@ -1,7 +1,8 @@
 package ladder;
 
+import ladder.domain.view.FakeInputView;
 import ladder.view.DosResultView;
-import ladder.view.FakeInputView;
+import ladder.view.InputView;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -14,24 +15,31 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 
 class LadderSolutionTest {
     @CsvSource(value = {
-            "pobi,honux,crong,jk|5|꽝,5000,꽝,3000|pobi,all",
-            "A ,B,C ,D,E,F|5|1,2,3,4,5,6|A,B,all",
-            "A,B ,C,D,E|5|1,2,3,4,5|A,B,all",
-            "A, B,C, D|5|1,2,3,4|A,B,all",
-            "A ,B,C ,D,E,F,G,PP,QQ,QWRA,AA,BB|100|1,2,3,4,5,6,7,8,9,10,11,12|A,B,all"
+            "pobi,honux,crong,jk,jae,won,ㅈ,ㅃ,aa|5|꽝,5000,꽝,3000,꽝,3000,3000,꽝,3000|pobi,all",
+            "pobi,honux,crong,jk,jae,won,ㅈ,ㅃ,aa,TT|5|꽝,5000,꽝,3000,꽝,3000,3000,꽝,3000,끝|pobi,all"
     }, delimiter = '|')
-    @DisplayName("통합 테스트")
     @ParameterizedTest
-    void run(String playerNames, int lineHeight, String prizeNames, String inputPrizeOwnerNames) {
-        List<String> inputPrizeOwnerNameList =
-                Arrays.stream(inputPrizeOwnerNames.split(","))
-                .collect(Collectors.toList());
-
-        assertThatCode(() ->
+    @DisplayName("통합 테스트")
+    void runTest(String playerNames, int lineHeight, String prizeNames, String prizeOwnerNames) {
+        assertThatCode(() -> {
+            InputView fakeInputView = toFakeInputView(playerNames, lineHeight, prizeNames, prizeOwnerNames);
             new LadderSolution(
-                    new FakeInputView(playerNames, lineHeight, prizeNames, inputPrizeOwnerNameList),
-                    new DosResultView()
-            ).run()
-        ).doesNotThrowAnyException();
+                    fakeInputView, new DosResultView()
+            ).run();
+        }).doesNotThrowAnyException();
+    }
+
+    private InputView toFakeInputView(String playerNames, int lintHeight, String prizeNames, String prizeOwnerNames) {
+        return new FakeInputView(
+                toList(playerNames),
+                lintHeight,
+                toList(prizeNames),
+                toList(prizeOwnerNames)
+        );
+    }
+
+    private List<String> toList(String strList) {
+        return Arrays.stream(strList.split(","))
+                .collect(Collectors.toList());
     }
 }

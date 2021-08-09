@@ -1,37 +1,30 @@
 package ladder.domain;
 
-import ladder.exception.OutOfLengthException;
+import ladder.exception.OutOfSizeException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.assertj.core.api.Assertions.assertThatCode;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 class NameTest {
     @ValueSource(strings = {
-            "pobi",
-            "honux",
-            "crong",
-            "jk"
+            "AAAA", "BBBB", "DDDD", "EEEE"
     })
-    @DisplayName("이름 5자 테스트 성공")
     @ParameterizedTest
-    public void ctorTest(String name) {
+    @DisplayName("5자 이하 정상 생성")
+    void ctorTest(String name) {
         assertThatCode(() -> new Name(name))
                 .doesNotThrowAnyException();
     }
 
     @ValueSource(strings = {
-            "pobi12",
-            "honux1",
-            "crong1",
-            "jk1234"
+            "AAAAAA", "BBBBBB", "DDDDDD", "EEEEEE"
     })
-    @DisplayName("이름 5자 초과 테스트")
     @ParameterizedTest
-    public void ctorExceptionTest(String name) {
+    @DisplayName("6자 이상 생성 실패")
+    void ctorTest_OutOfSize(String name) {
         assertThatThrownBy(() -> new Name(name))
-                .isInstanceOf(OutOfLengthException.class);
+                .isInstanceOf(OutOfSizeException.class);
     }
 }

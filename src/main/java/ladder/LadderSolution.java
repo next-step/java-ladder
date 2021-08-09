@@ -1,12 +1,12 @@
 package ladder;
 
 import ladder.domain.*;
-import ladder.dto.request.LadderRandomGenerateRequest;
-import ladder.dto.request.LadderRequest;
+import ladder.domain.line.LadderLine;
+import ladder.domain.player.Player;
+import ladder.domain.player.Players;
+import ladder.domain.line.RandomDirectionCreateStrategy;
+import ladder.dto.request.PrintResultRequest;
 import ladder.dto.response.LadderResult;
-import ladder.exception.DuplicateKeyException;
-import ladder.exception.InvalidRopeException;
-import ladder.exception.OutOfLengthException;
 import ladder.view.DosInputView;
 import ladder.view.DosResultView;
 import ladder.view.InputView;
@@ -14,8 +14,9 @@ import ladder.view.ResultView;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-public class LadderSolution {
+public final class LadderSolution {
     public static void main(String[] args) {
         LadderSolution ladderSolution = new LadderSolution(
                 new DosInputView(), new DosResultView()
@@ -35,18 +36,19 @@ public class LadderSolution {
         try {
             Players players = inputPlayers();
             Ladder ladder = inputLadder(players.size());
-            LadderResult ladderResult = ladder.result(players);
+            List<Prize> prizes = inputPrizes();
 
-            resultView.printResult(ladderResult, players);
+            LadderResult ladderResult = ladder.result(players, prizes);
+
+            PrintResultRequest resultRequest = new PrintResultRequest(
+                    ladder, prizes, players
+            );
+            resultView.printResult(resultRequest);
 
             displayPrizes(ladderResult, players);
-        } catch (DuplicateKeyException | InvalidRopeException | OutOfLengthException e) {
+        } catch (Exception e) {
             resultView.printException(e);
-        }/* catch (Exception e) {
-            resultView.printException(
-                    new RuntimeException("오류가 발생 했습니다.")
-            );
-        }*/
+        }
     }
 
     private Players inputPlayers() {
@@ -58,18 +60,34 @@ public class LadderSolution {
                 ));
     }
 
-    private Ladder inputLadder(int ropeSize) {
-        LadderRequest ladderRequest = inputView.inputLadderRequest();
-
-        List<Prize> prizes = ladderRequest.prizeNames().stream()
+    private List<Prize> inputPrizes() {
+        return inputView.inputPrizeNames().stream()
                 .map(Name::new)
                 .map(Prize::new)
                 .collect(Collectors.toList());
-        LadderRandomGenerateRequest ladderRandomGenerateRequest = new LadderRandomGenerateRequest(
-                prizes, ropeSize, ladderRequest.lineHeight()
-        );
+    }
 
-        return Ladder.randomGenerate(ladderRandomGenerateRequest);
+    private Ladder inputLadder(int playerSize) {
+        int lineHeight = inputView.inputLineHeight();
+
+        return newLadder(lineHeight, playerSize);
+    }
+
+    private Ladder newLadder(int lineHeight, int pointSize) {
+        return Stream.generate(() -> newLadderLine(pointSize))
+                .limit(lineHeight)
+                .collect(
+                        Collectors.collectingAndThen(
+                                Collectors.toList(), Ladder::new
+                        )
+                );
+    }
+
+    private LadderLine newLadderLine(int pointSize) {
+        return LadderLine.builder()
+                .auto(new RandomDirectionCreateStrategy())
+                .pointSize(pointSize)
+                .build();
     }
 
     private void displayPrizes(LadderResult ladderResult, Players players) {
@@ -79,7 +97,7 @@ public class LadderSolution {
 
             players.findByName(new Name(inputPlayerName))
                     .ifPresent(iPlayer ->
-                            resultView.printPrize(ladderResult, iPlayer)
+                            resultView.printPrizeOwner(ladderResult, iPlayer)
                     );
         } while(!inputPlayerName.equals("all"));
         resultView.printPrizeAll(ladderResult, players);

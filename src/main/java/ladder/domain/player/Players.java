@@ -1,6 +1,6 @@
-package ladder.domain;
+package ladder.domain.player;
 
-import ladder.exception.DuplicateKeyException;
+import ladder.domain.Name;
 
 import java.util.*;
 
@@ -15,7 +15,7 @@ public class Players implements Iterable<Player> {
 
     private void validateOverlapPlayerNames(List<Player> players) {
         if (players.size() != new HashSet<>(players).size()) {
-            throw new DuplicateKeyException("중복된 이름이 존재 합니다.");
+            throw new IllegalStateException("중복된 이름이 존재 합니다.");
         }
     }
 
@@ -29,25 +29,29 @@ public class Players implements Iterable<Player> {
                 .findFirst();
     }
 
+    public int size() {
+        return this.players.size();
+    }
+
     @Override
     public Iterator<Player> iterator() {
         return players.iterator();
     }
 
-    public int size() {
-        return players.size();
-    }
-
-    @Override
-    public boolean equals(Object compareValue) {
-        if (this == compareValue) return true;
-        if (compareValue == null || getClass() != compareValue.getClass()) return false;
-        Players players1 = (Players) compareValue;
-        return Objects.equals(players, players1.players);
-    }
-
     @Override
     public int hashCode() {
         return Objects.hash(players);
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        final Players players1 = (Players) o;
+        return Objects.equals(players, players1.players);
     }
 }

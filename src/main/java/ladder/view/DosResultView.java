@@ -1,18 +1,38 @@
 package ladder.view;
 
-import ladder.domain.*;
+import ladder.domain.Ladder;
+import ladder.domain.line.LadderLine;
+import ladder.domain.player.Player;
+import ladder.domain.player.Players;
+import ladder.domain.Prize;
+import ladder.domain.point.LadderPoint;
+import ladder.dto.request.PrintResultRequest;
 import ladder.dto.response.LadderResult;
 
 import java.util.List;
 import java.util.stream.IntStream;
 
-public class DosResultView implements ResultView {
+public final class DosResultView implements ResultView {
+    private void printResultTitle() {
+        System.out.println(Text.RESULT_TITLE);
+    }
+
+    private void printEmptyLine(int size) {
+        IntStream.range(0, size)
+                .forEach(i -> System.out.println());
+    }
+
+    private void printEmptyLine() {
+        printEmptyLine(1);
+    }
+
     @Override
-    public void printResult(LadderResult ladderResult, Players players) {
+    public void printResult(PrintResultRequest request) {
         printResultTitle();
 
-        printPlayers(players);
-        printLadder(ladderResult.ladder());
+        printPlayers(request.players());
+        printLadder(request.ladder());
+        printPrizes(request.prizes());
     }
 
     private void printPlayers(Players players) {
@@ -24,29 +44,28 @@ public class DosResultView implements ResultView {
 
     private void printLadder(Ladder ladder) {
         ladder.forEach(this::printLadderLine);
-        printLadderPrizes(ladder.prizes());
     }
 
     private void printLadderLine(LadderLine ladderLine) {
-        ladderLine.forEach(this::printRope);
+        ladderLine.forEach(this::printLadderPoint);
 
         printEmptyLine();
     }
 
-    private void printRope(Rope rope) {
-        System.out.print(ropeText(rope));
+    private void printLadderPoint(LadderPoint point) {
+        System.out.print(ropeText(point));
     }
 
-    private Text ropeText(Rope rope) {
-        return rope.isPresent() ? Text.PRESENT_ROPE : Text.EMPTY_ROPE;
+    private Text ropeText(LadderPoint point) {
+        return point.isLeft() ? Text.LEFT_ROPE : Text.EMPTY_RIGHT_ROPE;
     }
 
-    private void printLadderPrizes(List<Prize> prizes) {
-        prizes.forEach(this::printLadderPrize);
+    private void printPrizes(List<Prize> prizes) {
+        prizes.forEach(this::printPrize);
         printEmptyLine(2);
     }
 
-    private void printLadderPrize(Prize prize) {
+    private void printPrize(Prize prize) {
         System.out.print(Text.PRIZE.format(prize));
     }
 
@@ -56,7 +75,7 @@ public class DosResultView implements ResultView {
     }
 
     @Override
-    public void printPrize(LadderResult ladderResult, Player player) {
+    public void printPrizeOwner(LadderResult ladderResult, Player player) {
         printResultTitle();
 
         System.out.println(ladderResult.prize(player));
@@ -75,25 +94,12 @@ public class DosResultView implements ResultView {
         );
     }
 
-    private void printResultTitle() {
-        System.out.println(Text.RESULT_TITLE);
-    }
-
-    private void printEmptyLine(int size) {
-        IntStream.range(0, size)
-                .forEach(i -> System.out.println());
-    }
-
-    private void printEmptyLine() {
-        printEmptyLine(1);
-    }
-
     private enum Text {
         RESULT_TITLE("실행결과\n"),
         PLAYER("%5s "),
         PRIZE("%-5s "),
-        PRESENT_ROPE("-----|"),
-        EMPTY_ROPE("     |"),
+        LEFT_ROPE("-----|"),
+        EMPTY_RIGHT_ROPE("     |"),
         PRIZE_ALL("%s : %s");
 
         private final String str;

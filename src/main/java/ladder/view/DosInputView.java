@@ -1,7 +1,5 @@
 package ladder.view;
 
-import ladder.dto.request.LadderRequest;
-
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
@@ -50,15 +48,13 @@ public final class DosInputView implements InputView {
     }
 
     @Override
-    public LadderRequest inputLadderRequest() {
-        return new LadderRequest(
-                inputList(Text.INPUT_PRIZE_NAMES),
-                inputLineHeight()
-        );
+    public int inputLineHeight() {
+        return inputNumber(Text.INPUT_LINE_HEIGHT);
     }
 
-    private int inputLineHeight() {
-        return inputNumber(Text.INPUT_LINE_HEIGHT);
+    @Override
+    public List<String> inputPrizeNames() {
+        return inputList(Text.INPUT_PRIZE_NAMES);
     }
 
     @Override

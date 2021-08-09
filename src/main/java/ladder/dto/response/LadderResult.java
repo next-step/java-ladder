@@ -1,19 +1,18 @@
 package ladder.dto.response;
 
 import ladder.domain.Ladder;
-import ladder.domain.Player;
+import ladder.domain.player.Player;
 import ladder.domain.Prize;
-
 import java.util.Iterator;
 import java.util.Map;
 
 public class LadderResult implements Iterable<Map.Entry<Player, Prize>> {
     private final Ladder ladder;
-    private final Map<Player, Prize> results;
+    private final Map<Player, Prize> prizeOfEachPlayer;
 
-    public LadderResult(Ladder ladder, Map<Player, Prize> results) {
+    public LadderResult(Ladder ladder, Map<Player, Prize> prizeOfEachPlayer) {
         this.ladder = ladder;
-        this.results = results;
+        this.prizeOfEachPlayer = prizeOfEachPlayer;
     }
 
     public Ladder ladder() {
@@ -21,11 +20,11 @@ public class LadderResult implements Iterable<Map.Entry<Player, Prize>> {
     }
 
     public Prize prize(Player player) {
-        return results.get(player);
+        return prizeOfEachPlayer.get(player);
     }
 
     @Override
     public Iterator<Map.Entry<Player, Prize>> iterator() {
-        return results.entrySet().iterator();
+        return prizeOfEachPlayer.entrySet().iterator();
     }
 }
