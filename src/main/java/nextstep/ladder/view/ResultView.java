@@ -47,7 +47,7 @@ public class ResultView {
     }
 
     private static int findPrizeTarget(LadderResult result, Players players, String name) {
-        int byNameIndex = players.findByName(name);
+        int byNameIndex = players.findPositionByName(name);
         return result.getTarget(byNameIndex);
     }
 

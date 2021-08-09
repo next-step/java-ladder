@@ -28,7 +28,7 @@ public class Players {
                 .collect(Collectors.toList());
     }
 
-    public int findByName(String name) {
+    public int findPositionByName(String name) {
         return players.stream()
                 .filter(player -> player.getName().equals(name))
                 .findFirst()
