@@ -2,9 +2,6 @@ package nextstep.ladder.domain.laddar;
 
 import nextstep.ladder.domain.strategy.DirectionStrategy;
 
-/**
- * LadderColumn은 사다리의 열(행렬의 열)을 의미한다.
- */
 public class LadderColumn {
     private final LadderCell ladderCell;
 
