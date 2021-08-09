@@ -21,6 +21,7 @@ public class Line {
         for (int i = 1; i < playerCount; i++) {
             exists.add(generator.generate(exists.get(i - 1)));
         }
+        exists.add(false);
 
         createValidation(exists);
         this.exists = exists;

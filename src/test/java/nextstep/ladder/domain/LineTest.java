@@ -69,7 +69,7 @@ class LineTest {
         final Line line = Line.of(playerCount);
 
         // then
-        assertThat(line.size()).isEqualTo(playerCount);
+        assertThat(line.size()).isEqualTo(playerCount + 1);
         assertThat(line.getExists().get(0)).isFalse();
         assertThat(line.getExists().stream()
             .distinct()

@@ -14,14 +14,14 @@ class LinesTest {
     @CsvSource(value = {
         "10,5"
     })
-    public void create(int height, int playerCount) {
+    public void create(final int height, final int playerCount) {
         // given
 
         // when
-        Lines lines = Lines.of(height, playerCount);
+        final Lines lines = Lines.of(height, playerCount);
 
         // then
         assertThat(lines.size()).isEqualTo(height);
-        assertThat(lines.getLines().get(0).size()).isEqualTo(playerCount);
+        assertThat(lines.getLines().get(0).size()).isEqualTo(playerCount + 1);
     }
 }
