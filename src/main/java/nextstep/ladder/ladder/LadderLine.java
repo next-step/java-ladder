@@ -1,10 +1,11 @@
 package nextstep.ladder.ladder;
 
+import nextstep.ladder.strategy.LadderStrategy;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static nextstep.ladder.util.RandomValueGenerator.generate;
 
 public class LadderLine {
 
@@ -18,13 +19,13 @@ public class LadderLine {
         return new LadderLine(points);
     }
 
-    public static LadderLine of(int sizeOfPerson) {
+    public static LadderLine of(int sizeOfPerson, LadderStrategy strategy) {
         List<Point> points = new ArrayList<>();
-        Point point = Point.first(generate());
+        Point point = Point.first(strategy.creatable());
         points.add(point);
 
         while (point.untilBeforeLastPoint(sizeOfPerson)) {
-            point = point.next();
+            point = point.next(strategy);
             points.add(point);
         }
 

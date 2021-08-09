@@ -1,9 +1,10 @@
 package nextstep.ladder.ladder;
 
+import nextstep.ladder.strategy.LadderStrategy;
+
 import java.util.Objects;
 
 import static java.lang.Boolean.FALSE;
-import static nextstep.ladder.util.RandomValueGenerator.generate;
 
 public class Direction {
 
@@ -24,11 +25,11 @@ public class Direction {
         return of(FALSE, current);
     }
 
-    public Direction next() {
+    public Direction next(LadderStrategy strategy) {
         if (this.current) {
             return next(FALSE);
         }
-        return next(generate());
+        return next(strategy.creatable());
     }
 
     public Direction last() {

@@ -1,5 +1,6 @@
 package nextstep.ladder.ladder;
 
+import nextstep.ladder.strategy.RandomLadderStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -40,7 +41,7 @@ class PointTest {
     @DisplayName("첫 번째 포인트가 true 이면 현재 포인트는 false 이므로 인덱스가 1 감소한다.")
     @Test
     void next() {
-        Point next = Point.first(TRUE).next();
+        Point next = Point.first(TRUE).next(new RandomLadderStrategy());
         assertThat(next.move()).isZero();
     }
 }

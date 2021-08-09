@@ -1,5 +1,7 @@
 package nextstep.ladder.ladder;
 
+import nextstep.ladder.strategy.LadderStrategy;
+
 public class Point {
 
     public static final int START_LAST_COUNT = 2;
@@ -17,8 +19,8 @@ public class Point {
         return new Point(0, Direction.first(right));
     }
 
-    public Point next() {
-        return new Point(index + 1, direction.next());
+    public Point next(LadderStrategy strategy) {
+        return new Point(index + 1, direction.next(strategy));
     }
 
     public int move() {

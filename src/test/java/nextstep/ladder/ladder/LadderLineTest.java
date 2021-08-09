@@ -1,5 +1,6 @@
 package nextstep.ladder.ladder;
 
+import nextstep.ladder.strategy.RandomLadderStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +16,7 @@ class LadderLineTest {
     @DisplayName("사다리 생성 테스트")
     @Test
     void create() {
-        assertThat(LadderLine.of(5).size()).isEqualTo(5);
+        assertThat(LadderLine.of(5, new RandomLadderStrategy()).size()).isEqualTo(5);
     }
 
     @DisplayName("line 을 move 했을 때의 값을 리턴한다.")

@@ -1,6 +1,7 @@
 package nextstep.ladder.ladder;
 
 import nextstep.ladder.ladder.dto.LadderResult;
+import nextstep.ladder.strategy.LadderStrategy;
 
 import java.util.Collections;
 import java.util.List;
@@ -19,10 +20,10 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public static Ladder of(LadderBound bound) {
+    public static Ladder of(LadderBound bound, LadderStrategy strategy) {
         int width = bound.getWidth();
         List<LadderLine> lines = IntStream.range(START_INDEX, bound.getHeight())
-                .mapToObj(s -> LadderLine.of(width))
+                .mapToObj(s -> LadderLine.of(width, strategy))
                 .collect(Collectors.toList());
 
         return new Ladder(width, lines);
