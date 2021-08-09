@@ -6,34 +6,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ColumnLine {
-    private Height height;
     private List<Boolean> points = new ArrayList<>();
 
     public ColumnLine(Height height) {
-        this.height = height;
-        initPoints(height);
+        initPoints(height.getHeight());
     }
 
-    private void initPoints(Height height) {
-        for (int i = 0; i < height.getHeight(); i++) {
+    private void initPoints(int height) {
+        for (int i = 0; i < height; i++) {
             points.add(false);
         }
     }
 
-    public ColumnLine(Height height, List<Boolean> points) {
-        this.height = height;
+    public ColumnLine(List<Boolean> points) {
         this.points = points;
     }
 
-    public int getHeight() {
-        return height.getHeight();
-    }
-
-    public ColumnLine draw(ColumnLine nextColumnLine) {
+    public void draw(ColumnLine nextColumnLine) {
         for (int index = 0; index < this.points.size(); index++) {
             drawRowLine(nextColumnLine, index);
         }
-        return this;
     }
 
     private void drawRowLine(ColumnLine nextColumnLine, int index) {
@@ -45,5 +37,9 @@ public class ColumnLine {
 
     public List<Boolean> getPoints() {
         return points;
+    }
+
+    public void setDrownPosition(int heightIndex) {
+        points.set(heightIndex,false);
     }
 }

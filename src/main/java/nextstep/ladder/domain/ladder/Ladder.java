@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Ladder {
+    private Height height;
     private List<ColumnLine> columnLines = new LinkedList<>();
 
     public Ladder(List<ColumnLine> columnLines) {
@@ -11,7 +12,8 @@ public class Ladder {
     }
 
     public Ladder(int height, int countOfUser) {
-        createColumnLines(height, countOfUser);
+        this.height = new Height(height);
+        createColumnLines(countOfUser);
         drawRowLines();
     }
 
@@ -21,13 +23,17 @@ public class Ladder {
         }
     }
 
-    private void createColumnLines(int height, int countOfUser) {
+    private void createColumnLines(int countOfUser) {
         for (int i = 0; i < countOfUser; i++) {
-            columnLines.add(new ColumnLine(new Height(height)));
+            columnLines.add(new ColumnLine(this.height));
         }
     }
 
     public List<ColumnLine> getLines() {
         return columnLines;
+    }
+
+    public int getHeight() {
+        return height.getHeight();
     }
 }
