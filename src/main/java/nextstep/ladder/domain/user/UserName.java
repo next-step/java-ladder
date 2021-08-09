@@ -10,6 +10,9 @@ public class UserName {
     }
 
     private void validate(String userNameString) {
+        if (userNameString == null || "".equals(userNameString)) {
+            throw new IllegalArgumentException("이름은 null 또는 빈값을 입력할 수 없습니다.");
+        }
         if (userNameString.length() > USER_NAME_MAXIMUM) {
             throw new IllegalArgumentException("이름은 5글자를 초과할 수 없습니다.");
         }

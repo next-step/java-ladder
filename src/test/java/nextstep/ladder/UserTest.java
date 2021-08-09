@@ -20,4 +20,17 @@ public class UserTest {
             new User(new UserName(invalidUserNameString));
         }).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("user 이름 null, empty")
+    void nameEmptyOrNullTest(){
+        String emptyName = "";
+        String nullName = null;
+        assertThatThrownBy(() -> {
+            new User(new UserName(emptyName));
+        }).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> {
+            new User(new UserName(nullName));
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
 }
