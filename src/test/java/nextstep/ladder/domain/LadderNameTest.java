@@ -18,6 +18,8 @@ class LadderNameTest {
     @Test
     @DisplayName("5글자 이상 예외")
     void letterLimitException() {
-        assertThatThrownBy(() -> LadderName.of("asdasd")).isInstanceOf(LetterLimitException.class);
+        assertThatThrownBy(() -> LadderName.of("asdasd"))
+            .hasMessageContaining("5글자")
+            .isInstanceOf(LetterLimitException.class);
     }
 }

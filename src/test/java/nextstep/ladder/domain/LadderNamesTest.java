@@ -1,10 +1,8 @@
 package nextstep.ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import nextstep.ladder.exception.LetterLimitException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,14 +12,6 @@ class LadderNamesTest {
     void create() {
         LadderNames ladderNames = LadderNames.of("pobi,honux,crong,jk");
         assertThat(ladderNames).isEqualTo(LadderNames.of("pobi,honux,crong,jk"));
-    }
-
-    @Test
-    @DisplayName("이름 5글자 예외처리")
-    void ladderExceptionTest() {
-        assertThatThrownBy(() -> LadderNames.of("pobiaaaaa,honux,crong,jk"))
-                .hasMessageContaining("5글자")
-                .isInstanceOf(LetterLimitException.class);
     }
 
     @Test
