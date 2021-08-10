@@ -26,12 +26,10 @@ public class Lines {
     }
 
     public int goal(final int start) {
-        int goal = start;
-        for (final Line line : lines) {
-            goal = line.next(goal);
-        }
-
-        return goal;
+        return lines.stream().reduce(
+            start,
+            (goal, line) -> line.next(goal),
+            (a, b) -> 0);
     }
 
     public List<Line> getLines() {
