@@ -15,3 +15,5 @@
 * 람다
   - [x] CarTest 익명 클래스를 람다식으로 변경
   - [x] Lambda 람다를 활용해 중복 제거
+* 스트림
+  - [x] sumOverThreeAndDouble 테스트 패스
