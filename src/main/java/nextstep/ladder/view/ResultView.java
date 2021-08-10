@@ -1,14 +1,12 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.LadderLineCreationStrategy;
-import nextstep.ladder.domain.LadderNames;
-import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Lines;
-
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import nextstep.ladder.domain.RandomCreationStrategy;
+import nextstep.ladder.domain.LadderNames;
+import nextstep.ladder.domain.Line;
+import nextstep.ladder.domain.Lines;
 
 public class ResultView {
     private static final int LETTER_LIMIT = 5;
@@ -30,7 +28,7 @@ public class ResultView {
     }
 
     private static String drawLine(Line line) {
-        if (line == Line.INITLINE) {
+        if (line == Line.INIT_LINE) {
             return INIT_LINE;
         }
 
@@ -43,7 +41,7 @@ public class ResultView {
 
     public void printLadderLines(LadderNames ladderNames, int maxLadderHeight) {
         for(int i = 0; i < maxLadderHeight; i++) {
-            printLines(Lines.of(initLine(), ladderNames.size(), new LadderLineCreationStrategy()));
+            printLines(Lines.of(ladderNames.size(), new RandomCreationStrategy()));
         }
     }
 
@@ -68,11 +66,5 @@ public class ResultView {
         }
 
         return name;
-    }
-
-    private List<Line> initLine() {
-        List<Line> lines = new ArrayList<>();
-        lines.add(Line.INITLINE);
-        return lines;
     }
 }
