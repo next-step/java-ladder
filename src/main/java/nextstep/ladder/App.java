@@ -2,7 +2,9 @@ package nextstep.ladder;
 
 import nextstep.ladder.ladder.Ladder;
 import nextstep.ladder.ladder.LadderBound;
-import nextstep.ladder.ladder.LadderPrizes;
+import nextstep.ladder.ladder.Prizes;
+import nextstep.ladder.ladder.dto.LadderResult;
+import nextstep.ladder.player.Players;
 import nextstep.ladder.strategy.RandomLadderStrategy;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
@@ -10,23 +12,13 @@ import nextstep.ladder.view.ResultView;
 public class App {
 
     public static void main(String[] args) {
-        LadderPrizes ladderPrizes = getLadderPrizes();
-        LadderBound ladderBound = getLadderBound(ladderPrizes.getPlayers().count());
-        Ladder ladder = Ladder.of(ladderBound, new RandomLadderStrategy());
-
-        ResultView.printLadder(ladderPrizes, ladder);
-        ResultView.printPlayerResult(ladderPrizes);
-
-    }
-
-    private static LadderPrizes getLadderPrizes() {
-        String playerNames = InputView.getInputPlayerName();
-        String prizesNames = InputView.getInputLadderPrize();
-        return LadderPrizes.of(playerNames, prizesNames);
-    }
-
-    private static LadderBound getLadderBound(int count) {
+        Players players = Players.of(InputView.getInputPlayerName());
+        Prizes prizes = Prizes.of(InputView.getInputLadderPrize());
         int height = InputView.getInputMaxLadderHeight();
-        return LadderBound.of(count - 1, height);
+        Ladder ladder = Ladder.of(LadderBound.of(players.count(), height), new RandomLadderStrategy());
+
+        ResultView.printLadder(players, ladder, prizes);
+        LadderResult result = ladder.play();
+        ResultView.printPlayerResult(result, players, prizes);
     }
 }

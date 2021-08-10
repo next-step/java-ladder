@@ -7,7 +7,7 @@ public class Player {
     private static final int MAX_NAME_LENGTH = 5;
 
     private final String name;
-    private int position;
+    private final int position;
 
     private Player(String name, int position) {
         validate(name);
@@ -25,10 +25,6 @@ public class Player {
 
     public int getPosition() {
         return position;
-    }
-
-    public void move(int moveValue) {
-        position += moveValue;
     }
 
     private void validate(String name) {

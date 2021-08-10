@@ -1,6 +1,6 @@
 package nextstep.ladder.ladder;
 
-import nextstep.ladder.player.Player;
+import nextstep.ladder.ladder.dto.LadderResult;
 import nextstep.ladder.strategy.LadderStrategy;
 
 import java.util.Collections;
@@ -12,27 +12,40 @@ public class Ladder {
 
     private static final int START_INDEX = 0;
 
-    private final List<Line> lines;
+    private final int width;
+    private final List<LadderLine> lines;
 
-    private Ladder(List<Line> lines) {
+    public Ladder(int width, List<LadderLine> lines) {
+        this.width = width;
         this.lines = lines;
     }
 
     public static Ladder of(LadderBound bound, LadderStrategy strategy) {
-        List<Line> collect = IntStream.range(START_INDEX, bound.getHeight())
-                .mapToObj(s -> Line.of(bound.getWidth(), strategy))
+        int width = bound.getWidth();
+        List<LadderLine> lines = IntStream.range(START_INDEX, bound.getHeight())
+                .mapToObj(s -> LadderLine.of(width, strategy))
                 .collect(Collectors.toList());
-        return new Ladder(collect);
+
+        return new Ladder(width, lines);
     }
 
-    public List<Line> getLines() {
+    public LadderResult play() {
+        LadderResult result = new LadderResult();
+        IntStream.range(START_INDEX, width)
+                .forEach(index -> result.put(index, getTarget(index)));
+        return result;
+    }
+
+    public List<LadderLine> getLines() {
         return Collections.unmodifiableList(lines);
     }
 
-    public void move(Player player) {
-        lines.forEach(line -> {
-            MoveType direction = line.findDirection(player.getPosition());
-            player.move(direction.getMoveValue());
-        });
+    private int getTarget(int position) {
+        int target = position;
+        for (LadderLine line : lines) {
+            target = line.move(target);
+        }
+
+        return target;
     }
 }

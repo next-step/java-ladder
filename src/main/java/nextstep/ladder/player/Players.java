@@ -28,10 +28,11 @@ public class Players {
                 .collect(Collectors.toList());
     }
 
-    public Player findByName(String name) {
+    public int findPositionByName(String name) {
         return players.stream()
                 .filter(player -> player.getName().equals(name))
                 .findFirst()
+                .map(Player::getPosition)
                 .orElseThrow(() -> new NotFoundPlayerNameException(name));
     }
 

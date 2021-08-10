@@ -29,19 +29,4 @@ class PlayerTest {
         playerList.forEach(p -> assertThat(p.getPosition()).isEqualTo(index.incrementAndGet()));
 
     }
-
-    @DisplayName("플레이어의 position 정보 변경")
-    @Test
-    void player_position_move() {
-        Players players = Players.of("pobi,honux,crong,jk");
-        Player player = players.getPlayers().get(1);
-        player.move(1);
-
-        assertThat(player.getPosition()).isEqualTo(2);
-
-        player.move(-1);
-        player.move(-1);
-
-        assertThat(player.getPosition()).isZero();
-    }
 }
