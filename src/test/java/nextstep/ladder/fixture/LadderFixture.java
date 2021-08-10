@@ -2,7 +2,7 @@ package nextstep.ladder.fixture;
 
 import nextstep.ladder.domain.laddar.LadderCell;
 import nextstep.ladder.domain.laddar.LadderColumn;
-import nextstep.ladder.domain.laddar.LadderGameConfig;
+import nextstep.ladder.domain.laddar.LadderGameContext;
 import nextstep.ladder.domain.laddar.LadderSize;
 import nextstep.ladder.domain.player.Players;
 import nextstep.ladder.domain.strategy.DirectionStrategy;
@@ -25,7 +25,7 @@ public class LadderFixture {
     public static final DirectionStrategy DIRECTION_FALSE = () -> false;
 
     public static final LadderSize LADDER_SIZE = LadderSize.of(WIDTH_SIZE_FIXTURE, HEIGHT_SIZE_FIXTURE);
-    public static final LadderGameConfig LADDER_GAME_CONFIG = LadderGameConfig.of(LADDER_SIZE, DIRECTION_TRUE);
+    public static final LadderGameContext LADDER_GAME_CONTEXT = LadderGameContext.of(LADDER_SIZE, DIRECTION_TRUE);
 
     public static final LadderCell FIRST_TRUE_CELL = LadderCell.createFirst(LadderFixture.DIRECTION_TRUE);
     public static final LadderCell FIRST_FALSE_CELL = LadderCell.createFirst(LadderFixture.DIRECTION_FALSE);

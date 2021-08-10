@@ -9,14 +9,14 @@ import java.util.stream.Stream;
 public class Ladder {
     private final List<LadderRow> ladderRows;
 
-    private Ladder(final LadderGameConfig ladderGameConfig) {
-        ladderRows = Stream.generate(() -> LadderRow.from(ladderGameConfig))
-                           .limit(ladderGameConfig.getHeight())
+    private Ladder(final LadderGameContext ladderGameContext) {
+        ladderRows = Stream.generate(() -> LadderRow.from(ladderGameContext))
+                           .limit(ladderGameContext.getHeight())
                            .collect(Collectors.toUnmodifiableList());
     }
 
-    public static Ladder from(final LadderGameConfig ladderGameConfig) {
-        return new Ladder(ladderGameConfig);
+    public static Ladder from(final LadderGameContext ladderGameContext) {
+        return new Ladder(ladderGameContext);
     }
 
     public List<RowDto> convert() {

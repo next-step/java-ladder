@@ -16,7 +16,7 @@ class LadderRowTest {
     @Test
     @DisplayName("가지고 있는 모든 열의 정보를 List<Boolean>으로 반환한다. 오른쪽과 이어져있다면 true, 아니면 false이다. 픽스처는 5의 크기로 초기화 되었다.")
     void toDirections() {
-        LadderRow ladderRow = LadderRow.from(LadderFixture.LADDER_GAME_CONFIG);
+        LadderRow ladderRow = LadderRow.from(LadderFixture.LADDER_GAME_CONTEXT);
         List<Boolean> directions = ladderRow.toDirections();
         Assertions.assertThat(directions.size()).isEqualTo(WIDTH_SIZE_FIXTURE);
     }

@@ -17,8 +17,8 @@ public class LadderGame {
 
     public static LadderGame of(final Players players, final int ladderHeight) {
         LadderSize ladderSize = LadderSize.of(Objects.requireNonNull(players).getNames().size(), ladderHeight);
-        LadderGameConfig ladderGameConfig = LadderGameConfig.of(ladderSize, DirectionRandomStrategy.getInstance());
-        return new LadderGame(Ladder.from(ladderGameConfig), players);
+        LadderGameContext ladderGameContext = LadderGameContext.of(ladderSize, DirectionRandomStrategy.getInstance());
+        return new LadderGame(Ladder.from(ladderGameContext), players);
     }
 
     public ResultDto getGameResult() {
