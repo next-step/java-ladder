@@ -23,14 +23,18 @@ public class LadderGame {
     }
 
     public Result getResult(final Name playerName) {
-        if (!playerNames.contains(playerName)) {
-            throw new NotExistsPlayerNameException();
-        }
+        playerNameValidation(playerName);
 
         final int index = playerNames.indexOf(playerName);
         final int goal = lines.goal(index);
 
         return results.get(goal);
+    }
+
+    private void playerNameValidation(final Name playerName) {
+        if (!playerNames.contains(playerName)) {
+            throw new NotExistsPlayerNameException();
+        }
     }
 
     public Lines getLines() {
