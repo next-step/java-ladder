@@ -12,9 +12,11 @@
 # 1단계 - 자바8 스트림, 람다, Optional
 
 ## 기능 정의
-* 람다
+* Lambda
   - [x] CarTest 익명 클래스를 람다식으로 변경
   - [x] Lambda 람다를 활용해 중복 제거
-* 스트림
+* Stream
   - [x] sumOverThreeAndDouble 테스트 패스
   - [x] printLongestWordTop100 구현
+* Optional
+  - [x] Optional을 활용해 조건에 따른 반환
