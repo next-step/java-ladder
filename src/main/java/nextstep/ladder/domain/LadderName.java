@@ -23,6 +23,14 @@ public class LadderName {
         }
     }
 
+    public boolean findName(String name) {
+        if(laddername.equals(name)) {
+            return true;
+        };
+        return false;
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

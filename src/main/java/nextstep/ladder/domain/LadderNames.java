@@ -40,6 +40,20 @@ public class LadderNames {
         return ladderNames.size();
     }
 
+    public int searchName(String name) {
+        return findIndex(name);
+    }
+
+    public int findIndex(String name) {
+        for(int i = 0; i < ladderNames.size(); i++) {
+            if(ladderNames.get(i).findName(name)) {
+                return i;
+            }
+        }
+        throw new IllegalArgumentException("해당하는 사람이 없습니다.");
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
