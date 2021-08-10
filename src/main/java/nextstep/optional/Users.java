@@ -1,9 +1,7 @@
 package nextstep.optional;
 
-import javax.swing.text.html.Option;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 public class Users {
     static final User DEFAULT_USER = new User("codesquad", 100);
