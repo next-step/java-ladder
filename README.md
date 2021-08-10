@@ -20,3 +20,4 @@
   - [x] printLongestWordTop100 구현
 * Optional
   - [x] Optional을 활용해 조건에 따른 반환
+  - [x] Optional에서 값을 반환
