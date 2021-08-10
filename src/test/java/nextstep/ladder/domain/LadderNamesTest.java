@@ -1,13 +1,12 @@
-package nextstep.ladder;
-
-import nextstep.ladder.domain.LadderNames;
-import nextstep.ladder.exception.StringLengthException;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+package nextstep.ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import nextstep.ladder.exception.LetterLimitException;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 class LadderNamesTest {
     @Test
@@ -22,7 +21,7 @@ class LadderNamesTest {
     void ladderExceptionTest() {
         assertThatThrownBy(() -> LadderNames.of("pobiaaaaa,honux,crong,jk"))
                 .hasMessageContaining("5글자")
-                .isInstanceOf(StringLengthException.class);
+                .isInstanceOf(LetterLimitException.class);
     }
 
     @Test
