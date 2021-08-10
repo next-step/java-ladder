@@ -6,7 +6,7 @@ import nextstep.ladder.view.dto.PrintLineDto;
 import nextstep.ladder.view.dto.PrintLinesDto;
 import nextstep.ladder.view.dto.PrintNameWithResultDto;
 import nextstep.ladder.view.dto.PrintPlayerNamesDto;
-import nextstep.ladder.view.dto.PrintResultDto;
+import nextstep.ladder.view.dto.PrintResultsDto;
 
 public class ResultView {
 
@@ -31,13 +31,13 @@ public class ResultView {
             .collect(Collectors.joining(LINE_DELIMITER));
     }
 
-    public static void printlnResults(final List<PrintResultDto> dtos) {
-        dtos.forEach(ResultView::printResult);
+    public static void printlnResults(final PrintResultsDto dto) {
+        dto.getValues().forEach(ResultView::printResult);
         System.out.println();
     }
 
-    public static void printResult(final PrintResultDto dto) {
-        System.out.printf("%6s", dto.getValue());
+    private static void printResult(final String result) {
+        System.out.printf("%6s", result);
     }
 
     public static void printNameWithResult(final PrintNameWithResultDto dto) {

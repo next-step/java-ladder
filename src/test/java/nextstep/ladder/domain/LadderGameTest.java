@@ -3,12 +3,11 @@ package nextstep.ladder.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import nextstep.ladder.domain.common.Name;
 import nextstep.ladder.domain.common.Names;
 import nextstep.ladder.domain.common.Result;
+import nextstep.ladder.domain.common.Results;
 import nextstep.ladder.domain.exception.NotExistsPlayerNameException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -29,9 +28,7 @@ class LadderGameTest {
         Line.of(Arrays.asList(false, false, true, false, true, false)))
     );
     private static final Names NAMES = Names.of("pobi,honux,crong,jk,hyune");
-    private static final List<Result> RESULTS = Arrays.stream("1000,5000,4000,3000,6000".split(","))
-        .map(Result::of)
-        .collect(Collectors.toList());
+    private static final Results RESULTS = Results.of("1000,5000,4000,3000,6000");
     private static final LadderGame LADDER_GMAE = LadderGame.of(LINES, NAMES, RESULTS);
 
     public static Stream<Arguments> result() {

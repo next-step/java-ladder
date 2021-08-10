@@ -1,25 +1,24 @@
 package nextstep.ladder.domain;
 
-import java.util.Collections;
-import java.util.List;
 import nextstep.ladder.domain.common.Name;
 import nextstep.ladder.domain.common.Names;
 import nextstep.ladder.domain.common.Result;
+import nextstep.ladder.domain.common.Results;
 import nextstep.ladder.domain.exception.NotExistsPlayerNameException;
 
 public class LadderGame {
 
     private final Lines lines;
     private final Names playerNames;
-    private final List<Result> results;
+    private final Results results;
 
-    private LadderGame(final Lines lines, final Names playerNames, final List<Result> results) {
+    private LadderGame(final Lines lines, final Names playerNames, final Results results) {
         this.lines = lines;
         this.playerNames = playerNames;
         this.results = results;
     }
 
-    public static LadderGame of(final Lines lines, final Names playerNames, final List<Result> results) {
+    public static LadderGame of(final Lines lines, final Names playerNames, final Results results) {
         return new LadderGame(lines, playerNames, results);
     }
 
@@ -46,7 +45,7 @@ public class LadderGame {
         return playerNames;
     }
 
-    public List<Result> getResults() {
-        return Collections.unmodifiableList(results);
+    public Results getResults() {
+        return results;
     }
 }
