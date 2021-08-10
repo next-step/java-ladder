@@ -22,4 +22,18 @@ class LadderNameTest {
             .hasMessageContaining("5글자")
             .isInstanceOf(LetterLimitException.class);
     }
+
+    @Test
+    void findByName() {
+        LadderName ladderName = LadderName.of("a");
+        assertThat(ladderName.findName("a")).isTrue();
+    }
+
+    @Test
+    void findByNameFalse() {
+        LadderName ladderName = LadderName.of("a");
+        assertThat(ladderName.findName("b")).isFalse();
+    }
+
+
 }
