@@ -17,3 +17,4 @@
   - [x] Lambda 람다를 활용해 중복 제거
 * 스트림
   - [x] sumOverThreeAndDouble 테스트 패스
+  - [x] printLongestWordTop100 구현
