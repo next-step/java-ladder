@@ -1,56 +1,66 @@
 package nextstep.ladder.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class Lines {
 
-    private List<Line> lines;
+    private final List<Line> lines;
 
-    public Lines(List<Line> lines, int maxNum, LineCreationStrategy lineCreationStrategy) {
+    private Lines(List<Line> lines) {
         this.lines = lines;
-        this.lines = drawLine(maxNum, lineCreationStrategy);
     }
 
-    public static Lines of (List<Line> lines, int maxNum, LineCreationStrategy lineCreationStrategy) {
-        return new Lines(lines, maxNum, lineCreationStrategy);
+    public static Lines of (List<Line> lines) {
+        return new Lines(lines);
     }
 
-    private List<Line> drawLine(int maxNum, LineCreationStrategy lineCreationStrategy) {
+    public static Lines of (int maxNum, LineCreationStrategy lineCreationStrategy) {
+        return of(drawLine(maxNum, lineCreationStrategy));
+    }
 
+    private static List<Line> drawLine(int maxNum, LineCreationStrategy lineCreationStrategy) {
+        List<Line> lines = initLine();
         for (int i = 1; i < maxNum; i++) {
-            drawLine(lineCreationStrategy);
+            drawLine(lines, lineCreationStrategy);
         }
 
         return lines;
     }
 
-    private void drawLine(LineCreationStrategy lineCreationStrategy) {
+    private static void drawLine(List<Line> lines, LineCreationStrategy lineCreationStrategy) {
         boolean isCreate = true;
         if (lineCreationStrategy.createLine()) {
             isCreate = lines.get(lines.size() - 1).isExist();
             boolean isOrNone = isCreate;
 
-            previousCheck(() -> isOrNone);
+            previousCheck(lines, () -> isOrNone);
 
             isCreate = false;
         }
-        isNotCreateLine(isCreate);
+        isNotCreateLine(lines, isCreate);
     }
 
-    private void previousCheck(LineCreationStrategy lineCreationStrategy) {
+    private static void previousCheck(List<Line> lines, LineCreationStrategy lineCreationStrategy) {
 
         if (lineCreationStrategy.createLine()) {
-            lines.add(Line.NONELINE);
+            lines.add(Line.NONE_LINE);
             return;
         }
-        lines.add(Line.ISLINE);
+        lines.add(Line.IS_LINE);
     }
 
-    private void isNotCreateLine(boolean isCreate) {
+    private static void isNotCreateLine(List<Line> lines, boolean isCreate) {
         if(isCreate) {
-            lines.add(Line.NONELINE);
+            lines.add(Line.NONE_LINE);
         }
+    }
+
+    private static List<Line> initLine() {
+        List<Line> lines = new ArrayList<>();
+        lines.add(Line.INIT_LINE);
+        return lines;
     }
 
 

@@ -1,9 +1,9 @@
 package nextstep.ladder.domain;
 
 public enum Line {
-    INITLINE(false),
-    NONELINE(false),
-    ISLINE(true);
+    INIT_LINE(false),
+    NONE_LINE(false),
+    IS_LINE(true);
 
     private final boolean isExist;
 

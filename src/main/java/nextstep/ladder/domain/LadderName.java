@@ -1,14 +1,14 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.exception.StringLengthException;
+import nextstep.ladder.exception.LetterLimitException;
 
 import java.util.Objects;
 
 public class LadderName {
     private static final int LETTER_LIMIT = 5;
-    private String laddername;
+    private final String laddername;
 
-    public LadderName(String ladderName) {
+    private LadderName(String ladderName) {
         this.laddername = ladderName;
     }
 
@@ -19,7 +19,7 @@ public class LadderName {
 
     private static void lengthValidation(String name) {
         if(name.length() > LETTER_LIMIT) {
-            throw new StringLengthException();
+            throw new LetterLimitException();
         }
     }
 

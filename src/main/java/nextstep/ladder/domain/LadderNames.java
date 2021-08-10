@@ -1,20 +1,19 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.exception.InputNullException;
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-
-import static java.util.stream.Collectors.collectingAndThen;
-import static java.util.stream.Collectors.toList;
+import nextstep.ladder.exception.InputNullException;
 
 public class LadderNames {
     private static final String REPLACE_STRING =  "\\[|\\]";
     private static final String SPLIT_STRING = ",";
     private static final String TRANSFER_STRING = "";
 
-    private List<LadderName> ladderNames;
+    private final List<LadderName> ladderNames;
 
     private LadderNames(List<LadderName> ladderNames) {
         this.ladderNames = ladderNames;
@@ -38,7 +37,7 @@ public class LadderNames {
     }
 
     public int size() {
-        return this.ladderNames.size();
+        return ladderNames.size();
     }
 
     @Override
