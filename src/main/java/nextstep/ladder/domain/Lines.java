@@ -12,7 +12,7 @@ public class Lines {
         this.lines = lines;
     }
 
-    public static Lines of (List<Line> lines) {
+    private static Lines of (List<Line> lines) {
         return new Lines(lines);
     }
 
@@ -63,6 +63,13 @@ public class Lines {
         return lines;
     }
 
+    public Boolean[] toArray() {
+        Boolean[] boolArr = new Boolean[lines.size()];
+        for (int i = 0; i < lines.size(); i++) {
+            boolArr[i] = lines.get(i).isExist();
+        }
+        return boolArr;
+    }
 
     @Override
     public boolean equals(Object o) {

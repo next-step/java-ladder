@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import nextstep.ladder.domain.LadderJackpot;
 import nextstep.ladder.domain.RandomCreationStrategy;
 import nextstep.ladder.domain.LadderNames;
 import nextstep.ladder.domain.Line;
@@ -21,21 +22,16 @@ public class ResultView {
 
     private static ResultView resultView = null;
 
-    private ResultView(LadderNames ladderNames, int maxLadderHeight) {
-        print(ladderNames, maxLadderHeight);
+    private ResultView() {
+
     }
 
-    public static ResultView getInstance(LadderNames ladderNames, int maxLadderHeight) {
+    public static ResultView getInstance() {
         if(Objects.isNull(resultView)) {
-            resultView = new ResultView(ladderNames, maxLadderHeight);
+            resultView = new ResultView();
         }
 
         return resultView;
-    }
-
-    public void print(LadderNames ladderNames, int maxLadderHeight) {
-        printLadderName(ladderNames);
-        printLadderLines(ladderNames.size(), maxLadderHeight);
     }
 
     private static List<String> makeLine(List<Line> lines) {
@@ -56,10 +52,14 @@ public class ResultView {
         return NONE_LINE;
     }
 
-    private void printLadderLines(int nameSize, int maxLadderHeight) {
+    public LadderJackpot printLadderLines(int nameSize, int maxLadderHeight) {
+        Boolean[][] ladders = new Boolean[maxLadderHeight][nameSize];
         for(int i = 0; i < maxLadderHeight; i++) {
-            printLines(Lines.of(nameSize, new RandomCreationStrategy()));
+            Lines lines = Lines.of(nameSize, new RandomCreationStrategy());
+            printLines(lines);
+            ladders[i] = lines.toArray();
         }
+        return LadderJackpot.of(ladders);
     }
 
     private void printLines(Lines lines) {
@@ -69,7 +69,7 @@ public class ResultView {
                                .replaceAll(SPLIT_STRING + SPACE, TRANSFER_STRING));
     }
 
-    private void printLadderName(LadderNames ladderNames) {
+    public void printLadderNames(LadderNames ladderNames) {
         Object[] names = Arrays.stream(ladderNames.toString().split(SPLIT_STRING))
                                .map(this::fitLength)
                                .toArray();
@@ -83,5 +83,12 @@ public class ResultView {
         }
 
         return name;
+    }
+
+    public void printJackpot(LadderNames ladderNames) {
+        Object[] names = Arrays.stream(ladderNames.toString().split(SPLIT_STRING)).toArray();
+
+
+        System.out.println();
     }
 }
