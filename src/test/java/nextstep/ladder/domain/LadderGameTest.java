@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import nextstep.ladder.domain.common.Name;
+import nextstep.ladder.domain.common.Names;
 import nextstep.ladder.domain.common.Result;
 import nextstep.ladder.domain.exception.NotExistsPlayerNameException;
 import org.junit.jupiter.api.Assertions;
@@ -27,9 +28,7 @@ class LadderGameTest {
         Line.of(Arrays.asList(false, true, false, true, false, false)),
         Line.of(Arrays.asList(false, false, true, false, true, false)))
     );
-    private static final List<Name> NAMES = Arrays.stream("pobi,honux,crong,jk,hyune".split(","))
-        .map(Name::of)
-        .collect(Collectors.toList());
+    private static final Names NAMES = Names.of("pobi,honux,crong,jk,hyune");
     private static final List<Result> RESULTS = Arrays.stream("1000,5000,4000,3000,6000".split(","))
         .map(Result::of)
         .collect(Collectors.toList());

@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import nextstep.ladder.domain.LadderGame;
 import nextstep.ladder.domain.Lines;
 import nextstep.ladder.domain.common.Name;
+import nextstep.ladder.domain.common.Names;
 import nextstep.ladder.domain.common.Result;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
@@ -21,9 +22,10 @@ public class LadderGameController {
 
         printLadder(game);
         printResultPlayer(game);
-        ResultView.printNameWithResults(game.getPlayerNames().stream()
-            .map(n -> new PrintNameWithResultDto(n, game.getResult(n)))
-            .collect(Collectors.toList()));
+        ResultView.printNameWithResults(
+            game.getPlayerNames().getValues().stream()
+                .map(n -> new PrintNameWithResultDto(n, game.getResult(n)))
+                .collect(Collectors.toList()));
     }
 
     private static void printResultPlayer(final LadderGame game) {
@@ -46,9 +48,7 @@ public class LadderGameController {
     }
 
     private static LadderGame createLadderGame() {
-        final List<Name> playerNames = Arrays.stream(InputView.inputPlayerName().split(","))
-            .map(Name::of)
-            .collect(Collectors.toList());
+        final Names playerNames = Names.of((InputView.inputPlayerName()));
         final List<Result> results = Arrays.stream(InputView.inputResults().split(","))
             .map(Result::of)
             .collect(Collectors.toList());
