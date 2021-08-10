@@ -12,7 +12,7 @@ class PlayerTest {
         Assertions.assertThatThrownBy(() -> {
                       Player.from("pobiii");
                   }).isInstanceOf(PlayerNameLengthLimitException.class)
-                  .hasMessage(String.format("참가자 이름의 길이는 %s를 넘을 수 없습니다.", NAME_LENGTH_LIMIT));
+                  .hasMessage(String.format("참가자 이름의 길이는 %s글자를 넘을 수 없습니다.", NAME_LENGTH_LIMIT));
     }
 
     @Test

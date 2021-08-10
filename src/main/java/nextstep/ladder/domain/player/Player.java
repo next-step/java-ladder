@@ -20,7 +20,7 @@ public class Player {
 
     private static void verifyNameLength(final String name) {
         if (name.length() > NAME_LENGTH_LIMIT) {
-            throw new PlayerNameLengthLimitException(String.format("참가자 이름의 길이는 %s를 넘을 수 없습니다.", NAME_LENGTH_LIMIT));
+            throw new PlayerNameLengthLimitException(String.format("참가자 이름의 길이는 %s글자를 넘을 수 없습니다.", NAME_LENGTH_LIMIT));
         }
     }
 
