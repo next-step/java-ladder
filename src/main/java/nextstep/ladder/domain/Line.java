@@ -27,6 +27,14 @@ public class Line {
         this.exists = exists;
     }
 
+    public static Line of(final List<Boolean> exists) {
+        return new Line(exists);
+    }
+
+    public static Line of(final int playerCount) {
+        return new Line(new DefaultLineExistsGenerator(), playerCount);
+    }
+
     private void createValidation(final List<Boolean> exists) {
         final BiConsumer<Boolean, Boolean> validation = (current, next) -> {
             if (!((current) ? !next : true)) {
@@ -37,14 +45,6 @@ public class Line {
         for (int i = 0; i < exists.size() - 1; i++) {
             validation.accept(exists.get(i), exists.get(i + 1));
         }
-    }
-
-    public static Line of(final List<Boolean> exists) {
-        return new Line(exists);
-    }
-
-    public static Line of(final int playerCount) {
-        return new Line(new DefaultLineExistsGenerator(), playerCount);
     }
 
     public int next(final int index) {

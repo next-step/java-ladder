@@ -39,9 +39,10 @@ public class LadderGameController {
     private static void printLadder(final LadderGame game) {
         ResultView.printPlayerNames(new PrintPlayerNamesDto(game.getPlayerNames()));
         ResultView.printLadders(new PrintLinesDto(game.getLines().getLines()));
-        ResultView.printlnResults(game.getResults().stream()
-            .map(PrintResultDto::new)
-            .collect(Collectors.toList()));
+        ResultView.printlnResults(
+            game.getResults().stream()
+                .map(PrintResultDto::new)
+                .collect(Collectors.toList()));
     }
 
     private static LadderGame createLadderGame() {
