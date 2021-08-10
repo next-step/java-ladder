@@ -2,7 +2,7 @@ package nextstep.ladder.domain;
 
 import java.util.Random;
 
-public class LadderLineCreationStrategy implements LineCreationStrategy {
+public class RandomCreationStrategy implements LineCreationStrategy {
     @Override
     public boolean createLine() {
         return getRandomNum();
