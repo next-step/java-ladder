@@ -38,10 +38,8 @@ class LadderJackpotTest {
         };
         LadderJackpot ladderJackpot = LadderJackpot.of(results);
 
-        Position position = ladderJackpot.select(LadderNames.of("a,b,c,d"), 1);
         String[] arr = ladderJackpot.jackpot("a,b,c,d");
 
-        System.out.println(arr[position.toInt()]);
     }
 
 }

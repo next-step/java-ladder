@@ -4,11 +4,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-import nextstep.ladder.domain.LadderJackpot;
-import nextstep.ladder.domain.RandomCreationStrategy;
 import nextstep.ladder.domain.LadderNames;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Lines;
+import nextstep.ladder.domain.RandomCreationStrategy;
 
 public class ResultView {
     private static final int LETTER_LIMIT = 5;
@@ -52,14 +51,11 @@ public class ResultView {
         return NONE_LINE;
     }
 
-    public LadderJackpot printLadderLines(int nameSize, int maxLadderHeight) {
-        Boolean[][] ladders = new Boolean[maxLadderHeight][nameSize];
+    public void printLadderLines(int nameSize, int maxLadderHeight) {
         for(int i = 0; i < maxLadderHeight; i++) {
             Lines lines = Lines.of(nameSize, new RandomCreationStrategy());
             printLines(lines);
-            ladders[i] = lines.toArray();
         }
-        return LadderJackpot.of(ladders);
     }
 
     private void printLines(Lines lines) {
@@ -83,12 +79,5 @@ public class ResultView {
         }
 
         return name;
-    }
-
-    public void printJackpot(LadderNames ladderNames) {
-        Object[] names = Arrays.stream(ladderNames.toString().split(SPLIT_STRING)).toArray();
-
-
-        System.out.println();
     }
 }

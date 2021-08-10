@@ -10,9 +10,13 @@ public class InputView {
         return sc.nextLine();
     }
 
-    public static String excutionResult() {
+    public static String[] excutionResult(String initPerson) {
         System.out.println("실행 결과를 입력하세요.");
-        return sc.nextLine();
+        String[] results = sc.nextLine().split(",");
+        if(results.length != initPerson.split(",").length) {
+            throw new IllegalArgumentException("사람과 당첨 결과의 수는 같아야 합니다.");
+        }
+        return results;
     }
 
     public static int maxLadderHeight() {
