@@ -73,6 +73,12 @@ public class ResultView {
         newLine();
     }
 
+    public static void printResultAll(final Players players, final ResultDto resultDto) {
+        ResultView.printResultStatement(resultDto);
+        ResultView.printLoop(resultDto, players);
+        ResultView.printEndMessage(resultDto);
+    }
+
     public static void printLoop(final ResultDto resultDto, final Players players) {
         Set<String> names = resultDto.getNames();
         while (true) {
@@ -91,7 +97,7 @@ public class ResultView {
         }
     }
 
-    public static void printResultAll(final ResultDto resultDto) {
+    public static void printEndMessage(final ResultDto resultDto) {
         println(RESULT_MESSAGE);
         resultDto.getNames().forEach(printResult(resultDto));
     }

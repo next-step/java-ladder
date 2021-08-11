@@ -1,6 +1,5 @@
 package nextstep.ladder;
 
-import nextstep.ladder.domain.dto.ResultDto;
 import nextstep.ladder.domain.endpoint.Endpoints;
 import nextstep.ladder.domain.laddar.LadderGame;
 import nextstep.ladder.domain.player.Players;
@@ -21,11 +20,6 @@ public class ConsoleRunner {
         final Players players = Players.from(playerNames);
         LadderGame ladderGame = LadderGame.initialize(players, ladderHeight, Endpoints.from(endpoints));
 
-        ResultDto resultDto = ladderGame.getGameResult();
-        ResultView.printResultStatement(resultDto);
-
-        ResultView.printLoop(resultDto, players);
-
-        ResultView.printResultAll(resultDto);
+        ResultView.printResultAll(players, ladderGame.getGameResult());
     }
 }
