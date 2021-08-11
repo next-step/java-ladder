@@ -7,3 +7,19 @@
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
+***
+
+# 1단계 - 자바8 스트림, 람다, Optional
+
+## 기능 정의
+* Lambda
+  - [x] CarTest 익명 클래스를 람다식으로 변경
+  - [x] Lambda 람다를 활용해 중복 제거
+* Stream
+  - [x] sumOverThreeAndDouble 테스트 패스
+  - [x] printLongestWordTop100 구현
+* Optional
+  - [x] Optional을 활용해 조건에 따른 반환
+  - [x] Optional에서 값을 반환
+  - [x] Optional에서 exception 처리
+  - [x] Optional에서 타입 변경
