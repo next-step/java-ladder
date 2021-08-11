@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 public class Position {
     private static final int MAKE_MAX_INDEX = 1;
+    private static final int MOVING_INDEX = 2;
 
     private int moveIndex;
 
@@ -17,19 +18,19 @@ public class Position {
     }
 
     private void rightMove() {
-        this.moveIndex += 2;
+        this.moveIndex += MOVING_INDEX;
     }
 
     private void leftMove() {
-        this.moveIndex -= 2;
+        this.moveIndex -= MOVING_INDEX;
     }
 
     private int ceil() {
-        return (int) Math.ceil(moveIndex / 2);
+        return (int) Math.ceil(moveIndex / MOVING_INDEX);
     }
 
     private boolean isZero() {
-        return moveIndex == 1;
+        return moveIndex == MAKE_MAX_INDEX;
     }
 
     private boolean isBetween(List<Lines> linesList) {
