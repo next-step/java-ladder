@@ -23,7 +23,7 @@ class NameTest {
         Name createName = Name.of(name);
 
         // then
-        assertThat(createName.getName()).isEqualTo(name);
+        assertThat(createName.getValue()).isEqualTo(name);
     }
 
     @DisplayName("[실패] 생성")

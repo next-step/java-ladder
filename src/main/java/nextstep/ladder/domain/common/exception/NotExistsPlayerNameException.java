@@ -1,4 +1,4 @@
-package nextstep.ladder.domain.exception;
+package nextstep.ladder.domain.common.exception;
 
 public class NotExistsPlayerNameException extends RuntimeException {
 

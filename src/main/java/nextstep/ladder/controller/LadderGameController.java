@@ -1,16 +1,15 @@
 package nextstep.ladder.controller;
 
 import java.util.stream.Collectors;
-import nextstep.ladder.domain.LadderGame;
 import nextstep.ladder.domain.HorizontalLines;
+import nextstep.ladder.domain.LadderGame;
 import nextstep.ladder.domain.common.Name;
-import nextstep.ladder.domain.common.Names;
-import nextstep.ladder.domain.common.Result;
+import nextstep.ladder.domain.common.Players;
 import nextstep.ladder.domain.common.Results;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 import nextstep.ladder.view.dto.PrintLinesDto;
-import nextstep.ladder.view.dto.PrintNameWithResultDto;
+import nextstep.ladder.view.dto.PrintPlayerDto;
 import nextstep.ladder.view.dto.PrintPlayerNamesDto;
 import nextstep.ladder.view.dto.PrintResultsDto;
 
@@ -22,8 +21,8 @@ public class LadderGameController {
         printLadder(game);
         printResultPlayer(game);
         ResultView.printNameWithResults(
-            game.getPlayerNames().getValues().stream()
-                .map(n -> new PrintNameWithResultDto(n, game.getResult(n)))
+            game.getPlayers().getValues().stream()
+                .map(PrintPlayerDto::new)
                 .collect(Collectors.toList()));
     }
 
@@ -31,23 +30,22 @@ public class LadderGameController {
         String resultPlayerName = InputView.inputResultPlayerName();
 
         while (!resultPlayerName.equals("all")) {
-            final Result result = game.getResult(Name.of(resultPlayerName));
-            ResultView.printNameWithResult(new PrintNameWithResultDto(Name.of(resultPlayerName), result));
+            ResultView.printNameWithResult(new PrintPlayerDto(game.getPlayers().getByName(Name.of(resultPlayerName))));
             resultPlayerName = InputView.inputResultPlayerName();
         }
     }
 
     private static void printLadder(final LadderGame game) {
-        ResultView.printPlayerNames(new PrintPlayerNamesDto(game.getPlayerNames()));
+        ResultView.printPlayerNames(new PrintPlayerNamesDto(game.getPlayers()));
         ResultView.printLadders(new PrintLinesDto(game.getLines()));
         ResultView.printlnResults(new PrintResultsDto(game.getResults()));
     }
 
     private static LadderGame createLadderGame() {
-        final Names playerNames = Names.of((InputView.inputPlayerName()));
+        final Players players = Players.of((InputView.inputPlayerName()));
         final Results results = Results.of(InputView.inputResults());
-        final HorizontalLines horizontalLines = HorizontalLines.of(InputView.inputLadderHeight(), playerNames.size());
+        final HorizontalLines horizontalLines = HorizontalLines.of(InputView.inputLadderHeight(), players.size());
 
-        return LadderGame.of(horizontalLines, playerNames, results);
+        return LadderGame.of(horizontalLines, players, results);
     }
 }

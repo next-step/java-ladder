@@ -1,5 +1,7 @@
 package nextstep.ladder.domain.common;
 
+import java.util.Objects;
+
 public class Player {
 
     private final Name name;
@@ -18,6 +20,10 @@ public class Player {
         return new Player(name);
     }
 
+    public static Player of(final Name name, final Result result) {
+        return new Player(name, result);
+    }
+
     public void updateResult(final Result result) {
         this.result = result;
     }
@@ -28,5 +34,22 @@ public class Player {
 
     public Result getResult() {
         return result;
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Player)) {
+            return false;
+        }
+        final Player player = (Player) o;
+        return Objects.equals(getName(), player.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName());
     }
 }

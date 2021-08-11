@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import nextstep.ladder.view.dto.PrintLineDto;
 import nextstep.ladder.view.dto.PrintLinesDto;
-import nextstep.ladder.view.dto.PrintNameWithResultDto;
+import nextstep.ladder.view.dto.PrintPlayerDto;
 import nextstep.ladder.view.dto.PrintPlayerNamesDto;
 import nextstep.ladder.view.dto.PrintResultsDto;
 
@@ -40,13 +40,13 @@ public class ResultView {
         System.out.printf("%6s", result);
     }
 
-    public static void printNameWithResult(final PrintNameWithResultDto dto) {
+    public static void printNameWithResult(final PrintPlayerDto dto) {
         System.out.println("실행 결과");
-        System.out.println(dto.getName().getName() + " : " + dto.getResult().getValue());
+        System.out.println(dto.getName().getValue() + " : " + dto.getResult().getValue());
     }
 
-    public static void printNameWithResults(final List<PrintNameWithResultDto> dtos) {
+    public static void printNameWithResults(final List<PrintPlayerDto> dtos) {
         System.out.println("실행 결과");
-        dtos.forEach(dto -> System.out.println(dto.getName().getName() + " : " + dto.getResult().getValue()));
+        dtos.forEach(dto -> System.out.println(dto.getName().getValue() + " : " + dto.getResult().getValue()));
     }
 }
