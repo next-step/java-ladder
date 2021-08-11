@@ -35,18 +35,18 @@ class LadderGameContextTest {
 
     @Test
     void getWidth() {
-        Assertions.assertThat(ladderGameContext.getWidth()).isEqualTo(WIDTH_SIZE_FIXTURE);
+        Assertions.assertThat(ladderGameContext.getLadderWidth()).isEqualTo(WIDTH_SIZE_FIXTURE);
     }
 
     @Test
     void getHeight() {
-        Assertions.assertThat(ladderGameContext.getHeight()).isEqualTo(HEIGHT_SIZE_FIXTURE);
+        Assertions.assertThat(ladderGameContext.getLadderHeight()).isEqualTo(HEIGHT_SIZE_FIXTURE);
     }
 
     @Test
     @DisplayName("처음 열과 마지막 열을 제외한 중간 열의 사이즈를 구한다. 전체 너비에서 처음 열과 마지막 열을 뺀 값(-2)이 중간 열의 사이즈이다.")
     void getMiddleSize() {
-        Assertions.assertThat(ladderGameContext.getMiddleSize()).isEqualTo(WIDTH_SIZE_FIXTURE - EXCLUDE_FIRST_AND_LAST_COUNT);
+        Assertions.assertThat(ladderGameContext.getMiddleColumnSize()).isEqualTo(WIDTH_SIZE_FIXTURE - EXCLUDE_FIRST_AND_LAST_COUNT);
     }
 
     @Test

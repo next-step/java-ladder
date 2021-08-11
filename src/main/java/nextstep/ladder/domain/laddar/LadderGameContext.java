@@ -19,16 +19,16 @@ public class LadderGameContext {
         return new LadderGameContext(Objects.requireNonNull(ladderSize), Objects.requireNonNull(directionStrategy));
     }
 
-    public int getWidth() {
-        return ladderSize.getWidth();
+    public int getLadderWidth() {
+        return ladderSize.width();
     }
 
-    public int getHeight() {
-        return ladderSize.getHeight();
+    public int getLadderHeight() {
+        return ladderSize.height();
     }
 
-    public int getMiddleSize() {
-        return getWidth() - EXCLUDE_FIRST_AND_LAST_COUNT;
+    public int getMiddleColumnSize() {
+        return getLadderWidth() - EXCLUDE_FIRST_AND_LAST_COUNT;
     }
 
     public DirectionStrategy getDirectionStrategy() {
