@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import nextstep.ladder.exception.InputNullException;
+import nextstep.ladder.exception.NotExistPersonException;
 
 public class LadderNames {
     private static final String REPLACE_STRING =  "\\[|\\]";
@@ -40,8 +41,8 @@ public class LadderNames {
         return ladderNames.size();
     }
 
-    public int searchName(String name) {
-        return findIndex(name);
+    public String getLadderName(int index) {
+        return ladderNames.get(index).getLaddername();
     }
 
     public int findIndex(String name) {
@@ -50,9 +51,8 @@ public class LadderNames {
                 return i;
             }
         }
-        throw new IllegalArgumentException("해당하는 사람이 없습니다.");
+        throw new NotExistPersonException();
     }
-
 
     @Override
     public boolean equals(Object o) {

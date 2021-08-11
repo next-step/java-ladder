@@ -3,6 +3,7 @@ package nextstep.ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import nextstep.ladder.domain.interfaces.LineCreationStrategy;
 
 public class Lines {
     private static final int EXIST_DIVISION = 2;

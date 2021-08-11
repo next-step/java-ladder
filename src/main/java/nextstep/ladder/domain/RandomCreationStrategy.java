@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import java.util.Random;
+import nextstep.ladder.domain.interfaces.LineCreationStrategy;
 
 public class RandomCreationStrategy implements LineCreationStrategy {
     @Override

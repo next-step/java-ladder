@@ -30,6 +30,9 @@ public class LadderName {
         return false;
     }
 
+    public String getLaddername() {
+        return laddername;
+    }
 
     @Override
     public boolean equals(Object o) {
