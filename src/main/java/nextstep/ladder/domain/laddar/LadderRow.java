@@ -1,5 +1,8 @@
 package nextstep.ladder.domain.laddar;
 
+import nextstep.ladder.domain.player.Player;
+import nextstep.ladder.domain.player.Position;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,17 +25,23 @@ public class LadderRow {
         return new LadderRow(ladderGameContext);
     }
 
-    public List<Boolean> toDirections() {
+    public List<Boolean> getLadderMap() {
         return rowBuilder.ladderColumns.stream()
                                        .map(LadderColumn::isRight)
                                        .collect(Collectors.toUnmodifiableList());
+    }
+
+    public void ride(final Player player) {
+        final Position position = player.position();
+        final LadderColumn ladderColumn = rowBuilder.ladderColumns.get(position.currentPosition());
+        ladderColumn.ride(position);
     }
 
     private static class RowBuilder {
         private final List<LadderColumn> ladderColumns;
 
         private RowBuilder(final LadderGameContext ladderGameContext) {
-            this.ladderColumns = new ArrayList<>(ladderGameContext.getWidth());
+            this.ladderColumns = new ArrayList<>(ladderGameContext.getLadderWidth());
         }
 
         private static RowBuilder from(final LadderGameContext ladderGameContext) {
@@ -66,7 +75,7 @@ public class LadderRow {
         }
 
         private int getMiddleSize(final LadderGameContext ladderGameContext) {
-            return Math.max(ladderGameContext.getMiddleSize(), ZERO);
+            return Math.max(ladderGameContext.getMiddleColumnSize(), ZERO);
         }
     }
 }
