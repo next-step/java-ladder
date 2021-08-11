@@ -10,4 +10,13 @@ public class LadderJackpot{
     public static LadderJackpot of(String ladderResults) {
         return new LadderJackpot(ladderResults);
     }
+
+    public String findJackpot() {
+        return ladderResults;
+    }
+
+    @Override
+    public String toString() {
+        return ladderResults;
+    }
 }
