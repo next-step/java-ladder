@@ -24,11 +24,11 @@ public class LadderSize {
         }
     }
 
-    public int getWidth() {
+    public int width() {
         return width;
     }
 
-    public int getHeight() {
+    public int height() {
         return height;
     }
 }
