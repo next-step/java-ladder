@@ -2,9 +2,13 @@ package nextstep.ladder.domain.view;
 
 import nextstep.ladder.domain.dto.ResultDto;
 import nextstep.ladder.domain.dto.RowDto;
+import nextstep.ladder.domain.exception.PlayerNotFoundException;
+import nextstep.ladder.domain.player.Players;
 
 import java.text.MessageFormat;
 import java.util.List;
+import java.util.Set;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -15,25 +19,30 @@ public class ResultView {
     private static final int NAME_FORMAT_SIZE = NAME_LENGTH_LIMIT + NAME_PADDING_SIZE;
 
     private static final String RESULT_MESSAGE = "실행결과";
+    private static final String DO_WHILE_END_TRIGGER = "all";
+
     private static final String SPACE_MARK = " ";
     private static final String LINE_MARK = "-";
     private static final String COLUMN_MARK = "|";
     private static final String NAME_FORMAT = MessageFormat.format("%{0}s", NAME_FORMAT_SIZE);
+    private static final String RESULT_FORMAT = "%s : %s%n";
 
     private ResultView() {}
 
-    public static void printResult(final ResultDto result) {
+    public static void printResultStatement(final ResultDto result) {
         println(RESULT_MESSAGE);
 
         printPlayerNames(result.getNames());
 
         printLadder(result.getRows());
+
+        printEndpoints(result.getEndpoints());
     }
 
-    private static void printPlayerNames(final List<String> names) {
+    private static void printPlayerNames(final Set<String> names) {
         names.stream()
              .map(name -> String.format(NAME_FORMAT, name))
-             .forEach(ResultView::print);
+             .forEach(ResultView::printResult);
 
         newLine();
     }
@@ -43,15 +52,58 @@ public class ResultView {
     }
 
     private static void printDirections(final RowDto rowDto) {
-        print(concatToTheLimitLength(SPACE_MARK));
+        printResult(concatToTheLimitLength(SPACE_MARK));
 
         rowDto.getDirections()
-              .forEach(direction -> print(direction ?
-                                          MessageFormat.format("{0}{1}", COLUMN_MARK, concatToTheLimitLength(LINE_MARK)) :
-                                          MessageFormat.format("{0}{1}", COLUMN_MARK, concatToTheLimitLength(SPACE_MARK))
+              .forEach(direction -> printResult(
+                      direction ?
+                      MessageFormat.format("{0}{1}", COLUMN_MARK, concatToTheLimitLength(LINE_MARK)) :
+                      MessageFormat.format("{0}{1}", COLUMN_MARK, concatToTheLimitLength(SPACE_MARK))
               ));
 
         newLine();
+    }
+
+    private static void printEndpoints(final List<String> endpoints) {
+        endpoints.stream()
+                 .map(endpoint -> String.format(NAME_FORMAT, endpoint))
+                 .forEach(ResultView::printResult);
+
+        newLine();
+        newLine();
+    }
+
+    public static void printLoop(final ResultDto resultDto, final Players players) {
+        Set<String> names = resultDto.getNames();
+        while (true) {
+            String name = InputView.whoWantsToSeeTheResults();
+
+            if (DO_WHILE_END_TRIGGER.equals(name)) {
+                break;
+            }
+
+            if (!names.contains(name)) {
+                throw new PlayerNotFoundException("참가자를 찾을 수 없습니다.");
+            }
+
+            ResultView.println(resultDto.getEndpoint(resultDto.getPosition(name)));
+            ResultView.newLine();
+        }
+    }
+
+    public static void printResultAll(final ResultDto resultDto) {
+        println(RESULT_MESSAGE);
+        resultDto.getNames().forEach(printResult(resultDto));
+    }
+
+    private static Consumer<String> printResult(final ResultDto resultDto) {
+        return name -> printResult(resultDto, name);
+    }
+
+    private static void printResult(final ResultDto resultDto, final String name) {
+        final int position = resultDto.getPosition(name);
+        final String endpoint = resultDto.getEndpoint(position);
+        System.out.printf(RESULT_FORMAT, name, endpoint);
     }
 
     private static String concatToTheLimitLength(final String charSequence) {
@@ -60,7 +112,7 @@ public class ResultView {
                      .collect(Collectors.joining());
     }
 
-    public static void print(final String message) {
+    public static void printResult(final String message) {
         System.out.print(message);
     }
 
