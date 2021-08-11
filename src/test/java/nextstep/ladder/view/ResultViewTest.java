@@ -15,7 +15,7 @@ class ResultViewTest {
         final Lines lines = Lines.of(10, 6);
 
         // when
-        ResultView.printLadders(new PrintLinesDto(lines.getLines()));
+        ResultView.printLadders(new PrintLinesDto(lines.getValues()));
 
         // then
 

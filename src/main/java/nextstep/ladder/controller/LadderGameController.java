@@ -39,7 +39,7 @@ public class LadderGameController {
 
     private static void printLadder(final LadderGame game) {
         ResultView.printPlayerNames(new PrintPlayerNamesDto(game.getPlayerNames()));
-        ResultView.printLadders(new PrintLinesDto(game.getLines().getLines()));
+        ResultView.printLadders(new PrintLinesDto(game.getLines()));
         ResultView.printlnResults(new PrintResultsDto(game.getResults()));
     }
 

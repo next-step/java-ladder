@@ -26,7 +26,7 @@ class LinesTest {
 
         // then
         assertThat(lines.size()).isEqualTo(height);
-        assertThat(lines.getLines().get(0).size()).isEqualTo(playerCount + 1);
+        assertThat(lines.getValues().get(0).size()).isEqualTo(playerCount + 1);
     }
 
     private static final Lines LINES = new Lines(Arrays.asList(

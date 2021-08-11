@@ -32,7 +32,7 @@ public class Lines {
             (a, b) -> 0);
     }
 
-    public List<Line> getLines() {
+    public List<Line> getValues() {
         return Collections.unmodifiableList(lines);
     }
 }
