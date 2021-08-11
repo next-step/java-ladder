@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 
 import static nextstep.ladder.domain.player.Player.NAME_LENGTH_LIMIT;
 
+/**
+ * Player는 참가자를 표현한다. 현재 위치를 Position에 의존한다.
+ */
 class PlayerTest {
     @Test
     void initException() {

@@ -7,6 +7,9 @@ import nextstep.ladder.domain.laddar.LadderSize;
 import nextstep.ladder.domain.player.Players;
 import nextstep.ladder.domain.strategy.DirectionStrategy;
 
+/**
+ * 테스트를 위한 픽스처를 정의한다.
+ */
 public class LadderFixture {
     public static final String INPUT_PLAYER_NAMES_FIXTURE = "pobi,honux,crong,jk";
     public static final String INPUT_ENDPOINTS_FIXTURE = "꽝,5000,꽝,3000";

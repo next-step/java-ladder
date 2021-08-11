@@ -3,6 +3,9 @@ package nextstep.ladder.domain.player;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Position은 참가자가 현재 어떤 위치에 있는지 표현한다. 사다리의 가장 왼쪽 위치는 0이다.
+ */
 class PositionTest {
     @Test
     void moveLeft() {

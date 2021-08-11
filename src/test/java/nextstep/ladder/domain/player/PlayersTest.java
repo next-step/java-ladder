@@ -8,6 +8,9 @@ import static nextstep.ladder.domain.player.Player.NAME_LENGTH_LIMIT;
 import static nextstep.ladder.fixture.LadderFixture.INPUT_ENDPOINTS_FIXTURE;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
+/**
+ * Players는 Player의 일급 컬렉션이다.
+ */
 class PlayersTest {
     @Test
     void getNames() {
