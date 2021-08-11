@@ -4,18 +4,19 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import nextstep.ladder.domain.LadderJackpots;
 import nextstep.ladder.domain.LadderNames;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Lines;
-import nextstep.ladder.domain.RandomCreationStrategy;
 
 public class ResultView {
     private static final int LETTER_LIMIT = 5;
     private static final String SPACE = " ";
     private static final String REPLACE_STRING =  "\\[|\\]";
-    private static final String INIT_LINE = "    |";
-    private static final String NONE_LINE = "     |";
-    private static final String IS_LINE = "-----|";
+    private static final String INIT_LINE = "    ";
+    private static final String NONE_LINE = "     ";
+    private static final String IS_LINE = "-----";
+    private static final String STICK = "|";
     private static final String SPLIT_STRING = ",";
     private static final String TRANSFER_STRING = "";
 
@@ -44,18 +45,19 @@ public class ResultView {
             return INIT_LINE;
         }
 
-        if(line.isExist()) {
+        if(line == Line.IS_LINE) {
             return IS_LINE;
+        }
+
+        if(line == Line.STICK) {
+            return STICK;
         }
 
         return NONE_LINE;
     }
 
-    public void printLadderLines(int nameSize, int maxLadderHeight) {
-        for(int i = 0; i < maxLadderHeight; i++) {
-            Lines lines = Lines.of(nameSize, new RandomCreationStrategy());
-            printLines(lines);
-        }
+    public void printLadderLines(List<Lines> lines) {
+        lines.forEach(this::printLines);
     }
 
     private void printLines(Lines lines) {
@@ -73,11 +75,22 @@ public class ResultView {
         System.out.println(Arrays.toString(names).replaceAll(REPLACE_STRING, TRANSFER_STRING).replaceAll(SPLIT_STRING, TRANSFER_STRING));
     }
 
+    public void printLadderResults(LadderJackpots ladderJackpots) {
+        Object[] results = Arrays.stream(ladderJackpots.toString().split(SPLIT_STRING))
+                                    .map(this::fitLength).toArray();
+
+        System.out.println(Arrays.toString(results).replaceAll(REPLACE_STRING, TRANSFER_STRING).replaceAll(SPLIT_STRING, TRANSFER_STRING));
+    }
+
     private String fitLength(String name) {
         if(name.length() < LETTER_LIMIT) {
             name = fitLength(SPACE.concat(name));
         }
 
         return name;
+    }
+
+    public void printResult(String ladderName, String ladderResult) {
+        System.out.println(ladderName + "의 당첨 결과 : " + ladderResult);
     }
 }

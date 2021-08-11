@@ -3,7 +3,8 @@ package nextstep.ladder.domain;
 public enum Line {
     INIT_LINE(false),
     NONE_LINE(false),
-    IS_LINE(true);
+    IS_LINE(true),
+    STICK(true);
 
     private final boolean isExist;
 
@@ -14,4 +15,5 @@ public enum Line {
     public boolean isExist() {
         return isExist;
     }
+
 }
