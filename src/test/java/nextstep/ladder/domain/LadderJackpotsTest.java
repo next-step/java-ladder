@@ -2,6 +2,7 @@ package nextstep.ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import nextstep.ladder.exception.LengthNotEqualException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -22,10 +23,9 @@ class LadderJackpotsTest {
         String initPerson = "a,b,c,d";
         String excutionResults = "1,2,3,4,5";
 
-        assertThatThrownBy(() -> {
-            LadderJackpots.of(excutionResults, initPerson);
-        }).hasMessageContaining("사람과 당첨 결과의 수는 같아야 합니다.")
-            .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> LadderJackpots.of(excutionResults, initPerson))
+                                               .hasMessageContaining("사람과 당첨 결과의 수는 같아야 합니다.")
+                                               .isInstanceOf(LengthNotEqualException.class);
     }
 
 }

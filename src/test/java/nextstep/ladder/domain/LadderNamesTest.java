@@ -4,14 +4,21 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LadderNamesTest {
+    LadderNames ladderNames;
+
+    @BeforeEach
+    void setUp() {
+        ladderNames = LadderNames.of("pobi,honux,crong,jk");
+    }
+
     @Test
     @DisplayName("인원 생성 테스트")
     void create() {
-        LadderNames ladderNames = LadderNames.of("pobi,honux,crong,jk");
         assertThat(ladderNames).isEqualTo(LadderNames.of("pobi,honux,crong,jk"));
     }
 
@@ -25,16 +32,28 @@ class LadderNamesTest {
     @Test
     @DisplayName("이름 찾기")
     void findByName() {
-        LadderNames ladderNames = LadderNames.of("pobi,honux,crong,jk");
         assertThat(ladderNames.findIndex("pobi")).isEqualTo(0);
     }
 
     @Test
     @DisplayName("이름 예외")
     void findByNameException() {
-        LadderNames ladderNames = LadderNames.of("pobi,honux,crong,jk");
         assertThatThrownBy(() -> {
             ladderNames.findIndex("abc");
         }).hasMessageContaining("해당하는 사람이 없습니다.");
     }
+
+    @Test
+    @DisplayName("사이즈 테스트")
+    void sizeTest() {
+        assertThat(ladderNames.size()).isEqualTo(4);
+    }
+
+    @Test
+    @DisplayName("이름 하나 테스트")
+    void nameTest() {
+        assertThat(ladderNames.getLadderName(0)).isEqualTo("pobi");
+
+    }
+
 }
