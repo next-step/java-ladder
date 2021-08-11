@@ -7,7 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 @DisplayName("가로줄 여부 생성기")
-class LineExistsGeneratorTest {
+class HorizontalLineExistsGeneratorTest {
 
     @DisplayName("[성공] 생성 - prevTrue")
     @Test

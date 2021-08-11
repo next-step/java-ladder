@@ -2,7 +2,7 @@ package nextstep.ladder.controller;
 
 import java.util.stream.Collectors;
 import nextstep.ladder.domain.LadderGame;
-import nextstep.ladder.domain.Lines;
+import nextstep.ladder.domain.HorizontalLines;
 import nextstep.ladder.domain.common.Name;
 import nextstep.ladder.domain.common.Names;
 import nextstep.ladder.domain.common.Result;
@@ -46,8 +46,8 @@ public class LadderGameController {
     private static LadderGame createLadderGame() {
         final Names playerNames = Names.of((InputView.inputPlayerName()));
         final Results results = Results.of(InputView.inputResults());
-        final Lines lines = Lines.of(InputView.inputLadderHeight(), playerNames.size());
+        final HorizontalLines horizontalLines = HorizontalLines.of(InputView.inputLadderHeight(), playerNames.size());
 
-        return LadderGame.of(lines, playerNames, results);
+        return LadderGame.of(horizontalLines, playerNames, results);
     }
 }

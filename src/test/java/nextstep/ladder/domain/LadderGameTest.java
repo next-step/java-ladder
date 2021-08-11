@@ -19,17 +19,17 @@ import org.junit.jupiter.params.provider.MethodSource;
 @DisplayName("사다리 게임")
 class LadderGameTest {
 
-    private static final Lines LINES = new Lines(Arrays.asList(
-        Line.of(Arrays.asList(false, true, false, false, true, false)),
-        Line.of(Arrays.asList(false, true, false, true, false, false)),
-        Line.of(Arrays.asList(false, false, true, false, true, false)),
-        Line.of(Arrays.asList(false, false, true, false, true, false)),
-        Line.of(Arrays.asList(false, true, false, true, false, false)),
-        Line.of(Arrays.asList(false, false, true, false, true, false)))
+    private static final HorizontalLines HORIZONTAL_LINES = new HorizontalLines(Arrays.asList(
+        HorizontalLine.of(Arrays.asList(false, true, false, false, true, false)),
+        HorizontalLine.of(Arrays.asList(false, true, false, true, false, false)),
+        HorizontalLine.of(Arrays.asList(false, false, true, false, true, false)),
+        HorizontalLine.of(Arrays.asList(false, false, true, false, true, false)),
+        HorizontalLine.of(Arrays.asList(false, true, false, true, false, false)),
+        HorizontalLine.of(Arrays.asList(false, false, true, false, true, false)))
     );
     private static final Names NAMES = Names.of("pobi,honux,crong,jk,hyune");
     private static final Results RESULTS = Results.of("1000,5000,4000,3000,6000");
-    private static final LadderGame LADDER_GMAE = LadderGame.of(LINES, NAMES, RESULTS);
+    private static final LadderGame LADDER_GMAE = LadderGame.of(HORIZONTAL_LINES, NAMES, RESULTS);
 
     public static Stream<Arguments> result() {
         return Stream.of(

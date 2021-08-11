@@ -9,25 +9,25 @@ import nextstep.ladder.domain.exception.NotExistsPlayerNameException;
 
 public class LadderGame {
 
-    private final Lines lines;
+    private final HorizontalLines horizontalLines;
     private final Names playerNames;
     private final Results results;
 
-    private LadderGame(final Lines lines, final Names playerNames, final Results results) {
-        this.lines = lines;
+    private LadderGame(final HorizontalLines horizontalLines, final Names playerNames, final Results results) {
+        this.horizontalLines = horizontalLines;
         this.playerNames = playerNames;
         this.results = results;
     }
 
-    public static LadderGame of(final Lines lines, final Names playerNames, final Results results) {
-        return new LadderGame(lines, playerNames, results);
+    public static LadderGame of(final HorizontalLines horizontalLines, final Names playerNames, final Results results) {
+        return new LadderGame(horizontalLines, playerNames, results);
     }
 
     public Result getResult(final Name playerName) {
         playerNameValidation(playerName);
 
         final int index = playerNames.indexOf(playerName);
-        final int goal = lines.goal(index);
+        final int goal = horizontalLines.goal(index);
 
         return results.get(goal);
     }
@@ -38,8 +38,8 @@ public class LadderGame {
         }
     }
 
-    public List<Line> getLines() {
-        return lines.getValues();
+    public List<HorizontalLine> getLines() {
+        return horizontalLines.getValues();
     }
 
     public Names getPlayerNames() {

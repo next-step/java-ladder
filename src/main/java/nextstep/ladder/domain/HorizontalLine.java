@@ -6,16 +6,16 @@ import java.util.List;
 import java.util.function.BiConsumer;
 import nextstep.ladder.domain.exception.InvalidCreateLineException;
 
-public class Line {
+public class HorizontalLine {
 
     private final List<Boolean> exists;
 
-    private Line(final List<Boolean> exists) {
+    private HorizontalLine(final List<Boolean> exists) {
         createValidation(exists);
         this.exists = exists;
     }
 
-    private Line(final LineExistsGenerator generator, final int playerCount) {
+    private HorizontalLine(final LineExistsGenerator generator, final int playerCount) {
         final List<Boolean> exists = new ArrayList<>();
         exists.add(false);
         for (int i = 1; i < playerCount; i++) {
@@ -27,12 +27,12 @@ public class Line {
         this.exists = exists;
     }
 
-    public static Line of(final List<Boolean> exists) {
-        return new Line(exists);
+    public static HorizontalLine of(final List<Boolean> exists) {
+        return new HorizontalLine(exists);
     }
 
-    public static Line of(final int playerCount) {
-        return new Line(new DefaultLineExistsGenerator(), playerCount);
+    public static HorizontalLine of(final int playerCount) {
+        return new HorizontalLine(new DefaultLineExistsGenerator(), playerCount);
     }
 
     private void createValidation(final List<Boolean> exists) {

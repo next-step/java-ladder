@@ -2,14 +2,14 @@ package nextstep.ladder.view.dto;
 
 import java.util.Collections;
 import java.util.List;
-import nextstep.ladder.domain.Line;
+import nextstep.ladder.domain.HorizontalLine;
 
 public class PrintLineDto {
 
     private final List<Boolean> exists;
 
-    public PrintLineDto(Line line) {
-        this.exists = line.getExists();
+    public PrintLineDto(HorizontalLine horizontalLine) {
+        this.exists = horizontalLine.getExists();
     }
 
     public List<Boolean> getExists() {

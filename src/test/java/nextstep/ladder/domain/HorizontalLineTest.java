@@ -14,7 +14,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 @DisplayName("Line (가로줄)")
-class LineTest {
+class HorizontalLineTest {
 
     public static Stream<List<Boolean>> validExists() {
         return Stream.of(
@@ -32,10 +32,10 @@ class LineTest {
         // given
 
         // when
-        final Line line = Line.of(exists);
+        final HorizontalLine horizontalLine = HorizontalLine.of(exists);
 
         // then
-        assertThat(line).isNotNull();
+        assertThat(horizontalLine).isNotNull();
     }
 
     public static Stream<List<Boolean>> notValidExists() {
@@ -53,7 +53,7 @@ class LineTest {
         // given
 
         // when
-        assertThrows(InvalidCreateLineException.class, () -> Line.of(exists));
+        assertThrows(InvalidCreateLineException.class, () -> HorizontalLine.of(exists));
 
         // then
     }
@@ -67,39 +67,39 @@ class LineTest {
         // given
 
         // when
-        final Line line = Line.of(playerCount);
+        final HorizontalLine horizontalLine = HorizontalLine.of(playerCount);
 
         // then
-        assertThat(line.size()).isEqualTo(playerCount + 1);
-        assertThat(line.getExists().get(0)).isFalse();
-        assertThat(line.getExists().stream()
+        assertThat(horizontalLine.size()).isEqualTo(playerCount + 1);
+        assertThat(horizontalLine.getExists().get(0)).isFalse();
+        assertThat(horizontalLine.getExists().stream()
             .distinct()
             .count()).isEqualTo(2);
     }
 
     public static Stream<Arguments> nextLine() {
         return Stream.of(
-            Arguments.of(Line.of(Arrays.asList(false, true, false, false, true, false)), 0, 1),
-            Arguments.of(Line.of(Arrays.asList(false, true, false, false, true, false)), 1, 0),
-            Arguments.of(Line.of(Arrays.asList(false, true, false, false, true, false)), 2, 2),
-            Arguments.of(Line.of(Arrays.asList(false, true, false, false, true, false)), 3, 4),
-            Arguments.of(Line.of(Arrays.asList(false, false, true, false, true, false)), 4, 3),
-            Arguments.of(Line.of(Arrays.asList(false, false, true, false, true, false)), 0, 0),
-            Arguments.of(Line.of(Arrays.asList(false, false, true, false, true, false)), 1, 2),
-            Arguments.of(Line.of(Arrays.asList(false, false, true, false, true, false)), 2, 1),
-            Arguments.of(Line.of(Arrays.asList(false, false, true, false, true, false)), 3, 4),
-            Arguments.of(Line.of(Arrays.asList(false, false, true, false, true, false)), 4, 3)
+            Arguments.of(HorizontalLine.of(Arrays.asList(false, true, false, false, true, false)), 0, 1),
+            Arguments.of(HorizontalLine.of(Arrays.asList(false, true, false, false, true, false)), 1, 0),
+            Arguments.of(HorizontalLine.of(Arrays.asList(false, true, false, false, true, false)), 2, 2),
+            Arguments.of(HorizontalLine.of(Arrays.asList(false, true, false, false, true, false)), 3, 4),
+            Arguments.of(HorizontalLine.of(Arrays.asList(false, false, true, false, true, false)), 4, 3),
+            Arguments.of(HorizontalLine.of(Arrays.asList(false, false, true, false, true, false)), 0, 0),
+            Arguments.of(HorizontalLine.of(Arrays.asList(false, false, true, false, true, false)), 1, 2),
+            Arguments.of(HorizontalLine.of(Arrays.asList(false, false, true, false, true, false)), 2, 1),
+            Arguments.of(HorizontalLine.of(Arrays.asList(false, false, true, false, true, false)), 3, 4),
+            Arguments.of(HorizontalLine.of(Arrays.asList(false, false, true, false, true, false)), 4, 3)
         );
     }
 
     @DisplayName("[성공] 다음 가로줄로 이동시 인덱스")
     @ParameterizedTest
     @MethodSource("nextLine")
-    public void next(final Line line, final int current, final int expected) {
+    public void next(final HorizontalLine horizontalLine, final int current, final int expected) {
         // given
 
         // when
-        final int next = line.next(current);
+        final int next = horizontalLine.next(current);
 
         // then
         assertThat(next).isEqualTo(expected);
