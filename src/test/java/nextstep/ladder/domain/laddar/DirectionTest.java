@@ -30,8 +30,7 @@ public class DirectionTest {
 
         assertAll(
                 () -> Assertions.assertThat(firstDirection).isEqualTo(expectedDirection),
-                () -> Assertions.assertThat(firstDirection.isRight()).isEqualTo(isRight),
-                () -> Assertions.assertThat(firstDirection.isLeft()).isEqualTo(isLeft)
+                () -> Assertions.assertThat(firstDirection.isRight()).isEqualTo(isRight)
         );
     }
 
@@ -49,8 +48,7 @@ public class DirectionTest {
         Direction lastDirection = Direction.createFirst(() -> first).createNext(() -> next).createLast();
         assertAll(
                 () -> Assertions.assertThat(lastDirection).isEqualTo(expectedDirection),
-                () -> Assertions.assertThat(lastDirection.isRight()).isEqualTo(isRight),
-                () -> Assertions.assertThat(lastDirection.isLeft()).isEqualTo(isLeft)
+                () -> Assertions.assertThat(lastDirection.isRight()).isEqualTo(isRight)
         );
     }
 
