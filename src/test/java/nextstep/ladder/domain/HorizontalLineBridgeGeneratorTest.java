@@ -7,7 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 @DisplayName("가로줄 여부 생성기")
-class HorizontalLineExistsGeneratorTest {
+class HorizontalLineBridgeGeneratorTest {
 
     @DisplayName("[성공] 생성 - prevTrue")
     @Test
@@ -15,10 +15,10 @@ class HorizontalLineExistsGeneratorTest {
         // given
 
         // when
-        boolean exists = new DefaultLineExistsGenerator().generate(true);
+        final boolean bridge = new DefaultLineBridgeGenerator().generate(true);
 
         // then
-        assertThat(exists).isFalse();
+        assertThat(bridge).isFalse();
 
 
     }
@@ -29,7 +29,7 @@ class HorizontalLineExistsGeneratorTest {
         // given
 
         // when
-        Stream<Boolean> currentStream = Stream.generate(() -> new DefaultLineExistsGenerator().generate(false))
+        final Stream<Boolean> currentStream = Stream.generate(() -> new DefaultLineBridgeGenerator().generate(false))
             .limit(100);
 
         // then

@@ -6,13 +6,13 @@ import nextstep.ladder.domain.HorizontalLine;
 
 public class PrintLineDto {
 
-    private final List<Boolean> exists;
+    private final List<Boolean> bridges;
 
-    public PrintLineDto(HorizontalLine horizontalLine) {
-        this.exists = horizontalLine.getExists();
+    public PrintLineDto(final HorizontalLine horizontalLine) {
+        this.bridges = horizontalLine.getBridges();
     }
 
-    public List<Boolean> getExists() {
-        return Collections.unmodifiableList(exists);
+    public List<Boolean> getBridges() {
+        return Collections.unmodifiableList(bridges);
     }
 }

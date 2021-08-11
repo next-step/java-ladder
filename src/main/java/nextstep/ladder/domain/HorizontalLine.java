@@ -8,51 +8,51 @@ import nextstep.ladder.domain.exception.InvalidCreateLineException;
 
 public class HorizontalLine {
 
-    private final List<Boolean> exists;
+    private final List<Boolean> bridges;
 
-    private HorizontalLine(final List<Boolean> exists) {
-        createValidation(exists);
-        this.exists = exists;
+    private HorizontalLine(final List<Boolean> bridges) {
+        createValidation(bridges);
+        this.bridges = bridges;
     }
 
-    private HorizontalLine(final LineExistsGenerator generator, final int playerCount) {
-        final List<Boolean> exists = new ArrayList<>();
-        exists.add(false);
+    private HorizontalLine(final LineBridgeGenerator generator, final int playerCount) {
+        final List<Boolean> bridges = new ArrayList<>();
+        bridges.add(false);
         for (int i = 1; i < playerCount; i++) {
-            exists.add(generator.generate(exists.get(i - 1)));
+            bridges.add(generator.generate(bridges.get(i - 1)));
         }
-        exists.add(false);
+        bridges.add(false);
 
-        createValidation(exists);
-        this.exists = exists;
+        createValidation(bridges);
+        this.bridges = bridges;
     }
 
-    public static HorizontalLine of(final List<Boolean> exists) {
-        return new HorizontalLine(exists);
+    public static HorizontalLine of(final List<Boolean> bridges) {
+        return new HorizontalLine(bridges);
     }
 
     public static HorizontalLine of(final int playerCount) {
-        return new HorizontalLine(new DefaultLineExistsGenerator(), playerCount);
+        return new HorizontalLine(new DefaultLineBridgeGenerator(), playerCount);
     }
 
-    private void createValidation(final List<Boolean> exists) {
+    private void createValidation(final List<Boolean> bridges) {
         final BiConsumer<Boolean, Boolean> validation = (current, next) -> {
             if (!((current) ? !next : true)) {
                 throw new InvalidCreateLineException();
             }
         };
 
-        for (int i = 0; i < exists.size() - 1; i++) {
-            validation.accept(exists.get(i), exists.get(i + 1));
+        for (int i = 0; i < bridges.size() - 1; i++) {
+            validation.accept(bridges.get(i), bridges.get(i + 1));
         }
     }
 
     public int next(final int index) {
-        if (exists.get(index)) {
+        if (bridges.get(index)) {
             return index - 1;
         }
 
-        if (exists.get(index + 1)) {
+        if (bridges.get(index + 1)) {
             return index + 1;
         }
 
@@ -60,10 +60,10 @@ public class HorizontalLine {
     }
 
     public int size() {
-        return exists.size();
+        return bridges.size();
     }
 
-    public List<Boolean> getExists() {
-        return Collections.unmodifiableList(exists);
+    public List<Boolean> getBridges() {
+        return Collections.unmodifiableList(bridges);
     }
 }

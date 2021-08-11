@@ -16,7 +16,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 @DisplayName("Line (가로줄)")
 class HorizontalLineTest {
 
-    public static Stream<List<Boolean>> validExists() {
+    public static Stream<List<Boolean>> validBridges() {
         return Stream.of(
             Arrays.asList(true, false, true, false, true),
             Arrays.asList(false, false, true, false, true),
@@ -27,18 +27,18 @@ class HorizontalLineTest {
 
     @DisplayName("[성공] 생성")
     @ParameterizedTest
-    @MethodSource("validExists")
-    public void create(final List<Boolean> exists) {
+    @MethodSource("validBridges")
+    public void create(final List<Boolean> bridges) {
         // given
 
         // when
-        final HorizontalLine horizontalLine = HorizontalLine.of(exists);
+        final HorizontalLine horizontalLine = HorizontalLine.of(bridges);
 
         // then
         assertThat(horizontalLine).isNotNull();
     }
 
-    public static Stream<List<Boolean>> notValidExists() {
+    public static Stream<List<Boolean>> notValidBridges() {
         return Stream.of(
             Arrays.asList(true, true, true, false, true),
             Arrays.asList(false, false, true, true, true),
@@ -48,12 +48,12 @@ class HorizontalLineTest {
 
     @DisplayName("[성공] 생성 - 유효하지 않은 초기 값")
     @ParameterizedTest
-    @MethodSource("notValidExists")
-    public void create_notValidExists(final List<Boolean> exists) {
+    @MethodSource("notValidBridges")
+    public void create_notValidBridges(final List<Boolean> bridges) {
         // given
 
         // when
-        assertThrows(InvalidCreateLineException.class, () -> HorizontalLine.of(exists));
+        assertThrows(InvalidCreateLineException.class, () -> HorizontalLine.of(bridges));
 
         // then
     }
@@ -71,8 +71,8 @@ class HorizontalLineTest {
 
         // then
         assertThat(horizontalLine.size()).isEqualTo(playerCount + 1);
-        assertThat(horizontalLine.getExists().get(0)).isFalse();
-        assertThat(horizontalLine.getExists().stream()
+        assertThat(horizontalLine.getBridges().get(0)).isFalse();
+        assertThat(horizontalLine.getBridges().stream()
             .distinct()
             .count()).isEqualTo(2);
     }

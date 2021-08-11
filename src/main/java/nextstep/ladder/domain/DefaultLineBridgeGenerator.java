@@ -2,7 +2,7 @@ package nextstep.ladder.domain;
 
 import java.util.Random;
 
-public class DefaultLineExistsGenerator extends LineExistsGenerator {
+public class DefaultLineBridgeGenerator extends LineBridgeGenerator {
 
     private static final Random RANDOM = new Random();
 

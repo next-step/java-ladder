@@ -26,7 +26,7 @@ public class ResultView {
     }
 
     private static String createLineBody(final PrintLineDto dto) {
-        return dto.getExists().stream()
+        return dto.getBridges().stream()
             .map(e -> e ? LINE_FLAG : LINE_BLANK)
             .collect(Collectors.joining(LINE_DELIMITER));
     }
