@@ -26,7 +26,7 @@ class LadderNamesTest {
     @DisplayName("이름 찾기")
     void findByName() {
         LadderNames ladderNames = LadderNames.of("pobi,honux,crong,jk");
-        assertThat(ladderNames.searchName("pobi")).isEqualTo(0);
+        assertThat(ladderNames.findIndex("pobi")).isEqualTo(0);
     }
 
     @Test
@@ -34,7 +34,7 @@ class LadderNamesTest {
     void findByNameException() {
         LadderNames ladderNames = LadderNames.of("pobi,honux,crong,jk");
         assertThatThrownBy(() -> {
-            ladderNames.searchName("abc");
+            ladderNames.findIndex("abc");
         }).hasMessageContaining("해당하는 사람이 없습니다.");
     }
 }
