@@ -9,31 +9,35 @@ public class LadderJackpots {
     private static final String REPLACE_STRING =  "\\[|\\]";
     private static final String TRANSFER_STRING = "";
     private static final String COMMA = ",";
-    List<LadderJackpot> jackpots;
 
-    private LadderJackpots(List<LadderJackpot> jackpots) {
+    private List<String> jackpots;
+
+    private LadderJackpots(List<String> jackpots) {
         this.jackpots = jackpots;
     }
 
-    public static LadderJackpots of(String excutionResults, String initPerson) {
+    public static LadderJackpots of(String excutionResults, LadderNames ladderNames) {
         String[] results = excutionResults.split(COMMA);
 
-        if(results.length != initPerson.split(COMMA).length) {
-            throw new LengthNotEqualException();
-        }
+        isLengthEqual(results.length, ladderNames.size());
 
         return new LadderJackpots(Arrays.stream(results)
-                                        .map(LadderJackpot::of)
                                         .collect(Collectors.toList()));
     }
 
     public String findJackpot(int index) {
-        return jackpots.get(index).findJackpot();
+        return jackpots.get(index);
     }
 
     public int result(int moveIndex, List<Lines> linesList) {
         Position position = Position.of(moveIndex);
         return position.run(linesList);
+    }
+
+    private static void isLengthEqual(int resultLength, int initLength) {
+        if(resultLength != initLength) {
+            throw new LengthNotEqualException("사람과 당첨 결과의 수는 같아야 합니다.");
+        }
     }
 
     @Override

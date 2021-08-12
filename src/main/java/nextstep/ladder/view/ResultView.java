@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.LadderJackpots;
 import nextstep.ladder.domain.LadderNames;
 import nextstep.ladder.domain.Line;
@@ -56,8 +57,8 @@ public class ResultView {
         return NONE_LINE;
     }
 
-    public void printLadderLines(List<Lines> lines) {
-        lines.forEach(this::printLines);
+    public void printLadderLines(Ladder ladder) {
+        ladder.getLinesList().forEach(this::printLines);
     }
 
     private void printLines(Lines lines) {
