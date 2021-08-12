@@ -31,11 +31,8 @@ public class ResultView {
 
     public static void printResultStatement(final ResultDto result) {
         println(RESULT_MESSAGE);
-
         printPlayerNames(result.getNames());
-
         printLadder(result.getRows());
-
         printEndpoints(result.getEndpoints());
     }
 
