@@ -69,10 +69,6 @@ public class Lines {
         return lines;
     }
 
-    public int size() {
-        return lines.size();
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -90,8 +86,8 @@ public class Lines {
         return lines;
     }
 
-    public Line findLines(int index) {
-        return lines.get(index);
+    public boolean findLines(int index) {
+        return lines.get(index).isExist();
     }
 
 }

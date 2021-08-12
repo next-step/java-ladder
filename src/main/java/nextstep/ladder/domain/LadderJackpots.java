@@ -25,15 +25,6 @@ public class LadderJackpots {
                                         .collect(Collectors.toList()));
     }
 
-    public String findJackpot(int index) {
-        return jackpots.get(index);
-    }
-
-    public int result(int moveIndex, List<Lines> linesList) {
-        Position position = Position.of(moveIndex);
-        return position.run(linesList);
-    }
-
     private static void isLengthEqual(int resultLength, int initLength) {
         if(resultLength != initLength) {
             throw new LengthNotEqualException("사람과 당첨 결과의 수는 같아야 합니다.");

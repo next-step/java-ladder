@@ -15,43 +15,19 @@ public class LadderGame {
         ResultView resultView = ResultView.getInstance();
         int maxLadderHeight = InputView.maxLadderHeight();
 
-
-
-
         resultView.printLadderNames(ladderNames);
 
         Ladder ladder = Ladder.makeLadder(ladderNames.size(), maxLadderHeight);
 
         resultView.printLadderLines(ladder);
+
         resultView.printLadderResults(ladderJackpots);
 
-//=================================================
-        /*
-
-
+        //결과 볼 사람 입력받기
         String resultName = InputView.resultName();
-        if(resultName.equals("all")) {
-            for (int i = 0; i < ladderNames.size(); i++) {
-                int moveIndex = ((i + 1) * 2) - 1;
+        int positionNumber = ladderNames.findIndex(resultName);
+        int endNumber = ladder.findLocation(positionNumber);
 
-                int result = ladderJackpots.result(moveIndex, linesList);
-
-                String ladderResult = ladderJackpots.findJackpot(result);
-
-                resultName = ladderNames.getLadderName(i);
-
-                resultView.printResult(resultName, ladderResult);
-            }
-        }
-
-        int moveIndex = ((ladderNames.findIndex(resultName) + 1) * 2) - 1;
-
-        int result = ladderJackpots.result(moveIndex, linesList);
-
-        String ladderResult = ladderJackpots.findJackpot(result);
-
-        resultView.printResult(resultName, ladderResult);
-
-         */
+        System.out.println(endNumber);
     }
 }

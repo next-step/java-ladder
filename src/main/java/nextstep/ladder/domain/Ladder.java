@@ -26,4 +26,16 @@ public class Ladder {
     public List<Lines> getLinesList() {
         return linesList;
     }
+
+    public int findLocation(int positionNumber) {
+        int startNumber = positionNumber;
+
+        for (Lines lines : linesList) {
+            Position position = Position.of(startNumber, lines);
+            position.move();
+            startNumber = position.getPosition();
+        }
+
+        return startNumber;
+    }
 }

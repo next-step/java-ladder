@@ -90,8 +90,4 @@ public class ResultView {
 
         return name;
     }
-
-    public void printResult(String ladderName, String ladderResult) {
-        System.out.println(ladderName + "의 당첨 결과 : " + ladderResult);
-    }
 }

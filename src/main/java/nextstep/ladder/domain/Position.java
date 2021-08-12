@@ -1,103 +1,59 @@
 package nextstep.ladder.domain;
 
-import java.util.List;
-import java.util.function.Predicate;
-
 public class Position {
-    private static final int MAKE_MAX_INDEX = 1;
-    private static final int MOVING_INDEX = 2;
+    private static final int ZERO = 0;
+    private static final int ADD_NUMBER = 2;
 
-    private int moveIndex;
+    private final int position;
+    private final Direction direction;
 
-    private Position(int moveIndex) {
-        this.moveIndex = moveIndex;
+    private Position(int position, Direction direction) {
+        this.position = position;
+        this.direction = direction;
     }
 
-    public static Position of(int moveIndex) {
-        return new Position(moveIndex);
+    public static Position of(int position, Direction direction) {
+        return new Position(position, direction);
     }
 
-    private void rightMove() {
-        this.moveIndex += MOVING_INDEX;
+    public static Position of(int position, Lines lines) {
+
+        return new Position(position, direction(lines, position));
     }
 
-    private void leftMove() {
-        this.moveIndex -= MOVING_INDEX;
-    }
+    public int move() {
 
-    private int ceil() {
-        return (int) Math.ceil(moveIndex / MOVING_INDEX);
-    }
-
-    private boolean isZero() {
-        return moveIndex == MAKE_MAX_INDEX;
-    }
-
-    private boolean isBetween(List<Lines> linesList) {
-        return moveIndex > 1 && moveIndex < linesList.get(0).size() - MAKE_MAX_INDEX;
-    }
-
-    private boolean isMax(List<Lines> linesList) {
-        return moveIndex == linesList.get(0).size() - MAKE_MAX_INDEX;
-    }
-
-    public int run(List<Lines> linesList) {
-        linesList.forEach(lines -> {
-            if (zeroRightCheck(lines)) {
-                return;
-            }
-            if (betweenLeftOrRightCheck(linesList, lines)) {
-                return;
-            }
-            maxLeftCheck(linesList, lines);
-        });
-
-        return ceil();
-    }
-
-    private void maxLeftCheck(List<Lines> linesList, Lines lines) {
-        if (!isMax(linesList)) return;
-        if (!isLeft(lines, moveIndex)) return;
-        leftMove();
-    }
-
-    private boolean betweenLeftOrRightCheck(List<Lines> linesList, Lines lines) {
-        if (isBetween(linesList)) {
-
-            if (isLeft(lines, moveIndex)) {
-                leftMove();
-                return true;
-            }
-
-            if (isRight(lines, moveIndex)) {
-                rightMove();
-                return true;
-            }
-            return true;
+        if (direction == Direction.LEFT) {
+            zeroValidate();
+            return position - ADD_NUMBER;
         }
-        return false;
-    }
 
-    private boolean zeroRightCheck(Lines lines) {
-        if (isZero()) {
-            if (isRight(lines, moveIndex)) {
-                rightMove();
-                return true;
-            }
-            return true;
+        if (direction == Direction.RIGHT) {
+            return position + ADD_NUMBER;
         }
-        return false;
+
+        return position;
     }
 
-    private boolean isLeft(Lines lines, int index) {
-
-        Predicate<Lines> match = lines1 -> lines1.findLines(index - 1).isExist();
-        return match.test(lines);
+    private void zeroValidate() {
+        if(position == ZERO) {
+            throw new IllegalArgumentException("맨 왼쪽이므로 왼쪽으로 더는 갈 수 없습니다.");
+        }
     }
 
-    private boolean isRight(Lines lines, int index) {
+    public int getPosition() {
+        return position;
+    }
 
-        Predicate<Lines> match = lines1 -> lines1.findLines(index + 1).isExist();
-        return match.test(lines);
+    public static Direction direction(Lines lines, int position) {
+        if(lines.findLines(position - 2)) {
+            return Direction.LEFT;
+        }
+
+        if(lines.findLines(position + 2)) {
+            return Direction.RIGHT;
+        }
+
+        return Direction.DOWN;
     }
 }
