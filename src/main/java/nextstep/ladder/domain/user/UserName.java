@@ -1,8 +1,9 @@
 package nextstep.ladder.domain.user;
 
 public class UserName {
-    private String userName;
     private final int USER_NAME_MAXIMUM = 5;
+
+    private String userName;
 
     public UserName(String userNameString) {
         validate(userNameString);
