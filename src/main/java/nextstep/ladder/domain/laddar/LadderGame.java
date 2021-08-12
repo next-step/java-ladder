@@ -46,7 +46,7 @@ public class LadderGame {
 
     public ResultDto getGameResult() {
         players.ride(ladder);
-        return ResultDto.of(playerInfos(), ladder.convert(), endpoints.arriveAt());
+        return ResultDto.of(playerInfos(), ladder.rowInfos(), endpoints.arriveAt());
     }
 
     private Map<String, Integer> playerInfos() {

@@ -23,7 +23,7 @@ public class Ladder {
         return new Ladder(ladderGameContext);
     }
 
-    public List<RowDto> convert() {
+    public List<RowDto> rowInfos() {
         return ladderRows.stream()
                          .map(LadderRow::getLadderMap)
                          .map(RowDto::from)
