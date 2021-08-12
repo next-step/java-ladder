@@ -1,35 +1,32 @@
 package nextstep.ladder;
 
-import java.util.ArrayList;
-import java.util.List;
+import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.LadderJackpots;
 import nextstep.ladder.domain.LadderNames;
-import nextstep.ladder.domain.Lines;
-import nextstep.ladder.domain.RandomCreationStrategy;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
 public class LadderGame {
     public static void main(String[] args) {
         String initPerson = InputView.initPerson();
-        LadderJackpots ladderJackpots = LadderJackpots.of(InputView.excutionResult(), initPerson);
+        LadderNames ladderNames = LadderNames.of(initPerson);
+
+        LadderJackpots ladderJackpots = LadderJackpots.of(InputView.excutionResult(), ladderNames);
         ResultView resultView = ResultView.getInstance();
-
-
         int maxLadderHeight = InputView.maxLadderHeight();
 
-        LadderNames ladderNames = LadderNames.of(initPerson);
+
+
 
         resultView.printLadderNames(ladderNames);
 
-        List<Lines> linesList = new ArrayList<>();
+        Ladder ladder = Ladder.makeLadder(ladderNames.size(), maxLadderHeight);
 
-        for (int i = 0; i < maxLadderHeight; i++) {
-            linesList.add(Lines.of(ladderNames.size(), new RandomCreationStrategy()));
-        }
-
-        resultView.printLadderLines(linesList);
+        resultView.printLadderLines(ladder);
         resultView.printLadderResults(ladderJackpots);
+
+//=================================================
+        /*
 
 
         String resultName = InputView.resultName();
@@ -54,5 +51,7 @@ public class LadderGame {
         String ladderResult = ladderJackpots.findJackpot(result);
 
         resultView.printResult(resultName, ladderResult);
+
+         */
     }
 }

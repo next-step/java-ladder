@@ -43,35 +43,33 @@ public class Position {
 
     public int run(List<Lines> linesList) {
         linesList.forEach(lines -> {
-            if (isZero(lines)) {
+            if (zeroRightCheck(lines)) {
                 return;
             }
-            if (isBetween(linesList, lines)) {
+            if (betweenLeftOrRightCheck(linesList, lines)) {
                 return;
             }
-            isMax(linesList, lines);
+            maxLeftCheck(linesList, lines);
         });
 
         return ceil();
     }
 
-    private void isMax(List<Lines> linesList, Lines lines) {
-        if (isMax(linesList)) {
-            if (leftMove(lines, moveIndex)) {
-                leftMove();
-            }
-        }
+    private void maxLeftCheck(List<Lines> linesList, Lines lines) {
+        if (!isMax(linesList)) return;
+        if (!isLeft(lines, moveIndex)) return;
+        leftMove();
     }
 
-    private boolean isBetween(List<Lines> linesList, Lines lines) {
+    private boolean betweenLeftOrRightCheck(List<Lines> linesList, Lines lines) {
         if (isBetween(linesList)) {
 
-            if (leftMove(lines, moveIndex)) {
+            if (isLeft(lines, moveIndex)) {
                 leftMove();
                 return true;
             }
 
-            if (rightMove(lines, moveIndex)) {
+            if (isRight(lines, moveIndex)) {
                 rightMove();
                 return true;
             }
@@ -80,9 +78,9 @@ public class Position {
         return false;
     }
 
-    private boolean isZero(Lines lines) {
+    private boolean zeroRightCheck(Lines lines) {
         if (isZero()) {
-            if (rightMove(lines, moveIndex)) {
+            if (isRight(lines, moveIndex)) {
                 rightMove();
                 return true;
             }
@@ -91,13 +89,13 @@ public class Position {
         return false;
     }
 
-    private boolean leftMove(Lines lines, int index) {
+    private boolean isLeft(Lines lines, int index) {
 
         Predicate<Lines> match = lines1 -> lines1.findLines(index - 1).isExist();
         return match.test(lines);
     }
 
-    private boolean rightMove(Lines lines, int index) {
+    private boolean isRight(Lines lines, int index) {
 
         Predicate<Lines> match = lines1 -> lines1.findLines(index + 1).isExist();
         return match.test(lines);

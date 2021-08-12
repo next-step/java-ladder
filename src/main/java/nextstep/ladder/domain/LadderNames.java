@@ -4,9 +4,12 @@ import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import nextstep.ladder.exception.InputNullException;
+import nextstep.ladder.exception.LengthNotEqualException;
 import nextstep.ladder.exception.NotExistPersonException;
 
 public class LadderNames {
@@ -21,17 +24,27 @@ public class LadderNames {
     }
 
     public static LadderNames of(List<LadderName> ladderNames) {
+        Set<LadderName> ladderNameSet = new HashSet<>(ladderNames);
+
+        lengthValidate(ladderNames.size(), ladderNameSet.size());
+
         return new LadderNames(ladderNames);
     }
 
+    public static void lengthValidate(int ladderListSize, int ladderSetSize) {
+        if(ladderListSize != ladderSetSize) {
+            throw new LengthNotEqualException("이름은 중복이 될 수 없습니다.");
+        }
+    }
+
     public static LadderNames of(String ladderNames) {
-        inputValidation(ladderNames);
+        inputValidate(ladderNames);
         return Arrays.stream(ladderNames.split(SPLIT_STRING))
                 .map(LadderName::of)
                 .collect(collectingAndThen(toList(), LadderNames::of));
     }
 
-    private static void inputValidation(String ladderNames) {
+    private static void inputValidate(String ladderNames) {
         if (Objects.isNull(ladderNames) || ladderNames.isEmpty()) {
             throw new InputNullException();
         }
@@ -46,12 +59,10 @@ public class LadderNames {
     }
 
     public int findIndex(String name) {
-        for(int i = 0; i < ladderNames.size(); i++) {
-            if(ladderNames.get(i).findName(name)) {
-                return i;
-            }
-        }
-        throw new NotExistPersonException();
+        return ladderNames.indexOf(ladderNames.stream()
+                          .filter(ladderName -> ladderName.findName(name))
+                          .findFirst()
+                          .orElseThrow(NotExistPersonException::new));
     }
 
     @Override

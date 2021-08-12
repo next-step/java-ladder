@@ -13,21 +13,18 @@ public class LadderName {
     }
 
     public static LadderName of(String ladderName) {
-        lengthValidation(ladderName);
+        lengthValidate(ladderName);
         return new LadderName(ladderName);
     }
 
-    private static void lengthValidation(String name) {
+    private static void lengthValidate(String name) {
         if(name.length() > LETTER_LIMIT) {
             throw new LetterLimitException();
         }
     }
 
     public boolean findName(String name) {
-        if(laddername.equals(name)) {
-            return true;
-        };
-        return false;
+        return laddername.equals(name);
     }
 
     public String getLaddername() {
