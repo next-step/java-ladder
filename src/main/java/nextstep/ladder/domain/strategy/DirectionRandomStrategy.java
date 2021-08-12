@@ -10,7 +10,7 @@ public class DirectionRandomStrategy implements DirectionStrategy {
     }
 
     public static DirectionRandomStrategy getInstance() {
-        return RandomBooleanGeneratorHolder.INSTANCE;
+        return DirectionRandomStrategyHolder.INSTANCE;
     }
 
     @Override
@@ -18,7 +18,7 @@ public class DirectionRandomStrategy implements DirectionStrategy {
         return random.nextBoolean();
     }
 
-    private static class RandomBooleanGeneratorHolder {
+    private static class DirectionRandomStrategyHolder {
         private static final DirectionRandomStrategy INSTANCE = new DirectionRandomStrategy(new Random());
     }
 }

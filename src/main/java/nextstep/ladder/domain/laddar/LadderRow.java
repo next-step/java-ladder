@@ -1,5 +1,8 @@
 package nextstep.ladder.domain.laddar;
 
+import nextstep.ladder.domain.player.Player;
+import nextstep.ladder.domain.player.Position;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,46 +14,52 @@ public class LadderRow {
 
     private final RowBuilder rowBuilder;
 
-    private LadderRow(final LadderGameConfig ladderGameConfig) {
-        this.rowBuilder = RowBuilder.from(ladderGameConfig);
-        rowBuilder.createFirst(ladderGameConfig);
-        rowBuilder.createMiddle(ladderGameConfig);
+    private LadderRow(final LadderGameContext ladderGameContext) {
+        this.rowBuilder = RowBuilder.from(ladderGameContext);
+        rowBuilder.createFirst(ladderGameContext);
+        rowBuilder.createMiddle(ladderGameContext);
         rowBuilder.createLast();
     }
 
-    public static LadderRow from(final LadderGameConfig ladderGameConfig) {
-        return new LadderRow(ladderGameConfig);
+    public static LadderRow from(final LadderGameContext ladderGameContext) {
+        return new LadderRow(ladderGameContext);
     }
 
-    public List<Boolean> toDirections() {
+    public List<Boolean> getLadderMap() {
         return rowBuilder.ladderColumns.stream()
                                        .map(LadderColumn::isRight)
                                        .collect(Collectors.toUnmodifiableList());
     }
 
+    public void ride(final Player player) {
+        final Position position = player.position();
+        final LadderColumn ladderColumn = rowBuilder.ladderColumns.get(position.currentPosition());
+        ladderColumn.ride(position);
+    }
+
     private static class RowBuilder {
         private final List<LadderColumn> ladderColumns;
 
-        private RowBuilder(final LadderGameConfig ladderGameConfig) {
-            this.ladderColumns = new ArrayList<>(ladderGameConfig.getWidth());
+        private RowBuilder(final LadderGameContext ladderGameContext) {
+            this.ladderColumns = new ArrayList<>(ladderGameContext.getLadderWidth());
         }
 
-        private static RowBuilder from(final LadderGameConfig ladderGameConfig) {
-            return new RowBuilder(ladderGameConfig);
+        private static RowBuilder from(final LadderGameContext ladderGameContext) {
+            return new RowBuilder(ladderGameContext);
         }
 
-        private void createFirst(final LadderGameConfig ladderGameConfig) {
-            ladderColumns.add(LadderColumn.createFirst(ladderGameConfig.getDirectionStrategy()));
+        private void createFirst(final LadderGameContext ladderGameContext) {
+            ladderColumns.add(LadderColumn.createFirst(ladderGameContext.getDirectionStrategy()));
         }
 
-        private void createMiddle(final LadderGameConfig ladderGameConfig) {
-            Stream.generate(() -> createNext(ladderGameConfig))
-                  .limit(getMiddleSize(ladderGameConfig))
+        private void createMiddle(final LadderGameContext ladderGameContext) {
+            Stream.generate(() -> createNext(ladderGameContext))
+                  .limit(getMiddleSize(ladderGameContext))
                   .forEach(ladderColumns::add);
         }
 
-        private LadderColumn createNext(final LadderGameConfig ladderGameConfig) {
-            return getLastColumn().createNext(ladderGameConfig.getDirectionStrategy());
+        private LadderColumn createNext(final LadderGameContext ladderGameContext) {
+            return getLastColumn().createNext(ladderGameContext.getDirectionStrategy());
         }
 
         private void createLast() {
@@ -65,8 +74,8 @@ public class LadderRow {
             return ladderColumns.get(ladderColumns.size() - ONE);
         }
 
-        private int getMiddleSize(final LadderGameConfig ladderGameConfig) {
-            return Math.max(ladderGameConfig.getMiddleSize(), ZERO);
+        private int getMiddleSize(final LadderGameContext ladderGameContext) {
+            return Math.max(ladderGameContext.getMiddleColumnSize(), ZERO);
         }
     }
 }

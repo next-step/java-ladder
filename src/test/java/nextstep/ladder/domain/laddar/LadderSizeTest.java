@@ -45,11 +45,11 @@ class LadderSizeTest {
 
     @Test
     void getWidth() {
-        Assertions.assertThat(ladderSize.getWidth()).isEqualTo(WIDTH_SIZE_FIXTURE);
+        Assertions.assertThat(ladderSize.width()).isEqualTo(WIDTH_SIZE_FIXTURE);
     }
 
     @Test
     void getHeight() {
-        Assertions.assertThat(ladderSize.getHeight()).isEqualTo(HEIGHT_SIZE_FIXTURE);
+        Assertions.assertThat(ladderSize.height()).isEqualTo(HEIGHT_SIZE_FIXTURE);
     }
 }

@@ -1,27 +1,56 @@
 package nextstep.ladder.domain.laddar;
 
 import nextstep.ladder.domain.dto.ResultDto;
+import nextstep.ladder.domain.endpoint.Endpoints;
+import nextstep.ladder.domain.exception.LadderGameInitializeException;
 import nextstep.ladder.domain.player.Players;
 import nextstep.ladder.domain.strategy.DirectionRandomStrategy;
 
-import java.util.Objects;
+import java.util.*;
+
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toMap;
+import static java.util.stream.IntStream.range;
 
 public class LadderGame {
+    public static final String DELIMITER_WORD = "쉼표";
+    public static final String DELIMITER_MARK = ",";
+
     private final Players players;
     private final Ladder ladder;
+    private final Endpoints endpoints;
 
-    private LadderGame(final Ladder ladder, final Players players) {
+    private LadderGame(final Ladder ladder, final Players players, final Endpoints endpoints) {
         this.players = players;
         this.ladder = ladder;
+        this.endpoints = endpoints;
     }
 
-    public static LadderGame of(final Players players, final int ladderHeight) {
-        LadderSize ladderSize = LadderSize.of(Objects.requireNonNull(players).getNames().size(), ladderHeight);
-        LadderGameConfig ladderGameConfig = LadderGameConfig.of(ladderSize, DirectionRandomStrategy.getInstance());
-        return new LadderGame(Ladder.from(ladderGameConfig), players);
+    public static LadderGame initialize(final Players players, final int ladderHeight, final Endpoints endpoints) {
+        verifyLadderGameInitialize(players, endpoints);
+        final LadderSize ladderSize = LadderSize.of(players.size(), ladderHeight);
+        final LadderGameContext ladderGameContext = LadderGameContext.of(ladderSize, DirectionRandomStrategy.getInstance());
+        return new LadderGame(Ladder.from(ladderGameContext), players, endpoints);
+    }
+
+    private static void verifyLadderGameInitialize(final Players players, final Endpoints endpoints) {
+        if (isEqSize(players, endpoints)) {
+            throw new LadderGameInitializeException("참가자수와 결과개수가 다릅니다.");
+        }
+    }
+
+    private static boolean isEqSize(final Players players, final Endpoints endpoints) {
+        return Objects.requireNonNull(players).size() != Objects.requireNonNull(endpoints).size();
     }
 
     public ResultDto getGameResult() {
-        return ResultDto.of(players.getNames(), ladder.convert());
+        players.ride(ladder);
+        return ResultDto.of(playerInfos(players.names(), players.positions()), ladder.convert(), endpoints.arriveAt());
+    }
+
+    private Map<String, Integer> playerInfos(final List<String> names, final List<Integer> positions) {
+        return range(0, names.size())
+                .boxed()
+                .collect(collectingAndThen(toMap(names::get, positions::get, (x, y) -> y, LinkedHashMap::new), Collections::unmodifiableMap));
     }
 }
