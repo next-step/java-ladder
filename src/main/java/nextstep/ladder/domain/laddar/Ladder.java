@@ -34,7 +34,7 @@ public class Ladder {
         return context.getLadderHeight();
     }
 
-    public void ride(final Player player, final int stage) {
-        ladderRows.get(stage).ride(player);
+    public void ride(final Player player, final int depth) {
+        ladderRows.get(depth).ride(player);
     }
 }
