@@ -11,15 +11,11 @@ public class InputView {
     }
 
     public static int inputLadderHeight() {
-        try {
-            System.out.println("최대 사다리 높이는 몇 개인가요?");
-            return scanner.nextInt();
-        } finally {
-            closeScanner();
-        }
+        System.out.println("최대 사다리 높이는 몇 개인가요?");
+        return scanner.nextInt();
     }
 
-    private static void closeScanner() {
+    public static void closeScanner() {
         scanner.close();
     }
 }

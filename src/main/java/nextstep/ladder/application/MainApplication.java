@@ -11,6 +11,7 @@ public class MainApplication {
     public static void main(String[] args) {
         String nameString = InputView.inputNameString();
         int height = InputView.inputLadderHeight();
+        InputView.closeScanner();
         List<String> names = StringUtil.separator(nameString);
         Ladder ladder = PlayLadder.createLadder(names, height);
         ResultView.printNames(names);
