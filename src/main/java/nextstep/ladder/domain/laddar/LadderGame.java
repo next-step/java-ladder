@@ -7,6 +7,7 @@ import nextstep.ladder.domain.player.Players;
 import nextstep.ladder.domain.strategy.DirectionRandomStrategy;
 
 import java.util.*;
+import java.util.stream.Collector;
 
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toMap;
@@ -45,12 +46,18 @@ public class LadderGame {
 
     public ResultDto getGameResult() {
         players.ride(ladder);
-        return ResultDto.of(playerInfos(players.names(), players.positions()), ladder.convert(), endpoints.arriveAt());
+        return ResultDto.of(playerInfos(), ladder.convert(), endpoints.arriveAt());
     }
 
-    private Map<String, Integer> playerInfos(final List<String> names, final List<Integer> positions) {
+    private Map<String, Integer> playerInfos() {
+        final List<String> names = players.names();
+        final List<Integer> positions = players.positions();
         return range(0, names.size())
                 .boxed()
-                .collect(collectingAndThen(toMap(names::get, positions::get, (x, y) -> y, LinkedHashMap::new), Collections::unmodifiableMap));
+                .collect(collectingAndThen(collectLinkedHashMap(names, positions), Collections::unmodifiableMap));
+    }
+
+    private Collector<Integer, ?, LinkedHashMap<String, Integer>> collectLinkedHashMap(final List<String> keys, final List<Integer> values) {
+        return toMap(keys::get, values::get, (x, y) -> y, LinkedHashMap::new);
     }
 }
