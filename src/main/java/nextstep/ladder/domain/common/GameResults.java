@@ -5,20 +5,20 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Results {
+public class GameResults {
 
     private final List<Result> results;
 
-    private Results(final List<Result> results) {
+    private GameResults(final List<Result> results) {
         this.results = results;
     }
 
-    public static Results of(final List<Result> results) {
-        return new Results(results);
+    public static GameResults of(final List<Result> results) {
+        return new GameResults(results);
     }
 
-    public static Results of(final String results) {
-        return new Results(Arrays.stream(results.split(","))
+    public static GameResults of(final String results) {
+        return new GameResults(Arrays.stream(results.split(","))
             .map(Result::of)
             .collect(Collectors.toList()));
     }
