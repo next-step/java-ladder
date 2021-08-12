@@ -44,7 +44,7 @@ public class LadderGameController {
     }
 
     private static LadderGame createLadderGame() {
-        final Players players = Players.of((InputView.inputPlayerName()));
+        final Players players = Players.of(InputView.inputPlayerName());
         final GameResults gameResults = GameResults.of(InputView.inputResults());
         final HorizontalLines horizontalLines = HorizontalLines.of(InputView.inputLadderHeight(), players.size());
 
