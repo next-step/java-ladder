@@ -15,7 +15,12 @@ public class HorizontalLine {
         this.bridges = bridges;
     }
 
-    private HorizontalLine(final LineBridgeGenerator generator, final int playerCount) {
+    public static HorizontalLine of(final List<Boolean> bridges) {
+        return new HorizontalLine(bridges);
+    }
+
+    public static HorizontalLine of(final int playerCount) {
+        final LineBridgeGenerator generator = new DefaultLineBridgeGenerator();
         final List<Boolean> bridges = new ArrayList<>();
         bridges.add(false);
         for (int i = 1; i < playerCount; i++) {
@@ -23,16 +28,7 @@ public class HorizontalLine {
         }
         bridges.add(false);
 
-        createValidation(bridges);
-        this.bridges = bridges;
-    }
-
-    public static HorizontalLine of(final List<Boolean> bridges) {
         return new HorizontalLine(bridges);
-    }
-
-    public static HorizontalLine of(final int playerCount) {
-        return new HorizontalLine(new DefaultLineBridgeGenerator(), playerCount);
     }
 
     private void createValidation(final List<Boolean> bridges) {
