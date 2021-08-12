@@ -74,6 +74,7 @@ public class ResultView {
     }
 
     public static void printResultAll(final Players players, final ResultDto resultDto) {
+        newLine();
         ResultView.printResultStatement(resultDto);
         ResultView.printLoop(resultDto, players);
         ResultView.printEndMessage(resultDto);
