@@ -34,6 +34,6 @@ public class Ladder {
     }
 
     public int getHeight() {
-        return height.getHeight();
+        return height.getValue();
     }
 }

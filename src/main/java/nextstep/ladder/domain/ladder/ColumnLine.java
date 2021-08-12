@@ -1,5 +1,6 @@
 package nextstep.ladder.domain.ladder;
 
+import nextstep.ladder.application.CreatePointStrategy;
 import nextstep.ladder.application.RandomCreatePoint;
 
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ public class ColumnLine {
     private List<Boolean> points = new ArrayList<>();
 
     public ColumnLine(Height height) {
-        initPoints(height.getHeight());
+        initPoints(height.getValue());
     }
 
     private void initPoints(int height) {
@@ -24,12 +25,12 @@ public class ColumnLine {
 
     public void draw(ColumnLine nextColumnLine) {
         for (int index = 0; index < this.points.size(); index++) {
-            drawRowLine(nextColumnLine, index);
+            drawRowLine(nextColumnLine, index, RandomCreatePoint.of());
         }
     }
 
-    private void drawRowLine(ColumnLine nextColumnLine, int index) {
-        if(!this.points.get(index) && RandomCreatePoint.of().isDraw()) {
+    private void drawRowLine(ColumnLine nextColumnLine, int index, CreatePointStrategy createPointStrategy) {
+        if(!this.points.get(index) && createPointStrategy.isDraw()) {
             this.points.set(index, true);
             nextColumnLine.points.set(index,true);
         }
