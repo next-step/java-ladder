@@ -43,6 +43,10 @@ public class Direction {
         return this.left;
     }
 
+    public boolean isPossibleNext(final Direction next) {
+        return this.right == next.left;
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) {

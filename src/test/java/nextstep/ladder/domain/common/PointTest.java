@@ -27,4 +27,63 @@ public class PointTest {
     public void move(final int index, final Direction direction, final int expected) {
         assertThat(Point.of(index, direction).move()).isEqualTo(expected);
     }
+
+    public static Stream<Arguments> isPossibleFirst() {
+        return Stream.of(
+            Arguments.of(Point.of(0, Direction.of(false, true)), true),
+            Arguments.of(Point.of(0, Direction.of(false, false)), true),
+            Arguments.of(Point.of(0, Direction.of(true, false)), false)
+        );
+    }
+
+    @DisplayName("첫 번째 지점")
+    @ParameterizedTest
+    @MethodSource("isPossibleFirst")
+    public void isPossibleFirst(final Point point, final boolean expected) {
+        assertThat(point.isPossibleFirst()).isEqualTo(expected);
+    }
+
+    public static Stream<Arguments> isPossibleLast() {
+        return Stream.of(
+            Arguments.of(Point.of(10, Direction.of(false, true)), false),
+            Arguments.of(Point.of(10, Direction.of(false, false)), true),
+            Arguments.of(Point.of(10, Direction.of(true, false)), true)
+        );
+    }
+
+    @DisplayName("마지막 지점")
+    @ParameterizedTest
+    @MethodSource("isPossibleLast")
+    public void isPossibleLast(final Point point, final boolean expected) {
+        assertThat(point.isPossibleLast()).isEqualTo(expected);
+    }
+
+    public static Stream<Arguments> isPossibleNext() {
+        return Stream.of(
+            // 정상
+            Arguments.of(Point.of(1, Direction.of(false, true)),
+                Point.of(2, Direction.of(true, false)), true),
+            Arguments.of(Point.of(1, Direction.of(false, false)),
+                Point.of(2, Direction.of(false, false)), true),
+
+            // 연결될 수 없는 point
+            Arguments.of(Point.of(1, Direction.of(false, false)),
+                Point.of(2, Direction.of(true, false)), false),
+            Arguments.of(Point.of(1, Direction.of(false, true)),
+                Point.of(2, Direction.of(false, false)), false),
+
+            // 연결될 수 있는 point 지만 index 가 맞지 않음
+            Arguments.of(Point.of(1, Direction.of(false, true)),
+                Point.of(3, Direction.of(true, false)), false),
+            Arguments.of(Point.of(1, Direction.of(false, false)),
+                Point.of(3, Direction.of(false, false)), false)
+        );
+    }
+
+    @DisplayName("다음 지점")
+    @ParameterizedTest
+    @MethodSource("isPossibleNext")
+    public void isPossibleNext(final Point current, final Point next, final boolean expected) {
+        assertThat(current.isPossibleNext(next)).isEqualTo(expected);
+    }
 }
