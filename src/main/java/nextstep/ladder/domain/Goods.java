@@ -16,19 +16,15 @@ public class Goods {
 
     public static Goods of(String goods) {
         return new Goods(Arrays.stream(goods.split(Constants.COMMA))
-                               .map(Goods::addSpace)
                                .collect(toList()));
-    }
-
-    private static String addSpace(String goods) {
-        if (goods.length() >= 4) {
-            return goods;
-        }
-        return addSpace(Constants.SPACE.concat(goods));
     }
 
     public List<String> getGoods() {
         return goods;
+    }
+
+    public String resultGoods(int resultIndex) {
+        return goods.get(resultIndex);
     }
 
     @Override

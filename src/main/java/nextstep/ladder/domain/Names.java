@@ -26,6 +26,13 @@ public class Names {
                           .collect(toList());
     }
 
+    public int findName(String inputName) {
+        if(!getLadderNames().contains(inputName)) {
+            throw new IllegalArgumentException("해당하는 사람 없음");
+        }
+        return getLadderNames().indexOf(inputName);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
