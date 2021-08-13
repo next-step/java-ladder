@@ -1,6 +1,8 @@
-package nextstep.ladder.domain.common;
+package nextstep.ladder.domain;
 
 import java.util.Objects;
+import nextstep.ladder.domain.common.Name;
+import nextstep.ladder.domain.common.Result;
 
 public class Player {
 

@@ -1,10 +1,11 @@
-package nextstep.ladder.domain.common;
+package nextstep.ladder.domain;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-import nextstep.ladder.domain.common.exception.NotExistsPlayerNameException;
+import nextstep.ladder.domain.common.Name;
+import nextstep.ladder.domain.exception.NotExistsPlayerNameException;
 
 public class Players {
 
