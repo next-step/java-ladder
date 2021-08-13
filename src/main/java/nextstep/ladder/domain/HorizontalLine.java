@@ -3,6 +3,7 @@ package nextstep.ladder.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.IntStream;
 import nextstep.ladder.domain.common.Point;
 import nextstep.ladder.domain.exception.InvalidCreateHorizontalLineException;
 
@@ -31,16 +32,20 @@ public class HorizontalLine {
     }
 
     private void createValidation(final List<Point> points) {
-        if (!points.get(0).isPossibleFirst()
-            || !points.get(points.size() - 1).isPossibleLast()) {
+        if (!points.get(0).isPossibleFirst()) {
             throw new InvalidCreateHorizontalLineException();
         }
 
-        for (int i = 1; i < points.size() - 1; i++) {
-            if (!points.get(i).isPossibleNext(points.get(i + 1))) {
-                throw new InvalidCreateHorizontalLineException();
-            }
+        if (!points.get(points.size() - 1).isPossibleLast()) {
+            throw new InvalidCreateHorizontalLineException();
         }
+
+        IntStream.range(1, points.size() - 1)
+            .filter(i -> !points.get(i).isPossibleNext(points.get(i + 1)))
+            .findAny()
+            .ifPresent(e -> {
+                throw new InvalidCreateHorizontalLineException();
+            });
     }
 
     public int move(final int index) {
