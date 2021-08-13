@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class InputView {
     private static final Scanner sc = new Scanner(System.in);
 
-    public static String initPerson() {
+    public static String initPeople() {
         System.out.println("참여할 사람 이름을 입력하세요.");
         return sc.nextLine();
     }

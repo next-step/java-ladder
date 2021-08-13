@@ -3,19 +3,20 @@ package nextstep.ladder.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import nextstep.ladder.exception.LengthLimitException;
 import org.junit.jupiter.api.Test;
 
 class LadderNameTest {
     @Test
     void create() {
-        LadderName ladderName = LadderName.of("a");
-        assertThat(ladderName).isEqualTo(LadderName.of("a"));
+        Name ladderName = Name.of("a");
+        assertThat(ladderName).isEqualTo(Name.of("a"));
     }
 
     @Test
     void exception() {
         assertThatThrownBy(() -> {
-            LadderName.of("abbbbb");
+            Name.of("abbbbb");
         }).isInstanceOf(LengthLimitException.class);
     }
 }
