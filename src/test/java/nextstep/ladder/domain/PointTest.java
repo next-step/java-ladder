@@ -8,28 +8,40 @@ import org.junit.jupiter.api.Test;
 
 public class PointTest {
     @Test
+    void first() {
+        Point point = Point.first(true);
+        assertThat(point.move()).isEqualTo(Direction.RIGHT);
+    }
+
+    @Test
+    void last() {
+        Point point = Point.first(true).next(false).last();
+        assertThat(point.move()).isEqualTo(Direction.PASS);
+    }
+
+    @Test
+    void left() {
+        Point point = Point.first(true).next(false);
+        assertThat(point.move()).isEqualTo(Direction.LEFT);
+    }
+
+    @Test
     void exception() {
         assertThatThrownBy(() -> {
-            new Point(true, true);
+            Point.first(true).next(true);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
 
     @Test
     void right() {
-        Point point = new Point(false, true);
+        Point point = Point.first(false).next(true);
         assertThat(point.move()).isEqualTo(Direction.RIGHT);
     }
 
     @Test
-    void left() {
-        Point point = new Point(true, false);
-        assertThat(point.move()).isEqualTo(Direction.LEFT);
-    }
-
-    @Test
     void pass() {
-        Point point = new Point(false, false);
+        Point point = Point.first(false).next(false);
         assertThat(point.move()).isEqualTo(Direction.PASS);
     }
 
