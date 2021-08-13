@@ -5,10 +5,9 @@ import static java.util.stream.Collectors.toList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import nextstep.ladder.utils.Constants;
 
 public class Names {
-    private static final String COMMA = ",";
-
     private final List<Name> ladderNames;
 
     private Names(List<Name> ladderNames) {
@@ -16,7 +15,7 @@ public class Names {
     }
 
     public static Names of(String ladderNames) {
-        return new Names(Arrays.stream(ladderNames.split(COMMA))
+        return new Names(Arrays.stream(ladderNames.split(Constants.COMMA))
                                      .map(Name::of)
                                      .collect(toList()));
     }

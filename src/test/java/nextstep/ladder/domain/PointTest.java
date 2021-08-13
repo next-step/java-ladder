@@ -2,8 +2,8 @@ package nextstep.ladder.domain;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class PointTest {
@@ -26,10 +26,10 @@ public class PointTest {
     }
 
     @Test
+    @DisplayName("우회 테스트")
     void exception() {
-        assertThatThrownBy(() -> {
-            Point.first(true).next(true);
-        }).isInstanceOf(IllegalArgumentException.class);
+        Point point = Point.first(true).next(true);
+        assertThat(point).isEqualTo(Point.first(true).next(false));
     }
 
 
