@@ -1,7 +1,7 @@
 package nextstep.ladder.controller;
 
 import java.util.stream.Collectors;
-import nextstep.ladder.domain.HorizontalLines;
+import nextstep.ladder.domain.LadderGame;
 import nextstep.ladder.domain.Players;
 import nextstep.ladder.domain.common.GameResults;
 import nextstep.ladder.domain.common.Name;
@@ -17,27 +17,23 @@ public class LadderGameController {
     private static final Name PRINT_ALL_NAME_FLAG = Name.of("all");
 
     public static void main(final String[] args) {
-        final Players players = Players.of(InputView.inputPlayerName());
-        final GameResults gameResults = GameResults.of(InputView.inputResults());
-        final HorizontalLines lines = HorizontalLines.of(InputView.inputLadderHeight(), players.size());
+        final LadderGame game = LadderGame.of(
+            Players.of(InputView.inputPlayerName()),
+            GameResults.of(InputView.inputResults()),
+            InputView.inputLadderHeight());
 
-        for (int i = 0; i < players.getValues().size(); i++) {
-            players.updateResult(i, gameResults.get(lines.move(i)));
-        }
-
-        ResultView.printPlayerNames(new PrintPlayerNamesDto(players));
-        ResultView.printLines(new PrintHorizontalLinesDto(lines));
-        ResultView.printlnResults(new PrintResultsDto(gameResults));
+        ResultView.printPlayerNames(new PrintPlayerNamesDto(game.getPlayers()));
+        ResultView.printLines(new PrintHorizontalLinesDto(game.getLines()));
+        ResultView.printlnResults(new PrintResultsDto(game.getGameResults()));
 
         Name resultPlayerName = Name.of(InputView.inputResultPlayerName());
-
         while (!resultPlayerName.equals(PRINT_ALL_NAME_FLAG)) {
-            ResultView.printNameWithResult(new PrintPlayerDto(players.getByName(resultPlayerName)));
+            ResultView.printNameWithResult(new PrintPlayerDto(game.getPlayers().getByName(resultPlayerName)));
             resultPlayerName = Name.of(InputView.inputResultPlayerName());
         }
 
         ResultView.printNameWithResults(
-            players.getValues().stream()
+            game.getPlayers().getValues().stream()
                 .map(PrintPlayerDto::new)
                 .collect(Collectors.toList()));
     }
