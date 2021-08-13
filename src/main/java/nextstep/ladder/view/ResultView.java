@@ -1,8 +1,10 @@
 package nextstep.ladder.view;
 
+import java.util.List;
 import java.util.stream.Collectors;
 import nextstep.ladder.domain.HorizontalLine;
 import nextstep.ladder.view.dto.PrintHorizontalLinesDto;
+import nextstep.ladder.view.dto.PrintPlayerDto;
 import nextstep.ladder.view.dto.PrintPlayerNamesDto;
 import nextstep.ladder.view.dto.PrintResultsDto;
 
@@ -36,5 +38,15 @@ public class ResultView {
         return line.getPoints().stream()
             .map(point -> point.getLeft() ? LINE_FLAG : LINE_BLANK)
             .collect(Collectors.joining(LINE_DELIMITER)) + LINE_DELIMITER;
+    }
+
+    public static void printNameWithResult(final PrintPlayerDto dto) {
+        System.out.println("실행 결과");
+        System.out.println(dto.getName().getValue() + " : " + dto.getResult().getValue());
+    }
+
+    public static void printNameWithResults(final List<PrintPlayerDto> dtos) {
+        System.out.println("실행 결과");
+        dtos.forEach(dto -> System.out.println(dto.getName().getValue() + " : " + dto.getResult().getValue()));
     }
 }
