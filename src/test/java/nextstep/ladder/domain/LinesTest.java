@@ -14,6 +14,7 @@ public class LinesTest {
         for (Line line : lines.getLines()) {
             line.getPoints().forEach(point -> {
                 System.out.print(point.isLeft() + " ");
+                System.out.print(point.move() + " ");
             });
             System.out.println();
         }
