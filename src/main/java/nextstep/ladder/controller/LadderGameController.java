@@ -19,6 +19,10 @@ public class LadderGameController {
         final GameResults gameResults = GameResults.of(InputView.inputResults());
         final HorizontalLines lines = HorizontalLines.of(InputView.inputLadderHeight(), players.size());
 
+        for (int i = 0; i < players.getValues().size(); i++) {
+            players.updateResult(i, gameResults.get(lines.move(i)));
+        }
+
         System.out.println();
 
         ResultView.printPlayerNames(new PrintPlayerNamesDto(players));

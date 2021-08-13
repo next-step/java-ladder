@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import nextstep.ladder.domain.common.Name;
+import nextstep.ladder.domain.common.Result;
 import nextstep.ladder.domain.exception.NotExistsPlayerNameException;
 
 public class Players {
@@ -25,6 +26,10 @@ public class Players {
                 .map(Name::of)
                 .map(Player::of)
                 .collect(Collectors.toList()));
+    }
+
+    public void updateResult(final int index, final Result result) {
+        players.get(index).updateResult(result);
     }
 
     public int size() {
