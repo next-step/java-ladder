@@ -18,7 +18,7 @@ class LadderTest {
     @DisplayName("가지고있는 모든 행의 정보를 DTO 객체로 변환하여 반환한다. 픽스처는 5의 크기로 초기화 되었다.")
     void convert() {
         Ladder ladder = Ladder.from(LADDER_GAME_CONTEXT);
-        List<RowDto> rowDtos = ladder.convert();
+        List<RowDto> rowDtos = ladder.rowInfos();
         Assertions.assertThat(rowDtos.size()).isEqualTo(HEIGHT_SIZE_FIXTURE);
     }
 }

@@ -22,12 +22,16 @@ public class Players {
                 .collect(Collectors.toList());
 
         this.players = range(0, names.size())
-                .mapToObj(mapToPlayer(names))
+                .mapToObj(createPlayerFrom(names))
                 .collect(Collectors.toList());
     }
 
-    private static IntFunction<Player> mapToPlayer(final List<String> names) {
-        return position -> Player.of(names.get(position), position);
+    private static IntFunction<Player> createPlayerFrom(final List<String> players) {
+        return (int position) -> Player.of(getName(players, position), Position.from(position));
+    }
+
+    private static String getName(final List<String> players, final int position) {
+        return players.get(position);
     }
 
     public static Players from(final String args) {
@@ -59,15 +63,15 @@ public class Players {
     }
 
     public void ride(final Ladder ladder) {
-        range(0, ladder.height()).forEach(stepByStep(ladder));
+        range(0, ladder.height()).forEach(moveStepByStep(ladder));
     }
 
-    private IntConsumer stepByStep(final Ladder ladder) {
-        return stage -> players.forEach(move(ladder, stage));
+    private IntConsumer moveStepByStep(final Ladder ladder) {
+        return depth -> players.forEach(move(ladder, depth));
     }
 
-    private Consumer<Player> move(final Ladder ladder, final int stage) {
-        return player -> ladder.ride(player, stage);
+    private Consumer<Player> move(final Ladder ladder, final int depth) {
+        return player -> ladder.ride(player, depth);
     }
 
     public int size() {

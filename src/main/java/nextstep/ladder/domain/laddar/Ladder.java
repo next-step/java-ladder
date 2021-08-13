@@ -23,7 +23,7 @@ public class Ladder {
         return new Ladder(ladderGameContext);
     }
 
-    public List<RowDto> convert() {
+    public List<RowDto> rowInfos() {
         return ladderRows.stream()
                          .map(LadderRow::getLadderMap)
                          .map(RowDto::from)
@@ -34,7 +34,7 @@ public class Ladder {
         return context.getLadderHeight();
     }
 
-    public void ride(final Player player, final int stage) {
-        ladderRows.get(stage).ride(player);
+    public void ride(final Player player, final int depth) {
+        ladderRows.get(depth).ride(player);
     }
 }

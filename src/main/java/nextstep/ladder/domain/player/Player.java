@@ -15,9 +15,9 @@ public class Player {
         this.position = position;
     }
 
-    public static Player of(final String name, final int position) {
+    public static Player of(final String name, final Position position) {
         verifyNameLength(Objects.requireNonNull(name));
-        return new Player(name, Position.from(position));
+        return new Player(name, position);
     }
 
     private static void verifyNameLength(final String name) {

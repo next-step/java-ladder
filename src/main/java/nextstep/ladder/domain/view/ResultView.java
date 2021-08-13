@@ -31,11 +31,8 @@ public class ResultView {
 
     public static void printResultStatement(final ResultDto result) {
         println(RESULT_MESSAGE);
-
         printPlayerNames(result.getNames());
-
         printLadder(result.getRows());
-
         printEndpoints(result.getEndpoints());
     }
 
@@ -74,6 +71,7 @@ public class ResultView {
     }
 
     public static void printResultAll(final Players players, final ResultDto resultDto) {
+        newLine();
         ResultView.printResultStatement(resultDto);
         ResultView.printLoop(resultDto, players);
         ResultView.printEndMessage(resultDto);
@@ -109,7 +107,7 @@ public class ResultView {
     private static void printResult(final ResultDto resultDto, final String name) {
         final int position = resultDto.getPosition(name);
         final String endpoint = resultDto.getEndpoint(position);
-        System.out.printf(RESULT_FORMAT, name, endpoint);
+        printf(RESULT_FORMAT, name, endpoint);
     }
 
     private static String concatToTheLimitLength(final String charSequence) {
@@ -124,6 +122,10 @@ public class ResultView {
 
     public static void println(final String message) {
         System.out.println(message);
+    }
+
+    public static void printf(final String format, final Object... args) {
+        System.out.printf(format, args);
     }
 
     public static void newLine() {
