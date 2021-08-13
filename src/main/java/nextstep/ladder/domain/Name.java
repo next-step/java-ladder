@@ -1,20 +1,21 @@
 package nextstep.ladder.domain;
 
 import java.util.Objects;
+import nextstep.ladder.exception.LengthLimitException;
 
-public class LadderName {
+public class Name {
     private static final int MAX_LENGTH = 5;
     private static final String SPACE = " ";
 
     private final String ladderName;
 
-    private LadderName(String ladderName) {
+    private Name(String ladderName) {
         this.ladderName = ladderName;
     }
 
-    public static LadderName of(String ladderName) {
+    public static Name of(String ladderName) {
         lengthValidate(ladderName);
-        return new LadderName(addSpace(ladderName));
+        return new Name(addSpace(ladderName));
     }
 
     private static void lengthValidate(String ladderName) {
@@ -42,7 +43,7 @@ public class LadderName {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        LadderName that = (LadderName) o;
+        Name that = (Name) o;
         return Objects.equals(ladderName, that.ladderName);
     }
 

@@ -6,24 +6,24 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-public class LadderNames {
+public class Names {
     private static final String COMMA = ",";
 
-    private final List<LadderName> ladderNames;
+    private final List<Name> ladderNames;
 
-    private LadderNames(List<LadderName> ladderNames) {
+    private Names(List<Name> ladderNames) {
         this.ladderNames = ladderNames;
     }
 
-    public static LadderNames of(String ladderNames) {
-        return new LadderNames(Arrays.stream(ladderNames.split(COMMA))
-                                     .map(LadderName::of)
+    public static Names of(String ladderNames) {
+        return new Names(Arrays.stream(ladderNames.split(COMMA))
+                                     .map(Name::of)
                                      .collect(toList()));
     }
 
     public List<String> getLadderNames() {
         return ladderNames.stream()
-                          .map(LadderName::getLadderName)
+                          .map(Name::getLadderName)
                           .collect(toList());
     }
 
@@ -35,7 +35,7 @@ public class LadderNames {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        LadderNames that = (LadderNames) o;
+        Names that = (Names) o;
         return Objects.equals(ladderNames, that.ladderNames);
     }
 

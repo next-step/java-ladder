@@ -1,4 +1,4 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.exception;
 
 public class LengthLimitException extends IllegalArgumentException {
 
