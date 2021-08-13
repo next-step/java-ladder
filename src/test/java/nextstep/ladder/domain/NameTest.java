@@ -6,7 +6,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import nextstep.ladder.exception.LengthLimitException;
 import org.junit.jupiter.api.Test;
 
-class LadderNameTest {
+class NameTest {
     @Test
     void create() {
         Name ladderName = Name.of("a");

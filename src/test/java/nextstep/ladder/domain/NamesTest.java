@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 
-public class LadderNamesTest {
+public class NamesTest {
     @Test
     void create() {
         Names ladderNames = Names.of("a,b,c,d");
