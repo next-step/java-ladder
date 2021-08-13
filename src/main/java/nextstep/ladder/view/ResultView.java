@@ -1,11 +1,10 @@
 package nextstep.ladder.view;
 
-import java.util.List;
 import java.util.stream.Collectors;
-import nextstep.ladder.domain.HorizontalLine;
+import nextstep.ladder.view.dto.PrintHorizontalLineDto;
 import nextstep.ladder.view.dto.PrintHorizontalLinesDto;
 import nextstep.ladder.view.dto.PrintPlayerDto;
-import nextstep.ladder.view.dto.PrintPlayerNamesDto;
+import nextstep.ladder.view.dto.PrintPlayersDto;
 import nextstep.ladder.view.dto.PrintResultsDto;
 
 public class ResultView {
@@ -14,8 +13,8 @@ public class ResultView {
     private static final String LINE_BLANK = "     ";
     private static final String LINE_DELIMITER = "|";
 
-    public static void printPlayerNames(final PrintPlayerNamesDto dto) {
-        dto.getPlayerNames().forEach(name -> System.out.printf("%6s", name));
+    public static void printPlayerNames(final PrintPlayersDto dto) {
+        dto.getPlayers().forEach(player -> System.out.printf("%6s", player.getName()));
         System.out.println();
     }
 
@@ -34,19 +33,20 @@ public class ResultView {
             .forEach(System.out::println);
     }
 
-    private static String printLine(final HorizontalLine line) {
-        return line.getPoints().stream()
+    private static String printLine(final PrintHorizontalLineDto dto) {
+        return dto.getPoints().stream()
             .map(point -> point.getLeft() ? LINE_FLAG : LINE_BLANK)
             .collect(Collectors.joining(LINE_DELIMITER)) + LINE_DELIMITER;
     }
 
     public static void printNameWithResult(final PrintPlayerDto dto) {
         System.out.println("실행 결과");
-        System.out.println(dto.getName().getValue() + " : " + dto.getResult().getValue());
+        System.out.println(dto.getName() + " : " + dto.getResult());
     }
 
-    public static void printNameWithResults(final List<PrintPlayerDto> dtos) {
+    public static void printNameWithResults(final PrintPlayersDto dto) {
         System.out.println("실행 결과");
-        dtos.forEach(dto -> System.out.println(dto.getName().getValue() + " : " + dto.getResult().getValue()));
+        dto.getPlayers()
+            .forEach(player -> System.out.println(player.getName() + " : " + player.getResult()));
     }
 }

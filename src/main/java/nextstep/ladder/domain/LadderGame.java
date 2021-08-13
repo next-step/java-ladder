@@ -2,6 +2,11 @@ package nextstep.ladder.domain;
 
 import java.util.stream.IntStream;
 import nextstep.ladder.domain.common.GameResults;
+import nextstep.ladder.domain.common.Name;
+import nextstep.ladder.view.dto.PrintHorizontalLinesDto;
+import nextstep.ladder.view.dto.PrintPlayerDto;
+import nextstep.ladder.view.dto.PrintPlayersDto;
+import nextstep.ladder.view.dto.PrintResultsDto;
 
 public class LadderGame {
 
@@ -22,15 +27,19 @@ public class LadderGame {
         return new LadderGame(players, gameResults, HorizontalLines.of(height, players.size()));
     }
 
-    public Players getPlayers() {
-        return players;
+    public PrintPlayerDto getPlayerDto(final Name name) {
+        return new PrintPlayerDto(players.getByName(name));
     }
 
-    public GameResults getGameResults() {
-        return gameResults;
+    public PrintPlayersDto getPlayersDto() {
+        return new PrintPlayersDto(players);
     }
 
-    public HorizontalLines getLines() {
-        return lines;
+    public PrintHorizontalLinesDto getLinesDto() {
+        return new PrintHorizontalLinesDto(lines);
+    }
+
+    public PrintResultsDto getGameResultsDto() {
+        return new PrintResultsDto(gameResults);
     }
 }
