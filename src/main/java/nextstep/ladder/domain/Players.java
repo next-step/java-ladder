@@ -43,14 +43,6 @@ public class Players {
             .orElseThrow(NotExistsPlayerNameException::new);
     }
 
-    public int indexOf(final Player player) {
-        return players.indexOf(player);
-    }
-
-    public boolean contains(final Player player) {
-        return players.contains(player);
-    }
-
     public List<Player> getValues() {
         return Collections.unmodifiableList(players);
     }

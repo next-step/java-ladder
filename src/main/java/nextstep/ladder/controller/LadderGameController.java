@@ -22,10 +22,10 @@ public class LadderGameController {
     }
 
     private static void printResult(final LadderGame game) {
-        Name resultPlayerName = Name.of(InputView.inputResultPlayerName());
-        while (!resultPlayerName.equals(PRINT_ALL_NAME_FLAG)) {
-            ResultView.printNameWithResult(game.getPlayerDto(resultPlayerName));
-            resultPlayerName = Name.of(InputView.inputResultPlayerName());
+        Name playerName = Name.of(InputView.inputResultPlayerName());
+        while (!playerName.equals(PRINT_ALL_NAME_FLAG)) {
+            ResultView.printNameWithResult(game.getPlayerDto(playerName));
+            playerName = Name.of(InputView.inputResultPlayerName());
         }
 
         ResultView.printNameWithResults(game.getPlayersDto());
