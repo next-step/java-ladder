@@ -49,6 +49,6 @@
 - [x] StreamStudy printLongestWordTop100 에 12자가 넘는 단어 중 길이가 긴 순서로 100개의 단어를 추출한다.
 - [x] StreamStudy printLongestWordTop100 에 단어 중복을 허용하지 않는다. 즉, 서로 다른 단어 100개를 추출해야 한다.
 - [x] StreamStudy printLongestWordTop100 에 추출한 100개의 단어를 출력한다. 모든 단어는 소문자로 출력해야 한다.
-- [] nextstep.optional.User ageIsInRange1()의 기능을 Optional로 ageIsInRange2() 구현한다.
-- [] nextstep.optional.Users의 getUser() 메소드를 자바 8의 stream과 Optional을 활용해 구현한다.
-- [] nextstep.optional.ExpressionTest의 테스트가 통과하도록 Expression의 of 메소드를 구현한다.
+- [x] nextstep.optional.User ageIsInRange1()의 기능을 Optional로 ageIsInRange2() 구현한다.
+- [x] nextstep.optional.Users의 getUser() 메소드를 자바 8의 stream과 Optional을 활용해 구현한다.
+- [x] nextstep.optional.ExpressionTest의 테스트가 통과하도록 Expression의 of 메소드를 구현한다.
