@@ -7,12 +7,12 @@ import java.util.stream.Collectors;
 
 public class LadderInputView {
     private static final int USER_NAME_MAX_LENGTH = 5;
-    private static final Scanner scanner = new Scanner(System.in);
+    private static final Scanner SCANNER = new Scanner(System.in);
 
     public static List<String> getUserNamesWithPrompt(String message) {
         System.out.println(message);
 
-        return Arrays.stream(scanner.nextLine().split(","))
+        return Arrays.stream(SCANNER.nextLine().split(","))
                 .peek(LadderInputView::validateUsername)
                 .collect(Collectors.toList());
     }
@@ -25,9 +25,9 @@ public class LadderInputView {
 
     public static int getLadderLengthWithPrompt(String message) {
         System.out.println(message);
-        scanner.nextLine();
+        SCANNER.nextLine();
 
-        return scanner.nextInt();
+        return SCANNER.nextInt();
 
     }
 }
