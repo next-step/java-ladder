@@ -2,5 +2,5 @@ package nextstep.fp;
 
 public interface Conditional {
 
-  boolean test(Integer number);
+  boolean isHasCondition(Integer number);
 }
