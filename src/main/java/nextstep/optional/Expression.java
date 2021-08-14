@@ -1,5 +1,7 @@
 package nextstep.optional;
 
+import java.util.Arrays;
+
 enum Expression {
     PLUS("+"), MINUS("-"), TIMES("*"), DIVIDE("/");
 
@@ -13,6 +15,7 @@ enum Expression {
         return expression.equals(e.expression);
     }
 
+    /* Before
     static Expression of(String expression) {
         for (Expression v : values()) {
             if (matchExpression(v, expression)) {
@@ -21,5 +24,15 @@ enum Expression {
         }
 
         throw new IllegalArgumentException(String.format("%s는 사칙연산에 해당하지 않는 표현식입니다.", expression));
+    }
+     */
+
+    //After
+    static Expression of(String expression) {
+        return Arrays.stream(values())
+                .filter(x -> matchExpression(x, expression))
+                .findFirst()
+                .orElseThrow(() ->
+                        new IllegalArgumentException(String.format("%s는 사칙연산에 해당하지 않는 표현식입니다.", expression)));
     }
 }
