@@ -1,12 +1,14 @@
 package step2;
 
+import step2.util.SidelineGenerator;
+
 import java.util.List;
 
 public class Line {
     private final List<Boolean> sideLines;
 
-    public Line(int numberOfUsers, SidelineGenerator sidelineGenerator) {
-        sideLines = sidelineGenerator.generate(numberOfUsers - 1);
+    public Line(SidelineGenerator sidelineGenerator) {
+        sideLines = sidelineGenerator.generate();
     }
 
     public Boolean hasSidelineAt(int at) {

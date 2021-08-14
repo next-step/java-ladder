@@ -1,4 +1,6 @@
-package step2;
+package step2.util;
+
+import step2.util.SidelineGenerator;
 
 import java.util.List;
 
@@ -10,7 +12,7 @@ public abstract class SidelineGeneratorDecorator implements SidelineGenerator {
     }
 
     @Override
-    public List<Boolean> generate(int n) {
-        return sidelineGenerator.generate(n);
+    public List<Boolean> generate() {
+        return sidelineGenerator.generate();
     }
 }

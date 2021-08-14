@@ -1,19 +1,27 @@
 package step2;
 
+import step2.util.SidelineGenerator;
+
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Ladder {
+public class Ladder implements Iterable<Line> {
     private final List<Line> lines;
 
-    public Ladder(int height, int numberOfUsers, SidelineGenerator sidelineGenerator) {
-        this.lines = createLines(numberOfUsers, height, sidelineGenerator);
+    public Ladder(int height, SidelineGenerator sidelineGenerator) {
+        this.lines = createLines(height, sidelineGenerator);
     }
 
-    private List<Line> createLines(int numberOfUsers, int height, SidelineGenerator sidelineGenerator) {
-        return Stream.generate(() -> new Line(numberOfUsers, sidelineGenerator))
+    private List<Line> createLines(int height, SidelineGenerator sidelineGenerator) {
+        return Stream.generate(() -> new Line(sidelineGenerator))
                 .limit(height)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Iterator<Line> iterator() {
+        return lines.iterator();
     }
 }
