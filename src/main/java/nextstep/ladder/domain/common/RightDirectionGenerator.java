@@ -1,8 +1,8 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.common;
 
 import java.util.Random;
 
-public class DefaultLineExistsGenerator extends LineExistsGenerator {
+public class RightDirectionGenerator extends DirectionGenerator {
 
     private static final Random RANDOM = new Random();
 

@@ -16,14 +16,14 @@ class NameTest {
     @CsvSource(value = {
         "pobi", "honux", "crong", "jk"
     })
-    public void create(String name) {
+    public void create(final String name) {
         // given
 
         // when
-        Name createName = Name.of(name);
+        final Name createName = Name.of(name);
 
         // then
-        assertThat(createName.getName()).isEqualTo(name);
+        assertThat(createName.getValue()).isEqualTo(name);
     }
 
     @DisplayName("[실패] 생성")
@@ -31,7 +31,7 @@ class NameTest {
     @CsvSource(value = {
         "honux1"
     })
-    public void create_invalidName(String name) {
+    public void create_invalidName(final String name) {
         // given
 
         // when

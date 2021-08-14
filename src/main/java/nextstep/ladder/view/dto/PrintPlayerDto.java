@@ -1,16 +1,17 @@
 package nextstep.ladder.view.dto;
 
+import nextstep.ladder.domain.Player;
 import nextstep.ladder.domain.common.Name;
 import nextstep.ladder.domain.common.Result;
 
-public class PrintNameWithResultDto {
+public class PrintPlayerDto {
 
     private final Name name;
     private final Result result;
 
-    public PrintNameWithResultDto(final Name name, final Result result) {
-        this.name = name;
-        this.result = result;
+    public PrintPlayerDto(final Player player) {
+        this.name = player.getName();
+        this.result = player.getResult();
     }
 
     public Name getName() {

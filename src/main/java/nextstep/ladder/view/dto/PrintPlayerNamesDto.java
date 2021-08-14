@@ -3,16 +3,15 @@ package nextstep.ladder.view.dto;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-import nextstep.ladder.domain.common.Name;
-import nextstep.ladder.domain.common.Names;
+import nextstep.ladder.domain.Players;
 
 public class PrintPlayerNamesDto {
 
     private final List<String> playerNames;
 
-    public PrintPlayerNamesDto(final Names playerNames) {
-        this.playerNames = playerNames.getValues().stream()
-            .map(Name::getName)
+    public PrintPlayerNamesDto(final Players players) {
+        this.playerNames = players.getValues().stream()
+            .map(player -> player.getName().getValue())
             .collect(Collectors.toList());
     }
 

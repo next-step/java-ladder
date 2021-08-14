@@ -1,51 +1,45 @@
 package nextstep.ladder.domain;
 
+import java.util.stream.IntStream;
+import nextstep.ladder.domain.common.GameResults;
 import nextstep.ladder.domain.common.Name;
-import nextstep.ladder.domain.common.Names;
-import nextstep.ladder.domain.common.Result;
-import nextstep.ladder.domain.common.Results;
-import nextstep.ladder.domain.exception.NotExistsPlayerNameException;
+import nextstep.ladder.view.dto.PrintHorizontalLinesDto;
+import nextstep.ladder.view.dto.PrintPlayerDto;
+import nextstep.ladder.view.dto.PrintPlayersDto;
+import nextstep.ladder.view.dto.PrintResultsDto;
 
 public class LadderGame {
 
-    private final Lines lines;
-    private final Names playerNames;
-    private final Results results;
+    private final Players players;
+    private final GameResults gameResults;
+    private final HorizontalLines lines;
 
-    private LadderGame(final Lines lines, final Names playerNames, final Results results) {
+    private LadderGame(final Players players, final GameResults gameResults, final HorizontalLines lines) {
+        IntStream.range(0, players.size())
+            .forEach(i -> players.updateResult(i, gameResults.get(lines.move(i))));
+
+        this.players = players;
+        this.gameResults = gameResults;
         this.lines = lines;
-        this.playerNames = playerNames;
-        this.results = results;
     }
 
-    public static LadderGame of(final Lines lines, final Names playerNames, final Results results) {
-        return new LadderGame(lines, playerNames, results);
+    public static LadderGame of(final Players players, final GameResults gameResults, final int height) {
+        return new LadderGame(players, gameResults, HorizontalLines.of(height, players.size()));
     }
 
-    public Result getResult(final Name playerName) {
-        playerNameValidation(playerName);
-
-        final int index = playerNames.indexOf(playerName);
-        final int goal = lines.goal(index);
-
-        return results.get(goal);
+    public PrintPlayerDto getPlayerDto(final Name name) {
+        return new PrintPlayerDto(players.getByName(name));
     }
 
-    private void playerNameValidation(final Name playerName) {
-        if (!playerNames.contains(playerName)) {
-            throw new NotExistsPlayerNameException();
-        }
+    public PrintPlayersDto getPlayersDto() {
+        return new PrintPlayersDto(players);
     }
 
-    public Lines getLines() {
-        return lines;
+    public PrintHorizontalLinesDto getLinesDto() {
+        return new PrintHorizontalLinesDto(lines);
     }
 
-    public Names getPlayerNames() {
-        return playerNames;
-    }
-
-    public Results getResults() {
-        return results;
+    public PrintResultsDto getGameResultsDto() {
+        return new PrintResultsDto(gameResults);
     }
 }

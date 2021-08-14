@@ -34,4 +34,9 @@ public class Result {
     public int hashCode() {
         return Objects.hash(getValue());
     }
+
+    @Override
+    public String toString() {
+        return value;
+    }
 }

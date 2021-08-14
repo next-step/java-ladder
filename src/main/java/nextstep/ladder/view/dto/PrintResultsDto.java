@@ -4,14 +4,14 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import nextstep.ladder.domain.common.Result;
-import nextstep.ladder.domain.common.Results;
+import nextstep.ladder.domain.common.GameResults;
 
 public class PrintResultsDto {
 
     private final List<String> results;
 
-    public PrintResultsDto(final Results results) {
-        this.results = results.getValues().stream()
+    public PrintResultsDto(final GameResults gameResults) {
+        this.results = gameResults.getValues().stream()
             .map(Result::getValue)
             .collect(Collectors.toList());
     }
