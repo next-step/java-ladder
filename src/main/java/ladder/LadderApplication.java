@@ -14,8 +14,9 @@ public class LadderApplication {
 
         int ladderMaxLength = InputView.getLadderMaxLength();
 
+        ResultView.printResultComment();
         ResultView.printParticipatePeople(ParticipatePeople.of(participatePersonList));
-        ResultView.drawLadder(Ladder.of(countOfPerson, ladderMaxLength));
+        ResultView.drawLadder(Ladder.of(ladderMaxLength, countOfPerson));
 
 
     }

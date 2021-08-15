@@ -1,27 +1,41 @@
 package ladder.domain;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Ladder {
+    private final List<Line> lines;
 
-    private int countOfPerson;
-    private int ladderManxLength;
-
-    public Ladder(int countOfPerson, int ladderMaxLength) {
-        this.countOfPerson = countOfPerson;
-        this.ladderManxLength = ladderMaxLength;
+    private Ladder(int ladderMaxLength, int countOfPerson) {
+        this.lines = new ArrayList<>();
+        for (int i = 0; i < ladderMaxLength; i++) {
+            this.lines.add(new Line(countOfPerson));
+        }
     }
 
-    public static Ladder of(int countOfPerson, int ladderMaxLength) {
-        return new Ladder(countOfPerson, ladderMaxLength);
+    public static Ladder of(int ladderMaxLength, int countOfPerson) {
+        return new Ladder(ladderMaxLength, countOfPerson);
+    }
+    public int getLadderWidth(){
+        return lines.stream()
+                .map(line -> line.getSize())
+                .findFirst()
+                .orElse(0);
+
+    }
+    public int getLadderHeight(){
+        return lines.size();
     }
 
-    public int getLineCount() {
-        return ladderManxLength;
-    }
-
-    public int getCountOfPerson() {
-        return countOfPerson;
+    public boolean isDraw(int row, int column) {
+        if (column == 0)
+            return false;
+        if (row % 2 == 0 && column % 2 == 1)
+            return true;
+        if (row % 2 == 1 && column % 2 == 0)
+            return true;
+        return false;
     }
 
     @Override
@@ -29,12 +43,12 @@ public class Ladder {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Ladder ladder = (Ladder) o;
-        return countOfPerson == ladder.countOfPerson && ladderManxLength == ladder.ladderManxLength;
+        return Objects.equals(lines, ladder.lines);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(countOfPerson, ladderManxLength);
+        return Objects.hash(lines);
     }
 
 

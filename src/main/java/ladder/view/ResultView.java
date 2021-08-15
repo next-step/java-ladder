@@ -4,26 +4,32 @@ import ladder.domain.Ladder;
 import ladder.domain.ParticipatePeople;
 
 public class ResultView {
+    private static final String RESULT_COMMENT = "실행 결과";
 
-    public static void drawLadder(Ladder ladder) {
+    public static void printResultComment() {
 
-        for(int i = 0 ; i < ladder.getLineCount(); i++){
-            for(int j = 0; j < ladder.getCountOfPerson(); j++) {
-                if(j%2 == 0){
-                    System.out.print("     |");
-                }
-                else{
-                    System.out.print("-----|");
-                }
-
-            }
-            System.out.println();
-        }
+        System.out.println(RESULT_COMMENT);
     }
 
     public static void printParticipatePeople(ParticipatePeople participatePeople) {
         participatePeople.getList().stream()
                 .forEach(person -> System.out.print("  " + person));
         System.out.println();
+    }
+
+    public static void drawLadder(Ladder ladder) {
+
+        for(int row = 0 ; row < ladder.getLadderHeight(); row++){
+            for(int column = 0; column < ladder.getLadderWidth(); column++) {
+                if(ladder.isDraw(row, column)) {
+                    System.out.print("-----|");
+                }
+                else{
+                    System.out.print("     |");
+                }
+
+            }
+            System.out.println();
+        }
     }
 }
