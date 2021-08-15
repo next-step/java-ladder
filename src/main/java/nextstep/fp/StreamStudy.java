@@ -8,9 +8,11 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class StreamStudy {
+    private static int LENGTH_THRESHOLD = 12;
 
     public static long countWords() throws IOException {
         String contents = new String(Files.readAllBytes(Paths
@@ -18,8 +20,12 @@ public class StreamStudy {
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
         return words.stream()
-                .filter(word -> word.length() > 12)
+                .filter(validateWordLength())
                 .count();
+    }
+
+    private static Predicate<String> validateWordLength() {
+        return word -> word.length() > LENGTH_THRESHOLD;
     }
 
     public static void printLongestWordTop100() throws IOException {
@@ -28,7 +34,7 @@ public class StreamStudy {
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
         words.stream()
-                .filter(word -> word.length() > 12)
+                .filter(validateWordLength())
                 .sorted(Comparator.comparing(String::length))
                 .limit(100)
                 .distinct()
