@@ -1,14 +1,11 @@
 package ladder.model;
 
 import java.util.Objects;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
+import ladder.dto.NameDto;
 import ladder.message.ErrorMessage;
 
 public class Name {
 
-	public static final String SPACE_NAME = " ";
 	private static final int LIMIT_LENGTH = 6;
 	private final String name;
 
@@ -16,6 +13,10 @@ public class Name {
 		checkEmptyName(name);
 		checkNameLimitLength(name);
 		this.name = name;
+	}
+
+	public String getName() {
+		return NameDto.of(name).value();
 	}
 
 	private void checkEmptyName(String name) {
@@ -45,10 +46,4 @@ public class Name {
 		return Objects.hash(name);
 	}
 
-	@Override
-	public String toString() {
-		return Stream.generate(() -> SPACE_NAME)
-			.limit(LIMIT_LENGTH - name.length())
-			.collect(Collectors.joining()).concat(name);
-	}
 }
