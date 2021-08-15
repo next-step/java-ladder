@@ -1,6 +1,4 @@
-package step2.view;
-
-import step2.User;
+package step3.view;
 
 import java.util.Arrays;
 import java.util.List;
@@ -22,5 +20,12 @@ public class LadderInputView {
         System.out.println(message);
 
         return SCANNER.nextInt();
+    }
+
+    public static String getResultRequestUsernameWithPrompt(String message) {
+        System.out.println(message);
+        SCANNER.nextLine();
+
+        return SCANNER.nextLine();
     }
 }

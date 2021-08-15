@@ -1,4 +1,4 @@
-package step2;
+package step3;
 
 public class User {
     public static final int USER_NAME_MAX_LENGTH = 5;

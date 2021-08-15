@@ -1,10 +1,10 @@
-package step2;
+package step3;
 
-import step2.util.NoneConsecutiveSidelineGenerator;
-import step2.util.RandomSidelineGenerator;
-import step2.util.SidelineGenerator;
-import step2.view.LadderInputView;
-import step2.view.LadderOutputView;
+import step3.util.NoneConsecutiveSidelineGenerator;
+import step3.util.RandomSidelineGenerator;
+import step3.util.SidelineGenerator;
+import step3.view.LadderInputView;
+import step3.view.LadderOutputView;
 
 import java.util.List;
 
@@ -25,6 +25,6 @@ public class LadderMain {
 
         Ladder ladder = new Ladder(ladderHeight, noneConsecutiveSidelineGenerator);
 
-        LadderOutputView.printLadderWithUsernames(users, ladder);
+        LadderOutputView.printLadderWithUsernamesAndResults(users, ladder, results);
     }
 }
