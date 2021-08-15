@@ -37,7 +37,9 @@ public class User {
     public static boolean ageIsInRange2(User user) {
         return Optional.ofNullable(user)
                 .map(User::getAge)
-                .map(age -> age >= 30 && age <= 40).orElse(false);
+                .filter(age -> age >= 30)
+                .filter(age -> age <= 40)
+                .isPresent();
     }
 
     @Override
