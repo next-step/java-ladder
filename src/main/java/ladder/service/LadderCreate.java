@@ -26,13 +26,14 @@ public class LadderCreate {
 	private static List<Boolean> createLinePoints(Players players) {
 		List<Boolean> points = new ArrayList<>();
 		IntStream.range(START_INCLUSIVE, players.findPlayerCount())
-			.forEach(position -> {
-				boolean point = LINE_INITIAL_POSITION;
-				if (position > 0) {
-					point = LineSketch.drawLine(points.get(position - PREV_POSITION));
-				}
-				points.add(point);
-			});
+			.forEach(position -> points.add(pointStatus(position, points)));
 		return points;
+	}
+
+	public static boolean pointStatus(int position, List<Boolean> points) {
+		if (position == 0) {
+			return LINE_INITIAL_POSITION;
+		}
+		return LineSketch.drawLine(points.get(position - PREV_POSITION));
 	}
 }

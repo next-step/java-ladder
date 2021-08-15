@@ -1,5 +1,7 @@
 package ladder.view;
 
+import java.util.stream.Collectors;
+
 import ladder.model.Line;
 import ladder.model.Lines;
 import ladder.model.Players;
@@ -26,13 +28,11 @@ public class LadderOutputView {
 			.forEach(System.out::println);
 	}
 
-	private static StringBuilder printLine(Line line) {
-		StringBuilder stringBuilder = new StringBuilder();
-		line.getPoints()
+	private static String printLine(Line line) {
+		return line.getPoints()
 			.stream()
 			.map(LadderOutputView::drawLine)
-			.forEach(stringBuilder::append);
-		return stringBuilder;
+			.collect(Collectors.joining());
 	}
 
 	private static String drawLine(boolean point) {
