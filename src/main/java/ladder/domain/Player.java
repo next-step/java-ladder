@@ -4,15 +4,10 @@ import java.util.Objects;
 
 public class Player {
 
-	private static final int LIMIT_LENGTH = 5;
-
-	private final String name;
+	private final Name name;
 
 	public Player(String name) {
-		if (name.isEmpty() || name.length() > LIMIT_LENGTH) {
-			throw new PlayerNameException();
-		}
-		this.name = name;
+		this.name = new Name(name);
 	}
 
 	@Override
@@ -34,7 +29,7 @@ public class Player {
 
 	@Override
 	public String toString() {
-		return name;
+		return name.toString();
 	}
 
 }
