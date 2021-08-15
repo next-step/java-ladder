@@ -1,5 +1,8 @@
 package ladder.utils;
 
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 public class StringUtil {
 
 	private StringUtil() {
@@ -15,12 +18,11 @@ public class StringUtil {
 	}
 
 	public static String rightPad(String text, int length, String padString) {
-		StringBuilder padText = new StringBuilder(text);
+		int padLength = length - text.length();
 
-		for (int i = 0; i < length - text.length(); i++) {
-			padText.append(padString);
-		}
+		return IntStream.range(0, padLength)
+		                .mapToObj(i -> padString)
+		                .collect(Collectors.joining("", text, ""));
 
-		return padText.toString();
 	}
 }
