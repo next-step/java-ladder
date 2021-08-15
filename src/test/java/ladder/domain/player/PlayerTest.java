@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.player;
 
 import org.assertj.core.api.ThrowableAssert;
 import org.junit.jupiter.api.DisplayName;
@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class NameTest {
+class PlayerTest {
 
 	@ParameterizedTest(name = "참가자 이름 길이 미달 또는 초과 {index} [{arguments}]")
 	@ValueSource(strings = {
@@ -20,7 +20,7 @@ class NameTest {
 	void construct_exception(String name) throws Exception {
 		//given
 		//when
-		ThrowableAssert.ThrowingCallable actual = () -> new Name(name);
+		ThrowableAssert.ThrowingCallable actual = () -> new Player(name);
 
 		//then
 		assertThatThrownBy(actual).isInstanceOf(PlayerNameException.class)
@@ -28,19 +28,17 @@ class NameTest {
 	}
 
 	@Test
-	@DisplayName("참가자 이름 생성")
+	@DisplayName("참가자 생성")
 	void construct() throws Exception {
 		//given
-		String name = "ama";
+		String name = "pro";
 
 		//when
-		Name actual = new Name(name);
+		Player player = new Player(name);
 
 		//then
-		assertThat(actual).isEqualTo(new Name(name));
-		assertThat(actual.toString()).hasToString(name);
-
+		assertThat(player).isEqualTo(new Player(name));
+		assertThat(player.toString()).hasToString(name);
 	}
-
 
 }

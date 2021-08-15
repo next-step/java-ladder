@@ -1,6 +1,5 @@
-package ladder.domain;
+package ladder.domain.player;
 
-import ladder.domain.PlayerNameException;
 import ladder.utils.StringUtil;
 
 import java.util.Objects;

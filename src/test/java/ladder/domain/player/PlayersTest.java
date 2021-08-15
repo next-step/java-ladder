@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.player;
 
 import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
 import org.junit.jupiter.api.DisplayName;
