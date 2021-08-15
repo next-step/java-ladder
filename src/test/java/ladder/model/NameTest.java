@@ -14,7 +14,12 @@ class NameTest {
 		Name name = new Name("cross");
 
 		assertThat(name).isEqualTo(new Name("cross"));
-		assertThat(name.getName()).isEqualTo("cross");
+		assertThat(name.toString()).isEqualTo(" cross");
+
+		Name name2 = new Name("pie");
+
+		assertThat(name2).isEqualTo(new Name("pie"));
+		assertThat(name2.toString()).isEqualTo("   pie");
 	}
 
 	@Test
