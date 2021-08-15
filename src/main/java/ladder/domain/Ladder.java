@@ -17,11 +17,11 @@ public class Ladder {
     }
 
     public int getLineCount() {
-        return 5;
+        return ladderManxLength;
     }
 
     public int getCountOfPerson() {
-        return 4;
+        return countOfPerson;
     }
 
     @Override
