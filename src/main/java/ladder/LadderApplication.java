@@ -2,6 +2,7 @@ package ladder;
 
 import ladder.domain.ladder.Ladder;
 import ladder.ui.InputView;
+import ladder.ui.ResultView;
 
 public class LadderApplication {
 
@@ -10,8 +11,9 @@ public class LadderApplication {
 		String playersName = InputView.inputPlayersName();
 		int ladderHeight = InputView.inputLadderHeight();
 
-		System.out.println("playersName = " + playersName);
-		System.out.println("ladderHeight = " + ladderHeight);
+		Ladder ladder = Ladder.of(playersName, ladderHeight);
+
+		ResultView.printLadder(ladder);
 
 	}
 
