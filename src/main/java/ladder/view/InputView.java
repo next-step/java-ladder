@@ -18,11 +18,11 @@ public class InputView {
         System.out.println(GET_PARTICIPATE_PERSON_QUESTION);
         String participatePerson = scanner.nextLine();
         String trimParticipatePerson = participatePerson.replace(SPACE, BLANK);
-        return makeParticipatePersonList(trimParticipatePerson);
+        return makeParticipatePeople(trimParticipatePerson);
     }
 
-    private static List<String> makeParticipatePersonList(String trimParticipatePerson) {
-        return Arrays.asList(trimParticipatePerson.split(SPLIT_CUSTOM_REGEX));
+    private static List<String> makeParticipatePeople(String trimParticipatePeople) {
+        return Arrays.asList(trimParticipatePeople.split(SPLIT_CUSTOM_REGEX));
     }
 
     public static int getLadderMaxLength() {

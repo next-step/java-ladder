@@ -1,29 +1,27 @@
 package ladder.domain;
 
+import ladder.utils.RandomBooleanGenerator;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-import java.util.Random;
 
 public class Line {
     private final List<Boolean> points = new ArrayList<>();
 
-    public Line(int countOfPerson) {
+    private Line(int countOfPerson) {
 
         points.add(false);
-
-        Random random = new Random();
-        points.add(random.nextBoolean());
+        points.add(RandomBooleanGenerator.execute());
 
         for (int i = 2; i < countOfPerson; i++) {
-            Boolean current = random.nextBoolean();
-            points.add(isCurrentAdd(points.get(i - 1), current));
-
+            Boolean current = RandomBooleanGenerator.execute();
+            Boolean beforePoint = points.get(i - 1);
+            points.add(compareAdjacentPoint(beforePoint, current));
         }
     }
 
-    private Boolean isCurrentAdd(Boolean before, Boolean current) {
-        if (before != current) {
+    private Boolean compareAdjacentPoint(Boolean beforePoint, Boolean current) {
+        if (beforePoint != current) {
             return current;
         }
         return !current;
@@ -33,24 +31,11 @@ public class Line {
         return new Line(countOfPerson);
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Line line = (Line) o;
-        return Objects.equals(points, line.points);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(points);
-    }
-
     public int getSize() {
         return points.size();
     }
 
-    public boolean isDraw(int i) {
+    public boolean havePoints(int i) {
         return points.get(i);
     }
 }

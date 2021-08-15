@@ -7,22 +7,22 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LineTests {
 
-    @DisplayName("Line 생성 테스트")
+    @DisplayName("Line size 테스트")
     @Test
-    void create(){
+    void getSizeTest() {
         Line line = Line.of(4);
 
-        assertThat(line).isEqualTo(Line.of(4));
+        assertThat(line.getSize()).isEqualTo(4);
     }
 
-    @DisplayName("Line 생성될 때 인접한 상태값은 달라야 함")
+    @DisplayName("Line 생성될 때 인접한 상태 값은 달라야 함")
     @Test
-    void trueFalseTest(){
+    void adjacentPointsTest() {
         Line line = Line.of(4);
 
-        System.out.println(line.isDraw(1));
-        System.out.println(line.isDraw(2));
+        System.out.println(line.havePoints(1));
+        System.out.println(line.havePoints(2));
 
-        assertThat(line.isDraw(1)).isNotEqualTo(line.isDraw(2));
+        assertThat(line.havePoints(1)).isNotEqualTo(line.havePoints(2));
     }
 }

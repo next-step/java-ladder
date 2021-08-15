@@ -2,14 +2,16 @@ package ladder.domain;
 
 import ladder.exception.InvalidPersonNameException;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
 
 public class ParticipatePeople {
     private static final int NAME_LENGTH_THRESHOLD = 6;
 
     private final List<String> participatePeople;
 
-    public ParticipatePeople(List<String> participatePeople) {
+    private ParticipatePeople(List<String> participatePeople) {
         validate(participatePeople);
         this.participatePeople = participatePeople;
     }
