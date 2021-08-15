@@ -21,4 +21,8 @@ public class Results {
                 .map(Result::toOutputString)
                 .collect(Collectors.toList());
     }
+
+    public Result findResultByPosition(Position position) {
+        return results.get(position.getValue());
+    }
 }

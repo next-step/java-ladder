@@ -22,7 +22,7 @@ public class LadderInputView {
         return SCANNER.nextInt();
     }
 
-    public static String getResultRequestUsernameWithPrompt(String message) {
+    public static String getUsernameWithPrompt(String message) {
         System.out.println(message);
         SCANNER.nextLine();
 

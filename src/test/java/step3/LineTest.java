@@ -19,10 +19,10 @@ public class LineTest {
     }
 
     @Test
-    @DisplayName("Line 생성시 전달된 값의 범위를 넘어가는 경우 예외 발생 테스트")
+    @DisplayName("Line 생성시 전달된 값의 범위를 넘어가는 경우 테스트")
     void hasSidelineAtExceptionTest() {
         Line line = new Line(() -> Arrays.asList(true, true));
 
-        assertThatThrownBy(() -> line.hasSidelineAt(2)).isInstanceOf(IndexOutOfBoundsException.class);
+        assertThat(line.hasSidelineAt(2)).isFalse();
     }
 }
