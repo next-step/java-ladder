@@ -1,5 +1,6 @@
 package ladder.model;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -10,7 +11,7 @@ public class Lines {
 	private final List<Line> lines;
 
 	public Lines(List<Line> lines) {
-		this.lines = lines;
+		this.lines = Collections.unmodifiableList(lines);
 	}
 
 	public List<Line> getLines() {

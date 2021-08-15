@@ -13,7 +13,7 @@ import ladder.model.Players;
 
 public class LadderCreate {
 
-	public static final boolean LINE_INITIAL_POINT = false;
+	public static final boolean LINE_INITIAL_POSITION = false;
 	public static final int START_INCLUSIVE = 0;
 	public static final int PREV_POSITION = 1;
 
@@ -27,7 +27,7 @@ public class LadderCreate {
 		List<Boolean> points = new ArrayList<>();
 		IntStream.range(START_INCLUSIVE, players.findPlayerCount())
 			.forEach(position -> {
-				boolean point = LINE_INITIAL_POINT;
+				boolean point = LINE_INITIAL_POSITION;
 				if (position > 0) {
 					point = LineSketch.drawLine(points.get(position - PREV_POSITION));
 				}

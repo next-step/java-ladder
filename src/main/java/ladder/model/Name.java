@@ -1,6 +1,7 @@
 package ladder.model;
 
 import java.util.Objects;
+
 import ladder.dto.NameDto;
 import ladder.message.ErrorMessage;
 

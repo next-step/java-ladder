@@ -14,7 +14,7 @@ public class LadderController {
 
 		Height height = new Height(LadderInputView.inputLadderHeight());
 
-		Lines ladderLines = LadderCreate.createLadder(players,height);
+		Lines ladderLines = LadderCreate.createLadder(players, height);
 
 		LadderOutputView.printLadderGameResultStart();
 		LadderOutputView.printPlayersName(players);
