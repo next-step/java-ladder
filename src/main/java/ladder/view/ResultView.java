@@ -1,6 +1,7 @@
 package ladder.view;
 
 import ladder.domain.Ladder;
+import ladder.domain.ParticipatePeople;
 
 public class ResultView {
 
@@ -18,5 +19,11 @@ public class ResultView {
             }
             System.out.println();
         }
+    }
+
+    public static void printParticipatePeople(ParticipatePeople participatePeople) {
+        participatePeople.getList().stream()
+                .forEach(person -> System.out.print("  " + person));
+        System.out.println();
     }
 }
