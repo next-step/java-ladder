@@ -28,9 +28,9 @@ class PlayersTest {
 	public void findPlayerPosition() {
 		Players players = new Players("cross,apple,pla");
 
-		assertThat(players.findPlayerPosition(new Player(new Name("cross")))).isEqualTo(1);
-		assertThat(players.findPlayerPosition(new Player(new Name("apple")))).isEqualTo(2);
-		assertThat(players.findPlayerPosition(new Player(new Name("pla")))).isEqualTo(3);
+		assertThat(players.findPlayerPosition(new Player(new Name("cross")))).isEqualTo(0);
+		assertThat(players.findPlayerPosition(new Player(new Name("apple")))).isEqualTo(1);
+		assertThat(players.findPlayerPosition(new Player(new Name("pla")))).isEqualTo(2);
 	}
 
 	@Test
@@ -38,7 +38,7 @@ class PlayersTest {
 	public void printPlayersName() {
 		Players players = new Players("cross,apple,pla");
 
-		assertThat(players.printPlayersName()).isEqualTo(" cross apple   pla");
+		assertThat(players.getPlayersName()).isEqualTo(" cross apple   pla");
 	}
 
 }
