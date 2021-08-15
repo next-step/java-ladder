@@ -30,5 +30,10 @@ public class LadderMain {
 
         // 결과 요청 입력
         String username = LadderInputView.getUsernameWithPrompt("결과를 보고 싶은 사람은?");
+        User user = users.findUserByUsername(username);
+
+        ladder.execute(user);
+
+        user.getResultString(results);
     }
 }

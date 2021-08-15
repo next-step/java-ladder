@@ -1,12 +1,14 @@
 package step3;
 
+import step3.strategy.SideMoveStrategy;
+
 import java.util.Objects;
 
 public class User {
     public static final int USER_NAME_MAX_LENGTH = 5;
 
     private final String name;
-    private final Position position;
+    private Position position;
 
     public User(String name, Position position) {
         validate(name);
@@ -21,15 +23,21 @@ public class User {
         }
     }
 
-    public String toOutputString() {
-        return name;
-    }
-
-    public Position getPosition() {
-        return position;
-    }
-
     public boolean isMe(String name) {
         return Objects.equals(this.name, name);
+    }
+
+    public void sideMove(Line line) {
+        SideMoveStrategy sideMoveStrategy = position.getMoveDirection(line);
+
+        position = sideMoveStrategy.sideMove(position);
+    }
+
+    public String getResultString(Results results) {
+        return results.getResultStringByPosition(position);
+    }
+
+    public String toOutputString() {
+        return name;
     }
 }
