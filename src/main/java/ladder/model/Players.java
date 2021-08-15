@@ -12,7 +12,6 @@ import ladder.message.ErrorMessage;
 public class Players {
 
 	private static final String NAME_REGEX = ",";
-	public static final int INITIAL_POSITION = 1;
 	private final List<Player> players;
 
 	public Players(String playersName) {
@@ -21,11 +20,17 @@ public class Players {
 	}
 
 	public int findPlayerPosition(Player player) {
-		return players.indexOf(player) + INITIAL_POSITION;
+		return players.indexOf(player);
 	}
 
-	public String printPlayersName() {
-		return players.stream().map(Player::toString).collect(Collectors.joining());
+	public String getPlayersName() {
+		return players.stream()
+			.map(Player::toString)
+			.collect(Collectors.joining());
+	}
+
+	public int findPlayerCount() {
+		return players.size();
 	}
 
 	private List<Player> toList(String playersName) {

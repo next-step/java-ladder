@@ -27,6 +27,6 @@ public class Player {
 
 	@Override
 	public String toString() {
-		return name.toString();
+		return name.getName();
 	}
 }
