@@ -26,7 +26,7 @@ public class Lambda {
         }).start();
     }
 
-    public static int sumAll(List<Integer> numbers) {
+    public int sumAll(List<Integer> numbers) {
         int total = 0;
         for (int number : numbers) {
             total += number;
@@ -52,5 +52,12 @@ public class Lambda {
             }
         }
         return total;
+    }
+
+    public static int sumByCondition(List<Integer> numbers, Conditional conditional) {
+        return numbers.stream()
+            .filter(conditional::condition)
+            .mapToInt(Integer::intValue)
+            .sum();
     }
 }
