@@ -1,7 +1,7 @@
 package step3;
 
 import step3.strategy.LeftMove;
-import step3.strategy.NoMove;
+import step3.strategy.NoSideMove;
 import step3.strategy.RightMove;
 import step3.strategy.SideMoveStrategy;
 
@@ -22,14 +22,14 @@ public class Position {
 
     public SideMoveStrategy getMoveDirection(Line line) {
         if (line.hasSidelineAt(value + OFFSET_LEFT)) {
-            return new LeftMove();
+            return new LeftMove(this);
         }
 
         if (line.hasSidelineAt(value + OFFSET_RIGHT)) {
-            return new RightMove();
+            return new RightMove(this);
         }
 
-        return new NoMove();
+        return new NoSideMove(this);
     }
 
     public Position just() {

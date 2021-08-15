@@ -20,8 +20,11 @@ public class Ladder implements Iterable<Line> {
                 .collect(Collectors.toList());
     }
 
-    public void execute(User user) {
-        lines.forEach(user::sideMove);
+    public Position execute(User user) {
+        return lines.stream()
+                .reduce(null,
+                        (position, line) -> user.sideMove(line, position),
+                        (position1, position2) -> position1 = position2);
     }
 
     @Override

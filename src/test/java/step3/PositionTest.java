@@ -3,7 +3,7 @@ package step3;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import step3.strategy.LeftMove;
-import step3.strategy.NoMove;
+import step3.strategy.NoSideMove;
 import step3.strategy.RightMove;
 
 import java.util.Arrays;
@@ -20,7 +20,7 @@ public class PositionTest {
 
         assertThat(new Position(1).getMoveDirection(line)).isInstanceOf(LeftMove.class);
 
-        assertThat(new Position(2).getMoveDirection(line)).isInstanceOf(NoMove.class);
+        assertThat(new Position(2).getMoveDirection(line)).isInstanceOf(NoSideMove.class);
     }
 
     @Test

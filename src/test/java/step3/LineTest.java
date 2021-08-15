@@ -14,6 +14,7 @@ public class LineTest {
         Line line = new Line(() -> Arrays.asList(true, false, true));
 
         assertThat(line.hasSidelineAt(0)).isTrue();
+
         assertThat(line.hasSidelineAt(1)).isFalse();
     }
 

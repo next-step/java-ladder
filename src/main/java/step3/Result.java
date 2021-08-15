@@ -10,11 +10,11 @@ public class Result {
         this.position = position;
     }
 
-    public String toOutputString() {
-        return this.value;
-    }
-
     public boolean isSamePosition(Position position) {
         return this.position.equals(position);
+    }
+
+    public String toOutputString() {
+        return this.value;
     }
 }

@@ -2,19 +2,19 @@ package step3;
 
 import step3.strategy.SideMoveStrategy;
 
-import java.util.Objects;
+import java.util.Optional;
 
 public class User {
     public static final int USER_NAME_MAX_LENGTH = 5;
 
     private final String name;
-    private Position position;
+    private final Position initialPosition;
 
-    public User(String name, Position position) {
+    public User(String name, Position initialPosition) {
         validate(name);
 
         this.name = name;
-        this.position = position;
+        this.initialPosition = initialPosition;
     }
 
     private void validate(String name) {
@@ -23,18 +23,15 @@ public class User {
         }
     }
 
+    public Position sideMove(Line line, Position position) {
+        Position currentPosition = Optional.ofNullable(position).orElse(this.initialPosition);
+        SideMoveStrategy sideMoveStrategy = currentPosition.getMoveDirection(line);
+
+        return sideMoveStrategy.move();
+    }
+
     public boolean isMe(String name) {
-        return Objects.equals(this.name, name);
-    }
-
-    public void sideMove(Line line) {
-        SideMoveStrategy sideMoveStrategy = position.getMoveDirection(line);
-
-        position = sideMoveStrategy.sideMove(position);
-    }
-
-    public String getResultString(Results results) {
-        return results.getResultStringByPosition(position);
+        return this.name.equals(name);
     }
 
     public String toOutputString() {

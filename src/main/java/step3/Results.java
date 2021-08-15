@@ -17,17 +17,16 @@ public class Results {
                 .collect(Collectors.toList());
     }
 
+    public Result getResultByPosition(Position position) {
+        return results.stream()
+                .filter(r -> r.isSamePosition(position))
+                .findFirst()
+                .orElseThrow(IllegalArgumentException::new);
+    }
+
     public List<String> resultStrings() {
         return results.stream()
                 .map(Result::toOutputString)
                 .collect(Collectors.toList());
-    }
-
-    public String getResultStringByPosition(Position position) {
-        return results.stream()
-                .filter(r -> r.isSamePosition(position))
-                .findFirst()
-                .orElseThrow(IllegalArgumentException::new)
-                .toOutputString();
     }
 }

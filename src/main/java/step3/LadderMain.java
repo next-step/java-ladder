@@ -17,9 +17,9 @@ public class LadderMain {
         List<String> resultValues = LadderInputView.getParsedStringsWithPrompt("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)", ",");
         Results results = new Results(resultValues);
 
-        // 사다리 생성
         int ladderHeight = LadderInputView.getLadderHeightWithPrompt("최대 사다리 높이는 몇 개인가요?");
 
+        // 사다리 생성
         SidelineGenerator randomSidelineGenerator = new RandomSidelineGenerator(usernames.size() - 1);
         SidelineGenerator noneConsecutiveSidelineGenerator = new NoneConsecutiveSidelineGenerator(randomSidelineGenerator);
 
@@ -28,12 +28,11 @@ public class LadderMain {
         // 사다리 출력
         LadderOutputView.printLadderWithUsernamesAndResults(users, ladder, results);
 
-        // 결과 요청 입력
+        // 결과 목표 입력
         String username = LadderInputView.getUsernameWithPrompt("결과를 보고 싶은 사람은?");
-        User user = users.findUserByUsername(username);
 
-        ladder.execute(user);
-
-        user.getResultString(results);
+        // 결과 출력
+        List<User> targetUsers = LadderOutputView.getUsersByUsernameViewUtil(users, username);
+        LadderOutputView.printLadderResults(ladder, targetUsers, results);
     }
 }

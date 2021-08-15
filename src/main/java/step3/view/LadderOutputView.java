@@ -2,6 +2,7 @@ package step3.view;
 
 import step3.*;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,6 +22,22 @@ public class LadderOutputView {
         printLadder(users, ladder, maxLength);
 
         printStringsWithPadding(results.resultStrings(), maxLength);
+    }
+
+    public static List<User> getUsersByUsernameViewUtil(Users users, String username) {
+        return users.usernames().stream()
+                .filter(n -> username.equals("all") || username.equals(n))
+                .map(users::findUserByUsername)
+                .collect(Collectors.toList());
+    }
+
+    public static void printLadderResults(Ladder ladder, List<User> users, Results results) {
+        users.forEach(u -> {
+                    Position position = ladder.execute(u);
+                    Result result = results.getResultByPosition(position);
+
+                    System.out.printf("%s: %s%n", u.toOutputString(), result.toOutputString());
+                });
     }
 
     private static int getMaxLadderUserWidth(Users users, Results results) {
