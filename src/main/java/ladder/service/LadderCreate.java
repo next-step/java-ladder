@@ -30,7 +30,7 @@ public class LadderCreate {
 		return points;
 	}
 
-	public static boolean pointStatus(int position, List<Boolean> points) {
+	private static boolean pointStatus(int position, List<Boolean> points) {
 		if (position == 0) {
 			return LINE_INITIAL_POSITION;
 		}
