@@ -19,7 +19,14 @@ public class Participants {
     }
 
     public int findPositionOf(String name) {
+        if (nameIsNotInTheList(name)) {
+            throw new RuntimeException("해당 이름이 참가자중에 없습니다.");
+        }
         return names.indexOf(name);
+    }
+
+    private boolean nameIsNotInTheList(String name) {
+        return !names.contains(name);
     }
 
     public int size() {
