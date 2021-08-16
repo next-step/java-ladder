@@ -1,11 +1,13 @@
 package nextstep.ladder.domain;
 
-import static java.util.stream.Collectors.toList;
+import nextstep.ladder.exception.NoSearchPersonException;
+import nextstep.ladder.utils.Constants;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import nextstep.ladder.utils.Constants;
+
+import static java.util.stream.Collectors.toList;
 
 public class Names {
     private final List<Name> ladderNames;
@@ -28,7 +30,7 @@ public class Names {
 
     public int findName(String inputName) {
         if(!getLadderNames().contains(inputName)) {
-            throw new IllegalArgumentException("해당하는 사람 없음");
+            throw new NoSearchPersonException("해당하는 사람 없음");
         }
         return getLadderNames().indexOf(inputName);
     }

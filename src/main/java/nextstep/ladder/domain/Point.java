@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.exception.DirectionParameterException;
+
 import java.util.Objects;
 
 public class Point {
@@ -14,7 +16,7 @@ public class Point {
 
     private void twoWayValidate(boolean left, boolean current) {
         if(left && current) {
-            throw new IllegalArgumentException("두쪽 다리가 전부 있을 수는 없습니다.");
+            throw new DirectionParameterException("두쪽 다리가 전부 있을 수는 없습니다.");
         }
     }
 
