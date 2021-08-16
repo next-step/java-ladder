@@ -7,7 +7,9 @@ import java.util.stream.IntStream;
 
 public class LineGenerator {
 
-  public static final int INT_ONE = 1;
+  private static final int INT_ONE = 1;
+
+  private static Random random = new Random();
 
   public static List<Boolean> createLine(final int countOfPerson) {
 
@@ -26,7 +28,7 @@ public class LineGenerator {
     if (afterNode) {
       return false;
     }
-    return new Random().nextBoolean();
+    return random.nextBoolean();
 
   }
 }
