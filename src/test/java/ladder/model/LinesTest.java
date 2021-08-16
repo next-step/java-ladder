@@ -1,6 +1,7 @@
 package ladder.model;
 
 import static org.assertj.core.api.Assertions.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +12,7 @@ class LinesTest {
 
 	@Test
 	@DisplayName("라인들을 입력하면 여러라인을 생성한다.")
-	public void createLines(){
+	public void createLines() {
 		Lines lines = new Lines(getLine());
 
 		assertThat(lines).isEqualTo(new Lines(getLine()));
@@ -19,13 +20,13 @@ class LinesTest {
 
 	private List<Line> getLine() {
 		List<Line> lines = new ArrayList<>();
-		lines.add(new Line(getPoints(false,false,true)));
-		lines.add(new Line(getPoints(false,true,false)));
-		lines.add(new Line(getPoints(true,false,false)));
+		lines.add(new Line(getPoints(false, false, true)));
+		lines.add(new Line(getPoints(false, true, false)));
+		lines.add(new Line(getPoints(true, false, false)));
 		return lines;
 	}
 
-	private List<Boolean> getPoints(boolean value1,boolean value2,boolean value3) {
+	private List<Boolean> getPoints(boolean value1, boolean value2, boolean value3) {
 		List<Boolean> points = new ArrayList<>();
 		points.add(value1);
 		points.add(value2);
