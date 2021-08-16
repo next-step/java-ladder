@@ -8,8 +8,6 @@ import java.util.stream.Stream;
 public class LadderLine {
     private final List<LadderPoint> line;
 
-    private static final int MAX_SIZE = 5;
-
     public LadderLine(List<LadderPoint> line) {
         this.line = line;
     }
@@ -20,17 +18,9 @@ public class LadderLine {
     }
 
     private static void validateSize(int size) {
-        if (moreThanMax(size)) {
-            throw new RuntimeException("최대 참여자는 5명을 넘을 수 없습니다.");
-        }
-
         if (lessThanMin(size)) {
             throw new RuntimeException("참여자는 최소 1명 이상이여야 합니다.");
         }
-    }
-
-    private static boolean moreThanMax(int size) {
-        return size > MAX_SIZE;
     }
 
     private static boolean lessThanMin(int size) {
