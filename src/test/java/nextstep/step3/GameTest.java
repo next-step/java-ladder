@@ -4,9 +4,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import step3.domain.game.Game;
-import step3.domain.game.GameData;
 import step3.domain.ladder.Ladder;
+import step3.domain.ladder.LadderData;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,10 +19,10 @@ public class GameTest {
     @MethodSource("createLadder")
     public void createGame(List<String> names, int size) {
         //given
-        GameData gameData = GameData.of(names, size);
+        LadderData ladderData = LadderData.of(names, size);
 
         //when, then
-        Ladder ladder = Game.createLadder(gameData);
+        Ladder ladder = ladderData.createLadder();
     }
 
     @ParameterizedTest
@@ -32,7 +31,7 @@ public class GameTest {
     public void createGameFail(List<String> names, int size) {
         //given, when, then
         assertThatThrownBy(() -> {
-            GameData gameData = GameData.of(names, size);
+            LadderData ladderData = LadderData.of(names, size);
         }).isInstanceOf(RuntimeException.class);
     }
 
