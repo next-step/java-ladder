@@ -29,10 +29,14 @@ public class Names {
     }
 
     public int findName(String inputName) {
+        searchValidate(inputName);
+        return getLadderNames().indexOf(inputName);
+    }
+
+    private void searchValidate(String inputName) {
         if(!getLadderNames().contains(inputName)) {
             throw new NoSearchPersonException("해당하는 사람 없음");
         }
-        return getLadderNames().indexOf(inputName);
     }
 
     @Override

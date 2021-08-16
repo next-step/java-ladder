@@ -14,11 +14,6 @@ public class Point {
         this.current = current;
     }
 
-    private void twoWayValidate(boolean left, boolean current) {
-        if(left && current) {
-            throw new DirectionParameterException("두쪽 다리가 전부 있을 수는 없습니다.");
-        }
-    }
 
     public static Point first(boolean current) {
         return new Point(false, current);
@@ -51,6 +46,12 @@ public class Point {
         return left;
     }
 
+    private void twoWayValidate(boolean left, boolean current) {
+        if(left && current) {
+            throw new DirectionParameterException("두쪽 다리가 전부 있을 수는 없습니다.");
+        }
+    }
+    
     @Override
     public boolean equals(Object o) {
         if (this == o) {
