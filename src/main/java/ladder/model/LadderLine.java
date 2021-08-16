@@ -8,12 +8,16 @@ public class LadderLine {
 
     private final List<Boolean> points;
 
-    LadderLine(int pointCount) {
-        validateMinPointCount(pointCount);
-        this.points = new ArrayList<>();
+    LadderLine(List<Boolean> points) {
+        this.points = points;
     }
 
-    private void validateMinPointCount(int pointCount) {
+    static LadderLine of(int pointCount) {
+        validateMinPointCount(pointCount);
+        return new LadderLine(new ArrayList<>());
+    }
+
+    private static void validateMinPointCount(int pointCount) {
         if (pointCount < MIN_POINT_COUNT) {
             throw new IllegalArgumentException(String.format("포인트 개수는 최소 %d개 이어야 합니다.", MIN_POINT_COUNT));
         }

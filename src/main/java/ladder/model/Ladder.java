@@ -16,7 +16,7 @@ public class Ladder {
     }
 
     private List<LadderLine> generateLines(int ladderLineCount, int pointCount) {
-        return Stream.generate(() -> new LadderLine(pointCount))
+        return Stream.generate(() -> LadderLine.of(pointCount))
                 .limit(ladderLineCount)
                 .collect(toList());
     }

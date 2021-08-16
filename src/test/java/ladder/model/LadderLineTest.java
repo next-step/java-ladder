@@ -13,7 +13,7 @@ public class LadderLineTest {
     void pointCountLessThanMinExceptionTest() {
         // given, when, then
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new LadderLine(0))
+                .isThrownBy(() -> LadderLine.of(0))
                 .withMessage("포인트 개수는 최소 1개 이어야 합니다.");
     }
 }
