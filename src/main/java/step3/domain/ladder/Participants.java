@@ -17,4 +17,13 @@ public class Participants {
     public List<String> inline() {
         return Collections.unmodifiableList(names);
     }
+
+    public int findPositionOf(String name) {
+        return names.indexOf(name);
+    }
+
+    public int size() {
+        return names.size();
+    }
 }
+
