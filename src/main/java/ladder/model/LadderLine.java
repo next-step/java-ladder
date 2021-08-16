@@ -31,7 +31,8 @@ public class LadderLine {
 
         IntStream.range(SECOND_INDEX, pointCount)
                 .forEach(index -> {
-                    if (points.get(index - INDEX_GAP_BETWEEN_NEXT_POINT) == TRUE) {
+                    Boolean previousPoint = points.get(index - INDEX_GAP_BETWEEN_NEXT_POINT);
+                    if (previousPoint == TRUE) {
                         points.add(FALSE);
                         return;
                     }
@@ -50,7 +51,11 @@ public class LadderLine {
 
     private void validateNoOverlappingLine(List<Boolean> points) {
         IntStream.range(SECOND_INDEX, points.size())
-                .filter(index -> points.get(index - INDEX_GAP_BETWEEN_NEXT_POINT) == TRUE && points.get(index) == TRUE)
+                .filter(index -> {
+                    Boolean previousPoint = points.get(index - INDEX_GAP_BETWEEN_NEXT_POINT);
+                    Boolean currentPoint = points.get(index);
+                    return previousPoint == TRUE && currentPoint == TRUE;
+                })
                 .findAny()
                 .ifPresent(point -> {
                     throw new IllegalArgumentException("겹치는 라인이 존재하면 안됩니다.");
