@@ -15,6 +15,7 @@ public class CreatePlayer {
 
   private static List<Player> createNewPlayers(final List<String> players) {
     return players.stream()
+        .distinct()
         .map(Player::new)
         .collect(Collectors.toList());
   }

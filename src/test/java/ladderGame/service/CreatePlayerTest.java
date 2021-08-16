@@ -13,7 +13,13 @@ class CreatePlayerTest {
   void createPlayers() {
 
     assertThat(CreatePlayer.createUser("user1,user2").size()).isEqualTo(2);
-    assertThat(CreatePlayer.createUser("user1,user2").get(0)).isEqualTo(new Player("user1"));
-    assertThat(CreatePlayer.createUser("user1,user2").get(1)).isEqualTo(new Player("user2"));
+    assertThat(CreatePlayer.createUser("user1,user2")).contains(new Player("user1"));
+    assertThat(CreatePlayer.createUser("user1,user2")).contains(new Player("user2"));
+  }
+
+  @DisplayName("중복되는 이름을 자동으로 제거하고 생성.")
+  @Test
+  void distinctDuplicateName() {
+    assertThat(CreatePlayer.createUser("user3,user3").size()).isEqualTo(1);
   }
 }
