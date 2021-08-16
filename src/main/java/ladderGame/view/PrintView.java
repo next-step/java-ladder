@@ -1,9 +1,9 @@
 package ladderGame.view;
 
 import java.util.stream.Collectors;
-import ladderGame.dto.PlayersDto;
 import ladderGame.model.Line;
 import ladderGame.model.Lines;
+import ladderGame.model.Players;
 
 public class PrintView {
 
@@ -13,10 +13,9 @@ public class PrintView {
 
   private static final String NONE_CONNECTION = "|";
 
-  public static void printUsersName(final PlayersDto playersDto) {
+  public static void printUsersName(final Players players) {
     printResultTitle();
-
-    System.out.println(playersDto.values()
+    System.out.println(players.toList()
         .stream()
         .map(player -> String.format(STRING_FORMAT_SIZE, player.getName()))
         .collect(Collectors.joining()));
