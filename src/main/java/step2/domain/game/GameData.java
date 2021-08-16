@@ -9,7 +9,11 @@ public class GameData {
 
     private final int height;
 
-    private static final int MAX_PARTICIPANTS = 5;
+    private static final int MAX_NAME_LENGTH = 5;
+
+    private static final int MIN_HEIGHT = 1;
+
+    private static final int MIN_PARTICIPANTS = 1;
 
     private GameData(List<String> names, int height) {
         this.names = names;
@@ -23,8 +27,8 @@ public class GameData {
     }
 
     private static void validateNames(List<String> names) {
-        if (moreThanMaxParticipants(names.size())) {
-            throw new RuntimeException("최대 참여자는 5명을 넘을 수 없습니다.");
+        for (String name : names) {
+            validateNamesLength(name);
         }
 
         if (lessThanMinParticipants(names.size())) {
@@ -32,12 +36,18 @@ public class GameData {
         }
     }
 
-    private static boolean moreThanMaxParticipants(int size) {
-        return size > MAX_PARTICIPANTS;
+    private static void validateNamesLength(String name) {
+        if (moreThanMaxNameLength(name.length())) {
+            throw new RuntimeException("이름의 글자는 최대 5자리를 넘을 수 없습니다.");
+        }
+    }
+
+    private static boolean moreThanMaxNameLength(int size) {
+        return size > MAX_NAME_LENGTH;
     }
 
     private static boolean lessThanMinParticipants(int size) {
-        return size <= 0;
+        return size < MIN_PARTICIPANTS;
     }
 
     private static void validateHeight(int height) {
@@ -47,7 +57,7 @@ public class GameData {
     }
 
     private static boolean heightIsNotAvailable(int height) {
-        return height <= 0;
+        return height < MIN_HEIGHT;
     }
 
     public Ladder createLadder() {

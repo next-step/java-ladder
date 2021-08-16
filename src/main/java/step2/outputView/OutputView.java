@@ -15,7 +15,7 @@ public class OutputView {
     }
 
     private static void showNames(List<String> participants) {
-        participants.forEach(s -> System.out.print("\t" + s + "\t"));
+        participants.forEach(s -> System.out.print("\t" + s + "\t\t"));
         System.out.println();
     }
 

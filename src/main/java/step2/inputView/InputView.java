@@ -8,7 +8,7 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class InputView {
-    private static final Scanner sc = new Scanner(System.in);
+    private static final Scanner SC = new Scanner(System.in);
 
     private static final String REGEX = ",";
 
@@ -20,7 +20,7 @@ public class InputView {
 
     private static List<String> getNames() {
         showGetNamesText();
-        String line = sc.nextLine();
+        String line = SC.nextLine();
         return Arrays.stream(split(line))
             .collect(Collectors.toList());
     }
@@ -35,7 +35,7 @@ public class InputView {
 
     private static int getHeight() {
         showGetHeightText();
-        return sc.nextInt();
+        return SC.nextInt();
     }
 
     private static void showGetHeightText() {

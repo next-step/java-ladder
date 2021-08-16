@@ -46,7 +46,7 @@ public class GameTest {
     static Stream<Arguments> createLadderFail() {
         return Stream.of(
             Arguments.arguments(Arrays.asList(), 5),
-            Arguments.arguments(Arrays.asList("a", "b", "c", "d", "e", "f"), 5),
+            Arguments.arguments(Arrays.asList("abcdefghj"), 5),
             Arguments.arguments(Arrays.asList("a", "b", "c", "d", "e"), -1)
         );
     }

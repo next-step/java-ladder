@@ -4,9 +4,9 @@ import java.util.Random;
 import java.util.function.Function;
 
 public enum LadderPoint {
-    LEFT(x -> x - 1, "----|\t"),
-    RIGHT(x -> x + 1, "\t|---"),
-    NONE(x -> x, "\t|\t");
+    LEFT(x -> x - 1, "--------|\t\t"),
+    RIGHT(x -> x + 1, "\t\t|-------"),
+    NONE(x -> x, "\t\t|\t\t");
 
     private final Function<Integer, Integer> move;
     private final String shape;
@@ -19,7 +19,11 @@ public enum LadderPoint {
     public static LadderPoint makeRandomPoint(LadderPoint ladderPoint) {
         if (ladderPoint == RIGHT) return LadderPoint.LEFT;
 
-        return values()[new Random().nextInt(2) + 1];
+        return values()[makeRandomInt()];
+    }
+
+    private static int makeRandomInt() {
+        return new Random().nextInt(2) + 1;
     }
 
     public int move(int x) {
