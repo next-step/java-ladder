@@ -33,4 +33,19 @@ public class Ladder {
     public List<LadderLine> getLadderLines() {
         return Collections.unmodifiableList(ladderLines);
     }
+
+    public int getLadderWidth() {
+        return participants.size();
+    }
+
+    public int findPositionOf(String name) {
+        return participants.findPositionOf(name);
+    }
+
+    public int move(int position) {
+        for (LadderLine ladderLine : ladderLines) {
+            position = ladderLine.move(position);
+        }
+        return position;
+    }
 }
