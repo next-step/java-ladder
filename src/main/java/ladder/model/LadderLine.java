@@ -3,11 +3,14 @@ package ladder.model;
 import java.util.*;
 import java.util.stream.IntStream;
 
+import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 
 public class LadderLine {
-    private static final Random random = new Random();
     private static final int MIN_POINT_COUNT = 1;
+    private static final int INDEX_GAP_BETWEEN_NEXT_POINT = 1;
+    private static final int SECOND_INDEX = 1;
+    private static final Random random = new Random();
 
     private final List<Boolean> points;
 
@@ -19,7 +22,24 @@ public class LadderLine {
 
     static LadderLine of(int pointCount) {
         validateMinPointCount(pointCount);
-        return new LadderLine(new ArrayList<>());
+        return new LadderLine(generatePoints(pointCount));
+    }
+
+    private static List<Boolean> generatePoints(int pointCount) {
+        Boolean firstPoint = random.nextBoolean();
+        List<Boolean> points = new ArrayList<>(Collections.singletonList(firstPoint));
+
+        IntStream.range(SECOND_INDEX, pointCount)
+                .forEach(index -> {
+                    if (points.get(index - INDEX_GAP_BETWEEN_NEXT_POINT) == TRUE) {
+                        points.add(FALSE);
+                        return;
+                    }
+                    Boolean randomPoint = random.nextBoolean();
+                    points.add(randomPoint);
+                });
+
+        return points;
     }
 
     private void validateNotEmpty(List<Boolean> points) {
@@ -29,8 +49,8 @@ public class LadderLine {
     }
 
     private void validateNoOverlappingLine(List<Boolean> points) {
-        IntStream.range(0, points.size() - 1)
-                .filter(index -> points.get(index) == TRUE && points.get(index + 1) == TRUE)
+        IntStream.range(SECOND_INDEX, points.size())
+                .filter(index -> points.get(index - INDEX_GAP_BETWEEN_NEXT_POINT) == TRUE && points.get(index) == TRUE)
                 .findAny()
                 .ifPresent(point -> {
                     throw new IllegalArgumentException("겹치는 라인이 존재하면 안됩니다.");
