@@ -8,6 +8,8 @@ public class Name {
 
   private static final String MSG_ERROR_FAIL_NAME_LENGTH = "사용자명은 최대 5글자까지 가능합니다.";
 
+  private static final String MSG_ERROR_FAIL_NAME_EMPTY = "사용자이름을 입력 해주세요.";
+
   private final String name;
 
   public Name(final String name) {
@@ -16,6 +18,17 @@ public class Name {
   }
 
   private void validation(final String name) {
+    checkNameLength(name);
+    checkNameEmpty(name);
+  }
+
+  private void checkNameEmpty(final String name) {
+    if(name.isEmpty()){
+      throw new IllegalArgumentException(MSG_ERROR_FAIL_NAME_EMPTY);
+    }
+  }
+
+  private void checkNameLength(final String name) {
     if(name.length() > LIMIT_NAME_LENGTH){
       throw new IllegalArgumentException(MSG_ERROR_FAIL_NAME_LENGTH);
     }
