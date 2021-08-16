@@ -14,14 +14,19 @@ public class ResultView {
     private static final String STICK = "|";
     private static final int MAX_LENGTH = 4;
 
-    public static void printName(Names ladderNames) {
+    public static void printNameAndLadder(Names ladderNames, Lines lines) {
+        printName(ladderNames);
+        printLadder(lines);
+    }
+
+    private static void printName(Names ladderNames) {
         ladderNames.getLadderNames()
             .stream().map(ResultView::addSpace)
             .forEach(System.out::print);
         System.out.println();
     }
 
-    public static void printLadder(Lines lines) {
+    private static void printLadder(Lines lines) {
         StringBuilder ladders = new StringBuilder();
 
         for (Line line : lines.getLines()) {

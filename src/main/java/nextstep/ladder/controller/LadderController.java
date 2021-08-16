@@ -16,25 +16,26 @@ public class LadderController {
 
         Lines lines = Lines.of(height, names);
 
-        ResultView.printName(names);
-        ResultView.printLadder(lines);
+        ResultView.printNameAndLadder(names, lines);
         ResultView.printGoods(goods);
 
-        while(true) {
-            String resultName = InputView.resultName();
+        String resultName = InputView.resultName();
 
-            if(isAll(resultName)) {
-                ResultView.executionResult();
-                for (int i = 0; i < names.getLadderNames().size(); i++) {
-                    int goodsName = ResultView.result(lines, i);
-                    ResultView.lookForGoodsAll(names.getLadderNames().get(i), goods.resultGoods(goodsName));
-                }
-                break;
-            }
-
+        while(!isAll(resultName)) {
             int resultIndex = names.findName(resultName);
             int goodsIndex = ResultView.result(lines, resultIndex);
             ResultView.lookForGoods(goods.resultGoods(goodsIndex));
+            resultName = InputView.resultName();
+        }
+
+        lookForGoodsAll(names, goods, lines);
+    }
+
+    private static void lookForGoodsAll(Names names, Goods goods, Lines lines) {
+        ResultView.executionResult();
+        for (int i = 0; i < names.getLadderNames().size(); i++) {
+            int goodsName = ResultView.result(lines, i);
+            ResultView.lookForGoodsAll(names.getLadderNames().get(i), goods.resultGoods(goodsName));
         }
     }
 
