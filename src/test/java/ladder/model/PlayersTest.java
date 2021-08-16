@@ -2,6 +2,10 @@ package ladder.model;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -24,21 +28,19 @@ class PlayersTest {
 	}
 
 	@Test
-	@DisplayName("사다리 게임 참가자의 순서를 알 수 있다.")
-	public void findPlayerPosition() {
-		Players players = new Players("cross,apple,pla");
-
-		assertThat(players.findPlayerPosition(new Player(new Name("cross")))).isEqualTo(0);
-		assertThat(players.findPlayerPosition(new Player(new Name("apple")))).isEqualTo(1);
-		assertThat(players.findPlayerPosition(new Player(new Name("pla")))).isEqualTo(2);
-	}
-
-	@Test
-	@DisplayName("사다리 게임 참가자를 나열한다.")
+	@DisplayName("사다리 게임 참가자를 알수있다..")
 	public void printPlayersName() {
-		Players players = new Players("cross,apple,pla");
+		Players resultPlayers = new Players("cross,apple,pla");
 
-		assertThat(players.getPlayersName()).isEqualTo(" cross apple   pla");
+		Player player1 = new Player(new Name("cross"));
+		Player player2 = new Player(new Name("apple"));
+		Player player3 = new Player(new Name("pla"));
+
+		List<Player> players = new ArrayList<>();
+		players.add(player1);
+		players.add(player2);
+		players.add(player3);
+		assertThat(resultPlayers.getPlayersName()).isEqualTo(players);
 	}
 
 }

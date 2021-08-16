@@ -19,10 +19,6 @@ public class Players {
 		this.players = Collections.unmodifiableList(toList(playersName));
 	}
 
-	public int findPlayerPosition(Player player) {
-		return players.indexOf(player);
-	}
-
 	public List<Player> getPlayersName() {
 		return players;
 	}
