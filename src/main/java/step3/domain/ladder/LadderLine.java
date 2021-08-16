@@ -61,4 +61,8 @@ public class LadderLine {
             .map(LadderPoint::toString)
             .collect(Collectors.joining(""));
     }
+
+    public int move(int position) {
+        return line.get(position).move(position);
+    }
 }
