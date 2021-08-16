@@ -22,4 +22,8 @@ public class PlayerName {
             throw new IllegalArgumentException(String.format("참가자 이름은 %d자를 넘을 수 없습니다.", MAX_NAME_LENGTH));
         }
     }
+
+    String getName() {
+        return name;
+    }
 }
