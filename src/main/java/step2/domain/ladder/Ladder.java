@@ -1,5 +1,6 @@
 package step2.domain.ladder;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -30,6 +31,6 @@ public class Ladder {
     }
 
     public List<LadderLine> getLadderLines() {
-        return ladderLines;
+        return Collections.unmodifiableList(ladderLines);
     }
 }

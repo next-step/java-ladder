@@ -1,5 +1,6 @@
 package step2.domain.ladder;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -51,7 +52,7 @@ public class LadderLine {
     }
 
     public List<LadderPoint> getLine() {
-        return line;
+        return Collections.unmodifiableList(line);
     }
 
     @Override

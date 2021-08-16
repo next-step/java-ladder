@@ -1,5 +1,6 @@
 package step2.domain.ladder;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Participants {
@@ -14,6 +15,6 @@ public class Participants {
     }
 
     public List<String> inline() {
-        return names;
+        return Collections.unmodifiableList(names);
     }
 }
