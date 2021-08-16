@@ -20,5 +20,6 @@ public class LadderController {
 		LadderOutputView.printLadderGameResultStart();
 		LadderOutputView.printPlayersName(players);
 		LadderOutputView.printResultCreateLadder(ladderLines);
+		LadderOutputView.printResultsName(result);
 	}
 }

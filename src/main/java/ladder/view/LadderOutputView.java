@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 import ladder.model.Line;
 import ladder.model.Lines;
 import ladder.model.Players;
+import ladder.model.Result;
 
 public class LadderOutputView {
 
@@ -27,13 +28,6 @@ public class LadderOutputView {
 			.collect(Collectors.joining()));
 	}
 
-	private static String applyNameLength(String name) {
-		return Stream.generate(() -> SPACE_NAME)
-			.limit(LIMIT_LENGTH - name.length())
-			.collect(Collectors.joining())
-			.concat(name);
-	}
-
 	public static void printResultCreateLadder(Lines ladderLines) {
 		ladderLines.getLines()
 			.stream()
@@ -53,5 +47,19 @@ public class LadderOutputView {
 			return EXIST_LINE;
 		}
 		return NOTHING_LINE;
+	}
+
+	public static void printResultsName(Result result) {
+		System.out.println(result.getResults()
+			.stream()
+			.map(LadderOutputView::applyNameLength)
+			.collect(Collectors.joining()));
+	}
+
+	private static String applyNameLength(String name) {
+		return Stream.generate(() -> SPACE_NAME)
+			.limit(LIMIT_LENGTH - name.length())
+			.collect(Collectors.joining())
+			.concat(name);
 	}
 }
