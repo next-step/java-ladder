@@ -22,4 +22,12 @@ public class OutputView {
     private static void showLadder(List<LadderLine> ladderLines) {
         ladderLines.forEach(System.out::println);
     }
+
+    public static void showResultOf(String name, String resultOf) {
+        System.out.println(name + " : " +resultOf);
+    }
+
+    public static void showResultTest() {
+        System.out.println("실행 결과");
+    }
 }
