@@ -6,14 +6,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
+    private static final int REQUIRED_NUMBER_OF_PEOPLE = 2;
+
     private final List<Boolean> points = new ArrayList<>();
 
     private Line(int countOfPerson) {
-
         points.add(false);
         points.add(RandomBooleanGenerator.execute());
 
-        for (int i = 2; i < countOfPerson; i++) {
+        fillLineWithPoints(countOfPerson);
+    }
+
+    private void fillLineWithPoints(int countOfPerson) {
+        for (int i = REQUIRED_NUMBER_OF_PEOPLE; i < countOfPerson; i++) {
             Boolean current = RandomBooleanGenerator.execute();
             Boolean beforePoint = points.get(i - 1);
             points.add(compareAdjacentPoint(beforePoint, current));

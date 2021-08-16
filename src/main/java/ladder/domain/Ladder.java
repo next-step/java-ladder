@@ -19,7 +19,7 @@ public class Ladder {
 
     public int getLadderWidth() {
         return lines.stream()
-                .map(line -> line.getSize())
+                .map(Line::getSize)
                 .findFirst()
                 .orElse(0);
 
