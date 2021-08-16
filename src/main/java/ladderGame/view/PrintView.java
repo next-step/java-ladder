@@ -7,17 +7,25 @@ import ladderGame.model.Lines;
 
 public class PrintView {
 
-  private static final String STRING_FORMAT_5SIZE = "%5s";
+  private static final String STRING_FORMAT_SIZE = "%6s";
 
-  private static final String HAVING_CONNECTION = "----|";
+  private static final String HAVING_CONNECTION = "-----|";
 
   private static final String NONE_CONNECTION = "|";
 
   public static void printUsersName(final PlayersDto playersDto) {
+    printResultTitle();
+
     System.out.println(playersDto.values()
         .stream()
-        .map(player -> String.format(STRING_FORMAT_5SIZE, player.getName()))
+        .map(player -> String.format(STRING_FORMAT_SIZE, player.getName()))
         .collect(Collectors.joining()));
+  }
+
+  private static void printResultTitle() {
+    System.out.println();
+    System.out.println("실행결과");
+    System.out.println();
   }
 
   public static void createLadderView(final Lines lines) {
@@ -36,8 +44,8 @@ public class PrintView {
 
   private static String printLine(final Boolean point) {
     if (point) {
-      return String.format(STRING_FORMAT_5SIZE, HAVING_CONNECTION);
+      return String.format(STRING_FORMAT_SIZE, HAVING_CONNECTION);
     }
-    return String.format(STRING_FORMAT_5SIZE, NONE_CONNECTION);
+    return String.format(STRING_FORMAT_SIZE, NONE_CONNECTION);
   }
 }
