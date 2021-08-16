@@ -71,4 +71,8 @@ public class LadderLine {
     int getPointCount() {
         return points.size();
     }
+
+    public List<Boolean> getPoints() {
+        return points;
+    }
 }

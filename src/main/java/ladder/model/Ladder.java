@@ -26,4 +26,8 @@ public class Ladder {
                 .limit(ladderLineCount)
                 .collect(toList());
     }
+
+    public List<LadderLine> getLines() {
+        return lines;
+    }
 }

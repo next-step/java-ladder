@@ -17,7 +17,7 @@ public class Players {
         return names.size();
     }
 
-    List<String> getNames() {
+    public List<String> getNames() {
         return names.stream()
                 .map(PlayerName::getName)
                 .collect(toList());
