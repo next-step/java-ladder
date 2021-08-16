@@ -15,15 +15,15 @@ public class Ladder {
         this.lines = generateLines(ladderHeight, playerCount - 1);
     }
 
-    private List<LadderLine> generateLines(int ladderLineCount, int pointCount) {
-        return Stream.generate(() -> LadderLine.of(pointCount))
-                .limit(ladderLineCount)
-                .collect(toList());
-    }
-
     private void validateMinLadderHeight(int ladderHeight) {
         if (ladderHeight < MIN_LADDER_HEIGHT) {
             throw new IllegalArgumentException(String.format("사다리 높이는 최소 %d 이어야 합니다.", MIN_LADDER_HEIGHT));
         }
+    }
+
+    private List<LadderLine> generateLines(int ladderLineCount, int pointCount) {
+        return Stream.generate(() -> LadderLine.of(pointCount))
+                .limit(ladderLineCount)
+                .collect(toList());
     }
 }
