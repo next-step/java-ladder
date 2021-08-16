@@ -13,6 +13,10 @@ public class Players {
                 .collect(toList());
     }
 
+    public int count() {
+        return names.size();
+    }
+
     List<String> getNames() {
         return names.stream()
                 .map(PlayerName::getName)

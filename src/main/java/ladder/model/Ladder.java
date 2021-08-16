@@ -10,7 +10,7 @@ public class Ladder {
 
     private final List<LadderLine> lines;
 
-    Ladder(int playerCount, int ladderHeight) {
+    public Ladder(int playerCount, int ladderHeight) {
         validateMinLadderHeight(ladderHeight);
         this.lines = generateLines(ladderHeight, playerCount - 1);
     }
