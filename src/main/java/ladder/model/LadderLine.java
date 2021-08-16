@@ -62,4 +62,8 @@ public class LadderLine {
             throw new IllegalArgumentException(String.format("포인트 개수는 최소 %d개 이어야 합니다.", MIN_POINT_COUNT));
         }
     }
+
+    int getPointCount() {
+        return points.size();
+    }
 }

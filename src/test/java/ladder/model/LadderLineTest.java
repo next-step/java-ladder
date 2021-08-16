@@ -9,6 +9,7 @@ import java.util.Arrays;
 import static java.lang.Boolean.*;
 import static java.lang.Boolean.FALSE;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("사다리 라인 테스트")
 public class LadderLineTest {
@@ -42,5 +43,12 @@ public class LadderLineTest {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> LadderLine.of(0))
                 .withMessage("포인트 개수는 최소 1개 이어야 합니다.");
+    }
+
+    @DisplayName("포인트 목록 개수는 생성시 주입받은 포인트 개수와 같아야 한다.")
+    @Test
+    void pointCountTest() {
+        // given, when, then
+        assertEquals(LadderLine.of(2).getPointCount(), 2);
     }
 }
