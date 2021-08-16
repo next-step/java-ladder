@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 class NameTest {
 
 	@Test
-	@DisplayName("이름을 입력하면 이름이 출력된다.")
+	@DisplayName("이름을 입력하면 이름이 생성된다.")
 	public void createName() {
 		Name name = new Name("cross");
 
