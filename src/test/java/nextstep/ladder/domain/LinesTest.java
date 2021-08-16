@@ -1,9 +1,9 @@
 package nextstep.ladder.domain;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class LinesTest {
     @Test
@@ -12,10 +12,12 @@ public class LinesTest {
         Lines lines = Lines.of(Height.of(5), Names.of("a,b,c,d"));
 
         for (Line line : lines.getLines()) {
+            assertThat(line.getPoints().get(0).isLeft()).isEqualTo(false);
+
             line.getPoints().forEach(point -> {
                 System.out.print(point.isLeft() + " ");
-                System.out.print(point.move() + " ");
             });
+
             System.out.println();
         }
 
