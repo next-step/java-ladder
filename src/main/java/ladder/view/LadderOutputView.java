@@ -1,6 +1,7 @@
 package ladder.view;
 
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import ladder.model.Line;
 import ladder.model.Lines;
@@ -8,6 +9,8 @@ import ladder.model.Players;
 
 public class LadderOutputView {
 
+	public static final String SPACE_NAME = " ";
+	private static final int LIMIT_LENGTH = 6;
 	public static final String GAME_RESULT_START = "실행결과";
 	private static final String NOTHING_LINE = "     |";
 	private static final String EXIST_LINE = "-----|";
@@ -18,7 +21,17 @@ public class LadderOutputView {
 	}
 
 	public static void printPlayersName(Players players) {
-		System.out.println(players.getPlayersName());
+		System.out.println(players.getPlayersName()
+			.stream()
+			.map(player -> applyNameLength(player.getPlayerName()))
+			.collect(Collectors.joining()));
+	}
+
+	private static String applyNameLength(String name) {
+		return Stream.generate(() -> SPACE_NAME)
+			.limit(LIMIT_LENGTH - name.length())
+			.collect(Collectors.joining())
+			.concat(name);
 	}
 
 	public static void printResultCreateLadder(Lines ladderLines) {

@@ -4,8 +4,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-import ladder.dto.LinesDto;
-
 public class Lines {
 
 	private final List<Line> lines;
@@ -15,7 +13,7 @@ public class Lines {
 	}
 
 	public List<Line> getLines() {
-		return LinesDto.of(lines).values();
+		return lines;
 	}
 
 	@Override

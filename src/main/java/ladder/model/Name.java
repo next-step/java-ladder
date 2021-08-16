@@ -2,7 +2,6 @@ package ladder.model;
 
 import java.util.Objects;
 
-import ladder.dto.NameDto;
 import ladder.message.ErrorMessage;
 
 public class Name {
@@ -17,7 +16,7 @@ public class Name {
 	}
 
 	public String getName() {
-		return NameDto.of(name).value();
+		return name;
 	}
 
 	private void checkEmptyName(String name) {

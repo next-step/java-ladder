@@ -23,10 +23,8 @@ public class Players {
 		return players.indexOf(player);
 	}
 
-	public String getPlayersName() {
-		return players.stream()
-			.map(Player::toString)
-			.collect(Collectors.joining());
+	public List<Player> getPlayersName() {
+		return players;
 	}
 
 	public int findPlayerCount() {

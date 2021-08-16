@@ -4,8 +4,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-import ladder.dto.LineDto;
-
 public class Line {
 
 	private final List<Boolean> points;
@@ -15,7 +13,7 @@ public class Line {
 	}
 
 	public List<Boolean> getPoints() {
-		return LineDto.of(points).values();
+		return points;
 	}
 
 	@Override

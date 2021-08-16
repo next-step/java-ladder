@@ -10,6 +10,10 @@ public class Player {
 		this.name = name;
 	}
 
+	public String getPlayerName(){
+		return name.getName();
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o)
@@ -25,8 +29,4 @@ public class Player {
 		return Objects.hash(name);
 	}
 
-	@Override
-	public String toString() {
-		return name.getName();
-	}
 }
