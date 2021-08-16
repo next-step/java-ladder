@@ -34,4 +34,13 @@ public class LadderLineTest {
                 .isThrownBy(() -> new LadderLine(Arrays.asList(FALSE, TRUE, TRUE, FALSE)))
                 .withMessage("겹치는 라인이 존재하면 안됩니다.");
     }
+
+    @DisplayName("포인트 개수가 1개 미만이면 예외가 발생한다.")
+    @Test
+    void pointCountLessThanMinExceptionTest() {
+        // given, when, then
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> LadderLine.of(0))
+                .withMessage("포인트 개수는 최소 1개 이어야 합니다.");
+    }
 }
