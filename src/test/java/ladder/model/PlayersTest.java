@@ -14,7 +14,7 @@ public class PlayersTest {
     @Test
     void createPlayersTest() {
         // given, when
-        Players players = Players.of(Arrays.asList("pobi", "honux", "crong", "jk"));
+        Players players = new Players(Arrays.asList("pobi", "honux", "crong", "jk"));
 
         // when, then
         assertThat(players.getNames()).containsExactly("pobi", "honux", "crong", "jk");
