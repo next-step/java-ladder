@@ -1,24 +1,24 @@
 package ladder.model;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.toList;
 
 public class Ladder {
-    private static final int MIN_PLAYER_COUNT = 2;
     private static final int MIN_LADDER_HEIGHT = 1;
 
-    private final List<Boolean> points;
+    private final List<LadderLine> lines;
 
     Ladder(int playerCount, int ladderHeight) {
-        validateMinPlayerCount(playerCount);
         validateMinLadderHeight(ladderHeight);
-        this.points = new ArrayList<>();
+        this.lines = generateLines(ladderHeight, playerCount - 1);
     }
 
-    private void validateMinPlayerCount(int playerCount) {
-        if (playerCount < MIN_PLAYER_COUNT) {
-            throw new IllegalArgumentException(String.format("참가자 수는 최소 %d명 이어야 합니다.", MIN_PLAYER_COUNT));
-        }
+    private List<LadderLine> generateLines(int ladderLineCount, int pointCount) {
+        return Stream.generate(() -> new LadderLine(pointCount))
+                .limit(ladderLineCount)
+                .collect(toList());
     }
 
     private void validateMinLadderHeight(int ladderHeight) {
