@@ -9,7 +9,7 @@ class PlayerTest {
 
   @DisplayName("플레이어 생성.")
   @Test
-  void createPlayer() {
+  void createPlayerTest() {
     assertThat(new Player("user")).isEqualTo(new Player("user"));
   }
 
