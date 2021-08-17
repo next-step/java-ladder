@@ -7,11 +7,11 @@ import java.util.stream.Collectors;
 public class LadderGame {
 
     private final Participants participants;
-    private final Integer maxLadderHeight;
+    private final Height maxHeight;
 
     public LadderGame(final String namesText, String maxLadderHeightText) {
         this.participants = new Participants(parseParticipants(namesText));
-        this.maxLadderHeight = parseMaxLadderHeight(maxLadderHeightText);
+        this.maxHeight = Height.valueOf(parseMaxLadderHeight(maxLadderHeightText));
     }
 
     private Integer parseMaxLadderHeight(final String maxLadderHeightText) {
