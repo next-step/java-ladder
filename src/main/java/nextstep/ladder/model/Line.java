@@ -1,8 +1,6 @@
 package nextstep.ladder.model;
 
 import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
 
 public class Line {
     private final CoordinateValue heightPosition;
