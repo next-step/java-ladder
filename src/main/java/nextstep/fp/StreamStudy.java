@@ -41,7 +41,8 @@ public class StreamStudy {
                 .sorted(Comparator.comparingInt(String::length).reversed()) // 길이가 긴 순서로 정렬
                 .distinct() // 중복 삭제
                 .limit(100) // 앞에서 부터 100개
-                .forEach(word -> System.out.println(word.toLowerCase(Locale.ROOT))); // 소문자 변경 후 출력
+                .map(word -> word.toLowerCase(Locale.ROOT)) // 소문자 변경
+                .forEach(System.out::println); // 출력
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
