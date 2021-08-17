@@ -4,6 +4,7 @@ import step4.domain.ladder.Ladder;
 import step4.domain.ladder.LadderLine;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class OutputView {
     public static void showLadder(Ladder ladder) {
@@ -20,11 +21,18 @@ public class OutputView {
     }
 
     private static void showLadder(List<LadderLine> ladderLines) {
-        ladderLines.forEach(System.out::println);
+        for (LadderLine ladderLine : ladderLines) {
+            ladderLine.getLine()
+                .stream()
+                .map(LadderShape::of)
+                .collect(Collectors.toList())
+                .forEach(System.out::print);
+            System.out.println();
+        }
     }
 
     public static void showResultOf(String name, String resultOf) {
-        System.out.println(name + " : " +resultOf);
+        System.out.println(name + " : " + resultOf);
     }
 
     public static void showResultTest() {

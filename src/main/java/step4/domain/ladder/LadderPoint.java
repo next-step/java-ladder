@@ -4,16 +4,14 @@ import java.util.Random;
 import java.util.function.Function;
 
 public enum LadderPoint {
-    LEFT(x -> x - 1, "--------|\t\t"),
-    RIGHT(x -> x + 1, "\t\t|-------"),
-    NONE(x -> x, "\t\t|\t\t");
+    LEFT(x -> x - 1),
+    RIGHT(x -> x + 1),
+    NONE(x -> x);
 
     private final Function<Integer, Integer> move;
-    private final String shape;
 
-    LadderPoint(Function<Integer, Integer> move, String shape) {
+    LadderPoint(Function<Integer, Integer> move) {
         this.move = move;
-        this.shape = shape;
     }
 
     public static LadderPoint makeRandomPoint(LadderPoint ladderPoint) {
@@ -28,10 +26,5 @@ public enum LadderPoint {
 
     public int move(int x) {
         return move.apply(x);
-    }
-
-    @Override
-    public String toString() {
-        return shape;
     }
 }
