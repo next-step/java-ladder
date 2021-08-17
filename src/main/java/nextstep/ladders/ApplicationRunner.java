@@ -15,6 +15,7 @@ public class ApplicationRunner {
         String participantsText = inputView.enterParticipants();
         String maxLadderHeightText = inputView.enterMaxLadderHeight();
 
+
         scanner.close();
     }
 }

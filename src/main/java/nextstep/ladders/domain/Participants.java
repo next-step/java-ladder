@@ -11,5 +11,6 @@ public class Participants {
         this.participants = names.stream()
                 .map(Participant::valueOf)
                 .collect(Collectors.toList());
+        ;
     }
 }

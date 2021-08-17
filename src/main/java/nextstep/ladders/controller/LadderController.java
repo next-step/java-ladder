@@ -1,18 +1,11 @@
-package nextstep.ladders.domain;
+package nextstep.ladders.controller;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class LadderGame {
+public class LadderController {
 
-    private final Participants participants;
-    private final Height maxHeight;
-
-    public LadderGame(final String namesText, String maxLadderHeightText) {
-        this.participants = new Participants(parseParticipants(namesText));
-        this.maxHeight = Height.valueOf(parseMaxLadderHeight(maxLadderHeightText));
-    }
 
     private Integer parseMaxLadderHeight(final String maxLadderHeightText) {
         return Integer.parseInt(maxLadderHeightText);
