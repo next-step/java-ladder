@@ -7,7 +7,6 @@ import nextstep.ladders.domain.Lines;
 public class ConsoleOutputView {
 
     public void print(Ladder ladder) {
-
         Lines lines = ladder.getLines();
         for (Line line : lines.getLines()) {
             extracted(line);
