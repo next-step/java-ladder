@@ -3,6 +3,7 @@ package ladderGame.step2.view;
 import java.util.stream.Collectors;
 import ladderGame.step2.model.Line;
 import ladderGame.step2.model.Lines;
+import ladderGame.step2.model.Player;
 import ladderGame.step2.model.Players;
 
 public class PrintView {
@@ -17,7 +18,7 @@ public class PrintView {
     printResultTitle();
     System.out.println(players.toList()
         .stream()
-        .map(player -> String.format(STRING_FORMAT_SIZE, player.findUserName()))
+        .map(Player::findUserName)
         .collect(Collectors.joining()));
   }
 

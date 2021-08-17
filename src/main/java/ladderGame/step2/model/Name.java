@@ -6,6 +6,8 @@ public class Name {
 
   private static final int LIMIT_NAME_LENGTH = 5;
 
+  private static final String STRING_FORMAT_SIZE = "%6s";
+
   public static final String MSG_ERROR_FAIL_NAME_LENGTH = "사용자명은 최대 5글자까지 가능합니다.";
 
   public static final String MSG_ERROR_FAIL_NAME_EMPTY = "사용자이름을 입력 해주세요.";
@@ -23,7 +25,7 @@ public class Name {
   }
 
   private void checkNameEmpty(final String name) {
-    if (name.isEmpty() || null == name) {
+    if (name.isEmpty()) {
       throw new IllegalArgumentException(MSG_ERROR_FAIL_NAME_EMPTY);
     }
   }
@@ -34,8 +36,8 @@ public class Name {
     }
   }
 
-  public String findName() {
-    return String.valueOf(name);
+  public String nameFormat() {
+    return String.format(STRING_FORMAT_SIZE, name);
   }
 
   @Override
