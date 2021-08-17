@@ -29,14 +29,10 @@ public class Lambda {
     }
 
     public static int sumAllEven(List<Integer> numbers) {
-        return numbers.stream()
-            .filter(number -> number % 2 == 0)
-            .reduce(0, Integer::sum);
+        return sumAll(numbers, number -> number % 2 == 0);
     }
 
     public static int sumAllOverThree(List<Integer> numbers) {
-        return numbers.stream()
-            .filter(number -> number > 3)
-            .reduce(0, Integer::sum);
+        return sumAll(numbers, number -> number > 3);
     }
 }
