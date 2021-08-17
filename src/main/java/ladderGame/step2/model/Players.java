@@ -12,7 +12,7 @@ public class Players {
     this.players = Collections.unmodifiableList(players);
   }
 
-  public int findPlayersCount(){
+  public int count(){
     return players.size();
   }
 
