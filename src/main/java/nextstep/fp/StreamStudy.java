@@ -41,7 +41,7 @@ public class StreamStudy {
                 .sorted(Comparator.comparingInt(String::length).reversed()) // 길이가 긴 순서로 정렬
                 .distinct() // 중복 삭제
                 .limit(100) // 앞에서 부터 100개
-                .map(word -> word.toLowerCase(Locale.ROOT)) // 소문자 변경
+                .map(String::toLowerCase) // 소문자 변경
                 .forEach(System.out::println); // 출력
     }
 
@@ -50,7 +50,8 @@ public class StreamStudy {
     }
 
     public static long sumAll(List<Integer> numbers) {
-        return numbers.stream().reduce(0, (x, y) -> x + y);
+        return numbers.stream()
+                .reduce(0, Integer::sum);
     }
 
     public static long sumOverThreeAndDouble(List<Integer> numbers) {
