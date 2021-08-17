@@ -1,4 +1,4 @@
-package ladderGame.model;
+package ladderGame.step2.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

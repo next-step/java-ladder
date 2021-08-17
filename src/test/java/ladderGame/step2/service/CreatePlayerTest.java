@@ -1,8 +1,8 @@
-package ladderGame.service;
+package ladderGame.step2.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import ladderGame.model.Player;
+import ladderGame.step2.model.Player;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

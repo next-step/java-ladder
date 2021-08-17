@@ -1,9 +1,9 @@
-package ladderGame.model;
+package ladderGame.step2.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import ladderGame.service.LineLayerGenerator;
+import ladderGame.step2.service.LineLayerGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;

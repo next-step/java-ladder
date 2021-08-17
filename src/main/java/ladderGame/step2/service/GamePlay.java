@@ -1,7 +1,7 @@
-package ladderGame.service;
+package ladderGame.step2.service;
 
-import ladderGame.model.Lines;
-import ladderGame.model.Players;
+import ladderGame.step2.model.Lines;
+import ladderGame.step2.model.Players;
 
 public class GamePlay {
 

@@ -1,9 +1,9 @@
-package ladderGame.service;
+package ladderGame.step2.service;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import ladderGame.model.Player;
+import ladderGame.step2.model.Player;
 
 public class CreatePlayer {
 

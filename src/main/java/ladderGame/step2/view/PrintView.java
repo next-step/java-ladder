@@ -1,9 +1,9 @@
-package ladderGame.view;
+package ladderGame.step2.view;
 
 import java.util.stream.Collectors;
-import ladderGame.model.Line;
-import ladderGame.model.Lines;
-import ladderGame.model.Players;
+import ladderGame.step2.model.Line;
+import ladderGame.step2.model.Lines;
+import ladderGame.step2.model.Players;
 
 public class PrintView {
 

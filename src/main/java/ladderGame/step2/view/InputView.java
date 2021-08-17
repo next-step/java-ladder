@@ -1,4 +1,4 @@
-package ladderGame.view;
+package ladderGame.step2.view;
 
 import java.util.Scanner;
 

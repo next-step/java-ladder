@@ -1,8 +1,8 @@
-package ladderGame.model;
+package ladderGame.step2.model;
 
 import java.util.Collections;
 import java.util.List;
-import ladderGame.service.LineLayerGenerator;
+import ladderGame.step2.service.LineLayerGenerator;
 
 public class Lines {
 

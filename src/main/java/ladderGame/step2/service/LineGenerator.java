@@ -1,4 +1,4 @@
-package ladderGame.service;
+package ladderGame.step2.service;
 
 import java.util.ArrayList;
 import java.util.List;
