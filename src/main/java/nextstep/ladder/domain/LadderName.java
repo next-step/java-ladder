@@ -4,18 +4,18 @@ import java.util.Objects;
 import nextstep.ladder.exception.LengthLimitException;
 import nextstep.ladder.utils.Constants;
 
-public class Name {
+public class LadderName {
 
 
     private final String ladderName;
 
-    private Name(String ladderName) {
+    private LadderName(String ladderName) {
         this.ladderName = ladderName;
     }
 
-    public static Name of(String ladderName) {
+    public static LadderName of(String ladderName) {
         lengthValidate(ladderName);
-        return new Name(ladderName);
+        return new LadderName(ladderName);
     }
 
     private static void lengthValidate(String ladderName) {
@@ -36,7 +36,7 @@ public class Name {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Name that = (Name) o;
+        LadderName that = (LadderName) o;
         return Objects.equals(ladderName, that.ladderName);
     }
 

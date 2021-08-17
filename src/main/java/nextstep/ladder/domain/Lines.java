@@ -10,10 +10,10 @@ public class Lines {
         this.lines = lines;
     }
 
-    public static Lines of(Height height, Names names) {
+    public static Lines of(Height height, LadderNames ladderNames) {
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < height.getHeight(); i++) {
-            lines.add(Line.of(names.getLadderNames().size()));
+            lines.add(Line.of(ladderNames.getLadderNames().size()));
         }
 
         return new Lines(lines);
