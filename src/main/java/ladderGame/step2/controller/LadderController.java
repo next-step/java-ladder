@@ -10,10 +10,10 @@ public class LadderController {
   private static final String MSG_INSERT_HEIGHT = "최대 사다리 높이는 몇 개인가요?";
 
   public static void starGame(){
-    String stringNames = InputView.inputUserNamesWithMessage(MSG_INSERT_PLAYER_NAMES);
+    String usersName = InputView.inputUserNamesWithMessage(MSG_INSERT_PLAYER_NAMES);
     int height = InputView.inputLadderHeightWithMessage(MSG_INSERT_HEIGHT);
 
-    GamePlay gamePlay = new GamePlay(stringNames, height);
+    GamePlay gamePlay = new GamePlay(usersName, height);
 
     PrintView.printUsersName(gamePlay.getPlayer());
     PrintView.createLadderView(gamePlay.getLines());
