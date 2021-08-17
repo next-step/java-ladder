@@ -1,6 +1,5 @@
 package ladderGame.step2.model;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,8 +19,11 @@ public class Lines {
     this.lines = Collections.unmodifiableList(createLineLayer(height, playersCount));
   }
 
-  public List<Line> toList() {
-    return new ArrayList<>(lines);
+  public static List<String> createLadderView(final Lines lines) {
+    return lines.lines
+        .stream()
+        .map(Line::createLineView)
+        .collect(Collectors.toList());
   }
 
   public static List<Line> createLineLayer(int height, final int playerCount) {

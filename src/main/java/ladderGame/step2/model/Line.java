@@ -5,9 +5,16 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Line {
+
+  private static final String STRING_FORMAT_SIZE = "%6s";
+
+  private static final String HAVING_CONNECTION = "-----|";
+
+  private static final String NONE_CONNECTION = "|";
 
   private static final int INDEX_START = 1;
 
@@ -20,7 +27,7 @@ public class Line {
   }
 
   public List<Boolean> getPoints() {
-    return points;
+    return this.points;
   }
 
   public static List<Boolean> createLine(final int countOfPerson) {
@@ -42,6 +49,20 @@ public class Line {
     }
     return random.nextBoolean();
 
+  }
+
+  public static String createLineView(final Line line) {
+    return line.points
+        .stream()
+        .map(Line::lineDraw)
+        .collect(Collectors.joining());
+  }
+
+  private static String lineDraw(final Boolean point) {
+    if (point) {
+      return String.format(STRING_FORMAT_SIZE, HAVING_CONNECTION);
+    }
+    return String.format(STRING_FORMAT_SIZE, NONE_CONNECTION);
   }
 
   @Override

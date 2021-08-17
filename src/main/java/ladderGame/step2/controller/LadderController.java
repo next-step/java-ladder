@@ -18,7 +18,7 @@ public class LadderController {
     Lines lines = new Lines(height, players.count());
 
     PrintView.printUsersName(players);
-    PrintView.createLadderView(lines);
+    PrintView.printLadderView(lines);
   }
 
 }
