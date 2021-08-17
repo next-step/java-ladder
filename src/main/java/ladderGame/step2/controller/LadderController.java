@@ -1,6 +1,7 @@
 package ladderGame.step2.controller;
 
-import ladderGame.step2.service.GamePlay;
+import ladderGame.step2.model.Lines;
+import ladderGame.step2.model.Players;
 import ladderGame.step2.view.InputView;
 import ladderGame.step2.view.PrintView;
 
@@ -13,10 +14,11 @@ public class LadderController {
     String usersName = InputView.inputUserNamesWithMessage(MSG_INSERT_PLAYER_NAMES);
     int height = InputView.inputLadderHeightWithMessage(MSG_INSERT_HEIGHT);
 
-    GamePlay gamePlay = new GamePlay(usersName, height);
+    Players players = new Players(Players.createUser(usersName));
+    Lines lines = new Lines(height, players.count());
 
-    PrintView.printUsersName(gamePlay.getPlayer());
-    PrintView.createLadderView(gamePlay.getLines());
+    PrintView.printUsersName(players);
+    PrintView.createLadderView(lines);
   }
 
 }
