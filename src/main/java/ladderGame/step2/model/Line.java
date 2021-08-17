@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import ladderGame.step2.util.RandomMove;
 
 public class Line {
 
@@ -18,9 +18,7 @@ public class Line {
 
   private static final int INDEX_START = 1;
 
-  private static Random random = new Random();
-
-  private List<Boolean> points;
+  private final List<Boolean> points;
 
   public Line(final int countOfPerson) {
     this.points = Collections.unmodifiableList(createLine(countOfPerson));
@@ -47,7 +45,7 @@ public class Line {
     if (afterNode) {
       return false;
     }
-    return random.nextBoolean();
+    return RandomMove.createRandomMoveValue();
 
   }
 
