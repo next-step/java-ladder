@@ -2,6 +2,7 @@ package ladder;
 
 import ladder.domain.Ladder;
 import ladder.domain.Participant;
+import ladder.domain.Results;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
@@ -18,5 +19,6 @@ public class LadderApplication {
         ResultView.printResultComment();
         ResultView.printParticipant(Participant.of(participant));
         ResultView.drawLadder(Ladder.of(ladderMaxLength, countOfPerson));
+//        ResultView.printParticipant(Results.of(results));
     }
 }
