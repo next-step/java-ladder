@@ -34,8 +34,8 @@ public class Name {
     }
   }
 
-  public String getName() {
-    return name;
+  public String findName() {
+    return String.valueOf(name);
   }
 
   @Override
