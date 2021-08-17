@@ -16,6 +16,13 @@ public class Lines {
 		return lines;
 	}
 
+	public int findResultPosition(int position) {
+		for (Line line : lines) {
+			position = line.move(position);
+		}
+		return position;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o)

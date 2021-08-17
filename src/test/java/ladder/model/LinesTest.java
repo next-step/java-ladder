@@ -18,11 +18,19 @@ class LinesTest {
 		assertThat(lines).isEqualTo(new Lines(getLine()));
 	}
 
+	@Test
+	@DisplayName("라인의 시작위치를 입력하면 최종 위치를 알 수 있다.")
+	public void findResultPosition() {
+		Lines lines = new Lines(getLine());
+
+		assertThat(lines.findResultPosition(1)).isEqualTo(2);
+	}
+
 	private List<Line> getLine() {
 		List<Line> lines = new ArrayList<>();
 		lines.add(new Line(getPoints(false, false, true)));
 		lines.add(new Line(getPoints(false, true, false)));
-		lines.add(new Line(getPoints(true, false, false)));
+		lines.add(new Line(getPoints(true, true, false)));
 		return lines;
 	}
 
