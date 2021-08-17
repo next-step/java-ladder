@@ -12,7 +12,7 @@ public class Lines {
 
   private static final int LIMIT_HEIGHT_VALUE = 1;
 
-  private static final String MSG_ERROR_LIMIT_HEIGHT = "높이값은 최소 1부터 가능합니다.";
+  public static final String MSG_ERROR_LIMIT_HEIGHT = "높이값은 최소 1부터 가능합니다.";
 
   private final List<Line> lines;
 
