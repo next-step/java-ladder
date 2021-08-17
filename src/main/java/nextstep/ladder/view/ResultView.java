@@ -33,7 +33,7 @@ public class ResultView {
     }
 
     private static void isExistRowLine(Ladder ladder, int heightIndex, int lineIndex) {
-        if (ladder.getLines().get(lineIndex).getPoints().get(heightIndex) && ladder.getLines().get(lineIndex+1).getPoints().get(heightIndex)) {
+        if (ladder.getLines().get(lineIndex).getPointOfHeight(heightIndex) && ladder.getLines().get(lineIndex+1).getPointOfHeight(heightIndex)) {
             printRow();
             ladder.getLines().get(lineIndex+1).setDrownPosition(heightIndex);
             return;
