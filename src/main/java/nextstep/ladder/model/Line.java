@@ -5,7 +5,7 @@ import java.util.Comparator;
 import java.util.List;
 
 public class Line {
-    private CoordinateValue heightPosition;
+    private final CoordinateValue heightPosition;
     private Leg leftLeg;
     private Leg rightLeg;
 

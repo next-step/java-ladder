@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Leg {
-    private List<Line> lines = new ArrayList<>();
-    private CoordinateValue widthPosition;
-    private CoordinateValue height;
+    private final List<Line> lines = new ArrayList<>();
+    private final CoordinateValue widthPosition;
+    private final CoordinateValue height;
 
     public Leg(CoordinateValue widthPosition, CoordinateValue height) {
         this.widthPosition = widthPosition;
