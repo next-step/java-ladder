@@ -6,9 +6,9 @@ public class Name {
 
   private static final int LIMIT_NAME_LENGTH = 5;
 
-  private static final String MSG_ERROR_FAIL_NAME_LENGTH = "사용자명은 최대 5글자까지 가능합니다.";
+  public static final String MSG_ERROR_FAIL_NAME_LENGTH = "사용자명은 최대 5글자까지 가능합니다.";
 
-  private static final String MSG_ERROR_FAIL_NAME_EMPTY = "사용자이름을 입력 해주세요.";
+  public static final String MSG_ERROR_FAIL_NAME_EMPTY = "사용자이름을 입력 해주세요.";
 
   private final String name;
 
