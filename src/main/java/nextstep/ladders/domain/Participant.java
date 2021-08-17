@@ -16,4 +16,8 @@ public class Participant {
     public static Participant valueOf(final String name) {
         return new Participant(name);
     }
+
+    public String value() {
+        return name;
+    }
 }

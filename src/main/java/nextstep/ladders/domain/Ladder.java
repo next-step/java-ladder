@@ -20,4 +20,8 @@ public class Ladder {
     public Lines getLines() {
         return lines;
     }
+
+    public Participants getParticipants() {
+        return participants;
+    }
 }

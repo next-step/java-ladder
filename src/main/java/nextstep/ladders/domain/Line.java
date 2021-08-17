@@ -7,11 +7,11 @@ import java.util.Random;
 
 public class Line {
 
+    private final Random random = new Random();
     private final List<Boolean> points;
 
     public Line(int countOfPerson) {
         // 라인의 좌표 값에 선이 있는지 유무를 판단하는 로직 추가
-        Random random = new Random();
         List<Boolean> temps = new ArrayList<>();
         for (int i = 0; i < countOfPerson; i++) {
             if (i == 0) {
