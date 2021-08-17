@@ -5,6 +5,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class NameTest {
 
@@ -14,21 +16,16 @@ class NameTest {
   }
 
   @DisplayName("입력된 사용자명 최대 5자 검증.")
-  @Test
-  void nameLengthValidationTest() {
+  @ParameterizedTest
+  @CsvSource(value = {"user12:user1","가나다라마바:가나다라마"},delimiter = ':')
+  void nameLengthValidationTest(String wrongName, String fineName) {
     assertThatThrownBy(
-        () -> new Name("user12")
+        () -> new Name(wrongName)
     )
         .isInstanceOf(IllegalArgumentException.class)
         .hasMessage("사용자명은 최대 5글자까지 가능합니다.");
 
-    assertThatThrownBy(
-        () -> new Name("가나다라마바")
-    )
-        .isInstanceOf(IllegalArgumentException.class)
-        .hasMessage("사용자명은 최대 5글자까지 가능합니다.");
-
-    assertThat(new Name("abcde")).isNotNull();
+    assertThat(new Name(fineName)).isNotNull();
   }
 
   @DisplayName("입력된 사용자명 빈값 검증.")
