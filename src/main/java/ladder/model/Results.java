@@ -9,14 +9,14 @@ import java.util.stream.Collectors;
 
 import ladder.message.ErrorMessage;
 
-public class Result {
+public class Results {
 
 	private static final String REGEX = ",";
 	private final List<String> results;
 
-	public Result(String results, Players players) {
+	public Results(String results, int playerCount) {
 		checkEmptyResult(results);
-		this.results = Collections.unmodifiableList(toList(results, players.findPlayerCount()));
+		this.results = Collections.unmodifiableList(toList(results, playerCount));
 	}
 
 	public List<String> getResults() {
@@ -52,14 +52,13 @@ public class Result {
 			return true;
 		if (o == null || getClass() != o.getClass())
 			return false;
-		Result result = (Result)o;
-		return Objects.equals(getResults(), result.getResults());
+		Results results = (Results)o;
+		return Objects.equals(getResults(), results.getResults());
 	}
 
 	@Override
 	public int hashCode() {
 		return Objects.hash(getResults());
 	}
-
 
 }
