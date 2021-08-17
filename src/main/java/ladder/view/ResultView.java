@@ -2,6 +2,7 @@ package ladder.view;
 
 import ladder.domain.Ladder;
 import ladder.domain.Participant;
+import ladder.domain.Results;
 
 import java.util.List;
 
@@ -14,24 +15,6 @@ public class ResultView {
 
     public static void printResultComment() {
         System.out.println(RESULT_COMMENT);
-    }
-
-    public static void printParticipant(Participant participant) {
-        List<String> participantList = participant.getList();
-        participantList.stream()
-                .forEach(person -> {
-                    StringBuilder sb = getPersonWithBlank(person);
-                    System.out.print(sb + person);
-                });
-        System.out.println();
-    }
-
-    private static StringBuilder getPersonWithBlank(String person) {
-        StringBuilder sb = new StringBuilder("");
-        for (int i = MAXIMUM_OF_BLANK_SIZE - person.length(); i > 0; i--) {
-            sb.append(BLANK);
-        }
-        return sb;
     }
 
     public static void drawLadder(Ladder ladder) {
@@ -53,4 +36,31 @@ public class ResultView {
         }
         return WITHOUT_POINTS_LINE;
     }
+
+    public static void printParticipant(Participant participant) {
+        printList(participant.getList());
+        System.out.println();
+    }
+
+    public static void printResults(Results results) {
+        printList(results.getList());
+        System.out.println();
+    }
+
+    private static void printList(List<String> list) {
+        list.stream()
+                .forEach(result -> {
+                    StringBuilder sb = getObjectWithBlank(result);
+                    System.out.print(sb + result);
+                });
+    }
+
+    private static StringBuilder getObjectWithBlank(String object) {
+        StringBuilder sb = new StringBuilder("");
+        for (int i = MAXIMUM_OF_BLANK_SIZE - object.length(); i > 0; i--) {
+            sb.append(BLANK);
+        }
+        return sb;
+    }
+
 }

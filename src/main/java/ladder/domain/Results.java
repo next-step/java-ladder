@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -25,5 +26,9 @@ public class Results {
     @Override
     public int hashCode() {
         return Objects.hash(results);
+    }
+
+    public List<String> getList() {
+        return Collections.unmodifiableList(results);
     }
 }

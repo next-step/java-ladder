@@ -19,6 +19,6 @@ public class LadderApplication {
         ResultView.printResultComment();
         ResultView.printParticipant(Participant.of(participant));
         ResultView.drawLadder(Ladder.of(ladderMaxLength, countOfPerson));
-//        ResultView.printParticipant(Results.of(results));
+        ResultView.printResults(Results.of(results));
     }
 }
