@@ -1,12 +1,14 @@
 package ladder.view;
 
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import ladder.model.GameResult;
 import ladder.model.Line;
 import ladder.model.Lines;
 import ladder.model.Players;
-import ladder.model.Result;
+import ladder.model.Results;
 
 public class LadderOutputView {
 
@@ -22,7 +24,7 @@ public class LadderOutputView {
 	}
 
 	public static void printPlayersName(Players players) {
-		System.out.println(players.getPlayersName()
+		System.out.println(players.getPlayers()
 			.stream()
 			.map(player -> applyNameLength(player.getPlayerName()))
 			.collect(Collectors.joining()));
@@ -49,8 +51,8 @@ public class LadderOutputView {
 		return NOTHING_LINE;
 	}
 
-	public static void printResultsName(Result result) {
-		System.out.println(result.getResults()
+	public static void printResultsName(Results results) {
+		System.out.println(results.getResults()
 			.stream()
 			.map(LadderOutputView::applyNameLength)
 			.collect(Collectors.joining()));
@@ -61,5 +63,13 @@ public class LadderOutputView {
 			.limit(LIMIT_LENGTH - name.length())
 			.collect(Collectors.joining())
 			.concat(name);
+	}
+
+	public static void printResultLadderGame(List<GameResult> gameResults, Results results) {
+		gameResults.stream()
+			.map(gameResult ->
+				gameResult.getPlayer().getPlayerName() + " : " + results.findResult(
+					gameResult.getPosition()))
+			.forEach(System.out::println);
 	}
 }
