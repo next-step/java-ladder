@@ -13,7 +13,8 @@ public class ApplicationRunner {
         ConsoleInputView inputView = new ConsoleInputView(scanner);
 
         String participantsText = inputView.enterParticipants();
-
+        String maxLadderHeightText = inputView.enterMaxLadderHeight();
+        
         scanner.close();
     }
 }
