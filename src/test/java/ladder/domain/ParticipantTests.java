@@ -43,4 +43,16 @@ public class ParticipantTests {
                     Participant.of(participant);
                 }).withMessageMatching("사다리 게임의 최소 필요 인원은 2명 이상 입니다.");
     }
+
+    @DisplayName("참가자들 로 부터 참가자를 물어봤을때 참가번호를 잘 리턴하는지 테스트")
+    @Test
+    void participateNumberTest() {
+        List<String> participatePersonList = new ArrayList<>(Arrays.asList("pobi", "honux", "crong", "jk"));
+        Participant participant = Participant.of(participatePersonList);
+
+        assertThat(participant.getParticipationNumber("crong")).isEqualTo(ParticipateNumber.of(2));
+    }
+
+
+
 }

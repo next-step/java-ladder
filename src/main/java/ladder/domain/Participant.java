@@ -54,4 +54,8 @@ public class Participant {
     public int hashCode() {
         return Objects.hash(participant);
     }
+
+    public ParticipateNumber getParticipationNumber(String person) {
+        return ParticipateNumber.of(participant.indexOf(person));
+    }
 }
