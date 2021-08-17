@@ -21,10 +21,6 @@ public class Leg {
         this(new CoordinateValue(widthPosition), height);
     }
 
-    public boolean hasLine(int height) {
-        return hasLine(new CoordinateValue(height));
-    }
-
     public boolean hasLine(CoordinateValue height) {
         return lines.stream().anyMatch(line -> line.heightIs(height));
     }
