@@ -8,12 +8,21 @@ import java.util.stream.Collectors;
 
 public class Players {
 
+  private static final String MSG_ERROR_LIMIT_PLAYERS = "플레이어가 0명입니다.";
+
   private static final String SPLIT_MARK = ",";
 
   private final List<Player> players;
 
   public Players(final List<Player> players) {
+    validationPlayersCount(players);
     this.players = Collections.unmodifiableList(players);
+  }
+
+  private void validationPlayersCount(final List<Player> players) {
+    if(players.isEmpty()){
+      throw new IllegalArgumentException(MSG_ERROR_LIMIT_PLAYERS);
+    }
   }
 
   public int count(){
