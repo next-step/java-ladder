@@ -23,13 +23,13 @@ public class Name {
   }
 
   private void checkNameEmpty(final String name) {
-    if(name.isEmpty()){
+    if (name.isEmpty() || null == name) {
       throw new IllegalArgumentException(MSG_ERROR_FAIL_NAME_EMPTY);
     }
   }
 
   private void checkNameLength(final String name) {
-    if(name.length() > LIMIT_NAME_LENGTH){
+    if (name.length() > LIMIT_NAME_LENGTH) {
       throw new IllegalArgumentException(MSG_ERROR_FAIL_NAME_LENGTH);
     }
   }
