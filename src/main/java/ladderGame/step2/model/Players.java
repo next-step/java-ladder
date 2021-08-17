@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class Players {
 
-  private static final String MSG_ERROR_LIMIT_PLAYERS = "플레이어가 0명입니다.";
+  public static final String MSG_ERROR_LIMIT_PLAYERS = "플레이어가 0명입니다.";
 
   private static final String SPLIT_MARK = ",";
 
