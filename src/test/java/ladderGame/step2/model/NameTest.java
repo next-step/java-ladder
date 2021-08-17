@@ -23,7 +23,7 @@ class NameTest {
         () -> new Name(wrongName)
     )
         .isInstanceOf(IllegalArgumentException.class)
-        .hasMessage("사용자명은 최대 5글자까지 가능합니다.");
+        .hasMessage(Name.MSG_ERROR_FAIL_NAME_LENGTH);
 
     assertThat(new Name(fineName)).isNotNull();
   }
@@ -35,6 +35,6 @@ class NameTest {
         () -> new Name("")
     )
         .isInstanceOf(IllegalArgumentException.class)
-        .hasMessage("사용자이름을 입력 해주세요.");
+        .hasMessage(Name.MSG_ERROR_FAIL_NAME_EMPTY);
   }
 }
