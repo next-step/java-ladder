@@ -1,4 +1,4 @@
-package step2.domain.ladder;
+package step3.domain.ladder;
 
 import java.util.Random;
 import java.util.function.Function;

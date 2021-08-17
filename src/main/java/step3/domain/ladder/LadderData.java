@@ -1,10 +1,8 @@
-package step2.domain.game;
-
-import step2.domain.ladder.Ladder;
+package step3.domain.ladder;
 
 import java.util.List;
 
-public class GameData {
+public class LadderData {
     private final List<String> names;
 
     private final int height;
@@ -15,15 +13,15 @@ public class GameData {
 
     private static final int MIN_PARTICIPANTS = 1;
 
-    private GameData(List<String> names, int height) {
+    private LadderData(List<String> names, int height) {
         this.names = names;
         this.height = height;
     }
 
-    public static GameData of(List<String> names, int height) {
+    public static LadderData of(List<String> names, int height) {
         validateNames(names);
         validateHeight(height);
-        return new GameData(names, height);
+        return new LadderData(names, height);
     }
 
     private static void validateNames(List<String> names) {
