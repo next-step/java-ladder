@@ -9,7 +9,7 @@ import java.util.stream.IntStream;
 
 public class Line {
 
-  private static final int INT_ONE = 1;
+  private static final int INDEX_START = 1;
 
   private static Random random = new Random();
 
@@ -29,8 +29,8 @@ public class Line {
 
     lines.add(false);
 
-    IntStream.range(INT_ONE, countOfPerson)
-        .forEach(person -> lines.add(isHaveNode(lines.get(person - INT_ONE))));
+    IntStream.range(INDEX_START, countOfPerson)
+        .forEach(person -> lines.add(isHaveNode(lines.get(person - INDEX_START))));
 
     return lines;
   }
