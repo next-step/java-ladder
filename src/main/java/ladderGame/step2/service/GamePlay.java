@@ -10,7 +10,7 @@ public class GamePlay {
   private final Lines lines;
 
   public GamePlay(final String stringNames, final int height) {
-    this.player = new Players(CreatePlayer.createUser(stringNames));
+    this.player = new Players(Players.createUser(stringNames));
     this.lines = new Lines(height, this.player.count());
   }
 
