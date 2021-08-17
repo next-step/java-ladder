@@ -6,17 +6,17 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import nextstep.ladder.exception.LengthLimitException;
 import org.junit.jupiter.api.Test;
 
-class NameTest {
+class LadderNameTest {
     @Test
     void create() {
-        Name ladderName = Name.of("a");
-        assertThat(ladderName).isEqualTo(Name.of("a"));
+        LadderName ladderName = LadderName.of("a");
+        assertThat(ladderName).isEqualTo(LadderName.of("a"));
     }
 
     @Test
     void exception() {
         assertThatThrownBy(() -> {
-            Name.of("abbbbb");
+            LadderName.of("abbbbb");
         }).isInstanceOf(LengthLimitException.class);
     }
 }

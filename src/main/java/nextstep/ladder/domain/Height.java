@@ -3,7 +3,6 @@ package nextstep.ladder.domain;
 import nextstep.ladder.exception.LadderSizeException;
 
 public class Height {
-    private static final int ZERO = 0;
     private final int height;
 
     private Height(int height) {
@@ -16,11 +15,10 @@ public class Height {
     }
 
     private static void heightValidate(int height) {
-        if(height <= ZERO) {
+        if(height <= 0) {
             throw new LadderSizeException("사다리 갯수는 최소 1개여야 합니다.");
         }
     }
-
 
     public int getHeight() {
         return height;

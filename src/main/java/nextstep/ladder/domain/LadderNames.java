@@ -1,30 +1,29 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.exception.NoSearchPersonException;
-import nextstep.ladder.utils.Constants;
+import static java.util.stream.Collectors.toList;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import nextstep.ladder.exception.NoSearchPersonException;
+import nextstep.ladder.utils.Constants;
 
-import static java.util.stream.Collectors.toList;
+public class LadderNames {
+    private final List<LadderName> ladderNames;
 
-public class Names {
-    private final List<Name> ladderNames;
-
-    private Names(List<Name> ladderNames) {
+    private LadderNames(List<LadderName> ladderNames) {
         this.ladderNames = ladderNames;
     }
 
-    public static Names of(String ladderNames) {
-        return new Names(Arrays.stream(ladderNames.split(Constants.COMMA))
-                                     .map(Name::of)
+    public static LadderNames of(String ladderNames) {
+        return new LadderNames(Arrays.stream(ladderNames.split(Constants.COMMA))
+                                     .map(LadderName::of)
                                      .collect(toList()));
     }
 
     public List<String> getLadderNames() {
         return ladderNames.stream()
-                          .map(Name::getLadderName)
+                          .map(LadderName::getLadderName)
                           .collect(toList());
     }
 
@@ -47,7 +46,7 @@ public class Names {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Names that = (Names) o;
+        LadderNames that = (LadderNames) o;
         return Objects.equals(ladderNames, that.ladderNames);
     }
 

@@ -3,7 +3,7 @@ package nextstep.ladder.view;
 import nextstep.ladder.domain.Goods;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Lines;
-import nextstep.ladder.domain.Names;
+import nextstep.ladder.domain.LadderNames;
 import nextstep.ladder.domain.Point;
 import nextstep.ladder.domain.Position;
 import nextstep.ladder.utils.Constants;
@@ -14,12 +14,12 @@ public class ResultView {
     private static final String STICK = "|";
     private static final int MAX_LENGTH = 4;
 
-    public static void printNameAndLadder(Names ladderNames, Lines lines) {
+    public static void printNameAndLadder(LadderNames ladderNames, Lines lines) {
         printName(ladderNames);
         printLadder(lines);
     }
 
-    private static void printName(Names ladderNames) {
+    private static void printName(LadderNames ladderNames) {
         ladderNames.getLadderNames()
             .stream().map(ResultView::addSpace)
             .forEach(System.out::print);
