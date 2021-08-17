@@ -5,6 +5,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
@@ -37,7 +38,7 @@ public class StreamStudy {
          */
         words.stream()
                 .filter((word) -> (word.length() > 12)) // 길이가 12보다 긴 문자열 filtering
-                .sorted((s1, s2) -> Integer.compare(s2.length(), s1.length())) // 길이가 긴 순서로 정렬
+                .sorted(Comparator.comparingInt(String::length).reversed()) // 길이가 긴 순서로 정렬
                 .distinct() // 중복 삭제
                 .limit(100) // 앞에서 부터 100개
                 .forEach(word -> System.out.println(word.toLowerCase(Locale.ROOT))); // 소문자 변경 후 출력
