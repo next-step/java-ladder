@@ -4,6 +4,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
+import ladder.service.LadderMove;
+
 public class Line {
 
 	private final List<Boolean> points;
@@ -14,6 +16,10 @@ public class Line {
 
 	public List<Boolean> getPoints() {
 		return points;
+	}
+
+	public int move(int position) {
+		return LadderMove.move(position, points);
 	}
 
 	@Override
