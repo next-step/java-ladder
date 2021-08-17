@@ -45,13 +45,6 @@ public class LadderLine {
         return Collections.unmodifiableList(line);
     }
 
-    @Override
-    public String toString() {
-        return line.stream()
-            .map(LadderPoint::toString)
-            .collect(Collectors.joining(""));
-    }
-
     public int move(int position) {
         return line.get(position).move(position);
     }
