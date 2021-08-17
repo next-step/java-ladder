@@ -21,15 +21,31 @@ public class Leg {
         this(new CoordinateValue(widthPosition), height);
     }
 
+    public boolean hasLine(int height) {
+        return hasLine(new CoordinateValue(height));
+    }
+
     public boolean hasLine(CoordinateValue height) {
         return lines.stream().anyMatch(line -> line.heightIs(height));
     }
 
     public void register(Line line) {
+        if (hasLine(line.getHeightPosition())) {
+            return;
+        }
+
         lines.add(line);
     }
 
     public CoordinateValue getWidthPosition() {
         return widthPosition;
+    }
+
+    public CoordinateValue getHeight() {
+        return height;
+    }
+
+    public boolean directlyConnected(Leg rightLeg, CoordinateValue heightIndex) {
+        return lines.stream().filter(line -> line.heightIs(heightIndex)).anyMatch(line -> line.getRightLeg().widthPosition.equals(rightLeg.widthPosition));
     }
 }

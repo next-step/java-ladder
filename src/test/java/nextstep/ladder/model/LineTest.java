@@ -3,7 +3,7 @@ package nextstep.ladder.model;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class LineTest {
     @Test
@@ -28,11 +28,11 @@ class LineTest {
         existLine.register(leg0, leg1);
         Leg leg2 = new Leg(2, 2);
 
-        assertThatThrownBy(() -> {
-            Line newLine = new Line(1);
-            newLine.register(leg1, leg2);
-        })
-            .isInstanceOf(IllegalArgumentException.class);
+        Line newLine = new Line(1);
+        newLine.register(leg1, leg2);
+
+        assertThat(newLine).hasFieldOrPropertyWithValue("leftLeg", null);
+        assertThat(newLine).hasFieldOrPropertyWithValue("rightLeg", null);
     }
 
     @Test
@@ -43,10 +43,10 @@ class LineTest {
         Line existLine = new Line(1);
         existLine.register(leg0, leg1);
 
-        assertThatThrownBy(() -> {
-            Line newLine = new Line(1);
-            newLine.register(leg0, leg1);
-        })
-            .isInstanceOf(IllegalArgumentException.class);
+        Line newLine = new Line(1);
+        newLine.register(leg0, leg1);
+
+        assertThat(newLine).hasFieldOrPropertyWithValue("leftLeg", null);
+        assertThat(newLine).hasFieldOrPropertyWithValue("rightLeg", null);
     }
 }

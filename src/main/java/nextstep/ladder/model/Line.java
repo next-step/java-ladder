@@ -23,7 +23,7 @@ public class Line {
 
     public void register(List<Leg> legs) {
         if (legs.stream().anyMatch(leg -> leg.hasLine(heightPosition))) {
-            throw new IllegalArgumentException("같은 높이에 이미 line 이 있습니다!!");
+            return;
         }
 
         legs.sort(Comparator.comparing(Leg::getWidthPosition));
@@ -31,5 +31,13 @@ public class Line {
         rightLeg = legs.get(1);
         legs.get(0).register(this);
         legs.get(1).register(this);
+    }
+
+    public CoordinateValue getHeightPosition() {
+        return heightPosition;
+    }
+
+    public Leg getRightLeg() {
+        return rightLeg;
     }
 }
