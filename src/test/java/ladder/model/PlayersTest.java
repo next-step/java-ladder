@@ -28,7 +28,7 @@ class PlayersTest {
 	}
 
 	@Test
-	@DisplayName("사다리 게임 참가자를 알수있다..")
+	@DisplayName("사다리 게임 참가자를 알수있다.")
 	public void printPlayersName() {
 		Players resultPlayers = new Players("cross,apple,pla");
 
@@ -40,7 +40,25 @@ class PlayersTest {
 		players.add(player1);
 		players.add(player2);
 		players.add(player3);
-		assertThat(resultPlayers.getPlayersName()).isEqualTo(players);
+		assertThat(resultPlayers.getPlayers()).isEqualTo(players);
+	}
+
+	@Test
+	@DisplayName("사다리 게임 참가자의 인원을 알 수 있다.")
+	public void findPlayerCount() {
+		Players resultPlayers = new Players("cross,apple,pla");
+
+		assertThat(resultPlayers.findPlayerCount()).isEqualTo(3);
+	}
+
+	@Test
+	@DisplayName("사다리 게임 참가자의 순서를 알 수 있다.")
+	public void findPlayerPosition() {
+		Players resultPlayers = new Players("cross,apple,pla");
+
+		assertThat(resultPlayers.findPlayerPosition(new Player(new Name("cross")))).isEqualTo(0);
+		assertThat(resultPlayers.findPlayerPosition(new Player(new Name("apple")))).isEqualTo(1);
+		assertThat(resultPlayers.findPlayerPosition(new Player(new Name("pla")))).isEqualTo(2);
 	}
 
 }
