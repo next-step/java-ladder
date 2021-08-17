@@ -22,7 +22,6 @@ public class Lambda {
     }
 
     public static int sumAll(List<Integer> numbers) {
-//        return numbers.stream().mapToInt(number -> number).sum();
         return numbers.stream().reduce(0, Integer::sum);
     }
 
