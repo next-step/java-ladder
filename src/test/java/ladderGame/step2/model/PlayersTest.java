@@ -12,6 +12,6 @@ class PlayersTest {
   @Test
   void createPlayersTest() {
     Players players = new Players(CreatePlayer.createUser("user1,user2"));
-    assertThat(players.findPlayersCount()).isEqualTo(2);
+    assertThat(players.count()).isEqualTo(2);
   }
 }

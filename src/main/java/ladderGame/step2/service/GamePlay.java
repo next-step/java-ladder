@@ -11,7 +11,7 @@ public class GamePlay {
 
   public GamePlay(final String stringNames, final int height) {
     this.player = new Players(CreatePlayer.createUser(stringNames));
-    this.lines = new Lines(height, this.player.findPlayersCount());
+    this.lines = new Lines(height, this.player.count());
   }
 
   public Players getPlayer() {
