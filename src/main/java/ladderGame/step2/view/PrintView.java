@@ -17,7 +17,7 @@ public class PrintView {
     printResultTitle();
     System.out.println(players.toList()
         .stream()
-        .map(player -> String.format(STRING_FORMAT_SIZE, player.getName()))
+        .map(player -> String.format(STRING_FORMAT_SIZE, player.findUserName()))
         .collect(Collectors.joining()));
   }
 
