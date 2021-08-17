@@ -20,5 +20,7 @@ public class LadderApplication {
         ResultView.printParticipant(Participant.of(participant));
         ResultView.drawLadder(Ladder.of(ladderMaxLength, countOfPerson));
         ResultView.printResults(Results.of(results));
+
+        String result = InputView.getResult();
     }
 }

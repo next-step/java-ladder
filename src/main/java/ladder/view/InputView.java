@@ -8,7 +8,8 @@ public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
     private static final String GET_PARTICIPANT_QUESTION = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
     private static final String GET_LADDER_MAX_LENGTH_QUESTION = "최대 사다리 높이는 몇 개인가요?";
-    private static final String GET_RESULT_QUESTION = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
+    private static final String GET_RESULTS_QUESTION = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
+    private static final String GET_RESULT_QUESTION = "결과를 보고 싶은 사람은?";
 
     private static final String BLANK = "";
     private static final String SPACE = " ";
@@ -21,7 +22,7 @@ public class InputView {
     }
 
     public static List<String> getResults() {
-        String trimResults = getString(GET_RESULT_QUESTION);
+        String trimResults = getString(GET_RESULTS_QUESTION);
         return toList(trimResults);
     }
 
@@ -41,4 +42,8 @@ public class InputView {
     }
 
 
+    public static String getResult() {
+        System.out.println(GET_RESULT_QUESTION);
+        return scanner.nextLine();
+    }
 }
