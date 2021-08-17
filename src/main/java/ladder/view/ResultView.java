@@ -13,7 +13,6 @@ public class ResultView {
     private static final int MAXIMUM_OF_BLANK_SIZE = 6;
 
     public static void printResultComment() {
-
         System.out.println(RESULT_COMMENT);
     }
 

@@ -10,6 +10,7 @@ import java.util.List;
 public class LadderApplication {
     public static void main(String args[]) {
         List<String> participant = InputView.getParticipant();
+        List<String> results = InputView.getResults();
         int countOfPerson = participant.size();
 
         int ladderMaxLength = InputView.getLadderMaxLength();
@@ -17,7 +18,5 @@ public class LadderApplication {
         ResultView.printResultComment();
         ResultView.printParticipant(Participant.of(participant));
         ResultView.drawLadder(Ladder.of(ladderMaxLength, countOfPerson));
-
-
     }
 }
