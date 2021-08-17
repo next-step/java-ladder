@@ -10,7 +10,11 @@ public class Line {
     private Leg rightLeg;
 
     public Line(int heightPosition) {
-        this.heightPosition = new CoordinateValue(heightPosition);
+        this(new CoordinateValue(heightPosition));
+    }
+
+    public Line(CoordinateValue heightPosition) {
+        this.heightPosition = heightPosition;
     }
 
     public boolean heightIs(CoordinateValue height) {
@@ -18,19 +22,18 @@ public class Line {
     }
 
     public void register(Leg ...legs) {
-        register(Arrays.asList(legs));
+        register(new Legs(Arrays.asList(legs)));
     }
 
-    public void register(List<Leg> legs) {
+    public void register(Legs legs) {
         if (legs.stream().anyMatch(leg -> leg.hasLine(heightPosition))) {
             return;
         }
 
-        legs.sort(Comparator.comparing(Leg::getWidthPosition));
-        leftLeg = legs.get(0);
-        rightLeg = legs.get(1);
-        legs.get(0).register(this);
-        legs.get(1).register(this);
+        leftLeg = legs.get(CoordinateValue.ZERO);
+        rightLeg = legs.get(CoordinateValue.ONE);
+        leftLeg.register(this);
+        rightLeg.register(this);
     }
 
     public CoordinateValue getHeightPosition() {

@@ -42,6 +42,12 @@ public class Leg {
     }
 
     public boolean directlyConnected(Leg rightLeg, CoordinateValue heightIndex) {
-        return lines.stream().filter(line -> line.heightIs(heightIndex)).anyMatch(line -> line.getRightLeg().widthPosition.equals(rightLeg.widthPosition));
+        return lines.stream()
+            .filter(line -> line.heightIs(heightIndex))
+            .anyMatch(line -> line.getRightLeg().widthPosition.equals(rightLeg.widthPosition));
+    }
+
+    public int getLinesSize() {
+        return lines.size();
     }
 }

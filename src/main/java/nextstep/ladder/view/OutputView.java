@@ -24,7 +24,9 @@ public class OutputView {
     private static void printHeight(Ladder ladder, int heightIndex) {
         StringBuilder string = new StringBuilder();
         for (int widthIndex = 0; widthIndex < ladder.getWidth().getValue() - 1; widthIndex++) {
-            string.append("|").append(getLineString(ladder.getLegs().get(widthIndex), ladder.getLegs().get(widthIndex + 1), heightIndex));
+            string
+                .append("|")
+                .append(getLineString(ladder.getLegs().get(new CoordinateValue(widthIndex)), ladder.getLegs().get(new CoordinateValue(widthIndex + 1)), heightIndex));
         }
         System.out.println(string.append("|"));
     }
