@@ -8,7 +8,11 @@ import java.util.stream.IntStream;
 
 public class Lines {
 
-  private static final int INT_ZERO = 0;
+  private static final int INDEX_START = 0;
+
+  private static final int LIMIT_HEIGHT_VALUE = 1;
+
+  private static final String MSG_ERROR_LIMIT_HEIGHT = "높이값은 최소 1부터 가능합니다.";
 
   private final List<Line> lines;
 
@@ -20,9 +24,16 @@ public class Lines {
     return new ArrayList<>(lines);
   }
 
-  public static List<Line> createLineLayer(int height, final int playerCount){
-    return IntStream.range(INT_ZERO, height)
+  public static List<Line> createLineLayer(int height, final int playerCount) {
+    validateHeight(height);
+    return IntStream.range(INDEX_START, height)
         .mapToObj(count -> new Line(playerCount))
         .collect(Collectors.toList());
+  }
+
+  private static void validateHeight(int height) {
+    if (height < LIMIT_HEIGHT_VALUE) {
+      throw new IllegalArgumentException(MSG_ERROR_LIMIT_HEIGHT);
+    }
   }
 }
