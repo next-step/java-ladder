@@ -28,7 +28,7 @@ public class PrintView {
   }
 
   public static void createLadderView(final Lines lines) {
-    lines.getLines()
+    lines.toList()
         .stream()
         .map(PrintView::printLineData)
         .forEach(System.out::println);
