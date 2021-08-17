@@ -17,7 +17,7 @@ public class OutputView {
 
     private static void printNames(Names names) {
         System.out.println(
-                names.stream().map(Name::getName).reduce("", (accu, curr) -> accu + String.format("%-6s", curr))
+            names.stream().map(Name::getName).reduce("", (accu, curr) -> accu + String.format("%-6s", curr))
         );
     }
 

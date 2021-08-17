@@ -3,7 +3,7 @@ package nextstep.ladder.model;
 import java.util.Objects;
 
 public class Name {
-    private static int MAX_LENGTH = 5;
+    private static final int MAX_LENGTH = 5;
 
     private final String name;
 
