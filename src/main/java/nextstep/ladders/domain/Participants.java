@@ -1,8 +1,15 @@
 package nextstep.ladders.domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Participants {
 
     private List<Participant> participants;
+
+    public Participants(final List<String> names) {
+        this.participants = names.stream()
+                .map(Participant::valueOf)
+                .collect(Collectors.toList());
+    }
 }

@@ -12,12 +12,12 @@ class ParticipantTest {
     @ParameterizedTest
     @CsvSource(value = "pobi:honux:crong:jk", delimiter = ':')
     void 정상_생성(final String name) {
-        assertDoesNotThrow(() -> new Participant(name));
+        assertDoesNotThrow(() -> Participant.valueOf(name));
     }
 
     @ParameterizedTest
     @CsvSource(value = "pobiaa:honuxbbb:crongffff:jkeeee", delimiter = ':')
     void 다섯글자_초과시_에러(final String name) {
-        assertThrows(NameLengthInvalidException.class, () -> new Participant(name));
+        assertThrows(NameLengthInvalidException.class, () -> Participant.valueOf(name));
     }
 }

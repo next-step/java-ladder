@@ -9,8 +9,8 @@ public class LadderGame {
     private final Participants participants;
     private final Integer maxLadderHeight;
 
-    public LadderGame(String participantsText, String maxLadderHeightText) {
-        this.participants = new Participants();
+    public LadderGame(final String namesText, String maxLadderHeightText) {
+        this.participants = new Participants(parseParticipants(namesText));
         this.maxLadderHeight = parseMaxLadderHeight(maxLadderHeightText);
     }
 
