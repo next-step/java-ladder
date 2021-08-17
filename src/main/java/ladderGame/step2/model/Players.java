@@ -29,8 +29,11 @@ public class Players {
     return players.size();
   }
 
-  public List<Player> toList() {
-    return new ArrayList<>(players);
+  public static String createUsersNameView(final Players players) {
+    return players.players
+        .stream()
+        .map(Player::findUserName)
+        .collect(Collectors.joining());
   }
 
   public static List<Player> createUser(final String players) {

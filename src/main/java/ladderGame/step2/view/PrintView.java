@@ -1,19 +1,13 @@
 package ladderGame.step2.view;
 
-import java.util.List;
-import java.util.stream.Collectors;
 import ladderGame.step2.model.Lines;
-import ladderGame.step2.model.Player;
 import ladderGame.step2.model.Players;
 
 public class PrintView {
 
   public static void printUsersName(final Players players) {
     printResultTitle();
-    System.out.println(players.toList()
-        .stream()
-        .map(Player::findUserName)
-        .collect(Collectors.joining()));
+    System.out.println(Players.createUsersNameView(players));
   }
 
   private static void printResultTitle() {

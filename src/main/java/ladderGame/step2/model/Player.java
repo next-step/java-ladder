@@ -11,7 +11,7 @@ public class Player {
   }
 
   public String findUserName() {
-    return name.findName();
+    return name.findNameByFormat();
   }
 
   @Override

@@ -36,7 +36,7 @@ public class Name {
     }
   }
 
-  public String nameFormat() {
+  public String findNameByFormat() {
     return String.format(STRING_FORMAT_SIZE, name);
   }
 
