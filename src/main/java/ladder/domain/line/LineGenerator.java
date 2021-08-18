@@ -8,16 +8,16 @@ public class LineGenerator {
 
     public static final int MIN_LINE_COUNT = 1;
 
-    private static Boolean bool;
+    private boolean bool;
 
     private LineGenerator() {
-        throw new IllegalStateException();
     }
 
     public static List<Boolean> generate(int count) {
         validateLineCount(count);
+        LineGenerator lineGenerator = new LineGenerator();
         return IntStream.range(0, count)
-                .mapToObj(i -> next())
+                .mapToObj(i -> lineGenerator.next())
                 .collect(Collectors.toList());
     }
 
@@ -27,13 +27,13 @@ public class LineGenerator {
         }
     }
 
-    private static Boolean next() {
+    private boolean next() {
         bool = isTrue();
         return bool;
     }
 
-    private static boolean isTrue() {
-        if (Boolean.TRUE.equals(bool)) {
+    private boolean isTrue() {
+        if (bool) {
             return false;
         }
         return RandomBoolGenerator.generate();
