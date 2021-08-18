@@ -7,18 +7,16 @@ import ladder.view.ResultView;
 
 public class LadderGame {
     public static void main(String[] args) {
-        InputView inputView = new InputView();
-        inputView.printPlayerNameInputMessage();
-        Players players = new Players(inputView.inputPlayerNames());
+        InputView.printPlayerNameInputMessage();
+        Players players = new Players(InputView.inputPlayerNames());
 
-        inputView.printNewLine();
-        inputView.printLadderHeightInputMessage();
-        int ladderHeight = inputView.inputLadderHeight();
+        InputView.printNewLine();
+        InputView.printLadderHeightInputMessage();
+        int ladderHeight = InputView.inputLadderHeight();
         Ladder ladder = new Ladder(players.count(), ladderHeight);
 
-        ResultView resultView = new ResultView();
-        resultView.printResultMessage();
-        resultView.printNewLine();
-        resultView.printResult(players.getNames(), ladder.getLines());
+        ResultView.printResultMessage();
+        ResultView.printNewLine();
+        ResultView.printResult(players.getNames(), ladder.getLines());
     }
 }
