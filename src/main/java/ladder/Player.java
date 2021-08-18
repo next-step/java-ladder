@@ -3,7 +3,7 @@ package ladder;
 import java.util.Objects;
 
 public class Player {
-    private String value;
+    private final String value;
 
     public Player(String name) {
         if (name.length() > 5) {
