@@ -10,13 +10,10 @@ public class LadderGame {
         InputView.printPlayerNameInputMessage();
         Players players = new Players(InputView.inputPlayerNames());
 
-        InputView.printNewLine();
         InputView.printLadderHeightInputMessage();
         int ladderHeight = InputView.inputLadderHeight();
         Ladder ladder = new Ladder(players.count(), ladderHeight);
 
-        ResultView.printResultMessage();
-        ResultView.printNewLine();
         ResultView.printResult(players.getNames(), ladder.getLines());
     }
 }

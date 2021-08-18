@@ -18,16 +18,13 @@ public class ResultView {
 
     private static final PrintStream printStream = System.out;
 
-    public static void printResultMessage() {
-        printStream.println(RESULT_MESSAGE);
-    }
-
-    public static void printNewLine() {
-        printStream.println();
-    }
-
     public static void printResult(List<String> names, List<LadderLine> lines) {
         StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(NEW_LINE);
+        stringBuilder.append(RESULT_MESSAGE);
+        stringBuilder.append(NEW_LINE);
+        stringBuilder.append(NEW_LINE);
+
         stringBuilder.append(generateNameResult(names));
         stringBuilder.append(NEW_LINE);
 
