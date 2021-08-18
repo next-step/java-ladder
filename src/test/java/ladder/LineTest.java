@@ -10,8 +10,8 @@ class LineTest {
     @Test
     void create() {
         Line line = new Line(5);
-        assertThat(line.getPoints().size()).isEqualTo(4);
-        System.out.println(line.getPoints());
+        assertThat(line.size()).isEqualTo(4);
+        System.out.println(line.toString());
     }
 
 }
