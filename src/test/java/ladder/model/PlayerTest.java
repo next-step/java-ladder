@@ -20,7 +20,7 @@ class PlayerTest {
 	public void getPlayerName() {
 		Player player = new Player(new Name("cross"));
 
-		assertThat(player.toString()).isEqualTo(" cross");
+		assertThat(player.getPlayerName()).isEqualTo("cross");
 	}
 
 }
