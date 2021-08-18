@@ -12,9 +12,9 @@ import ladder.model.Results;
 
 public class LadderOutputView {
 
-	public static final String SPACE_NAME = " ";
+	private static final String SPACE_NAME = " ";
 	private static final int LIMIT_LENGTH = 6;
-	public static final String GAME_RESULT_START = "실행결과";
+	private static final String GAME_RESULT_START = "실행결과";
 	private static final String NOTHING_LINE = "     |";
 	private static final String EXIST_LINE = "-----|";
 
