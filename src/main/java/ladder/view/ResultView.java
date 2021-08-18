@@ -28,54 +28,54 @@ public class ResultView {
 
     public static void printResult(List<String> names, List<LadderLine> lines) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(getNameResult(names));
+        stringBuilder.append(generateNameResult(names));
         stringBuilder.append(NEW_LINE);
 
         for (LadderLine line : lines) {
-            stringBuilder.append(getLineResult(line));
+            stringBuilder.append(generateLineResult(line));
             stringBuilder.append(NEW_LINE);
         }
         printStream.print(stringBuilder);
     }
 
-    private static String getNameResult(List<String> names) {
+    private static String generateNameResult(List<String> names) {
         StringBuilder stringBuilder = new StringBuilder();
         int blankSpaceLength;
         for (String name : names) {
             blankSpaceLength = LADDER_WIDTH - name.length();
-            stringBuilder.append(getBlankSpace(blankSpaceLength));
+            stringBuilder.append(generateBlankSpace(blankSpaceLength));
             stringBuilder.append(name);
             stringBuilder.append(ONE_BLANK_SPACE);
         }
         return stringBuilder.toString();
     }
 
-    private static String getBlankSpace(int blankSpaceLength) {
+    private static String generateBlankSpace(int blankSpaceLength) {
         return Stream.generate(() -> ONE_BLANK_SPACE)
                 .limit(blankSpaceLength)
                 .collect(joining());
     }
 
-    private static String getLineResult(LadderLine line) {
+    private static String generateLineResult(LadderLine line) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(getBlankSpace(LADDER_WIDTH));
+        stringBuilder.append(generateBlankSpace(LADDER_WIDTH));
         stringBuilder.append(LADDER_LONGITUDINAL_AXIS);
 
         for (Boolean point : line.getPoints()) {
-            stringBuilder.append(getPointResult(point));
+            stringBuilder.append(generatePointResult(point));
             stringBuilder.append(LADDER_LONGITUDINAL_AXIS);
         }
         return stringBuilder.toString();
     }
 
-    private static String getPointResult(Boolean point) {
+    private static String generatePointResult(Boolean point) {
         if (point) {
-            return getLadderHorizontalAxes();
+            return generateLadderHorizontalAxes();
         }
-        return getBlankSpace(LADDER_WIDTH);
+        return generateBlankSpace(LADDER_WIDTH);
     }
 
-    private static String getLadderHorizontalAxes() {
+    private static String generateLadderHorizontalAxes() {
         return Stream.generate(() -> LADDER_HORIZONTAL_AXIS)
                 .limit(LADDER_WIDTH)
                 .collect(joining());
