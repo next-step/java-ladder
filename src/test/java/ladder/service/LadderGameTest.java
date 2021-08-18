@@ -11,8 +11,6 @@ import org.junit.jupiter.api.Test;
 import ladder.model.GameResults;
 import ladder.model.Line;
 import ladder.model.Lines;
-import ladder.model.Name;
-import ladder.model.Player;
 import ladder.model.Players;
 
 class LadderGameTest {
@@ -24,12 +22,9 @@ class LadderGameTest {
 		Players players = new Players("cross,pie,kim");
 		GameResults gameResults = LadderGame.startLadderGame(lines, players);
 
-		Player player1 = new Player(new Name("cross"));
-		Player player2 = new Player(new Name("pie"));
-		Player player3 = new Player(new Name("kim"));
-		assertThat(gameResults.findResultOfPerson(player1)).extracting("position").containsExactly(0);
-		assertThat(gameResults.findResultOfPerson(player2)).extracting("position").containsExactly(2);
-		assertThat(gameResults.findResultOfPerson(player3)).extracting("position").containsExactly(1);
+		assertThat(gameResults.findResultOfPerson("cross")).extracting("position").containsExactly(0);
+		assertThat(gameResults.findResultOfPerson("pie")).extracting("position").containsExactly(2);
+		assertThat(gameResults.findResultOfPerson("kim")).extracting("position").containsExactly(1);
 	}
 
 	private List<Line> getLine() {

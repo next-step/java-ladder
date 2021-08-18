@@ -15,23 +15,23 @@ public class GameResults {
 		this.gameResults = Collections.unmodifiableList(gameResults);
 	}
 
-	public List<GameResult> findResultOfPerson(Player player) {
-		if (player.getPlayerName().equals("all")) {
+	public List<GameResult> findResultOfPerson(String name) {
+		if (name.equals("all")) {
 			return gameResults;
 		}
-		return getGameResultPlayer(player);
+		return getGameResultPlayer(name);
 	}
 
-	private List<GameResult> getGameResultPlayer(Player player) {
-		checkPlayerExist(player);
+	private List<GameResult> getGameResultPlayer(String name) {
+		checkPlayerExist(name);
 		return gameResults.stream()
-			.filter(gameResult -> gameResult.getPlayer().equals(player))
+			.filter(gameResult -> gameResult.isExist(name))
 			.collect(Collectors.toList());
 	}
 
-	private void checkPlayerExist(Player player) {
+	private void checkPlayerExist(String name) {
 		gameResults.stream()
-			.filter((gameResult) -> gameResult.getPlayer().equals(player))
+			.filter((gameResult) -> gameResult.isExist(name))
 			.findFirst()
 			.orElseThrow(() -> new IllegalArgumentException(ErrorMessage.NOT_FIND_PLAYER_ERROR_MESSAGE));
 	}

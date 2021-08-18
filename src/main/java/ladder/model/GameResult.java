@@ -12,6 +12,10 @@ public class GameResult {
 		this.position = position;
 	}
 
+	public boolean isExist(String name) {
+		return player.isExist(name);
+	}
+
 	public Player getPlayer() {
 		return player;
 	}
@@ -27,12 +31,11 @@ public class GameResult {
 		if (o == null || getClass() != o.getClass())
 			return false;
 		GameResult that = (GameResult)o;
-		return getPosition() == that.getPosition() && Objects.equals(getPlayer(), that.getPlayer());
+		return position == that.position && Objects.equals(player, that.player);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(getPlayer(), getPosition());
+		return Objects.hash(player, position);
 	}
-
 }

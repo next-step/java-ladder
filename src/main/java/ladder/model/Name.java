@@ -19,6 +19,10 @@ public class Name {
 		return name;
 	}
 
+	public boolean isExist(String name) {
+		return this.name.equals(name);
+	}
+
 	private void checkEmptyName(String name) {
 		if (name.isEmpty()) {
 			throw new IllegalArgumentException(ErrorMessage.EMPTY_ERROR_MESSAGE);

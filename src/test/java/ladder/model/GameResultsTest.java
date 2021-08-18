@@ -20,9 +20,9 @@ class GameResultsTest {
 		List<GameResult> testResult = new ArrayList<>();
 		testResult.add(new GameResult(player1, 1));
 
-		assertThat(gameResults.findResultOfPerson(player1)).isEqualTo(testResult);
-		assertThat(gameResults.findResultOfPerson(player1)).extracting("position").containsExactly(1);
-		assertThat(gameResults.findResultOfPerson(player1)).extracting("player").containsExactly(player1);
+		assertThat(gameResults.findResultOfPerson("cross")).isEqualTo(testResult);
+		assertThat(gameResults.findResultOfPerson("cross")).extracting("position").containsExactly(1);
+		assertThat(gameResults.findResultOfPerson("cross")).extracting("player").containsExactly(player1);
 	}
 
 	@Test
@@ -30,14 +30,13 @@ class GameResultsTest {
 	public void findResultAll() {
 		GameResults gameResults = new GameResults(getGameResult());
 
-		Player allPlayer = new Player(new Name("all"));
 		Player player1 = new Player(new Name("cross"));
 		Player player2 = new Player(new Name("pie"));
 		Player player3 = new Player(new Name("kim"));
 
-		assertThat(gameResults.findResultOfPerson(allPlayer)).isEqualTo(getGameResult());
-		assertThat(gameResults.findResultOfPerson(allPlayer)).extracting("position").containsExactly(1, 2, 0);
-		assertThat(gameResults.findResultOfPerson(allPlayer)).extracting("player")
+		assertThat(gameResults.findResultOfPerson("all")).isEqualTo(getGameResult());
+		assertThat(gameResults.findResultOfPerson("all")).extracting("position").containsExactly(1, 2, 0);
+		assertThat(gameResults.findResultOfPerson("all")).extracting("player")
 			.containsExactly(player1, player2, player3);
 	}
 
@@ -46,7 +45,7 @@ class GameResultsTest {
 	public void checkEmptyName() {
 		GameResults gameResults = new GameResults(getGameResult());
 		assertThrows(IllegalArgumentException.class, () ->
-			gameResults.findResultOfPerson(new Player(new Name("test")))
+			gameResults.findResultOfPerson("test")
 		);
 	}
 

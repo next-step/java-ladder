@@ -14,6 +14,10 @@ public class Player {
 		return name.getName();
 	}
 
+	public boolean isExist(String name) {
+		return this.name.isExist(name);
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o)
@@ -28,5 +32,4 @@ public class Player {
 	public int hashCode() {
 		return Objects.hash(name);
 	}
-
 }

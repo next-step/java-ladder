@@ -27,8 +27,7 @@ public class LadderController {
 		LadderOutputView.printResultCreateLadder(ladderLines);
 		LadderOutputView.printResultsName(results);
 
-		Player player = new Player(new Name(LadderInputView.inputResultPlayer()));
-
-		LadderOutputView.printResultLadderGame(gameResults.findResultOfPerson(player), results);
+		LadderOutputView.printResultLadderGame(gameResults.findResultOfPerson(LadderInputView.inputResultPlayer()),
+			results);
 	}
 }
