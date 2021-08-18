@@ -11,6 +11,9 @@ import java.util.stream.Collectors;
 
 public class StreamStudy {
 
+    private static final int WORD_SIZE = 12;
+    private static final int WORD_LIST_LENGTH = 100;
+
     public static long countWords() throws IOException {
         String contents = new String(Files.readAllBytes(Paths
                 .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
@@ -31,11 +34,10 @@ public class StreamStudy {
         // TODO 이 부분에 구현한다.
         words.stream()
                 .distinct()
-                .filter(word -> word.length() > 12)
+                .filter(word -> word.length() > WORD_SIZE)
                 .map(word -> word.toLowerCase())
                 .sorted(Comparator.comparing(String::length))
-                .collect(Collectors.toList())
-                .subList(0, 100)
+                .limit(WORD_LIST_LENGTH)
                 .forEach(System.out::println);
     }
 
