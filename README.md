@@ -17,3 +17,5 @@
     >.sorted(Comparator.comparing(String::length)) => 글자 길이 비교해서 정렬(길이가 짧 -> 길 정렬)
     .sorted(Comparator.comparing(String::length).reversed()) => 글자 길이 비교해서 정렬 역순
 * distinct() 중복제거
+
+## Optional
