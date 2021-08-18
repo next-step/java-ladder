@@ -1,6 +1,7 @@
 package ladder.view;
 
 import ladder.domain.Ladder;
+import ladder.domain.Line;
 
 public class OutputView {
     private static final String MSG_RESULT = "실행 결과";
@@ -15,16 +16,18 @@ public class OutputView {
         ladder.getPlayers().forEach(name -> System.out.printf(MSG_FORMAT_NAME, name));
         System.out.println();
 
-        ladder.getLines().forEach(line -> {
-            System.out.print("  ");
-            for (int i = 0; i < line.size(); i++) {
-                if (line.point(i)) {
-                    System.out.print(LINE_TRUE);
-                    continue;
-                }
-                System.out.print(LINE_FALSE);
+        ladder.getLines().forEach(this::printLine);
+    }
+
+    private void printLine(Line line) {
+        System.out.print("  ");
+        for (int i = 0; i < line.size(); i++) {
+            if (line.point(i)) {
+                System.out.print(LINE_TRUE);
+                continue;
             }
-            System.out.println(LINE_END);
-        });
+            System.out.print(LINE_FALSE);
+        }
+        System.out.println(LINE_END);
     }
 }
