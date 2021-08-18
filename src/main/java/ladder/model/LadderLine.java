@@ -32,15 +32,24 @@ public class LadderLine {
         IntStream.range(SECOND_INDEX, pointCount)
                 .forEach(index -> {
                     Boolean previousPoint = points.get(index - INDEX_GAP_BETWEEN_NEXT_POINT);
-                    if (previousPoint == TRUE) {
-                        points.add(FALSE);
-                        return;
-                    }
-                    Boolean randomPoint = random.nextBoolean();
-                    points.add(randomPoint);
+                    points.add(generatePoint(previousPoint));
                 });
 
         return points;
+    }
+
+    private static Boolean generatePoint(Boolean previousPoint) {
+        validateNotNull(previousPoint);
+        if (previousPoint == TRUE) {
+            return FALSE;
+        }
+        return random.nextBoolean();
+    }
+
+    private static void validateNotNull(Boolean previousPoint) {
+        if (previousPoint == null) {
+            throw new IllegalArgumentException("포인트가 null일 수 없습니다.");
+        }
     }
 
     private void validateNotEmpty(List<Boolean> points) {
@@ -54,7 +63,7 @@ public class LadderLine {
                 .filter(index -> {
                     Boolean previousPoint = points.get(index - INDEX_GAP_BETWEEN_NEXT_POINT);
                     Boolean currentPoint = points.get(index);
-                    return previousPoint == TRUE && currentPoint == TRUE;
+                    return previousPoint && currentPoint;
                 })
                 .findAny()
                 .ifPresent(point -> {
