@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
@@ -36,10 +37,7 @@ class PlayersTest {
 		Player player2 = new Player(new Name("apple"));
 		Player player3 = new Player(new Name("pla"));
 
-		List<Player> players = new ArrayList<>();
-		players.add(player1);
-		players.add(player2);
-		players.add(player3);
+		List<Player> players = Arrays.asList(player1, player2, player3);
 		assertThat(resultPlayers.getPlayers()).isEqualTo(players);
 	}
 

@@ -3,6 +3,7 @@ package ladder.model;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
@@ -35,11 +36,7 @@ class LinesTest {
 	}
 
 	private List<Boolean> getPoints(boolean value1, boolean value2, boolean value3) {
-		List<Boolean> points = new ArrayList<>();
-		points.add(value1);
-		points.add(value2);
-		points.add(value3);
-		return points;
+		return Arrays.asList(value1, value2, value3);
 	}
 
 }

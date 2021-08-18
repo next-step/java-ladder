@@ -3,6 +3,7 @@ package ladder.model;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
@@ -19,20 +20,13 @@ class LineTest {
 	}
 
 	private List<Boolean> getPoints() {
-		List<Boolean> points = new ArrayList<>();
-		points.add(false);
-		points.add(false);
-		points.add(true);
-		return points;
+		return Arrays.asList(false, false, true);
 	}
 
 	@Test
 	@DisplayName("출력된 라인의 선에 따라 위치가 이동 된다.")
 	public void moveLine() {
-		List<Boolean> points = new ArrayList<>();
-		points.add(false);
-		points.add(true);
-		points.add(false);
+		List<Boolean> points = Arrays.asList(false, true, false);
 
 		Line line = new Line(points);
 
