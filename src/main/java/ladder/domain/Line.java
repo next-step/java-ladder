@@ -24,7 +24,11 @@ public class Line {
         }
     }
 
-    int size(){
+    public boolean point(int index){
+        return points.get(index);
+    }
+
+    public int size(){
         return this.points.size();
     }
 
