@@ -20,7 +20,6 @@ public class ResultView {
 
         ladder.getLines().stream()
                 .map(ResultView::lineToDash)
-                .collect(Collectors.toList())
                 .forEach(System.out::println);
     }
 
