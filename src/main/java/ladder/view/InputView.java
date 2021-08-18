@@ -23,10 +23,7 @@ public class InputView {
     }
 
     public static void printLadderHeightInputMessage() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(NEW_LINE);
-        stringBuilder.append(LADDER_HEIGHT_INPUT_MESSAGE);
-        printStream.println(stringBuilder);
+        printStream.println(NEW_LINE + LADDER_HEIGHT_INPUT_MESSAGE);
     }
 
     public static int inputLadderHeight() {
