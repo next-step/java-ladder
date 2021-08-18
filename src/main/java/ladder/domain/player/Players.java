@@ -11,41 +11,41 @@ import static java.util.stream.Collectors.toList;
 
 public class Players {
 
-	private static final String NAME_DELIMITER = ",";
-	private static final int MIN_SIZE = 2;
+    private static final String NAME_DELIMITER = ",";
+    private static final int MIN_SIZE = 2;
 
-	private final List<Player> players;
+    private final List<Player> players;
 
-	public Players(List<Player> players) {
-		validatePlayersSize(players);
-		this.players = players;
-	}
+    public Players(List<Player> players) {
+        validatePlayersSize(players);
+        this.players = players;
+    }
 
-	public static Players of(String playersName) {
-		validatePlayersName(playersName);
-		return Arrays.stream(playersName.split(NAME_DELIMITER))
-		             .map(Player::new)
-		             .collect(collectingAndThen(toList(), Players::new));
-	}
+    public static Players of(String playersName) {
+        validatePlayersName(playersName);
+        return Arrays.stream(playersName.split(NAME_DELIMITER))
+                .map(Player::new)
+                .collect(collectingAndThen(toList(), Players::new));
+    }
 
-	private static void validatePlayersSize(List<Player> players) {
-		if (players.isEmpty() || players.size() < MIN_SIZE) {
-			throw new PlayersSizeException();
-		}
-	}
+    private static void validatePlayersSize(List<Player> players) {
+        if (players.isEmpty() || players.size() < MIN_SIZE) {
+            throw new PlayersSizeException();
+        }
+    }
 
-	private static void validatePlayersName(String playersName) {
-		if (StringUtil.isBlank(playersName)) {
-			throw new PlayerNameException();
-		}
-	}
+    private static void validatePlayersName(String playersName) {
+        if (StringUtil.isBlank(playersName)) {
+            throw new PlayerNameException();
+        }
+    }
 
-	public int size() {
-		return players.size();
-	}
+    public int size() {
+        return players.size();
+    }
 
-	public List<Player> getPlayers() {
-		return Collections.unmodifiableList(players);
-	}
+    public List<Player> getPlayers() {
+        return Collections.unmodifiableList(players);
+    }
 
 }

@@ -15,7 +15,7 @@ public class Line {
 	}
 
 	public static Line of(int playersCount) {
-		return new Line(LineGenerator.generate(playersCount -1));
+		return new Line(LineGenerator.generate(playersCount - 1));
 	}
 
 	public static Line of(List<Boolean> points) {

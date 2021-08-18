@@ -12,34 +12,34 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LinesTest {
 
-	@Test
-	@DisplayName("객체 생성")
-	void construct() throws Exception {
-		//given
-		Lines lines = Lines.of(Arrays.asList(Line.of(2)));
+    @Test
+    @DisplayName("객체 생성")
+    void construct() throws Exception {
+        //given
+        Lines lines = Lines.of(Arrays.asList(Line.of(2)));
 
-		//when
-		List<Line> actual = lines.getLines();
+        //when
+        List<Line> actual = lines.getLines();
 
-		//then
-		assertThat(actual).hasSize(1);
+        //then
+        assertThat(actual).hasSize(1);
 
-	}
+    }
 
-	@Test
-	@DisplayName("사다리의 높이가 0인 경우")
-	void height_is_zero() throws Exception {
-		//given
-		int height = 0;
-		int playersCount = 5;
+    @Test
+    @DisplayName("사다리의 높이가 0인 경우")
+    void height_is_zero() throws Exception {
+        //given
+        int height = 0;
+        int playersCount = 5;
 
-		//when
-		ThrowableAssert.ThrowingCallable actual = () -> Lines.of(height, playersCount);
+        //when
+        ThrowableAssert.ThrowingCallable actual = () -> Lines.of(height, playersCount);
 
 
-		//then
-		assertThatThrownBy(actual).isInstanceOf(LinesSizeException.class)
-		                          .hasMessage("사다리의 높이는 1 이상 이어야 합니다.");
-	}
+        //then
+        assertThatThrownBy(actual).isInstanceOf(LinesSizeException.class)
+                .hasMessage("사다리의 높이는 1 이상 이어야 합니다.");
+    }
 
 }

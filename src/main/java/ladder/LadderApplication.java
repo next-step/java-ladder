@@ -6,15 +6,15 @@ import ladder.ui.ResultView;
 
 public class LadderApplication {
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		String playersName = InputView.inputPlayersName();
-		int ladderHeight = InputView.inputLadderHeight();
+        String playersName = InputView.inputPlayersName();
+        int ladderHeight = InputView.inputLadderHeight();
 
-		Ladder ladder = Ladder.of(playersName, ladderHeight);
+        Ladder ladder = Ladder.of(playersName, ladderHeight);
 
-		ResultView.printLadder(ladder);
+        ResultView.printLadder(ladder);
 
-	}
+    }
 
 }

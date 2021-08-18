@@ -11,36 +11,36 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class NameTest {
 
-	@ParameterizedTest(name = "참가자 이름 길이 미달 또는 초과 {index} [{arguments}]")
-	@ValueSource(strings = {
-			"over length name",
-			""
-	})
-	@DisplayName("참가자 이름 길이 미달 또는 초과")
-	void construct_exception(String name) throws Exception {
-		//given
-		//when
-		ThrowableAssert.ThrowingCallable actual = () -> new Name(name);
+    @ParameterizedTest(name = "참가자 이름 길이 미달 또는 초과 {index} [{arguments}]")
+    @ValueSource(strings = {
+            "over length name",
+            ""
+    })
+    @DisplayName("참가자 이름 길이 미달 또는 초과")
+    void construct_exception(String name) throws Exception {
+        //given
+        //when
+        ThrowableAssert.ThrowingCallable actual = () -> new Name(name);
 
-		//then
-		assertThatThrownBy(actual).isInstanceOf(PlayerNameException.class)
-		                          .hasMessage("참가자의 이름은 1~5글자만 허용됩니다.");
-	}
+        //then
+        assertThatThrownBy(actual).isInstanceOf(PlayerNameException.class)
+                .hasMessage("참가자의 이름은 1~5글자만 허용됩니다.");
+    }
 
-	@Test
-	@DisplayName("참가자 이름 생성")
-	void construct() throws Exception {
-		//given
-		String name = "ama";
+    @Test
+    @DisplayName("참가자 이름 생성")
+    void construct() throws Exception {
+        //given
+        String name = "ama";
 
-		//when
-		Name actual = new Name(name);
+        //when
+        Name actual = new Name(name);
 
-		//then
-		assertThat(actual).isEqualTo(new Name(name));
-		assertThat(actual.toString()).hasToString(name);
+        //then
+        assertThat(actual).isEqualTo(new Name(name));
+        assertThat(actual.toString()).hasToString(name);
 
-	}
+    }
 
 
 }

@@ -11,19 +11,19 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class LadderTest {
 
-	@Test
-	@DisplayName("사다리 생성 확인")
-	void construct() throws Exception {
-		//given
-		Ladder ladder = Ladder.of("pro,semi,ama", 3);
+    @Test
+    @DisplayName("사다리 생성 확인")
+    void construct() throws Exception {
+        //given
+        Ladder ladder = Ladder.of("pro,semi,ama", 3);
 
-		//when
-		List<Player> players = ladder.getPlayers();
-		List<Line> lines = ladder.getLines();
+        //when
+        List<Player> players = ladder.getPlayers();
+        List<Line> lines = ladder.getLines();
 
-		//then
-		assertThat(players).hasSize(3);
-		assertThat(lines).hasSize(3);
+        //then
+        assertThat(players).hasSize(3);
+        assertThat(lines).hasSize(3);
 
-	}
+    }
 }
