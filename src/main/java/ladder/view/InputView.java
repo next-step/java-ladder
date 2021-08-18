@@ -9,7 +9,7 @@ public class InputView {
     private static final String MSG_HEIGHT = "최대 사다리 높이는 몇 개인가요?";
     private static final String NAME_SPLIT_KEYWORD = ",";
 
-    static final Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
 
     public List<String> names(){
         System.out.println(MSG_NAMES);

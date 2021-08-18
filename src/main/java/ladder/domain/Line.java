@@ -16,10 +16,10 @@ public class Line {
         Random random = new Random();
         for (int i = 0; i < countOfPlayer - 1; i++) {
             if (state) {
-                state = false;
-            } else {
-                state = random.nextBoolean();
+                this.points.add(false);
+                continue;
             }
+            state = random.nextBoolean();
             this.points.add(state);
         }
     }

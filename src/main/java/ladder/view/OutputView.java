@@ -4,6 +4,7 @@ import ladder.domain.Ladder;
 
 public class OutputView {
     private static final String MSG_RESULT = "실행 결과";
+    private static final String MSG_FORMAT_NAME = "%5s ";
     private static final String LINE_TRUE = "|-----";
     private static final String LINE_FALSE = "|     ";
     private static final String LINE_END = "|";
@@ -11,7 +12,7 @@ public class OutputView {
     public void printResult(Ladder ladder) {
         System.out.println(MSG_RESULT);
 
-        ladder.getPlayers().forEach(name -> System.out.printf("%5s ", name));
+        ladder.getPlayers().forEach(name -> System.out.printf(MSG_FORMAT_NAME, name));
         System.out.println();
 
         ladder.getLines().forEach(line -> {
@@ -19,9 +20,9 @@ public class OutputView {
             for (int i = 0; i < line.size(); i++) {
                 if (line.point(i)) {
                     System.out.print(LINE_TRUE);
-                } else {
-                    System.out.print(LINE_FALSE);
+                    continue;
                 }
+                System.out.print(LINE_FALSE);
             }
             System.out.println(LINE_END);
         });
