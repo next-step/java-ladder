@@ -12,6 +12,9 @@ public class Line {
     }
 
     Line(int countOfPlayer) {
+        if (countOfPlayer < 2) {
+            throw new IllegalArgumentException("최소 2인 이상 플레이 가능합니다.");
+        }
         boolean state = false;
         Random random = new Random();
         for (int i = 0; i < countOfPlayer - 1; i++) {

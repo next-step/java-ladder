@@ -6,6 +6,7 @@ import ladder.domain.Line;
 public class OutputView {
     private static final String MSG_RESULT = "실행 결과";
     private static final String MSG_FORMAT_NAME = "%5s ";
+    private static final String LINE_START = "  ";
     private static final String LINE_TRUE = "|-----";
     private static final String LINE_FALSE = "|     ";
     private static final String LINE_END = "|";
@@ -20,7 +21,7 @@ public class OutputView {
     }
 
     private void printLine(Line line) {
-        System.out.print("  ");
+        System.out.print(LINE_START);
         for (int i = 0; i < line.size(); i++) {
             if (line.point(i)) {
                 System.out.print(LINE_TRUE);
