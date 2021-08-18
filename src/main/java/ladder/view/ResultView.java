@@ -40,8 +40,9 @@ public class ResultView {
 
     private static String getNameResult(List<String> names) {
         StringBuilder stringBuilder = new StringBuilder();
+        int blankSpaceLength;
         for (String name : names) {
-            int blankSpaceLength = LADDER_WIDTH - name.length();
+            blankSpaceLength = LADDER_WIDTH - name.length();
             stringBuilder.append(getBlankSpace(blankSpaceLength));
             stringBuilder.append(name);
             stringBuilder.append(ONE_BLANK_SPACE);
