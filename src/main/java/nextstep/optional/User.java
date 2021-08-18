@@ -1,6 +1,5 @@
 package nextstep.optional;
 
-import java.util.Objects;
 import java.util.Optional;
 
 public class User {
@@ -42,13 +41,10 @@ public class User {
      * nextstep.optional.UserTest 의 테스트가 모두 pass 해야 한다.
      */
     public static boolean ageIsInRange2(User user) {
-        if(Optional.ofNullable(user).isPresent()) {
-            return Optional.ofNullable(user.getAge())
-                    .filter(u -> (u >= 30 && u <= 45))
-                    .isPresent();
-        }
-        return false;
-
+        return Optional.ofNullable(user)
+                .map(User::getAge)
+                .filter(a -> (30 <= a && a <= 45))
+                .isPresent();
     }
 
     @Override
