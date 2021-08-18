@@ -31,7 +31,7 @@ public class LadderOutputView {
 	}
 
 	public static void printResultCreateLadder(Lines ladderLines) {
-		ladderLines.getLines()
+		ladderLines.getLadder()
 			.stream()
 			.map(LadderOutputView::printLine)
 			.forEach(System.out::println);

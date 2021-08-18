@@ -25,8 +25,8 @@ class LadderCreateTest {
 
 		Lines lines = DummyLadderCreate.createLadder(players, height);
 
-		assertThat(lines.getLines().size()).isEqualTo(3);
-		assertThat(lines.getLines()).containsExactly(new Line(getPoints()), new Line(getPoints()),
+		assertThat(lines.getLadder().size()).isEqualTo(3);
+		assertThat(lines.getLadder()).containsExactly(new Line(getPoints()), new Line(getPoints()),
 			new Line(getPoints()));
 	}
 
