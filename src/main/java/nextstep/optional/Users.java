@@ -12,12 +12,21 @@ public class Users {
             new User("jk", 40),
             new User("honux", 45));
 
+//    User getUser(String name) {
+//        for (User user : users) {
+//            if (user.matchName(name)) {
+//                return user;
+//            }
+//        }
+//        return DEFAULT_USER;
+//    }
+
+    /**
+     * stream 과 Optional 을 사용한 리팩토링
+     */
     User getUser(String name) {
-        for (User user : users) {
-            if (user.matchName(name)) {
-                return user;
-            }
-        }
-        return DEFAULT_USER;
+        return users.stream()
+                .filter((user) -> user.getName().equals(name))
+                .findFirst().orElse(DEFAULT_USER);
     }
 }

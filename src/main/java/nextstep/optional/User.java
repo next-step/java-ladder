@@ -1,5 +1,7 @@
 package nextstep.optional;
 
+import java.util.Optional;
+
 public class User {
     private String name;
     private Integer age;
@@ -32,8 +34,17 @@ public class User {
         return isInRange;
     }
 
+    /**
+     * nextstep.optional.User 의 ageIsInRange1() 메소드는 30살 이상, 45살 이하에 해당하는 User 가 존재하는 경우 true 를 반환하는 메소드이다.
+     * 같은 기능을 Optional 을 활용해 ageIsInRange2() 메소드에 구현한다.
+     * 메소드 인자로 받은 User 를 Optional 로 생성하면 stream 의 map, filter 와 같은 메소드를 사용하는 것이 가능하다.
+     * nextstep.optional.UserTest 의 테스트가 모두 pass 해야 한다.
+     */
     public static boolean ageIsInRange2(User user) {
-        return false;
+        return Optional.ofNullable(user)
+                .map(User::getAge)
+                .filter(a -> (30 <= a && a <= 45))
+                .isPresent();
     }
 
     @Override
