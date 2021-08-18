@@ -12,6 +12,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderTests {
 
+    @DisplayName("생성 테스트")
+    @Test
+    void create() {
+        Line line = Line.of(Arrays.asList(true, false, false, true));
+        Ladder ladder = Ladder.of(Arrays.asList(line));
+
+        assertThat(ladder).isEqualTo(Ladder.of(Arrays.asList(Line.of(Arrays.asList(true, false, false, true)))));
+    }
+
     @DisplayName("Ladder 의 높이, 폭 가져올 수 있는지 테스트")
     @Test
     void getLadderHeightWidthTest() {
@@ -41,5 +50,20 @@ public class LadderTests {
 
         return Ladder.of(ladderMaxLength, countOfPerson);
     }
+
+    @DisplayName("참가 번호 전달 했을 때 해당하는 사다리의 이동 후 결과 번호를 잘 리턴하는지 테스트")
+    @Test
+    void moveTest() {
+        Line line1 = Line.of(Arrays.asList(false, false, false, true));
+        Line line2 = Line.of(Arrays.asList(false, true, false, true));
+        Line line3 = Line.of(Arrays.asList(false, false, true, false));
+
+        Ladder ladder = Ladder.of(Arrays.asList(line1, line2, line3));
+
+        ResultView.drawLadder(ladder);
+
+        assertThat(ladder.move(2)).isEqualTo(1);
+    }
+
 
 }

@@ -55,7 +55,7 @@ public class Participant {
         return Objects.hash(participant);
     }
 
-    public ParticipateNumber getParticipationNumber(String person) {
-        return ParticipateNumber.of(participant.indexOf(person));
+    public int getParticipationNumber(String person) {
+        return participant.indexOf(person);
     }
 }
