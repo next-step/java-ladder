@@ -6,13 +6,14 @@ import java.util.stream.Stream;
 import static java.util.stream.Collectors.toList;
 
 public class Ladder {
+    private static final int GAP_BETWEEN_PLAYER_COUNT_AND_POINT_COUNT = 1;
     private static final int MIN_LADDER_HEIGHT = 1;
 
     private final List<LadderLine> lines;
 
     public Ladder(int playerCount, int ladderHeight) {
         validateMinLadderHeight(ladderHeight);
-        this.lines = generateLines(ladderHeight, playerCount - 1);
+        lines = generateLines(ladderHeight, playerCount - GAP_BETWEEN_PLAYER_COUNT_AND_POINT_COUNT);
     }
 
     private void validateMinLadderHeight(int ladderHeight) {
