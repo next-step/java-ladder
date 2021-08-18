@@ -1,4 +1,4 @@
-package ladder;
+package ladder.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class LadderTest {
 
-    @DisplayName("입력한 개수에 맞게 플레이어와 사다리 높이가 생성되어야한다.")
+    @DisplayName("플레이어 수와 사다리 높이 확인")
     @Test
     void create() {
         Ladder ladder = new Ladder(Arrays.asList("aa", "bb", "cc", "dd", "ee"), 3);
