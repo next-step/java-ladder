@@ -52,13 +52,12 @@ public class Results {
 			return true;
 		if (o == null || getClass() != o.getClass())
 			return false;
-		Results results = (Results)o;
-		return Objects.equals(getResults(), results.getResults());
+		Results results1 = (Results)o;
+		return Objects.equals(results, results1.results);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(getResults());
+		return Objects.hash(results);
 	}
-
 }

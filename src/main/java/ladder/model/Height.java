@@ -30,8 +30,8 @@ public class Height {
 			return true;
 		if (o == null || getClass() != o.getClass())
 			return false;
-		Height that = (Height)o;
-		return height == that.height;
+		Height height1 = (Height)o;
+		return height == height1.height;
 	}
 
 	@Override
