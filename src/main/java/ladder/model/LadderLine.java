@@ -63,7 +63,7 @@ public class LadderLine {
                 .filter(index -> {
                     Boolean previousPoint = points.get(index - INDEX_GAP_BETWEEN_NEXT_POINT);
                     Boolean currentPoint = points.get(index);
-                    return previousPoint && currentPoint;
+                    return TRUE == previousPoint && TRUE == currentPoint;
                 })
                 .findAny()
                 .ifPresent(point -> {
