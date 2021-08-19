@@ -20,12 +20,12 @@ public class Ladder {
     this.lines = Collections.unmodifiableList(lines);
   }
 
-  public static Ladder createLadder(final int height, final int players) {
+  public static List<Line> of(final int height, final int players) {
     validationHeight(height);
 
-    return new Ladder(IntStream.range(START_INDEX, height)
+    return IntStream.range(START_INDEX, height)
         .mapToObj(i -> Line.createLine(players))
-        .collect(Collectors.toList()));
+        .collect(Collectors.toList());
   }
 
   private static void validationHeight(final int height) {
