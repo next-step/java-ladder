@@ -23,9 +23,9 @@ class LadderGameTest {
 		Players players = new Players("cross,pie,kim");
 		GameResults gameResults = LadderGame.startLadderGame(lines, players);
 
-		assertThat(gameResults.findResultOfPerson("cross")).extracting("position").containsExactly(0);
-		assertThat(gameResults.findResultOfPerson("pie")).extracting("position").containsExactly(2);
-		assertThat(gameResults.findResultOfPerson("kim")).extracting("position").containsExactly(1);
+		assertThat(gameResults.findResultOfPerson("cross")).extracting("position").containsExactly(1);
+		assertThat(gameResults.findResultOfPerson("pie")).extracting("position").containsExactly(0);
+		assertThat(gameResults.findResultOfPerson("kim")).extracting("position").containsExactly(2);
 	}
 
 	private List<Line> getLine() {
@@ -36,9 +36,9 @@ class LadderGameTest {
 
 	private List<Point> getPoints() {
 		List<Point> points = new ArrayList<>();
-		points.add(new Point(false));
-		points.add(new Point(true));
-		points.add(new Point(false));
+		points.add(new Point(false, true));
+		points.add(new Point(true, false));
+		points.add(new Point(false, false));
 		return points;
 	}
 }

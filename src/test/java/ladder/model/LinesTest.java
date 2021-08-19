@@ -34,9 +34,9 @@ class LinesTest {
 	}
 
 	private List<Point> getPoints() {
-		return Arrays.asList(new Point(false),
-			new Point(true),
-			new Point(false));
+		return Arrays.asList(new Point(false, true),
+			new Point(true, false),
+			new Point(false, false));
 	}
 
 }

@@ -33,9 +33,9 @@ class LadderCreateTest {
 
 	private List<Point> getPoints() {
 		List<Point> points = new ArrayList<>();
-		points.add(new Point(false));
-		points.add(new Point(false));
-		points.add(new Point(false));
+		points.add(new Point(false, false));
+		points.add(new Point(false, false));
+		points.add(new Point(false, false));
 		return points;
 	}
 
@@ -52,7 +52,7 @@ class LadderCreateTest {
 
 		private static List<Point> getPoints(int count) {
 			return IntStream.range(0, count)
-				.mapToObj(i -> new Point(false))
+				.mapToObj(i -> new Point(false, false))
 				.collect(Collectors.toList());
 		}
 	}
