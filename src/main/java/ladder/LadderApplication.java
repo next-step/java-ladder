@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.Locale;
 
 public class LadderApplication {
+    private static final String SHOW_RESULT_ALL = "all";
+
     public static void main(String args[]) {
         List<String> participantList = InputView.getParticipant();
         List<String> resultList = InputView.getResults();
@@ -47,6 +49,6 @@ public class LadderApplication {
 
     private static boolean isAll(String person) {
         String lowerCasePerson = person.toLowerCase(Locale.ROOT);
-        return lowerCasePerson.equals("all");
+        return lowerCasePerson.equals(SHOW_RESULT_ALL);
     }
 }
