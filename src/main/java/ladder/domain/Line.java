@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Line {
+    public static final int MIN_PLAYERS = 2;
     private List<Boolean> points = new ArrayList<>();
 
     public Line(List<Player> players){
@@ -12,18 +13,22 @@ public class Line {
     }
 
     Line(int countOfPlayer) {
-        if (countOfPlayer < 2) {
+        if (countOfPlayer < MIN_PLAYERS) {
             throw new IllegalArgumentException("최소 2인 이상 플레이 가능합니다.");
         }
+        add(countOfPlayer);
+    }
+
+    private void add(int countOfPlayer) {
         boolean state = false;
         Random random = new Random();
         for (int i = 0; i < countOfPlayer - 1; i++) {
             if (state) {
-                this.points.add(false);
+                points.add(false);
                 continue;
             }
             state = random.nextBoolean();
-            this.points.add(state);
+            points.add(state);
         }
     }
 
@@ -32,7 +37,7 @@ public class Line {
     }
 
     public int size(){
-        return this.points.size();
+        return points.size();
     }
 
     @Override

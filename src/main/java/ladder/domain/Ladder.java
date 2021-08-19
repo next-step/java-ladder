@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Ladder {
-    private List<Player> players;
-    private List<Line> lines = new ArrayList<>();
+    private final List<Player> players;
+    private final List<Line> lines = new ArrayList<>();
 
     public Ladder(List<String> names, int height) {
         this.players = names.stream()
