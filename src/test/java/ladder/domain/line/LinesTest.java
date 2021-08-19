@@ -58,8 +58,8 @@ class LinesTest {
     void find_index_of_result(int indexOfStart, int expected) throws Exception {
         //given
         Lines lines = Lines.of(Arrays.asList(
-                Line.of(Arrays.asList(true, false)),
-                Line.of(Arrays.asList(false, true))
+                Line.of(true, false),
+                Line.of(false, true)
         ));
 
         //when

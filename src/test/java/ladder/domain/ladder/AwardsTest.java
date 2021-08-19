@@ -15,7 +15,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class AwardsTest {
 
-    private String namesOfAwards = "fail,5000,fail,3000";
+    private final String namesOfAwards = "fail,5000,fail,3000";
 
     @Test
     @DisplayName("상금 일급 컬렉션 객체 생성")

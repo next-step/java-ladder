@@ -15,7 +15,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LineTest {
 
-    private Line hasLine = Line.of(Arrays.asList(true, false, true));
+    private final Line defaultLine = Line.of(Arrays.asList(true, false, true));
 
     @Test
     @DisplayName("연속된 라인으로 생성한 경우")
@@ -63,7 +63,7 @@ class LineTest {
         //given
 
         //when
-        boolean actual = hasLine.hasNext(indexOfLine);
+        boolean actual = defaultLine.hasNext(indexOfLine);
 
         //then
         assertThat(actual).isEqualTo(expected);
@@ -84,7 +84,7 @@ class LineTest {
         //given
 
         //when
-        boolean actual = hasLine.hasPrevious(indexOfLine);
+        boolean actual = defaultLine.hasPrevious(indexOfLine);
 
         //then
         assertThat(actual).isEqualTo(expected);
