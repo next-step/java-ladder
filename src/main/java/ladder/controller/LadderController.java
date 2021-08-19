@@ -3,8 +3,6 @@ package ladder.controller;
 import ladder.model.GameResults;
 import ladder.model.Height;
 import ladder.model.Lines;
-import ladder.model.Name;
-import ladder.model.Player;
 import ladder.model.Players;
 import ladder.model.Results;
 import ladder.service.LadderCreate;

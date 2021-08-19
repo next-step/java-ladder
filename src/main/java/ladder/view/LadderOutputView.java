@@ -8,6 +8,7 @@ import ladder.model.GameResult;
 import ladder.model.Line;
 import ladder.model.Lines;
 import ladder.model.Players;
+import ladder.model.Point;
 import ladder.model.Results;
 
 public class LadderOutputView {
@@ -44,8 +45,8 @@ public class LadderOutputView {
 			.collect(Collectors.joining());
 	}
 
-	private static String drawLine(boolean point) {
-		if (point) {
+	private static String drawLine(Point point) {
+		if (point.isDirection()) {
 			return EXIST_LINE;
 		}
 		return NOTHING_LINE;
