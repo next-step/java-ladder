@@ -18,16 +18,15 @@ class LineTest {
 		assertThat(line).isEqualTo(new Line(getPoints()));
 	}
 
-	private List<Boolean> getPoints() {
-		return Arrays.asList(false, false, true);
+	private List<Point> getPoints() {
+
+		return Arrays.asList(new Point(false), new Point(true), new Point(false));
 	}
 
 	@Test
 	@DisplayName("출력된 라인의 선에 따라 위치가 이동 된다.")
 	public void moveLine() {
-		List<Boolean> points = Arrays.asList(false, true, false);
-
-		Line line = new Line(points);
+		Line line = new Line(getPoints());
 
 		assertThat(line.move(0)).isEqualTo(1);
 		assertThat(line.move(1)).isEqualTo(0);
