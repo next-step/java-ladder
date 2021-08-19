@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class RandomCreatePoint implements CreatePointStrategy {
     private static final RandomCreatePoint randomCreatePoint = new RandomCreatePoint();
-    private static Random random = new Random();
+    private static final Random random = new Random();
 
     private RandomCreatePoint() {
     }
@@ -13,7 +13,7 @@ public class RandomCreatePoint implements CreatePointStrategy {
         return random.nextBoolean();
     }
 
-    public static CreatePointStrategy of() {
+    public static final CreatePointStrategy of() {
         return randomCreatePoint;
     }
 }
