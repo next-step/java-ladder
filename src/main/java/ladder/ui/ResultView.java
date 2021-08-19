@@ -7,6 +7,7 @@ import ladder.domain.line.Line;
 import ladder.utils.StringUtil;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class ResultView {
@@ -52,5 +53,17 @@ public class ResultView {
     public static void printWantedPlayer(LadderResult ladderResult, String wantedPlayer) {
         System.out.println(LADDER_RESULT);
         System.out.println(ladderResult.resultOfPlayer(wantedPlayer));
+    }
+
+    public static void printAllPlayer(Map<String, String> results) {
+        System.out.println(LADDER_RESULT);
+        results.entrySet()
+                .stream()
+                .map(ResultView::resultAllPlayer)
+                .forEach(System.out::println);
+    }
+
+    private static String resultAllPlayer(Map.Entry<String, String> entry) {
+        return String.format("%s : %s", entry.getKey(), entry.getValue());
     }
 }
