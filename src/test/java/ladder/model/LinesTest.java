@@ -24,19 +24,19 @@ class LinesTest {
 	public void findResultPosition() {
 		Lines lines = new Lines(getLine());
 
-		assertThat(lines.findResultPosition(1)).isEqualTo(2);
+		assertThat(lines.findResultPosition(1)).isEqualTo(0);
 	}
 
 	private List<Line> getLine() {
 		List<Line> lines = new ArrayList<>();
-		lines.add(new Line(getPoints(false, false, true)));
-		lines.add(new Line(getPoints(false, true, false)));
-		lines.add(new Line(getPoints(true, true, false)));
+		lines.add(new Line(getPoints()));
 		return lines;
 	}
 
-	private List<Boolean> getPoints(boolean value1, boolean value2, boolean value3) {
-		return Arrays.asList(value1, value2, value3);
+	private List<Point> getPoints() {
+		return Arrays.asList(new Point(false),
+			new Point(true),
+			new Point(false));
 	}
 
 }
