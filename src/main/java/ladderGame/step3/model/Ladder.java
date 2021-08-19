@@ -24,7 +24,7 @@ public class Ladder {
     validationHeight(height);
 
     return IntStream.range(START_INDEX, height)
-        .mapToObj(i -> Line.createLine(players))
+        .mapToObj(i -> new Line(Line.createLine(players)))
         .collect(Collectors.toList());
   }
 
