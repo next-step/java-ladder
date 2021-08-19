@@ -15,6 +15,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LineTest {
 
+    private Line hasLine = Line.of(Arrays.asList(true, false, true));
+
     @Test
     @DisplayName("연속된 라인으로 생성한 경우")
     void can_not_be_consecutive() throws Exception {
@@ -46,6 +48,47 @@ class LineTest {
 
         //then
         assertThat(actual).isEqualTo(expected);
+    }
+
+    @ParameterizedTest(name = "현재 칸에 라인 존재여부 {index} [{arguments}]")
+    @CsvSource(value = {
+            "0,true",
+            "1,false",
+            "2,true",
+            "3,false"
+
+    })
+    @DisplayName("현재 칸에 라인 존재여부")
+    void hasNext(int indexOfLine, boolean expected) throws Exception {
+        //given
+
+        //when
+        boolean actual = hasLine.hasNext(indexOfLine);
+
+        //then
+        assertThat(actual).isEqualTo(expected);
+
+    }
+
+
+    @ParameterizedTest(name = "이전 칸에 라인 존재여부 {index} [{arguments}]")
+    @CsvSource(value = {
+            "0,false",
+            "1,true",
+            "2,false",
+            "3,true"
+
+    })
+    @DisplayName("이전 칸에 라인 존재여부")
+    void hasPrevious(int indexOfLine, boolean expected) throws Exception {
+        //given
+
+        //when
+        boolean actual = hasLine.hasPrevious(indexOfLine);
+
+        //then
+        assertThat(actual).isEqualTo(expected);
+
     }
 
 }

@@ -41,6 +41,20 @@ public class Line {
 		return points.size();
 	}
 
+	public boolean hasNext(int index) {
+		if (index == size()) {
+			return false;
+		}
+		return points.get(index);
+	}
+
+	public boolean hasPrevious(int index) {
+		if (index == 0) {
+			return false;
+		}
+		return points.get(index - 1);
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) {
