@@ -10,26 +10,26 @@ public class Line {
     private final Random random = new Random();
     private final List<Boolean> points;
 
-    public Line(int countOfPerson) {
-        // 라인의 좌표 값에 선이 있는지 유무를 판단하는 로직 추가
-        List<Boolean> temps = new ArrayList<>();
-        for (int i = 0; i < countOfPerson; i++) {
-            if (i == 0) {
-                temps.add(false);
-                continue;
-            }
-            boolean isLine = random.nextBoolean();
-            if (isLine) {
-                temps.add(true);
-                if (i != countOfPerson - 1) {
-                    temps.add(false);
-                }
-                i++;
-            } else {
-                temps.add(false);
-            }
+    public Line(final int countOfPerson) {
+        this.points = dot(countOfPerson);
+    }
+
+    private List<Boolean> dot(final int countOfPerson) {
+        List<Boolean> points = new ArrayList<>(Collections.singletonList(false));
+        for (int i = 1; i < countOfPerson; i++) {
+            boolean previous = points.get(i - 1);
+            boolean next = next(previous);
+            points.add(next);
         }
-        this.points = temps;
+        return points;
+    }
+
+    private boolean next(final boolean previous) {
+        boolean next = false;
+        if (!previous) {
+            next = random.nextBoolean();
+        }
+        return next;
     }
 
     public List<Boolean> getPoints() {
