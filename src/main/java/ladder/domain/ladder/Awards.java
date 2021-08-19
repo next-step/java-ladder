@@ -21,7 +21,7 @@ public class Awards {
         this.awards = awards;
     }
 
-    public static Awards from(String namesOfAwards) {
+    public static Awards of(String namesOfAwards) {
         validateBlank(namesOfAwards);
         return Arrays.stream(namesOfAwards.split(COMMA))
                 .map(Award::new)
@@ -42,6 +42,10 @@ public class Awards {
 
     public int size() {
         return awards.size();
+    }
+
+    public String name(int indexOfAward) {
+        return awards.get(indexOfAward).toString();
     }
 
     @Override
