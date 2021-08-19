@@ -37,6 +37,22 @@ public class Lines {
         return Collections.unmodifiableList(lines);
     }
 
+    public int indexOfResult(int indexOfStart) {
+        int indexOfResult = indexOfStart;
+        for (Line line : lines) {
+            indexOfResult = indexOfResult(indexOfResult, line);
+        }
+        return indexOfResult;
+    }
+
+    private int indexOfResult(int indexOfResult, Line line) {
+        if (line.hasNext(indexOfResult)) {
+            return indexOfResult + 1;
+        }
+
+        return line.hasPrevious(indexOfResult) ? indexOfResult - 1 : indexOfResult;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
