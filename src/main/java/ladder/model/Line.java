@@ -16,14 +16,24 @@ public class Line {
 
 	public static Line createLine(int playerCount) {
 		List<Point> points = new ArrayList<>();
-		points.add(new Point(false));
+		points.add(new Point(false, new LineSketch().drawLine()));
 		initBody(playerCount, points);
+		points.add(new Point(points.get(points.size() - 1).isRight(), false));
 		return new Line(points);
 	}
 
 	private static void initBody(int playerCount, List<Point> points) {
-		IntStream.range(1, playerCount)
-			.forEach(i -> points.add(new Point(LineSketch.drawLine(points.get(i - 1).isDirection()))));
+		IntStream.range(1, playerCount - 1).forEach(i -> {
+			boolean right = points.get(i - 1).isRight();
+			points.add(new Point(right, checkPrevDirection(right)));
+		});
+	}
+
+	private static boolean checkPrevDirection(boolean right) {
+		if (right) {
+			return false;
+		}
+		return new LineSketch().drawLine();
 	}
 
 	public List<Point> getPoints() {
@@ -31,11 +41,7 @@ public class Line {
 	}
 
 	public int move(int position) {
-		boolean right = false;
-		if (position < points.size() - 1) {
-			right = points.get(position + 1).isDirection();
-		}
-		return points.get(position).movePosition(position, right);
+		return points.get(position).movePosition(position);
 	}
 
 	@Override
