@@ -40,7 +40,7 @@ public class LadderLine {
 
     private static Boolean generatePoint(Boolean previousPoint) {
         validateNotNull(previousPoint);
-        if (previousPoint == TRUE) {
+        if (TRUE == previousPoint) {
             return FALSE;
         }
         return random.nextBoolean();
