@@ -1,5 +1,6 @@
 package ladder;
 
+import ladder.domain.ladder.Awards;
 import ladder.domain.ladder.Ladder;
 import ladder.ui.InputView;
 import ladder.ui.ResultView;
@@ -13,9 +14,10 @@ public class LadderApplication {
         int ladderHeight = InputView.inputLadderHeight();
 
         Ladder ladder = Ladder.of(playersName, ladderHeight);
-
-
         ResultView.printLadder(ladder);
+
+        Awards awards = Awards.of(namesOfAwards);
+        ResultView.printAwards(awards);
 
     }
 

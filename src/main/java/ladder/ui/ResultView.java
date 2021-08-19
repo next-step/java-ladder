@@ -1,10 +1,11 @@
 package ladder.ui;
 
+import ladder.domain.ladder.Awards;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.line.Line;
-import ladder.domain.player.Player;
 import ladder.utils.StringUtil;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class ResultView {
@@ -32,11 +33,17 @@ public class ResultView {
     private static void printPlayers(Ladder ladder) {
         System.out.println(RESULT_MESSAGE);
 
-        String playersName = ladder.getPlayers().stream()
-                .map(Player::toString)
-                .map(name -> StringUtil.rightPad(name, 6))
-                .collect(Collectors.joining());
-        System.out.println(playersName);
+        System.out.println(names(ladder.getPlayers()));
     }
 
+    public static void printAwards(Awards awards) {
+        System.out.println(names(awards.getAwards()));
+    }
+
+    private static String names(List<?> list) {
+        return list.stream()
+                .map(Object::toString)
+                .map(name -> StringUtil.rightPad(name, 6))
+                .collect(Collectors.joining());
+    }
 }

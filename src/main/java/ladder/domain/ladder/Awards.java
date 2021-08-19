@@ -3,6 +3,7 @@ package ladder.domain.ladder;
 import ladder.utils.StringUtil;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -46,6 +47,10 @@ public class Awards {
 
     public String name(int indexOfAward) {
         return awards.get(indexOfAward).toString();
+    }
+
+    public List<Award> getAwards() {
+        return Collections.unmodifiableList(awards);
     }
 
     @Override
