@@ -5,20 +5,20 @@ import nextstep.ladders.domain.*;
 
 public class ConsoleOutputView {
 
-    public void print(Ladder ladder) {
+    public void print(final Participants participants, final Ladder ladder) {
+        printIntro();
+        printParticipants(participants);
+        printLadder(ladder);
+    }
+
+    private void printIntro() {
         System.out.println("실행 결과");
         System.out.println();
+    }
 
-        Participants participants = ladder.getParticipants();
-        Lines lines = ladder.getLines();
-
-        for (Participant participant : participants.getParticipants()) {
-            printParticipant(participant);
-        }
+    private void printParticipants(Participants participants) {
+        participants.getParticipants().forEach(this::printParticipant);
         System.out.println();
-        for (Line line : lines.getLines()) {
-            printLadder(line);
-        }
     }
 
     private void printParticipant(Participant participant) {
@@ -26,14 +26,28 @@ public class ConsoleOutputView {
         System.out.printf("%5s ", name);
     }
 
-    private void printLadder(Line line) {
+    private void printLadder(Ladder ladder) {
+        printLines(ladder.getLines());
+    }
+
+    private void printLines(Lines lines) {
+        for (Line line : lines.getLines()) {
+            printLine(line);
+        }
+    }
+
+    private void printLine(Line line) {
         for (Boolean point : line.getPoints()) {
-            if (point) {
-                System.out.print("-----|");
-            } else {
-                System.out.print("     |");
-            }
+            printPoint(point);
         }
         System.out.println();
+    }
+
+    private void printPoint(Boolean point) {
+        if (point) {
+            System.out.print("-----|");
+            return;
+        }
+        System.out.print("     |");
     }
 }
