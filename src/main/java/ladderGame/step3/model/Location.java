@@ -1,7 +1,6 @@
 package ladderGame.step3.model;
 
 import java.util.Objects;
-import ladderGame.step3.util.RandomMove;
 
 public class Location {
 
@@ -48,12 +47,12 @@ public class Location {
     return direction.getMovingPoint();
   }
 
-  public Location next(final Location beforeLocation) {
-    if (beforeLocation.current) {
+  public Location next(final boolean current) {
+    if (this.current) {
       return Location.first(true).nextLocation(false);
     }
 
-    return Location.first(false).nextLocation(RandomMove.createRandomMoveValue());
+    return Location.first(false).nextLocation(current);
   }
 
   public Location last() {
