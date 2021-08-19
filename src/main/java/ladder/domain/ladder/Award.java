@@ -1,23 +1,13 @@
 package ladder.domain.ladder;
 
-import ladder.utils.StringUtil;
-
 import java.util.Objects;
 
 public class Award {
 
-    private static final int LIMIT_LENGTH = 5;
-
-    private final String name;
+    private final Name name;
 
     public Award(String name) {
-        if (StringUtil.isBlank(name)) {
-            throw new AwardNameException();
-        }
-        if (name.trim().length() > LIMIT_LENGTH) {
-            throw new AwardNameException();
-        }
-        this.name = name;
+        this.name = new Name(name);
     }
 
     @Override
