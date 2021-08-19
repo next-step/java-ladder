@@ -14,6 +14,7 @@ import ladder.model.Height;
 import ladder.model.Line;
 import ladder.model.Lines;
 import ladder.model.Players;
+import ladder.model.Point;
 
 class LadderCreateTest {
 
@@ -30,11 +31,11 @@ class LadderCreateTest {
 			new Line(getPoints()));
 	}
 
-	private List<Boolean> getPoints() {
-		List<Boolean> points = new ArrayList<>();
-		points.add(false);
-		points.add(false);
-		points.add(false);
+	private List<Point> getPoints() {
+		List<Point> points = new ArrayList<>();
+		points.add(new Point(false));
+		points.add(new Point(false));
+		points.add(new Point(false));
 		return points;
 	}
 
@@ -45,16 +46,15 @@ class LadderCreateTest {
 				.collect(Collectors.toList()));
 		}
 
-		private static List<Boolean> createLinePoints(Players players) {
+		private static List<Point> createLinePoints(Players players) {
 			return getPoints(players.findPlayerCount());
 		}
 
-		private static List<Boolean> getPoints(int count) {
+		private static List<Point> getPoints(int count) {
 			return IntStream.range(0, count)
-				.mapToObj(i -> false)
+				.mapToObj(i -> new Point(false))
 				.collect(Collectors.toList());
 		}
-
 	}
 
 }
