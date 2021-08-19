@@ -14,26 +14,26 @@ public class Line {
 		this.points = Collections.unmodifiableList(points);
 	}
 
-	public static Line createLine(int playerCount) {
+	public static Line createLine(int playerCount, LineSketch lineSketch) {
 		List<Point> points = new ArrayList<>();
-		points.add(new Point(false, new LineSketch().drawLine()));
-		initBody(playerCount, points);
+		points.add(new Point(false, checkPrevDirection(false, lineSketch)));
+		initBody(playerCount, points, lineSketch);
 		points.add(new Point(points.get(points.size() - 1).isRight(), false));
 		return new Line(points);
 	}
 
-	private static void initBody(int playerCount, List<Point> points) {
+	private static void initBody(int playerCount, List<Point> points, LineSketch lineSketch) {
 		IntStream.range(1, playerCount - 1).forEach(i -> {
 			boolean right = points.get(i - 1).isRight();
-			points.add(new Point(right, checkPrevDirection(right)));
+			points.add(new Point(right, checkPrevDirection(right, lineSketch)));
 		});
 	}
 
-	private static boolean checkPrevDirection(boolean right) {
+	private static boolean checkPrevDirection(boolean right, LineSketch lineSketch) {
 		if (right) {
 			return false;
 		}
-		return new LineSketch().drawLine();
+		return lineSketch.drawLine();
 	}
 
 	public List<Point> getPoints() {
