@@ -7,3 +7,18 @@
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
+
+## 사다리 미션 요구사항
+- Domain
+  - [ ] 가로라인을 담당하는 클래스(Line)의 구현
+     - [ ] 라인이 겹침방지 기능 구현
+  - [ ] 가로라인 여러개를 담당하는 일급콜렉션(Ladder)의 구현
+- View
+  - [ ] 입력 클래스 구현(InputView)
+     - [ ] 사람 이름 입력 기능 구현
+     - [ ] 사람 이름 쉼표(,)를 기준으로 구분 기능 구현
+  - [ ] 출력 클래스 구현(ResultView)
+     - [ ] 사다리 출력시 사람 이름 출력 기능 구현
+     - [ ] 5자 기준으로 출력 기능 구현
+- Controller
+  - [ ] 입력과 출력을 제거하는 클래스(LadderGameController)의 구현 
