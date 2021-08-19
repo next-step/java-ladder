@@ -1,5 +1,7 @@
 package nextstep.ladders.domain;
 
+import nextstep.ladders.domain.exceptions.CountOfPersonZeroException;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -10,6 +12,9 @@ public class Line {
     private final List<Boolean> points;
 
     public Line(final int countOfPerson, final PointGenerateStrategy strategy) {
+        if (countOfPerson == 0) {
+            throw new CountOfPersonZeroException();
+        }
         this.strategy = strategy;
         this.points = dot(countOfPerson);
     }
