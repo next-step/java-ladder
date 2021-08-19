@@ -6,13 +6,12 @@ import java.util.List;
 import java.util.Objects;
 
 public class Users {
-    private List<User> users;
+    private List<Name> names;
 
     public Users(List<String> users) {
-        this.users = new ArrayList<>();
-
+        this.names = new ArrayList<>();
         users.stream()
-             .forEach(user -> this.users.add(new User(user)));
+             .forEach(name -> this.names.add(new Name(name)));
     }
 
     public Users(String[] users) {
@@ -23,17 +22,21 @@ public class Users {
         this(users.replace(" ", "").split(","));
     }
 
+    public List<Name> getNames() {
+        return new ArrayList<>(names);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Users users1 = (Users) o;
-        return Objects.equals(users, users1.users);
+        return Objects.equals(names, users1.names);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(users);
+        return Objects.hash(names);
     }
 
 }

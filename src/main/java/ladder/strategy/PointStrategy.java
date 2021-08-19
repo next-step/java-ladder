@@ -2,7 +2,7 @@ package ladder.strategy;
 
 import java.util.Random;
 
-public class LineStrategy {
+public class PointStrategy {
 
     public static boolean generate(boolean previous) {
         if (previous) {

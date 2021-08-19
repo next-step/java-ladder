@@ -1,11 +1,14 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 
 public class Ladder {
     private int height;
-    private ArrayList<Line> ladder;
+    private int countOfPerson;
+    private List<Line> ladder;
 
     public Ladder(int height, int countOfPerson) {
         ladder = new ArrayList<>();
@@ -13,22 +16,18 @@ public class Ladder {
             ladder.add(new Line(countOfPerson));
         }
         this.height = height;
+        this.countOfPerson = countOfPerson;
     }
 
-    public ArrayList<Line> getLadder() {
-        return new ArrayList<>(ladder);
+    public List<Line> getLadder() {
+        return Collections.unmodifiableList(ladder);
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Ladder ladder = (Ladder) o;
-        return height == ladder.height;
+    public int getHeight() {
+        return height;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(height);
+    public int getCountOfPerson() {
+        return countOfPerson;
     }
 }

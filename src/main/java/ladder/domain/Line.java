@@ -1,8 +1,9 @@
 package ladder.domain;
 
-import ladder.strategy.LineStrategy;
+import ladder.strategy.PointStrategy;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -14,13 +15,12 @@ public class Line {
         points.add(false);
 
         IntStream.range(1, countOfPerson)
-                 .forEach(point -> points.add(LineStrategy.generate(points.get(point - 1))));
+                 .forEach(point -> points.add(PointStrategy.generate(points.get(point - 1))));
 
         this.points = points;
     }
-
     public List<Boolean> getPoints() {
-        return points;
+        return Collections.unmodifiableList(points);
     }
 
 

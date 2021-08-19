@@ -2,49 +2,34 @@ package ladder.view;
 
 import ladder.domain.Ladder;
 import ladder.domain.Line;
+import ladder.domain.Users;
 
 import java.util.stream.Collectors;
 
 public class OutputView {
-    private static final String LINE_FLAG = "-----";
-    private static final String LINE_BLANK = "     ";
+    private static final String LINE_TRUE = "-----";
+    private static final String LINE_FALSE = "     ";
     private static final String LINE_DELIMITER = "|";
 
-    public static void printNames() {
-
+    public static void printNames(Users users) {
+        users.getNames().stream().forEach(name -> System.out.printf("%6s", name.getName()));
+        System.out.println();
     }
 
-    public void printLadder(Ladder ladder) {
-        /*for (int i = 0; i < ladder.getLadder()
-                                  .size(); i++) {
-            for (int j = 0; j < ladder.getLadder()
-                                      .get(0)
-                                      .getPoints()
-                                      .size(); j++) {
-                if (ladder.getLadder()
-                          .get(i)
-                          .getPoints()
-                          .get(j)) {
-                    System.out.print(LINE_FLAG);
-                } else {
-                    System.out.print(LINE_BLANK);
-                }
-
-                System.out.print(LINE_DELIMITER);
-            }
-            System.out.println();
-        }*/
+    public static void printLadder(Ladder ladder) {
         ladder.getLadder()
               .stream()
-              .map(this::generateLine)
+              .map(OutputView::generateLine)
               .forEach(System.out::println);
+
+        System.out.println("");
     }
 
-    public String generateLine(Line line) {
+    public static String generateLine(Line line) {
         return line.getPoints()
                    .stream()
-                   .map(flag -> flag ? LINE_FLAG : LINE_BLANK)
-                   .collect(Collectors.joining(LINE_DELIMITER))+"|";
+                   .map(flag -> flag ? LINE_TRUE : LINE_FALSE)
+                   .collect(Collectors.joining(LINE_DELIMITER)) + "|";
 
     }
 }
