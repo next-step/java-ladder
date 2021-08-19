@@ -25,7 +25,16 @@ public class LadderController {
 		LadderOutputView.printResultCreateLadder(ladderLines);
 		LadderOutputView.printResultsName(results);
 
-		LadderOutputView.printResultLadderGame(gameResults.findResultOfPerson(LadderInputView.inputResultPlayer()),
-			results);
+		String name = LadderInputView.inputResultPlayer();
+		while (!checkAllResult(name)) {
+			LadderOutputView.printResultLadderGame(gameResults.findResultOfPerson(name), results);
+			name = LadderInputView.inputResultPlayer();
+		}
+
+		LadderOutputView.printResultLadderGame(gameResults.findResultOfPerson(name), results);
+	}
+
+	public static boolean checkAllResult(String name) {
+		return name.equals("all");
 	}
 }

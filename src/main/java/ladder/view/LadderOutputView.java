@@ -72,5 +72,6 @@ public class LadderOutputView {
 				gameResult.getPlayer().getPlayerName() + " : " + results.findResult(
 					gameResult.getPosition()))
 			.forEach(System.out::println);
+		System.out.print("\n");
 	}
 }
