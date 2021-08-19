@@ -17,24 +17,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class LadderResultTest {
 
-    private static Stream<Arguments> result_of_player() {
-        return Stream.of(
-                Arguments.of("pro,ama", "fail,5000", Arrays.asList(true), "pro", "5000"),
-                Arguments.of("pro,ama", "fail,5000", Arrays.asList(true), "ama", "fail")
-                ,
-                Arguments.of("pro,ama", "fail,5000", Arrays.asList(false), "pro", "fail"),
-                Arguments.of("pro,ama", "fail,5000", Arrays.asList(false), "ama", "5000")
-                ,
-                Arguments.of("pro,semi,ama", "1000,fail,5000", Arrays.asList(true, false), "pro", "fail"),
-                Arguments.of("pro,semi,ama", "1000,fail,5000", Arrays.asList(true, false), "semi", "1000"),
-                Arguments.of("pro,semi,ama", "1000,fail,5000", Arrays.asList(true, false), "ama", "5000")
-                ,
-                Arguments.of("pro,semi,ama", "1000,fail,5000", Arrays.asList(false, true), "pro", "1000"),
-                Arguments.of("pro,semi,ama", "1000,fail,5000", Arrays.asList(false, true), "semi", "5000"),
-                Arguments.of("pro,semi,ama", "1000,fail,5000", Arrays.asList(false, true), "ama", "fail")
-        );
-    }
-
     @Test
     @DisplayName("객체 생성")
     void construct() throws Exception {
@@ -71,6 +53,24 @@ class LadderResultTest {
 
     }
 
+    private static Stream<Arguments> result_of_player() {
+        return Stream.of(
+                Arguments.of("pro,ama", "fail,5000", Arrays.asList(true), "pro", "5000"),
+                Arguments.of("pro,ama", "fail,5000", Arrays.asList(true), "ama", "fail")
+                ,
+                Arguments.of("pro,ama", "fail,5000", Arrays.asList(false), "pro", "fail"),
+                Arguments.of("pro,ama", "fail,5000", Arrays.asList(false), "ama", "5000")
+                ,
+                Arguments.of("pro,semi,ama", "1000,fail,5000", Arrays.asList(true, false), "pro", "fail"),
+                Arguments.of("pro,semi,ama", "1000,fail,5000", Arrays.asList(true, false), "semi", "1000"),
+                Arguments.of("pro,semi,ama", "1000,fail,5000", Arrays.asList(true, false), "ama", "5000")
+                ,
+                Arguments.of("pro,semi,ama", "1000,fail,5000", Arrays.asList(false, true), "pro", "1000"),
+                Arguments.of("pro,semi,ama", "1000,fail,5000", Arrays.asList(false, true), "semi", "5000"),
+                Arguments.of("pro,semi,ama", "1000,fail,5000", Arrays.asList(false, true), "ama", "fail")
+        );
+    }
+
     /*
     |-----|     |-----|
     |     |-----|     |
@@ -95,10 +95,10 @@ class LadderResultTest {
         Map<String, String> results = ladderResult.getResults();
 
         //then
-        assertThat(results).containsEntry("god", "fail");
-        assertThat(results).containsEntry("pro", "5000");
-        assertThat(results).containsEntry("semi", "3000");
-        assertThat(results).containsEntry("ama", "fail");
+        assertThat(results).containsEntry("god", "fail")
+                .containsEntry("pro", "5000")
+                .containsEntry("semi", "3000")
+                .containsEntry("ama", "fail");
     }
 
 }
