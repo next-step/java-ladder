@@ -9,9 +9,11 @@ public class LadderApplication {
     public static void main(String[] args) {
 
         String playersName = InputView.inputPlayersName();
+        String namesOfAwards = InputView.inputAwardsName();
         int ladderHeight = InputView.inputLadderHeight();
 
         Ladder ladder = Ladder.of(playersName, ladderHeight);
+
 
         ResultView.printLadder(ladder);
 
