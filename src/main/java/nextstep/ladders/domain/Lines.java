@@ -9,7 +9,7 @@ public class Lines {
 
     private final List<Line> lines;
 
-    public Lines(int countOfPerson, int height) {
+    public Lines(final int countOfPerson, final int height) {
         RandomPointGenerateStrategy strategy = new RandomPointGenerateStrategy();
         this.lines = IntStream.range(0, height)
                 .mapToObj(i -> new Line(countOfPerson, strategy))

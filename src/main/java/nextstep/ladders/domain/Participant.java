@@ -4,10 +4,11 @@ import nextstep.ladders.domain.exceptions.NameLengthInvalidException;
 
 public class Participant {
 
+    public static final int MAX_NAME_LENGTH = 5;
     private final String name;
 
     private Participant(final String name) {
-        if (name.length() > 5) {
+        if (name.length() > MAX_NAME_LENGTH) {
             throw new NameLengthInvalidException();
         }
         this.name = name;

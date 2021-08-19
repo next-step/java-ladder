@@ -1,27 +1,18 @@
 package nextstep.ladders.domain;
 
-import java.util.List;
-
 public class Ladder {
 
-    private final Participants participants;
     private final Lines lines;
 
-    public Ladder(final Participants participants, final Lines lines) {
-        this.participants = participants;
+    public Ladder(final Lines lines) {
         this.lines = lines;
     }
 
-    public Ladder(final List<String> names, final int height) {
-        this.participants = new Participants(names);
-        this.lines = new Lines(names.size(), height);
+    public Ladder(final int countOfPerson, final int height) {
+        this.lines = new Lines(countOfPerson, height);
     }
 
     public Lines getLines() {
         return lines;
-    }
-
-    public Participants getParticipants() {
-        return participants;
     }
 }

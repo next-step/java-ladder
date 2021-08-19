@@ -17,4 +17,8 @@ public class Participants {
     public List<Participant> getParticipants() {
         return Collections.unmodifiableList(participants);
     }
+
+    public int count() {
+        return participants.size();
+    }
 }

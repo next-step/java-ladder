@@ -12,15 +12,13 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class LadderTest {
 
-
     @ParameterizedTest
     @CsvSource(value = "pobi,honux,crong,jk:5", delimiter = ':')
     void 사다리_생성(final String participantsText, final int height) {
         assertDoesNotThrow(() -> {
             List<String> names = getNames(participantsText);
-            Participants participants = new Participants(names);
-            Lines Lines = new Lines(names.size(), height);
-            Ladder ladder = new Ladder(participants, Lines);
+            Lines lines = new Lines(names.size(), height);
+            Ladder ladder = new Ladder(lines);
         });
     }
 
