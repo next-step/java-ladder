@@ -19,7 +19,15 @@ public class Ladder {
 
     public static Ladder of(String playersName, int height) {
         Players players = Players.of(playersName);
-        return new Ladder(players, Lines.of(height, players.size()));
+        return of(playersName, Lines.of(height, players.size()));
+    }
+
+    public static Ladder of(String playersName, Lines lines) {
+        return of(Players.of(playersName), lines);
+    }
+
+    public static Ladder of(Players players, Lines lines) {
+        return new Ladder(players, lines);
     }
 
     public List<Player> getPlayers() {
