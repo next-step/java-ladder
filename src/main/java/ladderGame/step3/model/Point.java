@@ -14,10 +14,6 @@ public class Point {
 
   private final Location location;
 
-  public Point(final int currentPoint) {
-    this(currentPoint, new Location(false, false));
-  }
-
   public Point(final int point, final Location location) {
     validationPoint(point);
     this.currentPoint = point;
