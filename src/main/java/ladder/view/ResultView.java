@@ -8,13 +8,19 @@ import java.util.List;
 
 public class ResultView {
     private static final String RESULT_COMMENT = "실행 결과";
+    private static final String LADDER_RESULT_COMMENT = "사다리 결과";
     private static final String BLANK = " ";
     private static final String WITH_POINTS_LINE = "-----|";
     private static final String WITHOUT_POINTS_LINE = "     |";
     private static final int MAXIMUM_OF_BLANK_SIZE = 6;
 
-    public static void printResultComment() {
+    public static void printLadderResultComment() {
+        System.out.println(LADDER_RESULT_COMMENT);
+    }
+
+    public static void printResult(String result) {
         System.out.println(RESULT_COMMENT);
+        System.out.println(result);
     }
 
     public static void drawLadder(Ladder ladder) {
@@ -42,7 +48,7 @@ public class ResultView {
         System.out.println();
     }
 
-    public static void printResults(Results results) {
+    public static void printInitResults(Results results) {
         printList(results.getList());
         System.out.println();
     }
@@ -63,4 +69,13 @@ public class ResultView {
         return sb;
     }
 
+    public static void printResultAll(Participant participant, Results gameResults) {
+        System.out.println(RESULT_COMMENT);
+        List<String> participateList = participant.getList();
+        List<String> finalResultsList = gameResults.getList();
+
+        for (int i = 0; i < participant.size(); i++) {
+            System.out.println(participateList.get(i) + " : " + finalResultsList.get(i));
+        }
+    }
 }

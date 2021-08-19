@@ -2,6 +2,7 @@ package ladder.domain;
 
 import ladder.exception.InvalidCountOfPersonException;
 import ladder.exception.InvalidPersonNameException;
+import ladder.exception.NotMatchInParticipantException;
 
 import java.util.Collections;
 import java.util.List;
@@ -34,6 +35,13 @@ public class Participant {
                 });
     }
 
+    private void validateMatchName(String person) {
+        participant.stream()
+                .filter(p -> person.equals(p))
+                .findAny()
+                .orElseThrow(() -> new NotMatchInParticipantException(person));
+    }
+
     public static Participant of(List<String> participant) {
         return new Participant(participant);
     }
@@ -55,7 +63,12 @@ public class Participant {
         return Objects.hash(participant);
     }
 
-    public int getParticipationNumber(String person) {
+    public int getParticipantPosition(String person) {
+        validateMatchName(person);
         return participant.indexOf(person);
+    }
+
+    public int size() {
+        return participant.size();
     }
 }

@@ -42,7 +42,8 @@ public class InputView {
     }
 
 
-    public static String getResult() {
+    public static String getPersonForResult() {
+        scanner.nextLine();
         System.out.println(GET_RESULT_QUESTION);
         return scanner.nextLine();
     }

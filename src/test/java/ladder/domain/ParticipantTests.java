@@ -2,6 +2,7 @@ package ladder.domain;
 
 import ladder.exception.InvalidCountOfPersonException;
 import ladder.exception.InvalidPersonNameException;
+import ladder.exception.NotMatchInParticipantException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -44,15 +45,27 @@ public class ParticipantTests {
                 }).withMessageMatching("사다리 게임의 최소 필요 인원은 2명 이상 입니다.");
     }
 
-    @DisplayName("참가자들 로 부터 참가자를 물어봤을때 참가 번호를 잘 리턴하는지 테스트")
+    @DisplayName("참가자들 로 부터 참가들의 참가한 위치 잘 가져 오는지 확인")
     @Test
-    void participateNumberTest() {
+    void nameMatchPositionTest() {
         List<String> participatePersonList = new ArrayList<>(Arrays.asList("pobi", "honux", "crong", "jk"));
         Participant participant = Participant.of(participatePersonList);
 
-        assertThat(participant.getParticipationNumber("crong")).isEqualTo(2);
+        assertThat(participant.getParticipantPosition("crong")).isEqualTo(2);
     }
 
+    @DisplayName("참가자들 로 부터 없는 참가자의 포지션을 요구하면 Exception 확인")
+    @Test
+    void nameMatchExceptionTest() {
+        List<String> participatePersonList = new ArrayList<>(Arrays.asList("pobi", "honux", "crong", "jk"));
+        Participant participant = Participant.of(participatePersonList);
+
+        assertThatExceptionOfType(NotMatchInParticipantException.class)
+                .isThrownBy(() -> {
+                    participant.getParticipantPosition("syd");
+                }).withMessageMatching("참가자 명단에 존재 하지 않습니다. : syd");
+
+    }
 
 
 }

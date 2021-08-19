@@ -8,7 +8,7 @@ import java.util.Objects;
 
 public class Line {
     private static final int REQUIRED_NUMBER_OF_PEOPLE = 2;
-
+    private static final int MOVING_DISTANCE = 1;
     private final List<Boolean> points;
 
     private Line(List<Boolean> points) {
@@ -59,18 +59,18 @@ public class Line {
     public int move(int position) {
         int left = position;
 
-        int right = position + 1;
+        int right = position + MOVING_DISTANCE;
 
         if (right >= points.size()) {
             right = position;
         }
 
         if (havePoints(left)) {
-            return position - 1;
+            return position - MOVING_DISTANCE;
         }
 
         if (havePoints(right)) {
-            return position + 1;
+            return position + MOVING_DISTANCE;
         }
         return position;
     }

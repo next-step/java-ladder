@@ -17,6 +17,7 @@ public class Ladder {
             this.lines.add(Line.of(countOfPerson));
         }
     }
+
     public static Ladder of(List<Line> lines) {
         return new Ladder(lines);
     }
@@ -24,8 +25,6 @@ public class Ladder {
     public static Ladder of(int ladderMaxLength, int countOfPerson) {
         return new Ladder(ladderMaxLength, countOfPerson);
     }
-
-
 
     public int getLadderWidth() {
         return lines.stream()
