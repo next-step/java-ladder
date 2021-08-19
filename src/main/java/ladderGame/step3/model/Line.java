@@ -19,7 +19,7 @@ public class Line {
     this.points = Collections.unmodifiableList(points);
   }
 
-  public static Line createLine(final int count) {
+  public static List<Point> createLine(final int count) {
 
     validationCount(count);
 
@@ -37,7 +37,7 @@ public class Line {
 
     newPoints.add(point.last(lastCount, RandomMove.createRandomMoveValue()));
 
-    return new Line(newPoints);
+    return newPoints;
   }
 
   private static void validationCount(final int count) {
