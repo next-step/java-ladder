@@ -2,6 +2,7 @@ package ladder;
 
 import ladder.domain.ladder.Awards;
 import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.LadderResult;
 import ladder.ui.InputView;
 import ladder.ui.ResultView;
 
@@ -18,6 +19,10 @@ public class LadderApplication {
 
         Awards awards = Awards.of(namesOfAwards);
         ResultView.printAwards(awards);
+
+        String wantedPlayer = InputView.inputWantedPlayerName();
+        LadderResult ladderResult = LadderResult.of(ladder, namesOfAwards);
+        ResultView.printWantedPlayer(ladderResult, wantedPlayer);
 
     }
 

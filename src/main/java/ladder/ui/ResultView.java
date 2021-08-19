@@ -2,6 +2,7 @@ package ladder.ui;
 
 import ladder.domain.ladder.Awards;
 import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.LadderResult;
 import ladder.domain.line.Line;
 import ladder.utils.StringUtil;
 
@@ -10,11 +11,12 @@ import java.util.stream.Collectors;
 
 public class ResultView {
 
-    private static final String RESULT_MESSAGE = "\n실행결과\n";
+    private static final String LADDER_GRAPH = "\n사다리 결과\n";
     private static final String VERTICAL_DELIMITER = "|";
     private static final String VERTICAL_DELIMITER_PREFIX = "  |";
     private static final String LINE_DASH = "-----";
     private static final String LINE_EMPTY = "     ";
+    private static final String LADDER_RESULT = "\n실행결과";
 
     public static void printLadder(Ladder ladder) {
         printPlayers(ladder);
@@ -31,7 +33,7 @@ public class ResultView {
     }
 
     private static void printPlayers(Ladder ladder) {
-        System.out.println(RESULT_MESSAGE);
+        System.out.println(LADDER_GRAPH);
 
         System.out.println(names(ladder.getPlayers()));
     }
@@ -45,5 +47,10 @@ public class ResultView {
                 .map(Object::toString)
                 .map(name -> StringUtil.rightPad(name, 6))
                 .collect(Collectors.joining());
+    }
+
+    public static void printWantedPlayer(LadderResult ladderResult, String wantedPlayer) {
+        System.out.println(LADDER_RESULT);
+        System.out.println(ladderResult.resultOfPlayer(wantedPlayer));
     }
 }
