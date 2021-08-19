@@ -2,20 +2,42 @@ package ladder.model;
 
 import java.util.Objects;
 
+import ladder.message.ErrorMessage;
+
 public class Point {
 
-	private final boolean direction;
+	public static final int MOVE_POINT = 1;
+	private final boolean left;
+	private final boolean right;
 
-	public Point(boolean direction) {
-		this.direction = direction;
+	public Point(boolean left, boolean right) {
+		checkDirectionStatus(left, right);
+		this.left = left;
+		this.right = right;
 	}
 
-	public int movePosition(int position, boolean rightDirection) {
-		return Direction.movePosition(direction, rightDirection, position);
+	public int movePosition(int position) {
+		if (left) {
+			return position - MOVE_POINT;
+		}
+		if (right) {
+			return position + MOVE_POINT;
+		}
+		return position;
 	}
 
-	public boolean isDirection() {
-		return direction;
+	public boolean isLeft() {
+		return left;
+	}
+
+	public boolean isRight() {
+		return right;
+	}
+
+	private void checkDirectionStatus(boolean left, boolean right) {
+		if (left && right) {
+			throw new IllegalStateException(ErrorMessage.DIRECTION_STATUS_ERROR_MESSAGE);
+		}
 	}
 
 	@Override
@@ -25,11 +47,11 @@ public class Point {
 		if (o == null || getClass() != o.getClass())
 			return false;
 		Point point = (Point)o;
-		return direction == point.direction;
+		return left == point.left && right == point.right;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(direction);
+		return Objects.hash(left, right);
 	}
 }
