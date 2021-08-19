@@ -25,12 +25,12 @@ public class Positions {
     }
 
     private List<Integer> toPositions(Participant participant, Ladder ladder) {
-        List<Integer> resultPositions = new ArrayList<>();
+        List<Integer> finalPositions = new ArrayList<>();
 
         for (int i = 0; i < participant.size(); i++) {
-            resultPositions.add(ladder.move(i));
+            finalPositions.add(ladder.move(i));
         }
-        return resultPositions;
+        return finalPositions;
     }
 
     public Results makeFinalResults(List<String> initResults) {

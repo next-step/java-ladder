@@ -69,10 +69,10 @@ public class ResultView {
         return sb;
     }
 
-    public static void printResultAll(Participant participant, Results gameResults) {
+    public static void printResultAll(Participant participant, Results finalResults) {
         System.out.println(RESULT_COMMENT);
         List<String> participateList = participant.getList();
-        List<String> finalResultsList = gameResults.getList();
+        List<String> finalResultsList = finalResults.getList();
 
         for (int i = 0; i < participant.size(); i++) {
             System.out.println(participateList.get(i) + " : " + finalResultsList.get(i));

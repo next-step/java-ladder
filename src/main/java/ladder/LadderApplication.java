@@ -7,10 +7,8 @@ import ladder.domain.Results;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.stream.Collectors;
 
 public class LadderApplication {
     public static void main(String args[]) {
@@ -25,24 +23,24 @@ public class LadderApplication {
         Participant participant = Participant.of(participantList);
         ResultView.printParticipant(participant);
 
-        Ladder ladder =Ladder.of(ladderMaxLength, countOfPerson);
+        Ladder ladder = Ladder.of(ladderMaxLength, countOfPerson);
         ResultView.drawLadder(ladder);
 
         Results results = Results.of(resultList);
         ResultView.printInitResults(results);
 
         String person = InputView.getPersonForResult();
-        if(isAll(person)){
+        if (isAll(person)) {
             Positions positions = Positions.of(participant, ladder);
 
-            Results gameResults = results.getFinalResults(positions);
-            ResultView.printResultAll(participant, gameResults);
+            Results finalResults = results.getFinalResults(positions);
+            ResultView.printResultAll(participant, finalResults);
             return;
         }
 
         int position = participant.getParticipantPosition(person);
-        int resultPosition = ladder.move(position);
-        ResultView.printResult(results.getResultByPosition(resultPosition));
+        int finalPosition = ladder.move(position);
+        ResultView.printResult(results.getResultByPosition(finalPosition));
 
 
     }
