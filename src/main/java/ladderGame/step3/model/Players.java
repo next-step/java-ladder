@@ -35,6 +35,10 @@ public class Players {
         .collect(Collectors.toList());
   }
 
+  public int count(){
+    return playerNames.size();
+  }
+
   private void validationPlayersCount(final List<PlayerName> players) {
     if (players.size() < LIMIT_PLAYER_COUNT) {
       throw new IllegalArgumentException(MSG_ERROR_LIMIT_PLAYERS);
