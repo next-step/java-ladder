@@ -17,6 +17,10 @@ public class PlayerName {
     this.name = name;
   }
 
+  public String writeName(){
+    return String.valueOf(name);
+  }
+
   private void validation(final String name) {
     checkNameEmpty(name);
     checkNameLength(name);
