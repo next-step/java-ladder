@@ -6,7 +6,6 @@ import ladder.message.ErrorMessage;
 
 public class Point {
 
-	public static final int MOVE_POINT = 1;
 	private final boolean left;
 	private final boolean right;
 
@@ -17,13 +16,7 @@ public class Point {
 	}
 
 	public int movePosition(int position) {
-		if (left) {
-			return position - MOVE_POINT;
-		}
-		if (right) {
-			return position + MOVE_POINT;
-		}
-		return position;
+		return Direction.movePosition(left, right, position);
 	}
 
 	public boolean isLeft() {
