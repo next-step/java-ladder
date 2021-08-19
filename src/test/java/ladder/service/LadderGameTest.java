@@ -12,6 +12,7 @@ import ladder.model.GameResults;
 import ladder.model.Line;
 import ladder.model.Lines;
 import ladder.model.Players;
+import ladder.model.Point;
 
 class LadderGameTest {
 
@@ -33,11 +34,11 @@ class LadderGameTest {
 		return lines;
 	}
 
-	private List<Boolean> getPoints() {
-		List<Boolean> points = new ArrayList<>();
-		points.add(false);
-		points.add(false);
-		points.add(true);
+	private List<Point> getPoints() {
+		List<Point> points = new ArrayList<>();
+		points.add(new Point(false));
+		points.add(new Point(true));
+		points.add(new Point(false));
 		return points;
 	}
 }
