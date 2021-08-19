@@ -10,12 +10,12 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.EmptySource;
 import org.junit.jupiter.params.provider.NullSource;
 
-class NameTest {
+class PlayerNameTest {
 
   @DisplayName("이름객체 생성 테스트.")
   @Test
-  void createNameTest() {
-    assertThat(new Name("test")).isEqualTo(new Name("test"));
+  void createPlayerNameTest() {
+    assertThat(new PlayerName("test")).isEqualTo(new PlayerName("test"));
   }
 
   @DisplayName("입력된 사용자명 최대 5자 검증.")
@@ -23,12 +23,12 @@ class NameTest {
   @CsvSource(value = {"user12:user1","가나다라마바:가나다라마"},delimiter = ':')
   void nameLengthValidationTest(String wrongName, String fineName) {
     assertThatThrownBy(
-        () -> new Name(wrongName)
+        () -> new PlayerName(wrongName)
     )
         .isInstanceOf(IllegalArgumentException.class)
-        .hasMessage(Name.MSG_ERROR_FAIL_NAME_LENGTH);
+        .hasMessage(PlayerName.MSG_ERROR_FAIL_NAME_LENGTH);
 
-    assertThat(new Name(fineName)).isNotNull();
+    assertThat(new PlayerName(fineName)).isNotNull();
   }
 
   @DisplayName("입력된 사용자명 빈값 검증.")
@@ -37,9 +37,9 @@ class NameTest {
   @EmptySource
   void nameEmptyValidationTest(String value) {
     assertThatThrownBy(
-        () -> new Name(value)
+        () -> new PlayerName(value)
     )
         .isInstanceOf(IllegalArgumentException.class)
-        .hasMessage(Name.MSG_ERROR_FAIL_NAME_EMPTY);
+        .hasMessage(PlayerName.MSG_ERROR_FAIL_NAME_EMPTY);
   }
 }

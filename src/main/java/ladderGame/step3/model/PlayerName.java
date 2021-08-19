@@ -2,7 +2,7 @@ package ladderGame.step3.model;
 
 import java.util.Objects;
 
-public class Name {
+public class PlayerName {
 
   public static final String MSG_ERROR_FAIL_NAME_LENGTH = "사용자명은 최대 5글자까지 가능합니다.";
 
@@ -12,7 +12,7 @@ public class Name {
 
   private final String name;
 
-  public Name(final String name) {
+  public PlayerName(final String name) {
     validation(name);
     this.name = name;
   }
@@ -42,7 +42,7 @@ public class Name {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    final Name name1 = (Name) o;
+    final PlayerName name1 = (PlayerName) o;
     return Objects.equals(name, name1.name);
   }
 
