@@ -1,5 +1,7 @@
 package ladder.domain.ladder;
 
+import ladder.utils.StringUtil;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -9,18 +11,37 @@ import static java.util.stream.Collectors.toList;
 
 public class Awards {
 
-    public static final String COMMA = ",";
+    private static final String COMMA = ",";
+    private static final int MIN_SIZE = 2;
 
     private final List<Award> awards;
 
     private Awards(List<Award> awards) {
+        validateAwardsSize(awards);
         this.awards = awards;
     }
 
     public static Awards from(String namesOfAwards) {
+        validateBlank(namesOfAwards);
         return Arrays.stream(namesOfAwards.split(COMMA))
                 .map(Award::new)
                 .collect(collectingAndThen(toList(), Awards::new));
+    }
+
+    private void validateAwardsSize(List<Award> awards) {
+        if (awards.isEmpty() || awards.size() < MIN_SIZE) {
+            throw new AwardsSizeException();
+        }
+    }
+
+    private static void validateBlank(String namesOfAwards) {
+        if (StringUtil.isBlank(namesOfAwards)) {
+            throw new AwardsSizeException();
+        }
+    }
+
+    public int size() {
+        return awards.size();
     }
 
     @Override
