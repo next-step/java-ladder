@@ -33,10 +33,10 @@ public class Positions {
         return resultPositions;
     }
 
-    public List<String> makeFinalResults(List<String> initResults) {
-        return positions.stream()
+    public Results makeFinalResults(List<String> initResults) {
+        return Results.of(positions.stream()
                 .map(position -> initResults.get(position))
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()));
     }
 
     @Override

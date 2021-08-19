@@ -37,10 +37,6 @@ public class Results {
     }
 
     public Results getFinalResults(Positions positions) {
-        return new Results(makeFinalResultsByPositions(positions));
-    }
-
-    private List<String> makeFinalResultsByPositions(Positions positions) {
         return positions.makeFinalResults(initResults);
     }
 }

@@ -22,6 +22,6 @@ public class PositionsTests {
         Positions positions = Positions.of(Arrays.asList(2, 1, 3, 0));
 
         assertThat(positions.makeFinalResults(Arrays.asList("꽝", "5000", "꽝", "3000")))
-                .isEqualTo(Arrays.asList("꽝", "5000", "3000", "꽝"));
+                .isEqualTo(Results.of(Arrays.asList("꽝", "5000", "3000", "꽝")));
     }
 }
