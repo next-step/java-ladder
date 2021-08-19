@@ -13,7 +13,7 @@ class LineTest {
   @DisplayName("입력 카운트 최소값 검증.")
   @Test
   void invalidCount() {
-    assertThatThrownBy(()->Line.createLine(-1))
+    assertThatThrownBy(()->new Line(Line.createLine(-1)))
         .isInstanceOf(IllegalArgumentException.class);
   }
 
