@@ -17,6 +17,7 @@ class LineTest {
         .isInstanceOf(IllegalArgumentException.class);
   }
 
+  @DisplayName("Line 객체 생성 테스트.")
   @Test
   void createLine() {
     List<Point> points = new ArrayList<>();
