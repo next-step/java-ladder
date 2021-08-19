@@ -46,7 +46,7 @@ public class LadderOutputView {
 	}
 
 	private static String drawLine(Point point) {
-		if (point.isDirection()) {
+		if (point.isLeft()) {
 			return EXIST_LINE;
 		}
 		return NOTHING_LINE;
