@@ -1,5 +1,6 @@
 package ladder.domain.line;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -20,6 +21,10 @@ public class Line {
 
 	public static Line of(List<Boolean> points) {
 		return new Line(points);
+	}
+
+	public static Line of(Boolean... points) {
+		return of(Arrays.asList(points));
 	}
 
 	private void validateConsecutiveLine(List<Boolean> points) {

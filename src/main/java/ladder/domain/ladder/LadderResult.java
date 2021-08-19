@@ -1,10 +1,8 @@
 package ladder.domain.ladder;
 
-import ladder.domain.line.Line;
 import ladder.domain.player.Player;
 
-import java.util.HashMap;
-import java.util.List;
+import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -20,7 +18,9 @@ public class LadderResult {
     public static LadderResult of(Ladder ladder, Awards awards) {
         validateMatchingCount(ladder.getPlayers().size(), awards.size());
 
-        return new LadderResult(new HashMap<>());
+        return new LadderResult(ladder.getPlayers().stream()
+                .collect(Collectors.toMap(Player::toString,
+                        player -> awards.name(ladder.indexOfResult(player)))));
     }
 
     public static LadderResult of(Ladder ladder, String namesOfAwards) {
@@ -33,6 +33,13 @@ public class LadderResult {
         }
     }
 
+    public String resultOfPlayer(String playerName) {
+        return results.get(playerName);
+    }
+
+    public Map<String, String> getResults() {
+        return Collections.unmodifiableMap(results);
+    }
 
     @Override
     public boolean equals(Object o) {

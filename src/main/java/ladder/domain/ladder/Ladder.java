@@ -38,4 +38,8 @@ public class Ladder {
         return lines.getLines();
     }
 
+    public int indexOfResult(Player player) {
+        return lines.indexOfResult(getPlayers().indexOf(player));
+    }
+
 }
