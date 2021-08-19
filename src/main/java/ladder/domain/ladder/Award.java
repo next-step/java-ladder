@@ -1,25 +1,21 @@
-package ladder.domain.player;
+package ladder.domain.ladder;
 
 import java.util.Objects;
 
-public class Player {
+public class Award {
 
     private final Name name;
 
-    public Player(String name) {
+    public Award(String name) {
         this.name = new Name(name);
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Player player = (Player) o;
-        return Objects.equals(name, player.name);
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Award award = (Award) o;
+        return Objects.equals(name, award.name);
     }
 
     @Override
@@ -31,5 +27,4 @@ public class Player {
     public String toString() {
         return name.toString();
     }
-
 }

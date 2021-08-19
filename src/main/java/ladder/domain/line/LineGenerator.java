@@ -6,37 +6,37 @@ import java.util.stream.IntStream;
 
 public class LineGenerator {
 
-	public static final int MIN_LINE_COUNT = 1;
+    public static final int MIN_LINE_COUNT = 1;
 
-	private static Boolean bool;
+    private boolean bool;
 
-	private LineGenerator(){
-		throw new IllegalStateException();
-	}
+    private LineGenerator() {
+    }
 
-	public static List<Boolean> generate(int count) {
-		validateLineCount(count);
-		return IntStream.range(0, count)
-		                .mapToObj(i -> next())
-		                .collect(Collectors.toList());
-	}
+    public static List<Boolean> generate(int count) {
+        validateLineCount(count);
+        LineGenerator lineGenerator = new LineGenerator();
+        return IntStream.range(0, count)
+                .mapToObj(i -> lineGenerator.next())
+                .collect(Collectors.toList());
+    }
 
-	private static void validateLineCount(int count) {
-		if (count < MIN_LINE_COUNT) {
-			throw new LineCountException();
-		}
-	}
+    private static void validateLineCount(int count) {
+        if (count < MIN_LINE_COUNT) {
+            throw new LineCountException();
+        }
+    }
 
-	private static Boolean next() {
-		bool = isTrue();
-		return bool;
-	}
+    private boolean next() {
+        bool = isTrue();
+        return bool;
+    }
 
-	private static boolean isTrue() {
-		if (Boolean.TRUE.equals(bool)) {
-			return false;
-		}
-		return RandomBoolGenerator.generate();
-	}
+    private boolean isTrue() {
+        if (bool) {
+            return false;
+        }
+        return RandomBoolGenerator.generate();
+    }
 
 }

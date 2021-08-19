@@ -15,58 +15,58 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class PlayersTest {
 
-	@ParameterizedTest(name = "참가자들의 이름 null 또는 빈값 {index} [{arguments}]")
-	@MethodSource
-	@DisplayName("생성 실패")
-	void construct_exception(String playersName) throws Exception {
-		//given
+    @ParameterizedTest(name = "참가자들의 이름 null 또는 빈값 {index} [{arguments}]")
+    @MethodSource
+    @DisplayName("생성 실패")
+    void construct_exception(String playersName) throws Exception {
+        //given
 
-		//when
-		ThrowingCallable actual = () -> Players.of(playersName);
+        //when
+        ThrowingCallable actual = () -> Players.of(playersName);
 
-		//then
-		assertThatThrownBy(actual).isInstanceOf(PlayerNameException.class)
-		                          .hasMessage("참가자의 이름은 1~5글자만 허용됩니다.");
+        //then
+        assertThatThrownBy(actual).isInstanceOf(PlayerNameException.class)
+                .hasMessage("참가자의 이름은 1~5글자만 허용됩니다.");
 
-	}
+    }
 
-	private static Stream<Arguments> construct_exception() {
-		return Stream.of(
-				Arguments.of((String)null),
-				Arguments.of("")
-		);
-	}
+    private static Stream<Arguments> construct_exception() {
+        return Stream.of(
+                Arguments.of((String) null),
+                Arguments.of("")
+        );
+    }
 
-	@Test
-	@DisplayName("부족한 참가자 수")
-	void players_size_exception() throws Exception {
-		//given
-		String name = "pro";
+    @Test
+    @DisplayName("부족한 참가자 수")
+    void players_size_exception() throws Exception {
+        //given
+        String name = "pro";
 
-		//when
-		ThrowingCallable actual = () -> Players.of(name);
+        //when
+        ThrowingCallable actual = () -> Players.of(name);
 
-		//then
-		assertThatThrownBy(actual).isInstanceOf(PlayersSizeException.class)
-		                          .hasMessage("참가자는 2명 이상이어야 합니다.");
+        //then
+        assertThatThrownBy(actual).isInstanceOf(PlayersSizeException.class)
+                .hasMessage("참가자는 2명 이상이어야 합니다.");
 
-	}
+    }
 
-	@ParameterizedTest(name = "참가자 인원 수 {index} [{arguments}]")
-	@CsvSource(value = {
-			"pro,semi,ama:3",
-			"pro,ama:2"
-	}, delimiter = ':')
-	@DisplayName("참가자 인원 수")
-	void players_size(String playersName, int expected) throws Exception {
-		//given
-		Players players = Players.of(playersName);
+    @ParameterizedTest(name = "참가자 인원 수 {index} [{arguments}]")
+    @CsvSource(value = {
+            "pro,semi,ama:3",
+            "pro,ama:2"
+    }, delimiter = ':')
+    @DisplayName("참가자 인원 수")
+    void players_size(String playersName, int expected) throws Exception {
+        //given
+        Players players = Players.of(playersName);
 
-		//when
-		int actual = players.size();
+        //when
+        int actual = players.size();
 
-		//then
-		assertThat(actual).isEqualTo(expected);
+        //then
+        assertThat(actual).isEqualTo(expected);
 
-	}
+    }
 }

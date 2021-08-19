@@ -9,25 +9,37 @@ import java.util.List;
 
 public class Ladder {
 
-	private final Players players;
-	private final Lines lines;
+    private final Players players;
+    private final Lines lines;
 
-	private Ladder(Players players, Lines lines) {
-		this.players = players;
-		this.lines = lines;
-	}
+    private Ladder(Players players, Lines lines) {
+        this.players = players;
+        this.lines = lines;
+    }
 
-	public static Ladder of(String playersName, int height) {
-		Players players = Players.of(playersName);
-		return new Ladder(players, Lines.of(height, players.size()));
-	}
+    public static Ladder of(String playersName, int height) {
+        Players players = Players.of(playersName);
+        return of(playersName, Lines.of(height, players.size()));
+    }
 
-	public List<Player> getPlayers() {
-		return players.getPlayers();
-	}
+    public static Ladder of(String playersName, Lines lines) {
+        return of(Players.of(playersName), lines);
+    }
 
-	public List<Line> getLines() {
-		return lines.getLines();
-	}
+    public static Ladder of(Players players, Lines lines) {
+        return new Ladder(players, lines);
+    }
+
+    public List<Player> getPlayers() {
+        return players.getPlayers();
+    }
+
+    public List<Line> getLines() {
+        return lines.getLines();
+    }
+
+    public int indexOfResult(Player player) {
+        return lines.indexOfResult(getPlayers().indexOf(player));
+    }
 
 }
