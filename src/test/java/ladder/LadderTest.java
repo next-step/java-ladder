@@ -1,10 +1,10 @@
 package ladder;
 
-import static org.assertj.core.api.Assertions.*;
-
+import ladder.domain.Ladder;
 import org.junit.jupiter.api.Test;
 
-import ladder.domain.Ladder;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LadderTest {
     @Test
@@ -12,7 +12,15 @@ class LadderTest {
         int countOfPerson = 4;
         int height = 5;
         Ladder ladder = Ladder.from(countOfPerson, height);
+
         assertThat(ladder).isInstanceOf(Ladder.class);
         assertThat(ladder.toList().size()).isEqualTo(height);
+    }
+
+    @Test
+    void 사다리_높이가_0이하이면_예외가_발생한다() {
+        int countOfPerson = 4;
+        int height = 0;
+        assertThatThrownBy(() -> Ladder.from(countOfPerson, height)).isInstanceOf(IllegalArgumentException.class);
     }
 }
