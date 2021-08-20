@@ -35,9 +35,11 @@ public class InputView {
     }
 
     private void validateNames(List<String> names) {
-        if (names.stream()
-            .filter(name -> name.length() > 5)
-            .count() >= 1) {
+        if (names.size() < 2) {
+            throw new IllegalArgumentException("사람이름을 적어도 2명 이상 입력해야 합니다.");
+        }
+
+        if (names.stream().anyMatch(name -> name.length() > 5)) {
             throw new IllegalArgumentException("사람 이름이 5자를 넘었습니다.");
         }
     }
