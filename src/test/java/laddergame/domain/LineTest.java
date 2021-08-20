@@ -1,6 +1,7 @@
 package laddergame.domain;
 
 import laddergame.strategy.RandomLineStrategy;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
@@ -8,6 +9,7 @@ import static org.assertj.core.api.Assertions.*;
 class LineTest {
 
     @Test
+    @DisplayName("Line 생성")
     void create() {
         // given
         int countOfPeople = 5;
@@ -21,6 +23,7 @@ class LineTest {
     }
 
     @Test
+    @DisplayName("true 이후 false 입력 여부 확인")
     void check_true_and_false() {
         // given
         int countOfPeople = 4;

@@ -1,5 +1,6 @@
 package laddergame.domain;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
@@ -7,6 +8,7 @@ import static org.assertj.core.api.Assertions.*;
 public class LadderTest {
 
     @Test
+    @DisplayName("Ladder 생성")
     void create() {
         // given
         int countOfPeople = 4;
