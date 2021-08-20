@@ -5,7 +5,6 @@ import nextstep.ladder.domain.ladder.ColumnLine;
 import nextstep.ladder.domain.ladder.Direction;
 import nextstep.ladder.domain.ladder.Height;
 import nextstep.ladder.domain.ladder.Ladder;
-import nextstep.ladder.util.StringUtil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,6 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LadderTest {
     Ladder compareLadder;
@@ -73,4 +73,11 @@ public class LadderTest {
         assertThat(ladder).isEqualTo(compareWithResultLadder);
     }
 
+    @Test
+    @DisplayName("사다리 생성 결과값 에러 테스트")
+    void inputResultsExceptionTest() {
+        assertThatThrownBy(() -> {
+            PlayLadder.playLadder(Arrays.asList("aa", "bb", "cc"), 3, Arrays.asList("꽝", "1000"));
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
 }

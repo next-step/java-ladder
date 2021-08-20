@@ -1,9 +1,7 @@
 package nextstep.ladder;
 
-import nextstep.ladder.application.PlayLadder;
 import nextstep.ladder.domain.ladder.ColumnLine;
 import nextstep.ladder.domain.ladder.Height;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -36,5 +34,16 @@ public class ColumnLineTest {
         String result = "꽝";
         ColumnLine columnLine = new ColumnLine(new Height(heightInteger), result);
         assertThat(columnLine.getResult()).isEqualTo(result);
+    }
+
+    @Test
+    @DisplayName("결과값 에러 매핑 테스트")
+    void resultMappingExceptionTest() {
+        assertThatThrownBy(() -> {
+            new ColumnLine(new Height(5), "");
+        }).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> {
+            new ColumnLine(new Height(5), null);
+        }).isInstanceOf(IllegalArgumentException.class);
     }
 }
