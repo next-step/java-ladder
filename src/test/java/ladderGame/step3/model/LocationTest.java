@@ -53,4 +53,12 @@ class LocationTest {
     Location location = Location.first(before).nextLocation(current).last();
     assertThat(location.movement()).isEqualTo(Direction.valueOf(direction));
   }
+
+  @DisplayName("location 클래스의 좌표값중 이전 좌표값을 반환하는지 확인.")
+  @ParameterizedTest
+  @CsvSource(value = {"true, false","false, false"})
+  void locationValue(boolean current, boolean before) {
+    Location location = Location.first(current);
+    assertThat(location.locationValue()).isEqualTo(before);
+  }
 }
