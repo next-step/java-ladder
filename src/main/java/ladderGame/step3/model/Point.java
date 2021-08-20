@@ -20,30 +20,34 @@ public class Point {
     this.location = location;
   }
 
+  public Location getLocation() {
+    return location;
+  }
+
+  public Location nextLocation(final boolean randomMoveValue) {
+    return location.next(randomMoveValue);
+  }
+
+  public Location lastLocation() {
+    return location.last();
+  }
+
+  public int move() {
+    validationMove();
+    return this.currentPoint + this.location.point(location.movement());
+  }
+
   private void validationPoint(final int point) {
     if (point < LIMIT_INDEX_START) {
       throw new IllegalArgumentException(MSG_ERROR_LIMIT_MIN_VALUE);
     }
   }
 
-  public static Point first(final boolean randomMoveValue) {
-    return new Point(LIMIT_INDEX_START, Location.first(randomMoveValue));
-  }
-
-  public Point next(final int count, final boolean randomMoveValue) {
-    return new Point(count, this.location.next(randomMoveValue));
-  }
-
-  public Point last(final int count, final boolean randomMoveValue) {
-    return new Point(count, this.location.next(randomMoveValue).last());
-  }
-
-  public int move() {
+  private void validationMove() {
     if (this.currentPoint == LIMIT_INDEX_START &&
         this.location.movement().equals(Direction.BACK)) {
       throw new IllegalArgumentException(MSG_ERROR_INVALID_MOVE);
     }
-    return this.currentPoint + this.location.point(location.movement());
   }
 
   @Override
