@@ -7,14 +7,16 @@ import java.util.stream.Collectors;
 public class Ladder {
     private final List<Player> players;
     private final List<Line> lines = new ArrayList<>();
+    private final List<String> results = new ArrayList<>();
 
-    public Ladder(List<String> names, int height) {
+    public Ladder(List<String> names, int height, List<String> result) {
         this.players = names.stream()
                 .map(Player::new)
                 .collect(Collectors.toList());
         for (int i = 0; i < height; i++) {
             this.lines.add(new Line(players));
         }
+        this.results.addAll(result);
     }
 
     public List<Player> getPlayers() {
@@ -27,9 +29,10 @@ public class Ladder {
 
     @Override
     public String toString() {
-        return "Ladder {\n" +
+        return "Ladder {" +
                 "    players = " + players + ",\n" +
-                "    lines = " + lines +
-                "\n}";
+                "    lines = " + lines + ",\n" +
+                "    results = " + results + "\n" +
+                '}';
     }
 }

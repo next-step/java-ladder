@@ -12,7 +12,7 @@ class LadderTest {
     @DisplayName("플레이어 수와 사다리 높이 확인")
     @Test
     void create() {
-        Ladder ladder = new Ladder(Arrays.asList("aa", "bb", "cc", "dd", "ee"), 3);
+        Ladder ladder = new Ladder(Arrays.asList("aa", "bb", "cc", "dd", "ee"), 3, Arrays.asList("꽝","꽝","꽝","꽝","당첨"));
         assertThat(ladder.getPlayers().size()).isEqualTo(5);
         assertThat(ladder.getLines().size()).isEqualTo(3);
         System.out.println(ladder.toString());

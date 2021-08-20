@@ -10,8 +10,9 @@ public class LadderGame{
     public static void main(String[] args){
         InputView inputView = new InputView();
         List<String> names = inputView.names();
+        List<String> results = inputView.results();
         int height = inputView.height();
-        Ladder ladder = new Ladder(names, height);
+        Ladder ladder = new Ladder(names, height,results);
 
         OutputView outputView = new OutputView();
         outputView.printResult(ladder);
