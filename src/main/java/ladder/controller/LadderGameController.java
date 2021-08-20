@@ -1,10 +1,10 @@
 package ladder.controller;
 
-import java.util.List;
-
 import ladder.domain.Ladder;
 import ladder.view.InputView;
 import ladder.view.ResultView;
+
+import java.util.List;
 
 public class LadderGameController {
     public static void main(String[] args) {
