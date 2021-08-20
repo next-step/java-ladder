@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class UsersTest {
     Users users = new Users("pobi,hj,seul");
@@ -13,7 +14,13 @@ public class UsersTest {
     @Test
     @DisplayName("사용자 입력 성공 테스트")
     void 사용자_입력_성공_테스트() {
-        Users users = new Users(Arrays.asList("pobi", "hj", "seul"));
+        Users users = Users.of(Arrays.asList("pobi", "hj", "seul"));
         assertThat(this.users).isEqualTo(users);
+    }
+
+    @Test
+    @DisplayName("사용자 입력 실패 테스트")
+    void 사용자_입력_실패_테스트() {
+        assertThatThrownBy(() -> Users.of(Arrays.asList("pobi"))).isInstanceOf(RuntimeException.class);
     }
 }
