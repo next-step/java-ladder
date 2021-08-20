@@ -42,7 +42,7 @@ class LadderTest {
         String result = ladder.matchedResult("aa");
 
         OutputView outputView = new OutputView();
-        outputView.printResult(ladder);
+        outputView.printResult(ladder, "aa");
         System.out.println(result);
 
         assertThat(result).isEqualTo("5");
@@ -60,7 +60,7 @@ class LadderTest {
                 new ResultDto("ee", "3")
         );
         OutputView outputView = new OutputView();
-        outputView.printResult(ladder);
+        outputView.printResult(ladder, "all");
         System.out.println(actual.toString());
 
         assertThat(actual).isEqualTo(expected);

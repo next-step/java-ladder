@@ -11,14 +11,17 @@ public class Ladder {
     private final List<Line> lines = new ArrayList<>();
     private final List<String> results = new ArrayList<>();
 
-    public Ladder(List<String> names, int height, List<String> result) {
+    public Ladder(List<String> names, int height, List<String> results) {
+        if (names.size() != results.size()) {
+            throw new IllegalArgumentException("입력한 결과 개수가 부족합니다.");
+        }
         this.players = names.stream()
                 .map(Player::new)
                 .collect(Collectors.toList());
         for (int i = 0; i < height; i++) {
             this.lines.add(new Line(players.size()));
         }
-        this.results.addAll(result);
+        this.results.addAll(results);
     }
 
     public Ladder(List<String> names, List<Line> lines, List<String> result) {
