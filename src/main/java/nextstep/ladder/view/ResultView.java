@@ -10,7 +10,7 @@ public class ResultView {
     private static final int ROW_INTERVAL = 5;
 
     public static void printNames(List<String> names) {
-        System.out.println("실행결과");
+        System.out.println("사다리 결과");
         names.stream()
                 .forEach(name -> {
                     System.out.printf(String.format("%-5s",name));
@@ -53,5 +53,13 @@ public class ResultView {
         for (int i = 0; i < ROW_INTERVAL; i++) {
             System.out.print("-");
         }
+    }
+
+    public static void printResults(List<String> results) {
+        results.stream()
+                .forEach(result -> {
+                    System.out.printf(String.format("%-5s",result));
+                });
+        System.out.println();
     }
 }

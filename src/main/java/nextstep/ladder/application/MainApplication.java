@@ -10,11 +10,14 @@ import java.util.List;
 public class MainApplication {
     public static void main(String[] args) {
         String nameString = InputView.inputNameString();
+        String resultString = InputView.inputResultString();
         int height = InputView.inputLadderHeight();
         InputView.closeScanner();
         List<String> names = StringUtil.separator(nameString);
-        Ladder ladder = PlayLadder.createLadder(names, height);
+        List<String> results = StringUtil.separator(resultString);
+        Ladder ladder = PlayLadder.playLadder(names, height, results);
         ResultView.printNames(names);
         ResultView.printLadder(ladder);
+        ResultView.printResults(results);
     }
 }

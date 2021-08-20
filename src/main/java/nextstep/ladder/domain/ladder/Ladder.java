@@ -7,26 +7,21 @@ import java.util.Objects;
 public class Ladder {
     private Height height;
     private List<ColumnLine> columnLines = new LinkedList<>();
+    private final int DEFAULT_INDEX = 0;
 
-    public Ladder(List<ColumnLine> columnLines) {
+    public Ladder(int height, List<ColumnLine> columnLines) {
+        this.height = new Height(height);
         this.columnLines = columnLines;
     }
 
-    public Ladder(int height, int countOfUser) {
-        this.height = new Height(height);
-        createColumnLines(countOfUser);
-        drawRowLines();
+    public Ladder(List<ColumnLine> completedColumnLines) {
+        columnLines = completedColumnLines;
+        height = new Height(completedColumnLines.get(DEFAULT_INDEX).getPoints().size());
     }
 
-    private void drawRowLines() {
+    public void drawRowLines() {
         for (int index = 0; index < columnLines.size()-1; index++) {
             columnLines.get(index).draw(columnLines.get(index+1));
-        }
-    }
-
-    private void createColumnLines(int countOfUser) {
-        for (int i = 0; i < countOfUser; i++) {
-            columnLines.add(new ColumnLine(height));
         }
     }
 
@@ -43,11 +38,11 @@ public class Ladder {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Ladder ladder = (Ladder) o;
-        return Objects.equals(height, ladder.height) && Objects.equals(columnLines, ladder.columnLines);
+        return DEFAULT_INDEX == ladder.DEFAULT_INDEX && Objects.equals(height, ladder.height) && Objects.equals(columnLines, ladder.columnLines);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(height, columnLines);
+        return Objects.hash(height, columnLines, DEFAULT_INDEX);
     }
 }

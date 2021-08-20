@@ -15,4 +15,12 @@ public class StringUtilTest {
         List<String> names = StringUtil.separator(inputString);
         Assertions.assertThat(names).contains("pobi","honux","crong","jk");
     }
+
+    @Test
+    @DisplayName("결과값 쉼표로 구분")
+    void resultSeparatorTest() {
+        String inputResultString = "꽝,5000,꽝,3000";
+        List<String> results = StringUtil.separator(inputResultString);
+        Assertions.assertThat(results).contains("꽝","5000","꽝","3000");
+    }
 }

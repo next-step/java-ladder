@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 public class ColumnLine {
     private List<Point> points = new ArrayList<>();
+    private Result result = new Result();
 
     public ColumnLine(Height height) {
         initPoints(height.getValue());
@@ -18,6 +19,11 @@ public class ColumnLine {
         points = pointOfDirection.stream()
                 .map(direction -> new Point(direction))
                 .collect(Collectors.toList());
+    }
+
+    public ColumnLine(Height height, String result) {
+        initPoints(height.getValue());
+        this.result = new Result(result);
     }
 
     private ColumnLine() {}
@@ -46,16 +52,20 @@ public class ColumnLine {
         return points.get(height).getDirection();
     }
 
+    public String getResult() {
+        return result.getValue();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ColumnLine that = (ColumnLine) o;
-        return Objects.equals(points, that.points);
+        return Objects.equals(points, that.points) && Objects.equals(result, that.result);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(points);
+        return Objects.hash(points, result);
     }
 }
