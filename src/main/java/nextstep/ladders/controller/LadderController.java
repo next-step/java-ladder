@@ -17,12 +17,7 @@ public class LadderController {
     }
 
     public Ladder start(final int countOfPerson, final String maxLadderHeightText) {
-        int height = parseMaxLadderHeight(maxLadderHeightText);
-        return new Ladder(countOfPerson, height);
-    }
-
-    private Integer parseMaxLadderHeight(final String maxLadderHeightText) {
-        return Integer.parseInt(maxLadderHeightText);
+        return new Ladder(countOfPerson, maxLadderHeightText);
     }
 
     private List<String> parseParticipants(final String participantsText) {
