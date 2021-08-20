@@ -1,37 +1,32 @@
 package laddergame.domain;
 
+import laddergame.strategy.LineStrategy;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Line {
 
-    private static final Random random = new Random();
-
     private final List<Boolean> points = new ArrayList<>();
 
-    public Line(int countOfPeople) {
-        initLine(countOfPeople-1);
+    private boolean currentPoint = false;
+
+    public Line(int countOfPeople, LineStrategy lineStrategy) {
+        initLine(countOfPeople-1, lineStrategy);
     }
 
-    private void initLine(int sizeOfPoints) {
-        boolean beforeIsTrue = false;
-
+    private void initLine(int sizeOfPoints, LineStrategy lineStrategy) {
         for (int i = 0; i < sizeOfPoints; i++) {
-            beforeIsTrue = getObject(beforeIsTrue);
-            points.add(beforeIsTrue);
+            currentPoint = lineExistOrEmpty(lineStrategy);
+            points.add(currentPoint);
         }
     }
 
-    private boolean getObject(boolean beforeIsTrue) {
-        if(beforeIsTrue){
+    private boolean lineExistOrEmpty(LineStrategy lineStrategy) {
+        if(currentPoint){
             return false;
         }
-        return trueOrFalse();
-    }
-
-    private boolean trueOrFalse() {
-        return (random.nextInt(2) < 1);
+        return lineStrategy.create();
     }
 
     public int size() {
