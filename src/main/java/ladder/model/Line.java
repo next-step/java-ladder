@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.IntStream;
 
 public class Line {
 
@@ -14,26 +13,30 @@ public class Line {
 		this.points = Collections.unmodifiableList(points);
 	}
 
-	public static Line createLine(int playerCount, LineSketch lineSketch) {
+	public static Line createLine(int playerCount) {
 		List<Point> points = new ArrayList<>();
-		points.add(new Point(false, checkPrevDirection(false, lineSketch)));
-		initBody(playerCount, points, lineSketch);
-		points.add(new Point(points.get(points.size() - 1).isRight(), false));
+		Point point = initFirst(points);
+		point = initBody(playerCount, points, point);
+		initLast(points, point);
 		return new Line(points);
 	}
 
-	private static void initBody(int playerCount, List<Point> points, LineSketch lineSketch) {
-		IntStream.range(1, playerCount - 1).forEach(i -> {
-			boolean right = points.get(i - 1).isRight();
-			points.add(new Point(right, checkPrevDirection(right, lineSketch)));
-		});
+	private static Point initFirst(List<Point> points) {
+		Point point = Point.initCreate(LineSketch.drawLine());
+		points.add(point);
+		return point;
 	}
 
-	private static boolean checkPrevDirection(boolean right, LineSketch lineSketch) {
-		if (right) {
-			return false;
+	private static Point initBody(int playerCount, List<Point> points, Point point) {
+		for (int i = 1; i < playerCount - 1; i++) {
+			point = point.next();
+			points.add(point);
 		}
-		return lineSketch.drawLine();
+		return point;
+	}
+
+	private static void initLast(List<Point> points, Point point) {
+		points.add(point.initLast());
 	}
 
 	public List<Point> getPoints() {
