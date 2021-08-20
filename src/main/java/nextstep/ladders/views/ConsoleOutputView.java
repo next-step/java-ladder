@@ -5,6 +5,9 @@ import nextstep.ladders.domain.*;
 
 public class ConsoleOutputView {
 
+    public static final String LINE = "-----|";
+    public static final String BLANK = "     |";
+
     public void print(final Participants participants, final Ladder ladder) {
         printIntro();
         printParticipants(participants);
@@ -45,9 +48,9 @@ public class ConsoleOutputView {
 
     private void printPoint(Boolean point) {
         if (point) {
-            System.out.print("-----|");
+            System.out.print(LINE);
             return;
         }
-        System.out.print("     |");
+        System.out.print(BLANK);
     }
 }
