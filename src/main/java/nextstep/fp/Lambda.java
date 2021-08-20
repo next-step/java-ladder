@@ -27,13 +27,10 @@ public class Lambda {
     }
 
     private static int sumNumbersIfCondition(List<Integer> numbers, Conditional condition) {
-        int total = 0;
-        for (int number : numbers) {
-            if(condition.of(number)){
-                total += number;
-            }
-        }
-        return total;
+        return numbers.stream()
+                .filter(condition::of)
+                .mapToInt(number -> number)
+                .sum();
     }
 
     public static int sumAll(List<Integer> numbers) {

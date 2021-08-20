@@ -29,20 +29,13 @@ public class StreamStudy {
                 .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
-        /**
-         * TODO 이 부분에 구현한다.
-         * 단어의 길이가 12자를 초과하는 단어를 추출한다.
-         * 12자가 넘는 단어 중 길이가 긴 순서로 100개의 단어를 추출한다.
-         * 단어 중복을 허용하지 않는다. 즉, 서로 다른 단어 100개를 추출해야 한다.
-         * 추출한 100개의 단어를 출력한다. 모든 단어는 소문자로 출력해야 한다.
-         */
         words.stream()
-                .filter((word) -> (word.length() > 12)) // 길이가 12보다 긴 문자열 filtering
-                .sorted(Comparator.comparingInt(String::length).reversed()) // 길이가 긴 순서로 정렬
-                .distinct() // 중복 삭제
-                .limit(100) // 앞에서 부터 100개
-                .map(String::toLowerCase) // 소문자 변경
-                .forEach(System.out::println); // 출력
+                .filter((word) -> (word.length() > 12))
+                .distinct()
+                .sorted(Comparator.comparingInt(String::length).reversed())
+                .limit(100)
+                .map(String::toLowerCase)
+                .forEach(System.out::println);
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
