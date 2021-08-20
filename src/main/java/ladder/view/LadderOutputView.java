@@ -55,7 +55,7 @@ public class LadderOutputView {
 	public static void printResultsName(Results results) {
 		System.out.println(results.getResults()
 			.stream()
-			.map(LadderOutputView::applyNameLength)
+			.map((result) -> applyNameLength(result.getResult()))
 			.collect(Collectors.joining()));
 	}
 
