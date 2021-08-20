@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import ladderGame.step3.util.RandomMove;
 
@@ -11,7 +12,11 @@ public class Line {
 
   public static final String MSG_ERROR_LIMIT_COUNT = "최소 1명이상의 플래이어를 입력해주세요.";
 
-  private static final int START_INDEX = 1;
+  private static final int POINTS_START_INDEX = 0;
+
+  private static final int START_INT_STREAM_INDEX = 1;
+
+  private static final int POINTS_END_REMAIN_INDEX = 2;
 
   private final List<Point> points;
 
@@ -25,23 +30,31 @@ public class Line {
 
     List<Point> newPoints = new ArrayList<>();
 
-    Point point = Point.first(RandomMove.createRandomMoveValue());
+    newPoints.add(
+        new Point(POINTS_START_INDEX, Location.first(RandomMove.createRandomMoveValue())));
 
-    newPoints.add(point);
+    initMiddlePoints(count, newPoints);
 
-    int lastCount = count - START_INDEX;
-
-    IntStream.range(START_INDEX, lastCount)
-        .mapToObj(i -> point.next(i, RandomMove.createRandomMoveValue()))
-        .forEach(newPoints::add);
-
-    newPoints.add(point.last(lastCount, RandomMove.createRandomMoveValue()));
+    int lastIndex = count - POINTS_END_REMAIN_INDEX;
+    newPoints.add(new Point(lastIndex, newPoints.get(lastIndex).lastLocation()));
 
     return newPoints;
   }
 
+  public List<Boolean> lineValues() {
+    return points.stream()
+        .map(Point::pointValue)
+        .collect(Collectors.toList());
+  }
+
+  private static void initMiddlePoints(final int count, final List<Point> newPoints) {
+    IntStream.range(START_INT_STREAM_INDEX, count - START_INT_STREAM_INDEX)
+        .forEach(i -> newPoints.add(new Point(i, newPoints.get(i - START_INT_STREAM_INDEX)
+            .nextLocation(RandomMove.createRandomMoveValue()))));
+  }
+
   private static void validationCount(final int count) {
-    if (count < START_INDEX) {
+    if (count < START_INT_STREAM_INDEX) {
       throw new IllegalArgumentException(MSG_ERROR_LIMIT_COUNT);
     }
   }
