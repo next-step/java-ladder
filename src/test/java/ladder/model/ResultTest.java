@@ -9,36 +9,36 @@ import org.junit.jupiter.api.Test;
 class ResultTest {
 
 	@Test
-	@DisplayName("실행결과를 입력하면 실행결과가 생성된다.")
+	@DisplayName("결과값을 이력하면 결과값이 생성된다.")
 	public void createResult() {
-		Results results = new Results("꽝,5000,2000", 3);
+		Result result = new Result("1000");
 
-		assertThat(results).isEqualTo(new Results("꽝,5000,2000", 3));
-		assertThat(results.getResults()).containsExactly("꽝", "5000", "2000");
+		assertThat(result).isEqualTo(new Result("1000"));
+		assertThat(result.getResult()).isEqualTo("1000");
+	}
+
+	@Test
+	@DisplayName("결과값이 null 이면 예외가 발생된다.")
+	public void checkNull() {
+		assertThrows(IllegalArgumentException.class, () ->
+			new Result(null)
+		);
 	}
 
 	@Test
 	@DisplayName("결과값이 빈값이면 예외가 발생된다.")
 	public void checkEmptyResult() {
 		assertThrows(IllegalArgumentException.class, () ->
-			new Results("", 3)
+			new Result("")
 		);
 	}
 
 	@Test
-	@DisplayName("결과값과 플레이어수가 일치하지 않으면 예외가 발생한다.")
-	public void checkResultsLength() {
+	@DisplayName("결과값이 5자리 이상이면 예외가 발생된다.")
+	public void checkResultLimitLength() {
 		assertThrows(IllegalArgumentException.class, () ->
-			new Results("aaa,bbb", 3)
+			new Result("100000")
 		);
-	}
-
-	@Test
-	@DisplayName("실행결과의 순서를 입력하면 당첨값을 알수 있다.")
-	public void findResultOfPerson() {
-		Results results = new Results("꽝,5000,2000", 3);
-
-		assertThat(results.findResult(1)).isEqualTo("5000");
 	}
 
 }
