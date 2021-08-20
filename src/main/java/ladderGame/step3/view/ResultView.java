@@ -3,6 +3,7 @@ package ladderGame.step3.view;
 import java.util.List;
 import java.util.stream.Collectors;
 import ladderGame.step3.model.Ladder;
+import ladderGame.step3.model.Prizes;
 
 public class ResultView {
 
@@ -37,5 +38,13 @@ public class ResultView {
       return String.format(STRING_FORMAT_SIZE, HAVING_CONNECTION);
     }
     return String.format(STRING_FORMAT_SIZE, NONE_CONNECTION);
+  }
+
+  public static void printPrizes(final Prizes prizes) {
+
+    System.out.println(prizes.prizeNames()
+        .stream()
+        .map(prize -> String.format(STRING_FORMAT_SIZE, prize))
+        .collect(Collectors.joining()));
   }
 }
