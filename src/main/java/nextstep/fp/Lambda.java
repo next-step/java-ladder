@@ -1,7 +1,6 @@
 package nextstep.fp;
 
 import java.util.List;
-import java.util.concurrent.locks.Condition;
 
 public class Lambda {
     public static void printAllOld(List<Integer> numbers) {
@@ -27,10 +26,10 @@ public class Lambda {
         }).start();
     }
 
-    public static int sumConditional(List<Integer> numbers, Conditional c) {
+    public static int sumConditional(List<Integer> numbers, Conditional conditional) {
         int total = 0;
         for (int number : numbers) {
-            if (c.test(number)) {
+            if (conditional.test(number)) {
                 total += number;
             }
         }
@@ -38,7 +37,7 @@ public class Lambda {
     }
 
     public static int sumAll(List<Integer> numbers) {
-        return sumConditional(numbers, (number) -> true);
+        return sumConditional(numbers, number -> true);
     }
 
     public static int sumAllEven(List<Integer> numbers) {
