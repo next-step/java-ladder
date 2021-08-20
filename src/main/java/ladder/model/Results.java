@@ -12,25 +12,26 @@ import ladder.message.ErrorMessage;
 public class Results {
 
 	private static final String REGEX = ",";
-	private final List<String> results;
+	private final List<Result> results;
 
 	public Results(String results, int playerCount) {
 		checkEmptyResult(results);
 		this.results = Collections.unmodifiableList(toList(results, playerCount));
 	}
 
-	public List<String> getResults() {
+	public List<Result> getResults() {
 		return results;
 	}
 
 	public String findResult(int resultPosition) {
-		return results.get(resultPosition);
+		return results.get(resultPosition).getResult();
 	}
 
-	private List<String> toList(String results, int playerCount) {
+	private List<Result> toList(String results, int playerCount) {
 		String[] resultsArray = results.split(REGEX);
 		checkResultsLength(resultsArray.length, playerCount);
 		return Arrays.stream(resultsArray)
+			.map(Result::new)
 			.collect(Collectors.toCollection(LinkedList::new));
 	}
 
