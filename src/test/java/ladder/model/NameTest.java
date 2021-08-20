@@ -37,4 +37,12 @@ class NameTest {
 			new Name("length")
 		);
 	}
+
+	@Test
+	@DisplayName("이름이 null 이상이면 예외가 발생된다.")
+	public void checkNull() {
+		assertThrows(IllegalArgumentException.class, () ->
+			new Name(null)
+		);
+	}
 }

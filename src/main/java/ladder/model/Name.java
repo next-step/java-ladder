@@ -10,6 +10,7 @@ public class Name {
 	private final String name;
 
 	public Name(String name) {
+		checkNull(name);
 		checkEmptyName(name);
 		checkNameLimitLength(name);
 		this.name = name;
@@ -21,6 +22,12 @@ public class Name {
 
 	public boolean isExist(String name) {
 		return this.name.equals(name);
+	}
+
+	private void checkNull(String name) {
+		if (name == null) {
+			throw new IllegalArgumentException(ErrorMessage.NULL_ERROR_MESSAGE);
+		}
 	}
 
 	private void checkEmptyName(String name) {
