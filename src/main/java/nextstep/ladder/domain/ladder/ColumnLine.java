@@ -26,8 +26,6 @@ public class ColumnLine {
         this.result = new Result(result);
     }
 
-    private ColumnLine() {}
-
     private void initPoints(int height) {
         for (int i = 0; i < height; i++) {
             points.add(new Point(Direction.NONE));

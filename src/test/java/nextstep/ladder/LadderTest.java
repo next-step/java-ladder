@@ -5,6 +5,8 @@ import nextstep.ladder.domain.ladder.ColumnLine;
 import nextstep.ladder.domain.ladder.Direction;
 import nextstep.ladder.domain.ladder.Height;
 import nextstep.ladder.domain.ladder.Ladder;
+import nextstep.ladder.domain.user.User;
+import nextstep.ladder.domain.user.UserName;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,16 +18,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LadderTest {
-    Ladder compareLadder;
+    Ladder ladder;
 
     @BeforeEach
     void setup() {
-        ColumnLine compareLine1 = new ColumnLine(Arrays.asList(Direction.NONE, Direction.RIGHT, Direction.RIGHT));
-        ColumnLine compareLine2 = new ColumnLine(Arrays.asList(Direction.RIGHT, Direction.LEFT, Direction.LEFT));
-        ColumnLine compareLine3 = new ColumnLine(Arrays.asList(Direction.LEFT, Direction.NONE, Direction.NONE));
+        ColumnLine columnLine1 = new ColumnLine(Arrays.asList(Direction.NONE, Direction.RIGHT, Direction.RIGHT));
+        ColumnLine columnLine2 = new ColumnLine(Arrays.asList(Direction.RIGHT, Direction.LEFT, Direction.LEFT));
+        ColumnLine columnLine3 = new ColumnLine(Arrays.asList(Direction.LEFT, Direction.NONE, Direction.NONE));
 
-        List<ColumnLine> compareColumnLines = Arrays.asList(compareLine1, compareLine2, compareLine3);
-        compareLadder = new Ladder(compareColumnLines);
+        List<ColumnLine> compareColumnLines = Arrays.asList(columnLine1, columnLine2, columnLine3);
+        ladder = new Ladder(compareColumnLines);
     }
 
     @Test
@@ -51,9 +53,9 @@ public class LadderTest {
                 .drawRightLine(line3.getPointOfHeight(2), () -> false);
 
         List<ColumnLine> columnLines = Arrays.asList(line1,line2,line3);
-        Ladder ladder = new Ladder(columnLines);
+        Ladder compareLadder = new Ladder(columnLines);
 
-        assertThat(ladder).isEqualTo(compareLadder);
+        assertThat(compareLadder).isEqualTo(this.ladder);
     }
 
     @Test
@@ -77,7 +79,20 @@ public class LadderTest {
     @DisplayName("사다리 생성 결과값 에러 테스트")
     void inputResultsExceptionTest() {
         assertThatThrownBy(() -> {
-            PlayLadder.playLadder(Arrays.asList("aa", "bb", "cc"), 3, Arrays.asList("꽝", "1000"));
+            PlayLadder.createLadder(Arrays.asList("aa", "bb", "cc"), 3, Arrays.asList("꽝", "1000"));
         }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("사다리 게임")
+    void playLadderResultUser() {
+        User playUser1 = new User(new UserName("pobi"),0);
+        User playUser2 = new User(new UserName("honux"),1);
+        User playUser3 = new User(new UserName("crong"),2);
+
+        ladder.play(Arrays.asList(playUser1,playUser2,playUser3));
+        assertThat(playUser1.getIndexOfColumnLine()).isEqualTo(0);
+        assertThat(playUser2.getIndexOfColumnLine()).isEqualTo(2);
+        assertThat(playUser3.getIndexOfColumnLine()).isEqualTo(1);
     }
 }
