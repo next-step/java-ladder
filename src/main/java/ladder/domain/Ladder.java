@@ -3,31 +3,19 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 
 public class Ladder {
-    private int height;
-    private int countOfPerson;
     private List<Line> ladder;
 
-    public Ladder(int height, int countOfPerson) {
+    public Ladder(int countOfPerson, int height) {
         ladder = new ArrayList<>();
-        for (int i = 0; i < height; i++) {
-            ladder.add(new Line(countOfPerson));
+        ladder.add(Line.of(height));
+        for (int i = 1; i < countOfPerson; i++) {
+            ladder.add(Line.of(height, ladder.get(i - 1)));
         }
-        this.height = height;
-        this.countOfPerson = countOfPerson;
     }
 
     public List<Line> getLadder() {
         return Collections.unmodifiableList(ladder);
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public int getCountOfPerson() {
-        return countOfPerson;
     }
 }

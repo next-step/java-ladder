@@ -23,7 +23,7 @@ public class InputView {
         return inputValue;
     }
 
-    public static List<String> inputNameOfUsers() {
+    public static List<String> inputNamesOfUsers() {
         return Arrays.asList(getUserInputValue(INPUT_NAME_MESSAGE).split(","));
     }
 
