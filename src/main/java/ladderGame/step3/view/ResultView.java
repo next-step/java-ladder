@@ -47,4 +47,10 @@ public class ResultView {
         .map(prize -> String.format(STRING_FORMAT_SIZE, prize))
         .collect(Collectors.joining()));
   }
+
+  public static void printResult(final List<String> player) {
+
+    System.out.println("실행 결과");
+    player.forEach(System.out::println);
+  }
 }
