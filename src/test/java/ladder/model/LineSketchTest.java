@@ -10,20 +10,20 @@ class LineSketchTest {
 	@Test
 	@DisplayName("랜덤값을 호출 하면 랜덤값이 생성된다.")
 	public void createRandom() {
-		assertThat(new FalseDummyLineSketch().drawLine()).isFalse();
-		assertThat(new TrueDummyLineSketch().drawLine()).isTrue();
+		assertThat(FalseDummyLineSketch.drawLine()).isFalse();
+		assertThat(TrueDummyLineSketch.drawLine()).isTrue();
 	}
 
-	static class FalseDummyLineSketch extends LineSketch {
-		@Override
-		public boolean drawLine() {
+	static class FalseDummyLineSketch {
+
+		public static boolean drawLine() {
 			return false;
 		}
 	}
 
-	static class TrueDummyLineSketch extends LineSketch {
-		@Override
-		public boolean drawLine() {
+	static class TrueDummyLineSketch {
+
+		public static boolean drawLine() {
 			return true;
 		}
 	}

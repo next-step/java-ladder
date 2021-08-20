@@ -2,18 +2,18 @@ package ladder.model;
 
 import java.util.Random;
 
-import ladder.strategy.RandomStrategy;
+import ladder.exception.InstanceCreateException;
+import ladder.message.ErrorMessage;
 
-public class LineSketch implements RandomStrategy {
+public class LineSketch {
 
 	private static final Random random = new Random();
 
-	@Override
-	public boolean drawLine() {
-		return createLine();
+	private LineSketch() {
+		throw new InstanceCreateException(ErrorMessage.INSTANCE_CREATE_ERROR_MESSAGE);
 	}
 
-	private boolean createLine() {
+	public static boolean drawLine() {
 		return random.nextBoolean();
 	}
 
