@@ -18,6 +18,9 @@ public class OutputView {
         System.out.println();
 
         ladder.getLines().forEach(this::printLine);
+
+        ladder.getResults().forEach(name -> System.out.printf(MSG_FORMAT_NAME, name));
+        System.out.println();
     }
 
     private void printLine(Line line) {
