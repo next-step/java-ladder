@@ -3,7 +3,6 @@ package ladderGame.step3.model;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import ladderGame.step3.util.RandomMove;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -28,20 +27,12 @@ class PointTest {
         .isInstanceOf(IllegalArgumentException.class);
   }
 
-  @DisplayName("첫 포인트 생성.")
-  @Test
-  void createFirst() {
-    Point point = Point.first(false);
-
-    assertThat(point).isEqualTo(new Point(0,new Location(false,false)));
-  }
-
   @DisplayName("첫포인트 기준 다음 포인트 생성.")
   @Test
   void createNextPoint() {
 
-    Point firstPoint = Point.first(true);
-    Point next = firstPoint.next(1, false);
+    Point firstPoint = new Point(0, Location.first(true));
+    Point next = new Point(1, firstPoint.nextLocation(false));
 
     assertThat(next).isEqualTo(new Point(1,new Location(true,false)));
   }
@@ -49,9 +40,9 @@ class PointTest {
   @DisplayName("마지막 포인트 생성.")
   @Test
   void createLast() {
-    Point firstPoint = Point.first(RandomMove.createRandomMoveValue());
-    Point next = firstPoint.next(1, RandomMove.createRandomMoveValue()).last(2, false);
-    Point last = next.last(2, false);
+    Point firstPoint = new Point(0, Location.first(true));
+    Point next = new Point(1, firstPoint.nextLocation(false));
+    Point last = new Point(2, next.lastLocation());
 
     assertThat(last).isEqualTo(new Point(2,new Location(false,false)));
   }
