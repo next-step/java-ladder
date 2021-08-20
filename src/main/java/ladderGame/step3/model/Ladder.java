@@ -34,6 +34,15 @@ public class Ladder {
         .collect(Collectors.toList());
   }
 
+  public int findResult(final int userIndex) {
+
+    int move = userIndex;
+    for (Line line : lines) {
+      move = line.pointMove(move);
+    }
+    return move;
+  }
+
   private static void validationHeight(final int height) {
     if (height < LIMIT_HEIGHT) {
       throw new IllegalArgumentException(MSG_ERROR_LIMIT_ROUND);
@@ -56,4 +65,6 @@ public class Ladder {
   public int hashCode() {
     return Objects.hash(lines);
   }
+
+
 }
