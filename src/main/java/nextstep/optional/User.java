@@ -1,15 +1,30 @@
 package nextstep.optional;
 
 import java.util.Optional;
-import java.util.stream.IntStream;
 
 public class User {
-    private String name;
-    private Integer age;
+    private final String name;
+    private final Integer age;
 
     public User(String name, Integer age) {
         this.name = name;
         this.age = age;
+    }
+
+    public static boolean ageIsInRange1(User user) {
+        boolean isInRange = user != null && user.getAge() != null
+            && (user.getAge() >= 30
+            && user.getAge() <= 45);
+
+        return isInRange;
+    }
+
+    public static boolean ageIsInRange2(User user) {
+        return Optional.ofNullable(user)
+            .map(User::getAge)
+            .filter(age -> 30 <= age)
+            .filter(age -> age <= 45)
+            .isPresent();
     }
 
     public String getName() {
@@ -22,25 +37,6 @@ public class User {
 
     public boolean matchName(String name) {
         return this.name.equals(name);
-    }
-
-    public static boolean ageIsInRange1(User user) {
-        boolean isInRange = false;
-
-        if (user != null && user.getAge() != null
-                && (user.getAge() >= 30
-                && user.getAge() <= 45)) {
-            isInRange = true;
-        }
-        return isInRange;
-    }
-
-    public static boolean ageIsInRange2(User user) {
-        return Optional.ofNullable(user)
-            .map(User::getAge)
-            .filter(age -> 30 <= age)
-            .filter(age -> age <= 45)
-            .isPresent();
     }
 
     @Override
@@ -67,10 +63,7 @@ public class User {
         } else if (!age.equals(other.age))
             return false;
         if (name == null) {
-            if (other.name != null)
-                return false;
-        } else if (!name.equals(other.name))
-            return false;
-        return true;
+            return other.name == null;
+        } else return name.equals(other.name);
     }
 }
