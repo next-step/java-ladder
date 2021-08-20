@@ -1,34 +1,25 @@
 package ladder;
 
-import static org.assertj.core.api.Assertions.*;
-
-import java.util.Arrays;
-import java.util.List;
-
+import ladder.domain.Line;
 import org.junit.jupiter.api.Test;
 
-import ladder.domain.Line;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LineTest {
 
     @Test
     void 사다리_게임에_참여하는_입력값이_주어진다면_해당_인원_수_만큼_Line객체를_생성한다() {
-        List<String> persons = Arrays.asList("pobi", "honux", "crong", "jk");
-        Line line = Line.from(persons.size());
+        int countOfPerson = 4;
+        Line line = Line.from(countOfPerson);
         assertThat(line).isInstanceOf(Line.class);
-        assertThat(line.toList().size()).isEqualTo(persons.size());
+        assertThat(line.toList().size()).isEqualTo(countOfPerson);
     }
 
     @Test
-    void 중간다리가_연속적으로_두_개가_있으면_둘_중_하나는_제거한다() {
-        Line line = Line.from(Arrays.asList(true, true, false, false));
-        assertThat(line.toList().stream().filter(e -> e.equals(true)).count()).isEqualTo(1);
-    }
-
-    @Test
-    void 마지막_라인은_중간다리여부가_참이면_거짓으로_변경하고_마지막_라인을_제외한_라인에_중간다리_하나를_생성한다() {
-        Line line = Line.from(Arrays.asList(false, false, false, true));
-        assertThat(line.toList().get(line.toList().size() - 1)).isFalse();
-        assertThat(line.toList().stream().filter(e -> e.equals(true)).count()).isEqualTo(1);
+    void 사다리_게임에_참여하는_인원수가_1명_이하이면_예외가_발생한다() {
+        assertThatThrownBy(() -> {
+            Line.from(1);
+        }).isInstanceOf(IllegalArgumentException.class);
     }
 }
