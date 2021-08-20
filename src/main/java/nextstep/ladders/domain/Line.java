@@ -11,10 +11,14 @@ public class Line {
     private final List<Boolean> points;
 
     public Line(final int countOfPerson, final PointGenerateStrategy strategy) {
+        checkCountOfPersonZero(countOfPerson);
+        this.points = dot(strategy, countOfPerson);
+    }
+
+    private void checkCountOfPersonZero(final int countOfPerson) {
         if (countOfPerson == 0) {
             throw new CountOfPersonZeroException();
         }
-        this.points = dot(strategy, countOfPerson);
     }
 
     private List<Boolean> dot(final PointGenerateStrategy strategy, final int countOfPerson) {
