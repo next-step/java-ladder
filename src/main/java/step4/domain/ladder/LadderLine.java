@@ -1,0 +1,51 @@
+package step4.domain.ladder;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+public class LadderLine {
+    private final List<LadderPoint> line;
+
+    public LadderLine(List<LadderPoint> line) {
+        this.line = line;
+    }
+
+    public static LadderLine of(int size) {
+        validateSize(size);
+        return new LadderLine(makeRandomLine(size));
+    }
+
+    private static void validateSize(int size) {
+        if (lessThanMin(size)) {
+            throw new RuntimeException("참여자는 최소 1명 이상이여야 합니다.");
+        }
+    }
+
+    private static boolean lessThanMin(int size) {
+        return size <= 0;
+    }
+
+    private static List<LadderPoint> makeRandomLine(int size) {
+        return adjustLast(Stream.iterate(LadderPoint.makeRandomPoint(LadderPoint.NONE), LadderPoint::makeRandomPoint)
+            .limit(size)
+            .collect(Collectors.toList()), size - 1);
+    }
+
+    private static List<LadderPoint> adjustLast(List<LadderPoint> list, int lastIndex) {
+        if (list.get(lastIndex) == LadderPoint.RIGHT) {
+            list.set(lastIndex, LadderPoint.NONE);
+        }
+
+        return list;
+    }
+
+    public List<LadderPoint> getLine() {
+        return Collections.unmodifiableList(line);
+    }
+
+    public int move(int position) {
+        return line.get(position).move(position);
+    }
+}
