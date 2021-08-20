@@ -21,10 +21,6 @@ public class Ladder {
         return names;
     }
 
-    public Legs getLegs() {
-        return legs;
-    }
-
     public void drawLines(LineDrawStrategy strategy) {
         for (CoordinateValue widthIndex = CoordinateValue.ZERO; widthIndex.smallerThan(new CoordinateValue(legs.size() - 1)); widthIndex = widthIndex.increment()) {
             drawLinesBetweenLegs(legs.get(widthIndex), legs.get(widthIndex.increment()), strategy);
@@ -42,5 +38,9 @@ public class Ladder {
             Line line = new Line(heightIndex);
             line.register(leftLeg, rightLeg);
         }
+    }
+
+    public Leg getLeg(CoordinateValue coordinateValue) {
+        return legs.get(coordinateValue);
     }
 }

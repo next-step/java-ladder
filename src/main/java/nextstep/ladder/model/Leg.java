@@ -1,10 +1,10 @@
 package nextstep.ladder.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Leg {
-    private final List<Line> lines = new ArrayList<>();
+    private final Map<CoordinateValue, Line> lines = new HashMap<>();
     private final CoordinateValue widthPosition;
     private final CoordinateValue height;
 
@@ -13,24 +13,16 @@ public class Leg {
         this.height = height;
     }
 
-    public Leg(int widthPosition, int height) {
-        this(new CoordinateValue(widthPosition), new CoordinateValue(height));
-    }
-
-    public Leg(int widthPosition, CoordinateValue height) {
-        this(new CoordinateValue(widthPosition), height);
-    }
-
-    public boolean hasLine(CoordinateValue height) {
-        return lines.stream().anyMatch(line -> line.heightIs(height));
-    }
-
     public void register(Line line) {
         if (hasLine(line.getHeightPosition())) {
             return;
         }
 
-        lines.add(line);
+        lines.put(line.getHeightPosition(), line);
+    }
+
+    public boolean hasLine(CoordinateValue height) {
+        return lines.containsKey(height);
     }
 
     public CoordinateValue getWidthPosition() {
@@ -41,10 +33,14 @@ public class Leg {
         return height;
     }
 
-    public boolean directlyConnected(Leg rightLeg, CoordinateValue heightIndex) {
-        return lines.stream()
-            .filter(line -> line.heightIs(heightIndex))
-            .anyMatch(line -> line.getRightLeg().widthPosition.equals(rightLeg.widthPosition));
+    public boolean directlyConnected(Leg otherLeg, CoordinateValue heightIndex) {
+        Line my = lines.get(heightIndex);
+        Line other = otherLeg.lines.get(heightIndex);
+
+        if (my == null || other == null) {
+            return false;
+        }
+        return my.equals(other);
     }
 
     public int getLinesSize() {

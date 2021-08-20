@@ -11,7 +11,9 @@ public class InputView {
     public static List<String> readNames() {
         String raw = nextLineWhileEmpty("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
 
-        return Arrays.stream(raw.split(",")).map(String::trim).collect(Collectors.toList());
+        return Arrays.stream(raw.split(","))
+            .map(String::trim)
+            .collect(Collectors.toList());
     }
 
     public static int readHeight() {

@@ -4,12 +4,6 @@ import java.util.Arrays;
 
 public class Line {
     private final CoordinateValue heightPosition;
-    private Leg leftLeg;
-    private Leg rightLeg;
-
-    public Line(int heightPosition) {
-        this(new CoordinateValue(heightPosition));
-    }
 
     public Line(CoordinateValue heightPosition) {
         this.heightPosition = heightPosition;
@@ -28,17 +22,13 @@ public class Line {
             return;
         }
 
-        leftLeg = legs.get(CoordinateValue.ZERO);
-        rightLeg = legs.get(CoordinateValue.ONE);
+        Leg leftLeg = legs.get(CoordinateValue.ZERO);
         leftLeg.register(this);
+        Leg rightLeg = legs.get(CoordinateValue.ONE);
         rightLeg.register(this);
     }
 
     public CoordinateValue getHeightPosition() {
         return heightPosition;
-    }
-
-    public Leg getRightLeg() {
-        return rightLeg;
     }
 }

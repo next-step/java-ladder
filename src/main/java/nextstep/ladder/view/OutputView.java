@@ -17,22 +17,27 @@ public class OutputView {
 
     private static void printNames(Names names) {
         System.out.println(
-            names.stream().map(Name::getName).reduce("", (accu, curr) -> accu + String.format("%-6s", curr))
+            names.stream()
+                .map(Name::getName)
+                .reduce("", (accu, curr) -> accu + String.format("%-6s", curr))
         );
     }
 
     private static void printHeight(Ladder ladder, int heightIndex) {
         StringBuilder string = new StringBuilder();
         for (int widthIndex = 0; widthIndex < ladder.getWidth().getValue() - 1; widthIndex++) {
-            string
-                .append("|")
-                .append(getLineString(ladder.getLegs().get(new CoordinateValue(widthIndex)), ladder.getLegs().get(new CoordinateValue(widthIndex + 1)), heightIndex));
+            appendLineString(ladder, heightIndex, string, widthIndex);
         }
         System.out.println(string.append("|"));
     }
 
+    private static void appendLineString(Ladder ladder, int heightIndex, StringBuilder string, int widthIndex) {
+        string.append("|")
+            .append(getLineString(ladder.getLeg(new CoordinateValue(widthIndex)), ladder.getLeg(new CoordinateValue(widthIndex + 1)), heightIndex));
+    }
+
     private static String getLineString(Leg leftLeg, Leg rightLeg, int heightIndex) {
-        if (leftLeg.hasLine(new CoordinateValue(heightIndex)) && leftLeg.directlyConnected(rightLeg, new CoordinateValue(heightIndex))) {
+        if (leftLeg.directlyConnected(rightLeg, new CoordinateValue(heightIndex))) {
             return "-----";
         }
         return "     ";

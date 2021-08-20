@@ -15,10 +15,6 @@ public class Names {
         return names.size();
     }
 
-    public Name get(int index) {
-        return names.get(index);
-    }
-
     public Stream<Name> stream() {
         return names.stream();
     }

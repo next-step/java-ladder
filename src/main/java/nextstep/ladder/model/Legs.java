@@ -10,13 +10,15 @@ public class Legs {
     private final List<Leg> legs;
 
     public Legs(List<Leg> legs) {
-        this.legs = legs.stream().sorted(Comparator.comparing(Leg::getWidthPosition)).collect(Collectors.toList());
+        this.legs = legs.stream()
+            .sorted(Comparator.comparing(Leg::getWidthPosition))
+            .collect(Collectors.toList());
     }
 
     public Legs(int size, CoordinateValue height) {
          this(
              IntStream.range(0, size)
-                 .mapToObj(widthIndex -> new Leg(widthIndex, height))
+                 .mapToObj(widthIndex -> new Leg(new CoordinateValue(widthIndex), height))
                  .collect(Collectors.toList())
          );
     }
