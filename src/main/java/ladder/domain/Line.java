@@ -5,18 +5,18 @@ import java.util.List;
 import java.util.Random;
 
 public class Line {
-    public static final int MIN_PLAYERS = 2;
+    private static final int MIN_PLAYERS = 2;
     private List<Boolean> points = new ArrayList<>();
-
-    public Line(List<Player> players){
-        this(players.size());
-    }
 
     Line(int countOfPlayer) {
         if (countOfPlayer < MIN_PLAYERS) {
             throw new IllegalArgumentException("최소 2인 이상 플레이 가능합니다.");
         }
         add(countOfPlayer);
+    }
+
+    Line(List<Boolean> points) {
+        this.points.addAll(points);
     }
 
     private void add(int countOfPlayer) {
