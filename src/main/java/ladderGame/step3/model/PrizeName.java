@@ -17,6 +17,10 @@ public class PrizeName {
     this.prizeName = prizeName;
   }
 
+  public String prizeName(){
+    return String.valueOf(prizeName);
+  }
+
   private void validation(final String prizeName) {
     checkPrizeEmpty(prizeName);
     checkPrizeLength(prizeName);
