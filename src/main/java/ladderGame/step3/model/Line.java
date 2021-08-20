@@ -36,7 +36,7 @@ public class Line {
     initMiddlePoints(count, newPoints);
 
     int lastIndex = count - POINTS_END_REMAIN_INDEX;
-    newPoints.add(new Point(lastIndex, newPoints.get(lastIndex).lastLocation()));
+    newPoints.add(new Point(count - START_INT_STREAM_INDEX, newPoints.get(lastIndex).lastLocation()));
 
     return newPoints;
   }
@@ -45,6 +45,10 @@ public class Line {
     return points.stream()
         .map(Point::pointValue)
         .collect(Collectors.toList());
+  }
+
+  public int pointMove(final int userIndex) {
+    return points.get(userIndex).move();
   }
 
   private static void initMiddlePoints(final int count, final List<Point> newPoints) {
