@@ -34,8 +34,9 @@ public class LadderMain {
         // 사다리 실행
         List<User> targetUsers = users.findUsersByUsername(username);
         List<Position> finalPositions = ladder.startLadder(targetUsers);
+        List<Result> ladderResults = results.findResultsByPositions(finalPositions);
 
         // 결과 출력
-        LadderOutputView.printLadderResults(targetUsers, finalPositions, results);
+        LadderOutputView.printLadderResults(targetUsers, ladderResults);
     }
 }

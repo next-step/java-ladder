@@ -23,11 +23,13 @@ public class LadderOutputView {
         printStringsWithPadding(results.resultStrings(), maxLength);
     }
 
-    public static void printLadderResults(List<User> users, List<Position> positions, Results results) {
-        IntStream.range(0, Math.min(users.size(), positions.size()))
+    public static void printLadderResults(List<User> users, List<Result> ladderResults) {
+        System.out.println("실행결과");
+
+        IntStream.range(0, Math.min(users.size(), ladderResults.size()))
                 .forEach(i -> {
                     User user = users.get(i);
-                    Result result = results.getResultByPosition(positions.get(i));
+                    Result result = ladderResults.get(i);
 
                     System.out.printf("%s: %s%n", user.toOutputString(), result.toOutputString());
                 });

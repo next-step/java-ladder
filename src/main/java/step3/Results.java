@@ -17,7 +17,13 @@ public class Results {
                 .collect(Collectors.toList());
     }
 
-    public Result getResultByPosition(Position position) {
+    public List<Result> findResultsByPositions(List<Position> positions) {
+        return positions.stream()
+                .map(this::getResultByPosition)
+                .collect(Collectors.toList());
+    }
+
+    private Result getResultByPosition(Position position) {
         return results.stream()
                 .filter(r -> r.isSamePosition(position))
                 .findFirst()
