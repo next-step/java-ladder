@@ -1,6 +1,5 @@
 package nextstep.ladders.domain;
 
-import com.sun.tools.javac.util.List;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -10,10 +9,10 @@ class ParticipantsTest {
 
     @Test
     void 정상_생성() {
-        final List<String> names = List.of("pobi", "honux", "crong", "jk");
+        final String participantText = "pobi,hounx,crong,jk";
         assertDoesNotThrow(() -> {
-            Participants participants = new Participants(names);
-            assertEquals(names.size(), participants.count());
+            Participants participants = new Participants(participantText);
+            assertEquals(participants.count(), participants.count());
         });
     }
 }
