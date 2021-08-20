@@ -2,7 +2,6 @@ package ladder.model;
 
 import java.util.Objects;
 
-import ladder.dto.HeightDto;
 import ladder.message.ErrorMessage;
 
 public class Height {
@@ -16,7 +15,7 @@ public class Height {
 	}
 
 	public int getHeight() {
-		return HeightDto.of(height).value();
+		return height;
 	}
 
 	private void checkLimitHeight(int height) {
@@ -31,8 +30,8 @@ public class Height {
 			return true;
 		if (o == null || getClass() != o.getClass())
 			return false;
-		Height that = (Height)o;
-		return height == that.height;
+		Height height1 = (Height)o;
+		return height == height1.height;
 	}
 
 	@Override

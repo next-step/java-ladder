@@ -2,7 +2,6 @@ package ladder.model;
 
 import java.util.Objects;
 
-import ladder.dto.NameDto;
 import ladder.message.ErrorMessage;
 
 public class Name {
@@ -11,13 +10,24 @@ public class Name {
 	private final String name;
 
 	public Name(String name) {
+		checkNull(name);
 		checkEmptyName(name);
 		checkNameLimitLength(name);
 		this.name = name;
 	}
 
 	public String getName() {
-		return NameDto.of(name).value();
+		return name;
+	}
+
+	public boolean isExist(String name) {
+		return this.name.equals(name);
+	}
+
+	private void checkNull(String name) {
+		if (name == null) {
+			throw new IllegalArgumentException(ErrorMessage.NULL_ERROR_MESSAGE);
+		}
 	}
 
 	private void checkEmptyName(String name) {

@@ -4,18 +4,23 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-import ladder.dto.LinesDto;
-
 public class Lines {
 
-	private final List<Line> lines;
+	private final List<Line> ladder;
 
-	public Lines(List<Line> lines) {
-		this.lines = Collections.unmodifiableList(lines);
+	public Lines(List<Line> ladder) {
+		this.ladder = Collections.unmodifiableList(ladder);
 	}
 
-	public List<Line> getLines() {
-		return LinesDto.of(lines).values();
+	public List<Line> getLadder() {
+		return ladder;
+	}
+
+	public int findResultPosition(int position) {
+		for (Line line : ladder) {
+			position = line.move(position);
+		}
+		return position;
 	}
 
 	@Override
@@ -25,11 +30,11 @@ public class Lines {
 		if (o == null || getClass() != o.getClass())
 			return false;
 		Lines lines1 = (Lines)o;
-		return Objects.equals(lines, lines1.lines);
+		return Objects.equals(ladder, lines1.ladder);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(lines);
+		return Objects.hash(ladder);
 	}
 }

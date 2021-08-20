@@ -19,18 +19,16 @@ public class Players {
 		this.players = Collections.unmodifiableList(toList(playersName));
 	}
 
-	public int findPlayerPosition(Player player) {
-		return players.indexOf(player);
-	}
-
-	public String getPlayersName() {
-		return players.stream()
-			.map(Player::toString)
-			.collect(Collectors.joining());
+	public List<Player> getPlayers() {
+		return players;
 	}
 
 	public int findPlayerCount() {
 		return players.size();
+	}
+
+	public int findPlayerPosition(Player player) {
+		return players.indexOf(player);
 	}
 
 	private List<Player> toList(String playersName) {

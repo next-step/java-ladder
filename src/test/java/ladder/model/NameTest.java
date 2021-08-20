@@ -9,17 +9,17 @@ import org.junit.jupiter.api.Test;
 class NameTest {
 
 	@Test
-	@DisplayName("이름을 입력하면 이름이 출력된다.")
+	@DisplayName("이름을 입력하면 이름이 생성된다.")
 	public void createName() {
 		Name name = new Name("cross");
 
 		assertThat(name).isEqualTo(new Name("cross"));
-		assertThat(name.getName()).isEqualTo(" cross");
+		assertThat(name.getName()).isEqualTo("cross");
 
 		Name name2 = new Name("pie");
 
 		assertThat(name2).isEqualTo(new Name("pie"));
-		assertThat(name2.getName()).isEqualTo("   pie");
+		assertThat(name2.getName()).isEqualTo("pie");
 	}
 
 	@Test
@@ -35,6 +35,14 @@ class NameTest {
 	public void checkNameLimitLength() {
 		assertThrows(IllegalArgumentException.class, () ->
 			new Name("length")
+		);
+	}
+
+	@Test
+	@DisplayName("이름이 null 이상이면 예외가 발생된다.")
+	public void checkNull() {
+		assertThrows(IllegalArgumentException.class, () ->
+			new Name(null)
 		);
 	}
 }
