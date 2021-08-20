@@ -20,8 +20,8 @@ public class Point {
     this.location = location;
   }
 
-  public Location getLocation() {
-    return location;
+  public boolean pointValue() {
+    return location.locationValue();
   }
 
   public Location nextLocation(final boolean randomMoveValue) {
