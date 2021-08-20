@@ -38,10 +38,13 @@ public class User {
         return Optional.ofNullable(user)
                 .filter(u -> u != null)
                 .filter(u -> u.getAge() != null)
-                .map(u -> u.getAge())
-                .filter(age -> age >= 30)
-                .filter(age -> age <= 45)
+                .map(User::getAge)
+                .filter(User::isBetweenRange)
                 .isPresent();
+    }
+
+    private static boolean isBetweenRange(Integer age) {
+        return age >= 30 && age <= 45;
     }
 
     @Override
