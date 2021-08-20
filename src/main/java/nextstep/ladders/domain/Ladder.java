@@ -8,12 +8,12 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public Ladder(final int countOfPerson, final int height) {
-        this.lines = new Lines(countOfPerson, height);
+    public Ladder(final PointGenerateStrategy strategy, final int countOfPerson, final int height) {
+        this.lines = new Lines(strategy, countOfPerson, height);
     }
 
-    public Ladder(final int countOfPerson, final String maxLadderHeightText) {
-        this.lines = new Lines(countOfPerson, parseMaxLadderHeight(maxLadderHeightText));
+    public Ladder(final PointGenerateStrategy strategy, final int countOfPerson, final String maxLadderHeightText) {
+        this.lines = new Lines(strategy, countOfPerson, parseMaxLadderHeight(maxLadderHeightText));
     }
 
     private int parseMaxLadderHeight(final String maxLadderHeightText) {
