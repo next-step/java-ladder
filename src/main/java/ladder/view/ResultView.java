@@ -1,10 +1,12 @@
 package ladder.view;
 
+import ladder.domain.GameResult;
 import ladder.domain.Ladder;
 import ladder.domain.Participant;
 import ladder.domain.Results;
 
 import java.util.List;
+import java.util.Map;
 
 public class ResultView {
     private static final String RESULT_COMMENT = "실행 결과";
@@ -13,14 +15,22 @@ public class ResultView {
     private static final String WITH_POINTS_LINE = "-----|";
     private static final String WITHOUT_POINTS_LINE = "     |";
     private static final int MAXIMUM_OF_BLANK_SIZE = 6;
+    private static final String SHOW_RESULT_ALL = "all";
 
     public static void printLadderResultComment() {
         System.out.println(LADDER_RESULT_COMMENT);
     }
 
-    public static void printResult(String result) {
+    public static void printResult(String person, GameResult gameResult) {
         System.out.println(RESULT_COMMENT);
-        System.out.println(result);
+
+        Map<String, String> map = gameResult.getMap();
+
+        if (SHOW_RESULT_ALL.equals(person)) {
+            map.forEach((participant, result) -> System.out.println(participant + " : " + result));
+            return;
+        }
+        System.out.println(map.get(person));
     }
 
     public static void drawLadder(Ladder ladder) {
@@ -69,13 +79,10 @@ public class ResultView {
         return sb;
     }
 
-    public static void printResultAll(Participant participant, Results finalResults) {
+    public static void printResultAll(GameResult gameResult) {
         System.out.println(RESULT_COMMENT);
-        List<String> participateList = participant.getList();
-        List<String> finalResultsList = finalResults.getList();
+        Map<String, String> map = gameResult.getMap();
 
-        for (int i = 0; i < participant.size(); i++) {
-            System.out.println(participateList.get(i) + " : " + finalResultsList.get(i));
-        }
+        map.forEach((participant, result) -> System.out.println(participant + " : " + result));
     }
 }

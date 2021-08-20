@@ -15,18 +15,18 @@ public class Participant {
     private final List<String> participant;
 
     private Participant(List<String> participant) {
-        validateCountOfPerson(participant.size());
-        validateName(participant);
+        countOfPersonValidate(participant.size());
+        nameValidate(participant);
         this.participant = participant;
     }
 
-    private void validateCountOfPerson(int countOfPerson) {
+    private void countOfPersonValidate(int countOfPerson) {
         if (countOfPerson < REQUIRED_NUMBER_OF_PEOPLE) {
             throw new InvalidCountOfPersonException();
         }
     }
 
-    private void validateName(List<String> participant) {
+    private void nameValidate(List<String> participant) {
         participant.stream()
                 .filter(person -> person.length() > NAME_LENGTH_THRESHOLD)
                 .findAny()
@@ -35,11 +35,10 @@ public class Participant {
                 });
     }
 
-    private void validateMatchName(String person) {
-        participant.stream()
-                .filter(p -> person.equals(p))
-                .findAny()
-                .orElseThrow(() -> new NotMatchInParticipantException(person));
+    private void matchNameValidate(String person) {
+        if (!participant.contains(person)) {
+            throw new NotMatchInParticipantException(person);
+        }
     }
 
     public static Participant of(List<String> participant) {
@@ -64,7 +63,7 @@ public class Participant {
     }
 
     public int getParticipantPosition(String person) {
-        validateMatchName(person);
+        matchNameValidate(person);
         return participant.indexOf(person);
     }
 

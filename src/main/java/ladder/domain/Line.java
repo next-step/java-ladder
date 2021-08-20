@@ -9,38 +9,36 @@ import java.util.Objects;
 public class Line {
     private static final int REQUIRED_NUMBER_OF_PEOPLE = 2;
     private static final int MOVING_DISTANCE = 1;
+
     private final List<Boolean> points;
-
-    private Line(List<Boolean> points) {
-        this.points = points;
-    }
-
-    private Line(int countOfPerson) {
-        points = new ArrayList<>();
-        points.add(false);
-        points.add(RandomBooleanGenerator.execute());
-
-        fillLineWithPoints(countOfPerson);
-    }
 
     public static Line of(List<Boolean> points) {
         return new Line(points);
     }
 
     public static Line of(int countOfPerson) {
-        return new Line(countOfPerson);
+        return getLine(countOfPerson);
     }
 
+    private static Line getLine(int countOfPerson) {
+        List<Boolean> points = new ArrayList<>();
+        points.add(false);
+        points.add(RandomBooleanGenerator.execute());
 
-    private void fillLineWithPoints(int countOfPerson) {
         for (int i = REQUIRED_NUMBER_OF_PEOPLE; i < countOfPerson; i++) {
             Boolean current = RandomBooleanGenerator.execute();
             Boolean beforePoint = points.get(i - 1);
             points.add(compareAdjacentPoint(beforePoint, current));
         }
+
+        return new Line(points);
     }
 
-    private Boolean compareAdjacentPoint(Boolean beforePoint, Boolean current) {
+    private Line(List<Boolean> points) {
+        this.points = points;
+    }
+
+    private static Boolean compareAdjacentPoint(Boolean beforePoint, Boolean current) {
         if (beforePoint != current) {
             return current;
         }
@@ -56,23 +54,26 @@ public class Line {
         return points.get(i);
     }
 
-    public int move(int position) {
-        int left = position;
+    public int movedPosition(int position) {
 
+        int right = getRight(position);
+
+        if (havePoints(position)) {
+            return position - MOVING_DISTANCE;
+        }
+        if (havePoints(right)) {
+            return position + MOVING_DISTANCE;
+        }
+        return position;
+    }
+
+    private int getRight(int position) {
         int right = position + MOVING_DISTANCE;
 
         if (right >= points.size()) {
             right = position;
         }
-
-        if (havePoints(left)) {
-            return position - MOVING_DISTANCE;
-        }
-
-        if (havePoints(right)) {
-            return position + MOVING_DISTANCE;
-        }
-        return position;
+        return right;
     }
 
     @Override

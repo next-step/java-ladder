@@ -32,10 +32,6 @@ public class Results {
         return Collections.unmodifiableList(initResults);
     }
 
-    public String getResultByPosition(int position) {
-        return initResults.get(position);
-    }
-
     public Results getFinalResults(Positions positions) {
         return positions.makeFinalResults(initResults);
     }

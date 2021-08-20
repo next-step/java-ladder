@@ -7,23 +7,25 @@ import java.util.Objects;
 public class Ladder {
     private final List<Line> lines;
 
-    private Ladder(List<Line> lines) {
-        this.lines = lines;
-    }
-
-    private Ladder(int ladderMaxLength, int countOfPerson) {
-        this.lines = new ArrayList<>();
-        for (int i = 0; i < ladderMaxLength; i++) {
-            this.lines.add(Line.of(countOfPerson));
-        }
-    }
-
     public static Ladder of(List<Line> lines) {
         return new Ladder(lines);
     }
 
     public static Ladder of(int ladderMaxLength, int countOfPerson) {
-        return new Ladder(ladderMaxLength, countOfPerson);
+        return getLadder(ladderMaxLength, countOfPerson);
+    }
+
+    private static Ladder getLadder(int ladderMaxLength, int countOfPerson) {
+        List<Line> lines = new ArrayList<>();
+        for (int i = 0; i < ladderMaxLength; i++) {
+            lines.add(Line.of(countOfPerson));
+        }
+
+        return new Ladder(lines);
+    }
+
+    private Ladder(List<Line> lines) {
+        this.lines = lines;
     }
 
     public int getLadderWidth() {
@@ -43,12 +45,12 @@ public class Ladder {
         return currentLine.havePoints(column);
     }
 
-    public int move(int position) {
+    public int movedPosition(int position) {
         int result = position;
 
         for (Line line : lines) {
             int currentPosition = result;
-            result = line.move(currentPosition);
+            result = line.movedPosition(currentPosition);
         }
 
         return result;

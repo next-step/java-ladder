@@ -1,18 +1,12 @@
 package ladder;
 
-import ladder.domain.Ladder;
-import ladder.domain.Participant;
-import ladder.domain.Positions;
-import ladder.domain.Results;
+import ladder.domain.*;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
 import java.util.List;
-import java.util.Locale;
 
 public class LadderApplication {
-    private static final String SHOW_RESULT_ALL = "all";
-
     public static void main(String args[]) {
         List<String> participantList = InputView.getParticipant();
         List<String> resultList = InputView.getResults();
@@ -31,24 +25,14 @@ public class LadderApplication {
         Results results = Results.of(resultList);
         ResultView.printInitResults(results);
 
+        Positions positions = Positions.of(participant, ladder);
+
+        Results finalResults = results.getFinalResults(positions);
+
+        GameResult gameResult = GameResult.of(participant, finalResults);
+
         String person = InputView.getPersonForResult();
-        if (isAll(person)) {
-            Positions positions = Positions.of(participant, ladder);
 
-            Results finalResults = results.getFinalResults(positions);
-            ResultView.printResultAll(participant, finalResults);
-            return;
-        }
-
-        int position = participant.getParticipantPosition(person);
-        int finalPosition = ladder.move(position);
-        ResultView.printResult(results.getResultByPosition(finalPosition));
-
-
-    }
-
-    private static boolean isAll(String person) {
-        String lowerCasePerson = person.toLowerCase(Locale.ROOT);
-        return lowerCasePerson.equals(SHOW_RESULT_ALL);
+        ResultView.printResult(person, gameResult);
     }
 }

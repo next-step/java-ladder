@@ -62,7 +62,7 @@ public class LadderTests {
 
         ResultView.drawLadder(ladder);
 
-        assertThat(ladder.move(2)).isEqualTo(1);
+        assertThat(ladder.movedPosition(2)).isEqualTo(1);
     }
 
 

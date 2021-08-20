@@ -41,7 +41,7 @@ public class LineTests {
     void moveRightTest() {
         Line line = Line.of(Arrays.asList(false, false, false, true));
 
-        assertThat(line.move(2)).isEqualTo(3);
+        assertThat(line.movedPosition(2)).isEqualTo(3);
     }
 
     @DisplayName("Line move 시 왼쪽 제대로 움직이는지 테스트")
@@ -49,6 +49,6 @@ public class LineTests {
     void moveLeftTest() {
         Line line = Line.of(Arrays.asList(false, false, true, false));
 
-        assertThat(line.move(2)).isEqualTo(1);
+        assertThat(line.movedPosition(2)).isEqualTo(1);
     }
 }
