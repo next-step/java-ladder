@@ -21,7 +21,7 @@ public class ResultView {
                 System.out.println();
                 System.out.print(LINE_EMPTY);
                 line.getPoints().stream()
-                        .map(bool -> ladderString(bool))
+                        .map(ResultView::ladderString)
                         .forEach(System.out::print);
                 });
     }
