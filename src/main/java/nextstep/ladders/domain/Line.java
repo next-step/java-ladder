@@ -8,18 +8,16 @@ import java.util.List;
 
 public class Line {
 
-    private final PointGenerateStrategy strategy;
     private final List<Boolean> points;
 
     public Line(final int countOfPerson, final PointGenerateStrategy strategy) {
         if (countOfPerson == 0) {
             throw new CountOfPersonZeroException();
         }
-        this.strategy = strategy;
-        this.points = dot(countOfPerson);
+        this.points = dot(strategy, countOfPerson);
     }
 
-    private List<Boolean> dot(final int countOfPerson) {
+    private List<Boolean> dot(final PointGenerateStrategy strategy, final int countOfPerson) {
         List<Boolean> points = new ArrayList<>(Collections.singletonList(false));
         for (int i = 1; i < countOfPerson; i++) {
             boolean previous = points.get(i - 1);
