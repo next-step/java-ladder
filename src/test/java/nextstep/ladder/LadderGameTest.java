@@ -5,11 +5,11 @@ import org.junit.jupiter.api.Test;
 
 import static nextstep.ladder.CommonConstans.ONE_BLANK_SPACE;
 
-public class ExecuteLadderTest {
+public class LadderGameTest {
     @Test
-    @DisplayName("라인 생성 테스트")
+    @DisplayName("사다리 게임 테스트")
     void ladderGame() {
-        ExecuteLadderGame executeLadderGame = ExecuteLadderGame.of("test1,test2,test3,test4", 5);
+        LadderGame executeLadderGame = LadderGame.of("test1,test2,test3,test4", 5);
 
         executeLadderGame.getPlayers()
                 .stream()

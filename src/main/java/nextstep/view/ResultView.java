@@ -1,14 +1,14 @@
 package nextstep.view;
 
 
-import nextstep.ladder.ExecuteLadderGame;
+import nextstep.ladder.LadderGame;
 
 import static nextstep.ladder.CommonConstans.ONE_BLANK_SPACE;
 
 public class ResultView {
 
 
-    public static void printLadderResult(ExecuteLadderGame executeLadderGames) {
+    public static void printLadderResult(LadderGame executeLadderGames) {
 
         executeLadderGames.getPlayers()
                 .stream()
