@@ -28,6 +28,12 @@ public class Ladder {
         .collect(Collectors.toList());
   }
 
+  public List<List<Boolean>> ladderValues() {
+    return lines.stream()
+        .map(Line::lineValues)
+        .collect(Collectors.toList());
+  }
+
   private static void validationHeight(final int height) {
     if (height < LIMIT_HEIGHT) {
       throw new IllegalArgumentException(MSG_ERROR_LIMIT_ROUND);
