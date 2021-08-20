@@ -10,7 +10,7 @@ public class LeftMove implements SideMoveStrategy {
     }
 
     @Override
-    public Position move() {
+    public Position getMove() {
         return position.toLeft();
     }
 }

@@ -20,10 +20,16 @@ public class Ladder implements Iterable<Line> {
                 .collect(Collectors.toList());
     }
 
-    public Position execute(User user) {
+    public List<Position> startLadder(List<User> users) {
+        return users.stream()
+                .map(this::execute)
+                .collect(Collectors.toList());
+    }
+
+    private Position execute(User user) {
         return lines.stream()
                 .reduce(null,
-                        (position, line) -> user.sideMove(line, position),
+                        (position, line) -> user.getSideMove(line, position),
                         (position1, position2) -> position1 = position2);
     }
 

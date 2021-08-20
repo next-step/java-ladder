@@ -23,11 +23,11 @@ public class User {
         }
     }
 
-    public Position sideMove(Line line, Position position) {
+    public Position getSideMove(Line line, Position position) {
         Position currentPosition = Optional.ofNullable(position).orElse(this.initialPosition);
         SideMoveStrategy sideMoveStrategy = currentPosition.getMoveDirection(line);
 
-        return sideMoveStrategy.move();
+        return sideMoveStrategy.getMove();
     }
 
     public boolean isMe(String name) {

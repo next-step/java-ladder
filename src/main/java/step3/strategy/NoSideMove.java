@@ -10,7 +10,7 @@ public class NoSideMove implements SideMoveStrategy {
     }
 
     @Override
-    public Position move() {
+    public Position getMove() {
         return position.just();
     }
 }

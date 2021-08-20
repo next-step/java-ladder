@@ -21,11 +21,10 @@ public class Users {
         return users.size();
     }
 
-    public User findUserByUsername(String username) {
+    public List<User> findUsersByUsername(String username) {
         return users.stream()
-                .filter(u -> u.isMe(username))
-                .findFirst()
-                .orElseThrow(IllegalArgumentException::new);
+                .filter(u -> u.isMe(username) || username.equals("all"))
+                .collect(Collectors.toList());
     }
 
     public List<String> usernames() {

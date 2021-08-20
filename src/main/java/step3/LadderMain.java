@@ -31,8 +31,11 @@ public class LadderMain {
         // 결과 목표 입력
         String username = LadderInputView.getUsernameWithPrompt("결과를 보고 싶은 사람은?");
 
+        // 사다리 실행
+        List<User> targetUsers = users.findUsersByUsername(username);
+        List<Position> finalPositions = ladder.startLadder(targetUsers);
+
         // 결과 출력
-        List<User> targetUsers = LadderOutputView.getUsersByUsernameViewUtil(users, username);
-        LadderOutputView.printLadderResults(ladder, targetUsers, results);
+        LadderOutputView.printLadderResults(targetUsers, finalPositions, results);
     }
 }
