@@ -1,5 +1,6 @@
 package nextstep.ladder.view;
 
+import nextstep.ladder.domain.ladder.Direction;
 import nextstep.ladder.domain.ladder.Ladder;
 
 import java.util.List;
@@ -20,22 +21,23 @@ public class ResultView {
     public static void printLadder(Ladder ladder) {
         for (int heightIndex = 0; heightIndex < ladder.getHeight(); heightIndex++) {
             searchRowLine(ladder, heightIndex);
-            System.out.printf("|");
             System.out.println();
         }
     }
 
     private static void searchRowLine(Ladder ladder, int heightIndex) {
-        for (int lineIndex = 0; lineIndex < ladder.getLines().size()-1; lineIndex++) {
-            System.out.printf("|");
+        for (int lineIndex = 0; lineIndex < ladder.getLines().size(); lineIndex++) {
+            System.out.print("|");
             isExistRowLine(ladder, heightIndex, lineIndex);
         }
     }
 
     private static void isExistRowLine(Ladder ladder, int heightIndex, int lineIndex) {
-        if (ladder.getLines().get(lineIndex).getPointOfHeight(heightIndex) && ladder.getLines().get(lineIndex+1).getPointOfHeight(heightIndex)) {
+        if (ladder.getLines()
+                .get(lineIndex)
+                .getPointOfDirection(heightIndex)
+                .equals(Direction.RIGHT)) {
             printRow();
-            ladder.getLines().get(lineIndex+1).setDrownPosition(heightIndex);
             return;
         }
         printEmpty();
@@ -43,13 +45,13 @@ public class ResultView {
 
     private static void printEmpty() {
         for (int i = 0; i < ROW_INTERVAL; i++) {
-            System.out.printf(" ");
+            System.out.print(" ");
         }
     }
 
     private static void printRow() {
         for (int i = 0; i < ROW_INTERVAL; i++) {
-            System.out.printf("-");
+            System.out.print("-");
         }
     }
 }

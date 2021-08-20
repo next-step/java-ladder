@@ -1,7 +1,7 @@
 package nextstep.ladder;
 
-import nextstep.ladder.application.CreatePointStrategy;
 import nextstep.ladder.domain.ladder.ColumnLine;
+import nextstep.ladder.domain.ladder.Direction;
 import nextstep.ladder.domain.ladder.Height;
 import nextstep.ladder.domain.ladder.Ladder;
 import org.junit.jupiter.api.DisplayName;
@@ -33,31 +33,37 @@ public class LadderTest {
 
     @Test
     @DisplayName("사다리 생성")
-    void createLadderTest(){
+    void createLadderTest() {
         ColumnLine line1 = new ColumnLine(new Height(3));
         ColumnLine line2 = new ColumnLine(new Height(3));
         ColumnLine line3 = new ColumnLine(new Height(3));
 
-        line1.drawRowLine(line2, 0, () -> false);
-        line2.drawRowLine(line3, 0, () -> true);
+        line1.getPointOfHeight(0)
+                .drawRightLine(line2.getPointOfHeight(0), () -> false);
+        line2.getPointOfHeight(0)
+                .drawRightLine(line3.getPointOfHeight(0), () -> true);
 
-        line1.drawRowLine(line2, 1, () -> true);
-        line2.drawRowLine(line3, 1, () -> false);
+        line1.getPointOfHeight(1)
+                .drawRightLine(line2.getPointOfHeight(1), () -> true);
+        line2.getPointOfHeight(1)
+                .drawRightLine(line3.getPointOfHeight(1), () -> false);
 
-        line1.drawRowLine(line2, 2, () -> true);
-        line2.drawRowLine(line3, 2, () -> false);
+        line1.getPointOfHeight(2)
+                .drawRightLine(line2.getPointOfHeight(2), () -> true);
+        line2.getPointOfHeight(2)
+                .drawRightLine(line3.getPointOfHeight(2), () -> false);
 
         List<ColumnLine> columnLines = Arrays.asList(line1,line2,line3);
         Ladder ladder = new Ladder(columnLines);
 
-        List<Boolean> points1 = Arrays.asList(false,true,true);
-        List<Boolean> points2 = Arrays.asList(true,true,true);
-        List<Boolean> points3 = Arrays.asList(true,false,false);
+        ColumnLine compareLine1 = new ColumnLine(Arrays.asList(Direction.NONE, Direction.RIGHT, Direction.RIGHT));
+        ColumnLine compareLine2 = new ColumnLine(Arrays.asList(Direction.RIGHT, Direction.LEFT, Direction.LEFT));
+        ColumnLine compareLine3 = new ColumnLine(Arrays.asList(Direction.LEFT, Direction.NONE, Direction.NONE));
 
-        List<ColumnLine> compareColumnLines = Arrays.asList(new ColumnLine(points1), new ColumnLine(points2), new ColumnLine(points3));
+        List<ColumnLine> compareColumnLines = Arrays.asList(compareLine1, compareLine2, compareLine3);
         Ladder compareLadder = new Ladder(compareColumnLines);
 
-        assertThat(ladder.getLines()).isEqualTo(compareLadder.getLines());
+        assertThat(ladder).isEqualTo(compareLadder);
     }
 
 

@@ -2,6 +2,7 @@ package nextstep.ladder.domain.ladder;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 public class Ladder {
     private Height height;
@@ -25,7 +26,7 @@ public class Ladder {
 
     private void createColumnLines(int countOfUser) {
         for (int i = 0; i < countOfUser; i++) {
-            columnLines.add(new ColumnLine(this.height));
+            columnLines.add(new ColumnLine(height));
         }
     }
 
@@ -35,5 +36,18 @@ public class Ladder {
 
     public int getHeight() {
         return height.getValue();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ladder ladder = (Ladder) o;
+        return Objects.equals(height, ladder.height) && Objects.equals(columnLines, ladder.columnLines);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(height, columnLines);
     }
 }
