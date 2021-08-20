@@ -59,6 +59,9 @@ public class Location {
     return new Location(this.current, false);
   }
 
+  public boolean locationValue() {
+    return before;
+  }
   @Override
   public boolean equals(final Object o) {
     if (this == o) {
