@@ -32,7 +32,7 @@ class LadderGameTest {
         DirectionStrategy directionStrategy = () -> true;
 
         // when
-        Ladder ladder = ladderGame.start(directionStrategy);
+        Ladder ladder = ladderGame.generateLadder(directionStrategy);
         int ladderHeight = ladder.getLines().size();
 
         // then

@@ -31,7 +31,7 @@ public final class LadderGame {
         }
     }
 
-    public Ladder start(final DirectionStrategy directionStrategy) {
+    public Ladder generateLadder(final DirectionStrategy directionStrategy) {
         return new Ladder(directionStrategy, ladderHeight, users.getUserCount());
     }
 }
