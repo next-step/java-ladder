@@ -15,9 +15,11 @@ public class StreamStudy {
                 .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
-        return words.stream()
-                .filter(word -> word.length() > 12)
-                .count();
+        long count = 0;
+        for (String w : words) {
+            if (w.length() > 12) count++;
+        }
+        return count;
     }
 
     public static void printLongestWordTop100() throws IOException {
