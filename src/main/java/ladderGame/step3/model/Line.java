@@ -40,6 +40,12 @@ public class Line {
 
     return newPoints;
   }
+  
+  private static void validationCount(final int count) {
+    if (count < START_INT_STREAM_INDEX) {
+      throw new IllegalArgumentException(MSG_ERROR_LIMIT_COUNT);
+    }
+  }
 
   public List<Boolean> lineValues() {
     return points.stream()
@@ -55,12 +61,6 @@ public class Line {
     IntStream.range(START_INT_STREAM_INDEX, count - START_INT_STREAM_INDEX)
         .forEach(i -> newPoints.add(new Point(i, newPoints.get(i - START_INT_STREAM_INDEX)
             .nextLocation(RandomMove.createRandomMoveValue()))));
-  }
-
-  private static void validationCount(final int count) {
-    if (count < START_INT_STREAM_INDEX) {
-      throw new IllegalArgumentException(MSG_ERROR_LIMIT_COUNT);
-    }
   }
 
   @Override
