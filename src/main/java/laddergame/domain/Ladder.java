@@ -12,9 +12,9 @@ public class Ladder {
 
     private final List<Line> ladder = new ArrayList<>();
 
-    public Ladder(int countOfPeople, int heightOfLadder) {
+    public Ladder(int widthOfLadder, int heightOfLadder) {
         for (int i = 0; i < heightOfLadder; i++) {
-            ladder.add(new Line(countOfPeople, lineStrategy));
+            ladder.add(new Line(widthOfLadder, lineStrategy));
         }
     }
 

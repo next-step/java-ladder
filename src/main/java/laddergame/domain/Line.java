@@ -11,8 +11,8 @@ public class Line {
 
     private boolean currentPoint = false;
 
-    public Line(int countOfPeople, LineStrategy lineStrategy) {
-        initLine(countOfPeople-1, lineStrategy);
+    public Line(int widthOfLadder, LineStrategy lineStrategy) {
+        initLine(widthOfLadder-1, lineStrategy);
     }
 
     private void initLine(int sizeOfPoints, LineStrategy lineStrategy) {
