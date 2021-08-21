@@ -15,10 +15,11 @@ public class ColumnLine {
         initPoints(height.getValue());
     }
 
-    public ColumnLine(List<Direction> pointOfDirection) {
+    public ColumnLine(List<Direction> pointOfDirection, String result) {
         points = pointOfDirection.stream()
                 .map(direction -> new Point(direction))
                 .collect(Collectors.toList());
+        this.result = new Result(result);
     }
 
     public ColumnLine(Height height, String result) {

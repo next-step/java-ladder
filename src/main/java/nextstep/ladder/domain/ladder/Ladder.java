@@ -40,6 +40,7 @@ public class Ladder {
             int indexOfColumnLine = playUsers.get(indexOfUsers).getIndexOfColumnLine();
             moveUser(playUsers.get(indexOfUsers), indexOfColumnLine);
         }
+        System.out.println();
     }
 
     private void moveUser(User playUser, int indexOfColumnLine) {
@@ -61,6 +62,10 @@ public class Ladder {
             return --indexOfColumnLine;
         }
         return indexOfColumnLine;
+    }
+
+    public String getResultOfLine(int lineOfIndex) {
+        return columnLines.get(lineOfIndex).getResult();
     }
 
     @Override

@@ -10,7 +10,10 @@ import nextstep.ladder.domain.user.UserName;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -19,15 +22,20 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LadderTest {
     Ladder ladder;
+    List<User> users = new ArrayList<>();
 
     @BeforeEach
     void setup() {
-        ColumnLine columnLine1 = new ColumnLine(Arrays.asList(Direction.NONE, Direction.RIGHT, Direction.RIGHT));
-        ColumnLine columnLine2 = new ColumnLine(Arrays.asList(Direction.RIGHT, Direction.LEFT, Direction.LEFT));
-        ColumnLine columnLine3 = new ColumnLine(Arrays.asList(Direction.LEFT, Direction.NONE, Direction.NONE));
+        ColumnLine columnLine1 = new ColumnLine(Arrays.asList(Direction.NONE, Direction.RIGHT, Direction.RIGHT), "꽝");
+        ColumnLine columnLine2 = new ColumnLine(Arrays.asList(Direction.RIGHT, Direction.LEFT, Direction.LEFT), "1000");
+        ColumnLine columnLine3 = new ColumnLine(Arrays.asList(Direction.LEFT, Direction.NONE, Direction.NONE), "2000");
 
         List<ColumnLine> compareColumnLines = Arrays.asList(columnLine1, columnLine2, columnLine3);
         ladder = new Ladder(compareColumnLines);
+
+        users = Arrays.asList(new User("pobi",0),
+                                        new User("honux",1),
+                                        new User("crong",2));
     }
 
     @Test
@@ -94,5 +102,18 @@ public class LadderTest {
         assertThat(playUser1.getIndexOfColumnLine()).isEqualTo(0);
         assertThat(playUser2.getIndexOfColumnLine()).isEqualTo(2);
         assertThat(playUser3.getIndexOfColumnLine()).isEqualTo(1);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"pobi, 꽝", "honux, 2000", "crong, 1000"})
+    @DisplayName("결과 보고 싶은 사람")
+    void getResultOfUser(String findName, String expectedResult) {
+        ladder.play(users);
+        User findUser = users.stream()
+                .filter(user -> user.getName().equals(findName))
+                .findFirst()
+                .get();
+
+        assertThat(expectedResult).isEqualTo(ladder.getResultOfLine(findUser.getIndexOfColumnLine()));
     }
 }

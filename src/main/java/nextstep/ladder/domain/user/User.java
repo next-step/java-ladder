@@ -13,6 +13,11 @@ public class User {
         this.indexOfColumnLine = indexOfColumnLine;
     }
 
+    public User(String userName, int indexOfColumnLine) {
+        this.userName = new UserName(userName);
+        this.indexOfColumnLine = indexOfColumnLine;
+    }
+
     public String getName() {
         return userName.getUserName();
     }
