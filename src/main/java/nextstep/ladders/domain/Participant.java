@@ -7,6 +7,7 @@ import java.util.Objects;
 public class Participant {
 
     public static final int MAX_NAME_LENGTH = 5;
+
     private final String name;
 
     private Participant(final String name) {
@@ -14,7 +15,7 @@ public class Participant {
         this.name = name;
     }
 
-    private void checkMaxNameLength(String name) {
+    private void checkMaxNameLength(final String name) {
         if (name.length() > MAX_NAME_LENGTH) {
             throw new NameLengthInvalidException();
         }

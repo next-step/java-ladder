@@ -9,7 +9,7 @@ public class ExecutionResults {
 
     public static final String REGEX_COMMA = ",";
 
-    private List<ExecutionResult> executionResults;
+    private final List<ExecutionResult> executionResults;
 
     public ExecutionResults(final String executionResultText) {
         List<String> results = parseExecutionResults(executionResultText);
@@ -26,9 +26,5 @@ public class ExecutionResults {
 
     public List<ExecutionResult> getExecutionResult() {
         return Collections.unmodifiableList(executionResults);
-    }
-
-    public int count() {
-        return executionResults.size();
     }
 }

@@ -1,6 +1,8 @@
 package nextstep.ladders.domain;
 
 import nextstep.ladders.domain.exceptions.CountOfPersonZeroException;
+import nextstep.ladders.domain.exceptions.HorizontalLinesOverlapException;
+import nextstep.ladders.domain.exceptions.OverRowLengthException;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -46,7 +48,7 @@ public class Line {
 
     private void checkValidRowLength(final int row) {
         if (points.size() <= row) {
-            throw new IllegalArgumentException();
+            throw new OverRowLengthException();
         }
     }
 
@@ -54,7 +56,7 @@ public class Line {
         boolean left = points.get(row);
         boolean right = isNotOnTheRight(row) && points.get(row + 1);
         if (left && right) {
-            throw new IllegalArgumentException();
+            throw new HorizontalLinesOverlapException();
         }
         if (left) {
             return row - 1;

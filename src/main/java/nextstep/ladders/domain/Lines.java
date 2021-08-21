@@ -19,7 +19,8 @@ public class Lines {
                 .collect(Collectors.toList());
     }
 
-    public int start(int row) {
+    public int start(final int index) {
+        int row = index;
         for (Line line : lines) {
             row = line.start(row);
         }

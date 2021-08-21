@@ -2,68 +2,67 @@ package nextstep.ladders.views;
 
 import nextstep.ladders.domain.*;
 
-import java.util.List;
-
 
 public class ConsoleOutputView {
 
     public static final String LINE = "-----|";
     public static final String BLANK = "     |";
     public static final String ALL = "all";
+    public static final String EXECUTION_RESULT = "실행 결과";
 
-    public void print(final Ladder ladder, final LadderInfo ladderInfo) {
-        Participants participants = ladderInfo.getParticipants();
-        ExecutionResults executionResults = ladderInfo.getExecutionResults();
+    public void print(final Ladder ladder) {
+
+        LadderDetail ladderDetail = ladder.getLadderDetail();
+        Participants participants = ladderDetail.getParticipants();
+        ExecutionResults executionResults = ladderDetail.getExecutionResults();
+
+        Lines lines = ladder.getLines();
 
         introduce();
         print(participants);
-        print(ladder);
+        print(lines);
         print(executionResults);
     }
 
-    private void print(ExecutionResults executionResults) {
-        executionResults.getExecutionResult().forEach(this::print);
-        System.out.println();
-    }
-
-    private void print(ExecutionResult executionResult) {
-        String result = executionResult.value();
-        System.out.printf("%5s ", result);
-    }
-
     private void introduce() {
-        System.out.println("실행 결과");
+        System.out.println(EXECUTION_RESULT);
         System.out.println();
     }
 
-    private void print(Participants participants) {
+    private void print(final Participants participants) {
         participants.getParticipants().forEach(this::print);
         System.out.println();
     }
 
-    private void print(Participant participant) {
+    private void print(final Participant participant) {
         String name = participant.value();
         System.out.printf("%5s ", name);
     }
 
-    private void print(Ladder ladder) {
-        print(ladder.getLines());
-    }
-
-    private void print(Lines lines) {
+    private void print(final Lines lines) {
         for (Line line : lines.getLines()) {
             print(line);
         }
     }
 
-    private void print(Line line) {
+    private void print(final Line line) {
         for (Boolean point : line.getPoints()) {
             print(point);
         }
         System.out.println();
     }
 
-    private void print(Boolean point) {
+    private void print(final ExecutionResults executionResults) {
+        executionResults.getExecutionResult().forEach(this::print);
+        System.out.println();
+    }
+
+    private void print(final ExecutionResult executionResult) {
+        String result = executionResult.value();
+        System.out.printf("%5s ", result);
+    }
+
+    private void print(final Boolean point) {
         if (point) {
             System.out.print(LINE);
             return;
@@ -71,40 +70,31 @@ public class ConsoleOutputView {
         System.out.print(BLANK);
     }
 
-    public void print(final Ladder ladder, final LadderInfo ladderInfo, final String name) {
-        System.out.println("실행 결과");
+    public void print(final Ladder ladder, final String name) {
+        System.out.println(EXECUTION_RESULT);
         if (ALL.equals(name)) {
-            printAll(ladder, ladderInfo);
+            printAll(ladder);
             return;
         }
 
-        List<Participant> participants = ladderInfo.getParticipants().getParticipants();
-        List<ExecutionResult> executionResults = ladderInfo.getExecutionResults().getExecutionResult();
+        Participant participant = Participant.valueOf(name);
+        ExecutionResult executionResult = ladder.start(participant);
 
-        int row = participants.indexOf(Participant.valueOf(name));
-        int result = ladder.start(row);
-
-        ExecutionResult executionResult = executionResults.get(result);
         System.out.println(executionResult.value());
         System.out.println();
     }
 
-    private void printAll(final Ladder ladder, final LadderInfo ladderInfo) {
-        List<Participant> participants = ladderInfo.getParticipants().getParticipants();
-        List<ExecutionResult> executionResults = ladderInfo.getExecutionResults().getExecutionResult();
+    private void printAll(final Ladder ladder) {
+        LadderDetail ladderDetail = ladder.getLadderDetail();
+        Participants participants = ladderDetail.getParticipants();
 
-        for (int row = 0; row < participants.size(); row++) {
-
-            int result = ladder.start(row);
-
-            Participant participant = participants.get(result);
-            ExecutionResult executionResult = executionResults.get(result);
-
+        for (Participant participant : participants.getParticipants()) {
+            ExecutionResult executionResult = ladder.start(participant);
             print(participant, executionResult);
         }
     }
 
-    private void print(Participant participant, ExecutionResult executionResult) {
-        System.out.println(participant.value() + ":" + executionResult.value());
+    private void print(final Participant participant, final ExecutionResult executionResult) {
+        System.out.println(participant.value() + " : " + executionResult.value());
     }
 }
