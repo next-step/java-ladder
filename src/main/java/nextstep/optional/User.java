@@ -56,7 +56,7 @@ public class User {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        User other = (User) obj;
+        User other = (User)obj;
         if (age == null) {
             if (other.age != null)
                 return false;
@@ -64,6 +64,7 @@ public class User {
             return false;
         if (name == null) {
             return other.name == null;
-        } else return name.equals(other.name);
+        } else
+            return name.equals(other.name);
     }
 }
