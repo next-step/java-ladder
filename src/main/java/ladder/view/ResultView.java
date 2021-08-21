@@ -15,7 +15,7 @@ public final class ResultView {
     private static final String RESULT_MESSAGE_PRE = "실행결과";
     private static final String LADDER_VERTICAL_DISPLAY = "|";
     private static final String LADDER_HORIZONTAL_DISPLAY = "-";
-    private static final String LADDER_EMPTY_DISPLAY = " ";
+    private static final String EMPTY_DISPLAY = " ";
 
     private ResultView() {
     }
@@ -45,14 +45,14 @@ public final class ResultView {
     private static String getLine(final Line line) {
         return line.getDirections().stream()
                 .map(ResultView::getDirection)
-                .reduce(String::concat).orElse("");
+                .reduce(String::concat).orElse(EMPTY_DISPLAY);
     }
 
     private static String getDirection(final Direction direction) {
         if (direction.equals(Direction.RIGHT)) {
             return getDirectionToFormat(LADDER_HORIZONTAL_DISPLAY);
         }
-        return getDirectionToFormat(LADDER_EMPTY_DISPLAY);
+        return getDirectionToFormat(EMPTY_DISPLAY);
     }
 
     private static String getDirectionToFormat(final String input) {

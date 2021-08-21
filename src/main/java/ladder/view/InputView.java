@@ -21,8 +21,7 @@ public final class InputView {
         System.out.print(LINE_SEPARATOR);
         String input = scanner.nextLine();
         emptyCheck(input);
-        String[] userNames = input.split(USER_SEPARATOR);
-        return userNames;
+        return input.split(USER_SEPARATOR);
     }
 
     private static void emptyCheck(final String input) {
