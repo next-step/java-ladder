@@ -1,17 +1,18 @@
 package ladder.controller;
 
+import java.util.List;
+
 import ladder.domain.Ladder;
+import ladder.domain.Names;
 import ladder.view.InputView;
 import ladder.view.ResultView;
-
-import java.util.List;
 
 public class LadderGameController {
     public static void main(String[] args) {
         InputView inputView = new InputView();
         ResultView resultView = new ResultView();
 
-        List<String> names = inputView.inputParticipantsName();
+        List<String> names = Names.from(inputView.inputParticipantsName()).toStringList();
         int height = inputView.inputMaximumHeight();
 
         Ladder ladder = Ladder.from(names.size(), height);
