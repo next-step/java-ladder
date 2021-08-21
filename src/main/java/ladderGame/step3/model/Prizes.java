@@ -12,6 +12,8 @@ public class Prizes {
 
   private static final String MSG_ERROR_INPUT_PRIZES = "상품을 입력해주세요.";
 
+  public static final String MSG_ERROR_INCORRECT_COUNT = "상품 등록 개수를 참가자 수와 맞춰 주세요.";
+
   private final List<PrizeName> prizes;
 
   public Prizes(final List<PrizeName> prizes) {
@@ -35,7 +37,7 @@ public class Prizes {
 
   private static void validationPrizeCount(final String goods, final int playerCount) {
     if(splitPrizeName(goods).size() != playerCount){
-      throw new IllegalArgumentException("상품 등록 개수를 참가자 수와 맞춰 주세요.");
+      throw new IllegalArgumentException(MSG_ERROR_INCORRECT_COUNT);
     }
   }
 
