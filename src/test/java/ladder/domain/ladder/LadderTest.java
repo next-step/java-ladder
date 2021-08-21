@@ -1,9 +1,5 @@
 package ladder.domain.ladder;
 
-import ladder.domain.ladder.DirectionStrategy;
-import ladder.domain.ladder.Ladder;
-import ladder.domain.ladder.Line;
-import ladder.domain.ladder.RandomDirectionStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -23,26 +19,5 @@ class LadderTest {
         List<Line> lines = ladder.getLines();
         int actual = lines.size();
         assertThat(actual).isEqualTo(4);
-    }
-
-    @Test
-    void test() {
-        DirectionStrategy directionStrategy = new RandomDirectionStrategy();
-        Ladder ladder = new Ladder(directionStrategy, 4, 5);
-        List<Line> lines = ladder.getLines();
-
-//        System.out.println("pobi  honux crong   jk");
-//        for (Line line : lines) {
-//            List<Position> positions = line.getPositions();
-//            System.out.print("    ");
-//            for (Position position : positions) {
-//                if (position.isRight()) {
-//                    System.out.print("|-----");
-//                } else {
-//                    System.out.print("|     ");
-//                }
-//            }
-//            System.out.println();
-//        }
     }
 }

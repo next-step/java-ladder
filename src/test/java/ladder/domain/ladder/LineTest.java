@@ -1,8 +1,5 @@
 package ladder.domain.ladder;
 
-import ladder.domain.ladder.Direction;
-import ladder.domain.ladder.DirectionStrategy;
-import ladder.domain.ladder.Line;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -57,22 +54,5 @@ class LineTest {
         // then
         Direction direction = positions.get(1);
         assertThat(direction).isNotEqualTo(Direction.RIGHT);
-    }
-
-    @Test
-    void test() {
-        int generateCount = 5;
-        Line line = new Line(directionStrategy, generateCount);
-        List<Direction> directions = line.getDirections();
-
-        System.out.println();
-        for (Direction direction : directions) {
-            if (direction.equals(Direction.RIGHT)) {
-                System.out.print("|-----");
-            } else {
-                System.out.print("|     ");
-            }
-        }
-        System.out.println();
     }
 }
