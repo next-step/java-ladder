@@ -7,7 +7,7 @@ public class LadderGame {
     private final People people;
     private final Ladder ladder;
 
-    public LadderGame(String peopleString, int heightOfLadder) {
+    public LadderGame(List<String> peopleString, int heightOfLadder) {
         this.people = new People(peopleString);
         this.ladder = new Ladder(people.size(), heightOfLadder);
     }
