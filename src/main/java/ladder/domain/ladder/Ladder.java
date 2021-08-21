@@ -1,9 +1,11 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
+
+    public static final int MIN_HEIGHT = 1;
 
     private final List<Line> lines;
 

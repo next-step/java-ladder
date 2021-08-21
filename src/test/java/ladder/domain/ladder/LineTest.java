@@ -1,5 +1,8 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
+import ladder.domain.ladder.Direction;
+import ladder.domain.ladder.DirectionStrategy;
+import ladder.domain.ladder.Line;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

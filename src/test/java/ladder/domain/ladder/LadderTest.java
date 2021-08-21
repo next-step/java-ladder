@@ -1,5 +1,9 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
+import ladder.domain.ladder.DirectionStrategy;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.Line;
+import ladder.domain.ladder.RandomDirectionStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
