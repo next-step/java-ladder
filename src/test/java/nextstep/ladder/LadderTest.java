@@ -2,23 +2,30 @@ package nextstep.ladder;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LadderTest {
 
-    @DisplayName("사다리게임을 만들 수 있다")
+    @DisplayName("참가하는 사람들과 사다리를 만들 수 있다")
     @Test
     void ladder() {
+        // given
         int heightOfLadder = 5;
-        int countOfPerson = 3;
-        Ladder ladder = Ladder.of(countOfPerson, heightOfLadder);
 
-        List<Line> lines =  ladder.getLadderLines();
+        List<Person> gamers = new ArrayList<>();
+        gamers.add(Person.of("Pobi1"));
+        gamers.add(Person.of("Pobi2"));
+        gamers.add(Person.of("Pobi3"));
 
-        assertThat(lines.size()).isEqualTo(heightOfLadder);
-        assertThat(lines.get(0).size()).isEqualTo(countOfPerson);
+        // when
+        Ladder ladder = Ladder.of(gamers, heightOfLadder);
+
+        // then
+        assertThat(ladder.getLadderLines().size()).isEqualTo(heightOfLadder);
+        assertThat(ladder.persons().size()).isEqualTo(3);
     }
 
 
