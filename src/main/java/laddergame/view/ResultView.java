@@ -13,17 +13,34 @@ public class ResultView {
         List<Person> people = ladderGame.getPeople();
         List<Line> ladder = ladderGame.getLadder();
 
+        String result = makeResult(people, ladder);
+
+        System.out.println(result);
+    }
+
+    private static String makeResult(List<Person> people, List<Line> ladder) {
+        StringBuilder sb = new StringBuilder();
+
         people.stream()
                 .map(Person::getName)
-                .forEach(name -> System.out.printf("%"+ (Person.MAX_LENGTH_OF_NAME+1) +"s", name));
+                .map(name -> String.format("%"+ (Person.MAX_LENGTH_OF_NAME+1) +"s", name))
+                .forEach(sb::append);
 
         ladder.forEach(line -> {
-                System.out.println();
-                System.out.print(LINE_EMPTY);
-                line.getPoints().stream()
-                        .map(ResultView::ladderString)
-                        .forEach(System.out::print);
-                });
+            sb.append(System.lineSeparator())
+                    .append(LINE_EMPTY)
+                    .append(makeLineResult(line));
+        });
+
+        return sb.toString();
+    }
+
+    private static String makeLineResult(Line line) {
+        StringBuilder sb = new StringBuilder();
+        line.getPoints().stream()
+                .map(ResultView::ladderString)
+                .forEach(sb::append);
+        return sb.toString();
     }
 
     private static String ladderString(Boolean bool) {
