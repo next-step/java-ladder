@@ -6,7 +6,11 @@ import ladder.domain.user.Users;
 import ladder.exception.LadderLackOfUserException;
 import ladder.exception.LadderMinimumHeightException;
 
+import static ladder.domain.ladder.Ladder.MIN_HEIGHT;
+
 public final class LadderGame {
+
+    public static final int MIN_USER_COUNT = 2;
 
     private final int ladderHeight;
     private final Users users;
@@ -20,13 +24,13 @@ public final class LadderGame {
     }
 
     private void validateLadderHeight(final int ladderHeight) {
-        if (ladderHeight < Ladder.MIN_HEIGHT) {
+        if (ladderHeight < MIN_HEIGHT) {
             throw new LadderMinimumHeightException(ladderHeight);
         }
     }
 
     private void validateUserCount(final String[] users) {
-        if (users.length < Ladder.MIN_USER_COUNT) {
+        if (users.length < MIN_USER_COUNT) {
             throw new LadderLackOfUserException();
         }
     }

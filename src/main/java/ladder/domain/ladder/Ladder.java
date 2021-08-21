@@ -6,7 +6,6 @@ import java.util.stream.IntStream;
 
 public final class Ladder {
 
-    public static final int MIN_USER_COUNT = 2;
     public static final int MIN_HEIGHT = 1;
 
     private final List<Line> lines;
