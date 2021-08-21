@@ -20,6 +20,10 @@ public class Ladder {
         return Integer.parseInt(maxLadderHeightText);
     }
 
+    public int start(final int row) {
+        return lines.start(row);
+    }
+
     public Lines getLines() {
         return lines;
     }
