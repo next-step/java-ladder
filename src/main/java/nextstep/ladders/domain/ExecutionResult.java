@@ -11,4 +11,8 @@ public class ExecutionResult {
     public static ExecutionResult valueOf(final String result) {
         return new ExecutionResult(result);
     }
+
+    public String value() {
+        return result;
+    }
 }

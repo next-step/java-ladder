@@ -10,10 +10,22 @@ public class ConsoleOutputView {
 
     public void print(final LadderInfo ladderInfo, final Ladder ladder) {
         Participants participants = ladderInfo.getParticipants();
+        ExecutionResults executionResults = ladderInfo.getExecutionResults();
 
         printIntro();
         printParticipants(participants);
         printLadder(ladder);
+        printExecutionResults(executionResults);
+    }
+
+    private void printExecutionResults(ExecutionResults executionResults) {
+        executionResults.getExecutionResult().forEach(this::printExecutionResult);
+        System.out.println();
+    }
+
+    private void printExecutionResult(ExecutionResult executionResult) {
+        String result = executionResult.value();
+        System.out.printf("%5s ", result);
     }
 
     private void printIntro() {
