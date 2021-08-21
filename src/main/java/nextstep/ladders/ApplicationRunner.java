@@ -19,6 +19,7 @@ public class ApplicationRunner {
         LadderController ladderController = new LadderController();
 
         String participantsText = inputView.enterParticipants();
+        String executionResultText = inputView.enterExecutionResult();
         String maxLadderHeightText = inputView.enterMaxLadderHeight();
 
         Participants participants = ladderController.register(participantsText);
