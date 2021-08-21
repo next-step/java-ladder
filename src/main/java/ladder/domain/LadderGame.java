@@ -7,6 +7,7 @@ import ladder.exception.LadderMinimumHeightException;
 
 public class LadderGame {
 
+    public static final int MAX_USERNAME_LENGTH = 5;
     public static final int MIN_USER_COUNT = 2;
 
     private final int ladderHeight;
@@ -20,19 +21,19 @@ public class LadderGame {
         this.users = users;
     }
 
-    private void validateLadderHeight(int ladderHeight) {
+    private void validateLadderHeight(final int ladderHeight) {
         if (ladderHeight < Ladder.MIN_HEIGHT) {
             throw new LadderMinimumHeightException(ladderHeight);
         }
     }
 
-    private void validateUserCount(String[] users) {
+    private void validateUserCount(final String[] users) {
         if (users.length < MIN_USER_COUNT) {
             throw new LadderLackOfUserException();
         }
     }
 
-    public Ladder start(DirectionStrategy directionStrategy) {
+    public Ladder start(final DirectionStrategy directionStrategy) {
         return new Ladder(directionStrategy, ladderHeight, users.length);
     }
 }
