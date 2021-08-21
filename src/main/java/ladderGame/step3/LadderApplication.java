@@ -25,15 +25,17 @@ public class LadderApplication {
     ResultView.printLadder(ladder);
     ResultView.printPrizes(prizes);
 
-    while(true){
-      String findName = InputView.inputFindNames();
+    String findName = InputView.inputFindNames();
+    FindResult findResult = new FindResult(players, ladder, prizes);
 
-      FindResult findResult = new FindResult(players, ladder, prizes);
-      ResultView.printResult(findResult.matchPrizes(findName));
-
-      if(findName.equals(ALL_NAMES)){
-        break;
-      }
+    while(isContinue(findName)){
+      findName = InputView.inputFindNames();
     }
+
+    ResultView.printResult(findResult.matchPrizes(findName));
+  }
+
+  private static boolean isContinue(final String findName) {
+    return !findName.equals(ALL_NAMES);
   }
 }
