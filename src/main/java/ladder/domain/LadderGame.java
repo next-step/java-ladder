@@ -5,7 +5,7 @@ import ladder.domain.ladder.Ladder;
 import ladder.exception.LadderLackOfUserException;
 import ladder.exception.LadderMinimumHeightException;
 
-public class LadderGame {
+public final class LadderGame {
 
     public static final int MAX_USERNAME_LENGTH = 5;
     public static final int MIN_USER_COUNT = 2;

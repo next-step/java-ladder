@@ -2,7 +2,7 @@ package ladder.domain.ladder;
 
 import java.util.Random;
 
-public class RandomDirectionStrategy implements DirectionStrategy {
+public final class RandomDirectionStrategy implements DirectionStrategy {
 
     private final Random RANDOM = new Random();
 

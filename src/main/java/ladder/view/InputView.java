@@ -2,7 +2,7 @@ package ladder.view;
 
 import java.util.Scanner;
 
-public class InputView {
+public final class InputView {
 
     private static final String LINE_SEPARATOR = System.lineSeparator();
     private static final String MESSAGE_INPUT_USER_NAMES = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
@@ -12,7 +12,7 @@ public class InputView {
 
     private final Scanner scanner;
 
-    public InputView(Scanner scanner) {
+    public InputView(final Scanner scanner) {
         this.scanner = scanner;
     }
 
@@ -25,7 +25,7 @@ public class InputView {
         return userNames;
     }
 
-    private static void emptyCheck(String input) {
+    private static void emptyCheck(final String input) {
         if (input == null || input.trim().isEmpty()) {
             throw new IllegalArgumentException(MESSAGE_INPUT_VALUE_INCORRECT);
         }

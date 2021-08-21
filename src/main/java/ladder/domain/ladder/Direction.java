@@ -4,14 +4,14 @@ public enum Direction {
 
     LEFT, STRAIGHT, RIGHT;
 
-    public static Direction first(DirectionStrategy directionStrategy) {
+    public static Direction first(final DirectionStrategy directionStrategy) {
         if (directionStrategy.move()) {
             return RIGHT;
         }
         return STRAIGHT;
     }
 
-    public Direction next(DirectionStrategy directionStrategy) {
+    public Direction next(final DirectionStrategy directionStrategy) {
         if (this == RIGHT) {
             return LEFT;
         }

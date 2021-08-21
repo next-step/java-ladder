@@ -9,7 +9,7 @@ import ladder.utils.StringUtil;
 import java.util.Arrays;
 import java.util.List;
 
-public class ResultView {
+public final class ResultView {
 
     private static final String LINE_SEPARATOR = System.lineSeparator();
     private static final String RESULT_MESSAGE_PRE = "실행결과";
@@ -20,42 +20,42 @@ public class ResultView {
     private ResultView() {
     }
 
-    public static void displayLadderGameResult(Ladder ladder, String... usernames) {
+    public static void displayLadderGameResult(final Ladder ladder, String... usernames) {
         System.out.print(LINE_SEPARATOR + RESULT_MESSAGE_PRE + LINE_SEPARATOR + LINE_SEPARATOR);
         displayUsers(usernames);
         System.out.print(LINE_SEPARATOR);
         displayLadders(ladder.getLines());
     }
 
-    private static void displayUsers(String[] userNames) {
+    private static void displayUsers(final String[] userNames) {
         Arrays.stream(userNames).map(ResultView::getUserToFormat)
                 .forEach(System.out::print);
     }
 
-    private static String getUserToFormat(String input) {
+    private static String getUserToFormat(final String input) {
         return StringUtil.fillRightBlank(input, LadderGame.MAX_USERNAME_LENGTH + 1);
     }
 
-    private static void displayLadders(List<Line> lines) {
+    private static void displayLadders(final List<Line> lines) {
         lines.stream()
                 .map(ResultView::getLine)
                 .forEach(System.out::println);
     }
 
-    private static String getLine(Line line) {
+    private static String getLine(final Line line) {
         return line.getDirections().stream()
                 .map(ResultView::getDirection)
                 .reduce(String::concat).orElse("");
     }
 
-    private static String getDirection(Direction direction) {
+    private static String getDirection(final Direction direction) {
         if (direction.equals(Direction.RIGHT)) {
             return getDirectionToFormat(LADDER_HORIZONTAL_DISPLAY);
         }
         return getDirectionToFormat(LADDER_EMPTY_DISPLAY);
     }
 
-    private static String getDirectionToFormat(String input) {
+    private static String getDirectionToFormat(final String input) {
         return LADDER_VERTICAL_DISPLAY + StringUtil.fillGivenString(input, LadderGame.MAX_USERNAME_LENGTH);
     }
 }

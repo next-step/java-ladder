@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
-public class Line {
+public final class Line {
 
     private final List<Direction> directions;
 
-    public Line(DirectionStrategy directionStrategy, int userCount) {
+    public Line(final DirectionStrategy directionStrategy, final int userCount) {
         directions = new ArrayList<>();
         directions.add(Direction.first(directionStrategy));
         IntStream.range(1, userCount - 1)

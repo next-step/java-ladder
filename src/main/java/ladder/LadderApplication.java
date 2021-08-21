@@ -8,7 +8,7 @@ import ladder.view.ResultView;
 
 import java.util.Scanner;
 
-public class LadderApplication {
+public final class LadderApplication {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
