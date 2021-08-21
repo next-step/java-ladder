@@ -8,7 +8,7 @@ public class Point {
 
   public static final String MSG_ERROR_INVALID_MOVE = "할 수 없는 움직임 입니다.";
 
-  private static final int LIMIT_INDEX_START = 0;
+  private static final int FIRST_LOCATION = 0;
 
   private final int currentPoint;
 
@@ -38,13 +38,13 @@ public class Point {
   }
 
   private void validationPoint(final int point) {
-    if (point < LIMIT_INDEX_START) {
+    if (point < FIRST_LOCATION) {
       throw new IllegalArgumentException(MSG_ERROR_LIMIT_MIN_VALUE);
     }
   }
 
   private void validationMove() {
-    if (this.currentPoint == LIMIT_INDEX_START &&
+    if (this.currentPoint == FIRST_LOCATION &&
         this.location.movement().equals(Direction.BACK)) {
       throw new IllegalArgumentException(MSG_ERROR_INVALID_MOVE);
     }
