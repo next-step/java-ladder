@@ -13,7 +13,10 @@ class LadderTest {
   @DisplayName("사다리 생성 최소 입력값 검증.")
   @Test
   void invalidLadder() {
-    assertThatThrownBy(() -> new Ladder(Ladder.of(0,1)))
+    int height = 0;
+    int playerCount = 1;
+
+    assertThatThrownBy(() -> new Ladder(Ladder.of(height,playerCount)))
         .isInstanceOf(IllegalArgumentException.class);
   }
 
