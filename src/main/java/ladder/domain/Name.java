@@ -33,7 +33,7 @@ public class Name {
 
         if (name.length() < PERSON_NAME_LENGTH_MIN) {
             throw new NameLengthException(String.format(PERSON_NUMBER_MAX_EXCEPTION_COMMENT, PERSON_NAME_LENGTH_MIN));
-        } 
+        }
     }
 
     public String name() {
