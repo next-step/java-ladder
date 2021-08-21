@@ -8,7 +8,9 @@ public class ConsoleOutputView {
     public static final String LINE = "-----|";
     public static final String BLANK = "     |";
 
-    public void print(final Participants participants, final Ladder ladder) {
+    public void print(final LadderInfo ladderInfo, final Ladder ladder) {
+        Participants participants = ladderInfo.getParticipants();
+
         printIntro();
         printParticipants(participants);
         printLadder(ladder);

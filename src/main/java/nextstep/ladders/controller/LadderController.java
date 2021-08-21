@@ -1,13 +1,13 @@
 package nextstep.ladders.controller;
 
 import nextstep.ladders.domain.Ladder;
-import nextstep.ladders.domain.Participants;
+import nextstep.ladders.domain.LadderInfo;
 import nextstep.ladders.domain.RandomPointGenerateStrategy;
 
 public class LadderController {
 
-    public Participants register(final String participantsText) {
-        return new Participants(participantsText);
+    public LadderInfo register(final String participantsText, final String executionResultText) {
+        return new LadderInfo(participantsText, executionResultText);
     }
 
     public Ladder start(final int countOfPerson, final String maxLadderHeightText) {

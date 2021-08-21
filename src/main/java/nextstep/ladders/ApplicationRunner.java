@@ -2,6 +2,7 @@ package nextstep.ladders;
 
 import nextstep.ladders.controller.LadderController;
 import nextstep.ladders.domain.Ladder;
+import nextstep.ladders.domain.LadderInfo;
 import nextstep.ladders.domain.Participants;
 import nextstep.ladders.views.ConsoleInputView;
 import nextstep.ladders.views.ConsoleOutputView;
@@ -22,10 +23,12 @@ public class ApplicationRunner {
         String executionResultText = inputView.enterExecutionResult();
         String maxLadderHeightText = inputView.enterMaxLadderHeight();
 
-        Participants participants = ladderController.register(participantsText);
+        LadderInfo ladderInfo = ladderController.register(participantsText, executionResultText);
+        Participants participants = ladderInfo.getParticipants();
+
         Ladder ladder = ladderController.start(participants.count(), maxLadderHeightText);
 
-        outputView.print(participants, ladder);
+        outputView.print(ladderInfo, ladder);
 
         scanner.close();
     }
