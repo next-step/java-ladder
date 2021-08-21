@@ -4,8 +4,8 @@ public class Ladder {
     private final Legs legs;
     private final Names names;
 
-    public Ladder(Names names, CoordinateValue height) {
-        this.legs = new Legs(names.size(), height);
+    public Ladder(Names names, CoordinateValue height, int legCount) {
+        this.legs = new Legs(legCount, height);
         this.names = names;
     }
 
@@ -34,9 +34,10 @@ public class Ladder {
     }
 
     private void drawLineByStrategy(LineDrawStrategy strategy, Leg leftLeg, Leg rightLeg, CoordinateValue heightIndex) {
-        if (strategy.decideToDraw()) {
+        if (strategy.decideToDraw() && !leftLeg.hasLine(heightIndex) && !rightLeg.hasLine(heightIndex)) {
             Line line = new Line(heightIndex);
-            line.register(leftLeg, rightLeg);
+            leftLeg.register(line);
+            rightLeg.register(line);
         }
     }
 

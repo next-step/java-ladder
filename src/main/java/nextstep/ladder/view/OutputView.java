@@ -3,24 +3,14 @@ package nextstep.ladder.view;
 import nextstep.ladder.model.CoordinateValue;
 import nextstep.ladder.model.Ladder;
 import nextstep.ladder.model.Leg;
-import nextstep.ladder.model.Name;
-import nextstep.ladder.model.Names;
 
 public class OutputView {
     public static void printLadder(Ladder ladder) {
         System.out.println("실행결과");
-        printNames(ladder.getNames());
+        System.out.println(ladder.getNames());
         for (int heightIndex = 0; heightIndex < ladder.getHeight().getValue(); heightIndex++) {
             printHeight(ladder, heightIndex);
         }
-    }
-
-    private static void printNames(Names names) {
-        System.out.println(
-            names.stream()
-                .map(Name::getName)
-                .reduce("", (accu, curr) -> accu + String.format("%-6s", curr))
-        );
     }
 
     private static void printHeight(Ladder ladder, int heightIndex) {

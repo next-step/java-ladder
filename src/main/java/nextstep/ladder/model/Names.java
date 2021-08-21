@@ -2,7 +2,6 @@ package nextstep.ladder.model;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Names {
     private final List<Name> names;
@@ -11,11 +10,10 @@ public class Names {
         this.names = names.stream().map(Name::new).collect(Collectors.toList());
     }
 
-    public int size() {
-        return names.size();
-    }
-
-    public Stream<Name> stream() {
-        return names.stream();
+    @Override
+    public String toString() {
+        return names.stream()
+            .map(Name::toString)
+            .reduce("", (accu, curr) -> accu + String.format("%-6s", curr));
     }
 }
