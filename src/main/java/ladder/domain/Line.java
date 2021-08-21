@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class Line {
     private static final int MIN_PLAYERS = 2;
-    private List<Boolean> points = new ArrayList<>();
+    private final List<Boolean> points = new ArrayList<>();
 
     Line(int countOfPlayer) {
         if (countOfPlayer < MIN_PLAYERS) {
