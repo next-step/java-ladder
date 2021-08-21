@@ -30,21 +30,34 @@ public class Line {
 
     List<Point> newPoints = new ArrayList<>();
 
-    newPoints.add(
-        new Point(POINTS_START_INDEX, Location.first(RandomMove.createRandomMoveValue())));
-
+    initFirstPoint(newPoints);
     initMiddlePoints(count, newPoints);
-
-    int lastIndex = count - POINTS_END_REMAIN_INDEX;
-    newPoints.add(new Point(count - START_INT_STREAM_INDEX, newPoints.get(lastIndex).lastLocation()));
+    initLastPoint(count, newPoints);
 
     return newPoints;
   }
-  
+
   private static void validationCount(final int count) {
     if (count < START_INT_STREAM_INDEX) {
       throw new IllegalArgumentException(MSG_ERROR_LIMIT_COUNT);
     }
+  }
+
+  private static void initFirstPoint(final List<Point> newPoints) {
+    newPoints.add(
+        new Point(POINTS_START_INDEX, Location.first(RandomMove.createRandomMoveValue())));
+  }
+
+  private static void initMiddlePoints(final int count, final List<Point> newPoints) {
+    IntStream.range(START_INT_STREAM_INDEX, count - START_INT_STREAM_INDEX)
+        .forEach(i -> newPoints.add(new Point(i, newPoints.get(i - START_INT_STREAM_INDEX)
+            .nextLocation(RandomMove.createRandomMoveValue()))));
+  }
+
+  private static void initLastPoint(final int count, final List<Point> newPoints) {
+    int lastIndex = count - POINTS_END_REMAIN_INDEX;
+    newPoints.add(
+        new Point(count - START_INT_STREAM_INDEX, newPoints.get(lastIndex).lastLocation()));
   }
 
   public List<Boolean> lineValues() {
@@ -55,12 +68,6 @@ public class Line {
 
   public int pointMove(final int userIndex) {
     return points.get(userIndex).move();
-  }
-
-  private static void initMiddlePoints(final int count, final List<Point> newPoints) {
-    IntStream.range(START_INT_STREAM_INDEX, count - START_INT_STREAM_INDEX)
-        .forEach(i -> newPoints.add(new Point(i, newPoints.get(i - START_INT_STREAM_INDEX)
-            .nextLocation(RandomMove.createRandomMoveValue()))));
   }
 
   @Override
