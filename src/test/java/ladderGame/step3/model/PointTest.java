@@ -46,4 +46,11 @@ class PointTest {
 
     assertThat(last).isEqualTo(new Point(2,new Location(false,false)));
   }
+
+  @DisplayName("0 이하의 위치값일때 에러 검증 테스트.")
+  @Test
+  void invalidCreate() {
+    assertThatThrownBy(() -> new Point(-1,Location.first(false)))
+        .isInstanceOf(IllegalArgumentException.class);
+  }
 }
