@@ -27,14 +27,14 @@ public class Lambda {
 
     public static int sumAllOverThreeAndEven(List<Integer> numbers) {
         return numbers.stream()
-            .filter(biggerThanThree::test)
-            .filter(evenNumber::test)
+            .filter(biggerThanThree::isSatisfied)
+            .filter(evenNumber::isSatisfied)
             .reduce(Integer::sum).get();
     }
 
     public static int sumAllOverThree(List<Integer> numbers) {
         return numbers.stream()
-            .filter(biggerThanThree::test)
+            .filter(biggerThanThree::isSatisfied)
             .reduce(Integer::sum).get();
     }
 }

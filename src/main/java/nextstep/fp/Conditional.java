@@ -2,6 +2,6 @@ package nextstep.fp;
 
 public interface Conditional {
 
-    boolean test(Integer number);
+    boolean isSatisfied(Integer number);
 
 }
