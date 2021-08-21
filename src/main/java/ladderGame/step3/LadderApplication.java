@@ -28,7 +28,9 @@ public class LadderApplication {
     String findName = InputView.inputFindNames();
     FindResult findResult = new FindResult(players, ladder, prizes);
 
-    while(isContinue(findName)){
+    while(!isContinue(findName)){
+
+      ResultView.printResult(findResult.matchPrizes(findName));
       findName = InputView.inputFindNames();
     }
 
@@ -36,6 +38,6 @@ public class LadderApplication {
   }
 
   private static boolean isContinue(final String findName) {
-    return !findName.equals(ALL_NAMES);
+    return findName.equals(ALL_NAMES);
   }
 }
