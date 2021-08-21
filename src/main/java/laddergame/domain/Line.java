@@ -29,10 +29,6 @@ public class Line {
         return lineStrategy.create();
     }
 
-    public int size() {
-        return points.size();
-    }
-
     public List<Boolean> getPoints() {
         return points;
     }

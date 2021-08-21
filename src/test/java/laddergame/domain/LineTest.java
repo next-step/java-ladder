@@ -18,7 +18,7 @@ class LineTest {
         Line line = new Line(countOfPeople,new RandomLineStrategy());
 
         // then
-        assertThat(line.size()).isEqualTo(countOfPeople-1);
+        assertThat(line.getPoints().size()).isEqualTo(countOfPeople-1);
         assertThat(line.getPoints().get(0)).isInstanceOf(Boolean.class);
     }
 
