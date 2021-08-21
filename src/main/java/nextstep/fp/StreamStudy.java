@@ -22,12 +22,15 @@ public class StreamStudy {
         return count;
     }
 
-    public static void printLongestWordTop100() throws IOException {
+    public static long printLongestWordTop100() throws IOException {
         String contents = new String(Files.readAllBytes(Paths
                 .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
         // TODO 이 부분에 구현한다.
+        return words.stream()
+                .filter(word -> word.length() > 12)
+                .count();
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
