@@ -1,7 +1,5 @@
 package ladder.domain.ladder;
 
-import ladder.domain.ladder.Direction;
-import ladder.domain.ladder.DirectionStrategy;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,7 +18,7 @@ class DirectionTest {
     @BeforeEach
     void setUp() {
         directionStrategy = () -> true;
-        firstDirection = Direction.first(directionStrategy);
+        firstDirection = Direction.ofFirst(directionStrategy);
     }
 
     @Test
@@ -28,7 +26,7 @@ class DirectionTest {
     void firstDirection_generate() {
         // given
         // when
-        Direction direction = Direction.first(() -> true);
+        Direction direction = Direction.ofFirst(() -> true);
 
         // then
         assertThat(direction).isEqualTo(Direction.RIGHT);
@@ -38,10 +36,10 @@ class DirectionTest {
     @DisplayName("이전 방향이 RIGHT 일 경우 LEFT 여야 한다.")
     void beforeRight_nextLeft() {
         // given
-        Direction beforeDirection = Direction.first(() -> true);
+        Direction beforeDirection = Direction.ofFirst(() -> true);
 
         // when
-        Direction nextDirection = beforeDirection.next(() -> true);
+        Direction nextDirection = beforeDirection.ofNext(() -> true);
 
         // then
         assertThat(nextDirection).isEqualTo(Direction.LEFT);
@@ -52,10 +50,10 @@ class DirectionTest {
     @ValueSource(booleans = {true, false})
     void lastDirection_Straight(boolean isMove) {
         // given
-        Direction direction = Direction.first(() -> isMove);
+        Direction direction = Direction.ofFirst(() -> isMove);
 
         // when
-        Direction lastDirection = direction.last();
+        Direction lastDirection = direction.ofLast();
 
         // then
         assertThat(lastDirection).isNotEqualTo(Direction.RIGHT);

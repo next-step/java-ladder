@@ -10,11 +10,11 @@ public final class Line {
 
     public Line(final DirectionStrategy directionStrategy, final int userCount) {
         directions = new ArrayList<>();
-        directions.add(Direction.first(directionStrategy));
+        directions.add(Direction.ofFirst(directionStrategy));
         IntStream.range(1, userCount - 1)
-                .mapToObj(ignore -> getLastDirection().next(directionStrategy))
+                .mapToObj(ignore -> getLastDirection().ofNext(directionStrategy))
                 .forEach(directions::add);
-        directions.add(getLastDirection().last());
+        directions.add(getLastDirection().ofLast());
     }
 
     private Direction getLastDirection() {
