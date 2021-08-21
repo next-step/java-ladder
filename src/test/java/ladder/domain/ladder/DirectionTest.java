@@ -12,15 +12,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DisplayName("Direction TEST")
 class DirectionTest {
 
-    DirectionStrategy directionStrategy;
-    Direction firstDirection;
-
-    @BeforeEach
-    void setUp() {
-        directionStrategy = () -> true;
-        firstDirection = Direction.ofFirst(directionStrategy);
-    }
-
     @Test
     @DisplayName("첫번째 방향 RIGHT 생성")
     void firstDirection_generate() {

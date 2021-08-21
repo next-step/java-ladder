@@ -4,7 +4,6 @@ import ladder.domain.ladder.DirectionStrategy;
 import ladder.domain.ladder.Ladder;
 import ladder.exception.LadderLackOfUserException;
 import ladder.exception.LadderMinimumHeightException;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,15 +13,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @DisplayName("사다리게임 테스트")
 class LadderGameTest {
-
-    LadderGame ladderGame;
-
-    @BeforeEach
-    void setUp() {
-        String[] users = {"red", "blue", "green"};
-        int ladderHeight = 3;
-        ladderGame = new LadderGame(ladderHeight, users);
-    }
 
     @Test
     void ladderGameHeightCheck() {

@@ -7,8 +7,8 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@DisplayName("Ladder TEST")
 class LadderTest {
-
 
     @Test
     @DisplayName("Ladder 생성 후 사이즈 체크")
