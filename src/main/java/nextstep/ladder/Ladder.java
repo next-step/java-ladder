@@ -19,7 +19,6 @@ public class Ladder {
         this.numberOfPlayer = numberOfPlayer;
         this.lineStrategy = lineStrategy;
         initLadder();
-        drawLadderLine();
     }
 
     public static Ladder of(int numberOfPlayer, LineStrategy lineStrategy) {
@@ -31,35 +30,16 @@ public class Ladder {
         lines.add(lineStrategy.lineAble());
         IntStream.range(NUMBER_ONE, this.numberOfPlayer)
                 .forEach(idx -> createBooleanLine(idx));
+
     }
 
 
     private void createBooleanLine(int row) {
         if (lines.get(row - NUMBER_ONE)) {
-            lines.add(false);
+            lines.add(COMMON_FALSE);
             return;
         }
-        lines.add(true);
-    }
-
-
-    private void drawLadderLine() {
-        for (int index = NUMBER_ZERO; index < numberOfPlayer; index++) {
-            createStringLine(lines.get(index), index);
-        }
-    }
-
-    private void createStringLine(boolean line, int index) {
-        if (index == (numberOfPlayer - NUMBER_ONE)) {
-            stringLine.append(FALSE_LINE);
-            return;
-        }
-
-        if (line) {
-            stringLine.append(TRUE_LINE);
-            return;
-        }
-        stringLine.append(FALSE_LINE);
+        lines.add(COMMON_TRUE);
     }
 
     public StringBuffer getStringLine() {
