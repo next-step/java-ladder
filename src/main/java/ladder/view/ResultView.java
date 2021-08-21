@@ -1,11 +1,11 @@
 package ladder.view;
 
-import ladder.domain.Line;
-import ladder.domain.Point;
-
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
+import ladder.domain.Line;
+import ladder.domain.Point;
 
 public class ResultView {
     private static final String OUTPUT_EXECUTION_RESULT = "실행결과";
@@ -46,8 +46,14 @@ public class ResultView {
     }
 
     public void outputLadder(List<Line> lines, List<String> names) {
-        System.out.println("\n" + OUTPUT_EXECUTION_RESULT + "\n");
+        outputExecutionResult();
         outputNames(names);
         lines.forEach(this::outputLadderLine);
+    }
+
+    private void outputExecutionResult() {
+        System.out.print(System.lineSeparator());
+        System.out.println(OUTPUT_EXECUTION_RESULT);
+        System.out.print(System.lineSeparator());
     }
 }
