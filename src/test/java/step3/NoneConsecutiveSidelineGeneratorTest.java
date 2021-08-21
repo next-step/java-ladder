@@ -1,9 +1,9 @@
-package step2;
+package step3;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import step2.util.NoneConsecutiveSidelineGenerator;
-import step2.util.SidelineGenerator;
+import step3.util.NoneConsecutiveSidelineGenerator;
+import step3.util.SidelineGenerator;
 
 import java.util.Arrays;
 import java.util.Collections;

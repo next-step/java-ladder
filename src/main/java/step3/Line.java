@@ -1,6 +1,6 @@
-package step2;
+package step3;
 
-import step2.util.SidelineGenerator;
+import step3.util.SidelineGenerator;
 
 import java.util.List;
 
@@ -12,10 +12,14 @@ public class Line {
     }
 
     public Boolean hasSidelineAt(int at) {
-        if (at >= sideLines.size()) {
-            throw new IndexOutOfBoundsException("사람 수 보다 큰 위치에 접근할 수 없습니다.");
+        if (isIndexOutOfBound(at)) {
+            return false;
         }
 
         return sideLines.get(at);
+    }
+
+    private boolean isIndexOutOfBound(int at) {
+        return at < 0 || at >= sideLines.size();
     }
 }

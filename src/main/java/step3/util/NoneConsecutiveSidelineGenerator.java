@@ -1,4 +1,4 @@
-package step2.util;
+package step3.util;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -13,10 +13,10 @@ public class NoneConsecutiveSidelineGenerator extends SidelineGeneratorDecorator
 
     @Override
     public List<Boolean> generate() {
-        return removeConsecutiveTrue(super.generate());
+        return removeConsecutiveSideline(super.generate());
     }
 
-    private List<Boolean> removeConsecutiveTrue(List<Boolean> current) {
+    private List<Boolean> removeConsecutiveSideline(List<Boolean> current) {
         List<Boolean> previous = rightShiftOnceWithFalseFill(current);
 
         return IntStream.range(0, Math.min(previous.size(), current.size()))

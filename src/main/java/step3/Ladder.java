@@ -1,6 +1,6 @@
-package step2;
+package step3;
 
-import step2.util.SidelineGenerator;
+import step3.util.SidelineGenerator;
 
 import java.util.Iterator;
 import java.util.List;
@@ -18,6 +18,19 @@ public class Ladder implements Iterable<Line> {
         return Stream.generate(() -> new Line(sidelineGenerator))
                 .limit(height)
                 .collect(Collectors.toList());
+    }
+
+    public List<Position> startLadder(List<User> users) {
+        return users.stream()
+                .map(this::execute)
+                .collect(Collectors.toList());
+    }
+
+    private Position execute(User user) {
+        return lines.stream()
+                .reduce(null,
+                        (position, line) -> user.getSideMove(line, position),
+                        (position1, position2) -> position1 = position2);
     }
 
     @Override

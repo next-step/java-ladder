@@ -1,6 +1,4 @@
-package step2.util;
-
-import step2.util.SidelineGenerator;
+package step3.util;
 
 import java.util.List;
 
