@@ -15,6 +15,8 @@ public class FindResult {
 
   private static final String MSG_ERROR_NO_MATCH_NAME = "검색대상자가 게임에 없습니다.";
 
+  private static final String MSG_ERROR_NOT_INPUT_NAME = "결과 대상자를 입력 해주세요.";
+
   private final Players players;
 
   private final Ladder ladder;
@@ -28,20 +30,30 @@ public class FindResult {
   }
 
   public List<String> matchPrizes(String playerName) {
-    if (playerName == null || playerName.isEmpty()) {
-      throw new IllegalArgumentException("결과 대상자를 입력 해주세요.");
-    }
+    validationEmptyName(playerName);
 
     if (playerName.equals(CONDITION_ALL)) {
       return matchPrizesAll(name -> true);
     }
 
-    return matchPrizesByCondition(name -> name.equals(playerName));
+    validationNoMatchName(playerName);
+
+    return matchPrizesAll(name -> name.equals(playerName));
+  }
+
+  private void validationEmptyName(final String playerName) {
+    if (playerName == null || playerName.isEmpty()) {
+      throw new IllegalArgumentException(MSG_ERROR_NOT_INPUT_NAME);
+    }
+  }
+
+  private void validationNoMatchName(final String playerName) {
+    if(!players.playersName().contains(playerName)){
+      throw new IllegalArgumentException(MSG_ERROR_NO_MATCH_NAME);
+    }
   }
 
   private List<String> matchPrizesAll(Conditional conditional) {
-
-    validationMatchNames(conditional);
 
     return players.playersName()
         .stream()
@@ -49,19 +61,6 @@ public class FindResult {
         .map(name -> name + RESULT_FORM + prizes.prizeNames().get(findPlayerIndex(name)))
         .collect(Collectors.toList());
 
-  }
-
-  private void validationMatchNames(final Conditional conditional) {
-    players.playersName()
-        .stream()
-        .filter(conditional::isHasCondition)
-        .map(name -> name + RESULT_FORM + prizes.prizeNames().get(findPlayerIndex(name)))
-        .findFirst()
-        .orElseThrow(() -> new IllegalArgumentException(MSG_ERROR_NO_MATCH_NAME));
-  }
-
-  private List<String> matchPrizesByCondition(Conditional conditional) {
-    return matchPrizesAll(conditional);
   }
 
   private int findPlayerIndex(final String playerName) {
