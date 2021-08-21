@@ -12,7 +12,7 @@ public class InputView {
 
   private static final String MSG_INSERT_FIND_NAMES = "결과를 보고 싶은 사람은?";
 
-  private static Scanner scanner = new Scanner(System.in);
+  private static final Scanner scanner = new Scanner(System.in);
 
   public static String inputUserNames() {
     System.out.println(MSG_INSERT_PLAYER_NAMES);
