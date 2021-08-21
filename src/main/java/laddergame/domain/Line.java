@@ -4,6 +4,7 @@ import laddergame.strategy.LineStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class Line {
 
@@ -29,7 +30,7 @@ public class Line {
         return lineStrategy.create();
     }
 
-    public List<Boolean> getPoints() {
-        return points;
+    public Stream<Boolean> stream() {
+        return points.stream();
     }
 }

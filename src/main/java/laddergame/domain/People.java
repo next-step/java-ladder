@@ -2,6 +2,7 @@ package laddergame.domain;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class People {
 
@@ -17,8 +18,8 @@ public class People {
         return people.size();
     }
 
-    public List<Person> getPeople() {
-        return people;
+    public Stream<Person> stream() {
+        return people.stream();
     }
 
 }

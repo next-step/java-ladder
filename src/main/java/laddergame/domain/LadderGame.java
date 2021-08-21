@@ -12,11 +12,11 @@ public class LadderGame {
         this.ladder = new Ladder(people.size(), heightOfLadder);
     }
 
-    public List<Person> getPeople() {
-        return people.getPeople();
+    public People getPeople() {
+        return people;
     }
 
-    public List<Line> getLadder() {
-        return ladder.getLadder();
+    public Ladder getLadder() {
+        return ladder;
     }
 }

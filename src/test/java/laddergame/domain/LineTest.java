@@ -4,6 +4,8 @@ import laddergame.strategy.RandomLineStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.stream.Collectors;
+
 import static org.assertj.core.api.Assertions.*;
 
 class LineTest {
@@ -18,8 +20,9 @@ class LineTest {
         Line line = new Line(countOfPeople,new RandomLineStrategy());
 
         // then
-        assertThat(line.getPoints().size()).isEqualTo(countOfPeople-1);
-        assertThat(line.getPoints().get(0)).isInstanceOf(Boolean.class);
+        assertThat(line.stream().count()).isEqualTo(countOfPeople-1);
+        assertThat(line.stream().findAny().orElse(null))
+                .isInstanceOf(Boolean.class);
     }
 
     @Test
@@ -32,6 +35,7 @@ class LineTest {
         Line line = new Line(countOfPeople, () -> true);
 
         // then
-        assertThat(line.getPoints()).containsExactly(true, false, true);
+        assertThat(line.stream().collect(Collectors.toList()))
+                .containsExactly(true, false, true);
     }
 }

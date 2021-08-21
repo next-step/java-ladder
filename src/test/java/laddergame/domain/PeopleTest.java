@@ -22,6 +22,7 @@ class PeopleTest {
 
         // then
         assertThat(people.size()).isEqualTo(4);
-        assertThat(people.getPeople().get(0)).isEqualTo(new Person("hwan"));
+        assertThat(people.stream().findFirst().orElse(null))
+                .isEqualTo(new Person("hwan"));
     }
 }

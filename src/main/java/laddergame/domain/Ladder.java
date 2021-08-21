@@ -5,6 +5,7 @@ import laddergame.strategy.RandomLineStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class Ladder {
 
@@ -18,8 +19,8 @@ public class Ladder {
         }
     }
 
-    public List<Line> getLadder() {
-        return ladder;
+    public Stream<Line> stream() {
+        return ladder.stream();
     }
 
     public int height() {

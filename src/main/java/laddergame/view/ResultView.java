@@ -10,15 +10,15 @@ public class ResultView {
     private static final String LINE_EXIST = "-----|";
 
     public static void showResult(LadderGame ladderGame) {
-        List<Person> people = ladderGame.getPeople();
-        List<Line> ladder = ladderGame.getLadder();
+        People people = ladderGame.getPeople();
+        Ladder ladder = ladderGame.getLadder();
 
         String result = makeResult(people, ladder);
 
         System.out.println(result);
     }
 
-    private static String makeResult(List<Person> people, List<Line> ladder) {
+    private static String makeResult(People people, Ladder ladder) {
         StringBuilder sb = new StringBuilder();
 
         people.stream()
@@ -26,18 +26,18 @@ public class ResultView {
                 .map(name -> String.format("%"+ (Person.MAX_LENGTH_OF_NAME+1) +"s", name))
                 .forEach(sb::append);
 
-        ladder.forEach(line -> {
-            sb.append(System.lineSeparator())
-                    .append(LINE_EMPTY)
-                    .append(makeLineResult(line));
-        });
+        ladder.stream()
+                .forEach(line -> { sb.append(System.lineSeparator())
+                        .append(LINE_EMPTY)
+                        .append(makeLineResult(line));
+                });
 
         return sb.toString();
     }
 
     private static String makeLineResult(Line line) {
         StringBuilder sb = new StringBuilder();
-        line.getPoints().stream()
+        line.stream()
                 .map(ResultView::ladderString)
                 .forEach(sb::append);
         return sb.toString();
