@@ -61,4 +61,12 @@ class LocationTest {
     Location location = Location.first(current);
     assertThat(location.locationValue()).isEqualTo(before);
   }
+
+  @DisplayName("true,true를 피하기 위해 이전에 생성된 객체의 right값을 확인하고 true일때 false가 되게 하는지 테스트.")
+  @ParameterizedTest
+  @CsvSource(value = {"false,true,false","false,false,false","false,false,true"})
+  void beforeRightValueCheck(boolean beforeRight, boolean left, boolean right) {
+    Location location = Location.first(beforeRight).nextLocation(left).next(right);
+    assertThat(location).isEqualTo(Location.first(left).nextLocation(right));
+  }
 }
