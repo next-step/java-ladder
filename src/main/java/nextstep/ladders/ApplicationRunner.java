@@ -28,7 +28,16 @@ public class ApplicationRunner {
 
         Ladder ladder = ladderController.start(participants.count(), maxLadderHeightText);
 
-        outputView.print(ladderInfo, ladder);
+        outputView.print(ladder, ladderInfo);
+
+        while (true) {
+            String name = inputView.enterToSeeTheResult();
+            outputView.print(ladder, ladderInfo, name);
+
+            if ("all".equalsIgnoreCase(name)) {
+                break;
+            }
+        }
 
         scanner.close();
     }
