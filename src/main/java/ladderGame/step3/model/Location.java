@@ -6,14 +6,14 @@ public class Location {
 
   public static final String MSG_ERROR_INVALID_VALUE = "잘못된 사다리 생성입니다.";
 
-  private final boolean before;
+  private final boolean left;
 
-  private final boolean current;
+  private final boolean right;
 
-  public Location(final boolean before, final boolean current) {
-    validationValues(before, current);
-    this.before = before;
-    this.current = current;
+  public Location(final boolean left, final boolean right) {
+    validationValues(left, right);
+    this.left = left;
+    this.right = right;
   }
 
   private void validationValues(final boolean before, final boolean current) {
@@ -22,21 +22,21 @@ public class Location {
     }
   }
 
-  public static Location first(final boolean current) {
-    return new Location(false, current);
+  public static Location first(final boolean right) {
+    return new Location(false, right);
   }
 
-  public Location nextLocation(final boolean current) {
-    return new Location(this.current, current);
+  public Location nextLocation(final boolean right) {
+    return new Location(this.right, right);
   }
 
   public Direction movement() {
 
-    if (current) {
+    if (right) {
       return Direction.FORWARD;
     }
 
-    if (before) {
+    if (left) {
       return Direction.BACK;
     }
 
@@ -47,20 +47,20 @@ public class Location {
     return direction.getMovingPoint();
   }
 
-  public Location next(final boolean current) {
-    if (this.current) {
+  public Location next(final boolean right) {
+    if (this.right) {
       return Location.first(true).nextLocation(false);
     }
 
-    return Location.first(false).nextLocation(current);
+    return Location.first(false).nextLocation(right);
   }
 
   public Location last() {
-    return new Location(this.current, false);
+    return new Location(this.right, false);
   }
 
   public boolean locationValue() {
-    return before;
+    return left;
   }
   @Override
   public boolean equals(final Object o) {
@@ -71,11 +71,11 @@ public class Location {
       return false;
     }
     final Location location = (Location) o;
-    return before == location.before && current == location.current;
+    return left == location.left && right == location.right;
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(before, current);
+    return Objects.hash(left, right);
   }
 }
