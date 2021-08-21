@@ -1,9 +1,9 @@
 package ladder.view;
 
-import ladder.domain.LadderGame;
 import ladder.domain.ladder.Direction;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.Line;
+import ladder.domain.user.User;
 import ladder.utils.StringUtil;
 
 import java.util.Arrays;
@@ -33,7 +33,7 @@ public final class ResultView {
     }
 
     private static String getUserToFormat(final String input) {
-        return StringUtil.fillRightBlank(input, LadderGame.MAX_USERNAME_LENGTH + 1);
+        return StringUtil.fillRightBlank(input, User.MAX_NAME_LENGTH + 1);
     }
 
     private static void displayLadders(final List<Line> lines) {
@@ -56,6 +56,6 @@ public final class ResultView {
     }
 
     private static String getDirectionToFormat(final String input) {
-        return LADDER_VERTICAL_DISPLAY + StringUtil.fillGivenString(input, LadderGame.MAX_USERNAME_LENGTH);
+        return LADDER_VERTICAL_DISPLAY + StringUtil.fillGivenString(input, User.MAX_NAME_LENGTH);
     }
 }
