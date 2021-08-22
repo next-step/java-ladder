@@ -12,7 +12,6 @@ public class Positions {
         return new Positions(positions);
     }
 
-
     public static Positions of(Participant participant, Ladder ladder) {
         return toFinalPositions(participant, ladder);
     }

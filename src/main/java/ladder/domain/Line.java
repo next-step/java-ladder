@@ -13,8 +13,9 @@ public class Line {
     public static Line of(int countOfPerson) {
 
         List<Point> points = new ArrayList<>();
-        points.add(Point.first());
+
         Point point = Point.first();
+        points.add(point);
 
         for (int i = REQUIRED_NUMBER_OF_PEOPLE; i < countOfPerson - 1; i++) {
             point = point.next();
@@ -65,4 +66,7 @@ public class Line {
         return Objects.hash(points);
     }
 
+    public boolean isDraw(int column) {
+        return points.get(column).isDraw();
+    }
 }

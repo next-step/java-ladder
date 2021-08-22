@@ -12,6 +12,7 @@ public class Point {
     public static Point first(boolean current) {
         return new Point(false, current);
     }
+
     public static Point first() {
         boolean nextRandom = RandomBooleanGenerator.execute();
 
@@ -21,6 +22,46 @@ public class Point {
     private Point(boolean left, boolean current) {
         this.left = left;
         this.current = current;
+    }
+
+
+    public Point next(boolean current) {
+        if (this.current && current) {
+            throw new InvalidPointException();
+        }
+        return new Point(this.current, current);
+    }
+
+    public Point next() {
+        boolean nextRandom = RandomBooleanGenerator.execute();
+
+        if (this.current == true) {
+            nextRandom = false;
+        }
+
+        return new Point(this.current, nextRandom);
+    }
+
+    public Point last() {
+        return new Point(this.current, false);
+    }
+
+    public Direction movedDirection() {
+        if (left == false && current == true) {
+            return Direction.RIGHT;
+        }
+        if (left == true && current == false) {
+            return Direction.LEFT;
+        }
+
+        return Direction.PASS;
+    }
+
+    public boolean isDraw() {
+        if (left == true && current == false) {
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -36,35 +77,5 @@ public class Point {
         return Objects.hash(left, current);
     }
 
-    public Direction movedDirection() {
-        if (left == false && current == true) {
-            return Direction.RIGHT;
-        }
-        if (left == true && current == false) {
-            return Direction.LEFT;
-        }
 
-        return Direction.PASS;
-    }
-
-    public Point next(boolean current) {
-        if(this.current && current){
-            throw new InvalidPointException();
-        }
-        return new Point(this.current, current);
-    }
-
-    public Point next() {
-        boolean nextRandom = RandomBooleanGenerator.execute();
-
-        if(this.current == true){
-            nextRandom = false;
-        }
-
-        return new Point(this.current, nextRandom);
-    }
-
-    public Point last() {
-        return new Point(this.current, false);
-    }
 }

@@ -62,4 +62,8 @@ public class Ladder {
     public int hashCode() {
         return Objects.hash(lines);
     }
+
+    public boolean isDraw(int row, int column) {
+        return lines.get(row).isDraw(column);
+    }
 }
