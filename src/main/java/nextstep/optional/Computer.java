@@ -1,8 +1,7 @@
 package nextstep.optional;
 
 public class Computer {
-
-    private final Soundcard soundcard;
+    private Soundcard soundcard;
 
     public Computer(Soundcard soundcard) {
         this.soundcard = soundcard;
@@ -13,8 +12,7 @@ public class Computer {
     }
 
     public static class Soundcard {
-
-        private final USB usb;
+        private USB usb;
 
         public Soundcard(USB usb) {
             super();
@@ -27,8 +25,7 @@ public class Computer {
     }
 
     public static class USB {
-
-        private final String version;
+        private String version;
 
         public USB(String version) {
             super();
