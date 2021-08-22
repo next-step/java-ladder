@@ -32,25 +32,25 @@ public class ResultView {
         System.out.println(map.get(person));
     }
 
-    public static void drawLadder(Ladder ladder) {
-        for (int row = 0; row < ladder.getLadderHeight(); row++) {
-            printLine(ladder, row);
-            System.out.println();
-        }
-    }
+//    public static void drawLadder(Ladder ladder) {
+//        for (int row = 0; row < ladder.getLadderHeight(); row++) {
+//            printLine(ladder, row);
+//            System.out.println();
+//        }
+//    }
 
-    private static void printLine(Ladder ladder, int row) {
-        for (int column = 0; column < ladder.getLadderWidth(); column++) {
-            System.out.print(getLine(ladder, row, column));
-        }
-    }
+//    private static void printLine(Ladder ladder, int row) {
+//        for (int column = 0; column < ladder.getLadderWidth(); column++) {
+//            System.out.print(getLine(ladder, row, column));
+//        }
+//    }
 
-    private static String getLine(Ladder ladder, int row, int column) {
-        if (ladder.havePoints(row, column)) {
-            return WITH_POINTS_LINE;
-        }
-        return WITHOUT_POINTS_LINE;
-    }
+//    private static String getLine(Ladder ladder, int row, int column) {
+//        if (ladder.havePoints(row, column)) {
+//            return WITH_POINTS_LINE;
+//        }
+//        return WITHOUT_POINTS_LINE;
+//    }
 
     public static void printParticipant(Participant participant) {
         printList(participant.getList());

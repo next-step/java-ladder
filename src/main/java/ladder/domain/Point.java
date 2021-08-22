@@ -1,5 +1,8 @@
 package ladder.domain;
 
+import ladder.exception.InvalidPointException;
+import ladder.utils.RandomBooleanGenerator;
+
 import java.util.Objects;
 
 public class Point {
@@ -8,6 +11,11 @@ public class Point {
 
     public static Point first(boolean current) {
         return new Point(false, current);
+    }
+    public static Point first() {
+        boolean nextRandom = RandomBooleanGenerator.execute();
+
+        return new Point(false, nextRandom);
     }
 
     private Point(boolean left, boolean current) {
@@ -40,6 +48,23 @@ public class Point {
     }
 
     public Point next(boolean current) {
+        if(this.current && current){
+            throw new InvalidPointException();
+        }
         return new Point(this.current, current);
+    }
+
+    public Point next() {
+        boolean nextRandom = RandomBooleanGenerator.execute();
+
+        if(this.current == true){
+            nextRandom = false;
+        }
+
+        return new Point(this.current, nextRandom);
+    }
+
+    public Point last() {
+        return new Point(this.current, false);
     }
 }

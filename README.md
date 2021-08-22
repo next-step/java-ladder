@@ -63,14 +63,20 @@ line은 생성 될 때, 즉 한 줄이 그려질 때는 랜덤하게 그려야 �
 * 기능 요구사항 3단계와 같다.
 * 추가로 제공되는 객체 설계 힌트를 참고해 철저하게 TDD 로 재 구현해 본다.
 
-[X] Point 객체 생성 
+[O] Point 객체 생성 
 첫번째 Point 는 반드시 false 여야 함
 마지막 Point 도 반드시 false 여야 함
 (false, true) -> move 시 오른쪽 방향
 (true, false) -> move 시 왼쪽 방향
 
-[X]Direction Enum
+[O]Direction Enum
 왼쪽
 오른쪽
 지나가는 경우
+
+[O]Line 객체는
+Position 위치를 나타내는 객체와
+Point들의 List를 가진다.
+move 시 Point 들의 방향을 가지고 Position 위치를 알려준다.
+
 

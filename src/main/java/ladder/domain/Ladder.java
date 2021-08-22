@@ -33,16 +33,10 @@ public class Ladder {
                 .map(Line::getSize)
                 .findFirst()
                 .orElse(0);
-
     }
 
     public int getLadderHeight() {
         return lines.size();
-    }
-
-    public boolean havePoints(int row, int column) {
-        Line currentLine = lines.get(row);
-        return currentLine.havePoints(column);
     }
 
     public int movedPosition(int position) {
