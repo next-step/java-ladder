@@ -5,6 +5,7 @@ import ladder.dto.ResultDto;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LadderResult {
     private final List<Player> players;
@@ -29,16 +30,14 @@ public class LadderResult {
     }
 
     private int matchedIndex(Player player) {
-        for (int i = 0; i <= players.size(); i++) {
-            if (players.get(i).equals(player)) {
-                return i;
-            }
-        }
-        throw new IllegalArgumentException("해당 player를 찾을 수 없습니다.");
+        return IntStream.range(0, players.size())
+                .filter(i -> players.get(i).equals(player))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("해당 player를 찾을 수 없습니다."));
     }
 
     private String matchedResult(int index, Ladder ladder) {
-        int matchedIndex = ladder.matchedPoint(index);
+        int matchedIndex = matchedPoint(index, ladder);
         return results.get(matchedIndex);
     }
 
@@ -57,5 +56,23 @@ public class LadderResult {
             matchedResults.add(new ResultDto(players.get(i), matchedResult(i, ladder)));
         }
         return matchedResults;
+    }
+
+    private int matchedPoint(int index, Ladder ladder) {
+        int resultIndex = index;
+        for (Line line : ladder.getLines()) {
+            resultIndex = position(resultIndex, line);
+        }
+        return resultIndex;
+    }
+
+    private int position(int index, Line line) {
+        if (index < line.size() && line.point(index)) {
+            return index + 1;
+        }
+        if (index > 0 && line.point(index - 1)) {
+            return index - 1;
+        }
+        return index;
     }
 }
