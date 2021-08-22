@@ -13,7 +13,7 @@ public class Game {
         Users users = Users.of(names);
         int height = InputView.inputHeightOfLadder();
 
-        Ladder ladder = new Ladder(names.size(), height);
+        Ladder ladder = Ladder.of(height, names.size());
 
         OutputView.printNames(users);
         OutputView.printLadder(ladder);

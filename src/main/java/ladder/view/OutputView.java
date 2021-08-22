@@ -15,23 +15,22 @@ public class OutputView {
     private static final String LINE_DELIMITER = "|";
 
     public static void printNames(Users users) {
-        System.out.println(RESULT_TITLE);
-        users.getNames().stream()
-                        .forEach(name -> System.out.printf("%6s", name.getName()));
+        users.getNames().stream().forEach(name -> System.out.printf("%6s", name.getName()));
         System.out.println();
     }
 
     public static void printLadder(Ladder ladder) {
-        List<Line> lines = ladder.getLadder();
-
-        IntStream.range(0, lines.get(0).getPoints().size()).mapToObj(x -> OutputView.generateStringLine(x, lines))
-                 .forEach(System.out::println);
+        ladder.getLadder()
+              .stream()
+              .map(OutputView::generateLine)
+              .forEach(System.out::println);
     }
 
-    public static String generateStringLine(int x, List<Line> lines) {
-        return IntStream.range(0, lines.size())
-                        .mapToObj(y -> lines.get(y).getPoints().get(x) ? LINE_TRUE : LINE_FALSE)
-                        .collect(Collectors.joining(LINE_DELIMITER)) + "|";
+    public static String generateLine(Line line) {
+        return line.getPoints()
+                   .stream()
+                   .map(flag -> flag ? LINE_TRUE : LINE_FALSE)
+                   .collect(Collectors.joining(LINE_DELIMITER)) + "|";
 
     }
 }

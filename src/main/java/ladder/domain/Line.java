@@ -12,11 +12,20 @@ import java.util.stream.IntStream;
 
 public class Line {
     private static final String INVALID_HEIGHT_MESSAGE = "2 이상의 높이를 입력해주세요";
-    private static final String INVALID_TRY_COUNT_MESSAGE = "사다리 생성 시도 횟수를 초과했습니다. 다시 시도해주세요.";
 
     private List<Boolean> points;
 
     private Line(List<Boolean> points) {
+        this.points = points;
+    }
+
+    public Line(int countOfPerson) {
+        List<Boolean> points = new ArrayList<>();
+        points.add(false);
+
+        IntStream.range(1, countOfPerson)
+                 .forEach(point -> points.add(PointStrategy.generate(points.get(point - 1))));
+
         this.points = points;
     }
 
@@ -32,33 +41,6 @@ public class Line {
         return new Line(points);
     }
 
-
-    public static Line of(int height, Line prevLine) {
-        List<Boolean> points = new ArrayList<>();
-        int tryCount = 0;
-        while (!valid(points)) {
-            points.clear();
-            checkTryCount(tryCount);
-            IntStream.range(0, height)
-                     .forEach(point -> points.add(PointStrategy.generate(prevLine.getPoints().get(point))));
-            tryCount++;
-        }
-
-        return new Line(points);
-    }
-
-    private static boolean valid(List<Boolean> line) {
-        if (line.stream().noneMatch(point -> point == true)) {
-            return false;
-        }
-        return true;
-    }
-
-    private static void checkTryCount(int tryCount) {
-        if (tryCount > 20) {
-            throw new LadderException(INVALID_TRY_COUNT_MESSAGE);
-        }
-    }
 
     public List<Boolean> getPoints() {
         return Collections.unmodifiableList(points);

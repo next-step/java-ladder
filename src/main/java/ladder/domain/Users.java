@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Users {
 
@@ -14,9 +15,9 @@ public class Users {
     private List<Name> names;
 
     private Users(List<String> users) {
-        this.names = new ArrayList<>();
-        users.stream()
-             .forEach(name -> this.names.add(new Name(name)));
+        this.names = users.stream()
+                          .map(Name::new)
+                          .collect(Collectors.toList());
     }
 
     public static Users of(List<String> users) {
