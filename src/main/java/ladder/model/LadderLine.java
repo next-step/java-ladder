@@ -9,13 +9,14 @@ import static java.lang.Boolean.TRUE;
 public class LadderLine {
     private static final int MIN_POINT_COUNT = 1;
     private static final int INDEX_GAP_BETWEEN_NEXT_POINT = 1;
+    private static final int FIRST_INDEX = 0;
     private static final int SECOND_INDEX = 1;
     private static final Random random = new Random();
 
     private final List<Boolean> points;
 
     LadderLine(List<Boolean> points) {
-        validateNotEmpty(points);
+        validateNotEmptyPoints(points);
         validateNoOverlappingLine(points);
         this.points = points;
     }
@@ -23,6 +24,12 @@ public class LadderLine {
     static LadderLine of(int pointCount) {
         validateMinPointCount(pointCount);
         return new LadderLine(generatePoints(pointCount));
+    }
+
+    static LadderLine of(int pointCount, List<Integer> truePointIndices) {
+        validateMinPointCount(pointCount);
+        validateNotEmptyTruePointIndices(truePointIndices);
+        return new LadderLine(generatePoints(pointCount, truePointIndices));
     }
 
     private static List<Boolean> generatePoints(int pointCount) {
@@ -34,6 +41,26 @@ public class LadderLine {
                     Boolean previousPoint = points.get(index - INDEX_GAP_BETWEEN_NEXT_POINT);
                     points.add(generatePoint(previousPoint));
                 });
+
+        return points;
+    }
+
+    private static List<Boolean> generatePoints(int pointCount, List<Integer> truePointIndices) {
+        List<Boolean> points = generatePoints(pointCount);
+        truePointIndices.forEach(truePointIndex -> {
+            int previousIndexOfTruePoint = truePointIndex - INDEX_GAP_BETWEEN_NEXT_POINT;
+            int nextIndexOfTruePoint = truePointIndex + INDEX_GAP_BETWEEN_NEXT_POINT;
+
+            if (previousIndexOfTruePoint >= FIRST_INDEX) {
+                points.set(previousIndexOfTruePoint, FALSE);
+            }
+
+            if (nextIndexOfTruePoint < pointCount) {
+                points.set(nextIndexOfTruePoint, FALSE);
+            }
+
+            points.set(truePointIndex, TRUE);
+        });
 
         return points;
     }
@@ -52,7 +79,7 @@ public class LadderLine {
         }
     }
 
-    private void validateNotEmpty(List<Boolean> points) {
+    private void validateNotEmptyPoints(List<Boolean> points) {
         if (points == null || points.isEmpty()) {
             throw new IllegalArgumentException("포인트 목록이 비었습니다.");
         }
@@ -77,11 +104,21 @@ public class LadderLine {
         }
     }
 
+    private static void validateNotEmptyTruePointIndices(List<Integer> truePointIndices) {
+        if (truePointIndices == null || truePointIndices.isEmpty()) {
+            throw new IllegalArgumentException("선 있는 포인트 인덱스 목록이 비었습니다.");
+        }
+    }
+
     int getPointCount() {
         return points.size();
     }
 
     public List<Boolean> getPoints() {
         return points;
+    }
+
+    Boolean getPoint(int pointIndex) {
+        return points.get(pointIndex);
     }
 }

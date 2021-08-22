@@ -45,6 +45,19 @@ public class LadderLineTest {
                 .withMessage("포인트 개수는 최소 1개 이어야 합니다.");
     }
 
+    @DisplayName("선 있는 포인트 목록 인덱스가 비어있으먄 예외가 발생한다.")
+    @Test
+    void emptyTruePointIndicesExceptionTest() {
+        // given, when, then
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> LadderLine.of(5, null))
+                .withMessage("선 있는 포인트 인덱스 목록이 비었습니다.");
+
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> LadderLine.of(5, new ArrayList<>()))
+                .withMessage("선 있는 포인트 인덱스 목록이 비었습니다.");
+    }
+
     @DisplayName("포인트 목록 개수는 생성시 주입받은 포인트 개수와 같아야 한다.")
     @Test
     void pointCountTest() {
