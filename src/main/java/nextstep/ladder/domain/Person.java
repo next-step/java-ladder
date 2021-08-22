@@ -15,14 +15,18 @@ public class Person {
         if (name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException("5자리이 이하로 입력해주세요");
         }
+        
+        return new Person(addNameWithBlank(name));
+    }
 
+    private static String addNameWithBlank(String name) {
         StringBuilder nameBuilder = new StringBuilder(name);
 
         while (nameBuilder.length() <= MAX_NAME_LENGTH) {
             nameBuilder.append(" ");
         }
 
-        return new Person(nameBuilder.toString());
+        return nameBuilder.toString();
     }
 
     public String getName() {

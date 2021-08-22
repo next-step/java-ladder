@@ -17,7 +17,7 @@ public class Ladder {
         List<Line> lines = new ArrayList<>();
 
         for (int i = 0; i < heightOfLadder.height(); i++) {
-            lines.add(Line.of(persons.size() - 1));
+            lines.add(Line.of(persons.size(), new RandomStrategy()));
         }
 
         return new Ladder(lines, persons);

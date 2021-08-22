@@ -11,13 +11,14 @@ public class Line {
         this.points = points;
     }
 
-    public static Line of(int countOfPerson) {
+    public static Line of(int countOfPerson, Strategy paintStrategy) {
         List<Boolean> points = new ArrayList<>();
 
         boolean prevPaint = false;
 
         for (int i = 0; i < countOfPerson; i++) {
-            Boolean isPaint = validation(prevPaint);
+            boolean currPaint = paintStrategy.paint();
+            boolean isPaint = isPaintLine(prevPaint, currPaint);
             points.add(isPaint);
             prevPaint = isPaint;
         }
@@ -25,9 +26,8 @@ public class Line {
         return new Line(points);
     }
 
-    private static Boolean validation(boolean prevPaint) {
-        boolean isPaint = Math.random() < 0.5;
-        return isPaint && !prevPaint;
+    private static boolean isPaintLine(boolean prevPaint, boolean currPaint) {
+        return !prevPaint && currPaint;
     }
 
     public int size() {
