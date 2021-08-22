@@ -1,12 +1,10 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.domain.Person;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class PersonTest {
 
@@ -18,8 +16,8 @@ class PersonTest {
         assertThat(person.getName()).isEqualTo("Phobi");
     }
 
-    @DisplayName("사람이 이름이 5자리 이하면 IllegalArgument 발생")
-     @Test
+    @DisplayName("사람이 이름은 최대 5글자 초과이면 IllegalArgument 발생")
+    @Test
      void personWithIllegalArguments() {
          assertThatIllegalArgumentException().isThrownBy(() -> Person.of("Phobi2"));
      }
