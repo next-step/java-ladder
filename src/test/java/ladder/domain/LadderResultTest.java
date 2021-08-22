@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LadderResultTest {
     private static Ladder ladder;
@@ -33,12 +34,14 @@ class LadderResultTest {
     @Test
     void result_one() {
         String result = ladderResult.matchedResult("aa", ladder);
-
-        OutputView outputView = new OutputView();
-        outputView.printResult(ladder, ladderResult, "aa");
-        System.out.println(result);
-
         assertThat(result).isEqualTo("5");
+    }
+
+    @DisplayName("없는 이름을 입력할 경우 에러")
+    @Test
+    void result_error() {
+        assertThatThrownBy(() -> ladderResult.matchedResult("xx", ladder))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("모든 플레이어의 결과 확인")
@@ -52,10 +55,6 @@ class LadderResultTest {
                 new ResultDto("dd", "4"),
                 new ResultDto("ee", "3")
         );
-        OutputView outputView = new OutputView();
-        outputView.printResult(ladder, ladderResult, "all");
-        System.out.println(actual.toString());
-
         assertThat(actual).isEqualTo(expected);
     }
 }
