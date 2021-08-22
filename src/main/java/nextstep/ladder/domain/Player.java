@@ -4,14 +4,14 @@ import java.util.Objects;
 
 import nextstep.ladder.exception.InvalidNameLengthException;
 
-public class PlayerName {
+public class Player {
 
 	private static final int MIN_LENGTH = 1;
 	private static final int MAX_LENGTH = 5;
 
 	private final String name;
 
-	public PlayerName(String name) {
+	public Player(String name) {
 		validateNameLength(name);
 		this.name = name;
 	}
@@ -29,7 +29,7 @@ public class PlayerName {
 			return true;
 		if (o == null || getClass() != o.getClass())
 			return false;
-		PlayerName that = (PlayerName)o;
+		Player that = (Player)o;
 		return Objects.equals(name, that.name);
 	}
 

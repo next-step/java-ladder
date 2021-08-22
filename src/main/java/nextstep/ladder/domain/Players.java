@@ -5,24 +5,24 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class PlayerNames {
+public class Players {
 
 	private static final String DELIMITER = ",";
 
-	private final List<PlayerName> names;
+	private final List<Player> names;
 
-	public PlayerNames(String names) {
-		this.names = createPlayerNames(names);
+	public Players(String names) {
+		this.names = createPlayers(names);
 	}
 
 	public int size() {
 		return names.size();
 	}
 
-	private List<PlayerName> createPlayerNames(String names) {
+	private List<Player> createPlayers(String names) {
 		String[] nameArray = names.split(DELIMITER);
 		return Arrays.stream(nameArray)
-				.map(PlayerName::new)
+				.map(Player::new)
 				.collect(Collectors.toList());
 	}
 
@@ -32,7 +32,7 @@ public class PlayerNames {
 			return true;
 		if (o == null || getClass() != o.getClass())
 			return false;
-		PlayerNames that = (PlayerNames)o;
+		Players that = (Players)o;
 		return Objects.equals(names, that.names);
 	}
 
