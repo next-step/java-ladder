@@ -10,19 +10,20 @@ import java.util.stream.Collectors;
 public class ResultView {
     public static final String LINE = "-----";
     public static final String LINE_BLANK = "     ";
+    public static final String LADDER_COLUMN = "|";
 
     public void printLadder(List<Name> names, Ladder ladder) {
         names.stream()
                 .forEach(name -> System.out.printf("%6s", name.getName()));
         System.out.println();
-        ladder.getLadder().stream()
+        ladder.lines().stream()
                 .forEach(line -> printLine(line));
     }
 
     private void printLine(Line line) {
-        String lineString = LINE_BLANK + "|" + line.getPoints().stream()
+        String lineString = LINE_BLANK + LADDER_COLUMN + line.points().stream()
                 .map(point -> draw(point))
-                .collect(Collectors.joining("|")) + "|";
+                .collect(Collectors.joining(LADDER_COLUMN)) + LADDER_COLUMN;
         System.out.println(lineString);
     }
 
