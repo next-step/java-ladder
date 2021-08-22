@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 class PointTest {
 
 	@Test
-	@DisplayName("라인에 대한 포인트를 생성한다.")
+	@DisplayName("사다리의 포인트 좌표를 생성한다.")
 	public void createPoint() {
 		Point point = new Point(false, true);
 
@@ -19,7 +19,7 @@ class PointTest {
 	}
 
 	@Test
-	@DisplayName("라인에 대한 포인트의 값에따라 위치 정보가 변경된다.")
+	@DisplayName("포인트의 값에따라 위치 정보가 변경된다.")
 	public void movePoint() {
 		Point point = new Point(false, true);
 
@@ -35,7 +35,7 @@ class PointTest {
 	}
 
 	@Test
-	@DisplayName("라인의 첫번째 포인트가 생성된다.")
+	@DisplayName("첫번째 포인트가 생성된다.")
 	public void initCreatePoint() {
 		Point point = Point.initCreate(false);
 
@@ -47,7 +47,7 @@ class PointTest {
 	}
 
 	@Test
-	@DisplayName("라인의 마지막 포인트가 생성된다.")
+	@DisplayName("마지막 포인트가 생성된다.")
 	public void initLastPoint() {
 		Point point = Point.initCreate(false);
 		point = point.initLast();
@@ -59,7 +59,7 @@ class PointTest {
 	}
 
 	@Test
-	@DisplayName("라인별 첫번째와 마지막 포인트가 아닌 부분을 생성한다.")
+	@DisplayName("첫번째와 마지막 포인트가 아닌 부분을 생성한다.")
 	public void initMiddlePoint() {
 		Point point = Point.initCreate(false);
 		point = point.next(false, false);
