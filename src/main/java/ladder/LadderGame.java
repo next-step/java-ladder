@@ -1,6 +1,7 @@
 package ladder;
 
 import ladder.domain.Ladder;
+import ladder.domain.LadderResult;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -13,15 +14,15 @@ public class LadderGame {
         InputView inputView = new InputView();
         List<String> names = inputView.names();
         List<String> results = inputView.results();
-        int height = inputView.height();
-        Ladder ladder = Ladder.create(names, height, results);
+        Ladder ladder = Ladder.create(inputView.height(), names.size());
+        LadderResult ladderResult = new LadderResult(names, results);
 
         // 사다리 출력
         OutputView outputView = new OutputView();
-        outputView.printLadder(ladder);
+        outputView.printLadder(ladder, ladderResult);
 
         // 결과 확인하기
         String name = inputView.who();
-        outputView.printResult(ladder, name);
+        outputView.printResult(ladder, ladderResult, name);
     }
 }

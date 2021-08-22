@@ -7,42 +7,25 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Ladder {
-    private final List<Player> players;
     private final List<Line> lines = new ArrayList<>();
-    private final List<String> results = new ArrayList<>();
 
-    public static Ladder create(List<String> names, int height, List<String> results) {
+    public static Ladder create(int height, int size) {
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            lines.add(new Line(names.size()));
+            lines.add(new Line(size));
         }
-        return new Ladder(names, lines, results);
+        return new Ladder(lines);
     }
 
-    public Ladder(List<String> names, List<Line> lines, List<String> result) {
-        if (names.size() != result.size()) {
-            throw new IllegalArgumentException("입력한 결과 개수가 부족합니다.");
-        }
-        this.players = names.stream()
-                .map(Player::new)
-                .collect(Collectors.toList());
+    public Ladder(List<Line> lines) {
         this.lines.addAll(lines);
-        this.results.addAll(result);
-    }
-
-    public List<Player> getPlayers() {
-        return players;
     }
 
     public List<Line> getLines() {
         return lines;
     }
 
-    public List<String> getResults() {
-        return results;
-    }
-
-    private int matchedPoint(int index) {
+    public int matchedPoint(int index) {
         int resultIndex = index;
         for (Line line : lines) {
             if (resultIndex < line.size() && line.point(resultIndex)) {
@@ -56,43 +39,10 @@ public class Ladder {
         return resultIndex;
     }
 
-    private int matchedIndex(Player player) {
-        for (int i = 0; i <= players.size(); i++) {
-            if (players.get(i).equals(player)) {
-                return i;
-            }
-        }
-        throw new IllegalArgumentException("해당 player를 찾을 수 없습니다.");
-    }
-
-    private String matchedResult(int index) {
-        int matchedIndex = matchedPoint(index);
-        return results.get(matchedIndex);
-    }
-
-    private String matchedResult(Player player) {
-        int playerIndex = matchedIndex(player);
-        return matchedResult(playerIndex);
-    }
-
-    public String matchedResult(String name) {
-        return matchedResult(new Player(name));
-    }
-
-    public List<ResultDto> matchedAllResult() {
-        List<ResultDto> matchedResults = new ArrayList<>();
-        for (int i = 0; i < players.size(); i++) {
-            matchedResults.add(new ResultDto(players.get(i), matchedResult(i)));
-        }
-        return matchedResults;
-    }
-
     @Override
     public String toString() {
         return "Ladder {" +
-                "    players = " + players + ",\n" +
                 "    lines = " + lines + ",\n" +
-                "    results = " + results + "\n" +
                 '}';
     }
 }

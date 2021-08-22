@@ -1,6 +1,7 @@
 package ladder.view;
 
 import ladder.domain.Ladder;
+import ladder.domain.LadderResult;
 import ladder.domain.Line;
 import ladder.dto.ResultDto;
 
@@ -16,15 +17,15 @@ public class OutputView {
     private static final String LINE_END = "|";
     private static final String ALL = "all";
 
-    public void printLadder(Ladder ladder) {
+    public void printLadder(Ladder ladder, LadderResult ladderResult) {
         System.out.println(MSG_LADDER);
 
-        ladder.getPlayers().forEach(name -> System.out.printf(MSG_FORMAT_NAME, name));
+        ladderResult.getPlayers().forEach(name -> System.out.printf(MSG_FORMAT_NAME, name));
         System.out.println();
 
         ladder.getLines().forEach(this::printLine);
 
-        ladder.getResults().forEach(name -> System.out.printf(MSG_FORMAT_NAME, name));
+        ladderResult.getResults().forEach(name -> System.out.printf(MSG_FORMAT_NAME, name));
         System.out.println();
     }
 
@@ -40,17 +41,17 @@ public class OutputView {
         System.out.println(LINE_END);
     }
 
-    public void printResult(Ladder ladder, String name) {
+    public void printResult(Ladder ladder, LadderResult ladderResult, String name) {
         System.out.println(MSG_RESULT);
         if (name.equals(ALL)) {
-            printAllResult(ladder);
+            printAllResult(ladder, ladderResult);
             return;
         }
-        System.out.println(ladder.matchedResult(name));
+        System.out.println(ladderResult.matchedResult(name, ladder));
     }
 
-    private void printAllResult(Ladder ladder) {
-        List<ResultDto> results = ladder.matchedAllResult();
+    private void printAllResult(Ladder ladder, LadderResult ladderResult) {
+        List<ResultDto> results = ladderResult.matchedAllResult(ladder);
         results.forEach(i -> System.out.println(i.getPlayer() + " : " + i.getResult()));
     }
 }
