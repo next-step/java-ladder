@@ -1,8 +1,8 @@
 package nextstep.optional;
 
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.*;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.jupiter.api.Test;
 
 public class UsersTest {
 
@@ -11,7 +11,6 @@ public class UsersTest {
         Users users = new Users();
         assertThat(users.getUser("crong")).isEqualTo(new User("crong", 35));
     }
-
 
     @Test
     public void getDefaultUser() {
