@@ -30,4 +30,8 @@ public class Line {
     public List<Boolean> getPoints() {
         return points;
     }
+
+    public List<Boolean> points() {
+        return Collections.unmodifiableList(points);
+    }
 }
