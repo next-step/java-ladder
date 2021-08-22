@@ -13,7 +13,7 @@ public class Users {
         }
     }
 
-    public int getUserSize() {
+    public int participantsSize() {
         return users.size();
     }
 

@@ -3,10 +3,9 @@ package ladder;
 
 import ladder.model.LadderGame;
 import ladder.model.Line;
-import ladder.model.Users;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import java.util.ArrayList;
+
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -25,7 +24,7 @@ public class LadderGameTest {
 
     @Test
     void 참여자수_체크() {
-        assertThat(ladderGame.getParticipant().getUserSize())
+        assertThat(ladderGame.getParticipant().participantsSize())
                 .isEqualTo(TEST_NAME_LIST.length);
 
     }

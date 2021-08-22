@@ -24,7 +24,7 @@ public class UsersTest {
 
     @Test
     void 유저리스트_갯수_체크() {
-        assertThat(users.getUserSize()).isEqualTo(TEST_NAME_LIST.length);
+        assertThat(users.participantsSize()).isEqualTo(TEST_NAME_LIST.length);
     }
 
     @Test
