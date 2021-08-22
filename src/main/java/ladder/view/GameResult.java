@@ -11,21 +11,21 @@ import java.util.Objects;
 public class GameResult {
     private final Map<String, String> gameResult;
 
-    private GameResult(Map<String, String> map) {
-        this.gameResult = map;
+    private GameResult(Map<String, String> gameResult) {
+        this.gameResult = gameResult;
     }
 
     public static GameResult of(Participant participant, Results finalResults) {
-        Map<String, String> map = new HashMap<>();
+        Map<String, String> gameResult = new HashMap<>();
 
         List<String> participantList = participant.getList();
         List<String> finalResultsList = finalResults.getList();
 
         for (int i = 0; i < participant.size(); i++) {
-            map.put(participantList.get(i), finalResultsList.get(i));
+            gameResult.put(participantList.get(i), finalResultsList.get(i));
         }
 
-        return new GameResult(map);
+        return new GameResult(gameResult);
     }
 
     public Map<String, String> getGameResult() {
