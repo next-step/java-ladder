@@ -1,6 +1,7 @@
 package ladder.model;
 
 public class User {
+    private static final int NAME_LENGTH = 5;
     private final String userName;
 
     public User(String userName) {
@@ -13,7 +14,7 @@ public class User {
     }
 
     private boolean validName(String name) {
-        if (name == null || name.length() > 5) {
+        if (name == null || name.length() > NAME_LENGTH) {
             throw new IllegalArgumentException();
         }
         return true;
