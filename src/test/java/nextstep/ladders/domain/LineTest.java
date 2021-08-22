@@ -1,10 +1,14 @@
 package nextstep.ladders.domain;
 
 import nextstep.ladders.domain.exceptions.CountOfPersonZeroException;
+import nextstep.ladders.domain.exceptions.OverRowLengthException;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -39,5 +43,19 @@ class LineTest {
         List<Boolean> points = line.getPoints();
         assertEquals(points.get(0), false);
         points.subList(1, points.size()).forEach(point -> assertEquals(point, true));
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"0:0", "1:2", "2:1", "3:3"}, delimiter = ':')
+    void 라인_사다리타기_검증(final int row, final int actual) {
+        Line line = new Line(Arrays.asList(false, false, true, false));
+        int result = line.start(row);
+        Assertions.assertEquals(result, actual);
+    }
+
+    @Test
+    void 라인_길이보다_시작점이_큰경우_에러() {
+        Line line = new Line(Arrays.asList(false, false, true, false));
+        Assertions.assertThrows(OverRowLengthException.class, () -> line.start(6));
     }
 }

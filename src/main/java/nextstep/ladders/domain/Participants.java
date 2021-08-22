@@ -1,5 +1,6 @@
 package nextstep.ladders.domain;
 
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -9,7 +10,7 @@ public class Participants {
 
     public static final String REGEX_COMMA = ",";
 
-    private List<Participant> participants;
+    private final List<Participant> participants;
 
     public Participants(final String participantsText) {
         List<String> names = parseParticipants(participantsText);

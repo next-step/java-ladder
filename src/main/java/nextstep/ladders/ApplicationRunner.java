@@ -2,13 +2,14 @@ package nextstep.ladders;
 
 import nextstep.ladders.controller.LadderController;
 import nextstep.ladders.domain.Ladder;
-import nextstep.ladders.domain.Participants;
 import nextstep.ladders.views.ConsoleInputView;
 import nextstep.ladders.views.ConsoleOutputView;
 
 import java.util.Scanner;
 
 public class ApplicationRunner {
+
+    public static final String ALL = "all";
 
     public static void main(String[] args) {
 
@@ -19,12 +20,20 @@ public class ApplicationRunner {
         LadderController ladderController = new LadderController();
 
         String participantsText = inputView.enterParticipants();
+        String executionResultText = inputView.enterExecutionResult();
         String maxLadderHeightText = inputView.enterMaxLadderHeight();
 
-        Participants participants = ladderController.register(participantsText);
-        Ladder ladder = ladderController.start(participants.count(), maxLadderHeightText);
+        Ladder ladder = ladderController.start(participantsText, executionResultText, maxLadderHeightText);
 
-        outputView.print(participants, ladder);
+        outputView.print(ladder);
+
+        String name = inputView.enterToSeeTheResult();
+        outputView.print(ladder, name);
+
+        while (!ALL.equalsIgnoreCase(name)) {
+            name = inputView.enterToSeeTheResult();
+            outputView.print(ladder, name);
+        }
 
         scanner.close();
     }
