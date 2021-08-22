@@ -13,10 +13,9 @@ public class User {
         return userName;
     }
 
-    private boolean validName(String name) {
+    private void validName(String name) {
         if (name == null || name.length() > NAME_LENGTH) {
             throw new IllegalArgumentException();
         }
-        return true;
     }
 }
