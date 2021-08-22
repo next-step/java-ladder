@@ -2,7 +2,10 @@ package ladder.domain.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
+import static ladder.utils.LineUtil.getLastDirection;
 
 public final class Line {
 
@@ -10,37 +13,37 @@ public final class Line {
 
     private final List<Direction> directions;
 
-    private Line(final DirectionStrategy directionStrategy, final int userCount) {
-        directions = new ArrayList<>();
-        initDirections(directionStrategy, userCount);
+    private Line(final List<Direction> directions) {
+        this.directions = directions;
     }
 
     public static Line generate(final DirectionStrategy directionStrategy, final int userCount) {
-        return new Line(directionStrategy, userCount);
+        List<Direction> directions = new ArrayList<>();
+        directions.add(generateFirstDirection(directionStrategy));
+        directions.addAll(generateMiddleDirections(directionStrategy, userCount, directions));
+        directions.add(generateLastDirection(directions));
+
+        return new Line(directions);
     }
 
-    private void initDirections(DirectionStrategy directionStrategy, int userCount) {
-        initFirstDirection(directionStrategy);
-        initMiddleDirections(directionStrategy, userCount - MIDDLE_MINUS_COUNT);
-        initLastDirection();
+    private static Direction generateFirstDirection(DirectionStrategy directionStrategy) {
+        return Direction.ofFirst(directionStrategy);
     }
 
-    private void initFirstDirection(final DirectionStrategy directionStrategy) {
-        directions.add(Direction.ofFirst(directionStrategy));
+    private static List<Direction> generateMiddleDirections(DirectionStrategy directionStrategy,
+                                                            int userCount,
+                                                            List<Direction> directions) {
+        return IntStream.range(0, userCount - MIDDLE_MINUS_COUNT)
+                .mapToObj(ignore -> generateMiddleDirection(directionStrategy, directions))
+                .collect(Collectors.toList());
     }
 
-    private void initMiddleDirections(final DirectionStrategy directionStrategy, final int middleDirectionCount) {
-        IntStream.range(0, middleDirectionCount)
-                .mapToObj(ignore -> getLastDirection().ofNext(directionStrategy))
-                .forEach(directions::add);
+    private static Direction generateMiddleDirection(DirectionStrategy directionStrategy, List<Direction> directions) {
+        return getLastDirection(directions).ofNext(directionStrategy);
     }
 
-    private void initLastDirection() {
-        directions.add(getLastDirection().ofLast());
-    }
-
-    private Direction getLastDirection() {
-        return directions.get(directions.size() - 1);
+    private static Direction generateLastDirection(List<Direction> directions) {
+        return getLastDirection(directions).ofLast();
     }
 
     public List<Direction> getDirections() {
