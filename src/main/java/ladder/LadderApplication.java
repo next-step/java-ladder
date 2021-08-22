@@ -1,6 +1,7 @@
 package ladder;
 
 import ladder.domain.*;
+import ladder.view.GameResult;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 

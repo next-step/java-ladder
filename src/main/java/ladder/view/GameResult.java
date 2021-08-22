@@ -1,4 +1,7 @@
-package ladder.domain;
+package ladder.view;
+
+import ladder.domain.Participant;
+import ladder.domain.Results;
 
 import java.util.HashMap;
 import java.util.List;
@@ -6,10 +9,10 @@ import java.util.Map;
 import java.util.Objects;
 
 public class GameResult {
-    private final Map<String, String> map;
+    private final Map<String, String> gameResult;
 
     private GameResult(Map<String, String> map) {
-        this.map = map;
+        this.gameResult = map;
     }
 
     public static GameResult of(Participant participant, Results finalResults) {
@@ -25,8 +28,8 @@ public class GameResult {
         return new GameResult(map);
     }
 
-    public Map<String, String> getMap() {
-        return map;
+    public Map<String, String> getGameResult() {
+        return gameResult;
     }
 
     @Override
@@ -34,11 +37,11 @@ public class GameResult {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         GameResult that = (GameResult) o;
-        return Objects.equals(map, that.map);
+        return Objects.equals(gameResult, that.gameResult);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(map);
+        return Objects.hash(gameResult);
     }
 }
