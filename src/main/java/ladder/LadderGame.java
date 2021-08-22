@@ -14,7 +14,7 @@ public class LadderGame {
         List<String> names = inputView.names();
         List<String> results = inputView.results();
         int height = inputView.height();
-        Ladder ladder = new Ladder(names, height, results);
+        Ladder ladder = Ladder.create(names, height, results);
 
         // 사다리 출력
         OutputView outputView = new OutputView();
