@@ -13,10 +13,10 @@ public class Ladder {
         this.persons = persons;
     }
 
-    public static Ladder of(List<Person> persons, int heightOfLadder) {
+    public static Ladder of(List<Person> persons, LadderHeight heightOfLadder) {
         List<Line> lines = new ArrayList<>();
-        
-        for (int i = 0; i < heightOfLadder; i++) {
+
+        for (int i = 0; i < heightOfLadder.height(); i++) {
             lines.add(Line.of(persons.size() - 1));
         }
 
