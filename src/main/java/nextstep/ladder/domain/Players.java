@@ -1,29 +1,35 @@
 package nextstep.ladder.domain;
 
+import static java.util.stream.Collectors.*;
+
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class Players {
 
 	private static final String DELIMITER = ",";
 
-	private final List<Player> names;
+	private final List<Player> players;
 
 	public Players(String names) {
-		this.names = createPlayers(names);
+		this.players = createPlayers(names);
 	}
 
 	public int size() {
-		return names.size();
+		return players.size();
+	}
+
+	public List<Player> values() {
+		return players;
 	}
 
 	private List<Player> createPlayers(String names) {
 		String[] nameArray = names.split(DELIMITER);
 		return Arrays.stream(nameArray)
 				.map(Player::new)
-				.collect(Collectors.toList());
+				.collect(collectingAndThen(toList(), Collections::unmodifiableList));
 	}
 
 	@Override
@@ -33,11 +39,11 @@ public class Players {
 		if (o == null || getClass() != o.getClass())
 			return false;
 		Players that = (Players)o;
-		return Objects.equals(names, that.names);
+		return Objects.equals(players, that.players);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(names);
+		return Objects.hash(players);
 	}
 }
