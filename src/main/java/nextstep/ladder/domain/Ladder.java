@@ -17,7 +17,7 @@ public class Ladder {
         List<Line> lines = new ArrayList<>();
         
         for (int i = 0; i < heightOfLadder; i++) {
-            lines.add(Line.of(persons.size()));
+            lines.add(Line.of(persons.size() - 1));
         }
 
         return new Ladder(lines, persons);

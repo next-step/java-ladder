@@ -1,11 +1,13 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.domain.Line;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 class LineTest {
 
@@ -24,21 +26,18 @@ class LineTest {
     void lineWithValidation() {
         // Given
         Line line = Line.of(3);
-        List<Boolean> lines = line.getPoints();
 
         // When
-        Boolean prev = lines.get(0);
+        List<Boolean> lines = line.getPoints();
 
         // Then
-        for (int i = 1; i < lines.size(); i++) {
-            Boolean curr = lines.get(i);
+        assertAll("라인이 연속적인 true가 나오면 안된다..",
+            () -> assertNotEquals(Arrays.asList(true, true, false), lines),
+            () -> assertNotEquals(Arrays.asList(false, true, true), lines),
+            () -> assertNotEquals(Arrays.asList(true, true, true), lines)
+        );
 
-            if (prev) {
-                assertThat(curr).isFalse();
-            }
 
-            prev = curr;
-        }
     }
 
 
