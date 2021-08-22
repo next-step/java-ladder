@@ -15,17 +15,18 @@ class LineTest {
     @Test
     void line() {
         // Given
-        Line line = Line.of(3);
+        int countOfPerson = 3;
+        Line line = Line.of(Arrays.asList(true, false, true));
 
         // When && Then
-        assertThat(line.size()).isEqualTo(3);
+        assertThat(line.size()).isEqualTo(countOfPerson);
     }
 
     @DisplayName("이어지는 라인이 없어야한다")
     @Test
     void lineWithValidation() {
         // Given
-        Line line = Line.of(3);
+        Line line = Line.of(Arrays.asList(true, false, true));
 
         // When
         List<Boolean> lines = line.getPoints();

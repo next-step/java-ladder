@@ -15,6 +15,6 @@ public class LadderGame {
 
         Ladder ladder = Ladder.of(persons, ladderHeight);
 
-        ResultView.show(ladder.getLadderLines(), ladder.persons());
+        ResultView.show(ladder.ladderHeight(), ladder.persons());
     }
 }

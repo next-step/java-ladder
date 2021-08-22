@@ -17,13 +17,14 @@ public class Ladder {
         List<Line> lines = new ArrayList<>();
 
         for (int i = 0; i < heightOfLadder.height(); i++) {
-            lines.add(Line.of(persons.size(), new RandomStrategy()));
+            List<Boolean> points = new RandomPointStrategy().point(persons.size());
+            lines.add(Line.of(points));
         }
 
         return new Ladder(lines, persons);
     }
 
-    public List<Line> getLadderLines() {
+    public List<Line> ladderHeight() {
         return ladderLines;
     }
 

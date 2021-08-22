@@ -1,7 +1,5 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Person;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
@@ -15,7 +13,7 @@ class LadderTest {
     @Test
     void ladder() {
         // given
-        int heightOfLadder = 5;
+        LadderHeight heightOfLadder = LadderHeight.of(5);
 
         List<Person> gamers = new ArrayList<>();
         gamers.add(Person.of("Pobi1"));
@@ -26,7 +24,7 @@ class LadderTest {
         Ladder ladder = Ladder.of(gamers, heightOfLadder);
 
         // then
-        assertThat(ladder.getLadderLines().size()).isEqualTo(heightOfLadder);
+        assertThat(ladder.ladderHeight().size()).isEqualTo(heightOfLadder.height());
         assertThat(ladder.persons().size()).isEqualTo(3);
     }
 

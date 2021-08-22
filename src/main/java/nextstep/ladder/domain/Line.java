@@ -1,6 +1,5 @@
 package nextstep.ladder.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
@@ -11,23 +10,20 @@ public class Line {
         this.points = points;
     }
 
-    public static Line of(int countOfPerson, Strategy paintStrategy) {
-        List<Boolean> points = new ArrayList<>();
-
-        boolean prevPaint = false;
-
-        for (int i = 0; i < countOfPerson; i++) {
-            boolean currPaint = paintStrategy.paint();
-            boolean isPaint = isPaintLine(prevPaint, currPaint);
-            points.add(isPaint);
-            prevPaint = isPaint;
-        }
-
+    public static Line of(List<Boolean> points) {
+        validatePoint(points);
         return new Line(points);
     }
 
-    private static boolean isPaintLine(boolean prevPaint, boolean currPaint) {
-        return !prevPaint && currPaint;
+    private static void validatePoint(List<Boolean> points) {
+        Boolean prevPoint = points.get(0);
+        for (int i = 1; i < points.size(); i++) {
+            Boolean currPoint = points.get(i);
+            if (prevPoint && currPoint) {
+                throw new IllegalArgumentException("사다리 선은 이어질 수 없습니다.");
+            }
+            prevPoint = currPoint;
+        }
     }
 
     public int size() {
