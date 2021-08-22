@@ -11,7 +11,7 @@ import java.util.Random;
 public class LadderMain {
     public static void main(String[] args) {
         InputView inputView = new InputView();
-        List<Name> names = inputView.requestName();
+        List<Name> names = Name.of(inputView.requestName());
 
         int height = inputView.requestHeight();
         Ladder ladder = new Ladder(height, names.size(), () -> new Random().nextBoolean());
