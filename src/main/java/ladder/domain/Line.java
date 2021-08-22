@@ -27,8 +27,15 @@ public class Line {
                 .forEach(i -> points.add(getRandomLine(i, lineGenerateStrategy)));
     }
 
-    public List<Boolean> getPoints() {
-        return points;
+    private Boolean getRandomLine(int i, LineGenerateStrategy lineGenerateStrategy) {
+        if (points.get(i - 1)) {
+            return FALSE_BECAUSE_OF_LEFT_TRUE;
+        }
+        return lineGenerateStrategy.able();
+    }
+
+    public boolean lineExists(int position) {
+        return points.get(position);
     }
 
     public List<Boolean> points() {
