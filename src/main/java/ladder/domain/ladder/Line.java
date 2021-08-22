@@ -10,9 +10,16 @@ public final class Line {
 
     private final List<Direction> directions;
 
-    public Line(final DirectionStrategy directionStrategy, final int userCount) {
+    private Line(final DirectionStrategy directionStrategy, final int userCount) {
         directions = new ArrayList<>();
+        initDirections(directionStrategy, userCount);
+    }
 
+    public static Line generate(final DirectionStrategy directionStrategy, final int userCount) {
+        return new Line(directionStrategy, userCount);
+    }
+
+    private void initDirections(DirectionStrategy directionStrategy, int userCount) {
         addFirstDirection(directionStrategy);
         addMiddleDirections(directionStrategy, userCount - MIDDLE_MINUS_COUNT);
         addLastDirection();

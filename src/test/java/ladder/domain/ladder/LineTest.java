@@ -22,7 +22,7 @@ class LineTest {
     @DisplayName("Line 생성 후 사이즈 체크")
     void generateLine_sizeCheck() {
         int generateCount = 5;
-        Line line = new Line(directionStrategy, generateCount);
+        Line line = Line.generate(directionStrategy, generateCount);
         int actual = line.getDirections().size();
         assertThat(actual).isEqualTo(5);
     }
@@ -32,7 +32,7 @@ class LineTest {
     void lastPositionNonRightTest() {
         // given
         int generateCount = 5;
-        Line line = new Line(directionStrategy, generateCount);
+        Line line = Line.generate(directionStrategy, generateCount);
 
         // when
         List<Direction> positions = line.getDirections();
@@ -49,7 +49,7 @@ class LineTest {
         int generateCount = 3;
 
         // when
-        Line line = new Line(directionStrategy, generateCount);
+        Line line = Line.generate(directionStrategy, generateCount);
         List<Direction> positions = line.getDirections();
 
         // then

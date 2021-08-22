@@ -12,7 +12,7 @@ public final class Ladder {
 
     public Ladder(final DirectionStrategy directionStrategy, final int ladderHeight, final int userCount) {
         lines = IntStream.range(0, ladderHeight)
-                .mapToObj(ignore -> new Line(directionStrategy, userCount))
+                .mapToObj(ignore -> Line.generate(directionStrategy, userCount))
                 .collect(Collectors.toList());
     }
 
