@@ -37,10 +37,8 @@ public class UsersTest {
     @Test
     void 유저_정보_체크() {
         for (User user : users.getParticipants()) {
-            assertThat(Arrays.asList(TEST_NAME_LIST)
-                    .stream()
-                    .filter(name -> name.equals(user.getName()))
-                    .count()).isOne();
+            assertThat(Arrays.asList(TEST_NAME_LIST))
+                    .contains(user.getName());
         }
     }
 }
