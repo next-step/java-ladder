@@ -1,29 +1,29 @@
 package nextstep.ladder.domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class PlayerNames {
 
 	private static final String DELIMITER = ",";
 
-	private final List<String> names;
+	private final List<PlayerName> names;
 
 	public PlayerNames(String names) {
-		this.names = splitByDelimiter(names);
+		this.names = createPlayerNames(names);
 	}
 
 	public int size() {
 		return names.size();
 	}
 
-	private List<String> splitByDelimiter(String names) {
-		List<String> playerNames = new ArrayList<>();
-		String[] namesArray = names.split(DELIMITER);
-		Collections.addAll(playerNames, namesArray);
-		return playerNames;
+	private List<PlayerName> createPlayerNames(String names) {
+		String[] nameArray = names.split(DELIMITER);
+		return Arrays.stream(nameArray)
+				.map(PlayerName::new)
+				.collect(Collectors.toList());
 	}
 
 	@Override
