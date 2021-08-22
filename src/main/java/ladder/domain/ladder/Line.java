@@ -20,22 +20,22 @@ public final class Line {
     }
 
     private void initDirections(DirectionStrategy directionStrategy, int userCount) {
-        addFirstDirection(directionStrategy);
-        addMiddleDirections(directionStrategy, userCount - MIDDLE_MINUS_COUNT);
-        addLastDirection();
+        initFirstDirection(directionStrategy);
+        initMiddleDirections(directionStrategy, userCount - MIDDLE_MINUS_COUNT);
+        initLastDirection();
     }
 
-    private void addFirstDirection(final DirectionStrategy directionStrategy) {
+    private void initFirstDirection(final DirectionStrategy directionStrategy) {
         directions.add(Direction.ofFirst(directionStrategy));
     }
 
-    private void addMiddleDirections(final DirectionStrategy directionStrategy, final int userCount) {
-        IntStream.range(0, userCount)
+    private void initMiddleDirections(final DirectionStrategy directionStrategy, final int middleDirectionCount) {
+        IntStream.range(0, middleDirectionCount)
                 .mapToObj(ignore -> getLastDirection().ofNext(directionStrategy))
                 .forEach(directions::add);
     }
 
-    private void addLastDirection() {
+    private void initLastDirection() {
         directions.add(getLastDirection().ofLast());
     }
 
