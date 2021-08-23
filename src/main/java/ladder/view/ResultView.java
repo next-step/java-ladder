@@ -28,7 +28,7 @@ public class ResultView {
         System.out.println(lineString);
     }
 
-    private String draw(Boolean point) {
+    private String draw(boolean point) {
         if (point) {
             return LINE;
         }
