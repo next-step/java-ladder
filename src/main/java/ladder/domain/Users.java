@@ -15,24 +15,24 @@ public class Users {
     private List<Name> names;
 
     private Users(List<String> users) {
-        this.names = users.stream()
-                          .map(Name::new)
-                          .collect(Collectors.toList());
+        names = users.stream()
+                     .map(Name::new)
+                     .collect(Collectors.toList());
     }
 
-    public static Users of(List<String> users) {
+    public static Users valueOf(List<String> users) {
         if (users.size() < 2) {
             throw new InvalidInputException(INVALID_COUNT_OF_USER_MESSAGE);
         }
         return new Users(users);
     }
 
-    public Users(String[] users) {
-        this(Arrays.asList(users));
+    public static Users valueOf(String[] users) {
+        return valueOf(Arrays.asList(users));
     }
 
-    public Users(String users) {
-        this(users.replace(" ", "").split(","));
+    public static Users valueOf(String users) {
+        return valueOf(users.replace(" ", "").split(","));
     }
 
     public List<Name> getNames() {

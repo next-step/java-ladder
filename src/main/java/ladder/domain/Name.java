@@ -5,19 +5,20 @@ import ladder.exception.InvalidInputException;
 import java.util.Objects;
 
 public class Name {
-    private static final String INVALID_NAME_LENGTH_MESSAGE = "이름은 5자를 초과할 수 없습니다.";
+    private static final int NAME_MAX_LENGTH = 5;
+    private static final String INVALID_NAME_LENGTH_MESSAGE = "이름은 " + NAME_MAX_LENGTH + "자를 초과할 수 없습니다.";
 
     private String name;
 
     public Name(String name) {
-        this.name = valid(name);
+        validateNameLength(name);
+        this.name = name;
     }
 
-    private String valid(String name) {
-        if (name.length() > 5) {
+    private void validateNameLength(String name) {
+        if (name.length() > NAME_MAX_LENGTH) {
             throw new InvalidInputException(INVALID_NAME_LENGTH_MESSAGE);
         }
-        return name;
     }
 
     public String getName() {

@@ -10,10 +10,10 @@ import java.util.List;
 public class Game {
     public static void main(String[] args) {
         List<String> names = InputView.inputNamesOfUsers();
-        Users users = Users.of(names);
+        Users users = Users.valueOf(names);
         int height = InputView.inputHeightOfLadder();
 
-        Ladder ladder = Ladder.of(height, names.size());
+        Ladder ladder = Ladder.create(height, names.size());
 
         OutputView.printNames(users);
         OutputView.printLadder(ladder);
