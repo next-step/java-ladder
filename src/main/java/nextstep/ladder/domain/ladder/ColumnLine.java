@@ -6,47 +6,54 @@ import nextstep.ladder.application.RandomCreatePoint;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class ColumnLine {
-    private List<Boolean> points = new ArrayList<>();
+    private List<Point> points = new ArrayList<>();
+    private Result result = new Result();
 
     public ColumnLine(Height height) {
         initPoints(height.getValue());
     }
 
-    public ColumnLine(List<Boolean> points) {
-        this.points = points;
+    public ColumnLine(List<Direction> pointOfDirection, String result) {
+        points = pointOfDirection.stream()
+                .map(direction -> new Point(direction))
+                .collect(Collectors.toList());
+        this.result = new Result(result);
+    }
+
+    public ColumnLine(Height height, String result) {
+        initPoints(height.getValue());
+        this.result = new Result(result);
     }
 
     private void initPoints(int height) {
         for (int i = 0; i < height; i++) {
-            points.add(false);
+            points.add(new Point(Direction.NONE));
         }
-    }
-
-    public Boolean getPointOfHeight(int heightIndex) {
-        return points.get(heightIndex);
-    }
-
-    public void setDrownPosition(int heightIndex) {
-        points.set(heightIndex,false);
-    }
-
-    public List<Boolean> getPoints() {
-        return points;
     }
 
     public void draw(ColumnLine nextColumnLine) {
-        for (int index = 0; index < this.points.size(); index++) {
-            drawRowLine(nextColumnLine, index, RandomCreatePoint.of());
+        for (int index = 0; index < points.size()-1; index++) {
+            points.get(index).drawRightLine(nextColumnLine.getPointOfHeight(index), RandomCreatePoint.of());
         }
     }
 
-    public void drawRowLine(ColumnLine nextColumnLine, int index, CreatePointStrategy createPointStrategy) {
-        if(!this.points.get(index) && createPointStrategy.isDraw()) {
-            this.points.set(index, true);
-            nextColumnLine.points.set(index,true);
-        }
+    public Point getPointOfHeight(int heightIndex) {
+        return points.get(heightIndex);
+    }
+
+    public List<Point> getPoints() {
+        return points;
+    }
+
+    public boolean isEqualsPointOfDirection(int height, Direction direction) {
+        return points.get(height).getDirection().equals(direction);
+    }
+
+    public String getResult() {
+        return result.getValue();
     }
 
     @Override
@@ -54,11 +61,11 @@ public class ColumnLine {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ColumnLine that = (ColumnLine) o;
-        return Objects.equals(points, that.points);
+        return Objects.equals(points, that.points) && Objects.equals(result, that.result);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(points);
+        return Objects.hash(points, result);
     }
 }

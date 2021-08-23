@@ -1,7 +1,7 @@
 package nextstep.ladder.domain.user;
 
 public class UserName {
-    private final int USER_NAME_MAXIMUM = 5;
+    private static final int USER_NAME_MAXIMUM = 5;
 
     private String userName;
 
@@ -15,7 +15,7 @@ public class UserName {
             throw new IllegalArgumentException("이름은 null 또는 빈값을 입력할 수 없습니다.");
         }
         if (userNameString.length() > USER_NAME_MAXIMUM) {
-            throw new IllegalArgumentException("이름은 5글자를 초과할 수 없습니다.");
+            throw new IllegalArgumentException("이름은 " + USER_NAME_MAXIMUM + "글자를 초과할 수 없습니다.");
         }
     }
 
