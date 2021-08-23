@@ -22,17 +22,17 @@ public class PrizeName {
   }
 
   private void validation(final String prizeName) {
-    invalidPrizeEmpty(prizeName);
-    invalidPrizeLength(prizeName);
+    validationPrizeEmpty(prizeName);
+    validationPrizeLength(prizeName);
   }
 
-  private void invalidPrizeEmpty(final String prizeName) {
+  private void validationPrizeEmpty(final String prizeName) {
     if (prizeName == null || prizeName.isEmpty()) {
       throw new IllegalArgumentException(MSG_ERROR_FAIL_PRIZE_EMPTY);
     }
   }
 
-  private void invalidPrizeLength(final String prizeName) {
+  private void validationPrizeLength(final String prizeName) {
     if (prizeName.length() > LIMIT_PRIZE_LENGTH) {
       throw new IllegalArgumentException(MSG_ERROR_FAIL_PRIZE_LENGTH);
     }
