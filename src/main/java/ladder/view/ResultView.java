@@ -21,9 +21,10 @@ public class ResultView {
     }
 
     private void printLine(Line line) {
-        String lineString = LINE_BLANK + LADDER_COLUMN + line.points().stream()
+        String lines = line.points().stream()
                 .map(point -> draw(point))
-                .collect(Collectors.joining(LADDER_COLUMN)) + LADDER_COLUMN;
+                .collect(Collectors.joining(LADDER_COLUMN));
+        String lineString = LINE_BLANK + LADDER_COLUMN + lines + LADDER_COLUMN;
         System.out.println(lineString);
     }
 
