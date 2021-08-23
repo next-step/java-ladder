@@ -13,12 +13,12 @@ public class MatchResult {
   private final int index;
 
   private MatchResult(final String playerName, final int index) {
-    validationData(playerName, index);
+    validation(playerName, index);
     this.playerName = playerName;
     this.index = index;
   }
 
-  private void validationData(final String playerName, final int index) {
+  private void validation(final String playerName, final int index) {
     invalidName(playerName);
     invalidIndex(index);
   }
