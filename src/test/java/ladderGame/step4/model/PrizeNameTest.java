@@ -6,8 +6,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.EmptySource;
-import org.junit.jupiter.params.provider.NullSource;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class PrizeNameTest {
@@ -21,8 +20,7 @@ class PrizeNameTest {
 
   @DisplayName("상품명 입력값 검증.")
   @ParameterizedTest
-  @NullSource
-  @EmptySource
+  @NullAndEmptySource
   void invalidPrizeValue(String prize) {
     assertThatThrownBy(() -> new PrizeName(prize))
         .isInstanceOf(IllegalArgumentException.class);
