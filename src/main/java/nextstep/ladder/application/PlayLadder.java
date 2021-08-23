@@ -8,6 +8,7 @@ import nextstep.ladder.domain.user.UserName;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PlayLadder {
 
@@ -39,12 +40,10 @@ public class PlayLadder {
         return playUsers;
     }
 
-    private static List<User> createUser(List<String> names) {
-        List<User> users = new ArrayList<>();
-        names.stream()
-                .forEach(name -> {
-                    users.add(new User(new UserName(name),names.indexOf(name)));
-                });
+    public static List<User> createUser(List<String> names) {
+        List<User> users = names.stream()
+                            .map(name -> new User(new UserName(name), names.indexOf(name)))
+                            .collect(Collectors.toList());
         return users;
     }
 }
