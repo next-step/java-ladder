@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Point {
 
-  public static final String MSG_ERROR_LIMIT_MIN_VALUE = "시작값은 0보자 작을 수 없습니다.";
+  public static final String MSG_ERROR_LIMIT_MIN_VALUE = "시작값은 0보다 작을 수 없습니다.";
 
   public static final String MSG_ERROR_INVALID_MOVE = "할 수 없는 움직임 입니다.";
 
