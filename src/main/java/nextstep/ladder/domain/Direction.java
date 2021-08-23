@@ -12,7 +12,7 @@ public enum Direction {
         this.value = value;
     }
 
-    public int value() {
-        return value;
+    public boolean isRight() {
+        return this == RIGHT;
     }
 }
