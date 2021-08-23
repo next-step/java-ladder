@@ -16,7 +16,7 @@ class MatchResultsTest {
 
   @DisplayName("사다리게임 전체결과 객체 생성 테스트.")
   @ParameterizedTest
-  @CsvSource(value = {"user2,0,1", "user1,0,0"})
+  @CsvSource(value = {"user2,0,1", "user1,0,0", "all,0,0", "all,1,1"})
   void crateMatchResultsTest(String name, int userIndex, int result) {
     List<Point> points = new ArrayList<>();
     points.add(new Point(0, Location.first(false)));
@@ -27,8 +27,8 @@ class MatchResultsTest {
     Players players = new Players(Players.of("user1,user2"));
 
     MatchResults matchResult = MatchResults.createMatchResult(new Ladder(lines), players);
-
     List<MatchResult> findUser = matchResult.searchPrizeWithCondition(name);
+
     assertThat(findUser.get(userIndex).getIndex()).isEqualTo(result);
   }
 
