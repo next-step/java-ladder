@@ -18,25 +18,25 @@ public class MatchResult {
     this.index = index;
   }
 
-  private void validation(final String playerName, final int index) {
-    invalidName(playerName);
-    invalidIndex(index);
+  public static MatchResult createMatchResult(final String playerName, final int index) {
+    return new MatchResult(playerName, index);
   }
 
-  private void invalidName(final String playerName) {
+  private void validation(final String playerName, final int index) {
+    validationName(playerName);
+    validationIndex(index);
+  }
+
+  private void validationName(final String playerName) {
     if (playerName == null || playerName.isEmpty()) {
       throw new IllegalArgumentException(MSG_ERROR_INVALID_NAME);
     }
   }
 
-  private void invalidIndex(final int index) {
+  private void validationIndex(final int index) {
     if (index < LIMIT_INDEX) {
       throw new IllegalArgumentException(MSG_ERROR_INVALID_INDEX);
     }
-  }
-
-  public static MatchResult createMatchResult(final String playerName, final int index) {
-    return new MatchResult(playerName, index);
   }
 
   public String getPlayerName() {
