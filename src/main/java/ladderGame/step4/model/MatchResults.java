@@ -31,14 +31,14 @@ public class MatchResults {
     validationEmptyName(findName);
 
     if (CONDITION_ALL.equals(findName)) {
-      return matchPrizesAll(matchResult -> true);
+      return matchPrizes(matchResult -> true);
     }
 
     validationNoMatchName(matchResults, findName);
-    return matchPrizesAll(matchResult -> matchResult.isMatchName(findName));
+    return matchPrizes(matchResult -> matchResult.isMatchName(findName));
   }
 
-  private List<MatchResult> matchPrizesAll(final Conditional conditional) {
+  private List<MatchResult> matchPrizes(final Conditional conditional) {
     return matchResults.stream()
         .filter(conditional::isMatchNameCondition)
         .collect(Collectors.toList());
