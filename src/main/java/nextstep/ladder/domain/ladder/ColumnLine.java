@@ -1,5 +1,6 @@
 package nextstep.ladder.domain.ladder;
 
+import nextstep.ladder.application.CreatePointStrategy;
 import nextstep.ladder.application.RandomCreatePoint;
 
 import java.util.ArrayList;
@@ -35,7 +36,7 @@ public class ColumnLine {
 
     public void draw(ColumnLine nextColumnLine) {
         for (int index = 0; index < points.size()-1; index++) {
-            points.get(index).drawRightLine(nextColumnLine.getPointOfHeight(index),RandomCreatePoint.of());
+            points.get(index).drawRightLine(nextColumnLine.getPointOfHeight(index), RandomCreatePoint.of());
         }
     }
 
