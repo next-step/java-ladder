@@ -1,15 +1,13 @@
 package ladderGame.step4;
 
+import ladderGame.step4.controller.LadderMainController;
 import ladderGame.step4.model.Ladder;
-import ladderGame.step4.model.MatchResults;
 import ladderGame.step4.model.Players;
 import ladderGame.step4.model.Prizes;
 import ladderGame.step4.view.InputView;
-import ladderGame.step4.view.ResultView;
 
 public class LadderApplication {
 
-  public static final String ALL_NAMES = "all";
   public static final String SPLIT_MARK = ",";
   public static final int LIMIT_HEIGHT = 1;
   public static final String MSG_ERROR_LIMIT_HEIGHT = "사다리높이는 1이상부터 가능합니다.";
@@ -17,35 +15,19 @@ public class LadderApplication {
 
   public static void main(String[] args) {
 
-    String usersName = InputView.inputUserNames();
+    String inputNames = InputView.inputUserNames();
     String goods = InputView.inputGoods();
 
-    validationNamesAndGoodsCount(usersName, goods);
+    validationNamesAndGoodsCount(inputNames, goods);
+
+    Players players = new Players(Players.of(inputNames));
 
     int ladderHeight = InputView.inputLadderHeight();
-
     validationLimitHeight(ladderHeight);
-
-    Players players = new Players(Players.of(usersName));
-    Prizes prizes = new Prizes(Prizes.createPrizes(goods, players.count()));
     Ladder ladder = new Ladder(Ladder.of(ladderHeight, players.count()));
 
-    ResultView.printUsersName(players.playersName());
-    ResultView.printLadder(ladder);
-    ResultView.printPrizes(prizes);
-
-    String findName = InputView.inputFindNames();
-
-    while (!isContinue(findName)) {
-
-      ResultView.printResult(
-          MatchResults.createMatchResult(ladder, players).searchPrizeWithCondition(findName), prizes);
-
-      findName = InputView.inputFindNames();
-    }
-
-    ResultView.printResult(
-        MatchResults.createMatchResult(ladder, players).searchPrizeWithCondition(findName), prizes);
+    Prizes prizes = new Prizes(Prizes.createPrizes(goods, players.count()));
+    LadderMainController.findLadderInfo(players, ladder, prizes);
   }
 
   private static void validationLimitHeight(final int ladderHeight) {
@@ -58,9 +40,5 @@ public class LadderApplication {
     if (usersName.split(SPLIT_MARK).length != goods.split(SPLIT_MARK).length) {
       throw new IllegalArgumentException(MSG_ERROR_INCORRECT_COUNT);
     }
-  }
-
-  private static boolean isContinue(final String findName) {
-    return findName.equals(ALL_NAMES);
   }
 }
