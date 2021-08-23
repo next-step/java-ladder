@@ -61,8 +61,11 @@ public class ResultView {
     System.out.println("실행 결과");
 
     for (MatchResult matchResult : matchResults) {
-      System.out.println(matchResult.getPlayerName() + RESULT_FORM + prizes.prizeNames()
-          .get(matchResult.getIndex()));
+
+      String playerName = matchResult.getPlayerName();
+      String prize = prizes.prizeNames().get(matchResult.getIndex());
+
+      System.out.println(playerName + RESULT_FORM + prize);
     }
   }
 }
