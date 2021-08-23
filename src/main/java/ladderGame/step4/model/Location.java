@@ -10,7 +10,7 @@ public class Location {
 
   private final boolean right;
 
-  public Location(final boolean left, final boolean right) {
+  private Location(final boolean left, final boolean right) {
     validationValues(left, right);
     this.left = left;
     this.right = right;
