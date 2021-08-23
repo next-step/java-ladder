@@ -11,14 +11,14 @@ public class Ladder {
         return new Ladder(lines);
     }
 
-    public static Ladder of(int ladderMaxLength, int countOfPerson) {
-        return getLadder(ladderMaxLength, countOfPerson);
+    public static Ladder of(int ladderMaxLength, int countOfPerson, NextStrategy nextStrategy) {
+        return getLadder(ladderMaxLength, countOfPerson, nextStrategy);
     }
 
-    private static Ladder getLadder(int ladderMaxLength, int countOfPerson) {
+    private static Ladder getLadder(int ladderMaxLength, int countOfPerson, NextStrategy nextStrategy) {
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < ladderMaxLength; i++) {
-            lines.add(Line.of(countOfPerson));
+            lines.add(Line.of(countOfPerson, nextStrategy));
         }
 
         return new Ladder(lines);

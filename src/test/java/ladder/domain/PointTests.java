@@ -1,11 +1,9 @@
 package ladder.domain;
 
-import ladder.exception.InvalidPointException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 public class PointTests {
     @DisplayName("생성 테스트")
@@ -42,17 +40,6 @@ public class PointTests {
         assertThat(point).isEqualTo(Point.first(false).last());
     }
 
-    @DisplayName("값이 연속적으로 true 인 경우는 Exception 테스트")
-    @Test
-    void exception() {
-        assertThatExceptionOfType(InvalidPointException.class)
-                .isThrownBy(() -> {
-                    Point point = Point.first(true).next(true);
-                    assertThat(point).isEqualTo(Point.first(false).last());
-                }).withMessageMatching("인접 한 열의 Point 연속으로 true 입니다. false 를 입력하세요.");
-
-    }
-
     @DisplayName("그리는 상황 인 지 테스트")
     @Test
     void draw() {
@@ -74,7 +61,8 @@ public class PointTests {
     void nextRandomFalse() {
         for (int i = 0; i < 100; i++) {
             Point firstPoint = Point.first(true);
-            Point secondPoint = firstPoint.next();
+            NextStrategy nextStrategy = new RandomNextStrategy();
+            Point secondPoint = firstPoint.next(nextStrategy.execute());
 
             assertThat(firstPoint).isNotEqualTo(secondPoint);
         }
@@ -85,7 +73,8 @@ public class PointTests {
     void adjacentPointRandomFalse() {
         for (int i = 0; i < 100; i++) {
             Point firstPoint = Point.first(false);
-            Point secondPoint = firstPoint.next();
+            NextStrategy nextStrategy = new RandomNextStrategy();
+            Point secondPoint = firstPoint.next(nextStrategy.execute());
 
             assertThat(secondPoint.isDraw()).isFalse();
         }

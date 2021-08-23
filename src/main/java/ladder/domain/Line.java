@@ -10,15 +10,15 @@ public class Line {
 
     private final List<Point> points;
 
-    public static Line of(int countOfPerson) {
+    public static Line of(int countOfPerson, NextStrategy nextStrategy) {
 
         List<Point> points = new ArrayList<>();
 
-        Point point = Point.first();
+        Point point = Point.first(nextStrategy.execute());
         points.add(point);
 
         for (int i = REQUIRED_NUMBER_OF_PEOPLE; i < countOfPerson - 1; i++) {
-            point = point.next();
+            point = point.next(nextStrategy.execute());
             points.add(point);
         }
 

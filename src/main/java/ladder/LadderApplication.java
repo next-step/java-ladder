@@ -1,9 +1,6 @@
 package ladder;
 
-import ladder.domain.Ladder;
-import ladder.domain.Participant;
-import ladder.domain.Positions;
-import ladder.domain.Results;
+import ladder.domain.*;
 import ladder.view.GameResult;
 import ladder.view.InputView;
 import ladder.view.ResultView;
@@ -23,7 +20,8 @@ public class LadderApplication {
         Participant participant = Participant.of(participantList);
         ResultView.printParticipant(participant);
 
-        Ladder ladder = Ladder.of(ladderMaxLength, countOfPerson);
+        NextStrategy nextStrategy = new RandomNextStrategy();
+        Ladder ladder = Ladder.of(ladderMaxLength, countOfPerson, nextStrategy);
         ResultView.drawLadder(ladder);
 
         Results results = Results.of(resultList);
