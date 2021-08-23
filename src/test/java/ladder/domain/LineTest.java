@@ -1,25 +1,18 @@
 package ladder.domain;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LineTest {
 
-    @Test
-    @DisplayName("사다리 높이 입력 성공 테스트")
-    void 사다리_높이_입력_성공_테스트() {
-        Line line = Line.of(5);
-        assertThat(line).isEqualTo(Line.of(5));
+    @ParameterizedTest
+    @DisplayName("Line 생성 성공 테스트")
+    @ValueSource(ints = {2, 3, 4, 5})
+    void 사다리_높이_입력_성공_테스트(int number) {
+        Line line = new Line(number);
+        assertThat(line.getPoints().size()).isEqualTo(number);
     }
-
-    @Test
-    @DisplayName("사다리 높이 입력 실패 테스트")
-    void 사다리_높이_입력_실패_테스트() {
-        assertThatThrownBy(() -> Line.of(1))
-                .isInstanceOf(RuntimeException.class);
-    }
-
 }
