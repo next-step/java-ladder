@@ -39,6 +39,10 @@ public class Players {
     return playerNames.size();
   }
 
+  public int findNameIndex(String playerName) {
+    return playerNames.indexOf(new PlayerName(playerName));
+  }
+
   private void validationPlayersCount(final List<PlayerName> players) {
     if (players.size() < LIMIT_PLAYER_COUNT) {
       throw new IllegalArgumentException(MSG_ERROR_LIMIT_PLAYERS);
