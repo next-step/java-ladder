@@ -15,6 +15,10 @@ public class Height {
 		this.height = height;
 	}
 
+	public int value() {
+		return height;
+	}
+
 	private void validateHeight(int height) {
 		if (height < MIN_VALUE) {
 			throw new InvalidHeightException(height);
