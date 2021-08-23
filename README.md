@@ -7,3 +7,16 @@
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
+
+## TODO
+
+* INPUT
+    * 참여할 사람의 이름을 입력할 수 있다.
+    * 최대 사다리 높이를 입력할 수 있다.
+
+* DOMAIN
+    * 사람의 이름을 파싱할 수 있다.
+    * 사다리를 만들 수 있다.
+* OUTPUT
+    * 사다리 실행 결과를 보여줄 수 있다.
+## DONE
