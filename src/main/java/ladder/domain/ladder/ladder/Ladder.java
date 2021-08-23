@@ -21,7 +21,7 @@ public class Ladder {
         return new Ladder(lines);
     }
 
-    public int permute(int source) {
+    private int permute(int source) {
         int destination = source;
         for (Line line : lines) {
             destination = line.permute(destination);

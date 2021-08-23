@@ -12,8 +12,6 @@ import ladder.domain.ladder.point.Point;
 import ladder.dto.LadderResult;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 
 class LadderTest {
 
@@ -60,12 +58,6 @@ class LadderTest {
         bottomPoints.add(point);
 
         ladder = Ladder.of(Arrays.asList(Line.of(topPoints), Line.of(bottomPoints)));
-    }
-
-    @ParameterizedTest(name = "[{index}] {0} permutes to {1}")
-    @CsvSource({"0,2", "1,0", "2,3", "3,1"})
-    void permute(int source, int destination) {
-        assertThat(ladder.permute(source)).isEqualTo(destination);
     }
 
     @Test
