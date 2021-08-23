@@ -27,30 +27,59 @@ public class Lambda {
     }
 
     public static int sumAll(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            total += number;
-        }
-        return total;
+//        return Calculator.sumAll(numbers, new Conditional() {
+//            @Override
+//            public boolean test(Integer number) {
+//                return true;
+//            }
+//        });
+
+        return Calculator.sumAll(numbers, (number -> true));
     }
 
     public static int sumAllEven(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number % 2 == 0) {
-                total += number;
-            }
-        }
-        return total;
+//        int total = 0;
+//        for (int number : numbers) {
+//            if (number % 2 == 0) {
+//                total += number;
+//            }
+//        }
+//        return total;
+
+//        return Calculator.sumAllEven(numbers, new Conditional() {
+//            @Override
+//            public boolean test(Integer number) {
+//                if (number % 2 == 0) {
+//                    return true;
+//                }
+//                return false;
+//            }
+//        });
+
+        return Calculator.sumAllEven(numbers, (number -> number % 2 == 0));
     }
 
+
+
     public static int sumAllOverThree(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number > 3) {
-                total += number;
-            }
-        }
-        return total;
+//        int total = 0;
+//        for (int number : numbers) {
+//            if (number > 3) {
+//                total += number;
+//            }
+//        }
+//        return total;
+
+//        return Calculator.sumAllOverThree(numbers, new Conditional() {
+//            @Override
+//            public boolean test(Integer number) {
+//                if (number > 3) {
+//                    return true;
+//                }
+//                return false;
+//            }
+//        });
+
+        return Calculator.sumAllOverThree(numbers, (number -> number > 3));
     }
 }
