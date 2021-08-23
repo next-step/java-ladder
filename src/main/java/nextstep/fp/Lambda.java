@@ -56,7 +56,8 @@ public class Lambda {
 //            }
 //        });
 
-        return Calculator.sumAllEven(numbers, (number -> number % 2 == 0));
+//        return Calculator.sumAllEven(numbers, (number -> number % 2 == 0));
+        return Calculator.sumAllByCondition(numbers, number -> number % 2 == 0);
     }
 
 
