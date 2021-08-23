@@ -40,7 +40,7 @@ public class MatchResults {
 
   private List<MatchResult> matchPrizesAll(final Conditional conditional) {
     return matchResults.stream()
-        .filter(conditional::isHasCondition)
+        .filter(conditional::isMatchNameCondition)
         .collect(Collectors.toList());
   }
 
