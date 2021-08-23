@@ -3,6 +3,7 @@ package ladderGame.step4.view;
 import java.util.List;
 import java.util.stream.Collectors;
 import ladderGame.step4.model.Ladder;
+import ladderGame.step4.model.MatchResult;
 import ladderGame.step4.model.Prizes;
 
 public class ResultView {
@@ -12,6 +13,8 @@ public class ResultView {
   private static final String HAVING_CONNECTION = "-----|";
 
   private static final String NONE_CONNECTION = "|";
+
+  private static final String RESULT_FORM = " : ";
 
   public static void printUsersName(final List<String> players) {
     System.out.println(players
@@ -48,9 +51,15 @@ public class ResultView {
         .collect(Collectors.joining()));
   }
 
-  public static void printResult(final List<String> player) {
+  public static void printResult(
+      final List<MatchResult> matchResults,
+      final Prizes prizes) {
 
     System.out.println("실행 결과");
-    player.forEach(System.out::println);
+
+    for (MatchResult matchResult : matchResults) {
+      System.out.println(matchResult.getPlayerName() + RESULT_FORM + prizes.prizeNames()
+          .get(matchResult.getIndex()));
+    }
   }
 }
