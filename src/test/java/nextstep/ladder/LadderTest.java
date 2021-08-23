@@ -7,6 +7,7 @@ import nextstep.ladder.domain.ladder.Height;
 import nextstep.ladder.domain.ladder.Ladder;
 import nextstep.ladder.domain.user.User;
 import nextstep.ladder.domain.user.UserName;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -41,9 +42,9 @@ public class LadderTest {
     @Test
     @DisplayName("사다리 생성")
     void createLadderTest() {
-        ColumnLine line1 = new ColumnLine(new Height(3));
-        ColumnLine line2 = new ColumnLine(new Height(3));
-        ColumnLine line3 = new ColumnLine(new Height(3));
+        ColumnLine line1 = new ColumnLine(new Height(3), "꽝");
+        ColumnLine line2 = new ColumnLine(new Height(3), "1000");
+        ColumnLine line3 = new ColumnLine(new Height(3), "2000");
 
         line1.getPointOfHeight(0)
                 .drawRightLine(line2.getPointOfHeight(0), () -> false);
@@ -99,9 +100,12 @@ public class LadderTest {
         User playUser3 = new User(new UserName("crong"),2);
 
         ladder.play(Arrays.asList(playUser1,playUser2,playUser3));
-        assertThat(playUser1.getIndexOfColumnLine()).isEqualTo(0);
-        assertThat(playUser2.getIndexOfColumnLine()).isEqualTo(2);
-        assertThat(playUser3.getIndexOfColumnLine()).isEqualTo(1);
+
+        Assertions.assertAll(
+                () -> assertThat(playUser1.getIndexOfColumnLine()).isEqualTo(0),
+                () -> assertThat(playUser2.getIndexOfColumnLine()).isEqualTo(2),
+                () -> assertThat(playUser3.getIndexOfColumnLine()).isEqualTo(1)
+        );
     }
 
     @ParameterizedTest

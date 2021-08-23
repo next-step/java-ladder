@@ -3,7 +3,6 @@ package nextstep.ladder;
 import nextstep.ladder.application.PlayLadder;
 import nextstep.ladder.domain.user.User;
 import nextstep.ladder.domain.user.UserName;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
