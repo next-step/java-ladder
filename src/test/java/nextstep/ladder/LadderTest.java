@@ -20,7 +20,22 @@ public class LadderTest {
         StringBuffer sb = new StringBuffer();
 
         System.out.println(sb);
-        Ladder ladders = Ladder.of(3, () -> true);
-        System.out.println(ladders.getStringLine());
+        Ladder ladder = Ladder.of(3, () -> true);
+        System.out.println(ladder.getLines());
+    }
+
+    @Test
+    @DisplayName("출발점 입력시 포인트 이동 테스트")
+    void ladderResultTest() {
+        StringBuffer sb = new StringBuffer();
+
+        System.out.println(sb);
+        Ladder ladder = Ladder.of(4, () -> true);
+        System.out.println(ladder.getLines().toString());
+        System.out.println(ladder.movePoint(0));
+        System.out.println(ladder.movePoint(1));
+        System.out.println(ladder.movePoint(2));
+        System.out.println(ladder.movePoint(3));
+//        assertThat(ladder.movePoint(3)).isEqualTo(2);
     }
 }
