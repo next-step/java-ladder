@@ -39,6 +39,6 @@ class PlayersTest {
   void findNameIndex() {
     Players players = new Players(Players.of("user1,user2"));
 
-    assertThat(players.findNameIndex("user2")).isEqualTo(1);
+    assertThat(players.findIndexByName("user2")).isEqualTo(1);
   }
 }

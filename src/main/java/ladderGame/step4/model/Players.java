@@ -39,7 +39,7 @@ public class Players {
     return playerNames.size();
   }
 
-  public int findNameIndex(String playerName) {
+  public int findIndexByName(String playerName) {
     return playerNames.indexOf(new PlayerName(playerName));
   }
 

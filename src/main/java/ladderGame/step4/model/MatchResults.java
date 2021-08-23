@@ -23,7 +23,7 @@ public class MatchResults {
     return new MatchResults(players.playersName()
         .stream()
         .map(playerName -> MatchResult.createMatchResult(playerName,
-            ladder.findResult(players.findNameIndex(playerName))))
+            ladder.findResult(players.findIndexByName(playerName))))
         .collect(Collectors.toList()));
   }
 
