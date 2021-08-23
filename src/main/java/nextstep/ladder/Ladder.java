@@ -45,14 +45,21 @@ public class Ladder {
 
 
     public int movePoint(int startPoint) {
-        if (startPoint > NUMBER_ZERO && lines.get(startPoint - NUMBER_ONE)) { // 왼쪽값 비교
+        if (leftCheck(startPoint)) { // 왼쪽값 비교
             return startPoint - NUMBER_ONE;
         }
-
-        if (lines.get(startPoint) && startPoint != lines.size() - NUMBER_ONE) { // 자신 비교
+        if (rightCheckAndSelfCheck(startPoint)) { // 자신 및 오른쪽비교
             return startPoint + NUMBER_ONE;
         }
 
         return startPoint;
+    }
+
+    private Boolean leftCheck(int startPoint) {
+        return startPoint > NUMBER_ZERO && lines.get(startPoint - NUMBER_ONE);
+    }
+
+    private Boolean rightCheckAndSelfCheck(int startPoint) {
+        return lines.get(startPoint) && startPoint != lines.size() - NUMBER_ONE;
     }
 }

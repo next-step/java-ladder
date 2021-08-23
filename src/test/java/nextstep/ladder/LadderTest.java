@@ -15,13 +15,14 @@ public class LadderTest {
     }
 
     @Test
-    @DisplayName("라인 문자열 출력 테스트")
+    @DisplayName("라인 불리언 출력 테스트")
     void printLineTest() {
         StringBuffer sb = new StringBuffer();
 
         System.out.println(sb);
         Ladder ladder = Ladder.of(3, () -> true);
-        System.out.println(ladder.getLines());
+        assertThat(ladder.getLines()).extracting(line -> line).contains(true,false);
+
     }
 
     @Test
@@ -32,10 +33,9 @@ public class LadderTest {
         System.out.println(sb);
         Ladder ladder = Ladder.of(4, () -> true);
         System.out.println(ladder.getLines().toString());
-        System.out.println(ladder.movePoint(0));
-        System.out.println(ladder.movePoint(1));
-        System.out.println(ladder.movePoint(2));
-        System.out.println(ladder.movePoint(3));
-//        assertThat(ladder.movePoint(3)).isEqualTo(2);
+        assertThat(ladder.movePoint(0)).isEqualTo(1);
+        assertThat(ladder.movePoint(1)).isEqualTo(0);
+        assertThat(ladder.movePoint(2)).isEqualTo(3);
+        assertThat(ladder.movePoint(3)).isEqualTo(2);
     }
 }

@@ -18,4 +18,14 @@ public class RewardTest {
 
     }
 
+
+    @Test
+    @DisplayName("player목록 셋팅 해당위치플레이어가 최종적으로 도착하고 출력하는 테스트 ")
+    void insertPlayerSettingTest() {
+        Reward rewards = Reward.of(5);
+        rewards.setPlayerList(1);
+        assertThat(rewards.getRewardResult().get(0)).isEqualTo(1);
+
+    }
+
 }

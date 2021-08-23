@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static nextstep.ladder.CommonConstans.*;
@@ -54,26 +55,31 @@ public class LadderGame {
 
     public int getResultPoint(int playerPoint, int row) {
 
-        lastPointPosition.clear();
         checkPlayPointAndRow(playerPoint, row);
 
         lastPointPosition.add(ladders.get(NUMBER_ZERO).movePoint(playerPoint));
 
         IntStream.range(NUMBER_ONE, ladders.size())
                 .forEach(index -> lastPointPosition.add(
-                        ladders.get(index).movePoint(lastPointPosition.get(lastPointPosition.size() - NUMBER_ONE))));
+                        ladders.get(index).movePoint(lastPointPosition.get(lastPointPosition.size() - NUMBER_ONE))
+                ));
 
         return lastPointPosition.get(lastPointPosition.size() - NUMBER_ONE);
     }
 
     public int findPlayerReward(String searchPlayer) {
 
-        for (int index = 0; index < players.size(); index++) {
-            if (players.get(index).getPlayer().equals(searchPlayer)) {
-                return index;
-            }
-        }
+        checkIsSearchPlayer(searchPlayer);
 
-        throw new IllegalArgumentException("검색하신 플레이어는 존재하지 않습니다.");
+        return players.indexOf(players.stream()
+                .filter(player -> player.getPlayer().equals(searchPlayer))
+                .collect(Collectors.toList()).get(NUMBER_ZERO));
+    }
+
+    private void checkIsSearchPlayer(String searchPlayer) {
+        players.stream()
+               .filter(player -> player.equals(searchPlayer))
+               .findFirst()
+               .orElseThrow(()-> new IllegalArgumentException("해당되는 Player가 없습니다."));
     }
 }
