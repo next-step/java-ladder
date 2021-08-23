@@ -36,7 +36,7 @@ public class User {
         }
 
         if (name.length() > MAXIMUM_NAME_SIZE) {
-            throw new IllegalArgumentException("이름이 너무 깁니다.");
+            throw new IllegalArgumentException("이름이 너무 깁니다. (이름 : " + name + ")");
         }
     }
 

@@ -34,7 +34,7 @@ public class UserTest {
         //then
         assertThatThrownBy(() -> User.createWithName("sjsjsjsj"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("이름이 너무 깁니다.");
+                .hasMessageContaining("이름이 너무 깁니다. (이름 : sjsjsjsj)");
     }
 
 }
