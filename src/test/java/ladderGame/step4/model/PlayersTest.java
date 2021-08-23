@@ -33,4 +33,12 @@ class PlayersTest {
     assertThat(players.playersName().size()).isEqualTo(2);
     assertThat(players.playersName()).containsExactly("user1","user2");
   }
+
+  @DisplayName("이름이 같은 객체의 인덱스 반환.")
+  @Test
+  void findNameIndex() {
+    Players players = new Players(Players.of("user1,user2"));
+
+    assertThat(players.findNameIndex("user2")).isEqualTo(1);
+  }
 }
