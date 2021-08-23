@@ -1,23 +1,23 @@
 package ladder.view;
 
 import java.util.List;
+import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 import ladder.domain.ladder.ladder.Ladder;
-import ladder.domain.ladder.ladder.LadderDecorator;
 import ladder.domain.ladder.line.Line;
 import ladder.domain.ladder.point.Point;
 import ladder.domain.player.PlayerName;
 import ladder.domain.player.PlayerNames;
 import ladder.domain.prize.LadderPrize;
 import ladder.domain.prize.LadderPrizes;
-import ladder.dto.LadderResult;
 import ladder.utils.StringUtils;
 
 public class ResultView {
 
     public static final String NEWLINE = System.lineSeparator();
     public static final String RESULT_HEADER = NEWLINE + "사다리 결과" + NEWLINE;
-    public static final String LADDER_RESULT = NEWLINE + "실행 결과";
+    public static final String EXECUTION_HEADER = NEWLINE + "실행 결과";
     public static final String VERTICAL = "|";
     public static final String HORIZONTAL = "-";
     public static final String SPACE = " ";
@@ -26,36 +26,12 @@ public class ResultView {
     private ResultView() {
     }
 
-    public static void printLadderResult(int resultIndex, LadderPrizes ladderPrizes) {
-        System.out.println(LADDER_RESULT);
-        LadderPrize ladderPrize = ladderPrizes.getPrizeByIndex(resultIndex);
-        String prize = ladderPrize.getPrize();
-        System.out.println(prize);
-    }
+    /*
+     * Methods to print names and prizes
+     */
 
-    public static void printAllResult(LadderResult ladderResult, LadderDecorator ladderDecorator) {
-        System.out.println(LADDER_RESULT);
-        PlayerNames playerNames = ladderDecorator.getPlayerNames();
-        LadderPrizes ladderPrizes = ladderDecorator.getLadderPrizes();
-        for (PlayerName playerName : playerNames.getNames()) {
-            String name = playerName.getName();
-            int nameIndex = playerNames.getIndexByName(name);
-            int resultIndex = ladderResult.resultByIndex(nameIndex);
-            LadderPrize ladderPrize = ladderPrizes.getPrizeByIndex(resultIndex);
-            String prize = ladderPrize.getPrize();
-            System.out.println(name + " : " + prize);
-        }
-    }
-
-    public static void printDecoratedLadder(Ladder ladder, LadderDecorator ladderDecorator) {
-        int headerWidth = ladderDecorator.maxLength() + PADDING;
-        System.out.println(RESULT_HEADER);
-        printPlayerNames(ladderDecorator.getPlayerNames(), headerWidth);
-        printLadder(ladder, ladderDecorator.maxLength());
-        printLadderPrizes(ladderDecorator.getLadderPrizes(), headerWidth);
-    }
-
-    private static void printPlayerNames(PlayerNames playerNames, int width) {
+    public static void printPlayerNames(PlayerNames playerNames, int maxLength) {
+        int width = maxLength + PADDING;
         List<String> names = playerNames.getNames()
                 .stream()
                 .map(playerName -> spaceString(playerName.getName(), width))
@@ -63,22 +39,25 @@ public class ResultView {
         System.out.println(String.join("", names));
     }
 
-    private static void printLadderPrizes(LadderPrizes ladderPrizes, int width) {
+    public static void printLadderPrizes(LadderPrizes ladderPrizes, int maxLength) {
+        int width = maxLength + PADDING;
         List<String> prizes = ladderPrizes.getPrizes()
                 .stream()
                 .map(ladderPrize -> spaceString(ladderPrize.getPrize(), width))
                 .collect(Collectors.toList());
-        String prizeLine = String.join("", prizes);
-        System.out.println(prizeLine);
+        System.out.println(String.join("", prizes));
     }
 
-    private static void printLadder(Ladder ladder, int width) {
+    /*
+     * Methods to print ladder to screen
+     */
+
+    public static void printLadder(Ladder ladder, int width) {
         List<String> lines = ladder.getLines()
                 .stream()
                 .map(line -> lineToString(line, width))
                 .collect(Collectors.toList());
-        String ladderMultiLines = String.join(NEWLINE, lines);
-        System.out.println(ladderMultiLines);
+        System.out.println(String.join(NEWLINE, lines));
     }
 
     private static String lineToString(Line line, int width) {
@@ -94,6 +73,47 @@ public class ResultView {
             return StringUtils.repeat(HORIZONTAL, width);
         }
         return StringUtils.repeat(SPACE, width);
+    }
+
+    /*
+     * Methods to print ladder execution results
+     */
+
+    public static void printAllResults(Map<String, String> nameToPrize) {
+        for (Map.Entry<String, String> entry : nameToPrize.entrySet()) {
+            String name = entry.getKey();
+            String prize = entry.getValue();
+            System.out.println(name + " : " + prize);
+        }
+    }
+
+    public static void printResultByName(String name, Map<String, String> nameToPrize) {
+        String prize = nameToPrize.get(name);
+        System.out.println(EXECUTION_HEADER);
+        System.out.println(prize);
+    }
+
+    /*
+     * Helper methods
+     */
+
+    public static int findMaxLength(PlayerNames playerNames, LadderPrizes ladderPrizes) {
+        List<String> names = playerNames.getNames()
+                .stream()
+                .map(PlayerName::getName)
+                .collect(Collectors.toList());
+        List<String> prizes = ladderPrizes.getPrizes()
+                .stream()
+                .map(LadderPrize::getPrize)
+                .collect(Collectors.toList());
+        return Math.max(findMaxLength(names), findMaxLength(prizes));
+    }
+
+    private static int findMaxLength(List<String> strings) {
+        return strings.stream()
+                .mapToInt(String::length)
+                .max()
+                .orElseThrow(NoSuchElementException::new);
     }
 
     private static String spaceString(String string, int width) {

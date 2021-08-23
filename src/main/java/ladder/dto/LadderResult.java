@@ -1,9 +1,7 @@
 package ladder.dto;
 
 import java.util.Map;
-import java.util.NoSuchElementException;
 import java.util.Objects;
-import java.util.Optional;
 
 public class LadderResult {
 
@@ -18,8 +16,7 @@ public class LadderResult {
     }
 
     public int resultByIndex(int index) {
-        return Optional.ofNullable(permutation.get(index))
-                .orElseThrow(NoSuchElementException::new);
+        return permutation.get(index);
     }
 
     @Override

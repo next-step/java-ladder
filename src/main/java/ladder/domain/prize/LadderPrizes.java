@@ -34,7 +34,8 @@ public class LadderPrizes {
 
     public int maxLength() {
         return prizes.stream()
-                .mapToInt(LadderPrize::length)
+                .map(LadderPrize::getPrize)
+                .mapToInt(String::length)
                 .max()
                 .orElseThrow(NoConnectionPendingException::new);
     }

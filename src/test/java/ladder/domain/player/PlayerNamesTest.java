@@ -50,9 +50,4 @@ class PlayerNamesTest {
         assertThatThrownBy(() -> playerNames.getIndexByName("gazua"))
                 .isInstanceOf(InvalidPlayerNameException.class);
     }
-
-    @Test
-    void maxLength() {
-        assertThat(playerNames.maxLength()).isEqualTo(5);
-    }
 }

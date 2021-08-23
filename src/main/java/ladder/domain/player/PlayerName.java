@@ -19,10 +19,6 @@ public class PlayerName {
         return new PlayerName(name);
     }
 
-    public int length() {
-        return name.length();
-    }
-
     private void validate(String name) {
         if (StringUtils.isNullOrBlank(name) || name.length() > MAX_NAME_LENGTH) {
             throw new InvalidPlayerNameException();

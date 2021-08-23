@@ -1,63 +1,76 @@
 package ladder.controller;
 
+import java.util.Map;
 import ladder.domain.ladder.ladder.Ladder;
-import ladder.domain.ladder.ladder.LadderDecorator;
 import ladder.domain.ladder.ladder.LadderGenerator;
 import ladder.domain.player.PlayerNames;
 import ladder.domain.prize.LadderPrizes;
 import ladder.dto.LadderResult;
+import ladder.dto.LadderResultProcessor;
+import ladder.exception.InvalidQueryException;
 import ladder.factory.LadderFactoryBean;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
 public class LadderController {
 
-    private final LadderDecorator ladderDecorator;
-    private final Ladder ladder;
+    private final PlayerNames playerNames;
+    private final LadderPrizes ladderPrizes;
 
-    private LadderController(LadderDecorator ladderDecorator, Ladder ladder) {
-        this.ladderDecorator = ladderDecorator;
-        this.ladder = ladder;
+    private LadderController(PlayerNames playerNames, LadderPrizes ladderPrizes) {
+        this.playerNames = playerNames;
+        this.ladderPrizes = ladderPrizes;
     }
 
     public static LadderController create() {
-        // player names and prizes
         PlayerNames playerNames = PlayerNames.of(InputView.playerNames());
         LadderPrizes ladderPrizes = LadderPrizes.of(InputView.prizes());
-        LadderDecorator ladderDecorator = LadderDecorator.of(playerNames, ladderPrizes);
-
-        // generate ladder
-        int countOfPeople = playerNames.size();
-        int ladderHeight = InputView.ladderHeight();
-        LadderGenerator ladderGenerator = LadderFactoryBean.ladderGenerator();
-        Ladder ladder = ladderGenerator.generate(ladderHeight, countOfPeople);
-
-        return new LadderController(ladderDecorator, ladder);
+        return new LadderController(playerNames, ladderPrizes);
     }
 
     public void run() {
-        // print ladder
-        ResultView.printDecoratedLadder(ladder, ladderDecorator);
+        Ladder ladder = ladderFromInput();
+        Map<String, String> nameToPrize = executeLadder(ladder);
+        printNamesLadderPrizes(ladder);
+        queryProcessLoop(nameToPrize);
+    }
 
-        // execute ladder map[name -> prize]
-        LadderResult ladderResult = ladder.permute();
-
-        // process ladder result query
+    private void queryProcessLoop(Map<String, String> nameToPrize) {
         String query;
         while (!(query = InputView.resultForName()).isEmpty()) {
-            handleQuery(query, ladderResult);
+            handleQuery(query, nameToPrize);
         }
     }
 
-    private void handleQuery(String query, LadderResult ladderResult) {
+    private void printNamesLadderPrizes(Ladder ladder) {
+        int maxLength = ResultView.findMaxLength(playerNames, ladderPrizes);
+        ResultView.printPlayerNames(playerNames, maxLength);
+        ResultView.printLadder(ladder, maxLength);
+        ResultView.printLadderPrizes(ladderPrizes, maxLength);
+    }
+
+    private Map<String, String> executeLadder(Ladder ladder) {
+        LadderResult ladderResult = ladder.permute();
+        LadderResultProcessor ladderResultProcessor =
+                LadderResultProcessor.of(playerNames, ladderPrizes);
+        return ladderResultProcessor.process(ladderResult);
+    }
+
+    private Ladder ladderFromInput() {
+        int countOfPeople = playerNames.size();
+        int ladderHeight = InputView.ladderHeight();
+        LadderGenerator ladderGenerator = LadderFactoryBean.ladderGenerator();
+        return ladderGenerator.generate(ladderHeight, countOfPeople);
+    }
+
+    private void handleQuery(String query, Map<String, String> nameToPrize) {
         if ("all".equals(query)) {
-            ResultView.printAllResult(ladderResult, ladderDecorator);
+            ResultView.printAllResults(nameToPrize);
             return;
         }
-        PlayerNames playerNames = ladderDecorator.getPlayerNames();
-        LadderPrizes ladderPrizes = ladderDecorator.getLadderPrizes();
-        int index = playerNames.getIndexByName(query);
-        int resultIndex = ladderResult.resultByIndex(index);
-        ResultView.printLadderResult(resultIndex, ladderPrizes);
+        if (!nameToPrize.containsKey(query)) {
+            throw new InvalidQueryException();
+        }
+        ResultView.printResultByName(query, nameToPrize);
     }
 }

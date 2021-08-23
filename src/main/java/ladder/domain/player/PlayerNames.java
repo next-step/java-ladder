@@ -1,7 +1,6 @@
 package ladder.domain.player;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import ladder.exception.InvalidPlayerNameException;
@@ -35,13 +34,6 @@ public class PlayerNames {
             throw new InvalidPlayerNameException("입력하신 이름은 사다리 참여자가 아닙니다.");
         }
         return names.indexOf(playerName);
-    }
-
-    public int maxLength() {
-        return names.stream()
-                .mapToInt(PlayerName::length)
-                .max()
-                .orElseThrow(NoSuchElementException::new);
     }
 
     public int size() {

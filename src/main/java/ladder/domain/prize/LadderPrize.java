@@ -17,10 +17,6 @@ public class LadderPrize {
         return new LadderPrize(prize);
     }
 
-    public int length() {
-        return prize.length();
-    }
-
     public String getPrize() {
         return prize;
     }

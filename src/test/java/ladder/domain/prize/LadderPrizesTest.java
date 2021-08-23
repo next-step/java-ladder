@@ -37,9 +37,4 @@ class LadderPrizesTest {
     void size() {
         assertThat(ladderPrizes.size()).isEqualTo(4);
     }
-
-    @Test
-    void maxLength() {
-        assertThat(ladderPrizes.maxLength()).isEqualTo(4);
-    }
 }
