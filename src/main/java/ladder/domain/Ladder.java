@@ -9,7 +9,7 @@ public class Ladder {
     public static Ladder create(int height, int size) {
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            lines.add(new Line(size));
+            lines.add(Line.create(size));
         }
         return new Ladder(lines);
     }
@@ -20,6 +20,24 @@ public class Ladder {
 
     public List<Line> getLines() {
         return lines;
+    }
+
+    int matchedPoint(int index) {
+        int resultIndex = index;
+        for (Line line : lines) {
+            resultIndex = position(resultIndex, line);
+        }
+        return resultIndex;
+    }
+
+    private int position(int index, Line line) {
+        if (index < line.size() && line.point(index)) {
+            return index + 1;
+        }
+        if (index > 0 && line.point(index - 1)) {
+            return index - 1;
+        }
+        return index;
     }
 
     @Override

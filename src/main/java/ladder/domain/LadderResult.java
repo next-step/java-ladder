@@ -29,27 +29,6 @@ public class LadderResult {
         return results;
     }
 
-    private int matchedIndex(Player player) {
-        return IntStream.range(0, players.size())
-                .filter(i -> players.get(i).equals(player))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("해당 player를 찾을 수 없습니다."));
-    }
-
-    private String matchedResult(int index, Ladder ladder) {
-        int matchedIndex = matchedPoint(index, ladder);
-        return results.get(matchedIndex);
-    }
-
-    private String matchedResult(Player player, Ladder ladder) {
-        int playerIndex = matchedIndex(player);
-        return matchedResult(playerIndex, ladder);
-    }
-
-    public String matchedResult(String name, Ladder ladder) {
-        return matchedResult(new Player(name), ladder);
-    }
-
     public List<ResultDto> matchedAllResult(Ladder ladder) {
         List<ResultDto> matchedResults = new ArrayList<>();
         for (int i = 0; i < players.size(); i++) {
@@ -58,21 +37,24 @@ public class LadderResult {
         return matchedResults;
     }
 
-    private int matchedPoint(int index, Ladder ladder) {
-        int resultIndex = index;
-        for (Line line : ladder.getLines()) {
-            resultIndex = position(resultIndex, line);
-        }
-        return resultIndex;
+    public String matchedResult(String name, Ladder ladder) {
+        return matchedResult(new Player(name), ladder);
     }
 
-    private int position(int index, Line line) {
-        if (index < line.size() && line.point(index)) {
-            return index + 1;
-        }
-        if (index > 0 && line.point(index - 1)) {
-            return index - 1;
-        }
-        return index;
+    private String matchedResult(Player player, Ladder ladder) {
+        int playerIndex = matchedIndex(player);
+        return matchedResult(playerIndex, ladder);
+    }
+
+    private int matchedIndex(Player player) {
+        return IntStream.range(0, players.size())
+                .filter(i -> players.get(i).equals(player))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("해당 player를 찾을 수 없습니다."));
+    }
+
+    private String matchedResult(int index, Ladder ladder) {
+        int matchedIndex = ladder.matchedPoint(index);
+        return results.get(matchedIndex);
     }
 }

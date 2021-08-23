@@ -1,7 +1,5 @@
 package ladder.domain;
 
-import ladder.dto.ResultDto;
-import ladder.view.OutputView;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

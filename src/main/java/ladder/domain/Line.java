@@ -8,18 +8,19 @@ public class Line {
     private static final int MIN_PLAYERS = 2;
     private final List<Boolean> points = new ArrayList<>();
 
-    Line(int countOfPlayer) {
+    public static Line create(int countOfPlayer) {
         if (countOfPlayer < MIN_PLAYERS) {
             throw new IllegalArgumentException("최소 2인 이상 플레이 가능합니다.");
         }
-        add(countOfPlayer);
+        return new Line(points(countOfPlayer));
     }
 
     Line(List<Boolean> points) {
         this.points.addAll(points);
     }
 
-    private void add(int countOfPlayer) {
+    private static List<Boolean> points(int countOfPlayer) {
+        List<Boolean> points = new ArrayList<>();
         boolean state = false;
         Random random = new Random();
         for (int i = 0; i < countOfPlayer - 1; i++) {
@@ -30,6 +31,7 @@ public class Line {
             state = random.nextBoolean();
             points.add(state);
         }
+        return points;
     }
 
     public boolean point(int index){
