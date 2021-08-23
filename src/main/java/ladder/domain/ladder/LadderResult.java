@@ -16,7 +16,7 @@ public class LadderResult {
     }
 
     public static LadderResult of(Ladder ladder, Awards awards) {
-        validateMatchingCount(ladder.getPlayers().size(), awards.size());
+        validateMatchingCount(ladder.playerSize(), awards.size());
 
         return new LadderResult(ladder.getPlayers().stream()
                 .collect(Collectors.toMap(Player::toString,
