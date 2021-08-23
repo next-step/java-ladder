@@ -15,12 +15,12 @@ public class LadderApplication {
 
   public static void main(String[] args) {
 
-    String inputNames = InputView.inputUserNames();
+    String playerNames = InputView.inputUserNames();
     String goods = InputView.inputGoods();
 
-    validationNamesAndGoodsCount(inputNames, goods);
+    validationNamesAndGoodsCount(playerNames, goods);
 
-    Players players = new Players(Players.of(inputNames));
+    Players players = new Players(Players.of(playerNames));
 
     int ladderHeight = InputView.inputLadderHeight();
     validationLimitHeight(ladderHeight);
