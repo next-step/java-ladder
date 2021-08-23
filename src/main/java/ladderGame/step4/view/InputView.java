@@ -14,6 +14,9 @@ public class InputView {
 
   private static final Scanner scanner = new Scanner(System.in);
 
+  private InputView() {
+  }
+
   public static String inputUserNames() {
     System.out.println(MSG_INSERT_PLAYER_NAMES);
     return scanner.nextLine();

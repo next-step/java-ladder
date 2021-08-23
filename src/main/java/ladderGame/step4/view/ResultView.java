@@ -16,6 +16,9 @@ public class ResultView {
 
   private static final String RESULT_FORM = " : ";
 
+  private ResultView() {
+  }
+
   public static void printUsersName(final List<String> players) {
     System.out.println(players
         .stream()
