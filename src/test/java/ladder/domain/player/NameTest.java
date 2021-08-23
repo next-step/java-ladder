@@ -38,9 +38,7 @@ class NameTest {
 
         //then
         assertThat(actual).isEqualTo(new Name(name));
-        assertThat(actual.toString()).hasToString(name);
 
     }
-
 
 }

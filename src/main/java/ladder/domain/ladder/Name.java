@@ -32,6 +32,10 @@ public class Name {
         }
     }
 
+    public String getValue() {
+        return value;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -45,8 +49,4 @@ public class Name {
         return Objects.hash(value);
     }
 
-    @Override
-    public String toString() {
-        return value;
-    }
 }

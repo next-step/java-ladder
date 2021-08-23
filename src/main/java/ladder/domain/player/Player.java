@@ -10,6 +10,10 @@ public class Player {
         this.name = new Name(name);
     }
 
+    public String name() {
+        return name.getValue();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -25,11 +29,6 @@ public class Player {
     @Override
     public int hashCode() {
         return Objects.hash(name);
-    }
-
-    @Override
-    public String toString() {
-        return name.toString();
     }
 
 }

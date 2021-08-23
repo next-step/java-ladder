@@ -46,7 +46,7 @@ public class Awards {
     }
 
     public String name(int indexOfAward) {
-        return awards.get(indexOfAward).toString();
+        return awards.get(indexOfAward).name();
     }
 
     public List<Award> getAwards() {

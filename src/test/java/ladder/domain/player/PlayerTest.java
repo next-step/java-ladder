@@ -38,7 +38,6 @@ class PlayerTest {
 
         //then
         assertThat(player).isEqualTo(new Player(name));
-        assertThat(player.toString()).hasToString(name);
     }
 
 }

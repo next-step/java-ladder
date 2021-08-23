@@ -19,7 +19,7 @@ public class LadderResult {
         validateMatchingCount(ladder.playerSize(), awards.size());
 
         return new LadderResult(ladder.getPlayers().stream()
-                .collect(Collectors.toMap(Player::toString,
+                .collect(Collectors.toMap(Player::name,
                         player -> awards.name(ladder.indexOfResult(player)))));
     }
 

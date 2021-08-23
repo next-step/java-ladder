@@ -1,9 +1,11 @@
 package ladder.ui;
 
+import ladder.domain.ladder.Award;
 import ladder.domain.ladder.Awards;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.LadderResult;
 import ladder.domain.line.Line;
+import ladder.domain.player.Player;
 import ladder.utils.StringUtil;
 
 import java.util.List;
@@ -36,18 +38,19 @@ public class ResultView {
     private static void printPlayers(Ladder ladder) {
         System.out.println(LADDER_GRAPH);
 
-        System.out.println(names(ladder.getPlayers()));
+        String namesOfPlayers = ladder.getPlayers().stream()
+                .map(Player::name)
+                .map(name -> StringUtil.rightPad(name, 6))
+                .collect(Collectors.joining());
+        System.out.println(namesOfPlayers);
     }
 
     public static void printAwards(Awards awards) {
-        System.out.println(names(awards.getAwards()));
-    }
-
-    private static String names(List<?> list) {
-        return list.stream()
-                .map(Object::toString)
+        String namesOfAwards = awards.getAwards().stream()
+                .map(Award::name)
                 .map(name -> StringUtil.rightPad(name, 6))
                 .collect(Collectors.joining());
+        System.out.println(namesOfAwards);
     }
 
     public static void printWantedPlayer(LadderResult ladderResult, String wantedPlayer) {
