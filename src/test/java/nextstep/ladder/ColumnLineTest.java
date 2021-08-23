@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class ColumnLineTest {
 
@@ -39,11 +40,13 @@ public class ColumnLineTest {
     @Test
     @DisplayName("결과값 에러 매핑 테스트")
     void resultMappingExceptionTest() {
-        assertThatThrownBy(() -> {
-            new ColumnLine(new Height(5), "");
-        }).isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> {
-            new ColumnLine(new Height(5), null);
-        }).isInstanceOf(IllegalArgumentException.class);
+        assertAll(
+                () -> assertThatThrownBy(() -> {
+                                    new ColumnLine(new Height(5), "");
+                                }).isInstanceOf(IllegalArgumentException.class),
+                () -> assertThatThrownBy(() -> {
+                                    new ColumnLine(new Height(5), null);
+                                }).isInstanceOf(IllegalArgumentException.class)
+        );
     }
 }

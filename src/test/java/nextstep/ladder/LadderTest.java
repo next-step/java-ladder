@@ -7,7 +7,6 @@ import nextstep.ladder.domain.ladder.Height;
 import nextstep.ladder.domain.ladder.Ladder;
 import nextstep.ladder.domain.user.User;
 import nextstep.ladder.domain.user.UserName;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,6 +19,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class LadderTest {
     Ladder ladder;
@@ -101,7 +101,7 @@ public class LadderTest {
 
         ladder.play(Arrays.asList(playUser1,playUser2,playUser3));
 
-        Assertions.assertAll(
+        assertAll(
                 () -> assertThat(playUser1.getIndexOfColumnLine()).isEqualTo(0),
                 () -> assertThat(playUser2.getIndexOfColumnLine()).isEqualTo(2),
                 () -> assertThat(playUser3.getIndexOfColumnLine()).isEqualTo(1)

@@ -13,6 +13,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class UserTest {
     @Test
@@ -21,10 +22,12 @@ public class UserTest {
         String userNameString = "honux";
         String invalidUserNameString = "abcdef";
         User user = new User(new UserName(userNameString));
-        assertThat(user.getName()).isEqualTo(userNameString);
-        assertThatThrownBy(() -> {
-            new User(new UserName(invalidUserNameString));
-        }).isInstanceOf(IllegalArgumentException.class);
+        assertAll(
+                () -> assertThat(user.getName()).isEqualTo(userNameString),
+                () -> assertThatThrownBy(() -> {
+                            new User(new UserName(invalidUserNameString));
+                        }).isInstanceOf(IllegalArgumentException.class)
+        );
     }
 
     @Test
@@ -32,12 +35,15 @@ public class UserTest {
     void nameEmptyOrNullTest() {
         String emptyName = "";
         String nullName = null;
-        assertThatThrownBy(() -> {
-            new User(new UserName(emptyName));
-        }).isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> {
-            new User(new UserName(nullName));
-        }).isInstanceOf(IllegalArgumentException.class);
+
+        assertAll(
+                () -> assertThatThrownBy(() -> {
+                            new User(new UserName(emptyName));
+                        }).isInstanceOf(IllegalArgumentException.class),
+                () -> assertThatThrownBy(() -> {
+                            new User(new UserName(nullName));
+                        }).isInstanceOf(IllegalArgumentException.class)
+        );
     }
 
     @ParameterizedTest
