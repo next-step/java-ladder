@@ -6,7 +6,8 @@ import java.util.Objects;
 
 public class Name {
 
-    public static final int LIMIT_LENGTH = 5;
+    private static final int LIMIT_LENGTH = 5;
+    private static final int ZERO = 0;
 
     private final String value;
 
@@ -22,13 +23,13 @@ public class Name {
 
     private void exceedLength(String name) {
         if (name.trim().length() > LIMIT_LENGTH) {
-            throw new PlayerNameException();
+            throw new PlayerNameException(name.trim().length());
         }
     }
 
     private void isBlank(String name) {
         if (StringUtil.isBlank(name)) {
-            throw new PlayerNameException();
+            throw new PlayerNameException(ZERO);
         }
     }
 

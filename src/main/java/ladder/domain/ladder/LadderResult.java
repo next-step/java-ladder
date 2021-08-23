@@ -29,7 +29,7 @@ public class LadderResult {
 
     private static void validateMatchingCount(int sizeOfPlayers, int sizeOfAwards) {
         if (sizeOfPlayers != sizeOfAwards) {
-            throw new LadderResultException();
+            throw new LadderResultException(sizeOfPlayers, sizeOfAwards);
         }
     }
 

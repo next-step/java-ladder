@@ -18,7 +18,7 @@ class PlayersTest {
     @ParameterizedTest(name = "참가자들의 이름 null 또는 빈값 {index} [{arguments}]")
     @MethodSource
     @DisplayName("생성 실패")
-    void construct_exception(String playersName) throws Exception {
+    void construct_exception(String playersName, int lengthOfName) throws Exception {
         //given
 
         //when
@@ -26,14 +26,14 @@ class PlayersTest {
 
         //then
         assertThatThrownBy(actual).isInstanceOf(PlayerNameException.class)
-                .hasMessage("참가자의 이름은 1~5글자만 허용됩니다.");
+                .hasMessage("참가자의 이름은 1~5글자만 허용됩니다. 이름 길이 : " + lengthOfName);
 
     }
 
     private static Stream<Arguments> construct_exception() {
         return Stream.of(
-                Arguments.of((String) null),
-                Arguments.of("")
+                Arguments.of((String) null, 0),
+                Arguments.of("", 0)
         );
     }
 

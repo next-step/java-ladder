@@ -7,6 +7,7 @@ import java.util.Objects;
 public class Name {
 
     private static final int LIMIT_LENGTH = 5;
+    private static final int ZERO = 0;
 
     private final String value;
 
@@ -22,13 +23,13 @@ public class Name {
 
     private void validateLength(String value) {
         if (value.trim().length() > LIMIT_LENGTH) {
-            throw new AwardNameException();
+            throw new AwardNameException(value.trim().length());
         }
     }
 
     private void validateBlank(String value) {
         if (StringUtil.isBlank(value)) {
-            throw new AwardNameException();
+            throw new AwardNameException(ZERO);
         }
     }
 

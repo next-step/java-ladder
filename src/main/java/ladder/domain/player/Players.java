@@ -13,6 +13,7 @@ public class Players {
 
     private static final String NAME_DELIMITER = ",";
     private static final int MIN_SIZE = 2;
+    private static final int ZERO = 0;
 
     private final List<Player> players;
 
@@ -36,7 +37,7 @@ public class Players {
 
     private static void validatePlayersName(String playersName) {
         if (StringUtil.isBlank(playersName)) {
-            throw new PlayerNameException();
+            throw new PlayerNameException(ZERO);
         }
     }
 

@@ -14,6 +14,7 @@ public class Awards {
 
     private static final String COMMA = ",";
     private static final int MIN_SIZE = 2;
+    private static final int ZERO = 0;
 
     private final List<Award> awards;
 
@@ -31,13 +32,13 @@ public class Awards {
 
     private void validateAwardsSize(List<Award> awards) {
         if (awards.isEmpty() || awards.size() < MIN_SIZE) {
-            throw new AwardsSizeException();
+            throw new AwardsSizeException(awards.size());
         }
     }
 
     private static void validateBlank(String namesOfAwards) {
         if (StringUtil.isBlank(namesOfAwards)) {
-            throw new AwardsSizeException();
+            throw new AwardsSizeException(ZERO);
         }
     }
 

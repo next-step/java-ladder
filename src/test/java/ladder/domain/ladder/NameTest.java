@@ -30,7 +30,7 @@ class NameTest {
     @ParameterizedTest(name = "상금 이름 객체 생성 예외 {index} [{arguments}]")
     @MethodSource
     @DisplayName("상금 이름 객체 생성 예외")
-    void construct_exception(String name) throws Exception {
+    void construct_exception(String name, int lengthOfName) throws Exception {
         //given
 
         //when
@@ -38,15 +38,15 @@ class NameTest {
 
         //then
         assertThatThrownBy(actual).isInstanceOf(AwardNameException.class)
-                .hasMessage("상금은 1~5자만 가능합니다.");
+                .hasMessage("상금은 1~5자만 가능합니다. 글자 길이 : " + lengthOfName);
     }
 
     private static Stream<Arguments> construct_exception() {
         return Stream.of(
-                Arguments.of((String) null),
-                Arguments.of(""),
-                Arguments.of(" "),
-                Arguments.of("too long name")
+                Arguments.of((String) null, 0),
+                Arguments.of("", 0),
+                Arguments.of(" ", 0),
+                Arguments.of("too long name", 13)
         );
     }
 
