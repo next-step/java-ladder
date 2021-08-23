@@ -1,7 +1,7 @@
 package nextstep.ladder.domain.user;
 
 public class UserName {
-    private final int USER_NAME_MAXIMUM = 5;
+    private static final int USER_NAME_MAXIMUM = 5;
 
     private String userName;
 

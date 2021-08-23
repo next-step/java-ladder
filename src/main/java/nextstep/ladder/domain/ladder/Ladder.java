@@ -7,9 +7,9 @@ import java.util.List;
 import java.util.Objects;
 
 public class Ladder {
+    private static final int DEFAULT_INDEX = 0;
     private Height height;
     private List<ColumnLine> columnLines = new LinkedList<>();
-    private final int DEFAULT_INDEX = 0;
 
     public Ladder(int height, List<ColumnLine> columnLines) {
         this.height = new Height(height);
@@ -73,11 +73,11 @@ public class Ladder {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Ladder ladder = (Ladder) o;
-        return DEFAULT_INDEX == ladder.DEFAULT_INDEX && Objects.equals(height, ladder.height) && Objects.equals(columnLines, ladder.columnLines);
+        return Objects.equals(height, ladder.height) && Objects.equals(columnLines, ladder.columnLines);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(height, columnLines, DEFAULT_INDEX);
+        return Objects.hash(height, columnLines);
     }
 }

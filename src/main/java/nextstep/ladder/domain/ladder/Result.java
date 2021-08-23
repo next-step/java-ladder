@@ -3,8 +3,8 @@ package nextstep.ladder.domain.ladder;
 import java.util.Objects;
 
 public class Result {
+    private static final String DEFAULT_RESULT = "꽝";
     private String result;
-    private final String DEFAULT_RESULT = "꽝";
 
     public Result(String result) {
         validate(result);
@@ -12,7 +12,7 @@ public class Result {
     }
 
     public Result() {
-        result = DEFAULT_RESULT;
+        this(DEFAULT_RESULT);
     }
 
     private void validate(String result) {
@@ -30,11 +30,11 @@ public class Result {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Result result1 = (Result) o;
-        return Objects.equals(result, result1.result) && Objects.equals(DEFAULT_RESULT, result1.DEFAULT_RESULT);
+        return Objects.equals(result, result1.result);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(result, DEFAULT_RESULT);
+        return Objects.hash(result);
     }
 }
