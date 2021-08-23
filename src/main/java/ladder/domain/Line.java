@@ -7,6 +7,7 @@ import java.util.Random;
 public class Line {
     private static final int MIN_PLAYERS = 2;
     private final List<Boolean> points = new ArrayList<>();
+    private static Random random = new Random();
 
     public static Line create(int countOfPlayer) {
         if (countOfPlayer < MIN_PLAYERS) {
@@ -22,16 +23,18 @@ public class Line {
     private static List<Boolean> points(int countOfPlayer) {
         List<Boolean> points = new ArrayList<>();
         boolean state = false;
-        Random random = new Random();
         for (int i = 0; i < countOfPlayer - 1; i++) {
-            if (state) {
-                points.add(false);
-                continue;
-            }
-            state = random.nextBoolean();
+            state = randomState(state);
             points.add(state);
         }
         return points;
+    }
+
+    private static boolean randomState(boolean beforeState){
+        if (beforeState) {
+            return false;
+        }
+        return random.nextBoolean();
     }
 
     public boolean point(int index){
