@@ -42,7 +42,6 @@ public class Calculator {
                 total+= number;
             }
         }
-
         return total;
 
 //        return numbers.stream()

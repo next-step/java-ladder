@@ -34,7 +34,8 @@ public class Lambda {
 //            }
 //        });
 
-        return Calculator.sumAll(numbers, (number -> true));
+//        return Calculator.sumAll(numbers, (number -> true));
+        return Calculator.sumAllByCondition(numbers, (number -> true));
     }
 
     public static int sumAllEven(List<Integer> numbers) {
@@ -81,6 +82,7 @@ public class Lambda {
 //            }
 //        });
 
-        return Calculator.sumAllOverThree(numbers, (number -> number > 3));
+//        return Calculator.sumAllOverThree(numbers, (number -> number > 3));
+        return Calculator.sumAllByCondition(numbers, (number -> number > 3));
     }
 }

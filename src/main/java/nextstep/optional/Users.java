@@ -22,7 +22,7 @@ public class Users {
 //        return DEFAULT_USER;
 
 
-        Optional<List<User>> optionalUsers = Optional.ofNullable(this.users);
+//        Optional<List<User>> optionalUsers = Optional.ofNullable(this.users);
 //        optionalUsers.
 //                map(users1 -> users1.match)
 
