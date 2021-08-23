@@ -40,7 +40,6 @@ public class Ladder {
             int indexOfColumnLine = playUsers.get(indexOfUsers).getIndexOfColumnLine();
             moveUser(playUsers.get(indexOfUsers), indexOfColumnLine);
         }
-        System.out.println();
     }
 
     private void moveUser(User playUser, int indexOfColumnLine) {
@@ -52,13 +51,11 @@ public class Ladder {
 
     private int getIndexOfColumnLine(int indexOfColumnLine, int indexOfHeight) {
         if (columnLines.get(indexOfColumnLine)
-                .getPointOfDirection(indexOfHeight)
-                .equals(Direction.RIGHT)) {
+                .isEqualsPointOfDirection(indexOfHeight, Direction.RIGHT)) {
             return ++indexOfColumnLine;
         }
         if (columnLines.get(indexOfColumnLine)
-                .getPointOfDirection(indexOfHeight)
-                .equals(Direction.LEFT)) {
+                .isEqualsPointOfDirection(indexOfHeight, Direction.LEFT)) {
             return --indexOfColumnLine;
         }
         return indexOfColumnLine;

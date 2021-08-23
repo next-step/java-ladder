@@ -47,8 +47,8 @@ public class ColumnLine {
         return points;
     }
 
-    public Direction getPointOfDirection(int height) {
-        return points.get(height).getDirection();
+    public boolean isEqualsPointOfDirection(int height, Direction direction) {
+        return points.get(height).getDirection().equals(direction);
     }
 
     public String getResult() {

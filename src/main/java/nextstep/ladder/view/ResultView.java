@@ -23,24 +23,23 @@ public class ResultView {
     }
 
     public static void printLadder(Ladder ladder) {
-        for (int heightIndex = 0; heightIndex < ladder.getHeight(); heightIndex++) {
-            searchRowLine(ladder, heightIndex);
+        for (int indexOfHeight = 0; indexOfHeight < ladder.getHeight(); indexOfHeight++) {
+            searchRowLine(ladder, indexOfHeight);
             System.out.println();
         }
     }
 
-    private static void searchRowLine(Ladder ladder, int heightIndex) {
-        for (int lineIndex = 0; lineIndex < ladder.getLines().size(); lineIndex++) {
+    private static void searchRowLine(Ladder ladder, int indexOfHeight) {
+        for (int indexOfLine = 0; indexOfLine < ladder.getLines().size(); indexOfLine++) {
             System.out.print("|");
-            isExistRowLine(ladder, heightIndex, lineIndex);
+            isExistRowLine(ladder, indexOfHeight, indexOfLine);
         }
     }
 
-    private static void isExistRowLine(Ladder ladder, int heightIndex, int lineIndex) {
+    private static void isExistRowLine(Ladder ladder, int indexOfHeight, int lineIndex) {
         if (ladder.getLines()
                 .get(lineIndex)
-                .getPointOfDirection(heightIndex)
-                .equals(Direction.RIGHT)) {
+                .isEqualsPointOfDirection(indexOfHeight, Direction.RIGHT)) {
             printRow();
             return;
         }
