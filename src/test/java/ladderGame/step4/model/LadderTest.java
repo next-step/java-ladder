@@ -16,7 +16,7 @@ class LadderTest {
     int height = 0;
     int playerCount = 1;
 
-    assertThatThrownBy(() -> new Ladder(Ladder.of(height,playerCount)))
+    assertThatThrownBy(() -> new Ladder(Ladder.of(height, playerCount)))
         .isInstanceOf(IllegalArgumentException.class);
   }
 
@@ -25,7 +25,7 @@ class LadderTest {
   void createLadder() {
 
     List<Point> points = new ArrayList<>();
-    points.add(new Point(0,new Location(false,false)));
+    points.add(new Point(0, Location.first(false)));
 
     List<Line> lines = new ArrayList<>();
     lines.add(new Line(points));

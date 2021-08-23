@@ -13,7 +13,7 @@ class LineTest {
   @DisplayName("입력 카운트 최소값 검증.")
   @Test
   void invalidCount() {
-    assertThatThrownBy(()->new Line(Line.createLine(-1)))
+    assertThatThrownBy(() -> new Line(Line.createLine(-1)))
         .isInstanceOf(IllegalArgumentException.class);
   }
 
@@ -21,7 +21,7 @@ class LineTest {
   @Test
   void createLine() {
     List<Point> points = new ArrayList<>();
-    points.add(new Point(0,new Location(false,false)));
+    points.add(new Point(0, Location.first(false)));
 
     assertThat(new Line(points)).isEqualTo(new Line(points));
   }

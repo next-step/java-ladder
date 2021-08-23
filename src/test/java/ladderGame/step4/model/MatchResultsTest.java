@@ -16,11 +16,11 @@ class MatchResultsTest {
 
   @DisplayName("사다리게임 전체결과 객체 생성 테스트.")
   @ParameterizedTest
-  @CsvSource(value = {"user2,0,1","user1,0,0"})
+  @CsvSource(value = {"user2,0,1", "user1,0,0"})
   void crateMatchResultsTest(String name, int userIndex, int result) {
     List<Point> points = new ArrayList<>();
-    points.add(new Point(0, new Location(false, false)));
-    points.add(new Point(1, new Location(false, false)));
+    points.add(new Point(0, Location.first(false)));
+    points.add(new Point(1, Location.first(false)));
 
     List<Line> lines = new ArrayList<>();
     lines.add(new Line(points));
@@ -39,8 +39,8 @@ class MatchResultsTest {
   @EmptySource
   void invalidData(String name) {
     List<Point> points = new ArrayList<>();
-    points.add(new Point(0, new Location(false, false)));
-    points.add(new Point(1, new Location(false, false)));
+    points.add(new Point(0, Location.first(false)));
+    points.add(new Point(1, Location.first(false)));
 
     List<Line> lines = new ArrayList<>();
     lines.add(new Line(points));
