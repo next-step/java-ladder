@@ -1,9 +1,9 @@
 package ladderGame.step4;
 
 import ladderGame.step4.model.Ladder;
+import ladderGame.step4.model.MatchResults;
 import ladderGame.step4.model.Players;
 import ladderGame.step4.model.Prizes;
-import ladderGame.step4.service.FindResult;
 import ladderGame.step4.view.InputView;
 import ladderGame.step4.view.ResultView;
 
@@ -35,25 +35,27 @@ public class LadderApplication {
     ResultView.printPrizes(prizes);
 
     String findName = InputView.inputFindNames();
-    FindResult findResult = new FindResult(players, ladder, prizes);
 
-    while(!isContinue(findName)){
+    while (!isContinue(findName)) {
 
-      ResultView.printResult(findResult.matchPrizes(findName));
+      ResultView.printResult(
+          MatchResults.createMatchResult(ladder, players).searchPrizeWithCondition(findName), prizes);
+
       findName = InputView.inputFindNames();
     }
 
-    ResultView.printResult(findResult.matchPrizes(findName));
+    ResultView.printResult(
+        MatchResults.createMatchResult(ladder, players).searchPrizeWithCondition(findName), prizes);
   }
 
   private static void validationLimitHeight(final int ladderHeight) {
-    if(ladderHeight < LIMIT_HEIGHT){
+    if (ladderHeight < LIMIT_HEIGHT) {
       throw new IllegalArgumentException(MSG_ERROR_LIMIT_HEIGHT);
     }
   }
 
   private static void validationNamesAndGoodsCount(final String usersName, final String goods) {
-    if(usersName.split(SPLIT_MARK).length != goods.split(SPLIT_MARK).length){
+    if (usersName.split(SPLIT_MARK).length != goods.split(SPLIT_MARK).length) {
       throw new IllegalArgumentException(MSG_ERROR_INCORRECT_COUNT);
     }
   }
