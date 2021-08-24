@@ -1,58 +1,123 @@
 package ladder.view;
 
 import java.util.List;
+import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
-import ladder.domain.ladder.Ladder;
-import ladder.domain.ladder.Line;
+import ladder.domain.ladder.ladder.Ladder;
+import ladder.domain.ladder.line.Line;
+import ladder.domain.ladder.point.Point;
+import ladder.domain.player.PlayerName;
 import ladder.domain.player.PlayerNames;
+import ladder.domain.prize.LadderPrize;
+import ladder.domain.prize.LadderPrizes;
 import ladder.utils.StringUtils;
 
 public class ResultView {
 
     public static final String NEWLINE = System.lineSeparator();
-    public static final String HEADER = NEWLINE + "실행결과" + NEWLINE;
+    public static final String RESULT_HEADER = NEWLINE + "사다리 결과" + NEWLINE;
+    public static final String EXECUTION_HEADER = NEWLINE + "실행 결과";
     public static final String VERTICAL = "|";
     public static final String HORIZONTAL = "-";
     public static final String SPACE = " ";
     public static final int PADDING = 1;
 
-    private ResultView() {}
-
-    public static void printResults(PlayerNames playerNames, Ladder ladder) {
-        System.out.println(HEADER);
-        printPlayerNames(playerNames);
-        printLadder(ladder, playerNames.maxNameLength());
+    private ResultView() {
     }
 
-    private static void printPlayerNames(PlayerNames playerNames) {
-        int spacing = playerNames.maxNameLength() + PADDING;
-        String template = "%" + spacing + "s";
-        playerNames.toStrings()
+    /*
+     * Methods to print names and prizes
+     */
+
+    public static void printPlayerNames(PlayerNames playerNames, int maxLength) {
+        int width = maxLength + PADDING;
+        List<String> names = playerNames.getNames()
                 .stream()
-                .map(name -> String.format(template, name))
-                .forEach(System.out::print);
-        System.out.println();
-    }
-
-    public static void printLadder(Ladder ladder, int spacing) {
-        ladder.getLines()
-                .stream()
-                .map(Line::toBooleans)
-                .forEach(line -> printLine(line, spacing));
-    }
-
-    public static void printLine(List<Boolean> line, int spacing) {
-        List<String> horizontals = line.stream()
-                .map(point -> toString(point, spacing))
+                .map(playerName -> spaceString(playerName.getName(), width))
                 .collect(Collectors.toList());
-        String row = String.join(VERTICAL, horizontals) + VERTICAL;
-        System.out.println(row);
+        System.out.println(String.join("", names));
     }
 
-    public static String toString(boolean point, int spacing) {
-        if (point) {
-            return StringUtils.repeat(HORIZONTAL, spacing);
+    public static void printLadderPrizes(LadderPrizes ladderPrizes, int maxLength) {
+        int width = maxLength + PADDING;
+        List<String> prizes = ladderPrizes.getPrizes()
+                .stream()
+                .map(ladderPrize -> spaceString(ladderPrize.getPrize(), width))
+                .collect(Collectors.toList());
+        System.out.println(String.join("", prizes));
+    }
+
+    /*
+     * Methods to print ladder to screen
+     */
+
+    public static void printLadder(Ladder ladder, int width) {
+        List<String> lines = ladder.getLines()
+                .stream()
+                .map(line -> lineToString(line, width))
+                .collect(Collectors.toList());
+        System.out.println(String.join(NEWLINE, lines));
+    }
+
+    private static String lineToString(Line line, int width) {
+        List<String> points = line.getPoints()
+                .stream()
+                .map(point -> pointToString(point, width))
+                .collect(Collectors.toList());
+        return String.join(VERTICAL, points) + VERTICAL;
+    }
+
+    private static String pointToString(Point point, int width) {
+        if (point.getLeg().isLeft()) {
+            return StringUtils.repeat(HORIZONTAL, width);
         }
-        return StringUtils.repeat(SPACE, spacing);
+        return StringUtils.repeat(SPACE, width);
+    }
+
+    /*
+     * Methods to print ladder execution results
+     */
+
+    public static void printAllResults(Map<String, String> nameToPrize) {
+        for (Map.Entry<String, String> entry : nameToPrize.entrySet()) {
+            String name = entry.getKey();
+            String prize = entry.getValue();
+            System.out.println(name + " : " + prize);
+        }
+    }
+
+    public static void printResultByName(String name, Map<String, String> nameToPrize) {
+        String prize = nameToPrize.get(name);
+        System.out.println(EXECUTION_HEADER);
+        System.out.println(prize);
+    }
+
+    /*
+     * Helper methods
+     */
+
+    public static int findMaxLength(PlayerNames playerNames, LadderPrizes ladderPrizes) {
+        List<String> names = playerNames.getNames()
+                .stream()
+                .map(PlayerName::getName)
+                .collect(Collectors.toList());
+        List<String> prizes = ladderPrizes.getPrizes()
+                .stream()
+                .map(LadderPrize::getPrize)
+                .collect(Collectors.toList());
+        return Math.max(findMaxLength(names), findMaxLength(prizes));
+    }
+
+    private static int findMaxLength(List<String> strings) {
+        return strings.stream()
+                .mapToInt(String::length)
+                .max()
+                .orElseThrow(NoSuchElementException::new);
+    }
+
+    private static String spaceString(String string, int width) {
+        String template = String.format("%%%ds", width);
+        return String.format(template, string);
     }
 }
