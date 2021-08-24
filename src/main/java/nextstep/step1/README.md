@@ -17,8 +17,8 @@
 
 * [X] lambda - 익명 클래스를 람다로 전환
 * [X] lambda - 람다를 활용해 중복 제거
-* [ ] stream - map, reduce, filter 실습 1
-* [ ] stream - map, reduce, filter 실습 2
+* [X] stream - map, reduce, filter 실습 1
+* [X] stream - map, reduce, filter 실습 2
 * [ ] Optional - Optional을 활용해 조건에 따른 반환
 * [ ] Optional - Optional에서 값을 반환
 * [ ] Optional - Optional에서 exception 처리
