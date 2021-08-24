@@ -28,11 +28,11 @@ public class LineGenerator {
     }
 
     private boolean next() {
-        bool = isTrue();
+        bool = generateLine();
         return bool;
     }
 
-    private boolean isTrue() {
+    private boolean generateLine() {
         if (bool) {
             return false;
         }
