@@ -7,6 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import nextstep.ladder.enums.LadderStatus;
+import nextstep.ladder.exceptions.LadderStatusAddFailureException;
 
 class LineTest {
 
@@ -16,7 +17,10 @@ class LineTest {
 		Line line = new Line();
 
 		assertThatExceptionOfType(LadderStatusAddFailureException.class)
-			.isThrownBy(() -> line.addLadderStatus(LadderStatus.LINKED))
+			.isThrownBy(() -> {
+				line.addLadderStatus(LadderStatus.LINKED);
+				line.addLadderStatus(LadderStatus.LINKED);
+			})
 			.withMessage("이전 사다리가 연결된 상태입니다.");
 	}
 }
