@@ -22,7 +22,7 @@ public class Players {
 	}
 
 	public List<Player> values() {
-		return players;
+		return Collections.unmodifiableList(players);
 	}
 
 	private List<Player> createPlayers(String names) {
