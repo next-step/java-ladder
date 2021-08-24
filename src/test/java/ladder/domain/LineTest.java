@@ -2,6 +2,8 @@ package ladder.domain;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LineTest {
@@ -17,13 +19,12 @@ public class LineTest {
     }
 
     @Test
-    public void 위치를_입력받아서_체크할_수_있다(){
+    public void List를_받아서_Line_을_생성할_수_있다(){
         //given
-        Width width = Width.create(6);
-        Line line = Line.createWithWidth(width);
         //when
-        line.check(3);
+        Line line = Line.create(Arrays.asList(true, false, false, true));
         //then
-        assertThat(line).isEqualTo(Line.create(false, false, false, true, false, false));
+        assertThat(line).isEqualTo(Line.create(true, false, false, true));
     }
+
 }

@@ -14,25 +14,19 @@ public class Line {
     }
 
     private Line(Width width) {
-        this(width, initPointsWithValueFalse(width));
+        this(width, new ArrayList<>());
     }
 
-    private static List<Boolean> initPointsWithValueFalse(Width width) {
-        final List<Boolean> points = new ArrayList<>(width.getLength());
-        points.addAll(Collections.nCopies(width.getLength(), Boolean.FALSE));
-        return points;
+    public static Line create(List<Boolean> points) {
+        return new Line(Width.create(points.size()), points);
     }
 
-    public static Line create(Boolean... values) {
-        return new Line(Width.create(values.length), Arrays.asList(values));
+    public static Line create(Boolean... points) {
+        return new Line(Width.create(points.length), Arrays.asList(points));
     }
 
     public static Line createWithWidth(Width width) {
         return new Line(width);
-    }
-
-    public void check(int index) {
-        points.set(index, Boolean.TRUE);
     }
 
     @Override
