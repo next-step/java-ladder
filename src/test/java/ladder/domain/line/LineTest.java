@@ -50,45 +50,25 @@ class LineTest {
         assertThat(actual).isEqualTo(expected);
     }
 
-    @ParameterizedTest(name = "현재 칸에 라인 존재여부 {index} [{arguments}]")
+    /*
+    |-----|     |
+     */
+    @ParameterizedTest(name = "시작위치에 따른 종료위치 {index} [{arguments}]")
     @CsvSource(value = {
-            "0,true",
-            "1,false",
-            "2,true",
-            "3,false"
-
+            "0,1",
+            "1,0",
+            "2,2"
     })
-    @DisplayName("현재 칸에 라인 존재여부")
-    void hasNext(int indexOfLine, boolean expected) throws Exception {
+    @DisplayName("시작위치에 따른 종료위치")
+    void indexOfResult(int indexOfStart, int expected) throws Exception {
         //given
+        Line line = Line.valueOf(Arrays.asList(true, false));
 
         //when
-        boolean actual = defaultLine.hasNext(indexOfLine);
+        int actual = line.indexOfResult(indexOfStart);
 
         //then
         assertThat(actual).isEqualTo(expected);
-
-    }
-
-
-    @ParameterizedTest(name = "이전 칸에 라인 존재여부 {index} [{arguments}]")
-    @CsvSource(value = {
-            "0,false",
-            "1,true",
-            "2,false",
-            "3,true"
-
-    })
-    @DisplayName("이전 칸에 라인 존재여부")
-    void hasPrevious(int indexOfLine, boolean expected) throws Exception {
-        //given
-
-        //when
-        boolean actual = defaultLine.hasPrevious(indexOfLine);
-
-        //then
-        assertThat(actual).isEqualTo(expected);
-
     }
 
 }

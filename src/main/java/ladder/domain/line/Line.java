@@ -60,14 +60,22 @@ public class Line {
 		return steps.size();
 	}
 
-	public boolean hasNext(int index) {
+	public int indexOfResult(int indexOfStart) {
+		if (hasNext(indexOfStart)) {
+			return indexOfStart + 1;
+		}
+
+		return hasPrevious(indexOfStart) ? indexOfStart - 1 : indexOfStart;
+	}
+
+	private boolean hasNext(int index) {
 		if (index == size()) {
 			return false;
 		}
 		return steps.get(index).value();
 	}
 
-	public boolean hasPrevious(int index) {
+	private boolean hasPrevious(int index) {
 		if (index == 0) {
 			return false;
 		}
