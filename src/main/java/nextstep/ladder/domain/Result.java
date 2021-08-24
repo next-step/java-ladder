@@ -16,12 +16,16 @@ public class Result {
 		result.put(start, destination);
 	}
 
-	public Integer destination(Integer start) {
-		return result.get(start);
-	}
-
 	public Integer of(Player player) {
 		return result.get(players.indexOf(player));
+	}
+
+	public Map<Integer, Integer> value() {
+		return result;
+	}
+
+	public Players players() {
+		return players;
 	}
 
 }
