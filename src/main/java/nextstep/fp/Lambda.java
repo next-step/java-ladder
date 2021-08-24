@@ -26,6 +26,16 @@ public class Lambda {
         }).start();
     }
 
+    public static int sumNumbersPredicate(List<Integer> numbers, NumbersPredicate numbersPredicate) {
+        int total = 0;
+        for (int number : numbers) {
+            if (numbersPredicate.test(number)) {
+                total += number;
+            }
+        }
+        return total;
+    }
+
     public static int sumAll(List<Integer> numbers) {
         int total = 0;
         for (int number : numbers) {
