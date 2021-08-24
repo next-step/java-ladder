@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.exception.PlayerNotFoundException;
+
 import static java.util.stream.Collectors.*;
 
 import java.util.Arrays;
@@ -25,6 +27,9 @@ public class Players {
 	}
 
 	public Integer indexOf(Player player) {
+		if (!players.contains(player)) {
+			throw new PlayerNotFoundException(player);
+		}
 		return players.indexOf(player);
 	}
 
