@@ -8,10 +8,6 @@ public class RandomLineStrategy implements LineStrategy{
 
     private boolean currentPoint = false;
 
-    public boolean checkCurrentPoint(){
-        return currentPoint;
-    }
-
     @Override
     public boolean create() {
         if(checkCurrentPoint()){
@@ -19,6 +15,10 @@ public class RandomLineStrategy implements LineStrategy{
             return false;
         }
         currentPoint = random.nextBoolean();
+        return currentPoint;
+    }
+
+    protected boolean checkCurrentPoint(){
         return currentPoint;
     }
 }

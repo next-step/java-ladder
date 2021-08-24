@@ -13,7 +13,7 @@ class RandomLineStrategyTest {
         // give
         LineStrategy lineStrategy = new RandomLineStrategy(){
             @Override
-            public boolean checkCurrentPoint() {
+            protected boolean checkCurrentPoint() {
                 return true;
             }
         };
