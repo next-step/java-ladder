@@ -17,17 +17,17 @@ public class Name {
     }
 
     private void validateName(String name) {
-        isBlank(name);
-        exceedLength(name);
+        validateBlank(name);
+        validateLength(name);
     }
 
-    private void exceedLength(String name) {
+    private void validateLength(String name) {
         if (name.trim().length() > LIMIT_LENGTH) {
             throw new PlayerNameException(name.trim().length());
         }
     }
 
-    private void isBlank(String name) {
+    private void validateBlank(String name) {
         if (StringUtil.isBlank(name)) {
             throw new PlayerNameException(ZERO);
         }
