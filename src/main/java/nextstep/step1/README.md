@@ -10,7 +10,7 @@
 
 ## 1단계 - 자바8 스트림, 람다, Optional
 ### 기능 요구사항
-* [ ] lambda - 익명 클래스를 람다로 전환
+* [X] lambda - 익명 클래스를 람다로 전환
 * [ ] lambda - 람다를 활용해 중복 제거
 * [ ] stream - map, reduce, filter 실습 1
 * [ ] stream - map, reduce, filter 실습 2
