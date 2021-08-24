@@ -5,6 +5,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -29,8 +30,9 @@ public class StreamStudy {
         // TODO 이 부분에 구현한다.
         List<String> result = words.stream()
                 .filter((word) -> word.length() > 12)
-                .sorted((o1, o2) -> o2.length() - o1.length())
+                .sorted(Comparator.comparingInt(String::length).reversed())
                 .distinct()
+                .limit(100)
                 .map(String::toLowerCase)
                 .collect(toList());
 
