@@ -20,19 +20,20 @@ public final class OutputView {
     private OutputView() {
     }
 
-    public static void displayLadderGameResult(final Ladder ladder, String... usernames) {
+    public static void displayLadderGameResult(final Ladder ladder, final String[] usernames, final String[] results) {
         System.out.print(LINE_SEPARATOR + RESULT_MESSAGE_PRE + LINE_SEPARATOR + LINE_SEPARATOR);
-        displayUsers(usernames);
+        displayStartOrEndPoint(usernames);
         System.out.print(LINE_SEPARATOR);
         displayLadders(ladder.getLines());
+        displayStartOrEndPoint(results);
     }
 
-    private static void displayUsers(final String[] userNames) {
-        Arrays.stream(userNames).map(OutputView::getUserToFormat)
+    private static void displayStartOrEndPoint(final String[] values) {
+        Arrays.stream(values).map(OutputView::getPointToFormat)
                 .forEach(System.out::print);
     }
 
-    private static String getUserToFormat(final String input) {
+    private static String getPointToFormat(final String input) {
         return StringUtil.fillRightBlank(input, User.MAX_NAME_LENGTH + 1);
     }
 

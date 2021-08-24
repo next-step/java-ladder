@@ -15,11 +15,12 @@ public final class LadderApplication {
         InputView inputView = new InputView(scanner);
 
         String[] userNames = inputView.getInputUserNames();
+        String[] resultValues = inputView.getInputResultValues();
         int ladderMaxHeight = inputView.getInputLadderMaxHeight();
 
         LadderGame ladderGame = new LadderGame(ladderMaxHeight, userNames);
         Ladder ladder = ladderGame.generateLadder(new RandomDirectionStrategy());
 
-        OutputView.displayLadderGameResult(ladder, userNames);
+        OutputView.displayLadderGameResult(ladder, userNames, resultValues);
     }
 }
