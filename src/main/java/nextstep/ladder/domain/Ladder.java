@@ -6,11 +6,11 @@ import java.util.List;
 
 public class Ladder {
 
-    private final List<Line> ladderLines;
+    private final List<Line> lines;
     private final Persons persons;
 
-    private Ladder(List<Line> ladderLines, Persons persons) {
-        this.ladderLines = ladderLines;
+    private Ladder(List<Line> lines, Persons persons) {
+        this.lines = lines;
         this.persons = persons;
     }
 
@@ -29,11 +29,21 @@ public class Ladder {
         return new Ladder(Collections.singletonList(lines), persons);
     }
 
-    public List<Line> ladderHeight() {
-        return ladderLines;
+    public List<Line> lines() {
+        return lines;
     }
 
     public Persons persons() {
         return persons;
+    }
+
+    public int resultPersonIndex(String name) {
+        int position = persons.findIndexOfPerson(name);
+
+        for (Line line : lines) {
+            position = line.currentPosition(position);
+        }
+
+        return position;
     }
 }

@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import java.util.Objects;
+
 public class LadderHeight {
 
     private final int heightOfValue;
@@ -18,5 +20,22 @@ public class LadderHeight {
 
     public int height() {
         return heightOfValue;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        LadderHeight that = (LadderHeight) o;
+        return heightOfValue == that.heightOfValue;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(heightOfValue);
     }
 }

@@ -17,6 +17,7 @@ public class Line {
 
     private static void validatePoint(List<Boolean> points) {
         Boolean prevPoint = points.get(0);
+
         for (int i = 1; i < points.size(); i++) {
             Boolean currPoint = points.get(i);
             if (prevPoint && currPoint) {
@@ -27,11 +28,9 @@ public class Line {
     }
 
     public int currentPosition(int currPosition) {
-        if (currPosition == 0 && Boolean.TRUE.equals(points.get(currPosition))) {
+        if (currPosition < points.size() && Boolean.TRUE == points.get(currPosition)) {
             currPosition++;
-        } else if (currPosition - 1 >= 0 && Boolean.TRUE.equals(points.get(currPosition - 1))) {
-            currPosition--;
-        } else if (currPosition + 1 <= points.size() && Boolean.TRUE.equals(points.get(currPosition + 1))) {
+        } else if (currPosition - 1 >= 0 && Boolean.TRUE == points.get(currPosition - 1)) {
             currPosition--;
         }
 

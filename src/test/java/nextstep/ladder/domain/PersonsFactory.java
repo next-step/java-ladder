@@ -5,12 +5,14 @@ import java.util.List;
 
 public class PersonsFactory {
 
-    public static Persons personsFixture() {
+    public static Persons personsFixture(String... names) {
         List<Person> gamers = new ArrayList<>();
-        gamers.add(Person.of("Pobi1"));
-        gamers.add(Person.of("Pobi2"));
-        gamers.add(Person.of("Pobi3"));
-        return new Persons(gamers);
+
+        for (String name : names) {
+            gamers.add(Person.of(name));
+        }
+
+        return Persons.of(gamers);
     }
 
 }

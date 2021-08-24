@@ -1,5 +1,6 @@
 package nextstep.ladder.view;
 
+import nextstep.ladder.domain.LadderResult;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Person;
 import nextstep.ladder.domain.Persons;
@@ -42,4 +43,17 @@ public class ResultView {
         System.out.println();
     }
 
+
+    public static void result(LadderResult ladderResult, String name) {
+        System.out.println("실행결과");
+        System.out.println(ladderResult.resultByName(name));
+    }
+
+    public static void results(LadderResult ladderResult, Persons persons) {
+        System.out.println("전체결과");
+        persons.forEach(person ->
+            System.out.println(person.getName() + " : " + ladderResult.resultByName(person.getName()))
+        );
+
+    }
 }

@@ -7,13 +7,22 @@ public class Persons {
 
     private final List<Person> persons;
 
-    public Persons(List<Person> persons) {
+    private Persons(List<Person> persons) {
         this.persons = persons;
     }
 
-    public int indexOfPerson(String name) {
+    public static Persons of(List<Person> gamers) {
+        if (gamers.size() < 2) {
+            throw new IllegalArgumentException("참가자는 최소 두명 이상이여야 합니다.");
+        }
+
+        return new Persons(gamers);
+    }
+
+    public int findIndexOfPerson(String name) {
         for (int i = 0; i < persons.size(); i++) {
             Person person = persons.get(i);
+
             if (person.getName().equals(name)) {
                 return i;
             }

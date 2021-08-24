@@ -7,7 +7,7 @@ public class LadderResult {
     private final Ladder ladder;
     private final List<String> results;
 
-    public LadderResult(Ladder ladder, List<String> results) {
+    private LadderResult(Ladder ladder, List<String> results) {
         this.ladder = ladder;
         this.results = results;
     }
@@ -16,16 +16,10 @@ public class LadderResult {
         return new LadderResult(ladder, results);
     }
 
-    public String person(String name) {
-        Persons persons = ladder.persons();
-        List<Line> lines = ladder.ladderHeight();
-
-        int position = persons.indexOfPerson(name);
-
-        for (Line line : lines) {
-            position = line.currentPosition(position);
-        }
-
+    public String resultByName(String name) {
+        int position = ladder.resultPersonIndex(name);
         return results.get(position);
     }
+
+
 }

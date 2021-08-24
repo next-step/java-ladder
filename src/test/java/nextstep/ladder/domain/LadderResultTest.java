@@ -15,8 +15,7 @@ class LadderResultTest {
     @Test
     void person() {
         // given
-
-        Persons persons = PersonsFactory.personsFixture();
+        Persons persons = PersonsFactory.personsFixture("pobi1", "pobi2", "pobi3");
 
         Line line = Line.of(Arrays.asList(true, false));
 
@@ -31,9 +30,9 @@ class LadderResultTest {
         LadderResult ladderResult = LadderResult.of(ladder, results);
 
         // then
-        assertThat(ladderResult.person("Pobi1")).isEqualTo("5000");
-        assertThat(ladderResult.person("Pobi2")).isEqualTo("꽝");
-        assertThat(ladderResult.person("Pobi3")).isEqualTo("2000");
+        assertThat(ladderResult.resultByName("pobi1")).isEqualTo("5000");
+        assertThat(ladderResult.resultByName("pobi2")).isEqualTo("꽝");
+        assertThat(ladderResult.resultByName("pobi3")).isEqualTo("2000");
     }
 }
 
