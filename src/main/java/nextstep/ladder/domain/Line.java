@@ -18,6 +18,10 @@ public class Line {
 		this.points = new ArrayList<>(points);
 	}
 
+	public List<Point> points() {
+		return Collections.unmodifiableList(points);
+	}
+
 	private void validatePoints(List<Point> points) {
 		Point first = points.get(0);
 		validateFirstPoint(first);
@@ -31,10 +35,6 @@ public class Line {
 
 		Point last = points.get(points.size() - 1);
 		validateLastPoint(last);
-	}
-
-	public List<Point> points() {
-		return Collections.unmodifiableList(points);
 	}
 
 	private void validateLastPoint(Point last) {
