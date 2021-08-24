@@ -16,7 +16,7 @@ class AwardTest {
 
     @Test
     @DisplayName("사다리 결과 상금 객체 생성")
-    void construct() throws Exception {
+    void construct() {
         //given
         String name = "award";
 
@@ -30,7 +30,7 @@ class AwardTest {
     @ParameterizedTest(name = "사다리 결과 상금 객체 생성 예외 {index} [{arguments}]")
     @MethodSource
     @DisplayName("사다리 결과 상금 객체 생성 예외")
-    void construct_exception(String name, int lengthOfName) throws Exception {
+    void construct_exception(String name, int lengthOfName) {
         //given
 
         //when

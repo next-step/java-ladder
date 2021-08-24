@@ -19,7 +19,7 @@ class AwardsTest {
 
     @Test
     @DisplayName("상금 일급 컬렉션 객체 생성")
-    void construct() throws Exception {
+    void construct() {
         //given
 
         //when
@@ -33,7 +33,7 @@ class AwardsTest {
     @ParameterizedTest(name = "상금 이름 없음 {index} [{arguments}]")
     @MethodSource
     @DisplayName("객체 생성 실패")
-    void construct_exception(String namesOfAwards) throws Exception {
+    void construct_exception(String namesOfAwards) {
         //given
 
         //when
@@ -52,7 +52,7 @@ class AwardsTest {
 
     @Test
     @DisplayName("상금 일급 컬렉션의 크기")
-    void validate_size() throws Exception {
+    void validate_size() {
         //given
         Awards awards = Awards.of(namesOfAwards);
 
@@ -72,7 +72,7 @@ class AwardsTest {
             "3,3000"
     })
     @DisplayName("index 값으로 상금 찾기")
-    void find_name_with_index(int indexOfAward, String expected) throws Exception {
+    void find_name_with_index(int indexOfAward, String expected) {
         //given
         Awards awards = Awards.of(namesOfAwards);
 

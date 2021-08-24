@@ -16,7 +16,7 @@ class LinesTest {
 
     @Test
     @DisplayName("객체 생성")
-    void construct() throws Exception {
+    void construct() {
         //given
         Lines lines = Lines.of(Arrays.asList(Line.of(2)));
 
@@ -30,7 +30,7 @@ class LinesTest {
 
     @Test
     @DisplayName("사다리의 높이가 0인 경우")
-    void height_is_zero() throws Exception {
+    void height_is_zero() {
         //given
         int height = 0;
         int playersCount = 5;
@@ -55,7 +55,7 @@ class LinesTest {
             "2,1"
     })
     @DisplayName("시작 위치별 종료 위치")
-    void find_index_of_result(int indexOfStart, int expected) throws Exception {
+    void find_index_of_result(int indexOfStart, int expected) {
         //given
         Lines lines = Lines.of(Arrays.asList(
                 Line.of(true, false),

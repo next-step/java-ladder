@@ -18,7 +18,7 @@ class PlayersTest {
     @ParameterizedTest(name = "참가자들의 이름 null 또는 빈값 {index} [{arguments}]")
     @MethodSource
     @DisplayName("생성 실패")
-    void construct_exception(String playersName, int lengthOfName) throws Exception {
+    void construct_exception(String playersName, int lengthOfName) {
         //given
 
         //when
@@ -39,7 +39,7 @@ class PlayersTest {
 
     @Test
     @DisplayName("부족한 참가자 수")
-    void players_size_exception() throws Exception {
+    void players_size_exception() {
         //given
         String name = "pro";
 
@@ -58,7 +58,7 @@ class PlayersTest {
             "pro,ama:2"
     }, delimiter = ':')
     @DisplayName("참가자 인원 수")
-    void players_size(String playersName, int expected) throws Exception {
+    void players_size(String playersName, int expected) {
         //given
         Players players = Players.of(playersName);
 

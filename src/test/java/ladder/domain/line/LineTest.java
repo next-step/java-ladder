@@ -19,7 +19,7 @@ class LineTest {
 
     @Test
     @DisplayName("연속된 라인으로 생성한 경우")
-    void can_not_be_consecutive() throws Exception {
+    void can_not_be_consecutive() {
         //given
         List<Boolean> lines = Arrays.asList(Boolean.TRUE, Boolean.TRUE);
 
@@ -39,7 +39,7 @@ class LineTest {
             "2,1"
     })
     @DisplayName("참가자 수에 따른 라인 수")
-    void line_size(int playersCount, int expected) throws Exception {
+    void line_size(int playersCount, int expected) {
         //given
         Line line = Line.of(playersCount);
 
@@ -60,7 +60,7 @@ class LineTest {
             "2,2"
     })
     @DisplayName("시작위치에 따른 종료위치")
-    void indexOfResult(int indexOfStart, int expected) throws Exception {
+    void indexOfResult(int indexOfStart, int expected) {
         //given
         Line line = Line.valueOf(Arrays.asList(true, false));
 

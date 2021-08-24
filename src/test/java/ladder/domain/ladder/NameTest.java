@@ -16,7 +16,7 @@ class NameTest {
 
     @Test
     @DisplayName("상금 이름 객체 생성")
-    void construct() throws Exception {
+    void construct() {
         //given
         String name = "name";
 
@@ -30,7 +30,7 @@ class NameTest {
     @ParameterizedTest(name = "상금 이름 객체 생성 예외 {index} [{arguments}]")
     @MethodSource
     @DisplayName("상금 이름 객체 생성 예외")
-    void construct_exception(String name, int lengthOfName) throws Exception {
+    void construct_exception(String name, int lengthOfName) {
         //given
 
         //when

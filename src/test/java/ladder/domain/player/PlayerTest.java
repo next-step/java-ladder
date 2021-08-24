@@ -18,7 +18,7 @@ class PlayerTest {
             ",0"
     })
     @DisplayName("참가자 이름 길이 미달 또는 초과")
-    void construct_exception(String name, int lengthOfName) throws Exception {
+    void construct_exception(String name, int lengthOfName) {
         //given
         //when
         ThrowableAssert.ThrowingCallable actual = () -> new Player(name);
@@ -30,7 +30,7 @@ class PlayerTest {
 
     @Test
     @DisplayName("참가자 생성")
-    void construct() throws Exception {
+    void construct() {
         //given
         String name = "pro";
 

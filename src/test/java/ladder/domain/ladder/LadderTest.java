@@ -13,7 +13,7 @@ class LadderTest {
 
     @Test
     @DisplayName("사다리 생성 확인")
-    void construct() throws Exception {
+    void construct() {
         //given
         Ladder ladder = Ladder.of("pro,semi,ama", 3);
 

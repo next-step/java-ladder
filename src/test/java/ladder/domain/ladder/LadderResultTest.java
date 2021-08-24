@@ -19,7 +19,7 @@ class LadderResultTest {
 
     @Test
     @DisplayName("객체 생성")
-    void construct() throws Exception {
+    void construct() {
         //given
         String namesOfPlayers = "god,pro,semi,ama";
         String namesOfAwards = "fail,5000,fail,3000";
@@ -38,7 +38,7 @@ class LadderResultTest {
     @ParameterizedTest(name = "한 명의 결과 {index} [{arguments}]")
     @MethodSource
     @DisplayName("한명의 결과")
-    void result_of_player(String playersName, String resultsName, List<Boolean> lineList, String winnerPlayerName, String expected) throws Exception {
+    void result_of_player(String playersName, String resultsName, List<Boolean> lineList, String winnerPlayerName, String expected) {
         //given
         Line line = Line.valueOf(lineList);
         Lines lines = Lines.of(Arrays.asList(line));
@@ -78,7 +78,7 @@ class LadderResultTest {
      */
     @Test
     @DisplayName("전체 결과")
-    void results() throws Exception {
+    void results() {
         //given
         String namesOfPlayers = "god,pro,semi,ama";
         String namesOfAwards = "fail,5000,fail,3000";

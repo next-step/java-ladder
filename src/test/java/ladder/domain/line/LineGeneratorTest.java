@@ -14,7 +14,7 @@ class LineGeneratorTest {
 
     @Test
     @DisplayName("라인 생성 예외")
-    void generate_exception() throws Exception {
+    void generate_exception() {
         //given
         int playerCount = 0;
 
@@ -31,7 +31,7 @@ class LineGeneratorTest {
     @ParameterizedTest(name = "생성된 라인 수 {index} [{arguments}]")
     @ValueSource(ints = {1, 10})
     @DisplayName("생성된 라인 수 테스트")
-    void line_size(int size) throws Exception {
+    void line_size(int size) {
         //given
 
         //when
