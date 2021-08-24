@@ -47,7 +47,21 @@ public class ResultView {
 
 	public static void printPrizeOfPlayer(Result result, List<String> prizes, String playerName) {
 		System.out.println(MESSAGE_RESULT_OF_PLAYERS);
+		if (playerName.equals("all")) {
+			printPrizesOfAllPlayers(result, prizes);
+			return;
+		}
 		System.out.println(prizes.get(result.of(new Player(playerName))));
+	}
+
+	private static void printPrizesOfAllPlayers(Result result, List<String> prizes) {
+		Map<Integer, Integer> value = result.value();
+		Players players = result.players();
+		for (Map.Entry<Integer, Integer> entry : value.entrySet()) {
+			Player player = players.values().get(entry.getKey());
+			String prize = prizes.get(entry.getValue());
+			System.out.printf(MESSAGE_FORMAT_PRIZE_OF_PLAYER, player.getName(), prize);
+		}
 	}
 
 	private static void printLine(Line line) {
