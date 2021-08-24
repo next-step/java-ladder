@@ -18,7 +18,7 @@ public class Ladder {
         List<Line> lines = new ArrayList<>();
 
         for (int i = 0; i < heightOfLadder.height(); i++) {
-            List<Boolean> points = new RandomPointStrategy().point(persons.size());
+            List<Boolean> points = new RandomPointStrategy().point(persons.size() - 1);
             lines.add(Line.of(points));
         }
 
