@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static nextstep.ladder.CommonConstans.*;
@@ -13,23 +12,21 @@ import static nextstep.ladder.CommonConstans.*;
 public class LadderGame {
     private List<Ladder> ladders = new ArrayList<>();
     private List<Player> players = new ArrayList<>();
-    private List<Integer> lastPointPosition = new ArrayList<>();
 
-    public LadderGame(String players, int ladderHeight) {
+    public LadderGame(String players) {
         setPlayers(players.trim().split(SEPARATOR_COMMA));
-        setLadders(ladderHeight);
     }
 
 
-    public static LadderGame of(String players, int ladderHeight) {
-        return new LadderGame(players, ladderHeight);
+    public static LadderGame of(String players) {
+        return new LadderGame(players);
     }
 
     private void setPlayers(String[] players) {
         Arrays.stream(players).forEach(player -> this.players.add(Player.of(player)));
     }
 
-    private void setLadders(int ladderHeight) {
+    public void setLadders(int ladderHeight) {
         IntStream.range(NUMBER_ZERO, ladderHeight)
                 .forEach(row -> ladders.add(Ladder.of(players.size(), new RandomLine())));
     }
@@ -42,44 +39,46 @@ public class LadderGame {
         return Collections.unmodifiableList(this.ladders);
     }
 
-    public void checkPlayPointAndRow(int playerPoint, int row) {
+    public void checkPlayPoint(int playerPoint) {
+
         if (playerPoint >= players.size()) {
             throw new IllegalArgumentException("플레이어 시작포인트 범위에서 벗어났습니다.");
         }
-
-        if (row > ladders.size()) {
-            throw new IllegalArgumentException("사다리길이에서 벗어났습니다.");
-        }
-
     }
 
-    public int getResultPoint(int playerPoint, int row) {
 
-        checkPlayPointAndRow(playerPoint, row);
+    private int getResultPoint(int playerPoint) {
 
-        lastPointPosition.add(ladders.get(NUMBER_ZERO).movePoint(playerPoint));
+        List<Integer> lastPointPosition = new ArrayList<>();
 
-        IntStream.range(NUMBER_ONE, ladders.size())
-                .forEach(index -> lastPointPosition.add(
-                        ladders.get(index).movePoint(lastPointPosition.get(lastPointPosition.size() - NUMBER_ONE))
-                ));
+        checkPlayPoint(playerPoint);
+
+        for (int i = 0; i < ladders.size(); i++) {
+            if (i == 0) {
+                lastPointPosition.add(ladders.get(NUMBER_ZERO).movePoint(playerPoint));
+                continue;
+            }
+            lastPointPosition.add(ladders.get(i).movePoint(lastPointPosition.get(lastPointPosition.size() - NUMBER_ONE)));
+        }
 
         return lastPointPosition.get(lastPointPosition.size() - NUMBER_ONE);
     }
 
-    public int findPlayerReward(String searchPlayer) {
+    private int findPlayerRewardIndex(String searchPlayer) {
 
-        checkIsSearchPlayer(searchPlayer);
+        for (int index = 0; index < players.size(); index++) {
+            if (players.get(index).getPlayer().equals(searchPlayer)) {
+                return getResultPoint(index);
+            }
+        }
 
-        return players.indexOf(players.stream()
-                .filter(player -> player.getPlayer().equals(searchPlayer))
-                .collect(Collectors.toList()).get(NUMBER_ZERO));
+        throw new IllegalArgumentException("해당되는 Player가 없습니다.");
     }
 
-    private void checkIsSearchPlayer(String searchPlayer) {
-        players.stream()
-               .filter(player -> player.equals(searchPlayer))
-               .findFirst()
-               .orElseThrow(()-> new IllegalArgumentException("해당되는 Player가 없습니다."));
+    public String findPlayerReward(List<String> rewards, String searchPlayer) {
+
+        return rewards.get(findPlayerRewardIndex(searchPlayer));
+
     }
+
 }

@@ -21,7 +21,7 @@ public class LadderTest {
 
         System.out.println(sb);
         Ladder ladder = Ladder.of(3, () -> true);
-        assertThat(ladder.getLines()).extracting(line -> line).contains(true,false);
+        assertThat(ladder.getLines()).extracting(line -> line).contains(true, false);
 
     }
 

@@ -1,45 +1,40 @@
 package nextstep.ladder;
 
-import org.assertj.core.util.Arrays;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.IntStream;
 
-import static nextstep.ladder.CommonConstans.*;
+import static nextstep.ladder.CommonConstans.SEPARATOR_COMMA;
 
 public class Reward {
 
-    private List rewardList = Arrays.asList(new String[]{FIRST_REWARD, SECOND_REWARD});
-    private List<Integer> playerRewardList = new ArrayList<>();
+    private List rewardList = new ArrayList();
 
-    public Reward(int playerCount) {
-        setRewardList(playerCount);
+    public Reward(String reward, int playerCount) {
+        checkVaild(reward.trim().split(SEPARATOR_COMMA), playerCount);
+
+        setRewardList(reward.trim().split(SEPARATOR_COMMA));
     }
 
-    public static Reward of(int playerCount) {
-        return new Reward(playerCount);
+
+    public static Reward of(String reward, int playerCount) {
+
+        return new Reward(reward, playerCount);
     }
 
-    private void setRewardList(int playerCount) {
-
-        IntStream.range(NUMBER_ZERO + 2, playerCount)
-                .forEach(index -> rewardList.add(BANG));
-
-        Collections.shuffle(rewardList);
-
+    private void setRewardList(String[] rewards) {
+        for (String reward : rewards) {
+            rewardList.add(reward);
+        }
     }
 
     public List<String> getRewardList() {
         return Collections.unmodifiableList(rewardList);
     }
 
-    public void setPlayerList(int player) {
-        playerRewardList.add(player);
-    }
-
-    public List<Integer> getRewardResult() {
-        return Collections.unmodifiableList(playerRewardList);
+    private void checkVaild(String[] rewards, int playerCount) {
+        if (rewards.length != playerCount) {
+            throw new IllegalArgumentException("보상리스트는 플레이어 수와 같아야 됩니다");
+        }
     }
 }

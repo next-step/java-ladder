@@ -3,6 +3,7 @@ package nextstep.view;
 
 import nextstep.ladder.Ladder;
 import nextstep.ladder.LadderGame;
+import nextstep.ladder.Player;
 import nextstep.ladder.Reward;
 
 import java.util.stream.IntStream;
@@ -12,49 +13,46 @@ import static nextstep.ladder.CommonConstans.*;
 public class ResultView {
 
     private static StringBuffer stringLine = new StringBuffer();
-    private static Reward rewards;
     private static int playerCount;
 
 
-    public static void printLadderResult(LadderGame executeLadderGames) {
+    public static void printLadderResult(LadderGame ladderGame, Reward rewards) {
 
-        playerCount = executeLadderGames.getPlayers().size();
-        rewards = Reward.of(playerCount);
+        playerCount = ladderGame.getPlayers().size();
 
-        executeLadderGames.getPlayers()
-                .stream()
-                .map(player -> player.getPlayer() + ONE_BLANK_SPACE)
-                .forEach(System.out::print);
+
+        ladderGame.setLadders(InputView.insertLadderHeight());
+
+
+        for (Player player : ladderGame.getPlayers()) {
+            System.out.print(player.getPlayer() + ONE_BLANK_SPACE);
+        }
 
         System.out.println(); // player 이름 나열
 
 
-        IntStream.range(NUMBER_ZERO, executeLadderGames.getladders().size())
-                .forEach(i -> drawLadderLine(playerCount, executeLadderGames.getladders().get(i)));
+        IntStream.range(NUMBER_ZERO, ladderGame.getladders().size())
+                .forEach(i -> drawLadderLine(playerCount, ladderGame.getladders().get(i)));
 
         System.out.print(stringLine); // 사다리 스트링으로 그려주기 .
 
-        rewards.getRewardList().forEach(reward -> System.out.print(reward + ONE_BLANK_SPACE));
+        rewards.getRewardList().forEach(r -> System.out.print(r + ONE_BLANK_SPACE));
 
         System.out.println(); //보상 리스트 출력.
-
-        IntStream.range(NUMBER_ZERO, executeLadderGames.getPlayers().size())
-                .forEach(idx -> rewards.setPlayerList(executeLadderGames.getResultPoint(idx, NUMBER_ZERO))); //플레이어 보상 결과 저장.
 
 
         while (true) { //플레이어 보상 검색.
             String findPlayerReward = InputView.insertRewardResult();
 
             if (findPlayerReward.equals("all")) {
-                IntStream.range(NUMBER_ZERO, executeLadderGames.getPlayers().size()).forEach(idx
-                        -> System.out.print(rewards.getRewardList().get(rewards.getRewardResult().get(idx)) + ONE_BLANK_SPACE));
+                for (Player findPlayer : ladderGame.getPlayers()) {
+                    System.out.print(ladderGame.findPlayerReward(rewards.getRewardList(), findPlayer.getPlayer()) + ONE_BLANK_SPACE);
+                }
                 break;
             }
 
-            System.out.println(rewards.getRewardList().get(executeLadderGames.findPlayerReward(findPlayerReward)));
+            System.out.println(ladderGame.findPlayerReward(rewards.getRewardList(), findPlayerReward));
         }
-
-
     }
 
 
