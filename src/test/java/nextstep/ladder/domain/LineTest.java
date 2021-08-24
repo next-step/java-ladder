@@ -29,7 +29,7 @@ class LineTest {
         Line line = Line.of(Arrays.asList(true, false, true));
 
         // When
-        List<Boolean> lines = line.getPoints();
+        List<Boolean> lines = line.points();
 
         // Then
         assertAll("라인이 연속적인 true가 나오면 안된다..",

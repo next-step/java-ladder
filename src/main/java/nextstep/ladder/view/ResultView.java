@@ -31,7 +31,7 @@ public class ResultView {
 
     private static void points(Line ladderLine) {
         System.out.print(LADDER_WALL);
-        for (boolean point : ladderLine.getPoints()) {
+        for (boolean point : ladderLine.points()) {
             if (point) {
                 System.out.print(LADDER_POINT);
             } else {

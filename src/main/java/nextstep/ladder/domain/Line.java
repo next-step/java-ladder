@@ -41,7 +41,7 @@ public class Line {
         return points.size();
     }
 
-    public List<Boolean> getPoints() {
+    public List<Boolean> points() {
         return points;
     }
 }
