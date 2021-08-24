@@ -15,13 +15,12 @@ public class LadderApplication {
         int ladderHeight = InputView.inputLadderHeight();
 
         Ladder ladder = Ladder.of(playersName, ladderHeight);
-        LadderResult ladderResult = LadderResult.of(ladder, namesOfAwards);
-
         ResultView.printLadder(ladder);
 
         Awards awards = Awards.of(namesOfAwards);
         ResultView.printAwards(awards);
 
+        LadderResult ladderResult = LadderResult.of(ladder, awards);
         String wantedPlayer;
         do {
             wantedPlayer = InputView.inputWantedPlayerName();
