@@ -2,8 +2,6 @@ package laddergame.view;
 
 import laddergame.domain.*;
 
-import java.util.List;
-
 public class ResultView {
 
     private static final String LINE_EMPTY = "     |";
@@ -19,28 +17,28 @@ public class ResultView {
     }
 
     private static String makeResult(People people, Ladder ladder) {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder stringBuilder = new StringBuilder();
 
         people.stream()
                 .map(Person::getName)
                 .map(name -> String.format("%"+ (Person.MAX_LENGTH_OF_NAME+1) +"s", name))
-                .forEach(sb::append);
+                .forEach(stringBuilder::append);
 
         ladder.stream()
-                .forEach(line -> { sb.append(System.lineSeparator())
+                .forEach(line -> { stringBuilder.append(System.lineSeparator())
                         .append(LINE_EMPTY)
                         .append(makeLineResult(line));
                 });
 
-        return sb.toString();
+        return stringBuilder.toString();
     }
 
     private static String makeLineResult(Line line) {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder stringBuilder = new StringBuilder();
         line.stream()
                 .map(ResultView::ladderString)
-                .forEach(sb::append);
-        return sb.toString();
+                .forEach(stringBuilder::append);
+        return stringBuilder.toString();
     }
 
     private static String ladderString(Boolean bool) {
