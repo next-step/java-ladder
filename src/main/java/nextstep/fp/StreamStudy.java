@@ -30,9 +30,9 @@ public class StreamStudy {
         // TODO 이 부분에 구현한다.
         List<String> result = words.stream()
                 .filter((word) -> word.length() > 12)
-                .sorted(Comparator.comparingInt(String::length).reversed())
                 .distinct()
                 .limit(100)
+                .sorted(Comparator.comparingInt(String::length).reversed())
                 .map(String::toLowerCase)
                 .collect(toList());
 
