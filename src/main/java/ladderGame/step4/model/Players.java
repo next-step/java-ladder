@@ -21,7 +21,7 @@ public class Players {
     this.playerNames = Collections.unmodifiableList(playerNames);
   }
 
-  public static List<PlayerName> of(final String playerNames) {
+  public static List<PlayerName> from(final String playerNames) {
     return splitNames(playerNames)
         .stream()
         .map(PlayerName::new)
