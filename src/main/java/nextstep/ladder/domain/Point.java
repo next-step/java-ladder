@@ -38,6 +38,18 @@ public class Point {
 		return direction.isRight();
 	}
 
+	public boolean isLeftward() {
+		return direction.isLeft();
+	}
+
+	public boolean isDownward() {
+		return direction.isStraight();
+	}
+
+	public Direction direction() {
+		return direction;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -50,5 +62,4 @@ public class Point {
 	public int hashCode() {
 		return Objects.hash(direction);
 	}
-
 }

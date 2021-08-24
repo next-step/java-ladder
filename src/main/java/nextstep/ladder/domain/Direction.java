@@ -15,4 +15,12 @@ public enum Direction {
     public boolean isRight() {
         return this == RIGHT;
     }
+
+    public boolean isLeft() {
+        return this == LEFT;
+    }
+
+    public boolean isStraight() {
+        return this == STRAIGHT;
+    }
 }
