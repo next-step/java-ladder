@@ -19,7 +19,7 @@
 * [X] lambda - 람다를 활용해 중복 제거
 * [X] stream - map, reduce, filter 실습 1
 * [X] stream - map, reduce, filter 실습 2
-* [ ] Optional - Optional을 활용해 조건에 따른 반환
-* [ ] Optional - Optional에서 값을 반환
-* [ ] Optional - Optional에서 exception 처리
+* [X] Optional - Optional을 활용해 조건에 따른 반환
+* [X] Optional - Optional에서 값을 반환
+* [X] Optional - Optional에서 exception 처리
 
