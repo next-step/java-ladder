@@ -24,7 +24,7 @@ class MatchResultsTest {
 
     List<Line> lines = new ArrayList<>();
     lines.add(new Line(points));
-    Players players = new Players(Players.of("user1,user2"));
+    Players players = new Players(Players.from("user1,user2"));
 
     MatchResults matchResult = MatchResults.createMatchResult(new Ladder(lines), players);
     List<MatchResult> findUser = matchResult.searchPrizeWithCondition(name);
@@ -44,7 +44,7 @@ class MatchResultsTest {
 
     List<Line> lines = new ArrayList<>();
     lines.add(new Line(points));
-    Players players = new Players(Players.of("user1,user2"));
+    Players players = new Players(Players.from("user1,user2"));
 
     MatchResults matchResult = MatchResults.createMatchResult(new Ladder(lines), players);
 
