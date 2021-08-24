@@ -21,16 +21,24 @@ public class UsersTest {
                         User.createWithName("jk")
                 )
         );
-
     }
 
     @Test
-    public void 참여하는_사용자들_중_이름이_5자를_넘으_익셉션이_발생한다(){
+    public void 참여하는_사용자들_중_이름이_5자를_넘으면_익셉션이_발생한다(){
         //given
         //when
         //then
         assertThatThrownBy(() -> Users.create("pobi,honuxxx,crong,jk"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("이름이 너무 깁니다. (이름 : honuxxx)");
+    }
+
+    @Test
+    public void 사용자들이_몇명인지_알_수_있다(){
+        //given
+        //when
+        Users users = Users.create("pobi,honux,crong");
+        //then
+        assertThat(users.size()).isEqualTo(3);
     }
 }

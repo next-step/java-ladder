@@ -26,6 +26,10 @@ public class Users {
         return new Users(new ArrayList<>(Arrays.asList(users)));
     }
 
+    public int size() {
+        return users.size();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
