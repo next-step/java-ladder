@@ -13,8 +13,15 @@ public class Players {
 
 	private final List<Player> players;
 
-	public Players(String names) {
-		this.players = createPlayers(names);
+	private Players(List<Player> players) {
+		this.players = players;
+	}
+
+	public static Players from(String names) {
+		List<Player> players = Arrays.stream(names.split(DELIMITER))
+								.map(Player::new)
+								.collect(collectingAndThen(toList(), Collections::unmodifiableList));
+		return new Players(players);
 	}
 
 	public int size() {
@@ -23,13 +30,6 @@ public class Players {
 
 	public List<Player> values() {
 		return Collections.unmodifiableList(players);
-	}
-
-	private List<Player> createPlayers(String names) {
-		String[] nameArray = names.split(DELIMITER);
-		return Arrays.stream(nameArray)
-				.map(Player::new)
-				.collect(collectingAndThen(toList(), Collections::unmodifiableList));
 	}
 
 	@Override
