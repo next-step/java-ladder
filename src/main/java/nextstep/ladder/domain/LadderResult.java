@@ -20,7 +20,7 @@ public class LadderResult {
         Persons persons = ladder.persons();
         List<Line> lines = ladder.ladderHeight();
 
-        int position = persons.indexOferson(name);
+        int position = persons.indexOfPerson(name);
 
         for (Line line : lines) {
             position = line.currentPosition(position);

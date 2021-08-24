@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 public class Persons {
 
@@ -10,7 +11,7 @@ public class Persons {
         this.persons = persons;
     }
 
-    public int indexOferson(String name) {
+    public int indexOfPerson(String name) {
         for (int i = 0; i < persons.size(); i++) {
             Person person = persons.get(i);
             if (person.getName().equals(name)) {
@@ -25,8 +26,11 @@ public class Persons {
         return persons.size();
     }
 
-    public List<Person> getPersons() {
-        return persons;
+    public void forEach(Consumer<Person> action) {
+        for (Person person : persons) {
+            action.accept(person);
+        }
     }
+
 
 }
