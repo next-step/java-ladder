@@ -11,10 +11,21 @@ public class ResultView {
     public static final String LADDER_BLANK = "     ";
 
     public static void show(List<Line> ladderLines, List<Person> persons) {
-        persons.forEach(person -> System.out.print(person.getName()));
+        persons.forEach(person -> System.out.print(appendBlank(person.getName())));
         System.out.println();
         ladderLines.forEach(ResultView::points);
     }
+
+    private static String appendBlank(String name) {
+        StringBuilder nameBuilder = new StringBuilder(name);
+
+        while (nameBuilder.length() < Person.MAX_NAME_LENGTH) {
+            nameBuilder.append(" ");
+        }
+
+        return nameBuilder.toString();
+    }
+
 
     private static void points(Line ladderLine) {
         System.out.print(LADDER_WALL);
