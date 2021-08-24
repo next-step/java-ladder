@@ -48,8 +48,6 @@ public class ResultView {
      * Methods to print ladder to screen
      */
 
-
-
     /*
      * Methods to print ladder execution results
      */

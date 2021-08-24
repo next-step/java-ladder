@@ -19,6 +19,7 @@ public class MyLadderCreator implements LadderCreator {
         return IntStream.range(0, height)
                 .boxed()
                 .map(h -> lineCreator.create(countOfPeople))
-                .collect(Collectors.collectingAndThen(Collectors.toList(), MyLadder::of));
+                .collect(Collectors.collectingAndThen(Collectors.toList(),
+                        lines -> MyLadder.of(countOfPeople, lines)));
     }
 }

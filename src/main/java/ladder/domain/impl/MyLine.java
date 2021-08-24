@@ -17,7 +17,6 @@ public class MyLine implements Line {
 
     @Override
     public int permute(int source) {
-        Tile tile = tiles.get(source);
-        return tile.permute();
+        return tiles.get(source).permute();
     }
 }
