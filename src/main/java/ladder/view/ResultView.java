@@ -1,6 +1,5 @@
 package ladder.view;
 
-import ladder.domain.GameResult;
 import ladder.domain.Ladder;
 import ladder.domain.Participant;
 import ladder.domain.Results;
@@ -24,7 +23,7 @@ public class ResultView {
     public static void printResult(String person, GameResult gameResult) {
         System.out.println(RESULT_COMMENT);
 
-        Map<String, String> map = gameResult.getMap();
+        Map<String, String> map = gameResult.getGameResult();
 
         if (SHOW_RESULT_ALL.equals(person)) {
             map.forEach((participant, result) -> System.out.println(participant + " : " + result));
@@ -47,7 +46,7 @@ public class ResultView {
     }
 
     private static String getLine(Ladder ladder, int row, int column) {
-        if (ladder.havePoints(row, column)) {
+        if (ladder.isDraw(row, column)) {
             return WITH_POINTS_LINE;
         }
         return WITHOUT_POINTS_LINE;
@@ -77,12 +76,5 @@ public class ResultView {
             sb.append(BLANK);
         }
         return sb;
-    }
-
-    public static void printResultAll(GameResult gameResult) {
-        System.out.println(RESULT_COMMENT);
-        Map<String, String> map = gameResult.getMap();
-
-        map.forEach((participant, result) -> System.out.println(participant + " : " + result));
     }
 }

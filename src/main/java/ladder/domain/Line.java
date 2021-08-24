@@ -1,79 +1,56 @@
 package ladder.domain;
 
-import ladder.utils.RandomBooleanGenerator;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class Line {
-    private static final int REQUIRED_NUMBER_OF_PEOPLE = 2;
+    private static final int REQUIRED_NUMBER_OF_PEOPLE = 1;
     private static final int MOVING_DISTANCE = 1;
 
-    private final List<Boolean> points;
+    private final List<Point> points;
 
-    public static Line of(List<Boolean> points) {
-        return new Line(points);
-    }
+    public static Line of(int countOfPerson, NextStrategy nextStrategy) {
 
-    public static Line of(int countOfPerson) {
-        return getLine(countOfPerson);
-    }
+        List<Point> points = new ArrayList<>();
 
-    private static Line getLine(int countOfPerson) {
-        List<Boolean> points = new ArrayList<>();
-        points.add(false);
-        points.add(RandomBooleanGenerator.execute());
+        Point point = Point.first(nextStrategy.execute());
+        points.add(point);
 
-        for (int i = REQUIRED_NUMBER_OF_PEOPLE; i < countOfPerson; i++) {
-            Boolean current = RandomBooleanGenerator.execute();
-            Boolean beforePoint = points.get(i - 1);
-            points.add(compareAdjacentPoint(beforePoint, current));
+        for (int i = REQUIRED_NUMBER_OF_PEOPLE; i < countOfPerson - 1; i++) {
+            point = point.next(nextStrategy.execute());
+            points.add(point);
         }
 
+        points.add(point.last());
+
         return new Line(points);
     }
 
-    private Line(List<Boolean> points) {
+    public static Line of(List<Point> points) {
+        return new Line(points);
+    }
+
+    private Line(List<Point> points) {
         this.points = points;
-    }
-
-    private static Boolean compareAdjacentPoint(Boolean beforePoint, Boolean current) {
-        if (beforePoint != current) {
-            return current;
-        }
-        return !current;
     }
 
     public int getSize() {
         return points.size();
     }
 
-
-    public boolean havePoints(int i) {
-        return points.get(i);
-    }
-
     public int movedPosition(int position) {
+        Direction direction = points.get(position).movedDirection();
 
-        int right = getRight(position);
-
-        if (havePoints(position)) {
-            return position - MOVING_DISTANCE;
-        }
-        if (havePoints(right)) {
+        if (direction == Direction.RIGHT) {
             return position + MOVING_DISTANCE;
         }
-        return position;
-    }
 
-    private int getRight(int position) {
-        int right = position + MOVING_DISTANCE;
-
-        if (right >= points.size()) {
-            right = position;
+        if (direction == Direction.LEFT) {
+            return position - MOVING_DISTANCE;
         }
-        return right;
+
+        return position;
     }
 
     @Override
@@ -87,5 +64,9 @@ public class Line {
     @Override
     public int hashCode() {
         return Objects.hash(points);
+    }
+
+    public boolean isDraw(int column) {
+        return points.get(column).isDraw();
     }
 }

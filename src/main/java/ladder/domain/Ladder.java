@@ -11,14 +11,14 @@ public class Ladder {
         return new Ladder(lines);
     }
 
-    public static Ladder of(int ladderMaxLength, int countOfPerson) {
-        return getLadder(ladderMaxLength, countOfPerson);
+    public static Ladder of(int ladderMaxLength, int countOfPerson, NextStrategy nextStrategy) {
+        return getLadder(ladderMaxLength, countOfPerson, nextStrategy);
     }
 
-    private static Ladder getLadder(int ladderMaxLength, int countOfPerson) {
+    private static Ladder getLadder(int ladderMaxLength, int countOfPerson, NextStrategy nextStrategy) {
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < ladderMaxLength; i++) {
-            lines.add(Line.of(countOfPerson));
+            lines.add(Line.of(countOfPerson, nextStrategy));
         }
 
         return new Ladder(lines);
@@ -33,16 +33,10 @@ public class Ladder {
                 .map(Line::getSize)
                 .findFirst()
                 .orElse(0);
-
     }
 
     public int getLadderHeight() {
         return lines.size();
-    }
-
-    public boolean havePoints(int row, int column) {
-        Line currentLine = lines.get(row);
-        return currentLine.havePoints(column);
     }
 
     public int movedPosition(int position) {
@@ -67,5 +61,9 @@ public class Ladder {
     @Override
     public int hashCode() {
         return Objects.hash(lines);
+    }
+
+    public boolean isDraw(int row, int column) {
+        return lines.get(row).isDraw(column);
     }
 }

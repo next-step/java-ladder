@@ -1,5 +1,7 @@
-package ladder.domain;
+package ladder.view;
 
+import ladder.domain.Participant;
+import ladder.domain.Results;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
