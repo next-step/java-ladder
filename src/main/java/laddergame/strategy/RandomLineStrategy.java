@@ -8,6 +8,6 @@ public class RandomLineStrategy implements LineStrategy{
 
     @Override
     public boolean create() {
-        return (random.nextInt(2) < 1);
+        return (random.nextBoolean());
     }
 }
