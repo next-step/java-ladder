@@ -4,21 +4,17 @@ import java.util.Objects;
 
 public class Ladder {
 
-    private final int height;
+    private final Width width;
 
-    private Ladder(int height) {
-        validate(height);
+    private final Height height;
+
+    private Ladder(Width width, Height height) {
+        this.width = width;
         this.height = height;
     }
 
-    public static Ladder createWithHeight(int height) {
-        return new Ladder(height);
-    }
-
-    private void validate(int height) {
-        if(height < 1) {
-            throw new IllegalArgumentException("사다리의 높이는 1 이상이어야 합니다.");
-        }
+    public static Ladder create(Width width, Height height) {
+        return new Ladder(width, height);
     }
 
     @Override
@@ -26,11 +22,11 @@ public class Ladder {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Ladder ladder = (Ladder) o;
-        return height == ladder.height;
+        return Objects.equals(width, ladder.width) && Objects.equals(height, ladder.height);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(height);
+        return Objects.hash(width, height);
     }
 }
