@@ -2,6 +2,7 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Person;
+import nextstep.ladder.domain.Persons;
 import java.util.List;
 
 public class ResultView {
@@ -10,8 +11,8 @@ public class ResultView {
     public static final String LADDER_POINT = "-----";
     public static final String LADDER_BLANK = "     ";
 
-    public static void show(List<Line> ladderLines, List<Person> persons) {
-        persons.forEach(person -> System.out.print(appendBlank(person.getName())));
+    public static void show(List<Line> ladderLines, Persons persons) {
+        persons.getPersons().forEach(person -> System.out.print(appendBlank(person.getName())));
         System.out.println();
         ladderLines.forEach(ResultView::points);
     }

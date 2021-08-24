@@ -26,6 +26,18 @@ public class Line {
         }
     }
 
+    public int currentPosition(int currPosition) {
+        if (currPosition == 0 && Boolean.TRUE.equals(points.get(currPosition))) {
+            currPosition++;
+        } else if (currPosition - 1 >= 0 && Boolean.TRUE.equals(points.get(currPosition - 1))) {
+            currPosition--;
+        } else if (currPosition + 1 <= points.size() && Boolean.TRUE.equals(points.get(currPosition + 1))) {
+            currPosition--;
+        }
+
+        return currPosition;
+    }
+
     public int size() {
         return points.size();
     }

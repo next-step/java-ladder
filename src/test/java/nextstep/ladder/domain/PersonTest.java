@@ -18,14 +18,6 @@ class PersonTest {
         assertThat(person.getName()).isEqualTo("Phobi");
     }
 
-    @ParameterizedTest(name = "5글자 미만이면 5글자로 만든다")
-    @ValueSource(strings = {"phob", "pho", "ph"})
-    void addNameWithBlank(String name) {
-        Person givenPerson = Person.of(name);
-
-        assertThat(givenPerson.getName().length()).isEqualTo(5);
-    }
-
     @DisplayName("사람이 이름은 최대 5글자 초과이면 IllegalArgument 발생")
     @Test
     void personWithIllegalArguments() {
