@@ -1,6 +1,6 @@
 package nextstep.ladder.domain;
 
-import static nextstep.ladder.domain.Direction.*;
+import static nextstep.ladder.domain.Point.*;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.stream.Stream;
@@ -17,8 +17,8 @@ class PointTest {
     @EnumSource(value = Direction.class)
     @ParameterizedTest
     void create(Direction direction) {
-        Point point = new Point(0, direction);
-        assertThat(point).isEqualTo(new Point(0, direction));
+        Point point = Point.of(0, direction);
+        assertThat(point).isEqualTo(Point.of(0, direction));
     }
 
     @DisplayName("각 지점의 방향으로 이동한다.")
@@ -30,9 +30,9 @@ class PointTest {
 
     private static Stream<Arguments> moveArguments() {
         return Stream.of(
-            Arguments.of(new Point(1, RIGHT), 2),
-            Arguments.of(new Point(1, LEFT), 0),
-            Arguments.of(new Point(1, STRAIGHT), 1)
+            Arguments.of(right(1), 2),
+            Arguments.of(left(1), 0),
+            Arguments.of(straight(1), 1)
         );
     }
 

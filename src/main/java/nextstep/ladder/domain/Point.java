@@ -9,9 +9,25 @@ public class Point {
 	private final int position;
 	private final Direction direction;
 
-	public Point(int position, Direction direction) {
+	private Point(int position, Direction direction) {
 		this.position = position;
 		this.direction = direction;
+	}
+
+	public static Point of(int position, Direction direction) {
+		return new Point(position, direction);
+	}
+
+	public static Point right(int position) {
+		return new Point(position, RIGHT);
+	}
+
+	public static Point left(int position) {
+		return new Point(position, LEFT);
+	}
+
+	public static Point straight(int position) {
+		return new Point(position, STRAIGHT);
 	}
 
 	public static Point first(boolean isRightward) {
