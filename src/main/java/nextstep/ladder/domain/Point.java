@@ -2,8 +2,6 @@ package nextstep.ladder.domain;
 
 import java.util.Objects;
 
-import nextstep.ladder.util.RandomDirectionFactory;
-
 public class Point {
 
 	private final Direction direction;
@@ -12,18 +10,18 @@ public class Point {
 		this.direction = direction;
 	}
 
-	public static Point first() {
-		if (RandomDirectionFactory.isRight()) {
+	public static Point first(boolean isRightward) {
+		if (isRightward) {
 			return new Point(Direction.RIGHT);
 		}
 		return new Point(Direction.STRAIGHT);
 	}
 
-	public static Point next(Point previous) {
+	public static Point next(Point previous, boolean isRightward) {
 		if (previous.direction.isRight()) {
 			return new Point(Direction.LEFT);
 		}
-		if (RandomDirectionFactory.isRight()) {
+		if (isRightward) {
 			return new Point(Direction.RIGHT);
 		}
 		return new Point(Direction.STRAIGHT);
