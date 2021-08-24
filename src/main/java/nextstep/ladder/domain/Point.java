@@ -1,10 +1,8 @@
 package nextstep.ladder.domain;
 
-import static nextstep.ladder.domain.Direction.*;
-
 import java.util.Objects;
 
-import nextstep.ladder.exception.InvalidFirstPointException;
+import static nextstep.ladder.domain.Direction.*;
 
 public class Point {
 
@@ -19,9 +17,6 @@ public class Point {
 	}
 
 	public static Point of(int position, Direction direction) {
-		if (position == ZERO && direction.isLeft()) {
-			throw new InvalidFirstPointException();
-		}
 		return new Point(position, direction);
 	}
 

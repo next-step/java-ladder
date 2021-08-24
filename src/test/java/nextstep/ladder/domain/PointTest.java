@@ -1,11 +1,5 @@
 package nextstep.ladder.domain;
 
-import static nextstep.ladder.domain.Direction.*;
-import static nextstep.ladder.domain.Point.*;
-import static org.assertj.core.api.Assertions.*;
-
-import java.util.stream.Stream;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -13,7 +7,11 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.EnumSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import nextstep.ladder.exception.InvalidFirstPointException;
+import java.util.stream.Stream;
+
+import static nextstep.ladder.domain.Direction.*;
+import static nextstep.ladder.domain.Point.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class PointTest {
 
@@ -23,13 +21,6 @@ class PointTest {
     void create(Direction direction) {
         Point point = Point.of(1, direction);
         assertThat(point).isEqualTo(Point.of(1, direction));
-    }
-
-    @DisplayName("첫 번째 지점이 왼쪽 방향이면 예외가 발생한다.")
-    @Test
-    void invalidFirstPoint() {
-        assertThatThrownBy(() -> Point.of(0, LEFT))
-            .isInstanceOf(InvalidFirstPointException.class);
     }
 
     @DisplayName("사다리 지점을 연속적으로 생성한다.")
