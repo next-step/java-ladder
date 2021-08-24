@@ -18,16 +18,15 @@ public class LadderTest {
     @DisplayName("사다리 높이 입력 성공 테스트")
     @ValueSource(ints = {2, 3, 4, 5})
     void 사다리_높이_입력_성공_테스트(int height) {
-
-        Ladder ladder = Ladder.create(height, countOfPerson.size());
-        assertThat(ladder.getLadder().size()).isEqualTo(Ladder.create(height, countOfPerson.size()).getLadder().size());
+        Lines ladder = Lines.create(height, countOfPerson.size());
+        assertThat(ladder.getLadder().size()).isEqualTo(Lines.create(height, countOfPerson.size()).getLadder().size());
     }
 
     @ParameterizedTest
     @DisplayName("사다리 높이 입력 실패 테스트")
     @ValueSource(ints = {0, 1})
     void 사다리_높이_입력_실패_테스트(int height) {
-        assertThatThrownBy(() -> Ladder.create(height, countOfPerson.size()))
+        assertThatThrownBy(() -> Lines.create(height, countOfPerson.size()))
                 .isInstanceOf(RuntimeException.class);
     }
 
