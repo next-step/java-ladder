@@ -20,7 +20,7 @@ public class Prizes {
     this.prizes = Collections.unmodifiableList(prizes);
   }
 
-  public static List<PrizeName> createPrizes(String goods, int playerCount){
+  public static List<PrizeName> of(String goods, int playerCount){
     validationPrizeCount(goods, playerCount);
 
     return splitPrizeName(goods)
