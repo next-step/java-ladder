@@ -18,6 +18,10 @@ public class Line {
 		this.points = new ArrayList<>(points);
 	}
 
+	public int move(int startPosition) {
+		return points.get(startPosition).move();
+	}
+
 	public List<Point> points() {
 		return Collections.unmodifiableList(points);
 	}

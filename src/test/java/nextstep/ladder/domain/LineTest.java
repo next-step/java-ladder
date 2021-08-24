@@ -50,6 +50,16 @@ class LineTest {
             .isInstanceOf(InvalidMidPointException.class);
     }
 
+    @DisplayName("특정 시작 지점에서 이동 후 도착 위치를 얻는다.")
+    @Test
+    void move() {
+        Line line = new Line(Arrays.asList(right(0), left(1), right(2), left(3)));
+        assertThat(line.move(0)).isEqualTo(1);
+        assertThat(line.move(1)).isZero();
+        assertThat(line.move(2)).isEqualTo(3);
+        assertThat(line.move(3)).isEqualTo(2);
+    }
+
     private static Stream<Arguments> invalidMidPointArguments() {
         return Stream.of(
             Arguments.of(Arrays.asList(down(0), right(1), down(2), down(3))),
