@@ -16,8 +16,8 @@ class PrizesTest {
   @Test
   void create() {
     String prizes = "꽝,5000,10000,꽝";
-    Prizes prizes1 = new Prizes(Prizes.createPrizes(prizes, 4));
-    Prizes prizes2 = new Prizes(Prizes.createPrizes(prizes, 4));
+    Prizes prizes1 = new Prizes(Prizes.of(prizes, 4));
+    Prizes prizes2 = new Prizes(Prizes.of(prizes, 4));
 
     assertThat(prizes1).isEqualTo(prizes2);
   }
@@ -28,7 +28,7 @@ class PrizesTest {
   @EmptySource
   @ValueSource(strings = "꽝,1000")
   void invalidPrizes(String prizes) {
-    assertThatThrownBy(() -> new Prizes(Prizes.createPrizes(prizes, 3)))
+    assertThatThrownBy(() -> new Prizes(Prizes.of(prizes, 3)))
         .isInstanceOf(IllegalArgumentException.class);
   }
 }
