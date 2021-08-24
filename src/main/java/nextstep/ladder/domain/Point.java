@@ -38,6 +38,10 @@ public class Point {
 		return new Point(previous.position + 1, STRAIGHT);
 	}
 
+	public int move() {
+		return position + direction.value();
+	}
+
 	public boolean isRightward() {
 		return direction.isRight();
 	}
