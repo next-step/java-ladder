@@ -24,6 +24,10 @@ public class Players {
 		return new Players(players);
 	}
 
+	public Integer indexOf(Player player) {
+		return players.indexOf(player);
+	}
+
 	public int size() {
 		return players.size();
 	}

@@ -2,9 +2,7 @@ package nextstep.ladder.domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Ladder {
 
@@ -16,8 +14,8 @@ public class Ladder {
 		this.lines = new ArrayList<>(lines);
 	}
 
-	public Map<Integer, Integer> play() {
-		Map<Integer, Integer> result = new HashMap<>();
+	public Result play() {
+		Result result = new Result(players);
 		for (int position = 0; position < players.size(); position++) {
 			result.put(position, destination(position));
 		}

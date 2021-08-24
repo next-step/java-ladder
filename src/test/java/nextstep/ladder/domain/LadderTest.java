@@ -6,7 +6,6 @@ import static org.assertj.core.api.Assertions.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,12 +17,12 @@ class LadderTest {
 	void play() {
 		Players players = Players.from("pobi,crong,honux,jk");
 		Ladder ladder = new Ladder(players, createLines());
-		Map<Integer, Integer> result = ladder.play();
+		Result result = ladder.play();
 
-		assertThat(result.get(0)).isZero();
-		assertThat(result.get(1)).isEqualTo(2);
-		assertThat(result.get(2)).isEqualTo(3);
-		assertThat(result.get(3)).isEqualTo(1);
+		assertThat(result.of(new Player("pobi"))).isZero();
+		assertThat(result.of(new Player("crong"))).isEqualTo(2);
+		assertThat(result.of(new Player("honux"))).isEqualTo(3);
+		assertThat(result.of(new Player("jk"))).isEqualTo(1);
 	}
 
 	/*
