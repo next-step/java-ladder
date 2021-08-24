@@ -15,4 +15,15 @@ public class LineTest {
         //then
         assertThat(line).isEqualTo(Line.createWithWidth(Width.create(6)));
     }
+
+    @Test
+    public void 위치를_입력받아서_체크할_수_있다(){
+        //given
+        Width width = Width.create(6);
+        Line line = Line.createWithWidth(width);
+        //when
+        line.check(3);
+        //then
+        assertThat(line).isEqualTo(Line.create(false, false, false, true, false, false));
+    }
 }

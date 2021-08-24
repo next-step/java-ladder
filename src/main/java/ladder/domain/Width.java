@@ -17,6 +17,10 @@ public class Width {
         return new Width(length);
     }
 
+    public int getLength() {
+        return length;
+    }
+
     private static void validate(int length) {
         if (length < MINIMUM_WIDTH_LENGTH) {
             throw new IllegalArgumentException("사다리의 가로길이는 2 이상이어야 합니다.");
