@@ -9,7 +9,7 @@ import ladder.utils.StringUtil;
 import java.util.Arrays;
 import java.util.List;
 
-public final class ResultView {
+public final class OutputView {
 
     private static final String LINE_SEPARATOR = System.lineSeparator();
     private static final String RESULT_MESSAGE_PRE = "실행결과";
@@ -17,7 +17,7 @@ public final class ResultView {
     private static final String LADDER_HORIZONTAL_DISPLAY = "-";
     private static final String EMPTY_DISPLAY = " ";
 
-    private ResultView() {
+    private OutputView() {
     }
 
     public static void displayLadderGameResult(final Ladder ladder, String... usernames) {
@@ -28,7 +28,7 @@ public final class ResultView {
     }
 
     private static void displayUsers(final String[] userNames) {
-        Arrays.stream(userNames).map(ResultView::getUserToFormat)
+        Arrays.stream(userNames).map(OutputView::getUserToFormat)
                 .forEach(System.out::print);
     }
 
@@ -38,13 +38,13 @@ public final class ResultView {
 
     private static void displayLadders(final List<Line> lines) {
         lines.stream()
-                .map(ResultView::getLine)
+                .map(OutputView::getLine)
                 .forEach(System.out::println);
     }
 
     private static String getLine(final Line line) {
         return line.getDirections().stream()
-                .map(ResultView::getDirection)
+                .map(OutputView::getDirection)
                 .reduce(String::concat).orElse(EMPTY_DISPLAY);
     }
 

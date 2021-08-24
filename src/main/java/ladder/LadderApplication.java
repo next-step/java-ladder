@@ -4,7 +4,7 @@ import ladder.domain.LadderGame;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.RandomDirectionStrategy;
 import ladder.view.InputView;
-import ladder.view.ResultView;
+import ladder.view.OutputView;
 
 import java.util.Scanner;
 
@@ -20,6 +20,6 @@ public final class LadderApplication {
         LadderGame ladderGame = new LadderGame(ladderMaxHeight, userNames);
         Ladder ladder = ladderGame.generateLadder(new RandomDirectionStrategy());
 
-        ResultView.displayLadderGameResult(ladder, userNames);
+        OutputView.displayLadderGameResult(ladder, userNames);
     }
 }
