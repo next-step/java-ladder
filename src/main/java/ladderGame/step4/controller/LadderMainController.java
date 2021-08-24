@@ -1,36 +1,48 @@
 package ladderGame.step4.controller;
 
+import static ladderGame.step4.validation.Validation.validationLimitHeight;
+import static ladderGame.step4.validation.Validation.validationNamesAndGoodsCount;
+
+import java.util.List;
 import ladderGame.step4.model.Ladder;
-import ladderGame.step4.model.Players;
+import ladderGame.step4.model.MatchResult;
 import ladderGame.step4.model.Prizes;
-import ladderGame.step4.service.Match;
-import ladderGame.step4.view.InputView;
-import ladderGame.step4.view.ResultView;
+import ladderGame.step4.service.LadderService;
 
 public class LadderMainController {
 
-  public static final String ALL_NAMES = "all";
+  private final String playerNames;
 
-  public static void findLadderInfo(final Players players,
-      final Ladder ladder, final Prizes prizes) {
+  private final String goods;
 
-    ResultView.printUsersName(players.playersName());
-    ResultView.printLadder(ladder);
-    ResultView.printPrizes(prizes);
+  private final int ladderHeight;
 
-    String findName = InputView.inputFindNames();
+  private final LadderService service = new LadderService();
 
-    while (!isContinue(findName)) {
+  public LadderMainController(final String playerNames, final String goods,
+      final int ladderHeight) {
 
-      ResultView.printResult(Match.getMatchResults(players, ladder, findName), prizes);
+    validationNamesAndGoodsCount(playerNames, goods);
+    validationLimitHeight(ladderHeight);
 
-      findName = InputView.inputFindNames();
-    }
-
-    ResultView.printResult(Match.getMatchResults(players, ladder, findName), prizes);
+    this.playerNames = playerNames;
+    this.goods = goods;
+    this.ladderHeight = ladderHeight;
   }
 
-  private static boolean isContinue(final String findName) {
-    return findName.equals(ALL_NAMES);
+  public Ladder valueOfLadder() {
+    return service.createLadder(ladderHeight);
+  }
+
+  public Prizes valueOfPrizes() {
+    return service.createPrizes(goods);
+  }
+
+  public List<String> valueOfPlayersName() {
+    return service.createPlayers(playerNames);
+  }
+
+  public List<MatchResult> valueOfResult(final String findName) {
+    return service.getMatchResults(findName);
   }
 }
