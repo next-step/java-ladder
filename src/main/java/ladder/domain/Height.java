@@ -23,6 +23,10 @@ public class Height {
         }
     }
 
+    public int getLength() {
+        return length;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
