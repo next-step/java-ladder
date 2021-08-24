@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -10,7 +11,7 @@ public class Ladder {
 
 	public Ladder(Players players, List<Line> lines) {
 		this.players = players;
-		this.lines = lines;
+		this.lines = new ArrayList<>(lines);
 	}
 
 	public List<Line> lines() {
