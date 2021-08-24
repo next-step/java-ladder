@@ -1,7 +1,6 @@
 package ladder.domain;
 
 import ladder.dto.ResultDto;
-import ladder.view.OutputView;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -33,21 +32,21 @@ class LadderResultTest {
     @DisplayName("플레이어 한명의 결과 확인")
     @Test
     void result_one() {
-        String result = ladderResult.matchedResult("aa", ladder);
+        String result = ladderResult.result("aa", ladder);
         assertThat(result).isEqualTo("5");
     }
 
     @DisplayName("없는 이름을 입력할 경우 에러")
     @Test
     void result_error() {
-        assertThatThrownBy(() -> ladderResult.matchedResult("xx", ladder))
+        assertThatThrownBy(() -> ladderResult.result("xx", ladder))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("모든 플레이어의 결과 확인")
     @Test
     void result_all() {
-        List<ResultDto> actual = ladderResult.matchedAllResult(ladder);
+        List<ResultDto> actual = ladderResult.results(ladder);
         List<ResultDto> expected = Arrays.asList(
                 new ResultDto("aa", "5"),
                 new ResultDto("bb", "1"),

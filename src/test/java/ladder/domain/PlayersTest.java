@@ -20,14 +20,14 @@ class PlayersTest {
     void playerIndex() {
         List<String> names = Arrays.asList("aa", "bb", "cc");
         Players players = new Players(names);
-        assertThat(players.playerIndex(new Player("bb"))).isEqualTo(1);
+        assertThat(players.index(new Player("bb"))).isEqualTo(1);
     }
 
     @Test
     void playerIndex_error() {
         List<String> names = Arrays.asList("aa", "bb", "cc");
         Players players = new Players(names);
-        assertThatThrownBy(() -> players.playerIndex(new Player("dd")))
+        assertThatThrownBy(() -> players.index(new Player("dd")))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

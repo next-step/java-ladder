@@ -18,7 +18,7 @@ public class Players {
         return players;
     }
 
-    int playerIndex(Player player) {
+    int index(Player player) {
         return IntStream.range(0, players.size())
                 .filter(i -> players.get(i).equals(player))
                 .findFirst()

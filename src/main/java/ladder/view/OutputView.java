@@ -47,11 +47,11 @@ public class OutputView {
             printAllResult(ladder, ladderResult);
             return;
         }
-        System.out.println(ladderResult.matchedResult(name, ladder));
+        System.out.println(ladderResult.result(name, ladder));
     }
 
     private void printAllResult(Ladder ladder, LadderResult ladderResult) {
-        List<ResultDto> results = ladderResult.matchedAllResult(ladder);
+        List<ResultDto> results = ladderResult.results(ladder);
         results.forEach(i -> System.out.println(i.getPlayer() + " : " + i.getResult()));
     }
 }

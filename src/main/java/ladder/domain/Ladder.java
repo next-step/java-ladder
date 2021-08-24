@@ -22,15 +22,15 @@ public class Ladder {
         return lines;
     }
 
-    int matchedPoint(int index) {
+    int index(int index) {
         int resultIndex = index;
         for (Line line : lines) {
-            resultIndex = position(resultIndex, line);
+            resultIndex = indexFromLine(resultIndex, line);
         }
         return resultIndex;
     }
 
-    private int position(int index, Line line) {
+    private int indexFromLine(int index, Line line) {
         if (index < line.size() && line.point(index)) {
             return index + 1;
         }

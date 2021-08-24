@@ -25,25 +25,25 @@ public class LadderResult {
         return results;
     }
 
-    public List<ResultDto> matchedAllResult(Ladder ladder) {
+    public List<ResultDto> results(Ladder ladder) {
         List<ResultDto> matchedResults = new ArrayList<>();
         for (int i = 0; i < players.size(); i++) {
-            matchedResults.add(new ResultDto(players.get(i), matchedResult(i, ladder)));
+            matchedResults.add(new ResultDto(players.get(i), result(i, ladder)));
         }
         return matchedResults;
     }
 
-    public String matchedResult(String name, Ladder ladder) {
-        return matchedResult(new Player(name), ladder);
+    public String result(String name, Ladder ladder) {
+        return result(new Player(name), ladder);
     }
 
-    private String matchedResult(Player player, Ladder ladder) {
-        int playerIndex = this.players.playerIndex(player);
-        return matchedResult(playerIndex, ladder);
+    private String result(Player player, Ladder ladder) {
+        int playerIndex = this.players.index(player);
+        return result(playerIndex, ladder);
     }
 
-    private String matchedResult(int index, Ladder ladder) {
-        int matchedIndex = ladder.matchedPoint(index);
+    private String result(int index, Ladder ladder) {
+        int matchedIndex = ladder.index(index);
         return results.get(matchedIndex);
     }
 }
