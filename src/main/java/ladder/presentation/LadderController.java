@@ -9,9 +9,15 @@ public class LadderController {
 
     public void run() {
         Users users = Users.create(inputUsers());
-        Width width = Width.create(users.size());
+        Width width = Width.create(users.size() - 1);
         Height height = Height.create(inputLadderHeight());
         Ladder ladder = Ladder.create(width, height);
+        outputResult(users, ladder);
+    }
+
+    private void outputResult(Users users, Ladder ladder) {
+        ResultOutputView outputView = new ResultOutputView();
+        outputView.output(users, ladder);
     }
 
     private String inputUsers() {

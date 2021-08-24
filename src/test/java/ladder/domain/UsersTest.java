@@ -2,6 +2,8 @@ package ladder.domain;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -40,5 +42,15 @@ public class UsersTest {
         Users users = Users.create("pobi,honux,crong");
         //then
         assertThat(users.size()).isEqualTo(3);
+    }
+
+    @Test
+    public void 사용자들의_이름을_모두_가져올_수_있다(){
+        //given
+        Users users = Users.create("pobi,honux,crong,jk");
+        //when
+        List<String> names = users.getAllNames();
+        //then
+        assertThat(names).containsExactly("pobi", "honux", "crong", "jk");
     }
 }

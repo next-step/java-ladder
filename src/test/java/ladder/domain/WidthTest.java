@@ -19,14 +19,14 @@ class WidthTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {1, 0, -1})
-    public void 가로길이가_2보다_작으면_익셉션이_발생한다(int length){
+    @ValueSource(ints = {0, -1})
+    public void 가로길이가_1보다_작으면_익셉션이_발생한다(int length){
         //given
         //when
         //then
         assertThatThrownBy(() -> Width.create(length))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("사다리의 가로길이는 2 이상이어야 합니다.");
+                .hasMessageContaining("사다리의 가로길이는 1 이상이어야 합니다.");
     }
 
 }

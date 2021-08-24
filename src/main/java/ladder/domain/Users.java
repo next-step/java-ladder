@@ -42,4 +42,10 @@ public class Users {
     public int hashCode() {
         return Objects.hash(users);
     }
+
+    public List<String> getAllNames() {
+        return users.stream()
+                .map(User::getName)
+                .collect(Collectors.toList());
+    }
 }

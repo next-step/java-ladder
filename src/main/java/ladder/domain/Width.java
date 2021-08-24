@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Width {
 
-    private static final int MINIMUM_WIDTH_LENGTH = 2;
+    private static final int MINIMUM_WIDTH_LENGTH = 1;
 
     private final int length;
 
@@ -23,7 +23,7 @@ public class Width {
 
     private static void validate(int length) {
         if (length < MINIMUM_WIDTH_LENGTH) {
-            throw new IllegalArgumentException("사다리의 가로길이는 2 이상이어야 합니다.");
+            throw new IllegalArgumentException("사다리의 가로길이는 1 이상이어야 합니다.");
         }
     }
 
