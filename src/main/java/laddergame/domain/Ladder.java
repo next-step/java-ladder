@@ -22,8 +22,4 @@ public class Ladder {
     public Stream<Line> stream() {
         return ladder.stream();
     }
-
-    public int height() {
-        return ladder.size();
-    }
 }
