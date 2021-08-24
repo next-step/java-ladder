@@ -18,6 +18,10 @@ public class Step {
         return value;
     }
 
+    public boolean isConsecutiveSteps(Step step) {
+        return value && step.value;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -30,5 +34,4 @@ public class Step {
     public int hashCode() {
         return Objects.hash(value);
     }
-
 }

@@ -40,7 +40,7 @@ class LadderResultTest {
     @DisplayName("한명의 결과")
     void result_of_player(String playersName, String resultsName, List<Boolean> lineList, String winnerPlayerName, String expected) throws Exception {
         //given
-        Line line = Line.of(lineList);
+        Line line = Line.valueOf(lineList);
         Lines lines = Lines.of(Arrays.asList(line));
         Ladder ladder = Ladder.of(playersName, lines);
 

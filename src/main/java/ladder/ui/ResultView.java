@@ -31,7 +31,7 @@ public class ResultView {
 
     private static String lineToDash(Line line) {
         return line.getPoints().stream()
-                .map(point -> point ? LINE_DASH : LINE_EMPTY)
+                .map(point -> point.value() ? LINE_DASH : LINE_EMPTY)
                 .collect(Collectors.joining(VERTICAL_DELIMITER, VERTICAL_DELIMITER_PREFIX, VERTICAL_DELIMITER));
     }
 

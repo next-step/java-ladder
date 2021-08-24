@@ -15,7 +15,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LineTest {
 
-    private final Line defaultLine = Line.of(Arrays.asList(true, false, true));
+    private final Line defaultLine = Line.valueOf(Arrays.asList(true, false, true));
 
     @Test
     @DisplayName("연속된 라인으로 생성한 경우")
@@ -24,7 +24,7 @@ class LineTest {
         List<Boolean> lines = Arrays.asList(Boolean.TRUE, Boolean.TRUE);
 
         //when
-        ThrowingCallable actual = () -> Line.of(lines);
+        ThrowingCallable actual = () -> Line.valueOf(lines);
 
         //then
         assertThatThrownBy(actual).isInstanceOf(LineContinuousException.class)
