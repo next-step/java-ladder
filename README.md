@@ -7,3 +7,23 @@
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
+
+---
+
+## 람다 실습
+1. 익명 클래스를 람다로 전환
+2. 람다를 활용해 중복 제거
+    
+## 스트림
+1. map, filter, reduce 사용하기
+   * sumOverThreeAndDouble() 테스트를 pass 시키기.
+2. printLongestWordTop100() 매서드를 구현한다.
+   * 단어의 길이 12자 초과하는 단어를 추출
+   * 12자가 넘는 단어중 긴 순서대로 100개 단어 추출
+   * 단어 중복 허용 x
+   * 100개의 단어 소문자로 출력
+  
+## Optional
+1. 30살 이상 45이하 해당 유저가 있을때 true 반환하는 함수 정의
+
+  
