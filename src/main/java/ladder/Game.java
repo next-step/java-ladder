@@ -1,6 +1,6 @@
 package ladder;
 
-import ladder.domain.Ladder;
+import ladder.domain.Lines;
 import ladder.domain.Users;
 import ladder.view.InputView;
 import ladder.view.OutputView;
@@ -13,7 +13,7 @@ public class Game {
         Users users = Users.valueOf(names);
         int height = InputView.inputHeightOfLadder();
 
-        Ladder ladder = Ladder.create(height, names.size());
+        Lines ladder = Lines.create(height, names.size());
 
         OutputView.printNames(users);
         OutputView.printLadder(ladder);

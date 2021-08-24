@@ -1,12 +1,10 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
+import ladder.domain.Lines;
 import ladder.domain.Line;
 import ladder.domain.Users;
 
-import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class OutputView {
     private static final String RESULT_TITLE = "\n실행결과\n";
@@ -15,11 +13,12 @@ public class OutputView {
     private static final String LINE_DELIMITER = "|";
 
     public static void printNames(Users users) {
+        System.out.println(RESULT_TITLE);
         users.getNames().stream().forEach(name -> System.out.printf("%6s", name.getName()));
         System.out.println();
     }
 
-    public static void printLadder(Ladder ladder) {
+    public static void printLadder(Lines ladder) {
         ladder.getLadder()
               .stream()
               .map(OutputView::generateLine)

@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.IntStream;
 
 public class Line {
 
@@ -16,9 +15,9 @@ public class Line {
         points = new ArrayList<>();
         points.add(false);
 
-        IntStream.range(1, countOfPerson)
-                 .forEach(point -> points.add(PointStrategy.generate(points.get(point - 1))));
-
+        for (int i = 1; i < countOfPerson; i++) {
+            points.add(PointStrategy.generate(points.get(i - 1)));
+        }
     }
 
     public List<Boolean> getPoints() {

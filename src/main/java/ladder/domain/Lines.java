@@ -8,7 +8,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
-public class Ladder {
+public class Lines {
     private static final int LADDER_MINIMUM_HEIGHT = 2;
     private static final int GENERATE_LADDER_MAX_COUNT = 20;
     private static final String INVALID_TRY_COUNT_MESSAGE = "사다리 생성 시도 횟수를 초과했습니다. 다시 시도해주세요.";
@@ -16,11 +16,11 @@ public class Ladder {
 
     private List<Line> ladder;
 
-    private Ladder(List<Line> ladder) {
+    private Lines(List<Line> ladder) {
         this.ladder = ladder;
     }
 
-    public static Ladder create(int height, int countOfPerson) {
+    public static Lines create(int height, int countOfPerson) {
         validateLadderHeight(height);
         List<Line> ladder = new ArrayList<>();
         int tryCount = 0;
@@ -30,7 +30,7 @@ public class Ladder {
             ladder = generateLadder(height, countOfPerson);
             tryCount++;
         }
-        return new Ladder(ladder);
+        return new Lines(ladder);
     }
 
     private static void validateLadderHeight(int height) {
