@@ -30,7 +30,7 @@ public class Lines {
                 .collect(Collectors.toList());
     }
 
-    private List<Boolean> randomLinePoints(Width width, Checkable checkable) {
+    protected List<Boolean> randomLinePoints(Width width, Checkable checkable) {
         List<Boolean> points = new ArrayList<>();
         for (int i = 0; i < width.getLength(); i++) {
             checkPoint(checkable.check(), points, i);
