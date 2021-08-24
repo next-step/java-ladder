@@ -31,6 +31,10 @@ public class Line {
         return new Line(width);
     }
 
+    public void check(int index) {
+        points.set(index, Boolean.TRUE);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -42,9 +46,5 @@ public class Line {
     @Override
     public int hashCode() {
         return Objects.hash(width, points);
-    }
-
-    public void check(int index) {
-        points.set(index, Boolean.TRUE);
     }
 }
