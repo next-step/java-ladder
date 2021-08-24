@@ -2,7 +2,6 @@ package ladder.domain.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static ladder.utils.LineUtil.getLastDirection;
@@ -18,27 +17,22 @@ public final class Line {
     }
 
     public static Line generate(final DirectionStrategy directionStrategy, final int userCount) {
-        List<Direction> directions = new ArrayList<>();
-        directions.add(generateFirstDirection(directionStrategy));
-        directions.addAll(generateMiddleDirections(directionStrategy, userCount, directions));
+        List<Direction> directions = generateDirections(directionStrategy, userCount);
         directions.add(generateLastDirection(directions));
-
         return new Line(directions);
     }
 
-    private static Direction generateFirstDirection(DirectionStrategy directionStrategy) {
-        return Direction.ofFirst(directionStrategy);
+    private static List<Direction> generateDirections(DirectionStrategy directionStrategy, int userCount) {
+        List<Direction> directions = new ArrayList<>();
+        directions.add(Direction.ofFirst(directionStrategy));
+        IntStream.range(0, userCount - MIDDLE_MINUS_COUNT)
+                .mapToObj(ignore -> generateDirection(directionStrategy, directions))
+                .forEach(directions::add);
+
+        return directions;
     }
 
-    private static List<Direction> generateMiddleDirections(DirectionStrategy directionStrategy,
-                                                            int userCount,
-                                                            List<Direction> directions) {
-        return IntStream.range(0, userCount - MIDDLE_MINUS_COUNT)
-                .mapToObj(ignore -> generateMiddleDirection(directionStrategy, directions))
-                .collect(Collectors.toList());
-    }
-
-    private static Direction generateMiddleDirection(DirectionStrategy directionStrategy, List<Direction> directions) {
+    private static Direction generateDirection(DirectionStrategy directionStrategy, List<Direction> directions) {
         return getLastDirection(directions).ofNext(directionStrategy);
     }
 
