@@ -34,7 +34,7 @@ public class Lambda {
         return sumAll(numbers, num -> num > 3);
     }
 
-    private static int sumAll(List<Integer> numbers, Conditional conditional) {
+    public static int sumAll(List<Integer> numbers, Conditional conditional) {
         int total = 0;
         for (int number : numbers) {
             if (conditional.test(number)) {
