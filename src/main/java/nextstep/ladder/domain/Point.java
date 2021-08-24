@@ -4,7 +4,11 @@ import static nextstep.ladder.domain.Direction.*;
 
 import java.util.Objects;
 
+import nextstep.ladder.exception.InvalidFirstPointException;
+
 public class Point {
+
+	private static final int ZERO = 0;
 
 	private final int position;
 	private final Direction direction;
@@ -15,40 +19,43 @@ public class Point {
 	}
 
 	public static Point of(int position, Direction direction) {
+		if (position == ZERO && direction.isLeft()) {
+			throw new InvalidFirstPointException();
+		}
 		return new Point(position, direction);
 	}
 
 	public static Point right(int position) {
-		return new Point(position, RIGHT);
+		return Point.of(position, RIGHT);
 	}
 
 	public static Point left(int position) {
-		return new Point(position, LEFT);
+		return Point.of(position, LEFT);
 	}
 
 	public static Point straight(int position) {
-		return new Point(position, STRAIGHT);
+		return Point.of(position, STRAIGHT);
 	}
 
 	public static Point first(boolean isRightward) {
 		if (isRightward) {
-			return new Point(0, RIGHT);
+			return Point.of(0, RIGHT);
 		}
-		return new Point(0, STRAIGHT);
+		return Point.of(0, STRAIGHT);
 	}
 
 	public static Point next(Point previous, boolean isRightward) {
-		if (previous.direction.isRight()) {
-			return new Point(previous.position + 1, LEFT);
+		if (previous.isRightward()) {
+			return Point.of(previous.position + 1, LEFT);
 		}
 		if (isRightward) {
-			return new Point(previous.position + 1, RIGHT);
+			return Point.of(previous.position + 1, RIGHT);
 		}
-		return new Point(previous.position + 1, STRAIGHT);
+		return Point.of(previous.position + 1, STRAIGHT);
 	}
 
 	public static Point last(Point previous) {
-		if (previous.direction.isRight()) {
+		if (previous.isRightward()) {
 			return new Point(previous.position + 1, LEFT);
 		}
 		return new Point(previous.position + 1, STRAIGHT);
@@ -76,14 +83,16 @@ public class Point {
 
 	@Override
 	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		Point point = (Point) o;
-		return direction == point.direction;
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		Point point = (Point)o;
+		return position == point.position && direction == point.direction;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(direction);
+		return Objects.hash(position, direction);
 	}
 }
