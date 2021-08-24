@@ -7,10 +7,7 @@ public class ResultView {
     private static final String LINE_EMPTY = "     |";
     private static final String LINE_EXIST = "-----|";
 
-    public static void showResult(LadderGame ladderGame) {
-        People people = ladderGame.getPeople();
-        Ladder ladder = ladderGame.getLadder();
-
+    public static void showResult(People people, Ladder ladder) {
         String result = makeResult(people, ladder);
 
         System.out.println(result);

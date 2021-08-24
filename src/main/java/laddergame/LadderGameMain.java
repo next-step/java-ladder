@@ -1,6 +1,7 @@
 package laddergame;
 
-import laddergame.domain.LadderGame;
+import laddergame.domain.Ladder;
+import laddergame.domain.People;
 import laddergame.exception.CustomException;
 import laddergame.view.InputView;
 import laddergame.view.ResultView;
@@ -15,9 +16,10 @@ public class LadderGameMain {
 
             int heightOfLadder = InputView.inputHeightOfLadder();
 
-            LadderGame ladderGame = new LadderGame(peopleString, heightOfLadder);
+            People people = new People(peopleString);
+            Ladder ladder = new Ladder(people.size(), heightOfLadder);
 
-            ResultView.showResult(ladderGame);
+            ResultView.showResult(people, ladder);
         } catch (CustomException e) {
             System.out.println(e.getMessage());
         }
