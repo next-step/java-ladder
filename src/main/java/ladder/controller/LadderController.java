@@ -1,8 +1,8 @@
 package ladder.controller;
 
 import java.util.Map;
-import ladder.domain.ladder.ladder.Ladder;
-import ladder.domain.ladder.ladder.LadderGenerator;
+import ladder.domain.engine.Ladder;
+import ladder.domain.engine.LadderCreator;
 import ladder.domain.player.PlayerNames;
 import ladder.domain.prize.LadderPrizes;
 import ladder.dto.LadderResult;
@@ -43,10 +43,11 @@ public class LadderController {
     }
 
     private void printNamesLadderPrizes(Ladder ladder) {
-        int maxLength = ResultView.findMaxLength(playerNames, ladderPrizes);
-        ResultView.printPlayerNames(playerNames, maxLength);
-        ResultView.printLadder(ladder, maxLength);
-        ResultView.printLadderPrizes(ladderPrizes, maxLength);
+//        int maxLength = ResultView.findMaxLength(playerNames, ladderPrizes);
+//        ResultView.printHeader();
+//        ResultView.printPlayerNames(playerNames, maxLength);
+//        ResultView.printLadder(ladder, maxLength);
+//        ResultView.printLadderPrizes(ladderPrizes, maxLength);
     }
 
     private Map<String, String> executeLadder(Ladder ladder) {
@@ -59,8 +60,8 @@ public class LadderController {
     private Ladder ladderFromInput() {
         int countOfPeople = playerNames.size();
         int ladderHeight = InputView.ladderHeight();
-        LadderGenerator ladderGenerator = LadderFactoryBean.ladderGenerator();
-        return ladderGenerator.generate(ladderHeight, countOfPeople);
+        LadderCreator ladderCreator = LadderFactoryBean.ladderCreator();
+        return ladderCreator.create(countOfPeople, ladderHeight);
     }
 
     private void handleQuery(String query, Map<String, String> nameToPrize) {

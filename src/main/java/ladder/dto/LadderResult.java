@@ -1,22 +1,19 @@
 package ladder.dto;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
 public class LadderResult {
 
-    Map<Integer, Integer> permutation;
+    private Map<Integer, Integer> result = new HashMap<>();
 
-    private LadderResult(Map<Integer, Integer> permutation) {
-        this.permutation = permutation;
+    public void put(int source, int target) {
+        result.put(source, target);
     }
 
-    public static LadderResult of(Map<Integer, Integer> permutation) {
-        return new LadderResult(permutation);
-    }
-
-    public int resultByIndex(int index) {
-        return permutation.get(index);
+    public int findTarget(int source) {
+        return result.get(source);
     }
 
     @Override
@@ -24,22 +21,15 @@ public class LadderResult {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof LadderResult)) {
+        if (o == null || getClass() != o.getClass()) {
             return false;
         }
         LadderResult that = (LadderResult) o;
-        return Objects.equals(permutation, that.permutation);
+        return Objects.equals(result, that.result);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(permutation);
-    }
-
-    @Override
-    public String toString() {
-        return "LadderResult{" +
-                "permutation=" + permutation +
-                '}';
+        return Objects.hash(result);
     }
 }

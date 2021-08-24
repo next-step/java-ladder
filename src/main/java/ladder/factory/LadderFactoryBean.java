@@ -1,26 +1,26 @@
 package ladder.factory;
 
-import ladder.domain.ladder.ladder.LadderGenerator;
-import ladder.domain.ladder.line.LineGenerator;
-import ladder.domain.ladder.point.PointGenerator;
-import ladder.domain.ladder.ladder.RandomLadderGenerator;
-import ladder.domain.ladder.line.RandomLineGenerator;
-import ladder.domain.ladder.point.RandomPointGenerator;
+import ladder.domain.engine.LadderCreator;
+import ladder.domain.engine.LineCreator;
+import ladder.domain.engine.PointCreator;
+import ladder.domain.impl.MyLadderCreator;
+import ladder.domain.impl.MyLineCreator;
+import ladder.domain.impl.MyPointCreator;
 
 public class LadderFactoryBean {
 
     private LadderFactoryBean() {
     }
 
-    public static PointGenerator pointGenerator() {
-        return new RandomPointGenerator();
+    public static PointCreator pointCreator() {
+        return new MyPointCreator();
     }
 
-    public static LineGenerator lineGenerator() {
-        return new RandomLineGenerator(pointGenerator());
+    public static LineCreator lineCreator() {
+        return new MyLineCreator(pointCreator());
     }
 
-    public static LadderGenerator ladderGenerator() {
-        return new RandomLadderGenerator(lineGenerator());
+    public static LadderCreator ladderCreator() {
+        return new MyLadderCreator(lineCreator());
     }
 }

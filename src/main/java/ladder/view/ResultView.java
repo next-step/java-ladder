@@ -4,14 +4,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
-import ladder.domain.ladder.ladder.Ladder;
-import ladder.domain.ladder.line.Line;
-import ladder.domain.ladder.point.Point;
 import ladder.domain.player.PlayerName;
 import ladder.domain.player.PlayerNames;
 import ladder.domain.prize.LadderPrize;
 import ladder.domain.prize.LadderPrizes;
-import ladder.utils.StringUtils;
 
 public class ResultView {
 
@@ -52,28 +48,7 @@ public class ResultView {
      * Methods to print ladder to screen
      */
 
-    public static void printLadder(Ladder ladder, int width) {
-        List<String> lines = ladder.getLines()
-                .stream()
-                .map(line -> lineToString(line, width))
-                .collect(Collectors.toList());
-        System.out.println(String.join(NEWLINE, lines));
-    }
 
-    private static String lineToString(Line line, int width) {
-        List<String> points = line.getPoints()
-                .stream()
-                .map(point -> pointToString(point, width))
-                .collect(Collectors.toList());
-        return String.join(VERTICAL, points) + VERTICAL;
-    }
-
-    private static String pointToString(Point point, int width) {
-        if (point.getLeg().isLeft()) {
-            return StringUtils.repeat(HORIZONTAL, width);
-        }
-        return StringUtils.repeat(SPACE, width);
-    }
 
     /*
      * Methods to print ladder execution results
@@ -96,6 +71,10 @@ public class ResultView {
     /*
      * Helper methods
      */
+
+    public static void printHeader() {
+        System.out.println(RESULT_HEADER);
+    }
 
     public static int findMaxLength(PlayerNames playerNames, LadderPrizes ladderPrizes) {
         List<String> names = playerNames.getNames()
