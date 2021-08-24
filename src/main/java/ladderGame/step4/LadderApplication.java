@@ -1,32 +1,46 @@
 package ladderGame.step4;
 
-import static ladderGame.step4.validation.Validation.validationLimitHeight;
-import static ladderGame.step4.validation.Validation.validationNamesAndGoodsCount;
-
+import java.util.List;
 import ladderGame.step4.controller.LadderMainController;
-import ladderGame.step4.model.Ladder;
-import ladderGame.step4.model.Players;
+import ladderGame.step4.model.MatchResult;
 import ladderGame.step4.model.Prizes;
 import ladderGame.step4.view.InputView;
+import ladderGame.step4.view.ResultView;
 
 public class LadderApplication {
 
+  public static final String ALL_NAMES = "all";
 
   public static void main(String[] args) {
 
     String playerNames = InputView.inputUserNames();
     String goods = InputView.inputGoods();
-
-    validationNamesAndGoodsCount(playerNames, goods);
-
-    Players players = new Players(Players.of(playerNames));
-
     int ladderHeight = InputView.inputLadderHeight();
-    validationLimitHeight(ladderHeight);
-    Ladder ladder = new Ladder(Ladder.of(ladderHeight, players.count()));
 
-    Prizes prizes = new Prizes(Prizes.createPrizes(goods, players.count()));
-    LadderMainController.findLadderInfo(players, ladder, prizes);
+    LadderMainController ladderMainController = new LadderMainController(playerNames, goods, ladderHeight);
+
+    ResultView.printUsersName(ladderMainController.valueOfPlayersName());
+    ResultView.printLadder(ladderMainController.valueOfLadder());
+
+    Prizes prizes = ladderMainController.valueOfPrizes();
+    ResultView.printPrizes(prizes);
+
+    String findName = InputView.inputFindNames();
+
+    List<MatchResult> ladderInfo = ladderMainController.valueOfResult(findName);
+
+    while (!isContinue(findName)) {
+
+      ResultView.printResult(ladderInfo, prizes);
+
+      findName = InputView.inputFindNames();
+      ladderInfo = ladderMainController.valueOfResult(findName);
+    }
+
+    ResultView.printResult(ladderInfo, prizes);
   }
 
+  private static boolean isContinue(final String findName) {
+    return findName.equals(ALL_NAMES);
+  }
 }
