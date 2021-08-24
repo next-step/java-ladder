@@ -1,10 +1,10 @@
 package nextstep.ladder.domain;
 
+import static org.assertj.core.api.Assertions.*;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 class PointTest {
 
@@ -12,8 +12,8 @@ class PointTest {
     @EnumSource(value = Direction.class)
     @ParameterizedTest
     void create(Direction direction) {
-        Point point = new Point(direction);
-        assertThat(point).isEqualTo(new Point(direction));
+        Point point = new Point(0, direction);
+        assertThat(point).isEqualTo(new Point(0, direction));
     }
 
 }
