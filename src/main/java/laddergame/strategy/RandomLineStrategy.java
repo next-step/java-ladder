@@ -6,8 +6,19 @@ public class RandomLineStrategy implements LineStrategy{
 
     private static final Random random = new Random();
 
+    private boolean currentPoint = false;
+
+    public boolean checkCurrentPoint(){
+        return currentPoint;
+    }
+
     @Override
     public boolean create() {
-        return (random.nextBoolean());
+        if(checkCurrentPoint()){
+            currentPoint = false;
+            return false;
+        }
+        currentPoint = random.nextBoolean();
+        return currentPoint;
     }
 }
