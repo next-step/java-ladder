@@ -43,7 +43,7 @@ class AwardTest {
 
     private static Stream<Arguments> construct_exception() {
         return Stream.of(
-                Arguments.of((String) null, 0),
+                Arguments.of(null, 0),
                 Arguments.of("", 0),
                 Arguments.of(" ", 0),
                 Arguments.of("too long name", 13)

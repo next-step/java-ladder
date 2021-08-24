@@ -8,7 +8,6 @@ import ladder.domain.line.Line;
 import ladder.domain.player.Player;
 import ladder.utils.StringUtil;
 
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
