@@ -2,6 +2,7 @@ package nextstep.ladder.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import nextstep.ladder.enums.LadderStatus;
 import nextstep.ladder.exceptions.LadderStatusAddFailureException;
@@ -15,18 +16,36 @@ public class Line {
 	}
 
 	public void addLadderStatus(LadderStatus currentLadderStatus) {
-		if (ladderStatuses.size() > 0) {
-			LadderStatus previousLadderStatus = ladderStatuses.get(ladderStatuses.size() - 1);
-			ladderStatusValidate(previousLadderStatus, currentLadderStatus);
+		if (!isValidLadderStatus(currentLadderStatus)) {
+			throw new LadderStatusAddFailureException("이전 사다리가 연결된 상태입니다.");
 		}
 
 		ladderStatuses.add(currentLadderStatus);
 	}
 
-	private void ladderStatusValidate(LadderStatus previousLadderStatus, LadderStatus currentLadderStatus) {
+	public void addRandomLadderStatus() {
+		Random random = new Random();
+		LadderStatus ladderStatus = LadderStatus.of(random.nextInt(2));
+
+		if (!isValidLadderStatus(ladderStatus)) {
+			ladderStatus = LadderStatus.UNLINKED;
+		}
+
+		addLadderStatus(ladderStatus);
+	}
+
+	private boolean isValidLadderStatus(LadderStatus currentLadderStatus) {
+		if (ladderStatuses.size() == 0) {
+			return true;
+		}
+
+		LadderStatus previousLadderStatus = ladderStatuses.get(ladderStatuses.size() - 1);
+
 		if (previousLadderStatus.equals(LadderStatus.LINKED) &&
 			currentLadderStatus.equals(LadderStatus.LINKED)) {
-			throw new LadderStatusAddFailureException("이전 사다리가 연결된 상태입니다.");
+			return false;
 		}
+
+		return true;
 	}
 }
