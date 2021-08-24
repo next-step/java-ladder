@@ -13,7 +13,7 @@ class PersonTest {
     void person() {
         Person person = Person.of("Phobi");
 
-        assertThat(person.getName()).isEqualTo("Phobi");
+        assertThat(person.name()).isEqualTo("Phobi");
     }
 
     @DisplayName("사람이 이름은 최대 5글자 초과이면 IllegalArgument 발생")

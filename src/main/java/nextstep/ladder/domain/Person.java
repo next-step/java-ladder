@@ -19,7 +19,7 @@ public class Person {
         return new Person(name);
     }
 
-    public String getName() {
+    public String name() {
         return name;
     }
 

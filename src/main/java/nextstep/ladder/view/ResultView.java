@@ -13,7 +13,7 @@ public class ResultView {
     public static final String LADDER_BLANK = "     ";
 
     public static void show(List<Line> ladderLines, Persons persons) {
-        persons.forEach(person -> System.out.print(appendBlank(person.getName())));
+        persons.forEach(person -> System.out.print(appendBlank(person.name())));
         System.out.println();
         ladderLines.forEach(ResultView::points);
     }
@@ -52,7 +52,7 @@ public class ResultView {
     public static void results(LadderResult ladderResult, Persons persons) {
         System.out.println("전체결과");
         persons.forEach(person ->
-            System.out.println(person.getName() + " : " + ladderResult.resultByName(person.getName()))
+            System.out.println(person.name() + " : " + ladderResult.resultByName(person.name()))
         );
 
     }

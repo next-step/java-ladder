@@ -5,6 +5,7 @@ import java.util.function.Consumer;
 
 public class Persons {
 
+    public static final int MIN_PERSON_SIZE = 2;
     private final List<Person> persons;
 
     private Persons(List<Person> persons) {
@@ -12,7 +13,7 @@ public class Persons {
     }
 
     public static Persons of(List<Person> gamers) {
-        if (gamers.size() < 2) {
+        if (gamers.size() < MIN_PERSON_SIZE) {
             throw new IllegalArgumentException("참가자는 최소 두명 이상이여야 합니다.");
         }
 
@@ -23,7 +24,7 @@ public class Persons {
         for (int i = 0; i < persons.size(); i++) {
             Person person = persons.get(i);
 
-            if (person.getName().equals(name)) {
+            if (person.name().equals(name)) {
                 return i;
             }
         }
