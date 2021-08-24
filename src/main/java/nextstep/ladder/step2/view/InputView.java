@@ -1,5 +1,7 @@
 package nextstep.ladder.step2.view;
 
+import nextstep.ladder.step2.domain.Validation;
+
 import java.util.Scanner;
 
 public class InputView {
@@ -9,7 +11,7 @@ public class InputView {
 
     public static String inputPlayers() {
         System.out.println(INPUT_PLAYERS_MESSAGE);
-        return sc.nextLine();
+        return Validation.isEmptyAndNull(sc.nextLine());
     }
 
     public static int inputLadderCount() {
