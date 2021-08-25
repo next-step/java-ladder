@@ -30,4 +30,8 @@ public class Members {
 	public int size() {
 		return members.size();
 	}
+
+	public Member member(int index) {
+		return members.get(index);
+	}
 }

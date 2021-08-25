@@ -22,4 +22,12 @@ public class Ladder {
 
 		return new Ladder(lines);
 	}
+
+	public Line getLine(int index) {
+		return lines.get(index);
+	}
+
+	public int size() {
+		return lines.size();
+	}
 }

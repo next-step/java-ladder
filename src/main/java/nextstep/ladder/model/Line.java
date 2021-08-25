@@ -25,7 +25,7 @@ public class Line {
 
 	public void addRandomLadderStatus() {
 		Random random = new Random();
-		LadderStatus ladderStatus = LadderStatus.of(random.nextInt(2));
+		LadderStatus ladderStatus = LadderStatus.of(random.nextInt(2) + 1);
 
 		if (!isValidLadderStatus(ladderStatus)) {
 			ladderStatus = LadderStatus.UNLINKED;
@@ -47,5 +47,13 @@ public class Line {
 		}
 
 		return true;
+	}
+
+	public LadderStatus getLadderStatus(int index) {
+		return ladderStatuses.get(index);
+	}
+
+	public int size() {
+		return ladderStatuses.size();
 	}
 }
