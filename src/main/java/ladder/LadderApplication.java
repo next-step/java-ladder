@@ -18,8 +18,8 @@ public final class LadderApplication {
         String[] resultValues = inputView.getInputResultValues();
         int ladderMaxHeight = inputView.getInputLadderMaxHeight();
 
-        LadderGame ladderGame = new LadderGame(ladderMaxHeight, userNames);
-        Ladder ladder = ladderGame.generateLadder(new RandomDirectionStrategy());
+        LadderGame ladderGame = new LadderGame(userNames);
+        Ladder ladder = ladderGame.generateLadder(ladderMaxHeight, new RandomDirectionStrategy());
 
         OutputView.displayLadderGameResult(ladder, userNames, resultValues);
     }
