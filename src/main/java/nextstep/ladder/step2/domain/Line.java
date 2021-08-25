@@ -13,10 +13,11 @@ public class Line {
         points.add(false);
     }
 
-    public void createLine(int playerCount) {
+    public Line createLine(int playerCount) {
         for (int i = 1; i < playerCount; i++) {
             points.add(checkPreviousPoint(points.get(i-1)));
         }
+        return this;
     }
 
     public boolean checkPreviousPoint(boolean previousPoint) {
@@ -24,6 +25,10 @@ public class Line {
             return false;
         }
         return random.nextBoolean();
+    }
+
+    public int getPointSize() {
+        return points.size();
     }
 
     public List<Boolean> getPoints() {

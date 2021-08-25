@@ -16,16 +16,18 @@ public class ResultView {
             System.out.print(String.format("%6s",name));
         }
         System.out.println();
+        StringBuilder sb = new StringBuilder();
         for (Line line : ladder.getLines()) {
             for (boolean point : line.getPoints()){
                 if (point){
-                    System.out.print(HORIZONTAL_LINE);
+                   sb.append(HORIZONTAL_LINE);
                 }else {
-                    System.out.print(EMPTY_LINE);
+                    sb.append(EMPTY_LINE);
                 }
             }
-            System.out.println();
+            sb.append("\n");
         }
+        System.out.println(sb);
     }
 
 }
