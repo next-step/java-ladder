@@ -1,4 +1,4 @@
-package nextstep.optional;
+package nextstep.step1.optional;
 
 import org.junit.jupiter.api.Test;
 
@@ -12,10 +12,10 @@ public class UsersTest {
         assertThat(users.getUser("crong")).isEqualTo(new User("crong", 35));
     }
 
-
     @Test
     public void getDefaultUser() {
         Users users = new Users();
         assertThat(users.getUser("codesquard")).isEqualTo(Users.DEFAULT_USER);
     }
+
 }

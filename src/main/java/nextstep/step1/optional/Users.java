@@ -1,4 +1,4 @@
-package nextstep.optional;
+package nextstep.step1.optional;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,11 +13,10 @@ public class Users {
             new User("honux", 45));
 
     User getUser(String name) {
-        for (User user : users) {
-            if (user.matchName(name)) {
-                return user;
-            }
-        }
-        return DEFAULT_USER;
+        return users.stream()
+                .filter(user -> user.matchName(name))
+                .findAny()
+                .orElse(DEFAULT_USER);
     }
+
 }
