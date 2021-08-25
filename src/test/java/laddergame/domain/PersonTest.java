@@ -20,7 +20,7 @@ class PersonTest {
         Person person = new Person(name);
 
         // then
-        assertThat(person.getName()).isEqualTo(name);
+        assertThat(person).isEqualTo(new Person(name));
     }
 
     @ParameterizedTest(name = "Person 생성 실패 empty string")

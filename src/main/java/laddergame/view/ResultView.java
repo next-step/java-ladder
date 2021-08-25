@@ -6,6 +6,7 @@ public class ResultView {
 
     private static final String LINE_EMPTY = "     |";
     private static final String LINE_EXIST = "-----|";
+    private static final int PERSON_DISPLAY_SPACE = Person.MAX_LENGTH_OF_NAME + 1;
 
     public static void showResult(People people, Ladder ladder) {
         String result = makeResult(people, ladder);
@@ -17,8 +18,8 @@ public class ResultView {
         StringBuilder stringBuilder = new StringBuilder();
 
         people.stream()
-                .map(Person::getName)
-                .map(name -> String.format("%"+ (Person.MAX_LENGTH_OF_NAME+1) +"s", name))
+                .map(Person::toString)
+                .map(name -> String.format("%"+ PERSON_DISPLAY_SPACE +"s", name))
                 .forEach(stringBuilder::append);
 
         ladder.stream()
