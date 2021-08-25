@@ -3,6 +3,7 @@ package ladder.controller;
 import java.util.Map;
 import ladder.domain.engine.Ladder;
 import ladder.domain.engine.LadderCreator;
+import ladder.domain.impl.MyLadder;
 import ladder.domain.player.PlayerNames;
 import ladder.domain.prize.LadderPrizes;
 import ladder.dto.LadderResult;
@@ -46,7 +47,7 @@ public class LadderController {
         ResultView.printHeader();
         int maxLength = ResultView.findMaxLength(playerNames, ladderPrizes);
         ResultView.printPlayerNames(playerNames, maxLength);
-//        ResultView.printLadder(ladder, maxLength);
+        ResultView.printLadder((MyLadder) ladder, maxLength);
         ResultView.printLadderPrizes(ladderPrizes, maxLength);
     }
 
