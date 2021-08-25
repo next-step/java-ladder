@@ -31,7 +31,11 @@ public final class LadderApplication {
 
         while (true) {
             String targetUser = inputView.getInputResultValueTarget();
-            Result result = ladderGame.executionLadderGame(ladder, targetUser);
+            if (targetUser.equals("all")) {
+                //ladderGame.execute(ladder);
+                break;
+            }
+            Result result = ladderGame.execute(ladder, targetUser);
             OutputView.result(result);
         }
     }

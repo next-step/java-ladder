@@ -22,7 +22,7 @@ public final class LadderGame {
         return new Ladder(directionStrategy, ladderHeight, users.getUserCount());
     }
 
-    public Result executionLadderGame(final Ladder ladder, final String username) {
+    public Result execute(final Ladder ladder, final String username) {
         int startPosition = users.indexOf(username);
         int resultIndex = ladder.run(startPosition);
         return results.get(resultIndex);

@@ -3,7 +3,6 @@ package ladder.domain;
 import ladder.domain.ladder.DirectionStrategy;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.result.Result;
-import ladder.exception.LadderLackOfUserException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -51,7 +50,7 @@ class LadderGameTest {
         Ladder ladder = ladderGame.generateLadder(ladderHeight, directionStrategy);
 
         // when
-        Result actual = ladderGame.executionLadderGame(ladder, username);
+        Result actual = ladderGame.execute(ladder, username);
 
         // then
         assertThat(actual).isEqualTo(new Result("꽝"));
