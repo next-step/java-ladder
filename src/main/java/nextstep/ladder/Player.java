@@ -4,7 +4,7 @@ import static nextstep.ladder.CommonConstans.NAME_SIZE;
 
 public class Player {
 
-    String player;
+    private String player;
 
 
     public Player(String player) {

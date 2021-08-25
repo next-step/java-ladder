@@ -10,7 +10,6 @@ import static nextstep.ladder.CommonConstans.*;
 public class Ladder {
 
     private List<Boolean> lines = new ArrayList<>();
-    private StringBuffer stringLine = new StringBuffer();
     private LineStrategy lineStrategy;
     int numberOfPlayer;
 
@@ -19,13 +18,11 @@ public class Ladder {
         this.numberOfPlayer = numberOfPlayer;
         this.lineStrategy = lineStrategy;
         initLadder();
-        drawLadderLine();
     }
 
     public static Ladder of(int numberOfPlayer, LineStrategy lineStrategy) {
         return new Ladder(numberOfPlayer, lineStrategy);
     }
-
 
     private void initLadder() {
         lines.add(lineStrategy.lineAble());
@@ -33,40 +30,28 @@ public class Ladder {
                 .forEach(idx -> createBooleanLine(idx));
     }
 
-
     private void createBooleanLine(int row) {
         if (lines.get(row - NUMBER_ONE)) {
-            lines.add(false);
+            lines.add(COMMON_FALSE);
             return;
         }
-        lines.add(true);
+        lines.add(COMMON_TRUE);
     }
 
-
-    private void drawLadderLine() {
-        for (int index = NUMBER_ZERO; index < numberOfPlayer; index++) {
-            createStringLine(lines.get(index), index);
-        }
-    }
-
-    private void createStringLine(boolean line, int index) {
-        if (index == (numberOfPlayer - NUMBER_ONE)) {
-            stringLine.append(FALSE_LINE);
-            return;
-        }
-
-        if (line) {
-            stringLine.append(TRUE_LINE);
-            return;
-        }
-        stringLine.append(FALSE_LINE);
-    }
-
-    public StringBuffer getStringLine() {
-        return stringLine;
-    }
 
     public List<Boolean> getLines() {
         return Collections.unmodifiableList(this.lines);
+    }
+
+
+    public int movePoint(int startPoint) {
+        if (startPoint > NUMBER_ZERO && lines.get(startPoint - NUMBER_ONE)) { // 왼쪽값 비교
+            return startPoint - NUMBER_ONE;
+        }
+        if (lines.get(startPoint) && startPoint != lines.size() - NUMBER_ONE) { // 자신 및 오른쪽비교
+            return startPoint + NUMBER_ONE;
+        }
+
+        return startPoint;
     }
 }
