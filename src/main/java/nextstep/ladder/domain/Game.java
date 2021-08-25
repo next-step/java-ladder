@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.domain.line.Line;
 import nextstep.ladder.utils.StringUtils;
 
 import java.util.ArrayList;

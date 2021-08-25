@@ -1,4 +1,4 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.line;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,10 +21,14 @@ public class Line {
         this.points = points;
     }
 
-    public static Line from(Boolean... existPoint) {
+    public static Line from(Boolean... existPoints) {
         return new Line(
-                Arrays.stream(existPoint)
+                Arrays.stream(existPoints)
                         .collect(Collectors.toList()));
+    }
+
+    public static Line from(List<Boolean> existPoints) {
+        return new Line(existPoints);
     }
 
     private void validContinuous(List<Boolean> points) {
