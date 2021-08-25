@@ -6,6 +6,7 @@ public class Player {
 
     public static final int MAX_LENGTH = 5;
     public static final int MIN_LENGTH = 1;
+
     private final String name;
 
     private Player(String name) {

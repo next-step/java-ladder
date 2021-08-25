@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 public class Game {
 
     private static final int MIN_LADDER_HEIGHT = 1;
+
     private List<Line> lines = new ArrayList<>();
     private List<Player> players = new ArrayList<>();
 

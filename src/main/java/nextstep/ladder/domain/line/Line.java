@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 public class Line {
 
     public static final int MIN_POINT_COUNT = 2;
+
     private List<Boolean> points = new ArrayList<>();
 
     private Line() {
