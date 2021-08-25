@@ -37,7 +37,7 @@ public class Game {
     }
 
     private void validateLadderHeight(int ladderHeight) {
-        if (ladderHeight < 0) {
+        if (ladderHeight < MIN_LADDER_HEIGHT) {
             throw new IllegalArgumentException("사다리 높이는 " + MIN_LADDER_HEIGHT + "이상 이여야합니다. 현재 : " + ladderHeight);
         }
     }

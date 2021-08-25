@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 public class Line {
 
+    public static final int MIN_POINT_COUNT = 2;
     private List<Boolean> points = new ArrayList<>();
 
     private Line() {
@@ -42,8 +43,8 @@ public class Line {
     }
 
     private void validPointsCount(List<Boolean> points) {
-        if (points.size() < 2) {
-            throw new IllegalArgumentException("포인트 갯수는 최소 2개 이상 이어야합니다." + "현재 : " + points.size());
+        if (points.size() < MIN_POINT_COUNT) {
+            throw new IllegalArgumentException("포인트 갯수는 최소 " + MIN_POINT_COUNT + "개 이상 이어야합니다." + "현재 : " + points.size());
         }
     }
 
