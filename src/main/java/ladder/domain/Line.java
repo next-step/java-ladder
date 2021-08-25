@@ -5,31 +5,37 @@ import java.util.List;
 import java.util.Random;
 
 public class Line {
-    public static final int MIN_PLAYERS = 2;
-    private List<Boolean> points = new ArrayList<>();
+    private static final int MIN_PLAYERS = 2;
+    private static Random random = new Random();
 
-    public Line(List<Player> players){
-        this(players.size());
+    private final List<Boolean> points = new ArrayList<>();
+
+    Line(List<Boolean> points) {
+        this.points.addAll(points);
     }
 
-    Line(int countOfPlayer) {
+    public static Line create(int countOfPlayer) {
         if (countOfPlayer < MIN_PLAYERS) {
             throw new IllegalArgumentException("최소 2인 이상 플레이 가능합니다.");
         }
-        add(countOfPlayer);
+        return new Line(points(countOfPlayer));
     }
 
-    private void add(int countOfPlayer) {
+    private static List<Boolean> points(int countOfPlayer) {
+        List<Boolean> points = new ArrayList<>();
         boolean state = false;
-        Random random = new Random();
         for (int i = 0; i < countOfPlayer - 1; i++) {
-            if (state) {
-                points.add(false);
-                continue;
-            }
-            state = random.nextBoolean();
+            state = randomState(state);
             points.add(state);
         }
+        return points;
+    }
+
+    private static boolean randomState(boolean beforeState){
+        if (beforeState) {
+            return false;
+        }
+        return random.nextBoolean();
     }
 
     public boolean point(int index){

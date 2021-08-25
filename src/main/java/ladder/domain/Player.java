@@ -3,7 +3,7 @@ package ladder.domain;
 import java.util.Objects;
 
 public class Player {
-    public static final int MAX_NAME_SIZE = 5;
+    private static final int MAX_NAME_SIZE = 5;
     private final String value;
 
     public Player(String name) {

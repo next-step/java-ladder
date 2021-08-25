@@ -1,21 +1,32 @@
 package ladder.domain;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LadderTest {
+    private static Ladder ladder;
 
-    @DisplayName("플레이어 수와 사다리 높이 확인")
+    @BeforeAll
+    static void setUp() {
+        List<Line> lines = Arrays.asList(
+                new Line(Arrays.asList(true, false, false, true)),
+                new Line(Arrays.asList(false, true, false, false)),
+                new Line(Arrays.asList(true, false, true, false)),
+                new Line(Arrays.asList(true, false, false, true))
+        );
+        ladder = new Ladder(lines);
+    }
+
+    @DisplayName("사다리 높이 확인")
     @Test
     void create() {
-        Ladder ladder = new Ladder(Arrays.asList("aa", "bb", "cc", "dd", "ee"), 3);
-        assertThat(ladder.getPlayers().size()).isEqualTo(5);
-        assertThat(ladder.getLines().size()).isEqualTo(3);
-        System.out.println(ladder.toString());
+        assertThat(ladder.getLines().size()).isEqualTo(4);
     }
 
 }

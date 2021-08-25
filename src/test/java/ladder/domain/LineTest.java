@@ -10,7 +10,7 @@ class LineTest {
     @DisplayName("사람 수-1만큼 라인이 생성되어야함.")
     @Test
     void create() {
-        Line line = new Line(5);
+        Line line = Line.create(5);
         assertThat(line.size()).isEqualTo(4);
         System.out.println(line.toString());
     }
@@ -18,7 +18,7 @@ class LineTest {
     @DisplayName("1명은 플레이 불가능")
     @Test
     void error() {
-        assertThatThrownBy(() -> new Line(1)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> Line.create(1)).isInstanceOf(IllegalArgumentException.class);
     }
 
 }
