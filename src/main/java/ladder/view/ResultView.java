@@ -80,9 +80,9 @@ public class ResultView {
 
     private static String tileToString(Tile tile, int width) {
         if (tile.getTileType() == TileType.RIGHT) {
-            return StringUtils.repeat("-", width);
+            return StringUtils.repeat(HORIZONTAL, width);
         }
-        return StringUtils.repeat(" ", width);
+        return StringUtils.repeat(SPACE, width);
     }
 
     /*
