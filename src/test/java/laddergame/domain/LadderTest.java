@@ -18,7 +18,7 @@ public class LadderTest {
         Ladder ladder = new Ladder(countOfPeople, heightOfLadder);
 
         // then
-        assertThat(ladder.stream().count()).isEqualTo(heightOfLadder);
+        assertThat(ladder.getLadder().size()).isEqualTo(heightOfLadder);
     }
 
 }

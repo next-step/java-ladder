@@ -18,7 +18,7 @@ public class LadderGameMain {
 
             People people = new People(peopleString);
 
-            int widthOfLadder = people.size() - 1;
+            int widthOfLadder = peopleString.size() - 1;
             Ladder ladder = new Ladder(widthOfLadder, heightOfLadder);
 
             ResultView.showResult(people, ladder);

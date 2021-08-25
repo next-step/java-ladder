@@ -1,8 +1,8 @@
 package laddergame.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class People {
 
@@ -14,12 +14,8 @@ public class People {
                 .collect(Collectors.toList());;
     }
 
-    public int size() {
-        return people.size();
-    }
-
-    public Stream<Person> stream() {
-        return people.stream();
+    public List<Person> getPeople() {
+        return Collections.unmodifiableList(people);
     }
 
 }

@@ -17,12 +17,12 @@ public class ResultView {
     private static String makeResult(People people, Ladder ladder) {
         StringBuilder stringBuilder = new StringBuilder();
 
-        people.stream()
+        people.getPeople().stream()
                 .map(Person::toString)
                 .map(name -> String.format("%"+ PERSON_DISPLAY_SPACE +"s", name))
                 .forEach(stringBuilder::append);
 
-        ladder.stream()
+        ladder.getLadder()
                 .forEach(line -> { stringBuilder.append(System.lineSeparator())
                         .append(LINE_EMPTY)
                         .append(makeLineResult(line));

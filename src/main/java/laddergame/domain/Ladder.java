@@ -4,8 +4,8 @@ import laddergame.strategy.LineStrategy;
 import laddergame.strategy.RandomLineStrategy;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.Stream;
 
 public class Ladder {
     private final List<Line> ladder = new ArrayList<>();
@@ -17,7 +17,7 @@ public class Ladder {
         }
     }
 
-    public Stream<Line> stream() {
-        return ladder.stream();
+    public List<Line> getLadder() {
+        return Collections.unmodifiableList(ladder);
     }
 }
