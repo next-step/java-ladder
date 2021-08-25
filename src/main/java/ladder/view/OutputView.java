@@ -31,8 +31,8 @@ public class OutputView {
 
     private void printLine(Line line) {
         System.out.print(LINE_START);
-        for (int i = 0; i < line.size(); i++) {
-            if (line.point(i)) {
+        for (int i = 0; i < line.size() - 1; i++) {
+            if (line.isRight(i)) {
                 System.out.print(LINE_TRUE);
                 continue;
             }
@@ -47,7 +47,7 @@ public class OutputView {
             printAllResult(ladder, ladderResult);
             return;
         }
-        System.out.println(ladderResult.result(name, ladder));
+        System.out.println(ladderResult.result(name, ladder).getResult());
     }
 
     private void printAllResult(Ladder ladder, LadderResult ladderResult) {

@@ -28,22 +28,21 @@ public class LadderResult {
     public List<ResultDto> results(Ladder ladder) {
         List<ResultDto> matchedResults = new ArrayList<>();
         for (int i = 0; i < players.size(); i++) {
-            matchedResults.add(new ResultDto(players.get(i), result(i, ladder)));
+            matchedResults.add(result(i,ladder));
         }
         return matchedResults;
     }
 
-    public String result(String name, Ladder ladder) {
+    public ResultDto result(String name, Ladder ladder) {
         return result(new Player(name), ladder);
     }
 
-    private String result(Player player, Ladder ladder) {
+    private ResultDto result(Player player, Ladder ladder) {
         int playerIndex = this.players.index(player);
         return result(playerIndex, ladder);
     }
 
-    private String result(int index, Ladder ladder) {
-        int matchedIndex = ladder.index(index);
-        return results.get(matchedIndex);
+    private ResultDto result(int index, Ladder ladder) {
+        return new ResultDto(players.get(index), results.get(ladder.movedPosition(index)));
     }
 }

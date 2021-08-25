@@ -2,44 +2,61 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+
+import static ladder.util.LadderPointGenerator.generatePoint;
 
 public class Line {
-    private static final int MIN_PLAYERS = 2;
-    private static Random random = new Random();
+    private final List<Point> points;
 
-    private final List<Boolean> points = new ArrayList<>();
-
-    Line(List<Boolean> points) {
-        this.points.addAll(points);
+    public Line(List<Point> points) {
+        this.points = points;
     }
 
-    public static Line create(int countOfPlayer) {
-        if (countOfPlayer < MIN_PLAYERS) {
-            throw new IllegalArgumentException("최소 2인 이상 플레이 가능합니다.");
+    public static Line of(List<Boolean> booleans) {
+        List<Point> points = new ArrayList<>();
+        Direction direction = Direction.first(booleans.get(0));
+        points.add(0, new Point(0, direction));
+        for(int i=1; i< booleans.size(); i++){
+            points.add(i, new Point(i, direction.next(booleans.get(i))));
+            direction = direction.next(booleans.get(i));
         }
-        return new Line(points(countOfPlayer));
+        points.add(booleans.size(), new Point(booleans.size(), direction.last()));
+        return new Line(points);
     }
 
-    private static List<Boolean> points(int countOfPlayer) {
-        List<Boolean> points = new ArrayList<>();
-        boolean state = false;
-        for (int i = 0; i < countOfPlayer - 1; i++) {
-            state = randomState(state);
-            points.add(state);
+    public int move(int position) {
+        return points.get(position).move();
+    }
+
+    public static Line init(int sizeOfPerson) {
+        List<Point> points = new ArrayList<>();
+        Point point = initFirst(points);
+        point = initBody(sizeOfPerson, points, point);
+        initLast(points, point);
+        return new Line(points);
+    }
+
+    private static Point initBody(int sizeOfPerson, List<Point> points, Point point) {
+        for (int i = 1; i < sizeOfPerson - 1; i++) {
+            point = point.next();
+            points.add(point);
         }
-        return points;
+        return point;
     }
 
-    private static boolean randomState(boolean beforeState){
-        if (beforeState) {
-            return false;
-        }
-        return random.nextBoolean();
+    private static void initLast(List<Point> points, Point point) {
+        point = point.last();
+        points.add(point);
     }
 
-    public boolean point(int index){
-        return points.get(index);
+    private static Point initFirst(List<Point> points) {
+        Point point = Point.first(generatePoint());
+        points.add(point);
+        return point;
+    }
+
+    public boolean isRight(int index){
+        return points.get(index).isRight();
     }
 
     public int size(){
@@ -48,6 +65,8 @@ public class Line {
 
     @Override
     public String toString() {
-        return points.toString();
+        return "LadderLine{" +
+                "points=" + points +
+                '}';
     }
 }
