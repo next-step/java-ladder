@@ -33,4 +33,12 @@ public class Tile {
     public int permute() {
         return position + tileType.move();
     }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public TileType getTileType() {
+        return tileType;
+    }
 }

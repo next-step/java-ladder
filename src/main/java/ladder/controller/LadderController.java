@@ -43,11 +43,11 @@ public class LadderController {
     }
 
     private void printNamesLadderPrizes(Ladder ladder) {
-//        int maxLength = ResultView.findMaxLength(playerNames, ladderPrizes);
-//        ResultView.printHeader();
-//        ResultView.printPlayerNames(playerNames, maxLength);
+        ResultView.printHeader();
+        int maxLength = ResultView.findMaxLength(playerNames, ladderPrizes);
+        ResultView.printPlayerNames(playerNames, maxLength);
 //        ResultView.printLadder(ladder, maxLength);
-//        ResultView.printLadderPrizes(ladderPrizes, maxLength);
+        ResultView.printLadderPrizes(ladderPrizes, maxLength);
     }
 
     private Map<String, String> executeLadder(Ladder ladder) {

@@ -19,4 +19,8 @@ public class MyLine implements Line {
     public int permute(int source) {
         return tiles.get(source).permute();
     }
+
+    public List<Tile> getTiles() {
+        return tiles;
+    }
 }

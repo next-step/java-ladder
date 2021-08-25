@@ -4,10 +4,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
+import ladder.domain.engine.Ladder;
+import ladder.domain.engine.Line;
+import ladder.domain.impl.MyLadder;
+import ladder.domain.impl.MyLine;
+import ladder.domain.impl.Tile;
+import ladder.domain.impl.TileType;
 import ladder.domain.player.PlayerName;
 import ladder.domain.player.PlayerNames;
 import ladder.domain.prize.LadderPrize;
 import ladder.domain.prize.LadderPrizes;
+import ladder.utils.StringUtils;
 
 public class ResultView {
 
@@ -47,6 +54,21 @@ public class ResultView {
     /*
      * Methods to print ladder to screen
      */
+
+    public static void printLadder(MyLadder ladder) {
+        ladder.getLines()
+                .forEach(line -> printLine((MyLine) line));
+    }
+
+    private static void printLine(MyLine line) {
+    }
+
+    private static String tileToString(Tile tile, int width) {
+        if (tile.getTileType() == TileType.RIGHT) {
+            return StringUtils.repeat("-", width);
+        }
+        return StringUtils.repeat(" ", width);
+    }
 
     /*
      * Methods to print ladder execution results

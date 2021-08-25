@@ -36,4 +36,12 @@ public class MyLadder implements Ladder {
         }
         return target;
     }
+
+    public int getCountOfPeople() {
+        return countOfPeople;
+    }
+
+    public List<Line> getLines() {
+        return lines;
+    }
 }
