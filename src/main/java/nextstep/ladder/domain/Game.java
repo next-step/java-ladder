@@ -54,4 +54,16 @@ public class Game {
     public int hashCode() {
         return Objects.hash(players);
     }
+
+    @Override
+    public String toString() {
+
+        return players.stream()
+                .map(Player::toString)
+                .collect(Collectors.joining(" ")) +
+                "\n" +
+                lines.stream()
+                        .map(Line::toString)
+                        .collect(Collectors.joining("\n"));
+    }
 }

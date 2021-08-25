@@ -5,11 +5,11 @@ import java.util.List;
 
 public class RandomUtils {
 
-    public static List<Boolean> getBooleanList(int pointCount) {
-        boolean temp = getBoolean();
+    public static List<Boolean> getBooleanList(int countOfPlayer) {
+        boolean temp = false;
         List<Boolean> booleans = new ArrayList<>();
-        booleans.add(temp);
-        for (int i = 1; i < pointCount; i++) {
+        booleans.add(false);
+        for (int i = 1; i < countOfPlayer; i++) {
             if (temp) {
                 temp = false;
                 booleans.add(false);

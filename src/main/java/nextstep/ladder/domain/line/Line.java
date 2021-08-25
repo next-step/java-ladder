@@ -47,6 +47,13 @@ public class Line {
         }
     }
 
+    private String parseToDot(boolean value) {
+        if (value) {
+            return "-----|";
+        }
+        return "     |";
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -58,5 +65,12 @@ public class Line {
     @Override
     public int hashCode() {
         return Objects.hash(points);
+    }
+
+    @Override
+    public String toString() {
+        return points.stream()
+                .map(this::parseToDot)
+                .collect(Collectors.joining());
     }
 }

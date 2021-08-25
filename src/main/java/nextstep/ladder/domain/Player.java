@@ -27,6 +27,11 @@ public class Player {
     }
 
     @Override
+    public String toString() {
+        return String.format("%5s", name);
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Player)) return false;

@@ -1,5 +1,7 @@
 package nextstep.ladder.view;
 
+import nextstep.ladder.domain.Game;
+
 public class ResultView {
 
     public static void requestPlayerNames() {
@@ -10,7 +12,8 @@ public class ResultView {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
     }
 
-    public static void printResult() {
+    public static void printResult(Game game) {
         System.out.println("실행결과");
+        System.out.println(game);
     }
 }
