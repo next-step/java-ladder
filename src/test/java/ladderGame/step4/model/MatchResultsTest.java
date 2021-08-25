@@ -14,7 +14,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class MatchResultsTest {
 
-  @DisplayName("사다리게임 전체결과 객체 생성 테스트.")
+  @DisplayName("사다리객체와 사용자 객체를 주입했을 때 검색하는 사용자 명에 대한 사다리 결과값 인덱스를 반환해야 한다.")
   @ParameterizedTest
   @CsvSource(value = {"user2,0,1", "user1,0,0", "all,0,0", "all,1,1"})
   void crateMatchResultsTest(String name, int userIndex, int result) {
@@ -32,7 +32,7 @@ class MatchResultsTest {
     assertThat(findUser.get(userIndex).getIndex()).isEqualTo(result);
   }
 
-  @DisplayName("사다리게임 전체결과 객체 생성 테스트.")
+  @DisplayName("사다리객체와 사용자 객체를 주입했을 때 검색대상자가 없을때 에러를 반환한다.")
   @ParameterizedTest
   @ValueSource(strings = "user3")
   @NullSource
