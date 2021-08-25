@@ -17,7 +17,9 @@ public class LadderGameMain {
             int heightOfLadder = InputView.inputHeightOfLadder();
 
             People people = new People(peopleString);
-            Ladder ladder = new Ladder(people.size(), heightOfLadder);
+
+            int widthOfLadder = people.size() - 1;
+            Ladder ladder = new Ladder(widthOfLadder, heightOfLadder);
 
             ResultView.showResult(people, ladder);
         } catch (CustomException e) {
