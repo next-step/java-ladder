@@ -1,10 +1,5 @@
 package ladder.view;
 
-import static ladder.domain.impl.TileType.DOWN;
-import static ladder.domain.impl.TileType.LEFT;
-import static ladder.domain.impl.TileType.RIGHT;
-
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -133,16 +128,5 @@ public class ResultView {
     private static String spaceString(String string, int width) {
         String template = String.format("%%%ds", width);
         return String.format(template, string);
-    }
-
-    public static void main(String[] args) {
-        List<Tile> topTiles = Arrays.asList(
-                Tile.of(0, RIGHT), Tile.of(1, LEFT), Tile.of(2, DOWN));
-        List<Tile> bottomTiles = Arrays.asList(
-                Tile.of(0, DOWN), Tile.of(1, RIGHT), Tile.of(2, LEFT));
-        MyLine topLine = MyLine.of(topTiles);
-        MyLine bottomLine = MyLine.of(bottomTiles);
-        System.out.println("top line    : " + lineToString(topLine, 5));
-        System.out.println("bottom line : " + lineToString(bottomLine, 5));
     }
 }
