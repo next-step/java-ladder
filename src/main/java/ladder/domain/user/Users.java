@@ -1,16 +1,20 @@
 package ladder.domain.user;
 
+import ladder.exception.LadderLackOfUserException;
 import ladder.exception.OverlapUserNamesException;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Users {
 
+    public static final int MIN_USER_COUNT = 2;
+
     private final List<User> users;
 
     public Users(final List<String> userNames) {
+        validateUserCount(userNames);
+
         users = userNames.stream()
                 .distinct()
                 .map(User::new)
@@ -18,6 +22,12 @@ public class Users {
 
         if (userNames.size() != users.size()) {
             throw new OverlapUserNamesException();
+        }
+    }
+
+    private void validateUserCount(final List<String> users) {
+        if (users.size() < MIN_USER_COUNT) {
+            throw new LadderLackOfUserException();
         }
     }
 

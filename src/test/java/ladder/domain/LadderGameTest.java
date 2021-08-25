@@ -43,13 +43,6 @@ class LadderGameTest {
     }
 
     @Test
-    @DisplayName("참여할사람 수가 없을때 Exception 발생")
-    void ladderGameNoneUserException() {
-        assertThatThrownBy(() -> new LadderGame(Arrays.asList("unknown"), Arrays.asList("꽝", "1000", "20000")))
-                .isInstanceOf(LadderLackOfUserException.class);
-    }
-
-    @Test
     @DisplayName("사용자 이름을 받아 사다리 실행 결과값을 준다.")
     void ladderGameRun() {
         // given

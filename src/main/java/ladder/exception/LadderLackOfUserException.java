@@ -1,6 +1,6 @@
 package ladder.exception;
 
-import static ladder.domain.LadderGame.MIN_USER_COUNT;
+import static ladder.domain.user.Users.MIN_USER_COUNT;
 
 public final class LadderLackOfUserException extends IllegalArgumentException {
 
