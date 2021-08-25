@@ -5,6 +5,8 @@ import java.util.List;
 
 public class RandomUtils {
 
+    public static final double RATIO_OF_CREATE_POINT = 0.5;
+
     public static List<Boolean> getBooleanList(int countOfPlayer) {
         boolean temp = false;
         List<Boolean> booleans = new ArrayList<>();
@@ -23,6 +25,6 @@ public class RandomUtils {
     }
 
     private static Boolean getBoolean() {
-        return Math.random() > 0.5;
+        return Math.random() > RATIO_OF_CREATE_POINT;
     }
 }
