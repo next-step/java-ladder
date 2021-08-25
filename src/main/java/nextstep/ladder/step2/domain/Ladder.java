@@ -2,6 +2,7 @@ package nextstep.ladder.step2.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class Ladder {
     private static final int LADDER_MIN_COUNT = 2;
@@ -23,5 +24,9 @@ public class Ladder {
 
     public List<Line> getLines() {
         return lines;
+    }
+
+    public Stream<Line> stream() {
+        return lines.stream();
     }
 }

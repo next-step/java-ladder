@@ -3,6 +3,7 @@ package nextstep.ladder.step2.domain;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Player {
     private static final String DELIMITER = ",";
@@ -32,5 +33,9 @@ public class Player {
 
     public List<Name> getPlayers() {
         return players;
+    }
+
+    public Stream<Name> stream(){
+        return players.stream();
     }
 }

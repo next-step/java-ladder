@@ -1,6 +1,9 @@
 package nextstep.ladder.step2;
 
+import nextstep.ladder.step2.domain.Ladder;
 import nextstep.ladder.step2.domain.Line;
+import nextstep.ladder.step2.domain.Player;
+import nextstep.ladder.step2.view.ResultView;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

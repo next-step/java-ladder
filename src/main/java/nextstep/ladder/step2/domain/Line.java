@@ -1,8 +1,10 @@
 package nextstep.ladder.step2.domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Stream;
 
 public class Line {
     private static final Random random = new Random();
@@ -15,7 +17,7 @@ public class Line {
 
     public Line createLine(int playerCount) {
         for (int i = 1; i < playerCount; i++) {
-            points.add(checkPreviousPoint(points.get(i-1)));
+            points.add(checkPreviousPoint(points.get(i - 1)));
         }
         return this;
     }
@@ -33,5 +35,14 @@ public class Line {
 
     public List<Boolean> getPoints() {
         return points;
+    }
+
+    public Stream<Boolean> stream() {
+        return points.stream();
+    }
+
+    @Override
+    public String toString() {
+        return points.toString();
     }
 }
