@@ -1,7 +1,5 @@
 package ladder.domain;
 
-import java.util.List;
-
 public class Point {
     private final int index;
     private final Direction direction;
@@ -11,7 +9,7 @@ public class Point {
         this.direction = direction;
     }
 
-    public int move() {
+    public int movedIndex() {
         if (direction.isRight()) {
             return index + 1;
         }
@@ -19,7 +17,6 @@ public class Point {
         if (direction.isLeft()) {
             return index - 1;
         }
-
         return this.index;
     }
 
@@ -39,7 +36,7 @@ public class Point {
         return new Point(0, Direction.first(right));
     }
 
-    public boolean isRight(){
+    public boolean isRight() {
         return direction.isRight();
     }
 

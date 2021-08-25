@@ -16,7 +16,7 @@ public class Line {
         List<Point> points = new ArrayList<>();
         Direction direction = Direction.first(booleans.get(0));
         points.add(0, new Point(0, direction));
-        for(int i=1; i< booleans.size(); i++){
+        for (int i = 1; i < booleans.size(); i++) {
             points.add(i, new Point(i, direction.next(booleans.get(i))));
             direction = direction.next(booleans.get(i));
         }
@@ -24,8 +24,8 @@ public class Line {
         return new Line(points);
     }
 
-    public int move(int position) {
-        return points.get(position).move();
+    public int movedIndex(int index) {
+        return points.get(index).movedIndex();
     }
 
     public static Line init(int sizeOfPerson) {
@@ -55,11 +55,11 @@ public class Line {
         return point;
     }
 
-    public boolean isRight(int index){
+    public boolean isRight(int index) {
         return points.get(index).isRight();
     }
 
-    public int size(){
+    public int size() {
         return points.size();
     }
 

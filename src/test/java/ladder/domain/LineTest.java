@@ -14,6 +14,6 @@ class LineTest {
     @Test
     public void move() {
         Line line = Line.init(2);
-        assertThat(line.move(0)).isInstanceOf(Integer.class);
+        assertThat(line.movedIndex(0)).isInstanceOf(Integer.class);
     }
 }

@@ -13,7 +13,7 @@ class DirectionTest {
 
     @Test
     public void init_invalid() {
-        assertThatThrownBy(()->Direction.of(true, true)).isInstanceOf(IllegalStateException.class);
+        assertThatThrownBy(() -> Direction.of(true, true)).isInstanceOf(IllegalStateException.class);
 
     }
 

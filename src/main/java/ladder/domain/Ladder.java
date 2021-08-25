@@ -22,12 +22,12 @@ public class Ladder {
         return lines;
     }
 
-    public int movedPosition(int position){
-        int movedPosition = position;
-        for(Line line: lines){
-            movedPosition = line.move(movedPosition);
+    public int movedIndex(int index) {
+        int movedIndex = index;
+        for (Line line : lines) {
+            movedIndex = line.movedIndex(movedIndex);
         }
-        return movedPosition;
+        return movedIndex;
     }
 
     @Override

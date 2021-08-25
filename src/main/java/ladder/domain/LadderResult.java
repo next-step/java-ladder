@@ -28,7 +28,7 @@ public class LadderResult {
     public List<ResultDto> results(Ladder ladder) {
         List<ResultDto> matchedResults = new ArrayList<>();
         for (int i = 0; i < players.size(); i++) {
-            matchedResults.add(result(i,ladder));
+            matchedResults.add(result(i, ladder));
         }
         return matchedResults;
     }
@@ -43,6 +43,6 @@ public class LadderResult {
     }
 
     private ResultDto result(int index, Ladder ladder) {
-        return new ResultDto(players.get(index), results.get(ladder.movedPosition(index)));
+        return new ResultDto(players.get(index), results.get(ladder.movedIndex(index)));
     }
 }
