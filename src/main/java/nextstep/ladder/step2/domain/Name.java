@@ -5,9 +5,9 @@ public class Name {
     private String name;
 
     public Name(String name) {
-        if (name.length() > NAME_MAX_LENGTH) {
+        if (name.trim().length() > NAME_MAX_LENGTH) {
             throw new IllegalArgumentException("이름은 최대 5글자만 허용 합니다.");
         }
-        this.name = name;
+        this.name = name.trim();
     }
 }
