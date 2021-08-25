@@ -5,25 +5,40 @@ import nextstep.ladder.utils.StringUtils;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Game {
 
-    private final List<Player> players = new ArrayList<>();
+    private static final int MIN_LADDER_HEIGHT = 1;
+    private List<Line> lines = new ArrayList<>();
+    private List<Player> players = new ArrayList<>();
 
     private Game() {
 
     }
 
-    private Game(List<String> players, int ladderHeight) {
+    private Game(List<String> players, List<Line> lines) {
+        validateLadderHeight(lines.size());
 
+        this.players = players.stream()
+                .map(Player::from)
+                .collect(Collectors.toList());
+
+        this.lines = lines;
     }
 
-    public static Game of(List<String> players, int ladderHeight) {
-        return new Game(players, ladderHeight);
+    public static Game of(List<String> players, List<Line> lines) {
+        return new Game(players, lines);
     }
 
-    public static Game of(String playerNames, int ladderHeight) {
-        return new Game(StringUtils.splitWithComma(playerNames), ladderHeight);
+    public static Game of(String playerNames, List<Line> lines) {
+        return new Game(StringUtils.splitWithComma(playerNames), lines);
+    }
+
+    private void validateLadderHeight(int ladderHeight) {
+        if (ladderHeight < 0) {
+            throw new IllegalArgumentException("사다리 높이는 " + MIN_LADDER_HEIGHT + "이상 이여야합니다. 현재 : " + ladderHeight);
+        }
     }
 
     @Override

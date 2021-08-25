@@ -1,5 +1,7 @@
 package nextstep.ladder;
 
+import nextstep.ladder.domain.Game;
+import nextstep.ladder.domain.Line;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
@@ -15,7 +17,8 @@ public class Main {
         ResultView.requestLadderHeight();
         int ladderHeight = InputView.inputLadderHeight();
 
-        ResultView.printResult();
+//        Game game = Game.of(playerNames, ladderHeight);
+//        ResultView.printResult(game);
 
     }
 }
