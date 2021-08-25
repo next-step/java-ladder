@@ -20,13 +20,13 @@ public final class Ladder {
                 .collect(Collectors.toList());
     }
 
-    private void validateLadderHeight(int ladderHeight) {
+    private void validateLadderHeight(final int ladderHeight) {
         if (ladderHeight < MIN_HEIGHT) {
             throw new LadderMinimumHeightException(ladderHeight);
         }
     }
 
-    public int run(int index) {
+    public int run(final int index) {
         int nextIndex = index;
         for (Line line : lines) {
             Direction direction = line.getDirection(nextIndex);

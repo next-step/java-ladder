@@ -6,7 +6,7 @@ import ladder.exception.OverlapUserNamesException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Users {
+public final class Users {
 
     public static final int MIN_USER_COUNT = 2;
 
@@ -35,12 +35,11 @@ public class Users {
         return users.size();
     }
 
-    public int indexOf(String username) {
+    public int indexOf(final String username) {
         return users.indexOf(new User(username));
     }
 
-    public User get(int index) {
+    public User get(final int index) {
         return users.get(index);
     }
-
 }

@@ -4,16 +4,16 @@ import ladder.exception.EmptyResultValueException;
 
 import java.util.Objects;
 
-public class Result {
+public final class Result {
 
     private final String value;
 
-    public Result(String value) {
+    public Result(final String value) {
         validateResultValue(value);
         this.value = value;
     }
 
-    private void validateResultValue(String value) {
+    private void validateResultValue(final String value) {
         if (value == null || value.trim().isEmpty()) {
             throw new EmptyResultValueException();
         }

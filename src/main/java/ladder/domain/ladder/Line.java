@@ -22,7 +22,8 @@ public final class Line {
         return new Line(directions);
     }
 
-    private static List<Direction> generateDirections(DirectionStrategy directionStrategy, int userCount) {
+    private static List<Direction> generateDirections(final DirectionStrategy directionStrategy,
+                                                      final int userCount) {
         List<Direction> directions = new ArrayList<>();
         directions.add(Direction.ofFirst(directionStrategy));
         IntStream.range(0, userCount - MIDDLE_MINUS_COUNT)
@@ -32,15 +33,16 @@ public final class Line {
         return directions;
     }
 
-    private static Direction generateDirection(DirectionStrategy directionStrategy, List<Direction> directions) {
+    private static Direction generateDirection(final DirectionStrategy directionStrategy,
+                                               final List<Direction> directions) {
         return getLastDirection(directions).ofNext(directionStrategy);
     }
 
-    private static Direction generateLastDirection(List<Direction> directions) {
+    private static Direction generateLastDirection(final List<Direction> directions) {
         return getLastDirection(directions).ofLast();
     }
 
-    public Direction getDirection(int index) {
+    public Direction getDirection(final int index) {
         return directions.get(index);
     }
 

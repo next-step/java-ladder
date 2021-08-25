@@ -4,12 +4,9 @@ import ladder.domain.LadderGame;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.RandomDirectionStrategy;
 import ladder.domain.result.Result;
-import ladder.domain.user.User;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
@@ -19,13 +16,10 @@ public final class LadderApplication {
         Scanner scanner = new Scanner(System.in);
         InputView inputView = new InputView(scanner);
 
-        // Todo
-        String[] userNames = inputView.getInputUserNames();
-        String[] resultValues = inputView.getInputResultValues();
-        List<String> userList = Arrays.asList(userNames);
-        List<String> resultList = Arrays.asList(resultValues);
+        List<String> userNames = inputView.getInputUserNames();
+        List<String> resultValues = inputView.getInputResultValues();
 
-        LadderGame ladderGame = new LadderGame(userList, resultList);
+        LadderGame ladderGame = new LadderGame(userNames, resultValues);
         int ladderMaxHeight = inputView.getInputLadderMaxHeight();
         Ladder ladder = ladderGame.generateLadder(ladderMaxHeight, new RandomDirectionStrategy());
 

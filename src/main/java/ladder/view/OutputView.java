@@ -7,7 +7,6 @@ import ladder.domain.result.Result;
 import ladder.domain.user.User;
 import ladder.utils.StringUtil;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,7 +23,9 @@ public final class OutputView {
     private OutputView() {
     }
 
-    public static void displayLadderGameResult(final Ladder ladder, final String[] usernames, final String[] results) {
+    public static void displayLadderGameResult(final Ladder ladder,
+                                               final List<String> usernames,
+                                               final List<String> results) {
         System.out.print(LINE_SEPARATOR + RESULT_MESSAGE_PRE + LINE_SEPARATOR + LINE_SEPARATOR);
         displayStartOrEndPoint(usernames);
         System.out.print(LINE_SEPARATOR);
@@ -32,8 +33,9 @@ public final class OutputView {
         displayStartOrEndPoint(results);
     }
 
-    private static void displayStartOrEndPoint(final String[] values) {
-        Arrays.stream(values).map(OutputView::getPointToFormat)
+    private static void displayStartOrEndPoint(final List<String> values) {
+        values.stream()
+                .map(OutputView::getPointToFormat)
                 .forEach(System.out::print);
     }
 
@@ -64,14 +66,14 @@ public final class OutputView {
         return LADDER_VERTICAL_DISPLAY + StringUtil.fillGivenString(input, User.MAX_NAME_LENGTH);
     }
 
-    public static void result(Result result) {
+    public static void result(final Result result) {
         System.out.print(LINE_SEPARATOR);
         System.out.print(RESULT_MESSAGE_RESULT);
         System.out.print(LINE_SEPARATOR);
         System.out.print(result);
     }
 
-    public static void result(HashMap<User, Result> map) {
+    public static void result(final HashMap<User, Result> map) {
         for (Map.Entry<User, Result> userResultEntry : map.entrySet()) {
             System.out.print(userResultEntry.getKey());
             System.out.print(" : ");

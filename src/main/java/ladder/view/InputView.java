@@ -1,5 +1,7 @@
 package ladder.view;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public final class InputView {
@@ -19,22 +21,22 @@ public final class InputView {
         this.scanner = scanner;
     }
 
-    public String[] getInputUserNames() {
+    public List<String> getInputUserNames() {
         System.out.print(MESSAGE_INPUT_USER_NAMES);
         return getInputValuesToSeparate();
     }
 
-    public String[] getInputResultValues() {
+    public List<String> getInputResultValues() {
         System.out.print(LINE_SEPARATOR);
         System.out.print(MESSAGE_INPUT_RESULT_VALUES);
         return getInputValuesToSeparate();
     }
 
-    private String[] getInputValuesToSeparate() {
+    private List<String> getInputValuesToSeparate() {
         System.out.print(LINE_SEPARATOR);
         String input = scanner.nextLine();
         emptyCheck(input);
-        return input.split(SEPARATOR);
+        return Arrays.asList(input.split(SEPARATOR));
     }
     
     private static void emptyCheck(final String input) {

@@ -4,17 +4,17 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class Results {
+public final class Results {
 
-    private List<Result> results;
+    private final List<Result> results;
 
-    public Results(List<String> results) {
+    public Results(final List<String> results) {
         this.results = results.stream()
                 .map(Result::new)
                 .collect(Collectors.toList());
     }
 
-    public Result get(int index) {
+    public Result get(final int index) {
         return results.get(index);
     }
 
