@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.exception.PlayerNotFoundException;
+
 import static java.util.stream.Collectors.*;
 
 import java.util.Arrays;
@@ -13,8 +15,22 @@ public class Players {
 
 	private final List<Player> players;
 
-	public Players(String names) {
-		this.players = createPlayers(names);
+	private Players(List<Player> players) {
+		this.players = players;
+	}
+
+	public static Players from(String names) {
+		List<Player> players = Arrays.stream(names.split(DELIMITER))
+								.map(Player::new)
+								.collect(collectingAndThen(toList(), Collections::unmodifiableList));
+		return new Players(players);
+	}
+
+	public Integer indexOf(Player player) {
+		if (!players.contains(player)) {
+			throw new PlayerNotFoundException(player);
+		}
+		return players.indexOf(player);
 	}
 
 	public int size() {
@@ -22,14 +38,7 @@ public class Players {
 	}
 
 	public List<Player> values() {
-		return players;
-	}
-
-	private List<Player> createPlayers(String names) {
-		String[] nameArray = names.split(DELIMITER);
-		return Arrays.stream(nameArray)
-				.map(Player::new)
-				.collect(collectingAndThen(toList(), Collections::unmodifiableList));
+		return Collections.unmodifiableList(players);
 	}
 
 	@Override

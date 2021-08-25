@@ -9,7 +9,7 @@ public class RandomDirectionFactory {
 	private RandomDirectionFactory() {
 	}
 
-	public static boolean isRight() {
+	public static boolean generate() {
 		return RANDOM.nextBoolean();
 	}
 }
