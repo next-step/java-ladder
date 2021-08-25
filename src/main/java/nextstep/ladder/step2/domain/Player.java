@@ -31,10 +31,6 @@ public class Player {
         return players.size();
     }
 
-    public List<Name> getPlayers() {
-        return players;
-    }
-
     public Stream<Name> stream(){
         return players.stream();
     }

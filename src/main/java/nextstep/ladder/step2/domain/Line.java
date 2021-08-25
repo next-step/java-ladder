@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Line {
+    private static final int START_INDEX = 1;
     private static final Random random = new Random();
     private List<Boolean> points;
 
@@ -16,7 +18,7 @@ public class Line {
     }
 
     public Line createLine(int playerCount) {
-        for (int i = 1; i < playerCount; i++) {
+        for (int i = START_INDEX; i < playerCount; i++) {
             points.add(checkPreviousPoint(points.get(i - 1)));
         }
         return this;
@@ -31,10 +33,6 @@ public class Line {
 
     public int getPointSize() {
         return points.size();
-    }
-
-    public List<Boolean> getPoints() {
-        return points;
     }
 
     public Stream<Boolean> stream() {

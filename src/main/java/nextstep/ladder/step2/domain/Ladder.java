@@ -16,14 +16,14 @@ public class Ladder {
         if (height < LADDER_MIN_COUNT) {
             throw new IllegalArgumentException("사다리 높이는 최소 " + LADDER_MIN_COUNT + "가 되어야 합니다.");
         }
-        for (int i=0; i<height; i++) {
+        for (int i = 0; i < height; i++) {
             Line line = new Line();
             lines.add(line.createLine(playerCount));
         }
     }
 
-    public List<Line> getLines() {
-        return lines;
+    public int getLadderSize() {
+        return lines.size();
     }
 
     public Stream<Line> stream() {
