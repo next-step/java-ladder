@@ -6,6 +6,7 @@ import ladder.domain.Users;
 import ladder.domain.WinningItems;
 import ladder.exception.InvalidInputException;
 import ladder.view.InputView;
+import ladder.view.OutputView;
 
 import java.util.List;
 
@@ -21,10 +22,12 @@ public class Game {
         WinningItems winningItems = new WinningItems(items);
         Ladder ladder = Ladder.create(InputView.inputHeightOfLadder(), names.size());
 
+        OutputView.printLadderGameInfo(users, ladder, winningItems);
+
         Result result = new Result(users, ladder, winningItems);
-        result.printLadderInfo();
         result.calculateLadderResult();
-        result.printResult(InputView.inputResultPersonName());
+
+        OutputView.printResult(InputView.inputResultPersonName(), result.getResult());
     }
 
     private static void validateItems(List<String> names, List<String> items) {

@@ -12,26 +12,32 @@ public class OutputView {
     private static final String LINE_FALSE = "     ";
     private static final String LINE_DELIMITER = "|";
 
-    public static void printNames(Users users) {
+    public static void printLadderGameInfo(Users users, Ladder ladder, WinningItems winningItems) {
+        OutputView.printNames(users);
+        OutputView.printLadder(ladder);
+        OutputView.printItems(winningItems);
+    }
+
+    private static void printNames(Users users) {
         System.out.println(LADDER_TITLE);
         users.getNames().forEach(name -> System.out.printf("%6s", name.getName()));
         System.out.println();
     }
 
-    public static void printLadder(Ladder ladder) {
+    private static void printLadder(Ladder ladder) {
         ladder.getLines()
               .stream()
               .map(OutputView::generateLine)
               .forEach(System.out::println);
     }
 
-    public static void printItems(WinningItems winningItems) {
+    private static void printItems(WinningItems winningItems) {
         winningItems.getWinningItems()
                     .forEach(name -> System.out.printf("%6s", name));
         System.out.println();
     }
 
-    public static String generateLine(Line line) {
+    private static String generateLine(Line line) {
         return line.getPoints()
                    .stream()
                    .map(flag -> flag ? LINE_TRUE : LINE_FALSE)
@@ -47,5 +53,4 @@ public class OutputView {
         }
         System.out.println(result.get(name));
     }
-
 }

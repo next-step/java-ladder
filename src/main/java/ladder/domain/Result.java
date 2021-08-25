@@ -1,7 +1,9 @@
 package ladder.domain;
 
+import ladder.strategy.LocationStrategy;
 import ladder.view.OutputView;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,22 +21,15 @@ public class Result {
         this.result = new HashMap<>();
     }
 
-    public void printLadderInfo() {
-        OutputView.printNames(users);
-        OutputView.printLadder(ladder);
-        OutputView.printItems(winningItems);
-    }
-
     public void calculateLadderResult() {
         for (int i = 0; i < users.getNames().size(); i++) {
-            Location location = new Location(i);
-            ladder.getLines().forEach(location::moveLocation);
-            result.put(users.getNames().get(i).getName(), winningItems.getWinningItems().get(location.getLocation()));
+            LocationStrategy locationStrategy = new LocationStrategy(i);
+            ladder.getLines().forEach(locationStrategy::moveLocation);
+            result.put(users.getNames().get(i).getName(), winningItems.getWinningItems().get(locationStrategy.getLocation()));
         }
     }
 
-    public void printResult(String name) {
-        OutputView.printResult(name, result);
+    public Map<String, String> getResult() {
+        return Collections.unmodifiableMap(result);
     }
-
 }

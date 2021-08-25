@@ -1,9 +1,11 @@
-package ladder.domain;
+package ladder.strategy;
 
-public class Location {
+import ladder.domain.Line;
+
+public class LocationStrategy {
     private int location;
 
-    public Location(int firstLocation) {
+    public LocationStrategy(int firstLocation) {
         this.location = firstLocation;
     }
 
