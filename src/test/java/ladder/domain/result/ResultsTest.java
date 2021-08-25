@@ -7,17 +7,20 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @DisplayName("Results Test")
 class ResultsTest {
 
-    String[] resultValues;
+    List<String> resultValues;
 
     @BeforeEach
     void setUp() {
-        resultValues = new String[]{"100", "꽝", "200", "하이"};
+        resultValues = Arrays.asList("100", "꽝", "200", "하이");
     }
 
     @Test
@@ -36,7 +39,7 @@ class ResultsTest {
     @DisplayName("Results 생성시 null 또는 빈값이 들어올경우 Exception")
     void valuesInEmptyException(String value) {
         // given
-        resultValues[0] = value;
+        resultValues.set(0, value);
 
         assertThatThrownBy(() -> new Results(resultValues))
                 .isInstanceOf(EmptyResultValueException.class);

@@ -40,6 +40,10 @@ public final class Line {
         return getLastDirection(directions).ofLast();
     }
 
+    public Direction getDirection(int index) {
+        return directions.get(index);
+    }
+
     public List<Direction> getDirections() {
         return directions;
     }

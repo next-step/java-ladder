@@ -27,4 +27,14 @@ public enum Direction {
         }
         return STRAIGHT;
     }
+
+    public int move() {
+        if(this == RIGHT) {
+            return 1;
+        }
+        if(this == LEFT) {
+            return -1;
+        }
+        return 0;
+    }
 }

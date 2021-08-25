@@ -3,6 +3,7 @@ package ladder.view;
 import ladder.domain.ladder.Direction;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.Line;
+import ladder.domain.result.Result;
 import ladder.domain.user.User;
 import ladder.utils.StringUtil;
 
@@ -12,7 +13,8 @@ import java.util.List;
 public final class OutputView {
 
     private static final String LINE_SEPARATOR = System.lineSeparator();
-    private static final String RESULT_MESSAGE_PRE = "실행결과";
+    private static final String RESULT_MESSAGE_PRE = "사다리 결과";
+    private static final String RESULT_MESSAGE_RESULT = "실행 결과";
     private static final String LADDER_VERTICAL_DISPLAY = "|";
     private static final String LADDER_HORIZONTAL_DISPLAY = "-";
     private static final String EMPTY_DISPLAY = " ";
@@ -58,5 +60,12 @@ public final class OutputView {
 
     private static String getDirectionToFormat(final String input) {
         return LADDER_VERTICAL_DISPLAY + StringUtil.fillGivenString(input, User.MAX_NAME_LENGTH);
+    }
+
+    public static void result(Result result) {
+        System.out.print(LINE_SEPARATOR);
+        System.out.print(RESULT_MESSAGE_RESULT);
+        System.out.print(LINE_SEPARATOR);
+        System.out.print(result);
     }
 }

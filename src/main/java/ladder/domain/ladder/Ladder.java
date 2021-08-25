@@ -26,6 +26,15 @@ public final class Ladder {
         }
     }
 
+    public int run(int index) {
+        int nextIndex = index;
+        for (Line line : lines) {
+            Direction direction = line.getDirection(nextIndex);
+            nextIndex += direction.move();
+        }
+        return nextIndex;
+    }
+
     public List<Line> getLines() {
         return lines;
     }

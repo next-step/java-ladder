@@ -10,10 +10,6 @@ public class Users {
 
     private final List<User> users;
 
-    public Users(final String... userNames) {
-        this(Arrays.asList(userNames));
-    }
-
     public Users(final List<String> userNames) {
         users = userNames.stream()
                 .distinct()
@@ -27,5 +23,9 @@ public class Users {
 
     public int getUserCount() {
         return users.size();
+    }
+
+    public int indexOf(String username) {
+        return users.indexOf(new User(username));
     }
 }
