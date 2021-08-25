@@ -8,7 +8,9 @@ import ladder.domain.user.User;
 import ladder.utils.StringUtil;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public final class OutputView {
 
@@ -67,5 +69,14 @@ public final class OutputView {
         System.out.print(RESULT_MESSAGE_RESULT);
         System.out.print(LINE_SEPARATOR);
         System.out.print(result);
+    }
+
+    public static void result(HashMap<User, Result> map) {
+        for (Map.Entry<User, Result> userResultEntry : map.entrySet()) {
+            System.out.print(userResultEntry.getKey());
+            System.out.print(" : ");
+            System.out.print(userResultEntry.getValue());
+            System.out.print(LINE_SEPARATOR);
+        }
     }
 }

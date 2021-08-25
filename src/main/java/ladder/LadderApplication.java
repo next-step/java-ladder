@@ -4,10 +4,12 @@ import ladder.domain.LadderGame;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.RandomDirectionStrategy;
 import ladder.domain.result.Result;
+import ladder.domain.user.User;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
@@ -32,7 +34,7 @@ public final class LadderApplication {
         while (true) {
             String targetUser = inputView.getInputResultValueTarget();
             if (targetUser.equals("all")) {
-                //ladderGame.execute(ladder);
+                OutputView.result(ladderGame.execute(ladder));
                 break;
             }
             Result result = ladderGame.execute(ladder, targetUser);

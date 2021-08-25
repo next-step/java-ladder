@@ -56,7 +56,7 @@ class LadderTest {
 
     @ParameterizedTest(name = "startPoint: {1}, endPoint: {2}")
     @MethodSource("provideLadder")
-    @DisplayName("사다리 실행")
+    @DisplayName("사다리 실행후 결과 확인")
     void ladderRun(Ladder ladder, int startPoint, int endPoint) {
         // given
         // when

@@ -38,4 +38,9 @@ public class Users {
     public int indexOf(String username) {
         return users.indexOf(new User(username));
     }
+
+    public User get(int index) {
+        return users.get(index);
+    }
+
 }

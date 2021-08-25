@@ -4,8 +4,10 @@ import ladder.domain.ladder.DirectionStrategy;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.result.Result;
 import ladder.domain.result.Results;
+import ladder.domain.user.User;
 import ladder.domain.user.Users;
 
+import java.util.HashMap;
 import java.util.List;
 
 public final class LadderGame {
@@ -20,6 +22,17 @@ public final class LadderGame {
 
     public Ladder generateLadder(final int ladderHeight, final DirectionStrategy directionStrategy) {
         return new Ladder(directionStrategy, ladderHeight, users.getUserCount());
+    }
+
+    public HashMap<User, Result> execute(Ladder ladder) {
+        HashMap<User, Result> map = new HashMap<>();
+        for( int i = 0; i < users.getUserCount(); i++) {
+            int endPoint = ladder.run(i);
+            Result result = results.get(endPoint);
+            User user = users.get(i);
+            map.put(user, result);
+        }
+        return map;
     }
 
     public Result execute(final Ladder ladder, final String username) {
