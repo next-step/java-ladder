@@ -8,19 +8,19 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
-public class Lines {
+public class Ladder {
     private static final int LADDER_MINIMUM_HEIGHT = 2;
     private static final int GENERATE_LADDER_MAX_COUNT = 20;
     private static final String INVALID_TRY_COUNT_MESSAGE = "사다리 생성 시도 횟수를 초과했습니다. 다시 시도해주세요.";
     private static final String INVALID_HEIGHT_MESSAGE = LADDER_MINIMUM_HEIGHT + "이상의 사다리 높이를 입력해주세요";
 
-    private List<Line> ladder;
+    private List<Line> lines;
 
-    private Lines(List<Line> ladder) {
-        this.ladder = ladder;
+    private Ladder(List<Line> ladder) {
+        this.lines = ladder;
     }
 
-    public static Lines create(int height, int countOfPerson) {
+    public static Ladder create(int height, int countOfPerson) {
         validateLadderHeight(height);
         List<Line> ladder = new ArrayList<>();
         int tryCount = 0;
@@ -30,7 +30,7 @@ public class Lines {
             ladder = generateLadder(height, countOfPerson);
             tryCount++;
         }
-        return new Lines(ladder);
+        return new Ladder(ladder);
     }
 
     private static void validateLadderHeight(int height) {
@@ -59,7 +59,7 @@ public class Lines {
         }
     }
 
-    public List<Line> getLadder() {
-        return Collections.unmodifiableList(ladder);
+    public List<Line> getLines() {
+        return Collections.unmodifiableList(lines);
     }
 }

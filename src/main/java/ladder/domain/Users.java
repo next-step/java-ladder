@@ -9,13 +9,13 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Users {
-    private static final int USERS_MINIMUM_COUNT = 2;
-    private static final String INVALID_COUNT_OF_USER_MESSAGE = USERS_MINIMUM_COUNT + "명 이상의 참여자를 입력하세요.";
+    private static final int MIN_SIZE = 2;
+    private static final String INVALID_COUNT_OF_USER_MESSAGE = MIN_SIZE + "명 이상의 참여자를 입력하세요.";
 
     private List<Name> names;
 
     private Users(List<String> users) {
-        if (users.size() < USERS_MINIMUM_COUNT) {
+        if (users.size() < MIN_SIZE) {
             throw new InvalidInputException(INVALID_COUNT_OF_USER_MESSAGE);
         }
 

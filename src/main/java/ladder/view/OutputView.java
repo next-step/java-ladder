@@ -1,6 +1,6 @@
 package ladder.view;
 
-import ladder.domain.Lines;
+import ladder.domain.Ladder;
 import ladder.domain.Line;
 import ladder.domain.Users;
 
@@ -18,8 +18,8 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printLadder(Lines ladder) {
-        ladder.getLadder()
+    public static void printLadder(Ladder ladder) {
+        ladder.getLines()
               .stream()
               .map(OutputView::generateLine)
               .forEach(System.out::println);
