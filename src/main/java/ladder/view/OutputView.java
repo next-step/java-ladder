@@ -14,7 +14,7 @@ public class OutputView {
 
     public static void printNames(Users users) {
         System.out.println(LADDER_TITLE);
-        users.getNames().stream().forEach(name -> System.out.printf("%6s", name.getName()));
+        users.getNames().forEach(name -> System.out.printf("%6s", name.getName()));
         System.out.println();
     }
 
@@ -26,7 +26,8 @@ public class OutputView {
     }
 
     public static void printItems(WinningItems winningItems) {
-        winningItems.getWinningItems().stream().forEach(name -> System.out.printf("%6s", name));
+        winningItems.getWinningItems()
+                    .forEach(name -> System.out.printf("%6s", name));
         System.out.println();
     }
 

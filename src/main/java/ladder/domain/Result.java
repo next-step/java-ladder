@@ -2,7 +2,6 @@ package ladder.domain;
 
 import ladder.view.OutputView;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,12 +10,13 @@ public class Result {
     private Users users;
     private Ladder ladder;
     private WinningItems winningItems;
-    private Map<String, String> result = new HashMap<>();
+    private Map<String, String> result;
 
     public Result(Users users, Ladder ladder, WinningItems winningItems) {
         this.users = users;
         this.ladder = ladder;
         this.winningItems = winningItems;
+        this.result = new HashMap<>();
     }
 
     public void printLadderInfo() {
@@ -28,7 +28,7 @@ public class Result {
     public void calculateLadderResult() {
         for (int i = 0; i < users.getNames().size(); i++) {
             Location location = new Location(i);
-            ladder.getLines().stream().forEach(location::moveLocation);
+            ladder.getLines().forEach(location::moveLocation);
             result.put(users.getNames().get(i).getName(), winningItems.getWinningItems().get(location.getLocation()));
         }
     }

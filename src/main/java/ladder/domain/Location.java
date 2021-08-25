@@ -13,7 +13,6 @@ public class Location {
         if (location + 1 < line.getPoints().size()) {
             right = line.getPoints().get(location + 1);
         }
-
         move(left, right);
     }
 

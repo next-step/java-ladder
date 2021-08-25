@@ -15,8 +15,8 @@ public class Game {
     public static void main(String[] args) {
         List<String> names = InputView.inputNamesOfUsers();
         List<String> items = InputView.inputWinningItems();
-
         validateItems(names, items);
+
         Users users = Users.valueOf(names);
         WinningItems winningItems = new WinningItems(items);
         Ladder ladder = Ladder.create(InputView.inputHeightOfLadder(), names.size());
@@ -25,7 +25,6 @@ public class Game {
         result.printLadderInfo();
         result.calculateLadderResult();
         result.printResult(InputView.inputResultPersonName());
-
     }
 
     private static void validateItems(List<String> names, List<String> items) {
