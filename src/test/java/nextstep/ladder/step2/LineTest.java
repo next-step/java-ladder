@@ -17,4 +17,11 @@ class LineTest {
         point.createLine(5);
         assertThat(point.getPointSize()).isEqualTo(5);
     }
+
+    @Test
+    @DisplayName("이전에 가로 줄이 있으면 현재 가로 줄은 없어야 한다.")
+    void checkPreviousPoint() {
+        Line point = new Line();
+        assertThat(point.checkPreviousPoint(true)).isFalse();
+    }
 }
