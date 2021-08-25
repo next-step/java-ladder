@@ -25,13 +25,11 @@ public class Calculator {
 
     public static int sumAllOverThree(List<Integer> numbers, Conditional conditional) {
         int total = 0;
-
         for (int number : numbers) {
             if (conditional.test(number)) {
                 total += number;
             }
         }
-
         return total;
     }
 
@@ -52,5 +50,4 @@ public class Calculator {
 //                .filter(conditional::test)
 //                .reduce(0, Integer::sum);
     }
-
 }
