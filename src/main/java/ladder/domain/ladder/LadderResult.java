@@ -16,10 +16,10 @@ public class LadderResult {
     }
 
     public static LadderResult of(Ladder ladder, Awards awards) {
-        validateMatchingCount(ladder.getPlayers().size(), awards.size());
+        validateMatchingCount(ladder.playerSize(), awards.size());
 
         return new LadderResult(ladder.getPlayers().stream()
-                .collect(Collectors.toMap(Player::toString,
+                .collect(Collectors.toMap(Player::name,
                         player -> awards.name(ladder.indexOfResult(player)))));
     }
 
@@ -29,7 +29,7 @@ public class LadderResult {
 
     private static void validateMatchingCount(int sizeOfPlayers, int sizeOfAwards) {
         if (sizeOfPlayers != sizeOfAwards) {
-            throw new LadderResultException();
+            throw new LadderResultException(sizeOfPlayers, sizeOfAwards);
         }
     }
 

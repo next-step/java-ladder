@@ -6,7 +6,8 @@ import java.util.Objects;
 
 public class Name {
 
-    public static final int LIMIT_LENGTH = 5;
+    private static final int LIMIT_LENGTH = 5;
+    private static final int ZERO = 0;
 
     private final String value;
 
@@ -16,20 +17,24 @@ public class Name {
     }
 
     private void validateName(String name) {
-        isBlank(name);
-        exceedLength(name);
+        validateBlank(name);
+        validateLength(name);
     }
 
-    private void exceedLength(String name) {
+    private void validateLength(String name) {
         if (name.trim().length() > LIMIT_LENGTH) {
-            throw new PlayerNameException();
+            throw new PlayerNameException(name.trim().length());
         }
     }
 
-    private void isBlank(String name) {
+    private void validateBlank(String name) {
         if (StringUtil.isBlank(name)) {
-            throw new PlayerNameException();
+            throw new PlayerNameException(ZERO);
         }
+    }
+
+    public String getValue() {
+        return value;
     }
 
     @Override
@@ -47,11 +52,6 @@ public class Name {
     @Override
     public int hashCode() {
         return Objects.hash(value);
-    }
-
-    @Override
-    public String toString() {
-        return value;
     }
 
 }

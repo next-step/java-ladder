@@ -34,6 +34,10 @@ public class Ladder {
         return players.getPlayers();
     }
 
+    public int playerSize() {
+        return players.size();
+    }
+
     public List<Line> getLines() {
         return lines.getLines();
     }
