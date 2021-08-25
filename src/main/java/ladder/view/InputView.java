@@ -38,7 +38,7 @@ public final class InputView {
         emptyCheck(input);
         return Arrays.asList(input.split(SEPARATOR));
     }
-    
+
     private static void emptyCheck(final String input) {
         if (input == null || input.trim().isEmpty()) {
             throw new IllegalArgumentException(MESSAGE_INPUT_VALUE_INCORRECT);
