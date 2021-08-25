@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
-import ladder.domain.engine.Ladder;
-import ladder.domain.engine.Line;
 import ladder.domain.impl.MyLadder;
 import ladder.domain.impl.MyLine;
 import ladder.domain.impl.Tile;
@@ -30,7 +28,7 @@ public class ResultView {
     }
 
     /*
-     * Methods to print names and prizes
+     * Methods to print names and prizes∂
      */
 
     public static void printPlayerNames(PlayerNames playerNames, int maxLength) {
@@ -55,12 +53,24 @@ public class ResultView {
      * Methods to print ladder to screen
      */
 
-    public static void printLadder(MyLadder ladder) {
-        ladder.getLines()
-                .forEach(line -> printLine((MyLine) line));
+    public static void printLadder(MyLadder ladder, int maxLength) {
+        System.out.println(ladderToString(ladder, maxLength));
     }
 
-    private static void printLine(MyLine line) {
+    private static String ladderToString(MyLadder ladder, int maxLength) {
+        List<String> lineStrings = ladder.getLines()
+                .stream()
+                .map(line -> lineToString((MyLine) line, maxLength))
+                .collect(Collectors.toList());
+        return String.join(NEWLINE, lineStrings);
+    }
+
+    private static String lineToString(MyLine line, int width) {
+        List<String> legs = line.getTiles()
+                .stream()
+                .map(tile -> tileToString(tile, width))
+                .collect(Collectors.toList());
+        return StringUtils.repeat(" ", width) + VERTICAL + String.join(VERTICAL, legs);
     }
 
     private static String tileToString(Tile tile, int width) {

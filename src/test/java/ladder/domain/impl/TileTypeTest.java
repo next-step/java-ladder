@@ -31,8 +31,9 @@ class TileTypeTest {
     }
 
     @Test
-    void next_leftFollowingRight() {
-        assertThat(TileType.first(true).next(true));
+    void next_leftFollowsRight() {
+        TileType second = TileType.first(true).next(true);
+        assertThat(second).isEqualTo(TileType.LEFT);
     }
 
     @Test
