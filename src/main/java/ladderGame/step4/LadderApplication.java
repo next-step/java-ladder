@@ -2,7 +2,9 @@ package ladderGame.step4;
 
 import java.util.List;
 import ladderGame.step4.controller.LadderMainController;
+import ladderGame.step4.model.Ladder;
 import ladderGame.step4.model.MatchResult;
+import ladderGame.step4.model.Players;
 import ladderGame.step4.model.Prizes;
 import ladderGame.step4.validation.Validation;
 import ladderGame.step4.view.InputView;
@@ -25,22 +27,25 @@ public class LadderApplication {
 
     LadderMainController ladderMainController = new LadderMainController();
 
-    ResultView.printUsersName(ladderMainController.findPlayersName(playerNames));
-    ResultView.printLadder(ladderMainController.findLadder(ladderHeight));
+    Players players = ladderMainController.findPlayers(playerNames);
+    ResultView.printUsersName(players.playersName());
 
-    Prizes prizes = ladderMainController.findPrizes(goods);
+    Ladder ladder = ladderMainController.findLadder(ladderHeight, players.playersName().size());
+    ResultView.printLadder(ladder);
+
+    Prizes prizes = ladderMainController.findPrizes(goods, players.playersName().size());
     ResultView.printPrizes(prizes);
 
     String findName = InputView.inputFindNames();
 
-    List<MatchResult> ladderInfo = ladderMainController.findResult(findName);
+    List<MatchResult> ladderInfo = ladderMainController.findResult(ladder, players, findName);
 
     while (!isContinue(findName)) {
 
       ResultView.printResult(ladderInfo, prizes);
 
       findName = InputView.inputFindNames();
-      ladderInfo = ladderMainController.findResult(findName);
+      ladderInfo = ladderMainController.findResult(ladder, players, findName);
     }
 
     ResultView.printResult(ladderInfo, prizes);
