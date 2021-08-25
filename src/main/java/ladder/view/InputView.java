@@ -10,7 +10,9 @@ import java.util.Scanner;
 public class InputView {
 
     private static final String INPUT_NAME_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
+    private static final String INPUT_WINNING_ITEMS_MESSAGE = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String INPUT_HEIGHT_MESSAGE = "최대 사다리 높이는 몇 개인가요?";
+    private static final String INPUT_RESULT_PERSON_MESSAGE = "결과를 보고 싶은 사람은?";
     private static final String INVALID_BLANK_STRING_MESSAGE = "공백은 입력이 불가합니다.";
 
     private static String getUserInputValue(String message) {
@@ -27,8 +29,16 @@ public class InputView {
         return Arrays.asList(getUserInputValue(INPUT_NAME_MESSAGE).split(","));
     }
 
+    public static List<String> inputWinningItems() {
+        return Arrays.asList(getUserInputValue(INPUT_WINNING_ITEMS_MESSAGE).split(","));
+    }
+
     public static int inputHeightOfLadder() {
         return Integer.parseInt(getUserInputValue(INPUT_HEIGHT_MESSAGE));
+    }
+
+    public static String inputResultPersonName() {
+        return getUserInputValue(INPUT_RESULT_PERSON_MESSAGE);
     }
 
     private static void checkUserInput(String input) {
