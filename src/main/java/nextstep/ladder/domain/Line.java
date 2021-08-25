@@ -28,13 +28,21 @@ public class Line {
     }
 
     public int currentPosition(int currPosition) {
-        if (currPosition < points.size() && Boolean.TRUE == points.get(currPosition)) {
+        if (canMoveRight(currPosition)) {
             currPosition++;
-        } else if (currPosition - 1 >= 0 && Boolean.TRUE == points.get(currPosition - 1)) {
+        } else if (canMoveLeft(currPosition)) {
             currPosition--;
         }
 
         return currPosition;
+    }
+
+    private boolean canMoveLeft(int currPosition) {
+        return currPosition - 1 >= 0 && Boolean.TRUE == points.get(currPosition - 1);
+    }
+
+    private boolean canMoveRight(int currPosition) {
+        return currPosition < points.size() && Boolean.TRUE == points.get(currPosition);
     }
 
     public int size() {
