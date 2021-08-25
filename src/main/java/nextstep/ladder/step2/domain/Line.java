@@ -25,4 +25,8 @@ public class Line {
         }
         return random.nextBoolean();
     }
+
+    public List<Boolean> getPoints() {
+        return points;
+    }
 }

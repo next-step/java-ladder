@@ -19,6 +19,9 @@ public class Ladder {
             Line line = new Line();
             line.createLine(playerCount);
         }
+    }
 
+    public List<Line> getLines() {
+        return lines;
     }
 }

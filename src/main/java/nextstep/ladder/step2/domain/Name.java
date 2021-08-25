@@ -10,4 +10,10 @@ public class Name {
         }
         this.name = name.trim();
     }
+
+    @Override
+    public String toString() {
+        return name;
+
+    }
 }
