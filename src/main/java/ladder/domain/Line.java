@@ -24,11 +24,11 @@ public class Line {
     private void makeLine(int ladderWidth, LineGenerateStrategy lineGenerateStrategy) {
         points.add(lineGenerateStrategy.generatable());
         IntStream.range(1, ladderWidth)
-                .forEach(i -> points.add(generatable(i, lineGenerateStrategy)));
+                .forEach(position -> points.add(generatable(position, lineGenerateStrategy)));
     }
 
-    private boolean generatable(int i, LineGenerateStrategy lineGenerateStrategy) {
-        if (points.get(i - 1)) {
+    private boolean generatable(int position, LineGenerateStrategy lineGenerateStrategy) {
+        if (points.get(position - 1)) {
             return FALSE_BECAUSE_OF_LEFT_TRUE;
         }
         return lineGenerateStrategy.generatable();
