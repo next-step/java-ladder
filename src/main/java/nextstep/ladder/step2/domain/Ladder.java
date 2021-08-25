@@ -2,6 +2,7 @@ package nextstep.ladder.step2.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Ladder {
