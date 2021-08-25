@@ -1,8 +1,5 @@
 package ladderGame.step4.controller;
 
-import static ladderGame.step4.validation.Validation.validationLimitHeight;
-import static ladderGame.step4.validation.Validation.validationNamesAndGoodsCount;
-
 import java.util.List;
 import ladderGame.step4.model.Ladder;
 import ladderGame.step4.model.MatchResult;
@@ -11,38 +8,24 @@ import ladderGame.step4.service.LadderService;
 
 public class LadderMainController {
 
-  private final String playerNames;
-
-  private final String goods;
-
-  private final int ladderHeight;
-
   private final LadderService service = new LadderService();
 
-  public LadderMainController(final String playerNames, final String goods,
-      final int ladderHeight) {
-
-    validationNamesAndGoodsCount(playerNames, goods);
-    validationLimitHeight(ladderHeight);
-
-    this.playerNames = playerNames;
-    this.goods = goods;
-    this.ladderHeight = ladderHeight;
+  public LadderMainController() {
   }
 
-  public Ladder valueOfLadder() {
+  public Ladder findLadder(final int ladderHeight) {
     return service.createLadder(ladderHeight);
   }
 
-  public Prizes valueOfPrizes() {
+  public Prizes findPrizes(final String goods) {
     return service.createPrizes(goods);
   }
 
-  public List<String> valueOfPlayersName() {
+  public List<String> findPlayersName(final String playerNames) {
     return service.createPlayers(playerNames);
   }
 
-  public List<MatchResult> valueOfResult(final String findName) {
+  public List<MatchResult> findResult(final String findName) {
     return service.getMatchResults(findName);
   }
 }
