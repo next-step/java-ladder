@@ -15,7 +15,7 @@ class LadderTest {
 	@DisplayName("사다리 게임을 실행한 후 결과를 반환한다.")
 	@Test
 	void play() {
-		Ladder ladder = new Ladder(4, createLines());
+		Ladder ladder = new Ladder(Players.from("pobi,crong,honux,jk"), createLines());
 		Result result = ladder.play();
 		assertThat(result.of(0)).isEqualTo(2);
 		assertThat(result.of(1)).isEqualTo(0);

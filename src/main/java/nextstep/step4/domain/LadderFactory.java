@@ -13,9 +13,9 @@ public class LadderFactory {
 
 	public static Ladder from(Players players, int height) {
 		List<Line> lines = IntStream.range(INITIAL_INDEX, height)
-			.mapToObj(index -> LineFactory.from(players))
-			.collect(Collectors.toList());
-		return new Ladder(players.size(), lines);
+							.mapToObj(index -> LineFactory.from(players))
+							.collect(Collectors.toList());
+		return new Ladder(players, lines);
 	}
 
 }
