@@ -1,6 +1,5 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.domain.Player;
 import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,7 +16,7 @@ class PlayerTest {
     public void nonNull() {
         // given
         String name = null;
-        String message = "플레이어 이름은 null 일 수 없습니다";
+        String message = "입력값은 null 일 수 없습니다";
 
         // when
         ThrowingCallable throwingCallable = () -> new Player(name);

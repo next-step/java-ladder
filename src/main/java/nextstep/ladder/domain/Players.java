@@ -14,15 +14,14 @@ import static java.util.stream.Collectors.toMap;
 
 public class Players {
 
-    private static final String NON_NULL = "입력값은 null 일 수 없습니다";
     private static final String DELIMITER = ",";
 
     private final Map<Player, Integer> playerMap;
 
     public Players(final String names) {
-        validateNames(names);
         AtomicInteger index = new AtomicInteger();
         playerMap = Arrays.stream(names.split(DELIMITER))
+        InputUtils.requireNonNull(names);
                 .map(Player::new)
                 .collect(toMap(Function.identity(), v -> index.getAndIncrement(), (x, y) -> y, LinkedHashMap::new));
     }
@@ -38,9 +37,4 @@ public class Players {
         return playerMap.size();
     }
 
-    private void validateNames(final String names) {
-        if (Objects.isNull(names)) {
-            throw new IllegalArgumentException(NON_NULL);
-        }
-    }
 }
