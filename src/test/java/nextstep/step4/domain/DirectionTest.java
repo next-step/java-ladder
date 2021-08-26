@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import nextstep.step4.exception.InvalidDirectionException;
+
 class DirectionTest {
 
 	@DisplayName("각 지점의 방향을 갖는 Direction 객체를 생성한다.")
@@ -19,7 +21,7 @@ class DirectionTest {
 	@Test
 	void invalid() {
 		assertThatThrownBy(() -> Direction.of(true, true))
-			.isInstanceOf(IllegalArgumentException.class);
+			.isInstanceOf(InvalidDirectionException.class);
 	}
 
 	@DisplayName("첫 번째 지점의 방향은 오른쪽 또는 직선 방향만을 갖는다.")

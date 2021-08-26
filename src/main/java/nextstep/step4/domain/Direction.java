@@ -2,6 +2,8 @@ package nextstep.step4.domain;
 
 import java.util.Objects;
 
+import nextstep.step4.exception.InvalidDirectionException;
+
 public class Direction {
 
 	private final boolean left;
@@ -39,7 +41,7 @@ public class Direction {
 
 	private void validateDirection(boolean left, boolean right) {
 		if (left && right) {
-			throw new IllegalArgumentException();
+			throw new InvalidDirectionException();
 		}
 	}
 
