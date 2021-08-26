@@ -4,8 +4,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 @DisplayName("게임 참가자 컬렉션 테스트")
 public class PlayersTest {
@@ -18,5 +20,18 @@ public class PlayersTest {
 
         // when, then
         assertThat(players.getNames()).containsExactly("pobi", "honux", "crong", "jk");
+    }
+
+    @DisplayName("게임 참가자가 없으면 예외가 발생한다.")
+    @Test
+    void emptyPlayersExceptionTest() {
+        // given, when, then
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new Players(Collections.emptyList()))
+                .withMessage("게임 참가자가 없습니다.");
+
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new Players(null))
+                .withMessage("게임 참가자가 없습니다.");
     }
 }
