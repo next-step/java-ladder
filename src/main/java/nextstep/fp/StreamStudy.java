@@ -6,7 +6,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class StreamStudy {
 
@@ -28,40 +27,12 @@ public class StreamStudy {
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
         // TODO 이 부분에 구현한다.
-        List<String> longestWords = words.stream()
+        words.stream()
                 .filter(word -> word.length() > 12)
-                .sorted(sortByLength())
+                .sorted(Comparator.comparingInt(String::length).reversed())
                 .distinct()
-                .collect(Collectors.toList());
+                .forEach(word -> System.out.println(word.toLowerCase()));
 
-        List<String> topWords = getTopWords(longestWords);
-        topWords.forEach(System.out::println);
-
-    }
-
-    private static List<String> getTopWords(List<String> longestWords) {
-        List<String> topWords = new ArrayList<>();
-
-        for (int i = 0; i < 100; i++) {
-            topWords.add(longestWords.get(i));
-        }
-
-        return topWords;
-    }
-
-    private static Comparator<String> sortByLength() {
-        return new Comparator<String>() {
-            @Override
-            public int compare(String o1, String o2) {
-                if (o1.length() > o2.length()) {
-                    return -1;
-                } else if (o1.length() == o2.length()) {
-                    return 0;
-                } else {
-                    return 1;
-                }
-            }
-        };
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
