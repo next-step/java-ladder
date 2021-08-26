@@ -20,22 +20,23 @@ public class Game {
 
     }
 
-    private Game(List<String> players, List<Line> lines) {
+    private Game(List<Player> players, List<Line> lines) {
         validateLadderHeight(lines.size());
 
-        this.players = players.stream()
-                .map(Player::from)
-                .collect(Collectors.toList());
-
+        this.players = players;
         this.lines = lines;
     }
 
-    public static Game of(List<String> players, List<Line> lines) {
+    public static Game of(List<Player> players, List<Line> lines) {
         return new Game(players, lines);
     }
 
     public static Game of(String playerNames, List<Line> lines) {
-        return new Game(StringUtils.splitWithComma(playerNames), lines);
+        return new Game(
+                StringUtils.splitWithComma(playerNames).stream()
+                        .map(Player::from)
+                        .collect(Collectors.toList())
+                , lines);
     }
 
     private void validateLadderHeight(int ladderHeight) {
