@@ -15,11 +15,9 @@ public class Users {
     }
 
     public static Users create(String users) {
-        return new Users(
-                Arrays.stream(users.split(","))
+        return Arrays.stream(users.split(","))
                         .map(User::createWithName)
-                        .collect(Collectors.toList())
-        );
+                        .collect(Collectors.collectingAndThen(Collectors.toList(), Users::new));
     }
 
     public static Users create(User... users) {

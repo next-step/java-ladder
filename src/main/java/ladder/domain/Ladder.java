@@ -7,15 +7,9 @@ import java.util.stream.Collectors;
 
 public class Ladder {
 
-    private final Width width;
-
-    private final Height height;
-
     private final List<Line> lines;
 
     private Ladder(Width width, Height height) {
-        this.width = width;
-        this.height = height;
         this.lines = initLines(width, height);
     }
 
@@ -83,11 +77,11 @@ public class Ladder {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Ladder ladder = (Ladder) o;
-        return Objects.equals(width, ladder.width) && Objects.equals(height, ladder.height) && Objects.equals(lines, ladder.lines);
+        return Objects.equals(lines, ladder.lines);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(width, height, lines);
+        return Objects.hash(lines);
     }
 }

@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Height {
 
-    private static final int MINIMUM_HEIGHT_LENGTH = 1;
+    private static final int MINIMUM_LENGTH = 1;
 
     private final int length;
 
@@ -18,8 +18,8 @@ public class Height {
     }
 
     private static void validate(int length) {
-        if(length < MINIMUM_HEIGHT_LENGTH){
-            throw new IllegalArgumentException("사다리의 세로길이는 1 이상이어야 합니다.");
+        if (length < MINIMUM_LENGTH) {
+            throw new IllegalArgumentException("사다리의 세로길이는 " + MINIMUM_LENGTH + " 이상이어야 합니다.");
         }
     }
 
