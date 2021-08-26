@@ -6,8 +6,8 @@ import nextstep.step4.exception.InvalidNameLengthException;
 
 public class Player {
 
-	private static final int MIN_LENGTH = 1;
-	private static final int MAX_LENGTH = 5;
+	private static final int MIN_NAME_LENGTH = 1;
+	private static final int MAX_NAME_LENGTH = 5;
 
 	private final String name;
 
@@ -22,7 +22,7 @@ public class Player {
 
 	private void validateNameLength(String name) {
 		int length = name.length();
-		if (length < MIN_LENGTH || length > MAX_LENGTH) {
+		if (length < MIN_NAME_LENGTH || length > MAX_NAME_LENGTH) {
 			throw new InvalidNameLengthException(length);
 		}
 	}
