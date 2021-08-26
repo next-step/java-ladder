@@ -1,9 +1,9 @@
-package nextstep.step1.optional;
+package step1.nextstep.optional;
 
 import org.junit.jupiter.api.Test;
 
-import static nextstep.step1.optional.User.ageIsInRange1;
-import static nextstep.step1.optional.User.ageIsInRange2;
+import static step1.nextstep.optional.User.ageIsInRange1;
+import static step1.nextstep.optional.User.ageIsInRange2;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class UserTest {

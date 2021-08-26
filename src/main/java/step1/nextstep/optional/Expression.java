@@ -1,4 +1,4 @@
-package nextstep.step1.optional;
+package step1.nextstep.optional;
 
 enum Expression {
     PLUS("+"), MINUS("-"), TIMES("*"), DIVIDE("/");
