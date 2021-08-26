@@ -16,17 +16,17 @@ public class Prizes {
 
   private final List<PrizeName> prizes;
 
-  public Prizes(final List<PrizeName> prizes) {
+  private Prizes(final List<PrizeName> prizes) {
     this.prizes = Collections.unmodifiableList(prizes);
   }
 
-  public static List<PrizeName> of(String goods, int playerCount){
+  public static Prizes of(String goods, int playerCount){
     validationPrizeCount(goods, playerCount);
 
-    return splitPrizeName(goods)
+    return new Prizes(splitPrizeName(goods)
         .stream()
         .map(PrizeName::new)
-        .collect(Collectors.toList());
+        .collect(Collectors.toList()));
   }
 
   public List<String> prizeNames(){
