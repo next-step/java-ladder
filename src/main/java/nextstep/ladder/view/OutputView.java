@@ -20,7 +20,8 @@ public class OutputView {
 
     public static void showNames(List<String> names) {
         names.stream()
-                .forEach(name -> System.out.print(LPadding(name)));
+                .map(OutputView::LPadding)
+                .forEach(System.out::print);
         System.out.println();
     }
 
@@ -32,15 +33,17 @@ public class OutputView {
     }
 
     private static void showLadders(List<Line> lines) {
-        lines.stream().
-                map(Line::getList)
-                .map(line -> booleanToLine(line))
-                .forEach(line -> System.out.println("     "+stringLine(line)));
+        lines.stream()
+                .map(Line::getList)
+                .map(OutputView::booleanToLine)
+                .map(OutputView::stringLine)
+                .map(line -> "     " + line)
+                .forEach(System.out::println);
     }
 
     public static List<String> booleanToLine(List<Boolean> statusList) {
         return statusList.stream()
-                .map(v -> booleanToLine(v))
+                .map(OutputView::booleanToLine)
                 .collect(Collectors.toList());
     }
 
