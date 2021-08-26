@@ -1,11 +1,27 @@
 package ladder.model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class LadderResult {
+    private static final Map<String, LadderResult> LADDER_RESULTS = new HashMap<>();
+
     private final String result;
 
-    LadderResult(String result) {
+    private LadderResult(String result) {
         validateNotEmpty(result);
         this.result = result;
+    }
+
+    static LadderResult of(String result) {
+        LadderResult ladderResult = LADDER_RESULTS.get(result);
+        if (ladderResult != null) {
+            return ladderResult;
+        }
+
+        ladderResult = new LadderResult(result);
+        LADDER_RESULTS.put(result, ladderResult);
+        return ladderResult;
     }
 
     private void validateNotEmpty(String result) {
