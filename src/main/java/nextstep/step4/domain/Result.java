@@ -1,5 +1,6 @@
 package nextstep.step4.domain;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,6 +17,6 @@ public class Result {
 	}
 
 	public Map<Player, Prize> value() {
-		return result;
+		return Collections.unmodifiableMap(result);
 	}
 }
