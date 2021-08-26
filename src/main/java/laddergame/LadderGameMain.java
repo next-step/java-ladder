@@ -13,13 +13,12 @@ public class LadderGameMain {
     public static void main(String[] args){
         try {
             List<String> peopleString = InputView.inputPeople();
+            int countOfPeople = peopleString.size();
 
             int heightOfLadder = InputView.inputHeightOfLadder();
 
             People people = new People(peopleString);
-
-            int widthOfLadder = peopleString.size() - 1;
-            Ladder ladder = new Ladder(widthOfLadder, heightOfLadder);
+            Ladder ladder = new Ladder(countOfPeople, heightOfLadder);
 
             ResultView.showResult(people, ladder);
         } catch (CustomException e) {
