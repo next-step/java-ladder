@@ -14,7 +14,7 @@ public class UserTest {
     @Test
     void 유저_이름_조회() {
         User user = new User(TEST_NAME);
-        assertThat(user.getName()).isEqualTo(TEST_NAME);
+        assertThat(user.nameInfo()).isEqualTo(TEST_NAME);
     }
 
     @Test
