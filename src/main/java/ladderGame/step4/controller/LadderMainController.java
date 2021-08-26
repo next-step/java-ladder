@@ -1,10 +1,9 @@
 package ladderGame.step4.controller;
 
 import java.util.List;
-import ladderGame.step4.model.Ladder;
+import ladderGame.step4.dto.CreatorDto;
+import ladderGame.step4.dto.ModelDto;
 import ladderGame.step4.model.MatchResult;
-import ladderGame.step4.model.Players;
-import ladderGame.step4.model.Prizes;
 import ladderGame.step4.service.LadderService;
 
 public class LadderMainController {
@@ -15,20 +14,11 @@ public class LadderMainController {
     this.service = new LadderService();
   }
 
-  public Ladder findLadder(final int ladderHeight, final int playerCount) {
-    return service.createLadder(ladderHeight, playerCount);
+  public ModelDto create(final CreatorDto creatorDto){
+    return service.create(creatorDto);
   }
 
-  public Prizes findPrizes(final String goods, final int playerCount) {
-    return service.createPrizes(goods, playerCount);
-  }
-
-  public Players findPlayers(final String playerNames) {
-    return service.createPlayers(playerNames);
-  }
-
-  public List<MatchResult> findResult(final Ladder ladder, final Players players,
-      final String findName) {
-    return service.getMatchResults(ladder, players, findName);
+  public List<MatchResult> findResult(final ModelDto modelDto, final String findName) {
+    return service.getMatchResults(modelDto.getLadder(), modelDto.getPlayers(), findName);
   }
 }
