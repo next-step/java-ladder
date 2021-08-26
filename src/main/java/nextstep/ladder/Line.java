@@ -10,6 +10,7 @@ public class Line {
         for (int i = 0; i < size; i++) {
             points.add(random.makeBoolean());
         }
+        random.resetLine();
     }
 
     public static Line of(int size, RandomPoint random) {
@@ -24,4 +25,5 @@ public class Line {
     public List<Boolean> getList() {
         return new ArrayList<Boolean>(points);
     }
+
 }
