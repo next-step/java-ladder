@@ -5,7 +5,7 @@ import ladder.domain.user.User;
 
 import java.util.Map;
 
-public class LadderGameResult {
+public final class LadderGameResult {
 
     public static final String FINISH_KEYWORD = "ALL";
     private static final Result RESULT_EMPTY = Result.valueOf("해당 유저가 없습니다.");
@@ -20,7 +20,7 @@ public class LadderGameResult {
         return word.equalsIgnoreCase(FINISH_KEYWORD);
     }
 
-    public Result getLadderGameResult(String input) {
+    public Result getLadderGameResult(final String input) {
         return ladderGameResult.getOrDefault(User.valueOf(input), RESULT_EMPTY);
     }
 

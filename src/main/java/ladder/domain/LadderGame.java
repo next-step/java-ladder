@@ -34,7 +34,7 @@ public final class LadderGame {
         return new Ladder(directionStrategy, ladderHeight, users.getUserCount());
     }
 
-    public LadderGameResult execute(Ladder ladder) {
+    public LadderGameResult execute(final Ladder ladder) {
         Map<User, Result> resultMap = new HashMap<>();
         for (int i = 0; i < users.getUserCount(); i++) {
             int endPoint = ladder.run(i);
