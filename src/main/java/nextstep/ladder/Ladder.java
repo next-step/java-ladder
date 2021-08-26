@@ -16,8 +16,6 @@ public class Ladder {
         for (int high = 0; high < depth; high++) {
             lines.add(Line.of(participants.size() - 1, randomPoint));
         }
-        System.out.println(lines);
-
     }
 
     public static Ladder of(Participants participants, RandomPoint randomPoint, int depth) {
@@ -43,5 +41,9 @@ public class Ladder {
 
     public int getLineSize(){
         return lines.get(0).getSize();
+    }
+
+    public List<Line> getLines() {
+        return new ArrayList<Line>(lines);
     }
 }

@@ -1,6 +1,7 @@
 package nextstep.ladder;
 
 public class Participant {
+    private static final int NAME_MAX_LENGTH = 5;
     private String name;
 
     public Participant(String name) {
@@ -15,7 +16,7 @@ public class Participant {
     }
 
     private boolean validation(String name) {
-        if (name.length() > 5) {
+        if (name.length() > NAME_MAX_LENGTH) {
             return false; //Error
         }
         return true;
