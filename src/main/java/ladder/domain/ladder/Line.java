@@ -42,8 +42,8 @@ public final class Line {
         return getLastDirection(directions).ofLast();
     }
 
-    public Direction getDirection(final int index) {
-        return directions.get(index);
+    public int nextPosition(final int index) {
+        return directions.get(index).nextPosition();
     }
 
     public List<Direction> getDirections() {

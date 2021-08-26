@@ -27,12 +27,11 @@ public final class Ladder {
     }
 
     public int run(final int index) {
-        int nextIndex = index;
+        int currentIndex = index;
         for (Line line : lines) {
-            Direction direction = line.getDirection(nextIndex);
-            nextIndex += direction.move();
+            currentIndex += line.nextPosition(currentIndex);
         }
-        return nextIndex;
+        return currentIndex;
     }
 
     public List<Line> getLines() {

@@ -2,7 +2,13 @@ package ladder.domain.ladder;
 
 public enum Direction {
 
-    LEFT, STRAIGHT, RIGHT;
+    LEFT(-1), STRAIGHT(0), RIGHT(1);
+
+    private final int distance;
+
+    Direction(final int distance) {
+        this.distance = distance;
+    }
 
     public static Direction ofFirst(final DirectionStrategy directionStrategy) {
         if (directionStrategy.move()) {
@@ -28,13 +34,7 @@ public enum Direction {
         return STRAIGHT;
     }
 
-    public int move() {
-        if (this == RIGHT) {
-            return 1;
-        }
-        if (this == LEFT) {
-            return -1;
-        }
-        return 0;
+    public int nextPosition() {
+        return distance;
     }
 }
