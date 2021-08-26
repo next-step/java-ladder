@@ -1,5 +1,6 @@
 package laddergameplay.domain;
 
+import laddergame.exception.CustomException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -32,6 +33,33 @@ public class WinningResultTest {
 
         //then
         assertThat(findedResult).isEqualTo(result1);
+    }
+
+    @Test
+    @DisplayName("")
+    void findBy_fail() {
+        // given
+        Map<Person, Result> winningResultMap = new LinkedHashMap<>();
+
+        Person person1 = new Person("hwan");
+        Person person2 = new Person("kook");
+
+        Result result1 = new Result("3000");
+        Result result2 = new Result("lose");
+
+        winningResultMap.put(person1, result1);
+        winningResultMap.put(person2, result2);
+
+        WinningResult winningResult = new WinningResult(winningResultMap);
+
+        // when
+        Person person3 = new Person("check");
+
+
+        //then
+        assertThatThrownBy(() -> winningResult.findBy(person3))
+                .isInstanceOf(CustomException.class)
+                .hasMessageContaining(WinningResult.NOT_EXIST_EXCEPTION_MESSAGE);
     }
 
     @Test
