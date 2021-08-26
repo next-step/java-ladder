@@ -1,6 +1,7 @@
 package nextstep.step4.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -14,6 +15,10 @@ public class Line {
 
 	public int move(int startPosition) {
 		return points.get(startPosition).move();
+	}
+
+	public List<Point> points() {
+		return Collections.unmodifiableList(points);
 	}
 
 	@Override

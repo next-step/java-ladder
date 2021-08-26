@@ -16,6 +16,10 @@ public class Player {
 		this.name = name;
 	}
 
+	public String name() {
+		return name;
+	}
+
 	private void validateNameLength(String name) {
 		int length = name.length();
 		if (length < MIN_LENGTH || length > MAX_LENGTH) {

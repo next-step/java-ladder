@@ -15,4 +15,7 @@ public class Result {
 		return result.get(player);
 	}
 
+	public Map<Player, Prize> value() {
+		return result;
+	}
 }

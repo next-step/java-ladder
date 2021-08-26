@@ -10,6 +10,10 @@ public class Prize {
 		this.value = value;
 	}
 
+	public String value() {
+		return value;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o)

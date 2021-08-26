@@ -24,6 +24,10 @@ public class Point {
 		return new Point(index + 1, direction.last());
 	}
 
+	public boolean isRight() {
+		return direction.isRight();
+	}
+
 	public int move() {
 		if (direction.isRight()) {
 			return index + 1;

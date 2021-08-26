@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Prizes {
 
@@ -27,6 +28,12 @@ public class Prizes {
 
 	public Prize of(int position) {
 		return prizes.get(position);
+	}
+
+	public List<String> values() {
+		return prizes.stream()
+				.map(Prize::value)
+				.collect(collectingAndThen(toList(), Collections::unmodifiableList));
 	}
 
 	@Override

@@ -1,6 +1,7 @@
 package nextstep.step4.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
@@ -21,6 +22,10 @@ public class Ladder {
 			result.put(players.of(position), prizes.of(destination(position)));
 		}
 		return result;
+	}
+
+	public List<Line> lines() {
+		return Collections.unmodifiableList(lines);
 	}
 
 	private int destination(int startPosition) {

@@ -33,6 +33,12 @@ public class Players {
 		return players.size();
 	}
 
+	public List<String> names() {
+		return players.stream()
+				.map(Player::name)
+				.collect(collectingAndThen(toList(), Collections::unmodifiableList));
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o)
