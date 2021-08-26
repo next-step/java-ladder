@@ -9,6 +9,7 @@ import java.util.Random;
 
 public class Line {
     private static final Random RANDOM = new Random();
+    private static final int MIN_LINE_COUNT = 1;
 
     private final List<Boolean> points;
 
@@ -31,7 +32,7 @@ public class Line {
     }
 
     private void validateCount(int countOfPerson) {
-        if (countOfPerson < 1) {
+        if (countOfPerson < MIN_LINE_COUNT) {
             throw new LineCountException();
         }
     }
