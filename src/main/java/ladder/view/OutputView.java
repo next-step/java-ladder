@@ -7,18 +7,15 @@ import ladder.domain.Lines;
 import java.util.Arrays;
 import java.util.Map;
 
-
 public class OutputView {
     private static final String WIDTH_LADDER = "-----";
     private static final String HEIGHT_LADDER = "|";
     private static final String EMPTY_WIDTH_LADDER = "     ";
 
-
     public void printParticipateInUsers(String[] userNames) {
         Arrays.stream(userNames).forEach(userName -> System.out.printf("%6s", userName));
         System.out.println();
     }
-
 
     public void printLadder(Lines lines) {
         StringBuilder sb = new StringBuilder();
@@ -29,7 +26,6 @@ public class OutputView {
     }
 
     public StringBuilder drawOneLine(Line line) {
-
         int position = 0;
         StringBuilder sb = new StringBuilder();
         sb.append(EMPTY_WIDTH_LADDER);
@@ -37,7 +33,6 @@ public class OutputView {
         for (boolean isLadder : line.points()) {
             drawLadderByType(sb, isLadder, position++);
         }
-
         sb.append("\n");
         return sb;
     }
@@ -48,19 +43,15 @@ public class OutputView {
     }
 
     private void drawLadderByType(StringBuilder sb, boolean isLadder, int position) {
-
         if (isDrawHeightLadder(position, isLadder)) {
             sb.append(HEIGHT_LADDER);
         }
-
         if (isDrawWidthLadder(position, isLadder)) {
             sb.append(WIDTH_LADDER);
         }
-
         if (isDrawEmptySpace(position, isLadder)) {
             sb.append(EMPTY_WIDTH_LADDER);
         }
-
     }
 
     public void printUserResult(String result) {
@@ -68,14 +59,12 @@ public class OutputView {
         System.out.println(result);
     }
 
-
     public void printUserResults(Map<String, String> results) {
         System.out.println("실행결과");
         results.forEach((user, gameResult) -> {
             System.out.println(user + " : " + gameResult);
         });
     }
-
 
     private boolean isDrawHeightLadder(int position, boolean isLadder) {
         return isHeightLadder(position) && isLadder;

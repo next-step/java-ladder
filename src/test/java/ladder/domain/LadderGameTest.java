@@ -48,8 +48,8 @@ class LadderGameTest {
 
         tom = new User(tom.name(),0);
 
-        gameResult.showResult(tom.position());
-        assertThat(gameResult.showResult(tom.position())).isEqualTo("꽝");
+        gameResult.show(tom.position());
+        assertThat(gameResult.show(tom.position())).isEqualTo("꽝");
 
     }
 
