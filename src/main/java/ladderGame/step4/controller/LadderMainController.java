@@ -9,9 +9,10 @@ import ladderGame.step4.service.LadderService;
 
 public class LadderMainController {
 
-  private final LadderService service = new LadderService();
+  private final LadderService service;
 
   public LadderMainController() {
+    this.service = new LadderService();
   }
 
   public Ladder findLadder(final int ladderHeight, final int playerCount) {
