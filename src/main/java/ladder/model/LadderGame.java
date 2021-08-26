@@ -42,7 +42,7 @@ public class LadderGame {
     public int moveSide(List<Boolean> pointList, int point) {
         boolean goLeft = false;
         boolean goRight = false;
-        if (pointList.get(point)) {
+        if (Boolean.TRUE.equals(pointList.get(point))) {
             goLeft = moveLeft(pointList, point);
             goRight = moveRight(pointList, point);
         }
