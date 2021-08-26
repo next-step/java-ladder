@@ -1,8 +1,8 @@
 package ladder.domain;
 
-import java.util.Objects;
-
 import ladder.exception.NameLengthException;
+
+import java.util.Objects;
 
 public class Name {
     private static final String PERSON_NUMBER_MIN_EXCEPTION_COMMENT = "사람 이름이 최대길이인 %d를 넘었습니다.";
