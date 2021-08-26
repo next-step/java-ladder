@@ -6,9 +6,7 @@ import ladder.model.RandomLineStrategy;
 import ladder.view.Input;
 import ladder.view.Result;
 
-import java.util.List;
-
-public class Ladder {
+public class Game {
     private static final RandomLineStrategy randomLineStrategy = new RandomLineStrategy();
 
     public void makeLadder() {

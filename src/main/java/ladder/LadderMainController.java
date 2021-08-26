@@ -1,10 +1,10 @@
 package ladder;
 
-import ladder.Controller.Ladder;
+import ladder.Controller.Game;
 
 public class LadderMainController {
     public static void main(String[] args) {
-        Ladder ladder = new Ladder();
-        ladder.makeLadder();
+        Game game = new Game();
+        game.makeLadder();
     }
 }
