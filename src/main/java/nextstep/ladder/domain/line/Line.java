@@ -1,5 +1,8 @@
 package nextstep.ladder.domain.line;
 
+import nextstep.ladder.exception.ContinousLinePointException;
+import nextstep.ladder.exception.OutOfRangeException;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -37,7 +40,7 @@ public class Line {
         boolean temp = points.get(0);
         for (int i = 1; i < points.size(); i++) {
             if (temp && points.get(i)) {
-                throw new IllegalArgumentException("가로 선은 연속해서 2개 이상 위치할 수 없습니다.");
+                throw new ContinousLinePointException();
             }
             temp = points.get(i);
         }
@@ -45,7 +48,7 @@ public class Line {
 
     private void validPointsCount(List<Boolean> points) {
         if (points.size() < MIN_POINT_COUNT) {
-            throw new IllegalArgumentException("포인트 갯수는 최소 " + MIN_POINT_COUNT + "개 이상 이어야합니다." + "현재 : " + points.size());
+            throw OutOfRangeException.shouldGreaterOrEqualThan(MIN_POINT_COUNT, points.size());
         }
     }
 

@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import nextstep.ladder.domain.line.Line;
+import nextstep.ladder.exception.OutOfRangeException;
 import nextstep.ladder.utils.StringUtils;
 
 import java.util.ArrayList;
@@ -39,7 +40,7 @@ public class Game {
 
     private void validateLadderHeight(int ladderHeight) {
         if (ladderHeight < MIN_LADDER_HEIGHT) {
-            throw new IllegalArgumentException("사다리 높이는 " + MIN_LADDER_HEIGHT + "이상 이여야합니다. 현재 : " + ladderHeight);
+            throw OutOfRangeException.shouldGreaterOrEqualThan(ladderHeight, MIN_LADDER_HEIGHT);
         }
     }
 
