@@ -1,12 +1,9 @@
 package ladderGame.step4;
 
-import java.util.List;
 import ladderGame.step4.controller.LadderMainController;
-import ladderGame.step4.model.Ladder;
-import ladderGame.step4.model.MatchResult;
-import ladderGame.step4.model.Players;
-import ladderGame.step4.model.Prizes;
-import ladderGame.step4.validation.Validation;
+import ladderGame.step4.dto.CreatorDto;
+import ladderGame.step4.dto.ModelDto;
+import ladderGame.step4.service.Creator;
 import ladderGame.step4.view.InputView;
 import ladderGame.step4.view.ResultView;
 
@@ -16,39 +13,32 @@ public class LadderApplication {
 
   public static void main(String[] args) {
 
-    String playerNames = InputView.inputUserNames();
-    Validation.validationNames(playerNames);
-
-    String goods = InputView.inputGoods();
-    Validation.validationNamesAndGoodsCount(playerNames, goods);
-
-    int ladderHeight = InputView.inputLadderHeight();
-    Validation.validationLimitHeight(ladderHeight);
-
     LadderMainController ladderMainController = new LadderMainController();
 
-    Players players = ladderMainController.findPlayers(playerNames);
-    ResultView.printUsersName(players.playersName());
+    String playerNames = Creator.getPlayerNames();
+    String goods = Creator.getGoods(playerNames);
+    int ladderHeight = Creator.getHeight();
 
-    Ladder ladder = ladderMainController.findLadder(ladderHeight, players.playersName().size());
-    ResultView.printLadder(ladder);
+    ModelDto modelDto = ladderMainController.create(
+        new CreatorDto(playerNames, goods, ladderHeight));
 
-    Prizes prizes = ladderMainController.findPrizes(goods, players.playersName().size());
-    ResultView.printPrizes(prizes);
+    ResultView.printUsersName(modelDto.getPlayers().playersName());
+    ResultView.printLadder(modelDto.getLadder());
+    ResultView.printPrizes(modelDto.getPrizes());
 
-    String findName = InputView.inputFindNames();
-
-    List<MatchResult> ladderInfo = ladderMainController.findResult(ladder, players, findName);
+    String findName = getFindNameWithResult(ladderMainController, modelDto);
 
     while (!isContinue(findName)) {
-
-      ResultView.printResult(ladderInfo, prizes);
-
-      findName = InputView.inputFindNames();
-      ladderInfo = ladderMainController.findResult(ladder, players, findName);
+      findName = getFindNameWithResult(ladderMainController, modelDto);
     }
+  }
 
-    ResultView.printResult(ladderInfo, prizes);
+  private static String getFindNameWithResult(final LadderMainController ladderMainController,
+      final ModelDto modelDto) {
+    String findName = InputView.inputFindNames();
+    ResultView.printResult(ladderMainController.findResult(modelDto, findName),
+        modelDto.getPrizes());
+    return findName;
   }
 
   private static boolean isContinue(final String findName) {
