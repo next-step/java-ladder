@@ -41,6 +41,7 @@ class LadderGameResultTest {
 
     @ParameterizedTest
     @CsvSource(value = {"user1=100", "user2=1000", "user3=0"}, delimiter = '=')
+    @DisplayName("사다리 실행결과 확인")
     void matchLadderGameResult(String userName, Result result) {
         // given
         // when
@@ -51,6 +52,7 @@ class LadderGameResultTest {
     }
 
     @Test
+    @DisplayName("사다리 실행결과 확인(전체)")
     void matchLadderGameResults() {
         // given
         Map<User, Result> ladderGameResults = ladderGameResult.getLadderGameResults();
