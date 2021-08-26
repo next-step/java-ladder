@@ -30,5 +30,7 @@ public class PlayerTest {
                 .isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() -> Player.from(""))
                 .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> Player.from("        "))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
