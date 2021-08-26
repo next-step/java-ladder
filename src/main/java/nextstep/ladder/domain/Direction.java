@@ -1,6 +1,5 @@
 package nextstep.ladder.domain;
 
-import java.util.Optional;
 import java.util.function.IntUnaryOperator;
 
 public enum Direction {
@@ -19,12 +18,14 @@ public enum Direction {
     }
 
     public static Direction decide(final boolean prevInstall, final boolean currentInstall) {
-        return Optional.of(prevInstall)
-                .filter(prev -> prev)
-                .map(prev -> LEFT)
-                .orElseGet(() -> Optional.of(currentInstall)
-                        .filter(current -> current)
-                        .map(current -> RIGHT)
-                        .orElse(NONE));
+        if (prevInstall) {
+            return LEFT;
+        }
+
+        if (currentInstall) {
+            return RIGHT;
+        }
+
+        return NONE;
     }
 }
