@@ -24,7 +24,10 @@ public class Direction {
 	}
 
 	public Direction next(boolean isRight) {
-		return Direction.of(this.right, isRight);
+		if (right) {
+			return Direction.of(true, false);
+		}
+		return Direction.of(false, isRight);
 	}
 
 	public Direction last() {
