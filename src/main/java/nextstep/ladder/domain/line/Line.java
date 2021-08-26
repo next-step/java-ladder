@@ -2,6 +2,7 @@ package nextstep.ladder.domain.line;
 
 import nextstep.ladder.exception.ContinousLinePointException;
 import nextstep.ladder.exception.OutOfRangeException;
+import nextstep.ladder.view.ResultView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -52,13 +53,6 @@ public class Line {
         }
     }
 
-    private String parseToDot(boolean value) {
-        if (value) {
-            return "-----|";
-        }
-        return "     |";
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -75,7 +69,7 @@ public class Line {
     @Override
     public String toString() {
         return points.stream()
-                .map(this::parseToDot)
+                .map(ResultView::parseBooleanToDot)
                 .collect(Collectors.joining());
     }
 }
