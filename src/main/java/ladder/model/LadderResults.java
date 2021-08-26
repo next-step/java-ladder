@@ -8,9 +8,16 @@ public class LadderResults {
     private final List<LadderResult> results;
 
     LadderResults(List<String> results) {
+        validateNotEmpty(results);
         this.results = results.stream()
                 .map(LadderResult::of)
                 .collect(toList());
+    }
+
+    private void validateNotEmpty(List<String> results) {
+        if (results == null || results.isEmpty()) {
+            throw new IllegalArgumentException("사다리 실행 결과값이 비었습니다.");
+        }
     }
 
     List<String> getResults() {
