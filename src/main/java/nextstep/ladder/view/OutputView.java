@@ -9,8 +9,8 @@ import java.util.stream.Collectors;
 public class OutputView {
 
     private static final int MAX_STR_SIZE = 6;
-    private static final String TRUE = "-----";
-    private static final String FALSE = "     ";
+    private static final String LINE = "-----";
+    private static final String BLANK = "     ";
 
     public static void showResult(Ladder ladder) {
 
@@ -37,7 +37,7 @@ public class OutputView {
                 .map(Line::getList)
                 .map(OutputView::booleanToLine)
                 .map(OutputView::stringLine)
-                .map(line -> "     " + line)
+                .map(line -> BLANK + line)
                 .forEach(System.out::println);
     }
 
@@ -48,7 +48,7 @@ public class OutputView {
     }
 
     public static String booleanToLine(boolean status) {
-        return status ? TRUE : FALSE;
+        return status ? LINE : BLANK;
     }
     public static String stringLine(List<String> lines){
         String result = "|";
