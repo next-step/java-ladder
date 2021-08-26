@@ -30,7 +30,7 @@ public class Line {
         AtomicBoolean prevBarInstalled = new AtomicBoolean(false);
         return IntStream.range(0, playerCount)
                 .mapToObj(i -> new Point(i, Direction.decide(prevBarInstalled.get(), RANDOM.nextBoolean())))
-                .peek(direction -> prevBarInstalled.set(direction.isRightDirection()))
+                .peek(point -> prevBarInstalled.set(point.isRightDirection()))
                 .collect(Collectors.toList());
     }
 
