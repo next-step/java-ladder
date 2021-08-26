@@ -37,7 +37,6 @@ public class OutputView {
                 .map(Line::getList)
                 .map(OutputView::booleanToLine)
                 .map(OutputView::stringLine)
-                .map(line -> BLANK + line)
                 .forEach(System.out::println);
     }
 
@@ -51,13 +50,9 @@ public class OutputView {
         return status ? LINE : BLANK;
     }
     public static String stringLine(List<String> lines){
-        String result = "|";
-        // 해당부분을 스트림으로 처리 하는 방법을 모르겠습니다....
-        for(String line : lines){
-            result += line;
-            result += "|";
-        }
-        return result;
+
+        return lines.stream()
+                .collect(Collectors.joining( "|", BLANK +"|", "|"));
     }
 
 }
