@@ -19,7 +19,7 @@ public class LadderMain {
 		Result result = ladder.play();
 
 		ResultView.playerNames(players);
-		ResultView.ladderStructure(ladder);
+		ResultView.ladder(ladder);
 		ResultView.prizes(prizes);
 
 		String playerName = InputView.targetPlayerName();

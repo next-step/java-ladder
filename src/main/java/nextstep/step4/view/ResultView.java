@@ -38,7 +38,7 @@ public class ResultView {
 		blankLine();
 	}
 
-	public static void ladderStructure(Ladder ladder) {
+	public static void ladder(Ladder ladder) {
 		ladder.lines().forEach(ResultView::line);
 	}
 
