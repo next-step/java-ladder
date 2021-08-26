@@ -1,7 +1,6 @@
 package ladder.domain;
 
 import ladder.strategy.LocationStrategy;
-import ladder.view.OutputView;
 
 import java.util.Collections;
 import java.util.HashMap;
