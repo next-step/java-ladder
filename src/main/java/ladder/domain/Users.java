@@ -8,6 +8,8 @@ import java.util.stream.Collectors;
 
 public class Users {
 
+    private static final String SEPARATOR = ",";
+
     private final List<User> users;
 
     private Users(List<User> users) {
@@ -15,7 +17,7 @@ public class Users {
     }
 
     public static Users create(String users) {
-        return Arrays.stream(users.split(","))
+        return Arrays.stream(users.split(SEPARATOR))
                         .map(User::createWithName)
                         .collect(Collectors.collectingAndThen(Collectors.toList(), Users::new));
     }
