@@ -38,9 +38,7 @@ public final class LadderGame {
         Map<User, Result> resultMap = new HashMap<>();
         for (int i = 0; i < users.getUserCount(); i++) {
             int endPoint = ladder.run(i);
-            Result result = results.get(endPoint);
-            User user = users.get(i);
-            resultMap.put(user, result);
+            resultMap.put(users.get(i), results.get(endPoint));
         }
         return new LadderGameResult(resultMap);
     }
