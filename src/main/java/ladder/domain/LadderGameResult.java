@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class LadderGameResult {
 
-    public static final String FINISH_STRING = "ALL";
+    public static final String FINISH_KEYWORD = "ALL";
     private static final Result RESULT_EMPTY = Result.valueOf("해당 유저가 없습니다.");
 
     private final Map<User, Result> ladderGameResult;
@@ -17,7 +17,7 @@ public class LadderGameResult {
     }
 
     public boolean isShowAll(final String word) {
-        return FINISH_STRING.equalsIgnoreCase(word);
+        return word.equalsIgnoreCase(FINISH_KEYWORD);
     }
 
     public Result getLadderGameResult(String input) {

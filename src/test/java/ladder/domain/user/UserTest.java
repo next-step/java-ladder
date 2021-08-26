@@ -39,7 +39,7 @@ class UserTest {
     @DisplayName("유저이름이 전체 출력하는 문자열이면 Exception")
     void userNameNotAllowException() {
         // given
-        String givenName = LadderGameResult.FINISH_STRING;
+        String givenName = LadderGameResult.FINISH_KEYWORD;
 
         // when
         // then

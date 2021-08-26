@@ -34,7 +34,7 @@ public final class User {
             throw new GreaterThenMaxUserNameException();
         }
 
-        if (name.equalsIgnoreCase(LadderGameResult.FINISH_STRING)) {
+        if (name.equalsIgnoreCase(LadderGameResult.FINISH_KEYWORD)) {
             throw new NotAllowUserNameException();
         }
     }

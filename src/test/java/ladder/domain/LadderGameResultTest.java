@@ -33,7 +33,7 @@ class LadderGameResultTest {
     void inputFindAllKeywordCheck() {
         // given
         // when
-        boolean actual = ladderGameResult.isShowAll(LadderGameResult.FINISH_STRING);
+        boolean actual = ladderGameResult.isShowAll(LadderGameResult.FINISH_KEYWORD);
 
         // then
         assertThat(actual).isTrue();
