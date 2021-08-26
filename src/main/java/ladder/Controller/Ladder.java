@@ -28,6 +28,8 @@ public class Ladder {
         Result.printPrize(prize);
 
         ladderGame.gameResult(prize);
-        Result.printResult(ladderGame.getParticipant());
+        while(true) {
+            Result.printResult(ladderGame.getParticipant());
+        }
     }
 }

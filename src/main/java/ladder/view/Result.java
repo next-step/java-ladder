@@ -14,6 +14,7 @@ public class Result {
 
     private static final String NAME_FORMAT = "%5s ";
     private static final String PRIZE_FORMAT = "%5s ";
+    private static final String RESULT_MESSAGE = "실행결과";
     private static final String RESULT_FORMAT = "%s : %s";
     private static final String LADDER_START_LINE = "    ";
     private static final String LADDER_END_LINE = "|";
@@ -44,6 +45,7 @@ public class Result {
     }
 
     public static void printResult(Users users) {
+
         System.out.println("결과를 보고 싶은 사람은?");
         String userName = scanner.nextLine();
 
@@ -62,13 +64,17 @@ public class Result {
 
     private static void printResult(Optional userOptional) {
         User user = (User)userOptional.get();
-        System.out.println(String.format(RESULT_FORMAT, user.nameInfo(), user.resultInfo()));
+        System.out.println(RESULT_MESSAGE);
+        System.out.println(user.resultInfo());
+        System.out.println();
     }
 
     private static void printResultAll(Users users) {
+        System.out.println(RESULT_MESSAGE);
         for (User user : users.getParticipants()) {
             System.out.println(String.format(RESULT_FORMAT, user.nameInfo(), user.resultInfo()));
         }
+        System.out.println();
     }
     private static void checkPrintPoint(Line line) {
         for (int pointIndex=0; pointIndex < line.getPoints().size(); ) {
