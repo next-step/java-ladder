@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 public class Line {
 
-    public static final int MIN_POINT_COUNT = 2;
+    private static final int MIN_POINT_COUNT = 2;
 
     private List<Boolean> points = new ArrayList<>();
 
@@ -38,12 +38,10 @@ public class Line {
     }
 
     private void validContinuous(List<Boolean> points) {
-        boolean temp = points.get(0);
-        for (int i = 1; i < points.size(); i++) {
-            if (temp && points.get(i)) {
+        for (int i = 0; i < points.size() - 1; i++) {
+            if (points.get(i) && points.get(i + 1)) {
                 throw new ContinousLinePointException();
             }
-            temp = points.get(i);
         }
     }
 

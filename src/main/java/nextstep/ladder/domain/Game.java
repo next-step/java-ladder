@@ -60,7 +60,6 @@ public class Game {
 
     @Override
     public String toString() {
-
         return players.stream()
                 .map(Player::toString)
                 .collect(Collectors.joining(" ")) +
