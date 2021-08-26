@@ -1,4 +1,4 @@
-package ladder.presentation;
+package ladder.presentation.input;
 
 import java.util.Scanner;
 

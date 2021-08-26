@@ -1,4 +1,4 @@
-package ladder.presentation;
+package ladder.presentation.output;
 
 import ladder.domain.Ladder;
 import ladder.domain.Line;
