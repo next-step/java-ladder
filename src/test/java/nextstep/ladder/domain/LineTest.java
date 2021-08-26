@@ -1,10 +1,10 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.dto.LineBarStatusDto;
 import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -36,19 +36,17 @@ class LineTest {
         int expected = 3;
 
         // when
-        LineBarStatusDto barInstalledStatus = line.getLineBarStatus();
-        int size = barInstalledStatus.getBarStatus()
-                .size();
+        List<Boolean> barInstalledStatus = line.getLineBarStatus();
+        int size = barInstalledStatus.size();
 
         // then
         assertThat(size).isEqualTo(expected);
         assertThat(isContinuesBarInstalled(barInstalledStatus)).isEqualTo(false);
     }
 
-    private boolean isContinuesBarInstalled(final LineBarStatusDto barInstalledStatus) {
+    private boolean isContinuesBarInstalled(final List<Boolean> barInstalledStatus) {
         AtomicBoolean prevBar = new AtomicBoolean(false);
-        return barInstalledStatus.getBarStatus()
-                .stream()
+        return barInstalledStatus.stream()
                 .anyMatch(barInstalled -> prevBar.getAndSet(barInstalled) && barInstalled);
     }
 

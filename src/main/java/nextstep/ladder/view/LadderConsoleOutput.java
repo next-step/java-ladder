@@ -1,7 +1,6 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.dto.LadderBarStatusDto;
-import nextstep.ladder.dto.LineBarStatusDto;
+import java.util.List;
 
 import static java.util.stream.Collectors.joining;
 
@@ -15,16 +14,14 @@ public class LadderConsoleOutput {
     private static final String NONE = "";
     private static final int SUFFIX_CRITERIA = 0;
 
-    public static void print(LadderBarStatusDto barStatus) {
-        System.out.println(barStatus.getLineBarStatus()
-                .stream()
+    public static void print(List<List<Boolean>> ladderBarStatus) {
+        System.out.println(ladderBarStatus.stream()
                 .map(LadderConsoleOutput::toLadderLine)
                 .collect(joining(NEXT_LINE)));
     }
 
-    private static String toLadderLine(final LineBarStatusDto lineBarStatus) {
-        return lineBarStatus.getBarStatus()
-                .stream()
+    private static String toLadderLine(final List<Boolean> lineBarStatus) {
+        return lineBarStatus.stream()
                 .map(LadderConsoleOutput::toBarOrBlank)
                 .collect(joining(LADDER_DELIMITER, PREFIX_BLANK + LADDER_DELIMITER, getLineSuffix(lineBarStatus)));
     }
@@ -35,8 +32,8 @@ public class LadderConsoleOutput {
                 : BLANK;
     }
 
-    private static String getLineSuffix(final LineBarStatusDto lineBarStatus) {
-        return lineBarStatus.isSizeOver(SUFFIX_CRITERIA)
+    private static String getLineSuffix(final List<Boolean> lineBarStatus) {
+        return lineBarStatus.size() > SUFFIX_CRITERIA
                 ? LADDER_DELIMITER
                 : NONE;
     }

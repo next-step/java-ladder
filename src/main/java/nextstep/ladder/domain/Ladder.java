@@ -1,7 +1,5 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.dto.LadderBarStatusDto;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,10 +13,10 @@ public class Ladder {
                 .collect(Collectors.toList());
     }
 
-    public LadderBarStatusDto getLadderBarStatus() {
-        return new LadderBarStatusDto(lines.stream()
+    public List<List<Boolean>> getLadderBarStatus() {
+        return lines.stream()
                 .map(Line::getLineBarStatus)
-                .collect(Collectors.toList()));
+                .collect(Collectors.toList());
     }
 
 }

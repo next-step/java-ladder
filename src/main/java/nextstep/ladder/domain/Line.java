@@ -1,7 +1,5 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.dto.LineBarStatusDto;
-
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -21,8 +19,11 @@ public class Line {
         this.points = createPoints(playerCount);
     }
 
-    public LineBarStatusDto getLineBarStatus() {
-        return new LineBarStatusDto(points);
+    public List<Boolean> getLineBarStatus() {
+        return points.stream()
+                .map(Point::isRightDirection)
+                .limit(points.size() - 1)
+                .collect(Collectors.toList());
     }
 
     private List<Point> createPoints(final int playerCount) {
