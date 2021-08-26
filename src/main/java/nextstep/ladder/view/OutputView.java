@@ -50,7 +50,6 @@ public class OutputView {
         return status ? LINE : BLANK;
     }
     public static String stringLine(List<String> lines){
-
         return lines.stream()
                 .collect(Collectors.joining( "|", BLANK +"|", "|"));
     }
