@@ -20,4 +20,8 @@ public class Ladder {
     public List<Line> getLadder() {
         return Collections.unmodifiableList(ladder);
     }
+
+    public WinningResult makeWinningResult(People people, Results results) {
+        return null;
+    }
 }
