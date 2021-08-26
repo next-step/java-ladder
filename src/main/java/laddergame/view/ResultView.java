@@ -33,7 +33,7 @@ public class ResultView {
 
     private static String makeLineResult(Line line) {
         StringBuilder stringBuilder = new StringBuilder();
-        line.stream()
+        line.getPoints().stream()
                 .map(ResultView::ladderString)
                 .forEach(stringBuilder::append);
         return stringBuilder.toString();

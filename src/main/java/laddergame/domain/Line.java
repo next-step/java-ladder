@@ -4,8 +4,8 @@ import laddergame.exception.CustomException;
 import laddergame.strategy.LineStrategy;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.Stream;
 
 public class Line {
 
@@ -43,7 +43,7 @@ public class Line {
         }
     }
 
-    public Stream<Boolean> stream() {
-        return points.stream();
+    public List<Boolean> getPoints() {
+        return Collections.unmodifiableList(points);
     }
 }

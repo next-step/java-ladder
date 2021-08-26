@@ -14,14 +14,15 @@ class LineTest {
     @DisplayName("Line 생성")
     void create() {
         // given
-        int widthOfLadder = 4;
+        int countOfPeople = 4;
+        int widthOfLadder = countOfPeople - 1;
 
         // when
-        Line line = new Line(widthOfLadder,new RandomLineStrategy());
+        Line line = new Line(countOfPeople,new RandomLineStrategy());
 
         // then
-        assertThat(line.stream().count()).isEqualTo(widthOfLadder);
-        assertThat(line.stream().findAny().orElse(null))
+        assertThat(line.getPoints().size()).isEqualTo(widthOfLadder);
+        assertThat(line.getPoints().get(0))
                 .isInstanceOf(Boolean.class);
     }
 
