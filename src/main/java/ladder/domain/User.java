@@ -13,7 +13,7 @@ public class User {
         this.name = name;
     }
 
-    public static User createWithName(String name) {
+    public static User create(String name) {
         return new User(name);
     }
 

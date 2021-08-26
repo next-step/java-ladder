@@ -13,9 +13,9 @@ public class UserTest {
         //given
 
         //when
-        User user = User.createWithName("pobi");
+        User user = User.create("pobi");
         //then
-        assertThat(user).isEqualTo(User.createWithName("pobi"));
+        assertThat(user).isEqualTo(User.create("pobi"));
     }
 
     @Test
@@ -23,7 +23,7 @@ public class UserTest {
         //given
         //when
         //then
-        assertThatThrownBy(() -> User.createWithName(""))
+        assertThatThrownBy(() -> User.create(""))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("이름이 비어있을 수 없습니다.");
     }
@@ -33,7 +33,7 @@ public class UserTest {
         //given
         //when
         //then
-        assertThatThrownBy(() -> User.createWithName("sjsjsjsj"))
+        assertThatThrownBy(() -> User.create("sjsjsjsj"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("이름이 너무 깁니다. (이름 : sjsjsjsj)");
     }

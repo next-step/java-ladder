@@ -33,4 +33,10 @@ public class LadderResults {
     public int hashCode() {
         return Objects.hash(ladderResults);
     }
+
+    public List<String> allNames() {
+        return ladderResults.stream()
+                .map(LadderResult::getResult)
+                .collect(Collectors.toList());
+    }
 }

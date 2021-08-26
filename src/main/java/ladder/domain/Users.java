@@ -18,7 +18,7 @@ public class Users {
 
     public static Users create(String users) {
         return Arrays.stream(users.split(SEPARATOR))
-                        .map(User::createWithName)
+                        .map(User::create)
                         .collect(Collectors.collectingAndThen(Collectors.toList(), Users::new));
     }
 
@@ -43,7 +43,7 @@ public class Users {
         return Objects.hash(users);
     }
 
-    public List<String> getAllNames() {
+    public List<String> allNames() {
         return users.stream()
                 .map(User::getName)
                 .collect(Collectors.toList());

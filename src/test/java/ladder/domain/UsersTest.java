@@ -18,10 +18,10 @@ public class UsersTest {
         //then
         assertThat(users).isEqualTo(
                 Users.create(
-                        User.createWithName("pobi"),
-                        User.createWithName("honux"),
-                        User.createWithName("crong"),
-                        User.createWithName("jk")
+                        User.create("pobi"),
+                        User.create("honux"),
+                        User.create("crong"),
+                        User.create("jk")
                 )
         );
     }
@@ -50,7 +50,7 @@ public class UsersTest {
         //given
         Users users = Users.create("pobi,honux,crong,jk");
         //when
-        List<String> names = users.getAllNames();
+        List<String> names = users.allNames();
         //then
         assertThat(names).containsExactly("pobi", "honux", "crong", "jk");
     }

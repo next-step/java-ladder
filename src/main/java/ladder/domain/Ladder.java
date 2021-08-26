@@ -10,7 +10,7 @@ public class Ladder {
     private final List<Line> lines;
 
     private Ladder(Width width, Height height) {
-        this.lines = initLines(width, height);
+        this.lines = lines(width, height);
     }
 
     public static Ladder create(Width width, Height height) {
@@ -21,7 +21,7 @@ public class Ladder {
         return lines;
     }
 
-    private List<Line> initLines(Width width, Height height) {
+    private List<Line> lines(Width width, Height height) {
         final List<Line> lines = new ArrayList<>(height.getLength());
         for (int i = 0; i < height.getLength(); i++) {
             lines.add(Line.createWithWidth(width));
