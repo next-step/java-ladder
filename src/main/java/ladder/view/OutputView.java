@@ -13,37 +13,37 @@ import java.util.Map;
 public final class OutputView {
 
     private static final String LINE_SEPARATOR = System.lineSeparator();
-    private static final String RESULT_MESSAGE_PRE = "사다리 결과";
-    private static final String RESULT_MESSAGE_RESULT = "실행 결과";
-    private static final String RESULT_ALL_DIVIDER = " : ";
+    private static final String EMPTY_DISPLAY = " ";
+    private static final String EXECUTE_RESULT_MESSAGE = "실행 결과";
+    private static final String EXECUTE_SEPARATOR = " : ";
+    private static final String LADDER_RESULT_PRE_MESSAGE = "사다리 결과";
     private static final String LADDER_VERTICAL_DISPLAY = "|";
     private static final String LADDER_HORIZONTAL_DISPLAY = "-";
-    private static final String EMPTY_DISPLAY = " ";
 
     private OutputView() {
     }
 
-    public static void displayLadderGameResult(final Ladder ladder,
-                                               final List<String> usernames,
-                                               final List<String> results) {
-        System.out.print(LINE_SEPARATOR + RESULT_MESSAGE_PRE + LINE_SEPARATOR + LINE_SEPARATOR);
-        displayStartOrEndPoint(usernames);
+    public static void showLadderGameResult(final Ladder ladder,
+                                            final List<String> usernames,
+                                            final List<String> results) {
+        System.out.print(LINE_SEPARATOR + LADDER_RESULT_PRE_MESSAGE + LINE_SEPARATOR + LINE_SEPARATOR);
+        showStartOrEndPoint(usernames);
         System.out.print(LINE_SEPARATOR);
-        displayLadders(ladder.getLines());
-        displayStartOrEndPoint(results);
+        showLadders(ladder.getLines());
+        showStartOrEndPoint(results);
     }
 
-    private static void displayStartOrEndPoint(final List<String> values) {
+    private static void showStartOrEndPoint(final List<String> values) {
         values.stream()
-                .map(OutputView::getPointToFormat)
+                .map(OutputView::positionFormat)
                 .forEach(System.out::print);
     }
 
-    private static String getPointToFormat(final String input) {
+    private static String positionFormat(final String input) {
         return StringUtil.fillRightBlank(input, User.MAX_NAME_LENGTH + 1);
     }
 
-    private static void displayLadders(final List<Line> lines) {
+    private static void showLadders(final List<Line> lines) {
         lines.stream()
                 .map(OutputView::getLine)
                 .forEach(System.out::println);
@@ -57,22 +57,26 @@ public final class OutputView {
 
     private static String getDirection(final Direction direction) {
         if (direction.equals(Direction.RIGHT)) {
-            return getDirectionToFormat(LADDER_HORIZONTAL_DISPLAY);
+            return directionFormat(LADDER_HORIZONTAL_DISPLAY);
         }
-        return getDirectionToFormat(EMPTY_DISPLAY);
+        return directionFormat(EMPTY_DISPLAY);
     }
 
-    private static String getDirectionToFormat(final String input) {
+    private static String directionFormat(final String input) {
         return LADDER_VERTICAL_DISPLAY + StringUtil.fillGivenString(input, User.MAX_NAME_LENGTH);
     }
 
     public static void result(final Result result) {
-        System.out.print(LINE_SEPARATOR + RESULT_MESSAGE_RESULT + LINE_SEPARATOR);
+        showResultBeforeMessage();
         System.out.print(result);
     }
 
     public static void result(final Map<User, Result> map) {
-        System.out.print(LINE_SEPARATOR + RESULT_MESSAGE_RESULT + LINE_SEPARATOR);
-        map.forEach((user, result) -> System.out.print(user + RESULT_ALL_DIVIDER + result + LINE_SEPARATOR));
+        showResultBeforeMessage();
+        map.forEach((user, result) -> System.out.print(user + EXECUTE_SEPARATOR + result + LINE_SEPARATOR));
+    }
+
+    public static void showResultBeforeMessage() {
+        System.out.print(LINE_SEPARATOR + EXECUTE_RESULT_MESSAGE + LINE_SEPARATOR);
     }
 }
