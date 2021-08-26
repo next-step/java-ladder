@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class LadderGameResult {
 
-    private static final String FINISH_STRING = "ALL";
+    public static final String FINISH_STRING = "ALL";
 
     private final Map<User, Result> ladderGameResult;
 

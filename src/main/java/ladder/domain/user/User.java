@@ -1,7 +1,9 @@
 package ladder.domain.user;
 
+import ladder.domain.LadderGameResult;
 import ladder.exception.EmptyUserNameException;
 import ladder.exception.GreaterThenMaxUserNameException;
+import ladder.exception.NotAllowUserNameException;
 
 import java.util.Objects;
 
@@ -13,7 +15,7 @@ public final class User {
 
     public User(final String name) {
         validateNameNullOrEmpty(name);
-        validateNameLength(name);
+        validateName(name);
         this.name = name;
     }
 
@@ -23,9 +25,13 @@ public final class User {
         }
     }
 
-    private void validateNameLength(final String name) {
+    private void validateName(final String name) {
         if (name.length() > MAX_NAME_LENGTH) {
             throw new GreaterThenMaxUserNameException();
+        }
+
+        if (name.equalsIgnoreCase(LadderGameResult.FINISH_STRING)) {
+            throw new NotAllowUserNameException();
         }
     }
 
