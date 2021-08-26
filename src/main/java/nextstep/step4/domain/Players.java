@@ -25,6 +25,10 @@ public class Players {
 		return new Players(players);
 	}
 
+	public Player of(int position) {
+		return players.get(position);
+	}
+
 	public int size() {
 		return players.size();
 	}

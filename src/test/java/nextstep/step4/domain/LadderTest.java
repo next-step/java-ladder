@@ -15,21 +15,24 @@ class LadderTest {
 	@DisplayName("사다리 게임을 실행한 후 결과를 반환한다.")
 	@Test
 	void play() {
-		Ladder ladder = new Ladder(Players.from("pobi,crong,honux,jk"), createLines());
+		Players players = Players.from("pobi,crong,honux,jk");
+		Prizes prizes = Prizes.from("꽝,1000,2000,3000");
+		Ladder ladder = new Ladder(players, prizes, createLines());
 		Result result = ladder.play();
-		assertThat(result.of(0)).isEqualTo(2);
-		assertThat(result.of(1)).isEqualTo(0);
-		assertThat(result.of(2)).isEqualTo(1);
-		assertThat(result.of(3)).isEqualTo(3);
+
+		assertThat(result.of(new Player("pobi"))).isEqualTo(new Prize("2000"));
+		assertThat(result.of(new Player("crong"))).isEqualTo(new Prize("꽝"));
+		assertThat(result.of(new Player("honux"))).isEqualTo(new Prize("1000"));
+		assertThat(result.of(new Player("jk"))).isEqualTo(new Prize("3000"));
 	}
 
 	/*
-		player	0     1     2     3
-				|     |     |-----|
-				|-----|     |-----|
-				|     |-----|     |
-		end		0  	  1     2     3
-		player	1	  2	    0     3
+		player	 pobi crong honux    jk
+					|     |     |-----|
+					|-----|     |-----|
+					|     |-----|     |
+		prize      꽝  1000  2000  3000
+		player	crong honux  pobi    jk
 	 */
 	private List<Line> createLines() {
 		List<Line> lines = new ArrayList<>();

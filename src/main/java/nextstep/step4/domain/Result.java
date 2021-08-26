@@ -5,14 +5,14 @@ import java.util.Map;
 
 public class Result {
 
-	private Map<Integer, Integer> result = new HashMap<>();
+	private Map<Player, Prize> result = new HashMap<>();
 
-	public void put(int start, int destination) {
-		result.put(start, destination);
+	public void put(Player player, Prize prize) {
+		result.put(player, prize);
 	}
 
-	public int of(int startPosition) {
-		return result.get(startPosition);
+	public Prize of(Player player) {
+		return result.get(player);
 	}
 
 }

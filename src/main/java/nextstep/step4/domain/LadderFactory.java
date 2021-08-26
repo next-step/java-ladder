@@ -11,11 +11,11 @@ public class LadderFactory {
 	private LadderFactory() {
 	}
 
-	public static Ladder from(Players players, int height) {
+	public static Ladder from(Players players, int height, Prizes prizes) {
 		List<Line> lines = IntStream.range(INITIAL_INDEX, height)
 							.mapToObj(index -> LineFactory.from(players))
 							.collect(Collectors.toList());
-		return new Ladder(players, lines);
+		return new Ladder(players, prizes, lines);
 	}
 
 }
