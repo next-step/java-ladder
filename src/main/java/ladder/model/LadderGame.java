@@ -46,7 +46,13 @@ public class LadderGame {
             goLeft = moveLeft(pointList, point);
             goRight = moveRight(pointList, point);
         }
-        return goLeft ? point - 1 : goRight ? point + 1 : point;
+        if (goLeft) {
+            return point - 1;
+        }
+        if (goRight) {
+            return point + 1;
+        }
+        return point;
     }
 
     public boolean moveLeft(List<Boolean> pointList, int point) {
