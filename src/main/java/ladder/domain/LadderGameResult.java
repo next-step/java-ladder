@@ -19,11 +19,11 @@ public class LadderGameResult {
         return FINISH_STRING.equalsIgnoreCase(word);
     }
 
-    public Result getResult(String input) {
+    public Result getLadderGameResult(String input) {
         return ladderGameResult.get(new User(input));
     }
 
-    public Map<User, Result> getResults() {
+    public Map<User, Result> getLadderGameResults() {
         return ladderGameResult;
     }
 }

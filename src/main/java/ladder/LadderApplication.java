@@ -30,10 +30,10 @@ public final class LadderApplication {
             String targetUser = inputView.getInputResultValueTarget();
 
             if (ladderGameResult.isShowAll(targetUser)) {
-                OutputView.result(ladderGameResult.getResults());
+                OutputView.result(ladderGameResult.getLadderGameResults());
                 break;
             }
-            Result result = ladderGameResult.getResult(targetUser);
+            Result result = ladderGameResult.getLadderGameResult(targetUser);
             OutputView.result(result);
         }
     }
