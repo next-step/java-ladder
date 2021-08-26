@@ -11,12 +11,18 @@ public class Point {
         this.isExistRight = isExistRight;
     }
 
-    public static Point fromMiddle(Point point, MovableStrategy movableStrategy) {
-        if (point.existLeft()) {
+    public static Point fromMiddle(Point previousPoint, MovableStrategy movableStrategy) {
+        if (previousPoint.existRight()) {
+            return Point.of(true, false);
+        }
+
+        if (previousPoint.existLeft()) {
             return Point.of(false, false);
         }
-        return Point.of(movableStrategy.isMovable(), false);
+
+        return Point.of(false, movableStrategy.isMovable());
     }
+
 
     public static Point of(boolean isExistLeftBridge, boolean isExistRightBridge) {
         return new Point(isExistLeftBridge, isExistRightBridge);
