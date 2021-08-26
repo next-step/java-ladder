@@ -22,7 +22,7 @@ public class Users {
     }
 
     public void containsUser(String name) {
-        if (users.stream().anyMatch(username -> username.equals(name))) {
+        if (users.stream().anyMatch(user -> user.nameInfo().equals(name))) {
             throw new IllegalArgumentException();
         }
     }
