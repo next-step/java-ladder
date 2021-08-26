@@ -1,40 +1,36 @@
 package nextstep.ladder.domain;
 
 import nextstep.ladder.dto.PlayersDto;
+import nextstep.ladder.util.InputUtils;
 
 import java.util.Arrays;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.List;
 import java.util.Objects;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import static java.util.stream.Collectors.toMap;
+import static java.util.stream.Collectors.toList;
 
 public class Players {
 
     private static final String DELIMITER = ",";
 
-    private final Map<Player, Integer> playerMap;
+    private final List<Player> players;
 
     public Players(final String names) {
-        AtomicInteger index = new AtomicInteger();
-        playerMap = Arrays.stream(names.split(DELIMITER))
         InputUtils.requireNonNull(names);
+        players = Arrays.stream(names.split(DELIMITER))
                 .map(Player::new)
-                .collect(toMap(Function.identity(), v -> index.getAndIncrement(), (x, y) -> y, LinkedHashMap::new));
+                .collect(toList());
     }
 
     public PlayersDto toDto() {
-        return new PlayersDto(playerMap.keySet()
-                .stream()
+        return new PlayersDto(players.stream()
                 .map(Player::toDto)
-                .collect(Collectors.toList()));
+                .collect(toList()));
     }
 
     public int count() {
-        return playerMap.size();
+        return players.size();
     }
 
 }
