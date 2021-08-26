@@ -1,6 +1,7 @@
 package ladder;
 
 import ladder.domain.LadderGame;
+import ladder.domain.LadderGameResult;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.RandomDirectionStrategy;
 import ladder.domain.result.Result;
@@ -22,16 +23,17 @@ public final class LadderApplication {
         LadderGame ladderGame = new LadderGame(userNames, resultValues);
         int ladderMaxHeight = inputView.getInputLadderMaxHeight();
         Ladder ladder = ladderGame.generateLadder(ladderMaxHeight, new RandomDirectionStrategy());
-
         OutputView.displayLadderGameResult(ladder, userNames, resultValues);
 
+        LadderGameResult ladderGameResult = ladderGame.execute(ladder);
         while (true) {
             String targetUser = inputView.getInputResultValueTarget();
-            if (targetUser.equals("all")) {
-                OutputView.result(ladderGame.execute(ladder));
+
+            if (ladderGameResult.isShowAll(targetUser)) {
+                OutputView.result(ladderGameResult.getResults());
                 break;
             }
-            Result result = ladderGame.execute(ladder, targetUser);
+            Result result = ladderGameResult.getResult(targetUser);
             OutputView.result(result);
         }
     }

@@ -25,20 +25,14 @@ public final class LadderGame {
         return new Ladder(directionStrategy, ladderHeight, users.getUserCount());
     }
 
-    public Map<User, Result> execute(Ladder ladder) {
+    public LadderGameResult execute(Ladder ladder) {
         Map<User, Result> resultMap = new HashMap<>();
-        for( int i = 0; i < users.getUserCount(); i++) {
+        for (int i = 0; i < users.getUserCount(); i++) {
             int endPoint = ladder.run(i);
             Result result = results.get(endPoint);
             User user = users.get(i);
             resultMap.put(user, result);
         }
-        return resultMap;
-    }
-
-    public Result execute(final Ladder ladder, final String username) {
-        int startPosition = users.indexOf(username);
-        int resultIndex = ladder.run(startPosition);
-        return results.get(resultIndex);
+        return new LadderGameResult(resultMap);
     }
 }
