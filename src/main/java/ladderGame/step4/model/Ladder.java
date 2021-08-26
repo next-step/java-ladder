@@ -16,16 +16,16 @@ public class Ladder {
 
   private final List<Line> lines;
 
-  public Ladder(final List<Line> lines) {
+  private Ladder(final List<Line> lines) {
     this.lines = Collections.unmodifiableList(lines);
   }
 
-  public static List<Line> of(final int height, final int players) {
+  public static Ladder of(final int height, final int players) {
     validationHeight(height);
 
-    return IntStream.range(START_INDEX, height)
+    return new Ladder(IntStream.range(START_INDEX, height)
         .mapToObj(i -> new Line(Line.createLine(players)))
-        .collect(Collectors.toList());
+        .collect(Collectors.toList()));
   }
 
   public List<List<Boolean>> ladderValues() {
