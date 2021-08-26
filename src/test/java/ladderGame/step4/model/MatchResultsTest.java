@@ -3,6 +3,8 @@ package ladderGame.step4.model;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -17,7 +19,8 @@ class MatchResultsTest {
   @DisplayName("사다리객체와 사용자 객체를 주입했을 때 검색하는 사용자 명에 대한 사다리 결과값 인덱스를 반환해야 한다.")
   @ParameterizedTest
   @CsvSource(value = {"user2,0,1", "user1,0,0", "all,0,0", "all,1,1"})
-  void crateMatchResultsTest(String name, int userIndex, int result) {
+  void crateMatchResultsTest(String name, int userIndex, int result)
+      throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
     List<Point> points = new ArrayList<>();
     points.add(new Point(0, Location.first(false)));
     points.add(new Point(1, Location.first(false)));
@@ -26,7 +29,12 @@ class MatchResultsTest {
     lines.add(new Line(points));
     Players players = Players.from("user1,user2");
 
-    MatchResults matchResult = MatchResults.createMatchResult(new Ladder(lines), players);
+    Constructor<Ladder> constructor = Ladder.class.getDeclaredConstructor(List.class);
+    constructor.setAccessible(true);
+
+    Ladder ladder = constructor.newInstance(lines);
+
+    MatchResults matchResult = MatchResults.createMatchResult(ladder, players);
     List<MatchResult> findUser = matchResult.searchPrizeWithCondition(name);
 
     assertThat(findUser.get(userIndex).getIndex()).isEqualTo(result);
@@ -37,7 +45,8 @@ class MatchResultsTest {
   @ValueSource(strings = "user3")
   @NullSource
   @EmptySource
-  void invalidData(String name) {
+  void invalidData(String name)
+      throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
     List<Point> points = new ArrayList<>();
     points.add(new Point(0, Location.first(false)));
     points.add(new Point(1, Location.first(false)));
@@ -46,7 +55,12 @@ class MatchResultsTest {
     lines.add(new Line(points));
     Players players = Players.from("user1,user2");
 
-    MatchResults matchResult = MatchResults.createMatchResult(new Ladder(lines), players);
+    Constructor<Ladder> constructor = Ladder.class.getDeclaredConstructor(List.class);
+    constructor.setAccessible(true);
+
+    Ladder ladder = constructor.newInstance(lines);
+
+    MatchResults matchResult = MatchResults.createMatchResult(ladder, players);
 
     assertThatThrownBy(() -> matchResult.searchPrizeWithCondition(name))
         .isInstanceOf(IllegalArgumentException.class);
