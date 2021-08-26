@@ -6,6 +6,7 @@ import ladder.domain.result.Result;
 import ladder.domain.result.Results;
 import ladder.domain.user.User;
 import ladder.domain.user.Users;
+import ladder.exception.LadderGameDifferentSizeException;
 
 import java.util.HashMap;
 import java.util.List;
@@ -17,8 +18,16 @@ public final class LadderGame {
     private final Results results;
 
     public LadderGame(final List<String> users, final List<String> results) {
+        validateSameSize(users, results);
+
         this.users = new Users(users);
         this.results = new Results(results);
+    }
+
+    private void validateSameSize(final List<String> users, final List<String> results) {
+        if(users.size() != results.size()) {
+            throw new LadderGameDifferentSizeException();
+        }
     }
 
     public Ladder generateLadder(final int ladderHeight, final DirectionStrategy directionStrategy) {
