@@ -13,4 +13,8 @@ public class LadderResult {
             throw new IllegalArgumentException("사다리 결과가 비었습니다.");
         }
     }
+
+    String getResult() {
+        return result;
+    }
 }
