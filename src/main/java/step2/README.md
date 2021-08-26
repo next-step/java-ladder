@@ -35,5 +35,6 @@
   * [X] 이름은 빈값이거나 NULL 이면 안된다.
   * [X] 이름의 길이제한은 1~5글자이다.
 * [X] Point 도메인 클래스 생성. 선 유무 인스턴스 변수를 가진다.
+* [X] LadderGenerationStrategy, LadderRandomGenerationStrategy 전략패턴 추가
 * [ ] Line 도메인 클래스 생성. List<Point>를 가진다. 이전 Line의 Point를 가져와 자신의 Point에 반영한다.
 * [ ] Controller, View를 생성한다.
