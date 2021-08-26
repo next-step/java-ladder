@@ -17,7 +17,7 @@ public final class Users {
 
         users = userNames.stream()
                 .distinct()
-                .map(User::new)
+                .map(User::valueOf)
                 .collect(Collectors.toList());
 
         if (userNames.size() != users.size()) {
@@ -33,10 +33,6 @@ public final class Users {
 
     public int getUserCount() {
         return users.size();
-    }
-
-    public int indexOf(final String username) {
-        return users.indexOf(new User(username));
     }
 
     public User get(final int index) {

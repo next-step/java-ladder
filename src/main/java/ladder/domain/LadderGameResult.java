@@ -8,6 +8,7 @@ import java.util.Map;
 public class LadderGameResult {
 
     public static final String FINISH_STRING = "ALL";
+    private static final Result RESULT_EMPTY = Result.valueOf("해당 유저가 없습니다.");
 
     private final Map<User, Result> ladderGameResult;
 
@@ -20,7 +21,7 @@ public class LadderGameResult {
     }
 
     public Result getLadderGameResult(String input) {
-        return ladderGameResult.get(new User(input));
+        return ladderGameResult.getOrDefault(User.valueOf(input), RESULT_EMPTY);
     }
 
     public Map<User, Result> getLadderGameResults() {

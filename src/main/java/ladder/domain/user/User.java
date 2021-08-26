@@ -13,19 +13,23 @@ public final class User {
 
     private final String name;
 
-    public User(final String name) {
-        validateNameNullOrEmpty(name);
-        validateName(name);
+    private User(final String name) {
         this.name = name;
     }
 
-    private void validateNameNullOrEmpty(final String name) {
+    public static User valueOf(final String name) {
+        validateNameNullOrEmpty(name);
+        validateName(name);
+        return new User(name);
+    }
+
+    private static void validateNameNullOrEmpty(final String name) {
         if (name == null || name.isEmpty()) {
             throw new EmptyUserNameException();
         }
     }
 
-    private void validateName(final String name) {
+    private static void validateName(final String name) {
         if (name.length() > MAX_NAME_LENGTH) {
             throw new GreaterThenMaxUserNameException();
         }

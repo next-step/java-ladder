@@ -1,10 +1,8 @@
 package ladder.domain;
 
-import ladder.domain.ladder.DirectionStrategy;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.result.Result;
 import ladder.exception.LadderGameDifferentSizeException;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -29,9 +27,9 @@ class LadderGameTest {
         );
 
         return Stream.of(
-                Arguments.of(ladderGame, 1, "user1", new Result("result2")),
-                Arguments.of(ladderGame, 2, "user1", new Result("result1")),
-                Arguments.of(ladderGame, 5, "user3", new Result("result3"))
+                Arguments.of(ladderGame, 1, "user1", Result.valueOf("result2")),
+                Arguments.of(ladderGame, 2, "user1", Result.valueOf("result1")),
+                Arguments.of(ladderGame, 5, "user3", Result.valueOf("result3"))
         );
     }
 

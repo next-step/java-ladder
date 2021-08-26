@@ -8,12 +8,16 @@ public final class Result {
 
     private final String value;
 
-    public Result(final String value) {
-        validateResultValue(value);
+    private Result(final String value) {
         this.value = value;
     }
 
-    private void validateResultValue(final String value) {
+    public static Result valueOf(final String value) {
+        validateResultValue(value);
+        return new Result(value);
+    }
+
+    private static void validateResultValue(final String value) {
         if (value == null || value.trim().isEmpty()) {
             throw new EmptyResultValueException();
         }

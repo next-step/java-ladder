@@ -19,17 +19,17 @@ class ResultTest {
         String given = "꽝";
 
         // when
-        Result result = new Result(given);
+        Result result = Result.valueOf(given);
 
         // then
-        assertThat(result).isEqualTo(new Result(given));
+        assertThat(result).isEqualTo(Result.valueOf(given));
     }
 
     @ParameterizedTest
     @NullAndEmptySource
     @DisplayName("결과 값이 null 또는 빈값일경우 Exception")
     void nullAndEmptyGenerateException(String value) {
-        assertThatThrownBy(() -> new Result(value))
+        assertThatThrownBy(() -> Result.valueOf(value))
                 .isInstanceOf(EmptyResultValueException.class);
     }
 }

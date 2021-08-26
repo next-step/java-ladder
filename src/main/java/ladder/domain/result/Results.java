@@ -10,7 +10,7 @@ public final class Results {
 
     public Results(final List<String> results) {
         this.results = results.stream()
-                .map(Result::new)
+                .map(Result::valueOf)
                 .collect(Collectors.toList());
     }
 

@@ -15,7 +15,7 @@ class UserTest {
     @Test
     @DisplayName("유저이름 빈값일 때 Exception 발생")
     void userNameEmptyException() {
-        assertThatThrownBy(() -> new User(null))
+        assertThatThrownBy(() -> User.valueOf(null))
                 .isInstanceOf(EmptyUserNameException.class);
     }
 
@@ -31,7 +31,7 @@ class UserTest {
 
         // when
         // then
-        assertThatThrownBy(() -> new User(givenName))
+        assertThatThrownBy(() -> User.valueOf(givenName))
                 .isInstanceOf(GreaterThenMaxUserNameException.class);
     }
 
@@ -43,7 +43,7 @@ class UserTest {
 
         // when
         // then
-        assertThatThrownBy(() -> new User(givenName))
+        assertThatThrownBy(() -> User.valueOf(givenName))
                 .isInstanceOf(NotAllowUserNameException.class);
     }
 }
