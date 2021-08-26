@@ -16,16 +16,16 @@ public class Players {
 
   private final List<PlayerName> playerNames;
 
-  public Players(final List<PlayerName> playerNames) {
+  private Players(final List<PlayerName> playerNames) {
     validationPlayersCount(playerNames);
     this.playerNames = Collections.unmodifiableList(playerNames);
   }
 
-  public static List<PlayerName> from(final String playerNames) {
-    return splitNames(playerNames)
+  public static Players from(final String playerNames) {
+    return new Players(splitNames(playerNames)
         .stream()
         .map(PlayerName::new)
-        .collect(Collectors.toList());
+        .collect(Collectors.toList()));
   }
 
   public List<String> playersName(){
