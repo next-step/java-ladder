@@ -16,20 +16,10 @@ public class Person {
             throw new IllegalArgumentException("5자리이 이하로 입력해주세요");
         }
 
-        return new Person(addNameWithBlank(name));
+        return new Person(name);
     }
 
-    private static String addNameWithBlank(String name) {
-        StringBuilder nameBuilder = new StringBuilder(name);
-
-        while (nameBuilder.length() < MAX_NAME_LENGTH) {
-            nameBuilder.append(" ");
-        }
-
-        return nameBuilder.toString();
-    }
-
-    public String getName() {
+    public String name() {
         return name;
     }
 
