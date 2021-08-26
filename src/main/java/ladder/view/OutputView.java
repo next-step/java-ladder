@@ -7,7 +7,6 @@ import ladder.domain.result.Result;
 import ladder.domain.user.User;
 import ladder.utils.StringUtil;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -16,6 +15,7 @@ public final class OutputView {
     private static final String LINE_SEPARATOR = System.lineSeparator();
     private static final String RESULT_MESSAGE_PRE = "사다리 결과";
     private static final String RESULT_MESSAGE_RESULT = "실행 결과";
+    private static final String RESULT_ALL_DIVIDER = " : ";
     private static final String LADDER_VERTICAL_DISPLAY = "|";
     private static final String LADDER_HORIZONTAL_DISPLAY = "-";
     private static final String EMPTY_DISPLAY = " ";
@@ -67,18 +67,12 @@ public final class OutputView {
     }
 
     public static void result(final Result result) {
-        System.out.print(LINE_SEPARATOR);
-        System.out.print(RESULT_MESSAGE_RESULT);
-        System.out.print(LINE_SEPARATOR);
+        System.out.print(LINE_SEPARATOR + RESULT_MESSAGE_RESULT + LINE_SEPARATOR);
         System.out.print(result);
     }
 
-    public static void result(final HashMap<User, Result> map) {
-        for (Map.Entry<User, Result> userResultEntry : map.entrySet()) {
-            System.out.print(userResultEntry.getKey());
-            System.out.print(" : ");
-            System.out.print(userResultEntry.getValue());
-            System.out.print(LINE_SEPARATOR);
-        }
+    public static void result(final Map<User, Result> map) {
+        System.out.print(LINE_SEPARATOR + RESULT_MESSAGE_RESULT + LINE_SEPARATOR);
+        map.forEach((user, result) -> System.out.print(user + RESULT_ALL_DIVIDER + result + LINE_SEPARATOR));
     }
 }

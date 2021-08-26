@@ -9,6 +9,7 @@ import ladder.domain.user.Users;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public final class LadderGame {
 
@@ -24,15 +25,15 @@ public final class LadderGame {
         return new Ladder(directionStrategy, ladderHeight, users.getUserCount());
     }
 
-    public HashMap<User, Result> execute(Ladder ladder) {
-        HashMap<User, Result> map = new HashMap<>();
+    public Map<User, Result> execute(Ladder ladder) {
+        Map<User, Result> resultMap = new HashMap<>();
         for( int i = 0; i < users.getUserCount(); i++) {
             int endPoint = ladder.run(i);
             Result result = results.get(endPoint);
             User user = users.get(i);
-            map.put(user, result);
+            resultMap.put(user, result);
         }
-        return map;
+        return resultMap;
     }
 
     public Result execute(final Ladder ladder, final String username) {
