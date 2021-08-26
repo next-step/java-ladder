@@ -4,18 +4,18 @@ import java.util.Objects;
 
 public class Point {
 
-    private final boolean status;
+    private final boolean hasHorizontalLine;
 
     public Point() {
-        this.status = false;
+        this.hasHorizontalLine = false;
     }
 
     public Point(boolean previousStatus) {
-        this.status = previousStatus;
+        this.hasHorizontalLine = previousStatus;
     }
 
-    public boolean getStatus() {
-        return this.status;
+    public boolean hasHorizontalLine() {
+        return this.hasHorizontalLine;
     }
 
     @Override
@@ -23,11 +23,11 @@ public class Point {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Point point = (Point) o;
-        return status == point.status;
+        return hasHorizontalLine == point.hasHorizontalLine;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(status);
+        return Objects.hash(hasHorizontalLine);
     }
 }

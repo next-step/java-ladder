@@ -14,7 +14,7 @@ class PointTest {
     @Test
     void create_최초생성() {
         assertThat(new Point()).isInstanceOf(Point.class);
-        assertThat(new Point().getStatus()).isFalse();
+        assertThat(new Point().hasHorizontalLine()).isFalse();
     }
 
     @DisplayName("추후생성")
@@ -28,7 +28,7 @@ class PointTest {
     @ParameterizedTest
     @ValueSource(booleans = {true, false})
     void getStatus(boolean status) {
-        assertThat(new Point(status).getStatus()).isEqualTo(status);
+        assertThat(new Point(status).hasHorizontalLine()).isEqualTo(status);
     }
 
 }

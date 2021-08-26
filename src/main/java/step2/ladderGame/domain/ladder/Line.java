@@ -1,6 +1,6 @@
 package step2.ladderGame.domain.ladder;
 
-import step2.ladderGame.domain.ladder.pointGenerationStrategy.LadderRandomGenerationStrategy;
+import step2.ladderGame.domain.ladder.pointGenerationStrategy.horizontalLineGenerationStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,10 +15,10 @@ public class Line {
         }
     }
 
-    public Line(int height, LadderRandomGenerationStrategy ladderRandomGenerationStrategy, Line preLine) {
+    public Line(int height, horizontalLineGenerationStrategy horizontalLineGenerationStrategy, Line preLine) {
         for (int i = 0; i < height; i++) {
             Point prePoint = preLine.getPoint(i);
-            points.add(new Point(ladderRandomGenerationStrategy.createLadder(prePoint)));
+            points.add(new Point(horizontalLineGenerationStrategy.createHorizontalLine(prePoint)));
         }
     }
 

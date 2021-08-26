@@ -12,8 +12,8 @@ class LadderRandomGenerationStrategyTest {
     @DisplayName("이전 좌표에 선이 있으면 Point-false 반환")
     @Test
     void createHorizontalLine_이전_좌표에_선이_있으면_false_반환() {
-        LadderGenerationStrategy ladderGenerationStrategy = new LadderRandomGenerationStrategy();
-        assertThat(ladderGenerationStrategy.createLadder(new Point(true))).isFalse();
+        horizontalLineGenerationStrategy horizontalLineGenerationStrategy = new horizontalLineRandomGenerationStrategy();
+        assertThat(horizontalLineGenerationStrategy.createHorizontalLine(new Point(true))).isFalse();
     }
 
 }

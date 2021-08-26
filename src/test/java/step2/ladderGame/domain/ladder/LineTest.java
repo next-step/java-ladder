@@ -2,7 +2,7 @@ package step2.ladderGame.domain.ladder;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import step2.ladderGame.domain.ladder.pointGenerationStrategy.LadderRandomGenerationStrategy;
+import step2.ladderGame.domain.ladder.pointGenerationStrategy.horizontalLineRandomGenerationStrategy;
 
 import java.util.List;
 
@@ -24,9 +24,9 @@ class LineTest {
 //        assertThat(new Line(5, new LadderRandomGenerationStrategy(), preLine)).isInstanceOf(Line.class);
 
         Line line1 = new Line(5);
-        Line line2 = new Line(5, new LadderRandomGenerationStrategy(), line1);
-        Line line3 = new Line(5, new LadderRandomGenerationStrategy(), line2);
-        Line line4 = new Line(5, new LadderRandomGenerationStrategy(), line3);
+        Line line2 = new Line(5, new horizontalLineRandomGenerationStrategy(), line1);
+        Line line3 = new Line(5, new horizontalLineRandomGenerationStrategy(), line2);
+        Line line4 = new Line(5, new horizontalLineRandomGenerationStrategy(), line3);
 
         List<Point> points1 = line1.getPoints();
         List<Point> points2 = line2.getPoints();
@@ -34,19 +34,19 @@ class LineTest {
         List<Point> points4 = line4.getPoints();
 
         for (Point point : points1) {
-            System.out.print(point.getStatus() + " | ");
+            System.out.print(point.hasHorizontalLine() + " | ");
         }
         System.out.println();
         for (Point point : points2) {
-            System.out.print(point.getStatus() + " | ");
+            System.out.print(point.hasHorizontalLine() + " | ");
         }
         System.out.println();
         for (Point point : points3) {
-            System.out.print(point.getStatus() + " | ");
+            System.out.print(point.hasHorizontalLine() + " | ");
         }
         System.out.println();
         for (Point point : points4) {
-            System.out.print(point.getStatus() + " | ");
+            System.out.print(point.hasHorizontalLine() + " | ");
         }
     }
 
