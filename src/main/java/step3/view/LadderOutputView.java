@@ -16,11 +16,11 @@ public class LadderOutputView {
 
         int maxLength = getMaxLadderUserWidth(users, results);
 
-        printStringsWithPadding(users.usernames(), maxLength);
+        printStringsWithPadding(users.getUsernames(), maxLength);
 
         printLadder(users, ladder, maxLength);
 
-        printStringsWithPadding(results.resultStrings(), maxLength);
+        printStringsWithPadding(results.getResultStrings(), maxLength);
     }
 
     public static void printLadderResults(List<User> users, List<Result> ladderResults) {
@@ -36,7 +36,7 @@ public class LadderOutputView {
     }
 
     private static int getMaxLadderUserWidth(Users users, Results results) {
-        return Math.max(getMaxStringLength(users.usernames()), getMaxStringLength(results.resultStrings()));
+        return Math.max(getMaxStringLength(users.getUsernames()), getMaxStringLength(results.getResultStrings()));
     }
 
     private static Integer getMaxStringLength(List<String> strings) {

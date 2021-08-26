@@ -10,8 +10,8 @@ import java.util.stream.Stream;
 public class Ladder implements Iterable<Line> {
     private final List<Line> lines;
 
-    public Ladder(int height, SidelineGenerator sidelineGenerator) {
-        this.lines = createLines(height, sidelineGenerator);
+    public Ladder(List<Line> lines) {
+        this.lines = lines;
     }
 
     private List<Line> createLines(int height, SidelineGenerator sidelineGenerator) {
