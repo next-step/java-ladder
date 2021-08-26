@@ -2,7 +2,7 @@ package ladder.domain;
 
 import java.util.Objects;
 
-public class Result {
+public class LadderResult {
 
     private static final String FAILURE = "꽝";
 
@@ -10,13 +10,13 @@ public class Result {
 
     private final String result;
 
-    private Result(String result) {
+    private LadderResult(String result) {
         validate(result);
         this.result = result;
     }
 
-    public static Result create(String result) {
-        return new Result(result);
+    public static LadderResult create(String result) {
+        return new LadderResult(result);
     }
 
     private void validate(String result) {
@@ -44,8 +44,8 @@ public class Result {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Result result1 = (Result) o;
-        return Objects.equals(result, result1.result);
+        LadderResult ladderResult1 = (LadderResult) o;
+        return Objects.equals(result, ladderResult1.result);
     }
 
     @Override

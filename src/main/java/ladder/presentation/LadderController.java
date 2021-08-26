@@ -1,9 +1,6 @@
 package ladder.presentation;
 
-import ladder.domain.Height;
-import ladder.domain.Ladder;
-import ladder.domain.Users;
-import ladder.domain.Width;
+import ladder.domain.*;
 import ladder.presentation.input.LadderHeightInputView;
 import ladder.presentation.input.LadderResultInputView;
 import ladder.presentation.input.UsersInputView;
@@ -14,16 +11,16 @@ public class LadderController {
     public void run() {
 
         Users users = Users.create(inputUsers());
-
-
+        LadderResults ladderResults = LadderResults.create(inputLadderResults());
 
         Width width = Width.create(users.size() - 1);
         Height height = Height.create(inputLadderHeight());
+
         Ladder ladder = Ladder.create(width, height);
-        outputResult(users, ladder);
+        outputResult(users, ladder, ladderResults);
     }
 
-    private void outputResult(Users users, Ladder ladder) {
+    private void outputResult(Users users, Ladder ladder, LadderResults ladderResults) {
         ResultOutputView outputView = new ResultOutputView();
         outputView.output(users, ladder);
     }

@@ -9,8 +9,6 @@
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
 
 ## TODO
-* Input
-    * 결과를 보고 싶은 사람을 입력할 수 있다.
 
 * Domain
     * 사다리 게임을 실행할 수 있다. by Ladder 객체
@@ -28,7 +26,8 @@
 
 * Input
     * 실행 결과를 입력할 수 있다.
-  
+    * 결과를 보고 싶은 사람을 입력할 수 있다.
+
 * Domain
     * 사다리 결과와 결과"들"의 객체를 생성할 수 있다.
         * 객체 생성 시점에 벨리데이션을 한다. => 익셉션을 발생

@@ -1,0 +1,36 @@
+package ladder.domain;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+
+public class LadderResults {
+
+    private static final String SEPARATOR = ",";
+
+    private final List<LadderResult> ladderResults;
+
+    private LadderResults(List<LadderResult> ladderResults) {
+        this.ladderResults = ladderResults;
+    }
+
+    public static LadderResults create(String results) {
+        return Arrays.stream(results.split(SEPARATOR))
+                .map(LadderResult::create)
+                .collect(Collectors.collectingAndThen(Collectors.toList(), LadderResults::new));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LadderResults ladderResults1 = (LadderResults) o;
+        return Objects.equals(ladderResults, ladderResults1.ladderResults);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ladderResults);
+    }
+}

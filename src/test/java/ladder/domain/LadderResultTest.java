@@ -6,15 +6,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @SuppressWarnings("NonAsciiCharacters")
-public class ResultTest {
+public class LadderResultTest {
 
     @Test
     public void String을_받아서_Result_객체를_생성할_수_있다(){
         //given
         //when
-        Result result = Result.create("꽝");
+        LadderResult ladderResult = LadderResult.create("꽝");
         //then
-        assertThat(result).isEqualTo(Result.create("꽝"));
+        assertThat(ladderResult).isEqualTo(LadderResult.create("꽝"));
     }
 
     @Test
@@ -22,7 +22,7 @@ public class ResultTest {
         //given
         //when
         //then
-        assertThatThrownBy(() -> Result.create("ㅎㅎ"))
+        assertThatThrownBy(() -> LadderResult.create("ㅎㅎ"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("꽝 또는 금액을 입력해 주세요. 입력된 결괏값 : ㅎㅎ");
     }
@@ -32,7 +32,7 @@ public class ResultTest {
         //given
         //when
         //then
-        assertThatThrownBy(() -> Result.create("-1"))
+        assertThatThrownBy(() -> LadderResult.create("-1"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("금액은 음수일 수 없습니다.");
     }
