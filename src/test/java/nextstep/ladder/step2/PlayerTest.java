@@ -18,7 +18,7 @@ class PlayerTest {
     @DisplayName("입력받은 참여자에 해당하는 Player 객체가 생성된다.")
     void create() {
         Players players = new Players("pobi,cony,crong");
-        assertThat(players.getPlayerCount()).isEqualTo(3);
+        assertThat(players.size()).isEqualTo(3);
     }
 
     @Test

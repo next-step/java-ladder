@@ -27,7 +27,7 @@ public class Players {
                 .collect(Collectors.toList());
     }
 
-    public int getPlayerCount() {
+    public int size() {
         return players.size();
     }
 
