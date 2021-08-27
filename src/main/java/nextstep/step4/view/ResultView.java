@@ -28,6 +28,8 @@ public class ResultView {
 
         LadderGame ladderGame = LadderGame.of(players.length, ladderLines);
 
+        ladderGame.setPlayers(players);
+
         System.out.println("사다리 결과");
 
         Arrays.stream(players).forEach(player -> System.out.print(player + ONE_BLANK_SPACE));
@@ -47,13 +49,13 @@ public class ResultView {
 
             if (findPlayerReward.equals("all")) {
                 for (int i = 0; i < players.length; i++) {
-                    System.out.println(rewards.rewardResult(ladderResult.getEndPoint(i)));
+                    System.out.print(rewards.rewardResult(ladderResult.getEndPoint(i)) + ONE_BLANK_SPACE);
                 }
 
                 break;
             }
 
-            int findPlayerIndex = Arrays.asList(players).indexOf(findPlayerReward);
+            int findPlayerIndex = ladderGame.getPlayerIndex(findPlayerReward);
 
             System.out.println(rewards.rewardResult(ladderResult.getEndPoint(findPlayerIndex)));
         }
