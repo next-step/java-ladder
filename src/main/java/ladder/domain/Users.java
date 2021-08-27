@@ -2,10 +2,7 @@ package ladder.domain;
 
 import ladder.exception.InvalidInputException;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Users {
@@ -18,9 +15,8 @@ public class Users {
         if (users.size() < MIN_SIZE) {
             throw new InvalidInputException(INVALID_COUNT_OF_USER_MESSAGE);
         }
-
         names = users.stream()
-                     .map(Name::new)
+                     .map(Name::valueOf)
                      .collect(Collectors.toList());
     }
 
@@ -36,8 +32,12 @@ public class Users {
         return valueOf(users.replace(" ", "").split(","));
     }
 
+    public Name get(int index) {
+        return names.get(index);
+    }
+
     public List<Name> getNames() {
-        return new ArrayList<>(names);
+        return Collections.unmodifiableList(names);
     }
 
     @Override
