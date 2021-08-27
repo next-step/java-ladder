@@ -31,7 +31,8 @@ public class ResultView {
     }
 
     private static void writePeople(People people, StringBuilder stringBuilder) {
-        people.getPeople().stream()
+        people.getPeople()
+                .stream()
                 .map(Person::toString)
                 .map(name -> String.format("%"+ RESULT_DISPLAY_SPACE +"s", name))
                 .forEach(stringBuilder::append);
@@ -48,7 +49,8 @@ public class ResultView {
 
     private static String makeLineResult(Line line) {
         StringBuilder stringBuilder = new StringBuilder();
-        line.getPoints().stream()
+        line.getPoints()
+                .stream()
                 .map(ResultView::ladderString)
                 .forEach(stringBuilder::append);
         return stringBuilder.toString();
@@ -62,7 +64,8 @@ public class ResultView {
     }
 
     private static void writeResults(Results results, StringBuilder stringBuilder) {
-        results.getResults().stream()
+        results.getResults()
+                .stream()
                 .map(Result::toString)
                 .map(name -> String.format("%"+ PERSON_DISPLAY_SPACE +"s", name))
                 .forEach(stringBuilder::append);
