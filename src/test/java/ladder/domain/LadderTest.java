@@ -20,6 +20,15 @@ class LadderTest {
         assertThat(points).containsExactly(true, false, true);
     }
 
+    @Test
+    public void 사다리의_높이를_구할_수_있다(){
+        //given
+        //when
+        Ladder ladder = Ladder.create(Width.create(3), Height.create(3));
+        //then
+        assertThat(ladder.getHeight()).isEqualTo(3);
+    }
+
 
 }
 
