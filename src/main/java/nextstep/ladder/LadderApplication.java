@@ -1,9 +1,9 @@
-package nextstep.ladder.step2;
+package nextstep.ladder;
 
-import nextstep.ladder.step2.domain.Ladder;
-import nextstep.ladder.step2.domain.Players;
-import nextstep.ladder.step2.view.InputView;
-import nextstep.ladder.step2.view.ResultView;
+import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.Players;
+import nextstep.ladder.view.InputView;
+import nextstep.ladder.view.ResultView;
 
 public class LadderApplication {
     public static void main(String[] args) {

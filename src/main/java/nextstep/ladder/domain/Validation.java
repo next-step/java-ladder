@@ -1,4 +1,4 @@
-package nextstep.ladder.step2.domain;
+package nextstep.ladder.domain;
 
 public class Validation {
     public static String isEmptyAndNull(String input) {

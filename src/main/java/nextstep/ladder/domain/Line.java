@@ -1,9 +1,8 @@
-package nextstep.ladder.step2.domain;
+package nextstep.ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Line {

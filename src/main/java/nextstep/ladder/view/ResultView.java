@@ -1,9 +1,9 @@
-package nextstep.ladder.step2.view;
+package nextstep.ladder.view;
 
-import nextstep.ladder.step2.domain.Ladder;
-import nextstep.ladder.step2.domain.Line;
-import nextstep.ladder.step2.domain.Name;
-import nextstep.ladder.step2.domain.Players;
+import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.Line;
+import nextstep.ladder.domain.Name;
+import nextstep.ladder.domain.Players;
 
 
 public class ResultView {

@@ -1,4 +1,4 @@
-package nextstep.ladder.step2.domain;
+package nextstep.ladder.domain;
 
 public class Name {
     private static final int NAME_MAX_LENGTH = 5;
