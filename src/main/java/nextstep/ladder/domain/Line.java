@@ -16,11 +16,11 @@ public class Line {
 
     public Line(int playersCounts) {
         this.points = new ArrayList<>();
-        points.add(false);
         create(playersCounts);
     }
 
     private void create(int playersCount) {
+        points.add(false);
         for (int i = START_INDEX; i < playersCount; i++) {
             points.add(checkPreviousPoint(points.get(i - 1)));
         }

@@ -11,7 +11,7 @@ class PlayerTest {
     @Test
     @DisplayName("참여자가 2명 미만 이면 게임을 진행 할 수 없다.")
     void validPlayer() {
-        assertThatThrownBy(()-> new Players("pobi")).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Players("pobi")).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
@@ -24,6 +24,6 @@ class PlayerTest {
     @Test
     @DisplayName("입력 받은 참여자 중에 이름이 5글자 이상인 참여자가 있으면 예외 발생")
     void createException() {
-        assertThatThrownBy(()->  new Players("pobi,geonhee")).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Players("pobi,geonhee")).isInstanceOf(IllegalArgumentException.class);
     }
 }
