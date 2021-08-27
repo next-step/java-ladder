@@ -16,12 +16,14 @@ public class Main {
         ResultView.requestPlayerNames();
         List<Player> players = InputView.inputPlayerNames();
 
+        ResultView.requestWinningPrizes();
+
         ResultView.requestLadderHeight();
         int ladderHeight = InputView.inputLadderHeight();
 
         List<Line> lines = LineCreator.createLineList(players.size(), ladderHeight);
 
         Game game = Game.of(players, lines);
-        ResultView.printResult(game);
+        ResultView.printLadderShape(game);
     }
 }
