@@ -19,7 +19,7 @@ public class Ladder {
 	public Result play() {
 		Result result = new Result();
 		for (int position = 0; position < players.size(); position++) {
-			result.put(players.of(position), prizes.of(destination(position)));
+			result.add(players.of(position), prizes.of(destination(position)));
 		}
 		return result;
 	}

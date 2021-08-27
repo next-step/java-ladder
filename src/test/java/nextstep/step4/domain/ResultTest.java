@@ -11,10 +11,10 @@ class ResultTest {
 	@Test
 	void create() {
 		Result result = new Result();
-		result.put(new Player("pobi"), new Prize("꽝"));
-		result.put(new Player("crong"), new Prize("1000"));
-		result.put(new Player("honux"), new Prize("5000"));
-		result.put(new Player("jk"), new Prize("10000"));
+		result.add(new Player("pobi"), new Prize("꽝"));
+		result.add(new Player("crong"), new Prize("1000"));
+		result.add(new Player("honux"), new Prize("5000"));
+		result.add(new Player("jk"), new Prize("10000"));
 
 		assertThat(result.of(new Player("pobi"))).isEqualTo(new Prize("꽝"));
 		assertThat(result.of(new Player("crong"))).isEqualTo(new Prize("1000"));

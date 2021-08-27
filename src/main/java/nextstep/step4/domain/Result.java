@@ -8,7 +8,7 @@ public class Result {
 
 	private Map<Player, Prize> result = new HashMap<>();
 
-	public void put(Player player, Prize prize) {
+	public void add(Player player, Prize prize) {
 		result.put(player, prize);
 	}
 
