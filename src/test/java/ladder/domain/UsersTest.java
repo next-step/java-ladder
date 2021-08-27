@@ -2,7 +2,6 @@ package ladder.domain;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -62,21 +61,24 @@ public class UsersTest {
         //when
         Users users = Users.create("pobi,honux,crong,jk");
         //then
-        assertThat(users.getAll())
+        assertThat(users.getAllWithIdx())
                 .containsExactly(
-                        User.create("pobi"),
-                        User.create("honux"),
-                        User.create("crong"),
-                        User.create("jk")
+                        UserIdxPair.of(0, User.create("pobi")),
+                        UserIdxPair.of(1, User.create("honux")),
+                        UserIdxPair.of(2, User.create("crong")),
+                        UserIdxPair.of(3, User.create("jk"))
                 );
     }
 
     @Test
-    public void 사용자를_모두_가져와서_리스트를_바꾸면_익셉션이_발생한다(){
+    public void 사용자를_모두_가져와서_리스트를_바꾸면_익셉션이_발생한다() {
         //given
         //when
         //then
-        assertThatThrownBy(() -> Users.create("pobi,honux,crong,jk").getAll().add(User.create("hoo")))
-                .isInstanceOf(UnsupportedOperationException.class);
+        assertThatThrownBy(() ->
+                Users.create("pobi,honux,crong,jk")
+                        .getAllWithIdx()
+                        .add(UserIdxPair.of(3, User.create("jk")))
+        ).isInstanceOf(UnsupportedOperationException.class);
     }
 }
