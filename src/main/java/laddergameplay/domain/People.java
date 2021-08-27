@@ -18,4 +18,7 @@ public class People {
         return Collections.unmodifiableList(people);
     }
 
+    public int numberOf() {
+        return people.size();
+    }
 }

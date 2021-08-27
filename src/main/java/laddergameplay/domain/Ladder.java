@@ -10,16 +10,16 @@ public class Ladder {
     private final List<Line> ladder = new ArrayList<>();
     private final int widthOfLadder;
 
-    public Ladder(int countOfPeople, int heightOfLadder, LineStrategy lineStrategy) {
-        this.widthOfLadder = widthOfLadder(countOfPeople);
+    public Ladder(People people, int heightOfLadder, LineStrategy lineStrategy) {
+        this.widthOfLadder = widthOfLadderOf(people);
 
         for (int i = 0; i < heightOfLadder; i++) {
             ladder.add(new Line(widthOfLadder, lineStrategy));
         }
     }
 
-    private int widthOfLadder(int countOfPeople) {
-        return countOfPeople - 1;
+    private int widthOfLadderOf(People people) {
+        return people.numberOf() - 1;
     }
 
     public List<Integer> result(){

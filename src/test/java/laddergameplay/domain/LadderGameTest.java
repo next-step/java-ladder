@@ -15,7 +15,7 @@ public class LadderGameTest {
         // given
         People people = new People(Arrays.asList("hwan,kook".split(",")));
         Results results = new Results(Arrays.asList("3000,lose".split(",")));
-        Ladder ladder = new Ladder(2, 1, () -> true);
+        Ladder ladder = new Ladder(people, 1, () -> true);
         LadderGame ladderGame = new LadderGame(ladder);
 
         // when
@@ -32,7 +32,7 @@ public class LadderGameTest {
         // given
         People people = new People(Arrays.asList("hwan,kook".split(",")));
         Results results = new Results(Arrays.asList("3000,lose".split(",")));
-        Ladder ladder = new Ladder(2, 1, () -> false);
+        Ladder ladder = new Ladder(people, 1, () -> false);
         LadderGame ladderGame = new LadderGame(ladder);
 
         // when
