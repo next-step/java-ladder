@@ -1,9 +1,10 @@
 package nextstep.optional;
 
-import static nextstep.optional.User.*;
-import static org.assertj.core.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
+
+import static nextstep.optional.User.ageIsInRange1;
+import static nextstep.optional.User.ageIsInRange2;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class UserTest {
     @Test

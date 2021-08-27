@@ -1,15 +1,14 @@
 package ladder;
 
-import static org.assertj.core.api.Assertions.*;
-
+import ladder.domain.Point;
+import ladder.strategy.AlwaysMovableStrategy;
+import ladder.strategy.NoMovableStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import ladder.domain.Point;
-import ladder.strategy.AlwaysMovableStrategy;
-import ladder.strategy.NoMovableStrategy;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class PointTest {
     @DisplayName("좌우에_다리가_존재하는지를_의미하는_클래스_Point를_생성하였을_때_Point클래스의_인스턴스인지_확인한다")

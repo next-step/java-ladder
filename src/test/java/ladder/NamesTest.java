@@ -1,12 +1,12 @@
 package ladder;
 
-import static org.assertj.core.api.Assertions.*;
-
+import ladder.domain.Names;
+import ladder.exception.PersonCountException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import ladder.domain.Names;
-import ladder.exception.PersonCountException;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class NamesTest {
     @DisplayName("참여할 사람들의 이름 문자열이 주어지면 Name객체를 생성한다")

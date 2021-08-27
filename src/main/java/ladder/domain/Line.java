@@ -1,13 +1,13 @@
 package ladder.domain;
 
+import ladder.exception.PersonCountException;
+import ladder.strategy.NoMovableStrategy;
+import ladder.strategy.RandomlyMovableStrategy;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
-
-import ladder.exception.PersonCountException;
-import ladder.strategy.NoMovableStrategy;
-import ladder.strategy.RandomlyMovableStrategy;
 
 public class Line {
     private static final String PERSON_MIN_NUMBER_EXCEPTION_COMMENT = "사람 수는 최소 %d명 이상이어야 합니다.";
@@ -16,30 +16,56 @@ public class Line {
 
     private final List<Point> points;
 
+    private Line(List<Point> points) {
+        this.points = points;
+    }
+
     private Line(int countOfPerson) {
-        validate(countOfPerson);
         List<Point> points = new ArrayList<>();
-        constructLine(countOfPerson, points);
+        constructHead(points);
+        constructMiddle(points, countOfPerson);
+        constructTail(points, countOfPerson);
         this.points = Collections.unmodifiableList(points);
     }
 
+    public static Line from(List<Point> points) {
+        return new Line(points);
+    }
+
     public static Line from(int countOfPerson) {
+        validate(countOfPerson);
         return new Line(countOfPerson);
     }
 
-    private void validate(final int countOfPerson) {
+    private static void validate(final int countOfPerson) {
         if (countOfPerson < PERSON_MIN_NUMBER) {
             throw new PersonCountException(String.format(PERSON_MIN_NUMBER_EXCEPTION_COMMENT, PERSON_MIN_NUMBER));
         }
     }
 
-    private void constructLine(final int countOfPerson, final List<Point> points) {
-        points.add(Point.of(new NoMovableStrategy(), new NoMovableStrategy()));
-        IntStream.range(START_INDEX_MIDDLE_LINE, countOfPerson)
+    private void constructHead(List<Point> points) {
+        points.add(Point.of(new NoMovableStrategy(), new RandomlyMovableStrategy()));
+    }
+
+    private void constructMiddle(List<Point> points, final int countOfPerson) {
+        IntStream.range(START_INDEX_MIDDLE_LINE, countOfPerson - 1)
             .forEach(i -> points.add(Point.fromMiddle(points.get(i - 1), new RandomlyMovableStrategy())));
+    }
+
+    private void constructTail(List<Point> points, final int countOfPerson) {
+        points.add(Point.of(points.get(countOfPerson - 2).existRight(), false));
+    }
+
+    public boolean existLeftOf(Index index) {
+        return points.get(index.val()).existLeft();
+    }
+
+    public boolean existRightOf(Index index) {
+        return points.get(index.val()).existRight();
     }
 
     public List<Point> toList() {
         return points;
     }
+
 }
