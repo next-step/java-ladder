@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.*;
 public class WinningResultTest {
 
     @Test
-    @DisplayName("")
+    @DisplayName("특정 Person 의 Result 조회")
     void findBy() {
         // given
         Map<Person, Result> winningResultMap = new LinkedHashMap<>();
@@ -36,7 +36,7 @@ public class WinningResultTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("특정 Person 의 Result 조회 : 실패")
     void findBy_fail() {
         // given
         Map<Person, Result> winningResultMap = new LinkedHashMap<>();
@@ -63,7 +63,7 @@ public class WinningResultTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("전체 Result 조회")
     void findAll() {
         // given
         Map<Person, Result> winningResultMap = new LinkedHashMap<>();
@@ -80,11 +80,11 @@ public class WinningResultTest {
         WinningResult winningResult = new WinningResult(winningResultMap);
 
         // when
-        Map<Person, Result> findedWinningResult = winningResult.findAll();
+        Map<Person, Result> findAllWinningResult = winningResult.findAll();
         Person person3 = new Person("check");
 
         //then
-        assertThat(findedWinningResult.containsKey(person1)).isTrue();
-        assertThat(findedWinningResult.containsKey(person3)).isFalse();
+        assertThat(findAllWinningResult.containsKey(person1)).isTrue();
+        assertThat(findAllWinningResult.containsKey(person3)).isFalse();
     }
 }
