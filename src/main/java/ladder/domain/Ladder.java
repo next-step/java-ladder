@@ -1,9 +1,6 @@
 package ladder.domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Ladder {
@@ -14,8 +11,16 @@ public class Ladder {
         this.lines = lines(width, height);
     }
 
+    private Ladder(List<Line> lines) {
+        this.lines = lines;
+    }
+
     public static Ladder create(Width width, Height height) {
         return new Ladder(width, height);
+    }
+
+    public static Ladder create(Line... lines) {
+        return new Ladder(Arrays.asList(lines));
     }
 
     public List<Line> getLines() {
