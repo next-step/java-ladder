@@ -10,10 +10,6 @@ class LadderTest {
     @Test
     @DisplayName("입력 받은 참여자와 사다리 높이에 해당하는 Ladder를 생성한다.")
     void create() {
-        Ladder ladder = new Ladder();
-        ladder.createLadder(6,5);
-        assertThat(ladder.getLadderSize()).isEqualTo(5);
-        ladder.createLadder(2,2);
-        assertThat(ladder.getLadderSize()).isEqualTo(4);
+        assertThat(new Ladder(5,5).size()).isEqualTo(5);
     }
 }
