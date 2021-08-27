@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -35,7 +36,8 @@ public class LadderResults {
     }
 
     public List<String> allNames() {
-        return ladderResults.stream()
+        return Collections.unmodifiableList(ladderResults)
+                .stream()
                 .map(LadderResult::getResult)
                 .collect(Collectors.toList());
     }

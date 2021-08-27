@@ -1,9 +1,6 @@
 package ladder.domain;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Users {
@@ -18,8 +15,8 @@ public class Users {
 
     public static Users create(String users) {
         return Arrays.stream(users.split(SEPARATOR))
-                        .map(User::create)
-                        .collect(Collectors.collectingAndThen(Collectors.toList(), Users::new));
+                .map(User::create)
+                .collect(Collectors.collectingAndThen(Collectors.toList(), Users::new));
     }
 
     public static Users create(User... users) {
@@ -44,7 +41,8 @@ public class Users {
     }
 
     public List<String> allNames() {
-        return users.stream()
+        return Collections.unmodifiableList(users)
+                .stream()
                 .map(User::getName)
                 .collect(Collectors.toList());
     }

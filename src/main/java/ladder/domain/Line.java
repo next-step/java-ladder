@@ -30,7 +30,7 @@ public class Line {
     }
 
     public List<Boolean> getPoints() {
-        return points;
+        return Collections.unmodifiableList(points);
     }
 
     @Override
