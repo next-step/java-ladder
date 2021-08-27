@@ -49,12 +49,12 @@ public class LadderGameTest {
 
         System.out.println("test4의 결과");
 
-        System.out.println(executeLadderGame.findPlayerReward(rewards.getRewardList(),"test4"));
+        System.out.println(executeLadderGame.findPlayerReward(rewards.getRewardList(), "test4"));
 
         System.out.println("All 결과");
 
         for (int i = 0; i < executeLadderGame.getPlayers().size(); i++) {
-            System.out.println(executeLadderGame.findPlayerReward(rewards.getRewardList(),executeLadderGame.getPlayers().get(i).getPlayer()));
+            System.out.println(executeLadderGame.findPlayerReward(rewards.getRewardList(), executeLadderGame.getPlayers().get(i).getPlayer()));
         }
 
     }

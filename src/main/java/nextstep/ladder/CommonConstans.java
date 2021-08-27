@@ -10,10 +10,7 @@ public class CommonConstans {
     public static final String FALSE_LINE = "|     ";
     public static final String TRUE_LINE = "|-----";
     public static final String ONE_BLANK_SPACE = " ";
+    public static final String COMMON_ENTER = "\n";
     public static final String SEPARATOR_COMMA = ",";
-    public static final String FIRST_REWARD = "5000";
-    public static final String SECOND_REWARD = "3000";
-    public static final String BANG = "꽝";
-
 
 }
