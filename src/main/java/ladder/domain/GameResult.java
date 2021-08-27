@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -25,6 +26,10 @@ public class GameResult {
             throw new IllegalArgumentException("찾을 수 없는 참여자입니다.");
         }
         return result.get(user);
+    }
+
+    public Map<User, LadderResult> getAll() {
+        return Collections.unmodifiableMap(result);
     }
 
     @Override
