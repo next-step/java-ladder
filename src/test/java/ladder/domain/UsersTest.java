@@ -2,6 +2,7 @@ package ladder.domain;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -27,7 +28,7 @@ public class UsersTest {
     }
 
     @Test
-    public void 참여하는_사용자들_중_이름이_5자를_넘으면_익셉션이_발생한다(){
+    public void 참여하는_사용자들_중_이름이_5자를_넘으면_익셉션이_발생한다() {
         //given
         //when
         //then
@@ -37,7 +38,7 @@ public class UsersTest {
     }
 
     @Test
-    public void 사용자들이_몇명인지_알_수_있다(){
+    public void 사용자들이_몇명인지_알_수_있다() {
         //given
         //when
         Users users = Users.create("pobi,honux,crong");
@@ -46,12 +47,36 @@ public class UsersTest {
     }
 
     @Test
-    public void 사용자들의_이름을_모두_가져올_수_있다(){
+    public void 사용자들의_이름을_모두_가져올_수_있다() {
         //given
         Users users = Users.create("pobi,honux,crong,jk");
         //when
         List<String> names = users.allNames();
         //then
         assertThat(names).containsExactly("pobi", "honux", "crong", "jk");
+    }
+
+    @Test
+    public void 사용자_모두를_가져올_수_있다() {
+        //given
+        //when
+        Users users = Users.create("pobi,honux,crong,jk");
+        //then
+        assertThat(users.getAll())
+                .containsExactly(
+                        User.create("pobi"),
+                        User.create("honux"),
+                        User.create("crong"),
+                        User.create("jk")
+                );
+    }
+
+    @Test
+    public void 사용자를_모두_가져와서_리스트를_바꾸면_익셉션이_발생한다(){
+        //given
+        //when
+        //then
+        assertThatThrownBy(() -> Users.create("pobi,honux,crong,jk").getAll().add(User.create("hoo")))
+                .isInstanceOf(UnsupportedOperationException.class);
     }
 }

@@ -46,4 +46,8 @@ public class Users {
                 .map(User::getName)
                 .collect(Collectors.toList());
     }
+
+    public List<User> getAll() {
+        return Collections.unmodifiableList(users);
+    }
 }
