@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class Participants {
     private List<Participant> participants;
-
+    private static final String DELIMITER = ",";
     private Participants(String... names) {
         validation(names);
         this.participants = Arrays.stream(names)
@@ -15,8 +15,12 @@ public class Participants {
                 .collect(Collectors.toList());
     }
 
-
     public static Participants of(String... names) {
+        return new Participants(names);
+    }
+
+    public static Participants of(String nameStr) {
+        String[] names = nameStr.split(DELIMITER);
         return new Participants(names);
     }
 

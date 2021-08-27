@@ -11,10 +11,19 @@ class ParticipantsTest {
 
     @Test
     @DisplayName("일급객체 생성 확인")
-    void create(){
+    void create1(){
         Participants participants = Participants.of("man1","man2","man3");
         assertThat(participants.size()).isEqualTo(3);
     }
+
+    @Test
+    @DisplayName("일급객체 생성 확인( ',' 포함한 문자열로 생성)")
+    void create2(){
+        Participants participants = Participants.of("man1,man2,man3");
+        assertThat(participants.size()).isEqualTo(3);
+    }
+
+
     @Test
     @DisplayName("참가자 2명 미만이면 에러 발생")
     void checkValidation(){

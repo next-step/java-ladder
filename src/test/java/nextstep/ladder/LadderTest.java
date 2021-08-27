@@ -4,6 +4,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.nio.charset.StandardCharsets;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LadderTest {
@@ -49,5 +51,28 @@ class LadderTest {
         assertThat(ladder.getLineSize()).isEqualTo(2);
     }
 
+    @Test
+    void test(){
+        String s = "C-2013-08-22-지게차D33SE-5-04하2549 경기04하2549 지게차주유(경유20";
+        byte[] bTest = s.getBytes();
+        assertThat(getMaxByteString(s,40)).isEqualTo(40);
+        assertThat(bTest.length).isEqualTo(40);
+    }
+    public String getMaxByteString(String str, int maxLen)
+    {
+        StringBuilder sb = new StringBuilder();
+        int curLen = 0;
+        String curChar;
 
+        for (int i = 0; i < str.length(); i++)
+        {
+            curChar = str.substring(i, i + 1);
+            curLen += curChar.getBytes().length;
+            if (curLen > maxLen)
+                break;
+            else
+                sb.append(curChar);
+        }
+        return sb.toString();
+    }
 }
