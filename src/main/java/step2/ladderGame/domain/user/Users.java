@@ -4,7 +4,6 @@ import step2.ladderGame.domain.exception.CountOfUserOutOfBoundsException;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 public class Users {
