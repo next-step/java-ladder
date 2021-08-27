@@ -14,13 +14,25 @@ public class ResultView {
     private static final String NO_LADDER = "     ";
     private static final String LADDER = "-----";
     private static final int INIT_NUMBER = 0;
+    private static final int USER_DRAW_LENGTH = 6;
+
 
     public static void printUserList(Users users) {
         System.out.println(EXECUTION_RESULT);
         for (User user : users.getUsers()) {
-            System.out.print(user.getName() + " ");
+            System.out.print(userDrawingFormat(user));
+            STRING_BUILDER.setLength(INIT_NUMBER);
         }
         System.out.println();
+    }
+
+    private static StringBuilder userDrawingFormat(User user) {
+        STRING_BUILDER.append(user.getName());
+        int gap = USER_DRAW_LENGTH - user.getName().length();
+        for (int i = 0; i < gap; i++) {
+            STRING_BUILDER.append(" ");
+        }
+        return STRING_BUILDER;
     }
 
     public static void printLadder(Ladder ladder) {
