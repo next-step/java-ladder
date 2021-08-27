@@ -1,4 +1,4 @@
-package nextstep.ladder.step2;
+package nextstep.ladder;
 
 import nextstep.ladder.domain.Ladder;
 import org.junit.jupiter.api.DisplayName;
@@ -13,5 +13,7 @@ class LadderTest {
         Ladder ladder = new Ladder();
         ladder.createLadder(6,5);
         assertThat(ladder.getLadderSize()).isEqualTo(5);
+        ladder.createLadder(2,2);
+        assertThat(ladder.getLadderSize()).isEqualTo(4);
     }
 }

@@ -22,7 +22,7 @@ public class Players {
 
     public Players(List<Name> players) {
         if (players.size() < PLAYERS_MIN_COUNT) {
-            throw new IllegalArgumentException("참가자 수가 부족합니다. 게임을 진행하려면 최소 " + PLAYERS_MIN_COUNT + "명 이상 필요합니다.");
+            throw new IllegalArgumentException("참가자 수" + players.size() + " 게임을 진행하려면 최소 " + PLAYERS_MIN_COUNT + "명 이상 필요합니다.");
         }
         this.players = players;
     }
