@@ -39,3 +39,16 @@
 
 - 사다리 실행 결과를 출력해야 한다.
 - 개인별 이름을 입력하면 개인별 결과를 출력하고, "all"을 입력하면 전체 참여자의 실행 결과를 출력한다.
+
+### 클래스분리
+- domain
+  - Game
+  - Player
+  - Line
+  - WinningPrize
+- view
+  - InputView
+  - ResultView
+- Utils
+  - StringUtils
+  - RandomUtils
