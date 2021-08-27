@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class LineTest {
 
     @ParameterizedTest
-    @DisplayName("사다리 라인 생성 예외 테스트")
+    @DisplayName("입력받은 참여자의 수가 0 이하인경우 라인 생성 예외 발생")
     @ValueSource(ints = {0, -1})
     void lineException(int countOfPerson) {
         assertThatThrownBy(() -> new Line(countOfPerson))
@@ -24,7 +24,6 @@ class LineTest {
     void createLine(int countOfPerson) {
         Line line = new Line(countOfPerson);
         int actual = line.getPoints().size();
-        int expected = countOfPerson;
-        assertThat(actual).isEqualTo(expected);
+        assertThat(actual).isEqualTo(countOfPerson);
     }
 }
