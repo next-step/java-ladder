@@ -11,7 +11,7 @@ public class Results {
     public Results(List<String> resultsString) {
         this.results = resultsString.stream()
                 .map(Result::new)
-                .collect(Collectors.toList());;
+                .collect(Collectors.toList());
     }
 
     public List<Result> getResults() {
