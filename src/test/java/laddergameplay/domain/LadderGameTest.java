@@ -1,5 +1,6 @@
 package laddergameplay.domain;
 
+import laddergameplay.strategy.RandomLineStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,9 +14,14 @@ public class LadderGameTest {
     @DisplayName("winningResult 반환 사다리 true 1칸")
     void makeWinningResult_true_one_line() {
         // given
-        People people = new People(Arrays.asList("hwan,kook".split(",")));
-        Results results = new Results(Arrays.asList("3000,lose".split(",")));
-        Ladder ladder = new Ladder(people, 1, () -> true);
+        People people = new People(Arrays.asList("hwan,kook,hyun,bo".split(",")));
+        Results results = new Results(Arrays.asList("3000,lose,2000,5000".split(",")));
+        Ladder ladder = new Ladder(people, 1, new RandomLineStrategy(){
+            @Override
+            protected boolean currentPoint() {
+                return true;
+            }
+        });
         LadderGame ladderGame = new LadderGame(ladder);
 
         // when
@@ -24,14 +30,16 @@ public class LadderGameTest {
         // then
         assertThat(winningResult.findBy(new Person("hwan"))).isEqualTo(new Result("lose"));
         assertThat(winningResult.findBy(new Person("kook"))).isEqualTo(new Result("3000"));
+        assertThat(winningResult.findBy(new Person("hyun"))).isEqualTo(new Result("5000"));
+        assertThat(winningResult.findBy(new Person("bo"))).isEqualTo(new Result("2000"));
     }
 
     @Test
     @DisplayName("winningResult 반환 사다리 false 1칸")
     void makeWinningResult_false_one_line() {
         // given
-        People people = new People(Arrays.asList("hwan,kook".split(",")));
-        Results results = new Results(Arrays.asList("3000,lose".split(",")));
+        People people = new People(Arrays.asList("hwan,kook,hyun,bo".split(",")));
+        Results results = new Results(Arrays.asList("3000,lose,2000,5000".split(",")));
         Ladder ladder = new Ladder(people, 1, () -> false);
         LadderGame ladderGame = new LadderGame(ladder);
 
@@ -41,5 +49,7 @@ public class LadderGameTest {
         // then
         assertThat(winningResult.findBy(new Person("hwan"))).isEqualTo(new Result("3000"));
         assertThat(winningResult.findBy(new Person("kook"))).isEqualTo(new Result("lose"));
+        assertThat(winningResult.findBy(new Person("hyun"))).isEqualTo(new Result("2000"));
+        assertThat(winningResult.findBy(new Person("bo"))).isEqualTo(new Result("5000"));
     }
 }
