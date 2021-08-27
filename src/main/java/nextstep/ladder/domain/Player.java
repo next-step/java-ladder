@@ -8,7 +8,7 @@ import java.util.Objects;
 
 public class Player {
 
-    public static final int MAX_LENGTH = 5;
+    private static final int MAX_LENGTH = 5;
 
     private final String name;
 
