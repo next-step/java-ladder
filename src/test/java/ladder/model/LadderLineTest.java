@@ -62,6 +62,6 @@ public class LadderLineTest {
     @Test
     void pointCountTest() {
         // given, when, then
-        assertEquals(LadderLine.of(2).getPointCount(), 2);
+        assertEquals(LadderLine.of(2).pointCount(), 2);
     }
 }

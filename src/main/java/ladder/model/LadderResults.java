@@ -25,4 +25,8 @@ public class LadderResults {
                 .map(LadderResult::getResult)
                 .collect(toList());
     }
+
+    public int count() {
+        return results.size();
+    }
 }

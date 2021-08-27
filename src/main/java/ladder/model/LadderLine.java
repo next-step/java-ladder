@@ -110,7 +110,7 @@ public class LadderLine {
         }
     }
 
-    int getPointCount() {
+    int pointCount() {
         return points.size();
     }
 

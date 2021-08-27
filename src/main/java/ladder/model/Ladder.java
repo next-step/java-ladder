@@ -13,6 +13,7 @@ public class Ladder {
     private static final int MIN_LADDER_HEIGHT = 1;
     private static final int FIRST_INDEX = 0;
     private static final int SINGLE_LINE_COUNT = 1;
+    private static final int ZERO = 0;
 
     private final List<LadderLine> lines;
 
@@ -43,9 +44,8 @@ public class Ladder {
         }
 
         LadderLine firstLine = lines.get(FIRST_INDEX);
-        int pointCount = firstLine.getPointCount();
 
-        IntStream.range(FIRST_INDEX, pointCount)
+        IntStream.range(FIRST_INDEX, firstLine.pointCount())
                 .forEach(pointIndex -> {
                     List<Boolean> verticalLine = lines.stream()
                             .map(line -> line.getPoint(pointIndex))
@@ -59,7 +59,7 @@ public class Ladder {
                 });
     }
 
-    public static List<LadderLine> generateLines(int ladderLineCount, int pointCount) {
+    private static List<LadderLine> generateLines(int ladderLineCount, int pointCount) {
         if (ladderLineCount < pointCount) {
             return shuffled(generateLinesWithLadderLineCountLessThanPointCount(ladderLineCount, pointCount));
         }
@@ -104,5 +104,13 @@ public class Ladder {
 
     public List<LadderLine> getLines() {
         return lines;
+    }
+
+    public int playerCount() {
+        if (lines.isEmpty()) {
+            return ZERO;
+        }
+        LadderLine firstLine = lines.get(FIRST_INDEX);
+        return firstLine.pointCount() + GAP_BETWEEN_PLAYER_COUNT_AND_POINT_COUNT;
     }
 }
