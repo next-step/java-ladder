@@ -11,15 +11,18 @@ public class Line {
     private List<Boolean> points;
 
     public Line() {
-        this.points = new ArrayList<>();
-        points.add(false);
     }
 
-    public Line create(int playerCount) {
-        for (int i = START_INDEX; i < playerCount; i++) {
+    public Line(int playersCounts) {
+        this.points = new ArrayList<>();
+        points.add(false);
+        create(playersCounts);
+    }
+
+    private void create(int playersCount) {
+        for (int i = START_INDEX; i < playersCount; i++) {
             points.add(checkPreviousPoint(points.get(i - 1)));
         }
-        return this;
     }
 
     public boolean checkPreviousPoint(boolean previousPoint) {
@@ -29,7 +32,7 @@ public class Line {
         return random.nextBoolean();
     }
 
-    public int getPointSize() {
+    public int size() {
         return points.size();
     }
 

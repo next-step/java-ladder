@@ -14,8 +14,7 @@ public class Ladder {
         }
         this.lines = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            Line line = new Line();
-            lines.add(line.create(playersCount));
+            lines.add(new Line(playersCount));
         }
     }
 

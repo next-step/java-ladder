@@ -11,9 +11,7 @@ class LineTest {
     @Test
     @DisplayName("참여자의 수에 맞는 사다리 라인 생성")
     void create() {
-        Line point = new Line();
-        point.create(5);
-        assertThat(point.getPointSize()).isEqualTo(5);
+        assertThat(new Line(5)).isEqualTo(5);
     }
 
     @Test
