@@ -14,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class LadderTest {
 
     @ParameterizedTest
-    @DisplayName("사다리 생성 예외 테스트")
+    @DisplayName("입력받는 사다리 높이가 0 이하일 경우 사다리 생성 예외생 발생")
     @MethodSource("ladderProviders")
     void createLadderException(int height, int countOfPerson) {
         assertThatThrownBy(() -> new Ladder(height, countOfPerson))
