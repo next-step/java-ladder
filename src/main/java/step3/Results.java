@@ -7,14 +7,8 @@ import java.util.stream.IntStream;
 public class Results {
     private final List<Result> results;
 
-    public Results(List<String> resultValues) {
-        results = createResults(resultValues);
-    }
-
-    private List<Result> createResults(List<String> resultValues) {
-        return IntStream.range(0, resultValues.size())
-                .mapToObj(i -> new Result(resultValues.get(i), new Position(i)))
-                .collect(Collectors.toList());
+    public Results(List<Result> results) {
+        this.results = results;
     }
 
     public List<Result> findResultsByPositions(List<Position> positions) {
@@ -30,7 +24,7 @@ public class Results {
                 .orElseThrow(IllegalArgumentException::new);
     }
 
-    public List<String> resultStrings() {
+    public List<String> getResultStrings() {
         return results.stream()
                 .map(Result::toOutputString)
                 .collect(Collectors.toList());

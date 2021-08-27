@@ -7,14 +7,8 @@ import java.util.stream.IntStream;
 public class Users {
     private final List<User> users;
 
-    public Users(List<String> usernames) {
-        this.users = createUsers(usernames);
-    }
-
-    private List<User> createUsers(List<String> usernames) {
-        return IntStream.range(0, usernames.size())
-                .mapToObj(i -> new User(usernames.get(i), new Position(i)))
-                .collect(Collectors.toList());
+    public Users(List<User> users) {
+        this.users = users;
     }
 
     public int numberOf() {
@@ -27,7 +21,7 @@ public class Users {
                 .collect(Collectors.toList());
     }
 
-    public List<String> usernames() {
+    public List<String> getUsernames() {
         return users.stream()
                 .map(User::toOutputString)
                 .collect(Collectors.toList());
