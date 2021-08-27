@@ -5,7 +5,7 @@ import ladder.domain.Users;
 
 import static ladder.view.InputView.askLadderHeight;
 import static ladder.view.InputView.askUserName;
-import static ladder.view.ResultView.printResult;
+import static ladder.view.ResultView.*;
 
 public class LadderApplication {
     public static void main(String[] args) {
@@ -15,7 +15,8 @@ public class LadderApplication {
         int ladderHeight = askLadderHeight();
         Ladder ladder = new Ladder(ladderHeight, usersName.length);
 
-        printResult(users, ladder);
+        printUserList(users);
+        printLadder(ladder);
     }
 
 }
