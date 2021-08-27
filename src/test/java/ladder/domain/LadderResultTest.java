@@ -19,10 +19,10 @@ class LadderResultTest {
     static void setUp() {
         List<String> names = Arrays.asList("aa", "bb", "cc", "dd", "ee");
         List<Line> lines = Arrays.asList(
-                new Line(Arrays.asList(true, false, false, true)),
-                new Line(Arrays.asList(false, true, false, false)),
-                new Line(Arrays.asList(true, false, true, false)),
-                new Line(Arrays.asList(true, false, false, true))
+                Line.of(Arrays.asList(true, false, false, true)),
+                Line.of(Arrays.asList(false, true, false, false)),
+                Line.of(Arrays.asList(true, false, true, false)),
+                Line.of(Arrays.asList(true, false, false, true))
         );
         List<String> results = Arrays.asList("1", "2", "3", "4", "5");
         ladder = new Ladder(lines);
@@ -32,7 +32,7 @@ class LadderResultTest {
     @DisplayName("플레이어 한명의 결과 확인")
     @Test
     void result_one() {
-        String result = ladderResult.result("aa", ladder);
+        String result = ladderResult.result("aa", ladder).getResult();
         assertThat(result).isEqualTo("5");
     }
 

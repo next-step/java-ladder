@@ -15,10 +15,10 @@ class LadderTest {
     @BeforeAll
     static void setUp() {
         List<Line> lines = Arrays.asList(
-                new Line(Arrays.asList(true, false, false, true)),
-                new Line(Arrays.asList(false, true, false, false)),
-                new Line(Arrays.asList(true, false, true, false)),
-                new Line(Arrays.asList(true, false, false, true))
+                Line.of(Arrays.asList(true, false, false, true)),
+                Line.of(Arrays.asList(false, true, false, false)),
+                Line.of(Arrays.asList(true, false, true, false)),
+                Line.of(Arrays.asList(true, false, false, true))
         );
         ladder = new Ladder(lines);
     }

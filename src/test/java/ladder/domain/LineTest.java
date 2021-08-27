@@ -1,24 +1,19 @@
 package ladder.domain;
 
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LineTest {
-    @DisplayName("사람 수-1만큼 라인이 생성되어야함.")
     @Test
-    void create() {
-        Line line = Line.create(5);
-        assertThat(line.size()).isEqualTo(4);
-        System.out.println(line.toString());
+    public void init() {
+        Line line = Line.init(5);
+        assertThat(line).isInstanceOf(Line.class);
     }
 
-    @DisplayName("1명은 플레이 불가능")
     @Test
-    void error() {
-        assertThatThrownBy(() -> Line.create(1)).isInstanceOf(IllegalArgumentException.class);
+    public void move() {
+        Line line = Line.init(2);
+        assertThat(line.movedIndex(0)).isInstanceOf(Integer.class);
     }
-
 }
