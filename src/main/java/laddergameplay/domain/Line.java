@@ -13,13 +13,9 @@ public class Line {
 
     private final List<Boolean> points = new ArrayList<>();
 
-    public Line(int countOfPeople, LineStrategy lineStrategy) {
-        initLine(widthOfLadder(countOfPeople), lineStrategy);
+    public Line(int widthOfLadder, LineStrategy lineStrategy) {
+        initLine(widthOfLadder, lineStrategy);
         validateTrueRepetition(points);
-    }
-
-    private int widthOfLadder(int countOfPeople) {
-        return countOfPeople - 1;
     }
 
     private void initLine(int widthOfLadder, LineStrategy lineStrategy) {

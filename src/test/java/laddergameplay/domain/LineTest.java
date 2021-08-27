@@ -15,11 +15,10 @@ class LineTest {
     @DisplayName("Line 생성")
     void create() {
         // given
-        int countOfPeople = 4;
-        int widthOfLadder = countOfPeople - 1;
+        int widthOfLadder = 4;
 
         // when
-        Line line = new Line(countOfPeople,new RandomLineStrategy());
+        Line line = new Line(widthOfLadder,new RandomLineStrategy());
 
         // then
         assertThat(line.getPoints().size()).isEqualTo(widthOfLadder);
