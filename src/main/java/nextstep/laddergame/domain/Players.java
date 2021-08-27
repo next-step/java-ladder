@@ -5,11 +5,13 @@ import java.util.List;
 public class Players {
 
     private static final String INVALID_PLAYER_SIZE_EXCEPTION_MESSAGE = "참여자는 한 명 이상이어야 합니다.";
+    private static final String DUPLICATE_NAME_EXCEPTION_MESSAGE_FORMAT = "중복된 이름이 존재합니다. playerNames: %s";
 
     private final List<PlayerName> playerNames;
 
     private Players(List<PlayerName> playerNames) {
         validatePlayerSize(playerNames);
+        validateNonDuplicatedNames(playerNames);
         this.playerNames = playerNames;
     }
 
@@ -17,6 +19,18 @@ public class Players {
         if (playerNames == null || playerNames.isEmpty()) {
             throw new IllegalArgumentException(INVALID_PLAYER_SIZE_EXCEPTION_MESSAGE);
         }
+    }
+
+    private void validateNonDuplicatedNames(List<PlayerName> playerNames) {
+        if (playerNames.size() != countUniqueNames(playerNames)) {
+            throw new IllegalArgumentException(String.format(DUPLICATE_NAME_EXCEPTION_MESSAGE_FORMAT, playerNames));
+        }
+    }
+
+    private long countUniqueNames(List<PlayerName> playerNames) {
+        return playerNames.stream()
+                .distinct()
+                .count();
     }
 
     public static Players of(List<PlayerName> playerNames) {

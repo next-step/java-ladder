@@ -9,8 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.Assertions.*;
 
 class PlayersTest {
 
@@ -24,17 +23,25 @@ class PlayersTest {
         }
     }
 
-    private List<PlayerName> createPlayerNames(String... names) {
-        return Arrays.stream(names)
-                .map(PlayerName::of)
-                .collect(Collectors.toList());
-    }
-
     @ParameterizedTest(name = "참여자는 한 명 이상이다.")
     @NullAndEmptySource
     public void playerSizeTest(List<PlayerName> playerNames) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> Players.of(playerNames));
+    }
+
+    @DisplayName("참여자 이름은 중복 될 수 없다.")
+    @Test
+    public void duplicatePlayerNameTest() {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> Players.of(createPlayerNames("abc", "abc")))
+                .withMessageContaining("abc");
+    }
+
+    private List<PlayerName> createPlayerNames(String... names) {
+        return Arrays.stream(names)
+                .map(PlayerName::of)
+                .collect(Collectors.toList());
     }
 
 }
