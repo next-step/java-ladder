@@ -15,7 +15,7 @@ public class Prizes {
 
 	private final List<Prize> prizes;
 
-	public Prizes(List<Prize> prizes) {
+	private Prizes(List<Prize> prizes) {
 		this.prizes = new ArrayList<>(prizes);
 	}
 
