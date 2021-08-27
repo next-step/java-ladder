@@ -8,24 +8,28 @@ import java.util.stream.Collectors;
 
 public class WinningPrizes {
 
-    private List<WinningPrize> winningPrizes;
+    private static List<WinningPrize> winningPrizes;
 
     private WinningPrizes(List<WinningPrize> winningPrizes) {
-        this.winningPrizes = winningPrizes;
+        WinningPrizes.winningPrizes = winningPrizes;
     }
 
-    public WinningPrizes from(List<WinningPrize> winningPrizes) {
+    public static List<WinningPrize> getWinningPrizes() {
+        return Collections.unmodifiableList(winningPrizes);
+    }
+
+    public static WinningPrizes from(List<WinningPrize> winningPrizes) {
         return new WinningPrizes(winningPrizes);
     }
 
-    public WinningPrizes from(String winningPrizes) {
+    public static WinningPrizes from(String winningPrizes) {
         return new WinningPrizes(
                 StringUtils.splitWithComma(winningPrizes)
                         .stream().map(WinningPrize::new)
                         .collect(Collectors.toList()));
     }
 
-    public List<WinningPrize> getWinningPrizes() {
-        return Collections.unmodifiableList(winningPrizes);
+    public static WinningPrize getWinningPrizeFromIndex(int index) {
+        return winningPrizes.get(index);
     }
 }

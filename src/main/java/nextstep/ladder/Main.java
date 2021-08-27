@@ -17,6 +17,7 @@ public class Main {
         List<Player> players = InputView.inputPlayerNames();
 
         ResultView.requestWinningPrizes();
+        InputView.inputWinningPrizes();
 
         ResultView.requestLadderHeight();
         int ladderHeight = InputView.inputLadderHeight();
@@ -25,5 +26,13 @@ public class Main {
 
         Game game = Game.of(players, lines);
         ResultView.printLadderShape(game);
+
+        while (true) {
+            ResultView.requestPlayerNameForResult();
+            List<Player> playersForResult = InputView.inputPlayerNameForResult(players);
+            List<Integer> result = game.play(playersForResult);
+            ResultView.printResult(playersForResult, result);
+        }
+
     }
 }

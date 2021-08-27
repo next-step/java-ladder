@@ -1,6 +1,8 @@
 package nextstep.ladder.domain;
 
 import nextstep.ladder.domain.line.Line;
+import nextstep.ladder.domain.winningPrize.WinningPrize;
+import nextstep.ladder.domain.winningPrize.WinningPrizes;
 import nextstep.ladder.exception.OutOfRangeException;
 import nextstep.ladder.exception.PlayerNotParticipateException;
 import nextstep.ladder.utils.StringUtils;
@@ -48,13 +50,14 @@ public class Game {
 
     public List<Integer> play(List<Player> players) {
         validateNotParticipatePlayer(players);
+
         return players.stream()
                 .map(this::getResult)
                 .collect(Collectors.toList());
     }
 
     private int getResult(Player player) {
-        int playerPosition = getPlayerPosition(player);
+        int playerPosition = players.indexOf(player);
         for (Line line : lines) {
             if (line.isExistPoint(playerPosition)) {
                 playerPosition--;
@@ -65,10 +68,6 @@ public class Game {
             }
         }
         return playerPosition;
-    }
-
-    private int getPlayerPosition(Player player) {
-        return players.indexOf(player);
     }
 
     private void validateNotParticipatePlayer(List<Player> players) {
@@ -100,6 +99,10 @@ public class Game {
                 "\n" +
                 lines.stream()
                         .map(Line::toString)
-                        .collect(Collectors.joining("\n"));
+                        .collect(Collectors.joining("\n")) +
+                "\n" +
+                WinningPrizes.getWinningPrizes().stream()
+                        .map((WinningPrize::toString))
+                        .collect(Collectors.joining(" "));
     }
 }

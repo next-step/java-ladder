@@ -10,7 +10,7 @@ public class WinningPrize {
 
     private static final int MAX_LENGTH = 5;
 
-    private String prizeName;
+    private final String prizeName;
 
     public WinningPrize(String prizeName) {
         validPlayerNameLength(prizeName);
@@ -41,6 +41,6 @@ public class WinningPrize {
 
     @Override
     public String toString() {
-        return prizeName;
+        return String.format("%5s", prizeName);
     }
 }

@@ -1,14 +1,18 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.domain.Game;
+import nextstep.ladder.domain.Player;
+import nextstep.ladder.domain.winningPrize.WinningPrizes;
+
+import java.util.List;
 
 public class ResultView {
 
     private static final String REQUEST_PLAYER_NAME_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
-    private static final String REQUEST_WINNING_PRIZE_MESSAGE = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)\n";
+    private static final String REQUEST_WINNING_PRIZE_MESSAGE = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String REQUEST_LADDER_HEIGHT_MESSAGE = "최대 사다리 높이는 몇 개인가요?";
     private static final String REQUEST_PLAYER_NAME_FOR_RESULT_MESSAGE = "결과를 보고 싶은 사람은?";
-    private static final String LADDER_SHAPE_MESSAGE = "사다리 결과";
+    private static final String LADDER_SHAPE_MESSAGE = "사다리 결과\n";
     private static final String RESULT_MESSAGE = "실행 결과";
 
     public static void requestPlayerNames() {
@@ -33,8 +37,11 @@ public class ResultView {
         System.out.println(REQUEST_PLAYER_NAME_FOR_RESULT_MESSAGE);
     }
 
-    public static void printResult() {
+    public static void printResult(List<Player> players, List<Integer> result) {
         System.out.println(RESULT_MESSAGE);
+        for (int i = 0; i < players.size(); i++) {
+            System.out.println(players.get(i) + " : " + WinningPrizes.getWinningPrizeFromIndex(result.get(i)));
+        }
     }
 
     public static String parseBooleanToDot(boolean input) {
