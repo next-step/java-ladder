@@ -1,6 +1,5 @@
 package laddergameplay.domain;
 
-import laddergame.exception.CustomException;
 import laddergameplay.strategy.LineStrategy;
 import laddergameplay.strategy.RandomLineStrategy;
 
@@ -23,29 +22,7 @@ public class Ladder {
         return countOfPeople - 1;
     }
 
-    public List<Line> getLadder() {
-        return Collections.unmodifiableList(ladder);
-    }
-
-    public WinningResult makeWinningResult(People people, Results results) {
-        if (results.getResults().size() != people.getPeople().size()) {
-            throw new CustomException("실행 결과의 개수를 잘못 입력 하였습니다.");
-        }
-
-        List<Integer> winningResultList = result();
-
-        Map<Person, Result> winningResultMap = new LinkedHashMap<>();
-
-        for (int i = 0; i < winningResultList.size(); i++) {
-            Person person = people.getPeople().get(i);
-            Result result = results.getResults().get(winningResultList.get(i));
-            winningResultMap.put(person, result);
-        }
-
-        return new WinningResult(winningResultMap);
-    }
-
-    private List<Integer> result(){
+    public List<Integer> result(){
         List<Integer> resultList = new ArrayList<>();
 
         for (int i = 0; i < widthOfLadder+1; i++) {
@@ -72,5 +49,9 @@ public class Ladder {
             resultList.add(result);
         }
         return resultList;
+    }
+
+    public List<Line> getLadder() {
+        return Collections.unmodifiableList(ladder);
     }
 }
