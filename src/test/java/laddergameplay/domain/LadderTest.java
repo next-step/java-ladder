@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -26,4 +27,24 @@ public class LadderTest {
         assertThat(ladder.getLadder().size()).isEqualTo(heightOfLadder);
         assertThat(ladder.getLadder().get(0)).isInstanceOf(Line.class);
     }
+
+    @Test
+    @DisplayName("Ladder result 연산")
+    void result() {
+        // given
+        People people = new People(Arrays.asList("hwan,kook,hyun,bo".split(",")));
+        Ladder ladder = new Ladder(people, 1, new RandomLineStrategy(){
+            @Override
+            protected boolean currentPoint() {
+                return true;
+            }
+        });
+
+        // when
+        List<Integer> winningResult = ladder.result();
+
+        // then
+        assertThat(winningResult).isEqualTo(Arrays.asList(1, 0, 3, 2));
+    }
+
 }
