@@ -15,7 +15,7 @@ public class Line {
         points.add(false);
     }
 
-    public Line createLine(int playerCount) {
+    public Line create(int playerCount) {
         for (int i = START_INDEX; i < playerCount; i++) {
             points.add(checkPreviousPoint(points.get(i - 1)));
         }
