@@ -1,6 +1,6 @@
 package nextstep.ladder;
 
-import nextstep.view.InputView;
+import nextstep.step4.view.InputView;
 import nextstep.view.ResultView;
 
 public class LadderGameMain {

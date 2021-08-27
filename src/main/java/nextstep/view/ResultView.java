@@ -5,6 +5,7 @@ import nextstep.ladder.Ladder;
 import nextstep.ladder.LadderGame;
 import nextstep.ladder.Player;
 import nextstep.ladder.Reward;
+import nextstep.step4.view.InputView;
 
 import java.util.stream.IntStream;
 
