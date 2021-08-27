@@ -1,5 +1,7 @@
 package nextstep.laddergame.domain;
 
+import java.util.Objects;
+
 public class PlayerName {
 
     private static final int MAXIMUM_NAME_LENGTH = 5;
@@ -25,5 +27,18 @@ public class PlayerName {
     @Override
     public String toString() {
         return name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PlayerName)) return false;
+        PlayerName that = (PlayerName) o;
+        return Objects.equals(name, that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return name != null ? name.hashCode() : 0;
     }
 }
