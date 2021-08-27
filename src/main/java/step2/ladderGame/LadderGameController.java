@@ -22,7 +22,7 @@ public class LadderGameController {
             Ladder ladder = new Ladder(users.getUserCount(), new horizontalLineRandomGenerationStrategy(), height);
 
             resultView.printUserNames(users);
-            resultView.printLadder(ladder, height);
+            resultView.printLadder(ladder);
         } catch (Exception e) {
             e.printStackTrace();
         }

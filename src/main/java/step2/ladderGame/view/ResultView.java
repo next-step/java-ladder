@@ -7,45 +7,59 @@ import step2.ladderGame.domain.user.Users;
 
 public final class ResultView {
 
+    private static final int NAME_SPACE = 6;
+    private static final int ZERO = 0;
+    private static final String BLANK = " ";
+    private static final String VERTICAL_LINE = "|";
+    private static final String HORIZONTAL_LINE = "-----";
+    private static final String EMPTY_LINE = "     ";
+
     public void printUserNames(Users users) {
         StringBuilder builder = new StringBuilder();
         System.out.println("\n실행결과\n");
-        users.getUsers().forEach(user -> builder.append(user.getName()).append("     "));
+        users.getUsers().forEach(
+                user -> {
+                    String blank = printBlank(user.getName());
+                    builder.append(blank).append(user.getName());
+                }
+        );
         System.out.println(builder);
     }
 
-    public void printLadder(Ladder ladder, int height) {
+    private String printBlank(String name) {
+        StringBuilder stringBuilder = new StringBuilder();
+        int emptyLength = NAME_SPACE - name.length();
 
-        for(int i = 0; i < height; i++) {
-
+        while (emptyLength > ZERO) {
+            stringBuilder.append(BLANK);
+            emptyLength--;
         }
 
+        return stringBuilder.toString();
+    }
 
-
-
-
-
-        /*
+    public void printLadder(Ladder ladder) {
         for (Line line : ladder.getLines()) {
             printLine(line);
         }
-        */
     }
 
     private void printLine(Line line) {
         StringBuilder builder = new StringBuilder();
+
         for (Point point : line.getPoints()) {
-            builder.append("|");
             builder.append(printBetweenLine(point));
+            builder.append(VERTICAL_LINE);
         }
+
         System.out.println(builder);
     }
 
     private String printBetweenLine(Point point) {
         if (point.hasHorizontalLine()) {
-            return "-----";
+            return HORIZONTAL_LINE;
         }
-        return "     ";
+        return EMPTY_LINE;
     }
 
 }

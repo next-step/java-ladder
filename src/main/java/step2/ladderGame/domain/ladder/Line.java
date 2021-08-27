@@ -7,23 +7,23 @@ import java.util.List;
 
 public class Line {
 
+    private static final int INIT = 0;
+    private static final int MINUS = -1;
+
     private List<Point> points = new ArrayList<>();
 
     public Line(int height) {
-        for (int i = 0; i < height; i++) {
+        for (int i = INIT; i < height; i++) {
             points.add(new Point());
         }
     }
 
-    public Line(int height, horizontalLineGenerationStrategy horizontalLineGenerationStrategy, Line preLine) {
-        for (int i = 0; i < height; i++) {
-            Point prePoint = preLine.getPoint(i);
+    public Line(int countOfPerson, horizontalLineGenerationStrategy horizontalLineGenerationStrategy) {
+        points.add(new Point(false));
+        for (int i = INIT; i < countOfPerson + MINUS; i++) {
+            Point prePoint = points.get(i);
             points.add(new Point(horizontalLineGenerationStrategy.createHorizontalLine(prePoint)));
         }
-    }
-
-    public Point getPoint(int floor) {
-        return points.get(floor);
     }
 
     public List<Point> getPoints() {

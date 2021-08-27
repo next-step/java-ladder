@@ -2,9 +2,9 @@ package step1.nextstep.optional;
 
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static step1.nextstep.optional.User.ageIsInRange1;
 import static step1.nextstep.optional.User.ageIsInRange2;
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class UserTest {
     @Test

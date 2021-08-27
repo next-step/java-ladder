@@ -7,7 +7,7 @@ public class Point {
     private final boolean hasHorizontalLine;
 
     public Point() {
-        this.hasHorizontalLine = false;
+        this(false);
     }
 
     public Point(boolean previousStatus) {
@@ -30,4 +30,5 @@ public class Point {
     public int hashCode() {
         return Objects.hash(hasHorizontalLine);
     }
+
 }

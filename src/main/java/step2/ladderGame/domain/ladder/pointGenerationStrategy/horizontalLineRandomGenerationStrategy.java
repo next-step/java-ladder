@@ -1,8 +1,8 @@
 package step2.ladderGame.domain.ladder.pointGenerationStrategy;
 
-        import step2.ladderGame.domain.ladder.Point;
+import step2.ladderGame.domain.ladder.Point;
 
-        import java.util.Random;
+import java.util.Random;
 
 public class horizontalLineRandomGenerationStrategy implements horizontalLineGenerationStrategy {
 

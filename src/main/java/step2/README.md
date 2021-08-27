@@ -38,4 +38,5 @@
 * [X] Point 도메인 클래스 생성. 선 유무 인스턴스 변수를 가진다.
 * [X] LadderGenerationStrategy, LadderRandomGenerationStrategy 전략패턴 추가
 * [X] Line 도메인 클래스 생성. List<Point>를 가진다. 이전 Line의 Point를 가져와 자신의 Point에 반영한다.
-* [ ] Controller, View를 생성한다.
+* [X] Ladder 도메인 클래스 생성. List<Line>를 가진다. 참여자수, 사다리 높이로 게임판을 만든다.
+* [X] Controller, View를 생성한다.
