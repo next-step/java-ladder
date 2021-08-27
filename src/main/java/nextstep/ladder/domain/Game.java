@@ -2,6 +2,7 @@ package nextstep.ladder.domain;
 
 import nextstep.ladder.domain.line.Line;
 import nextstep.ladder.exception.OutOfRangeException;
+import nextstep.ladder.exception.PlayerNotParticipateException;
 import nextstep.ladder.utils.StringUtils;
 
 import java.util.ArrayList;
@@ -42,6 +43,39 @@ public class Game {
     private void validateLadderHeight(int ladderHeight) {
         if (ladderHeight < MIN_LADDER_HEIGHT) {
             throw OutOfRangeException.shouldGreaterOrEqualThan(ladderHeight, MIN_LADDER_HEIGHT);
+        }
+    }
+
+    public List<Integer> play(List<Player> players) {
+        validateNotParticipatePlayer(players);
+        return players.stream()
+                .map(this::getResult)
+                .collect(Collectors.toList());
+    }
+
+    private int getResult(Player player) {
+        int playerPosition = getPlayerPosition(player);
+        for (Line line : lines) {
+            if (line.isExistPoint(playerPosition)) {
+                playerPosition--;
+                continue;
+            }
+            if (line.isExistPoint(playerPosition + 1)) {
+                playerPosition++;
+            }
+        }
+        return playerPosition;
+    }
+
+    private int getPlayerPosition(Player player) {
+        return players.indexOf(player);
+    }
+
+    private void validateNotParticipatePlayer(List<Player> players) {
+        if ((int) players.stream()
+                .filter((player -> !this.players.contains(player)))
+                .count() > 0) {
+            throw new PlayerNotParticipateException();
         }
     }
 

@@ -37,6 +37,13 @@ public class Line {
         return new Line(existPoints);
     }
 
+    public boolean isExistPoint(int index) {
+        if (points.size() <= index) {
+            return false;
+        }
+        return points.get(index);
+    }
+
     private void validContinuous(List<Boolean> points) {
         for (int i = 0; i < points.size() - 1; i++) {
             if (points.get(i) && points.get(i + 1)) {
