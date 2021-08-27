@@ -14,8 +14,12 @@ public class RandomLineStrategy implements LineStrategy {
             currentPoint = false;
             return false;
         }
-        currentPoint = random.nextBoolean();
+        currentPoint = currentPoint();
         return currentPoint;
+    }
+
+    protected boolean currentPoint() {
+        return random.nextBoolean();
     }
 
     protected boolean checkCurrentPoint(){
