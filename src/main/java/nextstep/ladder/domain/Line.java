@@ -11,6 +11,7 @@ public class Line {
     private List<Boolean> points;
 
     public Line() {
+        this(0);
     }
 
     public Line(int playersCounts) {

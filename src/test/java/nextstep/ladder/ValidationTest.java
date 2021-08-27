@@ -15,7 +15,9 @@ class ValidationTest {
         assertAll(
                 () -> assertThatThrownBy(() ->  Validation.isEmptyAndNull(null)).isInstanceOf(IllegalArgumentException.class),
                 () -> assertThatThrownBy(() ->  Validation.isEmptyAndNull("")).isInstanceOf(IllegalArgumentException.class),
-                () -> assertThatThrownBy(() ->  Validation.isEmptyAndNull(" ")).isInstanceOf(IllegalArgumentException.class)
+                () -> assertThatThrownBy(() ->  Validation.isEmptyAndNull(" ")).isInstanceOf(IllegalArgumentException.class),
+                () -> assertThatThrownBy(() ->  Validation.isEmptyAndNull("   ")).isInstanceOf(IllegalArgumentException.class),
+                () -> assertThatThrownBy(() ->  Validation.isEmptyAndNull("      ")).isInstanceOf(IllegalArgumentException.class)
         );
     }
 
