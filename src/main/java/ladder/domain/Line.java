@@ -20,9 +20,9 @@ public class Line {
 
         points.add(RANDOM.nextBoolean());
 
-        for (int i = 0; i < countOfPerson - 1; i++) {
+        for (int i = 0; i < countOfPerson - 2; i++) {
             boolean point = RANDOM.nextBoolean();
-            if (points.get(i) == true && point == true) {
+            if (points.get(i) && point) {
                 points.add(!point);
                 continue;
             }
