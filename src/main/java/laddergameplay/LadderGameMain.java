@@ -3,6 +3,8 @@ package laddergameplay;
 import laddergameplay.domain.Ladder;
 import laddergameplay.domain.People;
 import laddergameplay.exception.CustomException;
+import laddergameplay.strategy.LineStrategy;
+import laddergameplay.strategy.RandomLineStrategy;
 import laddergameplay.view.InputView;
 import laddergameplay.view.ResultView;
 
@@ -13,12 +15,14 @@ public class LadderGameMain {
     public static void main(String[] args){
         try {
             List<String> peopleString = InputView.inputPeople();
-            int countOfPeople = peopleString.size();
 
             int heightOfLadder = InputView.inputHeightOfLadder();
 
             People people = new People(peopleString);
-            Ladder ladder = new Ladder(countOfPeople, heightOfLadder);
+
+            int countOfPeople = peopleString.size();
+            LineStrategy lineStrategy = new RandomLineStrategy();
+            Ladder ladder = new Ladder(countOfPeople, heightOfLadder, lineStrategy);
 
             ResultView.showResult(people, ladder);
         } catch (CustomException e) {

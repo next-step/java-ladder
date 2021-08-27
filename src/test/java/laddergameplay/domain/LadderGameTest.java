@@ -10,21 +10,36 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class LadderGameTest {
 
     @Test
-    @DisplayName("winningResult 반환")
-    void makeWinningResult() {
+    @DisplayName("winningResult 반환 사다리 true 1칸")
+    void makeWinningResult_true_one_line() {
         // given
-        People people = new People(Arrays.asList("hwan,kook,hyun,sun".split(",")));
-        Results results = new Results(Arrays.asList("3000,lose,2000,lose".split(",")));
-        Ladder ladder = new Ladder(4, 5);
+        People people = new People(Arrays.asList("hwan,kook".split(",")));
+        Results results = new Results(Arrays.asList("3000,lose".split(",")));
+        Ladder ladder = new Ladder(2, 1, () -> true);
         LadderGame ladderGame = new LadderGame(ladder);
 
         // when
         WinningResult winningResult = ladderGame.makeWinningResult(people, results);
 
         // then
-        assertThat(winningResult.findAll().containsKey(new Person("hwan"))).isTrue();
-        assertThat(winningResult.findAll().containsKey(new Person("hwan2"))).isFalse();
-        assertThat(winningResult.findAll().containsValue(new Result("3000"))).isTrue();
-        assertThat(winningResult.findAll().containsValue(new Result("5000"))).isFalse();
+        assertThat(winningResult.findBy(new Person("hwan"))).isEqualTo(new Result("lose"));
+        assertThat(winningResult.findBy(new Person("kook"))).isEqualTo(new Result("3000"));
+    }
+
+    @Test
+    @DisplayName("winningResult 반환 사다리 false 1칸")
+    void makeWinningResult_false_one_line() {
+        // given
+        People people = new People(Arrays.asList("hwan,kook".split(",")));
+        Results results = new Results(Arrays.asList("3000,lose".split(",")));
+        Ladder ladder = new Ladder(2, 1, () -> false);
+        LadderGame ladderGame = new LadderGame(ladder);
+
+        // when
+        WinningResult winningResult = ladderGame.makeWinningResult(people, results);
+
+        // then
+        assertThat(winningResult.findBy(new Person("hwan"))).isEqualTo(new Result("3000"));
+        assertThat(winningResult.findBy(new Person("kook"))).isEqualTo(new Result("lose"));
     }
 }

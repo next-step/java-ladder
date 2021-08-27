@@ -1,7 +1,6 @@
 package laddergameplay.domain;
 
 import laddergameplay.strategy.LineStrategy;
-import laddergameplay.strategy.RandomLineStrategy;
 
 import java.util.*;
 
@@ -9,11 +8,10 @@ public class Ladder {
     private final List<Line> ladder = new ArrayList<>();
     private final int widthOfLadder;
 
-    public Ladder(int countOfPeople, int heightOfLadder) {
+    public Ladder(int countOfPeople, int heightOfLadder, LineStrategy lineStrategy) {
         this.widthOfLadder = widthOfLadder(countOfPeople);
 
         for (int i = 0; i < heightOfLadder; i++) {
-            LineStrategy lineStrategy = new RandomLineStrategy();
             ladder.add(new Line(widthOfLadder, lineStrategy));
         }
     }
