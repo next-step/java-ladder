@@ -15,7 +15,7 @@ public class LadderGameTest {
     void makeWinningResult_true_one_line() {
         // given
         People people = new People(Arrays.asList("hwan,kook,hyun,bo".split(",")));
-        Results results = new Results(Arrays.asList("3000,lose,2000,5000".split(",")));
+        Results results = new Results(Arrays.asList("3000,lose,2000,5000".split(",")), people);
         Ladder ladder = new Ladder(people, 1, new RandomLineStrategy(){
             @Override
             protected boolean currentPoint() {
@@ -39,7 +39,7 @@ public class LadderGameTest {
     void makeWinningResult_false_one_line() {
         // given
         People people = new People(Arrays.asList("hwan,kook,hyun,bo".split(",")));
-        Results results = new Results(Arrays.asList("3000,lose,2000,5000".split(",")));
+        Results results = new Results(Arrays.asList("3000,lose,2000,5000".split(",")), people);
         Ladder ladder = new Ladder(people, 1, () -> false);
         LadderGame ladderGame = new LadderGame(ladder);
 

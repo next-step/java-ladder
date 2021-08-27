@@ -1,7 +1,5 @@
 package laddergameplay.domain;
 
-import laddergame.exception.CustomException;
-
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,17 +13,9 @@ public class LadderGame {
     }
 
     public WinningResult makeWinningResult(People people, Results results) {
-        validateCountOfResults(people, results);
-
         Map<Person, Result> winningResultMap = makePeopleResultsMap(people, results);
 
         return new WinningResult(winningResultMap);
-    }
-
-    private void validateCountOfResults(People people, Results results) {
-        if (results.getResults().size() != people.getPeople().size()) {
-            throw new CustomException("실행 결과의 개수를 잘못 입력 하였습니다.");
-        }
     }
 
     private Map<Person, Result> makePeopleResultsMap(People people, Results results) {

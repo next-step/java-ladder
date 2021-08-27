@@ -17,7 +17,7 @@ public class LadderGameMain {
             People people = new People(peopleString);
 
             List<String> resultsString = InputView.inputResults();
-            Results results = new Results(resultsString);
+            Results results = new Results(resultsString, people);
 
             int heightOfLadder = InputView.inputHeightOfLadder();
             LineStrategy lineStrategy = new RandomLineStrategy();
@@ -30,6 +30,7 @@ public class LadderGameMain {
             ResultView.showWinningResult(winningResult);
         } catch (CustomException e) {
             System.out.println(e.getMessage());
+            System.exit(0);
         }
     }
 }
