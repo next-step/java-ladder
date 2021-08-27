@@ -1,6 +1,6 @@
-package labber.domain;
+package ladder.domain;
 
-import labber.exception.UserNameLengthException;
+import ladder.exception.UserNameLengthException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;

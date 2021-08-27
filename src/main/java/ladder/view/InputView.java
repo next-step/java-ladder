@@ -1,8 +1,8 @@
-package labber.view;
+package ladder.view;
 
 import java.util.Scanner;
 
-import static labber.utils.StringUtils.split;
+import static ladder.utils.StringUtils.split;
 
 public class InputView {
     private static final Scanner SCANNER = new Scanner(System.in);

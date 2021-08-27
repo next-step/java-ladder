@@ -1,6 +1,6 @@
-package labber.domain;
+package ladder.domain;
 
-import labber.exception.LineCountException;
+import ladder.exception.LineCountException;
 
 import java.util.ArrayList;
 import java.util.Collections;

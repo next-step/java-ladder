@@ -1,6 +1,6 @@
-package labber.domain;
+package ladder.domain;
 
-import labber.exception.UserNameLengthException;
+import ladder.exception.UserNameLengthException;
 
 public class User {
     private final String name;

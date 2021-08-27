@@ -1,9 +1,9 @@
-package labber.view;
+package ladder.view;
 
-import labber.domain.Ladder;
-import labber.domain.Line;
-import labber.domain.User;
-import labber.domain.Users;
+import ladder.domain.Ladder;
+import ladder.domain.Line;
+import ladder.domain.User;
+import ladder.domain.Users;
 
 public class ResultView {
     private static final StringBuilder STRING_BUILDER = new StringBuilder();

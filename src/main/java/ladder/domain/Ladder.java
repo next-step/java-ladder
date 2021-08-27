@@ -1,6 +1,6 @@
-package labber.domain;
+package ladder.domain;
 
-import labber.exception.LadderException;
+import ladder.exception.LadderException;
 
 import java.util.ArrayList;
 import java.util.Collections;

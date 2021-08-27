@@ -1,11 +1,11 @@
-package labber;
+package ladder;
 
-import labber.domain.Ladder;
-import labber.domain.Users;
+import ladder.domain.Ladder;
+import ladder.domain.Users;
 
-import static labber.view.InputView.askLadderHeight;
-import static labber.view.InputView.askUserName;
-import static labber.view.ResultView.printResult;
+import static ladder.view.InputView.askLadderHeight;
+import static ladder.view.InputView.askUserName;
+import static ladder.view.ResultView.printResult;
 
 public class LadderApplication {
     public static void main(String[] args) {
