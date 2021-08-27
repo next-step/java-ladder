@@ -4,7 +4,7 @@ import ladder.domain.ladder.Direction;
 
 import java.util.List;
 
-public class LineUtil {
+public final class LineUtil {
 
     private LineUtil() {
     }

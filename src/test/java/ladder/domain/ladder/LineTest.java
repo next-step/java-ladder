@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 @DisplayName("Line Test")
 class LineTest {
@@ -46,14 +47,18 @@ class LineTest {
     @DisplayName("가로 라인이 겹치지 않는지 확인")
     void notOverlapHorizontalLineTest() {
         // given
-        int generateCount = 3;
+        int generateCount = 5;
 
         // when
         Line line = Line.generate(directionStrategy, generateCount);
         List<Direction> positions = line.getDirections();
 
-        // then
-        Direction direction = positions.get(1);
-        assertThat(direction).isNotEqualTo(Direction.RIGHT);
+        assertAll(
+                () -> assertThat(positions.get(0)).isEqualTo(Direction.RIGHT),
+                () -> assertThat(positions.get(1)).isEqualTo(Direction.LEFT),
+                () -> assertThat(positions.get(2)).isEqualTo(Direction.RIGHT),
+                () -> assertThat(positions.get(3)).isEqualTo(Direction.LEFT),
+                () -> assertThat(positions.get(4)).isEqualTo(Direction.STRAIGHT)
+        );
     }
 }

@@ -1,7 +1,9 @@
 package ladder.domain.user;
 
+import ladder.domain.LadderGameResult;
 import ladder.exception.EmptyUserNameException;
 import ladder.exception.GreaterThenMaxUserNameException;
+import ladder.exception.NotAllowUserNameException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +15,7 @@ class UserTest {
     @Test
     @DisplayName("유저이름 빈값일 때 Exception 발생")
     void userNameEmptyException() {
-        assertThatThrownBy(() -> new User(null))
+        assertThatThrownBy(() -> User.valueOf(null))
                 .isInstanceOf(EmptyUserNameException.class);
     }
 
@@ -29,7 +31,19 @@ class UserTest {
 
         // when
         // then
-        assertThatThrownBy(() -> new User(givenName))
+        assertThatThrownBy(() -> User.valueOf(givenName))
                 .isInstanceOf(GreaterThenMaxUserNameException.class);
+    }
+
+    @Test
+    @DisplayName("유저이름이 전체 출력하는 문자열이면 Exception")
+    void userNameNotAllowException() {
+        // given
+        String givenName = LadderGameResult.FINISH_KEYWORD;
+
+        // when
+        // then
+        assertThatThrownBy(() -> User.valueOf(givenName))
+                .isInstanceOf(NotAllowUserNameException.class);
     }
 }
