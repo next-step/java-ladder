@@ -3,6 +3,7 @@ package ladder.view;
 import ladder.domain.ladder.Direction;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.Line;
+import ladder.domain.ladder.Point;
 import ladder.domain.result.Result;
 import ladder.domain.user.User;
 import ladder.utils.StringUtil;
@@ -50,13 +51,13 @@ public final class OutputView {
     }
 
     private static String getLine(final Line line) {
-        return line.getDirections().stream()
+        return line.getPoints().stream()
                 .map(OutputView::getDirection)
                 .reduce(String::concat).orElse(EMPTY_DISPLAY);
     }
 
-    private static String getDirection(final Direction direction) {
-        if (direction.equals(Direction.RIGHT)) {
+    private static String getDirection(final Point point) {
+        if (point.compareDirection(Direction.RIGHT)) {
             return directionFormat(LADDER_HORIZONTAL_DISPLAY);
         }
         return directionFormat(EMPTY_DISPLAY);
