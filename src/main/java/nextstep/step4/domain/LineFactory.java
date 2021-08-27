@@ -7,6 +7,8 @@ import nextstep.step4.util.RandomDirectionFactory;
 
 public class LineFactory {
 
+	private static final int SINGLE_POSITION = 1;
+
 	private LineFactory() {
 	}
 
@@ -15,7 +17,7 @@ public class LineFactory {
 		Point point = Point.first(RandomDirectionFactory.generate());
 		points.add(point);
 
-		for (int i = 1; i < players.size() - 1; i++) {
+		for (int position = SINGLE_POSITION; position < players.size() - SINGLE_POSITION; position++) {
 			point = point.next(RandomDirectionFactory.generate());
 			points.add(point);
 		}

@@ -6,6 +6,8 @@ import java.util.List;
 
 public class Ladder {
 
+	private static final int INITIAL_POSITION = 0;
+
 	private final Players players;
 	private final Prizes prizes;
 	private final List<Line> lines;
@@ -18,7 +20,7 @@ public class Ladder {
 
 	public Result play() {
 		Result result = new Result();
-		for (int position = 0; position < players.size(); position++) {
+		for (int position = INITIAL_POSITION; position < players.size(); position++) {
 			result.add(players.of(position), prizes.of(destination(position)));
 		}
 		return result;
