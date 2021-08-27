@@ -1,18 +1,14 @@
 package nextstep.ladder.view;
 
 import java.util.Arrays;
-import org.w3c.dom.ls.LSOutput;
 
-public class OutputView {
+public class ResultView {
 
-    private static OutputView instance = new OutputView();
-
-
-    private OutputView() {
+    private ResultView() {
     }
 
-    public static OutputView getInstance() {
-        return instance;
+    public static ResultView getInstance() {
+        return ResultViewHolder.instance;
     }
 
     public void showLadder(String[] playerNames, int LadderHeight) {
@@ -22,5 +18,11 @@ public class OutputView {
         System.out.println(LadderHeight);
 
     }
+
+    private static class ResultViewHolder {
+
+        private static final ResultView instance = new ResultView();
+    }
+
 
 }

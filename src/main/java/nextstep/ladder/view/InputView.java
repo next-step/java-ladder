@@ -5,15 +5,13 @@ import java.util.Scanner;
 public class InputView {
 
     public static final String COMMA = ",";
-    private static InputView instance = new InputView();
     private final Scanner scanner = new Scanner(System.in);
-
 
     private InputView() {
     }
 
     public static InputView getInstance() {
-        return instance;
+        return InputViewHolder.instance;
     }
 
     public String[] askPlayerNames() {
@@ -28,10 +26,12 @@ public class InputView {
         return scanner.nextInt();
     }
 
-
     public void closeInputScanner() {
         scanner.close();
     }
 
+    private static class InputViewHolder {
+        private static final InputView instance = new InputView();
+    }
 
 }
