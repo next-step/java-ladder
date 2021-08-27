@@ -13,15 +13,11 @@ public class Ladder {
     private final int lastPillarOfLadder;
 
     public Ladder(People people, int heightOfLadder, LineStrategy lineStrategy) {
-        this.lastPillarOfLadder = widthOfLadderOf(people);
+        this.lastPillarOfLadder = people.subtractNumberFromSize(1);
 
         for (int i = 0; i < heightOfLadder; i++) {
             ladder.add(new Line(lastPillarOfLadder, lineStrategy));
         }
-    }
-
-    private int widthOfLadderOf(People people) {
-        return people.numberOf() - 1;
     }
 
     public List<Integer> result(){

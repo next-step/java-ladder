@@ -21,7 +21,7 @@ public class Results {
     }
 
     private void validateTotalResults(People people) {
-        if (results.size() != people.numberOf()) {
+        if (!people.isSameSizeAs(results.size())) {
             throw new CustomException(TOTAL_RESULTS_EXCEPTION_MESSAGE);
         }
     }

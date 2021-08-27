@@ -18,7 +18,11 @@ public class People {
         return Collections.unmodifiableList(people);
     }
 
-    public int numberOf() {
-        return people.size();
+    public boolean isSameSizeAs(int size) {
+        return people.size() == size;
+    }
+
+    public int subtractNumberFromSize(int number) {
+        return people.size() - number;
     }
 }

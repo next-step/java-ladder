@@ -21,7 +21,7 @@ class PeopleTest {
         People people = new People(peopleList);
 
         // then
-        assertThat(people.getPeople().size()).isEqualTo(4);
+        assertThat(people.isSameSizeAs(4)).isTrue();
         assertThat(people.getPeople().get(0))
                 .isEqualTo(new Person("hwan"));
     }
