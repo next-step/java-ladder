@@ -1,6 +1,6 @@
 package laddergameplay.domain;
 
-import laddergame.exception.CustomException;
+import laddergameplay.exception.CustomException;
 
 import java.util.Collections;
 import java.util.Map;

@@ -1,6 +1,6 @@
 package laddergameplay.domain;
 
-import laddergame.exception.CustomException;
+import laddergameplay.exception.CustomException;
 import laddergameplay.strategy.LineStrategy;
 
 import java.util.*;
