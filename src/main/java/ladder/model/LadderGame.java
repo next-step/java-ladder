@@ -1,52 +1,76 @@
 package ladder.model;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class LadderGame {
-    private RandomLineStrategy randomLineStrategy = new RandomLineStrategy();
+
     private Users participant;
-    private Lines lines;
+    private Ladder ladder;
 
     public LadderGame(String[] users) {
         this.participant = new Users(users);
+        this.ladder = new Ladder(users.length);
     }
 
-    public void game(int ladderHeight) {
-        this.lines = new Lines();
-        for (int height = 0; height < ladderHeight; height++) {
-            List<Boolean> pointList = makeLine(new RandomLineStrategy());
-            this.lines.addLine(new Line(pointList));
-        }
+    public void makeGame(int ladderHeight, LadderLineStrategy ladderLineStrategy) {
+        ladder.makeLadder(ladderHeight, ladderLineStrategy);
     }
 
-    public List<Boolean> makeLine(LadderLineStrategy ladderLineStrategy) {
-        List<Boolean> pointList = new ArrayList<>();
-        for (int userCount = 0; userCount < participant.participantsSize(); userCount = pointList.size()) {
-            pointList.add(ladderLineStrategy.boolLine());
-            makePointList(pointList, this.participant.participantsSize() - 1);
-        }
-        return pointList;
-    }
-
-    private void makePointList(List<Boolean> pointList, int userCount) {
-        int currentIndex = pointList.size() - 1;
-        if (pointList.get(currentIndex) && currentIndex < userCount) {
-            pointList.add(true);
-            ++currentIndex;
-        }
-        if (pointList.get(currentIndex) && currentIndex < userCount) {
-            pointList.add(false);
-            ++currentIndex;
-        }
-        if (currentIndex == userCount && !pointList.get(currentIndex - 1) && pointList.get(currentIndex)) {
-            pointList.remove(currentIndex);
-            pointList.add(false);
+    public void gameResult(Prize prize) {
+        List<Integer> resultList = new ArrayList<>();
+        for (int i = 0; i < participant.participantsSize(); i++) {
+            int result = getResult(i);
+            resultList.add(result);
+            participant.getParticipants()
+                    .get(i)
+                    .gameResult(prize.prizeInfo(result));
         }
     }
 
-    public Lines getLines() {
-        return this.lines;
+    public int getResult(int startPoint) {
+        Lines lines = ladderInfo().getLines();
+        List<Line> lineList = lines.getLineList();
+        int result = startPoint;
+        for (Line line : lineList) {
+            result = moveSide(line.getPoints(), result);
+        }
+        return result;
+    }
+
+    public int moveSide(List<Boolean> pointList, int point) {
+        boolean goLeft = false;
+        boolean goRight = false;
+        if (Boolean.TRUE.equals(pointList.get(point))) {
+            goLeft = moveLeft(pointList, point);
+            goRight = moveRight(pointList, point);
+        }
+        if (goLeft) {
+            return point - 1;
+        }
+        if (goRight) {
+            return point + 1;
+        }
+        return point;
+    }
+
+    public boolean moveLeft(List<Boolean> pointList, int point) {
+        if (point > 0) {
+            return pointList.get(point - 1);
+        }
+        return false;
+    }
+
+    public boolean moveRight(List<Boolean> pointList, int point) {
+        if (point < pointList.size() - 1) {
+            return pointList.get(point + 1);
+        }
+        return false;
+    }
+
+    public Ladder ladderInfo() {
+        return this.ladder;
     }
 
     public Users getParticipant() {

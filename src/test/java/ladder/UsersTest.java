@@ -38,7 +38,7 @@ public class UsersTest {
     void 유저_정보_체크() {
         for (User user : users.getParticipants()) {
             assertThat(Arrays.asList(TEST_NAME_LIST))
-                    .contains(user.getName());
+                    .contains(user.nameInfo());
         }
     }
 }

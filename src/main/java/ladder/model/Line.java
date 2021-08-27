@@ -3,7 +3,7 @@ package ladder.model;
 import java.util.List;
 
 public class Line {
-    private List<Boolean> points;
+    private final List<Boolean> points;
 
     public Line(List<Boolean> points) {
         this.points = points;
