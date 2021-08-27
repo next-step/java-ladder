@@ -37,6 +37,10 @@ public class Line {
         return new Line(existPoints);
     }
 
+    public int getSize() {
+        return points.size();
+    }
+
     public boolean isExistPoint(int index) {
         if (points.size() <= index) {
             return false;

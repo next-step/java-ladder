@@ -1,10 +1,13 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.Game;
+import nextstep.ladder.domain.Board;
+import nextstep.ladder.domain.BoardConsumer;
 import nextstep.ladder.domain.Player;
-import nextstep.ladder.domain.winningPrize.WinningPrizes;
+import nextstep.ladder.domain.winningPrize.WinningPrize;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class ResultView {
 
@@ -28,20 +31,41 @@ public class ResultView {
         System.out.println(REQUEST_LADDER_HEIGHT_MESSAGE);
     }
 
-    public static void printLadderShape(Game game) {
+    public static void printLadderShape(BoardConsumer boardConsumer, Board board) {
         System.out.println(LADDER_SHAPE_MESSAGE);
-        System.out.println(game);
+
+        System.out.println(boardConsumer.getPlayers().stream()
+                .map(Player::toString)
+                .collect(Collectors.joining(" ")));
+        System.out.println(board);
+        System.out.println(boardConsumer.getWinningPrizes().stream()
+                .map(WinningPrize::toString)
+                .collect(Collectors.joining(" ")));
+    }
+
+    public static void printResult(Map<Integer, Integer> playerResult, BoardConsumer boardConsumer, List<Player> players) {
+        System.out.println(RESULT_MESSAGE);
+
+        List<WinningPrize> winningPrizes = players.stream()
+                .map(boardConsumer::getPlayerIndex)
+                .map(playerResult::get)
+                .map(boardConsumer::getWinningPrize)
+                .collect(Collectors.toList());
+
+        if (winningPrizes.size() == 1) {
+            System.out.println(winningPrizes.get(0));
+            return;
+        }
+        for (int i = 0; i < players.size(); i++) {
+            System.out.println(players.get(i) + " : " + winningPrizes.get(i));
+        }
+        if (playerResult.size() == players.size()) {
+            System.exit(0);
+        }
     }
 
     public static void requestPlayerNameForResult() {
         System.out.println(REQUEST_PLAYER_NAME_FOR_RESULT_MESSAGE);
-    }
-
-    public static void printResult(List<Player> players, List<Integer> result) {
-        System.out.println(RESULT_MESSAGE);
-        for (int i = 0; i < players.size(); i++) {
-            System.out.println(players.get(i) + " : " + WinningPrizes.getWinningPrizeFromIndex(result.get(i)));
-        }
     }
 
     public static String parseBooleanToDot(boolean input) {
