@@ -3,9 +3,8 @@ package ladder.domain;
 import ladder.exception.InvalidInputException;
 import ladder.exception.LadderException;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
@@ -16,21 +15,21 @@ public class Ladder {
 
     private List<Line> lines;
 
-    private Ladder(List<Line> ladder) {
-        this.lines = ladder;
+    private Ladder(List<Line> lines) {
+        this.lines = lines;
     }
 
     public static Ladder create(int height, int countOfPerson) {
         validateLadderHeight(height);
-        List<Line> ladder = new ArrayList<>();
+        List<Line> lines = new ArrayList<>();
         int tryCount = 0;
-        while (validateLadder(ladder, countOfPerson)) {
-            ladder.clear();
+        while (validateLadder(lines, countOfPerson)) {
+            lines.clear();
             checkTryCount(tryCount);
-            ladder = generateLadder(height, countOfPerson);
+            lines = generateLadder(height, countOfPerson);
             tryCount++;
         }
-        return new Ladder(ladder);
+        return new Ladder(lines);
     }
 
     private static void validateLadderHeight(int height) {
@@ -42,13 +41,13 @@ public class Ladder {
     private static boolean validateLadder(List<Line> ladder, int countOfPerson) {
         return IntStream.range(1, countOfPerson)
                         .anyMatch(i -> ladder.stream()
-                                             .noneMatch(line -> line.getPoints().get(i)));
+                                             .noneMatch(line -> line.point(i)));
     }
 
     private static List<Line> generateLadder(int height, int countOfPerson) {
         List<Line> ladder = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            ladder.add(new Line(countOfPerson));
+            ladder.add(Line.valueOf(countOfPerson));
         }
         return ladder;
     }
@@ -59,7 +58,24 @@ public class Ladder {
         }
     }
 
-    public List<Line> getLines() {
-        return Collections.unmodifiableList(lines);
+    public String getLadderString() {
+        return lines.stream()
+                    .map(line -> line.generateLineString())
+                    .collect(Collectors.joining("\n"));
     }
+
+    public int size() {
+        return lines.size();
+    }
+
+    public Map<Name, String> calculateLadderResult(Users users, WinningItems winningItems) {
+        Map<Name, String> result = new HashMap<>();
+        for (int i = 0; i < users.getNames().size(); i++) {
+            Location location = new Location(i);
+            lines.forEach(location::moveLocation);
+            result.put(users.get(i), winningItems.get(location.getLocation()));
+        }
+        return result;
+    }
+
 }
