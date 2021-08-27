@@ -6,13 +6,12 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class LineTest {
-
+public class LocationTest {
     @ParameterizedTest
-    @DisplayName("Line 생성 성공 테스트")
+    @DisplayName("Location 생성 성공 테스트")
     @ValueSource(ints = {2, 3, 4, 5})
-    void 사다리_높이_입력_성공_테스트(int number) {
-        Line line = Line.valueOf(number);
-        assertThat(line.size()).isEqualTo(number);
+    void 위치_생성_성공_테스트(int number) {
+        Location location = new Location(number);
+        assertThat(location).isEqualTo(new Location(number));
     }
 }

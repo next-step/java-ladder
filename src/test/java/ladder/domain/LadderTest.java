@@ -19,7 +19,7 @@ public class LadderTest {
     @ValueSource(ints = {2, 3, 4, 5})
     void 사다리_높이_입력_성공_테스트(int height) {
         Ladder ladder = Ladder.create(height, countOfPerson.size());
-        assertThat(ladder.getLines().size()).isEqualTo(Ladder.create(height, countOfPerson.size()).getLines().size());
+        assertThat(ladder.size()).isEqualTo(Ladder.create(height, countOfPerson.size()).size());
     }
 
     @ParameterizedTest
