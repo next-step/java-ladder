@@ -15,19 +15,19 @@ public class Direction {
 		this.right = right;
 	}
 
-	public static Direction first(boolean isRight) {
-		return new Direction(false, isRight);
+	public static Direction first(boolean right) {
+		return new Direction(false, right);
 	}
 
 	public static Direction of(boolean left, boolean right) {
 		return new Direction(left, right);
 	}
 
-	public Direction next(boolean isRight) {
-		if (right) {
+	public Direction next(boolean right) {
+		if (this.right) {
 			return Direction.of(true, false);
 		}
-		return Direction.of(false, isRight);
+		return Direction.of(false, right);
 	}
 
 	public Direction last() {
