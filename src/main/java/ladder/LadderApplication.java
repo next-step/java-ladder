@@ -5,10 +5,11 @@ import ladder.domain.LadderGameResult;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.RandomDirectionStrategy;
 import ladder.domain.result.Result;
+import ladder.domain.result.Results;
+import ladder.domain.user.Users;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
-import java.util.List;
 import java.util.Scanner;
 
 public final class LadderApplication {
@@ -17,13 +18,14 @@ public final class LadderApplication {
         Scanner scanner = new Scanner(System.in);
         InputView inputView = new InputView(scanner);
 
-        List<String> userNames = inputView.getInputUserNames();
-        List<String> resultValues = inputView.getInputResultValues();
+        Users users = Users.of(inputView.getInputUserNames());
+        Results results = Results.of(inputView.getInputResultValues());
+        LadderGame ladderGame = new LadderGame(users, results);
 
-        LadderGame ladderGame = new LadderGame(userNames, resultValues);
         int ladderMaxHeight = inputView.getInputLadderMaxHeight();
         Ladder ladder = ladderGame.generateLadder(ladderMaxHeight, new RandomDirectionStrategy());
-        OutputView.showLadderGameResult(ladder, userNames, resultValues);
+
+        OutputView.showLadderGameResult(ladder, users, results);
 
         LadderGameResult ladderGameResult = ladderGame.execute(ladder);
         while (true) {

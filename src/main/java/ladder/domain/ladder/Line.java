@@ -4,49 +4,47 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
-import static ladder.utils.LineUtil.getLastDirection;
-
 public final class Line {
 
-    private static final int MIDDLE_MINUS_COUNT = 2;
+    private final List<Point> points;
 
-    private final List<Direction> directions;
-
-    private Line(final List<Direction> directions) {
-        this.directions = directions;
+    private Line(final List<Point> points) {
+        this.points = points;
     }
 
-    public static Line generate(final DirectionStrategy directionStrategy, final int userCount) {
-        List<Direction> directions = generateDirections(directionStrategy, userCount);
-        directions.add(generateLastDirection(directions));
-        return new Line(directions);
+    public static Line generate(final DirectionStrategy directionStrategy, final int rowCount) {
+        List<Point> points = generatePoints(directionStrategy, rowCount);
+        points.add(generateLastPoint(points));
+        return new Line(points);
     }
 
-    private static List<Direction> generateDirections(final DirectionStrategy directionStrategy,
-                                                      final int userCount) {
-        List<Direction> directions = new ArrayList<>();
-        directions.add(Direction.ofFirst(directionStrategy));
-        IntStream.range(0, userCount - MIDDLE_MINUS_COUNT)
-                .mapToObj(ignore -> generateDirection(directionStrategy, directions))
-                .forEach(directions::add);
+    private static List<Point> generatePoints(final DirectionStrategy directionStrategy, final int rowCount) {
+        List<Point> points = new ArrayList<>();
+        points.add(Point.first(directionStrategy));
+        IntStream.range(1, rowCount - 1)
+                .mapToObj(ignore -> generatePoint(directionStrategy, points))
+                .forEach(points::add);
 
-        return directions;
+        return points;
     }
 
-    private static Direction generateDirection(final DirectionStrategy directionStrategy,
-                                               final List<Direction> directions) {
-        return getLastDirection(directions).ofNext(directionStrategy);
+    private static Point generatePoint(final DirectionStrategy directionStrategy, final List<Point> points) {
+        return getLastPoints(points).next(directionStrategy);
     }
 
-    private static Direction generateLastDirection(final List<Direction> directions) {
-        return getLastDirection(directions).ofLast();
+    private static Point generateLastPoint(final List<Point> points) {
+        return getLastPoints(points).last();
     }
 
-    public int nextPosition(final int index) {
-        return directions.get(index).nextPosition();
+    private static Point getLastPoints(final List<Point> points) {
+        return points.get(points.size() - 1);
     }
 
-    public List<Direction> getDirections() {
-        return directions;
+    public int move(final int position) {
+        return points.get(position).move();
+    }
+
+    public List<Point> getPoints() {
+        return points;
     }
 }

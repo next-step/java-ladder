@@ -12,10 +12,14 @@ public final class Users {
 
     private final List<User> users;
 
-    public Users(final List<String> userNames) {
+    private Users(final List<User> users) {
+        this.users = users;
+    }
+
+    public static Users of(final List<String> userNames) {
         validateUserCount(userNames);
 
-        users = userNames.stream()
+        List<User> users = userNames.stream()
                 .distinct()
                 .map(User::valueOf)
                 .collect(Collectors.toList());
@@ -23,19 +27,24 @@ public final class Users {
         if (userNames.size() != users.size()) {
             throw new OverlapUserNamesException();
         }
+        return new Users(users);
     }
 
-    private void validateUserCount(final List<String> users) {
-        if (users.size() < MIN_USER_COUNT) {
+    private static void validateUserCount(final List<String> userNames) {
+        if (userNames.size() < MIN_USER_COUNT) {
             throw new LadderLackOfUserException();
         }
     }
 
-    public int getUserCount() {
+    public int size() {
         return users.size();
     }
 
     public User get(final int index) {
         return users.get(index);
+    }
+
+    public List<User> getUsers() {
+        return users;
     }
 }

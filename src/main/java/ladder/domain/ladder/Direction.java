@@ -34,7 +34,7 @@ public enum Direction {
         return STRAIGHT;
     }
 
-    public int nextPosition() {
+    public int move() {
         return distance;
     }
 }

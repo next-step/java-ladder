@@ -28,10 +28,10 @@ class ResultsTest {
     void generate() {
         // given
         // when
-        Results actual = new Results(resultValues);
+        Results actual = Results.of(resultValues);
 
         // then
-        assertThat(actual).isEqualTo(new Results(resultValues));
+        assertThat(actual).isEqualTo(Results.of(resultValues));
     }
 
     @ParameterizedTest
@@ -41,7 +41,7 @@ class ResultsTest {
         // given
         resultValues.set(0, value);
 
-        assertThatThrownBy(() -> new Results(resultValues))
+        assertThatThrownBy(() -> Results.of(resultValues))
                 .isInstanceOf(EmptyResultValueException.class);
     }
 }

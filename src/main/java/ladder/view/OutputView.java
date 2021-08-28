@@ -3,8 +3,11 @@ package ladder.view;
 import ladder.domain.ladder.Direction;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.Line;
+import ladder.domain.ladder.Point;
 import ladder.domain.result.Result;
+import ladder.domain.result.Results;
 import ladder.domain.user.User;
+import ladder.domain.user.Users;
 import ladder.utils.StringUtil;
 
 import java.util.List;
@@ -24,17 +27,25 @@ public final class OutputView {
     }
 
     public static void showLadderGameResult(final Ladder ladder,
-                                            final List<String> usernames,
-                                            final List<String> results) {
+                                            final Users users,
+                                            final Results results) {
         System.out.print(LINE_SEPARATOR + LADDER_RESULT_PRE_MESSAGE + LINE_SEPARATOR + LINE_SEPARATOR);
-        showStartOrEndPoint(usernames);
+        showStartPoint(users);
         System.out.print(LINE_SEPARATOR);
         showLadders(ladder.getLines());
-        showStartOrEndPoint(results);
+        showEndPoint(results);
     }
 
-    private static void showStartOrEndPoint(final List<String> values) {
-        values.stream()
+    private static void showStartPoint(final Users users) {
+        users.getUsers().stream()
+                .map(User::toString)
+                .map(OutputView::positionFormat)
+                .forEach(System.out::print);
+    }
+
+    private static void showEndPoint(final Results results) {
+        results.getResults().stream()
+                .map(Result::toString)
                 .map(OutputView::positionFormat)
                 .forEach(System.out::print);
     }
@@ -50,13 +61,13 @@ public final class OutputView {
     }
 
     private static String getLine(final Line line) {
-        return line.getDirections().stream()
+        return line.getPoints().stream()
                 .map(OutputView::getDirection)
                 .reduce(String::concat).orElse(EMPTY_DISPLAY);
     }
 
-    private static String getDirection(final Direction direction) {
-        if (direction.equals(Direction.RIGHT)) {
+    private static String getDirection(final Point point) {
+        if (point.compareDirection(Direction.RIGHT)) {
             return directionFormat(LADDER_HORIZONTAL_DISPLAY);
         }
         return directionFormat(EMPTY_DISPLAY);

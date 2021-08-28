@@ -8,14 +8,28 @@ public final class Results {
 
     private final List<Result> results;
 
-    public Results(final List<String> results) {
-        this.results = results.stream()
+    private Results(final List<Result> results) {
+        this.results = results;
+    }
+
+    public static Results of(final List<String> resultValues) {
+        List<Result> results = resultValues.stream()
                 .map(Result::valueOf)
                 .collect(Collectors.toList());
+
+        return new Results(results);
     }
 
     public Result get(final int index) {
         return results.get(index);
+    }
+
+    public int size() {
+        return results.size();
+    }
+
+    public List<Result> getResults() {
+        return results;
     }
 
     @Override

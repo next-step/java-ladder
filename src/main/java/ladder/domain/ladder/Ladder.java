@@ -26,12 +26,16 @@ public final class Ladder {
         }
     }
 
-    public int run(final int index) {
-        int currentIndex = index;
+    public int run(final int startPosition) {
+        int position = startPosition;
         for (Line line : lines) {
-            currentIndex += line.nextPosition(currentIndex);
+            position = move(line, position);
         }
-        return currentIndex;
+        return position;
+    }
+
+    private int move(final Line line, final int position) {
+        return line.move(position);
     }
 
     public List<Line> getLines() {
