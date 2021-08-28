@@ -26,7 +26,6 @@ public class Users  {
         String[] names = usersName.split(",");
 
         for (String name : names) {
-            System.out.println(name);
             this.users.add(new User(name));
         }
     }
@@ -41,5 +40,15 @@ public class Users  {
 
     public int getNumberOfUsers() {
         return this.users.size();
+    }
+
+    public List<String> getName() {
+        List<String> userName = new ArrayList<>();
+
+        for (User user : users) {
+            userName.add(user.getName());
+        }
+
+        return userName;
     }
 }

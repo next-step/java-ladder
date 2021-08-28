@@ -2,7 +2,11 @@ package step2;
 
 import org.junit.jupiter.api.Test;
 import step2.model.Ladder;
+import step2.model.RandomLadderStrategy;
+import step2.model.User;
 import step2.model.Users;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -27,6 +31,24 @@ public class LadderTest {
     public void 참여자_이름_5자_이상() {
         assertThatThrownBy(() -> new Users("user111"))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+    
+    @Test
+    public void 참여자_이름_4자_빈칸_세팅() {
+        //given
+        User user = new User("pobi");
+        
+        //then
+        assertThat(user.getName()).isEqualTo("pobi ");
+    }
+
+    @Test
+    public void 참여자_이름_5자미만_빈칸_세팅() {
+        //given
+        User user = new User("jk");
+
+        //then
+        assertThat(user.getName()).isEqualTo("   jk");
     }
 
     @Test
@@ -60,6 +82,22 @@ public class LadderTest {
     public void 사다리생성_높이_0() {
         assertThatThrownBy(() -> new Ladder("0", 5))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    public void 사다리_크기_체크() {
+        //given
+        Ladder ladder = new Ladder("5", 4);
+        ladder.generateLine(new RandomLadderStrategy());
+
+        //when
+        List<List<Boolean>> result = ladder.getLadder();
+
+        //then
+        assertThat(result.size()).isEqualTo(5);
+        for (int i = 0; i < 5; i++) {
+            assertThat(result.get(i).size()).isEqualTo(3);
+        }
     }
 
     @Test

@@ -1,6 +1,7 @@
 package step2.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Ladder {
     private int row;
@@ -46,5 +47,15 @@ public class Ladder {
             count += line.getLineCount();
         }
         return count;
+    }
+
+    public List<List<Boolean>> getLadder() {
+        List<List<Boolean>> ladder = new ArrayList<>();
+
+        for (Line line : ladders) {
+            ladder.add(line.getLine());
+        }
+
+        return ladder;
     }
 }

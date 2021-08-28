@@ -9,17 +9,15 @@ public class Line {
     public Line(int numberOfUser, LadderStrategy ladderStrategy) {
         lines = new ArrayList<>();
 
-        for (int i = 0; i < numberOfUser; i++) {
-            boolean isLine = ladderStrategy.generateLine();
-            lines.add(isLine);
-            i = exceptNext(i, isLine);
+        for (int i = 0; i < numberOfUser - 1; i++) {
+            if (i != 0 && lines.get(lines.size() - 1)) {
+                lines.add(false);
+                continue;
+            }
+            boolean drawLine = ladderStrategy.generateLine();
+            lines.add(drawLine);
         }
 
-    }
-
-    private int exceptNext(int i, boolean isLine) {
-        if (isLine) i += 1;
-        return i;
     }
 
     public int getLineCount() {
@@ -28,5 +26,9 @@ public class Line {
             if (isLine) count += 1;
         }
         return count;
+    }
+
+    public List<Boolean> getLine() {
+        return lines;
     }
 }

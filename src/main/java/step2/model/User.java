@@ -12,7 +12,7 @@ public class User {
     }
 
     private void isOverMaxLength(String name) {
-        if (name.length() > MAX_NAME_LENGTH) {
+        if (name.trim().length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException("이름은 최대 5자까지 입력 가능합니다.");
         }
     }
@@ -24,6 +24,22 @@ public class User {
     }
 
     public String getName() {
-        return name;
+        int blankCount = MAX_NAME_LENGTH - name.length();
+
+        if (blankCount == 0) {
+            return " " + name;
+        }
+
+        if (blankCount == 1) {
+            return name + " ";
+        }
+
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < blankCount; i++) {
+            sb.append(" ");
+        }
+
+        return sb.toString()+name;
     }
 }
