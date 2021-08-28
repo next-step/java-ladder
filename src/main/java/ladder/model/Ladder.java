@@ -102,7 +102,7 @@ public class Ladder {
         return lines;
     }
 
-    public List<LadderLine> getLines() {
+    List<LadderLine> getLines() {
         return lines;
     }
 

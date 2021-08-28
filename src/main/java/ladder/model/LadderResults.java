@@ -7,7 +7,7 @@ import static java.util.stream.Collectors.toList;
 public class LadderResults {
     private final List<LadderResult> results;
 
-    LadderResults(List<String> results) {
+    public LadderResults(List<String> results) {
         validateNotEmpty(results);
         this.results = results.stream()
                 .map(LadderResult::of)

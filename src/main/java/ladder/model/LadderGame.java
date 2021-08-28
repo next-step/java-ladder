@@ -1,7 +1,10 @@
 package ladder.model;
 
+import java.util.List;
+
 public class LadderGame {
     private static final int FIRST_INDEX = 0;
+
     private final Players players;
     private final Ladder ladder;
     private final LadderResults results;
@@ -43,5 +46,17 @@ public class LadderGame {
         if (playerIndex < FIRST_INDEX) {
             throw new IllegalArgumentException("존재하지 않는 플레이어입니다.");
         }
+    }
+
+    public List<String> getPlayerNames() {
+        return players.getNames();
+    }
+
+    public List<LadderLine> getLadderLines() {
+        return ladder.getLines();
+    }
+
+    public List<String> getLadderResults() {
+        return results.getResults();
     }
 }
