@@ -1,19 +1,20 @@
 package ladder;
 
-import ladder.domain.Index;
-import ladder.domain.Ladder;
-import ladder.domain.Line;
-import ladder.domain.Point;
-import ladder.exception.LadderHeightException;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import ladder.domain.Index;
+import ladder.domain.Ladder;
+import ladder.domain.LadderLine;
+import ladder.domain.Point;
+import ladder.exception.LadderHeightException;
 
 class LadderTest {
     @DisplayName("참여할_사람의_인원_수와_사다리_높이가_주어지면_사다리_높이만큼의_Line객체를_가진_Ladder가_생성된다")
@@ -40,14 +41,26 @@ class LadderTest {
     void resultIndexOfTest() {
         // 기본 사다리 생성 |-----|
         List<Point> points = new ArrayList<>();
-        points.add(Point.of(false, true));
-        points.add(Point.of(true, false));
-        points.add(Point.of(false, true));
-        points.add(Point.of(true, false));
+        points.add(Point.first(true));
+        points.add(points.get(0).next(false));
+        points.add(points.get(1).next(true));
+        points.add(points.get(2).last());
 
-        List<Line> lines = Arrays.asList(Line.from(points));
-        Ladder ladder = Ladder.from(lines);
+        List<LadderLine> ladderLines = Collections.singletonList(LadderLine.from(points));
+        Ladder ladder = Ladder.from(ladderLines);
         assertThat(ladder.resultIndexOf(Index.from(0))).isEqualTo(1);
         assertThat(ladder.resultIndexOf(Index.from(1))).isEqualTo(0);
+    }
+
+    @Test
+    public void init() {
+        int sizeOfPerson = 5;
+        System.out.println(LadderLine.init(sizeOfPerson));
+    }
+
+    @Test
+    public void move() {
+        LadderLine line = LadderLine.init(2);
+        System.out.println("ladder result : " + line.move(0));
     }
 }

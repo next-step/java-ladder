@@ -1,31 +1,31 @@
 package ladder.domain;
 
-import ladder.exception.LadderHeightException;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import ladder.exception.LadderHeightException;
+
 public class Ladder {
     private static final int LADDER_MIN_HEIGHT = 2;
 
-    private final List<Line> ladder;
+    private final List<LadderLine> ladder;
 
-    private Ladder(List<Line> ladder) {
+    private Ladder(List<LadderLine> ladder) {
         this.ladder = ladder;
     }
 
     private Ladder(int countOfPerson, int height) {
         validate(height);
         ladder = Collections.unmodifiableList(
-            Stream.generate(() -> Line.from(countOfPerson))
+            Stream.generate(() -> LadderLine.init(countOfPerson))
                 .limit(height)
                 .collect(Collectors.toList())
         );
     }
 
-    public static Ladder from(List<Line> ladder) {
+    public static Ladder from(List<LadderLine> ladder) {
         return new Ladder(ladder);
     }
 
@@ -40,11 +40,11 @@ public class Ladder {
     }
 
     public int resultIndexOf(Index index) {
-        ladder.stream().forEach(index::moveOf);
+        ladder.forEach(index::moveOf);
         return index.val();
     }
 
-    public List<Line> toList() {
+    public List<LadderLine> toList() {
         return ladder;
     }
 }
