@@ -37,9 +37,8 @@ public class ResultView {
         if (name.length() < 5) {
             int paddingCount = 5 - name.length();
             addPadding(sb, paddingCount);
-            sb.append(name);
         }
-
+        sb.append(name);
         return sb.toString();
     }
 
