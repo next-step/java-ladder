@@ -16,10 +16,11 @@ public class LadderApp {
 
         Ladder ladder = new Ladder(name.getCountOfPerson(), height.getValue());
 
+        resultView.printHeader();
+        resultView.printParticipant(name.getArray());
         for (Line line: ladder.getLines()) {
             resultView.printLadderResult(line.getPoints(), name.getCountOfPerson());
             System.out.println();
         }
-
     }
 }

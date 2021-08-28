@@ -10,16 +10,20 @@ public class Line {
 
     public Line(int countOfPerson) {
         points.add(RANDOM.nextBoolean());
-        for (int i = 1; i < countOfPerson; i++) {
-            if (points.get(i-1)) {
-                points.add(Boolean.FALSE);
-                continue;
-            }
-            points.add(RANDOM.nextBoolean());
+        for (int i = 1; i < countOfPerson-1; i++) {
+            checkPreviousPointAddPoint(i);
         }
     }
 
-
+    private void checkPreviousPointAddPoint(int currentIndex) {
+        int previouseIndex = currentIndex-1;
+        if (points.get(previouseIndex)) {
+            points.add(Boolean.FALSE);
+            return;
+        }
+        points.add(RANDOM.nextBoolean());
+        return;
+    }
 
     public List<Boolean> getPoints() {
         return points;

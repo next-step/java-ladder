@@ -15,7 +15,6 @@ public class Name {
         for (String name: array) {
             CheckValidName(name);
         }
-
     }
 
     private void BuildName(String stringName) {
@@ -27,6 +26,10 @@ public class Name {
         if (name.length() > NAME_MAX_SIZE || name.length() < NAME_MIN_SIZE) {
             throw new IllegalArgumentException("이름은 최소 1글자 최대 5글자까지 부여할 수 있습니다.");
         }
+    }
+
+    public String[] getArray() {
+        return array;
     }
 
     public int getCountOfPerson() {
