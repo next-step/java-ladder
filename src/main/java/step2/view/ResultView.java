@@ -1,30 +1,37 @@
 package step2.view;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ResultView {
     public static void printUserName(List<String> userName) {
-        StringBuilder sb = new StringBuilder();
-        for (String name : userName){
-            sb.append(name);
-        }
+        String name = userName.stream()
+                .collect(Collectors.joining());
 
-        System.out.println(sb.toString());
+        System.out.println(name);
     }
     public static void printLadder(List<List<Boolean>> ladder) {
-        for (int i = 0; i < ladder.size(); i++) {
-            for (int j = 0; j < ladder.get(i).size(); j++){
-                if (j == 0) {
-                    System.out.print("    |");
-                }
-
-                if (ladder.get(i).get(j)) {
-                    System.out.print("-----|");
-                }else{
-                    System.out.print("     |");
-                }
-            }
+        for (List<Boolean> line : ladder) {
+            printLine(line);
             System.out.println();
         }
+    }
+
+    private static void printLine(List<Boolean> line) {
+        for (int i = 0; i < line.size(); i++){
+            System.out.print(checkLine(line, i));
+        }
+    }
+
+    private static String checkLine(List<Boolean> line, int i) {
+        if (i == 0) {
+            return "    |";
+        }
+
+        if (line.get(i)) {
+            return "-----|";
+        }
+
+        return "     |";
     }
 }

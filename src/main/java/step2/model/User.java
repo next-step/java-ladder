@@ -35,11 +35,9 @@ public class User {
         }
 
         StringBuilder sb = new StringBuilder();
-
         for (int i = 0; i < blankCount; i++) {
             sb.append(" ");
         }
-
         return sb.toString()+name;
     }
 }

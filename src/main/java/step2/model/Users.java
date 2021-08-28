@@ -2,6 +2,7 @@ package step2.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Users  {
     private List<User> users;
@@ -43,12 +44,8 @@ public class Users  {
     }
 
     public List<String> getName() {
-        List<String> userName = new ArrayList<>();
-
-        for (User user : users) {
-            userName.add(user.getName());
-        }
-
-        return userName;
+        return users.stream()
+                        .map(User::getName)
+                        .collect(Collectors.toList());
     }
 }

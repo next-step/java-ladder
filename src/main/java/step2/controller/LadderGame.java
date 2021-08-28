@@ -4,8 +4,6 @@ import step2.model.Ladder;
 import step2.model.RandomLadderStrategy;
 import step2.model.Users;
 
-import java.util.List;
-
 import static step2.view.InputView.*;
 import static step2.view.ResultView.*;
 
@@ -20,15 +18,7 @@ public class LadderGame {
         Ladder ladder = new Ladder(high, numberOfUsers);
         ladder.generateLine(new RandomLadderStrategy());
 
-        List<List<Boolean>> ladderList = ladder.getLadder();
-        for (List<Boolean> list : ladderList) {
-            for (boolean isLine : list) {
-                System.out.print(isLine+" ");
-            }
-            System.out.println();
-        }
-        System.out.println();
         printUserName(users.getName());
-        printLadder(ladderList);
+        printLadder(ladder.getLadder());
     }
 }

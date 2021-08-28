@@ -2,6 +2,7 @@ package step2.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Ladder {
     private int row;
@@ -36,26 +37,20 @@ public class Ladder {
     }
 
     public void generateLine(LadderStrategy ladderStrategy) {
-        for (int i = 0; i <row; i++) {
+        for (int i = 0; i < row; i++) {
             ladders.add(new Line(column, ladderStrategy));
         }
     }
 
     public int getLineCount() {
-        int count = 0;
-        for (Line line : ladders) {
-            count += line.getLineCount();
-        }
-        return count;
+        return ladders.stream()
+                .map(Line::getLineCount)
+                .reduce(0, Integer::sum);
     }
 
     public List<List<Boolean>> getLadder() {
-        List<List<Boolean>> ladder = new ArrayList<>();
-
-        for (Line line : ladders) {
-            ladder.add(line.getLine());
-        }
-
-        return ladder;
+        return ladders.stream()
+                        .map(Line::getLine)
+                        .collect(Collectors.toList());
     }
 }
