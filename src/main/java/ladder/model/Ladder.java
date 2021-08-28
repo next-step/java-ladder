@@ -9,7 +9,7 @@ import static java.lang.Boolean.TRUE;
 import static java.util.stream.Collectors.toList;
 
 public class Ladder {
-    private static final int GAP_BETWEEN_PLAYER_COUNT_AND_POINT_COUNT = 1;
+    static final int GAP_BETWEEN_PLAYER_COUNT_AND_POINT_COUNT = 1;
     private static final int MIN_LADDER_HEIGHT = 1;
     private static final int FIRST_INDEX = 0;
     private static final int SINGLE_LINE_COUNT = 1;
@@ -106,7 +106,7 @@ public class Ladder {
         return lines;
     }
 
-    public int playerCount() {
+    int playerCount() {
         if (lines.isEmpty()) {
             return ZERO;
         }
