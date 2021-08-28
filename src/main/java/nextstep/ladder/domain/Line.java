@@ -1,7 +1,5 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.util.RandomUtil;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -10,8 +8,7 @@ import java.util.stream.Stream;
 public class Line {
     private static final int START_INDEX = 1;
     private static final Random random = new Random();
-    private List<Boolean> points;
-    private List<Point> point;
+    private List<Point> points;
 
     public Line() {
         this(0);
@@ -19,27 +16,17 @@ public class Line {
 
     public Line(int playersCounts) {
         this.points = new ArrayList<>();
-        create(playersCounts);
         createPoint(playersCounts);
     }
 
     private void createPoint(int playersCounts) {
-        Point init = Point.init(); // 처음 사다리 Point 무조건(false, 랜덤값)
-        point.add(init);
-        for (int i = START_INDEX; i< playersCounts; i++) {
-            if (init.nextPoint()){
-                point.add(Point.init());
-            }else {
-               point.add(Point.of());
+        points.add(Point.init());
+        for (int i = START_INDEX; i < playersCounts; i++) {
+            if (points.get(i - 1).nextPoint()) { // 이전의 다음값 == 현재값이 true이면 다음 값은 무조건 false이다.
+                points.add(Point.of());
+            } else {
+                points.add(Point.init());
             }
-
-        }
-    }
-
-    private void create(int playersCount) {
-        points.add(false);
-        for (int i = START_INDEX; i < playersCount; i++) {
-            points.add(checkPreviousPoint(points.get(i - 1)));
         }
     }
 
@@ -54,7 +41,7 @@ public class Line {
         return points.size();
     }
 
-    public Stream<Boolean> stream() {
+    public Stream<Point> stream() {
         return points.stream();
     }
 
