@@ -113,4 +113,11 @@ public class Ladder {
         LadderLine firstLine = lines.get(FIRST_INDEX);
         return firstLine.pointCount() + GAP_BETWEEN_PLAYER_COUNT_AND_POINT_COUNT;
     }
+
+    int findResultIndex(int playerIndex) {
+        for (LadderLine line : lines) {
+            playerIndex = line.findPlayerIndexAfterCrossingLine(playerIndex);
+        }
+        return playerIndex;
+    }
 }

@@ -46,4 +46,19 @@ public class LadderTest {
         // when, then
         assertSame(ladder.playerCount(), 3);
     }
+
+    @DisplayName("사다리를 타서 플레이어의 결과 위치를 찾아내는 기능이 정상적으로 동작해야 한다.")
+    @Test
+    void findLadderResultIndexOfPlayerTest() {
+        // given
+        LadderLine firstLine = new LadderLine(Arrays.asList(TRUE, FALSE));
+        LadderLine secondLine = new LadderLine(Arrays.asList(FALSE, TRUE));
+        LadderLine thirdLine = new LadderLine(Arrays.asList(TRUE, FALSE));
+        Ladder ladder = new Ladder(Arrays.asList(firstLine, secondLine, thirdLine));
+
+        // when, then
+        assertSame(ladder.findResultIndex(0), 2);
+        assertSame(ladder.findResultIndex(1), 1);
+        assertSame(ladder.findResultIndex(2), 0);
+    }
 }
