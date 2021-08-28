@@ -6,23 +6,26 @@ public class Point {
     private boolean currentPoint;
     private boolean nextPoint;
 
-    public Point(boolean nextPoint) {
+    private Point(boolean nextPoint) {
         this.currentPoint = false;
-        this.nextPoint =  nextPoint;
+        this.nextPoint = nextPoint;
     }
 
-    public Point(boolean currentPoint, boolean nextPoint) {
+    private Point(boolean currentPoint, boolean nextPoint) {
         this.currentPoint = currentPoint;
         this.nextPoint = nextPoint;
     }
 
     public static Point init() {
-        return new Point(false, RandomUtil.generate());
+        return new Point(RandomUtil.generate());
+    }
+
+    public static Point of() {
+        return new Point(true, RandomUtil.generate());
     }
 
 
-
-    public boolean previousPoint () {
+    public boolean nextPoint() {
         return nextPoint;
     }
 }

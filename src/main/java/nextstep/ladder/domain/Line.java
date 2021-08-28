@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.util.RandomUtil;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -18,14 +20,19 @@ public class Line {
     public Line(int playersCounts) {
         this.points = new ArrayList<>();
         create(playersCounts);
+        createPoint(playersCounts);
     }
 
-    private void create() {
-        Point point = new Point(random.nextBoolean()); // 사다리 게임 생성 (첫번째는 false로 시작)
-        if (point.previousPoint()) {
-            new Point(random.nextBoolean());
-        }else {
-            new Point(point.previousPoint(), random.nextBoolean());
+    private void createPoint(int playersCounts) {
+        Point init = Point.init(); // 처음 사다리 Point 무조건(false, 랜덤값)
+        point.add(init);
+        for (int i = START_INDEX; i< playersCounts; i++) {
+            if (init.nextPoint()){
+                point.add(Point.init());
+            }else {
+               point.add(Point.of());
+            }
+
         }
     }
 
