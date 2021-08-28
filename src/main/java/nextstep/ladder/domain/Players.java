@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Players {
-    private static final String DELIMITER = ",";
+    public static final String DELIMITER = ",";
     private static final int PLAYERS_MIN_COUNT = 2;
     private List<Name> players;
 
