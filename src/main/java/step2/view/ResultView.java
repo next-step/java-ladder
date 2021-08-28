@@ -1,7 +1,10 @@
 package step2.view;
 
+import step2.domain.Line;
+
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ResultView {
     private static final String LADDER_VERTICAL_LINE = "|";
@@ -14,28 +17,32 @@ public class ResultView {
         System.out.println(GUIDE_HEAD_LINE);
     }
 
-    public void printLadderResult(List<Boolean> points, int countOfPerson) {
-        for (Boolean point: points) {
-            printLadderLine(point, countOfPerson);
-
-        }
-        System.out.print(LADDER_VERTICAL_LINE);
-    }
-
-    public void printLadderLine(Boolean point, int countOfPerson) {
-        System.out.print(LADDER_VERTICAL_LINE);
-        if (point) {
-            System.out.print(LADDER_HORIZON);
-            return;
-        }
-        System.out.print(LADDER_EMPTY);
-        return;
-    }
-
     public void printParticipant(String[] array) {
-        for (String name: array) {
-            System.out.print(name+NAME_SPACE);
-        }
+        Arrays.stream(array)
+                .map(s -> s+NAME_SPACE)
+                .forEach(System.out::print);
         System.out.println();
+    }
+
+    public void printLadderResult(List<Line> lines) {
+        lines.stream()
+                .map(this::printByLine)
+                .forEach(System.out::println);
+    }
+
+
+
+    public String printByLine(Line line) {
+        return line.getPoints()
+                .stream()
+                .map(this::printByPoint)
+                .collect(Collectors.joining(LADDER_VERTICAL_LINE, LADDER_VERTICAL_LINE, LADDER_VERTICAL_LINE));
+    }
+
+    public String printByPoint(Boolean point) {
+        if (point) {
+            return LADDER_HORIZON;
+        }
+        return LADDER_EMPTY;
     }
 }
