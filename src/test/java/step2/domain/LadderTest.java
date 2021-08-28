@@ -11,7 +11,7 @@ class LadderTest {
     @Test
     void ladder_height_exception() {
         Assertions.assertThatThrownBy(() -> {
-            new Ladder(0);
+            new Height(0);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 }
