@@ -9,6 +9,7 @@ public class Line {
     private static final int START_INDEX = 1;
     private static final Random random = new Random();
     private List<Boolean> points;
+    private List<Point> point;
 
     public Line() {
         this(0);
@@ -17,6 +18,15 @@ public class Line {
     public Line(int playersCounts) {
         this.points = new ArrayList<>();
         create(playersCounts);
+    }
+
+    private void create() {
+        Point point = new Point(random.nextBoolean()); // 사다리 게임 생성 (첫번째는 false로 시작)
+        if (point.previousPoint()) {
+            new Point(random.nextBoolean());
+        }else {
+            new Point(point.previousPoint(), random.nextBoolean());
+        }
     }
 
     private void create(int playersCount) {
