@@ -43,12 +43,12 @@ public class ResultView {
                 .collect(Collectors.joining(" ")));
     }
 
-    public static void printResult(Map<Integer, Integer> playerResult, BoardConsumer boardConsumer, List<Player> players) {
+    public static void printResult(Map<Integer, Integer> playResult, BoardConsumer boardConsumer, List<Player> players) {
         System.out.println(RESULT_MESSAGE);
 
         List<WinningPrize> winningPrizes = players.stream()
                 .map(boardConsumer::getPlayerIndex)
-                .map(playerResult::get)
+                .map(playResult::get)
                 .map(boardConsumer::getWinningPrize)
                 .collect(Collectors.toList());
 
@@ -59,7 +59,7 @@ public class ResultView {
         for (int i = 0; i < players.size(); i++) {
             System.out.println(players.get(i) + " : " + winningPrizes.get(i));
         }
-        if (playerResult.size() == players.size()) {
+        if (playResult.size() == players.size()) {
             System.exit(0);
         }
     }

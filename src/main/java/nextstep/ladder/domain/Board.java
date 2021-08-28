@@ -42,7 +42,7 @@ public class Board {
     public Map<Integer, Integer> play() {
         return IntStream.range(ZERO, lines.get(0).getSize())
                 .boxed()
-                .collect(Collectors.toMap(this::getResult, Function.identity()));
+                .collect(Collectors.toMap(Function.identity(), this::getResult));
     }
 
     private int getResult(int inputIndex) {
