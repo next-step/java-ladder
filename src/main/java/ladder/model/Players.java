@@ -29,4 +29,8 @@ public class Players {
                 .map(PlayerName::getName)
                 .collect(toList());
     }
+
+    int findIndex(PlayerName name) {
+        return names.indexOf(name);
+    }
 }
