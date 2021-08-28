@@ -1,6 +1,7 @@
 package nextstep.ladder;
 
 import nextstep.ladder.domain.Line;
+import nextstep.ladder.domain.Point;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -15,9 +16,16 @@ class LineTest {
     }
 
     @Test
-    @DisplayName("이전에 가로 줄이 있으면 현재 가로 줄은 없어야 한다.")
+    @DisplayName("현재 point 가 true이면 다음 point는 무조건 false가 와야 한다. 즉 ,(true, false)")
     void checkPreviousPoint() {
         Line point = new Line();
-        assertThat(point.checkPreviousPoint(true)).isFalse();
+        assertThat(point.checkPreviousPoint(true)).isEqualTo(Point.of());
+    }
+
+    @Test
+    @DisplayName("현재 point 가 false이면 다음 point는 랜덤값을 넣는다. 즉 ,(true, 랜덤)")
+    void checkPreviousPoint2() {
+        Line point = new Line();
+        assertThat(point.checkPreviousPoint(false)).isEqualTo(Point.init());
     }
 }

@@ -2,6 +2,8 @@ package nextstep.ladder.domain;
 
 import nextstep.ladder.util.RandomUtil;
 
+import java.util.Objects;
+
 public class Point {
     private boolean currentPoint;
     private boolean nextPoint;
@@ -27,5 +29,18 @@ public class Point {
 
     public boolean nextPoint() {
         return nextPoint;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Point point = (Point) o;
+        return currentPoint == point.currentPoint && nextPoint == point.nextPoint;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(currentPoint, nextPoint);
     }
 }

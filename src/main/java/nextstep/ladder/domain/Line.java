@@ -2,12 +2,10 @@ package nextstep.ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Stream;
 
 public class Line {
     private static final int START_INDEX = 1;
-    private static final Random random = new Random();
     private List<Point> points;
 
     public Line() {
@@ -20,21 +18,18 @@ public class Line {
     }
 
     private void createPoint(int playersCounts) {
-        points.add(Point.init());
+        points.add(Point.init()); // 처음에는 (false , 랜덤) 주입
         for (int i = START_INDEX; i < playersCounts; i++) {
-            if (points.get(i - 1).nextPoint()) { // 이전의 다음값 == 현재값이 true이면 다음 값은 무조건 false이다.
-                points.add(Point.of());
-            } else {
-                points.add(Point.init());
-            }
+            points.add(checkPreviousPoint(points.get(i - 1).nextPoint()));
         }
     }
 
-    public boolean checkPreviousPoint(boolean previousPoint) {
-        if (previousPoint) {
-            return false;
+    public Point checkPreviousPoint(boolean nextPointOfPrevious) {
+        //현재값이 true이면 (true ,false) 주입
+        if (nextPointOfPrevious) {
+            return Point.of();
         }
-        return random.nextBoolean();
+        return Point.init();
     }
 
     public int size() {
