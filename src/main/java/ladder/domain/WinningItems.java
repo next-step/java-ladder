@@ -3,6 +3,7 @@ package ladder.domain;
 import ladder.exception.WinningItemsException;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class WinningItems {
@@ -28,5 +29,7 @@ public class WinningItems {
         }
     }
 
-
+    public List<WinningItem> getWinningItems() {
+        return Collections.unmodifiableList(winningItems);
+    }
 }
