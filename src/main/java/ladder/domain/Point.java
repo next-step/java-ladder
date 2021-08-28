@@ -1,42 +1,47 @@
 package ladder.domain;
 
-import ladder.strategy.MovableStrategy;
-
 public class Point {
-    private final boolean isExistLeft;
-    private final boolean isExistRight;
+    private final int index;
+    private final Direction direction;
 
-    private Point(boolean isExistLeft, boolean isExistRight) {
-        this.isExistLeft = isExistLeft;
-        this.isExistRight = isExistRight;
+    public Point(int index, Direction direction) {
+        this.index = index;
+        this.direction = direction;
     }
 
-    public static Point fromMiddle(Point previousPoint, MovableStrategy movableStrategy) {
-        if (previousPoint.existRight()) {
-            return Point.of(true, false);
+    public static Point first(Boolean right) {
+        return new Point(0, Direction.first(right));
+    }
+
+    public int move() {
+        if (direction.isRight()) {
+            return index + 1;
         }
 
-        if (previousPoint.existLeft()) {
-            return Point.of(false, false);
+        if (direction.isLeft()) {
+            return index - 1;
         }
 
-        return Point.of(false, movableStrategy.isMovable());
+        return this.index;
     }
 
-
-    public static Point of(boolean isExistLeftBridge, boolean isExistRightBridge) {
-        return new Point(isExistLeftBridge, isExistRightBridge);
+    public Point next() {
+        return new Point(index + 1, direction.next());
     }
 
-    public static Point of(MovableStrategy leftMovableStrategy, MovableStrategy rightMovableStrategy) {
-        return new Point(leftMovableStrategy.isMovable(), rightMovableStrategy.isMovable());
+    public Point next(Boolean right) {
+        return new Point(index + 1, direction.next(right));
     }
 
-    public boolean existLeft() {
-        return isExistLeft;
+    public Point last() {
+        return new Point(index + 1, direction.last());
     }
 
-    public boolean existRight() {
-        return isExistRight;
+    @Override
+    public String toString() {
+        return "Point{" +
+            "index=" + index +
+            ", direction=" + direction +
+            '}';
     }
 }
