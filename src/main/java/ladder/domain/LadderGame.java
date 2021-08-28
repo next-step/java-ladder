@@ -18,25 +18,28 @@ public final class LadderGame {
     private final Results results;
 
     public LadderGame(final List<String> users, final List<String> results) {
-        validateSameSize(users, results);
-
-        this.users = new Users(users);
-        this.results = new Results(results);
+        this(Users.of(users), Results.of(results));
     }
 
-    private void validateSameSize(final List<String> users, final List<String> results) {
-        if(users.size() != results.size()) {
+    public LadderGame(final Users users, final Results results) {
+        validateSameSize(users, results);
+        this.users = users;
+        this.results = results;
+    }
+
+    private void validateSameSize(final Users users, final Results results) {
+        if (users.size() != results.size()) {
             throw new LadderGameDifferentSizeException();
         }
     }
 
     public Ladder generateLadder(final int ladderHeight, final DirectionStrategy directionStrategy) {
-        return new Ladder(directionStrategy, ladderHeight, users.getUserCount());
+        return new Ladder(directionStrategy, ladderHeight, users.size());
     }
 
     public LadderGameResult execute(final Ladder ladder) {
         Map<User, Result> resultMap = new HashMap<>();
-        for (int i = 0; i < users.getUserCount(); i++) {
+        for (int i = 0; i < users.size(); i++) {
             int endPoint = ladder.run(i);
             resultMap.put(users.get(i), results.get(endPoint));
         }
