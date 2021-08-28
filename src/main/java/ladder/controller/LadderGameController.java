@@ -1,10 +1,14 @@
 package ladder.controller;
 
-import ladder.domain.*;
+import java.util.List;
+
+import ladder.domain.ExecutionResults;
+import ladder.domain.Index;
+import ladder.domain.Ladder;
+import ladder.domain.Names;
+import ladder.domain.Results;
 import ladder.view.InputView;
 import ladder.view.ResultView;
-
-import java.util.List;
 
 public class LadderGameController {
     public static void main(String[] args) {
@@ -25,11 +29,12 @@ public class LadderGameController {
         InputView inputView = new InputView();
         ResultView resultView = new ResultView();
 
-        while (true) {
-            String name = inputView.inputWantedResultOfName();
+        String name;
+        do {
+            name = inputView.inputWantedResultOfName();
             resultView.outputExecutionResult();
             outputAskResult(executionResults, ladder, name);
-        }
+        } while (!"all".equals(name));
     }
 
     private static void outputAskResult(ExecutionResults executionResults, final Ladder ladder, final String name) {
