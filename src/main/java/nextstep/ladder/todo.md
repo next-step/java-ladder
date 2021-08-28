@@ -22,4 +22,11 @@
 - 사다리 첫 번째 가로는 줄이 없어야 한다 (boolean : false 설정) 
 - 실행 결과를 나타내는 Result 객체 생성
 - 실행 결과와 참여 사람 수가 일치 하지 않으면 예외를 발생 시킨다.
-- 사다리의 방향에 해당하는 Point domain을 만든다.
+- 사다리의 방향에 해당하는 Point 도메인을 만든다.
+- Point 도메인에는 현재 Point 값과 다음 Point 값을 가지고 있다. 
+- Line 은 Point 객체를 컬렉션으로 갖고 있다.
+- Point 객체를 처음 생성할 때는 현재 point는 false , 다음 point 값은 랜덤 값으로 설정한다.
+- 사람 수에 맞는 Point를 생성할 때 이전 Point 값이 true 이면 다음 Point 값은 무조건 false로 설정해야 한다.
+- 이전 Point 값이 false 이면 다음 Point 값은 랜덤 값을 넣는다.
+- 현재 Point 값은 이전 Point 값의 다음 값을 넣는다. 
+- 현재 Point 값 == 이전 Point의 다음 값
