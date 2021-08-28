@@ -10,7 +10,7 @@ public class Line {
         this.points = points;
     }
 
-    public static Line of(List<Boolean> points) {
+    public static Line from(List<Boolean> points) {
         validatePoint(points);
         return new Line(points);
     }
@@ -27,22 +27,16 @@ public class Line {
         }
     }
 
-    public int currentPosition(int currPosition) {
-        if (canMoveRight(currPosition)) {
-            currPosition++;
-        } else if (canMoveLeft(currPosition)) {
-            currPosition--;
-        }
-
-        return currPosition;
+    public boolean canGoRight(Position position) {
+        return position.currentPosition() + 1 <= size() && hasPoint(position);
     }
 
-    private boolean canMoveLeft(int currPosition) {
-        return currPosition - 1 >= 0 && Boolean.TRUE == points.get(currPosition - 1);
+    public boolean canGoLeft(Position position) {
+        return position.currentPosition() - 1 >= 0 && hasPoint(position.toLeft());
     }
 
-    private boolean canMoveRight(int currPosition) {
-        return currPosition < points.size() && Boolean.TRUE == points.get(currPosition);
+    public boolean hasPoint(Position position) {
+        return Boolean.TRUE == points.get(position.currentPosition());
     }
 
     public int size() {
@@ -52,4 +46,6 @@ public class Line {
     public List<Boolean> points() {
         return points;
     }
+
+
 }

@@ -3,7 +3,7 @@ package nextstep.ladder.view;
 import nextstep.ladder.domain.LadderResult;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Person;
-import nextstep.ladder.domain.Persons;
+import nextstep.ladder.domain.Players;
 import java.util.List;
 
 public class ResultView {
@@ -12,8 +12,8 @@ public class ResultView {
     public static final String LADDER_POINT = "-----";
     public static final String LADDER_BLANK = "     ";
 
-    public static void show(List<Line> ladderLines, Persons persons) {
-        persons.forEach(person -> System.out.print(appendBlank(person.name())));
+    public static void show(List<Line> ladderLines, Players players) {
+        players.forEach(name -> System.out.print(appendBlank(name)));
         System.out.println();
         ladderLines.forEach(ResultView::points);
     }
@@ -49,10 +49,10 @@ public class ResultView {
         System.out.println(ladderResult.resultByName(name));
     }
 
-    public static void results(LadderResult ladderResult, Persons persons) {
+    public static void results(LadderResult ladderResult, Players players) {
         System.out.println("전체결과");
-        persons.forEach(person ->
-            System.out.println(person.name() + " : " + ladderResult.resultByName(person.name()))
+        players.forEach(name ->
+            System.out.println(name + " : " + ladderResult.resultByName(name))
         );
 
     }

@@ -7,43 +7,49 @@ import java.util.List;
 public class Ladder {
 
     private final List<Line> lines;
-    private final Persons persons;
+    private final Players players;
 
-    private Ladder(List<Line> lines, Persons persons) {
+    private Ladder(List<Line> lines, Players players) {
         this.lines = lines;
-        this.persons = persons;
+        this.players = players;
     }
 
-    public static Ladder of(Persons persons, LadderHeight heightOfLadder) {
+    public static Ladder of(Players players, LadderHeight heightOfLadder) {
         List<Line> lines = new ArrayList<>();
 
         for (int i = 0; i < heightOfLadder.height(); i++) {
-            List<Boolean> points = new RandomPointStrategy().point(persons.size() - 1);
-            lines.add(Line.of(points));
+            List<Boolean> points = new RandomPointStrategy().point(players.size() - 1);
+            lines.add(Line.from(points));
         }
 
-        return new Ladder(lines, persons);
+        return new Ladder(lines, players);
     }
 
-    public static Ladder of(Line lines, Persons persons) {
-        return new Ladder(Collections.singletonList(lines), persons);
+    public static Ladder of(Line lines, Players players) {
+        return new Ladder(Collections.singletonList(lines), players);
     }
 
     public List<Line> lines() {
         return lines;
     }
 
-    public Persons persons() {
-        return persons;
+    public Players players() {
+        return players;
     }
 
-    public int resultPersonIndex(String name) {
-        int position = persons.findIndexOfPerson(name);
-
-        for (Line line : lines) {
-            position = line.currentPosition(position);
+    public void movePlayer(Player player) {
+        for (Line line : lines()) {
+            Position position = player.position();
+            if (line.canGoRight(position)) {
+                player.move(position.toRight());
+            } else if (line.canGoLeft(position)) {
+                player.move(position.toLeft());
+            }
         }
-
-        return position;
     }
+
+    public Player findPlayerByName(String name) {
+        return players.findIndexByName(name);
+    }
+
 }

@@ -16,7 +16,7 @@ class LineTest {
     void line() {
         // Given
         int countOfPerson = 3;
-        Line line = Line.of(Arrays.asList(true, false, true));
+        Line line = Line.from(Arrays.asList(true, false, true));
 
         // When && Then
         assertThat(line.size()).isEqualTo(countOfPerson);
@@ -26,7 +26,7 @@ class LineTest {
     @Test
     void lineWithValidation() {
         // Given
-        Line line = Line.of(Arrays.asList(true, false, true));
+        Line line = Line.from(Arrays.asList(true, false, true));
 
         // When
         List<Boolean> lines = line.points();
@@ -37,9 +37,5 @@ class LineTest {
             () -> assertNotEquals(Arrays.asList(false, true, true), lines),
             () -> assertNotEquals(Arrays.asList(true, true, true), lines)
         );
-
-
     }
-
-
 }

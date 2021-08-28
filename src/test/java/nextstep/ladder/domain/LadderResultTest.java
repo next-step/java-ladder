@@ -2,11 +2,11 @@ package nextstep.ladder.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 class LadderResultTest {
 
@@ -15,24 +15,25 @@ class LadderResultTest {
     @Test
     void person() {
         // given
-        Persons persons = PersonsFactory.personsFixture("pobi1", "pobi2", "pobi3");
+        Players persons = PersonsFactory.personsFixture("pobi1", "pobi2", "pobi3");
 
-        Line line = Line.of(Arrays.asList(true, false));
+        Line line = Line.from(Arrays.asList(true, false));
 
         Ladder ladder = Ladder.of(line, persons);
 
-        List<String> results = new ArrayList<>();
-        results.add("꽝");
-        results.add("5000");
-        results.add("2000");
+        List<String> results = Arrays.asList("꽝", "5000", "2000");
+
+        Rewords rewords = Rewords.from(results);
 
         // when
-        LadderResult ladderResult = LadderResult.of(ladder, results);
+        LadderResult ladderResult = LadderResult.of(ladder, rewords);
 
         // then
-        assertThat(ladderResult.resultByName("pobi1")).isEqualTo("5000");
-        assertThat(ladderResult.resultByName("pobi2")).isEqualTo("꽝");
-        assertThat(ladderResult.resultByName("pobi3")).isEqualTo("2000");
+        assertAll(() -> {
+            assertThat(ladderResult.resultByName("pobi1")).isEqualTo("5000");
+            assertThat(ladderResult.resultByName("pobi2")).isEqualTo("꽝");
+            assertThat(ladderResult.resultByName("pobi3")).isEqualTo("2000");
+        });
     }
 }
 
