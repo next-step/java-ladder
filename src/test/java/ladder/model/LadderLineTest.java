@@ -10,6 +10,7 @@ import static java.lang.Boolean.*;
 import static java.lang.Boolean.FALSE;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 @DisplayName("사다리 라인 테스트")
 public class LadderLineTest {
@@ -63,5 +64,18 @@ public class LadderLineTest {
     void pointCountTest() {
         // given, when, then
         assertEquals(LadderLine.of(2).pointCount(), 2);
+    }
+
+    @DisplayName("사다리 라인을 탔을 때 플레이어의 위치가 바뀌는 기능이 정상적으로 동작해야 한다.")
+    @Test
+    void findPlayerIndexAfterCrossingLineTest() {
+        // given
+        LadderLine line = new LadderLine(Arrays.asList(TRUE, FALSE, TRUE));
+
+        // when, then
+        assertSame(line.findPlayerIndexAfterCrossingLine(0), 1);
+        assertSame(line.findPlayerIndexAfterCrossingLine(1), 0);
+        assertSame(line.findPlayerIndexAfterCrossingLine(2), 3);
+        assertSame(line.findPlayerIndexAfterCrossingLine(3), 2);
     }
 }

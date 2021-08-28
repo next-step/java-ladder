@@ -5,12 +5,14 @@ import java.util.stream.IntStream;
 
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
+import static ladder.model.Ladder.GAP_BETWEEN_PLAYER_COUNT_AND_POINT_COUNT;
 
 public class LadderLine {
     private static final int MIN_POINT_COUNT = 1;
     private static final int INDEX_GAP_BETWEEN_NEXT_POINT = 1;
     private static final int FIRST_INDEX = 0;
     private static final int SECOND_INDEX = 1;
+    private static final int GAP_BETWEEN_LAST_INDEX_AND_SIZE = 1;
     private static final Random random = new Random();
 
     private final List<Boolean> points;
@@ -120,5 +122,50 @@ public class LadderLine {
 
     Boolean getPoint(int pointIndex) {
         return points.get(pointIndex);
+    }
+
+    int findPlayerIndexAfterCrossingLine(int playerIndex) {
+        if (playerIndex == FIRST_INDEX) {
+            return findPlayerIndexAfterCrossingFirstLine(playerIndex);
+        }
+
+        if (playerIndex == points.size()) {
+            return findPlayerIndexAfterCrossingLastLine(playerIndex);
+        }
+
+        return findPlayerIndexAfterCrossingMiddleLine(playerIndex);
+    }
+
+    private int findPlayerIndexAfterCrossingFirstLine(int playerIndex) {
+        Boolean firstPoint = points.get(FIRST_INDEX);
+        if (firstPoint == TRUE) {
+            playerIndex += INDEX_GAP_BETWEEN_NEXT_POINT;
+        }
+        return playerIndex;
+    }
+
+    private int findPlayerIndexAfterCrossingLastLine(int playerIndex) {
+        int lastIndex = points.size() - GAP_BETWEEN_LAST_INDEX_AND_SIZE;
+        Boolean lastPoint = points.get(lastIndex);
+
+        if (lastPoint == TRUE) {
+            playerIndex -= INDEX_GAP_BETWEEN_NEXT_POINT;
+        }
+        return playerIndex;
+    }
+
+    private int findPlayerIndexAfterCrossingMiddleLine(int playerIndex) {
+        int leftPointIndex = playerIndex - GAP_BETWEEN_PLAYER_COUNT_AND_POINT_COUNT;
+        Boolean leftPoint = points.get(leftPointIndex);
+        if (leftPoint == TRUE) {
+            return playerIndex - INDEX_GAP_BETWEEN_NEXT_POINT;
+        }
+
+        Boolean rightPoint = points.get(playerIndex);
+        if (rightPoint == TRUE) {
+            return playerIndex + INDEX_GAP_BETWEEN_NEXT_POINT;
+        }
+
+        return playerIndex;
     }
 }
