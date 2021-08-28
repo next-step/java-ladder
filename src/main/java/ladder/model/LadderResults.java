@@ -26,7 +26,12 @@ public class LadderResults {
                 .collect(toList());
     }
 
-    public int count() {
+    int count() {
         return results.size();
+    }
+
+    String get(int resultIndex) {
+        LadderResult result = results.get(resultIndex);
+        return result.getResult();
     }
 }
