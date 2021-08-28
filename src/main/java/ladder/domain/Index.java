@@ -21,13 +21,13 @@ public class Index {
         }
     }
 
-    public void moveOf(final Line line) {
-        if (line.existLeftOf(Index.from(index))) {
+    public void moveOf(final LadderLine ladderLine) {
+        if (ladderLine.existLeftOf(Index.from(index))) {
             this.index--;
             return;
         }
 
-        if (line.existRightOf(Index.from(index))) {
+        if (ladderLine.existRightOf(Index.from(index))) {
             this.index++;
         }
     }
