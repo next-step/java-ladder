@@ -5,6 +5,8 @@ import java.util.Arrays;
 public class Name {
     private static final int NAME_MAX_SIZE=5;
     private static final int NAME_MIN_SIZE=1;
+    private static final String NAME_LENGTH_ERROR_MESSAGE = "이름은 최소 1글자 최대 5글자까지 부여할 수 있습니다.";
+
     private static final String delimiter = ",";
     private String[] array;
     private int countOfPerson;
@@ -24,7 +26,7 @@ public class Name {
 
     private void CheckValidName(String name) {
         if (name.length() > NAME_MAX_SIZE || name.length() < NAME_MIN_SIZE) {
-            throw new IllegalArgumentException("이름은 최소 1글자 최대 5글자까지 부여할 수 있습니다.");
+            throw new IllegalArgumentException(NAME_LENGTH_ERROR_MESSAGE);
         }
     }
 
