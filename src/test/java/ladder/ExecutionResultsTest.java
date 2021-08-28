@@ -1,15 +1,15 @@
 package ladder;
 
-import ladder.domain.ExecutionResults;
-import ladder.exception.NullValueException;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.*;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import ladder.domain.ExecutionResults;
+import ladder.exception.NullValueException;
 
 class ExecutionResultsTest {
     ExecutionResults executionResults;
@@ -36,7 +36,9 @@ class ExecutionResultsTest {
     @DisplayName("참여할 사람과 실행결과가 널이면 예외를 발생시킨다.")
     @Test
     void namesAndResultsIsNullTest() {
-        assertThatThrownBy(() -> ExecutionResults.of(Arrays.asList("pobi", "honux"), null)).isInstanceOf(NullValueException.class);
-        assertThatThrownBy(() -> ExecutionResults.of(null, Arrays.asList("꽝", "5000"))).isInstanceOf(NullValueException.class);
+        assertThatThrownBy(() -> ExecutionResults.of(Arrays.asList("pobi", "honux"), null)).isInstanceOf(
+            NullValueException.class);
+        assertThatThrownBy(() -> ExecutionResults.of(null, Arrays.asList("꽝", "5000"))).isInstanceOf(
+            NullValueException.class);
     }
 }

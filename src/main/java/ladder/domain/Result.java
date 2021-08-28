@@ -1,9 +1,9 @@
 package ladder.domain;
 
+import java.util.Objects;
+
 import ladder.exception.NullValueException;
 import ladder.exception.ResultLengthException;
-
-import java.util.Objects;
 
 public class Result {
     private static final String RESULT_IS_NULL_EXCEPTION_COMMENT = "결과값이 널입니다.";

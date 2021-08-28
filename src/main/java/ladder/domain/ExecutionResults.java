@@ -1,10 +1,10 @@
 package ladder.domain;
 
-import ladder.exception.NullValueException;
-
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+
+import ladder.exception.NullValueException;
 
 public class ExecutionResults {
     private static final String NOT_EQIAL_SIZE_NAMES_AND_RESILTS_EXCEPTION_COMMENT = "참여할 사람과 실행결과의 개수가 서로 다릅니다.";

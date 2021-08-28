@@ -1,14 +1,14 @@
 package ladder;
 
+import static org.assertj.core.api.Assertions.*;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
 import ladder.domain.Results;
 import ladder.exception.NullValueException;
 import ladder.exception.PersonCountException;
 import ladder.exception.ResultLengthException;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ResultsTest {
     @DisplayName("실행결과 문자열와 인원수를 입력 받으면 실행결과 일급콜렉션 객체 Results를 생성한다")
