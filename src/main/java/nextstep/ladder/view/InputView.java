@@ -20,7 +20,7 @@ public class InputView {
     }
 
     public static int inputLadderHeight() {
-        return SCANNER.nextInt();
+        return Integer.parseInt(SCANNER.nextLine());
     }
 
     public static List<WinningPrize> inputWinningPrizes() {
@@ -30,7 +30,6 @@ public class InputView {
     }
 
     public static List<Player> inputPlayerNameForResult(List<Player> players) {
-        SCANNER = new Scanner(System.in);
         String input = SCANNER.nextLine();
         if (input.equals(ALL_PLAYER_TOKEN)) {
             return players;
