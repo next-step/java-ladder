@@ -10,10 +10,6 @@ public class LadderRow {
 
     public LadderRow(int ladderWidth) {
 
-        if (ladderWidth < 1) {
-            throw new IllegalArgumentException();
-        }
-
         if (ladderWidth != 1) {
             boolean prev = false;
             for (int i = 0; i < ladderWidth - 1; i++) {
@@ -31,4 +27,5 @@ public class LadderRow {
     public int ladderColumnCount() {
         return ladderColumns.size();
     }
+
 }

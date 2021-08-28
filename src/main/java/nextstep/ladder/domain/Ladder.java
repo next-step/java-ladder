@@ -8,7 +8,7 @@ public class Ladder {
 
     private final List<LadderRow> ladderRows;
 
-    public Ladder(int ladderHeight, int ladderWidth) {
+    public Ladder(int ladderWidth, int ladderHeight) {
         this.ladderRows = Stream.generate(() -> new LadderRow(ladderWidth))
             .limit(ladderHeight)
             .collect(Collectors.toUnmodifiableList());
