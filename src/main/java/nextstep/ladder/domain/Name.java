@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.util.Validation;
+
 public class Name {
     private static final int NAME_MAX_LENGTH = 5;
     private String name;

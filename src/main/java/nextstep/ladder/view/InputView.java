@@ -1,6 +1,6 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.Validation;
+import nextstep.ladder.util.Validation;
 
 import java.util.Scanner;
 

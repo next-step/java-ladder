@@ -1,6 +1,6 @@
 package nextstep.ladder;
 
-import nextstep.ladder.domain.Validation;
+import nextstep.ladder.util.Validation;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
