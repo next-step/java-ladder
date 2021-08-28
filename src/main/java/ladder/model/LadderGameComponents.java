@@ -20,8 +20,8 @@ public class LadderGameComponents {
         throw new IllegalArgumentException("플레이어 수, 사다리 참가자 수, 사다리 결과의 개수가 일치하지 않습니다.");
     }
 
-    private boolean isSameCount(int playerCount, int verticalLineCount, int resultCount) {
-        return playerCount == verticalLineCount && playerCount == resultCount;
+    private boolean isSameCount(int playerCountOfPlayers, int playerCountOfLadder, int resultCount) {
+        return playerCountOfPlayers == playerCountOfLadder && playerCountOfPlayers == resultCount;
     }
 
     int playerCount() {
