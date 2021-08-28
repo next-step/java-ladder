@@ -24,6 +24,12 @@ public class LadderTest {
     }
 
     @Test
+    public void 참여자_이름_5자_이상() {
+        assertThatThrownBy(() -> new Users("user111"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
     public void 참여자_0명() {
         assertThatThrownBy(() -> new Users(", , ,"))
                 .isInstanceOf(IllegalArgumentException.class);
