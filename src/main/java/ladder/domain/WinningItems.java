@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.exception.WinningItemException;
+import ladder.exception.WinningItemsException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +23,7 @@ public class WinningItems {
     private void validateWinningItems(String[] itemsName) {
         for (String item : itemsName) {
             if (item == null) {
-                throw new WinningItemException();
+                throw new WinningItemsException();
             }
         }
     }
