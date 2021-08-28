@@ -23,7 +23,6 @@ public class LadderGameComponentsTest {
 
         LadderResults twoResults = new LadderResults(Arrays.asList("1000", "2000"));
         LadderResults threeResults = new LadderResults(Arrays.asList("1000", "2000", "3000"));
-        LadderResults fourResults = new LadderResults(Arrays.asList("1000", "2000", "3000", "4000"));
 
         // when, then
         String exceptionMessage = "플레이어 수, 사다리 참가자 수, 사다리 결과의 개수가 일치하지 않습니다.";
@@ -38,10 +37,6 @@ public class LadderGameComponentsTest {
 
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new LadderGameComponents(threePlayers, twoPlayerLadder, twoResults))
-                .withMessage(exceptionMessage);
-
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> new LadderGameComponents(twoPlayers, threePlayerLadder, fourResults))
                 .withMessage(exceptionMessage);
     }
 
