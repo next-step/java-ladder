@@ -3,34 +3,33 @@ package ladder.domain;
 import ladder.exception.InvalidInputException;
 import ladder.exception.LadderException;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class Lines {
+public class Ladder {
     private static final int LADDER_MINIMUM_HEIGHT = 2;
     private static final int GENERATE_LADDER_MAX_COUNT = 20;
     private static final String INVALID_TRY_COUNT_MESSAGE = "사다리 생성 시도 횟수를 초과했습니다. 다시 시도해주세요.";
     private static final String INVALID_HEIGHT_MESSAGE = LADDER_MINIMUM_HEIGHT + "이상의 사다리 높이를 입력해주세요";
 
-    private List<Line> ladder;
+    private List<Line> lines;
 
-    private Lines(List<Line> ladder) {
-        this.ladder = ladder;
+    private Ladder(List<Line> lines) {
+        this.lines = lines;
     }
 
-    public static Lines create(int height, int countOfPerson) {
+    public static Ladder create(int height, int countOfPerson) {
         validateLadderHeight(height);
-        List<Line> ladder = new ArrayList<>();
+        List<Line> lines = new ArrayList<>();
         int tryCount = 0;
-        while (validateLadder(ladder, countOfPerson)) {
-            ladder.clear();
+        while (validateLadder(lines, countOfPerson)) {
+            lines.clear();
             checkTryCount(tryCount);
-            ladder = generateLadder(height, countOfPerson);
+            lines = generateLadder(height, countOfPerson);
             tryCount++;
         }
-        return new Lines(ladder);
+        return new Ladder(lines);
     }
 
     private static void validateLadderHeight(int height) {
@@ -42,13 +41,13 @@ public class Lines {
     private static boolean validateLadder(List<Line> ladder, int countOfPerson) {
         return IntStream.range(1, countOfPerson)
                         .anyMatch(i -> ladder.stream()
-                                             .noneMatch(line -> line.getPoints().get(i)));
+                                             .noneMatch(line -> line.point(i)));
     }
 
     private static List<Line> generateLadder(int height, int countOfPerson) {
         List<Line> ladder = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            ladder.add(new Line(countOfPerson));
+            ladder.add(Line.valueOf(countOfPerson));
         }
         return ladder;
     }
@@ -59,7 +58,24 @@ public class Lines {
         }
     }
 
-    public List<Line> getLadder() {
-        return Collections.unmodifiableList(ladder);
+    public String getLadderString() {
+        return lines.stream()
+                    .map(line -> line.generateLineString())
+                    .collect(Collectors.joining("\n"));
     }
+
+    public int size() {
+        return lines.size();
+    }
+
+    public Map<Name, String> calculateLadderResult(Users users, WinningItems winningItems) {
+        Map<Name, String> result = new HashMap<>();
+        for (int i = 0; i < users.getNames().size(); i++) {
+            Location location = new Location(i);
+            lines.forEach(location::moveLocation);
+            result.put(users.get(i), winningItems.get(location.getLocation()));
+        }
+        return result;
+    }
+
 }

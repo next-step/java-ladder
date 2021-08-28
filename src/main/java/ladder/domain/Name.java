@@ -10,19 +10,19 @@ public class Name {
 
     private String name;
 
-    public Name(String name) {
+    private Name(String name) {
         validateNameLength(name);
         this.name = name;
+    }
+
+    public static Name valueOf(String name) {
+        return new Name(name);
     }
 
     private void validateNameLength(String name) {
         if (name.length() > NAME_MAX_LENGTH) {
             throw new InvalidInputException(INVALID_NAME_LENGTH_MESSAGE);
         }
-    }
-
-    public String getName() {
-        return name;
     }
 
     @Override
@@ -36,5 +36,10 @@ public class Name {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }
