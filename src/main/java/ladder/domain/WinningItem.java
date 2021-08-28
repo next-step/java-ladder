@@ -11,8 +11,12 @@ public class WinningItem {
     }
 
     private void validateItem(String item) {
-        if (item == null) {
+        if (item == null || item.isEmpty()) {
             throw new WinningItemException();
         }
+    }
+
+    public String getItem() {
+        return item;
     }
 }
