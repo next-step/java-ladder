@@ -26,11 +26,15 @@ public class BoardConsumer {
     }
 
     public void validateNotParticipatePlayer(List<Player> players) {
-        if ((int) players.stream()
-                .filter((player -> !this.players.contains(player)))
-                .count() > ZERO) {
+        if (containsNotParticipatePlayer(players)) {
             throw new PlayerNotParticipateException();
         }
+    }
+
+    private boolean containsNotParticipatePlayer(List<Player> players) {
+        return (int) players.stream()
+                .filter((player -> !this.players.contains(player)))
+                .count() > ZERO;
     }
 
     public int getPlayerIndex(Player player) {
