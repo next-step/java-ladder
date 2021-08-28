@@ -5,7 +5,7 @@ import ladder.model.Players;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
-public class LadderGame {
+public class LadderGameApp {
     public static void main(String[] args) {
         InputView.printPlayerNameInputMessage();
         Players players = new Players(InputView.inputPlayerNames());

@@ -1,11 +1,12 @@
 package ladder.model;
 
-public class LadderGameComponents {
+public class LadderGame {
+    private static final int FIRST_INDEX = 0;
     private final Players players;
     private final Ladder ladder;
     private final LadderResults results;
 
-    public LadderGameComponents(Players players, Ladder ladder, LadderResults results) {
+    public LadderGame(Players players, Ladder ladder, LadderResults results) {
         validateCountMatch(players, ladder, results);
 
         this.players = players;
@@ -26,5 +27,21 @@ public class LadderGameComponents {
 
     int playerCount() {
         return players.count();
+    }
+
+    public String findResult(String name) {
+        PlayerName player = new PlayerName(name);
+
+        int playerIndex = players.findIndex(player);
+        validateExistingPlayer(playerIndex);
+
+        int resultIndex = ladder.findResultIndex(playerIndex);
+        return results.get(resultIndex);
+    }
+
+    private void validateExistingPlayer(int playerIndex) {
+        if (playerIndex < FIRST_INDEX) {
+            throw new IllegalArgumentException("존재하지 않는 플레이어입니다.");
+        }
     }
 }
