@@ -1,6 +1,7 @@
 package nextstep.fp;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -31,21 +32,25 @@ public class LambdaTest {
         Lambda.runThread();
     }
 
+    @DisplayName("람다를 활용해 중복 제거-all")
     @Test
     public void sumAll() throws Exception {
         int sum = Lambda.sumAll(numbers);
-        assertThat(sum).isEqualTo(21);
+        assertThat(sum).isEqualTo(Lambda.sumAll(numbers, number -> true));
     }
 
+    @DisplayName("람다를 활용해 중복 제거-even")
     @Test
     public void sumAllEven() throws Exception {
         int sum = Lambda.sumAllEven(numbers);
-        assertThat(sum).isEqualTo(12);
+        assertThat(sum).isEqualTo(Lambda.sumAll(numbers, number -> number % 2 == 0));
     }
 
+    @DisplayName("람다를 활용해 중복 제거-overThree")
     @Test
     public void sumAllOverThree() throws Exception {
         int sum = Lambda.sumAllOverThree(numbers);
-        assertThat(sum).isEqualTo(15);
+        assertThat(sum).isEqualTo(Lambda.sumAll(numbers, number -> number > 3));
     }
+
 }

@@ -1,6 +1,7 @@
 package nextstep.fp;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lambda {
     public static void printAllOld(List<Integer> numbers) {
@@ -52,5 +53,11 @@ public class Lambda {
             }
         }
         return total;
+    }
+
+    public static int sumAll(List<Integer> numbers, Conditional conditional) {
+        return numbers.stream()
+                .filter(conditional::test)
+                .reduce(0, Integer::sum);
     }
 }
