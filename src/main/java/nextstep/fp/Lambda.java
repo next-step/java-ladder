@@ -34,12 +34,6 @@ public class Lambda {
     }
 
     private static int sum(List<Integer> numbers, SumStrategy sumStrategy) {
-        int total = 0;
-        for (int number : numbers) {
-            if (sumStrategy.canSum(number)) {
-                total += number;
-            }
-        }
-        return total;
+        return numbers.stream().filter(number -> sumStrategy.canSum(number) == true).reduce(0, Integer::sum);
     }
 }
