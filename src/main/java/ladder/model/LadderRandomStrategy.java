@@ -30,7 +30,7 @@ public class LadderRandomStrategy implements MoveStrategy {
     private List<Integer> makeIndex(int size) {
         int maxLength = Math.toIntExact(Math.round((double) size / 2.0));
 
-        return sliceIndex(shuffleTotalIndex(size), size);
+        return sliceIndex(shuffleTotalIndex(size), maxLength);
 
     }
 
