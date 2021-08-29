@@ -31,6 +31,12 @@ class PlayerTest {
     }
 
     @Test
+    @DisplayName("all은 사용할 수 없는 이름이다.")
+    void createException2() {
+        assertThatThrownBy(() -> new Players("pobi,geonhee,all")).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
     @DisplayName("결과를 보고싶은 사람을 입력하면 Players 객체에 있는 컬렉션의 위치를 반환한다.")
     void indexOf() {
         assertAll(

@@ -11,7 +11,7 @@ public class Name {
     public Name(String name) {
         Validation.isEmptyAndNull(name);
         if (name.equals("all")) {
-            throw new Il
+            throw new IllegalArgumentException("all은 사용 할 수 없는 이름입니다.");
         }
 
         if (name.trim().length() > NAME_MAX_LENGTH) {
