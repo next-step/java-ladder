@@ -3,6 +3,8 @@ package nextstep.ladder.domain;
 import nextstep.ladder.domain.line.Line;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -31,5 +33,12 @@ public class LineTest {
                 .isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() -> Line.from(false, true, true))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("Line의 특정 위치에 점이 있는지 없는지 확인한다.")
+    @ParameterizedTest
+    @CsvSource(value = {"0:true", "1:false", "2:true", "3:false", "5:false"}, delimiter = ':')
+    void isExistPoint(int position, boolean expected) {
+        assertThat(Line.from(true, false, true).isExistPoint(position)).isEqualTo(expected);
     }
 }
