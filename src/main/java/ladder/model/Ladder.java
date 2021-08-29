@@ -1,7 +1,5 @@
 package ladder.model;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -21,7 +19,8 @@ public class Ladder {
         validateMinLadderHeight(ladderHeight);
 
         int pointCount = playerCount - GAP_BETWEEN_PLAYER_COUNT_AND_POINT_COUNT;
-        lines = generateLines(ladderHeight, pointCount);
+        LadderLinesGenerator ladderLinesGenerator = LadderLineGeneratorFactory.findGenerator(ladderHeight, pointCount);
+        lines = ladderLinesGenerator.generate(ladderHeight, pointCount);
 
         validateNotExistEmptyVerticalInterval(lines);
     }
@@ -57,49 +56,6 @@ public class Ladder {
 
                     throw new IllegalArgumentException("빈 가로 구간이 존재하면 안됩니다.");
                 });
-    }
-
-    private static List<LadderLine> generateLines(int ladderLineCount, int pointCount) {
-        if (ladderLineCount < pointCount) {
-            return shuffled(generateLinesWithLadderLineCountLessThanPointCount(ladderLineCount, pointCount));
-        }
-        return shuffled(generateLinesWithLadderLineCountEqualOrMoreThanPointCount(ladderLineCount, pointCount));
-    }
-
-    private static List<LadderLine> generateLinesWithLadderLineCountLessThanPointCount(int ladderLineCount,
-                                                                                       int pointCount) {
-        return IntStream.range(FIRST_INDEX, ladderLineCount)
-                .mapToObj(index -> {
-                    List<Integer> truePointIndices = new ArrayList<>();
-                    for (int truePointIndex = index; truePointIndex < pointCount; truePointIndex += ladderLineCount) {
-                        truePointIndices.add(truePointIndex);
-                    }
-                    return LadderLine.of(pointCount, truePointIndices);
-                })
-                .collect(toList());
-    }
-
-    private static List<LadderLine> generateLinesWithLadderLineCountEqualOrMoreThanPointCount(int ladderLineCount,
-                                                                                              int pointCount) {
-        List<Integer> truePointIndices = IntStream.range(FIRST_INDEX, pointCount)
-                .boxed()
-                .collect(toList());
-
-        return IntStream.range(FIRST_INDEX, ladderLineCount)
-                .mapToObj((index) -> {
-                    int truePointIndex;
-                    if (index < pointCount) {
-                        truePointIndex = truePointIndices.get(index);
-                        return LadderLine.of(pointCount, Collections.singletonList(truePointIndex));
-                    }
-                    return LadderLine.of(pointCount);
-                })
-                .collect(toList());
-    }
-
-    private static List<LadderLine> shuffled(List<LadderLine> lines) {
-        Collections.shuffle(lines);
-        return lines;
     }
 
     List<LadderLine> getLines() {
