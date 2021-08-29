@@ -20,11 +20,10 @@ public class Ladder {
 
     private void makeLines() {
         lines = IntStream.range(0, height)
-                .mapToObj(moveStrategy::generate)
+                .mapToObj((num)-> moveStrategy.generate(width))
                 .map(Line::of)
                 .collect(Collectors.toList());
     }
-
 
     public int moveFrom(int index) {
         int next = index;
@@ -33,4 +32,9 @@ public class Ladder {
         }
         return next;
     }
+
+    public List<Line> getLines(){
+        return lines;
+    }
+
 }
