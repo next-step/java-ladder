@@ -68,7 +68,6 @@ public class OutputView {
         Ladder ladder = ladderList.get(0);
         int maxHeight = ladder.getHeight();
 
-
         sb.append(NEW_LINE);
         for (int height = 0; height < maxHeight; height++) {
             appendLadderPerHeight(ladders, sb, height);
@@ -85,7 +84,7 @@ public class OutputView {
     private void appendLadder(Ladder ladder, StringBuilder sb, int index) {
         sb.append(LADDER_HEIGHT_UNIT);
         HorizontalLines horizontalLines = ladder.getHorizontalLines();
-        if (horizontalLines.findByIndex(index).isPresent()) {
+        if (horizontalLines.exist(index)) {
             sb.append(LADDER_HORIZONTAL_LINE);
             return;
         }

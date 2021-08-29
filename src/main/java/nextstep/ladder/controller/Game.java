@@ -3,7 +3,6 @@ package nextstep.ladder.controller;
 import nextstep.ladder.domain.ladder.Ladders;
 import nextstep.ladder.domain.ladder.factory.LaddersFactory;
 import nextstep.ladder.domain.ladder.line.strategy.HorizontalLinesGenerateRandomStrategy;
-import nextstep.ladder.domain.ladder.line.strategy.HorizontalLinesGenerateSequentialStrategy;
 import nextstep.ladder.domain.participant.Participant;
 import nextstep.ladder.domain.participant.Participants;
 import nextstep.ladder.view.InputView;
@@ -35,7 +34,7 @@ public class Game {
 
     private Ladders getLadders(int height, int ladderCount) {
         return LaddersFactory.generateWith(height, ladderCount,
-                new HorizontalLinesGenerateRandomStrategy(height));
+                new HorizontalLinesGenerateRandomStrategy());
     }
 
     private Participants getParticipants(InputView inputView) {

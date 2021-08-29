@@ -3,28 +3,24 @@ package nextstep.ladder.domain.ladder.line.strategy;
 import nextstep.ladder.domain.ladder.line.HorizontalLine;
 import nextstep.ladder.domain.ladder.line.HorizontalLines;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class HorizontalLinesGenerateRandomStrategy implements HorizontalLinesGenerateStrategy {
 
     private static final Random RANDOM = new Random();
 
-    private final int exclusiveUpperBound;
-
-    public HorizontalLinesGenerateRandomStrategy(int exclusiveUpperBound) {
-        this.exclusiveUpperBound = exclusiveUpperBound;
-    }
+    public HorizontalLinesGenerateRandomStrategy() {}
 
     @Override
     public HorizontalLines generate(int size) {
-        Set<HorizontalLine> horizontalLines = new HashSet<>();
-        while (horizontalLines.size() != size) {
-            int index = RANDOM.nextInt(exclusiveUpperBound);
-            HorizontalLine horizontalLine = new HorizontalLine(index);
+        List<HorizontalLine> horizontalLines = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            boolean exist = RANDOM.nextBoolean();
+            HorizontalLine horizontalLine = new HorizontalLine(exist);
             horizontalLines.add(horizontalLine);
         }
-
-        return new HorizontalLines(new ArrayList<>(horizontalLines));
+        return new HorizontalLines(horizontalLines);
     }
 }

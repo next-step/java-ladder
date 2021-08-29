@@ -3,13 +3,15 @@ package nextstep.ladder.domain.ladder;
 import nextstep.ladder.domain.ladder.factory.LadderFactory;
 import nextstep.ladder.domain.ladder.line.HorizontalLine;
 import nextstep.ladder.domain.ladder.line.HorizontalLines;
-import nextstep.ladder.domain.ladder.line.strategy.HorizontalLinesGenerateSequentialStrategy;
+import nextstep.ladder.domain.ladder.line.strategy.HorizontalLinesGenerateStrategy;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class LadderTest {
 
@@ -19,25 +21,36 @@ class LadderTest {
 
     @BeforeEach
     void setUp() {
-        prevLadder = LadderFactory.generateWith(HEIGHT, new HorizontalLinesGenerateSequentialStrategy());
-        ladder = LadderFactory.generateWith(HEIGHT, new HorizontalLinesGenerateSequentialStrategy());
+        prevLadder = LadderFactory.generateWith(HEIGHT, generateStrategy());
+        ladder = LadderFactory.generateWith(HEIGHT, generateStrategy());
     }
-
 
     @Test
     @DisplayName("이전 사다리와 중복되는 라인은 지운다")
     void removeDuplicatedHorizontalLines() {
         HorizontalLines horizontalLines = ladder.getHorizontalLines();
 
-        assertTrue(horizontalLines.contains(new HorizontalLine(0)));
-        assertTrue(horizontalLines.contains(new HorizontalLine(1)));
-        assertTrue(horizontalLines.contains(new HorizontalLine(2)));
+        assertTrue(horizontalLines.get(0).exist());
+        assertTrue(horizontalLines.get(1).exist());
+        assertTrue(horizontalLines.get(2).exist());
+        assertTrue(horizontalLines.get(3).exist());
 
         ladder.removeDuplicatedHorizontalLines(prevLadder);
 
-        assertFalse(horizontalLines.contains(new HorizontalLine(0)));
-        assertFalse(horizontalLines.contains(new HorizontalLine(1)));
-        assertTrue(horizontalLines.contains(new HorizontalLine(2)));
+        assertFalse(horizontalLines.get(0).exist());
+        assertFalse(horizontalLines.get(1).exist());
+        assertFalse(horizontalLines.get(2).exist());
+        assertFalse(horizontalLines.get(3).exist());
+    }
 
+    private HorizontalLinesGenerateStrategy generateStrategy() {
+        return (count) -> {
+            List<HorizontalLine> horizontalLines = new ArrayList<>();
+            for (int i = 0; i < count; i++) {
+                HorizontalLine horizontalLine = new HorizontalLine(true);
+                horizontalLines.add(horizontalLine);
+            }
+            return new HorizontalLines(horizontalLines);
+        };
     }
 }

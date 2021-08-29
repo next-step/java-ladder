@@ -1,36 +1,42 @@
 package nextstep.ladder.domain.ladder.line;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Stream;
 
 public class HorizontalLines {
 
-    List<HorizontalLine> horizontalLines;
+    private static final int INDEX_LOWER_BOUND = 0;
+    private List<HorizontalLine> horizontalLines;
 
     public HorizontalLines(List<HorizontalLine> horizontalLines) {
         this.horizontalLines = horizontalLines;
     }
 
-    public Optional<HorizontalLine> findByIndex(int index) {
-        return horizontalLines.stream()
-                .filter(horizontalLine -> horizontalLine.getIndex() == index)
-                .findFirst();
+    public boolean exist(int index) {
+        validateIndex(index);
+        return horizontalLines.get(index).exist();
     }
 
-    public boolean contains(HorizontalLine horizontalLine) {
-        return horizontalLines.contains(horizontalLine);
+    public HorizontalLine get(int index) {
+        validateIndex(index);
+        return horizontalLines.get(index);
     }
 
     public int size() {
         return horizontalLines.size();
     }
 
-    public Stream<HorizontalLine> stream() {
-        return horizontalLines.stream();
+    public void remove(HorizontalLine horizontalLine) {
+        int index = horizontalLines.indexOf(horizontalLine);
+        horizontalLines.set(index, new HorizontalLine(false));
     }
 
-    public void remove(HorizontalLine horizontalLine) {
-        horizontalLines.remove(horizontalLine);
+    private void validateIndex(int index) {
+        if (exceedSize(index) || index < INDEX_LOWER_BOUND)
+            throw new IllegalArgumentException("인덱스가 적절하지 않습니다");
+    }
+
+    private boolean exceedSize(int index) {
+        return index >= size();
     }
 }

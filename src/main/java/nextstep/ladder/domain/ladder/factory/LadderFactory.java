@@ -10,7 +10,7 @@ public class LadderFactory {
     }
 
     public static Ladder generateWith(int height, HorizontalLinesGenerateStrategy strategy) {
-        HorizontalLines horizontalLines = strategy.generate(height - 1);
+        HorizontalLines horizontalLines = strategy.generate(height);
         return new Ladder(height, horizontalLines);
     }
 }

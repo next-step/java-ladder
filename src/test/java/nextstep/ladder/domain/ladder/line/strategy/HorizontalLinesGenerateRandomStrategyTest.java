@@ -13,7 +13,7 @@ class HorizontalLinesGenerateRandomStrategyTest {
 
     @BeforeEach
     void setUp() {
-        strategy = new HorizontalLinesGenerateRandomStrategy(5);
+        strategy = new HorizontalLinesGenerateRandomStrategy();
     }
 
     @Test
