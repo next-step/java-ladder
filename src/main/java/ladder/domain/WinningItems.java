@@ -29,6 +29,10 @@ public class WinningItems {
         }
     }
 
+    public WinningItem getItemToPosition(int position) {
+        return winningItems.get(position);
+    }
+
     public List<WinningItem> getWinningItems() {
         return Collections.unmodifiableList(winningItems);
     }
