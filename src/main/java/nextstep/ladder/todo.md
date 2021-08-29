@@ -31,3 +31,6 @@
 - 현재 Point 값은 이전 Point 값의 다음 값을 넣는다. 
 - 현재 Point 값 == 이전 Point의 다음 값
 - (false, false) (false, 랜덤값) // (false, true) (true , false)
+- 결과를 보고 싶은 사람이 Players 에 없으면 예외가 발생한다.
+- all 을 입력하면 Players 의 모든 결과를 보여준다.
+- 참여할 사람 이름은 중복 될 수없다.

@@ -25,7 +25,7 @@ public class Line {
     }
 
     public Point checkPreviousPoint(boolean nextPointOfPrevious) {
-        //현재값이 true이면 (true ,false) 주입
+        //현재값이 true 이면 (true ,false) 주입
         if (nextPointOfPrevious) {
             return Point.of();
         }
