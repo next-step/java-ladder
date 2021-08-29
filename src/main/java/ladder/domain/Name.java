@@ -3,7 +3,7 @@ package ladder.domain;
 import java.util.Objects;
 
 public class Name {
-    private static final int MAX_NAME_LENGTH = 5;
+    private static final int MAX_LENGTH = 5;
 
     private final String name;
 
@@ -13,8 +13,8 @@ public class Name {
     }
 
     private void validateSize(final String name) {
-        if (Objects.isNull(name) || name.trim().length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException("플레이어 이름은 null 또는 5자를 초과할 수 없습니다.");
+        if (Objects.isNull(name) || name.trim().length() > MAX_LENGTH) {
+            throw new IllegalArgumentException("플레이어 이름은 null 또는 " + MAX_LENGTH + "자를 초과할 수 없습니다.");
         }
     }
 
