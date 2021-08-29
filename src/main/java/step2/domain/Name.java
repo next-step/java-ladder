@@ -1,6 +1,7 @@
 package step2.domain;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class Name {
     private static final int NAME_MAX_SIZE=5;
@@ -8,19 +9,18 @@ public class Name {
     private static final String NAME_LENGTH_ERROR_MESSAGE = "이름은 최소 1글자 최대 5글자까지 부여할 수 있습니다.";
 
     private static final String delimiter = ",";
-    private String[] array;
+    private List<String> array;
     private int countOfPerson;
 
     public Name(String stringName) {
         BuildName(stringName);
-        Arrays.stream(array)
+        array.stream()
                 .forEach(this::CheckValidName);
-
     }
 
     private void BuildName(String stringName) {
-        this.array = stringName.split(delimiter);
-        this.countOfPerson = array.length;
+        this.array = Arrays.asList(stringName.split(delimiter));
+        this.countOfPerson = array.size();
     }
 
     private void CheckValidName(String name) {
@@ -29,7 +29,7 @@ public class Name {
         }
     }
 
-    public String[] getArray() {
+    public List<String> getArray() {
         return array;
     }
 

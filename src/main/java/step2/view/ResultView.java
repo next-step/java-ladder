@@ -17,8 +17,8 @@ public class ResultView {
         System.out.println(GUIDE_HEAD_LINE);
     }
 
-    public void printParticipant(String[] array) {
-        Arrays.stream(array)
+    public void printParticipant(List<String> array) {
+        array.stream()
                 .map(s -> s+NAME_SPACE)
                 .forEach(System.out::print);
         System.out.println();
