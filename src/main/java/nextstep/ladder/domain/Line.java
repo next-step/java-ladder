@@ -28,9 +28,9 @@ public class Line {
     }
 
     public Position move(Position position) {
-        if (position.canGoRight(size()) && hasPoint(position)) {
+        if (position.canMoveRight(size()) && hasPoint(position)) {
             position = position.toRight();
-        } else if (position.canGoLeft() && hasPoint(position)) {
+        } else if (position.canMoveLeft() && hasPoint(position.toLeft())) {
             position = position.toLeft();
         }
 
