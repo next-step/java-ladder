@@ -11,14 +11,19 @@ public class Line {
         points = new ArrayList<>();
 
         for (int i = 0; i < numberOfUser - 1; i++) {
-            if (i != 0 && points.get(points.size() - 1)) {
-                points.add(false);
-                continue;
-            }
-            boolean drawLine = ladderStrategy.generateLine();
-            points.add(drawLine);
+            drawPoint(ladderStrategy, i);
         }
 
+    }
+
+    private void drawPoint(LadderStrategy ladderStrategy, int index) {
+        boolean isPoint = ladderStrategy.generateLine();
+
+        if (index != 0 && points.get(points.size() - 1)) {
+            isPoint = false;
+        }
+
+        points.add(isPoint);
     }
 
     public Line(List<Boolean> points) {
