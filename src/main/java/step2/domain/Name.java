@@ -12,11 +12,10 @@ public class Name {
     private int countOfPerson;
 
     public Name(String stringName) {
-
         BuildName(stringName);
-        for (String name: array) {
-            CheckValidName(name);
-        }
+        Arrays.stream(array)
+                .forEach(this::CheckValidName);
+
     }
 
     private void BuildName(String stringName) {
