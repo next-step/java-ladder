@@ -9,7 +9,7 @@ public class Ladder {
 
     private static int ladderHigh;
     private static int userCount;
-    
+
     private ArrayList<Line> ladders;
 
     public Ladder(String high, int numberOfUser) {
@@ -18,7 +18,8 @@ public class Ladder {
 
         ladderHigh = getParseInt(high);
         userCount = numberOfUser;
-        this.ladders = new ArrayList<>();
+
+        generateLine(new RandomLadderStrategy());
     }
 
     private int getParseInt(String high) {
@@ -38,6 +39,8 @@ public class Ladder {
     }
 
     public void generateLine(LadderStrategy ladderStrategy) {
+        this.ladders = new ArrayList<>();
+
         for (int i = 0; i < ladderHigh; i++) {
             ladders.add(new Line(userCount, ladderStrategy));
         }

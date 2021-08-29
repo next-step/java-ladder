@@ -1,7 +1,6 @@
 package step2.controller;
 
 import step2.model.Ladder;
-import step2.model.RandomLadderStrategy;
 import step2.model.Users;
 
 import static step2.view.InputView.*;
@@ -16,7 +15,6 @@ public class LadderGame {
         int numberOfUsers = users.getNumberOfUsers();
 
         Ladder ladder = new Ladder(high, numberOfUsers);
-        ladder.generateLine(new RandomLadderStrategy());
 
         printUserName(users.getName());
         printLadder(ladder.getLadder());
