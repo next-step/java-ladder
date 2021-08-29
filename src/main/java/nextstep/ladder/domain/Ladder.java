@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 public class Ladder {
@@ -13,10 +14,23 @@ public class Ladder {
                 .collect(Collectors.toList());
     }
 
+    public Ladder(final List<Line> lines) {
+        this.lines = lines;
+    }
+
     public List<List<Boolean>> getLadderBarStatus() {
         return lines.stream()
                 .map(Line::getLineBarStatus)
                 .collect(Collectors.toList());
+    }
+
+    public int startMoving(int startPosition) {
+        AtomicInteger position = new AtomicInteger(startPosition);
+        lines.forEach(line -> {
+            int nextPosition = line.moveFrom(position.get());
+            position.set(nextPosition);
+        });
+        return position.get();
     }
 
 }
