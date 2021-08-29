@@ -23,15 +23,23 @@ public class Validation {
                 .map(String::trim)
                 .collect(Collectors.toSet());
         if (split.length != playerCollect.size()) {
-            throw new IllegalArgumentException("참여자 이름이 중복 되었습니다. 다시 입력하세요 ");
+            throw new IllegalArgumentException("참여자 이름이 중복 되었습니다.");
         }
-
-
     }
 
     public static void isValidResult(Players players, Result result) {
         if (players.size() != result.size()) {
             throw new IllegalArgumentException("참여자 수에 맞게 실행 결과를 입력하세요");
+        }
+    }
+
+    public static void isContainPlayer(String player, Players players) {
+        if (player.equals("all")) {
+            return;
+        }
+
+        if (!players.isContain(player)) {
+            throw new IllegalArgumentException("참여자들 중 해당 이름이 없습니다.");
         }
     }
 }
