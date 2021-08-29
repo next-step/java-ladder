@@ -4,26 +4,25 @@ import java.util.Objects;
 
 public class Player {
 
-    private final Person person;
+    private final Name name;
     private Position position;
 
-    public Player(Person person, Position position) {
-        this.person = person;
+    public Player(Name name, Position position) {
+        this.name = name;
         this.position = position;
     }
 
-    public static Player of(Person person, Position givenStartPosition) {
-        return new Player(person, givenStartPosition);
+    public static Player of(Name name, Position givenStartPosition) {
+        return new Player(name, givenStartPosition);
+    }
+
+    public String name() {
+        return name.name();
     }
 
     public Position position() {
         return position;
     }
-
-    public void move(Position position) {
-        this.position = position;
-    }
-
 
     @Override
     public boolean equals(Object o) {
@@ -34,7 +33,7 @@ public class Player {
             return false;
         }
         Player player = (Player) o;
-        return position == player.position && Objects.equals(person, player.person);
+        return position == player.position && Objects.equals(name, player.name);
     }
 
     @Override

@@ -7,23 +7,23 @@ import java.util.function.Consumer;
 
 public class Players {
 
-    public static final int MIN_PERSON_SIZE = 2;
+    public static final int MIN_PLAYER_SIZE = 2;
     private final Map<String, Player> players;
 
     private Players(Map<String, Player> players) {
         this.players = players;
     }
 
-    public static Players from(List<Person> persons) {
-        if (persons.size() < MIN_PERSON_SIZE) {
+    public static Players from(List<Name> names) {
+        if (names.size() < MIN_PLAYER_SIZE) {
             throw new IllegalArgumentException("참가자는 최소 두명 이상이여야 합니다.");
         }
 
         Map<String, Player> players = new HashMap<>();
 
-        for (int i = 0; i < persons.size(); i++) {
-            Person person = persons.get(i);
-            players.put(person.name(), Player.of(person, Position.from(i)));
+        for (int i = 0; i < names.size(); i++) {
+            Name name = names.get(i);
+            players.put(name.name(), Player.of(name, Position.from(i)));
         }
 
         return new Players(players);
@@ -41,9 +41,11 @@ public class Players {
         return players.size();
     }
 
-    public void forEach(Consumer<String> action) {
-        players.keySet().forEach(action);
+    public void values(Consumer<Player> action) {
+        players.values().forEach(action);
     }
 
-
+    public void foreach(Consumer<String> action) {
+        players.keySet().forEach(action);
+    }
 }
