@@ -1,10 +1,10 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.LadderResult;
-import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Name;
-import nextstep.ladder.domain.Player;
-import nextstep.ladder.domain.Players;
+import nextstep.ladder.domain.ladder.LadderResult;
+import nextstep.ladder.domain.ladder.Line;
+import nextstep.ladder.domain.player.Name;
+import nextstep.ladder.domain.player.Player;
+import nextstep.ladder.domain.player.Players;
 import java.util.List;
 
 public class ResultView {

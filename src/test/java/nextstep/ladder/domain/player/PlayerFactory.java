@@ -1,5 +1,7 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.player;
 
+import nextstep.ladder.domain.player.Name;
+import nextstep.ladder.domain.player.Players;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,10 +1,10 @@
 package nextstep.ladder;
 
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.LadderHeight;
-import nextstep.ladder.domain.LadderResult;
-import nextstep.ladder.domain.Players;
-import nextstep.ladder.domain.Rewords;
+import nextstep.ladder.domain.ladder.Ladder;
+import nextstep.ladder.domain.ladder.LadderHeight;
+import nextstep.ladder.domain.ladder.LadderResult;
+import nextstep.ladder.domain.player.Players;
+import nextstep.ladder.domain.reword.Rewords;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 

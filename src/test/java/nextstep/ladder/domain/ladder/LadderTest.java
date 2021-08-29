@@ -1,5 +1,9 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.ladder;
 
+import nextstep.ladder.domain.ladder.Ladder;
+import nextstep.ladder.domain.ladder.LadderHeight;
+import nextstep.ladder.domain.player.PlayerFactory;
+import nextstep.ladder.domain.player.Players;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

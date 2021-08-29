@@ -4,8 +4,9 @@
 
 - [ ] 다시 재구성해서 구현하기 
 - [x] 사다리 게임을 만들어야한다. #LadderGame
-- [x] 사람들을 만들 수 있다. #Person#of
-    - [x] 사람의 이름은 최대 5글자까지 된다.
+- [x] 사다리 게임에 참여하는 플레이어를 만들 수 있다 #Player
+  - [x] 사람들의 이름을 만들 수 있다. #Name#of
+      - [x]이름은 최대 5글자까지 된다.
 - [x] 사람의 이름은 쉼표(,)를 기준으로 구분한다. #InputView#inputNames
 - [x] 사다리를 만들 수 있다. #Ladder#of
 - [x] 라인을 생성 할 수 있어야한다. #Line#of
@@ -17,8 +18,8 @@
 
 - [x] 사다리 실행 결과 기능. #LadderResult
     - [x] 사다리 결과를 입력 받을 수 있어야한다. #InputView#result
-    - [x] 개인별 이름을 입력하면 개인별 결과를 출력 #ResultView#person
-    - [x] 'all'을 입력하면 전체 참여자의 실행 결과를 출력한다. #ResultView#all
+    - [x] 개인별 이름을 입력하면 개인별 결과를 출력 #ResultView#result
+    - [x] 'all'을 입력하면 전체 참여자의 실행 결과를 출력한다. #ResultView#results
 
 ### 프로그래밍 요구사항
 

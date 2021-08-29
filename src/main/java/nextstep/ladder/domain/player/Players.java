@@ -1,5 +1,6 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.player;
 
+import nextstep.ladder.domain.ladder.Position;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

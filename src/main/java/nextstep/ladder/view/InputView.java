@@ -1,9 +1,9 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.LadderHeight;
-import nextstep.ladder.domain.Name;
-import nextstep.ladder.domain.Players;
-import nextstep.ladder.domain.Rewords;
+import nextstep.ladder.domain.ladder.LadderHeight;
+import nextstep.ladder.domain.player.Name;
+import nextstep.ladder.domain.player.Players;
+import nextstep.ladder.domain.reword.Rewords;
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.stream.Collectors;

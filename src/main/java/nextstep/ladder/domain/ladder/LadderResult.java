@@ -1,4 +1,7 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.ladder;
+
+import nextstep.ladder.domain.reword.Rewords;
+import nextstep.ladder.domain.player.Player;
 
 public class LadderResult {
 

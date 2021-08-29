@@ -1,5 +1,6 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.player;
 
+import nextstep.ladder.domain.ladder.Position;
 import java.util.Objects;
 
 public class Player {

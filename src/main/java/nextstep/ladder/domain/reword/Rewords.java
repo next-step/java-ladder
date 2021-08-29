@@ -1,5 +1,6 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.reword;
 
+import nextstep.ladder.domain.ladder.Position;
 import java.util.List;
 
 public class Rewords {
