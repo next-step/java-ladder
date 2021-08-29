@@ -9,18 +9,18 @@ public class Name {
     private static final String NAME_LENGTH_ERROR_MESSAGE = "이름은 최소 1글자 최대 5글자까지 부여할 수 있습니다.";
 
     private static final String delimiter = ",";
-    private List<String> array;
+    private List<String> participantNameList;
     private int countOfPerson;
 
     public Name(String stringName) {
         BuildName(stringName);
-        array.stream()
+        participantNameList.stream()
                 .forEach(this::CheckValidName);
     }
 
     private void BuildName(String stringName) {
-        this.array = Arrays.asList(stringName.split(delimiter));
-        this.countOfPerson = array.size();
+        this.participantNameList = Arrays.asList(stringName.split(delimiter));
+        this.countOfPerson = participantNameList.size();
     }
 
     private void CheckValidName(String name) {
@@ -29,8 +29,8 @@ public class Name {
         }
     }
 
-    public List<String> getArray() {
-        return array;
+    public List<String> getParticipantNameList() {
+        return participantNameList;
     }
 
     public int getCountOfPerson() {
