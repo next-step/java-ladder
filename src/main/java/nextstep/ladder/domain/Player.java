@@ -15,13 +15,8 @@ public class Player {
         this.name = name;
     }
 
-    public PlayerDto toDto() {
-        return new PlayerDto(name, MAX_LENGTH);
-    }
-
-    private void validateName(final String name) {
-        InputUtils.requireNonNull(name);
-        requireValidLength(name.trim());
+    public String getName() {
+        return name;
     }
 
     private void requireValidLength(final String name) {

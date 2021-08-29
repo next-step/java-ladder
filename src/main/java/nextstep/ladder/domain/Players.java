@@ -21,10 +21,10 @@ public class Players {
                 .collect(toList());
     }
 
-    public PlayersDto toDto() {
-        return new PlayersDto(players.stream()
-                .map(Player::toDto)
-                .collect(toList()));
+    public List<String> getPlayerNames() {
+        return players.stream()
+                .map(Player::getName)
+                .collect(Collectors.toList());
     }
 
     public int count() {
