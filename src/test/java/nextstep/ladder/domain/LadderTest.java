@@ -13,7 +13,7 @@ class LadderTest {
         // given
         LadderHeight heightOfLadder = LadderHeight.of(5);
 
-        Players players = PersonsFactory.personsFixture("phob", "phob1", "phob2");
+        Players players = PlayerFactory.playerFixture("phob", "phob1", "phob2");
 
         // when
         Ladder ladder = Ladder.of(players, heightOfLadder);
