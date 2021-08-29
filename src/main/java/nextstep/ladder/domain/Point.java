@@ -27,6 +27,10 @@ public class Point {
     }
 
 
+    public boolean currentPoint() {
+        return currentPoint;
+    }
+
     public boolean nextPoint() {
         return nextPoint;
     }

@@ -15,7 +15,7 @@ public class LadderApplication {
         Validation.isValidResult(players,result);
         int ladderHeight = InputView.inputLadderCount();
         Ladder ladder = new Ladder(players.size(), ladderHeight);
-//        ResultView.printLadderGame(players, ladder);
+        ResultView.printLadderGame(players, ladder);
 
     }
 }
