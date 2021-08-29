@@ -1,6 +1,7 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.impl;
 
-import nextstep.ladder.domain.winningPrize.WinningPrize;
+import nextstep.ladder.domain.impl.Player;
+import nextstep.ladder.domain.impl.WinningPrize;
 import nextstep.ladder.exception.NotEnoughtWinningPrizeException;
 import nextstep.ladder.exception.PlayerNotParticipateException;
 
@@ -10,8 +11,9 @@ import java.util.List;
 public class BoardConsumer {
 
     private static final int ZERO = 0;
-    private List<Player> players;
-    private List<WinningPrize> winningPrizes;
+
+    private final List<Player> players;
+    private final List<WinningPrize> winningPrizes;
 
     public BoardConsumer(List<Player> players, List<WinningPrize> winningPrizes) {
         validWinningPrizesSize(players, winningPrizes);

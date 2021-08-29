@@ -1,6 +1,6 @@
 package nextstep.ladder.utils;
 
-import nextstep.ladder.domain.line.Line;
+import nextstep.ladder.domain.impl.line.LadderLine;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -14,6 +14,6 @@ public class RandomUtilsTest {
     @ValueSource(ints = {2, 3, 4, 5, 20})
     void validBooleanList(int countOfPoint) {
         List<Boolean> booleanList = RandomUtils.getBooleanList(countOfPoint);
-        Line.from(booleanList);
+        LadderLine.from(booleanList);
     }
 }

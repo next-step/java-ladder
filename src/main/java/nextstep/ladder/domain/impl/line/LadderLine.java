@@ -1,5 +1,6 @@
-package nextstep.ladder.domain.line;
+package nextstep.ladder.domain.impl.line;
 
+import nextstep.ladder.domain.engine.Line;
 import nextstep.ladder.exception.ContinousLinePointException;
 import nextstep.ladder.exception.OutOfRangeException;
 import nextstep.ladder.view.ResultView;
@@ -10,42 +11,31 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class Line {
+public class LadderLine implements Line {
 
     private static final int MIN_POINT_COUNT = 2;
 
     private List<Boolean> points = new ArrayList<>();
 
-    private Line() {
+    private LadderLine() {
 
     }
 
-    private Line(List<Boolean> points) {
+    private LadderLine(List<Boolean> points) {
         validPointsCount(points);
         validContinuous(points);
 
         this.points = points;
     }
 
-    public static Line from(Boolean... existPoints) {
-        return new Line(
+    public static LadderLine from(Boolean... existPoints) {
+        return new LadderLine(
                 Arrays.stream(existPoints)
                         .collect(Collectors.toList()));
     }
 
-    public static Line from(List<Boolean> existPoints) {
-        return new Line(existPoints);
-    }
-
-    public int getSize() {
-        return points.size();
-    }
-
-    public boolean isExistPoint(int index) {
-        if (points.size() <= index) {
-            return false;
-        }
-        return points.get(index);
+    public static LadderLine from(List<Boolean> existPoints) {
+        return new LadderLine(existPoints);
     }
 
     private void validContinuous(List<Boolean> points) {
@@ -62,12 +52,42 @@ public class Line {
         }
     }
 
+    public int getSize() {
+        return points.size();
+    }
+
+    @Override
+    public int move(int startPosition) {
+        validStartPosition(startPosition);
+
+        if (isExistPoint(startPosition)) {
+            return startPosition - 1;
+        }
+        if (isExistPoint(startPosition + 1)) {
+            return startPosition + 1;
+        }
+        return startPosition;
+    }
+
+    private void validStartPosition(int startPosition) {
+        if (points.size() <= startPosition) {
+            throw OutOfRangeException.shouldLessThan(startPosition, points.size());
+        }
+    }
+
+    private boolean isExistPoint(int index) {
+        if (points.size() <= index) {
+            return false;
+        }
+        return points.get(index);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Line)) return false;
-        Line line = (Line) o;
-        return Objects.equals(points, line.points);
+        if (!(o instanceof LadderLine)) return false;
+        LadderLine ladderLine = (LadderLine) o;
+        return Objects.equals(points, ladderLine.points);
     }
 
     @Override
@@ -81,4 +101,5 @@ public class Line {
                 .map(ResultView::parseBooleanToDot)
                 .collect(Collectors.joining());
     }
+
 }
