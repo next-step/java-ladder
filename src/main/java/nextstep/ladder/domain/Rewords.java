@@ -14,7 +14,7 @@ public class Rewords {
         return new Rewords(rewords);
     }
 
-    public String reword(Player player) {
-        return rewords.get(player.position().currentPosition());
+    public String reword(Position position) {
+        return rewords.get(position.currentPosition());
     }
 }
