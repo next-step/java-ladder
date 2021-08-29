@@ -9,7 +9,7 @@ public class ResultView {
     public static void printUserName(List<String> nameList) {
         String userName = nameList
                 .stream()
-                .map(name -> addBlank(name))
+                .map(ResultView::addBlank)
                 .collect(Collectors.joining());
 
         System.out.println(userName);
@@ -18,19 +18,15 @@ public class ResultView {
     public static String addBlank(String name) {
         int blankCount = MAX_NAME_LENGTH - name.length();
 
-        if (blankCount == 0) {
-            return " " + name;
-        }
-
         if (blankCount == 1) {
             return name + " ";
         }
 
-        StringBuilder sb = new StringBuilder();
+        StringBuilder blank = new StringBuilder();
         for (int i = 0; i < blankCount; i++) {
-            sb.append(" ");
+            blank.append(" ");
         }
-        return sb.toString() + name;
+        return blank + name + " ";
     }
 
     public static void printLadder(List<List<Boolean>> ladder) {
@@ -47,14 +43,16 @@ public class ResultView {
     }
 
     private static String checkLine(List<Boolean> line, int i) {
+        String result = "";
+
         if (i == 0) {
-            return "    |";
+            result += "    |";
         }
 
         if (line.get(i)) {
-            return "-----|";
+            return result + "-----|";
         }
 
-        return "     |";
+        return result + "     |";
     }
 }
