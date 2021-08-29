@@ -2,7 +2,8 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.domain.LadderResult;
 import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Person;
+import nextstep.ladder.domain.Name;
+import nextstep.ladder.domain.Player;
 import nextstep.ladder.domain.Players;
 import java.util.List;
 
@@ -13,7 +14,7 @@ public class ResultView {
     public static final String LADDER_BLANK = "     ";
 
     public static void show(List<Line> ladderLines, Players players) {
-        players.forEach(name -> System.out.print(appendBlank(name)));
+        players.foreach(name -> System.out.print(appendBlank(name)));
         System.out.println();
         ladderLines.forEach(ResultView::points);
     }
@@ -21,7 +22,7 @@ public class ResultView {
     private static String appendBlank(String name) {
         StringBuilder nameBuilder = new StringBuilder(name);
 
-        while (nameBuilder.length() < Person.MAX_NAME_LENGTH) {
+        while (nameBuilder.length() < Name.MAX_NAME_LENGTH) {
             nameBuilder.append(" ");
         }
 
@@ -44,15 +45,15 @@ public class ResultView {
     }
 
 
-    public static void result(LadderResult ladderResult, String name) {
+    public static void result(LadderResult ladderResult, Player player) {
         System.out.println("실행결과");
-        System.out.println(ladderResult.resultByName(name));
+        System.out.println(ladderResult.result(player));
     }
 
     public static void results(LadderResult ladderResult, Players players) {
         System.out.println("전체결과");
-        players.forEach(name ->
-            System.out.println(name + " : " + ladderResult.resultByName(name))
+        players.values(player ->
+            System.out.println(player.name() + " : " + ladderResult.result(player))
         );
 
     }
