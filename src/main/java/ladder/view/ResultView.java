@@ -3,9 +3,11 @@ package ladder.view;
 import ladder.domain.*;
 
 import java.util.List;
+import java.util.Map;
 
 public class ResultView {
     private static final StringBuilder STRING_BUILDER = new StringBuilder();
+    private static final String LADDER_RESULT = "사다리 결과";
     private static final String EXECUTION_RESULT = "실행 결과";
     private static final String LADDER_LENGTH = "|";
     private static final String NO_LADDER = "     ";
@@ -13,7 +15,7 @@ public class ResultView {
     private static final int INIT_NUMBER = 0;
 
     public static void printUserList(Users users) {
-        System.out.println(EXECUTION_RESULT);
+        System.out.println(LADDER_RESULT);
         for (User user : users.getUsers()) {
             System.out.printf("%-6s", user.getName());
         }
@@ -45,6 +47,13 @@ public class ResultView {
         for (WinningItem item : winningItems.getWinningItems()) {
             System.out.printf("%-6s", item.getItem());
         }
+        System.out.println();
+    }
+
+    public static void printResult(MatchResult matchResult, User user) {
+        System.out.println(EXECUTION_RESULT);
+        WinningItem item = matchResult.getMatchResultToUser(user);
+        System.out.println(item.getItem());
     }
 
 
