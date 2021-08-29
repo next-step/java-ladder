@@ -5,11 +5,9 @@ import java.util.List;
 
 public class Ladder {
     private List<Line> lines;
-    private int height;
 
-    public Ladder(List<Line> lines, int height) {
+    public Ladder(List<Line> lines) {
         this.lines = lines;
-        this.height = height;
     }
 
     public List<Line> getLines() {
@@ -17,6 +15,10 @@ public class Ladder {
     }
 
     public int getHeight() {
-        return height;
+        if (lines.size() == 0) {
+            return 0;
+        }
+
+        return lines.get(0).getHeight();
     }
 }
