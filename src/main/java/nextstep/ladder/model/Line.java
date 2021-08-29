@@ -5,14 +5,11 @@ import java.util.List;
 
 public class Line {
     private List<Point> points = new ArrayList<>();
-    private final int index;
 
-    public Line(int height, int index) {
+    public Line(int height) {
         for (int i = 0; i < height; i++) {
             points.add(new Point());
         }
-
-        this.index = index;
     }
 
     public Point getPoint(int index) {
@@ -23,7 +20,16 @@ public class Line {
         return points.get(index);
     }
 
-    public int getIndex() {
-        return index;
+    public boolean isUsedPoint(int index) {
+        return points.get(index).isUsed();
+    }
+
+    public void usePointDestination(int destination, int height) {
+        Point point = points.get(height);
+        point.use(destination);
+    }
+
+    public int getHeight() {
+        return points.size();
     }
 }

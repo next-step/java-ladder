@@ -3,7 +3,6 @@ package nextstep.ladder;
 import nextstep.ladder.model.Ladder;
 import nextstep.ladder.model.Line;
 import nextstep.ladder.model.Person;
-import nextstep.ladder.model.Point;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,37 +34,39 @@ public class LadderGame {
             makeStairs(lines, i);
         }
 
-        return new Ladder(lines, height);
+        return new Ladder(lines);
     }
 
-    private static void makeStairs(List<Line> lines, int index) {
-        for (int i = 0; i < lines.size() - 1; i++) {
-            if (RANDOM.nextBoolean()) {
-                Line line01 = lines.get(i);
-                Line line02 = lines.get(i + 1);
+    private static void makeStairs(List<Line> lines, int height) {
+        for (int index = 0; index < lines.size() - 1; index++) {
+            int origin = index;
+            int destination = index + 1;
 
-                makeStair(line01, line02, index);
-            }
+            makeStair(lines, origin, destination, height);
         }
     }
 
-    private static void makeStair(Line line01, Line line02, int index) {
-        Point point01 = line01.getPoint(index);
-        Point point02 = line02.getPoint(index);
-
-        if (point01.isUsed() || point02.isUsed()) {
+    private static void makeStair(List<Line> lines, int origin, int destination, int height) {
+        if (!RANDOM.nextBoolean()) {
             return;
         }
 
-        point01.use(line02.getIndex());
-        point02.use(line01.getIndex());
+        Line lineOrigin = lines.get(origin);
+        Line lineDestination = lines.get(destination);
+
+        if (lineOrigin.isUsedPoint(height) || lineDestination.isUsedPoint(height)) {
+            return;
+        }
+
+        lineOrigin.usePointDestination(destination, height);
+        lineDestination.usePointDestination(origin, height);
     }
 
     private static List<Line> makeLines(int numberOfPeople, int height) {
         List<Line> lines = new ArrayList<>();
 
         for (int i = 0; i < numberOfPeople; i++) {
-            lines.add(new Line(height, i));
+            lines.add(new Line(height));
         }
 
         return lines;
