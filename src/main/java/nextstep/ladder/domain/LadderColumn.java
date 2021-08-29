@@ -4,21 +4,21 @@ import nextstep.ladder.strategy.DrawLineStrategy;
 
 public class LadderColumn {
 
-    private final boolean hasHorizontalLine;
+    private final boolean hasVerticalLine;
+
+    public LadderColumn(boolean hasVerticalLine) {
+        this.hasVerticalLine = hasVerticalLine;
+    }
 
     public LadderColumn() {
         this(false);
     }
 
-    private LadderColumn(boolean hasHorizontalLine) {
-        this.hasHorizontalLine = hasHorizontalLine;
-    }
-
-    public LadderColumn drawLine(DrawLineStrategy strategy) {
+    public static LadderColumn drawLine(DrawLineStrategy strategy) {
         return new LadderColumn(strategy.drawLine());
     }
 
     public boolean value() {
-        return hasHorizontalLine;
+        return hasVerticalLine;
     }
 }

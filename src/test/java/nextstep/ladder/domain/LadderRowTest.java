@@ -1,7 +1,6 @@
 package nextstep.ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -15,14 +14,5 @@ class LadderRowTest {
     void createLadder(int ladderWidth) {
         assertThatCode(() -> new LadderRow(ladderWidth))
             .doesNotThrowAnyException();
-    }
-
-
-    @ParameterizedTest
-    @ValueSource(ints = {0, -1, -10})
-    @DisplayName("주어진 사다리의 열수가 1미만일경우, 예외를 던진다.")
-    void notCreateLadder(int ladderWidth) {
-        assertThatThrownBy(() -> new LadderRow(ladderWidth))
-            .isInstanceOf(IllegalArgumentException.class);
     }
 }
