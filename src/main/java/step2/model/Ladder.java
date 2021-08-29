@@ -2,6 +2,7 @@ package step2.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Ladder {
@@ -10,16 +11,20 @@ public class Ladder {
     private static int ladderHigh;
     private static int userCount;
 
-    private ArrayList<Line> ladders;
+    private List<Line> ladders;
 
-    public Ladder(String high, int numberOfUser) {
+    public Ladder(String high, int numberOfUser, LadderStrategy ladderStrategy) {
         isBlank(high);
         isOverMinHigh(high);
 
         ladderHigh = getParseInt(high);
         userCount = numberOfUser;
 
-        generateLine(new RandomLadderStrategy());
+        generateLine(ladderStrategy);
+    }
+
+    public Ladder(List<Line> ladders) {
+        this.ladders = ladders;
     }
 
     private int getParseInt(String high) {
@@ -46,15 +51,22 @@ public class Ladder {
         }
     }
 
-    public int getLineCount() {
-        return ladders.stream()
-                .map(Line::getLineCount)
-                .reduce(0, Integer::sum);
-    }
-
     public List<List<Boolean>> getLadder() {
         return ladders.stream()
                         .map(Line::getLine)
                         .collect(Collectors.toList());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ladder ladder = (Ladder) o;
+        return Objects.equals(ladders, ladder.ladders);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ladders);
     }
 }

@@ -1,11 +1,9 @@
 package step2;
 
 import org.junit.jupiter.api.Test;
-import step2.model.Ladder;
-import step2.model.RandomLadderStrategy;
-import step2.model.User;
-import step2.model.Users;
+import step2.model.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
@@ -71,23 +69,23 @@ public class LadderTest {
 
     @Test
     public void 사다리생성_높이_빈값_null() {
-        assertThatThrownBy(() -> new Ladder(null, 5))
+        assertThatThrownBy(() -> new Ladder(null, 5, new RandomLadderStrategy()))
                 .isInstanceOf(IllegalArgumentException.class);
 
-        assertThatThrownBy(() -> new Ladder("", 5))
+        assertThatThrownBy(() -> new Ladder("", 5, new RandomLadderStrategy()))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     public void 사다리생성_높이_0() {
-        assertThatThrownBy(() -> new Ladder("0", 5))
+        assertThatThrownBy(() -> new Ladder("0", 5, new RandomLadderStrategy()))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     public void 사다리_크기_체크() {
         //given
-        Ladder ladder = new Ladder("5", 4);
+        Ladder ladder = new Ladder("5", 4, new RandomLadderStrategy());
         ladder.generateLine(new RandomLadderStrategy());
 
         //when
@@ -103,13 +101,14 @@ public class LadderTest {
     @Test
     public void 사다리_라인_생성() {
         //given
-        Ladder ladder = new Ladder("1", 4);
+        Line expectLine = new Line(Arrays.asList(true, false, true));
+        Ladder expectLadder = new Ladder(Arrays.asList(expectLine));
 
         //when
-        ladder.generateLine(() -> true);
+        Ladder actual = new Ladder("1", 4, () -> true);
 
         //then
-        assertThat(ladder.getLineCount()).isEqualTo(2);
+        assertThat(actual).isEqualTo(expectLadder);
     }
 
 }
