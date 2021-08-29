@@ -5,28 +5,28 @@ import java.util.List;
 import java.util.Objects;
 
 public class Line {
-    private List<Boolean> lines;
+    private List<Boolean> points;
 
     public Line(int numberOfUser, LadderStrategy ladderStrategy) {
-        lines = new ArrayList<>();
+        points = new ArrayList<>();
 
         for (int i = 0; i < numberOfUser - 1; i++) {
-            if (i != 0 && lines.get(lines.size() - 1)) {
-                lines.add(false);
+            if (i != 0 && points.get(points.size() - 1)) {
+                points.add(false);
                 continue;
             }
             boolean drawLine = ladderStrategy.generateLine();
-            lines.add(drawLine);
+            points.add(drawLine);
         }
 
     }
 
-    public Line(List<Boolean> lines) {
-        this.lines = lines;
+    public Line(List<Boolean> points) {
+        this.points = points;
     }
 
     public List<Boolean> getLine() {
-        return lines;
+        return points;
     }
 
     @Override
@@ -34,11 +34,11 @@ public class Line {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Line line = (Line) o;
-        return Objects.equals(lines, line.lines);
+        return Objects.equals(points, line.points);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(lines);
+        return Objects.hash(points);
     }
 }

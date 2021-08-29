@@ -11,7 +11,7 @@ public class Ladder {
     private static int ladderHigh;
     private static int userCount;
 
-    private List<Line> ladders;
+    private List<Line> lines;
 
     public Ladder(String high, int numberOfUser, LadderStrategy ladderStrategy) {
         isBlank(high);
@@ -23,8 +23,8 @@ public class Ladder {
         generateLine(ladderStrategy);
     }
 
-    public Ladder(List<Line> ladders) {
-        this.ladders = ladders;
+    public Ladder(List<Line> lines) {
+        this.lines = lines;
     }
 
     private int getParseInt(String high) {
@@ -44,15 +44,15 @@ public class Ladder {
     }
 
     public void generateLine(LadderStrategy ladderStrategy) {
-        this.ladders = new ArrayList<>();
+        this.lines = new ArrayList<>();
 
         for (int i = 0; i < ladderHigh; i++) {
-            ladders.add(new Line(userCount, ladderStrategy));
+            lines.add(new Line(userCount, ladderStrategy));
         }
     }
 
     public List<List<Boolean>> getLadder() {
-        return ladders.stream()
+        return lines.stream()
                         .map(Line::getLine)
                         .collect(Collectors.toList());
     }
@@ -62,11 +62,11 @@ public class Ladder {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Ladder ladder = (Ladder) o;
-        return Objects.equals(ladders, ladder.ladders);
+        return Objects.equals(lines, ladder.lines);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ladders);
+        return Objects.hash(lines);
     }
 }
