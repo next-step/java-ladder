@@ -15,16 +15,23 @@ public class Direction {
         this.right = right;
     }
 
+    public static Direction first(final boolean next) {
+        return new Direction(false, next);
+    }
+
     public static Direction of(final boolean left, final boolean right) {
         return new Direction(left, right);
     }
 
-    public static Direction first(boolean next) {
-        return new Direction(false, next);
+    public static Direction last(final boolean next) {
+        return new Direction(next, false);
     }
 
-    public static Direction last(boolean next) {
-        return new Direction(next, false);
+    public Direction next(final Generator generator) {
+        if (this.right) {
+            return Direction.of(true, false);
+        }
+        return Direction.of(false, generator.generate());
     }
 
     @Override
