@@ -5,18 +5,19 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Ladder {
-    private int row;
-    private int column;
-    private ArrayList<Line> ladders;
-
     private static final int MIN_LADDER_HIGH = 1;
+
+    private static int ladderHigh;
+    private static int userCount;
+    
+    private ArrayList<Line> ladders;
 
     public Ladder(String high, int numberOfUser) {
         isBlank(high);
         isOverMinHigh(high);
 
-        row = getParseInt(high);
-        column = numberOfUser;
+        ladderHigh = getParseInt(high);
+        userCount = numberOfUser;
         this.ladders = new ArrayList<>();
     }
 
@@ -37,8 +38,8 @@ public class Ladder {
     }
 
     public void generateLine(LadderStrategy ladderStrategy) {
-        for (int i = 0; i < row; i++) {
-            ladders.add(new Line(column, ladderStrategy));
+        for (int i = 0; i < ladderHigh; i++) {
+            ladders.add(new Line(userCount, ladderStrategy));
         }
     }
 
