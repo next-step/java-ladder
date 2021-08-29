@@ -29,4 +29,9 @@ class ValidationTest {
         assertThatThrownBy(() -> Validation.isValidResult(new Players("pobi, cony, cr7"), new Result("꽝 ,500, 꽝,1000")));
     }
 
+    @Test
+    void isValidPlayers() {
+        assertThatThrownBy(()->Validation.isValidPlayers("pobi, cony , cony  , crong"));
+
+    }
 }

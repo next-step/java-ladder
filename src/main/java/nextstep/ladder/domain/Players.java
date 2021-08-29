@@ -1,4 +1,6 @@
 package nextstep.ladder.domain;
+import nextstep.ladder.util.Validation;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,6 +16,7 @@ public class Players {
     }
 
     private static List<Name> toList(String players) {
+        Validation.isValidPlayers(players);
         return Arrays.stream(players.split(DELIMITER))
                 .map(Name::new)
                 .collect(Collectors.toList());
@@ -26,7 +29,7 @@ public class Players {
         this.players = players;
     }
 
-    public int indexOf(String result) {
+    public int indexOf(Name result) {
         return players.indexOf(result);
     }
 
