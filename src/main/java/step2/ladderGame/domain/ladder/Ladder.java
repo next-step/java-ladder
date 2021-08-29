@@ -7,20 +7,23 @@ import step2.ladderGame.domain.ladder.pointGenerationStrategy.horizontalLineGene
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Ladder {
 
     private static final int MIN_COUNT_BY_USER = 2;
     private static final int MIN_HEIGHT = 1;
-    private static final int INIT = 0;
 
     private final List<Line> lines = new ArrayList<>();
 
     public Ladder(int countOfUser, horizontalLineGenerationStrategy horizontalLineGenerationStrategy, int height) {
         validate(countOfUser, height);
-        for (int i = INIT; i < height; i++) {
-            lines.add(new Line(countOfUser, horizontalLineGenerationStrategy));
-        }
+
+        IntStream.range(0, height).forEach(
+                index -> {
+                    lines.add(new Line(countOfUser, horizontalLineGenerationStrategy));
+                }
+        );
     }
 
     private void validate(int countOfUser, int height) {

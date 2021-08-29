@@ -8,7 +8,6 @@ import step2.ladderGame.domain.user.Users;
 public final class ResultView {
 
     private static final int NAME_SPACE = 6;
-    private static final int ZERO = 0;
     private static final String BLANK = " ";
     private static final String VERTICAL_LINE = "|";
     private static final String HORIZONTAL_LINE = "-----";
@@ -30,7 +29,7 @@ public final class ResultView {
         StringBuilder stringBuilder = new StringBuilder();
         int emptyLength = NAME_SPACE - name.length();
 
-        while (emptyLength > ZERO) {
+        while (emptyLength > 0) {
             stringBuilder.append(BLANK);
             emptyLength--;
         }
