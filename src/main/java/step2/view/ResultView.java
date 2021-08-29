@@ -19,7 +19,7 @@ public class ResultView {
 
     public void printParticipant(List<String> array) {
         array.stream()
-                .map(s -> s+NAME_SPACE)
+                .map(s -> s + NAME_SPACE)
                 .forEach(System.out::print);
         System.out.println();
     }

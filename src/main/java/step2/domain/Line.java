@@ -10,13 +10,13 @@ public class Line {
 
     public Line(int countOfPerson) {
         points.add(RANDOM.nextBoolean());
-        for (int i = 1; i < countOfPerson-1; i++) {
+        for (int i = 1; i < countOfPerson - 1; i++) {
             checkPreviousPointAddPoint(i);
         }
     }
 
     private void checkPreviousPointAddPoint(int currentIndex) {
-        int previouseIndex = currentIndex-1;
+        int previouseIndex = currentIndex - 1;
         if (points.get(previouseIndex)) {
             points.add(Boolean.FALSE);
             return;

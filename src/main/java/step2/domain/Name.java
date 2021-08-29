@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Name {
-    private static final int NAME_MAX_SIZE=5;
-    private static final int NAME_MIN_SIZE=1;
+    private static final int NAME_MAX_SIZE = 5;
+    private static final int NAME_MIN_SIZE = 1;
     private static final String NAME_LENGTH_ERROR_MESSAGE = "이름은 최소 1글자 최대 5글자까지 부여할 수 있습니다.";
 
     private static final String delimiter = ",";
