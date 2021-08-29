@@ -14,9 +14,8 @@ public class LadderResult {
         return new LadderResult(ladder, rewords);
     }
 
-    public String resultByName(String name) {
-        Player player = ladder.findPlayerByName(name);
-        ladder.movePlayer(player);
-        return rewords.reword(player);
+    public String result(Player player) {
+        Position resultPosition = ladder.move(player.position());
+        return rewords.reword(resultPosition);
     }
 }
