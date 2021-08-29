@@ -52,15 +52,18 @@ public class LadderGameDrawer {
             Line currentLine = lines.get(index);
 
             Point point = currentLine.getPoint(currentStair);
-            if (isExistsStair(index, point)) {
-                stair += STAIR;
-                continue;
-            }
-
-            stair += EMPTY_STAIR;
+            stair += makeStairBetweenLine(index, point);
         }
 
         return stair;
+    }
+
+    private static String makeStairBetweenLine(int index, Point point) {
+        if (isExistsStair(index, point)) {
+            return STAIR;
+        }
+
+        return EMPTY_STAIR;
     }
 
     private static boolean isExistsStair(int currentLineIndex, Point point) {
