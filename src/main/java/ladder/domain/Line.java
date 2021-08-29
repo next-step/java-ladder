@@ -37,7 +37,34 @@ public class Line {
         }
     }
 
+    public int getAfterPosition(int position) {
+        if (checkBefore(position)) {
+            return position - 1;
+        }
+        if (checkAfter(position)) {
+            return position + 1;
+        }
+        return position;
+    }
+
+    private boolean checkBefore(int position) {
+        try {
+            return points.get(position - 1);
+        } catch (IndexOutOfBoundsException e) {
+            return false;
+        }
+    }
+
+    private boolean checkAfter(int position) {
+        try {
+            return points.get(position);
+        } catch (IndexOutOfBoundsException e) {
+            return false;
+        }
+    }
+
     public List<Boolean> getPoints() {
         return Collections.unmodifiableList(points);
     }
+
 }

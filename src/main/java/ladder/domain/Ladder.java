@@ -28,6 +28,14 @@ public class Ladder {
         }
     }
 
+    public int getResultPosition(int startPosition) {
+        int position = startPosition;
+        for (Line line : lines) {
+            position = line.getAfterPosition(position);
+        }
+        return position;
+    }
+
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
     }
