@@ -15,11 +15,7 @@ public class StreamStudy {
                 .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
-        long count = 0;
-        for (String w : words) {
-            if (w.length() > 12) count++;
-        }
-        return count;
+        return words.stream().filter(w -> w.length() > 12).count();
     }
 
     public static void printLongestWordTop100() throws IOException {
@@ -31,7 +27,7 @@ public class StreamStudy {
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
-        return numbers.stream().map(x -> 2 * x).collect(Collectors.toList());
+        return numbers.stream().map(x -> x * x).collect(Collectors.toList());
     }
 
     public static long sumAll(List<Integer> numbers) {
