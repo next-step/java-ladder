@@ -18,7 +18,7 @@ public class Point {
         this.nextPoint = false;
     }
 
-    public static Point init() { // 현재 값이 false 이면 다음 값은 랜덤
+    public static Point random() { // 현재 값이 false 이면 다음 값은 랜덤
         return new Point(RandomUtil.generate());
     }
 

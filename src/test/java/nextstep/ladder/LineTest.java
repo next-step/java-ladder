@@ -26,6 +26,6 @@ class LineTest {
     @DisplayName("현재 point 가 false이면 다음 point는 랜덤값을 넣는다. 즉 ,(true, 랜덤)")
     void checkPreviousPoint2() {
         Line point = new Line();
-        assertThat(point.checkPreviousPoint(false)).isEqualTo(Point.init());
+        assertThat(point.checkPreviousPoint(false)).isEqualTo(Point.random());
     }
 }

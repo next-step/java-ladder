@@ -18,7 +18,7 @@ public class Line {
     }
 
     private void createPoint(int playersCounts) {
-        points.add(Point.init()); // 처음에는 (false , 랜덤) 주입
+        points.add(Point.random()); // 처음에는 (false , 랜덤) 주입
         for (int i = START_INDEX; i < playersCounts; i++) {
             points.add(checkPreviousPoint(points.get(i - 1).nextPoint()));
         }
@@ -29,7 +29,7 @@ public class Line {
         if (nextPointOfPrevious) {
             return Point.of();
         }
-        return Point.init(); // false 면 (false , 랜덤) 주입
+        return Point.random(); // false 면 (false , 랜덤) 주입
     }
 
     public int size() {

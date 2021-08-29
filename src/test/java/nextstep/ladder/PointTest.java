@@ -1,7 +1,6 @@
 package nextstep.ladder;
 
 import nextstep.ladder.domain.Point;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +16,7 @@ public class PointTest {
                 () -> assertThat(Point.of().currentPoint()).isTrue(),
                 () -> assertThat(Point.of().nextPoint()).isFalse(),
                 // 현재 값이 false 이면 다음 값은 랜덤으로 false , true 다 가능하다. (false , 랜덤)
-                () -> assertThat(Point.init().currentPoint()).isFalse()
+                () -> assertThat(Point.random().currentPoint()).isFalse()
         );
     }
 }
