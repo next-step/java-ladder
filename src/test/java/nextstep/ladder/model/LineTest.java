@@ -11,8 +11,7 @@ public class LineTest {
     public void requestWrongPosition() {
         //given
         int height = 3;
-        int index = 1;
-        Line line = new Line(height, index);
+        Line line = new Line(height);
 
         //then
         assertThatIllegalArgumentException().isThrownBy(() -> line.getPoint(5));
