@@ -16,39 +16,23 @@ public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
     private static final PrintStream printStream = System.out;
 
-    public static void printPlayerNameInputMessage() {
-        printStream.println(PLAYER_NAME_INPUT_MESSAGE);
-    }
-
     public static List<String> inputPlayerNames() {
+        printStream.println(PLAYER_NAME_INPUT_MESSAGE);
         return Arrays.asList(scanner.nextLine().split(INPUT_STRING_DELIMITER));
-    }
-
-    public static void printLadderHeightInputMessage() {
-        printStream.println(NEW_LINE + LADDER_HEIGHT_INPUT_MESSAGE);
     }
 
     public static int inputLadderHeight() {
-        return scanner.nextInt();
-    }
-
-    public static void printLadderResultInputMessage() {
-        printStream.println(NEW_LINE + LADDER_RESULT_INPUT_MESSAGE);
+        printStream.println(NEW_LINE + LADDER_HEIGHT_INPUT_MESSAGE);
+        return Integer.parseInt(scanner.nextLine());
     }
 
     public static List<String> inputLadderResults() {
+        printStream.println(NEW_LINE + LADDER_RESULT_INPUT_MESSAGE);
         return Arrays.asList(scanner.nextLine().split(INPUT_STRING_DELIMITER));
     }
 
-    public static void printPlayerNameForRadderResultInputMessage() {
-        printStream.println(NEW_LINE + PLAYER_NAME_FOR_LADDER_RESULT_INPUT_MESSAGE);
-    }
-
     public static String inputPlayerNameForLadderResult() {
+        printStream.println(NEW_LINE + PLAYER_NAME_FOR_LADDER_RESULT_INPUT_MESSAGE);
         return scanner.nextLine();
-    }
-
-    public static void inputNextLine() {
-        scanner.nextLine();
     }
 }
