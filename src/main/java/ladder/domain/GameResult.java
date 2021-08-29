@@ -4,7 +4,6 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class GameResult {
 
@@ -16,27 +15,31 @@ public class GameResult {
 
     private Map<User, LadderResult> game(Users users, Ladder ladder, LadderResults ladderResults) {
         Map<User, LadderResult> result = new LinkedHashMap<>();
-        users.getAllWithIdx()
-                .forEach(userIdxPair -> {
-                    AtomicInteger idx = new AtomicInteger(userIdxPair.getLeft());
-                    User user = userIdxPair.getRight();
-                    ladder.getLines()
-                            .forEach(line -> {
-                                if (!line.outOfRange(idx.get() - 1)) {
-                                    if (line.isConnected(idx.get() - 1)) {
-                                        idx.addAndGet(-1);
-                                        return;
-                                    }
-                                }
-                                if (!line.outOfRange(idx.get())) {
-                                    if (line.isConnected(idx.get())) {
-                                        idx.addAndGet(1);
-                                    }
-                                }
-                            });
-                    result.put(user, ladderResults.get(idx.get()));
-                });
+        users.getAllWithLocation()
+                .forEach(userLocation -> gameForEachUser(ladder, ladderResults, result, userLocation));
         return result;
+    }
+
+    private void gameForEachUser(Ladder ladder, LadderResults ladderResults,
+                                 Map<User, LadderResult> result, UserLocation userLocation) {
+        User user = userLocation.getUser();
+        Location location = userLocation.getLocation();
+        ladder.getLines().forEach(line -> moveToLeftOrRight(location, line));
+        result.put(user, ladderResults.get(location.now()));
+    }
+
+    private void moveToLeftOrRight(Location location, Line line) {
+        if (isMovable(location.atLeft(), line)) {
+            location.toLeft();
+            return;
+        }
+        if (isMovable(location.now(), line)) {
+            location.toRight();
+        }
+    }
+
+    private boolean isMovable(int pos, Line line) {
+        return !line.outOfRange(pos) && line.isConnected(pos);
     }
 
     public static GameResult create(Users users, Ladder ladder, LadderResults ladderResults) {

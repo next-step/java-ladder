@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class LadderResultTest {
 
     @Test
-    public void String을_받아서_Result_객체를_생성할_수_있다(){
+    public void String을_받아서_Result_객체를_생성할_수_있다() {
         //given
         //when
         LadderResult ladderResult = LadderResult.create("꽝");
@@ -18,7 +18,7 @@ public class LadderResultTest {
     }
 
     @Test
-    public void 꽝_또는_금액이_아니면_익셉션이_발생한다(){
+    public void 꽝_또는_금액이_아니면_익셉션이_발생한다() {
         //given
         //when
         //then
@@ -28,7 +28,7 @@ public class LadderResultTest {
     }
 
     @Test
-    public void 꽝이_아니고_금액일_때_금액이_음수이면_익셉션이_발생한다(){
+    public void 꽝이_아니고_금액일_때_금액이_음수이면_익셉션이_발생한다() {
         //given
         //when
         //then

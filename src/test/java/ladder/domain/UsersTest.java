@@ -61,12 +61,12 @@ public class UsersTest {
         //when
         Users users = Users.create("pobi,honux,crong,jk");
         //then
-        assertThat(users.getAllWithIdx())
+        assertThat(users.getAllWithLocation())
                 .containsExactly(
-                        UserIdxPair.of(0, User.create("pobi")),
-                        UserIdxPair.of(1, User.create("honux")),
-                        UserIdxPair.of(2, User.create("crong")),
-                        UserIdxPair.of(3, User.create("jk"))
+                        UserLocation.create(User.create("pobi"), Location.at(0)),
+                        UserLocation.create(User.create("honux"), Location.at(1)),
+                        UserLocation.create(User.create("crong"), Location.at(2)),
+                        UserLocation.create(User.create("jk"), Location.at(3))
                 );
     }
 
@@ -77,8 +77,8 @@ public class UsersTest {
         //then
         assertThatThrownBy(() ->
                 Users.create("pobi,honux,crong,jk")
-                        .getAllWithIdx()
-                        .add(UserIdxPair.of(3, User.create("jk")))
+                        .getAllWithLocation()
+                        .add(UserLocation.create(User.create("aa"), Location.at(4)))
         ).isInstanceOf(UnsupportedOperationException.class);
     }
 }

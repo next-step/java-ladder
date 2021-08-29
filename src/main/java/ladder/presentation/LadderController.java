@@ -45,10 +45,11 @@ public class LadderController {
     }
 
     private void outputGameResult(GameResult gameResult) {
+        final String allUsers = "all";
         GameResultOutputView view = new GameResultOutputView();
         while (true) {
             String user = inputAskingUser();
-            if ("all".equals(user)) {
+            if (allUsers.equals(user)) {
                 view.outputAll(gameResult);
                 break;
             }

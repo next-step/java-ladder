@@ -8,7 +8,8 @@ import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SuppressWarnings("NonAsciiCharacters")
 public class GameResultTest {
@@ -49,7 +50,7 @@ public class GameResultTest {
     }
 
     @Test
-    public void 모든_참여자에_대한_결과를_얻을_수_있다(){
+    public void 모든_참여자에_대한_결과를_얻을_수_있다() {
         //given
         GameResult gameResult = GameResult.create(users, Ladder.create(getLines()), ladderResults);
         //when

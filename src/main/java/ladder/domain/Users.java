@@ -48,10 +48,10 @@ public class Users {
                 .collect(Collectors.toList());
     }
 
-    public List<UserIdxPair> getAllWithIdx() {
+    public List<UserLocation> getAllWithLocation() {
         return Collections.unmodifiableList(
                 IntStream.range(0, users.size())
-                        .mapToObj(idx -> UserIdxPair.of(idx, users.get(idx)))
+                        .mapToObj(pos -> UserLocation.create(users.get(pos), Location.at(pos)))
                         .collect(Collectors.toList())
         );
     }
