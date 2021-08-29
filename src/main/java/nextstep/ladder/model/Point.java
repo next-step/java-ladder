@@ -1,10 +1,11 @@
 package nextstep.ladder.model;
 
 public class Point {
+    private static final int MINIMUM_USED_NUMBER = 0;
     private int goal = -1;
 
     public boolean isUsed() {
-        return goal >= 0;
+        return goal >= MINIMUM_USED_NUMBER;
     }
 
     public void use(int goal) {
