@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
+import static step2.view.ResultView.addBlank;
 
 
 public class LadderTest {
@@ -35,9 +36,10 @@ public class LadderTest {
     public void 참여자_이름_4자_빈칸_세팅() {
         //given
         User user = new User("pobi");
-        
+
+
         //then
-        assertThat(user.getName()).isEqualTo("pobi ");
+        assertThat(addBlank(user.getName())).isEqualTo("pobi ");
     }
 
     @Test
@@ -46,7 +48,7 @@ public class LadderTest {
         User user = new User("jk");
 
         //then
-        assertThat(user.getName()).isEqualTo("   jk");
+        assertThat(addBlank(user.getName())).isEqualTo("   jk");
     }
 
     @Test
