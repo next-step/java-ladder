@@ -19,4 +19,10 @@ public class DirectionTest {
     void 생성_둘다_참일경우_에러() {
         assertThrows(IllegalArgumentException.class, () -> Direction.of(true, true));
     }
+
+    @Test
+    void 첫번째는_무조건_false() {
+        assertEquals(Direction.first(true), Direction.of(false, true));
+        assertEquals(Direction.first(false), Direction.of(false, false));
+    }
 }

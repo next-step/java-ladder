@@ -19,6 +19,10 @@ public class Direction {
         return new Direction(left, right);
     }
 
+    public static Direction first(boolean next) {
+        return new Direction(false, next);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
