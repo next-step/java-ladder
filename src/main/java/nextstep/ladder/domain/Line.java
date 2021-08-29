@@ -29,7 +29,7 @@ public class Line {
         if (nextPointOfPrevious) {
             return Point.of();
         }
-        return Point.init();
+        return Point.init(); // false 면 (false , 랜덤) 주입
     }
 
     public int size() {

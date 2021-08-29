@@ -29,8 +29,8 @@ public class Players {
         this.players = players;
     }
 
-    public int indexOf(Name result) {
-        return players.indexOf(result);
+    public int indexOf(String player) {
+        return players.indexOf(new Name(player));
     }
 
     public int size() {

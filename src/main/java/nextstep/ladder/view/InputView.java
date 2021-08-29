@@ -26,7 +26,7 @@ public class InputView {
         return scanner.nextInt();
     }
 
-    public static String inputGameResult() {
+    public static String inputGameResultSearch() {
         System.out.println(INPUT_GAME_RESULT_MESSAGE);
         return scanner.nextLine();
     }

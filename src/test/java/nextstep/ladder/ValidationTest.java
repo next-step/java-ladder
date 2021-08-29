@@ -30,6 +30,7 @@ class ValidationTest {
     }
 
     @Test
+    @DisplayName("참여자 이름을 중복 입력하면 예외가 발생한다.")
     void isValidPlayers() {
         assertThatThrownBy(()->Validation.isValidPlayers("pobi, cony , cony  , crong"));
 
