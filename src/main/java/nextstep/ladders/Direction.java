@@ -8,6 +8,9 @@ public class Direction {
     private final boolean right;
 
     private Direction(final boolean left, final boolean right) {
+        if (left && right) {
+            throw new IllegalArgumentException();
+        }
         this.left = left;
         this.right = right;
     }
