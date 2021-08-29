@@ -74,4 +74,32 @@ class PointTest {
         assertThat(rightDirection).isEqualTo(expected);
     }
 
+    @Test
+    @DisplayName("move 테스트 - right")
+    public void moveRight() {
+        // given
+        Point point = new Point(0, Direction.RIGHT);
+        int expected = 1;
+
+        // when
+        int moved = point.move();
+
+        // then
+        assertThat(moved).isEqualTo(expected);
+    }
+
+    @Test
+    @DisplayName("move 테스트 - left")
+    public void moveLeft() {
+        // given
+        Point point = new Point(1, Direction.LEFT);
+        int expected = 0;
+
+        // when
+        int moved = point.move();
+
+        // then
+        assertThat(moved).isEqualTo(expected);
+    }
+
 }

@@ -2,7 +2,7 @@ package nextstep.ladder.domain;
 
 import nextstep.ladder.util.InputUtils;
 
-public class Point {
+public class Point implements Comparable<Point> {
 
     private static final String LESS_THAN_ZERO = "위치 값은 0보다 작을 수 없습니다 -> %d";
     private static final String INVALID_DIRECTION = "0의 위치에서는 LEFT (direction) 값을 가질 수 없습니다";
@@ -19,7 +19,15 @@ public class Point {
     }
 
     public boolean isRightDirection() {
-        return direction.equals(Direction.RIGHT);
+        return isEqualDirection(Direction.RIGHT);
+    }
+
+    public boolean isEqualDirection(Direction direction) {
+        return this.direction.equals(direction);
+    }
+
+    public int move() {
+        return direction.move(position);
     }
 
     private void validatePosition(final int position) {
@@ -39,4 +47,8 @@ public class Point {
         }
     }
 
+    @Override
+    public int compareTo(final Point point) {
+        return this.position - point.position;
+    }
 }
