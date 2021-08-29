@@ -24,6 +24,7 @@ public class ResultOutputView {
         System.out.println(usersOutput(users));
         System.out.println(ladderOutput(ladder));
         System.out.println(ladderResultsOutput(ladderResults));
+        System.out.println();
     }
 
     private String usersOutput(Users users) {

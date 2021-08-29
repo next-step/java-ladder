@@ -1,9 +1,9 @@
 package ladder.domain;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class GameResult {
 
@@ -14,7 +14,28 @@ public class GameResult {
     }
 
     private Map<User, LadderResult> game(Users users, Ladder ladder, LadderResults ladderResults) {
-        return new HashMap<>();
+        Map<User, LadderResult> result = new HashMap<>();
+        users.getAllWithIdx()
+                .forEach(userIdxPair -> {
+                    AtomicInteger idx = new AtomicInteger(userIdxPair.getLeft());
+                    User user = userIdxPair.getRight();
+                    ladder.getLines()
+                            .forEach(line -> {
+                                if (!line.outOfRange(idx.get() - 1)) {
+                                    if (line.isConnected(idx.get() - 1)) {
+                                        idx.addAndGet(-1);
+                                        return;
+                                    }
+                                }
+                                if (!line.outOfRange(idx.get())) {
+                                    if (line.isConnected(idx.get())) {
+                                        idx.addAndGet(1);
+                                    }
+                                }
+                            });
+                    result.put(user, ladderResults.get(idx.get()));
+                });
+        return result;
     }
 
     public static GameResult create(Users users, Ladder ladder, LadderResults ladderResults) {
@@ -26,10 +47,6 @@ public class GameResult {
             throw new IllegalArgumentException("찾을 수 없는 참여자입니다.");
         }
         return result.get(user);
-    }
-
-    public Map<User, LadderResult> getAll() {
-        return Collections.unmodifiableMap(result);
     }
 
     @Override

@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class WidthTest {
 
     @Test
-    public void 가로길이_객체를_생성할_수_있다(){
+    public void 가로길이_객체를_생성할_수_있다() {
         //given
         //when
         Width width = Width.create(3);
@@ -21,7 +21,7 @@ class WidthTest {
 
     @ParameterizedTest
     @ValueSource(ints = {0, -1})
-    public void 가로길이가_1보다_작으면_익셉션이_발생한다(int length){
+    public void 가로길이가_1보다_작으면_익셉션이_발생한다(int length) {
         //given
         //when
         //then

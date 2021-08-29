@@ -11,6 +11,14 @@ public class Pair<L, R> {
         this.right = right;
     }
 
+    protected L getLeft() {
+        return left;
+    }
+
+    protected R getRight() {
+        return right;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

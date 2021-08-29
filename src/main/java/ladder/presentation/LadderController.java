@@ -1,6 +1,7 @@
 package ladder.presentation;
 
 import ladder.domain.*;
+import ladder.presentation.input.AskingUserInputView;
 import ladder.presentation.input.LadderHeightInputView;
 import ladder.presentation.input.LadderResultInputView;
 import ladder.presentation.input.UsersInputView;
@@ -18,11 +19,8 @@ public class LadderController {
 
         Ladder ladder = Ladder.create(width, height);
         outputResult(users, ladder, ladderResults);
-    }
 
-    private void outputResult(Users users, Ladder ladder, LadderResults ladderResults) {
-        ResultOutputView outputView = new ResultOutputView();
-        outputView.output(users, ladder, ladderResults);
+        outputGameResult(GameResult.create(users, ladder, ladderResults));
     }
 
     private String users() {
@@ -37,6 +35,28 @@ public class LadderController {
 
     private int ladderHeight() {
         LadderHeightInputView view = new LadderHeightInputView();
+        return view.input();
+    }
+
+    private void outputResult(Users users, Ladder ladder, LadderResults ladderResults) {
+        ResultOutputView outputView = new ResultOutputView();
+        outputView.output(users, ladder, ladderResults);
+    }
+
+    private void outputGameResult(GameResult gameResult) {
+        while (true) {
+            String user = inputAskingUser();
+            if("all".equals(user)) {
+                break;
+            }
+            LadderResult ladderResult = gameResult.resultOf(User.create(user));
+            System.out.println(ladderResult.getResult());
+            System.out.println();
+        }
+    }
+
+    private String inputAskingUser() {
+        AskingUserInputView view = new AskingUserInputView();
         return view.input();
     }
 }

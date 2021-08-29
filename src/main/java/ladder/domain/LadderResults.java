@@ -41,4 +41,8 @@ public class LadderResults {
                 .map(LadderResult::getResult)
                 .collect(Collectors.toList());
     }
+
+    public LadderResult get(int idx) {
+        return ladderResults.get(idx);
+    }
 }
