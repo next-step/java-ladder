@@ -2,10 +2,11 @@ package nextstep.ladder.utils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class RandomUtils {
 
-    public static final double RATIO_OF_CREATE_POINT = 0.5;
+    private static final Random RANDOM = new Random();
 
     public static List<Boolean> getBooleanList(int countOfPlayer) {
         List<Boolean> booleans = new ArrayList<>();
@@ -19,10 +20,9 @@ public class RandomUtils {
             booleans.add(getBoolean());
         }
         return booleans;
-        // TODO: 2021/08/26 리펙토링 필요
     }
 
     private static Boolean getBoolean() {
-        return Math.random() > RATIO_OF_CREATE_POINT;
+        return RANDOM.nextBoolean();
     }
 }
