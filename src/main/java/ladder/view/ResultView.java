@@ -56,5 +56,13 @@ public class ResultView {
         System.out.println(item.getItem());
     }
 
+    public static void printAllResult(MatchResult matchResult) {
+        System.out.println(EXECUTION_RESULT);
+        Map<User, WinningItem> result = matchResult.getMatchResult();
+        for (User user : result.keySet()) {
+            WinningItem item = result.get(user);
+            System.out.println(user.getName() + " : " + item.getItem());
+        }
+    }
 
 }
