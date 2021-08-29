@@ -33,4 +33,7 @@
 - (false, false) (false, 랜덤값) // (false, true) (true , false)
 - 결과를 보고 싶은 사람이 Players 에 없으면 예외가 발생한다.
 - all 을 입력하면 Players 의 모든 결과를 보여준다.
-- 참여할 사람 이름은 중복 될 수없다.
+- 참여할 사람 이름은 중복 될 수 없다.
+- Point 의 현재 값, 다음 값으로 사다리의 이동 방향을 정한다.
+- (false, true) -> 오른쪽 , (true , false) -> 왼쪽 ,(false, false) -> 패스
+- Line 컬렉션에 있는 Point 객체의 (현재 값 , 다음 값) 으로 확인 한다.
