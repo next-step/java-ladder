@@ -1,7 +1,7 @@
 package step2.model;
 
 public class User {
-    private String name;
+    private final String name;
 
     private static final int MAX_NAME_LENGTH = 5;
 

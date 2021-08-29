@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class Line {
-    private List<Boolean> points;
+    private final List<Boolean> points;
 
     public Line(int numberOfUser, LadderStrategy ladderStrategy) {
         points = new ArrayList<>();
