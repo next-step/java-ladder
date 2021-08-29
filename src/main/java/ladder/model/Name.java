@@ -23,4 +23,8 @@ public class Name {
             throw new IllegalArgumentException(NAME_MAX_LENGTH_MSG);
         }
     }
+
+    public String getName() {
+        return name;
+    }
 }

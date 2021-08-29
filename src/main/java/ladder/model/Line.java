@@ -37,4 +37,8 @@ public class Line {
         }
         return now;
     }
+
+    public List<Boolean> getSteps() {
+        return steps;
+    }
 }
