@@ -13,7 +13,7 @@ class LadderTest {
     @DisplayName("getLadderBarStatus 테스트")
     public void getLadderBarStatus() {
         // given
-        Ladder ladder = new Ladder(new Players("a,b,c"), new Height("3"));
+        Ladder ladder = new Ladder(new Players("a,b,c"), new Height(3));
         int expectedHeight = 3;
         int expectedWidth = 2;
 

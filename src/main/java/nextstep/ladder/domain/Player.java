@@ -1,18 +1,17 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.dto.PlayerDto;
-import nextstep.ladder.util.InputUtils;
+import java.util.Objects;
 
 public class Player {
 
-    private static final String VALID_LENGTH = "플레이어 이름은 공백을 제외한 1~5글자 여야 합니다 -> %s";
+    private static final String VALID_LENGTH = "입력값은 공백을 제외한 %s~%s글자 여야 합니다 -> %s";
     private static final int MIN_LENGTH = 1;
-    private static final int MAX_LENGTH = 5;
+    public static final int MAX_LENGTH = 5;
 
     private final String name;
 
     public Player(final String name) {
-        validateName(name);
+        requireValidLength(name);
         this.name = name;
     }
 

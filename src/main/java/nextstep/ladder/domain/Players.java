@@ -1,7 +1,6 @@
 package nextstep.ladder.domain;
 
 import nextstep.ladder.dto.PlayersDto;
-import nextstep.ladder.util.InputUtils;
 
 import java.util.Arrays;
 import java.util.List;
@@ -17,7 +16,6 @@ public class Players {
     private final List<Player> players;
 
     public Players(final String names) {
-        InputUtils.requireNonNull(names);
         players = Arrays.stream(names.split(DELIMITER))
                 .map(Player::new)
                 .collect(toList());

@@ -1,8 +1,5 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.util.InputUtils;
-import nextstep.ladder.util.NumberUtils;
-
 import java.util.stream.IntStream;
 
 public class Height {
@@ -14,13 +11,6 @@ public class Height {
     public Height(final int height) {
         requireOverZero(height);
         this.height = height;
-    }
-
-    public Height(final String height) {
-        InputUtils.requireNonNull(height);
-        NumberUtils.requireNumber(height);
-        requireOverZero(Integer.parseInt(height));
-        this.height = Integer.parseInt(height);
     }
 
     public int getHeight() {
