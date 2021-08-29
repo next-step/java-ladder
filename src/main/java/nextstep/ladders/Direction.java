@@ -23,6 +23,10 @@ public class Direction {
         return new Direction(false, next);
     }
 
+    public static Direction last(boolean next) {
+        return new Direction(next, false);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

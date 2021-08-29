@@ -25,4 +25,10 @@ public class DirectionTest {
         assertEquals(Direction.first(true), Direction.of(false, true));
         assertEquals(Direction.first(false), Direction.of(false, false));
     }
+
+    @Test
+    void 마지막은_무조건_false() {
+        assertEquals(Direction.last(true), Direction.of(true, false));
+        assertEquals(Direction.last(false), Direction.of(false, false));
+    }
 }
