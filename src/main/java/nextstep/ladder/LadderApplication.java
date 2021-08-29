@@ -17,6 +17,6 @@ public class LadderApplication {
         Ladder ladder = new Ladder(players.size(), ladderHeight);
         ResultView.printLadderGame(players, ladder);
         String searchPlayer  = InputView.inputGameResultSearch();
-
+        Validation.isContainPlayer(searchPlayer , players);
     }
 }

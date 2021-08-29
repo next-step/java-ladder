@@ -10,6 +10,10 @@ public class Name {
 
     public Name(String name) {
         Validation.isEmptyAndNull(name);
+        if (name.equals("all")) {
+            throw new Il
+        }
+
         if (name.trim().length() > NAME_MAX_LENGTH) {
             throw new IllegalArgumentException("이름은 최대 5글자만 허용 합니다.");
         }

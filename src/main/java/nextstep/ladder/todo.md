@@ -30,10 +30,11 @@
 - 현재 Point 값이 false 이면 다음 Point 값은 랜덤 값을 넣는다.
 - 현재 Point 값은 이전 Point 값의 다음 값을 넣는다. 
 - 현재 Point 값 == 이전 Point의 다음 값
-- (false, false) (false, 랜덤값) // (false, true) (true , false)
+- (false, false) 이면 (false, 랜덤값) & (false, true) 이면 (true , false)
 - 결과를 보고 싶은 사람이 Players 에 없으면 예외가 발생한다.
 - all 을 입력하면 Players 의 모든 결과를 보여준다.
 - 참여할 사람 이름은 중복 될 수 없다.
 - Point 의 현재 값, 다음 값으로 사다리의 이동 방향을 정한다.
 - (false, true) -> 오른쪽 , (true , false) -> 왼쪽 ,(false, false) -> 패스
 - Line 컬렉션에 있는 Point 객체의 (현재 값 , 다음 값) 으로 확인 한다.
+- 참여할 사람 이름에 all 이라는 이름을 입력할 수 없다. 

@@ -1,4 +1,5 @@
 package nextstep.ladder.domain;
+
 import nextstep.ladder.util.Validation;
 
 import java.util.Arrays;
@@ -31,6 +32,9 @@ public class Players {
 
     public int indexOf(String player) {
         return players.indexOf(new Name(player));
+    }
+    public boolean isContain(String player) {
+        return players.contains(new Name(player));
     }
 
     public int size() {
