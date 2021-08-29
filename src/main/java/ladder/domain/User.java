@@ -2,6 +2,8 @@ package ladder.domain;
 
 import ladder.exception.UserNameLengthException;
 
+import java.util.Objects;
+
 public class User {
     private final String name;
     private static final int MAX_NAME_LENGTH = 5;
@@ -10,6 +12,10 @@ public class User {
     public User(String name) {
         validateName(name);
         this.name = name;
+    }
+
+    public static User valueOf(String name) {
+        return new User(name);
     }
 
     private void validateName(String name) {
