@@ -32,7 +32,7 @@ public class Line {
         if (steps.get(now)) {
             return now - 1;
         }
-        if (steps.get(now + 1)) {
+        if (now + 1 < steps.size() && steps.get(now + 1)) {
             return now + 1;
         }
         return now;
