@@ -12,13 +12,21 @@ public class Ladders {
     }
 
     public static Ladders initLadders(LadderWidth ladderWidth, LadderHeight ladderHeight, DirectionMakingStrategy directionMakingStrategy) {
-        List<Line> lines = IntStream.range(0, ladderHeight.getValue())
+        return IntStream.range(0, ladderHeight.getValue())
                 .mapToObj(index -> Line.initLine(ladderWidth, directionMakingStrategy))
-                .collect(Collectors.toList());
-        return new Ladders(lines);
+                .collect(Collectors.collectingAndThen(Collectors.toList(), Ladders::new));
     }
 
     public List<Line> getLines() {
         return lines;
+    }
+
+    public LadderWidth getLadderWidth() {
+        Line firstLine = lines.get(0);
+        return firstLine.getLadderWidth();
+    }
+
+    public LadderHeight getLadderHeight() {
+        return new LadderHeight(lines.size());
     }
 }
