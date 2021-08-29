@@ -1,16 +1,16 @@
 package nextstep.ladder;
 
-import nextstep.ladder.domain.Board;
-import nextstep.ladder.domain.BoardConsumer;
-import nextstep.ladder.domain.Player;
-import nextstep.ladder.domain.line.Line;
-import nextstep.ladder.domain.line.LineCreator;
-import nextstep.ladder.domain.winningPrize.WinningPrize;
+import nextstep.ladder.domain.impl.BoardConsumer;
+import nextstep.ladder.domain.impl.Player;
+import nextstep.ladder.domain.engine.Board;
+import nextstep.ladder.domain.engine.BoardCreator;
+import nextstep.ladder.domain.engine.PlayResult;
+import nextstep.ladder.domain.factory.LadderFactoryBean;
+import nextstep.ladder.domain.impl.WinningPrize;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
 import java.util.List;
-import java.util.Map;
 
 public class Main {
 
@@ -27,12 +27,12 @@ public class Main {
         ResultView.requestLadderHeight();
         int ladderHeight = InputView.inputLadderHeight();
 
-        List<Line> lines = LineCreator.createLineList(players.size(), ladderHeight);
-        Board board = Board.from(lines);
+        BoardCreator ladderFactory = LadderFactoryBean.createLadderFactory();
+        Board board = ladderFactory.create(players.size(), ladderHeight);
 
         ResultView.printLadderShape(boardConsumer, board);
 
-        Map<Integer, Integer> playResult = board.play();
+        PlayResult playResult = board.play();
 
         while (true) {
             ResultView.requestPlayerNameForResult();
