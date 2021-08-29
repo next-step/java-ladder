@@ -3,10 +3,12 @@ package ladder.domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SuppressWarnings("NonAsciiCharacters")
 public class GameResultTest {
@@ -46,6 +48,17 @@ public class GameResultTest {
                 .hasMessageContaining("찾을 수 없는 참여자입니다.");
     }
 
+    @Test
+    public void 모든_참여자에_대한_결과를_얻을_수_있다(){
+        //given
+        GameResult gameResult = GameResult.create(users, Ladder.create(getLines()), ladderResults);
+        //when
+        Map<User, LadderResult> result = gameResult.getAll();
+        //then
+        assertThat(result.keySet()).isEqualTo(getExpectHashMap().keySet());
+        assertThat(result.values()).containsAll(getExpectHashMap().values());
+    }
+
     private Line[] getLines() {
         /*
             |-----|     |-----|
@@ -57,6 +70,15 @@ public class GameResultTest {
                 Line.create(false, true, false),
                 Line.create(true, false, false)
         };
+    }
+
+    private Map<User, LadderResult> getExpectHashMap() {
+        Map<User, LadderResult> map = new HashMap<>();
+        map.put(User.create("crong"), LadderResult.create("꽝"));
+        map.put(User.create("jk"), LadderResult.create("꽝"));
+        map.put(User.create("pobi"), LadderResult.create("꽝"));
+        map.put(User.create("honux"), LadderResult.create("5000"));
+        return map;
     }
 
 }

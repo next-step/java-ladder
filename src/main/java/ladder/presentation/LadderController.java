@@ -5,6 +5,7 @@ import ladder.presentation.input.AskingUserInputView;
 import ladder.presentation.input.LadderHeightInputView;
 import ladder.presentation.input.LadderResultInputView;
 import ladder.presentation.input.UsersInputView;
+import ladder.presentation.output.GameResultOutputView;
 import ladder.presentation.output.ResultOutputView;
 
 public class LadderController {
@@ -44,19 +45,21 @@ public class LadderController {
     }
 
     private void outputGameResult(GameResult gameResult) {
+        GameResultOutputView view = new GameResultOutputView();
         while (true) {
             String user = inputAskingUser();
-            if("all".equals(user)) {
+            if ("all".equals(user)) {
+                view.outputAll(gameResult);
                 break;
             }
-            LadderResult ladderResult = gameResult.resultOf(User.create(user));
-            System.out.println(ladderResult.getResult());
-            System.out.println();
+            view.outputUser(user, gameResult);
         }
     }
 
     private String inputAskingUser() {
         AskingUserInputView view = new AskingUserInputView();
-        return view.input();
+        String user = view.input();
+        System.out.println();
+        return user;
     }
 }

@@ -48,8 +48,8 @@ public class LadderResult {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        LadderResult ladderResult1 = (LadderResult) o;
-        return Objects.equals(result, ladderResult1.result);
+        LadderResult that = (LadderResult) o;
+        return Objects.equals(result, that.result);
     }
 
     @Override

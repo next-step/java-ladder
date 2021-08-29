@@ -1,6 +1,7 @@
 package ladder.domain;
 
-import java.util.HashMap;
+import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -14,7 +15,7 @@ public class GameResult {
     }
 
     private Map<User, LadderResult> game(Users users, Ladder ladder, LadderResults ladderResults) {
-        Map<User, LadderResult> result = new HashMap<>();
+        Map<User, LadderResult> result = new LinkedHashMap<>();
         users.getAllWithIdx()
                 .forEach(userIdxPair -> {
                     AtomicInteger idx = new AtomicInteger(userIdxPair.getLeft());
@@ -60,5 +61,9 @@ public class GameResult {
     @Override
     public int hashCode() {
         return Objects.hash(result);
+    }
+
+    public Map<User, LadderResult> getAll() {
+        return Collections.unmodifiableMap(result);
     }
 }
