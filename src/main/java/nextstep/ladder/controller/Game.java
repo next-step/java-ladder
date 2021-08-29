@@ -3,6 +3,7 @@ package nextstep.ladder.controller;
 import nextstep.ladder.domain.ladder.Ladders;
 import nextstep.ladder.domain.ladder.factory.LaddersFactory;
 import nextstep.ladder.domain.ladder.line.strategy.HorizontalLinesGenerateRandomStrategy;
+import nextstep.ladder.domain.ladder.line.strategy.HorizontalLinesGenerateSequentialStrategy;
 import nextstep.ladder.domain.participant.Participant;
 import nextstep.ladder.domain.participant.Participants;
 import nextstep.ladder.view.InputView;
@@ -26,19 +27,18 @@ public class Game {
 
         int ladderHeight = inputView.receiveLadderHeight();
         int ladderCount = participants.size() - 1;
-        int horizontalLineCount = ladderHeight - 1;
 
-        Ladders ladders = getLadders(ladderHeight, ladderCount, horizontalLineCount);
+        Ladders ladders = getLadders(ladderHeight, ladderCount);
 
-        outputView.printResult(participants, ladders);
+        outputView.printParticipantsAndLadders(participants, ladders);
     }
 
-    private Ladders getLadders(int height, int ladderCount, int horizontalLineCount) {
+    private Ladders getLadders(int height, int ladderCount) {
         return LaddersFactory.generateWith(height, ladderCount,
-                new HorizontalLinesGenerateRandomStrategy(horizontalLineCount, height));
+                new HorizontalLinesGenerateRandomStrategy(height));
     }
 
-    private static Participants getParticipants(InputView inputView) {
+    private Participants getParticipants(InputView inputView) {
         List<String> userNames = inputView.receiveUserNames();
 
         return new Participants(userNames.stream()

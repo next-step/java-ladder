@@ -31,6 +31,6 @@ public class Ladder {
     }
 
     public int getHeight() {
-        return this.height;
+        return height;
     }
 }

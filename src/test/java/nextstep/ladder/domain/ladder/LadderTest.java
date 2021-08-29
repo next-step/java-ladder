@@ -3,26 +3,24 @@ package nextstep.ladder.domain.ladder;
 import nextstep.ladder.domain.ladder.factory.LadderFactory;
 import nextstep.ladder.domain.ladder.line.HorizontalLine;
 import nextstep.ladder.domain.ladder.line.HorizontalLines;
-import nextstep.ladder.domain.ladder.line.strategy.HorizontalLinesGenerateRandomStrategy;
 import nextstep.ladder.domain.ladder.line.strategy.HorizontalLinesGenerateSequentialStrategy;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class LadderTest {
 
+    private static final int HEIGHT = 5;
     private Ladder prevLadder;
     private Ladder ladder;
 
     @BeforeEach
     void setUp() {
-        prevLadder = LadderFactory.generateWith(5, new HorizontalLinesGenerateSequentialStrategy(2));
-        ladder = LadderFactory.generateWith(5, new HorizontalLinesGenerateSequentialStrategy(3));
+        prevLadder = LadderFactory.generateWith(HEIGHT, new HorizontalLinesGenerateSequentialStrategy());
+        ladder = LadderFactory.generateWith(HEIGHT, new HorizontalLinesGenerateSequentialStrategy());
     }
 
 

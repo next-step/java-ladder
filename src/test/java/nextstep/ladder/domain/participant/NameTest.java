@@ -2,10 +2,10 @@ package nextstep.ladder.domain.participant;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 class NameTest {
 
@@ -17,10 +17,22 @@ class NameTest {
     }
 
     @ParameterizedTest
+    @DisplayName("이름은 빈 문자열이나 null일 수 없다")
+    @NullAndEmptySource
+    void validEmptyTest(String value) {
+        assertThrows(IllegalStateException.class, () -> new Name(value));
+    }
+
+    @ParameterizedTest
     @DisplayName("이름은 5글자를 넘을 수 없다")
     @ValueSource(strings = {"aaaaaa", "aaaaaaa"})
     void invalidLengthTest(String value) {
-        assertThrows(IllegalStateException.class, () -> new Name(value));
+
+        assertThrows(IllegalStateException.class, () -> {
+            Name name = new Name(value);
+            assertEquals(name.getValue(), value);
+        });
+
     }
 
 }

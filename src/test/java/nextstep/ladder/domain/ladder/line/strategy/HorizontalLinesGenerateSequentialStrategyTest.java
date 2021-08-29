@@ -15,13 +15,13 @@ class HorizontalLinesGenerateSequentialStrategyTest {
 
     @BeforeEach
     void setUp() {
-        strategy = new HorizontalLinesGenerateSequentialStrategy(5);
+        strategy = new HorizontalLinesGenerateSequentialStrategy();
     }
 
     @Test
     @DisplayName("generate 테스트")
     void generateTest() {
-        HorizontalLines horizontalLines = strategy.generate();
+        HorizontalLines horizontalLines = strategy.generate(5);
 
         assertTrue(horizontalLines.findByIndex(0).isPresent());
         assertTrue(horizontalLines.findByIndex(1).isPresent());

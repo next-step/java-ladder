@@ -8,16 +8,13 @@ import java.util.List;
 
 public class HorizontalLinesGenerateSequentialStrategy implements HorizontalLinesGenerateStrategy {
 
-    private final int count;
 
-    public HorizontalLinesGenerateSequentialStrategy(int count) {
-        this.count = count;
-    }
+    public HorizontalLinesGenerateSequentialStrategy() {}
 
     @Override
-    public HorizontalLines generate() {
+    public HorizontalLines generate(int size) {
         List<HorizontalLine> horizontalLines = new ArrayList<>();
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < size; i++) {
             HorizontalLine horizontalLine = new HorizontalLine(i);
             horizontalLines.add(horizontalLine);
         }

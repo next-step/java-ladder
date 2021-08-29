@@ -13,13 +13,13 @@ class HorizontalLinesGenerateRandomStrategyTest {
 
     @BeforeEach
     void setUp() {
-        strategy = new HorizontalLinesGenerateRandomStrategy(4, 5);
+        strategy = new HorizontalLinesGenerateRandomStrategy(5);
     }
 
     @Test
     @DisplayName("generate 테스트")
     void generateTest() {
-        HorizontalLines horizontalLines = strategy.generate();
+        HorizontalLines horizontalLines = strategy.generate(5);
         assertThat(horizontalLines.size()).isGreaterThan(0);
     }
 

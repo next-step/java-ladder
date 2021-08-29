@@ -9,6 +9,8 @@ import java.util.List;
 
 public class LaddersFactory {
 
+    private LaddersFactory(){}
+
     public static Ladders generateWith(int height, int count, HorizontalLinesGenerateStrategy strategy) {
         List<Ladder> ladders = new ArrayList<>();
 
