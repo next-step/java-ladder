@@ -1,8 +1,6 @@
 package nextstep.ladder.domain;
 
 import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -26,7 +24,7 @@ class PlayerTest {
                 .hasMessage(message);
     }
 
-    @ParameterizedTest(name = "플레이어 생성 - 플레이어 이름이 1~5글자인 경우 | {arguments}")
+    @ParameterizedTest(name = "플레이어 생성 - 1~5글자인 경우 | {arguments}")
     @ValueSource(strings = {"a", "abcde"})
     public void createPlayer(String name) {
         // given

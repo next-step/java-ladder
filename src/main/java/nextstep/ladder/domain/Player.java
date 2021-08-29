@@ -21,8 +21,21 @@ public class Player {
 
     private void requireValidLength(final String name) {
         if (name.length() < MIN_LENGTH || name.length() > MAX_LENGTH) {
-            throw new IllegalArgumentException(String.format(VALID_LENGTH, name));
+            throw new IllegalArgumentException(String.format(VALID_LENGTH, MIN_LENGTH, MAX_LENGTH, name));
         }
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        final Player player = (Player) o;
+        return Objects.equals(getName(), player.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName());
     }
 
     @Override
