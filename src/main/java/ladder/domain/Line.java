@@ -25,4 +25,8 @@ public class Line {
     public List<Direction> getDirections() {
         return directions;
     }
+
+    public LadderWidth getLadderWidth() {
+        return new LadderWidth(directions.size());
+    }
 }
