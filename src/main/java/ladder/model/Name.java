@@ -4,6 +4,8 @@ public class Name {
 
     private static final int MAX_LENGTH = 5;
     private static final int MIN_LENGTH = 1;
+    public static final String NAME_MIN_LENGTH_MSG = "이름은 최소 1글자입니다.";
+    public static final String NAME_MAX_LENGTH_MSG = "이름은 최대 5글자입니다.";
 
     private String name;
 
@@ -14,11 +16,11 @@ public class Name {
 
     private void validateName(String name) {
         if (name == null || name.length() < MIN_LENGTH) {
-            throw new IllegalArgumentException("이름은 최소 1글자입니다.");
+            throw new IllegalArgumentException(NAME_MIN_LENGTH_MSG);
         }
 
         if (name.length() > MAX_LENGTH) {
-            throw new IllegalArgumentException("이름은 최대 5글자입니다.");
+            throw new IllegalArgumentException(NAME_MAX_LENGTH_MSG);
         }
     }
 }
