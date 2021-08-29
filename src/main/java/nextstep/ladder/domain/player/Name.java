@@ -31,8 +31,8 @@ public class Name {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Name name = (Name) o;
-        return Objects.equals(this.name, name.name);
+        Name name1 = (Name) o;
+        return Objects.equals(name, name1.name);
     }
 
     @Override
