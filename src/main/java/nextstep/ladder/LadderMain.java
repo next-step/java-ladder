@@ -13,26 +13,29 @@ public class LadderMain {
     public static final String ALL_RESULT = "all";
 
     public static void main(String[] args) {
-        Players persons = InputView.inputPersons();
+        Players players = InputView.inputNames();
         LadderHeight ladderHeight = InputView.inputHeightOfLadder();
         Rewords rewords = InputView.inputResult();
 
-        Ladder ladder = Ladder.of(persons, ladderHeight);
+        Ladder ladder = Ladder.of(players, ladderHeight);
 
-        ResultView.show(ladder.lines(), ladder.players());
+        ResultView.show(ladder.lines(), players);
 
         LadderResult ladderResult = LadderResult.of(ladder, rewords);
 
-        while (true) {
-            String name = InputView.inputWantPerson();
+        String name;
+        do {
+            name = InputView.inputNameOfPlayer();
+            askResult(players, ladderResult, name);
+        } while (!name.equals(ALL_RESULT));
+    }
 
-            if (name.equals(ALL_RESULT)) {
-                ResultView.results(ladderResult, persons);
-                break;
-            }
-
-            ResultView.result(ladderResult, name);
+    private static void askResult(Players players, LadderResult ladderResult, String name) {
+        if (name.equals(ALL_RESULT)) {
+            ResultView.results(ladderResult, players);
+            return;
         }
 
+        ResultView.result(ladderResult, players.findIndexByName(name));
     }
 }
