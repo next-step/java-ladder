@@ -27,12 +27,14 @@ public class Line {
         }
     }
 
-    public boolean canGoRight(Position position) {
-        return position.currentPosition() + 1 <= size() && hasPoint(position);
-    }
+    public Position move(Position position) {
+        if (position.canGoRight(size()) && hasPoint(position)) {
+            position = position.toRight();
+        } else if (position.canGoLeft() && hasPoint(position)) {
+            position = position.toLeft();
+        }
 
-    public boolean canGoLeft(Position position) {
-        return position.currentPosition() - 1 >= 0 && hasPoint(position.toLeft());
+        return position;
     }
 
     public boolean hasPoint(Position position) {

@@ -20,6 +20,14 @@ public class Position implements Comparable<Position> {
         return new Position(position);
     }
 
+    public boolean canGoRight(int maxSize) {
+        return position + 1 <= maxSize;
+    }
+
+    public boolean canGoLeft() {
+        return position - 1 > MIN_POSITION;
+    }
+
     public Position toLeft() {
         return from(position - 1);
     }

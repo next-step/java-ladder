@@ -7,11 +7,9 @@ import java.util.List;
 public class Ladder {
 
     private final List<Line> lines;
-    private final Players players;
 
-    private Ladder(List<Line> lines, Players players) {
+    private Ladder(List<Line> lines) {
         this.lines = lines;
-        this.players = players;
     }
 
     public static Ladder of(Players players, LadderHeight heightOfLadder) {
@@ -22,34 +20,22 @@ public class Ladder {
             lines.add(Line.from(points));
         }
 
-        return new Ladder(lines, players);
+        return new Ladder(lines);
     }
 
-    public static Ladder of(Line lines, Players players) {
-        return new Ladder(Collections.singletonList(lines), players);
+    public static Ladder of(Line lines) {
+        return new Ladder(Collections.singletonList(lines));
     }
 
     public List<Line> lines() {
         return lines;
     }
 
-    public Players players() {
-        return players;
-    }
-
-    public void movePlayer(Player player) {
+    public Position movePosition(Position position) {
         for (Line line : lines()) {
-            Position position = player.position();
-            if (line.canGoRight(position)) {
-                player.move(position.toRight());
-            } else if (line.canGoLeft(position)) {
-                player.move(position.toLeft());
-            }
+            position = line.move(position);
         }
-    }
 
-    public Player findPlayerByName(String name) {
-        return players.findIndexByName(name);
+        return position;
     }
-
 }
