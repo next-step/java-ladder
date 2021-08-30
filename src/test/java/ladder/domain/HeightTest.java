@@ -7,10 +7,11 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+@SuppressWarnings("NonAsciiCharacters")
 class HeightTest {
 
     @Test
-    public void 세로길이_객체를_생성할_수_있다(){
+    public void 세로길이_객체를_생성할_수_있다() {
         //given
         //when
         Height height = Height.create(3);
@@ -20,7 +21,7 @@ class HeightTest {
 
     @ParameterizedTest
     @ValueSource(ints = {0, -1})
-    public void 세로길이가_1보다_작으면_익셉션이_발생한다(int length){
+    public void 세로길이가_1보다_작으면_익셉션이_발생한다(int length) {
         //given
         //when
         //then

@@ -1,33 +1,33 @@
 package ladder.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Ladder {
 
-    private final Width width;
-
-    private final Height height;
-
     private final List<Line> lines;
 
     private Ladder(Width width, Height height) {
-        this.width = width;
-        this.height = height;
-        this.lines = initLines(width, height);
+        this.lines = lines(width, height);
+    }
+
+    private Ladder(List<Line> lines) {
+        this.lines = lines;
     }
 
     public static Ladder create(Width width, Height height) {
         return new Ladder(width, height);
     }
 
-    public List<Line> getLines() {
-        return lines;
+    public static Ladder create(Line... lines) {
+        return new Ladder(Arrays.asList(lines));
     }
 
-    private List<Line> initLines(Width width, Height height) {
+    public List<Line> getLines() {
+        return Collections.unmodifiableList(lines);
+    }
+
+    private List<Line> lines(Width width, Height height) {
         final List<Line> lines = new ArrayList<>(height.getLength());
         for (int i = 0; i < height.getLength(); i++) {
             lines.add(Line.createWithWidth(width));
@@ -78,16 +78,20 @@ public class Ladder {
         return Math.random() < 0.5;
     }
 
+    public int getHeight() {
+        return this.lines.size();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Ladder ladder = (Ladder) o;
-        return Objects.equals(width, ladder.width) && Objects.equals(height, ladder.height) && Objects.equals(lines, ladder.lines);
+        return Objects.equals(lines, ladder.lines);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(width, height, lines);
+        return Objects.hash(lines);
     }
 }

@@ -1,12 +1,12 @@
 package ladder.domain;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Users {
+
+    private static final String SEPARATOR = ",";
 
     private final List<User> users;
 
@@ -15,11 +15,9 @@ public class Users {
     }
 
     public static Users create(String users) {
-        return new Users(
-                Arrays.stream(users.split(","))
-                        .map(User::createWithName)
-                        .collect(Collectors.toList())
-        );
+        return Arrays.stream(users.split(SEPARATOR))
+                .map(User::create)
+                .collect(Collectors.collectingAndThen(Collectors.toList(), Users::new));
     }
 
     public static Users create(User... users) {
@@ -28,6 +26,21 @@ public class Users {
 
     public int size() {
         return users.size();
+    }
+
+    public List<String> allNames() {
+        return Collections.unmodifiableList(users)
+                .stream()
+                .map(User::getName)
+                .collect(Collectors.toList());
+    }
+
+    public List<UserLocation> getAllWithLocation() {
+        return Collections.unmodifiableList(
+                IntStream.range(0, users.size())
+                        .mapToObj(pos -> UserLocation.create(users.get(pos), Location.at(pos)))
+                        .collect(Collectors.toList())
+        );
     }
 
     @Override
@@ -41,11 +54,5 @@ public class Users {
     @Override
     public int hashCode() {
         return Objects.hash(users);
-    }
-
-    public List<String> getAllNames() {
-        return users.stream()
-                .map(User::getName)
-                .collect(Collectors.toList());
     }
 }

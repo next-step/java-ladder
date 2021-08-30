@@ -7,6 +7,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+@SuppressWarnings("NonAsciiCharacters")
 public class UsersTest {
 
     @Test
@@ -17,16 +18,16 @@ public class UsersTest {
         //then
         assertThat(users).isEqualTo(
                 Users.create(
-                        User.createWithName("pobi"),
-                        User.createWithName("honux"),
-                        User.createWithName("crong"),
-                        User.createWithName("jk")
+                        User.create("pobi"),
+                        User.create("honux"),
+                        User.create("crong"),
+                        User.create("jk")
                 )
         );
     }
 
     @Test
-    public void 참여하는_사용자들_중_이름이_5자를_넘으면_익셉션이_발생한다(){
+    public void 참여하는_사용자들_중_이름이_5자를_넘으면_익셉션이_발생한다() {
         //given
         //when
         //then
@@ -36,7 +37,7 @@ public class UsersTest {
     }
 
     @Test
-    public void 사용자들이_몇명인지_알_수_있다(){
+    public void 사용자들이_몇명인지_알_수_있다() {
         //given
         //when
         Users users = Users.create("pobi,honux,crong");
@@ -45,12 +46,39 @@ public class UsersTest {
     }
 
     @Test
-    public void 사용자들의_이름을_모두_가져올_수_있다(){
+    public void 사용자들의_이름을_모두_가져올_수_있다() {
         //given
         Users users = Users.create("pobi,honux,crong,jk");
         //when
-        List<String> names = users.getAllNames();
+        List<String> names = users.allNames();
         //then
         assertThat(names).containsExactly("pobi", "honux", "crong", "jk");
+    }
+
+    @Test
+    public void 사용자_모두를_가져올_수_있다() {
+        //given
+        //when
+        Users users = Users.create("pobi,honux,crong,jk");
+        //then
+        assertThat(users.getAllWithLocation())
+                .containsExactly(
+                        UserLocation.create(User.create("pobi"), Location.at(0)),
+                        UserLocation.create(User.create("honux"), Location.at(1)),
+                        UserLocation.create(User.create("crong"), Location.at(2)),
+                        UserLocation.create(User.create("jk"), Location.at(3))
+                );
+    }
+
+    @Test
+    public void 사용자를_모두_가져와서_리스트를_바꾸면_익셉션이_발생한다() {
+        //given
+        //when
+        //then
+        assertThatThrownBy(() ->
+                Users.create("pobi,honux,crong,jk")
+                        .getAllWithLocation()
+                        .add(UserLocation.create(User.create("aa"), Location.at(4)))
+        ).isInstanceOf(UnsupportedOperationException.class);
     }
 }

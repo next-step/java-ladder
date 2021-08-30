@@ -1,4 +1,6 @@
-package ladder.presentation;
+package ladder;
+
+import ladder.presentation.LadderController;
 
 public class Main {
 

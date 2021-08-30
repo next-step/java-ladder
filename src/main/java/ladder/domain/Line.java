@@ -30,7 +30,18 @@ public class Line {
     }
 
     public List<Boolean> getPoints() {
-        return points;
+        return Collections.unmodifiableList(points);
+    }
+
+    public boolean isConnected(int idx) {
+        if (outOfRange(idx)) {
+            throw new IndexOutOfBoundsException("사다리의 너비의 범위를 벗어났습니다.");
+        }
+        return points.get(idx);
+    }
+
+    public boolean outOfRange(int idx) {
+        return width.outOfRange(idx);
     }
 
     @Override
@@ -45,4 +56,5 @@ public class Line {
     public int hashCode() {
         return Objects.hash(width, points);
     }
+
 }
