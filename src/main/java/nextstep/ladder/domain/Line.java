@@ -62,14 +62,12 @@ public class Line {
     }
 
     private void validatePoints(final List<Point> points) {
-        boolean isValidPoints = IntStream.range(0, points.size() - 1)
+        IntStream.range(0, points.size() - 1)
                 .filter(i -> !isValidPointDirection(points.get(i), points.get(i + 1)))
                 .findAny()
-                .isPresent();
-        if (isValidPoints) {
-            throw new IllegalArgumentException(INVALID_POINT);
-        }
-
+                .ifPresent(point -> {
+                    throw new IllegalArgumentException(INVALID_POINT);
+                });
     }
 
     private boolean isValidPointDirection(final Point current, final Point next) {
