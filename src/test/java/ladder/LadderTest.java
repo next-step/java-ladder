@@ -15,6 +15,7 @@ import ladder.domain.Ladder;
 import ladder.domain.LadderLine;
 import ladder.domain.Point;
 import ladder.exception.LadderHeightException;
+import ladder.strategy.NoMovableStrategy;
 
 class LadderTest {
     @DisplayName("참여할_사람의_인원_수와_사다리_높이가_주어지면_사다리_높이만큼의_Line객체를_가진_Ladder가_생성된다")
@@ -22,7 +23,7 @@ class LadderTest {
     void newLadderTest() {
         int countOfPerson = 4;
         int height = 5;
-        Ladder ladder = Ladder.from(countOfPerson, height);
+        Ladder ladder = Ladder.from(countOfPerson, height, new NoMovableStrategy());
 
         assertThat(ladder).isInstanceOf(Ladder.class);
         assertThat(ladder.toList().size()).isEqualTo(height);
@@ -33,7 +34,7 @@ class LadderTest {
     void exceptionTest() {
         int countOfPerson = 4;
         int height = 0;
-        assertThatThrownBy(() -> Ladder.from(countOfPerson, height)).isInstanceOf(LadderHeightException.class);
+        assertThatThrownBy(() -> Ladder.from(countOfPerson, height, new NoMovableStrategy())).isInstanceOf(LadderHeightException.class);
     }
 
     @DisplayName("사다리와 시작인덱스가 주어진다면, 결과인덱스값을 알 수 있다")
@@ -55,12 +56,12 @@ class LadderTest {
     @Test
     public void init() {
         int sizeOfPerson = 5;
-        System.out.println(LadderLine.init(sizeOfPerson));
+        System.out.println(LadderLine.init(sizeOfPerson, new NoMovableStrategy()));
     }
 
     @Test
     public void move() {
-        LadderLine line = LadderLine.init(2);
+        LadderLine line = LadderLine.init(2,  new NoMovableStrategy());
         System.out.println("ladder result : " + line.move(0));
     }
 }

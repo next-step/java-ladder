@@ -7,6 +7,7 @@ import ladder.domain.Index;
 import ladder.domain.Ladder;
 import ladder.domain.Names;
 import ladder.domain.Results;
+import ladder.strategy.RandomlyMovableStrategy;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
@@ -16,7 +17,7 @@ public class LadderGameController {
         ResultView resultView = new ResultView();
         List<String> names = Names.from(inputView.inputParticipantsName()).toStringList();
         List<String> results = Results.of(inputView.inputExecutionResult(), names.size()).toStringList();
-        Ladder ladder = Ladder.from(names.size(), inputView.inputMaximumHeight());
+        Ladder ladder = Ladder.from(names.size(), inputView.inputMaximumHeight(), new RandomlyMovableStrategy());
         ExecutionResults executionResults = ExecutionResults.of(names, results);
 
         resultView.outputLadder(executionResults, ladder.toList());

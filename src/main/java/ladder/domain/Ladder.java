@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import ladder.exception.LadderHeightException;
+import ladder.strategy.MovableStrategy;
 
 public class Ladder {
     private static final int LADDER_MIN_HEIGHT = 2;
@@ -16,10 +17,10 @@ public class Ladder {
         this.ladder = ladder;
     }
 
-    private Ladder(int countOfPerson, int height) {
+    private Ladder(int countOfPerson, int height, MovableStrategy movableStrategy) {
         validate(height);
         ladder = Collections.unmodifiableList(
-            Stream.generate(() -> LadderLine.init(countOfPerson))
+            Stream.generate(() -> LadderLine.init(countOfPerson, movableStrategy))
                 .limit(height)
                 .collect(Collectors.toList())
         );
@@ -29,8 +30,8 @@ public class Ladder {
         return new Ladder(ladder);
     }
 
-    public static Ladder from(int countOfPerson, int height) {
-        return new Ladder(countOfPerson, height);
+    public static Ladder from(int countOfPerson, int height, MovableStrategy movableStrategy) {
+        return new Ladder(countOfPerson, height, movableStrategy);
     }
 
     private void validate(int height) {
