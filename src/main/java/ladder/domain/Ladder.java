@@ -78,6 +78,10 @@ public class Ladder {
         return Math.random() < 0.5;
     }
 
+    public int getHeight() {
+        return this.lines.size();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -89,9 +93,5 @@ public class Ladder {
     @Override
     public int hashCode() {
         return Objects.hash(lines);
-    }
-
-    public int getHeight() {
-        return this.lines.size();
     }
 }

@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class UserTest {
 
     @Test
-    public void User를_만들_수_있다(){
+    public void User를_만들_수_있다() {
         //given
 
         //when
@@ -19,7 +19,7 @@ public class UserTest {
     }
 
     @Test
-    public void User를_만들_때_이름이_비어있거나_null일_수_없다(){
+    public void User를_만들_때_이름이_비어있거나_null일_수_없다() {
         //given
         //when
         //then
@@ -29,7 +29,7 @@ public class UserTest {
     }
 
     @Test
-    public void User를_만들_때_이름이_5글자를_넘어갈_수_없다(){
+    public void User를_만들_때_이름이_5글자를_넘어갈_수_없다() {
         //given
         //when
         //then

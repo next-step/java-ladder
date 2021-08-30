@@ -33,6 +33,17 @@ public class Line {
         return Collections.unmodifiableList(points);
     }
 
+    public boolean isConnected(int idx) {
+        if (outOfRange(idx)) {
+            throw new IndexOutOfBoundsException("사다리의 너비의 범위를 벗어났습니다.");
+        }
+        return points.get(idx);
+    }
+
+    public boolean outOfRange(int idx) {
+        return width.outOfRange(idx);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -44,17 +55,6 @@ public class Line {
     @Override
     public int hashCode() {
         return Objects.hash(width, points);
-    }
-
-    public boolean isConnected(int idx) {
-        if (outOfRange(idx)) {
-            throw new IndexOutOfBoundsException("사다리의 너비의 범위를 벗어났습니다.");
-        }
-        return points.get(idx);
-    }
-
-    public boolean outOfRange(int idx) {
-        return width.outOfRange(idx);
     }
 
 }

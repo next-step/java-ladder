@@ -21,19 +21,6 @@ public class User {
         return name;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(name, user.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name);
-    }
-
     private void validate(String name) {
         if (isNullOrEmpty(name)) {
             throw new IllegalArgumentException("이름이 비어있을 수 없습니다.");
@@ -46,5 +33,18 @@ public class User {
 
     private boolean isNullOrEmpty(String name) {
         return name == null || name.isEmpty();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(name, user.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }
