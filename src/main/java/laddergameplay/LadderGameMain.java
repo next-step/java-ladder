@@ -23,9 +23,10 @@ public class LadderGameMain {
             List<String> resultsString = InputView.inputResults();
             Results results = new Results(resultsString, people);
 
+            int widthOfLadder = people.subtractNumberFromSize(1);
             int heightOfLadder = InputView.inputHeightOfLadder();
             LineStrategy lineStrategy = new RandomLineStrategy();
-            Ladder ladder = new Ladder(people, heightOfLadder, lineStrategy);
+            Ladder ladder = new Ladder(widthOfLadder, heightOfLadder, lineStrategy);
             LadderGame ladderGame = new LadderGame(ladder);
 
             ResultView.showResult(people, ladder, results);

@@ -1,8 +1,6 @@
 package laddergameplay.domain.ladder;
 
 import laddergameplay.domain.datas.People;
-import laddergameplay.domain.ladder.Ladder;
-import laddergameplay.domain.ladder.Line;
 import laddergameplay.strategy.LineStrategy;
 import laddergameplay.strategy.RandomLineStrategy;
 import org.junit.jupiter.api.DisplayName;
@@ -24,7 +22,7 @@ public class LadderTest {
         LineStrategy lineStrategy = new RandomLineStrategy();
 
         // when
-        Ladder ladder = new Ladder(people, heightOfLadder, lineStrategy);
+        Ladder ladder = new Ladder(people.subtractNumberFromSize(1), heightOfLadder, lineStrategy);
 
         // then
         assertThat(ladder.getLadder().size()).isEqualTo(heightOfLadder);
@@ -36,7 +34,7 @@ public class LadderTest {
     void result() {
         // given
         People people = new People(Arrays.asList("hwan,kook,hyun,bo".split(",")));
-        Ladder ladder = new Ladder(people, 1, new RandomLineStrategy(){
+        Ladder ladder = new Ladder(people.subtractNumberFromSize(1), 1, new RandomLineStrategy(){
             @Override
             protected boolean currentPoint() {
                 return true;

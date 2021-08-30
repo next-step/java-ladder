@@ -1,6 +1,5 @@
 package laddergameplay.domain.ladder;
 
-import laddergameplay.domain.datas.People;
 import laddergameplay.strategy.LineStrategy;
 
 import java.util.*;
@@ -10,20 +9,20 @@ public class Ladder {
     public static final int FIRST_PILLAR_OF_LADDER = 0;
 
     private final List<Line> ladder = new ArrayList<>();
-    private final int lastPillarOfLadder;
+    private final int widthOfLadder;
 
-    public Ladder(People people, int heightOfLadder, LineStrategy lineStrategy) {
-        this.lastPillarOfLadder = people.subtractNumberFromSize(1);
+    public Ladder(int widthOfLadder, int heightOfLadder, LineStrategy lineStrategy) {
+        this.widthOfLadder = widthOfLadder;
 
         for (int i = 0; i < heightOfLadder; i++) {
-            ladder.add(new Line(lastPillarOfLadder, lineStrategy));
+            ladder.add(new Line(widthOfLadder, lineStrategy));
         }
     }
 
     public List<Integer> result(){
         List<Integer> resultList = new ArrayList<>();
 
-        for (int startPosition = FIRST_PILLAR_OF_LADDER; startPosition <= lastPillarOfLadder; startPosition++) {
+        for (int startPosition = FIRST_PILLAR_OF_LADDER; startPosition <= widthOfLadder; startPosition++) {
             int resultPosition = playGame(startPosition);
             resultList.add(resultPosition);
         }
@@ -55,7 +54,7 @@ public class Ladder {
     }
 
     private int movePositionInALine(Line line, int currentPosition, int checkPoint, int movedPositionIfPoint) {
-        if(checkPoint < FIRST_PILLAR_OF_LADDER || checkPoint >= lastPillarOfLadder || !line.get(checkPoint)) {
+        if(checkPoint < FIRST_PILLAR_OF_LADDER || checkPoint >= widthOfLadder || !line.get(checkPoint)) {
             return currentPosition;
         }
 
