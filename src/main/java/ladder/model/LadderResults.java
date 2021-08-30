@@ -10,7 +10,7 @@ public class LadderResults {
     public LadderResults(List<String> results) {
         validateNotEmpty(results);
         this.results = results.stream()
-                .map(LadderResult::of)
+                .map(LadderResult::new)
                 .collect(toList());
     }
 
