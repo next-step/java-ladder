@@ -34,6 +34,14 @@ public class Direction {
         return Direction.of(false, generator.generate());
     }
 
+    public boolean isLeft() {
+        return left;
+    }
+
+    public boolean isRight() {
+        return right;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
