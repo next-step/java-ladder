@@ -6,8 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PointTest {
 
-    // 포인트는 선이라고 생각하면 된다.
-
     @Test
     void 정상_생성() {
         Point expected = new Point(0, Direction.of(true, false));
