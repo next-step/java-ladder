@@ -23,4 +23,5 @@ class LineTest {
         assertThrows(IllegalArgumentException.class,
                 () -> new Line(Arrays.asList(true, true, false)));
     }
+
 }
