@@ -1,9 +1,10 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.LadderResult;
-import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Person;
-import nextstep.ladder.domain.Persons;
+import nextstep.ladder.domain.ladder.LadderResult;
+import nextstep.ladder.domain.ladder.Line;
+import nextstep.ladder.domain.player.Name;
+import nextstep.ladder.domain.player.Player;
+import nextstep.ladder.domain.player.Players;
 import java.util.List;
 
 public class ResultView {
@@ -12,8 +13,8 @@ public class ResultView {
     public static final String LADDER_POINT = "-----";
     public static final String LADDER_BLANK = "     ";
 
-    public static void show(List<Line> ladderLines, Persons persons) {
-        persons.forEach(person -> System.out.print(appendBlank(person.name())));
+    public static void show(List<Line> ladderLines, Players players) {
+        players.foreach(name -> System.out.print(appendBlank(name)));
         System.out.println();
         ladderLines.forEach(ResultView::points);
     }
@@ -21,7 +22,7 @@ public class ResultView {
     private static String appendBlank(String name) {
         StringBuilder nameBuilder = new StringBuilder(name);
 
-        while (nameBuilder.length() < Person.MAX_NAME_LENGTH) {
+        while (nameBuilder.length() < Name.MAX_NAME_LENGTH) {
             nameBuilder.append(" ");
         }
 
@@ -44,15 +45,15 @@ public class ResultView {
     }
 
 
-    public static void result(LadderResult ladderResult, String name) {
+    public static void result(LadderResult ladderResult, Player player) {
         System.out.println("실행결과");
-        System.out.println(ladderResult.resultByName(name));
+        System.out.println(ladderResult.result(player));
     }
 
-    public static void results(LadderResult ladderResult, Persons persons) {
+    public static void results(LadderResult ladderResult, Players players) {
         System.out.println("전체결과");
-        persons.forEach(person ->
-            System.out.println(person.name() + " : " + ladderResult.resultByName(person.name()))
+        players.values(player ->
+            System.out.println(player.name() + " : " + ladderResult.result(player))
         );
 
     }

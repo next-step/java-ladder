@@ -1,5 +1,9 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.ladder;
 
+import nextstep.ladder.domain.ladder.Ladder;
+import nextstep.ladder.domain.ladder.LadderHeight;
+import nextstep.ladder.domain.player.PlayerFactory;
+import nextstep.ladder.domain.player.Players;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,14 +17,14 @@ class LadderTest {
         // given
         LadderHeight heightOfLadder = LadderHeight.of(5);
 
-        Persons persons = PersonsFactory.personsFixture("phob", "phob2", "phob2");
+        Players players = PlayerFactory.playerFixture("phob", "phob1", "phob2");
 
         // when
-        Ladder ladder = Ladder.of(persons, heightOfLadder);
+        Ladder ladder = Ladder.of(players, heightOfLadder);
 
         // then
         assertThat(LadderHeight.of(ladder.lines().size())).isEqualTo(heightOfLadder);
-        assertThat(ladder.persons().size()).isEqualTo(3);
+        assertThat(players.size()).isEqualTo(3);
     }
 
 

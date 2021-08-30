@@ -1,5 +1,6 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.ladder;
 
+import nextstep.ladder.domain.ladder.Line;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.util.Arrays;
@@ -15,18 +16,18 @@ class LineTest {
     @Test
     void line() {
         // Given
-        int countOfPerson = 3;
-        Line line = Line.of(Arrays.asList(true, false, true));
+        int countOfPlayer = 3;
+        Line line = Line.from(Arrays.asList(true, false, true));
 
         // When && Then
-        assertThat(line.size()).isEqualTo(countOfPerson);
+        assertThat(line.size()).isEqualTo(countOfPlayer);
     }
 
     @DisplayName("이어지는 라인이 없어야한다")
     @Test
     void lineWithValidation() {
         // Given
-        Line line = Line.of(Arrays.asList(true, false, true));
+        Line line = Line.from(Arrays.asList(true, false, true));
 
         // When
         List<Boolean> lines = line.points();
@@ -37,9 +38,5 @@ class LineTest {
             () -> assertNotEquals(Arrays.asList(false, true, true), lines),
             () -> assertNotEquals(Arrays.asList(true, true, true), lines)
         );
-
-
     }
-
-
 }

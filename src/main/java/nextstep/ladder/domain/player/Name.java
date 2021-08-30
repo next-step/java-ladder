@@ -1,22 +1,22 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.player;
 
 import java.util.Objects;
 
-public class Person {
+public class Name {
 
     public static final int MAX_NAME_LENGTH = 5;
     private final String name;
 
-    private Person(String name) {
+    private Name(String name) {
         this.name = name;
     }
 
-    public static Person of(String name) {
+    public static Name of(String name) {
         if (name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException("5자리이 이하로 입력해주세요");
         }
 
-        return new Person(name);
+        return new Name(name);
     }
 
     public String name() {
@@ -31,8 +31,8 @@ public class Person {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Person person = (Person) o;
-        return Objects.equals(name, person.name);
+        Name name1 = (Name) o;
+        return Objects.equals(name, name1.name);
     }
 
     @Override

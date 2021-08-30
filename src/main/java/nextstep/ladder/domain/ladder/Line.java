@@ -1,4 +1,4 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.ladder;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ public class Line {
         this.points = points;
     }
 
-    public static Line of(List<Boolean> points) {
+    public static Line from(List<Boolean> points) {
         validatePoint(points);
         return new Line(points);
     }
@@ -27,22 +27,18 @@ public class Line {
         }
     }
 
-    public int currentPosition(int currPosition) {
-        if (canMoveRight(currPosition)) {
-            currPosition++;
-        } else if (canMoveLeft(currPosition)) {
-            currPosition--;
+    public Position move(Position position) {
+        if (position.canMoveRight(size()) && hasPoint(position)) {
+            position = position.toRight();
+        } else if (position.canMoveLeft() && hasPoint(position.toLeft())) {
+            position = position.toLeft();
         }
 
-        return currPosition;
+        return position;
     }
 
-    private boolean canMoveLeft(int currPosition) {
-        return currPosition - 1 >= 0 && Boolean.TRUE == points.get(currPosition - 1);
-    }
-
-    private boolean canMoveRight(int currPosition) {
-        return currPosition < points.size() && Boolean.TRUE == points.get(currPosition);
+    public boolean hasPoint(Position position) {
+        return Boolean.TRUE == points.get(position.currentPosition());
     }
 
     public int size() {
@@ -52,4 +48,6 @@ public class Line {
     public List<Boolean> points() {
         return points;
     }
+
+
 }
