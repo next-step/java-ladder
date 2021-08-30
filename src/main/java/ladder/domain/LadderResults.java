@@ -22,6 +22,17 @@ public class LadderResults {
                 .collect(Collectors.collectingAndThen(Collectors.toList(), LadderResults::new));
     }
 
+    public List<String> allNames() {
+        return Collections.unmodifiableList(ladderResults)
+                .stream()
+                .map(LadderResult::getResult)
+                .collect(Collectors.toList());
+    }
+
+    public LadderResult get(int idx) {
+        return ladderResults.get(idx);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -33,16 +44,5 @@ public class LadderResults {
     @Override
     public int hashCode() {
         return Objects.hash(ladderResults);
-    }
-
-    public List<String> allNames() {
-        return Collections.unmodifiableList(ladderResults)
-                .stream()
-                .map(LadderResult::getResult)
-                .collect(Collectors.toList());
-    }
-
-    public LadderResult get(int idx) {
-        return ladderResults.get(idx);
     }
 }
