@@ -13,8 +13,7 @@ public class HorizontalLines {
     }
 
     public boolean exist(int index) {
-        validateIndex(index);
-        return horizontalLines.get(index).exist();
+        return get(index).exist();
     }
 
     public HorizontalLine get(int index) {
@@ -29,6 +28,10 @@ public class HorizontalLines {
     public void remove(HorizontalLine horizontalLine) {
         int index = horizontalLines.indexOf(horizontalLine);
         horizontalLines.set(index, new HorizontalLine(false));
+    }
+
+    public Stream<HorizontalLine> stream() {
+        return horizontalLines.stream();
     }
 
     private void validateIndex(int index) {

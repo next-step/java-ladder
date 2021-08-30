@@ -13,7 +13,7 @@ public class Name {
     }
 
     private void validateName(String value) {
-        if (emptyValue(value) || lengthExceed(value))
+        if (isEmpty(value) || lengthExceed(value))
             throw new IllegalStateException();
     }
 
@@ -21,7 +21,7 @@ public class Name {
         return value.length() > LENGTH_LIMIT;
     }
 
-    private boolean emptyValue(String value) {
+    private boolean isEmpty(String value) {
         return "".equals(value) || Objects.isNull(value);
     }
 

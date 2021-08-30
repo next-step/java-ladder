@@ -2,7 +2,7 @@ package nextstep.ladder.domain.ladder.line;
 
 public class HorizontalLine {
 
-    private boolean exist;
+    private final boolean exist;
 
     public HorizontalLine(boolean exist) {
         this.exist = exist;

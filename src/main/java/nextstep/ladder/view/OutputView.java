@@ -21,27 +21,27 @@ public class OutputView {
     private static final String LADDER_HORIZONTAL_LINE = "-----";
 
     public void printParticipantsAndLadders(Participants participants, Ladders ladders) {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder stringBuilder = new StringBuilder();
 
-        appendTitle(sb);
-        appendParticipantsName(participants, sb);
-        appendLadders(ladders, sb);
-        print(sb.toString());
+        appendTitle(stringBuilder);
+        appendParticipantsName(participants, stringBuilder);
+        appendLadders(ladders, stringBuilder);
+        print(stringBuilder.toString());
     }
 
-    private void appendTitle(StringBuilder sb) {
-        sb.append("실행결과");
-        sb.append(NEW_LINE);
-        sb.append(NEW_LINE);
+    private void appendTitle(StringBuilder stringBuilder) {
+        stringBuilder.append("실행결과");
+        stringBuilder.append(NEW_LINE);
+        stringBuilder.append(NEW_LINE);
     }
 
-    private void appendParticipantsName(Participants participants, StringBuilder sb) {
+    private void appendParticipantsName(Participants participants, StringBuilder stringBuilder) {
         String paddingAddedParticipantsName = participants.stream()
                 .map(Participant::getName)
                 .map(this::appendNamePadding)
                 .collect(Collectors.joining(""));
 
-        sb.append(paddingAddedParticipantsName);
+        stringBuilder.append(paddingAddedParticipantsName);
     }
 
     private String appendNamePadding(String participantName) {
@@ -55,40 +55,40 @@ public class OutputView {
     }
 
     private String appendPadding(String name, int paddingLength) {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < paddingLength; i++) {
-            sb.append(PARTICIPANT_NAME_PADDING);
+            stringBuilder.append(PARTICIPANT_NAME_PADDING);
         }
-        sb.append(name);
-        return sb.toString();
+        stringBuilder.append(name);
+        return stringBuilder.toString();
     }
 
-    private void appendLadders(Ladders ladders, StringBuilder sb) {
+    private void appendLadders(Ladders ladders, StringBuilder stringBuilder) {
         List<Ladder> ladderList = ladders.stream().collect(Collectors.toList());
         Ladder ladder = ladderList.get(0);
         int maxHeight = ladder.getHeight();
 
-        sb.append(NEW_LINE);
+        stringBuilder.append(NEW_LINE);
         for (int height = 0; height < maxHeight; height++) {
-            appendLadderPerHeight(ladders, sb, height);
+            appendLadderPerHeight(ladders, stringBuilder, height);
         }
     }
 
-    private void appendLadderPerHeight(Ladders ladders, StringBuilder sb, int height) {
-        sb.append(LADDER_NOT_EXISTS_HORIZONTAL_LINE_PADDING);
-        ladders.stream().forEach((l) -> appendLadder(l, sb, height));
-        sb.append(LADDER_HEIGHT_UNIT);
-        sb.append(NEW_LINE);
+    private void appendLadderPerHeight(Ladders ladders, StringBuilder stringBuilder, int height) {
+        stringBuilder.append(LADDER_NOT_EXISTS_HORIZONTAL_LINE_PADDING);
+        ladders.stream().forEach((l) -> appendLadder(l, stringBuilder, height));
+        stringBuilder.append(LADDER_HEIGHT_UNIT);
+        stringBuilder.append(NEW_LINE);
     }
 
-    private void appendLadder(Ladder ladder, StringBuilder sb, int index) {
-        sb.append(LADDER_HEIGHT_UNIT);
+    private void appendLadder(Ladder ladder, StringBuilder stringBuilder, int index) {
+        stringBuilder.append(LADDER_HEIGHT_UNIT);
         HorizontalLines horizontalLines = ladder.getHorizontalLines();
         if (horizontalLines.exist(index)) {
-            sb.append(LADDER_HORIZONTAL_LINE);
+            stringBuilder.append(LADDER_HORIZONTAL_LINE);
             return;
         }
-        sb.append(LADDER_NOT_EXISTS_HORIZONTAL_LINE_PADDING);
+        stringBuilder.append(LADDER_NOT_EXISTS_HORIZONTAL_LINE_PADDING);
     }
 
     public void print(String content) {
