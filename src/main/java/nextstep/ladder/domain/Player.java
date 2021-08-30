@@ -4,11 +4,12 @@ import java.util.Objects;
 
 public class Player {
     private static final int NAME_LENGTH = 5;
+    private static final String CREATE_PLAYER_ERROR = "플레이어 이름은 최소 1글자, 최대 5글자 입니다.";
     private final String name;
 
     public Player(final String name) {
         if (name.length() > NAME_LENGTH || name.isEmpty()) {
-            throw new IllegalArgumentException("플레이어 이름은 최소 1글자, 최대 5글자 입니다.");
+            throw new IllegalArgumentException(CREATE_PLAYER_ERROR);
         }
         this.name = name;
     }

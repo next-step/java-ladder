@@ -7,10 +7,13 @@ import java.util.Objects;
 import java.util.stream.IntStream;
 
 public class Line {
+    private static final String CREATE_LINE_ERROR = "가로 라인이 겹치므로 라인을 생성할 수 없습니다.";
+    private static final String VALIDATE_LINE_ERROR = "처음 좌표값은 라인이 없어야 합니다.";
     private static final int RANDOM_START_INDEX = 1;
+    private static final int PREVIOUS_INDEX = 1;
     private final List<Boolean> points;
 
-    public Line(int countOfPlayers, PointCreator pointCreator) {
+    public Line(final int countOfPlayers, final PointCreator pointCreator) {
         this.points = Collections.unmodifiableList(createPoints(countOfPlayers, pointCreator));
     }
 
@@ -28,14 +31,17 @@ public class Line {
     }
 
     private void addPoint(List<Boolean> points, PointCreator pointCreator) {
-        if (!points.get(points.size() - 1)) {
+        if (!points.get(points.size() - PREVIOUS_INDEX)) {
             points.add(pointCreator.createPoint());
             return;
         }
         points.add(false);
     }
 
-    private void validatePoints(List<Boolean> points) {
+    private void validatePoints(final List<Boolean> points) {
+        if (points.get(0)) {
+            throw new IllegalArgumentException(VALIDATE_LINE_ERROR);
+        }
         boolean previousPoint = false;
         for (boolean point : points) {
             isCreatePoint(previousPoint, point);
@@ -45,7 +51,7 @@ public class Line {
 
     private void isCreatePoint(boolean previousPoint, boolean nowPoint) {
         if (previousPoint && nowPoint) {
-            throw new IllegalArgumentException("가로 라인이 겹치므로 라인을 생성할 수 없습니다.");
+            throw new IllegalArgumentException(CREATE_LINE_ERROR);
         }
     }
 
