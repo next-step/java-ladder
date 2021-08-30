@@ -14,7 +14,7 @@ public class LadderColumn {
         this(false);
     }
 
-    public static LadderColumn drawLine(DrawLineStrategy strategy) {
+    public static LadderColumn drawVerticalLine(DrawLineStrategy strategy) {
         return new LadderColumn(strategy.drawLine());
     }
 

@@ -26,4 +26,12 @@ public class LadderSize {
                 String.format("사다리의 최소 '1 X 1' 부터 생성이 가능합니다. [현재 입력: '%d x %d' ]", width, height));
         }
     }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
 }

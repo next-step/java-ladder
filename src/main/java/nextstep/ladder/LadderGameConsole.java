@@ -3,6 +3,7 @@ package nextstep.ladder;
 import nextstep.ladder.domain.LadderGameSettings;
 import nextstep.ladder.domain.LadderSize;
 import nextstep.ladder.domain.Players;
+import nextstep.ladder.strategy.RandomDrawLineStrategy;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
@@ -18,7 +19,7 @@ public class LadderGameConsole {
 
         final Players players = Players.from(playerNames);
         final LadderSize ladderSize = LadderSize.of(players.count(), ladderHeight);
-        final LadderGameSettings settings = LadderGameSettings.of(players, ladderSize);
+        final LadderGameSettings settings = LadderGameSettings.of(ladderSize, new RandomDrawLineStrategy());
 
         ResultView resultView = ResultView.getInstance();
 

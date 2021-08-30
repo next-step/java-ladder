@@ -8,9 +8,17 @@ public class Ladder {
 
     private final List<LadderRow> ladderRows;
 
-    public Ladder(int ladderWidth, int ladderHeight) {
-        this.ladderRows = Stream.generate(() -> new LadderRow(ladderWidth))
-            .limit(ladderHeight)
+    private Ladder(LadderGameSettings settings) {
+        this.ladderRows = Stream.generate(() -> new LadderRow(settings))
+            .limit(settings.getLadderHeight())
             .collect(Collectors.toUnmodifiableList());
+    }
+
+    public static Ladder from(LadderGameSettings settings) {
+        return new Ladder(settings);
+    }
+
+    public List<LadderRow> getLadderRows() {
+        return ladderRows;
     }
 }

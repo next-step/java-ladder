@@ -1,62 +1,74 @@
 package nextstep.ladder.domain;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import nextstep.ladder.strategy.RandomDrawLineStrategy;
 
 public class LadderRow {
 
-    List<LadderColumn> ladderColumns;
+    private static final int ONE = 1;
+    private static final int FIRST_AND_LAST_COLUMN_COUNT = 2;
 
-    public LadderRow(int ladderWidth) {
-        this.ladderColumns = createLadderColumns(ladderWidth);
+    private final List<LadderColumn> ladderColumns;
+
+    public LadderRow(LadderGameSettings settings) {
+        this.ladderColumns = new ArrayList<>();
+        createLadderColumns(settings);
     }
 
+    private void createLadderColumns(LadderGameSettings settings) {
 
-    private List<LadderColumn> createLadderColumns(int ladderWidth) {
+        final int ladderWidth = settings.getLadderWidth();
 
-        if (ladderWidth == 1) {
-            return Collections.singletonList(new LadderColumn());
+        if (ladderWidth == ONE) {
+            addNoVerticalLineColumn();
+            return;
         }
 
-        List<LadderColumn> xxx = new ArrayList<>(ladderWidth);
-        addFirstColumn(xxx);
-        addMiddleColumns(xxx, ladderWidth);
-        addNoVerticalLineColumn(xxx);
-
-        return Collections.unmodifiableList(xxx);
+        addFirstColumn(settings);
+        addMiddleColumns(settings);
+        addLastColumn();
     }
 
+    private void addFirstColumn(LadderGameSettings settings) {
+        addColumn(settings);
+    }
 
-    private void addMiddleColumns(List<LadderColumn> xxx, int ladderWidth) {
-
-        int middleSize = Math.max(ladderWidth - 2, 0);
+    private void addMiddleColumns(LadderGameSettings settings) {
+        int middleSize = getMiddleSize(settings);
 
         for (int i = 0; i < middleSize; i++) {
 
-            if (!hadVerticalLineInLastColumn(xxx)) {
-                addColumn(xxx);
+            if (!hadVerticalLineInLastColumn(ladderColumns)) {
+                addColumn(settings);
                 continue;
             }
-            addNoVerticalLineColumn(xxx);
+            addNoVerticalLineColumn();
         }
     }
 
-    private boolean hadVerticalLineInLastColumn(List<LadderColumn> xxx) {
-        return xxx.get(xxx.size() - 1).value();
+    private int getMiddleSize(LadderGameSettings settings) {
+        final int ladderWidth = settings.getLadderWidth();
+        return Math.max(ladderWidth - FIRST_AND_LAST_COLUMN_COUNT, 0);
     }
 
-    private void addNoVerticalLineColumn(List<LadderColumn> xxx) {
-        xxx.add(new LadderColumn());
+    private void addLastColumn() {
+        addNoVerticalLineColumn();
     }
 
-    private void addFirstColumn(List<LadderColumn> xxx) {
-        addColumn(xxx);
+    private boolean hadVerticalLineInLastColumn(List<LadderColumn> columns) {
+        return ladderColumns.get(columns.size() - ONE).value();
     }
 
-    private void addColumn(List<LadderColumn> xxx) {
-        xxx.add(LadderColumn.drawLine(new RandomDrawLineStrategy()));
+    private void addNoVerticalLineColumn() {
+        ladderColumns.add(new LadderColumn());
+    }
+
+    private void addColumn(LadderGameSettings settings) {
+        ladderColumns.add(LadderColumn.drawVerticalLine(settings.getStrategy()));
+    }
+
+    public int getColumnsSize() {
+        return ladderColumns.size();
     }
 
 }
