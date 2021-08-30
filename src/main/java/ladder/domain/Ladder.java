@@ -6,16 +6,13 @@ import java.util.stream.Collectors;
 public class Ladder {
 
     private final List<Line> lines;
-    private final Height height;
 
     private Ladder(Width width, Height height) {
         this.lines = lines(width, height);
-        this.height = height;
     }
 
     private Ladder(List<Line> lines) {
         this.lines = lines;
-        this.height = Height.create(lines.size());
     }
 
     public static Ladder create(Width width, Height height) {
@@ -95,6 +92,6 @@ public class Ladder {
     }
 
     public int getHeight() {
-        return this.height.getLength();
+        return this.lines.size();
     }
 }
