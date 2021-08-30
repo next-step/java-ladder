@@ -16,7 +16,7 @@ public class InputView {
                 .split(SEPARATOR));
     }
 
-    public static int inputLadderCount() {
+    public static int inputLadderHeight() {
         System.out.println("최대 사다리 높이는 몇 개 인가요?");
         return scanner.nextInt();
     }
