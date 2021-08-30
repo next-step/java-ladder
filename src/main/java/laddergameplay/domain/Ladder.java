@@ -1,6 +1,5 @@
 package laddergameplay.domain;
 
-import laddergameplay.exception.CustomException;
 import laddergameplay.strategy.LineStrategy;
 
 import java.util.*;
@@ -27,6 +26,7 @@ public class Ladder {
             int resultPosition = playGame(startPosition);
             resultList.add(resultPosition);
         }
+
         return resultList;
     }
 
@@ -34,57 +34,31 @@ public class Ladder {
         int currentPosition = startPosition;
 
         for (Line line : ladder) {
-            currentPosition = movePosition(currentPosition, line);
+            currentPosition = movePosition(line, currentPosition);
         }
 
         return currentPosition;
     }
 
-    private void validateOutOfRange(int currentPosition) {
-        if(!(FIRST_PILLAR_OF_LADDER <= currentPosition && currentPosition <= lastPillarOfLadder)) {
-            throw new CustomException("참여자가 사다리를 벗어났습니다.");
-        }
-    }
+    private int movePosition(Line line, int currentPosition) {
+        int[] checkPointArr = {leftPointOf(currentPosition), rightPointOf(currentPosition)};
+        int[] movedPositionArr = {moveLeft(currentPosition), moveRight(currentPosition)};
 
-    private int movePosition(int currentPosition, Line line) {
-        validateOutOfRange(currentPosition);
-        return movePositionWhenCurrentIsZero(currentPosition, line);
-    }
+        for (int i = 0; i < checkPointArr.length; i++) {
+            int checkPoint = checkPointArr[i];
+            int movedPositionIfPoint = movedPositionArr[i];
 
-    private int movePositionWhenCurrentIsZero(int currentPosition, Line line) {
-        if (currentPosition == FIRST_PILLAR_OF_LADDER) {
-            return movePositionCheckRight(currentPosition, line);
-        }
-        return movePositionWhenCurrentIsEnd(currentPosition, line);
-    }
-
-    private int movePositionWhenCurrentIsEnd(int currentPosition, Line line) {
-        if (currentPosition == lastPillarOfLadder) {
-            return movePositionCheckLeft(currentPosition, line);
-        }
-
-        return movePositionWhenCurrentInMiddle(currentPosition, line);
-    }
-
-    private int movePositionWhenCurrentInMiddle(int currentPosition, Line line) {
-        if (line.get(rightPointOf(currentPosition))) {
-            return moveRight(currentPosition);
-        }
-        return movePositionCheckLeft(currentPosition, line);
-    }
-
-    private int movePositionCheckRight(int currentPosition, Line line) {
-        if (line.get(rightPointOf(currentPosition))) {
-            return moveRight(currentPosition);
+            currentPosition = movePositionInALine(line, currentPosition, checkPoint, movedPositionIfPoint);
         }
         return currentPosition;
     }
 
-    private int movePositionCheckLeft(int currentPosition, Line line) {
-        if (line.get(leftPointOf(currentPosition))) {
-            return moveLeft(currentPosition);
+    private int movePositionInALine(Line line, int currentPosition, int checkPoint, int movedPositionIfPoint) {
+        if(checkPoint < FIRST_PILLAR_OF_LADDER || checkPoint >= lastPillarOfLadder || !line.get(checkPoint)) {
+            return currentPosition;
         }
-        return currentPosition;
+
+        return movedPositionIfPoint;
     }
 
     private int moveRight(int currentPosition) {
