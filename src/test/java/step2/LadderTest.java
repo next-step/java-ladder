@@ -29,7 +29,6 @@ public class LadderTest {
     public void 사다리_크기_체크() {
         //given
         Ladder ladder = new Ladder("5", 4, new RandomLadderStrategy());
-        ladder.generateLine(new RandomLadderStrategy());
 
         //when
         List<List<Boolean>> result = ladder.getLadder();
