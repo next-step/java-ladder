@@ -23,12 +23,4 @@ class LineTest {
         assertThrows(IllegalArgumentException.class,
                 () -> new Line(Arrays.asList(true, true, false)));
     }
-
-
-    @Test
-    void createRandom() {
-        Line line = new Line(3); // 사다리 타기 3명
-        line.valueOfPoints().stream()
-                .forEach(System.out::print);
-    }
 }
