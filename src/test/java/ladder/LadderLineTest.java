@@ -13,6 +13,7 @@ import org.junit.jupiter.api.TestInstance;
 import ladder.domain.Index;
 import ladder.domain.LadderLine;
 import ladder.domain.Point;
+import ladder.strategy.NoMovableStrategy;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class LadderLineTest {
@@ -35,7 +36,7 @@ class LadderLineTest {
     @Test
     void newLineTest2() {
         int countOfPerson = 4;
-        LadderLine ladderLine = LadderLine.init(countOfPerson);
+        LadderLine ladderLine = LadderLine.init(countOfPerson, new NoMovableStrategy());
         assertThat(ladderLine).isInstanceOf(LadderLine.class);
         assertThat(ladderLine.toList().size()).isEqualTo(countOfPerson);
     }

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ladder.exception.PersonCountException;
+import ladder.strategy.MovableStrategy;
+import ladder.strategy.NoMovableStrategy;
 import ladder.strategy.RandomlyMovableStrategy;
 
 public class LadderLine {
@@ -17,17 +19,17 @@ public class LadderLine {
         return new LadderLine(points);
     }
 
-    public static LadderLine init(int sizeOfPerson) {
+    public static LadderLine init(int sizeOfPerson, MovableStrategy movableStrategy) {
         List<Point> points = new ArrayList<>();
-        Point point = initFirst(points);
-        point = initBody(sizeOfPerson, points, point);
+        Point point = initFirst(points, movableStrategy);
+        point = initBody(sizeOfPerson, points, point, movableStrategy);
         initLast(points, point);
         return new LadderLine(points);
     }
 
-    private static Point initBody(int sizeOfPerson, List<Point> points, Point point) {
+    private static Point initBody(int sizeOfPerson, List<Point> points, Point point, MovableStrategy movableStrategy) {
         for (int i = 1; i < sizeOfPerson - 1; i++) {
-            point = point.next();
+            point = point.next(movableStrategy);
             points.add(point);
         }
         return point;
@@ -38,14 +40,14 @@ public class LadderLine {
         points.add(point);
     }
 
-    private static Point initFirst(List<Point> points) {
-        Point point = Point.first(generatePoint());
+    private static Point initFirst(List<Point> points, MovableStrategy movableStrategy) {
+        Point point = Point.first(generatePoint(movableStrategy));
         points.add(point);
         return point;
     }
 
-    private static boolean generatePoint() {
-        return new RandomlyMovableStrategy().isMovable();
+    private static boolean generatePoint(MovableStrategy movableStrategy) {
+        return movableStrategy.isMovable();
     }
 
     public boolean existLeftOf(Index index) {
