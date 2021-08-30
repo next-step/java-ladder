@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class LocationTest {
 
     @Test
-    public void 위치값을_받아서_위치를_만들_수_있다(){
+    public void 위치값을_받아서_위치를_만들_수_있다() {
         //given
         //when
         //then
@@ -16,7 +16,7 @@ class LocationTest {
     }
 
     @Test
-    public void 위치는_0보다_작으면_익셉션이_발생한다(){
+    public void 위치는_0보다_작으면_익셉션이_발생한다() {
         //given
         //when
         //then
@@ -26,7 +26,7 @@ class LocationTest {
     }
 
     @Test
-    public void 위치를_왼쪽으로_옮길_수_있다(){
+    public void 위치를_왼쪽으로_옮길_수_있다() {
         //given
         //when
         //then
@@ -34,7 +34,7 @@ class LocationTest {
     }
 
     @Test
-    public void 위치를_오른쪽으로_올길때_위치가_음수이면_익셉션이_발생한다(){
+    public void 위치를_오른쪽으로_올길때_위치가_음수이면_익셉션이_발생한다() {
         //given
         //when
         //then
@@ -44,7 +44,7 @@ class LocationTest {
     }
 
     @Test
-    public void 위치를_오른쪽으로_옮길_수_있다(){
+    public void 위치를_오른쪽으로_옮길_수_있다() {
         //given
         //when
         //then
