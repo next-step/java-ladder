@@ -13,6 +13,10 @@ public class GameResult {
         result = game(users, ladder, ladderResults);
     }
 
+    public static GameResult create(Users users, Ladder ladder, LadderResults ladderResults) {
+        return new GameResult(users, ladder, ladderResults);
+    }
+
     private Map<User, LadderResult> game(Users users, Ladder ladder, LadderResults ladderResults) {
         Map<User, LadderResult> result = new LinkedHashMap<>();
         users.getAllWithLocation()
@@ -42,15 +46,15 @@ public class GameResult {
         return !line.outOfRange(pos) && line.isConnected(pos);
     }
 
-    public static GameResult create(Users users, Ladder ladder, LadderResults ladderResults) {
-        return new GameResult(users, ladder, ladderResults);
-    }
-
     public LadderResult resultOf(User user) {
         if (!result.containsKey(user)) {
             throw new IllegalArgumentException("찾을 수 없는 참여자입니다.");
         }
         return result.get(user);
+    }
+
+    public Map<User, LadderResult> getAll() {
+        return Collections.unmodifiableMap(result);
     }
 
     @Override
@@ -64,9 +68,5 @@ public class GameResult {
     @Override
     public int hashCode() {
         return Objects.hash(result);
-    }
-
-    public Map<User, LadderResult> getAll() {
-        return Collections.unmodifiableMap(result);
     }
 }
