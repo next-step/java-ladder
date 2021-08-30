@@ -1,13 +1,13 @@
 package ladder.domain;
 
-import ladder.exception.NullValueException;
-import ladder.exception.PersonCountException;
-import ladder.exception.ResultsLengthException;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+
+import ladder.exception.NullValueException;
+import ladder.exception.PersonCountException;
+import ladder.exception.ResultsLengthException;
 
 public class Results {
     private static final String RESULTS_IS_NULL_EXCEPTION_COMMENT = "결과값 리스트 객체값이 널입니다.";

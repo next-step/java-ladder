@@ -1,13 +1,13 @@
 package ladder;
 
-import ladder.domain.Result;
-import ladder.exception.NullValueException;
-import ladder.exception.ResultLengthException;
+import static org.assertj.core.api.Assertions.*;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import ladder.domain.Result;
+import ladder.exception.NullValueException;
+import ladder.exception.ResultLengthException;
 
 class ResultTest {
     @DisplayName("실행결과 하나를 입력 받으면 실행결과 객체 Result를 생성한다")

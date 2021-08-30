@@ -1,32 +1,32 @@
 package ladder;
 
-import ladder.domain.Index;
-import ladder.domain.Line;
-import ladder.domain.Point;
+import static org.assertj.core.api.Assertions.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import ladder.domain.Index;
+import ladder.domain.LadderLine;
+import ladder.domain.Point;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class IndexTest {
-    Line line;
+    LadderLine ladderLine;
 
     @BeforeAll
     void setUp() {
         // |-----|     |-----|  을 생성한다
         List<Point> points = new ArrayList<>();
-        points.add(Point.of(false, true));
-        points.add(Point.of(true, false));
-        points.add(Point.of(false, true));
-        points.add(Point.of(true, false));
-        line = Line.from(points);
+        points.add(Point.first(true));
+        points.add(points.get(0).next(false));
+        points.add(points.get(1).next(true));
+        points.add(points.get(2).last());
+        ladderLine = LadderLine.from(points);
     }
 
     @DisplayName("위치인덱스를 입력 받으면 Index객체를 생성한다")
@@ -45,7 +45,7 @@ class IndexTest {
     @Test
     void moveRightTest() {
         Index index = Index.from(0);
-        index.moveOf(line);
+        index.moveOf(ladderLine);
         assertThat(index.val()).isEqualTo(1);
     }
 
@@ -53,7 +53,7 @@ class IndexTest {
     @Test
     void moveLeftTest() {
         Index index = Index.from(3);
-        index.moveOf(line);
+        index.moveOf(ladderLine);
         assertThat(index.val()).isEqualTo(2);
     }
 }

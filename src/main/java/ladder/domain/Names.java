@@ -1,11 +1,11 @@
 package ladder.domain;
 
-import ladder.exception.PersonCountException;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+
+import ladder.exception.PersonCountException;
 
 public class Names {
     private static final String PERSON_NUMBER_MIN_EXCEPTION_COMMENT = "사람이름을 적어도 %d명 이상 입력해야 합니다.";

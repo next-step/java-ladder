@@ -9,7 +9,6 @@ public class InputView {
     private static final String INPUT_MAXIMUM_HEIGHT = "최대 사다리 높이는 몇 개인가요?";
     private static final String INPUT_WANTED_RESULT_OF_NAME = "결과를 보고 싶은 사람은?";
 
-
     private String inputStringValue() {
         return scanner.nextLine();
     }

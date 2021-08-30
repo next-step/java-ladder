@@ -1,10 +1,13 @@
 package ladder.view;
 
-import ladder.domain.*;
-
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
+import ladder.domain.ExecutionResults;
+import ladder.domain.Index;
+import ladder.domain.Ladder;
+import ladder.domain.LadderLine;
 
 public class ResultView {
     private static final String OUTPUT_EXECUTION_RESULT = "실행결과";
@@ -34,10 +37,10 @@ public class ResultView {
         System.out.print(System.lineSeparator());
     }
 
-    private void outputLadderWidth(Point point) {
+    private void outputLadderWidth(boolean isLeft) {
         StringBuilder stringBuilder = new StringBuilder();
         String lineUnit = OUTPUT_LADDER_LINE_UNIT_SPACE;
-        if (point.existLeft()) {
+        if (isLeft) {
             lineUnit = OUTPUT_LADDER_LINE_UNIT_DASH;
         }
 
@@ -50,15 +53,16 @@ public class ResultView {
         System.out.print(stringBuilder);
     }
 
-    private void outputLadderLine(Line line) {
-        line.toList().forEach(this::outputLadderWidth);
+    private void outputLadderLine(LadderLine ladderLine) {
+        IntStream.range(0, ladderLine.toList().size())
+            .forEach(i -> outputLadderWidth(ladderLine.move(i) < i));
         System.out.print(System.lineSeparator());
     }
 
-    public void outputLadder(ExecutionResults executionResults, List<Line> lines) {
+    public void outputLadder(ExecutionResults executionResults, List<LadderLine> ladderLines) {
         outputLadderResult();
         outputNames(executionResults.toNameStringList());
-        lines.forEach(this::outputLadderLine);
+        ladderLines.forEach(this::outputLadderLine);
         outputResults(executionResults.toResultStringList());
     }
 
