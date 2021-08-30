@@ -4,12 +4,14 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.IntStream;
 
 public class Line {
+    private static final int RANDOM_START_INDEX = 1;
     private final List<Boolean> points;
 
-    public Line(int countOfPlayers) {
-        this.points = Collections.unmodifiableList(createPoints(countOfPlayers));
+    public Line(int countOfPlayers, PointCreator pointCreator) {
+        this.points = Collections.unmodifiableList(createPoints(countOfPlayers, pointCreator));
     }
 
     public Line(final List<Boolean> points) {
@@ -17,19 +19,20 @@ public class Line {
         this.points = Collections.unmodifiableList(points);
     }
 
-    private List<Boolean> createPoints(int countOfPlayers) {
+    private List<Boolean> createPoints(final int countOfPlayers, final PointCreator pointCreator) {
         List<Boolean> points = new LinkedList<>();
         points.add(false);
-        boolean previousPoint = false;
-        for (int i = 1; i < countOfPlayers; i++) {
-            boolean point = false;
-            if (!previousPoint) {
-                point = RandomPointCreator.createPoint();
-            }
-            previousPoint = point;
-            points.add(point);
-        }
+        IntStream.range(RANDOM_START_INDEX, countOfPlayers)
+                .forEach(index -> addPoint(points, pointCreator));
         return points;
+    }
+
+    private void addPoint(List<Boolean> points, PointCreator pointCreator) {
+        if (!points.get(points.size() - 1)) {
+            points.add(pointCreator.createPoint());
+            return;
+        }
+        points.add(false);
     }
 
     private void validatePoints(List<Boolean> points) {

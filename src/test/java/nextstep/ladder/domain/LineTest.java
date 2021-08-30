@@ -23,4 +23,11 @@ class LineTest {
         assertThrows(IllegalArgumentException.class,
                 () -> new Line(Arrays.asList(true, true, false)));
     }
+
+    @DisplayName("boolean list 를 전략적으로 생성")
+    @Test
+    void n개_create() {
+        assertThat(new Line(3, () -> true).valueOfPoints()).isEqualTo(Arrays.asList(false, true, false));
+        assertThat(new Line(3, () -> false).valueOfPoints()).isEqualTo(Arrays.asList(false, false, false));
+    }
 }

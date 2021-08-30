@@ -9,16 +9,16 @@ public class Ladder {
     private static final int MIN_VALUE = 1;
     private final List<Line> lines;
 
-    public Ladder(final int width, final int ladderHeight) {
+    public Ladder(final int width, final int ladderHeight, final PointCreator pointCreator) {
         if (width < MIN_VALUE || ladderHeight < MIN_VALUE) {
             throw new IllegalArgumentException("width 와 height 는 " + MIN_VALUE + "이상이어야 합니다.");
         }
-        this.lines = Collections.unmodifiableList(createLines(width, ladderHeight));
+        this.lines = Collections.unmodifiableList(createLines(width, ladderHeight, pointCreator));
     }
 
-    private List<Line> createLines(final int width, final int ladderHeight) {
+    private List<Line> createLines(final int width, final int ladderHeight, final PointCreator pointCreator) {
         return IntStream.range(0, ladderHeight)
-                .mapToObj(index -> new Line(width))
+                .mapToObj(index -> new Line(width, pointCreator))
                 .collect(Collectors.toList());
     }
 
