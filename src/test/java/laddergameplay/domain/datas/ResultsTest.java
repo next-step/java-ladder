@@ -1,5 +1,8 @@
-package laddergameplay.domain;
+package laddergameplay.domain.datas;
 
+import laddergameplay.domain.data.Result;
+import laddergameplay.domain.datas.People;
+import laddergameplay.domain.datas.Results;
 import laddergameplay.exception.CustomException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

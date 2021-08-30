@@ -1,5 +1,8 @@
-package laddergameplay.domain;
+package laddergameplay.domain.ladder;
 
+import laddergameplay.domain.datas.People;
+import laddergameplay.domain.ladder.Ladder;
+import laddergameplay.domain.ladder.Line;
 import laddergameplay.strategy.LineStrategy;
 import laddergameplay.strategy.RandomLineStrategy;
 import org.junit.jupiter.api.DisplayName;

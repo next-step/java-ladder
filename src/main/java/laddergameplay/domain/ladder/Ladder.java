@@ -1,5 +1,6 @@
-package laddergameplay.domain;
+package laddergameplay.domain.ladder;
 
+import laddergameplay.domain.datas.People;
 import laddergameplay.strategy.LineStrategy;
 
 import java.util.*;

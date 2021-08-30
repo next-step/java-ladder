@@ -1,4 +1,6 @@
-package laddergameplay.domain;
+package laddergameplay.domain.datas;
+
+import laddergameplay.domain.data.Person;
 
 import java.util.Collections;
 import java.util.List;

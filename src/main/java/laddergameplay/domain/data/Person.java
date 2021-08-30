@@ -1,23 +1,23 @@
-package laddergameplay.domain;
+package laddergameplay.domain.data;
 
 import laddergameplay.exception.CustomException;
 
 import java.util.Objects;
 import java.util.Optional;
 
-public class Result {
+public class Person {
     public static final int MAX_LENGTH_OF_NAME = 5;
     public static final int ZERO_LENGTH_OF_NAME = 0;
-    public static final String LENGTH_OF_NAME_EXCEPTION_MESSAGE = "실행 결과 이름 양식 오류. 최대 " + MAX_LENGTH_OF_NAME + "자";
-    public static final String EMPTY_STRING_EXCEPTION_MESSAGE = "실행 결과 이름 양식 오류. 빈 값 미허용";
+    public static final String LENGTH_OF_NAME_EXCEPTION_MESSAGE = "참여자 이름 양식 오류. 최대 " + MAX_LENGTH_OF_NAME + "자";
+    public static final String EMPTY_STRING_EXCEPTION_MESSAGE = "참여자 이름 양식 오류. 빈 값 미허용";
 
     private final String name;
 
-    public Result(String name) {
+    public Person(String name) {
         this.name = Optional.ofNullable(name)
                 .map(String::trim)
-                .map(Result::validateEmptyString)
-                .map(Result::validateLengthOfName)
+                .map(Person::validateLengthOfName)
+                .map(Person::validateEmptyString)
                 .orElseThrow(
                         () -> new CustomException(EMPTY_STRING_EXCEPTION_MESSAGE)
                 );
@@ -41,8 +41,8 @@ public class Result {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Result result = (Result) o;
-        return Objects.equals(name, result.name);
+        Person person = (Person) o;
+        return Objects.equals(name, person.name);
     }
 
     @Override

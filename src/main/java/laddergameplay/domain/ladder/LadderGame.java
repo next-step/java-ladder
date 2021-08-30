@@ -1,4 +1,10 @@
-package laddergameplay.domain;
+package laddergameplay.domain.ladder;
+
+import laddergameplay.domain.dto.WinningResult;
+import laddergameplay.domain.data.Person;
+import laddergameplay.domain.data.Result;
+import laddergameplay.domain.datas.People;
+import laddergameplay.domain.datas.Results;
 
 import java.util.LinkedHashMap;
 import java.util.List;

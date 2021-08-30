@@ -1,4 +1,4 @@
-package laddergameplay.domain;
+package laddergameplay.domain.ladder;
 
 import laddergameplay.exception.CustomException;
 import laddergameplay.strategy.LineStrategy;

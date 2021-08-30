@@ -1,5 +1,6 @@
-package laddergameplay.domain;
+package laddergameplay.domain.ladder;
 
+import laddergameplay.domain.ladder.Line;
 import laddergameplay.exception.CustomException;
 import laddergameplay.strategy.LineStrategy;
 import laddergameplay.strategy.RandomLineStrategy;
@@ -22,7 +23,7 @@ class LineTest {
 
         // then
         assertThat(line.getPoints().size()).isEqualTo(widthOfLadder);
-        assertThat(line.getPoints().get(0))
+        assertThat(line.get(0))
                 .isInstanceOf(Boolean.class);
     }
 

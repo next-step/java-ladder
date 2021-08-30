@@ -1,5 +1,7 @@
-package laddergameplay.domain;
+package laddergameplay.domain.dto;
 
+import laddergameplay.domain.data.Person;
+import laddergameplay.domain.data.Result;
 import laddergameplay.exception.CustomException;
 
 import java.util.Collections;
