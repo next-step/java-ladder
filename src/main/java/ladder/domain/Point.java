@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.strategy.MovableStrategy;
+
 public class Point {
     private final int index;
     private final Direction direction;
@@ -25,8 +27,8 @@ public class Point {
         return this.index;
     }
 
-    public Point next() {
-        return new Point(index + 1, direction.next());
+    public Point next(MovableStrategy movableStrategy) {
+        return new Point(index + 1, direction.next(movableStrategy));
     }
 
     public Point next(Boolean right) {

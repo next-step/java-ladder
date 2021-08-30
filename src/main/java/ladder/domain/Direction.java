@@ -4,20 +4,16 @@ import static java.lang.Boolean.*;
 
 import java.util.Objects;
 
-import ladder.strategy.RandomlyMovableStrategy;
+import ladder.strategy.MovableStrategy;
 
 public class Direction {
     private final boolean left;
     private final boolean right;
 
     private Direction(boolean left, boolean right) {
-        if (left && right) {
-            throw new IllegalStateException();
-        }
-
+        validate(left, right);
         this.left = left;
         this.right = right;
-        // System.out.println(this);
     }
 
     public static Direction of(boolean first, boolean second) {
@@ -28,39 +24,48 @@ public class Direction {
         return of(FALSE, right);
     }
 
-    private static boolean generatePoint() {
-        return new RandomlyMovableStrategy().isMovable();
+    private static boolean generatePoint(MovableStrategy movableStrategy) {
+        return movableStrategy.isMovable();
+    }
+
+    private void validate(boolean left, boolean right) {
+        if (left && right) {
+            throw new IllegalStateException();
+        }
     }
 
     public boolean isRight() {
-        return this.right;
+        return right;
     }
 
     public boolean isLeft() {
-        return this.left;
+        return left;
     }
 
     public Direction next(boolean nextRight) {
-        return of(this.right, nextRight);
+        return of(right, nextRight);
     }
 
-    public Direction next() {
-        if (this.right) {
+    public Direction next(MovableStrategy movableStrategy) {
+        if (right) {
             return next(FALSE);
         }
-        return next(generatePoint());
+        return next(generatePoint(movableStrategy));
     }
 
     public Direction last() {
-        return of(this.right, FALSE);
+        return of(right, FALSE);
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o)
+        if (this == o) {
             return true;
-        if (o == null || getClass() != o.getClass())
+        }
+        if (o == null || getClass() != o.getClass()) {
             return false;
+        }
+
         Direction pair = (Direction)o;
         return left == pair.left &&
             right == pair.right;

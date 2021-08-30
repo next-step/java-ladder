@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import ladder.domain.Point;
+import ladder.strategy.RandomlyMovableStrategy;
 
 class PointTest {
     @Test
@@ -34,7 +35,7 @@ class PointTest {
 
     @Test
     public void next() {
-        Point second = Point.first(TRUE).next();
+        Point second = Point.first(TRUE).next(new RandomlyMovableStrategy());
         assertThat(second.move()).isEqualTo(0);
     }
 }

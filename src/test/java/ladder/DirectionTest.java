@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import ladder.domain.Direction;
+import ladder.strategy.RandomlyMovableStrategy;
 
 public class DirectionTest {
     @Test
@@ -20,14 +21,14 @@ public class DirectionTest {
 
     @Test
     public void next_random_true() {
-        Direction next = Direction.first(TRUE).next();
+        Direction next = Direction.first(TRUE).next(new RandomlyMovableStrategy());
         assertThat(next).isEqualTo(Direction.of(TRUE, FALSE));
     }
 
     @Test
     public void next_random_false() {
         for (int i = 0; i < 100; i++) {
-            Direction.first(FALSE).next();
+            Direction.first(FALSE).next(new RandomlyMovableStrategy());
         }
     }
 
