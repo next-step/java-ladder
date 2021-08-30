@@ -54,7 +54,7 @@ public class Ladder {
                         return;
                     }
 
-                    throw new IllegalArgumentException("빈 가로 구간이 존재하면 안됩니다.");
+                    throw new IllegalArgumentException("사다리 게임 시스템의 내부 문제가 발생했습니다. 관리자에게 문의하세요.");
                 });
     }
 

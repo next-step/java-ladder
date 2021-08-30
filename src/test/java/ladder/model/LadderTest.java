@@ -32,7 +32,7 @@ public class LadderTest {
         // when, then
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Ladder(Arrays.asList(firstLine, secondLine)))
-                .withMessage("빈 가로 구간이 존재하면 안됩니다.");
+                .withMessage("사다리 게임 시스템의 내부 문제가 발생했습니다. 관리자에게 문의하세요.");
     }
 
     @DisplayName("플레이어 수를 구하는 기능이 정상적으로 동작해야 한다.")
