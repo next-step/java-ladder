@@ -8,12 +8,12 @@ public class InputView {
 
     private static final Scanner sc = new Scanner(System.in);
 
-    public String requireNameOfParticipant() {
+    public static String requireNameOfParticipant() {
         System.out.println(MESSAGE_NAME_OF_PARTICIPANT);
         return sc.nextLine();
     }
 
-    public int requireHeightOfLadder() {
+    public static int requireHeightOfLadder() {
         System.out.println(MESSAGE_HEIGHT_OF_LADDER);
         return sc.nextInt();
     }
