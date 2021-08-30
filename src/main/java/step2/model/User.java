@@ -1,9 +1,9 @@
 package step2.model;
 
 public class User {
-    private final String name;
-
     private static final int MAX_NAME_LENGTH = 5;
+
+    private final String name;
 
     public User(String name) {
         isBlank(name);
