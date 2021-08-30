@@ -5,17 +5,20 @@ import java.util.stream.IntStream;
 
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
+import static ladder.model.Ladder.GAP_BETWEEN_PLAYER_COUNT_AND_POINT_COUNT;
 
 public class LadderLine {
     private static final int MIN_POINT_COUNT = 1;
     private static final int INDEX_GAP_BETWEEN_NEXT_POINT = 1;
+    private static final int FIRST_INDEX = 0;
     private static final int SECOND_INDEX = 1;
+    private static final int GAP_BETWEEN_LAST_INDEX_AND_SIZE = 1;
     private static final Random random = new Random();
 
     private final List<Boolean> points;
 
     LadderLine(List<Boolean> points) {
-        validateNotEmpty(points);
+        validateNotEmptyPoints(points);
         validateNoOverlappingLine(points);
         this.points = points;
     }
@@ -23,6 +26,12 @@ public class LadderLine {
     static LadderLine of(int pointCount) {
         validateMinPointCount(pointCount);
         return new LadderLine(generatePoints(pointCount));
+    }
+
+    static LadderLine of(int pointCount, List<Integer> truePointIndices) {
+        validateMinPointCount(pointCount);
+        validateNotEmptyTruePointIndices(truePointIndices);
+        return new LadderLine(generatePoints(pointCount, truePointIndices));
     }
 
     private static List<Boolean> generatePoints(int pointCount) {
@@ -38,9 +47,29 @@ public class LadderLine {
         return points;
     }
 
+    private static List<Boolean> generatePoints(int pointCount, List<Integer> truePointIndices) {
+        List<Boolean> points = generatePoints(pointCount);
+        truePointIndices.forEach(truePointIndex -> {
+            int previousIndexOfTruePoint = truePointIndex - INDEX_GAP_BETWEEN_NEXT_POINT;
+            int nextIndexOfTruePoint = truePointIndex + INDEX_GAP_BETWEEN_NEXT_POINT;
+
+            if (previousIndexOfTruePoint >= FIRST_INDEX) {
+                points.set(previousIndexOfTruePoint, FALSE);
+            }
+
+            if (nextIndexOfTruePoint < pointCount) {
+                points.set(nextIndexOfTruePoint, FALSE);
+            }
+
+            points.set(truePointIndex, TRUE);
+        });
+
+        return points;
+    }
+
     private static Boolean generatePoint(Boolean previousPoint) {
         validateNotNull(previousPoint);
-        if (previousPoint == TRUE) {
+        if (TRUE == previousPoint) {
             return FALSE;
         }
         return random.nextBoolean();
@@ -52,7 +81,7 @@ public class LadderLine {
         }
     }
 
-    private void validateNotEmpty(List<Boolean> points) {
+    private void validateNotEmptyPoints(List<Boolean> points) {
         if (points == null || points.isEmpty()) {
             throw new IllegalArgumentException("포인트 목록이 비었습니다.");
         }
@@ -77,11 +106,66 @@ public class LadderLine {
         }
     }
 
-    int getPointCount() {
+    private static void validateNotEmptyTruePointIndices(List<Integer> truePointIndices) {
+        if (truePointIndices == null || truePointIndices.isEmpty()) {
+            throw new IllegalArgumentException("선 있는 포인트 인덱스 목록이 비었습니다.");
+        }
+    }
+
+    int pointCount() {
         return points.size();
     }
 
     public List<Boolean> getPoints() {
         return points;
+    }
+
+    Boolean getPoint(int pointIndex) {
+        return points.get(pointIndex);
+    }
+
+    int findPlayerIndexAfterCrossingLine(int playerIndex) {
+        if (playerIndex == FIRST_INDEX) {
+            return findPlayerIndexAfterCrossingFirstLine(playerIndex);
+        }
+
+        if (playerIndex == points.size()) {
+            return findPlayerIndexAfterCrossingLastLine(playerIndex);
+        }
+
+        return findPlayerIndexAfterCrossingMiddleLine(playerIndex);
+    }
+
+    private int findPlayerIndexAfterCrossingFirstLine(int playerIndex) {
+        Boolean firstPoint = points.get(FIRST_INDEX);
+        if (firstPoint == TRUE) {
+            playerIndex += INDEX_GAP_BETWEEN_NEXT_POINT;
+        }
+        return playerIndex;
+    }
+
+    private int findPlayerIndexAfterCrossingLastLine(int playerIndex) {
+        int lastIndex = points.size() - GAP_BETWEEN_LAST_INDEX_AND_SIZE;
+        Boolean lastPoint = points.get(lastIndex);
+
+        if (lastPoint == TRUE) {
+            playerIndex -= INDEX_GAP_BETWEEN_NEXT_POINT;
+        }
+        return playerIndex;
+    }
+
+    private int findPlayerIndexAfterCrossingMiddleLine(int playerIndex) {
+        int leftPointIndex = playerIndex - GAP_BETWEEN_PLAYER_COUNT_AND_POINT_COUNT;
+        Boolean leftPoint = points.get(leftPointIndex);
+        if (leftPoint == TRUE) {
+            return playerIndex - INDEX_GAP_BETWEEN_NEXT_POINT;
+        }
+
+        Boolean rightPoint = points.get(playerIndex);
+        if (rightPoint == TRUE) {
+            return playerIndex + INDEX_GAP_BETWEEN_NEXT_POINT;
+        }
+
+        return playerIndex;
     }
 }

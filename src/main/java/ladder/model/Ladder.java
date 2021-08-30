@@ -1,19 +1,34 @@
 package ladder.model;
 
 import java.util.List;
-import java.util.stream.Stream;
+import java.util.stream.IntStream;
 
+import static java.lang.Boolean.TRUE;
 import static java.util.stream.Collectors.toList;
 
 public class Ladder {
-    private static final int GAP_BETWEEN_PLAYER_COUNT_AND_POINT_COUNT = 1;
+    static final int GAP_BETWEEN_PLAYER_COUNT_AND_POINT_COUNT = 1;
     private static final int MIN_LADDER_HEIGHT = 1;
+    private static final int FIRST_INDEX = 0;
+    private static final int SINGLE_LINE_COUNT = 1;
+    private static final int ZERO = 0;
 
     private final List<LadderLine> lines;
 
     public Ladder(int playerCount, int ladderHeight) {
         validateMinLadderHeight(ladderHeight);
-        lines = generateLines(ladderHeight, playerCount - GAP_BETWEEN_PLAYER_COUNT_AND_POINT_COUNT);
+
+        int pointCount = playerCount - GAP_BETWEEN_PLAYER_COUNT_AND_POINT_COUNT;
+        LadderLinesGenerator ladderLinesGenerator = LadderLineGeneratorFactory.findGenerator(ladderHeight, pointCount);
+        lines = ladderLinesGenerator.generate(ladderHeight, pointCount);
+
+        validateNotExistEmptyVerticalInterval(lines);
+    }
+
+    Ladder(List<LadderLine> lines) {
+        validateMinLadderHeight(lines.size());
+        validateNotExistEmptyVerticalInterval(lines);
+        this.lines = lines;
     }
 
     private void validateMinLadderHeight(int ladderHeight) {
@@ -22,13 +37,43 @@ public class Ladder {
         }
     }
 
-    private List<LadderLine> generateLines(int ladderLineCount, int pointCount) {
-        return Stream.generate(() -> LadderLine.of(pointCount))
-                .limit(ladderLineCount)
-                .collect(toList());
+    private void validateNotExistEmptyVerticalInterval(List<LadderLine> lines) {
+        if (lines.size() == SINGLE_LINE_COUNT) {
+            return;
+        }
+
+        LadderLine firstLine = lines.get(FIRST_INDEX);
+
+        IntStream.range(FIRST_INDEX, firstLine.pointCount())
+                .forEach(pointIndex -> {
+                    List<Boolean> verticalLine = lines.stream()
+                            .map(line -> line.getPoint(pointIndex))
+                            .collect(toList());
+
+                    if (verticalLine.contains(TRUE)) {
+                        return;
+                    }
+
+                    throw new IllegalArgumentException("빈 가로 구간이 존재하면 안됩니다.");
+                });
     }
 
-    public List<LadderLine> getLines() {
+    List<LadderLine> getLines() {
         return lines;
+    }
+
+    int playerCount() {
+        if (lines.isEmpty()) {
+            return ZERO;
+        }
+        LadderLine firstLine = lines.get(FIRST_INDEX);
+        return firstLine.pointCount() + GAP_BETWEEN_PLAYER_COUNT_AND_POINT_COUNT;
+    }
+
+    int findResultIndex(int playerIndex) {
+        for (LadderLine line : lines) {
+            playerIndex = line.findPlayerIndexAfterCrossingLine(playerIndex);
+        }
+        return playerIndex;
     }
 }
