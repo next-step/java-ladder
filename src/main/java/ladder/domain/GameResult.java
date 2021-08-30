@@ -42,8 +42,8 @@ public class GameResult {
         }
     }
 
-    private boolean isMovable(int pos, Line line) {
-        return !line.outOfRange(pos) && line.isConnected(pos);
+    private boolean isMovable(int position, Line line) {
+        return !line.outOfRange(position) && line.isConnected(position);
     }
 
     public LadderResult resultOf(User user) {
