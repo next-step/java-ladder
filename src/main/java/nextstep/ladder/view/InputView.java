@@ -1,7 +1,7 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.Player;
-import nextstep.ladder.domain.winningPrize.WinningPrize;
+import nextstep.ladder.domain.impl.Player;
+import nextstep.ladder.domain.impl.WinningPrize;
 import nextstep.ladder.utils.StringUtils;
 
 import java.util.List;

@@ -1,12 +1,12 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.Board;
-import nextstep.ladder.domain.BoardConsumer;
-import nextstep.ladder.domain.Player;
-import nextstep.ladder.domain.winningPrize.WinningPrize;
+import nextstep.ladder.domain.impl.BoardConsumer;
+import nextstep.ladder.domain.impl.Player;
+import nextstep.ladder.domain.engine.Board;
+import nextstep.ladder.domain.engine.PlayResult;
+import nextstep.ladder.domain.impl.WinningPrize;
 
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 public class ResultView {
@@ -31,19 +31,19 @@ public class ResultView {
         System.out.println(REQUEST_LADDER_HEIGHT_MESSAGE);
     }
 
-    public static void printLadderShape(BoardConsumer boardConsumer, Board board) {
+    public static void printLadderShape(BoardConsumer boardConsumer, Board ladderBoard) {
         System.out.println(LADDER_SHAPE_MESSAGE);
 
         System.out.println(boardConsumer.getPlayers().stream()
                 .map(Player::toString)
                 .collect(Collectors.joining(" ")));
-        System.out.println(board);
+        System.out.println(ladderBoard);
         System.out.println(boardConsumer.getWinningPrizes().stream()
                 .map(WinningPrize::toString)
                 .collect(Collectors.joining(" ")));
     }
 
-    public static void printResult(Map<Integer, Integer> playResult, BoardConsumer boardConsumer, List<Player> players) {
+    public static void printResult(PlayResult playResult, BoardConsumer boardConsumer, List<Player> players) {
         System.out.println(RESULT_MESSAGE);
 
         List<WinningPrize> winningPrizes = players.stream()

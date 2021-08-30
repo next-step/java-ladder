@@ -1,4 +1,4 @@
-package nextstep.ladder.domain.winningPrize;
+package nextstep.ladder.domain.impl;
 
 import nextstep.ladder.exception.NullParameterException;
 import nextstep.ladder.exception.OutOfRangeException;
