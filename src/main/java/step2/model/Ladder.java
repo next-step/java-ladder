@@ -37,7 +37,7 @@ public class Ladder {
         }
     }
 
-    public void generateLine(int ladderHigh, int numberOfUser, LadderStrategy ladderStrategy) {
+    private void generateLine(int ladderHigh, int numberOfUser, LadderStrategy ladderStrategy) {
         this.lines = new ArrayList<>();
 
         for (int i = 0; i < ladderHigh; i++) {
