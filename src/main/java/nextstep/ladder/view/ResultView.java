@@ -36,8 +36,7 @@ public class ResultView {
     }
 
     private static void printPlayers(List<Player> players) {
-        players.stream()
-                .forEach(player -> System.out.print(String.format("%6s", player.valueOfName())));
+        players.forEach(player -> System.out.print(String.format("%6s", player.valueOfName())));
         System.out.println();
     }
 
