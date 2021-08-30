@@ -21,7 +21,20 @@ public class LadderDirectionTest {
     @DisplayName("첫번째 사다리의 방향에서 왼쪽 방향은 false 이어야 한다.")
     @Test
     void leftOfFirstLadderDirectionTest() {
-        // given, when, then
-        assertSame(LadderDirection.first(true).isLeft(), false);
+        // given, when
+        LadderDirection firstDirection = LadderDirection.first(true);
+
+        // then
+        assertSame(firstDirection.isLeft(), false);
+    }
+
+    @DisplayName("마지막 사다리의 방향에서 오른쪽 방향은 false 이어야 한다.")
+    @Test
+    void rightOfLastLadderDirectionTest() {
+        // given, when
+        LadderDirection lastDirection = LadderDirection.last(true);
+
+        // then
+        assertSame(lastDirection.isRight(), false);
     }
 }
