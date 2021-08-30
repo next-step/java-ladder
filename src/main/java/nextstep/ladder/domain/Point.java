@@ -1,7 +1,5 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.util.InputUtils;
-
 public class Point implements Comparable<Point> {
 
     private static final String LESS_THAN_ZERO = "위치 값은 0보다 작을 수 없습니다 -> %d";
@@ -37,7 +35,6 @@ public class Point implements Comparable<Point> {
     }
 
     private void validateDirection(final Direction direction) {
-        InputUtils.requireNonNull(direction);
         requireValidDirection(direction);
     }
 

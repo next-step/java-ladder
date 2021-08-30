@@ -1,7 +1,5 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.util.InputUtils;
-
 import java.util.Scanner;
 
 public class ResultConsoleInput {
@@ -11,8 +9,6 @@ public class ResultConsoleInput {
 
     public static String askResults() {
         System.out.println(PLAYERS_QUESTION);
-        String players = scanner.nextLine();
-        InputUtils.requireNonNull(players);
-        return players;
+        return scanner.nextLine();
     }
 }

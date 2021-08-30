@@ -1,7 +1,5 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.util.InputUtils;
-
 import java.util.Scanner;
 
 public class PlayerConsoleInput {
@@ -12,15 +10,11 @@ public class PlayerConsoleInput {
 
     public static String askPlayers() {
         System.out.println(PLAYERS_QUESTION);
-        String players = scanner.nextLine();
-        InputUtils.requireNonNull(players);
-        return players;
+        return scanner.nextLine();
     }
 
     public static String askWonderingPlayer() {
         System.out.println(WONDERING_PLAYERS_QUESTION);
-        String players = scanner.nextLine();
-        InputUtils.requireNonNull(players);
-        return players;
+        return scanner.nextLine();
     }
 }

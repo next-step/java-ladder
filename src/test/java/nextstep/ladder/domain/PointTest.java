@@ -27,23 +27,6 @@ class PointTest {
     }
 
     @Test
-    @DisplayName("Point 생성 - direction 값이 null 인 경우")
-    public void nullDirection() {
-        // given
-        int position = 0;
-        Direction direction = null;
-        String message = "입력값은 null 일 수 없습니다";
-
-        // when
-        ThrowingCallable throwingCallable = () -> new Point(position, direction);
-
-        // then
-        assertThatThrownBy(throwingCallable)
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(message);
-    }
-
-    @Test
     @DisplayName("Point 생성 - position 0에서 direction 값이 LEFT 인 경우")
     public void positionZeroDirectionLeft() {
         // given

@@ -1,6 +1,5 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.util.InputUtils;
 import nextstep.ladder.util.NumberUtils;
 
 import java.util.Scanner;
@@ -12,15 +11,15 @@ public class HeightConsoleInput {
 
     public static int askHeight() {
         System.out.println(HEIGHT_QUESTION);
-        String height = scanner.nextLine();
-        validateHeight(height);
+        return getUntilNumber(scanner.nextLine());
+    }
+
+    private static int getUntilNumber(final String height) {
+        if (!NumberUtils.isNumber(height)) {
+            NumberUtils.printNotNumber(height);
+            return askHeight();
+        }
         return Integer.parseInt(height);
     }
-
-    private static void validateHeight(String height) {
-        InputUtils.requireNonNull(height);
-        NumberUtils.requireNumber(height);
-    }
-
 
 }
