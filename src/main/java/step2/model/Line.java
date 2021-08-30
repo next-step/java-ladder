@@ -16,6 +16,14 @@ public class Line {
 
     }
 
+    public Line(List<Boolean> points) {
+        this.points = points;
+    }
+
+    public List<Boolean> getLine() {
+        return points;
+    }
+
     private void drawPoint(LadderStrategy ladderStrategy, int index) {
         boolean isPoint = ladderStrategy.generateLine();
 
@@ -24,14 +32,6 @@ public class Line {
         }
 
         points.add(isPoint);
-    }
-
-    public Line(List<Boolean> points) {
-        this.points = points;
-    }
-
-    public List<Boolean> getLine() {
-        return points;
     }
 
     @Override
