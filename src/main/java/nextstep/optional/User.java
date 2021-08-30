@@ -27,7 +27,7 @@ public class User {
         boolean isInRange = false;
 
         if (user != null && user.getAge() != null
-                && (user.getAge() >= 30
+                && (checkAgeRange(user.getAge())
                 && user.getAge() <= 45)) {
             isInRange = true;
         }
@@ -37,9 +37,12 @@ public class User {
     public static boolean ageIsInRange2(User user) {
       return Optional.ofNullable(user)
           .map(User::getAge)
-          .filter(u -> u >= 30)
-          .filter(u -> u <= 45)
+          .filter(User::checkAgeRange)
           .isPresent();
+    }
+
+    private static boolean checkAgeRange(Integer u) {
+        return u >= 30 && u <= 45;
     }
 
     @Override

@@ -1,6 +1,6 @@
 package nextstep.fp;
 
-public interface Conditional {
+public interface Expression {
 
   boolean sum(Integer number);
 }
