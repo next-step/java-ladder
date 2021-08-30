@@ -30,25 +30,18 @@ public class Players {
         return players.size();
     }
 
-    public List<Integer> getPositions(final WonderingPlayer wonderingPlayer) {
-        return Optional.of(wonderingPlayer)
-                .filter(WonderingPlayer::isNotAll)
-                .map(WonderingPlayer::getWonderingPlayer)
+    public List<Integer> getPositions(final WonderingPlayers wonderingPlayers) {
+        return wonderingPlayers.getWonderingPlayers()
+                .stream()
                 .map(this::getPositions)
-                .orElseGet(this::getAllPositions);
-    }
-
-    private List<Integer> getAllPositions() {
-        return IntStream.range(0, count())
-                .boxed()
                 .collect(Collectors.toList());
     }
 
-    private List<Integer> getPositions(final Player player) {
-        return Collections.singletonList(IntStream.range(0, count())
+    private int getPositions(final Player player) {
+        return IntStream.range(0, count())
                 .filter(i -> getPlayer(i).equals(player))
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException(String.format(NON_EXISTENT_NAME, player))));
+                .orElseThrow(() -> new IllegalArgumentException(String.format(NON_EXISTENT_NAME, player)));
     }
 
     private Player getPlayer(final int position) {

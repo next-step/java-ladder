@@ -47,11 +47,11 @@ class PlayersTest {
     public void getPositionsNonExistentName() {
         // given
         Players players = new Players("pobi,honux,crong,jk");
-        WonderingPlayer wonderingPlayer = new WonderingPlayer("a");
-        String message = String.format("존재하지 않는 참가자 이름입니다 -> %s", wonderingPlayer);
+        WonderingPlayers wonderingPlayers = new WonderingPlayers(players, "a");
+        String message = String.format("존재하지 않는 참가자 이름입니다 -> %s", "a");
 
         // when
-        ThrowingCallable throwingCallable = () -> players.getPositions(wonderingPlayer);
+        ThrowingCallable throwingCallable = () -> players.getPositions(wonderingPlayers);
 
         // then
         assertThatThrownBy(throwingCallable)
@@ -64,10 +64,10 @@ class PlayersTest {
     public void getPositionsAll() {
         // given
         Players players = new Players("pobi,honux,crong,jk");
-        WonderingPlayer wonderingPlayer = new WonderingPlayer("all");
+        WonderingPlayers wonderingPlayers = new WonderingPlayers(players, "all");
 
         // when
-        List<Integer> positions = players.getPositions(wonderingPlayer);
+        List<Integer> positions = players.getPositions(wonderingPlayers);
 
         // then
         assertThat(positions).containsExactly(0, 1, 2, 3);
@@ -78,10 +78,10 @@ class PlayersTest {
     public void getPositions() {
         // given
         Players players = new Players("pobi,honux,crong,jk");
-        WonderingPlayer wonderingPlayer = new WonderingPlayer("honux");
+        WonderingPlayers wonderingPlayers = new WonderingPlayers(players, "honux");
 
         // when
-        List<Integer> positions = players.getPositions(wonderingPlayer);
+        List<Integer> positions = players.getPositions(wonderingPlayers);
 
         // then
         assertThat(positions).containsExactly(1);

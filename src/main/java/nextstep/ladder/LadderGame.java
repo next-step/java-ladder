@@ -10,7 +10,7 @@ public class LadderGame {
 
     public static void main(String[] args) {
         Players players = new Players(PlayerConsoleInput.askPlayers());
-        Results results = new Results(ResultConsoleInput.askResults());
+        Results results = new Results(players, ResultConsoleInput.askResults());
         Height height = new Height(HeightConsoleInput.askHeight());
         Ladder ladder = new Ladder(players, height);
         LadderElementsDto playersDto = new LadderElementsDto(players.getPlayerNames());
@@ -18,15 +18,15 @@ public class LadderGame {
         LadderConsoleOutput.print(ladder.getLadderBarStatus());
         LadderElementsDto resultsDto = new LadderElementsDto(results.getResultNames());
         LadderElementConsoleOutput.print(resultsDto, Result.MAX_LENGTH);
-        WonderingPlayer wonderingPlayer;
+        WonderingPlayers wonderingPlayers;
         do {
-            wonderingPlayer = new WonderingPlayer(PlayerConsoleInput.askWonderingPlayer());
-            ResultConsoleOutput.print(playersDto, players.getPositions(wonderingPlayer)
+            wonderingPlayers = new WonderingPlayers(players, PlayerConsoleInput.askWonderingPlayer());
+            ResultConsoleOutput.print(playersDto, players.getPositions(wonderingPlayers)
                     .stream()
                     .map(ladder::startMoving)
                     .map(results::getName)
                     .collect(Collectors.toList()));
-        } while (wonderingPlayer.isNotAll());
+        } while (!wonderingPlayers.isEqualSizeTo(players));
     }
 
 }
