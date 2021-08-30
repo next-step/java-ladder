@@ -116,7 +116,6 @@ public class ResultView {
     private static void showExitOrElse(WinningResult winningResult, String personName) {
         if(personName.equals("exit")){
             System.exit(0);
-            return;
         }
         showOneResult(winningResult, personName);
     }
@@ -128,7 +127,7 @@ public class ResultView {
 
     private static void showOneWinningResult(Result result) {
         System.out.println("실행 결과");
-        System.out.println(result);
+        System.out.println(result + System.lineSeparator());
     }
 }
 

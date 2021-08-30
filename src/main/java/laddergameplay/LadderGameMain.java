@@ -30,8 +30,8 @@ public class LadderGameMain {
             LadderGame ladderGame = new LadderGame(ladder);
 
             ResultView.showResult(people, ladder, results);
-            WinningResult winningResult = ladderGame.makeWinningResult(people, results);
 
+            WinningResult winningResult = ladderGame.makeWinningResult(people, results);
             ResultView.showWinningResult(winningResult);
         } catch (CustomException e) {
             System.out.println(e.getMessage());
