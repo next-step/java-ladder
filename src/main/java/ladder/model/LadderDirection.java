@@ -10,9 +10,17 @@ public class LadderDirection {
         this.right = right;
     }
 
+    static LadderDirection first(boolean right) {
+        return new LadderDirection(false, right);
+    }
+
     private void validateNotBothDirections(boolean left, boolean right) {
         if (left && right) {
             throw new IllegalArgumentException("사다리 방향이 양쪽으로 있을 수 없습니다.");
         }
+    }
+
+    boolean isLeft() {
+        return left;
     }
 }
