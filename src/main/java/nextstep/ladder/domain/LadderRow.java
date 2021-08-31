@@ -71,4 +71,7 @@ public class LadderRow {
         return ladderColumns.size();
     }
 
+    public List<LadderColumn> getLadderColumns() {
+        return ladderColumns;
+    }
 }
