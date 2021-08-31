@@ -1,6 +1,9 @@
 package ladder.model;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 
 public class Ladder {
@@ -29,5 +32,11 @@ public class Ladder {
 
     public int getHeight() {
         return lines.size();
+    }
+
+    public List<Integer> moveAll() {
+        return IntStream.range(0, getHeight())
+                .mapToObj(this::moveFrom)
+                .collect(Collectors.toList());
     }
 }
