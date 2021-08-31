@@ -2,31 +2,40 @@ package ladder;
 
 import ladder.domain.*;
 import ladder.exception.NotFoundUserException;
+import ladder.exception.UserNameLengthException;
 
 import static ladder.view.InputView.*;
 import static ladder.view.ResultView.*;
 
 public class LadderApplication {
     public static void main(String[] args) {
-        String[] usersName = askUserName();
-        Users users = new Users(usersName);
+        Users users = getUsers();
 
-        int winningItemsCount = usersName.length;
+        int winningItemsCount = users.getUsersCount();
         WinningItems winningItems = getWinningItems(winningItemsCount);
 
         int ladderHeight = askLadderHeight();
-        Ladder ladder = new Ladder(ladderHeight, usersName.length);
+        Ladder ladder = new Ladder(ladderHeight, users.getUsersCount());
 
         printUserList(users);
         printLadder(ladder);
         printWinningItems(winningItems);
 
-        MatchResult matchResult = new MatchResult(users, ladder, winningItems);
+        MatchResults matchResults = new MatchResults(ladder.execute(users, winningItems));
 
         while (true) {
-            getWhoResult(matchResult, users);
+            getWhoResult(matchResults, users);
         }
 
+    }
+
+    private static Users getUsers() {
+        String[] usersName = askUserName();
+        try {
+            return new Users(usersName);
+        } catch (UserNameLengthException e) {
+            return getUsers();
+        }
     }
 
     private static WinningItems getWinningItems(int count) {
@@ -38,8 +47,13 @@ public class LadderApplication {
         return new WinningItems(winningItems);
     }
 
-    private static void getWhoResult(MatchResult matchResult, Users users) {
+    private static void getWhoResult(MatchResults matchResult, Users users) {
         String name = askWhoResult();
+
+        if (name.isEmpty()) {
+            System.out.println("입력하지 않으셨습니다.\n");
+            getWhoResult(matchResult, users);
+        }
         if (name.equals("all")) {
             printAllResult(matchResult);
             return;
