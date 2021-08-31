@@ -3,17 +3,17 @@ package nextstep.ladder.domain;
 import java.util.*;
 
 public class LadderResults {
-    private final Map<Player, String> resultMap;
+    private final Map<String, String> resultMap;
 
-    public LadderResults(Map<Player, String> resultMap) {
+    public LadderResults(final Map<String, String> resultMap) {
         this.resultMap = resultMap;
     }
 
-    public Set<Player> getPlayers() {
+    public Set<String> getPlayers() {
         return resultMap.keySet();
     }
 
-    public String findResultByPlayer(Player player) {
+    public String findResultByPlayer(String player) {
         return resultMap.get(player);
     }
 

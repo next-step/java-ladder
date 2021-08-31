@@ -40,8 +40,8 @@ public class ResultView {
         System.out.print(FALSE_LINE);
     }
 
-    private static void printPlayers(List<Player> players) {
-        players.forEach(player -> System.out.print(String.format("%6s", player.getName())));
+    private static void printPlayers(Players players) {
+        players.getPlayers().forEach(player -> System.out.print(String.format("%6s", player.getValue())));
         System.out.println();
     }
 
@@ -51,20 +51,20 @@ public class ResultView {
         System.out.println();
     }
 
-    public static void printPlayersResults(String playersResults, LadderResults ladderResults) {
+    public static void printPlayersResults(String whoWantResult, LadderResults ladderResults) {
         System.out.println(RESULT);
-        if (playersResults.equals("all")) {
+        if (whoWantResult.equals("all")) {
             printAllPlayersResults(ladderResults);
             return;
         }
-        System.out.println(ladderResults.findResultByPlayer(new Player(playersResults)));
+        System.out.println(ladderResults.findResultByPlayer(whoWantResult));
     }
 
     private static void printAllPlayersResults(LadderResults ladderResults) {
-        Set<Player> players = ladderResults.getPlayers();
-        players.forEach(player -> System.out.println(player.getName()
-                        + " : "
-                        + ladderResults.findResultByPlayer(player)));
+        Set<String> players = ladderResults.getPlayers();
+        players.forEach(player -> System.out.println(player
+                + " : "
+                + ladderResults.findResultByPlayer(player)));
     }
 
 }

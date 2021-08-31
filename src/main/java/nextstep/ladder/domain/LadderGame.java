@@ -1,34 +1,30 @@
 package nextstep.ladder.domain;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+import java.util.*;
 
 public class LadderGame {
     private final static String LADDER_GAME_ERROR = "결과 수와 참여자 수는 같아야 합니다.";
-    private final List<Player> players;
+    private final Players players;
     private final Ladder ladder;
 
-    public LadderGame(final List<String> players, final Ladder ladder) {
-        this.players = Collections.unmodifiableList(
-                players.stream()
-                        .map(Player::new)
-                        .collect(Collectors.toList())
-        );
+    private LadderGame(final Players players, final Ladder ladder) {
+        this.players = players;
         this.ladder = ladder;
     }
 
-    public LadderResults climbLadder(List<String> results) {
-        if (results.size() != players.size()) {
+    public static LadderGame of(final List<String> players, final Ladder ladder) {
+        return new LadderGame(new Players(players), ladder);
+    }
+
+    public LadderResults climbLadder(Results results) {
+        if (!players.isSameSize(results)) {
             throw new IllegalArgumentException(LADDER_GAME_ERROR);
         }
 
-        Map<Player, String> resultMap = new HashMap<>();
-
-        for (int location = 0; location < players.size(); location++) {
-            resultMap.put(players.get(location), results.get(ladder.climbLadder(new Location(location))));
+        Map<String, String> resultMap = new LinkedHashMap<>();
+        for (int location = 0; location < results.sizeOfResults(); location++) {
+            int index = ladder.climbLadder(new Location(location));
+            resultMap.put(players.indexOf(location), results.indexOf(index));
         }
         return new LadderResults(resultMap);
     }
@@ -37,7 +33,7 @@ public class LadderGame {
         return ladder;
     }
 
-    public List<Player> getPlayers() {
+    public Players getPlayers() {
         return players;
     }
 }

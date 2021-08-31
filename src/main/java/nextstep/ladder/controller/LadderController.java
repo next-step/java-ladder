@@ -13,18 +13,18 @@ public class LadderController {
         int ladderHeight = InputView.inputLadderHeight();
 
         Ladder ladder = new Ladder(new LadderInfo(players.size(), ladderHeight), new RandomPointCreator());
-        LadderGame ladderGame = new LadderGame(players, ladder);
+        LadderGame ladderGame = LadderGame.of(players, ladder);
 
         ResultView.printResult(ladderGame);
         ResultView.printLadderResult(results);
 
-        LadderResults ladderResults = ladderGame.climbLadder(results);
+        LadderResults ladderResults = ladderGame.climbLadder(new Results(results));
 
         while (true) {
-            String playersResults = InputView.inputPlayersResults();
-            ResultView.printPlayersResults(playersResults, ladderResults);
+            String whoWantResult = InputView.inputWhoWantResult();
+            ResultView.printPlayersResults(whoWantResult, ladderResults);
 
-            if (playersResults.equals("all")) {
+            if (whoWantResult.equals("all")) {
                 break;
             }
         }

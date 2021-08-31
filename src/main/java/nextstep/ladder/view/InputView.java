@@ -37,7 +37,7 @@ public class InputView {
                 .split(SEPARATOR));
     }
 
-    public static String inputPlayersResults() {
+    public static String inputWhoWantResult() {
         System.out.println(INPUT_PLAYER_RESULT);
         return scanner.nextLine();
     }

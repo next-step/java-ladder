@@ -8,14 +8,14 @@ public class Location {
     private static final int ZERO_LOCATION = 0;
     private final int location;
 
-    public Location(int location) {
+    public Location(final int location) {
         if (location < ZERO_LOCATION) {
             throw new IllegalArgumentException(CREATE_LOCATION_ERROR);
         }
         this.location = location;
     }
 
-    public Location move(Line line) {
+    public Location move(final Line line) {
         if (line.valueByLocation(this.location)) {
             return new Location(this.location - MOVE_UNIT);
         }
