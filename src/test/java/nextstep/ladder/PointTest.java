@@ -16,14 +16,33 @@ public class PointTest {
     }
 
     @Test
-    void insert3() {
-        Point first = Point.init(false);
+    void insert() {
+        Point first = Point.init(false); // (false , false)
         assertThat(first.move()).isEqualTo(0);
     }
 
     @Test
-    void insert4() {
-        Point first = Point.init(true);
+    void insert2() {
+        Point first = Point.init(true); // (false ,true)
         assertThat(first.move()).isEqualTo(1);
+    }
+
+    @Test
+    void insert3() {      // (false ,true)
+        assertThat(Point.init(false).insert(true).move()).isEqualTo(1);
+    }
+
+    @Test
+    void insert4() {  // (false , false)
+        assertThat(Point.init(false).insert(false).move()).isEqualTo(0);
+    }
+    @Test
+    void insert5() {  // (true , false)
+        assertThat(Point.init(true).insert(false).move()).isEqualTo(-1);
+    }
+
+    @Test
+    void insert6() { // (true, false) 이전 값이 true이면 다음 값은 무조건 false이다.
+        assertThat(Point.init(true).insert(true).move()).isEqualTo(-1);
     }
 }

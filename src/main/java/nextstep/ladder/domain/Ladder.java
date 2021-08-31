@@ -19,10 +19,8 @@ public class Ladder {
     }
 
     public String search(int index) {
-        int startDirection = index;
         for (Line line : lines) {
-           startDirection += line.search(index);
-
+           index = line.search(index);
         }
         Result result = new Result();
         return result.get(index);

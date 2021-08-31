@@ -19,6 +19,13 @@ public class Line {
         createPoint(playersCounts);
     }
 
+    public Line(List<Point> points) {
+        if (points.get(points.size() - 1).nextPoint()) {
+            throw new IllegalArgumentException("올바른 사다리가 아닙니다");
+        }
+        this.points = points;
+    }
+
     private void createPoint(int playersCounts) {
         points.add(Point.init(RandomUtil.generate())); // 처음 사다리 Line은 지정 된 값
         for (int i = START_INDEX; i < playersCounts - 1; i++) {
@@ -28,8 +35,9 @@ public class Line {
     }
 
     public int search(int index) {
-        Point point = points.get(index);
-        return point.move();
+        Direction direction = new Direction(index);
+        int point = points.get(index).move();
+        return direction.move(point);
     }
 
     public int size() {

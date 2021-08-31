@@ -12,6 +12,9 @@ public class Point {
     private boolean nextPoint;
 
     private Point(boolean currentPoint, boolean nextPoint) {
+        if (currentPoint && nextPoint) {
+            throw new IllegalArgumentException("유효한 사다리가 아닙니다.");
+        }
         this.currentPoint = currentPoint;
         this.nextPoint = nextPoint;
     }
