@@ -34,8 +34,7 @@ public class Ladder {
         int currentPosition = startPosition;
 
         for (Line line : ladder) {
-            MovePosition movePosition = new MovePosition(currentPosition);
-            currentPosition = movePosition.in(line);
+            currentPosition = new MovePosition(currentPosition).in(line);
         }
 
         return currentPosition;
@@ -88,7 +87,22 @@ public class Ladder {
         }
     }
 
-    public List<Line> getLadder() {
-        return Collections.unmodifiableList(ladder);
+    public void addResultTo(StringBuilder stringBuilder) {
+        for (Line line : ladder) {
+            line.addResultTo(stringBuilder);
+        }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Ladder)) return false;
+        Ladder ladder1 = (Ladder) o;
+        return widthOfLadder == ladder1.widthOfLadder && Objects.equals(ladder, ladder1.ladder);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ladder, widthOfLadder);
     }
 }

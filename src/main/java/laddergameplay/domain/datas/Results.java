@@ -3,8 +3,8 @@ package laddergameplay.domain.datas;
 import laddergameplay.domain.data.Result;
 import laddergameplay.exception.CustomException;
 
-import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Results {
@@ -27,7 +27,23 @@ public class Results {
         }
     }
 
-    public List<Result> getResults() {
-        return Collections.unmodifiableList(results);
+    public void addResultTo(StringBuilder stringBuilder) {
+        results.stream()
+                .map(Result::toString)
+                .map(name -> String.format("%"+ Result.MAX_LENGTH_OF_NAME+1 +"s", name))
+                .forEach(stringBuilder::append);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Results)) return false;
+        Results results1 = (Results) o;
+        return Objects.equals(results, results1.results);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(results);
     }
 }

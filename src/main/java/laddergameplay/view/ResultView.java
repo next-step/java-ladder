@@ -6,16 +6,10 @@ import laddergameplay.domain.datas.People;
 import laddergameplay.domain.datas.Results;
 import laddergameplay.domain.dto.WinningResult;
 import laddergameplay.domain.ladder.Ladder;
-import laddergameplay.domain.ladder.Line;
 
 import java.util.Map;
 
 public class ResultView {
-
-    private static final String LINE_EMPTY = "     |";
-    private static final String LINE_EXIST = "-----|";
-    private static final int PERSON_DISPLAY_SPACE = Person.MAX_LENGTH_OF_NAME + 1;
-    private static final int RESULT_DISPLAY_SPACE = Result.MAX_LENGTH_OF_NAME + 1;
 
     public static void showResult(People people, Ladder ladder, Results results) {
         String result = makeResult(people, ladder, results);
@@ -37,44 +31,16 @@ public class ResultView {
     }
 
     private static void writePeople(People people, StringBuilder stringBuilder) {
-        people.getPeople()
-                .stream()
-                .map(Person::toString)
-                .map(name -> String.format("%"+ RESULT_DISPLAY_SPACE +"s", name))
-                .forEach(stringBuilder::append);
+        people.addResultTo(stringBuilder);
         stringBuilder.append(System.lineSeparator());
     }
 
     private static void writeLadder(Ladder ladder, StringBuilder stringBuilder) {
-        ladder.getLadder()
-                .forEach(line -> { stringBuilder.append(LINE_EMPTY)
-                        .append(makeLineResult(line))
-                        .append(System.lineSeparator());
-                });
-    }
-
-    private static String makeLineResult(Line line) {
-        StringBuilder stringBuilder = new StringBuilder();
-        line.getPoints()
-                .stream()
-                .map(ResultView::ladderString)
-                .forEach(stringBuilder::append);
-        return stringBuilder.toString();
-    }
-
-    private static String ladderString(Boolean bool) {
-        if (bool) {
-            return LINE_EXIST;
-        }
-        return LINE_EMPTY;
+        ladder.addResultTo(stringBuilder);
     }
 
     private static void writeResults(Results results, StringBuilder stringBuilder) {
-        results.getResults()
-                .stream()
-                .map(Result::toString)
-                .map(name -> String.format("%"+ PERSON_DISPLAY_SPACE +"s", name))
-                .forEach(stringBuilder::append);
+        results.addResultTo(stringBuilder);
         stringBuilder.append(System.lineSeparator());
     }
 

@@ -1,6 +1,5 @@
 package laddergameplay.domain.ladder;
 
-import laddergameplay.domain.ladder.Line;
 import laddergameplay.exception.CustomException;
 import laddergameplay.strategy.LineStrategy;
 import laddergameplay.strategy.RandomLineStrategy;

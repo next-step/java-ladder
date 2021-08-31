@@ -1,8 +1,5 @@
 package laddergameplay.domain.datas;
 
-import laddergameplay.domain.data.Result;
-import laddergameplay.domain.datas.People;
-import laddergameplay.domain.datas.Results;
 import laddergameplay.exception.CustomException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -30,8 +27,7 @@ public class ResultsTest {
         Results results = new Results(resultsList, people);
 
         // then
-        assertThat(results.getResults().size()).isEqualTo(4);
-        assertThat(results.getResults().get(0)).isEqualTo(new Result("3000"));
+        assertThat(results).isEqualTo(new Results(resultsList, people));
     }
 
     @ParameterizedTest(name = "Results 생성 실패 : 개수 미달 or 초과")

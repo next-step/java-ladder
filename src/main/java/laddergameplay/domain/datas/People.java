@@ -2,8 +2,8 @@ package laddergameplay.domain.datas;
 
 import laddergameplay.domain.data.Person;
 
-import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class People {
@@ -16,15 +16,31 @@ public class People {
                 .collect(Collectors.toList());;
     }
 
-    public List<Person> getPeople() {
-        return Collections.unmodifiableList(people);
-    }
-
     public boolean isSameSizeAs(int size) {
         return people.size() == size;
     }
 
     public int subtractNumberFromSize(int number) {
         return people.size() - number;
+    }
+
+    public void addResultTo(StringBuilder stringBuilder) {
+        people.stream()
+                .map(Person::toString)
+                .map(name -> String.format("%"+ Person.MAX_LENGTH_OF_NAME+1 +"s", name))
+                .forEach(stringBuilder::append);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof People)) return false;
+        People people1 = (People) o;
+        return Objects.equals(people, people1.people);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(people);
     }
 }

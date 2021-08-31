@@ -23,8 +23,6 @@ class PeopleTest {
         People people = new People(peopleList);
 
         // then
-        assertThat(people.isSameSizeAs(4)).isTrue();
-        assertThat(people.getPeople().get(0))
-                .isEqualTo(new Person("hwan"));
+        assertThat(people).isEqualTo(new People(peopleList));
     }
 }

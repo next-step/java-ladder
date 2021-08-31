@@ -17,16 +17,20 @@ public class LadderTest {
     @DisplayName("Ladder 생성")
     void create() {
         // given
-        People people = new People(Arrays.asList("a,b,c,d".split(",")));
+        People people = new People(Arrays.asList("a,b,c,d,e".split(",")));
         int heightOfLadder = 5;
-        LineStrategy lineStrategy = new RandomLineStrategy();
+        LineStrategy lineStrategy = new RandomLineStrategy(){
+            @Override
+            protected boolean currentPoint() {
+                return true;
+            }
+        };
 
         // when
         Ladder ladder = new Ladder(people.subtractNumberFromSize(1), heightOfLadder, lineStrategy);
 
         // then
-        assertThat(ladder.getLadder().size()).isEqualTo(heightOfLadder);
-        assertThat(ladder.getLadder().get(0)).isInstanceOf(Line.class);
+        assertThat(ladder).isEqualTo(new Ladder(people.subtractNumberFromSize(1), heightOfLadder, lineStrategy));
     }
 
     @Test
