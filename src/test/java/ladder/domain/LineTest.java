@@ -3,11 +3,8 @@ package ladder.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.Random;
-import java.util.stream.IntStream;
-
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LineTest {
 
@@ -21,12 +18,21 @@ class LineTest {
     }
 
     @Test
-    @DisplayName("라인 생성 시 라인이 연속으로 겹치지 않는다.")
-    void constructor() {
-        int personCount = 5;
-        Line line = new Line(personCount, () -> new Random().nextBoolean());
-        assertTrue(IntStream.range(1, personCount)
-                .allMatch(idx -> !(line.lineExists(idx - 1) && line.lineExists(idx))));
+    @DisplayName("라인의 왼쪽 포지션에서 move 함수 호출하면 포지션 +1을 리턴한다.")
+    void moveRight(){
+        Line line = new Line(2, () -> true);
+        int startPosition = 0;
+        int endPosition = line.move(startPosition);
+        assertEquals(endPosition, startPosition + 1);
+    }
+
+    @Test
+    @DisplayName("라인의 오른쪽 포지션에서 move 함수 호출하면 포지션 -1을 리턴한다.")
+    void moveLeft(){
+        Line line = new Line(2, () -> true);
+        int startPosition = 1;
+        int endPosition = line.move(startPosition);
+        assertEquals(endPosition, startPosition - 1);
     }
 
 }
