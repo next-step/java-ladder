@@ -11,6 +11,13 @@ public class Lines {
         this.lines = lines;
     }
 
+    public int move(int index) {
+        for (Line line : lines) {
+            index = line.move(index);
+        }
+        return index;
+    }
+
     @Override
     public boolean equals(Object o) {
 

@@ -1,10 +1,16 @@
 package nextstep.ladders;
 
-import org.junit.jupiter.api.Assertions;
+import nextstep.ladders.exception.InvalidLineSizeException;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Arrays;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
 class LineTest {
@@ -26,7 +32,21 @@ class LineTest {
     void 정상_생성() {
         Line expected = new Line(points());
         Line actual = new Line(points());
+        assertEquals(expected, actual);
+    }
 
-        Assertions.assertEquals(expected, actual);
+    @ParameterizedTest
+    @CsvSource(value = {"1:0", "0:1", "2:3", "3:2"}, delimiter = ':')
+    void move_메서드_검증(final int index, final int actual) {
+        Line line = new Line(points());
+        int expected = line.move(index);
+        assertEquals(expected, actual);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {-1, 4})
+    void 범위_초과(final int index) {
+        Line line = new Line(points());
+        assertThrows(InvalidLineSizeException.class, () -> line.move(index));
     }
 }

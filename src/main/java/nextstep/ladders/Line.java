@@ -1,5 +1,7 @@
 package nextstep.ladders;
 
+import nextstep.ladders.exception.InvalidLineSizeException;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -9,6 +11,18 @@ public class Line {
 
     public Line(final List<Point> points) {
         this.points = points;
+    }
+
+    public int move(int index) {
+        checkValidIndex(index);
+        Point point = points.get(index);
+        return point.move();
+    }
+
+    private void checkValidIndex(final int index) {
+        if (index < 0 || index >= points.size()) {
+            throw new InvalidLineSizeException();
+        }
     }
 
     @Override

@@ -24,5 +24,4 @@ class PointTest {
         Point point = new Point(2, Direction.of(true, false));
         assertEquals(point.move(), 1);
     }
-
 }

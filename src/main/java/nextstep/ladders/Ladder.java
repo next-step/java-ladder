@@ -5,11 +5,13 @@ import java.util.Objects;
 public class Ladder {
 
     private final Lines lines;
-    private final LadderDetail ladderDetail;
 
-    public Ladder(final Lines lines, final LadderDetail ladderDetail) {
+    public Ladder(final Lines lines) {
         this.lines = lines;
-        this.ladderDetail = ladderDetail;
+    }
+
+    public int start(final int index) {
+        return lines.move(index);
     }
 
     @Override
@@ -17,11 +19,11 @@ public class Ladder {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Ladder ladder = (Ladder) o;
-        return Objects.equals(lines, ladder.lines) && Objects.equals(ladderDetail, ladder.ladderDetail);
+        return Objects.equals(lines, ladder.lines);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(lines, ladderDetail);
+        return Objects.hash(lines);
     }
 }

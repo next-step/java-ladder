@@ -23,7 +23,7 @@ public class Participants {
                 .collect(Collectors.toList());
     }
 
-    public List<Participant> getParticipants() {
+    public List<Participant> elements() {
         return Collections.unmodifiableList(participants);
     }
 
