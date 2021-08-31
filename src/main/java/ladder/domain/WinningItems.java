@@ -3,6 +3,7 @@ package ladder.domain;
 import ladder.exception.WinningItemsException;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -11,13 +12,12 @@ public class WinningItems {
 
     public WinningItems(String[] itemsName) {
         validateWinningItems(itemsName);
-
         List<WinningItem> winningItems = new ArrayList<>();
 
-        for (String item : itemsName) {
-            WinningItem winningItem = new WinningItem(item);
-            winningItems.add(winningItem);
-        }
+        Arrays.stream(itemsName)
+                .map(WinningItem::new)
+                .forEach(winningItems::add);
+
         this.winningItems = winningItems;
     }
 
