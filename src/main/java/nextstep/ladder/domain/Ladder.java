@@ -18,6 +18,15 @@ public class Ladder {
         }
     }
 
+    public String search(int index) {
+        for (Line line : lines) {
+            int direction = line.search(index);
+            index += direction;
+        }
+        Result result = new Result();
+        return result.get(index);
+    }
+
     public int size() {
         return lines.size();
     }

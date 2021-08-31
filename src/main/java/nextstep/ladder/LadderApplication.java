@@ -1,6 +1,7 @@
 package nextstep.ladder;
 
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.LadderGame;
 import nextstep.ladder.domain.Players;
 import nextstep.ladder.domain.Result;
 import nextstep.ladder.util.Validation;
@@ -17,6 +18,9 @@ public class LadderApplication {
         Ladder ladder = new Ladder(players.size(), ladderHeight);
         ResultView.printLadderGame(players, ladder);
         String searchPlayer  = InputView.inputGameResultSearch();
-        Validation.isContainPlayer(searchPlayer , players);
+        int containPlayer = Validation.isContainPlayer(searchPlayer, players);
+        LadderGame ladderGame = new LadderGame(containPlayer, ladder);
+        String player = ladderGame.start();
+        System.out.println(player);
     }
 }

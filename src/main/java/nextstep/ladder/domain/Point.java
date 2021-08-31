@@ -35,6 +35,15 @@ public class Point {
         return nextPoint;
     }
 
+    public int move() {
+        if (currentPoint) {
+            return -1; // 왼쪽
+        }
+        if (nextPoint) {
+            return 1; // 오른쪽
+        }
+        return 0; // 아래로 이동
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

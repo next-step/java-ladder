@@ -45,4 +45,15 @@ class PlayerTest {
                 () -> assertThat(new Players("pobi , cony  ,jk ,cr7, honux").indexOf("honux")).isEqualTo(4)
         );
     }
+
+    @Test
+    @DisplayName("결과를 보고싶은 사람을 입력하면 Players 객체에 있는 컬렉션의 위치를 반환한다.")
+    void isContain() {
+        assertAll(
+                () -> assertThat(new Players("pobi, cony ,jk ,cr7").isContain("cony")).isTrue(),
+                () -> assertThat(new Players("pobi , cony  ,jk ,cr7").isContain("pobi  ")).isTrue(),
+                () -> assertThat(new Players("pobi , cony  ,jk ,cr7, honux").isContain("honu")).isFalse(),
+                () -> assertThat(new Players("pobi , cony  ,jk ,cr7, honux").isContain("cr")).isFalse()
+        );
+    }
 }

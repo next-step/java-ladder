@@ -33,13 +33,15 @@ public class Validation {
         }
     }
 
-    public static void isContainPlayer(String player, Players players) {
+    public static int isContainPlayer(String player, Players players) {
         if (player.equals("all")) {
-            return;
+            return -1;
         }
 
-        if (!players.isContain(player)) {
-            throw new IllegalArgumentException("참여자들 중 해당 이름이 없습니다.");
+        if (players.isContain(player)) {
+            return players.indexOf(player);
         }
+        throw new IllegalArgumentException("참여자들 중 해당 이름이 없습니다.");
+
     }
 }

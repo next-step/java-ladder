@@ -9,6 +9,9 @@ import static nextstep.ladder.domain.Players.*;
 public class Result {
     private List<String> result;
 
+    public Result() {
+    }
+
     public Result(String input) {
         this(toList(input));
     }
@@ -25,6 +28,10 @@ public class Result {
 
     public int size() {
         return result.size();
+    }
+
+    public String get(int index) {
+        return result.get(index);
     }
 
     public List<String> getResult() {

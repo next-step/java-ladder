@@ -32,6 +32,11 @@ public class Line {
         return Point.random(); // false 면 (false , 랜덤) 주입
     }
 
+    public int search(int index) {
+        Point point = points.get(index);
+        return point.move();
+    }
+
     public int size() {
         return points.size();
     }
