@@ -1,36 +1,37 @@
-package laddergame.domain;
+package laddergameplay.domain.data;
 
-import laddergame.exception.CustomException;
+import laddergameplay.exception.CustomException;
 
 import java.util.Objects;
 import java.util.Optional;
 
-public class Person {
+public abstract class Data {
+
     public static final int MAX_LENGTH_OF_NAME = 5;
     public static final int ZERO_LENGTH_OF_NAME = 0;
-    public static final String LENGTH_OF_NAME_EXCEPTION_MESSAGE = "참여자 이름 양식 오류. 최대 " + MAX_LENGTH_OF_NAME + "자";
-    public static final String EMPTY_STRING_EXCEPTION_MESSAGE = "참여자 이름 양식 오류. 빈 값 미허용";
+    public static final String LENGTH_OF_NAME_EXCEPTION_MESSAGE = "이름 양식 오류. 최대 " + MAX_LENGTH_OF_NAME + "자";
+    public static final String EMPTY_STRING_EXCEPTION_MESSAGE = "이름 양식 오류. 빈 값 미허용";
 
     private final String name;
 
-    public Person(String name) {
+    public Data(String name) {
         this.name = Optional.ofNullable(name)
                 .map(String::trim)
-                .map(Person::validateLengthOfName)
-                .map(Person::validateEmptyString)
+                .map(this::validateEmptyString)
+                .map(this::validateLengthOfName)
                 .orElseThrow(
                         () -> new CustomException(EMPTY_STRING_EXCEPTION_MESSAGE)
                 );
     }
 
-    private static String validateLengthOfName(String name) {
+    private String validateLengthOfName(String name) {
         if (name.length() > MAX_LENGTH_OF_NAME) {
-            throw new CustomException(LENGTH_OF_NAME_EXCEPTION_MESSAGE);
+            throw new CustomException(LENGTH_OF_NAME_EXCEPTION_MESSAGE + "입력값 : " + name);
         }
         return name;
     }
 
-    private static String validateEmptyString(String name) {
+    private String validateEmptyString(String name) {
         if (name.length() == ZERO_LENGTH_OF_NAME) {
             throw new CustomException(EMPTY_STRING_EXCEPTION_MESSAGE);
         }
@@ -41,8 +42,8 @@ public class Person {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Person person = (Person) o;
-        return Objects.equals(name, person.name);
+        Data data = (Data) o;
+        return Objects.equals(name, data.name);
     }
 
     @Override

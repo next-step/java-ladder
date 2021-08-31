@@ -4,8 +4,8 @@ import laddergame.exception.CustomException;
 import laddergame.strategy.LineStrategy;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.Stream;
 
 public class Line {
 
@@ -13,9 +13,13 @@ public class Line {
 
     private final List<Boolean> points = new ArrayList<>();
 
-    public Line(int widthOfLadder, LineStrategy lineStrategy) {
-        initLine(widthOfLadder, lineStrategy);
+    public Line(int countOfPeople, LineStrategy lineStrategy) {
+        initLine(widthOfLadder(countOfPeople), lineStrategy);
         validateTrueRepetition(points);
+    }
+
+    private int widthOfLadder(int countOfPeople) {
+        return countOfPeople - 1;
     }
 
     private void initLine(int widthOfLadder, LineStrategy lineStrategy) {
@@ -39,7 +43,7 @@ public class Line {
         }
     }
 
-    public Stream<Boolean> stream() {
-        return points.stream();
+    public List<Boolean> getPoints() {
+        return Collections.unmodifiableList(points);
     }
 }

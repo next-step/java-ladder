@@ -1,12 +1,13 @@
-package laddergame.domain;
+package laddergameplay.domain.ladder;
 
-import laddergame.exception.CustomException;
-import laddergame.strategy.LineStrategy;
-import laddergame.strategy.RandomLineStrategy;
+import laddergameplay.exception.CustomException;
+import laddergameplay.strategy.LineStrategy;
+import laddergameplay.strategy.RandomLineStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LineTest {
 
@@ -14,14 +15,19 @@ class LineTest {
     @DisplayName("Line 생성")
     void create() {
         // given
-        int countOfPeople = 4;
-        int widthOfLadder = countOfPeople - 1;
+        int widthOfLadder = 4;
+        LineStrategy lineStrategy = new RandomLineStrategy(){
+            @Override
+            protected boolean currentPoint() {
+                return true;
+            }
+        };
 
         // when
-        Line line = new Line(countOfPeople,new RandomLineStrategy());
+        Line line = new Line(widthOfLadder, lineStrategy);
 
         // then
-        assertThat(line.getPoints().size()).isEqualTo(widthOfLadder);
+        assertThat(line).isEqualTo(new Line(widthOfLadder, lineStrategy));
         assertThat(line.getPoints().get(0))
                 .isInstanceOf(Boolean.class);
     }
