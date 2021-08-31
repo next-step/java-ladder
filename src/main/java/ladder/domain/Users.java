@@ -31,7 +31,7 @@ public class Users {
         return users.stream()
                 .filter(user -> user.equals(findUser))
                 .findFirst()
-                .orElseThrow(NotFoundUserException::new);
+                .orElseThrow(() -> new NotFoundUserException(name));
     }
 
     public List<User> getUsers() {
