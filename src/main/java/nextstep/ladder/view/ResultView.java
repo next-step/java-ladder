@@ -3,18 +3,20 @@ package nextstep.ladder.view;
 import nextstep.ladder.domain.*;
 
 import java.util.List;
+import java.util.Set;
 
 public class ResultView {
 
     private static final String FALSE_LINE = "     |";
     private static final String TRUE_LINE = "-----|";
-    private static final String RESULT = "실행결과";
+    private static final String LADDER_RESULT = "\n사다리 결과";
+    private static final String RESULT = "\n실행 결과";
 
     private ResultView() {
     }
 
     public static void printResult(LadderGame ladderGame) {
-        System.out.println(RESULT);
+        System.out.println(LADDER_RESULT);
         printPlayers(ladderGame.getPlayers());
         printLadder(ladderGame.getLadder());
     }
@@ -50,16 +52,19 @@ public class ResultView {
     }
 
     public static void printPlayersResults(String playersResults, LadderResults ladderResults) {
+        System.out.println(RESULT);
         if (playersResults.equals("all")) {
             printAllPlayersResults(ladderResults);
             return;
         }
-        printPlayerResult();
+        System.out.println(ladderResults.findResultByPlayer(new Player(playersResults)));
     }
 
     private static void printAllPlayersResults(LadderResults ladderResults) {
+        Set<Player> players = ladderResults.getPlayers();
+        players.forEach(player -> System.out.println(player.getName()
+                        + " : "
+                        + ladderResults.findResultByPlayer(player)));
     }
 
-    private static void printPlayerResult() {
-    }
 }

@@ -20,29 +20,17 @@ public class LadderGame {
         this.ladder = ladder;
     }
 
-    // todo
     public LadderResults climbLadder(List<String> results) {
         if (results.size() != players.size()) {
             throw new IllegalArgumentException(LADDER_GAME_ERROR);
         }
+
         Map<Player, String> resultMap = new HashMap<>();
-        for (int i = 0; i < players.size(); i++) {
-            resultMap.put(players.get(i), results.get(doLadderGame(i)));
+
+        for (int location = 0; location < players.size(); location++) {
+            resultMap.put(players.get(location), results.get(ladder.climbLadder(new Location(location))));
         }
         return new LadderResults(resultMap);
-    }
-
-    // todo
-    public int doLadderGame(int index) {
-        for (Line line : ladder.getLines()) {
-            if (line.getPoints().get(index)) {
-                --index;
-            } else if (index + 1 != line.getPoints().size()) {
-                if (line.getPoints().get(index + 1))
-                    ++index;
-            }
-        }
-        return index;
     }
 
     public Ladder getLadder() {

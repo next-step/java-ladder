@@ -9,6 +9,14 @@ public class LadderResults {
         this.resultMap = resultMap;
     }
 
+    public Set<Player> getPlayers() {
+        return resultMap.keySet();
+    }
+
+    public String findResultByPlayer(Player player) {
+        return resultMap.get(player);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -21,4 +29,5 @@ public class LadderResults {
     public int hashCode() {
         return Objects.hash(resultMap);
     }
+
 }

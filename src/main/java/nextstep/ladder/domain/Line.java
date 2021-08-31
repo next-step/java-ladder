@@ -53,6 +53,14 @@ public class Line {
         }
     }
 
+    public boolean valueByLocation(int location) {
+        return points.get(location);
+    }
+
+    public boolean isSameSize(int size) {
+        return this.points.size() == size;
+    }
+
     public List<Boolean> getPoints() {
         return points;
     }
@@ -69,4 +77,5 @@ public class Line {
     public int hashCode() {
         return Objects.hash(points);
     }
+
 }
