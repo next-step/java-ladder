@@ -34,47 +34,56 @@ public class Ladder {
         int currentPosition = startPosition;
 
         for (Line line : ladder) {
-            currentPosition = movePosition(line, currentPosition);
+            MovePosition movePosition = new MovePosition(currentPosition);
+            currentPosition = movePosition.in(line);
         }
 
         return currentPosition;
     }
 
-    private int movePosition(Line line, int currentPosition) {
-        int[] checkPointArr = {leftPointOf(currentPosition), rightPointOf(currentPosition)};
-        int[] movedPositionArr = {moveLeft(currentPosition), moveRight(currentPosition)};
+    private class MovePosition {
 
-        for (int i = 0; i < checkPointArr.length; i++) {
-            int checkPoint = checkPointArr[i];
-            int movedPositionIfPoint = movedPositionArr[i];
+        private final int[] checkPointArr;
+        private final int[] movedPositionArr;
 
-            currentPosition = movePositionInALine(line, currentPosition, checkPoint, movedPositionIfPoint);
+        private MovePosition(int currentPosition) {
+            checkPointArr = new int[]{leftPointOf(currentPosition), rightPointOf(currentPosition)};
+            movedPositionArr = new int[]{moveLeft(currentPosition), moveRight(currentPosition), currentPosition};
         }
-        return currentPosition;
-    }
 
-    private int movePositionInALine(Line line, int currentPosition, int checkPoint, int movedPositionIfPoint) {
-        if(checkPoint < FIRST_PILLAR_OF_LADDER || checkPoint >= widthOfLadder || !line.get(checkPoint)) {
+        private int moveRight(int currentPosition) {
+            return currentPosition + 1;
+        }
+
+        private int moveLeft(int currentPosition) {
+            return currentPosition - 1;
+        }
+
+        private int rightPointOf(int currentPosition) {
             return currentPosition;
         }
 
-        return movedPositionIfPoint;
-    }
+        private int leftPointOf(int currentPosition) {
+            return currentPosition - 1;
+        }
 
-    private int moveRight(int currentPosition) {
-        return currentPosition + 1;
-    }
+        private int in(Line line) {
+            int currentPosition = movedPositionArr[2];
 
-    private int moveLeft(int currentPosition) {
-        return currentPosition - 1;
-    }
+            for (int i = 0; i < checkPointArr.length; i++) {
+                currentPosition = movePositionInLine(line, currentPosition, i);
+            }
 
-    private int rightPointOf(int currentPosition) {
-        return currentPosition;
-    }
+            return currentPosition;
+        }
 
-    private int leftPointOf(int currentPosition) {
-        return currentPosition - 1;
+        private int movePositionInLine(Line line, int currentPosition, int i) {
+            if (checkPointArr[i] < FIRST_PILLAR_OF_LADDER || checkPointArr[i] >= widthOfLadder || !line.get(checkPointArr[i])) {
+                return currentPosition;
+            }
+
+            return movedPositionArr[i];
+        }
     }
 
     public List<Line> getLadder() {
