@@ -46,4 +46,13 @@ public class ResultView {
         System.out.println();
     }
 
+    public static void test() {
+//        List<>
+    }
+
+    public static void printLadderResult(List<String> results) {
+        results.stream()
+                .forEach(p -> System.out.print(String.format("%6s", p)));
+        System.out.println();
+    }
 }

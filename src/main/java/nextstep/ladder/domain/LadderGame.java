@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 public class LadderGame {
     private final List<Player> players;
     private final Ladder ladder;
+    private List<LadderResults> ladderResults;
 
     public LadderGame(final List<String> players, final int height, final PointCreator pointCreator) {
         this.players = Collections.unmodifiableList(
@@ -15,6 +16,18 @@ public class LadderGame {
                         .collect(Collectors.toList())
         );
         this.ladder = new Ladder(players.size(), height, pointCreator);
+    }
+
+    public int doLadderGame(int index) {
+        for (Line line : ladder.getLines()) {
+            if (line.getPoints().get(index)) {
+                --index;
+            } else if (index + 1 != line.getPoints().size()) {
+                if (line.getPoints().get(index + 1))
+                    ++index;
+            }
+        }
+        return index;
     }
 
     public Ladder getLadder() {
