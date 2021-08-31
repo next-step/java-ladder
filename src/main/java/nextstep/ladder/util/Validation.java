@@ -10,6 +10,8 @@ import java.util.stream.Collectors;
 import static nextstep.ladder.domain.Players.*;
 
 public class Validation {
+    public static final int INPUT_ALL = -1;
+
     public static String isEmptyAndNull(String input) {
         if (input == null || input.trim().isEmpty()) {
             throw new IllegalArgumentException("빈 값은 올 수 없습니다. 값을 입력 하세요");
@@ -35,7 +37,7 @@ public class Validation {
 
     public static int isContainPlayer(String player, Players players) {
         if (player.equals("all")) {
-            return -1;
+            return INPUT_ALL;
         }
 
         if (players.isContain(player)) {

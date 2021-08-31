@@ -47,7 +47,7 @@ class PlayerTest {
     }
 
     @Test
-    @DisplayName("결과를 보고싶은 사람을 입력하면 Players 객체에 있는 컬렉션의 위치를 반환한다.")
+    @DisplayName("참여자 중에 입력한 사람이 있는지 확인")
     void isContain() {
         assertAll(
                 () -> assertThat(new Players("pobi, cony ,jk ,cr7").isContain("cony")).isTrue(),

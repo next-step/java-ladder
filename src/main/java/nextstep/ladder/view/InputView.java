@@ -28,7 +28,6 @@ public class InputView {
 
     public static String inputGameResultSearch() {
         System.out.println(INPUT_GAME_RESULT_MESSAGE);
-        scanner.nextLine();
-        return scanner.nextLine();
+        return scanner.next();
     }
 }

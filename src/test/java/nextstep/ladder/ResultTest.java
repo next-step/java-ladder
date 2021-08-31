@@ -1,8 +1,6 @@
 package nextstep.ladder;
 
 import nextstep.ladder.domain.Result;
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
@@ -20,10 +18,10 @@ public class ResultTest {
     void create2() {
         Result result = new Result(" 꽝 , 5000  , 꽝  , 3000 ");
         assertAll(
-                () -> assertThat(result.getResult().get(0)).isEqualTo("꽝"),
-                () -> assertThat(result.getResult().get(1)).isEqualTo("5000"),
-                () -> assertThat(result.getResult().get(2)).isEqualTo("꽝"),
-                () -> assertThat(result.getResult().get(3)).isEqualTo("3000")
+                () -> assertThat(result.get(0)).isEqualTo("꽝"),
+                () -> assertThat(result.get(1)).isEqualTo("5000"),
+                () -> assertThat(result.get(2)).isEqualTo("꽝"),
+                () -> assertThat(result.get(3)).isEqualTo("3000")
         );
 
     }

@@ -2,17 +2,16 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.domain.*;
 
-import javax.xml.soap.SAAJResult;
-
 
 public class ResultView {
     private static final String EMPTY_LINE = "     |";
     private static final String HORIZONTAL_LINE = "-----|";
-    private static final String RESULT_MESSAGE = "실행결과";
+    private static final String LADDER_MESSAGE = "사다리 결과";
+    private static final String RESULT_MESSAGE = "실행 결과";
     private static final String FORMAT_SIZE = "%6s";
 
     public static void printLadderGame(Players players, Ladder ladder) {
-        System.out.println(RESULT_MESSAGE);
+        System.out.println(LADDER_MESSAGE);
         players.stream()
                 .map(ResultView::toFormat)
                 .forEach(System.out::print);
@@ -44,6 +43,26 @@ public class ResultView {
         result.stream()
                 .map(str -> String.format(FORMAT_SIZE, str))
                 .forEach(System.out::print);
+        System.out.println();
+
+    }
+
+    public static void printAllResult(Players players, Ladder ladder, Result result) {
+        System.out.println();
+        System.out.println(RESULT_MESSAGE);
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < players.size(); i++) {
+            stringBuilder.append(players.getName(i) + " : ");
+            int index = ladder.search(i);
+            stringBuilder.append(result.get(index)).append("\n");
+        }
+        System.out.println(stringBuilder);
+    }
+
+    public static void printPlayerResult(String player) {
+        System.out.println();
+        System.out.println(RESULT_MESSAGE);
+        System.out.println(player);
         System.out.println();
 
     }

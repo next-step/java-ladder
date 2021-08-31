@@ -32,10 +32,6 @@ public class Result {
         return result.get(index);
     }
 
-    public List<String> getResult() {
-        return result;
-    }
-
     public Stream<String> stream() {
         return result.stream();
     }

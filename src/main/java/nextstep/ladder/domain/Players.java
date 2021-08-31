@@ -33,12 +33,17 @@ public class Players {
     public int indexOf(String player) {
         return players.indexOf(new Name(player));
     }
+
     public boolean isContain(String player) {
         return players.contains(new Name(player));
     }
 
     public int size() {
         return players.size();
+    }
+
+    public String getName(int index) {
+        return  players.get(index).toString();
     }
 
     public Stream<Name> stream() {

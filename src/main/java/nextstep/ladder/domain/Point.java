@@ -7,7 +7,7 @@ import java.util.Objects;
 public class Point {
     private static final int RIGHT = 1;
     private static final int LEFT = -1;
-    private static final int PASS  = 0;
+    private static final int PASS = 0;
     private boolean currentPoint;
     private boolean nextPoint;
 
