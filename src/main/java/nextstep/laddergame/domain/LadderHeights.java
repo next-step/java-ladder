@@ -25,4 +25,17 @@ public class LadderHeights {
     public int getHeights() {
         return heights;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof LadderHeights)) return false;
+        LadderHeights that = (LadderHeights) o;
+        return heights == that.heights;
+    }
+
+    @Override
+    public int hashCode() {
+        return heights;
+    }
 }

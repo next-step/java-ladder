@@ -1,5 +1,6 @@
 package nextstep.laddergame.view;
 
+import nextstep.laddergame.domain.LadderHeights;
 import nextstep.laddergame.domain.PlayerName;
 
 import java.io.InputStream;
@@ -12,6 +13,7 @@ import java.util.stream.Collectors;
 public class InputView {
 
     private static final String PLAYER_NAME_INPUT_DELIMITER = ",";
+    private static final String INVALID_HEIGHTS_INPUT_EXCEPTION_MESSAGE_FORMAT = "유효하지 않은 입력입니다. heightsInput: %s";
 
     private final Scanner scanner;
 
@@ -29,5 +31,18 @@ public class InputView {
         return Arrays.stream(names)
                 .map(PlayerName::of)
                 .collect(Collectors.toList());
+    }
+
+    public LadderHeights getLadderHeights() {
+        String heightsInput = scanner.nextLine();
+        return LadderHeights.of(parseHeightsInput(heightsInput));
+    }
+
+    private int parseHeightsInput(String heightsInput) {
+        try {
+            return Integer.parseInt(heightsInput);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(String.format(INVALID_HEIGHTS_INPUT_EXCEPTION_MESSAGE_FORMAT, heightsInput));
+        }
     }
 }
