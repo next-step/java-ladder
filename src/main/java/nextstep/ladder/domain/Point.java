@@ -13,12 +13,12 @@ public class Point {
         this.nextPoint = nextPoint;
     }
 
-    public static Point first() { // 가로 Line 처음 Point 값 지정
-        return new Point(false, RandomUtil.generate());
+    public static Point init(boolean nextPoint) { // 가로 Line 처음 Point 값 지정
+        return new Point(false, nextPoint);
     }
 
-    public static Point random() { // 현재 값이 false 이면 다음 값은 랜덤
-        return new Point(false, RandomUtil.generate());
+    public static Point of(boolean nextPoint) { // 현재 값이 false 이면 다음 값은 랜덤
+        return new Point(false, nextPoint);
     }
 
     public static Point of() {
@@ -27,6 +27,13 @@ public class Point {
 
     public Point last() { // 가로 Line 마지막 Point 값 지정
         return new Point(this.nextPoint, false);
+    }
+
+    public Point insert() {
+        if (nextPoint) {
+            return Point.of();
+        }
+        return Point.of(RandomUtil.generate());
     }
 
     public boolean currentPoint() {

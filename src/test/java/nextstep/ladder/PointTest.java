@@ -9,14 +9,21 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class PointTest {
     @Test
-    @DisplayName("사다리 게임은 가로 라인이 겹치면 안된다.")
-    void create() {
-        assertAll(
-                // 현재 값이 true 이면 다음 값은 false가 와야 한다. (true , false)
-                () -> assertThat(Point.of().currentPoint()).isTrue(),
-                () -> assertThat(Point.of().nextPoint()).isFalse(),
-                // 현재 값이 false 이면 다음 값은 랜덤으로 false , true 다 가능하다. (false , 랜덤)
-                () -> assertThat(Point.random().currentPoint()).isFalse()
-        );
+    @DisplayName("사다리 첫 번째 Line 의 다음 값이 true 이면 가로 라인이 겹치지 않게 두번째 Line의 다음 값은 false이다.   ")
+    void init() {
+        Point first = Point.init(true);
+        assertThat(first.insert()).isEqualTo(Point.of());
+    }
+
+    @Test
+    void insert() {
+        Point first = Point.init(false);
+        assertThat(first.insert()).isEqualTo(Point.of(false));
+    }
+
+    @Test
+    void insert2() {
+        Point first = Point.init(false);
+        assertThat(first.insert().currentPoint()).isEqualTo(Point.of(true).currentPoint());
     }
 }

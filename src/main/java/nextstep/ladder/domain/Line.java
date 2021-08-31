@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.util.RandomUtil;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
@@ -18,13 +20,14 @@ public class Line {
     }
 
     private void createPoint(int playersCounts) {
-        points.add(Point.first()); // 처음 사다리 Line은 지정 된 값
+        points.add(Point.init(RandomUtil.generate())); // 처음 사다리 Line은 지정 된 값
         for (int i = START_INDEX; i < playersCounts; i++) {
             if (i == playersCounts - 1) { // 마지막 Line인 경우
                 points.add(points.get(i - 1).last());
             } else {
-                points.add(checkPreviousPoint(points.get(i - 1).nextPoint()));
+                points.add(points.get(i-1).insert());
             }
+
         }
     }
 
@@ -33,7 +36,7 @@ public class Line {
         if (nextPointOfPrevious) {
             return Point.of();
         }
-        return Point.random(); // false 면 (false , 랜덤) 주입
+        return Point.of(RandomUtil.generate()); // false 면 (false , 랜덤) 주입
     }
 
     public int search(int index) {

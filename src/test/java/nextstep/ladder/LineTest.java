@@ -2,6 +2,7 @@ package nextstep.ladder;
 
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Point;
+import nextstep.ladder.util.RandomUtil;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -26,6 +27,6 @@ class LineTest {
     @DisplayName("현재 point 가 false이면 다음 point는 랜덤값을 넣는다. 즉 ,(true, 랜덤)")
     void checkPreviousPoint2() {
         Line point = new Line();
-        assertThat(point.checkPreviousPoint(false)).isEqualTo(Point.random());
+        assertThat(point.checkPreviousPoint(false)).isEqualTo(Point.of(RandomUtil.generate()));
     }
 }
