@@ -9,6 +9,10 @@ import nextstep.ladder.domain.Players;
 
 public class ResultView {
 
+    public static final String COLUMN_WITH_LINE = "|-----";
+    public static final String COLUMN = "|     ";
+    public static final int NAMES_PADDING_SIZE = 6;
+
     private ResultView() {
     }
 
@@ -26,7 +30,6 @@ public class ResultView {
     }
 
     private void printLadder(Ladder ladder) {
-        System.out.println();
         ladder.getLadderRows().stream()
             .forEach(row -> printLadderRow(row));
     }
@@ -44,11 +47,19 @@ public class ResultView {
     }
 
     private String getColumnString(LadderColumn column) {
-        return column.value() ? "|-----" : "|     ";
+        return column.value() ? COLUMN_WITH_LINE : COLUMN;
     }
 
     private void printPlayerNames(Players players) {
-        players.stream().forEach(p -> System.out.print(p.getName()));
+        String playerNamesWithPadding = players.stream()
+            .map(p -> addRightPadding(p.getName(), NAMES_PADDING_SIZE))
+            .collect(Collectors.joining());
+
+        System.out.println(playerNamesWithPadding);
+    }
+
+    private String addRightPadding(String str, int size) {
+        return String.format("%-" + size + "s", str);
     }
 
     private static class ResultViewHolder {
