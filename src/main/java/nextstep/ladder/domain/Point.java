@@ -8,22 +8,25 @@ public class Point {
     private boolean currentPoint;
     private boolean nextPoint;
 
-    private Point(boolean nextPoint) { // random
-        this.currentPoint = false;
+    private Point(boolean currentPoint, boolean nextPoint) {
+        this.currentPoint = currentPoint;
         this.nextPoint = nextPoint;
     }
 
-    private Point() { // of
-        this.currentPoint = true;
-        this.nextPoint = false;
+    public static Point first() { // 가로 Line 처음 Point 값 지정
+        return new Point(false, RandomUtil.generate());
+    }
+
+    public static Point last() { // 가로 Line 마지막 Point 값 지정
+        return new Point(RandomUtil.generate(), false);
     }
 
     public static Point random() { // 현재 값이 false 이면 다음 값은 랜덤
-        return new Point(RandomUtil.generate());
+        return new Point(false, RandomUtil.generate());
     }
 
     public static Point of() {
-        return new Point(); // 현재 값이 true이면 다음 값은 무조건 false이다.
+        return new Point(true, false); // 현재 값이 true 이면 다음 값은 무조건 false 이다.
     }
 
 
@@ -44,6 +47,7 @@ public class Point {
         }
         return 0; // 아래로 이동
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
