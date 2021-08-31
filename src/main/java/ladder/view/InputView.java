@@ -29,7 +29,7 @@ public class InputView {
         }
     }
 
-    public static int readHeight(){
+    public static int readHeight() {
         System.out.println(INPUT_HEIGHT_MSG);
         return scanner.nextInt();
     }

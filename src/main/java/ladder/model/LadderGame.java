@@ -12,11 +12,11 @@ public class LadderGame {
         this.ladder = LadderFactory.create(players.size(), height, moveStrategy);
     }
 
-    public List<Player> getPlayers(){
+    public List<Player> getPlayers() {
         return players;
     }
 
-    public List<Line> getLadder(){
+    public List<Line> getLadder() {
         return ladder.getLines();
     }
 }

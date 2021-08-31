@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class LadderFactoryTest {
 
     @Test
-    void 높이가_3이고_너비가_2인_사다리_만들기(){
+    void 높이가_3이고_너비가_2인_사다리_만들기() {
         int width = 3;
         int height = 2;
 

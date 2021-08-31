@@ -1,8 +1,7 @@
 package ladder.model;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+
 
 public class Ladder {
 
@@ -20,7 +19,7 @@ public class Ladder {
         return next;
     }
 
-    public List<Line> getLines(){
+    public List<Line> getLines() {
         return lines;
     }
 
