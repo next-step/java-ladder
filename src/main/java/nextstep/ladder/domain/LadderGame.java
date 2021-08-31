@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 public class LadderGame {
     private final List<Player> players;
     private final Ladder ladder;
-    private List<LadderResults> ladderResults;
 
     public LadderGame(final List<String> players, final int height, final PointCreator pointCreator) {
         this.players = Collections.unmodifiableList(
@@ -18,6 +17,11 @@ public class LadderGame {
         this.ladder = new Ladder(players.size(), height, pointCreator);
     }
 
+    public void climbLadder(List<String> results){
+
+    }
+
+    // todo
     public int doLadderGame(int index) {
         for (Line line : ladder.getLines()) {
             if (line.getPoints().get(index)) {

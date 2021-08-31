@@ -15,7 +15,7 @@ class LadderResultsTest {
     void create() {
         assertThrows(IllegalArgumentException.class,
                 () -> new LadderResults(
-                        Arrays.asList(new Player("AAA"), new Player("BBB")),
+                        Arrays.asList("AAA", "BBB"),
                         Arrays.asList("꽝", "1000", "2000"))
         );
     }
