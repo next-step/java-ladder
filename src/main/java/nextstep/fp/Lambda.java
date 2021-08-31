@@ -27,12 +27,9 @@ public class Lambda {
     }
 
     public static int sumAll(List<Integer> numbers, Conditional c) {
-        int total = 0;
-        for (int number : numbers) {
-            if (c.test(number)) {
-                total += number;
-            }
-        }
-        return total;
+        return numbers
+                .stream()
+                .filter(c::test)
+                .reduce(0, Integer::sum);
     }
 }
