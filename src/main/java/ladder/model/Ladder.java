@@ -35,7 +35,7 @@ public class Ladder {
     }
 
     public List<Integer> moveAll() {
-        return IntStream.range(0, getHeight())
+        return IntStream.range(0, getWidth())
                 .mapToObj(this::moveFrom)
                 .collect(Collectors.toList());
     }
