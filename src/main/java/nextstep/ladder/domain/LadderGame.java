@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class LadderGame {
+    private final static String LADDER_GAME_ERROR = "결과 수와 참여자 수는 같아야 합니다.";
     private final List<Player> players;
     private final Ladder ladder;
 
@@ -22,7 +23,7 @@ public class LadderGame {
     // todo
     public LadderResults climbLadder(List<String> results) {
         if (results.size() != players.size()) {
-            throw new IllegalArgumentException("결과 수와 참여자 수는 같아야 합니다.");
+            throw new IllegalArgumentException(LADDER_GAME_ERROR);
         }
         Map<Player, String> resultMap = new HashMap<>();
         for (int i = 0; i < players.size(); i++) {
