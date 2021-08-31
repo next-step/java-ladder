@@ -5,18 +5,18 @@ import java.util.Arrays;
 import nextstep.ladder.exceptions.NotFoundLadderStatusException;
 
 public enum LadderStatus {
-	LINKED(1, "-----"),
-	UNLINKED(2, "     ");
+	LINKED(true, "-----"),
+	UNLINKED(false, "     ");
 
-	private final int status;
+	private final boolean status;
 	private final String text;
 
-	LadderStatus(int status, String text) {
+	LadderStatus(boolean status, String text) {
 		this.status = status;
 		this.text = text;
 	}
 
-	public static LadderStatus of(int status) {
+	public static LadderStatus of(boolean status) {
 		return Arrays.stream(LadderStatus.values())
 			.filter(e -> e.status == status)
 			.findFirst()

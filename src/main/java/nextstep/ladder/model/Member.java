@@ -4,6 +4,7 @@ import nextstep.ladder.exceptions.MemberValidException;
 
 public class Member {
 
+	private static final int NAME_MAXIMUM_LENGTH = 5;
 	private String name;
 
 	public Member(String name) {
@@ -16,8 +17,8 @@ public class Member {
 	}
 
 	private void validate(String name) {
-		if (name.length() > 5) {
-			throw new MemberValidException("참여자 이름은 5글자를 넘길수 없습니다.");
+		if (name.length() > NAME_MAXIMUM_LENGTH) {
+			throw new MemberValidException("참여자 이름은 " + NAME_MAXIMUM_LENGTH + "글자를 넘길수 없습니다.");
 		}
 	}
 }

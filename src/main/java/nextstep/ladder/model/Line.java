@@ -9,6 +9,7 @@ import nextstep.ladder.exceptions.LadderStatusAddFailureException;
 
 public class Line {
 
+	private final Random RANDOM = new Random();
 	private final List<LadderStatus> ladderStatuses;
 
 	public Line() {
@@ -24,8 +25,7 @@ public class Line {
 	}
 
 	public void addRandomLadderStatus() {
-		Random random = new Random();
-		LadderStatus ladderStatus = LadderStatus.of(random.nextInt(2) + 1);
+		LadderStatus ladderStatus = LadderStatus.of(RANDOM.nextBoolean());
 
 		if (!isValidLadderStatus(ladderStatus)) {
 			ladderStatus = LadderStatus.UNLINKED;
@@ -35,7 +35,7 @@ public class Line {
 	}
 
 	private boolean isValidLadderStatus(LadderStatus currentLadderStatus) {
-		if (ladderStatuses.size() == 0) {
+		if (ladderStatuses.isEmpty()) {
 			return true;
 		}
 

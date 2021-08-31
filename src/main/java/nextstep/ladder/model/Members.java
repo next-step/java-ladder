@@ -5,6 +5,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
+
 public class Members {
 
 	private List<Member> members;
@@ -14,17 +17,15 @@ public class Members {
 	}
 
 	public static Members of(List<String> members) {
-		List<Member> memberList = members.stream()
-										.map(Member::new)
-										.collect(Collectors.toCollection(ArrayList<Member>::new));
-
-		return new Members(memberList);
+		return members.stream()
+					.map(Member::new)
+					.collect(collectingAndThen(toList(), Members::new));
 	}
 
 	public static Members of(String members) {
 		return of(Arrays.stream(members.split(","))
 					.map(String::trim)
-					.collect(Collectors.toList()));
+					.collect(toList()));
 	}
 
 	public int size() {

@@ -3,9 +3,9 @@ package nextstep.ladder.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import nextstep.ladder.strategy.LineStrategy;
-
 public class Ladder {
+
+	private static final int SPACE_OPERATION_VALUE = 1;
 
 	private final List<Line> lines;
 
@@ -13,11 +13,11 @@ public class Ladder {
 		this.lines = lines;
 	}
 
-	public static Ladder of(LineStrategy lineStrategy, int lineCount, int participantsCount) {
+	public static Ladder of(int lineCount, int participantsCount) {
 		List<Line> lines = new ArrayList<>(lineCount);
 
 		for (int i = 0; i < lineCount; i++) {
-			lines.add(lineStrategy.genereateLine(participantsCount));
+			lines.add(generateLine(participantsCount));
 		}
 
 		return new Ladder(lines);
@@ -29,5 +29,15 @@ public class Ladder {
 
 	public int size() {
 		return lines.size();
+	}
+
+	private static Line generateLine(int participantsCount) {
+		Line line = new Line();
+
+		for (int i = 0; i < participantsCount - SPACE_OPERATION_VALUE; i++) {
+			line.addRandomLadderStatus();
+		}
+
+		return line;
 	}
 }

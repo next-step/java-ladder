@@ -2,7 +2,6 @@ package nextstep.ladder;
 
 import nextstep.ladder.model.Ladder;
 import nextstep.ladder.model.Members;
-import nextstep.ladder.strategy.RandomLineStrategy;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
 
@@ -14,7 +13,7 @@ public class LadderMain {
 
 		Members members = Members.of(names);
 
-		Ladder ladder = Ladder.of(new RandomLineStrategy(), height, members.size());
+		Ladder ladder = Ladder.of(height, members.size());
 
 		OutputView.runResult(members, ladder);
 	}
