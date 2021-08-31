@@ -1,23 +1,26 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
-import ladder.domain.Line;
-import ladder.domain.Name;
+import ladder.domain.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class ResultView {
     public static final String LINE = "-----";
     public static final String LINE_BLANK = "     ";
     public static final String LADDER_COLUMN = "|";
 
-    public void printLadder(List<Name> names, Ladder ladder) {
-        names.stream()
-                .forEach(name -> System.out.printf("%6s", name.getName()));
+    public void printLadder(Names names, Ladder ladder, LadderResult ladderResult) {
+        names.names().stream()
+                .forEach(name -> System.out.printf("%6s", name.name()));
         System.out.println();
         ladder.lines().stream()
                 .forEach(line -> printLine(line));
+        ladderResult.result().stream()
+                .forEach(result -> System.out.printf("%6s", result));
+        System.out.println();
+        System.out.println();
     }
 
     private void printLine(Line line) {
@@ -33,5 +36,16 @@ public class ResultView {
             return LINE;
         }
         return LINE_BLANK;
+    }
+
+    public void printResult(String result) {
+        System.out.println("실행 결과");
+        System.out.println(result);
+    }
+
+    public void printResult(Names names, List<String> results) {
+        System.out.println("실행 결과");
+        IntStream.range(0, results.size())
+                .forEach(index -> System.out.println(names.get(index).name() + " : " + results.get(index)));
     }
 }
