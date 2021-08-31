@@ -11,12 +11,12 @@ class LadderTest {
     @DisplayName("참여자수, 높이에 따라 사다리 생성")
     @Test
     void create() {
-        assertThat(new Ladder(4, 5, new RandomPointCreator()).getLines().size()).isEqualTo(5);
+        assertThat(new Ladder(new LadderInfo(4, 5), new RandomPointCreator()).getLines().size()).isEqualTo(5);
     }
 
     @DisplayName("참여자수 또는 높이가 0일때 생성하지 못한다.")
     @Test
     void create_error() {
-        assertThrows(IllegalArgumentException.class, () -> new Ladder(0, 1, new RandomPointCreator()));
+        assertThrows(IllegalArgumentException.class, () -> new Ladder(new LadderInfo(0, 1), new RandomPointCreator()));
     }
 }

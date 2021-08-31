@@ -13,4 +13,10 @@ class LadderInfoTest {
         assertThat(new LadderInfo(1,2))
                 .isEqualTo(new LadderInfo(1,2));
     }
+
+    @DisplayName("사다리를 만들수 있는 사다리 정보인지 판별하는 메서드")
+    @Test
+    void rightInfo(){
+        assertThat(new LadderInfo(1,0).isRightLadderInfo(1)).isFalse();
+    }
 }

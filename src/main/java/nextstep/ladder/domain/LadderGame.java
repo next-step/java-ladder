@@ -8,16 +8,16 @@ public class LadderGame {
     private final List<Player> players;
     private final Ladder ladder;
 
-    public LadderGame(final List<String> players, final int height, final PointCreator pointCreator) {
+    public LadderGame(final List<String> players, final Ladder ladder) {
         this.players = Collections.unmodifiableList(
                 players.stream()
                         .map(Player::new)
                         .collect(Collectors.toList())
         );
-        this.ladder = new Ladder(players.size(), height, pointCreator);
+        this.ladder = ladder;
     }
 
-    public void climbLadder(List<String> results){
+    public void climbLadder(List<String> results) {
 
     }
 
