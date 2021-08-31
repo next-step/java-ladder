@@ -43,9 +43,8 @@ public class ResultView {
     }
 
     public static void printWinningItems(WinningItems winningItems) {
-        for (WinningItem item : winningItems.getWinningItems()) {
-            System.out.printf("%-6s", item.getItem());
-        }
+        winningItems.getWinningItems()
+                .forEach(item -> System.out.printf("%-6s", item.getItem()));
         System.out.println();
     }
 
