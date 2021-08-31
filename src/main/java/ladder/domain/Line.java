@@ -33,15 +33,15 @@ public class Line {
         return Collections.unmodifiableList(points);
     }
 
-    public boolean isConnected(int idx) {
-        if (outOfRange(idx)) {
+    public boolean isConnected(int index) {
+        if (outOfRange(index)) {
             throw new IndexOutOfBoundsException("사다리의 너비의 범위를 벗어났습니다.");
         }
-        return points.get(idx);
+        return points.get(index);
     }
 
-    public boolean outOfRange(int idx) {
-        return width.outOfRange(idx);
+    public boolean outOfRange(int index) {
+        return width.outOfRange(index);
     }
 
     @Override

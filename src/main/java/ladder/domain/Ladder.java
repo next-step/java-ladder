@@ -7,12 +7,12 @@ public class Ladder {
 
     private final List<Line> lines;
 
-    private Ladder(Width width, Height height) {
-        this.lines = lines(width, height);
-    }
-
     private Ladder(List<Line> lines) {
         this.lines = lines;
+    }
+
+    private Ladder(Width width, Height height) {
+        this(lines(width, height));
     }
 
     public static Ladder create(Width width, Height height) {
@@ -27,7 +27,7 @@ public class Ladder {
         return Collections.unmodifiableList(lines);
     }
 
-    private List<Line> lines(Width width, Height height) {
+    private static List<Line> lines(Width width, Height height) {
         final List<Line> lines = new ArrayList<>(height.getLength());
         for (int i = 0; i < height.getLength(); i++) {
             lines.add(Line.createWithWidth(width));
@@ -37,7 +37,7 @@ public class Ladder {
                 .collect(Collectors.toList());
     }
 
-    protected List<Boolean> randomLinePoints(Width width, Checkable checkable) {
+    protected static List<Boolean> randomLinePoints(Width width, Checkable checkable) {
         List<Boolean> points = new ArrayList<>();
         for (int i = 0; i < width.getLength(); i++) {
             checkPoint(checkable.check(), points, i);
@@ -45,7 +45,7 @@ public class Ladder {
         return points;
     }
 
-    private void checkPoint(boolean checkable, List<Boolean> points, int index) {
+    private static void checkPoint(boolean checkable, List<Boolean> points, int index) {
 
         if (!checkable) {
             points.add(false);
@@ -66,11 +66,11 @@ public class Ladder {
 
     }
 
-    private boolean isFirst(int index) {
+    private static boolean isFirst(int index) {
         return index == 0;
     }
 
-    private int previous(int index) {
+    private static int previous(int index) {
         return index - 1;
     }
 

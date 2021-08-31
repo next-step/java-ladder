@@ -29,8 +29,8 @@ public class LadderResults {
                 .collect(Collectors.toList());
     }
 
-    public LadderResult get(int idx) {
-        return ladderResults.get(idx);
+    public LadderResult get(int index) {
+        return ladderResults.get(index);
     }
 
     @Override
