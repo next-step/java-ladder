@@ -4,6 +4,8 @@ import nextstep.ladders.exception.InvalidLineSizeException;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Line {
 
@@ -11,6 +13,16 @@ public class Line {
 
     public Line(final List<Point> points) {
         this.points = points;
+    }
+
+    public Line(final Generator generator, final int numberOfPeople) {
+        this(Point.toList(generator, numberOfPeople));
+    }
+
+    public static List<Line> toList(final Generator generator, int height, int numberOfPeople) {
+        return Stream.generate(() -> new Line(generator, numberOfPeople))
+                .limit(height)
+                .collect(Collectors.toList());
     }
 
     public int move(int index) {

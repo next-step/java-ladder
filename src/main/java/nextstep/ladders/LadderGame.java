@@ -17,6 +17,10 @@ public class LadderGame {
         this.executionResults = new ExecutionResults(executionResultText);
     }
 
+    public Ladder init(final Generator generator, final int height, final int numberOfPeople) {
+        return new Ladder(generator, height, numberOfPeople);
+    }
+
     private void checkEqualsCount(final String participantsText, final String executionResultText) {
 
         long participantsCount = Arrays.stream(participantsText.split(REGEX_COMMA)).count();

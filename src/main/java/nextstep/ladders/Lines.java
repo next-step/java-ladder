@@ -11,6 +11,10 @@ public class Lines {
         this.lines = lines;
     }
 
+    public Lines(final Generator generator, final int height, final int numberOfPeople) {
+        this(Line.toList(generator, height, numberOfPeople));
+    }
+
     public int move(int index) {
         for (Line line : lines) {
             index = line.move(index);

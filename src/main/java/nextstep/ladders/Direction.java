@@ -23,15 +23,15 @@ public class Direction {
         return new Direction(left, right);
     }
 
-    public static Direction last(final boolean next) {
-        return new Direction(next, false);
-    }
-
-    public Direction next(final Generator generator) {
+    public Direction next(final boolean next) {
         if (this.right) {
             return Direction.of(true, false);
         }
-        return Direction.of(false, generator.generate());
+        return Direction.of(false, next);
+    }
+
+    public Direction last() {
+        return Direction.of(this.right, false);
     }
 
     public boolean isLeft() {

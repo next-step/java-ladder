@@ -29,20 +29,20 @@ public class DirectionTest {
 
     @Test
     void 마지막은_무조건_false() {
-        assertEquals(Direction.last(true), Direction.of(true, false));
-        assertEquals(Direction.last(false), Direction.of(false, false));
+        Direction direction = Direction.of(true, false);
+        assertEquals(direction.last(), Direction.of(false, false));
     }
 
     @Test
     void 오른쪽이_참이면_다음엔_왼쪽은_거짓() {
         Direction direction = Direction.of(false, true);
-        assertEquals(direction.next(() -> false), Direction.of(true, false));
+        assertEquals(direction.next(false), Direction.of(true, false));
     }
 
     @ParameterizedTest
     @ValueSource(booleans = {true, false})
     void 오른쪽이_거짓이면_다음_왼쪽은_생성_룰에_따라서(final boolean next) {
         Direction direction = Direction.of(true, false);
-        assertEquals(direction.next(() -> next), Direction.of(false, next));
+        assertEquals(direction.next(next), Direction.of(false, next));
     }
 }

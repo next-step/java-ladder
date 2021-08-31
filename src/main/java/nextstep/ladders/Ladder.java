@@ -10,6 +10,10 @@ public class Ladder {
         this.lines = lines;
     }
 
+    public Ladder(final Generator generator, final int height, final int numberOfPeople) {
+        this(new Lines(generator, height, numberOfPeople));
+    }
+
     public int start(final int index) {
         return lines.move(index);
     }
