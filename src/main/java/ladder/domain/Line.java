@@ -15,20 +15,27 @@ public class Line {
 
     public Line (int count) {
         validateCount(count);
-
         List<Boolean> points = new ArrayList<>();
 
-        for (int i = 0; i < count - 1; i++) {
-            boolean point = RANDOM.nextBoolean();
-            try {
-                if (points.get(i) && point) {
-                    points.add(!point);
-                }
-            } catch (RuntimeException e) {
-                points.add(point);
-            }
+        if (count > 1) {
+            this.points = generatePoints(points, count);
+            return;
         }
+
         this.points = points;
+    }
+
+    private List<Boolean> generatePoints(List<Boolean> points, int count) {
+        points.add(RANDOM.nextBoolean());
+        for (int i = 1; i < count - 1; i++) {
+            boolean point = RANDOM.nextBoolean();
+            if (points.get(i - 1) && point) {
+                points.add(false);
+                continue;
+            }
+            points.add(point);
+        }
+        return points;
     }
 
     private void validateCount(int countOfPerson) {
