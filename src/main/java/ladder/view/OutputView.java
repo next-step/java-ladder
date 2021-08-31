@@ -31,10 +31,10 @@ public class OutputView {
         }
     }
 
-    public static String generateLine(Line line) {
+    public static String generateLine(LadderLine ladderLine) {
         String lineString = "";
-        for (int i = 0; i < line.size(); i++) {
-            lineString += line.point(i) ? LINE_TRUE : LINE_FALSE;
+        for (int i = 0; i < ladderLine.size(); i++) {
+            lineString += ladderLine.point(i).direction().isLeft() ? LINE_TRUE : LINE_FALSE;
             lineString += LINE_DELIMITER;
         }
         return lineString;
