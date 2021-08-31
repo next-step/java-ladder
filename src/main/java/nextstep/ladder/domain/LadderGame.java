@@ -19,7 +19,7 @@ public class LadderGame {
 
     public LadderResults climbLadder(List<String> results) {
 
-        return null;
+        return new LadderResults(players, results);
     }
 
     // todo
