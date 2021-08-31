@@ -1,7 +1,9 @@
 package nextstep.ladder.domain;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class LadderGame {
@@ -17,9 +19,16 @@ public class LadderGame {
         this.ladder = ladder;
     }
 
+    // todo
     public LadderResults climbLadder(List<String> results) {
-
-        return new LadderResults(players, results);
+        if (results.size() != players.size()) {
+            throw new IllegalArgumentException("결과 수와 참여자 수는 같아야 합니다.");
+        }
+        Map<Player, String> resultMap = new HashMap<>();
+        for (int i = 0; i < players.size(); i++) {
+            resultMap.put(players.get(i), results.get(doLadderGame(i)));
+        }
+        return new LadderResults(resultMap);
     }
 
     // todo

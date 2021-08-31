@@ -5,7 +5,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -26,16 +28,19 @@ class LadderResultsTest {
     @DisplayName("AAA -> 에이, BBB -> 비 : ladderGame 에서 사다리를 타면 결과값을 반환한다.")
     @Test
     void LadderGame_start() {
+        Map<Player, String> resultMap = new HashMap<>();
+        resultMap.put(players.get(0), "에이");
+        resultMap.put(players.get(1), "비");
+
         assertThat(ladderGame.climbLadder(Arrays.asList("에이", "비")))
-                .isEqualTo(new LadderResults(players, Arrays.asList("에이", "비")));
+                .isEqualTo(new LadderResults(resultMap));
     }
 
     @DisplayName("player 수와 결과 리스트 수가 맞지 않으면 fail")
     @Test
     void create() {
         assertThrows(IllegalArgumentException.class,
-                () -> new LadderResults(players,
-                        Arrays.asList("꽝", "1000", "2000"))
+                () -> ladderGame.climbLadder(Arrays.asList("꽝", "일", "이", "삼"))
         );
     }
 }
