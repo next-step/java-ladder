@@ -17,11 +17,11 @@ public class LadderGame {
         this.ladder = new Ladder(players.size(), height, pointCreator);
     }
 
-    public Ladder valueOfLadder() {
+    public Ladder getLadder() {
         return ladder;
     }
 
-    public List<Player> valueOfPlayers() {
+    public List<Player> getPlayers() {
         return players;
     }
 }

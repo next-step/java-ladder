@@ -1,9 +1,6 @@
 package nextstep.ladder.domain;
 
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.IntStream;
 
 public class Line {
@@ -23,7 +20,7 @@ public class Line {
     }
 
     private List<Boolean> createPoints(final int countOfPlayers, final PointCreator pointCreator) {
-        List<Boolean> points = new LinkedList<>();
+        List<Boolean> points = new ArrayList<>();
         points.add(false);
         IntStream.range(RANDOM_START_INDEX, countOfPlayers)
                 .forEach(index -> addPoint(points, pointCreator));
@@ -31,7 +28,8 @@ public class Line {
     }
 
     private void addPoint(List<Boolean> points, PointCreator pointCreator) {
-        if (!points.get(points.size() - PREVIOUS_INDEX)) {
+        int previousIndex = points.size() - PREVIOUS_INDEX;
+        if (points.get(previousIndex) != null && !points.get(previousIndex)) {
             points.add(pointCreator.createPoint());
             return;
         }
@@ -55,7 +53,7 @@ public class Line {
         }
     }
 
-    public List<Boolean> valueOfPoints() {
+    public List<Boolean> getPoints() {
         return points;
     }
 

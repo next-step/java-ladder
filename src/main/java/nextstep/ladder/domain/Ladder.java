@@ -12,7 +12,7 @@ public class Ladder {
 
     public Ladder(final int width, final int ladderHeight, final PointCreator pointCreator) {
         if (width < MIN_VALUE || ladderHeight < MIN_VALUE) {
-            throw new IllegalArgumentException(CREATE_LADDER_ERROR);
+            throw new IllegalArgumentException(CREATE_LADDER_ERROR + ": with(" + width + ") height(" + ladderHeight + ")");
         }
         this.lines = Collections.unmodifiableList(createLines(width, ladderHeight, pointCreator));
     }
@@ -23,7 +23,7 @@ public class Ladder {
                 .collect(Collectors.toList());
     }
 
-    public List<Line> valueOfLines() {
+    public List<Line> getLines() {
         return lines;
     }
 
