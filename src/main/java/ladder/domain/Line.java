@@ -13,20 +13,20 @@ public class Line {
 
     private final List<Boolean> points;
 
-    public Line (int countOfPerson) {
-        validateCount(countOfPerson);
+    public Line (int count) {
+        validateCount(count);
 
         List<Boolean> points = new ArrayList<>();
 
-        points.add(RANDOM.nextBoolean());
-
-        for (int i = 0; i < countOfPerson - 2; i++) {
+        for (int i = 0; i < count - 1; i++) {
             boolean point = RANDOM.nextBoolean();
-            if (points.get(i) && point) {
-                points.add(!point);
-                continue;
+            try {
+                if (points.get(i) && point) {
+                    points.add(!point);
+                }
+            } catch (RuntimeException e) {
+                points.add(point);
             }
-            points.add(point);
         }
         this.points = points;
     }

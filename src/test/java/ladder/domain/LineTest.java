@@ -24,6 +24,7 @@ class LineTest {
     void createLine(int countOfPerson) {
         Line line = new Line(countOfPerson);
         int actual = line.getPoints().size();
-        assertThat(actual).isEqualTo(countOfPerson);
+        assertThat(actual).isEqualTo(countOfPerson - 1);
     }
+
 }
