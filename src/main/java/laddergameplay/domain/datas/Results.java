@@ -34,6 +34,10 @@ public class Results {
                 .forEach(stringBuilder::append);
     }
 
+    public Result get(int i) {
+        return results.get(i);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

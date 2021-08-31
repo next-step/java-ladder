@@ -31,6 +31,10 @@ public class People {
                 .forEach(stringBuilder::append);
     }
 
+    public Person get(int i) {
+        return people.get(i);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

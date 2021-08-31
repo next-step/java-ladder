@@ -4,7 +4,6 @@ import laddergameplay.domain.datas.People;
 import laddergameplay.domain.datas.Results;
 import laddergameplay.domain.dto.WinningResult;
 import laddergameplay.domain.ladder.Ladder;
-import laddergameplay.domain.ladder.LadderGame;
 import laddergameplay.exception.CustomException;
 import laddergameplay.strategy.LineStrategy;
 import laddergameplay.strategy.RandomLineStrategy;
@@ -27,11 +26,10 @@ public class LadderGameMain {
             int heightOfLadder = InputView.inputHeightOfLadder();
             LineStrategy lineStrategy = new RandomLineStrategy();
             Ladder ladder = new Ladder(widthOfLadder, heightOfLadder, lineStrategy);
-            LadderGame ladderGame = new LadderGame(ladder);
 
             ResultView.showResult(people, ladder, results);
 
-            WinningResult winningResult = ladderGame.makeWinningResult(people, results);
+            WinningResult winningResult = new WinningResult(ladder, people, results);
             ResultView.showWinningResult(winningResult);
         } catch (CustomException e) {
             System.out.println(e.getMessage());
