@@ -11,19 +11,19 @@ public class PointTest {
     @Test
     @DisplayName("사다리 첫 번째 Line 의 다음 값이 true 이면 가로 라인이 겹치지 않게 두번째 Line의 다음 값은 false이다.   ")
     void init() {
+        assertThat(Point.init(true).insert(true).nextPoint()).isFalse();
+        assertThat(Point.init(true).insert(false).nextPoint()).isFalse();
+    }
+
+    @Test
+    void insert3() {
+        Point first = Point.init(false);
+        assertThat(first.move()).isEqualTo(0);
+    }
+
+    @Test
+    void insert4() {
         Point first = Point.init(true);
-        assertThat(first.insert()).isEqualTo(Point.of());
-    }
-
-    @Test
-    void insert() {
-        Point first = Point.init(false);
-        assertThat(first.insert()).isEqualTo(Point.of(first.nextPoint() , false));
-    }
-
-    @Test
-    void insert2() {
-        Point first = Point.init(false);
-        assertThat(first.insert()).isEqualTo(Point.of(first.nextPoint(),true));
+        assertThat(first.move()).isEqualTo(1);
     }
 }

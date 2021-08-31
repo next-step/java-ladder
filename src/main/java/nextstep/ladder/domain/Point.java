@@ -5,6 +5,9 @@ import nextstep.ladder.util.RandomUtil;
 import java.util.Objects;
 
 public class Point {
+    private static final int RIGHT = 1;
+    private static final int LEFT = -1;
+    private static final int PASS  = 0;
     private boolean currentPoint;
     private boolean nextPoint;
 
@@ -17,23 +20,15 @@ public class Point {
         return new Point(false, nextPoint);
     }
 
-    public static Point of(boolean currentPoint ,boolean nextPoint) { // 현재 값이 false 이면 다음 값은 랜덤
-        return new Point(currentPoint, nextPoint);
-    }
-
-    public static Point of() {
-        return new Point(true, false); // 현재 값이 true 이면 다음 값은 무조건 false 이다.
-    }
-
     public Point last() { // 가로 Line 마지막 Point 값 지정
         return new Point(this.nextPoint, false);
     }
 
-    public Point insert() {
-        if (nextPoint) {
-            return Point.of();
+    public Point insert(boolean nextPoint) {
+        if (this.nextPoint) {
+            return new Point(this.nextPoint, false);
         }
-        return Point.of(nextPoint, RandomUtil.generate());
+        return new Point(this.nextPoint, nextPoint);
     }
 
     public boolean currentPoint() {
@@ -46,12 +41,12 @@ public class Point {
 
     public int move() {
         if (currentPoint) {
-            return -1; // 왼쪽
+            return LEFT; // 왼쪽
         }
         if (nextPoint) {
-            return 1; // 오른쪽
+            return RIGHT; // 오른쪽
         }
-        return 0; // 아래로 이동
+        return PASS; // 아래로 이동
     }
 
     @Override
