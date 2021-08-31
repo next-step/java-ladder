@@ -11,11 +11,11 @@ public class LadderApplication {
     public static void main(String[] args) {
         Users users = getUsers();
 
-        int winningItemsCount = users.getUsersCount();
+        int winningItemsCount = users.usersCount();
         WinningItems winningItems = getWinningItems(winningItemsCount);
 
         int ladderHeight = askLadderHeight();
-        Ladder ladder = new Ladder(ladderHeight, users.getUsersCount());
+        Ladder ladder = new Ladder(ladderHeight, users.usersCount());
 
         printUserList(users);
         printLadder(ladder);
@@ -34,6 +34,7 @@ public class LadderApplication {
         try {
             return new Users(usersName);
         } catch (UserNameLengthException e) {
+            System.out.println("유저 이름을 잘못 입력 하셨습니다.");
             return getUsers();
         }
     }

@@ -18,7 +18,7 @@ public class Users {
         this.users = users;
     }
 
-    public int getUsersCount() {
+    public int usersCount() {
         return users.size();
     }
 

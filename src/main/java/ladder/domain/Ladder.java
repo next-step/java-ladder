@@ -31,7 +31,7 @@ public class Ladder {
     public List<Result> execute(Users users, WinningItems winningItems) {
         List<Result> results = new ArrayList<>();
 
-        for (int startPosition = 0; startPosition < users.getUsersCount(); startPosition++) {
+        for (int startPosition = 0; startPosition < users.usersCount(); startPosition++) {
             int resultPosition = getResultPosition(startPosition);
 
             User user = users.getUserToPosition(startPosition);
