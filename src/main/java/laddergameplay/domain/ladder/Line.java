@@ -6,6 +6,7 @@ import laddergameplay.strategy.LineStrategy;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class Line {
 
@@ -43,7 +44,16 @@ public class Line {
         return Collections.unmodifiableList(points);
     }
 
-    public boolean get(int indexOfPoint) {
-        return points.get(indexOfPoint);
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Line line = (Line) o;
+        return Objects.equals(points, line.points);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(points);
     }
 }

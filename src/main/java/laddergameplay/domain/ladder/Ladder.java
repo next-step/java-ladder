@@ -78,7 +78,9 @@ public class Ladder {
         }
 
         private int movePositionInLine(Line line, int currentPosition, int i) {
-            if (checkPointArr[i] < FIRST_PILLAR_OF_LADDER || checkPointArr[i] >= widthOfLadder || !line.get(checkPointArr[i])) {
+            if (checkPointArr[i] < FIRST_PILLAR_OF_LADDER
+                    || checkPointArr[i] >= widthOfLadder
+                    || !line.getPoints().get(checkPointArr[i])) {
                 return currentPosition;
             }
 

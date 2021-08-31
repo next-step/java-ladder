@@ -17,13 +17,19 @@ class LineTest {
     void create() {
         // given
         int widthOfLadder = 4;
+        LineStrategy lineStrategy = new RandomLineStrategy(){
+            @Override
+            protected boolean currentPoint() {
+                return true;
+            }
+        };
 
         // when
-        Line line = new Line(widthOfLadder,new RandomLineStrategy());
+        Line line = new Line(widthOfLadder, lineStrategy);
 
         // then
-        assertThat(line.getPoints().size()).isEqualTo(widthOfLadder);
-        assertThat(line.get(0))
+        assertThat(line).isEqualTo(new Line(widthOfLadder, lineStrategy));
+        assertThat(line.getPoints().get(0))
                 .isInstanceOf(Boolean.class);
     }
 
