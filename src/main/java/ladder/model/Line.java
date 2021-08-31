@@ -41,4 +41,8 @@ public class Line {
     public List<Boolean> getSteps() {
         return steps;
     }
+
+    public int getWidth(){
+        return steps.size();
+    }
 }
