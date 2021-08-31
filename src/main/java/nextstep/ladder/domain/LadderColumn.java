@@ -18,7 +18,7 @@ public class LadderColumn {
         return new LadderColumn(strategy.drawLine());
     }
 
-    public boolean value() {
+    public boolean hasVerticalLine() {
         return hasVerticalLine;
     }
 }

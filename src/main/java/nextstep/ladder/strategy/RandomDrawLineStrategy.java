@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class RandomDrawLineStrategy implements DrawLineStrategy {
 
-    Random random = new Random();
+    private final Random random = new Random();
 
     @Override
     public boolean drawLine() {

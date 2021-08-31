@@ -30,8 +30,8 @@ public class ResultView {
     }
 
     private void printLadder(Ladder ladder) {
-        ladder.getLadderRows().stream()
-            .forEach(row -> printLadderRow(row));
+        ladder.getLadderRows()
+            .forEach(this::printLadderRow);
     }
 
     private void printLadderRow(LadderRow row) {
@@ -42,12 +42,12 @@ public class ResultView {
     private String createLadderRowString(LadderRow row) {
 
         return row.getLadderColumns().stream()
-            .map(c -> getColumnString(c))
+            .map(this::getColumnString)
             .collect(Collectors.joining());
     }
 
     private String getColumnString(LadderColumn column) {
-        return column.value() ? COLUMN_WITH_LINE : COLUMN;
+        return column.hasVerticalLine() ? COLUMN_WITH_LINE : COLUMN;
     }
 
     private void printPlayerNames(Players players) {

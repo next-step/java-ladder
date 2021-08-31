@@ -7,6 +7,7 @@ public class LadderRow {
 
     private static final int ONE = 1;
     private static final int FIRST_AND_LAST_COLUMN_COUNT = 2;
+    public static final int NO_MIDDLE_COLUMN_COUNT = 0;
 
     private final List<LadderColumn> ladderColumns;
 
@@ -37,26 +38,34 @@ public class LadderRow {
         int middleSize = getMiddleSize(settings);
 
         for (int i = 0; i < middleSize; i++) {
+            addColumnAfterLineCheck(settings);
+        }
+    }
 
-            if (!hadVerticalLineInLastColumn(ladderColumns)) {
-                addColumn(settings);
-                continue;
-            }
+    private void addColumnAfterLineCheck(LadderGameSettings settings) {
+        if (!hadVerticalLineInLastColumn()) {
+            addColumn(settings);
+            return;
+        } else {
             addNoVerticalLineColumn();
         }
     }
 
     private int getMiddleSize(LadderGameSettings settings) {
         final int ladderWidth = settings.getLadderWidth();
-        return Math.max(ladderWidth - FIRST_AND_LAST_COLUMN_COUNT, 0);
+        return Math.max(ladderWidth - FIRST_AND_LAST_COLUMN_COUNT, NO_MIDDLE_COLUMN_COUNT);
     }
 
     private void addLastColumn() {
         addNoVerticalLineColumn();
     }
 
-    private boolean hadVerticalLineInLastColumn(List<LadderColumn> columns) {
-        return ladderColumns.get(columns.size() - ONE).value();
+    private LadderColumn getLastColumn() {
+        return ladderColumns.get(ladderColumns.size() - ONE);
+    }
+
+    private boolean hadVerticalLineInLastColumn() {
+        return getLastColumn().hasVerticalLine();
     }
 
     private void addNoVerticalLineColumn() {

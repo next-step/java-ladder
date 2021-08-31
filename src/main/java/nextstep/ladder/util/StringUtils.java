@@ -6,10 +6,7 @@ public class StringUtils {
 
     public static boolean isNullOrEmpty(String str) {
 
-        if (Objects.isNull(str) || str.isEmpty()) {
-            return true;
-        }
-        return false;
+        return Objects.isNull(str) || str.isEmpty();
     }
 
 }
