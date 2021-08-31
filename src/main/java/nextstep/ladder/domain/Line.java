@@ -25,18 +25,9 @@ public class Line {
             if (i == playersCounts - 1) { // 마지막 Line인 경우
                 points.add(points.get(i - 1).last());
             } else {
-                points.add(points.get(i-1).insert());
+                points.add(points.get(i - 1).insert());
             }
-
         }
-    }
-
-    public Point checkPreviousPoint(boolean nextPointOfPrevious) {
-        //현재값이 true 이면 (true ,false) 주입
-        if (nextPointOfPrevious) {
-            return Point.of();
-        }
-        return Point.of(RandomUtil.generate()); // false 면 (false , 랜덤) 주입
     }
 
     public int search(int index) {

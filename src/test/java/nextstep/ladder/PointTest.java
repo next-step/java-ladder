@@ -18,12 +18,12 @@ public class PointTest {
     @Test
     void insert() {
         Point first = Point.init(false);
-        assertThat(first.insert()).isEqualTo(Point.of(false));
+        assertThat(first.insert()).isEqualTo(Point.of(first.nextPoint() , false));
     }
 
     @Test
     void insert2() {
         Point first = Point.init(false);
-        assertThat(first.insert().currentPoint()).isEqualTo(Point.of(true).currentPoint());
+        assertThat(first.insert()).isEqualTo(Point.of(first.nextPoint(),true));
     }
 }

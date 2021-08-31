@@ -17,8 +17,8 @@ public class Point {
         return new Point(false, nextPoint);
     }
 
-    public static Point of(boolean nextPoint) { // 현재 값이 false 이면 다음 값은 랜덤
-        return new Point(false, nextPoint);
+    public static Point of(boolean currentPoint ,boolean nextPoint) { // 현재 값이 false 이면 다음 값은 랜덤
+        return new Point(currentPoint, nextPoint);
     }
 
     public static Point of() {
@@ -33,7 +33,7 @@ public class Point {
         if (nextPoint) {
             return Point.of();
         }
-        return Point.of(RandomUtil.generate());
+        return Point.of(nextPoint, RandomUtil.generate());
     }
 
     public boolean currentPoint() {
