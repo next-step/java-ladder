@@ -15,7 +15,7 @@ public class LadderConsoleOutput {
     private static final int SUFFIX_CRITERIA = 0;
 
     public static void print(List<List<Boolean>> ladderBarStatus) {
-        System.out.println(ladderBarStatus.stream()
+        System.out.print(ladderBarStatus.stream()
                 .map(LadderConsoleOutput::toLadderLine)
                 .collect(joining(NEXT_LINE)));
     }
