@@ -11,7 +11,7 @@ class LadderTest {
     @Test
     public void ladderHeightTest() {
         int height = 5;
-        Ladder ladder = Ladder.of(PlayerCount.of(3), height);
+        Ladder ladder = Ladder.of(PlayerCount.of(3), LadderHeights.of(height));
         assertThat(ladder.height())
                 .isEqualTo(height);
     }
