@@ -6,7 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 @DisplayName("사다리 포인트 테스트")
 public class LadderPointTest {
@@ -29,6 +29,6 @@ public class LadderPointTest {
         LadderPoint ladderPoint = new LadderPoint(1, direction);
 
         // then
-        assertEquals(ladderPoint.move(), movedIndex);
+        assertSame(ladderPoint.move(), movedIndex);
     }
 }
