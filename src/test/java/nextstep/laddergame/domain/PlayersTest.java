@@ -2,14 +2,13 @@ package nextstep.laddergame.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 class PlayersTest {
 
@@ -21,13 +20,6 @@ class PlayersTest {
         for (PlayerName playerName : playerNames) {
             assertThat(players).matches(p -> p.contains(playerName));
         }
-    }
-
-    @ParameterizedTest(name = "참여자는 한 명 이상이다.")
-    @NullAndEmptySource
-    public void playerSizeTest(List<PlayerName> playerNames) {
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> Players.of(playerNames));
     }
 
     @DisplayName("참여자 이름은 중복 될 수 없다.")
