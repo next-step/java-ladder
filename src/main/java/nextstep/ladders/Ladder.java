@@ -18,6 +18,10 @@ public class Ladder {
         return lines.move(index);
     }
 
+    public Lines getLines() {
+        return lines;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

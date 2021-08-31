@@ -1,5 +1,6 @@
 package nextstep.ladders;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -20,6 +21,10 @@ public class Lines {
             index = line.move(index);
         }
         return index;
+    }
+
+    public List<Line> elements() {
+        return Collections.unmodifiableList(lines);
     }
 
     @Override

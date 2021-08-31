@@ -24,7 +24,7 @@ public class ExecutionResults {
                 .collect(Collectors.toList());
     }
 
-    public List<ExecutionResult> getExecutionResult() {
+    public List<ExecutionResult> elements() {
         return Collections.unmodifiableList(executionResults);
     }
 }

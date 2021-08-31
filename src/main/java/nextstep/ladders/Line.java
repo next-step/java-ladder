@@ -2,6 +2,7 @@ package nextstep.ladders;
 
 import nextstep.ladders.exception.InvalidLineSizeException;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -35,6 +36,10 @@ public class Line {
         if (index < 0 || index >= points.size()) {
             throw new InvalidLineSizeException();
         }
+    }
+
+    public List<Point> elements() {
+        return Collections.unmodifiableList(points);
     }
 
     @Override
