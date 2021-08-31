@@ -26,4 +26,8 @@ public class LadderResult {
         }
         return ladderResult.get(resultIndex);
     }
+
+    public int size() {
+        return ladderResult.size();
+    }
 }

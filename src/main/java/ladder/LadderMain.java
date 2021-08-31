@@ -15,6 +15,7 @@ public class LadderMain {
         InputView inputView = new InputView();
         Names names = new Names(inputView.requestName());
         LadderResult ladderResult = new LadderResult(inputView.requestLadderResult());
+        validateInput(names, ladderResult);
         int height = inputView.requestHeight();
 
         Ladder ladder = new Ladder(height, names.size(), () -> new Random().nextBoolean());
@@ -23,6 +24,12 @@ public class LadderMain {
         resultView.printLadder(names, ladder, ladderResult);
 
         showResult(inputView, names, ladderResult, ladder, resultView);
+    }
+
+    private static void validateInput(Names names, LadderResult ladderResult) {
+        if(names.size() != ladderResult.size()) {
+            throw new IllegalArgumentException("이름의 수와 결과의 수가 다릅니다.");
+        }
     }
 
     private static void showResult(InputView inputView, Names names, LadderResult ladderResult, Ladder ladder, ResultView resultView) {
