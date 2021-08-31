@@ -24,6 +24,14 @@ public class LadderInfo {
     }
 
     @Override
+    public String toString() {
+        return "입력된 사다리 정보{" +
+                "width=" + width +
+                ", height=" + height +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

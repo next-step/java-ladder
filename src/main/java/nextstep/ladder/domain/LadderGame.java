@@ -17,8 +17,9 @@ public class LadderGame {
         this.ladder = ladder;
     }
 
-    public void climbLadder(List<String> results) {
+    public LadderResults climbLadder(List<String> results) {
 
+        return null;
     }
 
     // todo

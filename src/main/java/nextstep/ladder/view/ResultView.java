@@ -1,9 +1,6 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.LadderGame;
-import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Player;
+import nextstep.ladder.domain.*;
 
 import java.util.List;
 
@@ -46,13 +43,23 @@ public class ResultView {
         System.out.println();
     }
 
-    public static void test() {
-//        List<>
-    }
-
     public static void printLadderResult(List<String> results) {
-        results.stream()
+        results
                 .forEach(p -> System.out.print(String.format("%6s", p)));
         System.out.println();
+    }
+
+    public static void printPlayersResults(String playersResults, LadderResults ladderResults) {
+        if (playersResults.equals("all")) {
+            printAllPlayersResults(ladderResults);
+            return;
+        }
+        printPlayerResult();
+    }
+
+    private static void printAllPlayersResults(LadderResults ladderResults) {
+    }
+
+    private static void printPlayerResult() {
     }
 }

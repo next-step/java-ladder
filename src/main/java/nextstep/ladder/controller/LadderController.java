@@ -12,18 +12,21 @@ public class LadderController {
         List<String> results = InputView.inputResults();
         int ladderHeight = InputView.inputLadderHeight();
 
-        LadderResults ladderResults = new LadderResults(players, results);
-
         Ladder ladder = new Ladder(new LadderInfo(players.size(), ladderHeight), new RandomPointCreator());
         LadderGame ladderGame = new LadderGame(players, ladder);
 
         ResultView.printResult(ladderGame);
         ResultView.printLadderResult(results);
 
-        String playersResults = InputView.inputPlayersResults();
+        LadderResults ladderResults = ladderGame.climbLadder(results);
 
+        while (true) {
+            String playersResults = InputView.inputPlayersResults();
+            ResultView.printPlayersResults(playersResults, ladderResults);
 
-        String r = results.get(ladderGame.doLadderGame(0));
-        System.out.println(r);
+            if (playersResults.equals("all")) {
+                break;
+            }
+        }
     }
 }

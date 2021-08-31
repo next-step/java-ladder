@@ -1,9 +1,6 @@
 package nextstep.ladder.domain;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class LadderResults {
@@ -22,7 +19,18 @@ public class LadderResults {
         this.results = results;
     }
 
-    public List<Player> getPlayers() {
-        return players;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LadderResults that = (LadderResults) o;
+        return Objects.equals(players, that.players) &&
+                Objects.equals(results, that.results);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(players, results);
     }
 }
