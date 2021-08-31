@@ -8,7 +8,7 @@ public class Point {
     private boolean currentPoint;
     private boolean nextPoint;
 
-    private Point(boolean nextPoint) { // init
+    private Point(boolean nextPoint) { // random
         this.currentPoint = false;
         this.nextPoint = nextPoint;
     }
