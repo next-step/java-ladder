@@ -3,7 +3,6 @@ package ladder.view;
 import ladder.domain.*;
 
 import java.util.List;
-import java.util.Map;
 
 public class ResultView {
     private static final StringBuilder STRING_BUILDER = new StringBuilder();
@@ -50,18 +49,18 @@ public class ResultView {
         System.out.println();
     }
 
-    public static void printResult(MatchResult matchResult, User user) {
+    public static void printResult(MatchResults matchResults, User user) {
         System.out.println(EXECUTION_RESULT);
-        WinningItem item = matchResult.getMatchResultToUser(user);
-        System.out.println(item.getItem());
+        Result result = matchResults.resultToUser(user);
+        System.out.println(result.getUser().getName() + " : " + result.getWinningItem().getItem());
     }
 
-    public static void printAllResult(MatchResult matchResult) {
+    public static void printAllResult(MatchResults matchResults) {
         System.out.println(EXECUTION_RESULT);
-        Map<User, WinningItem> result = matchResult.getMatchResult();
-        for (User user : result.keySet()) {
-            WinningItem item = result.get(user);
-            System.out.println(user.getName() + " : " + item.getItem());
+
+        List<Result> results = matchResults.getResults();
+        for (Result result : results) {
+            System.out.println(result.getUser().getName() + " : " + result.getWinningItem().getItem());
         }
     }
 
