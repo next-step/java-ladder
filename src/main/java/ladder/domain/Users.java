@@ -3,6 +3,7 @@ package ladder.domain;
 import ladder.exception.NotFoundUserException;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -11,10 +12,9 @@ public class Users {
 
     public Users(String[] usersName) {
         List<User> users = new ArrayList<>();
-        for (String name : usersName) {
-            User user = new User(name);
-            users.add(user);
-        }
+        Arrays.stream(usersName)
+                .map(User::new)
+                .forEach(users::add);
         this.users = users;
     }
 
