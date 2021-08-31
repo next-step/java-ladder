@@ -58,10 +58,8 @@ public class Ladder {
         }
     }
 
-    public String getLadderString() {
-        return lines.stream()
-                    .map(line -> line.generateLineString())
-                    .collect(Collectors.joining("\n"));
+    public Line line(int index) {
+        return lines.get(index);
     }
 
     public int size() {
