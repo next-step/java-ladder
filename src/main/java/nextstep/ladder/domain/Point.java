@@ -17,10 +17,6 @@ public class Point {
         return new Point(false, RandomUtil.generate());
     }
 
-    public static Point last() { // 가로 Line 마지막 Point 값 지정
-        return new Point(RandomUtil.generate(), false);
-    }
-
     public static Point random() { // 현재 값이 false 이면 다음 값은 랜덤
         return new Point(false, RandomUtil.generate());
     }
@@ -29,6 +25,9 @@ public class Point {
         return new Point(true, false); // 현재 값이 true 이면 다음 값은 무조건 false 이다.
     }
 
+    public Point last() { // 가로 Line 마지막 Point 값 지정
+        return new Point(this.nextPoint, false);
+    }
 
     public boolean currentPoint() {
         return currentPoint;

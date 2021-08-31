@@ -20,10 +20,11 @@ public class Line {
     private void createPoint(int playersCounts) {
         points.add(Point.first()); // 처음 사다리 Line은 지정 된 값
         for (int i = START_INDEX; i < playersCounts; i++) {
-            if (i == playersCounts-1) { // 마지막 Line인 경우
-
+            if (i == playersCounts - 1) { // 마지막 Line인 경우
+                points.add(points.get(i - 1).last());
+            } else {
+                points.add(checkPreviousPoint(points.get(i - 1).nextPoint()));
             }
-            points.add(checkPreviousPoint(points.get(i - 1).nextPoint()));
         }
     }
 
