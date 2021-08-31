@@ -1,7 +1,9 @@
 package nextstep.ladder.domain.ladder.line.strategy;
 
-import nextstep.ladder.domain.ladder.line.HorizontalLines;
+import nextstep.ladder.domain.ladder.line.HorizontalLine;
+
+import java.util.List;
 
 public interface HorizontalLinesGenerateStrategy {
-    HorizontalLines generate(int size);
+    List<HorizontalLine> generate(int size);
 }

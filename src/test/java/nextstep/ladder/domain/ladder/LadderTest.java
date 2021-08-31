@@ -2,7 +2,6 @@ package nextstep.ladder.domain.ladder;
 
 import nextstep.ladder.domain.ladder.factory.LadderFactory;
 import nextstep.ladder.domain.ladder.line.HorizontalLine;
-import nextstep.ladder.domain.ladder.line.HorizontalLines;
 import nextstep.ladder.domain.ladder.line.strategy.HorizontalLinesGenerateStrategy;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -11,7 +10,8 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class LadderTest {
 
@@ -28,7 +28,7 @@ class LadderTest {
     @Test
     @DisplayName("이전 사다리와 중복되는 라인은 지운다")
     void removeDuplicatedHorizontalLines() {
-        HorizontalLines horizontalLines = ladder.getHorizontalLines();
+        List<HorizontalLine> horizontalLines = ladder.getHorizontalLines();
 
         assertTrue(horizontalLines.get(0).exist());
         assertTrue(horizontalLines.get(1).exist());
@@ -50,7 +50,7 @@ class LadderTest {
                 HorizontalLine horizontalLine = new HorizontalLine(true);
                 horizontalLines.add(horizontalLine);
             }
-            return new HorizontalLines(horizontalLines);
+            return horizontalLines;
         };
     }
 }

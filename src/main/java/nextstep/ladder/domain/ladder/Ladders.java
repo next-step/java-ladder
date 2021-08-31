@@ -16,7 +16,6 @@ public class Ladders {
         for (int i = 1; i < ladders.size(); i++) {
             Ladder prevLadder = ladders.get(i - 1);
             Ladder ladder = ladders.get(i);
-
             ladder.removeDuplicatedHorizontalLines(prevLadder);
         }
     }

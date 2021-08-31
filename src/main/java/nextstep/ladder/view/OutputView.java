@@ -2,7 +2,7 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.domain.ladder.Ladder;
 import nextstep.ladder.domain.ladder.Ladders;
-import nextstep.ladder.domain.ladder.line.HorizontalLines;
+import nextstep.ladder.domain.ladder.line.HorizontalLine;
 import nextstep.ladder.domain.participant.Participant;
 import nextstep.ladder.domain.participant.Participants;
 
@@ -83,8 +83,9 @@ public class OutputView {
 
     private void appendLadder(Ladder ladder, StringBuilder stringBuilder, int index) {
         stringBuilder.append(LADDER_HEIGHT_UNIT);
-        HorizontalLines horizontalLines = ladder.getHorizontalLines();
-        if (horizontalLines.exist(index)) {
+        List<HorizontalLine> horizontalLines = ladder.getHorizontalLines();
+        HorizontalLine horizontalLine = horizontalLines.get(index);
+        if (horizontalLine.exist()) {
             stringBuilder.append(LADDER_HORIZONTAL_LINE);
             return;
         }
