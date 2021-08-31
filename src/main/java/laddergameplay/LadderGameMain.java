@@ -2,7 +2,7 @@ package laddergameplay;
 
 import laddergameplay.domain.datas.People;
 import laddergameplay.domain.datas.Results;
-import laddergameplay.domain.dto.WinningResult;
+import laddergameplay.domain.WinningResult;
 import laddergameplay.domain.ladder.Ladder;
 import laddergameplay.exception.CustomException;
 import laddergameplay.strategy.LineStrategy;

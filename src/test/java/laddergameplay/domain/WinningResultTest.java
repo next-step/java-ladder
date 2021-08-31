@@ -4,7 +4,6 @@ import laddergameplay.domain.data.Person;
 import laddergameplay.domain.data.Result;
 import laddergameplay.domain.datas.People;
 import laddergameplay.domain.datas.Results;
-import laddergameplay.domain.dto.WinningResult;
 import laddergameplay.domain.ladder.Ladder;
 import laddergameplay.exception.CustomException;
 import laddergameplay.strategy.RandomLineStrategy;

@@ -8,6 +8,8 @@ import java.util.stream.Collectors;
 
 public class People {
 
+    public static final int SPACE_OF_PERSON = Person.MAX_LENGTH_OF_NAME+1;
+
     private final List<Person> people;
 
     public People(List<String> peopleString) {
@@ -27,7 +29,7 @@ public class People {
     public void addResultTo(StringBuilder stringBuilder) {
         people.stream()
                 .map(Person::toString)
-                .map(name -> String.format("%"+ Person.MAX_LENGTH_OF_NAME+1 +"s", name))
+                .map(name -> String.format("%"+ SPACE_OF_PERSON +"s", name))
                 .forEach(stringBuilder::append);
     }
 

@@ -1,4 +1,4 @@
-package laddergameplay.domain.dto;
+package laddergameplay.domain;
 
 import laddergameplay.domain.data.Person;
 import laddergameplay.domain.data.Result;

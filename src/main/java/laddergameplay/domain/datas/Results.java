@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 public class Results {
 
+    public static final int SPACE_OF_RESULT = Result.MAX_LENGTH_OF_NAME+1;
     public static final String TOTAL_RESULTS_EXCEPTION_MESSAGE = "실행 결과의 개수를 잘못 입력 하였습니다.";
 
     private final List<Result> results;
@@ -30,7 +31,7 @@ public class Results {
     public void addResultTo(StringBuilder stringBuilder) {
         results.stream()
                 .map(Result::toString)
-                .map(name -> String.format("%"+ Result.MAX_LENGTH_OF_NAME+1 +"s", name))
+                .map(name -> String.format("%"+ SPACE_OF_RESULT +"s", name))
                 .forEach(stringBuilder::append);
     }
 
