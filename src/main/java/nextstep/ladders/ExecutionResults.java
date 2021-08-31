@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class ExecutionResults {
 
-    public static final String REGEX_COMMA = ",";
+    private static final String REGEX_COMMA = ",";
 
     private final List<ExecutionResult> executionResults;
 

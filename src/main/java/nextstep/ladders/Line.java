@@ -20,13 +20,13 @@ public class Line {
         this(Point.toList(generator, numberOfPeople));
     }
 
-    public static List<Line> toList(final Generator generator, int height, int numberOfPeople) {
+    public static List<Line> toList(final Generator generator, final int height, final int numberOfPeople) {
         return Stream.generate(() -> new Line(generator, numberOfPeople))
                 .limit(height)
                 .collect(Collectors.toList());
     }
 
-    public int move(int index) {
+    public int move(final int index) {
         checkValidIndex(index);
         Point point = points.get(index);
         return point.move();

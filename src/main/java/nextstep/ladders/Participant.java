@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class Participant {
 
-    public static final int MAX_NAME_LENGTH = 5;
+    private static final int MAX_NAME_LENGTH = 5;
 
     private final String name;
 

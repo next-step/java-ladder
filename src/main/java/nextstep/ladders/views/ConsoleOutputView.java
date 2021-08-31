@@ -97,10 +97,9 @@ public class ConsoleOutputView {
 
         for (int i = 0; i < participantList.size(); i++) {
 
-            int index = ladder.start(i);
-
             Participant participant = participantList.get(i);
-            ExecutionResult executionResult = executionResultList.get(index);
+            int executionResultIndex = ladder.start(i);
+            ExecutionResult executionResult = executionResultList.get(executionResultIndex);
 
             print(participant, executionResult);
         }

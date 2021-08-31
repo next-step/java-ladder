@@ -1,8 +1,11 @@
 package nextstep.ladders;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 public class Ladder {
+
+    private static final String REGEX_COMMA = ",";
 
     private final Lines lines;
 
@@ -12,6 +15,18 @@ public class Ladder {
 
     public Ladder(final Generator generator, final int height, final int numberOfPeople) {
         this(new Lines(generator, height, numberOfPeople));
+    }
+
+    public Ladder(final RandomGenerateStrategy generator, final String maxLadderHeightText, final String participantsText) {
+        this(generator, parseMaxLadderHeight(maxLadderHeightText), parseParticipantsCount(participantsText));
+    }
+
+    private static int parseParticipantsCount(final String participantsText) {
+        return (int) (Arrays.stream(participantsText.split(REGEX_COMMA)).count());
+    }
+
+    private static int parseMaxLadderHeight(final String maxLadderHeightText) {
+        return Integer.parseInt(maxLadderHeightText);
     }
 
     public int start(final int index) {

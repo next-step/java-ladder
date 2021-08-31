@@ -18,16 +18,17 @@ public class Point {
         List<Point> points = new ArrayList<>();
 
         int index = 0;
+
         Direction direction = Direction.first(generator.generate());
         points.add(new Point(index, direction));
 
-        while (index < numberOfPeople - 1) {
+        while (index < numberOfPeople - 2) {
             index++;
             direction = direction.next(generator.generate());
             points.add(new Point(index, direction));
         }
 
-        points.add(new Point(index, direction.last()));
+        points.add(new Point(++index, direction.last()));
         return points;
     }
 

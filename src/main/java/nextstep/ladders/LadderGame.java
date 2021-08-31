@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 public class LadderGame {
 
-    public static final String REGEX_COMMA = ",";
+    private static final String REGEX_COMMA = ",";
 
     private final Participants participants;
     private final ExecutionResults executionResults;
@@ -15,10 +15,6 @@ public class LadderGame {
         checkEqualsCount(participantsText, executionResultText);
         this.participants = new Participants(participantsText);
         this.executionResults = new ExecutionResults(executionResultText);
-    }
-
-    public Ladder init(final Generator generator, final int height, final int numberOfPeople) {
-        return new Ladder(generator, height, numberOfPeople);
     }
 
     private void checkEqualsCount(final String participantsText, final String executionResultText) {
