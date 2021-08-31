@@ -2,6 +2,8 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.domain.*;
 
+import javax.xml.soap.SAAJResult;
+
 
 public class ResultView {
     private static final String EMPTY_LINE = "     |";
@@ -11,9 +13,12 @@ public class ResultView {
 
     public static void printLadderGame(Players players, Ladder ladder) {
         System.out.println(RESULT_MESSAGE);
-        players.stream().map(ResultView::toFormat).forEach(System.out::print);
+        players.stream()
+                .map(ResultView::toFormat)
+                .forEach(System.out::print);
 
-        ladder.stream().forEach(ResultView::drawLine);
+        ladder.stream()
+                .forEach(ResultView::drawLine);
     }
 
     private static void drawLine(Line line) {
@@ -34,4 +39,12 @@ public class ResultView {
         return EMPTY_LINE;
     }
 
+    public static void printResultGroup(Result result) {
+        System.out.println();
+        result.stream()
+                .map(str -> String.format(FORMAT_SIZE, str))
+                .forEach(System.out::print);
+        System.out.println();
+
+    }
 }

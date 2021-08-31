@@ -13,14 +13,15 @@ public class LadderApplication {
         String inputPlayers = InputView.inputPlayers();
         Players players = new Players(inputPlayers);
         Result result = new Result(InputView.inputResult());
-        Validation.isValidResult(players,result);
+        Validation.isValidResult(players, result);
         int ladderHeight = InputView.inputLadderCount();
         Ladder ladder = new Ladder(players.size(), ladderHeight);
         ResultView.printLadderGame(players, ladder);
-        String searchPlayer  = InputView.inputGameResultSearch();
-        int containPlayer = Validation.isContainPlayer(searchPlayer, players);
-        LadderGame ladderGame = new LadderGame(containPlayer, ladder);
-        String player = ladderGame.start();
-        System.out.println(player);
+        ResultView.printResultGroup(result);
+        String searchPlayer = InputView.inputGameResultSearch();
+        int index = Validation.isContainPlayer(searchPlayer, players);
+        LadderGame ladderGame = new LadderGame(ladder, players);
+        int direction = ladderGame.start(index);
+        System.out.println(direction);
     }
 }

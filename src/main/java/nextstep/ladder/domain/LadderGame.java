@@ -1,16 +1,25 @@
 package nextstep.ladder.domain;
 
+
+
 public class LadderGame {
     private Ladder ladder;
-    private int index;
+    private Players players;
 
-    public LadderGame(int index, Ladder ladder) {
+
+    public LadderGame(Ladder ladder ,Players players) {
         this.ladder = ladder;
-        this.index = index;
+        this.players = players;
+    }
+
+    public void execute() {
 
     }
 
-    public String start() {
+    public int start(int index) {
+        if (index ==-1){
+
+        }
         return ladder.search(index);
     }
 }

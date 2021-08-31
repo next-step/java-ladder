@@ -18,12 +18,15 @@ public class Ladder {
         }
     }
 
-    public String search(int index) {
+    public Ladder(List<Line> lines) {
+        this.lines = lines;
+    }
+
+    public int search(int index) {
         for (Line line : lines) {
            index = line.search(index);
         }
-        Result result = new Result();
-        return result.get(index);
+        return index;
     }
 
     public int size() {
