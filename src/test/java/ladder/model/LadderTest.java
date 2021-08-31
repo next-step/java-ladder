@@ -8,6 +8,7 @@ import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@SuppressWarnings("NonAsciiCharacters")
 public class LadderTest {
 
     @ParameterizedTest
@@ -21,7 +22,7 @@ public class LadderTest {
          */
         int playerCount = 2;
         int height = 2;
-        Ladder ladder = new Ladder(playerCount, height, (num) -> Arrays.asList(false, true));
+        Ladder ladder = LadderFactory.create(playerCount, height, (num) -> Arrays.asList(false, true));
 
         //when
         int finalPosition = ladder.moveFrom(start);
@@ -42,7 +43,7 @@ public class LadderTest {
          */
         int playerCount = 3;
         int height = 3;
-        Ladder ladder = new Ladder(playerCount, height, new LadderMovingStub());
+        Ladder ladder = LadderFactory.create(playerCount, height, new LadderMovingStub());
 
         //when
         int finalPosition = ladder.moveFrom(start);

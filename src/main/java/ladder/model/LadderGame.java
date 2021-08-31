@@ -9,7 +9,7 @@ public class LadderGame {
 
     public LadderGame(List<Player> players, int height, MoveStrategy moveStrategy) {
         this.players = players;
-        this.ladder = new Ladder(players.size(), height, moveStrategy);
+        this.ladder = LadderFactory.create(players.size(), height, moveStrategy);
     }
 
     public List<Player> getPlayers(){
