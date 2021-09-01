@@ -3,14 +3,13 @@ package ladder.model;
 import java.util.List;
 import java.util.stream.IntStream;
 
-import static java.lang.Boolean.TRUE;
 import static java.util.stream.Collectors.toList;
 
 public class Ladder {
-    static final int GAP_BETWEEN_PLAYER_COUNT_AND_POINT_COUNT = 1;
     private static final int MIN_LADDER_HEIGHT = 1;
-    private static final int FIRST_INDEX = 0;
     private static final int SINGLE_LINE_COUNT = 1;
+    private static final int LAST_VERTICAL_LINE_COUNT = 1;
+    private static final int FIRST_INDEX = 0;
     private static final int ZERO = 0;
 
     private final List<LadderLine> lines;
@@ -18,9 +17,8 @@ public class Ladder {
     public Ladder(int playerCount, int ladderHeight) {
         validateMinLadderHeight(ladderHeight);
 
-        int pointCount = playerCount - GAP_BETWEEN_PLAYER_COUNT_AND_POINT_COUNT;
-        LadderLinesGenerator ladderLinesGenerator = LadderLineGeneratorFactory.findGenerator(ladderHeight, pointCount);
-        lines = ladderLinesGenerator.generate(ladderHeight, pointCount);
+        LadderLinesGenerator ladderLinesGenerator = LadderLineGeneratorFactory.findGenerator(ladderHeight, playerCount);
+        lines = ladderLinesGenerator.generate(ladderHeight, playerCount);
 
         validateNotExistEmptyVerticalInterval(lines);
     }
@@ -43,14 +41,18 @@ public class Ladder {
         }
 
         LadderLine firstLine = lines.get(FIRST_INDEX);
+        int pointCountExcludingLastPoint = firstLine.pointCount() - LAST_VERTICAL_LINE_COUNT;
 
-        IntStream.range(FIRST_INDEX, firstLine.pointCount())
+        IntStream.range(FIRST_INDEX, pointCountExcludingLastPoint)
                 .forEach(pointIndex -> {
-                    List<Boolean> verticalLine = lines.stream()
+                    List<LadderPoint> verticalLine = lines.stream()
                             .map(line -> line.getPoint(pointIndex))
                             .collect(toList());
 
-                    if (verticalLine.contains(TRUE)) {
+                    boolean existVerticalLine = verticalLine.stream()
+                            .anyMatch(LadderPoint::isRight);
+
+                    if (existVerticalLine) {
                         return;
                     }
 
@@ -67,7 +69,7 @@ public class Ladder {
             return ZERO;
         }
         LadderLine firstLine = lines.get(FIRST_INDEX);
-        return firstLine.pointCount() + GAP_BETWEEN_PLAYER_COUNT_AND_POINT_COUNT;
+        return firstLine.pointCount();
     }
 
     int findResultIndex(int playerIndex) {

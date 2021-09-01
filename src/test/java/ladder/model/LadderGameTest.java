@@ -5,8 +5,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
-import static java.lang.Boolean.*;
-import static java.lang.Boolean.TRUE;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
@@ -62,15 +60,16 @@ public class LadderGameTest {
         // given
         Players players = new Players(Arrays.asList("aiden", "pobi", "crong"));
 
-        LadderLine firstLine = new LadderLine(Arrays.asList(TRUE, FALSE));
-        LadderLine secondLine = new LadderLine(Arrays.asList(FALSE, TRUE));
-        LadderLine thirdLine = new LadderLine(Arrays.asList(TRUE, FALSE));
+        LadderLine firstLine = new LadderLine(LadderLinesGenerator.generatePoints(Arrays.asList(true, false)));
+        LadderLine secondLine = new LadderLine(LadderLinesGenerator.generatePoints(Arrays.asList(false, true)));
+        LadderLine thirdLine = new LadderLine(LadderLinesGenerator.generatePoints(Arrays.asList(true, false)));
         Ladder ladder = new Ladder(Arrays.asList(firstLine, secondLine, thirdLine));
 
         LadderResults results = new LadderResults(Arrays.asList("1000", "2000", "3000"));
 
         LadderGame ladderGame = new LadderGame(players, ladder, results);
 
+        // when, then
         assertEquals(ladderGame.findResult("aiden"), "3000");
         assertEquals(ladderGame.findResult("pobi"), "2000");
         assertEquals(ladderGame.findResult("crong"), "1000");

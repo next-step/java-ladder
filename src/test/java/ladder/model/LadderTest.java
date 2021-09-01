@@ -5,8 +5,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
-import static java.lang.Boolean.*;
-import static java.lang.Boolean.TRUE;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
@@ -26,8 +24,8 @@ public class LadderTest {
     @Test
     void emptyVerticalIntervalExceptionTest() {
         // given
-        LadderLine firstLine = new LadderLine(Arrays.asList(TRUE, FALSE));
-        LadderLine secondLine = new LadderLine(Arrays.asList(FALSE, FALSE));
+        LadderLine firstLine = new LadderLine(LadderLinesGenerator.generatePoints(Arrays.asList(true, false)));
+        LadderLine secondLine = new LadderLine(LadderLinesGenerator.generatePoints(Arrays.asList(false, false)));
 
         // when, then
         assertThatIllegalArgumentException()
@@ -39,8 +37,8 @@ public class LadderTest {
     @Test
     void playerCountTest() {
         // given
-        LadderLine firstLine = new LadderLine(Arrays.asList(TRUE, FALSE));
-        LadderLine secondLine = new LadderLine(Arrays.asList(FALSE, TRUE));
+        LadderLine firstLine = new LadderLine(LadderLinesGenerator.generatePoints(Arrays.asList(true, false)));
+        LadderLine secondLine = new LadderLine(LadderLinesGenerator.generatePoints(Arrays.asList(false, true)));
         Ladder ladder = new Ladder(Arrays.asList(firstLine, secondLine));
 
         // when, then
@@ -51,9 +49,9 @@ public class LadderTest {
     @Test
     void findLadderResultIndexOfPlayerTest() {
         // given
-        LadderLine firstLine = new LadderLine(Arrays.asList(TRUE, FALSE));
-        LadderLine secondLine = new LadderLine(Arrays.asList(FALSE, TRUE));
-        LadderLine thirdLine = new LadderLine(Arrays.asList(TRUE, FALSE));
+        LadderLine firstLine = new LadderLine(LadderLinesGenerator.generatePoints(Arrays.asList(true, false)));
+        LadderLine secondLine = new LadderLine(LadderLinesGenerator.generatePoints(Arrays.asList(false, true)));
+        LadderLine thirdLine = new LadderLine(LadderLinesGenerator.generatePoints(Arrays.asList(true, false)));
         Ladder ladder = new Ladder(Arrays.asList(firstLine, secondLine, thirdLine));
 
         // when, then

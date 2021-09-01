@@ -10,18 +10,22 @@ public class NarrowLadderLinesGenerator extends LadderLinesGenerator {
 
     @Override
     public List<LadderLine> generate(int ladderLineCount, int pointCount) {
-        List<Integer> truePointIndices = IntStream.range(FIRST_INDEX, pointCount)
+        int pointCountExcludingLastPoint = pointCount - LAST_POINT_COUNT;
+        List<Integer> pointIndicesWithTrueRight = IntStream.range(FIRST_INDEX, pointCountExcludingLastPoint)
                 .boxed()
                 .collect(toList());
 
         List<LadderLine> lines = IntStream.range(FIRST_INDEX, ladderLineCount)
-                .mapToObj((index) -> {
-                    int truePointIndex;
-                    if (index < pointCount) {
-                        truePointIndex = truePointIndices.get(index);
-                        return LadderLine.of(pointCount, Collections.singletonList(truePointIndex));
+                .mapToObj((lineIndex) -> {
+                    int pointIndexWithTrueRight;
+
+                    if (lineIndex < pointCountExcludingLastPoint) {
+                        pointIndexWithTrueRight = pointIndicesWithTrueRight.get(lineIndex);
+                        List<Integer> pointIndexTrueRight = Collections.singletonList(pointIndexWithTrueRight);
+                        return new LadderLine(generatePoints(pointCount, pointIndexTrueRight));
                     }
-                    return LadderLine.of(pointCount);
+
+                    return new LadderLine(generateRandomPoints(pointCount));
                 })
                 .collect(toList());
 
