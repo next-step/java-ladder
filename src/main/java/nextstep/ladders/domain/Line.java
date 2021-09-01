@@ -1,5 +1,6 @@
-package nextstep.ladders;
+package nextstep.ladders.domain;
 
+import nextstep.ladders.domain.strategy.GeneratorSteategy;
 import nextstep.ladders.exception.InvalidLineSizeException;
 
 import java.util.Collections;
@@ -16,12 +17,12 @@ public class Line {
         this.points = points;
     }
 
-    public Line(final Generator generator, final int numberOfPeople) {
-        this(Point.toList(generator, numberOfPeople));
+    public Line(final GeneratorSteategy generatorSteategy, final int numberOfPeople) {
+        this(Point.toList(generatorSteategy, numberOfPeople));
     }
 
-    public static List<Line> toList(final Generator generator, final int height, final int numberOfPeople) {
-        return Stream.generate(() -> new Line(generator, numberOfPeople))
+    public static List<Line> toList(final GeneratorSteategy generatorSteategy, final int height, final int numberOfPeople) {
+        return Stream.generate(() -> new Line(generatorSteategy, numberOfPeople))
                 .limit(height)
                 .collect(Collectors.toList());
     }

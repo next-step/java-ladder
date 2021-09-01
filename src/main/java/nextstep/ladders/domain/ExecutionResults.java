@@ -1,4 +1,4 @@
-package nextstep.ladders;
+package nextstep.ladders.domain;
 
 import java.util.Arrays;
 import java.util.Collections;

@@ -1,6 +1,6 @@
 package nextstep.ladders.views;
 
-import nextstep.ladders.*;
+import nextstep.ladders.domain.*;
 
 import java.util.List;
 

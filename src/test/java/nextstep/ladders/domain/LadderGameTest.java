@@ -1,4 +1,4 @@
-package nextstep.ladders;
+package nextstep.ladders.domain;
 
 import nextstep.ladders.exception.DifferentCountException;
 import org.junit.jupiter.params.ParameterizedTest;

@@ -1,4 +1,7 @@
-package nextstep.ladders;
+package nextstep.ladders.domain;
+
+import nextstep.ladders.domain.strategy.GeneratorSteategy;
+import nextstep.ladders.domain.strategy.RandomGenerateStrategy;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -13,8 +16,8 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public Ladder(final Generator generator, final int height, final int numberOfPeople) {
-        this(new Lines(generator, height, numberOfPeople));
+    public Ladder(final GeneratorSteategy generatorSteategy, final int height, final int numberOfPeople) {
+        this(new Lines(generatorSteategy, height, numberOfPeople));
     }
 
     public Ladder(final RandomGenerateStrategy generator, final String maxLadderHeightText, final String participantsText) {

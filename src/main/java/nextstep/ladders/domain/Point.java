@@ -1,4 +1,6 @@
-package nextstep.ladders;
+package nextstep.ladders.domain;
+
+import nextstep.ladders.domain.strategy.GeneratorSteategy;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -15,14 +17,14 @@ public class Point {
         this.direction = direction;
     }
 
-    public static List<Point> toList(final Generator generator, final int numberOfPeople) {
+    public static List<Point> toList(final GeneratorSteategy generatorSteategy, final int numberOfPeople) {
         // TODO 사람 못찾을 때
         if (numberOfPeople == 1) {
-            return Collections.singletonList(Point.first(generator.generate()));
+            return Collections.singletonList(Point.first(generatorSteategy.generate()));
         }
         List<Point> points = new ArrayList<>();
-        Point point = initFirst(generator, points);
-        point = initMiddle(generator, numberOfPeople, points, point);
+        Point point = initFirst(generatorSteategy, points);
+        point = initMiddle(generatorSteategy, numberOfPeople, points, point);
         initLast(points, point);
         return points;
     }
@@ -31,16 +33,16 @@ public class Point {
         points.add(point.last());
     }
 
-    private static Point initMiddle(Generator generator, int numberOfPeople, List<Point> points, Point point) {
+    private static Point initMiddle(GeneratorSteategy generatorSteategy, int numberOfPeople, List<Point> points, Point point) {
         for (int i = 1; i < numberOfPeople - 1; i++) {
-            point = point.next(generator.generate());
+            point = point.next(generatorSteategy.generate());
             points.add(point);
         }
         return point;
     }
 
-    private static Point initFirst(Generator generator, List<Point> points) {
-        Point point = Point.first(generator.generate());
+    private static Point initFirst(GeneratorSteategy generatorSteategy, List<Point> points) {
+        Point point = Point.first(generatorSteategy.generate());
         points.add(point);
         return point;
     }

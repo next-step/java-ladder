@@ -1,4 +1,6 @@
-package nextstep.ladders;
+package nextstep.ladders.domain;
+
+import nextstep.ladders.domain.strategy.GeneratorSteategy;
 
 import java.util.Collections;
 import java.util.List;
@@ -12,8 +14,8 @@ public class Lines {
         this.lines = lines;
     }
 
-    public Lines(final Generator generator, final int height, final int numberOfPeople) {
-        this(Line.toList(generator, height, numberOfPeople));
+    public Lines(final GeneratorSteategy generatorSteategy, final int height, final int numberOfPeople) {
+        this(Line.toList(generatorSteategy, height, numberOfPeople));
     }
 
     public int move(int index) {

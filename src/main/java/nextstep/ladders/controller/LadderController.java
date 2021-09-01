@@ -1,7 +1,7 @@
 package nextstep.ladders.controller;
 
-import nextstep.ladders.Ladder;
-import nextstep.ladders.RandomGenerateStrategy;
+import nextstep.ladders.domain.Ladder;
+import nextstep.ladders.domain.strategy.RandomGenerateStrategy;
 
 public class LadderController {
 
