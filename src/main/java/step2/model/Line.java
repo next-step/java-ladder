@@ -36,25 +36,27 @@ public class Line {
             isPoint = false;
         }
 
-        points.add(new Point(index, isPoint));
+        points.add(new Point(isPoint));
         return index;
     }
 
-    public void getResult() {
-        List<Point> result = new ArrayList<>();
+    public Users getResult(Users users) {
+        List<User> result = new ArrayList<>();
 
         for (int i = 0; i < points.size(); i++) {
-            i = switchPoint(result, i);
+            i = switchUser(result, users, i);
         }
 
-        this.points = result;
+        return new Users(result);
     }
 
-    private int switchPoint(List<Point> result, int index) {
+    private int switchUser(List<User> result, Users users, int index) {
         if (!isLast(index) && points.get(index).getPoint()) {
-            result.add(points.get(index +1));
-            result.add(points.get(index));
+            result.add(users.getUser(index +1));
+            result.add(users.getUser(index));
             index ++;
+        }else{
+            result.add(users.getUser(index));
         }
 
         return index;

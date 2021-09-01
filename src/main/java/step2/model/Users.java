@@ -2,6 +2,7 @@ package step2.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static step2.model.LadderValidator.isBlank;
@@ -15,6 +16,10 @@ public class Users  {
         isBlank(usersName);
         isOverMinNumberOfUser(usersName);
         setUsersName(usersName);
+    }
+
+    public Users(List<User> users) {
+        this.users = users;
     }
 
     private void setUsersName(String usersName) {
@@ -43,5 +48,22 @@ public class Users  {
         return users.stream()
                         .map(User::getName)
                         .collect(Collectors.toList());
+    }
+
+    public User getUser(int index) {
+        return users.get(index);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Users users1 = (Users) o;
+        return Objects.equals(users, users1.users);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(users);
     }
 }

@@ -20,6 +20,7 @@ public class LadderGame {
         String high = ask("최대 사다리 높이는 몇 인가요?");
 
         Ladder ladder = new Ladder(high, numberOfUsers, new RandomLadderStrategy());
+        ladder.getGameResult(users);
 
         printResult(users.getName());
         printLadder(ladder.getLadder());

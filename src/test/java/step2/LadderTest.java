@@ -39,4 +39,18 @@ public class LadderTest {
         }
     }
 
+    @Test
+    public void 게임_결과() {
+        //given
+        Users users = new Users("user1, user2, user3, user4");
+        Ladder ladder = new Ladder("5", 4, () -> true);
+
+        //when
+        Users result = ladder.getGameResult(users);
+
+        //then
+        Users expectUsers = new Users("user2, user1, user4, user3");
+        assertThat(result).isEqualTo(expectUsers);
+    }
+
 }

@@ -9,9 +9,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class UsersTest {
     @Test
-    public void 참여자_이름_빈값_null() {
-        assertThatThrownBy(() -> new Users(null))
-                .isInstanceOf(IllegalArgumentException.class);
+    public void 참여자_이름_빈값() {
 
         assertThatThrownBy(() -> new Users(""))
                 .isInstanceOf(IllegalArgumentException.class);

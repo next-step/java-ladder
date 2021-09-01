@@ -43,10 +43,12 @@ public class Ladder {
                         .collect(Collectors.toList());
     }
 
-    public void getGameResult() {
+    public Users getGameResult(Users users) {
         for (Line line : lines) {
-            line.getResult();
+            users = line.getResult(users);
         }
+
+        return users;
     }
 
     @Override
