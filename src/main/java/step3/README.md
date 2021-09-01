@@ -52,11 +52,11 @@
 * 규칙 7: 3개 이상의 인스턴스 변수를 가진 클래스를 쓰지 않는다.
 
 ### TODO
-* [ ] Player, Players 도메인 클래스 생성
-  * [ ] 입력값의 길이(1~5), Null체크를 한다.
-  * [ ] 검색한 이름의 현재 index값을 반환한다.
-* [ ] Result, Results 도메인 클래스 생성
-  * [ ] 입력값 Null체크를 한다.
-  * [ ] 검색한 index의 결과를 반환한다.
+* [X] Player, Players 도메인 클래스 생성
+  * [X] 입력값의 길이(1~5), Null체크를 한다.
+  * [X] 검색한 이름의 현재 index값을 반환한다.
+* [X] Result, Results 도메인 클래스 생성
+  * [X] 입력값 Null체크를 한다.
+  * [X] 검색한 index의 결과를 반환한다.
 * [ ] 기존 Point, Line, Ladder에 사다리타기 기능을 추가한다.
 * [ ] 변경사항에 맞게 Cotroller, View단을 수정한다.
