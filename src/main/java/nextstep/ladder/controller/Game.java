@@ -1,12 +1,13 @@
 package nextstep.ladder.controller;
 
+import nextstep.ladder.domain.executionresult.ExecutionResult;
 import nextstep.ladder.domain.ladder.Ladders;
 import nextstep.ladder.domain.ladder.factory.LaddersFactory;
 import nextstep.ladder.domain.ladder.line.strategy.HorizontalLinesGenerateRandomStrategy;
 import nextstep.ladder.domain.participant.Participant;
 import nextstep.ladder.domain.participant.Participants;
-import nextstep.ladder.view.InputView;
-import nextstep.ladder.view.OutputView;
+import nextstep.ladder.view.input.InputView;
+import nextstep.ladder.view.output.OutputView;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,22 +23,30 @@ public class Game {
     }
 
     public void start() {
-        Participants participants = getParticipants(inputView);
+        Participants participants = getParticipants();
 
-        int ladderHeight = inputView.receiveLadderHeight();
+        ExecutionResult executionResult = getExecutionResult();
+
         int ladderCount = participants.size();
+        Ladders ladders = getLadders(ladderCount);
 
-        Ladders ladders = getLadders(ladderHeight, ladderCount);
-
-        outputView.printParticipantsAndLadders(participants, ladders);
+        outputView.printParticipants(participants);
+        outputView.printLadders(ladders);
+        outputView.printExecutionResult(executionResult);
     }
 
-    private Ladders getLadders(int height, int ladderCount) {
+    private ExecutionResult getExecutionResult() {
+        List<String> executionResult = inputView.receiveExecutionResult();
+        return new ExecutionResult(executionResult);
+    }
+
+    private Ladders getLadders(int ladderCount) {
+        int height = inputView.receiveLadderHeight();
         return LaddersFactory.generateWith(height, ladderCount,
                 new HorizontalLinesGenerateRandomStrategy());
     }
 
-    private Participants getParticipants(InputView inputView) {
+    private Participants getParticipants() {
         List<String> userNames = inputView.receiveUserNames();
 
         return new Participants(userNames.stream()

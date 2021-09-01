@@ -1,8 +1,8 @@
 package nextstep.ladder;
 
 import nextstep.ladder.controller.Game;
-import nextstep.ladder.view.InputView;
-import nextstep.ladder.view.OutputView;
+import nextstep.ladder.view.input.InputView;
+import nextstep.ladder.view.output.OutputView;
 
 public class Main {
 
