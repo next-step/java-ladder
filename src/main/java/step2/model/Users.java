@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static step2.model.LadderValidator.isBlank;
+
 public class Users  {
     private List<User> users;
 
@@ -13,12 +15,6 @@ public class Users  {
         isBlank(usersName);
         isOverMinNumberOfUser(usersName);
         setUsersName(usersName);
-    }
-
-    private void isBlank(String usersName) {
-        if (usersName == null || usersName.trim().isEmpty()) {
-            throw new IllegalArgumentException("아무것도 입력하지 않았습니다. 다시 입력해주세요");
-        }
     }
 
     private void setUsersName(String usersName) {

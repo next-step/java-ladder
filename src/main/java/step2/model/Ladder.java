@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import static step2.model.LadderValidator.isBlank;
+
 public class Ladder {
     private static final int MIN_LADDER_HIGH = 1;
 
@@ -23,12 +25,6 @@ public class Ladder {
 
     private int getParseInt(String high) {
         return Integer.parseInt(high.trim());
-    }
-
-    private void isBlank(String high) {
-        if (high == null || high.trim().isEmpty()) {
-            throw new IllegalArgumentException("아무것도 입력하지 않았습니다. 다시 입력해주세요");
-        }
     }
 
     private void isOverMinHigh(String high) {
