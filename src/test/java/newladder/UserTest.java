@@ -1,4 +1,4 @@
-package ladder;
+package newladder;
 
 import newladder.model.User;
 import org.junit.jupiter.api.Test;

@@ -7,25 +7,11 @@ import java.util.List;
 
 public class MyLine implements Line {
 
-    private final List<Direction> directionList = new ArrayList<>();
+    private final List<Direction> directionList;
 
-    public void createLine(int userCount) {
-        Direction direction = new Direction();
-        directionList.add(direction);
-
-        while (beforeLastDirection(userCount)) {
-            direction = direction.next();
-            directionList.add(direction);
-        }
-
-        directionList.add(direction.last());
+    public MyLine(List<Direction> directionList) {
+        this.directionList = directionList;
     }
-
-
-    private boolean beforeLastDirection(int userCount) {
-        return directionList.size() < userCount - 1;
-    }
-
 
     @Override
     public int moveLine(int position) {
@@ -35,4 +21,5 @@ public class MyLine implements Line {
     public List<Direction> directionInfo() {
         return this.directionList;
     }
+
 }

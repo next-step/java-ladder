@@ -12,6 +12,10 @@ public class Direction {
         this.point = Point.first(RandomBoolean.random());
     }
 
+    public Direction(Boolean firstValue) {
+        this.point = Point.first(firstValue);
+    }
+
     public Direction(Point point) {
         this.point = point;
     }
@@ -28,6 +32,10 @@ public class Direction {
 
     public Direction next() {
         return new Direction(this.point.nextPoint(RandomBoolean.random()));
+    }
+
+    public Direction next(Boolean nextValue) {
+        return new Direction(this.point.nextPoint(nextValue));
     }
 
     public Direction last() {

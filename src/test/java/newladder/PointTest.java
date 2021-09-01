@@ -39,4 +39,11 @@ public class PointTest {
         assertThat(point.isLeft()).isFalse();
     }
 
+    @Test
+    void 마지막포인트_오른쪽은_없어() {
+        Point point = Point.first(false);
+        Point lastPoint = point.last();
+        assertThat(lastPoint.isRight()).isFalse();
+    }
+
 }

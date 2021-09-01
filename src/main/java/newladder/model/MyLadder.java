@@ -7,14 +7,10 @@ import java.util.List;
 
 public class MyLadder implements Ladder {
 
-    List<MyLine> lineList = new ArrayList<>();
+    private final List<MyLine> lineList;
 
-    public void createLadder(int userCount, int ladderHeight) {
-        for (int i = 0; i < ladderHeight; i++) {
-            MyLine line = new MyLine();
-            line.createLine(userCount);
-            lineList.add(line);
-        }
+    public MyLadder(List<MyLine> lineList) {
+        this.lineList = lineList;
     }
 
     @Override
