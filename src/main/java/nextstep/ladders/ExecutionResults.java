@@ -18,6 +18,9 @@ public class ExecutionResults {
                 .collect(Collectors.toList());
     }
 
+    public ExecutionResult get(final int index) {
+        return this.executionResults.get(index);
+    }
 
     private List<String> parseExecutionResults(final String participantsText) {
         return Arrays.stream(participantsText.split(REGEX_COMMA))

@@ -74,16 +74,12 @@ public class ConsoleOutputView {
         }
 
         Participants participants = ladderGame.getParticipants();
-        List<Participant> participantList = participants.elements();
-
         ExecutionResults executionResults = ladderGame.getExecutionResults();
-        List<ExecutionResult> executionResultList = executionResults.elements();
 
-        Participant participant = Participant.valueOf(name);
-        int participantIndex = participantList.indexOf(participant);
+        int participantIndex = participants.indexOf(Participant.valueOf(name));
         int executionResultIndex = ladder.start(participantIndex);
-        ExecutionResult executionResult = executionResultList.get(executionResultIndex);
 
+        ExecutionResult executionResult = executionResults.get(executionResultIndex);
         System.out.println(executionResult.value());
         System.out.println();
     }

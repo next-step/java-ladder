@@ -1,5 +1,7 @@
 package nextstep.ladders;
 
+import nextstep.ladders.exception.NotFoundDataException;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -16,6 +18,14 @@ public class Participants {
         this.participants = names.stream()
                 .map(Participant::valueOf)
                 .collect(Collectors.toList());
+    }
+
+    public int indexOf(final Participant participant) {
+        int index = this.participants.indexOf(participant);
+        if (index == -1) {
+            throw new NotFoundDataException("참가자를 찾을 수 없습니다.");
+        }
+        return index;
     }
 
     private List<String> parseParticipants(final String participantsText) {
