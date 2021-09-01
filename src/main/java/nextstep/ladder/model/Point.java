@@ -13,7 +13,7 @@ public class Point {
             throw new IllegalArgumentException("이미 사용된 point 입니다. ");
         }
 
-        if (goal < 0) {
+        if (goal < MINIMUM_USED_NUMBER) {
             throw new IllegalArgumentException("음수 값을 목표로 받을 수 없습니다. goal : " + goal);
         }
 
