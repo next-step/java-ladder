@@ -1,6 +1,5 @@
 package nextstep.ladder;
 
-import nextstep.ladder.model.Ladder;
 import nextstep.ladder.model.Line;
 import nextstep.ladder.model.Person;
 
@@ -23,18 +22,18 @@ public class LadderGame {
 
     private static final Random RANDOM = new Random();
 
-    public static Ladder makeLadder(int numberOfPeople, int height) {
+    public static List<Line> makeLines(int numberOfPeople, int height) {
         if (numberOfPeople <= 0 || height <= 0) {
             throw new IllegalArgumentException("참가자가 없거나, 사다리의 길이거 존재하지 않습니다.");
         }
 
-        List<Line> lines = makeLines(numberOfPeople, height);
+        List<Line> lines = makeDefaultLines(numberOfPeople, height);
 
         for (int i = 0; i < height; i++) {
             makeStairs(lines, i);
         }
 
-        return new Ladder(lines);
+        return lines;
     }
 
     private static void makeStairs(List<Line> lines, int height) {
@@ -42,27 +41,24 @@ public class LadderGame {
             int origin = index;
             int destination = index + 1;
 
-            makeStair(lines, origin, destination, height);
+            makeStair(lines.get(origin), destination, height);
+            makeStair(lines.get(destination), destination, height);
         }
     }
 
-    private static void makeStair(List<Line> lines, int origin, int destination, int height) {
+    private static void makeStair(Line line, int destination, int height) {
         if (!RANDOM.nextBoolean()) {
             return;
         }
 
-        Line lineOrigin = lines.get(origin);
-        Line lineDestination = lines.get(destination);
-
-        if (lineOrigin.isUsedPoint(height) || lineDestination.isUsedPoint(height)) {
+        if (line.isUsedPoint(height)) {
             return;
         }
 
-        lineOrigin.usePointDestination(destination, height);
-        lineDestination.usePointDestination(origin, height);
+        line.usePointDestination(destination, height);
     }
 
-    private static List<Line> makeLines(int numberOfPeople, int height) {
+    private static List<Line> makeDefaultLines(int numberOfPeople, int height) {
         List<Line> lines = new ArrayList<>();
 
         for (int i = 0; i < numberOfPeople; i++) {

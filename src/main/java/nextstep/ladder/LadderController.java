@@ -1,6 +1,6 @@
 package nextstep.ladder;
 
-import nextstep.ladder.model.Ladder;
+import nextstep.ladder.model.Line;
 import nextstep.ladder.model.Person;
 import nextstep.ladder.view.LadderGameDrawer;
 
@@ -17,8 +17,8 @@ public class LadderController {
         LadderGameDrawer.drawHeightInputText();
         int height = Integer.valueOf(scanner.nextLine());
 
-        Ladder ladder = LadderGame.makeLadder(people.size(), height);
+        List<Line> lines = LadderGame.makeLines(people.size(), height);
 
-        LadderGameDrawer.drawResult(people, ladder);
+        LadderGameDrawer.drawResult(people, lines);
     }
 }
