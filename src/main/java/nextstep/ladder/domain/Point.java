@@ -1,51 +1,45 @@
 package nextstep.ladder.domain;
 
-public class Point implements Comparable<Point> {
+public class Point {
 
-    private static final String LESS_THAN_ZERO = "위치 값은 0보다 작을 수 없습니다 -> %d";
-    private static final String INVALID_DIRECTION = "0의 위치에서는 LEFT (direction) 값을 가질 수 없습니다";
-    private static final int ZERO = 0;
-
-    private final int position;
+    private final int index;
     private final Direction direction;
 
-    public Point(final int position, final Direction direction) {
-        validatePosition(position);
-        this.position = position;
-        validateDirection(direction);
+    public Point(int index, Direction direction) {
+        this.index = index;
         this.direction = direction;
     }
 
-    public boolean isRightDirection() {
-        return isEqualDirection(Direction.RIGHT);
-    }
-
-    public boolean isEqualDirection(Direction direction) {
-        return this.direction.equals(direction);
-    }
-
     public int move() {
-        return direction.move(position);
-    }
-
-    private void validatePosition(final int position) {
-        if (position < ZERO) {
-            throw new IllegalArgumentException(String.format(LESS_THAN_ZERO, position));
+        if (direction.isRight()) {
+            return index + 1;
         }
-    }
 
-    private void validateDirection(final Direction direction) {
-        requireValidDirection(direction);
-    }
-
-    private void requireValidDirection(final Direction direction) {
-        if (position == ZERO && direction.equals(Direction.LEFT)) {
-            throw new IllegalArgumentException(INVALID_DIRECTION);
+        if (direction.isLeft()) {
+            return index - 1;
         }
+
+        return index;
     }
 
-    @Override
-    public int compareTo(final Point point) {
-        return this.position - point.position;
+    public Point next() {
+        return new Point(index + 1, direction.next());
     }
+
+    public Point next(Boolean right) {
+        return new Point(index + 1, direction.next(right));
+    }
+
+    public Point last() {
+        return new Point(index + 1, direction.last());
+    }
+
+    public static Point first(Boolean right) {
+        return new Point(0, Direction.first(right));
+    }
+
+    public boolean isRightDirection() {
+        return direction.isRight();
+    }
+
 }
