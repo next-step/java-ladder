@@ -1,9 +1,11 @@
 package newladder.model;
 
+import newladder.interfaces.Line;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyLine{
+public class MyLine implements Line {
 
     private final List<Direction> directionList = new ArrayList<>();
 
@@ -24,8 +26,13 @@ public class MyLine{
         return directionList.size() < userCount - 1;
     }
 
+
+    @Override
     public int moveLine(int position) {
         return directionList.get(position).move();
     }
 
+    public List<Direction> directionInfo() {
+        return this.directionList;
+    }
 }

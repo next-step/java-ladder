@@ -1,11 +1,9 @@
 package ladder;
 
 
-import ladder.model.Ladder;
 import ladder.model.LadderGame;
-import ladder.model.Line;
 import ladder.model.Prize;
-import ladder.model.User;
+import newladder.model.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

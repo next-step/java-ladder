@@ -1,5 +1,5 @@
 package newladder.interfaces;
 
-public interface Ladder {
-    //LadderResult play();
+public interface Ladder{
+    int downLadder(int startPosition);
 }

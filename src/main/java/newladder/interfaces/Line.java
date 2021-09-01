@@ -1,5 +1,5 @@
 package newladder.interfaces;
 
 public interface Line {
-    int move(int position);
+    int moveLine(int position);
 }

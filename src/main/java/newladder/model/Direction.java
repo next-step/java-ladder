@@ -2,13 +2,11 @@ package newladder.model;
 
 import newladder.util.RandomBoolean;
 
-import java.util.Random;
-
 public class Direction {
     private Point point;
 
     public Direction() {
-        this.point = Point.first(RandomBoolean.Random());
+        this.point = Point.first(RandomBoolean.random());
     }
 
     public Direction(Point point) {
@@ -26,16 +24,14 @@ public class Direction {
      }
 
      public Direction next() {
-        return new Direction(this.point.nextPoint(RandomBoolean.Random()));
+        return new Direction(this.point.nextPoint(RandomBoolean.random()));
      }
 
     public Direction last() {
         return new Direction(this.point.last());
     }
 
-    public Direction first() {
-        return new Direction(Point.first(RandomBoolean.Random()));
+    public Boolean printPoint() {
+        return this.point.isRight();
     }
-
-
 }

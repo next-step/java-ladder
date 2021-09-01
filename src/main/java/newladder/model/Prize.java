@@ -1,4 +1,4 @@
-package ladder.model;
+package newladder.model;
 
 
 import java.util.ArrayList;

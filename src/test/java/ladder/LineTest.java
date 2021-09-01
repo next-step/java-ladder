@@ -1,8 +1,6 @@
 package ladder;
 
 import ladder.model.Line;
-import ladder.model.User;
-import ladder.model.Users;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

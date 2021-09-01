@@ -1,10 +1,11 @@
-package ladder.model;
+package newladder.model;
+
+import java.util.Objects;
 
 public class User {
     private static final int NAME_LENGTH = 5;
 
     private final String userName;
-    private String result;
 
     public User(String userName) {
         validName(userName);
@@ -15,18 +16,15 @@ public class User {
         return userName;
     }
 
-    public String resultInfo() {
-        return result;
-    }
-
     private void validName(String name) {
         if (name == null || name.length() > NAME_LENGTH) {
             throw new IllegalArgumentException();
         }
     }
 
-    public void gameResult(String result) {
-        this.result = result;
+    public Boolean compareName(String name) {
+        return name.equals(this.userName);
     }
+
 
 }

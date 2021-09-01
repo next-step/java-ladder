@@ -1,4 +1,4 @@
-package ladder.view;
+package newladder.view;
 
 import java.util.Scanner;
 
@@ -21,5 +21,9 @@ public class Input {
         return scanner.nextLine().split(",");
     }
 
+    public static String getUser() {
+        System.out.println("결과를 보고 싶은 사람은?");
+        return scanner.next();
+    }
 
 }

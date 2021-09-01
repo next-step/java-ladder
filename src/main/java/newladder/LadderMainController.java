@@ -1,11 +1,10 @@
-package ladder;
+package newladder;
 
-import ladder.controller.Game;
-import newladder.interfaces.Ladder;
-import newladder.model.MyLadderGame;
+import newladder.controller.Game;
 
 public class LadderMainController {
     public static void main(String[] args) {
-        MyLadderGame ladderGame = new MyLadderGame(3, 5);
+        Game game = new Game();
+        game.makeLadder();
     }
 }

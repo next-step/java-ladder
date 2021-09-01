@@ -1,12 +1,14 @@
-package ladder.view;
+package newladder.view;
 
-import ladder.model.Line;
-import ladder.model.Lines;
-import ladder.model.Prize;
-import ladder.model.User;
-import ladder.model.Users;
+import newladder.model.Direction;
+import newladder.model.GameResult;
+import newladder.model.Prize;
+import newladder.model.MyLadder;
+import newladder.model.MyLine;
+import newladder.model.User;
+import newladder.model.Users;
 
-import java.util.Optional;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Result {
@@ -17,23 +19,21 @@ public class Result {
     private static final String RESULT_MESSAGE = "실행결과";
     private static final String RESULT_FORMAT = "%s : %s";
     private static final String LADDER_START_LINE = "    ";
-    private static final String LADDER_END_LINE = "|";
-    private static final String TRUE_TRUE_FALSE_LINE = "|-----|     ";
-    private static final String TRUE_TRUE_LINE = "|-----";
+    private static final String TRUE_LINE = "|-----";
     private static final String FALSE_LINE = "|     ";
 
     public static void printUsers(Users users) {
-        for (User user : users.getParticipants()) {
+        for (User user : users.usersInfo()) {
             System.out.print( String.format(NAME_FORMAT, user.nameInfo()));
         }
         System.out.println();
     }
 
-    public static void printLadder(Lines lines) {
-        for (Line line : lines.getLineList()) {
+    public static void printLadder(MyLadder ladder) {
+        for (MyLine line : ladder.lineInfo()) {
             System.out.print(LADDER_START_LINE);
             checkPrintPoint(line);
-            System.out.println(LADDER_END_LINE);
+            System.out.println();
         }
     }
 
@@ -44,55 +44,30 @@ public class Result {
         System.out.println();
     }
 
-    public static void printResult(Users users) {
+    public static void printResult(String prizeInfo) {
+        System.out.println(RESULT_MESSAGE);
+        System.out.println(prizeInfo);
+    }
 
-        System.out.println("결과를 보고 싶은 사람은?");
-        String userName = scanner.nextLine();
 
-        Optional userOptional = users.getParticipants()
-                .stream()
-                .filter(user -> user.nameInfo().equals(userName))
-                .findAny();
+    public static void printResultAll(GameResult gameResult) {
+        System.out.println(RESULT_MESSAGE);
+        for (String userName : gameResult.getResult().keySet()) {
+            System.out.println(String.format(RESULT_FORMAT, userName, gameResult.getResult(userName)));
+        }
+        System.out.println();
+    }
+    private static void checkPrintPoint(MyLine line) {
+        for (Direction direction : line.directionInfo()) {
+            printPoint(direction.printPoint());
+        }
+    }
 
-        if (userOptional.isPresent()) {
-            printResult(userOptional);
+    private static void printPoint(boolean printRight) {
+        if (printRight) {
+            System.out.print(TRUE_LINE);
             return;
         }
-
-        printResultAll(users);
-    }
-
-    private static void printResult(Optional userOptional) {
-        User user = (User)userOptional.get();
-        System.out.println(RESULT_MESSAGE);
-        System.out.println(user.resultInfo());
-        System.out.println();
-    }
-
-    private static void printResultAll(Users users) {
-        System.out.println(RESULT_MESSAGE);
-        for (User user : users.getParticipants()) {
-            System.out.println(String.format(RESULT_FORMAT, user.nameInfo(), user.resultInfo()));
-        }
-        System.out.println();
-    }
-    private static void checkPrintPoint(Line line) {
-        for (int pointIndex=0; pointIndex < line.getPoints().size(); ) {
-            pointIndex = printPoint(pointIndex, line);
-        }
-    }
-
-    private static int printPoint(int pointIndex, Line line) {
-        if (line.getPoints().get(pointIndex) && pointIndex < line.getPoints().size() - 2) {
-            System.out.print(TRUE_TRUE_FALSE_LINE);
-            return pointIndex += 2;
-        }
-        if (line.getPoints().get(pointIndex) && pointIndex < line.getPoints().size() - 1) {
-            System.out.print(TRUE_TRUE_LINE);
-        }
-        if (!line.getPoints().get(pointIndex) && pointIndex < line.getPoints().size() - 1) {
-            System.out.print(FALSE_LINE);
-        }
-        return ++pointIndex;
+        System.out.print(FALSE_LINE);
     }
 }
