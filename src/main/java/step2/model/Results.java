@@ -1,7 +1,9 @@
 package step2.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import static step2.model.LadderValidator.isBlank;
@@ -37,5 +39,9 @@ public class Results {
         return results.stream()
                 .map(Result::getResult)
                 .collect(Collectors.toList());
+    }
+
+    public String getResult(int index) {
+        return results.get(index).getResult();
     }
 }

@@ -5,6 +5,8 @@ import step2.model.RandomLadderStrategy;
 import step2.model.Results;
 import step2.model.Users;
 
+import java.util.HashMap;
+
 import static step2.view.InputView.*;
 import static step2.view.ResultView.*;
 
@@ -20,10 +22,12 @@ public class LadderGame {
         String high = ask("최대 사다리 높이는 몇 인가요?");
 
         Ladder ladder = new Ladder(high, numberOfUsers, new RandomLadderStrategy());
-        ladder.getGameResult(users);
+        HashMap<String, String> gameResult = ladder.getGameResult(users, results);
 
         printResult(users.getName());
         printLadder(ladder.getLadder());
         printResult(results.getResults());
+
+
     }
 }

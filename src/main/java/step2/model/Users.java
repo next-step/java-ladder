@@ -1,6 +1,7 @@
 package step2.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -52,6 +53,17 @@ public class Users  {
 
     public User getUser(int index) {
         return users.get(index);
+    }
+
+    public HashMap<String, String> setGameResult(Results results) {
+        HashMap<String, String> gameResult = new HashMap<>();
+
+        for (int i = 0; i < users.size(); i++) {
+            gameResult.put(getUser(i).getName(), results.getResult(i));
+
+        }
+
+        return gameResult;
     }
 
     @Override

@@ -7,7 +7,7 @@ public class Result {
 
     public Result(String result) {
         isBlank(result);
-        this.result = result;
+        this.result = result.trim();
     }
 
     public String getResult() {
