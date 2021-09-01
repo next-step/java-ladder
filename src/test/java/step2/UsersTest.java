@@ -1,6 +1,7 @@
 package step2;
 
 import org.junit.jupiter.api.Test;
+
 import step2.model.Users;
 
 import static org.assertj.core.api.Assertions.assertThat;

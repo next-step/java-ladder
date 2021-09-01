@@ -3,7 +3,6 @@ package step2;
 import org.junit.jupiter.api.Test;
 import step2.model.*;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
@@ -36,21 +35,8 @@ public class LadderTest {
         //then
         assertThat(result.size()).isEqualTo(5);
         for (int i = 0; i < 5; i++) {
-            assertThat(result.get(i).size()).isEqualTo(3);
+            assertThat(result.get(i).size()).isEqualTo(4);
         }
-    }
-
-    @Test
-    public void 사다리_라인_생성() {
-        //given
-        Line expectLine = new Line(Arrays.asList(true, false, true));
-        Ladder expectLadder = new Ladder(Arrays.asList(expectLine));
-
-        //when
-        Ladder actual = new Ladder("1", 4, () -> true);
-
-        //then
-        assertThat(actual).isEqualTo(expectLadder);
     }
 
 }

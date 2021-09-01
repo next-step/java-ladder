@@ -19,10 +19,6 @@ public class Ladder {
         generateLine(getParseInt(high), numberOfUser, ladderStrategy);
     }
 
-    public Ladder(List<Line> lines) {
-        this.lines = lines;
-    }
-
     private int getParseInt(String high) {
         return Integer.parseInt(high.trim());
     }
@@ -45,6 +41,12 @@ public class Ladder {
         return lines.stream()
                         .map(Line::getLine)
                         .collect(Collectors.toList());
+    }
+
+    public void getGameResult() {
+        for (Line line : lines) {
+            line.getResult();
+        }
     }
 
     @Override

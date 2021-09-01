@@ -5,33 +5,67 @@ import java.util.List;
 import java.util.Objects;
 
 public class Line {
-    private final List<Boolean> points;
+    private List<Point> points;
 
     public Line(int numberOfUser, LadderStrategy ladderStrategy) {
         points = new ArrayList<>();
 
-        for (int i = 0; i < numberOfUser - 1; i++) {
+        for (int i = 0; i < numberOfUser; i++) {
             drawPoint(ladderStrategy, i);
         }
 
     }
 
-    public Line(List<Boolean> points) {
+    public Line(List<Point> points) {
         this.points = points;
     }
 
     public List<Boolean> getLine() {
+        List<Boolean> points = new ArrayList<>();
+
+        for (Point point : this.points) {
+            points.add(point.getPoint());
+        }
+
         return points;
     }
 
-    private void drawPoint(LadderStrategy ladderStrategy, int index) {
+    private int drawPoint(LadderStrategy ladderStrategy, int index) {
         boolean isPoint = ladderStrategy.generateLine();
-
-        if (index != 0 && points.get(points.size() - 1)) {
+        if (index != 0 && getLast()) {
             isPoint = false;
         }
 
-        points.add(isPoint);
+        points.add(new Point(index, isPoint));
+        return index;
+    }
+
+    public void getResult() {
+        List<Point> result = new ArrayList<>();
+
+        for (int i = 0; i < points.size(); i++) {
+            i = switchPoint(result, i);
+        }
+
+        this.points = result;
+    }
+
+    private int switchPoint(List<Point> result, int index) {
+        if (!isLast(index) && points.get(index).getPoint()) {
+            result.add(points.get(index +1));
+            result.add(points.get(index));
+            index ++;
+        }
+
+        return index;
+    }
+
+    private boolean isLast(int index) {
+        return index == points.size() - 1;
+    }
+
+    private boolean getLast() {
+        return points.get(points.size() - 1).getPoint();
     }
 
     @Override
