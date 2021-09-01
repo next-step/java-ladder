@@ -28,6 +28,7 @@ public class LadderGame {
         printLadder(ladder.getLadder());
         printResult(results.getResults());
 
-
+        String userResult = ask("결과를 보고 싶은 사람은?");
+        printUserResult(userResult, gameResult);
     }
 }
