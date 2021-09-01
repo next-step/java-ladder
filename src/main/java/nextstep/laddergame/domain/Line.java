@@ -30,4 +30,7 @@ public class Line {
         return new Line(lineConnectStrategy.getLineConnections());
     }
 
+    public List<Boolean> getPoints() {
+        return points;
+    }
 }

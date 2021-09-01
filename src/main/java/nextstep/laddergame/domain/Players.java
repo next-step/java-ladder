@@ -34,4 +34,12 @@ public class Players {
     public boolean contains(PlayerName playerName) {
         return playerNames.contains(playerName);
     }
+
+    public List<PlayerName> getPlayerNames() {
+        return playerNames;
+    }
+
+    public PlayerCount getPlayerCount() {
+        return playerCount;
+    }
 }
