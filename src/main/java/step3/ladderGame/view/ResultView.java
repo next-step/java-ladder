@@ -3,7 +3,11 @@ package step3.ladderGame.view;
 import step3.ladderGame.domain.ladder.Ladder;
 import step3.ladderGame.domain.ladder.Line;
 import step3.ladderGame.domain.ladder.Point;
-import step3.ladderGame.domain.user.Users;
+import step3.ladderGame.domain.palyer.Player;
+import step3.ladderGame.domain.palyer.Players;
+import step3.ladderGame.domain.result.Results;
+
+import java.util.List;
 
 public final class ResultView {
 
@@ -13,15 +17,30 @@ public final class ResultView {
     private static final String HORIZONTAL_LINE = "-----";
     private static final String EMPTY_LINE = "     ";
 
-    public void printUserNames(Users users) {
+    public void printPlayers(List<String> players) {
         StringBuilder builder = new StringBuilder();
-        System.out.println("\n실행결과\n");
-        users.getUsers().forEach(
-                user -> {
-                    String blank = printBlank(user.getName());
-                    builder.append(blank).append(user.getName());
+        System.out.println("\n사다리 결과\n");
+
+        players.forEach(
+                player -> {
+                    String blank = printBlank(player);
+                    builder.append(blank).append(player);
                 }
         );
+
+        System.out.println(builder);
+    }
+
+    public void printResults(List<String> prizes) {
+        StringBuilder builder = new StringBuilder();
+
+        prizes.forEach(
+                prize -> {
+                    String blank = printBlank(prize);
+                    builder.append(blank).append(prize);
+                }
+        );
+
         System.out.println(builder);
     }
 
@@ -55,10 +74,24 @@ public final class ResultView {
     }
 
     private String printBetweenLine(Point point) {
-        if (point.hasHorizontalLine()) {
+        if (point.hasLeftDirectionLine()) {
             return HORIZONTAL_LINE;
         }
         return EMPTY_LINE;
+    }
+
+    public void printWinningResult(int playerIndex, Results results) {
+        System.out.println("\n실행결과");
+        System.out.println(results.findResult(playerIndex));
+    }
+
+    public void printWinningResultAll(Players players, Results results, Ladder ladder) {
+        System.out.println("\n실행결과");
+
+        for (Player player : players.getPlayers()) {
+            System.out.print(player.getName() + " : ");
+            System.out.println(results.findResult(ladder.move(player.getIndex())));
+        }
     }
 
 }

@@ -61,4 +61,4 @@
 * [X] Height 도메인 클래스 생성
   * [X] 높이에 대한 유효성 검사 
 * [X] 기존 Point, Line, Ladder에 사다리타기 기능을 추가한다.
-* [ ] 변경사항에 맞게 Cotroller, View단을 수정한다.
+* [X] 변경사항에 맞게 Cotroller, View단을 수정한다.

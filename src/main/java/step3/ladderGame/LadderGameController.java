@@ -1,11 +1,13 @@
 package step3.ladderGame;
 
 import step3.ladderGame.domain.ladder.Ladder;
-import step3.ladderGame.domain.ladder.pointGenerationStrategy.horizontalLineRandomGenerationStrategy;
-import step3.ladderGame.domain.user.Users;
+import step3.ladderGame.domain.palyer.Players;
+import step3.ladderGame.domain.result.Results;
 import step3.ladderGame.view.InputView;
 import step3.ladderGame.view.ResultView;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class LadderGameController {
@@ -15,14 +17,28 @@ public class LadderGameController {
             InputView inputView = new InputView(scanner);
             ResultView resultView = new ResultView();
 
-            String userNames = inputView.inputUserNames();
-            Users users = new Users(userNames);
+            List<String> playerNames = Arrays.asList(inputView.inputPlayers());
+            Players players = new Players(playerNames);
+            List<String> resultNames = Arrays.asList(inputView.inputPrizes());
+            Results results = new Results(resultNames, playerNames.size());
+
             int height = inputView.inputHeight();
 
-            Ladder ladder = new Ladder(users.getUserCount(), new horizontalLineRandomGenerationStrategy(), height);
+            Ladder ladder = new Ladder(playerNames.size(), height);
 
-            resultView.printUserNames(users);
+            resultView.printPlayers(playerNames);
             resultView.printLadder(ladder);
+            resultView.printResults(resultNames);
+
+            while (true) {
+                String player = inputView.inputPlayer();
+                if ("all".equals(player)) {
+                    resultView.printWinningResultAll(players, results, ladder);
+                } else {
+                    resultView.printWinningResult(ladder.move(players.findIndex(player)), results);
+                }
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
