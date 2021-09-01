@@ -1,10 +1,13 @@
 package nextstep.ladders.domain;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.Arrays;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 class LinesTest {
@@ -35,7 +38,14 @@ class LinesTest {
     void 정상_생성() {
         Lines expected = new Lines(lines());
         Lines actual = new Lines(lines());
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"0:2", "1:0", "2:3", "3:1"}, delimiter = ':')
+    void move_메서드_검증(final int start, final int actual) {
+        Lines lines = new Lines(lines());
+        assertEquals(lines.move(start), actual);
     }
 
 }
