@@ -58,5 +58,7 @@
 * [X] Result, Results 도메인 클래스 생성
   * [X] 입력값 Null체크를 한다.
   * [X] 검색한 index의 결과를 반환한다.
+* [ ] Height 도메인 클래스 생성
+  * [ ] 높이에 대한 유효성 검사 
 * [ ] 기존 Point, Line, Ladder에 사다리타기 기능을 추가한다.
 * [ ] 변경사항에 맞게 Cotroller, View단을 수정한다.
