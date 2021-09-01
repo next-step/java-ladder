@@ -3,6 +3,7 @@ package step2.model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Line {
     private List<Point> points;
@@ -21,13 +22,9 @@ public class Line {
     }
 
     public List<Boolean> getLine() {
-        List<Boolean> points = new ArrayList<>();
-
-        for (Point point : this.points) {
-            points.add(point.getPoint());
-        }
-
-        return points;
+        return this.points.stream()
+                            .map(Point::getPoint)
+                            .collect(Collectors.toList());
     }
 
     private int drawPoint(LadderStrategy ladderStrategy, int index) {
@@ -54,11 +51,10 @@ public class Line {
         if (!isLast(index) && points.get(index).getPoint()) {
             result.add(users.getUser(index +1));
             result.add(users.getUser(index));
-            index ++;
-        }else{
-            result.add(users.getUser(index));
+            return index + 1;
         }
 
+        result.add(users.getUser(index));
         return index;
     }
 

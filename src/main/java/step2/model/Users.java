@@ -9,9 +9,9 @@ import java.util.stream.Collectors;
 import static step2.model.LadderValidator.isBlank;
 
 public class Users  {
-    private List<User> users;
-
     private static final int MIN_NUMBER_OF_USER = 1;
+
+    private List<User> users;
 
     public Users(String usersName) {
         isBlank(usersName);

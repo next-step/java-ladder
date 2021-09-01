@@ -3,7 +3,7 @@ package step2.model;
 import java.util.Objects;
 
 public class Point {
-    private boolean point;
+    private final boolean point;
 
     public Point(boolean point) {
         this.point = point;
