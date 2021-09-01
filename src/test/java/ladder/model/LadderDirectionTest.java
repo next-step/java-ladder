@@ -22,7 +22,7 @@ public class LadderDirectionTest {
     @Test
     void leftOfFirstLadderDirectionTest() {
         // given, when
-        LadderDirection firstDirection = LadderDirection.first(true);
+        LadderDirection firstDirection = LadderDirection.first();
 
         // then
         assertSame(firstDirection.isLeft(), false);
@@ -32,7 +32,8 @@ public class LadderDirectionTest {
     @Test
     void rightOfLastLadderDirectionTest() {
         // given, when
-        LadderDirection lastDirection = LadderDirection.last(true);
+        LadderDirection direction = new LadderDirection(false, true);
+        LadderDirection lastDirection = direction.last();
 
         // then
         assertSame(lastDirection.isRight(), false);

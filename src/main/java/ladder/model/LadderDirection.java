@@ -14,6 +14,14 @@ public class LadderDirection {
         this.right = right;
     }
 
+    static LadderDirection first() {
+        return new LadderDirection(false, generatePoint());
+    }
+
+    static LadderDirection first(boolean right) {
+        return new LadderDirection(false, right);
+    }
+
     LadderDirection next() {
         if (right) {
             return next(false);
@@ -21,26 +29,22 @@ public class LadderDirection {
         return next(generatePoint());
     }
 
-    static LadderDirection first(boolean right) {
-        return new LadderDirection(false, right);
-    }
-
     private LadderDirection next(boolean nextRight) {
-        return new LadderDirection(this.right, nextRight);
+        return new LadderDirection(right, nextRight);
     }
 
-    static LadderDirection last(boolean left) {
-        return new LadderDirection(left, false);
+    LadderDirection last() {
+        return new LadderDirection(right, false);
+    }
+
+    private static boolean generatePoint() {
+        return random.nextBoolean();
     }
 
     private void validateNotBothDirections(boolean left, boolean right) {
         if (left && right) {
             throw new IllegalArgumentException("사다리 방향이 양쪽으로 있을 수 없습니다.");
         }
-    }
-
-    private boolean generatePoint() {
-        return random.nextBoolean();
     }
 
     boolean isLeft() {
