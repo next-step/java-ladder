@@ -13,22 +13,29 @@ public class Line {
 
     private final List<Boolean> points;
 
-    public Line (int countOfPerson) {
-        validateCount(countOfPerson);
-
+    public Line (int count) {
+        validateCount(count);
         List<Boolean> points = new ArrayList<>();
 
-        points.add(RANDOM.nextBoolean());
+        if (count > 1) {
+            this.points = generatePoints(points, count);
+            return;
+        }
 
-        for (int i = 0; i < countOfPerson - 2; i++) {
+        this.points = points;
+    }
+
+    private List<Boolean> generatePoints(List<Boolean> points, int count) {
+        points.add(RANDOM.nextBoolean());
+        for (int i = 1; i < count - 1; i++) {
             boolean point = RANDOM.nextBoolean();
-            if (points.get(i) && point) {
-                points.add(!point);
+            if (points.get(i - 1) && point) {
+                points.add(false);
                 continue;
             }
             points.add(point);
         }
-        this.points = points;
+        return points;
     }
 
     private void validateCount(int countOfPerson) {
@@ -37,7 +44,34 @@ public class Line {
         }
     }
 
+    public int getAfterPosition(int position) {
+        if (checkBefore(position)) {
+            return position - 1;
+        }
+        if (checkAfter(position)) {
+            return position + 1;
+        }
+        return position;
+    }
+
+    private boolean checkBefore(int position) {
+        try {
+            return points.get(position - 1);
+        } catch (IndexOutOfBoundsException e) {
+            return false;
+        }
+    }
+
+    private boolean checkAfter(int position) {
+        try {
+            return points.get(position);
+        } catch (IndexOutOfBoundsException e) {
+            return false;
+        }
+    }
+
     public List<Boolean> getPoints() {
         return Collections.unmodifiableList(points);
     }
+
 }
