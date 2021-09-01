@@ -9,6 +9,10 @@
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
 
 ## 요구사항
-- [X] Optional을 활용해 조건에 따른 반환
-- [X] Optional에서 값을 반환
-- [X] Optional에서 exception 처리
+- 참여자
+    - 최대 5글자
+    - 쉼표를 기준으로 구분
+- 사다리
+    - 사다리 높이
+    - 사다리 연결 여부
+        - 이전 사다리가 연결이 되어있으면 연결 불가능
