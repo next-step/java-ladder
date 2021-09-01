@@ -25,7 +25,7 @@ public class PointTest {
     @Test
     @DisplayName("point 왼쪽 이동")
     void pointLeftMove() {
-        Point point = new Point(new Direction(true, false), 1);
+        Point point = new Point(Direction.of(true, false), 1);
         assertThat(point.move()).isEqualTo(0);
     }
 }

@@ -7,7 +7,7 @@ public class Ladder {
     private final Height height;
     private final List<LadderLine> ladderLines = new ArrayList<>();
 
-    public Ladder(int height) {
+    private Ladder(int height) {
         this.height = new Height(height);
     }
 

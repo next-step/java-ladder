@@ -14,7 +14,8 @@ public class LadderTest {
     @BeforeEach
     void init() {
         int height = 5;
-        ladder = new Ladder(height);
+        int countOfPerson = 3;
+        ladder = Ladder.of(height, countOfPerson);
     }
 
     @Test
@@ -29,7 +30,7 @@ public class LadderTest {
     void createLadderExceptionTest() {
         int height = 0;
         assertThatThrownBy(() -> {
-            Ladder ladder = new Ladder(height);
+            Ladder ladder = Ladder.of(height, 3);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 

@@ -1,6 +1,7 @@
 package nextstep.ladder2;
 
 import nextstep.ladder2.domain.Direction;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -11,8 +12,12 @@ public class DirectionTest {
     @Test
     @DisplayName("direction 생성 테스트")
     void directionCreateTest() {
-        Direction direction = new Direction(false, true);
-        assertThat(direction).isEqualTo(Direction.of(false, true));
+        Direction direction = Direction.of(false, true);
+        Assertions.assertAll(() -> {
+            assertThat(direction.isLeft()).isFalse();
+            assertThat(direction.isRight()).isTrue();
+        });
+
     }
 
     @Test
@@ -26,7 +31,7 @@ public class DirectionTest {
     @Test
     @DisplayName("다음 direction 연결")
     void nextDirectionTest() {
-        Direction direction = new Direction(false, true);
+        Direction direction = Direction.of(false, true);
         assertThat(direction.next(false)).isEqualTo(Direction.of(true, false));
     }
 
