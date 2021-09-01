@@ -1,4 +1,4 @@
-package nextstep.optional;
+package nextstep.step1.optional;
 
 import org.junit.jupiter.api.Test;
 
