@@ -2,7 +2,7 @@ package ladder.presentation.output;
 
 import ladder.domain.Ladder;
 import ladder.domain.LadderResults;
-import ladder.domain.Line;
+import ladder.domain.LadderLine;
 import ladder.domain.Users;
 
 public class ResultOutputView {
@@ -50,8 +50,8 @@ public class ResultOutputView {
         return output.substring(0, output.length() - 1);
     }
 
-    private String lineOutputFormat(Line line) {
-        String ladderOutput = line.getPoints().stream()
+    private String lineOutputFormat(LadderLine ladderLine) {
+        String ladderOutput = ladderLine.getPoints().stream()
                 .map(this::connectedPoint)
                 .reduce(EMPTY_STRING, (x, y) -> x + y);
         return LINE_PREFIX + ladderOutput + LINE_POSTFIX;

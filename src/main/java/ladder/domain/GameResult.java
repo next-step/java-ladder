@@ -32,18 +32,18 @@ public class GameResult {
         result.put(user, ladderResults.get(location.now()));
     }
 
-    private void moveToLeftOrRight(Location location, Line line) {
-        if (isMovable(location.atLeft(), line)) {
+    private void moveToLeftOrRight(Location location, LadderLine ladderLine) {
+        if (isMovable(location.atLeft(), ladderLine)) {
             location.toLeft();
             return;
         }
-        if (isMovable(location.now(), line)) {
+        if (isMovable(location.now(), ladderLine)) {
             location.toRight();
         }
     }
 
-    private boolean isMovable(int position, Line line) {
-        return !line.outOfRange(position) && line.isConnected(position);
+    private boolean isMovable(int position, LadderLine ladderLine) {
+        return !ladderLine.outOfRange(position) && ladderLine.isConnected(position);
     }
 
     public LadderResult resultOf(User user) {

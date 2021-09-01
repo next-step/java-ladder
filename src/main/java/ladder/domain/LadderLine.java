@@ -2,31 +2,31 @@ package ladder.domain;
 
 import java.util.*;
 
-public class Line {
+public class LadderLine {
 
     private final Width width;
 
     private final List<Boolean> points;
 
-    private Line(Width width, List<Boolean> points) {
+    private LadderLine(Width width, List<Boolean> points) {
         this.width = width;
         this.points = points;
     }
 
-    private Line(Width width) {
+    private LadderLine(Width width) {
         this(width, new ArrayList<>());
     }
 
-    public static Line create(List<Boolean> points) {
-        return new Line(Width.create(points.size()), points);
+    public static LadderLine create(List<Boolean> points) {
+        return new LadderLine(Width.create(points.size()), points);
     }
 
-    public static Line create(Boolean... points) {
-        return new Line(Width.create(points.length), Arrays.asList(points));
+    public static LadderLine create(Boolean... points) {
+        return new LadderLine(Width.create(points.length), Arrays.asList(points));
     }
 
-    public static Line createWithWidth(Width width) {
-        return new Line(width);
+    public static LadderLine createWithWidth(Width width) {
+        return new LadderLine(width);
     }
 
     public List<Boolean> getPoints() {
@@ -48,8 +48,8 @@ public class Line {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Line line = (Line) o;
-        return Objects.equals(width, line.width) && Objects.equals(points, line.points);
+        LadderLine ladderLine = (LadderLine) o;
+        return Objects.equals(width, ladderLine.width) && Objects.equals(points, ladderLine.points);
     }
 
     @Override

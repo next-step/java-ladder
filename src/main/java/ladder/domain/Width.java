@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Width {
 
-    private static final int MINIMUM_index = 0;
+    private static final int MINIMUM_INDEX = 0;
 
     private static final int MINIMUM_WIDTH_LENGTH = 1;
 
@@ -24,7 +24,7 @@ public class Width {
     }
 
     public boolean outOfRange(int index) {
-        return index < MINIMUM_index || index > length - 1;
+        return index < MINIMUM_INDEX || index > length - 1;
     }
 
     private static void validate(int length) {

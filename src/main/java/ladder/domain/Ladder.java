@@ -5,10 +5,10 @@ import java.util.stream.Collectors;
 
 public class Ladder {
 
-    private final List<Line> lines;
+    private final List<LadderLine> ladderLines;
 
-    private Ladder(List<Line> lines) {
-        this.lines = lines;
+    private Ladder(List<LadderLine> ladderLines) {
+        this.ladderLines = ladderLines;
     }
 
     private Ladder(Width width, Height height) {
@@ -19,21 +19,21 @@ public class Ladder {
         return new Ladder(width, height);
     }
 
-    public static Ladder create(Line... lines) {
-        return new Ladder(Arrays.asList(lines));
+    public static Ladder create(LadderLine... ladderLines) {
+        return new Ladder(Arrays.asList(ladderLines));
     }
 
-    public List<Line> getLines() {
-        return Collections.unmodifiableList(lines);
+    public List<LadderLine> getLines() {
+        return Collections.unmodifiableList(ladderLines);
     }
 
-    private static List<Line> lines(Width width, Height height) {
-        final List<Line> lines = new ArrayList<>(height.getLength());
+    private static List<LadderLine> lines(Width width, Height height) {
+        final List<LadderLine> ladderLines = new ArrayList<>(height.getLength());
         for (int i = 0; i < height.getLength(); i++) {
-            lines.add(Line.createWithWidth(width));
+            ladderLines.add(LadderLine.createWithWidth(width));
         }
-        return lines.stream()
-                .map(line -> Line.create(randomLinePoints(width, Ladder::check)))
+        return ladderLines.stream()
+                .map(line -> LadderLine.create(randomLinePoints(width, Ladder::check)))
                 .collect(Collectors.toList());
     }
 
@@ -79,7 +79,7 @@ public class Ladder {
     }
 
     public int getHeight() {
-        return this.lines.size();
+        return this.ladderLines.size();
     }
 
     @Override
@@ -87,11 +87,11 @@ public class Ladder {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Ladder ladder = (Ladder) o;
-        return Objects.equals(lines, ladder.lines);
+        return Objects.equals(ladderLines, ladder.ladderLines);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(lines);
+        return Objects.hash(ladderLines);
     }
 }
