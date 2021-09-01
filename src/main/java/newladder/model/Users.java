@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class Users {
+    private static final int NOT_FOUND_NAME = -1;
     private final List<User> users = new ArrayList<>();
 
     public Users(String[] userNames) {
@@ -28,6 +29,6 @@ public class Users {
         return IntStream.range(0, users.size())
                 .filter(i -> users.get(i).compareName(name))
                 .findFirst()
-                .orElse(-1);
+                .orElse(NOT_FOUND_NAME);
     }
 }

@@ -18,7 +18,7 @@ public class GameResult {
         if (resultList.containsKey(name)) {
             return resultList.get(name);
         }
-       throw new IllegalArgumentException();
+        throw new IllegalArgumentException();
     }
 
 }

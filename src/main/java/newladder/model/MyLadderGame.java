@@ -1,9 +1,9 @@
 package newladder.model;
 
 
-import java.util.List;
-
 public class MyLadderGame {
+
+    private static final int EMPTY_INDEX = -1;
 
     private final MyLadder ladder = new MyLadder();
     private final Users users;
@@ -22,8 +22,8 @@ public class MyLadderGame {
     }
 
     public int playLadder(int userIndex) {
-        if (userIndex < 0) {
-            return -1;
+        if (userIndex <= EMPTY_INDEX) {
+            return EMPTY_INDEX;
         }
         return this.ladder.downLadder(userIndex);
     }

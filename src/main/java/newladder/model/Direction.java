@@ -3,6 +3,9 @@ package newladder.model;
 import newladder.util.RandomBoolean;
 
 public class Direction {
+    private static final int LEFT_VALUE = -1;
+    private static final int RIGHT_VALUE = 1;
+    private static final int STOP_VALUE = 0;
     private Point point;
 
     public Direction() {
@@ -15,17 +18,17 @@ public class Direction {
 
     public int move() {
         if (point.isLeft()) {
-            return - 1;
+            return LEFT_VALUE;
         }
         if (point.isRight()) {
-            return 1;
+            return RIGHT_VALUE;
         }
-        return 0;
-     }
+        return STOP_VALUE;
+    }
 
-     public Direction next() {
+    public Direction next() {
         return new Direction(this.point.nextPoint(RandomBoolean.random()));
-     }
+    }
 
     public Direction last() {
         return new Direction(this.point.last());

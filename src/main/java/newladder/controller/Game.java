@@ -1,11 +1,11 @@
 package newladder.controller;
 
 import newladder.model.GameResult;
+import newladder.model.MyLadderGame;
 import newladder.model.Prize;
 import newladder.model.Users;
 import newladder.view.Input;
 import newladder.view.Result;
-import newladder.model.MyLadderGame;
 
 public class Game {
 
@@ -31,15 +31,15 @@ public class Game {
         Users users = ladderGame.usersInfo();
         Result.printPrize(prize);
         users.usersInfo()
-            .stream()
-            .forEach(user -> {
-                int userIndex = users.userIndex(user.nameInfo());
-                gameResult.addResult(user.nameInfo(),
-                        prize.prizeInfo(ladderGame.playLadder(userIndex)));
-            });
+                .stream()
+                .forEach(user -> {
+                    int userIndex = users.userIndex(user.nameInfo());
+                    gameResult.addResult(user.nameInfo(),
+                            prize.prizeInfo(ladderGame.playLadder(userIndex)));
+                });
 
-        while(true) {
-           printResult();
+        while (true) {
+            printResult();
         }
     }
 
