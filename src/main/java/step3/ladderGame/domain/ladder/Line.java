@@ -1,30 +1,28 @@
 package step3.ladderGame.domain.ladder;
 
-import step3.ladderGame.domain.ladder.pointGenerationStrategy.horizontalLineGenerationStrategy;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
-public class Line {
+public final class Line {
 
     private List<Point> points = new ArrayList<>();
 
-    public Line(int height) {
-        for (int i = 0; i < height; i++) {
-            points.add(new Point());
-        }
-    }
+    public Line(final int countOfPerson) {
+        points.add(Point.generateFirstPoint());
 
-    public Line(int countOfPerson, horizontalLineGenerationStrategy horizontalLineGenerationStrategy) {
-        points.add(new Point(false));
-
-        IntStream.range(0, countOfPerson - 1).forEach(
+        IntStream.range(0, countOfPerson - 2).forEach(
                 index -> {
                     Point prePoint = points.get(index);
-                    points.add(new Point(horizontalLineGenerationStrategy.createHorizontalLine(prePoint)));
+                    points.add(Point.generatePoint(prePoint));
                 }
         );
+
+        points.add(Point.generateLastPoint(points.get(points.size() - 1)));
+    }
+
+    public int move(final int index) {
+        return points.get(index).move(index);
     }
 
     public List<Point> getPoints() {
