@@ -15,12 +15,10 @@ public class LadderGameConsole {
 
         InputView inputView = InputView.getInstance();
 
-        final String[] playerNames = inputView.playerNames();
-        final int ladderHeight = inputView.askLadderHeight();
+        final Players players = Players.from(inputView.playerNames());
+        final LadderSize ladderSize = LadderSize.of(players.count(), inputView.askLadderHeight());
         inputView.closeInputScanner();
 
-        final Players players = Players.from(playerNames);
-        final LadderSize ladderSize = LadderSize.of(players.count(), ladderHeight);
         final LadderGameSettings settings = LadderGameSettings.of(ladderSize, new RandomDrawLineStrategy());
 
         Ladder ladder = LadderGame.createLadder(settings);
