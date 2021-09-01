@@ -77,7 +77,6 @@ public class OutputView {
     private void appendLadderPerHeight(Ladders ladders, StringBuilder stringBuilder, int height) {
         stringBuilder.append(LADDER_NOT_EXISTS_HORIZONTAL_LINE_PADDING);
         ladders.stream().forEach((l) -> appendLadder(l, stringBuilder, height));
-        stringBuilder.append(LADDER_HEIGHT_UNIT);
         stringBuilder.append(NEW_LINE);
     }
 

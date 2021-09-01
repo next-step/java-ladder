@@ -25,7 +25,7 @@ public class Game {
         Participants participants = getParticipants(inputView);
 
         int ladderHeight = inputView.receiveLadderHeight();
-        int ladderCount = participants.size() - 1;
+        int ladderCount = participants.size();
 
         Ladders ladders = getLadders(ladderHeight, ladderCount);
 
