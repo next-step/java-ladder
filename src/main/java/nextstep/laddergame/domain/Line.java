@@ -5,8 +5,6 @@ import java.util.List;
 
 public class Line {
 
-    private static final String CONNECTED_IN_SERIES_EXCEPTION_MESSAGE = "연속으로 연결된 포인트가 존재합니다.";
-
     private final List<Boolean> points;
 
     private Line(List<Boolean> points) {
@@ -21,7 +19,7 @@ public class Line {
 
     private boolean validateNotConnectedInSeries(boolean firstPointConnected, boolean secondPointConnected) {
         if (firstPointConnected && secondPointConnected) {
-            throw new IllegalArgumentException(CONNECTED_IN_SERIES_EXCEPTION_MESSAGE);
+            throw new IllegalArgumentException("연속으로 연결된 포인트가 존재합니다.");
         }
         return secondPointConnected;
     }

@@ -4,8 +4,6 @@ import java.util.List;
 
 public class Players {
 
-    private static final String DUPLICATE_NAME_EXCEPTION_MESSAGE_FORMAT = "중복된 이름이 존재합니다. playerNames: %s";
-
     private final List<PlayerName> playerNames;
     private final PlayerCount playerCount;
 
@@ -17,7 +15,7 @@ public class Players {
 
     private void validateNonDuplicatedNames(List<PlayerName> playerNames) {
         if (playerNames == null || playerNames.size() != countUniqueNames(playerNames)) {
-            throw new IllegalArgumentException(String.format(DUPLICATE_NAME_EXCEPTION_MESSAGE_FORMAT, playerNames));
+            throw new IllegalArgumentException(String.format("중복된 이름이 존재합니다. playerNames: %s", playerNames));
         }
     }
 

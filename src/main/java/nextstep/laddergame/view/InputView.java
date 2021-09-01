@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
 public class InputView {
 
     private static final String PLAYER_NAME_INPUT_DELIMITER = ",";
-    private static final String INVALID_HEIGHTS_INPUT_EXCEPTION_MESSAGE_FORMAT = "유효하지 않은 입력입니다. heightsInput: %s";
 
     private final Scanner scanner;
 
@@ -42,7 +41,7 @@ public class InputView {
         try {
             return Integer.parseInt(heightsInput);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(String.format(INVALID_HEIGHTS_INPUT_EXCEPTION_MESSAGE_FORMAT, heightsInput));
+            throw new IllegalArgumentException(String.format("유효하지 않은 입력입니다. heightsInput: %s", heightsInput));
         }
     }
 }

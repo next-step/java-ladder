@@ -5,7 +5,6 @@ import java.util.Objects;
 public class PlayerName {
 
     private static final int MAXIMUM_NAME_LENGTH = 5;
-    private static final String INVALID_NAME_LENGTH_EXCEPTION_MESSAGE_FORMAT = "유효하지 않은 이름입니다. name: %s";
 
     private final String name;
 
@@ -16,7 +15,7 @@ public class PlayerName {
 
     private void validateNameLength(String name) {
         if (name == null || name.isEmpty() || name.length() > MAXIMUM_NAME_LENGTH) {
-            throw new IllegalArgumentException(String.format(INVALID_NAME_LENGTH_EXCEPTION_MESSAGE_FORMAT, name));
+            throw new IllegalArgumentException(String.format("유효하지 않은 이름입니다. name: %s", name));
         }
     }
 

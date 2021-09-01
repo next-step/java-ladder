@@ -3,7 +3,6 @@ package nextstep.laddergame.domain;
 public class LadderHeights {
 
     private static final int MINIMUM_HEIGHTS = 1;
-    private static final String INVALID_HEIGHTS_EXCEPTION_MESSAGE_FORMAT = "사다리의 높이가 유효하지 않습니다. heights: %s";
 
     private final int heights;
 
@@ -14,7 +13,7 @@ public class LadderHeights {
 
     private void validateMinimumHeights(int heights) {
         if (heights < MINIMUM_HEIGHTS) {
-            throw new IllegalArgumentException(String.format(INVALID_HEIGHTS_EXCEPTION_MESSAGE_FORMAT, heights));
+            throw new IllegalArgumentException(String.format("사다리의 높이가 유효하지 않습니다. heights: %s", heights));
         }
     }
 
