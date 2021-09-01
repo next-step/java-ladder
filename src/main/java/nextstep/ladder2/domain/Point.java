@@ -1,5 +1,7 @@
 package nextstep.ladder2.domain;
 
+import nextstep.ladder.application.CreatePointStrategy;
+
 public class Point {
 
     private static final int FIRST_INDEX = 0;
@@ -32,8 +34,8 @@ public class Point {
         return new Point(direction.next(right), index + PLUS_INDEX);
     }
 
-    public Point next() {
-        return new Point(direction.next(), index + PLUS_INDEX);
+    public Point next(CreatePointStrategy createPointStrategy) {
+        return new Point(direction.next(createPointStrategy), index + PLUS_INDEX);
     }
 
     public Point last() {

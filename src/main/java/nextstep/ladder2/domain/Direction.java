@@ -1,5 +1,6 @@
 package nextstep.ladder2.domain;
 
+import nextstep.ladder.application.CreatePointStrategy;
 import nextstep.ladder.application.RandomCreatePoint;
 
 import java.util.Objects;
@@ -33,11 +34,11 @@ public class Direction {
         return new Direction(right, rightOfNext);
     }
 
-    public Direction next() {
+    public Direction next(CreatePointStrategy createPointStrategy) {
         if (right) {
             return new Direction(right, false);
         }
-        return new Direction(right, RandomCreatePoint.of().isDraw());
+        return new Direction(right, createPointStrategy.isDraw());
     }
 
     public Direction last() {

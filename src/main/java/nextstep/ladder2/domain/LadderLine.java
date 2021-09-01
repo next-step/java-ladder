@@ -24,7 +24,7 @@ public class LadderLine {
 
     private Point pointdrawLine(int personCount, Point point) {
         for (int i = 1; i < personCount - 1; i++) {
-            point = point.next();
+            point = point.next(RandomCreatePoint.of());
             points.add(point);
         }
         return point;

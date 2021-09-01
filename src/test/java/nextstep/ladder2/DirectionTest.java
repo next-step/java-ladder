@@ -36,6 +36,13 @@ public class DirectionTest {
     }
 
     @Test
+    @DisplayName("다음 direction 전략 패턴 연결")
+    void nextDirectionStrategyTest() {
+        Direction direction = Direction.of(true, false);
+        assertThat(direction.next(() -> true)).isEqualTo(Direction.of(false, true));
+    }
+
+    @Test
     @DisplayName("다음 direction 유효성 테스트")
     void nextDirectionExceptionTest() {
         assertThatThrownBy(() -> {

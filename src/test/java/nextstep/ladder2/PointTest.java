@@ -28,4 +28,11 @@ public class PointTest {
         Point point = new Point(Direction.of(true, false), 1);
         assertThat(point.move()).isEqualTo(0);
     }
+
+    @Test
+    @DisplayName("point 다음 이동")
+    void pointNextMove() {
+        Point point = Point.first(false).next(() -> true);
+        assertThat(point.isRight()).isTrue();
+    }
 }
