@@ -31,7 +31,7 @@ public class LadderGameDrawer {
     }
 
     private static void drawLadder(List<Line> lines) {
-        int height = lines.get(0).getHeight();
+        int height = lines.get(0).getPoints().size();
 
         String ladderString = "";
         for (int index = 0; index < height; index++) {
@@ -48,8 +48,9 @@ public class LadderGameDrawer {
             stair += LINE;
 
             Line currentLine = lines.get(index);
+            List<Point> pointList = currentLine.getPoints();
 
-            Point point = currentLine.getPoint(currentStair);
+            Point point = pointList.get(currentStair);
             stair += makeStairBetweenLine(index, point);
         }
 
@@ -70,7 +71,7 @@ public class LadderGameDrawer {
 
     private static void drawPeople(List<Person> people) {
         String peopleString = people.stream()
-                .map((person) -> makePeopleLeftPadding(person.getName()) + person.getName())
+                .map((person) -> makePeopleLeftPadding(person.toString()) + person.toString())
                 .collect(Collectors.joining(WHITE_SPACE));
         System.out.println(peopleString);
     }

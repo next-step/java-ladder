@@ -1,6 +1,7 @@
 package nextstep.ladder.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Line {
@@ -12,10 +13,6 @@ public class Line {
         }
     }
 
-    public Point getPoint(int index) {
-        return points.get(index);
-    }
-
     public boolean isUsedPoint(int index) {
         return points.get(index).isUsed();
     }
@@ -25,7 +22,7 @@ public class Line {
         point.use(destination);
     }
 
-    public int getHeight() {
-        return points.size();
+    public List<Point> getPoints() {
+        return Collections.unmodifiableList(points);
     }
 }
