@@ -13,10 +13,6 @@ public class Line {
     }
 
     public Point getPoint(int index) {
-        if (index >= points.size() || index < 0) {
-            throw new IllegalArgumentException("잘못된 인덱스를 입력하였습니다. index : " + index);
-        }
-
         return points.get(index);
     }
 
