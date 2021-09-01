@@ -1,6 +1,5 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.model.Ladder;
 import nextstep.ladder.model.Line;
 import nextstep.ladder.model.Person;
 import nextstep.ladder.model.Point;
@@ -23,18 +22,17 @@ public class LadderGameDrawer {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
     }
 
-    public static void drawResult(List<Person> people, Ladder ladder) {
+    public static void drawResult(List<Person> people, List<Line> lines) {
         System.out.println("실행결과\n");
 
         drawPeople(people);
-        drawLadder(ladder);
+        drawLadder(lines);
 
     }
 
-    private static void drawLadder(Ladder ladder) {
-        List<Line> lines = ladder.getLines();
+    private static void drawLadder(List<Line> lines) {
+        int height = lines.get(0).getHeight();
 
-        int height = ladder.getHeight();
         String ladderString = "";
         for (int index = 0; index < height; index++) {
             ladderString += makeStairString(index, lines) + "\n";
