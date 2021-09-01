@@ -7,5 +7,10 @@ public class Result {
 
     public Result(String result) {
         isBlank(result);
+        this.result = result;
+    }
+
+    public String getResult() {
+        return result;
     }
 }

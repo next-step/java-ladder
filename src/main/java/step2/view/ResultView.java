@@ -6,13 +6,13 @@ import java.util.stream.Collectors;
 public class ResultView {
     private static final int MAX_NAME_LENGTH = 5;
 
-    public static void printUserName(List<String> nameList) {
-        String userName = nameList
+    public static void printResult(List<String> resultList) {
+        String results = resultList
                 .stream()
                 .map(ResultView::addBlank)
                 .collect(Collectors.joining());
 
-        System.out.println(userName);
+        System.out.println(results);
     }
 
     public static String addBlank(String name) {
