@@ -12,7 +12,7 @@ public class Point {
     private final boolean left;
     private final boolean right;
 
-    public Point(int index, boolean left, boolean right) {
+    private Point(int index, boolean left, boolean right) {
         checkTrueRepetition(left, right);
 
         this.index = index;
@@ -22,6 +22,10 @@ public class Point {
 
     public static Point first(boolean right) {
         return new Point(0, false, false);
+    }
+
+    public static Point of(int index, boolean left, boolean right) {
+        return new Point(index, left, right);
     }
 
     private void checkTrueRepetition(boolean beforeValue, boolean currentValue) {

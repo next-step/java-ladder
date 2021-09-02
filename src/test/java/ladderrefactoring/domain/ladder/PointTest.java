@@ -16,23 +16,23 @@ class PointTest {
         // when
         Point point = Point.first(false);
         // then
-        assertThat(point).isEqualTo(new Point(0, false, false));
+        assertThat(point).isEqualTo(Point.of(0, false, false));
     }
 
     @Test
     @DisplayName("Point 생성")
     void create() {
         // when
-        Point point = new Point(2, false, false);
+        Point point = Point.of(2, false, false);
         // then
-        assertThat(point).isEqualTo(new Point(2, false, false));
+        assertThat(point).isEqualTo(Point.of(2, false, false));
     }
 
     @Test
     @DisplayName("Point 생성 실패 : true, true")
     void create_fail() {
         // when, then
-        assertThatThrownBy(() -> new Point(2, true, true))
+        assertThatThrownBy(() -> Point.of(2, true, true))
                 .isInstanceOf(CustomException.class);
     }
 
@@ -40,7 +40,7 @@ class PointTest {
     @CsvSource({"2, false, false, 2", "2, true, false, 1", "2, false, true, 3"})
     void move(int index, boolean left, boolean right, int result) {
         // when
-        Point point = new Point(index, left, right);
+        Point point = Point.of(index, left, right);
         // then
         assertThat(point.move()).isEqualTo(result);
     }
