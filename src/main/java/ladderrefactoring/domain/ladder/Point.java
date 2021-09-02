@@ -15,7 +15,13 @@ public class Point {
     }
 
     public int move() {
-        return 0;
+        if(left) {
+            return index - 1;
+        }
+        if(right) {
+            return index + 1;
+        }
+        return index;
     }
 
     @Override
