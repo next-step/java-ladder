@@ -13,7 +13,7 @@ public class LadderApp {
 
         LadderGameManager ladderGameManager = new LadderGameManager(name);
         ladderGameManager.runGame(height.getValue(), ladder);
-        ladderGameManager.calResult(result);
+        ladderGameManager.calculateResult(result);
 
         ResultView.printHeader();
         ResultView.printParticipant(name.getParticipantNames());
