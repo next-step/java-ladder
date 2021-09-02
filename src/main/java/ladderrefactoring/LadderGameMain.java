@@ -22,7 +22,7 @@ public class LadderGameMain {
             List<String> resultsString = InputView.inputResults();
             Results results = new Results(resultsString, people);
 
-            int widthOfLadder = people.subtractNumberFromSize(1);
+            int widthOfLadder = people.people().size();
             int heightOfLadder = InputView.inputHeightOfLadder();
             DirectionStrategy directionStrategy = new RandomDirectionStrategy();
             Ladder ladder = new Ladder(widthOfLadder, heightOfLadder, directionStrategy);

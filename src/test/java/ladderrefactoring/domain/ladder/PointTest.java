@@ -1,13 +1,11 @@
 package ladderrefactoring.domain.ladder;
 
-import ladderrefactoring.exception.CustomException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class PointTest {
 
@@ -21,16 +19,6 @@ class PointTest {
     }
 
     @Test
-    @DisplayName("마지막 Point 생성")
-    void last(){
-        // when
-        Point pointFirst = Point.first(() -> true);
-        Point pointLast = Point.last(pointFirst);
-        // then
-        assertThat(pointLast).isEqualTo(Point.of(pointFirst, () -> false));
-    }
-
-    @Test
     @DisplayName("중간 Point 생성")
     void create() {
         // when
@@ -41,14 +29,13 @@ class PointTest {
     }
 
     @Test
-    @DisplayName("Point 생성 실패 : true, true")
-    void create_fail() {
+    @DisplayName("마지막 Point 생성")
+    void last(){
         // when
-        Point point1 = Point.first(() -> true);
-
-        // when, then
-        assertThatThrownBy(() -> Point.of(point1, () -> true))
-                .isInstanceOf(CustomException.class);
+        Point pointFirst = Point.first(() -> true);
+        Point pointLast = Point.last(pointFirst);
+        // then
+        assertThat(pointLast).isEqualTo(Point.of(pointFirst, () -> false));
     }
 
     @ParameterizedTest(name = "Point 이동 [{index}] {0} {1} {2} -> {3}")

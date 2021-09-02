@@ -25,7 +25,7 @@ public class Ladder {
     public List<Integer> result(){
         List<Integer> resultList = new ArrayList<>();
 
-        for (int startPosition = FIRST_PILLAR_OF_LADDER; startPosition <= widthOfLadder; startPosition++) {
+        for (int startPosition = FIRST_PILLAR_OF_LADDER; startPosition < widthOfLadder; startPosition++) {
             int resultPosition = playGame(startPosition);
             resultList.add(resultPosition);
         }

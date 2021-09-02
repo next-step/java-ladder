@@ -38,6 +38,10 @@ public class Point {
         return index;
     }
 
+    public Direction direction() {
+        return direction;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -50,4 +54,6 @@ public class Point {
     public int hashCode() {
         return Objects.hash(index, direction);
     }
+
+
 }
