@@ -25,6 +25,14 @@ public class Direction {
         return new Direction(directionBefore.right, right);
     }
 
+    public static Direction first(boolean right) {
+        return null;
+    }
+
+    public static Direction last(Direction directionBefore) {
+        return null;
+    }
+
     private void checkTrueRepetition(boolean beforeValue, boolean currentValue) {
         if (beforeValue && currentValue) {
             throw new CustomException(EXIST_TRUE_REPETITION);
