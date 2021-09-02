@@ -2,10 +2,10 @@ package ladder.domain;
 
 public class Ladder {
 
-    private final int len;
+    private final int height;
 
-    public Ladder(int len) {
-        this.len = len;
+    public Ladder(int height) {
+        this.height = height;
     }
 
 }
