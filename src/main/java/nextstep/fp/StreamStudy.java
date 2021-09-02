@@ -12,6 +12,7 @@ public class StreamStudy {
 
     private static final int TWO = 2;
     private static final int THREE = 3;
+    private static final int TWELVE = 12;
 
     public static long countWords() throws IOException {
         String contents = new String(Files.readAllBytes(Paths
@@ -33,7 +34,7 @@ public class StreamStudy {
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
         words.stream()
-            .filter(word -> word.length()>12)
+            .filter(word -> word.length() > TWELVE)
             .map(String::toLowerCase)
             .distinct()
             .forEach(System.out::println);
