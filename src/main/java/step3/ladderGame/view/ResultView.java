@@ -4,8 +4,9 @@ import step3.ladderGame.domain.award.Awards;
 import step3.ladderGame.domain.ladder.Ladder;
 import step3.ladderGame.domain.ladder.Line;
 import step3.ladderGame.domain.ladder.Point;
-import step3.ladderGame.domain.palyer.Player;
 import step3.ladderGame.domain.palyer.Players;
+
+import java.util.stream.IntStream;
 
 public final class ResultView {
 
@@ -18,7 +19,6 @@ public final class ResultView {
     public static void printPlayers(Players players) {
         StringBuilder builder = new StringBuilder();
         System.out.println("\n사다리 결과\n");
-
         players.getPlayers().forEach(
                 player -> {
                     String blank = printBlank(player.getName());
@@ -43,28 +43,26 @@ public final class ResultView {
         StringBuilder stringBuilder = new StringBuilder();
         int emptyLength = NAME_SPACE - name.length();
 
-        while (emptyLength > 0) {
-            stringBuilder.append(BLANK);
-            emptyLength--;
-        }
+        IntStream.range(0, emptyLength)
+                .forEach(index -> stringBuilder.append(BLANK));
 
         return stringBuilder.toString();
     }
 
     public static void printLadder(Ladder ladder) {
-        for (Line line : ladder.getLines()) {
-            printLine(line);
-        }
+        ladder.getLines().forEach(
+                ResultView::printLine
+        );
     }
 
     private static void printLine(Line line) {
         StringBuilder builder = new StringBuilder();
-
-        for (Point point : line.getPoints()) {
-            builder.append(printBetweenLine(point));
-            builder.append(VERTICAL_LINE);
-        }
-
+        line.getPoints().forEach(
+                point -> {
+                    builder.append(printBetweenLine(point));
+                    builder.append(VERTICAL_LINE);
+                }
+        );
         System.out.println(builder);
     }
 
@@ -82,11 +80,12 @@ public final class ResultView {
 
     public static void printWinningAwardAll(Players players, Awards awards, Ladder ladder) {
         System.out.println("\n실행결과");
-
-        for (Player player : players.getPlayers()) {
-            System.out.print(player.getName() + " : ");
-            System.out.println(awards.findResult(ladder.move(player.getIndex())));
-        }
+        players.getPlayers().forEach(
+                player -> {
+                    System.out.print(player.getName() + " : ");
+                    System.out.println(awards.findResult(ladder.move(player.getIndex())));
+                }
+        );
     }
 
 }
