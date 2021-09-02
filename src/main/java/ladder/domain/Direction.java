@@ -33,6 +33,18 @@ public class Direction {
         return new Direction(FALSE, randomMovable());
     }
 
+    public Direction end() {
+        return new Direction(this.right, FALSE);
+    }
+
+    public boolean isLeft() {
+        return this.left;
+    }
+
+    public boolean isRight() {
+        return this.right;
+    }
+
     private boolean randomMovable() {
         return Math.random() < 0.5;
     }
@@ -48,13 +60,5 @@ public class Direction {
     @Override
     public int hashCode() {
         return Objects.hash(left, right);
-    }
-
-    public boolean isLeft() {
-        return this.left;
-    }
-
-    public boolean isRight() {
-        return this.right;
     }
 }

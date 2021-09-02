@@ -40,12 +40,22 @@ public class DirectionTest {
     }
 
     @Test
-    public void 양_방향에_대해_true를_가질_시_익셉션이_발생한다(){
+    public void 양_방향에_대해_true를_가질_시_익셉션이_발생한다() {
         //given
         //when
         //then
         assertThatThrownBy(() -> Direction.create(true, true))
                 .isInstanceOf(IllegalStateException.class)
                 .hasMessageContaining("사다리는 양쪽으로 이동할 수 없습니다");
+    }
+
+    @Test
+    public void 마지막_위치의_Direction_을_생성할_수_있다() {
+        //given
+        //when
+        Direction endDirection = Direction.create(true, false).end();
+        //then
+        assertThat(endDirection).isEqualTo(Direction.create(false, false));
+
     }
 }
