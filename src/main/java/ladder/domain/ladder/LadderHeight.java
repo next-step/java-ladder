@@ -1,6 +1,6 @@
 package ladder.domain.ladder;
 
-public class Ladder {
+public class LadderHeight {
 
     private static final int MINIMUM_LADDER_HEIGHT = 1;
 
@@ -8,7 +8,7 @@ public class Ladder {
 
     private final int height;
 
-    public Ladder(int height) {
+    public LadderHeight(int height) {
         checkLadderHeight(height);
 
         this.height = height;

@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class LadderTest {
+class LadderHeightTest {
 
     @Test
     @DisplayName("사다리는 높이를 받아 저장할 수 있다.")
@@ -18,10 +18,10 @@ class LadderTest {
         int input = 5;
 
         // when
-        Ladder ladder = new Ladder(input);
+        LadderHeight result = new LadderHeight(input);
 
         // then
-        assertThat(ladder).isNotNull();
+        assertThat(result).isNotNull();
     }
 
     @ParameterizedTest
@@ -31,7 +31,7 @@ class LadderTest {
 
         // when & then
         assertThatExceptionOfType(IllegalArgumentException.class)
-            .isThrownBy(() -> new Ladder(input))
+            .isThrownBy(() -> new LadderHeight(input))
             .withMessageMatching("사다리 높이는 0보다 큰 값만 들어와야 한다.");
     }
 
