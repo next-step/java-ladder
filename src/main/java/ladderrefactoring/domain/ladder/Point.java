@@ -5,40 +5,38 @@ import java.util.Objects;
 public class Point {
 
     private final int index;
-    private final boolean left;
-    private final boolean right;
     private final Direction direction;
 
-    private Point(int index, boolean left, boolean right) {
+    private Point(int index, Direction direction) {
         this.index = index;
-        this.left = left;
-        this.right = right;
-        this.direction = new Direction(left, right);
+        this.direction = direction;
     }
 
     public static Point first(boolean right) {
-        return new Point(0, false, right);
+        return new Point(0, Direction.first(right));
     }
 
     public static Point of(int index, boolean left, boolean right) {
-        return new Point(index, left, right);
+        return new Point(index, Direction.of(left, right));
     }
 
     public static Point of(Point pointBefore, boolean right) {
-        return new Point(pointBefore.index + 1, pointBefore.right, right);
+        return new Point(pointBefore.index + 1, Direction.of(pointBefore.direction, right));
     }
 
     public static Point last(Point pointBefore) {
-        return new Point(pointBefore.index + 1, pointBefore.right, false);
+        return new Point(pointBefore.index + 1, Direction.last(pointBefore.direction));
     }
 
     public int move() {
         if(direction.left()) {
             return index - 1;
         }
+
         if(direction.right()) {
             return index + 1;
         }
+
         return index;
     }
 
@@ -47,11 +45,11 @@ public class Point {
         if (this == o) return true;
         if (!(o instanceof Point)) return false;
         Point point = (Point) o;
-        return index == point.index && left == point.left && right == point.right;
+        return index == point.index && Objects.equals(direction, point.direction);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(index, left, right);
+        return Objects.hash(index, direction);
     }
 }
