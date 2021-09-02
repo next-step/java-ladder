@@ -1,27 +1,39 @@
 package nextstep.ladder.domain;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.*;
 
 public class LadderGame {
-    private final List<Player> players;
+    private final static String LADDER_GAME_ERROR = "결과 수와 참여자 수는 같아야 합니다.";
+    private final Players players;
     private final Ladder ladder;
 
-    public LadderGame(final List<String> players, final int height, final PointCreator pointCreator) {
-        this.players = Collections.unmodifiableList(
-                players.stream()
-                        .map(Player::new)
-                        .collect(Collectors.toList())
-        );
-        this.ladder = new Ladder(players.size(), height, pointCreator);
+    private LadderGame(final Players players, final Ladder ladder) {
+        this.players = players;
+        this.ladder = ladder;
     }
 
-    public Ladder valueOfLadder() {
+    public static LadderGame of(final List<String> players, final Ladder ladder) {
+        return new LadderGame(new Players(players), ladder);
+    }
+
+    public LadderResults climbLadder(Results results) {
+        if (!players.isSameSize(results)) {
+            throw new IllegalArgumentException(LADDER_GAME_ERROR);
+        }
+
+        Map<String, String> resultMap = new LinkedHashMap<>();
+        for (int location = 0; location < results.sizeOfResults(); location++) {
+            int index = ladder.climbLadder(new Location(location));
+            resultMap.put(players.indexOf(location), results.indexOf(index));
+        }
+        return new LadderResults(resultMap);
+    }
+
+    public Ladder getLadder() {
         return ladder;
     }
 
-    public List<Player> valueOfPlayers() {
+    public Players getPlayers() {
         return players;
     }
 }
