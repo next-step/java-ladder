@@ -42,7 +42,8 @@ public class Line {
     }
 
     public int movePosition2(int currentPosition) {
-        return 0;
+        Point point = points2.get(currentPosition);
+        return point.move();
     }
 
     public int movePosition(int currentPosition) {
