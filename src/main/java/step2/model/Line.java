@@ -3,10 +3,9 @@ package step2.model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class Line {
-    private final List<Point> points;
+    private final List<Boolean> points;
 
     public Line(int numberOfUser, LadderStrategy ladderStrategy) {
         points = new ArrayList<>();
@@ -17,14 +16,12 @@ public class Line {
 
     }
 
-    public Line(List<Point> points) {
+    public Line(List<Boolean> points) {
         this.points = points;
     }
 
     public List<Boolean> getLine() {
-        return this.points.stream()
-                            .map(Point::getPoint)
-                            .collect(Collectors.toList());
+        return this.points;
     }
 
     private void drawPoint(LadderStrategy ladderStrategy, int index) {
@@ -33,7 +30,7 @@ public class Line {
             isPoint = false;
         }
 
-        points.add(new Point(isPoint));
+        points.add(isPoint);
     }
 
     public GameResults checkPoint(GameResults gameResults) {
@@ -47,7 +44,7 @@ public class Line {
     }
 
     private int switchResult(List<GameResult> result, GameResults gameResults, int index) {
-        if (!isLast(index) && points.get(index).getPoint()) {
+        if (!isLast(index) && points.get(index)) {
             User currentUser = gameResults.getUser(index);
             User nextUser = gameResults.getGameResult(index+1).getUser();
             Result currentResult = gameResults.getResult(index);
@@ -68,7 +65,7 @@ public class Line {
     }
 
     private boolean lastPoint() {
-        return points.get(points.size() - 1).getPoint();
+        return points.get(points.size() - 1);
     }
 
     @Override
