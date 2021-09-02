@@ -6,22 +6,17 @@ import step3.ladderGame.domain.palyer.Players;
 import step3.ladderGame.view.InputView;
 import step3.ladderGame.view.ResultView;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class LadderGameController {
 
     public static void main(String[] args) {
-        List<String> playerNames = Arrays.asList(InputView.inputPlayers());
-        Players players = new Players(playerNames);
-        List<String> awardNames = Arrays.asList(InputView.inputAwards());
-        Awards awards = new Awards(awardNames, playerNames.size());
+        Players players = new Players(InputView.inputPlayers());
+        Awards awards = new Awards(InputView.inputAwards(), players.count());
         int height = InputView.inputHeight();
-        Ladder ladder = new Ladder(playerNames.size(), height);
+        Ladder ladder = new Ladder(players.count(), height);
 
-        ResultView.printPlayers(playerNames);
+        ResultView.printPlayers(players);
         ResultView.printLadder(ladder);
-        ResultView.printAwards(awardNames);
+        ResultView.printAwards(awards);
 
         playGame(players, awards, ladder);
     }

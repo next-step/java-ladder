@@ -1,7 +1,7 @@
 package step3.ladderGame.domain.award;
 
-import step3.ladderGame.domain.exception.NameNullOrEmptyException;
 import step3.ladderGame.domain.exception.IndexLowException;
+import step3.ladderGame.domain.exception.NameNullOrEmptyException;
 
 public final class Award {
 

@@ -7,8 +7,6 @@ import step3.ladderGame.domain.ladder.Point;
 import step3.ladderGame.domain.palyer.Player;
 import step3.ladderGame.domain.palyer.Players;
 
-import java.util.List;
-
 public final class ResultView {
 
     private static final int NAME_SPACE = 6;
@@ -17,30 +15,27 @@ public final class ResultView {
     private static final String HORIZONTAL_LINE = "-----";
     private static final String EMPTY_LINE = "     ";
 
-    public static void printPlayers(List<String> players) {
+    public static void printPlayers(Players players) {
         StringBuilder builder = new StringBuilder();
         System.out.println("\n사다리 결과\n");
 
-        players.forEach(
+        players.getPlayers().forEach(
                 player -> {
-                    String blank = printBlank(player);
-                    builder.append(blank).append(player);
+                    String blank = printBlank(player.getName());
+                    builder.append(blank).append(player.getName());
                 }
         );
-
         System.out.println(builder);
     }
 
-    public static void printAwards(List<String> awards) {
+    public static void printAwards(Awards awards) {
         StringBuilder builder = new StringBuilder();
-
-        awards.forEach(
+        awards.getAwards().forEach(
                 award -> {
-                    String blank = printBlank(award);
-                    builder.append(blank).append(award);
+                    String blank = printBlank(award.getName());
+                    builder.append(blank).append(award.getName());
                 }
         );
-
         System.out.println(builder);
     }
 

@@ -1,8 +1,8 @@
 package step3.ladderGame.domain.palyer;
 
+import step3.ladderGame.domain.exception.IndexLowException;
 import step3.ladderGame.domain.exception.NameLengthException;
 import step3.ladderGame.domain.exception.NameNullOrEmptyException;
-import step3.ladderGame.domain.exception.IndexLowException;
 
 public final class Player {
 
