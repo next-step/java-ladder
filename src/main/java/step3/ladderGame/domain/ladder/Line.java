@@ -1,15 +1,14 @@
 package step3.ladderGame.domain.ladder;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
 public final class Line {
 
-    private List<Point> points = new ArrayList<>();
+    private final List<Point> points;
 
     public Line(final int countOfPerson) {
-        points.add(Point.generateFirstPoint());
+        points = Point.generateFirstPoint();
 
         IntStream.range(0, countOfPerson - 2).forEach(
                 index -> {

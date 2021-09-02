@@ -2,6 +2,8 @@ package step3.ladderGame.domain.ladder;
 
 import step3.ladderGame.domain.exception.HaveSeveralDirectionsException;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
@@ -24,8 +26,10 @@ public final class Point {
         }
     }
 
-    public static Point generateFirstPoint() {
-        return new Point(false, random.nextBoolean());
+    public static List<Point> generateFirstPoint() {
+        List<Point> points = new ArrayList<>();
+        points.add(new Point(false, random.nextBoolean()));
+        return points;
     }
 
     public static Point generatePoint(final Point prePoint) {
