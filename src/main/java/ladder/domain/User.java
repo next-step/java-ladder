@@ -14,7 +14,7 @@ public class User {
         this.name = name;
     }
 
-    public static void checkNameLength(String name) {
+    private static void checkNameLength(String name) {
         if (name.length() > MAXIMUM_NAME_LENGTH) {
             throw new IllegalArgumentException(INVALID_MAXIMUM_NAME_LENGTH_ERROR_MESSAGE);
         }
