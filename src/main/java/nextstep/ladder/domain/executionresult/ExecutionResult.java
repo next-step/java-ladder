@@ -1,19 +1,14 @@
 package nextstep.ladder.domain.executionresult;
 
-import java.util.List;
-import java.util.stream.Stream;
-
 public class ExecutionResult {
+    private final String result;
 
-    private final List<String> executionResult;
-
-    public ExecutionResult(List<String> executionResult) {
-        this.executionResult = executionResult;
+    public ExecutionResult(String result) {
+        this.result = result;
     }
 
-    public Stream<String> stream() {
-        return executionResult.stream();
+    @Override
+    public String toString() {
+        return result;
     }
-
-
 }

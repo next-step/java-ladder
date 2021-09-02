@@ -31,7 +31,7 @@ public class OutputView {
         print(stringBuilder.toString());
     }
 
-    public void printExecutionResult(ExecutionResult result) {
+    public void printExecutionResults(ExecutionResults result) {
         StringBuilder stringBuilder = new StringBuilder();
         executionResultView.appendExecutionResult(result, stringBuilder);
         print(stringBuilder.toString());

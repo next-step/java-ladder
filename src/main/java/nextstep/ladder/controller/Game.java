@@ -35,9 +35,11 @@ public class Game {
         outputView.printExecutionResult(executionResult);
     }
 
-    private ExecutionResult getExecutionResult() {
-        List<String> executionResult = inputView.receiveExecutionResult();
-        return new ExecutionResult(executionResult);
+    private ExecutionResults getExecutionResult() {
+        List<ExecutionResult> executionResults = inputView.receiveExecutionResult().stream()
+                .map(ExecutionResult::new)
+                .collect(Collectors.toList());
+        return new ExecutionResults(executionResults);
     }
 
     private Ladders getLadders(int ladderCount) {
