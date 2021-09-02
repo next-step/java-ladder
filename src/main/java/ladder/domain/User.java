@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import static ladder.util.StringUtil.isBlank;
+
 public class User {
 
     private static final int MAXIMUM_NAME_LENGTH = 5;
@@ -17,7 +19,7 @@ public class User {
     }
 
     private static void checkNameNotBlank(String name) {
-        if (name == null || name.trim().equals("")) {
+        if (isBlank(name)) {
             throw new IllegalArgumentException(INVALID_EMPTY_NAME_ERROR_MESSAGE);
         }
     }
