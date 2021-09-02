@@ -13,6 +13,10 @@
 * Line 을 LadderLine 로 변경하고, Point 초기화 및 이동을 담당한다.
     * 현재는 Ladder 에서 초기화를 진행한다.
 * Point 는 현재위치와 좌/우 방향정보를 가진다.
-* 좌/우 방향 정보를 Direction 으로 추상화 한다.
+    * 다음 Point 를 가질 수 있다.
 
 ## DONE
+
+* 좌/우 방향 정보를 Direction 으로 추상화 한다.
+  * 첫 위치의 Direction 을 가질 수 있다.
+  * 다음 Direction 을 가질 수 있다.

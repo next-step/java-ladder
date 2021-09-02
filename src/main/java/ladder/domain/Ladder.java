@@ -37,10 +37,10 @@ public class Ladder {
                 .collect(Collectors.toList());
     }
 
-    protected static List<Boolean> randomLinePoints(Width width, Checkable checkable) {
+    protected static List<Boolean> randomLinePoints(Width width, Movable movable) {
         List<Boolean> points = new ArrayList<>();
         for (int i = 0; i < width.getLength(); i++) {
-            checkPoint(checkable.check(), points, i);
+            checkPoint(movable.move(), points, i);
         }
         return points;
     }
