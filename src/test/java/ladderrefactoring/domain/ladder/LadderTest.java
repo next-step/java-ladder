@@ -37,8 +37,7 @@ public class LadderTest {
     @DisplayName("Ladder result 연산")
     void result() {
         // given
-        People people = new People(Arrays.asList("hwan,kook,hyun,bo".split(",")));
-        Ladder ladder = new Ladder(people.subtractNumberFromSize(1), 1, new RandomLineStrategy(){
+        Ladder ladder = new Ladder(3, 1, new RandomLineStrategy(){
             @Override
             protected boolean currentPoint() {
                 return true;
