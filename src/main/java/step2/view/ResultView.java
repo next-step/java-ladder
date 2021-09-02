@@ -1,7 +1,6 @@
 package step2.view;
 
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class ResultView {
@@ -57,7 +56,7 @@ public class ResultView {
         return result + "     |";
     }
 
-    public static void printUserResult(String userName, HashMap<String, String> gameResult) {
+    public static void printUserResult(String userName, LinkedHashMap<String, String> gameResult) {
         if (userName.trim().equals("all")) {
             printAllResult(gameResult);
             return;
@@ -70,7 +69,7 @@ public class ResultView {
         System.out.println(gameResult.get(userName));
     }
 
-    private static void printAllResult(HashMap<String, String> gameResult) {
+    private static void printAllResult(LinkedHashMap<String, String> gameResult) {
         gameResult.forEach((key, value) -> {
             System.out.println(key + " : " +value);
         });

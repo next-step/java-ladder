@@ -1,7 +1,6 @@
 package step2.model;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -44,12 +43,12 @@ public class Ladder {
                         .collect(Collectors.toList());
     }
 
-    public HashMap<String, String> getGameResult(Users users, Results results) {
+    public GameResults runGame(GameResults gameResults) {
         for (Line line : lines) {
-            users = line.getResult(users);
+            gameResults = line.checkPoint(gameResults);
         }
 
-        return users.setGameResult(results);
+        return gameResults;
     }
 
     @Override

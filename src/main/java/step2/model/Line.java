@@ -6,7 +6,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Line {
-    private List<Point> points;
+    private final List<Point> points;
 
     public Line(int numberOfUser, LadderStrategy ladderStrategy) {
         points = new ArrayList<>();
@@ -37,24 +37,30 @@ public class Line {
         return index;
     }
 
-    public Users getResult(Users users) {
-        List<User> result = new ArrayList<>();
+    public GameResults checkPoint(GameResults gameResults) {
+        List<GameResult> result = new ArrayList<>();
 
         for (int i = 0; i < points.size(); i++) {
-            i = switchUser(result, users, i);
+            i = switchResult(result, gameResults, i);
         }
 
-        return new Users(result);
+        return new GameResults(result);
     }
 
-    private int switchUser(List<User> result, Users users, int index) {
+    private int switchResult(List<GameResult> result, GameResults gameResults, int index) {
         if (!isLast(index) && points.get(index).getPoint()) {
-            result.add(users.getUser(index +1));
-            result.add(users.getUser(index));
+            User currentUser = gameResults.getUser(index);
+            User nextUser = gameResults.getGameResult(index+1).getUser();
+            Result currentResult = gameResults.getResult(index);
+            Result nextResult = gameResults.getGameResult(index + 1).getResult();
+
+            result.add(new GameResult(currentUser, nextResult));
+            result.add(new GameResult(nextUser, currentResult));
+
             return index + 1;
         }
 
-        result.add(users.getUser(index));
+        result.add(gameResults.getGameResult(index));
         return index;
     }
 

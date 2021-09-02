@@ -39,7 +39,7 @@ public class Results {
                 .collect(Collectors.toList());
     }
 
-    public String getResult(int index) {
-        return results.get(index).getResult();
+    public Result getResult(int index) {
+        return results.get(index);
     }
 }

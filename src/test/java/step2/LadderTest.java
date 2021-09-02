@@ -3,7 +3,6 @@ package step2;
 import org.junit.jupiter.api.Test;
 import step2.model.*;
 
-import java.util.HashMap;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
@@ -38,28 +37,6 @@ public class LadderTest {
         for (int i = 0; i < 5; i++) {
             assertThat(result.get(i).size()).isEqualTo(4);
         }
-    }
-
-    @Test
-    public void 게임_결과() {
-        //given
-        HashMap<String, String> expectResult = new HashMap<>();
-        expectResult.put("user1", "5000");
-        expectResult.put("user2", "꽝");
-        expectResult.put("user3", "2000");
-        expectResult.put("user4", "꽝");
-
-        Users users = new Users("user1, user2, user3, user4");
-        Results results = new Results("꽝, 5000, 꽝, 2000", 4);
-        Ladder ladder = new Ladder("5", 4, () -> true);
-
-        //when
-        HashMap<String, String> gameResult = ladder.getGameResult(users, results);
-
-        //then
-        gameResult.forEach((key, value) -> {
-            assertThat(expectResult.get(key)).isEqualTo(value);
-        });
     }
 
 }
