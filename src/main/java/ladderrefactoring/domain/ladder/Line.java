@@ -41,6 +41,10 @@ public class Line {
         return Collections.unmodifiableList(points);
     }
 
+    public int movePosition2(int currentPosition) {
+        return 0;
+    }
+
     public int movePosition(int currentPosition) {
         checkPointArr = new int[]{leftPointOf(currentPosition), rightPointOf(currentPosition)};
         movedPositionArr = new int[]{moveLeft(currentPosition), moveRight(currentPosition)};

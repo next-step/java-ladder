@@ -64,4 +64,27 @@ class LineTest {
         assertThat(movedPosition1).isEqualTo(0);
         assertThat(movedPosition2).isEqualTo(3);
     }
+
+
+    @Test
+    @DisplayName("point 이동 tmp")
+    void move2() {
+        // given
+        int widthOfLadder = 4;
+        LineStrategy lineStrategy = new RandomLineStrategy(){
+            @Override
+            protected boolean currentPoint() {
+                return true;
+            }
+        };
+        Line line = new Line(widthOfLadder, lineStrategy);
+
+        // when
+        int movedPosition1 = line.movePosition2(1);
+        int movedPosition2 = line.movePosition2(2);
+
+        // then
+        assertThat(movedPosition1).isEqualTo(0);
+        assertThat(movedPosition2).isEqualTo(3);
+    }
 }
