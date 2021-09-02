@@ -13,11 +13,9 @@ public class DirectionTest {
     @DisplayName("direction 생성 테스트")
     void directionCreateTest() {
         Direction direction = Direction.of(false, true);
-        Assertions.assertAll(() -> {
-            assertThat(direction.isLeft()).isFalse();
-            assertThat(direction.isRight()).isTrue();
-        });
-
+        Assertions.assertAll(
+                () -> assertThat(direction.isLeft()).isFalse(),
+                () -> assertThat(direction.isRight()).isTrue());
     }
 
     @Test
