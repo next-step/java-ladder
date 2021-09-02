@@ -10,6 +10,18 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class DirectionTest {
 
     @Test
+    @DisplayName("이전과 관련된 Direction 생성 정적 팩토리")
+    void create_정적_팩토리() {
+        // when
+        Direction direction0 = Direction.of(true, false);
+        Direction direction1 = Direction.of(direction0, false);
+
+        // then
+        assertThat(direction0).isEqualTo(new Direction(true, false));
+        assertThat(direction1.left()).isFalse();
+    }
+
+    @Test
     @DisplayName("Direction 생성")
     void create() {
         // when
