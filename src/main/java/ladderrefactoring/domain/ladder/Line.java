@@ -3,16 +3,11 @@ package ladderrefactoring.domain.ladder;
 import ladderrefactoring.exception.CustomException;
 import ladderrefactoring.strategy.LineStrategy;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class Line {
 
     public static final String EXIST_TRUE_REPETITION = "연속된 사다리가 존재 합니다.";
-    private static final String LINE_EMPTY = "     |";
-    private static final String LINE_EXIST = "-----|";
 
     private final List<Boolean> points = new ArrayList<>();
     private int[] checkPointArr;
@@ -44,21 +39,8 @@ public class Line {
         }
     }
 
-    public void addResultTo(StringBuilder stringBuilder) {
-        stringBuilder.append(LINE_EMPTY);
-
-        points.stream()
-                .map(this::ladderString)
-                .forEach(stringBuilder::append);
-
-        stringBuilder.append(System.lineSeparator());
-    }
-
-    private String ladderString(Boolean bool) {
-        if (bool) {
-            return LINE_EXIST;
-        }
-        return LINE_EMPTY;
+    public List<Boolean> points() {
+        return Collections.unmodifiableList(points);
     }
 
     public int movePosition(int currentPosition) {

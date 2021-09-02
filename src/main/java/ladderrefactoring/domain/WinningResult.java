@@ -32,8 +32,8 @@ public class WinningResult {
         Map<Person, Result> winningResultMap = new LinkedHashMap<>();
 
         for (int i = 0; i < winningResultList.size(); i++) {
-            Person person = people.get(i);
-            Result result = results.get(winningResultList.get(i));
+            Person person = people.people().get(i);
+            Result result = results.results().get(winningResultList.get(i));
             winningResultMap.put(person, result);
         }
 

@@ -3,6 +3,7 @@ package ladderrefactoring.domain.ladder;
 import ladderrefactoring.strategy.LineStrategy;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -42,10 +43,8 @@ public class Ladder {
         return currentPosition;
     }
 
-    public void addResultTo(StringBuilder stringBuilder) {
-        for (Line line : ladder) {
-            line.addResultTo(stringBuilder);
-        }
+    public List<Line> ladder() {
+        return Collections.unmodifiableList(ladder);
     }
 
     @Override

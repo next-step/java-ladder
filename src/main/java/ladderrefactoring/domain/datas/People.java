@@ -2,13 +2,12 @@ package ladderrefactoring.domain.datas;
 
 import ladderrefactoring.domain.data.Person;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class People {
-
-    public static final int SPACE_OF_PERSON = Person.MAX_LENGTH_OF_NAME+1;
 
     private final List<Person> people;
 
@@ -26,15 +25,8 @@ public class People {
         return people.size() - number;
     }
 
-    public void addResultTo(StringBuilder stringBuilder) {
-        people.stream()
-                .map(Person::toString)
-                .map(name -> String.format("%"+ SPACE_OF_PERSON +"s", name))
-                .forEach(stringBuilder::append);
-    }
-
-    public Person get(int i) {
-        return people.get(i);
+    public List<Person> people() {
+        return Collections.unmodifiableList(people);
     }
 
     @Override

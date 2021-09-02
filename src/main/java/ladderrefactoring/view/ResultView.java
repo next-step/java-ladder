@@ -6,10 +6,16 @@ import ladderrefactoring.domain.data.Result;
 import ladderrefactoring.domain.datas.People;
 import ladderrefactoring.domain.datas.Results;
 import ladderrefactoring.domain.ladder.Ladder;
+import ladderrefactoring.domain.ladder.Line;
 
 import java.util.Map;
 
 public class ResultView {
+
+    public static final int SPACE_OF_PERSON = Person.MAX_LENGTH_OF_NAME+1;
+    public static final int SPACE_OF_RESULT = Result.MAX_LENGTH_OF_NAME+1;
+    private static final String LINE_EMPTY = "     |";
+    private static final String LINE_EXIST = "-----|";
 
     public static void showResult(People people, Ladder ladder, Results results) {
         String result = makeResult(people, ladder, results);
@@ -31,16 +37,45 @@ public class ResultView {
     }
 
     private static void writePeople(People people, StringBuilder stringBuilder) {
-        people.addResultTo(stringBuilder);
+
+        people.people()
+                .stream()
+                .map(Person::toString)
+                .map(name -> String.format("%"+ SPACE_OF_PERSON +"s", name))
+                .forEach(stringBuilder::append);
+
         stringBuilder.append(System.lineSeparator());
     }
 
     private static void writeLadder(Ladder ladder, StringBuilder stringBuilder) {
-        ladder.addResultTo(stringBuilder);
+        for (Line line : ladder.ladder()) {
+            addResultTo(line, stringBuilder);
+        }
+    }
+
+    private static void addResultTo(Line line, StringBuilder stringBuilder) {
+        line.points()
+                .stream()
+                .map(ResultView::ladderString)
+                .forEach(stringBuilder::append);
+
+        stringBuilder.append(System.lineSeparator());
+    }
+
+    private static String ladderString(Boolean bool) {
+        if (bool) {
+            return LINE_EXIST;
+        }
+        return LINE_EMPTY;
     }
 
     private static void writeResults(Results results, StringBuilder stringBuilder) {
-        results.addResultTo(stringBuilder);
+        results.results()
+                .stream()
+                .map(Result::toString)
+                .map(name -> String.format("%"+ SPACE_OF_RESULT +"s", name))
+                .forEach(stringBuilder::append);
+        
         stringBuilder.append(System.lineSeparator());
     }
 
