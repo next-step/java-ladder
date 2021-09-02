@@ -23,6 +23,14 @@ public class Direction {
         }
     }
 
+    public boolean left() {
+        return left;
+    }
+
+    public boolean right() {
+        return right;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

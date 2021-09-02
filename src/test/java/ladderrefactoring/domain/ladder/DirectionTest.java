@@ -17,6 +17,8 @@ class DirectionTest {
 
         // then
         assertThat(direction).isEqualTo(new Direction(true, false));
+        assertThat(direction.left()).isTrue();
+        assertThat(direction.right()).isFalse();
     }
 
     @Test

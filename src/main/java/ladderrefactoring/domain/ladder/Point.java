@@ -1,23 +1,19 @@
 package ladderrefactoring.domain.ladder;
 
-import ladderrefactoring.exception.CustomException;
-
 import java.util.Objects;
 
 public class Point {
 
-    public static final String EXIST_TRUE_REPETITION = "연속된 사다리가 존재 합니다.";
-
     private final int index;
     private final boolean left;
     private final boolean right;
+    private final Direction direction;
 
     private Point(int index, boolean left, boolean right) {
-        checkTrueRepetition(left, right);
-
         this.index = index;
         this.left = left;
         this.right = right;
+        this.direction = new Direction(left, right);
     }
 
     public static Point first(boolean right) {
@@ -36,17 +32,11 @@ public class Point {
         return new Point(pointBefore.index + 1, pointBefore.right, false);
     }
 
-    private void checkTrueRepetition(boolean beforeValue, boolean currentValue) {
-        if (beforeValue && currentValue) {
-            throw new CustomException(EXIST_TRUE_REPETITION);
-        }
-    }
-
     public int move() {
-        if(left) {
+        if(direction.left()) {
             return index - 1;
         }
-        if(right) {
+        if(direction.right()) {
             return index + 1;
         }
         return index;
