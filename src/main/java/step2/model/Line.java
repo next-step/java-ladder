@@ -27,14 +27,13 @@ public class Line {
                             .collect(Collectors.toList());
     }
 
-    private int drawPoint(LadderStrategy ladderStrategy, int index) {
+    private void drawPoint(LadderStrategy ladderStrategy, int index) {
         boolean isPoint = ladderStrategy.generateLine();
-        if (index != 0 && getLast()) {
+        if (index != 0 && lastPoint()) {
             isPoint = false;
         }
 
         points.add(new Point(isPoint));
-        return index;
     }
 
     public GameResults checkPoint(GameResults gameResults) {
@@ -68,7 +67,7 @@ public class Line {
         return index == points.size() - 1;
     }
 
-    private boolean getLast() {
+    private boolean lastPoint() {
         return points.get(points.size() - 1).getPoint();
     }
 

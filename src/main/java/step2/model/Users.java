@@ -15,10 +15,10 @@ public class Users  {
     public Users(String usersName) {
         isBlank(usersName);
         isOverMinNumberOfUser(usersName);
-        setUsersName(usersName);
+        saveUsersName(usersName);
     }
 
-    private void setUsersName(String usersName) {
+    private void saveUsersName(String usersName) {
         this.users = new ArrayList<>();
 
         String[] names = usersName.split(",");
@@ -40,7 +40,7 @@ public class Users  {
         return this.users.size();
     }
 
-    public List<String> getName() {
+    public List<String> getNameList() {
         return users.stream()
                         .map(User::getName)
                         .collect(Collectors.toList());
@@ -49,7 +49,6 @@ public class Users  {
     public User getUser(int index) {
         return users.get(index);
     }
-
 
     @Override
     public boolean equals(Object o) {

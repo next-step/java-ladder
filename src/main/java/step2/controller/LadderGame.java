@@ -21,9 +21,9 @@ public class LadderGame {
         Ladder ladder = new Ladder(high, numberOfUsers, new RandomLadderStrategy());
         GameResults gameResults = ladder.runGame(new GameResults(users, results));
 
-        printResult(users.getName());
+        printResult(users.getNameList());
         printLadder(ladder.getLadder());
-        printResult(results.getResults());
+        printResult(results.getResultList());
 
         userName = ask("결과를 보고 싶은 사람은?");
 

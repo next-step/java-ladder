@@ -3,8 +3,8 @@ package step2.model;
 import java.util.Objects;
 
 public class GameResult {
-    private User user;
-    private Result result;
+    private final User user;
+    private final Result result;
 
     public GameResult(User user, Result result) {
         this.user = user;

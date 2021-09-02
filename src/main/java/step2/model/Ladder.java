@@ -16,15 +16,15 @@ public class Ladder {
         isBlank(high);
         isOverMinHigh(high);
 
-        generateLine(getParseInt(high), numberOfUser, ladderStrategy);
+        generateLine(parseInt(high), numberOfUser, ladderStrategy);
     }
 
-    private int getParseInt(String high) {
+    private int parseInt(String high) {
         return Integer.parseInt(high.trim());
     }
 
     private void isOverMinHigh(String high) {
-        if (getParseInt(high) < MIN_LADDER_HIGH) {
+        if (parseInt(high) < MIN_LADDER_HIGH) {
             throw new IllegalArgumentException("최소" + MIN_LADDER_HIGH + "이상 입력해주세요");
         }
     }
