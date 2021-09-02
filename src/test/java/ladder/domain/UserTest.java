@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class UserTest {
@@ -33,6 +34,17 @@ class UserTest {
         assertThatExceptionOfType(IllegalArgumentException.class)
             .isThrownBy(() -> new User(input))
             .withMessageMatching("사람의 이름은 최대 5글자까지만 입력가능하다.");
+    }
+
+    @ParameterizedTest
+    @NullAndEmptySource
+    @DisplayName("사람의 이름이 제공되지 않을 때 Exception이 반환되어야 한다.")
+    void userCreateFailByEmptyNameTest(String input) {
+
+        // when & then
+        assertThatExceptionOfType(IllegalArgumentException.class)
+            .isThrownBy(() -> new User(input))
+            .withMessageMatching("사람의 이름은 반드시 제공되어야 한다.");
     }
 
 }
