@@ -20,6 +20,10 @@ public class Point {
         this.right = right;
     }
 
+    public static Point first(boolean right) {
+        return new Point(0, false, false);
+    }
+
     private void checkTrueRepetition(boolean beforeValue, boolean currentValue) {
         if (beforeValue && currentValue) {
             throw new CustomException(EXIST_TRUE_REPETITION);

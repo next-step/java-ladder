@@ -11,6 +11,15 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class PointTest {
 
     @Test
+    @DisplayName("첫 번째 Point 생성")
+    void first(){
+        // when
+        Point point = Point.first(false);
+        // then
+        assertThat(point).isEqualTo(new Point(0, false, false));
+    }
+
+    @Test
     @DisplayName("Point 생성")
     void create() {
         // when
