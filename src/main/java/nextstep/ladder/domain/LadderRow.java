@@ -48,8 +48,7 @@ public class LadderRow {
     }
 
     private LadderColumn getLastColumn() {
-        int lastColumnIndex = Math.max(ladderColumns.size() - ONE, 0);
-        return ladderColumns.get(lastColumnIndex);
+        return ladderColumns.get(ladderColumns.size() - ONE);
     }
 
     private boolean hadLegInLastColumn() {
