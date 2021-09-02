@@ -1,47 +1,46 @@
 package step3.ladderGame;
 
+import step3.ladderGame.domain.award.Awards;
 import step3.ladderGame.domain.ladder.Ladder;
 import step3.ladderGame.domain.palyer.Players;
-import step3.ladderGame.domain.award.Awards;
 import step3.ladderGame.view.InputView;
 import step3.ladderGame.view.ResultView;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 
 public class LadderGameController {
 
     public static void main(String[] args) {
-        try (Scanner scanner = new Scanner(System.in)) {
-            InputView inputView = new InputView(scanner);
-            ResultView resultView = new ResultView();
+        List<String> playerNames = Arrays.asList(InputView.inputPlayers());
+        Players players = new Players(playerNames);
+        List<String> awardNames = Arrays.asList(InputView.inputAwards());
+        Awards awards = new Awards(awardNames, playerNames.size());
+        int height = InputView.inputHeight();
+        Ladder ladder = new Ladder(playerNames.size(), height);
 
-            List<String> playerNames = Arrays.asList(inputView.inputPlayers());
-            Players players = new Players(playerNames);
-            List<String> awardNames = Arrays.asList(inputView.inputAwards());
-            Awards awards = new Awards(awardNames, playerNames.size());
+        ResultView.printPlayers(playerNames);
+        ResultView.printLadder(ladder);
+        ResultView.printAwards(awardNames);
 
-            int height = inputView.inputHeight();
+        playGame(players, awards, ladder);
+    }
 
-            Ladder ladder = new Ladder(playerNames.size(), height);
-
-            resultView.printPlayers(playerNames);
-            resultView.printLadder(ladder);
-            resultView.printAwards(awardNames);
-
-            while (true) {
-                String player = inputView.inputPlayer();
-                if ("all".equals(player)) {
-                    resultView.printWinningAwardAll(players, awards, ladder);
-                } else {
-                    resultView.printWinningAward(ladder.move(players.findIndex(player)), awards);
-                }
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
+    private static void playGame(Players players, Awards awards, Ladder ladder) {
+        boolean play = true;
+        while (play) {
+            play = checkAward(players, awards, ladder);
         }
+    }
+
+    private static boolean checkAward(Players players, Awards awards, Ladder ladder) {
+        String player = InputView.inputPlayer();
+        if ("all".equals(player)) {
+            ResultView.printWinningAwardAll(players, awards, ladder);
+            return false;
+        }
+        ResultView.printWinningAward(ladder.move(players.findIndex(player)), awards);
+        return true;
     }
 
 }
