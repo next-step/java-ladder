@@ -10,23 +10,26 @@ import java.util.stream.Collectors;
 
 public class StreamStudy {
 
+    private static final int TWO = 2;
     private static final int THREE = 3;
 
     public static long countWords() throws IOException {
         String contents = new String(Files.readAllBytes(Paths
-                .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
+            .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
         long count = 0;
         for (String w : words) {
-            if (w.length() > 12) count++;
+            if (w.length() > 12) {
+                count++;
+            }
         }
         return count;
     }
 
     public static void printLongestWordTop100() throws IOException {
         String contents = new String(Files.readAllBytes(Paths
-                .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
+            .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
         // TODO 이 부분에 구현한다.
@@ -43,12 +46,17 @@ public class StreamStudy {
     public static long sumOverThreeAndDouble(List<Integer> numbers) {
         return numbers.stream()
             .filter(StreamStudy::isOverThree)
-            .map(number -> number * 2)
-            .reduce(0, (x,y) -> x+y);
+            .map(StreamStudy::multiplyByTwo)
+            .reduce(0, (x, y) -> x + y);
     }
 
-    private static boolean isOverThree(int number){
+    private static boolean isOverThree(int number) {
         return number > THREE;
     }
+
+    private static int multiplyByTwo(int number) {
+        return number * TWO;
+    }
+
 
 }
