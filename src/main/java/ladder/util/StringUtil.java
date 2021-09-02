@@ -1,5 +1,7 @@
 package ladder.util;
 
+import static java.lang.Character.isWhitespace;
+
 public class StringUtil {
 
     private static final int ZERO = 0;
@@ -11,6 +13,12 @@ public class StringUtil {
         if (input == null || input.length() == ZERO) {
             return true;
         }
-        return false;
+        for (int i = ZERO; i < input.length(); i++) {
+            if (!isWhitespace(input.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
     }
+
 }
