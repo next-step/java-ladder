@@ -5,13 +5,13 @@ import java.util.List;
 
 public class Result {
     private static final String DELIMITER = ",";
-    private final List<String> strings;
+    private final List<String> items;
 
     public Result(String string) {
-        strings = Arrays.asList(string.split(DELIMITER));
+        items = Arrays.asList(string.split(DELIMITER));
     }
 
-    public List<String> getStrings() {
-        return strings;
+    public List<String> getItems() {
+        return items;
     }
 }

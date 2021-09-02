@@ -46,7 +46,7 @@ public class ResultView {
     }
 
     public static void printResultColumn(Result result) {
-        result.getStrings()
+        result.getItems()
                 .stream()
                 .map(s -> s + NAME_SPACE)
                 .forEach(System.out::print);
