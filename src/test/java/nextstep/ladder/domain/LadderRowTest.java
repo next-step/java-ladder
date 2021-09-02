@@ -25,8 +25,6 @@ class LadderRowTest {
     private static Stream<Arguments> provideGameSettings() {
 
         return Stream.of(
-            Arguments.of(LadderGameSettings.of(LadderSize.of(1, 1), new RandomDrawLineStrategy())),
-            Arguments.of(LadderGameSettings.of(LadderSize.of(1, 2), new RandomDrawLineStrategy())),
             Arguments.of(LadderGameSettings.of(LadderSize.of(2, 1), new RandomDrawLineStrategy())),
             Arguments.of(LadderGameSettings.of(LadderSize.of(2, 2), new RandomDrawLineStrategy())),
             Arguments.of(LadderGameSettings.of(LadderSize.of(10, 10), new RandomDrawLineStrategy()))

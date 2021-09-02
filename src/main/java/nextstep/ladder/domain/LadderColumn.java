@@ -4,10 +4,10 @@ import nextstep.ladder.strategy.DrawLineStrategy;
 
 public class LadderColumn {
 
-    private final boolean hasVerticalLine;
+    private final boolean hasLeg;
 
-    public LadderColumn(boolean hasVerticalLine) {
-        this.hasVerticalLine = hasVerticalLine;
+    public LadderColumn(boolean hasLeg) {
+        this.hasLeg = hasLeg;
     }
 
     public LadderColumn() {
@@ -18,7 +18,7 @@ public class LadderColumn {
         return new LadderColumn(strategy.drawLine());
     }
 
-    public boolean hasVerticalLine() {
-        return hasVerticalLine;
+    public boolean hasLeg() {
+        return hasLeg;
     }
 }

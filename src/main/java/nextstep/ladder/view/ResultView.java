@@ -47,7 +47,7 @@ public class ResultView {
     }
 
     private String getColumnString(LadderColumn column) {
-        return column.hasVerticalLine() ? COLUMN_WITH_LINE : COLUMN;
+        return column.hasLeg() ? COLUMN_WITH_LINE : COLUMN;
     }
 
     private void printPlayerNames(Players players) {
