@@ -26,7 +26,7 @@ public class LadderGameManager {
 
     private List<LadderGameColumn> runGameByFloor(Line line) {
         return ladderGameColumns.stream()
-                .map(ladderGameColumn -> gameByHeight(line, ladderGameColumn))
+                .map(ladderGameColumn -> gameByPosition(line, ladderGameColumn))
                 .collect(Collectors.toList());
     }
 
@@ -40,7 +40,7 @@ public class LadderGameManager {
         return new LadderGameColumn(index, ladderGameColumn.getName());
     }
 
-    private LadderGameColumn gameByHeight(Line line, LadderGameColumn ladderGameColumn) {
+    private LadderGameColumn gameByPosition(Line line, LadderGameColumn ladderGameColumn) {
         return moveStrategy(ladderGameColumn.getPosition(), line, ladderGameColumn);
     }
 
