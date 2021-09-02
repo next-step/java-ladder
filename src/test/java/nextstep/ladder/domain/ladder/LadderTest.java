@@ -3,6 +3,7 @@ package nextstep.ladder.domain.ladder;
 import nextstep.ladder.domain.ladder.factory.LadderFactory;
 import nextstep.ladder.domain.ladder.line.HorizontalLine;
 import nextstep.ladder.domain.ladder.line.strategy.HorizontalLinesGenerateStrategy;
+import nextstep.ladder.domain.participant.Participant;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,8 +22,11 @@ class LadderTest {
 
     @BeforeEach
     void setUp() {
-        prevLadder = LadderFactory.generateWith(HEIGHT, generateStrategy());
-        ladder = LadderFactory.generateWith(HEIGHT, generateStrategy());
+
+        Participant jay = new Participant("jay");
+        Participant jason = new Participant("jason");
+        prevLadder = LadderFactory.generateWith(HEIGHT, jason, generateStrategy());
+        ladder = LadderFactory.generateWith(HEIGHT, jay, generateStrategy());
     }
 
     @Test

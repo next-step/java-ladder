@@ -1,16 +1,17 @@
 package nextstep.ladder.domain.ladder;
 
 import nextstep.ladder.domain.ladder.line.HorizontalLine;
+import nextstep.ladder.domain.participant.Participant;
 
 import java.util.List;
 
 public class Ladder {
 
-    private final int height;
+    private final Participant participant;
     private final List<HorizontalLine> horizontalLines;
 
-    public Ladder(int height, List<HorizontalLine> horizontalLines) {
-        this.height = height;
+    public Ladder(Participant participant, List<HorizontalLine> horizontalLines) {
+        this.participant = participant;
         this.horizontalLines = horizontalLines;
     }
 
@@ -32,6 +33,6 @@ public class Ladder {
     }
 
     public int getHeight() {
-        return height;
+        return horizontalLines.size();
     }
 }
