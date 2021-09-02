@@ -24,7 +24,7 @@ public class Participants {
         return participants.get(index);
     }
 
-    public Participants findByParticipantName(Name name) {
+    public Participants findByName(Name name) {
         String participantName = name.getValue();
 
         if(participantName.equals("all"))

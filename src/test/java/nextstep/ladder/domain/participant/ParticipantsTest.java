@@ -41,7 +41,7 @@ class ParticipantsTest {
     void findByParticipantName(String input) {
         Name name = new Name(input);
 
-        Participants actual = assertDoesNotThrow(() -> participants.findByParticipantName(name));
+        Participants actual = assertDoesNotThrow(() -> participants.findByName(name));
         assertEquals(1, actual.size());
         assertEquals(input, actual.get(0).getName());
     }
@@ -51,7 +51,7 @@ class ParticipantsTest {
     @MethodSource("nameParams")
     void findByParticipantNameAll(List<Name> input) {
         Name name = new Name("all");
-        Participants actual = assertDoesNotThrow(() -> participants.findByParticipantName(name));
+        Participants actual = assertDoesNotThrow(() -> participants.findByName(name));
 
         assertEquals(4, actual.size());
         assertEquals(input.get(0).getValue(), actual.get(0).getName());
@@ -77,7 +77,7 @@ class ParticipantsTest {
     @DisplayName("존재하지 않는 이름인 경우 예외가 발생한다")
     @MethodSource("notExistsNameParams")
     void findByParticipantNameThrowsException(Name name) {
-        assertThrows(IllegalArgumentException.class, () -> participants.findByParticipantName(name));
+        assertThrows(IllegalArgumentException.class, () -> participants.findByName(name));
     }
 
     private static Stream<Arguments> notExistsNameParams() {
