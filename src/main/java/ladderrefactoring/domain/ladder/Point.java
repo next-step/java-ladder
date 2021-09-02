@@ -18,8 +18,8 @@ public class Point {
         return new Point(0, Direction.first(directionStrategy));
     }
 
-    public static Point of(Point pointBefore, DirectionStrategy directionStrategy) {
-        return new Point(pointBefore.index + 1, Direction.of(pointBefore.direction, directionStrategy));
+    public static Point next(Point pointBefore, DirectionStrategy directionStrategy) {
+        return new Point(pointBefore.index + 1, Direction.next(pointBefore.direction, directionStrategy));
     }
 
     public static Point last(Point pointBefore) {

@@ -20,7 +20,7 @@ public class Line {
         points.add(currentPoint);
 
         for (int i = SECOND_INDEX; i < widthOfLadder-1; i++) {
-            currentPoint = Point.of(currentPoint, directionStrategy);
+            currentPoint = Point.next(currentPoint, directionStrategy);
             points.add(currentPoint);
         }
 

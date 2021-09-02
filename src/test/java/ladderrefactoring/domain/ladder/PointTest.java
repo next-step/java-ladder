@@ -23,9 +23,9 @@ class PointTest {
     void create() {
         // when
         Point point1 = Point.first(() -> false);
-        Point point2 = Point.of(point1, () -> false);
+        Point point2 = Point.next(point1, () -> false);
         // then
-        assertThat(point2).isEqualTo(Point.of(point1, () -> false));
+        assertThat(point2).isEqualTo(Point.next(point1, () -> false));
     }
 
     @Test
@@ -35,7 +35,7 @@ class PointTest {
         Point pointFirst = Point.first(() -> true);
         Point pointLast = Point.last(pointFirst);
         // then
-        assertThat(pointLast).isEqualTo(Point.of(pointFirst, () -> false));
+        assertThat(pointLast).isEqualTo(Point.next(pointFirst, () -> false));
     }
 
     @ParameterizedTest(name = "Point 이동 [{index}] {0} {1} {2} -> {3}")
@@ -43,7 +43,7 @@ class PointTest {
     void move(boolean left, boolean right, int result) {
         // when
         Point point0 = Point.first(() -> left);
-        Point point1 = Point.of(point0, () -> right);
+        Point point1 = Point.next(point0, () -> right);
         // then
         assertThat(point1.move()).isEqualTo(result);
     }

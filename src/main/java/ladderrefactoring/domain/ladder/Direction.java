@@ -22,7 +22,7 @@ public class Direction {
         return new Direction(false, directionStrategy.create());
     }
 
-    public static Direction of(Direction directionBefore, DirectionStrategy directionStrategy) {
+    public static Direction next(Direction directionBefore, DirectionStrategy directionStrategy) {
         return new Direction(directionBefore.right, directionStrategy.create());
     }
 

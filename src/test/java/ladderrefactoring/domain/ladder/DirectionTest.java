@@ -14,10 +14,10 @@ class DirectionTest {
     void create_first() {
         // when
         Direction direction0 = Direction.first(() -> false);
-        Direction direction1 = Direction.of(direction0, () -> false);
+        Direction direction1 = Direction.next(direction0, () -> false);
 
         // then
-        assertThat(direction1).isEqualTo(Direction.of(direction0, () -> false));
+        assertThat(direction1).isEqualTo(Direction.next(direction0, () -> false));
         assertThat(direction0.left()).isFalse();
     }
 
@@ -39,10 +39,10 @@ class DirectionTest {
     void create() {
         // when
         Direction direction0 = Direction.first(() -> false);
-        Direction direction1 = Direction.of(direction0, () -> false);
+        Direction direction1 = Direction.next(direction0, () -> false);
 
         // then
-        assertThat(direction1).isEqualTo(Direction.of(direction0, () -> false));
+        assertThat(direction1).isEqualTo(Direction.next(direction0, () -> false));
         assertThat(direction1.left()).isFalse();
     }
 
@@ -52,7 +52,7 @@ class DirectionTest {
         // given
         Direction direction = Direction.first(() -> true);
         // when, then
-        assertThatThrownBy(() -> Direction.of(direction, () -> true))
+        assertThatThrownBy(() -> Direction.next(direction, () -> true))
                 .isInstanceOf(CustomException.class);
     }
 }
