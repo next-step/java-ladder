@@ -22,18 +22,6 @@ public class Point {
         return new Point(pointBefore.index + 1, Direction.of(pointBefore.direction, directionStrategy));
     }
 
-    public static Point first(boolean right) {
-        return new Point(0, Direction.first(right));
-    }
-
-    public static Point of(int index, boolean left, boolean right) {
-        return new Point(index, Direction.of(left, right));
-    }
-
-    public static Point of(Point pointBefore, boolean right) {
-        return new Point(pointBefore.index + 1, Direction.of(pointBefore.direction, right));
-    }
-
     public static Point last(Point pointBefore) {
         return new Point(pointBefore.index + 1, Direction.last(pointBefore.direction));
     }

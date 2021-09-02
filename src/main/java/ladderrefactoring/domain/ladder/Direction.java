@@ -26,18 +26,6 @@ public class Direction {
         return new Direction(directionBefore.right, directionStrategy.create());
     }
 
-    public static Direction first(boolean right) {
-        return new Direction(false, right);
-    }
-
-    public static Direction of(boolean left, boolean right) {
-        return new Direction(left, right);
-    }
-
-    public static Direction of(Direction directionBefore, boolean right) {
-        return new Direction(directionBefore.right, right);
-    }
-
     public static Direction last(Direction directionBefore) {
         return new Direction(directionBefore.right, false);
     }

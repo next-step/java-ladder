@@ -10,46 +10,49 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class DirectionTest {
 
     @Test
-    @DisplayName("first Direction 생성 정적 팩토리")
+    @DisplayName("first Direction 생성")
     void create_first() {
         // when
-        Direction direction0 = Direction.first(false);
+        Direction direction0 = Direction.first(() -> false);
+        Direction direction1 = Direction.of(direction0, () -> false);
 
         // then
-        assertThat(direction0).isEqualTo(Direction.of(false, false));
+        assertThat(direction1).isEqualTo(Direction.of(direction0, () -> false));
         assertThat(direction0.left()).isFalse();
     }
 
     @Test
-    @DisplayName("이전과 관련된 last Direction 생성 정적 팩토리")
+    @DisplayName("last Direction 생성")
     void create_last() {
         // when
-        Direction direction0 = Direction.of(true, false);
+        Direction direction0 = Direction.first(() -> false);
         Direction direction1 = Direction.last(direction0);
 
         // then
-        assertThat(direction1).isEqualTo(Direction.of(false, false));
+        assertThat(direction1).isEqualTo(Direction.last(direction0));
         assertThat(direction1.left()).isFalse();
         assertThat(direction1.right()).isFalse();
     }
 
     @Test
-    @DisplayName("이전과 관련된 Direction 생성 정적 팩토리")
+    @DisplayName("중간 Direction 생성")
     void create() {
         // when
-        Direction direction0 = Direction.of(true, false);
-        Direction direction1 = Direction.of(direction0, false);
+        Direction direction0 = Direction.first(() -> false);
+        Direction direction1 = Direction.of(direction0, () -> false);
 
         // then
-        assertThat(direction0).isEqualTo(Direction.of(true, false));
+        assertThat(direction1).isEqualTo(Direction.of(direction0, () -> false));
         assertThat(direction1.left()).isFalse();
     }
 
     @Test
     @DisplayName("Direction 생성 실패 : true, true")
     void create_fail() {
+        // given
+        Direction direction = Direction.first(() -> true);
         // when, then
-        assertThatThrownBy(() -> Direction.of(true, true))
+        assertThatThrownBy(() -> Direction.of(direction, () -> true))
                 .isInstanceOf(CustomException.class);
     }
 }
