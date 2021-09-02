@@ -10,6 +10,8 @@ import java.util.stream.Collectors;
 
 public class StreamStudy {
 
+    private static final int THREE = 3;
+
     public static long countWords() throws IOException {
         String contents = new String(Files.readAllBytes(Paths
                 .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
@@ -40,8 +42,13 @@ public class StreamStudy {
 
     public static long sumOverThreeAndDouble(List<Integer> numbers) {
         return numbers.stream()
-            .filter(number -> number > 3)
+            .filter(StreamStudy::isOverThree)
             .map(number -> number * 2)
             .reduce(0, (x,y) -> x+y);
     }
+
+    private static boolean isOverThree(int number){
+        return number > THREE;
+    }
+
 }
