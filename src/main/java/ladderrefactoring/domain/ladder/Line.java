@@ -1,6 +1,5 @@
 package ladderrefactoring.domain.ladder;
 
-import ladderrefactoring.exception.CustomException;
 import ladderrefactoring.strategy.LineStrategy;
 
 import java.util.*;
@@ -10,12 +9,14 @@ public class Line {
     public static final String EXIST_TRUE_REPETITION = "연속된 사다리가 존재 합니다.";
 
     private final List<Boolean> points = new ArrayList<>();
+    private final List<Point> points2 = new ArrayList<>();
     private int[] checkPointArr;
     private int[] movedPositionArr;
 
+
     public Line(int widthOfLadder, LineStrategy lineStrategy) {
         initLine(widthOfLadder, lineStrategy);
-        validateTrueRepetition(points);
+        initLine2(widthOfLadder, lineStrategy);
     }
 
     private void initLine(int widthOfLadder, LineStrategy lineStrategy) {
@@ -24,19 +25,16 @@ public class Line {
         }
     }
 
-    private void validateTrueRepetition(List<Boolean> points) {
-        for (int i = 0; i < points.size()-1; i++) {
-            boolean currentValue = points.get(i);
-            boolean afterValue = points.get(i + 1);
+    private void initLine2(int widthOfLadder, LineStrategy lineStrategy) {
+        Point currentPoint = Point.first(lineStrategy.create());
+        points2.add(currentPoint);
 
-            checkTrueRepetition(currentValue, afterValue);
+        for (int i = 0; i < widthOfLadder-1; i++) {
+            currentPoint = Point.of(currentPoint, lineStrategy.create());
+            points2.add(currentPoint);
         }
-    }
 
-    private void checkTrueRepetition(boolean beforeValue, boolean currentValue) {
-        if (beforeValue && currentValue) {
-            throw new CustomException(EXIST_TRUE_REPETITION);
-        }
+        points2.add(Point.last(currentPoint));
     }
 
     public List<Boolean> points() {
@@ -82,13 +80,16 @@ public class Line {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Line)) return false;
         Line line = (Line) o;
-        return Objects.equals(points, line.points);
+        return Objects.equals(points, line.points) && Objects.equals(points2, line.points2) && Arrays.equals(checkPointArr, line.checkPointArr) && Arrays.equals(movedPositionArr, line.movedPositionArr);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(points);
+        int result = Objects.hash(points, points2);
+        result = 31 * result + Arrays.hashCode(checkPointArr);
+        result = 31 * result + Arrays.hashCode(movedPositionArr);
+        return result;
     }
 }
