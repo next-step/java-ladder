@@ -17,27 +17,22 @@ public class LadderTest {
     @DisplayName("Ladder 생성")
     void create() {
         // given
-        People people = new People(Arrays.asList("a,b,c,d,e".split(",")));
+        int widthOfLadder = 5;
         int heightOfLadder = 5;
-        DirectionStrategy directionStrategy = new RandomDirectionStrategy(){
-            @Override
-            protected boolean currentPoint() {
-                return true;
-            }
-        };
+        DirectionStrategy directionStrategy = () -> false;
 
         // when
-        Ladder ladder = new Ladder(people.subtractNumberFromSize(1), heightOfLadder, directionStrategy);
+        Ladder ladder = new Ladder(widthOfLadder, heightOfLadder, directionStrategy);
 
         // then
-        assertThat(ladder).isEqualTo(new Ladder(people.subtractNumberFromSize(1), heightOfLadder, directionStrategy));
+        assertThat(ladder).isEqualTo(new Ladder(widthOfLadder, heightOfLadder, directionStrategy));
     }
 
     @Test
     @DisplayName("Ladder result 연산")
     void result() {
         // given
-        Ladder ladder = new Ladder(3, 1, new RandomDirectionStrategy(){
+        Ladder ladder = new Ladder(4, 1, new RandomDirectionStrategy(){
             @Override
             protected boolean currentPoint() {
                 return true;
