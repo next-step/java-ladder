@@ -1,21 +1,18 @@
 package nextstep.ladder.view.output;
 
 import nextstep.ladder.domain.ladder.Ladder;
-import nextstep.ladder.domain.ladder.Ladders;
 import nextstep.ladder.domain.ladder.line.HorizontalLine;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class LaddersOutputView {
+public class StageOutputView {
 
     private static final String LADDER_NOT_EXISTS_HORIZONTAL_LINE_PADDING = "     ";
     private static final String LADDER_HEIGHT_UNIT = "|";
     private static final String LADDER_HORIZONTAL_LINE = "-----";
 
-    public void appendLadders(Ladders ladders, StringBuilder stringBuilder) {
-        List<Ladder> ladderList = ladders.stream().collect(Collectors.toList());
-        Ladder ladder = ladderList.get(0);
+    public void appendLadders(List<Ladder> ladders, StringBuilder stringBuilder) {
+        Ladder ladder = ladders.get(0);
 
         int maxHeight = ladder.getHeight();
         for (int height = 0; height < maxHeight; height++) {
@@ -26,9 +23,9 @@ public class LaddersOutputView {
         stringBuilder.delete(lastNewLineIndex, stringBuilder.length());
     }
 
-    private void appendLadderPerHeight(Ladders ladders, StringBuilder stringBuilder, int height) {
+    private void appendLadderPerHeight(List<Ladder> ladders, StringBuilder stringBuilder, int height) {
         stringBuilder.append(LADDER_NOT_EXISTS_HORIZONTAL_LINE_PADDING);
-        ladders.stream().forEach((l) -> appendLadder(l, stringBuilder, height));
+        ladders.forEach((l) -> appendLadder(l, stringBuilder, height));
         stringBuilder.append(OutputView.NEW_LINE);
     }
 

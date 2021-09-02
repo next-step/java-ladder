@@ -1,15 +1,17 @@
 package nextstep.ladder.view.output;
 
-import nextstep.ladder.domain.executionresult.ExecutionResult;
-import nextstep.ladder.domain.ladder.Ladders;
+import nextstep.ladder.domain.executionresult.ExecutionResults;
+import nextstep.ladder.domain.ladder.Ladder;
 import nextstep.ladder.domain.participant.Participants;
+
+import java.util.List;
 
 public class OutputView {
 
     public static final String NEW_LINE = System.lineSeparator();
 
     private final ParticipantsOutputView participantsOutputView = new ParticipantsOutputView();
-    private final LaddersOutputView laddersOutputView = new LaddersOutputView();
+    private final StageOutputView stageOutputView = new StageOutputView();
     private final ExecutionResultView executionResultView = new ExecutionResultView();
 
     public void printParticipants(Participants participants) {
@@ -25,9 +27,9 @@ public class OutputView {
         stringBuilder.append(NEW_LINE);
     }
 
-    public void printLadders(Ladders ladders) {
+    public void printLadders(List<Ladder> ladders) {
         StringBuilder stringBuilder = new StringBuilder();
-        laddersOutputView.appendLadders(ladders, stringBuilder);
+        stageOutputView.appendLadders(ladders, stringBuilder);
         print(stringBuilder.toString());
     }
 

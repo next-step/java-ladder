@@ -1,13 +1,15 @@
 package nextstep.ladder.domain.ladder;
 
-import java.util.List;
-import java.util.stream.Stream;
+import nextstep.ladder.domain.executionresult.ExecutionResults;
 
-public class Ladders {
+import java.util.List;
+
+public class Stage {
 
     private List<Ladder> ladders;
+    private ExecutionResults executionResults;
 
-    public Ladders(List<Ladder> ladders) {
+    public Stage(List<Ladder> ladders) {
         removeDuplicateHorizontalLines(ladders);
         this.ladders = ladders;
     }
@@ -20,7 +22,8 @@ public class Ladders {
         }
     }
 
-    public Stream<Ladder> stream() {
-        return ladders.stream();
+
+    public List<Ladder> getLadders() {
+        return ladders;
     }
 }

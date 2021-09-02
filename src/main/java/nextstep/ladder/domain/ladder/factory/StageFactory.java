@@ -1,26 +1,29 @@
 package nextstep.ladder.domain.ladder.factory;
 
 import nextstep.ladder.domain.ladder.Ladder;
-import nextstep.ladder.domain.ladder.Ladders;
+import nextstep.ladder.domain.ladder.Stage;
 import nextstep.ladder.domain.ladder.line.HorizontalLine;
 import nextstep.ladder.domain.ladder.line.strategy.HorizontalLinesGenerateStrategy;
+import nextstep.ladder.domain.participant.Participant;
+import nextstep.ladder.domain.participant.Participants;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class LaddersFactory {
+public class StageFactory {
 
-    private LaddersFactory() {
+    private StageFactory() {
     }
 
-    public static Ladders generateWith(int height, int count, HorizontalLinesGenerateStrategy strategy) {
+    public static Stage generateWith(int height, Participants participants, HorizontalLinesGenerateStrategy strategy) {
         List<Ladder> ladders = new ArrayList<>();
-        for (int i = 0; i < count; i++) {
-            Ladder ladder = LadderFactory.generateWith(height, strategy);
+        for (int i = 0; i < participants.size(); i++) {
+            Participant participant = participants.get(i);
+            Ladder ladder = LadderFactory.generateWith(height, participant, strategy);
             ladders.add(ladder);
         }
         removeLastLadderHorizontalLines(ladders);
-        return new Ladders(ladders);
+        return new Stage(ladders);
     }
 
     private static void removeLastLadderHorizontalLines(List<Ladder> ladders) {
