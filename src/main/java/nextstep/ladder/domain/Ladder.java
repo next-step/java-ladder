@@ -1,19 +1,19 @@
 package nextstep.ladder.domain;
 
-import java.util.ArrayList;
-import java.util.Objects;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Ladder {
 
-    private ArrayList<Line> ladder = new ArrayList<>();
+    private List<Line> ladder;
 
-    public Ladder(int ladderHeight, int userCount){
-        for(int i = 0; i < ladderHeight; i++ ){
-            ladder.add(new Line(userCount, new RandomMakeStrategy()));
-        }
+    public Ladder(int ladderHeight, int userCount) {
+        RandomMakeStrategy randomMakeStrategy = new RandomMakeStrategy();
+        ladder = Stream.generate(() -> new Line(userCount, randomMakeStrategy)).limit(ladderHeight).collect(Collectors.toList());
     }
 
-    public ArrayList<Line> getLadder(){
+    public List<Line> getLadder() {
         return ladder;
     }
 

@@ -1,12 +1,13 @@
 package nextstep.ladder.domain;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Line {
 
     private static final int LAST_LADDER_OFFSET = 2;
 
-    private ArrayList<Boolean> points = new ArrayList<>();
+    private List<Boolean> points = new ArrayList<>();
 
     public Line(int countOfPerson, LineMakeStrategy ladderMakeStrategy) {
         points.add(ladderMakeStrategy.canMake());
@@ -24,7 +25,7 @@ public class Line {
     }
 
 
-    public ArrayList<Boolean> getPoints() {
+    public List<Boolean> getPoints() {
         return points;
     }
 

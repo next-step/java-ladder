@@ -1,7 +1,6 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.User;
-import nextstep.ladder.domain.Users;
+import nextstep.ladder.domain.UserName;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -12,25 +11,25 @@ public class InputView {
 
     private static final Scanner SCANNER = new Scanner(System.in);
 
-    public static Users name() {
+    public static List<UserName> getUserNames() {
         while (true) {
             try {
-                return new Users(makeUsers());
+                return makeUsers();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    private static List<User> makeUsers() {
+    private static List<UserName> makeUsers() {
         String names;
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         names = SCANNER.next();
         String[] userNameList = names.split(",");
-        List<User> users = new ArrayList<>();
-        for (String userName : userNameList) {
-            User user = new User(userName);
-            users.add(user);
+        List<UserName> users = new ArrayList<>();
+        for (String name : userNameList) {
+            UserName userName = new UserName(name);
+            users.add(userName);
         }
         return users;
     }
