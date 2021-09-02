@@ -60,7 +60,7 @@ public abstract class LadderLinesGenerator {
         return generatePoints(pointValues);
     }
 
-    public static List<LadderPoint> generatePoints(List<Boolean> pointValues) {
+    private static List<LadderPoint> generatePoints(List<Boolean> pointValues) {
         Boolean rightOfFirstPoint = pointValues.get(FIRST_INDEX);
         LadderPoint firstPoint = LadderPoint.first(rightOfFirstPoint);
         List<LadderPoint> points = new ArrayList<>(Collections.singletonList(firstPoint));

@@ -3,8 +3,12 @@ package ladder.model;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
+import java.util.List;
 
+import static ladder.model.LadderLineGeneratorTest.generatePointsMethod;
+import static ladder.model.LadderLineGeneratorTest.ladderLinesGenerator;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
@@ -56,13 +60,13 @@ public class LadderGameTest {
 
     @DisplayName("플레이어의 사다리 실행 결과가 정상적으로 찾아져야 한다.")
     @Test
-    void findLadderResultOfPlayerTest() {
+    void findLadderResultOfPlayerTest() throws InvocationTargetException, IllegalAccessException {
         // given
         Players players = new Players(Arrays.asList("aiden", "pobi", "crong"));
 
-        LadderLine firstLine = new LadderLine(LadderLinesGenerator.generatePoints(Arrays.asList(true, false)));
-        LadderLine secondLine = new LadderLine(LadderLinesGenerator.generatePoints(Arrays.asList(false, true)));
-        LadderLine thirdLine = new LadderLine(LadderLinesGenerator.generatePoints(Arrays.asList(true, false)));
+        LadderLine firstLine = new LadderLine((List<LadderPoint>) generatePointsMethod.invoke(ladderLinesGenerator, Arrays.asList(true, false)));
+        LadderLine secondLine = new LadderLine((List<LadderPoint>) generatePointsMethod.invoke(ladderLinesGenerator, Arrays.asList(false, true)));
+        LadderLine thirdLine = new LadderLine((List<LadderPoint>) generatePointsMethod.invoke(ladderLinesGenerator, Arrays.asList(true, false)));
         Ladder ladder = new Ladder(Arrays.asList(firstLine, secondLine, thirdLine));
 
         LadderResults results = new LadderResults(Arrays.asList("1000", "2000", "3000"));
