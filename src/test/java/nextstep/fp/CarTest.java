@@ -37,7 +37,7 @@ public class CarTest {
     @Test
     public void test() {
         List<Integer> list = new ArrayList<>(Arrays.asList(1,2,3,4,5));
-        list.stream()
+        list = list.stream()
                 .map(integer -> integer * 2)
                 .collect(Collectors.toList());
         System.out.println(list);

@@ -45,11 +45,14 @@ public class LadderGameManager {
     }
 
     public void calculateResult(Result results) {
-        for (int i = 0; i < ladderGameColumns.size(); i++) {
-            int position = ladderGameColumns.get(i).getPosition();
-            String name = ladderGameColumns.get(i).getName();
-            String result = results.getStrings().get(ladderGameColumns.get(i).getPosition());
-            ladderGameColumns.set(i, new LadderGameColumn(position, name, result));
-        }
+        ladderGameColumns = ladderGameColumns.stream()
+                .map(ladderGameColumn -> addResultInToLadderGameColumns(ladderGameColumn, results))
+                .collect(Collectors.toList());
+    }
+
+    private LadderGameColumn addResultInToLadderGameColumns(LadderGameColumn ladderGameColumn, Result results) {
+        int position = ladderGameColumn.getPosition();
+        String result = results.getStrings().get(position);
+        return new LadderGameColumn(position, ladderGameColumn.getName(), result);
     }
 }
