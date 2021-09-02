@@ -47,7 +47,7 @@ public class StreamStudy {
         return numbers.stream()
             .filter(StreamStudy::isOverThree)
             .map(StreamStudy::multiplyByTwo)
-            .reduce(0, (x, y) -> x + y);
+            .reduce(0, Integer::sum);
     }
 
     private static boolean isOverThree(int number) {
@@ -57,6 +57,5 @@ public class StreamStudy {
     private static int multiplyByTwo(int number) {
         return number * TWO;
     }
-
 
 }
