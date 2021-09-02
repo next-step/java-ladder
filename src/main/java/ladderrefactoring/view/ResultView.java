@@ -7,6 +7,7 @@ import ladderrefactoring.domain.datas.People;
 import ladderrefactoring.domain.datas.Results;
 import ladderrefactoring.domain.ladder.Ladder;
 import ladderrefactoring.domain.ladder.Line;
+import ladderrefactoring.domain.ladder.Point;
 
 import java.util.Map;
 
@@ -62,8 +63,8 @@ public class ResultView {
         stringBuilder.append(System.lineSeparator());
     }
 
-    private static String ladderString(Boolean bool) {
-        if (bool) {
+    private static String ladderString(Point point) {
+        if (point.direction().left()) {
             return LINE_EXIST;
         }
         return LINE_EMPTY;
