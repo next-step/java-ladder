@@ -6,28 +6,28 @@ import java.util.stream.Collectors;
 
 public class Ladder {
 
-    private final List<Line> lines;
+    private final List<LadderLine> ladderLines;
 
     public Ladder(final Players players, final Height height) {
-        this.lines = height.intStream()
-                .mapToObj(i -> new Line(players.count()))
+        this.ladderLines = height.intStream()
+                .mapToObj(i -> LadderLine.init(players.count()))
                 .collect(Collectors.toList());
     }
 
-    public Ladder(final List<Line> lines) {
-        this.lines = lines;
+    public Ladder(final List<LadderLine> ladderLines) {
+        this.ladderLines = ladderLines;
     }
 
     public List<List<Boolean>> getLadderBarStatus() {
-        return lines.stream()
-                .map(Line::getLineBarStatus)
+        return ladderLines.stream()
+                .map(LadderLine::getLineBarStatus)
                 .collect(Collectors.toList());
     }
 
     public int startMoving(int startPosition) {
         AtomicInteger position = new AtomicInteger(startPosition);
-        lines.forEach(line -> {
-            int nextPosition = line.moveFrom(position.get());
+        ladderLines.forEach(ladderLine -> {
+            int nextPosition = ladderLine.move(position.get());
             position.set(nextPosition);
         });
         return position.get();

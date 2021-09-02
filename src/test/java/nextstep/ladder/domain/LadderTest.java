@@ -34,11 +34,11 @@ class LadderTest {
     public void startMoving() {
         // given
         // given
-        Point point0 = new Point(0, Direction.RIGHT);
-        Point point1 = new Point(1, Direction.LEFT);
-        Point point2 = new Point(2, Direction.NONE);
+        Point point0 = new Point(0, Direction.of(false, true));
+        Point point1 = new Point(1, Direction.of(true, false));
+        Point point2 = new Point(2, Direction.of(false, false));
         List<Point> points = Arrays.asList(point0, point1, point2);
-        Ladder ladder = new Ladder(Collections.singletonList(new Line(points)));
+        Ladder ladder = new Ladder(Collections.singletonList(new LadderLine(points)));
         int expectedPoint0 = 1;
         int expectedPoint1 = 0;
         int expectedPoint2 = 2;

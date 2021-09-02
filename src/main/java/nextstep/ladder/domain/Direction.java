@@ -1,31 +1,68 @@
 package nextstep.ladder.domain;
 
-import java.util.function.IntUnaryOperator;
+import java.util.Objects;
 
-public enum Direction {
-    NONE(position -> position),
-    LEFT(position -> position - 1),
-    RIGHT(position -> position + 1);
+import static java.lang.Boolean.FALSE;
+import static nextstep.ladder.domain.LadderPointGenerator.generatePoint;
 
-    private final IntUnaryOperator move;
+public class Direction {
+    private final boolean left;
+    private final boolean right;
 
-    Direction(final IntUnaryOperator move) {
-        this.move = move;
+    private Direction(boolean left, boolean right) {
+        validateDirection(left, right);
+        this.left = left;
+        this.right = right;
     }
 
-    public int move(int position) {
-        return move.applyAsInt(position);
-    }
-
-    public static Direction decide(final boolean prevInstall, final boolean currentInstall) {
-        if (prevInstall) {
-            return LEFT;
+    private void validateDirection(final boolean left, final boolean right) {
+        if (left && right) {
+            throw new IllegalStateException();
         }
-
-        if (currentInstall) {
-            return RIGHT;
-        }
-
-        return NONE;
     }
+
+    public boolean isRight() {
+        return right;
+    }
+
+    public boolean isLeft() {
+        return left;
+    }
+
+    public Direction next(boolean nextRight) {
+        return of(right, nextRight);
+    }
+
+    public Direction next() {
+        return right
+                ? next(FALSE)
+                : next(generatePoint());
+    }
+
+    public static Direction of(boolean first, boolean second) {
+        return new Direction(first, second);
+    }
+
+    public static Direction first(boolean right) {
+        return of(FALSE, right);
+    }
+
+    public Direction last() {
+        return of(right, FALSE);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Direction pair = (Direction) o;
+        return left == pair.left &&
+                right == pair.right;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(left, right);
+    }
+
 }
