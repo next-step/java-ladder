@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public class Ladder {
-    private static final int LADDER_MIN_COUNT = 2;
+    private static final int LADDER_MIN_COUNT = 1;
     private List<Line> lines;
 
     public Ladder(int playersCount, int height) {
@@ -16,6 +16,17 @@ public class Ladder {
         for (int i = 0; i < height; i++) {
             lines.add(new Line(playersCount));
         }
+    }
+
+    public Ladder(List<Line> lines) {
+        this.lines = lines;
+    }
+
+    public int search(int index) {
+        for (Line line : lines) {
+            index = line.search(index);
+        }
+        return index;
     }
 
     public int size() {

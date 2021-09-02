@@ -1,12 +1,14 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.util.Validation;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Players {
-    private static final String DELIMITER = ",";
+    public static final String DELIMITER = ",";
     private static final int PLAYERS_MIN_COUNT = 2;
     private List<Name> players;
 
@@ -15,6 +17,7 @@ public class Players {
     }
 
     private static List<Name> toList(String players) {
+        Validation.isValidPlayers(players);
         return Arrays.stream(players.split(DELIMITER))
                 .map(Name::new)
                 .collect(Collectors.toList());
@@ -27,8 +30,20 @@ public class Players {
         this.players = players;
     }
 
+    public int indexOf(String player) {
+        return players.indexOf(new Name(player));
+    }
+
+    public boolean isContain(String player) {
+        return players.contains(new Name(player));
+    }
+
     public int size() {
         return players.size();
+    }
+
+    public String getName(int index) {
+        return  players.get(index).toString();
     }
 
     public Stream<Name> stream() {

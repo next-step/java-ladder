@@ -1,14 +1,14 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.util.RandomUtil;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Stream;
 
 public class Line {
     private static final int START_INDEX = 1;
-    private static final Random random = new Random();
-    private List<Boolean> points;
+    private List<Point> points;
 
     public Line() {
         this(0);
@@ -16,28 +16,35 @@ public class Line {
 
     public Line(int playersCounts) {
         this.points = new ArrayList<>();
-        create(playersCounts);
+        createPoint(playersCounts);
     }
 
-    private void create(int playersCount) {
-        points.add(false);
-        for (int i = START_INDEX; i < playersCount; i++) {
-            points.add(checkPreviousPoint(points.get(i - 1)));
+    public Line(List<Point> points) {
+        if (points.get(points.size() - 1).nextPoint()) {
+            throw new IllegalArgumentException("올바른 사다리가 아닙니다");
         }
+        this.points = points;
     }
 
-    public boolean checkPreviousPoint(boolean previousPoint) {
-        if (previousPoint) {
-            return false;
+    private void createPoint(int playersCounts) {
+        points.add(Point.init(RandomUtil.generate())); // 처음 사다리 Line은 지정 된 값
+        for (int i = START_INDEX; i < playersCounts - 1; i++) {
+            points.add(points.get(i - 1).insert(RandomUtil.generate()));
         }
-        return random.nextBoolean();
+        points.add(points.get(playersCounts - 2).last());
+    }
+
+    public int search(int index) {
+        Direction direction = new Direction(index);
+        int point = points.get(index).move();
+        return direction.move(point);
     }
 
     public int size() {
         return points.size();
     }
 
-    public Stream<Boolean> stream() {
+    public Stream<Point> stream() {
         return points.stream();
     }
 
