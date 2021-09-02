@@ -15,6 +15,8 @@ public class Line {
     private static final String LINE_EXIST = "-----|";
 
     private final List<Boolean> points = new ArrayList<>();
+    private int[] checkPointArr;
+    private int[] movedPositionArr;
 
     public Line(int widthOfLadder, LineStrategy lineStrategy) {
         initLine(widthOfLadder, lineStrategy);
@@ -42,10 +44,6 @@ public class Line {
         }
     }
 
-    public List<Boolean> getPoints() {
-        return Collections.unmodifiableList(points);
-    }
-
     public void addResultTo(StringBuilder stringBuilder) {
         stringBuilder.append(LINE_EMPTY);
 
@@ -61,6 +59,42 @@ public class Line {
             return LINE_EXIST;
         }
         return LINE_EMPTY;
+    }
+
+    public int movePosition(int currentPosition) {
+        checkPointArr = new int[]{leftPointOf(currentPosition), rightPointOf(currentPosition)};
+        movedPositionArr = new int[]{moveLeft(currentPosition), moveRight(currentPosition)};
+
+        for (int i = 0; i < checkPointArr.length; i++) {
+            currentPosition = checkDirectionAndMove(currentPosition, i);
+            continue;
+        }
+
+        return currentPosition;
+    }
+
+    private int checkDirectionAndMove(int currentPosition, int i) {
+        if (checkPointArr[i] < 0 || checkPointArr[i] >= points.size() || !points.get(checkPointArr[i])) {
+            return currentPosition;
+        }
+
+        return movedPositionArr[i];
+    }
+
+    private int moveRight(int currentPosition) {
+        return currentPosition + 1;
+    }
+
+    private int moveLeft(int currentPosition) {
+        return currentPosition - 1;
+    }
+
+    private int rightPointOf(int currentPosition) {
+        return currentPosition;
+    }
+
+    private int leftPointOf(int currentPosition) {
+        return currentPosition - 1;
     }
 
     @Override

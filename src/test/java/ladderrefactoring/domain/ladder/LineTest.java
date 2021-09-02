@@ -28,8 +28,6 @@ class LineTest {
 
         // then
         assertThat(line).isEqualTo(new Line(widthOfLadder, lineStrategy));
-        assertThat(line.getPoints().get(0))
-                .isInstanceOf(Boolean.class);
     }
 
     @Test
@@ -43,5 +41,27 @@ class LineTest {
         assertThatThrownBy(() -> new Line(countOfPeople, lineStrategy))
                 .isInstanceOf(CustomException.class)
                 .hasMessageContaining(Line.EXIST_TRUE_REPETITION);
+    }
+
+    @Test
+    @DisplayName("point 이동")
+    void move() {
+        // given
+        int widthOfLadder = 4;
+        LineStrategy lineStrategy = new RandomLineStrategy(){
+            @Override
+            protected boolean currentPoint() {
+                return true;
+            }
+        };
+        Line line = new Line(widthOfLadder, lineStrategy);
+
+        // when
+        int movedPosition1 = line.movePosition(1);
+        int movedPosition2 = line.movePosition(2);
+
+        // then
+        assertThat(movedPosition1).isEqualTo(0);
+        assertThat(movedPosition2).isEqualTo(3);
     }
 }
