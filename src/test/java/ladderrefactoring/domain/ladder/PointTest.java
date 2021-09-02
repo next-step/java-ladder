@@ -1,4 +1,5 @@
 package ladderrefactoring.domain.ladder;
+
 import ladderrefactoring.exception.CustomException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -8,6 +8,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class DirectionTest {
+
     @Test
     @DisplayName("first Direction 생성 정적 팩토리")
     void create_정적_팩토리_first() {
