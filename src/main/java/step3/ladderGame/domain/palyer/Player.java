@@ -1,7 +1,7 @@
 package step3.ladderGame.domain.palyer;
 
-import step2.ladderGame.domain.exception.NameLengthException;
-import step2.ladderGame.domain.exception.NameNullOrEmptyException;
+import step3.ladderGame.domain.exception.NameLengthException;
+import step3.ladderGame.domain.exception.NameNullOrEmptyException;
 import step3.ladderGame.domain.exception.IndexLowException;
 
 public final class Player {
@@ -32,11 +32,11 @@ public final class Player {
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public int getIndex() {
-        return this.index;
+        return index;
     }
 
 }

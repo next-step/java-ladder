@@ -45,21 +45,21 @@ public final class Point {
     }
 
     public int move(final int index) {
-        if (this.leftDirection) {
+        if (leftDirection) {
             return index - 1;
         }
-        if (this.rightDirection) {
+        if (rightDirection) {
             return index + 1;
         }
         return index;
     }
 
     public boolean hasLeftDirectionLine() {
-        return this.leftDirection;
+        return leftDirection;
     }
 
     public boolean hasRightDirectionLine() {
-        return this.rightDirection;
+        return rightDirection;
     }
 
     @Override

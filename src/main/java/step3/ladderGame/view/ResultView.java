@@ -5,7 +5,7 @@ import step3.ladderGame.domain.ladder.Line;
 import step3.ladderGame.domain.ladder.Point;
 import step3.ladderGame.domain.palyer.Player;
 import step3.ladderGame.domain.palyer.Players;
-import step3.ladderGame.domain.result.Results;
+import step3.ladderGame.domain.award.Awards;
 
 import java.util.List;
 
@@ -31,13 +31,13 @@ public final class ResultView {
         System.out.println(builder);
     }
 
-    public void printResults(List<String> prizes) {
+    public void printAwards(List<String> awards) {
         StringBuilder builder = new StringBuilder();
 
-        prizes.forEach(
-                prize -> {
-                    String blank = printBlank(prize);
-                    builder.append(blank).append(prize);
+        awards.forEach(
+                award -> {
+                    String blank = printBlank(award);
+                    builder.append(blank).append(award);
                 }
         );
 
@@ -80,17 +80,17 @@ public final class ResultView {
         return EMPTY_LINE;
     }
 
-    public void printWinningResult(int playerIndex, Results results) {
+    public void printWinningAward(int playerIndex, Awards awards) {
         System.out.println("\n실행결과");
-        System.out.println(results.findResult(playerIndex));
+        System.out.println(awards.findResult(playerIndex));
     }
 
-    public void printWinningResultAll(Players players, Results results, Ladder ladder) {
+    public void printWinningAwardAll(Players players, Awards awards, Ladder ladder) {
         System.out.println("\n실행결과");
 
         for (Player player : players.getPlayers()) {
             System.out.print(player.getName() + " : ");
-            System.out.println(results.findResult(ladder.move(player.getIndex())));
+            System.out.println(awards.findResult(ladder.move(player.getIndex())));
         }
     }
 

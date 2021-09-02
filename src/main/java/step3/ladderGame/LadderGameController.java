@@ -2,7 +2,7 @@ package step3.ladderGame;
 
 import step3.ladderGame.domain.ladder.Ladder;
 import step3.ladderGame.domain.palyer.Players;
-import step3.ladderGame.domain.result.Results;
+import step3.ladderGame.domain.award.Awards;
 import step3.ladderGame.view.InputView;
 import step3.ladderGame.view.ResultView;
 
@@ -19,8 +19,8 @@ public class LadderGameController {
 
             List<String> playerNames = Arrays.asList(inputView.inputPlayers());
             Players players = new Players(playerNames);
-            List<String> resultNames = Arrays.asList(inputView.inputPrizes());
-            Results results = new Results(resultNames, playerNames.size());
+            List<String> awardNames = Arrays.asList(inputView.inputAwards());
+            Awards awards = new Awards(awardNames, playerNames.size());
 
             int height = inputView.inputHeight();
 
@@ -28,14 +28,14 @@ public class LadderGameController {
 
             resultView.printPlayers(playerNames);
             resultView.printLadder(ladder);
-            resultView.printResults(resultNames);
+            resultView.printAwards(awardNames);
 
             while (true) {
                 String player = inputView.inputPlayer();
                 if ("all".equals(player)) {
-                    resultView.printWinningResultAll(players, results, ladder);
+                    resultView.printWinningAwardAll(players, awards, ladder);
                 } else {
-                    resultView.printWinningResult(ladder.move(players.findIndex(player)), results);
+                    resultView.printWinningAward(ladder.move(players.findIndex(player)), awards);
                 }
             }
 

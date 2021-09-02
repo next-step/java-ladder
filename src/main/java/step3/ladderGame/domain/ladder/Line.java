@@ -26,7 +26,7 @@ public final class Line {
     }
 
     public List<Point> getPoints() {
-        return this.points;
+        return points;
     }
 
 }

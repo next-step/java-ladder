@@ -1,6 +1,5 @@
 package step3.ladderGame.domain.ladder;
 
-
 import step3.ladderGame.domain.exception.CountOfPlayerOutOfBoundsException;
 import step3.ladderGame.domain.exception.HeightLowException;
 
@@ -20,7 +19,7 @@ public final class Ladder {
         validate(playerCount, height);
 
         this.height = new Height(height);
-        this.lines = IntStream.range(0, height)
+        lines = IntStream.range(0, height)
                 .mapToObj(index -> new Line(playerCount))
                 .collect(Collectors.toList());
     }
@@ -43,7 +42,7 @@ public final class Ladder {
     }
 
     public List<Line> getLines() {
-        return this.lines;
+        return lines;
     }
 
 }

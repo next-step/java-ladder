@@ -1,20 +1,18 @@
-package step3.ladderGame.domain.result;
+package step3.ladderGame.domain.award;
 
-import step2.ladderGame.domain.exception.NameNullOrEmptyException;
+import step3.ladderGame.domain.exception.NameNullOrEmptyException;
 import step3.ladderGame.domain.exception.IndexLowException;
 
-public final class Result {
+public final class Award {
 
-    private static final int MIN_LENGTH_BY_RESULT = 1;
-    private static final int MAX_VALUE_BY_RESULT = 5;
     private static final int MIN_LENGTH_BY_INDEX = 0;
 
-    private final String result;
+    private final String name;
     private final int index;
 
-    public Result(final String result, final int index) {
-        validate(result, index);
-        this.result = result;
+    public Award(final String name, final int index) {
+        validate(name, index);
+        this.name = name;
         this.index = index;
     }
 
@@ -27,8 +25,8 @@ public final class Result {
         }
     }
 
-    public String getResult() {
-        return this.result;
+    public String getName() {
+        return this.name;
     }
 
     public int getIndex() {

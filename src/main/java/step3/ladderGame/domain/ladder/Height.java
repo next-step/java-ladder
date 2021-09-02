@@ -20,7 +20,7 @@ public final class Height {
     }
 
     public int getValue() {
-        return this.height;
+        return height;
     }
 
 }

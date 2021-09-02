@@ -55,7 +55,7 @@
 * [X] Player, Players 도메인 클래스 생성
   * [X] 입력값의 길이(1~5), Null체크를 한다.
   * [X] 검색한 이름의 현재 index값을 반환한다.
-* [X] Result, Results 도메인 클래스 생성
+* [X] Award, Awards 도메인 클래스 생성
   * [X] 입력값 Null체크를 한다.
   * [X] 검색한 index의 결과를 반환한다.
 * [X] Height 도메인 클래스 생성
