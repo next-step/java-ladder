@@ -129,10 +129,16 @@
 - 각 Point의 좌/우 방향을 Direction으로 추상화
 ### 2. Domain
 ※ Point 가 최소 단위의 객체라고 파악. Point 우선 구현 및 Direction 구현 예정.  
-1. Point : 생성자는 특정하지 않기로 한다.
+1. Point : Point 위치 별 정적 팩토리 사용
    1. 속성
       - `int index`
+      - `Direction direction`
+   2. 메서드
+      - `int move()`
+2. Direction : Point 위치 별 정적 팩토리 사용
+   1. 속성
       - `boolean left`
       - `boolean right`
    2. 메서드
-      - `int move()`
+      - `boolean left()`
+      - `boolean right()`
