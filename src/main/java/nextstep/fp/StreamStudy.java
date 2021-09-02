@@ -11,6 +11,8 @@ import java.util.stream.Collectors;
 
 public class StreamStudy {
 
+    private static final int DEFAULT_VALUE = 0;
+
     private static final int TWO = 2;
     private static final int THREE = 3;
     private static final int TWELVE = 12;
@@ -54,7 +56,7 @@ public class StreamStudy {
         return numbers.stream()
             .filter(StreamStudy::isOverThree)
             .map(StreamStudy::multiplyByTwo)
-            .reduce(0, Integer::sum);
+            .reduce(DEFAULT_VALUE, Integer::sum);
     }
 
     private static boolean isOverThree(int number) {
