@@ -21,15 +21,19 @@ public class Point {
     }
 
     public static Point first(boolean right) {
-        return new Point(0, false, false);
+        return new Point(0, false, right);
     }
 
     public static Point of(int index, boolean left, boolean right) {
         return new Point(index, left, right);
     }
 
-    public static Point of(Point point0, boolean right) {
-        return null;
+    public static Point of(Point pointBefore, boolean right) {
+        return new Point(pointBefore.index + 1, pointBefore.right, right);
+    }
+
+    public static Point last(Point pointBefore) {
+        return new Point(pointBefore.index + 1, pointBefore.right, false);
     }
 
     private void checkTrueRepetition(boolean beforeValue, boolean currentValue) {
