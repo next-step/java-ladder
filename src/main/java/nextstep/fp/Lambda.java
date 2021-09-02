@@ -27,13 +27,10 @@ public class Lambda {
     }
 
     public static int sumAll(List<Integer> numbers, Conditional conditional) {
-        int total = 0;
-        for (int number : numbers) {
-            if (conditional.test(number)) {
-                total += number;
-            }
-        }
-        return total;
+        return  numbers.stream()
+                .filter((number) -> conditional.test(number))
+                .reduce((x, y) -> x + y)
+                .orElse(0);
     }
 
     public static int sumAllEven(List<Integer> numbers) {
