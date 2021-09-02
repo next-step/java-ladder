@@ -9,3 +9,4 @@ public class OverThreeStrategy implements SumStrategy {
         return integer > LIMIT_NUMBER;
     }
 }
+
