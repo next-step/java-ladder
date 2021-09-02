@@ -2,6 +2,11 @@ package nextstep.fp;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CarTest {
@@ -27,5 +32,14 @@ public class CarTest {
             }
         });
         assertThat(actual).isEqualTo(new Car("pobi", 0));
+    }
+
+    @Test
+    public void test() {
+        List<Integer> list = new ArrayList<>(Arrays.asList(1,2,3,4,5));
+        list.stream()
+                .map(integer -> integer * 2)
+                .collect(Collectors.toList());
+        System.out.println(list);
     }
 }

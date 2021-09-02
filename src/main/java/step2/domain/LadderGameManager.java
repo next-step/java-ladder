@@ -17,14 +17,17 @@ public class LadderGameManager {
         return ladderGameColumns;
     }
 
-    public void runGame(int value, Ladder ladder) {
-        for (int i = 0; i < value; i++) {
+    public void runGame(int height, Ladder ladder) {
+        for (int i = 0; i < height; i++) {
             Line line = ladder.getLines().get(i);
-            List<LadderGameColumn> collect = ladderGameColumns.stream()
-                    .map(ladderGameColumn -> gameByHeight(line, ladderGameColumn))
-                    .collect(Collectors.toList());
-            ladderGameColumns = collect;
+            ladderGameColumns = runGameByFloor(line);
         }
+    }
+
+    private List<LadderGameColumn> runGameByFloor(Line line) {
+        return ladderGameColumns.stream()
+                .map(ladderGameColumn -> gameByHeight(line, ladderGameColumn))
+                .collect(Collectors.toList());
     }
 
     private LadderGameColumn moveStrategy(int index, Line line, LadderGameColumn ladderGameColumn) {
