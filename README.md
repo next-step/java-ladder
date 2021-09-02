@@ -117,3 +117,22 @@
    2. 메서드
       - `Result findBy(Person person)`
       - `Map<Person, Result> findAll()`
+   
+---------
+## 3단계 - 사다리(게임 실행)
+### 0. 요구 사항
+- 기능 요구사항 3단계와 같다.
+- 추가로 제공되는 객체 설계 힌트를 참고해 철저하게 TDD로 재구현해 본다.
+### 1. 객체 추출 힌트
+- 사다리 한 Line 추상화
+- Line의 두 점과 현재 위치를 Point로 추상화
+- 각 Point의 좌/우 방향을 Direction으로 추상화
+### 2. Domain
+※ Point 가 최소 단위의 객체라고 파악. Point 우선 구현 및 Direction 구현 예정.  
+1. Point : 생성자는 특정하지 않기로 한다.
+   1. 속성
+      - `int index`
+      - `boolean left`
+      - `boolean right`
+   2. 메서드
+      - `int move()`
