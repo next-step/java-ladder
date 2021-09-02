@@ -1,6 +1,7 @@
 package ladderrefactoring.domain.ladder;
 
 import ladderrefactoring.exception.CustomException;
+import ladderrefactoring.strategy.DirectionStrategy;
 
 import java.util.Objects;
 
@@ -15,6 +16,14 @@ public class Direction {
         checkTrueRepetition(left, right);
         this.left = left;
         this.right = right;
+    }
+
+    public static Direction first(DirectionStrategy directionStrategy) {
+        return new Direction(false, directionStrategy.create());
+    }
+
+    public static Direction of(Direction directionBefore, DirectionStrategy directionStrategy) {
+        return new Direction(directionBefore.right, directionStrategy.create());
     }
 
     public static Direction first(boolean right) {

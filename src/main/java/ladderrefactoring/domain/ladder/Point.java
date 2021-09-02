@@ -1,5 +1,7 @@
 package ladderrefactoring.domain.ladder;
 
+import ladderrefactoring.strategy.DirectionStrategy;
+
 import java.util.Objects;
 
 public class Point {
@@ -10,6 +12,14 @@ public class Point {
     private Point(int index, Direction direction) {
         this.index = index;
         this.direction = direction;
+    }
+
+    public static Point first(DirectionStrategy directionStrategy) {
+        return new Point(0, Direction.first(directionStrategy));
+    }
+
+    public static Point of(Point pointBefore, DirectionStrategy directionStrategy) {
+        return new Point(pointBefore.index + 1, Direction.of(pointBefore.direction, directionStrategy));
     }
 
     public static Point first(boolean right) {

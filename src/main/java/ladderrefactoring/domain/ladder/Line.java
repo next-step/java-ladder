@@ -15,11 +15,11 @@ public class Line {
     }
 
     private void initLine(int widthOfLadder, DirectionStrategy directionStrategy) {
-        Point currentPoint = Point.first(directionStrategy.create());
+        Point currentPoint = Point.first(directionStrategy);
         points.add(currentPoint);
 
         for (int i = 0; i < widthOfLadder-1; i++) {
-            currentPoint = Point.of(currentPoint, directionStrategy.create());
+            currentPoint = Point.of(currentPoint, directionStrategy);
             points.add(currentPoint);
         }
 
