@@ -28,6 +28,10 @@ public class Point {
         return new Point(index, left, right);
     }
 
+    public static Point of(Point point0, boolean right) {
+        return null;
+    }
+
     private void checkTrueRepetition(boolean beforeValue, boolean currentValue) {
         if (beforeValue && currentValue) {
             throw new CustomException(EXIST_TRUE_REPETITION);
