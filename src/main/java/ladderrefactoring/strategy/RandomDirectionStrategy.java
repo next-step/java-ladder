@@ -2,7 +2,7 @@ package ladderrefactoring.strategy;
 
 import java.util.Random;
 
-public class RandomLineStrategy implements LineStrategy {
+public class RandomDirectionStrategy implements DirectionStrategy {
 
     private static final Random random = new Random();
 

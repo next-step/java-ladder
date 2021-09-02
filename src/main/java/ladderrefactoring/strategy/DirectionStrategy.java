@@ -1,5 +1,5 @@
 package ladderrefactoring.strategy;
 
-public interface LineStrategy {
+public interface DirectionStrategy {
     boolean create();
 }

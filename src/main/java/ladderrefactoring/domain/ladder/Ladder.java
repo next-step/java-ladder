@@ -1,6 +1,6 @@
 package ladderrefactoring.domain.ladder;
 
-import ladderrefactoring.strategy.LineStrategy;
+import ladderrefactoring.strategy.DirectionStrategy;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,11 +14,11 @@ public class Ladder {
     private final List<Line> ladder = new ArrayList<>();
     private final int widthOfLadder;
 
-    public Ladder(int widthOfLadder, int heightOfLadder, LineStrategy lineStrategy) {
+    public Ladder(int widthOfLadder, int heightOfLadder, DirectionStrategy directionStrategy) {
         this.widthOfLadder = widthOfLadder;
 
         for (int i = 0; i < heightOfLadder; i++) {
-            ladder.add(new Line(widthOfLadder, lineStrategy));
+            ladder.add(new Line(widthOfLadder, directionStrategy));
         }
     }
 

@@ -5,8 +5,8 @@ import ladderrefactoring.domain.datas.People;
 import ladderrefactoring.domain.datas.Results;
 import ladderrefactoring.domain.ladder.Ladder;
 import ladderrefactoring.exception.CustomException;
-import ladderrefactoring.strategy.LineStrategy;
-import ladderrefactoring.strategy.RandomLineStrategy;
+import ladderrefactoring.strategy.DirectionStrategy;
+import ladderrefactoring.strategy.RandomDirectionStrategy;
 import ladderrefactoring.view.InputView;
 import ladderrefactoring.view.ResultView;
 
@@ -24,8 +24,8 @@ public class LadderGameMain {
 
             int widthOfLadder = people.subtractNumberFromSize(1);
             int heightOfLadder = InputView.inputHeightOfLadder();
-            LineStrategy lineStrategy = new RandomLineStrategy();
-            Ladder ladder = new Ladder(widthOfLadder, heightOfLadder, lineStrategy);
+            DirectionStrategy directionStrategy = new RandomDirectionStrategy();
+            Ladder ladder = new Ladder(widthOfLadder, heightOfLadder, directionStrategy);
 
             ResultView.showResult(people, ladder, results);
 

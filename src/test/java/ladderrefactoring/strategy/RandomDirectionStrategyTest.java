@@ -5,13 +5,13 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class RandomLineStrategyTest {
+class RandomDirectionStrategyTest {
 
     @Test
     @DisplayName("True 이후 false 반환 확인")
     void create() {
         // give
-        LineStrategy lineStrategy = new RandomLineStrategy(){
+        DirectionStrategy directionStrategy = new RandomDirectionStrategy(){
             @Override
             protected boolean checkCurrentPoint() {
                 return true;
@@ -19,7 +19,7 @@ class RandomLineStrategyTest {
         };
 
         // when
-        boolean checkPoint = lineStrategy.create();
+        boolean checkPoint = directionStrategy.create();
 
         // then
         assertThat(checkPoint).isFalse();

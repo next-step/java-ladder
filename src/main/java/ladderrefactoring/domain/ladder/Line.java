@@ -1,6 +1,6 @@
 package ladderrefactoring.domain.ladder;
 
-import ladderrefactoring.strategy.LineStrategy;
+import ladderrefactoring.strategy.DirectionStrategy;
 
 import java.util.*;
 
@@ -10,16 +10,16 @@ public class Line {
 
     private final List<Point> points = new ArrayList<>();
 
-    public Line(int widthOfLadder, LineStrategy lineStrategy) {
-        initLine(widthOfLadder, lineStrategy);
+    public Line(int widthOfLadder, DirectionStrategy directionStrategy) {
+        initLine(widthOfLadder, directionStrategy);
     }
 
-    private void initLine(int widthOfLadder, LineStrategy lineStrategy) {
-        Point currentPoint = Point.first(lineStrategy.create());
+    private void initLine(int widthOfLadder, DirectionStrategy directionStrategy) {
+        Point currentPoint = Point.first(directionStrategy.create());
         points.add(currentPoint);
 
         for (int i = 0; i < widthOfLadder-1; i++) {
-            currentPoint = Point.of(currentPoint, lineStrategy.create());
+            currentPoint = Point.of(currentPoint, directionStrategy.create());
             points.add(currentPoint);
         }
 

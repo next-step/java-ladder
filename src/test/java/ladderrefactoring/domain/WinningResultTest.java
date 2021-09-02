@@ -6,7 +6,7 @@ import ladderrefactoring.domain.datas.People;
 import ladderrefactoring.domain.datas.Results;
 import ladderrefactoring.domain.ladder.Ladder;
 import ladderrefactoring.exception.CustomException;
-import ladderrefactoring.strategy.RandomLineStrategy;
+import ladderrefactoring.strategy.RandomDirectionStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +24,7 @@ public class WinningResultTest {
         // given
         People people = new People(Arrays.asList("hwan,kook,hyun,bo".split(",")));
         Results results = new Results(Arrays.asList("3000,lose,2000,5000".split(",")), people);
-        Ladder ladder = new Ladder(people.subtractNumberFromSize(1), 1, new RandomLineStrategy(){
+        Ladder ladder = new Ladder(people.subtractNumberFromSize(1), 1, new RandomDirectionStrategy(){
             @Override
             protected boolean currentPoint() {
                 return true;
@@ -83,7 +83,7 @@ public class WinningResultTest {
         // given
         People people = new People(Arrays.asList("hwan,kook,hyun,bo".split(",")));
         Results results = new Results(Arrays.asList("3000,lose,2000,5000".split(",")), people);
-        Ladder ladder = new Ladder(people.subtractNumberFromSize(1), 1, new RandomLineStrategy(){
+        Ladder ladder = new Ladder(people.subtractNumberFromSize(1), 1, new RandomDirectionStrategy(){
             @Override
             protected boolean currentPoint() {
                 return true;
@@ -108,7 +108,7 @@ public class WinningResultTest {
         // given
         People people = new People(Arrays.asList("hwan,kook,hyun,bo".split(",")));
         Results results = new Results(Arrays.asList("3000,lose,2000,5000".split(",")), people);
-        Ladder ladder = new Ladder(people.subtractNumberFromSize(1), 1, new RandomLineStrategy(){
+        Ladder ladder = new Ladder(people.subtractNumberFromSize(1), 1, new RandomDirectionStrategy(){
             @Override
             protected boolean currentPoint() {
                 return true;

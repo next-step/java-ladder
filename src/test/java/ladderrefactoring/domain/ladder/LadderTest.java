@@ -1,8 +1,8 @@
 package ladderrefactoring.domain.ladder;
 
 import ladderrefactoring.domain.datas.People;
-import ladderrefactoring.strategy.LineStrategy;
-import ladderrefactoring.strategy.RandomLineStrategy;
+import ladderrefactoring.strategy.DirectionStrategy;
+import ladderrefactoring.strategy.RandomDirectionStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +19,7 @@ public class LadderTest {
         // given
         People people = new People(Arrays.asList("a,b,c,d,e".split(",")));
         int heightOfLadder = 5;
-        LineStrategy lineStrategy = new RandomLineStrategy(){
+        DirectionStrategy directionStrategy = new RandomDirectionStrategy(){
             @Override
             protected boolean currentPoint() {
                 return true;
@@ -27,17 +27,17 @@ public class LadderTest {
         };
 
         // when
-        Ladder ladder = new Ladder(people.subtractNumberFromSize(1), heightOfLadder, lineStrategy);
+        Ladder ladder = new Ladder(people.subtractNumberFromSize(1), heightOfLadder, directionStrategy);
 
         // then
-        assertThat(ladder).isEqualTo(new Ladder(people.subtractNumberFromSize(1), heightOfLadder, lineStrategy));
+        assertThat(ladder).isEqualTo(new Ladder(people.subtractNumberFromSize(1), heightOfLadder, directionStrategy));
     }
 
     @Test
     @DisplayName("Ladder result 연산")
     void result() {
         // given
-        Ladder ladder = new Ladder(3, 1, new RandomLineStrategy(){
+        Ladder ladder = new Ladder(3, 1, new RandomDirectionStrategy(){
             @Override
             protected boolean currentPoint() {
                 return true;
