@@ -47,8 +47,4 @@ public class PointTest {
         assertThat(Point.init(true).next(false).move()).isEqualTo(-1);
     }
 
-    @Test
-    void move6() { // (true, false) 이전 값이 true이면 다음 값은 무조건 false이다.
-        assertThat(Point.init(true).next(true).move()).isEqualTo(-1);
-    }
 }
