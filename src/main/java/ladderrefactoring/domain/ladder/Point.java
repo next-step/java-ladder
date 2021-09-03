@@ -14,6 +14,10 @@ public class Point {
         this.direction = direction;
     }
 
+    public static Point of(int index, Direction direction) {
+        return new Point(index, direction);
+    }
+
     public static Point first(DirectionStrategy directionStrategy) {
         return new Point(0, Direction.first(directionStrategy));
     }
@@ -24,6 +28,14 @@ public class Point {
 
     public static Point last(Point pointBefore) {
         return new Point(pointBefore.index + 1, pointBefore.direction.last());
+    }
+
+    public Point next(DirectionStrategy directionStrategy) {
+        return of(index + 1, direction.next(directionStrategy));
+    }
+
+    public Point last() {
+        return of(index + 1, direction.last());
     }
 
     public int move() {
