@@ -22,7 +22,7 @@ public class Name {
         }
     }
 
-    public String name() {
+    public String value() {
         return name;
     }
 

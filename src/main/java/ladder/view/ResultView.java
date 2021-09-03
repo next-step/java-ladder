@@ -10,25 +10,26 @@ public class ResultView {
     public static final String LINE = "-----";
     public static final String LINE_BLANK = "     ";
     public static final String LADDER_COLUMN = "|";
+    public static final String CHANGE_LINE = "\n";
 
     public void printLadder(Names names, Ladder ladder, LadderResult ladderResult) {
+        StringBuilder sb = new StringBuilder();
         names.stream()
-                .forEach(name -> System.out.printf("%6s", name.name()));
-        System.out.println();
+                .forEach(name -> sb.append(String.format("%6s", name.value())));
+        sb.append(CHANGE_LINE);
         ladder.stream()
-                .forEach(line -> printLine(line));
+                .forEach(line -> sb.append(formatLine(line)));
         ladderResult.stream()
-                .forEach(result -> System.out.printf("%6s", result));
-        System.out.println();
-        System.out.println();
+                .forEach(result -> sb.append(String.format("%6s", result)));
+        sb.append(CHANGE_LINE+CHANGE_LINE);
+        System.out.println(sb.toString());
     }
 
-    private void printLine(Line line) {
+    private String formatLine(Line line) {
         String lines = line.points().stream()
                 .map(point -> draw(point))
                 .collect(Collectors.joining(LADDER_COLUMN));
-        String lineString = LINE_BLANK + LADDER_COLUMN + lines + LADDER_COLUMN;
-        System.out.println(lineString);
+        return LINE_BLANK + LADDER_COLUMN + lines + LADDER_COLUMN + CHANGE_LINE;
     }
 
     private String draw(boolean point) {
@@ -46,6 +47,6 @@ public class ResultView {
     public void printResult(Names names, List<String> results) {
         System.out.println("실행 결과");
         IntStream.range(0, results.size())
-                .forEach(index -> System.out.println(names.get(index).name() + " : " + results.get(index)));
+                .forEach(index -> System.out.println(names.get(index).value() + " : " + results.get(index)));
     }
 }
