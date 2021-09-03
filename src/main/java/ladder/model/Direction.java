@@ -25,7 +25,7 @@ public class Direction {
         }
     }
 
-    public static Direction first(boolean right){
+    public static Direction first(boolean right) {
         return of(false, right);
     }
 
@@ -47,8 +47,12 @@ public class Direction {
         return this.left;
     }
 
+    public boolean isRight() {
+        return this.right;
+    }
+
     public Direction next(boolean right) {
-        return of(this.right,right);
+        return of(this.right, right);
     }
 
     public Direction last() {
