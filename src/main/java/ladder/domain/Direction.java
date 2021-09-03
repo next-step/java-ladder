@@ -18,8 +18,8 @@ public class Direction {
         this.right = right;
     }
 
-    public static Direction start(Movable movable) {
-        return new Direction(FALSE, movable.move());
+    public static Direction start(Movable right) {
+        return new Direction(FALSE, right.move());
     }
 
     public static Direction create(boolean left, boolean right) {

@@ -1,7 +1,6 @@
 package ladder.domain;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Ladder {
 
@@ -12,7 +11,7 @@ public class Ladder {
     }
 
     private Ladder(Width width, Height height) {
-        this(lines(width, height));
+        this(ladderLines(width, height));
     }
 
     public static Ladder create(Width width, Height height) {
@@ -23,59 +22,16 @@ public class Ladder {
         return new Ladder(Arrays.asList(ladderLines));
     }
 
-    public List<LadderLine> getLines() {
+    public List<LadderLine> getLadderLines() {
         return Collections.unmodifiableList(ladderLines);
     }
 
-    private static List<LadderLine> lines(Width width, Height height) {
+    private static List<LadderLine> ladderLines(Width width, Height height) {
         final List<LadderLine> ladderLines = new ArrayList<>(height.getLength());
         for (int i = 0; i < height.getLength(); i++) {
-            ladderLines.add(LadderLine.createWithWidth(width));
+            ladderLines.add(LadderLine.create(width));
         }
-        return ladderLines.stream()
-                .map(line -> LadderLine.create(randomLinePoints(width, Ladder::check)))
-                .collect(Collectors.toList());
-    }
-
-    protected static List<Boolean> randomLinePoints(Width width, Movable movable) {
-        List<Boolean> points = new ArrayList<>();
-        for (int i = 0; i < width.getLength(); i++) {
-            checkPoint(movable.move(), points, i);
-        }
-        return points;
-    }
-
-    private static void checkPoint(boolean checkable, List<Boolean> points, int index) {
-
-        if (!checkable) {
-            points.add(false);
-            return;
-        }
-
-        if (isFirst(index)) {
-            points.add(true);
-            return;
-        }
-
-        if (!points.get(previous(index))) {
-            points.add(true);
-            return;
-        }
-
-        points.add(false);
-
-    }
-
-    private static boolean isFirst(int index) {
-        return index == 0;
-    }
-
-    private static int previous(int index) {
-        return index - 1;
-    }
-
-    private static boolean check() {
-        return Math.random() < 0.5;
+        return ladderLines;
     }
 
     public int getHeight() {

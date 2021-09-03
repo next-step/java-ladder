@@ -67,9 +67,24 @@ public class GameResultTest {
             |-----|     |     |
          */
         return new LadderLine[]{
-                LadderLine.create(true, false, true),
-                LadderLine.create(false, true, false),
-                LadderLine.create(true, false, false)
+                LadderLine.create(
+                        Point.create(0, Direction.create(false, true)),
+                        Point.create(1, Direction.create(true, false)),
+                        Point.create(2, Direction.create(false, true)),
+                        Point.create(3, Direction.create(true, false))
+                ),
+                LadderLine.create(
+                        Point.create(0, Direction.create(false, false)),
+                        Point.create(1, Direction.create(false, true)),
+                        Point.create(2, Direction.create(true, false)),
+                        Point.create(3, Direction.create(false, false))
+                ),
+                LadderLine.create(
+                        Point.create(0, Direction.create(false, true)),
+                        Point.create(1, Direction.create(true, false)),
+                        Point.create(2, Direction.create(false, false)),
+                        Point.create(3, Direction.create(false, false))
+                )
         };
     }
 

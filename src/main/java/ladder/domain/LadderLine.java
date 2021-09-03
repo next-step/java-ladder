@@ -1,60 +1,56 @@
 package ladder.domain;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class LadderLine {
 
-    private final Width width;
+    private final List<Point> points;
 
-    private final List<Boolean> points;
-
-    private LadderLine(Width width, List<Boolean> points) {
-        this.width = width;
+    private LadderLine(List<Point> points) {
         this.points = points;
     }
 
-    private LadderLine(Width width) {
-        this(width, new ArrayList<>());
+    public static LadderLine create(Width width) {
+        List<Point> points = new ArrayList<>();
+        Point point = start(points);
+        point = body(width.getLength(), points, point);
+        initEnd(points, point);
+        return new LadderLine(points);
     }
 
-    public static LadderLine create(List<Boolean> points) {
-        return new LadderLine(Width.create(points.size()), points);
+    public static LadderLine create(Point... points) {
+        return new LadderLine(Arrays.asList(points));
     }
 
-    public static LadderLine create(Boolean... points) {
-        return new LadderLine(Width.create(points.length), Arrays.asList(points));
+    public int move(int index) {
+        return points.get(index).move();
     }
 
-    public static LadderLine createWithWidth(Width width) {
-        return new LadderLine(width);
+    public List<Point> getPoints() {
+        return points;
     }
 
-    public List<Boolean> getPoints() {
-        return Collections.unmodifiableList(points);
+    private static Point start(List<Point> points) {
+        Point point = Point.start(Direction.start(LadderLine::right));
+        points.add(point);
+        return point;
     }
 
-    public boolean isConnected(int index) {
-        if (outOfRange(index)) {
-            throw new IndexOutOfBoundsException("사다리의 너비의 범위를 벗어났습니다.");
+    private static Point body(int width, List<Point> points, Point point) {
+        for (int i = 1; i < width - 1; i++) {
+            point = point.next();
+            points.add(point);
         }
-        return points.get(index);
+        return point;
     }
 
-    public boolean outOfRange(int index) {
-        return width.outOfRange(index);
+    private static void initEnd(List<Point> points, Point point) {
+        points.add(point.end());
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        LadderLine ladderLine = (LadderLine) o;
-        return Objects.equals(width, ladderLine.width) && Objects.equals(points, ladderLine.points);
+    private static boolean right() {
+        return Math.random() < 0.5;
     }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(width, points);
-    }
-
 }

@@ -9,41 +9,30 @@ public class GameResult {
 
     private final Map<User, LadderResult> result;
 
-    private GameResult(Users users, Ladder ladder, LadderResults ladderResults) {
-        result = game(users, ladder, ladderResults);
+    private GameResult(Map<User, LadderResult> result) {
+        this.result = result;
     }
 
     public static GameResult create(Users users, Ladder ladder, LadderResults ladderResults) {
-        return new GameResult(users, ladder, ladderResults);
+        return new GameResult(game(users, ladder, ladderResults));
     }
 
-    private Map<User, LadderResult> game(Users users, Ladder ladder, LadderResults ladderResults) {
-        Map<User, LadderResult> result = new LinkedHashMap<>();
-        users.getAllWithLocation()
-                .forEach(userLocation -> gameForEachUser(ladder, ladderResults, result, userLocation));
-        return result;
-    }
-
-    private void gameForEachUser(Ladder ladder, LadderResults ladderResults,
-                                 Map<User, LadderResult> result, UserLocation userLocation) {
-        User user = userLocation.getUser();
-        Location location = userLocation.getLocation();
-        ladder.getLines().forEach(line -> moveToLeftOrRight(location, line));
-        result.put(user, ladderResults.get(location.now()));
-    }
-
-    private void moveToLeftOrRight(Location location, LadderLine ladderLine) {
-        if (isMovable(location.atLeft(), ladderLine)) {
-            location.toLeft();
-            return;
+    private static Map<User, LadderResult> game(Users users, Ladder ladder, LadderResults ladderResults) {
+        Map<User, LadderResult> gameResult = new LinkedHashMap<>();
+        for (int i = 0; i < users.size(); i++) {
+            gameForEachUser(ladder, ladderResults, gameResult, users.get(i), i);
         }
-        if (isMovable(location.now(), ladderLine)) {
-            location.toRight();
-        }
+        return gameResult;
     }
 
-    private boolean isMovable(int position, LadderLine ladderLine) {
-        return !ladderLine.outOfRange(position) && ladderLine.isConnected(position);
+    private static void gameForEachUser(Ladder ladder, LadderResults ladderResults,
+                                        Map<User, LadderResult> gameResult, User user, int index) {
+
+        for (LadderLine ladderLine : ladder.getLadderLines()) {
+            index = ladderLine.move(index);
+        }
+
+        gameResult.put(user, ladderResults.get(index));
     }
 
     public LadderResult resultOf(User user) {

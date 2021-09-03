@@ -55,30 +55,4 @@ public class UsersTest {
         assertThat(names).containsExactly("pobi", "honux", "crong", "jk");
     }
 
-    @Test
-    public void 사용자_모두를_가져올_수_있다() {
-        //given
-        //when
-        Users users = Users.create("pobi,honux,crong,jk");
-        //then
-        assertThat(users.getAllWithLocation())
-                .containsExactly(
-                        UserLocation.create(User.create("pobi"), Location.at(0)),
-                        UserLocation.create(User.create("honux"), Location.at(1)),
-                        UserLocation.create(User.create("crong"), Location.at(2)),
-                        UserLocation.create(User.create("jk"), Location.at(3))
-                );
-    }
-
-    @Test
-    public void 사용자를_모두_가져와서_리스트를_바꾸면_익셉션이_발생한다() {
-        //given
-        //when
-        //then
-        assertThatThrownBy(() ->
-                Users.create("pobi,honux,crong,jk")
-                        .getAllWithLocation()
-                        .add(UserLocation.create(User.create("aa"), Location.at(4)))
-        ).isInstanceOf(UnsupportedOperationException.class);
-    }
 }
