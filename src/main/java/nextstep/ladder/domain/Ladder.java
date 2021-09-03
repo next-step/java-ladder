@@ -10,6 +10,7 @@ public class Ladder {
     private static final String CREATE_LADDER_ERROR = "width 와 height 는 " + MIN_VALUE + "이상이어야 합니다.";
 
     private final List<Line> lines;
+    private  List<LadderLine> ladderLines;
 
     public Ladder(final LadderInfo ladderInfo, final PointCreator pointCreator) {
         if (!ladderInfo.isRightLadderInfo(MIN_VALUE)) {
