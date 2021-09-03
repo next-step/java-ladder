@@ -30,6 +30,21 @@ public class Direction {
         return new Direction(directionBefore.right, false);
     }
 
+    public static Direction of(boolean left, boolean right) {
+        return new Direction(left, right);
+    }
+
+    public Direction next(DirectionStrategy directionStrategy) {
+        if (this.right) {
+            return of(true, false);
+        }
+        return of(false, directionStrategy.create());
+    }
+
+    public Direction last() {
+        return of(this.right, false);
+    }
+
     private void checkTrueRepetition(boolean beforeValue, boolean currentValue) {
         if (beforeValue && currentValue) {
             throw new CustomException(EXIST_TRUE_REPETITION);
