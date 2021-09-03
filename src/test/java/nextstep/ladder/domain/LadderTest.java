@@ -19,4 +19,5 @@ class LadderTest {
     void create_error() {
         assertThrows(IllegalArgumentException.class, () -> new Ladder(new LadderInfo(0, 1), new RandomPointCreator()));
     }
+
 }

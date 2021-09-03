@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LadderLine {
+    private static final int MIN_SIZE_OF_PERSON = 2;
+    private static final String CREATE_LADDER_LINE_ERROR = MIN_SIZE_OF_PERSON + "명 이상의 플레이어가 필요합니다.";
     private final List<Point> points;
 
     public LadderLine(List<Point> points) {
@@ -15,6 +17,9 @@ public class LadderLine {
     }
 
     public static LadderLine init(int sizeOfPerson) {
+        if (sizeOfPerson < MIN_SIZE_OF_PERSON) {
+            throw new IllegalArgumentException(CREATE_LADDER_LINE_ERROR);
+        }
         List<Point> points = new ArrayList<>();
         Point point = initFirst(points);
         point = initBody(sizeOfPerson, points, point);
@@ -42,7 +47,11 @@ public class LadderLine {
     }
 
     private static Boolean generatePoint() {
-        return false;
+        return new RandomPointCreator().createPoint();
+    }
+
+    public int size() {
+        return this.points.size();
     }
 
     @Override

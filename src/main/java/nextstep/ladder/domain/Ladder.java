@@ -19,6 +19,11 @@ public class Ladder {
         this.lines = Collections.unmodifiableList(createLines(ladderInfo, pointCreator));
     }
 
+//    public static Ladder of(LadderInfo ladderInfo){
+//        IntStream.range(0, ladderInfo.getHeight())
+//                .mapToObj(LadderLine)
+//    }
+
     public int climbLadder(Location location) {
         for (Line line : this.lines) {
             location = location.move(line);
