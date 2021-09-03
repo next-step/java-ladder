@@ -8,7 +8,15 @@ public class InputView {
 
     public String[] requestName() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(" + VALID_DELIMITER + ")로 구분하세요)");
-        return scanner.nextLine().split(VALID_DELIMITER);
+        String[] split = scanner.nextLine().split(VALID_DELIMITER);
+        validate(split);
+        return split;
+    }
+
+    private void validate(String[] split) {
+        if (split.length < 2) {
+            throw new IllegalArgumentException("참여하는 사람의 수가 적습니다");
+        }
     }
 
     public int requestHeight() {
