@@ -11,14 +11,6 @@ public class GameResult {
         this.result = result;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public Result getResult() {
-        return result;
-    }
-
     public String getUserName() {
         return user.getName();
     }

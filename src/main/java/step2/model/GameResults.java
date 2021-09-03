@@ -15,8 +15,10 @@ public class GameResults {
 
     public LinkedHashMap<String, String> allUsersResults() {
         LinkedHashMap<String, String> allResults = new LinkedHashMap<>();
+
         gameResults.forEach(gameResult ->
                                 allResults.put(gameResult.getUserName(), gameResult.getGameResult()));
+
         return allResults;
     }
 
