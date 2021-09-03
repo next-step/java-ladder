@@ -1,9 +1,13 @@
 package nextstep.fp;
 
-import java.util.ConcurrentModificationException;
 import java.util.List;
 
 public class Lambda {
+    private static final int EVEN_NUMBER = 2;
+    private static final int EVEN_REMAINDER = 0;
+    private static final int FILTER_NUMBER = 3;
+    private static final int INIT_TOTAL_VALUE = 0;
+
     public static void printAllOld(List<Integer> numbers) {
         System.out.println("printAllOld");
 
@@ -27,35 +31,20 @@ public class Lambda {
         }).start();
     }
 
-    public static int sumAll(List<Integer> numbers, Conditional conditional) {
-        int total = 0;
-        for (int number : numbers) {
-            if (conditional.test(number)) {
-                total += number;
-            }
-        }
-        return total;
+    public static int sumAll(List<Integer> numbers) {
+        return numbers.stream()
+                .reduce(INIT_TOTAL_VALUE, Integer::sum);
     }
 
-    public static int sumAllEven(List<Integer> numbers, Conditional conditional) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number % 2 == 0) {
-                if (conditional.test(number)) {
-                    total += number;
-                }
-            }
-        }
-        return total;
+    public static int sumAllEven(List<Integer> numbers) {
+        return numbers.stream()
+                .filter(number -> number % EVEN_NUMBER == EVEN_REMAINDER)
+                .reduce(INIT_TOTAL_VALUE , Integer::sum);
     }
 
-    public static int sumAllOverThree(List<Integer> numbers, Conditional conditional) {
-        int total = 0;
-        for (int number : numbers) {
-            if (conditional.test(number)) {
-                total += number;
-            }
-        }
-        return total;
+    public static int sumAllOverThree(List<Integer> numbers) {
+        return numbers.stream()
+                .filter(number -> number > FILTER_NUMBER)
+                .reduce(INIT_TOTAL_VALUE, Integer::sum);
     }
 }

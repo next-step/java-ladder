@@ -33,19 +33,19 @@ public class LambdaTest {
 
     @Test
     public void sumAll() throws Exception {
-        int sum = Lambda.sumAll(numbers, integer -> integer > 3 ? true : false);
-        assertThat(sum).isEqualTo(15);
+        int sum = Lambda.sumAll(numbers);
+        assertThat(sum).isEqualTo(21);
     }
 
     @Test
     public void sumAllEven() throws Exception {
-        int sum = Lambda.sumAllEven(numbers, integer -> integer > 3 ? true : false);
-        assertThat(sum).isEqualTo(10);
+        int sum = Lambda.sumAllEven(numbers);
+        assertThat(sum).isEqualTo(12);
     }
 
     @Test
     public void sumAllOverThree() throws Exception {
-        int sum = Lambda.sumAllOverThree(numbers, integer -> integer > 3 ? true : false);
+        int sum = Lambda.sumAllOverThree(numbers);
         assertThat(sum).isEqualTo(15);
     }
 }
