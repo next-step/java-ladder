@@ -10,15 +10,6 @@ public class LadderLine {
     private static final int START_INDEX = 1;
     private List<Point> points;
 
-    public LadderLine() {
-        this(0);
-    }
-
-    public LadderLine(int playersCounts) {
-        this.points = new ArrayList<>();
-        createBody(playersCounts);
-    }
-
     public LadderLine(List<Point> points) {
         if (points.get(points.size() - 1).nextPoint()) {
             throw new IllegalArgumentException("올바른 사다리가 아닙니다");
@@ -26,27 +17,33 @@ public class LadderLine {
         this.points = points;
     }
 
-    public static LadderLine of(int countOfPerson) {
+    public static LadderLine init(int countOfPerson) {
         List<Point> points = new ArrayList<>();
-        Point point = Point.init(RandomUtil.generate());
-        points.add(point);
-
+        Point point = initFirst(points); // 첫 번째 가로 라인 초기화
+        point = createBody(countOfPerson, points, point);
+        initLast(points, point);
         return new LadderLine(points);
     }
 
-    private void createBody2(int countOfPerson , List<Point> points) {
-        for (int i = START_INDEX; i < countOfPerson - 1; i++) {
-            points.add(points.get(i - 1).next(RandomUtil.generate()));
-        }
-        points.add(points.get(countOfPerson - 2).last());
+    public static Point initFirst(List<Point> points) {
+        Point point = Point.init(RandomUtil.generate());
+        points.add(point);
+        return point;
     }
 
-    private void createBody(int countOfPerson) {
+    private static Point createBody(int countOfPerson, List<Point> points, Point point) {
         for (int i = START_INDEX; i < countOfPerson - 1; i++) {
-            points.add(points.get(i - 1).next(RandomUtil.generate()));
+            point = point.next();
+            points.add(point);
         }
-        points.add(points.get(countOfPerson - 2).last());
+        return point;
     }
+
+    private static void initLast(List<Point> points, Point point) {
+        point = point.last();
+        points.add(point);
+    }
+
 
     public int search(int index) {
         Direction direction = new Direction(index);
