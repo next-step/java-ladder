@@ -1,18 +1,17 @@
 package ladder.domain;
 
 import ladder.exception.InvalidInputException;
-import ladder.exception.LadderException;
-import ladder.strategy.PointStrategy;
 
-import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Ladder {
     private static final int LADDER_MINIMUM_HEIGHT = 2;
     private static final String INVALID_HEIGHT_MESSAGE = LADDER_MINIMUM_HEIGHT + "이상의 사다리 높이를 입력해주세요";
 
-    private static List<LadderLine> lines;
+    private List<LadderLine> lines;
 
     public Ladder(List<LadderLine> lines) {
         this.lines = lines;
@@ -20,7 +19,7 @@ public class Ladder {
 
     public static Ladder create(int height, int countOfPerson) {
         validateLadderHeight(height);
-        lines = new ArrayList<>();
+        List<LadderLine> lines = new ArrayList<>();
         for (int i = 0; i < height; i++) {
             lines.add(LadderLine.init(countOfPerson));
         }
@@ -44,13 +43,18 @@ public class Ladder {
     public Map<Name, String> calculateLadderResult(Users users, WinningItems winningItems) {
         Map<Name, String> result = new HashMap<>();
         for (int i = 0; i < users.getNames().size(); i++) {
-            int position = i;
-            for (int j = 0; j < lines.size(); j++) {
-                position = lines.get(j).move(position);
-            }
+            int position = calculateLinesPosition(i);
             result.put(users.get(i), winningItems.get(position));
         }
         return result;
     }
+
+    private int calculateLinesPosition(int position) {
+        for (int j = 0; j < lines.size(); j++) {
+            position = lines.get(j).move(position);
+        }
+        return position;
+    }
+
 
 }
