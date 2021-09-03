@@ -22,7 +22,7 @@ class LadderTest {
     }
 
     @Test
-    @DisplayName("한 줄 사다리를 만들었을 때 0번 인덱스의 resultOf 함수 결과는 1이다.")
+    @DisplayName("너비가 2 높이가 1이고 라인이 하나인 사다리를 만들었을 때 0번 인덱스의 resultOf 함수 결과는 1이다.")
     void resultOf() {
         Ladder ladder = new Ladder(1, 2, () -> true);
         int result = ladder.resultOf(0);
@@ -30,7 +30,7 @@ class LadderTest {
     }
 
     @Test
-    @DisplayName("한 줄 사다리를 만들었을 때 resultAll 함수의 결과는 1,0 인덱스 순서이다.")
+    @DisplayName("너비가 2 높이가 1이고 라인이 하나인 사다리를 만들었을 때 resultAll 함수의 결과는 1,0 인덱스 순서이다.")
     void resultAll(){
         Ladder ladder = new Ladder(1, 2, () -> true);
         List<Integer> resultAll = ladder.resultAllIndexes();
