@@ -11,9 +11,8 @@ public class LadderApp {
         Result result = new Result(InputView.requireResultNames());
         Ladder ladder = new Ladder(name.getCountOfPerson(), height.getValue());
 
-        LadderGameManager ladderGameManager = new LadderGameManager(name);
+        LadderGameManager ladderGameManager = new LadderGameManager(name, result);
         ladderGameManager.runGame(height.getValue(), ladder);
-        ladderGameManager.calculateResult(result);
 
         ResultView.printHeader();
         ResultView.printParticipant(name.getParticipantNames());
