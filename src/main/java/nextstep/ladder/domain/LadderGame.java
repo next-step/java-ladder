@@ -3,7 +3,7 @@ package nextstep.ladder.domain;
 import java.util.*;
 
 public class LadderGame {
-    private final static String LADDER_GAME_ERROR = "결과 수와 참여자 수는 같아야 합니다.";
+    private static final String LADDER_GAME_ERROR = "결과 수와 참여자 수는 같아야 합니다.";
     private final Players players;
     private final Ladder ladder;
 
@@ -22,8 +22,8 @@ public class LadderGame {
         }
 
         Map<String, String> resultMap = new LinkedHashMap<>();
-        for (int location = 0; location < results.sizeOfResults(); location++) {
-            int index = ladder.climbLadder(new Location(location));
+        for (int location = 0; location < results.size(); location++) {
+            int index = ladder.climbLadder(location);
             resultMap.put(players.indexOf(location), results.indexOf(index));
         }
         return new LadderResults(resultMap);

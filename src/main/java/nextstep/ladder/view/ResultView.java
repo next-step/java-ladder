@@ -11,6 +11,8 @@ public class ResultView {
     private static final String TRUE_LINE = "-----|";
     private static final String LADDER_RESULT = "\n사다리 결과";
     private static final String RESULT = "\n실행 결과";
+    private static final String COLON = " : ";
+    public static final String ALL_RESULTS = "all";
 
     private ResultView() {
     }
@@ -26,14 +28,14 @@ public class ResultView {
                 .forEach(ResultView::printLine);
     }
 
-    private static void printLine(Line line) {
-        line.getPoints()
+    private static void printLine(LadderLine ladderLine) {
+        ladderLine.getPoints()
                 .forEach(ResultView::printPoint);
         System.out.println();
     }
 
-    private static void printPoint(boolean point) {
-        if (point) {
+    private static void printPoint(Point point) {
+        if (point.canGoRight()) {
             System.out.print(TRUE_LINE);
             return;
         }
@@ -47,13 +49,13 @@ public class ResultView {
 
     public static void printLadderResult(List<String> results) {
         results
-                .forEach(p -> System.out.print(String.format("%6s", p)));
+                .forEach(result -> System.out.print(String.format("%6s", result)));
         System.out.println();
     }
 
     public static void printPlayersResults(String whoWantResult, LadderResults ladderResults) {
         System.out.println(RESULT);
-        if (whoWantResult.equals("all")) {
+        if (whoWantResult.equals(ALL_RESULTS)) {
             printAllPlayersResults(ladderResults);
             return;
         }
@@ -63,7 +65,7 @@ public class ResultView {
     private static void printAllPlayersResults(LadderResults ladderResults) {
         Set<String> players = ladderResults.getPlayers();
         players.forEach(player -> System.out.println(player
-                + " : "
+                + COLON
                 + ladderResults.findResultByPlayer(player)));
     }
 

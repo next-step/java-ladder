@@ -12,9 +12,9 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class LadderResultsTest {
-    LadderGame ladderGame;
-    Ladder ladder;
-    Players players;
+    private LadderGame ladderGame;
+    private Ladder ladder;
+    private Players players;
 
     @BeforeEach
     void setUp() {
