@@ -2,7 +2,7 @@ package step4.ladderGame.view;
 
 import step4.ladderGame.domain.award.Awards;
 import step4.ladderGame.domain.ladder.Ladder;
-import step4.ladderGame.domain.ladder.Line;
+import step4.ladderGame.domain.ladder.LadderLine;
 import step4.ladderGame.domain.ladder.Point;
 import step4.ladderGame.domain.palyer.Players;
 
@@ -16,7 +16,7 @@ public final class ResultView {
     private static final String HORIZONTAL_LINE = "-----";
     private static final String EMPTY_LINE = "     ";
 
-    public static void printPlayers(Players players) {
+    public static void printPlayers(final Players players) {
         StringBuilder builder = new StringBuilder();
         System.out.println("\n사다리 결과\n");
         players.getPlayers().forEach(
@@ -28,7 +28,7 @@ public final class ResultView {
         System.out.println(builder);
     }
 
-    public static void printAwards(Awards awards) {
+    public static void printAwards(final Awards awards) {
         StringBuilder builder = new StringBuilder();
         awards.getAwards().forEach(
                 award -> {
@@ -39,7 +39,7 @@ public final class ResultView {
         System.out.println(builder);
     }
 
-    private static String printBlank(String name) {
+    private static String printBlank(final String name) {
         StringBuilder stringBuilder = new StringBuilder();
         int emptyLength = NAME_SPACE - name.length();
 
@@ -49,13 +49,13 @@ public final class ResultView {
         return stringBuilder.toString();
     }
 
-    public static void printLadder(Ladder ladder) {
-        ladder.getLines().forEach(
+    public static void printLadder(final Ladder ladder) {
+        ladder.getLadderLines().forEach(
                 ResultView::printLine
         );
     }
 
-    private static void printLine(Line line) {
+    private static void printLine(final LadderLine line) {
         StringBuilder builder = new StringBuilder();
         line.getPoints().forEach(
                 point -> {
@@ -66,19 +66,19 @@ public final class ResultView {
         System.out.println(builder);
     }
 
-    private static String printBetweenLine(Point point) {
+    private static String printBetweenLine(final Point point) {
         if (point.hasLeftDirectionLine()) {
             return HORIZONTAL_LINE;
         }
         return EMPTY_LINE;
     }
 
-    public static void printWinningAward(int playerIndex, Awards awards) {
+    public static void printWinningAward(final int playerIndex, final Awards awards) {
         System.out.println("\n실행결과");
         System.out.println(awards.findResult(playerIndex));
     }
 
-    public static void printWinningAwardAll(Players players, Awards awards, Ladder ladder) {
+    public static void printWinningAwardAll(final Players players, final Awards awards, final Ladder ladder) {
         System.out.println("\n실행결과");
         players.getPlayers().forEach(
                 player -> {
