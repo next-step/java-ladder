@@ -17,30 +17,30 @@ public class MyLadderGame {
     }
 
     public List<MyLine> createLadder(int userCount, int ladderHeight) {
-        List<MyLine> myLineList = new ArrayList<>();
+        List<MyLine> myLines = new ArrayList<>();
         for (int i = 0; i < ladderHeight; i++) {
             MyLine line = new MyLine(createLine(userCount));
-            myLineList.add(line);
+            myLines.add(line);
         }
-        return myLineList;
+        return myLines;
     }
 
     private List<Direction> createLine(int userCount) {
-        List<Direction> directionList = new ArrayList<>();
+        List<Direction> directions = new ArrayList<>();
         Direction direction = new Direction();
-        directionList.add(direction);
+        directions.add(direction);
 
-        while (beforeLastDirection(directionList, userCount)) {
+        while (beforeLastDirection(directions, userCount)) {
             direction = direction.next();
-            directionList.add(direction);
+            directions.add(direction);
         }
 
-        directionList.add(direction.last());
-        return directionList;
+        directions.add(direction.last());
+        return directions;
     }
 
-    private boolean beforeLastDirection(List<Direction> directionList, int userCount) {
-        return directionList.size() < userCount - 1;
+    private boolean beforeLastDirection(List<Direction> directions, int userCount) {
+        return directions.size() < userCount - 1;
     }
 
 

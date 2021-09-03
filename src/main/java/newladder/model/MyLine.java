@@ -4,19 +4,19 @@ import java.util.List;
 
 public class MyLine {
 
-    private final List<Direction> directionList;
+    private final List<Direction> directions;
 
-    public MyLine(List<Direction> directionList) {
-        this.directionList = directionList;
+    public MyLine(List<Direction> directions) {
+        this.directions = directions;
     }
 
 
     public int moveLine(int position) {
-        return directionList.get(position).move();
+        return directions.get(position).move();
     }
 
     public List<Direction> directionInfo() {
-        return this.directionList;
+        return this.directions;
     }
 
 }
