@@ -15,6 +15,10 @@ public class Results {
         saveResults(results);
     }
 
+    public Results(List<Result> results) {
+        this.results = results;
+    }
+
     private void saveResults(String results) {
         this.results = new ArrayList<>();
 

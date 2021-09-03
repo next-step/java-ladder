@@ -15,7 +15,6 @@ public class Ladder {
     public Ladder(String high, int numberOfUser, LadderStrategy ladderStrategy) {
         isBlank(high);
         isOverMinHigh(high);
-
         generateLine(parseInt(high), numberOfUser, ladderStrategy);
     }
 
@@ -35,6 +34,7 @@ public class Ladder {
         for (int i = 0; i < ladderHigh; i++) {
             lines.add(new Line(numberOfUser, ladderStrategy));
         }
+
     }
 
     public List<List<Boolean>> getLadder() {
@@ -43,12 +43,23 @@ public class Ladder {
                         .collect(Collectors.toList());
     }
 
-    public GameResults runGame(GameResults gameResults) {
-        for (Line line : lines) {
-            gameResults = line.checkPoint(gameResults);
+    public GameResults runGame(int high, int numberOfUser, Users users, Results results) {
+        List<Result> gameResults = new ArrayList<>();
+
+        for (int i = 0; i < numberOfUser; i++) {
+            int columnIndex = i;
+            columnIndex = switchColumn(high, columnIndex);
+            gameResults.add(results.getResult(columnIndex));
         }
 
-        return gameResults;
+        return new GameResults(users, new Results(gameResults));
+    }
+
+    private int switchColumn(int high, int columnIndex) {
+        for (int i = 0; i < high; i++) {
+            columnIndex += lines.get(i).checkPoint(columnIndex);
+        }
+        return columnIndex;
     }
 
     @Override

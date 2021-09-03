@@ -11,7 +11,7 @@ public class Line {
         points = new ArrayList<>();
 
         for (int i = 0; i < numberOfUser; i++) {
-            drawPoint(ladderStrategy, i);
+            drawPoint(numberOfUser, ladderStrategy, i);
         }
 
     }
@@ -24,44 +24,34 @@ public class Line {
         return this.points;
     }
 
-    private void drawPoint(LadderStrategy ladderStrategy, int index) {
+    private void drawPoint(int numberOfUser, LadderStrategy ladderStrategy, int index) {
         boolean isPoint = ladderStrategy.generateLine();
-        if (index != 0 && lastPoint()) {
+
+        if (isLast(numberOfUser, index) || !isFirst(index) && lastPoint()) {
             isPoint = false;
         }
 
         points.add(isPoint);
     }
 
-    public GameResults checkPoint(GameResults gameResults) {
-        List<GameResult> result = new ArrayList<>();
-
-        for (int i = 0; i < points.size(); i++) {
-            i = switchResult(result, gameResults, i);
+    public int checkPoint(int index){
+        if (points.get(index)) {
+            return 1;
         }
 
-        return new GameResults(result);
-    }
-
-    private int switchResult(List<GameResult> result, GameResults gameResults, int index) {
-        if (!isLast(index) && points.get(index)) {
-            User currentUser = gameResults.getUser(index);
-            User nextUser = gameResults.getGameResult(index+1).getUser();
-            Result currentResult = gameResults.getResult(index);
-            Result nextResult = gameResults.getGameResult(index + 1).getResult();
-
-            result.add(new GameResult(currentUser, nextResult));
-            result.add(new GameResult(nextUser, currentResult));
-
-            return index + 1;
+        if(index!=0 && points.get(index-1)) {
+            return -1;
         }
 
-        result.add(gameResults.getGameResult(index));
-        return index;
+        return 0;
     }
 
-    private boolean isLast(int index) {
-        return index == points.size() - 1;
+    private boolean isLast(int numberOfUser, int index) {
+        return index == numberOfUser - 1;
+    }
+
+    private boolean isFirst(int index) {
+        return index == 0;
     }
 
     private boolean lastPoint() {

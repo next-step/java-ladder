@@ -13,22 +13,6 @@ public class GameResults {
         }
     }
 
-    public GameResults(List<GameResult> gameResults) {
-        this.gameResults = gameResults;
-    }
-
-    public GameResult getGameResult(int index) {
-        return gameResults.get(index);
-    }
-
-    public User getUser(int index) {
-        return getGameResult(index).getUser();
-    }
-
-    public Result getResult(int index) {
-        return getGameResult(index).getResult();
-    }
-
     public LinkedHashMap<String, String> allUsersResults() {
         LinkedHashMap<String, String> allResults = new LinkedHashMap<>();
         gameResults.forEach(gameResult ->
