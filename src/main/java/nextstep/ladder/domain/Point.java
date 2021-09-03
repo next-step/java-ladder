@@ -27,7 +27,14 @@ public class Point {
         return new Point(this.nextPoint, false);
     }
 
-    public Point insert(boolean nextPoint) {
+    public Point next() {
+        if (this.nextPoint) {
+            return next(false);
+        }
+        return next(RandomUtil.generate());
+    }
+
+    public Point next(boolean nextPoint) {
         if (this.nextPoint) {
             return new Point(this.nextPoint, false);
         }

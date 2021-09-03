@@ -6,7 +6,7 @@ import java.util.stream.Stream;
 
 public class Ladder {
     private static final int LADDER_MIN_COUNT = 1;
-    private List<Line> lines;
+    private List<LadderLine> lines;
 
     public Ladder(int playersCount, int height) {
         if (height < LADDER_MIN_COUNT) {
@@ -14,16 +14,16 @@ public class Ladder {
         }
         this.lines = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            lines.add(new Line(playersCount));
+            lines.add(new LadderLine(playersCount));
         }
     }
 
-    public Ladder(List<Line> lines) {
+    public Ladder(List<LadderLine> lines) {
         this.lines = lines;
     }
 
     public int search(int index) {
-        for (Line line : lines) {
+        for (LadderLine line : lines) {
             index = line.search(index);
         }
         return index;
@@ -33,7 +33,7 @@ public class Ladder {
         return lines.size();
     }
 
-    public Stream<Line> stream() {
+    public Stream<LadderLine> stream() {
         return lines.stream();
     }
 }

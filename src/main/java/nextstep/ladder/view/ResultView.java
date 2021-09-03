@@ -20,7 +20,7 @@ public class ResultView {
                 .forEach(ResultView::drawLine);
     }
 
-    private static void drawLine(Line line) {
+    private static void drawLine(LadderLine line) {
         System.out.println();
         line.stream()
                 .map(ResultView::isHorizontalLine)
