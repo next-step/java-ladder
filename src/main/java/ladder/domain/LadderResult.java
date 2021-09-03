@@ -20,10 +20,14 @@ public class LadderResult {
     }
 
     public String get(int resultIndex) {
-        if(resultIndex < EMPTY_SIZE || resultIndex >= ladderResult.size()){
+        if(valid(resultIndex)){
             throw new IllegalArgumentException("결과 값이 존재하지 않습니다.");
         }
         return ladderResult.get(resultIndex);
+    }
+
+    private boolean valid(int resultIndex) {
+        return resultIndex < EMPTY_SIZE || resultIndex >= ladderResult.size();
     }
 
     public int size() {
