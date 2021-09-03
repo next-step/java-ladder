@@ -1,7 +1,7 @@
 package step2.domain;
 
 public class LadderGameColumn {
-    private final int position;
+    private int position;
     private final String name;
     private String result;
 
@@ -15,6 +15,9 @@ public class LadderGameColumn {
         this.name = name;
         this.result = result;
     }
+    public void moveLeft() {this.position--;}
+
+    public void moveRight() {this.position++;}
 
     public int getPosition() {
         return position;

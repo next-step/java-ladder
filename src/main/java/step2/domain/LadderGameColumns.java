@@ -30,11 +30,13 @@ public class LadderGameColumns {
         int index = ladderGameColumn.getPosition();
         // 현재 포지션에서 왼쪽에 사다리가 존재하면서, 연결 라인이 있을 때, 왼쪽으로 위치 이동
         if (index - 1 >= 0 && line.getPoints().get(index - 1)) {
-            return new LadderGameColumn(index - 1, ladderGameColumn.getName());
+            ladderGameColumn.moveLeft();
+            return ladderGameColumn;
         }
         // 현재 포지션에서 오른쪽에 사다리가 존재하면서, 연결 라인이 있을 때, 오른쪽으로 위치 이동
         if (index < ladderGameColumns.size() - 1 && line.getPoints().get(index)) {
-            return new LadderGameColumn(index + 1, ladderGameColumn.getName());
+            ladderGameColumn.moveRight();
+            return ladderGameColumn;
         }
         // 좌, 우에 사다리가 존재하지 않거나, 연결 라인이 없을 때 현재 포지션을 고수한다.
         return ladderGameColumn;
