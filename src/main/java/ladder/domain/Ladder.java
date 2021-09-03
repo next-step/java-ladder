@@ -19,8 +19,8 @@ public class Ladder {
         return Collections.unmodifiableList(lines);
     }
 
-    public int resultOf(int startIndex) {
-        int endIndex = startIndex;
+    public int resultOf(int currentIndex) {
+        int endIndex = currentIndex;
         for (Line line : lines) {
             endIndex = line.move(endIndex);
         }
