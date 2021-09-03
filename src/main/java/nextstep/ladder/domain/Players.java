@@ -34,7 +34,7 @@ public class Players {
         return players.indexOf(new Name(player));
     }
 
-    public boolean isContain(String player) {
+    public boolean contains(String player) {
         return players.contains(new Name(player));
     }
 
@@ -42,8 +42,8 @@ public class Players {
         return players.size();
     }
 
-    public String getName(int index) {
-        return  players.get(index).toString();
+    public String name(int index) {
+        return  players.get(index).name();
     }
 
     public Stream<Name> stream() {

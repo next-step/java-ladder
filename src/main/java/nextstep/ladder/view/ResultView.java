@@ -52,7 +52,7 @@ public class ResultView {
         System.out.println(RESULT_MESSAGE);
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < players.size(); i++) {
-            stringBuilder.append(players.getName(i) + " : ");
+            stringBuilder.append(players.name(i) + " : ");
             int index = ladder.search(i);
             stringBuilder.append(result.get(index)).append("\n");
         }

@@ -25,7 +25,7 @@ public class LadderLine {
         return new LadderLine(points);
     }
 
-    public static Point initFirst(List<Point> points) {
+    private static Point initFirst(List<Point> points) {
         Point point = Point.init(RandomUtil.generate());
         points.add(point);
         return point;

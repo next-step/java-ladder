@@ -40,7 +40,7 @@ public class Validation {
             return INPUT_ALL;
         }
 
-        if (players.isContain(player)) {
+        if (players.contains(player)) {
             return players.indexOf(player);
         }
         throw new IllegalArgumentException("참여자들 중 해당 이름이 없습니다.");
