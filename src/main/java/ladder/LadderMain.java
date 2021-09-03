@@ -22,28 +22,29 @@ public class LadderMain {
 
         ResultView resultView = new ResultView();
         resultView.printLadder(names, ladder, ladderResult);
-
-        showResult(inputView, names, ladderResult, ladder, resultView);
+        while (true) {
+            showResult(inputView, names, ladderResult, ladder, resultView);
+        }
     }
 
     private static void validateInput(Names names, LadderResult ladderResult) {
-        if(names.size() != ladderResult.size()) {
+        if (names.size() != ladderResult.size()) {
             throw new IllegalArgumentException("이름의 수와 결과의 수가 다릅니다.");
         }
     }
 
     private static void showResult(InputView inputView, Names names, LadderResult ladderResult, Ladder ladder, ResultView resultView) {
-        while (true) {
-            String name = inputView.requestWhoseResult();
-            if (name.equals("all")) {
-                List<String> results = ladder.resultAll().stream()
-                        .map(index -> ladderResult.get(index))
-                        .collect(Collectors.toList());
-                resultView.printResult(names, results);
-            } else {
-                int resultIndex = ladder.resultOf(names.indexOf(name));
-                resultView.printResult(ladderResult.get(resultIndex));
-            }
+        String name = inputView.requestWhoseResult();
+        if (name.equals("all")) {
+            List<String> results = ladder.resultAll().stream()
+                    .map(index -> ladderResult.get(index))
+                    .collect(Collectors.toList());
+            resultView.printResult(names, results);
+        }
+        int nameIndex = names.indexOf(name);
+        if (nameIndex >= 0) {
+            int resultIndex = ladder.resultOf(nameIndex);
+            resultView.printResult(ladderResult.get(resultIndex));
         }
     }
 }

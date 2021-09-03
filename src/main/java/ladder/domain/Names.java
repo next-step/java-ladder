@@ -30,7 +30,7 @@ public class Names {
 
     public int indexOf(String name) {
         int nameIndex = names.indexOf(new Name(name));
-        if (nameIndex == NOT_FOUND) {
+        if (nameIndex == NOT_FOUND && !name.equals("all")) {
             throw new IllegalArgumentException("잘못된 이름입니다. name : " + name);
         }
         return nameIndex;
