@@ -76,7 +76,6 @@
 * 추가로 제공되는 객체 설계 힌트를 참고해 철저하게 TDD로 재구현해 본다.
 
 ### TODO
-* [ ] Direction 도메인 클래스 생성
+* [X] Direction 도메인 클래스 생성
 * [ ] Point 클래스 리펙토링
 * [ ] Line -> LadderLine 클래스 리팩토링
-
