@@ -6,3 +6,4 @@ public class EvenSumStrategy implements SumStrategy {
         return integer % 2 == 0;
     }
 }
+
