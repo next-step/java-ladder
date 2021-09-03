@@ -1,7 +1,6 @@
 package step2.domain;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class LadderGameManager {
     private final LadderGameColumns ladderGameColumns;
@@ -21,6 +20,4 @@ public class LadderGameManager {
         ladderGameColumns.runLadder(height, ladder);
         ladderGameColumns.calculateResult(result);
     }
-
-
 }
