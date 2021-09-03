@@ -6,7 +6,6 @@ import java.util.*;
 
 public class Line {
 
-    public static final String EXIST_TRUE_REPETITION = "연속된 사다리가 존재 합니다.";
     public static final int SECOND_INDEX = 1;
 
     private final List<Point> points = new ArrayList<>();
@@ -20,11 +19,11 @@ public class Line {
         points.add(currentPoint);
 
         for (int i = SECOND_INDEX; i < widthOfLadder-1; i++) {
-            currentPoint = Point.next(currentPoint, directionStrategy);
+            currentPoint = currentPoint.next(directionStrategy);
             points.add(currentPoint);
         }
 
-        points.add(Point.last(currentPoint));
+        points.add(currentPoint.last());
     }
 
     public List<Point> points() {

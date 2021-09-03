@@ -22,14 +22,6 @@ public class Point {
         return new Point(0, Direction.first(directionStrategy));
     }
 
-    public static Point next(Point pointBefore, DirectionStrategy directionStrategy) {
-        return new Point(pointBefore.index + 1, pointBefore.direction.next(directionStrategy));
-    }
-
-    public static Point last(Point pointBefore) {
-        return new Point(pointBefore.index + 1, pointBefore.direction.last());
-    }
-
     public Point next(DirectionStrategy directionStrategy) {
         return of(index + 1, direction.next(directionStrategy));
     }
@@ -66,6 +58,4 @@ public class Point {
     public int hashCode() {
         return Objects.hash(index, direction);
     }
-
-
 }
