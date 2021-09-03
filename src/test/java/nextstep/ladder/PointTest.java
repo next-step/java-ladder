@@ -15,35 +15,40 @@ public class PointTest {
     }
 
     @Test
-    void insert() {
+    void next() {
+        Point point = Point.init(true).next(); //
+        assertThat(point).isEqualTo(Point.of(true, false));
+    }
+
+    @Test
+    void move1() {
         Point first = Point.init(false); // (false , false)
         assertThat(first.move()).isEqualTo(0);
     }
 
     @Test
-    void insert2() {
+    void move2() {
         Point first = Point.init(true); // (false ,true)
         assertThat(first.move()).isEqualTo(1);
     }
 
     @Test
-    void insert3() {      // (false ,true)
-        Point point = Point.init(false).next();
-        assertThat(point).isEqualTo();
+    void move3() {      // (false ,true)
         assertThat(Point.init(false).next(true).move()).isEqualTo(1);
     }
 
     @Test
-    void insert4() {  // (false , false)
+    void move4() {  // (false , false)
         assertThat(Point.init(false).next(false).move()).isEqualTo(0);
     }
+
     @Test
-    void insert5() {  // (true , false)
+    void move5() {  // (true , false)
         assertThat(Point.init(true).next(false).move()).isEqualTo(-1);
     }
 
     @Test
-    void insert6() { // (true, false) 이전 값이 true이면 다음 값은 무조건 false이다.
+    void move6() { // (true, false) 이전 값이 true이면 다음 값은 무조건 false이다.
         assertThat(Point.init(true).next(true).move()).isEqualTo(-1);
     }
 }

@@ -23,6 +23,11 @@ public class Point {
         return new Point(false, nextPoint);
     }
 
+    public static Point of(boolean currentPoint, boolean nextPoint) {
+        return new Point(currentPoint, nextPoint);
+    }
+
+
     public Point last() { // 가로 Line 마지막 Point 값 지정
         return new Point(this.nextPoint, false);
     }
@@ -35,10 +40,7 @@ public class Point {
     }
 
     public Point next(boolean nextPoint) {
-        if (this.nextPoint) {
-            return new Point(this.nextPoint, false);
-        }
-        return new Point(this.nextPoint, nextPoint);
+        return of(this.nextPoint, nextPoint);
     }
 
     public boolean currentPoint() {
