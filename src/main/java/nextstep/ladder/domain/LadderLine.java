@@ -16,20 +16,20 @@ public class LadderLine {
         return points.get(position).move();
     }
 
-    public static LadderLine init(int sizeOfPerson) {
+    public static LadderLine init(final int sizeOfPerson, final PointCreator pointCreator) {
         if (sizeOfPerson < MIN_SIZE_OF_PERSON) {
             throw new IllegalArgumentException(CREATE_LADDER_LINE_ERROR);
         }
         List<Point> points = new ArrayList<>();
-        Point point = initFirst(points);
-        point = initBody(sizeOfPerson, points, point);
+        Point point = initFirst(points, pointCreator);
+        point = initBody(sizeOfPerson, points, point, pointCreator);
         initLast(points, point);
         return new LadderLine(points);
     }
 
-    private static Point initBody(int sizeOfPerson, List<Point> points, Point point) {
+    private static Point initBody(final int sizeOfPerson, List<Point> points, Point point,final PointCreator pointCreator) {
         for (int i = 1; i < sizeOfPerson - 1; i++) {
-            point = point.next();
+            point = point.next(pointCreator);
             points.add(point);
         }
         return point;
@@ -40,18 +40,18 @@ public class LadderLine {
         points.add(point);
     }
 
-    private static Point initFirst(List<Point> points) {
-        Point point = Point.first(generatePoint());
+    private static Point initFirst(List<Point> points, final PointCreator pointCreator) {
+        Point point = Point.first(pointCreator.createPoint());
         points.add(point);
         return point;
     }
 
-    private static Boolean generatePoint() {
-        return new RandomPointCreator().createPoint();
-    }
-
     public int size() {
         return this.points.size();
+    }
+
+    public List<Point> getPoints() {
+        return points;
     }
 
     @Override
@@ -60,4 +60,5 @@ public class LadderLine {
                 "points=" + points +
                 '}';
     }
+
 }

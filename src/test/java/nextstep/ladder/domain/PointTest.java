@@ -51,7 +51,7 @@ class PointTest {
         // first second
         //      |-----|    |
         //second first
-        Point second = Point.first(TRUE).next();
+        Point second = Point.first(TRUE).next(new RandomPointCreator());
         assertThat(second.move(), is(0));
     }
 }

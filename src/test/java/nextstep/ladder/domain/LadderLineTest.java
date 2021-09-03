@@ -11,23 +11,34 @@ class LadderLineTest {
     @Test
     public void init() {
         int sizeOfPerson = 5;
-        LadderLine ladderLine = LadderLine.init(sizeOfPerson);
+        LadderLine ladderLine = LadderLine.init(sizeOfPerson, () -> true);
         assertThat(ladderLine.size()).isEqualTo(sizeOfPerson);
     }
 
-    @DisplayName("player 가 1명이하면 게임을 시작할 수 없다. " +
-            "로직상 최소 3명이상이어야 게임을 시작할 수 있고, 2명일 땐 사다리 라인이 생기지 않는다.")
+    @DisplayName("player 가 1명이하면 게임을 시작할 수 없다.")
     @Test
     void initFirst() {
-        assertThatThrownBy(() -> LadderLine.init(1))
+        assertThatThrownBy(() -> LadderLine.init(1, () -> true))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("player 수가 2명일 때, 0 위치에서 사다리를 타면 라인이 생성되지 않기때문에 0 이 나온다.")
+    @DisplayName("player 수가 2명일 때")
     @Test
     public void move() {
-        LadderLine line = LadderLine.init(2);
-        assertThat(line.move(0)).isEqualTo(0);
+        LadderLine line = LadderLine.init(2, () -> true);
+        assertThat(line.move(0)).isEqualTo(1);
+    }
+
+    @DisplayName("player 수가 3명일 때")
+    @Test
+    public void move2() {
+        //      1      2      3
+        //      |------|      |
+        //      2      1      3
+        LadderLine line = LadderLine.init(3, () -> true);
+        assertThat(line.move(0)).isEqualTo(1);
+        assertThat(line.move(1)).isEqualTo(0);
+        assertThat(line.move(2)).isEqualTo(2);
     }
 
 }

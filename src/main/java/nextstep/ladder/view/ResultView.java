@@ -28,14 +28,14 @@ public class ResultView {
                 .forEach(ResultView::printLine);
     }
 
-    private static void printLine(Line line) {
-        line.getPoints()
+    private static void printLine(LadderLine ladderLine) {
+        ladderLine.getPoints()
                 .forEach(ResultView::printPoint);
         System.out.println();
     }
 
-    private static void printPoint(boolean point) {
-        if (point) {
+    private static void printPoint(Point point) {
+        if (point.canGoRight()) {
             System.out.print(TRUE_LINE);
             return;
         }
@@ -49,7 +49,7 @@ public class ResultView {
 
     public static void printLadderResult(List<String> results) {
         results
-                .forEach(p -> System.out.print(String.format("%6s", p)));
+                .forEach(result -> System.out.print(String.format("%6s", result)));
         System.out.println();
     }
 

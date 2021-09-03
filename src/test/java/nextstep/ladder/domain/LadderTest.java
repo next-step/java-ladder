@@ -20,4 +20,18 @@ class LadderTest {
         assertThrows(IllegalArgumentException.class, () -> new Ladder(new LadderInfo(0, 1), new RandomPointCreator()));
     }
 
+    @DisplayName("사다리 타기")
+    @Test
+    void climbLadder() {
+        //     1     2     3
+        //     |-----|     |
+        //     |-----|     |
+        //     |-----|     |
+        //     |-----|     |
+        //     1     2     3
+        Ladder ladder = new Ladder(new LadderInfo(3, 4), () -> true);
+        assertThat(ladder.climbLadder(0)).isEqualTo(0);
+        assertThat(ladder.climbLadder(1)).isEqualTo(1);
+        assertThat(ladder.climbLadder(2)).isEqualTo(2);
+    }
 }

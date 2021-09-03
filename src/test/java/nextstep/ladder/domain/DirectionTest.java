@@ -32,14 +32,14 @@ class DirectionTest {
     @DisplayName("true(right)의 다음은 무조건 false(right) 여야 한다.")
     @Test
     public void next_random_true() {
-        Direction next = Direction.first(TRUE).next();
+        Direction next = Direction.first(TRUE).next(() -> true);
         assertThat(next, is(Direction.of(TRUE, FALSE)));
     }
 
     @DisplayName("false 다음으로는 랜덤으로 true, false 가 올 수 있다. ")
     @Test
     public void next_random_false() {
-        Direction next = Direction.first(FALSE).next();
+        Direction next = Direction.first(FALSE).next(() -> true);
         Assertions.assertThat(next.isRight()).isIn(Arrays.asList(false, true));
     }
 

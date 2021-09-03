@@ -12,10 +12,8 @@ public class Direction {
         if (left && right) {
             throw new IllegalStateException();
         }
-
         this.left = left;
         this.right = right;
-        System.out.println(this);
     }
 
     public boolean isRight() {
@@ -30,15 +28,11 @@ public class Direction {
         return of(this.right, nextRight);
     }
 
-    public Direction next() {
+    public Direction next(final PointCreator pointCreator) {
         if (this.right) {
             return next(FALSE);
         }
-        return next(generatePoint());
-    }
-
-    private boolean generatePoint() {
-        return new RandomPointCreator().createPoint();
+        return next(pointCreator.createPoint());
     }
 
     public static Direction of(boolean left, boolean right) {
