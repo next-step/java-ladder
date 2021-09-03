@@ -12,8 +12,9 @@ public class LadderGameManager {
         this.result = result;
     }
 
-    public LadderGameColumns getLadderGames() {
-        return ladderGameColumns;
+    public List<LadderGameColumn> getLadderResults() {
+        return ladderGameColumns.getLadderGameList();
+
     }
 
     public void runGame(int height, Ladder ladder) {

@@ -19,6 +19,8 @@ public class LadderGameColumn {
 
     public void moveRight() {this.position++;}
 
+    public void setResult(String result) {this.result = result;}
+
     public int getPosition() {
         return position;
     }
