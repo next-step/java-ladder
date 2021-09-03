@@ -77,5 +77,5 @@
 
 ### TODO
 * [X] Direction 도메인 클래스 생성
-* [ ] Point 클래스 리펙토링
+* [X] Point 클래스 리펙토링
 * [ ] Line -> LadderLine 클래스 리팩토링
