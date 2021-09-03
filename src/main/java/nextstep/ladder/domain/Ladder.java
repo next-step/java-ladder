@@ -24,7 +24,7 @@ public class Ladder {
 
     public int search(int index) {
         for (LadderLine line : lines) {
-            index = line.search(index);
+            index = line.move(index);
         }
         return index;
     }

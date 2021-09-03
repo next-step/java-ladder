@@ -45,7 +45,7 @@ public class LadderLine {
     }
 
 
-    public int search(int index) {
+    public int move(int index) {
         Direction direction = new Direction(index);
         int point = points.get(index).move();
         return direction.move(point);

@@ -14,8 +14,8 @@ import static org.assertj.core.api.Assertions.*;
 
 class LadderTest {
 
-    Ladder ladder;
-    Result result;
+    private Ladder ladder;
+    private Result result;
 
     @BeforeEach
     void init() {

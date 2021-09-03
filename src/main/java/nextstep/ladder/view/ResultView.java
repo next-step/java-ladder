@@ -2,6 +2,9 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.domain.*;
 
+import static nextstep.ladder.util.Validation.INPUT_ALL;
+import static nextstep.ladder.util.Validation.isContainPlayer;
+
 
 public class ResultView {
     private static final String EMPTY_LINE = "     |";
@@ -65,5 +68,18 @@ public class ResultView {
         System.out.println(player);
         System.out.println();
 
+    }
+
+    public static void printLadderGameResult(Ladder ladder, Players players, Result result) {
+        while (true) {
+            String gameResult = InputView.inputGameResultSearch();
+            int playersNumber = isContainPlayer(gameResult, players);
+            if (playersNumber == INPUT_ALL) {
+                ResultView.printAllResult(players, ladder, result);
+                break;
+            }
+            int index = ladder.search(playersNumber);
+            ResultView.printPlayerResult(result.get(index));
+        }
     }
 }

@@ -18,15 +18,6 @@ public class LadderApplication {
         Ladder ladder = new Ladder(players.size(), ladderHeight);
         ResultView.printLadderGame(players, ladder);
         ResultView.printResultGroup(result);
-        while (true) {
-            String gameResult = InputView.inputGameResultSearch();
-            int playersNumber = isContainPlayer(gameResult, players);
-            if (playersNumber == INPUT_ALL) {
-                ResultView.printAllResult(players, ladder, result);
-                break;
-            }
-            int index = ladder.search(playersNumber);
-            ResultView.printPlayerResult(result.get(index));
-        }
+        ResultView.printLadderGameResult(ladder ,players , result);
     }
 }
