@@ -10,7 +10,9 @@ public class Names {
     private List<Name> names;
 
     public Names(String[] requestName) {
-        this(Arrays.stream(requestName).map(name -> new Name(name)).collect(Collectors.toList()));
+        this(Arrays.stream(requestName)
+                .map(name -> new Name(name))
+                .collect(Collectors.toList()));
     }
 
     private Names(List<Name> names) {
