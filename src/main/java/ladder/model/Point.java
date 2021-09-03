@@ -27,4 +27,9 @@ public class Point {
     public Point next(boolean right) {
         return new Point(index + 1, direction.next(right));
     }
+
+    public boolean isLeft(){
+        return direction.isLeft();
+    }
+
 }

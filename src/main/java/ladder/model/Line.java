@@ -1,48 +1,51 @@
 package ladder.model;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Line {
 
-    private static final String LINE_OVERLAPPED_MSG = "라인은 겹치면 안됩니다.";
-    private List<Boolean> steps;
+    private List<Point> steps;
 
-    private Line(List<Boolean> steps) {
+    private Line(List<Point> steps) {
         this.steps = steps;
     }
 
     public static Line of(List<Boolean> steps) {
-        validateStep(steps);
-        return new Line(steps);
+        return new Line(transformToPoint(steps));
     }
 
-    private static void validateStep(List<Boolean> steps) {
-        for (int i = 0; i < steps.size() - 1; i++) {
-            isOverLapped(steps.get(i), steps.get(i + 1));
-        }
-    }
+    private static List<Point> transformToPoint(List<Boolean> steps) {
+        List<Point> result = new ArrayList<>();
 
-    private static void isOverLapped(Boolean firstStep, Boolean secondStep) {
-        if (firstStep && secondStep) {
-            throw new IllegalArgumentException(LINE_OVERLAPPED_MSG);
+        // First
+        Point first = Point.first(steps.get(1));
+        result.add(first);
+
+        // Middle
+        Point next = first;
+        for (int i = 2; i < steps.size(); i++) {
+            next = next.next(steps.get(i));
+            result.add(next);
         }
+        // Last
+        result.add(next.next(false));
+        return result;
     }
 
     public int move(int now) {
-        if (steps.get(now)) {
-            return now - 1;
-        }
-        if (now + 1 < steps.size() && steps.get(now + 1)) {
-            return now + 1;
-        }
-        return now;
+        return steps.get(now).move();
     }
 
     public List<Boolean> getSteps() {
-        return steps;
+        return steps.stream()
+                .map(Point::isLeft)
+                .collect(Collectors.toList());
+
     }
 
-    public int getWidth(){
+    public int getWidth() {
         return steps.size();
     }
 }
