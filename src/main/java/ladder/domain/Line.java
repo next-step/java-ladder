@@ -3,7 +3,6 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class Line {
     private static final boolean FALSE_BECAUSE_OF_LEFT_TRUE = false;
@@ -14,8 +13,9 @@ public class Line {
     public Line(int width, LineGenerateStrategy lineGenerateStrategy) {
         validate(width);
         points.add(lineGenerateStrategy.generatable());
-        IntStream.range(1, width - 1)
-                .forEach(position -> points.add(generatable(position, lineGenerateStrategy)));
+        for (int i = 1; i < width -1; i++) {
+            points.add(generatable(i, lineGenerateStrategy));
+        }
     }
 
     private void validate(int width) {
