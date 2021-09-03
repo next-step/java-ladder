@@ -48,4 +48,30 @@ class PointTest {
         assertThat(point1.move()).isEqualTo(result);
     }
 
+    @Test
+    @DisplayName("중간 Point 생성")
+    void create2() {
+        // when
+        Point point = Point.first(() -> false).next(() -> false);
+        // then
+        assertThat(point).isEqualTo(Point.of(1, Direction.of(false, false)));
+    }
+
+    @Test
+    @DisplayName("마지막 Point 생성")
+    void last2(){
+        // when
+        Point pointLast = Point.first(() -> true).last();
+        // then
+        assertThat(pointLast).isEqualTo(Point.of(1, Direction.of(true, false)));
+    }
+
+    @ParameterizedTest(name = "Point 이동 [{index}] {0} {1} {2} -> {3}")
+    @CsvSource({"false, false, 1", "true, false, 0", "false, true, 2"})
+    void move2(boolean left, boolean right, int result) {
+        // when
+        Point point = Point.of(1, Direction.of(left, right));
+        // then
+        assertThat(point.move()).isEqualTo(result);
+    }
 }
