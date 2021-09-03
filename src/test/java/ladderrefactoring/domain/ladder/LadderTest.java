@@ -1,8 +1,6 @@
 package ladderrefactoring.domain.ladder;
 
-import ladderrefactoring.domain.datas.People;
 import ladderrefactoring.strategy.DirectionStrategy;
-import ladderrefactoring.strategy.RandomDirectionStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -32,12 +30,7 @@ public class LadderTest {
     @DisplayName("Ladder result 연산")
     void result() {
         // given
-        Ladder ladder = new Ladder(4, 1, new RandomDirectionStrategy(){
-            @Override
-            protected boolean currentPoint() {
-                return true;
-            }
-        });
+        Ladder ladder = new Ladder(4, 1, () -> true);
 
         // when
         List<Integer> winningResult = ladder.result();

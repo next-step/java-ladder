@@ -1,7 +1,6 @@
 package ladderrefactoring.domain.ladder;
 
 import ladderrefactoring.strategy.DirectionStrategy;
-import ladderrefactoring.strategy.RandomDirectionStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -28,13 +27,7 @@ class LineTest {
     void move() {
         // given
         int widthOfLadder = 4;
-        DirectionStrategy directionStrategy = new RandomDirectionStrategy(){
-            @Override
-            protected boolean currentPoint() {
-                return true;
-            }
-        };
-        Line line = new Line(widthOfLadder, directionStrategy);
+        Line line = new Line(widthOfLadder, () -> true);
 
         // when
         int movedPosition1 = line.movePosition(1);
