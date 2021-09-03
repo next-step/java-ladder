@@ -55,4 +55,50 @@ class DirectionTest {
         assertThatThrownBy(() -> Direction.next(direction, () -> true))
                 .isInstanceOf(CustomException.class);
     }
+
+    @Test
+    @DisplayName("first Direction 생성")
+    void create_first2() {
+        // when
+        Direction direction = Direction.first(() -> false).next(() -> false);
+
+        // then
+        assertThat(direction).isEqualTo(Direction.of(false, false));
+        assertThat(direction.left()).isFalse();
+    }
+
+    @Test
+    @DisplayName("last Direction 생성")
+    void create_last2() {
+        // when
+        Direction direction = Direction.first(() -> true).last();
+
+        // then
+        assertThat(direction).isEqualTo(Direction.of(false, true).last());
+        assertThat(direction.left()).isTrue();
+        assertThat(direction.right()).isFalse();
+    }
+
+    @Test
+    @DisplayName("중간 Direction 생성")
+    void create2() {
+        // when
+        Direction direction0 = Direction.first(() -> false);
+        Direction direction1 = direction0.next(() -> false);
+
+        // then
+        assertThat(direction1).isEqualTo(Direction.of(false, false));
+        assertThat(direction1.left()).isFalse();
+    }
+
+    @Test
+    @DisplayName("Direction 생성 실패 : true, true")
+    void create_fail2() {
+        // given
+        Direction direction = Direction.first(() -> true);
+        // when, then
+        assertThatThrownBy(() -> Direction.next(direction, () -> true))
+                .isInstanceOf(CustomException.class);
+    }
+
 }
