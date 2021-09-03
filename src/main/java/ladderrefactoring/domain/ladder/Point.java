@@ -19,11 +19,11 @@ public class Point {
     }
 
     public static Point next(Point pointBefore, DirectionStrategy directionStrategy) {
-        return new Point(pointBefore.index + 1, Direction.next(pointBefore.direction, directionStrategy));
+        return new Point(pointBefore.index + 1, pointBefore.direction.next(directionStrategy));
     }
 
     public static Point last(Point pointBefore) {
-        return new Point(pointBefore.index + 1, Direction.last(pointBefore.direction));
+        return new Point(pointBefore.index + 1, pointBefore.direction.last());
     }
 
     public int move() {

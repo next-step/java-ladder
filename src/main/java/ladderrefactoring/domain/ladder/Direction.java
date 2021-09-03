@@ -18,20 +18,12 @@ public class Direction {
         this.right = right;
     }
 
-    public static Direction first(DirectionStrategy directionStrategy) {
-        return new Direction(false, directionStrategy.create());
-    }
-
-    public static Direction next(Direction directionBefore, DirectionStrategy directionStrategy) {
-        return new Direction(directionBefore.right, directionStrategy.create());
-    }
-
-    public static Direction last(Direction directionBefore) {
-        return new Direction(directionBefore.right, false);
-    }
-
     public static Direction of(boolean left, boolean right) {
         return new Direction(left, right);
+    }
+
+    public static Direction first(DirectionStrategy directionStrategy) {
+        return new Direction(false, directionStrategy.create());
     }
 
     public Direction next(DirectionStrategy directionStrategy) {
