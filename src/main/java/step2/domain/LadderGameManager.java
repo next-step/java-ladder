@@ -13,7 +13,6 @@ public class LadderGameManager {
 
     public List<LadderGameColumn> getLadderResults() {
         return ladderGameColumns.getLadderGameList();
-
     }
 
     public void runGame(int height, Ladder ladder) {
