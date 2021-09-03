@@ -22,7 +22,7 @@ public class LadderGame {
         }
 
         Map<String, String> resultMap = new LinkedHashMap<>();
-        for (int location = 0; location < results.sizeOfResults(); location++) {
+        for (int location = 0; location < results.size(); location++) {
             int index = ladder.climbLadder(new Location(location));
             resultMap.put(players.indexOf(location), results.indexOf(index));
         }

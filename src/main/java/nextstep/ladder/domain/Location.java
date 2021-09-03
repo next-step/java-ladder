@@ -16,13 +16,21 @@ public class Location {
     }
 
     public Location move(final Line line) {
-        if (line.valueByLocation(this.location)) {
+        if (isRightMove(line)) {
             return new Location(this.location - MOVE_UNIT);
         }
-        if (!line.isSameSize(this.location + MOVE_UNIT) && line.valueByLocation(this.location + MOVE_UNIT)) {
+        if (isLeftMove(line)) {
             return new Location(this.location + MOVE_UNIT);
         }
         return this;
+    }
+
+    private boolean isRightMove(final Line line) {
+        return line.valueByLocation(this.location);
+    }
+
+    private boolean isLeftMove(final Line line) {
+        return !line.isLastLocation(this.location + MOVE_UNIT) && line.valueByLocation(this.location + MOVE_UNIT);
     }
 
     public int getLocation() {

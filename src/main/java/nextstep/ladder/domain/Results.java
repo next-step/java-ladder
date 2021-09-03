@@ -6,12 +6,12 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Results {
-    private final List<StringValue> results;
+    private final List<Name> results;
 
     public Results(final List<String> results) {
         this.results = Collections.unmodifiableList(
                 results.stream()
-                        .map(StringValue::new)
+                        .map(Name::new)
                         .collect(Collectors.toList())
         );
     }
@@ -20,7 +20,7 @@ public class Results {
         return results.get(index).getValue();
     }
 
-    public int sizeOfResults() {
+    public int size() {
         return results.size();
     }
 

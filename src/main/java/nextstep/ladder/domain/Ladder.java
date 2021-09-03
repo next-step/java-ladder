@@ -13,7 +13,7 @@ public class Ladder {
 
     public Ladder(final LadderInfo ladderInfo, final PointCreator pointCreator) {
         if (!ladderInfo.isRightLadderInfo(MIN_VALUE)) {
-            throw new IllegalArgumentException(CREATE_LADDER_ERROR + ladderInfo.toString());
+            throw new IllegalArgumentException(CREATE_LADDER_ERROR + ladderInfo);
         }
         this.lines = Collections.unmodifiableList(createLines(ladderInfo, pointCreator));
     }

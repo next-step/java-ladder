@@ -57,7 +57,7 @@ public class Line {
         return points.get(location);
     }
 
-    public boolean isSameSize(int size) {
+    public boolean isLastLocation(int size) {
         return this.points.size() == size;
     }
 

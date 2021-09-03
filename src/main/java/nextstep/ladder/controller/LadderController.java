@@ -19,14 +19,10 @@ public class LadderController {
         ResultView.printLadderResult(results);
 
         LadderResults ladderResults = ladderGame.climbLadder(new Results(results));
-
-        while (true) {
-            String whoWantResult = InputView.inputWhoWantResult();
+        String whoWantResult = "";
+        while (!whoWantResult.equals(ResultView.ALL_RESULTS)) {
+            whoWantResult = InputView.inputWhoWantResult();
             ResultView.printPlayersResults(whoWantResult, ladderResults);
-
-            if (whoWantResult.equals("all")) {
-                break;
-            }
         }
     }
 }

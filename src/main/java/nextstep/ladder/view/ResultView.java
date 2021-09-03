@@ -11,6 +11,8 @@ public class ResultView {
     private static final String TRUE_LINE = "-----|";
     private static final String LADDER_RESULT = "\n사다리 결과";
     private static final String RESULT = "\n실행 결과";
+    private static final String COLON = " : ";
+    public static final String ALL_RESULTS = "all";
 
     private ResultView() {
     }
@@ -53,7 +55,7 @@ public class ResultView {
 
     public static void printPlayersResults(String whoWantResult, LadderResults ladderResults) {
         System.out.println(RESULT);
-        if (whoWantResult.equals("all")) {
+        if (whoWantResult.equals(ALL_RESULTS)) {
             printAllPlayersResults(ladderResults);
             return;
         }
@@ -63,7 +65,7 @@ public class ResultView {
     private static void printAllPlayersResults(LadderResults ladderResults) {
         Set<String> players = ladderResults.getPlayers();
         players.forEach(player -> System.out.println(player
-                + " : "
+                + COLON
                 + ladderResults.findResultByPlayer(player)));
     }
 

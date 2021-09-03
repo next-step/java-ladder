@@ -19,4 +19,13 @@ class LocationTest {
     void create_error() {
         assertThrows(IllegalArgumentException.class, () -> new Location(-1));
     }
+
+    @DisplayName("양수면 오른쪽(+) 음수면 왼쪽(-) 이동")
+    @Test
+    void move() {
+        Line line = new Line(3, () -> true);
+        assertThat(new Location(0).move(line)).isEqualTo(new Location(1));
+        assertThat(new Location(1).move(line)).isEqualTo(new Location(0));
+        assertThat(new Location(2).move(line)).isEqualTo(new Location(2));
+    }
 }
