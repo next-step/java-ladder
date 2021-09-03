@@ -1,7 +1,7 @@
 package nextstep.ladders.domain;
 
-import nextstep.ladders.domain.strategy.GeneratorSteategy;
-import nextstep.ladders.domain.strategy.RandomGenerateStrategy;
+import nextstep.ladders.domain.strategy.DirectionGenerator;
+import nextstep.ladders.domain.strategy.DirectionRandomGenerate;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -10,17 +10,17 @@ public class Ladder {
 
     private static final String REGEX_COMMA = ",";
 
-    private final Lines lines;
+    private final LadderLines ladderLines;
 
-    public Ladder(final Lines lines) {
-        this.lines = lines;
+    public Ladder(final LadderLines ladderLines) {
+        this.ladderLines = ladderLines;
     }
 
-    public Ladder(final GeneratorSteategy generatorSteategy, final int height, final int numberOfPeople) {
-        this(new Lines(generatorSteategy, height, numberOfPeople));
+    public Ladder(final DirectionGenerator directionGenerator, final int height, final int numberOfPeople) {
+        this(new LadderLines(directionGenerator, height, numberOfPeople));
     }
 
-    public Ladder(final RandomGenerateStrategy generator, final String maxLadderHeightText, final String participantsText) {
+    public Ladder(final DirectionRandomGenerate generator, final String maxLadderHeightText, final String participantsText) {
         this(generator, parseMaxLadderHeight(maxLadderHeightText), parseParticipantsCount(participantsText));
     }
 
@@ -33,11 +33,11 @@ public class Ladder {
     }
 
     public int start(final int index) {
-        return lines.move(index);
+        return ladderLines.move(index);
     }
 
-    public Lines getLines() {
-        return lines;
+    public LadderLines getLines() {
+        return ladderLines;
     }
 
     @Override
@@ -45,11 +45,11 @@ public class Ladder {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Ladder ladder = (Ladder) o;
-        return Objects.equals(lines, ladder.lines);
+        return Objects.equals(ladderLines, ladder.ladderLines);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(lines);
+        return Objects.hash(ladderLines);
     }
 }

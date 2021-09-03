@@ -33,16 +33,12 @@ public class ConsoleOutputView {
         System.out.printf("%5s ", name);
     }
 
-    private void print(final Lines lines) {
-        for (Line line : lines.elements()) {
-            print(line);
-        }
+    private void print(final LadderLines ladderLines) {
+        ladderLines.elements().forEach(this::print);
     }
 
-    private void print(final Line line) {
-        for (Point point : line.elements()) {
-            print(point);
-        }
+    private void print(final LadderLine ladderLine) {
+        ladderLine.elements().forEach(this::print);
         System.out.println();
     }
 

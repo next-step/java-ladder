@@ -2,7 +2,7 @@ package nextstep.ladders.domain.strategy;
 
 import java.util.Random;
 
-public class RandomGenerateStrategy implements GeneratorSteategy {
+public class DirectionRandomGenerate implements DirectionGenerator {
 
     private static final Random random = new Random();
 

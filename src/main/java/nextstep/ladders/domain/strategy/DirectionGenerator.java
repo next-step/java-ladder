@@ -1,6 +1,6 @@
 package nextstep.ladders.domain.strategy;
 
-public interface GeneratorSteategy {
+public interface DirectionGenerator {
 
     boolean generate();
 }

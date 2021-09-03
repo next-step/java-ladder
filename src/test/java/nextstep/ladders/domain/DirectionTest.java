@@ -1,5 +1,6 @@
 package nextstep.ladders.domain;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -12,36 +13,42 @@ public class DirectionTest {
 
     @ParameterizedTest
     @CsvSource(value = {"true:false", "false:true", "false:false"}, delimiter = ':')
-    void 생성_정상(final boolean left, final boolean right) {
+    @DisplayName("생성 테스트")
+    void create(final boolean left, final boolean right) {
         assertEquals(Direction.of(left, right), Direction.of(left, right));
     }
 
     @Test
-    void 생성_둘다_참일경우_에러() {
+    @DisplayName("Direction 의 왼쪽 오른쪽이 둘다 참일경우 에러")
+    void errorIfBothLeftAndRightOfDirectionAreTrue() {
         assertThrows(IllegalArgumentException.class, () -> Direction.of(true, true));
     }
 
     @Test
-    void 첫번째는_무조건_false() {
+    @DisplayName("Direction 의 첫번째는 반드시 false")
+    void theFirstOfDirectionMustBeFalse() {
         assertEquals(Direction.first(true), Direction.of(false, true));
         assertEquals(Direction.first(false), Direction.of(false, false));
     }
 
     @Test
-    void 마지막은_무조건_false() {
+    @DisplayName("Direction 의 마지막은 반드시 false")
+    void theEndOfDirectionMustBeFalse() {
         Direction direction = Direction.of(true, false);
         assertEquals(direction.last(), Direction.of(false, false));
     }
 
     @Test
-    void 오른쪽이_참이면_다음엔_왼쪽은_거짓() {
+    @DisplayName("오른쪽이 참이면 다음 왼쪽은 거짓")
+    void ifRightIsTrueThenLeftIsFalse() {
         Direction direction = Direction.of(false, true);
         assertEquals(direction.next(false), Direction.of(true, false));
     }
 
     @ParameterizedTest
     @ValueSource(booleans = {true, false})
-    void 오른쪽이_거짓이면_다음_왼쪽은_생성_룰에_따라서(final boolean next) {
+    @DisplayName("오른쪽이 거짓이면 다음 왼쪽은 생성 룰에 따라서")
+    void ifTheRightIsFalseTheNextLeftIsAccordingToTheGenerationRule(final boolean next) {
         Direction direction = Direction.of(true, false);
         assertEquals(direction.next(next), Direction.of(false, next));
     }

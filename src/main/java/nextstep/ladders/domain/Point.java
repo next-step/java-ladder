@@ -1,6 +1,6 @@
 package nextstep.ladders.domain;
 
-import nextstep.ladders.domain.strategy.GeneratorSteategy;
+import nextstep.ladders.domain.strategy.DirectionGenerator;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,14 +17,14 @@ public class Point {
         this.direction = direction;
     }
 
-    public static List<Point> toList(final GeneratorSteategy generatorSteategy, final int numberOfPeople) {
+    public static List<Point> toList(final DirectionGenerator directionGenerator, final int numberOfPeople) {
         // TODO 사람 못찾을 때
         if (numberOfPeople == 1) {
-            return Collections.singletonList(Point.first(generatorSteategy.generate()));
+            return Collections.singletonList(Point.first(directionGenerator.generate()));
         }
         List<Point> points = new ArrayList<>();
-        Point point = initFirst(generatorSteategy, points);
-        point = initMiddle(generatorSteategy, numberOfPeople, points, point);
+        Point point = initFirst(directionGenerator, points);
+        point = initMiddle(directionGenerator, numberOfPeople, points, point);
         initLast(points, point);
         return points;
     }
@@ -33,16 +33,16 @@ public class Point {
         points.add(point.last());
     }
 
-    private static Point initMiddle(GeneratorSteategy generatorSteategy, int numberOfPeople, List<Point> points, Point point) {
+    private static Point initMiddle(DirectionGenerator directionGenerator, int numberOfPeople, List<Point> points, Point point) {
         for (int i = 1; i < numberOfPeople - 1; i++) {
-            point = point.next(generatorSteategy.generate());
+            point = point.next(directionGenerator.generate());
             points.add(point);
         }
         return point;
     }
 
-    private static Point initFirst(GeneratorSteategy generatorSteategy, List<Point> points) {
-        Point point = Point.first(generatorSteategy.generate());
+    private static Point initFirst(DirectionGenerator directionGenerator, List<Point> points) {
+        Point point = Point.first(directionGenerator.generate());
         points.add(point);
         return point;
     }
@@ -61,12 +61,12 @@ public class Point {
 
     public int move() {
         if (direction.isRight()) {
-            return this.index + 1;
+            return index + 1;
         }
         if (direction.isLeft()) {
-            return this.index - 1;
+            return index - 1;
         }
-        return this.index;
+        return index;
     }
 
     public Direction getDirection() {

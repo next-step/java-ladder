@@ -1,6 +1,6 @@
 package nextstep.ladders.domain;
 
-import nextstep.ladders.domain.strategy.GeneratorSteategy;
+import nextstep.ladders.domain.strategy.DirectionGenerator;
 import nextstep.ladders.exception.InvalidLineSizeException;
 
 import java.util.Collections;
@@ -9,20 +9,20 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Line {
+public class LadderLine {
 
     private final List<Point> points;
 
-    public Line(final List<Point> points) {
+    public LadderLine(final List<Point> points) {
         this.points = points;
     }
 
-    public Line(final GeneratorSteategy generatorSteategy, final int numberOfPeople) {
-        this(Point.toList(generatorSteategy, numberOfPeople));
+    public LadderLine(final DirectionGenerator directionGenerator, final int numberOfPeople) {
+        this(Point.toList(directionGenerator, numberOfPeople));
     }
 
-    public static List<Line> toList(final GeneratorSteategy generatorSteategy, final int height, final int numberOfPeople) {
-        return Stream.generate(() -> new Line(generatorSteategy, numberOfPeople))
+    public static List<LadderLine> toList(final DirectionGenerator directionGenerator, final int height, final int numberOfPeople) {
+        return Stream.generate(() -> new LadderLine(directionGenerator, numberOfPeople))
                 .limit(height)
                 .collect(Collectors.toList());
     }
@@ -47,8 +47,8 @@ public class Line {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Line line = (Line) o;
-        return Objects.equals(points, line.points);
+        LadderLine ladderLine = (LadderLine) o;
+        return Objects.equals(points, ladderLine.points);
     }
 
     @Override
