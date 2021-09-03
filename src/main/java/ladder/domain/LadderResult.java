@@ -2,14 +2,13 @@ package ladder.domain;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class LadderResult {
     public static final int EMPTY_SIZE = 0;
     private List<String> ladderResult;
 
     public LadderResult(String[] ladderResult) {
-        this(Arrays.stream(ladderResult).collect(Collectors.toList()));
+        this(Arrays.asList(ladderResult));
     }
 
     private LadderResult(List<String> ladderResult) {
