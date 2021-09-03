@@ -27,10 +27,10 @@ public class Ladder {
         return endIndex;
     }
 
-    public List<Integer> resultAll() {
-        List<Integer> resultAll = new ArrayList<>();
+    public List<Integer> resultAllIndexes() {
+        List<Integer> resultAllIndexes = new ArrayList<>();
         IntStream.range(0, width)
-                .forEach(index -> resultAll.add(resultOf(index)));
-        return resultAll;
+                .forEach(index -> resultAllIndexes.add(resultOf(index)));
+        return resultAllIndexes;
     }
 }

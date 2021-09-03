@@ -33,7 +33,7 @@ class LadderTest {
     @DisplayName("한 줄 사다리를 만들었을 때 resultAll 함수의 결과는 1,0 인덱스 순서이다.")
     void resultAll(){
         Ladder ladder = new Ladder(1, 2, () -> true);
-        List<Integer> resultAll = ladder.resultAll();
+        List<Integer> resultAll = ladder.resultAllIndexes();
         assertEquals(resultAll.get(0), 1);
         assertEquals(resultAll.get(1), 0);
     }

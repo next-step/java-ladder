@@ -36,7 +36,7 @@ public class LadderMain {
     private static void showResult(InputView inputView, Names names, LadderResult ladderResult, Ladder ladder, ResultView resultView) {
         String name = inputView.requestWhoseResult();
         if (name.equals("all")) {
-            List<String> results = ladder.resultAll().stream()
+            List<String> results = ladder.resultAllIndexes().stream()
                     .map(index -> ladderResult.get(index))
                     .collect(Collectors.toList());
             resultView.printResult(names, results);
