@@ -1,22 +1,23 @@
 package newladder.model;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class GameResult {
 
-    private final HashMap<String, String> resultList = new HashMap<>();
+    private final Map<User, String> results = new HashMap<>();
 
-    public void addResult(String userName, String prizeName) {
-        resultList.put(userName, prizeName);
+    public void addResult(User user, String prizeName) {
+        results.put(user, prizeName);
     }
 
-    public HashMap<String, String> getResult() {
-        return resultList;
+    public Map<User, String> getResult() {
+        return results;
     }
 
-    public String getResult(String name) {
-        if (resultList.containsKey(name)) {
-            return resultList.get(name);
+    public String getResult(User user) {
+        if (results.containsKey(user)) {
+            return results.get(user);
         }
         throw new IllegalArgumentException();
     }

@@ -52,8 +52,8 @@ public class Result {
 
     public static void printResultAll(GameResult gameResult) {
         System.out.println(RESULT_MESSAGE);
-        for (String userName : gameResult.getResult().keySet()) {
-            System.out.println(String.format(RESULT_FORMAT, userName, gameResult.getResult(userName)));
+        for (User user : gameResult.getResult().keySet()) {
+            System.out.println(String.format(RESULT_FORMAT, user.nameInfo(), gameResult.getResult(user)));
         }
         System.out.println();
     }

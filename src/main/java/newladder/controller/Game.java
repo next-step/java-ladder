@@ -3,17 +3,17 @@ package newladder.controller;
 import newladder.model.GameResult;
 import newladder.model.MyLadderGame;
 import newladder.model.Prize;
+import newladder.model.User;
 import newladder.model.Users;
 import newladder.view.Input;
 import newladder.view.Result;
 
 public class Game {
 
-    private final String ALL_RESULT = "all";
+    private static final String ALL_RESULT = "all";
 
-    MyLadderGame ladderGame;
-    GameResult gameResult = new GameResult();
-    Prize prize;
+    private MyLadderGame ladderGame;
+    private Prize prize;
 
     public void makeLadder() {
         String[] users = Input.getUsers();
@@ -29,21 +29,22 @@ public class Game {
 
     public void makeResult() {
         Users users = ladderGame.usersInfo();
+        GameResult gameResult = new GameResult();
         Result.printPrize(prize);
         users.usersInfo()
                 .stream()
                 .forEach(user -> {
                     int userIndex = users.userIndex(user.nameInfo());
-                    gameResult.addResult(user.nameInfo(),
+                    gameResult.addResult(user,
                             prize.prizeInfo(ladderGame.playLadder(userIndex)));
                 });
 
         while (true) {
-            printResult();
+            printResult(gameResult);
         }
     }
 
-    private void printResult() {
+    private void printResult(GameResult gameResult) {
         String userName = Input.getUser();
         if (userName == null) {
             return;
@@ -53,7 +54,9 @@ public class Game {
             Result.printResultAll(gameResult);
             return;
         }
-        Result.printResult(gameResult.getResult(userName));
+
+
+        Result.printResult(gameResult.getResult(new User(userName)));
     }
 
 

@@ -26,9 +26,8 @@ public class Users {
     }
 
     public int userIndex(String name) {
-        return IntStream.range(0, users.size())
-                .filter(i -> users.get(i).compareName(name))
-                .findFirst()
-                .orElse(NOT_FOUND_NAME);
+        return users.indexOf(new User(name));
     }
+
+
 }

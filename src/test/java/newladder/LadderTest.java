@@ -14,13 +14,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderTest {
 
-    private static final int LADDER_HEIGHT = 5;
     MyLadder myLadder;
     List<MyLine> myLineList = new ArrayList<>();
 
     @BeforeEach
     void before() {
-
         List<Direction> directionList = new ArrayList<>();
         Direction firstDirection = new Direction(false);
         directionList.add(firstDirection);

@@ -1,11 +1,8 @@
 package newladder.model;
 
-import newladder.interfaces.Ladder;
-
-import java.util.ArrayList;
 import java.util.List;
 
-public class MyLadder implements Ladder {
+public class MyLadder {
 
     private final List<MyLine> lineList;
 
@@ -13,7 +10,6 @@ public class MyLadder implements Ladder {
         this.lineList = lineList;
     }
 
-    @Override
     public int downLadder(int startPosition) {
         int result = startPosition;
         for (MyLine line : lineList) {
