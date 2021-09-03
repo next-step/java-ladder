@@ -3,6 +3,9 @@ package nextstep.fp;
 import java.util.List;
 
 public class Lambda {
+
+    private static final int DEFAULT_VALUE = 0;
+
     public static void printAllOld(List<Integer> numbers) {
         System.out.println("printAllOld");
 
@@ -26,31 +29,35 @@ public class Lambda {
         }).start();
     }
 
-    public static int sumAll(List<Integer> numbers) {
-        int total = 0;
+    public static int sumAll(List<Integer> numbers, Calculator calculator) {
+        int total = DEFAULT_VALUE;
         for (int number : numbers) {
+            total = calculatorSum(calculator, total, number);
+        }
+        return total;
+    }
+
+    public static int sumAllEven(List<Integer> numbers, Calculator calculator) {
+        int total = DEFAULT_VALUE;
+        for (int number : numbers) {
+            total = calculatorSum(calculator, total, number);
+        }
+        return total;
+    }
+
+    public static int sumAllOverThree(List<Integer> numbers, Calculator calculator) {
+        int total = DEFAULT_VALUE;
+        for (int number : numbers) {
+            total = calculatorSum(calculator, total, number);
+        }
+        return total;
+    }
+
+    private static int calculatorSum(Calculator calculator, int total, int number) {
+        if (calculator.sum(number)) {
             total += number;
         }
         return total;
     }
 
-    public static int sumAllEven(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number % 2 == 0) {
-                total += number;
-            }
-        }
-        return total;
-    }
-
-    public static int sumAllOverThree(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number > 3) {
-                total += number;
-            }
-        }
-        return total;
-    }
 }
