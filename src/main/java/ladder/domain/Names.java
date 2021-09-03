@@ -3,6 +3,7 @@ package ladder.domain;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Names {
     public static final int MIN_PERSON_COUNT = 2;
@@ -22,10 +23,6 @@ public class Names {
         this.names = names;
     }
 
-    public List<Name> names() {
-        return names;
-    }
-
     public int size() {
         return names.size();
     }
@@ -38,6 +35,9 @@ public class Names {
         return nameIndex;
     }
 
+    public Stream<Name> stream(){
+        return names.stream();
+    }
     public Name get(int index) {
         return names.get(index);
     }

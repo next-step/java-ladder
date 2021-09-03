@@ -12,12 +12,12 @@ public class ResultView {
     public static final String LADDER_COLUMN = "|";
 
     public void printLadder(Names names, Ladder ladder, LadderResult ladderResult) {
-        names.names().stream()
+        names.stream()
                 .forEach(name -> System.out.printf("%6s", name.name()));
         System.out.println();
-        ladder.lines().stream()
+        ladder.stream()
                 .forEach(line -> printLine(line));
-        ladderResult.result().stream()
+        ladderResult.stream()
                 .forEach(result -> System.out.printf("%6s", result));
         System.out.println();
         System.out.println();

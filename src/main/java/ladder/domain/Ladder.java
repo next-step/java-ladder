@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Ladder {
     private int width;
@@ -32,5 +33,9 @@ public class Ladder {
         IntStream.range(0, width)
                 .forEach(index -> resultAllIndexes.add(resultOf(index)));
         return resultAllIndexes;
+    }
+
+    public Stream<Line> stream(){
+        return lines.stream();
     }
 }

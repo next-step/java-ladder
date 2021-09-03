@@ -2,6 +2,7 @@ package ladder.domain;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class LadderResult {
     public static final int EMPTY_SIZE = 0;
@@ -13,10 +14,6 @@ public class LadderResult {
 
     private LadderResult(List<String> ladderResult) {
         this.ladderResult = ladderResult;
-    }
-
-    public List<String> result(){
-        return ladderResult;
     }
 
     public String get(int resultIndex) {
@@ -32,5 +29,9 @@ public class LadderResult {
 
     public int size() {
         return ladderResult.size();
+    }
+
+    public Stream<String> stream(){
+        return ladderResult.stream();
     }
 }
