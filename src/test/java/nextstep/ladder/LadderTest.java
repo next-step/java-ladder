@@ -21,7 +21,7 @@ class LadderTest {
     void init() {
         Point point = Point.init(false); // (false,false)
         Point point1 = Point.init(true); // (false,true)
-        Point point2 = Point.init(true).next(true); //(true,false)
+        Point point2 = Point.init(true).next(false); //(true,false)
         LadderLine line = new LadderLine(Arrays.asList(point, point1, point2));
         Point point3 = Point.init(true);// (false,true);
         Point point4 = Point.init(true).next(false);// (true, false);
@@ -29,7 +29,7 @@ class LadderTest {
         LadderLine line1 = new LadderLine(Arrays.asList(point3, point4, point5));
         Point point6 = Point.init(false);// (false,false);
         Point point7 = Point.init(true); // (false,true)
-        Point point8 = Point.init(true).next(true); //(true,false)
+        Point point8 = Point.init(true).next(false); //(true,false)
         LadderLine line2 = new LadderLine(Arrays.asList(point6, point7, point8));
         ladder = new Ladder(Arrays.asList(line,line1,line2));
         result = new Result(Arrays.asList("꽝", "1등", "2등"));
