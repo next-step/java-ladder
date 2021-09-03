@@ -34,7 +34,8 @@ public class Line {
     public int move(int endIndex) {
         if (lineExists(endIndex - 1)) {
             return endIndex - 1;
-        } else if (lineExists(endIndex)) {
+        }
+        if (lineExists(endIndex)) {
             return endIndex + 1;
         }
         return endIndex;
