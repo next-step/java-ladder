@@ -6,18 +6,20 @@ import java.util.Objects;
 
 public class Name {
     private static final int NAME_MAX_LENGTH = 5;
+    private static final String UNUSABLE_NAME = "all";
     private String name;
 
     public Name(String name) {
-        Validation.isEmptyAndNull(name);
-        if (name.equals("all")) {
+        this.name = name.trim();
+        Validation.isEmptyAndNull(this.name);
+        if (UNUSABLE_NAME.equals(this.name)) {
             throw new IllegalArgumentException("all은 사용 할 수 없는 이름입니다.");
         }
 
-        if (name.trim().length() > NAME_MAX_LENGTH) {
+        if (this.name.length() > NAME_MAX_LENGTH) {
             throw new IllegalArgumentException("이름은 최대 5글자만 허용 합니다.");
         }
-        this.name = name.trim();
+
     }
 
     public String name() {
