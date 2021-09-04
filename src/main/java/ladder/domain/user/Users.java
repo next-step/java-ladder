@@ -11,6 +11,8 @@ import java.util.stream.Collectors;
 
 public class Users {
 
+    private static final String LACK_USER_COUNT_ERROR_MESSAGE = "사람의 수는 2명이상이 들어와야 한다.";
+
     private final List<User> users;
 
     public Users(List<User> users) {
@@ -27,7 +29,7 @@ public class Users {
 
     public static void checkUserCount(String usernames) {
         if (!containsComma(usernames)) {
-            throw new IllegalArgumentException("사람의 수는 2명이상이 들어와야 한다.");
+            throw new IllegalArgumentException(LACK_USER_COUNT_ERROR_MESSAGE);
         }
     }
 
