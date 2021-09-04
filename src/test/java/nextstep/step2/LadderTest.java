@@ -11,7 +11,7 @@ public class LadderTest {
 
   @ParameterizedTest
   @ValueSource(strings = {"pobi,honux,crong,jk"})
-  public void Ladder_참가자_모집_테스트(String participantsStr) {
+  void Ladder_참가자_모집_테스트(String participantsStr) {
     String[] participants = participantsStr.split(",");
 
     Ladders ladders = LadderGame.join(participantsStr);
@@ -22,10 +22,15 @@ public class LadderTest {
 
   @ParameterizedTest
   @ValueSource(strings = {"pobi123,honux123,crong123,jk1234"})
-  public void Ladder_참가자명_길이_테스트(String participantsStr) {
+  void Ladder_참가자명_길이_테스트(String participantsStr) {
 
     assertThatThrownBy(() -> LadderGame.join(participantsStr))
         .isInstanceOf(IllegalArgumentException.class);
   }
 
+  @ParameterizedTest
+  @ValueSource(strings = {"pobi123,honux123,crong123,jk1234"})
+  void Ladder_사다리_높이_입력_테스트(int ladderHeigh) {
+
+  }
 }
