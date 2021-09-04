@@ -3,6 +3,7 @@ package ladder.domain.user;
 import static ladder.util.StringUtil.splitByComma;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -23,6 +24,14 @@ public class Users {
 
     public int userCount() {
         return users.size();
+    }
+
+    public void shuffleUsers() {
+        Collections.shuffle(users);
+    }
+
+    public List<User> value() {
+        return Collections.unmodifiableList(users);
     }
 
     @Override

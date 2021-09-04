@@ -14,6 +14,10 @@ public class User {
         this.name = name;
     }
 
+    public String nameToString() {
+        return name.value();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

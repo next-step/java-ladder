@@ -8,4 +8,9 @@ public class UserService {
         return Users.of(usernames);
     }
 
+    public Users shuffleUsers(Users users) {
+        users.shuffleUsers();
+        return users;
+    }
+
 }
