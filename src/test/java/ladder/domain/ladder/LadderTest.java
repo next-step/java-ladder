@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
 import java.util.List;
+import ladder.domain.user.Users;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -21,10 +22,11 @@ public class LadderTest {
             new Point(2, true),
             new Point(3, false)));
         List<Line> lines = Arrays.asList(line, line);
+        Users users = Users.of("pobi,honux,crong,jk");
         Ladder expected = new Ladder(lines);
 
         // when
-        Ladder result = createLadder(height, 4, () -> true);
+        Ladder result = createLadder(height, users, () -> true);
 
         // then
         assertThat(result).isEqualTo(expected);

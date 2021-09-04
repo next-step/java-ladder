@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.IntStream;
+import ladder.domain.user.Users;
 import ladder.strategy.LineGenerateStrategy;
 
 public class Ladder {
@@ -18,10 +19,10 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public static Ladder createLadder(LadderHeight height, int userCount, LineGenerateStrategy lineGenerateStrategy) {
+    public static Ladder createLadder(LadderHeight height, Users users, LineGenerateStrategy lineGenerateStrategy) {
         List<Line> lines = new ArrayList<>();
         IntStream.range(START_LADDER_INDEX, height.value())
-            .forEach(index -> lines.add(Line.generateRandomLine(userCount, lineGenerateStrategy)));
+            .forEach(index -> lines.add(Line.generateRandomLine(users.userCount(), lineGenerateStrategy)));
         return new Ladder(lines);
     }
 

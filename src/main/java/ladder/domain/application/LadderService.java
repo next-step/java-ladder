@@ -14,7 +14,7 @@ public class LadderService {
     }
 
     public Ladder createLadder(LadderHeight height, Users users) {
-        return Ladder.createLadder(height, users.userCount(), lineGenerateStrategy);
+        return Ladder.createLadder(height, users, lineGenerateStrategy);
     }
 
 }
