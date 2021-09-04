@@ -7,18 +7,24 @@ import ladder.domain.user.User;
 
 public class ResultView {
 
+    private static final String RESULT_TITLE_PRINT_MESSAGE = "실행결과\n";
 
-    public static final String DEFAULT_USER_PRINT_FORMAT = "%6s";
-    public static final String DEFAULT_LINE_PRINT_FORMAT = "     ";
-    public static final String CONNECTED_LINE_PRINT_FORMAT = "|-----";
-    public static final String DISCONNECTED_LINE_PRINT_FORMAT = "|     ";
+    private static final String DEFAULT_USER_PRINT_FORMAT = "%6s";
+    private static final String DEFAULT_LINE_PRINT_FORMAT = "     ";
+    private static final String CONNECTED_LINE_PRINT_FORMAT = "|-----";
+    private static final String DISCONNECTED_LINE_PRINT_FORMAT = "|     ";
 
     private ResultView() {
     }
 
     public static void printResult(List<User> users, List<Line> ladders) {
+        pirntResultTitle();
         printUsers(users);
         printLadder(ladders);
+    }
+
+    private static void pirntResultTitle() {
+        System.out.println(RESULT_TITLE_PRINT_MESSAGE);
     }
 
     private static void printUsers(List<User> users) {
