@@ -3,6 +3,11 @@ package nextstep.fp;
 import java.util.List;
 
 public class Lambda {
+    private static final int EVEN_NUMBER = 2;
+    private static final int EVEN_REMAINDER = 0;
+    private static final int FILTER_NUMBER = 3;
+    private static final int INIT_TOTAL_VALUE = 0;
+
     public static void printAllOld(List<Integer> numbers) {
         System.out.println("printAllOld");
 
@@ -27,30 +32,19 @@ public class Lambda {
     }
 
     public static int sumAll(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            total += number;
-        }
-        return total;
+        return numbers.stream()
+                .reduce(INIT_TOTAL_VALUE, Integer::sum);
     }
 
     public static int sumAllEven(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number % 2 == 0) {
-                total += number;
-            }
-        }
-        return total;
+        return numbers.stream()
+                .filter(number -> number % EVEN_NUMBER == EVEN_REMAINDER)
+                .reduce(INIT_TOTAL_VALUE , Integer::sum);
     }
 
     public static int sumAllOverThree(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number > 3) {
-                total += number;
-            }
-        }
-        return total;
+        return numbers.stream()
+                .filter(number -> number > FILTER_NUMBER)
+                .reduce(INIT_TOTAL_VALUE, Integer::sum);
     }
 }
