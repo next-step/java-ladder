@@ -4,8 +4,10 @@ import static ladder.domain.ladder.Point.createFirst;
 import static ladder.domain.ladder.Point.createLast;
 import static ladder.domain.ladder.Point.createNextByBeforePoint;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 import java.util.Random;
+import ladder.domain.user.Name;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -100,6 +102,19 @@ class PointTest {
             assertThat(result).isEqualTo(expected);
         }
 
+    }
+
+    @Test
+    @DisplayName("Last Point를 생성할 때 이전 Point가 null로 들어오면 Exception이 발생되어야 한다.")
+    void createLastPointFailByNullBeforePointTest() {
+
+        // given
+        Point before = null;
+
+        // when & then
+        assertThatExceptionOfType(IllegalArgumentException.class)
+            .isThrownBy(() -> createLast(before))
+            .withMessageMatching("이전 위치한 Point가 제공되어야 한다.");
     }
 
 

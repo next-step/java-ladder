@@ -1,5 +1,7 @@
 package ladder.domain.ladder;
 
+import static java.util.Objects.isNull;
+
 import java.util.Objects;
 import ladder.strategy.LineGenerateStrategy;
 
@@ -22,12 +24,20 @@ public class Point {
         return new Point(START_POINT_INDEX, lineGenerateStrategy.generateLine());
     }
 
-    public static Point createLast(Point point) {
-        return new Point(point.position + VALUE_TO_NEXT_INDEX, DISCONNECT_POINT);
+    public static Point createLast(Point before) {
+        checkBeforePointIsNull(before);
+
+        return new Point(before.getNextPosition(), DISCONNECT_POINT);
     }
 
     public static Point createNextByBeforePoint(Point before, LineGenerateStrategy lineGenerateStrategy) {
         return new Point(before.getNextPosition(), createNextConnect(before, lineGenerateStrategy));
+    }
+
+    private static void checkBeforePointIsNull(Point before) {
+        if (isNull(before)) {
+            throw new IllegalArgumentException("이전 위치한 Point가 제공되어야 한다.");
+        }
     }
 
     private static boolean createNextConnect(Point before, LineGenerateStrategy lineGenerateStrategy) {
