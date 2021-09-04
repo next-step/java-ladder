@@ -12,7 +12,6 @@ public class Ladder {
 
     private static final int START_LADDER_INDEX = 0;
 
-
     private final List<Line> lines;
 
     public Ladder(List<Line> lines) {
