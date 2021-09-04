@@ -30,9 +30,7 @@ public class LadderController {
 
             LadderGameDrawer.drawResultText();
             if (LAST_COMMAND.equals(command)) {
-                List<Result> results = IntStream.range(0, people.size())
-                        .mapToObj((index) -> new Result(people.get(index), rewards.get(lines.doResult(index))))
-                        .collect(Collectors.toList());
+                List<Result> results = doAllResult(people, rewards, lines);
                 LadderGameDrawer.drawResults(results);
                 break;
             }
@@ -40,6 +38,12 @@ public class LadderController {
             int startPosition = findPeoplePosition(command, people);
             LadderGameDrawer.drawResult(new Result(people.get(startPosition), rewards.get(lines.doResult(startPosition))));
         }
+    }
+
+    private static List<Result> doAllResult(List<Person> people, List<Reward> rewards, Lines lines) {
+        return IntStream.range(0, people.size())
+                .mapToObj((index) -> new Result(people.get(index), rewards.get(lines.doResult(index))))
+                .collect(Collectors.toList());
     }
 
     private static List<Person> initPeoplePhase(Scanner scanner) {
@@ -68,7 +72,7 @@ public class LadderController {
     }
 
     private static int findPeoplePosition(String name, List<Person> people) {
-        if (!people.contains(name)) {
+        if (!people.contains(new Person(name))) {
             throw new IllegalArgumentException("this name does not contains in people ");
         }
 
