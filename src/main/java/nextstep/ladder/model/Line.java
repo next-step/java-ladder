@@ -12,16 +12,7 @@ public class Line {
             points.add(new Point());
         }
     }
-
-    public boolean isUsedPoint(int index) {
-        return points.get(index).isUsed();
-    }
-
-    public void usePointDestination(int destination, int height) {
-        Point point = points.get(height);
-        point.use(destination);
-    }
-
+    
     public List<Point> getPoints() {
         return Collections.unmodifiableList(points);
     }
