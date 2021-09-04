@@ -1,6 +1,6 @@
-package ladder;
+package newladder;
 
-import ladder.Controller.Game;
+import newladder.controller.Game;
 
 public class LadderMainController {
     public static void main(String[] args) {

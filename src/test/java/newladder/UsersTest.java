@@ -1,7 +1,7 @@
-package ladder;
+package newladder;
 
-import ladder.model.User;
-import ladder.model.Users;
+import newladder.model.User;
+import newladder.model.Users;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -23,11 +23,6 @@ public class UsersTest {
     }
 
     @Test
-    void 유저리스트_갯수_체크() {
-        assertThat(users.participantsSize()).isEqualTo(TEST_NAME_LIST.length);
-    }
-
-    @Test
     void 유저_이름_포함_체크() {
         assertThatThrownBy(() -> {
             users = new Users(ERROR_TEST_NAME_LIST);
@@ -36,7 +31,7 @@ public class UsersTest {
 
     @Test
     void 유저_정보_체크() {
-        for (User user : users.getParticipants()) {
+        for (User user : users.usersInfo()) {
             assertThat(Arrays.asList(TEST_NAME_LIST))
                     .contains(user.nameInfo());
         }

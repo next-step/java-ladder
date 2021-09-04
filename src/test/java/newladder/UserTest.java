@@ -1,6 +1,6 @@
-package ladder;
+package newladder;
 
-import ladder.model.User;
+import newladder.model.User;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
