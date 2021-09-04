@@ -1,7 +1,6 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.domain.*;
-
 import static nextstep.ladder.util.Validation.INPUT_ALL;
 import static nextstep.ladder.util.Validation.isContainPlayer;
 
@@ -31,11 +30,11 @@ public class ResultView {
     }
 
     private static String toFormat(Name name) {
-        return String.format(FORMAT_SIZE, name.toString());
+        return String.format(FORMAT_SIZE, name);
     }
 
     private static String isHorizontalLine(Point point) {
-        if (point.contains()) {
+        if (point.isCurrent()) {
             return HORIZONTAL_LINE;
         }
         return EMPTY_LINE;
@@ -50,32 +49,31 @@ public class ResultView {
 
     }
 
-    public static void printAllResult(Players players, Ladder ladder, Result result) {
-        System.out.println();
-        System.out.println(RESULT_MESSAGE);
-        StringBuilder stringBuilder = new StringBuilder();
+    public static void printLadderGameResult(Players players, Result result) {
+        int index = 0;
+        while (index != INPUT_ALL) {
+            String findPlayerResult = InputView.inputGameResultSearch();
+            System.out.println();
+            System.out.println(RESULT_MESSAGE);
+            index = isContainPlayer(findPlayerResult, players);
+            printLadderGameAllOrNot(index, players, result);
+        }
+    }
+
+    public static void printLadderGameAllOrNot(int index, Players players, Result result) {
+        if (index == INPUT_ALL) {
+            printLadderGameAll(players, result);
+            return;
+        }
+        System.out.println(result.get(index));
+    }
+
+    private static void printLadderGameAll(Players players, Result result) {
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < players.size(); i++) {
-            stringBuilder.append(players.name(i) + " : ");
+            sb.append(players.name(i)).append(" : ");
+            sb.append(result.get(i)).append("\n");
         }
-        System.out.println(stringBuilder);
-    }
-
-    public static void printPlayerResult(String player) {
-        System.out.println();
-        System.out.println(RESULT_MESSAGE);
-        System.out.println(player);
-        System.out.println();
-
-    }
-
-    public static void printLadderGameResult(Ladder ladder, Players players, Result result) {
-        while (true) {
-            String gameResult = InputView.inputGameResultSearch();
-            int playersNumber = isContainPlayer(gameResult, players);
-            if (playersNumber == INPUT_ALL) {
-                ResultView.printAllResult(players, ladder, result);
-                break;
-            }
-        }
+        System.out.println(sb);
     }
 }

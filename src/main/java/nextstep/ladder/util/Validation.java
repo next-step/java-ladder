@@ -51,7 +51,7 @@ public class Validation {
 
     public static void isValidLadderLine(List<Point> points) {
         int lastIndex = points.size() - 1;
-        if (points.get(lastIndex).contains()) {
+        if (points.get(lastIndex).isNext()) {
             throw new IllegalArgumentException("마지막 라인의 오른쪽에는 가로 선이 올 수 없습니다.");
         }
     }

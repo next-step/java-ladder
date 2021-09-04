@@ -48,13 +48,12 @@ public class Direction {
         return next;
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Direction point = (Direction) o;
-        return current == point.current && next == point.next;
+        Direction direction = (Direction) o;
+        return current == direction.current && next == direction.next;
     }
 
     @Override

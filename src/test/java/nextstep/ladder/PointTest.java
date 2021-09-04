@@ -1,7 +1,6 @@
 package nextstep.ladder;
 
 import nextstep.ladder.domain.Point;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
@@ -36,8 +35,8 @@ class PointTest {
 
     @Test
     void next4() {
-        for (int i =0; i<100; i++) {
-            assertThat(Point.init(true).next().contains()).isFalse();
+        for (int i = 0; i < 100; i++) {
+            assertThat(Point.init(true).next().isCurrent()).isFalse();
         }
     }
 }

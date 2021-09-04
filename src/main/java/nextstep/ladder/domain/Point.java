@@ -34,7 +34,11 @@ public class Point {
         return new Point(0, Direction.init(nextPoint));
     }
 
-    public boolean contains() {
+    public boolean isCurrent() {
+        return direction.isCurrent();
+    }
+
+    public boolean isNext() {
         return direction.isNext();
     }
 
