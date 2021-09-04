@@ -7,6 +7,10 @@ import ladder.strategy.LineGenerateStrategy;
 
 public class Line {
 
+    private static final boolean DISCONNECT_POINT = false;
+    private static final int START_POINT_INDEX = 0;
+    private static final int TWO = 2;
+
     private final List<Boolean> points;
 
     public Line(List<Boolean> points) {
@@ -17,16 +21,16 @@ public class Line {
         List<Boolean> points = new ArrayList<>();
 
         points.add(lineGenerateStrategy.generateLine());
-        for (int i = 0; i < userCount - 2; i++) {
+        for (int i = START_POINT_INDEX; i < userCount - TWO; i++) {
             points.add(getNext(points.get(i), lineGenerateStrategy));
         }
-        points.add(false);
+        points.add(DISCONNECT_POINT);
         return new Line(points);
     }
 
     private static boolean getNext(boolean before, LineGenerateStrategy lineGenerateStrategy) {
         if (before) {
-            return false;
+            return DISCONNECT_POINT;
         }
         return lineGenerateStrategy.generateLine();
     }
