@@ -30,7 +30,12 @@ class DirectionTest {
         for (int i = 0; i < 100; i++) {
             assertThat(Direction.init(false).next().last().isNext()).isFalse();
         }
+    }
 
-
+    @Test
+    void next() {
+        for (int i=0; i<100; i++) {
+            assertThat(Direction.init(true).next().isNext()).isFalse();
+        }
     }
 }

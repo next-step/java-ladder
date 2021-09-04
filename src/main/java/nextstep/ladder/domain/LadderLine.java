@@ -19,8 +19,8 @@ public class LadderLine {
     public static LadderLine init(int countOfPerson) {
         List<Point> points = new ArrayList<>();
         Point point = initFirst(points);
-        point =createBody(countOfPerson,points,point);
-        initLast(points ,point);
+        point = createBody(countOfPerson, points, point);
+        initLast(points, point);
         return new LadderLine(points);
     }
 
@@ -43,6 +43,9 @@ public class LadderLine {
         points.add(point);
     }
 
+    public int move(int index) {
+        return points.get(index).move();
+    }
 
     public int size() {
         return points.size();

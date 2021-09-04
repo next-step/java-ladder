@@ -22,6 +22,13 @@ public class Ladder {
         this.lines = lines;
     }
 
+    public int move(int index) {
+        for (LadderLine line : lines) {
+            index = line.move(index);
+        }
+        return index;
+    }
+
     public int size() {
         return lines.size();
     }

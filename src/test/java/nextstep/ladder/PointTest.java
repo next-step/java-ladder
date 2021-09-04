@@ -33,4 +33,11 @@ class PointTest {
         Point point = Point.init(false);
         assertThat(point.next(false).next(true).move()).isEqualTo(3);
     }
+
+    @Test
+    void next4() {
+        for (int i =0; i<100; i++) {
+            assertThat(Point.init(true).next().contains()).isFalse();
+        }
+    }
 }
