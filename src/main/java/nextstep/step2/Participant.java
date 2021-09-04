@@ -2,12 +2,12 @@ package nextstep.step2;
 
 public class Participant {
 
-  private final int ParticipantNameMaxLength = 5;
+  private final int PARTICIPANT_NAME_MAX_LENGTH = 5;
 
   private String participantName;
 
   public Participant(String participantName) {
-    if (participantName.length() > ParticipantNameMaxLength) {
+    if (participantName.length() > PARTICIPANT_NAME_MAX_LENGTH) {
       throw new IllegalArgumentException();
     }
 
