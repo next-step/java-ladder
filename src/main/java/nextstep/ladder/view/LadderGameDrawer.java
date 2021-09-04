@@ -1,8 +1,6 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.model.Line;
-import nextstep.ladder.model.Person;
-import nextstep.ladder.model.Point;
+import nextstep.ladder.model.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,20 +20,44 @@ public class LadderGameDrawer {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
     }
 
-    public static void drawResult(List<Person> people, List<Line> lines) {
-        System.out.println("실행결과\n");
+    public static void drawWantedResultInputText() {
+        System.out.println("결과를 보고 싶은 사람은?");
+    }
+
+    public static void drawResultText() {
+        System.out.println("실행 결과");
+    }
+
+    public static void drawResults(List<Result> results) {
+        results.forEach((result -> drawResult(result)));
+    }
+
+    public static void drawLadderResult(List<Person> people, Lines lines, List<Reward> rewards) {
+        System.out.println("사다리 결과\n");
 
         drawPeople(people);
         drawLadder(lines);
-
+        drawRewards(rewards);
     }
 
-    private static void drawLadder(List<Line> lines) {
-        int height = lines.get(0).getPoints().size();
+    private static void drawRewards(List<Reward> rewards) {
+        String rewardsString = rewards.stream()
+                .map((reward) -> makeLeftPadding(reward.toString(), Reward.MAX_REWARD_LENGTH) + reward.toString())
+                .collect(Collectors.joining(WHITE_SPACE));
+        System.out.println(rewardsString);
+    }
+
+    public static void drawResult(Result result) {
+        System.out.println(result);
+    }
+
+    private static void drawLadder(Lines lines) {
+        List<Line> lineList = lines.getLineList();
+        int height = lineList.get(0).getPoints().size();
 
         String ladderString = "";
         for (int index = 0; index < height; index++) {
-            ladderString += makeStairString(index, lines) + "\n";
+            ladderString += makeStairString(index, lineList) + "\n";
         }
 
         System.out.println(ladderString);
@@ -71,13 +93,13 @@ public class LadderGameDrawer {
 
     private static void drawPeople(List<Person> people) {
         String peopleString = people.stream()
-                .map((person) -> makePeopleLeftPadding(person.toString()) + person.toString())
+                .map((person) -> makeLeftPadding(person.toString(), Person.NAME_MAX_SIZE) + person.toString())
                 .collect(Collectors.joining(WHITE_SPACE));
         System.out.println(peopleString);
     }
 
-    private static String makePeopleLeftPadding(String name) {
-        int spaceSize = Person.NAME_MAX_SIZE - name.length();
+    private static String makeLeftPadding(String name, int max) {
+        int spaceSize = max - name.length();
 
         String space = "";
         for (int index = 0; index < spaceSize; index++) {
@@ -85,5 +107,9 @@ public class LadderGameDrawer {
         }
 
         return space;
+    }
+
+    public static void drawRewardInputText() {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
     }
 }
