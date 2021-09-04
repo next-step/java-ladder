@@ -5,6 +5,7 @@ import static ladder.domain.ladder.Point.createLast;
 import static ladder.domain.ladder.Point.createNextByBeforePoint;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.IntStream;
@@ -39,6 +40,10 @@ public class Line {
 
     private static Point getLastPoint(List<Point> points) {
         return points.get(points.size() - ONE);
+    }
+
+    public List<Point> value() {
+        return Collections.unmodifiableList(points);
     }
 
     @Override

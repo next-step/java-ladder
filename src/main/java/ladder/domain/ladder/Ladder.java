@@ -1,6 +1,7 @@
 package ladder.domain.ladder;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.IntStream;
@@ -22,6 +23,10 @@ public class Ladder {
         IntStream.range(START_LADDER_INDEX, height.value())
             .forEach(index -> lines.add(Line.generateRandomLine(userCount, lineGenerateStrategy)));
         return new Ladder(lines);
+    }
+
+    public List<Line> value() {
+        return Collections.unmodifiableList(lines);
     }
 
     @Override

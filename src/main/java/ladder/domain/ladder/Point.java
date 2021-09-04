@@ -38,6 +38,10 @@ public class Point {
         return position + VALUE_TO_NEXT_INDEX;
     }
 
+    public boolean isConnected() {
+        return connected;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

@@ -2,6 +2,7 @@ package ladder;
 
 import static ladder.view.InputView.inputLadderHeight;
 import static ladder.view.InputView.inputUsernames;
+import static ladder.view.ResultView.printLadder;
 import static ladder.view.ResultView.printUsers;
 
 import ladder.domain.application.LadderService;
@@ -22,6 +23,7 @@ public class Main {
         userService.shuffleUsers(users);
 
         printUsers(users.value());
+        printLadder(ladder.value());
     }
 
 }
