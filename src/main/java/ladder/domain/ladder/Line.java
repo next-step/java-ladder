@@ -1,5 +1,9 @@
 package ladder.domain.ladder;
 
+import static ladder.domain.ladder.Point.createFirst;
+import static ladder.domain.ladder.Point.createLast;
+import static ladder.domain.ladder.Point.createNextByBeforePoint;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -8,31 +12,33 @@ import ladder.strategy.LineGenerateStrategy;
 
 public class Line {
 
-    private static final boolean DISCONNECT_POINT = false;
-    private static final int START_POINT_INDEX = 0;
+    private static final int START_POINTS_INDEX = 1;
+    private static final int ONE = 1;
     private static final int TWO = 2;
 
-    private final List<Boolean> points;
+    private final List<Point> points;
 
-    public Line(List<Boolean> points) {
+    public Line(List<Point> points) {
         this.points = points;
     }
 
     public static Line generateRandomLine(int userCount, LineGenerateStrategy lineGenerateStrategy) {
-        List<Boolean> points = new ArrayList<>();
+        List<Point> points = new ArrayList<>();
 
-        points.add(lineGenerateStrategy.generateLine());
-        IntStream.rangeClosed(START_POINT_INDEX, userCount - TWO)
-            .forEach(index -> points.add(getNext(points.get(index), lineGenerateStrategy)));
-        points.add(DISCONNECT_POINT);
+        points.add(createFirst(lineGenerateStrategy));
+        IntStream.rangeClosed(START_POINTS_INDEX, userCount - TWO)
+            .forEach(
+                index -> points.add(createNextByBeforePoint(points.get(getBeforeIndex(index)), lineGenerateStrategy)));
+        points.add(createLast(getLastPoint(points)));
         return new Line(points);
     }
 
-    private static boolean getNext(boolean before, LineGenerateStrategy lineGenerateStrategy) {
-        if (before) {
-            return DISCONNECT_POINT;
-        }
-        return lineGenerateStrategy.generateLine();
+    private static int getBeforeIndex(int index) {
+        return index - ONE;
+    }
+
+    private static Point getLastPoint(List<Point> points) {
+        return points.get(points.size() - ONE);
     }
 
     @Override

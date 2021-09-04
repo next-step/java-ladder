@@ -21,7 +21,10 @@ class LineTest {
         void tureGenerateStrategy() {
 
             // given
-            Line expected = new Line(Arrays.asList(true, false, true, false));
+            Line expected = new Line(Arrays.asList(new Point(0, true),
+                new Point(1, false),
+                new Point(2, true),
+                new Point(3, false)));
 
             // when
             Line result = Line.generateRandomLine(userCount, () -> true);
@@ -35,7 +38,10 @@ class LineTest {
         void falseGenerateStrategy() {
 
             // given
-            Line expected = new Line(Arrays.asList(false, false, false, false));
+            Line expected = new Line(Arrays.asList(new Point(0, false),
+                new Point(1, false),
+                new Point(2, false),
+                new Point(3, false)));
 
             // when
             Line result = Line.generateRandomLine(userCount, () -> false);
