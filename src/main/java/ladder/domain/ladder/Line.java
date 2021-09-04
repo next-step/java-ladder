@@ -3,6 +3,7 @@ package ladder.domain.ladder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.IntStream;
 import ladder.strategy.LineGenerateStrategy;
 
 public class Line {
@@ -21,9 +22,8 @@ public class Line {
         List<Boolean> points = new ArrayList<>();
 
         points.add(lineGenerateStrategy.generateLine());
-        for (int i = START_POINT_INDEX; i < userCount - TWO; i++) {
-            points.add(getNext(points.get(i), lineGenerateStrategy));
-        }
+        IntStream.rangeClosed(START_POINT_INDEX, userCount - TWO)
+            .forEach(index -> points.add(getNext(points.get(index), lineGenerateStrategy)));
         points.add(DISCONNECT_POINT);
         return new Line(points);
     }
