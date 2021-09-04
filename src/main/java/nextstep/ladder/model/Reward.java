@@ -9,8 +9,12 @@ public class Reward {
     public Reward(String reward) {
         String trimming = reward.trim();
 
-        if (EMPTY.equals(trimming) || trimming.length() > MAX_REWARD_LENGTH) {
-            throw new IllegalArgumentException("Reward value is not invalid , reward : " + reward);
+        if (trimming.length() > MAX_REWARD_LENGTH) {
+            throw new IllegalArgumentException("보상 값이 너무 깁니다. 보상값 : " + reward);
+        }
+
+        if (EMPTY.equals(trimming)) {
+            throw new IllegalArgumentException("보상 값이 비어 있습니다. ");
         }
 
         this.reward = trimming;

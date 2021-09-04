@@ -8,9 +8,14 @@ public class Person {
 
     public Person(String name) {
         String trimmingName = name.trim();
-        if (trimmingName.length() > NAME_MAX_SIZE || "".equals(trimmingName)) {
+        if (trimmingName.length() > NAME_MAX_SIZE) {
             throw new IllegalArgumentException("이름이 너무 깁니다. ");
         }
+
+        if ("".equals(trimmingName)) {
+            throw new IllegalArgumentException("이름이 비어있습니다.");
+        }
+
         this.name = trimmingName;
     }
 
