@@ -23,4 +23,12 @@ public class Point {
     public int getGoal() {
         return goal;
     }
+
+    public int moveHorizontal(int x) {
+        if (!isUsed()) {
+            return x;
+        }
+
+        return goal;
+    }
 }
