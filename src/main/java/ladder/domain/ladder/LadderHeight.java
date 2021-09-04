@@ -1,5 +1,7 @@
 package ladder.domain.ladder;
 
+import java.util.Objects;
+
 public class LadderHeight {
 
     private static final int MINIMUM_LADDER_HEIGHT = 1;
@@ -24,4 +26,20 @@ public class LadderHeight {
         return height;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        LadderHeight that = (LadderHeight) o;
+        return height == that.height;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(height);
+    }
 }
