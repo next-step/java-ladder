@@ -23,7 +23,7 @@ public class Point {
     }
 
     public static Point createLast(Point point) {
-        return new Point(point.position + 1, DISCONNECT_POINT);
+        return new Point(point.position + VALUE_TO_NEXT_INDEX, DISCONNECT_POINT);
     }
 
     public static Point createNextByBeforePoint(Point before, LineGenerateStrategy lineGenerateStrategy) {
