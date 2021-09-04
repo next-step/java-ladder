@@ -12,10 +12,10 @@ public class Ladder {
 
     private List<Line> lines;
 
-    public Ladder(String high, int numberOfUser, LadderStrategy ladderStrategy) {
+    public Ladder(String high, int numberOfUser, ValueStrategy valueStrategy) {
         isBlank(high);
         isOverMinHigh(high);
-        generateLine(parseInt(high), numberOfUser, ladderStrategy);
+        generateLine(parseInt(high), numberOfUser, valueStrategy);
     }
 
     private int parseInt(String high) {
@@ -28,37 +28,39 @@ public class Ladder {
         }
     }
 
-    private void generateLine(int ladderHigh, int numberOfUser, LadderStrategy ladderStrategy) {
+    private void generateLine(int ladderHigh, int numberOfUser, ValueStrategy valueStrategy) {
         this.lines = new ArrayList<>();
 
         for (int i = 0; i < ladderHigh; i++) {
-            lines.add(new Line(numberOfUser, ladderStrategy));
+            lines.add(new Line(numberOfUser, valueStrategy));
         }
 
     }
 
-    public List<List<Boolean>> getLadder() {
-        return lines.stream()
-                        .map(Line::getLine)
-                        .collect(Collectors.toList());
-    }
+//    public List<List<Boolean>> getLadder() {
+//        return lines.stream()
+//                        .map(Line::getLine)
+//                        .collect(Collectors.toList());
+//    }
 
     public GameResults runGame(Users users, Results results) {
+        int column = users.getNumberOfUsers();
         List<Result> gameResults = new ArrayList<>();
 
-        for (int i = 0; i < users.getNumberOfUsers(); i++) {
+        for (int i = 0; i < column; i++) {
             int columnIndex = i;
-            columnIndex = switchColumn(lines.size(), columnIndex);
+            columnIndex = crossLadder(lines.size(), columnIndex);
             gameResults.add(results.getResult(columnIndex));
         }
 
         return new GameResults(users, new Results(gameResults));
     }
 
-    private int switchColumn(int high, int columnIndex) {
+    private int crossLadder(int high, int columnIndex) {
         for (int i = 0; i < high; i++) {
-            columnIndex += lines.get(i).checkPoint(columnIndex);
+            columnIndex = lines.get(i).checkPoint(columnIndex);
         }
+
         return columnIndex;
     }
 

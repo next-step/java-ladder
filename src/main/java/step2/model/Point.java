@@ -13,6 +13,10 @@ public class Point {
         this.current = current;
     }
 
+    public boolean getLeft() {
+        return left;
+    }
+
     public boolean getCurrent() {
         return current;
     }

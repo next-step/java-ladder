@@ -20,6 +20,11 @@ public class Line {
         return this.points;
     }
 
+    public int checkPoint(int index) {
+        Point point = points.get(index);
+        return Cross.move(index, Direction.findDirection(point));
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

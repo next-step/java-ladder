@@ -18,16 +18,16 @@ public class LadderGame {
 
         String high = ask("최대 사다리 높이는 몇 인가요?");
 
-        Ladder ladder = new Ladder(high, numberOfUsers, new RandomLadderStrategy());
-        GameResults gameResults = ladder.runGame(users, results);
-
-        printResult(users.getNameList());
-        printLadder(ladder.getLadder());
-        printResult(results.getResultList());
+        Ladder ladder = new Ladder(high, numberOfUsers, new RandomValueStrategy());
+//        GameResults gameResults = ladder.runGame(users, results);
+//
+//        printResult(users.getNameList());
+//        printLadder(ladder.getLadder());
+//        printResult(results.getResultList());
 
         userName = ask("결과를 보고 싶은 사람은?");
 
-        LinkedHashMap<String, String> stringStringMap = gameResults.allUsersResults();
-        printUserResult(userName, stringStringMap);
+//        LinkedHashMap<String, String> stringStringMap = gameResults.allUsersResults();
+//        printUserResult(userName, stringStringMap);
     }
 }
