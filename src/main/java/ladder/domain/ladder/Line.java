@@ -9,6 +9,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.IntStream;
+import ladder.domain.user.Users;
 import ladder.strategy.LineGenerateStrategy;
 
 public class Line {
@@ -23,15 +24,19 @@ public class Line {
         this.points = points;
     }
 
-    public static Line generateRandomLine(int userCount, LineGenerateStrategy lineGenerateStrategy) {
+    public static Line generateRandomLine(Users users, LineGenerateStrategy lineGenerateStrategy) {
         List<Point> points = new ArrayList<>();
 
         points.add(createFirst(lineGenerateStrategy));
-        IntStream.rangeClosed(START_POINTS_INDEX, userCount - TWO)
+        IntStream.rangeClosed(START_POINTS_INDEX, calculateLastPointsIndex(users))
             .forEach(
                 index -> points.add(createNextByBeforePoint(points.get(getBeforeIndex(index)), lineGenerateStrategy)));
         points.add(createLast(getLastPoint(points)));
         return new Line(points);
+    }
+
+    private static int calculateLastPointsIndex(Users users) {
+        return users.userCount() - TWO;
     }
 
     private static int getBeforeIndex(int index) {

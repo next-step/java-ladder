@@ -21,7 +21,7 @@ public class Ladder {
     public static Ladder createLadder(LadderHeight height, Users users, LineGenerateStrategy lineGenerateStrategy) {
         List<Line> lines = new ArrayList<>();
         IntStream.range(START_LADDER_INDEX, height.value())
-            .forEach(index -> lines.add(Line.generateRandomLine(users.userCount(), lineGenerateStrategy)));
+            .forEach(index -> lines.add(Line.generateRandomLine(users, lineGenerateStrategy)));
         return new Ladder(lines);
     }
 
