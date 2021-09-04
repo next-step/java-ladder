@@ -1,10 +1,6 @@
 package nextstep.ladder;
 
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.LadderLine;
-import nextstep.ladder.domain.Point;
-import nextstep.ladder.domain.Result;
-import org.junit.jupiter.api.Assertions;
+import nextstep.ladder.domain.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -55,5 +51,20 @@ class LadderTest {
                 () -> assertThat(ladder.move(2)).isEqualTo(0),
                 () -> assertThat(ladder.move(3)).isEqualTo(2)
         );
+    }
+
+    @Test
+    void startGame() {
+        Players players = new Players("cony,pobi,crong,cr7");
+        Result result = new Result("꽝,1등,3등,2등");
+        LadderGame ladderGame = new LadderGame(players, ladder);
+        Result gameResult = ladderGame.start(result);
+        assertAll(
+                () -> assertThat(gameResult.get(0)).isEqualTo("2등"),
+                () -> assertThat(gameResult.get(1)).isEqualTo("1등"),
+                () -> assertThat(gameResult.get(2)).isEqualTo("꽝"),
+                () -> assertThat(gameResult.get(3)).isEqualTo("3등")
+        );
+
     }
 }

@@ -1,8 +1,4 @@
-package nextstep.ladder;
-
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Players;
-import nextstep.ladder.domain.Result;
+package nextstep.ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +14,7 @@ public class LadderGame {
 
     public Result start(Result result) {
         List<String> gameResult = new ArrayList<>();
-        for (int i=0; i< players.size(); i++) {
+        for (int i = 0; i < players.size(); i++) {
             int index = ladder.move(i);
             gameResult.add(result.get(index));
         }

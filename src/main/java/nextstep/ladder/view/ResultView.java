@@ -1,6 +1,7 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.domain.*;
+
 import static nextstep.ladder.util.Validation.INPUT_ALL;
 import static nextstep.ladder.util.Validation.isContainPlayer;
 
