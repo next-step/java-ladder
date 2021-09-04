@@ -54,7 +54,6 @@ public class ResultView {
         int index = 0;
         while (index != INPUT_ALL) {
             String findPlayerResult = InputView.inputGameResultSearch();
-            System.out.println();
             System.out.println(RESULT_MESSAGE);
             index = isContainPlayer(findPlayerResult, players);
             printLadderGameAllOrNot(index, players, result);
