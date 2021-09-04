@@ -1,4 +1,4 @@
-package ladder.domain.application;
+package ladder.application;
 
 import ladder.domain.user.Users;
 

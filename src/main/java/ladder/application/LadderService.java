@@ -1,4 +1,4 @@
-package ladder.domain.application;
+package ladder.application;
 
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.LadderHeight;

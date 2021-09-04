@@ -4,8 +4,8 @@ import static ladder.view.InputView.inputLadderHeight;
 import static ladder.view.InputView.inputUsernames;
 import static ladder.view.ResultView.printResult;
 
-import ladder.domain.application.LadderService;
-import ladder.domain.application.UserService;
+import ladder.application.LadderService;
+import ladder.application.UserService;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.LadderHeight;
 import ladder.domain.user.Users;
