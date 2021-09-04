@@ -22,24 +22,35 @@ public class ResultView {
     }
 
     private static void printUsers(List<User> users) {
-        for (User user : users) {
-            System.out.printf(DEFAULT_USER_PRINT_FORMAT, user.nameToString());
-        }
-        System.out.println();
+        StringBuilder sb = new StringBuilder();
+        users.stream()
+            .map(User::nameToString)
+            .map(ResultView::stringFormatByDefaultUserPrintFromat)
+            .forEach(sb::append);
+        System.out.println(sb);
+    }
+
+    private static String stringFormatByDefaultUserPrintFromat(String name) {
+        return String.format(DEFAULT_USER_PRINT_FORMAT, name);
     }
 
     private static void printLadder(List<Line> ladder) {
-        for (Line line : ladder) {
-            System.out.print(DEFAULT_LINE_PRINT_FORMAT);
-            for (Point point : line.value()) {
-                if (point.isConnected()) {
-                    System.out.print(CONNECTED_LINE_PRINT_FORMAT);
-                } else {
-                    System.out.print(DISCONNECTED_LINE_PRINT_FORMAT);
-                }
-            }
-            System.out.println();
+        ladder.forEach(ResultView::printLine);
+    }
+
+    private static void printLine(Line line) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(DEFAULT_LINE_PRINT_FORMAT);
+        line.value()
+            .forEach(point -> sb.append(getConnected(point)));
+        System.out.println(sb);
+    }
+
+    private static String getConnected(Point point) {
+        if (point.isConnected()) {
+            return CONNECTED_LINE_PRINT_FORMAT;
         }
+        return DISCONNECTED_LINE_PRINT_FORMAT;
     }
 
 }
