@@ -18,14 +18,6 @@ public class Point {
         this.connected = connected;
     }
 
-    public int position() {
-        return position;
-    }
-
-    public boolean connected() {
-        return connected;
-    }
-
     public static Point createFirst(LineGenerateStrategy lineGenerateStrategy) {
         return new Point(START_POINT_INDEX, lineGenerateStrategy.generateLine());
     }
