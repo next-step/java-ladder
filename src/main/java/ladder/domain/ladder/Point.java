@@ -11,6 +11,8 @@ public class Point {
     private static final int START_POINT_INDEX = 0;
     private static final int VALUE_TO_NEXT_INDEX = 1;
 
+    private static final String NULL_BEFORE_POINT_ERROR_MESSAGE = "이전 위치한 Point가 제공되어야 한다.";
+
     private final int position;
 
     private final boolean connected;
@@ -38,7 +40,7 @@ public class Point {
 
     private static void checkBeforePointIsNull(Point before) {
         if (isNull(before)) {
-            throw new IllegalArgumentException("이전 위치한 Point가 제공되어야 한다.");
+            throw new IllegalArgumentException(NULL_BEFORE_POINT_ERROR_MESSAGE);
         }
     }
 
