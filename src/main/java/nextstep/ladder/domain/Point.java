@@ -1,76 +1,44 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.util.RandomUtil;
-
-import java.util.Objects;
-
 public class Point {
     private static final int RIGHT = 1;
     private static final int LEFT = -1;
-    private static final int PASS = 0;
-    private boolean currentPoint;
-    private boolean nextPoint;
+    private final int index;
+    private final Direction direction;
 
-    private Point(boolean currentPoint, boolean nextPoint) {
-        if (currentPoint && nextPoint) {
-            throw new IllegalArgumentException("유효한 사다리가 아닙니다.");
-        }
-        this.currentPoint = currentPoint;
-        this.nextPoint = nextPoint;
-    }
-
-    public static Point init(boolean nextPoint) { // 가로 Line 처음 Point 값 지정
-        return new Point(false, nextPoint);
-    }
-
-    public static Point of(boolean currentPoint, boolean nextPoint) {
-        return new Point(currentPoint, nextPoint);
-    }
-
-
-    public Point last() { // 가로 Line 마지막 Point 값 지정
-        return new Point(this.nextPoint, false);
-    }
-
-    public Point next() {
-        if (this.nextPoint) {
-            return next(false);
-        }
-        return next(RandomUtil.generate());
-    }
-
-    public Point next(boolean nextPoint) {
-        return of(this.nextPoint, nextPoint);
-    }
-
-    public boolean currentPoint() {
-        return currentPoint;
-    }
-
-    public boolean nextPoint() {
-        return nextPoint;
+    public Point(int index, Direction direction) {
+        this.index = index;
+        this.direction = direction;
     }
 
     public int move() {
-        if (currentPoint) {
-            return LEFT; // 왼쪽
+        if (direction.isCurrent()) {
+            return index + LEFT;
         }
-        if (nextPoint) {
-            return RIGHT; // 오른쪽
+
+        if (direction.isNext()) {
+            return index + RIGHT;
         }
-        return PASS; // 아래로 이동
+        return this.index;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Point point = (Point) o;
-        return currentPoint == point.currentPoint && nextPoint == point.nextPoint;
+    public Point next() {
+        return new Point(index + 1, direction.next());
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(currentPoint, nextPoint);
+    public Point next(boolean nextPoint) {
+        return new Point(index + 1, direction.next(nextPoint));
+    }
+
+    public static Point init(boolean nextPoint) {
+        return new Point(0, Direction.init(nextPoint));
+    }
+
+    public boolean contains() {
+        return direction.isNext();
+    }
+
+    public Point last() {
+        return new Point(index + 1, direction.last());
     }
 }

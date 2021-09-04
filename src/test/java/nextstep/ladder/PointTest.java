@@ -1,50 +1,36 @@
 package nextstep.ladder;
 
 import nextstep.ladder.domain.Point;
-import org.junit.jupiter.api.DisplayName;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class PointTest {
+class PointTest {
+
     @Test
-    @DisplayName("사다리 첫 번째 Line 의 다음 값이 true 이면 가로 라인이 겹치지 않게 두번째 Line의 다음 값은 false이다.   ")
-    void init() {
-        assertThat(Point.init(true).next(true).nextPoint()).isFalse();
-        assertThat(Point.init(true).next(false).nextPoint()).isFalse();
+    void create() {
+        assertAll(
+                () -> assertThat(Point.init(true).move()).isEqualTo(1),
+                () -> assertThat(Point.init(false).move()).isEqualTo(0)
+        );
     }
 
     @Test
     void next() {
-        Point point = Point.init(true).next(); //
-        assertThat(point).isEqualTo(Point.of(true, false));
+        assertThatThrownBy(() -> Point.init(true).next(true));
     }
 
     @Test
-    void move1() {
-        Point first = Point.init(false); // (false , false)
-        assertThat(first.move()).isEqualTo(0);
+    void next2() {
+        Point point = Point.init(true);
+        assertThat(point.next(false).move()).isEqualTo(0);//(false, true) ,(true, false)
     }
 
     @Test
-    void move2() {
-        Point first = Point.init(true); // (false ,true)
-        assertThat(first.move()).isEqualTo(1);
+    void next3() {
+        Point point = Point.init(false);
+        assertThat(point.next(false).next(true).move()).isEqualTo(3);
     }
-
-    @Test
-    void move3() {      // (false ,true)
-        assertThat(Point.init(false).next(true).move()).isEqualTo(1);
-    }
-
-    @Test
-    void move4() {  // (false , false)
-        assertThat(Point.init(false).next(false).move()).isEqualTo(0);
-    }
-
-    @Test
-    void move5() {  // (true , false)
-        assertThat(Point.init(true).next(false).move()).isEqualTo(-1);
-    }
-
 }

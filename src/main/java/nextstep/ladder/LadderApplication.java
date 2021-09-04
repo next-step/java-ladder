@@ -18,6 +18,6 @@ public class LadderApplication {
         Ladder ladder = new Ladder(players.size(), ladderHeight);
         ResultView.printLadderGame(players, ladder);
         ResultView.printResultGroup(result);
-        ResultView.printLadderGameResult(ladder ,players , result);
+//        ResultView.printLadderGameResult(ladder ,players , result);
     }
 }

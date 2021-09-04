@@ -35,7 +35,7 @@ public class ResultView {
     }
 
     private static String isHorizontalLine(Point point) {
-        if (point.currentPoint()) {
+        if (point.contains()) {
             return HORIZONTAL_LINE;
         }
         return EMPTY_LINE;
@@ -56,8 +56,6 @@ public class ResultView {
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < players.size(); i++) {
             stringBuilder.append(players.name(i) + " : ");
-            int index = ladder.search(i);
-            stringBuilder.append(result.get(index)).append("\n");
         }
         System.out.println(stringBuilder);
     }
@@ -78,8 +76,6 @@ public class ResultView {
                 ResultView.printAllResult(players, ladder, result);
                 break;
             }
-            int index = ladder.search(playersNumber);
-            ResultView.printPlayerResult(result.get(index));
         }
     }
 }
