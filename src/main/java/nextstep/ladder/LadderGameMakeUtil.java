@@ -1,9 +1,6 @@
 package nextstep.ladder;
 
-import nextstep.ladder.model.Line;
-import nextstep.ladder.model.Lines;
-import nextstep.ladder.model.Person;
-import nextstep.ladder.model.Reward;
+import nextstep.ladder.model.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -38,7 +35,11 @@ public class LadderGameMakeUtil {
 
     public static Lines makeLines(int numberOfPeople, int height) {
         if (numberOfPeople <= 0 || height <= 0) {
-            throw new IllegalArgumentException("참가자가 없거나, 사다리의 길이거 존재하지 않습니다.");
+            throw new IllegalArgumentException("참가자가 존재하지 않습니다.");
+        }
+
+        if (height <= 0) {
+            throw new IllegalArgumentException("사다리 길이가 유효하지 않습니다.");
         }
 
         List<Line> lineList = makeDefaultLines(numberOfPeople, height);
@@ -53,23 +54,27 @@ public class LadderGameMakeUtil {
     private static void makeStairs(List<Line> lines, int height) {
         for (int index = 0; index < lines.size() - 1; index++) {
             int origin = index;
-            int destination = index + 1;
 
-            makeStair(lines.get(origin), destination, height);
-            makeStair(lines.get(destination), destination, height);
+            makeStair(lines, height, origin);
         }
     }
 
-    private static void makeStair(Line line, int destination, int height) {
+    private static void makeStair(List<Line> lines, int height, int origin) {
+        int destination = origin + 1;
+
+        Point start = lines.get(origin).getPoints().get(height);
+        Point end = lines.get(destination).getPoints().get(height);
+
         if (!RANDOM.nextBoolean()) {
             return;
         }
 
-        if (line.isUsedPoint(height)) {
+        if (start.isUsed() || end.isUsed()) {
             return;
         }
 
-        line.usePointDestination(destination, height);
+        start.use(destination);
+        end.use(origin);
     }
 
     private static List<Line> makeDefaultLines(int numberOfPeople, int height) {
