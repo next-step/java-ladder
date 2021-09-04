@@ -43,12 +43,12 @@ public class Ladder {
                         .collect(Collectors.toList());
     }
 
-    public GameResults runGame(int high, int numberOfUser, Users users, Results results) {
+    public GameResults runGame(Users users, Results results) {
         List<Result> gameResults = new ArrayList<>();
 
-        for (int i = 0; i < numberOfUser; i++) {
+        for (int i = 0; i < users.getNumberOfUsers(); i++) {
             int columnIndex = i;
-            columnIndex = switchColumn(high, columnIndex);
+            columnIndex = switchColumn(lines.size(), columnIndex);
             gameResults.add(results.getResult(columnIndex));
         }
 
