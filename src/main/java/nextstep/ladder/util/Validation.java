@@ -1,9 +1,11 @@
 package nextstep.ladder.util;
 
 import nextstep.ladder.domain.Players;
+import nextstep.ladder.domain.Point;
 import nextstep.ladder.domain.Result;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -45,5 +47,12 @@ public class Validation {
         }
         throw new IllegalArgumentException("참여자들 중 해당 이름이 없습니다.");
 
+    }
+
+    public static void isValidLadderLine(List<Point> points) {
+        int lastIndex = points.size() - 1;
+        if (points.get(lastIndex).contains()) {
+            throw new IllegalArgumentException("마지막 라인의 오른쪽에는 가로 선이 올 수 없습니다.");
+        }
     }
 }

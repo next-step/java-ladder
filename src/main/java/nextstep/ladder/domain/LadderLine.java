@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import nextstep.ladder.util.RandomUtil;
+import nextstep.ladder.util.Validation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +12,7 @@ public class LadderLine {
     private List<Point> points;
 
     public LadderLine(List<Point> points) {
+        Validation.isValidLadderLine(points);
         this.points = points;
     }
 
