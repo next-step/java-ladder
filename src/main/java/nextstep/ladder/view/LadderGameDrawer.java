@@ -42,7 +42,7 @@ public class LadderGameDrawer {
 
     private static void drawRewards(List<Reward> rewards) {
         String rewardsString = rewards.stream()
-                .map((reward) -> makeLeftPadding(reward.toString(), Reward.MAX_REWARD_LENGTH) + reward.toString())
+                .map((reward) -> makeLeftPadding(reward.toString(), Reward.MAX_REWARD_LENGTH) + reward)
                 .collect(Collectors.joining(WHITE_SPACE));
         System.out.println(rewardsString);
     }
@@ -93,7 +93,7 @@ public class LadderGameDrawer {
 
     private static void drawPeople(List<Person> people) {
         String peopleString = people.stream()
-                .map((person) -> makeLeftPadding(person.toString(), Person.NAME_MAX_SIZE) + person.toString())
+                .map((person) -> makeLeftPadding(person.toString(), Person.NAME_MAX_SIZE) + person)
                 .collect(Collectors.joining(WHITE_SPACE));
         System.out.println(peopleString);
     }
