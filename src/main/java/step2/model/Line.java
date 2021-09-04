@@ -5,57 +5,19 @@ import java.util.List;
 import java.util.Objects;
 
 public class Line {
-    private final List<Boolean> points;
+    private final List<Point> points;
 
-    public Line(int numberOfUser, LadderStrategy ladderStrategy) {
-        points = new ArrayList<>();
-
-        for (int i = 0; i < numberOfUser; i++) {
-            drawPoint(numberOfUser, ladderStrategy, i);
-        }
+    public Line(int numberOfUser, ValueStrategy valueStrategy) {
+        points = Point.generatePoints(numberOfUser, valueStrategy);
 
     }
 
-    public Line(List<Boolean> points) {
+    public Line(List<Point> points) {
         this.points = points;
     }
 
-    public List<Boolean> getLine() {
+    public List<Point> getLine() {
         return this.points;
-    }
-
-    private void drawPoint(int numberOfUser, LadderStrategy ladderStrategy, int index) {
-        boolean isPoint = ladderStrategy.generateLine();
-
-        if (isLast(numberOfUser, index) || !isFirst(index) && lastPoint()) {
-            isPoint = false;
-        }
-
-        points.add(isPoint);
-    }
-
-    public int checkPoint(int index){
-        if (points.get(index)) {
-            return 1;
-        }
-
-        if(index!=0 && points.get(index-1)) {
-            return -1;
-        }
-
-        return 0;
-    }
-
-    private boolean isLast(int numberOfUser, int index) {
-        return index == numberOfUser - 1;
-    }
-
-    private boolean isFirst(int index) {
-        return index == 0;
-    }
-
-    private boolean lastPoint() {
-        return points.get(points.size() - 1);
     }
 
     @Override
