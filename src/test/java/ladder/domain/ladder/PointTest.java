@@ -117,5 +117,17 @@ class PointTest {
             .withMessageMatching("이전 위치한 Point가 제공되어야 한다.");
     }
 
+    @Test
+    @DisplayName("다음 Point를 생성할 때 이전 Point가 null로 들어오면 Exception이 발생되어야 한다.")
+    void createNextPointFailByNullBeforePointTest() {
+
+        // given
+        Point before = null;
+
+        // when & then
+        assertThatExceptionOfType(IllegalArgumentException.class)
+            .isThrownBy(() -> createNextByBeforePoint(before, () -> true))
+            .withMessageMatching("이전 위치한 Point가 제공되어야 한다.");
+    }
 
 }

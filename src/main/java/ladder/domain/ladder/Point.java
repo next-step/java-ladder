@@ -31,6 +31,8 @@ public class Point {
     }
 
     public static Point createNextByBeforePoint(Point before, LineGenerateStrategy lineGenerateStrategy) {
+        checkBeforePointIsNull(before);
+
         return new Point(before.getNextPosition(), createNextConnect(before, lineGenerateStrategy));
     }
 
