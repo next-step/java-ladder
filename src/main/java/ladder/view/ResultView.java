@@ -6,13 +6,13 @@ import ladder.model.LadderPoint;
 
 import java.io.PrintStream;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.joining;
 
 public class ResultView {
     private static final int LADDER_WIDTH = 5;
-    public static final String PLAYER_NAME_FOR_ALL_LADDER_RESULT = "all";
     private static final String LADDER_RESULT_MESSAGE = "사다리 결과";
     private static final String EXECUTION_RESULT_MESSAGE = "실행 결과";
     private static final String ONE_BLANK_SPACE = " ";
@@ -86,37 +86,29 @@ public class ResultView {
                 .collect(joining());
     }
 
-    public static void printLadderResult(LadderGame ladderGame, String playerName) {
-        if (PLAYER_NAME_FOR_ALL_LADDER_RESULT.equals(playerName)) {
-            printAllLadderResult(ladderGame);
-            return;
-        }
-        printLadderResultOfPlayer(ladderGame, playerName);
+    public static void printLadderResult(String playerLadderResult) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(NEW_LINE);
+        stringBuilder.append(EXECUTION_RESULT_MESSAGE);
+        stringBuilder.append(NEW_LINE);
+        stringBuilder.append(playerLadderResult);
+        PRINT_STREAM.println(stringBuilder);
     }
 
-    private static void printAllLadderResult(LadderGame ladderGame) {
+    public static void printAllLadderResult(Map<String, String> playerLadderResults) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(NEW_LINE);
         stringBuilder.append(EXECUTION_RESULT_MESSAGE);
         stringBuilder.append(NEW_LINE);
 
-        for (String playerName : ladderGame.getPlayerNames()) {
+        for (String playerName : playerLadderResults.keySet()) {
             stringBuilder.append(playerName);
             stringBuilder.append(ONE_BLANK_SPACE);
             stringBuilder.append(COLON);
             stringBuilder.append(ONE_BLANK_SPACE);
-            stringBuilder.append(ladderGame.findResult(playerName));
+            stringBuilder.append(playerLadderResults.get(playerName));
             stringBuilder.append(NEW_LINE);
         }
-        PRINT_STREAM.println(stringBuilder);
-    }
-
-    private static void printLadderResultOfPlayer(LadderGame ladderGame, String playerName) {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(NEW_LINE);
-        stringBuilder.append(EXECUTION_RESULT_MESSAGE);
-        stringBuilder.append(NEW_LINE);
-        stringBuilder.append(ladderGame.findResult(playerName));
         PRINT_STREAM.println(stringBuilder);
     }
 }
