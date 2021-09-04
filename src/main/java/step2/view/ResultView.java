@@ -1,18 +1,18 @@
 package step2.view;
 
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class ResultView {
     private static final int MAX_NAME_LENGTH = 5;
 
-    public static void printUserName(List<String> nameList) {
-        String userName = nameList
+    public static void printResult(List<String> resultList) {
+        String results = resultList
                 .stream()
                 .map(ResultView::addBlank)
                 .collect(Collectors.joining());
 
-        System.out.println(userName);
+        System.out.println(results);
     }
 
     public static String addBlank(String name) {
@@ -37,7 +37,7 @@ public class ResultView {
     }
 
     private static void printLine(List<Boolean> line) {
-        for (int i = 0; i < line.size(); i++){
+        for (int i = 0; i < line.size()-1; i++){
             System.out.print(checkLine(line, i));
         }
     }
@@ -54,5 +54,24 @@ public class ResultView {
         }
 
         return result + "     |";
+    }
+
+    public static void printUserResult(String userName, LinkedHashMap<String, String> gameResult) {
+        if (userName.trim().equals("all")) {
+            printAllResult(gameResult);
+            return;
+        }
+
+        if (!gameResult.containsKey(userName)) {
+            throw new IllegalArgumentException("참여하지 않은 참가자 입니다. 다시 확인해주세요");
+        }
+
+        System.out.println(gameResult.get(userName));
+    }
+
+    private static void printAllResult(LinkedHashMap<String, String> gameResult) {
+        gameResult.forEach((key, value) -> {
+            System.out.println(key + " : " +value);
+        });
     }
 }

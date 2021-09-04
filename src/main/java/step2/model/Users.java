@@ -2,26 +2,23 @@ package step2.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class Users  {
-    private List<User> users;
+import static step2.model.LadderValidator.isBlank;
 
+public class Users  {
     private static final int MIN_NUMBER_OF_USER = 1;
+
+    private List<User> users;
 
     public Users(String usersName) {
         isBlank(usersName);
         isOverMinNumberOfUser(usersName);
-        setUsersName(usersName);
+        saveUsersName(usersName);
     }
 
-    private void isBlank(String usersName) {
-        if (usersName == null || usersName.trim().isEmpty()) {
-            throw new IllegalArgumentException("아무것도 입력하지 않았습니다. 다시 입력해주세요");
-        }
-    }
-
-    private void setUsersName(String usersName) {
+    private void saveUsersName(String usersName) {
         this.users = new ArrayList<>();
 
         String[] names = usersName.split(",");
@@ -43,9 +40,26 @@ public class Users  {
         return this.users.size();
     }
 
-    public List<String> getName() {
+    public List<String> getNameList() {
         return users.stream()
                         .map(User::getName)
                         .collect(Collectors.toList());
+    }
+
+    public User getUser(int index) {
+        return users.get(index);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Users users1 = (Users) o;
+        return Objects.equals(users, users1.users);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(users);
     }
 }

@@ -10,8 +10,8 @@ public class Line {
     public Line(int numberOfUser, LadderStrategy ladderStrategy) {
         points = new ArrayList<>();
 
-        for (int i = 0; i < numberOfUser - 1; i++) {
-            drawPoint(ladderStrategy, i);
+        for (int i = 0; i < numberOfUser; i++) {
+            drawPoint(numberOfUser, ladderStrategy, i);
         }
 
     }
@@ -21,17 +21,41 @@ public class Line {
     }
 
     public List<Boolean> getLine() {
-        return points;
+        return this.points;
     }
 
-    private void drawPoint(LadderStrategy ladderStrategy, int index) {
+    private void drawPoint(int numberOfUser, LadderStrategy ladderStrategy, int index) {
         boolean isPoint = ladderStrategy.generateLine();
 
-        if (index != 0 && points.get(points.size() - 1)) {
+        if (isLast(numberOfUser, index) || !isFirst(index) && lastPoint()) {
             isPoint = false;
         }
 
         points.add(isPoint);
+    }
+
+    public int checkPoint(int index){
+        if (points.get(index)) {
+            return 1;
+        }
+
+        if(index!=0 && points.get(index-1)) {
+            return -1;
+        }
+
+        return 0;
+    }
+
+    private boolean isLast(int numberOfUser, int index) {
+        return index == numberOfUser - 1;
+    }
+
+    private boolean isFirst(int index) {
+        return index == 0;
+    }
+
+    private boolean lastPoint() {
+        return points.get(points.size() - 1);
     }
 
     @Override

@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import static step2.model.LadderValidator.isBlank;
+
 public class Ladder {
     private static final int MIN_LADDER_HIGH = 1;
 
@@ -13,26 +15,15 @@ public class Ladder {
     public Ladder(String high, int numberOfUser, LadderStrategy ladderStrategy) {
         isBlank(high);
         isOverMinHigh(high);
-
-        generateLine(getParseInt(high), numberOfUser, ladderStrategy);
+        generateLine(parseInt(high), numberOfUser, ladderStrategy);
     }
 
-    public Ladder(List<Line> lines) {
-        this.lines = lines;
-    }
-
-    private int getParseInt(String high) {
+    private int parseInt(String high) {
         return Integer.parseInt(high.trim());
     }
 
-    private void isBlank(String high) {
-        if (high == null || high.trim().isEmpty()) {
-            throw new IllegalArgumentException("아무것도 입력하지 않았습니다. 다시 입력해주세요");
-        }
-    }
-
     private void isOverMinHigh(String high) {
-        if (getParseInt(high) < MIN_LADDER_HIGH) {
+        if (parseInt(high) < MIN_LADDER_HIGH) {
             throw new IllegalArgumentException("최소" + MIN_LADDER_HIGH + "이상 입력해주세요");
         }
     }
@@ -43,12 +34,32 @@ public class Ladder {
         for (int i = 0; i < ladderHigh; i++) {
             lines.add(new Line(numberOfUser, ladderStrategy));
         }
+
     }
 
     public List<List<Boolean>> getLadder() {
         return lines.stream()
                         .map(Line::getLine)
                         .collect(Collectors.toList());
+    }
+
+    public GameResults runGame(int high, int numberOfUser, Users users, Results results) {
+        List<Result> gameResults = new ArrayList<>();
+
+        for (int i = 0; i < numberOfUser; i++) {
+            int columnIndex = i;
+            columnIndex = switchColumn(high, columnIndex);
+            gameResults.add(results.getResult(columnIndex));
+        }
+
+        return new GameResults(users, new Results(gameResults));
+    }
+
+    private int switchColumn(int high, int columnIndex) {
+        for (int i = 0; i < high; i++) {
+            columnIndex += lines.get(i).checkPoint(columnIndex);
+        }
+        return columnIndex;
     }
 
     @Override

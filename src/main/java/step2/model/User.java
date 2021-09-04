@@ -1,5 +1,9 @@
 package step2.model;
 
+import java.util.Objects;
+
+import static step2.model.LadderValidator.isBlank;
+
 public class User {
     private static final int MAX_NAME_LENGTH = 5;
 
@@ -21,10 +25,16 @@ public class User {
         }
     }
 
-    private void isBlank(String usersName) {
-        if (usersName == null || usersName.trim().isEmpty()) {
-            throw new IllegalArgumentException("이름이 비었습니다. 다시 입력해주세요");
-        }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(name, user.name);
     }
-    
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
 }
