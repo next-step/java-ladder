@@ -37,11 +37,11 @@ public class Ladder {
 
     }
 
-//    public List<List<Boolean>> getLadder() {
-//        return lines.stream()
-//                        .map(Line::getLine)
-//                        .collect(Collectors.toList());
-//    }
+    public List<List<Boolean>> getLadder() {
+        return lines.stream()
+                        .map(Line::getLine)
+                        .collect(Collectors.toList());
+    }
 
     public GameResults runGame(Users users, Results results) {
         int column = users.getNumberOfUsers();

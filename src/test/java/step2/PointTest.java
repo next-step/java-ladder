@@ -26,7 +26,7 @@ public class PointTest {
         Point third = new Point(false, true);
 
         //when
-        Point.middle(pointList, 3, () -> true);
+        Point.middle(pointList, 4, () -> true);
 
         //then
         assertThat(pointList).isEqualTo(Arrays.asList(first, second, third));

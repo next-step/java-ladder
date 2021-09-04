@@ -26,17 +26,17 @@ public class LadderTest {
 
     @Test
     public void 사다리_크기_체크() {
-//        //given
-//        Ladder ladder = new Ladder("5", 4, new RandomValueStrategy());
-//
-//        //when
-//        List<List<Boolean>> result = ladder.getLadder();
-//
-//        //then
-//        assertThat(result.size()).isEqualTo(5);
-//        for (int i = 0; i < 5; i++) {
-//            assertThat(result.get(i).size()).isEqualTo(4);
-//        }
+        //given
+        Ladder ladder = new Ladder("5", 4, new RandomValueStrategy());
+
+        //when
+        List<List<Boolean>> result = ladder.getLadder();
+
+        //then
+        assertThat(result.size()).isEqualTo(5);
+        for (int i = 0; i < 5; i++) {
+            assertThat(result.get(i).size()).isEqualTo(4);
+        }
     }
 
 }

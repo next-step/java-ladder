@@ -3,8 +3,6 @@ package step2;
 import org.junit.jupiter.api.Test;
 import step2.model.*;
 
-import java.util.HashMap;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class GameResultsTest {

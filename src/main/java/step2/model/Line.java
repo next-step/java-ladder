@@ -1,8 +1,8 @@
 package step2.model;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Line {
     private final List<Point> points;
@@ -16,8 +16,10 @@ public class Line {
         this.points = points;
     }
 
-    public List<Point> getLine() {
-        return this.points;
+    public List<Boolean> getLine() {
+        return points.stream()
+                        .map(Point::getCurrent)
+                        .collect(Collectors.toList());
     }
 
     public int checkPoint(int index) {
