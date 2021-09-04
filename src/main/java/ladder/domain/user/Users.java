@@ -21,6 +21,10 @@ public class Users {
             .collect(Collectors.toList()));
     }
 
+    public int userCount() {
+        return users.size();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

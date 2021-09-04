@@ -20,4 +20,8 @@ public class LadderHeight {
         }
     }
 
+    public int value() {
+        return height;
+    }
+
 }

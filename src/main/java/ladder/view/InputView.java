@@ -14,4 +14,9 @@ public class InputView {
         return scanner.nextLine();
     }
 
+    public static int inputLadderHeight() {
+        System.out.println("최대 사다리 높이는 몇 개인가요?");
+        return Integer.parseInt(scanner.nextLine());
+    }
+
 }
