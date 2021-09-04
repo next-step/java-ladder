@@ -1,5 +1,6 @@
 package ladder.domain.user;
 
+import static ladder.util.StringUtil.containsComma;
 import static ladder.util.StringUtil.splitByComma;
 
 import java.util.Arrays;
@@ -17,9 +18,17 @@ public class Users {
     }
 
     public static Users of(String usernames) {
+        checkUserCount(usernames);
+
         return new Users(Arrays.stream(splitByComma(usernames))
             .map(User::new)
             .collect(Collectors.toList()));
+    }
+
+    public static void checkUserCount(String usernames) {
+        if (!containsComma(usernames)) {
+            throw new IllegalArgumentException("사람의 수는 2명이상이 들어와야 한다.");
+        }
     }
 
     public int userCount() {
