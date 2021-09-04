@@ -1,7 +1,9 @@
 package nextstep.ladder;
 
 import nextstep.ladder.model.Line;
+import nextstep.ladder.model.Lines;
 import nextstep.ladder.model.Person;
+import nextstep.ladder.model.Reward;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,31 +11,43 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-public class LadderGame {
+public class LadderGameMakeUtil {
+    private static final String INPUT_SEPARATOR = ",";
+
     public static List<Person> makePeople(String input) {
         if ("".equals(input.trim())) {
             throw new IllegalArgumentException("참가자가 없습니다.");
         }
 
-        return Arrays.stream(input.split(","))
+        return Arrays.stream(input.split(INPUT_SEPARATOR))
                 .map((name) -> new Person(name))
+                .collect(Collectors.toList());
+    }
+
+    public static List<Reward> makeRewards(String input) {
+        if ("".equals(input.trim())) {
+            throw new IllegalArgumentException("결과 값이 입력되지 않았습니다.");
+        }
+
+        return Arrays.stream(input.split(INPUT_SEPARATOR))
+                .map((reward) -> new Reward(reward))
                 .collect(Collectors.toList());
     }
 
     private static final Random RANDOM = new Random();
 
-    public static List<Line> makeLines(int numberOfPeople, int height) {
+    public static Lines makeLines(int numberOfPeople, int height) {
         if (numberOfPeople <= 0 || height <= 0) {
             throw new IllegalArgumentException("참가자가 없거나, 사다리의 길이거 존재하지 않습니다.");
         }
 
-        List<Line> lines = makeDefaultLines(numberOfPeople, height);
+        List<Line> lineList = makeDefaultLines(numberOfPeople, height);
 
         for (int i = 0; i < height; i++) {
-            makeStairs(lines, i);
+            makeStairs(lineList, i);
         }
 
-        return lines;
+        return new Lines(lineList);
     }
 
     private static void makeStairs(List<Line> lines, int height) {
