@@ -2,7 +2,6 @@ package ladder.domain;
 
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Users {
 
@@ -35,12 +34,8 @@ public class Users {
                 .collect(Collectors.toList());
     }
 
-    public List<UserLocation> getAllWithLocation() {
-        return Collections.unmodifiableList(
-                IntStream.range(0, users.size())
-                        .mapToObj(pos -> UserLocation.create(users.get(pos), Location.at(pos)))
-                        .collect(Collectors.toList())
-        );
+    public User get(int index) {
+        return users.get(index);
     }
 
     @Override

@@ -15,7 +15,7 @@ public class LadderController {
         Users users = Users.create(users());
         LadderResults ladderResults = LadderResults.create(ladderResults());
 
-        Width width = Width.create(users.size() - 1);
+        Width width = Width.create(users.size());
         Height height = Height.create(ladderHeight());
 
         Ladder ladder = Ladder.create(width, height);

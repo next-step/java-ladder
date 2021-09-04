@@ -60,16 +60,31 @@ public class GameResultTest {
         assertThat(result.values()).containsAll(getExpectHashMap().values());
     }
 
-    private Line[] getLines() {
+    private LadderLine[] getLines() {
         /*
             |-----|     |-----|
             |     |-----|     |
             |-----|     |     |
          */
-        return new Line[]{
-                Line.create(true, false, true),
-                Line.create(false, true, false),
-                Line.create(true, false, false)
+        return new LadderLine[]{
+                LadderLine.create(
+                        Point.create(0, Direction.create(false, true)),
+                        Point.create(1, Direction.create(true, false)),
+                        Point.create(2, Direction.create(false, true)),
+                        Point.create(3, Direction.create(true, false))
+                ),
+                LadderLine.create(
+                        Point.create(0, Direction.create(false, false)),
+                        Point.create(1, Direction.create(false, true)),
+                        Point.create(2, Direction.create(true, false)),
+                        Point.create(3, Direction.create(false, false))
+                ),
+                LadderLine.create(
+                        Point.create(0, Direction.create(false, true)),
+                        Point.create(1, Direction.create(true, false)),
+                        Point.create(2, Direction.create(false, false)),
+                        Point.create(3, Direction.create(false, false))
+                )
         };
     }
 

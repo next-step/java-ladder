@@ -1,9 +1,6 @@
 package ladder.presentation.output;
 
-import ladder.domain.Ladder;
-import ladder.domain.LadderResults;
-import ladder.domain.Line;
-import ladder.domain.Users;
+import ladder.domain.*;
 
 public class ResultOutputView {
 
@@ -15,9 +12,9 @@ public class ResultOutputView {
 
     private static final String LINE_POSTFIX = "|\n";
 
-    private static final String CONNECTED_POINT = "|-----";
+    private static final String CONNECTED = "-----|";
 
-    private static final String NOT_CONNECTED_POINT = "|     ";
+    private static final String NOT_CONNECTED = "     |";
 
     public void output(Users users, Ladder ladder, LadderResults ladderResults) {
         System.out.println(RESULT_COMMENT);
@@ -43,23 +40,24 @@ public class ResultOutputView {
     }
 
     private String ladderOutput(Ladder ladder) {
-        String output = ladder.getLines()
+        String output = ladder.getLadderLines()
                 .stream()
                 .map(this::lineOutputFormat)
                 .reduce(EMPTY_STRING, (x, y) -> x + y);
         return output.substring(0, output.length() - 1);
     }
 
-    private String lineOutputFormat(Line line) {
-        String ladderOutput = line.getPoints().stream()
-                .map(this::connectedPoint)
-                .reduce(EMPTY_STRING, (x, y) -> x + y);
-        return LINE_PREFIX + ladderOutput + LINE_POSTFIX;
+    private String lineOutputFormat(LadderLine ladderLine) {
+        return ladderLine.getPoints().stream()
+                .map(this::connected)
+                .reduce(EMPTY_STRING, (x, y) -> x + y) + "\n";
     }
 
-    private String connectedPoint(Boolean isChecked) {
-        if (isChecked) return CONNECTED_POINT;
-        return NOT_CONNECTED_POINT;
+    private String connected(Point point) {
+        if (point.isLeft()) {
+            return CONNECTED;
+        }
+        return NOT_CONNECTED;
     }
 
     private String ladderResultsOutput(LadderResults ladderResults) {
