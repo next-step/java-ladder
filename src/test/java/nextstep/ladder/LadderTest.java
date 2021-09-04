@@ -4,6 +4,7 @@ import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.LadderLine;
 import nextstep.ladder.domain.Point;
 import nextstep.ladder.domain.Result;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 class LadderTest {
 
@@ -36,7 +38,7 @@ class LadderTest {
         last = point9.last(); // 3, ( true, false);
         LadderLine line3 = new LadderLine(Arrays.asList(point7, point8, point9, last));
 
-        ladder = new Ladder(Arrays.asList(line1,line2,line3));
+        ladder = new Ladder(Arrays.asList(line1, line2, line3));
         // 사다리 모양
         // |-----|     |     |
         // |     |-----|     |
@@ -44,4 +46,14 @@ class LadderTest {
 
     }
 
+    @Test
+    @DisplayName("사다리 이동")
+    void move() {
+        assertAll(
+                () -> assertThat(ladder.move(0)).isEqualTo(3),
+                () -> assertThat(ladder.move(1)).isEqualTo(1),
+                () -> assertThat(ladder.move(2)).isEqualTo(0),
+                () -> assertThat(ladder.move(3)).isEqualTo(2)
+        );
+    }
 }
