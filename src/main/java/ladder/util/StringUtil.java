@@ -26,6 +26,10 @@ public class StringUtil {
         return true;
     }
 
+    public static boolean containsComma(String input) {
+        return input.contains(COMMA);
+    }
+
     public static String[] splitByComma(String input) {
         return input.replaceAll(BLANK, EMPTY).split(COMMA);
     }
