@@ -2,7 +2,7 @@
 
 ## Step2 TODO
 - [ ] InputView
-  - [ ] 참여자 이름 받기
+  - [X] 참여자 이름 받기
   - [ ] 최대 사다리 높이 받기  
 
 - [ ] ResultView
