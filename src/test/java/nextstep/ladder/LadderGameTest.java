@@ -1,43 +1,61 @@
 package nextstep.ladder;
 
-import nextstep.ladder.model.Person;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import nextstep.ladder.model.*;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.HashMap;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
-import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+@TestInstance(Lifecycle.PER_CLASS)
 public class LadderGameTest {
-    @DisplayName("사람들 생성 테스트")
+    private Ladder ladder;
+    private List<Person> people;
+
+    @BeforeAll
+    public void initLadder() {
+        Line firstLine = new Line(3);
+        Line secondLine = new Line(3);
+        Line thirdLine = new Line(3);
+
+        List<Point> firstPoints = firstLine.getPoints();
+        List<Point> secondPoints = secondLine.getPoints();
+        List<Point> thirdPoints = thirdLine.getPoints();
+
+        firstPoints.get(0)
+                .use(1);
+        secondPoints.get(0)
+                .use(0);
+
+        secondPoints.get(1)
+                .use(2);
+        thirdPoints.get(1)
+                .use(1);
+
+        firstPoints.get(2)
+                .use(1);
+        secondPoints.get(2)
+                .use(0);
+
+        List<Line> lines = Arrays.asList(firstLine, secondLine, thirdLine);
+        List<Reward> rewards = Arrays.asList(new Reward("1"), new Reward("2"), new Reward("3"));
+        ladder = new Ladder(lines, rewards);
+        people = Arrays.asList(new Person("1"), new Person("2"), new Person("3"));
+    }
+
     @ParameterizedTest
-    @CsvSource({"'crong, ap, cdd', 3", "'test', 1", "'a, b, c, d, ew, e', 6"})
-    public void makePeopleTest(String input, int expected) {
+    @CsvSource({"1,3", "2,2", "3,1"})
+    public void runTest(String start, String rewardValue) {
         //when
-        List<Person> people = LadderGame.makePeople(input);
+        Reward reward = ladder.doPlay(people.indexOf(new Person(start)));
 
         //then
-        assertThat(people.size()).isEqualTo(expected);
+        assertThat(reward).isEqualTo(new Reward(rewardValue));
     }
 
-    @DisplayName("잘못 된 입력값을 받았을 때  사람들 생성 테스트")
-    @ParameterizedTest
-    @ValueSource(strings = {"  ", "", "abcdef", "abc, abce, abcdef", "abc, , ad"})
-    public void wrongInputMakePeopleTest(String input) {
-        assertThatIllegalArgumentException().isThrownBy(() -> LadderGame.makePeople(input));
-    }
-
-    @DisplayName("잘못된 입력값에 의한 사다리 테스트")
-    @ParameterizedTest
-    @CsvSource({"-5,3", "3,-2", "0,2", "3,0", "0,0"})
-    public void wrongInputMakeLadderTest(int numberOfPeople, int height) {
-        assertThatIllegalArgumentException().isThrownBy(() -> LadderGame.makeLines(numberOfPeople, height));
-    }
 }

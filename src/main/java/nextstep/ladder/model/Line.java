@@ -13,16 +13,17 @@ public class Line {
         }
     }
 
-    public boolean isUsedPoint(int index) {
-        return points.get(index).isUsed();
-    }
-
-    public void usePointDestination(int destination, int height) {
-        Point point = points.get(height);
-        point.use(destination);
-    }
-
     public List<Point> getPoints() {
         return Collections.unmodifiableList(points);
+    }
+
+    public int moveHorizontal(int x, int y) {
+        Point point = points.get(y);
+
+        if (point.isUsed()) {
+            return point.getGoal();
+        }
+
+        return x;
     }
 }
