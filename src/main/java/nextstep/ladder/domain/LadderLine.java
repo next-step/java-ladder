@@ -17,9 +17,9 @@ public class LadderLine {
 
     public static LadderLine init(int countOfPerson) {
         List<Point> points = new ArrayList<>();
-        Point point = initFirst(points);
-        point = createBody(countOfPerson, points, point);
-        initLast(points, point);
+        Point initPoint = initFirst(points);
+        Point lastPointOfBody = createBody(countOfPerson, points, initPoint);
+        initLast(points, lastPointOfBody);
         return new LadderLine(points);
     }
 
@@ -37,9 +37,9 @@ public class LadderLine {
         return point;
     }
 
-    private static void initLast(List<Point> points, Point point) {
-        point = point.last();
-        points.add(point);
+    private static void initLast(List<Point> points, Point lastPointOfBody) {
+        Point lastPoint = lastPointOfBody.last();
+        points.add(lastPoint);
     }
 
     private void validLadderLine(List<Point> points) {
@@ -48,7 +48,6 @@ public class LadderLine {
             throw new IllegalArgumentException("마지막 라인의 오른쪽에는 가로 선이 올 수 없습니다.");
         }
     }
-
 
 
     public int move(int index) {
