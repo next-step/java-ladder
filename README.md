@@ -2,7 +2,7 @@
 
 ## TODO
 ### 람다
-- [ ] 실습 1. CarTest 내 MoveStrategy를 람다로 구현
+- [X] 실습 1. CarTest 내 MoveStrategy를 람다로 구현
 - [ ] 실습 2. Lnextstep.fp.Lambda
   - [ ] runThread내 익명 객체 람다로 변환
   - [ ] sumAll, sumAllEven, sumAllOverThree 중복 제거
