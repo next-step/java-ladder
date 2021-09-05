@@ -6,15 +6,11 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Ladder {
-    private static final int LADDER_MIN_COUNT = 1;
     private List<LadderLine> lines;
 
-    public Ladder(int countOfPerson, int height) {
-        if (height < LADDER_MIN_COUNT) {
-            throw new IllegalArgumentException("사다리 높이는 최소 " + LADDER_MIN_COUNT + "가 되어야 합니다.");
-        }
+    public Ladder(int countOfPerson, Height height) {
         this.lines = new ArrayList<>();
-        IntStream.range(0, height)
+        IntStream.range(0, height.value())
                 .forEach(index -> lines.add(LadderLine.init(countOfPerson)));
     }
 
