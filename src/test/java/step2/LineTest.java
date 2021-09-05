@@ -17,8 +17,8 @@ public class LineTest {
         Point third = new Point(false, true);
         Point fourth = new Point(true, false);
 
-        List<Point> pointList = Arrays.asList(first, second, third, fourth);
-        Line expect = new Line(pointList);
+        Points points = new Points(Arrays.asList(first, second, third, fourth));
+        Line expect = new Line(points);
 
         //when
         Line actual = new Line(4, () -> true);

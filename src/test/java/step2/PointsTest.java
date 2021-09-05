@@ -2,6 +2,7 @@ package step2;
 
 import org.junit.jupiter.api.Test;
 import step2.model.Point;
+import step2.model.Points;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,27 +10,29 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class PointTest {
+public class PointsTest {
     @Test
     public void 첫번째_포인트_생성() {
-        assertThat(Point.first(() -> true)).isEqualTo(new Point(false, true));
+        assertThat(Points.first(() -> true)).isEqualTo(new Point(false, true));
     }
 
     @Test
     public void 중간_포인트들_생성() {
         //given
-        List<Point> pointList = new ArrayList<>();
-        pointList.add(Point.first(() -> true));
-
         Point first = new Point(false, true);
         Point second = new Point(true, false);
         Point third = new Point(false, true);
+        Points expect = new Points(Arrays.asList(first, second, third));
+
+        List<Point> pointList = new ArrayList<>();
+        pointList.add(Points.first(() -> true));
 
         //when
-        Point.middle(pointList, 4, () -> true);
+        Points.middle(pointList, 4, () -> true);
+        Points actual = new Points(pointList);
 
         //then
-        assertThat(pointList).isEqualTo(Arrays.asList(first, second, third));
+        assertThat(actual).isEqualTo(expect);
     }
 
     @Test
@@ -41,7 +44,11 @@ public class PointTest {
 
         List<Point> pointList = Arrays.asList(first, second, third);
 
-        assertThat(Point.last(pointList)).isEqualTo(new Point(true, false));
+        //when
+        Point last = Points.last(pointList);
+
+        //then
+        assertThat(last).isEqualTo(new Point(true, false));
     }
 
     @Test
@@ -52,10 +59,10 @@ public class PointTest {
         Point third = new Point(false, true);
         Point fourth = new Point(true, false);
 
-        List<Point> expect = Arrays.asList(first, second, third, fourth);
+        Points expect = new Points(Arrays.asList(first, second, third, fourth));
 
         //when
-        List<Point> actual = Point.generatePoints(4, () -> true);
+        Points actual = new Points(4, () -> true);
 
         //then
         assertThat(actual).isEqualTo(expect);
