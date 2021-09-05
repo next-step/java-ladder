@@ -19,5 +19,5 @@
 ### Optional
 - [X] 실습 1. ageIsInRange2 구현
 - [X] 실습 2. getUser() 구현
-- [ ] 실습 3. Expression의 of 메소드를 구현
+- [X] 실습 3. Expression 의 of 메소드를 구현
  
