@@ -8,28 +8,36 @@ public enum Direction {
     DOWN(false, false, 0);
 
     private boolean left;
-    private boolean right;
+    private boolean current;
     private int move;
 
-    Direction(boolean left, boolean right, int move) {
-        if (left && right) {
+    Direction(boolean left, boolean current, int move) {
+        if (left && current) {
             throw new IllegalStateException();
         }
 
         this.left = left;
-        this.right = right;
+        this.current = current;
         this.move = move;
     }
 
-    public static Direction findDirection(Point point) {
+    public boolean getLeft() {
+        return left;
+    }
+
+    public boolean getCurrent() {
+        return current;
+    }
+
+    public static Direction findDirection(boolean left, boolean current) {
         return Arrays.stream(Direction.values())
-                        .filter(direction -> isMatch(direction, point))
+                        .filter(direction -> isMatch(direction, left, current))
                         .findFirst()
                         .orElseThrow(IllegalStateException::new);
     }
 
-    private static boolean isMatch(Direction direction, Point point) {
-        return point.getLeft() == direction.left && point.getCurrent() == direction.right;
+    private static boolean isMatch(Direction direction, boolean left, boolean current) {
+        return left == direction.left && current == direction.current;
     }
 
     public int getMove() {
