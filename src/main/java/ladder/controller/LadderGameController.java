@@ -20,15 +20,15 @@ public class LadderGameController {
 
         showLadderGame(players, playingResults, ladder);
 
-        while (true) {
+        do {
             String matchPlayer = InputView.readMatchPlayer();
             if (matchPlayer.equals(ALL)) {
                 matchAll(players, playingResults, ladder);
-                break;
+                return;
             }
             int idx = findIndexFromList(players, matchPlayer);
             matchOne(playingResults, ladder, idx);
-        }
+        } while (true);
     }
 
     private void showLadderGame(List<Player> players, List<PlayingResult> playingResults, Ladder ladder) {
