@@ -1,9 +1,6 @@
 package nextstep.laddergame.view;
 
-import nextstep.laddergame.domain.Ladder;
-import nextstep.laddergame.domain.Line;
-import nextstep.laddergame.domain.PlayerName;
-import nextstep.laddergame.domain.Players;
+import nextstep.laddergame.domain.*;
 
 import java.io.PrintStream;
 import java.util.List;
@@ -57,9 +54,9 @@ public class OutputView {
     }
 
     private String renderLine(Line line) {
-        List<Boolean> points = line.getPoints();
+        List<Point> points = line.getPoints();
         return String.format(LINE_RENDERING_FORMAT, points.stream()
-                .map(point -> point? CONNECTED_POINT_RENDERING_FORMAT : UNCONNECTED_POINT_RENDERING_FORMAT)
+                .map(point -> point.isConnected()? CONNECTED_POINT_RENDERING_FORMAT : UNCONNECTED_POINT_RENDERING_FORMAT)
                 .collect(Collectors.joining(POINT_DELIMITER)));
     }
 }
