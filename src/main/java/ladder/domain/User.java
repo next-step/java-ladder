@@ -20,7 +20,7 @@ public class User {
 
     private void validateName(String name) {
         if (name.length() > MAX_NAME_LENGTH || name.length() < MIN_NAME_LENGTH) {
-            throw new UserNameLengthException();
+            throw new UserNameLengthException(name);
         }
     }
 
