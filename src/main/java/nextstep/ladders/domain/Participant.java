@@ -1,12 +1,12 @@
 package nextstep.ladders.domain;
 
-import nextstep.ladders.domain.exceptions.NameLengthInvalidException;
+import nextstep.ladders.exception.NameLengthInvalidException;
 
 import java.util.Objects;
 
 public class Participant {
 
-    public static final int MAX_NAME_LENGTH = 5;
+    private static final int MAX_NAME_LENGTH = 5;
 
     private final String name;
 
@@ -15,14 +15,14 @@ public class Participant {
         this.name = name;
     }
 
+    public static Participant valueOf(final String name) {
+        return new Participant(name);
+    }
+
     private void checkMaxNameLength(final String name) {
         if (name.length() > MAX_NAME_LENGTH) {
             throw new NameLengthInvalidException();
         }
-    }
-
-    public static Participant valueOf(final String name) {
-        return new Participant(name);
     }
 
     public String value() {

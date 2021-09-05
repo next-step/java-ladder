@@ -1,4 +1,4 @@
-package nextstep.ladders.domain.exceptions;
+package nextstep.ladders.exception;
 
 public class DifferentCountException extends RuntimeException {
 

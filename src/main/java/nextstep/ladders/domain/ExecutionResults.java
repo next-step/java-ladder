@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class ExecutionResults {
 
-    public static final String REGEX_COMMA = ",";
+    private static final String REGEX_COMMA = ",";
 
     private final List<ExecutionResult> executionResults;
 
@@ -18,13 +18,16 @@ public class ExecutionResults {
                 .collect(Collectors.toList());
     }
 
+    public ExecutionResult get(final int index) {
+        return this.executionResults.get(index);
+    }
 
     private List<String> parseExecutionResults(final String participantsText) {
         return Arrays.stream(participantsText.split(REGEX_COMMA))
                 .collect(Collectors.toList());
     }
 
-    public List<ExecutionResult> getExecutionResult() {
+    public List<ExecutionResult> elements() {
         return Collections.unmodifiableList(executionResults);
     }
 }

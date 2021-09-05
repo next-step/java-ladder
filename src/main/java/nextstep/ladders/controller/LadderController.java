@@ -1,11 +1,11 @@
 package nextstep.ladders.controller;
 
 import nextstep.ladders.domain.Ladder;
-import nextstep.ladders.domain.RandomPointGenerateStrategy;
+import nextstep.ladders.domain.strategy.DirectionRandomGenerate;
 
 public class LadderController {
 
-    public Ladder start(final String participantsText, final String executionResultText, final String maxLadderHeightText) {
-        return new Ladder(new RandomPointGenerateStrategy(), participantsText, executionResultText, maxLadderHeightText);
+    public Ladder start(final String maxLadderHeightText, final String participantsText) {
+        return new Ladder(new DirectionRandomGenerate(), maxLadderHeightText, participantsText);
     }
 }

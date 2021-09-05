@@ -1,15 +1,17 @@
 package nextstep.ladders.domain;
 
-import nextstep.ladders.domain.exceptions.DifferentCountException;
+import nextstep.ladders.exception.DifferentCountException;
 
 import java.util.Arrays;
 
-public class LadderDetail {
+public class LadderGame {
+
+    private static final String REGEX_COMMA = ",";
 
     private final Participants participants;
     private final ExecutionResults executionResults;
 
-    public LadderDetail(final String participantsText, final String executionResultText) {
+    public LadderGame(final String participantsText, final String executionResultText) {
         checkEqualsCount(participantsText, executionResultText);
         this.participants = new Participants(participantsText);
         this.executionResults = new ExecutionResults(executionResultText);
@@ -17,8 +19,8 @@ public class LadderDetail {
 
     private void checkEqualsCount(final String participantsText, final String executionResultText) {
 
-        long participantsCount = Arrays.stream(participantsText.split(",")).count();
-        long executionResultCount = Arrays.stream(executionResultText.split(",")).count();
+        long participantsCount = Arrays.stream(participantsText.split(REGEX_COMMA)).count();
+        long executionResultCount = Arrays.stream(executionResultText.split(REGEX_COMMA)).count();
 
         if (participantsCount != executionResultCount) {
             throw new DifferentCountException();
@@ -32,5 +34,4 @@ public class LadderDetail {
     public ExecutionResults getExecutionResults() {
         return executionResults;
     }
-
 }

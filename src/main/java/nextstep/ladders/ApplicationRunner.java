@@ -2,6 +2,7 @@ package nextstep.ladders;
 
 import nextstep.ladders.controller.LadderController;
 import nextstep.ladders.domain.Ladder;
+import nextstep.ladders.domain.LadderGame;
 import nextstep.ladders.views.ConsoleInputView;
 import nextstep.ladders.views.ConsoleOutputView;
 
@@ -23,16 +24,17 @@ public class ApplicationRunner {
         String executionResultText = inputView.enterExecutionResult();
         String maxLadderHeightText = inputView.enterMaxLadderHeight();
 
-        Ladder ladder = ladderController.start(participantsText, executionResultText, maxLadderHeightText);
+        LadderGame ladderGame = new LadderGame(participantsText, executionResultText);
+        Ladder ladder = ladderController.start(maxLadderHeightText, participantsText);
 
-        outputView.print(ladder);
+        outputView.print(ladderGame, ladder);
 
         String name = inputView.enterToSeeTheResult();
-        outputView.print(ladder, name);
+        outputView.print(ladderGame, ladder, name);
 
         while (!ALL.equalsIgnoreCase(name)) {
             name = inputView.enterToSeeTheResult();
-            outputView.print(ladder, name);
+            outputView.print(ladderGame, ladder, name);
         }
 
         scanner.close();

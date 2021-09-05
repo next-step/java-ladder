@@ -2,6 +2,7 @@ package nextstep.ladders.views;
 
 import nextstep.ladders.domain.*;
 
+import java.util.List;
 
 public class ConsoleOutputView {
 
@@ -10,18 +11,11 @@ public class ConsoleOutputView {
     public static final String ALL = "all";
     public static final String EXECUTION_RESULT = "실행 결과";
 
-    public void print(final Ladder ladder) {
-
-        LadderDetail ladderDetail = ladder.getLadderDetail();
-        Participants participants = ladderDetail.getParticipants();
-        ExecutionResults executionResults = ladderDetail.getExecutionResults();
-
-        Lines lines = ladder.getLines();
-
+    public void print(final LadderGame ladderGame, final Ladder ladder) {
         introduce();
-        print(participants);
-        print(lines);
-        print(executionResults);
+        print(ladderGame.getParticipants());
+        print(ladder.getLines());
+        print(ladderGame.getExecutionResults());
     }
 
     private void introduce() {
@@ -30,7 +24,7 @@ public class ConsoleOutputView {
     }
 
     private void print(final Participants participants) {
-        participants.getParticipants().forEach(this::print);
+        participants.elements().forEach(this::print);
         System.out.println();
     }
 
@@ -39,21 +33,17 @@ public class ConsoleOutputView {
         System.out.printf("%5s ", name);
     }
 
-    private void print(final Lines lines) {
-        for (Line line : lines.getLines()) {
-            print(line);
-        }
+    private void print(final LadderLines ladderLines) {
+        ladderLines.elements().forEach(this::print);
     }
 
-    private void print(final Line line) {
-        for (Boolean point : line.getPoints()) {
-            print(point);
-        }
+    private void print(final LadderLine ladderLine) {
+        ladderLine.elements().forEach(this::print);
         System.out.println();
     }
 
     private void print(final ExecutionResults executionResults) {
-        executionResults.getExecutionResult().forEach(this::print);
+        executionResults.elements().forEach(this::print);
         System.out.println();
     }
 
@@ -62,34 +52,47 @@ public class ConsoleOutputView {
         System.out.printf("%5s ", result);
     }
 
-    private void print(final Boolean point) {
-        if (point) {
+    private void print(final Point point) {
+        Direction direction = point.getDirection();
+        if (direction.isLeft()) {
             System.out.print(LINE);
             return;
         }
         System.out.print(BLANK);
     }
 
-    public void print(final Ladder ladder, final String name) {
+    public void print(final LadderGame ladderGame, final Ladder ladder, final String name) {
         System.out.println(EXECUTION_RESULT);
+
         if (ALL.equals(name)) {
-            printAll(ladder);
+            printAll(ladderGame, ladder);
             return;
         }
 
-        Participant participant = Participant.valueOf(name);
-        ExecutionResult executionResult = ladder.start(participant);
+        Participants participants = ladderGame.getParticipants();
+        ExecutionResults executionResults = ladderGame.getExecutionResults();
 
+        int participantIndex = participants.indexOf(Participant.valueOf(name));
+        int executionResultIndex = ladder.start(participantIndex);
+
+        ExecutionResult executionResult = executionResults.get(executionResultIndex);
         System.out.println(executionResult.value());
         System.out.println();
     }
 
-    private void printAll(final Ladder ladder) {
-        LadderDetail ladderDetail = ladder.getLadderDetail();
-        Participants participants = ladderDetail.getParticipants();
+    private void printAll(final LadderGame ladderGame, final Ladder ladder) {
+        Participants participants = ladderGame.getParticipants();
+        ExecutionResults executionResults = ladderGame.getExecutionResults();
 
-        for (Participant participant : participants.getParticipants()) {
-            ExecutionResult executionResult = ladder.start(participant);
+        List<Participant> participantList = participants.elements();
+        List<ExecutionResult> executionResultList = executionResults.elements();
+
+        for (int i = 0; i < participantList.size(); i++) {
+
+            Participant participant = participantList.get(i);
+            int executionResultIndex = ladder.start(i);
+            ExecutionResult executionResult = executionResultList.get(executionResultIndex);
+
             print(participant, executionResult);
         }
     }

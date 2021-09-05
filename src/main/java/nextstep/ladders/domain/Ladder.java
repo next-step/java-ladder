@@ -1,24 +1,27 @@
 package nextstep.ladders.domain;
 
-import nextstep.ladders.domain.exceptions.NotFoundDataException;
+import nextstep.ladders.domain.strategy.DirectionGenerator;
+import nextstep.ladders.domain.strategy.DirectionRandomGenerate;
 
 import java.util.Arrays;
-import java.util.List;
+import java.util.Objects;
 
 public class Ladder {
 
-    public static final String REGEX_COMMA = ",";
+    private static final String REGEX_COMMA = ",";
 
-    private final LadderDetail ladderDetail;
-    private final Lines lines;
+    private final LadderLines ladderLines;
 
-    public Ladder(final LadderDetail ladderDetail, final Lines lines) {
-        this.ladderDetail = ladderDetail;
-        this.lines = lines;
+    public Ladder(final LadderLines ladderLines) {
+        this.ladderLines = ladderLines;
     }
 
-    public Ladder(final PointGenerateStrategy strategy, final String participantsText, final String executionResultText, final String maxLadderHeightText) {
-        this(new LadderDetail(participantsText, executionResultText), new Lines(strategy, parseParticipantsCount(participantsText), parseMaxLadderHeight(maxLadderHeightText)));
+    public Ladder(final DirectionGenerator directionGenerator, final int height, final int numberOfPeople) {
+        this(new LadderLines(directionGenerator, height, numberOfPeople));
+    }
+
+    public Ladder(final DirectionRandomGenerate generator, final String maxLadderHeightText, final String participantsText) {
+        this(generator, parseMaxLadderHeight(maxLadderHeightText), parseParticipantsCount(participantsText));
     }
 
     private static int parseParticipantsCount(final String participantsText) {
@@ -29,22 +32,24 @@ public class Ladder {
         return Integer.parseInt(maxLadderHeightText);
     }
 
-    public ExecutionResult start(final Participant participant) {
-        List<Participant> participants = ladderDetail.getParticipants().getParticipants();
-        List<ExecutionResult> executionResult = ladderDetail.getExecutionResults().getExecutionResult();
-        int row = participants.indexOf(participant);
-        if (row == -1) {
-            throw new NotFoundDataException();
-        }
-        int result = lines.start(row);
-        return executionResult.get(result);
+    public int start(final int index) {
+        return ladderLines.move(index);
     }
 
-    public Lines getLines() {
-        return lines;
+    public LadderLines getLines() {
+        return ladderLines;
     }
 
-    public LadderDetail getLadderDetail() {
-        return ladderDetail;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ladder ladder = (Ladder) o;
+        return Objects.equals(ladderLines, ladder.ladderLines);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ladderLines);
     }
 }
