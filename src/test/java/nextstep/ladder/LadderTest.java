@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -65,6 +66,23 @@ class LadderTest {
                 () -> assertThat(gameResult.get(2)).isEqualTo("꽝"),
                 () -> assertThat(gameResult.get(3)).isEqualTo("3등")
         );
+    }
 
+    // 사다리 모양
+    // |-----|     |     |
+    // |     |-----|     |
+    // |-----|     |-----|
+    @Test
+    void startGame2() {
+        Players players = new Players("cony,pobi,crong,cr7");
+        Result result = new Result("꽝,1000,10,0");
+        LadderGame ladderGame = new LadderGame(players, ladder);
+        Map<String, String> map = ladderGame.start1(result);
+        assertAll(
+                () -> assertThat(map.get("cony")).isEqualTo("0"),
+                () -> assertThat(map.get("pobi")).isEqualTo("1000"),
+                () -> assertThat(map.get("crong")).isEqualTo("꽝"),
+                () -> assertThat(map.get("cr7")).isEqualTo("10")
+        );
     }
 }

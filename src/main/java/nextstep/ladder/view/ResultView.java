@@ -2,6 +2,8 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.domain.*;
 
+import java.util.Map;
+
 import static nextstep.ladder.util.Validation.INPUT_ALL;
 import static nextstep.ladder.util.Validation.isContainPlayer;
 
@@ -48,6 +50,15 @@ public class ResultView {
                 .forEach(System.out::print);
         System.out.println();
 
+    }
+
+    public static void print(Map<String ,String > gameResult) {
+        int index = 0;
+        while (index != INPUT_ALL) {
+            String findPlayerResult = InputView.inputGameResultSearch();
+            System.out.println(RESULT_MESSAGE);
+
+        }
     }
 
     public static void printLadderGameResult(Players players, Result result) {
