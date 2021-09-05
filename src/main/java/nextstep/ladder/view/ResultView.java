@@ -2,13 +2,7 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.domain.*;
 
-import java.util.Collection;
-import java.util.Map;
-import java.util.Set;
-
-import static nextstep.ladder.util.Validation.INPUT_ALL;
-import static nextstep.ladder.util.Validation.isContainPlayer;
-
+import static nextstep.ladder.domain.Name.*;
 
 public class ResultView {
     private static final String EMPTY_LINE = "     |";
@@ -57,7 +51,7 @@ public class ResultView {
 
     public static void printLadderGameResult(LadderResult ladderResult) {
         String findPlayerResult = "";
-        while (!"all".equals(findPlayerResult)) {
+        while (!ALL_RESULT.equals(findPlayerResult)) {
             findPlayerResult = InputView.inputGameResultSearch();
             System.out.println(RESULT_MESSAGE);
             printLadderGameAllOrNot(findPlayerResult, ladderResult);
@@ -65,7 +59,7 @@ public class ResultView {
     }
 
     private static void printLadderGameAllOrNot(String findPlayerResult, LadderResult ladderResult) {
-        if ("all".equals(findPlayerResult)) {
+        if (ALL_RESULT.equals(findPlayerResult)) {
             StringBuilder sb = new StringBuilder();
             ladderResult.ketSet()
                     .stream()

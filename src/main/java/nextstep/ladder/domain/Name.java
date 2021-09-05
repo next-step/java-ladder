@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Name {
     private static final int NAME_MAX_LENGTH = 5;
-    private static final String UNUSABLE_NAME = "all";
+    public static final String ALL_RESULT = "all";
     private final String name;
 
     public Name(String name) {
@@ -19,8 +19,8 @@ public class Name {
     }
 
     public void validName(String name) {
-        if (UNUSABLE_NAME.equals(name)) {
-            throw new IllegalArgumentException("all은 사용 할 수 없는 이름입니다.");
+        if (ALL_RESULT.equals(name)) {
+            throw new IllegalArgumentException(ALL_RESULT + "은 사용 할 수 없는 이름입니다.");
         }
 
         if (name.length() > NAME_MAX_LENGTH) {

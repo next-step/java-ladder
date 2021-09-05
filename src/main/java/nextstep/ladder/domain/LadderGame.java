@@ -1,8 +1,6 @@
 package nextstep.ladder.domain;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class LadderGame {
@@ -14,13 +12,13 @@ public class LadderGame {
         this.ladder = ladder;
     }
 
-   public LadderResult start(Result result) {
-       Map<String, String> gameResult = new HashMap<>();
-       for (int i = 0; i < players.size(); i++) {
-           int index = ladder.move(i);
-           String ladderResult = result.get(index);
-           gameResult.put(players.name(i), ladderResult);
-       }
-       return new LadderResult(gameResult);
-   }
+    public LadderResult start(Result result) {
+        Map<String, String> gameResult = new HashMap<>();
+        for (int i = 0; i < players.size(); i++) {
+            int index = ladder.move(i);
+            String ladderResult = result.get(index);
+            gameResult.put(players.name(i), ladderResult);
+        }
+        return new LadderResult(gameResult);
+    }
 }
