@@ -1,13 +1,19 @@
 package nextstep.ladder.participant;
 
+import nextstep.ladder.Position;
+import nextstep.ladder.Result;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 public class Participants {
-    private List<Participant> participants;
     private static final String DELIMITER = ",";
+
+    private List<Participant> participants;
+
 
     private Participants(String... names) {
         validation(names);
@@ -29,7 +35,7 @@ public class Participants {
     }
 
     private void validation(String[] names) {
-        if(names.length < 2){
+        if (names.length < 2) {
             throw new IllegalArgumentException("참여자는 2명 이상이여야 합니다.");
         }
     }
@@ -38,9 +44,21 @@ public class Participants {
         return this.participants.size();
     }
 
+
+
     public List<String> getNames() {
         return participants.stream()
                 .map(Participant::getName)
+                .collect(Collectors.toList());
+    }
+
+    public List<Participant> getList() {
+        return new ArrayList<>(participants);
+    }
+
+    public List<Position> getPositionList(){
+        return participants.stream()
+                .map(Participant::getPosition)
                 .collect(Collectors.toList());
     }
 }

@@ -4,7 +4,7 @@ import nextstep.ladder.participant.Participants;
 
 public class LadderInput {
     private Participants participants;
-    private RandomPoint randomPoint;
+    private MiddleLadder randomPoint;
     private int depth;
 
     public LadderInput(Participants participants, int depth) {
@@ -16,7 +16,7 @@ public class LadderInput {
         return participants;
     }
 
-    public RandomPoint getRandomPoint() {
+    public MiddleLadder getRandomPoint() {
         return randomPoint;
     }
 
@@ -24,7 +24,7 @@ public class LadderInput {
         return depth;
     }
 
-    public void setRandomPoint(RandomPoint randomPoint) {
+    public void setRandomPoint(MiddleLadder randomPoint) {
         this.randomPoint = randomPoint;
     }
 }

@@ -28,4 +28,8 @@ public class Position {
             this.position--;
         }
     }
+
+    public int getInteger() {
+        return position;
+    }
 }

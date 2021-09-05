@@ -10,13 +10,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 class LadderTest {
 
     private static Participants participants;
-    private static RandomPoint randomPoint;
+    private static MiddleLadder randomPoint;
 
     @Test
     @BeforeAll
     static void setObject(){
         participants = Participants.of("a","b","c");
-        randomPoint = new RandomPoint() {
+        randomPoint = new MiddleLadder() {
             @Override
             public boolean makeBoolean() {
                 return true;

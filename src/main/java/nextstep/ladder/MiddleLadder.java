@@ -1,6 +1,6 @@
 package nextstep.ladder;
 
-public interface RandomPoint {
+public interface MiddleLadder {
     boolean makeBoolean();
 
     void resetLine();

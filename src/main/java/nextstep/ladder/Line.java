@@ -6,14 +6,14 @@ import java.util.List;
 public class Line {
     private List<Boolean> points = new ArrayList<>();
 
-    private Line(int size, RandomPoint random) {
+    private Line(int size, MiddleLadder random) {
         for (int i = 0; i < size; i++) {
             points.add(random.makeBoolean());
         }
         random.resetLine();
     }
 
-    public static Line of(int size, RandomPoint random) {
+    public static Line of(int size, MiddleLadder random) {
         return new Line(size, random);
     }
 

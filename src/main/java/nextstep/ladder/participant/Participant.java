@@ -4,6 +4,7 @@ import nextstep.ladder.Position;
 
 public class Participant {
     private static final int NAME_MAX_LENGTH = 5;
+
     private String name;
     private Position position;
 
@@ -35,5 +36,9 @@ public class Participant {
 
     public void movePosition(int nextPosition) {
         this.position.move(nextPosition);
+    }
+
+    public Position getPosition() {
+        return this.position;
     }
 }

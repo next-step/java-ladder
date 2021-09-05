@@ -8,12 +8,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class LineTest {
 
-    private static RandomPoint random;
+    private static MiddleLadder random;
 
     @Test
     @BeforeAll
     static void setRandom() {
-        random = new RandomPoint() {
+        random = new MiddleLadder() {
             @Override
             public boolean makeBoolean() {
                 return true;

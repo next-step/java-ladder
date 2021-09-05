@@ -33,4 +33,9 @@ public class InputView {
 
         return names;
     }
+
+    public static String getName(Scanner scanner) {
+        System.out.println("찾을사람:");
+        return scanner.nextLine();
+    }
 }

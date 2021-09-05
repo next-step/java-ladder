@@ -2,7 +2,7 @@ package nextstep.ladder;
 
 import java.util.Random;
 
-public class RandomLadderPoint implements RandomPoint {
+public class RandomMiddleLadder implements MiddleLadder {
     protected boolean preStatus = false;
     private Random random = new Random();
 
