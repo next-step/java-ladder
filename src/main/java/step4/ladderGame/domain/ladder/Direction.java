@@ -13,12 +13,15 @@ public final class Direction {
     private final boolean right;
 
     private Direction(final boolean left, final boolean right) {
+        validate(left, right);
+        this.left = left;
+        this.right = right;
+    }
+
+    private void validate(final boolean left, final boolean right) {
         if (left && right) {
             throw new HaveSeveralDirectionsException();
         }
-
-        this.left = left;
-        this.right = right;
     }
 
     public boolean isRight() {

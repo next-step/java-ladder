@@ -24,9 +24,9 @@ public final class LadderGameController {
 
     private static void playGame(final Players players, final Awards awards, final Ladder ladder) {
         boolean play = true;
-        while (play) {
+        do {
             play = checkAward(players, awards, ladder);
-        }
+        } while (play);
     }
 
     private static boolean checkAward(final Players players, final Awards awards, final Ladder ladder) {

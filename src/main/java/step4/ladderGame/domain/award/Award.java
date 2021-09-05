@@ -26,11 +26,11 @@ public final class Award {
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public int getIndex() {
-        return this.index;
+        return index;
     }
 
 }

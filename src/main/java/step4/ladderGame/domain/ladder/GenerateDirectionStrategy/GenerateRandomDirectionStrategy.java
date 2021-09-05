@@ -2,7 +2,7 @@ package step4.ladderGame.domain.ladder.GenerateDirectionStrategy;
 
 import java.util.Random;
 
-public final class GenerateRandomDirectionStrategy implements GenerateDirectionStrategy {
+public class GenerateRandomDirectionStrategy implements GenerateDirectionStrategy {
 
     private static Random random = new Random();
 

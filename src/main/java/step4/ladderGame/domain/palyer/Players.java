@@ -3,6 +3,7 @@ package step4.ladderGame.domain.palyer;
 import step4.ladderGame.domain.exception.NotFoundIndexException;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
@@ -32,7 +33,7 @@ public final class Players {
     }
 
     public List<Player> getPlayers() {
-        return players;
+        return Collections.unmodifiableList(players);
     }
 
     public int count() {

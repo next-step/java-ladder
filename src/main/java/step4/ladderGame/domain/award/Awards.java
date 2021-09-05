@@ -4,6 +4,7 @@ import step4.ladderGame.domain.exception.DifferentCountOfPlayerAndResultExceptio
 import step4.ladderGame.domain.exception.NotFoundIndexException;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
@@ -40,7 +41,7 @@ public final class Awards {
     }
 
     public List<Award> getAwards() {
-        return awards;
+        return Collections.unmodifiableList(awards);
     }
 
 }

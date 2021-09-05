@@ -3,6 +3,7 @@ package step4.ladderGame.domain.ladder;
 import step4.ladderGame.domain.ladder.GenerateDirectionStrategy.GenerateDirectionStrategy;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public final class LadderLine {
@@ -46,7 +47,7 @@ public final class LadderLine {
     }
 
     public List<Point> getPoints() {
-        return points;
+        return Collections.unmodifiableList(points);
     }
 
 }

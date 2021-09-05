@@ -4,6 +4,7 @@ import step4.ladderGame.domain.exception.CountOfPlayerOutOfBoundsException;
 import step4.ladderGame.domain.exception.HeightLowException;
 import step4.ladderGame.domain.ladder.GenerateDirectionStrategy.GenerateDirectionStrategy;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -48,7 +49,7 @@ public final class Ladder {
     }
 
     public List<LadderLine> getLadderLines() {
-        return ladderLines;
+        return Collections.unmodifiableList(ladderLines);
     }
 
 }
