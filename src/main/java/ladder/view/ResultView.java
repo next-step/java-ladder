@@ -15,9 +15,7 @@ public class ResultView {
 
     public static void printUserList(Users users) {
         System.out.println(LADDER_RESULT);
-        for (User user : users.getUsers()) {
-            System.out.printf("%-6s", user.getName());
-        }
+        users.getUsers().stream().forEach(user -> System.out.printf("%-6s", user.getName()));
         System.out.println();
     }
 
@@ -27,12 +25,13 @@ public class ResultView {
             System.out.println(STRING_BUILDER);
             STRING_BUILDER.setLength(INIT_NUMBER);
         }
+        ladder.getLines().stream().map(line -> line.getPoints()).forEach(points -> drawLine(points));
     }
 
-    private static void drawLine(List<Boolean> points) {
+    private static void drawLine(List<Point> points) {
         STRING_BUILDER.append(LADDER_LENGTH);
-        for (Boolean point : points) {
-            if (!point) {
+        for (int i = 1; i < points.size(); i++) {
+            if (!points.get(i).draw()) {
                 STRING_BUILDER.append(NO_LADDER);
                 STRING_BUILDER.append(LADDER_LENGTH);
                 continue;
@@ -56,11 +55,8 @@ public class ResultView {
 
     public static void printAllResult(MatchResults matchResults) {
         System.out.println(EXECUTION_RESULT);
-
         List<Result> results = matchResults.getResults();
-        for (Result result : results) {
-            System.out.println(result.getUser().getName() + " : " + result.getWinningItem().getItem());
-        }
+        results.forEach(result -> System.out.println(result.getUser().getName() + " : " + result.getWinningItem().getItem()));
     }
 
 }
