@@ -3,9 +3,10 @@
 ## TODO
 ### 람다
 - [X] 실습 1. CarTest 내 MoveStrategy를 람다로 구현
-- [ ] 실습 2. Lnextstep.fp.Lambda
-  - [ ] runThread내 익명 객체 람다로 변환
-  - [ ] sumAll, sumAllEven, sumAllOverThree 중복 제거
+- [X] 실습 2. nextstep.fp.Lambda 내 람다 적용
+  - [X] runThread내 익명 객체 람다로 변환
+  - [X] sumAll, sumAllEven, sumAllOverThree 중복 제거 
+    - [X] Optional 인터페이스 구현
 
 ### stream
 - [ ] 실습 1. 3보다 큰 수를 2배 한 후 sum 구하기
