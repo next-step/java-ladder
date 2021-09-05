@@ -22,9 +22,9 @@ public class Line {
                         .collect(Collectors.toList());
     }
 
-    public int checkPoint(int index) {
+    public int changeIndex(int index) {
         Point point = points.get(index);
-        return Cross.move(index, Direction.findDirection(point));
+        return index + Direction.findDirection(point).getMove();
     }
 
     @Override

@@ -58,7 +58,7 @@ public class Ladder {
 
     private int crossLadder(int high, int columnIndex) {
         for (int i = 0; i < high; i++) {
-            columnIndex = lines.get(i).checkPoint(columnIndex);
+            columnIndex = lines.get(i).changeIndex(columnIndex);
         }
 
         return columnIndex;
