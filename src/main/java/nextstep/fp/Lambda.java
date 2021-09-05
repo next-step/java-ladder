@@ -1,6 +1,8 @@
 package nextstep.fp;
 
 import java.util.List;
+import java.util.function.Function;
+import java.util.function.Predicate;
 
 public class Lambda {
     private static final int EVEN_NUMBER = 2;
@@ -37,14 +39,17 @@ public class Lambda {
     }
 
     public static int sumAllEven(List<Integer> numbers) {
-        return numbers.stream()
-                .filter(number -> number % EVEN_NUMBER == EVEN_REMAINDER)
-                .reduce(INIT_TOTAL_VALUE , Integer::sum);
+        return sum(numbers, number -> number % EVEN_NUMBER == EVEN_REMAINDER);
     }
 
     public static int sumAllOverThree(List<Integer> numbers) {
+        return sum(numbers, number -> number > FILTER_NUMBER);
+    }
+
+    private static int sum(List<Integer> numbers, Predicate<Integer> predicate) {
         return numbers.stream()
-                .filter(number -> number > FILTER_NUMBER)
-                .reduce(INIT_TOTAL_VALUE, Integer::sum);
+                .filter(predicate)
+                .mapToInt(i -> i)
+                .sum();
     }
 }
