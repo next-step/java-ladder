@@ -17,7 +17,7 @@
   - [X] 모든 단어는 소문자로 출력한다. 
 
 ### Optional
-- [ ] 실습 1. ageIsInRange2 구현
+- [X] 실습 1. ageIsInRange2 구현
 - [ ] 실습 2. getUser() 구현
 - [ ] 실습 3. Expression의 of 메소드를 구현
  
