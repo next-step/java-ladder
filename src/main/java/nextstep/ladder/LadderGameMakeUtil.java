@@ -33,8 +33,8 @@ public class LadderGameMakeUtil {
 
     private static final Random RANDOM = new Random();
 
-    public static Lines makeLines(int numberOfPeople, int height) {
-        if (numberOfPeople <= 0 || height <= 0) {
+    public static List<Line> makeLines(int numberOfPeople, int height) {
+        if (numberOfPeople <= 0) {
             throw new IllegalArgumentException("참가자가 존재하지 않습니다.");
         }
 
@@ -48,7 +48,7 @@ public class LadderGameMakeUtil {
             makeStairs(lineList, i);
         }
 
-        return new Lines(lineList);
+        return lineList;
     }
 
     private static void makeStairs(List<Line> lines, int height) {

@@ -1,9 +1,6 @@
 package nextstep.ladder;
 
-import nextstep.ladder.model.Lines;
-import nextstep.ladder.model.Person;
-import nextstep.ladder.model.Result;
-import nextstep.ladder.model.Reward;
+import nextstep.ladder.model.*;
 import nextstep.ladder.view.LadderGameDrawer;
 
 import java.util.List;
@@ -21,28 +18,40 @@ public class LadderController {
         List<Reward> rewards = initRewardsPhase(scanner);
         validateRewardsAndPeople(people, rewards);
 
-        Lines lines = initLinesPhase(scanner, people.size());
-        LadderGameDrawer.drawLadderResult(people, lines, rewards);
+        List<Line> lines = initLinesPhase(scanner, people.size());
+        Ladder ladder = new Ladder(lines, rewards);
+        LadderGameDrawer.drawLadderResult(people, ladder);
 
-        while (true) {
+        boolean runnable = true;
+        while (runnable) {
             LadderGameDrawer.drawWantedResultInputText();
             String command = scanner.nextLine().trim();
 
-            LadderGameDrawer.drawResultText();
-            if (LAST_COMMAND.equals(command)) {
-                List<Result> results = doAllResult(people, rewards, lines);
-                LadderGameDrawer.drawResults(results);
-                break;
-            }
+            run(people, ladder, command);
 
-            int startPosition = findPeoplePosition(command, people);
-            LadderGameDrawer.drawResult(new Result(people.get(startPosition), rewards.get(lines.doResult(startPosition))));
+            runnable = isLastOrder(command);
         }
     }
 
-    private static List<Result> doAllResult(List<Person> people, List<Reward> rewards, Lines lines) {
+    private static void run(List<Person> people, Ladder ladder, String command) {
+        LadderGameDrawer.drawResultText();
+        if (LAST_COMMAND.equals(command)) {
+            List<Result> results = doAllResult(people, ladder);
+            LadderGameDrawer.drawResults(results);
+            return;
+        }
+
+        int startPosition = findPeoplePosition(command, people);
+        LadderGameDrawer.drawResult(new Result(people.get(startPosition), ladder.doPlay(startPosition)));
+    }
+
+    private static boolean isLastOrder(String command) {
+        return !LAST_COMMAND.equals(command);
+    }
+
+    private static List<Result> doAllResult(List<Person> people, Ladder ladder) {
         return IntStream.range(0, people.size())
-                .mapToObj((index) -> new Result(people.get(index), rewards.get(lines.doResult(index))))
+                .mapToObj((index) -> new Result(people.get(index), ladder.doPlay(index)))
                 .collect(Collectors.toList());
     }
 
@@ -56,7 +65,7 @@ public class LadderController {
         return LadderGameMakeUtil.makeRewards(scanner.nextLine());
     }
 
-    private static Lines initLinesPhase(Scanner scanner, int width) {
+    private static List<Line> initLinesPhase(Scanner scanner, int width) {
         LadderGameDrawer.drawHeightInputText();
         int height = Integer.valueOf(scanner.nextLine());
 

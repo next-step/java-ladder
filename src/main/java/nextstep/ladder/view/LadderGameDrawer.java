@@ -32,12 +32,12 @@ public class LadderGameDrawer {
         results.forEach((result -> drawResult(result)));
     }
 
-    public static void drawLadderResult(List<Person> people, Lines lines, List<Reward> rewards) {
+    public static void drawLadderResult(List<Person> people, Ladder ladder) {
         System.out.println("사다리 결과\n");
 
         drawPeople(people);
-        drawLadder(lines);
-        drawRewards(rewards);
+        drawLines(ladder.getLines());
+        drawRewards(ladder.getRewards());
     }
 
     private static void drawRewards(List<Reward> rewards) {
@@ -51,13 +51,14 @@ public class LadderGameDrawer {
         System.out.println(result);
     }
 
-    private static void drawLadder(Lines lines) {
-        List<Line> lineList = lines.getLineList();
-        int height = lineList.get(0).getPoints().size();
+    private static void drawLines(List<Line> lines) {
+        int height = lines.get(0)
+                .getPoints()
+                .size();
 
         String ladderString = "";
         for (int index = 0; index < height; index++) {
-            ladderString += makeStairString(index, lineList) + "\n";
+            ladderString += makeStairString(index, lines) + "\n";
         }
 
         System.out.println(ladderString);
