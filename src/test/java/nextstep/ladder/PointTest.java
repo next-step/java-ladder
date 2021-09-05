@@ -1,6 +1,8 @@
 package nextstep.ladder;
 
+import nextstep.ladder.domain.Direction;
 import nextstep.ladder.domain.Point;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
@@ -17,26 +19,32 @@ class PointTest {
     }
 
     @Test
-    void next() {
-        assertThatThrownBy(() -> Point.init(true).next(true));
+    @DisplayName("사다리에 가로 라인이 겹치지는 지 검증 (true, true)시 예외 발생 ")
+    void inValid() {
+        Point initPoint = Point.init(true);
+        assertThatThrownBy(() -> initPoint.next(true));
+    }
+
+
+
+    @Test
+    @DisplayName("사다리가 이동 방향 오른쪽 테스트")
+    void right() {
+        Direction right = Direction.init(true);
+        assertThat(new Point(0, right).move()).isEqualTo(1);//(false, true) ,(true, false)
     }
 
     @Test
-    void next2() {
-        Point point = Point.init(true);
-        assertThat(point.next(false).move()).isEqualTo(0);//(false, true) ,(true, false)
+    @DisplayName("사다리 이동 방향 왼쪽 테스트")
+    void left() {
+        Direction left = Direction.init(true).next(false);
+        assertThat(new Point(2,left).move()).isEqualTo(1);
     }
 
     @Test
-    void next3() {
-        Point point = Point.init(false);
-        assertThat(point.next(false).next(true).move()).isEqualTo(3);
-    }
-
-    @Test
-    void next4() {
-        for (int i = 0; i < 100; i++) {
-            assertThat(Point.init(true).next().isCurrent()).isFalse();
-        }
+    @DisplayName("사다리 가로 라인이 없는 아래쪽 테스트")
+    void pass() {
+        Direction pass = Direction.init(false).next(false);
+        assertThat(new Point(1,pass).move()).isEqualTo(1);
     }
 }
