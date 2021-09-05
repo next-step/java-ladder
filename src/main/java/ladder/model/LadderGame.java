@@ -11,8 +11,6 @@ public class LadderGame {
     private final Ladder ladder;
     private final LadderResults results;
 
-    private PlayerResults playerResults;
-
     public LadderGame(Players players, Ladder ladder, LadderResults results) {
         validateCountMatch(players, ladder, results);
 
@@ -32,17 +30,13 @@ public class LadderGame {
         return playerCountOfPlayers == playerCountOfLadder && playerCountOfPlayers == resultCount;
     }
 
-    public void play() {
-        if (!isPlayerResultsEmpty()) {
-            return;
-        }
-
+    public PlayerResults play() {
         List<PlayerResult> playerResults = players.getPlayers()
                 .stream()
                 .map(player -> new PlayerResult(player, findLadderResult(player)))
                 .collect(toList());
 
-        this.playerResults = new PlayerResults(playerResults);
+        return new PlayerResults(playerResults);
     }
 
     private LadderResult findLadderResult(Player player) {
@@ -69,26 +63,6 @@ public class LadderGame {
 
     public List<String> getLadderResults() {
         return results.getResults();
-    }
-
-    public String findLadderResult(String playerName) {
-        validatePlayIsOver();
-        return playerResults.findLadderResult(playerName);
-    }
-
-    public List<PlayerResult> findAllPlayerResult() {
-        validatePlayIsOver();
-        return playerResults.getPlayerResults();
-    }
-
-    private void validatePlayIsOver() {
-        if (isPlayerResultsEmpty()) {
-            throw new IllegalArgumentException("사다리 게임이 실행되지 않아 결과를 알 수 없습니다. 사다리 게임을 먼저 실행해주세요.");
-        }
-    }
-
-    private boolean isPlayerResultsEmpty() {
-        return playerResults == null || playerResults.isEmpty();
     }
 
     int playerCount() {

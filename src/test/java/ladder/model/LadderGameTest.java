@@ -72,32 +72,11 @@ public class LadderGameTest {
         LadderResults results = new LadderResults(Arrays.asList("1000", "2000", "3000"));
 
         LadderGame ladderGame = new LadderGame(players, ladder, results);
-        ladderGame.play();
+        PlayerResults playerResults = ladderGame.play();
 
         // when, then
-        assertEquals(ladderGame.findLadderResult("aiden"), "3000");
-        assertEquals(ladderGame.findLadderResult("pobi"), "2000");
-        assertEquals(ladderGame.findLadderResult("crong"), "1000");
-    }
-
-    @DisplayName("사다리 게임을 실행하기 전에 사다리 실행 결과를 구하면 예외가 발생한다.")
-    @Test
-    void findResultBeforePlayExceptionTest() {
-        // given
-        Players players = new Players(Arrays.asList("aiden", "pobi", "crong"));
-        Ladder ladder = new Ladder(3, 3);
-        LadderResults results = new LadderResults(Arrays.asList("1000", "2000", "3000"));
-        LadderGame ladderGame = new LadderGame(players, ladder, results);
-
-        // when, then
-        String exceptionMessage = "사다리 게임이 실행되지 않아 결과를 알 수 없습니다. 사다리 게임을 먼저 실행해주세요.";
-
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> ladderGame.findLadderResult("aiden"))
-                .withMessage(exceptionMessage);
-
-        assertThatIllegalArgumentException()
-                .isThrownBy(ladderGame::findAllPlayerResult)
-                .withMessage(exceptionMessage);
+        assertEquals(playerResults.findLadderResult("aiden"), "3000");
+        assertEquals(playerResults.findLadderResult("pobi"), "2000");
+        assertEquals(playerResults.findLadderResult("crong"), "1000");
     }
 }

@@ -9,7 +9,7 @@ public class PlayerResults {
         this.playerResults = playerResults;
     }
 
-    String findLadderResult(String playerName) {
+    public String findLadderResult(String playerName) {
         return playerResults.stream()
                 .filter(playerResult -> playerResult.matchPlayerName(playerName))
                 .findFirst()
@@ -17,11 +17,7 @@ public class PlayerResults {
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 플레이어 이름입니다."));
     }
 
-    List<PlayerResult> getPlayerResults() {
+    public List<PlayerResult> getPlayerResults() {
         return playerResults;
-    }
-
-    boolean isEmpty() {
-        return playerResults.isEmpty();
     }
 }
