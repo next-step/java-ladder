@@ -1,6 +1,8 @@
 package nextstep.laddergame.domain;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Players {
@@ -22,15 +24,10 @@ public class Players {
     }
 
     private void validateNonDuplicatedNames(List<PlayerName> playerNames) {
-        if (playerNames == null || playerNames.size() != countUniqueNames(playerNames)) {
+        Set<PlayerName> distinctPlayerNames = new HashSet<>(playerNames);
+        if (playerNames.size() != distinctPlayerNames.size()) {
             throw new IllegalArgumentException(String.format("중복된 이름이 존재합니다. playerNames: %s", playerNames));
         }
-    }
-
-    private long countUniqueNames(List<PlayerName> playerNames) {
-        return playerNames.stream()
-                .distinct()
-                .count();
     }
 
     public static Players of(List<String> names) {
