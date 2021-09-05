@@ -6,7 +6,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
-import java.util.Map;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -54,30 +53,17 @@ class LadderTest {
         );
     }
 
-    @Test
-    void startGame() {
-        Players players = new Players("cony,pobi,crong,cr7");
-        Result result = new Result("꽝,1등,3등,2등");
-        LadderGame ladderGame = new LadderGame(players, ladder);
-        Result gameResult = ladderGame.start(result);
-        assertAll(
-                () -> assertThat(gameResult.get(0)).isEqualTo("2등"),
-                () -> assertThat(gameResult.get(1)).isEqualTo("1등"),
-                () -> assertThat(gameResult.get(2)).isEqualTo("꽝"),
-                () -> assertThat(gameResult.get(3)).isEqualTo("3등")
-        );
-    }
 
     // 사다리 모양
     // |-----|     |     |
     // |     |-----|     |
     // |-----|     |-----|
     @Test
-    void startGame2() {
+    void startGame() {
         Players players = new Players("cony,pobi,crong,cr7");
         Result result = new Result("꽝,1000,10,0");
         LadderGame ladderGame = new LadderGame(players, ladder);
-        LadderResult ladderResult = ladderGame.start1(result);
+        LadderResult ladderResult = ladderGame.start(result);
         assertAll(
                 () -> assertThat(ladderResult.get("cony")).isEqualTo("0"),
                 () -> assertThat(ladderResult.get("pobi")).isEqualTo("1000"),
@@ -92,7 +78,7 @@ class LadderTest {
         Players players = new Players("cony,pobi,crong,cr7");
         Result result = new Result("꽝,1000,10,0");
         LadderGame ladderGame = new LadderGame(players, ladder);
-        LadderResult ladderResult = ladderGame.start1(result);
+        LadderResult ladderResult = ladderGame.start(result);
         assertAll(
                 () -> assertThat(ladderResult.containPlayer("cony ")).isTrue(),
                 () -> assertThat(ladderResult.containPlayer("pobi")).isTrue(),

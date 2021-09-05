@@ -55,16 +55,12 @@ public class ResultView {
 
     }
 
-    public static void printLadderGameResult(LadderResult gameResult) {
+    public static void printLadderGameResult(LadderResult ladderResult) {
         String findPlayerResult = "";
         while (!"all".equals(findPlayerResult)) {
             findPlayerResult = InputView.inputGameResultSearch();
             System.out.println(RESULT_MESSAGE);
-            if (!gameResult.containPlayer(findPlayerResult)) {
-                System.out.println("참여자들 중 해당 이름이 없습니다. 다시 입력하세요");
-            }
-
-
+            printLadderGameAllOrNot(findPlayerResult, ladderResult);
         }
     }
 
@@ -76,39 +72,19 @@ public class ResultView {
                     .forEach(player ->
                             sb.append(player).append(COLON)
                                     .append(ladderResult.get(player)).append("\n")
-
                     );
             System.out.println(sb);
-
             return;
         }
+        printContainPlayer(findPlayerResult, ladderResult);
 
     }
 
-    public static void printLadderGameResult(Players players, Result result) {
-        int index = 0;
-        while (index != INPUT_ALL) {
-            String findPlayerResult = InputView.inputGameResultSearch();
-            System.out.println(RESULT_MESSAGE);
-            index = isContainPlayer(findPlayerResult, players);
-            printLadderGameAllOrNot(index, players, result);
-        }
-    }
-
-    public static void printLadderGameAllOrNot(int index, Players players, Result result) {
-        if (index == INPUT_ALL) {
-            printLadderGameAll(players, result);
+    private static void printContainPlayer(String findPlayerResult, LadderResult ladderResult) {
+        if (ladderResult.containPlayer(findPlayerResult)) {
+            System.out.println(ladderResult.get(findPlayerResult));
             return;
         }
-        System.out.println(result.get(index));
-    }
-
-    private static void printLadderGameAll(Players players, Result result) {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < players.size(); i++) {
-            sb.append(players.name(i)).append(" : ");
-            sb.append(result.get(i)).append("\n");
-        }
-        System.out.println(sb);
+        System.out.println("참여자들 중 해당 이름이 없습니다. 다시 입력하세요");
     }
 }

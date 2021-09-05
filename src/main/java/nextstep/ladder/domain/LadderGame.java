@@ -14,7 +14,7 @@ public class LadderGame {
         this.ladder = ladder;
     }
 
-   public LadderResult start1(Result result) {
+   public LadderResult start(Result result) {
        Map<String, String> gameResult = new HashMap<>();
        for (int i = 0; i < players.size(); i++) {
            int index = ladder.move(i);
@@ -23,13 +23,4 @@ public class LadderGame {
        }
        return new LadderResult(gameResult);
    }
-
-    public Result start(Result result) {
-        List<String> gameResult = new ArrayList<>();
-        for (int i = 0; i < players.size(); i++) {
-            int index = ladder.move(i);
-            gameResult.add(result.get(index));
-        }
-        return new Result(gameResult);
-    }
 }

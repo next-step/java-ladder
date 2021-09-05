@@ -17,7 +17,7 @@ public class LadderApplication {
         ResultView.printLadderGame(players, ladder);
         ResultView.printResultGroup(result);
         LadderGame ladderGame = new LadderGame(players, ladder);
-        Result gameResult = ladderGame.start(result);
-        ResultView.printLadderGameResult(players, gameResult);
+        LadderResult ladderResult = ladderGame.start(result);
+        ResultView.printLadderGameResult(ladderResult);
     }
 }
