@@ -20,7 +20,7 @@ public class LadderController {
 
         List<Line> lines = initLinesPhase(scanner, people.size());
         Ladder ladder = new Ladder(lines, rewards);
-        LadderGameDrawer.drawLadderResult(people, ladder);
+        LadderGameDrawer.drawLadderResult(people, ladder, rewards);
 
         boolean runnable = true;
         while (runnable) {

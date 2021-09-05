@@ -32,12 +32,12 @@ public class LadderGameDrawer {
         results.forEach((result -> drawResult(result)));
     }
 
-    public static void drawLadderResult(List<Person> people, Ladder ladder) {
+    public static void drawLadderResult(List<Person> people, Ladder ladder, List<Reward> rewards) {
         System.out.println("사다리 결과\n");
 
         drawPeople(people);
         drawLines(ladder.getLines());
-        drawRewards(ladder.getRewards());
+        drawRewards(rewards);
     }
 
     private static void drawRewards(List<Reward> rewards) {

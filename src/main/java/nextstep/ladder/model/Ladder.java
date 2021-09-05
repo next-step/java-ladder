@@ -21,9 +21,8 @@ public class Ladder {
 
         while (y < height) {
             Line line = lines.get(x);
-            Point point = line.getPoints().get(y);
+            x = line.moveHorizontal(x, y);
 
-            x = point.moveHorizontal(x);
             y++;
         }
 
@@ -32,9 +31,5 @@ public class Ladder {
 
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
-    }
-
-    public List<Reward> getRewards() {
-        return Collections.unmodifiableList(rewards);
     }
 }

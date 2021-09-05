@@ -12,8 +12,18 @@ public class Line {
             points.add(new Point());
         }
     }
-    
+
     public List<Point> getPoints() {
         return Collections.unmodifiableList(points);
+    }
+
+    public int moveHorizontal(int x, int y) {
+        Point point = points.get(y);
+
+        if (point.isUsed()) {
+            return point.getGoal();
+        }
+
+        return x;
     }
 }
