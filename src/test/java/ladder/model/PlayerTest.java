@@ -6,19 +6,19 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@DisplayName("게임 참가자 이름 테스트")
-public class PlayerNameTest {
+@DisplayName("게임 참가자 테스트")
+public class PlayerTest {
 
     @DisplayName("참가자 이름이 비어있으면 예외가 발생한다.")
     @Test
     void emptyNameExceptionTest() {
         // given, when, then
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new PlayerName(null))
+                .isThrownBy(() -> new Player(null))
                 .withMessage("참가자 이름이 비어있습니다.");
 
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new PlayerName(""))
+                .isThrownBy(() -> new Player(""))
                 .withMessage("참가자 이름이 비어있습니다.");
     }
 
@@ -27,7 +27,7 @@ public class PlayerNameTest {
     void exceedMaxNameLengthExceptionTest() {
         // given, when, then
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new PlayerName("abcdef"))
+                .isThrownBy(() -> new Player("abcdef"))
                 .withMessage("참가자 이름은 5자를 넘을 수 없습니다.");
     }
 
@@ -35,9 +35,9 @@ public class PlayerNameTest {
     @Test
     void createPlayerNameTest() {
         // given, when
-        PlayerName playerName = new PlayerName("aiden");
+        Player player = new Player("aiden");
 
         // then
-        assertEquals(playerName.getName(), "aiden");
+        assertEquals(player.getName(), "aiden");
     }
 }

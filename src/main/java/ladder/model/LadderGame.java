@@ -33,7 +33,7 @@ public class LadderGame {
     }
 
     public String findResult(String name) {
-        PlayerName player = new PlayerName(name);
+        Player player = new Player(name);
 
         int playerIndex = players.findIndex(player);
         validateExistingPlayer(playerIndex);

@@ -5,12 +5,12 @@ import java.util.List;
 import static java.util.stream.Collectors.toList;
 
 public class Players {
-    private final List<PlayerName> names;
+    private final List<Player> players;
 
     public Players(List<String> names) {
         validateNotEmpty(names);
-        this.names = names.stream()
-                .map(PlayerName::new)
+        this.players = names.stream()
+                .map(Player::new)
                 .collect(toList());
     }
 
@@ -21,16 +21,16 @@ public class Players {
     }
 
     public int count() {
-        return names.size();
+        return players.size();
     }
 
     public List<String> getNames() {
-        return names.stream()
-                .map(PlayerName::getName)
+        return players.stream()
+                .map(Player::getName)
                 .collect(toList());
     }
 
-    int findIndex(PlayerName name) {
-        return names.indexOf(name);
+    int findIndex(Player name) {
+        return players.indexOf(name);
     }
 }

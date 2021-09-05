@@ -2,12 +2,12 @@ package ladder.model;
 
 import java.util.Objects;
 
-public class PlayerName {
+public class Player {
     private static final int MAX_NAME_LENGTH = 5;
 
     private final String name;
 
-    PlayerName(String name) {
+    Player(String name) {
         validate(name);
         this.name = name;
     }
@@ -34,7 +34,7 @@ public class PlayerName {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        PlayerName that = (PlayerName) o;
+        Player that = (Player) o;
         return Objects.equals(name, that.name);
     }
 
