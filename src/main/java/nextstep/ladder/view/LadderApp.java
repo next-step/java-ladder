@@ -2,7 +2,7 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.Ladder;
 import nextstep.ladder.LadderInput;
-import nextstep.ladder.Participants;
+import nextstep.ladder.participant.Participants;
 import nextstep.ladder.RandomLadderPoint;
 
 import java.util.Scanner;

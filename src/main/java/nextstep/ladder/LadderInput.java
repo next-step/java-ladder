@@ -1,5 +1,7 @@
 package nextstep.ladder;
 
+import nextstep.ladder.participant.Participants;
+
 public class LadderInput {
     private Participants participants;
     private RandomPoint randomPoint;

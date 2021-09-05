@@ -1,5 +1,7 @@
 package nextstep.ladder;
 
+import nextstep.ladder.participant.Participants;
+
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,8 +1,11 @@
-package nextstep.ladder;
+package nextstep.ladder.participant;
+
+import nextstep.ladder.Position;
 
 public class Participant {
     private static final int NAME_MAX_LENGTH = 5;
     private String name;
+    private Position position;
 
     public Participant(String name) {
         if (!validation(name)) {
@@ -20,5 +23,17 @@ public class Participant {
             return false; //Error
         }
         return true;
+    }
+
+    public void setStartPosition(int position, int MAX_POSITION) {
+        this.position = new Position(position, MAX_POSITION);
+    }
+
+    public String position() {
+        return this.position.toString();
+    }
+
+    public void movePosition(int nextPosition) {
+        this.position.move(nextPosition);
     }
 }

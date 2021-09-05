@@ -1,18 +1,22 @@
-package nextstep.ladder;
+package nextstep.ladder.participant;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 public class Participants {
     private List<Participant> participants;
     private static final String DELIMITER = ",";
+
     private Participants(String... names) {
         validation(names);
+        AtomicInteger initPosition = new AtomicInteger();
         this.participants = Arrays.stream(names)
                 .map(Participant::new)
                 .collect(Collectors.toList());
+        participants.stream()
+                .forEach(vo -> vo.setStartPosition(initPosition.getAndIncrement(), participants.size()));
     }
 
     public static Participants of(String... names) {
