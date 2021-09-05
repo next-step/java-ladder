@@ -77,12 +77,27 @@ class LadderTest {
         Players players = new Players("cony,pobi,crong,cr7");
         Result result = new Result("꽝,1000,10,0");
         LadderGame ladderGame = new LadderGame(players, ladder);
-        Map<String, String> map = ladderGame.start1(result);
+        LadderResult ladderResult = ladderGame.start1(result);
         assertAll(
-                () -> assertThat(map.get("cony")).isEqualTo("0"),
-                () -> assertThat(map.get("pobi")).isEqualTo("1000"),
-                () -> assertThat(map.get("crong")).isEqualTo("꽝"),
-                () -> assertThat(map.get("cr7")).isEqualTo("10")
+                () -> assertThat(ladderResult.get("cony")).isEqualTo("0"),
+                () -> assertThat(ladderResult.get("pobi")).isEqualTo("1000"),
+                () -> assertThat(ladderResult.get("crong")).isEqualTo("꽝"),
+                () -> assertThat(ladderResult.get("cr7")).isEqualTo("10")
         );
+    }
+
+    @Test
+    @DisplayName("사다리 게임 결과에 해당 플레이어가 있는지 검증")
+    void containPlayer() {
+        Players players = new Players("cony,pobi,crong,cr7");
+        Result result = new Result("꽝,1000,10,0");
+        LadderGame ladderGame = new LadderGame(players, ladder);
+        LadderResult ladderResult = ladderGame.start1(result);
+        assertAll(
+                () -> assertThat(ladderResult.containPlayer("cony ")).isTrue(),
+                () -> assertThat(ladderResult.containPlayer("pobi")).isTrue(),
+                () -> assertThat(ladderResult.containPlayer("pob")).isFalse()
+        );
+
     }
 }

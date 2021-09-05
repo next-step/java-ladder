@@ -14,14 +14,14 @@ public class LadderGame {
         this.ladder = ladder;
     }
 
-   public Map<String ,String > start1(Result result) {
+   public LadderResult start1(Result result) {
        Map<String, String> gameResult = new HashMap<>();
        for (int i = 0; i < players.size(); i++) {
            int index = ladder.move(i);
            String ladderResult = result.get(index);
            gameResult.put(players.name(i), ladderResult);
        }
-       return gameResult;
+       return new LadderResult(gameResult);
    }
 
     public Result start(Result result) {
