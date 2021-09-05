@@ -2,12 +2,15 @@ package ladder.model;
 
 import java.util.List;
 
+import static java.util.stream.Collectors.toList;
+
 public class LadderGame {
     private static final int FIRST_INDEX = 0;
 
     private final Players players;
     private final Ladder ladder;
     private final LadderResults results;
+    private final PlayerResults playerResults;
 
     public LadderGame(Players players, Ladder ladder, LadderResults results) {
         validateCountMatch(players, ladder, results);
@@ -15,6 +18,7 @@ public class LadderGame {
         this.players = players;
         this.ladder = ladder;
         this.results = results;
+        this.playerResults = generatePlayerResults();
     }
 
     private void validateCountMatch(Players players, Ladder ladder, LadderResults results) {
@@ -28,13 +32,16 @@ public class LadderGame {
         return playerCountOfPlayers == playerCountOfLadder && playerCountOfPlayers == resultCount;
     }
 
-    int playerCount() {
-        return players.count();
+    private PlayerResults generatePlayerResults() {
+        List<PlayerResult> playerResults = players.getPlayers()
+                .stream()
+                .map(player -> new PlayerResult(player, findLadderResult(player)))
+                .collect(toList());
+
+        return new PlayerResults(playerResults);
     }
 
-    public String findResult(String name) {
-        Player player = new Player(name);
-
+    private LadderResult findLadderResult(Player player) {
         int playerIndex = players.findIndex(player);
         validateExistingPlayer(playerIndex);
 
@@ -58,5 +65,17 @@ public class LadderGame {
 
     public List<String> getLadderResults() {
         return results.getResults();
+    }
+
+    public String findLadderResult(String playerName) {
+        return playerResults.findLadderResult(playerName);
+    }
+
+    public List<PlayerResult> findAllPlayerResult() {
+        return playerResults.getPlayerResults();
+    }
+
+    int playerCount() {
+        return players.count();
     }
 }

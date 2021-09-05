@@ -74,8 +74,8 @@ public class LadderGameTest {
         LadderGame ladderGame = new LadderGame(players, ladder, results);
 
         // when, then
-        assertEquals(ladderGame.findResult("aiden"), "3000");
-        assertEquals(ladderGame.findResult("pobi"), "2000");
-        assertEquals(ladderGame.findResult("crong"), "1000");
+        assertEquals(ladderGame.findLadderResult("aiden"), "3000");
+        assertEquals(ladderGame.findLadderResult("pobi"), "2000");
+        assertEquals(ladderGame.findLadderResult("crong"), "1000");
     }
 }

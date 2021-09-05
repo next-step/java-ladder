@@ -30,8 +30,7 @@ public class LadderResults {
         return results.size();
     }
 
-    String get(int resultIndex) {
-        LadderResult result = results.get(resultIndex);
-        return result.getResult();
+    LadderResult get(int index) {
+        return results.get(index);
     }
 }

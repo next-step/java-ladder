@@ -1,12 +1,9 @@
 package ladder.view;
 
-import ladder.model.LadderGame;
-import ladder.model.LadderLine;
-import ladder.model.LadderPoint;
+import ladder.model.*;
 
 import java.io.PrintStream;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.joining;
@@ -95,18 +92,18 @@ public class ResultView {
         PRINT_STREAM.println(stringBuilder);
     }
 
-    public static void printAllLadderResult(Map<String, String> playerLadderResults) {
+    public static void printAllLadderResult(List<PlayerResult> playerResults) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(NEW_LINE);
         stringBuilder.append(EXECUTION_RESULT_MESSAGE);
         stringBuilder.append(NEW_LINE);
 
-        for (String playerName : playerLadderResults.keySet()) {
-            stringBuilder.append(playerName);
+        for (PlayerResult playerResult : playerResults) {
+            stringBuilder.append(playerResult.getPlayerName());
             stringBuilder.append(ONE_BLANK_SPACE);
             stringBuilder.append(COLON);
             stringBuilder.append(ONE_BLANK_SPACE);
-            stringBuilder.append(playerLadderResults.get(playerName));
+            stringBuilder.append(playerResult.getResult());
             stringBuilder.append(NEW_LINE);
         }
         PRINT_STREAM.println(stringBuilder);

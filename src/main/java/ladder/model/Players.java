@@ -33,4 +33,8 @@ public class Players {
     int findIndex(Player name) {
         return players.indexOf(name);
     }
+
+    List<Player> getPlayers() {
+        return players;
+    }
 }
