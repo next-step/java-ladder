@@ -1,47 +1,57 @@
 package ladder.domain;
 
-import ladder.exception.LadderException;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.List;
 import java.util.stream.Stream;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 class LadderTest {
 
-    @ParameterizedTest
-    @DisplayName("입력받는 사다리 높이가 0 이하일 경우 사다리 생성 예외생 발생")
-    @MethodSource("ladderProviders")
-    void createLadderException(int height, int countOfPerson) {
-        assertThatThrownBy(() -> new Ladder(height, countOfPerson))
-                .isInstanceOf(LadderException.class);
+
+    @Test
+    @DisplayName("Ladder 생성 테스트")
+    void createLadder() {
+        Ladder ladder = new Ladder(new LadderHeight(3), 3);
+        assertThat(ladder.getLines().size()).isEqualTo(3);
     }
 
-    static Stream<Arguments> ladderProviders() {
-        return Stream.of(
-                Arguments.of(0, 1),
-                Arguments.of(-1, 1)
+    @Test
+    @DisplayName("count 예외 테스트")
+    void countException() {
+        assertThatThrownBy(() -> new Ladder(new LadderHeight(3), 0))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @DisplayName("result() 테스트")
+    @MethodSource("resultSource")
+    void resultTest(Users users, WinningItems items) {
+        Ladder ladder = new Ladder(new LadderHeight(3), 3 );
+        List<Result> results = ladder.results(users, items);
+        assertAll(
+                () -> results.get(0).getUser().equals(new User("a")),
+                () -> results.get(1).getUser().equals(new User("b")),
+                () -> results.get(2).getUser().equals(new User("c")),
+
+                () -> results.get(0).getWinningItem().equals(new WinningItem("1")),
+                () -> results.get(1).getWinningItem().equals(new WinningItem("2")),
+                () -> results.get(2).getWinningItem().equals(new WinningItem("3"))
         );
     }
 
-
-    @ParameterizedTest
-    @DisplayName("사다리 생성 테스트")
-    @MethodSource("createLadderProviders")
-    void createLadderTest(int height, int countOfPerson, int expected) {
-        Ladder ladder = new Ladder(height, countOfPerson);
-        int actual = ladder.getLines().size();
-        assertThat(actual).isEqualTo(expected);
-    }
-
-    static Stream<Arguments> createLadderProviders() {
+    static Stream<Arguments> resultSource() {
         return Stream.of(
-                Arguments.of(3, 3, 3),
-                Arguments.of(5, 5, 5)
-            );
+                Arguments.of(
+                new Users(new String[] {"a", "b", "c"}),
+                new WinningItems(new String[] {"1", "2", "3"})
+        ));
     }
 }
