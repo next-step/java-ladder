@@ -23,20 +23,19 @@ public final class LadderGameController {
     }
 
     private static void playGame(final Players players, final Awards awards, final Ladder ladder) {
-        boolean play = true;
+        String play;
         do {
             play = checkAward(players, awards, ladder);
-        } while (play);
+        } while (!play.equals("all"));
     }
 
-    private static boolean checkAward(final Players players, final Awards awards, final Ladder ladder) {
+    private static String checkAward(final Players players, final Awards awards, final Ladder ladder) {
         String player = InputView.inputPlayer();
         if ("all".equals(player)) {
             ResultView.printWinningAwardAll(players, awards, ladder);
-            return false;
         }
         ResultView.printWinningAward(ladder.move(players.findIndex(player)), awards);
-        return true;
+        return player;
     }
 
 }

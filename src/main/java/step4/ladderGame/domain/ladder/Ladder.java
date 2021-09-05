@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public final class Ladder {
 
@@ -20,7 +21,7 @@ public final class Ladder {
     public Ladder(final int playerCount, final int height, final GenerateDirectionStrategy generateDirectionStrategy) {
         validate(playerCount, height);
 
-        this.height = Height.of(height);
+        this.height = Height.valueOf(height);
         ladderLines = IntStream.range(0, height)
                 .mapToObj(index -> LadderLine.init(playerCount, generateDirectionStrategy))
                 .collect(Collectors.toList());
@@ -50,6 +51,10 @@ public final class Ladder {
 
     public List<LadderLine> getLadderLines() {
         return Collections.unmodifiableList(ladderLines);
+    }
+
+    public Stream<LadderLine> stream() {
+        return ladderLines.stream();
     }
 
 }

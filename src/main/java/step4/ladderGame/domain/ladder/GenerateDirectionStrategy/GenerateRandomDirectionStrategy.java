@@ -13,8 +13,4 @@ public class GenerateRandomDirectionStrategy implements GenerateDirectionStrateg
         return random.nextBoolean();
     }
 
-    public boolean generateDirection() {
-        return random.nextBoolean();
-    }
-
 }

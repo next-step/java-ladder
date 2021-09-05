@@ -5,6 +5,7 @@ import step4.ladderGame.domain.ladder.GenerateDirectionStrategy.GenerateDirectio
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Stream;
 
 public final class LadderLine {
 
@@ -48,6 +49,10 @@ public final class LadderLine {
 
     public List<Point> getPoints() {
         return Collections.unmodifiableList(points);
+    }
+
+    public Stream<Point> stream() {
+        return points.stream();
     }
 
 }

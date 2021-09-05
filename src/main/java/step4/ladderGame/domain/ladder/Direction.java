@@ -45,7 +45,7 @@ public final class Direction {
     }
 
     public static Direction first(final GenerateDirectionStrategy generateDirectionStrategy) {
-        return of(FALSE, generateDirectionStrategy.generateDirection());
+        return of(FALSE, generateDirectionStrategy.generateDirection(false));
     }
 
     public Direction last() {

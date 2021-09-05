@@ -43,4 +43,8 @@ public final class Point {
         return direction.isLeft();
     }
 
+    public Direction getDirection() {
+        return direction;
+    }
+
 }

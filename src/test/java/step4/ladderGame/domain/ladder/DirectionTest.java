@@ -28,11 +28,7 @@ class DirectionTest {
     @DisplayName("현재 방향이 FALSE/TRUE 이면 다음 오른쪽 방향을 랜덤생성해도 결과는 FALSE 다.")
     @Test
     public void next_random_true() {
-        Direction next = Direction.first(new GenerateRandomDirectionStrategy() {
-            public boolean generateDirection() {
-                return true;
-            }
-        }).next(new GenerateRandomDirectionStrategy());
+        Direction next = Direction.first(right -> true).next(new GenerateRandomDirectionStrategy());
         assertThat(next).isEqualTo(Direction.of(TRUE, FALSE));
     }
 
@@ -53,22 +49,14 @@ class DirectionTest {
     @DisplayName("첫번째 방향은 왼쪽길이 없는 FALSE/TRUE 이다.")
     @Test
     public void first() {
-        Direction first = Direction.first(new GenerateRandomDirectionStrategy() {
-            public boolean generateDirection() {
-                return true;
-            }
-        });
+        Direction first = Direction.first(right -> true);
         assertThat(first.isLeft()).isFalse();
     }
 
     @DisplayName("마지막 방향은 왼쪽길이 없는 FALSE/TRUE 이다.")
     @Test
     public void last() {
-        Direction last = Direction.first(new GenerateRandomDirectionStrategy() {
-            public boolean generateDirection() {
-                return true;
-            }
-        }).last();
+        Direction last = Direction.first(right -> true).last();
         assertThat(last).isEqualTo(Direction.of(TRUE, FALSE));
     }
 

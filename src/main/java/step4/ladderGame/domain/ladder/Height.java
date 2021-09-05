@@ -14,7 +14,7 @@ public final class Height {
         this.height = height;
     }
 
-    public static Height of(final int height) {
+    public static Height valueOf(final int height) {
         validate(height);
         return new Height(height);
     }
