@@ -21,10 +21,6 @@ public enum Direction {
         this.move = move;
     }
 
-    public boolean getLeft() {
-        return left;
-    }
-
     public boolean getCurrent() {
         return current;
     }

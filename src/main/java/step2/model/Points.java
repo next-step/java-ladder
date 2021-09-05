@@ -31,30 +31,17 @@ public class Points {
     }
 
     public static Point first(ValueStrategy valueStrategy) {
-        return new Point(false, valueStrategy.generateValue());
+        return Point.first(valueStrategy);
     }
 
     public static void middle(List<Point> pointList, int numberOfPoint, ValueStrategy valueStrategy) {
         for (int i = 1; i < numberOfPoint - 1; i++) {
-            boolean left = pointList.get(i-1).getCurrent();
-            boolean current = generateCurrentValue(valueStrategy, left);
-            pointList.add(new Point(left, current));
+            pointList.add(getLastPoint(pointList).next(valueStrategy));
         }
-    }
-
-    private static boolean generateCurrentValue(ValueStrategy valueStrategy, boolean left) {
-        boolean current = valueStrategy.generateValue();
-
-        if (left) {
-            current = false;
-        }
-
-        return current;
     }
 
     public static Point last(List<Point> pointList) {
-        boolean left = pointList.get(pointList.size() - 1).getCurrent();
-        return new Point(left, false);
+        return getLastPoint(pointList).last();
     }
 
     public List<Boolean> getPoints() {
@@ -65,6 +52,10 @@ public class Points {
 
     public int changeIndex(int index) {
         return getPoint(index).changeIndex(index);
+    }
+
+    private static Point getLastPoint(List<Point> pointList) {
+        return pointList.get(pointList.size() - 1);
     }
 
     @Override
