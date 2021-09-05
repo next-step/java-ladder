@@ -9,7 +9,7 @@
     - [X] Optional 인터페이스 구현
 
 ### stream
-- [ ] 실습 1. 3보다 큰 수를 2배 한 후 sum 구하기
+- [X] 실습 1. 리스트 내 숫자중 3보다 큰 수를 뽑고, 이를 2배 한 후 sum 구하기
 - [ ] 실습 2. pringLongestWordTop100 구현
 
 ### Optional
