@@ -18,33 +18,33 @@ public class Point {
     }
 
     public static List<Point> toList(final DirectionGenerator directionGenerator, final int numberOfPeople) {
-        // TODO 사람 못찾을 때
         if (numberOfPeople == 1) {
             return Collections.singletonList(Point.first(directionGenerator.generate()));
         }
         List<Point> points = new ArrayList<>();
-        Point point = initFirst(directionGenerator, points);
-        point = initMiddle(directionGenerator, numberOfPeople, points, point);
-        initLast(points, point);
+        points.addAll(initFirst(directionGenerator));
+        points.addAll(initMiddle(directionGenerator, numberOfPeople, points.get(points.size() - 1)));
+        points.addAll(initLast(points.get(points.size() - 1)));
         return points;
     }
 
-    private static void initLast(List<Point> points, Point point) {
-        points.add(point.last());
+    private static List<Point> initLast(final Point point) {
+        return Collections.singletonList(point.last());
     }
 
-    private static Point initMiddle(DirectionGenerator directionGenerator, int numberOfPeople, List<Point> points, Point point) {
+    private static List<Point> initMiddle(final DirectionGenerator directionGenerator, final int numberOfPeople, final Point point) {
+        Point next = new Point(point.index, point.direction);
+        List<Point> points = new ArrayList<>();
+
         for (int i = 1; i < numberOfPeople - 1; i++) {
-            point = point.next(directionGenerator.generate());
-            points.add(point);
+            next = next.next(directionGenerator.generate());
+            points.add(next);
         }
-        return point;
+        return points;
     }
 
-    private static Point initFirst(DirectionGenerator directionGenerator, List<Point> points) {
-        Point point = Point.first(directionGenerator.generate());
-        points.add(point);
-        return point;
+    private static List<Point> initFirst(final DirectionGenerator directionGenerator) {
+        return Collections.singletonList(Point.first(directionGenerator.generate()));
     }
 
     private static Point first(final Boolean right) {

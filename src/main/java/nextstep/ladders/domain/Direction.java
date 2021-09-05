@@ -8,11 +8,15 @@ public class Direction {
     private final boolean right;
 
     private Direction(final boolean left, final boolean right) {
+        checkValidDirection(left, right);
+        this.left = left;
+        this.right = right;
+    }
+
+    private void checkValidDirection(boolean left, boolean right) {
         if (left && right) {
             throw new IllegalArgumentException();
         }
-        this.left = left;
-        this.right = right;
     }
 
     public static Direction first(final boolean next) {
