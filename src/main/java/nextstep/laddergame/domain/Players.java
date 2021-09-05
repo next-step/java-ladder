@@ -1,5 +1,6 @@
 package nextstep.laddergame.domain;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -14,7 +15,7 @@ public class Players {
     private Players(List<PlayerName> playerNames) {
         validateMinimumPlayerCount(playerNames);
         validateNonDuplicatedNames(playerNames);
-        this.playerNames = playerNames;
+        this.playerNames = Collections.unmodifiableList(playerNames);
     }
 
     private void validateMinimumPlayerCount(List<PlayerName> playerNames) {
