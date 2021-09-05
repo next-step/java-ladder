@@ -1,7 +1,5 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.util.Validation;
-
 import java.util.Objects;
 
 public class Name {
@@ -10,20 +8,25 @@ public class Name {
     private final String name;
 
     public Name(String name) {
+        Objects.requireNonNull(name);
+        String trimmedName = name.trim();
+        isValidName(trimmedName);
         this.name = name.trim();
-        Validation.isEmptyAndNull(this.name);
-        if (UNUSABLE_NAME.equals(this.name)) {
-            throw new IllegalArgumentException("all은 사용 할 수 없는 이름입니다.");
-        }
-
-        if (this.name.length() > NAME_MAX_LENGTH) {
-            throw new IllegalArgumentException("이름은 최대 5글자만 허용 합니다.");
-        }
-
     }
 
     public String name() {
         return name;
+    }
+
+    public void isValidName(String name) {
+        if (UNUSABLE_NAME.equals(name)) {
+            throw new IllegalArgumentException("all은 사용 할 수 없는 이름입니다.");
+        }
+
+        if (name.length() > NAME_MAX_LENGTH) {
+            throw new IllegalArgumentException("이름은 최대 5글자만 허용 합니다.");
+        }
+
     }
 
     @Override

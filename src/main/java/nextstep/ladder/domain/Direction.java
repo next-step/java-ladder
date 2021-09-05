@@ -5,8 +5,8 @@ import nextstep.ladder.util.RandomUtil;
 import java.util.Objects;
 
 public class Direction {
-    private boolean current;
-    private boolean next;
+    private final boolean current;
+    private final boolean next;
 
     private Direction(boolean current, boolean next) {
         if (current && next) {
