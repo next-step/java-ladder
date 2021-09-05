@@ -1,15 +1,8 @@
 package nextstep.ladder.util;
 
 import nextstep.ladder.domain.Players;
-import nextstep.ladder.domain.Point;
 import nextstep.ladder.domain.Result;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
-import static nextstep.ladder.domain.Players.*;
 
 public class Validation {
     public static final int INPUT_ALL = -1;
@@ -19,16 +12,6 @@ public class Validation {
             throw new IllegalArgumentException("빈 값은 올 수 없습니다. 값을 입력 하세요");
         }
         return input;
-    }
-
-    public static void isValidPlayers(String players) {
-        String[] split = players.split(DELIMITER);
-        Set<String> playerCollect = Arrays.stream(players.split(DELIMITER))
-                .map(String::trim)
-                .collect(Collectors.toSet());
-        if (split.length != playerCollect.size()) {
-            throw new IllegalArgumentException("참여자 이름이 중복 되었습니다.");
-        }
     }
 
     public static void isValidResult(Players players, Result result) {
@@ -47,12 +30,5 @@ public class Validation {
         }
         throw new IllegalArgumentException("참여자들 중 해당 이름이 없습니다.");
 
-    }
-
-    public static void isValidLadderLine(List<Point> points) {
-        int lastIndex = points.size() - 1;
-        if (points.get(lastIndex).isNext()) {
-            throw new IllegalArgumentException("마지막 라인의 오른쪽에는 가로 선이 올 수 없습니다.");
-        }
     }
 }

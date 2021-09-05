@@ -19,7 +19,7 @@ class LadderLineTest {
 
     @Test
     @DisplayName("사다리 마지막 라인의 오른쪽에는 가로 선이 올 수 없습니다.")
-    void isValidLadderLine() {
+    void validLadderLine() {
         Point init = Point.init(true); //( false ,true)
         Point point = init.next();// ( true , 랜덤);
         Point point1 = point.next(true); //(이전 인덱스 다음 값  , true)

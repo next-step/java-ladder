@@ -10,7 +10,7 @@ public class Name {
     public Name(String name) {
         Objects.requireNonNull(name);
         String trimmedName = name.trim();
-        isValidName(trimmedName);
+        validName(trimmedName);
         this.name = name.trim();
     }
 
@@ -18,7 +18,7 @@ public class Name {
         return name;
     }
 
-    public void isValidName(String name) {
+    public void validName(String name) {
         if (UNUSABLE_NAME.equals(name)) {
             throw new IllegalArgumentException("all은 사용 할 수 없는 이름입니다.");
         }

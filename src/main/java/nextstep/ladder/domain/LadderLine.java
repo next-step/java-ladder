@@ -1,7 +1,6 @@
 package nextstep.ladder.domain;
 
 import nextstep.ladder.util.RandomUtil;
-import nextstep.ladder.util.Validation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +11,7 @@ public class LadderLine {
     private List<Point> points;
 
     public LadderLine(List<Point> points) {
-        Validation.isValidLadderLine(points);
+        validLadderLine(points);
         this.points = points;
     }
 
@@ -42,6 +41,15 @@ public class LadderLine {
         point = point.last();
         points.add(point);
     }
+
+    private void validLadderLine(List<Point> points) {
+        int lastIndex = points.size() - 1;
+        if (points.get(lastIndex).isNext()) {
+            throw new IllegalArgumentException("마지막 라인의 오른쪽에는 가로 선이 올 수 없습니다.");
+        }
+    }
+
+
 
     public int move(int index) {
         return points.get(index).move();

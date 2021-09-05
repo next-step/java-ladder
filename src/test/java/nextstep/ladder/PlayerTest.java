@@ -54,4 +54,10 @@ class PlayerTest {
                 () -> assertThat(new Players("pobi , cony  ,jk ,cr7, honux").contains("cr")).isFalse()
         );
     }
+
+    @Test
+    @DisplayName("참여자 이름이 중복 되었는지 검증")
+    void duplicatedPlayersName() {
+        assertThatThrownBy(() -> new Players("pobi,cony,cony , cr7")).isInstanceOf(IllegalArgumentException.class);
+    }
 }
