@@ -8,18 +8,23 @@ import java.util.stream.Stream;
 
 public class RandomLineConnectStrategy implements LineConnectStrategy {
 
+    private static final int MINIMUM_COUNT_OF_POINT = 1;
     private static final int COUNT_GAP_BETWEEN_POINTS_AND_PLAYERS = 1;
 
     private final Random random;
     private final int countOfPoint;
 
-    private RandomLineConnectStrategy(Random random, PlayerCount playerCount) {
+    public RandomLineConnectStrategy(Random random, int countOfPlayer) {
+        int countOfPoint = countOfPlayer - COUNT_GAP_BETWEEN_POINTS_AND_PLAYERS;
+        validateMinimumPointCount(countOfPoint);
         this.random = Objects.requireNonNull(random);
-        this.countOfPoint = playerCount.getCount() - COUNT_GAP_BETWEEN_POINTS_AND_PLAYERS;
+        this.countOfPoint = countOfPoint;
     }
 
-    public static LineConnectStrategy of(Random random, PlayerCount playerCount) {
-        return new RandomLineConnectStrategy(random, playerCount);
+    private void validateMinimumPointCount(int countOfPoint) {
+        if (countOfPoint < MINIMUM_COUNT_OF_POINT) {
+            throw new IllegalArgumentException(String.format("사다리 라인의 포인트 수가 유효하지 않습니다. countOfPoint: %s", countOfPoint));
+        }
     }
 
     @Override

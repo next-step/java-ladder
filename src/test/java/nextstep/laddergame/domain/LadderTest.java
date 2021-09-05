@@ -3,6 +3,8 @@ package nextstep.laddergame.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LadderTest {
@@ -11,7 +13,9 @@ class LadderTest {
     @Test
     public void ladderHeightTest() {
         int height = 5;
-        Ladder ladder = Ladder.of(PlayerCount.of(3), LadderHeights.of(height));
+        Players players = Players.of(Arrays.asList("abc", "def"));
+        LadderHeights ladderHeights = LadderHeights.of(height);
+        Ladder ladder = Ladder.of(players, ladderHeights);
         assertThat(ladder.height())
                 .isEqualTo(height);
     }

@@ -5,13 +5,20 @@ import java.util.stream.Collectors;
 
 public class Players {
 
+    private static final int MINIMUM_COUNT_OF_PLAYER = 2;
+
     private final List<PlayerName> playerNames;
-    private final PlayerCount playerCount;
 
     private Players(List<PlayerName> playerNames) {
+        validateMinimumPlayerCount(playerNames);
         validateNonDuplicatedNames(playerNames);
         this.playerNames = playerNames;
-        this.playerCount = PlayerCount.of(playerNames.size());
+    }
+
+    private void validateMinimumPlayerCount(List<PlayerName> playerNames) {
+        if (playerNames == null || playerNames.size() < MINIMUM_COUNT_OF_PLAYER) {
+            throw new IllegalArgumentException("참여자는 두 명 이상이어야 합니다.");
+        }
     }
 
     private void validateNonDuplicatedNames(List<PlayerName> playerNames) {
@@ -44,7 +51,7 @@ public class Players {
         return playerNames;
     }
 
-    public PlayerCount getPlayerCount() {
-        return playerCount;
+    public int size() {
+        return playerNames.size();
     }
 }

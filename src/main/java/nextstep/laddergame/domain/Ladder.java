@@ -14,12 +14,12 @@ public class Ladder {
         this.lines = Collections.unmodifiableList(lines);
     }
 
-    public static Ladder of(PlayerCount playerCount, LadderHeights ladderHeights) {
-        return new Ladder(createLines(playerCount, ladderHeights));
+    public static Ladder of(Players players, LadderHeights ladderHeights) {
+        return new Ladder(createLines(players.size(), ladderHeights));
     }
 
-    private static List<Line> createLines(PlayerCount playerCount, LadderHeights ladderHeights) {
-        return Stream.generate(() -> Line.of(RandomLineConnectStrategy.of(new Random(), playerCount)))
+    private static List<Line> createLines(int countOfPlayer, LadderHeights ladderHeights) {
+        return Stream.generate(() -> Line.of(new RandomLineConnectStrategy(new Random(), countOfPlayer)))
                 .limit(ladderHeights.getHeights())
                 .collect(Collectors.toList());
     }

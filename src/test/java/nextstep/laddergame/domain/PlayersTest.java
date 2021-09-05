@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -29,4 +30,10 @@ class PlayersTest {
                 .withMessageContaining("abc");
     }
 
+    @DisplayName("참여자는 두 명 이상이다.")
+    @Test
+    public void invalidCountOfPlayerTest() {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> Players.of(Collections.singletonList("abc")));
+    }
 }
