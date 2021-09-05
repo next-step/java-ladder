@@ -1,10 +1,11 @@
 package nextstep.laddergame;
 
-import nextstep.laddergame.domain.*;
+import nextstep.laddergame.domain.Ladder;
+import nextstep.laddergame.domain.LadderHeights;
+import nextstep.laddergame.domain.PlayerCount;
+import nextstep.laddergame.domain.Players;
 import nextstep.laddergame.view.InputView;
 import nextstep.laddergame.view.OutputView;
-
-import java.util.List;
 
 public class LadderGame {
 
@@ -24,8 +25,7 @@ public class LadderGame {
 
     private Players inputPlayers() {
         outputView.printPlayersNameInputMessage();
-        List<PlayerName> playerNames = inputView.getPlayerNames();
-        return Players.of(playerNames);
+        return Players.of(inputView.getNames());
     }
 
     private Ladder createLadder(PlayerCount playerCount) {

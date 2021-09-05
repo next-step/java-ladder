@@ -1,6 +1,7 @@
 package nextstep.laddergame.domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Players {
 
@@ -25,12 +26,18 @@ public class Players {
                 .count();
     }
 
-    public static Players of(List<PlayerName> playerNames) {
-        return new Players(playerNames);
+    public static Players of(List<String> names) {
+        return new Players(convertToPlayerNames(names));
     }
 
-    public boolean contains(PlayerName playerName) {
-        return playerNames.contains(playerName);
+    private static List<PlayerName> convertToPlayerNames(List<String> names) {
+        return names.stream()
+                .map(PlayerName::of)
+                .collect(Collectors.toList());
+    }
+
+    public boolean contains(String name) {
+        return playerNames.contains(PlayerName.of(name));
     }
 
     public List<PlayerName> getPlayerNames() {
