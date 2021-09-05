@@ -10,7 +10,8 @@ public class LadderGame {
     private final Players players;
     private final Ladder ladder;
     private final LadderResults results;
-    private final PlayerResults playerResults;
+
+    private PlayerResults playerResults;
 
     public LadderGame(Players players, Ladder ladder, LadderResults results) {
         validateCountMatch(players, ladder, results);
@@ -18,7 +19,6 @@ public class LadderGame {
         this.players = players;
         this.ladder = ladder;
         this.results = results;
-        this.playerResults = generatePlayerResults();
     }
 
     private void validateCountMatch(Players players, Ladder ladder, LadderResults results) {
@@ -32,13 +32,17 @@ public class LadderGame {
         return playerCountOfPlayers == playerCountOfLadder && playerCountOfPlayers == resultCount;
     }
 
-    private PlayerResults generatePlayerResults() {
+    public void play() {
+        if (!isPlayerResultsEmpty()) {
+            return;
+        }
+
         List<PlayerResult> playerResults = players.getPlayers()
                 .stream()
                 .map(player -> new PlayerResult(player, findLadderResult(player)))
                 .collect(toList());
 
-        return new PlayerResults(playerResults);
+        this.playerResults = new PlayerResults(playerResults);
     }
 
     private LadderResult findLadderResult(Player player) {
@@ -68,11 +72,23 @@ public class LadderGame {
     }
 
     public String findLadderResult(String playerName) {
+        validatePlayIsOver();
         return playerResults.findLadderResult(playerName);
     }
 
     public List<PlayerResult> findAllPlayerResult() {
+        validatePlayIsOver();
         return playerResults.getPlayerResults();
+    }
+
+    private void validatePlayIsOver() {
+        if (isPlayerResultsEmpty()) {
+            throw new IllegalArgumentException("사다리 게임이 실행되지 않아 결과를 알 수 없습니다. 사다리 게임을 먼저 실행해주세요.");
+        }
+    }
+
+    private boolean isPlayerResultsEmpty() {
+        return playerResults == null || playerResults.isEmpty();
     }
 
     int playerCount() {

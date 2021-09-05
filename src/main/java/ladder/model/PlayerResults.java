@@ -20,4 +20,8 @@ public class PlayerResults {
     List<PlayerResult> getPlayerResults() {
         return playerResults;
     }
+
+    boolean isEmpty() {
+        return playerResults.isEmpty();
+    }
 }

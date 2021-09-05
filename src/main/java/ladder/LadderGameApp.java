@@ -18,6 +18,7 @@ public class LadderGameApp {
         Ladder ladder = new Ladder(players.count(), ladderHeight);
 
         LadderGame ladderGame = new LadderGame(players, ladder, results);
+        ladderGame.play();
         ResultView.printLadder(ladderGame);
 
         String inputPlayerName = InputView.inputPlayerNameForLadderResult();
