@@ -2,6 +2,7 @@ package nextstep.ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Ladder {
@@ -13,9 +14,8 @@ public class Ladder {
             throw new IllegalArgumentException("사다리 높이는 최소 " + LADDER_MIN_COUNT + "가 되어야 합니다.");
         }
         this.lines = new ArrayList<>();
-        for (int i = 0; i < height; i++) {
-            lines.add(LadderLine.init(countOfPerson));
-        }
+        IntStream.range(0, height)
+                .forEach(index -> lines.add(LadderLine.init(countOfPerson)));
     }
 
     public Ladder(List<LadderLine> lines) {
