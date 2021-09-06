@@ -23,7 +23,14 @@ class LadderLinesTest {
 
     @DisplayName("라인 여러개로 초기화된다.")
     @Test
-    void create() {
+    void create_lines() {
         assertThat(new LadderLines(ladderLines)).isEqualTo(new LadderLines(ladderLines));
+    }
+
+    @DisplayName("사다리 높이만큼의 라인을 가진다.")
+    @Test
+    void create_height() {
+        Height height = new Height(5);
+        assertThat(new LadderLines(height)).isEqualTo(new LadderLines(height));
     }
 }

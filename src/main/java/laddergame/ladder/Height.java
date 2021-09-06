@@ -29,4 +29,8 @@ public class Height {
     public int hashCode() {
         return Objects.hash(height);
     }
+
+    public int value() {
+        return height;
+    }
 }
