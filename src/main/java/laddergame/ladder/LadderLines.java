@@ -1,6 +1,6 @@
 package laddergame.ladder;
 
-import laddergame.connectable.Connection;
+import laddergame.connectable.Connectable;
 
 import java.util.List;
 import java.util.Objects;
@@ -10,9 +10,9 @@ import java.util.stream.IntStream;
 public class LadderLines {
     private final List<LadderLine> lines;
 
-    public LadderLines(Height height, int countOfPerson, Connection connection) {
+    public LadderLines(Height height, int countOfPerson, Connectable connectable) {
         this.lines = IntStream.range(0, height.value())
-                .mapToObj(i -> new LadderLine(countOfPerson, connection))
+                .mapToObj(i -> new LadderLine(countOfPerson, connectable))
                 .collect(Collectors.toList());
     }
 

@@ -2,7 +2,7 @@ package laddergame.connectable;
 
 import java.util.Random;
 
-public class RandomConnection implements Connection {
+public class RandomConnectable implements Connectable {
 
     private static final Random random = new Random();
 

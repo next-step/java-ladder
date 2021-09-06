@@ -12,7 +12,7 @@ class LadderLineTest {
 
     @DisplayName("연결가능여부가 항상 false일 경우, 라인수는 0개")
     @Test
-    void connection_false() {
+    void connectable_false() {
         assertThat(
                 new LadderLine(USER_COUNT, () -> false)
                         .points().stream()
@@ -24,7 +24,7 @@ class LadderLineTest {
 
     @DisplayName("연결 가능 여부가 항상 true일 경우 라인수는 1개 이상")
     @Test
-    void connection_true() {
+    void connectable_true() {
         assertThat(
                 new LadderLine(USER_COUNT, () -> true)
                         .points().stream()
