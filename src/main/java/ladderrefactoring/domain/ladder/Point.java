@@ -6,6 +6,10 @@ import java.util.Objects;
 
 public class Point {
 
+    private static final int TO_LEFT = -1;
+    private static final int TO_RIGHT = 1;
+    private static final int TO_NEXT = 1;
+
     private final int index;
     private final Direction direction;
 
@@ -23,20 +27,20 @@ public class Point {
     }
 
     public Point next(DirectionStrategy directionStrategy) {
-        return of(index + 1, direction.next(directionStrategy));
+        return of(index + TO_NEXT, direction.next(directionStrategy));
     }
 
     public Point last() {
-        return of(index + 1, direction.last());
+        return of(index + TO_NEXT, direction.last());
     }
 
     public int move() {
         if(direction.left()) {
-            return index - 1;
+            return index + TO_LEFT;
         }
 
         if(direction.right()) {
-            return index + 1;
+            return index + TO_RIGHT;
         }
 
         return index;

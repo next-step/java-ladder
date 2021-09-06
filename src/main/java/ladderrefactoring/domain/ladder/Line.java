@@ -6,7 +6,7 @@ import java.util.*;
 
 public class Line {
 
-    public static final int SECOND_INDEX = 1;
+    private static final int OFFSET_FIRST_AND_LAST = -2;
 
     private final List<Point> points = new ArrayList<>();
 
@@ -18,7 +18,7 @@ public class Line {
         Point currentPoint = Point.first(directionStrategy);
         points.add(currentPoint);
 
-        for (int i = SECOND_INDEX; i < widthOfLadder-1; i++) {
+        for (int i = 0; i < widthOfLadder + OFFSET_FIRST_AND_LAST; i++) {
             currentPoint = currentPoint.next(directionStrategy);
             points.add(currentPoint);
         }
