@@ -1,9 +1,23 @@
 # 사다리 게임
-## 진행 방법
-* 사다리 게임 게임 요구사항을 파악한다.
-* 요구사항에 대한 구현을 완료한 후 자신의 github 아이디에 해당하는 브랜치에 Pull Request(이하 PR)를 통해 코드 리뷰 요청을 한다.
-* 코드 리뷰 피드백에 대한 개선 작업을 하고 다시 PUSH한다.
-* 모든 피드백을 완료하면 다음 단계를 도전하고 앞의 과정을 반복한다.
 
-## 온라인 코드 리뷰 과정
-* [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
+## TODO
+### 람다
+- [X] 실습 1. CarTest 내 MoveStrategy를 람다로 구현
+- [X] 실습 2. nextstep.fp.Lambda 내 람다 적용
+  - [X] runThread내 익명 객체 람다로 변환
+  - [X] sumAll, sumAllEven, sumAllOverThree 중복 제거 
+    - [X] Optional 인터페이스 구현
+
+### stream
+- [X] 실습 1. 리스트 내 숫자중 3보다 큰 수를 뽑고, 이를 2배 한 후 sum 구하기
+- [X] 실습 2. pringLongestWordTop100 구현
+  - [X] 단어의 길이는 12자를 초과해야한다.
+  - [X] 단어 길이가 긴 순서대로 100개 추출한다.
+  - [X] 단어 중복이 없어야 한다. 
+  - [X] 모든 단어는 소문자로 출력한다. 
+
+### Optional
+- [X] 실습 1. ageIsInRange2 구현
+- [X] 실습 2. getUser() 구현
+- [X] 실습 3. Expression 의 of 메소드를 구현
+ 
