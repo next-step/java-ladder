@@ -26,13 +26,13 @@ public class LadderLine {
             points.add(connection.able());
             return;
         }
-        if (!points.get(points.size() - 1).equals(false)) {
-            points.add(connection.able());
+
+        if (points.get(points.size() - 1).equals(true)) {
+            points.add(false); // 마지막 값이 true였을 경우 false로 넣는다.
             return;
         }
-        if (points.get(points.size() - 1).equals(true)) {
-            points.add(false);
-        }
+
+        points.add(connection.able()); // default
     }
 
     @Override
