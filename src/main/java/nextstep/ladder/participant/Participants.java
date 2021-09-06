@@ -1,7 +1,6 @@
 package nextstep.ladder.participant;
 
 import nextstep.ladder.Position;
-import nextstep.ladder.Result;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -52,13 +51,13 @@ public class Participants {
                 .collect(Collectors.toList());
     }
 
-    public List<Participant> getList() {
+    public List<Participant> players() {
         return new ArrayList<>(participants);
     }
 
     public List<Position> getPositionList(){
         return participants.stream()
-                .map(Participant::getPosition)
+                .map(Participant::position)
                 .collect(Collectors.toList());
     }
 }

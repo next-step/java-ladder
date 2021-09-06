@@ -37,7 +37,7 @@ class LineTest {
     @DisplayName("라인 생성 리스트 확인")
     void create2() {
         Line line = Line.of(2, random);
-        assertThat(line.getList()).containsExactly(true, true);
+        assertThat(line.pointLists()).containsExactly(true, true);
     }
 
 

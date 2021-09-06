@@ -29,7 +29,7 @@ class ParticipantTest {
     void checkPositionTest(){
         Participant participant = new Participant("name");
         participant.setStartPosition(1,5);
-        assertThat(participant.position()).isEqualTo("1");
+        assertThat(participant.position().value()).isEqualTo(1);
     }
 
     @Test
@@ -39,7 +39,7 @@ class ParticipantTest {
         participant.setStartPosition(1,5);
 
         participant.movePosition(1);
-        assertThat(participant.position()).isEqualTo("2");
+        assertThat(participant.position().value()).isEqualTo(2);
     }
 
     @Test
@@ -49,6 +49,6 @@ class ParticipantTest {
         participant.setStartPosition(1,5);
 
         participant.movePosition(0);
-        assertThat(participant.position()).isEqualTo("0");
+        assertThat(participant.position().value()).isEqualTo(0);
     }
 }

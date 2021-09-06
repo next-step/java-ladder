@@ -16,11 +16,6 @@ public class Position {
         }
     }
 
-    @Override
-    public String toString() {
-        return String.valueOf(position);
-    }
-
     public void move(int nextPosition) {
         if (this.position != MAX_POSITION && nextPosition == this.position) {
             this.position++;
@@ -29,7 +24,12 @@ public class Position {
         }
     }
 
-    public int getInteger() {
+    public int value() {
         return position;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(position);
     }
 }

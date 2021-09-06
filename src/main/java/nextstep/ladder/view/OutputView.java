@@ -2,6 +2,7 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.Ladder;
 import nextstep.ladder.Line;
+import nextstep.ladder.Result;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,10 +13,19 @@ public class OutputView {
     private static final String LINE = "-----";
     private static final String BLANK = "     ";
 
-    public static void showResult(Ladder ladder) {
+    public static void showResult(Ladder ladder, List<Result> result) {
 
         showNames(ladder.getNames());
         showLadders(ladder.getLines());
+        showResultValue(result);
+    }
+
+    private static void showResultValue(List<Result> result) {
+        result.stream()
+                .map(Result::value)
+                .map(OutputView::LPadding)
+                .forEach(System.out::print);
+        System.out.println();
     }
 
     public static void showNames(List<String> names) {
@@ -34,7 +44,7 @@ public class OutputView {
 
     private static void showLadders(List<Line> lines) {
         lines.stream()
-                .map(Line::getList)
+                .map(Line::pointLists)
                 .map(OutputView::booleanToLine)
                 .map(OutputView::stringLine)
                 .forEach(System.out::println);

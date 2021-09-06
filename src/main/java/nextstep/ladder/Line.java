@@ -22,7 +22,7 @@ public class Line {
         return points.size();
     }
 
-    public List<Boolean> getList() {
+    public List<Boolean> pointLists() {
         return new ArrayList<Boolean>(points);
     }
 

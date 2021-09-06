@@ -1,6 +1,13 @@
 package nextstep.ladder.view;
 
+import nextstep.ladder.Position;
+import nextstep.ladder.Result;
+
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 public class InputView {
 
@@ -37,5 +44,14 @@ public class InputView {
     public static String getName(Scanner scanner) {
         System.out.println("찾을사람:");
         return scanner.nextLine();
+    }
+
+    public static List<Result> inputResult(Scanner scanner) {
+        System.out.println("당첨상품 입력:");
+        String[] resultValue = scanner.next().split(",");
+        AtomicInteger initPosition = new AtomicInteger();
+        return Arrays.stream(resultValue)
+                .map(name -> Result.of(name, new Position(initPosition.getAndIncrement(), resultValue.length)))
+                .collect(Collectors.toList());
     }
 }

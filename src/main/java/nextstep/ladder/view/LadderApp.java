@@ -2,9 +2,12 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.Ladder;
 import nextstep.ladder.LadderInput;
+import nextstep.ladder.Result;
 import nextstep.ladder.participant.Participants;
 import nextstep.ladder.RandomMiddleLadder;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class LadderApp {
@@ -24,17 +27,20 @@ public class LadderApp {
         input.setRandomPoint(new RandomMiddleLadder());
 
         Ladder ladder = Ladder.of(input);
+        List<Result> result = InputView.inputResult(scanner);
 
-        OutputView.showResult(ladder);
+        OutputView.showResult(ladder, result);
         ladder.playLadderGame();
 
-        ResultMap map = new ResultMap(ladder.getParticipants());
+        scanner.nextLine();
+        ResultMap map = new ResultMap(ladder.getParticipants(),result);
         while(true){
             String name = InputView.getName(scanner);
-            System.out.println(map.findPosition(name));
             if("all".equals(name)){
+                System.out.println("종료");
                 break;
             }
+            System.out.println(map.findResult(name));
         }
     }
 

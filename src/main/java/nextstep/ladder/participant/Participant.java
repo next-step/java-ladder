@@ -21,7 +21,7 @@ public class Participant {
 
     private boolean validation(String name) {
         if (name.length() > NAME_MAX_LENGTH) {
-            return false; //Error
+            return false;
         }
         return true;
     }
@@ -30,15 +30,11 @@ public class Participant {
         this.position = new Position(position, MAX_POSITION);
     }
 
-    public String position() {
-        return this.position.toString();
-    }
-
     public void movePosition(int nextPosition) {
         this.position.move(nextPosition);
     }
 
-    public Position getPosition() {
+    public Position position() {
         return this.position;
     }
 }

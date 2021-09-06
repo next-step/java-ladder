@@ -13,4 +13,12 @@ public class Result {
     public static Result of(String name, Position position) {
         return new Result(name, position);
     }
+
+    public String value(){
+        return name;
+    }
+
+    public int position(){
+        return position.value();
+    }
 }

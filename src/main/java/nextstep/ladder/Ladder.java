@@ -61,15 +61,16 @@ public class Ladder {
     }
 
     public void playLadderGame(){
-        for(Participant participant : participants.getList()){
-            Position position = participant.getPosition();
-            for(Line line : lines){
-                if(position.getInteger() != participants.size()-1 && line.getList().get(position.getInteger())){
-                    participant.movePosition(position.getInteger());
-                }else if(position.getInteger()!=0 && line.getList().get(position.getInteger()-1)){
-                    participant.movePosition(position.getInteger()-1);
+        // 해당부분 스트림 처리 조언 요청....
+        for (Participant participant : participants.players()) {
+            Position position = participant.position();
+            for (Line line : lines) {
+                if (position.value() != participants.size() - 1 && line.pointLists().get(position.value())) {
+                    participant.movePosition(position.value());
+                } else if (position.value() != 0 && line.pointLists().get(position.value() - 1)) {
+                    participant.movePosition(position.value() - 1);
                 }
-                position = participant.getPosition();
+                position = participant.position();
             }
         }
     }
@@ -77,4 +78,5 @@ public class Ladder {
     public Participants getParticipants() {
         return participants;
     }
+
 }
