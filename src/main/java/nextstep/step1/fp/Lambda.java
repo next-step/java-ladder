@@ -1,4 +1,4 @@
-package nextstep.fp;
+package nextstep.step1.fp;
 
 import java.util.List;
 
@@ -18,34 +18,29 @@ public class Lambda {
     }
 
     public static void runThread() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("Hello from thread");
-            }
-        }).start();
+        new Thread(() -> System.out.println("Hello from thread")).start();
     }
 
-    public static int sumAll(List<Integer> numbers, Conditional conditional) {
+    public static int sumAll(List<Integer> numbers, Expression expression) {
         int total = 0;
         for (Integer number : numbers) {
-            total = getTotal(total, number, conditional.sum(number));
+            total = getTotal(total, number, expression.sum(number));
         }
         return total;
     }
 
-    public static int sumAllEven(List<Integer> numbers, Conditional conditional) {
+    public static int sumAllEven(List<Integer> numbers, Expression expression) {
         int total = 0;
         for (Integer number : numbers) {
-            total = getTotal(total, number, conditional.sum(number));
+            total = getTotal(total, number, expression.sum(number));
         }
         return total;
     }
 
-    public static int sumAllOverThree(List<Integer> numbers, Conditional conditional) {
+    public static int sumAllOverThree(List<Integer> numbers, Expression expression) {
         int total = 0;
         for (Integer number : numbers) {
-            total = getTotal(total, number, conditional.sum(number));
+            total = getTotal(total, number, expression.sum(number));
         }
         return total;
     }

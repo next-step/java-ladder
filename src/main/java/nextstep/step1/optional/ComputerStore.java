@@ -1,7 +1,7 @@
-package nextstep.optional;
+package nextstep.step1.optional;
 
-import nextstep.optional.Computer.Soundcard;
-import nextstep.optional.Computer.USB;
+import nextstep.step1.optional.Computer.Soundcard;
+import nextstep.step1.optional.Computer.USB;
 
 public class ComputerStore {
     public static final String UNKNOWN_VERSION = "UNKNOWN";
