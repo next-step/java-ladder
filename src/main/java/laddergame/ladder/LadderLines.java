@@ -30,4 +30,8 @@ public class LadderLines {
     public int hashCode() {
         return Objects.hash(lines);
     }
+
+    public List<LadderLine> value() {
+        return this.lines;
+    }
 }
