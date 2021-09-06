@@ -14,7 +14,7 @@ class LadderLinesTest {
     @Test
     void create_countOfPerson_height_connectable() {
         Height height = new Height(5);
-        assertThat(new LadderLines(height, USER_COUNT, () -> true))
-                .isEqualTo(new LadderLines(height, USER_COUNT, () -> true));
+        assertThat(new LadderLines(height, USER_COUNT, () -> Connection.CONNECTED))
+                .isEqualTo(new LadderLines(height, USER_COUNT, () -> Connection.CONNECTED));
     }
 }
