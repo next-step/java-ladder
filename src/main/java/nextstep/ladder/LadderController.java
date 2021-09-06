@@ -10,48 +10,47 @@ import java.util.stream.IntStream;
 
 public class LadderController {
     private static final String LAST_COMMAND = "all";
+    private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String... args) {
-        Scanner scanner = new Scanner(System.in);
-
         List<Person> people = initPeoplePhase(scanner);
         List<Reward> rewards = initRewardsPhase(scanner);
         validateRewardsAndPeople(people, rewards);
 
-        List<Line> lines = initLinesPhase(scanner, people.size());
-        Ladder ladder = new Ladder(lines, rewards);
+        Ladder ladder = initLadderPhase(scanner, people.size());
         LadderGameDrawer.drawLadderResult(people, ladder, rewards);
 
         boolean runnable = true;
         while (runnable) {
             LadderGameDrawer.drawWantedResultInputText();
-            String command = scanner.nextLine().trim();
 
-            run(people, ladder, command);
-
-            runnable = isLastOrder(command);
+            runnable = run(people, ladder, rewards);
         }
     }
 
-    private static void run(List<Person> people, Ladder ladder, String command) {
-        LadderGameDrawer.drawResultText();
+    private static boolean run(List<Person> people, Ladder ladder, List<Reward> rewards) {
+        String command = scanner.nextLine().trim();
+
         if (LAST_COMMAND.equals(command)) {
-            List<Result> results = doAllResult(people, ladder);
+            List<Result> results = doAllResult(people, ladder, rewards);
             LadderGameDrawer.drawResults(results);
-            return;
+            return false;
         }
 
         int startPosition = findPeoplePosition(command, people);
-        LadderGameDrawer.drawResult(new Result(people.get(startPosition), ladder.doPlay(startPosition)));
+        Reward reward = doResult(startPosition, ladder, rewards);
+
+        LadderGameDrawer.drawOneResult(reward);
+        return true;
     }
 
-    private static boolean isLastOrder(String command) {
-        return !LAST_COMMAND.equals(command);
+    private static Reward doResult(int startPosition, Ladder ladder, List<Reward> rewards) {
+        return rewards.get(ladder.doPlay(startPosition));
     }
 
-    private static List<Result> doAllResult(List<Person> people, Ladder ladder) {
+    private static List<Result> doAllResult(List<Person> people, Ladder ladder, List<Reward> rewards) {
         return IntStream.range(0, people.size())
-                .mapToObj((index) -> new Result(people.get(index), ladder.doPlay(index)))
+                .mapToObj((index) -> new Result(people.get(index),  doResult(index, ladder, rewards)))
                 .collect(Collectors.toList());
     }
 
@@ -65,11 +64,11 @@ public class LadderController {
         return LadderGameMakeUtil.makeRewards(scanner.nextLine());
     }
 
-    private static List<Line> initLinesPhase(Scanner scanner, int width) {
+    private static Ladder initLadderPhase(Scanner scanner, int numberOfPeople) {
         LadderGameDrawer.drawHeightInputText();
         int height = Integer.valueOf(scanner.nextLine());
 
-        return LadderGameMakeUtil.makeLines(width, height);
+        return LadderGameMakeUtil.makeLadder(numberOfPeople, height);
     }
 
     private static void validateRewardsAndPeople(List<Person> people, List<Reward> rewards) {
