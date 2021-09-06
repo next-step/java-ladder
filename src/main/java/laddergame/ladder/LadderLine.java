@@ -18,10 +18,10 @@ public class LadderLine {
 
     private void initConnections(int countOfPerson, Connectable connectable) {
         IntStream.range(CONNECTION_START_IDX, countOfPerson)
-                .forEach(i -> connect(connectable));
+                .forEach(i -> tryConnection(connectable));
     }
 
-    private void connect(Connectable connectable) {
+    private void tryConnection(Connectable connectable) {
         if (connections.isEmpty()) {
             connections.add(connectable.value());
             return;
