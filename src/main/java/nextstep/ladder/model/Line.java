@@ -1,29 +1,22 @@
 package nextstep.ladder.model;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Line {
-    private List<Point> points = new ArrayList<>();
+    private List<Point> points;
 
-    public Line(int height) {
-        for (int i = 0; i < height; i++) {
-            points.add(new Point());
-        }
+    public Line(List<Point> points) {
+        this.points = points;
     }
 
     public List<Point> getPoints() {
         return Collections.unmodifiableList(points);
     }
 
-    public int moveHorizontal(int x, int y) {
+    public int move(int y) {
         Point point = points.get(y);
 
-        if (point.isUsed()) {
-            return point.getGoal();
-        }
-
-        return x;
+        return point.move();
     }
 }
