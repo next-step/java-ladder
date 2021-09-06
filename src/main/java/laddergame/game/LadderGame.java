@@ -1,7 +1,10 @@
 package laddergame.game;
 
 import laddergame.ladder.Height;
+import laddergame.user.UserName;
 import laddergame.user.UserNames;
+
+import java.util.List;
 
 public class LadderGame {
 
@@ -15,5 +18,9 @@ public class LadderGame {
 
     public static LadderGame valueOf(String userNames, int height) {
         return new LadderGame(new UserNames(userNames), new Height(height));
+    }
+
+    public List<UserName> userNames() {
+        return this.userNames.value();
     }
 }

@@ -10,7 +10,7 @@ public class UserNames {
     private static final String BLANK = "";
     private static final String NAMES_REGEX = "([a-zA-Z]+,*)*";
     private static final String DELIMITER = ",";
-    private final Object names;
+    private final List<UserName> names;
 
     public UserNames(String names) {
         isBlank(names);
@@ -36,9 +36,12 @@ public class UserNames {
 
     private void isDelimiterValid(String names) {
         if (!Pattern.matches(NAMES_REGEX, names)) {
-           throw new IllegalArgumentException("이름은 ,로 구분되며, 이외의 구분자는 사용하실 수 없습니다.");
+            throw new IllegalArgumentException("이름은 ,로 구분되며, 이외의 구분자는 사용하실 수 없습니다.");
         }
     }
 
 
+    public List<UserName> value() {
+        return this.names;
+    }
 }
