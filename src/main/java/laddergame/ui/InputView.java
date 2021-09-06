@@ -1,4 +1,4 @@
-package ladder.ui;
+package laddergame.ui;
 
 import java.util.Scanner;
 

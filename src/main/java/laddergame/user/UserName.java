@@ -1,4 +1,4 @@
-package ladder.user;
+package laddergame.user;
 
 import java.util.Objects;
 
