@@ -23,7 +23,7 @@ class UserNamesTest {
     @DisplayName("쉼표 이외의 구분자 사용시 예외 발생")
     @Test
     void delimiterNotComma() {
-        assertThatThrownBy( () -> new UserNames("pobi/crong")).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new UserNames("pobi/crong")).isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("빈 값이면 예외 발생")

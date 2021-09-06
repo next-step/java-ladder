@@ -30,7 +30,7 @@ public class UserNames {
     }
 
     private void isBlank(String names) {
-        if(names == null || BLANK.equals(names.trim())) {
+        if (names == null || BLANK.equals(names.trim())) {
             throw new IllegalArgumentException("이름들은 빈 값일 수 없습니다.");
         }
     }
