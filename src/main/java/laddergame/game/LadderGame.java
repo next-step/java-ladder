@@ -24,7 +24,7 @@ public class LadderGame {
         return this.userNames.value();
     }
 
-    public LadderLines ladderLines() {
-        return ladderLines;
+    public List<LadderLine> ladderLines() {
+        return ladderLines.value();
     }
 }
