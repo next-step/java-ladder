@@ -8,15 +8,15 @@ public class UserName {
 
     private String name;
 
-    static {
-        
-    }
-
     public UserName(String name) {
         this.name = name;
         if (name.length() > USER_NAME_LENGTH_LIMIT) {
             throw new IllegalArgumentException("이름은 최대 " + USER_NAME_LENGTH_LIMIT + "글자 까지만 가능합니다");
         }
+    }
+
+    public boolean isSameName(String name) {
+        return this.name.equals(name);
     }
 
     @Override

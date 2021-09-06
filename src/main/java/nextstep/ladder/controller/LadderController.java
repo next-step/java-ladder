@@ -3,6 +3,7 @@ package nextstep.ladder.controller;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Result;
 import nextstep.ladder.domain.User;
+import nextstep.ladder.domain.UserLadderResult;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
@@ -22,7 +23,9 @@ public class LadderController {
 
         users.stream().forEach(user -> user.findLastPosition(ladder));
 
-        InputView.printResults(users, results);
+        UserLadderResult userLadderResult = new UserLadderResult(users, results);
+
+        InputView.printResults(userLadderResult);
 
     }
 }

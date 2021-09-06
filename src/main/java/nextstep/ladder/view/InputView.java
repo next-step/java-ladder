@@ -2,6 +2,7 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.domain.Result;
 import nextstep.ladder.domain.User;
+import nextstep.ladder.domain.UserLadderResult;
 
 import java.util.*;
 import java.util.stream.IntStream;
@@ -42,33 +43,20 @@ public class InputView {
         }
     }
 
-    public static void printResults(List<User> users, List<Result> results) {
+    public static void printResults(UserLadderResult userLadderResult) {
         while (true) {
             try {
                 System.out.println("결과를 보고 싶은 사람은?");
 
                 String userName = SCANNER.next();
-                printResultByName(userName, users, results);
+                ResultView.printUserResult(userLadderResult, userName);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    private static void printResultByName(String userName, List<User> users, List<Result> results) {
-        if ("all".equals(userName)) {
-            System.out.println("실행 결과");
-            users.stream().
-                    forEach(user -> System.out.println(user + " : " + user.getResult(results)));
-            return;
-        }
-
-        Optional<User> matchUser = users.stream().filter(user -> user.toString().equals(userName)).findFirst();
-        User user = matchUser.orElseThrow(() -> new IllegalArgumentException("유저를 찾을 수 없습니다"));
-        System.out.println("실행 결과");
-        System.out.println(user + " : " + user.getResult(results));
-    }
-
+ 
     private static List<Result> makeResults() {
         String resultInput;
         System.out.println("실행 결과를 입력하세요. (이름은 쉼표(,)로 구분하세요)");

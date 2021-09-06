@@ -3,6 +3,7 @@ package nextstep.ladder.view;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Result;
 import nextstep.ladder.domain.User;
+import nextstep.ladder.domain.UserLadderResult;
 
 import java.util.List;
 
@@ -16,6 +17,23 @@ public class ResultView {
         printUsers(user);
         ladder.stream().forEach((line) -> printLadder(line.getPoints()));
         printResults(results);
+    }
+
+    public static void printUserResult(UserLadderResult userLadderResult, String userName) {
+        if ("all".equals(userName)) {
+            printAllUserResult(userLadderResult);
+            return;
+        }
+        Result result = userLadderResult.findUserResult(userName);
+        System.out.println("실행결과");
+        System.out.println(userName + " : " + result);
+    }
+
+    private static void printAllUserResult(UserLadderResult userLadderResult) {
+        System.out.println("실행결과");
+
+        userLadderResult.findAllUser().stream()
+                .forEach(user -> System.out.println(user.toString() + " : " + userLadderResult.findUserResult(user.toString())));
     }
 
     private static void printLadder(List<Boolean> existPoints) {

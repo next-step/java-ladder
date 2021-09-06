@@ -8,9 +8,14 @@ public class User {
 
     private Position position;
 
-    public User(String name, int position) {
+    public User(String name, int startPosition, int lastPosition) {
         this.userName = new UserName(name);
-        this.position = new Position(position);
+        this.position = new Position(startPosition, lastPosition);
+    }
+
+    public User(String name, int startPosition) {
+        this.userName = new UserName(name);
+        this.position = new Position(startPosition);
     }
 
     public int findLastPosition(Ladder ladder) {
@@ -19,6 +24,10 @@ public class User {
 
     public Result findUserResult(List<Result> results) {
         return position.findUserResult(results);
+    }
+
+    public boolean isSameName(String name) {
+        return userName.isSameName(name);
     }
 
     @Override
