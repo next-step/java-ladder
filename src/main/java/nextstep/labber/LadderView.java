@@ -26,8 +26,20 @@ public class LadderView {
         return Integer.parseInt(this.bufferedReader.readLine());
     }
 
-    public void drawLadder(List<Line> lines) {
-        lines.stream()
+    public void drawParticipants(List<User> list) {
+        list.stream()
+                .forEach(user -> {
+                    System.out.print(user.toString());
+                    IntStream.range(0, User.NAME_SPACE_LENGTH - user.toString().length())
+                            .mapToObj(i -> " ")
+                            .forEach(System.out::print);
+                    System.out.print(" ");
+                });
+        System.out.println();
+    }
+
+    public void drawLadder(List<Line> ladder) {
+        ladder.stream()
                 .forEach(line -> drawLine(line));
     }
 
@@ -55,16 +67,4 @@ public class LadderView {
             System.out.print(s);
         }
     }
-
-    public void drawParticipants(List<User> list) {
-        for (User user : list) {
-            System.out.print(user.toString());
-            IntStream.range(0, User.NAME_SPACE_LENGTH - user.toString().length())
-                    .mapToObj(i -> " ")
-                    .forEach(System.out::print);
-            System.out.print(" ");
-        }
-        System.out.println();
-    }
-
 }

@@ -13,10 +13,10 @@ public class Main {
         List<User> list = ladderView.participantsList();
         int ladderHeight = ladderView.enterLadderHeight();
 
-        LadderGame ladderGame = new LadderGame(list, ladderHeight);
-        List<Line> ladder = ladderGame.createLadder();
+        List<Line> ladder = Ladder.createLadder(list.size(), ladderHeight);
 
         ladderView.drawParticipants(list);
         ladderView.drawLadder(ladder);
+
     }
 }
