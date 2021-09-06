@@ -29,5 +29,15 @@ public class Line {
         return points;
     }
 
+    public Direction findMoveDirection(int position) {
+        if (points.get(position)) {
+            return Direction.RIGHT;
+        }
+        if (points.get(position - Position.OFFSET)) {
+            return Direction.RIGHT;
+        }
+        return Direction.MIDDLE;
+    }
+
 
 }

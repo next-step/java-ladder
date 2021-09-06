@@ -4,6 +4,9 @@ import java.util.List;
 
 public class Position {
 
+    private static final int FAKE_LADDER_OFFSET = 1;
+    public static final int OFFSET = 1;
+
     private int startPosition;
 
     private int lastPosition;
@@ -26,22 +29,14 @@ public class Position {
 
         addFakePoint(ladder);
 
-        ladder.getLadder().stream().forEach(line -> moveByPoint(line.getPoints()));
+        ladder.getLadder()
+                .stream()
+                .forEach(line -> line.findMoveDirection(lastPosition).move(lastPosition));
 
         removeFakePoint(ladder);
 
         lastPosition--;
         return lastPosition;
-    }
-
-    private void moveByPoint(List<Boolean> points) {
-        if (points.get(lastPosition)) {
-            ++lastPosition;
-            return;
-        }
-        if (points.get(lastPosition - 1)) {
-            --lastPosition;
-        }
     }
 
     private void addFakePoint(Ladder ladder) {
@@ -56,7 +51,7 @@ public class Position {
         ladder.getLadder().stream()
                 .forEach(line -> {
                     line.getPoints().remove(0);
-                    line.getPoints().remove(line.getPoints().size() - 1);
+                    line.getPoints().remove(line.getPoints().size() - FAKE_LADDER_OFFSET);
                 });
     }
 }

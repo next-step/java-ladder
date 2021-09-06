@@ -28,7 +28,9 @@ public class InputView {
         String[] userNameList = names.split(",");
         List<User> users = new ArrayList<>();
 
-        IntStream.range(0, userNameList.length).forEach(index -> users.add(new User(userNameList[index], index)));
+        IntStream
+                .range(0, userNameList.length)
+                .forEach(index -> users.add(new User(userNameList[index], index)));
 
         return users;
     }
@@ -56,7 +58,7 @@ public class InputView {
         }
     }
 
- 
+
     private static List<Result> makeResults() {
         String resultInput;
         System.out.println("실행 결과를 입력하세요. (이름은 쉼표(,)로 구분하세요)");
@@ -64,7 +66,8 @@ public class InputView {
         String[] resultList = resultInput.split(",");
         List<Result> results = new ArrayList<>();
 
-        Arrays.stream(resultList).forEach(result -> results.add(new Result(result)));
+        Arrays.stream(resultList)
+                .forEach(result -> results.add(new Result(result)));
 
         return results;
     }
