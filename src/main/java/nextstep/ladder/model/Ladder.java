@@ -1,18 +1,18 @@
 package nextstep.ladder.model;
 
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Ladder {
     private List<Line> lines;
-    private List<Reward> rewards;
+    private static final Random RANDOM = new Random();
 
-    public Ladder(List<Line> lines, List<Reward> rewards) {
-        this.lines = lines;
-        this.rewards = rewards;
+    public Ladder(int numberOfPerson, int height) {
+        make(numberOfPerson, height);
     }
 
-    public Reward doPlay(int start) {
+    public int doPlay(int start) {
         int x = start;
         int y = 0;
         int height = lines.get(0)
@@ -21,15 +21,55 @@ public class Ladder {
 
         while (y < height) {
             Line line = lines.get(x);
-            x = line.moveHorizontal(x, y);
+            x = line.move(y);
 
             y++;
         }
 
-        return rewards.get(x);
+        return x;
     }
 
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
     }
+
+    private void make(int numberOfPerson, int height) {
+        List<Point>[] pointLists = IntStream.range(0, numberOfPerson)
+                .mapToObj((index) -> new ArrayList<Point>())
+                .toArray(List[]::new);
+
+        for (int index = 0; index < height; index++) {
+            makeStairs(pointLists, index);
+        }
+
+        this.lines = Arrays.stream(pointLists)
+                .map((pointList -> new Line(pointList)))
+                .collect(Collectors.toList());
+    }
+
+    private void makeStairs(List<Point>[] pointLists, int y) {
+        for (int x = 0; x < pointLists.length; x++) {
+            makeStair(pointLists, x, y);
+        }
+    }
+
+    private void makeStair(List<Point>[] pointLists, int x, int y) {
+        if (pointLists[x].size() > y) {
+            return;
+        }
+
+        if (x == pointLists.length - 1) {
+            pointLists[x].add(new Point(x, Direction.straight()));
+            return;
+        }
+
+        if (RANDOM.nextBoolean()) {
+            pointLists[x].add(new Point(x, Direction.right()));
+            pointLists[x + 1].add(new Point(x + 1, Direction.left()));
+            return;
+        }
+
+        pointLists[x].add(new Point(x, Direction.straight()));
+    }
+
 }
