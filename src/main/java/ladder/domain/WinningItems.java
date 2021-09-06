@@ -23,7 +23,7 @@ public class WinningItems {
 
     private void validateWinningItems(String[] itemsName) {
         for (String item : itemsName) {
-            if (item == null) {
+            if (item.isEmpty() || item == null) {
                 throw new WinningItemsException();
             }
         }

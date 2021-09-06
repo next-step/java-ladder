@@ -1,10 +1,12 @@
 package ladder;
 
 import ladder.domain.*;
+import ladder.exception.LadderHeightException;
 import ladder.exception.NotFoundUserException;
 import ladder.exception.UserNameLengthException;
 
 import static ladder.view.InputView.*;
+import static ladder.view.InputView.askLadderHeight;
 import static ladder.view.ResultView.*;
 
 public class LadderApplication {
@@ -14,19 +16,29 @@ public class LadderApplication {
         int winningItemsCount = users.usersCount();
         WinningItems winningItems = getWinningItems(winningItemsCount);
 
-        int ladderHeight = askLadderHeight();
+        LadderHeight ladderHeight = ladderHeight();
         Ladder ladder = new Ladder(ladderHeight, users.usersCount());
 
         printUserList(users);
         printLadder(ladder);
         printWinningItems(winningItems);
 
-        MatchResults matchResults = new MatchResults(ladder.execute(users, winningItems));
+        MatchResults matchResults = new MatchResults(ladder.results(users, winningItems));
 
         while (true) {
             getWhoResult(matchResults, users);
         }
 
+    }
+
+    private static LadderHeight ladderHeight() {
+        try {
+            int height = askLadderHeight();
+            return new LadderHeight(height);
+        } catch (LadderHeightException e) {
+            System.out.println("사다리 높이 1 이상으로 입력하세요.");
+            return ladderHeight();
+        }
     }
 
     private static Users getUsers() {
@@ -51,7 +63,7 @@ public class LadderApplication {
     private static void getWhoResult(MatchResults matchResult, Users users) {
         String name = askWhoResult();
 
-        if (name.isEmpty()) {
+        if (name.isEmpty() || name == null) {
             System.out.println("입력하지 않으셨습니다.\n");
             getWhoResult(matchResult, users);
         }
