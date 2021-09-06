@@ -1,6 +1,6 @@
 package nextstep.ladder;
 
-import nextstep.ladder.controller.Game;
+import nextstep.ladder.controller.LadderGame;
 import nextstep.ladder.view.input.InputView;
 import nextstep.ladder.view.output.OutputView;
 
@@ -10,8 +10,8 @@ public class Main {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
 
-        Game game = new Game(inputView, outputView);
-        game.start();
+        LadderGame ladderGame = new LadderGame(inputView, outputView);
+        ladderGame.start();
     }
 
 }

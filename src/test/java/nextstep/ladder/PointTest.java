@@ -1,0 +1,36 @@
+package nextstep.ladder;
+
+import nextstep.ladder.point.Point;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+public class PointTest {
+
+    @ParameterizedTest
+    @CsvSource(value = {"true,1", "false,0"})
+    void first_move(boolean movableRight, int expectedMove) {
+        Point first = Point.first(movableRight);
+        assertThat(expectedMove).isEqualTo(first.move());
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"true,false,0", "false,false,1", "false,true,2"})
+    void second_move(boolean firstMovableRight, boolean secondMovableRight, int expectedMove) {
+        Point first = Point.first(firstMovableRight);
+        Point second = first.next(secondMovableRight);
+
+        assertThat(expectedMove).isEqualTo(second.move());
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"true,0", "false,1"})
+    void last_move(boolean movableRight, int expectedMove) {
+        Point first = Point.first(movableRight);
+        Point last = first.last();
+        assertThat(expectedMove).isEqualTo(last.move());
+    }
+
+
+}
