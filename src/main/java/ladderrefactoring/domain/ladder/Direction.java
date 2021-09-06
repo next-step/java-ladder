@@ -24,17 +24,6 @@ public class Direction {
         return new Direction(left, right);
     }
 
-    public static Direction first(DirectionStrategy directionStrategy) {
-        return new Direction(false, directionStrategy.create());
-    }
-
-    public Direction next(DirectionStrategy directionStrategy) {
-        if (this.right) {
-            return of(true, false);
-        }
-        return of(false, directionStrategy.create());
-    }
-
     public static Direction first() {
         return of(false, directionStrategy.create());
     }

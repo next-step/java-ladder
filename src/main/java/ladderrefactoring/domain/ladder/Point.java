@@ -22,12 +22,12 @@ public class Point {
         return new Point(index, direction);
     }
 
-    public static Point first(DirectionStrategy directionStrategy) {
-        return new Point(0, Direction.first(directionStrategy));
+    public static Point first() {
+        return new Point(0, Direction.first());
     }
 
-    public Point next(DirectionStrategy directionStrategy) {
-        return of(index + TO_NEXT, direction.next(directionStrategy));
+    public Point next() {
+        return of(index + TO_NEXT, direction.next());
     }
 
     public Point last() {

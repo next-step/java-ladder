@@ -10,16 +10,16 @@ public class Line {
 
     private final List<Point> points = new ArrayList<>();
 
-    public Line(int widthOfLadder, DirectionStrategy directionStrategy) {
-        initLine(widthOfLadder, directionStrategy);
+    public Line(int widthOfLadder) {
+        initLine(widthOfLadder);
     }
 
-    private void initLine(int widthOfLadder, DirectionStrategy directionStrategy) {
-        Point currentPoint = Point.first(directionStrategy);
+    private void initLine(int widthOfLadder) {
+        Point currentPoint = Point.first();
         points.add(currentPoint);
 
         for (int i = 0; i < widthOfLadder + OFFSET_FIRST_AND_LAST; i++) {
-            currentPoint = currentPoint.next(directionStrategy);
+            currentPoint = currentPoint.next();
             points.add(currentPoint);
         }
 

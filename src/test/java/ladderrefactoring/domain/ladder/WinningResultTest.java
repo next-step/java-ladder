@@ -1,10 +1,9 @@
-package ladderrefactoring.domain;
+package ladderrefactoring.domain.ladder;
 
 import ladderrefactoring.domain.data.Person;
 import ladderrefactoring.domain.data.Result;
 import ladderrefactoring.domain.datas.People;
 import ladderrefactoring.domain.datas.Results;
-import ladderrefactoring.domain.ladder.Ladder;
 import ladderrefactoring.exception.CustomException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,9 +20,10 @@ public class WinningResultTest {
     @DisplayName("winningResult 반환 사다리 true 1칸")
     void makeWinningResult_true_one_line() {
         // given
+        Direction.directionStrategy = () -> true;
         People people = new People(Arrays.asList("hwan,kook,hyun,bo".split(",")));
         Results results = new Results(Arrays.asList("3000,lose,2000,5000".split(",")), people);
-        Ladder ladder = new Ladder(people.people().size(), 1, () -> true);
+        Ladder ladder = new Ladder(people.people().size(), 1);
 
         // when
         WinningResult winningResult = new WinningResult(ladder, people, results);
@@ -39,9 +39,10 @@ public class WinningResultTest {
     @DisplayName("winningResult 반환 사다리 false 1칸")
     void makeWinningResult_false_one_line() {
         // given
+        Direction.directionStrategy = () -> false;
         People people = new People(Arrays.asList("hwan,kook,hyun,bo".split(",")));
         Results results = new Results(Arrays.asList("3000,lose,2000,5000".split(",")), people);
-        Ladder ladder = new Ladder(people.people().size(), 1, () -> false);
+        Ladder ladder = new Ladder(people.people().size(), 1);
 
         // when
         WinningResult winningResult = new WinningResult(ladder, people, results);
@@ -57,9 +58,10 @@ public class WinningResultTest {
     @DisplayName("특정 Person 의 Result 조회")
     void findBy() {
         // given
+        Direction.directionStrategy = () -> false;
         People people = new People(Arrays.asList("hwan,kook,hyun,bo".split(",")));
         Results results = new Results(Arrays.asList("3000,lose,2000,5000".split(",")), people);
-        Ladder ladder = new Ladder(people.subtractNumberFromSize(1), 1, () -> false);
+        Ladder ladder = new Ladder(people.people().size(), 1);
         WinningResult winningResult = new WinningResult(ladder, people, results);
 
         // when
@@ -77,13 +79,12 @@ public class WinningResultTest {
         // given
         People people = new People(Arrays.asList("hwan,kook,hyun,bo".split(",")));
         Results results = new Results(Arrays.asList("3000,lose,2000,5000".split(",")), people);
-        Ladder ladder = new Ladder(people.subtractNumberFromSize(1), 1, () -> true);
+        Ladder ladder = new Ladder(people.subtractNumberFromSize(1), 1);
 
         WinningResult winningResult = new WinningResult(ladder, people, results);
 
         // when
         Person person3 = new Person("check");
-
 
         //then
         assertThatThrownBy(() -> winningResult.findBy(person3))
@@ -97,7 +98,7 @@ public class WinningResultTest {
         // given
         People people = new People(Arrays.asList("hwan,kook,hyun,bo".split(",")));
         Results results = new Results(Arrays.asList("3000,lose,2000,5000".split(",")), people);
-        Ladder ladder = new Ladder(people.subtractNumberFromSize(1), 1, () -> true);
+        Ladder ladder = new Ladder(people.people().size(), 1);
         WinningResult winningResult = new WinningResult(ladder, people, results);
 
         // when

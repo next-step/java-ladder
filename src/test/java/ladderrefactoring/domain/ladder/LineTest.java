@@ -1,6 +1,6 @@
 package ladderrefactoring.domain.ladder;
 
-import ladderrefactoring.strategy.DirectionStrategy;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -8,18 +8,22 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class LineTest {
 
+    @BeforeEach
+    void init() {
+        Direction.directionStrategy = () -> true;
+    }
+
     @Test
     @DisplayName("Line 생성")
     void create() {
         // given
         int widthOfLadder = 5;
-        DirectionStrategy directionStrategy = () -> false;
 
         // when
-        Line line = new Line(widthOfLadder, directionStrategy);
+        Line line = new Line(widthOfLadder);
 
         // then
-        assertThat(line).isEqualTo(new Line(widthOfLadder, directionStrategy));
+        assertThat(line).isEqualTo(new Line(widthOfLadder));
     }
 
     @Test
@@ -27,7 +31,7 @@ class LineTest {
     void move() {
         // given
         int widthOfLadder = 4;
-        Line line = new Line(widthOfLadder, () -> true);
+        Line line = new Line(widthOfLadder);
 
         // when
         int movedPosition1 = line.movePosition(1);

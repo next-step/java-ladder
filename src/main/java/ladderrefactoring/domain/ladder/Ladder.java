@@ -14,11 +14,11 @@ public class Ladder {
     private final List<Line> ladder = new ArrayList<>();
     private final int widthOfLadder;
 
-    public Ladder(int widthOfLadder, int heightOfLadder, DirectionStrategy directionStrategy) {
+    public Ladder(int widthOfLadder, int heightOfLadder) {
         this.widthOfLadder = widthOfLadder;
 
         for (int i = 0; i < heightOfLadder; i++) {
-            ladder.add(new Line(widthOfLadder, directionStrategy));
+            ladder.add(new Line(widthOfLadder));
         }
     }
 

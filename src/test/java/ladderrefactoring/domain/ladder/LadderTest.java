@@ -17,20 +17,21 @@ public class LadderTest {
         // given
         int widthOfLadder = 5;
         int heightOfLadder = 5;
-        DirectionStrategy directionStrategy = () -> false;
+        Direction.directionStrategy = () -> false;
 
         // when
-        Ladder ladder = new Ladder(widthOfLadder, heightOfLadder, directionStrategy);
+        Ladder ladder = new Ladder(widthOfLadder, heightOfLadder);
 
         // then
-        assertThat(ladder).isEqualTo(new Ladder(widthOfLadder, heightOfLadder, directionStrategy));
+        assertThat(ladder).isEqualTo(new Ladder(widthOfLadder, heightOfLadder));
     }
 
     @Test
     @DisplayName("Ladder result 연산")
     void result() {
         // given
-        Ladder ladder = new Ladder(4, 1, () -> true);
+        Direction.directionStrategy = () -> true;
+        Ladder ladder = new Ladder(4, 1);
 
         // when
         List<Integer> winningResult = ladder.result();

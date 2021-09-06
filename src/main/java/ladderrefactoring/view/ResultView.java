@@ -1,6 +1,6 @@
 package ladderrefactoring.view;
 
-import ladderrefactoring.domain.WinningResult;
+import ladderrefactoring.domain.ladder.WinningResult;
 import ladderrefactoring.domain.data.Person;
 import ladderrefactoring.domain.data.Result;
 import ladderrefactoring.domain.datas.People;

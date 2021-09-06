@@ -1,10 +1,9 @@
-package ladderrefactoring.domain;
+package ladderrefactoring.domain.ladder;
 
 import ladderrefactoring.domain.data.Person;
 import ladderrefactoring.domain.data.Result;
 import ladderrefactoring.domain.datas.People;
 import ladderrefactoring.domain.datas.Results;
-import ladderrefactoring.domain.ladder.Ladder;
 import ladderrefactoring.exception.CustomException;
 
 import java.util.Collections;

@@ -9,15 +9,28 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class DirectionTest {
 
+
     @Test
     @DisplayName("first Direction 생성")
     void create_first() {
         // when
-        Direction direction = Direction.first(() -> false);
+        Direction.directionStrategy = () -> false;
+        Direction direction = Direction.first();
 
         // then
         assertThat(direction).isEqualTo(Direction.of(false, false));
         assertThat(direction.left()).isFalse();
+    }
+
+    @Test
+    @DisplayName("중간 Direction 생성")
+    void create_middle() {
+        // when
+        Direction direction = Direction.of(false, true).next();
+
+        // then
+        assertThat(direction).isEqualTo(Direction.of(true, false));
+        assertThat(direction.left()).isTrue();
     }
 
     @Test
@@ -30,40 +43,6 @@ class DirectionTest {
         assertThat(direction).isEqualTo(Direction.of(true, false));
         assertThat(direction.left()).isTrue();
         assertThat(direction.right()).isFalse();
-    }
-
-    @Test
-    @DisplayName("중간 Direction 생성")
-    void create_middle() {
-        // when
-        Direction direction = Direction.first(() -> false).next(() -> false);
-
-        // then
-        assertThat(direction).isEqualTo(Direction.of(false, false));
-        assertThat(direction.left()).isFalse();
-    }
-
-    @Test
-    @DisplayName("first Direction 생성")
-    void create_first2() {
-        // when
-        Direction.directionStrategy = () -> false;
-        Direction direction = Direction.first();
-
-        // then
-        assertThat(direction).isEqualTo(Direction.of(false, false));
-        assertThat(direction.left()).isFalse();
-    }
-
-    @Test
-    @DisplayName("중간 Direction 생성")
-    void create_middle2() {
-        // when
-        Direction direction = Direction.of(false, true).next();
-
-        // then
-        assertThat(direction).isEqualTo(Direction.of(true, false));
-        assertThat(direction.left()).isTrue();
     }
 
     @Test
