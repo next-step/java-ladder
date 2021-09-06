@@ -43,4 +43,8 @@ public class LadderLine {
     public int hashCode() {
         return Objects.hash(points);
     }
+
+    public List<Boolean> points() {
+        return this.points;
+    }
 }
