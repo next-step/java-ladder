@@ -2,7 +2,7 @@ package laddergame.user;
 
 import java.util.Objects;
 
-public class UserName{
+public class UserName {
 
     private static final int NAME_MAX_LENGTH = 5;
     private static final String BLANK = "";

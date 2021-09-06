@@ -22,7 +22,7 @@ class UserNameTest {
 
     @DisplayName("1자 미만 or 5자 초과시 예외 발생")
     @ParameterizedTest
-    @ValueSource(strings={"", "abcdef"})
+    @ValueSource(strings = {"", "abcdef"})
     void nameLength(String name) {
         assertThatThrownBy(() -> new UserName(name))
                 .isInstanceOf(IllegalArgumentException.class);
