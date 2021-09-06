@@ -13,7 +13,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 class LadderLinesTest {
 
     private static final int USER_COUNT = 4;
-
     private List<LadderLine> ladderLines;
 
     @BeforeEach
@@ -32,5 +31,13 @@ class LadderLinesTest {
     void create_height() {
         Height height = new Height(5);
         assertThat(new LadderLines(height)).isEqualTo(new LadderLines(height));
+    }
+
+    @DisplayName("사람수, 사다리 높이, connection 사용하여 초기화")
+    @Test
+    void create_countOfPerson_height_connection() {
+        Height height = new Height(5);
+        assertThat(new LadderLines(height, USER_COUNT, () -> true))
+                .isEqualTo(new LadderLines(height, USER_COUNT, () -> true));
     }
 }
