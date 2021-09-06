@@ -45,6 +45,10 @@ public class UserNames {
         return this.names;
     }
 
+    public int length() {
+        return this.names.size();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
