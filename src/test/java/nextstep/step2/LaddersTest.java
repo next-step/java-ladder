@@ -9,7 +9,7 @@ import nextstep.step2.domain.Participant;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class LadderTest {
+public class LaddersTest {
 
 
   @ParameterizedTest
@@ -17,7 +17,7 @@ public class LadderTest {
   void Ladder_참가자_모집_테스트(String participantsStr) {
     String[] participants = participantsStr.split(",");
 
-    GameParticipants gameParticipants = LadderGame.join(participantsStr);
+    GameParticipants gameParticipants = new GameParticipants(participantsStr);
     for (int i = 0; i < gameParticipants.getParticipantsSize(); i++) {
       assertThat(gameParticipants.getParticipant(i)).isEqualTo(new Participant(participants[i]));
     }
@@ -26,7 +26,7 @@ public class LadderTest {
   @ParameterizedTest
   @ValueSource(strings = {"pobi123,honux123,crong123,jk1234"})
   void Ladder_참가자명_길이_테스트(String participantsStr) {
-    assertThatThrownBy(() -> LadderGame.join(participantsStr))
+    assertThatThrownBy(() -> new GameParticipants(participantsStr))
         .isInstanceOf(IllegalArgumentException.class);
   }
 

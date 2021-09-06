@@ -9,18 +9,13 @@ import nextstep.step2.view.ResertView;
 
 public class LadderGame {
 
-  public static GameParticipants join(String participants) {
-    return new GameParticipants(participants);
-  }
-
-
   public static void main(String[] args) {
 
     InputView inputView = new InputView();
     String participants = inputView.getParticipants();
     int ladderHeight = inputView.getLadderHeigh();
 
-    GameParticipants gameParticipants = LadderGame.join(participants);
+    GameParticipants gameParticipants = new GameParticipants(participants);
 
     Ladders ladders = new Ladders(ladderHeight);
     List<Line> lines = ladders.create(gameParticipants);

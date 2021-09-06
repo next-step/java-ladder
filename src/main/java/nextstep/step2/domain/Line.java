@@ -8,7 +8,11 @@ public class Line {
 
   private List<Boolean> points = new ArrayList<>();
 
-  void generator(GameParticipants gameParticipants) {
+  Line(GameParticipants participants) {
+    generator(participants);
+  }
+
+  private void generator(GameParticipants gameParticipants) {
 
     for (int i = 0; i < gameParticipants.getParticipantsSize(); i++) {
       addRandomPoint(i);

@@ -14,7 +14,8 @@ public class LineTest {
   @ValueSource(strings = {"pobi,honux,crong,jk"})
   void 사다리_line_생성_테스트(String participantsStr) {
     int ladderHeight = 5;
-    GameParticipants gameParticipants = LadderGame.join(participantsStr);
+
+    GameParticipants gameParticipants = new GameParticipants(participantsStr);
 
     Ladders ladders = new Ladders(ladderHeight);
     List<Line> lines = ladders.create(gameParticipants);

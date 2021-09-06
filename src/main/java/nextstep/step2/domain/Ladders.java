@@ -1,7 +1,8 @@
 package nextstep.step2.domain;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Ladders {
 
@@ -15,14 +16,8 @@ public class Ladders {
     return ladderHeigh;
   }
 
-  public List<Line> create(GameParticipants gameParticipants) {
-    List<Line> lines = new ArrayList<>();
-    for (int i = 0; i < ladderHeigh; i++) {
-      Line line = new Line();
-      line.generator(gameParticipants);
-      lines.add(line);
-    }
-
-    return lines;
+  public List<Line> create(GameParticipants participants) {
+    return Stream.generate(() -> new Line(participants)).limit(participants.getParticipantsSize())
+        .collect(Collectors.toList());
   }
 }
