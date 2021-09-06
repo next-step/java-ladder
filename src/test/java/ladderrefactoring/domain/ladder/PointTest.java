@@ -20,7 +20,7 @@ class PointTest {
 
     @Test
     @DisplayName("중간 Point 생성")
-    void create2() {
+    void create() {
         // when
         Point point = Point.first(() -> false).next(() -> false);
         // then
@@ -29,7 +29,7 @@ class PointTest {
 
     @Test
     @DisplayName("마지막 Point 생성")
-    void last2(){
+    void last(){
         // when
         Point pointLast = Point.first(() -> true).last();
         // then
@@ -38,7 +38,7 @@ class PointTest {
 
     @ParameterizedTest(name = "Point 이동 [{index}] {0} {1} {2} -> {3}")
     @CsvSource({"false, false, 1", "true, false, 0", "false, true, 2"})
-    void move2(boolean left, boolean right, int result) {
+    void move(boolean left, boolean right, int result) {
         // when
         Point point = Point.of(1, Direction.of(left, right));
         // then

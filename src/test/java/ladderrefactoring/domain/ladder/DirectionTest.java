@@ -11,9 +11,9 @@ class DirectionTest {
 
     @Test
     @DisplayName("first Direction 생성")
-    void create_first2() {
+    void create_first() {
         // when
-        Direction direction = Direction.first(() -> false).next(() -> false);
+        Direction direction = Direction.first(() -> false);
 
         // then
         assertThat(direction).isEqualTo(Direction.of(false, false));
@@ -22,7 +22,7 @@ class DirectionTest {
 
     @Test
     @DisplayName("last Direction 생성")
-    void create_last2() {
+    void create_last() {
         // when
         Direction direction = Direction.first(() -> true).last();
 
@@ -34,7 +34,7 @@ class DirectionTest {
 
     @Test
     @DisplayName("중간 Direction 생성")
-    void create2() {
+    void create_middle() {
         // when
         Direction direction = Direction.first(() -> false).next(() -> false);
 
@@ -45,7 +45,7 @@ class DirectionTest {
 
     @Test
     @DisplayName("Direction 생성 실패 : true, true")
-    void create_fail2() {
+    void create_fail() {
         // when, then
         assertThatThrownBy(() -> Direction.of(true, true))
                 .isInstanceOf(CustomException.class);
