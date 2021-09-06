@@ -63,4 +63,17 @@ class StringUtilTest {
             .withMessageMatching("String 값은 null이 들어올 수 없다.");
     }
 
+    @Test
+    @DisplayName("splitByComma에 null이 들어오면 Exception 발생해야 한다.")
+    void splitByCommaFailByNullTest() {
+
+        // given
+        String input = null;
+
+        // when & then
+        assertThatExceptionOfType(IllegalArgumentException.class)
+            .isThrownBy(() -> StringUtil.splitByComma(input))
+            .withMessageMatching("String 값은 null이 들어올 수 없다.");
+    }
+
 }

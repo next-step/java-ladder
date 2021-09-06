@@ -36,6 +36,8 @@ public class StringUtil {
     }
 
     public static String[] splitByComma(String input) {
+        checkNullInput(input);
+
         return input.replaceAll(BLANK, EMPTY).split(COMMA);
     }
 
