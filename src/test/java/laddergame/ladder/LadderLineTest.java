@@ -10,12 +10,6 @@ class LadderLineTest {
 
     private static final int USER_COUNT = 4;
 
-    @DisplayName("사람 수가 생성자의 매개변수다")
-    @Test
-    void create() {
-        assertThat(new LadderLine(USER_COUNT)).isEqualTo(new LadderLine(USER_COUNT));
-    }
-
     @DisplayName("연결가능여부가 항상 false일 경우, 라인수는 0개")
     @Test
     void connection_false() {

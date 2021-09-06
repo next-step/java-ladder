@@ -9,6 +9,7 @@ import java.util.stream.IntStream;
 
 public class LadderLine {
 
+    // TODO : 리네임, 일급 객체로 감싸기
     private final List<Boolean> points = new ArrayList<>();
 
     public LadderLine(int countOfPerson, Connection connection) {
@@ -16,11 +17,7 @@ public class LadderLine {
                 .forEach(i -> connect(connection));
     }
 
-    public LadderLine(int countOfPerson) {
-        IntStream.range(1, countOfPerson)
-                .forEach(i -> connect(() -> false));
-    }
-
+    // TODO: points로 로직 위임
     private void connect(Connection connection) {
         if (points.isEmpty()) {
             points.add(connection.able());
