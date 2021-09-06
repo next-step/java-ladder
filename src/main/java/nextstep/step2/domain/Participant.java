@@ -1,4 +1,4 @@
-package nextstep.step2;
+package nextstep.step2.domain;
 
 public class Participant {
 
@@ -19,4 +19,7 @@ public class Participant {
     return this.participantName.equals(((Participant) obj).participantName);
   }
 
+  public String getParticipantName() {
+    return participantName;
+  }
 }

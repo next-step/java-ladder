@@ -1,14 +1,14 @@
-package nextstep.step2;
+package nextstep.step2.domain;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Ladders {
+public class GameParticipants {
 
-  List<Participant> participants;
+  private List<Participant> participants;
 
-  public Ladders(String participants) {
+  public GameParticipants(String participants) {
     this.participants = Arrays.asList(participants.split(",")).stream()
         .map(Participant::new).collect(Collectors.toList());
   }
