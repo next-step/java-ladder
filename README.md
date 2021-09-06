@@ -1,9 +1,9 @@
 # 사다리 게임
 
 ## Step2 TODO
-- [ ] InputView
+- [X] InputView
   - [X] 참여자 이름 받기
-  - [ ] 최대 사다리 높이 받기  
+  - [X] 최대 사다리 높이 받기  
 
 - [ ] ResultView
   - [ ] 실행 결과 출력
