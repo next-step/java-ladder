@@ -18,7 +18,7 @@ public class LadderApp {
         ResultView.printParticipant(name.getParticipantNames());
         ResultView.printLadderResult(ladder.getLines());
         ResultView.printResultColumn(result);
-
+        
         String target = InputView.requestTarget();
         ResultView.printResultOfTarget(target, ladderGameManager.getLadderResults());
     }

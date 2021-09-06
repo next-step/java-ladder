@@ -7,7 +7,7 @@ public class LadderGameColumns {
     private List<LadderGameColumn> ladderGameColumns;
 
     public LadderGameColumns(Name name) {
-        ladderGameColumns = name.getParticipantNames()
+        name.getParticipantNames()
                 .stream()
                 .map(s -> new LadderGameColumn(name.getParticipantNames().indexOf(s), s))
                 .collect(Collectors.toList());
@@ -16,30 +16,38 @@ public class LadderGameColumns {
     public void runLadder(int height, Ladder ladder) {
         for (int i = 0; i < height; i++) {
             Line line = ladder.getLines().get(i);
-            ladderGameColumns = runGameByFloor(line);
+            runGameByFloor(line);
         }
     }
 
-    private List<LadderGameColumn> runGameByFloor(Line line) {
-        return ladderGameColumns.stream()
-                .map(ladderGameColumn -> gameByPosition(line, ladderGameColumn))
+    private void runGameByFloor(Line line) {
+        ladderGameColumns.stream()
+                .map(ladderGameColumn -> gameByColumn(line, ladderGameColumn))
                 .collect(Collectors.toList());
     }
 
-    private LadderGameColumn gameByPosition(Line line, LadderGameColumn ladderGameColumn) {
+    private LadderGameColumn gameByColumn(Line line, LadderGameColumn ladderGameColumn) {
         int index = ladderGameColumn.getPosition();
-        // 현재 포지션에서 왼쪽에 사다리가 존재하면서, 연결 라인이 있을 때, 왼쪽으로 위치 이동
-        if (index - 1 >= 0 && line.getPoints().get(index - 1)) {
+        if (leftMoveStrategy(index, line)) {
             ladderGameColumn.moveLeft();
             return ladderGameColumn;
         }
-        // 현재 포지션에서 오른쪽에 사다리가 존재하면서, 연결 라인이 있을 때, 오른쪽으로 위치 이동
-        if (index < ladderGameColumns.size() - 1 && line.getPoints().get(index)) {
+        if (rightMoveStrategy(line, index)) {
             ladderGameColumn.moveRight();
             return ladderGameColumn;
         }
         // 좌, 우에 사다리가 존재하지 않거나, 연결 라인이 없을 때 현재 포지션을 고수한다.
         return ladderGameColumn;
+    }
+
+    private boolean rightMoveStrategy(Line line, int index) {
+        // 현재 포지션에서 오른쪽에 사다리가 존재하면서, 연결 라인이 있을 때, 오른쪽으로 위치 이동
+        return index < ladderGameColumns.size() - 1 && line.getPoints().get(index);
+    }
+
+    private boolean leftMoveStrategy(int index, Line line) {
+        // 현재 포지션에서 왼쪽에 사다리가 존재하면서, 연결 라인이 있을 때, 왼쪽으로 위치 이동
+        return index - 1 >= 0 && line.getPoints().get(index);
     }
 
     public void calculateResult(Result results) {
