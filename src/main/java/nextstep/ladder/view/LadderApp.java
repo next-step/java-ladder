@@ -37,7 +37,7 @@ public class LadderApp {
         while(true){
             String name = InputView.getName(scanner);
             if("all".equals(name)){
-                System.out.println("종료");
+                OutputView.showAll(map);
                 break;
             }
             System.out.println(map.findResult(name));

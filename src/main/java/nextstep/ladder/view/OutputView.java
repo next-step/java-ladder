@@ -64,4 +64,7 @@ public class OutputView {
                 .collect(Collectors.joining( "|", BLANK +"|", "|"));
     }
 
+    public static void showAll(ResultMap map) {
+        System.out.println(map.allResult());
+    }
 }

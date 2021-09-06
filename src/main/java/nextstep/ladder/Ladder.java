@@ -62,17 +62,22 @@ public class Ladder {
 
     public void playLadderGame(){
         // 해당부분 스트림 처리 조언 요청....
-        for (Participant participant : participants.players()) {
-            Position position = participant.position();
-            for (Line line : lines) {
-                if (position.value() != participants.size() - 1 && line.pointLists().get(position.value())) {
-                    participant.movePosition(position.value());
-                } else if (position.value() != 0 && line.pointLists().get(position.value() - 1)) {
-                    participant.movePosition(position.value() - 1);
-                }
-                position = participant.position();
-            }
-        }
+        lines.stream()
+                .forEach(line -> {
+                    participants.players().stream()
+                            .forEach(player -> line.movePlayer(player));
+                });
+//        for (Participant participant : participants.players()) {
+//            Position position = participant.position();
+//            for (Line line : lines) {
+//                if (position.value() != participants.size() - 1 && line.pointLists().get(position.value())) {
+//                    participant.movePosition(position.value());
+//                } else if (position.value() != 0 && line.pointLists().get(position.value() - 1)) {
+//                    participant.movePosition(position.value() - 1);
+//                }
+//                position = participant.position();
+//            }
+//        }
     }
 
     public Participants getParticipants() {
