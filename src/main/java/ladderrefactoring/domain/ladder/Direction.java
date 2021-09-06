@@ -2,12 +2,14 @@ package ladderrefactoring.domain.ladder;
 
 import ladderrefactoring.exception.CustomException;
 import ladderrefactoring.strategy.DirectionStrategy;
+import ladderrefactoring.strategy.RandomDirectionStrategy;
 
 import java.util.Objects;
 
 public class Direction {
 
     public static final String EXIST_TRUE_REPETITION = "연속된 사다리가 존재 합니다.";
+    protected static DirectionStrategy directionStrategy = new RandomDirectionStrategy();
 
     private final boolean left;
     private final boolean right;
@@ -27,6 +29,17 @@ public class Direction {
     }
 
     public Direction next(DirectionStrategy directionStrategy) {
+        if (this.right) {
+            return of(true, false);
+        }
+        return of(false, directionStrategy.create());
+    }
+
+    public static Direction first() {
+        return of(false, directionStrategy.create());
+    }
+
+    public Direction next() {
         if (this.right) {
             return of(true, false);
         }
