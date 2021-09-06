@@ -1,5 +1,7 @@
 package ladder.util;
 
+import static ladder.domain.ladder.Point.createLast;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.DisplayName;
@@ -46,6 +48,19 @@ class StringUtilTest {
 
         // then
         assertTrue(result);
+    }
+
+    @Test
+    @DisplayName("containsComma에 null이 들어오면 Exception 발생해야 한다.")
+    void containsCommaFailByNullTest() {
+
+        // given
+        String input = null;
+
+        // when & then
+        assertThatExceptionOfType(IllegalArgumentException.class)
+            .isThrownBy(() -> StringUtil.containsComma(input))
+            .withMessageMatching("String 값은 null이 들어올 수 없다.");
     }
 
 }
