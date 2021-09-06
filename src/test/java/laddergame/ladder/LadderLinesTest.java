@@ -1,11 +1,7 @@
 package laddergame.ladder;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.Arrays;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -13,25 +9,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 class LadderLinesTest {
 
     private static final int USER_COUNT = 4;
-    private List<LadderLine> ladderLines;
-
-    @BeforeEach
-    void setUp() {
-        ladderLines = Arrays.asList(new LadderLine(USER_COUNT), new LadderLine(USER_COUNT), new LadderLine(USER_COUNT));
-    }
-
-    @DisplayName("라인 여러개로 초기화된다.")
-    @Test
-    void create_lines() {
-        assertThat(new LadderLines(ladderLines)).isEqualTo(new LadderLines(ladderLines));
-    }
-
-    @DisplayName("사다리 높이만큼의 라인을 가진다.")
-    @Test
-    void create_height() {
-        Height height = new Height(5);
-        assertThat(new LadderLines(height)).isEqualTo(new LadderLines(height));
-    }
 
     @DisplayName("사람수, 사다리 높이, connection 사용하여 초기화")
     @Test
