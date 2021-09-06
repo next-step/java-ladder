@@ -16,13 +16,9 @@ public class RandomLineGenerateStrategy implements LineGenerateStrategy {
         return LazyHolder.instance;
     }
 
-    public static Random getRandom() {
-        return LazyHolder.random;
-    }
-
     @Override
     public boolean generateLine() {
-        return getRandom().nextBoolean();
+        return LazyHolder.random.nextBoolean();
     }
 
 }
