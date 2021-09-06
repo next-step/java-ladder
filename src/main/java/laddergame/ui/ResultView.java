@@ -1,5 +1,6 @@
 package laddergame.ui;
 
+import laddergame.ladder.Connection;
 import laddergame.ladder.LadderLine;
 import laddergame.user.UserName;
 
@@ -28,13 +29,13 @@ public class ResultView {
 
     private void showLines(List<LadderLine> ladderLines) {
         ladderLines.forEach(line -> {
-            line.points().forEach(this::drawConnection);
+            line.connections().forEach(this::drawConnection);
             System.out.println(END_OF_LADDER_LINE);
         });
     }
 
-    private void drawConnection(boolean point) {
-        if (point) {
+    private void drawConnection(Connection connection) {
+        if (connection.equals(Connection.CONNECTED)) {
             System.out.print(CONNECTED_LADDER_LINE);
             return;
         }

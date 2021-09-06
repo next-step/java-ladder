@@ -32,6 +32,7 @@
 
 - [X] 메인 함수 (로또 게임 실행용)
 
-- [ ] Points
+- [X] 연결 가능 여부 (Connection) 추가
+  - [X] boolean을 connection으로 감쌈
 
  

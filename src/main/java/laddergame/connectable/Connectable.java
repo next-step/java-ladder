@@ -1,5 +1,7 @@
 package laddergame.connectable;
 
+import laddergame.ladder.Connection;
+
 public interface Connectable {
-    Boolean able();
+    Connection value();
 }

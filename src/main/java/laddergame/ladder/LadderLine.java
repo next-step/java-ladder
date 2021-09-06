@@ -9,27 +9,38 @@ import java.util.stream.IntStream;
 
 public class LadderLine {
 
-    // TODO : 리네임, 일급 객체로 감싸기
-    private final List<Boolean> points = new ArrayList<>();
+    private static final int CONNECTION_START_IDX = 1;
+    private final List<Connection> connections = new ArrayList<>();
 
     public LadderLine(int countOfPerson, Connectable connectable) {
-        IntStream.range(1, countOfPerson)
+        initConnections(countOfPerson, connectable);
+    }
+
+    private void initConnections(int countOfPerson, Connectable connectable) {
+        IntStream.range(CONNECTION_START_IDX, countOfPerson)
                 .forEach(i -> connect(connectable));
     }
 
-    // TODO: points로 로직 위임
     private void connect(Connectable connectable) {
-        if (points.isEmpty()) {
-            points.add(connectable.able());
+        if (connections.isEmpty()) {
+            connections.add(connectable.value());
             return;
         }
 
-        if (points.get(points.size() - 1).equals(true)) {
-            points.add(false); // 마지막 값이 true였을 경우 false로 넣는다.
+        if (isLatestConnected()) {
+            connections.add(Connection.DISCONNECTED);
             return;
         }
 
-        points.add(connectable.able()); // default
+        connections.add(connectable.value());
+    }
+
+    private boolean isLatestConnected() {
+        return connections.get(connections.size() - 1).equals(Connection.CONNECTED);
+    }
+
+    public List<Connection> connections() {
+        return this.connections;
     }
 
     @Override
@@ -37,15 +48,11 @@ public class LadderLine {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         LadderLine that = (LadderLine) o;
-        return Objects.equals(points, that.points);
+        return Objects.equals(connections, that.connections);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(points);
-    }
-
-    public List<Boolean> points() {
-        return this.points;
+        return Objects.hash(connections);
     }
 }

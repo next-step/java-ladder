@@ -14,9 +14,9 @@ class LadderLineTest {
     @Test
     void connectable_false() {
         assertThat(
-                new LadderLine(USER_COUNT, () -> false)
-                        .points().stream()
-                        .filter(point -> point.equals(true))
+                new LadderLine(USER_COUNT, () -> Connection.DISCONNECTED)
+                        .connections().stream()
+                        .filter(point -> point.equals(Connection.CONNECTED))
                         .count()
         ).isZero();
     }
@@ -26,9 +26,9 @@ class LadderLineTest {
     @Test
     void connectable_true() {
         assertThat(
-                new LadderLine(USER_COUNT, () -> true)
-                        .points().stream()
-                        .filter(point -> point.equals(true))
+                new LadderLine(USER_COUNT, () -> Connection.CONNECTED)
+                        .connections().stream()
+                        .filter(point -> point.equals(Connection.CONNECTED))
                         .count()
         ).isNotZero();
     }
@@ -36,7 +36,8 @@ class LadderLineTest {
     @DisplayName("사람수-1 = 포인트 수") // TODO : 포인트 수 리네임
     @Test
     void pointsCount_equals_countOfPearson_minus_1() {
-        assertThat(new LadderLine(USER_COUNT, () -> true).points().size()).isEqualTo(USER_COUNT - 1);
+        assertThat(new LadderLine(USER_COUNT, () -> Connection.CONNECTED).connections().size())
+                .isEqualTo(USER_COUNT - 1);
     }
 
 }
