@@ -39,4 +39,10 @@ class LadderLineTest {
         ).isNotZero();
     }
 
+    @DisplayName("사람수-1 = 포인트 수") // TODO : 포인트 수 리네임
+    @Test
+    void pointsCount_equals_countOfPearson_minus_1() {
+        assertThat(new LadderLine(USER_COUNT, () -> true).points().size()).isEqualTo(USER_COUNT - 1);
+    }
+
 }
