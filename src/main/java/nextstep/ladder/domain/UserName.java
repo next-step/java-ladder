@@ -8,6 +8,10 @@ public class UserName {
 
     private String name;
 
+    static {
+        
+    }
+
     public UserName(String name) {
         this.name = name;
         if (name.length() > USER_NAME_LENGTH_LIMIT) {

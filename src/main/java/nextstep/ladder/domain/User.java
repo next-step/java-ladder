@@ -17,12 +17,13 @@ public class User {
         return position.findLastPosition(ladder);
     }
 
-    public String getResult(List<String> results) {
-        return position.getResult(results);
+    public Result findUserResult(List<Result> results) {
+        return position.findUserResult(results);
     }
 
     @Override
     public String toString() {
         return userName.toString();
     }
+
 }

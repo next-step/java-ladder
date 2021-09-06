@@ -1,6 +1,7 @@
 package nextstep.ladder.controller;
 
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.Result;
 import nextstep.ladder.domain.User;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
@@ -12,7 +13,7 @@ public class LadderController {
     public static void startLadder() {
         List<User> users = InputView.getUserNames();
 
-        List<String> results = InputView.getResults();
+        List<Result> results = InputView.getResults();
 
         int ladderHeight = InputView.ladderHeight();
 

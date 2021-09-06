@@ -8,11 +8,16 @@ public class Position {
 
     private int lastPosition;
 
+    public Position(int startPosition, int lastPosition) {
+        this.startPosition = startPosition;
+        this.lastPosition = lastPosition;
+    }
+
     public Position(int startPosition) {
         this.startPosition = startPosition;
     }
 
-    public String getResult(List<String> results) {
+    public Result findUserResult(List<Result> results) {
         return results.get(lastPosition);
     }
 

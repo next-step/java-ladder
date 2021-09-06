@@ -1,6 +1,7 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.domain.Line;
+import nextstep.ladder.domain.Result;
 import nextstep.ladder.domain.User;
 
 import java.util.List;
@@ -11,7 +12,7 @@ public class ResultView {
     private static final String EXIST_MIDDLE_LADDER = "-----|";
     private static final String EMPTY_MIDDLE_LADDER = "     |";
 
-    public static void result(List<Line> ladder, List<User> user, List<String> results) {
+    public static void result(List<Line> ladder, List<User> user, List<Result> results) {
         printUsers(user);
         ladder.stream().forEach((line) -> printLadder(line.getPoints()));
         printResults(results);
@@ -36,7 +37,7 @@ public class ResultView {
         System.out.println();
     }
 
-    private static void printResults(List<String> results) {
+    private static void printResults(List<Result> results) {
         results.stream().forEach(result -> System.out.printf("%6s", result));
         System.out.println();
     }

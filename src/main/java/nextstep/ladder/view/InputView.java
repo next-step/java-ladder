@@ -1,5 +1,6 @@
 package nextstep.ladder.view;
 
+import nextstep.ladder.domain.Result;
 import nextstep.ladder.domain.User;
 
 import java.util.*;
@@ -27,11 +28,11 @@ public class InputView {
         List<User> users = new ArrayList<>();
 
         IntStream.range(0, userNameList.length).forEach(index -> users.add(new User(userNameList[index], index)));
-        
+
         return users;
     }
 
-    public static List<String> getResults() {
+    public static List<Result> getResults() {
         while (true) {
             try {
                 return makeResults();
@@ -41,7 +42,7 @@ public class InputView {
         }
     }
 
-    public static void printResults(List<User> users, List<String> results) {
+    public static void printResults(List<User> users, List<Result> results) {
         while (true) {
             try {
                 System.out.println("결과를 보고 싶은 사람은?");
@@ -54,7 +55,7 @@ public class InputView {
         }
     }
 
-    private static void printResultByName(String userName, List<User> users, List<String> results) {
+    private static void printResultByName(String userName, List<User> users, List<Result> results) {
         if ("all".equals(userName)) {
             System.out.println("실행 결과");
             users.stream().
@@ -68,14 +69,14 @@ public class InputView {
         System.out.println(user + " : " + user.getResult(results));
     }
 
-    private static List<String> makeResults() {
+    private static List<Result> makeResults() {
         String resultInput;
         System.out.println("실행 결과를 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         resultInput = SCANNER.next();
         String[] resultList = resultInput.split(",");
-        List<String> results = new ArrayList<>();
+        List<Result> results = new ArrayList<>();
 
-        Arrays.stream(resultList).forEach(result -> results.add(result));
+        Arrays.stream(resultList).forEach(result -> results.add(new Result(result)));
 
         return results;
     }
