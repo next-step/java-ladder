@@ -15,7 +15,7 @@ public class Main {
 
     public static void main(String[] args) {
         UserService userService = new UserService();
-        LadderService ladderService = new LadderService(RandomLineGenerateStrategy.getINSTANCE());
+        LadderService ladderService = new LadderService(RandomLineGenerateStrategy.getInstance());
 
         Users users = userService.createUsers(inputUsernames());
         Ladder ladder = ladderService.createLadder(new LadderHeight(inputLadderHeight()), users);

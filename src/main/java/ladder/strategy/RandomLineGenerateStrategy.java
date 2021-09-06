@@ -4,10 +4,15 @@ import java.util.Random;
 
 public class RandomLineGenerateStrategy implements LineGenerateStrategy {
 
-    private static final RandomLineGenerateStrategy INSTANCE = new RandomLineGenerateStrategy();
+    private RandomLineGenerateStrategy() {
+    }
 
-    public static RandomLineGenerateStrategy getINSTANCE() {
-        return INSTANCE;
+    private static final class LazyHolder {
+        private static final RandomLineGenerateStrategy instance = new RandomLineGenerateStrategy();
+    }
+
+    public static RandomLineGenerateStrategy getInstance() {
+        return LazyHolder.instance;
     }
 
     @Override
