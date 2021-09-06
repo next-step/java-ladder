@@ -17,27 +17,7 @@ public class Point {
     public int changeIndex(int index) {
         return index + direction.getMove();
     }
-    public static Point first(ValueStrategy valueStrategy) {
-        return new Point(false, valueStrategy.generateValue());
-    }
 
-    public Point next(ValueStrategy valueStrategy) {
-        return new Point(this.getCurrent(), generateCurrentValue(valueStrategy, this.getCurrent()));
-    }
-
-    public Point last() {
-        return new Point(this.direction.getCurrent(), false);
-    }
-
-    private static boolean generateCurrentValue(ValueStrategy valueStrategy, boolean beforeCurrent) {
-        boolean current = valueStrategy.generateValue();
-
-        if (beforeCurrent) {
-            current = false;
-        }
-
-        return current;
-    }
 
     @Override
     public boolean equals(Object o) {

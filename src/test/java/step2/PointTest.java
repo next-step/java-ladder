@@ -52,32 +52,4 @@ public class PointTest {
                 .isInstanceOf(IllegalStateException.class);
     }
 
-    @Test
-    public void 첫번째_포인트_생성() {
-        assertThat(Point.first(() -> true)).isEqualTo(new Point(false, true));
-    }
-
-    @Test
-    public void 중간포인트_포인트_생성() {
-        //given
-        Point first = new Point(false, false);
-
-        //when
-        Point actual = first.next(() -> true);
-
-        //then
-        assertThat(actual).isEqualTo(new Point(false, true));
-    }
-
-    @Test
-    public void 마지막_포인트_생성() {
-        //given
-        Point point = new Point(false, true);
-
-        //when
-        Point last = point.last();
-
-        //then
-        assertThat(last).isEqualTo(new Point(true, false));
-    }
 }

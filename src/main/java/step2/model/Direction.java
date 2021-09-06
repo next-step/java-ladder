@@ -7,9 +7,9 @@ public enum Direction {
     LEFT(true, false, -1),
     DOWN(false, false, 0);
 
-    private boolean left;
-    private boolean current;
-    private int move;
+    private final boolean left;
+    private final boolean current;
+    private final int move;
 
     Direction(boolean left, boolean current, int move) {
         if (left && current) {
