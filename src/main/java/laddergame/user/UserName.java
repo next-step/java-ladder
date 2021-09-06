@@ -15,7 +15,7 @@ public class UserName{
     }
 
     private void isBlank(String name) {
-        if(name == null || BLANK.equals(name.trim())) {
+        if (name == null || BLANK.equals(name.trim())) {
             throw new IllegalArgumentException("이름은 빈 값일 수 없습니다.");
         }
     }
@@ -24,6 +24,10 @@ public class UserName{
         if (name.length() > NAME_MAX_LENGTH) {
             throw new IllegalArgumentException("이름은 5자 이하입니다.");
         }
+    }
+
+    public String value() {
+        return name;
     }
 
     @Override
