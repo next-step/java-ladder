@@ -3,8 +3,7 @@ package step2;
 import org.junit.jupiter.api.Test;
 import step2.model.User;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 import static step2.view.ResultView.addBlank;
 
 public class UserTest {

@@ -3,58 +3,62 @@ package step2.model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Line {
-    private final List<Boolean> points;
+    private List<Point> points;
 
-    public Line(int numberOfUser, LadderStrategy ladderStrategy) {
-        points = new ArrayList<>();
-
-        for (int i = 0; i < numberOfUser; i++) {
-            drawPoint(numberOfUser, ladderStrategy, i);
-        }
-
+    public Line(int numberOfUser, ValueStrategy valueStrategy) {
+        generatePoint(numberOfUser, valueStrategy);
     }
 
-    public Line(List<Boolean> points) {
+    public Line(List<Point> points) {
         this.points = points;
     }
 
     public List<Boolean> getLine() {
-        return this.points;
+        return points.stream()
+                        .map(Point::getCurrent)
+                        .collect(Collectors.toList());
     }
 
-    private void drawPoint(int numberOfUser, LadderStrategy ladderStrategy, int index) {
-        boolean isPoint = ladderStrategy.generateLine();
+    public int changeIndex(int index) {
+        return points.get(index).changeIndex(index);
+    }
 
-        if (isLast(numberOfUser, index) || !isFirst(index) && lastPoint()) {
-            isPoint = false;
+    private void generatePoint(int numberOfPoint, ValueStrategy valueStrategy) {
+        points = new ArrayList<>();
+
+        points.add(first(valueStrategy));
+        middle(points, numberOfPoint, valueStrategy);
+        points.add(last(getLastPoint(points)));
+    }
+
+    private Point first(ValueStrategy valueStrategy) {
+        return new Point(false, valueStrategy.generateValue());
+    }
+
+    private void middle(List<Point> points, int numberOfPoint, ValueStrategy valueStrategy) {
+        for (int i = 1; i < numberOfPoint - 1; i++) {
+            points.add(next(getLastPoint(points), valueStrategy));
+        }
+    }
+
+    private Point next(Point lastPoint, ValueStrategy valueStrategy) {
+        boolean current = valueStrategy.generateValue();
+
+        if (lastPoint.getCurrent()) {
+            current = false;
         }
 
-        points.add(isPoint);
+        return new Point(lastPoint.getCurrent(), current);
     }
 
-    public int checkPoint(int index){
-        if (points.get(index)) {
-            return 1;
-        }
-
-        if(index!=0 && points.get(index-1)) {
-            return -1;
-        }
-
-        return 0;
+    private Point last(Point lastPoint) {
+        return new Point(lastPoint.getCurrent(), false);
     }
 
-    private boolean isLast(int numberOfUser, int index) {
-        return index == numberOfUser - 1;
-    }
-
-    private boolean isFirst(int index) {
-        return index == 0;
-    }
-
-    private boolean lastPoint() {
+    private Point getLastPoint(List<Point> points) {
         return points.get(points.size() - 1);
     }
 

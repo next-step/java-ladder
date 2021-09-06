@@ -11,7 +11,12 @@ public class LineTest {
     @Test
     public void 사다리_라인_생성() {
         //given
-        Line expect = new Line(Arrays.asList(true, false, true, false));
+        Point first = new Point(false, true);
+        Point second = new Point(true, false);
+        Point third = new Point(false, true);
+        Point fourth = new Point(true, false);
+
+        Line expect = new Line(Arrays.asList(first, second, third, fourth));
 
         //when
         Line actual = new Line(4, () -> true);

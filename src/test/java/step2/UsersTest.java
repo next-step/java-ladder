@@ -4,8 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import step2.model.Users;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 public class UsersTest {
     @Test

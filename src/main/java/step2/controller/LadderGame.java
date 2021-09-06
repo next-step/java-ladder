@@ -18,8 +18,8 @@ public class LadderGame {
 
         String high = ask("최대 사다리 높이는 몇 인가요?");
 
-        Ladder ladder = new Ladder(high, numberOfUsers, new RandomLadderStrategy());
-        GameResults gameResults = ladder.runGame(Integer.parseInt(high), numberOfUsers, users, results);
+        Ladder ladder = new Ladder(high, numberOfUsers, new RandomValueStrategy());
+        GameResults gameResults = ladder.runGame(users, results);
 
         printResult(users.getNameList());
         printLadder(ladder.getLadder());
