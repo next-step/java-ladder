@@ -3,10 +3,12 @@ package ladder.model;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
+import java.util.List;
 
-import static java.lang.Boolean.*;
-import static java.lang.Boolean.TRUE;
+import static ladder.model.LadderLineGeneratorTest.generatePointsMethod;
+import static ladder.model.LadderLineGeneratorTest.ladderLinesGenerator;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
@@ -58,21 +60,23 @@ public class LadderGameTest {
 
     @DisplayName("플레이어의 사다리 실행 결과가 정상적으로 찾아져야 한다.")
     @Test
-    void findLadderResultOfPlayerTest() {
+    void findLadderResultOfPlayerTest() throws InvocationTargetException, IllegalAccessException {
         // given
         Players players = new Players(Arrays.asList("aiden", "pobi", "crong"));
 
-        LadderLine firstLine = new LadderLine(Arrays.asList(TRUE, FALSE));
-        LadderLine secondLine = new LadderLine(Arrays.asList(FALSE, TRUE));
-        LadderLine thirdLine = new LadderLine(Arrays.asList(TRUE, FALSE));
+        LadderLine firstLine = new LadderLine((List<LadderPoint>) generatePointsMethod.invoke(ladderLinesGenerator, Arrays.asList(true, false)));
+        LadderLine secondLine = new LadderLine((List<LadderPoint>) generatePointsMethod.invoke(ladderLinesGenerator, Arrays.asList(false, true)));
+        LadderLine thirdLine = new LadderLine((List<LadderPoint>) generatePointsMethod.invoke(ladderLinesGenerator, Arrays.asList(true, false)));
         Ladder ladder = new Ladder(Arrays.asList(firstLine, secondLine, thirdLine));
 
         LadderResults results = new LadderResults(Arrays.asList("1000", "2000", "3000"));
 
         LadderGame ladderGame = new LadderGame(players, ladder, results);
+        PlayerResults playerResults = ladderGame.play();
 
-        assertEquals(ladderGame.findResult("aiden"), "3000");
-        assertEquals(ladderGame.findResult("pobi"), "2000");
-        assertEquals(ladderGame.findResult("crong"), "1000");
+        // when, then
+        assertEquals(playerResults.findLadderResult("aiden"), "3000");
+        assertEquals(playerResults.findLadderResult("pobi"), "2000");
+        assertEquals(playerResults.findLadderResult("crong"), "1000");
     }
 }

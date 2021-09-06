@@ -12,11 +12,14 @@ public class WideLadderLinesGenerator extends LadderLinesGenerator {
     public List<LadderLine> generate(int ladderLineCount, int pointCount) {
         List<LadderLine> lines = IntStream.range(FIRST_INDEX, ladderLineCount)
                 .mapToObj(index -> {
-                    List<Integer> truePointIndices = new ArrayList<>();
-                    for (int truePointIndex = index; truePointIndex < pointCount; truePointIndex += ladderLineCount) {
-                        truePointIndices.add(truePointIndex);
+                    List<Integer> pointIndicesWithTrueRight = new ArrayList<>();
+                    int pointCountExcludingLastPoint = pointCount - LAST_POINT_COUNT;
+
+                    for (int truePointIndex = index; truePointIndex < pointCountExcludingLastPoint; truePointIndex += ladderLineCount) {
+                        pointIndicesWithTrueRight.add(truePointIndex);
                     }
-                    return LadderLine.of(pointCount, truePointIndices);
+
+                    return new LadderLine(generatePoints(pointCount, pointIndicesWithTrueRight));
                 })
                 .collect(toList());
 

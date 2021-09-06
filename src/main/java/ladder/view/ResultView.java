@@ -1,7 +1,6 @@
 package ladder.view;
 
-import ladder.model.LadderGame;
-import ladder.model.LadderLine;
+import ladder.model.*;
 
 import java.io.PrintStream;
 import java.util.List;
@@ -11,7 +10,6 @@ import static java.util.stream.Collectors.joining;
 
 public class ResultView {
     private static final int LADDER_WIDTH = 5;
-    public static final String PLAYER_NAME_FOR_ALL_LADDER_RESULT = "all";
     private static final String LADDER_RESULT_MESSAGE = "사다리 결과";
     private static final String EXECUTION_RESULT_MESSAGE = "실행 결과";
     private static final String ONE_BLANK_SPACE = " ";
@@ -19,8 +17,7 @@ public class ResultView {
     private static final String LADDER_LONGITUDINAL_AXIS = "|";
     private static final String LADDER_HORIZONTAL_AXIS = "-";
     private static final String COLON = ":";
-
-    private static final PrintStream printStream = System.out;
+    private static final PrintStream PRINT_STREAM = System.out;
 
     public static void printLadder(LadderGame ladderGame) {
         StringBuilder stringBuilder = new StringBuilder();
@@ -37,7 +34,7 @@ public class ResultView {
         }
         stringBuilder.append(generateStrFittedLadderFormat(ladderGame.getLadderResults()));
         stringBuilder.append(NEW_LINE);
-        printStream.print(stringBuilder);
+        PRINT_STREAM.print(stringBuilder);
     }
 
     private static String generateStrFittedLadderFormat(List<String> items) {
@@ -63,15 +60,18 @@ public class ResultView {
         stringBuilder.append(generateBlankSpace(LADDER_WIDTH));
         stringBuilder.append(LADDER_LONGITUDINAL_AXIS);
 
-        for (Boolean point : line.getPoints()) {
+        for (LadderPoint point : line.getPoints()) {
             stringBuilder.append(generatePointResult(point));
             stringBuilder.append(LADDER_LONGITUDINAL_AXIS);
         }
+
+        int lastLadderLongitudinalAxisIndex = stringBuilder.lastIndexOf(LADDER_LONGITUDINAL_AXIS);
+        stringBuilder.deleteCharAt(lastLadderLongitudinalAxisIndex);
         return stringBuilder.toString();
     }
 
-    private static String generatePointResult(Boolean point) {
-        if (point) {
+    private static String generatePointResult(LadderPoint point) {
+        if (point.isRight()) {
             return generateLadderHorizontalAxes();
         }
         return generateBlankSpace(LADDER_WIDTH);
@@ -83,37 +83,29 @@ public class ResultView {
                 .collect(joining());
     }
 
-    public static void printLadderResult(LadderGame ladderGame, String playerName) {
-        if (PLAYER_NAME_FOR_ALL_LADDER_RESULT.equals(playerName)) {
-            printAllLadderResult(ladderGame);
-            return;
-        }
-        printLadderResultOfPlayer(ladderGame, playerName);
+    public static void printLadderResult(String playerLadderResult) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(NEW_LINE);
+        stringBuilder.append(EXECUTION_RESULT_MESSAGE);
+        stringBuilder.append(NEW_LINE);
+        stringBuilder.append(playerLadderResult);
+        PRINT_STREAM.println(stringBuilder);
     }
 
-    private static void printAllLadderResult(LadderGame ladderGame) {
+    public static void printAllLadderResult(List<PlayerResult> playerResults) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(NEW_LINE);
         stringBuilder.append(EXECUTION_RESULT_MESSAGE);
         stringBuilder.append(NEW_LINE);
 
-        for (String playerName : ladderGame.getPlayerNames()) {
-            stringBuilder.append(playerName);
+        for (PlayerResult playerResult : playerResults) {
+            stringBuilder.append(playerResult.getPlayerName());
             stringBuilder.append(ONE_BLANK_SPACE);
             stringBuilder.append(COLON);
             stringBuilder.append(ONE_BLANK_SPACE);
-            stringBuilder.append(ladderGame.findResult(playerName));
+            stringBuilder.append(playerResult.getResult());
             stringBuilder.append(NEW_LINE);
         }
-        printStream.println(stringBuilder);
-    }
-
-    private static void printLadderResultOfPlayer(LadderGame ladderGame, String playerName) {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(NEW_LINE);
-        stringBuilder.append(EXECUTION_RESULT_MESSAGE);
-        stringBuilder.append(NEW_LINE);
-        stringBuilder.append(ladderGame.findResult(playerName));
-        printStream.println(stringBuilder);
+        PRINT_STREAM.println(stringBuilder);
     }
 }

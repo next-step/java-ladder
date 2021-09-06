@@ -10,7 +10,7 @@ public class LadderResults {
     public LadderResults(List<String> results) {
         validateNotEmpty(results);
         this.results = results.stream()
-                .map(LadderResult::of)
+                .map(LadderResult::new)
                 .collect(toList());
     }
 
@@ -30,8 +30,7 @@ public class LadderResults {
         return results.size();
     }
 
-    String get(int resultIndex) {
-        LadderResult result = results.get(resultIndex);
-        return result.getResult();
+    LadderResult get(int index) {
+        return results.get(index);
     }
 }

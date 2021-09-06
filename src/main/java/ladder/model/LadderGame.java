@@ -2,6 +2,8 @@ package ladder.model;
 
 import java.util.List;
 
+import static java.util.stream.Collectors.toList;
+
 public class LadderGame {
     private static final int FIRST_INDEX = 0;
 
@@ -28,13 +30,16 @@ public class LadderGame {
         return playerCountOfPlayers == playerCountOfLadder && playerCountOfPlayers == resultCount;
     }
 
-    int playerCount() {
-        return players.count();
+    public PlayerResults play() {
+        List<PlayerResult> playerResults = players.getPlayers()
+                .stream()
+                .map(player -> new PlayerResult(player, findLadderResult(player)))
+                .collect(toList());
+
+        return new PlayerResults(playerResults);
     }
 
-    public String findResult(String name) {
-        PlayerName player = new PlayerName(name);
-
+    private LadderResult findLadderResult(Player player) {
         int playerIndex = players.findIndex(player);
         validateExistingPlayer(playerIndex);
 
@@ -58,5 +63,9 @@ public class LadderGame {
 
     public List<String> getLadderResults() {
         return results.getResults();
+    }
+
+    int playerCount() {
+        return players.count();
     }
 }

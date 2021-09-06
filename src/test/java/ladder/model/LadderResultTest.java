@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertSame;
 
 @DisplayName("사다리 실행 결과 테스트")
 public class LadderResultTest {
@@ -15,11 +14,11 @@ public class LadderResultTest {
     void emptyLadderResultExceptionTest() {
         // given, when, then
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> LadderResult.of(""))
+                .isThrownBy(() -> new LadderResult(""))
                 .withMessage("사다리 실행 결과가 비었습니다.");
 
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> LadderResult.of(null))
+                .isThrownBy(() -> new LadderResult(null))
                 .withMessage("사다리 실행 결과가 비었습니다.");
     }
 
@@ -27,16 +26,9 @@ public class LadderResultTest {
     @Test
     void createLadderResultTest() {
         // given, when
-        LadderResult result = LadderResult.of("1000");
+        LadderResult result = new LadderResult("1000");
 
         // then
         assertEquals(result.getResult(), "1000");
-    }
-
-    @DisplayName("사다리 실행 결과값이 같은 객체가 기존에 존재하면, 기존 객체를 재사용해야 한다.")
-    @Test
-    void reuseLadderResultTest() {
-        // given, when, then
-        assertSame(LadderResult.of("1000"), LadderResult.of("1000"));
     }
 }
