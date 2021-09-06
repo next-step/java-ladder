@@ -2,6 +2,7 @@ package laddergame.user;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -40,8 +41,20 @@ public class UserNames {
         }
     }
 
-
     public List<UserName> value() {
         return this.names;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserNames userNames = (UserNames) o;
+        return Objects.equals(names, userNames.names);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(names);
     }
 }
