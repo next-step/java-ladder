@@ -12,17 +12,21 @@ public class LadderLine {
     private final List<Boolean> points = new ArrayList<>();
 
     public LadderLine(int countOfPerson, Connection connection) {
-        IntStream.range(0, countOfPerson)
+        IntStream.range(1, countOfPerson)
                 .forEach(i -> connect(connection));
     }
 
     public LadderLine(int countOfPerson) {
-        IntStream.range(0, countOfPerson)
+        IntStream.range(1, countOfPerson)
                 .forEach(i -> connect(() -> false));
     }
 
     private void connect(Connection connection) {
         if (points.isEmpty()) {
+            points.add(connection.able());
+            return;
+        }
+        if (!points.get(points.size() - 1).equals(false)) {
             points.add(connection.able());
             return;
         }
