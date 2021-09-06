@@ -1,6 +1,6 @@
 package laddergame.ladder;
 
-import laddergame.connectable.Connection;
+import laddergame.connectable.Connectable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,15 +12,15 @@ public class LadderLine {
     // TODO : 리네임, 일급 객체로 감싸기
     private final List<Boolean> points = new ArrayList<>();
 
-    public LadderLine(int countOfPerson, Connection connection) {
+    public LadderLine(int countOfPerson, Connectable connectable) {
         IntStream.range(1, countOfPerson)
-                .forEach(i -> connect(connection));
+                .forEach(i -> connect(connectable));
     }
 
     // TODO: points로 로직 위임
-    private void connect(Connection connection) {
+    private void connect(Connectable connectable) {
         if (points.isEmpty()) {
-            points.add(connection.able());
+            points.add(connectable.able());
             return;
         }
 
@@ -29,7 +29,7 @@ public class LadderLine {
             return;
         }
 
-        points.add(connection.able()); // default
+        points.add(connectable.able()); // default
     }
 
     @Override

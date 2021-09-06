@@ -1,6 +1,6 @@
 package laddergame.game;
 
-import laddergame.connectable.RandomConnection;
+import laddergame.connectable.RandomConnectable;
 import laddergame.ladder.Height;
 import laddergame.ladder.LadderLine;
 import laddergame.ladder.LadderLines;
@@ -15,7 +15,7 @@ public class LadderGame {
 
     public LadderGame(UserNames userNames, Height height) {
         this.userNames = userNames;
-        this.ladderLines = new LadderLines(height, userNames.length(), new RandomConnection());
+        this.ladderLines = new LadderLines(height, userNames.length(), new RandomConnectable());
     }
 
     public static LadderGame valueOf(String userNames, int height) {

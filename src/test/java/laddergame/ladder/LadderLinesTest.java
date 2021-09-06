@@ -10,9 +10,9 @@ class LadderLinesTest {
 
     private static final int USER_COUNT = 4;
 
-    @DisplayName("사람수, 사다리 높이, connection 사용하여 초기화")
+    @DisplayName("사람수, 사다리 높이, connectable 사용하여 초기화")
     @Test
-    void create_countOfPerson_height_connection() {
+    void create_countOfPerson_height_connectable() {
         Height height = new Height(5);
         assertThat(new LadderLines(height, USER_COUNT, () -> true))
                 .isEqualTo(new LadderLines(height, USER_COUNT, () -> true));

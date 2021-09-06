@@ -1,5 +1,5 @@
 package laddergame.connectable;
 
-public interface Connection {
+public interface Connectable {
     Boolean able();
 }
