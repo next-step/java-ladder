@@ -28,22 +28,4 @@ class ValidationTest {
     void isValidResult() {
         assertThatThrownBy(() -> Validation.isValidResult(new Players("pobi, cony, cr7"), new Result("꽝 ,500, 꽝,1000")));
     }
-
-    @Test
-    @DisplayName("참여자 이름을 중복 입력하면 예외가 발생한다.")
-    void isValidPlayers() {
-        assertThatThrownBy(() -> Validation.isValidPlayers("pobi, cony , cony  , crong"));
-    }
-
-    @Test
-    @DisplayName("입력한 사람이 참여자들 중에 없으면 예외가 발생한다.")
-    void isContainPlayer() {
-        assertThatThrownBy(() -> Validation.isContainPlayer("cony", new Players("pobi, crong , honux")));
-    }
-
-    @Test
-    @DisplayName("all 을 입력하면 예외가 발생하지 않는다.")
-    void isContainPlayer2() {
-        assertDoesNotThrow(() -> Validation.isContainPlayer("all", new Players("pobi, crong , honux")));
-    }
 }

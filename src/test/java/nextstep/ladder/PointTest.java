@@ -1,5 +1,6 @@
 package nextstep.ladder;
 
+import nextstep.ladder.domain.Direction;
 import nextstep.ladder.domain.Point;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -7,42 +8,43 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class PointTest {
+class PointTest {
+
     @Test
-    @DisplayName("사다리 첫 번째 Line 의 다음 값이 true 이면 가로 라인이 겹치지 않게 두번째 Line의 다음 값은 false이다.   ")
-    void init() {
-        assertThat(Point.init(true).insert(true).nextPoint()).isFalse();
-        assertThat(Point.init(true).insert(false).nextPoint()).isFalse();
+    void create() {
+        assertAll(
+                () -> assertThat(Point.init(true).move()).isEqualTo(1),
+                () -> assertThat(Point.init(false).move()).isEqualTo(0)
+        );
     }
 
     @Test
-    void insert() {
-        Point first = Point.init(false); // (false , false)
-        assertThat(first.move()).isEqualTo(0);
+    @DisplayName("사다리에 가로 라인이 겹치지는 지 검증 (true, true)시 예외 발생 ")
+    void inValid() {
+        Point initPoint = Point.init(true);
+        assertThatThrownBy(() -> initPoint.next(true));
+    }
+
+
+
+    @Test
+    @DisplayName("사다리가 이동 방향 오른쪽 테스트")
+    void right() {
+        Direction right = Direction.init(true);
+        assertThat(new Point(0, right).move()).isEqualTo(1);//(false, true) ,(true, false)
     }
 
     @Test
-    void insert2() {
-        Point first = Point.init(true); // (false ,true)
-        assertThat(first.move()).isEqualTo(1);
+    @DisplayName("사다리 이동 방향 왼쪽 테스트")
+    void left() {
+        Direction left = Direction.init(true).next(false);
+        assertThat(new Point(2,left).move()).isEqualTo(1);
     }
 
     @Test
-    void insert3() {      // (false ,true)
-        assertThat(Point.init(false).insert(true).move()).isEqualTo(1);
-    }
-
-    @Test
-    void insert4() {  // (false , false)
-        assertThat(Point.init(false).insert(false).move()).isEqualTo(0);
-    }
-    @Test
-    void insert5() {  // (true , false)
-        assertThat(Point.init(true).insert(false).move()).isEqualTo(-1);
-    }
-
-    @Test
-    void insert6() { // (true, false) 이전 값이 true이면 다음 값은 무조건 false이다.
-        assertThat(Point.init(true).insert(true).move()).isEqualTo(-1);
+    @DisplayName("사다리 가로 라인이 없는 아래쪽 테스트")
+    void pass() {
+        Direction pass = Direction.init(false).next(false);
+        assertThat(new Point(1,pass).move()).isEqualTo(1);
     }
 }

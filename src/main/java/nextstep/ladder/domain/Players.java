@@ -1,9 +1,7 @@
 package nextstep.ladder.domain;
-
-import nextstep.ladder.util.Validation;
-
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -17,7 +15,7 @@ public class Players {
     }
 
     private static List<Name> toList(String players) {
-        Validation.isValidPlayers(players);
+        duplicatedPlayersName(players);
         return Arrays.stream(players.split(DELIMITER))
                 .map(Name::new)
                 .collect(Collectors.toList());
@@ -34,7 +32,17 @@ public class Players {
         return players.indexOf(new Name(player));
     }
 
-    public boolean isContain(String player) {
+    private static void duplicatedPlayersName(String players) {
+        String[] split = players.split(DELIMITER);
+        Set<String> playerCollect = Arrays.stream(players.split(DELIMITER))
+                .map(String::trim)
+                .collect(Collectors.toSet());
+        if (split.length != playerCollect.size()) {
+            throw new IllegalArgumentException("참여자 이름이 중복 되었습니다.");
+        }
+    }
+
+    public boolean contains(String player) {
         return players.contains(new Name(player));
     }
 
@@ -42,8 +50,8 @@ public class Players {
         return players.size();
     }
 
-    public String getName(int index) {
-        return  players.get(index).toString();
+    public String name(int index) {
+        return players.get(index).name();
     }
 
     public Stream<Name> stream() {

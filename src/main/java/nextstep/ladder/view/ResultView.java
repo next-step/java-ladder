@@ -2,6 +2,7 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.domain.*;
 
+import static nextstep.ladder.domain.Name.*;
 
 public class ResultView {
     private static final String EMPTY_LINE = "     |";
@@ -9,6 +10,7 @@ public class ResultView {
     private static final String LADDER_MESSAGE = "사다리 결과";
     private static final String RESULT_MESSAGE = "실행 결과";
     private static final String FORMAT_SIZE = "%6s";
+    private static final String COLON = " : ";
 
     public static void printLadderGame(Players players, Ladder ladder) {
         System.out.println(LADDER_MESSAGE);
@@ -20,7 +22,7 @@ public class ResultView {
                 .forEach(ResultView::drawLine);
     }
 
-    private static void drawLine(Line line) {
+    private static void drawLine(LadderLine line) {
         System.out.println();
         line.stream()
                 .map(ResultView::isHorizontalLine)
@@ -28,11 +30,11 @@ public class ResultView {
     }
 
     private static String toFormat(Name name) {
-        return String.format(FORMAT_SIZE, name.toString());
+        return String.format(FORMAT_SIZE, name);
     }
 
     private static String isHorizontalLine(Point point) {
-        if (point.currentPoint()) {
+        if (point.isCurrent()) {
             return HORIZONTAL_LINE;
         }
         return EMPTY_LINE;
@@ -47,23 +49,36 @@ public class ResultView {
 
     }
 
-    public static void printAllResult(Players players, Ladder ladder, Result result) {
-        System.out.println();
-        System.out.println(RESULT_MESSAGE);
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < players.size(); i++) {
-            stringBuilder.append(players.getName(i) + " : ");
-            int index = ladder.search(i);
-            stringBuilder.append(result.get(index)).append("\n");
+    public static void printLadderGameResult(LadderResult ladderResult) {
+        String findPlayerResult = "";
+        while (!ALL_RESULT.equals(findPlayerResult)) {
+            findPlayerResult = InputView.inputGameResultSearch();
+            System.out.println(RESULT_MESSAGE);
+            printLadderGameAllOrNot(findPlayerResult, ladderResult);
         }
-        System.out.println(stringBuilder);
     }
 
-    public static void printPlayerResult(String player) {
-        System.out.println();
-        System.out.println(RESULT_MESSAGE);
-        System.out.println(player);
-        System.out.println();
+    private static void printLadderGameAllOrNot(String findPlayerResult, LadderResult ladderResult) {
+        if (ALL_RESULT.equals(findPlayerResult)) {
+            StringBuilder sb = new StringBuilder();
+            ladderResult.ketSet()
+                    .stream()
+                    .forEach(player ->
+                            sb.append(player).append(COLON)
+                                    .append(ladderResult.get(player)).append("\n")
+                    );
+            System.out.println(sb);
+            return;
+        }
+        printContainPlayer(findPlayerResult, ladderResult);
 
+    }
+
+    private static void printContainPlayer(String findPlayerResult, LadderResult ladderResult) {
+        if (ladderResult.containPlayer(findPlayerResult)) {
+            System.out.println(ladderResult.get(findPlayerResult));
+            return;
+        }
+        System.out.println("참여자들 중 해당 이름이 없습니다. 다시 입력하세요");
     }
 }

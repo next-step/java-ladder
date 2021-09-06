@@ -1,5 +1,6 @@
 package nextstep.ladder.view;
 
+import nextstep.ladder.domain.Height;
 import nextstep.ladder.util.Validation;
 
 import java.util.Scanner;
@@ -21,9 +22,9 @@ public class InputView {
         return Validation.isEmptyAndNull(scanner.nextLine());
     }
 
-    public static int inputLadderCount() {
+    public static Height inputLadderCount() {
         System.out.println(INPUT_LADDER_COUNT_MESSAGE);
-        return scanner.nextInt();
+        return new Height(scanner.nextInt());
     }
 
     public static String inputGameResultSearch() {

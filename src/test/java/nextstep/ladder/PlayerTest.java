@@ -1,8 +1,6 @@
 package nextstep.ladder;
 
-import nextstep.ladder.domain.Name;
 import nextstep.ladder.domain.Players;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -50,10 +48,16 @@ class PlayerTest {
     @DisplayName("참여자 중에 입력한 사람이 있는지 확인")
     void isContain() {
         assertAll(
-                () -> assertThat(new Players("pobi, cony ,jk ,cr7").isContain("cony")).isTrue(),
-                () -> assertThat(new Players("pobi , cony  ,jk ,cr7").isContain("pobi  ")).isTrue(),
-                () -> assertThat(new Players("pobi , cony  ,jk ,cr7, honux").isContain("honu")).isFalse(),
-                () -> assertThat(new Players("pobi , cony  ,jk ,cr7, honux").isContain("cr")).isFalse()
+                () -> assertThat(new Players("pobi, cony ,jk ,cr7").contains("cony")).isTrue(),
+                () -> assertThat(new Players("pobi , cony  ,jk ,cr7").contains("pobi  ")).isTrue(),
+                () -> assertThat(new Players("pobi , cony  ,jk ,cr7, honux").contains("honu")).isFalse(),
+                () -> assertThat(new Players("pobi , cony  ,jk ,cr7, honux").contains("cr")).isFalse()
         );
+    }
+
+    @Test
+    @DisplayName("참여자 이름이 중복 되었는지 검증")
+    void duplicatedPlayersName() {
+        assertThatThrownBy(() -> new Players("pobi,cony,cony , cr7")).isInstanceOf(IllegalArgumentException.class);
     }
 }
