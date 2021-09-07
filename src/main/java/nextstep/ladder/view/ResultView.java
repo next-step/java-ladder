@@ -2,15 +2,15 @@ package nextstep.ladder.view;
 
 
 import java.util.stream.Collectors;
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.LadderColumn;
-import nextstep.ladder.domain.LadderRow;
+import nextstep.ladder.domain.LadderGame;
+import nextstep.ladder.domain.InterSpace;
+import nextstep.ladder.domain.LadderStep;
 import nextstep.ladder.domain.Players;
 
 public class ResultView {
 
-    public static final String COLUMN_WITH_LINE = "|-----";
-    public static final String COLUMN = "|     ";
+    public static final String CROSS_LINE_STRING = "|-----";
+    public static final String BLANK_LINE_STRING = "|     ";
     public static final int NAMES_PADDING_SIZE = 6;
 
     private ResultView() {
@@ -21,7 +21,7 @@ public class ResultView {
     }
 
 
-    public void showLadderGame(Players players, Ladder ladder) {
+    public void showLadderGame(Players players, LadderGame ladder) {
         System.out.println("실행결과");
         System.out.println();
 
@@ -29,25 +29,25 @@ public class ResultView {
         printLadder(ladder);
     }
 
-    private void printLadder(Ladder ladder) {
-        ladder.getLadderRows()
-            .forEach(this::printLadderRow);
+    private void printLadder(LadderGame ladder) {
+        ladder.getLadderSteps()
+            .forEach(this::printLadderStep);
     }
 
-    private void printLadderRow(LadderRow row) {
-        String rowString = createLadderRowString(row);
-        System.out.println(rowString);
+    private void printLadderStep(LadderStep ladderStep) {
+        String ladderStepString = createLadderStepString(ladderStep);
+        System.out.println(ladderStepString);
     }
 
-    private String createLadderRowString(LadderRow row) {
+    private String createLadderStepString(LadderStep ladderStep) {
 
-        return row.getLadderColumns().stream()
-            .map(this::getColumnString)
+        return ladderStep.getInterSpaces().value().stream()
+            .map(this::getLineString)
             .collect(Collectors.joining());
     }
 
-    private String getColumnString(LadderColumn column) {
-        return column.hasLeg() ? COLUMN_WITH_LINE : COLUMN;
+    private String getLineString(InterSpace crossLine) {
+        return crossLine.hasCrossLine() ? CROSS_LINE_STRING : BLANK_LINE_STRING;
     }
 
     private void printPlayerNames(Players players) {

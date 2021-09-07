@@ -17,7 +17,7 @@ class LadderRowTest {
     @DisplayName("1열이상의 길이를 가지는 한행의 사다리를 만들수 있다.")
     void createLadder(LadderGameSettings settings) {
 
-        LadderRow ladderRow = new LadderRow(settings);
+        LadderStep ladderRow = new LadderStep(settings);
         assertThat(ladderRow.getColumnsSize()).isEqualTo(settings.getLadderWidth());
     }
 

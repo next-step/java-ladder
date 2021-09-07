@@ -15,7 +15,7 @@ class LadderTest {
     @MethodSource("provideGameSettings")
     @DisplayName("1 x 2 이상의 사다리를 생성할수있다.")
     void createLadder(LadderGameSettings settings) {
-        assertThatCode(() -> Ladder.from(settings))
+        assertThatCode(() -> LadderGame.from(settings))
             .doesNotThrowAnyException();
     }
 

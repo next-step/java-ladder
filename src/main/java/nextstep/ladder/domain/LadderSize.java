@@ -4,7 +4,8 @@ import nextstep.ladder.exception.WrongLadderSizeException;
 
 public class LadderSize {
 
-    private static final int MIN_SIZE = 1;
+    private static final int HEIGHT_MIN_SIZE = 1;
+    private static final int WIDTH_MIN_SIZE = 2;
 
     final int width;
     final int height;
@@ -21,9 +22,9 @@ public class LadderSize {
     }
 
     private static void validateLadderSize(int width, int height) {
-        if (height < MIN_SIZE || width < MIN_SIZE) {
+        if (height < HEIGHT_MIN_SIZE || width < WIDTH_MIN_SIZE) {
             throw new WrongLadderSizeException(
-                String.format("사다리의 최소 '1 X 1' 부터 생성이 가능합니다. [현재 입력: '%d x %d' ]", width, height));
+                String.format("사다리의 최소 '2 X 1' 부터 생성이 가능합니다. [현재 입력: '%d x %d' ]", width, height));
         }
     }
 
