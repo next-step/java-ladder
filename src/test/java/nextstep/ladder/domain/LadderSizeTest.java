@@ -12,8 +12,8 @@ class LadderSizeTest {
 
 
     @ParameterizedTest
-    @CsvSource(value = {"1,1", "1,2", "2,1", "2,2"})
-    @DisplayName("1 x 1 이상의 사다리 사이즈를 지정할수있다.")
+    @CsvSource(value = {"2,1", "2,2", "2,3"})
+    @DisplayName("2 x 1 이상의 사다리 사이즈를 지정할수있다.")
     void rightLadderSize(int width, int height) {
         assertThatCode(() -> LadderSize.of(width, height))
             .doesNotThrowAnyException();
@@ -21,8 +21,8 @@ class LadderSizeTest {
 
 
     @ParameterizedTest
-    @CsvSource(value = {"1,0", "0,1", "0,0", "-1,-1"})
-    @DisplayName("1 x 1 이하의 사다리 사이즈를 지정할경우 예외를 던진다.")
+    @CsvSource(value = {"1,1", "1,0", "1,2", "0,1", "-1,-1"})
+    @DisplayName("2 x 1 이하의 사다리 사이즈를 지정할경우 예외를 던진다.")
     void notRightLadderSize(int width, int height) {
         assertThatThrownBy(() -> LadderSize.of(width, height))
             .isInstanceOf(WrongLadderSizeException.class);

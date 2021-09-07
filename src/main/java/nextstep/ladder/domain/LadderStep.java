@@ -11,4 +11,8 @@ public class LadderStep {
     public InterSpaces getInterSpaces() {
         return interSpaces;
     }
+
+    public int interSpacesSize() {
+        return getInterSpaces().value().size();
+    }
 }

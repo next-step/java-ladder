@@ -13,7 +13,7 @@ class LadderTest {
 
     @ParameterizedTest
     @MethodSource("provideGameSettings")
-    @DisplayName("1 x 2 이상의 사다리를 생성할수있다.")
+    @DisplayName("2 x 1 이상의 사다리를 생성할수있다.")
     void createLadder(LadderGameSettings settings) {
         assertThatCode(() -> LadderGame.from(settings))
             .doesNotThrowAnyException();
@@ -22,9 +22,9 @@ class LadderTest {
     private static Stream<Arguments> provideGameSettings() {
 
         return Stream.of(
-            Arguments.of(LadderGameSettings.of(LadderSize.of(1, 2), new RandomDrawLineStrategy())),
             Arguments.of(LadderGameSettings.of(LadderSize.of(2, 1), new RandomDrawLineStrategy())),
             Arguments.of(LadderGameSettings.of(LadderSize.of(2, 2), new RandomDrawLineStrategy())),
+            Arguments.of(LadderGameSettings.of(LadderSize.of(5, 5), new RandomDrawLineStrategy())),
             Arguments.of(LadderGameSettings.of(LadderSize.of(10, 10), new RandomDrawLineStrategy()))
         );
     }
