@@ -51,6 +51,10 @@ public class Line {
         return Collections.unmodifiableList(points);
     }
 
+    public Point point(int index) {
+        return points.get(index);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
