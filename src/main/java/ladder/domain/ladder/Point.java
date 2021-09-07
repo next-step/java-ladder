@@ -60,6 +60,14 @@ public class Point {
         return position + VALUE_TO_NEXT_INDEX;
     }
 
+    public int prev() {
+        return position - VALUE_TO_NEXT_INDEX;
+    }
+
+    public boolean isFirst() {
+        return position == START_POINT_INDEX;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

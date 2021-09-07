@@ -59,7 +59,10 @@ public class Line {
         if (point.isConnected()) {
             return points.get(point.next());
         }
-        return null;
+        if (!point.isFirst() && points.get(point.prev()).isConnected()) {
+            return points.get(point.prev());
+        }
+        return point;
     }
 
     @Override
