@@ -10,6 +10,7 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 public class LadderGameMakeUtil {
+    private static final Random RANDOM = new Random();
     private static final String INPUT_SEPARATOR = ",";
 
     public static List<Person> makePeople(String input) {
@@ -32,8 +33,6 @@ public class LadderGameMakeUtil {
                 .collect(Collectors.toList());
     }
 
-    private static final Random RANDOM = new Random();
-
     public static Ladder makeLadder(int numberOfPeople, int height) {
         if (numberOfPeople <= 0) {
             throw new IllegalArgumentException("참가자가 존재하지 않습니다.");
@@ -44,5 +43,9 @@ public class LadderGameMakeUtil {
         }
 
         return new Ladder(numberOfPeople, height);
+    }
+
+    public static boolean randomValue() {
+        return RANDOM.nextBoolean();
     }
 }

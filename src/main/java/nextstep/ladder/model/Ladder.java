@@ -6,7 +6,6 @@ import java.util.stream.IntStream;
 
 public class Ladder {
     private List<Line> lines;
-    private static final Random RANDOM = new Random();
 
     public Ladder(int numberOfPerson, int height) {
         make(numberOfPerson, height);
@@ -34,42 +33,25 @@ public class Ladder {
     }
 
     private void make(int numberOfPerson, int height) {
-        List<Point>[] pointLists = IntStream.range(0, numberOfPerson)
-                .mapToObj((index) -> new ArrayList<Point>())
-                .toArray(List[]::new);
+        List<Stair> stairs = makeStairs(numberOfPerson, height);
 
-        for (int index = 0; index < height; index++) {
-            makeStairs(pointLists, index);
-        }
-
-        this.lines = Arrays.stream(pointLists)
-                .map((pointList -> new Line(pointList)))
+        this.lines = IntStream.range(0, numberOfPerson)
+                .mapToObj((index) -> convertLine(index, stairs))
                 .collect(Collectors.toList());
     }
 
-    private void makeStairs(List<Point>[] pointLists, int y) {
-        for (int x = 0; x < pointLists.length; x++) {
-            makeStair(pointLists, x, y);
+    private List<Stair> makeStairs(int numberOfPerson, int height) {
+        List<Stair> stairs = new ArrayList<>();
+        for (int i = 0; i < height; i++) {
+            stairs.add(Stair.of(numberOfPerson));
         }
+        return stairs;
     }
 
-    private void makeStair(List<Point>[] pointLists, int x, int y) {
-        if (pointLists[x].size() > y) {
-            return;
-        }
-
-        if (x == pointLists.length - 1) {
-            pointLists[x].add(new Point(x, Direction.straight()));
-            return;
-        }
-
-        if (RANDOM.nextBoolean()) {
-            pointLists[x].add(new Point(x, Direction.right()));
-            pointLists[x + 1].add(new Point(x + 1, Direction.left()));
-            return;
-        }
-
-        pointLists[x].add(new Point(x, Direction.straight()));
+    private Line convertLine(int index, List<Stair> stairs) {
+        List<Point> points = stairs.stream().map((stair) -> stair.getPoints().get(index))
+                .collect(Collectors.toList());
+        return new Line(points);
     }
 
 }
