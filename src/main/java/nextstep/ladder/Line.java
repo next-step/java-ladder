@@ -28,23 +28,5 @@ public class Line {
         return new ArrayList<Boolean>(points);
     }
 
-    public void movePlayer(Participant participant) {
-        Point point = new Point(participant.position(), points.size());
-        boolean left = false;
-        boolean right = false;
-        System.out.println(point.left());
-        System.out.println(point.right());
-        System.out.println();
-        if (point.left() != Integer.MIN_VALUE) {
-            right = points.get(point.left());
-        } else if (point.right() != Integer.MAX_VALUE) {
-            left = points.get(point.right());
-        }
-       if(right){
-           point.moveRight();
-       }else if(left){
-            point.moveLeft();
-       }
-       participant.movePosition(point.position());
-    }
+
 }

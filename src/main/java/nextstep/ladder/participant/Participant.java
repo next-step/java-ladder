@@ -37,4 +37,12 @@ public class Participant {
     public Position position() {
         return this.position;
     }
+
+    @Override
+    public String toString() {
+        return "Participant{" +
+                "name='" + name + '\'' +
+                ", position=" + position +
+                '}';
+    }
 }

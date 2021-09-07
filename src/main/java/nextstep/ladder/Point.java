@@ -29,6 +29,7 @@ public class Point {
         this.leftIndex++;
         this.rightIndex++;
         checkSide();
+
     }
 
     public void moveLeft(){
