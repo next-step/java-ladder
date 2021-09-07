@@ -1,18 +1,17 @@
 package nextstep.ladder.model;
 
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Ladder {
     private List<Line> lines;
-    private List<Reward> rewards;
 
-    public Ladder(List<Line> lines, List<Reward> rewards) {
-        this.lines = lines;
-        this.rewards = rewards;
+    public Ladder(int numberOfPerson, int height) {
+        make(numberOfPerson, height);
     }
 
-    public Reward doPlay(int start) {
+    public int doPlay(int start) {
         int x = start;
         int y = 0;
         int height = lines.get(0)
@@ -21,15 +20,38 @@ public class Ladder {
 
         while (y < height) {
             Line line = lines.get(x);
-            x = line.moveHorizontal(x, y);
+            x = line.move(y);
 
             y++;
         }
 
-        return rewards.get(x);
+        return x;
     }
 
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
     }
+
+    private void make(int numberOfPerson, int height) {
+        List<Stair> stairs = makeStairs(numberOfPerson, height);
+
+        this.lines = IntStream.range(0, numberOfPerson)
+                .mapToObj((index) -> convertLine(index, stairs))
+                .collect(Collectors.toList());
+    }
+
+    private List<Stair> makeStairs(int numberOfPerson, int height) {
+        List<Stair> stairs = new ArrayList<>();
+        for (int i = 0; i < height; i++) {
+            stairs.add(Stair.of(numberOfPerson));
+        }
+        return stairs;
+    }
+
+    private Line convertLine(int index, List<Stair> stairs) {
+        List<Point> points = stairs.stream().map((stair) -> stair.getPoints().get(index))
+                .collect(Collectors.toList());
+        return new Line(points);
+    }
+
 }

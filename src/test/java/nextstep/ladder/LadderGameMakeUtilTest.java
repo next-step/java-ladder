@@ -53,6 +53,6 @@ public class LadderGameMakeUtilTest {
     @ParameterizedTest
     @CsvSource({"-5,3", "3,-2", "0,2", "3,0", "0,0"})
     public void wrongInputMakeLadderTest(int numberOfPeople, int height) {
-        assertThatIllegalArgumentException().isThrownBy(() -> LadderGameMakeUtil.makeLines(numberOfPeople, height));
+        assertThatIllegalArgumentException().isThrownBy(() -> LadderGameMakeUtil.makeLadder(numberOfPeople, height));
     }
 }

@@ -1,34 +1,38 @@
 package nextstep.ladder.model;
 
 public class Point {
-    private static final int MINIMUM_USED_NUMBER = 0;
-    private int goal = -1;
+    private static final int TO_RIGHT = 1;
+    private static final int TO_LEFT = -1;
 
-    public boolean isUsed() {
-        return goal >= MINIMUM_USED_NUMBER;
+    private int index;
+    private Direction direction;
+
+    public Point(int index, Direction direction) {
+        this.index = index;
+        this.direction = direction;
     }
 
-    public void use(int goal) {
-        if (isUsed()) {
-            throw new IllegalArgumentException("이미 사용된 point 입니다. ");
+    public int move() {
+        if (direction.isLeft()) {
+            return index + TO_LEFT;
         }
 
-        if (goal < MINIMUM_USED_NUMBER) {
-            throw new IllegalArgumentException("음수 값을 목표로 받을 수 없습니다. goal : " + goal);
+        if (direction.isRight()) {
+            return index + TO_RIGHT;
         }
 
-        this.goal = goal;
+        return index;
     }
 
-    public int getGoal() {
-        return goal;
+    public Point next() {
+        return new Point(index + 1, direction.next());
     }
 
-    public int moveHorizontal(int x) {
-        if (!isUsed()) {
-            return x;
-        }
+    public Point last() {
+        return new Point(index + 1, direction.last());
+    }
 
-        return goal;
+    public static Point first(Boolean right) {
+        return new Point(0, Direction.first(right));
     }
 }

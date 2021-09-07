@@ -24,12 +24,14 @@ public class LadderGameDrawer {
         System.out.println("결과를 보고 싶은 사람은?");
     }
 
-    public static void drawResultText() {
+    private static void drawResultText() {
         System.out.println("실행 결과");
     }
 
     public static void drawResults(List<Result> results) {
-        results.forEach((result -> drawResult(result)));
+        drawResultText();
+        String allResults = results.stream().map((result -> result.toString())).collect(Collectors.joining("\n"));
+        System.out.println(allResults);
     }
 
     public static void drawLadderResult(List<Person> people, Ladder ladder, List<Reward> rewards) {
@@ -47,8 +49,9 @@ public class LadderGameDrawer {
         System.out.println(rewardsString);
     }
 
-    public static void drawResult(Result result) {
-        System.out.println(result);
+    public static void drawOneResult(Reward reward) {
+        drawResultText();
+        System.out.println(reward);
     }
 
     private static void drawLines(List<Line> lines) {
@@ -89,7 +92,7 @@ public class LadderGameDrawer {
     }
 
     private static boolean isExistsStair(int currentLineIndex, Point point) {
-        return point.isUsed() && point.getGoal() > currentLineIndex;
+        return point.move() > currentLineIndex;
     }
 
     private static void drawPeople(List<Person> people) {

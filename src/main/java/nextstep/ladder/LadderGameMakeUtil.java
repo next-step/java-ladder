@@ -1,14 +1,16 @@
 package nextstep.ladder;
 
-import nextstep.ladder.model.*;
+import nextstep.ladder.model.Ladder;
+import nextstep.ladder.model.Person;
+import nextstep.ladder.model.Reward;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
 public class LadderGameMakeUtil {
+    private static final Random RANDOM = new Random();
     private static final String INPUT_SEPARATOR = ",";
 
     public static List<Person> makePeople(String input) {
@@ -31,9 +33,7 @@ public class LadderGameMakeUtil {
                 .collect(Collectors.toList());
     }
 
-    private static final Random RANDOM = new Random();
-
-    public static List<Line> makeLines(int numberOfPeople, int height) {
+    public static Ladder makeLadder(int numberOfPeople, int height) {
         if (numberOfPeople <= 0) {
             throw new IllegalArgumentException("참가자가 존재하지 않습니다.");
         }
@@ -42,48 +42,10 @@ public class LadderGameMakeUtil {
             throw new IllegalArgumentException("사다리 길이가 유효하지 않습니다.");
         }
 
-        List<Line> lineList = makeDefaultLines(numberOfPeople, height);
-
-        for (int i = 0; i < height; i++) {
-            makeStairs(lineList, i);
-        }
-
-        return lineList;
+        return new Ladder(numberOfPeople, height);
     }
 
-    private static void makeStairs(List<Line> lines, int height) {
-        for (int index = 0; index < lines.size() - 1; index++) {
-            int origin = index;
-
-            makeStair(lines, height, origin);
-        }
-    }
-
-    private static void makeStair(List<Line> lines, int height, int origin) {
-        int destination = origin + 1;
-
-        Point start = lines.get(origin).getPoints().get(height);
-        Point end = lines.get(destination).getPoints().get(height);
-
-        if (!RANDOM.nextBoolean()) {
-            return;
-        }
-
-        if (start.isUsed() || end.isUsed()) {
-            return;
-        }
-
-        start.use(destination);
-        end.use(origin);
-    }
-
-    private static List<Line> makeDefaultLines(int numberOfPeople, int height) {
-        List<Line> lines = new ArrayList<>();
-
-        for (int i = 0; i < numberOfPeople; i++) {
-            lines.add(new Line(height));
-        }
-
-        return lines;
+    public static boolean randomValue() {
+        return RANDOM.nextBoolean();
     }
 }

@@ -4,58 +4,41 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class PointTest {
-    @DisplayName("사용중인 구멍을 다시 사용요청할때")
+    @DisplayName("포인트 좌측 이동 테스트")
     @Test
-    public void tryToUseUsedPoint() {
+    public void moveLeft() {
         //given
-        Point point = new Point();
-        point.use(2);
-
-        //then
-        assertThatIllegalArgumentException().isThrownBy(() -> point.use(3));
-    }
-
-    @DisplayName("음수 값을 사용목표로 정할 때.")
-    @Test
-    public void setNegativeValue() {
-        //given
-        Point point = new Point();
-        int goal = -2;
-
-        //then
-        assertThatIllegalArgumentException().isThrownBy(() -> point.use(goal));
-    }
-
-    @DisplayName("다음 이동값 테스트")
-    @Test
-    public void moveHorizontalTest() {
-        //given
-        int pos = 1;
-        int goal = 2;
-        Point point = new Point();
-        point.use(goal);
+        Point point = new Point(1, Direction.left());
 
         //when
-        int next = point.moveHorizontal(pos);
-
+        int actual = point.move();
         //then
-        assertThat(goal).isEqualTo(next);
+        assertThat(actual).isEqualTo(0);
     }
 
-    @DisplayName("수평 이동 안할 시 테스트")
+    @DisplayName("포인트 좌측 이동 테스트")
     @Test
-    public void notMoveHorizontalTest() {
+    public void moveRight() {
         //given
-        int pos = 1;
-        Point point = new Point();
+        Point point = new Point(1, Direction.right());
 
         //when
-        int next = point.moveHorizontal(pos);
-
+        int actual = point.move();
         //then
-        assertThat(pos).isEqualTo(next);
+        assertThat(actual).isEqualTo(2);
+    }
+
+    @DisplayName("포인트 좌측 이동 테스트")
+    @Test
+    public void moveStraight() {
+        //given
+        Point point = new Point(1, Direction.straight());
+
+        //when
+        int actual = point.move();
+        //then
+        assertThat(actual).isEqualTo(1);
     }
 }
