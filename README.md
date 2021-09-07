@@ -1,23 +1,38 @@
 # 사다리 게임
 
-## TODO
-### 람다
-- [X] 실습 1. CarTest 내 MoveStrategy를 람다로 구현
-- [X] 실습 2. nextstep.fp.Lambda 내 람다 적용
-  - [X] runThread내 익명 객체 람다로 변환
-  - [X] sumAll, sumAllEven, sumAllOverThree 중복 제거 
-    - [X] Optional 인터페이스 구현
+## Step2 TODO
+- [X] InputView
+  - [X] 참여자 이름 받기
+  - [X] 최대 사다리 높이 받기
 
-### stream
-- [X] 실습 1. 리스트 내 숫자중 3보다 큰 수를 뽑고, 이를 2배 한 후 sum 구하기
-- [X] 실습 2. pringLongestWordTop100 구현
-  - [X] 단어의 길이는 12자를 초과해야한다.
-  - [X] 단어 길이가 긴 순서대로 100개 추출한다.
-  - [X] 단어 중복이 없어야 한다. 
-  - [X] 모든 단어는 소문자로 출력한다. 
+- [X] ResultView
+  - [X] 실행 결과 출력
+    - [X] 이름
+    - [X] 사다리
 
-### Optional
-- [X] 실습 1. ageIsInRange2 구현
-- [X] 실습 2. getUser() 구현
-- [X] 실습 3. Expression 의 of 메소드를 구현
+- [X] 이름
+  - [X] 1자 이상, 5자 이하
+  - [X] null이나 빈 값일 수 없다.
+- [X] 이름들
+  - [X] 쉼표로 구분. 이외의 구분자가 올 경우 에러
+  - [X] null이나 빈 값일 수 없다.
+
+- [X] 사다리
+  - [X] 높이
+    - [x] 1이상
+  - [X] 라인
+    - [X] 참여자수-1개다
+    - [X] 가로라인은 서로 겹칠 수 없다
+  - [X] 라인들
+    - [X] 라인 여러개로 초기화
+    - [X] 사다리 높이만큼 라인을 가진다.
+
+- [X] 사다리 게임
+  - [X] 사람들 이름과 사다리 높이로 초기화된다.
+
+- [X] 메인 함수 (로또 게임 실행용)
+
+- [X] 연결 가능 여부 (Connection) 추가
+  - [X] boolean을 connection으로 감쌈
+
  
