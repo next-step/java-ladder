@@ -45,8 +45,10 @@ public class Players {
         return playerNames.contains(PlayerName.of(name));
     }
 
-    public List<PlayerName> getPlayerNames() {
-        return playerNames;
+    public List<String> getPlayerNames() {
+        return playerNames.stream()
+                .map(PlayerName::toString)
+                .collect(Collectors.toList());
     }
 
     public int size() {

@@ -18,7 +18,7 @@ class InputViewTest {
     public void playerNamesInputTest() {
         List<String> names = Arrays.asList("abc", "def", "ghi", "jkl");
         InputView inputView = createMockInputView(String.join(",", names));
-        List<String> playerNames = inputView.getNames();
+        List<String> playerNames = inputView.getListInputs();
         assertThat(playerNames)
                 .hasSize(4)
                 .containsAll(names);

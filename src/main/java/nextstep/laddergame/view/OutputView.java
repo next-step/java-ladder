@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class OutputView {
 
-    private static final String PLAYER_NAME_FORMAT = "%-6s";
+    private static final String LIST_RENDERING_FORMAT = "%-6s";
     private static final String NEW_LINE = System.getProperty("line.separator");
     private static final String LINE_RENDERING_FORMAT = "|%s|";
     private static final String CONNECTED_POINT_RENDERING_FORMAT = "-----";
@@ -29,20 +29,24 @@ public class OutputView {
         printStream.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
     }
 
+    public void printPlayResultsInputMessage() {
+        printStream.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+    }
+
     public void printLadderHeightsInputMessage() {
         printStream.println("최대 사다리 높이는 몇 개인가요?");
     }
 
-    public void printLadder(Players players, Ladder ladder) {
+    public void printLadder(Players players, Ladder ladder, PlayResults playResults) {
         printStream.println("실행결과");
-        printStream.println(renderPlayerNames(players));
+        printStream.println(render(players.getPlayerNames()));
         printStream.println(renderLadder(ladder));
+        printStream.println(render(playResults.getResults()));
     }
 
-    private String renderPlayerNames(Players players) {
-        List<PlayerName> playerNames = players.getPlayerNames();
-        return playerNames.stream()
-                .map(playerName -> String.format(PLAYER_NAME_FORMAT, playerName.toString()))
+    private String render(List<String> strings) {
+        return strings.stream()
+                .map(str -> String.format(LIST_RENDERING_FORMAT, str))
                 .collect(Collectors.joining());
     }
 

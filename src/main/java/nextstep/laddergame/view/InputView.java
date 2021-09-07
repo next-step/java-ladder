@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class InputView {
 
-    private static final String PLAYER_NAME_INPUT_DELIMITER = ",";
+    private static final String LIST_INPUT_DELIMITER = ",";
 
     private final Scanner scanner;
 
@@ -22,9 +22,9 @@ public class InputView {
         return new InputView(new Scanner(inputStream));
     }
 
-    public List<String> getNames() {
+    public List<String> getListInputs() {
         String nameInput = scanner.nextLine();
-        String[] names = nameInput.split(PLAYER_NAME_INPUT_DELIMITER);
+        String[] names = nameInput.split(LIST_INPUT_DELIMITER);
         return Arrays.asList(names);
     }
 
