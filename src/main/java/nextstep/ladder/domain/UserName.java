@@ -15,6 +15,10 @@ public class UserName {
         }
     }
 
+    public boolean isSameName(String name) {
+        return this.name.equals(name);
+    }
+
     @Override
     public String toString() {
         return name;
