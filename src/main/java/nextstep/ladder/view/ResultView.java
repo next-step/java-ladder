@@ -12,6 +12,7 @@ public class ResultView {
     private static final String START_LADDER = "      |";
     private static final String EXIST_MIDDLE_LADDER = "-----|";
     private static final String EMPTY_MIDDLE_LADDER = "     |";
+    private static final String ALL_USER = "all";
 
     public static void result(List<Line> ladder, List<User> user, List<Result> results) {
         printUsers(user);
@@ -20,7 +21,7 @@ public class ResultView {
     }
 
     public static void printUserResult(UserLadderResult userLadderResult, String userName) {
-        if ("all".equals(userName)) {
+        if (ALL_USER.equals(userName)) {
             printAllUserResult(userLadderResult);
             return;
         }
