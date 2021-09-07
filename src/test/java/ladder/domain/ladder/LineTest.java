@@ -77,4 +77,20 @@ class LineTest {
         assertThat(point).isEqualTo(new Point(1, false));
     }
 
+    @Test
+    @DisplayName("오른쪽 point가 연결되어 있다면 오른쪽 point로 이동할 수 있다.")
+    void moveRightSuccessTest() {
+
+        // given
+        int index = 0;
+        Line line = Line.generateRandomLine(users, () -> true);
+        Point now = line.point(index);
+
+        // when
+        Point result = line.move(now);
+
+        // then
+        assertThat(result).isEqualTo(new Point(1, false));
+    }
+
 }

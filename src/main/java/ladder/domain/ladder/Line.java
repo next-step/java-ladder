@@ -55,6 +55,13 @@ public class Line {
         return points.get(index);
     }
 
+    public Point move(Point point) {
+        if (point.isConnected()) {
+            return points.get(point.next());
+        }
+        return null;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
