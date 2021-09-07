@@ -22,6 +22,6 @@ class LineTest {
     void size() {
         Line line = new Line(5);
 
-        assertThat(line.size()).isEqualTo(4);
+        assertThat(line.size()).isEqualTo(5);
     }
 }
