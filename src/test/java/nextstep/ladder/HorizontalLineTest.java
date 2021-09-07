@@ -13,9 +13,12 @@ public class HorizontalLineTest {
 
     @Test
     void moveTest() {
+        /*
+        |-----|     |
+         */
         Point first = Point.first(true);
         Point second = first.next(false);
-        Point third = second.next(false);
+        Point third = second.last();
 
         List<Point> points = Arrays.asList(first, second, third);
         HorizontalLine horizontalLine = new HorizontalLine(points);

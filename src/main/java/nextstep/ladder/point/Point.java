@@ -1,5 +1,7 @@
 package nextstep.ladder.point;
 
+import java.util.Objects;
+
 public class Point {
 
     private final int index;
@@ -44,5 +46,18 @@ public class Point {
                 "index=" + index +
                 ", direction=" + direction +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Point)) return false;
+        Point point = (Point) o;
+        return index == point.index && Objects.equals(direction, point.direction);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(index, direction);
     }
 }

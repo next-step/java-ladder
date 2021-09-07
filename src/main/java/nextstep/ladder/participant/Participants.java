@@ -14,11 +14,11 @@ public class Participants {
 
     public int findIndexByName(String name) {
         Participant participant = new Participant(name);
-        int indexOf = participants.indexOf(participant);
-        if (indexOf == -1)
+        int indexOfParticipant = participants.indexOf(participant);
+        if (indexOfParticipant == -1)
             throw new IllegalArgumentException("존재하지 않는 이름입니다");
 
-        return indexOf;
+        return indexOfParticipant;
     }
 
     public int size() {

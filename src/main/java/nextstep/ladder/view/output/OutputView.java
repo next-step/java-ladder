@@ -19,9 +19,10 @@ public class OutputView {
     private static final String CONNECTED = "-----";
     private static final String NOT_CONNECTED = "     ";
     private static final String HORIZONTAL_LINE_PADDING = "     ";
+    private static final String ALL_TARGET = "all";
 
     public void printTargetResult(String target, Participants participants, List<String> executionResult, ExecutionResult result) {
-        if ("all".equals(target)) {
+        if (ALL_TARGET.equals(target)) {
             printAllParticipantsResult(participants, executionResult, result);
             return;
         }
@@ -42,7 +43,9 @@ public class OutputView {
             Participant participant = participants.get(i);
             String name = participant.getName();
             String targetExecutionResult = executionResult.get(result.get(i));
-            stringBuilder.append(name + " : " + targetExecutionResult);
+            stringBuilder.append(name);
+            stringBuilder.append(" : ");
+            stringBuilder.append(targetExecutionResult);
             stringBuilder.append(LINE_SEPARATOR);
         }
 
@@ -51,28 +54,39 @@ public class OutputView {
 
     public void printLadder(Participants participants, Ladder ladder, List<String> executionResults) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("사다리 결과");
-        stringBuilder.append(LINE_SEPARATOR);
 
-        String participantsName = participants.getParticipantsName();
+        appendLadderGameTitle(stringBuilder);
+        appendParticipantsName(participants, stringBuilder);
+        appendLadder(ladder, stringBuilder);
+        appendExecutionResults(executionResults, stringBuilder);
 
-        stringBuilder.append(participantsName);
-        stringBuilder.append(LINE_SEPARATOR);
+        System.out.println(stringBuilder.toString());
+    }
 
+    private void appendExecutionResults(List<String> executionResults, StringBuilder stringBuilder) {
+        String executionResult = executionResults.stream()
+                .map(OutPutViewUtils::appendPaddingBeforeValue)
+                .collect(Collectors.joining());
+        stringBuilder.append(executionResult);
+    }
+
+    private void appendLadder(Ladder ladder, StringBuilder stringBuilder) {
         List<HorizontalLine> horizontalLines = ladder.getHorizontalLines();
-
         for (HorizontalLine horizontalLine : horizontalLines) {
             printHorizontalLine(horizontalLine, stringBuilder);
             stringBuilder.append(LINE_SEPARATOR);
         }
+    }
 
-        String executionResult = executionResults.stream()
-                .map(OutPutViewUtils::appendPaddingBeforeValue)
-                .collect(Collectors.joining());
+    private void appendParticipantsName(Participants participants, StringBuilder stringBuilder) {
+        String participantsName = participants.getParticipantsName();
+        stringBuilder.append(participantsName);
+        stringBuilder.append(LINE_SEPARATOR);
+    }
 
-        stringBuilder.append(executionResult);
-
-        System.out.println(stringBuilder.toString());
+    private void appendLadderGameTitle(StringBuilder stringBuilder) {
+        stringBuilder.append("사다리 결과");
+        stringBuilder.append(LINE_SEPARATOR);
     }
 
     private void printHorizontalLine(HorizontalLine horizontalLine, StringBuilder stringBuilder) {

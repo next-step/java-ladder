@@ -13,7 +13,6 @@ public class LadderFactory {
 
         for (int i = 0; i < height; i++) {
             HorizontalLine horizontalLine = HorizontalLineFactory.generate(numberOfParticipants);
-            System.out.println(horizontalLine);
             horizontalLines.add(horizontalLine);
         }
 

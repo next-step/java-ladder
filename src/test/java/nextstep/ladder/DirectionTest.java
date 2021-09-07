@@ -16,23 +16,39 @@ public class DirectionTest {
     @Test
     @DisplayName("양쪽으로 이동 불가능하다")
     void invalid() {
-        assertThrows(IllegalArgumentException.class, () -> new Direction(true, true));
+        assertThrows(IllegalArgumentException.class, () -> Direction.of(true, true));
+    }
+
+
+    @ParameterizedTest
+    @MethodSource("firstParam")
+    void first(boolean movableRight, Direction expectedDirection) {
+        Direction first = Direction.first(movableRight);
+        assertEquals(expectedDirection, first);
+    }
+
+    @ParameterizedTest
+    @MethodSource("lastParam")
+    void last(boolean movableRight, Direction expectedDirection) {
+        Direction first = Direction.first(movableRight);
+        Direction last = first.last();
+        assertEquals(expectedDirection, last);
     }
 
     @Test
     void next_left() {
-        Direction direction = new Direction(true, false);
+        Direction direction = Direction.of(true, false);
         Direction left = direction.next(false);
 
-        assertEquals(new Direction(false, false), left);
+        assertEquals(Direction.of(false, false), left);
     }
 
     @Test
     void next_right() {
-        Direction direction = new Direction(false, true);
+        Direction direction = Direction.of(false, true);
         Direction right = direction.next(false);
 
-        assertEquals(new Direction(true, false), right);
+        assertEquals(Direction.of(true, false), right);
     }
 
     @ParameterizedTest
@@ -51,14 +67,29 @@ public class DirectionTest {
     }
 
     private static Direction getDownDirection() {
-        return new Direction(false, false);
+        return Direction.of(false, false);
     }
 
     private static Direction getLeftDirection() {
-        return new Direction(true, false);
+        return Direction.of(true, false);
     }
 
     private static Direction getRightDirection() {
-        return new Direction(false, true);
+        return Direction.of(false, true);
+    }
+
+    private static Stream<Arguments> firstParam() {
+        return Stream.of(
+                Arguments.of(false, Direction.of(false, false)),
+                Arguments.of(true, Direction.of(false, true))
+        );
+    }
+
+
+    private static Stream<Arguments> lastParam() {
+        return Stream.of(
+                Arguments.of(false, Direction.of(false, false)),
+                Arguments.of(true, Direction.of(true, false))
+        );
     }
 }

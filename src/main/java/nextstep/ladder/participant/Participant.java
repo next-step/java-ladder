@@ -4,6 +4,8 @@ import java.util.Objects;
 
 public class Participant {
 
+    private static final int NAME_LENGTH_LIMIT = 5;
+
     private final String name;
 
     public Participant(String name) {
@@ -21,7 +23,7 @@ public class Participant {
     }
 
     private boolean isOverLength(String name) {
-        return name.length() > 5;
+        return name.length() > NAME_LENGTH_LIMIT;
     }
 
     public String getName() {

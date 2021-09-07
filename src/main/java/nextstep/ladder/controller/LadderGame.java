@@ -29,7 +29,7 @@ public class LadderGame {
         Ladder ladder = getLadder(participants);
         outputView.printLadder(participants, ladder, executionResult);
 
-        ExecutionResult result = ladder.run();
+        ExecutionResult result = ladder.startGame();
 
         String target = inputView.receiveTarget();
         outputView.printTargetResult(target, participants, executionResult, result);

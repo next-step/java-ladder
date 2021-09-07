@@ -1,7 +1,6 @@
 package nextstep.ladder;
 
 import nextstep.ladder.line.HorizontalLine;
-import nextstep.ladder.participant.Participants;
 import nextstep.ladder.result.ExecutionResult;
 
 import java.util.List;
@@ -16,7 +15,7 @@ public class Ladder {
         this.horizontalLines = horizontalLines;
     }
 
-    public ExecutionResult run() {
+    public ExecutionResult startGame() {
         ExecutionResult executionResult = new ExecutionResult();
 
         for (int i = 0; i < numberOfParticipants; i++) {
@@ -37,5 +36,13 @@ public class Ladder {
 
     public List<HorizontalLine> getHorizontalLines() {
         return horizontalLines;
+    }
+
+    @Override
+    public String toString() {
+        return "Ladder{" +
+                "numberOfParticipants=" + numberOfParticipants +
+                ", horizontalLines=" + horizontalLines +
+                '}';
     }
 }

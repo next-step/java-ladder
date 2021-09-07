@@ -5,8 +5,39 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PointTest {
+
+
+    @ParameterizedTest
+    @CsvSource(value = {"true,false,true", "false,false,false"})
+    void first(boolean firstMovableRight, boolean expectedFirstMovableLeft, boolean expectedFirstMovableRight) {
+        Point first = Point.first(firstMovableRight);
+
+        assertEquals(expectedFirstMovableLeft, first.isMovableLeft());
+        assertEquals(expectedFirstMovableRight, first.isMovableRight());
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"false,false,false", "true,true,false"})
+    void last(boolean firstMovableRight, boolean expectedLastMovableLeft, boolean expectedLastMovableRight) {
+        Point first = Point.first(firstMovableRight);
+        Point last = first.last();
+
+        assertEquals(expectedLastMovableLeft, last.isMovableLeft());
+        assertEquals(expectedLastMovableRight, last.isMovableRight());
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"false,false,false", "true,false,false"})
+    void next(boolean firstMovableRight, boolean secondMovableRight, boolean expectedSecondMovableRight) {
+        Point first = Point.first(firstMovableRight);
+        Point second = first.next(secondMovableRight);
+
+        assertEquals(firstMovableRight, second.isMovableLeft());
+        assertEquals(expectedSecondMovableRight, second.isMovableRight());
+    }
 
     @ParameterizedTest
     @CsvSource(value = {"true,1", "false,0"})
@@ -31,6 +62,4 @@ public class PointTest {
         Point last = first.last();
         assertThat(expectedMove).isEqualTo(last.move());
     }
-
-
 }

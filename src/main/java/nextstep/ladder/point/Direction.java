@@ -9,7 +9,7 @@ public class Direction {
     private final boolean movableLeft;
     private final boolean movableRight;
 
-    public Direction(boolean movableLeft, boolean movableRight) {
+    private Direction(boolean movableLeft, boolean movableRight) {
         if (movableLeft && movableRight)
             throw new IllegalArgumentException("양쪽으로 이동 할 수 없습니다");
 
@@ -17,12 +17,16 @@ public class Direction {
         this.movableRight = movableRight;
     }
 
+    public static Direction of(boolean movableLeft, boolean movableRight) {
+        return new Direction(movableLeft, movableRight);
+    }
+
     public int move() {
-        if (isMovableLeft()) {
+        if (movableLeft) {
             return -1;
         }
 
-        if (isMovableRight()) {
+        if (movableRight) {
             return 1;
         }
 
@@ -66,7 +70,7 @@ public class Direction {
 
     @Override
     public int hashCode() {
-        return Objects.hash(isMovableLeft(), isMovableRight());
+        return Objects.hash(movableLeft, movableRight);
     }
 
     @Override

@@ -11,18 +11,28 @@ public class HorizontalLineFactory {
     public static HorizontalLine generate(int numberOfParticipants) {
         List<Point> points = new ArrayList<>();
 
-        boolean movableRight = RandomBooleanGenerator.generate();
-        Point first = Point.first(movableRight);
+        Point first = getFirstPoint();
         points.add(first);
 
         List<Point> body = getBody(first, numberOfParticipants);
         points.addAll(body);
 
-        Point lastPoint = getLastPoint(points);
-        Point last = lastPoint.last();
+        Point last = getLastPoint(points);
         points.add(last);
 
         return new HorizontalLine(points);
+    }
+
+    private static Point getLastPoint(List<Point> points) {
+        int lastIndex = points.size() - 1;
+        Point point = points.get(lastIndex);
+        return point.last();
+    }
+
+    private static Point getFirstPoint() {
+        boolean movableRight = RandomBooleanGenerator.generate();
+        Point first = Point.first(movableRight);
+        return first;
     }
 
     private static List<Point> getBody(Point first, int numberOfParticipants) {
@@ -36,10 +46,5 @@ public class HorizontalLineFactory {
         }
 
         return points;
-    }
-
-    private static Point getLastPoint(List<Point> points) {
-        int lastIndex = points.size() - 1;
-        return points.get(lastIndex);
     }
 }
