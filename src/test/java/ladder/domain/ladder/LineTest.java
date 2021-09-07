@@ -109,4 +109,20 @@ class LineTest {
         assertThat(result).isEqualTo(new Point(0, true));
     }
 
+    @Test
+    @DisplayName("왼쪽 오른쪽 둘다 이동 불가능 상태면 현재 point를 반환해야한다.")
+    void moveFailTest() {
+
+        // given
+        int index = 1;
+        Line line = Line.generateRandomLine(users, () -> false);
+        Point now = line.point(index);
+
+        // when
+        Point result = line.move(now);
+
+        // then
+        assertThat(result).isEqualTo(now);
+    }
+
 }
