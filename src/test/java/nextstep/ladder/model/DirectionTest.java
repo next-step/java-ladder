@@ -3,6 +3,7 @@ package nextstep.ladder.model;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThatIllegalStateException;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 public class DirectionTest {
@@ -37,5 +38,13 @@ public class DirectionTest {
         //then
         assertThat(direction.isRight()).isEqualTo(false);
         assertThat(direction.isLeft()).isEqualTo(false);
+    }
+
+    @DisplayName("양방향 불가 테스트")
+    @Test
+    public void eachDirectionTest() {
+        assertThatIllegalStateException().isThrownBy(() -> {
+           Direction.first(true).next(true);
+        });
     }
 }
