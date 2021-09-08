@@ -1,4 +1,4 @@
-package nextstep.ladder.view;
+package nextstep.ladder.view.input;
 
 import java.util.Arrays;
 import java.util.List;
@@ -16,10 +16,23 @@ public class InputView {
                 .split(","));
     }
 
+    public List<String> receiveExecutionResult() {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        String input = SCANNER.nextLine();
+        return Arrays.asList(input
+                .replaceAll("\\s", "")
+                .split(","));
+    }
+
     public int receiveLadderHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         String input = SCANNER.nextLine();
         return parseInt(input);
+    }
+
+    public String receiveTarget() {
+        System.out.println("결과를 보고 싶은 사람은?");
+        return SCANNER.nextLine();
     }
 
     private int parseInt(String input) {
