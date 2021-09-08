@@ -58,9 +58,9 @@ public class OutputView {
     }
 
     private String renderLine(Line line) {
-        List<Point> points = line.getPoints();
-        return String.format(LINE_RENDERING_FORMAT, points.stream()
-                .map(point -> point.isConnected()? CONNECTED_POINT_RENDERING_FORMAT : UNCONNECTED_POINT_RENDERING_FORMAT)
+        List<LineConnection> connections = line.getConnections();
+        return String.format(LINE_RENDERING_FORMAT, connections.stream()
+                .map(connection -> connection.isConnected()? CONNECTED_POINT_RENDERING_FORMAT : UNCONNECTED_POINT_RENDERING_FORMAT)
                 .collect(Collectors.joining(POINT_DELIMITER)));
     }
 }

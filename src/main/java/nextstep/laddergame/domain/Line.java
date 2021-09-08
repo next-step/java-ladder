@@ -5,30 +5,30 @@ import java.util.List;
 
 public class Line {
 
-    private final List<Point> points;
+    private final List<LineConnection> connections;
 
-    private Line(List<Point> points) {
-        validateNotConnectedInSeries(points);
-        this.points = Collections.unmodifiableList(points);
+    private Line(List<LineConnection> connections) {
+        validateNotConnectedInSeries(connections);
+        this.connections = Collections.unmodifiableList(connections);
     }
 
-    private void validateNotConnectedInSeries(List<Point> points) {
-        points.stream()
+    private void validateNotConnectedInSeries(List<LineConnection> connections) {
+        connections.stream()
                 .reduce(this::validateNotConnectedInSeries);
     }
 
-    private Point validateNotConnectedInSeries(Point firstPointConnected, Point secondPointConnected) {
-        if (firstPointConnected.isConnected() && secondPointConnected.isConnected()) {
+    private LineConnection validateNotConnectedInSeries(LineConnection previousConnection, LineConnection currentConnection) {
+        if (previousConnection.isConnected() && currentConnection.isConnected()) {
             throw new IllegalArgumentException("연속으로 연결된 포인트가 존재합니다.");
         }
-        return secondPointConnected;
+        return currentConnection;
     }
 
     public static Line of(LineConnectStrategy lineConnectStrategy) {
         return new Line(lineConnectStrategy.getLineConnections());
     }
 
-    public List<Point> getPoints() {
-        return points;
+    public List<LineConnection> getConnections() {
+        return connections;
     }
 }

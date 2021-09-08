@@ -28,10 +28,10 @@ public class RandomLineConnectStrategy implements LineConnectStrategy {
     }
 
     @Override
-    public List<Point> getLineConnections() {
+    public List<LineConnection> getLineConnections() {
         return Stream.iterate(random.nextBoolean(), this::nextConnection)
                 .limit(countOfPoint)
-                .map(Point::new)
+                .map(LineConnection::of)
                 .collect(Collectors.toList());
     }
 

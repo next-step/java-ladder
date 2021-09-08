@@ -4,5 +4,5 @@ import java.util.List;
 
 @FunctionalInterface
 public interface LineConnectStrategy {
-    List<Point> getLineConnections();
+    List<LineConnection> getLineConnections();
 }
