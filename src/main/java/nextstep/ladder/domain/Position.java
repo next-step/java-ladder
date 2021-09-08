@@ -4,7 +4,6 @@ import java.util.List;
 
 public class Position {
 
-    private static final int FAKE_LADDER_OFFSET = 1;
     public static final int OFFSET = 1;
 
     private int startPosition;
@@ -25,33 +24,7 @@ public class Position {
     }
 
     public int findLastPosition(Ladder ladder) {
-        lastPosition = ++startPosition;
-
-        addFakePoint(ladder);
-
-        ladder.getLadder()
-                .stream()
-                .forEach(line -> line.findMoveDirection(lastPosition).move(lastPosition));
-
-        removeFakePoint(ladder);
-
-        lastPosition--;
+        lastPosition = ladder.move(startPosition);
         return lastPosition;
-    }
-
-    private void addFakePoint(Ladder ladder) {
-        ladder.getLadder().stream()
-                .forEach(line -> {
-                    line.getPoints().add(false);
-                    line.getPoints().add(0, false);
-                });
-    }
-
-    private void removeFakePoint(Ladder ladder) {
-        ladder.getLadder().stream()
-                .forEach(line -> {
-                    line.getPoints().remove(0);
-                    line.getPoints().remove(line.getPoints().size() - FAKE_LADDER_OFFSET);
-                });
     }
 }

@@ -41,6 +41,10 @@ public class LadderLine {
         return point;
     }
 
+    public List<Point> getPoints() {
+        return points;
+    }
+
     @Override
     public String toString() {
         return "LadderLine{" +

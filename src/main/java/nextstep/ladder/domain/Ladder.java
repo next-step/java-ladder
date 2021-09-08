@@ -6,15 +6,22 @@ import java.util.stream.Stream;
 
 public class Ladder {
 
-    private List<Line> ladder;
+    private List<LadderLine> ladderLines;
 
     public Ladder(int ladderHeight, int userCount) {
-        RandomMakeStrategy randomMakeStrategy = new RandomMakeStrategy();
-        ladder = Stream.generate(() -> new Line(userCount, randomMakeStrategy)).limit(ladderHeight).collect(Collectors.toList());
+        ladderLines = Stream.generate(() -> LadderLine.init(userCount)).limit(ladderHeight).collect(Collectors.toList());
     }
 
-    public List<Line> getLadder() {
-        return ladder;
+    public int move(int position) {
+        int result = position;
+        for (LadderLine ladderLine : ladderLines) {
+            result = ladderLine.move(result);
+        }
+        return result;
+    }
+
+    public List<LadderLine> getLadder() {
+        return ladderLines;
     }
 
 
