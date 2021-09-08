@@ -8,8 +8,21 @@ public class LadderPoint {
 
     public LadderPoint(Point playerPoint) {
         this.left = playerPoint.left();
-        this.right = playerPoint.right();
+        this.right = checkLadderRight(playerPoint, playerPoint.MAX_INDEX());
     }
 
+    private Point checkLadderRight(Point playerPoint, int ladderSize) {
+        if (playerPoint.index() == ladderSize) {
+            return Point.INVALID_POINT;
+        }
+        return playerPoint;
+    }
 
+    public int left() {
+        return this.left.index();
+    }
+
+    public int right() {
+        return this.right.index();
+    }
 }

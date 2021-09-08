@@ -1,5 +1,9 @@
 package nextstep.ladder2.point;
 
+import nextstep.ladder2.ErrorMessage;
+
+import java.util.Objects;
+
 public class Point {
     public static final Point INVALID_POINT = new Point(Integer.MAX_VALUE - 1, Integer.MAX_VALUE);
     private final int MAX_INDEX;
@@ -14,7 +18,7 @@ public class Point {
 
     private void validation(int index) {
         if (index < 0 || index > MAX_INDEX) {
-            throw new IllegalArgumentException("유효하지 않는 인덱스 입니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_INDEX.message());
         }
     }
 
@@ -36,4 +40,20 @@ public class Point {
         return INVALID_POINT;
     }
 
+    public final int MAX_INDEX(){
+        return MAX_INDEX;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Point point = (Point) o;
+        return index == point.index;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(index);
+    }
 }

@@ -1,6 +1,6 @@
 package nextstep.ladder2.point;
 
-import org.junit.jupiter.api.AfterEach;
+import nextstep.ladder2.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -29,7 +29,7 @@ class PointTest {
     void create_인덱스_MAX_INDEX_초과_불가능() {
         assertThatIllegalArgumentException().isThrownBy(
                 () -> new Point(11, 10)
-        ).withMessageContaining("유효");
+        ).withMessageContaining(ErrorMessage.INVALID_INDEX.message());
     }
 
     @Test
@@ -47,15 +47,25 @@ class PointTest {
     }
 
     @Test
-    void 위치_MAX_에서는_오른쪽이동_불가능() {
+    @DisplayName("MAX 위치에서 오른쪽이동 불가능")
+    void cannotMoveAtMaxTest() {
         Point point = new Point(5, 5);
         assertThat(point.right()).isEqualTo(Point.INVALID_POINT);
     }
 
     @Test
-    void 위치_0에서는_왼쪽이동_불가능() {
+    @DisplayName("MIN 위치에서 왼쪽이동 불가능")
+    void cannotMoveAtMinTest() {
         Point point = new Point(0, 5);
         assertThat(point.left()).isEqualTo(Point.INVALID_POINT);
     }
 
+    @Test
+    @DisplayName("인덱스가 같으면 같은 객체.")
+    void equalsTest(){
+        Point point1 = new Point(1,2);
+        Point point2 = new Point(1,5);
+
+        assertThat(point1).isEqualTo(point2);
+    }
 }
