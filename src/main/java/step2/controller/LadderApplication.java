@@ -1,5 +1,6 @@
 package step2.controller;
 
+import step2.domain.Height;
 import step2.domain.Names;
 import step2.view.InputView;
 
@@ -9,5 +10,7 @@ public class LadderApplication {
     public static void main(String[] args) {
         final Names names = inputView.inputNames();
         System.out.println(names);
+        final Height height = inputView.inputHeight();
+        System.out.println(height);
     }
 }

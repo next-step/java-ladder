@@ -1,5 +1,6 @@
 package step2.view;
 
+import step2.domain.Height;
 import step2.domain.Names;
 
 import java.util.Scanner;
@@ -13,5 +14,10 @@ public class InputView {
         System.out.printf("참여할 사람 이름을 입력하세요. (이름은 쉼표(%s)로 구분하세요)\n", DELIMITER);
         final String s = scanner.nextLine();
         return new Names(s.split(DELIMITER));
+    }
+
+    public Height inputHeight() {
+        System.out.println("최대 사다리 높이는 몇 개인가요?");
+        return new Height(Integer.parseInt(scanner.nextLine()));
     }
 }
