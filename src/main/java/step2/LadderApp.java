@@ -20,6 +20,6 @@ public class LadderApp {
         ResultView.printResultColumn(result);
         
         String target = InputView.requestTarget();
-        ResultView.printResultOfTarget(target, ladderGameManager.getLadderResults());
+        ResultView.printResultOfTarget(target, ladderGameManager.getLadderResults(), result);
     }
 }

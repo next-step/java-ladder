@@ -53,23 +53,23 @@ public class ResultView {
         System.out.println();
     }
 
-    public static void printResultOfTarget(String target, List<LadderGameColumn> ladderGameColumns) {
+    public static void printResultOfTarget(String target, List<LadderGameColumn> ladderGameColumns, Result result) {
         if (target.equals("all")) {
-            printAllResult(ladderGameColumns);
+            printAllResult(ladderGameColumns, result);
             return;
         }
         System.out.println("target");
         ladderGameColumns.stream()
                 .filter(ladderGameColumn -> ladderGameColumn.getName().equals(target))
-                .forEach(ladderGameColumn -> System.out.println(ladderGameColumn.getName() + " : " + ladderGameColumn.getResult()));
+                .forEach(ladderGameColumn -> System.out.println(ladderGameColumn.getName() + " : " + result.getItems().get(ladderGameColumn.getPosition())));
         return;
 
     }
 
-    private static void printAllResult(List<LadderGameColumn> ladderGameColumns) {
+    private static void printAllResult(List<LadderGameColumn> ladderGameColumns, Result result) {
         System.out.println("all");
         ladderGameColumns.stream()
-                .map(ladderGameColumn -> ladderGameColumn.getName() + " : " + ladderGameColumn.getResult())
+                .map(ladderGameColumn -> ladderGameColumn.getName() + " : " + result.getItems().get(ladderGameColumn.getPosition()))
                 .forEach(System.out::println);
     }
 }
