@@ -19,9 +19,9 @@
 
 ### TODO
 - Ladder Application
-  - input name String -> split(,)
+  - ~~input name String -> split(,)~~
 - Name
-  - 5자 제한 exception
+  - ~~5자 제한 exception~~
 - Ladder Application
     - input height
 - Height
