@@ -43,6 +43,10 @@ public class Player {
         return this.point.index();
     }
 
+    public Point point(){
+        return this.point;
+    }
+
     private void validation(String name) {
         if (name.length() > 5) {
             throw new IllegalArgumentException(ErrorMessage.NAME_LENGTH.message());

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 public class Players {
     private List<Player> players = new ArrayList<>();
@@ -31,5 +32,25 @@ public class Players {
                         )
                 );
         return group;
+    }
+
+    public List<String> names(){
+        return players.stream()
+                .map(Player::name)
+                .collect(Collectors.toList());
+    }
+
+    public List<Integer> indexes(){
+        return players.stream()
+                .map(Player::index)
+                .collect(Collectors.toList());
+    }
+
+    public void move(List<Direction> directions) {
+        int index = 0;
+        players.stream()
+                .reduce(index++,
+                        (a,direction)->a.move(direction),
+                        (a,direction)->a);
     }
 }
