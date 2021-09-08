@@ -21,4 +21,7 @@ public class GameParticipants {
     return participants.get(index);
   }
 
+  public int getParticipantNameLenth(int index) {
+    return getParticipant(index).getParticipantName().length();
+  }
 }
