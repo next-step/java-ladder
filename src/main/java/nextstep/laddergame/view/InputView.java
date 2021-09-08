@@ -1,7 +1,5 @@
 package nextstep.laddergame.view;
 
-import nextstep.laddergame.domain.LadderHeights;
-
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
@@ -28,16 +26,13 @@ public class InputView {
         return Arrays.asList(names);
     }
 
-    public LadderHeights getLadderHeights() {
+    public int getLadderHeights() {
         String heightsInput = scanner.nextLine();
-        return LadderHeights.of(parseHeightsInput(heightsInput));
-    }
-
-    private int parseHeightsInput(String heightsInput) {
         try {
             return Integer.parseInt(heightsInput);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(String.format("유효하지 않은 입력입니다. heightsInput: %s", heightsInput));
         }
     }
+
 }

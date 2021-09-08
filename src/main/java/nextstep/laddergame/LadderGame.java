@@ -37,7 +37,7 @@ public class LadderGame {
 
     private LadderHeights inputLadderHeights() {
         outputView.printLadderHeightsInputMessage();
-        return inputView.getLadderHeights();
+        return LadderHeights.of(inputView.getLadderHeights());
     }
 
     public static void main(String[] args) {

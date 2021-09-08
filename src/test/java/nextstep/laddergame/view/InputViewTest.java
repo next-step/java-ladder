@@ -1,6 +1,5 @@
 package nextstep.laddergame.view;
 
-import nextstep.laddergame.domain.LadderHeights;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -38,7 +37,7 @@ class InputViewTest {
     public void inputLadderHeightsTest() {
         InputView inputView = createMockInputView("5");
         assertThat(inputView.getLadderHeights())
-                .isEqualTo(LadderHeights.of(5));
+                .isEqualTo(5);
     }
 
     private InputView createMockInputView(String input) {
