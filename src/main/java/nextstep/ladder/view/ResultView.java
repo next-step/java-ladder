@@ -2,7 +2,7 @@ package nextstep.ladder.view;
 
 
 import java.util.stream.Collectors;
-import nextstep.ladder.domain.LadderGame;
+import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.InterSpace;
 import nextstep.ladder.domain.LadderStep;
 import nextstep.ladder.domain.Players;
@@ -21,7 +21,7 @@ public class ResultView {
     }
 
 
-    public void showLadderGame(Players players, LadderGame ladder) {
+    public void showLadderGame(Players players, Ladder ladder) {
         System.out.println("실행결과");
         System.out.println();
 
@@ -29,7 +29,7 @@ public class ResultView {
         printLadder(ladder);
     }
 
-    private void printLadder(LadderGame ladder) {
+    private void printLadder(Ladder ladder) {
         ladder.getLadderSteps()
             .forEach(this::printLadderStep);
     }

@@ -4,18 +4,18 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class LadderGame {
+public class Ladder {
 
     private final List<LadderStep> ladderSteps;
 
-    private LadderGame(LadderGameSettings settings) {
+    private Ladder(LadderGameSettings settings) {
         this.ladderSteps = Stream.generate(() -> new LadderStep(settings))
             .limit(settings.getLadderHeight())
             .collect(Collectors.toUnmodifiableList());
     }
 
-    public static LadderGame from(LadderGameSettings settings) {
-        return new LadderGame(settings);
+    public static Ladder from(LadderGameSettings settings) {
+        return new Ladder(settings);
     }
 
     public List<LadderStep> getLadderSteps() {
