@@ -18,4 +18,8 @@ public class LadderResults {
         }
         return results.get(PlayerName.of(name));
     }
+
+    public Map<PlayerName, String> getResults() {
+        return results;
+    }
 }

@@ -14,6 +14,8 @@ public class OutputView {
     private static final String CONNECTED_POINT_RENDERING_FORMAT = "-----";
     private static final String UNCONNECTED_POINT_RENDERING_FORMAT = "     ";
     private static final String POINT_DELIMITER = "|";
+    private static final String ALL_PLAYER_RESULT = "all";
+    private static final String NAME_AND_RESULT_RENDERING_FORMAT = "%s : %s";
 
     private final PrintStream printStream;
 
@@ -40,7 +42,7 @@ public class OutputView {
     public void printLadder(Players players, Ladder ladder, PlayResults playResults) {
         printStream.println("사다리 결과");
         printStream.println(render(players.getPlayerNames()));
-        printStream.println(renderLadder(ladder));
+        printStream.println(render(ladder));
         printStream.println(render(playResults.getResults()));
     }
 
@@ -50,14 +52,14 @@ public class OutputView {
                 .collect(Collectors.joining());
     }
 
-    private String renderLadder(Ladder ladder) {
+    private String render(Ladder ladder) {
         List<Line> lines = ladder.getLines();
         return lines.stream()
-                .map(this::renderLine)
+                .map(this::render)
                 .collect(Collectors.joining(NEW_LINE));
     }
 
-    private String renderLine(Line line) {
+    private String render(Line line) {
         List<LineConnection> connections = line.getConnections();
         return String.format(LINE_RENDERING_FORMAT, connections.stream()
                 .map(connection -> connection.isConnected()? CONNECTED_POINT_RENDERING_FORMAT : UNCONNECTED_POINT_RENDERING_FORMAT)
@@ -70,6 +72,18 @@ public class OutputView {
 
     public void printPlayResult(LadderResults ladderResults, String playerName) {
         printStream.println("실행 결과");
+        if (ALL_PLAYER_RESULT.equals(playerName)) {
+            printStream.println(render(ladderResults));
+            return;
+        }
         printStream.println(ladderResults.getResult(playerName));
+    }
+
+    private String render(LadderResults ladderResults) {
+        return ladderResults.getResults()
+                .entrySet()
+                .stream()
+                .map(nameAndResult -> String.format(NAME_AND_RESULT_RENDERING_FORMAT, nameAndResult.getKey(), nameAndResult.getValue()))
+                .collect(Collectors.joining(NEW_LINE));
     }
 }
