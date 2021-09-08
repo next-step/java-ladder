@@ -23,9 +23,9 @@
 - Name
   - ~~5자 제한 exception~~
 - Ladder Application
-    - input height
+    - ~~input height~~
 - Height
-  - 높이 제한 exception
+  - ~~높이 제한 exception~~
 - Ladder
   - 생성자 Name, Height
   - 필드 List<Line>, Height 길이 만큼 생성
