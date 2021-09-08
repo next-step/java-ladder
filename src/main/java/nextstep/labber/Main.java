@@ -15,15 +15,15 @@ public class Main {
         List<String> result = ladderView.enterResult();
         int ladderHeight = ladderView.enterLadderHeight();
 
-        List<Line> ladder = Ladder.createLadder(list.size(), ladderHeight);
+        Ladder ladder = new Ladder(ladderHeight, list);
 
         ladderView.drawParticipants(list);
-        ladderView.drawLadder(ladder);
+        ladderView.drawLadder(ladder.ladder());
         ladderView.drawProduct(result);
 
         while (true) {
             String entered = ladderView.findResult();
-            Map<String, Integer> allResult = LadderGame.findAllResult(list, ladder);
+            Map<String, Integer> allResult = ladder.findAllResult();
             ladderView.drawResult(entered, result, allResult);
         }
     }

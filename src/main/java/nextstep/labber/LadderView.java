@@ -47,13 +47,13 @@ public class LadderView {
     private void drawLine(Line line) {
         for (int j = 0; j < line.size(); j++) {
             System.out.print("|");
-            drawPoints(line.existLine(j));
+            drawPoints(line.move(j));
         }
         System.out.println();
     }
 
-    private void drawPoints(boolean isLine) {
-        if (isLine) {
+    private void drawPoints(Compass compass) {
+        if (compass == Compass.RIGHT) {
             drawPoint("-");
             return;
         }
