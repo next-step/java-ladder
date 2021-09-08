@@ -4,8 +4,8 @@ public class LadderGameMain {
 
     private final Ladder ladder;
 
-    public LadderGameMain(LadderGameSettings settings) {
-        this.ladder = Ladder.from(settings);
+    public LadderGameMain(LadderGameSettings gameSettings) {
+        this.ladder = Ladder.from(gameSettings.getDrawingSettings());
     }
 
     public void playGame() {

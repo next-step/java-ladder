@@ -3,6 +3,7 @@ package nextstep.ladder;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.LadderGameMain;
 import nextstep.ladder.domain.LadderGamePrizes;
+import nextstep.ladder.domain.LadderDrawingSettings;
 import nextstep.ladder.domain.LadderGameSettings;
 import nextstep.ladder.domain.LadderSize;
 import nextstep.ladder.domain.Players;
@@ -21,10 +22,13 @@ public class LadderGameConsole {
         final LadderGamePrizes ladderGamePrizes = LadderGamePrizes.from(inputView.askLadderGamePrizes());
         inputView.closeInputScanner();
 
-        final LadderGameSettings settings = LadderGameSettings.of(ladderSize, new RandomDrawLineStrategy());
+        final LadderDrawingSettings drawingSettings = LadderDrawingSettings.of(ladderSize, new RandomDrawLineStrategy());
+        final LadderGameSettings gameSettings = LadderGameSettings.of(players, ladderGamePrizes, drawingSettings);
 
-        LadderGameMain gameMain = new LadderGameMain(settings);
+        LadderGameMain gameMain = new LadderGameMain(gameSettings);
+        gameMain.playGame();
         Ladder ladder = gameMain.getLadder();
+
 
         ResultView resultView = ResultView.getInstance();
         resultView.showLadderGame(players,ladder);

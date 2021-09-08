@@ -4,7 +4,7 @@ public class LadderStep {
 
     private final InterSpaces interSpaces;
 
-    public LadderStep(LadderGameSettings settings) {
+    public LadderStep(LadderDrawingSettings settings) {
         this.interSpaces = new InterSpaces(settings);
     }
 

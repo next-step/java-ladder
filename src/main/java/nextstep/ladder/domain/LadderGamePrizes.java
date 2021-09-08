@@ -20,7 +20,11 @@ public class LadderGamePrizes {
         return new LadderGamePrizes(ladderGamePrizes);
     }
 
-    public List<LadderGamePrize> getLadderGamePrizes() {
+    public List<LadderGamePrize> value() {
         return ladderGamePrizes;
+    }
+
+    public int count() {
+        return value().size();
     }
 }

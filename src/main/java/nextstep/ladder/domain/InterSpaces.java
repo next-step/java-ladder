@@ -8,12 +8,12 @@ public class InterSpaces {
 
     private List<InterSpace> interSpaces;
 
-    public InterSpaces(LadderGameSettings settings) {
+    public InterSpaces(LadderDrawingSettings settings) {
         this.interSpaces = new ArrayList<>();
         drawCrossLinesBySettings(settings);
     }
 
-    private void drawCrossLinesBySettings(LadderGameSettings settings) {
+    private void drawCrossLinesBySettings(LadderDrawingSettings settings) {
 
         final DrawLineStrategy strategy = settings.getStrategy();
 

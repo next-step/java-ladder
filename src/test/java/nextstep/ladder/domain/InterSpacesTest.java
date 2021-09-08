@@ -14,7 +14,7 @@ class InterSpacesTest {
     @ParameterizedTest
     @MethodSource("provideGameSettings")
     @DisplayName("마지막 사다리의 오른편에는 절대로 가로라인을 가질수 없다.")
-    void checkLastInterSpaceBlank(LadderGameSettings settings) {
+    void checkLastInterSpaceBlank(LadderDrawingSettings settings) {
 
         InterSpaces interSpaces = new InterSpaces(settings);
         int lastIndex = interSpaces.value().size() - 1;
@@ -27,11 +27,11 @@ class InterSpacesTest {
 
         return Stream.of(
             Arguments
-                .of(LadderGameSettings.of(LadderSize.of(2, 1), new RandomDrawLineStrategy()), 2),
+                .of(LadderDrawingSettings.of(LadderSize.of(2, 1), new RandomDrawLineStrategy()), 2),
             Arguments
-                .of(LadderGameSettings.of(LadderSize.of(5, 5), new RandomDrawLineStrategy()), 5),
+                .of(LadderDrawingSettings.of(LadderSize.of(5, 5), new RandomDrawLineStrategy()), 5),
             Arguments
-                .of(LadderGameSettings.of(LadderSize.of(10, 10), new RandomDrawLineStrategy()), 10)
+                .of(LadderDrawingSettings.of(LadderSize.of(10, 10), new RandomDrawLineStrategy()), 10)
         );
     }
 }

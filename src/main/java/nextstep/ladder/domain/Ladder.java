@@ -8,13 +8,13 @@ public class Ladder {
 
     private final List<LadderStep> ladderSteps;
 
-    private Ladder(LadderGameSettings settings) {
+    private Ladder(LadderDrawingSettings settings) {
         this.ladderSteps = Stream.generate(() -> new LadderStep(settings))
             .limit(settings.getLadderHeight())
             .collect(Collectors.toUnmodifiableList());
     }
 
-    public static Ladder from(LadderGameSettings settings) {
+    public static Ladder from(LadderDrawingSettings settings) {
         return new Ladder(settings);
     }
 

@@ -15,7 +15,7 @@ class LadderRowTest {
     @MethodSource("provideGameSettings")
 
     @DisplayName("1열이상의 길이를 가지는 한행의 사다리를 만들수 있다.")
-    void createLadder(LadderGameSettings settings) {
+    void createLadder(LadderDrawingSettings settings) {
 
         LadderStep ladderStep = new LadderStep(settings);
         assertThat(ladderStep.interSpacesSize()).isEqualTo(settings.getLadderWidth());
@@ -25,9 +25,9 @@ class LadderRowTest {
     private static Stream<Arguments> provideGameSettings() {
 
         return Stream.of(
-            Arguments.of(LadderGameSettings.of(LadderSize.of(2, 1), new RandomDrawLineStrategy())),
-            Arguments.of(LadderGameSettings.of(LadderSize.of(2, 2), new RandomDrawLineStrategy())),
-            Arguments.of(LadderGameSettings.of(LadderSize.of(10, 10), new RandomDrawLineStrategy()))
+            Arguments.of(LadderDrawingSettings.of(LadderSize.of(2, 1), new RandomDrawLineStrategy())),
+            Arguments.of(LadderDrawingSettings.of(LadderSize.of(2, 2), new RandomDrawLineStrategy())),
+            Arguments.of(LadderDrawingSettings.of(LadderSize.of(10, 10), new RandomDrawLineStrategy()))
         );
     }
 }

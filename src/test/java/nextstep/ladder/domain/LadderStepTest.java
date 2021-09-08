@@ -14,7 +14,7 @@ class LadderStepTest {
     @ParameterizedTest
     @MethodSource("provideGameSettings")
     @DisplayName("설정한 플레이어 수만큼의 사이공간이 생긴다.")
-    void LadderStepSizeTest(LadderGameSettings settings, int expectedInterSpaceSize) {
+    void LadderStepSizeTest(LadderDrawingSettings settings, int expectedInterSpaceSize) {
         LadderStep ladderStep = new LadderStep(settings);
         assertThat(ladderStep.interSpacesSize()).isEqualTo(expectedInterSpaceSize);
     }
@@ -24,11 +24,11 @@ class LadderStepTest {
 
         return Stream.of(
             Arguments
-                .of(LadderGameSettings.of(LadderSize.of(2, 1), new RandomDrawLineStrategy()), 2),
+                .of(LadderDrawingSettings.of(LadderSize.of(2, 1), new RandomDrawLineStrategy()), 2),
             Arguments
-                .of(LadderGameSettings.of(LadderSize.of(5, 5), new RandomDrawLineStrategy()), 5),
+                .of(LadderDrawingSettings.of(LadderSize.of(5, 5), new RandomDrawLineStrategy()), 5),
             Arguments
-                .of(LadderGameSettings.of(LadderSize.of(10, 10), new RandomDrawLineStrategy()), 10)
+                .of(LadderDrawingSettings.of(LadderSize.of(10, 10), new RandomDrawLineStrategy()), 10)
         );
     }
 
