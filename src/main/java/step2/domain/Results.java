@@ -14,4 +14,8 @@ public class Results {
     public List<String> getItems() {
         return items;
     }
+
+    public String resultOfPosition(int position) {
+        return items.get(position);
+    }
 }

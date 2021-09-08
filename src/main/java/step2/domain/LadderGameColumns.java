@@ -58,8 +58,7 @@ public class LadderGameColumns {
 
     private LadderGameColumn addResultInToLadderGameColumns(LadderGameColumn ladderGameColumn, Results results) {
         int position = ladderGameColumn.getPosition();
-        String result = results.getItems().get(position);
-//        ladderGameColumn.setResult(result);
+        String result = results.resultOfPosition(position);
         return ladderGameColumn;
     }
 
