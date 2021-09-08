@@ -54,4 +54,8 @@ public class Players {
     public int size() {
         return playerNames.size();
     }
+
+    public PlayerName playerNameAt(int position) {
+        return playerNames.get(position);
+    }
 }

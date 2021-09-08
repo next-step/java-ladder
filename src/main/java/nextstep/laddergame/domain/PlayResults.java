@@ -24,4 +24,8 @@ public class PlayResults {
     public List<String> getResults() {
         return results;
     }
+
+    public String resultAt(int position) {
+        return results.get(position);
+    }
 }

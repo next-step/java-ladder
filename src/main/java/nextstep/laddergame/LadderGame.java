@@ -1,9 +1,6 @@
 package nextstep.laddergame;
 
-import nextstep.laddergame.domain.Ladder;
-import nextstep.laddergame.domain.LadderHeights;
-import nextstep.laddergame.domain.PlayResults;
-import nextstep.laddergame.domain.Players;
+import nextstep.laddergame.domain.*;
 import nextstep.laddergame.view.InputView;
 import nextstep.laddergame.view.OutputView;
 
@@ -23,6 +20,11 @@ public class LadderGame {
         LadderHeights ladderHeights = inputLadderHeights();
         Ladder ladder = Ladder.of(players, ladderHeights);
         outputView.printLadder(players, ladder, playResults);
+        LadderResults ladderResults = ladder.getResults(players, playResults);
+        while (true) {
+            outputView.printResultCheckInputMessage();
+            outputView.printPlayResult(ladderResults, inputView.getPlayerName());
+        }
     }
 
     private Players inputPlayers() {

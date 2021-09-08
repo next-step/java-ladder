@@ -38,7 +38,7 @@ public class OutputView {
     }
 
     public void printLadder(Players players, Ladder ladder, PlayResults playResults) {
-        printStream.println("실행결과");
+        printStream.println("사다리 결과");
         printStream.println(render(players.getPlayerNames()));
         printStream.println(renderLadder(ladder));
         printStream.println(render(playResults.getResults()));
@@ -62,5 +62,14 @@ public class OutputView {
         return String.format(LINE_RENDERING_FORMAT, connections.stream()
                 .map(connection -> connection.isConnected()? CONNECTED_POINT_RENDERING_FORMAT : UNCONNECTED_POINT_RENDERING_FORMAT)
                 .collect(Collectors.joining(POINT_DELIMITER)));
+    }
+
+    public void printResultCheckInputMessage() {
+        printStream.println("결과를 보고 싶은 사람은?");
+    }
+
+    public void printPlayResult(LadderResults ladderResults, String playerName) {
+        printStream.println("실행 결과");
+        printStream.println(ladderResults.getResult(playerName));
     }
 }

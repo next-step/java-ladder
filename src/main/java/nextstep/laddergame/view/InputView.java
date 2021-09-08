@@ -35,4 +35,7 @@ public class InputView {
         }
     }
 
+    public String getPlayerName() {
+        return scanner.nextLine();
+    }
 }
