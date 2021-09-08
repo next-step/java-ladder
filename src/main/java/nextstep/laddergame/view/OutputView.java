@@ -4,6 +4,7 @@ import nextstep.laddergame.domain.*;
 
 import java.io.PrintStream;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -76,7 +77,11 @@ public class OutputView {
             printStream.println(render(ladderResults));
             return;
         }
-        printStream.println(ladderResults.getResult(playerName));
+        try {
+            printStream.println(ladderResults.getResult(playerName));
+        } catch (IllegalArgumentException | NoSuchElementException e) {
+            printStream.println("존재하지 않는 이름입니다.");
+        }
     }
 
     private String render(LadderResults ladderResults) {
