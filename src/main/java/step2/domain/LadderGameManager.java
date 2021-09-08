@@ -4,11 +4,11 @@ import java.util.List;
 
 public class LadderGameManager {
     private final LadderGameColumns ladderGameColumns;
-    private final Result result;
+    private final Results results;
 
-    public LadderGameManager(Name name, Result result) {
+    public LadderGameManager(Name name, Results results) {
         ladderGameColumns = new LadderGameColumns(name);
-        this.result = result;
+        this.results = results;
     }
 
     public List<LadderGameColumn> getLadderResults() {
@@ -17,6 +17,6 @@ public class LadderGameManager {
 
     public void runGame(int height, Ladder ladder) {
         ladderGameColumns.runLadder(height, ladder);
-        ladderGameColumns.calculateResult(result);
+        ladderGameColumns.calculateResult(results);
     }
 }

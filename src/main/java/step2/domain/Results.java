@@ -3,11 +3,11 @@ package step2.domain;
 import java.util.Arrays;
 import java.util.List;
 
-public class Result {
+public class Results {
     private static final String DELIMITER = ",";
     private final List<String> items;
 
-    public Result(String string) {
+    public Results(String string) {
         items = Arrays.asList(string.split(DELIMITER));
     }
 

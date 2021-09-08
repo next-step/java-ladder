@@ -2,7 +2,7 @@ package step2.view;
 
 import step2.domain.LadderGameColumn;
 import step2.domain.Line;
-import step2.domain.Result;
+import step2.domain.Results;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -45,31 +45,31 @@ public class ResultView {
         return LADDER_EMPTY;
     }
 
-    public static void printResultColumn(Result result) {
-        result.getItems()
+    public static void printResultColumn(Results results) {
+        results.getItems()
                 .stream()
                 .map(s -> s + NAME_SPACE)
                 .forEach(System.out::print);
         System.out.println();
     }
 
-    public static void printResultOfTarget(String target, List<LadderGameColumn> ladderGameColumns, Result result) {
+    public static void printResultOfTarget(String target, List<LadderGameColumn> ladderGameColumns, Results results) {
         if (target.equals("all")) {
-            printAllResult(ladderGameColumns, result);
+            printAllResult(ladderGameColumns, results);
             return;
         }
         System.out.println("target");
         ladderGameColumns.stream()
                 .filter(ladderGameColumn -> ladderGameColumn.getName().equals(target))
-                .forEach(ladderGameColumn -> System.out.println(ladderGameColumn.getName() + " : " + result.getItems().get(ladderGameColumn.getPosition())));
+                .forEach(ladderGameColumn -> System.out.println(ladderGameColumn.getName() + " : " + results.getItems().get(ladderGameColumn.getPosition())));
         return;
 
     }
 
-    private static void printAllResult(List<LadderGameColumn> ladderGameColumns, Result result) {
+    private static void printAllResult(List<LadderGameColumn> ladderGameColumns, Results results) {
         System.out.println("all");
         ladderGameColumns.stream()
-                .map(ladderGameColumn -> ladderGameColumn.getName() + " : " + result.getItems().get(ladderGameColumn.getPosition()))
+                .map(ladderGameColumn -> ladderGameColumn.getName() + " : " + results.getItems().get(ladderGameColumn.getPosition()))
                 .forEach(System.out::println);
     }
 }
