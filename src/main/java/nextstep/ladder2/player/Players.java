@@ -47,10 +47,7 @@ public class Players {
     }
 
     public void move(List<Direction> directions) {
-        int index = 0;
-        players.stream()
-                .reduce(index++,
-                        (a,direction)->a.move(direction),
-                        (a,direction)->a);
+        // reduce 모르겠다...
+
     }
 }
