@@ -9,7 +9,7 @@ public class Ladder {
     private List<LadderLine> ladderLines;
 
     public Ladder(int ladderHeight, int userCount) {
-        ladderLines = Stream.generate(() -> LadderLine.init(userCount)).limit(ladderHeight).collect(Collectors.toList());
+        ladderLines = Stream.generate(() -> LadderLine.init(userCount, new RandomMakeStrategy())).limit(ladderHeight).collect(Collectors.toList());
     }
 
     public int move(int position) {
@@ -23,6 +23,4 @@ public class Ladder {
     public List<LadderLine> getLadder() {
         return ladderLines;
     }
-
-
 }
