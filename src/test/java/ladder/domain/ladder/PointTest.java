@@ -240,4 +240,14 @@ class PointTest {
 
     }
 
+    @Test
+    @DisplayName("Point의 연결은 오른쪽 왼쪽 둘 다 연결될 수 없다.")
+    void connectPrevNextExceptionTest() {
+
+        // when & then
+        assertThatExceptionOfType(IllegalArgumentException.class)
+            .isThrownBy(() -> new Point(0, true, true))
+            .withMessageMatching("Point는 왼쪽 오른쪽 둘 다 연결될 수 없다.");
+    }
+
 }

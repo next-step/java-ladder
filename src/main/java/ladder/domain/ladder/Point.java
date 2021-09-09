@@ -11,6 +11,7 @@ public class Point {
     private static final int START_POINT_INDEX = 0;
     private static final int VALUE_TO_NEXT_INDEX = 1;
 
+    private static final String PREV_NEXT_CONNECT_ERROR_MESSAGE = "Point는 왼쪽 오른쪽 둘 다 연결될 수 없다.";
     private static final String NULL_BEFORE_POINT_ERROR_MESSAGE = "이전 위치한 Point가 제공되어야 한다.";
 
     private final int position;
@@ -19,9 +20,17 @@ public class Point {
     private final boolean nextConnect;
 
     public Point(int position, boolean prevConnect, boolean nextConnect) {
+        checkPrevNextPoint(prevConnect, nextConnect);
+
         this.position = position;
         this.prevConnect = prevConnect;
         this.nextConnect = nextConnect;
+    }
+
+    private static void checkPrevNextPoint(boolean prevConnect, boolean nextConnect) {
+        if (prevConnect && nextConnect) {
+            throw new IllegalArgumentException(PREV_NEXT_CONNECT_ERROR_MESSAGE);
+        }
     }
 
     public static Point createFirst(LineGenerateStrategy lineGenerateStrategy) {
