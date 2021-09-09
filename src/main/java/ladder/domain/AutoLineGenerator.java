@@ -14,10 +14,10 @@ public class AutoLineGenerator implements LadderLineGenerator{
         return new AutoLineGenerator();
     }
 
-    public List<Boolean> generate(int countOfParticipants) {
+    public List<Boolean> generate(int maxLadderWidth) {
         postLine = false;
         return Stream.generate(this::determine)
-                .limit(countOfParticipants)
+                .limit(maxLadderWidth)
                 .collect(Collectors.toList());
     }
 

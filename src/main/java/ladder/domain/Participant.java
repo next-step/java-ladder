@@ -13,10 +13,6 @@ public class Participant {
         this(new ParticipantName(name), position);
     }
 
-    public Participant(String name, int x) {
-        this(name, new Position(x));
-    }
-
     public String toStringName() {
         return participantName.toString();
     }

@@ -11,9 +11,9 @@ public class Ladder {
         this.ladder = ladder;
     }
 
-    public static Ladder create(final int countOfParticipants, final int ladderHeight, final LadderLineGenerator ladderLineGenerator) {
-        return Stream.generate(() -> new LadderFloor(countOfParticipants, ladderLineGenerator))
-                .limit(ladderHeight)
+    public static Ladder create(final LadderSize ladderSize, final LadderLineGenerator ladderLineGenerator) {
+        return Stream.generate(() -> new LadderFloor(ladderSize, ladderLineGenerator))
+                .limit(ladderSize.getLadderHeight())
                 .collect(Collectors.collectingAndThen(Collectors.toList(), Ladder::new));
     }
 
