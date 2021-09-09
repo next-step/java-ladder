@@ -8,11 +8,17 @@ import ladder.domain.user.User;
 
 public class ResultView {
 
-    private static final String RESULT_TITLE_PRINT_MESSAGE = "실행결과\n";
+    private static final String RESULT_TITLE_PRINT_MESSAGE = "사다리 결과\n";
+    private static final String LADDER_RESULT_TITLE_PRINT_MESSAGE = "실행결과\n";
 
     private static final String DEFAULT_USER_PRINT_FORMAT = "%-6s";
     private static final String CONNECTED_LINE_PRINT_FORMAT = "|-----";
     private static final String DISCONNECTED_LINE_PRINT_FORMAT = "|     ";
+
+    private static final String LINE_BREAK = "\n";
+    private static final String PRINT_USERNAME_BETWEEN_RESULT = " : ";
+
+    private static final String PRINT_ALL_USER_RESULT_COMMAND = "all";
 
     private ResultView() {
     }
@@ -67,10 +73,24 @@ public class ResultView {
         System.out.println(sb);
     }
 
-    public static void printLadderResult(String username, LadderResult ladderResult) {
+    public static void printLadderResult(String username, List<User> users, LadderResult ladderResult) {
         StringBuilder sb = new StringBuilder();
+        sb.append(LADDER_RESULT_TITLE_PRINT_MESSAGE);
+
+        if (username.equals(PRINT_ALL_USER_RESULT_COMMAND)) {
+            users.forEach(user -> appendResult(ladderResult, sb, user));
+            System.out.println(sb);
+            return;
+        }
+
         sb.append(ladderResult.getResultByUser(new User(username)));
         System.out.println(sb);
+    }
+
+    private static void appendResult(LadderResult ladderResult, StringBuilder sb, User user) {
+        String userResult = ladderResult.getResultByUser(user);
+        sb.append(user.nameToString() + PRINT_USERNAME_BETWEEN_RESULT + userResult);
+        sb.append(LINE_BREAK);
     }
 
 }

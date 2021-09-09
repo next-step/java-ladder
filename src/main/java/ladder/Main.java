@@ -29,7 +29,7 @@ public class Main {
 
         printResult(users.value(), ladder.value(), endPoints.value());
 
-        printLadderResult(inputResultUsername(), ladderResult);
+        printLadderResult(inputResultUsername(), users.value(), ladderResult);
     }
 
 }
