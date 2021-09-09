@@ -2,6 +2,7 @@ package ladder.domain.ladder;
 
 import java.util.Collections;
 import java.util.Map;
+import java.util.Objects;
 import ladder.domain.user.User;
 
 public class LadderResult {
@@ -28,6 +29,23 @@ public class LadderResult {
 
     public Map<User, String> getAllResults() {
         return Collections.unmodifiableMap(results);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        LadderResult that = (LadderResult) o;
+        return Objects.equals(results, that.results);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(results);
     }
 
 }

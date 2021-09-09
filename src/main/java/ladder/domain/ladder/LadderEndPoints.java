@@ -31,6 +31,10 @@ public class LadderEndPoints {
         }
     }
 
+    public String findByPosition(int position) {
+        return endPoints.get(position);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

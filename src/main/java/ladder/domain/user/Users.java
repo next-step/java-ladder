@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Users {
 
@@ -43,6 +44,10 @@ public class Users {
 
     public List<User> value() {
         return Collections.unmodifiableList(users);
+    }
+
+    public Stream<User> stream() {
+        return Collections.unmodifiableList(users).stream();
     }
 
     @Override

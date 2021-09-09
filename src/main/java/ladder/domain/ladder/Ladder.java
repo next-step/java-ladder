@@ -2,9 +2,12 @@ package ladder.domain.ladder;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.IntStream;
+import ladder.domain.user.User;
 import ladder.domain.user.Users;
 import ladder.strategy.LineGenerateStrategy;
 
@@ -35,6 +38,19 @@ public class Ladder {
             now = line.move(now);
         }
         return now;
+    }
+
+    public LadderResult createResult(Users users, LadderEndPoints endPoints) {
+        Map<User, String> result = new HashMap<>();
+
+        // 현재 유저의 위치가 있어야 calculatePoints(start)가능
+        List<User> usersList = users.value();
+        for (int i = 0; i < usersList.size(); i++) {
+            int nowUserResultPoint = calculateEndPoint(i);
+            result.put(usersList.get(i), endPoints.findByPosition(nowUserResultPoint));
+        }
+
+        return new LadderResult(result);
     }
 
     @Override

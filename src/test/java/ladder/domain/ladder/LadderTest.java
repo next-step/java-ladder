@@ -4,7 +4,10 @@ import static ladder.domain.ladder.Ladder.createLadder;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import ladder.domain.user.User;
 import ladder.domain.user.Users;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -77,11 +80,18 @@ public class LadderTest {
         LadderHeight height = new LadderHeight(5);
         Ladder ladder = createLadder(height, users, () -> true);
 
+        Map<User, String> map = new HashMap<>();
+        map.put(new User("pobi"), "5000");
+        map.put(new User("honux"), "꽝");
+        map.put(new User("crong"), "3000");
+        map.put(new User("jk"), "꽝");
+        LadderResult expected = new LadderResult(map);
+
         // when
         LadderResult result = ladder.createResult(users, endPoints);
 
         // then
-        assertThat(result).isNotNull();
+        assertThat(result).isEqualTo(expected);
     }
 
 }
