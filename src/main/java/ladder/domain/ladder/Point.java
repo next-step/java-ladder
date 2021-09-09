@@ -54,6 +54,10 @@ public class Point {
         return position + VALUE_TO_NEXT_INDEX;
     }
 
+    public boolean isPrevConnect() {
+        return prevConnect;
+    }
+
     public boolean isNextConnect() {
         return nextConnect;
     }

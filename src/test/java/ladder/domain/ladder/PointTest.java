@@ -206,4 +206,38 @@ class PointTest {
 
     }
 
+    @Nested
+    @DisplayName("왼쪽 연결이")
+    class prevConnect {
+
+        @Test
+        @DisplayName("연결되어 있다면 true를 반환할 수 있다.")
+        void trueTest() {
+
+            // given
+            Point point = new Point(1, true, false);
+
+            // when
+            boolean result = point.isPrevConnect();
+
+            // then
+            assertTrue(result);
+        }
+
+        @Test
+        @DisplayName("연결되어있지 않다면 false를 반환할 수 있다.")
+        void falseTest() {
+
+            // given
+            Point point = new Point(1, false, false);
+
+            // when
+            boolean result = point.isPrevConnect();
+
+            // then
+            assertFalse(result);
+        }
+
+    }
+
 }
