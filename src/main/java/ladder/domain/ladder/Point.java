@@ -15,15 +15,24 @@ public class Point {
 
     private final int position;
 
-    private final boolean connected;
+    private boolean connected;
+
+    private boolean prevConnect;
+    private boolean nextConnect;
 
     public Point(int position, boolean connected) {
         this.position = position;
         this.connected = connected;
     }
 
+    public Point(int position, boolean prevConnect, boolean nextConnect) {
+        this.position = position;
+        this.prevConnect = prevConnect;
+        this.nextConnect = nextConnect;
+    }
+
     public static Point createFirst(LineGenerateStrategy lineGenerateStrategy) {
-        return new Point(START_POINT_INDEX, lineGenerateStrategy.generateLine());
+        return new Point(START_POINT_INDEX, false, lineGenerateStrategy.generateLine());
     }
 
     public static Point createLast(Point before) {

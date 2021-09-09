@@ -7,7 +7,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 import java.util.Random;
-import ladder.domain.user.Name;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -23,7 +22,7 @@ class PointTest {
         void trueConnected() {
 
             // given
-            Point expected = new Point(0, true);
+            Point expected = new Point(0, false, true);
 
             // when
             Point result = createFirst(() -> true);
@@ -37,7 +36,7 @@ class PointTest {
         void falseConnected() {
 
             // given
-            Point expected = new Point(0, false);
+            Point expected = new Point(0, false,false);
 
             // when
             Point result = createFirst(() -> false);
