@@ -2,23 +2,22 @@ package ladder.domain;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Ladder {
-    private final List<Floor> ladder;
+    private final List<LadderFloor> ladder;
 
-    Ladder(List<Floor> ladder) {
+    Ladder(List<LadderFloor> ladder) {
         this.ladder = ladder;
     }
 
-    public static Ladder create(int countOfParticipants, int ladderHeight) {
-        return Stream.generate(() -> new Floor(countOfParticipants))
+    public static Ladder create(final int countOfParticipants, final int ladderHeight, final LadderLineGenerator ladderLineGenerator) {
+        return Stream.generate(() -> new LadderFloor(countOfParticipants, ladderLineGenerator))
                 .limit(ladderHeight)
                 .collect(Collectors.collectingAndThen(Collectors.toList(), Ladder::new));
     }
 
-    public List<Floor> getFloors() {
+    public List<LadderFloor> getFloors() {
         return ladder;
     }
 }

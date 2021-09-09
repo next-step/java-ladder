@@ -1,16 +1,16 @@
 package ladder.domain;
 
 public class Participant {
-    private final Name name;
+    private final ParticipantName participantName;
     private final Position position;
 
-    public Participant(Name name, Position position) {
-        this.name = name;
+    public Participant(ParticipantName participantName, Position position) {
+        this.participantName = participantName;
         this.position = position;
     }
 
     public Participant(String name, Position position) {
-        this(new Name(name), position);
+        this(new ParticipantName(name), position);
     }
 
     public Participant(String name, int x) {
@@ -18,6 +18,6 @@ public class Participant {
     }
 
     public String toStringName() {
-        return name.toString();
+        return participantName.toString();
     }
 }

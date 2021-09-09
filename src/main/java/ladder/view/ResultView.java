@@ -1,6 +1,6 @@
 package ladder.view;
 
-import ladder.domain.Floor;
+import ladder.domain.LadderFloor;
 import ladder.domain.Participant;
 
 import java.util.List;
@@ -12,11 +12,11 @@ public final class ResultView {
     private static final String FORMAT_RESULT = "\n실행결과\n\n";
 
 
-    public static void printResult(final List<Participant> participants, final List<Floor> floors) {
+    public static void printResult(final List<Participant> participants, final List<LadderFloor> ladderFloors) {
         System.out.printf(FORMAT_RESULT);
 
         printNames(participants);
-        printFloors(floors);
+        printFloors(ladderFloors);
     }
 
     static void printNames(final List<Participant> participants) {
@@ -31,14 +31,14 @@ public final class ResultView {
         System.out.printf(String.format(FORMAT_NAME, name));
     }
 
-    static void printFloors(final List<Floor> floors) {
-        floors.stream().forEach(ResultView::printFloor);
+    static void printFloors(final List<LadderFloor> ladderFloors) {
+        ladderFloors.stream().forEach(ResultView::printFloor);
     }
 
-    static void printFloor(final Floor floor) {
+    static void printFloor(final LadderFloor ladderFloor) {
         printNoLine();
 
-        floor.getLines()
+        ladderFloor.getLines()
                 .stream()
                 .forEach(ResultView::printColumn);
 

@@ -1,6 +1,7 @@
 package ladder.view;
 
 import ladder.domain.Ladder;
+import ladder.domain.LadderLineGenerator;
 import ladder.domain.Participants;
 
 import java.util.*;
@@ -24,10 +25,10 @@ public class InputView {
                 .toArray(String[]::new);
     }
 
-    public static Ladder inputLadder(int countOfParticipants) {
+    public static Ladder inputLadder(int countOfParticipants, LadderLineGenerator ladderLineGenerator) {
         int ladderHeight = inputLadderHeight();
 
-        return Ladder.create(countOfParticipants, ladderHeight);
+        return Ladder.create(countOfParticipants, ladderHeight, ladderLineGenerator);
     }
 
     private static int inputLadderHeight() {
