@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import ladder.domain.user.Users;
 
 public class LadderEndPoints {
 
@@ -17,15 +18,15 @@ public class LadderEndPoints {
         this.endPoints = endPoints;
     }
 
-    public static LadderEndPoints from(String input, int userCount) {
-        checkResultsCount(input, userCount);
+    public static LadderEndPoints from(String input, Users users) {
+        checkResultsCount(input, users);
 
         return new LadderEndPoints(Arrays.stream(splitByComma(input))
             .collect(Collectors.toList()));
     }
 
-    private static void checkResultsCount(String input, int userCount) {
-        if (splitByComma(input).length != userCount) {
+    private static void checkResultsCount(String input, Users users) {
+        if (splitByComma(input).length != users.userCount()) {
             throw new IllegalArgumentException(INVALID_RESULTS_COUNT_ERROR_MESSAGE);
         }
     }
