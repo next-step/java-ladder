@@ -36,7 +36,7 @@ class PointTest {
         void falseConnected() {
 
             // given
-            Point expected = new Point(0, false,false);
+            Point expected = new Point(0, false, false);
 
             // when
             Point result = createFirst(() -> false);
