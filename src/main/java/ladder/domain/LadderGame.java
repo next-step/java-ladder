@@ -9,9 +9,11 @@ public class LadderGame {
         this.directionMakingStrategy = directionMakingStrategy;
     }
 
-    public Result play(String playerNames, int ladderHeight) {
+    public Result play(String playerNames, String inputPlayResults, int ladderHeight) {
         Players players = new Players(StringUtil.split(playerNames));
+        PlayResults playResults = new PlayResults(StringUtil.split(inputPlayResults));
         Ladders ladders = Ladders.initLadders(new LadderWidth(players.size()), new LadderHeight(ladderHeight), directionMakingStrategy);
-        return new Result(players, ladders);
+        ladders.play(players, playResults);
+        return new Result(players, ladders, playResults);
     }
 }
