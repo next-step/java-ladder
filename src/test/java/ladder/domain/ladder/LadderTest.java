@@ -14,13 +14,12 @@ public class LadderTest {
     @Test
     @DisplayName("사다리 높이를 받아 사다리를 만들 수 있다.")
     void createLadderTest() {
-
         // given
         LadderHeight height = new LadderHeight(2);
-        Line line = new Line(Arrays.asList(new Point(0, true),
-            new Point(1, false),
-            new Point(2, true),
-            new Point(3, false)));
+        Line line = new Line(Arrays.asList(new Point(0, false, true),
+            new Point(1, true, false),
+            new Point(2, false, true),
+            new Point(3, true, false)));
         List<Line> lines = Arrays.asList(line, line);
         Users users = Users.of("pobi,honux,crong,jk");
         Ladder expected = new Ladder(lines);

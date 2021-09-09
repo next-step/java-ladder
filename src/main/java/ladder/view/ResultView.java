@@ -9,8 +9,7 @@ public class ResultView {
 
     private static final String RESULT_TITLE_PRINT_MESSAGE = "실행결과\n";
 
-    private static final String DEFAULT_USER_PRINT_FORMAT = "%6s";
-    private static final String DEFAULT_LINE_PRINT_FORMAT = "     ";
+    private static final String DEFAULT_USER_PRINT_FORMAT = "%-6s";
     private static final String CONNECTED_LINE_PRINT_FORMAT = "|-----";
     private static final String DISCONNECTED_LINE_PRINT_FORMAT = "|     ";
 
@@ -46,14 +45,13 @@ public class ResultView {
 
     private static void printLine(Line line) {
         StringBuilder sb = new StringBuilder();
-        sb.append(DEFAULT_LINE_PRINT_FORMAT);
         line.value()
             .forEach(point -> sb.append(getConnected(point)));
         System.out.println(sb);
     }
 
     private static String getConnected(Point point) {
-        if (point.isConnected()) {
+        if (point.isNextConnect()) {
             return CONNECTED_LINE_PRINT_FORMAT;
         }
         return DISCONNECTED_LINE_PRINT_FORMAT;
