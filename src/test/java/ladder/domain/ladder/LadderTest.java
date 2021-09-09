@@ -67,4 +67,21 @@ public class LadderTest {
         assertThat(result).isEqualTo(0);
     }
 
+    @Test
+    @DisplayName("사다리 게임에 대한 결과를 반환할 수 있다.")
+    void getLadderResultTest() {
+
+        // given
+        Users users = Users.of("pobi,honux,crong,jk");
+        LadderEndPoints endPoints = LadderEndPoints.from("꽝,5000,꽝,3000", users);
+        LadderHeight height = new LadderHeight(5);
+        Ladder ladder = createLadder(height, users, () -> true);
+
+        // when
+        LadderResult result = ladder.createResult(users, endPoints);
+
+        // then
+        assertThat(result).isNotNull();
+    }
+
 }
