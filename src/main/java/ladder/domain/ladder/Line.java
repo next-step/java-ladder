@@ -55,15 +55,15 @@ public class Line {
         return points.get(index);
     }
 
-    public Point move(Point point) {
-        if (point.isConnected()) {
-            return points.get(point.next());
-        }
-        if (!point.isFirst() && points.get(point.prev()).isConnected()) {
-            return points.get(point.prev());
-        }
-        return point;
-    }
+//    public Point move(Point point) {
+//        if (point.isConnected()) {
+//            return points.get(point.next());
+//        }
+//        if (!point.isFirst() && points.get(point.prev()).isConnected()) {
+//            return points.get(point.prev());
+//        }
+//        return point;
+//    }
 
     @Override
     public boolean equals(Object o) {
