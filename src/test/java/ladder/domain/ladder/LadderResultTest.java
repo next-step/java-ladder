@@ -20,8 +20,8 @@ class LadderResultTest {
     @BeforeAll
     static void beforeAll() {
         results = new HashMap<>();
-        User pobi = new User("pobi");
-        User honux = new User("honux");
+        pobi = new User("pobi");
+        honux = new User("honux");
         results.put(pobi, "꽝");
         results.put(honux, "5000");
     }
