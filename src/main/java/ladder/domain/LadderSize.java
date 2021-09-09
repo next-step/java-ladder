@@ -29,11 +29,6 @@ public class LadderSize {
         }
     }
 
-
-    public int getCountOfParticipants() {
-        return countOfParticipants;
-    }
-
     public int getLadderHeight() {
         return ladderHeight;
     }

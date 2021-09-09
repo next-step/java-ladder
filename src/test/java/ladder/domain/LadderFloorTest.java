@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import ladder.exception.InvalidParticipantsCountException;
+import ladder.helper.Fixture;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -25,20 +26,13 @@ public class LadderFloorTest {
         assertThatThrownBy(() -> new LadderFloor(countOfParticipants, AutoLineGenerator.create())).isInstanceOf(InvalidParticipantsCountException.class);
     }
 
-    @DisplayName("생성된 Floor에서 라인끼리 인접하지 않아야 한다.")
+    @DisplayName("주입된 전략 인스턴스에 따라 LadderFloor가 생성된다.")
     @Test
     void generateLines() {
-        assertThat(checkLines(new LadderFloor(10, AutoLineGenerator.create()).getLines())).isTrue();
-    }
+        int countOfParticipants = 10;
+        LadderFloor ladderFloor = new LadderFloor(countOfParticipants, (n) -> Fixture.generatedLines());
 
-    private boolean checkLines(List<Boolean> lines) {
-        for (int i = 1; i < lines.size(); i++) {
-            if (lines.get(i - 1) == true && lines.get(i - 1) == lines.get(i)) {
-                return false;
-            }
-        }
-
-        return true;
+        assertThat(ladderFloor.getLines()).isEqualTo(Fixture.generatedLines());
     }
 }
 

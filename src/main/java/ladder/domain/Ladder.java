@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 public class Ladder {
     private final List<LadderFloor> ladder;
 
-    Ladder(List<LadderFloor> ladder) {
+    private Ladder(List<LadderFloor> ladder) {
         this.ladder = ladder;
     }
 

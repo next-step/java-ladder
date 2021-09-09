@@ -17,10 +17,6 @@ public final class Participants {
                 .collect(Collectors.toList()));
     }
 
-    public int getCountOfParticipants() {
-        return participants.size();
-    }
-
     public List<Participant> getPaticipants() {
         return participants;
     }
