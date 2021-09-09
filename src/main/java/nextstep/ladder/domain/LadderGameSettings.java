@@ -18,8 +18,8 @@ public class LadderGameSettings {
         this.drawingSettings = Objects.requireNonNull(drawingSettings);
     }
 
-    public static LadderGameSettings of(Players players, LadderGamePrizes ladderGamePrizes,
-        LadderDrawingSettings drawingSettings) {
+    public static LadderGameSettings of(Players players, LadderHeight ladderGamePrizes,
+        LadderGamePrizes drawingSettings) {
         return new LadderGameSettings(players, ladderGamePrizes, drawingSettings);
     }
 

@@ -3,6 +3,7 @@ package nextstep.ladder.domain;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import nextstep.ladder.strategy.DrawLineStrategy;
 
 public class Ladder {
 
@@ -16,8 +17,8 @@ public class Ladder {
         this.ladderSteps = createLadderSteps(settings);
     }
 
-    public static Ladder from(LadderDrawingSettings settings) {
-        return new Ladder(settings);
+    public static Ladder from(LadderGameSettings settings, DrawLineStrategy strategy) {
+        return new Ladder(settings, strategy);
     }
 
     private List<LadderStep> createLadderSteps(LadderDrawingSettings settings) {

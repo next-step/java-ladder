@@ -13,45 +13,29 @@ public class InputView {
     private static final String EMPTY_STRING = "";
     private static final String COMMA = ",";
 
-    private final Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
 
-    private InputView() {
-    }
 
-    public static InputView getInstance() {
-        return InputViewHolder.instance;
-    }
-
-    public String[] askplayerNames() {
+    public static String[] askPlayerNames() {
         System.out.println(PLAYER_NAMES_MESSAGE);
         String playerNameString = scanner.next().replaceAll(BLANK_SPACE, EMPTY_STRING);
         return playerNameString.split(COMMA);
     }
 
-
-    public int askLadderHeight() {
+    public static int askLadderHeight() {
         System.out.println(LADDER_HEIGHT_MESSAGE);
         return scanner.nextInt();
     }
 
-    public String[] askLadderGamePrizes() {
+    public static String[] askLadderGamePrizes() {
         System.out.println(LADDER_GAME_PRIZE_MESSAGE);
         String ladderGamePrizesString = scanner.next().replaceAll(BLANK_SPACE, EMPTY_STRING);
         return ladderGamePrizesString.split(COMMA);
     }
 
-    public void closeInputScanner() {
-        scanner.close();
-    }
-
-    public String askPlayerNameForResult() {
+    public static String askPlayerNameForResult() {
         System.out.println(PLAYER_RESULT_MESSAGE);
         return scanner.next();
-    }
-
-    private static class InputViewHolder {
-
-        private static final InputView instance = new InputView();
     }
 
 }

@@ -2,6 +2,7 @@ package nextstep.ladder.domain;
 
 import java.util.List;
 import java.util.stream.IntStream;
+import nextstep.ladder.strategy.RandomDrawLineStrategy;
 
 public class LadderGameMain {
 
@@ -10,7 +11,7 @@ public class LadderGameMain {
     private final LadderGamePrizes ladderGamePrizes;
 
     public LadderGameMain(LadderGameSettings gameSettings) {
-        this.ladder = Ladder.from(gameSettings.getDrawingSettings());
+        this.ladder = Ladder.from(gameSettings, new RandomDrawLineStrategy());
         this.players = gameSettings.getPlayers();
         this.ladderGamePrizes = gameSettings.getLadderGamePrizes();
     }
