@@ -38,7 +38,7 @@ public class Point {
     public static Point createLast(Point before) {
         checkBeforePointIsNull(before);
 
-        return new Point(before.getNextPosition(), DISCONNECT_POINT);
+        return new Point(before.getNextPosition(), before.nextConnect, DISCONNECT_POINT);
     }
 
     public static Point createNextByBeforePoint(Point before, LineGenerateStrategy lineGenerateStrategy) {
@@ -86,11 +86,13 @@ public class Point {
             return false;
         }
         Point point = (Point) o;
-        return position == point.position && connected == point.connected;
+        return position == point.position && connected == point.connected && prevConnect == point.prevConnect
+            && nextConnect == point.nextConnect;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(position, connected);
+        return Objects.hash(position, connected, prevConnect, nextConnect);
     }
+
 }

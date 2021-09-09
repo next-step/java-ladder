@@ -47,20 +47,40 @@ class PointTest {
 
     }
 
-    @Test
-    @DisplayName("마지막 Point 객체를 만들 수 있다.")
-    void createLaseTest() {
+    @Nested
+    @DisplayName("첫번째 Point 객체를 만들 수 있다.")
+    class createLastTest {
 
-        // given
-        int index = 6;
-        Point nowPoint = new Point(index, true);
-        Point expected = new Point(index + 1, false);
+        @Test
+        @DisplayName("[prevconnected = true]")
+        void trueConnected() {
 
-        // when
-        Point result = createLast(nowPoint);
+            // given
+            Point now = new Point(3, false, true);
+            Point expected = new Point(4, true, false);
 
-        // then
-        assertThat(result).isEqualTo(expected);
+            // when
+            Point result = createLast(now);
+
+            // then
+            assertThat(result).isEqualTo(expected);
+        }
+
+        @Test
+        @DisplayName("[connected = false]")
+        void falseConnected() {
+
+            // given
+            Point now = new Point(3, false, false);
+            Point expected = new Point(4, false, false);
+
+            // when
+            Point result = createLast(now);
+
+            // then
+            assertThat(result).isEqualTo(expected);
+        }
+
     }
 
     @Nested
