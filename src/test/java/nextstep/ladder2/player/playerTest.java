@@ -32,11 +32,8 @@ class playerTest {
     void movePlayerTest(){
         Player player = Player.of("james",1,2);
 
-        player.move(Direction.LEFT);
-        assertThat(player.index()).isEqualTo(0);
-
-        player.move(Direction.RIGHT);
-        assertThat(player.index()).isEqualTo(1);
+        assertThat(player.move(Direction.LEFT)).isEqualTo(0);
+        assertThat(player.move(Direction.RIGHT)).isEqualTo(1);
     }
 
     @Test
@@ -44,8 +41,6 @@ class playerTest {
     void movePlayerAtBoundaryTest(){
         Player player = Player.of("james",0,2);
 
-        player.move(Direction.LEFT);
-        assertThat(player.index()).isEqualTo(0);
-
+        assertThat(player.move(Direction.LEFT)).isEqualTo(0);
     }
 }

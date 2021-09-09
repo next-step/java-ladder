@@ -28,7 +28,6 @@ public class Player {
     }
 
     private Point makeNext(Direction dir) {
-        System.out.println(dir);
         if (dir == Direction.LEFT) {
             return point.left();
         } else if (dir == Direction.RIGHT) {
@@ -55,5 +54,13 @@ public class Player {
         if (name.length() > 5) {
             throw new IllegalArgumentException(ErrorMessage.NAME_LENGTH.message());
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "name='" + name + '\'' +
+                ", point=" + point +
+                '}';
     }
 }

@@ -1,5 +1,6 @@
 package nextstep.ladder2.point;
 
+import nextstep.ladder2.player.Players;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,8 +14,8 @@ class LadderPointTest {
         Point playerPoint = new Point(5, 10);
         LadderPoint ladderPoint = new LadderPoint(playerPoint);
 
-        assertThat(ladderPoint.left()).isEqualTo(4);
-        assertThat(ladderPoint.right()).isEqualTo(5);
+        assertThat(ladderPoint.left().index()).isEqualTo(4);
+        assertThat(ladderPoint.right().index()).isEqualTo(5);
     }
 
     @Test
@@ -23,15 +24,16 @@ class LadderPointTest {
         Point playerPoint = new Point(0, 10);
         LadderPoint ladderPoint = new LadderPoint(playerPoint);
 
-        assertThat(ladderPoint.left()).isEqualTo(Point.INVALID_POINT.index());
+        assertThat(ladderPoint.left().index()).isEqualTo(Point.INVALID_POINT.index());
     }
 
     @Test
-    @DisplayName("사이드값 포인트 확인 (0 왼쪽값)")
+    @DisplayName("사이드값 포인트 확인 (0 오른쪽)")
     void checkMaxTest() {
-        Point playerPoint = new Point(10, 10);
+        Point playerPoint = new Point(10, 11);
         LadderPoint ladderPoint = new LadderPoint(playerPoint);
 
-        assertThat(ladderPoint.right()).isEqualTo(Point.INVALID_POINT.index());
+        assertThat(ladderPoint.right().index()).isEqualTo(Point.INVALID_POINT.index());
     }
+
 }

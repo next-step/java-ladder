@@ -24,6 +24,15 @@ class LineTest {
     @Test
     @DisplayName("라인에서 플레이어를 움직인다.")
     void moveTest(){
-        Players players = Players.of("a,b,c,d");
+        Players players = Players.of("a,b,c,d,e");
+
+        LineMaker maker = size1 -> Arrays.asList(true,false,true,false);
+        Line line = new Line(maker,4);
+
+        assertThat(players.indexes()).containsExactly(0,1,2,3,4);
+
+        line.playLadderLine(players);
+
+        assertThat(players.indexes()).isEqualTo(null);
     }
 }

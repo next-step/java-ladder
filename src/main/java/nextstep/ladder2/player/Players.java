@@ -49,7 +49,15 @@ public class Players {
     public void move(List<Direction> directions) {
         directions.stream()
                 .reduce(0,
-                        (index, dir) -> players.get(index).move(dir),
+                        (index, dir) -> {
+                            System.out.println(index);
+                            System.out.println(players);
+                    return players.get(index).move(dir);
+                    },
                         (index, dir) -> index);
+    }
+
+    public int size() {
+        return this.players.size();
     }
 }
