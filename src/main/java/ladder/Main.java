@@ -13,11 +13,33 @@ public class Main {
         try (Scanner scanner = new Scanner(System.in)) {
             InputView inputView = new InputView(scanner);
             String playerNames = inputView.receivePlayerNames();
+            String playResults = inputView.receivePlayResults();
             int ladderHeight = inputView.receiveLadderHeight();
 
             LadderGame ladderGame = new LadderGame(new RandomDirectionMakingStrategy());
-            Result result = ladderGame.play(playerNames, ladderHeight);
+            Result result = ladderGame.play(playerNames, playResults, ladderHeight);
             ResultView.print(result);
+            checkPlayResult(inputView, result);
         }
+    }
+
+    private static void checkPlayResult(InputView inputView, Result result) {
+        String playerName;
+        do {
+            playerName = inputView.receiveWantedPlayerName();
+            findPlayResult(playerName, result);
+        } while (!isEqualsToAll(playerName));
+    }
+
+    private static void findPlayResult(String playerName, Result result) {
+        if (isEqualsToAll(playerName)) {
+            ResultView.print(result.getPlayers());
+            return;
+        }
+        ResultView.print(result.findPlayer(playerName));
+    }
+
+    private static boolean isEqualsToAll(final String playerName) {
+        return "all".equals(playerName);
     }
 }
