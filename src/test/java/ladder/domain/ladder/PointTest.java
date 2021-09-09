@@ -5,6 +5,8 @@ import static ladder.domain.ladder.Point.createLast;
 import static ladder.domain.ladder.Point.createNextByBeforePoint;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Random;
 import org.junit.jupiter.api.DisplayName;
@@ -168,6 +170,40 @@ class PointTest {
         assertThatExceptionOfType(IllegalArgumentException.class)
             .isThrownBy(() -> createNextByBeforePoint(before, () -> true))
             .withMessageMatching("이전 위치한 Point가 제공되어야 한다.");
+    }
+
+    @Nested
+    @DisplayName("오른쪽 연결이")
+    class nextConnect {
+
+        @Test
+        @DisplayName("연결되어 있다면 true를 반환할 수 있다.")
+        void trueTest() {
+
+            // given
+            Point point = new Point(1, false, true);
+
+            // when
+            boolean result = point.isNextConnect();
+
+            // then
+            assertTrue(result);
+        }
+
+        @Test
+        @DisplayName("연결되어있지 않다면 false를 반환할 수 있다.")
+        void falseTest() {
+
+            // given
+            Point point = new Point(1, false, false);
+
+            // when
+            boolean result = point.isNextConnect();
+
+            // then
+            assertFalse(result);
+        }
+
     }
 
 }
