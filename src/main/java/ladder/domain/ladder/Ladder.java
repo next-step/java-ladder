@@ -37,9 +37,9 @@ public class Ladder {
 
         IntStream.range(START_LADDER_INDEX, users.userCount())
             .forEach(position -> {
-                User user = users.findByPosition(position);
+                User user = users.getByPosition(position);
                 int userResultPosition = calculateEndPoint(position);
-                String endPoint = endPoints.findByPosition(userResultPosition);
+                String endPoint = endPoints.getByPosition(userResultPosition);
                 result.put(user, endPoint);
             });
 

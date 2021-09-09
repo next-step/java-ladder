@@ -41,7 +41,7 @@ public class Users {
         return Collections.unmodifiableList(users);
     }
 
-    public User findByPosition(int position) {
+    public User getByPosition(int position) {
         return users.get(position);
     }
 

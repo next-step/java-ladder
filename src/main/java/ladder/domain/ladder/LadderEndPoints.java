@@ -32,7 +32,7 @@ public class LadderEndPoints {
         }
     }
 
-    public String findByPosition(int position) {
+    public String getByPosition(int position) {
         return endPoints.get(position);
     }
 
