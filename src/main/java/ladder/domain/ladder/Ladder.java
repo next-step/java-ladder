@@ -43,12 +43,13 @@ public class Ladder {
     public LadderResult createResult(Users users, LadderEndPoints endPoints) {
         Map<User, String> result = new HashMap<>();
 
-        // 현재 유저의 위치가 있어야 calculatePoints(start)가능
-        List<User> usersList = users.value();
-        for (int i = 0; i < usersList.size(); i++) {
-            int nowUserResultPoint = calculateEndPoint(i);
-            result.put(usersList.get(i), endPoints.findByPosition(nowUserResultPoint));
-        }
+        IntStream.range(START_LADDER_INDEX, users.userCount())
+            .forEach(position -> {
+                User user = users.findByPosition(position);
+                int userResultPosition = calculateEndPoint(position);
+                String endPoint = endPoints.findByPosition(userResultPosition);
+                result.put(user, endPoint);
+            });
 
         return new LadderResult(result);
     }

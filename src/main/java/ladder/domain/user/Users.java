@@ -8,7 +8,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Users {
 
@@ -42,8 +41,8 @@ public class Users {
         return Collections.unmodifiableList(users);
     }
 
-    public Stream<User> stream() {
-        return Collections.unmodifiableList(users).stream();
+    public User findByPosition(int position) {
+        return users.get(position);
     }
 
     @Override
