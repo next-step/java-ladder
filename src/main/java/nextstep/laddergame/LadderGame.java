@@ -4,8 +4,6 @@ import nextstep.laddergame.domain.*;
 import nextstep.laddergame.view.InputView;
 import nextstep.laddergame.view.OutputView;
 
-import java.util.List;
-
 public class LadderGame {
 
     private final InputView inputView;
@@ -18,20 +16,30 @@ public class LadderGame {
 
     public void run() {
         Players players = inputPlayers();
-        Ladder ladder = createLadder(players.getPlayerCount());
-        outputView.printLadder(players, ladder);
+        PlayResults playResults = inputPlayResults(players.size());
+        LadderHeights ladderHeights = inputLadderHeights();
+        Ladder ladder = Ladder.of(players, ladderHeights);
+        outputView.printLadder(players, ladder, playResults);
+        LadderResults ladderResults = ladder.getResults(players, playResults);
+        while (true) {
+            outputView.printResultCheckInputMessage();
+            outputView.printPlayResult(ladderResults, inputView.getPlayerName());
+        }
     }
 
     private Players inputPlayers() {
         outputView.printPlayersNameInputMessage();
-        List<PlayerName> playerNames = inputView.getPlayerNames();
-        return Players.of(playerNames);
+        return Players.of(inputView.getListInputs());
     }
 
-    private Ladder createLadder(PlayerCount playerCount) {
+    private PlayResults inputPlayResults(int requiredResultCount) {
+        outputView.printPlayResultsInputMessage();
+        return PlayResults.with(requiredResultCount, inputView.getListInputs());
+    }
+
+    private LadderHeights inputLadderHeights() {
         outputView.printLadderHeightsInputMessage();
-        LadderHeights ladderHeights = inputView.getLadderHeights();
-        return Ladder.of(playerCount, ladderHeights);
+        return LadderHeights.of(inputView.getLadderHeights());
     }
 
     public static void main(String[] args) {

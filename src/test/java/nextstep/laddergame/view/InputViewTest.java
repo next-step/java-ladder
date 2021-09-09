@@ -1,14 +1,11 @@
 package nextstep.laddergame.view;
 
-import nextstep.laddergame.domain.LadderHeights;
-import nextstep.laddergame.domain.PlayerName;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
@@ -19,18 +16,11 @@ class InputViewTest {
     @Test
     public void playerNamesInputTest() {
         List<String> names = Arrays.asList("abc", "def", "ghi", "jkl");
-        List<PlayerName> expected = expectedPlayerNames(names);
         InputView inputView = createMockInputView(String.join(",", names));
-        List<PlayerName> playerNames = inputView.getPlayerNames();
+        List<String> playerNames = inputView.getListInputs();
         assertThat(playerNames)
                 .hasSize(4)
-                .containsAll(expected);
-    }
-
-    private List<PlayerName> expectedPlayerNames(List<String> names) {
-        return names.stream()
-                .map(PlayerName::of)
-                .collect(Collectors.toList());
+                .containsAll(names);
     }
 
     @DisplayName("사다리의 높이가 숫자가 아닌 경우 예외가 발생한다.")
@@ -47,7 +37,7 @@ class InputViewTest {
     public void inputLadderHeightsTest() {
         InputView inputView = createMockInputView("5");
         assertThat(inputView.getLadderHeights())
-                .isEqualTo(LadderHeights.of(5));
+                .isEqualTo(5);
     }
 
     private InputView createMockInputView(String input) {
