@@ -34,7 +34,7 @@ public class Point {
     }
 
     public static Point createFirst(LineGenerateStrategy lineGenerateStrategy) {
-        return new Point(START_POINT_INDEX, false, lineGenerateStrategy.generateLine());
+        return new Point(START_POINT_INDEX, DISCONNECT_POINT, lineGenerateStrategy.generateLine());
     }
 
     public static Point createLast(Point before) {
