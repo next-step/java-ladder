@@ -7,20 +7,20 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class LadderResults {
+public class LadderEndPoints {
 
     private static final String INVALID_RESULTS_COUNT_ERROR_MESSAGE = "사람 수와 동일한 수의 결과가 입력되어야 한다.";
 
-    private final List<String> results;
+    private final List<String> endPoints;
 
-    public LadderResults(List<String> results) {
-        this.results = results;
+    public LadderEndPoints(List<String> endPoints) {
+        this.endPoints = endPoints;
     }
 
-    public static LadderResults from(String input, int userCount) {
+    public static LadderEndPoints from(String input, int userCount) {
         checkResultsCount(input, userCount);
 
-        return new LadderResults(Arrays.stream(splitByComma(input))
+        return new LadderEndPoints(Arrays.stream(splitByComma(input))
             .collect(Collectors.toList()));
     }
 
@@ -38,13 +38,13 @@ public class LadderResults {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        LadderResults that = (LadderResults) o;
-        return Objects.equals(results, that.results);
+        LadderEndPoints that = (LadderEndPoints) o;
+        return Objects.equals(endPoints, that.endPoints);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(results);
+        return Objects.hash(endPoints);
     }
 
 }
