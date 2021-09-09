@@ -1,6 +1,5 @@
 package ladder.domain.ladder;
 
-import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
 import ladder.domain.user.User;
@@ -25,10 +24,6 @@ public class LadderResult {
         if (!results.containsKey(user)) {
             throw new IllegalArgumentException(INVALID_CONTAINS_USER_ERROR_MESSAGE);
         }
-    }
-
-    public Map<User, String> getAllResults() {
-        return Collections.unmodifiableMap(results);
     }
 
     @Override
