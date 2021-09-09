@@ -3,7 +3,11 @@ package ladder.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.EnumSource;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -55,5 +59,21 @@ class DirectionTest {
     void isLeft() {
         Direction direction = Direction.LEFT;
         assertThat(direction.isLeft()).isTrue();
+    }
+
+    @DisplayName("Direction 방향에 따라 move 포지션 값 이동")
+    @ParameterizedTest(name = "{index}. {displayName}, arguments: {arguments}")
+    @MethodSource("parameterProvider")
+    void move(Direction direction, int position, int expected) {
+        Position result = direction.move(new Position(position));
+        assertThat(result).isEqualTo(new Position(expected));
+    }
+
+    static Stream<Arguments> parameterProvider() {
+        return Stream.of(
+                Arguments.of(Direction.RIGHT, 5, 6),
+                Arguments.of(Direction.LEFT, 5, 4),
+                Arguments.of(Direction.NONE, 5, 5)
+        );
     }
 }
