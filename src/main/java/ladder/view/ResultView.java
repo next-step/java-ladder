@@ -16,6 +16,7 @@ public class ResultView {
     public static void print(final Result result) {
         printPlayerNames(result.getPlayers());
         printLadders(result.getLadders());
+        printPlayResults(result.getPlayResults());
     }
 
     private static void printPlayerNames(final Players players) {
@@ -58,5 +59,30 @@ public class ResultView {
             return;
         }
         System.out.print(EMPTY_INDICATION);
+    }
+
+    private static void printPlayResults(final PlayResults playResults) {
+        playResults.getPlayResults()
+                .forEach(ResultView::printPlayResult);
+        System.out.println();
+    }
+
+    private static void printPlayResult(final PlayResult inputPlayResult) {
+        StringBuilder playResult = new StringBuilder(inputPlayResult.getValue());
+        int playResultLength = playResult.length();
+        for (int i = 0; i < COUNT + 1 - playResultLength; i++) {
+            playResult.append(EMPTY_INDICATION);
+        }
+        System.out.print(playResult);
+    }
+
+    public static void print(final Players players) {
+        players.getPlayers()
+                .forEach(System.out::println);
+    }
+
+    public static void print(final String player) {
+        System.out.println("실행 결과");
+        System.out.println(player);
     }
 }
