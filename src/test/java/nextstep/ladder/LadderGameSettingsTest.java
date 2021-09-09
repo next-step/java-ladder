@@ -22,7 +22,7 @@ class LadderGameSettingsTest {
         Players players = Players.from(new String[]{"kim", "jess"});
         LadderGamePrizes ladderGamePrizes = LadderGamePrizes.from(new String[]{"꽝", "당첨"});
         LadderDrawingSettings drawingSettings = LadderDrawingSettings
-            .of(LadderSize.of(players.count(), 2), new RandomDrawLineStrategy());
+            .of(LadderSize.of(players.count(), 2), ladderLabels, new RandomDrawLineStrategy());
 
         assertThatCode(() -> LadderGameSettings.of(players, ladderGamePrizes, drawingSettings))
             .doesNotThrowAnyException();
@@ -36,7 +36,7 @@ class LadderGameSettingsTest {
         Players players = Players.from(new String[]{"kim", "jess"});
         LadderGamePrizes ladderGamePrizes = LadderGamePrizes.from(new String[]{"꽝", "당첨", "당첨"});
         LadderDrawingSettings drawingSettings = LadderDrawingSettings
-            .of(LadderSize.of(players.count(), 2), new RandomDrawLineStrategy());
+            .of(LadderSize.of(players.count(), 2), ladderLabels, new RandomDrawLineStrategy());
 
         assertThatThrownBy(() -> LadderGameSettings.of(players, ladderGamePrizes, drawingSettings))
             .isInstanceOf(WrongLadderGameSettingsException.class);

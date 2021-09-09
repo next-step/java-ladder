@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -20,7 +21,7 @@ public class Players {
 
         this.players = Arrays.stream(playerNames)
             .map(Player::new)
-            .collect(Collectors.toUnmodifiableList());
+            .collect(Collectors.toList());
 
     }
 
@@ -31,12 +32,24 @@ public class Players {
         }
     }
 
+    public void swap(int i, int j) {
+        Collections.swap(players, i, j);
+    }
+
     public static Players from(String[] playerNames) {
         return new Players(playerNames);
     }
 
     public int count() {
         return players.size();
+    }
+
+    public String getPlayerNameAt(int index) {
+        return value().get(index).getName();
+    }
+
+    public List<Player> value() {
+        return players;
     }
 
     public Stream<Player> stream() {

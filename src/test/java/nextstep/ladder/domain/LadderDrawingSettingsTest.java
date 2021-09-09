@@ -20,7 +20,7 @@ class LadderDrawingSettingsTest {
         LadderSize ladderSize = LadderSize.of(2, 2);
         DrawLineStrategy strategy = new RandomDrawLineStrategy();
 
-        assertThatCode(() -> LadderDrawingSettings.of(ladderSize, strategy))
+        assertThatCode(() -> LadderDrawingSettings.of(ladderSize, ladderLabels, strategy))
             .doesNotThrowAnyException();
     }
 
@@ -29,7 +29,7 @@ class LadderDrawingSettingsTest {
     @DisplayName("사다리게임세팅은 사다리사이즈와 가로라인 긋기방법 둘다 설정되지 않으면 예외를 던진다.")
     void createGameSettingFail(LadderSize ladderSize, DrawLineStrategy strategy) {
 
-        assertThatThrownBy(() -> LadderDrawingSettings.of(ladderSize, strategy))
+        assertThatThrownBy(() -> LadderDrawingSettings.of(ladderSize, ladderLabels, strategy))
             .isInstanceOf(NullPointerException.class);
 
     }

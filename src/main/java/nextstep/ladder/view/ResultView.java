@@ -1,17 +1,18 @@
 package nextstep.ladder.view;
 
 
+import java.util.List;
 import java.util.stream.Collectors;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.InterSpace;
+import nextstep.ladder.domain.LadderGameResult;
 import nextstep.ladder.domain.LadderStep;
-import nextstep.ladder.domain.Players;
 
 public class ResultView {
 
     public static final String CROSS_LINE_STRING = "|-----";
     public static final String BLANK_LINE_STRING = "|     ";
-    public static final int NAMES_PADDING_SIZE = 6;
+    public static final int LABEL_PADDING_SIZE = 6;
 
     private ResultView() {
     }
@@ -20,13 +21,19 @@ public class ResultView {
         return ResultViewHolder.instance;
     }
 
+    public static void showGameResult(String playerName, LadderGameResult ladderGameResult) {
+        String prizeName = ladderGameResult.getPrizeNamesByName(playerName);
+        System.out.println(prizeName);
+    }
 
-    public void showLadderGame(Players players, Ladder ladder) {
+
+    public void showLadderGame(Ladder ladder) {
         System.out.println("실행결과");
         System.out.println();
 
-        printPlayerNames(players);
+        printLabelWithPadding(ladder.getPlayerNames());
         printLadder(ladder);
+        printLabelWithPadding(ladder.getPrizeNames());
     }
 
     private void printLadder(Ladder ladder) {
@@ -50,12 +57,12 @@ public class ResultView {
         return crossLine.hasCrossLine() ? CROSS_LINE_STRING : BLANK_LINE_STRING;
     }
 
-    private void printPlayerNames(Players players) {
-        String playerNamesWithPadding = players.stream()
-            .map(p -> addRightPadding(p.getName(), NAMES_PADDING_SIZE))
+    private void printLabelWithPadding(List<String> labels) {
+        String labelStringWithPadding = labels.stream()
+            .map(label -> addRightPadding(label, LABEL_PADDING_SIZE))
             .collect(Collectors.joining());
 
-        System.out.println(playerNamesWithPadding);
+        System.out.println(labelStringWithPadding);
     }
 
     private String addRightPadding(String str, int size) {

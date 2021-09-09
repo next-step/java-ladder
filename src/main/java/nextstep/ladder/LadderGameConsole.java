@@ -1,10 +1,12 @@
 package nextstep.ladder;
 
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.LadderDrawingSettings;
 import nextstep.ladder.domain.LadderGameMain;
 import nextstep.ladder.domain.LadderGamePrizes;
-import nextstep.ladder.domain.LadderDrawingSettings;
+import nextstep.ladder.domain.LadderGameResult;
 import nextstep.ladder.domain.LadderGameSettings;
+import nextstep.ladder.domain.LadderLabels;
 import nextstep.ladder.domain.LadderSize;
 import nextstep.ladder.domain.Players;
 import nextstep.ladder.strategy.RandomDrawLineStrategy;
@@ -17,21 +19,27 @@ public class LadderGameConsole {
 
         InputView inputView = InputView.getInstance();
 
-        final Players players = Players.from(inputView.playerNames());
+        final Players players = Players.from(inputView.askplayerNames());
         final LadderSize ladderSize = LadderSize.of(players.count(), inputView.askLadderHeight());
-        final LadderGamePrizes ladderGamePrizes = LadderGamePrizes.from(inputView.askLadderGamePrizes());
-        inputView.closeInputScanner();
+        final LadderGamePrizes ladderGamePrizes = LadderGamePrizes
+            .from(inputView.askLadderGamePrizes());
+        final LadderLabels ladderLabels = LadderLabels.from(players, ladderGamePrizes);
 
-        final LadderDrawingSettings drawingSettings = LadderDrawingSettings.of(ladderSize, new RandomDrawLineStrategy());
+        final LadderDrawingSettings drawingSettings = LadderDrawingSettings.of(ladderSize, ladderLabels, new RandomDrawLineStrategy());
         final LadderGameSettings gameSettings = LadderGameSettings.of(players, ladderGamePrizes, drawingSettings);
 
         LadderGameMain gameMain = new LadderGameMain(gameSettings);
-        gameMain.playGame();
-        Ladder ladder = gameMain.getLadder();
-
+        final LadderGameResult ladderGameResult = gameMain.playGame();
+        final Ladder ladder = gameMain.getLadder();
 
         ResultView resultView = ResultView.getInstance();
-        resultView.showLadderGame(players,ladder);
+        resultView.showLadderGame(ladder);
+
+        String playerName = inputView.askPlayerNameForResult();
+        ResultView.showGameResult(playerName, ladderGameResult);
+
+        inputView.closeInputScanner();
+
 
     }
 

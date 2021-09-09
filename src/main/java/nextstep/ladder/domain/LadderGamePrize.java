@@ -21,6 +21,10 @@ public class LadderGamePrize {
         }
     }
 
+    public String getPrizeName() {
+        return prizeName;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

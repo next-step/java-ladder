@@ -53,7 +53,15 @@ public class InterSpaces {
         return interSpaces.get(latestIndex);
     }
 
+    public boolean hasCrossLineAt(int index) {
+        return value().get(index).hasCrossLine();
+    }
+
     public List<InterSpace> value() {
         return interSpaces;
+    }
+
+    public int count() {
+        return value().size();
     }
 }

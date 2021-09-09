@@ -22,10 +22,10 @@ class LadderTest {
     private static Stream<Arguments> provideGameSettings() {
 
         return Stream.of(
-            Arguments.of(LadderDrawingSettings.of(LadderSize.of(2, 1), new RandomDrawLineStrategy())),
-            Arguments.of(LadderDrawingSettings.of(LadderSize.of(2, 2), new RandomDrawLineStrategy())),
-            Arguments.of(LadderDrawingSettings.of(LadderSize.of(5, 5), new RandomDrawLineStrategy())),
-            Arguments.of(LadderDrawingSettings.of(LadderSize.of(10, 10), new RandomDrawLineStrategy()))
+            Arguments.of(LadderDrawingSettings.of(LadderSize.of(2, 1), ladderLabels, new RandomDrawLineStrategy())),
+            Arguments.of(LadderDrawingSettings.of(LadderSize.of(2, 2), ladderLabels, new RandomDrawLineStrategy())),
+            Arguments.of(LadderDrawingSettings.of(LadderSize.of(5, 5), ladderLabels, new RandomDrawLineStrategy())),
+            Arguments.of(LadderDrawingSettings.of(LadderSize.of(10, 10), ladderLabels, new RandomDrawLineStrategy()))
         );
     }
 

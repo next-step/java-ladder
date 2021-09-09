@@ -27,11 +27,11 @@ class InterSpacesTest {
 
         return Stream.of(
             Arguments
-                .of(LadderDrawingSettings.of(LadderSize.of(2, 1), new RandomDrawLineStrategy()), 2),
+                .of(LadderDrawingSettings.of(LadderSize.of(2, 1), ladderLabels, new RandomDrawLineStrategy()), 2),
             Arguments
-                .of(LadderDrawingSettings.of(LadderSize.of(5, 5), new RandomDrawLineStrategy()), 5),
+                .of(LadderDrawingSettings.of(LadderSize.of(5, 5), ladderLabels, new RandomDrawLineStrategy()), 5),
             Arguments
-                .of(LadderDrawingSettings.of(LadderSize.of(10, 10), new RandomDrawLineStrategy()), 10)
+                .of(LadderDrawingSettings.of(LadderSize.of(10, 10), ladderLabels, new RandomDrawLineStrategy()), 10)
         );
     }
 }

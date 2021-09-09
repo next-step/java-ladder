@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -22,6 +23,10 @@ public class LadderGamePrizes {
 
     public List<LadderGamePrize> value() {
         return ladderGamePrizes;
+    }
+
+    public String getPrizeNameAt(int index) {
+        return value().get(index).getPrizeName();
     }
 
     public int count() {
