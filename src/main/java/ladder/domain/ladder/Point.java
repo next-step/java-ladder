@@ -15,15 +15,8 @@ public class Point {
 
     private final int position;
 
-    private boolean connected;
-
-    private boolean prevConnect;
-    private boolean nextConnect;
-
-    public Point(int position, boolean connected) {
-        this.position = position;
-        this.connected = connected;
-    }
+    private final boolean prevConnect;
+    private final boolean nextConnect;
 
     public Point(int position, boolean prevConnect, boolean nextConnect) {
         this.position = position;
@@ -61,10 +54,6 @@ public class Point {
         return position + VALUE_TO_NEXT_INDEX;
     }
 
-    public boolean isConnected() {
-        return connected;
-    }
-
     public int next() {
         return position + VALUE_TO_NEXT_INDEX;
     }
@@ -86,13 +75,12 @@ public class Point {
             return false;
         }
         Point point = (Point) o;
-        return position == point.position && connected == point.connected && prevConnect == point.prevConnect
-            && nextConnect == point.nextConnect;
+        return position == point.position && prevConnect == point.prevConnect && nextConnect == point.nextConnect;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(position, connected, prevConnect, nextConnect);
+        return Objects.hash(position, prevConnect, nextConnect);
     }
 
 }
