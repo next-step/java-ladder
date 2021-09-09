@@ -30,10 +30,11 @@ public class Ladder {
     }
 
     public int calculateEndPoint(int start) {
-        for (int i=0; i<lines.size(); i++){
-            start = lines.get(i).move(start);
+        int now = start;
+        for (Line line : lines) {
+            now = line.move(now);
         }
-        return start;
+        return now;
     }
 
     @Override
