@@ -1,4 +1,4 @@
-package ladder;
+package ladder.domain;
 
 import java.util.*;
 import java.util.function.Supplier;
@@ -11,21 +11,12 @@ public final class Floor {
     private final List<Boolean> lines;
 
     public Floor(final int countOfParticipants) {
-        validate(countOfParticipants);
-        lines = generateLines(countOfParticipants);
+        this(countOfParticipants, GenerateLineMethod.create());
     }
 
     public Floor(final int countOfParticipants, final Supplier supplier) {
         validate(countOfParticipants);
-        lines = generateLines(countOfParticipants, supplier);
-    }
-
-    static public Floor from(final int countOfParticipants) {
-        return new Floor(countOfParticipants);
-    }
-
-    public List<Boolean> getLines() {
-        return lines;
+        lines = generateLines(toLineCount(countOfParticipants), supplier);
     }
 
     private void validate(final int countOfParticipants) {
@@ -34,16 +25,12 @@ public final class Floor {
         }
     }
 
-    private List<Boolean> generateLines(final int countOfParticipants) {
-        Boolean[] points = new Boolean[countOfParticipants];
-        Random random = new Random();
+    public List<Boolean> getLines() {
+        return lines;
+    }
 
-        points[0] = random.nextBoolean();
-        for (int i = 1; i < countOfParticipants; i++) {
-            points[i] = points[i - 1] ? false : random.nextBoolean();
-        }
-
-        return Arrays.asList(points);
+    private int toLineCount(final int countOfParticipants) {
+        return countOfParticipants - 1;
     }
 
     private List<Boolean> generateLines(final int countOfParticipants, Supplier<Boolean> supplier) {

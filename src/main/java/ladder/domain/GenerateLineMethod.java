@@ -1,6 +1,5 @@
-package ladder;
+package ladder.domain;
 
-import java.util.List;
 import java.util.Random;
 import java.util.function.Supplier;
 
@@ -12,7 +11,7 @@ public class GenerateLineMethod implements Supplier {
         this.ladder = false;
     }
 
-    public static GenerateLineMethod of() {
+    public static GenerateLineMethod create() {
         return new GenerateLineMethod();
     }
 

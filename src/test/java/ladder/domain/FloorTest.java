@@ -1,4 +1,4 @@
-package ladder;
+package ladder.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,21 +18,21 @@ public class FloorTest {
     }
 
     @DisplayName("입력된 참가자 수는 1이상이 되지 못하면 Exception 발생한다.")
-    @ParameterizedTest
+    @ParameterizedTest(name = "{arguments} {displayName}")
     @ValueSource(ints = {0})
     void validate(int countOfParticipants) {
-        assertThatThrownBy(() -> new Floor(countOfParticipants)).hasCauseInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Floor(countOfParticipants)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("생성된 Floor에서 라인끼리 인접하지 않아야 한다.")
     @Test
     void generateLines() {
-        assertThat(checkLines(Floor.from(10).getLines())).isTrue();
+        assertThat(checkLines(new Floor(10).getLines())).isTrue();
     }
 
     @Test
     void generateLines2() {
-        assertThat(checkLines(new Floor(10, GenerateLineMethod.of()).getLines())).isTrue();
+        assertThat(checkLines(new Floor(10, GenerateLineMethod.create()).getLines())).isTrue();
     }
 
     private boolean checkLines(List<Boolean> lines) {
