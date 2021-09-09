@@ -2,8 +2,6 @@ package nextstep.ladder2.player;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.Arrays;
 import java.util.List;
@@ -27,7 +25,9 @@ class PlayersTest {
         List<Direction> directions = Arrays.asList(new Direction[]{Direction.RIGHT,Direction.LEFT,Direction.STAY,Direction.STAY});
         System.out.println(directions);
         Players players = Players.of("a,b,c,d");
-        players.move(directions);
+        for (int i = 0; i < players.size(); i++) {
+            players.move(directions,i);
+        }
         assertThat(players.indexes()).containsExactly(1,0,2,3);
     }
 

@@ -46,15 +46,11 @@ public class Players {
                 .collect(Collectors.toList());
     }
 
-    public void move(List<Direction> directions) {
+    public void move(List<Direction> directions, int position) {
         directions.stream()
-                .reduce(0,
-                        (index, dir) -> {
-                            System.out.println(index);
-                            System.out.println(players);
-                    return players.get(index).move(dir);
-                    },
-                        (index, dir) -> index);
+                .reduce(position,
+                        (x,dir) -> players.get(position).move(dir),
+                        (x,dir) -> x);
     }
 
     public int size() {
