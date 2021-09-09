@@ -1,8 +1,9 @@
 package step2.view;
 
+import step2.domain.LadderGameColumn;
 import step2.domain.Line;
+import step2.domain.Results;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,8 +18,8 @@ public class ResultView {
         System.out.println(GUIDE_HEAD_LINE);
     }
 
-    public static void printParticipant(List<String> participantNameList) {
-        participantNameList.stream()
+    public static void printParticipant(List<String> participantNames) {
+        participantNames.stream()
                 .map(s -> s + NAME_SPACE)
                 .forEach(System.out::print);
         System.out.println();
@@ -42,5 +43,33 @@ public class ResultView {
             return LADDER_HORIZON;
         }
         return LADDER_EMPTY;
+    }
+
+    public static void printResultColumn(Results results) {
+        results.getItems()
+                .stream()
+                .map(s -> s + NAME_SPACE)
+                .forEach(System.out::print);
+        System.out.println();
+    }
+
+    public static void printResultOfTarget(String target, List<LadderGameColumn> ladderGameColumns, Results results) {
+        if (target.equals("all")) {
+            printAllResult(ladderGameColumns, results);
+            return;
+        }
+        System.out.println("target");
+        ladderGameColumns.stream()
+                .filter(ladderGameColumn -> ladderGameColumn.getName().equals(target))
+                .forEach(ladderGameColumn -> System.out.println(ladderGameColumn.getName() + " : " + results.getItems().get(ladderGameColumn.getPosition())));
+        return;
+
+    }
+
+    private static void printAllResult(List<LadderGameColumn> ladderGameColumns, Results results) {
+        System.out.println("all");
+        ladderGameColumns.stream()
+                .map(ladderGameColumn -> ladderGameColumn.getName() + " : " + results.getItems().get(ladderGameColumn.getPosition()))
+                .forEach(System.out::println);
     }
 }

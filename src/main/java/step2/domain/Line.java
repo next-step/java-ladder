@@ -8,6 +8,10 @@ public class Line {
     private List<Boolean> points = new ArrayList<>();
     private static final Random RANDOM = new Random();
 
+    public Line(List<Boolean> points) {
+        this.points = points;
+    }
+
     public Line(int countOfPerson) {
         points.add(RANDOM.nextBoolean());
         for (int i = 1; i < countOfPerson - 1; i++) {
