@@ -23,7 +23,6 @@ public class Main {
         LadderEndPoints endPoints = LadderEndPoints.from(inputResultPoint(), users);
 
         Ladder ladder = Ladder.createLadder(new LadderHeight(inputLadderHeight()), users, lineGenerateStrategy);
-//        users.shuffleUsers();
 
         LadderResult ladderResult = ladder.createResult(users, endPoints);
 
