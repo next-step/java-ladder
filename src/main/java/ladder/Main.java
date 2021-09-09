@@ -2,6 +2,7 @@ package ladder;
 
 import static ladder.view.InputView.inputLadderHeight;
 import static ladder.view.InputView.inputResultPoint;
+import static ladder.view.InputView.inputResultUsername;
 import static ladder.view.InputView.inputUsernames;
 import static ladder.view.ResultView.printResult;
 
@@ -23,6 +24,8 @@ public class Main {
         users.shuffleUsers();
 
         printResult(users.value(), ladder.value(), endPoints.value());
+
+        String viewLadderResult = inputResultUsername();
     }
 
 }
