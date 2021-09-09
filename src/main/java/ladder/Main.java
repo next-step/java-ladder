@@ -23,11 +23,9 @@ public class Main {
         LadderEndPoints endPoints = LadderEndPoints.from(inputResultPoint(), users);
 
         Ladder ladder = Ladder.createLadder(new LadderHeight(inputLadderHeight()), users, lineGenerateStrategy);
-
         LadderResult ladderResult = ladder.createResult(users, endPoints);
 
         printResult(users.value(), ladder.value(), endPoints.value());
-
         printLadderResult(inputResultUsername(), users.value(), ladderResult);
     }
 
