@@ -67,7 +67,7 @@ class PointTest {
         }
 
         @Test
-        @DisplayName("[connected = false]")
+        @DisplayName("[prevconnected = false]")
         void falseConnected() {
 
             // given
