@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import java.util.List;
+import java.util.Objects;
 
 public class User {
 
@@ -18,6 +19,10 @@ public class User {
         this.position = new Position(startPosition);
     }
 
+    public User(String name) {
+        this.userName = new UserName(name);
+    }
+
     public int findLastPosition(Ladder ladder) {
         return position.findLastPosition(ladder);
     }
@@ -26,13 +31,22 @@ public class User {
         return position.findUserResult(results);
     }
 
-    public boolean isSameName(String name) {
-        return userName.isSameName(name);
-    }
 
     @Override
     public String toString() {
         return userName.toString();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(userName, user.userName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(userName);
+    }
 }

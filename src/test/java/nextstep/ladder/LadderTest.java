@@ -9,7 +9,7 @@ public class LadderTest {
 
     @Test
     public void ladder_size_test() {
-       Ladder ladder = new Ladder(5,3);
-       assertThat(ladder.getLadder().size()).isEqualTo(5);
+        Ladder ladder = new Ladder(5, 3);
+        assertThat(ladder.getLadder().size()).isEqualTo(5);
     }
 }

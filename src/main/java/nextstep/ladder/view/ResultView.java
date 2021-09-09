@@ -1,9 +1,6 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Result;
-import nextstep.ladder.domain.User;
-import nextstep.ladder.domain.UserLadderResult;
+import nextstep.ladder.domain.*;
 
 import java.util.List;
 
@@ -12,15 +9,16 @@ public class ResultView {
     private static final String START_LADDER = "      |";
     private static final String EXIST_MIDDLE_LADDER = "-----|";
     private static final String EMPTY_MIDDLE_LADDER = "     |";
+    private static final String ALL_USER = "all";
 
-    public static void result(List<Line> ladder, List<User> user, List<Result> results) {
+    public static void result(List<LadderLine> ladderLines, List<User> user, List<Result> results) {
         printUsers(user);
-        ladder.stream().forEach((line) -> printLadder(line.getPoints()));
+        ladderLines.stream().forEach((line) -> printLadder(line.getPoints()));
         printResults(results);
     }
 
     public static void printUserResult(UserLadderResult userLadderResult, String userName) {
-        if ("all".equals(userName)) {
+        if (ALL_USER.equals(userName)) {
             printAllUserResult(userLadderResult);
             return;
         }
@@ -36,14 +34,14 @@ public class ResultView {
                 .forEach(user -> System.out.println(user.toString() + " : " + userLadderResult.findUserResult(user.toString())));
     }
 
-    private static void printLadder(List<Boolean> existPoints) {
+    private static void printLadder(List<Point> points) {
         System.out.print(START_LADDER);
-        existPoints.stream().forEach(ResultView::printMiddleLadder);
+        points.stream().limit(points.size() - Position.OFFSET).forEach(ResultView::printMiddleLadder);
         System.out.println();
     }
 
-    private static void printMiddleLadder(Boolean isExistPoint) {
-        if (isExistPoint) {
+    private static void printMiddleLadder(Point point) {
+        if (point.isConnected()) {
             System.out.print(EXIST_MIDDLE_LADDER);
             return;
         }

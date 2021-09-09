@@ -10,6 +10,7 @@ import java.util.stream.IntStream;
 public class InputView {
 
     private static final Scanner SCANNER = new Scanner(System.in);
+    private static final int MIN_USER = 1;
 
     public static List<User> getUserNames() {
         while (true) {
@@ -27,7 +28,9 @@ public class InputView {
         names = SCANNER.next();
         String[] userNameList = names.split(",");
         List<User> users = new ArrayList<>();
-
+        if (userNameList.length <= MIN_USER) {
+            throw new IllegalArgumentException("최소 " + MIN_USER + "명 이상의 유저를 입력해주세요");
+        }
         IntStream
                 .range(0, userNameList.length)
                 .forEach(index -> users.add(new User(userNameList[index], index)));
