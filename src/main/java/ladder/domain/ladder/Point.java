@@ -9,7 +9,7 @@ public class Point {
 
     private static final boolean DISCONNECT_POINT = false;
     private static final int START_POINT_INDEX = 0;
-    private static final int VALUE_TO_NEXT_INDEX = 1;
+    private static final int VALUE_TO_MOVE_INDEX = 1;
 
     private static final String PREV_NEXT_CONNECT_ERROR_MESSAGE = "Point는 왼쪽 오른쪽 둘 다 연결될 수 없다.";
     private static final String NULL_BEFORE_POINT_ERROR_MESSAGE = "이전 위치한 Point가 제공되어야 한다.";
@@ -60,7 +60,7 @@ public class Point {
     }
 
     private int getNextPosition() {
-        return position + VALUE_TO_NEXT_INDEX;
+        return position + VALUE_TO_MOVE_INDEX;
     }
 
     public boolean isPrevConnect() {
@@ -69,6 +69,16 @@ public class Point {
 
     public boolean isNextConnect() {
         return nextConnect;
+    }
+
+    public int move() {
+        if (isNextConnect()) {
+            return position + VALUE_TO_MOVE_INDEX;
+        }
+        if (isPrevConnect()) {
+            return position - VALUE_TO_MOVE_INDEX;
+        }
+        return position;
     }
 
     @Override

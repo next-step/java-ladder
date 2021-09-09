@@ -51,19 +51,9 @@ public class Line {
         return Collections.unmodifiableList(points);
     }
 
-    public Point point(int index) {
-        return points.get(index);
+    public int move(int now) {
+        return points.get(now).move();
     }
-
-//    public Point move(Point point) {
-//        if (point.isConnected()) {
-//            return points.get(point.next());
-//        }
-//        if (!point.isFirst() && points.get(point.prev()).isConnected()) {
-//            return points.get(point.prev());
-//        }
-//        return point;
-//    }
 
     @Override
     public boolean equals(Object o) {

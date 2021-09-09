@@ -63,66 +63,48 @@ class LineTest {
     }
 
     @Test
-    @DisplayName("현재 위치의 point를 받아올 수 있다.")
-    void getNowPointTest() {
+    @DisplayName("오른쪽 point가 연결되어 있다면 오른쪽 point로 이동할 수 있다.")
+    void moveRightSuccessTest() {
+
+        // given
+        int index = 0;
+        Line line = Line.generateRandomLine(users, () -> true);
+
+        // when
+        int result = line.move(index);
+
+        // then
+        assertThat(result).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("왼쪽 point가 있고, 연결되어있다면 왼쪽 point로 이동할 수 있다.")
+    void moveLeftSuccessTest() {
 
         // given
         int index = 1;
         Line line = Line.generateRandomLine(users, () -> true);
 
         // when
-        Point point = line.point(index);
+        int result = line.move(index);
 
         // then
-        assertThat(point).isEqualTo(new Point(1, true, false));
+        assertThat(result).isEqualTo(0);
     }
 
-//    @Test
-//    @DisplayName("오른쪽 point가 연결되어 있다면 오른쪽 point로 이동할 수 있다.")
-//    void moveRightSuccessTest() {
-//
-//        // given
-//        int index = 0;
-//        Line line = Line.generateRandomLine(users, () -> true);
-//        Point now = line.point(index);
-//
-//        // when
-//        Point result = line.move(now);
-//
-//        // then
-//        assertThat(result).isEqualTo(new Point(1, false));
-//    }
-//
-//    @Test
-//    @DisplayName("왼쪽 point가 있고, 연결되어있다면 왼쪽 point로 이동할 수 있다.")
-//    void moveLeftSuccessTest() {
-//
-//        // given
-//        int index = 1;
-//        Line line = Line.generateRandomLine(users, () -> true);
-//        Point now = line.point(index);
-//
-//        // when
-//        Point result = line.move(now);
-//
-//        // then
-//        assertThat(result).isEqualTo(new Point(0, true));
-//    }
-//
-//    @Test
-//    @DisplayName("왼쪽 오른쪽 둘다 이동 불가능 상태면 현재 point를 반환해야한다.")
-//    void moveFailTest() {
-//
-//        // given
-//        int index = 1;
-//        Line line = Line.generateRandomLine(users, () -> false);
-//        Point now = line.point(index);
-//
-//        // when
-//        Point result = line.move(now);
-//
-//        // then
-//        assertThat(result).isEqualTo(now);
-//    }
+    @Test
+    @DisplayName("왼쪽 오른쪽 둘다 이동 불가능 상태면 현재 point를 반환해야한다.")
+    void moveFailTest() {
+
+        // given
+        int index = 1;
+        Line line = Line.generateRandomLine(users, () -> false);
+
+        // when
+        int result = line.move(index);
+
+        // then
+        assertThat(result).isEqualTo(index);
+    }
 
 }

@@ -250,4 +250,52 @@ class PointTest {
             .withMessageMatching("Point는 왼쪽 오른쪽 둘 다 연결될 수 없다.");
     }
 
+    @Nested
+    @DisplayName("연결되어있는 position으로 이동할 수 있다.")
+    class moveTest {
+
+        @Test
+        @DisplayName("[next]")
+        void nextMoveTest() {
+
+            // given
+            Point point = new Point(1, false, true);
+
+            // when
+            int result = point.move();
+
+            // then
+            assertThat(result).isEqualTo(2);
+        }
+
+        @Test
+        @DisplayName("[next]")
+        void prevMoveTest() {
+
+            // given
+            Point point = new Point(1, true, false);
+
+            // when
+            int result = point.move();
+
+            // then
+            assertThat(result).isEqualTo(0);
+        }
+
+        @Test
+        @DisplayName("[now]")
+        void notMoveTest() {
+
+            // given
+            Point point = new Point(1, false, false);
+
+            // when
+            int result = point.move();
+
+            // then
+            assertThat(result).isEqualTo(1);
+        }
+
+    }
+
 }
