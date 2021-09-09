@@ -1,6 +1,7 @@
 package ladder.view;
 
 import java.util.List;
+import ladder.domain.ladder.LadderResult;
 import ladder.domain.ladder.Line;
 import ladder.domain.ladder.Point;
 import ladder.domain.user.User;
@@ -63,6 +64,12 @@ public class ResultView {
         endPoints.stream()
             .map(ResultView::stringFormatByDefaultUserPrintFromat)
             .forEach(sb::append);
+        System.out.println(sb);
+    }
+
+    public static void printLadderResult(String username, LadderResult ladderResult) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(ladderResult.getResultByUser(new User(username)));
         System.out.println(sb);
     }
 
