@@ -88,14 +88,14 @@ class PointTest {
     class createNextPointTest {
 
         @Test
-        @DisplayName("[before connected = true]")
+        @DisplayName("[prev connected = true]")
         void trueConnected() {
 
             // given
             int index = 6;
-            Point nowPoint = new Point(index, true);
+            Point nowPoint = new Point(index, false, true);
             Random random = new Random();
-            Point expected = new Point(index + 1, false);
+            Point expected = new Point(index + 1, true, false);
 
             // when
             Point result = createNextByBeforePoint(nowPoint, () -> random.nextBoolean());
@@ -104,21 +104,42 @@ class PointTest {
             assertThat(result).isEqualTo(expected);
         }
 
-        @Test
-        @DisplayName("[before connected = false]")
-        void falseConnected() {
+        @Nested
+        @DisplayName("[prev connected = false]")
+        class prevConnectFalse {
 
-            // given
-            int index = 6;
-            Point nowPoint = new Point(index, false);
-            Random random = new Random();
-            Point expected = new Point(index + 1, true);
+            @Test
+            @DisplayName("[next connected = true]")
+            void trueNext() {
 
-            // when
-            Point result = createNextByBeforePoint(nowPoint, () -> true);
+                // given
+                int index = 6;
+                Point nowPoint = new Point(index, false, false);
+                Point expected = new Point(index + 1, false, true);
 
-            // then
-            assertThat(result).isEqualTo(expected);
+                // when
+                Point result = createNextByBeforePoint(nowPoint, () -> true);
+
+                // then
+                assertThat(result).isEqualTo(expected);
+            }
+
+            @Test
+            @DisplayName("[next connected = false]")
+            void falseNext() {
+
+                // given
+                int index = 6;
+                Point nowPoint = new Point(index, false, false);
+                Point expected = new Point(index + 1, false, false);
+
+                // when
+                Point result = createNextByBeforePoint(nowPoint, () -> false);
+
+                // then
+                assertThat(result).isEqualTo(expected);
+            }
+
         }
 
     }

@@ -44,7 +44,7 @@ public class Point {
     public static Point createNextByBeforePoint(Point before, LineGenerateStrategy lineGenerateStrategy) {
         checkBeforePointIsNull(before);
 
-        return new Point(before.getNextPosition(), createNextConnect(before, lineGenerateStrategy));
+        return new Point(before.getNextPosition(), before.nextConnect, createNextConnect(before, lineGenerateStrategy));
     }
 
     private static void checkBeforePointIsNull(Point before) {
@@ -54,7 +54,7 @@ public class Point {
     }
 
     private static boolean createNextConnect(Point before, LineGenerateStrategy lineGenerateStrategy) {
-        return !before.connected && lineGenerateStrategy.generateLine();
+        return !before.nextConnect && lineGenerateStrategy.generateLine();
     }
 
     private int getNextPosition() {
