@@ -54,4 +54,18 @@ class LadderResultTest {
             .withMessageMatching("입력된 사람의 결과만 확인할 수 있다.");
     }
 
+    @Test
+    @DisplayName("모든 유저에 대한 결과를 반환받을 수 있다.")
+    void getAllResultsTest() {
+
+        // given
+        LadderResult ladderResult = new LadderResult(results);
+
+        // when
+        Map<User, String> result = ladderResult.getAllResults();
+
+        // then
+        assertThat(result).isEqualTo(results);
+    }
+
 }
