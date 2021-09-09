@@ -29,6 +29,13 @@ public class Ladder {
         return Collections.unmodifiableList(lines);
     }
 
+    public int calculateEndPoint(int start) {
+        for (int i=0; i<lines.size(); i++){
+            start = lines.get(i).move(start);
+        }
+        return start;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

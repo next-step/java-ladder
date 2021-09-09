@@ -31,4 +31,22 @@ public class LadderTest {
         assertThat(result).isEqualTo(expected);
     }
 
+    @Test
+    @DisplayName("현재 위치의 사람이 사다리를 내려갔을 때 위치를 알 수 있다.")
+    void getLastPositionTest() {
+
+        // given
+        LadderHeight height = new LadderHeight(3);
+        Users users = Users.of("pobi,honux,crong,jk");
+        Ladder ladder = createLadder(height, users, () -> true);
+
+        int start = 0;
+
+        // when
+        int result = ladder.calculateEndPoint(start);
+
+        // then
+        assertThat(result).isEqualTo(1);
+    }
+
 }
