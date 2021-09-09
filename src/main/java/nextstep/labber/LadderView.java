@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -30,7 +31,7 @@ public class LadderView {
         list.stream()
                 .forEach(user -> {
                     System.out.print(user.toString());
-                    IntStream.range(0, User.NAME_SPACE_LENGTH - user.toString().length())
+                    IntStream.range(0, User.NAME_SPACE_SIZE - user.toString().length())
                             .mapToObj(i -> " ")
                             .forEach(System.out::print);
                     System.out.print(" ");
@@ -44,27 +45,68 @@ public class LadderView {
     }
 
     private void drawLine(Line line) {
-        System.out.print("|");
         for (int j = 0; j < line.size(); j++) {
-            drawPoints(line.existLine(j));
+            System.out.print("|");
+            drawPoints(line.move(j));
         }
         System.out.println();
     }
 
-    private void drawPoints(boolean isLine) {
-        if (isLine) {
+    private void drawPoints(Compass compass) {
+        if (compass == Compass.RIGHT) {
             drawPoint("-");
-            System.out.print("|");
             return;
         }
 
         drawPoint(" ");
-        System.out.print("|");
     }
 
     private void drawPoint(String s) {
-        for (int k = 0; k < User.NAME_SPACE_LENGTH; k++) {
+        for (int k = 0; k < User.NAME_SPACE_SIZE; k++) {
             System.out.print(s);
+        }
+    }
+
+    private void drawPoints(int length) {
+        IntStream.range(0, User.NAME_SPACE_SIZE - length)
+                .mapToObj(i -> " ")
+                .forEach(System.out::print);
+    }
+
+    public List<String> enterResult() throws IOException {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        return Arrays.asList(this.bufferedReader.readLine().split(","));
+    }
+
+    public void drawProduct(List<String> result) {
+        result.stream()
+                .forEach(resultStr -> {
+                    System.out.print(resultStr);
+                    drawPoints(resultStr.length());
+                    System.out.print(" ");
+                });
+        System.out.println();
+    }
+
+    public String findResult() throws IOException {
+        System.out.println("결과를 보고 싶은 사람은?");
+        return this.bufferedReader.readLine();
+    }
+
+    public void drawResult(String entered, List<String> result, Map<String, Integer> allResult) {
+        System.out.println("실행결과");
+        if ("all".equals(entered)) {
+            this.drawAllResult(result, allResult);
+            return;
+        }
+
+        System.out.println(result.get(allResult.get(entered)));
+        System.out.println();
+    }
+
+    public void drawAllResult(List<String> result, Map<String, Integer> allResult) {
+        for (Map.Entry<String, Integer> entry : allResult.entrySet()) {
+            System.out.println(entry.getKey() + " : " + result.get(entry.getValue()));
         }
     }
 }
