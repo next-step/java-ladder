@@ -35,42 +35,6 @@ public class LadderTest {
     }
 
     @Test
-    @DisplayName("현재 위치의 사람이 사다리를 내려갔을 때 위치를 알 수 있다.")
-    void getLastPositionTest() {
-
-        // given
-        LadderHeight height = new LadderHeight(3);
-        Users users = Users.of("pobi,honux,crong,jk");
-        Ladder ladder = createLadder(height, users, () -> true);
-
-        int start = 0;
-
-        // when
-        int result = ladder.calculateEndPoint(start);
-
-        // then
-        assertThat(result).isEqualTo(1);
-    }
-
-    @Test
-    @DisplayName("현재 위치의 사람이 사다리를 내려갔을 때 위치를 알 수 있다.")
-    void getLastPosition2Test() {
-
-        // given
-        LadderHeight height = new LadderHeight(3);
-        Users users = Users.of("pobi,honux,crong,jk");
-        Ladder ladder = createLadder(height, users, () -> false);
-
-        int start = 0;
-
-        // when
-        int result = ladder.calculateEndPoint(start);
-
-        // then
-        assertThat(result).isEqualTo(0);
-    }
-
-    @Test
     @DisplayName("사다리 게임에 대한 결과를 반환할 수 있다.")
     void getLadderResultTest() {
 

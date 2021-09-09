@@ -32,14 +32,6 @@ public class Ladder {
         return Collections.unmodifiableList(lines);
     }
 
-    public int calculateEndPoint(int start) {
-        int now = start;
-        for (Line line : lines) {
-            now = line.move(now);
-        }
-        return now;
-    }
-
     public LadderResult createResult(Users users, LadderEndPoints endPoints) {
         Map<User, String> result = new HashMap<>();
 
@@ -52,6 +44,14 @@ public class Ladder {
             });
 
         return new LadderResult(result);
+    }
+
+    private int calculateEndPoint(int start) {
+        int now = start;
+        for (Line line : lines) {
+            now = line.move(now);
+        }
+        return now;
     }
 
     @Override
