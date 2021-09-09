@@ -16,10 +16,11 @@ public class ResultView {
     private ResultView() {
     }
 
-    public static void printResult(List<User> users, List<Line> ladders) {
+    public static void printResult(List<User> users, List<Line> ladders, List<String> endPoints) {
         pirntResultTitle();
         printUsers(users);
         printLadder(ladders);
+        printResultPoint(endPoints);
     }
 
     private static void pirntResultTitle() {
@@ -55,6 +56,14 @@ public class ResultView {
             return CONNECTED_LINE_PRINT_FORMAT;
         }
         return DISCONNECTED_LINE_PRINT_FORMAT;
+    }
+
+    public static void printResultPoint(List<String> endPoints) {
+        StringBuilder sb = new StringBuilder();
+        endPoints.stream()
+            .map(ResultView::stringFormatByDefaultUserPrintFromat)
+            .forEach(sb::append);
+        System.out.println(sb);
     }
 
 }

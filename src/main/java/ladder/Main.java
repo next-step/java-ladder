@@ -22,7 +22,7 @@ public class Main {
         Ladder ladder = Ladder.createLadder(new LadderHeight(inputLadderHeight()), users, lineGenerateStrategy);
         users.shuffleUsers();
 
-        printResult(users.value(), ladder.value());
+        printResult(users.value(), ladder.value(), endPoints.value());
     }
 
 }
