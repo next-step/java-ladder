@@ -37,12 +37,12 @@ public class Users {
         return users.size();
     }
 
-    public void shuffleUsers() {
-        Collections.shuffle(users);
-    }
-
     public List<User> value() {
         return Collections.unmodifiableList(users);
+    }
+
+    public User getByPosition(int position) {
+        return users.get(position);
     }
 
     @Override

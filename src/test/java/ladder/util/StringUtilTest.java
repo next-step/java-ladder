@@ -1,6 +1,5 @@
 package ladder.util;
 
-import static ladder.domain.ladder.Point.createLast;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

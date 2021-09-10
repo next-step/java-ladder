@@ -5,9 +5,10 @@ import static ladder.domain.ladder.Point.createLast;
 import static ladder.domain.ladder.Point.createNextByBeforePoint;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Random;
-import ladder.domain.user.Name;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -23,7 +24,7 @@ class PointTest {
         void trueConnected() {
 
             // given
-            Point expected = new Point(0, true);
+            Point expected = new Point(0, false, true);
 
             // when
             Point result = createFirst(() -> true);
@@ -37,7 +38,7 @@ class PointTest {
         void falseConnected() {
 
             // given
-            Point expected = new Point(0, false);
+            Point expected = new Point(0, false, false);
 
             // when
             Point result = createFirst(() -> false);
@@ -48,20 +49,40 @@ class PointTest {
 
     }
 
-    @Test
-    @DisplayName("마지막 Point 객체를 만들 수 있다.")
-    void createLaseTest() {
+    @Nested
+    @DisplayName("첫번째 Point 객체를 만들 수 있다.")
+    class createLastTest {
 
-        // given
-        int index = 6;
-        Point nowPoint = new Point(index, true);
-        Point expected = new Point(index + 1, false);
+        @Test
+        @DisplayName("[prevconnected = true]")
+        void trueConnected() {
 
-        // when
-        Point result = createLast(nowPoint);
+            // given
+            Point now = new Point(3, false, true);
+            Point expected = new Point(4, true, false);
 
-        // then
-        assertThat(result).isEqualTo(expected);
+            // when
+            Point result = createLast(now);
+
+            // then
+            assertThat(result).isEqualTo(expected);
+        }
+
+        @Test
+        @DisplayName("[prevconnected = false]")
+        void falseConnected() {
+
+            // given
+            Point now = new Point(3, false, false);
+            Point expected = new Point(4, false, false);
+
+            // when
+            Point result = createLast(now);
+
+            // then
+            assertThat(result).isEqualTo(expected);
+        }
+
     }
 
     @Nested
@@ -69,14 +90,14 @@ class PointTest {
     class createNextPointTest {
 
         @Test
-        @DisplayName("[before connected = true]")
+        @DisplayName("[prev connected = true]")
         void trueConnected() {
 
             // given
             int index = 6;
-            Point nowPoint = new Point(index, true);
+            Point nowPoint = new Point(index, false, true);
             Random random = new Random();
-            Point expected = new Point(index + 1, false);
+            Point expected = new Point(index + 1, true, false);
 
             // when
             Point result = createNextByBeforePoint(nowPoint, () -> random.nextBoolean());
@@ -85,21 +106,42 @@ class PointTest {
             assertThat(result).isEqualTo(expected);
         }
 
-        @Test
-        @DisplayName("[before connected = false]")
-        void falseConnected() {
+        @Nested
+        @DisplayName("[prev connected = false]")
+        class prevConnectFalse {
 
-            // given
-            int index = 6;
-            Point nowPoint = new Point(index, false);
-            Random random = new Random();
-            Point expected = new Point(index + 1, true);
+            @Test
+            @DisplayName("[next connected = true]")
+            void trueNext() {
 
-            // when
-            Point result = createNextByBeforePoint(nowPoint, () -> true);
+                // given
+                int index = 6;
+                Point nowPoint = new Point(index, false, false);
+                Point expected = new Point(index + 1, false, true);
 
-            // then
-            assertThat(result).isEqualTo(expected);
+                // when
+                Point result = createNextByBeforePoint(nowPoint, () -> true);
+
+                // then
+                assertThat(result).isEqualTo(expected);
+            }
+
+            @Test
+            @DisplayName("[next connected = false]")
+            void falseNext() {
+
+                // given
+                int index = 6;
+                Point nowPoint = new Point(index, false, false);
+                Point expected = new Point(index + 1, false, false);
+
+                // when
+                Point result = createNextByBeforePoint(nowPoint, () -> false);
+
+                // then
+                assertThat(result).isEqualTo(expected);
+            }
+
         }
 
     }
@@ -128,6 +170,132 @@ class PointTest {
         assertThatExceptionOfType(IllegalArgumentException.class)
             .isThrownBy(() -> createNextByBeforePoint(before, () -> true))
             .withMessageMatching("이전 위치한 Point가 제공되어야 한다.");
+    }
+
+    @Nested
+    @DisplayName("오른쪽 연결이")
+    class nextConnect {
+
+        @Test
+        @DisplayName("연결되어 있다면 true를 반환할 수 있다.")
+        void trueTest() {
+
+            // given
+            Point point = new Point(1, false, true);
+
+            // when
+            boolean result = point.isNextConnect();
+
+            // then
+            assertTrue(result);
+        }
+
+        @Test
+        @DisplayName("연결되어있지 않다면 false를 반환할 수 있다.")
+        void falseTest() {
+
+            // given
+            Point point = new Point(1, false, false);
+
+            // when
+            boolean result = point.isNextConnect();
+
+            // then
+            assertFalse(result);
+        }
+
+    }
+
+    @Nested
+    @DisplayName("왼쪽 연결이")
+    class prevConnect {
+
+        @Test
+        @DisplayName("연결되어 있다면 true를 반환할 수 있다.")
+        void trueTest() {
+
+            // given
+            Point point = new Point(1, true, false);
+
+            // when
+            boolean result = point.isPrevConnect();
+
+            // then
+            assertTrue(result);
+        }
+
+        @Test
+        @DisplayName("연결되어있지 않다면 false를 반환할 수 있다.")
+        void falseTest() {
+
+            // given
+            Point point = new Point(1, false, false);
+
+            // when
+            boolean result = point.isPrevConnect();
+
+            // then
+            assertFalse(result);
+        }
+
+    }
+
+    @Test
+    @DisplayName("Point의 연결은 오른쪽 왼쪽 둘 다 연결될 수 없다.")
+    void connectPrevNextExceptionTest() {
+
+        // when & then
+        assertThatExceptionOfType(IllegalArgumentException.class)
+            .isThrownBy(() -> new Point(0, true, true))
+            .withMessageMatching("Point는 왼쪽 오른쪽 둘 다 연결될 수 없다.");
+    }
+
+    @Nested
+    @DisplayName("연결되어있는 position으로 이동할 수 있다.")
+    class moveTest {
+
+        @Test
+        @DisplayName("[next]")
+        void nextMoveTest() {
+
+            // given
+            Point point = new Point(1, false, true);
+
+            // when
+            int result = point.move();
+
+            // then
+            assertThat(result).isEqualTo(2);
+        }
+
+        @Test
+        @DisplayName("[next]")
+        void prevMoveTest() {
+
+            // given
+            Point point = new Point(1, true, false);
+
+            // when
+            int result = point.move();
+
+            // then
+            assertThat(result).isEqualTo(0);
+        }
+
+        @Test
+        @DisplayName("[now]")
+        void notMoveTest() {
+
+            // given
+            Point point = new Point(1, false, false);
+
+            // when
+            int result = point.move();
+
+            // then
+            assertThat(result).isEqualTo(1);
+        }
+
     }
 
 }

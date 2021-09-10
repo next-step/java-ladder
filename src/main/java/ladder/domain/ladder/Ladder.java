@@ -2,9 +2,12 @@ package ladder.domain.ladder;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.IntStream;
+import ladder.domain.user.User;
 import ladder.domain.user.Users;
 import ladder.strategy.LineGenerateStrategy;
 
@@ -27,6 +30,28 @@ public class Ladder {
 
     public List<Line> value() {
         return Collections.unmodifiableList(lines);
+    }
+
+    public LadderResult createResult(Users users, LadderEndPoints endPoints) {
+        Map<User, String> result = new HashMap<>();
+
+        IntStream.range(START_LADDER_INDEX, users.userCount())
+            .forEach(position -> {
+                User user = users.getByPosition(position);
+                int userResultPosition = calculateEndPoint(position);
+                String endPoint = endPoints.getByPosition(userResultPosition);
+                result.put(user, endPoint);
+            });
+
+        return new LadderResult(result);
+    }
+
+    private int calculateEndPoint(int start) {
+        int now = start;
+        for (Line line : lines) {
+            now = line.move(now);
+        }
+        return now;
     }
 
     @Override
