@@ -42,13 +42,19 @@ public class OutputView {
 
     public void printLadder(Players players, Ladder ladder, PlayResults playResults) {
         printStream.println("사다리 결과");
-        printStream.println(render(players.getPlayerNames()));
+        printStream.println(renderPlayerNames(players.getPlayerNames()));
         printStream.println(render(ladder));
         printStream.println(render(playResults.getResults()));
     }
 
     private String render(List<String> strings) {
         return strings.stream()
+                .map(str -> String.format(LIST_RENDERING_FORMAT, str))
+                .collect(Collectors.joining());
+    }
+
+    private String renderPlayerNames(List<PlayerName> playerNames) {
+        return playerNames.stream()
                 .map(str -> String.format(LIST_RENDERING_FORMAT, str))
                 .collect(Collectors.joining());
     }
