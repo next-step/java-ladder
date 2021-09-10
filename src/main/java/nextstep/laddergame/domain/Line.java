@@ -11,7 +11,7 @@ public class Line {
 
     private Line(List<LineConnection> connections) {
         validateNotConnectedInSeries(connections);
-        this.connections = Collections.unmodifiableList(connections);
+        this.connections = connections;
     }
 
     private void validateNotConnectedInSeries(List<LineConnection> connections) {
@@ -31,7 +31,7 @@ public class Line {
     }
 
     public List<LineConnection> getConnections() {
-        return connections;
+        return Collections.unmodifiableList(connections);
     }
 
     public int move(int position) {
