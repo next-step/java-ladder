@@ -37,14 +37,14 @@ public class Ladder {
         return lines;
     }
 
-    public LadderResults getResults(Players players, PlayResults playResults) {
+    public Map<PlayerName, String> getResults(Players players, PlayResults playResults) {
         Map<PlayerName, String> ladderResults = new HashMap<>();
         for (int position = 0; position < players.size(); ++position) {
             PlayerName playerName = players.playerNameAt(position);
             String result = playResults.resultAt(resultPositionOf(position));
             ladderResults.put(playerName, result);
         }
-        return new LadderResults(ladderResults);
+        return ladderResults;
     }
 
     private int resultPositionOf(int position) {

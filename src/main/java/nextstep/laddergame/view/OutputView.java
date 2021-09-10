@@ -4,7 +4,7 @@ import nextstep.laddergame.domain.*;
 
 import java.io.PrintStream;
 import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -43,7 +43,7 @@ public class OutputView {
     public void printLadder(Players players, Ladder ladder, PlayResults playResults) {
         printStream.println("사다리 결과");
         printStream.println(renderPlayerNames(players.getPlayerNames()));
-        printStream.println(render(ladder));
+        printStream.println(renderLadder(ladder));
         printStream.println(render(playResults.getResults()));
     }
 
@@ -59,14 +59,14 @@ public class OutputView {
                 .collect(Collectors.joining());
     }
 
-    private String render(Ladder ladder) {
+    private String renderLadder(Ladder ladder) {
         List<Line> lines = ladder.getLines();
         return lines.stream()
-                .map(this::render)
+                .map(this::renderLine)
                 .collect(Collectors.joining(NEW_LINE));
     }
 
-    private String render(Line line) {
+    private String renderLine(Line line) {
         List<LineConnection> connections = line.getConnections();
         return String.format(LINE_RENDERING_FORMAT, connections.stream()
                 .map(connection -> connection.isConnected()? CONNECTED_POINT_RENDERING_FORMAT : UNCONNECTED_POINT_RENDERING_FORMAT)
@@ -77,22 +77,21 @@ public class OutputView {
         printStream.println("결과를 보고 싶은 사람은?");
     }
 
-    public void printPlayResult(LadderResults ladderResults, String playerName) {
+    public void printPlayResult(Map<PlayerName, String> results, String name) {
         printStream.println("실행 결과");
-        if (ALL_PLAYER_RESULT.equals(playerName)) {
-            printStream.println(render(ladderResults));
+        if (ALL_PLAYER_RESULT.equals(name)) {
+            printStream.println(render(results));
             return;
         }
-        try {
-            printStream.println(ladderResults.getResult(playerName));
-        } catch (IllegalArgumentException | NoSuchElementException e) {
-            printStream.println("존재하지 않는 이름입니다.");
+        if (results.containsKey(PlayerName.of(name))) {
+            printStream.println(results.get(PlayerName.of(name)));
+            return;
         }
+        printStream.println("존재하지 않는 이름입니다.");
     }
 
-    private String render(LadderResults ladderResults) {
-        return ladderResults.getResults()
-                .entrySet()
+    private String render(Map<PlayerName, String> results) {
+        return results.entrySet()
                 .stream()
                 .map(nameAndResult -> String.format(NAME_AND_RESULT_RENDERING_FORMAT, nameAndResult.getKey(), nameAndResult.getValue()))
                 .collect(Collectors.joining(NEW_LINE));
