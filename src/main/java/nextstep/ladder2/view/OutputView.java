@@ -20,9 +20,9 @@ public class OutputView {
     }
 
     private static void show(Players players) {
-        String result = ListToString(players.names().stream()
+        String result = players.names().stream()
                 .map(OutputView::LPad)
-                .collect(Collectors.toList()));
+                .collect(Collectors.joining());
         System.out.println(result);
 
     }
@@ -33,9 +33,9 @@ public class OutputView {
     }
 
     private static void show(Results results) {
-        String result = ListToString(results.resultValues().stream()
+        String result = results.resultValues().stream()
                 .map(OutputView::LPad)
-                .collect(Collectors.toList()));
+                .collect(Collectors.joining());
         System.out.println(result);
     }
 
@@ -48,10 +48,10 @@ public class OutputView {
     }
 
     public static String lineDrawer(List<Boolean> lines) {
-        return ListToString(lines.stream()
+        return LINE + lines.stream()
                 .map(OutputView::booleanToLadderLine)
-                .map(line -> LINE + line).collect(Collectors.toList())
-        ) + LINE;
+                .collect(Collectors.joining(LINE))
+         + LINE;
     }
 
     public static String booleanToLadderLine(boolean line) {
