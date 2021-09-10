@@ -8,6 +8,9 @@ public class Direction {
     private final boolean current;
 
     public Direction(boolean before, boolean current) {
+        if (before && current) {
+            throw new IllegalArgumentException("사다리 타기 게임에서 양쪽 모두 가지가 존재할 수는 없습니다.");
+        }
         this.before = before;
         this.current = current;
     }
