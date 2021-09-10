@@ -10,7 +10,7 @@ public class Line {
         this.directions = directions;
     }
 
-    public static Line initLine(LadderWidth ladderWidth, DirectionMakingStrategy directionMakingStrategy) {
+    public static Line initLine(final LadderWidth ladderWidth, final DirectionMakingStrategy directionMakingStrategy) {
         final List<Direction> directions = new ArrayList<>();
         Direction direction = directionMakingStrategy.generate();
         directions.add(direction);
@@ -22,7 +22,16 @@ public class Line {
         return new Line(directions);
     }
 
+    public Position move(final Position position) {
+        return directions.get(position.getValue())
+                .move(position);
+    }
+
     public List<Direction> getDirections() {
         return directions;
+    }
+
+    public LadderWidth getLadderWidth() {
+        return new LadderWidth(directions.size());
     }
 }

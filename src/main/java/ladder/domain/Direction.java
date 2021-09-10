@@ -26,4 +26,14 @@ public enum Direction {
     public boolean isLeft() {
         return this == LEFT;
     }
+
+    public Position move(final Position position) {
+        if (isRight()) {
+            return position.move(1);
+        }
+        if (isLeft()) {
+            return position.move(-1);
+        }
+        return position;
+    }
 }

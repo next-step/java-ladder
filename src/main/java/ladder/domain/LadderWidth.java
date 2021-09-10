@@ -14,7 +14,7 @@ public class LadderWidth {
 
     private void validateGreaterThanOne(final int ladderWidth) {
         if (ladderWidth < MIN_COUNT) {
-            throw new IllegalArgumentException("사다리 넓이는 최소 2 이상입니다.");
+            throw new IllegalArgumentException("사다리 넓이는 최소 " + MIN_COUNT + " 이상입니다.");
         }
     }
 

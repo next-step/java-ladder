@@ -5,9 +5,12 @@ public class Result {
 
     private final Ladders ladders;
 
-    public Result(final Players players, final Ladders ladders) {
+    private final PlayResults playResults;
+
+    public Result(final Players players, final Ladders ladders, final PlayResults playResults) {
         this.players = players;
         this.ladders = ladders;
+        this.playResults = playResults;
     }
 
     public Players getPlayers() {
@@ -16,5 +19,13 @@ public class Result {
 
     public Ladders getLadders() {
         return ladders;
+    }
+
+    public PlayResults getPlayResults() {
+        return playResults;
+    }
+
+    public String findPlayer(final String playerName) {
+        return String.valueOf(players.find(new Name(playerName)));
     }
 }
