@@ -29,7 +29,7 @@ war-and-peace.txt 파일을 읽어 다음 요구사항을 만족
 
 ~~요구사항 2 - Optional에서 값을 반환~~
 
-요구사항 3 - Optional에서 exception 처리
+~~요구사항 3 - Optional에서 exception 처리~~
 
 
 
