@@ -6,7 +6,7 @@ import java.util.stream.IntStream;
 
 public class LadderGameResult {
 
-    private final static String SHOW_ALL_RESULT_KEY = "all";
+    public final static String SHOW_ALL_RESULT_KEY = "all";
     public static final String All_RESULT_DELIMITER = " : ";
     public static final String LINE_BREAK = "\n";
     public static final String PLAYER_NAME_NOT_EXIST_MESSAGE = "해당되는 이름을 가진 플레이어가 없습니다.";
@@ -23,8 +23,8 @@ public class LadderGameResult {
         Map<String, String> ladderGameResult = IntStream.range(0, players.count())
             .boxed()
             .collect(Collectors.toUnmodifiableMap(
-                i -> players.getPlayerNameAt(i),
-                i -> ladderGamePrizes.getPrizeNameAt(i)));
+                players::getPlayerNameAt,
+                ladderGamePrizes::getPrizeNameAt));
 
         return new LadderGameResult(ladderGameResult);
     }

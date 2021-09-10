@@ -7,6 +7,7 @@ import nextstep.ladder.domain.InterSpace;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.LadderGameResult;
 import nextstep.ladder.domain.LadderStep;
+import static  nextstep.ladder.domain.LadderGameResult.SHOW_ALL_RESULT_KEY;
 
 public class ResultView {
 
@@ -60,10 +61,14 @@ public class ResultView {
         System.out.println(labelStringWithPadding);
     }
 
-    public static void printGameResult(LadderGameResult ladderGameResult) {
+    public void printGameResult(LadderGameResult ladderGameResult) {
+
         while (true) {
             String playerName = InputView.askPlayerNameForResult();
             showWhoGotWhatPrize(playerName, ladderGameResult);
+            if (SHOW_ALL_RESULT_KEY.equals(playerName)) {
+                break;
+            }
         }
     }
 

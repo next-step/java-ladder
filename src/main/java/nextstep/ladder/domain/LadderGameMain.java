@@ -37,7 +37,7 @@ public class LadderGameMain {
         InterSpaces interSpaces = ladderStep.getInterSpaces();
 
         IntStream.range(0, interSpaces.count())
-            .filter(i -> interSpaces.hasCrossLineAt(i))
+            .filter(interSpaces::hasCrossLineAt)
             .forEach(i -> players.swap(i, i + 1));
     }
 

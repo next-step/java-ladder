@@ -6,7 +6,7 @@ import nextstep.ladder.strategy.DrawLineStrategy;
 
 public class InterSpaces {
 
-    private List<InterSpace> interSpaces;
+    private final List<InterSpace> interSpaces;
 
     public InterSpaces(int playersCount, DrawLineStrategy strategy) {
         this.interSpaces = new ArrayList<>();

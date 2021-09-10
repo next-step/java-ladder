@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import nextstep.ladder.exception.WrongPlayersException;
 
 public class Players {
@@ -52,7 +51,4 @@ public class Players {
         return players;
     }
 
-    public Stream<Player> stream() {
-        return players.stream();
-    }
 }
