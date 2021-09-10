@@ -2,7 +2,6 @@ package nextstep.ladder2.player;
 
 import nextstep.ladder2.ErrorMessage;
 import nextstep.ladder2.point.Point;
-import sun.security.krb5.internal.LoginOptions;
 
 public class Player {
     private String name;
@@ -15,7 +14,7 @@ public class Player {
     }
 
     public static Player of(String name, int index, int MAX_INDEX) {
-        return new Player(name, new Point(index, LoginOptions.MAX));
+        return new Player(name, new Point(index, MAX_INDEX));
     }
 
     public int move(Direction dir) {
@@ -53,6 +52,9 @@ public class Player {
     private void validation(String name) {
         if (name.length() > 5) {
             throw new IllegalArgumentException(ErrorMessage.NAME_LENGTH.message());
+        }
+        if("all".equals(name)){
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NAME.message());
         }
     }
 

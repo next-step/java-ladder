@@ -5,10 +5,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Players {
     private List<Player> players = new ArrayList<>();
-
+    private static final Player NONE = Player.of("NONE", Integer.MAX_VALUE-1, Integer.MAX_VALUE);
     public Players(List<Player> players) {
         this.players = players;
     }
@@ -46,14 +47,27 @@ public class Players {
                 .collect(Collectors.toList());
     }
 
-    public void move(List<Direction> directions, int position) {
+    public void move(List<Direction> directions) {
+        AtomicInteger index = new AtomicInteger();
         directions.stream()
-                .reduce(position,
-                        (x,dir) -> players.get(position).move(dir),
-                        (x,dir) -> x);
+                .forEach(dir -> {
+                    players.get(index.getAndIncrement()).move(dir);
+                });
     }
 
     public int size() {
         return this.players.size();
+    }
+
+    public int findPosition(String name) {
+        return this.players.stream()
+                        .filter(player -> name.equals(player.name()))
+                        .findFirst()
+                        .orElse(NONE)
+                        .index();
+    }
+
+    public Stream<Player> stream(){
+        return this.players.stream();
     }
 }

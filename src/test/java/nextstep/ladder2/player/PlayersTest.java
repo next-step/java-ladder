@@ -22,13 +22,13 @@ class PlayersTest {
     @Test
     @DisplayName("선수들 움직이기")
     void movePlayersTest(){
-        List<Direction> directions = Arrays.asList(new Direction[]{Direction.RIGHT,Direction.LEFT,Direction.STAY,Direction.STAY});
+        List<Direction> directions = Arrays.asList(new Direction[]{Direction.RIGHT, Direction.LEFT, Direction.STAY, Direction.STAY});
         System.out.println(directions);
         Players players = Players.of("a,b,c,d");
-        for (int i = 0; i < players.size(); i++) {
-            players.move(directions,i);
-        }
-        assertThat(players.indexes()).containsExactly(1,0,2,3);
+
+        players.move(directions);
+
+        assertThat(players.indexes()).containsExactly(1, 0, 2, 3);
     }
 
 

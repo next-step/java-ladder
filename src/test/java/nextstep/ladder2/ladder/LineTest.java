@@ -33,6 +33,6 @@ class LineTest {
 
         line.playLadderLine(players);
 
-        assertThat(players.indexes()).isEqualTo(null);
+        assertThat(players.indexes()).containsExactly(1,0,3,2,4);
     }
 }

@@ -29,4 +29,8 @@ public class Line {
         players.move(dir);
     }
 
+    @Override
+    public String toString() {
+        return ladderLine.toString();
+    }
 }
