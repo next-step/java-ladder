@@ -8,17 +8,15 @@ public class InterSpaces {
 
     private List<InterSpace> interSpaces;
 
-    public InterSpaces(LadderDrawingSettings settings) {
+    public InterSpaces(int playersCount, DrawLineStrategy strategy) {
         this.interSpaces = new ArrayList<>();
-        drawCrossLinesBySettings(settings);
+        drawCrossLinesBySettings(playersCount, strategy);
     }
 
-    private void drawCrossLinesBySettings(LadderDrawingSettings settings) {
-
-        final DrawLineStrategy strategy = settings.getStrategy();
+    private void drawCrossLinesBySettings(int playersCount, DrawLineStrategy strategy) {
 
         // 사다리의 첫줄부터 마지막줄 직전까지의 가로라인 처리.
-        for (int i = 0; i < settings.getLadderWidth() - 1; i++) {
+        for (int i = 0; i < playersCount - 1; i++) {
             addCrossLinesWithPreviousLineCheck(strategy);
         }
         // 마지막 사다리줄의 가로라인은 항상 공백처리.

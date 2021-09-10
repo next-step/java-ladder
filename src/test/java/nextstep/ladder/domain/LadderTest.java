@@ -14,19 +14,28 @@ class LadderTest {
     @ParameterizedTest
     @MethodSource("provideGameSettings")
     @DisplayName("2 x 1 이상의 사다리를 생성할수있다.")
-    void createLadder(LadderDrawingSettings settings) {
-        assertThatCode(() -> Ladder.from(settings, new RandomDrawLineStrategy()))
+    void createLadder(LadderGameSettings settings) {
+        assertThatCode(() -> Ladder.from(settings, RandomDrawLineStrategy.getInstance()))
             .doesNotThrowAnyException();
     }
 
     private static Stream<Arguments> provideGameSettings() {
 
         return Stream.of(
-            Arguments.of(LadderDrawingSettings.of(LadderSize.of(2, 1), ladderLabels, new RandomDrawLineStrategy())),
-            Arguments.of(LadderDrawingSettings.of(LadderSize.of(2, 2), ladderLabels, new RandomDrawLineStrategy())),
-            Arguments.of(LadderDrawingSettings.of(LadderSize.of(5, 5), ladderLabels, new RandomDrawLineStrategy())),
-            Arguments.of(LadderDrawingSettings.of(LadderSize.of(10, 10), ladderLabels, new RandomDrawLineStrategy()))
+            Arguments.of(LadderGameSettings.of(
+                Players.from(new String[]{"a", "b"}),
+                LadderHeight.of(1),
+                LadderGamePrizes.from(new String[]{"1", "2"}))),
+            Arguments.of(LadderGameSettings.of(
+                Players.from(new String[]{"a", "b"}),
+                LadderHeight.of(2),
+                LadderGamePrizes.from(new String[]{"1", "2"}))),
+            Arguments.of(LadderGameSettings.of(
+                Players.from(new String[]{"a", "b", "c"}),
+                LadderHeight.of(10),
+                LadderGamePrizes.from(new String[]{"1", "2", "3"})))
         );
+
     }
 
 }

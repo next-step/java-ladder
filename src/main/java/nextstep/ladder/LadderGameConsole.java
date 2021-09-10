@@ -19,9 +19,9 @@ public class LadderGameConsole {
         final LadderGamePrizes ladderGamePrizes = LadderGamePrizes.from(InputView.askLadderGamePrizes());
         final LadderGameSettings gameSettings = LadderGameSettings.of(players, ladderHeight, ladderGamePrizes);
 
-        LadderGameMain gameMain = new LadderGameMain(gameSettings);
-        final LadderGameResult ladderGameResult = gameMain.playGame();
+        final LadderGameMain gameMain = LadderGameMain.initialize(gameSettings);
         final Ladder ladder = gameMain.getLadder();
+        final LadderGameResult ladderGameResult = gameMain.getGameResult();
 
         ResultView resultView = ResultView.getInstance();
         resultView.showLadderGame(ladder);

@@ -1,11 +1,13 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.strategy.DrawLineStrategy;
+
 public class LadderStep {
 
     private final InterSpaces interSpaces;
 
-    public LadderStep(LadderDrawingSettings settings) {
-        this.interSpaces = new InterSpaces(settings);
+    public LadderStep(int playersCount, DrawLineStrategy strategy) {
+        this.interSpaces = new InterSpaces(playersCount, strategy);
     }
 
     public InterSpaces getInterSpaces() {

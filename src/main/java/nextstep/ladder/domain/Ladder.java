@@ -11,19 +11,35 @@ public class Ladder {
     private final List<String> prizeNames;
     private final List<LadderStep> ladderSteps;
 
-    private Ladder(LadderDrawingSettings settings) {
-        this.playerNames = settings.getPlayerNames();
-        this.prizeNames = settings.getPrizeNames();
-        this.ladderSteps = createLadderSteps(settings);
+    private Ladder(LadderGameSettings settings, DrawLineStrategy strategy) {
+        this.playerNames = extractPlayerNames(settings.getPlayers());
+        this.prizeNames = extractPrizeNames(settings.getLadderGamePrizes());
+        this.ladderSteps = createLadderSteps(settings, strategy);
     }
 
     public static Ladder from(LadderGameSettings settings, DrawLineStrategy strategy) {
         return new Ladder(settings, strategy);
     }
 
-    private List<LadderStep> createLadderSteps(LadderDrawingSettings settings) {
-        return Stream.generate(() -> new LadderStep(settings))
-            .limit(settings.getLadderHeight())
+    private List<LadderStep> createLadderSteps(LadderGameSettings settings, DrawLineStrategy strategy) {
+
+        final int ladderHeight = settings.getLadderHeight().value();
+        final int playersCount = settings.getPlayers().count();
+
+        return Stream.generate(() -> new LadderStep(playersCount, strategy))
+            .limit(ladderHeight)
+            .collect(Collectors.toUnmodifiableList());
+    }
+
+    private List<String> extractPlayerNames(Players players) {
+        return players.value().stream()
+            .map(Player::getName)
+            .collect(Collectors.toUnmodifiableList());
+    }
+
+    private List<String> extractPrizeNames(LadderGamePrizes prizes) {
+        return prizes.value().stream()
+            .map(LadderGamePrize::getPrizeName)
             .collect(Collectors.toUnmodifiableList());
     }
 

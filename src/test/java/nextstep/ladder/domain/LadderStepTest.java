@@ -3,6 +3,7 @@ package nextstep.ladder.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.stream.Stream;
+import nextstep.ladder.strategy.DrawLineStrategy;
 import nextstep.ladder.strategy.RandomDrawLineStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,21 +15,18 @@ class LadderStepTest {
     @ParameterizedTest
     @MethodSource("provideGameSettings")
     @DisplayName("설정한 플레이어 수만큼의 사이공간이 생긴다.")
-    void LadderStepSizeTest(LadderDrawingSettings settings, int expectedInterSpaceSize) {
-        LadderStep ladderStep = new LadderStep(settings);
-        assertThat(ladderStep.interSpacesSize()).isEqualTo(expectedInterSpaceSize);
+    void LadderStepSizeTest(int playersCount, DrawLineStrategy strategy) {
+        LadderStep ladderStep = new LadderStep(playersCount, strategy);
+        assertThat(ladderStep.interSpacesSize()).isEqualTo(playersCount);
     }
 
 
     private static Stream<Arguments> provideGameSettings() {
 
         return Stream.of(
-            Arguments
-                .of(LadderDrawingSettings.of(LadderSize.of(2, 1), ladderLabels, new RandomDrawLineStrategy()), 2),
-            Arguments
-                .of(LadderDrawingSettings.of(LadderSize.of(5, 5), ladderLabels, new RandomDrawLineStrategy()), 5),
-            Arguments
-                .of(LadderDrawingSettings.of(LadderSize.of(10, 10), ladderLabels, new RandomDrawLineStrategy()), 10)
+            Arguments.of(2, RandomDrawLineStrategy.getInstance()),
+            Arguments.of(5, RandomDrawLineStrategy.getInstance()),
+            Arguments.of(10, RandomDrawLineStrategy.getInstance())
         );
     }
 

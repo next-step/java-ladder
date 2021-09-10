@@ -10,18 +10,23 @@ public class LadderGameMain {
     private final Players players;
     private final LadderGamePrizes ladderGamePrizes;
 
-    public LadderGameMain(LadderGameSettings gameSettings) {
-        this.ladder = Ladder.from(gameSettings, new RandomDrawLineStrategy());
+    private LadderGameMain(LadderGameSettings gameSettings) {
+        this.ladder = Ladder.from(gameSettings, RandomDrawLineStrategy.getInstance());
         this.players = gameSettings.getPlayers();
         this.ladderGamePrizes = gameSettings.getLadderGamePrizes();
     }
 
-    public LadderGameResult playGame() {
-        rideLadderSteps();
+    public static LadderGameMain initialize(LadderGameSettings gameSettings) {
+        LadderGameMain gameMain = new LadderGameMain(gameSettings);
+        gameMain.play();
+        return gameMain;
+    }
+
+    public LadderGameResult getGameResult() {
         return LadderGameResult.from(players, ladderGamePrizes);
     }
 
-    private void rideLadderSteps() {
+    private void play() {
         List<LadderStep> ladderSteps = ladder.getLadderSteps();
         for (LadderStep ladderStep : ladderSteps) {
             swapPlayerOrder(ladderStep);

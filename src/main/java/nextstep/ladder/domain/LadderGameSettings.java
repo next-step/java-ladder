@@ -6,21 +6,19 @@ import nextstep.ladder.exception.WrongLadderGameSettingsException;
 public class LadderGameSettings {
 
     private final Players players;
+    private final LadderHeight ladderHeight;
     private final LadderGamePrizes ladderGamePrizes;
-    private final LadderDrawingSettings drawingSettings;
 
-    public LadderGameSettings(Players players, LadderGamePrizes ladderGamePrizes,
-        LadderDrawingSettings drawingSettings) {
-        validatePlayerAndPrizeCount(players, ladderGamePrizes);
+    public LadderGameSettings(Players players, LadderHeight height, LadderGamePrizes prizes) {
+        validatePlayerAndPrizeCount(players, prizes);
 
         this.players = Objects.requireNonNull(players);
-        this.ladderGamePrizes = Objects.requireNonNull(ladderGamePrizes);
-        this.drawingSettings = Objects.requireNonNull(drawingSettings);
+        this.ladderHeight = Objects.requireNonNull(height);
+        this.ladderGamePrizes = Objects.requireNonNull(prizes);
     }
 
-    public static LadderGameSettings of(Players players, LadderHeight ladderGamePrizes,
-        LadderGamePrizes drawingSettings) {
-        return new LadderGameSettings(players, ladderGamePrizes, drawingSettings);
+    public static LadderGameSettings of(Players players, LadderHeight height, LadderGamePrizes prizes) {
+        return new LadderGameSettings(players, height, prizes);
     }
 
     private void validatePlayerAndPrizeCount(Players players, LadderGamePrizes ladderGamePrizes) {
@@ -42,7 +40,7 @@ public class LadderGameSettings {
         return ladderGamePrizes;
     }
 
-    public LadderDrawingSettings getDrawingSettings() {
-        return drawingSettings;
+    public LadderHeight getLadderHeight() {
+        return ladderHeight;
     }
 }
