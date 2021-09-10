@@ -3,8 +3,8 @@ package nextstep.ladder.view;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.InterSpace;
+import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.LadderGameResult;
 import nextstep.ladder.domain.LadderStep;
 
@@ -21,24 +21,19 @@ public class ResultView {
         return ResultViewHolder.instance;
     }
 
-    public static void showGameResult(String playerName, LadderGameResult ladderGameResult) {
+    public static void showWhoGotWhatPrize(String playerName, LadderGameResult ladderGameResult) {
         String prizeName = ladderGameResult.getPrizeNamesByName(playerName);
         System.out.println(prizeName);
     }
 
 
-    public void showLadderGame(Ladder ladder) {
+    public void printLadder(Ladder ladder) {
         System.out.println("실행결과");
         System.out.println();
 
         printLabelWithPadding(ladder.getPlayerNames());
-        printLadder(ladder);
+        ladder.getLadderSteps().forEach(this::printLadderStep);
         printLabelWithPadding(ladder.getPrizeNames());
-    }
-
-    private void printLadder(Ladder ladder) {
-        ladder.getLadderSteps()
-            .forEach(this::printLadderStep);
     }
 
     private void printLadderStep(LadderStep ladderStep) {
@@ -65,14 +60,19 @@ public class ResultView {
         System.out.println(labelStringWithPadding);
     }
 
+    public static void printGameResult(LadderGameResult ladderGameResult) {
+        while (true) {
+            String playerName = InputView.askPlayerNameForResult();
+            showWhoGotWhatPrize(playerName, ladderGameResult);
+        }
+    }
+
     private String addRightPadding(String str, int size) {
         return String.format("%-" + size + "s", str);
     }
 
     private static class ResultViewHolder {
-
         private static final ResultView instance = new ResultView();
     }
-
 
 }

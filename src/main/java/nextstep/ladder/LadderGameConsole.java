@@ -24,10 +24,8 @@ public class LadderGameConsole {
         final LadderGameResult ladderGameResult = gameMain.getGameResult();
 
         ResultView resultView = ResultView.getInstance();
-        resultView.showLadderGame(ladder);
-
-        String playerName = InputView.askPlayerNameForResult();
-        ResultView.showGameResult(playerName, ladderGameResult);
+        resultView.printLadder(ladder);
+        resultView.printGameResult(ladderGameResult);
 
     }
 
