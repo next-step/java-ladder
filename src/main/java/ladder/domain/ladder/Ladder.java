@@ -17,6 +17,10 @@ public class Ladder {
                 .collect(Collectors.collectingAndThen(Collectors.toList(), Ladder::new));
     }
 
+    public static Ladder of(List<LadderFloor> ladder) {
+        return new Ladder(ladder);
+    }
+
     public List<LadderFloor> getFloors() {
         return ladder;
     }

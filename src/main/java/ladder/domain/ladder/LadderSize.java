@@ -8,6 +8,7 @@ import java.util.Objects;
 public class LadderSize {
     private static final int MIN_PARTICIPANT_COUNT = 1;
     private static final int MIN_LADDER_HEIGHT = 1;
+
     private final int countOfParticipants;
     private final int ladderHeight;
 

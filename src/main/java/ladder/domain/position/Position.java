@@ -19,8 +19,8 @@ public final class Position {
     }
 
     private void validate(final int x, final LadderSize ladderSize) {
-        if (x < MIN_X || x > ladderSize.getMaxHeightPosition()) {
-            throw new InvalidPositionException(x, MIN_X, ladderSize.getMaxHeightPosition());
+        if (x < MIN_X || x > ladderSize.getMaxWidthPosition()) {
+            throw new InvalidPositionException(x, MIN_X, ladderSize.getMaxWidthPosition());
         }
     }
 

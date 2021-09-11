@@ -20,7 +20,7 @@ public class GameResult {
     GameResult(Participants participants, List<LadderPrize> ladderPrizes, LadderSize ladderSize) {
         validate(ladderPrizes.size(), ladderSize.getCountOfParticipants());
         this.ladderPrizes = ladderPrizes;
-        this.result = getResult(participants.getPaticipants());
+        this.result = getResult(participants.getParticipants());
     }
 
     public GameResult(Participants participants, String[] prizeNames, LadderSize ladderSize) {

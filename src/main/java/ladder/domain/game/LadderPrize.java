@@ -8,12 +8,12 @@ public class LadderPrize {
     private final PrizeName prizeName;
     private final Position position;
 
-    LadderPrize(String prizeName, Position position) {
+    public LadderPrize(String prizeName, Position position) {
         this.prizeName = new PrizeName(prizeName);
         this.position = position;
     }
 
-    boolean matchPrize(Participant participant) {
+    public boolean matchPrize(Participant participant) {
         return participant.hasEqualPosition(position);
     }
 

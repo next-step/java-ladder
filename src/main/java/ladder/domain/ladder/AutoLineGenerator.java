@@ -13,15 +13,7 @@ public class AutoLineGenerator implements LadderLineGenerator {
         return new AutoLineGenerator();
     }
 
-    public List<Boolean> generate(int maxLadderWidth) {
-        postLine = false;
-        return Stream.generate(this::determine)
-                .limit(maxLadderWidth)
-                .collect(Collectors.toList());
-    }
-
-    private boolean determine() {
-        postLine = postLine ? false : random.nextBoolean();
-        return postLine;
+    public boolean generate(boolean postLine) {
+        return postLine ? false : random.nextBoolean();
     }
 }

@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.NullAndEmptySource;
 import static org.assertj.core.api.Assertions.*;
 
 @DisplayName("사다리 게임 참가자의 이름을 가지는 Name 클래스 테스트")
-public class ParticipantNameTest {
+public class NameTest {
     @DisplayName("비어있는 String은 유효한 이름이 아니다.")
     @ParameterizedTest(name = "{arguments} : {displayName}")
     @NullAndEmptySource

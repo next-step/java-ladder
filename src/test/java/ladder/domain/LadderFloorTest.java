@@ -4,6 +4,7 @@ import ladder.domain.ladder.AutoLineGenerator;
 import ladder.domain.ladder.LadderFloor;
 import ladder.exception.InvalidParticipantsCountException;
 import ladder.helper.Fixture;
+import ladder.helper.Generator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -29,8 +30,7 @@ public class LadderFloorTest {
     @DisplayName("주입된 전략 인스턴스에 따라 LadderFloor가 생성된다.")
     @Test
     void generateLines() {
-        int countOfParticipants = 10;
-        LadderFloor ladderFloor = new LadderFloor(countOfParticipants, (n) -> Fixture.generatedLines());
+        LadderFloor ladderFloor = new LadderFloor(Fixture.ladderSize(), Generator.ladderLineGenerator());
 
         assertThat(ladderFloor.getLines()).isEqualTo(Fixture.generatedLines());
     }

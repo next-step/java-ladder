@@ -22,7 +22,7 @@ public final class Participants {
                 .collect(Collectors.toList()));
     }
 
-    public List<Participant> getPaticipants() {
+    public List<Participant> getParticipants() {
         return participants;
     }
 
@@ -30,13 +30,6 @@ public final class Participants {
         for (Participant participant : participants) {
             participant.moveToDestination(floors);
         }
-    }
-
-    public Participant findParticipant(String nameForResult) {
-        return participants.stream()
-                .filter((n) -> nameForResult.equals(n.toStringName()))
-                .findFirst()
-                .orElseThrow(() -> new NoMatchOfParticipantException(nameForResult));
     }
 
     public String[] getNameOfParticipants() {

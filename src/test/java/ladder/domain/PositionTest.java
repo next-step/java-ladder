@@ -16,10 +16,12 @@ public class PositionTest {
         assertThat(new Position(0, Fixture.ladderSize()));
     }
 
-    @DisplayName("Position이 LadderSize의 최대 가로 세로 좌표 값을 넘어가면 Exception 발생")
+    @DisplayName("Position이 LadderSize의 최소, 최대 범위의 좌표 값을 넘어가면 Exception 발생")
     @Test
     void validate() {
         assertThatThrownBy(() -> new Position(-1, Fixture.ladderSize())).isInstanceOf(InvalidPositionException.class);
+        assertThatThrownBy(() -> new Position(10, Fixture.ladderSize())).isInstanceOf(InvalidPositionException.class);
         assertThat(new Position(0, Fixture.ladderSize()));
+        assertThat(new Position(9, Fixture.ladderSize()));
     }
 }

@@ -18,7 +18,7 @@ public class LadderGame {
         Participants participants = new Participants(participantsNames, ladderSize);
         Ladder ladder = Ladder.create(ladderSize, AutoLineGenerator.create());
 
-        ResultView.printLadder(participants.getPaticipants(), ladder.getFloors());
+        ResultView.printLadder(participants.getParticipants(), ladder.getFloors());
         ResultView.printLadderPrize(ladderPrizeNames);
 
         participants.moveToDestination(ladder.getFloors());
