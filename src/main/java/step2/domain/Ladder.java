@@ -1,7 +1,8 @@
 package step2.domain;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Ladder {
     private final List<String> names;
@@ -9,10 +10,9 @@ public class Ladder {
 
     public Ladder(List<String> names, int height) {
         this.names = names;
-        lines = new ArrayList<>();
-        for (int i = 0; i < height; i++) {
-            lines.add(new Line(names.size()));
-        }
+        this.lines = Stream.generate(() -> new Line(names.size()))
+                .limit(height)
+                .collect(Collectors.toList());
     }
 
 

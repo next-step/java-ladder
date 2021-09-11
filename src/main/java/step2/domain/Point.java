@@ -5,20 +5,16 @@ import java.util.Objects;
 public class Point {
     private final boolean point;
 
-    public Point(PointStrategy pointStrategy) {
-        this(pointStrategy.create());
-    }
-
-    public Point() {
-        this(false);
-    }
-
     public Point(boolean point) {
         this.point = point;
     }
 
-    public boolean isTrue() {
-        return point == true;
+    public Point(Point previousPoint) {
+        if (previousPoint.point) {
+            this.point = false;
+            return;
+        }
+        this.point = new PointRandomStrategy().create();
     }
 
     @Override

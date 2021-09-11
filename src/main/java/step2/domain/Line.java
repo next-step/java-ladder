@@ -11,11 +11,8 @@ public class Line {
         this.points = new ArrayList<>();
         this.points.add(new Point(false));
         for (int i = 1; i < numberOfPerson; i++) {
-            if (this.points.get(i - 1).isTrue()) {
-                this.points.add(new Point(false));
-            } else {
-                this.points.add(new Point(new PointRandomStrategy().create()));
-            }
+            final Point previousPoint = this.points.get(i - 1);
+            this.points.add(new Point(previousPoint));
         }
     }
 
