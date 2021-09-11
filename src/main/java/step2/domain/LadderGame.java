@@ -18,6 +18,9 @@ public class LadderGame {
         }
     }
 
+    public List<Ladder> ladders() {
+        return new ArrayList<>(this.ladders);
+    }
 
     @Override
     public String toString() {

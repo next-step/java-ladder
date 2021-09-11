@@ -14,6 +14,14 @@ public class Ladder {
         this.line = new Line(previousLadder.line);
     }
 
+    public Line line() {
+        return line;
+    }
+
+    public String name() {
+        return name;
+    }
+
     @Override
     public String toString() {
         return String.format("%5s\n", name)

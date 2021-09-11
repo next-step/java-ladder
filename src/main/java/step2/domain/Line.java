@@ -38,6 +38,10 @@ public class Line {
         this.points = points;
     }
 
+    public List<Boolean> points() {
+        return this.points;
+    }
+
     @Override
     public String toString() {
         return "Line{" +
