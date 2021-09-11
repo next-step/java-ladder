@@ -28,9 +28,7 @@ public class LadderGameMain {
 
     private void play() {
         List<LadderStep> ladderSteps = ladder.getLadderSteps();
-        for (LadderStep ladderStep : ladderSteps) {
-            swapPlayerOrder(ladderStep);
-        }
+        ladderSteps.forEach(this::swapPlayerOrder);
     }
 
     private void swapPlayerOrder(LadderStep ladderStep) {

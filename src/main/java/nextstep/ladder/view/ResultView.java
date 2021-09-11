@@ -14,6 +14,9 @@ public class ResultView {
     public static final String CROSS_LINE_STRING = "|-----";
     public static final String BLANK_LINE_STRING = "|     ";
     public static final int LABEL_PADDING_SIZE = 6;
+    public static final String PLAYER_NAME_NOT_EXIST_MESSAGE = "해당되는 이름을 가진 플레이어가 없습니다.";
+    public static final String All_RESULT_DELIMITER = " : ";
+    public static final String LINE_BREAK = "\n";
 
     private ResultView() {
     }
@@ -21,12 +24,6 @@ public class ResultView {
     public static ResultView getInstance() {
         return ResultViewHolder.instance;
     }
-
-    public static void showWhoGotWhatPrize(String playerName, LadderGameResult ladderGameResult) {
-        String prizeName = ladderGameResult.getPrizeNamesByName(playerName);
-        System.out.println(prizeName);
-    }
-
 
     public void printLadder(Ladder ladder) {
         System.out.println("실행결과");
@@ -65,11 +62,28 @@ public class ResultView {
 
         while (true) {
             String playerName = InputView.askPlayerNameForResult();
-            showWhoGotWhatPrize(playerName, ladderGameResult);
             if (SHOW_ALL_RESULT_KEY.equals(playerName)) {
+                showAllPlayersPrizes(ladderGameResult);
                 break;
             }
+            showWhoGotWhatPrize(playerName, ladderGameResult);
         }
+    }
+
+    private void showAllPlayersPrizes(LadderGameResult ladderGameResult) {
+        String allResultString = ladderGameResult.getLadderGameResult().entrySet().stream()
+            .map((entry) -> entry.getKey() + All_RESULT_DELIMITER + entry.getValue())
+            .collect(Collectors.joining(LINE_BREAK));
+
+        System.out.println(allResultString);
+    }
+
+    public static void showWhoGotWhatPrize(String playerName, LadderGameResult ladderGameResult) {
+
+        String playerPrizeString = ladderGameResult.getLadderGameResult()
+            .getOrDefault(playerName, PLAYER_NAME_NOT_EXIST_MESSAGE);
+
+        System.out.println(playerPrizeString);
     }
 
     private String addRightPadding(String str, int size) {
