@@ -9,14 +9,14 @@ public class ComputerStore {
     public static final String UNKNOWN_VERSION = "UNKNOWN";
 
     public static String getVersion(Computer computer) {
-        return Optional.of(computer)
-                .map(Computer::getSoundcard)
-                .map(Soundcard::getUsb)
+        return Optional.ofNullable(computer)
+                .flatMap(Computer::getSoundcard)
+                .flatMap(Soundcard::getUsb)
                 .map(USB::getVersion)
                 .orElse(UNKNOWN_VERSION);
     }
 
     public static String getVersionOptional(Computer computer) {
-        return null;
+        return Optional.of(computer).map(ComputerStore::getVersion).orElse(UNKNOWN_VERSION);
     }
 }

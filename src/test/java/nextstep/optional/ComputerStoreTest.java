@@ -4,13 +4,15 @@ import nextstep.optional.Computer.Soundcard;
 import nextstep.optional.Computer.USB;
 import org.junit.jupiter.api.Test;
 
+import java.util.Optional;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ComputerStoreTest {
     @Test
     public void getVersion() {
         String version = "pobi's usb";
-        Soundcard soundcard = new Soundcard(new USB(version));
+        Optional<Soundcard> soundcard = Optional.of(new Soundcard(Optional.of(new USB(version))));
         Computer computer = new Computer(soundcard);
         assertThat(ComputerStore.getVersion(computer)).isEqualTo(version);
     }
@@ -28,14 +30,14 @@ public class ComputerStoreTest {
 
     @Test
     public void getVersionWhenUSBIsNull() throws Exception {
-        Computer computer = new Computer(new Soundcard(null));
+        Computer computer = new Computer(Optional.of(new Soundcard(null)));
         assertThat(ComputerStore.getVersion(computer)).isEqualTo(ComputerStore.UNKNOWN_VERSION);
     }
 
     @Test
     public void getVersionOptional() {
         String version = "pobi's usb";
-        Soundcard soundcard = new Soundcard(new USB(version));
+        Optional<Soundcard> soundcard = Optional.of(new Soundcard(Optional.of(new USB(version))));
         Computer computer = new Computer(soundcard);
         assertThat(ComputerStore.getVersionOptional(computer)).isEqualTo(version);
     }
@@ -53,7 +55,7 @@ public class ComputerStoreTest {
 
     @Test
     public void getVersionOptionalWhenUSBIsNull() throws Exception {
-        Computer computer = new Computer(new Soundcard(null));
+        Computer computer = new Computer(Optional.of(new Soundcard(null)));
         assertThat(ComputerStore.getVersionOptional(computer)).isEqualTo(ComputerStore.UNKNOWN_VERSION);
     }
 }
