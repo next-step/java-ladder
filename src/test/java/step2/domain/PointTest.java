@@ -4,13 +4,11 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class PointStrategyTest {
-
+class PointTest {
     @Test
-    void pointFalseStrategyTest() {
-        final boolean actual = new PointFalseStrategy().create();
-        final boolean expected = false;
+    void createTest() {
+        final Point actual = new Point(() -> false);
+        final Point expected = new Point(false);
         assertThat(actual).isEqualTo(expected);
     }
-
 }
