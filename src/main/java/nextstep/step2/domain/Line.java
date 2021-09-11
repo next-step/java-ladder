@@ -11,7 +11,12 @@ public class Line {
   private List<Boolean> points = new ArrayList<>();
   private Random rd = new Random();
 
-  Line(GameParticipants participants) {
+
+  public Line(List<Boolean> points) {
+    this.points = points;
+  }
+
+  public Line(GameParticipants participants) {
     generator(participants);
   }
 
