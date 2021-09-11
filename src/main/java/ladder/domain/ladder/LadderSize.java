@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
 import ladder.exception.InvalidLadderHeightException;
 import ladder.exception.InvalidParticipantsCountException;
@@ -27,6 +27,10 @@ public class LadderSize {
         if (ladderHeight < MIN_LADDER_HEIGHT) {
             throw new InvalidLadderHeightException(ladderHeight, MIN_LADDER_HEIGHT);
         }
+    }
+
+    public int getCountOfParticipants() {
+        return countOfParticipants;
     }
 
     public int getLadderHeight() {

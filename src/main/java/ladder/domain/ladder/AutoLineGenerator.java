@@ -1,12 +1,11 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
 import java.util.List;
 import java.util.Random;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class AutoLineGenerator implements LadderLineGenerator{
+public class AutoLineGenerator implements LadderLineGenerator {
     private static boolean postLine = false;
     private static final Random random = new Random();
 

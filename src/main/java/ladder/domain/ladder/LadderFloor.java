@@ -1,11 +1,6 @@
-package ladder.domain;
-
-import ladder.exception.InvalidParticipantsCountException;
+package ladder.domain.ladder;
 
 import java.util.*;
-import java.util.function.Supplier;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public final class LadderFloor {
     private final List<Boolean> lines;

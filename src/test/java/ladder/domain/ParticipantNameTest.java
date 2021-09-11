@@ -1,6 +1,7 @@
 package ladder.domain;
 
-import ladder.exception.InvalidParticipantNameException;
+import ladder.domain.name.Name;
+import ladder.exception.InvalidNameException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,13 +15,13 @@ public class ParticipantNameTest {
     @ParameterizedTest(name = "{arguments} : {displayName}")
     @NullAndEmptySource
     void isBlank(String name) {
-        assertThatThrownBy(() -> new ParticipantName(name)).isInstanceOf(InvalidParticipantNameException.class);
+        assertThatThrownBy(() -> new Name(name)).isInstanceOf(InvalidNameException.class);
     }
 
     @DisplayName("이름 길이가 5글자 이상이면 유효한 이름이 아니다.")
     @Test
     void nameSize() {
-        assertThat(new ParticipantName("abcde"));
-        assertThatThrownBy(() ->  new ParticipantName("abcdef")).isInstanceOf(InvalidParticipantNameException.class);
+        assertThat(new Name("abcde"));
+        assertThatThrownBy(() ->  new Name("abcdef")).isInstanceOf(InvalidNameException.class);
     }
 }

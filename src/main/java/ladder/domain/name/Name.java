@@ -1,24 +1,24 @@
-package ladder.domain;
+package ladder.domain.name;
 
-import ladder.exception.InvalidParticipantNameException;
+import ladder.exception.InvalidNameException;
 import ladder.utils.StringUtils;
 
-public class ParticipantName {
+public class Name {
     private static final int MAX_NAME_LENGTH = 5;
     private final String name;
 
-    ParticipantName(String name) {
+    public Name(String name) {
         validate(name);
         this.name = name;
     }
 
     private void validate(String name) {
         if (StringUtils.isBlank(name)) {
-            throw new InvalidParticipantNameException();
+            throw new InvalidNameException();
         }
 
         if (name.trim().length() > MAX_NAME_LENGTH) {
-            throw new InvalidParticipantNameException(name.trim().length(), MAX_NAME_LENGTH);
+            throw new InvalidNameException(name.trim().length(), MAX_NAME_LENGTH);
         }
     }
 
