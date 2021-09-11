@@ -15,7 +15,6 @@ public final class ResultView {
     private static final String FORMAT_NAME = "%6s";
     private static final String FORMAT_LADDER_RESULT = "\n사다리 결과\n\n";
 
-
     public static void printLadder(final List<Participant> participants, final List<LadderFloor> ladderFloors) {
         System.out.printf(FORMAT_LADDER_RESULT);
 
