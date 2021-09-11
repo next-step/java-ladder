@@ -7,38 +7,18 @@ import java.util.List;
 import java.util.Objects;
 
 public final class Position {
-    private static final int INITIAL_FLOOR = 0;
     private static final int MIN_X = 0;
-    private static final int MIN_Y = 0;
 
     private final int x;
-//    private final int y;
     private final LadderSize ladderSize;
 
-//    Position(final int x, final int y, final LadderSize ladderSize) {
-//        validate(x, y, ladderSize);
-//        this.x = x;
-//        this.y = y;
-//        this.ladderSize = ladderSize;
-//    }
-
     public Position(final int x, final LadderSize ladderSize) {
-        validate2(x, ladderSize);
+        validate(x, ladderSize);
         this.x = x;
         this.ladderSize = ladderSize;
     }
 
-//    private void validate(final int x, final int y, final LadderSize ladderSize) {
-//        if (x < MIN_X || x > ladderSize.getMaxHeightPosition()) {
-//            throw new InvalidPositionException(x, MIN_X, ladderSize.getMaxHeightPosition());
-//        }
-//
-//        if (y < MIN_Y || y > ladderSize.getMaxWidthPosition()) {
-//            throw new InvalidPositionException(y, MIN_Y, ladderSize.getMaxWidthPosition());
-//        }
-//    }
-
-    private void validate2(final int x, final LadderSize ladderSize) {
+    private void validate(final int x, final LadderSize ladderSize) {
         if (x < MIN_X || x > ladderSize.getMaxHeightPosition()) {
             throw new InvalidPositionException(x, MIN_X, ladderSize.getMaxHeightPosition());
         }
