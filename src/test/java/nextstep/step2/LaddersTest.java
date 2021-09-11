@@ -19,7 +19,7 @@ public class LaddersTest {
 
     GameParticipants gameParticipants = new GameParticipants(participantsStr);
     for (int i = 0; i < gameParticipants.getParticipantsSize(); i++) {
-      assertThat(gameParticipants.getParticipant(i)).isEqualTo(new Participant(participants[i]));
+      assertThat(gameParticipants.getGameParticipants(i)).isEqualTo(new Participant(participants[i]));
     }
   }
 

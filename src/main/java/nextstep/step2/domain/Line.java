@@ -6,9 +6,17 @@ import java.util.Random;
 
 public class Line {
 
-  private List<Boolean> points = new ArrayList<>();
+  private final int MINIMUM_INDEX = 2;
 
-  Line(GameParticipants participants) {
+  private List<Boolean> points = new ArrayList<>();
+  private Random rd = new Random();
+
+
+  public Line(List<Boolean> points) {
+    this.points = points;
+  }
+
+  public Line(GameParticipants participants) {
     generator(participants);
   }
 
@@ -19,29 +27,31 @@ public class Line {
     }
   }
 
-  private void addRandomPoint(int i) {
+  private void addRandomPoint(int index) {
 
     boolean randomPoint = getRandomPoint();
 
-    if (isDuplicate(i, randomPoint)) {
+    if (isDuplicate(index, randomPoint)) {
       randomPoint = !randomPoint;
     }
 
     points.add(randomPoint);
   }
 
-  private boolean isDuplicate(int i, boolean randomPoint) {
-    if (i < 2) {
+  private boolean isDuplicate(int index, boolean randomPoint) {
+    if (index < MINIMUM_INDEX) {
       return false;
     }
-    return ((points.get(i - 1) == randomPoint) && (points.get(i - 2) == randomPoint));
+    return isDuplicatePoint(index, randomPoint);
+  }
+
+  private boolean isDuplicatePoint(int index, boolean randomPoint) {
+    return (points.get(index - 1) == randomPoint) && (points.get(index - 2) == randomPoint);
   }
 
   private boolean getRandomPoint() {
-    Random rd = new Random(); // creating Random object
     return rd.nextBoolean();
   }
-
 
   public int getPointSize() {
     return points.size();
