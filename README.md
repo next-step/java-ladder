@@ -9,6 +9,35 @@
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
 
 ---
+## 2단계 - 사다리(생성)
+### 기능 요구사항 
+- 게임 참여자 이름 최대 5글자 
+- 사다리 출력시 이름도 함께 출력
+- 사람 이름은 쉼표로 구분
+- 사람 이름 5자에 맞춘 사다리 폭
+- 사다리 타기가 정상적으로 동작하기 위해 라인이 겹치지 않도록 해야한다
+
+### TODO
+- Ladder Application
+  - ~~input name String -> split(,)~~
+- Name
+  - ~~5자 제한 exception~~
+- Ladder Application
+    - ~~input height~~
+- Height
+  - ~~높이 제한 exception~~
+- Ladder
+  - ~~생성자 Names, Height~~
+  - ~~name list, Line list(height)~~
+- Line
+  - ~~number of persion~~
+  - ~~point list~~
+- Point
+  - ~~이전 point 상태로 랜덤 boolean 생성~~ 
+- 출력
+
+
+---
 ## 1단계 - 자바8 스트림, 람다, Optional
 ### TODO
 - ~~람다 실습 1 - 익명 클래스를 람다로 전환~~
