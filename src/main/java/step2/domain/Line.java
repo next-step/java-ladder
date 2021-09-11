@@ -1,52 +1,32 @@
 package step2.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Line {
-    private final List<Boolean> points;
+    private final List<Point> points;
 
-    public Line(int height) {
-        this(height, new PointFalseStrategy());
+    public Line(int numberOfPerson) {
+        this.points = new ArrayList<>();
+        this.points.add(new Point(false));
+        for (int i = 1; i < numberOfPerson; i++) {
+            if (this.points.get(i - 1).isTrue()) {
+                this.points.add(new Point(false));
+            } else {
+                this.points.add(new Point(new PointRandomStrategy().create()));
+            }
+        }
     }
 
-    public Line(int height, PointStrategy pointStrategy) {
-        this.points = Stream.generate(() -> pointStrategy.create())
-                .limit(height)
-                .collect(Collectors.toList());
-    }
-
-    public Line(Line previousLine) {
-        this(previousLine, new PointRandomStrategy());
-    }
-
-    public Line(Line previousLine, PointStrategy pointStrategy) {
-        this.points = previousLine.points
-                .stream()
-                .map(previousPoint -> {
-                    if (previousPoint) {
-                        return false;
-                    }
-                    return pointStrategy.create();
-                })
-                .collect(Collectors.toList());
-    }
-
-    public Line(List<Boolean> points) {
-        this.points = points;
-    }
-
-    public List<Boolean> points() {
-        return this.points;
-    }
 
     @Override
     public String toString() {
-        return "Line{" +
-                "line=" + points +
-                '}';
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Point point : points) {
+            stringBuilder.append(point);
+        }
+        return stringBuilder.append("\n").toString();
     }
 
     @Override

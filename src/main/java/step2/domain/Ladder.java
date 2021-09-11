@@ -1,30 +1,33 @@
 package step2.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Ladder {
-    private final String name;
-    private final Line line;
+    private final List<String> names;
+    private final List<Line> lines;
 
-    public Ladder(String name, int height) {
-        this.name = name;
-        this.line = new Line(height);
+    public Ladder(List<String> names, int height) {
+        this.names = names;
+        lines = new ArrayList<>();
+        for (int i = 0; i < height; i++) {
+            lines.add(new Line(names.size()));
+        }
     }
 
-    public Ladder(String name, Ladder previousLadder) {
-        this.name = name;
-        this.line = new Line(previousLadder.line);
-    }
-
-    public Line line() {
-        return line;
-    }
-
-    public String name() {
-        return name;
-    }
 
     @Override
     public String toString() {
-        return String.format("%5s\n", name)
-                + line;
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String name : names) {
+            stringBuilder.append(String.format("%6s", name));
+        }
+        stringBuilder.append("\n");
+
+        for (Line line : lines) {
+            stringBuilder.append(line);
+        }
+
+        return stringBuilder.toString();
     }
 }
