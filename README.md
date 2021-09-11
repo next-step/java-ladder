@@ -24,8 +24,14 @@
    4. Line에서 true값은 연속될 수 없다. 
 
 2. Ladder : 사다리 클래스(여러개의 Line으로 구성된다.)
-   1. Ladder는 게임에 참여하는 사람 수 만큼의 가로 크기를 갖는다. 
+   1. Ladder는 너비를 갖는다. 
    2. Ladder는 높이를 갖는다.
+
+3. LadderGame : 사다리 게임을 실행하는 클래스
+   1. 참여자 정보를 유지한다. 
+   2. 참여자 수와 전달받은 사다리 높이를 기반으로 사다리를 생성한다.
    
 4. InputView : 입력처리하는 클래스
-5. ResultView : 출력처리하는 클래스 
+5. ResultView : 출력처리하는 클래스
+ 
+6. RandomValueGenerator : 랜덤한 값을 생성하는 util클래스
