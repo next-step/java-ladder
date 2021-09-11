@@ -26,15 +26,14 @@
     - ~~input height~~
 - Height
   - ~~높이 제한 exception~~
-- Ladder Game
-  - ~~Ladder List~~
 - Ladder
-  - ~~생성자 Name, Height~~
-  - ~~name, line~~
+  - ~~생성자 Names, Height~~
+  - ~~name list, Line list(height)~~
 - Line
-  - ~~초기 라인 -> height~~
-  - ~~이후 라인 -> 이전 라인 받아서 체크~~
-  
+  - ~~number of persion~~
+  - ~~point list~~
+- Point
+  - ~~이전 point 상태로 랜덤 boolean 생성~~ 
 - 출력
 
 
