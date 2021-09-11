@@ -3,7 +3,7 @@ package step2.dto;
 import java.util.Objects;
 
 public class Height {
-    private static final int MIN_LIMIT = 0;
+    private static final int MIN_LIMIT = 1;
 
     private final int height;
 

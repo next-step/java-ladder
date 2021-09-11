@@ -13,7 +13,7 @@ public class Name {
 
     public Name(String name) {
         if (name.length() > MAX_LIMIT) {
-            throw new RuntimeException("사람 이름은 최대 5글자 입니다.");
+            throw new RuntimeException(String.format("사람 이름은 최대 %d글자 입니다.", MAX_LIMIT));
         }
         this.name = name;
     }
