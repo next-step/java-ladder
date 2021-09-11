@@ -49,6 +49,6 @@ class LineTest {
     Line line = Line.randomLine(size);
 
     //then
-    assertThat(line.points().size()).isEqualTo(size);
+    assertThat(line.size()).isEqualTo(size);
   }
 }

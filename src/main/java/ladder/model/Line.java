@@ -29,6 +29,10 @@ public class Line {
     return points;
   }
 
+  public int size() {
+    return points.size();
+  }
+
   private static void addRandomPoint(List<Boolean> points) {
     if (points.get(points.size() - 1)) {
       points.add(false);
