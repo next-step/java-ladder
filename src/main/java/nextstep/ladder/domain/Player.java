@@ -1,4 +1,4 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
 
 public class Player {
     private String name;
@@ -13,5 +13,10 @@ public class Player {
             throw new IllegalArgumentException("이름은 5글자르 넘을 수 없습니다.");
         }
     }
+
+    public String getName() {
+        return name;
+    }
+
 
 }
