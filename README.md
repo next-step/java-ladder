@@ -26,20 +26,17 @@
     - ~~input height~~
 - Height
   - ~~높이 제한 exception~~
-- Ladder
-  - 생성자 Name, Height
-  - 필드 List<Line>, Height 길이 만큼 생성
-- Line
-  - 생성자 사람수 
-  - 필드 List<Boolean>
-  - 라인 겹침 여부 판별
 - Ladder Game
-  - 생성자 사람, 높이 
-  - 필드 Ladder (name, Height)
-  - create .. 
+  - ~~Ladder List~~
+- Ladder
+  - ~~생성자 Name, Height~~
+  - ~~name, line~~
+- Line
+  - ~~초기 라인 -> height~~
+  - ~~이후 라인 -> 이전 라인 받아서 체크~~
   
-..
-- 폭 출력 조정
+- 출력
+
 
 ---
 ## 1단계 - 자바8 스트림, 람다, Optional

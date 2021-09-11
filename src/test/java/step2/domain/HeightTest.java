@@ -1,6 +1,7 @@
 package step2.domain;
 
 import org.junit.jupiter.api.Test;
+import step2.dto.Height;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;

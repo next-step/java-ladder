@@ -1,6 +1,8 @@
 package step2.domain;
 
 import org.junit.jupiter.api.Test;
+import step2.dto.Name;
+import step2.dto.Names;
 
 import java.util.Arrays;
 

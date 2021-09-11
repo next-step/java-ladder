@@ -1,4 +1,4 @@
-package step2.domain;
+package step2.dto;
 
 import java.util.Objects;
 
@@ -6,6 +6,10 @@ public class Name {
     private static final int MAX_LIMIT = 5;
 
     private final String name;
+
+    public Name(Name name) {
+        this(name.name);
+    }
 
     public Name(String name) {
         if (name.length() > MAX_LIMIT) {
@@ -29,8 +33,6 @@ public class Name {
 
     @Override
     public String toString() {
-        return "Name{" +
-                "name='" + name + '\'' +
-                '}';
+        return name;
     }
 }

@@ -1,4 +1,4 @@
-package step2.domain;
+package step2.dto;
 
 import java.util.Objects;
 
@@ -12,6 +12,10 @@ public class Height {
             throw new RuntimeException(String.format("사다리 높이는 %d 보다 작을 수 없습니다", MIN_LIMIT));
         }
         this.height = height;
+    }
+
+    public int height() {
+        return this.height;
     }
 
     @Override

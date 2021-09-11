@@ -1,4 +1,4 @@
-package step2.domain;
+package step2.dto;
 
 import java.util.Arrays;
 import java.util.List;
@@ -16,6 +16,13 @@ public class Names {
 
     public Names(List<Name> names) {
         this.names = names;
+    }
+
+    public List<String> names() {
+        return this.names.stream()
+                .map(n -> new Name(n))
+                .map(name -> name.toString())
+                .collect(Collectors.toList());
     }
 
     @Override

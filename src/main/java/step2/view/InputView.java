@@ -1,7 +1,7 @@
 package step2.view;
 
-import step2.domain.Height;
-import step2.domain.Names;
+import step2.dto.Height;
+import step2.dto.Names;
 
 import java.util.Scanner;
 
