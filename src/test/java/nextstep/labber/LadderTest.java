@@ -15,7 +15,8 @@ class LadderTest {
     @Test
     void findAllResult() {
         List<User> users = Arrays.asList(new User("pobi"), new User("honux"), new User("crong"), new User("jk"));
-        List<Line> lines = Stream.generate(() -> new Line(Arrays.asList(false, false, false, false)))
+        Point point = Point.first(false);
+        List<Line> lines = Stream.generate(() -> new Line(Arrays.asList(point, point.next(false), point.next(false), point.next(false), point.last())))
                 .limit(5)
                 .collect(Collectors.toList());
         Ladder ladder = new Ladder(3 , lines, users);

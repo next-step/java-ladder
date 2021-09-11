@@ -40,8 +40,9 @@ public class LadderView {
     }
 
     public void drawLadder(List<Line> ladder) {
-        ladder.stream()
-                .forEach(line -> drawLine(line));
+        for (int i = 0; i < ladder.size(); i++) {
+            drawLine(ladder.get(i));
+        }
     }
 
     private void drawLine(Line line) {
