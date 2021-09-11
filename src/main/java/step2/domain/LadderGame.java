@@ -4,16 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LadderGame {
+    private static final int FIRST_INDEX = 0;
+    private static final int SECOND_INDEX = 1;
+
     private final List<Ladder> ladders;
 
     public LadderGame(List<String> names, int height) {
         ladders = new ArrayList<>();
-        for (int i = 0; i < names.size(); i++) {
-            if (i == 0) {
-                ladders.add(new Ladder(names.get(i), height));
-            } else {
-                ladders.add(new Ladder(names.get(i), ladders.get(i - 1)));
-            }
+        ladders.add(new Ladder(names.get(FIRST_INDEX), height));
+
+        for (int i = SECOND_INDEX; i < names.size(); i++) {
+            ladders.add(new Ladder(names.get(i), ladders.get(i - 1)));
         }
     }
 
