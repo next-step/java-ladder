@@ -5,6 +5,8 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class LadderGameTest {
 
@@ -26,28 +28,14 @@ class LadderGameTest {
     assertThat(ladderGame.participants()).containsExactly("pobi", "honux", "crong", "jk");
   }
 
-  @Test
-  @DisplayName("잘못된 생성 테스트")
-  void invalidCreateTest() {
-    //then
+  @ParameterizedTest(name = "잘못된 생성 테스트 names:[{0}], height:[{1}]")
+  @CsvSource(
+      value = {"''|5", " ,  , |5", "pobi|5", "pobi,honux,crong,jk|0", "''|0"},
+      delimiter = '|'
+  )
+  void invalidCreateTest(String names, int height) {
     assertThatIllegalArgumentException().isThrownBy(() -> {
-      new LadderGame("", 5);
-    });
-
-    assertThatIllegalArgumentException().isThrownBy(() -> {
-      new LadderGame(" ,  ,  ", 5);
-    });
-
-    assertThatIllegalArgumentException().isThrownBy(() -> {
-      new LadderGame("pobi", 5);
-    });
-
-    assertThatIllegalArgumentException().isThrownBy(() -> {
-      new LadderGame("pobi,honux,crong,jk", 0);
-    });
-
-    assertThatIllegalArgumentException().isThrownBy(() -> {
-      new LadderGame("", 0);
+      new LadderGame(names, height);
     });
   }
 }

@@ -22,8 +22,6 @@ class NameTest {
   @ParameterizedTest(name = "잘못된 생성 테스트 : {0}")
   @ValueSource(strings = {"", "123456", "1234567"})
   void invalidCreateTest(String value) {
-
-    //then
     assertThatIllegalArgumentException().isThrownBy(() -> {
       new Name(value);
     });

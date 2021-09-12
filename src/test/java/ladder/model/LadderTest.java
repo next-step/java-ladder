@@ -6,6 +6,8 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class LadderTest {
 
@@ -27,18 +29,11 @@ class LadderTest {
     }
   }
 
-  @Test
-  @DisplayName("잘못된 생성 테스트")
-  void invalidCreateTest() {
-    //then
+  @ParameterizedTest(name = "잘못된 생성 테스트 height:{0}, width:{1}")
+  @CsvSource(value = {"0, 4", "5, 0", "-1, 0"})
+  void invalidCreateTest(int height, int width) {
     assertThatIllegalArgumentException().isThrownBy(() -> {
-      new Ladder(0, 4);
-    });
-    assertThatIllegalArgumentException().isThrownBy(() -> {
-      new Ladder(5, 0);
-    });
-    assertThatIllegalArgumentException().isThrownBy(() -> {
-      new Ladder(-1, 0);
+      new Ladder(height, width);
     });
   }
 }
