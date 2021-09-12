@@ -1,5 +1,6 @@
 package utils;
 
+import domain.Number;
 import domain.User;
 
 import java.util.Arrays;
@@ -21,5 +22,10 @@ public class Input {
 		String stringOfUsers = scanner.next();
 		return Arrays.stream(stringOfUsers.split(REGEX_OF_USERS)).map(User::new)
 						.collect(Collectors.toList());
+	}
+
+	public Number saveLadderCount() {
+		System.out.println("최대 사다리 높이는 몇 개인가요?");
+		return new Number(scanner.nextInt());
 	}
 }

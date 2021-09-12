@@ -1,5 +1,6 @@
 package controller;
 
+import domain.Number;
 import domain.User;
 import utils.Input;
 
@@ -10,6 +11,7 @@ public class LadderGame {
 
 		Input input = new Input();
 		List<User> users = input.saveUsers();
+		Number ladderCount = input.saveLadderCount();
 	}
 }
 
