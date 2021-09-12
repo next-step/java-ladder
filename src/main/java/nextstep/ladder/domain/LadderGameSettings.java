@@ -1,32 +1,46 @@
 package nextstep.ladder.domain;
 
 import java.util.Objects;
-import nextstep.ladder.strategy.DrawLineStrategy;
+import nextstep.ladder.exception.WrongLadderGameSettingsException;
 
 public class LadderGameSettings {
 
-    private final LadderSize ladderSize;
-    private final DrawLineStrategy strategy;
+    private final Players players;
+    private final LadderHeight ladderHeight;
+    private final LadderGamePrizes ladderGamePrizes;
 
+    public LadderGameSettings(Players players, LadderHeight height, LadderGamePrizes prizes) {
+        validatePlayerAndPrizeCount(players, prizes);
 
-    private LadderGameSettings(LadderSize ladderSize, DrawLineStrategy strategy) {
-        this.ladderSize = Objects.requireNonNull(ladderSize);
-        this.strategy = Objects.requireNonNull(strategy);
+        this.players = Objects.requireNonNull(players);
+        this.ladderHeight = Objects.requireNonNull(height);
+        this.ladderGamePrizes = Objects.requireNonNull(prizes);
     }
 
-    public static LadderGameSettings of(LadderSize ladderSize, DrawLineStrategy strategy) {
-        return new LadderGameSettings(ladderSize, strategy);
+    public static LadderGameSettings of(Players players, LadderHeight height, LadderGamePrizes prizes) {
+        return new LadderGameSettings(players, height, prizes);
     }
 
-    public int getLadderWidth() {
-        return ladderSize.getWidth();
+    private void validatePlayerAndPrizeCount(Players players, LadderGamePrizes ladderGamePrizes) {
+
+        final int playerCount = players.count();
+        final int prizeCount = ladderGamePrizes.count();
+        if (playerCount != prizeCount) {
+            throw new WrongLadderGameSettingsException(String
+                .format("플레이어 수와 게임결과보상의 수가 일치하지 않습니다. [플레이어 수: %d] [게임보상수 %d]", playerCount, prizeCount));
+        }
     }
 
-    public int getLadderHeight() {
-        return ladderSize.getHeight();
+
+    public Players getPlayers() {
+        return players;
     }
 
-    public DrawLineStrategy getStrategy() {
-        return strategy;
+    public LadderGamePrizes getLadderGamePrizes() {
+        return ladderGamePrizes;
+    }
+
+    public LadderHeight getLadderHeight() {
+        return ladderHeight;
     }
 }

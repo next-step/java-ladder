@@ -1,11 +1,12 @@
 package nextstep.ladder;
 
 import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.LadderGame;
+import nextstep.ladder.domain.LadderGameMain;
+import nextstep.ladder.domain.LadderGamePrizes;
+import nextstep.ladder.domain.LadderGameResult;
 import nextstep.ladder.domain.LadderGameSettings;
-import nextstep.ladder.domain.LadderSize;
+import nextstep.ladder.domain.LadderHeight;
 import nextstep.ladder.domain.Players;
-import nextstep.ladder.strategy.RandomDrawLineStrategy;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
@@ -13,18 +14,18 @@ public class LadderGameConsole {
 
     public static void main(String[] args) {
 
-        InputView inputView = InputView.getInstance();
+        final Players players = Players.from(InputView.askPlayerNames());
+        final LadderHeight ladderHeight = LadderHeight.of(InputView.askLadderHeight());
+        final LadderGamePrizes ladderGamePrizes = LadderGamePrizes.from(InputView.askLadderGamePrizes());
+        final LadderGameSettings gameSettings = LadderGameSettings.of(players, ladderHeight, ladderGamePrizes);
 
-        final Players players = Players.from(inputView.playerNames());
-        final LadderSize ladderSize = LadderSize.of(players.count(), inputView.askLadderHeight());
-        inputView.closeInputScanner();
-
-        final LadderGameSettings settings = LadderGameSettings.of(ladderSize, new RandomDrawLineStrategy());
-
-        Ladder ladder = LadderGame.createLadder(settings);
+        final LadderGameMain gameMain = LadderGameMain.initialize(gameSettings);
+        final Ladder ladder = gameMain.getLadder();
+        final LadderGameResult ladderGameResult = gameMain.getGameResult();
 
         ResultView resultView = ResultView.getInstance();
-        resultView.showLadderGame(players,ladder);
+        resultView.printLadder(ladder);
+        resultView.printGameResult(ladderGameResult);
 
     }
 

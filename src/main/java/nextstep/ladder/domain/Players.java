@@ -1,10 +1,10 @@
 package nextstep.ladder.domain;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import nextstep.ladder.exception.WrongPlayersException;
 
 public class Players {
@@ -20,7 +20,7 @@ public class Players {
 
         this.players = Arrays.stream(playerNames)
             .map(Player::new)
-            .collect(Collectors.toUnmodifiableList());
+            .collect(Collectors.toList());
 
     }
 
@@ -31,6 +31,10 @@ public class Players {
         }
     }
 
+    public void swap(int i, int j) {
+        Collections.swap(players, i, j);
+    }
+
     public static Players from(String[] playerNames) {
         return new Players(playerNames);
     }
@@ -39,7 +43,12 @@ public class Players {
         return players.size();
     }
 
-    public Stream<Player> stream() {
-        return players.stream();
+    public String getPlayerNameAt(int index) {
+        return value().get(index).getName();
     }
+
+    public List<Player> value() {
+        return players;
+    }
+
 }

@@ -22,7 +22,7 @@ class PlayersTest {
         assertThat(players.count()).isEqualTo(playerCount);
     }
 
-    @ParameterizedTest
+    @Test
     @NullSource
     @DisplayName("플레이어 이름목록이 null일경우에는 플레이어 리스트 생성시 예외를 던진다.")
     void createPlayers(String[] playerNames) {

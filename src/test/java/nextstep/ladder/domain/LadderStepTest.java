@@ -10,24 +10,24 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-class LadderRowTest {
+class LadderStepTest {
 
     @ParameterizedTest
-    @MethodSource("provideLadderStepParams")
-    @DisplayName("1열이상의 길이를 가지는 한행의 사다리를 만들수 있다.")
-    void createLadder(int playersCount, DrawLineStrategy strategy) {
-
+    @MethodSource("provideGameSettings")
+    @DisplayName("설정한 플레이어 수만큼의 사이공간이 생긴다.")
+    void LadderStepSizeTest(int playersCount, DrawLineStrategy strategy) {
         LadderStep ladderStep = new LadderStep(playersCount, strategy);
         assertThat(ladderStep.interSpacesSize()).isEqualTo(playersCount);
     }
 
 
-    private static Stream<Arguments> provideLadderStepParams() {
+    private static Stream<Arguments> provideGameSettings() {
 
         return Stream.of(
             Arguments.of(2, RandomDrawLineStrategy.getInstance()),
-            Arguments.of(3, RandomDrawLineStrategy.getInstance()),
+            Arguments.of(5, RandomDrawLineStrategy.getInstance()),
             Arguments.of(10, RandomDrawLineStrategy.getInstance())
         );
     }
+
 }
