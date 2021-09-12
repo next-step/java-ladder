@@ -3,6 +3,11 @@ package nextstep.fp;
 import java.util.List;
 
 public class Lambda {
+
+    private static final Integer RANGE_NUMBER = 3;
+    private static final Integer INIT_NUMBER = 0;
+    private static final Integer EVEN_NUMBER = 2;
+
     public static void printAllOld(List<Integer> numbers) {
         System.out.println("printAllOld");
 
@@ -27,30 +32,14 @@ public class Lambda {
     }
 
     public static int sumAll(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            total += number;
-        }
-        return total;
+        return Calculator.sumAllByCondition(numbers, number -> true);
     }
 
     public static int sumAllEven(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number % 2 == 0) {
-                total += number;
-            }
-        }
-        return total;
+        return Calculator.sumAllByCondition(numbers, number -> number % EVEN_NUMBER == INIT_NUMBER);
     }
 
     public static int sumAllOverThree(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number > 3) {
-                total += number;
-            }
-        }
-        return total;
+        return Calculator.sumAllByCondition(numbers, number -> number > RANGE_NUMBER);
     }
 }
