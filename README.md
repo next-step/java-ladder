@@ -30,8 +30,11 @@
 3. LadderGame : 사다리 게임을 실행하는 클래스
    1. 참여자 정보를 유지한다. 
    2. 참여자 수와 전달받은 사다리 높이를 기반으로 사다리를 생성한다.
+
+4. Name : 참여자 이름 클래스
+   1. 이름은 최소 1글자, 최대 5글자로 부여할수 있다.
    
-4. InputView : 입력처리하는 클래스
-5. ResultView : 출력처리하는 클래스
+5. InputView : 입력처리하는 클래스
+6. ResultView : 출력처리하는 클래스
  
-6. RandomValueGenerator : 랜덤한 값을 생성하는 util클래스
+7. RandomValueGenerator : 랜덤한 값을 생성하는 util클래스
