@@ -6,11 +6,14 @@ import java.util.stream.Collectors;
 
 public class LadderGame {
 
+  private static final int MIN_PARTICIPANTS_SIZE = 2;
+  private static final String NAME_DELIMITER = ",";
+
   private final List<Name> participants;
   private final Ladder ladder;
 
   public LadderGame(String names, int height) {
-    participants = Arrays.stream(names.split(","))
+    participants = Arrays.stream(names.split(NAME_DELIMITER))
         .map(String::trim)
         .map(Name::new)
         .collect(Collectors.toList());
@@ -28,8 +31,8 @@ public class LadderGame {
   }
 
   private void validateParticipantsSize(List<Name> participants) {
-    if (participants.size() < 2) {
-      throw new IllegalArgumentException("사다리게임의 최소 참여인원은 2명입니다.");
+    if (participants.size() < MIN_PARTICIPANTS_SIZE) {
+      throw new IllegalArgumentException("사다리게임의 최소 참여인원은 " + MIN_PARTICIPANTS_SIZE + "명입니다.");
     }
   }
 }
