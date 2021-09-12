@@ -21,9 +21,8 @@ class LadderGameTest {
     LadderGame ladderGame = new LadderGame(names, height);
 
     //then
-    Ladder ladder = ladderGame.ladder();
-    assertThat(ladder.width()).isEqualTo(4);
-    assertThat(ladder.height()).isEqualTo(height);
+    assertThat(ladderGame.ladderWidth()).isEqualTo(4);
+    assertThat(ladderGame.ladderHeight()).isEqualTo(height);
 
     assertThat(ladderGame.participants()).containsExactly("pobi", "honux", "crong", "jk");
   }
@@ -37,5 +36,20 @@ class LadderGameTest {
     assertThatIllegalArgumentException().isThrownBy(() -> {
       new LadderGame(names, height);
     });
+  }
+
+  @Test
+  void ladderLineIndexOfTest() {
+    //given
+    String names = "pobi,honux,crong,jk";
+    int height = 5;
+
+    //when
+    LadderGame ladderGame = new LadderGame(names, height);
+
+    //then
+    for (int i = 0; i < ladderGame.ladderHeight(); i++){
+      assertThat(ladderGame.ladderLineIndexOf(i).size()).isEqualTo(4);
+    }
   }
 }

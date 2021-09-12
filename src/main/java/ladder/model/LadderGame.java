@@ -26,8 +26,16 @@ public class LadderGame {
     return participants.stream().map(Name::value).collect(Collectors.toList());
   }
 
-  public Ladder ladder() {
-    return ladder;
+  public Line ladderLineIndexOf(int index) {
+    return ladder.lines().get(index);
+  }
+
+  public int ladderHeight() {
+    return ladder.height();
+  }
+
+  public int ladderWidth() {
+    return ladder.width();
   }
 
   private void validateParticipantsSize(List<Name> participants) {

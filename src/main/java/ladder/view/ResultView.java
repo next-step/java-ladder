@@ -1,7 +1,6 @@
 package ladder.view;
 
 import java.util.List;
-import ladder.model.Ladder;
 import ladder.model.LadderGame;
 import ladder.model.Line;
 
@@ -16,7 +15,10 @@ public class ResultView {
     System.out.println("\n실행결과\n");
 
     printParticipants(ladderGame.participants());
-    printLadder(ladderGame.ladder());
+
+    for (int i = 0; i < ladderGame.ladderHeight(); i++) {
+      printLadderLine(ladderGame.ladderLineIndexOf(i));
+    }
   }
 
   private static void printParticipants(List<String> participants) {
@@ -24,13 +26,7 @@ public class ResultView {
     System.out.println();
   }
 
-  private static void printLadder(Ladder ladder) {
-    for (Line line : ladder.lines()) {
-      printLine(line);
-    }
-  }
-
-  private static void printLine(Line line) {
+  private static void printLadderLine(Line line) {
     for (Boolean point : line.points()) {
       printFootHold(point);
       System.out.print(LADDER_STICK_CHAR);
