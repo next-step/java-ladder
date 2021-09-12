@@ -10,6 +10,10 @@ public class Number {
 		this.number = number;
 	}
 
+	public Integer getNumber() {
+		return number;
+	}
+
 	@Override
 	public String toString() {
 		return Integer.toString(number);
