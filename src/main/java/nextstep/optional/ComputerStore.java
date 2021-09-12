@@ -10,13 +10,15 @@ public class ComputerStore {
 
     public static String getVersion(Computer computer) {
         return Optional.ofNullable(computer)
-                .flatMap(Computer::getSoundcard)
-                .flatMap(Soundcard::getUsb)
+                .map(Computer::getSoundcard)
+                .map(Soundcard::getUsb)
                 .map(USB::getVersion)
                 .orElse(UNKNOWN_VERSION);
     }
 
     public static String getVersionOptional(Computer computer) {
-        return Optional.of(computer).map(ComputerStore::getVersion).orElse(UNKNOWN_VERSION);
+        return Optional.ofNullable(computer)
+                .map(ComputerStore::getVersion)
+                .orElse(UNKNOWN_VERSION);
     }
 }
