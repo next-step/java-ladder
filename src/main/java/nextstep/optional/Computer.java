@@ -1,27 +1,25 @@
 package nextstep.optional;
 
-import java.util.Optional;
-
 public class Computer {
-    private Optional<Soundcard> soundcard;
+    private Soundcard soundcard;
 
-    public Computer(Optional<Soundcard> soundcard) {
+    public Computer(Soundcard soundcard) {
         this.soundcard = soundcard;
     }
 
-    public Optional<Soundcard> getSoundcard() {
+    public Soundcard getSoundcard() {
         return soundcard;
     }
 
     public static class Soundcard {
-        private Optional<USB> usb;
+        private USB usb;
 
-        public Soundcard(Optional<USB> usb) {
+        public Soundcard(USB usb) {
             super();
             this.usb = usb;
         }
 
-        public Optional<USB> getUsb() {
+        public USB getUsb() {
             return usb;
         }
     }
