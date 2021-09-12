@@ -12,7 +12,8 @@ class LineTest {
     @Test
     @DisplayName("오른쪽으로 이동")
     void move_right() {
-        Line line = new Line(Arrays.asList(false , true, false)) ;
+        Point point = Point.first(false);
+        Line line = new Line(Arrays.asList(point ,point.next(true), point.next(false), point.last())) ;
 
         assertThat(line.move(1)).isEqualTo(Compass.RIGHT);
     }
@@ -20,7 +21,8 @@ class LineTest {
     @Test
     @DisplayName("왼쪽으로 이동")
     void move_left() {
-        Line line = new Line(Arrays.asList(true , false, false)) ;
+        Point point = Point.first(true);
+        Line line = new Line(Arrays.asList(point ,point.next(false), point.next(false), point.last())) ;
 
         assertThat(line.move(1)).isEqualTo(Compass.LEFT);
     }
@@ -28,7 +30,8 @@ class LineTest {
     @Test
     @DisplayName("아래로 이동")
     void move_down() {
-        Line line = new Line(Arrays.asList(false , false, false)) ;
+        Point point = Point.first(false);
+        Line line = new Line(Arrays.asList(point ,point.next(false), point.next(false), point.last())) ;
 
         assertThat(line.move(1)).isEqualTo(Compass.DOWN);
     }

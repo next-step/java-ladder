@@ -1,53 +1,37 @@
 package nextstep.labber;
 
-import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class Line {
-    private static final int MIN_POINTS_SIZE = 0;
-    private static final int LADDER_DIFFERENCES_VALUE = 1;
+    private static final int LINE_ADD_DEFAULT_VALUE = 2;
 
-    private final List<Boolean> points;
+    private List<Point> points = new ArrayList<>();
 
-    public Line(int participantsCount) {
-        points = new ArrayList<>();
-        IntStream.range(0, participantsCount - LADDER_DIFFERENCES_VALUE)
-                .forEach(index -> {
-                    points.add(createPoint());
-                });
-        points.add(false);
+    public Line(int sizeOfParticipants) {
+        Point point = Point.first();
+        points.add(point);
+        for (int i = 0; i < sizeOfParticipants - LINE_ADD_DEFAULT_VALUE; i++) {
+           point = point.next();
+           points.add(point);
+        }
+        points.add(point.last());
     }
 
-    public Line(List<Boolean> points) {
+    public Line(List<Point> points) {
         this.points = points;
     }
 
-    protected boolean createPoint() {
-        SecureRandom random = new SecureRandom();
-        if (points.size() != MIN_POINTS_SIZE && pointsLastElement()) {
-            return false;
-        }
-        return random.nextBoolean();
-    }
-
-    private Boolean pointsLastElement() {
-        return this.points.get(this.points.size() - 1);
-    }
-
     public Compass move(int index) {
-        if (this.points.get(index)) {
-            return Compass.RIGHT;
-        }
-
-        if (index > 0 && this.points.get(index - 1)) {
-            return Compass.LEFT;
-        }
-        return Compass.DOWN;
+        return this.points.get(index).move();
     }
 
     public int size() {
         return this.points.size();
+    }
+
+    @Override
+    public String toString() {
+        return this.points.toString();
     }
 }
