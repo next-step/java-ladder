@@ -32,9 +32,11 @@ war-and-peace.txt 파일을 읽어 다음 요구사항을 만족
 
 - [x] 요구사항 3 - Optional에서 exception 처리
 
-- [] 추가 ComputerStore 테스트 커버리지 확보위한 리팩토링
+### 1차 피드백
 
+- [x] 추가 ComputerStore 테스트 커버리지 확보위한 리팩토링
 
+- [x] sumAllOverThree, sumAllEven과 같은 메서드에 predicate를 넘겨줘서 공통부분 처리
 
 
 
