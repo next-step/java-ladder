@@ -1,5 +1,8 @@
 package ladder.domain;
 
+import ladder.domain.ladder.AutoLineGenerator;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.LadderSize;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
