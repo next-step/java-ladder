@@ -8,10 +8,14 @@ public class Ladder {
     }
 
     public void drawSteps(DrawStrategy drawStrategy, Ladder previousLadder) {
-        for (int i = 0; i < hasSteps.length; i++) {
-            if (drawStrategy.draw() && (previousLadder == null || !previousLadder.hasStep(i))) {
-                this.hasSteps[i] = true;
-            }
+        for (int height = 0; height < hasSteps.length; height++) {
+            decideToDraw(drawStrategy, previousLadder, height);
+        }
+    }
+
+    private void decideToDraw(DrawStrategy drawStrategy, Ladder previousLadder, int i) {
+        if (drawStrategy.draw() && (previousLadder == null || !previousLadder.hasStep(i))) {
+            this.hasSteps[i] = true;
         }
     }
 

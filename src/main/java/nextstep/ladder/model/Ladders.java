@@ -8,12 +8,14 @@ public class Ladders implements Iterable<Ladder> {
     private final Ladder[] ladders;
 
     public Ladders(int width, int height) {
-        this.ladders = IntStream.range(0, width - 1).mapToObj(i -> new Ladder(height)).toArray(Ladder[]::new);
+        this.ladders = IntStream.range(0, width - 1)
+            .mapToObj(unused -> new Ladder(height))
+            .toArray(Ladder[]::new);
     }
 
     public void drawSteps(DrawStrategy drawStrategy) {
-        for (int i = 0; i < ladders.length; i++) {
-            ladders[i].drawSteps(drawStrategy, i == 0 ? null : ladders[i - 1]);
+        for (int width = 0; width < ladders.length; width++) {
+            ladders[width].drawSteps(drawStrategy, width == 0 ? null : ladders[width - 1]);
         }
     }
 

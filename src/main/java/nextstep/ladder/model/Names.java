@@ -7,7 +7,9 @@ public class Names implements Iterable<Name>{
     private final Name[] names;
 
     public Names(String[] names) {
-        this.names = Arrays.stream(names).map(Name::new).toArray(Name[]::new);
+        this.names = Arrays.stream(names)
+            .map(Name::new)
+            .toArray(Name[]::new);
     }
 
     public int size() {

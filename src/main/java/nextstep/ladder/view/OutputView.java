@@ -10,19 +10,27 @@ public class OutputView {
         StringBuilder stringBuilder = new StringBuilder();
         for (Name name : names) {
             stringBuilder.append(name.toString());
-            for (int i = 0; i < 6 - name.length(); i++) {
-                stringBuilder.append(" ");
-            }
+            appendBlanks(stringBuilder, name.length());
         }
         System.out.println(stringBuilder);
     }
 
+    private static void appendBlanks(StringBuilder stringBuilder, int nameSize) {
+        for (int i = 0; i < 6 - nameSize; i++) {
+            stringBuilder.append(" ");
+        }
+    }
+
     public static void printLadders(Ladders ladders) {
         for (int height = 0; height < ladders.height(); height++) {
-            for (Ladder ladder : ladders) {
-                System.out.print(ladder.hasStep(height) ? "|-----" : "|     ");
-            }
-            System.out.println("|");
+            printLaddersAtHeight(ladders, height);
         }
+    }
+
+    private static void printLaddersAtHeight(Ladders ladders, int height) {
+        for (Ladder ladder : ladders) {
+            System.out.print(ladder.hasStep(height) ? "|-----" : "|     ");
+        }
+        System.out.println("|");
     }
 }
