@@ -17,6 +17,8 @@ public class LadderGame {
 
 		Input input = new Input();
 		Result result = new Result();
+
+
 		Users users = input.saveUsers();
 		Number ladderCount = input.saveLadderCount();
 		List<Line> lines = new ArrayList<>();
