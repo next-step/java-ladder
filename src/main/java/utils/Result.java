@@ -9,9 +9,13 @@ import java.util.List;
 public class Result {
 
 	private static final Integer INIT_NUMBER = 0;
+	private static final String SPACE = " ";
 
 	public void viewUsers(Users users) {
-		System.out.println(users.toString());
+		for (int number = INIT_NUMBER ; number < users.count() ; ++number) {
+			System.out.print(users.appear(number).toString() + SPACE);
+		}
+		System.out.println();
 	}
 
 	public void viewLadder(List<Line> lines) {

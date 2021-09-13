@@ -15,8 +15,7 @@ public class Users {
 		return users.size();
 	}
 
-	@Override
-	public String toString() {
-		return String.valueOf(users);
+	public User appear(Integer index) {
+		return users.get(index);
 	}
 }
