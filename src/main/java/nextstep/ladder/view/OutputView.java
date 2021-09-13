@@ -2,18 +2,18 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.model.Line;
 import nextstep.ladder.model.Ladder;
-import nextstep.ladder.model.Name;
-import nextstep.ladder.model.Names;
+import nextstep.ladder.model.Label;
+import nextstep.ladder.model.Labels;
 
 public class OutputView {
 
     public static final int MAX_BLANK_LENGTH = 6;
 
-    public static void printNames(Names names) {
+    public static void printLabels(Labels labels) {
         StringBuilder stringBuilder = new StringBuilder();
-        for (Name name : names) {
-            stringBuilder.append(name.toString());
-            appendBlanks(stringBuilder, name.length());
+        for (Label label : labels) {
+            stringBuilder.append(label.toString());
+            appendBlanks(stringBuilder, label.length());
         }
         System.out.println(stringBuilder);
     }
@@ -35,5 +35,11 @@ public class OutputView {
             System.out.print(line.hasStep(height) ? "|-----" : "|     ");
         }
         System.out.println("|");
+    }
+
+    public static void printResult(Label result) {
+        System.out.println("실행 결과");
+        System.out.println(result);
+        System.out.println();
     }
 }
