@@ -3,6 +3,7 @@ package step2.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Line {
     private final List<Point> points;
@@ -14,6 +15,12 @@ public class Line {
             final Point previousPoint = this.points.get(i - 1);
             this.points.add(new Point(previousPoint));
         }
+    }
+
+    public Line(List<Boolean> pointList) {
+        this.points = pointList.stream()
+                .map(p -> new Point(p))
+                .collect(Collectors.toList());
     }
 
     public String print() {
@@ -29,7 +36,7 @@ public class Line {
     public String toString() {
         return "Line{" +
                 "points=" + points +
-                '}';
+                '}' + "\n";
     }
 
     @Override

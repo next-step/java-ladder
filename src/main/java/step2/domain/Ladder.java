@@ -1,31 +1,28 @@
 package step2.domain;
 
+import step2.dto.Players;
+
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Ladder {
-    private final List<String> names;
-    private final List<Line> lines;
+    private final Players players;
+    private final Lines lines;
 
-    public Ladder(List<String> names, int height) {
-        this.names = names;
-        this.lines = Stream.generate(() -> new Line(names.size()))
-                .limit(height)
-                .collect(Collectors.toList());
+    public Ladder(Players players, List<Line> lineList) {
+        this.players = players;
+        this.lines = new Lines(lineList);
+    }
+
+    public Ladder(Players players, int height) {
+        this.players = players;
+        this.lines = new Lines(players.size(), height);
     }
 
     public String print() {
         StringBuilder stringBuilder = new StringBuilder();
-        for (String name : names) {
-            stringBuilder.append(String.format("%6s", name));
-        }
+        stringBuilder.append(players.print());
         stringBuilder.append("\n");
-
-        for (Line line : lines) {
-            stringBuilder.append(line.print());
-        }
-
+        stringBuilder.append(lines.print());
         return stringBuilder.toString();
     }
 
@@ -33,8 +30,8 @@ public class Ladder {
     @Override
     public String toString() {
         return "Ladder{" +
-                "names=" + names +
-                ", lines=" + lines +
+                "names=\n" + players + "\n" +
+                ", lines=\n" + lines +
                 '}';
     }
 }

@@ -14,7 +14,8 @@ public class LadderApplication {
         final Players players = inputView.inputNames();
         final Height height = inputView.inputHeight();
 
-        final Ladder ladder = new Ladder(players.names(), height.height());
+        final Ladder ladder = new Ladder(players, height.height());
         outputView.printLadder(ladder.print());
+        outputView.printLadder(ladder.toString());
     }
 }

@@ -21,8 +21,12 @@ public class Players {
     public List<String> names() {
         return this.players.stream()
                 .map(n -> new Player(n))
-                .map(player -> player.toString())
+                .map(player -> player.name())
                 .collect(Collectors.toList());
+    }
+
+    public int size() {
+        return players.size();
     }
 
     @Override
@@ -43,5 +47,13 @@ public class Players {
         return "Names{" +
                 "names=" + players +
                 '}';
+    }
+
+    public String print() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Player player : players) {
+            stringBuilder.append(String.format("%6s", player.print()));
+        }
+        return stringBuilder.toString();
     }
 }
