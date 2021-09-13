@@ -29,7 +29,7 @@ public class Line {
     return points.get(idx);
   }
 
-  public int size() {
+  public int getSize() {
     return points.size();
   }
 

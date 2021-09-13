@@ -20,8 +20,8 @@ class LineTest {
     Line line = new Line(points);
 
     //then
-    assertThat(line.size()).isEqualTo(points.size());
-    for (int i = 0; i < line.size(); i++) {
+    assertThat(line.getSize()).isEqualTo(points.size());
+    for (int i = 0; i < line.getSize(); i++) {
       assertThat(line.isExistFoothold(i)).isEqualTo(points.get(i));
     }
   }
@@ -52,6 +52,6 @@ class LineTest {
     Line line = Line.randomLine(size);
 
     //then
-    assertThat(line.size()).isEqualTo(size);
+    assertThat(line.getSize()).isEqualTo(size);
   }
 }

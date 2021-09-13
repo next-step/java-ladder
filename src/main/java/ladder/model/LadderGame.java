@@ -22,20 +22,20 @@ public class LadderGame {
     ladder = new Ladder(height, participants.size());
   }
 
-  public List<String> participants() {
-    return participants.stream().map(Name::value).collect(Collectors.toList());
-  }
-
   public boolean isExistFoothold(int heightIdx, int widthIdx) {
     return ladder.isExistFoothold(heightIdx, widthIdx);
   }
 
-  public int ladderHeight() {
-    return ladder.height();
+  public List<String> getParticipantNames() {
+    return participants.stream().map(Name::getValue).collect(Collectors.toList());
   }
 
-  public int ladderWidth() {
-    return ladder.width();
+  public int getLadderHeight() {
+    return ladder.getHeight();
+  }
+
+  public int getLadderWidth() {
+    return ladder.getWidth();
   }
 
   private void validateParticipantsSize(List<Name> participants) {

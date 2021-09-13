@@ -21,12 +21,12 @@ public class Ladder {
     return lines.get(heightIdx).isExistFoothold(widthIdx);
   }
 
-  public int height() {
+  public int getHeight() {
     return lines.size();
   }
 
-  public int width() {
-    return lines.get(0).size();
+  public int getWidth() {
+    return lines.get(0).getSize();
   }
 
   private void validateSize(int height, int width) {

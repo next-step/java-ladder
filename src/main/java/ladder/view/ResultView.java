@@ -13,9 +13,9 @@ public class ResultView {
   public static void printResult(LadderGame ladderGame) {
     System.out.println("\n실행결과\n");
 
-    printParticipants(ladderGame.participants());
+    printParticipants(ladderGame.getParticipantNames());
 
-    for (int height = 0; height < ladderGame.ladderHeight(); height++) {
+    for (int height = 0; height < ladderGame.getLadderHeight(); height++) {
       printLadderLine(ladderGame, height);
     }
   }
@@ -26,7 +26,7 @@ public class ResultView {
   }
 
   private static void printLadderLine(LadderGame ladderGame, int height) {
-    for (int width = 0; width < ladderGame.ladderWidth(); width++) {
+    for (int width = 0; width < ladderGame.getLadderWidth(); width++) {
       printFoothold(ladderGame.isExistFoothold(height, width));
       System.out.print(LADDER_STICK_CHAR);
     }

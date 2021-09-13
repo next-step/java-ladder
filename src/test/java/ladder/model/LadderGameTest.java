@@ -21,10 +21,10 @@ class LadderGameTest {
     LadderGame ladderGame = new LadderGame(names, height);
 
     //then
-    assertThat(ladderGame.ladderWidth()).isEqualTo(4);
-    assertThat(ladderGame.ladderHeight()).isEqualTo(height);
+    assertThat(ladderGame.getLadderWidth()).isEqualTo(4);
+    assertThat(ladderGame.getLadderHeight()).isEqualTo(height);
 
-    assertThat(ladderGame.participants()).containsExactly("pobi", "honux", "crong", "jk");
+    assertThat(ladderGame.getParticipantNames()).containsExactly("pobi", "honux", "crong", "jk");
   }
 
   @ParameterizedTest(name = "잘못된 생성 테스트 names:[{0}], height:[{1}]")

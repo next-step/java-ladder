@@ -16,7 +16,7 @@ class NameTest {
     Name name = new Name(value);
 
     //then
-    assertThat(name.value()).isEqualTo(value);
+    assertThat(name.getValue()).isEqualTo(value);
   }
 
   @ParameterizedTest(name = "잘못된 생성 테스트 : {0}")

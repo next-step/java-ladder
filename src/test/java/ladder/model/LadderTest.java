@@ -21,8 +21,8 @@ class LadderTest {
     Ladder ladder = new Ladder(5, 4);
 
     //then
-    assertThat(ladder.height()).isEqualTo(height);
-    assertThat(ladder.width()).isEqualTo(width);
+    assertThat(ladder.getHeight()).isEqualTo(height);
+    assertThat(ladder.getWidth()).isEqualTo(width);
   }
 
   @ParameterizedTest(name = "잘못된 생성 테스트 height:{0}, width:{1}")
