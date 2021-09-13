@@ -1,29 +1,30 @@
 package nextstep.ladder.model;
 
-public class Ladder {
-    private final boolean[] hasSteps;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.stream.IntStream;
 
-    public Ladder(int height) {
-        this.hasSteps = new boolean[height];
+public class Ladder implements Iterable<Line> {
+    private final Line[] lines;
+
+    public Ladder(int width, int height) {
+        this.lines = IntStream.range(0, width - 1)
+            .mapToObj(unused -> new Line(height))
+            .toArray(Line[]::new);
     }
 
-    public void drawSteps(DrawStrategy drawStrategy, Ladder previousLadder) {
-        for (int height = 0; height < hasSteps.length; height++) {
-            decideToDraw(drawStrategy, previousLadder, height);
+    public void drawSteps(DrawStrategy drawStrategy) {
+        for (int width = 0; width < lines.length; width++) {
+            lines[width].drawSteps(drawStrategy, width == 0 ? null : lines[width - 1]);
         }
-    }
-
-    private void decideToDraw(DrawStrategy drawStrategy, Ladder previousLadder, int i) {
-        if (drawStrategy.draw() && (previousLadder == null || !previousLadder.hasStep(i))) {
-            this.hasSteps[i] = true;
-        }
-    }
-
-    public boolean hasStep(int height) {
-        return hasSteps[height];
     }
 
     public int height() {
-        return hasSteps.length;
+        return lines[0].height();
+    }
+
+    @Override
+    public Iterator<Line> iterator() {
+        return Arrays.stream(lines).iterator();
     }
 }

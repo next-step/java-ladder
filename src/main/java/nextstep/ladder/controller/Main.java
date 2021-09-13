@@ -1,6 +1,6 @@
 package nextstep.ladder.controller;
 
-import nextstep.ladder.model.Ladders;
+import nextstep.ladder.model.Ladder;
 import nextstep.ladder.model.Names;
 import nextstep.ladder.model.RandomDrawStrategy;
 import nextstep.ladder.view.InputView;
@@ -10,11 +10,11 @@ public class Main {
     public static void main(String[] args) {
         Names names = new Names(InputView.readNames());
 
-        Ladders ladders = new Ladders(names.size(), InputView.readHeight());
+        Ladder ladder = new Ladder(names.size(), InputView.readHeight());
 
-        ladders.drawSteps(new RandomDrawStrategy());
+        ladder.drawSteps(new RandomDrawStrategy());
 
         OutputView.printNames(names);
-        OutputView.printLadders(ladders);
+        OutputView.printLadders(ladder);
     }
 }

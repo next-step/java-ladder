@@ -5,11 +5,12 @@ import java.util.Scanner;
 
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
+    public static final String DELIMITER = ",";
 
     public static String[] readNames() {
         String raw = nextLineWhileEmpty("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
 
-        return Arrays.stream(raw.split(","))
+        return Arrays.stream(raw.split(DELIMITER))
             .map(String::trim)
             .toArray(String[]::new);
     }
