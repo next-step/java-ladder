@@ -7,7 +7,7 @@ public class Line {
 
 	private static final Boolean EXIST_STATUS = true;
 	private static final Boolean NOT_EXIST_STATUS = false;
-	private static final Integer INIT_NUMBER = 0;
+	private static final Integer INIT_NUMBER = 1;
 
 	private List<Boolean> points = new ArrayList<>();
 
