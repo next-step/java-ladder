@@ -15,9 +15,7 @@ public class Ladder {
                 .collect(Collectors.toList());
     }
 
-
-    @Override
-    public String toString() {
+    public String print() {
         StringBuilder stringBuilder = new StringBuilder();
         for (String name : names) {
             stringBuilder.append(String.format("%6s", name));
@@ -25,9 +23,18 @@ public class Ladder {
         stringBuilder.append("\n");
 
         for (Line line : lines) {
-            stringBuilder.append(line);
+            stringBuilder.append(line.print());
         }
 
         return stringBuilder.toString();
+    }
+
+
+    @Override
+    public String toString() {
+        return "Ladder{" +
+                "names=" + names +
+                ", lines=" + lines +
+                '}';
     }
 }

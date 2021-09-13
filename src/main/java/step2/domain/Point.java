@@ -17,12 +17,19 @@ public class Point {
         this.point = new PointRandomStrategy().create();
     }
 
-    @Override
-    public String toString() {
+    public String print() {
         if (point) {
             return "-----|";
         }
         return "     |";
+    }
+
+
+    @Override
+    public String toString() {
+        return "Point{" +
+                "point=" + point +
+                '}';
     }
 
     @Override

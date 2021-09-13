@@ -16,14 +16,20 @@ public class Line {
         }
     }
 
+    public String print() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Point point : points) {
+            stringBuilder.append(point.print());
+        }
+        return stringBuilder.append("\n").toString();
+    }
+
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Point point : points) {
-            stringBuilder.append(point);
-        }
-        return stringBuilder.append("\n").toString();
+        return "Line{" +
+                "points=" + points +
+                '}';
     }
 
     @Override
