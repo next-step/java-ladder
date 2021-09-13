@@ -5,8 +5,9 @@ import nextstep.ladder.model.Ladder;
 import nextstep.ladder.model.Label;
 import nextstep.ladder.model.Labels;
 
-public class OutputView {
+import java.util.List;
 
+public class OutputView {
     public static final int MAX_BLANK_LENGTH = 6;
 
     public static void printLabels(Labels labels) {
@@ -40,6 +41,14 @@ public class OutputView {
     public static void printResult(Label result) {
         System.out.println("실행 결과");
         System.out.println(result);
+        System.out.println();
+    }
+
+    public static void printResultsWithNames(Labels names, List<Label> orderedResults) {
+        System.out.println("실행 결과");
+        for (int i = 0; i < names.size(); i++) {
+            System.out.println(names.at(i) + " : " + orderedResults.get(i));
+        }
         System.out.println();
     }
 }

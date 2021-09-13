@@ -4,24 +4,34 @@ import java.util.Objects;
 
 public class Label {
     public static final int MAX_LENGTH = 5;
+    public static final Label EXIT = new Label("exit");
+    public static final Label ALL = new Label("all");
 
-    private final String name;
+    private final String label;
 
-    public Label(String name) {
-        if (name.length() > MAX_LENGTH) {
-            throw new IllegalArgumentException("이름 길이는 5자를 넘을 수 없습니다!");
+    public Label(String label) {
+        if (label.length() > MAX_LENGTH) {
+            throw new IllegalArgumentException("label 길이는 5자를 넘을 수 없습니다!");
         }
 
-        this.name = name;
+        this.label = label;
     }
 
     public int length() {
-        return name.length();
+        return label.length();
+    }
+
+    public boolean isExit() {
+        return this.equals(EXIT);
+    }
+
+    public boolean isAll() {
+        return this.equals(ALL);
     }
 
     @Override
     public String toString() {
-        return name;
+        return label;
     }
 
     @Override
@@ -29,11 +39,11 @@ public class Label {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Label label1 = (Label) o;
-        return name.equals(label1.name);
+        return label.equals(label1.label);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(label);
     }
 }
