@@ -1,7 +1,7 @@
 package step2.view;
 
 import step2.dto.Height;
-import step2.dto.Names;
+import step2.dto.Players;
 
 import java.util.Scanner;
 
@@ -10,10 +10,10 @@ public class InputView {
 
     private static final Scanner scanner = new Scanner(System.in);
 
-    public Names inputNames() {
+    public Players inputNames() {
         System.out.printf("참여할 사람 이름을 입력하세요. (이름은 쉼표(%s)로 구분하세요)\n", DELIMITER);
         final String s = scanner.nextLine();
-        return new Names(s.split(DELIMITER));
+        return new Players(s.split(DELIMITER));
     }
 
     public Height inputHeight() {

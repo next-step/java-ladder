@@ -2,7 +2,7 @@ package step2.controller;
 
 import step2.dto.Height;
 import step2.domain.Ladder;
-import step2.dto.Names;
+import step2.dto.Players;
 import step2.view.InputView;
 import step2.view.OutputView;
 
@@ -11,10 +11,10 @@ public class LadderApplication {
     private static final OutputView outputView = new OutputView();
 
     public static void main(String[] args) {
-        final Names names = inputView.inputNames();
+        final Players players = inputView.inputNames();
         final Height height = inputView.inputHeight();
 
-        final Ladder ladder = new Ladder(names.names(), height.height());
+        final Ladder ladder = new Ladder(players.names(), height.height());
         outputView.printLadder(ladder.print());
     }
 }
