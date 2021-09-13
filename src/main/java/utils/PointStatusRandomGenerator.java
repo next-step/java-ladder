@@ -1,5 +1,7 @@
 package utils;
 
+import domain.Point;
+
 import java.util.Random;
 
 public class PointStatusRandomGenerator {
@@ -11,6 +13,13 @@ public class PointStatusRandomGenerator {
 	}
 
 	public boolean randomStatus() {
+		return random.nextBoolean();
+	}
+
+	public boolean randomStatus(Point point) {
+		if (point.status()) {
+			return false;
+		}
 		return random.nextBoolean();
 	}
 }

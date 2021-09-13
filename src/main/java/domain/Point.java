@@ -11,8 +11,4 @@ public class Point {
 	public Boolean status() {
 		return this.status;
 	}
-
-	public Boolean previousPointStatus(Point point) {
-		return !point.status;
-	}
 }
