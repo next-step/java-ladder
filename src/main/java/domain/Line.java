@@ -1,5 +1,7 @@
 package domain;
 
+import utils.PointStatusRandomGenerator;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,11 +11,11 @@ public class Line {
 	private static final Boolean NOT_EXIST_STATUS = false;
 	private static final Integer INIT_NUMBER = 1;
 
-	private List<Boolean> points = new ArrayList<>();
+	private List<Point> points = new ArrayList<>();
 
-	public Line(int countOfPerson) {
+	public Line(int countOfPerson, PointStatusRandomGenerator generator) {
 		for (int number = INIT_NUMBER; number < countOfPerson; ++number) {
-			points.add(EXIST_STATUS);
+			points.add(new Point(generator.randomStatus()));
 		}
 	}
 
@@ -22,6 +24,6 @@ public class Line {
 	}
 
 	public boolean verify(Integer index) {
-		return points.get(index) == EXIST_STATUS;
+		return points.get(index).status() == EXIST_STATUS;
 	}
 }
