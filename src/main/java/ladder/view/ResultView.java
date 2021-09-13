@@ -2,7 +2,6 @@ package ladder.view;
 
 import java.util.List;
 import ladder.model.LadderGame;
-import ladder.model.Line;
 
 public class ResultView {
 
@@ -16,8 +15,8 @@ public class ResultView {
 
     printParticipants(ladderGame.participants());
 
-    for (int i = 0; i < ladderGame.ladderHeight(); i++) {
-      printLadderLine(ladderGame.ladderLineIndexOf(i));
+    for (int height = 0; height < ladderGame.ladderHeight(); height++) {
+      printLadderLine(ladderGame, height);
     }
   }
 
@@ -26,16 +25,16 @@ public class ResultView {
     System.out.println();
   }
 
-  private static void printLadderLine(Line line) {
-    for (Boolean point : line.points()) {
-      printFootHold(point);
+  private static void printLadderLine(LadderGame ladderGame, int height) {
+    for (int width = 0; width < ladderGame.ladderWidth(); width++) {
+      printFoothold(ladderGame.isExistFoothold(height, width));
       System.out.print(LADDER_STICK_CHAR);
     }
     System.out.println();
   }
 
-  private static void printFootHold(Boolean point) {
-    char printChar = point ? FOOT_HOLD_CHAR : NO_FOOT_HOLD_CHAR;
+  private static void printFoothold(Boolean isExistFoothold) {
+    char printChar = isExistFoothold ? FOOT_HOLD_CHAR : NO_FOOT_HOLD_CHAR;
     for (int i = 0; i < FOOT_HOLD_WIDTH; i++) {
       System.out.print(printChar);
     }

@@ -20,7 +20,10 @@ class LineTest {
     Line line = new Line(points);
 
     //then
-    assertThat(line.points()).isEqualTo(points);
+    assertThat(line.size()).isEqualTo(points.size());
+    for (int i = 0; i < line.size(); i++) {
+      assertThat(line.isExistFoothold(i)).isEqualTo(points.get(i));
+    }
   }
 
   @Test

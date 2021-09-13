@@ -1,7 +1,6 @@
 package ladder.model;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
@@ -18,8 +17,8 @@ public class Ladder {
     }
   }
 
-  public List<Line> lines() {
-    return Collections.unmodifiableList(lines);
+  public boolean isExistFoothold(int heightIdx, int widthIdx) {
+    return lines.get(heightIdx).isExistFoothold(widthIdx);
   }
 
   public int height() {

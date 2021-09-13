@@ -3,7 +3,6 @@ package ladder.model;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -22,11 +21,8 @@ class LadderTest {
     Ladder ladder = new Ladder(5, 4);
 
     //then
-    List<Line> lines = ladder.lines();
-    assertThat(lines.size()).isEqualTo(height);
-    for (Line line : lines) {
-      assertThat(line.size()).isEqualTo(width);
-    }
+    assertThat(ladder.height()).isEqualTo(height);
+    assertThat(ladder.width()).isEqualTo(width);
   }
 
   @ParameterizedTest(name = "잘못된 생성 테스트 height:{0}, width:{1}")

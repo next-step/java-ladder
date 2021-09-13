@@ -26,8 +26,8 @@ public class LadderGame {
     return participants.stream().map(Name::value).collect(Collectors.toList());
   }
 
-  public Line ladderLineIndexOf(int index) {
-    return ladder.lines().get(index);
+  public boolean isExistFoothold(int heightIdx, int widthIdx) {
+    return ladder.isExistFoothold(heightIdx, widthIdx);
   }
 
   public int ladderHeight() {

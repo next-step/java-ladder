@@ -1,7 +1,6 @@
 package ladder.model;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import ladder.utils.RandomValueGenerator;
 
@@ -26,8 +25,8 @@ public class Line {
     return new Line(points);
   }
 
-  public List<Boolean> points() {
-    return Collections.unmodifiableList(points);
+  public boolean isExistFoothold(int idx) {
+    return points.get(idx);
   }
 
   public int size() {

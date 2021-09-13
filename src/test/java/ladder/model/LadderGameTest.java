@@ -37,19 +37,4 @@ class LadderGameTest {
       new LadderGame(names, height);
     });
   }
-
-  @Test
-  void ladderLineIndexOfTest() {
-    //given
-    String names = "pobi,honux,crong,jk";
-    int height = 5;
-
-    //when
-    LadderGame ladderGame = new LadderGame(names, height);
-
-    //then
-    for (int i = 0; i < ladderGame.ladderHeight(); i++){
-      assertThat(ladderGame.ladderLineIndexOf(i).size()).isEqualTo(4);
-    }
-  }
 }
