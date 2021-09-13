@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Result {
 
-	private static final Integer INIT_NUMBER = 1;
+	private static final Integer INIT_NUMBER = 0;
 
 	public void viewUsers(Users users) {
 		System.out.println(users.toString());
