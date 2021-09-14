@@ -2,13 +2,18 @@ package step4.domain.column;
 
 import java.util.Arrays;
 import java.util.List;
+import step4.exceptions.UserNumberException;
 
 public class LadderColumn {
 
     List<String> names;
 
     public LadderColumn(String names) {
+
         this.names = Arrays.asList(names.split(","));
+        if (this.names.size() < 2) {
+            throw new UserNumberException();
+        }
     }
 
     public String name(int index) {
