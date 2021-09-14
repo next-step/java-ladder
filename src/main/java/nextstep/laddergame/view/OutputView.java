@@ -62,12 +62,8 @@ public class OutputView {
     private String renderLadder(Ladder ladder) {
         List<Line> lines = ladder.getLines();
         return lines.stream()
-                .map(this::renderLine)
+                .map(line -> String.format(LINE_RENDERING_FORMAT, renderConnection(line.getPoints())))
                 .collect(Collectors.joining(NEW_LINE));
-    }
-
-    private String renderLine(Line line) {
-        return String.format(LINE_RENDERING_FORMAT, renderConnection(line.getPoints()));
     }
 
     private String renderConnection(List<Point> points) {
