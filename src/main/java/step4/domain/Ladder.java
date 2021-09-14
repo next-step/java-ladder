@@ -21,7 +21,6 @@ public class Ladder {
 
     public List<Integer> move(int sizeOfPerson) {
         List<Integer> ladderResult = new ArrayList<>();
-        int height = ladderLines.size();
         for (int index = 0; index < sizeOfPerson; index++) {
             int userIndex = index;
             for (LadderLine ladderLine : ladderLines) {
