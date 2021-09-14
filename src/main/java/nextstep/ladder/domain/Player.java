@@ -6,4 +6,9 @@ public class Player {
 	public Player(Name name) {
 		this.name = name;
 	}
+
+	@Override
+	public String toString() {
+		return name.toString();
+	}
 }

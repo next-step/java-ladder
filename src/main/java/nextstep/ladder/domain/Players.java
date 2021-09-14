@@ -34,4 +34,13 @@ public class Players {
 		}
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder view = new StringBuilder();
+		players.forEach(player -> {
+			String name = String.format("%6s", player.toString());
+			view.append(name);
+		});
+		return view.toString();
+	}
 }

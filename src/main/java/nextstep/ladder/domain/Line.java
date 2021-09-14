@@ -10,6 +10,9 @@ public class Line {
 	private static final int START_INDEX = 1;
 	private static final int MIN_INDEX = 0;
 	private static final int PRE_INDEX = 1;
+	private static final String START_LINE = "      |";
+	private static final String EXIST_LINE = "-----|";
+	private static final String EMPTY_LINE = "     |";
 
 	private final List<Boolean> points = new ArrayList<>();
 	private final LineStrategy lineStrategy;
@@ -35,5 +38,21 @@ public class Line {
 		}
 
 		points.add(strategy);
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder view = new StringBuilder();
+		view.append(START_LINE);
+		points.forEach(point -> {
+			if (point) {
+				view.append(EXIST_LINE);
+				return;
+			}
+			view.append(EMPTY_LINE);
+
+		});
+
+		return view.toString();
 	}
 }

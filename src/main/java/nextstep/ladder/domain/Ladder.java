@@ -28,4 +28,12 @@ public class Ladder {
 				String.format(MIN_LADDER_HEIGHT_EXCEPTION_MESSAGE, MIN_LADDER_HEIGHT));
 		}
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder view = new StringBuilder();
+		lines.forEach(line -> view.append(line.toString())
+			.append("\n"));
+		return view.toString();
+	}
 }

@@ -22,4 +22,9 @@ public class Name {
 			throw new NameLengthException(String.format(NAME_MIN_LENGTH_EXCEPTION_MESSAGE, name));
 		}
 	}
+
+	@Override
+	public String toString() {
+		return name;
+	}
 }
