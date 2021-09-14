@@ -27,6 +27,7 @@ public class Lambda {
 	}
 
 	public static int sumAll(List<Integer> numbers, Conditional c) {
+
 		return sumByCondition(numbers, c);
 	}
 
@@ -39,6 +40,7 @@ public class Lambda {
 	}
 
 	private static int sumByCondition(List<Integer> numbers, Conditional c) {
+
 		return numbers.stream()
 			.filter(c::test)
 			.mapToInt(value -> value)
