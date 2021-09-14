@@ -13,7 +13,7 @@ public class LadderGame {
         Players players = new Players(StringUtil.split(playerNames));
         PlayResults playResults = new PlayResults(StringUtil.split(inputPlayResults));
         Ladders ladders = Ladders.initLadders(new LadderWidth(players.size()), new LadderHeight(ladderHeight), directionMakingStrategy);
-        ladders.play(players, playResults);
-        return new Result(players, ladders, playResults);
+        LadderResult ladderResult = ladders.play(players, playResults);
+        return new Result(players, ladders, playResults, ladderResult);
     }
 }
