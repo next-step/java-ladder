@@ -4,6 +4,8 @@ import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import step4.domain.Cross;
+import step4.domain.Direction;
 
 public class CrossTest {
     @Test
@@ -35,15 +37,8 @@ public class CrossTest {
     @DisplayName("사다리 타기 마지막 lane에서 이동가지가 왼쪽에 존재한다면, 이동할 방향은 왼쪽이다.")
     @Test
     public void last() {
-        Cross last = Cross.last(true);
+        Cross last = Cross.first(true).last();
         assertThat(last.move()).isEqualTo(Direction.LEFT);
-    }
-
-    @DisplayName("사다리 타기 마지막 lane에서 이동가지가 존재하지 않는다면, 이동할 방향은 아래쪽이다.")
-    @Test
-    public void last2() {
-        Cross last = Cross.last(false);
-        assertThat(last.move()).isEqualTo(Direction.DOWN);
     }
 
     @DisplayName("사다리 타기에서 첫번 째 혹은 마지막이 아닌 중간 lane에서, 왼쪽에 가지가 존재한다면, 이동할 방향은 왼쪽이다.")

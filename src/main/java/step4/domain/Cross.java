@@ -1,8 +1,9 @@
-package step4;
+package step4.domain;
+
+import static step4.domain.LadderPointGenerator.*;
 
 import java.util.Objects;
 import step4.exceptions.BothTrueException;
-import step4.exceptions.NonExsistBeforeException;
 
 public class Cross {
 
@@ -21,6 +22,16 @@ public class Cross {
         return new Cross(before, current);
     }
 
+    public Direction move() {
+        if (this.before) {
+            return Direction.LEFT;
+        }
+        if (this.current) {
+            return Direction.RIGHT;
+        }
+        return Direction.DOWN;
+    }
+
     public static Cross first(boolean current) {
         if (current) {
             return new Cross(false, true);
@@ -28,11 +39,8 @@ public class Cross {
         return new Cross(false, false);
     }
 
-    public static Cross last(boolean before) {
-        if (before) {
-            return new Cross(true, false);
-        }
-        return new Cross(false, false);
+    public Cross last() {
+        return new Cross(this.current, false);
     }
 
     public static Cross next(boolean before, boolean current) {
@@ -47,6 +55,13 @@ public class Cross {
 
     public Cross next(boolean current) {
         return new Cross(this.current, current);
+    }
+
+    public Cross next() {
+        if (this.current) {
+            return new Cross(this.current, false);
+        }
+        return new Cross(this.current, generatePoint());
     }
 
     @Override
@@ -64,15 +79,5 @@ public class Cross {
     @Override
     public int hashCode() {
         return Objects.hash(before, current);
-    }
-
-    public Direction move() {
-        if (this.before) {
-            return Direction.LEFT;
-        }
-        if (this.current) {
-            return Direction.RIGHT;
-        }
-        return Direction.DOWN;
     }
 }

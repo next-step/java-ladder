@@ -1,11 +1,11 @@
 package step4;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import step4.domain.Cross;
+import step4.domain.Point;
 
 class PointTest {
     @DisplayName("사다리 게임 첫번째 lane에서 양쪽 사다리가 없을 경우에는, 현재 위치를 고수한다.")
@@ -46,7 +46,8 @@ class PointTest {
     @DisplayName("사다리 게임 세번째 lane에서 사다리가 오른쪽에 존재할 경우, 위치는 3으로 변경한다.")
     @Test
     void type2_next1() {
-        Point point = new Point(1, false, false);
+
+        Point point = new Point(1, new Cross(false, false));
         assertThat(point.next(true).move()).isEqualTo(3);
     }
 }
