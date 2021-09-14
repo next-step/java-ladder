@@ -30,4 +30,12 @@ class PointTest {
                 .isThrownBy(() -> Point.listOf(Arrays.asList(LineConnection.CONNECTED, LineConnection.CONNECTED)));
     }
 
+    @DisplayName("포인트 이동 테스트")
+    @Test
+    public void pointMoveTest() {
+        assertThat(new Point(1, Direction.RIGHT).move()).isEqualTo(2);
+        assertThat(new Point(1, Direction.LEFT).move()).isEqualTo(0);
+        assertThat(new Point(1, Direction.DOWN).move()).isEqualTo(1);
+    }
+
 }

@@ -68,4 +68,8 @@ public class Point {
         result = 31 * result + (direction != null ? direction.hashCode() : 0);
         return result;
     }
+
+    public int move() {
+        return direction.move(index);
+    }
 }
