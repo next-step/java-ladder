@@ -34,4 +34,10 @@ public class InputView {
         return new Height(Integer.parseInt(scanner.nextLine()));
     }
 
+    public String inputTarget() {
+        System.out.println("결과를 보고 싶은 사람은?");
+        Scanner sc = new Scanner(System.in);
+        return sc.nextLine();
+    }
+
 }

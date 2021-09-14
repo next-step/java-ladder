@@ -1,5 +1,7 @@
 package step2.domain;
 
+import step2.dto.Players;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,10 +20,10 @@ public class Lines {
         this.lines = lineList;
     }
 
-    public Results play(int numberOfPerson) {
+    public Results play(Players players) {
         List<Result> resultList = new ArrayList<>();
-        for (int i = 0; i < numberOfPerson; i++) {
-            resultList.add(new Result(i, this.move(i)));
+        for (int i = 0; i < players.size(); i++) {
+            resultList.add(new Result(players.player(i), this.move(i)));
         }
         return new Results(resultList);
     }

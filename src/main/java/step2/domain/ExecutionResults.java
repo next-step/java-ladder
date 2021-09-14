@@ -18,4 +18,8 @@ public class ExecutionResults {
         stringBuilder.append("\n");
         return stringBuilder.toString();
     }
+
+    public String findExecutionResult(int resultIndex) {
+        return this.results.get(resultIndex);
+    }
 }

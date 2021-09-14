@@ -19,7 +19,7 @@ public class Ladder {
     }
 
     public Results play() {
-        return lines.play(this.players.size());
+        return lines.play(this.players);
     }
 
     public String print() {

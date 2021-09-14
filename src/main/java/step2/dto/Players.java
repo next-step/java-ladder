@@ -18,16 +18,17 @@ public class Players {
         this.players = players;
     }
 
-    public List<String> names() {
-        return this.players.stream()
-                .map(n -> new Player(n))
-                .map(player -> player.name())
-                .collect(Collectors.toList());
+    public Player player(int indexOfPlayer) {
+        if (indexOfPlayer >= players.size() || indexOfPlayer < 0) {
+            throw new RuntimeException(String.format("입력한 index(%d)에 해당하는 Player를 찾을 수 없습니다.", indexOfPlayer));
+        }
+        return this.players.get(indexOfPlayer);
     }
 
     public int size() {
         return players.size();
     }
+
 
     @Override
     public boolean equals(Object o) {

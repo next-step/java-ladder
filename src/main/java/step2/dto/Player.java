@@ -18,8 +18,8 @@ public class Player {
         this.name = name;
     }
 
-    public String name() {
-        return this.name;
+    public boolean isEqualsTo(String name) {
+        return this.name.equals(name);
     }
 
     public String print() {

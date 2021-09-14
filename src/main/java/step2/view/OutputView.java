@@ -11,4 +11,8 @@ public class OutputView {
         System.out.println(executionResults.print());
     }
 
+    public void printResults(String result) {
+        System.out.println("\n실행 결과");
+        System.out.println(result);
+    }
 }
