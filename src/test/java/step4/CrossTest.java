@@ -66,4 +66,25 @@ public class CrossTest {
         Cross next = Cross.next(false, false);
         assertThat(next.move()).isEqualTo(Direction.DOWN);
     }
+
+    @DisplayName("사다리 타기에서 첫번 째 혹은 마지막이 아닌 중간 lane에서, 가지가 왼쪽에 존재한다면, 이동할 방향은 왼쪽이다.")
+    @Test
+    public void type2_next() {
+        Cross cross = Cross.first(true).next(false);
+        assertThat(cross.move()).isEqualTo(Direction.LEFT);
+    }
+
+    @DisplayName("사다리 타기에서 첫번 째 혹은 마지막이 아닌 중간 lane에서, 가지가 오른쪽에 존재한다면, 이동할 방향은 오른쪽이다.")
+    @Test
+    public void type2_next2() {
+        Cross cross = Cross.first(false).next(true);
+        assertThat(cross.move()).isEqualTo(Direction.RIGHT);
+    }
+
+    @DisplayName("사다리 타기에서 첫번 째 혹은 마지막이 아닌 중간 lane에서, 가지가 존재하지 않는다면, 이동할 방향은 아래쪽이다.")
+    @Test
+    public void type2_next3() {
+        Cross cross = Cross.first(false).next(false);
+        assertThat(cross.move()).isEqualTo(Direction.DOWN);
+    }
 }

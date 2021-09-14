@@ -2,6 +2,7 @@ package step4;
 
 import java.util.Objects;
 import step4.exceptions.BothTrueException;
+import step4.exceptions.NonExsistBeforeException;
 
 public class Cross {
 
@@ -42,6 +43,10 @@ public class Cross {
             return new Cross(false, true);
         }
         return new Cross(false, false);
+    }
+
+    public Cross next(boolean current) {
+        return new Cross(this.current, current);
     }
 
     @Override
