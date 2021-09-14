@@ -3,6 +3,7 @@ package step4.domain;
 import step4.exceptions.MinimumHeightValueException;
 
 public class LadderHeight {
+
     private static final int MIN = 1;
     private final int value;
 

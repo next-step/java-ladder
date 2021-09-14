@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
+
     List<LadderLine> ladderLines;
 
     public Ladder(List<LadderLine> ladderLines) {
@@ -18,14 +19,20 @@ public class Ladder {
         return new Ladder(ladderLines);
     }
 
-    public int move(int target) {
+    public List<Integer> move(int sizeOfPerson) {
+        List<Integer> ladderResult = new ArrayList<>();
         int height = ladderLines.size();
-        for (int i = 0; i < height; i++) {
-            LadderLine ladderLine = ladderLines.get(i);
-            target = ladderLine.move(target);
+        for (int index = 0; index < sizeOfPerson; index++) {
+            int userIndex = index;
+            for (LadderLine ladderLine : ladderLines) {
+                userIndex = ladderLine.move(userIndex);
+            }
+            ladderResult.add(userIndex);
         }
-        return target;
+        System.out.println(ladderResult);
+        return ladderResult;
     }
+
 
     public List<LadderLine> ladderLines() {
         return ladderLines;

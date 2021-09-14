@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LadderLine {
+
     private final List<Point> points;
 
     public LadderLine(List<Point> points) {
@@ -26,7 +27,7 @@ public class LadderLine {
     }
 
     private static Point initBody(int sizeOfPerson, List<Point> points, Point point) {
-        for (int i = 0; i < sizeOfPerson - 1; i++) {
+        for (int i = 0; i < sizeOfPerson - 2; i++) {
             point = point.next();
             points.add(point);
         }
@@ -44,6 +45,10 @@ public class LadderLine {
     }
 
     public List<Point> points() {
+        return points;
+    }
+
+    public List<Point> getPoints() {
         return points;
     }
 }

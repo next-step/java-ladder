@@ -33,10 +33,7 @@ public class Cross {
     }
 
     public static Cross first(boolean current) {
-        if (current) {
-            return new Cross(false, true);
-        }
-        return new Cross(false, false);
+        return new Cross(false, current);
     }
 
     public Cross last() {
@@ -68,6 +65,10 @@ public class Cross {
         return current;
     }
 
+    public boolean before() {
+        return before;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -83,5 +84,13 @@ public class Cross {
     @Override
     public int hashCode() {
         return Objects.hash(before, current);
+    }
+
+    public boolean isRight() {
+        return this.current;
+    }
+
+    public boolean isLeft() {
+        return this.before;
     }
 }

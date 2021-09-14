@@ -1,6 +1,7 @@
 package step4.domain;
 
 public class Point {
+
     private final int position;
     private final Cross cross;
 
@@ -16,11 +17,10 @@ public class Point {
     }
 
     public int move() {
-        Direction direction = cross.move();
-        if (direction.isRight()) {
+        if (cross.move() == Direction.RIGHT) {
             return position + 1;
         }
-        if (direction.isLeft()) {
+        if (cross.move() == Direction.LEFT) {
             return position - 1;
         }
         return position;
