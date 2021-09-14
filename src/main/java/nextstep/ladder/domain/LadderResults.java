@@ -29,4 +29,12 @@ public class LadderResults {
     public int countOfLadderResults() {
         return ladderResults.size();
     }
+
+    public String indexOf(int index) {
+        return ladderResults.get(index).getResult();
+    }
+
+    public List<LadderResult> getLadderResults() {
+        return ladderResults;
+    }
 }
