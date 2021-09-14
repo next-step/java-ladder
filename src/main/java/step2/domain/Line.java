@@ -31,6 +31,17 @@ public class Line {
         return stringBuilder.append("\n").toString();
     }
 
+    public String movable(int index) {
+        if (index > 0 && this.points.get(index).isLeft()) {
+            return "left";
+        } else {
+            if (index + 1 < this.points.size() && this.points.get(index + 1).isLeft()) { // index check
+                return "right";
+            } else {
+                return "down";
+            }
+        }
+    }
 
     @Override
     public String toString() {

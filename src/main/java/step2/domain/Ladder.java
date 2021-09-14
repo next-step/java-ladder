@@ -18,6 +18,10 @@ public class Ladder {
         this.lines = new Lines(players.size(), height);
     }
 
+    public Results play() {
+        return lines.play(this.players.size());
+    }
+
     public String print() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(players.print());

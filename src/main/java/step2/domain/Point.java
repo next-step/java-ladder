@@ -44,4 +44,8 @@ public class Point {
     public int hashCode() {
         return Objects.hash(point);
     }
+
+    public boolean isLeft() {
+        return this.point;
+    }
 }
