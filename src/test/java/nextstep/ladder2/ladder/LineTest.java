@@ -15,10 +15,10 @@ class LineTest {
     @Test
     @DisplayName("생성 테스트")
     void create(){
-        LineMaker maker = size1 -> Arrays.asList(true,false,true,false);
+        LineMaker maker = size1 -> true;
         Line line = new Line(maker,4);
 
-        assertThat(line.showLine()).containsExactly(true,false,true,false);
+        assertThat(line.showLine().size()).isEqualTo(4);
     }
 
     @Test
@@ -26,7 +26,7 @@ class LineTest {
     void moveTest(){
         Players players = Players.of("a,b,c,d,e");
 
-        LineMaker maker = size1 -> Arrays.asList(true,false,true,false);
+        LineMaker maker = size1 -> true;
         Line line = new Line(maker,4);
 
         assertThat(players.indexes()).containsExactly(0,1,2,3,4);

@@ -8,8 +8,9 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Players {
+    private static final Player NONE = Player.of("NONE", Integer.MAX_VALUE - 1, Integer.MAX_VALUE);
     private List<Player> players = new ArrayList<>();
-    private static final Player NONE = Player.of("NONE", Integer.MAX_VALUE-1, Integer.MAX_VALUE);
+
     public Players(List<Player> players) {
         this.players = players;
     }
@@ -29,19 +30,19 @@ public class Players {
         Arrays.stream(names)
                 .forEach(
                         name -> group.add(
-                                Player.of(name, index.getAndIncrement(), names.length-1)
+                                Player.of(name, index.getAndIncrement(), names.length - 1)
                         )
                 );
         return group;
     }
 
-    public List<String> names(){
+    public List<String> names() {
         return players.stream()
                 .map(Player::name)
                 .collect(Collectors.toList());
     }
 
-    public List<Integer> indexes(){
+    public List<Integer> indexes() {
         return players.stream()
                 .map(Player::index)
                 .collect(Collectors.toList());
@@ -61,13 +62,13 @@ public class Players {
 
     public int findPosition(String name) {
         return this.players.stream()
-                        .filter(player -> name.equals(player.name()))
-                        .findFirst()
-                        .orElse(NONE)
-                        .index();
+                .filter(player -> name.equals(player.name()))
+                .findFirst()
+                .orElse(NONE)
+                .index();
     }
 
-    public Stream<Player> stream(){
+    public Stream<Player> stream() {
         return this.players.stream();
     }
 }

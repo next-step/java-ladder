@@ -12,6 +12,7 @@ public class OutputView {
     private static final String BLANK = "    ";
     private static final String LADDER = "----";
     private static final String LINE = "|";
+    private static final String SPACE = " ";
 
     public static void viewInit(Players players, Ladder ladder, Results results) {
         show(players);
@@ -48,10 +49,9 @@ public class OutputView {
     }
 
     public static String lineDrawer(List<Boolean> lines) {
-        return LINE + lines.stream()
+        return lines.stream()
                 .map(OutputView::booleanToLadderLine)
-                .collect(Collectors.joining(LINE))
-         + LINE;
+                .collect(Collectors.joining(LINE,LINE,LINE));
     }
 
     public static String booleanToLadderLine(boolean line) {
@@ -60,10 +60,10 @@ public class OutputView {
 
     public static String LPad(String s) {
         if ("".equals(s)) {
-            s = " ";
+            s = SPACE;
         }
         while (s.length() < 5) {
-            s = " " + s;
+            s = SPACE + s;
         }
         return s;
     }

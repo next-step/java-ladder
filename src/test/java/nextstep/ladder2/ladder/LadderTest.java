@@ -4,12 +4,7 @@ import nextstep.ladder2.player.Players;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class LadderTest {
     @Test
@@ -24,8 +19,8 @@ class LadderTest {
     void movePlayersTest(){
         LineMaker maker = new LineMaker() {
             @Override
-            public List<Boolean> makeLine(int size) {
-                return Arrays.asList(true,false,true,false);
+            public boolean makeLine(boolean preStatus) {
+                return false;
             }
         };
 

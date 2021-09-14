@@ -13,7 +13,12 @@ public class Line {
     private List<Boolean> ladderLine;
 
     public Line(LineMaker maker, int size) {
-        this.ladderLine = maker.makeLine(size);
+        boolean pre = false;
+        this.ladderLine = new ArrayList<>();
+        for(int i=0; i<size; i++){
+            pre = maker.makeLine(pre);
+            ladderLine.add(maker.makeLine(pre));
+        }
     }
 
     public List<Boolean> showLine(){
