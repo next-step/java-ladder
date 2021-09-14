@@ -32,5 +32,17 @@ public class CrossTest {
         assertThat(first).isEqualTo(Direction.DOWN);
     }
 
+    @DisplayName("사다리 타기 마지막 lane에서 이동가지가 왼쪽에 존재한다면, 이동할 방향은 왼쪽이다.")
+    @Test
+    public void last() {
+        Direction last = Cross.last(true);
+        assertThat(last).isEqualTo(Direction.LEFT);
+    }
 
+    @DisplayName("사다리 타기 마지막 lane에서 이동가지가 존재하지 않는다면, 이동할 방향은 아래쪽이다.")
+    @Test
+    public void last2() {
+        Direction last = Cross.last(false);
+        assertThat(last).isEqualTo(Direction.DOWN);
+    }
 }

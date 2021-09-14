@@ -26,6 +26,13 @@ public class Cross {
         return Direction.DOWN;
     }
 
+    public static Direction last(boolean before) {
+        if (before) {
+            return Direction.LEFT;
+        }
+        return Direction.DOWN;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
