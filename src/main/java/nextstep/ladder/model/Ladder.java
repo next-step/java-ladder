@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.stream.IntStream;
 
 public class Ladder implements Iterable<Line> {
+    public static final int START_HEIGHT = 0;
     public static final int MIN_WIDTH = 0;
 
     private final Line[] lines;
@@ -45,11 +46,29 @@ public class Ladder implements Iterable<Line> {
         return lines.length;
     }
 
-    public boolean canGoLeft(int currentWidth, int currentHeight) {
+    public int climb(int startWidth) {
+        int currentWidth = startWidth;
+        for (int currentHeight = START_HEIGHT; currentHeight < height(); currentHeight++) {
+            currentWidth = getCurrentWidth(currentWidth, currentHeight);
+        }
+        return currentWidth;
+    }
+
+    private int getCurrentWidth(int currentWidth, int currentHeight) {
+        if (canGoLeft(currentWidth, currentHeight)) {
+            return currentWidth - 1;
+        }
+        if (canGoRight(currentWidth, currentHeight)) {
+            return currentWidth + 1;
+        }
+        return currentWidth;
+    }
+
+    private boolean canGoLeft(int currentWidth, int currentHeight) {
         return hasLeftLine(currentWidth) && getLeftLine(currentWidth).hasStep(currentHeight);
     }
 
-    public boolean canGoRight(int currentWidth, int currentHeight) {
+    private boolean canGoRight(int currentWidth, int currentHeight) {
         return hasRightLine(currentWidth) && getRightLine(currentWidth).hasStep(currentHeight);
     }
 

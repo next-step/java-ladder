@@ -1,29 +1,29 @@
 package nextstep.ladder.model;
 
 public class Line {
-    private final boolean[] hasSteps;
+    private final Step[] steps;
 
     public Line(int height) {
-        this.hasSteps = new boolean[height];
+        this.steps = Step.initialize(height);
     }
 
     public void drawSteps(DrawStrategy drawStrategy, Line previousLine) {
-        for (int height = 0; height < hasSteps.length; height++) {
+        for (int height = 0; height < steps.length; height++) {
             decideToDraw(drawStrategy, previousLine, height);
         }
     }
 
-    private void decideToDraw(DrawStrategy drawStrategy, Line previousLine, int i) {
-        if (drawStrategy.draw() && (previousLine == null || !previousLine.hasStep(i))) {
-            this.hasSteps[i] = true;
+    private void decideToDraw(DrawStrategy drawStrategy, Line previousLine, int height) {
+        if (drawStrategy.draw() && (previousLine == null || !previousLine.hasStep(height))) {
+            this.steps[height] = Step.EXIST;
         }
     }
 
     public boolean hasStep(int height) {
-        return hasSteps[height];
+        return steps[height].exist();
     }
 
     public int height() {
-        return hasSteps.length;
+        return steps.length;
     }
 }
