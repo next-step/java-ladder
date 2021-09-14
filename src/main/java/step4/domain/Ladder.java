@@ -26,4 +26,8 @@ public class Ladder {
         }
         return target;
     }
+
+    public List<LadderLine> ladderLines() {
+        return ladderLines;
+    }
 }

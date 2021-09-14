@@ -37,5 +37,13 @@ public class Point {
     public Point last() {
         return new Point(this.position + 1, cross.last());
     }
+
+    public Cross cross() {
+        return cross;
+    }
+
+    public int position() {
+        return position;
+    }
 }
 

@@ -1,4 +1,4 @@
-package step4.domain;
+package step4.domain.column;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,5 +20,11 @@ public class LadderColumn {
 
     public List<String> names() {
         return names;
+    }
+
+    public void match(LadderColumn ladderColumn) {
+        if (names.size() != ladderColumn.names.size()) {
+            throw new ColumnSizeException();
+        }
     }
 }

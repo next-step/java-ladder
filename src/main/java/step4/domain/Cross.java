@@ -64,6 +64,10 @@ public class Cross {
         return new Cross(this.current, generatePoint());
     }
 
+    public boolean current() {
+        return current;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
