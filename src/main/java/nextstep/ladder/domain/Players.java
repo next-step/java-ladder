@@ -36,4 +36,11 @@ public class Players {
         return players.size();
     }
 
+    public boolean validResultCount(LadderResults ladderResults) {
+        return this.players.size() == ladderResults.countOfLadderResults();
+    }
+
+    public String indexOf(int location) {
+        return players.get(location).getName();
+    }
 }
