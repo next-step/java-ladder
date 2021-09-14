@@ -1,6 +1,8 @@
 package nextstep.ladder;
 
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.LadderGenerateFactory;
+import nextstep.ladder.domain.LadderGenerator;
 import nextstep.ladder.domain.Players;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
@@ -12,7 +14,7 @@ public class LadderGame {
         Players players = new Players(InputView.inputNames());
         int ladderHeight = InputView.inputLadderHeight();
 
-        Ladder ladder = new Ladder(players.numberOfPlayers(), ladderHeight);
+        Ladder ladder = new Ladder(LadderGenerateFactory.findGenerator(), players.numberOfPlayers(), ladderHeight);
 
         ResultView.printResult(players, ladder);
     }

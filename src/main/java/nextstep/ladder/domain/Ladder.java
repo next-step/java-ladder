@@ -7,10 +7,9 @@ public class Ladder {
 
     private final List<Line> lines;
 
-    public Ladder(int playerCount, int ladderHeight) {
+    public Ladder(LadderGenerator ladderGenerator, int playerCount, int ladderHeight) {
         validLadderHeight(ladderHeight);
-        LadderGenerator ladderLinesGenerator = LadderGenerateFactory.findGenerator();
-        lines = ladderLinesGenerator.generate(ladderHeight, playerCount);
+        lines = ladderGenerator.generate(ladderHeight, playerCount);
 
     }
 

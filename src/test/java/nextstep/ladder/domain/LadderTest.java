@@ -3,8 +3,6 @@ package nextstep.ladder.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.Collections;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -15,7 +13,8 @@ public class LadderTest {
     void create_ladder_test() {
         int ladderHeight = 5;
         int playerCount = 4;
-        Ladder ladder = new Ladder(playerCount, ladderHeight);
+
+        Ladder ladder = new Ladder(LadderGenerateFactory.findGenerator(), playerCount, ladderHeight);
 
         assertThat(ladder.getLines().size()).isEqualTo(ladderHeight);
     }
@@ -24,7 +23,7 @@ public class LadderTest {
     @DisplayName("사다리 높이가 1보다 작을 경우 예외가 발생한다.")
     void create_ladder_exception_test() {
         assertThatThrownBy(() ->
-                new Ladder(3, 0)
+                new Ladder(LadderGenerateFactory.findGenerator(), 3, 0)
         ).isInstanceOf(IllegalArgumentException.class);
     }
 }
