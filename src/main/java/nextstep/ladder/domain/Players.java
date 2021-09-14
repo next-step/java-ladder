@@ -24,9 +24,14 @@ public class Players {
 		this.players = players;
 	}
 
+	public int count() {
+		return players.size();
+	}
+
 	private void checkMinimumPlayers(List<Player> players) {
 		if (players.size() < MINIMUM_PLAYERS) {
 			throw new MinimumPlayersException(MINIMUM_PLAYERS_EXCEPTION_MESSAGE);
 		}
 	}
+
 }
