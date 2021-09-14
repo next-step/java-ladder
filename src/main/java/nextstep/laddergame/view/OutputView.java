@@ -67,10 +67,14 @@ public class OutputView {
     }
 
     private String renderLine(Line line) {
-        List<LineConnection> connections = line.getConnections();
-        return String.format(LINE_RENDERING_FORMAT, connections.stream()
-                .map(connection -> connection.isConnected()? CONNECTED_POINT_RENDERING_FORMAT : UNCONNECTED_POINT_RENDERING_FORMAT)
-                .collect(Collectors.joining(POINT_DELIMITER)));
+        return String.format(LINE_RENDERING_FORMAT, renderConnection(line.getPoints()));
+    }
+
+    private String renderConnection(List<Point> points) {
+        return points.stream()
+                .limit(points.size() - 1)
+                .map(point -> point.hasRightConnection() ? CONNECTED_POINT_RENDERING_FORMAT : UNCONNECTED_POINT_RENDERING_FORMAT)
+                .collect(Collectors.joining(POINT_DELIMITER));
     }
 
     public void printResultCheckInputMessage() {

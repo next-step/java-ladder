@@ -5,12 +5,10 @@ import java.util.List;
 
 public class Line {
 
-    private final List<LineConnection> connections;
     private final List<Point> points;
 
     private Line(List<LineConnection> connections) {
         validateNotConnectedInSeries(connections);
-        this.connections = connections;
         this.points = Point.listOf(connections);
     }
 
@@ -30,8 +28,8 @@ public class Line {
         return new Line(lineConnectStrategy.getLineConnections());
     }
 
-    public List<LineConnection> getConnections() {
-        return Collections.unmodifiableList(connections);
+    public List<Point> getPoints() {
+        return Collections.unmodifiableList(points);
     }
 
     public int move(int index) {

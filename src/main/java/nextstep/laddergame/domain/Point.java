@@ -41,16 +41,20 @@ public class Point {
     }
 
     private Point next(LineConnection rightConnectionOfNextPoint) {
-        if (this.direction.isRight() && rightConnectionOfNextPoint.isConnected()) {
+        if (direction.isRight() && rightConnectionOfNextPoint.isConnected()) {
             throw new IllegalArgumentException("연속으로 연결된 포인트가 존재합니다.");
         }
         if (rightConnectionOfNextPoint.isConnected()) {
             return new Point(index + GAP_BETWEEN_INDEX, Direction.RIGHT);
         }
-        if (this.direction.isRight()) {
+        if (direction.isRight()) {
             return new Point(index + GAP_BETWEEN_INDEX, Direction.LEFT);
         }
         return new Point(index + GAP_BETWEEN_INDEX, Direction.DOWN);
+    }
+
+    public boolean hasRightConnection() {
+        return direction.isRight();
     }
 
     @Override
