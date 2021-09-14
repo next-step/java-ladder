@@ -22,7 +22,7 @@ public class PlayResult {
 
     @Override
     public String toString() {
-        return String.valueOf(playResult);
+        return playResult;
     }
 
     @Override
