@@ -21,28 +21,49 @@ public class CrossTest {
     @DisplayName("사다리 타기 첫번째 lane에서 이동가지가 오른쪽에 존재한다면, 이동할 방향은 오른쪽이다.")
     @Test
     public void first() {
-        Direction first = Cross.first(true);
-        assertThat(first).isEqualTo(Direction.RIGHT);
+        Cross first = Cross.first(true);
+        assertThat(first.move()).isEqualTo(Direction.RIGHT);
     }
 
     @DisplayName("사다리 타기 첫번째 lane에서 이동가지가 존재하지 않는다면, 이동할 방향은 아래쪽이다.")
     @Test
     public void first2() {
-        Direction first = Cross.first(false);
-        assertThat(first).isEqualTo(Direction.DOWN);
+        Cross first = Cross.first(false);
+        assertThat(first.move()).isEqualTo(Direction.DOWN);
     }
 
     @DisplayName("사다리 타기 마지막 lane에서 이동가지가 왼쪽에 존재한다면, 이동할 방향은 왼쪽이다.")
     @Test
     public void last() {
-        Direction last = Cross.last(true);
-        assertThat(last).isEqualTo(Direction.LEFT);
+        Cross last = Cross.last(true);
+        assertThat(last.move()).isEqualTo(Direction.LEFT);
     }
 
     @DisplayName("사다리 타기 마지막 lane에서 이동가지가 존재하지 않는다면, 이동할 방향은 아래쪽이다.")
     @Test
     public void last2() {
-        Direction last = Cross.last(false);
-        assertThat(last).isEqualTo(Direction.DOWN);
+        Cross last = Cross.last(false);
+        assertThat(last.move()).isEqualTo(Direction.DOWN);
+    }
+
+    @DisplayName("사다리 타기에서 첫번 째 혹은 마지막이 아닌 중간 lane에서, 왼쪽에 가지가 존재한다면, 이동할 방향은 왼쪽이다.")
+    @Test
+    public void next() {
+        Cross next = Cross.next(true, false);
+        assertThat(next.move()).isEqualTo(Direction.LEFT);
+    }
+
+    @DisplayName("사다리 타기에서 첫번 째 혹은 마지막이 아닌 중간 lane에서, 오른쪽에 가지가 존재한다면, 이동할 방향은 오른쪽이다.")
+    @Test
+    public void nex2() {
+        Cross next = Cross.next(false, true);
+        assertThat(next.move()).isEqualTo(Direction.RIGHT);
+    }
+
+    @DisplayName("사다리 타기에서 첫번 째 혹은 마지막이 아닌 중간 lane에서, 가지가 존재하지 않는다면, 이동할 방향은 아래쪽이다.")
+    @Test
+    public void next3() {
+        Cross next = Cross.next(false, false);
+        assertThat(next.move()).isEqualTo(Direction.DOWN);
     }
 }

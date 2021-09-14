@@ -1,6 +1,7 @@
 package step4;
 
 import java.util.Objects;
+import step4.exceptions.BothTrueException;
 
 public class Cross {
 
@@ -9,7 +10,7 @@ public class Cross {
 
     public Cross(boolean before, boolean current) {
         if (before && current) {
-            throw new IllegalArgumentException("사다리 타기 게임에서 양쪽 모두 가지가 존재할 수는 없습니다.");
+            throw new BothTrueException();
         }
         this.before = before;
         this.current = current;
@@ -19,18 +20,28 @@ public class Cross {
         return new Cross(before, current);
     }
 
-    public static Direction first(boolean current) {
+    public static Cross first(boolean current) {
         if (current) {
-            return Direction.RIGHT;
+            return new Cross(false, true);
         }
-        return Direction.DOWN;
+        return new Cross(false, false);
     }
 
-    public static Direction last(boolean before) {
+    public static Cross last(boolean before) {
         if (before) {
-            return Direction.LEFT;
+            return new Cross(true, false);
         }
-        return Direction.DOWN;
+        return new Cross(false, false);
+    }
+
+    public static Cross next(boolean before, boolean current) {
+        if (before) {
+            return new Cross(true, false);
+        }
+        if (current) {
+            return new Cross(false, true);
+        }
+        return new Cross(false, false);
     }
 
     @Override
@@ -48,5 +59,15 @@ public class Cross {
     @Override
     public int hashCode() {
         return Objects.hash(before, current);
+    }
+
+    public Direction move() {
+        if (this.before) {
+            return Direction.LEFT;
+        }
+        if (this.current) {
+            return Direction.RIGHT;
+        }
+        return Direction.DOWN;
     }
 }
