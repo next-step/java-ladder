@@ -6,6 +6,8 @@ import step2.domain.Results;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import step4.domain.LadderColumn;
+import step4.domain.LadderStartColumn;
 
 public class ResultView {
     private static final String LADDER_VERTICAL_LINE = "|";
@@ -71,5 +73,11 @@ public class ResultView {
         ladderGameColumns.stream()
                 .map(ladderGameColumn -> ladderGameColumn.getName() + " : " + results.getItems().get(ladderGameColumn.getPosition()))
                 .forEach(System.out::println);
+    }
+
+    public static void printColumn(LadderColumn ladderColumn) {
+        ladderColumn.names()
+            .forEach(s -> System.out.printf("  %3s   ", s));
+        System.out.println();
     }
 }

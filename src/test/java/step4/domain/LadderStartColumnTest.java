@@ -10,7 +10,7 @@ class LadderStartColumnTest {
     @Test
     void columnName() {
         String names = "A,B,C";
-        LadderStartColumn ladderStartColumn = new LadderStartColumn(names);
+        LadderColumn ladderStartColumn = new LadderColumn(names);
         Assertions.assertThat(ladderStartColumn.name(0)).isEqualTo("A");
     }
 }
