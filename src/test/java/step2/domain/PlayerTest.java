@@ -1,22 +1,22 @@
 package step2.domain;
 
 import org.junit.jupiter.api.Test;
-import step2.dto.Name;
+import step2.dto.Player;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class NameTest {
+class PlayerTest {
     @Test
     void createFail() {
-        assertThatThrownBy(() -> new Name("abcdef"))
+        assertThatThrownBy(() -> new Player("abcdef"))
                 .isExactlyInstanceOf(RuntimeException.class);
     }
 
     @Test
-    void createSunccess() {
+    void createSuccess() {
         final String nameValue = "abcde";
-        final Name name = new Name(nameValue);
-        assertThat(name).isEqualTo(new Name(nameValue));
+        final Player player = new Player(nameValue);
+        assertThat(player).isEqualTo(new Player(nameValue));
     }
 }

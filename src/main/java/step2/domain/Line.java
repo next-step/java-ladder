@@ -3,6 +3,7 @@ package step2.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Line {
     private final List<Point> points;
@@ -16,14 +17,36 @@ public class Line {
         }
     }
 
+    public Line(List<Boolean> pointList) {
+        this.points = pointList.stream()
+                .map(p -> new Point(p))
+                .collect(Collectors.toList());
+    }
+
+    public String print() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Point point : points) {
+            stringBuilder.append(point.print());
+        }
+        return stringBuilder.append("\n").toString();
+    }
+
+    public Position movable(Position position) {
+        if (position.canMoveToLeft() && this.points.get(position.currentPosition()).isLeft()) {
+            return position.moveLeft();
+        }
+        if (position.canMoveToRight(this.points.size()) && this.points.get(position.nextPosition()).isLeft()) {
+            return position.moveRight();
+        }
+        return position.moveDown();
+    }
+
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Point point : points) {
-            stringBuilder.append(point);
-        }
-        return stringBuilder.append("\n").toString();
+        return "Line{" +
+                "points=" + points +
+                '}' + "\n";
     }
 
     @Override
