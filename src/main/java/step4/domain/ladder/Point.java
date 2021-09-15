@@ -6,6 +6,7 @@ import step4.strategy.DirectionGenerateStrategy;
 public class Point {
 
     private static final int START_INDEX = 0;
+    private static final int NEXT_INDEX_VALUE = 1;
 
     private final int index;
     private final Direction direction;
@@ -21,6 +22,10 @@ public class Point {
 
     public static Point first(DirectionGenerateStrategy strategy) {
         return new Point(START_INDEX, Direction.first(strategy));
+    }
+
+    public Point next(DirectionGenerateStrategy strategy) {
+        return new Point(index + NEXT_INDEX_VALUE, direction.next(strategy));
     }
 
     @Override

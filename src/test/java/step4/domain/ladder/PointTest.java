@@ -41,6 +41,65 @@ class PointTest {
             // then
             assertThat(result).isEqualTo(exepcted);
         }
+
+    }
+
+    @Nested
+    @DisplayName("다음 Point 생성할 수 있다.")
+    class createNextTest {
+
+        @Test
+        @DisplayName("이전 Point의 right-true일 때 항상 direction이 ture-false다.")
+        void prevPointRightTrueTest() {
+
+            // given
+            Direction direction = Direction.from(false, true);
+            Point prev = Point.from(1, direction);
+            Point expected = Point.from(2, Direction.from(true, false));
+
+            // when
+            Point result = prev.next(() -> true);
+
+            // then
+            assertThat(result).isEqualTo(expected);
+        }
+
+        @Nested
+        @DisplayName("이전 Point가 right-false일 때")
+        class prevPointRightFalseTest {
+
+            // given
+            Direction direction = Direction.from(false, false);
+            Point prev = Point.from(1, direction);
+
+            @Test
+            @DisplayName("true direction")
+            void trueTest() {
+
+                // given
+                Point expected = Point.from(2, Direction.from(false, true));
+
+                // when
+                Point result = prev.next(() -> true);
+
+                // then
+                assertThat(result).isEqualTo(expected);
+            }
+
+            @Test
+            @DisplayName("false direction")
+            void falseTest() {
+
+                // given
+                Point expected = Point.from(2, Direction.from(false, false));
+
+                // when
+                Point result = prev.next(() -> false);
+
+                // then
+                assertThat(result).isEqualTo(expected);
+            }
+        }
     }
 
 }
