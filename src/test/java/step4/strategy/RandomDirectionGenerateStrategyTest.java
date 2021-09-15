@@ -18,4 +18,19 @@ class RandomDirectionGenerateStrategyTest {
         assertThat(result).isInstanceOf(DirectionGenerateStrategy.class);
         assertThat(result).isInstanceOf(RandomDirectionGenerateStrategy.class);
     }
+
+    @Test
+    @DisplayName("generateLine() 테스트")
+    void generateLineTest() {
+
+        // given
+        RandomDirectionGenerateStrategy strategy = RandomDirectionGenerateStrategy.getInstance();
+
+        // when
+        boolean result = strategy.generateDirection();
+
+        // then
+        assertThat(result).isInstanceOf(Boolean.class);
+    }
+
 }
