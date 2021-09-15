@@ -9,6 +9,8 @@ public class StringUtil {
     private static final int ZERO = 0;
 
     private static final String COMMA = ",";
+    private static final String BLANK = "\\s";
+    private static final String EMPTY = "";
 
     private StringUtil() {
         throw new RuntimeException("Singleton couldn't create constructor.");
@@ -30,6 +32,12 @@ public class StringUtil {
         checkNull(input);
 
         return input.contains(COMMA);
+    }
+
+    public static String[] splitByComma(String input) {
+        checkNull(input);
+
+        return input.replaceAll(BLANK, EMPTY).split(COMMA);
     }
 
     private static void checkNull(String input) {
