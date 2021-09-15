@@ -7,13 +7,10 @@ import nextstep.ladder.ui.ResultView;
 
 public class Application {
 	public static void main(String[] args) {
-		InputView inputView = new InputView();
-		ResultView resultView = new ResultView();
+		Participants participants = new Participants(InputView.inputParticipantNames());
 
-		Participants participants = new Participants(inputView.InputParticipantNames());
+		Lines lines = new Lines(participants.countOfPerson(), InputView.inputMaximumHeight());
 
-		Lines lines = new Lines(participants.names().size(), inputView.InputMaximumHeight());
-
-		resultView.drawResult(participants, lines);
+		ResultView.drawResult(participants, lines);
 	}
 }

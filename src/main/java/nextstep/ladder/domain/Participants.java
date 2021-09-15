@@ -21,4 +21,8 @@ public class Participants {
 			.map(Participant::name)
 			.collect(Collectors.toList());
 	}
+
+	public int countOfPerson() {
+		return this.participantNames.size();
+	}
 }

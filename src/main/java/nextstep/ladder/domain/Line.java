@@ -22,17 +22,17 @@ public class Line {
 	}
 
 	private void createBlocks(int count) {
-		IntStream.range(0, count).forEach(number -> add());
+		IntStream.range(0, count).forEach(number -> addNewBlock());
 	}
 
-	private void add() {
+	private void addNewBlock() {
 		if (this.blocks.isEmpty()) {
 			this.blocks.add(new Block(false));
 			return;
 		}
 
 		Block currentBlock = blocks.get(blocks.size() - 1);
-		blocks.add(currentBlock.makeNext(Utils.makeRandomBoolean()));
+		blocks.add(currentBlock.makeNext(LadderUtils.makeRandomBoolean()));
 	}
 
 	public List<Block> blocks() {

@@ -8,29 +8,31 @@ import nextstep.ladder.domain.Participants;
 
 public class ResultView {
 
-	public static final String GAME_RESULT = "실행결과";
-	public static final String CONNECTED = "-----|";
-	public static final String NOT_CONNECTED = "     |";
-	public static final String SPACE = " ";
-	public static final int MAX_NAME_SIZE = 5;
+	private static final String GAME_RESULT = "실행결과";
+	private static final String CONNECTED = "-----|";
+	private static final String NOT_CONNECTED = "     |";
+	private static final String SPACE = " ";
+	private static final int MAX_NAME_SIZE = 5;
 
-	public void drawResult(Participants participants, Lines lines) {
-		int maxNameSize = MAX_NAME_SIZE;
+	private ResultView() {
+	}
+
+	public static void drawResult(Participants participants, Lines lines) {
 		System.out.println(GAME_RESULT);
 
-		drawNames(participants, maxNameSize);
+		drawNames(participants, MAX_NAME_SIZE);
 
 		drawLadder(lines);
 	}
 
-	private void drawLadder(Lines lines) {
+	private static void drawLadder(Lines lines) {
 		for (Line line : lines.list()) {
 			drawLine(line);
 			System.out.println();
 		}
 	}
 
-	private void drawLine(Line line) {
+	private static void drawLine(Line line) {
 		line.blocks()
 			.stream()
 			.forEachOrdered(block -> {
@@ -42,7 +44,7 @@ public class ResultView {
 			});
 	}
 
-	private void drawNames(Participants participants, int maxNameSize) {
+	private static void drawNames(Participants participants, int maxNameSize) {
 		for (String name : participants.names()) {
 			StringBuilder stringBuilder = new StringBuilder();
 			IntStream
