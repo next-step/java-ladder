@@ -48,6 +48,10 @@ public class LadderLine {
         points.add(point);
     }
 
+    public int move(int position) {
+        return points.get(position).move();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

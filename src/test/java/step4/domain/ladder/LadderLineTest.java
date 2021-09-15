@@ -57,4 +57,39 @@ class LadderLineTest {
         }
 
     }
+
+    @Nested
+    @DisplayName("연결되어있을 경우 index를 이동할 수 있다.")
+    class moveLadderLineTest {
+
+        @Test
+        @DisplayName("[startegy 항상 true]")
+        void strategyTrueTest() {
+
+            // given
+            LadderLine line = LadderLine.createLine(users, () -> true);
+
+            // when
+            int result = line.move(0);
+
+            // then
+            assertThat(result).isEqualTo(1);
+        }
+
+        @Test
+        @DisplayName("[startegy 항상 false]")
+        void strategyFalseTest() {
+
+            // given
+            LadderLine line = LadderLine.createLine(users, () -> false);
+
+            // when
+            int result = line.move(0);
+
+            // then
+            assertThat(result).isEqualTo(0);
+        }
+
+    }
+
 }
