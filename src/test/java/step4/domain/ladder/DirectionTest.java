@@ -23,6 +23,21 @@ class DirectionTest {
     }
 
     @Test
+    @DisplayName("첫번째 좌표 rigth-false를 생성할 수 있다.")
+    void createFirstFalseTest() {
+
+        // given
+        boolean right = false;
+        Direction expected = Direction.from(false, false);
+
+        // when
+        Direction result = Direction.first(right);
+
+        // then
+        assertThat(result).isEqualTo(expected);
+    }
+
+    @Test
     @DisplayName("equals, hashcode 테스트")
     void equalsHashCodeTest() {
 
