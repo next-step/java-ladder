@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-class LineTest {
+class LadderLineTest {
 
   @Test
   @DisplayName("생성 테스트")
@@ -20,12 +20,12 @@ class LineTest {
     List<Boolean> points = Arrays.asList(false, true, false, true, false);
 
     //when
-    Line line = new Line(points);
+    LadderLine ladderLine = new LadderLine(points);
 
     //then
-    assertThat(line.getSize()).isEqualTo(points.size());
-    for (int i = 0; i < line.getSize(); i++) {
-      assertThat(line.isExistFoothold(i)).isEqualTo(points.get(i));
+    assertThat(ladderLine.getSize()).isEqualTo(points.size());
+    for (int i = 0; i < ladderLine.getSize(); i++) {
+      assertThat(ladderLine.isExistFoothold(i)).isEqualTo(points.get(i));
     }
   }
 
@@ -38,24 +38,24 @@ class LineTest {
 
     //then
     assertThatIllegalArgumentException().isThrownBy(() -> {
-      new Line(points1);
+      new LadderLine(points1);
     });
     assertThatIllegalArgumentException().isThrownBy(() -> {
-      new Line(points2);
+      new LadderLine(points2);
     });
   }
 
   @Test
   @DisplayName("주어진 크기에 해당하는 랜덤Line 생성 테스트")
-  void randomLineTest() {
+  void randomLadderLineTest() {
     //given
     int size = 5;
 
     //when
-    Line line = Line.randomLine(size);
+    LadderLine ladderLine = LadderLine.randomLadderLine(size);
 
     //then
-    assertThat(line.getSize()).isEqualTo(size);
+    assertThat(ladderLine.getSize()).isEqualTo(size);
   }
 
   @ParameterizedTest(name = "다음 위치 반환 테스트")
@@ -73,11 +73,11 @@ class LineTest {
         .map(Integer::valueOf).collect(Collectors.toList());
 
     //when
-    Line line = new Line(points);
+    LadderLine ladderLine = new LadderLine(points);
 
     //then
-    for (int i = 0; i < points.size(); i++){
-      assertThat(line.getMovablePosition(i)).isEqualTo(result.get(i));
+    for (int i = 0; i < points.size(); i++) {
+      assertThat(ladderLine.getMovablePosition(i)).isEqualTo(result.get(i));
     }
   }
 }

@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import ladder.utils.RandomValueGenerator;
 
-public class Line {
+public class LadderLine {
 
   private final List<Boolean> points;
 
-  public Line(final List<Boolean> points) {
+  public LadderLine(final List<Boolean> points) {
     this.points = points;
     validateFirstPoint(points);
     for (int i = 1; i < points.size(); i++) {
@@ -16,13 +16,13 @@ public class Line {
     }
   }
 
-  public static Line randomLine(int size) {
+  public static LadderLine randomLadderLine(int size) {
     List<Boolean> points = new ArrayList<>();
     points.add(false);
     while (points.size() < size) {
       addRandomPoint(points);
     }
-    return new Line(points);
+    return new LadderLine(points);
   }
 
   public boolean isExistFoothold(int idx) {
@@ -54,7 +54,7 @@ public class Line {
   }
 
   public int getMovablePosition(int currentPosition) {
-    if (currentPosition == points.size() - 1){
+    if (currentPosition == points.size() - 1) {
       return points.get(currentPosition) ? currentPosition - 1 : currentPosition;
     }
     if (currentPosition == 0) {

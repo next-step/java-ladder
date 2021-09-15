@@ -8,25 +8,25 @@ public class Ladder {
   private static int MIN_HEIGHT = 1;
   private static int MIN_WIDTH = 1;
 
-  private final List<Line> lines = new ArrayList<>();
+  private final List<LadderLine> ladderLines = new ArrayList<>();
 
   public Ladder(int height, int width) {
     validateSize(height, width);
-    while (lines.size() < height) {
-      lines.add(Line.randomLine(width));
+    while (ladderLines.size() < height) {
+      ladderLines.add(LadderLine.randomLadderLine(width));
     }
   }
 
   public boolean isExistFoothold(int heightIdx, int widthIdx) {
-    return lines.get(heightIdx).isExistFoothold(widthIdx);
+    return ladderLines.get(heightIdx).isExistFoothold(widthIdx);
   }
 
   public int getHeight() {
-    return lines.size();
+    return ladderLines.size();
   }
 
   public int getWidth() {
-    return lines.get(0).getSize();
+    return ladderLines.get(0).getSize();
   }
 
   private void validateSize(int height, int width) {
