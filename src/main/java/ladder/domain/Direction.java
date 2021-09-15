@@ -29,10 +29,10 @@ public enum Direction {
 
     public Position move(final Position position) {
         if (isRight()) {
-            return position.move(1);
+            return position.forward();
         }
         if (isLeft()) {
-            return position.move(-1);
+            return position.backward();
         }
         return position;
     }

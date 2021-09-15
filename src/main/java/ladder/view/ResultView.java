@@ -76,13 +76,13 @@ public class ResultView {
         System.out.print(playResult);
     }
 
-    public static void print(final Players players) {
-        players.getPlayers()
-                .forEach(System.out::println);
+    public static void print(final LadderResult ladderResult) {
+        ladderResult.getResult()
+                .forEach((player, playResult) -> System.out.println(player + " : " + playResult));
     }
 
-    public static void print(final String player) {
+    public static void print(final String playerName, final PlayResult playResult) {
         System.out.println("실행 결과");
-        System.out.println(player);
+        System.out.println(playerName + " : " + playResult);
     }
 }

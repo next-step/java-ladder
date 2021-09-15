@@ -16,8 +16,12 @@ public class Position {
         }
     }
 
-    public Position move(int position) {
-        return new Position(this.position + position);
+    public Position forward() {
+        return new Position(this.position + 1);
+    }
+
+    public Position backward() {
+        return new Position(this.position - 1);
     }
 
     public int getValue() {

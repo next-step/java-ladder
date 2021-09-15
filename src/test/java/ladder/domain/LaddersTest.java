@@ -56,10 +56,8 @@ class LaddersTest {
     void play() {
         Players players = new Players(StringUtil.split("risa,jisu,rose,zeny"));
         PlayResults playResults = new PlayResults(StringUtil.split("꽝,5000원,꽝,10000원"));
-        ladders.play(players, playResults);
-        Player expected = new Player("risa");
-        expected.report(new PlayResult("5000원"));
+        LadderResult ladderResult = ladders.play(players, playResults);
 
-        assertThat(players.find(new Name("risa"))).isEqualTo(expected);
+        assertThat(ladderResult.find(players.find(new Name("risa")))).isEqualTo(new PlayResult("5000원"));
     }
 }

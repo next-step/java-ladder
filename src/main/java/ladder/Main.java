@@ -33,10 +33,10 @@ public class Main {
 
     private static void findPlayResult(String playerName, Result result) {
         if (isEqualsToAll(playerName)) {
-            ResultView.print(result.getPlayers());
+            ResultView.print(result.getLadderResult());
             return;
         }
-        ResultView.print(result.findPlayer(playerName));
+        ResultView.print(playerName, result.findPlayResult(playerName));
     }
 
     private static boolean isEqualsToAll(final String playerName) {

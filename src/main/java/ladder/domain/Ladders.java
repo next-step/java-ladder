@@ -19,14 +19,15 @@ public class Ladders {
                 .collect(Collectors.collectingAndThen(Collectors.toList(), Ladders::new));
     }
 
-    public void play(final Players players, final PlayResults playResults) {
+    public LadderResult play(final Players players, final PlayResults playResults) {
         validatePlayerSize(players);
         validateSameSize(players, playResults);
+        LadderResult ladderResult = new LadderResult();
         for (int index = 0; index < players.size(); index++) {
             Position position = new Position(index);
-            Player player = players.find(position);
-            player.report(playResults.find(move(position)));
+            ladderResult.put(players.find(position), playResults.find(move(position)));
         }
+        return ladderResult;
     }
 
     private void validatePlayerSize(final Players players) {

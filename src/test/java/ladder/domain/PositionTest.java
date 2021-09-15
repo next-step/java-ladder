@@ -24,12 +24,21 @@ public class PositionTest {
         );
     }
 
-    @DisplayName("move")
+    @DisplayName("forward")
     @ParameterizedTest(name = "{index}. {displayName}, arguments: {arguments}")
-    @CsvSource({"5, 1, 6", "5, -1, 4"})
-    void move(int inputPosition, int moveValue, int expected) {
+    @CsvSource({"5, 6", "0, 1"})
+    void forward(int inputPosition, int expected) {
         Position position = new Position(inputPosition);
-        Position result = position.move(moveValue);
+        Position result = position.forward();
+        assertThat(result).isEqualTo(new Position(expected));
+    }
+
+    @DisplayName("backward")
+    @ParameterizedTest(name = "{index}. {displayName}, arguments: {arguments}")
+    @CsvSource({"5, 4", "1, 0"})
+    void backward(int inputPosition, int expected) {
+        Position position = new Position(inputPosition);
+        Position result = position.backward();
         assertThat(result).isEqualTo(new Position(expected));
     }
 }
