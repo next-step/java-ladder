@@ -1,8 +1,11 @@
 package step4.domain.user;
 
 import java.util.Objects;
+import step4.exception.user.NameLengthException;
 
 public class Name {
+
+    private static final int NAME_MAX_LENGTH = 3;
 
     private final String name;
 
@@ -11,7 +14,15 @@ public class Name {
     }
 
     public static Name of(String name){
+        checkNameLength(name);
+
         return new Name(name);
+    }
+
+    private static void checkNameLength(String name) {
+        if (name.length() > NAME_MAX_LENGTH) {
+            throw new NameLengthException();
+        }
     }
 
     @Override
