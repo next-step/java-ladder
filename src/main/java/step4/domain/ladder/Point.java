@@ -28,6 +28,10 @@ public class Point {
         return new Point(index + NEXT_INDEX_VALUE, direction.next(strategy));
     }
 
+    public Point last() {
+        return new Point(index + NEXT_INDEX_VALUE, direction.last());
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

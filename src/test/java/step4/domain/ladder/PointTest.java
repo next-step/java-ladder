@@ -102,4 +102,39 @@ class PointTest {
         }
     }
 
+    @Nested
+    @DisplayName("마지막 Point 생성할 수 있다.")
+    class createLastPointTest {
+
+        @Test
+        @DisplayName("이전 Point와 연결되어있을 때 left가 true이다.")
+        void trueTest() {
+
+            // given
+            Point prev = Point.from(2, Direction.from(false, true));
+            Point expected = Point.from(3, Direction.from(true, false));
+
+            // when
+            Point result = prev.last();
+
+            // then
+            assertThat(result).isEqualTo(expected);
+        }
+
+        @Test
+        @DisplayName("이전 Point와 연결되어있지 않을때 left가 false이다.")
+        void falseTest() {
+
+            // given
+            Point prev = Point.from(2, Direction.from(false, false));
+            Point expected = Point.from(3, Direction.from(false, false));
+
+            // when
+            Point result = prev.last();
+
+            // then
+            assertThat(result).isEqualTo(expected);
+        }
+    }
+
 }

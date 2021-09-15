@@ -86,7 +86,7 @@
   - [x] point는 왼쪽와 오른쪽 연결에 대한 정보를 가질 수 있다.
   - [x] point는 첫번째 point를 생성할 수 있다.  
   - [x] point는 다음 point를 생성할 수 있다.
-  - [ ] point는 마지막 point를 생성할 수 있다.
+  - [x] point는 마지막 point를 생성할 수 있다.
   - [ ] point는 연결된 곳으로 이동하거나 이동하지 않을 수 있다.
 - direction
   - [x] 좌 우에 대한 연결 유무를 가질 수 있다.
