@@ -18,4 +18,4 @@ bin/
 .idea
 *.iws
 *.iml
-*.ipr
+*.iprutil/
