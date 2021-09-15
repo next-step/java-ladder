@@ -171,4 +171,21 @@ class PointTest {
         assertThat(result).isEqualTo(expected);
     }
 
+    @Test
+    @DisplayName("연결이 아무곳도 되어있지 않으면 제자리를 반환한다.")
+    void moveFailTest() {
+
+        // given
+        Point prev = Point.first(() -> false);
+        Point now = prev.next(() -> false);
+        Point next = now.last();
+        int expected = 1;
+
+        // when
+        int result = now.move();
+
+        // then
+        assertThat(result).isEqualTo(expected);
+    }
+
 }
