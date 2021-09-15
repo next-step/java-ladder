@@ -28,4 +28,8 @@ public class LadderEndPoints {
         }
     }
 
+    public String endPointByPosition(int position) {
+        return endPoints.get(position);
+    }
+
 }

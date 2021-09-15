@@ -39,6 +39,10 @@ public class Users {
         return users.size();
     }
 
+    public User userByPosition(int position) {
+        return users.get(position);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
