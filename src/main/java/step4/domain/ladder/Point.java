@@ -32,6 +32,17 @@ public class Point {
         return new Point(Math.addExact(index, NEXT_INDEX_VALUE), direction.last());
     }
 
+    public int move() {
+        if (direction.isNext()) {
+            return Math.addExact(index, NEXT_INDEX_VALUE);
+        }
+        if (direction.isPrev()) {
+            return Math.addExact(index, NEXT_INDEX_VALUE);
+        }
+
+        return index;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

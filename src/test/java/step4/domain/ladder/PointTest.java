@@ -137,4 +137,21 @@ class PointTest {
         }
     }
 
+    @Test
+    @DisplayName("오른쪽으로 연결되어있으면 오른쪽으로 이동할 수 있다.")
+    void moveRightTest() {
+
+        // given
+        Point prev = Point.first(() -> false);
+        Point now = prev.next(() -> true);
+        Point next = now.last();
+        int expected = 2;
+
+        // when
+        int result = now.move();
+
+        // then
+        assertThat(result).isEqualTo(expected);
+    }
+
 }
