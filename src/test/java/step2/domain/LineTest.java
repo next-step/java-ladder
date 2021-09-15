@@ -7,38 +7,39 @@ import java.util.Arrays;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LineTest {
+
     @Test
     void movableFalseAndRightTest() {
         final Line line = new Line(Arrays.asList(false, true, false, true));
-        final String movable = line.movable(0);
-        assertThat(movable).isEqualTo("right");
+        final Position position = line.movable(new Position(0));
+        assertThat(position.isRight()).isTrue();
     }
 
     @Test
     void movableFalseAndDownTest() {
         final Line line = new Line(Arrays.asList(false, true, false, false));
-        final String movable = line.movable(2);
-        assertThat(movable).isEqualTo("down");
+        final Position position = line.movable(new Position(2));
+        assertThat(position.isDown()).isTrue();
     }
 
     @Test
     void movableFalseAndDownTest2() {
         final Line line = new Line(Arrays.asList(false, true, false, false));
-        final String movable = line.movable(3);
-        assertThat(movable).isEqualTo("down");
+        final Position position = line.movable(new Position(3));
+        assertThat(position.isDown()).isTrue();
     }
 
     @Test
     void movableTrueAndLeftTest() {
         final Line line = new Line(Arrays.asList(false, true, false, true));
-        final String movable = line.movable(1);
-        assertThat(movable).isEqualTo("left");
+        final Position position = line.movable(new Position(1));
+        assertThat(position.isLeft()).isTrue();
     }
 
     @Test
     void movableTrueAndDownTest() {
         final Line line = new Line(Arrays.asList(true, false, false, true));
-        final String movable = line.movable(0);
-        assertThat(movable).isEqualTo("down");
+        final Position position = line.movable(new Position(0));
+        assertThat(position.isDown());
     }
 }

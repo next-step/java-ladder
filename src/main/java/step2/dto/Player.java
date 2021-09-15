@@ -7,19 +7,11 @@ public class Player {
 
     private final String name;
 
-    public Player(Player player) {
-        this(player.name);
-    }
-
     public Player(String name) {
         if (name.length() > MAX_LIMIT) {
             throw new RuntimeException(String.format("사람 이름은 최대 %d글자 입니다.", MAX_LIMIT));
         }
         this.name = name;
-    }
-
-    public boolean isEqualsTo(String name) {
-        return this.name.equals(name);
     }
 
     public String print() {

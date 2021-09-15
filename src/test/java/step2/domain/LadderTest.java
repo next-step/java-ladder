@@ -1,5 +1,6 @@
 package step2.domain;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import step2.dto.Players;
 
@@ -9,7 +10,8 @@ import java.util.List;
 class LadderTest {
 
     @Test
-    void startTest() {
+    @DisplayName("출력 확인용 테스트")
+    void createTest1() {
         final Players players = new Players(new String[]{"a", "b", "c", "d"});
         final List<Line> lines = Arrays.asList(new Line(players.size()),
                 new Line(players.size()),
@@ -20,7 +22,8 @@ class LadderTest {
     }
 
     @Test
-    void createTest() {
+    @DisplayName("출력 확인용 테스트")
+    void createTest2() {
         final Players players = new Players(new String[]{"a", "b", "c", "d"});
         final List<Line> lines = Arrays.asList(
         new Line(Arrays.asList(false, true, false, true)),

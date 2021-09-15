@@ -29,30 +29,11 @@ public class Lines {
     }
 
     public int move(int startIndex) {
-        int startLineIndex = 0;
-        String movable = lines.get(startLineIndex).movable(startIndex);
-
-        while (startLineIndex < lines.size() - 1) {
-            if (movable.equals("left")) {
-                startLineIndex = startLineIndex + 1;
-                startIndex = startIndex - 1;
-                movable = lines.get(startLineIndex).movable(startIndex);
-            } else if (movable.equals("right")) {
-                startLineIndex = startLineIndex + 1;
-                startIndex = startIndex + 1;
-                movable = lines.get(startLineIndex).movable(startIndex);
-            } else {
-                startLineIndex = startLineIndex + 1;
-                movable = lines.get(startLineIndex).movable(startIndex);
-            }
+        Position position = new Position(startIndex);
+        for (Line line : lines) {
+            position = line.movable(position);
         }
-
-        if (movable.equals("left")) {
-            return startIndex - 1;
-        } else if (movable.equals("right")) {
-            return startIndex + 1;
-        }
-        return startIndex;
+        return position.getWidthIndex();
     }
 
     public String print() {
