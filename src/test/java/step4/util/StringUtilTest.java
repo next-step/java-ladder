@@ -1,5 +1,6 @@
 package step4.util;
 
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.DisplayName;
@@ -33,6 +34,19 @@ public class StringUtilTest {
 
         // then
         assertTrue(result);
+    }
+
+    @Test
+    @DisplayName("containsComma()에 null이 들어오면 Exception이 반환되어야 한다.")
+    void containsCommaExceptionTest() {
+
+        // given
+        String input = null;
+
+        // when & then
+        assertThatExceptionOfType(NullPointException.class)
+            .isThrownBy(() -> StringUtil.containsComma(input))
+            .withMessageMatching("null이 들어올 수 없다.");
     }
 
 }
