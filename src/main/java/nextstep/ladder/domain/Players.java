@@ -15,10 +15,7 @@ public class Players {
 
 	public Players(String inputNames) {
 		List<Player> players = Arrays.stream(inputNames.split(COMMA))
-			.map(inputName -> {
-				Name name = new Name(inputName.trim());
-				return new Player(name);
-			})
+			.map(inputName -> new Player(inputName.trim()))
 			.collect(Collectors.toList());
 		checkMinimumPlayers(players);
 		this.players = players;
