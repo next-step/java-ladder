@@ -3,6 +3,7 @@ package step4.domain.ladder;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 class DirectionTest {
@@ -37,7 +38,7 @@ class DirectionTest {
 
     @Test
     @DisplayName("현재 Direction right-true을 가지고 다음 Direction을 생성할 수 있다.")
-    void createNestRigthTest() {
+    void createNextRightByTrueTest() {
 
         // given
         Direction first = Direction.first(() -> true);
@@ -48,6 +49,42 @@ class DirectionTest {
 
         // then
         assertThat(result).isEqualTo(expected);
+    }
+
+    @Nested
+    @DisplayName("현재 Direction right-false를 가지고")
+    class DirectionRightFalse {
+
+        // given
+        Direction first = Direction.first(() -> false);
+
+        @Test
+        @DisplayName("다음 Direction right-true를 생성할 수 있다.")
+        void createNextRightTrueTest() {
+
+            // given
+            Direction expected = Direction.from(false, true);
+
+            // when
+            Direction result = first.next(() -> true);
+
+            // then
+            assertThat(result).isEqualTo(expected);
+        }
+
+        @Test
+        @DisplayName("다음 Direction right-false를 생성할 수 있다.")
+        void createNextRightFalseTest() {
+
+            // given
+            Direction expected = Direction.from(false, false);
+
+            // when
+            Direction result = first.next(() -> false);
+
+            // then
+            assertThat(result).isEqualTo(expected);
+        }
     }
 
     @Test
