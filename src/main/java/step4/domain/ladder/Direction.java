@@ -44,6 +44,14 @@ public class Direction {
         return new Direction(right, DISCONNECT);
     }
 
+    public boolean isNext() {
+        return right;
+    }
+
+    public boolean isPrev() {
+        return left;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
