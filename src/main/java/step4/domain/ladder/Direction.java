@@ -1,6 +1,7 @@
 package step4.domain.ladder;
 
 import java.util.Objects;
+import step4.exception.ladder.DirectionConnectException;
 import step4.strategy.DirectionGenerateStrategy;
 
 public class Direction {
@@ -12,8 +13,16 @@ public class Direction {
     private final boolean right;
 
     private Direction(boolean left, boolean right) {
+        checkDirection(left, right);
+
         this.left = left;
         this.right = right;
+    }
+
+    private static void checkDirection(boolean left, boolean right) {
+        if (left && right) {
+            throw new DirectionConnectException();
+        }
     }
 
     static Direction from(boolean left, boolean right) {

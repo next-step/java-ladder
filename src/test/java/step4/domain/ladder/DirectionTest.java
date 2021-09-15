@@ -1,10 +1,13 @@
 package step4.domain.ladder;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
+import ladder.domain.ladder.LadderEndPoints;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import step4.exception.ladder.DirectionConnectException;
 
 class DirectionTest {
 
@@ -100,6 +103,16 @@ class DirectionTest {
 
         // then
         assertThat(result).isEqualTo(expected);
+    }
+
+    @Test
+    @DisplayName("왼쪽 오른쪽이 둘다 true인 방향 그래프가 나오면 exception이 발생해야 한다.")
+    void leftRightTrueExceptionTest() {
+
+        // when & then
+        assertThatExceptionOfType(DirectionConnectException.class)
+            .isThrownBy(() -> Direction.from(true, true))
+            .withMessageMatching("왼쪽 오른쪽 둘 다 연결될 수 없다.");
     }
 
     @Test
