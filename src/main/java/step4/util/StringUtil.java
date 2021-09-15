@@ -6,6 +6,8 @@ public class StringUtil {
 
     private static final int ZERO = 0;
 
+    private static final String COMMA = ",";
+
     private StringUtil() {
         throw new RuntimeException("Singleton couldn't create constructor.");
     }
@@ -20,6 +22,10 @@ public class StringUtil {
             }
         }
         return true;
+    }
+
+    public static boolean containsComma(String input) {
+        return input.contains(COMMA);
     }
 
 }
