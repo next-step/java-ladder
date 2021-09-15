@@ -5,8 +5,11 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class LineTest {
 
@@ -53,5 +56,28 @@ class LineTest {
 
     //then
     assertThat(line.getSize()).isEqualTo(size);
+  }
+
+  @ParameterizedTest(name = "다음 위치 반환 테스트")
+  @CsvSource(
+      value = {"false,true,false,true,false|1,0,3,2,4",
+          "false,false,false,true|0,1,3,2",
+          "false|0"},
+      delimiter = '|'
+  )
+  void getMovablePositionTest(String pointsStr, String resultStr) {
+    //given
+    List<Boolean> points = Arrays.stream(pointsStr.split(","))
+        .map(Boolean::valueOf).collect(Collectors.toList());
+    List<Integer> result = Arrays.stream(resultStr.split(","))
+        .map(Integer::valueOf).collect(Collectors.toList());
+
+    //when
+    Line line = new Line(points);
+
+    //then
+    for (int i = 0; i < points.size(); i++){
+      assertThat(line.getMovablePosition(i)).isEqualTo(result.get(i));
+    }
   }
 }

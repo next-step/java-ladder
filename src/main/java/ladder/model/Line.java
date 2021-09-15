@@ -52,4 +52,20 @@ public class Line {
       throw new IllegalArgumentException("발판을 연속으로 놓을 수 없습니다.");
     }
   }
+
+  public int getMovablePosition(int currentPosition) {
+    if (currentPosition == points.size() - 1){
+      return points.get(currentPosition) ? currentPosition - 1 : currentPosition;
+    }
+    if (currentPosition == 0) {
+      return points.get(currentPosition + 1) ? currentPosition + 1 : currentPosition;
+    }
+    if (points.get(currentPosition)) {
+      return currentPosition - 1;
+    }
+    if (points.get(currentPosition + 1)) {
+      return currentPosition + 1;
+    }
+    return currentPosition;
+  }
 }
