@@ -7,7 +7,7 @@ import step4.util.StringUtil;
 
 public class Name {
 
-    private static final int NAME_MAX_LENGTH = 3;
+    private static final int NAME_MAX_LENGTH = 5;
 
     private final String name;
 
