@@ -18,6 +18,10 @@ public class User {
         return new User(name);
     }
 
+    public String nameToString() {
+        return name.value();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

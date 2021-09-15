@@ -4,6 +4,7 @@ import static step4.util.StringUtil.containsComma;
 import static step4.util.StringUtil.splitByComma;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -41,6 +42,10 @@ public class Users {
 
     public User userByPosition(int position) {
         return users.get(position);
+    }
+
+    public List<User> values() {
+        return Collections.unmodifiableList(users);
     }
 
     @Override

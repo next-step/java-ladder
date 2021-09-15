@@ -3,6 +3,7 @@ package step4.domain.ladder;
 import java.util.Map;
 import java.util.Objects;
 import step4.domain.user.User;
+import step4.exception.ladder.LadderResultUserNotFoundException;
 
 public class LadderResult {
 
@@ -14,6 +15,18 @@ public class LadderResult {
 
     public static LadderResult of(Map<User, String> results) {
         return new LadderResult(results);
+    }
+
+    public String getResultByUser(User user) {
+        checkContainsUser(user);
+
+        return results.get(user);
+    }
+
+    private void checkContainsUser(User user) {
+        if (!results.containsKey(user)) {
+            throw new LadderResultUserNotFoundException();
+        }
     }
 
     @Override

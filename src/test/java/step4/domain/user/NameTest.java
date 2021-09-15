@@ -28,7 +28,7 @@ public class NameTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"test", "testt", "testte"})
+    @ValueSource(strings = {"testte", "testtes", "testtest"})
     @DisplayName("이름 3글자 제한 테스트")
     void validNameLengthTest(String input) {
 

@@ -1,6 +1,7 @@
 package step4.domain.ladder;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import step4.domain.user.Users;
@@ -50,6 +51,10 @@ public class LadderLine {
 
     public int move(int position) {
         return points.get(position).move();
+    }
+
+    public List<Point> values() {
+        return Collections.unmodifiableList(points);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package step4.domain.ladder;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,6 +52,10 @@ public class Ladder {
             now = line.move(now);
         }
         return now;
+    }
+
+    public List<LadderLine> values() {
+        return Collections.unmodifiableList(ladderLines);
     }
 
     @Override

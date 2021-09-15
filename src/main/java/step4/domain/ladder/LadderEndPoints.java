@@ -1,6 +1,7 @@
 package step4.domain.ladder;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import step4.domain.user.Users;
@@ -30,6 +31,10 @@ public class LadderEndPoints {
 
     public String endPointByPosition(int position) {
         return endPoints.get(position);
+    }
+
+    public List<String> values() {
+        return Collections.unmodifiableList(endPoints);
     }
 
 }

@@ -43,6 +43,10 @@ public class Point {
         return index;
     }
 
+    public boolean isNextConnect() {
+        return direction.isNext();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
