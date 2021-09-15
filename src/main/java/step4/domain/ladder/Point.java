@@ -25,11 +25,11 @@ public class Point {
     }
 
     public Point next(DirectionGenerateStrategy strategy) {
-        return new Point(index + NEXT_INDEX_VALUE, direction.next(strategy));
+        return new Point(Math.addExact(index, NEXT_INDEX_VALUE), direction.next(strategy));
     }
 
     public Point last() {
-        return new Point(index + NEXT_INDEX_VALUE, direction.last());
+        return new Point(Math.addExact(index, NEXT_INDEX_VALUE), direction.last());
     }
 
     @Override
