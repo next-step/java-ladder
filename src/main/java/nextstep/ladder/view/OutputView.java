@@ -32,6 +32,7 @@ public class OutputView {
     }
 
     private static void printLaddersAtHeight(Ladder ladder, int height) {
+        System.out.print("    ");
         for (Line line : ladder) {
             System.out.print(line.hasStep(height) ? "|-----" : "|     ");
         }
