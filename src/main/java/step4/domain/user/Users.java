@@ -35,6 +35,10 @@ public class Users {
         }
     }
 
+    public int usersCount() {
+        return users.size();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
