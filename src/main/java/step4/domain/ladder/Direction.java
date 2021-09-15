@@ -7,7 +7,6 @@ import step4.strategy.DirectionGenerateStrategy;
 public class Direction {
 
     private static final boolean DISCONNECT = false;
-    private static final boolean CONNECT = true;
 
     private final boolean left;
     private final boolean right;
