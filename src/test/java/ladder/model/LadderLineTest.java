@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.junit.jupiter.api.DisplayName;
@@ -35,6 +36,7 @@ class LadderLineTest {
     //given
     List<Boolean> points1 = Arrays.asList(true, false, false, true, false);  // 처음부터 발판 존재
     List<Boolean> points2 = Arrays.asList(false, false, true, true, false);  // 연속된 발판
+    List<Boolean> points3 = Collections.emptyList();
 
     //then
     assertThatIllegalArgumentException().isThrownBy(() -> {
@@ -42,6 +44,9 @@ class LadderLineTest {
     });
     assertThatIllegalArgumentException().isThrownBy(() -> {
       new LadderLine(points2);
+    });
+    assertThatIllegalArgumentException().isThrownBy(() -> {
+      new LadderLine(points3);
     });
   }
 
@@ -60,9 +65,11 @@ class LadderLineTest {
 
   @ParameterizedTest(name = "다음 위치 반환 테스트")
   @CsvSource(
-      value = {"false,true,false,true,false|1,0,3,2,4",
+      value = {
+          "false,true,false,true,false|1,0,3,2,4",
           "false,false,false,true|0,1,3,2",
-          "false|0"},
+          "false|0"
+      },
       delimiter = '|'
   )
   void getMovablePositionTest(String pointsStr, String resultStr) {
@@ -79,5 +86,11 @@ class LadderLineTest {
     for (int i = 0; i < points.size(); i++) {
       assertThat(ladderLine.getMovablePosition(i)).isEqualTo(result.get(i));
     }
+    assertThatIllegalArgumentException().isThrownBy(() -> {
+      ladderLine.getMovablePosition(-1);
+    });
+    assertThatIllegalArgumentException().isThrownBy(() -> {
+      ladderLine.getMovablePosition(result.size());
+    });
   }
 }
