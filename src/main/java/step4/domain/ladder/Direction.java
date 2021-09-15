@@ -31,6 +31,10 @@ public class Direction {
         return new Direction(right, strategy.generateDirection());
     }
 
+    public Direction last() {
+        return new Direction(right, DISCONNECT);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

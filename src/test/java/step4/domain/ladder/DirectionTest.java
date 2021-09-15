@@ -88,6 +88,21 @@ class DirectionTest {
     }
 
     @Test
+    @DisplayName("현재 Direction을 가지고 마지막 Direction을 생성할 수 있다.")
+    void createLastDirectionTest() {
+
+        // given
+        Direction direction = Direction.from(false, true);
+        Direction expected = Direction.from(true, false);
+
+        // when
+        Direction result = direction.last();
+
+        // then
+        assertThat(result).isEqualTo(expected);
+    }
+
+    @Test
     @DisplayName("equals, hashcode 테스트")
     void equalsHashCodeTest() {
 
