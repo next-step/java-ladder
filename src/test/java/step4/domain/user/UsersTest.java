@@ -1,11 +1,13 @@
 package step4.domain.user;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import step4.exception.user.UsersCountException;
 
 class UsersTest {
 
@@ -29,4 +31,18 @@ class UsersTest {
         // then
         assertThat(result).isEqualTo(expected);
     }
+
+    @Test
+    @DisplayName("사다리 게임이 두명이상 들어오지 않을 때 Exception이 발생해야 한다.")
+    void usersSizeExceptionTest() {
+
+        // given
+        String input = "pobi";
+
+        // when & then
+        assertThatExceptionOfType(UsersCountException.class)
+            .isThrownBy(() -> Users.of(input))
+            .withMessageMatching("사람의 수는 2명이상이 들어와야 한다.");
+    }
+
 }

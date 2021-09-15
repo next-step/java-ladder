@@ -1,11 +1,13 @@
 package step4.domain.user;
 
+import static step4.util.StringUtil.containsComma;
 import static step4.util.StringUtil.splitByComma;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import step4.exception.user.UsersCountException;
 
 public class Users {
 
@@ -20,9 +22,17 @@ public class Users {
     }
 
     public static Users of(String usernames) {
+        checkUsersCount(usernames);
+
         return new Users(Arrays.stream(splitByComma(usernames))
             .map(User::of)
             .collect(Collectors.toList()));
+    }
+
+    private static void checkUsersCount(String usernames) {
+        if (!containsComma(usernames)) {
+            throw new UsersCountException();
+        }
     }
 
     @Override
