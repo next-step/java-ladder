@@ -1,8 +1,8 @@
 package nextstep.ladder.domain;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Players {
     private static final int MIN_PLAYER_COUNT = 2;
@@ -13,20 +13,18 @@ public class Players {
     }
 
     private List<Player> init(String nameString) {
-        List<Player> playerList = new ArrayList<>();
         String[] carNameArray = nameString.split(",");
 
         validPlayerCount(carNameArray.length);
 
-        Arrays.stream(carNameArray)
-                .forEach(name -> playerList.add(new Player(name)));
-
-        return playerList;
+        return Arrays.stream(carNameArray)
+                .map(player -> new Player(player))
+                .collect(Collectors.toList());
     }
 
     private void validPlayerCount(int playerCount) {
         if (playerCount < MIN_PLAYER_COUNT) {
-            throw new IllegalArgumentException("플레이어는 최소 2명 이상 이어야 합니다.");
+            throw new IllegalArgumentException("플레이어는 최소 " +MIN_PLAYER_COUNT + "명 이상 이어야 합니다.");
         }
     }
 
@@ -38,4 +36,11 @@ public class Players {
         return players.size();
     }
 
+    public boolean validResultCount(LadderResults ladderResults) {
+        return this.players.size() == ladderResults.countOfLadderResults();
+    }
+
+    public String indexOf(int location) {
+        return players.get(location).getName();
+    }
 }

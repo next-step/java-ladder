@@ -1,17 +1,16 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Player;
-import nextstep.ladder.domain.Players;
+import nextstep.ladder.domain.*;
 
 import java.util.List;
+import java.util.Set;
 
 public class ResultView {
     private static final String PRINT_LINE = "-----|";
     private static final String PRINT_NO_LINE = "     |";
     private static final String FORMAT_NAME = "%6s";
     private static final String FORMAT_RESULT = "\n실행결과\n\n";
+    public static final String ALL_RESULTS = "all";
 
     public static void printResult(final Players players, final Ladder ladder) {
 
@@ -33,22 +32,22 @@ public class ResultView {
         System.out.printf(String.format(FORMAT_NAME, name));
     }
 
-    static void printLadder(final List<Line> ladderFloors) {
-        ladderFloors.stream().forEach(ResultView::printLine);
+    static void printLadder(final List<LadderLine> ladderLines) {
+        ladderLines.stream().forEach(ResultView::printLine);
     }
 
-    static void printLine(final Line line) {
+    static void printLine(final LadderLine ladderLine) {
         printNoLine();
 
-        line.getPoints()
+        ladderLine.getPoints()
                 .stream()
                 .forEach(ResultView::printColumn);
 
         printLineFeed();
     }
 
-    static void printColumn(final boolean line) {
-        if (line == true) {
+    static void printColumn(final Point point) {
+        if (point.possibleGoRight() == true) {
             printLine();
             return;
         }
@@ -66,5 +65,25 @@ public class ResultView {
 
     static void printLineFeed() {
         System.out.println();
+    }
+
+    public static void printLadderResult(List<LadderResult> results) {
+        results
+                .forEach(result -> System.out.print(String.format("%6s", result.getResult())));
+        System.out.println();
+    }
+
+    public static void printPlayersResults(String whoWantResult, GameResults gameResults) {
+        System.out.println(FORMAT_RESULT);
+        if (whoWantResult.equals(ALL_RESULTS)) {
+            printAllPlayersResults(gameResults);
+            return;
+        }
+        System.out.println(gameResults.findResultByPlayer(whoWantResult));
+    }
+
+    private static void printAllPlayersResults(GameResults gameResults) {
+        Set<String> players = gameResults.getPlayers();
+        players.forEach(player -> System.out.println(player + " : " + gameResults.findResultByPlayer(player)));
     }
 }
