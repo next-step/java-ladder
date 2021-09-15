@@ -154,4 +154,21 @@ class PointTest {
         assertThat(result).isEqualTo(expected);
     }
 
+    @Test
+    @DisplayName("왼쪽으로 연결되어있으면 왼쪽으로 이동할 수 있다.")
+    void moveLeftTest() {
+
+        // given
+        Point prev = Point.first(() -> true);
+        Point now = prev.next(() -> true);
+        Point next = now.last();
+        int expected = 0;
+
+        // when
+        int result = now.move();
+
+        // then
+        assertThat(result).isEqualTo(expected);
+    }
+
 }

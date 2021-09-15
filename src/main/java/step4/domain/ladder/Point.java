@@ -37,7 +37,7 @@ public class Point {
             return Math.addExact(index, NEXT_INDEX_VALUE);
         }
         if (direction.isPrev()) {
-            return Math.addExact(index, NEXT_INDEX_VALUE);
+            return Math.subtractExact(index, NEXT_INDEX_VALUE);
         }
 
         return index;
