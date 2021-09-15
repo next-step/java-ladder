@@ -72,7 +72,7 @@ class LadderLineTest {
       },
       delimiter = '|'
   )
-  void getMovablePositionTest(String pointsStr, String resultStr) {
+  void nextPositionTest(String pointsStr, String resultStr) {
     //given
     List<Boolean> points = Arrays.stream(pointsStr.split(","))
         .map(Boolean::valueOf).collect(Collectors.toList());
@@ -84,13 +84,13 @@ class LadderLineTest {
 
     //then
     for (int i = 0; i < points.size(); i++) {
-      assertThat(ladderLine.getMovablePosition(i)).isEqualTo(result.get(i));
+      assertThat(ladderLine.nextPosition(i)).isEqualTo(result.get(i));
     }
     assertThatIllegalArgumentException().isThrownBy(() -> {
-      ladderLine.getMovablePosition(-1);
+      ladderLine.nextPosition(-1);
     });
     assertThatIllegalArgumentException().isThrownBy(() -> {
-      ladderLine.getMovablePosition(result.size());
+      ladderLine.nextPosition(result.size());
     });
   }
 }

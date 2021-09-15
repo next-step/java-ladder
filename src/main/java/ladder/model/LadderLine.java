@@ -17,14 +17,16 @@ public class LadderLine {
 
   public static LadderLine randomLadderLine(int size) {
     List<Boolean> points = new ArrayList<>();
-    points.add(false);
+    if (size > 0) {
+      points.add(false);
+    }
     while (points.size() < size) {
       addRandomPoint(points);
     }
     return new LadderLine(points);
   }
 
-  public int getMovablePosition(int currentPosition) {
+  public int nextPosition(int currentPosition) {
     validateCurrentPosition(currentPosition);
     if (currentPosition == points.size() - 1) {
       return points.get(currentPosition) ? currentPosition - 1 : currentPosition;
