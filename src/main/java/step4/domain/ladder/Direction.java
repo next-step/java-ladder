@@ -1,6 +1,7 @@
 package step4.domain.ladder;
 
 import java.util.Objects;
+import step4.strategy.DirectionGenerateStrategy;
 
 public class Direction {
 
@@ -19,8 +20,15 @@ public class Direction {
         return new Direction(left, right);
     }
 
-    public static Direction first(boolean right) {
-        return new Direction(DISCONNECT, right);
+    public static Direction first(DirectionGenerateStrategy strategy) {
+        return new Direction(DISCONNECT, strategy.generateDirection());
+    }
+
+    public Direction next(DirectionGenerateStrategy strategy) {
+        if (right) {
+            return new Direction(right, DISCONNECT);
+        }
+        return new Direction(right, strategy.generateDirection());
     }
 
     @Override

@@ -12,26 +12,39 @@ class DirectionTest {
     void createFirstTrueTest() {
 
         // given
-        boolean right = true;
         Direction expected = Direction.from(false, true);
 
         // when
-        Direction result = Direction.first(right);
+        Direction result = Direction.first(() -> true);
 
         // then
         assertThat(result).isEqualTo(expected);
     }
 
     @Test
-    @DisplayName("첫번째 좌표 rigth-false를 생성할 수 있다.")
+    @DisplayName("첫번째 좌표 right-false를 생성할 수 있다.")
     void createFirstFalseTest() {
 
         // given
-        boolean right = false;
         Direction expected = Direction.from(false, false);
 
         // when
-        Direction result = Direction.first(right);
+        Direction result = Direction.first(() -> false);
+
+        // then
+        assertThat(result).isEqualTo(expected);
+    }
+
+    @Test
+    @DisplayName("현재 Direction right-true을 가지고 다음 Direction을 생성할 수 있다.")
+    void createNestRigthTest() {
+
+        // given
+        Direction first = Direction.first(() -> true);
+        Direction expected = Direction.from(true, false);
+
+        // when
+        Direction result = first.next(() -> true);
 
         // then
         assertThat(result).isEqualTo(expected);
