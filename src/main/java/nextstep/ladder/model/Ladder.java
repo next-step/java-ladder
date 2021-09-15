@@ -46,22 +46,20 @@ public class Ladder implements Iterable<Line> {
         return lines.length;
     }
 
-    public int climb(int startWidth) {
-        int currentWidth = startWidth;
+    public void climb(Player player) {
         for (int currentHeight = START_HEIGHT; currentHeight < height(); currentHeight++) {
-            currentWidth = getCurrentWidth(currentWidth, currentHeight);
+            getCurrentWidth(player, currentHeight);
         }
-        return currentWidth;
     }
 
-    private int getCurrentWidth(int currentWidth, int currentHeight) {
-        if (canGoLeft(currentWidth, currentHeight)) {
-            return currentWidth - 1;
+    private void getCurrentWidth(Player player, int currentHeight) {
+        if (canGoLeft(player.getCurrentWidth(), currentHeight)) {
+            player.goLeft();
+            return;
         }
-        if (canGoRight(currentWidth, currentHeight)) {
-            return currentWidth + 1;
+        if (canGoRight(player.getCurrentWidth(), currentHeight)) {
+            player.goRight();
         }
-        return currentWidth;
     }
 
     private boolean canGoLeft(int currentWidth, int currentHeight) {

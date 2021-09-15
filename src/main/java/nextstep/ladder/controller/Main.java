@@ -29,7 +29,8 @@ public class Main {
                 continue;
             }
             Player player = new Player(names.indexOf(currentName));
-            OutputView.printResult(results.at(player.climb(ladder)));
+            ladder.climb(player);
+            OutputView.printResult(results.at(player.getCurrentWidth()));
         }
     }
 
@@ -37,7 +38,8 @@ public class Main {
         List<Label> orderedResults = new ArrayList<>();
         for (Label name : names) {
             Player player = new Player(names.indexOf(name));
-            orderedResults.add(results.at(player.climb(ladder)));
+            ladder.climb(player);
+            orderedResults.add(results.at(player.getCurrentWidth()));
         }
         OutputView.printResultsWithNames(names, orderedResults);
     }
