@@ -8,6 +8,9 @@ import step4.strategy.DirectionGenerateStrategy;
 
 public class LadderLine {
 
+    private final static int START_INDEX = 0;
+    private final static int VALUE_FOR_USER_SIZE = 2;
+
     private final List<Point> points;
 
     private LadderLine(List<Point> points) {
@@ -33,7 +36,7 @@ public class LadderLine {
     }
 
     private static Point createBody(Users users, DirectionGenerateStrategy strategy, List<Point> points, Point point) {
-        for (int i=1; i < users.usersCount() - 1; i++){
+        for (int i = START_INDEX; i < users.usersCount() - VALUE_FOR_USER_SIZE; i++) {
             point = point.next(strategy);
             points.add(point);
         }
