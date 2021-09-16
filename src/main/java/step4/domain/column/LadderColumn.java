@@ -2,6 +2,7 @@ package step4.domain.column;
 
 import java.util.Arrays;
 import java.util.List;
+import step4.exceptions.NotEqualColumnSizeException;
 import step4.exceptions.UserNumberException;
 
 public class LadderColumn {
@@ -30,7 +31,7 @@ public class LadderColumn {
 
     public void match(LadderColumn ladderColumn) {
         if (names.size() != ladderColumn.names.size()) {
-            throw new ColumnSizeException();
+            throw new NotEqualColumnSizeException();
         }
     }
 

@@ -1,10 +1,10 @@
-package step4.domain.column;
+package step4.exceptions;
 
-public class ColumnSizeException extends IllegalArgumentException {
+public class NotEqualColumnSizeException extends IllegalArgumentException {
 
     private static final String COLUMN_SIZE = "시작 칼럼의 개수와, 결과 칼럼의 개수는 같아야 합니다.";
 
-    public ColumnSizeException() {
+    public NotEqualColumnSizeException() {
         super(COLUMN_SIZE);
     }
 }
