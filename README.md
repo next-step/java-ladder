@@ -38,8 +38,13 @@
 
 4. Name : 참여자 이름 클래스
    1. 이름은 최소 1글자, 최대 5글자로 부여할수 있다.
+
+5. LadderGameInfo : 사다리게임의 참여자목록, 결과목록 정보 클래스
+   1. 참여자목록과 결과목록의 수는 같아야한다. 
+   2. 참여자이름이 주어지면 참여자의 위치를 알 수있다. 
+   3. 위치가 주어지면 결과를 알 수 있다.
    
-5. InputView : 입력처리하는 클래스
-6. ResultView : 출력처리하는 클래스
+7. InputView : 입력처리하는 클래스
+8. ResultView : 출력처리하는 클래스
  
-7. RandomValueGenerator : 랜덤한 값을 생성하는 util클래스
+9. RandomValueGenerator : 랜덤한 값을 생성하는 util클래스
