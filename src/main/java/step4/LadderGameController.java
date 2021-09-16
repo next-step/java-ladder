@@ -10,7 +10,7 @@ import step4.view.InputView;
 
 public class LadderGameController {
 
-    public void run() {
+    public static void run() {
         LadderStartColumn startNames = new LadderStartColumn(InputView.requireUserName());
         LadderResultColumn resultNames = new LadderResultColumn(InputView.requireResultNames());
         startNames.matchSize(resultNames);
@@ -30,7 +30,5 @@ public class LadderGameController {
                 break;
             }
         }
-
-
     }
 }
