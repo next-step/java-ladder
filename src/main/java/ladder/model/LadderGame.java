@@ -18,7 +18,7 @@ public class LadderGame {
   }
 
   public String getResultByParticipant(String participant) {
-      int startPosition = ladderGameInfo.getParticipantPositionByName(participant);
+      int startPosition = ladderGameInfo.getParticipantPosition(participant);
       if (startPosition == -1){
         return "해당하는 참여자가 없습니다.";
       }

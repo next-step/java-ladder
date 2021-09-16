@@ -6,24 +6,24 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class NameTest {
+class LimitedStringTest {
 
   @ParameterizedTest(name = "생성 테스트 : {0}")
   @ValueSource(strings = {"p", "po", "pob", "pobi", "pobi2"})
   void createTest(String value) {
 
     //when
-    Name name = new Name(value);
+    LimitedString limitedString = new LimitedString(value);
 
     //then
-    assertThat(name.getValue()).isEqualTo(value);
+    assertThat(limitedString.getValue()).isEqualTo(value);
   }
 
   @ParameterizedTest(name = "잘못된 생성 테스트 : {0}")
   @ValueSource(strings = {"", "123456", "1234567"})
   void invalidCreateTest(String value) {
     assertThatIllegalArgumentException().isThrownBy(() -> {
-      new Name(value);
+      new LimitedString(value);
     });
   }
 }
