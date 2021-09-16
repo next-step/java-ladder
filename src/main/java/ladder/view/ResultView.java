@@ -10,18 +10,18 @@ public class ResultView {
   private static final char FOOT_HOLD_CHAR = '-';
   private static final char NO_FOOT_HOLD_CHAR = ' ';
 
-  public static void printResult(LadderGame ladderGame) {
+  public static void printLadderGameResult(LadderGame ladderGame) {
     System.out.println("\n실행결과\n");
 
-    printParticipants(ladderGame.getParticipantNames());
-
+    printAccordingToFootHoldWidth(ladderGame.getParticipants());
     for (int height = 0; height < ladderGame.getLadderHeight(); height++) {
       printLadderLine(ladderGame, height);
     }
+    printAccordingToFootHoldWidth(ladderGame.getResults());
   }
 
-  private static void printParticipants(List<String> participants) {
-    participants.forEach(s -> System.out.printf("%" + (FOOT_HOLD_WIDTH + 1) + "s", s));
+  private static void printAccordingToFootHoldWidth(List<String> stringList) {
+    stringList.forEach(s -> System.out.printf("%" + (ResultView.FOOT_HOLD_WIDTH + 1) + "s", s));
     System.out.println();
   }
 

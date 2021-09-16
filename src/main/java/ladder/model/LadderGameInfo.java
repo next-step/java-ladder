@@ -32,7 +32,7 @@ public class LadderGameInfo {
     return results.get(position);
   }
 
-  public List<String> getParticipantNames() {
+  public List<String> getParticipants() {
     return participants.stream().map(Name::getValue).collect(Collectors.toList());
   }
 

@@ -1,6 +1,7 @@
 package ladder;
 
 import ladder.model.LadderGame;
+import ladder.model.LadderGameInfo;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
@@ -9,12 +10,14 @@ public class Main {
   public static void main(String[] args) {
     try {
 
-      String participantNames = InputView.inputParticipantNames();
+      String participants = InputView.inputParticipants();
+      String results = InputView.inputResults();
+      LadderGameInfo ladderGameInfo = new LadderGameInfo(participants, results);
       int ladderHeight = InputView.inputLadderHeight();
 
-      LadderGame ladderGame = new LadderGame(participantNames, ladderHeight);
+      LadderGame ladderGame = new LadderGame(ladderGameInfo, ladderHeight);
 
-      ResultView.printResult(ladderGame);
+      ResultView.printLadderGameResult(ladderGame);
 
     } catch (NumberFormatException e) {
       System.err.println("숫자값으로 입력해주세요.");
