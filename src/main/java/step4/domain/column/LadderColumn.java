@@ -29,7 +29,7 @@ public class LadderColumn {
         return names;
     }
 
-    public void match(LadderColumn ladderColumn) {
+    public void matchSize(LadderColumn ladderColumn) {
         if (names.size() != ladderColumn.names.size()) {
             throw new NotEqualColumnSizeException();
         }

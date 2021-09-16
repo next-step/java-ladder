@@ -13,7 +13,7 @@ public class LadderGameController {
     public void run() {
         LadderStartColumn startNames = new LadderStartColumn(InputView.requireUserName());
         LadderResultColumn resultNames = new LadderResultColumn(InputView.requireResultNames());
-        startNames.match(resultNames);
+        startNames.matchSize(resultNames);
 
         LadderHeight height = new LadderHeight(InputView.requireHeight());
         Ladder ladder = Ladder.init(height.value(), startNames.sizeOfPerson());
