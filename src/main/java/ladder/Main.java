@@ -9,7 +9,6 @@ public class Main {
 
   public static void main(String[] args) {
     try {
-
       String participants = InputView.inputParticipants();
       String results = InputView.inputResults();
       LadderGameInfo ladderGameInfo = new LadderGameInfo(participants, results);
@@ -17,8 +16,12 @@ public class Main {
 
       LadderGame ladderGame = new LadderGame(ladderGameInfo, ladderHeight);
 
-      ResultView.printLadderGameResult(ladderGame);
+      ResultView.printLadderResult(ladderGame);
 
+      while (true) {
+        String participantForResult = InputView.inputParticipantForResult();
+        ResultView.printLadderGameResult(ladderGame, participantForResult);
+      }
     } catch (NumberFormatException e) {
       System.err.println("숫자값으로 입력해주세요.");
     } catch (Exception e) {

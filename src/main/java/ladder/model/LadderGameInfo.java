@@ -33,7 +33,9 @@ public class LadderGameInfo {
   }
 
   public List<String> getParticipants() {
-    return participants.stream().map(Name::getValue).collect(Collectors.toList());
+    return participants.stream()
+        .map(Name::getValue)
+        .collect(Collectors.toList());
   }
 
   public List<String> getResults() {
