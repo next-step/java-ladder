@@ -1,5 +1,7 @@
 package ladder.model;
 
+import java.util.Objects;
+
 public class Name {
 
   private static final int MIN_NAME_LENGTH = 1;
@@ -22,5 +24,22 @@ public class Name {
           "생성 가능한 이름의 길이는 " + MIN_NAME_LENGTH + " ~ " + MAX_NAME_LENGTH + " 글자 입니다"
       );
     }
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Name name = (Name) o;
+    return Objects.equals(value, name.value);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(value);
   }
 }
