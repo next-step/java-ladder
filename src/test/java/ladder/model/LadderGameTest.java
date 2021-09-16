@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 class LadderGameTest {
 
   @Test
-  @DisplayName("생성테스트")
+  @DisplayName("생성 테스트")
   void createTest() {
     //given
     String participants = "pobi,honux,crong,jk";
@@ -35,7 +35,7 @@ class LadderGameTest {
   }
 
   @Test
-  @DisplayName("생성테스트")
+  @DisplayName("잘못된 생성")
   void invalidCreateTest() {
     //given
     String participants = "pobi,honux,crong,jk";
@@ -51,5 +51,32 @@ class LadderGameTest {
     assertThatIllegalArgumentException().isThrownBy(() -> {
       new LadderGame(ladderGameInfo, ladder);
     });
+  }
+
+  @Test
+  @DisplayName("게임결과 조회하기 테스트")
+  void getResultByParticipantTest() {
+    //given
+    String participants = "pobi,honux,crong,jk";
+    String results = "꽝,5000,꽝,3000";
+    LadderGameInfo ladderGameInfo = new LadderGameInfo(participants, results);
+
+    List<LadderLine> ladderLines = new ArrayList<>();
+    ladderLines.add(new LadderLine(Arrays.asList(false, true, false, true)));
+    ladderLines.add(new LadderLine(Arrays.asList(false, false, true, false)));
+    ladderLines.add(new LadderLine(Arrays.asList(false, true, false, false)));
+    ladderLines.add(new LadderLine(Arrays.asList(false, false, true, false)));
+    ladderLines.add(new LadderLine(Arrays.asList(false, true, false, true)));
+    Ladder ladder = new Ladder(ladderLines);
+
+    //when
+    LadderGame ladderGame = new LadderGame(ladderGameInfo, ladder);
+
+    //then
+    assertThat(ladderGame.getResultByParticipant("pobi")).isEqualTo("꽝");
+    assertThat(ladderGame.getResultByParticipant("honux")).isEqualTo("3000");
+    assertThat(ladderGame.getResultByParticipant("crong")).isEqualTo("꽝");
+    assertThat(ladderGame.getResultByParticipant("jk")).isEqualTo("5000");
+    assertThat(ladderGame.getResultByParticipant("no")).isEqualTo("해당하는 참여자가 없습니다.");
   }
 }

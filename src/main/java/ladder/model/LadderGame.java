@@ -17,6 +17,15 @@ public class LadderGame {
     this.ladder = ladder;
   }
 
+  public String getResultByParticipant(String participant) {
+      int startPosition = ladderGameInfo.getParticipantPositionByName(participant);
+      if (startPosition == -1){
+        return "해당하는 참여자가 없습니다.";
+      }
+      int endPosition = ladder.resultPositionOf(startPosition);
+      return ladderGameInfo.getResultByPosition(endPosition);
+  }
+
   public boolean isExistFoothold(int heightIdx, int widthIdx) {
     return ladder.isExistFoothold(heightIdx, widthIdx);
   }
