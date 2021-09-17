@@ -6,18 +6,18 @@ import java.util.Objects;
 
 public class Point {
     public static final Point INVALID_POINT = new Point(Integer.MAX_VALUE - 1, Integer.MAX_VALUE);
-    private final int MAX_INDEX;
-    private final int MIN_INDEX = 0;
+    private final int maxIndex;
+    private final int minIndex = 0;
     private int index;
 
-    public Point(int index, int MAX_INDEX) {
-        this.MAX_INDEX = MAX_INDEX;
+    public Point(int index, int maxIndex) {
+        this.maxIndex = maxIndex;
         validation(index);
         this.index = index;
     }
 
     private void validation(int index) {
-        if (index < 0 || index > MAX_INDEX) {
+        if (index < 0 || index > maxIndex) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_INDEX.message());
         }
     }
@@ -27,21 +27,21 @@ public class Point {
     }
 
     public Point right() {
-        if (this.index < MAX_INDEX) {
-            return new Point(this.index + 1, MAX_INDEX);
+        if (index < maxIndex) {
+            return new Point(index + 1, maxIndex);
         }
         return INVALID_POINT;
     }
 
     public Point left() {
-        if (this.index > 0) {
-            return new Point(this.index - 1, MAX_INDEX);
+        if (index > 0) {
+            return new Point(index - 1, maxIndex);
         }
         return INVALID_POINT;
     }
 
     public final int MAX_INDEX(){
-        return MAX_INDEX;
+        return maxIndex;
     }
 
     @Override

@@ -50,18 +50,17 @@ public class Players {
 
     public void move(List<Direction> directions) {
         AtomicInteger index = new AtomicInteger();
-        directions.stream()
-                .forEach(dir -> {
+        directions.forEach(dir -> {
                     players.get(index.getAndIncrement()).move(dir);
                 });
     }
 
     public int size() {
-        return this.players.size();
+        return players.size();
     }
 
     public int findPosition(String name) {
-        return this.players.stream()
+        return players.stream()
                 .filter(player -> name.equals(player.name()))
                 .findFirst()
                 .orElse(NONE)
@@ -69,6 +68,6 @@ public class Players {
     }
 
     public Stream<Player> stream() {
-        return this.players.stream();
+        return players.stream();
     }
 }

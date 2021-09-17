@@ -10,43 +10,50 @@ import nextstep.ladder2.view.OutputView;
 import java.util.Scanner;
 
 public class App {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        Players players;
-        Results results;
-        int height = 0;
-        while(true){
-            try{
-                String names = InputView.getName(sc);
-                players = Players.of(names);
 
-                String result = InputView.getResults(sc);
-                results = Results.of(result);
+    private static Scanner sc = new Scanner(System.in);
 
-                height = InputView.getHeight(sc);
-                break;
-            }catch(Exception e){
-                System.out.println(e.getMessage());
-                continue;
-            }
-        }
+    public static void main(String[] args) throws Exception {
+        InputData data = input();
+        playLadderGame(data);
+    }
 
+    private static void playLadderGame(InputData data) throws Exception {
         MakeRealLine maker = new MakeRealLine();
+        Ladder ladder = new Ladder(maker, data.height(), data.playerSize());
 
-
-        Ladder ladder = new Ladder(maker, height, players.size());
-
+        Players players = data.players();
+        Results results = data.results();
 
         OutputView.viewInit(players, ladder, results);
 
         ladder.play(players);
-        String name = InputView.inputName(sc);
 
+        showResult(players, results);
+    }
+
+    private static void showResult(Players players, Results results) {
+        String name = InputView.inputName(sc);
         while (!"all".equals(name)) {
             OutputView.showResult(players, results, name);
             name = InputView.inputName(sc);
         }
-
         OutputView.showAllResult(players, results);
+    }
+
+    private static InputData input() {
+        Players players;
+        Results results;
+        int height = 0;
+
+        String names = InputView.getName(sc);
+        players = Players.of(names);
+
+        String result = InputView.getResults(sc);
+        results = Results.of(result);
+
+        height = InputView.getHeight(sc);
+
+        return InputData.of(players, results, height);
     }
 }

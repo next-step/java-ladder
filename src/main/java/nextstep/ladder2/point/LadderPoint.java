@@ -38,9 +38,10 @@ public class LadderPoint {
 
     public Direction chooseDirection(List<Boolean> ladderLine){
         int currentPosition = current().index();
-        if(left() != Point.INVALID_POINT && ladderLine.get(left().index())){
+        if (left() != Point.INVALID_POINT && ladderLine.get(left().index())) {
             return Direction.LEFT;
-        }else if(right() != Point.INVALID_POINT && ladderLine.get(right().index())){
+        }
+        if (right() != Point.INVALID_POINT && ladderLine.get(right().index())) {
             return Direction.RIGHT;
         }
         return Direction.STAY;

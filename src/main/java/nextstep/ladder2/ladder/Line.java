@@ -6,6 +6,8 @@ import nextstep.ladder2.point.LadderPoint;
 import nextstep.ladder2.point.Point;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,10 +16,14 @@ public class Line {
 
     public Line(LineMaker maker, int size) {
         boolean pre = false;
-        this.ladderLine = new ArrayList<>();
+        this.ladderLine = new LinkedList<>();
+        boolean[] line = new boolean[size];
+
+
         for(int i=0; i<size; i++){
-            pre = maker.makeLine(pre);
-            ladderLine.add(maker.makeLine(pre));
+            boolean newLine = maker.makeLine(pre);
+            ladderLine.add(newLine);
+            pre = new Boolean(newLine);
         }
     }
 
