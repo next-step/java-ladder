@@ -13,8 +13,8 @@ public class OutputView {
     public static void printLabels(Labels labels) {
         StringBuilder stringBuilder = new StringBuilder();
         for (Label label : labels) {
-            stringBuilder.append(label.toString());
             appendBlanks(stringBuilder, label.length());
+            stringBuilder.append(label);
         }
         System.out.println(stringBuilder);
     }
@@ -32,7 +32,7 @@ public class OutputView {
     }
 
     private static void printLaddersAtHeight(Ladder ladder, int height) {
-        System.out.print("    ");
+        System.out.print("     ");
         for (Line line : ladder) {
             System.out.print(line.hasStep(height) ? "|-----" : "|     ");
         }
