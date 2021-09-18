@@ -21,7 +21,7 @@ public class Point {
         List<Point> points = new ArrayList<>();
         points.add(first(connections.get(FIRST_POINT_INDEX)));
         for (int i = 1; i < connections.size(); ++i) {
-            Point prev = points.get(i-1);
+            Point prev = points.get(i - 1);
             points.add(prev.next(connections.get(i)));
         }
         points.add(last(points));
