@@ -57,21 +57,16 @@ public class Ladder implements Iterable<Line> {
     }
 
     private int getCurrentWidth(int currentWidth, int currentHeight) {
-        if (canGoLeft(currentWidth, currentHeight)) {
-            return currentWidth - 1;
+        if (hasLeftLine(currentWidth)) {
+            int newWidth = getLeftLine(currentWidth).goLeftIfCan(currentWidth, currentHeight);
+            if (newWidth != currentWidth) {
+                return newWidth;
+            }
         }
-        if (canGoRight(currentWidth, currentHeight)) {
-            return currentWidth + 1;
+        if (hasRightLine(currentWidth)) {
+            return getRightLine(currentWidth).goRightIfCan(currentWidth, currentHeight);
         }
         return currentWidth;
-    }
-
-    private boolean canGoLeft(int currentWidth, int currentHeight) {
-        return hasLeftLine(currentWidth) && getLeftLine(currentWidth).hasStep(currentHeight);
-    }
-
-    private boolean canGoRight(int currentWidth, int currentHeight) {
-        return hasRightLine(currentWidth) && getRightLine(currentWidth).hasStep(currentHeight);
     }
 
     @Override

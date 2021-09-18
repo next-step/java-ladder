@@ -23,6 +23,20 @@ public class Line {
         return steps[height].exist();
     }
 
+    public int goLeftIfCan(int currentWidth, int currentHeight) {
+        if (hasStep(currentHeight)) {
+            return currentWidth - 1;
+        }
+        return currentWidth;
+    }
+
+    public int goRightIfCan(int currentWidth, int currentHeight) {
+        if (hasStep(currentHeight)) {
+            return currentWidth + 1;
+        }
+        return currentWidth;
+    }
+
     public int height() {
         return steps.length;
     }
