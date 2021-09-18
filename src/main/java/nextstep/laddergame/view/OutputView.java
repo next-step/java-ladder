@@ -4,7 +4,7 @@ import nextstep.laddergame.domain.*;
 
 import java.io.PrintStream;
 import java.util.List;
-import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -77,21 +77,22 @@ public class OutputView {
         printStream.println("결과를 보고 싶은 사람은?");
     }
 
-    public void printPlayResult(Map<PlayerName, String> results, String name) {
+    public void printPlayResult(LadderResults ladderResults, String playerName) {
         printStream.println("실행 결과");
-        if (ALL_PLAYER_RESULT.equals(name)) {
-            printStream.println(render(results));
+        if (ALL_PLAYER_RESULT.equals(playerName)) {
+            printStream.println(render(ladderResults));
             return;
         }
-        if (results.containsKey(PlayerName.of(name))) {
-            printStream.println(results.get(PlayerName.of(name)));
-            return;
+        try {
+            printStream.println(ladderResults.getResult(playerName));
+        } catch (IllegalArgumentException | NoSuchElementException e) {
+            printStream.println("존재하지 않는 이름입니다.");
         }
-        printStream.println("존재하지 않는 이름입니다.");
     }
 
-    private String render(Map<PlayerName, String> results) {
-        return results.entrySet()
+    private String render(LadderResults ladderResults) {
+        return ladderResults.getResults()
+                .entrySet()
                 .stream()
                 .map(nameAndResult -> String.format(NAME_AND_RESULT_RENDERING_FORMAT, nameAndResult.getKey(), nameAndResult.getValue()))
                 .collect(Collectors.joining(NEW_LINE));

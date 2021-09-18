@@ -4,8 +4,6 @@ import nextstep.laddergame.domain.*;
 import nextstep.laddergame.view.InputView;
 import nextstep.laddergame.view.OutputView;
 
-import java.util.Map;
-
 public class LadderGame {
 
     private final InputView inputView;
@@ -22,7 +20,7 @@ public class LadderGame {
         LadderHeights ladderHeights = inputLadderHeights();
         Ladder ladder = Ladder.of(players, ladderHeights);
         outputView.printLadder(players, ladder, playResults);
-        Map<PlayerName, String> ladderResults = ladder.getResults(players, playResults);
+        LadderResults ladderResults = ladder.getResults(players, playResults);
         while (true) {
             outputView.printResultCheckInputMessage();
             outputView.printPlayResult(ladderResults, inputView.getPlayerName());

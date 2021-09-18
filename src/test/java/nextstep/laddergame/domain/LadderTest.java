@@ -4,7 +4,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
-import java.util.Map;
 
 import static nextstep.laddergame.domain.LineConnection.CONNECTED;
 import static nextstep.laddergame.domain.LineConnection.UNCONNECTED;
@@ -29,7 +28,7 @@ class LadderTest {
         Players players = Players.of(Arrays.asList("a", "b", "c", "d"));
         PlayResults playResults = PlayResults.with(players.size(), Arrays.asList("A", "B", "C", "D"));
         Ladder ladder = createLadder();
-        Map<PlayerName, String> ladderResults = ladder.getResults(players, playResults);
+        LadderResults ladderResults = ladder.getResults(players, playResults);
         /*
          *  a     b     c     d
          *  |-----|     |-----|
@@ -37,10 +36,10 @@ class LadderTest {
          *  |     |     |-----|
          *  A     B     C     D
          */
-        assertThat(ladderResults.get(PlayerName.of("a"))).isEqualTo("D");
-        assertThat(ladderResults.get(PlayerName.of("b"))).isEqualTo("A");
-        assertThat(ladderResults.get(PlayerName.of("c"))).isEqualTo("C");
-        assertThat(ladderResults.get(PlayerName.of("d"))).isEqualTo("B");
+        assertThat(ladderResults.getResult("a")).isEqualTo("D");
+        assertThat(ladderResults.getResult("b")).isEqualTo("A");
+        assertThat(ladderResults.getResult("c")).isEqualTo("C");
+        assertThat(ladderResults.getResult("d")).isEqualTo("B");
     }
 
     private Ladder createLadder() {
