@@ -12,22 +12,15 @@ class LadderTest {
     @DisplayName("사다리 모양에 따른 climb 결과 테스트")
     public void climb(int height, int zeroResult, int oneResult) {
         Ladder ladder = new Ladder(2, height);
-        Player player0 = new Player(0);
-        Player player1 = new Player(1);
+        int width0 = 0;
+        int width1 = 1;
 
-        ladder.climb(player0);
-        assertThat(player0.getCurrentWidth()).isEqualTo(0);
-        ladder.climb(player1);
-        assertThat(player1.getCurrentWidth()).isEqualTo(1);
+        assertThat(ladder.climb(width0)).isEqualTo(0);
+        assertThat(ladder.climb(width1)).isEqualTo(1);
 
         ladder.drawSteps(new OneByTwoDrawStrategy(true));
 
-        player0 = new Player(0);
-        player1 = new Player(1);
-
-        ladder.climb(player0);
-        assertThat(player0.getCurrentWidth()).isEqualTo(zeroResult);
-        ladder.climb(player1);
-        assertThat(player1.getCurrentWidth()).isEqualTo(oneResult);
+        assertThat(ladder.climb(width0)).isEqualTo(zeroResult);
+        assertThat(ladder.climb(width1)).isEqualTo(oneResult);
     }
 }

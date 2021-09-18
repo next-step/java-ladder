@@ -3,7 +3,6 @@ package nextstep.ladder.controller;
 import nextstep.ladder.model.Ladder;
 import nextstep.ladder.model.Label;
 import nextstep.ladder.model.Labels;
-import nextstep.ladder.model.Player;
 import nextstep.ladder.model.RandomDrawStrategy;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
@@ -28,18 +27,16 @@ public class Main {
                 climbAll(names, results, ladder);
                 continue;
             }
-            Player player = new Player(names.indexOf(currentName));
-            ladder.climb(player);
-            OutputView.printResult(results.at(player.getCurrentWidth()));
+            int resultWidth = ladder.climb(names.indexOf(currentName));
+            OutputView.printResult(results.at(resultWidth));
         }
     }
 
     private static void climbAll(Labels names, Labels results, Ladder ladder) {
         List<Label> orderedResults = new ArrayList<>();
         for (Label name : names) {
-            Player player = new Player(names.indexOf(name));
-            ladder.climb(player);
-            orderedResults.add(results.at(player.getCurrentWidth()));
+            int resultWidth = ladder.climb(names.indexOf(name));
+            orderedResults.add(results.at(resultWidth));
         }
         OutputView.printResultsWithNames(names, orderedResults);
     }
