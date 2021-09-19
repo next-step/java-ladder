@@ -5,13 +5,11 @@ import java.util.List;
 
 public class Line {
 
-    private static final int FIRST_POSITION = 0;
-
-    private final List<LineConnection> connections;
+    private final List<Point> points;
 
     private Line(List<LineConnection> connections) {
         validateNotConnectedInSeries(connections);
-        this.connections = Collections.unmodifiableList(connections);
+        this.points = Point.listOf(connections);
     }
 
     private void validateNotConnectedInSeries(List<LineConnection> connections) {
@@ -30,36 +28,18 @@ public class Line {
         return new Line(lineConnectStrategy.getLineConnections());
     }
 
-    public List<LineConnection> getConnections() {
-        return connections;
+    public List<Point> getPoints() {
+        return Collections.unmodifiableList(points);
     }
 
-    public int move(int position) {
-        validatePositionRange(position);
-        if (isLastPosition(position)) {
-            return leftConnectionOf(position).move(position, Direction.RIGHT);
-        }
-        if (position == FIRST_POSITION || rightConnectionOf(position).isConnected()) {
-            return rightConnectionOf(position).move(position, Direction.LEFT);
-        }
-        return leftConnectionOf(position).move(position, Direction.RIGHT);
+    public int move(int index) {
+        validatePositionRange(index);
+        return points.get(index).move();
     }
 
-    private boolean isLastPosition(int position) {
-        return position == connections.size();
-    }
-
-    private LineConnection rightConnectionOf(int position) {
-        return connections.get(position);
-    }
-
-    private LineConnection leftConnectionOf(int position) {
-        return connections.get(position - 1);
-    }
-
-    private void validatePositionRange(int position) {
-        if (position < FIRST_POSITION || position > connections.size()) {
-            throw new IllegalArgumentException(String.format("포지션 값이 유효하지 않습니다. position: %s", position));
+    private void validatePositionRange(int index) {
+        if (index < 0 || points.size() <= index) {
+            throw new IllegalArgumentException(String.format("포인트가 존재하지 않습니다. index: %s", index));
         }
     }
 }

@@ -1,5 +1,6 @@
 package nextstep.laddergame.domain;
 
+import java.util.Collections;
 import java.util.List;
 
 public class PlayResults {
@@ -22,7 +23,7 @@ public class PlayResults {
     }
 
     public List<String> getResults() {
-        return results;
+        return Collections.unmodifiableList(results);
     }
 
     public String resultAt(int position) {

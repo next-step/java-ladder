@@ -42,8 +42,8 @@ public class OutputView {
 
     public void printLadder(Players players, Ladder ladder, PlayResults playResults) {
         printStream.println("사다리 결과");
-        printStream.println(render(players.getPlayerNames()));
-        printStream.println(render(ladder));
+        printStream.println(renderPlayerNames(players.getPlayerNames()));
+        printStream.println(renderLadder(ladder));
         printStream.println(render(playResults.getResults()));
     }
 
@@ -53,18 +53,24 @@ public class OutputView {
                 .collect(Collectors.joining());
     }
 
-    private String render(Ladder ladder) {
+    private String renderPlayerNames(List<PlayerName> playerNames) {
+        return playerNames.stream()
+                .map(str -> String.format(LIST_RENDERING_FORMAT, str))
+                .collect(Collectors.joining());
+    }
+
+    private String renderLadder(Ladder ladder) {
         List<Line> lines = ladder.getLines();
         return lines.stream()
-                .map(this::render)
+                .map(line -> String.format(LINE_RENDERING_FORMAT, renderConnection(line.getPoints())))
                 .collect(Collectors.joining(NEW_LINE));
     }
 
-    private String render(Line line) {
-        List<LineConnection> connections = line.getConnections();
-        return String.format(LINE_RENDERING_FORMAT, connections.stream()
-                .map(connection -> connection.isConnected()? CONNECTED_POINT_RENDERING_FORMAT : UNCONNECTED_POINT_RENDERING_FORMAT)
-                .collect(Collectors.joining(POINT_DELIMITER)));
+    private String renderConnection(List<Point> points) {
+        return points.stream()
+                .limit(points.size() - 1)
+                .map(point -> point.hasRightConnection() ? CONNECTED_POINT_RENDERING_FORMAT : UNCONNECTED_POINT_RENDERING_FORMAT)
+                .collect(Collectors.joining(POINT_DELIMITER));
     }
 
     public void printResultCheckInputMessage() {

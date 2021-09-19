@@ -3,8 +3,9 @@ package nextstep.laddergame.domain;
 import java.util.function.Function;
 
 public enum Direction {
-    LEFT(position -> position + 1),
-    RIGHT(position -> position - 1);
+    LEFT(index -> index - 1),
+    RIGHT(index -> index + 1),
+    DOWN(index -> index);
 
     private final Function<Integer, Integer> mover;
 
@@ -12,8 +13,11 @@ public enum Direction {
         this.mover = mover;
     }
 
-    public int move(int position) {
-        return mover.apply(position);
+    public int move(int index) {
+        return mover.apply(index);
     }
 
+    public boolean isRight() {
+        return this.equals(RIGHT);
+    }
 }
