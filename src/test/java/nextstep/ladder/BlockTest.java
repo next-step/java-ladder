@@ -6,28 +6,19 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import nextstep.ladder.domain.Block;
+import nextstep.ladder.domain.Direction;
+import nextstep.ladder.domain.Participant;
+import nextstep.ladder.domain.Position;
 
 public class BlockTest {
 
 	@Test
-	@DisplayName("사다리 가로선이 연속되면 안됨")
+	@DisplayName("블록 생성")
 	void test() {
-		Block first = new Block(false);
+		Block first = new Block(Direction.RIGHT, new Position(1));
 
-		Block second = first.makeNext(true);
+		Block second = first.makeNext(Direction.LEFT);
 
-		assertThat(second.isConnected()).isTrue();
-
-		Block third = second.makeNext(true);
-
-		assertThat(third.isConnected()).isFalse();
-
-		Block four = third.makeNext(false);
-
-		assertThat(four.isConnected()).isFalse();
-
-		Block fix = four.makeNext(true);
-
-		assertThat(fix.isConnected()).isTrue();
+		assertThat(second.direction()).isEqualTo(Direction.LEFT);
 	}
 }
