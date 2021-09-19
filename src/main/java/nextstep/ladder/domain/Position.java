@@ -2,8 +2,8 @@ package nextstep.ladder.domain;
 
 import java.util.Objects;
 
-public class Position {
-	public static final String NEGATIVE_NUMBER_IS_NOT_VALIED = "좌표값은 음수가 될 수 없습니다.";
+public class Position implements Comparable<Position> {
+	public static final String NEGATIVE_NUMBER_IS_NOT_VALID = "좌표값은 음수가 될 수 없습니다.";
 	private final int positon;
 
 	public Position(int positon) {
@@ -12,8 +12,8 @@ public class Position {
 	}
 
 	private void validate(int positon) {
-		if(positon < 0) {
-			throw new IllegalArgumentException(NEGATIVE_NUMBER_IS_NOT_VALIED);
+		if (positon < 0) {
+			throw new IllegalArgumentException(NEGATIVE_NUMBER_IS_NOT_VALID);
 		}
 	}
 
@@ -34,5 +34,10 @@ public class Position {
 	@Override
 	public int hashCode() {
 		return Objects.hash(positon);
+	}
+
+	@Override
+	public int compareTo(Position o) {
+		return Integer.compare(this.positon, o.positon);
 	}
 }
