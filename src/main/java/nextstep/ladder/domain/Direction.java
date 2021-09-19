@@ -9,7 +9,7 @@ public enum Direction {
 
 	Direction(int distance) {
 		this.distance = distance;
-	};
+	}
 
 	public Position apply(Position position) {
 		return position.move(this.distance);
