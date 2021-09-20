@@ -1,31 +1,34 @@
 package nextstep.ladder.model;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Labels implements Iterable<Label>{
-    private final Label[] labels;
+    private final List<Label> labels;
 
     public Labels(String[] names) {
         this.labels = Arrays.stream(names)
             .map(Label::new)
-            .toArray(Label[]::new);
+            .collect(Collectors.toList());
     }
 
     public int size() {
-        return labels.length;
+        return labels.size();
     }
 
     @Override
     public Iterator<Label> iterator() {
-        return Arrays.stream(labels).iterator();
+        return labels.iterator();
     }
 
     public int indexOf(Label label) {
-        return Arrays.asList(labels).indexOf(label);
+        return Collections.singletonList(labels).indexOf(label);
     }
 
     public Label at(int index) {
-        return labels[index];
+        return labels.get(index);
     }
 }

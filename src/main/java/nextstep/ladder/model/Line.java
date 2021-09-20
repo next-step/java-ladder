@@ -1,26 +1,28 @@
 package nextstep.ladder.model;
 
+import java.util.List;
+
 public class Line {
-    private final Step[] steps;
+    private final List<Step> steps;
 
     public Line(int height) {
         this.steps = Step.initialize(height);
     }
 
     public void drawSteps(DrawStrategy drawStrategy, Line previousLine) {
-        for (int height = 0; height < steps.length; height++) {
+        for (int height = 0; height < steps.size(); height++) {
             decideToDraw(drawStrategy, previousLine, height);
         }
     }
 
     private void decideToDraw(DrawStrategy drawStrategy, Line previousLine, int height) {
         if (drawStrategy.draw() && (previousLine == null || !previousLine.hasStep(height))) {
-            this.steps[height] = Step.EXIST;
+            steps.set(height, Step.EXIST);
         }
     }
 
     public boolean hasStep(int height) {
-        return steps[height].exist();
+        return steps.get(height).exist();
     }
 
     public int goLeftIfCan(int currentWidth, int currentHeight) {
@@ -38,6 +40,6 @@ public class Line {
     }
 
     public int height() {
-        return steps.length;
+        return steps.size();
     }
 }

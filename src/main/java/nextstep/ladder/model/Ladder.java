@@ -2,18 +2,20 @@ package nextstep.ladder.model;
 
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder implements Iterable<Line> {
     public static final int START_HEIGHT = 0;
     public static final int MIN_WIDTH = 0;
 
-    private final Line[] lines;
+    private final List<Line> lines;
 
     public Ladder(int width, int height) {
         this.lines = IntStream.range(0, width - 1)
             .mapToObj(unused -> new Line(height))
-            .toArray(Line[]::new);
+            .collect(Collectors.toList());
     }
 
     public void drawSteps(DrawStrategy drawStrategy) {
@@ -23,7 +25,7 @@ public class Ladder implements Iterable<Line> {
     }
 
     private Line getRightLine(int width) {
-        return lines[width];
+        return lines.get(width);
     }
 
     private boolean hasRightLine(int currentWidth) {
@@ -31,7 +33,7 @@ public class Ladder implements Iterable<Line> {
     }
 
     private Line getLeftLine(int width) {
-        return lines[width - 1];
+        return lines.get(width - 1);
     }
 
     private boolean hasLeftLine(int currentWidth) {
@@ -39,11 +41,11 @@ public class Ladder implements Iterable<Line> {
     }
 
     public int height() {
-        return lines[MIN_WIDTH].height();
+        return lines.get(MIN_WIDTH).height();
     }
 
     private int width() {
-        return lines.length;
+        return lines.size();
     }
 
     public int climb(int startWidth) {
@@ -71,6 +73,6 @@ public class Ladder implements Iterable<Line> {
 
     @Override
     public Iterator<Line> iterator() {
-        return Arrays.stream(lines).iterator();
+        return lines.iterator();
     }
 }
