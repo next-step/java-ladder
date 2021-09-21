@@ -1,9 +1,11 @@
 package nextstep.ladder.controller;
 
-import nextstep.ladder.model.Ladder;
 import nextstep.ladder.model.Label;
 import nextstep.ladder.model.Labels;
+import nextstep.ladder.model.LineLadderBuilder;
 import nextstep.ladder.model.RandomDrawStrategy;
+import nextstep.ladder.model.api.Ladder;
+import nextstep.ladder.model.api.LadderBuilder;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
 
@@ -15,11 +17,11 @@ public class Main {
         Labels names = new Labels(InputView.readNames());
         Labels results = new Labels(InputView.readResults());
 
-        Ladder ladder = new Ladder(names.size(), InputView.readHeight());
-        ladder.drawSteps(new RandomDrawStrategy());
+        LadderBuilder builder = new LineLadderBuilder(new RandomDrawStrategy());
+        Ladder ladder = builder.build(names.size(), InputView.readHeight());
 
         OutputView.printLabels(names);
-        OutputView.printLadders(ladder);
+        OutputView.printLadder(ladder);
         OutputView.printLabels(results);
 
         for (Label currentName = new Label(InputView.readName()); !currentName.isExit(); currentName = new Label(InputView.readName())) {

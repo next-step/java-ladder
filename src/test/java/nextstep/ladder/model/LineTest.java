@@ -30,4 +30,16 @@ class LineTest {
         assertThat(line.hasStep(0)).isTrue();
         assertThat(line.hasStep(1)).isFalse();
     }
+
+    @Test
+    @DisplayName("오른쪽 왼쪽으로 갈수 있으면 움직인 width 리턴")
+    public void goIfCan() {
+        Line line = new Line(HEIGHT);
+        line.drawSteps(new OneByTwoDrawStrategy(false), null);
+
+        assertThat(line.goRightIfCan(0, 0)).isEqualTo(1);
+        assertThat(line.goRightIfCan(0, 1)).isEqualTo(0);
+        assertThat(line.goLeftIfCan(1, 0)).isEqualTo(0);
+        assertThat(line.goRightIfCan(1, 1)).isEqualTo(1);
+    }
 }

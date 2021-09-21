@@ -25,7 +25,7 @@ public class Labels implements Iterable<Label>{
     }
 
     public int indexOf(Label label) {
-        return Collections.singletonList(labels).indexOf(label);
+        return labels.indexOf(label);
     }
 
     public Label at(int index) {

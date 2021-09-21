@@ -1,9 +1,10 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.model.Line;
-import nextstep.ladder.model.Ladder;
+import nextstep.ladder.model.LineLadder;
 import nextstep.ladder.model.Label;
 import nextstep.ladder.model.Labels;
+import nextstep.ladder.model.api.Ladder;
 
 import java.util.List;
 
@@ -25,18 +26,20 @@ public class OutputView {
         }
     }
 
-    public static void printLadders(Ladder ladder) {
+    public static void printLadder(Ladder ladder) {
         for (int height = 0; height < ladder.height(); height++) {
-            printLaddersAtHeight(ladder, height);
+            printLadderAtHeight(ladder, height);
         }
     }
 
-    private static void printLaddersAtHeight(Ladder ladder, int height) {
-        System.out.print("     ");
-        for (Line line : ladder) {
-            System.out.print(line.hasStep(height) ? "|-----" : "|     ");
+    private static void printLadderAtHeight(Ladder ladder, int height) {
+        if (ladder instanceof LineLadder) {
+            System.out.print("     ");
+            for (Line line : (LineLadder) ladder) {
+                System.out.print(line.hasStep(height) ? "|-----" : "|     ");
+            }
+            System.out.println("|");
         }
-        System.out.println("|");
     }
 
     public static void printResult(Label result) {
