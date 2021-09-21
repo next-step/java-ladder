@@ -15,15 +15,13 @@ public class Line {
 	private static final String EMPTY_LINE = "     |";
 
 	private final List<Boolean> points = new ArrayList<>();
-	private final LineStrategy lineStrategy;
 
 	public Line(int players, LineStrategy lineStrategy) {
-		this.lineStrategy = lineStrategy;
 		IntStream.range(START_INDEX, players)
-			.forEach(index -> createPoints());
+			.forEach(index -> createPoints(lineStrategy));
 	}
 
-	private void createPoints() {
+	private void createPoints(LineStrategy lineStrategy) {
 		int preIndex = points.size() - PRE_INDEX;
 		boolean strategy = lineStrategy.createPoint();
 
