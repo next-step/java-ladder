@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import nextstep.ladder.domain.strategy.LineRandomStrategy;
 import nextstep.ladder.domain.strategy.LineStrategy;
 import nextstep.ladder.exception.MinimumLadderHeightException;
 
@@ -14,9 +13,8 @@ public class Ladder {
 
 	private final List<Line> lines;
 
-	public Ladder(int players, int height) {
+	public Ladder(int players, int height, LineStrategy lineStrategy) {
 		checkLadderHeight(height);
-		LineStrategy lineStrategy = new LineRandomStrategy();
 		lines = Stream.generate(() -> new Line(players, lineStrategy))
 			.limit(height)
 			.collect(Collectors.toList());
