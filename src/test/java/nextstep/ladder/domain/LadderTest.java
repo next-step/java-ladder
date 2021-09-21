@@ -16,4 +16,14 @@ class LadderTest {
 			.isInstanceOf(MinimumLadderHeightException.class);
 	}
 
+	@DisplayName(value = "사다리 생성")
+	@Test
+	void create() {
+		Ladder ladder = new Ladder(3, 5, new LineRandomStrategy());
+		int width = 2;
+		int height = 5;
+
+		assertThat(ladder.getLines().get(0).getPoints().size()).isEqualTo(width);
+		assertThat(ladder.getLines().size()).isEqualTo(height);
+	}
 }

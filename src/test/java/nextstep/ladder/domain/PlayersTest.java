@@ -17,7 +17,7 @@ class PlayersTest {
 		Players players = new Players(inputNames);
 		int playersCount = players.count();
 
-		assertThat(playersCount).isEqualTo(5);
+		assertThat(playersCount).isEqualTo(expect);
 	}
 
 	@DisplayName(value = "게임 참가자가 2인 미만이면 예외를 던짐")
