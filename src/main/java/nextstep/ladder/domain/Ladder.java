@@ -29,11 +29,7 @@ public class Ladder {
 		}
 	}
 
-	@Override
-	public String toString() {
-		StringBuilder view = new StringBuilder();
-		lines.forEach(line -> view.append(line.toString())
-			.append("\n"));
-		return view.toString();
+	public List<Line> getLines() {
+		return lines;
 	}
 }
