@@ -1,13 +1,8 @@
 package ladder.domain;
 
 import ladder.view.OutputView;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.*;
 
 
 class LineTest {
@@ -18,7 +13,7 @@ class LineTest {
     void drawHeightLine() {
         int countOfPerson = 3;
         line = new Line(countOfPerson);
-
+        
         OutputView outputView = new OutputView();
         StringBuilder oneLadder = outputView.drawOneLine(line);
         System.out.println(oneLadder.toString());
@@ -26,7 +21,7 @@ class LineTest {
 
     @Test
     @DisplayName("Line Ladder 탐색")
-    public void findRouteTest(){
+    public void findRouteTest() {
         int countOfPerson = 3;
         line = new Line(countOfPerson);
 
@@ -35,8 +30,8 @@ class LineTest {
         System.out.println(oneLadder.toString());
 
         int startPosition = 0;
-        System.out.println("startPosition: " +startPosition);
-        int result = line.findRoute( startPosition);
+        System.out.println("startPosition: " + startPosition);
+        int result = line.findRoute(startPosition);
         System.out.println(result);
 
     }

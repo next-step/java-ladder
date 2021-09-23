@@ -10,17 +10,20 @@ public class Line {
     private static final RandomNumber randomNumber = new RandomNumber();
     private static int maxCountofLadder;
     private static final int FIVE = 5;
-
+    private static final int THREE = 3;
+    private static final int TWO = 2;
+    private static final int ONE = 1;
+    private static final int ZERO = 0;
     private StringBuilder sb = new StringBuilder();
 
     public Line(int countOfPerson) {
         this.countOfPerson = countOfPerson;
-        maxCountofLadder = countOfPerson * 2 - 1;
-        drawLine();
+        maxCountofLadder = countOfPerson * TWO - ONE;
+        //drawLine();
     }
 
     public void drawLine() {
-        int totalLineSize = this.countOfPerson * 2 - 1;
+        int totalLineSize = this.countOfPerson * TWO - ONE;
         for (int i = 0; i < totalLineSize; i++) {
             drawLineByNumber(i);
         }
@@ -33,37 +36,31 @@ public class Line {
     public int findRoute(int startPosition) {
         int movablePosition = startPosition;
 
-        if (startPosition - 1 >= 0 && isInstalledLadder(startPosition - 1)) {
+        if (startPosition - ONE >= ZERO && isInstalledLadder(startPosition - ONE)) {
             movablePosition = moveLeft(movablePosition);
         }
-
-        if (startPosition + 1 <= maxCountofLadder && isInstalledLadder(startPosition + 1)) {
+        if (startPosition + ONE <= maxCountofLadder && isInstalledLadder(startPosition + ONE)) {
             movablePosition = moveRight(movablePosition);
         }
-
         return movablePosition;
     }
 
     private int moveLeft(int movablePosition) {
-
-        while (isInstalledLadder(movablePosition - 1)) {
+        while (isInstalledLadder(movablePosition - ONE)) {
             movablePosition--;
         }
-
         return movablePosition;
     }
 
     private int moveRight(int movablePosition) {
-        while (isInstalledLadder(movablePosition + 1)) {
+        while (isInstalledLadder(movablePosition + ONE)) {
             movablePosition++;
         }
-
         return movablePosition;
     }
 
-
     private boolean isInstalledLadder(int position) {
-        if (position < 0 || position > maxCountofLadder - 1) {
+        if (position < 0 || position > maxCountofLadder - ONE) {
             return false;
         }
         return this.points.get(position);
@@ -73,14 +70,13 @@ public class Line {
         if (isEvenNumber(position)) {
             addHeightLine(position);
         }
-
         if (!isEvenNumber(position)) {
             addWidthLine(position);
         }
     }
 
     private boolean isEvenNumber(int position) {
-        return position % 2 == 0;
+        return position % TWO == ZERO;
     }
 
     private void addWidthLine(int position) {
@@ -98,12 +94,12 @@ public class Line {
     }
 
     private boolean checkBeforeExistenceWidthLadder(int position) {
-        int beforeLadderPosition = position - 2;
+        int beforeLadderPosition = position - TWO;
         return this.points.get(beforeLadderPosition);
     }
 
     private boolean installedFirstLadderPosition(int position) {
-        return position < 3;
+        return position < THREE;
     }
 
     private void addHeightLine(int position) {
@@ -113,6 +109,4 @@ public class Line {
     private boolean isInstallWidthLadder(int number, int position) {
         return number > FIVE && !checkAdjacentWidthLine(position);
     }
-
-
 }

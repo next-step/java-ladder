@@ -16,7 +16,6 @@ public class Lines implements Iterable<Line> {
         for(Line line : this){
             resultPosition = line.findRoute(resultPosition);
         }
-
         return resultPosition;
     }
 

@@ -11,7 +11,9 @@ public class Ladder {
     public Ladder(int heightOfLadder, int userCount) {
         lineList = new ArrayList<>();
         for (int i = 0; i < heightOfLadder; i++) {
-            lineList.add(new Line(userCount));
+            Line newLine = new Line(userCount);
+            newLine.drawLine();
+            lineList.add(newLine);
         }
         lines = new Lines(lineList);
     }
