@@ -5,13 +5,13 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
-class NameTest {
+class LabelTest {
     @Test
-    @DisplayName("이름 길이가 5자를 넘으면 익셉션")
+    @DisplayName("label 길이가 5자를 넘으면 익셉션")
     public void nameLengthLimit() {
-        new Name("12345");
+        new Label("12345");
         assertThatThrownBy(() -> {
-            new Name("123456");
+            new Label("123456");
         }).isInstanceOf(IllegalArgumentException.class);
     }
 }
