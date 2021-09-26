@@ -6,12 +6,12 @@ class LadderLineTest {
     @Test
     public void init() {
         int sizeOfPerson = 5;
-        System.out.println(LadderLine.init(sizeOfPerson));
+        System.out.println(LadderLine.init(sizeOfPerson, new RandomLadderPointGenerator()));
     }
 
     @Test
     public void move() {
-        LadderLine line = LadderLine.init(2);
+        LadderLine line = LadderLine.init(2, new RandomLadderPointGenerator());
         System.out.println("ladder result : " + line.move(0));
     }
 }

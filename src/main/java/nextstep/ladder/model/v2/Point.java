@@ -19,8 +19,8 @@ public class Point {
         return index;
     }
 
-    public Point next() {
-        return new Point(index + 1, direction.next());
+    public Point next(LadderPointGenerator generator) {
+        return new Point(index + 1, direction.next(generator));
     }
 
     public Point next(Boolean right) {
@@ -29,6 +29,10 @@ public class Point {
 
     public Point last() {
         return new Point(index + 1, direction.last());
+    }
+
+    public boolean isRight() {
+        return direction.isRight();
     }
 
     public static Point first(Boolean right) {

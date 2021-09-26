@@ -3,7 +3,6 @@ package nextstep.ladder.model.v2;
 import java.util.Objects;
 
 import static java.lang.Boolean.FALSE;
-import static nextstep.ladder.model.v2.LadderPointGenerator.generatePoint;
 
 public class Direction {
     private final boolean left;
@@ -26,11 +25,11 @@ public class Direction {
         return this.right;
     }
 
-    public Direction next() {
+    public Direction next(LadderPointGenerator generator) {
         if (this.right) {
             return next(FALSE);
         }
-        return next(generatePoint());
+        return next(generator.generatePoint());
     }
 
     public Direction next(Boolean right) {
