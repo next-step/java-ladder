@@ -1,6 +1,5 @@
 package nextstep.ladder.model.v1;
 
-import nextstep.ladder.model.v1.Label;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
