@@ -18,16 +18,12 @@ public class Direction {
         this.right = right;
     }
 
-    public static Direction of(boolean left, boolean right) {
-        return new Direction(left, right);
-    }
-
-    public static Direction first(Boolean right) {
-        return of(FALSE, right);
-    }
-
     public boolean isLeft() {
         return left;
+    }
+
+    public boolean isRight() {
+        return this.right;
     }
 
     public Direction next() {
@@ -43,6 +39,14 @@ public class Direction {
 
     public Direction last() {
         return of(this.right, FALSE);
+    }
+
+    public static Direction of(boolean left, boolean right) {
+        return new Direction(left, right);
+    }
+
+    public static Direction first(Boolean right) {
+        return of(FALSE, right);
     }
 
     @Override
