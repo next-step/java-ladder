@@ -1,7 +1,6 @@
-package nextstep.ladder.model;
+package nextstep.ladder.model.v1;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;

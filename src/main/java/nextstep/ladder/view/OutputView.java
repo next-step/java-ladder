@@ -1,9 +1,9 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.model.Line;
-import nextstep.ladder.model.LineLadder;
-import nextstep.ladder.model.Label;
-import nextstep.ladder.model.Labels;
+import nextstep.ladder.model.v1.Line;
+import nextstep.ladder.model.v1.LineLadder;
+import nextstep.ladder.model.v1.Label;
+import nextstep.ladder.model.v1.Labels;
 import nextstep.ladder.model.api.Ladder;
 
 import java.util.List;

@@ -1,9 +1,9 @@
 package nextstep.ladder.controller;
 
-import nextstep.ladder.model.Label;
-import nextstep.ladder.model.Labels;
-import nextstep.ladder.model.LineLadderBuilder;
-import nextstep.ladder.model.RandomDrawStrategy;
+import nextstep.ladder.model.v1.Label;
+import nextstep.ladder.model.v1.Labels;
+import nextstep.ladder.model.v1.LineLadderBuilder;
+import nextstep.ladder.model.v1.RandomDrawStrategy;
 import nextstep.ladder.model.api.Ladder;
 import nextstep.ladder.model.api.LadderBuilder;
 import nextstep.ladder.view.InputView;
