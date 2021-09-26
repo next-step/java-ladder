@@ -1,8 +1,6 @@
-package nextstep.ladder.model;
+package nextstep.ladder.model.v1;
 
 import nextstep.ladder.model.api.Ladder;
-import nextstep.ladder.model.v1.DrawStrategy;
-import nextstep.ladder.model.v1.LineLadderBuilder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;

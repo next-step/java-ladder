@@ -1,4 +1,4 @@
-package nextstep.ladder.model;
+package nextstep.ladder.model.v1;
 
 import nextstep.ladder.model.v1.Line;
 import nextstep.ladder.model.v1.Lines;
