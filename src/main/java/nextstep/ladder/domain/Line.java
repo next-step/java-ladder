@@ -19,7 +19,7 @@ public class Line {
 	public void play(Participant participant) {
 		blocks
 			.stream()
-			.filter(block -> block.position().equals(participant.position()))
+			.filter(block -> participant.match(block.position()))
 			.findFirst()
 			.get()
 			.enter(participant);
@@ -32,23 +32,22 @@ public class Line {
 	}
 
 	private void createBlocks(int count) {
-		IntStream.range(0, count).forEach(number -> addNewBlock(count));
+		IntStream.range(0, count).forEach(number -> this.blocks.add(createBlock(count)));
 	}
 
-	private void addNewBlock(int maximumBlockSize) {
+	private Block createBlock(int maximumBlockSize) {
 		if (this.blocks.isEmpty()) {
-			this.blocks.add(new Block(LadderDirectionGenerator.makeRightOrNothing(), new Position(INITIAL_POSITION)));
-			return;
+			return new Block(LadderDirectionGenerator.makeRightOrNothing(), new Position(INITIAL_POSITION));
 		}
 
 		Block currentBlock = blocks.get(blocks.size() - 1);
 
 		if (this.blocks.size() == maximumBlockSize - 1) {
-			blocks.add(currentBlock.makeNext(Direction.NOTHING));
-			return;
+			return currentBlock.makeNext(Direction.NOTHING);
 		}
-		
-		blocks.add(currentBlock.makeNext(LadderDirectionGenerator.makeRightOrNothing()));
+
+		return currentBlock.makeNext(LadderDirectionGenerator.makeRightOrNothing());
+
 	}
 
 	public List<Block> blocks() {

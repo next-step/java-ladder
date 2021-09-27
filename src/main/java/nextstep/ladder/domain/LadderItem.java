@@ -16,4 +16,8 @@ public class LadderItem {
 	public Position position() {
 		return this.position;
 	}
+
+	public boolean match(Position position) {
+		return this.position.equals(position);
+	}
 }

@@ -21,7 +21,7 @@ public class Rewards {
 	public Reward findByPosition(Position position) {
 		return this.rewards
 			.stream()
-			.filter(reward -> reward.position().equals(position))
+			.filter(reward -> reward.match(position))
 			.findFirst()
 			.get();
 	}
