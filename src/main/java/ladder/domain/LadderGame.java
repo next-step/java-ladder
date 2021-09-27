@@ -14,15 +14,12 @@ public class LadderGame {
     }
 
     public Users start() {
-
         List<User> userResults = new ArrayList<>();
-
         for (User user : this.users.userList()) {
             int startPosition = lines.calulateGameResult(user.position());
             User newUser = new User(user.name(), startPosition);
             userResults.add(newUser);
         }
-
         return new Users(userResults);
     }
 

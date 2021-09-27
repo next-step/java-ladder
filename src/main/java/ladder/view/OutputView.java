@@ -22,16 +22,15 @@ public class OutputView {
         for (Line line : lines) {
             sb.append(drawOneLine(line));
         }
-        System.out.print(sb.toString());
+        System.out.print(sb);
     }
 
     public StringBuilder drawOneLine(Line line) {
         int position = 0;
         StringBuilder sb = new StringBuilder();
         sb.append(EMPTY_WIDTH_LADDER);
-
-        for (boolean isLadder : line.points()) {
-            drawLadderByType(sb, isLadder, position++);
+        for (boolean isInstalledLadder : line.points()) {
+            drawLadderByType(sb, isInstalledLadder, position++);
         }
         sb.append("\n");
         return sb;
@@ -40,18 +39,6 @@ public class OutputView {
     public void printResult(String[] inputResult) {
         Arrays.stream(inputResult).forEach(resultName -> System.out.printf("%6s", resultName));
         System.out.println();
-    }
-
-    private void drawLadderByType(StringBuilder sb, boolean isLadder, int position) {
-        if (isDrawHeightLadder(position, isLadder)) {
-            sb.append(HEIGHT_LADDER);
-        }
-        if (isDrawWidthLadder(position, isLadder)) {
-            sb.append(WIDTH_LADDER);
-        }
-        if (isDrawEmptySpace(position, isLadder)) {
-            sb.append(EMPTY_WIDTH_LADDER);
-        }
     }
 
     public void printUserResult(String result) {
@@ -64,6 +51,18 @@ public class OutputView {
         results.forEach((user, gameResult) -> {
             System.out.println(user + " : " + gameResult);
         });
+    }
+
+    private void drawLadderByType(StringBuilder sb, boolean isLadder, int position) {
+        if (isDrawHeightLadder(position, isLadder)) {
+            sb.append(HEIGHT_LADDER);
+        }
+        if (isDrawWidthLadder(position, isLadder)) {
+            sb.append(WIDTH_LADDER);
+        }
+        if (isDrawEmptySpace(position, isLadder)) {
+            sb.append(EMPTY_WIDTH_LADDER);
+        }
     }
 
     private boolean isDrawHeightLadder(int position, boolean isLadder) {

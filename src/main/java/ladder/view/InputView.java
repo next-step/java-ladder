@@ -13,7 +13,7 @@ public class InputView {
 
     public int inputLadderHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
-        return sc.nextInt();
+        return Integer.parseInt(sc.nextLine());
     }
 
     public String[] inputResults() {

@@ -58,6 +58,13 @@ public class LadderMain {
 
     private static Ladder makeLadder(InputView inputView, int userCount) {
         int ladderHeight = inputView.inputLadderHeight();
-        return new Ladder(ladderHeight, userCount);
+        List<Line> lineList = new ArrayList<>();
+        for (int i = 0; i < ladderHeight; i++) {
+            Line newLine = new Line(userCount);
+            newLine.drawOneLine();
+            lineList.add(newLine);
+        }
+        Lines lines = new Lines(lineList);
+        return new Ladder(lines);
     }
 }
