@@ -1,10 +1,13 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.model.Line;
-import nextstep.ladder.model.LineLadder;
-import nextstep.ladder.model.Label;
-import nextstep.ladder.model.Labels;
+import nextstep.ladder.model.v1.Line;
+import nextstep.ladder.model.v1.LineLadder;
+import nextstep.ladder.model.v1.Label;
+import nextstep.ladder.model.v1.Labels;
 import nextstep.ladder.model.api.Ladder;
+import nextstep.ladder.model.v2.LadderLine;
+import nextstep.ladder.model.v2.LateralLadder;
+import nextstep.ladder.model.v2.Point;
 
 import java.util.List;
 
@@ -34,12 +37,28 @@ public class OutputView {
 
     private static void printLadderAtHeight(Ladder ladder, int height) {
         if (ladder instanceof LineLadder) {
-            System.out.print("     ");
-            for (Line line : (LineLadder) ladder) {
-                System.out.print(line.hasStep(height) ? "|-----" : "|     ");
-            }
-            System.out.println("|");
+            printLineLadderAtHeight((LineLadder) ladder, height);
         }
+        if (ladder instanceof LateralLadder) {
+            printLateralLadderAtHeight((LateralLadder) ladder, height);
+        }
+    }
+
+    private static void printLineLadderAtHeight(LineLadder ladder, int height) {
+        System.out.print("     ");
+        for (Line line : ladder) {
+            System.out.print(line.hasStep(height) ? "|-----" : "|     ");
+        }
+        System.out.println("|");
+    }
+
+    private static void printLateralLadderAtHeight(LateralLadder ladder, int height) {
+        System.out.print("     ");
+        LadderLine line = ladder.getLine(height);
+        for (Point point : line) {
+            System.out.print(point.isRight() ? "|-----" : "|     ");
+        }
+        System.out.println();
     }
 
     public static void printResult(Label result) {

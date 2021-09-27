@@ -1,9 +1,8 @@
-package nextstep.ladder.model;
+package nextstep.ladder.model.v1;
 
 import nextstep.ladder.model.api.Ladder;
 
 import java.util.Iterator;
-import java.util.List;
 
 public class LineLadder implements Iterable<Line>, Ladder {
     public static final int START_HEIGHT = 0;

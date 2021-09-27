@@ -1,6 +1,7 @@
-package nextstep.ladder.model;
+package nextstep.ladder.model.v1;
 
 import nextstep.ladder.model.api.Ladder;
+import nextstep.ladder.model.api.LadderBuilder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -28,7 +29,7 @@ class LineLadderTest {
     public void build(DrawStrategy strategy, int result0, int result1) {
         int WIDTH = 2;
         int HEIGHT = 5;
-        LineLadderBuilder builder = new LineLadderBuilder(strategy);
+        LadderBuilder builder = new LineLadderBuilder(strategy);
         Ladder ladder = builder.build(WIDTH, HEIGHT);
 
         assertThat(ladder.height()).isEqualTo(HEIGHT);

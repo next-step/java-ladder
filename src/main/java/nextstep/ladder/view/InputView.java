@@ -1,6 +1,6 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.model.Label;
+import nextstep.ladder.model.v1.Label;
 
 import java.util.Arrays;
 import java.util.Scanner;
