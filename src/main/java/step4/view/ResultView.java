@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import step4.domain.Cross;
 import step4.domain.Ladder;
+import step4.domain.LadderResult;
 import step4.domain.column.LadderColumn;
 import step4.domain.LadderLine;
 import step4.domain.Point;
@@ -45,25 +46,25 @@ public class ResultView {
         return LADDER_EMPTY;
     }
 
-    public static void printTarget(List<Integer> ladderResult,
-        String target,
-        LadderColumn startNames,
-        LadderColumn resultNames) {
+    public static void printTarget(LadderResult ladderResult, String target) {
+
+        LadderColumn startNames = ladderResult.startNames();
+        LadderColumn resultNames = ladderResult.resultNames();
+        List<Integer> ladderMoveResult = ladderResult.moveResult();
 
         System.out.println("실행 결과");
         if (target.equals("all")) {
-            printAll(ladderResult, startNames, resultNames);
+            printAll(ladderMoveResult, startNames, resultNames);
             return;
         }
-        System.out.println(startNames.index(target));
-        System.out.println(ladderResult);
-        System.out.println(target + " : " + resultNames.name(ladderResult.get(startNames.index(target))));
+
+        System.out.println(target + " : " + resultNames.name(ladderMoveResult.get(startNames.index(target))));
     }
 
-    private static void printAll(List<Integer> ladderResult, LadderColumn startNames,
+    private static void printAll(List<Integer> ladderMoveResult, LadderColumn startNames,
         LadderColumn resultNames) {
-        for (int i = 0; i < ladderResult.size(); i++) {
-            System.out.println(startNames.name(i) + " : " + resultNames.name(ladderResult.get(i)));
+        for (int i = 0; i < ladderMoveResult.size(); i++) {
+            System.out.println(startNames.name(i) + " : " + resultNames.name(ladderMoveResult.get(i)));
         }
     }
 }

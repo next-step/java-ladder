@@ -28,7 +28,6 @@ public class Ladder {
             }
             ladderResult.add(userIndex);
         }
-        System.out.println(ladderResult);
         return ladderResult;
     }
 

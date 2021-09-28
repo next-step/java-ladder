@@ -1,6 +1,7 @@
 package step4;
 
 import java.util.List;
+import step4.domain.LadderResult;
 import step4.domain.column.LadderColumn;
 import step4.view.ResultView;
 import step4.domain.Ladder;
@@ -10,21 +11,26 @@ import step4.view.InputView;
 public class LadderGameController {
 
     public static void run() {
-        LadderColumn startNames = new LadderColumn(InputView.requireUserName());
-        LadderColumn resultNames = new LadderColumn(InputView.requireResultNames());
-        startNames.matchSize(resultNames);
+        LadderResult ladderResult = new LadderResult();
+        ladderResult.addStartNames(new LadderColumn(InputView.requireUserName()));
+        ladderResult.addResultNames(new LadderColumn(InputView.requireResultNames()));
+        ladderResult.matchNameSize();
 
         LadderHeight height = new LadderHeight(InputView.requireHeight());
-        Ladder ladder = Ladder.init(height.value(), startNames.sizeOfPerson());
-        List<Integer> ladderResult = ladder.move(startNames.sizeOfPerson());
+        Ladder ladder = Ladder.init(height.value(), ladderResult.sizeOfPerson());
+        ladderResult.addLadderResult(ladder.move(ladderResult.sizeOfPerson()));
 
-        ResultView.printColumn(startNames);
+        ResultView.printColumn(ladderResult.startNames());
         ResultView.printLadder(ladder);
-        ResultView.printColumn(resultNames);
+        ResultView.printColumn(ladderResult.resultNames());
 
+        showTargetResult(ladderResult);
+    }
+
+    private static void showTargetResult(LadderResult ladderResult) {
         while (true) {
             String target = InputView.requireTarget();
-            ResultView.printTarget(ladderResult, target, startNames, resultNames);
+            ResultView.printTarget(ladderResult, target);
             if (target.equals("all")) {
                 break;
             }
