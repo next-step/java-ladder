@@ -19,10 +19,6 @@ public class Lines implements Iterable<Line> {
         return resultPosition;
     }
 
-    private Line line(int row){
-        return this.lineList.get(row);
-    }
-
     @Override
     public Iterator<Line> iterator() {
         return lineList.iterator();
