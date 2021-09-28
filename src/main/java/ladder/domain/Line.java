@@ -49,6 +49,23 @@ public class Line {
         return movablePosition;
     }
 
+    public void addWidthLine(int position) {
+        if (isEvenNumber(position)) {
+            throw new IllegalArgumentException("이 위치에 세로 사다리를 설치할 수 없습니다.");
+        }
+
+        if(!checkAdjacentWidthLine(position)){
+            points[position] = true;
+        }
+    }
+
+    public void addHeightLine(int position) {
+        if (!isEvenNumber(position)) {
+            throw new IllegalArgumentException("이 위치에 가로 사다리를 설치할 수 없습니다.");
+        }
+        points[position] = true;
+    }
+
     private int moveLeft(int movablePosition) {
         while (isInstalledLadder(movablePosition - ONE)) {
             movablePosition--;
@@ -81,23 +98,6 @@ public class Line {
 
     private boolean isEvenNumber(int position) {
         return position % TWO == ZERO;
-    }
-
-    public void addWidthLine(int position) {
-        if (isEvenNumber(position)) {
-            throw new IllegalArgumentException("이 위치에 세로 사다리를 설치할 수 없습니다.");
-        }
-
-        if(!checkAdjacentWidthLine(position)){
-            points[position] = true;
-        }
-    }
-
-    public void addHeightLine(int position) {
-        if (!isEvenNumber(position)) {
-            throw new IllegalArgumentException("이 위치에 가로 사다리를 설치할 수 없습니다.");
-        }
-        points[position] = true;
     }
 
     private boolean checkAdjacentWidthLine(int position) {

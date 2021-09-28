@@ -52,6 +52,11 @@ public class Users implements Iterable<User> {
         return userNames;
     }
 
+    @Override
+    public Iterator<User> iterator() {
+        return this.userList.iterator();
+    }
+
     private void createUsers(String[] userNames) {
         userList = new ArrayList<>();
         AtomicInteger userOfInitIndex = new AtomicInteger();
@@ -59,10 +64,5 @@ public class Users implements Iterable<User> {
             User newUser = new User(username, userOfInitIndex.getAndIncrement() * 2);
             userList.add(newUser);
         });
-    }
-
-    @Override
-    public Iterator<User> iterator() {
-        return this.userList.iterator();
     }
 }

@@ -15,8 +15,10 @@ public class LadderMain {
     public static void main(String[] args) {
         Users users = makeUsers(inputView);
         Ladder ladder = makeLadder(inputView, users.count());
+
         String[] inputResult = inputView.inputResults();
         GameResult gameResult = new GameResult(inputResult);
+
         LadderGame ladderGame = new LadderGame(users, ladder.lines());
         users = ladderGame.start();
 
@@ -25,6 +27,10 @@ public class LadderMain {
         outputView.printResult(inputResult);
 
         String inputShowUserName = inputView.inputShowUserResult();
+        showResult(users, gameResult, inputShowUserName);
+    }
+
+    private static void showResult(Users users, GameResult gameResult, String inputShowUserName) {
         if (isShowAllResult(inputShowUserName)) {
             showAllUserResult(users, gameResult);
         }
