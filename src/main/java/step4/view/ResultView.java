@@ -7,8 +7,6 @@ import step4.domain.Ladder;
 import step4.domain.column.LadderColumn;
 import step4.domain.LadderLine;
 import step4.domain.Point;
-import step4.domain.column.LadderResultColumn;
-import step4.domain.column.LadderStartColumn;
 
 public class ResultView {
 
@@ -49,8 +47,8 @@ public class ResultView {
 
     public static void printTarget(List<Integer> ladderResult,
         String target,
-        LadderStartColumn startNames,
-        LadderResultColumn resultNames) {
+        LadderColumn startNames,
+        LadderColumn resultNames) {
 
         System.out.println("실행 결과");
         if (target.equals("all")) {
@@ -62,8 +60,8 @@ public class ResultView {
         System.out.println(target + " : " + resultNames.name(ladderResult.get(startNames.index(target))));
     }
 
-    private static void printAll(List<Integer> ladderResult, LadderStartColumn startNames,
-        LadderResultColumn resultNames) {
+    private static void printAll(List<Integer> ladderResult, LadderColumn startNames,
+        LadderColumn resultNames) {
         for (int i = 0; i < ladderResult.size(); i++) {
             System.out.println(startNames.name(i) + " : " + resultNames.name(ladderResult.get(i)));
         }

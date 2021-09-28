@@ -1,18 +1,17 @@
 package step4;
 
 import java.util.List;
+import step4.domain.column.LadderColumn;
 import step4.view.ResultView;
 import step4.domain.Ladder;
 import step4.domain.LadderHeight;
-import step4.domain.column.LadderResultColumn;
-import step4.domain.column.LadderStartColumn;
 import step4.view.InputView;
 
 public class LadderGameController {
 
     public static void run() {
-        LadderStartColumn startNames = new LadderStartColumn(InputView.requireUserName());
-        LadderResultColumn resultNames = new LadderResultColumn(InputView.requireResultNames());
+        LadderColumn startNames = new LadderColumn(InputView.requireUserName());
+        LadderColumn resultNames = new LadderColumn(InputView.requireResultNames());
         startNames.matchSize(resultNames);
 
         LadderHeight height = new LadderHeight(InputView.requireHeight());

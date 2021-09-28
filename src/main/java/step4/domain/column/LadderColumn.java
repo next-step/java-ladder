@@ -10,7 +10,6 @@ public class LadderColumn {
     List<String> names;
 
     public LadderColumn(String names) {
-
         this.names = Arrays.asList(names.split(","));
         if (this.names.size() < 2) {
             throw new UserNumberException();
