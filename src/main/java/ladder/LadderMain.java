@@ -4,29 +4,73 @@ import ladder.domain.*;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class LadderMain {
+    private static final String SMALL_ALL = "all";
+    private static final String BIG_ALL = "ALL";
+    private static InputView inputView = new InputView();
+    private static OutputView outputView = new OutputView();
 
     public static void main(String[] args) {
-        InputView inputView = new InputView();
-        String[] userNames = inputView.inputParticipateInUsers();
+        Users users = makeUsers(inputView);
+        Ladder ladder = makeLadder(inputView, users.count());
 
-        List<User> userList = new ArrayList<>();
-        Arrays.stream(userNames).forEach(username -> userList.add(new User(username)));
+        String[] inputResult = inputView.inputResults();
+        GameResult gameResult = new GameResult(inputResult);
 
-        Users users = new Users(userList);
-        users.checkDuplicateUser();
+        LadderGame ladderGame = new LadderGame(users, ladder.lines());
+        users = ladderGame.start();
 
-        int ladderHeight = inputView.inputLadderHeight();
-
-        Ladder ladder = new Ladder(ladderHeight, userList.size());
-
-        OutputView outputView = new OutputView();
-        outputView.printPaticipateInUsers(userNames);
-
+        outputView.printParticipateInUsers(users.userNames());
         outputView.printLadder(ladder.lines());
+        outputView.printResult(inputResult);
+
+        String inputShowUserName = inputView.inputShowUserResult();
+        showResult(users, gameResult, inputShowUserName);
+    }
+
+    private static void showResult(Users users, GameResult gameResult, String inputShowUserName) {
+        if (isShowAllResult(inputShowUserName)) {
+            showAllUserResult(users, gameResult);
+        }
+        if (!isShowAllResult(inputShowUserName)) {
+            showUserResult(users, gameResult, inputShowUserName);
+        }
+    }
+
+    private static void showAllUserResult(Users users, GameResult gameResult) {
+        Map<String, String> gameResults = gameResult.allResults(users);
+        outputView.printUserResults(gameResults);
+    }
+
+    private static void showUserResult(Users users, GameResult gameResult, String inputShowUserName) {
+        User user = users.findByName(inputShowUserName);
+        int userPosition = user.position();
+        String gameResultOfUser = gameResult.show(userPosition);
+        outputView.printUserResult(gameResultOfUser);
+    }
+
+    private static boolean isShowAllResult(String inputShowUserName) {
+        return inputShowUserName.equals(SMALL_ALL) || inputShowUserName.equals(BIG_ALL);
+    }
+
+    private static Users makeUsers(InputView inputView) {
+        String[] userNames = inputView.inputParticipateInUsers();
+        Users users = new Users(userNames);
+        users.checkDuplicateUser();
+        return users;
+    }
+
+    private static Ladder makeLadder(InputView inputView, int userCount) {
+        int ladderHeight = inputView.inputLadderHeight();
+        List<Line> lineList = new ArrayList<>();
+        for (int i = 0; i < ladderHeight; i++) {
+            Line newLine = new Line(userCount);
+            newLine.drawOneLine();
+            lineList.add(newLine);
+        }
+        Lines lines = new Lines(lineList);
+        return new Ladder(lines);
     }
 }

@@ -1,85 +1,114 @@
 package ladder.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Line {
-    private int pointCount;
-    private int countOfPerson;
-    private List<Boolean> points = new ArrayList<>();
-    private List<Integer> lineInfoList = new ArrayList<>();
-    private final RandomNumber randomNumber = new RandomNumber();
 
+    private static final RandomNumber randomNumber = new RandomNumber();
+    private static final int ZERO = 0;
+    private static final int ONE = 1;
+    private static final int TWO = 2;
+    private static final int FIVE = 5;
+    private static int maxCountOfLadder;
     private StringBuilder sb = new StringBuilder();
+    private int countOfPerson;
+    private int totalLineSize;
+    private boolean[] points;
 
     public Line(int countOfPerson) {
         this.countOfPerson = countOfPerson;
-        pointCount = calculatePointByPeople();
-        addLine();
+        maxCountOfLadder = countOfPerson * TWO - ONE;
+        totalLineSize = this.countOfPerson * TWO - ONE;
+        points = new boolean[totalLineSize];
     }
 
-    public void addWidthLine(int position) {
-        if (!checkAdjustLine(countOfPerson, position)) {
-            points.set(position, true);
+    public void drawOneLine() {
+        for (int i = 0; i < totalLineSize; i++) {
+            drawLadder(i);
         }
     }
 
-    public List<Integer> lineInfoList() {
-        return this.lineInfoList;
-    }
-
-    private boolean checkAdjustLine(int countOfPerson, int position) {
-        return countOfPerson > 2 && position > 1 && points.get(position - 2);
-    }
-
-    private int calculatePointByPeople() {
-        return countOfPerson * 2 - 1;
-    }
-
-    private boolean isHeightLadder(int index) {
-        return index % 2 == 0;
-    }
-
-    private boolean isWidthLadder(int index, boolean installableWidthLadder) {
-        return index % 2 != 0 && installableWidthLadder;
-    }
-
-    private boolean isEmptySpace(int index, boolean installableWidthLadder) {
-        return index % 2 != 0 && !installableWidthLadder;
-    }
-
-    public void addLine() {
-        for (int i = 0; i < pointCount; i++) {
-            checkPointLine(i, installableWidthLadder(i));
-        }
-    }
-
-    private boolean installableWidthLadder(int index) {
-        int resultRandomNumber = randomNumber.randomNumber();
-        boolean installableWidthLadder = randomNumber.installableLadder(resultRandomNumber);
-        return installableWidthLadder && !checkAdjustLine(countOfPerson, index);
-    }
-
-    public void checkPointLine(int index, boolean installableWidthLadder) {
-
-        if (isHeightLadder(index)) {
-            lineInfoList.add(1);
-        }
-
-        if (isWidthLadder(index, installableWidthLadder)) {
-            lineInfoList.add(2);
-        }
-
-        if (isEmptySpace(index, installableWidthLadder)) {
-            lineInfoList.add(0);
-        }
-
-    }
-
-
-    public List<Boolean> points() {
+    public boolean[] points() {
         return this.points;
     }
 
+    public boolean isDrawAtPosition(int position) {
+        if (position < ZERO || position > totalLineSize) {
+            throw new IllegalArgumentException("잘못된 위치를 입력했습니다.");
+        }
+        return this.points[position];
+    }
 
+    public int findRoute(int startPosition) {
+        int movablePosition = startPosition;
+
+        if (startPosition - ONE >= ZERO && isInstalledLadder(startPosition - ONE)) {
+            movablePosition = moveLeft(movablePosition);
+        }
+        if (startPosition + ONE <= maxCountOfLadder && isInstalledLadder(startPosition + ONE)) {
+            movablePosition = moveRight(movablePosition);
+        }
+        return movablePosition;
+    }
+
+    public void addWidthLine(int position) {
+        if (isEvenNumber(position)) {
+            throw new IllegalArgumentException("이 위치에 세로 사다리를 설치할 수 없습니다.");
+        }
+
+        if(!checkAdjacentWidthLine(position)){
+            points[position] = true;
+        }
+    }
+
+    public void addHeightLine(int position) {
+        if (!isEvenNumber(position)) {
+            throw new IllegalArgumentException("이 위치에 가로 사다리를 설치할 수 없습니다.");
+        }
+        points[position] = true;
+    }
+
+    private int moveLeft(int movablePosition) {
+        while (isInstalledLadder(movablePosition - ONE)) {
+            movablePosition--;
+        }
+        return movablePosition;
+    }
+
+    private int moveRight(int movablePosition) {
+        while (isInstalledLadder(movablePosition + ONE)) {
+            movablePosition++;
+        }
+        return movablePosition;
+    }
+
+    private boolean isInstalledLadder(int position) {
+        if (position < 0 || position > maxCountOfLadder - ONE) {
+            return false;
+        }
+        return this.points[position];
+    }
+
+    private void drawLadder(int position) {
+        if (isEvenNumber(position)) {
+            addHeightLine(position);
+        }
+        if (!isEvenNumber(position) && isInstallWidthLadder()) {
+            addWidthLine(position);
+        }
+    }
+
+    private boolean isEvenNumber(int position) {
+        return position % TWO == ZERO;
+    }
+
+    private boolean checkAdjacentWidthLine(int position) {
+        if(position == ONE){
+            return false;
+        }
+        return this.points[position - TWO];
+    }
+
+    private boolean isInstallWidthLadder() {
+        int number = randomNumber.randomNumber();
+        return number > FIVE;
+    }
 }
