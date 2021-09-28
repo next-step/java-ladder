@@ -15,14 +15,18 @@ class GameResultTest {
 
     private String[] results;
     private Users users;
+    private User tom;
+    private User jerry;
+    private User white;
+    private User jane;
 
     @BeforeEach
     void setUp() {
         results = new String[]{"꽝", "100", "200", "300"};
-        User tom = new User("tom", 0);
-        User jerry = new User("jerry", 2);
-        User white = new User("white", 4);
-        User jane = new User("jane", 6);
+        tom = new User("tom", 0);
+        jerry = new User("jerry", 2);
+        white = new User("white", 4);
+        jane = new User("jane", 6);
 
         List<User> userList = Arrays.asList(tom, jerry, white, jane);
         users = new Users(userList);
@@ -33,10 +37,10 @@ class GameResultTest {
     public void gameResultShowTest() {
         GameResult gameResult = new GameResult(results);
         assertAll(
-                () -> assertThat(gameResult.show(0)).isEqualTo("꽝"),
-                () -> assertThat(gameResult.show(1)).isEqualTo("100"),
-                () -> assertThat(gameResult.show(2)).isEqualTo("200"),
-                () -> assertThat(gameResult.show(3)).isEqualTo("300")
+                () -> assertThat(gameResult.show(tom.position())).isEqualTo("꽝"),
+                () -> assertThat(gameResult.show(jerry.position())).isEqualTo("100"),
+                () -> assertThat(gameResult.show(white.position())).isEqualTo("200"),
+                () -> assertThat(gameResult.show(jane.position())).isEqualTo("300")
         );
     }
 
