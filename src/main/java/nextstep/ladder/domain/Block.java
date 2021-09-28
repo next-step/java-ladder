@@ -1,22 +1,31 @@
 package nextstep.ladder.domain;
 
 public class Block {
+	private final Direction direction;
+	private final Position position;
 
-	private final boolean isConnected;
-
-	public Block(boolean isConnected) {
-		this.isConnected = isConnected;
+	public Block(Direction direction, Position position) {
+		this.direction = direction;
+		this.position = position;
 	}
 
-	public Block makeNext(boolean wantBeConnect) {
-		boolean isConnected = (wantBeConnect == !this.isConnected);
-		if (wantBeConnect == false) {
-			isConnected = false;
+	public Block makeNext(Direction willBeWant) {
+		if (this.direction.equals(Direction.RIGHT)) {
+			return new Block(Direction.LEFT, this.position.move(1));
 		}
-		return new Block(isConnected);
+
+		return new Block(willBeWant, this.position.move(1));
 	}
 
-	public boolean isConnected() {
-		return this.isConnected;
+	public Direction direction() {
+		return this.direction;
+	}
+
+	public Position position() {
+		return this.position;
+	}
+
+	public void enter(Participant participant) {
+		participant.move(this.direction);
 	}
 }
