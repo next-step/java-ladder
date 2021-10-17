@@ -3,6 +3,7 @@ package ladder.view;
 
 import ladder.domain.Line;
 import ladder.domain.Lines;
+import ladder.enums.Numeric;
 
 import java.util.Arrays;
 import java.util.Map;
@@ -78,7 +79,7 @@ public class OutputView {
     }
 
     private boolean isHeightLadder(int position) {
-        return position % 2 == 0;
+        return position % Numeric.TWO.number() == Numeric.ZERO.number();
     }
 
 }

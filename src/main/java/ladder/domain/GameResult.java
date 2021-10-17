@@ -1,10 +1,11 @@
 package ladder.domain;
 
+import ladder.enums.Numeric;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class GameResult {
-    private static final int TWO = 2;
     private String[] gameResults;
 
     public GameResult(String[] gameResults) {
@@ -12,7 +13,7 @@ public class GameResult {
     }
 
     public String show(int index) {
-        return this.gameResults[index / TWO];
+        return this.gameResults[index / Numeric.TWO.number()];
     }
 
     public Map allResults(Users users) {
