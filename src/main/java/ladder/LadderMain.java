@@ -4,7 +4,9 @@ import ladder.domain.*;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class LadderMain {
     private static final String SMALL_ALL = "all";
@@ -14,16 +16,24 @@ public class LadderMain {
 
     public static void main(String[] args) {
         Users users = makeUsers(inputView);
-        Ladder ladder = makeLadder(inputView, users.count());
+
+        int ladderHeight = inputView.inputLadderHeight();
+//        LadderCreator heeSeokLadder = new LadderCreator(ladderHeight, users.count()) {
+//            @Override
+//            public Ladder make(int height, int countOfUsers) {
+//                return null;
+//            }
+//        };
+        HeeSeokLadder heeSeokLadder = makeLadder(inputView, users.count());
 
         String[] inputResult = inputView.inputResults();
         GameResult gameResult = new GameResult(inputResult);
 
-        LadderGame ladderGame = new LadderGame(users, ladder.lines());
-        users = ladderGame.start();
+//        LadderGame ladderGame = new LadderGame(users, heeSeokLadder.lines());
+        //users = ladderGame.start();
 
         outputView.printParticipateInUsers(users.userNames());
-        outputView.printLadder(ladder.lines());
+        outputView.printLadder(heeSeokLadder.lines());
         outputView.printResult(inputResult);
 
         String inputShowUserName = inputView.inputShowUserResult();
@@ -62,7 +72,7 @@ public class LadderMain {
         return users;
     }
 
-    private static Ladder makeLadder(InputView inputView, int userCount) {
+    private static HeeSeokLadder makeLadder(InputView inputView, int userCount) {
         int ladderHeight = inputView.inputLadderHeight();
         List<Line> lineList = new ArrayList<>();
         for (int i = 0; i < ladderHeight; i++) {
@@ -71,6 +81,6 @@ public class LadderMain {
             lineList.add(newLine);
         }
         Lines lines = new Lines(lineList);
-        return new Ladder(lines);
+        return new HeeSeokLadder(lines);
     }
 }
