@@ -15,12 +15,12 @@ public class OutputUI {
     public static final String NAME_SPACE = " ";
     public static final int MAX_NAME_LENGTH = 5;
 
-    public static void printLadder(String nameOfPersons, Lines lines) {
+    public static void printLadder(String nameOfParticipants, Lines lines) {
         printBeginMessage();
 
-        String[] names = nameOfPersons.split(",");
+        String[] names = nameOfParticipants.split(",");
         int lineHeight = lines.getLineHeight();
-        List<Line> lineList = lines.getLineList();
+        List<Line> lineList = lines.getLines();
 
         printPersons(names);
         printLadder(lineHeight, lineList);

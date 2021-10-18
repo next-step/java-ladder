@@ -282,7 +282,7 @@ pobi  honux crong   jk
 public class Line {
     private List<Boolean> points = new ArrayList<>();
 
-    public Line (int countOfPerson) {
+    public Line (int numberOfParticipant) {
         // 라인의 좌표 값에 선이 있는지 유무를 판단하는 로직 추가
     }
 

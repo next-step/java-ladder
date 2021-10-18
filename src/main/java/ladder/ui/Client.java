@@ -5,12 +5,12 @@ import ladder.Lines;
 public class Client {
 
     public static void main(String[] args) {
-        String nameOfPersons = InputUI.inputNameOfPersons();
+        String nameOfParticipants = InputUI.inputnameOfParticipants();
         int ladderHeight = InputUI.inputLadderHeight();
 
-        int countOfPerson = nameOfPersons.split(",").length;
-        Lines lines = new Lines(ladderHeight, countOfPerson);
+        int numberOfParticipant = nameOfParticipants.split(",").length;
+        Lines lines = new Lines(ladderHeight, numberOfParticipant);
 
-        OutputUI.printLadder(nameOfPersons, lines);
+        OutputUI.printLadder(nameOfParticipants, lines);
     }
 }

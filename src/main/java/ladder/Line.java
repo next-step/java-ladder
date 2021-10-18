@@ -1,5 +1,7 @@
 package ladder;
 
+import ladder.util.CustomRandom;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -8,9 +10,9 @@ public class Line {
 
     private final List<Point> points = new ArrayList<>();
 
-    public Line(int countOfPerson) {
-        for (int i = 0; i < countOfPerson; i++) {
-            points.add(new Point());
+    public Line(int numberOfParticipant) {
+        for (int i = 0; i < numberOfParticipant; i++) {
+            points.add(new Point(CustomRandom::nextBoolean));
         }
     }
 

@@ -11,10 +11,10 @@ class LinesTest {
     void createLine() {
         // given
         int ladderHeight = 5;
-        int countOfPerson = 4;
+        int numberOfParticipant = 4;
 
         // when
-        Lines lines = new Lines(ladderHeight, countOfPerson);
+        Lines lines = new Lines(ladderHeight, numberOfParticipant);
 
         // then
         Assertions.assertThat(lines.getLineHeight()).isEqualTo(5);

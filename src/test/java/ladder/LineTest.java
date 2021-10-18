@@ -11,12 +11,12 @@ class LineTest {
     @Test
     void createPoint() {
         // given
-        int countOfPerson = 4;
+        int numberOfParticipant = 4;
 
         // when
-        Line line = new Line(countOfPerson);
+        Line line = new Line(numberOfParticipant);
 
         // then
-        assertThat(line.getPointsSize()).isEqualTo(countOfPerson);
+        assertThat(line.getPointsSize()).isEqualTo(numberOfParticipant);
     }
 }

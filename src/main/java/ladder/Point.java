@@ -1,13 +1,13 @@
 package ladder;
 
-import ladder.util.RandomCustom;
+import java.util.function.BooleanSupplier;
 
 public class Point {
 
     private final boolean value;
 
-    public Point() {
-        this.value = RandomCustom.nextBoolean();
+    public Point(BooleanSupplier randomPoint) {
+        this.value = randomPoint.getAsBoolean();
     }
 
     public boolean isValue() {
