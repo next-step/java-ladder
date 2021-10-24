@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import ladder.engine.Ladder;
+import ladder.engine.LadderResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,5 +35,15 @@ public class HeeSeokLadder implements Ladder {
         }
         return new Users(userResults);
 
+    }
+
+    @Override
+    public LadderResult play(Users users) {
+        LadderResult ladderResult = new LadderResult();
+        for (User user : users) {
+            int resultPosition = lines.calulateGameResult(user.position());
+            ladderResult.put(user.position(), resultPosition);
+        }
+        return ladderResult;
     }
 }

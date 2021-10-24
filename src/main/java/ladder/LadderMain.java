@@ -1,11 +1,15 @@
 package ladder;
 
-import ladder.domain.*;
+import ladder.domain.GameResult;
+import ladder.domain.User;
+import ladder.domain.Users;
+import ladder.engine.Ladder;
+import ladder.engine.LadderCreator;
+import ladder.engine.LadderResult;
+import ladder.factory.LadderFactory;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 public class LadderMain {
@@ -16,18 +20,17 @@ public class LadderMain {
 
     public static void main(String[] args) {
         Users users = makeUsers(inputView);
-        int ladderHeight = inputView.inputLadderHeight();
 
-        HeeSeokLadder heeSeokLadder = makeLadder(inputView, users.count());
+        int ladderHeight = inputView.inputLadderHeight();
+        Ladder ladder = makeLadder(ladderHeight, users.count());
+
+        LadderResult ladderResult = ladder.play(users);
 
         String[] inputResult = inputView.inputResults();
         GameResult gameResult = new GameResult(inputResult);
 
-//        LadderGame ladderGame = new LadderGame(users, heeSeokLadder.lines());
-        //users = ladderGame.start();
-
         outputView.printParticipateInUsers(users.userNames());
-        outputView.printLadder(heeSeokLadder.lines());
+        outputView.printLadder(ladder.lines());
         outputView.printResult(inputResult);
 
         String inputShowUserName = inputView.inputShowUserResult();
@@ -66,15 +69,8 @@ public class LadderMain {
         return users;
     }
 
-    private static HeeSeokLadder makeLadder(InputView inputView, int userCount) {
-        int ladderHeight = inputView.inputLadderHeight();
-        List<Line> lineList = new ArrayList<>();
-        for (int i = 0; i < ladderHeight; i++) {
-            Line newLine = new Line(userCount);
-            newLine.drawOneLine();
-            lineList.add(newLine);
-        }
-        Lines lines = new Lines(lineList);
-        return new HeeSeokLadder(lines);
+    private static Ladder makeLadder(int ladderHeight, int userCount) {
+        LadderCreator ladderCreator = LadderFactory.createLadderFactory();
+        return ladderCreator.make(ladderHeight, userCount);
     }
 }
