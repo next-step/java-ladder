@@ -3,7 +3,6 @@ package ladder.domain;
 import ladder.enums.Numeric;
 
 public class Line {
-
     private static final RandomNumber randomNumber = new RandomNumber();
     private static int maxCountOfLadder;
     private StringBuilder sb = new StringBuilder();
@@ -20,7 +19,7 @@ public class Line {
         this.countOfPerson = countOfPerson;
         maxCountOfLadder = countOfPerson * Numeric.TWO.number() - Numeric.ONE.number();
         totalLineSize = this.countOfPerson * Numeric.TWO.number() - Numeric.ONE.number();
-        points = new boolean[countOfPerson];
+        points = new boolean[countOfPerson * 2 - 1];
     }
 
     public void drawOneLine() {

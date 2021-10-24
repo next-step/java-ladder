@@ -34,28 +34,28 @@ public class LadderMain {
         outputView.printResult(inputResult);
 
         String inputShowUserName = inputView.inputShowUserResult();
-        showResult(users, gameResult, inputShowUserName);
+        showResult(users, gameResult, inputShowUserName, ladderResult);
     }
 
-    private static void showResult(Users users, GameResult gameResult, String inputShowUserName) {
+    private static void showResult(Users users, GameResult gameResult, String inputShowUserName, LadderResult ladderResult) {
         if (isShowAllResult(inputShowUserName)) {
-            showAllUserResult(users, gameResult);
+            showAllUserResult(users, gameResult, ladderResult);
         }
         if (!isShowAllResult(inputShowUserName)) {
-            showUserResult(users, gameResult, inputShowUserName);
+            showUserResult(users, gameResult, inputShowUserName, ladderResult);
         }
     }
 
-    private static void showAllUserResult(Users users, GameResult gameResult) {
-        Map<String, String> gameResults = gameResult.allResults(users);
-        outputView.printUserResults(gameResults);
+    private static void showUserResult(Users users, GameResult gameResult, String inputShowUserName, LadderResult ladderResult) {
+        User user = users.findByName(inputShowUserName);
+        int resultPosition = ladderResult.getTarget(user.position());
+        String gameResultOfUser = gameResult.show(resultPosition);
+        outputView.printUserResult(gameResultOfUser);
     }
 
-    private static void showUserResult(Users users, GameResult gameResult, String inputShowUserName) {
-        User user = users.findByName(inputShowUserName);
-        int userPosition = user.position();
-        String gameResultOfUser = gameResult.show(userPosition);
-        outputView.printUserResult(gameResultOfUser);
+    private static void showAllUserResult(Users users, GameResult gameResult, LadderResult ladderResult) {
+        Map<String, String> gameResults = gameResult.allResults(users, ladderResult);
+        outputView.printUserResults(gameResults);
     }
 
     private static boolean isShowAllResult(String inputShowUserName) {

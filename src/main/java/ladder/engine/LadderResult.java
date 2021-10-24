@@ -13,5 +13,4 @@ public class LadderResult {
     public int getTarget(int source) {
         return result.get(source);
     }
-
 }

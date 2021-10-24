@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import ladder.engine.LadderResult;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -48,7 +49,12 @@ class GameResultTest {
     @DisplayName("All or all을 입력하였을 때 전체 인원의 결과가 잘 나오는지 확인")
     public void gameResultAllTest() {
         GameResult gameResults = new GameResult(results);
-        Map<String, String> userResults = gameResults.allResults(users);
+        LadderResult ladderResult = new LadderResult();
+        ladderResult.put(0, 0);
+        ladderResult.put(2, 2);
+        ladderResult.put(4, 4);
+        ladderResult.put(6, 6);
+        Map<String, String> userResults = gameResults.allResults(users,ladderResult);
 
         assertAll(
                 () -> assertThat(userResults.get("tom")).isEqualTo("꽝"),
