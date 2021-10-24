@@ -19,6 +19,7 @@ public class HeeSeokLadder implements Ladder {
         this.lines = lines;
     }
 
+    @Override
     public Lines lines() {
         return this.lines;
     }

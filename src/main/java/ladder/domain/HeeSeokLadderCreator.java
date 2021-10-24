@@ -18,9 +18,8 @@ public class HeeSeokLadderCreator implements LadderCreator {
     public Ladder make(int height, int countOfUsers) {
         List<Line> lineList = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            Line newLine = new Line(countOfUsers);
-            newLine.drawOneLine();
-            lineList.add(newLine);
+            LineCreator lineCreator = new HeeSeokLineCreator();
+            lineList.add(lineCreator.create(countOfUsers));
         }
         Lines lines = new Lines(lineList);
         return new HeeSeokLadder(lines);

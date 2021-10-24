@@ -11,11 +11,16 @@ public class Line {
     private int totalLineSize;
     private boolean[] points;
 
+    public Line(int countOfPerson, boolean[] points) {
+        this(countOfPerson);
+        this.points = points;
+    }
+
     public Line(int countOfPerson) {
         this.countOfPerson = countOfPerson;
         maxCountOfLadder = countOfPerson * Numeric.TWO.number() - Numeric.ONE.number();
         totalLineSize = this.countOfPerson * Numeric.TWO.number() - Numeric.ONE.number();
-        points = new boolean[totalLineSize];
+        points = new boolean[countOfPerson];
     }
 
     public void drawOneLine() {

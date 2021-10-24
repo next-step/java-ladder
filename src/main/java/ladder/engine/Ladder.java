@@ -1,11 +1,13 @@
 package ladder.engine;
 
+import ladder.domain.Lines;
 import ladder.domain.Users;
 
 public interface Ladder {
-    //public LadderResult start();
 
-    public Users start();
+    Users start();
+
+    Lines lines();
 
 
 }

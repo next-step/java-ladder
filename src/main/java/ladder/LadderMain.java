@@ -16,14 +16,8 @@ public class LadderMain {
 
     public static void main(String[] args) {
         Users users = makeUsers(inputView);
-
         int ladderHeight = inputView.inputLadderHeight();
-//        LadderCreator heeSeokLadder = new LadderCreator(ladderHeight, users.count()) {
-//            @Override
-//            public Ladder make(int height, int countOfUsers) {
-//                return null;
-//            }
-//        };
+
         HeeSeokLadder heeSeokLadder = makeLadder(inputView, users.count());
 
         String[] inputResult = inputView.inputResults();
