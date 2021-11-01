@@ -4,7 +4,6 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Lines implements Iterable<Line> {
-
     private List<Line> lineList;
 
     public Lines(List<Line> lineList) {

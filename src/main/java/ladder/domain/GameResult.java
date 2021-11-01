@@ -1,10 +1,12 @@
 package ladder.domain;
 
+import ladder.engine.LadderResult;
+import ladder.enums.Numeric;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class GameResult {
-    private static final int TWO = 2;
     private String[] gameResults;
 
     public GameResult(String[] gameResults) {
@@ -12,13 +14,14 @@ public class GameResult {
     }
 
     public String show(int index) {
-        return this.gameResults[index / TWO];
+        return this.gameResults[index / Numeric.TWO.number()];
     }
 
-    public Map allResults(Users users) {
+    public Map allResults(Users users, LadderResult ladderResult) {
         Map<String, String> results = new HashMap<>();
         for (User user : users) {
-            String result = this.show(user.position());
+            int resultPosition = ladderResult.getTarget(user.position());
+            String result = this.show(resultPosition);
             results.put(user.name(), result);
         }
         return results;
