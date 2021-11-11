@@ -3,6 +3,11 @@ package nextstep.fp;
 import java.util.List;
 
 public class Lambda {
+    private static final int START_VALUE = 0;
+    private static final int EVEN_INDICATOR = 2;
+    private static final int REMAINDER_ZERO = 0;
+    private static final int SUM_OVER_BORDER = 3;
+
     public static void printAllOld(List<Integer> numbers) {
         System.out.println("printAllOld");
 
@@ -18,39 +23,23 @@ public class Lambda {
     }
 
     public static void runThread() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("Hello from thread");
-            }
-        }).start();
+        new Thread(() -> System.out.println("Hello from thread")).start();
     }
 
     public static int sumAll(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            total += number;
-        }
-        return total;
+        return numbers.stream()
+                .reduce(START_VALUE, Integer::sum);
     }
 
     public static int sumAllEven(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number % 2 == 0) {
-                total += number;
-            }
-        }
-        return total;
+        return numbers.stream()
+                .filter(number -> number % EVEN_INDICATOR == REMAINDER_ZERO)
+                .reduce(START_VALUE, Integer::sum);
     }
 
     public static int sumAllOverThree(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number > 3) {
-                total += number;
-            }
-        }
-        return total;
+        return numbers.stream()
+                .filter(number -> number > SUM_OVER_BORDER)
+                .reduce(START_VALUE, Integer::sum);
     }
 }

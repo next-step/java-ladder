@@ -5,10 +5,17 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 public class StreamStudy {
+    private static final int START_VALUE = 0;
+    private static final int SUM_OVER_BORDER = 3;
+    private static final int MULTIPLE_NUMBER = 2;
+    private static final int WORD_FILTER_BORDER = 12;
+    private static final int WORDS_LIMIT = 100;
 
     public static long countWords() throws IOException {
         String contents = new String(Files.readAllBytes(Paths
@@ -27,7 +34,13 @@ public class StreamStudy {
                 .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
-        // TODO 이 부분에 구현한다.
+        words.stream()
+                .filter(word -> word.length() > WORD_FILTER_BORDER)
+                .distinct()
+                .sorted(Comparator.comparing(String::length).reversed())
+                .limit(WORDS_LIMIT)
+                .map(word -> word.toLowerCase(Locale.ROOT))
+                .forEach(System.out::println);
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
@@ -39,6 +52,9 @@ public class StreamStudy {
     }
 
     public static long sumOverThreeAndDouble(List<Integer> numbers) {
-        return 0;
+        return numbers.stream()
+                .filter(number -> number > SUM_OVER_BORDER)
+                .map(number -> number * MULTIPLE_NUMBER)
+                .reduce(START_VALUE, Integer::sum);
     }
 }
