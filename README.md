@@ -5,5 +5,13 @@
 * 코드 리뷰 피드백에 대한 개선 작업을 하고 다시 PUSH한다.
 * 모든 피드백을 완료하면 다음 단계를 도전하고 앞의 과정을 반복한다.
 
+## 기능 요구 사항
+* 익명 클래스를 람다로 바꾼다.
+* 람다를 활용해 중복을 제거한다.
+* StreamStudy의 기능을 구현한다. (war-and-peace.txt)
+* Optional을 활용해 조건에 따른 반환을 구현한다.
+* Optional에서 값을 반환한다.
+* Optional에서 exception을 처리한다.
+
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
