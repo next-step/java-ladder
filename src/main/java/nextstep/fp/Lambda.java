@@ -6,7 +6,7 @@ public class Lambda {
     private static final int START_VALUE = 0;
     private static final int EVEN_INDICATOR = 2;
     private static final int REMAINDER_ZERO = 0;
-    private static final int THREE = 3;
+    private static final int SUM_OVER_BORDER = 3;
 
     public static void printAllOld(List<Integer> numbers) {
         System.out.println("printAllOld");
@@ -39,7 +39,7 @@ public class Lambda {
 
     public static int sumAllOverThree(List<Integer> numbers) {
         return numbers.stream()
-                .filter(number -> number > THREE)
+                .filter(number -> number > SUM_OVER_BORDER)
                 .reduce(START_VALUE, Integer::sum);
     }
 }
