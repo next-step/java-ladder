@@ -9,6 +9,10 @@ public class Participant {
         this.name = new Name(name);
     }
 
+    public String getName() {
+        return name.getName();
+    }
+
     @Override
     public boolean equals(Object object) {
         if (this == object) {

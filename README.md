@@ -28,6 +28,8 @@
 * 참여자인 Participant class를 구현한다.
   * Participant는 Name을 member 변수로 가진다.
 * 참여자의 일급 collection인 Participants class를 구현한다.
+  * participant를 더하는 add 함수를 구현한다. 
+  * 출력용으로 participant의 이름을 List로 제공하는 함수를 구현한다.
 * 참여자를 만드는 factory class를 구현한다.
   * 참여자의 이름을 받아 Participants class를 리턴한다.
 * 사다리의 층을 이루는 Stair class를 구현한다.

@@ -1,11 +1,9 @@
 package controller;
 
-import domain.Participant;
 import domain.ParticipantFactory;
+import domain.Participants;
 import view.ConsoleInputView;
 import view.InputView;
-
-import java.util.List;
 
 public class LadderGame {
     private static final String COMMA = ",";
@@ -15,8 +13,10 @@ public class LadderGame {
     public static void runGame() {
         InputView inputView = new ConsoleInputView();
         String rawInputNames = inputView.getParticipantsNames();
-//        String[] participantNames = separateStringWithComma(rawInputNames);
-//        List<Participant> participants = new ParticipantFactory(participantNames);
+        String[] participantNames = separateStringWithComma(rawInputNames);
+
+        ParticipantFactory participantFactory = new ParticipantFactory(participantNames);
+        Participants participants = participantFactory.produceParticipants();
 
         inputView.getHeightOfLadder();
     }
