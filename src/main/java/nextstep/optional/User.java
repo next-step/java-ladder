@@ -40,10 +40,6 @@ public class User {
     public static boolean ageIsInRange2(User user) {
         Optional<User> userOptional = Optional.ofNullable(user);
 
-        if (!userOptional.isPresent()) {
-            return false;
-        }
-
         return userOptional.map(User::getAge)
                 .filter(age -> age >= MINIMUM_AGE && age <= MAXIMUM_AGE)
                 .isPresent();
