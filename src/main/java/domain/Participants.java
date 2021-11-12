@@ -23,7 +23,7 @@ public class Participants {
         return participantList.size();
     }
 
-    public List<String> provideParticipantsNames() {
+    public List<String> getNamesOfParticipants() {
         return participantList.stream()
                 .map(Participant::getName)
                 .collect(Collectors.toList());

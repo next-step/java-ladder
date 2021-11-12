@@ -24,7 +24,7 @@ public class Ladder {
         return floors;
     }
 
-    public Floors provideFloors() {
+    public Floors getFloors() {
         return floors;
     }
 }
