@@ -19,6 +19,10 @@ public class Participants {
         return participantList.size() == size;
     }
 
+    public int size() {
+        return participantList.size();
+    }
+
     public List<String> provideParticipantsNames() {
         return participantList.stream()
                 .map(Participant::getName)

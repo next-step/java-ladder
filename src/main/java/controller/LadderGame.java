@@ -1,5 +1,7 @@
 package controller;
 
+import domain.Floors;
+import domain.Ladder;
 import domain.ParticipantFactory;
 import domain.Participants;
 import view.ConsoleInputView;
@@ -18,7 +20,8 @@ public class LadderGame {
         ParticipantFactory participantFactory = new ParticipantFactory(participantNames);
         Participants participants = participantFactory.produceParticipants();
 
-        inputView.getHeightOfLadder();
+        int heightOfLadder = inputView.getHeightOfLadder();
+        Ladder ladder = new Ladder(heightOfLadder, participants.size());
     }
 
     private static String[] separateStringWithComma(String string) {

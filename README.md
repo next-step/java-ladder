@@ -32,16 +32,16 @@
   * 출력용으로 participant의 이름을 List로 제공하는 함수를 구현한다.
 * 참여자를 만드는 factory class를 구현한다.
   * 참여자의 이름을 받아 Participants class를 리턴한다.
-* 사다리의 층을 이루는 Stair class를 구현한다.
+* 사다리의 층을 이루는 Floor class를 구현한다.
   * Random class를 이용해 계단의 유무를 결정한다.
   * 참여자 수를 통해 계단의 유무 개수를 정한다.
-* Stair class의 일급 collection인 Stairs class를 구현한다.
-  * 사다리 높이를 인자로 받아 Stair를 생성한다.
-  * 출력 여부를 결정하는 boolean을 2-d array로 제공한다.
+* Floor class의 일급 collection인 Floors class를 구현한다.
+  * 사다리 높이를 인자로 받아 Floor를 생성한다.
+  * 출력 여부를 결정하는 Floor 정보를 제공한다.
 * Ladder class를 구현한다.
-  * 참여자 수와 사다리 높이를 받아 Stairs를 생성한다. 
-  * 사다리 높이와 Stairs를 member 변수로 가진다.
-  * Stairs class를 통해 출력 데이터를 제공한다.
+  * 참여자 수와 사다리 높이를 받아 Floors를 생성한다. 
+  * 사다리 높이와 Floors를 member 변수로 가진다.
+  * Floors class를 통해 출력 데이터를 제공한다.
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
