@@ -25,7 +25,11 @@
   * 참여자 수와 사다리 높이를 인자로 하여 Ladder class를 만든다.
 * 참여자의 이름은 Name으로 구현한다.
   * 참여자의 이름이 5글자 이하인지 확인한다.
+* 참여자인 Participant class를 구현한다.
+  * Participant는 Name을 member 변수로 가진다.
+* 참여자의 일급 collection인 Participants class를 구현한다.
 * 참여자를 만드는 factory class를 구현한다.
+  * 참여자의 이름을 받아 Participants class를 리턴한다.
 * 사다리의 층을 이루는 Stair class를 구현한다.
   * Random class를 이용해 계단의 유무를 결정한다.
   * 참여자 수를 통해 계단의 유무 개수를 정한다.
