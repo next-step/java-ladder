@@ -33,7 +33,7 @@ public class ParticipantsTest {
     }
 
     @Test
-    void provideParticipantsNames() {
-        assertThat(participants.provideParticipantsNames()).isEqualTo(names);
+    void testProvideParticipantsNames() {
+        assertThat(participants.getNamesOfParticipants()).isEqualTo(names);
     }
 }
