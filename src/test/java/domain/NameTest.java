@@ -5,16 +5,16 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.AssertionsForClassTypes.*;
 
 public class NameTest {
-    private final String PARTICIPANT_ONE = "tomo";
-    private final String PARTICIPANT_TWO = "sans";
+    private final String PARTICIPANT_ONE_NAME = "tomo";
+    private final String PARTICIPANT_TWO_NAME = "sans";
     private final String PARTICIPANT_THREE = "michael";
 
     @Test
     void nameIsOK() {
-        Name participantOne = new Name(PARTICIPANT_ONE);
+        Name participantOne = new Name(PARTICIPANT_ONE_NAME);
 
-        assertThat(participantOne).isEqualTo(new Name(PARTICIPANT_ONE));
-        assertThat(participantOne).isNotEqualTo(PARTICIPANT_TWO);
+        assertThat(participantOne).isEqualTo(new Name(PARTICIPANT_ONE_NAME));
+        assertThat(participantOne).isNotEqualTo(PARTICIPANT_TWO_NAME);
     }
 
     @Test
@@ -24,7 +24,7 @@ public class NameTest {
 
     @Test
     void checkString() {
-        Name participantOne = new Name(PARTICIPANT_ONE);
-        assertThat(participantOne.getName()).isEqualTo(PARTICIPANT_ONE);
+        Name participantOne = new Name(PARTICIPANT_ONE_NAME);
+        assertThat(participantOne.getName()).isEqualTo(PARTICIPANT_ONE_NAME);
     }
 }
