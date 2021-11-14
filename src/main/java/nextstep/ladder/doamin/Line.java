@@ -3,6 +3,8 @@ package nextstep.ladder.doamin;
 import nextstep.ladder.annotations.GetterForUI;
 import nextstep.ladder.utils.Preconditions;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -21,7 +23,7 @@ public class Line {
 
     @GetterForUI
     public List<Boolean> getPoints() {
-        return points;
+        return Collections.unmodifiableList(new ArrayList<>(points));
     }
 
     @Override

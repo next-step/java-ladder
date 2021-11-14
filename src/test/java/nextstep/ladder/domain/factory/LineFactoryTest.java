@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 class LineFactoryTest {
 
@@ -27,5 +28,17 @@ class LineFactoryTest {
         List<Line> lines = lineFactory.createLines(new RandomLineStrategy(), 4, height);
 
         assertThat(lines.size()).isEqualTo(height);
+    }
+
+    @Test
+    @DisplayName("사람수가 한명 이하인 경우 예외 발생 검증")
+    void createLines_exception() {
+        assertThatIllegalArgumentException().isThrownBy(() -> lineFactory.createLines(new RandomLineStrategy(), 1, 3));
+    }
+
+    @Test
+    @DisplayName("사다리 높이가 없는 경우 예외 발생 검증")
+    void createLines_exception2() {
+        assertThatIllegalArgumentException().isThrownBy(() -> lineFactory.createLines(new RandomLineStrategy(), 2, 0));
     }
 }

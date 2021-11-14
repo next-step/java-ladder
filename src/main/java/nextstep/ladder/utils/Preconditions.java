@@ -25,6 +25,12 @@ public class Preconditions {
         }
     }
 
+    public static void checkMinimumSize(int size, int minimumSize, String errorMessage) {
+        if (size < minimumSize) {
+            throw new IllegalArgumentException(errorMessage);
+        }
+    }
+
     public static void checkMaximumSize(int size, int maximumSize, String errorMessage) {
         if (size > maximumSize) {
             throw new IllegalArgumentException(errorMessage);

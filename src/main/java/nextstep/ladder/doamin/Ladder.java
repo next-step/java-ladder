@@ -3,6 +3,8 @@ package nextstep.ladder.doamin;
 import nextstep.ladder.annotations.GetterForUI;
 import nextstep.ladder.utils.Preconditions;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
@@ -18,9 +20,8 @@ public class Ladder {
         return new Ladder(lines);
     }
 
-    // 불변으로 리턴 하자
     @GetterForUI
     public List<Line> getLines() {
-        return lines;
+        return Collections.unmodifiableList(new ArrayList<>(lines));
     }
 }

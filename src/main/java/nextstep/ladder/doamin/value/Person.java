@@ -5,14 +5,14 @@ import nextstep.ladder.utils.Preconditions;
 import java.util.Objects;
 
 public class Person {
-    public static final Integer MAXIMUM_NAME_SIZE = 5;
+    private static final Integer MAXIMUM_NAME_SIZE = 5;
 
     private final String name;
 
     private Person(String name) {
         Preconditions.checkString(name, "name은 필수값입니다.");
         Preconditions.checkMaximumSize(name.length(),
-                                       MAXIMUM_NAME_SIZE, String.format("%s 값 이하 이어야 합니다.", MAXIMUM_NAME_SIZE));
+                                       MAXIMUM_NAME_SIZE, String.format("name의 길이는 %s 이하 이어야 합니다.", MAXIMUM_NAME_SIZE));
 
         this.name = name;
     }
