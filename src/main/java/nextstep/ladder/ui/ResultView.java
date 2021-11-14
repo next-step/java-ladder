@@ -35,10 +35,7 @@ public class ResultView {
     }
 
     private void printLadder(StringBuilder sb, boolean point) {
-        if (!point) {
-            sb.append(LADDER_PART2);
-            return;
-        }
-        sb.append(LADDER_PART1);
+        String result = (point) ? LADDER_PART1 : LADDER_PART2;
+        sb.append(result);
     }
 }
