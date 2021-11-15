@@ -7,6 +7,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+import nextstep.ladder.util.CollectionUtils;
+
 public class Persons {
 	private static final String EMPTY_MESSAGE = "Person 리스트가 비어있습니다.";
 
@@ -18,13 +20,9 @@ public class Persons {
 	}
 
 	private void validateSize(List<Person> values) {
-		if (isEmpty(values)) {
+		if (CollectionUtils.isEmpty(values)) {
 			throw new IllegalArgumentException(EMPTY_MESSAGE);
 		}
-	}
-
-	private boolean isEmpty(List<Person> values) {
-		return values == null || values.size() == 0;
 	}
 
 	public static Persons create(List<Person> values) {
