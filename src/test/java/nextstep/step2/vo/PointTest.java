@@ -18,4 +18,17 @@ class PointTest {
         assertThat(actual.isGo()).isEqualTo(input);
     }
 
+    @DisplayName("getCachedPoint()는 이미 생성된 포인트를 반환한다.")
+    @ParameterizedTest
+    @ValueSource(booleans = {true, false})
+    void getCachedPointTest(boolean input) {
+        Point actual = Point.getCachedPoint(input);
+
+        assertThat(actual).isEqualTo(Point.create(input));
+        assertThat(actual).isNotSameAs(Point.create(input));
+
+        assertThat(actual).isEqualTo(Point.getCachedPoint(input));
+        assertThat(actual).isSameAs(Point.getCachedPoint(input));
+    }
+
 }

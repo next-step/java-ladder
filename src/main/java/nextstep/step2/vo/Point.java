@@ -16,6 +16,14 @@ public class Point {
         return new Point(value);
     }
 
+    public static Point getCachedPoint(Boolean value) {
+        if(value) {
+            return TRUE;
+        }
+
+        return FALSE;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
