@@ -15,4 +15,9 @@
 - GameInformation
 - ladder
 - line
+  - line 생성(연속으로 true가 나올 수 없다.)
+  - 사람 수 - 1 만큼의 배열만 생성 된다.
 - point
+  - boolean value 를 갖는다
+  - isGo() 메서드는 가진 값에 따라 true / false 반환
+  - getCachedPoint() 미리 생성 된 point 를 반환한다.  

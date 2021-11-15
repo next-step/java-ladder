@@ -3,12 +3,12 @@ package nextstep.step2.vo;
 import java.util.Objects;
 
 public class Point {
-    private static final Point FALSE = new Point(false);
-    private static final Point TRUE = new Point(true);
+    public static final Point FALSE = new Point(false);
+    public static final Point TRUE = new Point(true);
 
     private final Boolean value;
 
-    public Point(Boolean value) {
+    private Point(Boolean value) {
         this.value = value;
     }
 
@@ -22,6 +22,14 @@ public class Point {
         }
 
         return FALSE;
+    }
+
+    public Boolean getValue() {
+        return value;
+    }
+
+    public boolean isGo() {
+        return this.value;
     }
 
     @Override
@@ -41,7 +49,10 @@ public class Point {
         return Objects.hash(value);
     }
 
-    public boolean isGo() {
-        return this.value;
+    @Override
+    public String toString() {
+        return "Point{" +
+                "value=" + value +
+                '}';
     }
 }
