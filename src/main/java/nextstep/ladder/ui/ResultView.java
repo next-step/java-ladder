@@ -30,12 +30,14 @@ public class ResultView {
     private void printLadder(StringBuilder sb, Ladder ladder) {
         for (Line line : ladder.getLines()) {
             sb.append(ENTER);
-            line.getPoints().forEach(point -> printLadder(sb, point));
+            printLine(sb, line);
         }
     }
 
-    private void printLadder(StringBuilder sb, boolean point) {
-        String result = (point) ? LADDER_PART1 : LADDER_PART2;
-        sb.append(result);
+    private void printLine(StringBuilder sb, Line line) {
+        line.getPoints().forEach(point -> {
+            String result = Boolean.TRUE.equals(point) ? LADDER_PART1 : LADDER_PART2;
+            sb.append(result);
+        });
     }
 }
