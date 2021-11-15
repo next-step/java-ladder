@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import nextstep.ladder.doamin.Line;
+import nextstep.ladder.doamin.value.Point;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +15,8 @@ class LineTest {
     @Test
     @DisplayName("라인 정상 생성 검증")
     void create() {
-        assertDoesNotThrow(() -> Line.from(Arrays.asList(false, true, false, true)));
+        assertDoesNotThrow(() -> Line.from(
+                Arrays.asList(Point.from(false), Point.from(true), Point.from(false), Point.from(true))));
     }
 
     @Test

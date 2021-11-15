@@ -36,7 +36,7 @@ public class ResultView {
 
     private void printLine(StringBuilder ladderBuilder, Line line) {
         line.getPoints().forEach(point -> {
-            String result = Boolean.TRUE.equals(point) ? LADDER_PART1 : LADDER_PART2;
+            String result = point.isTrue() ? LADDER_PART1 : LADDER_PART2;
             ladderBuilder.append(result);
         });
     }

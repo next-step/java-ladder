@@ -2,6 +2,7 @@ package nextstep.ladder.domain;
 
 import nextstep.ladder.doamin.Ladder;
 import nextstep.ladder.doamin.Line;
+import nextstep.ladder.doamin.value.Point;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -15,8 +16,9 @@ class LadderTest {
     @Test
     @DisplayName("사다리 정상 생성 검증")
     void create() {
-        assertDoesNotThrow(() -> Ladder.from(Arrays.asList(Line.from(Arrays.asList(false, true)),
-                                                           Line.from(Arrays.asList(false, false)))));
+        assertDoesNotThrow(
+                () -> Ladder.from(Arrays.asList(Line.from(Arrays.asList(Point.from(false), Point.from(true))),
+                                                Line.from(Arrays.asList(Point.from(false), Point.from(false))))));
     }
 
     @Test

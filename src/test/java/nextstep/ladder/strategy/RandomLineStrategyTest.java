@@ -1,6 +1,6 @@
 package nextstep.ladder.strategy;
 
-import nextstep.ladder.strategy.RandomLineStrategy;
+import nextstep.ladder.doamin.value.Point;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,7 +21,7 @@ class RandomLineStrategyTest {
     @DisplayName("사람 수 만큼 지점 생성 검증")
     void createPoints() {
         int countOfPerson = 4;
-        List<Boolean> points = randomLineStrategy.createPoints(countOfPerson);
+        List<Point> points = randomLineStrategy.createPoints(countOfPerson);
 
         assertThat(points.size()).isEqualTo(countOfPerson);
     }

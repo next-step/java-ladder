@@ -1,6 +1,7 @@
 package nextstep.ladder.doamin;
 
 import nextstep.ladder.annotations.GetterForUI;
+import nextstep.ladder.doamin.value.Point;
 import nextstep.ladder.utils.Preconditions;
 
 import java.util.ArrayList;
@@ -9,20 +10,20 @@ import java.util.List;
 import java.util.Objects;
 
 public class Line {
-    private final List<Boolean> points;
+    private final List<Point> points;
 
-    private Line(List<Boolean> points) {
+    private Line(List<Point> points) {
         Preconditions.checkEmpty(points, "points는 필수값입니다.");
 
         this.points = points;
     }
 
-    public static Line from(List<Boolean> points) {
+    public static Line from(List<Point> points) {
         return new Line(points);
     }
 
     @GetterForUI
-    public List<Boolean> getPoints() {
+    public List<Point> getPoints() {
         return Collections.unmodifiableList(new ArrayList<>(points));
     }
 

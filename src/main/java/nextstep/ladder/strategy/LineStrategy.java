@@ -1,7 +1,9 @@
 package nextstep.ladder.strategy;
 
+import nextstep.ladder.doamin.value.Point;
+
 import java.util.List;
 
 public interface LineStrategy {
-    List<Boolean> createPoints(int countOfPerson);
+    List<Point> createPoints(int countOfPerson);
 }
