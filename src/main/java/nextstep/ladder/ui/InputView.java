@@ -1,5 +1,6 @@
 package nextstep.ladder.ui;
 
+import nextstep.ladder.controller.People;
 import nextstep.ladder.doamin.value.Person;
 import nextstep.ladder.utils.InputUtils;
 import nextstep.ladder.utils.Preconditions;
@@ -13,7 +14,7 @@ public class InputView {
     private static final Integer MINIMUM_HEIGHT_SIZE = 1;
     private static final Integer MINIMUM_PERSON_SIZE = 2;
 
-    public List<Person> inputParticipantOfLadder() {
+    public People inputParticipantOfLadder() {
         String participantNames = InputUtils.input("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         List<Person> people = Arrays.stream(participantNames.split(PARTICIPANT_NAME_DELIMITER))
                 .map(Person::from)
@@ -21,7 +22,7 @@ public class InputView {
 
         Preconditions.checkMinimumSize(people.size(), MINIMUM_PERSON_SIZE,
                                        String.format("사람 수는 %s 이상 이어야 합니다.", MINIMUM_PERSON_SIZE));
-        return people;
+        return People.from(people);
     }
 
     public Integer inputHeightOfLadder() {

@@ -2,9 +2,7 @@ package nextstep.ladder.ui;
 
 import nextstep.ladder.doamin.Ladder;
 import nextstep.ladder.doamin.Line;
-import nextstep.ladder.doamin.value.Person;
-
-import java.util.List;
+import nextstep.ladder.controller.People;
 
 public class ResultView {
     private static final String BLANK = "     ";
@@ -13,7 +11,7 @@ public class ResultView {
     private static final String ENTER = "\r\n";
     private static final String EXECUTION_RESULT = "실행결과";
 
-    public void printLadder(List<Person> people, Ladder ladder) {
+    public void printLadder(People people, Ladder ladder) {
         StringBuilder ladderBuilder = new StringBuilder();
         ladderBuilder.append(EXECUTION_RESULT).append(ENTER);
         printPersonName(ladderBuilder, people);
@@ -22,9 +20,9 @@ public class ResultView {
         System.out.println(ladderBuilder.toString());
     }
 
-    private void printPersonName(StringBuilder ladderBuilder, List<Person> people) {
+    private void printPersonName(StringBuilder ladderBuilder, People people) {
         ladderBuilder.append(BLANK);
-        people.forEach(person -> ladderBuilder.append(String.format("%-5s ", person.getName())));
+        people.getPoints().forEach(person -> ladderBuilder.append(String.format("%-5s ", person.getName())));
     }
 
     private void printLadder(StringBuilder ladderBuilder, Ladder ladder) {

@@ -1,19 +1,17 @@
 package nextstep.ladder.controller.dto;
 
-import nextstep.ladder.doamin.value.Person;
-
-import java.util.List;
+import nextstep.ladder.controller.People;
 
 public class LadderCreateParam {
-    private final List<Person> people;
+    private final People people;
     private final Integer heightOfLadder;
 
-    public LadderCreateParam(List<Person> people, Integer heightOfLadder) {
+    public LadderCreateParam(People people, Integer heightOfLadder) {
         this.people = people;
         this.heightOfLadder = heightOfLadder;
     }
 
-    public static LadderCreateParam of(List<Person> people, Integer heightOfLadder) {
+    public static LadderCreateParam of(People people, Integer heightOfLadder) {
         return new LadderCreateParam(people, heightOfLadder);
     }
 
@@ -22,6 +20,6 @@ public class LadderCreateParam {
     }
 
     public Integer getCountOfPerson() {
-        return people.size();
+        return people.count();
     }
 }
