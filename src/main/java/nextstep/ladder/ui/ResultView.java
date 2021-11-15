@@ -14,30 +14,30 @@ public class ResultView {
     private static final String EXECUTION_RESULT = "실행결과";
 
     public void printLadder(List<Person> people, Ladder ladder) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(EXECUTION_RESULT).append(ENTER);
-        printPersonName(sb, people);
-        printLadder(sb, ladder);
+        StringBuilder ladderBuilder = new StringBuilder();
+        ladderBuilder.append(EXECUTION_RESULT).append(ENTER);
+        printPersonName(ladderBuilder, people);
+        printLadder(ladderBuilder, ladder);
 
-        System.out.println(sb.toString());
+        System.out.println(ladderBuilder.toString());
     }
 
-    private void printPersonName(StringBuilder sb, List<Person> people) {
-        sb.append(BLANK);
-        people.forEach(person -> sb.append(String.format("%-5s ", person.getName())));
+    private void printPersonName(StringBuilder ladderBuilder, List<Person> people) {
+        ladderBuilder.append(BLANK);
+        people.forEach(person -> ladderBuilder.append(String.format("%-5s ", person.getName())));
     }
 
-    private void printLadder(StringBuilder sb, Ladder ladder) {
+    private void printLadder(StringBuilder ladderBuilder, Ladder ladder) {
         for (Line line : ladder.getLines()) {
-            sb.append(ENTER);
-            printLine(sb, line);
+            ladderBuilder.append(ENTER);
+            printLine(ladderBuilder, line);
         }
     }
 
-    private void printLine(StringBuilder sb, Line line) {
+    private void printLine(StringBuilder ladderBuilder, Line line) {
         line.getPoints().forEach(point -> {
             String result = Boolean.TRUE.equals(point) ? LADDER_PART1 : LADDER_PART2;
-            sb.append(result);
+            ladderBuilder.append(result);
         });
     }
 }
