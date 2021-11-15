@@ -1,5 +1,6 @@
 package nextstep.ladder.doamin.value;
 
+import nextstep.ladder.annotations.GetterForUI;
 import nextstep.ladder.utils.Preconditions;
 
 import java.util.Objects;
@@ -21,6 +22,7 @@ public class Person {
         return new Person(name);
     }
 
+    @GetterForUI
     public String getName() {
         return name;
     }
