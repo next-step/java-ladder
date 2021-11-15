@@ -21,11 +21,7 @@ public class LineFactory {
 
         return IntStream.rangeClosed(RANGE_START, heightOfLadder)
                 .boxed()
-                .map(h -> createLine(lineStrategy, countOfPerson))
+                .map(h -> Line.from(lineStrategy.createPoints(countOfPerson)))
                 .collect(Collectors.toList());
-    }
-
-    private Line createLine(LineStrategy lineStrategy, Integer countOfPerson) {
-        return Line.from(lineStrategy.createPoints(countOfPerson));
     }
 }

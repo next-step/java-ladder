@@ -17,10 +17,6 @@ public class LadderCreateParam {
         return new LadderCreateParam(people, heightOfLadder);
     }
 
-    public List<Person> getParticipantNames() {
-        return people;
-    }
-
     public Integer getHeightOfLadder() {
         return heightOfLadder;
     }
