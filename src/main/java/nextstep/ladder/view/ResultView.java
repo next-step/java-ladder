@@ -43,22 +43,36 @@ public final class ResultView {
 		initializeBuilder();
 
 		for (int i = ZERO; i < points.size(); i++) {
-			if (isFistIndexOfLine(i, width)) {
-				appendToBuilder(LADDER_LEFT_PADDING);
-			}
-
-			appendToBuilder(points.get(i).hasLine() ? LADDER_EXIST_LINE : LADDER_EMPTY_LINE);
-
-			if (isLastIndexOfLine(i, width)) {
-				appendNewlineToBuilder();
-			}
+			appendPadding(width, i);
+			appendLadderLine(points.get(i));
+			appendNewLine(width, i);
 		}
 
 		printBuilder();
 	}
 
+	private static void appendPadding(int width, int idx) {
+		if (isFistIndexOfLine(idx, width)) {
+			appendToBuilder(LADDER_LEFT_PADDING);
+		}
+	}
+
 	private static boolean isFistIndexOfLine(int idx, int width) {
 		return idx % width == ZERO;
+	}
+
+	private static void appendLadderLine(Point point) {
+		String line = LADDER_EMPTY_LINE;
+		if (point.hasLine()) {
+			line = LADDER_EXIST_LINE;
+		}
+		appendToBuilder(line);
+	}
+
+	private static void appendNewLine(int width, int idx) {
+		if (isLastIndexOfLine(idx, width)) {
+			appendNewlineToBuilder();
+		}
 	}
 
 	private static boolean isLastIndexOfLine(int idx, int width) {
