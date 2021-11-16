@@ -3,7 +3,7 @@ package domain;
 import java.util.List;
 
 public class FloorFactory {
-    private final int DECREMENT_FOR_FLOOR = 1;
+    private static final int DECREMENT_FOR_FLOOR = 1;
 
     private final int numberOfStairs;
 

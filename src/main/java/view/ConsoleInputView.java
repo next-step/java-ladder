@@ -3,7 +3,7 @@ package view;
 import java.util.Scanner;
 
 public class ConsoleInputView implements InputView {
-    private final Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
 
     @Override
     public String getParticipantsNames() {

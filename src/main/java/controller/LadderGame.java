@@ -1,17 +1,19 @@
 package controller;
 
 import domain.Ladder;
-import domain.ParticipantFactory;
 import domain.Participants;
 import view.ConsoleInputView;
 import view.ConsoleOutputView;
 import view.InputView;
 import view.OutputView;
 
+import static util.StringUtils.separateStringWithComma;
+
 public class LadderGame {
-    private static final String COMMA = ",";
-    private static final String REGEX_WHITESPACE = "\\s+";
-    private static final String EMPTY_STRING = "";
+
+    private LadderGame() {
+
+    }
 
     public static void runGame() {
         InputView inputView = new ConsoleInputView();
@@ -21,8 +23,8 @@ public class LadderGame {
         String rawInputNames = inputView.getParticipantsNames();
         String[] participantNames = separateStringWithComma(rawInputNames);
 
-        ParticipantFactory participantFactory = new ParticipantFactory(participantNames);
-        Participants participants = participantFactory.produceParticipants();
+        Participants participants = new Participants(participantNames);
+        participants.produceParticipants();
 
         outputView.showRequestOfHeightOfLadder();
         int heightOfLadder = inputView.getHeightOfLadder();
@@ -33,7 +35,5 @@ public class LadderGame {
         outputView.showResult(ladder);
     }
 
-    private static String[] separateStringWithComma(String string) {
-        return string.replaceAll(REGEX_WHITESPACE, EMPTY_STRING).split(COMMA);
-    }
+
 }

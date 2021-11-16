@@ -8,11 +8,11 @@ import domain.Participants;
 import java.util.List;
 
 public class ConsoleOutputView implements OutputView {
-    private final String BLANK_AFTER_NAME = " ";
-    private final String STAIR_EXIST = "-----";
-    private final String NO_STAIR = "     ";
-    private final String VERTICAL_BAR = "|";
-    private final String INITIAL_EMPTY_SPACE = "  ";
+    private static final String BLANK_AFTER_NAME = " ";
+    private static final String STAIR_EXIST = "-----";
+    private static final String NO_STAIR = "     ";
+    private static final String VERTICAL_BAR = "|";
+    private static final String INITIAL_EMPTY_SPACE = "  ";
 
     @Override
     public void showRequestOfParticipants() {

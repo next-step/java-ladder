@@ -5,8 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 public class RandomGenerator {
-    private final static int STARTING_POINT = 0;
-    private final static Random random = new Random();
+    private static final Random random = new Random();
 
     public static List<Boolean> produceRandomFlags(int size) {
         boolean prev = false;

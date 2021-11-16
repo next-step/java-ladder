@@ -3,7 +3,7 @@ package domain;
 import java.util.Objects;
 
 public class Name {
-    private final int NAME_LENGTH_LIMIT = 5;
+    private static final int NAME_LENGTH_LIMIT = 5;
 
     private final String name;
 
@@ -12,14 +12,14 @@ public class Name {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
-    }
-
     private void checkLengthIsBelowLimit(String name) {
         if (name.length() > NAME_LENGTH_LIMIT) {
             throw new IllegalArgumentException("The length of name must be below five");
         }
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override

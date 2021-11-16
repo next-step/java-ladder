@@ -1,9 +1,11 @@
 package domain;
 
+import java.util.List;
 import java.util.stream.IntStream;
 
 public class Ladder {
-    private final int START_POINT = 0;
+    private static final int START_POINT = 0;
+    private static final int DECREMENT_FOR_STAIRS_PER_FLOOR = 1;
 
     private final int heightOfLadder;
     private final int participantsSize;
@@ -16,10 +18,13 @@ public class Ladder {
     }
 
     private Floors constituteFloors() {
-        FloorFactory floorFactory = new FloorFactory(participantsSize);
         Floors floors = new Floors();
+        int numberOfStairsPerFloor = participantsSize - DECREMENT_FOR_STAIRS_PER_FLOOR;
         IntStream.range(START_POINT, heightOfLadder)
-                .forEach(i -> floors.add(floorFactory.produceFloor()));
+                .forEach(i -> {
+                    List<Boolean> randomGeneratedFloorStates = RandomGenerator.produceRandomFlags(numberOfStairsPerFloor);
+                    floors.produceFloor(randomGeneratedFloorStates);
+                });
 
         return floors;
     }
