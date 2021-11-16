@@ -4,6 +4,7 @@ import static java.util.stream.Collectors.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -38,6 +39,10 @@ public class Persons {
 
 	public int size() {
 		return values.size();
+	}
+
+	public List<Person> getValues() {
+		return Collections.unmodifiableList(values);
 	}
 
 	@Override
