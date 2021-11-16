@@ -1,6 +1,8 @@
 package nextstep.ladder.domain;
 
 public class Height {
+	private static final String INVALID_MESSAGE = "높이는 0보다 커야 합니다.";
+
 	private final int value;
 
 	private Height(String value) {
@@ -14,7 +16,7 @@ public class Height {
 
 	private void validate(int value) {
 		if (value < 1) {
-			throw new RuntimeException("높이는 0보다 커야 합니다.");
+			throw new IllegalArgumentException(INVALID_MESSAGE);
 		}
 	}
 

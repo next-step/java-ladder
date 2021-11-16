@@ -23,7 +23,7 @@ class HeightTest {
 	@ValueSource(strings = {"0", "-1", "-2", "-3", "-4", "-5"})
 	void createWithNegativeNumber(String input) {
 		// when then
-		assertThatExceptionOfType(RuntimeException.class)
+		assertThatIllegalArgumentException()
 			.isThrownBy(() -> Height.create(input));
 	}
 }
