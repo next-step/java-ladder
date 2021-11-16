@@ -1,6 +1,7 @@
 package nextstep.ladder.util;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.params.provider.Arguments.*;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -26,8 +27,8 @@ class CollectionUtilsTest {
 
 	private static Stream<Arguments> provideCollections() {
 		return Stream.of(
-			Arguments.arguments(Collections.emptyList(), true),
-			Arguments.arguments(Arrays.asList("1", "2"), false)
+			arguments(Collections.emptyList(), true),
+			arguments(Arrays.asList("1", "2"), false)
 		);
 	}
 }
