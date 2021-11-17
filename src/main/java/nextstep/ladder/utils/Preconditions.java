@@ -13,6 +13,13 @@ public class Preconditions {
         }
     }
 
+    public static boolean checkNotNull(String reference, String errorMessage) {
+        if (reference == null || reference.length() == 0) {
+            throw new IllegalArgumentException(errorMessage);
+        }
+        return true;
+    }
+
     public static void checkEmpty(Collection<?> coll, String errorMessage) {
         if (coll == null || coll.isEmpty()) {
             throw new IllegalArgumentException(errorMessage);
@@ -33,6 +40,12 @@ public class Preconditions {
 
     public static void checkMaximumSize(int size, int maximumSize, String errorMessage) {
         if (size > maximumSize) {
+            throw new IllegalArgumentException(errorMessage);
+        }
+    }
+
+    public static void checkSameSize(int size, int targetSize, String errorMessage) {
+        if (size != targetSize) {
             throw new IllegalArgumentException(errorMessage);
         }
     }

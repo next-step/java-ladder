@@ -128,4 +128,28 @@ class PreconditionsTest {
                                                                  String.format("maximumSize(%d) 값보다 작은 값을 입력해 주세요.",
                                                                                maximumSize)));
     }
+
+
+    @ParameterizedTest
+    @CsvSource(value = {
+            " 6|     6",
+            " 7|     7"
+    }, delimiter = '|')
+    @DisplayName("값이 동일한 경우")
+    void checkSameSize(int size, int targetSize) {
+        // when & then
+        assertDoesNotThrow(() -> Preconditions.checkSameSize(size, targetSize, "동일한 값을 입력해주세요."));
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {
+            " 1|     2",
+            " 3|     4"
+    }, delimiter = '|')
+    @DisplayName("값이 다른 경우 예외발생 검증")
+    void checkSameSize_exception(int size, int targetSize) {
+        // when & then
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> Preconditions.checkSameSize(size, targetSize, "동일한 값을 입력해주세요."));
+    }
 }
