@@ -33,6 +33,24 @@ class LineTest {
         assertThatIllegalArgumentException().isThrownBy(() -> Line.from(null));
     }
 
+    @Test
+    @DisplayName("이전 지점과 현재 지점에 라인이 있는 경우 왼쪽이동 검증")
+    void moveLeft() {
+        Line line = Line.from(Arrays.asList(Point.from(false), Point.from(true)));
+        Location location = Location.from(1);
+
+        assertThat(line.getCurrentLocation(location)).isEqualTo(Location.from(0));
+    }
+
+    @Test
+    @DisplayName("현재 지점과 다음 지점이 연결되어 있는 경우에만 오른쪽이동 검증")
+    void moveRight() {
+        Line line = Line.from(Arrays.asList(Point.from(false), Point.from(true)));
+        Location location = Location.from(0);
+
+        assertThat(line.getCurrentLocation(location)).isEqualTo(Location.from(1));
+    }
+
     @ParameterizedTest
     @MethodSource
     @DisplayName("사다리 한줄 라인에 대한 이동방향 검증")

@@ -22,24 +22,32 @@ public class Line {
         return new Line(points);
     }
 
-    public Location getCurrentLocation(Location currentLocation) {
-        if (isMoveLeft(currentLocation)) {
-            return currentLocation.decreaseLocation();
+    public Location getCurrentLocation(Location location) {
+        if (isMoveLeft(location)) {
+            return location.decreaseLocation();
         }
 
-        if (isMoveRight(currentLocation)) {
-            return currentLocation.increaseLocation();
+        if (isMoveRight(location)) {
+            return location.increaseLocation();
         }
 
-        return currentLocation;
+        return location;
     }
 
-    private boolean isMoveLeft(Location currentLocation) {
-        return currentLocation.isMoveLeft(points);
+    private boolean isMoveLeft(Location location) {
+        if (location.isFirstLocation()) {
+            return false;
+        }
+        return points.get(location.getCurrentLocation()).isTrue()
+                && points.get(location.getPreviousLocation()).isFalse();
     }
 
-    private boolean isMoveRight(Location currentLocation) {
-        return currentLocation.isMoveRight(points);
+    private boolean isMoveRight(Location location) {
+        if (location.isLastLocation(points.size() - 1)) {
+            return false;
+        }
+        return points.get(location.getCurrentLocation()).isFalse()
+                && points.get(location.getNextLocation()).isTrue();
     }
 
     @GetterForUI

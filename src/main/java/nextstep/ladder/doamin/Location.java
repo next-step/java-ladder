@@ -1,23 +1,21 @@
 package nextstep.ladder.doamin;
 
-import nextstep.ladder.annotations.GetterForUI;
-import nextstep.ladder.doamin.value.Point;
 import nextstep.ladder.utils.Preconditions;
 
-import java.util.List;
 import java.util.Objects;
 
 public class Location {
-    private static final Integer START_LOCATION = 0;
     private static final Integer PREVIOUS_LOCATION = -1;
     private static final Integer NEXT_LOCATION = 1;
+    private static final Integer FIRST_LOCATION = 0;
 
-    private final Integer currentLocation;
 
-    private Location(Integer currentLocation) {
-        Preconditions.checkNotNull(currentLocation, "currentLocation는 필수값입니다.");
+    private final Integer location;
 
-        this.currentLocation = currentLocation;
+    private Location(Integer location) {
+        Preconditions.checkNotNull(location, "location는 필수값입니다.");
+
+        this.location = location;
     }
 
     public static Location from(Integer currentLocation) {
@@ -25,46 +23,43 @@ public class Location {
     }
 
     public Location increaseLocation() {
-        return new Location(currentLocation + NEXT_LOCATION);
+        return new Location(location + NEXT_LOCATION);
     }
 
     public Location decreaseLocation() {
-        return new Location(currentLocation + PREVIOUS_LOCATION);
+        return new Location(location + PREVIOUS_LOCATION);
     }
 
-    public boolean isMoveLeft(List<Point> points) {
-        Preconditions.checkEmpty(points, "points는 필수값입니다.");
-
-        if (START_LOCATION.equals(currentLocation)) {
-            return false;
-        }
-        return points.get(currentLocation).isTrue() && points.get(currentLocation + PREVIOUS_LOCATION).isFalse();
+    public boolean isFirstLocation() {
+        return location.equals(FIRST_LOCATION);
     }
 
-    public boolean isMoveRight(List<Point> points) {
-        Preconditions.checkEmpty(points, "points는 필수값입니다.");
-
-        if (currentLocation == points.size() - 1) {
-            return false;
-        }
-        return points.get(currentLocation).isFalse() && points.get(currentLocation + NEXT_LOCATION).isTrue();
+    public boolean isLastLocation(Integer lastLocation) {
+        return location.equals(lastLocation);
     }
 
-    @GetterForUI
+    public Integer getPreviousLocation() {
+        return location + PREVIOUS_LOCATION;
+    }
+
+    public Integer getNextLocation() {
+        return location + NEXT_LOCATION;
+    }
+
     public Integer getCurrentLocation() {
-        return currentLocation;
+        return location;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Location location = (Location) o;
-        return Objects.equals(this.currentLocation, location.currentLocation);
+        Location location1 = (Location) o;
+        return Objects.equals(location, location1.location);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(currentLocation);
+        return Objects.hash(location);
     }
 }
