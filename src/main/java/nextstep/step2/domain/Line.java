@@ -2,6 +2,7 @@ package nextstep.step2.domain;
 
 import nextstep.step2.vo.BooleanGenerateStrategy;
 import nextstep.step2.vo.Point;
+import nextstep.step2.vo.Width;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.stream.Collectors;
 
 public class Line {
     private static final int START_LINE = 0;
+    private static final int ONE_TO_WIDTH_PLUS = 1;
 
     private final List<Point> points;
 
@@ -24,6 +26,10 @@ public class Line {
         }
 
         return new Line(points);
+    }
+
+    public static Line createWithWidth(Width width, BooleanGenerateStrategy strategy) {
+        return create(width.getEndLine(), strategy);
     }
 
     private static Point makePoint(BooleanGenerateStrategy strategy, List<Point> points) {
@@ -44,6 +50,10 @@ public class Line {
                 .map(Point::getValue)
                 .map(Point::getCachedPoint)
                 .collect(Collectors.toList());
+    }
+
+    public Width getWidth() {
+        return Width.create(points.size() + ONE_TO_WIDTH_PLUS);
     }
 
     @Override

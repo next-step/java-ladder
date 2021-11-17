@@ -1,5 +1,7 @@
 package nextstep.step2.vo;
 
+import java.util.Objects;
+
 public class Height {
 
     private static final int MIN_HEIGHT = 1;
@@ -24,5 +26,26 @@ public class Height {
         }
 
         return new Height(value);
+    }
+
+    public int getHeight() {
+        return this.value;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Height height = (Height) o;
+        return value == height.value;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
     }
 }

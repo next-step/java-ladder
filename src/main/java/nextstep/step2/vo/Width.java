@@ -1,5 +1,7 @@
 package nextstep.step2.vo;
 
+import java.util.Objects;
+
 public class Width {
     private static final int ONE_TO_MINUS_END_LINE = 1;
     private static final int MIN_WIDTH = 2;
@@ -21,5 +23,22 @@ public class Width {
 
     public int getEndLine() {
         return this.value - ONE_TO_MINUS_END_LINE;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Width width = (Width) o;
+        return value == width.value;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
     }
 }
