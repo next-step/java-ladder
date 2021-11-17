@@ -17,11 +17,11 @@ public class Ladder {
         return new Ladder(lines, names);
     }
 
-    public static Ladder createWithLadderInformation(LadderInformation info, BooleanGenerateStrategy strategy) {
+    public static Ladder createWithLadderInformation(LadderInformation info) {
         Names names = info.getNames();
         Width width = Width.create(info.getNames().size());
         Height height = info.getHeight();
-        return create(Lines.createWithHeightANdWidth(height, width, strategy), names);
+        return create(Lines.createWithHeightANdWidth(height, width, info.getStrategy()), names);
     }
 
 }
