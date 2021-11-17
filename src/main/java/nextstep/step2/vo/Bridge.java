@@ -2,21 +2,21 @@ package nextstep.step2.vo;
 
 import java.util.Objects;
 
-public class Point {
-    public static final Point FALSE = new Point(false);
-    public static final Point TRUE = new Point(true);
+public class Bridge {
+    public static final Bridge FALSE = new Bridge(false);
+    public static final Bridge TRUE = new Bridge(true);
 
-    private final Boolean value;
+    private final boolean value;
 
-    private Point(Boolean value) {
+    private Bridge(Boolean value) {
         this.value = value;
     }
 
-    public static Point create(Boolean value) {
-        return new Point(value);
+    public static Bridge create(Boolean value) {
+        return getCachedBridge(value);
     }
 
-    public static Point getCachedPoint(Boolean value) {
+    private static Bridge getCachedBridge(Boolean value) {
         if(value) {
             return TRUE;
         }
@@ -24,7 +24,7 @@ public class Point {
         return FALSE;
     }
 
-    public Boolean getValue() {
+    public boolean getValue() {
         return value;
     }
 
@@ -40,8 +40,8 @@ public class Point {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Point point = (Point) o;
-        return Objects.equals(value, point.value);
+        Bridge bridge = (Bridge) o;
+        return Objects.equals(value, bridge.value);
     }
 
     @Override

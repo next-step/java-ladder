@@ -13,8 +13,8 @@ public class LadderInformation {
         this.height = height;
     }
 
-    public static LadderInformation create(String namesString, int heightValue) {
-        return new LadderInformation(Names.createWithString(namesString), Height.create(heightValue));
+    public static LadderInformation create(String namesString, String heightValue) {
+        return new LadderInformation(Names.createWithString(namesString), Height.createWithString(heightValue));
     }
 
     public Names getNames() {

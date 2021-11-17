@@ -1,7 +1,6 @@
 package nextstep.step2.domain;
 
-import nextstep.step2.domain.Line;
-import nextstep.step2.vo.Point;
+import nextstep.step2.vo.Bridge;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -18,10 +17,10 @@ class LineTest {
 
         Line actual = Line.create(3, () -> true);
 
-        List<Point> expect = Arrays.asList(
-                Point.TRUE,
-                Point.FALSE,
-                Point.TRUE
+        List<Bridge> expect = Arrays.asList(
+                Bridge.TRUE,
+                Bridge.FALSE,
+                Bridge.TRUE
         );
 
         assertThat(actual.getPoints()).isEqualTo(expect);

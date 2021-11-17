@@ -1,7 +1,7 @@
 package nextstep.step2.domain;
 
 import nextstep.step2.vo.BooleanGenerateStrategy;
-import nextstep.step2.vo.Point;
+import nextstep.step2.vo.Bridge;
 import nextstep.step2.vo.Width;
 
 import java.util.ArrayList;
@@ -12,47 +12,47 @@ import java.util.stream.Collectors;
 public class Line {
     private static final int START_LINE = 0;
 
-    private final List<Point> points;
+    private final List<Bridge> bridges;
 
-    private Line(List<Point> points) {
-        this.points = points;
+    private Line(List<Bridge> bridges) {
+        this.bridges = bridges;
     }
 
     public static Line create(int endLine, BooleanGenerateStrategy strategy) {
-        List<Point> points = new ArrayList<>();
+        List<Bridge> bridges = new ArrayList<>();
         for(int i = START_LINE; i < endLine; i++) {
-            points.add(makePoint(strategy, points));
+            bridges.add(makePoint(strategy, bridges));
         }
 
-        return new Line(points);
+        return new Line(bridges);
     }
 
     public static Line createWithWidth(Width width, BooleanGenerateStrategy strategy) {
         return create(width.getEndLine(), strategy);
     }
 
-    private static Point makePoint(BooleanGenerateStrategy strategy, List<Point> points) {
-        if(points.isEmpty()) {
-            return Point.getCachedPoint(strategy.generate());
+    private static Bridge makePoint(BooleanGenerateStrategy strategy, List<Bridge> bridges) {
+        if(bridges.isEmpty()) {
+            return Bridge.create(strategy.generate());
         }
 
-        int now = points.size() - 1;
-        if(points.get(now).equals(Point.TRUE)) {
-            return Point.FALSE;
+        int now = bridges.size() - 1;
+        if(bridges.get(now).equals(Bridge.TRUE)) {
+            return Bridge.FALSE;
         }
 
-        return Point.getCachedPoint(strategy.generate());
+        return Bridge.create(strategy.generate());
     }
 
-    public List<Point> getPoints() {
-        return points.stream()
-                .map(Point::getValue)
-                .map(Point::getCachedPoint)
+    public List<Bridge> getPoints() {
+        return bridges.stream()
+                .map(Bridge::getValue)
+                .map(Bridge::create)
                 .collect(Collectors.toList());
     }
 
     public int size() {
-        return points.size();
+        return bridges.size();
     }
 
     @Override
@@ -64,18 +64,18 @@ public class Line {
             return false;
         }
         Line line = (Line) o;
-        return Objects.equals(points, line.points);
+        return Objects.equals(bridges, line.bridges);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(points);
+        return Objects.hash(bridges);
     }
 
     @Override
     public String toString() {
         return "Line{" +
-                "points=" + points +
+                "points=" + bridges +
                 '}';
     }
 }
