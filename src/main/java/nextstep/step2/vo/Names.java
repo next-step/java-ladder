@@ -37,4 +37,7 @@ public class Names {
                 .collect(collectingAndThen(toList(), Names::new));
     }
 
+    public int size() {
+        return names.size();
+    }
 }
