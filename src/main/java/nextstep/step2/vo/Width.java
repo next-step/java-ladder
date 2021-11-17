@@ -23,8 +23,8 @@ public class Width {
         return new Width(value);
     }
 
-    public static Width createWithLine(Line line) {
-        return create(line.size() + ONE_TO_CALCULATE_LINE);
+    public static Width createWithName(Names names) {
+        return create(names.size());
     }
 
     public int getEndLine() {

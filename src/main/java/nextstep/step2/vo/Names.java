@@ -40,4 +40,10 @@ public class Names {
     public int size() {
         return names.size();
     }
+
+    public List<Name> getNames() {
+        return names.stream()
+                .map(name -> Name.create(name.getValue()))
+                .collect(toList());
+    }
 }

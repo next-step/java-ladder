@@ -24,6 +24,14 @@ public class Name {
         return new Name(value);
     }
 
+    public String getValue() {
+        return value;
+    }
+
+    public int length() {
+        return value.length();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

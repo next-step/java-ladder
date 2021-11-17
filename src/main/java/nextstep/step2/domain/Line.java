@@ -18,7 +18,15 @@ public class Line {
         this.bridges = bridges;
     }
 
-    public static Line create(int endLine, BooleanGenerateStrategy strategy) {
+    public static Line create(List<Bridge> bridges) {
+        return new Line(bridges);
+    }
+
+    public static Line createWithLine(Line line) {
+        return new Line(line.bridges);
+    }
+
+    public static Line createWithEndLine(int endLine, BooleanGenerateStrategy strategy) {
         List<Bridge> bridges = new ArrayList<>();
         for(int i = START_LINE; i < endLine; i++) {
             bridges.add(makePoint(strategy, bridges));
@@ -28,7 +36,7 @@ public class Line {
     }
 
     public static Line createWithWidth(Width width, BooleanGenerateStrategy strategy) {
-        return create(width.getEndLine(), strategy);
+        return createWithEndLine(width.getEndLine(), strategy);
     }
 
     private static Bridge makePoint(BooleanGenerateStrategy strategy, List<Bridge> bridges) {
@@ -44,7 +52,7 @@ public class Line {
         return Bridge.create(strategy.generate());
     }
 
-    public List<Bridge> getPoints() {
+    public List<Bridge> getBridges() {
         return bridges.stream()
                 .map(Bridge::getValue)
                 .map(Bridge::create)

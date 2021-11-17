@@ -25,19 +25,9 @@ public class Lines {
         return new Lines(lines);
     }
 
-    public static final Lines createWithHeightANdWidth(Height height, Width width, BooleanGenerateStrategy strategy) {
-        List<Line> lines = IntStream.range(0, height.getHeight())
-                .mapToObj(i -> Line.createWithWidth(width, strategy))
+    public List<Line> getLines() {
+        return lines.stream()
+                .map(Line::createWithLine)
                 .collect(Collectors.toList());
-        return create(lines);
-    }
-
-    public boolean equalHeight(Height height) {
-        return height.equals(Height.create(lines.size()));
-    }
-
-    public boolean equalWidth(Width width) {
-        //생성자에서 lines는 최소 한줄 이상이 보장된다.
-        return width.equals(Width.createWithLine(lines.get(0)));
     }
 }

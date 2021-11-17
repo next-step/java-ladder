@@ -15,7 +15,7 @@ class LineTest {
     @Test
     void createTest() {
 
-        Line actual = Line.create(3, () -> true);
+        Line actual = Line.createWithEndLine(3, () -> true);
 
         List<Bridge> expect = Arrays.asList(
                 Bridge.TRUE,
@@ -23,7 +23,7 @@ class LineTest {
                 Bridge.TRUE
         );
 
-        assertThat(actual.getPoints()).isEqualTo(expect);
+        assertThat(actual.getBridges()).isEqualTo(expect);
     }
 
 }

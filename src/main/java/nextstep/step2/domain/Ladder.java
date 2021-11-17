@@ -3,25 +3,37 @@ package nextstep.step2.domain;
 import nextstep.step2.dto.LadderInformation;
 import nextstep.step2.vo.*;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 public class Ladder {
 
     private final Lines lines;
-    private final Names names;
+    private final Width width;
+    private final Height height;
 
-    private Ladder(Lines lines, Names names) {
+    private Ladder(Lines lines, Width width, Height height) {
         this.lines = lines;
-        this.names = names;
+        this.width = width;
+        this.height = height;
     }
 
-    public static Ladder create(Lines lines, Names names) {
-        return new Ladder(lines, names);
+    public static Ladder create(Lines lines, Width width, Height height) {
+        return new Ladder(lines, width, height);
     }
 
-    public static Ladder createWithLadderInformation(LadderInformation info) {
-        Names names = info.getNames();
-        Width width = Width.create(info.getNames().size());
+    public static Ladder createWithLadderInformation(LadderInformation info, BooleanGenerateStrategy strategy) {
+        Width width = Width.createWithName(info.getNames());
         Height height = info.getHeight();
-        return create(Lines.createWithHeightANdWidth(height, width, info.getStrategy()), names);
+        List<Line> lines = IntStream.range(0, height.getHeight())
+                .mapToObj(i -> Line.createWithWidth(width, strategy))
+                .collect(Collectors.toList());
+
+        return create(Lines.create(lines), width, height);
     }
 
+    public List<Line> getLineList() {
+        return lines.getLines();
+    }
 }
