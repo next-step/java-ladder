@@ -2,26 +2,26 @@ package nextstep.ladder.domain;
 
 import java.util.Objects;
 
-import nextstep.ladder.exception.PersonNameSizeException;
+import nextstep.ladder.exception.ParticipantNameSizeException;
 
-public class Person {
+public class Participant {
 	public static final int SIZE_OF_NAME = 5;
 
 	private final String name;
 
-	private Person(String name) {
+	private Participant(String name) {
 		validateName(name);
 		this.name = name;
 	}
 
 	private void validateName(String name) {
 		if (name.length() > 5) {
-			throw new PersonNameSizeException();
+			throw new ParticipantNameSizeException();
 		}
 	}
 
-	public static Person create(String name) {
-		return new Person(name);
+	public static Participant create(String name) {
+		return new Participant(name);
 	}
 
 	@Override
@@ -33,9 +33,9 @@ public class Person {
 			return false;
 		}
 
-		Person person = (Person)obj;
+		Participant participant = (Participant)obj;
 
-		return Objects.equals(name, person.name);
+		return Objects.equals(name, participant.name);
 	}
 
 	@Override

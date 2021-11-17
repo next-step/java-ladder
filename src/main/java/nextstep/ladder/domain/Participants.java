@@ -10,38 +10,37 @@ import java.util.Objects;
 
 import nextstep.ladder.util.CollectionUtils;
 
-public class Persons {
-	private static final String EMPTY_MESSAGE = "Person 리스트가 비어있습니다.";
+public class Participants {
+	private static final String EMPTY_MESSAGE = "participant 리스트가 비어있습니다.";
 
-	private final List<Person> values;
+	private final List<Participant> values;
 
-	private Persons(List<Person> values) {
+	private Participants(List<Participant> values) {
 		validateSize(values);
 		this.values = new ArrayList<>(values);
 	}
 
-	private void validateSize(List<Person> values) {
+	private void validateSize(List<Participant> values) {
 		if (CollectionUtils.isEmpty(values)) {
 			throw new IllegalArgumentException(EMPTY_MESSAGE);
 		}
 	}
 
-	public static Persons create(List<Person> values) {
-		return new Persons(values);
+	public static Participants create(List<Participant> values) {
+		return new Participants(values);
 	}
 
-	public static Persons create(String[] names) {
-		List<Person> values = Arrays.stream(names)
-			.map(Person::create)
-			.collect(toList());
-		return Persons.create(values);
+	public static Participants create(String[] names) {
+		return Arrays.stream(names)
+			.map(Participant::create)
+			.collect(collectingAndThen(toList(), Participants::new));
 	}
 
 	public int size() {
 		return values.size();
 	}
 
-	public List<Person> getValues() {
+	public List<Participant> getValues() {
 		return Collections.unmodifiableList(values);
 	}
 
@@ -54,9 +53,9 @@ public class Persons {
 			return false;
 		}
 
-		Persons persons = (Persons)obj;
+		Participants participants = (Participants)obj;
 
-		return Objects.equals(values, persons.values);
+		return Objects.equals(values, participants.values);
 	}
 
 	@Override

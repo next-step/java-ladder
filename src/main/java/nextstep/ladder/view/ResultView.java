@@ -2,8 +2,7 @@ package nextstep.ladder.view;
 
 import java.util.List;
 
-import nextstep.ladder.domain.Person;
-import nextstep.ladder.domain.Persons;
+import nextstep.ladder.domain.Participant;
 import nextstep.ladder.domain.Point;
 import nextstep.ladder.exception.UtilCreationException;
 
@@ -25,15 +24,13 @@ public final class ResultView {
 		throw new UtilCreationException();
 	}
 
-	public static void printNames(Persons persons) {
+	public static void printNames(List<Participant> participants) {
 		initializeBuilder();
 
 		appendToBuilder(EXECUTION_RESULT);
 		appendNewlineToBuilder();
 
-		for (Person person : persons.getValues()) {
-			appendToBuilder(String.format(NAME_FORMAT, person));
-		}
+		participants.forEach(participant -> appendToBuilder(String.format(NAME_FORMAT, participant)));
 		appendNewlineToBuilder();
 
 		printBuilder();
