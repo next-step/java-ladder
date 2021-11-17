@@ -30,4 +30,7 @@
   - Name의 1급 객체  
 - LadderInformation
   - input 받은 값을 전달하는 객체
-  
+- Height
+  - 사다리의 높이값을 가지는 객체
+- Width
+  - 사다리의 넓이 값을 가지는 객체

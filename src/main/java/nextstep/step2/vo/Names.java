@@ -1,6 +1,10 @@
 package nextstep.step2.vo;
 
+import java.util.Arrays;
 import java.util.List;
+
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
 
 public class Names {
 
@@ -15,11 +19,22 @@ public class Names {
 
     public static Names create(List<Name> names) {
 
-        if(names == null || names.size() < MIN_PLAYER_COUNT) {
+        if (names == null || names.size() < MIN_PLAYER_COUNT) {
             throw new IllegalArgumentException(NULL_OR_LESS_SIZE_MESSAGE);
         }
 
         return new Names(names);
+    }
+
+    public static Names createWithString(String input) {
+
+        if (input == null) {
+            throw new IllegalArgumentException(NULL_OR_LESS_SIZE_MESSAGE);
+        }
+
+        return Arrays.stream(input.split(","))
+                .map(Name::create)
+                .collect(collectingAndThen(toList(), Names::new));
     }
 
 }
