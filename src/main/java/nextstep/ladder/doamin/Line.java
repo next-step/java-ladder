@@ -22,6 +22,26 @@ public class Line {
         return new Line(points);
     }
 
+    public Location getCurrentLocation(Location currentLocation) {
+        if (isMoveLeft(currentLocation)) {
+            return currentLocation.decreaseLocation();
+        }
+
+        if (isMoveRight(currentLocation)) {
+            return currentLocation.increaseLocation();
+        }
+
+        return currentLocation;
+    }
+
+    private boolean isMoveLeft(Location currentLocation) {
+        return currentLocation.isMoveLeft(points);
+    }
+
+    private boolean isMoveRight(Location currentLocation) {
+        return currentLocation.isMoveRight(points);
+    }
+
     @GetterForUI
     public List<Point> getPoints() {
         return Collections.unmodifiableList(new ArrayList<>(points));

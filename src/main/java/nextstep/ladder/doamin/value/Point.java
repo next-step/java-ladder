@@ -21,6 +21,10 @@ public class Point {
         return Boolean.TRUE.equals(point);
     }
 
+    public Boolean isFalse() {
+        return Boolean.FALSE.equals(point);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
