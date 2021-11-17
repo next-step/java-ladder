@@ -28,3 +28,6 @@
   - null 값이나 empty 값이 올 수 없다.
 - Names
   - Name의 1급 객체  
+- LadderInformation
+  - input 받은 값을 전달하는 객체
+  

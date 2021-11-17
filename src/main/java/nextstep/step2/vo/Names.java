@@ -1,4 +1,25 @@
 package nextstep.step2.vo;
 
+import java.util.List;
+
 public class Names {
+
+    private static final String NULL_OR_LESS_SIZE_MESSAGE = "최소 두명 이상의 플레이어가 필요합니다.";
+    private static final int MIN_PLAYER_COUNT = 2;
+
+    private final List<Name> names;
+
+    private Names(List<Name> names) {
+        this.names = names;
+    }
+
+    public static Names create(List<Name> names) {
+
+        if(names == null || names.size() < MIN_PLAYER_COUNT) {
+            throw new IllegalArgumentException(NULL_OR_LESS_SIZE_MESSAGE);
+        }
+
+        return new Names(names);
+    }
+
 }
