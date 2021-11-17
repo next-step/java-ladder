@@ -15,10 +15,10 @@
   - Height
     - 사다리 높이를 저장한다.
     - 양수인지 체크한다.
-  - Person
+  - Participant
     - 참여자 이름을 저장한다. (최대 5자리)
-  - Persons
-    - Person 일급 컬렉션
+  - Participants
+    - Participant 일급 컬렉션
     - 참여자 목록을 관리한다.
   - Point
     - 각 사다리 교차 지점을 나타낸다.
