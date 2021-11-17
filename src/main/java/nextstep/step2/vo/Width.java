@@ -1,9 +1,11 @@
 package nextstep.step2.vo;
 
+import nextstep.step2.domain.Line;
+
 import java.util.Objects;
 
 public class Width {
-    private static final int ONE_TO_MINUS_END_LINE = 1;
+    private static final int ONE_TO_CALCULATE_LINE = 1;
     private static final int MIN_WIDTH = 2;
     private static final String NULL_OR_LESS_HEIGHT_MESSAGE = "넓이 값은 2 이상 이어야 합니다.";
 
@@ -21,8 +23,12 @@ public class Width {
         return new Width(value);
     }
 
+    public static Width createWithLine(Line line) {
+        return create(line.size() + ONE_TO_CALCULATE_LINE);
+    }
+
     public int getEndLine() {
-        return this.value - ONE_TO_MINUS_END_LINE;
+        return this.value - ONE_TO_CALCULATE_LINE;
     }
 
     @Override

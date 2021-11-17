@@ -11,7 +11,6 @@ import java.util.stream.Collectors;
 
 public class Line {
     private static final int START_LINE = 0;
-    private static final int ONE_TO_WIDTH_PLUS = 1;
 
     private final List<Point> points;
 
@@ -52,8 +51,8 @@ public class Line {
                 .collect(Collectors.toList());
     }
 
-    public Width getWidth() {
-        return Width.create(points.size() + ONE_TO_WIDTH_PLUS);
+    public int size() {
+        return points.size();
     }
 
     @Override
