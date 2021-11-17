@@ -48,14 +48,14 @@ public final class ResultView {
 		printBuilder();
 	}
 
-	private static void appendPadding(int width, int idx) {
-		if (isFistIndexOfLine(idx, width)) {
+	private static void appendPadding(int width, int index) {
+		if (isFistIndexOfLine(index, width)) {
 			appendToBuilder(LADDER_LEFT_PADDING);
 		}
 	}
 
-	private static boolean isFistIndexOfLine(int idx, int width) {
-		return idx % width == ZERO;
+	private static boolean isFistIndexOfLine(int index, int width) {
+		return index % width == ZERO;
 	}
 
 	private static void appendLadderLine(Point point) {
@@ -66,14 +66,14 @@ public final class ResultView {
 		appendToBuilder(line);
 	}
 
-	private static void appendNewLine(int width, int idx) {
-		if (isLastIndexOfLine(idx, width)) {
+	private static void appendNewLine(int width, int index) {
+		if (isLastIndexOfLine(index, width)) {
 			appendNewlineToBuilder();
 		}
 	}
 
-	private static boolean isLastIndexOfLine(int idx, int width) {
-		return (idx + ONE) % width == ZERO;
+	private static boolean isLastIndexOfLine(int index, int width) {
+		return (index + ONE) % width == ZERO;
 	}
 
 	private static void initializeBuilder() {

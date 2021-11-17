@@ -36,9 +36,9 @@ public class Ladder {
 		}
 	}
 
-	private void comparePoint(List<Point> points, int idx) {
-		Point current = points.get(idx);
-		Point next = points.get(idx + 1);
+	private void comparePoint(List<Point> points, int index) {
+		Point current = points.get(index);
+		Point next = points.get(index + 1);
 		if (current.hasLine() && next.hasLine()) {
 			throw new IllegalArgumentException(OVERLAP_MESSAGE);
 		}

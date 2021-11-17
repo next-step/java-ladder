@@ -26,14 +26,14 @@ public class RandomPointGenerator implements PointGenerator {
 		return points;
 	}
 
-	private Point createPoint(int idx, int width) {
-		if (isLastIndexOfLine(idx, width)) {
+	private Point createPoint(int index, int width) {
+		if (isLastIndexOfLine(index, width)) {
 			return Point.createHasNotLine();
 		}
 		return Point.create(RANDOM.nextBoolean());
 	}
 
-	private boolean isLastIndexOfLine(int idx, int width) {
-		return (idx + ONE) % width == ZERO;
+	private boolean isLastIndexOfLine(int index, int width) {
+		return (index + ONE) % width == ZERO;
 	}
 }
