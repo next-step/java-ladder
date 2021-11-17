@@ -1,4 +1,4 @@
-package nextstep.ladder.controller;
+package nextstep.ladder.doamin;
 
 import nextstep.ladder.annotations.GetterForUI;
 import nextstep.ladder.doamin.value.Person;
@@ -23,6 +23,10 @@ public class People {
 
     public Integer count() {
         return people.size();
+    }
+
+    public Integer getLocation(String name) {
+        return people.indexOf(Person.from(name));
     }
 
     @GetterForUI

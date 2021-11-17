@@ -1,6 +1,6 @@
 package nextstep.ladder.controller.dto;
 
-import nextstep.ladder.controller.People;
+import nextstep.ladder.doamin.People;
 
 public class LadderCreateParam {
     private final People people;

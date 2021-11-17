@@ -1,4 +1,4 @@
-package nextstep.ladder.doamin;
+package nextstep.ladder.doamin.value;
 
 import nextstep.ladder.utils.Preconditions;
 
@@ -8,7 +8,6 @@ public class Location {
     private static final Integer PREVIOUS_LOCATION = -1;
     private static final Integer NEXT_LOCATION = 1;
     private static final Integer FIRST_LOCATION = 0;
-
 
     private final Integer location;
 

@@ -2,7 +2,7 @@ package nextstep.ladder.domain;
 
 import nextstep.ladder.doamin.Ladder;
 import nextstep.ladder.doamin.Line;
-import nextstep.ladder.doamin.Location;
+import nextstep.ladder.doamin.value.Location;
 import nextstep.ladder.doamin.value.Point;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

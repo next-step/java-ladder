@@ -1,6 +1,7 @@
 package nextstep.ladder.doamin;
 
 import nextstep.ladder.annotations.GetterForUI;
+import nextstep.ladder.doamin.value.Location;
 import nextstep.ladder.doamin.value.Point;
 import nextstep.ladder.utils.Preconditions;
 
