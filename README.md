@@ -1,9 +1,28 @@
 # 사다리 게임
-## 진행 방법
-* 사다리 게임 게임 요구사항을 파악한다.
-* 요구사항에 대한 구현을 완료한 후 자신의 github 아이디에 해당하는 브랜치에 Pull Request(이하 PR)를 통해 코드 리뷰 요청을 한다.
-* 코드 리뷰 피드백에 대한 개선 작업을 하고 다시 PUSH한다.
-* 모든 피드백을 완료하면 다음 단계를 도전하고 앞의 과정을 반복한다.
 
-## 온라인 코드 리뷰 과정
-* [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
+## 기능 목록
+- LadderController
+  - 사다리 게임을 실행한다.
+- InputView
+  - 참여할 사람을 입력받는다.
+  - 최대 사다리 높이를 입력받는다.
+- ResultView
+  - 생성된 사다리를 출력한다.
+- PointGenerator
+  - RandomPointGenerator
+    - 넓이와 높이를 값 만큼 랜덤 Point 리스트를 생성한다.
+- Domain
+  - Height
+    - 사다리 높이를 저장한다.
+    - 양수인지 체크한다.
+  - Participant
+    - 참여자 이름을 저장한다. (최대 5자리)
+  - Participants
+    - Participant 일급 컬렉션
+    - 참여자 목록을 관리한다.
+  - Point
+    - 각 사다리 교차 지점을 나타낸다.
+    - 교차 지점에서 오른쪽으로 사다리가 있는지 Boolean 값으로 보관한다.
+    - 이전 Point 의 정보를 계산하여 새로운 포인트를 생성한다.
+  - Ladder
+    - 사다리 전체의 각 Point(교차 지점) 을 관리한다.
