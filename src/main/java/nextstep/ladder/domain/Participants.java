@@ -29,8 +29,8 @@ public class Participants {
 		return new Participants(values);
 	}
 
-	public static Participants create(String[] names) {
-		return Arrays.stream(names)
+	public static Participants createWithNames(List<String> names) {
+		return names.stream()
 			.map(Participant::create)
 			.collect(collectingAndThen(toList(), Participants::new));
 	}

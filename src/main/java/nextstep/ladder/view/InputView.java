@@ -1,5 +1,6 @@
 package nextstep.ladder.view;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 import nextstep.ladder.domain.Height;
@@ -20,7 +21,8 @@ public final class InputView {
 
 	public static Participants scanParticipants() {
 		System.out.println(SCAN_PARTICIPANTS);
-		return Participants.create(SCANNER.nextLine().split(PARTICIPANTS_DELIMITER));
+		String[] names = SCANNER.nextLine().split(PARTICIPANTS_DELIMITER);
+		return Participants.createWithNames(Arrays.asList(names));
 	}
 
 	public static Height scanHeightOfLadder() {
