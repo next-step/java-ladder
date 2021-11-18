@@ -20,7 +20,7 @@ public class LadderController {
 
 		Ladder ladder = Ladder.create(generator, participants.size(), height.getValue());
 
-		ResultView.printNames(participants.getValues());
+		ResultView.printParticipants(participants.getValues());
 		ResultView.printLadder(ladder.values(), participants.size());
 	}
 }

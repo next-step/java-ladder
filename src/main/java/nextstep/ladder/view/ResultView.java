@@ -24,7 +24,7 @@ public final class ResultView {
 		throw new UtilCreationException();
 	}
 
-	public static void printNames(List<Participant> participants) {
+	public static void printParticipants(List<Participant> participants) {
 		initializeBuilder();
 
 		appendToBuilder(EXECUTION_RESULT);
