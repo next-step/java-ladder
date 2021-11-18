@@ -31,7 +31,7 @@ class LadderTest {
 		Ladder ladder = Ladder.create(generator, width, height);
 
 		// then
-		assertThat(ladder.values().size()).isEqualTo(width * height);
+		assertThat(ladder.getValues().size()).isEqualTo(width * height);
 	}
 
 	@DisplayName("point list 가 비어있을 경우 예외 발생")

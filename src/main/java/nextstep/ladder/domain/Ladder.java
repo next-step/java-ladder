@@ -52,7 +52,7 @@ public class Ladder {
 		return create(generator.generate(width, height));
 	}
 
-	public List<Point> values() {
+	public List<Point> getValues() {
 		return Collections.unmodifiableList(points);
 	}
 
