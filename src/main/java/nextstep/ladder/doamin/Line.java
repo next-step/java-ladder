@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class Line {
+    private static final String INVALID_LOCATION = "Location 값이 잘못되었습니다.";
     private final List<Point> points;
 
     private Line(List<Point> points) {
@@ -39,6 +40,8 @@ public class Line {
         if (location.isFirstPoint()) {
             return false;
         }
+        validateLeftLocation(location);
+
         return points.get(location.getCurrentLocation()).isTrue()
                 && points.get(location.getPreviousLocation()).isFalse();
     }
@@ -47,8 +50,24 @@ public class Line {
         if (location.isLastPoint(points.size() - 1)) {
             return false;
         }
+        validateRightLocation(location);
+
         return points.get(location.getCurrentLocation()).isFalse()
                 && points.get(location.getNextLocation()).isTrue();
+    }
+
+    private void validateLeftLocation(Location location) {
+        if (points.get(location.getCurrentLocation()).isTrue()
+                && points.get(location.getPreviousLocation()).isTrue()) {
+            throw new IllegalArgumentException(INVALID_LOCATION);
+        }
+    }
+
+    private void validateRightLocation(Location location) {
+        if (points.get(location.getCurrentLocation()).isTrue()
+                && points.get(location.getNextLocation()).isTrue()) {
+            throw new IllegalArgumentException(INVALID_LOCATION);
+        }
     }
 
     @GetterForUI

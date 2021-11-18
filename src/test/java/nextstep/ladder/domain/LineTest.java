@@ -51,6 +51,27 @@ class LineTest {
         assertThat(line.getCurrentLocation(location)).isEqualTo(Location.from(1));
     }
 
+
+    @Test
+    @DisplayName("잘못된 값 입력시, 왼쪽 이동에 대한 예외 검증")
+    void moveLeft_exception() {
+        Line line = Line.from(Arrays.asList(Point.from(true), Point.from(true)));
+        Location location = Location.from(1);
+
+        assertThatIllegalArgumentException().isThrownBy(() -> line.getCurrentLocation(location));
+    }
+
+
+    @Test
+    @DisplayName("잘못된 값 입력시, 오른쪽 이동에 대한 예외 검증")
+    void moveRight_exception() {
+        Line line = Line.from(Arrays.asList(Point.from(true), Point.from(true)));
+        Location location = Location.from(0);
+
+        assertThatIllegalArgumentException().isThrownBy(() -> line.getCurrentLocation(location));
+    }
+
+
     @ParameterizedTest
     @MethodSource
     @DisplayName("사다리 한줄 라인에 대한 이동방향 검증")
