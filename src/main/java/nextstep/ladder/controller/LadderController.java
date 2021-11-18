@@ -4,13 +4,17 @@ import nextstep.ladder.domain.Height;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Participants;
 import nextstep.ladder.generator.PointGenerator;
-import nextstep.ladder.generator.RandomPointGenerator;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
 public class LadderController {
+	private final PointGenerator generator;
+
+	public LadderController(PointGenerator generator) {
+		this.generator = generator;
+	}
+
 	public void start() {
-		PointGenerator generator = new RandomPointGenerator();
 		Participants participants = InputView.scanParticipants();
 		Height height = InputView.scanHeightOfLadder();
 
