@@ -29,11 +29,11 @@ public class Location {
         return new Location(location + PREVIOUS_LOCATION);
     }
 
-    public boolean isFirstLocation() {
+    public boolean isFirstPoint() {
         return location.equals(FIRST_LOCATION);
     }
 
-    public boolean isLastLocation(Integer lastLocation) {
+    public boolean isLastPoint(Integer lastLocation) {
         return location.equals(lastLocation);
     }
 

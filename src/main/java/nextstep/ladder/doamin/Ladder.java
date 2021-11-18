@@ -22,8 +22,8 @@ public class Ladder {
         return new Ladder(lines);
     }
 
-    public Location getLadderResult(Location personLocation) {
-        AtomicReference<Location> lastLocation = new AtomicReference<>(personLocation);
+    public Location getLadderResult(Location startLocation) {
+        AtomicReference<Location> lastLocation = new AtomicReference<>(startLocation);
         lines.forEach(line -> lastLocation.set(line.getCurrentLocation(lastLocation.get())));
         return lastLocation.get();
     }

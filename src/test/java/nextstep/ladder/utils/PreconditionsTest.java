@@ -152,4 +152,17 @@ class PreconditionsTest {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> Preconditions.checkSameSize(size, targetSize, "동일한 값을 입력해주세요."));
     }
+
+    @Test
+    @DisplayName("입력값이 올바른 경우 검증")
+    void checkState() {
+        assertDoesNotThrow(() -> Preconditions.checkState(true, "결과값이 올바르지 않습니다."));
+    }
+
+    @Test
+    @DisplayName("입력값이 올바르지 않은 경우 예외발생 검증")
+    void checkState_exception() {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> Preconditions.checkState(false, "결과값이 올바르지 않습니다."));
+    }
 }

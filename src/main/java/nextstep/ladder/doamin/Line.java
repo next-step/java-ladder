@@ -36,7 +36,7 @@ public class Line {
     }
 
     private boolean isMoveLeft(Location location) {
-        if (location.isFirstLocation()) {
+        if (location.isFirstPoint()) {
             return false;
         }
         return points.get(location.getCurrentLocation()).isTrue()
@@ -44,7 +44,7 @@ public class Line {
     }
 
     private boolean isMoveRight(Location location) {
-        if (location.isLastLocation(points.size() - 1)) {
+        if (location.isLastPoint(points.size() - 1)) {
             return false;
         }
         return points.get(location.getCurrentLocation()).isFalse()

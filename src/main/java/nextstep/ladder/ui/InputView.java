@@ -33,7 +33,7 @@ public class InputView {
                 .filter(result -> Preconditions.checkNotNull(result, "실행 결과는 필수입니다."))
                 .collect(Collectors.toList());
 
-        Preconditions.checkSameSize(executionResults.size(), people.count(), "사람 수와 결과는 동일해야 합니다.");
+        Preconditions.checkSameSize(executionResults.size(), people.count(), "사람 수와 결과의 수는 동일해야 합니다.");
         return ExecutionResult.from(executionResults);
     }
 
