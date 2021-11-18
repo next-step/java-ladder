@@ -13,6 +13,8 @@ import nextstep.ladder.ui.InputView;
 import nextstep.ladder.ui.ResultView;
 
 public class LadderApplication {
+    private static final String EXIT = "exit";
+
     public static void main(String[] args) {
         InputView inputView = new InputView();
         ResultView resultView = new ResultView();
@@ -28,6 +30,11 @@ public class LadderApplication {
 
         while (true) {
             Person personName = inputView.inputResultOfPerson();
+
+            if (EXIT.equals(personName.getName())) {
+                break;
+            }
+
             resultView.printLadderResult(ladderResult, personName);
         }
     }
