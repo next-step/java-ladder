@@ -12,8 +12,8 @@ public class LadderResult {
 
     private LadderResult(People people, Ladder ladder, ExecutionResult executionResult) {
         Preconditions.checkNotNull(people, "people은 필수값입니다.");
-        Preconditions.checkNotNull(people, "ladder는 필수값입니다.");
-        Preconditions.checkNotNull(people, "executionResult는 필수값입니다.");
+        Preconditions.checkNotNull(ladder, "ladder는 필수값입니다.");
+        Preconditions.checkNotNull(executionResult, "executionResult는 필수값입니다.");
 
         this.people = people;
         this.ladder = ladder;
@@ -25,9 +25,15 @@ public class LadderResult {
     }
 
     public String getLadderResult(Person personName) {
+        Preconditions.checkState(isCorrectName(personName), "입력한 사람의 이름이 잘못되었습니다.");
+
         Location startLocation = people.getLocation(personName);
         Location lastLocation = ladder.getLadderResult(startLocation);
         return executionResult.getExecutionResult(lastLocation);
+    }
+
+    public boolean isCorrectName(Person personName) {
+        return people.isCorrectName(personName);
     }
 
     @GetterForUI

@@ -10,10 +10,11 @@ import java.util.Collections;
 import java.util.List;
 
 public class People {
+    private static final Integer WRONG_NAME = -1;
     private final List<Person> personList;
 
     public People(List<Person> personList) {
-        Preconditions.checkEmpty(personList, "people는 필수값입니다.");
+        Preconditions.checkEmpty(personList, "personList는 필수값입니다.");
 
         this.personList = personList;
     }
@@ -28,6 +29,10 @@ public class People {
 
     public Location getLocation(Person personName) {
         return Location.from(personList.indexOf(personName));
+    }
+
+    public boolean isCorrectName(Person personName) {
+        return !Location.from(WRONG_NAME).equals(getLocation(personName));
     }
 
     @GetterForUI

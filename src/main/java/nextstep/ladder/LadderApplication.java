@@ -28,6 +28,10 @@ public class LadderApplication {
         LadderResult ladderResult = LadderResult.of(people, ladder, executionResult);
         resultView.printLadder(ladderResult);
 
+        printResultOfLadder(inputView, resultView, ladderResult);
+    }
+
+    private static void printResultOfLadder(InputView inputView, ResultView resultView, LadderResult ladderResult) {
         while (true) {
             Person personName = inputView.inputResultOfPerson();
 
@@ -35,7 +39,7 @@ public class LadderApplication {
                 break;
             }
 
-            resultView.printLadderResult(ladderResult, personName);
+            resultView.printResultOfLadder(ladderResult, personName);
         }
     }
 }

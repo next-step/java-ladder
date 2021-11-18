@@ -14,14 +14,14 @@ public class ResultView {
         StringBuilder ladderBuilder = new StringBuilder();
         ladderBuilder.append(EXECUTION_RESULT).append(ENTER);
 
-        printPersonName(ladderBuilder, ladderResult.getPeople());
+        printPeopleName(ladderBuilder, ladderResult.getPeople());
         printLadder(ladderBuilder, ladderResult.getLadder());
         printExecutionResult(ladderBuilder, ladderResult.getExecutionResult());
 
         System.out.println(ladderBuilder.toString());
     }
 
-    public void printLadderResult(LadderResult ladderResult, Person personName) {
+    public void printResultOfLadder(LadderResult ladderResult, Person personName) {
         StringBuilder ladderBuilder = new StringBuilder();
         ladderBuilder.append(EXECUTION_RESULT).append(ENTER);
 
@@ -40,7 +40,7 @@ public class ResultView {
         System.out.println(ladderBuilder.toString());
     }
 
-    private void printPersonName(StringBuilder ladderBuilder, People people) {
+    private void printPeopleName(StringBuilder ladderBuilder, People people) {
         ladderBuilder.append(BLANK);
         people.getPersonList().forEach(person -> ladderBuilder.append(String.format("%-5s ", person.getName())));
     }

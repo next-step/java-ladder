@@ -11,13 +11,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class InputView {
-    private static final String PERSON_NAME_DELIMITER = ",";
+    private static final String DELIMITER = ",";
     private static final Integer MINIMUM_HEIGHT_SIZE = 1;
     private static final Integer MINIMUM_PERSON_SIZE = 2;
 
     public People inputPersonName() {
         String personNames = InputUtils.input("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        List<Person> people = Arrays.stream(personNames.split(PERSON_NAME_DELIMITER))
+        List<Person> people = Arrays.stream(personNames.split(DELIMITER))
                 .map(Person::from)
                 .collect(Collectors.toList());
 
@@ -29,7 +29,7 @@ public class InputView {
     public ExecutionResult inputExecutionResult(People people) {
         String executionResult = InputUtils.input("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
 
-        List<String> executionResults = Arrays.stream(executionResult.split(PERSON_NAME_DELIMITER))
+        List<String> executionResults = Arrays.stream(executionResult.split(DELIMITER))
                 .filter(result -> Preconditions.checkNotNull(result, "실행 결과는 필수입니다."))
                 .collect(Collectors.toList());
 
