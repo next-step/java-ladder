@@ -12,9 +12,10 @@ public final class ResultView {
 	private static final int ONE = 1;
 	private static final int ZERO = 0;
 
-	private static final String EXECUTION_RESULT = "실행 결과";
+	private static final String EXECUTION_RESULT = "사다리 결과";
 
 	private static final String NAME_FORMAT = "%6s";
+	private static final String RESULT_FORMAT = "%6s";
 
 	private static final String LADDER_LEFT_PADDING = "    ";
 	private static final String LADDER_EXIST_LINE = "|-----";
@@ -24,15 +25,18 @@ public final class ResultView {
 		throw new UtilCreationException();
 	}
 
-	public static void printParticipants(List<Participant> participants) {
+	public static void printTitle() {
 		initializeBuilder();
 
 		appendToBuilder(EXECUTION_RESULT);
 		appendNewlineToBuilder();
 
-		participants.forEach(participant -> appendToBuilder(String.format(NAME_FORMAT, participant)));
-		appendNewlineToBuilder();
+		printBuilder();
+	}
 
+	public static void printParticipants(List<Participant> participants) {
+		initializeBuilder();
+		participants.forEach(participant -> appendToBuilder(String.format(NAME_FORMAT, participant)));
 		printBuilder();
 	}
 
@@ -74,6 +78,12 @@ public final class ResultView {
 
 	private static boolean isLastIndexOfLine(int index, int width) {
 		return (index + ONE) % width == ZERO;
+	}
+
+	public static void printExecutionResult(List<String> results) {
+		initializeBuilder();
+		results.forEach(result -> appendToBuilder(String.format(RESULT_FORMAT, result)));
+		printBuilder();
 	}
 
 	private static void initializeBuilder() {
