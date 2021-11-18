@@ -12,7 +12,10 @@
 ## 기능목록
 - input view
 - output view
-- GameInformation
+- LadderInformation
+  - 사다리를 생성하는데 필요한 height , width 값을 가진다.
+- GameInformation  
+  - Game과 관련된 Names 를 가진다.
 - ladder
 - line
   - line 생성(연속으로 true가 나올 수 없다.)

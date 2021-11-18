@@ -3,23 +3,25 @@ package nextstep.step2.dto;
 import nextstep.step2.vo.BooleanGenerateStrategy;
 import nextstep.step2.vo.Height;
 import nextstep.step2.vo.Names;
+import nextstep.step2.vo.Width;
 
 public class LadderInformation {
 
-    private final Names names;
+    private final Width width;
     private final Height height;
 
-    private LadderInformation(Names names, Height height) {
-        this.names = names;
+    private LadderInformation(Width width, Height height) {
+        this.width = width;
         this.height = height;
     }
 
-    public static LadderInformation create(String namesString, String heightValue) {
-        return new LadderInformation(Names.createWithString(namesString), Height.createWithString(heightValue));
+    public static LadderInformation createWithString(String namesString, String heightValue) {
+        Names names = Names.createWithString(namesString);
+        return new LadderInformation(Width.create(names.size()), Height.createWithString(heightValue));
     }
 
-    public Names getNames() {
-        return names;
+    public Width getWidth() {
+        return width;
     }
 
     public Height getHeight() {

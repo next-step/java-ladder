@@ -24,8 +24,9 @@ public class Ladder {
     }
 
     public static Ladder createWithLadderInformation(LadderInformation info, BooleanGenerateStrategy strategy) {
-        Width width = Width.createWithName(info.getNames());
+        Width width = info.getWidth();
         Height height = info.getHeight();
+
         List<Line> lines = IntStream.range(0, height.getHeight())
                 .mapToObj(i -> Line.createWithWidth(width, strategy))
                 .collect(Collectors.toList());
