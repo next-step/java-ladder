@@ -10,7 +10,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class People {
-    private static final Integer WRONG_NAME = -1;
+    private static final Integer WRONG_NAME_INDEX = -1;
     private final List<Person> personList;
 
     public People(List<Person> personList) {
@@ -32,7 +32,7 @@ public class People {
     }
 
     public boolean isCorrectName(Person personName) {
-        return !Location.from(WRONG_NAME).equals(getLocation(personName));
+        return !Location.from(WRONG_NAME_INDEX).equals(getLocation(personName));
     }
 
     @GetterForUI
