@@ -3,7 +3,6 @@ package nextstep.step2.view;
 import nextstep.step2.domain.Ladder;
 import nextstep.step2.domain.LadderGame;
 import nextstep.step2.domain.Line;
-import nextstep.step2.dto.LadderInformation;
 import nextstep.step2.vo.Bridge;
 import nextstep.step2.vo.Name;
 import nextstep.step2.vo.Names;
@@ -32,7 +31,7 @@ public class OutputView {
     private String nameToPintString(Name name) {
         StringBuilder builder = new StringBuilder();
         builder.append(name.getValue());
-        for(int i = name.length(); i < 7; i++) {
+        for (int i = name.length(); i < 7; i++) {
             builder.append(SPACE);
         }
         return builder.toString();
@@ -50,16 +49,16 @@ public class OutputView {
         builder.append(LADDER);
         builder.append(
                 line.getBridges().stream()
-                .map(bridge -> bridgeToPrintString(bridge))
-                .collect(Collectors.joining(LADDER))
+                        .map(bridge -> bridgeToPrintString(bridge))
+                        .collect(Collectors.joining(LADDER))
         );
         builder.append(LADDER);
         return builder.toString();
     }
 
     private String bridgeToPrintString(Bridge bridge) {
-        if(bridge.getValue()) {
-           return BRIDGE;
+        if (bridge.getValue()) {
+            return BRIDGE;
         }
         return LADDER_SPACE;
     }

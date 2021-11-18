@@ -1,6 +1,5 @@
 package nextstep.step2.dto;
 
-import nextstep.step2.vo.BooleanGenerateStrategy;
 import nextstep.step2.vo.Height;
 import nextstep.step2.vo.Names;
 import nextstep.step2.vo.Width;

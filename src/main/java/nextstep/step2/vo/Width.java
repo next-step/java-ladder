@@ -1,7 +1,5 @@
 package nextstep.step2.vo;
 
-import nextstep.step2.domain.Line;
-
 import java.util.Objects;
 
 public class Width {
@@ -16,7 +14,7 @@ public class Width {
     }
 
     public static Width create(int value) {
-        if(value < MIN_WIDTH) {
+        if (value < MIN_WIDTH) {
             throw new IllegalArgumentException(NULL_OR_LESS_HEIGHT_MESSAGE);
         }
 

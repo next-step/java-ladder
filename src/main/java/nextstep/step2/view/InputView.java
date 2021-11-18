@@ -1,7 +1,5 @@
 package nextstep.step2.view;
 
-import nextstep.step2.dto.LadderInformation;
-
 import java.util.Scanner;
 
 public class InputView {

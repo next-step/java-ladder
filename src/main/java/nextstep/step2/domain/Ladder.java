@@ -1,7 +1,10 @@
 package nextstep.step2.domain;
 
 import nextstep.step2.dto.LadderInformation;
-import nextstep.step2.vo.*;
+import nextstep.step2.vo.BooleanGenerateStrategy;
+import nextstep.step2.vo.Height;
+import nextstep.step2.vo.Lines;
+import nextstep.step2.vo.Width;
 
 import java.util.List;
 import java.util.stream.Collectors;

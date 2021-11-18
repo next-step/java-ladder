@@ -1,8 +1,6 @@
 package nextstep.step2.domain;
 
 import nextstep.step2.dto.GameInformation;
-import nextstep.step2.dto.LadderInformation;
-import nextstep.step2.vo.BooleanGenerateStrategy;
 import nextstep.step2.vo.Names;
 
 public class LadderGame {

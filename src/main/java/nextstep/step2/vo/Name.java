@@ -13,11 +13,11 @@ public class Name {
     }
 
     public static Name create(String value) {
-        if(value == null || value.isEmpty()) {
+        if (value == null || value.isEmpty()) {
             throw new IllegalArgumentException(NOT_NULL_OR_EMPTY_EXCEPTION_MESSAGE);
         }
 
-        if(value.length() < 1 || value.length() > 5) {
+        if (value.length() < 1 || value.length() > 5) {
             throw new IllegalArgumentException(RANGE_EXCEPTION_MESSAGE);
         }
 

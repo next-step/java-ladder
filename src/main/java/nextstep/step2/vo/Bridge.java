@@ -17,7 +17,7 @@ public class Bridge {
     }
 
     private static Bridge getCachedBridge(Boolean value) {
-        if(value) {
+        if (value) {
             return TRUE;
         }
 
