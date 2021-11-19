@@ -76,7 +76,7 @@ class LineTest {
 
 
     @ParameterizedTest
-    @MethodSource
+    @MethodSource(value = "move")
     @DisplayName("사다리 한줄 라인에 대한 이동방향 검증")
     void move(List<Point> points, Integer currentLocation, Integer expected) {
         Line line = Line.from(points);
