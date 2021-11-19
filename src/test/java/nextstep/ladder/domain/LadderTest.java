@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class LadderTest {
 
-    private List<Line> line;
+    private List<Line> lines;
 
     /**
      * 0     1     2     3
@@ -33,7 +33,7 @@ class LadderTest {
      */
     @BeforeEach
     void setup() {
-        line = Arrays.asList(
+        lines = Arrays.asList(
                 Line.from(Arrays.asList(Point.from(false), Point.from(false), Point.from(true), Point.from(false))),
                 Line.from(Arrays.asList(Point.from(false), Point.from(true), Point.from(false), Point.from(true))),
                 Line.from(Arrays.asList(Point.from(false), Point.from(false), Point.from(false), Point.from(true))),
@@ -44,7 +44,7 @@ class LadderTest {
     @DisplayName("사다리 정상 생성 검증")
     void create() {
         assertDoesNotThrow(
-                () -> Ladder.from(line));
+                () -> Ladder.from(lines));
     }
 
     @Test
@@ -65,7 +65,7 @@ class LadderTest {
     }, delimiter = '|')
     @DisplayName("사다리 결과값 검증")
     void getLadderResult(Integer currentLocation, Integer lastLocation) {
-        Ladder ladder = Ladder.from(line);
+        Ladder ladder = Ladder.from(lines);
         Location result = ladder.getLadderResult(Location.from(currentLocation));
         assertThat(result).isEqualTo(Location.from(lastLocation));
     }
