@@ -4,6 +4,8 @@ import nextstep.ladder.annotations.GetterForUI;
 import nextstep.ladder.doamin.value.Location;
 import nextstep.ladder.utils.Preconditions;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ExecutionResult {
@@ -25,6 +27,6 @@ public class ExecutionResult {
 
     @GetterForUI
     public List<String> getExecutionResults() {
-        return executionResults;
+        return Collections.unmodifiableList(new ArrayList<>(executionResults));
     }
 }
