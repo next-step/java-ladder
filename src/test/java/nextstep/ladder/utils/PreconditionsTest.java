@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class PreconditionsTest {
@@ -52,8 +53,10 @@ class PreconditionsTest {
         List<Boolean> param1 = Collections.emptyList();
 
         // when & then
-        assertThatIllegalArgumentException().isThrownBy(() -> Preconditions.checkEmpty(param1, "param1은 필수값입니다."));
-        assertThatIllegalArgumentException().isThrownBy(() -> Preconditions.checkEmpty(null, "param1은 필수값입니다."));
+        assertAll(() -> {
+            assertThatIllegalArgumentException().isThrownBy(() -> Preconditions.checkEmpty(param1, "param1은 필수값입니다."));
+            assertThatIllegalArgumentException().isThrownBy(() -> Preconditions.checkEmpty(null, "param1은 필수값입니다."));
+        });
     }
 
     @Test
