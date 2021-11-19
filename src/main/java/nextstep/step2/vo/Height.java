@@ -28,7 +28,7 @@ public class Height {
         return new Height(value);
     }
 
-    public int getHeight() {
+    public int getValue() {
         return this.value;
     }
 

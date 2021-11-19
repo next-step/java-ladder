@@ -26,7 +26,7 @@ public class Ladder {
         Width width = info.getWidth();
         Height height = info.getHeight();
 
-        List<Line> lines = IntStream.range(0, height.getHeight())
+        List<Line> lines = IntStream.range(0, height.getValue())
                 .mapToObj(i -> Line.createWithWidth(width, strategy))
                 .collect(Collectors.toList());
 
