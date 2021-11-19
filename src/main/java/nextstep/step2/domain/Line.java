@@ -41,7 +41,7 @@ public class Line {
     }
 
     private static int createEndLineWithWidth(Width width) {
-        return width.getValue() - ONE_TO_CALCULATE_END_LINE;
+        return width.getWidth() - ONE_TO_CALCULATE_END_LINE;
     }
 
     private static Bridge makePoint(BooleanGenerateStrategy strategy, List<Bridge> bridges) {

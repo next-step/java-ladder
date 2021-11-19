@@ -20,7 +20,7 @@ public class Width {
         return new Width(value);
     }
 
-    public int getValue() {
+    public int getWidth() {
         return value;
     }
 
