@@ -8,18 +8,16 @@ import nextstep.ladder.utils.Preconditions;
 import java.util.List;
 
 public class LadderResult {
-    private final People people;
     private final Ladder ladder;
-    private final ExecutionResult executionResult;
+    private final LadderMapper ladderMapper;
 
     private LadderResult(List<Person> people, Ladder ladder, List<String> executionResult) {
         Preconditions.checkNotNull(people, "people은 필수값입니다.");
         Preconditions.checkNotNull(ladder, "ladder는 필수값입니다.");
         Preconditions.checkNotNull(executionResult, "executionResult는 필수값입니다.");
 
-        this.people = People.from(people);
         this.ladder = ladder;
-        this.executionResult = ExecutionResult.from(executionResult);
+        this.ladderMapper = LadderMapper.of(People.from(people), ExecutionResult.from(executionResult));
     }
 
     public static LadderResult of(List<Person> people, Ladder ladder, List<String> executionResult) {
@@ -27,20 +25,9 @@ public class LadderResult {
     }
 
     public String getLadderResult(Person personName) {
-        Preconditions.checkState(isCorrectName(personName), "입력한 사람의 이름이 잘못되었습니다.");
-
-        Location startLocation = people.getLocation(personName);
+        Location startLocation = ladderMapper.getStartLocation(personName);
         Location lastLocation = ladder.getLadderResult(startLocation);
-        return executionResult.getExecutionResult(lastLocation);
-    }
-
-    public boolean isCorrectName(Person personName) {
-        return people.isCorrectName(personName);
-    }
-
-    @GetterForUI
-    public People getPeople() {
-        return people;
+        return ladderMapper.getLadderResult(lastLocation);
     }
 
     @GetterForUI
@@ -48,8 +35,14 @@ public class LadderResult {
         return ladder;
     }
 
+
+    @GetterForUI
+    public People getPeople() {
+        return ladderMapper.getPeople();
+    }
+
     @GetterForUI
     public ExecutionResult getExecutionResult() {
-        return executionResult;
+        return ladderMapper.getExecutionResult();
     }
 }
