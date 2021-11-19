@@ -37,10 +37,10 @@ public class Line {
     }
 
     public static Line createWithWidth(Width width, BooleanGenerateStrategy strategy) {
-        return createWithEndLine(getEndLine(width), strategy);
+        return createWithEndLine(createEndLineWithWidth(width), strategy);
     }
 
-    private static int getEndLine(Width width) {
+    private static int createEndLineWithWidth(Width width) {
         return width.getValue() - ONE_TO_CALCULATE_END_LINE;
     }
 
