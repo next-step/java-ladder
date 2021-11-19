@@ -3,9 +3,8 @@ package nextstep.step2.vo;
 import java.util.Objects;
 
 public class Width {
-    private static final int ONE_TO_CALCULATE_LINE = 1;
     private static final int MIN_WIDTH = 2;
-    private static final String NULL_OR_LESS_HEIGHT_MESSAGE = "넓이 값은 2 이상 이어야 합니다.";
+    private static final String NULL_OR_LESS_HEIGHT_MESSAGE = "넓이 값은 " + MIN_WIDTH + " 이상 이어야 합니다.";
 
     private final int value;
 
@@ -21,12 +20,8 @@ public class Width {
         return new Width(value);
     }
 
-    public static Width createWithName(Names names) {
-        return create(names.size());
-    }
-
-    public int getEndLine() {
-        return this.value - ONE_TO_CALCULATE_LINE;
+    public int getValue() {
+        return value;
     }
 
     @Override

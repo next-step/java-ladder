@@ -5,17 +5,19 @@ import nextstep.step2.vo.Bridge;
 import nextstep.step2.vo.Width;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Line {
     private static final int START_LINE = 0;
+    private static final int ONE_TO_CALCULATE_END_LINE = 1;
 
     private final List<Bridge> bridges;
 
     private Line(List<Bridge> bridges) {
-        this.bridges = bridges;
+        this.bridges = new ArrayList<>(bridges);
     }
 
     public static Line create(List<Bridge> bridges) {
@@ -36,7 +38,11 @@ public class Line {
     }
 
     public static Line createWithWidth(Width width, BooleanGenerateStrategy strategy) {
-        return createWithEndLine(width.getEndLine(), strategy);
+        return createWithEndLine(getEndLine(width), strategy);
+    }
+
+    private static int getEndLine(Width width) {
+        return width.getValue() - ONE_TO_CALCULATE_END_LINE;
     }
 
     private static Bridge makePoint(BooleanGenerateStrategy strategy, List<Bridge> bridges) {
@@ -53,14 +59,7 @@ public class Line {
     }
 
     public List<Bridge> getBridges() {
-        return bridges.stream()
-                .map(Bridge::getValue)
-                .map(Bridge::create)
-                .collect(Collectors.toList());
-    }
-
-    public int size() {
-        return bridges.size();
+        return Collections.unmodifiableList(bridges);
     }
 
     @Override

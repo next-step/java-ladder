@@ -2,6 +2,7 @@ package nextstep.step2.vo;
 
 import nextstep.step2.domain.Line;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,7 +13,7 @@ public class Lines {
     private final List<Line> lines;
 
     private Lines(List<Line> lines) {
-        this.lines = lines;
+        this.lines = new ArrayList<>(lines);
     }
 
     public static final Lines create(List<Line> lines) {
