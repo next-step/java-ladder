@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 
 public class OutputView {
 
+    private static final int NUMBER_OF_SPACE_BETWEEN_NAMES = 7;
     private static final String SPACE = " ";
     private static final String LADDER_SPACE = "     ";
     private static final String LADDER = "|";
@@ -24,14 +25,14 @@ public class OutputView {
 
     public String namesToPrintString(Names names) {
         return names.getNames().stream()
-                .map(name -> nameToPintString(name))
+                .map(this::nameToPintString)
                 .collect(Collectors.joining());
     }
 
     private String nameToPintString(Name name) {
         StringBuilder builder = new StringBuilder();
         builder.append(name.getValue());
-        for (int i = name.length(); i < 7; i++) {
+        for (int i = name.length(); i < NUMBER_OF_SPACE_BETWEEN_NAMES; i++) {
             builder.append(SPACE);
         }
         return builder.toString();
@@ -39,7 +40,7 @@ public class OutputView {
 
     public String ladderToPrintString(Ladder ladder) {
         return ladder.getLineList().stream()
-                .map(line -> lineToPrintString(line))
+                .map(this::lineToPrintString)
                 .collect(Collectors.joining("\n"));
     }
 
@@ -49,7 +50,7 @@ public class OutputView {
         builder.append(LADDER);
         builder.append(
                 line.getBridges().stream()
-                        .map(bridge -> bridgeToPrintString(bridge))
+                        .map(this::bridgeToPrintString)
                         .collect(Collectors.joining(LADDER))
         );
         builder.append(LADDER);
