@@ -5,22 +5,24 @@ import nextstep.ladder.doamin.value.Location;
 import nextstep.ladder.doamin.value.Person;
 import nextstep.ladder.utils.Preconditions;
 
+import java.util.List;
+
 public class LadderResult {
     private final People people;
     private final Ladder ladder;
     private final ExecutionResult executionResult;
 
-    private LadderResult(People people, Ladder ladder, ExecutionResult executionResult) {
+    private LadderResult(List<Person> people, Ladder ladder, List<String> executionResult) {
         Preconditions.checkNotNull(people, "people은 필수값입니다.");
         Preconditions.checkNotNull(ladder, "ladder는 필수값입니다.");
         Preconditions.checkNotNull(executionResult, "executionResult는 필수값입니다.");
 
-        this.people = people;
+        this.people = People.from(people);
         this.ladder = ladder;
-        this.executionResult = executionResult;
+        this.executionResult = ExecutionResult.from(executionResult);
     }
 
-    public static LadderResult of(People people, Ladder ladder, ExecutionResult executionResult) {
+    public static LadderResult of(List<Person> people, Ladder ladder, List<String> executionResult) {
         return new LadderResult(people, ladder, executionResult);
     }
 
