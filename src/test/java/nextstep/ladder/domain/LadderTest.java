@@ -4,6 +4,7 @@ import nextstep.ladder.doamin.Ladder;
 import nextstep.ladder.doamin.Line;
 import nextstep.ladder.doamin.value.Location;
 import nextstep.ladder.doamin.value.Point;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -19,11 +20,31 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class LadderTest {
+
+    private List<Line> line;
+
+    /**
+     * 0     1     2     3
+     * |     |-----|     |
+     * |-----|     |-----|
+     * |     |     |-----|
+     * |-----|     |     |
+     * 0     1     2     3
+     */
+    @BeforeEach
+    void setup() {
+        line = Arrays.asList(
+                Line.from(Arrays.asList(Point.from(false), Point.from(false), Point.from(true), Point.from(false))),
+                Line.from(Arrays.asList(Point.from(false), Point.from(true), Point.from(false), Point.from(true))),
+                Line.from(Arrays.asList(Point.from(false), Point.from(false), Point.from(false), Point.from(true))),
+                Line.from(Arrays.asList(Point.from(false), Point.from(true), Point.from(false), Point.from(false))));
+    }
+
     @Test
     @DisplayName("사다리 정상 생성 검증")
     void create() {
         assertDoesNotThrow(
-                () -> Ladder.from(getTestLine()));
+                () -> Ladder.from(line));
     }
 
     @Test
@@ -44,25 +65,8 @@ class LadderTest {
     }, delimiter = '|')
     @DisplayName("사다리 결과값 검증")
     void getLadderResult(Integer currentLocation, Integer lastLocation) {
-        Ladder ladder = Ladder.from(getTestLine());
+        Ladder ladder = Ladder.from(line);
         Location result = ladder.getLadderResult(Location.from(currentLocation));
         assertThat(result).isEqualTo(Location.from(lastLocation));
     }
-
-    /**
-     * 0     1     2     3
-     * |     |-----|     |
-     * |-----|     |-----|
-     * |     |     |-----|
-     * |-----|     |     |
-     * 0     1     2     3
-     */
-    private List<Line> getTestLine() {
-        return Arrays.asList(
-                Line.from(Arrays.asList(Point.from(false), Point.from(false), Point.from(true), Point.from(false))),
-                Line.from(Arrays.asList(Point.from(false), Point.from(true), Point.from(false), Point.from(true))),
-                Line.from(Arrays.asList(Point.from(false), Point.from(false), Point.from(false), Point.from(true))),
-                Line.from(Arrays.asList(Point.from(false), Point.from(true), Point.from(false), Point.from(false))));
-    }
-
 }

@@ -3,6 +3,7 @@ package nextstep.ladder.domain;
 import nextstep.ladder.doamin.People;
 import nextstep.ladder.doamin.value.Location;
 import nextstep.ladder.doamin.value.Person;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -19,10 +20,17 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class PeopleTest {
 
+    private List<Person> people;
+
+    @BeforeEach
+    void setup() {
+        people = Arrays.asList(Person.from("pobi"), Person.from("crong"), Person.from("aiden"));
+    }
+
     @Test
     @DisplayName("사람들 목록 정상 생성 검증")
     void create() {
-        assertDoesNotThrow(() -> People.from(testPeople()));
+        assertDoesNotThrow(() -> People.from(people));
 
     }
 
@@ -38,7 +46,7 @@ class PeopleTest {
     @Test
     @DisplayName("사람들의 수 검증")
     void count() {
-        assertThat(People.from(testPeople()).count()).isEqualTo(testPeople().size());
+        assertThat(People.from(people).count()).isEqualTo(people.size());
     }
 
 
@@ -50,16 +58,12 @@ class PeopleTest {
     }, delimiter = '|')
     @DisplayName("사람의 이름이 몇번째 위치 하는지 확인")
     void getLocation(String name, Integer index) {
-        assertThat(People.from(testPeople()).getLocation(Person.from(name))).isEqualTo(Location.from(index));
+        assertThat(People.from(people).getLocation(Person.from(name))).isEqualTo(Location.from(index));
     }
 
     @Test
     @DisplayName("사람들 목록에 포함되지 않은 이름인 경우 거짓 반환")
     void isCorrectName() {
-        assertThat(People.from(testPeople()).isCorrectName(Person.from("test"))).isFalse();
-    }
-
-    private List<Person> testPeople() {
-        return Arrays.asList(Person.from("pobi"), Person.from("crong"), Person.from("aiden"));
+        assertThat(People.from(people).isCorrectName(Person.from("test"))).isFalse();
     }
 }
