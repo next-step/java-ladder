@@ -14,26 +14,32 @@ public class RandomPointGenerator implements PointGenerator {
 
 	@Override
 	public List<Point> generate(int width, int height) {
-		Point prev = Point.createHasNotLine();
 		List<Point> points = new ArrayList<>();
 
-		for (int i = ZERO; i < width * height; i++) {
-			Point target = createPoint(i, width);
-			Point current = target.calculatePrev(prev);
-			points.add(current);
-			prev = current;
+		for (int i = ZERO; i < height; i++) {
+			createHorizontalLine(points, width);
 		}
+
 		return points;
 	}
 
-	private Point createPoint(int index, int width) {
-		if (isLastIndexOfLine(index, width)) {
-			return Point.createHasNotLine();
+	private void createHorizontalLine(List<Point> points, int width) {
+		Point point = Point.createFirstOfLine(RANDOM.nextBoolean());
+		points.add(point);
+
+		for (int i = ONE; i < width - ONE; i++) {
+			Point current = Point.create(point.hasRight(), calculateRight(point.hasRight()));
+			points.add(current);
+			point = current;
 		}
-		return Point.create(RANDOM.nextBoolean());
+
+		points.add(Point.createLastOfLine(point.hasRight()));
 	}
 
-	private boolean isLastIndexOfLine(int index, int width) {
-		return (index + ONE) % width == ZERO;
+	private boolean calculateRight(boolean beforeHasRight) {
+		if (beforeHasRight) {
+			return false;
+		}
+		return RANDOM.nextBoolean();
 	}
 }

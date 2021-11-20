@@ -8,6 +8,6 @@ import nextstep.ladder.domain.Point;
 public class FixedPointGenerator implements PointGenerator {
 	@Override
 	public List<Point> generate(int width, int height) {
-		return Collections.nCopies(width * height, Point.createHasNotLine());
+		return Collections.nCopies(width * height, Point.create(false, false));
 	}
 }

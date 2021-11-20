@@ -3,26 +3,51 @@ package nextstep.ladder.domain;
 import java.util.Objects;
 
 public class Point {
-	private final boolean hasLine;
+	private static final String INVALID_MESSAGE = "left, right 두개 모두 존재할수 없습니다.";
 
-	private Point(boolean hasLine) {
-		this.hasLine = hasLine;
+	private final boolean hasLeft;
+	private final boolean hasRight;
+
+	private Point(boolean hasLeft, boolean hasRight) {
+		validate(hasLeft, hasRight);
+		this.hasLeft = hasLeft;
+		this.hasRight = hasRight;
 	}
 
-	public static Point create(boolean hasLine) {
-		return new Point(hasLine);
+	private void validate(boolean hasLeft, boolean hasRight) {
+		if (hasLeft && hasRight) {
+			throw new IllegalArgumentException(INVALID_MESSAGE);
+		}
 	}
 
-	public static Point createHasNotLine() {
-		return new Point(false);
+	public static Point create(boolean hasLeft, boolean hasRight) {
+		return new Point(hasLeft, hasRight);
 	}
 
-	public boolean hasLine() {
-		return hasLine;
+	public static Point createFirstOfLine(boolean hasRight) {
+		return create(false, hasRight);
 	}
 
-	public Point calculatePrev(Point prev) {
-		return create(!prev.hasLine && this.hasLine);
+	public static Point createLastOfLine(boolean hasBeforeRight) {
+		return create(hasBeforeRight, false);
+	}
+
+	public boolean hasLeft() {
+		return this.hasLeft;
+	}
+
+	public boolean hasRight() {
+		return this.hasRight;
+	}
+
+	public int move(int index) {
+		if (hasLeft()) {
+			index--;
+		}
+		if (hasRight()) {
+			index++;
+		}
+		return index;
 	}
 
 	@Override
@@ -36,18 +61,14 @@ public class Point {
 
 		Point point = (Point)obj;
 
-		return Objects.equals(hasLine, point.hasLine);
+		if (hasLeft != point.hasLeft) {
+			return false;
+		}
+		return hasRight == point.hasRight;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(hasLine);
-	}
-
-	@Override
-	public String toString() {
-		return "Point{" +
-			"hasLine=" + hasLine +
-			'}';
+		return Objects.hash(hasLeft, hasRight);
 	}
 }

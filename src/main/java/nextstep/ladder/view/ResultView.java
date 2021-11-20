@@ -64,7 +64,7 @@ public final class ResultView {
 
 	private static void appendLadderLine(Point point) {
 		String line = LADDER_EMPTY_LINE;
-		if (point.hasLine()) {
+		if (point.hasRight()) {
 			line = LADDER_EXIST_LINE;
 		}
 		appendToBuilder(line);

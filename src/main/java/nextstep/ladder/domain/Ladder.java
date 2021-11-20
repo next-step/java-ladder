@@ -10,37 +10,17 @@ import nextstep.ladder.util.CollectionUtils;
 
 public class Ladder {
 	private static final String EMPTY_MESSAGE = "Point 리스트가 비어있습니다.";
-	private static final String OVERLAP_MESSAGE = "사다리 라인이 겹쳐지면 안됩니다.";
 
 	private final List<Point> points;
 
 	private Ladder(List<Point> points) {
-		validate(points);
-		this.points = new ArrayList<>(points);
-	}
-
-	private void validate(List<Point> points) {
 		validateSize(points);
-		validateOverlap(points);
+		this.points = new ArrayList<>(points);
 	}
 
 	private void validateSize(List<Point> points) {
 		if (CollectionUtils.isEmpty(points)) {
 			throw new IllegalArgumentException(EMPTY_MESSAGE);
-		}
-	}
-
-	private void validateOverlap(List<Point> points) {
-		for (int i = 0; i < points.size() - 1; i++) {
-			comparePoint(points, i);
-		}
-	}
-
-	private void comparePoint(List<Point> points, int index) {
-		Point current = points.get(index);
-		Point next = points.get(index + 1);
-		if (current.hasLine() && next.hasLine()) {
-			throw new IllegalArgumentException(OVERLAP_MESSAGE);
 		}
 	}
 
@@ -54,6 +34,11 @@ public class Ladder {
 
 	public List<Point> getValues() {
 		return Collections.unmodifiableList(points);
+	}
+
+	public int move(int index) {
+		Point point = points.get(index);
+		return point.move(index);
 	}
 
 	@Override
