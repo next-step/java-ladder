@@ -1,5 +1,7 @@
 package nextstep.ladder.strategy;
 
+import nextstep.ladder.doamin.value.Point;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -12,21 +14,21 @@ public class RandomLineStrategy implements LineStrategy {
     private static final Integer PREVIOUS_POINT_INDEX = -1;
 
     @Override
-    public List<Boolean> createPoints(int countOfPerson) {
-        List<Boolean> points = new ArrayList<>(Collections.nCopies(countOfPerson, false));
+    public List<Point> createPoints(int countOfPerson) {
+        List<Point> points = new ArrayList<>(Collections.nCopies(countOfPerson, Point.from(false)));
 
         IntStream.range(START_POINT_INDEX, countOfPerson)
                 .forEach(index -> {
-                    boolean previousPoint = points.get(index + PREVIOUS_POINT_INDEX);
+                    Point previousPoint = points.get(index + PREVIOUS_POINT_INDEX);
                     points.set(index, nextPoint(previousPoint));
                 });
         return points;
     }
 
-    private boolean nextPoint(boolean previousPoint) {
-        if (previousPoint) {
-            return false;
+    private Point nextPoint(Point previousPoint) {
+        if (previousPoint.isTrue()) {
+            return Point.from(false);
         }
-        return RANDOM.nextBoolean();
+        return Point.from(RANDOM.nextBoolean());
     }
 }

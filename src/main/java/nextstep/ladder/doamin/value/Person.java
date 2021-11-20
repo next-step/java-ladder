@@ -7,6 +7,7 @@ import java.util.Objects;
 
 public class Person {
     private static final Integer MAXIMUM_NAME_SIZE = 5;
+    private static final String PEOPLE = "all";
 
     private final String name;
 
@@ -20,6 +21,10 @@ public class Person {
 
     public static Person from(String name) {
         return new Person(name);
+    }
+
+    public boolean isAll() {
+        return PEOPLE.equals(name);
     }
 
     @GetterForUI

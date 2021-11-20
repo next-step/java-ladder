@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class PreconditionsTest {
@@ -52,8 +53,10 @@ class PreconditionsTest {
         List<Boolean> param1 = Collections.emptyList();
 
         // when & then
-        assertThatIllegalArgumentException().isThrownBy(() -> Preconditions.checkEmpty(param1, "param1은 필수값입니다."));
-        assertThatIllegalArgumentException().isThrownBy(() -> Preconditions.checkEmpty(null, "param1은 필수값입니다."));
+        assertAll(() -> {
+            assertThatIllegalArgumentException().isThrownBy(() -> Preconditions.checkEmpty(param1, "param1은 필수값입니다."));
+            assertThatIllegalArgumentException().isThrownBy(() -> Preconditions.checkEmpty(null, "param1은 필수값입니다."));
+        });
     }
 
     @Test
@@ -127,5 +130,42 @@ class PreconditionsTest {
                 .isThrownBy(() -> Preconditions.checkMaximumSize(size, maximumSize,
                                                                  String.format("maximumSize(%d) 값보다 작은 값을 입력해 주세요.",
                                                                                maximumSize)));
+    }
+
+
+    @ParameterizedTest
+    @CsvSource(value = {
+            " 6|     6",
+            " 7|     7"
+    }, delimiter = '|')
+    @DisplayName("값이 동일한 경우")
+    void checkSameSize(int size, int targetSize) {
+        // when & then
+        assertDoesNotThrow(() -> Preconditions.checkSameSize(size, targetSize, "동일한 값을 입력해주세요."));
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {
+            " 1|     2",
+            " 3|     4"
+    }, delimiter = '|')
+    @DisplayName("값이 다른 경우 예외발생 검증")
+    void checkSameSize_exception(int size, int targetSize) {
+        // when & then
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> Preconditions.checkSameSize(size, targetSize, "동일한 값을 입력해주세요."));
+    }
+
+    @Test
+    @DisplayName("입력값이 올바른 경우 검증")
+    void checkState() {
+        assertDoesNotThrow(() -> Preconditions.checkState(true, "결과값이 올바르지 않습니다."));
+    }
+
+    @Test
+    @DisplayName("입력값이 올바르지 않은 경우 예외발생 검증")
+    void checkState_exception() {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> Preconditions.checkState(false, "결과값이 올바르지 않습니다."));
     }
 }
