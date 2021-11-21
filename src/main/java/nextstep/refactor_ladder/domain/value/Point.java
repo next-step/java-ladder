@@ -4,6 +4,7 @@ import nextstep.ladder.utils.Preconditions;
 import nextstep.refactor_ladder.strategy.PointStrategy;
 
 public class Point {
+    private static final Integer FIRST_POINT_INDEX = 0;
     private static final Integer PREVIOUS_POINT_INDEX = -1;
     private static final Integer NEXT_POINT_INDEX = 1;
 
@@ -18,7 +19,7 @@ public class Point {
     }
 
     public static Point first(boolean right) {
-        return of(0, Direction.first(right));
+        return of(FIRST_POINT_INDEX, Direction.first(right));
     }
 
     public static Point of(int index, Direction direction) {
