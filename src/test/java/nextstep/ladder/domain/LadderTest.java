@@ -9,37 +9,38 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import nextstep.ladder.generator.FixedPointGenerator;
-import nextstep.ladder.generator.PointGenerator;
+import nextstep.ladder.generator.FixedFalseGenerator;
+import nextstep.ladder.generator.RandomGenerator;
 
 class LadderTest {
-	@DisplayName("Ladder 생성시에 Point 개수를 검증한다.")
+	@DisplayName("Ladder 생성시에 Line 개수를 검증한다.")
 	@Test
 	void create() {
 		// given
-		PointGenerator generator = new FixedPointGenerator();
+		RandomGenerator generator = new FixedFalseGenerator();
 		int width = 10;
 		int height = 10;
 
 		// when
-		Ladder ladder = Ladder.create(generator, width, height);
+		Ladder ladder = Ladder.initialize(generator, width, height);
 
 		// then
-		assertThat(ladder.getValues().size()).isEqualTo(width * height);
+		assertThat(ladder.getLines().size()).isEqualTo(height);
 	}
 
-	@DisplayName("point list 가 비어있을 경우 예외 발생")
+	@DisplayName("line list 가 비어있을 경우 예외 발생")
 	@Test
 	void validateSize() {
 		// given
-		List<Point> emptyPoints = Collections.emptyList();
+		List<Line> emptyLines = Collections.emptyList();
 
 		// when then
 		assertAll(
 			() -> assertThatIllegalArgumentException()
 				.isThrownBy(() -> Ladder.create(null)),
 			() -> assertThatIllegalArgumentException()
-				.isThrownBy(() -> Ladder.create(emptyPoints))
+				.isThrownBy(() -> Ladder.create(emptyLines))
 		);
 	}
+
 }

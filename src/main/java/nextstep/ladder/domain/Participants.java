@@ -25,10 +25,6 @@ public class Participants {
 		}
 	}
 
-	public static Participants create(List<Participant> values) {
-		return new Participants(values);
-	}
-
 	public static Participants createWithNames(List<String> names) {
 		return names.stream()
 			.map(Participant::create)
@@ -41,6 +37,10 @@ public class Participants {
 
 	public List<Participant> getValues() {
 		return Collections.unmodifiableList(values);
+	}
+
+	public int getIndex(Participant participant) {
+		return values.indexOf(participant);
 	}
 
 	@Override

@@ -28,8 +28,8 @@ public class Point {
 		return create(false, hasRight);
 	}
 
-	public static Point createLastOfLine(boolean hasBeforeRight) {
-		return create(hasBeforeRight, false);
+	public static Point createLastOfLine(boolean isPrevPointHasRightLine) {
+		return create(isPrevPointHasRightLine, false);
 	}
 
 	public boolean hasLeft() {

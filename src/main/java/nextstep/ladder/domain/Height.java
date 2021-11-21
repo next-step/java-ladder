@@ -24,6 +24,10 @@ public class Height {
 		return new Height(value);
 	}
 
+	public static Height create(int value) {
+		return new Height(value);
+	}
+
 	public int getValue() {
 		return value;
 	}

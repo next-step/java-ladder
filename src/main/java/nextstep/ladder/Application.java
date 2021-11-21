@@ -1,12 +1,12 @@
 package nextstep.ladder;
 
 import nextstep.ladder.controller.LadderController;
-import nextstep.ladder.generator.PointGenerator;
-import nextstep.ladder.generator.RandomPointGenerator;
+import nextstep.ladder.generator.RandomGenerator;
+import nextstep.ladder.generator.RandomLadderGenerator;
 
 public class Application {
 	public static void main(String[] args) {
-		PointGenerator generator = new RandomPointGenerator();
+		RandomGenerator generator = new RandomLadderGenerator();
 		LadderController ladderController = new LadderController(generator);
 		ladderController.start();
 	}

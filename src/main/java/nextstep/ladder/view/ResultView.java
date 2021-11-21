@@ -2,6 +2,7 @@ package nextstep.ladder.view;
 
 import java.util.List;
 
+import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Participant;
 import nextstep.ladder.domain.Point;
 import nextstep.ladder.exception.UtilCreationException;
@@ -40,44 +41,28 @@ public final class ResultView {
 		printBuilder();
 	}
 
-	public static void printLadder(List<Point> points, int width) {
+	public static void printLadder(List<Line> lines) {
 		initializeBuilder();
 
-		for (int i = ZERO; i < points.size(); i++) {
-			appendPadding(width, i);
-			appendLadderLine(points.get(i));
-			appendNewLine(width, i);
-		}
+		lines.forEach(line -> {
+			appendToBuilder(LADDER_LEFT_PADDING);
+			appendLadderLine(line.getPoints());
+			appendNewlineToBuilder();
+		});
 
 		printBuilder();
 	}
 
-	private static void appendPadding(int width, int index) {
-		if (isFistIndexOfLine(index, width)) {
-			appendToBuilder(LADDER_LEFT_PADDING);
-		}
+	private static void appendLadderLine(List<Point> points) {
+		points.forEach(ResultView::appendLine);
 	}
 
-	private static boolean isFistIndexOfLine(int index, int width) {
-		return index % width == ZERO;
-	}
-
-	private static void appendLadderLine(Point point) {
+	private static void appendLine(Point point) {
 		String line = LADDER_EMPTY_LINE;
 		if (point.hasRight()) {
 			line = LADDER_EXIST_LINE;
 		}
 		appendToBuilder(line);
-	}
-
-	private static void appendNewLine(int width, int index) {
-		if (isLastIndexOfLine(index, width)) {
-			appendNewlineToBuilder();
-		}
-	}
-
-	private static boolean isLastIndexOfLine(int index, int width) {
-		return (index + ONE) % width == ZERO;
 	}
 
 	public static void printExecutionResult(List<String> results) {

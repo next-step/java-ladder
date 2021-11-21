@@ -19,6 +19,8 @@ public final class InputView {
 
 	private static final String SCAN_HEIGHT = "최대 사다리 높이는 몇 개인가요?";
 
+	private static final String NAME_FOR_PRINT_RESULT = "결과를 보고 싶은 사람은?";
+
 	private InputView() {
 		throw new UtilCreationException();
 	}
@@ -42,5 +44,12 @@ public final class InputView {
 		String height = SCANNER.nextLine();
 		System.out.println();
 		return Height.create(height);
+	}
+
+	public static String scanNameForPrintResult() {
+		System.out.println(NAME_FOR_PRINT_RESULT);
+		String name = SCANNER.nextLine();
+		System.out.println();
+		return name;
 	}
 }
