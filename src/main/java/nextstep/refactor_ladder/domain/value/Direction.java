@@ -24,7 +24,7 @@ public class Direction {
     }
 
     public Direction next(LadderStrategy ladderStrategy) {
-        if (prevRight()) {
+        if (isPrevRight()) {
             return next(false);
         }
 
@@ -32,7 +32,7 @@ public class Direction {
     }
 
     public Direction last() {
-        return of(prevRight(), false);
+        return of(isPrevRight(), false);
     }
 
     public boolean isLeft() {
@@ -43,12 +43,12 @@ public class Direction {
         return right;
     }
 
-    private boolean prevRight() {
+    private boolean isPrevRight() {
         return right;
     }
 
     private Direction next(boolean right) {
-        return of(prevRight(), right);
+        return of(isPrevRight(), right);
     }
 
     private void validateDirection(boolean left, boolean right) {
