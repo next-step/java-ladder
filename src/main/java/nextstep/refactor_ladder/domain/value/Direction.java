@@ -2,17 +2,21 @@ package nextstep.refactor_ladder.domain.value;
 
 import nextstep.refactor_ladder.strategy.LadderStrategy;
 
-import java.util.Objects;
+public enum Direction {
+    RIGHT(false, true, 1),
+    STAY(false, false, 0),
+    LEFT(true, false, -1);
 
-public class Direction {
     private final boolean left;
     private final boolean right;
+    private final int move;
 
-    private Direction(boolean left, boolean right) {
+    Direction(boolean left, boolean right, int move) {
         validateDirection(left, right);
 
         this.left = left;
         this.right = right;
+        this.move = move;
     }
 
     public static Direction first(boolean right) {
@@ -20,7 +24,12 @@ public class Direction {
     }
 
     public static Direction of(boolean left, boolean right) {
-        return new Direction(left, right);
+        for (Direction direction : Direction.values()) {
+            if (direction.isLeft() == left && direction.right == right)
+                return direction;
+        }
+
+        throw new IllegalArgumentException("값이 잘못되었습니다.");
     }
 
     public Direction next(LadderStrategy ladderStrategy) {
@@ -39,8 +48,8 @@ public class Direction {
         return left;
     }
 
-    public boolean isRight() {
-        return right;
+    public int move() {
+        return move;
     }
 
     private boolean prevRight() {
@@ -55,26 +64,5 @@ public class Direction {
         if (left && right) {
             throw new IllegalArgumentException("방향을 연속해서 이동할 수 없습니다.");
         }
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Direction direction = (Direction) o;
-        return left == direction.left && right == direction.right;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(left, right);
-    }
-
-    @Override
-    public String toString() {
-        return "Direction{" +
-                "left=" + left +
-                ", right=" + right +
-                '}';
     }
 }

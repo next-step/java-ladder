@@ -7,7 +7,6 @@ import java.util.Objects;
 
 public class Point {
     private static final Integer FIRST_POINT_INDEX = 0;
-    private static final Integer PREVIOUS_POINT_INDEX = -1;
     private static final Integer NEXT_POINT_INDEX = 1;
 
     public final int index;
@@ -37,15 +36,7 @@ public class Point {
     }
 
     public int move() {
-        if (direction.isLeft()) {
-            return index + PREVIOUS_POINT_INDEX;
-        }
-
-        if (direction.isRight()) {
-            return index + NEXT_POINT_INDEX;
-        }
-
-        return index;
+        return index + direction.move();
     }
 
     @Override
@@ -53,7 +44,7 @@ public class Point {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Point point = (Point) o;
-        return index == point.index && Objects.equals(direction, point.direction);
+        return index == point.index && direction == point.direction;
     }
 
     @Override
