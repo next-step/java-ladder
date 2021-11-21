@@ -5,7 +5,7 @@ import java.util.Map;
 import nextstep.ladder.view.ResultView;
 
 public class LadderResultDto {
-	private static final String LAST_LINE_FEED = "\\s$";
+	private static final String LAST_LINE_FEED = "\\n$";
 	private static final String EMPTY = "";
 
 	private final Map<String, String> resultMap;
