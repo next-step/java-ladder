@@ -22,8 +22,8 @@ class PointTest {
 
 		// then
 		assertAll(
-			() -> assertThat(point.hasLeft()).isEqualTo(hasLeft),
-			() -> assertThat(point.hasRight()).isEqualTo(hasRight)
+			() -> assertThat(point.isDirectionLeft()).isEqualTo(hasLeft),
+			() -> assertThat(point.isDirectionRight()).isEqualTo(hasRight)
 		);
 	}
 

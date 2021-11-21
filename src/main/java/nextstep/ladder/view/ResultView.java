@@ -58,7 +58,7 @@ public final class ResultView {
 
 	private static void appendLine(Point point) {
 		String line = LADDER_EMPTY_LINE;
-		if (point.hasLeft()) {
+		if (point.isDirectionLeft()) {
 			line = LADDER_EXIST_LINE;
 		}
 		appendToBuilder(line);

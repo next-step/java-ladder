@@ -3,48 +3,37 @@ package nextstep.ladder.domain;
 import java.util.Objects;
 
 public class Point {
-	private static final String INVALID_MESSAGE = "left, right 두개 모두 존재할수 없습니다.";
+	private final Direction direction;
 
-	private final boolean hasLeft;
-	private final boolean hasRight;
-
-	private Point(boolean hasLeft, boolean hasRight) {
-		validate(hasLeft, hasRight);
-		this.hasLeft = hasLeft;
-		this.hasRight = hasRight;
+	private Point(Direction direction) {
+		this.direction = direction;
 	}
 
-	private void validate(boolean hasLeft, boolean hasRight) {
-		if (hasLeft && hasRight) {
-			throw new IllegalArgumentException(INVALID_MESSAGE);
-		}
+	public static Point create(boolean left, boolean right) {
+		return new Point(Direction.create(left, right));
 	}
 
-	public static Point create(boolean hasLeft, boolean hasRight) {
-		return new Point(hasLeft, hasRight);
-	}
-
-	public static Point createFirstOfLine(boolean hasRight) {
-		return create(false, hasRight);
+	public static Point createFirstOfLine(boolean right) {
+		return create(false, right);
 	}
 
 	public static Point createLastOfLine(boolean isPrevPointHasRightLine) {
 		return create(isPrevPointHasRightLine, false);
 	}
 
-	public boolean hasLeft() {
-		return this.hasLeft;
+	public boolean isDirectionLeft() {
+		return direction.isLeft();
 	}
 
-	public boolean hasRight() {
-		return this.hasRight;
+	public boolean isDirectionRight() {
+		return direction.isRight();
 	}
 
 	public int move(int index) {
-		if (hasLeft()) {
+		if (direction.isLeft()) {
 			index--;
 		}
-		if (hasRight()) {
+		if (direction.isRight()) {
 			index++;
 		}
 		return index;
@@ -61,14 +50,18 @@ public class Point {
 
 		Point point = (Point)obj;
 
-		if (hasLeft != point.hasLeft) {
-			return false;
-		}
-		return hasRight == point.hasRight;
+		return Objects.equals(direction, point.direction);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(hasLeft, hasRight);
+		return Objects.hash(direction);
+	}
+
+	@Override
+	public String toString() {
+		return "Point{" +
+			"direction=" + direction +
+			'}';
 	}
 }

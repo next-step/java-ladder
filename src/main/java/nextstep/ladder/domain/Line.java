@@ -34,12 +34,12 @@ public class Line {
 		points.add(point);
 
 		for (int i = 1; i < width - 1; i++) {
-			Point current = Point.create(point.hasRight(), calculateRight(generator, point.hasRight()));
+			Point current = Point.create(point.isDirectionRight(), calculateRight(generator, point.isDirectionRight()));
 			points.add(current);
 			point = current;
 		}
 
-		points.add(Point.createLastOfLine(point.hasRight()));
+		points.add(Point.createLastOfLine(point.isDirectionRight()));
 		return create(points);
 	}
 
