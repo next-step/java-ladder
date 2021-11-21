@@ -10,17 +10,13 @@ import nextstep.ladder.exception.UtilCreationException;
 public final class ResultView {
 	private static final StringBuilder BUILDER = new StringBuilder();
 
-	private static final int ONE = 1;
-	private static final int ZERO = 0;
-
 	private static final String EXECUTION_RESULT = "사다리 결과";
 
 	private static final String NAME_FORMAT = "%6s";
 	private static final String RESULT_FORMAT = "%6s";
 
-	private static final String LADDER_LEFT_PADDING = "    ";
-	private static final String LADDER_EXIST_LINE = "|-----";
-	private static final String LADDER_EMPTY_LINE = "|     ";
+	private static final String LADDER_EXIST_LINE = "-----|";
+	private static final String LADDER_EMPTY_LINE = "     |";
 
 	private ResultView() {
 		throw new UtilCreationException();
@@ -45,7 +41,6 @@ public final class ResultView {
 		initializeBuilder();
 
 		lines.forEach(line -> {
-			appendToBuilder(LADDER_LEFT_PADDING);
 			appendLadderLine(line.getPoints());
 			appendNewlineToBuilder();
 		});
@@ -59,7 +54,7 @@ public final class ResultView {
 
 	private static void appendLine(Point point) {
 		String line = LADDER_EMPTY_LINE;
-		if (point.hasRight()) {
+		if (point.hasLeft()) {
 			line = LADDER_EXIST_LINE;
 		}
 		appendToBuilder(line);
