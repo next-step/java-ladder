@@ -5,18 +5,18 @@ import nextstep.refactor_ladder.strategy.PointStrategy;
 import java.util.Objects;
 
 public class Direction {
-
     private final boolean left;
     private final boolean right;
 
     private Direction(boolean left, boolean right) {
         validateDirection(left, right);
+
         this.left = left;
         this.right = right;
     }
 
     public static Direction first(boolean right) {
-        return new Direction(false, right);
+        return of(false, right);
     }
 
     public static Direction of(boolean left, boolean right) {
@@ -27,6 +27,7 @@ public class Direction {
         if (prevRight()) {
             return next(false);
         }
+
         return next(pointStrategy.createPoint());
     }
 
@@ -44,7 +45,7 @@ public class Direction {
 
     private void validateDirection(boolean left, boolean right) {
         if (left && right) {
-            throw new IllegalArgumentException("가로 라인이 연속해서 겹칠 수 없습니다.");
+            throw new IllegalArgumentException("방향을 연속해서 이동할 수 없습니다.");
         }
     }
 
