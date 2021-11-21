@@ -6,7 +6,6 @@ import nextstep.refactor_ladder.domain.value.Point;
 import java.util.List;
 
 public class Line {
-
     private final List<Point> points;
 
     private Line(List<Point> points) {
