@@ -9,16 +9,14 @@ public class LadderResultDto {
 	private static final String EMPTY = "";
 
 	private final Map<String, String> resultMap;
+	private final String all;
 
 	public LadderResultDto(Map<String, String> resultMap) {
 		this.resultMap = resultMap;
+		this.all = calculateAll();
 	}
 
-	public String getResult(String key) {
-		return resultMap.get(key);
-	}
-
-	public String getAll() {
+	private String calculateAll() {
 		StringBuilder builder = new StringBuilder();
 		resultMap.forEach((key, value) -> {
 			builder.append(key);
@@ -27,5 +25,13 @@ public class LadderResultDto {
 			builder.append(System.lineSeparator());
 		});
 		return builder.toString().replaceAll(LAST_LINE_PEED, EMPTY);
+	}
+
+	public String getResult(String key) {
+		return resultMap.get(key);
+	}
+
+	public String getAll() {
+		return all;
 	}
 }
