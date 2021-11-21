@@ -1,8 +1,11 @@
 package nextstep.refactor_ladder.domain;
 
+import nextstep.ladder.annotations.GetterForUI;
 import nextstep.ladder.utils.Preconditions;
 import nextstep.refactor_ladder.domain.value.Point;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Line {
@@ -20,6 +23,11 @@ public class Line {
 
     public int move(int position) {
         return points.get(position).move();
+    }
+
+    @GetterForUI
+    public List<Point> getPoints() {
+        return Collections.unmodifiableList(new ArrayList<>(points));
     }
 
     @Override
