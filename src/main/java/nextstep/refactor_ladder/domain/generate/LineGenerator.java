@@ -7,13 +7,22 @@ import nextstep.refactor_ladder.strategy.LadderStrategy;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public final class LineGenerator {
+    private static final Integer RANGE_START = 1;
+
     private LineGenerator() {
         throw new IllegalStateException("직접 생성 금지");
     }
 
-    private static final Integer START_POINT_INDEX = 1;
+    public static List<Line> create(Integer sizeOfPerson, Integer heightOfLadder, LadderStrategy ladderStrategy) {
+        return IntStream.rangeClosed(RANGE_START, heightOfLadder)
+                .boxed()
+                .map(h -> create(sizeOfPerson, ladderStrategy))
+                .collect(Collectors.toList());
+    }
 
     public static Line create(int sizeOfPerson, LadderStrategy ladderStrategy) {
         List<Point> points = new ArrayList<>();
@@ -30,7 +39,7 @@ public final class LineGenerator {
 
     private static List<Point> createMiddle(int sizeOfPerson, Point point, LadderStrategy ladderStrategy) {
         List<Point> points = new ArrayList<>();
-        for (int i = START_POINT_INDEX; i < sizeOfPerson - 1; i++) {
+        for (int i = RANGE_START; i < sizeOfPerson - 1; i++) {
             point = point.next(ladderStrategy);
             points.add(point);
         }
