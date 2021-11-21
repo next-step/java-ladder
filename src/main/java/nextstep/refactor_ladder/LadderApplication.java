@@ -27,7 +27,7 @@ public class LadderApplication {
         List<ExecutionResult> executionResults = inputView.inputExecutionResult();
         Integer heightOfLadder = inputView.inputHeightOfLadder();
 
-        Ladder ladder = ladderController.createLadder(LadderCreateParam.of(people.size(), heightOfLadder));
+        Ladder ladder = ladderController.createLadder(LadderCreateParam.of(people, heightOfLadder));
         resultView.printLadder(people, ladder, executionResults);
 
         LadderResults ladderResults

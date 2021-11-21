@@ -1,6 +1,5 @@
 package nextstep.refactor_ladder.domain;
 
-import nextstep.ladder.annotations.GetterForUI;
 import nextstep.ladder.utils.Preconditions;
 import nextstep.refactor_ladder.domain.value.Person;
 
@@ -25,7 +24,6 @@ public class People {
         return personList.indexOf(personName);
     }
 
-    @GetterForUI
     public List<Person> getPersonList() {
         return Collections.unmodifiableList(new ArrayList<>(personList));
     }

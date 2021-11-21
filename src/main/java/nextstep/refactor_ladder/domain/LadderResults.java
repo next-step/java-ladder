@@ -5,6 +5,8 @@ import nextstep.ladder.utils.Preconditions;
 import nextstep.refactor_ladder.domain.value.ExecutionResult;
 import nextstep.refactor_ladder.domain.value.Person;
 
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 public class LadderResults {
@@ -27,6 +29,6 @@ public class LadderResults {
 
     @GetterForUI
     public Map<Person, ExecutionResult> getLadderResults() {
-        return ladderResults;
+        return Collections.unmodifiableMap(new HashMap<>(ladderResults));
     }
 }
