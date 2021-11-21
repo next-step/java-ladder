@@ -27,7 +27,11 @@ public class Point {
     }
 
     public Point next(LadderStrategy ladderStrategy) {
-        return of(index + 1, direction.next(ladderStrategy));
+        return of(index + NEXT_POINT_INDEX, direction.next(ladderStrategy));
+    }
+
+    public Point last() {
+        return of(index + NEXT_POINT_INDEX, direction.last());
     }
 
     public int move() {
@@ -40,5 +44,13 @@ public class Point {
         }
 
         return index;
+    }
+
+    @Override
+    public String toString() {
+        return "Point{" +
+                "index=" + index +
+                ", direction=" + direction +
+                '}';
     }
 }

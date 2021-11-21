@@ -22,7 +22,7 @@ class DirectionTest {
 
     @Test
     @DisplayName("비 정상적인 방향 생성 테스트")
-    void create_excetion() {
+    void create_exception() {
         assertThatIllegalArgumentException().isThrownBy(() -> Direction.of(true, true));
     }
 

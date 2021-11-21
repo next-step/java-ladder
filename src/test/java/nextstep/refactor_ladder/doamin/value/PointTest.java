@@ -9,7 +9,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 class PointTest {
-
     @Test
     @DisplayName("첫번째 지점에서 이동 검증")
     void move_first() {
@@ -26,6 +25,16 @@ class PointTest {
             assertThat(Point.of(1, Direction.of(false, false)).move()).isEqualTo(1);
             assertThat(Point.of(1, Direction.of(true, false)).move()).isZero();
             assertThat(Point.of(1, Direction.of(false, true)).move()).isEqualTo(2);
+        });
+    }
+
+    @Test
+    @DisplayName("마지막 지점에서 이동 검증")
+    void move_last() {
+        assertAll(() -> {
+            assertThat(Point.of(1, Direction.of(false, true)).last().move()).isEqualTo(1);
+            assertThat(Point.of(1, Direction.of(false, false)).last().move()).isEqualTo(2);
+            assertThat(Point.of(1, Direction.of(true, false)).last().move()).isEqualTo(2);
         });
     }
 

@@ -24,7 +24,7 @@ public class Direction {
     }
 
     public Direction next(LadderStrategy ladderStrategy) {
-        if (isPrevRight()) {
+        if (prevRight()) {
             return next(false);
         }
 
@@ -32,7 +32,7 @@ public class Direction {
     }
 
     public Direction last() {
-        return of(isPrevRight(), false);
+        return of(prevRight(), false);
     }
 
     public boolean isLeft() {
@@ -43,12 +43,12 @@ public class Direction {
         return right;
     }
 
-    private boolean isPrevRight() {
+    private boolean prevRight() {
         return right;
     }
 
     private Direction next(boolean right) {
-        return of(isPrevRight(), right);
+        return of(prevRight(), right);
     }
 
     private void validateDirection(boolean left, boolean right) {
@@ -68,5 +68,13 @@ public class Direction {
     @Override
     public int hashCode() {
         return Objects.hash(left, right);
+    }
+
+    @Override
+    public String toString() {
+        return "Direction{" +
+                "left=" + left +
+                ", right=" + right +
+                '}';
     }
 }
