@@ -1,4 +1,4 @@
-package nextstep.ladder.service;
+package nextstep.ladder.converter;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -16,12 +16,12 @@ import nextstep.ladder.domain.Participants;
 import nextstep.ladder.domain.Point;
 import nextstep.ladder.dto.LadderResultDto;
 
-class LadderServiceTest {
-	private LadderService ladderService;
+class ResultConverterTest {
+	private ResultConverter resultConverter;
 
 	@BeforeEach
 	void beforeEach() {
-		ladderService = new LadderServiceImpl();
+		resultConverter = new ResultConverter();
 	}
 
 	/**
@@ -70,7 +70,7 @@ class LadderServiceTest {
 		ExecutionResult executionResult = ExecutionResult.create(results);
 
 		// when
-		LadderResultDto resultDto = ladderService.calculateResult(ladder, participants, executionResult);
+		LadderResultDto resultDto = resultConverter.convert(ladder, participants, executionResult);
 
 		// then
 		assertAll(

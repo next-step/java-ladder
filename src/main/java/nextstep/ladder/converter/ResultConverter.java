@@ -1,4 +1,4 @@
-package nextstep.ladder.service;
+package nextstep.ladder.converter;
 
 import static java.util.stream.Collectors.*;
 
@@ -10,9 +10,8 @@ import nextstep.ladder.domain.Participant;
 import nextstep.ladder.domain.Participants;
 import nextstep.ladder.dto.LadderResultDto;
 
-public class LadderServiceImpl implements LadderService {
-	@Override
-	public LadderResultDto calculateResult(Ladder ladder, Participants participants, ExecutionResult executionResult) {
+public class ResultConverter {
+	public LadderResultDto convert(Ladder ladder, Participants participants, ExecutionResult executionResult) {
 		return participants.getValues().stream()
 			.collect(collectingAndThen(toMap(Participant::toString, participant -> {
 				AtomicInteger index = new AtomicInteger(participants.getIndex(participant));

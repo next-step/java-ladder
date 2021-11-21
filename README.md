@@ -3,7 +3,7 @@
 ## 기능 목록
 - LadderController
   - 사다리 게임을 실행한다.
-- LadderService
+- ResultConverter
   - 사다리와 참가자, 실행결과 값을 전달 받아 결과 Dto 를 생성한다.
 - InputView
   - 참여할 사람을 입력받는다.
