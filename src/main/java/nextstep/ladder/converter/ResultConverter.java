@@ -16,14 +16,14 @@ public class ResultConverter {
 	public LadderResultDto convert(Ladder ladder, Participants participants, ExecutionResult executionResult) {
 		return participants.getValues().stream()
 			.collect(collectingAndThen(toMap(Participant::toString, participant -> {
-				AtomicInteger index = getMovedLastIndex(ladder.getLines(), participants.getIndex(participant));
-				return executionResult.getResult(index.get());
+				int movedLastIndex = getMovedLastIndex(ladder.getLines(), participants.getIndex(participant));
+				return executionResult.getResult(movedLastIndex);
 			}), LadderResultDto::new));
 	}
 
-	private AtomicInteger getMovedLastIndex(List<Line> lines, int startIndex) {
+	private int getMovedLastIndex(List<Line> lines, int startIndex) {
 		AtomicInteger index = new AtomicInteger(startIndex);
 		lines.forEach(line -> index.set(line.move(index.get())));
-		return index;
+		return index.get();
 	}
 }
