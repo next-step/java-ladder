@@ -35,12 +35,20 @@ public class Direction {
         return of(prevRight(), false);
     }
 
-    private Direction next(boolean right) {
-        return of(prevRight(), right);
+    public boolean isLeft() {
+        return left;
+    }
+
+    public boolean isRight() {
+        return right;
     }
 
     private boolean prevRight() {
         return right;
+    }
+
+    private Direction next(boolean right) {
+        return of(prevRight(), right);
     }
 
     private void validateDirection(boolean left, boolean right) {
