@@ -1,7 +1,5 @@
-package nextstep.refactor_ladder.doamin;
+package nextstep.refactor_ladder.domain;
 
-import nextstep.refactor_ladder.domain.Ladder;
-import nextstep.refactor_ladder.domain.Line;
 import nextstep.refactor_ladder.domain.value.Direction;
 import nextstep.refactor_ladder.domain.value.Point;
 import org.junit.jupiter.api.BeforeEach;

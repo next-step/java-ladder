@@ -15,7 +15,7 @@ public class ExecutionResults {
         return new ExecutionResults(executionResults);
     }
 
-    public ExecutionResult getResult(int finalResult) {
-        return executionResults.get(finalResult);
+    public ExecutionResult getResult(int lastIndex) {
+        return executionResults.get(lastIndex);
     }
 }

@@ -1,6 +1,5 @@
-package nextstep.refactor_ladder.doamin.generate;
+package nextstep.refactor_ladder.domain.generate;
 
-import nextstep.refactor_ladder.domain.generate.LineGenerator;
 import nextstep.refactor_ladder.strategy.RandomLadderStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -1,6 +1,5 @@
-package nextstep.refactor_ladder.doamin.value;
+package nextstep.refactor_ladder.domain.value;
 
-import nextstep.refactor_ladder.domain.value.Direction;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

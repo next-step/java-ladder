@@ -24,7 +24,7 @@ public final class LineGenerator {
                 .collect(Collectors.toList());
     }
 
-    public static Line create(int sizeOfPerson, LadderStrategy ladderStrategy) {
+    protected static Line create(int sizeOfPerson, LadderStrategy ladderStrategy) {
         List<Point> points = new ArrayList<>();
         points.addAll(createFirst(ladderStrategy));
         points.addAll(createMiddle(sizeOfPerson, points.get(0), ladderStrategy));
