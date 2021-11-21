@@ -3,6 +3,8 @@ package nextstep.refactor_ladder.domain.value;
 import nextstep.ladder.utils.Preconditions;
 import nextstep.refactor_ladder.strategy.LadderStrategy;
 
+import java.util.Objects;
+
 public class Point {
     private static final Integer FIRST_POINT_INDEX = 0;
     private static final Integer PREVIOUS_POINT_INDEX = -1;
@@ -44,6 +46,19 @@ public class Point {
         }
 
         return index;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Point point = (Point) o;
+        return index == point.index && Objects.equals(direction, point.direction);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(index, direction);
     }
 
     @Override

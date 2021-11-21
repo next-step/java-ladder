@@ -1,8 +1,11 @@
 package nextstep.refactor_ladder.ui;
 
 import nextstep.refactor_ladder.domain.Ladder;
+import nextstep.refactor_ladder.domain.LadderResults;
 import nextstep.refactor_ladder.domain.Line;
 import nextstep.refactor_ladder.domain.value.Direction;
+import nextstep.refactor_ladder.domain.value.ExecutionResult;
+import nextstep.refactor_ladder.domain.value.Person;
 
 import java.util.List;
 
@@ -14,7 +17,7 @@ public class ResultView {
     private static final String LADDER_RESULT = "사다리 결과";
     private static final String EXECUTION_RESULT = "실행결과";
 
-    public void printLadder(List<String> people, Ladder ladder, List<String> executionResults) {
+    public void printLadder(List<Person> people, Ladder ladder, List<ExecutionResult> executionResults) {
         StringBuilder ladderBuilder = new StringBuilder();
         ladderBuilder.append(LADDER_RESULT).append(ENTER);
 
@@ -25,10 +28,28 @@ public class ResultView {
         System.out.println(ladderBuilder.toString());
     }
 
+    public void printResultOfLadder(LadderResults ladderResults, Person personName) {
+        StringBuilder ladderBuilder = new StringBuilder();
+        ladderBuilder.append(EXECUTION_RESULT).append(ENTER);
 
-    private void printPeopleName(StringBuilder ladderBuilder, List<String> people) {
+        ExecutionResult result = ladderResults.getLadderResult(personName);
+        ladderBuilder.append(result.getResult()).append(ENTER);
+
+        System.out.println(ladderBuilder.toString());
+    }
+
+    public void printResultOfAllLadder(LadderResults ladderResults) {
+        StringBuilder ladderBuilder = new StringBuilder();
+        ladderResults.getLadderResults().forEach((person, result) -> ladderBuilder
+                .append(String.format("%s : %s ", person.getName(), result.getResult()))
+                .append(ENTER));
+
+        System.out.println(ladderBuilder.toString());
+    }
+
+    private void printPeopleName(StringBuilder ladderBuilder, List<Person> people) {
         ladderBuilder.append(BLANK);
-        people.forEach(person -> ladderBuilder.append(String.format("%-5s ", person)));
+        people.forEach(person -> ladderBuilder.append(String.format("%-5s ", person.getName())));
     }
 
     private void printLadder(StringBuilder ladderBuilder, Ladder ladder) {
@@ -49,9 +70,9 @@ public class ResultView {
         return LADDER_BLANK;
     }
 
-    private void printExecutionResult(StringBuilder ladderBuilder, List<String> executionResults) {
+    private void printExecutionResult(StringBuilder ladderBuilder, List<ExecutionResult> executionResults) {
         ladderBuilder.append(ENTER);
         ladderBuilder.append(BLANK);
-        executionResults.forEach(result -> ladderBuilder.append(String.format("%-5s ", result)));
+        executionResults.forEach(result -> ladderBuilder.append(String.format("%-5s ", result.getResult())));
     }
 }

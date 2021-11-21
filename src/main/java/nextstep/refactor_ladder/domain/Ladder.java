@@ -24,7 +24,6 @@ public class Ladder {
         for (Line line : lines) {
             index = line.move(index);
         }
-
         return index;
     }
 
