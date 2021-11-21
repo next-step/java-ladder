@@ -1,6 +1,6 @@
 package nextstep.refactor_ladder.strategy;
 
 @FunctionalInterface
-public interface PointStrategy {
-    boolean createPoint();
+public interface LadderStrategy {
+    boolean generate();
 }

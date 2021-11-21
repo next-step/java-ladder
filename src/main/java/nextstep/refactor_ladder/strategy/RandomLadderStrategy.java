@@ -2,11 +2,11 @@ package nextstep.refactor_ladder.strategy;
 
 import java.util.Random;
 
-public class RandomPointStrategy implements PointStrategy {
+public class RandomLadderStrategy implements LadderStrategy {
     private static final Random RANDOM = new Random();
 
     @Override
-    public boolean createPoint() {
+    public boolean generate() {
         return RANDOM.nextBoolean();
     }
 }

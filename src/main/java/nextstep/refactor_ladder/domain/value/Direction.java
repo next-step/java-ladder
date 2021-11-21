@@ -1,6 +1,6 @@
 package nextstep.refactor_ladder.domain.value;
 
-import nextstep.refactor_ladder.strategy.PointStrategy;
+import nextstep.refactor_ladder.strategy.LadderStrategy;
 
 import java.util.Objects;
 
@@ -23,12 +23,12 @@ public class Direction {
         return new Direction(left, right);
     }
 
-    public Direction next(PointStrategy pointStrategy) {
+    public Direction next(LadderStrategy ladderStrategy) {
         if (prevRight()) {
             return next(false);
         }
 
-        return next(pointStrategy.createPoint());
+        return next(ladderStrategy.generate());
     }
 
     public Direction last() {

@@ -1,7 +1,7 @@
 package nextstep.refactor_ladder.domain.value;
 
 import nextstep.ladder.utils.Preconditions;
-import nextstep.refactor_ladder.strategy.PointStrategy;
+import nextstep.refactor_ladder.strategy.LadderStrategy;
 
 public class Point {
     private static final Integer FIRST_POINT_INDEX = 0;
@@ -26,8 +26,8 @@ public class Point {
         return new Point(index, direction);
     }
 
-    public Point next(PointStrategy pointStrategy) {
-        return of(index + 1, direction.next(pointStrategy));
+    public Point next(LadderStrategy ladderStrategy) {
+        return of(index + 1, direction.next(ladderStrategy));
     }
 
     public int move() {
