@@ -49,7 +49,7 @@
     - 사다리 생성
     - 사다리 결과 반환
 - service : 사다리 결과 수행
-- doamin
+- domain
     - Line : 사다리 한줄의 결과 (Point의 일급컬렉션)
     - Ladder : 사다리 전체의 결과 (Line의 일급컬렉션)
     - People : 참가자들 (Person의 일급컬렉션)
