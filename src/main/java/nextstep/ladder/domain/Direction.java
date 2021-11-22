@@ -1,64 +1,42 @@
 package nextstep.ladder.domain;
 
-import java.util.Objects;
+public enum Direction {
+	LEFT(-1),
+	HOLD(0),
+	RIGHT(1);
 
-public class Direction {
+	private final int move;
+
 	private static final String INVALID_MESSAGE = "left, right 두개 모두 존재할수 없습니다.";
+	private static final int MOVE_LEFT = -1;
+	private static final int MOVE_RIGHT = 1;
 
-	private final boolean left;
-	private final boolean right;
-
-	private Direction(boolean left, boolean right) {
-		validate(left, right);
-		this.left = left;
-		this.right = right;
-	}
-
-	private void validate(boolean hasLeft, boolean hasRight) {
-		if (hasLeft && hasRight) {
-			throw new IllegalArgumentException(INVALID_MESSAGE);
-		}
+	Direction(int move) {
+		this.move = move;
 	}
 
 	public static Direction create(boolean left, boolean right) {
-		return new Direction(left, right);
+		if (left && right) {
+			throw new IllegalArgumentException(INVALID_MESSAGE);
+		}
+		if (left) {
+			return Direction.LEFT;
+		}
+		if (right) {
+			return Direction.RIGHT;
+		}
+		return Direction.HOLD;
 	}
 
 	public boolean isLeft() {
-		return left;
+		return move == MOVE_LEFT;
 	}
 
 	public boolean isRight() {
-		return right;
+		return move == MOVE_RIGHT;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null || getClass() != obj.getClass()) {
-			return false;
-		}
-
-		Direction direction = (Direction)obj;
-
-		if (left != direction.left) {
-			return false;
-		}
-		return right == direction.right;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(left, right);
-	}
-
-	@Override
-	public String toString() {
-		return "Direction{" +
-			"left=" + left +
-			", right=" + right +
-			'}';
+	public int move(int index) {
+		return index + move;
 	}
 }
