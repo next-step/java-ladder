@@ -3,7 +3,6 @@ package nextstep.ladder.domain;
 import static java.util.stream.Collectors.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -26,12 +25,8 @@ public class Participants {
 		}
 	}
 
-	public static Participants create(List<Participant> values) {
-		return new Participants(values);
-	}
-
-	public static Participants create(String[] names) {
-		return Arrays.stream(names)
+	public static Participants createWithNames(List<String> names) {
+		return names.stream()
 			.map(Participant::create)
 			.collect(collectingAndThen(toList(), Participants::new));
 	}
@@ -42,6 +37,10 @@ public class Participants {
 
 	public List<Participant> getValues() {
 		return Collections.unmodifiableList(values);
+	}
+
+	public int getIndex(Participant participant) {
+		return values.indexOf(participant);
 	}
 
 	@Override

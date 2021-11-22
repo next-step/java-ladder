@@ -3,26 +3,40 @@ package nextstep.ladder.domain;
 import java.util.Objects;
 
 public class Point {
-	private final boolean hasLine;
+	private final Direction direction;
 
-	private Point(boolean hasLine) {
-		this.hasLine = hasLine;
+	private Point(Direction direction) {
+		this.direction = direction;
 	}
 
-	public static Point create(boolean hasLine) {
-		return new Point(hasLine);
+	public static Point create(boolean left, boolean right) {
+		return new Point(Direction.create(left, right));
 	}
 
-	public static Point createHasNotLine() {
-		return new Point(false);
+	public static Point createFirstOfLine(boolean right) {
+		return create(false, right);
 	}
 
-	public boolean hasLine() {
-		return hasLine;
+	public static Point createLastOfLine(boolean isPrevPointHasRightLine) {
+		return create(isPrevPointHasRightLine, false);
 	}
 
-	public Point calculatePrev(Point prev) {
-		return create(!prev.hasLine && this.hasLine);
+	public boolean isDirectionLeft() {
+		return direction.isLeft();
+	}
+
+	public boolean isDirectionRight() {
+		return direction.isRight();
+	}
+
+	public int move(int index) {
+		if (direction.isLeft()) {
+			index--;
+		}
+		if (direction.isRight()) {
+			index++;
+		}
+		return index;
 	}
 
 	@Override
@@ -36,18 +50,18 @@ public class Point {
 
 		Point point = (Point)obj;
 
-		return Objects.equals(hasLine, point.hasLine);
+		return Objects.equals(direction, point.direction);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(hasLine);
+		return Objects.hash(direction);
 	}
 
 	@Override
 	public String toString() {
 		return "Point{" +
-			"hasLine=" + hasLine +
+			"direction=" + direction +
 			'}';
 	}
 }

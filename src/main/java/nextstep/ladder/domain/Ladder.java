@@ -1,59 +1,49 @@
 package nextstep.ladder.domain;
 
+import static java.util.stream.Collectors.*;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Stream;
 
-import nextstep.ladder.generator.PointGenerator;
+import nextstep.ladder.generator.RandomGenerator;
 import nextstep.ladder.util.CollectionUtils;
 
 public class Ladder {
-	private static final String EMPTY_MESSAGE = "Point 리스트가 비어있습니다.";
-	private static final String OVERLAP_MESSAGE = "사다리 라인이 겹쳐지면 안됩니다.";
+	private static final String EMPTY_MESSAGE = "Line 리스트가 비어있습니다.";
 
-	private final List<Point> points;
+	private final List<Line> lines;
 
-	private Ladder(List<Point> points) {
-		validate(points);
-		this.points = new ArrayList<>(points);
+	private Ladder(List<Line> lines) {
+		validateSize(lines);
+		this.lines = new ArrayList<>(lines);
 	}
 
-	private void validate(List<Point> points) {
-		validateSize(points);
-		validateOverlap(points);
-	}
-
-	private void validateSize(List<Point> points) {
-		if (CollectionUtils.isEmpty(points)) {
+	private void validateSize(List<Line> lines) {
+		if (CollectionUtils.isEmpty(lines)) {
 			throw new IllegalArgumentException(EMPTY_MESSAGE);
 		}
 	}
 
-	private void validateOverlap(List<Point> points) {
-		for (int i = 0; i < points.size() - 1; i++) {
-			comparePoint(points, i);
-		}
+	public static Ladder create(List<Line> lines) {
+		return new Ladder(lines);
 	}
 
-	private void comparePoint(List<Point> points, int index) {
-		Point current = points.get(index);
-		Point next = points.get(index + 1);
-		if (current.hasLine() && next.hasLine()) {
-			throw new IllegalArgumentException(OVERLAP_MESSAGE);
-		}
+	public static Ladder initialize(RandomGenerator generator, int width, int height) {
+		return Stream.generate(() -> Line.create(generator, width))
+			.limit(height)
+			.collect(collectingAndThen(toList(), Ladder::create));
 	}
 
-	public static Ladder create(List<Point> points) {
-		return new Ladder(points);
+	public List<Line> getLines() {
+		return Collections.unmodifiableList(lines);
 	}
 
-	public static Ladder create(PointGenerator generator, int width, int height) {
-		return create(generator.generate(width, height));
-	}
-
-	public List<Point> values() {
-		return Collections.unmodifiableList(points);
+	public int move(int index) {
+		Line line = lines.get(index);
+		return line.move(index);
 	}
 
 	@Override
@@ -67,18 +57,18 @@ public class Ladder {
 
 		Ladder ladder = (Ladder)obj;
 
-		return Objects.equals(points, ladder.points);
+		return Objects.equals(lines, ladder.lines);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(points);
+		return Objects.hash(lines);
 	}
 
 	@Override
 	public String toString() {
 		return "Ladder{" +
-			"points=" + points +
+			"lines=" + lines +
 			'}';
 	}
 }
