@@ -10,14 +10,14 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import nextstep.ladder.generator.FixedFalseGenerator;
-import nextstep.ladder.generator.RandomGenerator;
+import nextstep.ladder.generator.Generator;
 
 class LadderTest {
 	@DisplayName("Ladder 생성시에 Line 개수를 검증한다.")
 	@Test
 	void create() {
 		// given
-		RandomGenerator generator = new FixedFalseGenerator();
+		Generator generator = new FixedFalseGenerator();
 		int width = 10;
 		int height = 10;
 

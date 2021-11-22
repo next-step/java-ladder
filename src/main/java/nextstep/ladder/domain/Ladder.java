@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
 
-import nextstep.ladder.generator.RandomGenerator;
+import nextstep.ladder.generator.Generator;
 import nextstep.ladder.util.CollectionUtils;
 
 public class Ladder {
@@ -31,7 +31,7 @@ public class Ladder {
 		return new Ladder(lines);
 	}
 
-	public static Ladder initialize(RandomGenerator generator, int width, int height) {
+	public static Ladder initialize(Generator generator, int width, int height) {
 		return Stream.generate(() -> Line.create(generator, width))
 			.limit(height)
 			.collect(collectingAndThen(toList(), Ladder::create));
