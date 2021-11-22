@@ -33,6 +33,10 @@ public class LadderController {
 		ResultView.printLadder(ladder.getLines());
 		ResultView.printExecutionResult(executionResult.getValues());
 
+		scanNameAndPrintResult(resultDto);
+	}
+
+	private void scanNameAndPrintResult(LadderResultDto resultDto) {
 		while (true) {
 			String name = InputView.scanNameForPrintResult();
 
