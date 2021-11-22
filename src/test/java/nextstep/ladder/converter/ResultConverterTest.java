@@ -24,7 +24,7 @@ class ResultConverterTest {
 		resultConverter = new ResultConverter();
 	}
 
-	/**
+	/*
 	 * a     b     c     d
 	 * |     |-----|     |
 	 * |-----|     |-----|

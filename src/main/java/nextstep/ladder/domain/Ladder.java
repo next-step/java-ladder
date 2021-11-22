@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Stream;
 
 import nextstep.ladder.generator.Generator;
@@ -42,8 +43,10 @@ public class Ladder {
 	}
 
 	public int move(int index) {
-		Line line = lines.get(index);
-		return line.move(index);
+		for (Line line : lines) {
+			index = line.move(index);
+		}
+		return index;
 	}
 
 	@Override
