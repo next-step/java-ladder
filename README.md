@@ -33,3 +33,33 @@
         - 개인별 이름을 입력하면 개인별 결과를 출력
         - all을 입력하면 전체 참여자의 실행 결과를 출력
 
+## 기능 목록
+
+- LadderApplication : 사다리 게임 수행
+- ui
+    - InputView
+        - 참여할 사람 이름 입력
+        - 실행 결과 입력
+        - 최대 사다리 높이 갯수 입력
+        - 결과를 보고 싶은 사람 입력
+    - ResultView
+        - 사다리 결과 출력
+        - 사람에 대한 결과 출력
+- controller : 사다리 애플리케이션 컨트롤러
+    - 사다리 생성
+    - 사다리 결과 반환
+- service : 사다리 결과 수행
+- domain
+    - Line : 사다리 한줄의 결과 (Point의 일급컬렉션)
+    - Ladder : 사다리 전체의 결과 (Line의 일급컬렉션)
+    - People : 참가자들 (Person의 일급컬렉션)
+    - ExecutionResults : 션사다리 전체 결과 (ExecutionResult 일급컬렉)
+    - LadderResults : 참가자와 사다리 결과 맵핑
+
+    - value(VO)
+        - Direction : 사다리 방향 규칙
+        - Person : 게임 참가자
+        - Point : 사다리 지점
+        - ExecutionResult : 사다리 결과
+- strategy
+    - 사다리 생성 전략 (현재는 랜덤만 있음)
