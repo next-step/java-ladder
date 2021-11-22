@@ -8,8 +8,6 @@ public enum Direction {
 	private final int move;
 
 	private static final String INVALID_MESSAGE = "left, right 두개 모두 존재할수 없습니다.";
-	private static final int MOVE_LEFT = -1;
-	private static final int MOVE_RIGHT = 1;
 
 	Direction(int move) {
 		this.move = move;
@@ -26,14 +24,6 @@ public enum Direction {
 			return Direction.RIGHT;
 		}
 		return Direction.HOLD;
-	}
-
-	public boolean isLeft() {
-		return move == MOVE_LEFT;
-	}
-
-	public boolean isRight() {
-		return move == MOVE_RIGHT;
 	}
 
 	public int move(int index) {
