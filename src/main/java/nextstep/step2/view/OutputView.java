@@ -58,7 +58,7 @@ public class OutputView {
     }
 
     private String bridgeToPrintString(Bridge bridge) {
-        if (bridge.getValue()) {
+        if (bridge.equals(Bridge.RIGHT)) {
             return BRIDGE;
         }
         return LADDER_SPACE;

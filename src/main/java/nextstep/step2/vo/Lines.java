@@ -16,7 +16,7 @@ public class Lines {
         this.lines = new ArrayList<>(lines);
     }
 
-    public static final Lines create(List<Line> lines) {
+    public static Lines create(List<Line> lines) {
 
         if (lines == null || lines.isEmpty()) {
             throw new IllegalArgumentException(EMPTY_MESSAGE);

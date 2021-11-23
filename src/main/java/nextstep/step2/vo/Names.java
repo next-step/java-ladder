@@ -8,8 +8,8 @@ import static java.util.stream.Collectors.toList;
 
 public class Names {
 
-    private static final String NULL_OR_LESS_SIZE_MESSAGE = "최소 두명 이상의 플레이어가 필요합니다.";
     private static final int MIN_PLAYER_COUNT = 2;
+    private static final String NULL_OR_LESS_SIZE_MESSAGE = "최소 " + MIN_PLAYER_COUNT + "명 이상의 플레이어가 필요합니다.";
 
     private final List<Name> names;
 
