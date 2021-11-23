@@ -30,7 +30,7 @@ public class Line {
     public static Line createWithEndLine(int endLine, BooleanGenerateStrategy strategy) {
         List<Bridge> bridges = new ArrayList<>();
         for (int i = START_LINE; i < endLine; i++) {
-            bridges.add(makePoint(strategy, bridges));
+            bridges.add(makeBridge(strategy, bridges));
         }
 
         return new Line(bridges);
@@ -44,7 +44,7 @@ public class Line {
         return width.getValue() - ONE_TO_CALCULATE_END_LINE;
     }
 
-    private static Bridge makePoint(BooleanGenerateStrategy strategy, List<Bridge> bridges) {
+    private static Bridge makeBridge(BooleanGenerateStrategy strategy, List<Bridge> bridges) {
         if (bridges.isEmpty()) {
             return Bridge.create(strategy.generate());
         }
