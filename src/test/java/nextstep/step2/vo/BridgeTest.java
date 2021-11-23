@@ -2,29 +2,22 @@ package nextstep.step2.vo;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class BridgeTest {
 
-    @DisplayName("isGo() 포인트의 값에 따라 true / false 를 반환한다.")
+    @DisplayName("next() random 값에 따라 Bridge를 반환한다.")
     @ParameterizedTest
-    @ValueSource(booleans = {true, false})
-    void isGoTest(boolean input) {
-        Bridge actual = Bridge.create(input);
+    @CsvSource(value = {"RIGHT:false:LEFT", "RIGHT:true:LEFT",
+            "DOWN:true:RIGHT", "DOWN:false:DOWN",
+            "LEFT:true:DOWN", "LEFT:false:DOWN"
+    }, delimiter = ':')
+    void isGoTest(String beforeValue, boolean input, String nextValue) {
+        Bridge before = Bridge.valueOf(beforeValue);
 
-        assertThat(actual.isGo()).isEqualTo(input);
-    }
-
-    @DisplayName("create()는 이미 생성된 포인트를 반환한다.")
-    @ParameterizedTest
-    @ValueSource(booleans = {true, false})
-    void getCachedPointTest(boolean input) {
-        Bridge actual = Bridge.create(input);
-
-        assertThat(actual).isEqualTo(Bridge.create(input));
-        assertThat(actual).isSameAs(Bridge.create(input));
+        assertThat(before.next(input)).isEqualTo(Bridge.valueOf(nextValue));
     }
 
 }

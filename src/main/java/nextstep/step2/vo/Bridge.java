@@ -2,57 +2,30 @@ package nextstep.step2.vo;
 
 import java.util.Objects;
 
-public class Bridge {
-    public static final Bridge FALSE = new Bridge(false);
-    public static final Bridge TRUE = new Bridge(true);
+public enum Bridge {
+    DOWN(0),
+    RIGHT(1),
+    LEFT(-1);
 
-    private final boolean value;
+    private final int value;
 
-    private Bridge(Boolean value) {
+    Bridge(int value) {
         this.value = value;
     }
 
-    public static Bridge create(Boolean value) {
-        return getCachedBridge(value);
-    }
-
-    private static Bridge getCachedBridge(Boolean value) {
-        if (value) {
-            return TRUE;
+    public Bridge next(boolean random) {
+        if(this.equals(Bridge.RIGHT)) {
+            return Bridge.LEFT;
         }
 
-        return FALSE;
-    }
-
-    public boolean getValue() {
-        return value;
-    }
-
-    public boolean isGo() {
-        return this.value;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
+        if(this.equals(Bridge.LEFT)) {
+            return Bridge.DOWN;
         }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
+
+        if(random) {
+            return Bridge.RIGHT;
         }
-        Bridge bridge = (Bridge) o;
-        return Objects.equals(value, bridge.value);
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(value);
-    }
-
-    @Override
-    public String toString() {
-        return "Point{" +
-                "value=" + value +
-                '}';
+        return Bridge.DOWN;
     }
 }
