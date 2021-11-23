@@ -3,6 +3,7 @@ package nextstep.step2.vo;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 class WidthTest {
@@ -13,4 +14,9 @@ class WidthTest {
         assertThatIllegalArgumentException().isThrownBy(() -> Width.create(1));
     }
 
+    @DisplayName("정상 생성 테스트")
+    @Test
+    void createTest() {
+        assertThat(Width.create(2)).isEqualTo(Width.create(2));
+    }
 }
