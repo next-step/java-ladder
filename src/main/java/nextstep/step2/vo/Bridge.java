@@ -1,7 +1,5 @@
 package nextstep.step2.vo;
 
-import java.util.Objects;
-
 public enum Bridge {
     DOWN(0),
     RIGHT(1),
@@ -13,19 +11,27 @@ public enum Bridge {
         this.value = value;
     }
 
-    public Bridge next(boolean random) {
-        if(this.equals(Bridge.RIGHT)) {
-            return Bridge.LEFT;
+    public static Bridge firstBridge(boolean random) {
+        if(random) {
+            return RIGHT;
         }
 
-        if(this.equals(Bridge.LEFT)) {
-            return Bridge.DOWN;
+        return DOWN;
+    }
+
+    public Bridge next(boolean random, boolean isLast) {
+        if(this.equals(Bridge.RIGHT)) {
+            return LEFT;
+        }
+
+        if(isLast) {
+            return DOWN;
         }
 
         if(random) {
-            return Bridge.RIGHT;
+            return RIGHT;
         }
 
-        return Bridge.DOWN;
+        return DOWN;
     }
 }
