@@ -12,7 +12,7 @@ public enum Bridge {
     }
 
     public static Bridge firstBridge(boolean random) {
-        if(random) {
+        if (random) {
             return RIGHT;
         }
 
@@ -20,15 +20,15 @@ public enum Bridge {
     }
 
     public Bridge next(boolean random, boolean isLast) {
-        if(this.equals(Bridge.RIGHT)) {
+        if (this.equals(Bridge.RIGHT)) {
             return LEFT;
         }
 
-        if(isLast) {
+        if (isLast) {
             return DOWN;
         }
 
-        if(random) {
+        if (random) {
             return RIGHT;
         }
 

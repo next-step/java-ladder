@@ -22,7 +22,7 @@ public class Line {
     }
 
     public static Line create(List<Bridge> bridges) {
-        if(bridges == null || bridges.isEmpty()) {
+        if (bridges == null || bridges.isEmpty()) {
             throw new IllegalArgumentException(NOT_EMPTY_LINE_MESSAGE);
         }
         return new Line(bridges);
@@ -41,7 +41,7 @@ public class Line {
         bridges.add(Bridge.firstBridge(strategy.generate()));
 
         for (int i = SECOND_BRIDGE; i < endLine; i++) {
-            Bridge prev = bridges.get(i-PREV_IDX);
+            Bridge prev = bridges.get(i - PREV_IDX);
             bridges.add(prev.next(strategy.generate(), isLast(i, endLine)));
         }
 
