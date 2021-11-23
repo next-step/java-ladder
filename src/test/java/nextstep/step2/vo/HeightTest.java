@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 class HeightTest {
@@ -20,5 +21,11 @@ class HeightTest {
     @NullAndEmptySource
     void nullOrEmptyTest(String input) {
         assertThatIllegalArgumentException().isThrownBy(() -> Height.createWithString(input));
+    }
+
+    @DisplayName("정상 생성 테스트")
+    @Test
+    void createTest() {
+        assertThat(Height.create(2)).isEqualTo(Height.create(2));
     }
 }
