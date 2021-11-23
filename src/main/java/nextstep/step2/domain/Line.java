@@ -10,8 +10,10 @@ import java.util.List;
 import java.util.Objects;
 
 public class Line {
-    private static final int START_LINE = 0;
+    private static final String NOT_EMPTY_LINE_MESSAGE = "빈 값으로 생성할 수 없습니다.";
+    private static final int SECOND_BRIDGE = 1;
     private static final int ONE_TO_CALCULATE_END_LINE = 1;
+    private static final int PREV_IDX = 1;
 
     private final List<Bridge> bridges;
 
@@ -20,41 +22,34 @@ public class Line {
     }
 
     public static Line create(List<Bridge> bridges) {
+        if(bridges == null || bridges.isEmpty()) {
+            throw new IllegalArgumentException(NOT_EMPTY_LINE_MESSAGE);
+        }
         return new Line(bridges);
     }
 
     public static Line createWithLine(Line line) {
-        return new Line(line.bridges);
+        return create(line.bridges);
+    }
+
+    public static Line createWithWidth(Width width, BooleanGenerateStrategy strategy) {
+        return createWithEndLine(width.getValue(), strategy);
     }
 
     public static Line createWithEndLine(int endLine, BooleanGenerateStrategy strategy) {
         List<Bridge> bridges = new ArrayList<>();
-        for (int i = START_LINE; i < endLine; i++) {
-            bridges.add(makeBridge(strategy, bridges));
+        bridges.add(Bridge.firstBridge(strategy.generate()));
+
+        for (int i = SECOND_BRIDGE; i < endLine; i++) {
+            Bridge prev = bridges.get(i-PREV_IDX);
+            bridges.add(prev.next(strategy.generate(), isLast(i, endLine)));
         }
 
-        return new Line(bridges);
+        return create(bridges);
     }
 
-    public static Line createWithWidth(Width width, BooleanGenerateStrategy strategy) {
-        return createWithEndLine(createEndLineWithWidth(width), strategy);
-    }
-
-    private static int createEndLineWithWidth(Width width) {
-        return width.getValue() - ONE_TO_CALCULATE_END_LINE;
-    }
-
-    private static Bridge makeBridge(BooleanGenerateStrategy strategy, List<Bridge> bridges) {
-        if (bridges.isEmpty()) {
-            return Bridge.create(strategy.generate());
-        }
-
-        int now = bridges.size() - 1;
-        if (bridges.get(now).equals(Bridge.TRUE)) {
-            return Bridge.FALSE;
-        }
-
-        return Bridge.create(strategy.generate());
+    private static boolean isLast(int now, int endLine) {
+        return now == endLine - ONE_TO_CALCULATE_END_LINE;
     }
 
     public List<Bridge> getBridges() {
