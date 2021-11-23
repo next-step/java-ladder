@@ -27,14 +27,12 @@ public class main {
 
     private static LadderGame getLadderGame(String namesString, Ladder ladder) {
         GameInformation gameInformation = GameInformation.createWithString(namesString);
-        LadderGame game = LadderGame.createWithInfoAndLadder(gameInformation, ladder);
-        return game;
+        return LadderGame.createWithInfoAndLadder(gameInformation, ladder);
     }
 
     private static Ladder getLadder(String namesString, String heightString) {
         LadderInformation ladderInformation = LadderInformation.createWithString(namesString, heightString);
         BooleanGenerateStrategy strategy = new RandomBooleanGenerateStrategy();
-        Ladder ladder = Ladder.createWithLadderInformation(ladderInformation, strategy);
-        return ladder;
+        return Ladder.createWithLadderInformation(ladderInformation, strategy);
     }
 }
