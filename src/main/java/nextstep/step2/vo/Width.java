@@ -3,8 +3,8 @@ package nextstep.step2.vo;
 import java.util.Objects;
 
 public class Width {
-    private static final int MIN_WIDTH = 2;
-    private static final String NULL_OR_LESS_HEIGHT_MESSAGE = "넓이 값은 " + MIN_WIDTH + " 이상 이어야 합니다.";
+    private static final int MIN = 2;
+    private static final String NULL_OR_LESS_HEIGHT_MESSAGE = "넓이 값은 " + MIN + " 이상 이어야 합니다.";
 
     private final int value;
 
@@ -13,7 +13,7 @@ public class Width {
     }
 
     public static Width create(int value) {
-        if (value < MIN_WIDTH) {
+        if (value < MIN) {
             throw new IllegalArgumentException(NULL_OR_LESS_HEIGHT_MESSAGE);
         }
 
