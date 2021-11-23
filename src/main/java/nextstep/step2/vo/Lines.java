@@ -4,6 +4,7 @@ import nextstep.step2.domain.Line;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Lines {
@@ -29,5 +30,22 @@ public class Lines {
         return lines.stream()
                 .map(Line::createWithLine)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Lines lines1 = (Lines) o;
+        return Objects.equals(lines, lines1.lines);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(lines);
     }
 }
