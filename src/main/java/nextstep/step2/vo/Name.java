@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Name {
     private static final String NOT_NULL_OR_EMPTY_EXCEPTION_MESSAGE = "이름은 빈 값이거나 null 일 수 없습니다.";
     private static final String RANGE_EXCEPTION_MESSAGE = "이름은 1~5자 입니다.";
-    private static final int NUMBER_OF_MAX_NAMES_SIZE = 5;
+    private static final int MAX_SIZE = 5;
 
     private final String value;
 
@@ -18,7 +18,7 @@ public class Name {
             throw new IllegalArgumentException(NOT_NULL_OR_EMPTY_EXCEPTION_MESSAGE);
         }
 
-        if (value.length() > NUMBER_OF_MAX_NAMES_SIZE) {
+        if (value.length() > MAX_SIZE) {
             throw new IllegalArgumentException(RANGE_EXCEPTION_MESSAGE);
         }
 
