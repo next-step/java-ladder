@@ -40,4 +40,18 @@ class NamesTest {
 
         assertThat(names.size()).isEqualTo(expect);
     }
+
+    @DisplayName("정상 생성 테스트")
+    @Test
+    void createTest() {
+        assertThat(Names.create(Arrays.asList(Name.create("miz"), Name.create("mi"))))
+                .isEqualTo(Names.create(Arrays.asList(Name.create("miz"), Name.create("mi"))));
+    }
+
+    @DisplayName("정상 ','로 구분 된 String 도 생성 할 수 있다.")
+    @Test
+    void createWithStringTest() {
+        assertThat(Names.createWithString("miz,mi"))
+                .isEqualTo(Names.create(Arrays.asList(Name.create("miz"), Name.create("mi"))));
+    }
 }

@@ -2,6 +2,7 @@ package nextstep.step2.vo;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
@@ -45,5 +46,22 @@ public class Names {
         return names.stream()
                 .map(name -> Name.create(name.getValue()))
                 .collect(toList());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Names names1 = (Names) o;
+        return Objects.equals(names, names1.names);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(names);
     }
 }
