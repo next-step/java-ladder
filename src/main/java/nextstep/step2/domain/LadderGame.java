@@ -5,16 +5,16 @@ import nextstep.step2.vo.Names;
 
 public class LadderGame {
 
-    private final GameInformation gameInformation;
+    private final Names names;
     private final Ladder ladder;
 
-    private LadderGame(GameInformation gameInformation, Ladder ladder) {
-        this.gameInformation = gameInformation;
+    private LadderGame(Names names, Ladder ladder) {
+        this.names = names;
         this.ladder = ladder;
     }
 
     public static LadderGame createWithInfoAndLadder(GameInformation gameInformation, Ladder ladder) {
-        return new LadderGame(gameInformation, ladder);
+        return new LadderGame(gameInformation.getNames(), ladder);
     }
 
     public Ladder getLadder() {
@@ -22,6 +22,6 @@ public class LadderGame {
     }
 
     public Names getNames() {
-        return gameInformation.getNames();
+        return names;
     }
 }
