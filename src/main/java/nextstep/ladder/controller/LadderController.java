@@ -9,6 +9,8 @@ import java.util.List;
 
 public class LadderController {
 
+    protected static final int DIFFERENCE_BETWEEN_NAMES_SIZE_AND_WIDTH = 1;
+
     private LadderController() {
     }
 
@@ -24,9 +26,9 @@ public class LadderController {
 
     private static void start() {
         List<Name> names = createNames();
-        OutputView.showNames(names);
+        Ladder ladder = createLadder(names.size() - DIFFERENCE_BETWEEN_NAMES_SIZE_AND_WIDTH);
 
-        Ladder ladder = createLadder(names.size());
+        OutputView.showNames(names);
         OutputView.showLadder(ladder);
     }
 

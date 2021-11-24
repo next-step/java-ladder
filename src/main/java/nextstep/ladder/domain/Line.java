@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.IntStream;
 
+import static java.util.Collections.unmodifiableList;
 import static nextstep.ladder.utils.Validator.checkNotNull;
 
 public class Line {
@@ -44,8 +45,13 @@ public class Line {
     private static boolean isSideEmpty(List<Boolean> points, int index) {
         return !(points.get(index - INTERVAL) || points.get(index + INTERVAL));
     }
+
     private static void createPoint(List<Boolean> points, int index) {
         points.set(index, true);
+    }
+
+    public List<Boolean> points() {
+        return unmodifiableList(points);
     }
 
     @Override

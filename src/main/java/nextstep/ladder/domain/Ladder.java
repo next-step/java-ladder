@@ -5,6 +5,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static java.util.Collections.unmodifiableList;
 import static nextstep.ladder.utils.Validator.checkNotNull;
 
 public class Ladder {
@@ -35,6 +36,10 @@ public class Ladder {
         return Stream.generate(() -> Line.of(width, pointRule))
                 .limit(ladderSize.height())
                 .collect(Collectors.toList());
+    }
+
+    public List<Line> lines() {
+        return unmodifiableList(lines);
     }
 
     @Override
