@@ -2,10 +2,7 @@ package nextstep.ladder.controller;
 
 import nextstep.ladder.controller.view.InputView;
 import nextstep.ladder.controller.view.OutputView;
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.LadderSize;
-import nextstep.ladder.domain.Name;
-import nextstep.ladder.domain.Positive;
+import nextstep.ladder.domain.*;
 import nextstep.ladder.utils.Parser;
 
 import java.util.List;
@@ -41,7 +38,7 @@ public class LadderController {
     private static Ladder createLadder(int widthValue) {
         Positive width = new Positive(widthValue);
         Positive height = new Positive(InputView.getHeight());
-        return Ladder.of(new LadderSize(width, height), () -> true);
+        return Ladder.of(new LadderSize(width, height), new RandomPointRule());
     }
 
 }
