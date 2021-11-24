@@ -27,26 +27,18 @@ public class Lambda {
     }
 
     public static int sumAll(List<Integer> numbers, SumStrategy sumStrategy) {
-        int total = 0;
-        for (int number : numbers) {
-            if (sumStrategy.filter(number)) {
-                total += number;
-            }
-        }
-        return total;
+        return sum(numbers, sumStrategy);
     }
 
     public static int sumAllEven(List<Integer> numbers, SumStrategy sumStrategy) {
-        int total = 0;
-        for (int number : numbers) {
-            if (sumStrategy.filter(number)) {
-                total += number;
-            }
-        }
-        return total;
+        return sum(numbers, sumStrategy);
     }
 
     public static int sumAllOverThree(List<Integer> numbers, SumStrategy sumStrategy) {
+        return sum(numbers, sumStrategy);
+    }
+
+    private static Integer sum(List<Integer> numbers, SumStrategy sumStrategy) {
         int total = 0;
         for (int number : numbers) {
             if (sumStrategy.filter(number)) {
