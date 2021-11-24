@@ -13,6 +13,7 @@ import java.util.stream.Stream;
 import static java.util.Arrays.asList;
 import static java.util.Collections.nCopies;
 import static java.util.Collections.singletonList;
+import static nextstep.ladder.domain.NoPointRule.noPointRule;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
@@ -45,7 +46,7 @@ class LineTest {
 
     public static Stream<Arguments> nullInputArguments() {
         return Stream.of(
-                Arguments.of(null, neverPointRule()),
+                Arguments.of(null, noPointRule()),
                 Arguments.of(new Positive(1), null),
                 Arguments.of(null, null)
         );
@@ -67,10 +68,6 @@ class LineTest {
                 Arguments.of(new Positive(7), true, new Line(asList(true, false, true, false, true, false, true)))
 
         );
-    }
-
-    private static PointRule neverPointRule() {
-        return () -> false;
     }
 
 }
