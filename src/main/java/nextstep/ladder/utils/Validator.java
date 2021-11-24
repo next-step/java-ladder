@@ -9,6 +9,12 @@ public class Validator {
     private Validator() {
     }
 
+    public static void checkNotNull(Object... object) {
+        for (Object o : object) {
+            checkNotNull(o);
+        }
+    }
+
     public static void checkNotNull(Object object) {
         if (Objects.isNull(object)) {
             throw new IllegalArgumentException(NOT_NULL_ERROR_MESSAGE);

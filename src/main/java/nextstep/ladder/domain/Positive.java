@@ -20,6 +20,10 @@ public class Positive {
         }
     }
 
+    public int getValue() {
+        return value;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -31,5 +35,12 @@ public class Positive {
     @Override
     public int hashCode() {
         return Objects.hash(value);
+    }
+
+    @Override
+    public String toString() {
+        return "Positive{" +
+                "value=" + value +
+                '}';
     }
 }

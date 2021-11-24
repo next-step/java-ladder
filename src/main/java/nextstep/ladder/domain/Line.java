@@ -10,7 +10,7 @@ import static nextstep.ladder.utils.Validator.checkNotNull;
 
 public class Line {
 
-    public static final String NOT_POSITIVE_ERROR_MESSAGE = "너비는 양수여야 합니다.";
+    public static final String NOT_POSITIVE_WIDTH_ERROR_MESSAGE = "너비는 양수여야 합니다.";
     private static final int MIN_WIDTH = 1;
     private static final int EDGE_WIDTH = 1;
     private static final int INTERVAL = 1;
@@ -25,12 +25,13 @@ public class Line {
 
     private void checkPositiveSize(List<Boolean> points) {
         if (points == null || points.size() < MIN_WIDTH) {
-            throw new IllegalArgumentException(NOT_POSITIVE_ERROR_MESSAGE);
+            throw new IllegalArgumentException(NOT_POSITIVE_WIDTH_ERROR_MESSAGE);
         }
     }
 
-    public static Line of(int width, PointRule pointRule) {
-        checkArguments(width, pointRule);
+    public static Line of(Positive widthValue, PointRule pointRule) {
+        checkNotNull(widthValue, pointRule);
+        int width = widthValue.getValue();
 
         List<Boolean> edgedPoints = new ArrayList<>(Collections.nCopies(width + EDGE_WIDTH * 2, DEFAULT_POINT));
         IntStream.rangeClosed(EDGE_WIDTH, width)
@@ -40,22 +41,11 @@ public class Line {
         return new Line(edgedPoints.subList(EDGE_WIDTH, width + EDGE_WIDTH));
     }
 
-    private static void checkArguments(int width, PointRule pointRule) {
-        checkPositiveWidth(width);
-        checkNotNull(pointRule);
-    }
-
     private static boolean isSideEmpty(List<Boolean> points, int index) {
         return !(points.get(index - INTERVAL) || points.get(index + INTERVAL));
     }
     private static void createPoint(List<Boolean> points, int index) {
         points.set(index, true);
-    }
-
-    private static void checkPositiveWidth(int width) {
-        if (width < MIN_WIDTH) {
-            throw new IllegalArgumentException(NOT_POSITIVE_ERROR_MESSAGE);
-        }
     }
 
     @Override
