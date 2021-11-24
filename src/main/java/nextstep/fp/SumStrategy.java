@@ -1,7 +1,6 @@
 package nextstep.fp;
 
-import java.util.List;
-
+@FunctionalInterface
 public interface SumStrategy {
     boolean filter(int number);
 }
