@@ -22,21 +22,15 @@ public class Point {
 	}
 
 	public boolean isDirectionLeft() {
-		return direction.isLeft();
+		return direction == Direction.LEFT;
 	}
 
 	public boolean isDirectionRight() {
-		return direction.isRight();
+		return direction == Direction.RIGHT;
 	}
 
 	public int move(int index) {
-		if (direction.isLeft()) {
-			index--;
-		}
-		if (direction.isRight()) {
-			index++;
-		}
-		return index;
+		return direction.move(index);
 	}
 
 	@Override

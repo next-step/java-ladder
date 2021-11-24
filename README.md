@@ -12,8 +12,8 @@
   - 사람 이름을 입력받을 경우 결과에 맞는 당첨 결과를 보여준다.
 - ResultView
   - 생성된 사다리를 출력한다.
-- RandomGenerator
-  - RandomBooleanGenerator
+- Generator
+  - RandomGenerator
     - random 으로 boolean 값을 생성한다.
 - Domain
   - Height

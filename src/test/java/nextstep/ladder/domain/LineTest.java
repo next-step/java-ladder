@@ -10,7 +10,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import nextstep.ladder.generator.FixedFalseGenerator;
-import nextstep.ladder.generator.RandomGenerator;
+import nextstep.ladder.generator.Generator;
 
 class LineTest {
 	@DisplayName("Line list 가 비어있을 경우 예외 발생")
@@ -28,7 +28,7 @@ class LineTest {
 	@Test
 	void createWithGenerator() {
 		// given
-		RandomGenerator generator = new FixedFalseGenerator();
+		Generator generator = new FixedFalseGenerator();
 		int width = 10;
 
 		// when

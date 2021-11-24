@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-import nextstep.ladder.generator.RandomGenerator;
+import nextstep.ladder.generator.Generator;
 import nextstep.ladder.util.CollectionUtils;
 
 public class Line {
@@ -28,7 +28,7 @@ public class Line {
 		return new Line(points);
 	}
 
-	public static Line create(RandomGenerator generator, int width) {
+	public static Line create(Generator generator, int width) {
 		List<Point> points = new ArrayList<>();
 		Point point = Point.createFirstOfLine(generator.generate());
 		points.add(point);
@@ -43,7 +43,7 @@ public class Line {
 		return create(points);
 	}
 
-	private static boolean calculateRight(RandomGenerator generator, boolean isPrevPointHasRightLine) {
+	private static boolean calculateRight(Generator generator, boolean isPrevPointHasRightLine) {
 		if (isPrevPointHasRightLine) {
 			return false;
 		}

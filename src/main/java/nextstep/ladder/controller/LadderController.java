@@ -6,15 +6,15 @@ import nextstep.ladder.domain.Height;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Participants;
 import nextstep.ladder.dto.LadderResultDto;
-import nextstep.ladder.generator.RandomGenerator;
+import nextstep.ladder.generator.Generator;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
 public class LadderController {
-	private final RandomGenerator generator;
+	private final Generator generator;
 	private final ResultConverter resultConverter;
 
-	public LadderController(RandomGenerator generator, ResultConverter resultConverter) {
+	public LadderController(Generator generator, ResultConverter resultConverter) {
 		this.generator = generator;
 		this.resultConverter = resultConverter;
 	}
@@ -33,6 +33,10 @@ public class LadderController {
 		ResultView.printLadder(ladder.getLines());
 		ResultView.printExecutionResult(executionResult.getValues());
 
+		scanNameAndPrintResult(resultDto);
+	}
+
+	private void scanNameAndPrintResult(LadderResultDto resultDto) {
 		while (true) {
 			String name = InputView.scanNameForPrintResult();
 
