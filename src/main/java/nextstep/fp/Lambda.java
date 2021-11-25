@@ -26,7 +26,19 @@ public class Lambda {
         }).start();
     }
 
-    public static int sumAll(List<Integer> numbers, Conditional c) {
+    public static int sumAll(List<Integer> numbers) {
+        return sumAll(numbers, number -> true);
+    }
+
+    public static int sumAllEven(List<Integer> numbers) {
+        return sumAll(numbers, number -> (number % 2) == 0);
+    }
+
+    public static int sumAllOverThree(List<Integer> numbers) {
+        return sumAll(numbers, number -> number > 3);
+    }
+
+    private static int sumAll(List<Integer> numbers, Conditional c) {
         return numbers
             .stream()
             .mapToInt(Integer::intValue)
