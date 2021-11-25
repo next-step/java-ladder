@@ -30,8 +30,8 @@ public class StreamStudy {
 
         words.stream()
             .filter(s -> s.length() > 12)
-            .sorted((o1, o2) -> o2.length() - o1.length())
             .distinct()
+            .sorted((Comparator.comparing(String::length).reversed()))
             .limit(100)
             .map(String::toLowerCase)
             .forEach(System.out::println);
