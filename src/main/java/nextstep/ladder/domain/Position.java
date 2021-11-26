@@ -9,7 +9,7 @@ public class Position {
 
     public static final String NEGATIVE_ERROR_MESSAGE = "음수는 불가능합니다";
     private static final int MIN_VALUE = 0;
-    private static final int MOVE_UNIT = 1;
+    private static final int VALUE_UNIT = 1;
 
     private final int value;
 
@@ -33,11 +33,19 @@ public class Position {
     }
 
     private Position left() {
-        return new Position(value - MOVE_UNIT);
+        return new Position(value - VALUE_UNIT);
     }
 
     private Position right() {
-        return new Position(value + MOVE_UNIT);
+        return new Position(value + VALUE_UNIT);
+    }
+
+    public int leftValue() {
+        return value - VALUE_UNIT;
+    }
+
+    public int getValue() {
+        return value;
     }
 
     @Override

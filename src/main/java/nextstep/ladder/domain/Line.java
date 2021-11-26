@@ -7,6 +7,8 @@ import java.util.Objects;
 import java.util.stream.IntStream;
 
 import static java.util.Collections.unmodifiableList;
+import static nextstep.ladder.domain.Direction.LEFT;
+import static nextstep.ladder.domain.Direction.RIGHT;
 import static nextstep.ladder.utils.Validator.checkNotNull;
 
 public class Line {
@@ -15,6 +17,7 @@ public class Line {
     private static final int MIN_WIDTH = 1;
     private static final int EDGE_WIDTH = 1;
     private static final int INTERVAL = 1;
+    private static final int POINTS_START_INDEX = 0;
     private static final boolean DEFAULT_POINT = false;
 
     private final List<Boolean> points;
@@ -48,6 +51,45 @@ public class Line {
 
     private static void createPoint(List<Boolean> points, int index) {
         points.set(index, true);
+    }
+
+    public Position play(Position position) {
+        checkNotNull(position);
+        if (isExistsLeftPoint(position)) {
+            return position.move(LEFT);
+        }
+        if (isExistsRightPoint(position)) {
+            return position.move(RIGHT);
+        }
+        return position;
+    }
+
+    private boolean isExistsLeftPoint(Position position) {
+        if (isLeftMost(position)) {
+            return false;
+        }
+        return getPoint(position.leftValue());
+    }
+
+    private boolean isLeftMost(Position position) {
+        Position pointsStartIndex = new Position(POINTS_START_INDEX);
+        return pointsStartIndex.equals(position);
+    }
+
+    private boolean isExistsRightPoint(Position position) {
+        if (isRightMost(position)) {
+            return false;
+        }
+        return getPoint(position.getValue());
+    }
+
+    private boolean isRightMost(Position position) {
+        Position pointsEndIndex = new Position(points.size());
+        return pointsEndIndex.equals(position);
+    }
+
+    private Boolean getPoint(int index) {
+        return points.get(index);
     }
 
     public List<Boolean> points() {
