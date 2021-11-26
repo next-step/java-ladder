@@ -25,16 +25,16 @@ public class LadderController {
     }
 
     private static void start() {
-        List<Name> names = createNames();
-        Ladder ladder = createLadder(names.size() - DIFFERENCE_BETWEEN_NAMES_SIZE_AND_WIDTH);
+        List<Participant> participants = createParticipants();
+        Ladder ladder = createLadder(participants.size() - DIFFERENCE_BETWEEN_NAMES_SIZE_AND_WIDTH);
 
-        OutputView.showNames(names);
+        OutputView.showNames(participants);
         OutputView.showLadder(ladder);
     }
 
-    private static List<Name> createNames() {
+    private static List<Participant> createParticipants() {
         List<String> names = Parser.split(InputView.getName());
-        return Name.listOf(names);
+        return Participant.listOf(names);
     }
 
     private static Ladder createLadder(int widthValue) {

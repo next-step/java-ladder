@@ -2,7 +2,7 @@ package nextstep.ladder.controller.view;
 
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Name;
+import nextstep.ladder.domain.Participant;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,13 +19,13 @@ public class OutputView {
     private OutputView() {
     }
 
-    public static void showNames(List<Name> names) {
-        System.out.println(join(names));
+    public static void showNames(List<Participant> participants) {
+        System.out.println(join(participants));
     }
 
-    private static String join(List<Name> names) {
-        return names.stream()
-                .map(Name::getName)
+    private static String join(List<Participant> participants) {
+        return participants.stream()
+                .map(Participant::getName)
                 .collect(Collectors.joining(DELIMITER));
     }
 

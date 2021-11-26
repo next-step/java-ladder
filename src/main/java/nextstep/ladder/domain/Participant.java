@@ -1,11 +1,11 @@
 package nextstep.ladder.domain;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static java.util.Collections.unmodifiableList;
 
-public class Name {
+public class Participant {
 
     protected static final String ILLEGAL_LENGTH_ERROR_MESSAGE = "이름의 길이는 1이상 5이하만 가능합니다.";
     protected static final int MIN_LENGTH = 1;
@@ -13,15 +13,16 @@ public class Name {
 
     private final String name;
 
-    public static List<Name> listOf(List<String> names) {
-        return unmodifiableList(
-                names.stream()
-                        .map(Name::new)
-                        .collect(Collectors.toList())
-        );
+    public static List<Participant> listOf(List<String> names) {
+        List<Participant> list = new ArrayList<>();
+        for (String name : names) {
+            Participant participant = new Participant(name);
+            list.add(participant);
+        }
+        return unmodifiableList(list);
     }
 
-    public Name(String name) {
+    public Participant(String name) {
         checkLength(name);
         this.name = name;
     }
