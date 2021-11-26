@@ -1,5 +1,7 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.ladder;
 
+import nextstep.ladder.domain.gift.Gift;
+import nextstep.ladder.domain.gift.GiftBundle;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;

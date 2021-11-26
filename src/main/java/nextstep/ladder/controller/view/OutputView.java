@@ -1,8 +1,8 @@
 package nextstep.ladder.controller.view;
 
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Participant;
+import nextstep.ladder.domain.ladder.Ladder;
+import nextstep.ladder.domain.ladder.Line;
+import nextstep.ladder.domain.ladder.Participant;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -1,4 +1,7 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.ladder;
+
+import nextstep.ladder.domain.position.Position;
+import nextstep.ladder.domain.rule.PointRule;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -7,8 +10,8 @@ import java.util.Objects;
 import java.util.stream.IntStream;
 
 import static java.util.Collections.unmodifiableList;
-import static nextstep.ladder.domain.Direction.LEFT;
-import static nextstep.ladder.domain.Direction.RIGHT;
+import static nextstep.ladder.domain.position.Direction.LEFT;
+import static nextstep.ladder.domain.position.Direction.RIGHT;
 import static nextstep.ladder.utils.Validator.checkNotNull;
 
 public class Line {

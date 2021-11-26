@@ -1,5 +1,6 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.gift;
 
+import nextstep.ladder.domain.position.Position;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

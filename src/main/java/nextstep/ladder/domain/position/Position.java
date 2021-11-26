@@ -1,8 +1,8 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.position;
 
 import java.util.Objects;
 
-import static nextstep.ladder.domain.Direction.LEFT;
+import static nextstep.ladder.domain.position.Direction.LEFT;
 import static nextstep.ladder.utils.Validator.checkNotNull;
 
 public class Position {
@@ -22,6 +22,12 @@ public class Position {
     private void checkNotNegative(int position) {
         if (position < MIN_VALUE) {
             throw new IllegalArgumentException(NEGATIVE_ERROR_MESSAGE);
+        }
+    }
+
+    public void checkLessThan(int other) {
+        if (value >= other) {
+            throw new IllegalArgumentException(other + NOT_LESS_THAN_ERROR_MESSAGE);
         }
     }
 
@@ -60,11 +66,5 @@ public class Position {
     @Override
     public int hashCode() {
         return Objects.hash(value);
-    }
-
-    public void checkLessThan(int other) {
-        if (value >= other) {
-            throw new IllegalArgumentException(other + NOT_LESS_THAN_ERROR_MESSAGE);
-        }
     }
 }

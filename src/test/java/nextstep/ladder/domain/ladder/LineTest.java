@@ -1,5 +1,7 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.ladder;
 
+import nextstep.ladder.domain.position.Position;
+import nextstep.ladder.domain.rule.PointRule;
 import nextstep.ladder.utils.Validator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,7 +16,7 @@ import java.util.stream.Stream;
 import static java.util.Arrays.asList;
 import static java.util.Collections.nCopies;
 import static java.util.Collections.singletonList;
-import static nextstep.ladder.domain.NoPointRule.noPointRule;
+import static nextstep.ladder.domain.factory.NoPointRule.noPointRule;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 

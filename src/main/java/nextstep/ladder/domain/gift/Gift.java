@@ -1,4 +1,4 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.gift;
 
 import java.util.List;
 import java.util.Objects;

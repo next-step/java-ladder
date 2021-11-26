@@ -1,7 +1,11 @@
 package nextstep.ladder.controller;
 
 import nextstep.ladder.controller.view.InputView;
-import nextstep.ladder.domain.*;
+import nextstep.ladder.domain.gift.Gift;
+import nextstep.ladder.domain.gift.GiftBundle;
+import nextstep.ladder.domain.ladder.LadderGame;
+import nextstep.ladder.domain.ladder.Participant;
+import nextstep.ladder.domain.ladder.Positive;
 import nextstep.ladder.utils.Parser;
 
 import java.util.List;

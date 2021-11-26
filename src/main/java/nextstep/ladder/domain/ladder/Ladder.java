@@ -1,4 +1,7 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.ladder;
+
+import nextstep.ladder.domain.position.Position;
+import nextstep.ladder.domain.rule.PointRule;
 
 import java.util.List;
 import java.util.Objects;

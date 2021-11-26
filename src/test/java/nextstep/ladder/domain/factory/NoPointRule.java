@@ -1,4 +1,6 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.factory;
+
+import nextstep.ladder.domain.rule.PointRule;
 
 public class NoPointRule implements PointRule {
 
