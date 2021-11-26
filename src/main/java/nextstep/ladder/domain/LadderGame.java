@@ -33,7 +33,6 @@ public class LadderGame {
 
     public static LadderGame of(List<Participant> participants, Positive height) {
         checkNotNull(participants);
-
         Positive width = widthOf(participants);
         return new LadderGame(participants, createLadder(width, height));
     }
@@ -47,6 +46,28 @@ public class LadderGame {
         LadderSize ladderSize = new LadderSize(width, height);
         PointRule pointRule = new RandomPointRule();
         return Ladder.of(ladderSize, pointRule);
+    }
+
+    public Gift play(Participant participant, GiftBundle giftBundle) {
+        checkArguments(participant, giftBundle);
+        Position resultPosition = ladder.play(findPositionOf(participant));
+        return giftBundle.gift(resultPosition);
+    }
+
+    private Position findPositionOf(Participant participant) {
+        return new Position(participants.indexOf(participant));
+    }
+
+    private void checkArguments(Participant participant, GiftBundle giftBundle) {
+        checkRegisteredParticipant(participant);
+        checkNotNull(giftBundle);
+        giftBundle.checkSizeEquals(participants.size());
+    }
+
+    private void checkRegisteredParticipant(Participant participant) {
+        if (!participants.contains(participant)) {
+            throw new IllegalArgumentException("참여하지 않는 참가자입니다.");
+        }
     }
 
 }

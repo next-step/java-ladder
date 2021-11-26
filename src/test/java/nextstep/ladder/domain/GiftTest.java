@@ -19,7 +19,7 @@ class GiftTest {
     void create_emptyGift_thrownException(String gift) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Gift(gift))
-                .withMessage(Gift.EMPTY_GIFT_ERROR_MESSAGE);
+                .withMessage(Gift.EMPTY_NAME_ERROR_MESSAGE);
     }
 
     @ParameterizedTest(name = "[{index}] giftSize: {0}")

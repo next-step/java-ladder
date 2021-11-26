@@ -2,14 +2,15 @@ package nextstep.ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static java.util.Collections.unmodifiableList;
 
 public class Participant {
 
-    protected static final String ILLEGAL_LENGTH_ERROR_MESSAGE = "이름의 길이는 1이상 5이하만 가능합니다.";
-    protected static final int MIN_LENGTH = 1;
-    protected static final int MAX_LENGTH = 5;
+    public static final String ILLEGAL_LENGTH_ERROR_MESSAGE = "이름의 길이는 1이상 5이하만 가능합니다.";
+    private static final int MIN_LENGTH = 1;
+    private static final int MAX_LENGTH = 5;
 
     private final String name;
 
@@ -36,4 +37,25 @@ public class Participant {
     public String getName() {
         return name;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Participant that = (Participant) o;
+        return Objects.equals(name, that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
+
+    @Override
+    public String toString() {
+        return "Participant{" +
+                "name='" + name + '\'' +
+                '}';
+    }
+
 }
