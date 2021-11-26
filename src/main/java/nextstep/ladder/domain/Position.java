@@ -7,6 +7,7 @@ import static nextstep.ladder.utils.Validator.checkNotNull;
 
 public class Position {
 
+    public static final String NOT_LESS_THAN_ERROR_MESSAGE = " 보다 작지 않습니다.";
     public static final String NEGATIVE_ERROR_MESSAGE = "음수는 불가능합니다";
     private static final int MIN_VALUE = 0;
     private static final int VALUE_UNIT = 1;
@@ -61,4 +62,9 @@ public class Position {
         return Objects.hash(value);
     }
 
+    public void checkLessThan(int other) {
+        if (value >= other) {
+            throw new IllegalArgumentException(other + NOT_LESS_THAN_ERROR_MESSAGE);
+        }
+    }
 }

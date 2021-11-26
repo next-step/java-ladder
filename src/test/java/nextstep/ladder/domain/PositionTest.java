@@ -30,4 +30,16 @@ class PositionTest {
         assertThat(position.move(direction)).isEqualTo(new Position(expectedValue));
     }
 
+    @DisplayName("입력 값 보다 작지 않으면 예외를 던진다.")
+    @ParameterizedTest(name = "[{index}] value: {0}, other: {1}")
+    @CsvSource({
+            "1, 0",
+            "11234, 1000"
+    })
+    void checkLessThan_notLessThan_thrownException (int value, int other) {
+        Position position = new Position(value);
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> position.checkLessThan(other))
+                .withMessageContaining(Position.NOT_LESS_THAN_ERROR_MESSAGE);
+    }
 }
