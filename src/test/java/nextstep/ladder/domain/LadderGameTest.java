@@ -34,7 +34,7 @@ class LadderGameTest {
 
         //when
         GiftBundle giftBundle = createGiftBundle();
-        Gift gift = ladderGame.play(participant, giftBundle);
+        Gift gift = ladderGame.playGame(participant, giftBundle);
 
         //then
         assertThat(gift).isEqualTo(expectedGift);

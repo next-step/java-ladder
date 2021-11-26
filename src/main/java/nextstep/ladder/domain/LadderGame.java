@@ -1,8 +1,11 @@
 package nextstep.ladder.domain;
 
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 
 import static java.lang.String.format;
+import static java.util.stream.Collectors.toMap;
 import static nextstep.ladder.utils.Validator.checkNotNull;
 
 public class LadderGame {
@@ -48,10 +51,14 @@ public class LadderGame {
         return Ladder.of(ladderSize, pointRule);
     }
 
-    public Gift play(Participant participant, GiftBundle giftBundle) {
+    public Gift playGame(Participant participant, GiftBundle giftBundle) {
         checkArguments(participant, giftBundle);
-        Position resultPosition = ladder.play(findPositionOf(participant));
-        return giftBundle.gift(resultPosition);
+        return play(participant, giftBundle);
+    }
+
+    private Gift play(Participant participant, GiftBundle giftBundle) {
+        Position arrivalPosition = ladder.play(findPositionOf(participant));
+        return giftBundle.gift(arrivalPosition);
     }
 
     private Position findPositionOf(Participant participant) {
@@ -60,14 +67,24 @@ public class LadderGame {
 
     private void checkArguments(Participant participant, GiftBundle giftBundle) {
         checkRegisteredParticipant(participant);
-        checkNotNull(giftBundle);
-        giftBundle.checkSizeEquals(participants.size());
+        checkGiftBundleSize(giftBundle);
     }
 
     private void checkRegisteredParticipant(Participant participant) {
         if (!participants.contains(participant)) {
             throw new IllegalArgumentException("참여하지 않는 참가자입니다.");
         }
+    }
+
+    private void checkGiftBundleSize(GiftBundle giftBundle) {
+        checkNotNull(giftBundle);
+        giftBundle.checkSizeEquals(participants.size());
+    }
+
+    public Map<Participant, Gift> playAllGame(GiftBundle giftBundle) {
+        checkGiftBundleSize(giftBundle);
+        return participants.stream()
+                .collect(toMap(Function.identity(), participant -> play(participant, giftBundle)));
     }
 
 }
