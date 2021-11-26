@@ -9,7 +9,7 @@ import java.util.List;
 
 public class LadderController {
 
-    protected static final int DIFFERENCE_BETWEEN_NAMES_SIZE_AND_WIDTH = 1;
+    private static final int DIFFERENCE_BETWEEN_NAMES_SIZE_AND_WIDTH = 1;
 
     private LadderController() {
     }
