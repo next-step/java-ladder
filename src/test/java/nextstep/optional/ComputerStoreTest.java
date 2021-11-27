@@ -4,6 +4,7 @@ import nextstep.optional.Computer.Soundcard;
 import nextstep.optional.Computer.USB;
 import org.junit.jupiter.api.Test;
 
+import static nextstep.optional.ComputerStore.UNKNOWN_VERSION;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ComputerStoreTest {
@@ -17,19 +18,19 @@ public class ComputerStoreTest {
 
     @Test
     public void getVersionWhenComputerIsNull() throws Exception {
-        assertThat(ComputerStore.getVersion(null)).isEqualTo(ComputerStore.UNKNOWN_VERSION);
+        assertThat(ComputerStore.getVersion(null)).isEqualTo(UNKNOWN_VERSION);
     }
 
     @Test
     public void getVersionWhenSoundcardIsNull() throws Exception {
         Computer computer = new Computer(null);
-        assertThat(ComputerStore.getVersion(computer)).isEqualTo(ComputerStore.UNKNOWN_VERSION);
+        assertThat(ComputerStore.getVersion(computer)).isEqualTo(UNKNOWN_VERSION);
     }
 
     @Test
     public void getVersionWhenUSBIsNull() throws Exception {
         Computer computer = new Computer(new Soundcard(null));
-        assertThat(ComputerStore.getVersion(computer)).isEqualTo(ComputerStore.UNKNOWN_VERSION);
+        assertThat(ComputerStore.getVersion(computer)).isEqualTo(UNKNOWN_VERSION);
     }
 
     @Test
@@ -42,18 +43,20 @@ public class ComputerStoreTest {
 
     @Test
     public void getVersionOptionalWhenComputerIsNull() throws Exception {
-        assertThat(ComputerStore.getVersionOptional(null)).isEqualTo(ComputerStore.UNKNOWN_VERSION);
+        assertThat(ComputerStore.getVersionOptional(null)).isEqualTo(UNKNOWN_VERSION);
     }
 
     @Test
     public void getVersionOptionalWhenSoundcardIsNull() throws Exception {
         Computer computer = new Computer(null);
-        assertThat(ComputerStore.getVersionOptional(computer)).isEqualTo(ComputerStore.UNKNOWN_VERSION);
+        String s = ComputerStore.getVersionOptional(computer);
+        System.out.println("s = " + s);
+        assertThat(s).isEqualTo(UNKNOWN_VERSION);
     }
 
     @Test
     public void getVersionOptionalWhenUSBIsNull() throws Exception {
         Computer computer = new Computer(new Soundcard(null));
-        assertThat(ComputerStore.getVersionOptional(computer)).isEqualTo(ComputerStore.UNKNOWN_VERSION);
+        assertThat(ComputerStore.getVersion(computer)).isEqualTo(UNKNOWN_VERSION);
     }
 }

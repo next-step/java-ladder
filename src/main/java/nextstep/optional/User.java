@@ -1,5 +1,7 @@
 package nextstep.optional;
 
+import java.util.Optional;
+
 public class User {
     private String name;
     private Integer age;
@@ -32,8 +34,12 @@ public class User {
         return isInRange;
     }
 
+    //30살 이상, 45살 이하에 해당하는 User가 존재하는 경우 true를 반환하는 메소드
     public static boolean ageIsInRange2(User user) {
-        return false;
+        return Optional.ofNullable(user)
+                .map(user1 -> user1.age)
+                .filter(age -> age > 29 && age < 45)
+                .isPresent();
     }
 
     @Override
