@@ -39,4 +39,13 @@ public class CarTest {
         });
         assertThat(actual).isEqualTo(new Car("pobi", 0));
     }
+
+    @Test
+    @DisplayName("lambda 적용")
+    void stop() {
+        Car car = new Car("pobi", 0);
+        Car actual = car.move(() -> false);
+
+        assertThat(actual).isEqualTo(new Car("pobi", 0));
+    }
 }
