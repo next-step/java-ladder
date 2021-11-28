@@ -24,7 +24,12 @@ public class StreamStudyTest {
 
     @Test
     public void printLongestWordTop100() throws Exception {
-        StreamStudy.printLongestWordTop100();
+        List<String> words = StreamStudy.printLongestWordTop100();
+
+        assertThat(words).hasSizeLessThanOrEqualTo(100);
+        assertThat(words.size()).isEqualTo(words.stream().distinct().count());
+        assertThat(words).allMatch((word) -> word.length() > 12);
+        assertThat(words).allMatch(word -> word.chars().allMatch(Character::isLowerCase));
     }
 
     @Test
