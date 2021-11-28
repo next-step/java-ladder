@@ -12,13 +12,14 @@ import java.util.Map;
 
 import static java.lang.String.format;
 import static java.util.Collections.unmodifiableList;
+import static java.util.Collections.unmodifiableMap;
 import static nextstep.ladder.utils.Validator.checkNotNull;
 
 public class LadderGame {
 
-    private static final int PARTICIPANTS_MIN_SIZE = 2;
-    private static final String TOO_FEW_PARTICIPANTS_ERROR_MESSAGE = format("참가자는 %d명 이상이어야 합니다.", PARTICIPANTS_MIN_SIZE);
     private static final int DIFFERENCE_BETWEEN_PARTICIPANTS_SIZE_AND_WIDTH = 1;
+    private static final int MIN_PARTICIPANTS_SIZE = 2;
+    private static final String TOO_FEW_PARTICIPANTS_ERROR_MESSAGE = format("참가자는 %d명 이상이어야 합니다.", MIN_PARTICIPANTS_SIZE);
 
     private final List<Participant> participants;
     private final Ladder ladder;
@@ -35,18 +36,18 @@ public class LadderGame {
     }
 
     private static void checkParticipantsSize(List<Participant> participants) {
-        if (participants == null || participants.size() < PARTICIPANTS_MIN_SIZE) {
+        if (participants == null || participants.size() < MIN_PARTICIPANTS_SIZE) {
             throw new IllegalArgumentException(TOO_FEW_PARTICIPANTS_ERROR_MESSAGE);
         }
     }
 
     public static LadderGame of(List<Participant> participants, Positive height) {
         checkNotNull(participants);
-        Positive width = widthOf(participants);
+        Positive width = generateWidthFrom(participants);
         return new LadderGame(participants, createLadder(width, height));
     }
 
-    private static Positive widthOf(List<Participant> participants) {
+    private static Positive generateWidthFrom(List<Participant> participants) {
         int width = participants.size() - DIFFERENCE_BETWEEN_PARTICIPANTS_SIZE_AND_WIDTH;
         return new Positive(width);
     }
@@ -75,7 +76,9 @@ public class LadderGame {
 
     public void checkGiftBundleSize(GiftBundle giftBundle) {
         checkNotNull(giftBundle);
-        giftBundle.checkSizeEquals(participants.size());
+        if (giftBundle.isSizeEquals(participants.size())) {
+            throw new IllegalArgumentException("참여자의 수와 상품의 수가 맞지 않습니다.");
+        }
     }
 
     private Gift play(Participant participant, GiftBundle giftBundle) {
@@ -92,10 +95,10 @@ public class LadderGame {
 
         Map<Participant, Gift> gameResults = new LinkedHashMap<>();
         participants.forEach(participant -> {
-            Gift gift = play(participant, giftBundle);
-            gameResults.put(participant, gift);
+            Gift winningGift = play(participant, giftBundle);
+            gameResults.put(participant, winningGift);
         });
-        return gameResults;
+        return unmodifiableMap(gameResults);
     }
 
     public List<Participant> participants() {
@@ -105,4 +108,5 @@ public class LadderGame {
     public Ladder getLadder() {
         return ladder;
     }
+
 }

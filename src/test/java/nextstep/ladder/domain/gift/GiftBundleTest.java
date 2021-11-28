@@ -1,6 +1,7 @@
 package nextstep.ladder.domain.gift;
 
 import nextstep.ladder.domain.position.Position;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -10,6 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class GiftBundleTest {
 
+    @DisplayName("Position에 맞는 선물을 잘 반환하는지")
     @Test
     void gift() {
         //given

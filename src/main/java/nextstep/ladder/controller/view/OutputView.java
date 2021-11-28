@@ -11,9 +11,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import static java.lang.String.format;
+
 public class OutputView {
 
-    private static final StringBuilder stringBuffer = new StringBuilder();
+    private static final StringBuilder STRING_BUILDER = new StringBuilder();
     private static final String DELIMITER = "  ";
     private static final String VERTICAL = "|";
     private static final String HORIZONTAL = "-----";
@@ -24,14 +26,14 @@ public class OutputView {
     }
 
     public static void showRadderResult(LadderGame ladderGame, GiftBundle giftBundle) {
-        System.out.println();
+        newLine();
         showParticipants(ladderGame.participants());
         showLadder(ladderGame.getLadder());
         showGifts(giftBundle.gifts());
     }
 
     public static void showParticipants(List<Participant> participants) {
-        System.out.println(joinParticipants(participants));
+        println(joinParticipants(participants));
     }
 
     private static String joinParticipants(List<Participant> participants) {
@@ -46,24 +48,24 @@ public class OutputView {
     }
 
     private static void showLine(Line line) {
-        stringBuffer.append(VERTICAL);
+        STRING_BUILDER.append(VERTICAL);
         for (boolean point : line.points()) {
             showPoint(point);
-            stringBuffer.append(VERTICAL);
+            STRING_BUILDER.append(VERTICAL);
         }
-        flush();
+        flushStringBuilder();
     }
 
     private static void showPoint(boolean point) {
         if (point) {
-            stringBuffer.append(HORIZONTAL);
+            STRING_BUILDER.append(HORIZONTAL);
             return;
         }
-        stringBuffer.append(BLANK);
+        STRING_BUILDER.append(BLANK);
     }
 
     private static void showGifts(List<Gift> gifts) {
-        System.out.println(joinGifts(gifts));
+        println(joinGifts(gifts));
     }
 
     private static String joinGifts(List<Gift> gifts) {
@@ -72,23 +74,35 @@ public class OutputView {
                 .collect(Collectors.joining(DELIMITER));
     }
 
-    private static void flush() {
-        System.out.println(stringBuffer);
-        stringBuffer.setLength(STRING_BUFFER_EMPTY_LENGTH);
+    private static void flushStringBuilder() {
+        println(STRING_BUILDER);
+        STRING_BUILDER.setLength(STRING_BUFFER_EMPTY_LENGTH);
     }
 
     public static void showWinningGift(Gift winningGift) {
-        System.out.println("\n실행결과");
-        System.out.println(winningGift.getName());
+        println("\n실행결과");
+        println(winningGift.getName());
     }
 
     public static void showWinningGiftsWithParticipant(Map<Participant, Gift> gameResults) {
-        System.out.println("\n실행결과");
+        println("\n실행결과");
         gameResults.forEach(OutputView::showWinningGiftWithParticipant);
     }
 
     private static void showWinningGiftWithParticipant(Participant participant, Gift gift) {
-        System.out.printf("%s : %s%n", participant.getName(), gift.getName());
+        println(format("%s : %s", participant.getName(), gift.getName()));
+    }
+
+    private static void println(StringBuilder stringBuilder) {
+        System.out.println(stringBuilder.toString());
+    }
+
+    private static void println(String string) {
+        System.out.println(string);
+    }
+
+    private static void newLine() {
+        System.out.println();
     }
 
 }

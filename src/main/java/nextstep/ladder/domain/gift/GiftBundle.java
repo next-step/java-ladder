@@ -16,10 +16,8 @@ public class GiftBundle {
         this.gifts = gifts;
     }
 
-    public void checkSizeEquals(int size) {
-        if (gifts.size() != size) {
-            throw new IllegalArgumentException("개수가 맞지 않습니다.");
-        }
+    public boolean isSizeEquals(int size) {
+        return (gifts.size() != size);
     }
 
     public Gift gift(Position position) {

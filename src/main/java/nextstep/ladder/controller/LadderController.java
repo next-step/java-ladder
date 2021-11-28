@@ -15,7 +15,7 @@ import java.util.Map;
 public class LadderController {
 
     private static final String END_CONDITION = "EXIT";
-    private static final String ALL_CONDITION = "ALL";
+    private static final String PLAY_ALL_CONDITION = "ALL";
 
     private LadderController() {
     }
@@ -70,12 +70,12 @@ public class LadderController {
             return false;
         }
 
-        if (ALL_CONDITION.equalsIgnoreCase(target)) {
+        if (PLAY_ALL_CONDITION.equalsIgnoreCase(target)) {
             playAll(ladderGame, giftBundle);
             return true;
         }
 
-        play(ladderGame, giftBundle, target);
+        play(ladderGame, giftBundle, new Participant(target));
         return true;
     }
 
@@ -84,8 +84,7 @@ public class LadderController {
         OutputView.showWinningGiftsWithParticipant(playAllResults);
     }
 
-    private static void play(LadderGame ladderGame, GiftBundle giftBundle, String target) {
-        Participant participant = new Participant(target);
+    private static void play(LadderGame ladderGame, GiftBundle giftBundle, Participant participant) {
         Gift winningGift = ladderGame.playGame(participant, giftBundle);
         OutputView.showWinningGift(winningGift);
     }

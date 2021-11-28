@@ -4,11 +4,11 @@ import java.util.Random;
 
 public class RandomPointRule implements PointRule {
 
-    private static final Random random = new Random();
+    private static final Random RANDOM = new Random();
 
     @Override
     public boolean canCreate() {
-        return random.nextBoolean();
+        return RANDOM.nextBoolean();
     }
 
 }

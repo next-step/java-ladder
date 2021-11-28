@@ -4,11 +4,11 @@ import nextstep.ladder.domain.position.Position;
 import nextstep.ladder.domain.rule.PointRule;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.IntStream;
 
+import static java.util.Collections.nCopies;
 import static java.util.Collections.unmodifiableList;
 import static nextstep.ladder.domain.position.Direction.LEFT;
 import static nextstep.ladder.domain.position.Direction.RIGHT;
@@ -19,8 +19,9 @@ public class Line {
     public static final String NOT_POSITIVE_WIDTH_ERROR_MESSAGE = "너비는 양수여야 합니다.";
     private static final int MIN_WIDTH = 1;
     private static final int EDGE_WIDTH = 1;
-    private static final int INTERVAL = 1;
+    private static final int POINT_INTERVAL = 1;
     private static final int POINTS_START_INDEX = 0;
+    private static final int BOTH_SIDE_EDGE_SIZE = 2;
     private static final boolean DEFAULT_POINT = false;
 
     private final List<Boolean> points;
@@ -40,7 +41,7 @@ public class Line {
         checkNotNull(widthValue, pointRule);
         int width = widthValue.getValue();
 
-        List<Boolean> edgedPoints = new ArrayList<>(Collections.nCopies(width + EDGE_WIDTH * 2, DEFAULT_POINT));
+        List<Boolean> edgedPoints = new ArrayList<>(nCopies(width + EDGE_WIDTH * BOTH_SIDE_EDGE_SIZE, DEFAULT_POINT));
         IntStream.rangeClosed(EDGE_WIDTH, width)
                 .filter(index -> pointRule.canCreate())
                 .filter(index -> isSideEmpty(edgedPoints, index))
@@ -49,7 +50,7 @@ public class Line {
     }
 
     private static boolean isSideEmpty(List<Boolean> points, int index) {
-        return !(points.get(index - INTERVAL) || points.get(index + INTERVAL));
+        return !(points.get(index - POINT_INTERVAL) || points.get(index + POINT_INTERVAL));
     }
 
     private static void createPoint(List<Boolean> points, int index) {
@@ -91,7 +92,7 @@ public class Line {
         return pointsEndIndex.equals(position);
     }
 
-    private Boolean getPoint(int index) {
+    private boolean getPoint(int index) {
         return points.get(index);
     }
 

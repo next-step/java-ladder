@@ -9,8 +9,8 @@ import static nextstep.ladder.utils.Validator.checkNotNull;
 
 public class Gift {
 
-    private static final int MIN_GIFT_LENGTH = 1;
-    public static final String EMPTY_NAME_ERROR_MESSAGE = format("상품명의 길이는 %d 이상이어야 합니다", MIN_GIFT_LENGTH);
+    private static final int MIN_NAME_LENGTH = 1;
+    public static final String EMPTY_NAME_ERROR_MESSAGE = format("상품명의 길이는 %d 이상이어야 합니다", MIN_NAME_LENGTH);
 
     private final String name;
 
@@ -19,21 +19,17 @@ public class Gift {
         this.name = name;
     }
 
-    public static List<Gift> listOf(List<String> gifts) {
-        checkNotNull(gifts);
-        return createGifts(gifts);
+    private void checkNotEmpty(String name) {
+        if (name == null || name.length() < MIN_NAME_LENGTH) {
+            throw new IllegalArgumentException(EMPTY_NAME_ERROR_MESSAGE);
+        }
     }
 
-    private static List<Gift> createGifts(List<String> gifts) {
+    public static List<Gift> listOf(List<String> gifts) {
+        checkNotNull(gifts);
         return gifts.stream()
                 .map(Gift::new)
                 .collect(Collectors.toList());
-    }
-
-    private void checkNotEmpty(String name) {
-        if (name == null || name.length() < MIN_GIFT_LENGTH) {
-            throw new IllegalArgumentException(EMPTY_NAME_ERROR_MESSAGE);
-        }
     }
 
     public String getName() {

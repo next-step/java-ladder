@@ -13,11 +13,12 @@ public class LadderSize {
         this.height = height;
     }
 
+    public int height() {
+        return height.getValue();
+    }
+
     public Positive getWidth() {
         return width;
     }
 
-    public int height() {
-        return height.getValue();
-    }
 }
