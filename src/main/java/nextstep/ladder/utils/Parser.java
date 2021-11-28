@@ -22,4 +22,12 @@ public class Parser {
                 .collect(Collectors.toList());
     }
 
+    public static int parseInt(String string) {
+        try {
+            return Integer.parseInt(string);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("숫자만 가능합니다.");
+        }
+    }
+
 }

@@ -6,12 +6,12 @@ import nextstep.ladder.domain.position.Position;
 import nextstep.ladder.domain.rule.PointRule;
 import nextstep.ladder.domain.rule.RandomPointRule;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
 
 import static java.lang.String.format;
-import static java.util.stream.Collectors.toMap;
+import static java.util.Collections.unmodifiableList;
 import static nextstep.ladder.utils.Validator.checkNotNull;
 
 public class LadderGame {
@@ -62,15 +62,6 @@ public class LadderGame {
         return play(participant, giftBundle);
     }
 
-    private Gift play(Participant participant, GiftBundle giftBundle) {
-        Position arrivalPosition = ladder.play(findPositionOf(participant));
-        return giftBundle.gift(arrivalPosition);
-    }
-
-    private Position findPositionOf(Participant participant) {
-        return new Position(participants.indexOf(participant));
-    }
-
     private void checkArguments(Participant participant, GiftBundle giftBundle) {
         checkRegisteredParticipant(participant);
         checkGiftBundleSize(giftBundle);
@@ -82,15 +73,36 @@ public class LadderGame {
         }
     }
 
-    private void checkGiftBundleSize(GiftBundle giftBundle) {
+    public void checkGiftBundleSize(GiftBundle giftBundle) {
         checkNotNull(giftBundle);
         giftBundle.checkSizeEquals(participants.size());
     }
 
-    public Map<Participant, Gift> playAllGame(GiftBundle giftBundle) {
-        checkGiftBundleSize(giftBundle);
-        return participants.stream()
-                .collect(toMap(Function.identity(), participant -> play(participant, giftBundle)));
+    private Gift play(Participant participant, GiftBundle giftBundle) {
+        Position arrivalPosition = ladder.play(findPositionOf(participant));
+        return giftBundle.gift(arrivalPosition);
     }
 
+    private Position findPositionOf(Participant participant) {
+        return new Position(participants.indexOf(participant));
+    }
+
+    public Map<Participant, Gift> playAllGame(GiftBundle giftBundle) {
+        checkGiftBundleSize(giftBundle);
+
+        Map<Participant, Gift> gameResults = new LinkedHashMap<>();
+        participants.forEach(participant -> {
+            Gift gift = play(participant, giftBundle);
+            gameResults.put(participant, gift);
+        });
+        return gameResults;
+    }
+
+    public List<Participant> participants() {
+        return unmodifiableList(participants);
+    }
+
+    public Ladder getLadder() {
+        return ladder;
+    }
 }

@@ -1,6 +1,7 @@
 package nextstep.ladder.controller;
 
 import nextstep.ladder.controller.view.InputView;
+import nextstep.ladder.controller.view.OutputView;
 import nextstep.ladder.domain.gift.Gift;
 import nextstep.ladder.domain.gift.GiftBundle;
 import nextstep.ladder.domain.ladder.LadderGame;
@@ -32,7 +33,11 @@ public class LadderController {
     private static void start() {
         LadderGame ladderGame = createLadderGame();
         GiftBundle giftBundle = createGiftBundle();
-        while (play(ladderGame, giftBundle));
+        ladderGame.checkGiftBundleSize(giftBundle);
+
+        OutputView.showRadderResult(ladderGame, giftBundle);
+
+        keepPlayingUntilEndCondition(ladderGame, giftBundle);
     }
 
     private static LadderGame createLadderGame() {
@@ -49,6 +54,13 @@ public class LadderController {
     private static GiftBundle createGiftBundle() {
         List<String> gifts = Parser.split(InputView.getGifts());
         return new GiftBundle(Gift.listOf(gifts));
+    }
+
+    private static void keepPlayingUntilEndCondition(LadderGame ladderGame, GiftBundle giftBundle) {
+        boolean continued;
+        do {
+            continued = play(ladderGame, giftBundle);
+        } while (continued);
     }
 
     private static boolean play(LadderGame ladderGame, GiftBundle giftBundle) {
@@ -69,14 +81,13 @@ public class LadderController {
 
     private static void playAll(LadderGame ladderGame, GiftBundle giftBundle) {
         Map<Participant, Gift> playAllResults = ladderGame.playAllGame(giftBundle);
-        // 출력
+        OutputView.showWinningGiftsWithParticipant(playAllResults);
     }
 
     private static void play(LadderGame ladderGame, GiftBundle giftBundle, String target) {
         Participant participant = new Participant(target);
         Gift winningGift = ladderGame.playGame(participant, giftBundle);
-        Map<Participant, Gift> playResults = Map.of(participant, winningGift);
-        // 출력
+        OutputView.showWinningGift(winningGift);
     }
 
 }
