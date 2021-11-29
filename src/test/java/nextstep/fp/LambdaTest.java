@@ -32,13 +32,6 @@ public class LambdaTest {
     }
 
     @Test
-    public void sum() throws Exception {
-        assertThat(Lambda.sumConditional(numbers, n -> true)).isEqualTo(21);
-        assertThat(Lambda.sumConditional(numbers, number -> number % 2 == 0)).isEqualTo(12);
-        assertThat(Lambda.sumConditional(numbers, number -> number > 3)).isEqualTo(15);
-    }
-
-    @Test
     public void sumAll() throws Exception {
         int sum = Lambda.sumAll(numbers);
         assertThat(sum).isEqualTo(21);
@@ -50,11 +43,17 @@ public class LambdaTest {
         assertThat(sum).isEqualTo(12);
     }
 
-
     @Test
     public void sumAllOverThree() throws Exception {
         int sum = Lambda.sumAllOverThree(numbers);
         assertThat(sum).isEqualTo(15);
+    }
+
+    @Test
+    public void sumConditional() throws Exception {
+        assertThat(Lambda.sumConditional(numbers, n -> true)).isEqualTo(21);
+        assertThat(Lambda.sumConditional(numbers, number -> number % 2 == 0)).isEqualTo(12);
+        assertThat(Lambda.sumConditional(numbers, number -> number > 3)).isEqualTo(15);
     }
 
 }
