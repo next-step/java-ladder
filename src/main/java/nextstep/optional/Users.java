@@ -13,7 +13,6 @@ public class Users {
             new User("jk", 40),
             new User("honux", 45));
 
-
     User getUser(String name) {
         return users.stream()
                 .filter(user -> user.matchName(name))
