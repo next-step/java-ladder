@@ -33,9 +33,9 @@ public class StreamStudy {
         words.stream()
                 .filter(word -> word.length() > 12) // 단어의 길이가 12자를 초과하는 단어를 추출한다.
                 .distinct() // 단어 중복을 허용하지 않는다
-                .map(String::toLowerCase) // 모든 단어는 소문자로 출력해야 한다.
                 .sorted(Comparator.comparing(String::length).reversed()) // 길이가 긴 순서로 단어를 추출한다.
                 .limit(100) // 100개의 단어를 추출한다.
+                .map(String::toLowerCase) // 모든 단어는 소문자로 출력해야 한다.
                 .forEach(System.out::println);
     }
 
