@@ -5,7 +5,6 @@ import java.util.List;
 public class Lambda {
     public static void printAllOld(List<Integer> numbers) {
         System.out.println("printAllOld");
-
         for (int number : numbers) {
             System.out.println(number);
         }
@@ -13,7 +12,6 @@ public class Lambda {
 
     public static void printAllLambda(List<Integer> numbers) {
         System.out.println("printAllLambda");
-
         numbers.forEach(System.out::println);
     }
 
