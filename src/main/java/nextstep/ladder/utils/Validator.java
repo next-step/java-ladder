@@ -20,4 +20,5 @@ public class Validator {
             throw new IllegalArgumentException(NOT_NULL_ERROR_MESSAGE);
         }
     }
+
 }

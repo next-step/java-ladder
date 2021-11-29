@@ -1,4 +1,4 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.ladder;
 
 import static nextstep.ladder.utils.Validator.checkNotNull;
 
@@ -13,11 +13,12 @@ public class LadderSize {
         this.height = height;
     }
 
+    public int height() {
+        return height.getValue();
+    }
+
     public Positive getWidth() {
         return width;
     }
 
-    public int height() {
-        return height.getValue();
-    }
 }

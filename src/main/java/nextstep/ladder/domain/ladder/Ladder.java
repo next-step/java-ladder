@@ -1,4 +1,7 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.ladder;
+
+import nextstep.ladder.domain.position.Position;
+import nextstep.ladder.domain.rule.PointRule;
 
 import java.util.List;
 import java.util.Objects;
@@ -11,6 +14,7 @@ import static nextstep.ladder.utils.Validator.checkNotNull;
 public class Ladder {
 
     private static final int MIN_LINES_SIZE = 1;
+    private static final int RECURSIVE_START_INDEX = 0;
     private static final String EMPTY_LINES_ERROR_MESSAGE = "하나 이상의 가로줄이 필요합니다.";
 
     private final List<Line> lines;
@@ -36,6 +40,18 @@ public class Ladder {
         return Stream.generate(() -> Line.of(width, pointRule))
                 .limit(ladderSize.height())
                 .collect(Collectors.toList());
+    }
+
+    public Position play(Position position) {
+        return playPerLine(position, RECURSIVE_START_INDEX);
+    }
+
+    private Position playPerLine(Position position, int lineIndex) {
+        if (lineIndex == lines.size()) {
+            return position;
+        }
+        Line line = lines.get(lineIndex);
+        return playPerLine(line.play(position), ++lineIndex);
     }
 
     public List<Line> lines() {

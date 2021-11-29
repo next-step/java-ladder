@@ -1,4 +1,4 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.ladder;
 
 import java.util.Objects;
 
@@ -43,4 +43,5 @@ public class Positive {
                 "value=" + value +
                 '}';
     }
+
 }

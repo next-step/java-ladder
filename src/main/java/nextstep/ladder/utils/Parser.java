@@ -9,7 +9,7 @@ import static nextstep.ladder.utils.Validator.checkNotNull;
 
 public class Parser {
 
-    private static final Pattern delimiterPattern = Pattern.compile(",");
+    private static final Pattern DELIMITER_PATTERN = Pattern.compile(",");
 
     private Parser() {
     }
@@ -17,9 +17,17 @@ public class Parser {
     public static List<String> split(String string) {
         checkNotNull(string);
 
-        String[] strings = delimiterPattern.split(string);
+        String[] strings = DELIMITER_PATTERN.split(string);
         return stream(strings).map(String::trim)
                 .collect(Collectors.toList());
+    }
+
+    public static int parseInt(String string) {
+        try {
+            return Integer.parseInt(string);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("숫자만 가능합니다.");
+        }
     }
 
 }
