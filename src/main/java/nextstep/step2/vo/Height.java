@@ -13,14 +13,14 @@ public class Height {
         this.value = value;
     }
 
-    public static Height createWithString(String input) {
+    public static Height of(String input) {
         if (input == null || input.isEmpty()) {
             throw new IllegalArgumentException(NULL_OR_LESS_HEIGHT_MESSAGE);
         }
-        return create(Integer.parseInt(input));
+        return of(Integer.parseInt(input));
     }
 
-    public static Height create(int value) {
+    public static Height of(int value) {
         if (value < MIN_HEIGHT) {
             throw new IllegalArgumentException(NULL_OR_LESS_HEIGHT_MESSAGE);
         }

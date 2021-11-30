@@ -18,15 +18,15 @@ class LinesTest {
     @DisplayName("Null or Empty input illegal exception")
     @Test
     void nullOrEmptyTest() {
-        assertThatIllegalArgumentException().isThrownBy(() -> Lines.create(null));
-        assertThatIllegalArgumentException().isThrownBy(() -> Lines.create(Collections.emptyList()));
+        assertThatIllegalArgumentException().isThrownBy(() -> Lines.of(null));
+        assertThatIllegalArgumentException().isThrownBy(() -> Lines.of(Collections.emptyList()));
     }
 
     @DisplayName("정상 생성 테스트")
     @Test
     void createTEst() {
-        assertThat(Lines.create(Arrays.asList(Line.createWithEndLine(2, () -> true))))
-                .isEqualTo(Lines.create(Arrays.asList(Line.createWithEndLine(2, () -> true))));
+        assertThat(Lines.of(Arrays.asList(Line.of(2, () -> true))))
+                .isEqualTo(Lines.of(Arrays.asList(Line.of(2, () -> true))));
     }
 
     /*
@@ -37,12 +37,12 @@ class LinesTest {
     @ParameterizedTest
     @CsvSource(value = {"0:2", "1:0", "2:1"}, delimiter = ':')
     void moveTest(int startPoint, int endPoint) {
-        Lines lines = Lines.create(
+        Lines lines = Lines.of(
                 Arrays.asList(
-                        Line.create(Arrays.asList(
+                        Line.of(Arrays.asList(
                                 Bridge.RIGHT, Bridge.LEFT, Bridge.DOWN
                         )),
-                        Line.create(Arrays.asList(
+                        Line.of(Arrays.asList(
                                 Bridge.DOWN, Bridge.RIGHT, Bridge.LEFT
                         ))
                 )

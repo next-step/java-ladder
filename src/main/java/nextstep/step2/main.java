@@ -26,13 +26,13 @@ public class main {
     }
 
     private static LadderGame getLadderGame(String namesString, Ladder ladder) {
-        GameInformation gameInformation = GameInformation.createWithString(namesString);
-        return LadderGame.createWithInfoAndLadder(gameInformation, ladder);
+        GameInformation gameInformation = GameInformation.of(namesString);
+        return LadderGame.of(gameInformation, ladder);
     }
 
     private static Ladder getLadder(String namesString, String heightString) {
-        LadderInformation ladderInformation = LadderInformation.createWithString(namesString, heightString);
+        LadderInformation ladderInformation = LadderInformation.of(namesString, heightString);
         BooleanGenerateStrategy strategy = new RandomBooleanGenerateStrategy();
-        return Ladder.createWithLadderInformation(ladderInformation, strategy);
+        return Ladder.of(ladderInformation, strategy);
     }
 }

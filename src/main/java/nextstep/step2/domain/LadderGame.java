@@ -13,7 +13,7 @@ public class LadderGame {
         this.ladder = ladder;
     }
 
-    public static LadderGame createWithInfoAndLadder(GameInformation gameInformation, Ladder ladder) {
+    public static LadderGame of(GameInformation gameInformation, Ladder ladder) {
         return new LadderGame(gameInformation.getNames(), ladder);
     }
 

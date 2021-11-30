@@ -18,7 +18,7 @@ public class Names {
         this.names = names;
     }
 
-    public static Names create(List<Name> names) {
+    public static Names of(List<Name> names) {
 
         if (names == null || names.size() < MIN_PLAYER_COUNT) {
             throw new IllegalArgumentException(NULL_OR_LESS_SIZE_MESSAGE);
@@ -27,14 +27,14 @@ public class Names {
         return new Names(names);
     }
 
-    public static Names createWithString(String input) {
+    public static Names of(String input) {
 
         if (input == null) {
             throw new IllegalArgumentException(NULL_OR_LESS_SIZE_MESSAGE);
         }
 
         return Arrays.stream(input.split(","))
-                .map(Name::create)
+                .map(Name::of)
                 .collect(collectingAndThen(toList(), Names::new));
     }
 
@@ -44,7 +44,7 @@ public class Names {
 
     public List<Name> getNames() {
         return names.stream()
-                .map(name -> Name.create(name.getValue()))
+                .map(name -> Name.of(name.getValue()))
                 .collect(toList());
     }
 

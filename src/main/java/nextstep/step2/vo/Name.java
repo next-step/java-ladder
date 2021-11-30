@@ -13,7 +13,7 @@ public class Name {
         this.value = value;
     }
 
-    public static Name create(String value) {
+    public static Name of(String value) {
         if (value == null || value.isEmpty()) {
             throw new IllegalArgumentException(NOT_NULL_OR_EMPTY_EXCEPTION_MESSAGE);
         }

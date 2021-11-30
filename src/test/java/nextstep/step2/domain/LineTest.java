@@ -19,7 +19,7 @@ class LineTest {
     @Test
     void createTest() {
 
-        Line actual = Line.createWithEndLine(5, () -> true);
+        Line actual = Line.of(5, () -> true);
 
         List<Bridge> expect = Arrays.asList(
                 Bridge.RIGHT,
@@ -34,15 +34,14 @@ class LineTest {
     @DisplayName("빈 bridge 리스트가 오면 illegal Exception")
     @Test
     void createFailTest() {
-        assertThatIllegalArgumentException().isThrownBy(() -> Line.create(null));
-        assertThatIllegalArgumentException().isThrownBy(() -> Line.create(Collections.emptyList()));
+        assertThatIllegalArgumentException().isThrownBy(() -> Line.of(Collections.emptyList()));
     }
 
     @DisplayName("맨 처음 bridge 는 left 가 오지 않는다.")
     @ParameterizedTest
     @CsvSource(value = {"2:true:RIGHT", "3:false:DOWN", "5:true:RIGHT"}, delimiter = ':')
     void firstBridgeNotLeftTest(int count, boolean isRight, String expectBridge) {
-        Line line = Line.createWithEndLine(count, () -> isRight);
+        Line line = Line.of(count, () -> isRight);
         Bridge bridge = line.getBridges().get(0);
         assertThat(bridge).isEqualTo(Bridge.valueOf(expectBridge));
     }
@@ -51,16 +50,16 @@ class LineTest {
     @ParameterizedTest
     @CsvSource(value = {"4:true:LEFT", "3:false:DOWN", "5:true:DOWN"}, delimiter = ':')
     void LastBridgeNotRightTest(int count, boolean isRight, String expectBridge) {
-        Line line = Line.createWithEndLine(count, () -> isRight);
+        Line line = Line.of(count, () -> isRight);
         Bridge bridge = line.getBridges().get(count - 1);
         assertThat(bridge).isEqualTo(Bridge.valueOf(expectBridge));
     }
 
     @DisplayName("|-| |-| | 의 사다리 모양에서 각 포인트에서 정확하게 이동 할 수 있다.")
     @ParameterizedTest
-    @CsvSource(value = {"0:1","1:0","2:3","3:2","4:4"}, delimiter = ':')
+    @CsvSource(value = {"0:1", "1:0", "2:3", "3:2", "4:4"}, delimiter = ':')
     void moveTest(int beforePoint, int afterPoint) {
-        Line line = Line.create(
+        Line line = Line.of(
                 Arrays.asList(Bridge.RIGHT, Bridge.LEFT, Bridge.RIGHT, Bridge.LEFT, Bridge.DOWN)
         );
         Point before = Point.of(beforePoint);

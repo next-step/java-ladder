@@ -10,8 +10,8 @@ public class GameInformation {
         this.names = names;
     }
 
-    public static GameInformation createWithString(String namesString) {
-        return new GameInformation(Names.createWithString(namesString));
+    public static GameInformation of(String namesString) {
+        return new GameInformation(Names.of(namesString));
     }
 
     public Names getNames() {

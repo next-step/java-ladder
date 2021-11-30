@@ -15,26 +15,26 @@ class NameTest {
     @ParameterizedTest
     @NullAndEmptySource
     void nullOrEmptyTest(String input) {
-        assertThatIllegalArgumentException().isThrownBy(() -> Name.create(input));
+        assertThatIllegalArgumentException().isThrownBy(() -> Name.of(input));
     }
 
     @DisplayName("이름은 5자를 초과한 수 없다.")
     @ParameterizedTest
     @ValueSource(strings = {"abcdef"})
     void rangeTest(String input) {
-        assertThatIllegalArgumentException().isThrownBy(() -> Name.create(input));
+        assertThatIllegalArgumentException().isThrownBy(() -> Name.of(input));
     }
 
     @DisplayName("정상 생성 테스트")
     @Test
     void createTest() {
-        assertThat(Name.create("miz")).isEqualTo(Name.create("miz"));
+        assertThat(Name.of("miz")).isEqualTo(Name.of("miz"));
     }
 
     @DisplayName("length()는 이름의 길이를 반환한다.")
     @Test
     void lengthTest() {
-        assertThat(Name.create("miz").length()).isEqualTo(3);
+        assertThat(Name.of("miz").length()).isEqualTo(3);
     }
 
 }

@@ -17,18 +17,18 @@ class LadderTest {
     @DisplayName("정상 생성 테스트")
     @Test
     void createTest() {
-        Width width = Width.create(2);
-        Height height = Height.create(2);
-        LadderInformation ladderInformation = LadderInformation.create(width, height);
+        Width width = Width.of(2);
+        Height height = Height.of(2);
+        LadderInformation ladderInformation = LadderInformation.of(width, height);
         BooleanGenerateStrategy booleanGenerateStrategy = () -> true;
 
-        Ladder ladder = Ladder.createWithLadderInformation(ladderInformation, booleanGenerateStrategy);
+        Ladder ladder = Ladder.of(ladderInformation, booleanGenerateStrategy);
 
         assertThat(ladder)
-                .isEqualTo(Ladder.create(
-                        Lines.create(Arrays.asList(
-                                Line.createWithWidth(width, booleanGenerateStrategy),
-                                Line.createWithWidth(width, booleanGenerateStrategy)
+                .isEqualTo(Ladder.of(
+                        Lines.of(Arrays.asList(
+                                Line.of(width, booleanGenerateStrategy),
+                                Line.of(width, booleanGenerateStrategy)
                         ))
                 ));
     }

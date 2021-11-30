@@ -12,7 +12,7 @@ public class Width {
         this.value = value;
     }
 
-    public static Width create(int value) {
+    public static Width of(int value) {
         if (value < MIN) {
             throw new IllegalArgumentException(NULL_OR_LESS_HEIGHT_MESSAGE);
         }

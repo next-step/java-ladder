@@ -14,13 +14,13 @@ public class LadderInformation {
         this.height = height;
     }
 
-    public static LadderInformation create(Width width, Height height) {
+    public static LadderInformation of(Width width, Height height) {
         return new LadderInformation(width, height);
     }
 
-    public static LadderInformation createWithString(String namesString, String heightValue) {
-        Names names = Names.createWithString(namesString);
-        return create(Width.create(names.size()), Height.createWithString(heightValue));
+    public static LadderInformation of(String namesString, String heightValue) {
+        Names names = Names.of(namesString);
+        return of(Width.of(names.size()), Height.of(heightValue));
     }
 
     public Width getWidth() {

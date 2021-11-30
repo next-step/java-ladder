@@ -18,7 +18,7 @@ public class Lines {
         this.lines = new ArrayList<>(lines);
     }
 
-    public static Lines create(List<Line> lines) {
+    public static Lines of(List<Line> lines) {
 
         if (lines == null || lines.isEmpty()) {
             throw new IllegalArgumentException(EMPTY_MESSAGE);
@@ -29,7 +29,7 @@ public class Lines {
 
     public List<Line> getLines() {
         return lines.stream()
-                .map(Line::createWithLine)
+                .map(Line::of)
                 .collect(Collectors.toList());
     }
 

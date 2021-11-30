@@ -21,22 +21,22 @@ public class Line {
         this.bridges = new ArrayList<>(bridges);
     }
 
-    public static Line create(List<Bridge> bridges) {
+    public static Line of(List<Bridge> bridges) {
         if (bridges == null || bridges.isEmpty()) {
             throw new IllegalArgumentException(NOT_EMPTY_LINE_MESSAGE);
         }
         return new Line(bridges);
     }
 
-    public static Line createWithLine(Line line) {
-        return create(line.bridges);
+    public static Line of(Line line) {
+        return of(line.bridges);
     }
 
-    public static Line createWithWidth(Width width, BooleanGenerateStrategy strategy) {
-        return createWithEndLine(width.getValue(), strategy);
+    public static Line of(Width width, BooleanGenerateStrategy strategy) {
+        return of(width.getValue(), strategy);
     }
 
-    public static Line createWithEndLine(int endLine, BooleanGenerateStrategy strategy) {
+    public static Line of(int endLine, BooleanGenerateStrategy strategy) {
         List<Bridge> bridges = new ArrayList<>();
         bridges.add(Bridge.firstBridge(strategy.generate()));
 
@@ -45,7 +45,7 @@ public class Line {
             bridges.add(prev.next(strategy.generate(), isLast(i, endLine)));
         }
 
-        return create(bridges);
+        return of(bridges);
     }
 
     private static boolean isLast(int now, int endLine) {
