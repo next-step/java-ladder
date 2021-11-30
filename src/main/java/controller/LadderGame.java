@@ -1,9 +1,6 @@
 package controller;
 
-import domain.Floor;
-import domain.Ladder;
-import domain.Participant;
-import domain.Participants;
+import domain.*;
 import view.ConsoleInputView;
 import view.ConsoleOutputView;
 import view.InputView;
@@ -40,7 +37,8 @@ public class LadderGame {
 
         outputView.showRequestOfHeightOfLadder();
         int heightOfLadder = inputView.getHeightOfLadder();
-        Ladder ladder = new Ladder(constructFloors(heightOfLadder, participants.size()));
+        Floors floors = new Floors(constructFloors(heightOfLadder, participants.size()));
+        Ladder ladder = new Ladder(floors);
 
         outputView.showMessageOfResult();
         outputView.showParticipants(participants);

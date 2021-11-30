@@ -3,13 +3,13 @@ package domain;
 import java.util.List;
 
 public class Ladder {
-    private final List<Floor> floors;
+    private final Floors floors;
 
-    public Ladder(List<Floor> floors) {
+    public Ladder(Floors floors) {
         this.floors = floors;
     }
 
     public List<Floor> getFloors() {
-        return floors;
+        return floors.getFloors();
     }
 }
