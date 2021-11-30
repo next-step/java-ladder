@@ -9,6 +9,7 @@ import view.OutputView;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static domain.RandomGenerator.produceRandomFlags;
@@ -17,6 +18,7 @@ import static util.StringUtils.separateStringWithComma;
 public class LadderGame {
     private static final int DECREMENT_FOR_STAIRS_PER_FLOOR = 1;
     private static final int START_POINT_FOR_CONSTRUCTING_FLOORS = 0;
+    private static final String ALL_PARTICIPANTS = "all";
 
     private LadderGame() {
 
@@ -38,16 +40,22 @@ public class LadderGame {
         outputView.showRequestOfHeightOfLadder();
         int heightOfLadder = inputView.getHeightOfLadder();
         Floors floors = new Floors(constructFloors(heightOfLadder, participants.size()));
-        Ladder ladder = new Ladder(floors);
+        Ladder ladder = new Ladder(floors, new LadderResult(Arrays.stream(ladderResult).collect(Collectors.toList())));
 
         outputView.showMessageOfResult();
         outputView.showParticipants(participants);
         outputView.showLadder(ladder);
+        outputView.showResults(ladderResult);
 
         while (true) {
             outputView.showRequestForResultOfParticipant();
-            inputView.getParticipantForResult();
-            outputView.showResultOfParticipant("");
+            String participant = inputView.getParticipantForResult();
+            if (participant.equals(ALL_PARTICIPANTS)) {
+                outputView.showResultsOfAllParticipants(participants, ladder);
+                continue;
+            }
+            String result = ladder.finalResult(participants.initialPosition(new Participant(participant)));
+            outputView.showResultOfParticipant(result);
         }
     }
 

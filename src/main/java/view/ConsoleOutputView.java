@@ -4,7 +4,9 @@ import domain.Floor;
 import domain.Ladder;
 import domain.Participants;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class ConsoleOutputView implements OutputView {
     private static final String BLANK_AFTER_NAME = " ";
@@ -47,6 +49,13 @@ public class ConsoleOutputView implements OutputView {
     }
 
     @Override
+    public void showResults(String[] results) {
+        Arrays.stream(results).forEach(result -> System.out.printf("%5s" + BLANK_AFTER_NAME, result));
+        System.out.println();
+        System.out.println();
+    }
+
+    @Override
     public void showRequestForResultOfParticipant() {
         System.out.println("Who do you want to see the result?");
     }
@@ -54,6 +63,19 @@ public class ConsoleOutputView implements OutputView {
     @Override
     public void showResultOfParticipant(String result) {
         System.out.println(result);
+    }
+
+    @Override
+    public void showResultsOfAllParticipants(Participants participants, Ladder ladder) {
+        List<String> participantNames = participants.getNamesOfParticipants();
+        List<String> results = ladder.finalResultsOfAll(participants.size());
+
+        IntStream.range(0, participants.size())
+                .forEach(i -> showParticiantAndResult(participantNames.get(i), results.get(i)));
+    }
+
+    private void showParticiantAndResult(String participant, String result) {
+        System.out.printf("%s : %s\n", participant, result);
     }
 
     private void showFloor(Floor floor) {

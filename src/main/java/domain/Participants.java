@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 public class Participants {
@@ -12,6 +13,13 @@ public class Participants {
 
     public int size() {
         return participants.size();
+    }
+
+    public Position initialPosition (Participant participant) {
+        if (!participants.contains(participant)) {
+            throw new NoSuchElementException("There is no participant having that name");
+        }
+        return new Position(participants.indexOf(participant));
     }
 
     public List<String> getNamesOfParticipants() {
