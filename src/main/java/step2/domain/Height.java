@@ -20,6 +20,10 @@ public class Height {
         return new Height(Integer.parseInt(height));
     }
 
+    public int getHeight() {
+        return height;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
