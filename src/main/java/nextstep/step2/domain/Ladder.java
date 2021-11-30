@@ -55,4 +55,8 @@ public class Ladder {
     public int hashCode() {
         return Objects.hash(lines);
     }
+
+    public Point play(Point start) {
+        return lines.move(start);
+    }
 }

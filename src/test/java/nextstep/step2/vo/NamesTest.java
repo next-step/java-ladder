@@ -19,10 +19,6 @@ class NamesTest {
         assertThatIllegalArgumentException().isThrownBy(() -> Names.of(
                 Arrays.asList(Name.of("test"))
         ));
-
-        assertThatIllegalArgumentException().isThrownBy(() -> Names.of(
-                null
-        ));
     }
 
     @DisplayName("Null or Empty input illegal exception")
