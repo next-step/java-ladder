@@ -1,5 +1,7 @@
 package step2.strategy;
 
+import java.util.List;
+
 public interface LineCreateStrategy {
-    boolean creatable();
+    List<Boolean> create(int count);
 }
