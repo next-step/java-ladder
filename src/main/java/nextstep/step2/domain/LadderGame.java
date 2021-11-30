@@ -1,27 +1,26 @@
 package nextstep.step2.domain;
 
-import nextstep.step2.dto.GameInformation;
-import nextstep.step2.vo.Names;
+import nextstep.step2.dto.GameInfoDto;
 
 public class LadderGame {
 
-    private final Names names;
+    private final GameInfo gameInfo;
     private final Ladder ladder;
 
-    private LadderGame(Names names, Ladder ladder) {
-        this.names = names;
+    private LadderGame(GameInfo gameInfo, Ladder ladder) {
+        this.gameInfo = gameInfo;
         this.ladder = ladder;
     }
 
-    public static LadderGame of(GameInformation gameInformation, Ladder ladder) {
-        return new LadderGame(gameInformation.getNames(), ladder);
+    public static LadderGame of(GameInfoDto gameInfoDto, Ladder ladder) {
+        return new LadderGame(GameInfo.of(gameInfoDto.getNames(), gameInfoDto.getGifts()), ladder);
     }
 
     public Ladder getLadder() {
         return ladder;
     }
 
-    public Names getNames() {
-        return names;
-    }
+//    public Names getNames() {
+//        return names;
+//    }
 }

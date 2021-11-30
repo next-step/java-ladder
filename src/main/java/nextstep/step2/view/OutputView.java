@@ -19,7 +19,7 @@ public class OutputView {
 
     public void renderLadder(LadderGame game) {
         System.out.println("실행 결과");
-        System.out.println(namesToPrintString(game.getNames()));
+//        System.out.println(namesToPrintString(game.getNames()));
         System.out.println(ladderToPrintString(game.getLadder()));
     }
 

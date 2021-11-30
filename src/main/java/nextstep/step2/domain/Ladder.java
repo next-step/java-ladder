@@ -1,6 +1,6 @@
 package nextstep.step2.domain;
 
-import nextstep.step2.dto.LadderInformation;
+import nextstep.step2.dto.LadderInfoDto;
 import nextstep.step2.vo.BooleanGenerateStrategy;
 import nextstep.step2.vo.Height;
 import nextstep.step2.vo.Lines;
@@ -24,7 +24,7 @@ public class Ladder {
         return new Ladder(lines);
     }
 
-    public static Ladder of(LadderInformation info, BooleanGenerateStrategy strategy) {
+    public static Ladder of(LadderInfoDto info, BooleanGenerateStrategy strategy) {
         Width width = info.getWidth();
         Height height = info.getHeight();
 
@@ -37,6 +37,10 @@ public class Ladder {
 
     public List<Line> getLineList() {
         return lines.getLines();
+    }
+
+    public Point play(Point start) {
+        return lines.move(start);
     }
 
     @Override
@@ -54,9 +58,5 @@ public class Ladder {
     @Override
     public int hashCode() {
         return Objects.hash(lines);
-    }
-
-    public Point play(Point start) {
-        return lines.move(start);
     }
 }

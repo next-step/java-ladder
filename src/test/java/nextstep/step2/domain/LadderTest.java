@@ -1,6 +1,6 @@
 package nextstep.step2.domain;
 
-import nextstep.step2.dto.LadderInformation;
+import nextstep.step2.dto.LadderInfoDto;
 import nextstep.step2.vo.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,10 +19,10 @@ class LadderTest {
     void createTest() {
         Width width = Width.of(2);
         Height height = Height.of(2);
-        LadderInformation ladderInformation = LadderInformation.of(width, height);
+        LadderInfoDto ladderInfoDto = LadderInfoDto.of(width, height);
         BooleanGenerateStrategy booleanGenerateStrategy = () -> true;
 
-        Ladder ladder = Ladder.of(ladderInformation, booleanGenerateStrategy);
+        Ladder ladder = Ladder.of(ladderInfoDto, booleanGenerateStrategy);
 
         assertThat(ladder)
                 .isEqualTo(Ladder.of(
@@ -39,17 +39,17 @@ class LadderTest {
         assertThatIllegalArgumentException().isThrownBy(() -> {
             Width width = Width.of(1);
             Height height = Height.of(2);
-            LadderInformation ladderInformation = LadderInformation.of(width, height);
+            LadderInfoDto ladderInfoDto = LadderInfoDto.of(width, height);
             BooleanGenerateStrategy booleanGenerateStrategy = () -> true;
-            Ladder.of(ladderInformation, booleanGenerateStrategy);
+            Ladder.of(ladderInfoDto, booleanGenerateStrategy);
         });
 
         assertThatIllegalArgumentException().isThrownBy(() -> {
             Width width = Width.of(2);
             Height height = Height.of(0);
-            LadderInformation ladderInformation = LadderInformation.of(width, height);
+            LadderInfoDto ladderInfoDto = LadderInfoDto.of(width, height);
             BooleanGenerateStrategy booleanGenerateStrategy = () -> true;
-            Ladder.of(ladderInformation, booleanGenerateStrategy);
+            Ladder.of(ladderInfoDto, booleanGenerateStrategy);
         });
     }
 
