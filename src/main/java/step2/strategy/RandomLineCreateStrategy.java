@@ -12,7 +12,7 @@ public class RandomLineCreateStrategy implements LineCreateStrategy {
     @Override
     public List<Boolean> create(int count) {
         List<Boolean> line = new ArrayList<>();
-        for (int step = STEP_INIT_COUNT; step <= count - NUMBER_ONE; step++) {
+        for (int step = STEP_INIT_COUNT; step < count - NUMBER_ONE; step++) {
             line.add(create(step, line));
         }
         return line;
