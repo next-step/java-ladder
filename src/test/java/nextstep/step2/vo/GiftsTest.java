@@ -50,4 +50,30 @@ class GiftsTest {
         assertThat(Gifts.of("miz,mi"))
                 .isEqualTo(Gifts.of(Arrays.asList(Gift.of("miz"), Gift.of("mi"))));
     }
+
+
+    @DisplayName("equalsSize() 메서드는 갯수가 같은지 판별한다.")
+    @ParameterizedTest
+    @CsvSource(value = {"abc,dasd,sadas,d:4:true", "abc,ddd:3:false"}, delimiter = ':')
+    void sizeTest(String input, int size, boolean expect) {
+        Gifts gifts = Gifts.of(input);
+
+        assertThat(gifts.equalsSize(size)).isEqualTo(expect);
+    }
+
+    @DisplayName("getGift()는 특정 순서의 gift를 반환한다.")
+    @Test
+    void getGiftTest() {
+        Gifts gifts = Gifts.of("1000,2000");
+        assertThat(gifts.getGift(0)).isEqualTo(Gift.of("1000"));
+        assertThat(gifts.getGift(1)).isEqualTo(Gift.of("2000"));
+    }
+
+    @DisplayName("getGift()는 index가 범위에 맞지 않으면 illegal exception.")
+    @Test
+    void getGiftFailTest() {
+        Gifts gifts = Gifts.of("1000,2000");
+        assertThatIllegalArgumentException().isThrownBy(() -> gifts.getGift(3));
+        assertThatIllegalArgumentException().isThrownBy(() -> gifts.getGift(-1));
+    }
 }

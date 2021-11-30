@@ -38,6 +38,14 @@ public class Names {
                 .collect(collectingAndThen(toList(), Names::new));
     }
 
+    public boolean contains(Name name) {
+        return this.names.contains(name);
+    }
+
+    public int indexOf(Name name) {
+        return this.names.indexOf(name);
+    }
+
     public int size() {
         return names.size();
     }

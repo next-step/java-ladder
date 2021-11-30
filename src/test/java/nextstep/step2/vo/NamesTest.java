@@ -50,4 +50,32 @@ class NamesTest {
         assertThat(Names.of("miz,mi"))
                 .isEqualTo(Names.of(Arrays.asList(Name.of("miz"), Name.of("mi"))));
     }
+
+    @DisplayName("equalsSize() 메서드는 갯수가 같은지 판별한다.")
+    @ParameterizedTest
+    @CsvSource(value = {"abc,dasd,sadas,d:4:true", "abc,ddd:3:false"}, delimiter = ':')
+    void sizeTest(String input, int size, boolean expect) {
+        Names names = Names.of(input);
+
+        assertThat(names.equalsSize(size)).isEqualTo(expect);
+    }
+
+    @DisplayName("contains() 메서드로 name 존재여부 반환")
+    @Test
+    void containsTest() {
+        Names names = Names.of("miz,bi");
+
+        assertThat(names.contains(Name.of("miz"))).isTrue();
+        assertThat(names.contains(Name.of("bi"))).isTrue();
+        assertThat(names.contains(Name.of("bik"))).isFalse();
+    }
+
+    @DisplayName("indexOf() names에서 name의 인덱스 반환")
+    @Test
+    void findIndexWithName() {
+        Names names = Names.of("miz,bi");
+
+        assertThat(names.indexOf(Name.of("miz"))).isEqualTo(0);
+        assertThat(names.indexOf(Name.of("bi"))).isEqualTo(1);
+    }
 }
