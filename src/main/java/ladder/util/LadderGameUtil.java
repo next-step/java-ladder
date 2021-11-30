@@ -5,6 +5,8 @@ import ladder.Line;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LadderGameUtil {
     public static final String FORMAT = "%6s";
@@ -42,13 +44,9 @@ public class LadderGameUtil {
     }
 
     public static List<Line> autoLadderValue(int width, int height) {
-        List<Line> value = new ArrayList<>();
-
-        for (int i = 0; i < height; i++) {
-            value.add(new Line(width));
-        }
-
-        return value;
+        return IntStream.rangeClosed(0, height)
+                .mapToObj((i) -> new Line(width))
+                .collect(Collectors.toList());
     }
 
     public static String booleanToLineString(boolean value) {
