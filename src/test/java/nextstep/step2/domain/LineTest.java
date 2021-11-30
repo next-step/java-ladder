@@ -56,4 +56,16 @@ class LineTest {
         assertThat(bridge).isEqualTo(Bridge.valueOf(expectBridge));
     }
 
+    @DisplayName("|-| |-| | 의 사다리 모양에서 각 포인트에서 정확하게 이동 할 수 있다.")
+    @ParameterizedTest
+    @CsvSource(value = {"0:1","1:0","2:3","3:2","4:4"}, delimiter = ':')
+    void moveTest(int beforePoint, int afterPoint) {
+        Line line = Line.create(
+                Arrays.asList(Bridge.RIGHT, Bridge.LEFT, Bridge.RIGHT, Bridge.LEFT, Bridge.DOWN)
+        );
+        Point before = Point.of(beforePoint);
+        assertThat(line.move(before)).isEqualTo(Point.of(afterPoint));
+    }
+
+
 }

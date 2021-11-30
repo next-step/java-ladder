@@ -79,4 +79,8 @@ public class Line {
                 "points=" + bridges +
                 '}';
     }
+
+    public Point move(Point before) {
+        return bridges.get(before.getValue()).move(before);
+    }
 }

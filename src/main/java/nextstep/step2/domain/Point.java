@@ -6,10 +6,10 @@ public class Point {
 
     private final int MOVE_VALUE = 1;
 
-    private final int point;
+    private final int value;
 
-    private Point(int point) {
-        this.point = point;
+    private Point(int value) {
+        this.value = value;
     }
 
     public static Point of(int now) {
@@ -17,7 +17,11 @@ public class Point {
     }
 
     public static Point of(Point now) {
-        return of(now.point);
+        return of(now.value);
+    }
+
+    public int getValue() {
+        return value;
     }
 
     @Override
@@ -29,19 +33,19 @@ public class Point {
             return false;
         }
         Point point1 = (Point) o;
-        return point == point1.point;
+        return value == point1.value;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(point);
+        return Objects.hash(value);
     }
 
     public Point left() {
-        return of(this.point - MOVE_VALUE);
+        return of(this.value - MOVE_VALUE);
     }
 
     public Point right() {
-        return of(this.point + MOVE_VALUE);
+        return of(this.value + MOVE_VALUE);
     }
 }
