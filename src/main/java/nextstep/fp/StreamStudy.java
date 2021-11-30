@@ -39,6 +39,9 @@ public class StreamStudy {
     }
 
     public static long sumOverThreeAndDouble(List<Integer> numbers) {
-        return 0;
+        return numbers.stream().filter(num -> num > 3)
+                .map(num -> num * 2)
+                .reduce(Integer::sum)
+                .orElseThrow(() -> new IllegalArgumentException("합계를 구할 수 없습니다."));
     }
 }
