@@ -11,6 +11,7 @@ public class Gifts {
 
     private static final int MIN_GIFT_COUNT = 2;
     private static final String NULL_OR_LESS_SIZE_MESSAGE = "최소 " + MIN_GIFT_COUNT + "명 이상의 당첨 선물이 필요합니다.";
+    private static final String INDEX_RANGE_EXCEPTION_MESSAGE = "인덱스의 범위가 정확하지 않습니다.";
 
     private final List<Gift> gifts;
 
@@ -44,6 +45,14 @@ public class Gifts {
 
     public boolean equalsSize(int size) {
         return size() == size;
+    }
+
+    public Gift getGift(int index) {
+        if (index < 0 || index >= gifts.size()) {
+            throw new IllegalArgumentException(INDEX_RANGE_EXCEPTION_MESSAGE);
+        }
+
+        return gifts.get(index);
     }
 
     public List<Gift> getGifts() {
