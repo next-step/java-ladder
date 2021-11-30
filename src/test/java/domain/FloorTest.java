@@ -1,16 +1,27 @@
 package domain;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
 public class FloorTest {
+
+    @DisplayName("test move function of Floor class")
     @Test
     void testFloorMove() {
-        Floor floor = new Floor(Arrays.asList(true, false, true));
-        assertThat(floor.move(0)).isEqualTo(1);
-        assertThat(floor.move(1)).isEqaulTo(0);
-        assertThat(floor.move(2)).isEqaulTo(3);
-        assertThat(floor.move(3)).isEqaulTo(2);
+        Floor floorFirst = new Floor(Arrays.asList(true, false, true));
+        assertThat(floorFirst.move(new Position(0))).isEqualTo(new Position(1));
+        assertThat(floorFirst.move(new Position(1))).isEqualTo(new Position(0));
+        assertThat(floorFirst.move(new Position(2))).isEqualTo(new Position(3));
+        assertThat(floorFirst.move(new Position(3))).isEqualTo(new Position(2));
+
+        Floor floorSecond = new Floor(Arrays.asList(false, true, false));
+        assertThat(floorSecond.move(new Position(0))).isEqualTo(new Position(0));
+        assertThat(floorSecond.move(new Position(1))).isEqualTo(new Position(2));
+        assertThat(floorSecond.move(new Position(2))).isEqualTo(new Position(1));
+        assertThat(floorSecond.move(new Position(3))).isEqualTo(new Position(3));
     }
 }
