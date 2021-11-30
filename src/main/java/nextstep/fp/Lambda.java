@@ -35,5 +35,11 @@ public class Lambda {
             }
         }
         return total;
+
+//        stream 을 활용하는 방법
+//        return numbers.stream()
+//                .filter(condition::test)
+//                .mapToInt(Integer::intValue)
+//                .sum();
     }
 }
