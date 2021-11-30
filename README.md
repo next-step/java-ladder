@@ -17,6 +17,7 @@
 - GameInformation  
   - Game과 관련된 Names 를 가진다.
 - ladder
+  - move(idx)
 - line
   - line 생성(연속으로 true가 나올 수 없다.)
   - 사람 수 - 1 만큼의 배열만 생성 된다.

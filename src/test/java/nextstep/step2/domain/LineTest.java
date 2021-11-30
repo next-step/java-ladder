@@ -29,11 +29,11 @@ class LineTest {
         assertThat(actual.getBridges()).isEqualTo(expect);
     }
 
-    @DisplayName("빈 birdge 리스트가 오면 illegal Exception")
+    @DisplayName("빈 bridge 리스트가 오면 illegal Exception")
     @Test
     void createFailTest() {
         assertThatIllegalArgumentException().isThrownBy(() -> Line.create(null));
         assertThatIllegalArgumentException().isThrownBy(() -> Line.create(Collections.emptyList()));
     }
-
+    
 }

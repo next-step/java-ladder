@@ -19,7 +19,7 @@ public enum Bridge {
         return DOWN;
     }
 
-    public Bridge next(boolean random, boolean isLast) {
+    public Bridge next(boolean isRight, boolean isLast) {
         if (this.equals(Bridge.RIGHT)) {
             return LEFT;
         }
@@ -28,7 +28,7 @@ public enum Bridge {
             return DOWN;
         }
 
-        if (random) {
+        if (isRight) {
             return RIGHT;
         }
 
