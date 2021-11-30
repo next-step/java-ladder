@@ -81,6 +81,10 @@ public class Line {
     }
 
     public Point move(Point before) {
-        return before.move(bridges.get(before.getValue()));
+        return before.move(findBridge(before));
+    }
+
+    private Bridge findBridge(Point before) {
+        return bridges.get(before.getValue());
     }
 }

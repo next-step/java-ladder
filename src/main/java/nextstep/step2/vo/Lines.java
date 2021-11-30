@@ -1,6 +1,7 @@
 package nextstep.step2.vo;
 
 import nextstep.step2.domain.Line;
+import nextstep.step2.domain.Point;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +31,14 @@ public class Lines {
         return lines.stream()
                 .map(Line::createWithLine)
                 .collect(Collectors.toList());
+    }
+
+    public Point move(Point start) {
+        Point now = Point.of(start);
+        for (Line line : lines) {
+            now = line.move(now);
+        }
+        return now;
     }
 
     @Override
