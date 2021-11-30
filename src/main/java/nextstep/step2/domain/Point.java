@@ -1,11 +1,10 @@
 package nextstep.step2.domain;
 
+import nextstep.step2.vo.Bridge;
+
 import java.util.Objects;
 
 public class Point {
-
-    private final int MOVE_VALUE = 1;
-
     private final int value;
 
     private Point(int value) {
@@ -24,6 +23,10 @@ public class Point {
         return value;
     }
 
+    public Point move(Bridge bridge) {
+        return of(this.value + bridge.getMoveValue());
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -39,13 +42,5 @@ public class Point {
     @Override
     public int hashCode() {
         return Objects.hash(value);
-    }
-
-    public Point left() {
-        return of(this.value - MOVE_VALUE);
-    }
-
-    public Point right() {
-        return of(this.value + MOVE_VALUE);
     }
 }

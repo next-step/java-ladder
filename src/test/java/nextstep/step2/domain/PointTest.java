@@ -1,7 +1,10 @@
 package nextstep.step2.domain;
 
+import nextstep.step2.vo.Bridge;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -15,20 +18,13 @@ class PointTest {
         assertThat(intToPoint).isEqualTo(intToPoint);
     }
 
-    @DisplayName("left() 호출 시 위치 값을 -1 한다.")
-    @Test
-    void left() {
+    @DisplayName("Move(Bridge) 호출 시 위치 값 변화시킨다.")
+    @ParameterizedTest
+    @CsvSource(value = {"DOWN:1", "LEFT:0", "RIGHT:2"}, delimiter = ':')
+    void left(String bridgeName, int expectPoint) {
         Point point = Point.of(1);
 
-        assertThat(point.left()).isEqualTo(Point.of(0));
-    }
-
-    @DisplayName("right() 호출 시 위치 값을 +1 한다.")
-    @Test
-    void right() {
-        Point point = Point.of(1);
-
-        assertThat(point.right()).isEqualTo(Point.of(2));
+        assertThat(point.move(Bridge.valueOf(bridgeName))).isEqualTo(Point.of(expectPoint));
     }
 
 }

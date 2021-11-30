@@ -1,19 +1,14 @@
 package nextstep.step2.vo;
 
-import nextstep.step2.domain.Point;
-
-import java.util.function.BinaryOperator;
-import java.util.function.UnaryOperator;
-
 public enum Bridge {
-    DOWN((p) -> p),
-    RIGHT((p) -> p.right()),
-    LEFT((p) -> p.left());
+    DOWN(0),
+    RIGHT(1),
+    LEFT(-1);
 
-    private final UnaryOperator<Point> op;
+    private final int moveValue;
 
-    Bridge(UnaryOperator<Point> op) {
-        this.op = op;
+    Bridge(int moveValue) {
+        this.moveValue = moveValue;
     }
 
     public static Bridge firstBridge(boolean isRight) {
@@ -22,6 +17,10 @@ public enum Bridge {
         }
 
         return DOWN;
+    }
+
+    public int getMoveValue() {
+        return moveValue;
     }
 
     public Bridge next(boolean isRight, boolean isLast) {
@@ -38,9 +37,5 @@ public enum Bridge {
         }
 
         return DOWN;
-    }
-
-    public Point move(Point now) {
-        return op.apply(now);
     }
 }

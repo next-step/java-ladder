@@ -1,6 +1,5 @@
 package nextstep.step2.vo;
 
-import nextstep.step2.domain.Point;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -40,14 +39,4 @@ class BridgeTest {
     void nextLastLineTest(boolean input, String nextValue) {
         assertThat(Bridge.firstBridge(input)).isEqualTo(Bridge.valueOf(nextValue));
     }
-
-    @DisplayName("Bridge 의 Move() 함수를 호출 하면 bridge에 따라 point를 이동시킨다.")
-    @ParameterizedTest
-    @CsvSource(value = {"LEFT:0", "RIGHT:2", "DOWN:1"}, delimiter = ':')
-    void moveTest(String bridgeName, int expectPoint) {
-        Bridge bridge = Bridge.valueOf(bridgeName);
-        Point now = Point.of(1);
-        assertThat(bridge.move(now)).isEqualTo(Point.of(expectPoint));
-    }
-
 }
