@@ -11,8 +11,8 @@ public enum Bridge {
         this.value = value;
     }
 
-    public static Bridge firstBridge(boolean random) {
-        if (random) {
+    public static Bridge firstBridge(boolean isRight) {
+        if (isRight) {
             return RIGHT;
         }
 
