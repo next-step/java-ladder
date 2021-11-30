@@ -1,6 +1,8 @@
 package nextstep.step2.domain;
 
 import nextstep.step2.dto.GameInfoDto;
+import nextstep.step2.vo.Gift;
+import nextstep.step2.vo.Name;
 
 import java.util.Objects;
 
@@ -42,5 +44,14 @@ public class LadderGame {
     @Override
     public int hashCode() {
         return Objects.hash(gameInfo, ladder);
+    }
+
+    public Gift playGame(Name name) {
+        Point start = gameInfo.findStartPoint(name)
+                .orElseThrow(IllegalArgumentException::new);
+
+        Point end = ladder.play(start);
+
+        return gameInfo.findGiftWithPoint(end);
     }
 }
