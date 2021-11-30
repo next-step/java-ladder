@@ -42,6 +42,10 @@ public class Gifts {
         return gifts.size();
     }
 
+    public boolean equalsSize(int size) {
+        return size() == size;
+    }
+
     public List<Gift> getGifts() {
         return gifts.stream()
                 .map(gift -> Gift.of(gift.getValue()))

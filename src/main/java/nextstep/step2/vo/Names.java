@@ -42,6 +42,10 @@ public class Names {
         return names.size();
     }
 
+    public boolean equalsSize(int size) {
+        return size() == size;
+    }
+
     public List<Name> getNames() {
         return names.stream()
                 .map(name -> Name.of(name.getValue()))
