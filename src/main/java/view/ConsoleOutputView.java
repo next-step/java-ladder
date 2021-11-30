@@ -15,7 +15,12 @@ public class ConsoleOutputView implements OutputView {
 
     @Override
     public void showRequestOfParticipants() {
-        System.out.println("Enter The Names of Participants: (Names must be separated by comma(,)");
+        System.out.println("Enter The Names of Participants. (Names must be separated by comma(,)");
+    }
+
+    @Override
+    public void showRequestOfLadderResult() {
+        System.out.println("Enter The Result of Ladder. (Names must be separated by comma(,)");
     }
 
     @Override
@@ -36,9 +41,19 @@ public class ConsoleOutputView implements OutputView {
     }
 
     @Override
-    public void showResult(Ladder ladder) {
+    public void showLadder(Ladder ladder) {
         List<Floor> floors = ladder.getFloors();
         floors.forEach(this::showFloor);
+    }
+
+    @Override
+    public void showRequestForResultOfParticipant() {
+        System.out.println("Who do you want to see the result?");
+    }
+
+    @Override
+    public void showResultOfParticipant(String result) {
+        System.out.println(result);
     }
 
     private void showFloor(Floor floor) {

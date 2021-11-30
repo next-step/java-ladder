@@ -32,8 +32,11 @@ public class LadderGame {
         outputView.showRequestOfParticipants();
         String rawInputNames = inputView.getParticipantsNames();
         String[] participantNames = separateStringWithComma(rawInputNames);
-
         Participants participants = new Participants(constructParticipants(participantNames));
+
+        outputView.showRequestOfLadderResult();
+        String rawInputLadderResult = inputView.getLadderResult();
+        String[] ladderResult = separateStringWithComma(rawInputLadderResult);
 
         outputView.showRequestOfHeightOfLadder();
         int heightOfLadder = inputView.getHeightOfLadder();
@@ -41,7 +44,13 @@ public class LadderGame {
 
         outputView.showMessageOfResult();
         outputView.showParticipants(participants);
-        outputView.showResult(ladder);
+        outputView.showLadder(ladder);
+
+        while (true) {
+            outputView.showRequestForResultOfParticipant();
+            inputView.getParticipantForResult();
+            outputView.showResultOfParticipant("");
+        }
     }
 
     public static List<Participant> constructParticipants(String[] names) {
