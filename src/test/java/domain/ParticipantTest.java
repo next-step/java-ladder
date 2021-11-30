@@ -8,7 +8,6 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 public class ParticipantTest {
     private static final String PARTICIPANT_ONE_NAME = "tomo";
     private static final String PARTICIPANT_TWO_NAME = "sans";
-    private static final String PARTICIPANT_THREE_NAME = "michael";
 
     Participant participantOne = new Participant(PARTICIPANT_ONE_NAME);
     Participant participantTwo = new Participant(PARTICIPANT_TWO_NAME);

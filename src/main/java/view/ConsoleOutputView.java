@@ -1,7 +1,6 @@
 package view;
 
 import domain.Floor;
-import domain.Floors;
 import domain.Ladder;
 import domain.Participants;
 
@@ -38,8 +37,8 @@ public class ConsoleOutputView implements OutputView {
 
     @Override
     public void showResult(Ladder ladder) {
-        Floors floors = ladder.getFloors();
-        floors.stream().forEach(this::showFloor);
+        List<Floor> floors = ladder.getFloors();
+        floors.forEach(this::showFloor);
     }
 
     private void showFloor(Floor floor) {
