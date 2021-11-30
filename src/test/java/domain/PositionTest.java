@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 public class PositionTest {
     List<Boolean> floor = Arrays.asList(true, false, true);
@@ -39,5 +40,14 @@ public class PositionTest {
     @Test
     void testMoveRight() {
         assertThat(new Position(1).moveRight()).isEqualTo(new Position(2));
+    }
+
+    @DisplayName("Exception when position is out of bounds")
+    @Test
+    void testOutOfBounds() {
+        assertThatThrownBy(() -> new Position(-1).isMovableLeft(floor)).isInstanceOf(IndexOutOfBoundsException.class);
+        assertThatThrownBy(() -> new Position(4).isMovableLeft(floor)).isInstanceOf(IndexOutOfBoundsException.class);
+        assertThatThrownBy(() -> new Position(-1).isMovableRight(floor)).isInstanceOf(IndexOutOfBoundsException.class);
+        assertThatThrownBy(() -> new Position(4).isMovableRight(floor)).isInstanceOf(IndexOutOfBoundsException.class);
     }
 }

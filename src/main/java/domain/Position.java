@@ -13,6 +13,8 @@ public class Position {
     }
 
     public boolean isMovableLeft(List<Boolean> floor) {
+        checkPosition(floor.size());
+
         return position > 0 && floor.get(position-1);
     }
 
@@ -21,11 +23,19 @@ public class Position {
     }
 
     public boolean isMovableRight(List<Boolean> floor) {
+        checkPosition(floor.size());
+
         return position < floor.size() && floor.get(position);
     }
 
     public Position moveRight() {
         return new Position(position + MOVE_DISTANCE);
+    }
+
+    private void checkPosition(int floorSize) {
+        if (position < 0 || position > floorSize) {
+            throw new IndexOutOfBoundsException("Position is out of bounds");
+        }
     }
 
     @Override

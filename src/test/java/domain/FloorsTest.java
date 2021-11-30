@@ -3,6 +3,7 @@ package domain;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -15,9 +16,10 @@ public class FloorsTest {
 
     @Test
     void testFinalPosition() {
-        assertThat(floors.finalPosition(new Position(0))).isEqualTo(new Position(2));
-        assertThat(floors.finalPosition(new Position(1))).isEqualTo(new Position(1));
-        assertThat(floors.finalPosition(new Position(2))).isEqualTo(new Position(2));
-        assertThat(floors.finalPosition(new Position(3))).isEqualTo(new Position(0));
+        List<Position> positions = floors.finalPositions(4);
+        assertThat(positions.get(0)).isEqualTo(new Position(3));
+        assertThat(positions.get(1)).isEqualTo(new Position(1));
+        assertThat(positions.get(2)).isEqualTo(new Position(2));
+        assertThat(positions.get(3)).isEqualTo(new Position(0));
     }
 }
