@@ -1,6 +1,8 @@
 package ladder.model;
 
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EmptySource;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
@@ -16,6 +18,14 @@ class PlayerTest {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Player(name))
                 .withMessage("이름 길이는 5를 넘으면 안됩니다.");
+    }
+
+    @ParameterizedTest
+    @EmptySource
+    void emptyNameException(String name) {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new Player(name))
+                .withMessage("이름이 비어있습니다.");
     }
 
 }
