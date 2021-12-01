@@ -3,6 +3,7 @@ package nextstep.fp;
 import java.util.Objects;
 
 public class Car {
+
     private final String name;
     private final int position;
 
@@ -32,4 +33,5 @@ public class Car {
 
         return Objects.hash(name, position);
     }
+
 }
