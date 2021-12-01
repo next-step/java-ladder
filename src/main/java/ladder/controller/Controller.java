@@ -1,6 +1,6 @@
 package ladder.controller;
 
-import ladder.Ladder;
+import ladder.domain.Ladder;
 import ladder.view.MaxLadderHeightInputView;
 import ladder.view.ResultView;
 import ladder.view.UserNameInputView;
