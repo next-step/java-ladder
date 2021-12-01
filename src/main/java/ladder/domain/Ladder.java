@@ -1,18 +1,22 @@
-package ladder;
+package ladder.domain;
 
-import ladder.util.LadderGameUtil;
+import ladder.util.GameUtil;
+import ladder.util.RandomStrategy;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class Ladder {
-    public static final int ZERO = 0;
-
     private final List<Line> value;
 
     public Ladder(int width, int height) {
-        this(LadderGameUtil.autoLadderValue(width, height));
+        this(width, height, new RandomStrategy());
+    }
+
+    public Ladder(int width, int height, Predicate<Boolean> strategy) {
+        this(new LadderHelper(width, height).generate(strategy));
     }
 
     public Ladder(List<Line> value) {
@@ -21,9 +25,11 @@ public class Ladder {
     }
 
     private void validate(List<Line> value) {
-        if (value.size() == ZERO) {
-            throw new IllegalArgumentException();
-        }
+        GameUtil.requireNonNullOrSizeGreaterThanZero(value);
+    }
+
+    public List<Line> getLines() {
+        return this.value;
     }
 
     @Override
@@ -44,9 +50,5 @@ public class Ladder {
         return this.value.stream()
                 .map(Line::toString)
                 .collect(Collectors.joining("\n"));
-    }
-
-    public List<Line> getLines() {
-        return this.value;
     }
 }

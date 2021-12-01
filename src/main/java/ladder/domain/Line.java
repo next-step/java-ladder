@@ -1,9 +1,11 @@
-package ladder;
+package ladder.domain;
 
-import ladder.util.LadderGameUtil;
+import ladder.util.GameUtil;
+import ladder.util.RandomStrategy;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
@@ -21,7 +23,11 @@ public class Line {
     private final List<Boolean> value;
 
     public Line(int width) {
-        this(LadderGameUtil.autoLineValue(width));
+        this(width, new RandomStrategy());
+    }
+
+    public Line(int width, Predicate<Boolean> strategy) {
+        this(new LineHelper(width).generate(strategy));
     }
 
     public Line(List<Boolean> value) {
@@ -30,6 +36,8 @@ public class Line {
     }
 
     private void validate(List<Boolean> value) {
+        GameUtil.requireNonNullOrSizeGreaterThanZero(value);
+
         // 첫번째 다리가 true 인 경우 Exception throw
         firstElementValidate(value);
 
@@ -69,7 +77,7 @@ public class Line {
     @Override
     public String toString() {
         return value.stream()
-                .map(LadderGameUtil::booleanToLineString)
+                .map(GameUtil::booleanToLineString)
                 .collect(Collectors.joining());
     }
 }
