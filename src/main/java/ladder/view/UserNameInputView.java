@@ -4,6 +4,7 @@ import ladder.util.InputViewUtil;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class UserNameInputView {
@@ -32,20 +33,17 @@ public class UserNameInputView {
     }
 
     private void validate(List<String> value) {
-        value.stream()
+        final boolean invalidNamePresent = value.stream()
                 .map(String::length)
-                .filter(length -> length >= MIN_USERNAME_LENGTH)
-                .filter(length -> length <= MAX_USERNAME_LENGTH)
-                .findAny()
-                .orElseThrow(IllegalArgumentException::new);
+                .anyMatch(length -> length < MIN_USERNAME_LENGTH || length > MAX_USERNAME_LENGTH);
+
+        if (invalidNamePresent) {
+            throw new IllegalArgumentException();
+        }
     }
 
     public int userCount() {
         return this.value.size();
-    }
-
-    public List<String> userNames() {
-        return this.value;
     }
 
     @Override
