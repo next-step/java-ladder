@@ -9,10 +9,8 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LadderGameUtil {
-    public static final String FORMAT = "%6s";
-    public static final String VERTICAL_LINE = "|";
-    public static final char HORIZONTAL_LINE = '-';
-    public static final char EMPTY_SPACE = ' ';
+    public static final String LINE_STRING_FOR_FALSE = "     |";
+    public static final String LINE_STRING_FOR_TRUE = "-----|";
 
     private LadderGameUtil() {
 
@@ -51,11 +49,9 @@ public class LadderGameUtil {
     }
 
     public static String booleanToLineString(boolean value) {
-        String raw = String.format(FORMAT, VERTICAL_LINE);
-
         if (value) {
-            return raw.replace(EMPTY_SPACE, HORIZONTAL_LINE);
+            return LINE_STRING_FOR_TRUE;
         }
-        return raw;
+        return LINE_STRING_FOR_FALSE;
     }
 }
