@@ -2,8 +2,6 @@ package ladder.view;
 
 import ladder.util.InputViewUtil;
 
-import java.util.Optional;
-
 public class MaxLadderHeightInputView {
     public static final int ZERO = 0;
 
@@ -24,9 +22,9 @@ public class MaxLadderHeightInputView {
     }
 
     private void validate(int value) {
-        Optional.ofNullable(value)
-                .filter(elem -> elem > ZERO)
-                .orElseThrow(IllegalArgumentException::new);
+        if (value <= ZERO) {
+            throw new IllegalArgumentException();
+        }
     }
 
     public int height() {
