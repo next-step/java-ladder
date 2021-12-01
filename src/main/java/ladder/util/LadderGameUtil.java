@@ -45,7 +45,7 @@ public class LadderGameUtil {
     }
 
     public static List<Line> autoLadderValue(int width, int height) {
-        return IntStream.rangeClosed(0, height)
+        return IntStream.range(0, height)
                 .mapToObj((i) -> new Line(width))
                 .collect(Collectors.toList());
     }
