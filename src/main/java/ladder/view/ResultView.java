@@ -1,7 +1,6 @@
 package ladder.view;
 
-import ladder.Ladder;
-import ladder.Line;
+import ladder.domain.Ladder;
 
 public class ResultView {
     private final String userNames;
