@@ -1,5 +1,7 @@
 package nextstep.optional;
 
+import java.util.Optional;
+
 public class Computer {
     private Soundcard soundcard;
 
@@ -9,6 +11,10 @@ public class Computer {
 
     public Soundcard getSoundcard() {
         return soundcard;
+    }
+
+    public Optional<Soundcard> getOptionalSoundCard() {
+        return Optional.ofNullable(soundcard);
     }
 
     public static class Soundcard {
@@ -21,6 +27,10 @@ public class Computer {
 
         public USB getUsb() {
             return usb;
+        }
+
+        public Optional<USB> getOptionalUsb() {
+            return Optional.ofNullable(usb);
         }
     }
 

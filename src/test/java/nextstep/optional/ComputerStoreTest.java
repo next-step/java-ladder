@@ -56,4 +56,29 @@ public class ComputerStoreTest {
         Computer computer = new Computer(new Soundcard(null));
         assertThat(ComputerStore.getVersionOptional(computer)).isEqualTo(ComputerStore.UNKNOWN_VERSION);
     }
+
+    @Test
+    public void getVersionOptionalFlatMap() {
+        String version = "pobi's usb";
+        Soundcard soundcard = new Soundcard(new USB(version));
+        Computer computer = new Computer(soundcard);
+        assertThat(ComputerStore.getVersionOptionalFlatMap(computer)).isEqualTo(version);
+    }
+
+    @Test
+    public void getVersionOptionalWhenComputerIsNullFlatMap() throws Exception {
+        assertThat(ComputerStore.getVersionOptionalFlatMap(null)).isEqualTo(ComputerStore.UNKNOWN_VERSION);
+    }
+
+    @Test
+    public void getVersionOptionalWhenSoundcardIsNullFlatMap() throws Exception {
+        Computer computer = new Computer(null);
+        assertThat(ComputerStore.getVersionOptionalFlatMap(computer)).isEqualTo(ComputerStore.UNKNOWN_VERSION);
+    }
+
+    @Test
+    public void getVersionOptionalWhenUSBIsNullFlatMap() throws Exception {
+        Computer computer = new Computer(new Soundcard(null));
+        assertThat(ComputerStore.getVersionOptionalFlatMap(computer)).isEqualTo(ComputerStore.UNKNOWN_VERSION);
+    }
 }
