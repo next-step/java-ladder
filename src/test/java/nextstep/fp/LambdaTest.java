@@ -1,5 +1,6 @@
 package nextstep.fp;
 
+import nextstep.condition.Conditional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -33,19 +34,19 @@ public class LambdaTest {
 
     @Test
     public void sumAll() throws Exception {
-        int sum = Lambda.sumAll(numbers);
+        int sum = Lambda.sumAll(numbers, number -> true);
         assertThat(sum).isEqualTo(21);
     }
 
     @Test
     public void sumAllEven() throws Exception {
-        int sum = Lambda.sumAllEven(numbers);
+        int sum = Lambda.sumAll(numbers, number -> number % 2 == 0);
         assertThat(sum).isEqualTo(12);
     }
 
     @Test
     public void sumAllOverThree() throws Exception {
-        int sum = Lambda.sumAllOverThree(numbers);
+        int sum = Lambda.sumAll(numbers, number -> number > 3);
         assertThat(sum).isEqualTo(15);
     }
 }
