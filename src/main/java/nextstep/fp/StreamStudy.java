@@ -5,10 +5,15 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class StreamStudy {
+
+    private static final int TEXT_LENGTH = 12;
+    private static final int MAX_SIZE = 100;
+    private static final int VALID_NUMBER_THREE = 3;
 
     public static long countWords() throws IOException {
         String contents = new String(Files.readAllBytes(Paths
@@ -28,6 +33,13 @@ public class StreamStudy {
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
         // TODO 이 부분에 구현한다.
+        words.stream()
+                .map(String::toLowerCase)
+                .filter(text -> text.length() > TEXT_LENGTH)
+                .sorted(Comparator.comparing(String::length).reversed())
+                .distinct()
+                .limit(MAX_SIZE)
+                .forEach(text -> System.out.println(text));
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
@@ -39,6 +51,9 @@ public class StreamStudy {
     }
 
     public static long sumOverThreeAndDouble(List<Integer> numbers) {
-        return 0;
+        return numbers.stream()
+                .filter(number -> number > VALID_NUMBER_THREE)
+                .map(number -> number * 2)
+                .reduce(0, Integer::sum);
     }
 }
