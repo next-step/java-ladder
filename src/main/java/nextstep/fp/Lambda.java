@@ -40,13 +40,10 @@ public class Lambda {
     }
 
     public static int sumConditional(List<Integer> numbers, Conditional conditional) {
-        int total = 0;
-        for (int number : numbers) {
-            if (conditional.matchable(number)) {
-                total += number;
-            }
-        }
-        return total;
+        return numbers.stream()
+                .mapToInt(number -> number)
+                .filter(conditional::matchable)
+                .sum();
     }
 
 }
