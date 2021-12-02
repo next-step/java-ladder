@@ -23,4 +23,17 @@ public class Ladder {
     public List<Line> getLines() {
         return lines;
     }
+
+    public int run(int position) {
+        int depth = 0;
+        while (!isEnd(depth)) {
+            Line line = lines.get(depth);
+            position = line.move(position);
+        }
+        return position;
+    }
+
+    private boolean isEnd(int depth) {
+        return lines.size() == depth;
+    }
 }

@@ -25,6 +25,10 @@ public class Participants {
                 .collect(Collectors.toList());
     }
 
+    public Participant getBy(int position) {
+        return participants.get(position);
+    }
+
     public int size() {
         return participants.size();
     }

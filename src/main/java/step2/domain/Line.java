@@ -28,6 +28,15 @@ public class Line {
         return line.size();
     }
 
+    public int move(int position) {
+        Direction direction = Direction.findBy(isMovable(position), isMovable(position - 1));
+        return direction.move(position);
+    }
+
+    private boolean isMovable(int position) {
+        return line.get(position);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

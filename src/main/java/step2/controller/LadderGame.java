@@ -22,5 +22,6 @@ public class LadderGame {
         LadderInfo ladderInfo = LadderInfo.of(participants.size(), height.getHeight());
         Ladder ladder = Ladder.create(ladderInfo, lineCreateStrategy);
         ResultView.showResult(participants, ladder, rewards);
+        GameHistory history = ladderGameService.start(ladder, ladderInfo);
     }
 }
