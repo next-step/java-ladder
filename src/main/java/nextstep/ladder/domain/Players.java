@@ -28,4 +28,12 @@ public class Players {
 
         return new Players(players);
     }
+
+    public int playersCount() {
+        return players.size();
+    }
+
+    public List<Player> playersName() {
+        return players;
+    }
 }
