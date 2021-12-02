@@ -6,10 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
-    private List<Line> lines = new ArrayList<>();
-
-    private Ladder() {
-    }
+    private final List<Line> lines = new ArrayList<>();
 
     private Ladder(int participantCount, int height, LineCreateStrategy createStrategy) {
         for (int count = 0; count < height; count++) {

@@ -5,10 +5,7 @@ import java.util.Objects;
 public class Name {
     private static final int NAME_MAX_LENGTH = 5;
 
-    private String name;
-
-    private Name() {
-    }
+    private final String name;
 
     private Name(String name) {
         validateNameLength(name);

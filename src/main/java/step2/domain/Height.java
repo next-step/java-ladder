@@ -3,10 +3,7 @@ package step2.domain;
 import java.util.Objects;
 
 public class Height {
-    private int height;
-
-    private Height() {
-    }
+    private final int height;
 
     private Height(int height) {
         this.height = height;

@@ -34,7 +34,7 @@ public class LineTest {
         //when
         List<Boolean> lines = line.getLine();
         //then
-        for (int step = 1; step < participantCount; step++) {
+        for (int step = 1; step < participantCount - 1; step++) {
             assertThat(Boolean.logicalAnd(lines.get(step), lines.get(step - 1))).isFalse();
         }
     }

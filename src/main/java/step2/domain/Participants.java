@@ -9,9 +9,6 @@ public class Participants {
 
     private final List<Participant> participants = new ArrayList<>();
 
-    private Participants() {
-    }
-
     private Participants(String[] names) {
         for (String name : names) {
             participants.add(Participant.of(name));
