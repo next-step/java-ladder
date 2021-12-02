@@ -38,6 +38,14 @@ public class GameInfo {
         return gifts.getGift(point.getValue());
     }
 
+    public Names getNames() {
+        return names;
+    }
+
+    public Gifts getGifts() {
+        return gifts;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

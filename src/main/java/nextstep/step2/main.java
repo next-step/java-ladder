@@ -7,6 +7,7 @@ import nextstep.step2.dto.LadderInfoDto;
 import nextstep.step2.view.InputView;
 import nextstep.step2.view.OutputView;
 import nextstep.step2.vo.BooleanGenerateStrategy;
+import nextstep.step2.vo.Name;
 import nextstep.step2.vo.RandomBooleanGenerateStrategy;
 
 public class main {
@@ -15,22 +16,44 @@ public class main {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
 
-        String namesString = inputView.inputNames();
-        String heightString = inputView.inputHeight();
-
-        Ladder ladder = getLadder(namesString, heightString);
-
-        LadderGame game = getLadderGame(namesString, ladder);
+        LadderGame game = createLadderGame(inputView);
 
         outputView.renderLadder(game);
+
+        while (true) {
+            playGame(inputView, outputView, game);
+        }
+
     }
 
-    private static LadderGame getLadderGame(String namesString, Ladder ladder) {
-        GameInfoDto gameInfoDto = GameInfoDto.of(namesString, null);
+    private static void playGame(InputView inputView, OutputView outputView, LadderGame game) {
+        String player = inputView.inputPlayer();
+
+        if (player.equals("all")) {
+            outputView.renderResults(game.playAllGame());
+            return;
+        }
+
+        outputView.renderResult(game.playGame(Name.of(player)));
+    }
+
+    private static LadderGame createLadderGame(InputView inputView) {
+        String namesString = inputView.inputNames();
+        String giftString = inputView.inputGifts();
+
+        GameInfoDto gameInfoDto = GameInfoDto.of(namesString, giftString);
+
+        String heightString = inputView.inputHeight();
+        Ladder ladder = createLadder(namesString, heightString);
+
+        return createLadderGame(gameInfoDto, ladder);
+    }
+
+    private static LadderGame createLadderGame(GameInfoDto gameInfoDto, Ladder ladder) {
         return LadderGame.of(gameInfoDto, ladder);
     }
 
-    private static Ladder getLadder(String namesString, String heightString) {
+    private static Ladder createLadder(String namesString, String heightString) {
         LadderInfoDto ladderInfoDto = LadderInfoDto.of(namesString, heightString);
         BooleanGenerateStrategy strategy = new RandomBooleanGenerateStrategy();
         return Ladder.of(ladderInfoDto, strategy);

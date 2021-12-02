@@ -1,27 +1,24 @@
 package nextstep.step2.dto;
 
-import nextstep.step2.vo.Gifts;
-import nextstep.step2.vo.Names;
-
 public class GameInfoDto {
 
-    private final Names names;
-    private final Gifts gifts;
+    private final String names;
+    private final String gifts;
 
-    private GameInfoDto(Names names, Gifts gifts) {
+    private GameInfoDto(String names, String gifts) {
         this.names = names;
         this.gifts = gifts;
     }
 
     public static GameInfoDto of(String namesString, String giftsString) {
-        return new GameInfoDto(Names.of(namesString), Gifts.of(giftsString));
+        return new GameInfoDto(namesString, giftsString);
     }
 
-    public Names getNames() {
+    public String getNames() {
         return names;
     }
 
-    public Gifts getGifts() {
+    public String getGifts() {
         return gifts;
     }
 }

@@ -1,10 +1,14 @@
 package nextstep.step2.domain;
 
 import nextstep.step2.dto.GameInfoDto;
-import nextstep.step2.vo.Gift;
+import nextstep.step2.dto.GameResult;
+import nextstep.step2.dto.GameResults;
+import nextstep.step2.vo.Gifts;
 import nextstep.step2.vo.Name;
+import nextstep.step2.vo.Names;
 
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class LadderGame {
 
@@ -16,18 +20,37 @@ public class LadderGame {
         this.ladder = ladder;
     }
 
-    public static LadderGame of(GameInfoDto gameInfoDto, Ladder ladder) {
-        return new LadderGame(GameInfo.of(gameInfoDto.getNames(), gameInfoDto.getGifts()), ladder);
+    public static LadderGame of(GameInfo gameInfo, Ladder ladder) {
+        return new LadderGame(gameInfo, ladder);
     }
+
+    public static LadderGame of(GameInfoDto gameInfoDto, Ladder ladder) {
+        return of(GameInfo.of(Names.of(gameInfoDto.getNames()), Gifts.of(gameInfoDto.getGifts())), ladder);
+    }
+
 
     public Ladder getLadder() {
         return ladder;
     }
 
-//    public Names getNames() {
-//        return names;
-//    }
+    public GameInfo getGameInfo() {
+        return gameInfo;
+    }
 
+    public GameResult playGame(Name name) {
+        Point start = gameInfo.findStartPoint(name)
+                .orElseThrow(IllegalArgumentException::new);
+
+        Point end = ladder.play(start);
+
+        return new GameResult(name, gameInfo.findGiftWithPoint(end));
+    }
+
+    public GameResults playAllGame() {
+        return gameInfo.getNames().getNames().stream()
+                .map(this::playGame)
+                .collect(Collectors.collectingAndThen(Collectors.toList(), GameResults::new));
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -44,14 +67,5 @@ public class LadderGame {
     @Override
     public int hashCode() {
         return Objects.hash(gameInfo, ladder);
-    }
-
-    public Gift playGame(Name name) {
-        Point start = gameInfo.findStartPoint(name)
-                .orElseThrow(IllegalArgumentException::new);
-
-        Point end = ladder.play(start);
-
-        return gameInfo.findGiftWithPoint(end);
     }
 }

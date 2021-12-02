@@ -1,11 +1,9 @@
 package nextstep.step2.domain;
 
-import nextstep.step2.dto.GameInfoDto;
+import nextstep.step2.dto.GameResult;
+import nextstep.step2.dto.GameResults;
 import nextstep.step2.dto.LadderInfoDto;
-import nextstep.step2.vo.Bridge;
-import nextstep.step2.vo.Gift;
-import nextstep.step2.vo.Lines;
-import nextstep.step2.vo.Name;
+import nextstep.step2.vo.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -22,7 +20,7 @@ class LadderGameTest {
 
     @BeforeEach
     void setUp() {
-        GameInfoDto gameInfoDto = GameInfoDto.of("miz,kiz,diz", "1000,2000,꽝");
+        GameInfo gameInfo = GameInfo.of(Names.of("miz,kiz,diz"), Gifts.of("1000,2000,꽝"));
         Lines lines = Lines.of(
                 Arrays.asList(
                         Line.of(Arrays.asList(
@@ -36,27 +34,44 @@ class LadderGameTest {
 
         Ladder ladder = Ladder.of(lines);
 
-        ladderGame = LadderGame.of(gameInfoDto, ladder);
+        ladderGame = LadderGame.of(gameInfo, ladder);
     }
 
     @Test
     void createTest() {
-        GameInfoDto gameInfoDto = GameInfoDto.of("miz,bi", "1000,꽝");
-        LadderInfoDto ladderInfoDto = LadderInfoDto.of("miz,bi", "2");
+        GameInfo gameInfo = GameInfo.of(Names.of("miz,kiz,diz"), Gifts.of("1000,2000,꽝"));
+        LadderInfoDto ladderInfoDto = LadderInfoDto.of("miz,kiz,diz", "2");
         Ladder ladder = Ladder.of(ladderInfoDto, () -> true);
 
-        assertThat(LadderGame.of(gameInfoDto, ladder)).isEqualTo(LadderGame.of(gameInfoDto, ladder));
+        assertThat(LadderGame.of(gameInfo, ladder)).isEqualTo(LadderGame.of(gameInfo, ladder));
     }
 
     /*
     |-| |
     | |-|
      */
-    @DisplayName("playGame() 당첨 선물을 반환한다.")
+    @DisplayName("playGame() Game Result를 반환한다.")
     @ParameterizedTest
     @CsvSource(value = {"miz:꽝", "kiz:1000", "diz:2000"}, delimiter = ':')
     void playGameTest(String nameString, String giftString) {
-        assertThat(ladderGame.playGame(Name.of(nameString))).isEqualTo(Gift.of(giftString));
+        assertThat(ladderGame.playGame(Name.of(nameString)))
+                .isEqualTo(new GameResult(Name.of(nameString), Gift.of(giftString)));
     }
 
+    /*
+    |-| |
+    | |-|
+     */
+    @DisplayName("playAllGame() 모든 게임 결과(GameResults)를 반환한다.")
+    @Test
+    void playAllGameTest() {
+        GameResults expect = new GameResults(Arrays.asList(
+                new GameResult(Name.of("miz"), Gift.of("꽝")),
+                new GameResult(Name.of("kiz"), Gift.of("1000")),
+                new GameResult(Name.of("diz"), Gift.of("2000"))
+        ));
+
+
+        assertThat(ladderGame.playAllGame()).isEqualTo(expect);
+    }
 }

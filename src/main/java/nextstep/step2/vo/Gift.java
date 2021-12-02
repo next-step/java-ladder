@@ -23,6 +23,10 @@ public class Gift {
         return value;
     }
 
+    public int length() {
+        return value.length();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
