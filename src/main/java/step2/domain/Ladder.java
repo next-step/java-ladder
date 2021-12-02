@@ -8,14 +8,16 @@ import java.util.List;
 public class Ladder {
     private final List<Line> lines = new ArrayList<>();
 
-    private Ladder(int participantCount, int height, LineCreateStrategy createStrategy) {
+    private Ladder(LadderInfo ladderInfo, LineCreateStrategy createStrategy) {
+        int width = ladderInfo.getWidth();
+        int height = ladderInfo.getHeight();
         for (int count = 0; count < height; count++) {
-            lines.add(Line.create(participantCount, createStrategy));
+            lines.add(Line.create(width, createStrategy));
         }
     }
 
-    public static Ladder create(int participantCount, int height, LineCreateStrategy createStrategy) {
-        return new Ladder(participantCount, height, createStrategy);
+    public static Ladder create(LadderInfo ladderInfo, LineCreateStrategy createStrategy) {
+        return new Ladder(ladderInfo, createStrategy);
     }
 
     public List<Line> getLines() {

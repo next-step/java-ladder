@@ -1,5 +1,6 @@
 package step2.domain;
 
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import step2.strategy.RandomLineCreateStrategy;
 
@@ -37,5 +38,17 @@ public class LineTest {
         for (int step = 1; step < participantCount - 1; step++) {
             assertThat(Boolean.logicalAnd(lines.get(step), lines.get(step - 1))).isFalse();
         }
+    }
+
+    @RepeatedTest(10)
+    void 라인의_끝은_다리가_생성되지_않는다() {
+        //given
+        int participantCount = 10;
+        Line line = Line.create(participantCount, new RandomLineCreateStrategy());
+        //when
+        List<Boolean> lines = line.getLine();
+        //then
+        Boolean endLine = lines.get(participantCount - 1);
+        assertThat(endLine).isFalse();
     }
 }

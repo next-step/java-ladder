@@ -12,12 +12,12 @@ public class Line {
     private Line() {
     }
 
-    private Line(int participantCount, LineCreateStrategy createStrategy) {
-        this.line = createStrategy.create(participantCount);
+    private Line(int width, LineCreateStrategy createStrategy) {
+        this.line = createStrategy.create(width);
     }
 
-    public static Line create(int participantCount, LineCreateStrategy createStrategy) {
-        return new Line(participantCount, createStrategy);
+    public static Line create(int width, LineCreateStrategy createStrategy) {
+        return new Line(width, createStrategy);
     }
 
     public List<Boolean> getLine() {

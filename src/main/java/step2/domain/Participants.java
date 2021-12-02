@@ -25,7 +25,7 @@ public class Participants {
                 .collect(Collectors.toList());
     }
 
-    public int getSize() {
+    public int size() {
         return participants.size();
     }
 
