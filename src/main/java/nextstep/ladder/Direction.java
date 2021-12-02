@@ -26,11 +26,19 @@ public class Direction {
     }
 
     public static Direction last(boolean left) {
-        return new Direction( left, BOTH_ENDS);
+        return new Direction(left, BOTH_ENDS);
     }
 
     public Direction next(boolean nextRight) {
         return new Direction(this.right, nextRight);
+    }
+
+    public boolean isLeft() {
+        return left;
+    }
+
+    public boolean isRight() {
+        return right;
     }
 
     @Override
