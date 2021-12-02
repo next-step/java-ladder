@@ -8,17 +8,24 @@ public class Player {
     private final String name;
 
     private Player(String name) {
+        validateName(name);
         this.name = name;
     }
 
     public static Player from(String name) {
-        validateName(name);
         return new Player(name);
     }
 
     private static void validateName(String name) {
-        if (Objects.isNull(name) || name.length() > MAX_NAME_LENGTH) {
+        if (Objects.isNull(name)) {
+            throw new IllegalArgumentException();
+        }
+        if (name.isEmpty() || name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException(name);
         }
+    }
+
+    public String getName() {
+        return name;
     }
 }
