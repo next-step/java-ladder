@@ -27,7 +27,7 @@ public class RandomLinesGenerator implements LinesGenerator {
     @Override
     public Lines generate(int rowCount, int colCount) {
         List<Line> lines = Stream.generate(() -> lineGenerate(rowCount))
-                .limit(rowCount)
+                .limit(colCount)
                 .collect(Collectors.toList());
 
         return Lines.from(lines);
