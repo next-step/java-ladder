@@ -2,21 +2,21 @@ package step2.strategy;
 
 import step2.utils.RandomUtil;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class RandomLineCreateStrategy implements LineCreateStrategy {
+    private static final Boolean END_LINE = Boolean.FALSE;
     private static final int STEP_INIT_COUNT = 0;
     private static final int NUMBER_ONE = 1;
 
     @Override
     public List<Boolean> create(int count) {
-        List<Boolean> line = Stream.generate(() -> Boolean.FALSE)
-                .limit(count).collect(Collectors.toList());
+        List<Boolean> line = new ArrayList<>(count);
         for (int step = STEP_INIT_COUNT; step < count - NUMBER_ONE; step++) {
-            line.set(step, create(step, line));
+            line.add(create(step, line));
         }
+        line.add(END_LINE);
         return line;
     }
 

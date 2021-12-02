@@ -27,7 +27,7 @@ public class LineTest {
         assertThat(line.getLineSize()).isEqualTo(3);
     }
 
-    @Test
+    @RepeatedTest(10)
     void 라인은_겹치게_생성되지_않는다() {
         //given
         int participantCount = 4;
