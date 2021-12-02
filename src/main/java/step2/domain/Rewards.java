@@ -20,6 +20,10 @@ public class Rewards {
         return rewards[position];
     }
 
+    public String[] getRewards() {
+        return rewards;
+    }
+
     private void validatePosition(int position) {
         if (rewards.length <= position) {
             throw new IllegalArgumentException("보상이 존재하지 않습니다.");
