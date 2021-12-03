@@ -7,7 +7,7 @@ public enum Direction {
     RIGHT((position) -> position + 1),
     NONE((position) -> position);
 
-    private Function<Integer, Integer> moveResult;
+    private final Function<Integer, Integer> moveResult;
 
     Direction(Function<Integer, Integer> moveResult) {
         this.moveResult = moveResult;
