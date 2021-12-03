@@ -1,6 +1,5 @@
 package nextstep.fp;
 
-import nextstep.condition.Conditional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
