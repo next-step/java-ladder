@@ -2,6 +2,7 @@ package step2.domain;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class GameHistory {
     private final Map<Integer, Integer> history = new LinkedHashMap<>();
@@ -17,7 +18,9 @@ public class GameHistory {
         history.put(participantPosition, rewardPosition);
     }
 
-    public Map<Integer, Integer> get() {
-        return history;
+    public Map<String, String> save(Participants participants, Rewards rewards) {
+        return history.entrySet().stream().collect(Collectors.toMap(
+                entry -> participants.getBy(entry.getKey()).getName(),
+                entry -> rewards.getBy(entry.getValue()).getReward()));
     }
 }

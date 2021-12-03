@@ -6,7 +6,7 @@ import java.util.List;
 
 public class ResultView {
     private static final int NAME_MAX_LENGTH = 5;
-    private static final String RESULT_MESSAGE = "실행결과\n";
+    private static final String RESULT_MESSAGE = "\n실행결과";
     private static final String WHITE_SPACE = " ";
     private static final String WHITE_SPACE_FOUR = "    ";
     private static final String LADDER_WHITE_SPACE = "     ";
@@ -19,17 +19,20 @@ public class ResultView {
         System.out.println(RESULT_MESSAGE);
         showParticipantNames(participants.getNames());
         showLadder(ladder);
-        showRewards(rewards.getRewards());
+        showRewards(rewards.getRewardsName());
+        System.out.println();
     }
 
     public static void showRewardResult(String result) {
         System.out.println(RESULT_MESSAGE);
         System.out.println(result);
+        System.out.println();
     }
 
     public static void showRewardAllResult(String result) {
         System.out.println(RESULT_MESSAGE);
         System.out.println(result);
+        System.out.println();
     }
 
     private static void showParticipantNames(List<String> names) {
@@ -62,7 +65,7 @@ public class ResultView {
         System.out.print(LADDER_NO_LINE);
     }
 
-    private static void showRewards(String[] rewards) {
+    private static void showRewards(List<String> rewards) {
         for (String reward : rewards) {
             int rewardLength = reward.length();
             System.out.print(repeatWhiteSpace(NAME_MAX_LENGTH - rewardLength) + reward + WHITE_SPACE);

@@ -29,6 +29,7 @@ public class Ladder {
         while (!isEnd(depth)) {
             Line line = lines.get(depth);
             position = line.move(position);
+            depth++;
         }
         return position;
     }
