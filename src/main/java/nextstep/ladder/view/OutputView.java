@@ -8,6 +8,7 @@ public class OutputView {
     private static final String COL = "|";
     private static final String LINE = "----";
     private static final String EMPTY_LINE = "    ";
+    private static String PLAYERS_COUNT_ERROR_MESSAGE = "최소 2명 이상 입력하세요";
 
     private OutputView() {
     }
@@ -42,5 +43,9 @@ public class OutputView {
             System.out.printf("%-6s",player.getName());
         }
         System.out.println();
+    }
+
+    public static void printPlayersCountError() {
+        System.out.println(PLAYERS_COUNT_ERROR_MESSAGE);
     }
 }
