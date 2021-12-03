@@ -6,6 +6,7 @@ import java.util.Objects;
 
 public class Line {
     private static final int MIN_LINE_SIZE = 1;
+    private static int FIRST_INDEX = 0;
 
     private final List<Point> line;
 
@@ -21,6 +22,14 @@ public class Line {
     private static void validateLine(List<Point> line) {
         if (Objects.isNull(line) || line.size() < MIN_LINE_SIZE) {
             throw new IllegalArgumentException();
+        }
+
+        Point before = line.get(FIRST_INDEX);
+
+        for (int i = MIN_LINE_SIZE; i < line.size(); i++) {
+            Point current = line.get(i);
+            before.checkNextPoint(current);
+            before = current;
         }
     }
 

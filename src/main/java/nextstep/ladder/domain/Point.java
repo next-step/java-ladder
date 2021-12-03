@@ -21,4 +21,10 @@ public class Point {
     public boolean isTrue() {
         return point;
     }
+
+    public void checkNextPoint(Point next) {
+        if (this.point && next.point) {
+            throw new ContinuousRowException();
+        }
+    }
 }
