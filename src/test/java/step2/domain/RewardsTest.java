@@ -20,10 +20,10 @@ public class RewardsTest {
         //given
         Rewards rewards = Rewards.of("꽝,1000,꽝꽝,5000");
         //when & then
-        assertThat(rewards.getBy(0)).isEqualTo("꽝");
-        assertThat(rewards.getBy(1)).isEqualTo("1000");
-        assertThat(rewards.getBy(2)).isEqualTo("꽝꽝");
-        assertThat(rewards.getBy(3)).isEqualTo("5000");
+        assertThat(rewards.getBy(0)).isEqualTo(Reward.of("꽝"));
+        assertThat(rewards.getBy(1)).isEqualTo(Reward.of("1000"));
+        assertThat(rewards.getBy(2)).isEqualTo(Reward.of("꽝꽝"));
+        assertThat(rewards.getBy(3)).isEqualTo(Reward.of("5000"));
     }
 
     @Test
