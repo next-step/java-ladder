@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -24,6 +25,6 @@ public class Line {
     }
 
     public List<Point> getPoints() {
-        return line;
+        return Collections.unmodifiableList(line);
     }
 }
