@@ -51,4 +51,37 @@ public class LineTest {
         Boolean endLine = lines.get(participantCount - 1);
         assertThat(endLine).isFalse();
     }
+
+    @Test
+    void 위치_0번째_라인에서_오른쪽으로_이동한다() {
+        //given
+        Line line = Line.create(Arrays.asList(true, false, true, false));
+        //when
+        int position = 0;
+        position = line.move(position);
+        //then
+        assertThat(position).isEqualTo(1);
+    }
+
+    @Test
+    void 위치_1번째_라인에서_왼쪽으로_이동한다() {
+        //given
+        Line line = Line.create(Arrays.asList(true, false, true, false));
+        //when
+        int position = 1;
+        position = line.move(position);
+        //then
+        assertThat(position).isEqualTo(0);
+    }
+
+    @Test
+    void 위치_1번째_라인에서_이동하지_않는다() {
+        //given
+        Line line = Line.create(Arrays.asList(false, false, true, false));
+        //when
+        int position = 1;
+        position = line.move(position);
+        //then
+        assertThat(position).isEqualTo(position);
+    }
 }

@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Objects;
 
 public class Line {
+    public static final int START_POSITION = 0;
+
     private List<Boolean> line = new ArrayList<>();
 
     private Line() {
@@ -16,8 +18,16 @@ public class Line {
         this.line = createStrategy.create(width);
     }
 
+    private Line(List<Boolean> line) {
+        this.line = line;
+    }
+
     public static Line create(int width, LineCreateStrategy createStrategy) {
         return new Line(width, createStrategy);
+    }
+
+    public static Line create(List<Boolean> line) {
+        return new Line(line);
     }
 
     public List<Boolean> getLine() {
@@ -29,12 +39,19 @@ public class Line {
     }
 
     public int move(int position) {
-        Direction direction = Direction.findBy(isMovable(position), isMovable(position - 1));
+        Direction direction = Direction.findBy(movable(position - 1), movable(position));
         return direction.move(position);
     }
 
-    private boolean isMovable(int position) {
+    private boolean movable(int position) {
+        if (edged(position)) {
+            return false;
+        }
         return line.get(position);
+    }
+
+    private boolean edged(int position) {
+        return position < START_POSITION;
     }
 
     @Override
