@@ -27,8 +27,8 @@ public class StreamStudy {
         // TODO 이 부분에 구현한다.
         words.stream()
                 .filter(word -> word.length() > 12)
-                .sorted(Comparator.comparingInt(String::length).reversed())
                 .distinct()
+                .sorted(Comparator.comparingInt(String::length).reversed())
                 .limit(100)
                 .forEach(System.out::println);
     }
@@ -38,7 +38,7 @@ public class StreamStudy {
     }
 
     public static long sumAll(List<Integer> numbers) {
-        return numbers.stream().reduce(0, (x, y) -> x + y);
+        return numbers.stream().reduce(0, Integer::sum);
     }
 
     public static long sumOverThreeAndDouble(List<Integer> numbers) {
