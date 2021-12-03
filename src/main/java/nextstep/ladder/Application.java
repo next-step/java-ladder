@@ -16,7 +16,7 @@ public class Application {
 
         Lines lines = generator.generate(playersCount, ladderHeight);
 
-        Ladder ladder = Ladder.of(lines);
+        Ladder ladder = Ladder.from(lines);
 
         OutputView.printLadder(players, ladder);
     }
@@ -27,6 +27,7 @@ public class Application {
         try {
             return Players.from(names);
         } catch (IllegalArgumentException e) {
+            OutputView.printPlayersCountError();
             return getPlayers();
         }
     }

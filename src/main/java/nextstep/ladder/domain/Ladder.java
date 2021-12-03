@@ -10,7 +10,7 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public static Ladder of(Lines lines) {
+    public static Ladder from(Lines lines) {
         validateLines(lines);
         return new Ladder(lines);
     }
