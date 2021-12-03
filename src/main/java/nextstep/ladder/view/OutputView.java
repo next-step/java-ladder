@@ -27,14 +27,19 @@ public class OutputView {
 
     private static void printPoints(List<Point> points) {
         for (Point point : points) {
-            if (point.isTrue()) {
-                System.out.print(LINE);
-            } else {
-                System.out.print(EMPTY_LINE);
-            }
-            System.out.print(COL);
+            printPoint(point);
         }
         System.out.println();
+    }
+
+    private static void printPoint(Point point) {
+        if (point.isTrue()) {
+            System.out.print(LINE);
+            System.out.print(COL);
+            return;
+        }
+        System.out.print(EMPTY_LINE);
+        System.out.print(COL);
     }
 
     private static void printPlayers(Players players) {
