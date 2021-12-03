@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -37,4 +38,11 @@ class LineTest {
         assertThatThrownBy(() -> Line.from(points)).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    @DisplayName("Line에 연속된 사다리 행이 존재할때 예외가 발생한다")
+    void continuousRowException() {
+        List<Point> points = Arrays.asList(Point.from(Boolean.TRUE), Point.from(Boolean.TRUE), Point.from(Boolean.TRUE));
+
+        assertThatThrownBy(() -> Line.from(points)).isInstanceOf(ContinuousRowException.class);
+    }
 }

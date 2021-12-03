@@ -6,6 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class PointTest {
 
@@ -25,5 +26,14 @@ class PointTest {
         Point next = point.next(Boolean.TRUE);
 
         assertThat(next.isTrue()).isFalse();
+    }
+
+    @Test
+    @DisplayName("연속된 행이 존재한다면 예외가 발생한다")
+    void continuousRowException() {
+        Point point = Point.from(Boolean.TRUE);
+        Point next = Point.from(Boolean.TRUE);
+
+        assertThatThrownBy(() -> point.checkNextPoint(next)).isInstanceOf(ContinuousRowException.class);
     }
 }
