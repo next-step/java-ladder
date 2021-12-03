@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.exception.PlayerNameException;
+
 import java.util.Objects;
 
 public class Player {
@@ -21,7 +23,7 @@ public class Player {
             throw new IllegalArgumentException();
         }
         if (name.isEmpty() || name.length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException(name);
+            throw new PlayerNameException(name);
         }
     }
 

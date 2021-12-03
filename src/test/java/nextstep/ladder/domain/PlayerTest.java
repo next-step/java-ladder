@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.exception.PlayerNameException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
@@ -21,14 +22,14 @@ class PlayerTest {
     @DisplayName("Player의 이름이 5자를 초과하면 예외가 발생한다")
     @ValueSource(strings = {"abcdef", "abcdefg"})
     void nameLengthException(String name) {
-        assertThatThrownBy(() -> Player.from(name)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> Player.from(name)).isInstanceOf(PlayerNameException.class);
     }
 
     @ParameterizedTest
     @DisplayName("Player의 이름이 없으면 예외가 발생한다")
     @NullAndEmptySource
     void nameEmptyException(String name) {
-        assertThatThrownBy(() -> Player.from(name)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> Player.from(name)).isInstanceOf(PlayerNameException.class);
     }
 
 }
