@@ -1,14 +1,18 @@
 package nextstep.ladder.domain;
 
-public class StringAsInteger {
+public class StringAsHeight {
 
     private final String number;
 
-    public StringAsInteger(String number) {
+    public StringAsHeight(String number) {
         this.number = number;
     }
 
-    public int intValue() {
+    public Height height() {
+        return new Height(intValue());
+    }
+
+    private int intValue() {
         try {
             return Integer.parseInt(number);
         } catch (NumberFormatException e) {

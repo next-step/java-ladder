@@ -14,7 +14,7 @@ public class HeightTest {
     @ValueSource(ints = {1, 2, 3, 4, 5})
     @DisplayName("생성 성공")
     void create(int number) {
-        assertThat(Height.from(number)).isEqualTo(Height.from(number));
+        assertThat(new Height(number)).isEqualTo(new Height(number));
     }
 
     @ParameterizedTest
@@ -22,7 +22,7 @@ public class HeightTest {
     @DisplayName("최소길이 예외처리")
     void ladderLengthException(int number) {
         assertThatExceptionOfType(LadderLengthException.class)
-            .isThrownBy(() -> Height.from(number));
+            .isThrownBy(() -> new Height(number));
     }
 
 }

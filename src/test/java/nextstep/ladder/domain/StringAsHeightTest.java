@@ -8,13 +8,13 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class StringAsIntegerTest {
+public class StringAsHeightTest {
 
     @ParameterizedTest
-    @ValueSource(strings = {"0", "1", "2", "3"})
+    @ValueSource(strings = {"1", "2", "3"})
     @DisplayName("생성 성공")
     void intValue(String number) {
-        assertThat(new StringAsInteger(number).intValue()).isEqualTo(Integer.parseInt(number));
+        assertThat(new StringAsHeight(number).height()).isEqualTo(new Height(Integer.parseInt(number)));
     }
 
     @ParameterizedTest
@@ -23,7 +23,7 @@ public class StringAsIntegerTest {
     @DisplayName("숫자 이외의 값 예외처리")
     void numberFormatException(String number) {
         assertThatExceptionOfType(NumberFormatException.class)
-            .isThrownBy(() -> new StringAsInteger(number).intValue());
+            .isThrownBy(() -> new StringAsHeight(number).height());
     }
 
 }

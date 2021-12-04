@@ -6,18 +6,15 @@ import nextstep.ladder.exception.LadderLengthException;
 public class Height {
 
     private static final int HEIGHT_MINIMUM_SIZE = 1;
+
     private final int height;
 
-    private Height(int height) {
+    public Height(int height) {
+        valid(height);
         this.height = height;
     }
 
-    public static Height from(int height) {
-        valid(height);
-        return new Height(height);
-    }
-
-    private static void valid(int height) {
+    private void valid(int height) {
         if (height < HEIGHT_MINIMUM_SIZE) {
             throw new LadderLengthException(HEIGHT_MINIMUM_SIZE);
         }
