@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Point {
 
-    public static final int MIN_INDEX = 0;
+    private static final int MIN_INDEX = 0;
     private static final int FIRST_INDEX = 0;
     private static final int INDEX_UNIT = 1;
 
@@ -19,7 +19,7 @@ public class Point {
 
     private void checkArguments(int index, Direction direction) {
         if (index < MIN_INDEX) {
-            throw new InvalidIndexException();
+            throw new OutOfRangeIndexException();
         }
         if (direction == null) {
             throw new RequiredArgumentException();

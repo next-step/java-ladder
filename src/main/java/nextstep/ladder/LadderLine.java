@@ -7,6 +7,7 @@ import java.util.Objects;
 public class LadderLine {
 
     private static final int INDEX_UNIT = 1;
+    private static final int MIN_START_INDEX = 0;
 
     private final List<Point> points;
 
@@ -21,6 +22,7 @@ public class LadderLine {
         }
     }
 
+    // TODO: null체크
     public static LadderLine of(LadderWidth width, WayRule wayRule) {
         List<Point> points = new ArrayList<>();
 
@@ -43,6 +45,18 @@ public class LadderLine {
             bodyPoints.add(first);
         }
         return bodyPoints;
+    }
+
+    public int move(int startIndex) {
+        checkRange(startIndex);
+        Point targetPoint = points.get(startIndex);
+        return targetPoint.move();
+    }
+
+    private void checkRange(int startIndex) {
+        if (startIndex < MIN_START_INDEX || startIndex >= points.size()) {
+            throw new OutOfRangeIndexException();
+        }
     }
 
     @Override

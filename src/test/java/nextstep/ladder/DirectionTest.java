@@ -12,7 +12,7 @@ class DirectionTest {
 
     @DisplayName("양쪽 다 길이 있다면 예외를 던진다.")
     @Test
-    void create_bothWay_thrownException() {
+    void create_bothWay_throwsException() {
         assertThatThrownBy(() -> new Direction(true, true))
                 .isInstanceOf(BothWayDirectionException.class);
     }
