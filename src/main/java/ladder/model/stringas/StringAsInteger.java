@@ -12,13 +12,13 @@ public class StringAsInteger {
         this.value = value;
     }
 
+    public int get() {
+        return Integer.parseInt(this.value);
+    }
+
     private void checkValidation(String value) {
         if(!numberPattern.matcher(value).matches()) {
             throw new IllegalArgumentException("값이 숫자가 아닙니다.");
         }
-    }
-
-    public int get() {
-        return Integer.parseInt(this.value);
     }
 }
