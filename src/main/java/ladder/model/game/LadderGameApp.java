@@ -1,7 +1,6 @@
 package ladder.model.game;
 
 import ladder.model.*;
-import ladder.model.game.LadderGame;
 import ladder.model.stringas.StringAsHeight;
 import ladder.model.stringas.StringAsPlayers;
 import ladder.view.InputView;
