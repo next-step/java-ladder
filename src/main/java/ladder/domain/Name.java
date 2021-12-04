@@ -1,9 +1,9 @@
 package ladder.domain;
 
 public class Name {
-    private static final int NAME_LENGTH_MAX = 5;
     private static final String NAME_LENGTH_ERROR_MESSAGE = "error : 이름은 최대 %d글자 입니다.";
     private static final String EMPTY_ERROR_MESSAGE = "error : 공백은 사용할수 없습니다.";
+    private static final int MAX_LENGTH = 5;
 
     private final String name;
 
@@ -20,8 +20,8 @@ public class Name {
     }
 
     private void validNameLength(String name) {
-        if (name.length() > NAME_LENGTH_MAX) {
-            throw new IllegalArgumentException(String.format(NAME_LENGTH_ERROR_MESSAGE, NAME_LENGTH_MAX));
+        if (name.length() > MAX_LENGTH) {
+            throw new IllegalArgumentException(String.format(NAME_LENGTH_ERROR_MESSAGE, MAX_LENGTH));
         }
     }
 
