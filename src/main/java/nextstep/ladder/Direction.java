@@ -32,7 +32,7 @@ public class Direction {
         return next(wayRule.canCreate());
     }
 
-    public Direction next(boolean nextRight) {
+    private Direction next(boolean nextRight) {
         return new Direction(this.right, nextRight);
     }
 

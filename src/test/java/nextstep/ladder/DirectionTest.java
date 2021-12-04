@@ -3,6 +3,7 @@ package nextstep.ladder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -38,11 +39,14 @@ class DirectionTest {
     }
 
     @DisplayName("current.right = next.left")
-    @ParameterizedTest(name = "[{index}] currentRight: {0}")
-    @ValueSource(booleans = {true, false})
-    void next(boolean currentRight) {
+    @ParameterizedTest(name = "[{index}] currentRight: {0}, nextLeft: {1}")
+    @CsvSource({
+            "true, true",
+            "false, false",
+    })
+    void next(boolean currentRight, boolean nextLeft) {
         Direction current = new Direction(false, currentRight);
-        assertThat(current.next(false)).isEqualTo(new Direction(currentRight, false));
+        assertThat(current.next(() -> false)).isEqualTo(new Direction(nextLeft, false));
     }
 
 }

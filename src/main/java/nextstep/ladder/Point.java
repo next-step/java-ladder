@@ -27,19 +27,12 @@ public class Point {
     }
 
     public static Point first(WayRule wayRule) {
-        return first(wayRule.canCreate());
-    }
-
-    public static Point first(boolean right) {
-        return new Point(FIRST_INDEX, Direction.first(right));
+        Direction firstDirection = Direction.first(wayRule.canCreate());
+        return new Point(FIRST_INDEX, firstDirection);
     }
 
     public Point next(WayRule wayRule) {
         return new Point(right(), direction.next(wayRule));
-    }
-
-    public Point next(boolean nextRight) {
-        return new Point(right(), direction.next(nextRight));
     }
 
     public Point last() {
