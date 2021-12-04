@@ -1,6 +1,7 @@
 package nextstep.ladder.domain.ladder;
 
 import nextstep.ladder.domain.exception.OutOfRangeIndexException;
+import nextstep.ladder.domain.ladder.size.LadderWidth;
 import nextstep.ladder.domain.point.Point;
 import nextstep.ladder.domain.rule.WayRule;
 
@@ -39,6 +40,7 @@ public class LadderLine {
         return new LadderLine(points);
     }
 
+    // TODO: 리팩토링
     private static List<Point> bodyOf(int bodySize, Point first, WayRule wayRule) {
         List<Point> bodyPoints = new ArrayList<>();
         for (int currentSize = 0; currentSize < bodySize; currentSize++) {

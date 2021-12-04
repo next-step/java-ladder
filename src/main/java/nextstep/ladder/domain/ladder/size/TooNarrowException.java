@@ -1,4 +1,4 @@
-package nextstep.ladder.domain.ladder;
+package nextstep.ladder.domain.ladder.size;
 
 import nextstep.ladder.domain.exception.ServiceException;
 

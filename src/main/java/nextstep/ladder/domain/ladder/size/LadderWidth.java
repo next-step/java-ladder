@@ -1,4 +1,4 @@
-package nextstep.ladder.domain.ladder;
+package nextstep.ladder.domain.ladder.size;
 
 public class LadderWidth {
 

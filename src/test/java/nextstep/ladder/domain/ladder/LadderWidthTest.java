@@ -1,5 +1,7 @@
 package nextstep.ladder.domain.ladder;
 
+import nextstep.ladder.domain.ladder.size.LadderWidth;
+import nextstep.ladder.domain.ladder.size.TooNarrowException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
