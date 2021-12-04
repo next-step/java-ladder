@@ -7,4 +7,8 @@ public class Player {
     public Player(Name name) {
         this.name = name;
     }
+
+    public String name() {
+        return name.get();
+    }
 }
