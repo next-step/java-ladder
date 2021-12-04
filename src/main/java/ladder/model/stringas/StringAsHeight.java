@@ -1,4 +1,6 @@
-package ladder.model;
+package ladder.model.stringas;
+
+import ladder.model.Height;
 
 public class StringAsHeight {
 
@@ -8,7 +10,7 @@ public class StringAsHeight {
         this.stringAsInteger = new StringAsInteger(height);
     }
 
-    public Height height() {
+    public Height get() {
         return new Height(stringAsInteger.intValue());
     }
 }
