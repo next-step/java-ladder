@@ -1,9 +1,11 @@
-package ladder.model;
+package ladder.model.stringas;
+
+import ladder.model.Player;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class StringAsPlayers implements Players {
+public class StringAsPlayers {
 
     private final StringAsNames stringAsNames;
 
@@ -11,9 +13,8 @@ public class StringAsPlayers implements Players {
         stringAsNames = new StringAsNames(players);
     }
 
-    @Override
-    public List<Player> players() {
-        return stringAsNames.names().stream()
+    public List<Player> get() {
+        return stringAsNames.get().stream()
                 .map(Player::new)
                 .collect(Collectors.toList());
     }

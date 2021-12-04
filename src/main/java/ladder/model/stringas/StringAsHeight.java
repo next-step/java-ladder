@@ -6,11 +6,11 @@ public class StringAsHeight {
 
     private final StringAsInteger stringAsInteger;
 
-    public StringAsHeight(String height) {
-        this.stringAsInteger = new StringAsInteger(height);
+    public StringAsHeight(String value) {
+        this.stringAsInteger = new StringAsInteger(value);
     }
 
     public Height get() {
-        return new Height(stringAsInteger.intValue());
+        return new Height(stringAsInteger.get());
     }
 }
