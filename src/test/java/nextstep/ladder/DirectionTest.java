@@ -30,10 +30,11 @@ class DirectionTest {
     }
 
     @DisplayName("마지막 Direction의 right는 false 이다.")
-    @ParameterizedTest(name = "[{index}] right: {0}")
+    @ParameterizedTest(name = "[{index}] left: {0}")
     @ValueSource(booleans = {true, false})
     void last(boolean left) {
-        assertThat(Direction.last(left)).isEqualTo(new Direction(left, false));
+        Direction direction = Direction.first(left);
+        assertThat(direction.last()).isEqualTo(new Direction(left, false));
     }
 
     @DisplayName("current.right = next.left")

@@ -25,12 +25,19 @@ public class Direction {
         return new Direction(BOTH_ENDS, right);
     }
 
-    public static Direction last(boolean left) {
-        return new Direction(left, BOTH_ENDS);
+    public Direction next(WayRule wayRule) {
+        if (right) {
+            return next(false);
+        }
+        return next(wayRule.canCreate());
     }
 
     public Direction next(boolean nextRight) {
         return new Direction(this.right, nextRight);
+    }
+
+    public Direction last() {
+        return new Direction(right, BOTH_ENDS);
     }
 
     public boolean isLeft() {
