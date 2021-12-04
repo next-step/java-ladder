@@ -16,8 +16,7 @@ public class LadderGameApp {
             Height height = new StringAsHeight(InputView.getStringValue("최대 사다리 높이는 몇 개인가요?")).get();
             LadderGame game = new LadderGame(players, height);
             List<Line> lineList = game.play();
-            ResultView.printPlayerName(players);
-            ResultView.printLineList(lineList);
+            ResultView.printResult(players, lineList);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
