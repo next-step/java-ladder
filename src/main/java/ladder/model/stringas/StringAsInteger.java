@@ -1,4 +1,4 @@
-package ladder.model;
+package ladder.model.stringas;
 
 import java.util.regex.Pattern;
 
@@ -18,7 +18,7 @@ public class StringAsInteger {
         }
     }
 
-    public int intValue() {
+    public int get() {
         return Integer.parseInt(this.value);
     }
 }
