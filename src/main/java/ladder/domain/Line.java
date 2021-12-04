@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-    private static final int LINE_ZERO = 0;
-    private static final int LINE_ONE = 1;
+    private static final int NONE = 0;
+    private static final int EXIST = 1;
 
     private final List<Integer> line;
 
@@ -22,11 +22,11 @@ public class Line {
     }
 
     public static int beforeLine(List<Integer> lineNumber) {
-        return lineNumber.size() == LINE_ZERO ? LineRandom.random() : lineNumber.get(lineNumber.size() - LINE_ONE);
+        return lineNumber.size() == NONE ? LineRandom.random() : lineNumber.get(lineNumber.size() - EXIST);
     }
 
     public static int lineValue(int beforeLine) {
-        return beforeLine == LINE_ZERO ? LineRandom.random() : LINE_ZERO;
+        return beforeLine == NONE ? LineRandom.random() : NONE;
     }
 
     public int size() {
