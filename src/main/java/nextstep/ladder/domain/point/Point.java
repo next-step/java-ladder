@@ -1,6 +1,12 @@
-package nextstep.ladder;
+package nextstep.ladder.domain.point;
+
+import nextstep.ladder.domain.exception.OutOfRangeIndexException;
+import nextstep.ladder.domain.exception.RequiredArgumentException;
+import nextstep.ladder.domain.rule.WayRule;
 
 import java.util.Objects;
+
+import static nextstep.ladder.utils.Validation.checkNotNull;
 
 public class Point {
 
@@ -27,11 +33,14 @@ public class Point {
     }
 
     public static Point first(WayRule wayRule) {
+        checkNotNull(wayRule);
+
         Direction firstDirection = Direction.first(wayRule.canCreate());
         return new Point(FIRST_INDEX, firstDirection);
     }
 
     public Point next(WayRule wayRule) {
+        checkNotNull(wayRule);
         return new Point(right(), direction.next(wayRule));
     }
 

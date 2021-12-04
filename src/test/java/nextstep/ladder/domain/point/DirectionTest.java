@@ -1,4 +1,4 @@
-package nextstep.ladder;
+package nextstep.ladder.domain.point;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,7 +15,7 @@ class DirectionTest {
     @Test
     void create_bothWay_throwsException() {
         assertThatThrownBy(() -> new Direction(true, true))
-                .isInstanceOf(BothWayDirectionException.class);
+                .isInstanceOf(BothWayException.class);
     }
 
     @Test

@@ -1,4 +1,6 @@
-package nextstep.ladder;
+package nextstep.ladder.domain.ladder;
+
+import nextstep.ladder.domain.exception.ServiceException;
 
 public class TooNarrowException extends ServiceException {
 

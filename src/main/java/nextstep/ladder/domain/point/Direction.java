@@ -1,6 +1,10 @@
-package nextstep.ladder;
+package nextstep.ladder.domain.point;
+
+import nextstep.ladder.domain.rule.WayRule;
 
 import java.util.Objects;
+
+import static nextstep.ladder.utils.Validation.checkNotNull;
 
 public class Direction {
 
@@ -17,7 +21,7 @@ public class Direction {
 
     private void checkSingleWay(boolean left, boolean right) {
         if (left && right) {
-            throw new BothWayDirectionException();
+            throw new BothWayException();
         }
     }
 
@@ -26,6 +30,7 @@ public class Direction {
     }
 
     public Direction next(WayRule wayRule) {
+        checkNotNull(wayRule);
         if (right) {
             return next(false);
         }

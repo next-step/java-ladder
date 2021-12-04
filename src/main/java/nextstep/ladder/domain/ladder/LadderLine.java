@@ -1,8 +1,15 @@
-package nextstep.ladder;
+package nextstep.ladder.domain.ladder;
+
+import nextstep.ladder.domain.exception.OutOfRangeIndexException;
+import nextstep.ladder.domain.point.Point;
+import nextstep.ladder.domain.rule.WayRule;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
+import static nextstep.ladder.utils.Validation.checkNotEmpty;
+import static nextstep.ladder.utils.Validation.checkNotNull;
 
 public class LadderLine {
 
@@ -16,14 +23,8 @@ public class LadderLine {
         this.points = points;
     }
 
-    private void checkNotEmpty(List<Point> points) {
-        if (points == null || points.isEmpty()) {
-            throw new RequiredArgumentException();
-        }
-    }
-
-    // TODO: null체크
     public static LadderLine of(LadderWidth width, WayRule wayRule) {
+        checkNotNull(width, wayRule);
         List<Point> points = new ArrayList<>();
 
         Point first = Point.first(wayRule);

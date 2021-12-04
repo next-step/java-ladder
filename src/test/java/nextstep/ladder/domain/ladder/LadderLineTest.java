@@ -1,5 +1,7 @@
-package nextstep.ladder;
+package nextstep.ladder.domain.ladder;
 
+import nextstep.ladder.domain.exception.OutOfRangeIndexException;
+import nextstep.ladder.domain.rule.WayRule;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;

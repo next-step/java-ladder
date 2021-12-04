@@ -1,5 +1,6 @@
-package nextstep.ladder;
+package nextstep.ladder.domain.point;
 
+import nextstep.ladder.domain.rule.RandomWayRule;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

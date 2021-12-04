@@ -1,4 +1,4 @@
-package nextstep.ladder;
+package nextstep.ladder.domain.rule;
 
 import java.util.Random;
 
