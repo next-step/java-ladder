@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class Line {
-    public static final int INCREASE_MOVE_STEP = 1;
+    private static final int INCREASE_MOVE_STEP = 1;
 
     private List<Boolean> line = new ArrayList<>();
 

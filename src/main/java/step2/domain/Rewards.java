@@ -6,7 +6,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Rewards {
-    public static final String COMMA = ",";
+    private static final String COMMA = ",";
 
     private final List<Reward> rewards = new ArrayList<>();
 

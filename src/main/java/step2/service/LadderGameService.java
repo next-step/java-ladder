@@ -8,10 +8,11 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class LadderGameService {
-    public static final int START_POSITION = 0;
-    public static final String COLON = " : ";
-    public static final String NEW_LINE = "\n";
-    public static final String NOT_FOUND_PARTICIPANT = "존재하지 않는 사용자 입니다.";
+    private static final int START_POSITION = 0;
+    private static final String COLON = " : ";
+    private static final String NEW_LINE = "\n";
+    private static final String NOT_FOUND_PARTICIPANT = "존재하지 않는 사용자 입니다.";
+    private static final String ALL = "all";
 
     public GameHistory start(Ladder ladder, LadderInfo ladderInfo) {
         GameHistory gameHistory = GameHistory.of();
@@ -45,7 +46,7 @@ public class LadderGameService {
     }
 
     private boolean selectAll(String resultName) {
-        return "all".equalsIgnoreCase(resultName);
+        return ALL.equalsIgnoreCase(resultName);
     }
 
     private String participantReward(Map<String, String> savedHistory, String rewardResultName) {
