@@ -31,8 +31,12 @@ public class ResultView {
     private static String lineFormat(Line line) {
         return BLANK + DELIMITER + line.getLine()
             .stream()
-            .map(isLine -> isLine ? LINE : BLANK)
+            .map(isLine -> lineOrBlank(isLine))
             .collect(Collectors.joining(DELIMITER)) + DELIMITER;
+    }
+
+    private static String lineOrBlank(Boolean isLine) {
+        return isLine ? LINE : BLANK;
     }
 
     private static void outputPlayer(Players players) {

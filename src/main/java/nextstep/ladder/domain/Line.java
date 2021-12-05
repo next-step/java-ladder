@@ -3,10 +3,13 @@ package nextstep.ladder.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import nextstep.ladder.exception.NotEnoughWidthException;
 
 public class Line {
 
     private static final int MINIMUM_WIDTH = 1;
+    private static final int MINUS_INDEX = 1;
+    private static final boolean DOUBLE_LINE_PREVENTION = false;
 
     private final List<Boolean> line;
 
@@ -29,24 +32,20 @@ public class Line {
 
     private static void valid(int width) {
         if (width < MINIMUM_WIDTH) {
-            throw new IllegalArgumentException(String.format("사다리 게임을 위해서는 라인은 최소 (%d) 이상 이어야 합니다.", MINIMUM_WIDTH));
+            throw new NotEnoughWidthException(MINIMUM_WIDTH);
         }
     }
 
-    private static List<Boolean> addLine(List<Boolean> line, LineStrategy lineStrategy) {
+    private static void addLine(List<Boolean> line, LineStrategy lineStrategy) {
         if (beforeLine(line)) {
             line.add(false);
-            return line;
+            return;
         }
         line.add(lineStrategy.isLine());
-        return line;
     }
 
     private static boolean beforeLine(List<Boolean> line) {
-        if (line.isEmpty()) {
-            return false;
-        }
-        return line.get(line.size() - 1);
+        return line.isEmpty() ? DOUBLE_LINE_PREVENTION : line.get(line.size() - MINUS_INDEX);
     }
 
 }
