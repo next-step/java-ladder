@@ -19,7 +19,6 @@ public class LadderController {
 
         Ladder ladder = Ladder.of(players.width(), height);
         ResultView.outputResult(players, ladder);
-
     }
 
 }
