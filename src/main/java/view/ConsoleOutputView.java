@@ -2,11 +2,14 @@ package view;
 
 import domain.Floor;
 import domain.Ladder;
+import domain.Participant;
 import domain.Participants;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
+
+import static controller.LadderGame.ALL_PARTICIPANTS;
 
 public class ConsoleOutputView implements OutputView {
     private static final String BLANK_AFTER_NAME = " ";
@@ -61,12 +64,23 @@ public class ConsoleOutputView implements OutputView {
     }
 
     @Override
-    public void showResultOfParticipant(String result) {
+    public void showResultOfLadderGame(String participant, Participants participants, Ladder ladder) {
+        if (participant.equals(ALL_PARTICIPANTS)) {
+            showResultsOfAllParticipantsInLadderGame(participants, ladder);
+            return;
+        }
+
+        String result = ladder.finalResult(participants.initialPosition(new Participant(participant)));
+        showResultOfParticipantInLadderGame(result);
+    }
+
+    @Override
+    public void showResultOfParticipantInLadderGame(String result) {
         System.out.println(result);
     }
 
     @Override
-    public void showResultsOfAllParticipants(Participants participants, Ladder ladder) {
+    public void showResultsOfAllParticipantsInLadderGame(Participants participants, Ladder ladder) {
         List<String> participantNames = participants.getNamesOfParticipants();
         List<String> results = ladder.finalResultsOfAll(participants.size());
 

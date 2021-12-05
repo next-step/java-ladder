@@ -13,10 +13,6 @@ public class Floors {
         this.floors = floors;
     }
 
-    public int size() {
-        return floors.size();
-    }
-
     public List<Floor> getFloors() {
         return floors;
     }

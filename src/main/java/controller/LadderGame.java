@@ -6,15 +6,13 @@ import view.ConsoleOutputView;
 import view.InputView;
 import view.OutputView;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.stream.Collectors;
 
 import static util.StringUtils.separateStringWithComma;
 
 public class LadderGame {
-    private static final String ALL_PARTICIPANTS = "all";
+    public static final String ALL_PARTICIPANTS = "all";
 
     private LadderGame() {
 
@@ -43,15 +41,11 @@ public class LadderGame {
         outputView.showLadder(ladder);
         outputView.showResults(ladderResult);
 
-        while (true) {
+        String participant;
+        do {
             outputView.showRequestForResultOfParticipant();
-            String participant = inputView.getParticipantForResult();
-            if (participant.equals(ALL_PARTICIPANTS)) {
-                outputView.showResultsOfAllParticipants(participants, ladder);
-                continue;
-            }
-            String result = ladder.finalResult(participants.initialPosition(new Participant(participant)));
-            outputView.showResultOfParticipant(result);
-        }
+            participant = inputView.getParticipantForResult();
+            outputView.showResultOfLadderGame(participant, participants, ladder);
+        } while (!participant.equals(ALL_PARTICIPANTS));
     }
 }

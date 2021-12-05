@@ -3,8 +3,6 @@ package view;
 import domain.Ladder;
 import domain.Participants;
 
-import java.util.List;
-
 public interface OutputView {
     void showRequestOfParticipants();
     void showRequestOfLadderResult();
@@ -14,6 +12,7 @@ public interface OutputView {
     void showLadder(Ladder ladder);
     void showResults(String[] results);
     void showRequestForResultOfParticipant();
-    void showResultOfParticipant(String result);
-    void showResultsOfAllParticipants(Participants participants, Ladder ladder);
+    void showResultOfLadderGame(String participant, Participants participants, Ladder ladder);
+    void showResultOfParticipantInLadderGame(String result);
+    void showResultsOfAllParticipantsInLadderGame(Participants participants, Ladder ladder);
 }
