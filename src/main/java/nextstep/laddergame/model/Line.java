@@ -2,6 +2,7 @@ package nextstep.laddergame.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 import nextstep.laddergame.utils.RandomUtils;
 
@@ -12,16 +13,28 @@ public class Line {
     private final List<Point> points = new ArrayList<>();
 
     public Line(int countOfPerson) {
-        points.add(new Point(RandomUtils.generate(BOOLEAN_LIMIT)));
-        for (int i = 1; i < countOfPerson; i++) {
-            if (mustEmpty(i)) {
-                points.add(Point.empty());
-            }
-            points.add(new Point(RandomUtils.generate(BOOLEAN_LIMIT)));
-        }
+        points.add(makeRandomPoint());
+        IntStream.range(1, countOfPerson - 1)
+                 .forEach(index -> addPoint(index, points));
     }
 
-    private boolean mustEmpty(int i) {
-        return points.get(i - 1).hasLine();
+    private void addPoint(int index, List<Point> points) {
+        if (mustEmpty(index)) {
+            points.add(Point.empty());
+            return;
+        }
+        points.add(makeRandomPoint());
+    }
+
+    private Point makeRandomPoint() {
+        return new Point(RandomUtils.generate(BOOLEAN_LIMIT));
+    }
+
+    private boolean mustEmpty(int index) {
+        return points.get(index - 1).exist();
+    }
+
+    public List<Point> getPoints() {
+        return points;
     }
 }

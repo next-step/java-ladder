@@ -18,4 +18,9 @@ public class Name {
             throw new InvalidNameException("name must be longer than " + LENGTH_LINMIT);
         }
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

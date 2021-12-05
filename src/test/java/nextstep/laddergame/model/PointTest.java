@@ -13,4 +13,17 @@ class PointTest {
         assertThat(new Point(0)).isEqualTo(new Point(false));
         assertThat(new Point(1)).isEqualTo(new Point(true));
     }
+
+    @DisplayName("empty 객체를 생성했을 때 false로 생성되는지 검증")
+    @Test
+    void emptyTest() {
+        assertThat(Point.empty()).isEqualTo(new Point(false));
+    }
+
+    @DisplayName("true면 point가 있고, false면 point가 없음을 검증")
+    @Test
+    void hasLineTest() {
+        assertThat(new Point(true).exist()).isEqualTo(true);
+        assertThat(new Point(false).exist()).isEqualTo(false);
+    }
 }

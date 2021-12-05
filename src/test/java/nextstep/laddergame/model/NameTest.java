@@ -14,4 +14,11 @@ class NameTest {
     void nameLengthTest() {
         assertThatThrownBy(() -> new Name("more than 5")).isInstanceOf(InvalidNameException.class);
     }
+
+    @DisplayName("Name과 string이 주어졌을 때 그대로 반환하는지 검증")
+    @Test
+    void toStringTest() {
+        String name = "pobi";
+        assertThat(new Name(name).toString()).isEqualTo(name);
+    }
 }

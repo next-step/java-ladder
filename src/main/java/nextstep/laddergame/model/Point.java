@@ -6,29 +6,29 @@ public class Point {
 
     private static final int FALSE = 0;
 
-    private final boolean isLine;
+    private final boolean exist;
 
-    public Point(int isLine) {
-        this(convertToBoolean(isLine));
+    public Point(int booleanNumber) {
+        this(convertToBoolean(booleanNumber));
     }
 
-    private static boolean convertToBoolean(int isLine) {
-        if (isLine == FALSE) {
+    private static boolean convertToBoolean(int booleanNumber) {
+        if (booleanNumber == FALSE) {
             return false;
         }
         return true;
     }
 
-    public Point(boolean isLine) {
-        this.isLine = isLine;
+    public Point(boolean exist) {
+        this.exist = exist;
     }
 
     public static Point empty() {
         return new Point(false);
     }
 
-    public boolean hasLine() {
-        return isLine;
+    public boolean exist() {
+        return exist;
     }
 
     @Override
@@ -40,11 +40,11 @@ public class Point {
             return false;
         }
         Point point = (Point) o;
-        return isLine == point.isLine;
+        return exist == point.exist;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(isLine);
+        return Objects.hash(exist);
     }
 }
