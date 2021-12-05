@@ -14,7 +14,7 @@ public class GameHistory {
         return new GameHistory();
     }
 
-    public void record(Integer participantPosition, Integer rewardPosition) {
+    public void record(int participantPosition, int rewardPosition) {
         history.put(participantPosition, rewardPosition);
     }
 
