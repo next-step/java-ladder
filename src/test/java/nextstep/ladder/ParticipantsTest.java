@@ -6,11 +6,13 @@ import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class ParticipantsTest {
 
     @Test
+    @DisplayName("참석자는 `,` 을 기준으로 split하여, 생성되어야 한다.")
     void createTest() throws NoSuchFieldException, IllegalAccessException {
         String input = "pobi,kiyy,koi,kk";
 

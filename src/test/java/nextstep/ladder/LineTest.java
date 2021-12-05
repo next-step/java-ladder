@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Random;
 import java.util.stream.IntStream;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LineTest {
@@ -11,6 +12,7 @@ class LineTest {
     private final int participantsCount = 5;
 
     @Test
+    @DisplayName("사다리타기 라인 생성시 라인이 겹치지 않아야 한다.")
     void lineDrawTest() {
         Line line = new Line(participantsCount, drawLineRandomMock());
 
@@ -18,6 +20,7 @@ class LineTest {
     }
 
     @Test
+    @DisplayName("사다리타기 라인이 생성되지 않아야 한다.")
     void lineUnDrawTest() {
         Line line = new Line(participantsCount, unDrawLineRandomMock());
 

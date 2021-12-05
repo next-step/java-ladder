@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 
 public class Participants {
 
-
     private static final String INPUT_STRING_REGEX = ",";
     private final List<Participant> participants;
 
