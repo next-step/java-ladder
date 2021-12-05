@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class StringAsPlayers {
 
-    private final static int MIN_PLAYER_COUNT = 2;
+    private static final int MIN_PLAYER_COUNT = 2;
     private final StringAsNames stringAsNames;
 
     public StringAsPlayers(String players) {
