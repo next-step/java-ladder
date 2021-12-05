@@ -20,4 +20,11 @@ public class Participants {
                 .collect(Collectors.toList()));
     }
 
+    public int size() {
+        return participants.size();
+    }
+
+    public List<Participant> getParticipants() {
+        return participants;
+    }
 }
