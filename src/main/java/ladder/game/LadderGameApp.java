@@ -1,4 +1,4 @@
-package ladder.model.game;
+package ladder.game;
 
 import ladder.model.*;
 import ladder.model.stringas.StringAsHeight;
