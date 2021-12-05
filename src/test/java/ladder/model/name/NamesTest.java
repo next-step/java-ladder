@@ -1,6 +1,5 @@
-package ladder.model.stringas;
+package ladder.model.name;
 
-import ladder.model.Name;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -12,22 +11,22 @@ import java.util.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-class StringAsNamesTest {
+class NamesTest {
 
     @Test
     @DisplayName("생성된 list 사이즈가 0일때 예외발생 테스트")
     void sizeZeroException() {
-        stringAsNamesExceptionThrown(",,,,,,,", "이름이 null 이거나 비어있습니다.");
+        namesExceptionThrown(",,,,,,,", "이름이 null 이거나 비어있습니다.");
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"1,1,2,3,4", "1,2,2,3,4", "2,4,2,5,2,6"})
     @DisplayName("중복된 이름이 있을 때 예외발생 테스트")
     void nameDuplicateException(String names) {
-        stringAsNamesExceptionThrown(names, "중복된 이름이 있습니다.");
+        namesExceptionThrown(names, "중복된 이름이 있습니다.");
     }
 
-    private void stringAsNamesExceptionThrown(String names, String message) {
+    private void namesExceptionThrown(String names, String message) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Names(names).get())
                 .withMessage(message);

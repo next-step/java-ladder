@@ -10,9 +10,9 @@ class LineTest {
 
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3, 4, 5})
-    @DisplayName("draw의 리스트 사이즈로 point size 값 맞는지 테스트")
+    @DisplayName("point의 size 값 맞는지 테스트")
     void drawSizeTest(int countOfPerson) {
         Line line = new Line(countOfPerson);
-        assertThat(line.draw().size()).isEqualTo(countOfPerson);
+        assertThat(line.getPoints().get().size()).isEqualTo(countOfPerson);
     }
 }

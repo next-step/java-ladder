@@ -1,6 +1,5 @@
-package ladder.model;
+package ladder.model.point;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -39,8 +38,4 @@ public class Point {
         return this.isLine;
     }
 
-    public String draw() {
-        String value = getIsLine() ? "-" : " ";
-        return String.join("",Collections.nCopies(5, value)) + "|";
-    }
 }

@@ -1,27 +1,16 @@
 package ladder.model;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
+import ladder.model.point.Points;
 
 public class Line {
 
-    private final List<Point> points = new ArrayList<Point>();
+    private final Points points;
 
     public Line (int countOfPerson) {
-        initPoints(countOfPerson);
+        this.points = new Points(countOfPerson);
     }
 
-    public List<String> draw() {
-        return points.stream()
-                .map(point -> point.draw())
-                .collect(Collectors.toList());
-    }
-
-    private void initPoints(int countOfPerson) {
-        points.add(Point.first());
-        for(int idx = 1; idx < countOfPerson; idx++) {
-            points.add(points.get(idx-1).next());
-        }
+    public Points getPoints() {
+        return points;
     }
 }

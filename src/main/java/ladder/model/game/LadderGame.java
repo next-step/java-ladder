@@ -2,16 +2,16 @@ package ladder.model.game;
 
 import ladder.model.Height;
 import ladder.model.Line;
-import ladder.model.Player;
+import ladder.model.player.Players;
 
 import java.util.*;
 
 public class LadderGame {
 
-    private final List<Player> players;
+    private final Players players;
     private final Height height;
 
-    public LadderGame(List<Player> players, Height height) {
+    public LadderGame(Players players, Height height) {
         this.players = players;
         this.height = height;
     }

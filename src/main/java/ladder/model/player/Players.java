@@ -1,7 +1,8 @@
-package ladder.model.stringas;
+package ladder.model.player;
 
-import ladder.model.Player;
+import ladder.model.name.Names;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,8 +15,16 @@ public class Players {
         this.players = toPlayerList(players);
     }
 
+    public int size() {
+        return this.players.size();
+    }
+
+    public List<Player> get() {
+        return Collections.unmodifiableList(this.players);
+    }
+
     private List<Player> toPlayerList(String players) {
-        List<Player> list = new Names(players).getNames()
+        List<Player> list = new Names(players).get()
                             .stream()
                             .map(Player::new)
                             .collect(Collectors.toList());

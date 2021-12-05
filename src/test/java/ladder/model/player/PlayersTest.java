@@ -1,4 +1,4 @@
-package ladder.model.stringas;
+package ladder.model.player;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-class StringAsPlayersTest {
+class PlayersTest {
 
     @Test
     @DisplayName("참가하는 사람이 2명 미만일 경우 예외 발생")

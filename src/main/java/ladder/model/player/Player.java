@@ -1,4 +1,6 @@
-package ladder.model;
+package ladder.model.player;
+
+import ladder.model.name.Name;
 
 public class Player {
 

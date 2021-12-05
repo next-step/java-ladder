@@ -1,8 +1,6 @@
-package ladder.model.stringas;
+package ladder.model.name;
 
-import ladder.model.Name;
-
-    import java.util.Arrays;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -16,7 +14,7 @@ public class Names {
         this.names = toNameList(names);
     }
 
-    public List<Name> getNames() {
+    public List<Name> get() {
         return Collections.unmodifiableList(this.names);
     }
 
