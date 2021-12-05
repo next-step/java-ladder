@@ -50,6 +50,6 @@ public class StreamStudy {
         return numbers.stream()
                       .filter(number -> number > 3)
                       .map(number -> number * 2)
-                      .reduce(0, (x, y) -> x + y);
+                      .reduce(0, Integer::sum);
     }
 }
