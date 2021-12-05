@@ -2,7 +2,10 @@ package domain;
 
 import java.util.List;
 
+import static domain.RandomGenerator.produceRandomFlags;
+
 public class Floor {
+    private static final int DECREMENT_FOR_STAIRS_PER_FLOOR = 1;
 
     private final List<Boolean> states;
 
@@ -24,5 +27,12 @@ public class Floor {
         }
 
         return position;
+    }
+
+    public static Floor of(int participantSize) {
+        int numberOfStairsPerFloor = participantSize - DECREMENT_FOR_STAIRS_PER_FLOOR;
+        List<Boolean> randomFlags = produceRandomFlags(numberOfStairsPerFloor);
+
+        return new Floor(randomFlags);
     }
 }
