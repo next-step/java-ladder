@@ -10,8 +10,8 @@ public class Line {
 
     private final List<Boolean> points = new ArrayList<>();
 
-    public Line(int participantsCount, Random random) {
-        IntStream.range(0, participantsCount)
+    public Line(int pointCount, Random random) {
+        IntStream.range(0, pointCount)
             .forEach(i -> points.add(isNotDrawnBeforePoint(i) && pickAtRandom(random)));
     }
 
@@ -30,6 +30,11 @@ public class Line {
     private boolean pickAtRandom(Random random) {
         return random.nextBoolean();
     }
+
+    public List<Boolean> getPoints() {
+        return points;
+    }
+
 
     @Override
     public boolean equals(Object o) {

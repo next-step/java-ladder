@@ -11,11 +11,15 @@ public class Ladder {
 
     public Ladder(int height, int participantsCount) {
         IntStream.range(0, height)
-            .forEach(i -> lines.add(new Line(participantsCount, new Random())));
+            .forEach(i -> lines.add(new Line(participantsCount - 1, new Random())));
     }
 
     public static Ladder create(int height, int participantsCount) {
         return new Ladder(height, participantsCount);
+    }
+
+    public List<Line> getLines() {
+        return lines;
     }
 
     @Override

@@ -10,15 +10,27 @@ import org.junit.jupiter.api.Test;
 public class LadderTest {
 
     @Test
-    @DisplayName("Ladder 생성시, 전달한 갯수만큼 List가 생성되어야 한다.")
-    void createTest() throws NoSuchFieldException, IllegalAccessException {
+    @DisplayName("Ladder 생성시, 전달한 갯수만큼 lines 생성되어야 한다.")
+    void createHeightSizeTest() throws NoSuchFieldException, IllegalAccessException {
         Ladder ladder = Ladder.create(5, 10);
 
         List<Line> linesByReflection = getLinesByReflection(ladder);
 
         assertThat(linesByReflection).hasSize(5);
-
+        assertThat(linesByReflection.get(0).getPoints()).hasSize(9);
         System.out.println(ladder);
+    }
+
+    @Test
+    @DisplayName("Ladder 생성시, 생성되는 각 Line의 갯수는, 참가자의 수 -1 이다.")
+    void createLineInPointSizeTest() throws NoSuchFieldException, IllegalAccessException {
+
+        int participantsCount = 10;
+        Ladder ladder = Ladder.create(5, participantsCount);
+
+        List<Line> linesByReflection = getLinesByReflection(ladder);
+
+        assertThat(linesByReflection.get(0).getPoints()).hasSize(participantsCount - 1);
     }
 
     @SuppressWarnings("unchecked")
