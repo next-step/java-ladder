@@ -28,9 +28,10 @@ public class StreamStudy {
 
         // TODO 이 부분에 구현한다.
         words.stream()
+             .distinct()
              .filter(word -> word.length() > 12)
              .sorted(Comparator.comparingInt(String::length))
-             .distinct()
+             .limit(100)
              .forEach(word -> System.out.println(word.toLowerCase()));
 
     }
