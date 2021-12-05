@@ -3,10 +3,7 @@ package step2.domain;
 import java.util.Objects;
 
 public class Participant {
-    private Name name;
-
-    private Participant() {
-    }
+    private final Name name;
 
     private Participant(String name) {
         this.name = Name.of(name);

@@ -3,12 +3,12 @@ package step2.domain;
 import java.util.Objects;
 
 public class Height {
-    private int height;
+    public static final int MIN_NUMBER = 0;
 
-    private Height() {
-    }
+    private final int height;
 
     private Height(int height) {
+        validate(height);
         this.height = height;
     }
 
@@ -22,6 +22,12 @@ public class Height {
 
     public int getHeight() {
         return height;
+    }
+
+    private static void validate(int height) {
+        if (height < MIN_NUMBER) {
+            throw new IllegalArgumentException("음수는 허용하지 않습니다.");
+        }
     }
 
     @Override

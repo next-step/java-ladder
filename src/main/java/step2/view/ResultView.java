@@ -1,13 +1,12 @@
 package step2.view;
 
-import step2.domain.Ladder;
-import step2.domain.Line;
+import step2.domain.*;
 
 import java.util.List;
 
 public class ResultView {
     private static final int NAME_MAX_LENGTH = 5;
-    private static final String RESULT_MESSAGE = "실행결과\n";
+    private static final String RESULT_MESSAGE = "\n실행결과";
     private static final String WHITE_SPACE = " ";
     private static final String WHITE_SPACE_FOUR = "    ";
     private static final String LADDER_WHITE_SPACE = "     ";
@@ -16,10 +15,24 @@ public class ResultView {
     private static final String LADDER_LINE = LADDER + LINE;
     private static final String LADDER_NO_LINE = LADDER + LADDER_WHITE_SPACE;
 
-    public static void showResult(List<String> names, Ladder ladder) {
+    public static void showResult(Participants participants, Ladder ladder, Rewards rewards) {
         System.out.println(RESULT_MESSAGE);
-        showParticipantNames(names);
+        showParticipantNames(participants.getNames());
         showLadder(ladder);
+        showRewards(rewards.getRewardsName());
+        System.out.println();
+    }
+
+    public static void showRewardResult(String result) {
+        System.out.println(RESULT_MESSAGE);
+        System.out.println(result);
+        System.out.println();
+    }
+
+    public static void showRewardAllResult(String result) {
+        System.out.println(RESULT_MESSAGE);
+        System.out.println(result);
+        System.out.println();
     }
 
     private static void showParticipantNames(List<String> names) {
@@ -41,7 +54,7 @@ public class ResultView {
         for (Boolean isLine : line.getLine()) {
             printLine(isLine);
         }
-        System.out.println(LADDER);
+        System.out.println();
     }
 
     private static void printLine(Boolean isLine) {
@@ -50,6 +63,14 @@ public class ResultView {
             return;
         }
         System.out.print(LADDER_NO_LINE);
+    }
+
+    private static void showRewards(List<String> rewards) {
+        for (String reward : rewards) {
+            int rewardLength = reward.length();
+            System.out.print(repeatWhiteSpace(NAME_MAX_LENGTH - rewardLength) + reward + WHITE_SPACE);
+        }
+        System.out.println();
     }
 
     private static String repeatWhiteSpace(int repeatCount) {
