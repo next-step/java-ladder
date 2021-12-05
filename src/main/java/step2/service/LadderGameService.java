@@ -15,9 +15,10 @@ public class LadderGameService {
 
     public GameHistory start(Ladder ladder, LadderInfo ladderInfo) {
         GameHistory gameHistory = GameHistory.of();
-        for (int position = START_POSITION; position < ladderInfo.getWidth(); position++) {
-            int result = ladder.run(position);
-            gameHistory.record(position, result);
+        for (int currentPosition = START_POSITION; currentPosition < ladderInfo.getWidth(); currentPosition++) {
+            Position position = Position.of(currentPosition);
+            ladder.run(position);
+            gameHistory.record(currentPosition, position.position());
         }
         return gameHistory;
     }

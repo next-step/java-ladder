@@ -57,10 +57,10 @@ public class LineTest {
         //given
         Line line = Line.create(Arrays.asList(true, false, true, false));
         //when
-        int position = 0;
-        position = line.move(position);
+        Position position = Position.of(0);
+        line.move(position);
         //then
-        assertThat(position).isEqualTo(1);
+        assertThat(position.position()).isEqualTo(1);
     }
 
     @Test
@@ -68,10 +68,10 @@ public class LineTest {
         //given
         Line line = Line.create(Arrays.asList(true, false, true, false));
         //when
-        int position = 1;
-        position = line.move(position);
+        Position position = Position.of(1);
+        line.move(position);
         //then
-        assertThat(position).isEqualTo(0);
+        assertThat(position.position()).isEqualTo(0);
     }
 
     @Test
@@ -79,9 +79,9 @@ public class LineTest {
         //given
         Line line = Line.create(Arrays.asList(false, false, true, false));
         //when
-        int position = 1;
-        position = line.move(position);
+        Position position = Position.of(1);
+        line.move(position);
         //then
-        assertThat(position).isEqualTo(position);
+        assertThat(position.position()).isEqualTo(1);
     }
 }

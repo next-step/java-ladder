@@ -1,15 +1,15 @@
 package step2.domain;
 
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 public enum Direction {
-    LEFT((position) -> position - 1),
-    RIGHT((position) -> position + 1),
-    NONE((position) -> position);
+    LEFT(Position::moveBack),
+    RIGHT(Position::moveFront),
+    NONE(Position::position);
 
-    private final Function<Integer, Integer> moveResult;
+    private final Consumer<Position> moveResult;
 
-    Direction(Function<Integer, Integer> moveResult) {
+    Direction(Consumer<Position> moveResult) {
         this.moveResult = moveResult;
     }
 
@@ -23,7 +23,7 @@ public enum Direction {
         return NONE;
     }
 
-    public int move(int position) {
-        return moveResult.apply(position);
+    public void move(Position position) {
+        moveResult.accept(position);
     }
 }

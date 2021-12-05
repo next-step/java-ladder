@@ -24,11 +24,11 @@ public class Ladder {
         return lines;
     }
 
-    public int run(int position) {
+    public Position run(Position position) {
         int depth = 0;
         while (!isEnd(depth)) {
             Line line = lines.get(depth);
-            position = line.move(position);
+            line.move(position);
             depth++;
         }
         return position;

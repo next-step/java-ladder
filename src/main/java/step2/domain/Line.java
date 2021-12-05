@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class Line {
-    public static final int START_POSITION = 0;
+    public static final int INCREASE_MOVE_STEP = 1;
 
     private List<Boolean> line = new ArrayList<>();
 
@@ -38,20 +38,24 @@ public class Line {
         return line.size();
     }
 
-    public int move(int position) {
-        Direction direction = Direction.findBy(movable(position - 1), movable(position));
-        return direction.move(position);
+    public void move(Position position) {
+        Direction direction = Direction.findBy(movableToBack(position), movableToFront(position));
+        direction.move(position);
     }
 
-    private boolean movable(int position) {
-        if (edged(position)) {
+    private boolean movableToBack(Position position) {
+        if (position.startingPosition()) {
             return false;
         }
-        return line.get(position);
+        return get(position.position() - INCREASE_MOVE_STEP);
     }
 
-    private boolean edged(int position) {
-        return position < START_POSITION;
+    private boolean movableToFront(Position position) {
+        return get(position.position());
+    }
+
+    private boolean get(int position) {
+        return line.get(position);
     }
 
     @Override
