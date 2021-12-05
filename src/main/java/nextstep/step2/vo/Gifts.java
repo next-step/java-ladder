@@ -12,6 +12,7 @@ public class Gifts {
     private static final int MIN_GIFT_COUNT = 2;
     private static final String NULL_OR_LESS_SIZE_MESSAGE = "최소 " + MIN_GIFT_COUNT + "명 이상의 당첨 선물이 필요합니다.";
     private static final String INDEX_RANGE_EXCEPTION_MESSAGE = "인덱스의 범위가 정확하지 않습니다.";
+    private static final String COMMA_WITH_SPLIT_GIFTS = ",";
 
     private final List<Gift> gifts;
 
@@ -33,7 +34,7 @@ public class Gifts {
             throw new IllegalArgumentException(NULL_OR_LESS_SIZE_MESSAGE);
         }
 
-        return Arrays.stream(input.split(","))
+        return Arrays.stream(input.split(COMMA_WITH_SPLIT_GIFTS))
                 .map(Gift::of)
                 .collect(collectingAndThen(toList(), Gifts::new));
     }

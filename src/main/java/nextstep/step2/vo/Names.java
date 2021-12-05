@@ -11,6 +11,7 @@ public class Names {
 
     private static final int MIN_PLAYER_COUNT = 2;
     private static final String NULL_OR_LESS_SIZE_MESSAGE = "최소 " + MIN_PLAYER_COUNT + "명 이상의 플레이어가 필요합니다.";
+    private static final String COMMA_WITH_SPLIT_NAMES = ",";
 
     private final List<Name> names;
 
@@ -31,7 +32,7 @@ public class Names {
             throw new IllegalArgumentException(NULL_OR_LESS_SIZE_MESSAGE);
         }
 
-        return Arrays.stream(input.split(","))
+        return Arrays.stream(input.split(COMMA_WITH_SPLIT_NAMES))
                 .map(Name::of)
                 .collect(collectingAndThen(toList(), Names::new));
     }
