@@ -47,7 +47,7 @@ public class LadderGame {
     }
 
     public GameResults playAllGame() {
-        return gameInfo.getNames().getNames().stream()
+        return gameInfo.namesList().stream()
                 .map(this::playGame)
                 .collect(Collectors.collectingAndThen(Collectors.toList(), GameResults::new));
     }

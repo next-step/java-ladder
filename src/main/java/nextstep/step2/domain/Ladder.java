@@ -35,12 +35,12 @@ public class Ladder {
         return of(Lines.of(lines));
     }
 
-    public List<Line> getLineList() {
+    public List<Line> lineList() {
         return lines.getLines();
     }
 
     public Point play(Point start) {
-        return lines.move(start);
+        return lines.movedPoint(start);
     }
 
     @Override

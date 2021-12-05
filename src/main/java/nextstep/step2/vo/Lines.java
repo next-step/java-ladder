@@ -31,7 +31,7 @@ public class Lines {
                 .collect(Collectors.toList());
     }
 
-    public Point move(Point start) {
+    public Point movedPoint(Point start) {
         Point now = Point.of(start);
         for (Line line : lines) {
             now = line.move(now);

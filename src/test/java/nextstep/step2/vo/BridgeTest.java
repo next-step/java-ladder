@@ -17,7 +17,7 @@ class BridgeTest {
     void nextTest(String beforeValue, boolean input, String nextValue) {
         Bridge before = Bridge.valueOf(beforeValue);
 
-        assertThat(before.next(input, false)).isEqualTo(Bridge.valueOf(nextValue));
+        assertThat(before.nextBridge(input, false)).isEqualTo(Bridge.valueOf(nextValue));
     }
 
     @DisplayName("next() 마지막 줄은 left, down 만 반환한다..")
@@ -29,7 +29,7 @@ class BridgeTest {
     void nextLastLineTest(String beforeValue, boolean input, String nextValue) {
         Bridge before = Bridge.valueOf(beforeValue);
 
-        assertThat(before.next(input, true)).isEqualTo(Bridge.valueOf(nextValue));
+        assertThat(before.nextBridge(input, true)).isEqualTo(Bridge.valueOf(nextValue));
     }
 
     @DisplayName("firstBridge() 는 DOWN OR RIGHT만 반환할 수 있다.")

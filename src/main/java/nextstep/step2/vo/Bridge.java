@@ -23,7 +23,7 @@ public enum Bridge {
         return moveValue;
     }
 
-    public Bridge next(boolean isRight, boolean isLast) {
+    public Bridge nextBridge(boolean isRight, boolean isLast) {
         if (this.equals(Bridge.RIGHT)) {
             return LEFT;
         }

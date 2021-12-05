@@ -65,15 +65,15 @@ class GiftsTest {
     @Test
     void getGiftTest() {
         Gifts gifts = Gifts.of("1000,2000");
-        assertThat(gifts.getGift(0)).isEqualTo(Gift.of("1000"));
-        assertThat(gifts.getGift(1)).isEqualTo(Gift.of("2000"));
+        assertThat(gifts.giftWithIndex(0)).isEqualTo(Gift.of("1000"));
+        assertThat(gifts.giftWithIndex(1)).isEqualTo(Gift.of("2000"));
     }
 
     @DisplayName("getGift()는 index가 범위에 맞지 않으면 illegal exception.")
     @Test
     void getGiftFailTest() {
         Gifts gifts = Gifts.of("1000,2000");
-        assertThatIllegalArgumentException().isThrownBy(() -> gifts.getGift(3));
-        assertThatIllegalArgumentException().isThrownBy(() -> gifts.getGift(-1));
+        assertThatIllegalArgumentException().isThrownBy(() -> gifts.giftWithIndex(3));
+        assertThatIllegalArgumentException().isThrownBy(() -> gifts.giftWithIndex(-1));
     }
 }

@@ -48,7 +48,7 @@ class LinesTest {
                 )
         );
 
-        assertThat(lines.move(Point.of(startPoint))).isEqualTo(Point.of(endPoint));
+        assertThat(lines.movedPoint(Point.of(startPoint))).isEqualTo(Point.of(endPoint));
     }
 
 }

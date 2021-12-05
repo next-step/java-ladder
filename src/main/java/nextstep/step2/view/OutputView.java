@@ -56,7 +56,7 @@ public class OutputView {
     }
 
     public String ladderToPrintString(Ladder ladder) {
-        return ladder.getLineList().stream()
+        return ladder.lineList().stream()
                 .map(this::lineToPrintString)
                 .collect(Collectors.joining("\n"));
     }

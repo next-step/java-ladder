@@ -23,7 +23,7 @@ public class Point {
         return value;
     }
 
-    public Point move(Bridge bridge) {
+    public Point movedPoint(Bridge bridge) {
         return of(this.value + bridge.getMoveValue());
     }
 

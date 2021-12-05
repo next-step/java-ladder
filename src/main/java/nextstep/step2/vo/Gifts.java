@@ -47,7 +47,7 @@ public class Gifts {
         return size() == size;
     }
 
-    public Gift getGift(int index) {
+    public Gift giftWithIndex(int index) {
         if (index < 0 || index >= gifts.size()) {
             throw new IllegalArgumentException(INDEX_RANGE_EXCEPTION_MESSAGE);
         }

@@ -5,6 +5,7 @@ import nextstep.step2.vo.Gifts;
 import nextstep.step2.vo.Name;
 import nextstep.step2.vo.Names;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -35,11 +36,15 @@ public class GameInfo {
     }
 
     public Gift findGiftWithPoint(Point point) {
-        return gifts.getGift(point.getValue());
+        return gifts.giftWithIndex(point.getValue());
     }
 
     public Names getNames() {
         return names;
+    }
+
+    public List<Name> namesList() {
+        return names.getNames();
     }
 
     public Gifts getGifts() {

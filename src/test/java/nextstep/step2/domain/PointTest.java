@@ -24,7 +24,7 @@ class PointTest {
     void left(String bridgeName, int expectPoint) {
         Point point = Point.of(1);
 
-        assertThat(point.move(Bridge.valueOf(bridgeName))).isEqualTo(Point.of(expectPoint));
+        assertThat(point.movedPoint(Bridge.valueOf(bridgeName))).isEqualTo(Point.of(expectPoint));
     }
 
 }

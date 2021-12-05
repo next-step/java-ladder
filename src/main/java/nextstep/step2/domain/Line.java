@@ -42,7 +42,7 @@ public class Line {
 
         for (int i = SECOND_BRIDGE; i < endLine; i++) {
             Bridge prev = bridges.get(i - PREV_IDX);
-            bridges.add(prev.next(strategy.generate(), isLast(i, endLine)));
+            bridges.add(prev.nextBridge(strategy.generate(), isLast(i, endLine)));
         }
 
         return of(bridges);
@@ -81,7 +81,7 @@ public class Line {
     }
 
     public Point move(Point before) {
-        return before.move(findBridge(before));
+        return before.movedPoint(findBridge(before));
     }
 
     private Bridge findBridge(Point before) {
