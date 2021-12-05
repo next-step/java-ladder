@@ -11,7 +11,7 @@ public class ParticipantTest {
 
     @Test
     @DisplayName("참석자의 이름이 정상적으로 생성된다.")
-    void create() throws NoSuchFieldException, IllegalAccessException {
+    void createTest() throws NoSuchFieldException, IllegalAccessException {
         Participant participant = new Participant("koi");
 
         String nameByReflection = getNameByReflection(participant);

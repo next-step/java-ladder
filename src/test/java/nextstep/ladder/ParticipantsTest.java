@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 class ParticipantsTest {
 
     @Test
-    void create() throws NoSuchFieldException, IllegalAccessException {
+    void createTest() throws NoSuchFieldException, IllegalAccessException {
         String input = "pobi,kiyy,koi,kk";
 
         Participants participants = Participants.create(input);
