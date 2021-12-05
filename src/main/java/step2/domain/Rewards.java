@@ -31,6 +31,10 @@ public class Rewards {
                 .collect(Collectors.toList());
     }
 
+    public int size() {
+        return rewards.size();
+    }
+
     private void validatePosition(int position) {
         if (rewards.size() <= position) {
             throw new IllegalArgumentException("보상이 존재하지 않습니다.");
@@ -52,9 +56,5 @@ public class Rewards {
     @Override
     public int hashCode() {
         return Objects.hash(rewards);
-    }
-
-    public int size() {
-        return rewards.size();
     }
 }

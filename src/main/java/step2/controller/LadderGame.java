@@ -27,8 +27,9 @@ public class LadderGame {
         return new LadderGame(lineCreateStrategy);
     }
 
-    public void start(Participants participants, Height height, Rewards rewards) {
-        validateMatchSize(participants.matchedSize(rewards.size()));
+    public void start(GameInfo gameInfo, Height height) {
+        Participants participants = gameInfo.participants();
+        Rewards rewards = gameInfo.rewards();
 
         LadderInfo ladderInfo = LadderInfo.of(participants.size(), height.getHeight());
         Ladder ladder = Ladder.create(ladderInfo, lineCreateStrategy);
@@ -72,11 +73,5 @@ public class LadderGame {
         return savedHistory.keySet().stream()
                 .map((key) -> key + COLON + savedHistory.get(key))
                 .collect(Collectors.joining(NEW_LINE));
-    }
-
-    private void validateMatchSize(boolean matched) {
-        if (!matched) {
-            throw new IllegalArgumentException("참가자 수와 보상의 수가 일치하지 않습니다.");
-        }
     }
 }
