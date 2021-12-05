@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Line {
@@ -11,6 +12,10 @@ public class Line {
 
     public Line(List<Boolean> line) {
         this.line = line;
+    }
+
+    public List<Boolean> getLine() {
+        return Collections.unmodifiableList(line);
     }
 
     public static Line of(int width, LineStrategy lineStrategy) {

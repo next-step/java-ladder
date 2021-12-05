@@ -14,6 +14,10 @@ public class Height {
         this.height = height;
     }
 
+    public int getHeight() {
+        return height;
+    }
+
     private void valid(int height) {
         if (height < HEIGHT_MINIMUM_SIZE) {
             throw new LadderLengthException(HEIGHT_MINIMUM_SIZE);
