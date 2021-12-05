@@ -9,14 +9,13 @@ public class Width {
     private final int value;
 
     private Width(int value) {
+        if (value < MIN) {
+            throw new IllegalArgumentException(NULL_OR_LESS_HEIGHT_MESSAGE);
+        }
         this.value = value;
     }
 
     public static Width of(int value) {
-        if (value < MIN) {
-            throw new IllegalArgumentException(NULL_OR_LESS_HEIGHT_MESSAGE);
-        }
-
         return new Width(value);
     }
 

@@ -10,10 +10,6 @@ public class Name {
     private final String value;
 
     private Name(String value) {
-        this.value = value;
-    }
-
-    public static Name of(String value) {
         if (value == null || value.isEmpty()) {
             throw new IllegalArgumentException(NOT_NULL_OR_EMPTY_EXCEPTION_MESSAGE);
         }
@@ -21,7 +17,10 @@ public class Name {
         if (value.length() > MAX_SIZE) {
             throw new IllegalArgumentException(RANGE_EXCEPTION_MESSAGE);
         }
+        this.value = value;
+    }
 
+    public static Name of(String value) {
         return new Name(value);
     }
 

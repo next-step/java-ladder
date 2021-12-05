@@ -10,6 +10,9 @@ public class Height {
     private final int value;
 
     private Height(int value) {
+        if (value < MIN_HEIGHT) {
+            throw new IllegalArgumentException(NULL_OR_LESS_HEIGHT_MESSAGE);
+        }
         this.value = value;
     }
 
@@ -21,10 +24,6 @@ public class Height {
     }
 
     public static Height of(int value) {
-        if (value < MIN_HEIGHT) {
-            throw new IllegalArgumentException(NULL_OR_LESS_HEIGHT_MESSAGE);
-        }
-
         return new Height(value);
     }
 

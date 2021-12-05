@@ -15,14 +15,14 @@ public class GameInfo {
     private final Gifts gifts;
 
     private GameInfo(Names names, Gifts gifts) {
+        if (names.size() != gifts.size()) {
+            throw new IllegalArgumentException(NOT_EQUAL_SIZE_MESSAGE);
+        }
         this.names = names;
         this.gifts = gifts;
     }
 
     public static GameInfo of(Names names, Gifts gifts) {
-        if (names.size() != gifts.size()) {
-            throw new IllegalArgumentException(NOT_EQUAL_SIZE_MESSAGE);
-        }
         return new GameInfo(names, gifts);
     }
 

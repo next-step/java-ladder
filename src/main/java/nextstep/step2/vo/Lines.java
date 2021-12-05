@@ -15,15 +15,13 @@ public class Lines {
     private final List<Line> lines;
 
     private Lines(List<Line> lines) {
+        if (lines == null || lines.isEmpty()) {
+            throw new IllegalArgumentException(EMPTY_MESSAGE);
+        }
         this.lines = new ArrayList<>(lines);
     }
 
     public static Lines of(List<Line> lines) {
-
-        if (lines == null || lines.isEmpty()) {
-            throw new IllegalArgumentException(EMPTY_MESSAGE);
-        }
-
         return new Lines(lines);
     }
 

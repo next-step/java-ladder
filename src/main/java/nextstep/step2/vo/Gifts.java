@@ -16,15 +16,14 @@ public class Gifts {
     private final List<Gift> gifts;
 
     private Gifts(List<Gift> gifts) {
-        this.gifts = gifts;
-    }
-
-    public static Gifts of(List<Gift> gifts) {
-
         if (gifts == null || gifts.size() < MIN_GIFT_COUNT) {
             throw new IllegalArgumentException(NULL_OR_LESS_SIZE_MESSAGE);
         }
 
+        this.gifts = gifts;
+    }
+
+    public static Gifts of(List<Gift> gifts) {
         return new Gifts(gifts);
     }
 

@@ -15,15 +15,13 @@ public class Names {
     private final List<Name> names;
 
     private Names(List<Name> names) {
+        if (names == null || names.size() < MIN_PLAYER_COUNT) {
+            throw new IllegalArgumentException(NULL_OR_LESS_SIZE_MESSAGE);
+        }
         this.names = names;
     }
 
     public static Names of(List<Name> names) {
-
-        if (names == null || names.size() < MIN_PLAYER_COUNT) {
-            throw new IllegalArgumentException(NULL_OR_LESS_SIZE_MESSAGE);
-        }
-
         return new Names(names);
     }
 

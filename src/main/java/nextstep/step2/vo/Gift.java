@@ -8,14 +8,14 @@ public class Gift {
     private final String value;
 
     private Gift(String value) {
-        this.value = value;
-    }
-
-    public static Gift of(String value) {
         if (value == null || value.isEmpty()) {
             throw new IllegalArgumentException(NOT_NULL_OR_EMPTY_EXCEPTION_MESSAGE);
         }
 
+        this.value = value;
+    }
+
+    public static Gift of(String value) {
         return new Gift(value);
     }
 

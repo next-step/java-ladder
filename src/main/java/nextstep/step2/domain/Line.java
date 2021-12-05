@@ -18,13 +18,13 @@ public class Line {
     private final List<Bridge> bridges;
 
     private Line(List<Bridge> bridges) {
+        if (bridges == null || bridges.isEmpty()) {
+            throw new IllegalArgumentException(NOT_EMPTY_LINE_MESSAGE);
+        }
         this.bridges = new ArrayList<>(bridges);
     }
 
     public static Line of(List<Bridge> bridges) {
-        if (bridges == null || bridges.isEmpty()) {
-            throw new IllegalArgumentException(NOT_EMPTY_LINE_MESSAGE);
-        }
         return new Line(bridges);
     }
 
