@@ -15,7 +15,7 @@ public class Gift {
         this.value = value;
     }
 
-    public static Gift of(String value) {
+    public static Gift from(String value) {
         return new Gift(value);
     }
 

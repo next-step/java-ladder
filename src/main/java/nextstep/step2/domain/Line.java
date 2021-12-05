@@ -24,19 +24,19 @@ public class Line {
         this.bridges = new ArrayList<>(bridges);
     }
 
-    public static Line of(List<Bridge> bridges) {
+    public static Line from(List<Bridge> bridges) {
         return new Line(bridges);
     }
 
-    public static Line of(Line line) {
-        return of(line.bridges);
+    public static Line fromWithLine(Line line) {
+        return from(line.bridges);
     }
 
-    public static Line of(Width width, BooleanGenerateStrategy strategy) {
-        return of(width.getValue(), strategy);
+    public static Line ofWithWidthAndStrategy(Width width, BooleanGenerateStrategy strategy) {
+        return ofWithEndLineAndStrategy(width.getValue(), strategy);
     }
 
-    public static Line of(int endLine, BooleanGenerateStrategy strategy) {
+    public static Line ofWithEndLineAndStrategy(int endLine, BooleanGenerateStrategy strategy) {
         List<Bridge> bridges = new ArrayList<>();
         bridges.add(Bridge.firstBridge(strategy.generate()));
 
@@ -45,7 +45,7 @@ public class Line {
             bridges.add(prev.nextBridge(strategy.generate(), isLast(i, endLine)));
         }
 
-        return of(bridges);
+        return from(bridges);
     }
 
     private static boolean isLast(int now, int endLine) {

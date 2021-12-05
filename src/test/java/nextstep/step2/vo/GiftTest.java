@@ -13,13 +13,13 @@ public class GiftTest {
     @ParameterizedTest
     @NullAndEmptySource
     void nullOrEmptyTest(String input) {
-        assertThatIllegalArgumentException().isThrownBy(() -> Gift.of(input));
+        assertThatIllegalArgumentException().isThrownBy(() -> Gift.from(input));
     }
 
     @DisplayName("정상 생성 테스트")
     @Test
     void createTest() {
-        assertThat(Gift.of("5000")).isEqualTo(Gift.of("5000"));
+        assertThat(Gift.from("5000")).isEqualTo(Gift.from("5000"));
     }
 
 }

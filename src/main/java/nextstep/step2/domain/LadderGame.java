@@ -24,8 +24,8 @@ public class LadderGame {
         return new LadderGame(gameInfo, ladder);
     }
 
-    public static LadderGame of(GameInfoDto gameInfoDto, Ladder ladder) {
-        return of(GameInfo.of(Names.of(gameInfoDto.getNames()), Gifts.of(gameInfoDto.getGifts())), ladder);
+    public static LadderGame ofWithGamInfoDtoAndLadder(GameInfoDto gameInfoDto, Ladder ladder) {
+        return of(GameInfo.of(Names.fromWithString(gameInfoDto.getNames()), Gifts.fromWithString(gameInfoDto.getGifts())), ladder);
     }
 
 

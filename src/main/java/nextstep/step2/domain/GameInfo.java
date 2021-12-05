@@ -32,7 +32,7 @@ public class GameInfo {
             return Optional.empty();
         }
 
-        return Optional.of(Point.of(names.indexOf(name)));
+        return Optional.of(Point.from(names.indexOf(name)));
     }
 
     public Gift findGiftWithPoint(Point point) {

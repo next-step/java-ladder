@@ -21,18 +21,18 @@ public class Lines {
         this.lines = new ArrayList<>(lines);
     }
 
-    public static Lines of(List<Line> lines) {
+    public static Lines from(List<Line> lines) {
         return new Lines(lines);
     }
 
     public List<Line> getLines() {
         return lines.stream()
-                .map(Line::of)
+                .map(Line::fromWithLine)
                 .collect(Collectors.toList());
     }
 
     public Point movedPoint(Point start) {
-        Point now = Point.of(start);
+        Point now = Point.fromWithPoint(start);
         for (Line line : lines) {
             now = line.move(now);
         }

@@ -1,9 +1,13 @@
 package nextstep.step2.domain;
 
+import nextstep.step2.dto.GameInfoDto;
 import nextstep.step2.dto.GameResult;
 import nextstep.step2.dto.GameResults;
 import nextstep.step2.dto.LadderInfoDto;
-import nextstep.step2.vo.*;
+import nextstep.step2.vo.Bridge;
+import nextstep.step2.vo.Gift;
+import nextstep.step2.vo.Lines;
+import nextstep.step2.vo.Name;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,30 +24,30 @@ class LadderGameTest {
 
     @BeforeEach
     void setUp() {
-        GameInfo gameInfo = GameInfo.of(Names.of("miz,kiz,diz"), Gifts.of("1000,2000,꽝"));
-        Lines lines = Lines.of(
+        GameInfoDto gameInfo = GameInfoDto.of("miz,kiz,diz", "1000,2000,꽝");
+        Lines lines = Lines.from(
                 Arrays.asList(
-                        Line.of(Arrays.asList(
+                        Line.from(Arrays.asList(
                                 Bridge.RIGHT, Bridge.LEFT, Bridge.DOWN
                         )),
-                        Line.of(Arrays.asList(
+                        Line.from(Arrays.asList(
                                 Bridge.DOWN, Bridge.RIGHT, Bridge.LEFT
                         ))
                 )
         );
 
-        Ladder ladder = Ladder.of(lines);
+        Ladder ladder = Ladder.from(lines);
 
-        ladderGame = LadderGame.of(gameInfo, ladder);
+        ladderGame = LadderGame.ofWithGamInfoDtoAndLadder(gameInfo, ladder);
     }
 
     @Test
     void createTest() {
-        GameInfo gameInfo = GameInfo.of(Names.of("miz,kiz,diz"), Gifts.of("1000,2000,꽝"));
+        GameInfoDto gameInfoDto = GameInfoDto.of("miz,kiz,diz", "1000,2000,꽝");
         LadderInfoDto ladderInfoDto = LadderInfoDto.of("miz,kiz,diz", "2");
-        Ladder ladder = Ladder.of(ladderInfoDto, () -> true);
+        Ladder ladder = Ladder.ofWithLadderInfoAndStrategy(ladderInfoDto, () -> true);
 
-        assertThat(LadderGame.of(gameInfo, ladder)).isEqualTo(LadderGame.of(gameInfo, ladder));
+        assertThat(LadderGame.ofWithGamInfoDtoAndLadder(gameInfoDto, ladder)).isEqualTo(LadderGame.ofWithGamInfoDtoAndLadder(gameInfoDto, ladder));
     }
 
     /*
@@ -54,8 +58,8 @@ class LadderGameTest {
     @ParameterizedTest
     @CsvSource(value = {"miz:꽝", "kiz:1000", "diz:2000"}, delimiter = ':')
     void playGameTest(String nameString, String giftString) {
-        assertThat(ladderGame.playGame(Name.of(nameString)))
-                .isEqualTo(new GameResult(Name.of(nameString), Gift.of(giftString)));
+        assertThat(ladderGame.playGame(Name.from(nameString)))
+                .isEqualTo(new GameResult(Name.from(nameString), Gift.from(giftString)));
     }
 
     /*
@@ -66,9 +70,9 @@ class LadderGameTest {
     @Test
     void playAllGameTest() {
         GameResults expect = new GameResults(Arrays.asList(
-                new GameResult(Name.of("miz"), Gift.of("꽝")),
-                new GameResult(Name.of("kiz"), Gift.of("1000")),
-                new GameResult(Name.of("diz"), Gift.of("2000"))
+                new GameResult(Name.from("miz"), Gift.from("꽝")),
+                new GameResult(Name.from("kiz"), Gift.from("1000")),
+                new GameResult(Name.from("diz"), Gift.from("2000"))
         ));
 
 

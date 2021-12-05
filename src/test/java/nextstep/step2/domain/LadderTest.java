@@ -17,18 +17,18 @@ class LadderTest {
     @DisplayName("정상 생성 테스트")
     @Test
     void createTest() {
-        Width width = Width.of(2);
-        Height height = Height.of(2);
+        Width width = Width.from(2);
+        Height height = Height.from(2);
         LadderInfoDto ladderInfoDto = LadderInfoDto.of(width, height);
         BooleanGenerateStrategy booleanGenerateStrategy = () -> true;
 
-        Ladder ladder = Ladder.of(ladderInfoDto, booleanGenerateStrategy);
+        Ladder ladder = Ladder.ofWithLadderInfoAndStrategy(ladderInfoDto, booleanGenerateStrategy);
 
         assertThat(ladder)
-                .isEqualTo(Ladder.of(
-                        Lines.of(Arrays.asList(
-                                Line.of(width, booleanGenerateStrategy),
-                                Line.of(width, booleanGenerateStrategy)
+                .isEqualTo(Ladder.from(
+                        Lines.from(Arrays.asList(
+                                Line.ofWithWidthAndStrategy(width, booleanGenerateStrategy),
+                                Line.ofWithWidthAndStrategy(width, booleanGenerateStrategy)
                         ))
                 ));
     }
@@ -37,19 +37,19 @@ class LadderTest {
     @Test
     void createFailTest() {
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            Width width = Width.of(1);
-            Height height = Height.of(2);
+            Width width = Width.from(1);
+            Height height = Height.from(2);
             LadderInfoDto ladderInfoDto = LadderInfoDto.of(width, height);
             BooleanGenerateStrategy booleanGenerateStrategy = () -> true;
-            Ladder.of(ladderInfoDto, booleanGenerateStrategy);
+            Ladder.ofWithLadderInfoAndStrategy(ladderInfoDto, booleanGenerateStrategy);
         });
 
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            Width width = Width.of(2);
-            Height height = Height.of(0);
+            Width width = Width.from(2);
+            Height height = Height.from(0);
             LadderInfoDto ladderInfoDto = LadderInfoDto.of(width, height);
             BooleanGenerateStrategy booleanGenerateStrategy = () -> true;
-            Ladder.of(ladderInfoDto, booleanGenerateStrategy);
+            Ladder.ofWithLadderInfoAndStrategy(ladderInfoDto, booleanGenerateStrategy);
         });
     }
 
@@ -61,20 +61,20 @@ class LadderTest {
     @ParameterizedTest
     @CsvSource(value = {"0:2", "1:0", "2:1"}, delimiter = ':')
     void playTest(int startPoint, int endPoint) {
-        Lines lines = Lines.of(
+        Lines lines = Lines.from(
                 Arrays.asList(
-                        Line.of(Arrays.asList(
+                        Line.from(Arrays.asList(
                                 Bridge.RIGHT, Bridge.LEFT, Bridge.DOWN
                         )),
-                        Line.of(Arrays.asList(
+                        Line.from(Arrays.asList(
                                 Bridge.DOWN, Bridge.RIGHT, Bridge.LEFT
                         ))
                 )
         );
 
-        Ladder ladder = Ladder.of(lines);
+        Ladder ladder = Ladder.from(lines);
 
-        assertThat(ladder.play(Point.of(startPoint))).isEqualTo(Point.of(endPoint));
+        assertThat(ladder.play(Point.from(startPoint))).isEqualTo(Point.from(endPoint));
     }
 
 }

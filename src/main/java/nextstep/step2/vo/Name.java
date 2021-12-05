@@ -20,7 +20,7 @@ public class Name {
         this.value = value;
     }
 
-    public static Name of(String value) {
+    public static Name from(String value) {
         return new Name(value);
     }
 

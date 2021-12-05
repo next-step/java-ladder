@@ -20,19 +20,19 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public static Ladder of(Lines lines) {
+    public static Ladder from(Lines lines) {
         return new Ladder(lines);
     }
 
-    public static Ladder of(LadderInfoDto info, BooleanGenerateStrategy strategy) {
+    public static Ladder ofWithLadderInfoAndStrategy(LadderInfoDto info, BooleanGenerateStrategy strategy) {
         Width width = info.getWidth();
         Height height = info.getHeight();
 
         List<Line> lines = IntStream.range(START_LINE, height.getValue())
-                .mapToObj(i -> Line.of(width, strategy))
+                .mapToObj(i -> Line.ofWithWidthAndStrategy(width, strategy))
                 .collect(Collectors.toList());
 
-        return of(Lines.of(lines));
+        return from(Lines.from(lines));
     }
 
     public List<Line> lineList() {

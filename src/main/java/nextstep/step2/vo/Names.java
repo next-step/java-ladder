@@ -22,18 +22,18 @@ public class Names {
         this.names = names;
     }
 
-    public static Names of(List<Name> names) {
+    public static Names from(List<Name> names) {
         return new Names(names);
     }
 
-    public static Names of(String input) {
+    public static Names fromWithString(String input) {
 
         if (input == null) {
             throw new IllegalArgumentException(NULL_OR_LESS_SIZE_MESSAGE);
         }
 
         return Arrays.stream(input.split(COMMA_WITH_SPLIT_NAMES))
-                .map(Name::of)
+                .map(Name::from)
                 .collect(collectingAndThen(toList(), Names::new));
     }
 
@@ -55,7 +55,7 @@ public class Names {
 
     public List<Name> getNames() {
         return names.stream()
-                .map(name -> Name.of(name.getValue()))
+                .map(name -> Name.from(name.getValue()))
                 .collect(toList());
     }
 

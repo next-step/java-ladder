@@ -34,7 +34,7 @@ public class main {
             return;
         }
 
-        outputView.renderResult(game.playGame(Name.of(player)));
+        outputView.renderResult(game.playGame(Name.from(player)));
     }
 
     private static LadderGame createLadderGame(InputView inputView) {
@@ -50,12 +50,12 @@ public class main {
     }
 
     private static LadderGame createLadderGame(GameInfoDto gameInfoDto, Ladder ladder) {
-        return LadderGame.of(gameInfoDto, ladder);
+        return LadderGame.ofWithGamInfoDtoAndLadder(gameInfoDto, ladder);
     }
 
     private static Ladder createLadder(String namesString, String heightString) {
         LadderInfoDto ladderInfoDto = LadderInfoDto.of(namesString, heightString);
         BooleanGenerateStrategy strategy = new RandomBooleanGenerateStrategy();
-        return Ladder.of(ladderInfoDto, strategy);
+        return Ladder.ofWithLadderInfoAndStrategy(ladderInfoDto, strategy);
     }
 }

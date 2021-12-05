@@ -12,8 +12,8 @@ class PointTest {
 
     @Test
     void createTest() {
-        Point intToPoint = Point.of(1);
-        Point pointToPoint = Point.of(intToPoint);
+        Point intToPoint = Point.from(1);
+        Point pointToPoint = Point.fromWithPoint(intToPoint);
         assertThat(intToPoint).isEqualTo(pointToPoint);
         assertThat(intToPoint).isEqualTo(intToPoint);
     }
@@ -22,9 +22,9 @@ class PointTest {
     @ParameterizedTest
     @CsvSource(value = {"DOWN:1", "LEFT:0", "RIGHT:2"}, delimiter = ':')
     void left(String bridgeName, int expectPoint) {
-        Point point = Point.of(1);
+        Point point = Point.from(1);
 
-        assertThat(point.movedPoint(Bridge.valueOf(bridgeName))).isEqualTo(Point.of(expectPoint));
+        assertThat(point.movedPoint(Bridge.valueOf(bridgeName))).isEqualTo(Point.from(expectPoint));
     }
 
 }

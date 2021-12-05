@@ -13,19 +13,19 @@ class HeightTest {
     @DisplayName("value 의 크기가 1 보다 작을 경우 illegal exception")
     @Test
     void lessThanOneTest() {
-        assertThatIllegalArgumentException().isThrownBy(() -> Height.of(0));
+        assertThatIllegalArgumentException().isThrownBy(() -> Height.from(0));
     }
 
     @DisplayName("Null or Empty String input illegal exception")
     @ParameterizedTest
     @NullAndEmptySource
     void nullOrEmptyTest(String input) {
-        assertThatIllegalArgumentException().isThrownBy(() -> Height.of(input));
+        assertThatIllegalArgumentException().isThrownBy(() -> Height.fromWithString(input));
     }
 
     @DisplayName("정상 생성 테스트")
     @Test
     void createTest() {
-        assertThat(Height.of(2)).isEqualTo(Height.of(2));
+        assertThat(Height.from(2)).isEqualTo(Height.from(2));
     }
 }

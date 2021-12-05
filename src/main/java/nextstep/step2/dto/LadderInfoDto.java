@@ -19,8 +19,8 @@ public class LadderInfoDto {
     }
 
     public static LadderInfoDto of(String namesString, String heightValue) {
-        Names names = Names.of(namesString);
-        return of(Width.of(names.size()), Height.of(heightValue));
+        Names names = Names.fromWithString(namesString);
+        return of(Width.from(names.size()), Height.fromWithString(heightValue));
     }
 
     public Width getWidth() {

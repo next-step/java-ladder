@@ -16,8 +16,8 @@ class NamesTest {
     @DisplayName("List<Name> 의 크기가 2 보다 작을 경우 illegal exception")
     @Test
     void lessThanOneTest() {
-        assertThatIllegalArgumentException().isThrownBy(() -> Names.of(
-                Arrays.asList(Name.of("test"))
+        assertThatIllegalArgumentException().isThrownBy(() -> Names.from(
+                Arrays.asList(Name.from("test"))
         ));
     }
 
@@ -25,14 +25,14 @@ class NamesTest {
     @ParameterizedTest
     @NullAndEmptySource
     void nullOrEmptyTest(String input) {
-        assertThatIllegalArgumentException().isThrownBy(() -> Names.of(input));
+        assertThatIllegalArgumentException().isThrownBy(() -> Names.fromWithString(input));
     }
 
     @DisplayName("size() 메서드는 Name의 갯수를 구한다.")
     @ParameterizedTest
     @CsvSource(value = {"abc,dasd,sadas,d:4", "abc,ddd:2"}, delimiter = ':')
     void sizeTest(String input, int expect) {
-        Names names = Names.of(input);
+        Names names = Names.fromWithString(input);
 
         assertThat(names.size()).isEqualTo(expect);
     }
@@ -40,22 +40,22 @@ class NamesTest {
     @DisplayName("정상 생성 테스트")
     @Test
     void createTest() {
-        assertThat(Names.of(Arrays.asList(Name.of("miz"), Name.of("mi"))))
-                .isEqualTo(Names.of(Arrays.asList(Name.of("miz"), Name.of("mi"))));
+        assertThat(Names.from(Arrays.asList(Name.from("miz"), Name.from("mi"))))
+                .isEqualTo(Names.from(Arrays.asList(Name.from("miz"), Name.from("mi"))));
     }
 
     @DisplayName("정상 ','로 구분 된 String 도 생성 할 수 있다.")
     @Test
     void createWithStringTest() {
-        assertThat(Names.of("miz,mi"))
-                .isEqualTo(Names.of(Arrays.asList(Name.of("miz"), Name.of("mi"))));
+        assertThat(Names.fromWithString("miz,mi"))
+                .isEqualTo(Names.from(Arrays.asList(Name.from("miz"), Name.from("mi"))));
     }
 
     @DisplayName("equalsSize() 메서드는 갯수가 같은지 판별한다.")
     @ParameterizedTest
     @CsvSource(value = {"abc,dasd,sadas,d:4:true", "abc,ddd:3:false"}, delimiter = ':')
     void sizeTest(String input, int size, boolean expect) {
-        Names names = Names.of(input);
+        Names names = Names.fromWithString(input);
 
         assertThat(names.equalsSize(size)).isEqualTo(expect);
     }
@@ -63,19 +63,19 @@ class NamesTest {
     @DisplayName("contains() 메서드로 name 존재여부 반환")
     @Test
     void containsTest() {
-        Names names = Names.of("miz,bi");
+        Names names = Names.fromWithString("miz,bi");
 
-        assertThat(names.contains(Name.of("miz"))).isTrue();
-        assertThat(names.contains(Name.of("bi"))).isTrue();
-        assertThat(names.contains(Name.of("bik"))).isFalse();
+        assertThat(names.contains(Name.from("miz"))).isTrue();
+        assertThat(names.contains(Name.from("bi"))).isTrue();
+        assertThat(names.contains(Name.from("bik"))).isFalse();
     }
 
     @DisplayName("indexOf() names에서 name의 인덱스 반환")
     @Test
     void findIndexWithName() {
-        Names names = Names.of("miz,bi");
+        Names names = Names.fromWithString("miz,bi");
 
-        assertThat(names.indexOf(Name.of("miz"))).isEqualTo(0);
-        assertThat(names.indexOf(Name.of("bi"))).isEqualTo(1);
+        assertThat(names.indexOf(Name.from("miz"))).isEqualTo(0);
+        assertThat(names.indexOf(Name.from("bi"))).isEqualTo(1);
     }
 }

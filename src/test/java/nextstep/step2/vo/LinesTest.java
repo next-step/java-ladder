@@ -18,15 +18,15 @@ class LinesTest {
     @DisplayName("Null or Empty input illegal exception")
     @Test
     void nullOrEmptyTest() {
-        assertThatIllegalArgumentException().isThrownBy(() -> Lines.of(null));
-        assertThatIllegalArgumentException().isThrownBy(() -> Lines.of(Collections.emptyList()));
+        assertThatIllegalArgumentException().isThrownBy(() -> Lines.from(null));
+        assertThatIllegalArgumentException().isThrownBy(() -> Lines.from(Collections.emptyList()));
     }
 
     @DisplayName("정상 생성 테스트")
     @Test
     void createTEst() {
-        assertThat(Lines.of(Arrays.asList(Line.of(2, () -> true))))
-                .isEqualTo(Lines.of(Arrays.asList(Line.of(2, () -> true))));
+        assertThat(Lines.from(Arrays.asList(Line.ofWithEndLineAndStrategy(2, () -> true))))
+                .isEqualTo(Lines.from(Arrays.asList(Line.ofWithEndLineAndStrategy(2, () -> true))));
     }
 
     /*
@@ -37,18 +37,18 @@ class LinesTest {
     @ParameterizedTest
     @CsvSource(value = {"0:2", "1:0", "2:1"}, delimiter = ':')
     void moveTest(int startPoint, int endPoint) {
-        Lines lines = Lines.of(
+        Lines lines = Lines.from(
                 Arrays.asList(
-                        Line.of(Arrays.asList(
+                        Line.from(Arrays.asList(
                                 Bridge.RIGHT, Bridge.LEFT, Bridge.DOWN
                         )),
-                        Line.of(Arrays.asList(
+                        Line.from(Arrays.asList(
                                 Bridge.DOWN, Bridge.RIGHT, Bridge.LEFT
                         ))
                 )
         );
 
-        assertThat(lines.movedPoint(Point.of(startPoint))).isEqualTo(Point.of(endPoint));
+        assertThat(lines.movedPoint(Point.from(startPoint))).isEqualTo(Point.from(endPoint));
     }
 
 }

@@ -24,18 +24,18 @@ public class Gifts {
         this.gifts = gifts;
     }
 
-    public static Gifts of(List<Gift> gifts) {
+    public static Gifts from(List<Gift> gifts) {
         return new Gifts(gifts);
     }
 
-    public static Gifts of(String input) {
+    public static Gifts fromWithString(String input) {
 
         if (input == null) {
             throw new IllegalArgumentException(NULL_OR_LESS_SIZE_MESSAGE);
         }
 
         return Arrays.stream(input.split(COMMA_WITH_SPLIT_GIFTS))
-                .map(Gift::of)
+                .map(Gift::from)
                 .collect(collectingAndThen(toList(), Gifts::new));
     }
 
@@ -57,7 +57,7 @@ public class Gifts {
 
     public List<Gift> getGifts() {
         return gifts.stream()
-                .map(gift -> Gift.of(gift.getValue()))
+                .map(gift -> Gift.from(gift.getValue()))
                 .collect(toList());
     }
 

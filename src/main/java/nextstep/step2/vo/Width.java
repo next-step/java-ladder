@@ -15,7 +15,7 @@ public class Width {
         this.value = value;
     }
 
-    public static Width of(int value) {
+    public static Width from(int value) {
         return new Width(value);
     }
 

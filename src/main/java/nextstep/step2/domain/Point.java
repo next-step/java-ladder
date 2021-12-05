@@ -11,12 +11,12 @@ public class Point {
         this.value = value;
     }
 
-    public static Point of(int now) {
+    public static Point from(int now) {
         return new Point(now);
     }
 
-    public static Point of(Point now) {
-        return of(now.value);
+    public static Point fromWithPoint(Point now) {
+        return from(now.value);
     }
 
     public int getValue() {
@@ -24,7 +24,7 @@ public class Point {
     }
 
     public Point movedPoint(Bridge bridge) {
-        return of(this.value + bridge.getMoveValue());
+        return from(this.value + bridge.getMoveValue());
     }
 
     @Override

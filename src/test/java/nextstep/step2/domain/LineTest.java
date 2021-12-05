@@ -19,7 +19,7 @@ class LineTest {
     @Test
     void createTest() {
 
-        Line actual = Line.of(5, () -> true);
+        Line actual = Line.ofWithEndLineAndStrategy(5, () -> true);
 
         List<Bridge> expect = Arrays.asList(
                 Bridge.RIGHT,
@@ -34,14 +34,14 @@ class LineTest {
     @DisplayName("빈 bridge 리스트가 오면 illegal Exception")
     @Test
     void createFailTest() {
-        assertThatIllegalArgumentException().isThrownBy(() -> Line.of(Collections.emptyList()));
+        assertThatIllegalArgumentException().isThrownBy(() -> Line.from(Collections.emptyList()));
     }
 
     @DisplayName("맨 처음 bridge 는 left 가 오지 않는다.")
     @ParameterizedTest
     @CsvSource(value = {"2:true:RIGHT", "3:false:DOWN", "5:true:RIGHT"}, delimiter = ':')
     void firstBridgeNotLeftTest(int count, boolean isRight, String expectBridge) {
-        Line line = Line.of(count, () -> isRight);
+        Line line = Line.ofWithEndLineAndStrategy(count, () -> isRight);
         Bridge bridge = line.getBridges().get(0);
         assertThat(bridge).isEqualTo(Bridge.valueOf(expectBridge));
     }
@@ -50,7 +50,7 @@ class LineTest {
     @ParameterizedTest
     @CsvSource(value = {"4:true:LEFT", "3:false:DOWN", "5:true:DOWN"}, delimiter = ':')
     void LastBridgeNotRightTest(int count, boolean isRight, String expectBridge) {
-        Line line = Line.of(count, () -> isRight);
+        Line line = Line.ofWithEndLineAndStrategy(count, () -> isRight);
         Bridge bridge = line.getBridges().get(count - 1);
         assertThat(bridge).isEqualTo(Bridge.valueOf(expectBridge));
     }
@@ -59,11 +59,11 @@ class LineTest {
     @ParameterizedTest
     @CsvSource(value = {"0:1", "1:0", "2:3", "3:2", "4:4"}, delimiter = ':')
     void moveTest(int beforePoint, int afterPoint) {
-        Line line = Line.of(
+        Line line = Line.from(
                 Arrays.asList(Bridge.RIGHT, Bridge.LEFT, Bridge.RIGHT, Bridge.LEFT, Bridge.DOWN)
         );
-        Point before = Point.of(beforePoint);
-        assertThat(line.move(before)).isEqualTo(Point.of(afterPoint));
+        Point before = Point.from(beforePoint);
+        assertThat(line.move(before)).isEqualTo(Point.from(afterPoint));
     }
 
 

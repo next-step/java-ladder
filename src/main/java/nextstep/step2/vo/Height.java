@@ -16,14 +16,14 @@ public class Height {
         this.value = value;
     }
 
-    public static Height of(String input) {
+    public static Height fromWithString(String input) {
         if (input == null || input.isEmpty()) {
             throw new IllegalArgumentException(NULL_OR_LESS_HEIGHT_MESSAGE);
         }
-        return of(Integer.parseInt(input));
+        return from(Integer.parseInt(input));
     }
 
-    public static Height of(int value) {
+    public static Height from(int value) {
         return new Height(value);
     }
 

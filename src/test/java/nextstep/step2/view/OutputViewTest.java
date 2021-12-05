@@ -10,7 +10,7 @@ class OutputViewTest {
     @Test
     void printNamesTest() {
         String expect = "miz    mi     k      mizm   mizmm  ";
-        Names names = Names.of("miz,mi,k,mizm,mizmm");
+        Names names = Names.fromWithString("miz,mi,k,mizm,mizmm");
         OutputView outputView = new OutputView();
 
         assertThat(outputView.namesToPrintString(names)).isEqualTo(expect);
