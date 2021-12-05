@@ -21,4 +21,9 @@ public final class InputView {
                            .map(Participant::new)
                            .collect(Collectors.toList());
     }
+
+    public static int acceptMaxLadderHeight() {
+        System.out.println("최대 사다리 높이는 몇 개인가요?");
+        return ScannerUtils.nextInt();
+    }
 }
