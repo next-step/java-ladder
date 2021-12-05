@@ -25,16 +25,20 @@ public class Ladder {
     }
 
     public Position run(Position position) {
-        int depth = 0;
-        while (!isEnd(depth)) {
-            Line line = lines.get(depth);
-            line.move(position);
-            depth++;
+        Level level = Level.init();
+        while (proceed(level)) {
+            move(level, position);
+            level.next();
         }
         return position;
     }
 
-    private boolean isEnd(int depth) {
-        return lines.size() == depth;
+    private void move(Level level, Position position) {
+        Line line = lines.get(level.level());
+        line.move(position);
+    }
+
+    private boolean proceed(Level level) {
+        return !Level.of(lines.size()).matched(level);
     }
 }
