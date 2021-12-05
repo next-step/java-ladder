@@ -29,7 +29,7 @@ class StringAsNamesTest {
 
     private void stringAsNamesExceptionThrown(String names, String message) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new StringAsNames(names).get())
+                .isThrownBy(() -> new Names(names).get())
                 .withMessage(message);
     }
 
@@ -37,7 +37,7 @@ class StringAsNamesTest {
     @CsvSource(value = {"1,2,3,4,5|5", "1,2,3|3", "1|1"}, delimiter = '|')
     @DisplayName("값에 따라 생성된 리스트 사이즈 확인")
     void createdListSizeTest(String names, int size) {
-        List<Name> list =  new StringAsNames(names).get();
+        List<Name> list =  new Names(names).get();
         assertThat(list.size()).isEqualTo(size);
     }
 }

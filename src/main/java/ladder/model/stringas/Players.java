@@ -5,19 +5,20 @@ import ladder.model.Player;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class StringAsPlayers {
+public class Players {
 
     private static final int MIN_PLAYER_COUNT = 2;
-    private final StringAsNames stringAsNames;
+    private final List<Player> players;
 
-    public StringAsPlayers(String players) {
-        stringAsNames = new StringAsNames(players);
+    public Players(String players) {
+        this.players = toPlayerList(players);
     }
 
-    public List<Player> get() {
-        List<Player> list = stringAsNames.get().stream()
-                    .map(Player::new)
-                    .collect(Collectors.toList());
+    private List<Player> toPlayerList(String players) {
+        List<Player> list = new Names(players).getNames()
+                            .stream()
+                            .map(Player::new)
+                            .collect(Collectors.toList());
         checkValidation(list);
         return list;
     }

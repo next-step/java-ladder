@@ -2,20 +2,25 @@ package ladder.model.stringas;
 
 import ladder.model.Name;
 
-import java.util.Arrays;
+    import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class StringAsNames {
+public class Names {
 
-    private final String names;
+    private final List<Name> names;
 
-    public StringAsNames(String names){
-        this.names = names;
+    public Names(String names){
+        this.names = toNameList(names);
     }
 
-    public List<Name> get() {
+    public List<Name> getNames() {
+        return Collections.unmodifiableList(this.names);
+    }
+
+    private List<Name> toNameList(String names) {
         List<Name> list = Arrays.stream(names.split(","))
                 .map(Name::new)
                 .collect(Collectors.toList());
