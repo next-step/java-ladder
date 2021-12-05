@@ -8,24 +8,18 @@ import org.junit.jupiter.params.provider.NullAndEmptySource;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-class HeightTest {
-
-    @DisplayName("value 의 크기가 1 보다 작을 경우 illegal exception")
-    @Test
-    void lessThanOneTest() {
-        assertThatIllegalArgumentException().isThrownBy(() -> Height.from(0));
-    }
-
-    @DisplayName("Null or Empty String input illegal exception")
+public class GiftTest {
+    @DisplayName("당첨 선물은 널이나 빈 값이 올 수 없다.")
     @ParameterizedTest
     @NullAndEmptySource
     void nullOrEmptyTest(String input) {
-        assertThatIllegalArgumentException().isThrownBy(() -> Height.fromWithString(input));
+        assertThatIllegalArgumentException().isThrownBy(() -> Gift.from(input));
     }
 
     @DisplayName("정상 생성 테스트")
     @Test
     void createTest() {
-        assertThat(Height.from(2)).isEqualTo(Height.from(2));
+        assertThat(Gift.from("5000")).isEqualTo(Gift.from("5000"));
     }
+
 }

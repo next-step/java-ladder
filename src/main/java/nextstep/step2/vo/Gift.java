@@ -2,26 +2,21 @@ package nextstep.step2.vo;
 
 import java.util.Objects;
 
-public class Name {
-    private static final String NOT_NULL_OR_EMPTY_EXCEPTION_MESSAGE = "이름은 빈 값이거나 null 일 수 없습니다.";
-    private static final String RANGE_EXCEPTION_MESSAGE = "이름은 1~5자 입니다.";
-    private static final int MAX_SIZE = 5;
+public class Gift {
+    private static final String NOT_NULL_OR_EMPTY_EXCEPTION_MESSAGE = "당첨선물은 빈 값이거나 null 일 수 없습니다.";
 
     private final String value;
 
-    private Name(String value) {
+    private Gift(String value) {
         if (value == null || value.isEmpty()) {
             throw new IllegalArgumentException(NOT_NULL_OR_EMPTY_EXCEPTION_MESSAGE);
         }
 
-        if (value.length() > MAX_SIZE) {
-            throw new IllegalArgumentException(RANGE_EXCEPTION_MESSAGE);
-        }
         this.value = value;
     }
 
-    public static Name from(String value) {
-        return new Name(value);
+    public static Gift from(String value) {
+        return new Gift(value);
     }
 
     public String getValue() {
@@ -40,7 +35,7 @@ public class Name {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Name name = (Name) o;
+        Gift name = (Gift) o;
         return Objects.equals(value, name.value);
     }
 

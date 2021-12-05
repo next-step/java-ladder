@@ -11,13 +11,13 @@ class WidthTest {
     @DisplayName("value 의 크기가 2 보다 작을 경우 illegal exception")
     @Test
     void lessThanOneTest() {
-        assertThatIllegalArgumentException().isThrownBy(() -> Width.create(1));
+        assertThatIllegalArgumentException().isThrownBy(() -> Width.from(1));
     }
 
     @DisplayName("정상 생성 테스트")
     @Test
     void createTest() {
-        assertThat(Width.create(2)).isEqualTo(Width.create(2));
+        assertThat(Width.from(2)).isEqualTo(Width.from(2));
     }
 
 }

@@ -11,40 +11,51 @@ public class Names {
 
     private static final int MIN_PLAYER_COUNT = 2;
     private static final String NULL_OR_LESS_SIZE_MESSAGE = "최소 " + MIN_PLAYER_COUNT + "명 이상의 플레이어가 필요합니다.";
+    private static final String COMMA_WITH_SPLIT_NAMES = ",";
 
     private final List<Name> names;
 
     private Names(List<Name> names) {
-        this.names = names;
-    }
-
-    public static Names create(List<Name> names) {
-
         if (names == null || names.size() < MIN_PLAYER_COUNT) {
             throw new IllegalArgumentException(NULL_OR_LESS_SIZE_MESSAGE);
         }
+        this.names = names;
+    }
 
+    public static Names from(List<Name> names) {
         return new Names(names);
     }
 
-    public static Names createWithString(String input) {
+    public static Names fromWithString(String input) {
 
         if (input == null) {
             throw new IllegalArgumentException(NULL_OR_LESS_SIZE_MESSAGE);
         }
 
-        return Arrays.stream(input.split(","))
-                .map(Name::create)
+        return Arrays.stream(input.split(COMMA_WITH_SPLIT_NAMES))
+                .map(Name::from)
                 .collect(collectingAndThen(toList(), Names::new));
+    }
+
+    public boolean contains(Name name) {
+        return this.names.contains(name);
+    }
+
+    public int indexOf(Name name) {
+        return this.names.indexOf(name);
     }
 
     public int size() {
         return names.size();
     }
 
+    public boolean equalsSize(int size) {
+        return size() == size;
+    }
+
     public List<Name> getNames() {
         return names.stream()
-                .map(name -> Name.create(name.getValue()))
+                .map(name -> Name.from(name.getValue()))
                 .collect(toList());
     }
 

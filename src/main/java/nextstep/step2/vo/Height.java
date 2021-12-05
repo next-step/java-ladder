@@ -10,21 +10,20 @@ public class Height {
     private final int value;
 
     private Height(int value) {
-        this.value = value;
-    }
-
-    public static Height createWithString(String input) {
-        if (input == null || input.isEmpty()) {
-            throw new IllegalArgumentException(NULL_OR_LESS_HEIGHT_MESSAGE);
-        }
-        return create(Integer.parseInt(input));
-    }
-
-    public static Height create(int value) {
         if (value < MIN_HEIGHT) {
             throw new IllegalArgumentException(NULL_OR_LESS_HEIGHT_MESSAGE);
         }
+        this.value = value;
+    }
 
+    public static Height fromWithString(String input) {
+        if (input == null || input.isEmpty()) {
+            throw new IllegalArgumentException(NULL_OR_LESS_HEIGHT_MESSAGE);
+        }
+        return from(Integer.parseInt(input));
+    }
+
+    public static Height from(int value) {
         return new Height(value);
     }
 

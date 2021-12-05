@@ -5,21 +5,25 @@ public enum Bridge {
     RIGHT(1),
     LEFT(-1);
 
-    private final int value;
+    private final int moveValue;
 
-    Bridge(int value) {
-        this.value = value;
+    Bridge(int moveValue) {
+        this.moveValue = moveValue;
     }
 
-    public static Bridge firstBridge(boolean random) {
-        if (random) {
+    public static Bridge firstBridge(boolean isRight) {
+        if (isRight) {
             return RIGHT;
         }
 
         return DOWN;
     }
 
-    public Bridge next(boolean random, boolean isLast) {
+    public int getMoveValue() {
+        return moveValue;
+    }
+
+    public Bridge nextBridge(boolean isRight, boolean isLast) {
         if (this.equals(Bridge.RIGHT)) {
             return LEFT;
         }
@@ -28,7 +32,7 @@ public enum Bridge {
             return DOWN;
         }
 
-        if (random) {
+        if (isRight) {
             return RIGHT;
         }
 

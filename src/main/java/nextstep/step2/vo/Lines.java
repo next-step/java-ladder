@@ -1,6 +1,7 @@
 package nextstep.step2.vo;
 
 import nextstep.step2.domain.Line;
+import nextstep.step2.domain.Point;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,22 +15,28 @@ public class Lines {
     private final List<Line> lines;
 
     private Lines(List<Line> lines) {
-        this.lines = new ArrayList<>(lines);
-    }
-
-    public static Lines create(List<Line> lines) {
-
         if (lines == null || lines.isEmpty()) {
             throw new IllegalArgumentException(EMPTY_MESSAGE);
         }
+        this.lines = new ArrayList<>(lines);
+    }
 
+    public static Lines from(List<Line> lines) {
         return new Lines(lines);
     }
 
     public List<Line> getLines() {
         return lines.stream()
-                .map(Line::createWithLine)
+                .map(Line::fromWithLine)
                 .collect(Collectors.toList());
+    }
+
+    public Point movedPoint(Point start) {
+        Point now = Point.fromWithPoint(start);
+        for (Line line : lines) {
+            now = line.move(now);
+        }
+        return now;
     }
 
     @Override

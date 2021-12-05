@@ -17,15 +17,16 @@
 - GameInformation  
   - Game과 관련된 Names 를 가진다.
 - ladder
+  - move(idx)
 - line
   - line 생성(연속으로 true가 나올 수 없다.)
   - 사람 수 - 1 만큼의 배열만 생성 된다.
 - lines
   - line의 1급객체
 - bridge
-  - boolean value 를 갖는다
-  - isGo() 메서드는 가진 값에 따라 true / false 반환
-  - getCachedPoint() 미리 생성 된 bridge 를 반환한다.
+  - enum
+  - down / left / right 3가지를 가짐
+  - move() 함수 호출 시 이동한 포인트를 반환한다.
 - Name
   - 이름의 크기는 최소 1자 최대 5자이다.
   - null 값이나 empty 값이 올 수 없다.
@@ -37,4 +38,7 @@
   - 사다리의 높이값을 가지는 객체
 - Width
   - 사다리의 넓이 값을 가지는 객체
-  - getEndLine() width 보다 -1 을 해준 값을 리턴한다.
+- Point
+  - 위치 값을 가지는 객체
+  - Left() 호출 시 위치 값 -1
+  - Right() 호출 시 위치 값 +1
