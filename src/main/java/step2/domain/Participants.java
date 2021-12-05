@@ -33,6 +33,10 @@ public class Participants {
         return participants.size();
     }
 
+    public boolean matchedSize(int size) {
+        return size() == size;
+    }
+
     private static String[] splitNames(String names) {
         return names.split(COMMA);
     }
