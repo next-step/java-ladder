@@ -22,3 +22,5 @@
 2. PlayerName 5자 검증
 3. 사다라리를 구성하는 객체 생성
    - Point, Position, Line, Ladder, Height
+4. 포인트에서 방향값을 가지는 객체 생성
+   - Direction: left,right값을 몪음

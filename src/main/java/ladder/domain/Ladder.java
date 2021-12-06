@@ -5,16 +5,10 @@ import java.util.Objects;
 
 public class Ladder {
 
-    private final Height height;
     private final List<Line> lines;
 
-    public Ladder(Height height, List<Line> lines) {
-        this.height = height;
+    public Ladder(List<Line> lines) {
         this.lines = lines;
-    }
-
-    public Height getHeight() {
-        return height;
     }
 
     public List<Line> getLines() {
@@ -26,20 +20,23 @@ public class Ladder {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Ladder ladder = (Ladder) o;
-        return Objects.equals(height, ladder.height) && Objects.equals(lines, ladder.lines);
+        return Objects.equals(lines, ladder.lines);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(height, lines);
+        return Objects.hash(lines);
     }
 
     @Override
     public String toString() {
         return "Ladder{" +
-                "height=" + height +
-                ", lines=" + lines +
+                "lines=" + lines +
                 '}';
     }
 
 }
+
+
+
+

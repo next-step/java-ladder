@@ -5,25 +5,19 @@ import java.util.Objects;
 public class Point {
 
     private final Position position;
-    private final boolean left;
-    private final boolean right;
+    private final Direction direction;
 
-    public Point(Position position, boolean left, boolean right) {
+    public Point(Position position, Direction direction) {
         this.position = position;
-        this.left = left;
-        this.right = right;
+        this.direction = direction;
     }
 
     public Position getPosition() {
         return position;
     }
 
-    public boolean isLeft() {
-        return left;
-    }
-
-    public boolean isRight() {
-        return right;
+    public Direction getDirection() {
+        return direction;
     }
 
     @Override
@@ -31,20 +25,19 @@ public class Point {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Point point = (Point) o;
-        return left == point.left && right == point.right && Objects.equals(position, point.position);
+        return Objects.equals(position, point.position) && Objects.equals(direction, point.direction);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(position, left, right);
+        return Objects.hash(position, direction);
     }
 
     @Override
     public String toString() {
         return "Point{" +
                 "position=" + position +
-                ", left=" + left +
-                ", right=" + right +
+                ", direction=" + direction +
                 '}';
     }
 
