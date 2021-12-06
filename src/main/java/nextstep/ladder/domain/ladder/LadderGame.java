@@ -1,17 +1,22 @@
 package nextstep.ladder.domain.ladder;
 
+import nextstep.ladder.domain.gift.Gift;
+import nextstep.ladder.domain.gift.GiftBundle;
 import nextstep.ladder.domain.ladder.size.LadderHeight;
 import nextstep.ladder.domain.ladder.size.LadderSize;
 import nextstep.ladder.domain.ladder.size.LadderWidth;
 import nextstep.ladder.domain.rule.RandomWayRule;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import static nextstep.ladder.utils.Validation.checkNotNull;
 
 public class LadderGame {
 
     private static final int MIN_NUMBER_OF_PARTICIPANTS = 2;
+    private static final int MIN_INDEX = 0;
     private static final RandomWayRule DEFAULT_WAY_RULE = new RandomWayRule();
 
     private final List<Participant> participants;
@@ -43,5 +48,22 @@ public class LadderGame {
     private static Ladder createLadder(LadderWidth ladderWidth, LadderHeight ladderHeight) {
         LadderSize ladderSize = new LadderSize(ladderWidth, ladderHeight);
         return Ladder.of(ladderSize, DEFAULT_WAY_RULE);
+    }
+
+    public GameResult play(GiftBundle giftBundle) {
+        checkGiftBundleSize(giftBundle);
+
+        Map<Participant, Gift> winningGifts = new LinkedHashMap<>();
+        for (int position = MIN_INDEX; position < participants.size(); position++) {
+            int resultPosition = ladder.move(position);
+            winningGifts.put(participants.get(position), giftBundle.gift(resultPosition));
+        }
+        return new GameResult(winningGifts);
+    }
+
+    private void checkGiftBundleSize(GiftBundle giftBundle) {
+        if (giftBundle == null || !giftBundle.hasSize(participants.size())) {
+            throw new InvalidNumberOfGiftsException();
+        }
     }
 }

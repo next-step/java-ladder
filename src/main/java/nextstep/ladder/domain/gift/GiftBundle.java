@@ -40,4 +40,8 @@ public class GiftBundle {
             throw new OutOfRangeIndexException();
         }
     }
+
+    public boolean hasSize(int size) {
+        return gifts.size() == size;
+    }
 }

@@ -2,7 +2,11 @@ package nextstep.ladder.domain.ladder;
 
 import nextstep.ladder.domain.exception.InvalidNameLengthException;
 
+import java.util.List;
 import java.util.Objects;
+
+import static java.util.stream.Collectors.toList;
+import static nextstep.ladder.utils.Validation.checkNotEmpty;
 
 public class Participant {
 
@@ -14,6 +18,13 @@ public class Participant {
     public Participant(String name) {
         checkNameLength(name);
         this.name = name;
+    }
+
+    public static List<Participant> listOf(List<String> participants) {
+        checkNotEmpty(participants);
+        return participants.stream()
+                .map(Participant::new)
+                .collect(toList());
     }
 
     private void checkNameLength(String name) {

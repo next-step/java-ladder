@@ -12,6 +12,8 @@
 
 - [x] Gift 구현
 
+- [x] LadderGame 구현
+
 - [ ] 컨트롤러 구현
 
 - [ ] InputView 구현
