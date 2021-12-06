@@ -1,7 +1,9 @@
 package nextstep.ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
+import java.util.List;
 import java.util.Random;
 import java.util.stream.IntStream;
 import org.junit.jupiter.api.DisplayName;
@@ -26,6 +28,17 @@ class LineTest {
 
         IntStream.range(0, participantsCount.getNumber())
             .forEach(position -> assertThat(line.hasLine(position)).isFalse());
+    }
+
+    @Test
+    @DisplayName("일급콜렉션 객체의 List는 외부에서는 불변 리스트 이다.")
+    void getPointsUnmodifiableCollectionTest() {
+        Line line = new Line(participantsCount, unDrawLineRandomMock());
+
+        List<Boolean> points = line.getPoints();
+
+        assertThatExceptionOfType(UnsupportedOperationException.class)
+            .isThrownBy(() -> points.add(true));
     }
 
 
