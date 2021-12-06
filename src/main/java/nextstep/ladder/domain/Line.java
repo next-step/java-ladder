@@ -11,7 +11,8 @@ public class Line {
     private final List<Point> line;
 
     private Line(List<Point> line) {
-        validateLine(line);
+        validateLineSize(line);
+        validatePoint(line);
         this.line = line;
     }
 
@@ -19,11 +20,13 @@ public class Line {
         return new Line(line);
     }
 
-    private static void validateLine(List<Point> line) {
+    private static void validateLineSize(List<Point> line) {
         if (Objects.isNull(line) || line.size() < MIN_LINE_SIZE) {
             throw new IllegalArgumentException();
         }
+    }
 
+    private static void validatePoint(List<Point> line) {
         Point before = line.get(FIRST_INDEX);
 
         for (int i = MIN_LINE_SIZE; i < line.size(); i++) {
