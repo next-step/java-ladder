@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.IntStream;
@@ -13,8 +14,7 @@ public class Ladder {
         PositiveNumber pointCount = PositiveNumber.create(participantsCount - 1);
 
         IntStream.range(0, height.getNumber())
-            .forEach(i ->
-                lines.add(new Line(pointCount, new Random())));
+            .forEach(i -> lines.add(new Line(pointCount, new Random())));
     }
 
     public static Ladder create(PositiveNumber height, int participantsCount) {
@@ -22,7 +22,7 @@ public class Ladder {
     }
 
     public List<Line> getLines() {
-        return lines;
+        return Collections.unmodifiableList(lines);
     }
 
     @Override
