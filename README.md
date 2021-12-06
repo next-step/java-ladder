@@ -20,3 +20,5 @@
 1. 참여하는 사람 객체를 만들아보자
    - Playaer, PlayerName, Players
 2. PlayerName 5자 검증
+3. 사다라리를 구성하는 객체 생성
+   - Point, Position, Line, Ladder, Height
