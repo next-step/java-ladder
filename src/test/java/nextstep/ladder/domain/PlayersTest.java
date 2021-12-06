@@ -31,9 +31,6 @@ class PlayersTest {
     static Stream<Arguments> playersCount() {
         return Stream.of(
                 Arguments.of(
-                        Players.from(new String[] {"hi"}), 1
-                ),
-                Arguments.of(
                         Players.from(new String[] {"hi", "hello"}), 2
                 ),
                 Arguments.of(
