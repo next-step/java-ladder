@@ -24,7 +24,7 @@ public class ResultView {
     private static void outputLadder(Ladder ladder) {
         ladder.getLadder()
             .stream()
-            .map(line -> lineFormat(line))
+            .map(ResultView::lineFormat)
             .forEach(System.out::println);
     }
 
