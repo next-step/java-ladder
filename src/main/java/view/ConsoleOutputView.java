@@ -1,11 +1,11 @@
 package view;
 
-import domain.Floor;
-import domain.Floors;
-import domain.Ladder;
-import domain.Participants;
+import domain.*;
 
 import java.util.List;
+import java.util.stream.IntStream;
+
+import static controller.LadderGame.ALL_PARTICIPANTS;
 
 public class ConsoleOutputView implements OutputView {
     private static final String BLANK_AFTER_NAME = " ";
@@ -16,7 +16,12 @@ public class ConsoleOutputView implements OutputView {
 
     @Override
     public void showRequestOfParticipants() {
-        System.out.println("Enter The Names of Participants: (Names must be separated by comma(,)");
+        System.out.println("Enter The Names of Participants. (Names must be separated by comma(,)");
+    }
+
+    @Override
+    public void showRequestOfLadderResult() {
+        System.out.println("Enter The Result of Ladder. (Names must be separated by comma(,)");
     }
 
     @Override
@@ -37,9 +42,50 @@ public class ConsoleOutputView implements OutputView {
     }
 
     @Override
-    public void showResult(Ladder ladder) {
-        Floors floors = ladder.getFloors();
-        floors.stream().forEach(this::showFloor);
+    public void showLadder(Ladder ladder) {
+        List<Floor> floors = ladder.getFloors();
+        floors.forEach(this::showFloor);
+    }
+
+    @Override
+    public void showResults(List<String> results) {
+        results.forEach(result -> System.out.printf("%5s" + BLANK_AFTER_NAME, result));
+        System.out.println();
+        System.out.println();
+    }
+
+    @Override
+    public void showRequestForResultOfParticipant() {
+        System.out.println("Who do you want to see the result?");
+    }
+
+    @Override
+    public void showResultOfLadderGame(String participantName, Participants participants, LadderResult ladderResult, Ladder ladder) {
+        if (participantName.equals(ALL_PARTICIPANTS)) {
+            showResultsOfAllParticipantsInLadderGame(participants, ladderResult, ladder);
+            return;
+        }
+
+        String result = ladder.finalResult(ladderResult, participantName);
+        showResultOfParticipantInLadderGame(result);
+    }
+
+    @Override
+    public void showResultOfParticipantInLadderGame(String result) {
+        System.out.println(result);
+    }
+
+    @Override
+    public void showResultsOfAllParticipantsInLadderGame(Participants participants, LadderResult ladderResult, Ladder ladder) {
+        List<String> participantNames = participants.getNamesOfParticipants();
+        List<String> results = ladder.finalResultsOfAll(ladderResult);
+
+        IntStream.range(0, participants.size())
+                .forEach(i -> showParticiantAndResult(participantNames.get(i), results.get(i)));
+    }
+
+    private void showParticiantAndResult(String participant, String result) {
+        System.out.printf("%s : %s\n", participant, result);
     }
 
     private void showFloor(Floor floor) {

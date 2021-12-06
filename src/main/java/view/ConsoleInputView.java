@@ -11,7 +11,20 @@ public class ConsoleInputView implements InputView {
     }
 
     @Override
+    public String getLadderResult() {
+        return scanner.nextLine();
+    }
+
+    @Override
     public int getHeightOfLadder() {
-        return scanner.nextInt();
+        int height =  scanner.nextInt();
+        scanner.nextLine();
+
+        return height;
+    }
+
+    @Override
+    public String getParticipantForResult() {
+        return scanner.nextLine();
     }
 }

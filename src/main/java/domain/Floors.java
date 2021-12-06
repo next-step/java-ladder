@@ -2,25 +2,35 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
+import java.util.stream.IntStream;
 
 public class Floors {
+    private static final int START_POINT_FOR_CONSTRUCTING_FLOORS = 0;
 
     private final List<Floor> floors;
 
-    public Floors() {
-        this.floors = new ArrayList<>();
+    public Floors(List<Floor> floors) {
+        this.floors = floors;
     }
 
-    public void produceFloor(List<Boolean> randomGeneratedFloorStates) {
-        floors.add(new Floor(randomGeneratedFloorStates));
+    public List<Floor> getFloors() {
+        return floors;
     }
 
-    public Stream<Floor> stream() {
-        return floors.stream();
+    public Position finishedPosition(Position position) {
+        Position current = position;
+        for (Floor floor : floors) {
+            current = floor.move(current);
+        }
+
+        return current;
     }
 
-    public int size() {
-        return floors.size();
+    public static Floors of(int heightOfLadder, int participantSize) {
+        List<Floor> floors = new ArrayList<>();
+        IntStream.range(START_POINT_FOR_CONSTRUCTING_FLOORS, heightOfLadder)
+                .forEach(i -> floors.add(Floor.of(participantSize)));
+
+        return new Floors(floors);
     }
 }

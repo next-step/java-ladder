@@ -1,28 +1,23 @@
 package domain;
 
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class FloorsTest {
-    private static final List<Boolean> RANDOM_GENRERATED_FLOOR_STATES_ONE = Arrays.asList(true, false, true);
-    private static final List<Boolean> RANDOM_GENRERATED_FLOOR_STATES_TWO = Arrays.asList(false, false, true);
-    private static final int FLOOR_SIZE = 2;
+    public static final Floor FLOOR_FIRST = new Floor(Arrays.asList(true, false, true));
+    public static final Floor FLOOR_SECOND = new Floor(Arrays.asList(false, true, false));
+    public static final Floor FLOOR_THIRD = new Floor(Arrays.asList(true, false, false));
+    public static final Floor FLOOR_FOURTH = new Floor(Arrays.asList(false, false, true));
+    public static final Floors FLOORS = new Floors(Arrays.asList(FLOOR_FIRST, FLOOR_SECOND, FLOOR_THIRD, FLOOR_FOURTH));
 
     @Test
-    @DisplayName("Test produceFloor function of Floors class")
-    void testProduceFloor() {
-        Floors floors = new Floors();
-        floors.produceFloor(RANDOM_GENRERATED_FLOOR_STATES_ONE);
-        floors.produceFloor(RANDOM_GENRERATED_FLOOR_STATES_TWO);
-        assertThat(floors.size()).isEqualTo(FLOOR_SIZE);
-        List<Floor> floorList = floors.stream().collect(Collectors.toList());
-        assertThat(floorList.get(0).getStates()).isEqualTo(RANDOM_GENRERATED_FLOOR_STATES_ONE);
-        assertThat(floorList.get(1).getStates()).isEqualTo(RANDOM_GENRERATED_FLOOR_STATES_TWO);
+    void testFinishedPosition() {
+        assertThat(FLOORS.finishedPosition(new Position(0))).isEqualTo(new Position(3));
+        assertThat(FLOORS.finishedPosition(new Position(1))).isEqualTo(new Position(1));
+        assertThat(FLOORS.finishedPosition(new Position(2))).isEqualTo(new Position(2));
+        assertThat(FLOORS.finishedPosition(new Position(3))).isEqualTo(new Position(0));
     }
 }
