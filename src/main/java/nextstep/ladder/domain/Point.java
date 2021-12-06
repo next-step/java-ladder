@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.exception.ContinuousRowException;
+
 public class Point {
     private final boolean point;
 
