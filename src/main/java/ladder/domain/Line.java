@@ -55,10 +55,56 @@ public class Line {
         value.stream()
                 .reduce((left, right) -> {
                     if (left && right) {
-                        throw new IllegalArgumentException();
+                        throw new IllegalArgumentException("유효하지 않은 사다리입니다.");
                     }
                     return right;
                 });
+    }
+
+    public int nextPosition(int currPos) {
+        // Edge Case 1. 제일 왼쪽에 있을 때
+        final int firstPos = 0;
+        if (currPos == firstPos) {
+            return leftEdgeCase(firstPos);
+        }
+
+        // Edge Case 2. 제일 오른쪽에 있을 때
+        final int lastPos = value.size() - 1;
+        if (currPos == lastPos) {
+            return rightEdgeCase(lastPos);
+        }
+
+        // 자신의 위치에서 왼쪽으로 뻗는 길이 있는 경우
+        if (value.get(currPos)) {
+            return currPos - 1;
+        }
+
+        // 자신의 위치 오른쪽에서 뻗어오는 길이 있는 경우
+        if (value.get(currPos + 1)) {
+            return currPos + 1;
+        }
+
+        // 그 외 나머지 경우는 현재 위치 그대로
+        return currPos;
+    }
+
+
+    private int leftEdgeCase(int firstPos) {
+        if (value.get(firstPos + 1)) {
+            return firstPos + 1;
+        }
+        return firstPos;
+    }
+
+    private int rightEdgeCase(int lastPos) {
+        if (value.get(lastPos)) {
+            return lastPos - 1;
+        }
+        return lastPos;
+    }
+
+    public int size() {
+        return this.value.size();
     }
 
     @Override
