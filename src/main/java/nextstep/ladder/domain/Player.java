@@ -20,7 +20,7 @@ public class Player {
 
     private static void validateName(String name) {
         if (Objects.isNull(name)) {
-            throw new IllegalArgumentException();
+            throw new PlayerNameException(null);
         }
         if (name.isEmpty() || name.length() > MAX_NAME_LENGTH) {
             throw new PlayerNameException(name);
