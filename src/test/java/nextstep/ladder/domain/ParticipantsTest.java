@@ -6,8 +6,6 @@ import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import nextstep.ladder.domain.Participant;
-import nextstep.ladder.domain.Participants;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

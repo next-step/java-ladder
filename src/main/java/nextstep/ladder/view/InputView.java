@@ -4,6 +4,7 @@ import static nextstep.ladder.view.PrintUtils.*;
 
 import java.util.Scanner;
 import nextstep.ladder.domain.Participants;
+import nextstep.ladder.domain.PositiveNumber;
 
 public class InputView {
 
@@ -17,11 +18,11 @@ public class InputView {
         return Participants.create(sc.next());
     }
 
-    public int inputLadderHeight() {
+    public PositiveNumber inputLadderHeight() {
         printSpace();
         print(NUMBER_OF_MAX_LADDER_HEIGHT_INPUT_MESSAGE);
 
-        return sc.nextInt();
+        return PositiveNumber.create(sc.nextInt());
     }
 
 

@@ -10,8 +10,8 @@ public class Line {
 
     private final List<Boolean> points = new ArrayList<>();
 
-    public Line(int pointCount, Random random) {
-        IntStream.range(0, pointCount)
+    public Line(PositiveNumber pointCount, Random random) {
+        IntStream.range(0, pointCount.getNumber())
             .forEach(i -> points.add(isNotDrawnBeforePoint(i) && pickAtRandom(random)));
     }
 

@@ -9,12 +9,15 @@ public class Ladder {
 
     private final List<Line> lines = new ArrayList<>();
 
-    public Ladder(int height, int participantsCount) {
-        IntStream.range(0, height)
-            .forEach(i -> lines.add(new Line(participantsCount - 1, new Random())));
+    private Ladder(PositiveNumber height, int participantsCount) {
+        PositiveNumber pointCount = PositiveNumber.create(participantsCount - 1);
+
+        IntStream.range(0, height.getNumber())
+            .forEach(i ->
+                lines.add(new Line(pointCount, new Random())));
     }
 
-    public static Ladder create(int height, int participantsCount) {
+    public static Ladder create(PositiveNumber height, int participantsCount) {
         return new Ladder(height, participantsCount);
     }
 

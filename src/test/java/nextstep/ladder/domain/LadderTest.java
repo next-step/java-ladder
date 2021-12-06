@@ -14,7 +14,7 @@ public class LadderTest {
     @Test
     @DisplayName("Ladder 생성시, 전달한 갯수만큼 lines 생성되어야 한다.")
     void createHeightSizeTest() throws NoSuchFieldException, IllegalAccessException {
-        Ladder ladder = Ladder.create(5, 10);
+        Ladder ladder = Ladder.create(PositiveNumber.create(5), 10);
 
         List<Line> linesByReflection = getLinesByReflection(ladder);
 
@@ -28,7 +28,7 @@ public class LadderTest {
     void createLineInPointSizeTest() throws NoSuchFieldException, IllegalAccessException {
 
         int participantsCount = 10;
-        Ladder ladder = Ladder.create(5, participantsCount);
+        Ladder ladder = Ladder.create(PositiveNumber.create(5), participantsCount);
 
         List<Line> linesByReflection = getLinesByReflection(ladder);
 

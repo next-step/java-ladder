@@ -4,13 +4,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Random;
 import java.util.stream.IntStream;
-import nextstep.ladder.domain.Line;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LineTest {
 
-    private final int participantsCount = 5;
+    private final PositiveNumber participantsCount = PositiveNumber.create(5);
 
     @Test
     @DisplayName("사다리타기 라인 생성시 라인이 겹치지 않아야 한다.")
@@ -25,7 +24,7 @@ class LineTest {
     void lineUnDrawTest() {
         Line line = new Line(participantsCount, unDrawLineRandomMock());
 
-        IntStream.range(0, participantsCount)
+        IntStream.range(0, participantsCount.getNumber())
             .forEach(position -> assertThat(line.hasLine(position)).isFalse());
     }
 
