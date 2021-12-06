@@ -3,10 +3,10 @@ package nextstep.ladder.view;
 import static nextstep.ladder.view.PrintUtils.*;
 
 import java.util.stream.Collectors;
-import nextstep.ladder.Ladder;
-import nextstep.ladder.Line;
-import nextstep.ladder.Participant;
-import nextstep.ladder.Participants;
+import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.Line;
+import nextstep.ladder.domain.Participant;
+import nextstep.ladder.domain.Participants;
 
 public class OutputView {
 

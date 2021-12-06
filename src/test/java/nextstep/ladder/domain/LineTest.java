@@ -1,9 +1,10 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Random;
 import java.util.stream.IntStream;
+import nextstep.ladder.domain.Line;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

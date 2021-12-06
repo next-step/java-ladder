@@ -3,7 +3,7 @@ package nextstep.ladder.view;
 import static nextstep.ladder.view.PrintUtils.*;
 
 import java.util.Scanner;
-import nextstep.ladder.Participants;
+import nextstep.ladder.domain.Participants;
 
 public class InputView {
 

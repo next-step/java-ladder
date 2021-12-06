@@ -1,4 +1,4 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
 
 import static nextstep.ladder.utils.StringUtils.rangeStringLength;
 
