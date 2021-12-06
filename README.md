@@ -3,11 +3,11 @@
 ## STEP1  자바8 스트림, 람다, Optional
 
 ### Lambda
-* [ ] CarTest 테스트 코드에서 MoveStrategy의 구현을 람다를 적용해 구현
-* [ ] 람다를 활용해 중복 제거
-  * [ ] nextstep.fp.Lambda#sumAll
-  * [ ] nextstep.fp.Lambda#sumAllEven
-  * [ ] nextstep.fp.Lambda#sumAllOverThree
+* [x] CarTest 테스트 코드에서 MoveStrategy의 구현을 람다를 적용해 구현
+* [x] 람다를 활용해 중복 제거
+  * [x] nextstep.fp.Lambda#sumAll
+  * [x] nextstep.fp.Lambda#sumAllEven
+  * [x] nextstep.fp.Lambda#sumAllOverThree
 
 ### Stream
 * [ ] List에 담긴 모든 숫자 중 3보다 큰 숫자를 2배 한 후 모든 값의 합 구현
@@ -18,12 +18,10 @@
   * [ ] 모든 단어는 소문자로 출력
 
 ### Optional
-* [ ] Optional을 활용해 조건에 따른 반환
-  * [ ] nextstep.optional.User#ageIsInRange2() 메소드를 Optional을 활요해 구현
-* [ ] Optional에서 값을 반환
-  * [ ] nextstep.optional.User#getUser() 메소드를 Optional을 활요해 구현
-* [ ] Optional에서 exception 처리
-  * [ ] nextstep.optional.Expression#of 메소드를 구현
+* [ ] nextstep.optional.User#ageIsInRange2() 메소드를 Optional을 활요해 구현
+* [ ] nextstep.optional.User#getUser() 메소드를 Optional을 활요해 구현
+* [ ] nextstep.optional.Expression#of 메소드를 구현
+* [ ] nextstep.optional.ComputerStoreTest 테스트를 통과하도록 수정
 
 ## 진행 방법
 * 사다리 게임 게임 요구사항을 파악한다.
