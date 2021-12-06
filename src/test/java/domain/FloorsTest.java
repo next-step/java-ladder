@@ -14,10 +14,10 @@ public class FloorsTest {
     public static final Floors FLOORS = new Floors(Arrays.asList(FLOOR_FIRST, FLOOR_SECOND, FLOOR_THIRD, FLOOR_FOURTH));
 
     @Test
-    void testFinalPosition() {
-        assertThat(FLOORS.finalPosition(new Position(0))).isEqualTo(new Position(3));
-        assertThat(FLOORS.finalPosition(new Position(1))).isEqualTo(new Position(1));
-        assertThat(FLOORS.finalPosition(new Position(2))).isEqualTo(new Position(2));
-        assertThat(FLOORS.finalPosition(new Position(3))).isEqualTo(new Position(0));
+    void testFinishedPosition() {
+        assertThat(FLOORS.finishedPosition(new Position(0))).isEqualTo(new Position(3));
+        assertThat(FLOORS.finishedPosition(new Position(1))).isEqualTo(new Position(1));
+        assertThat(FLOORS.finishedPosition(new Position(2))).isEqualTo(new Position(2));
+        assertThat(FLOORS.finishedPosition(new Position(3))).isEqualTo(new Position(0));
     }
 }

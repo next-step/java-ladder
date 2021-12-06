@@ -6,8 +6,7 @@ import view.ConsoleOutputView;
 import view.InputView;
 import view.OutputView;
 
-import java.util.Arrays;
-import java.util.stream.Collectors;
+import java.util.List;
 
 import static util.StringUtils.separateStringWithComma;
 
@@ -24,28 +23,29 @@ public class LadderGame {
 
         outputView.showRequestOfParticipants();
         String rawInputNames = inputView.getParticipantsNames();
-        String[] participantNames = separateStringWithComma(rawInputNames);
+        List<String> participantNames = separateStringWithComma(rawInputNames);
         Participants participants = Participants.of(participantNames);
 
         outputView.showRequestOfLadderResult();
         String rawInputLadderResult = inputView.getLadderResult();
-        String[] ladderResult = separateStringWithComma(rawInputLadderResult);
+        List<String> separatedLadderResult = separateStringWithComma(rawInputLadderResult);
+        LadderResult ladderResult = new LadderResult(separatedLadderResult);
 
         outputView.showRequestOfHeightOfLadder();
         int heightOfLadder = inputView.getHeightOfLadder();
         Floors floors = Floors.of(heightOfLadder, participants.size());
-        Ladder ladder = new Ladder(floors, new LadderResult(Arrays.stream(ladderResult).collect(Collectors.toList())));
+        Ladder ladder = new Ladder(floors, participants);
 
         outputView.showMessageOfResult();
         outputView.showParticipants(participants);
         outputView.showLadder(ladder);
-        outputView.showResults(ladderResult);
+        outputView.showResults(separatedLadderResult);
 
-        String participant;
+        String participantName;
         do {
             outputView.showRequestForResultOfParticipant();
-            participant = inputView.getParticipantForResult();
-            outputView.showResultOfLadderGame(participant, participants, ladder);
-        } while (!participant.equals(ALL_PARTICIPANTS));
+            participantName = inputView.getParticipantForResult();
+            outputView.showResultOfLadderGame(participantName, participants, ladderResult, ladder);
+        } while (!participantName.equals(ALL_PARTICIPANTS));
     }
 }

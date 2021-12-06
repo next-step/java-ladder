@@ -10,7 +10,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 public class PositionTest {
-    List<Boolean> floor = Arrays.asList(true, false, true);
+    private final List<Boolean> floor = Arrays.asList(true, false, true);
 
     @DisplayName("Test Position is movable to left")
     @Test

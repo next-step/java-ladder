@@ -1,11 +1,7 @@
 package view;
 
-import domain.Floor;
-import domain.Ladder;
-import domain.Participant;
-import domain.Participants;
+import domain.*;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -52,8 +48,8 @@ public class ConsoleOutputView implements OutputView {
     }
 
     @Override
-    public void showResults(String[] results) {
-        Arrays.stream(results).forEach(result -> System.out.printf("%5s" + BLANK_AFTER_NAME, result));
+    public void showResults(List<String> results) {
+        results.forEach(result -> System.out.printf("%5s" + BLANK_AFTER_NAME, result));
         System.out.println();
         System.out.println();
     }
@@ -64,13 +60,13 @@ public class ConsoleOutputView implements OutputView {
     }
 
     @Override
-    public void showResultOfLadderGame(String participant, Participants participants, Ladder ladder) {
-        if (participant.equals(ALL_PARTICIPANTS)) {
-            showResultsOfAllParticipantsInLadderGame(participants, ladder);
+    public void showResultOfLadderGame(String participantName, Participants participants, LadderResult ladderResult, Ladder ladder) {
+        if (participantName.equals(ALL_PARTICIPANTS)) {
+            showResultsOfAllParticipantsInLadderGame(participants, ladderResult, ladder);
             return;
         }
 
-        String result = ladder.finalResult(participants.initialPosition(new Participant(participant)));
+        String result = ladder.finalResult(ladderResult, participantName);
         showResultOfParticipantInLadderGame(result);
     }
 
@@ -80,9 +76,9 @@ public class ConsoleOutputView implements OutputView {
     }
 
     @Override
-    public void showResultsOfAllParticipantsInLadderGame(Participants participants, Ladder ladder) {
+    public void showResultsOfAllParticipantsInLadderGame(Participants participants, LadderResult ladderResult, Ladder ladder) {
         List<String> participantNames = participants.getNamesOfParticipants();
-        List<String> results = ladder.finalResultsOfAll(participants.size());
+        List<String> results = ladder.finalResultsOfAll(ladderResult);
 
         IntStream.range(0, participants.size())
                 .forEach(i -> showParticiantAndResult(participantNames.get(i), results.get(i)));

@@ -10,25 +10,25 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 public class ParticipantsTest {
-    Participant pobi = new Participant("pobi");
-    Participant honux = new Participant("honux");
-    Participant crong = new Participant("crong");
-    Participant jk = new Participant("jk");
-    Participant tomo = new Participant("tomo");
-    Participants participants = new Participants(Arrays.asList(pobi, honux, crong, jk));
+    public static final Participant PARTICIPANT_ONE = new Participant("pobi");
+    public static final Participant PARTICIPANT_TWO = new Participant("honux");
+    public static final Participant PARTICIPANT_THREE = new Participant("crong");
+    public static final Participant PARTICIPANT_FOUR = new Participant("jk");
+    public static final Participant NOT_PARTICIPANT = new Participant("tomo");
+    public static final Participants PARTICIPANTS = new Participants(Arrays.asList(PARTICIPANT_ONE, PARTICIPANT_TWO, PARTICIPANT_THREE, PARTICIPANT_FOUR));
 
     @DisplayName("Test whether Ids of Participants are exact")
     @Test
     void testIds() {
-        assertThat(participants.initialPosition(pobi)).isEqualTo(new Position(0));
-        assertThat(participants.initialPosition(honux)).isEqualTo(new Position(1));
-        assertThat(participants.initialPosition(crong)).isEqualTo(new Position(2));
-        assertThat(participants.initialPosition(jk)).isEqualTo(new Position(3));
+        assertThat(PARTICIPANTS.initialPosition(PARTICIPANT_ONE)).isEqualTo(new Position(0));
+        assertThat(PARTICIPANTS.initialPosition(PARTICIPANT_TWO)).isEqualTo(new Position(1));
+        assertThat(PARTICIPANTS.initialPosition(PARTICIPANT_THREE)).isEqualTo(new Position(2));
+        assertThat(PARTICIPANTS.initialPosition(PARTICIPANT_FOUR)).isEqualTo(new Position(3));
     }
 
     @DisplayName("Throw Exception when there is no participant")
     @Test
     void testWhenThereIsNoParticipant() {
-        assertThatThrownBy(() -> participants.initialPosition(tomo)).isInstanceOf(NoSuchElementException.class);
+        assertThatThrownBy(() -> PARTICIPANTS.initialPosition(NOT_PARTICIPANT)).isInstanceOf(NoSuchElementException.class);
     }
 }

@@ -1,7 +1,6 @@
 package domain;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
@@ -30,11 +29,10 @@ public class Participants {
                 .collect(Collectors.toList());
     }
 
-    public static Participants of(String[] names) {
+    public static Participants of(List<String> names) {
         List<Participant> participants = new ArrayList<>();
 
-        Arrays.stream(names)
-                .forEach(name -> participants.add(new Participant(name)));
+        names.forEach(name -> participants.add(new Participant(name)));
 
         return new Participants(participants);
     }

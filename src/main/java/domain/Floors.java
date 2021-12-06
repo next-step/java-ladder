@@ -17,7 +17,7 @@ public class Floors {
         return floors;
     }
 
-    public Position finalPosition(Position position) {
+    public Position finishedPosition(Position position) {
         Position current = position;
         for (Floor floor : floors) {
             current = floor.move(current);
@@ -29,9 +29,7 @@ public class Floors {
     public static Floors of(int heightOfLadder, int participantSize) {
         List<Floor> floors = new ArrayList<>();
         IntStream.range(START_POINT_FOR_CONSTRUCTING_FLOORS, heightOfLadder)
-                .forEach(i -> {
-                    floors.add(Floor.of(participantSize));
-                });
+                .forEach(i -> floors.add(Floor.of(participantSize)));
 
         return new Floors(floors);
     }

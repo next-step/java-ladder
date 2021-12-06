@@ -6,26 +6,27 @@ import java.util.stream.IntStream;
 
 public class Ladder {
     private final Floors floors;
-    private final LadderResult ladderResult;
+    private final Participants participants;
 
-    public Ladder(Floors floors, LadderResult ladderResult) {
+    public Ladder(Floors floors, Participants participants) {
         this.floors = floors;
-        this.ladderResult = ladderResult;
+        this.participants = participants;
     }
 
     public List<Floor> getFloors() {
         return floors.getFloors();
     }
 
-    public String finalResult(Position position) {
-        Position finalPosition = floors.finalPosition(position);
-        return ladderResult.result(finalPosition);
+    public String finalResult(LadderResult ladderResult, String participantName) {
+        Position initialPosition = participants.initialPosition(new Participant(participantName));
+        Position finishedPosition = floors.finishedPosition(initialPosition);
+
+        return ladderResult.result(finishedPosition);
     }
 
-    public List<String> finalResultsOfAll(int numberOfParticipants) {
+    public List<String> finalResultsOfAll(LadderResult ladderResult) {
         List<String> results = new ArrayList<>();
-        IntStream.range(0, numberOfParticipants)
-                .forEach(i -> results.add(finalResult(new Position(i))));
+        participants.getNamesOfParticipants().forEach(name -> results.add(finalResult(ladderResult, name)));
 
         return results;
     }
