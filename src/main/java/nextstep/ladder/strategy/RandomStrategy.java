@@ -24,7 +24,7 @@ public class RandomStrategy implements LadderStrategy {
                     if (randomNumber >= 5 && line.get(index - 1) == false) {
                         line.add(true);
                     }
-                    if(randomNumber < 5){
+                    if(randomNumber < 5 || line.get(index - 1) == true){
                         line.add(false);
                     }
                 });
