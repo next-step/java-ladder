@@ -82,21 +82,6 @@ public class Line {
         }
     }
 
-
-    private int leftEdgeCase(int firstPos) {
-        if (value.get(firstPos + 1)) {
-            return firstPos + 1;
-        }
-        return firstPos;
-    }
-
-    private int rightEdgeCase(int lastPos) {
-        if (value.get(lastPos)) {
-            return lastPos - 1;
-        }
-        return lastPos;
-    }
-
     public int size() {
         return this.value.size();
     }
