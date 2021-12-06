@@ -1,4 +1,21 @@
 # 사다리 게임
+
+## 사다리(생성) 생각해보기
+* 플레이어, 사다리, 사다리게임
+* 플레이어
+  * 이름 값만 가지고 있으면 됨.
+  * 일급컬렉션인 플레이어s
+* 사다리
+  * 자료구조로써의 사다리, 2차원 boolean 배열 -> List<List<Boolean>> -> List<Line>
+  * Line -> List<Line> -> List<LadderPart>
+  * LadderPart -> Rail, Rung
+  * 인덱스를 이용해 LadderPartFactory에서 Rail, Rung생성
+* Rail, Rung (LadderPart 구현체)
+  * 짝수 Rail, 홀수 Rung
+  * rail, rung, emptyRung
+  * String value() -> "|", "-----", "     "
+
+
 ## 진행 방법
 * 사다리 게임 게임 요구사항을 파악한다.
 * 요구사항에 대한 구현을 완료한 후 자신의 github 아이디에 해당하는 브랜치에 Pull Request(이하 PR)를 통해 코드 리뷰 요청을 한다.
