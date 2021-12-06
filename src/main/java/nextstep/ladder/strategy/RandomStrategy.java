@@ -11,7 +11,7 @@ public class RandomStrategy implements LadderStrategy {
     public List<Boolean> makeLadder(int size) {
         Random random = new Random();
         List<Boolean> line = new ArrayList<>();
-        int initialRandomNumber = random.nextInt(10)
+        int initialRandomNumber = random.nextInt(10);
         if (initialRandomNumber >= 5) {
             line.add(true);
         }
