@@ -7,6 +7,9 @@ public class PlayerName {
     private final String name;
 
     public PlayerName(String name) {
+        if (!(0 < name.length() && name.length() <= 5)) {
+            throw new IllegalArgumentException("이름은 5글자를 초과하면 안됩니다.");
+        }
         this.name = name;
     }
 

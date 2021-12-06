@@ -19,3 +19,4 @@
 **- TODO List**
 1. 참여하는 사람 객체를 만들아보자
    - Playaer, PlayerName, Players
+2. PlayerName 5자 검증
