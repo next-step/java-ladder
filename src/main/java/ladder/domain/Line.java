@@ -62,30 +62,24 @@ public class Line {
     }
 
     public int nextPosition(int currPos) {
-        // Edge Case 1. 제일 왼쪽에 있을 때
-        final int firstPos = 0;
-        if (currPos == firstPos) {
-            return leftEdgeCase(firstPos);
-        }
+        try {
+            this.value.add(Boolean.FALSE);
 
-        // Edge Case 2. 제일 오른쪽에 있을 때
-        final int lastPos = value.size() - 1;
-        if (currPos == lastPos) {
-            return rightEdgeCase(lastPos);
-        }
+            // 자신의 위치에서 왼쪽으로 뻗는 길이 있는 경우
+            if (value.get(currPos)) {
+                return currPos - 1;
+            }
 
-        // 자신의 위치에서 왼쪽으로 뻗는 길이 있는 경우
-        if (value.get(currPos)) {
-            return currPos - 1;
-        }
+            // 자신의 위치 오른쪽에서 뻗어오는 길이 있는 경우
+            if (value.get(currPos + 1)) {
+                return currPos + 1;
+            }
 
-        // 자신의 위치 오른쪽에서 뻗어오는 길이 있는 경우
-        if (value.get(currPos + 1)) {
-            return currPos + 1;
+            // 그 외 나머지 경우는 현재 위치 그대로
+            return currPos;
+        } finally {
+            this.value.remove(this.value.size() - 1);
         }
-
-        // 그 외 나머지 경우는 현재 위치 그대로
-        return currPos;
     }
 
 
