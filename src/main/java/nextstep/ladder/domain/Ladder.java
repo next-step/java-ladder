@@ -13,10 +13,10 @@ public class Ladder {
     private final List<Line> lines = new ArrayList<>();
 
     private Ladder(PositiveNumber height, int participantsCount) {
-        PositiveNumber pointCount = PositiveNumber.create(participantsCount - 1);
+        valid(participantsCount);
 
         IntStream.range(START_NUMBER, height.getNumber())
-            .forEach(i -> lines.add(new Line(pointCount, new Random())));
+            .forEach(i -> lines.add(new Line(participantsCount - 1, new Random())));
     }
 
     public static Ladder create(PositiveNumber height, int participantsCount) {
@@ -25,6 +25,12 @@ public class Ladder {
 
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
+    }
+
+    private void valid(int participantsCount) {
+        if (participantsCount < 0) {
+            throw new IllegalArgumentException("참석자의 수는 0명 아래일 수 없어요.");
+        }
     }
 
     @Override

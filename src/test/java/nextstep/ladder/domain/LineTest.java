@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 class LineTest {
 
-    private final PositiveNumber participantsCount = PositiveNumber.create(5);
+    private final int participantsCount = 5;
 
     @Test
     @DisplayName("사다리타기 라인 생성시 라인이 겹치지 않아야 한다.")
@@ -26,7 +26,7 @@ class LineTest {
     void lineUnDrawTest() {
         Line line = new Line(participantsCount, unDrawLineRandomMock());
 
-        IntStream.range(0, participantsCount.getNumber())
+        IntStream.range(0, participantsCount)
             .forEach(position -> assertThat(line.hasLine(position)).isFalse());
     }
 
