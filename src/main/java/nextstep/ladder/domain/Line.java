@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class Line {
     private static final int MIN_LINE_SIZE = 1;
-    private static int FIRST_INDEX = 0;
+    private static final int FIRST_INDEX = 0;
 
     private final List<Point> line;
 
