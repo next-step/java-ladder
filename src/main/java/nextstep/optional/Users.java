@@ -16,6 +16,6 @@ public class Users {
         return users.stream()
             .filter(user -> user.getName().equals(name))
             .findFirst()
-            .orElseGet(() -> DEFAULT_USER);
+            .orElse(DEFAULT_USER);
     }
 }
