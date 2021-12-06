@@ -19,6 +19,10 @@ public class Name {
         return new Name(name);
     }
 
+    public int length() {
+        return name.length();
+    }
+
     private static void valid(String name) {
         if (name == null || name.isEmpty()) {
             throw new NameNullPointerException();

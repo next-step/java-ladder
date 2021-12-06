@@ -16,6 +16,10 @@ public class Players {
         this.players = players;
     }
 
+    public Name getPlayer(int index) {
+        return players.get(index);
+    }
+
     public List<Name> getPlayers() {
         return Collections.unmodifiableList(players);
     }
