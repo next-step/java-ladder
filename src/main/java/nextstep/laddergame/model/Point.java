@@ -13,10 +13,7 @@ public class Point {
     }
 
     private static boolean convertToBoolean(int booleanNumber) {
-        if (booleanNumber == FALSE) {
-            return false;
-        }
-        return true;
+        return booleanNumber != FALSE;
     }
 
     public Point(boolean exist) {
