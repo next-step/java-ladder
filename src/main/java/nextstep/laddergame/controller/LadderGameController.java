@@ -12,9 +12,9 @@ public class LadderGameController {
 
     public void start() {
         List<Participant> participants = InputView.acceptParticipants();
-        List<Goal> gaols = InputView.acceptGoals();
+        List<Goal> goals = InputView.acceptGoals();
         Ladder ladder = new Ladder(participants.size(), InputView.acceptMaxLadderHeight());
 
-        ResultView.printLadder(participants, ladder.getLines());
+        ResultView.printLadder(participants, ladder.getLines(), goals);
     }
 }
