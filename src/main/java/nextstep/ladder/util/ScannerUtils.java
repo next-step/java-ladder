@@ -6,6 +6,9 @@ public class ScannerUtils {
 
     private static final Scanner SCANNER = new Scanner(System.in);
 
+    private ScannerUtils() {
+    }
+
     public static String nextLine() {
         return SCANNER.nextLine();
     }
