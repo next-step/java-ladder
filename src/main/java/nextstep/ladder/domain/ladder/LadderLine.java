@@ -62,6 +62,10 @@ public class LadderLine {
         }
     }
 
+    public int width() {
+        return points.size();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

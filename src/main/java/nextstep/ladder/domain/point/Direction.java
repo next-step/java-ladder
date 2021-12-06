@@ -31,14 +31,14 @@ public class Direction {
 
     public Direction next(WayRule wayRule) {
         checkNotNull(wayRule);
-        if (right) {
-            return next(false);
-        }
         return next(wayRule.canCreate());
     }
 
     private Direction next(boolean nextRight) {
-        return new Direction(this.right, nextRight);
+        if (right) {
+            return new Direction(true, false);
+        }
+        return new Direction(false, nextRight);
     }
 
     public Direction last() {

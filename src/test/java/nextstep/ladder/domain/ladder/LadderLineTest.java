@@ -1,12 +1,13 @@
 package nextstep.ladder.domain.ladder;
 
 import nextstep.ladder.domain.exception.OutOfRangeIndexException;
+import nextstep.ladder.domain.ladder.factory.FixedWayRule;
 import nextstep.ladder.domain.ladder.size.LadderWidth;
-import nextstep.ladder.domain.rule.WayRule;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -22,12 +23,8 @@ class LadderLineTest {
             "3, 2",
     })
     void move(int startIndex, int movedIndex) {
-        LadderLine ladderLine = LadderLine.of(new LadderWidth(4), createWayRule());
+        LadderLine ladderLine = LadderLine.of(new LadderWidth(4), new FixedWayRule(asList(true, false, true)));
         assertThat(ladderLine.move(startIndex)).isEqualTo(movedIndex);
-    }
-
-    private static WayRule createWayRule() {
-        return () -> true;
     }
 
     @DisplayName("startIndex가 0미만이거나 사다리폭 이상이라면 예외를 던진다.")
