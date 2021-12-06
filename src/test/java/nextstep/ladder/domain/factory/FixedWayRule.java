@@ -1,4 +1,4 @@
-package nextstep.ladder.domain.ladder.factory;
+package nextstep.ladder.domain.factory;
 
 import nextstep.ladder.domain.rule.WayRule;
 

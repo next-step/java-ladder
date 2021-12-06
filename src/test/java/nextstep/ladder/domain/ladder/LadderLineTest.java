@@ -1,7 +1,7 @@
 package nextstep.ladder.domain.ladder;
 
 import nextstep.ladder.domain.exception.OutOfRangeIndexException;
-import nextstep.ladder.domain.ladder.factory.FixedWayRule;
+import nextstep.ladder.domain.factory.FixedWayRule;
 import nextstep.ladder.domain.ladder.size.LadderWidth;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;

@@ -1,4 +1,4 @@
-package nextstep.ladder.gift;
+package nextstep.ladder.domain.gift;
 
 import nextstep.ladder.domain.exception.InvalidNameLengthException;
 import org.junit.jupiter.api.DisplayName;
