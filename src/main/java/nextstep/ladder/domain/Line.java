@@ -8,11 +8,13 @@ import java.util.stream.IntStream;
 
 public class Line {
 
+    private static final int START_NUMBER = 0;
+
     private final List<Boolean> points = new ArrayList<>();
 
     public Line(PositiveNumber pointCount, Random random) {
-        IntStream.range(0, pointCount.getNumber())
-            .forEach(i -> points.add(isNotDrawnBeforePoint(i) && pickAtRandom(random)));
+        IntStream.range(START_NUMBER, pointCount.getNumber())
+            .forEach(index -> points.add(isNotDrawnBeforePoint(index) && pickAtRandom(random)));
     }
 
     public boolean hasLine(int position) {

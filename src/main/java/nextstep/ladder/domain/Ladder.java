@@ -8,12 +8,14 @@ import java.util.stream.IntStream;
 
 public class Ladder {
 
+    private static final int START_NUMBER = 0;
+
     private final List<Line> lines = new ArrayList<>();
 
     private Ladder(PositiveNumber height, int participantsCount) {
         PositiveNumber pointCount = PositiveNumber.create(participantsCount - 1);
 
-        IntStream.range(0, height.getNumber())
+        IntStream.range(START_NUMBER, height.getNumber())
             .forEach(i -> lines.add(new Line(pointCount, new Random())));
     }
 

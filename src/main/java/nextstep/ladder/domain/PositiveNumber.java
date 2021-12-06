@@ -8,8 +8,8 @@ import java.util.stream.IntStream;
 
 public class PositiveNumber {
 
-    public static final int CACHE_MIN_NUMBER = 1;
-    public static final int CACHE_MAX_NUMBER = 100;
+    private static final int CACHE_MIN_NUMBER = 1;
+    private static final int CACHE_MAX_NUMBER = 100;
     private static final Map<Integer, PositiveNumber> cache = new HashMap<>();
 
     private final int number;
