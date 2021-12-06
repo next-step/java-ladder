@@ -8,7 +8,7 @@
 - [x] Ladder: 사다리의 가로줄을 포함하는 클래스 구현
   - [x] 게임실행 구현
 
-- [ ] Participant 구현
+- [x] Participant 구현
 
 - [ ] Gift 구현
 
