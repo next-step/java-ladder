@@ -3,6 +3,7 @@ package ladder.domain;
 import ladder.util.GameUtil;
 import ladder.util.RandomStrategy;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
@@ -32,7 +33,7 @@ public class Line {
 
     public Line(List<Boolean> value) {
         validate(value);
-        this.value = value;
+        this.value = new ArrayList<>(value);
     }
 
     private void validate(List<Boolean> value) {
