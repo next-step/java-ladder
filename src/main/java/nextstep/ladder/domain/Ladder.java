@@ -20,7 +20,7 @@ public class Ladder {
 
     public static Ladder of(int width, Height height) {
         RandomLineStrategy randomLineStrategy = new RandomLineStrategy();
-        
+
         List<Line> lines = IntStream.range(0, height.getHeight())
             .mapToObj((i) -> Line.of(width, randomLineStrategy))
             .collect(Collectors.toCollection(ArrayList::new));
