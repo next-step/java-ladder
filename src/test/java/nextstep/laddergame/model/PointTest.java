@@ -4,14 +4,16 @@ import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class PointTest {
 
     @DisplayName("0, 1의 값으로 생성할 때 true, false로 생성되는지를 검증")
-    @Test
-    void numberConstructorTest() {
-        assertThat(new Point(0)).isEqualTo(new Point(false));
-        assertThat(new Point(1)).isEqualTo(new Point(true));
+    @ParameterizedTest
+    @CsvSource({ "0,false", "1,true" })
+    void numberConstructorTest(int booleanNumber, boolean exist) {
+        assertThat(new Point(booleanNumber)).isEqualTo(new Point(exist));
     }
 
     @DisplayName("empty 객체를 생성했을 때 false로 생성되는지 검증")
@@ -21,9 +23,9 @@ class PointTest {
     }
 
     @DisplayName("true면 point가 있고, false면 point가 없음을 검증")
-    @Test
-    void hasLineTest() {
-        assertThat(new Point(true).exist()).isEqualTo(true);
-        assertThat(new Point(false).exist()).isEqualTo(false);
+    @ParameterizedTest
+    @CsvSource({ "true,true", "false,false" })
+    void hasLineTest(boolean exist, boolean expected) {
+        assertThat(new Point(exist).exist()).isEqualTo(expected);
     }
 }
