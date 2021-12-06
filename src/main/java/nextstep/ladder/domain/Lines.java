@@ -20,10 +20,7 @@ public class Lines {
     public static Lines of(int countOfParticipants, int countOfLine) {
         List<Line> lines = new ArrayList<>();
         IntStream.range(0, countOfLine)
-                .forEach(index -> {
-                    Line line = Line.of(countOfParticipants, new RandomStrategy());
-                    lines.add(line);
-                });
+                .forEach(index -> lines.add(Line.of(countOfParticipants, new RandomStrategy())));
         return new Lines(lines);
     }
 }
