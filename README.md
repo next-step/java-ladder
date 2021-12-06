@@ -10,7 +10,7 @@
 
 - [x] Participant 구현
 
-- [ ] Gift 구현
+- [x] Gift 구현
 
 - [ ] 컨트롤러 구현
 

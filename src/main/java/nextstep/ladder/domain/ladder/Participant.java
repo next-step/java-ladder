@@ -1,5 +1,7 @@
 package nextstep.ladder.domain.ladder;
 
+import nextstep.ladder.domain.exception.InvalidNameLengthException;
+
 import java.util.Objects;
 
 public class Participant {
