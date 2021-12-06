@@ -1,4 +1,4 @@
-package ladder.view;
+package ladder.view.input;
 
 import ladder.util.InputViewUtil;
 
