@@ -1,13 +1,15 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
 
+    public static final String INVALID_WIDTH_HEIGHT_MESSAGE = "width와 height는 양수여야 합니다.";
+
     private static final int MIN_WIDTH = 1;
     private static final int MIN_HEIGHT = 1;
-    public static final String INVALID_WIDTH_HEIGHT_MESSAGE = "width와 height는 양수여야 합니다.";
 
     private final List<Line> lines;
 
@@ -32,6 +34,10 @@ public class Ladder {
 
     public int width() {
         return lines.get(0).width();
+    }
+
+    public List<Line> getLines() {
+        return Collections.unmodifiableList(lines);
     }
 
 }

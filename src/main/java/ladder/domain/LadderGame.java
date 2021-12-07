@@ -10,4 +10,12 @@ public class LadderGame {
         this.ladder = new Ladder(this.names, height);
     }
 
+    public Names getNames() {
+        return names;
+    }
+
+    public Ladder getLadder() {
+        return ladder;
+    }
+
 }

@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -29,6 +30,10 @@ public class Line {
 
     public int width() {
         return ladderParts.size();
+    }
+
+    public List<LadderPart> getLadderParts() {
+        return Collections.unmodifiableList(ladderParts);
     }
 
 }
