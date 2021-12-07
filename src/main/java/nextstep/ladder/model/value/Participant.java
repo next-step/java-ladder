@@ -5,8 +5,8 @@ import java.util.Objects;
 public class Participant {
 
     private static final String SIZE_ERROR_MSG = "참가자 이름은 5자리를 초과 할 수 없습니다.";
-    private static final String FORMAT_ERROR_MSG = "참가자 이름은 5자리를 초과 할 수 없습니다.";
-    private static final int NAME_MAZ_SIZE = 5;
+    private static final String FORMAT_ERROR_MSG = "참가자는 1명 이상 입력하여야 합니다.";
+    private static final int NAME_MAX_SIZE = 5;
 
     private final String name;
 
@@ -16,7 +16,7 @@ public class Participant {
             throw new NullPointerException(FORMAT_ERROR_MSG);
         }
 
-        if(inputName.length() > NAME_MAZ_SIZE) {
+        if(inputName.length() > NAME_MAX_SIZE) {
             throw new IllegalArgumentException(SIZE_ERROR_MSG);
         }
 
