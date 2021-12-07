@@ -10,6 +10,7 @@ import java.util.stream.IntStream;
 
 public class UserNameInputView {
     public static final String DELIMITER = ",";
+    public static final int MIN_USERNAME_COUNT = 2;
     public static final int MIN_USERNAME_LENGTH = 1;
     public static final int MAX_USERNAME_LENGTH = 5;
 
@@ -34,6 +35,10 @@ public class UserNameInputView {
     }
 
     private void validate(List<String> value) {
+        if (value.size() < MIN_USERNAME_COUNT) {
+            throw new IllegalArgumentException("사다리 게임은 적어도 2인 이상이 참여해야 합니다.");
+        }
+
         final boolean invalidNamePresent = value.stream()
                 .map(String::length)
                 .anyMatch(length -> length < MIN_USERNAME_LENGTH || length > MAX_USERNAME_LENGTH);
