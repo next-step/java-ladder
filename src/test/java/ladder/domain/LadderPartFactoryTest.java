@@ -12,13 +12,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderPartFactoryTest {
 
-    private final LadderPartFactory ladderPartFactory = new LadderPartFactory();
-
     @DisplayName("짝수는 Rail, 홀수는 Rung")
     @ParameterizedTest
     @MethodSource(value = "provideIndex")
     void create(int idx, Class<?> clazz) {
-        LadderPart ladderPart = ladderPartFactory.ladderPart(idx, Rung.rung(true));
+        LadderPart ladderPart = LadderPartFactory.ladderPart(idx, true);
 
         assertThat(ladderPart).isInstanceOf(clazz);
     }
@@ -33,7 +31,7 @@ public class LadderPartFactoryTest {
     @DisplayName("이전 Rung이 set되어 있는 Rung이면 emptyRung 반환")
     @Test
     void return_emptyRung() {
-        LadderPart emptyRung = ladderPartFactory.ladderPart(3, Rung.rung(true));
+        LadderPart emptyRung = LadderPartFactory.ladderPart(3, true);
 
         assertThat(emptyRung).isEqualTo(Rung.rung(false));
     }
@@ -41,7 +39,7 @@ public class LadderPartFactoryTest {
     @DisplayName("이전 Rung이 set되어 있지 않은 Rung이면 아무 Rung 반환")
     @Test
     void return_any_rung() {
-        LadderPart anyRung = ladderPartFactory.ladderPart(3, Rung.rung(false));
+        LadderPart anyRung = LadderPartFactory.ladderPart(3, false);
 
         assertThat(anyRung).isInstanceOf(Rung.class);
     }

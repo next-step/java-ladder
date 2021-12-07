@@ -4,12 +4,12 @@ import java.util.Random;
 
 public class LadderPartFactory {
 
-    public LadderPart ladderPart(int idx, Rung rung) {
+    public static LadderPart ladderPart(int idx, boolean isRungSet) {
         if (idx % 2 == 0) {
             return Rail.rail();
         }
 
-        if (Rung.rung(false).equals(rung)) {
+        if (!isRungSet) {
             return Rung.rung(randomBoolean());
         }
 
