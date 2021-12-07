@@ -22,6 +22,10 @@ public class Names {
                 .collect(Collectors.toList());
     }
 
+    public int count() {
+        return names.size();
+    }
+
     public List<Name> getNames() {
         return Collections.unmodifiableList(names);
     }
