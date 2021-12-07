@@ -5,6 +5,7 @@ import nextstep.ladder.domain.exception.OutOfRangeIndexException;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static java.util.Collections.unmodifiableList;
 import static nextstep.ladder.utils.Validation.checkNotEmpty;
 import static nextstep.ladder.utils.Validation.checkNotNull;
 
@@ -43,5 +44,9 @@ public class GiftBundle {
 
     public boolean hasSize(int size) {
         return gifts.size() == size;
+    }
+
+    public List<Gift> gifts() {
+        return unmodifiableList(gifts);
     }
 }

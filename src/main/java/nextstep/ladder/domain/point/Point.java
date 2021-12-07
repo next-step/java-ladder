@@ -70,6 +70,10 @@ public class Point {
         return index;
     }
 
+    public boolean existedRightWay() {
+        return direction.isRight();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

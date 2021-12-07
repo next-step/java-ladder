@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static java.util.Collections.unmodifiableList;
 import static nextstep.ladder.utils.Validation.checkNotEmpty;
 import static nextstep.ladder.utils.Validation.checkNotNull;
 
@@ -64,5 +65,9 @@ public class Ladder {
 
     private int height() {
         return ladderLines.size();
+    }
+
+    public List<LadderLine> ladderLines() {
+        return unmodifiableList(ladderLines);
     }
 }

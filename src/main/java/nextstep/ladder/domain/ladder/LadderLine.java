@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import static java.util.Collections.unmodifiableList;
 import static nextstep.ladder.utils.Validation.checkNotEmpty;
 import static nextstep.ladder.utils.Validation.checkNotNull;
 
@@ -64,6 +65,10 @@ public class LadderLine {
 
     public int width() {
         return points.size();
+    }
+
+    public List<Point> points() {
+        return unmodifiableList(points);
     }
 
     @Override

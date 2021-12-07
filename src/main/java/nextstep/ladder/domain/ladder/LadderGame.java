@@ -11,6 +11,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import static java.util.Collections.unmodifiableList;
 import static nextstep.ladder.utils.Validation.checkNotNull;
 
 public class LadderGame {
@@ -65,5 +66,13 @@ public class LadderGame {
         if (giftBundle == null || !giftBundle.hasSize(participants.size())) {
             throw new InvalidNumberOfGiftsException();
         }
+    }
+
+    public List<Participant> participants() {
+        return unmodifiableList(participants);
+    }
+
+    public Ladder getLadder() {
+        return ladder;
     }
 }

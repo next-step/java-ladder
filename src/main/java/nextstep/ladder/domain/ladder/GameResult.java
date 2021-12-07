@@ -2,6 +2,7 @@ package nextstep.ladder.domain.ladder;
 
 import nextstep.ladder.domain.gift.Gift;
 
+import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
 
@@ -14,6 +15,21 @@ public class GameResult {
     public GameResult(Map<Participant, Gift> winningGifts) {
         checkNotNull(winningGifts);
         this.winningGifts = winningGifts;
+    }
+
+    public Gift winningGift(Participant participant) {
+        checkRegistered(participant);
+        return winningGifts.get(participant);
+    }
+
+    private void checkRegistered(Participant participant) {
+        if (!winningGifts.containsKey(participant)) {
+            throw new UnRegisteredParticipantException();
+        }
+    }
+
+    public Map<Participant, Gift> results() {
+        return Collections.unmodifiableMap(winningGifts);
     }
 
     @Override

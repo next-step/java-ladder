@@ -14,11 +14,11 @@
 
 - [x] LadderGame 구현
 
-- [ ] 컨트롤러 구현
+- [x] 컨트롤러 구현
 
-- [ ] InputView 구현
+- [x] InputView 구현
   - 참여할 사람을 입력받는다.
   - 실행결과를 입력받는다.
   - 사다리의 높이를 입력받는다.
 
-- [ ] OutputView 구현
+- [x] OutputView 구현
