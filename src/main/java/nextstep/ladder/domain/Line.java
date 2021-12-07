@@ -6,37 +6,30 @@ import java.util.Objects;
 
 public class Line {
     private static final int MIN_LINE_SIZE = 1;
-    private static final int FIRST_INDEX = 0;
 
-    private final List<Point> line;
+    private final List<Column> line;
 
-    private Line(List<Point> line) {
+    private Line(List<Column> line) {
         validateLineSize(line);
-        validatePoint(line);
         this.line = line;
     }
 
-    public static Line from(List<Point> line) {
+    public static Line from(List<Column> line) {
         return new Line(line);
     }
 
-    private static void validateLineSize(List<Point> line) {
+    private static void validateLineSize(List<Column> line) {
         if (Objects.isNull(line) || line.size() < MIN_LINE_SIZE) {
             throw new IllegalArgumentException();
         }
     }
 
-    private static void validatePoint(List<Point> line) {
-        Point before = line.get(FIRST_INDEX);
-
-        for (int i = MIN_LINE_SIZE; i < line.size(); i++) {
-            Point current = line.get(i);
-            before.checkNextPoint(current);
-            before = current;
-        }
+    public int move(int index) {
+        Column column = line.get(index);
+        return column.move(index);
     }
 
-    public List<Point> getPoints() {
+    public List<Column> getLine() {
         return Collections.unmodifiableList(line);
     }
 }
