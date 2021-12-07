@@ -5,10 +5,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -56,11 +55,11 @@ public class LadderTest {
     @DisplayName("Ladder 는 LadderResult 를 반환할 수 있다.")
     void result(List<Line> input) {
         // given
-        Map<Integer, Integer> value = new HashMap<>();
-        value.put(3, 1);
-        value.put(2, 0);
-        value.put(1, 2);
-        value.put(0, 3);
+        List<Integer> value = new ArrayList<>();
+        value.add(3);
+        value.add(2);
+        value.add(0);
+        value.add(1);
 
         // when
         Ladder ladder = new Ladder(input);

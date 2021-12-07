@@ -3,12 +3,12 @@ package ladder.domain;
 import ladder.util.GameUtil;
 import ladder.util.RandomStrategy;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Ladder {
     private final List<Line> value;
@@ -31,12 +31,11 @@ public class Ladder {
     }
 
     public LadderResult result() {
-        Map<Integer, Integer> result = new HashMap<>();
+        List<Integer> result = new ArrayList<>();
 
-        for (int currPos = 0; currPos < this.value.get(0).size(); currPos++) {
-            final int eachResult = resultByPosition(currPos);
-            result.put(currPos, eachResult);
-        }
+        IntStream.range(0, this.value.get(0).size())
+                .map(this::resultByPosition)
+                .forEach(result::add);
 
         return new LadderResult(result);
     }

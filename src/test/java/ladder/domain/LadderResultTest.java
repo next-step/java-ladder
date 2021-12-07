@@ -7,21 +7,22 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderResultTest {
-    private Map<Integer, Integer> value;
+    private List<Integer> value;
+
     @BeforeEach
     void setUp() {
-        value = new HashMap<>();
-        value.put(3, 1);
-        value.put(2, 0);
-        value.put(1, 3);
-        value.put(0, 2);
+        value = new ArrayList<>();
+        value.add(2);
+        value.add(3);
+        value.add(0);
+        value.add(1);
     }
 
     @Test

@@ -1,12 +1,12 @@
 package ladder.domain;
 
-import java.util.Map;
+import java.util.List;
 import java.util.Objects;
 
 public class LadderResult {
-    private final Map<Integer, Integer> value;
+    private final List<Integer> value;
 
-    public LadderResult(Map<Integer, Integer> value) {
+    public LadderResult(List<Integer> value) {
         this.value = value;
     }
 
