@@ -17,10 +17,21 @@ public class ParticipantTest {
     }
 
     @Test
-    @DisplayName("사람이름이 5자리를 넘어서는 안되는 예외 검증")
-    void exceptionTest() {
+    @DisplayName("사람 이름이 5자리를 넘어서는 안되는 예외 검증")
+    void overExceptionTest() {
 
         assertThatThrownBy(() ->
                 new Participant("jeonggi")).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("사람 이름이 null 이거나 빈값이면 안되는 예외 검증")
+    void emptyExceptionTest() {
+
+        assertThatThrownBy(() ->
+                new Participant("")).isInstanceOf(NullPointerException.class);
+
+        assertThatThrownBy(() ->
+                new Participant(null)).isInstanceOf(NullPointerException.class);
     }
 }
