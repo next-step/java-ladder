@@ -4,7 +4,10 @@ import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Lines;
 import nextstep.ladder.domain.Participants;
 
+import static nextstep.ladder.domain.Participant.PARTICIPANT_SIZE;
+
 public class OutPut {
+    private static StringBuilder sb = new StringBuilder();
 
 
     public static void viewParticipants(Participants participants) {
@@ -13,11 +16,11 @@ public class OutPut {
         System.out.println("");
         participants.getParticipants().stream()
                 .forEach(participant -> {
-                    String temp = "";
-                    for (int i = 0; i < (6 - participant.getParticipantLength()); i++) {
-                        temp += " ";
+                    sb.setLength(0);
+                    for (int i = 0; i < (PARTICIPANT_SIZE + 1 - participant.getParticipantLength()); i++) {
+                        sb.append(" ");
                     }
-                    System.out.print(participant.getParticipant() + temp);
+                    System.out.print(participant.getParticipant() + sb.toString());
                 });
         System.out.println("");
     }

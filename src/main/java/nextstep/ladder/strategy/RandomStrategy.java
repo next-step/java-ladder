@@ -6,25 +6,27 @@ import java.util.Random;
 import java.util.stream.IntStream;
 
 public class RandomStrategy implements LadderStrategy {
+    private static final Random RANDOM = new Random();
+    private static int RANDOM_END = 10;
+    private static int RANDOM_BOUNDARY = 5;
 
     @Override
     public List<Boolean> makeLadder(int size) {
-        Random random = new Random();
         List<Boolean> line = new ArrayList<>();
-        int initialRandomNumber = random.nextInt(10);
-        if (initialRandomNumber >= 5) {
+        int initialRandomNumber = RANDOM.nextInt(RANDOM_END);
+        if (initialRandomNumber >= RANDOM_BOUNDARY) {
             line.add(true);
         }
-        if (initialRandomNumber < 5) {
+        if (initialRandomNumber < RANDOM_BOUNDARY) {
             line.add(false);
         }
         IntStream.range(1, size - 1).
                 forEach(index -> {
-                    int randomNumber = random.nextInt(10);
-                    if (randomNumber >= 5 && line.get(index - 1) == false) {
+                    int randomNumber = RANDOM.nextInt(RANDOM_END);
+                    if (randomNumber >= RANDOM_BOUNDARY && line.get(index - 1) == false) {
                         line.add(true);
                     }
-                    if (randomNumber < 5 || line.get(index - 1) == true) {
+                    if (randomNumber < RANDOM_BOUNDARY || line.get(index - 1) == true) {
                         line.add(false);
                     }
                 });

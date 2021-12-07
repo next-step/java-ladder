@@ -5,7 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import static nextstep.ladder.domain.Participant.SIZE;
+import static nextstep.ladder.domain.Participant.PARTICIPANT_SIZE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @Nested
@@ -15,14 +15,14 @@ public class ParticipantTest {
     @DisplayName("checkParticipantLength 메소드는")
     class Describe_checkParticipantLength {
         @Nested
-        @DisplayName(SIZE+"가 넘는 길이의 참가자가 입력되면 ")
+        @DisplayName(PARTICIPANT_SIZE +"가 넘는 길이의 참가자가 입력되면 ")
         class long_participant_length {
             @Test
-            @DisplayName("이름의 길이가" + SIZE + "를 초과합니다.를 반환")
+            @DisplayName("이름의 길이가" + PARTICIPANT_SIZE + "를 초과합니다.를 반환")
             void long_participant_length() {
                 assertThatThrownBy(() -> {
                     Participant.of("testtest");
-                }).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("이름의 길이가 " + SIZE + "를 초과합니다.");
+                }).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("이름의 길이가 " + PARTICIPANT_SIZE + "를 초과합니다.");
             }
         }
 
