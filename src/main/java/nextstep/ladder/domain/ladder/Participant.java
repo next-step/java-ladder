@@ -1,35 +1,36 @@
 package nextstep.ladder.domain.ladder;
 
+import nextstep.ladder.domain.exception.InvalidNameLengthException;
+
 import java.util.List;
 import java.util.Objects;
 
-import static java.util.stream.Collectors.toUnmodifiableList;
-import static nextstep.ladder.utils.Validator.checkNotNull;
+import static java.util.stream.Collectors.toList;
+import static nextstep.ladder.utils.Validation.checkNotEmpty;
 
 public class Participant {
 
-    public static final String ILLEGAL_LENGTH_ERROR_MESSAGE = "이름의 길이는 1이상 5이하만 가능합니다.";
     private static final int MIN_NAME_LENGTH = 1;
     private static final int MAX_NAME_LENGTH = 5;
 
     private final String name;
 
     public Participant(String name) {
-        checkLength(name);
+        checkNameLength(name);
         this.name = name;
     }
 
-    private void checkLength(String name) {
+    private void checkNameLength(String name) {
         if (name == null || name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException(ILLEGAL_LENGTH_ERROR_MESSAGE);
+            throw new InvalidNameLengthException(MIN_NAME_LENGTH, MAX_NAME_LENGTH);
         }
     }
 
-    public static List<Participant> listOf(List<String> names) {
-        checkNotNull(names);
-        return names.stream()
+    public static List<Participant> listOf(List<String> participants) {
+        checkNotEmpty(participants);
+        return participants.stream()
                 .map(Participant::new)
-                .collect(toUnmodifiableList());
+                .collect(toList());
     }
 
     public String getName() {
@@ -55,5 +56,4 @@ public class Participant {
                 "name='" + name + '\'' +
                 '}';
     }
-
 }

@@ -1,6 +1,6 @@
 package nextstep.ladder.domain.rule;
 
 @FunctionalInterface
-public interface PointRule {
+public interface WayRule {
     boolean canCreate();
 }

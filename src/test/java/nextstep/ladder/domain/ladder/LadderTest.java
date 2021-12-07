@@ -1,61 +1,53 @@
 package nextstep.ladder.domain.ladder;
 
-import nextstep.ladder.domain.position.Position;
+import nextstep.ladder.domain.factory.FixedWayRule;
+import nextstep.ladder.domain.ladder.size.LadderWidth;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import java.util.List;
+
 import static java.util.Arrays.asList;
-import static java.util.Collections.nCopies;
-import static nextstep.ladder.domain.factory.NoPointRule.noPointRule;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LadderTest {
 
-    @DisplayName("정상생성")
-    @Test
-    void create() {
-        //given
-        int width = 5;
-        LadderSize ladderSize = new LadderSize(new Positive(3), new Positive(width));
-
-        //when
-        Ladder ladder = Ladder.of(ladderSize, noPointRule());
-
-        //then
-        Line expectedLine = new Line(asList(false, false, false));
-        assertThat(ladder).isEqualTo(new Ladder(nCopies(width, expectedLine)));
-    }
-
     /**
-     * 사다리 모양
-     * 0     1     2     3     4
-     * |-----|     |-----|     |
-     * |     |-----|     |-----|
-     * |     |     |-----|     |
-     * |-----|     |-----|     |
-     * |-----|     |     |     |
+     * 0    1    2    3    4    5
+     * |----|    |----|    |----|
+     * |    |----|    |----|    |
+     * |    |----|    |    |----|
+     * |    |    |----|    |----|
+     * 0    1    2    3    4    5
      */
-    @DisplayName("게임이 잘 진행되는지")
-    @ParameterizedTest(name = "[{index}] startPosition: {0}, expectedPosition: {1}")
+    @DisplayName("결과를 잘 반환하는지")
+    @ParameterizedTest(name = "[{index}] startIndex: {0}, endIndex: {1}")
     @CsvSource({
-            "0, 2",
+            "0, 1",
             "1, 0",
             "2, 4",
-            "3, 1",
-            "4, 3",
+            "3, 3",
+            "4, 5",
+            "5, 2"
     })
-    void play(int startPosition, int expectedPosition) {
-        Line first = new Line(asList(true, false, true, false));
-        Line second = new Line(asList(false, true, false, true));
-        Line third = new Line(asList(false, false, true, false));
-        Line fourth = new Line(asList(true, false, true, false));
-        Line fifth = new Line(asList(true, false, false, false));
-        Ladder ladder = new Ladder(asList(first, second, third, fourth, fifth));
+    void move(int startIndex, int expectedIndex) {
+        //given
+        int width = 6;
+        LadderLine first = ladderLine(width, asList(true, false, true, false, true));
+        LadderLine second = ladderLine(width, asList(false, true, false, true, false));
+        LadderLine third = ladderLine(width, asList(false, true, false, false, true));
+        LadderLine fourth = ladderLine(width, asList(false, false, true, false, true));
 
-        Position position = ladder.play(new Position(startPosition));
-        assertThat(position).isEqualTo(new Position(expectedPosition));
+        //when
+        Ladder ladder = new Ladder(asList(first, second, third, fourth));
+
+        //then
+        assertThat(ladder.move(startIndex)).isEqualTo(expectedIndex);
+    }
+
+    private LadderLine ladderLine(int width, List<Boolean> creations) {
+        return LadderLine.of(new LadderWidth(width), new FixedWayRule(creations));
     }
 
 }

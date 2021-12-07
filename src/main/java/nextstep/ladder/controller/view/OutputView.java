@@ -2,16 +2,12 @@ package nextstep.ladder.controller.view;
 
 import nextstep.ladder.domain.gift.Gift;
 import nextstep.ladder.domain.gift.GiftBundle;
-import nextstep.ladder.domain.ladder.Ladder;
-import nextstep.ladder.domain.ladder.LadderGame;
-import nextstep.ladder.domain.ladder.Line;
-import nextstep.ladder.domain.ladder.Participant;
+import nextstep.ladder.domain.ladder.*;
+import nextstep.ladder.domain.point.Point;
 
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
-import static java.lang.String.format;
+import static java.util.stream.Collectors.joining;
 
 public class OutputView {
 
@@ -25,39 +21,40 @@ public class OutputView {
     private OutputView() {
     }
 
-    public static void showRadderResult(LadderGame ladderGame, GiftBundle giftBundle) {
-        newLine();
+    public static void showRadderGame(LadderGame ladderGame, GiftBundle giftBundle) {
+        System.out.println();
         showParticipants(ladderGame.participants());
         showLadder(ladderGame.getLadder());
         showGifts(giftBundle.gifts());
     }
 
     public static void showParticipants(List<Participant> participants) {
-        println(joinParticipants(participants));
+        System.out.println(joinNameOfParticipants(participants));
     }
 
-    private static String joinParticipants(List<Participant> participants) {
+    private static String joinNameOfParticipants(List<Participant> participants) {
         return participants.stream()
                 .map(Participant::getName)
-                .collect(Collectors.joining(DELIMITER));
+                .collect(joining(DELIMITER));
     }
 
-    public static void showLadder(Ladder ladder) {
-        ladder.lines()
-                .forEach(OutputView::showLine);
+    private static void showLadder(Ladder ladder) {
+        ladder.ladderLines()
+                .forEach(OutputView::showLadderLine);
     }
 
-    private static void showLine(Line line) {
+    private static void showLadderLine(LadderLine ladderLine) {
+        ladderLine.pointsExceptLast()
+                .forEach(OutputView::showWay);
+
         STRING_BUILDER.append(VERTICAL);
-        for (boolean point : line.points()) {
-            showPoint(point);
-            STRING_BUILDER.append(VERTICAL);
-        }
-        flushStringBuilder();
+        flush();
     }
 
-    private static void showPoint(boolean point) {
-        if (point) {
+    private static void showWay(Point point) {
+        STRING_BUILDER.append(VERTICAL);
+
+        if (point.existedRightWay()) {
             STRING_BUILDER.append(HORIZONTAL);
             return;
         }
@@ -65,44 +62,32 @@ public class OutputView {
     }
 
     private static void showGifts(List<Gift> gifts) {
-        println(joinGifts(gifts));
+        System.out.println(joinNameOfGifts(gifts));
     }
 
-    private static String joinGifts(List<Gift> gifts) {
+    private static String joinNameOfGifts(List<Gift> gifts) {
         return gifts.stream()
                 .map(Gift::getName)
-                .collect(Collectors.joining(DELIMITER));
+                .collect(joining(DELIMITER));
     }
 
-    private static void flushStringBuilder() {
-        println(STRING_BUILDER);
+    private static void flush() {
+        System.out.println(STRING_BUILDER);
         STRING_BUILDER.setLength(STRING_BUFFER_EMPTY_LENGTH);
     }
 
     public static void showWinningGift(Gift winningGift) {
-        println("\n실행결과");
-        println(winningGift.getName());
+        System.out.println("\n실행결과");
+        System.out.println(winningGift.getName());
     }
 
-    public static void showWinningGiftsWithParticipant(Map<Participant, Gift> gameResults) {
-        println("\n실행결과");
-        gameResults.forEach(OutputView::showWinningGiftWithParticipant);
+    public static void showAllResults(GameResult gameResult) {
+        System.out.println("\n실행결과");
+        gameResult.results()
+                .forEach(OutputView::showGiftWithParticipant);
     }
 
-    private static void showWinningGiftWithParticipant(Participant participant, Gift gift) {
-        println(format("%s : %s", participant.getName(), gift.getName()));
+    private static void showGiftWithParticipant(Participant participant, Gift gift) {
+        System.out.printf("%s : %s%n", participant.getName(), gift.getName());
     }
-
-    private static void println(StringBuilder stringBuilder) {
-        System.out.println(stringBuilder.toString());
-    }
-
-    private static void println(String string) {
-        System.out.println(string);
-    }
-
-    private static void newLine() {
-        System.out.println();
-    }
-
 }

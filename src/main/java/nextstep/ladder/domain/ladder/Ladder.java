@@ -1,74 +1,74 @@
 package nextstep.ladder.domain.ladder;
 
-import nextstep.ladder.domain.position.Position;
-import nextstep.ladder.domain.rule.PointRule;
+import nextstep.ladder.domain.exception.OutOfRangeIndexException;
+import nextstep.ladder.domain.ladder.size.LadderSize;
+import nextstep.ladder.domain.ladder.size.LadderWidth;
+import nextstep.ladder.domain.rule.WayRule;
 
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static java.util.Collections.unmodifiableList;
-import static nextstep.ladder.utils.Validator.checkNotNull;
+import static java.util.stream.Collectors.toList;
+import static nextstep.ladder.utils.Validation.checkNotEmpty;
+import static nextstep.ladder.utils.Validation.checkNotNull;
 
 public class Ladder {
 
-    private static final int MIN_LINES_SIZE = 1;
-    private static final int RECURSIVE_START_INDEX = 0;
-    private static final String EMPTY_LINES_ERROR_MESSAGE = "하나 이상의 가로줄이 필요합니다.";
+    private static final int MIN_INDEX = 0;
 
-    private final List<Line> lines;
+    private final List<LadderLine> ladderLines;
 
-    public Ladder(List<Line> lines) {
-        checkNotEmpty(lines);
-        this.lines = lines;
+    public Ladder(List<LadderLine> ladderLines) {
+        checkNotEmpty(ladderLines);
+        this.ladderLines = ladderLines;
     }
 
-    private void checkNotEmpty(List<Line> lines) {
-        if (lines == null || lines.size() < MIN_LINES_SIZE) {
-            throw new IllegalArgumentException(EMPTY_LINES_ERROR_MESSAGE);
+    public static Ladder of(LadderSize ladderSize, WayRule wayRule) {
+        checkNotNull(ladderSize, wayRule);
+
+        int height = ladderSize.height();
+        LadderWidth ladderWidth = ladderSize.getLadderWidth();
+        return new Ladder(createLadderLines(height, ladderWidth, wayRule));
+    }
+
+    private static List<LadderLine> createLadderLines(int height, LadderWidth ladderWidth, WayRule wayRule) {
+        return Stream.generate(() -> LadderLine.of(ladderWidth, wayRule))
+                .limit(height)
+                .collect(toList());
+    }
+
+    public int move(int position) {
+        checkRange(position);
+        return movePerLine(position, MIN_INDEX);
+    }
+
+    private void checkRange(int position) {
+        if (position < MIN_INDEX || position >= width()) {
+            throw new OutOfRangeIndexException();
         }
     }
 
-    public static Ladder of(LadderSize ladderSize, PointRule pointRule) {
-        checkNotNull(ladderSize);
-        return new Ladder(createLines(ladderSize, pointRule));
-    }
-
-    private static List<Line> createLines(LadderSize ladderSize, PointRule pointRule) {
-        Positive width = ladderSize.getWidth();
-        return Stream.generate(() -> Line.of(width, pointRule))
-                .limit(ladderSize.height())
-                .collect(Collectors.toList());
-    }
-
-    public Position play(Position position) {
-        return playPerLine(position, RECURSIVE_START_INDEX);
-    }
-
-    private Position playPerLine(Position position, int lineIndex) {
-        if (lineIndex == lines.size()) {
-            return position;
+    private int movePerLine(int currentPosition, int currentHeight) {
+        if (currentHeight == height()) {
+            return currentPosition;
         }
-        Line line = lines.get(lineIndex);
-        return playPerLine(line.play(position), ++lineIndex);
+
+        LadderLine currentLine = ladderLines.get(currentHeight);
+        int nextIndex = currentLine.move(currentPosition);
+        return movePerLine(nextIndex, ++currentHeight);
     }
 
-    public List<Line> lines() {
-        return unmodifiableList(lines);
+    private int width() {
+        LadderLine ladderLine = ladderLines.get(MIN_INDEX);
+        return ladderLine.width();
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Ladder ladder = (Ladder) o;
-        return Objects.equals(lines, ladder.lines);
+    private int height() {
+        return ladderLines.size();
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(lines);
+    public List<LadderLine> ladderLines() {
+        return unmodifiableList(ladderLines);
     }
-
 }

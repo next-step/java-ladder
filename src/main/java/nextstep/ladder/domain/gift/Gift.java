@@ -1,35 +1,24 @@
 package nextstep.ladder.domain.gift;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
+import nextstep.ladder.domain.exception.InvalidNameLengthException;
 
-import static java.lang.String.format;
-import static nextstep.ladder.utils.Validator.checkNotNull;
+import java.util.Objects;
 
 public class Gift {
 
     private static final int MIN_NAME_LENGTH = 1;
-    public static final String EMPTY_NAME_ERROR_MESSAGE = format("상품명의 길이는 %d 이상이어야 합니다", MIN_NAME_LENGTH);
 
     private final String name;
 
     public Gift(String name) {
-        checkNotEmpty(name);
+        checkNameLength(name);
         this.name = name;
     }
 
-    private void checkNotEmpty(String name) {
+    private void checkNameLength(String name) {
         if (name == null || name.length() < MIN_NAME_LENGTH) {
-            throw new IllegalArgumentException(EMPTY_NAME_ERROR_MESSAGE);
+            throw new InvalidNameLengthException(MIN_NAME_LENGTH);
         }
-    }
-
-    public static List<Gift> listOf(List<String> gifts) {
-        checkNotNull(gifts);
-        return gifts.stream()
-                .map(Gift::new)
-                .collect(Collectors.toList());
     }
 
     public String getName() {
@@ -48,12 +37,4 @@ public class Gift {
     public int hashCode() {
         return Objects.hash(name);
     }
-
-    @Override
-    public String toString() {
-        return "Gift{" +
-                "name='" + name + '\'' +
-                '}';
-    }
-
 }

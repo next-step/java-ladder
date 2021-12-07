@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import static java.util.Arrays.stream;
-import static nextstep.ladder.utils.Validator.checkNotNull;
+import static nextstep.ladder.utils.Validation.checkNotNull;
 
 public class Parser {
 

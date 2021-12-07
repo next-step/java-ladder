@@ -2,7 +2,7 @@ package nextstep.ladder.domain.rule;
 
 import java.util.Random;
 
-public class RandomPointRule implements PointRule {
+public class RandomWayRule implements WayRule {
 
     private static final Random RANDOM = new Random();
 
@@ -10,5 +10,4 @@ public class RandomPointRule implements PointRule {
     public boolean canCreate() {
         return RANDOM.nextBoolean();
     }
-
 }
