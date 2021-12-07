@@ -26,10 +26,9 @@ class PlayerTest {
     }
 
     @ParameterizedTest
-    @DisplayName("Player의 이름이 없으면 예외가 발생한다")
+    @DisplayName("Player의 이름이 0자 이하면 예외가 발생한다")
     @NullAndEmptySource
     void nameEmptyException(String name) {
         assertThatThrownBy(() -> Player.from(name)).isInstanceOf(PlayerNameException.class);
     }
-
 }
