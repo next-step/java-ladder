@@ -4,6 +4,10 @@ import java.util.Random;
 
 public class LadderPartFactory {
 
+    public static LadderPart ladderPart(int idx, PreviousRung previousRung) {
+        return ladderPart(idx, previousRung.isSet());
+    }
+
     public static LadderPart ladderPart(int idx, boolean isRungSet) {
         if (idx % 2 == 0) {
             return Rail.rail();

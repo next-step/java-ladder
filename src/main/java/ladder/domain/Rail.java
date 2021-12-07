@@ -20,4 +20,9 @@ public class Rail implements LadderPart {
         return value;
     }
 
+    @Override
+    public boolean isInstanceOf(Class<?> clazz) {
+        return Rail.class.equals(clazz);
+    }
+
 }
