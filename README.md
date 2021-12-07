@@ -1,15 +1,17 @@
 # 사다리 게임
 
 ## 사다리(생성) 생각해보기
-* 플레이어, 사다리, 사다리게임
-* 플레이어
+* 이름, 사다리, 사다리게임
+* 이름
   * 이름 값만 가지고 있으면 됨.
-  * 일급컬렉션인 플레이어s
+  * 유효성(최대 5글자)
+  * 일급컬렉션인 이름s
 * 사다리
   * 자료구조로써의 사다리, 2차원 boolean 배열 -> List<List<Boolean>> -> List<Line>
   * Line -> List<Line> -> List<LadderPart>
   * LadderPart -> Rail, Rung
   * 인덱스를 이용해 LadderPartFactory에서 Rail, Rung생성
+  * 이전 Rung이 세팅되어있으면 다음 Rung은 빈 rung이어야 한다.
 * Rail, Rung (LadderPart 구현체)
   * 짝수 Rail, 홀수 Rung
   * rail, rung, emptyRung
