@@ -37,8 +37,12 @@ public class User {
     public static boolean ageIsInRange2(User user) {
         return Optional.ofNullable(user)
                 .map(User::getAge)
-                .map(age -> age >= 30 && age <= 45)
+                .map(User::senior)
                 .orElse(false);
+    }
+
+    public static boolean senior(int age) {
+        return age >= 30 && age <= 45;
     }
 
     @Override

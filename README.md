@@ -10,18 +10,18 @@
   * [x] nextstep.fp.Lambda#sumAllOverThree
 
 ### Stream
-* [ ] List에 담긴 모든 숫자 중 3보다 큰 숫자를 2배 한 후 모든 값의 합 구현
-* [ ] nextstep.fp.StreamStudy 클래스의 printLongestWordTop100() 메서드를 구현
-  * [ ] 단어의 길이가 12자를 초과하는 단어를 추출
-  * [ ] 길이가 긴 순서로 추출
-  * [ ] 서로 다른 단어 100개를 추출
-  * [ ] 모든 단어는 소문자로 출력
+* [x] List에 담긴 모든 숫자 중 3보다 큰 숫자를 2배 한 후 모든 값의 합 구현
+* [x] nextstep.fp.StreamStudy 클래스의 printLongestWordTop100() 메서드를 구현
+  * [x] 단어의 길이가 12자를 초과하는 단어를 추출
+  * [x] 길이가 긴 순서로 추출
+  * [x] 서로 다른 단어 100개를 추출
+  * [x] 모든 단어는 소문자로 출력
 
 ### Optional
-* [ ] nextstep.optional.User#ageIsInRange2() 메소드를 Optional을 활요해 구현
-* [ ] nextstep.optional.User#getUser() 메소드를 Optional을 활요해 구현
-* [ ] nextstep.optional.Expression#of 메소드를 구현
-* [ ] nextstep.optional.ComputerStoreTest 테스트를 통과하도록 수정
+* [x] nextstep.optional.User#ageIsInRange2() 메소드를 Optional을 활요해 구현
+* [x] nextstep.optional.User#getUser() 메소드를 Optional을 활요해 구현
+* [x] nextstep.optional.Expression#of 메소드를 구현
+* [x] nextstep.optional.ComputerStoreTest 테스트를 통과하도록 수정
 
 ## 진행 방법
 * 사다리 게임 게임 요구사항을 파악한다.
