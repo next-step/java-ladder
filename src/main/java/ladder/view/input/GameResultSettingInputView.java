@@ -1,5 +1,6 @@
 package ladder.view.input;
 
+import ladder.domain.Position;
 import ladder.util.InputViewUtil;
 
 import java.util.Arrays;
@@ -21,8 +22,8 @@ public class GameResultSettingInputView {
         this.value = value;
     }
 
-    public String resultByUserInitPosition(int initPosition) {
-        return this.value.get(initPosition);
+    public String resultByUserInitPosition(Position initPosition) {
+        return this.value.get(initPosition.value());
     }
 
     private static List<String> getUserInput() {

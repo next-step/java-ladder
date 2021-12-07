@@ -55,11 +55,11 @@ public class LadderTest {
     @DisplayName("Ladder 는 LadderResult 를 반환할 수 있다.")
     void result(List<Line> input) {
         // given
-        List<Integer> value = new ArrayList<>();
-        value.add(3);
-        value.add(2);
-        value.add(0);
-        value.add(1);
+        List<Position> value = new ArrayList<>();
+        value.add(new Position(3));
+        value.add(new Position(2));
+        value.add(new Position(0));
+        value.add(new Position(1));
 
         // when
         Ladder ladder = new Ladder(input);

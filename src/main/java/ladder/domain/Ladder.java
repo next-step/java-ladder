@@ -31,17 +31,18 @@ public class Ladder {
     }
 
     public LadderResult result() {
-        List<Integer> result = new ArrayList<>();
+        List<Position> result = new ArrayList<>();
 
         IntStream.range(0, this.value.get(0).size())
+                .mapToObj(Position::new)
                 .map(this::resultByPosition)
                 .forEach(result::add);
 
         return new LadderResult(result);
     }
 
-    private int resultByPosition(int initPosition) {
-        int target = initPosition;
+    private Position resultByPosition(Position initPosition) {
+        Position target = initPosition;
         for (final Line line : this.value) {
             target = line.nextPosition(target);
         }

@@ -14,15 +14,15 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderResultTest {
-    private List<Integer> value;
+    private List<Position> value;
 
     @BeforeEach
     void setUp() {
         value = new ArrayList<>();
-        value.add(2);
-        value.add(3);
-        value.add(0);
-        value.add(1);
+        value.add(new Position(2));
+        value.add(new Position(3));
+        value.add(new Position(0));
+        value.add(new Position(1));
     }
 
     @Test
@@ -38,7 +38,7 @@ public class LadderResultTest {
         LadderResult ladderResult = new LadderResult(value);
 
         // then
-        assertThat(ladderResult.result(user) == result).isTrue();
+        assertThat(ladderResult.result(user)).isEqualTo(new Position(result));
     }
 
     static Stream<Arguments> resultSource() {

@@ -55,10 +55,10 @@ public class LineTest {
         Line line = new Line(input);
 
         // when
-        final int nextPos = line.nextPosition(currPos);
+        final Position nextPos = line.nextPosition(new Position(currPos));
 
         // then
-        assertThat(nextPos == result).isTrue();
+        assertThat(nextPos).isEqualTo(new Position(result));
     }
 
     static Stream<Arguments> nextPositionSource() {

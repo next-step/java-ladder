@@ -62,22 +62,22 @@ public class Line {
                 });
     }
 
-    public int nextPosition(int currPos) {
+    public Position nextPosition(Position currPos) {
         try {
             this.value.add(Boolean.FALSE);
 
             // 자신의 위치에서 왼쪽으로 뻗는 길이 있는 경우
-            if (value.get(currPos)) {
-                return currPos - 1;
+            if (value.get(currPos.value())) {
+                return new Position(currPos.value() - 1);
             }
 
             // 자신의 위치 오른쪽에서 뻗어오는 길이 있는 경우
-            if (value.get(currPos + 1)) {
-                return currPos + 1;
+            if (value.get(currPos.value() + 1)) {
+                return new Position(currPos.value() + 1);
             }
 
             // 그 외 나머지 경우는 현재 위치 그대로
-            return currPos;
+            return new Position(currPos.value());
         } finally {
             this.value.remove(this.value.size() - 1);
         }

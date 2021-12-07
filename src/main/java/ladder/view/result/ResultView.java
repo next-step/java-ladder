@@ -2,6 +2,7 @@ package ladder.view.result;
 
 import ladder.domain.Ladder;
 import ladder.domain.LadderResult;
+import ladder.domain.Position;
 import ladder.domain.User;
 import ladder.util.InputViewUtil;
 import ladder.view.input.GameResultSettingInputView;
@@ -51,7 +52,7 @@ public class ResultView {
     private void showSingleUserResult(LadderResult ladderResult, String target) {
         User targetUser = userNames.findUser(target);
 
-        final int subResult = ladderResult.result(targetUser);
+        final Position subResult = ladderResult.result(targetUser);
         System.out.println(results.resultByUserInitPosition(subResult));
     }
 }

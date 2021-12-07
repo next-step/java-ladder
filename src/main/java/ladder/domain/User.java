@@ -4,9 +4,13 @@ import java.util.Objects;
 
 public class User {
     private final String name;
-    private final int initPosition;
+    private final Position initPosition;
 
     public User(String name, int initPosition) {
+        this(name, new Position(initPosition));
+    }
+
+    public User(String name, Position initPosition) {
         this.name = name;
         this.initPosition = initPosition;
     }
@@ -15,7 +19,7 @@ public class User {
         return name;
     }
 
-    public int initPosition() {
+    public Position initPosition() {
         return initPosition;
     }
 
@@ -24,7 +28,7 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return initPosition == user.initPosition && Objects.equals(name, user.name);
+        return Objects.equals(name, user.name) && Objects.equals(initPosition, user.initPosition);
     }
 
     @Override
