@@ -24,4 +24,12 @@ public class NamesTest {
                 .hasMessage("입력이 null일 수 없습니다.");
     }
 
+    @DisplayName("생성 파라미터는 비어있을 수 없음")
+    @Test
+    void create_empty() {
+        assertThatThrownBy(() -> new Names(","))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("입력이 비어있을 수 없습니다.");
+    }
+
 }

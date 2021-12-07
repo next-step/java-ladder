@@ -5,9 +5,9 @@ import java.util.List;
 
 public class Ladder {
 
-    private static final int MIN_WIDTH = 0;
-    private static final int MIN_HEIGHT = 0;
-    public static final String INVALID_WIDTH_HEIGHT_MESSAGE = "width와 height는 음수일수 없습니다.";
+    private static final int MIN_WIDTH = 1;
+    private static final int MIN_HEIGHT = 1;
+    public static final String INVALID_WIDTH_HEIGHT_MESSAGE = "width와 height는 양수여야 합니다.";
 
     private final List<Line> lines;
 
