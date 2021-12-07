@@ -7,6 +7,8 @@ import nextstep.laddergame.exception.InvalidNameException;
 public class Name {
 
     private static final int LENGTH_LIMIT = 5;
+    private static final String ALL_NAME = "all";
+    public static final Name ALL = new Name(ALL_NAME);
 
     private final String name;
 

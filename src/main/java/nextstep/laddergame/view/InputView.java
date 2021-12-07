@@ -35,4 +35,9 @@ public final class InputView {
                     .map(Goal::new)
                     .collect(Collectors.toList());
     }
+
+    public static Participant acceptParticipant() {
+        System.out.println("결과를 보고 싶은 사람은?");
+        return Participant.from(ScannerUtils.nextLine());
+    }
 }

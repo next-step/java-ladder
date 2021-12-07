@@ -12,6 +12,6 @@ class LadderTest {
     void constructTest() {
         Ladder ladder = new Ladder(10, 20);
         assertThat(ladder.getLines().size()).isEqualTo(20);
-        assertThat(ladder.getLines().get(0).getPoints().size()).isEqualTo(9);
+        assertThat(ladder.getLines().get(0).getBridges().size()).isEqualTo(9);
     }
 }

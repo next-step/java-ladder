@@ -23,4 +23,10 @@ class ParticipantTest {
         Participant participant = Participant.from(stringName);
         assertThat(participant.name()).isEqualTo(name);
     }
+
+    @DisplayName("name으로 all이 주어졌을 때 ALL이 맞는지 검증")
+    @Test
+    void allTest() {
+        assertThat(Participant.from("all").isAll()).isTrue();
+    }
 }

@@ -7,25 +7,25 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-class PointTest {
+class BridgeTest {
 
     @DisplayName("0, 1의 값으로 생성할 때 true, false로 생성되는지를 검증")
     @ParameterizedTest
     @CsvSource({ "0,false", "1,true" })
     void numberConstructorTest(int booleanNumber, boolean exist) {
-        assertThat(new Point(booleanNumber)).isEqualTo(new Point(exist));
+        assertThat(new Bridge(booleanNumber)).isEqualTo(new Bridge(exist));
     }
 
     @DisplayName("empty 객체를 생성했을 때 false로 생성되는지 검증")
     @Test
     void emptyTest() {
-        assertThat(Point.empty()).isEqualTo(new Point(false));
+        assertThat(Bridge.empty()).isEqualTo(new Bridge(false));
     }
 
-    @DisplayName("true면 point가 있고, false면 point가 없음을 검증")
+    @DisplayName("true면 bridge가 있고, false면 bridge가 없음을 검증")
     @ParameterizedTest
     @CsvSource({ "true,true", "false,false" })
     void hasLineTest(boolean exist, boolean expected) {
-        assertThat(new Point(exist).exist()).isEqualTo(expected);
+        assertThat(new Bridge(exist).exist()).isEqualTo(expected);
     }
 }

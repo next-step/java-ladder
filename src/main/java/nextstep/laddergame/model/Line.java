@@ -10,31 +10,31 @@ public class Line {
 
     private static final int BOOLEAN_LIMIT = 2;
 
-    private final List<Point> points = new ArrayList<>();
+    private final List<Bridge> bridges = new ArrayList<>();
 
     public Line(int countOfPerson) {
-        points.add(makeRandomPoint());
+        bridges.add(makeRandomBridge());
         IntStream.range(1, countOfPerson - 1)
-                 .forEach(index -> addPoint(index, points));
+                 .forEach(index -> addBridge(index, bridges));
     }
 
-    private void addPoint(int index, List<Point> points) {
+    private void addBridge(int index, List<Bridge> bridges) {
         if (mustEmpty(index)) {
-            points.add(Point.empty());
+            bridges.add(Bridge.empty());
             return;
         }
-        points.add(makeRandomPoint());
+        bridges.add(makeRandomBridge());
     }
 
-    private Point makeRandomPoint() {
-        return new Point(RandomUtils.generate(BOOLEAN_LIMIT));
+    private Bridge makeRandomBridge() {
+        return new Bridge(RandomUtils.generate(BOOLEAN_LIMIT));
     }
 
     private boolean mustEmpty(int index) {
-        return points.get(index - 1).exist();
+        return bridges.get(index - 1).exist();
     }
 
-    public List<Point> getPoints() {
-        return points;
+    public List<Bridge> getBridges() {
+        return bridges;
     }
 }
