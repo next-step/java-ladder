@@ -20,17 +20,17 @@ public class Participant {
         this.name = name;
     }
 
+    private void checkNameLength(String name) {
+        if (name == null || name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH) {
+            throw new InvalidNameLengthException(MIN_NAME_LENGTH, MAX_NAME_LENGTH);
+        }
+    }
+
     public static List<Participant> listOf(List<String> participants) {
         checkNotEmpty(participants);
         return participants.stream()
                 .map(Participant::new)
                 .collect(toList());
-    }
-
-    private void checkNameLength(String name) {
-        if (name == null || name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH) {
-            throw new InvalidNameLengthException(MIN_NAME_LENGTH, MAX_NAME_LENGTH);
-        }
     }
 
     public String getName() {

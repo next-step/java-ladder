@@ -16,7 +16,7 @@ import static nextstep.ladder.utils.Validation.checkNotNull;
 public class LadderLine {
 
     private static final int INDEX_UNIT = 1;
-    private static final int MIN_START_INDEX = 0;
+    private static final int MIN_INDEX = 0;
 
     private final List<Point> points;
 
@@ -41,12 +41,13 @@ public class LadderLine {
         return new LadderLine(points);
     }
 
-    // TODO: 리팩토링
     private static List<Point> bodyOf(int bodySize, Point first, WayRule wayRule) {
         List<Point> bodyPoints = new ArrayList<>();
+        Point previous = first;
         for (int currentSize = 0; currentSize < bodySize; currentSize++) {
-            first = first.next(wayRule);
-            bodyPoints.add(first);
+            Point next = previous.next(wayRule);
+            bodyPoints.add(next);
+            previous = next;
         }
         return bodyPoints;
     }
@@ -58,7 +59,7 @@ public class LadderLine {
     }
 
     private void checkRange(int startIndex) {
-        if (startIndex < MIN_START_INDEX || startIndex >= points.size()) {
+        if (startIndex < MIN_INDEX || startIndex >= points.size()) {
             throw new OutOfRangeIndexException();
         }
     }
@@ -67,8 +68,9 @@ public class LadderLine {
         return points.size();
     }
 
-    public List<Point> points() {
-        return unmodifiableList(points);
+    public List<Point> pointsExceptLast() {
+        int endIndex = points.size() - INDEX_UNIT;
+        return unmodifiableList(points.subList(MIN_INDEX, endIndex));
     }
 
     @Override

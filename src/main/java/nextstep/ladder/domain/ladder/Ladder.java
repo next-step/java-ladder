@@ -6,16 +6,17 @@ import nextstep.ladder.domain.ladder.size.LadderWidth;
 import nextstep.ladder.domain.rule.WayRule;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static java.util.Collections.unmodifiableList;
+import static java.util.stream.Collectors.toList;
 import static nextstep.ladder.utils.Validation.checkNotEmpty;
 import static nextstep.ladder.utils.Validation.checkNotNull;
 
 public class Ladder {
 
     private static final int MIN_INDEX = 0;
+
     private final List<LadderLine> ladderLines;
 
     public Ladder(List<LadderLine> ladderLines) {
@@ -34,7 +35,7 @@ public class Ladder {
     private static List<LadderLine> createLadderLines(int height, LadderWidth ladderWidth, WayRule wayRule) {
         return Stream.generate(() -> LadderLine.of(ladderWidth, wayRule))
                 .limit(height)
-                .collect(Collectors.toList());
+                .collect(toList());
     }
 
     public int move(int position) {

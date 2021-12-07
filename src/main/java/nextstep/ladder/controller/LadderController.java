@@ -74,12 +74,11 @@ public class LadderController {
             OutputView.showAllResults(gameResult);
             return true;
         }
-        showWinningGift(gameResult, target);
+        showWinningGift(gameResult, new Participant(target));
         return true;
     }
 
-    private static void showWinningGift(GameResult gameResult, String target) {
-        Participant participant = new Participant(target);
+    private static void showWinningGift(GameResult gameResult, Participant participant) {
         Gift winningGift = gameResult.winningGift(participant);
         OutputView.showWinningGift(winningGift);
     }

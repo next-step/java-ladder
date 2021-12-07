@@ -1,7 +1,6 @@
 package nextstep.ladder.domain.point;
 
 import nextstep.ladder.domain.exception.OutOfRangeIndexException;
-import nextstep.ladder.domain.exception.RequiredArgumentException;
 import nextstep.ladder.domain.rule.WayRule;
 
 import java.util.Objects;
@@ -11,7 +10,6 @@ import static nextstep.ladder.utils.Validation.checkNotNull;
 public class Point {
 
     private static final int MIN_INDEX = 0;
-    private static final int FIRST_INDEX = 0;
     private static final int INDEX_UNIT = 1;
 
     private final int index;
@@ -24,11 +22,10 @@ public class Point {
     }
 
     private void checkArguments(int index, Direction direction) {
+        checkNotNull(direction);
+
         if (index < MIN_INDEX) {
             throw new OutOfRangeIndexException();
-        }
-        if (direction == null) {
-            throw new RequiredArgumentException();
         }
     }
 
@@ -36,33 +33,33 @@ public class Point {
         checkNotNull(wayRule);
 
         Direction firstDirection = Direction.first(wayRule.canCreate());
-        return new Point(FIRST_INDEX, firstDirection);
+        return new Point(MIN_INDEX, firstDirection);
     }
 
     public Point next(WayRule wayRule) {
         checkNotNull(wayRule);
-        return new Point(right(), direction.next(wayRule));
+        return new Point(rightIndex(), direction.next(wayRule));
     }
 
     public Point last() {
-        return new Point(right(), direction.last());
+        return new Point(rightIndex(), direction.last());
     }
 
     public int move() {
         if (direction.isLeft()) {
-            return left();
+            return leftIndex();
         }
         if (direction.isRight()) {
-            return right();
+            return rightIndex();
         }
         return stay();
     }
 
-    private int left() {
+    private int leftIndex() {
         return index - INDEX_UNIT;
     }
 
-    private int right() {
+    private int rightIndex() {
         return index + INDEX_UNIT;
     }
 

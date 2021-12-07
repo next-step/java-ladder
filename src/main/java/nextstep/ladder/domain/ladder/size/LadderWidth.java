@@ -13,7 +13,7 @@ public class LadderWidth {
 
     private void checkWidth(int width) {
         if (width < MIN_WIDTH) {
-            throw new TooNarrowException();
+            throw new LadderSizeException("사다리의 폭이 너무 좁습니다.");
         }
     }
 

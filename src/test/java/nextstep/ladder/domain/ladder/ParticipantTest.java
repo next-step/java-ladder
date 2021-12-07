@@ -15,7 +15,7 @@ class ParticipantTest {
     @ParameterizedTest(name = "[{index}] name: {0}")
     @NullAndEmptySource
     @ValueSource(strings = {"긴이름긴이름"})
-    void create_invalidNameLength(String name) {
+    void create_invalidNameLength_throwsException(String name) {
         assertThatThrownBy(() -> new Participant(name))
                 .isInstanceOf(InvalidNameLengthException.class);
     }

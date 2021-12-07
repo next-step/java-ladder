@@ -9,6 +9,7 @@ import static nextstep.ladder.utils.Validation.checkNotNull;
 public class Direction {
 
     private static final boolean BOTH_ENDS = false;
+    private static final Direction LEFT_DIRECTION = new Direction(true, false);
 
     private final boolean left;
     private final boolean right;
@@ -36,7 +37,7 @@ public class Direction {
 
     private Direction next(boolean nextRight) {
         if (right) {
-            return new Direction(true, false);
+            return LEFT_DIRECTION;
         }
         return new Direction(false, nextRight);
     }

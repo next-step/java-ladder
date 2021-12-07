@@ -54,12 +54,12 @@ public class LadderGame {
     public GameResult play(GiftBundle giftBundle) {
         checkGiftBundleSize(giftBundle);
 
-        Map<Participant, Gift> winningGifts = new LinkedHashMap<>();
+        Map<Participant, Gift> results = new LinkedHashMap<>();
         for (int position = MIN_INDEX; position < participants.size(); position++) {
             int resultPosition = ladder.move(position);
-            winningGifts.put(participants.get(position), giftBundle.gift(resultPosition));
+            results.put(participants.get(position), giftBundle.gift(resultPosition));
         }
-        return new GameResult(winningGifts);
+        return new GameResult(results);
     }
 
     private void checkGiftBundleSize(GiftBundle giftBundle) {

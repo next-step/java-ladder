@@ -1,7 +1,7 @@
 package nextstep.ladder.domain.ladder;
 
+import nextstep.ladder.domain.ladder.size.LadderSizeException;
 import nextstep.ladder.domain.ladder.size.LadderWidth;
-import nextstep.ladder.domain.ladder.size.TooNarrowException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -17,7 +17,7 @@ class LadderWidthTest {
     @ValueSource(ints = {-100, 0, 1})
     void create_notPositive_throwsException(int width) {
         assertThatThrownBy(() -> new LadderWidth(width))
-                .isInstanceOf(TooNarrowException.class);
+                .isInstanceOf(LadderSizeException.class);
     }
 
     @DisplayName("bodyWidth = width -2")

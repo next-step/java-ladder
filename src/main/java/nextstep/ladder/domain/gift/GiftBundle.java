@@ -31,6 +31,10 @@ public class GiftBundle {
                 .collect(Collectors.toList());
     }
 
+    public List<Gift> gifts() {
+        return unmodifiableList(gifts);
+    }
+
     public Gift gift(int position) {
         checkPositionRange(position);
         return gifts.get(position);
@@ -44,9 +48,5 @@ public class GiftBundle {
 
     public boolean hasSize(int size) {
         return gifts.size() == size;
-    }
-
-    public List<Gift> gifts() {
-        return unmodifiableList(gifts);
     }
 }

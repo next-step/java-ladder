@@ -13,7 +13,7 @@ public class LadderHeight {
 
     private void checkHeight(int height) {
         if (height < MIN_HEIGHT) {
-            throw new TooShortException();
+            throw new LadderSizeException("사다리가 너무 짧습니다.");
         }
     }
 
