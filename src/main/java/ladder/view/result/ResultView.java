@@ -32,17 +32,26 @@ public class ResultView {
             final String target = InputViewUtil.getUserInput();
 
             System.out.println("실행 결과");
+
             if (target.trim().equalsIgnoreCase("all")) {
-                userNames.users().stream()
-                        .map(user -> user.name() + " : " + results.resultByUserInitPosition(ladderResult.result(user)))
-                        .forEach(System.out::println);
+                showAllUserResult(ladderResult);
                 break;
             }
 
-            User targetUser = userNames.findUser(target);
-
-            final int subResult = ladderResult.result(targetUser);
-            System.out.println(results.resultByUserInitPosition(subResult));
+            showSingleUserResult(ladderResult, target);
         }
+    }
+
+    private void showAllUserResult(LadderResult ladderResult) {
+        userNames.users().stream()
+                .map(user -> user.name() + " : " + results.resultByUserInitPosition(ladderResult.result(user)))
+                .forEach(System.out::println);
+    }
+
+    private void showSingleUserResult(LadderResult ladderResult, String target) {
+        User targetUser = userNames.findUser(target);
+
+        final int subResult = ladderResult.result(targetUser);
+        System.out.println(results.resultByUserInitPosition(subResult));
     }
 }
