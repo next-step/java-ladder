@@ -17,18 +17,18 @@ public class ComputerStoreTest {
     }
 
     @Test
-    public void getVersionOptionalWhenComputerIsNull() throws Exception {
+    public void getVersionOptionalWhenComputerIsNull() {
         assertThat(ComputerStore.getVersionOptional(null)).isEqualTo(ComputerStore.UNKNOWN_VERSION);
     }
 
     @Test
-    public void getVersionOptionalWhenSoundcardIsNull() throws Exception {
+    public void getVersionOptionalWhenSoundcardIsNull() {
         Computer computer = new Computer(null);
         assertThat(ComputerStore.getVersionOptional(computer)).isEqualTo(ComputerStore.UNKNOWN_VERSION);
     }
 
     @Test
-    public void getVersionOptionalWhenUSBIsNull() throws Exception {
+    public void getVersionOptionalWhenUSBIsNull() {
         Computer computer = new Computer(new Soundcard(null));
         assertThat(ComputerStore.getVersionOptional(computer)).isEqualTo(ComputerStore.UNKNOWN_VERSION);
     }
