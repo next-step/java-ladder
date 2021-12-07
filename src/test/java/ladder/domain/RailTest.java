@@ -1,5 +1,6 @@
-package ladder;
+package ladder.domain;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +11,7 @@ public class RailTest {
     @DisplayName("Rail은 LadderPart의 구현체")
     @Test
     void create() {
-        assertThat(Rail.rail()).isInstanceOf(LadderPart.class);
+        Assertions.assertThat(Rail.rail()).isInstanceOf(LadderPart.class);
     }
 
     @DisplayName("Rail의 value 확인")

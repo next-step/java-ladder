@@ -1,5 +1,6 @@
-package ladder;
+package ladder.domain;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -13,7 +14,7 @@ public class RungTest {
     @ParameterizedTest
     @ValueSource(booleans = {true, false})
     void create(boolean isSet) {
-        assertThat(Rung.rung(isSet)).isInstanceOf(LadderPart.class);
+        Assertions.assertThat(Rung.rung(isSet)).isInstanceOf(LadderPart.class);
     }
 
     @DisplayName("생성메서드 Rung.rung(true) 확인")

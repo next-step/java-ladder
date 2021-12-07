@@ -1,5 +1,6 @@
-package ladder;
+package ladder.domain;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -16,7 +17,7 @@ public class NameTest {
     void create() {
         String pobi = "pobi";
 
-        assertThat(new Name(pobi)).isEqualTo(new Name(pobi));
+        Assertions.assertThat(new Name(pobi)).isEqualTo(new Name(pobi));
     }
 
     @DisplayName("이름은 1~5자")

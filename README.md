@@ -6,6 +6,7 @@
   * 이름 값만 가지고 있으면 됨.
   * 유효성(최대 5글자)
   * 일급컬렉션인 이름s
+    * ,로 구분
 * 사다리
   * 자료구조로써의 사다리, 2차원 boolean 배열 -> List<List<Boolean>> -> List<Line>
   * Line -> List<Line> -> List<LadderPart>
