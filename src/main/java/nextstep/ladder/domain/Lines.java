@@ -23,6 +23,13 @@ public class Lines {
         return new Lines(lines);
     }
 
+    public int resultIndex(int index) {
+        for (Line line : lines) {
+            index = line.move(index);
+        }
+        return index;
+    }
+
     public List<Line> getLines() {
         return lines;
     }
