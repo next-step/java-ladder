@@ -3,6 +3,8 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Function;
+import java.util.function.UnaryOperator;
 
 public class Ladder {
 
@@ -10,11 +12,12 @@ public class Ladder {
 
     private static final int MIN_WIDTH = 1;
     private static final int MIN_HEIGHT = 1;
+    private static final Function<Names, Integer> NAMES_TO_WIDTH = names -> names.count() * 2 - 1;
 
     private final List<Line> lines;
 
     public Ladder(Names names, int height) {
-        this(names.count() * 2 - 1, height);
+        this(NAMES_TO_WIDTH.apply(names), height);
     }
 
     public Ladder(int width, int height) {
