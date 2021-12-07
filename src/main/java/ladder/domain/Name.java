@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.util.Assert;
+
 public class Name {
 
     private static final String MAX_NAME_MESSAGE = "이름은 1~5자입니다.";
@@ -9,12 +11,13 @@ public class Name {
     private final String value;
 
     public Name(String value) {
-        if (value == null
-                || value.trim().length() < MIN_VALUE
-                || value.trim().length() > MAX_VALUE) {
+        Assert.notNull(value, MAX_NAME_MESSAGE);
+        String trimmedString = value.trim();
+
+        if (trimmedString.length() < MIN_VALUE || trimmedString.length() > MAX_VALUE) {
             throw new IllegalArgumentException(MAX_NAME_MESSAGE);
         }
-        this.value = value.trim();
+        this.value = trimmedString;
     }
 
     public String getValue() {

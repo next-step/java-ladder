@@ -9,7 +9,7 @@ public class LadderPartFactory {
             return Rail.rail();
         }
 
-        if (rung.equals(Rung.rung(false))) {
+        if (Rung.rung(false).equals(rung)) {
             return Rung.rung(randomBoolean());
         }
 
