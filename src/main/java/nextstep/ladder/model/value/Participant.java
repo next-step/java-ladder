@@ -20,8 +20,12 @@ public class Participant {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Participant name1 = (Participant) o;
         return Objects.equals(name, name1.name);
     }
