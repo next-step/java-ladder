@@ -5,24 +5,21 @@ import ladder.domain.LadderResult;
 import ladder.domain.Position;
 import ladder.domain.User;
 import ladder.util.InputViewUtil;
-import ladder.view.input.GameResultSettingInputView;
-import ladder.view.input.UserNameInputView;
+import ladder.view.input.UserNameAndResult;
 
 public class ResultView {
-    private final UserNameInputView userNames;
     private final Ladder ladder;
-    private final GameResultSettingInputView results;
+    private final UserNameAndResult userNameAndResult;
 
-    public ResultView(UserNameInputView userNames, Ladder ladder, GameResultSettingInputView results) {
-        this.userNames = userNames;
+    public ResultView(UserNameAndResult userNameAndResult, Ladder ladder) {
+        this.userNameAndResult = userNameAndResult;
         this.ladder = ladder;
-        this.results = results;
     }
 
     public void showLadderGame() {
-        System.out.println(this.userNames);
+        System.out.println(this.userNameAndResult.userNameInputView());
         System.out.println(this.ladder);
-        System.out.println(this.results);
+        System.out.println(this.userNameAndResult.gameResultSettingInputView());
     }
 
     public void showResult() {
@@ -44,15 +41,16 @@ public class ResultView {
     }
 
     private void showAllUserResult(LadderResult ladderResult) {
-        userNames.users().stream()
-                .map(user -> user.name() + " : " + results.resultByUserInitPosition(ladderResult.result(user)))
+        this.userNameAndResult.userNameInputView().users().stream()
+                .map(user -> user.name() + " : " + this.userNameAndResult.gameResultSettingInputView().resultByUserInitPosition(ladderResult.result(user)))
                 .forEach(System.out::println);
     }
 
     private void showSingleUserResult(LadderResult ladderResult, String target) {
-        User targetUser = userNames.findUser(target);
+
+        User targetUser = this.userNameAndResult.userNameInputView().findUser(target);
 
         final Position subResult = ladderResult.result(targetUser);
-        System.out.println(results.resultByUserInitPosition(subResult));
+        System.out.println(this.userNameAndResult.gameResultSettingInputView().resultByUserInitPosition(subResult));
     }
 }

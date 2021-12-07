@@ -3,6 +3,7 @@ package ladder.controller;
 import ladder.domain.Ladder;
 import ladder.view.input.GameResultSettingInputView;
 import ladder.view.input.MaxLadderHeightInputView;
+import ladder.view.input.UserNameAndResult;
 import ladder.view.result.ResultView;
 import ladder.view.input.UserNameInputView;
 
@@ -14,7 +15,9 @@ public class Controller {
 
         Ladder ladder = new Ladder(userNameInputView.userCount(), maxLadderHeightInputView.height());
 
-        ResultView resultView = new ResultView(userNameInputView, ladder, gameResultSettingInputView);
+        UserNameAndResult userNameAndResult = new UserNameAndResult(userNameInputView, gameResultSettingInputView);
+
+        ResultView resultView = new ResultView(userNameAndResult, ladder);
         resultView.showLadderGame();
         resultView.showResult();
     }
