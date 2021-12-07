@@ -9,16 +9,37 @@ public class Application {
     public static void main(String[] args) {
         Players players = getPlayers();
 
-        int playersCount = players.playersCount();
+        Results results = getResults(players.playersCount());
         int ladderHeight = InputView.askLadderHeight();
 
-        LinesGenerator generator = new RandomLinesGenerator();
-
-        Lines lines = generator.generate(playersCount, ladderHeight);
+        Lines lines = LinesFactory.of(players.playersCount(), ladderHeight, new RandomLineGenerator(), new RandomBooleanListGenerator());
 
         Ladder ladder = Ladder.from(lines);
 
-        OutputView.printLadder(players, ladder);
+        OutputView.printLadder(players, ladder, results);
+
+        LadderResult ladderResult = LadderResult.from(players, ladder, results);
+
+
+        String playerName = InputView.askResultOfPlayer();
+
+        while (true) {
+            checkPlayerName(playerName, ladderResult);
+            Player player = Player.from(playerName);
+
+            Player findPlayer = players.findPlayer(player);
+
+            Result resultOfPlayer = ladderResult.resultOfPlayer(findPlayer);
+
+            OutputView.printResult(resultOfPlayer);
+        }
+    }
+
+    private static void checkPlayerName(String playerName, LadderResult ladderResult) {
+        if (playerName.equals("all")) {
+            OutputView.printLadderResult(ladderResult);
+        }
+        System.exit(0);
     }
 
     private static Players getPlayers() {
@@ -32,4 +53,15 @@ public class Application {
         }
     }
 
+    private static Results getResults(int count) {
+        String resultsName = InputView.askResults();
+        String[] results = StringUtils.split(resultsName);
+
+        if (results.length != count) {
+            System.out.println("실행 결과의 개수는 참여자 인원만큼 입력하세요");
+            return getResults(count);
+        }
+
+        return Results.from(results);
+    }
 }
