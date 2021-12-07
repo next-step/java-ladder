@@ -21,6 +21,10 @@ public class Ladder {
         }
     }
 
+    public int resultOfIndex(int index) {
+        return lines.resultIndex(index);
+    }
+
     public List<Line> getLines() {
         return lines.getLines();
     }
