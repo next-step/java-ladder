@@ -14,11 +14,10 @@ public class Rung implements LadderPart {
         this.value = value;
     }
 
-    public static Rung rung() {
-        return rung;
-    }
-
-    public static Rung emptyRung() {
+    public static Rung rung(boolean isSet) {
+        if (isSet) {
+            return rung;
+        }
         return emptyRung;
     }
 
