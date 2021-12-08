@@ -1,9 +1,9 @@
-package ladder.point;
+package ladder;
 
-import ladder.position.Position;
+import ladder.Position;
 import org.junit.jupiter.api.Test;
 
-import static ladder.point.PointElement.*;
+import static ladder.PointElement.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class PointElementTest {

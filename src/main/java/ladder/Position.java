@@ -1,4 +1,4 @@
-package ladder.position;
+package ladder;
 
 import java.util.HashMap;
 import java.util.Map;

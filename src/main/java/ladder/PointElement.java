@@ -1,6 +1,4 @@
-package ladder.point;
-
-import ladder.position.Position;
+package ladder;
 
 /**
  *      기준
