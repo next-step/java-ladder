@@ -53,4 +53,11 @@ public class Lambda {
         }
         return total;
     }
+
+    public static int sumAll(List<Integer> numbers, Conditional c) {
+        return numbers.stream()
+                .filter(c::test)
+                .mapToInt(n -> n)
+                .sum();
+    }
 }

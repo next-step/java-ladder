@@ -1,11 +1,13 @@
 package nextstep.fp;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
 
+import static java.lang.Character.isDigit;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LambdaTest {
@@ -46,6 +48,27 @@ public class LambdaTest {
     @Test
     public void sumAllOverThree() throws Exception {
         int sum = Lambda.sumAllOverThree(numbers);
+        assertThat(sum).isEqualTo(15);
+    }
+
+    @DisplayName("합구하기 람다")
+    @Test
+    public void sumAllLambda() throws Exception {
+        int sum = Lambda.sumAll(numbers, n -> true);
+        assertThat(sum).isEqualTo(21);
+    }
+
+    @DisplayName("짝수합 구하기 람다")
+    @Test
+    public void sumAllEvenLambda() throws Exception {
+        int sum = Lambda.sumAll(numbers, n -> n % 2  == 0);
+        assertThat(sum).isEqualTo(12);
+    }
+
+    @DisplayName("3보다 큰수의 합 구하기 람다")
+    @Test
+    public void sumAllOverThreeLambda() throws Exception {
+        int sum = Lambda.sumAll(numbers, n -> n > 3);
         assertThat(sum).isEqualTo(15);
     }
 }
