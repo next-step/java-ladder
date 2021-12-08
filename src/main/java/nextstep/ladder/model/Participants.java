@@ -20,6 +20,7 @@ public class Participants {
     public static Participants from(String inputData) {
         return new Participants(
                 Arrays.stream(inputData.split(","))
+                        .map(String::trim)
                         .map(Participant::new)
                         .collect(Collectors.toList()));
     }
