@@ -3,6 +3,7 @@ package nextstep.ladder.model;
 import nextstep.ladder.model.value.Participant;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -23,6 +24,14 @@ public class Participants {
                         .collect(Collectors.toList()));
     }
 
+    public int size() {
+        return participants.size();
+    }
+
+    public List<Participant> getParticipants() {
+        return Collections.unmodifiableList(participants);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -39,6 +48,5 @@ public class Participants {
     public int hashCode() {
         return Objects.hash(participants);
     }
-
 
 }

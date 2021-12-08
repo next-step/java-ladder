@@ -23,6 +23,10 @@ public class Participant {
         this.name = inputName;
     }
 
+    public String getName() {
+        return name;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -39,4 +43,5 @@ public class Participant {
     public int hashCode() {
         return Objects.hash(name);
     }
+
 }
