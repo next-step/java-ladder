@@ -13,7 +13,7 @@ public class OutputView {
     private static final String PLAY_RESULT = "실행 결과";
     private static final String PLAYERS_COUNT_ERROR_MESSAGE = "최소 2명 이상 입력하세요";
     private static final String FORMAT = "%-6s";
-    private static final String rnqns = " : ";
+    private static final String DELIMITER = " : ";
 
     private OutputView() {
     }
@@ -82,7 +82,7 @@ public class OutputView {
         for (Player player : players) {
             Result result = ladderResult.resultOfPlayer(player);
             System.out.print(player.name());
-            System.out.print(rnqns);
+            System.out.print(DELIMITER);
             System.out.print(result.name());
             System.out.println();
         }
