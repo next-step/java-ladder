@@ -5,13 +5,13 @@
   * [ ] 참가자(Participant)를 생성한다.
   * [ ] 보상(Reward)을 생성한다
 * [ ] 사다리를(Ladder) 생성한다.
-  * [ ] 사다리 정보(LadderInfo)를 생성한다.
-    * [ ] 사다리 너비(Width)를 생성한다.
-    * [ ] 사다리 높이(Height)를 생성한다.
-  * [ ] 사다리 라인(LadderLine)을 생성한다.
-    * [ ] 라인 지점(Point)를 생성한다.
-    * [ ] 위치(Position)를 생성한다. 
-    * [ ] 방향(Direction)을 생성한다.
+  * [x] 사다리 정보(LadderInfo)를 생성한다.
+    * [x] 사다리 너비(Width)를 생성한다.
+    * [x] 사다리 높이(Height)를 생성한다.
+  * [x] 사다리 라인(LadderLine)을 생성한다.
+    * [x] 라인 지점(Point)를 생성한다.
+    * [x] 위치(Position)를 생성한다. 
+    * [x] 방향(Direction)을 생성한다.
 
 ## 기능 구현 목록
 * [x] 참가자를 생성한다.
