@@ -3,6 +3,7 @@ package step4.domain;
 import java.util.Objects;
 
 public class Name {
+    private static final int NAME_MIN_LENGTH = 1;
     private static final int NAME_MAX_LENGTH = 5;
 
     private final String name;
@@ -21,8 +22,8 @@ public class Name {
     }
 
     private void validateNameLength(String name) {
-        if (name.length() > NAME_MAX_LENGTH) {
-            throw new IllegalArgumentException("이름의 길이는 5자를 초과할 수 없습니다.");
+        if (name.length() > NAME_MAX_LENGTH || name.length() < NAME_MIN_LENGTH) {
+            throw new IllegalArgumentException("이름의 길이는 최소 1자 이상 5자 이하여야 합니다.");
         }
     }
 
