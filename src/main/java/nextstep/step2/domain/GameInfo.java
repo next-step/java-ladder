@@ -36,7 +36,7 @@ public class GameInfo {
     }
 
     public Gift findGiftWithPoint(Point point) {
-        return gifts.giftWithIndex(point.getValue());
+        return gifts.giftWithIndex(point);
     }
 
     public Names getNames() {

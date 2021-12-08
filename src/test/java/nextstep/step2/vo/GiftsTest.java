@@ -1,5 +1,6 @@
 package nextstep.step2.vo;
 
+import nextstep.step2.domain.Point;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -65,15 +66,15 @@ class GiftsTest {
     @Test
     void getGiftTest() {
         Gifts gifts = Gifts.fromWithString("1000,2000");
-        assertThat(gifts.giftWithIndex(0)).isEqualTo(Gift.from("1000"));
-        assertThat(gifts.giftWithIndex(1)).isEqualTo(Gift.from("2000"));
+        assertThat(gifts.giftWithIndex(Point.from(0))).isEqualTo(Gift.from("1000"));
+        assertThat(gifts.giftWithIndex(Point.from(1))).isEqualTo(Gift.from("2000"));
     }
 
     @DisplayName("getGift()는 index가 범위에 맞지 않으면 illegal exception.")
     @Test
     void getGiftFailTest() {
         Gifts gifts = Gifts.fromWithString("1000,2000");
-        assertThatIllegalArgumentException().isThrownBy(() -> gifts.giftWithIndex(3));
-        assertThatIllegalArgumentException().isThrownBy(() -> gifts.giftWithIndex(-1));
+        assertThatIllegalArgumentException().isThrownBy(() -> gifts.giftWithIndex(Point.from(3)));
+        assertThatIllegalArgumentException().isThrownBy(() -> gifts.giftWithIndex(Point.from(-1)));
     }
 }
