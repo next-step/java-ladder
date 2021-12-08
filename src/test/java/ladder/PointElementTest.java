@@ -1,6 +1,5 @@
 package ladder;
 
-import ladder.Position;
 import org.junit.jupiter.api.Test;
 
 import static ladder.PointElement.*;
@@ -15,15 +14,15 @@ public class PointElementTest {
 
     @Test
     void nextElement() {
-        assertThat(first(true).next(false)).isSameAs(LEFT);
-        assertThat(first(false).next(false)).isSameAs(PASS);
-        assertThat(first(false).next(true)).isSameAs(RIGHT);
+        assertThat(first(true).nextElement(false)).isSameAs(LEFT);
+        assertThat(first(false).nextElement(false)).isSameAs(PASS);
+        assertThat(first(false).nextElement(true)).isSameAs(RIGHT);
     }
 
     @Test
     void lastElement() {
-        assertThat(first(true).last()).isSameAs(LEFT);
-        assertThat(first(false).last()).isSameAs(PASS);
+        assertThat(first(true).lastElement()).isSameAs(LEFT);
+        assertThat(first(false).lastElement()).isSameAs(PASS);
     }
 
     @Test

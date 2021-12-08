@@ -20,6 +20,10 @@ public class Position {
         return generate(value);
     }
 
+    public Position movedPosition(Position target) {
+        return generate(this.value + target.value);
+    }
+
     public static Position generate(int value) {
         if (cache.containsKey(value)) {
             return cache.get(value);

@@ -24,7 +24,11 @@ public enum PointElement {
         return PASS;
     }
 
-    public PointElement next(boolean curr) {
+    public PointElement nextElement(boolean curr) {
+        if (this == RIGHT && curr) {
+            throw new IllegalArgumentException("PointElement 를 만들 수 없습니다.");
+        }
+
         if (this == RIGHT) {
             return LEFT;
         }
@@ -36,7 +40,7 @@ public enum PointElement {
         return PASS;
     }
 
-    public PointElement last() {
+    public PointElement lastElement() {
         if (this == RIGHT) {
             return LEFT;
         }
@@ -45,6 +49,6 @@ public enum PointElement {
     }
 
     public Position move(Position position) {
-        return Position.of(position.value() + factor);
+        return position.movedPosition(Position.of(factor));
     }
 }
