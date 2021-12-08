@@ -24,14 +24,22 @@ public class RandomBooleanListGenerator implements BooleanListGenerator {
         validateListCount(count);
         List<Boolean> line = new ArrayList<>();
 
-        line.add(RANDOM.nextBoolean());
+        addFirst(line);
+        addRest(line, count);
 
+        return line;
+    }
+
+    private void addFirst(List<Boolean> line) {
+        line.add(RANDOM.nextBoolean());
+    }
+
+    private void addRest(List<Boolean> line, int count) {
         for (int i = 1; i < count - 1; i++) {
             Boolean before = line.get(i - 1);
             line.add(generateNextValue(before));
         }
 
-        return line;
     }
 
     @Override
