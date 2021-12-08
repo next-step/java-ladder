@@ -12,6 +12,7 @@ public class HeightTest {
     public void create() {
         final int height = 5;
         assertThat(Height.of(height)).isEqualTo(Height.of(height));
+        assertThat(Height.of(height).toInt()).isEqualTo(height);
     }
 
     @ParameterizedTest(name = "create failed: {arguments}")

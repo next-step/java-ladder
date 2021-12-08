@@ -30,4 +30,8 @@ public class Height {
     public int hashCode() {
         return Objects.hash(height);
     }
+
+    public int toInt() {
+        return height;
+    }
 }
