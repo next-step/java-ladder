@@ -20,4 +20,8 @@ public class InputViewUtil {
     public static int getUserInputParseInt() {
         return new Scanner(System.in).nextInt();
     }
+
+    public static String getUserInput() {
+        return new Scanner(System.in).nextLine();
+    }
 }

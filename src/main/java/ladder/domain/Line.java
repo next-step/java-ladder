@@ -3,6 +3,7 @@ package ladder.domain;
 import ladder.util.GameUtil;
 import ladder.util.RandomStrategy;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
@@ -32,7 +33,7 @@ public class Line {
 
     public Line(List<Boolean> value) {
         validate(value);
-        this.value = value;
+        this.value = new ArrayList<>(value);
     }
 
     private void validate(List<Boolean> value) {
@@ -55,10 +56,35 @@ public class Line {
         value.stream()
                 .reduce((left, right) -> {
                     if (left && right) {
-                        throw new IllegalArgumentException();
+                        throw new IllegalArgumentException("유효하지 않은 사다리입니다.");
                     }
                     return right;
                 });
+    }
+
+    public Position nextPosition(Position currPos) {
+        try {
+            this.value.add(Boolean.FALSE);
+
+            // 자신의 위치에서 왼쪽으로 뻗는 길이 있는 경우
+            if (value.get(currPos.value())) {
+                return new Position(currPos.value() - 1);
+            }
+
+            // 자신의 위치 오른쪽에서 뻗어오는 길이 있는 경우
+            if (value.get(currPos.value() + 1)) {
+                return new Position(currPos.value() + 1);
+            }
+
+            // 그 외 나머지 경우는 현재 위치 그대로
+            return new Position(currPos.value());
+        } finally {
+            this.value.remove(this.value.size() - 1);
+        }
+    }
+
+    public int size() {
+        return this.value.size();
     }
 
     @Override

@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -43,6 +44,31 @@ public class LineTest {
                 Arguments.of(Arrays.asList(true, false, false, true)),
                 Arguments.of(Arrays.asList(false, true, true, false)),
                 Arguments.of(Arrays.asList(false, false, true, true))
+        );
+    }
+
+    @ParameterizedTest
+    @MethodSource("nextPositionSource")
+    @DisplayName("Line 은 사용자의 위치를 받아 다음 위치를 반환할 수 있다.")
+    void nextPosition(List<Boolean> input, int currPos, int result) {
+        // given
+        Line line = new Line(input);
+
+        // when
+        final Position nextPos = line.nextPosition(new Position(currPos));
+
+        // then
+        assertThat(nextPos).isEqualTo(new Position(result));
+    }
+
+    static Stream<Arguments> nextPositionSource() {
+        return Stream.of(
+                Arguments.of(Arrays.asList(false, false), 0, 0),
+                Arguments.of(Arrays.asList(false, true), 0, 1),
+                Arguments.of(Arrays.asList(false, true), 1, 0),
+                Arguments.of(Arrays.asList(false, false, false), 1, 1),
+                Arguments.of(Arrays.asList(false, true, false), 1, 0),
+                Arguments.of(Arrays.asList(false, false, true), 1, 2)
         );
     }
 }
