@@ -12,7 +12,7 @@ public class Application {
         Results results = getResults(players.playersCount());
         int ladderHeight = InputView.askLadderHeight();
 
-        Lines lines = LinesFactory.of(players.playersCount(), ladderHeight, new RandomLineGenerator(), new RandomBooleanListGenerator());
+        Lines lines = LinesFactory.of(ladderHeight, new RandomLineGenerator(), new RandomBooleanListGenerator(players.playersCount()));
 
         Ladder ladder = Ladder.from(lines);
 
@@ -21,9 +21,10 @@ public class Application {
         LadderResult ladderResult = LadderResult.from(players, ladder, results);
 
 
-        String playerName = InputView.askResultOfPlayer();
+        String playerName;
 
         while (true) {
+            playerName = InputView.askResultOfPlayer();
             checkPlayerName(playerName, ladderResult);
             Player player = Player.from(playerName);
 
@@ -38,8 +39,8 @@ public class Application {
     private static void checkPlayerName(String playerName, LadderResult ladderResult) {
         if (playerName.equals("all")) {
             OutputView.printLadderResult(ladderResult);
+            System.exit(0);
         }
-        System.exit(0);
     }
 
     private static Players getPlayers() {

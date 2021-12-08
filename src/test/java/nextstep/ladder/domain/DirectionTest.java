@@ -60,13 +60,6 @@ class DirectionTest {
                 Arguments.of(
                         Direction.STOP, 1, 1
 
-                ),
-                Arguments.of(
-                        Direction.STOP, 1, 1
-
-                ),
-                Arguments.of(
-                        Direction.STOP, 1, 1
                 )
         );
     }

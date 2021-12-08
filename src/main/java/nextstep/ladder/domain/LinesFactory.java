@@ -8,9 +8,9 @@ public class LinesFactory {
     private LinesFactory() {
     }
 
-    public static Lines of(int rowCount, int colCount, LineGenerator lineGenerator, BooleanListGenerator listGenerator) {
+    public static Lines of(int colCount, LineGenerator lineGenerator, BooleanListGenerator listGenerator) {
         List<Line> lines = IntStream.range(0, colCount)
-                .mapToObj(i -> lineGenerator.generate(listGenerator.generate(rowCount)))
+                .mapToObj(i -> lineGenerator.generate(listGenerator.generate()))
                 .collect(Collectors.toList());
 
         return Lines.from(lines);

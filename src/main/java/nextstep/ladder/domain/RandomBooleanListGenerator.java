@@ -10,6 +10,12 @@ public class RandomBooleanListGenerator implements BooleanListGenerator {
     private static final Random RANDOM = new Random();
     private static final int MIN_ROW_COUNT = 2;
 
+    private final int listSize;
+
+    public RandomBooleanListGenerator(int listSize) {
+        validateListCount(listSize);
+        this.listSize = listSize;
+    }
 
     private Boolean generateNextValue(Boolean before) {
         boolean next = RANDOM.nextBoolean();
@@ -17,17 +23,6 @@ public class RandomBooleanListGenerator implements BooleanListGenerator {
             return Boolean.FALSE;
         }
         return next;
-    }
-
-    @Override
-    public List<Boolean> generate(int count) {
-        validateListCount(count);
-        List<Boolean> line = new ArrayList<>();
-
-        addFirst(line);
-        addRest(line, count);
-
-        return line;
     }
 
     private void addFirst(List<Boolean> line) {
@@ -39,7 +34,16 @@ public class RandomBooleanListGenerator implements BooleanListGenerator {
             Boolean before = line.get(i - 1);
             line.add(generateNextValue(before));
         }
+    }
 
+    @Override
+    public List<Boolean> generate() {
+        List<Boolean> line = new ArrayList<>();
+
+        addFirst(line);
+        addRest(line, listSize);
+
+        return line;
     }
 
     @Override

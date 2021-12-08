@@ -3,7 +3,7 @@ package nextstep.ladder.domain;
 import java.util.List;
 
 public interface BooleanListGenerator {
-    List<Boolean> generate(int count);
+    List<Boolean> generate();
 
     void validateListCount(int count);
 }

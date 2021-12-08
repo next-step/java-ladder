@@ -9,18 +9,6 @@ public class RandomLineGenerator implements LineGenerator {
     private static final int MIN_ROW_COUNT = 1;
     private static final int ROW_FIRST_INDEX = 0;
 
-    @Override
-    public Line generate(List<Boolean> row) {
-        validateRow(row);
-        List<Column> columns = new ArrayList<>();
-
-        addHead(columns, row.get(ROW_FIRST_INDEX));
-        addBody(columns, row);
-        addTail(columns, row.get(row.size() - 1));
-
-        return Line.from(columns);
-    }
-
     private static void addHead(List<Column> columns, Boolean first) {
         columns.add(Column.head(first));
     }
@@ -34,6 +22,19 @@ public class RandomLineGenerator implements LineGenerator {
 
     private static void addTail(List<Column> columns, Boolean last) {
         columns.add(Column.tail(last));
+    }
+
+    @Override
+    public Line generate(List<Boolean> row) {
+        validateRow(row);
+
+        List<Column> columns = new ArrayList<>();
+
+        addHead(columns, row.get(ROW_FIRST_INDEX));
+        addBody(columns, row);
+        addTail(columns, row.get(row.size() - 1));
+
+        return Line.from(columns);
     }
 
     @Override
