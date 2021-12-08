@@ -20,14 +20,27 @@ public class Player {
 
     private static void validateName(String name) {
         if (Objects.isNull(name)) {
-            throw new IllegalArgumentException();
+            throw new PlayerNameException(null);
         }
         if (name.isEmpty() || name.length() > MAX_NAME_LENGTH) {
             throw new PlayerNameException(name);
         }
     }
 
-    public String getName() {
+    public String name() {
         return name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Player player = (Player) o;
+        return Objects.equals(name, player.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }
