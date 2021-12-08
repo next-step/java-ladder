@@ -16,12 +16,20 @@ public class LadderLine {
         return new LadderLine(createStrategy.create(width.width()));
     }
 
+    public Position move(int position) {
+        return pointBy(position).move();
+    }
+
     public List<Point> lines() {
         return ladderLines;
     }
 
     public int size() {
         return ladderLines.size();
+    }
+
+    private Point pointBy(int position) {
+        return ladderLines.get(position);
     }
 
     @Override

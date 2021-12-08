@@ -2,7 +2,10 @@ package step4.domain;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.Test;
 import step4.strategy.RandomPointCreateStrategy;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderLineTest {
 
@@ -15,6 +18,16 @@ public class LadderLineTest {
             System.out.println(point.toString());
         }
         //then
-        Assertions.assertThat(ladderLine.size()).isEqualTo(4);
+        assertThat(ladderLine.size()).isEqualTo(4);
+    }
+
+    @Test
+    void 라인을_이동한다() {
+        //given
+        LadderLine ladderLine = LadderLine.of(Width.of(4), new RandomPointCreateStrategy());
+        //when
+        Position movedPosition = ladderLine.move(0);
+        //then
+        assertThat(movedPosition.position()).isGreaterThanOrEqualTo(0);
     }
 }
