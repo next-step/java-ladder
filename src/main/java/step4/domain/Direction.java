@@ -21,6 +21,9 @@ public class Direction {
     }
 
     public Direction next(boolean current) {
+        if (connected(this.current, current)) {
+            return of(this.current, Boolean.FALSE);
+        }
         return of(this.current, current);
     }
 
@@ -37,9 +40,13 @@ public class Direction {
     }
 
     public void validate(boolean left, boolean current) {
-        if (Boolean.logicalAnd(left, current)) {
+        if (connected(left, current)) {
             throw new IllegalArgumentException("두 방향은 연결될 수 없습니다.");
         }
+    }
+
+    private boolean connected(boolean left, boolean current) {
+        return Boolean.logicalAnd(left, current);
     }
 
     @Override
@@ -54,5 +61,13 @@ public class Direction {
     @Override
     public int hashCode() {
         return Objects.hash(left, current);
+    }
+
+    @Override
+    public String toString() {
+        return "Direction{" +
+                "left=" + left +
+                ", current=" + current +
+                '}';
     }
 }

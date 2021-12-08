@@ -27,14 +27,14 @@ public class Point {
         return of(position.next(), direction.last());
     }
 
-    public void move() {
+    public Position move() {
         if (direction.isLeft()) {
             position.moveLeft();
         }
-
         if (direction.isRight()) {
             position.moveRight();
         }
+        return position;
     }
 
     public int position() {
@@ -53,5 +53,13 @@ public class Point {
     @Override
     public int hashCode() {
         return Objects.hash(position, direction);
+    }
+
+    @Override
+    public String toString() {
+        return "Point{" +
+                "position=" + position +
+                ", direction=" + direction +
+                '}';
     }
 }
