@@ -19,7 +19,7 @@ public class Line {
 
     public boolean isBeforePoint(int index) {
         if (index - 1 < 0) {
-            return false;
+            return true;
         }
 
         return !points.get(index - 1).isTrue();

@@ -15,12 +15,11 @@ public class LineTest {
     private final int participants = 5;
 
     @Test
-    @DisplayName("사다리 라인 생성 시 처음은 반드시 false 이고 이전 라인이 있다면 생성되지 않아야 한다.")
+    @DisplayName("사다리 라인 생성 시 처음은 반드시 true 이고 이전 라인이 있다면 생성되지 않아야 한다.")
     void lineDrawTest() {
         Line line = new Line(participants, drawLine());
 
-        assertThat(line.isBeforePoint(1)).isTrue();
-        assertThat(line.isBeforePoint(2)).isFalse();
+        assertThat(line.isBeforePoint(1)).isFalse();
     }
 
     @Test
