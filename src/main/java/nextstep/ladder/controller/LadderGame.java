@@ -12,8 +12,6 @@ public class LadderGame {
         Participants participants = InputView.inputJoinParticipants();
         Height ladderHeight = InputView.inputLadderHeight();
 
-        System.out.println("참가자 수 : " + participants.size());
-
         Ladder ladder = Ladder.of(ladderHeight.getHeight(), participants.size());
 
         OutputVIew outputVIew = new OutputVIew();

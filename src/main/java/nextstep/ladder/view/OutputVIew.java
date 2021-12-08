@@ -19,7 +19,7 @@ public class OutputVIew {
     private static final String LINE_END_TO_END_FORMAT = "|%s";
 
     public void printResult(Participants participants, Ladder ladder) {
-        System.out.println("실행결과");
+        System.out.println("실행결과" + HEIGHT_SPLITTER);
 
         System.out.println(prettyPrintParticipantsName(participants));
         System.out.println(printLadderPretty(ladder));
