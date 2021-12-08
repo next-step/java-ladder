@@ -26,7 +26,7 @@ public class LadderLineTest {
         //given
         LadderLine ladderLine = LadderLine.of(Width.of(4), new RandomPointCreateStrategy());
         //when
-        Position movedPosition = ladderLine.move(0);
+        Position movedPosition = ladderLine.move(Position.of(0));
         //then
         assertThat(movedPosition.position()).isGreaterThanOrEqualTo(0);
     }
