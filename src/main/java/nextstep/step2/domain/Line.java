@@ -56,6 +56,14 @@ public class Line {
         return Collections.unmodifiableList(bridges);
     }
 
+    private Bridge findBridge(Point before) {
+        return bridges.get(before.getValue());
+    }
+
+    public Point move(Point before) {
+        return before.movedPoint(findBridge(before));
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -78,13 +86,5 @@ public class Line {
         return "Line{" +
                 "points=" + bridges +
                 '}';
-    }
-
-    public Point move(Point before) {
-        return before.movedPoint(findBridge(before));
-    }
-
-    private Bridge findBridge(Point before) {
-        return bridges.get(before.getValue());
     }
 }

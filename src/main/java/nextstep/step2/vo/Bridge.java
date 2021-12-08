@@ -19,8 +19,8 @@ public enum Bridge {
         return DOWN;
     }
 
-    public int getMoveValue() {
-        return moveValue;
+    public int movedValue(int before) {
+        return before + moveValue;
     }
 
     public Bridge nextBridge(boolean isRight, boolean isLast) {

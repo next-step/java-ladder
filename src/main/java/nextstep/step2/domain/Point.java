@@ -24,7 +24,7 @@ public class Point {
     }
 
     public Point movedPoint(Bridge bridge) {
-        return from(this.value + bridge.getMoveValue());
+        return from(bridge.movedValue(this.value));
     }
 
     @Override

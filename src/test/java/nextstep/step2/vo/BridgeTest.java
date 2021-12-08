@@ -39,4 +39,11 @@ class BridgeTest {
     void nextLastLineTest(boolean input, String nextValue) {
         assertThat(Bridge.firstBridge(input)).isEqualTo(Bridge.valueOf(nextValue));
     }
+
+    @DisplayName("move는 moveValue 의 값을 더해서 반환한다.")
+    @ParameterizedTest
+    @CsvSource(value = {"DOWN:1:1", "LEFT:1:0", "RIGHT:1:2"}, delimiter = ':')
+    void moveTest(String name, int before, int after) {
+        assertThat(Bridge.valueOf(name).movedValue(before)).isEqualTo(after);
+    }
 }
