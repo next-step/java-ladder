@@ -20,10 +20,14 @@ public class Names {
                 .collect(Collectors.toList());
     }
 
-    private void validPlayerNameCount(int count){
-        if(count < PLAYER_NAME_MIN){
+    private void validPlayerNameCount(int count) {
+        if (count < PLAYER_NAME_MIN) {
             throw new IllegalArgumentException(PLAYER_ERROR_MESSAGE);
         }
+    }
+
+    public Name name(int index){
+        return names.get(index);
     }
 
     public int size() {
