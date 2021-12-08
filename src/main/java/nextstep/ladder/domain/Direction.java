@@ -2,7 +2,7 @@ package nextstep.ladder.domain;
 
 import nextstep.ladder.exception.DirectionException;
 
-import java.util.function.Function;
+import java.util.function.IntFunction;
 
 public enum Direction {
     LEFT(Boolean.TRUE, Boolean.FALSE, i -> i - 1),
@@ -11,9 +11,9 @@ public enum Direction {
 
     private final boolean left;
     private final boolean right;
-    private final Function<Integer, Integer> function;
+    private final IntFunction<Integer> function;
 
-    Direction(boolean left, boolean right, Function<Integer, Integer> function) {
+    Direction(boolean left, boolean right, IntFunction<Integer> function) {
         this.left = left;
         this.right = right;
         this.function = function;
