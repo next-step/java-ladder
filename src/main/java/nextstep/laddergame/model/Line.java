@@ -1,6 +1,7 @@
 package nextstep.laddergame.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -35,6 +36,37 @@ public class Line {
     }
 
     public List<Bridge> getBridges() {
-        return bridges;
+        return Collections.unmodifiableList(bridges);
+    }
+
+    public void moveSide(Position position) {
+        if (moveLeft(position)) {
+            return;
+        }
+        moveRight(position);
+    }
+
+    private boolean moveLeft(Position position) {
+        if (!position.leftMovable()) {
+            return false;
+        }
+
+        Bridge leftBridge = bridges.get(position.getCursur() - 1);
+        if (leftBridge.exist()) {
+            position.moveLeft();
+            return true;
+        }
+        return false;
+    }
+
+    private void moveRight(Position position) {
+        if (!position.rigthMovable(bridges.size())) {
+            return;
+        }
+
+        Bridge rightBridge = bridges.get(position.getCursur());
+        if (rightBridge.exist()) {
+            position.moveRight();
+        }
     }
 }

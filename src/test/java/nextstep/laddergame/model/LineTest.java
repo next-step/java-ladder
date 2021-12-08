@@ -11,6 +11,6 @@ class LineTest {
     @Test
     void constructTest() {
         Line line = new Line(10);
-        assertThat(line.getBridges().size()).isEqualTo(9);
+        assertThat(line.getBridges()).hasSize(9);
     }
 }
