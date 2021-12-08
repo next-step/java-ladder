@@ -29,6 +29,21 @@ public class Line {
         return beforeLine == NONE ? LineRandom.random() : NONE;
     }
 
+    public int position(int position) {
+        boolean left = isPosition(() -> position != 0 && line.get(position - 1) == 1);
+        boolean right = isPosition(() -> position != line.size() - 1 && line.get(position) == 1);
+
+        return position - move(left) + move(right);
+    }
+
+    public boolean isPosition(Movable movable) {
+        return movable.position();
+    }
+
+    public int move(boolean line) {
+        return line ? EXIST : NONE;
+    }
+
     public int size() {
         return line.size();
     }
