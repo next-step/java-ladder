@@ -1,19 +1,24 @@
 package ladder.controller;
 
-import ladder.domain.Height;
-import ladder.domain.Ladder;
-import ladder.domain.Names;
+import ladder.domain.*;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
 public class LadderController {
     public static void main(String[] args) {
         Names names = new Names(InputView.inputPlayerName());
+        Prizes prizes = Prizes.of(InputView.inputPrize(), names);
         Height height = new Height(InputView.inputLadderHeight());
         Ladder ladder = new Ladder(names, height);
-        ResultView.resultMessage();
+        Winning winning = ladder.playerByPrize(names, prizes);
+
+        ResultView.ladderMessage();
         ResultView.printNames(names);
         ResultView.printLadder(ladder);
+        ResultView.printPrizes(prizes);
 
+        while (true){
+            ResultView.printLadderResult(winning, new Name(InputView.resultPlayerName()));
+        }
     }
 }
