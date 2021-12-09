@@ -7,9 +7,27 @@ public class Ladder {
     private final Floors floors;
     private final Participants participants;
 
+    private final List<LadderLine> ladderLines;
+
     public Ladder(Floors floors, Participants participants) {
         this.floors = floors;
         this.participants = participants;
+        this.ladderLines = new ArrayList<>();
+    }
+
+    public Ladder(List<LadderLine> ladderLines) {
+        this.ladderLines = ladderLines;
+        this.floors = null;
+        this.participants = null;
+    }
+
+    public int finalPoint(int startPoint) {
+        int currentPoint = startPoint;
+        for (LadderLine ladderLine : ladderLines) {
+            currentPoint = ladderLine.move(currentPoint);
+        }
+
+        return currentPoint;
     }
 
     public List<Floor> getFloors() {

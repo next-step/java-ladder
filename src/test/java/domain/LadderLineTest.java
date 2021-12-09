@@ -8,16 +8,16 @@ import static domain.DirectionTest.*;
 
 public class LadderLineTest {
     public static LadderLine FIRST_LINE = new LadderLine(Arrays.asList(
-            new Point(0, LEFT_DIRECTION),
-            new Point(1, RIGHT_DIRECTION),
+            new Point(0, RIGHT_DIRECTION),
+            new Point(1, LEFT_DIRECTION),
             new Point(2, NO_DIRECTION)));
     public static LadderLine SECOND_LINE = new LadderLine(Arrays.asList(
             new Point(0, NO_DIRECTION),
             new Point(1, RIGHT_DIRECTION),
             new Point(2, LEFT_DIRECTION)));
     public static LadderLine THIRD_LINE = new LadderLine(Arrays.asList(
-            new Point(0, LEFT_DIRECTION),
-            new Point(1, RIGHT_DIRECTION),
+            new Point(0, RIGHT_DIRECTION),
+            new Point(1, LEFT_DIRECTION),
             new Point(2, NO_DIRECTION)));
 
     @Test
