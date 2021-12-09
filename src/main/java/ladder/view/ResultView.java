@@ -5,50 +5,57 @@ import ladder.domain.ladder.Point;
 import ladder.domain.user.Player;
 
 import java.util.List;
-import java.util.stream.IntStream;
+import java.util.stream.Collectors;
 
-import static java.util.stream.IntStream.*;
+import static java.util.stream.Collectors.*;
+import static java.util.stream.IntStream.range;
 
 public class ResultView {
 
+    public static final String RESULT_MSG = "실행결과";
+    public static final String FIVE_SIZE_FORMAT = "%5s";
+    public static final String SPACE = " ";
     public static final String LADDER_SPACE = "     |";
     public static final String LADDER_LINE = "-----|";
+    public static final String ENTER = "\n";
 
     private ResultView() {
         throw new AssertionError();
     }
 
-    public static void printPlayerName(List<Player> players) {
-        System.out.println("실행결과");
+    public static void printResult(List<Player> players, List<Line> ladder) {
+        System.out.println(RESULT_MSG);
         System.out.println();
-        System.out.printf("%5s", players.get(0));
-        range(1, players.size() - 1)
-                .forEach(i -> System.out.printf("%6s", players.get(i)));
-        System.out.printf("%6s%n", players.get(players.size()-1));
+        System.out.println(printPlayerName(players));
+        System.out.println(printLadder(ladder));
     }
 
-    public static void printLadder(List<Line> ladder) {
-        ladder.forEach(line -> {
-            printLine(line);
-            System.out.println();
-        });
+    private static String printPlayerName(List<Player> players) {
+        return players.stream()
+                .map(s -> String.format(FIVE_SIZE_FORMAT, s.getPlayerName()))
+                .collect(joining(SPACE));
     }
 
-    private static void printLine(Line line) {
-        List<Point> points = line.getPoints();
-        points.forEach(ResultView::printPoint);
+    public static String printLadder(List<Line> ladder) {
+        return ladder.stream()
+                .map(ResultView::printLine)
+                .collect(joining(ENTER));
     }
 
-    private static void printPoint(Point point) {
+    private static String printLine(Line line) {
+        return line.getPoints().stream()
+                .map(ResultView::printPoint)
+                .collect(joining());
+    }
+
+    private static String printPoint(Point point) {
         if (point.isFirst()) {
-            System.out.print(LADDER_SPACE);
-            return;
+            return LADDER_SPACE;
         }
         if (point.isRight()) {
-            System.out.print(LADDER_LINE);
-            return;
+            return LADDER_LINE;
         }
-        System.out.print(LADDER_SPACE);
+        return LADDER_SPACE;
     }
 
 }
