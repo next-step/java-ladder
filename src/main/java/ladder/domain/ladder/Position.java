@@ -21,6 +21,10 @@ public class Position {
         return new Position(++position);
     }
 
+    public boolean isFirst() {
+        return position == 0;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

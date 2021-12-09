@@ -22,8 +22,8 @@ class ResultViewTest {
 
         Height height = new Height(4);
         Ladder ladder = Ladder.createLadder(players, height);
-        ResultView.printPlayerName(players);
-        ResultView.printLadder(ladder);
+        ResultView.printPlayerName(players.getPlayers());
+        ResultView.printLadder(ladder.getLines());
     }
 
 }

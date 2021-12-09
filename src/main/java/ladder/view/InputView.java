@@ -22,5 +22,4 @@ public class InputView {
         return sc.nextInt();
     }
 
-
 }

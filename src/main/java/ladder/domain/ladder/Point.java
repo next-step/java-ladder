@@ -35,6 +35,10 @@ public class Point {
         return position;
     }
 
+    public boolean isFirst() {
+        return position.isFirst();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

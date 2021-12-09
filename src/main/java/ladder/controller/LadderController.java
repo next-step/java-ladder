@@ -10,6 +10,7 @@ import ladder.view.ResultView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LadderController {
 
@@ -19,16 +20,14 @@ public class LadderController {
 
         Ladder ladder = Ladder.createLadder(players, height);
 
-        ResultView.printPlayerName(players);
-        ResultView.printLadder(ladder);
+        ResultView.printPlayerName(players.getPlayers());
+        ResultView.printLadder(ladder.getLines());
     }
 
     private static List<Player> toPlayers() {
-        List<Player> users = new ArrayList<>();
-        for (String name : InputView.printInputNames()) {
-            users.add(new Player(new PlayerName(name.trim())));
-        }
-        return users;
+        return InputView.printInputNames().stream()
+                .map(name -> new Player(new PlayerName(name.trim())))
+                .collect(Collectors.toList());
     }
 
 }
