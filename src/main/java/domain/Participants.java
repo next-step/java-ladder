@@ -17,14 +17,10 @@ public class Participants {
     }
 
     public int initialPosition(String name) {
-        return participants.indexOf(new Participant(name));
-    }
-
-    public Position initialPosition (Participant participant) {
-        if (!participants.contains(participant)) {
-            throw new NoSuchElementException("There is no participant having that name");
+        if (!participants.contains(new Participant(name))) {
+            throw new NoSuchElementException("There is no participant with that name.");
         }
-        return new Position(participants.indexOf(participant));
+        return participants.indexOf(new Participant(name));
     }
 
     public List<String> getNamesOfParticipants() {
