@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
 import java.util.Objects;
 import java.util.concurrent.ThreadLocalRandom;
@@ -29,6 +29,10 @@ public class Point {
 
     public boolean isRight() {
         return direction.isRight();
+    }
+
+    public Position getPosition() {
+        return position;
     }
 
     @Override
