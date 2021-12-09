@@ -16,7 +16,7 @@ public class Ladder {
     private static List<Line> lines = new ArrayList<>();
 
     private Ladder(List<Line> ladder) {
-        this.lines = ladder;
+        lines = ladder;
     }
 
     public static Ladder of(int height, int countOfPerson) {
