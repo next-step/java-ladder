@@ -1,41 +1,59 @@
 package ladder.model.point;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+import ladder.model.direction.Direction;
+
+import java.util.Objects;
 
 public class Point {
 
-    private static final Map<Boolean,Point> POINT_CACHE = new HashMap<>();
-    private static final Random random = new Random();
-    private final boolean isLine;
+    private final int index;
+    private final Direction direction;
 
-    static {
-        POINT_CACHE.put(false, new Point(false));
-        POINT_CACHE.put(true, new Point(true));
+    public Point(int index, Direction direction){
+        this.index = index;
+        this.direction = direction;
     }
 
-    private Point(boolean isLine){
-        this.isLine = isLine;
+    public static Point first(boolean right) {
+        return new Point(0, Direction.first(right));
     }
 
-    public static Point first() {
-        return Point.of(false);
-    }
-
-    public static Point of(boolean isLine) {
-        return POINT_CACHE.get(isLine);
+    public Point last() {
+        return new Point(this.index, this.direction.last());
     }
 
     public Point next() {
-        if(this.isLine) {
-            return Point.of(false);
+        return new Point(this.index + 1, this.direction.next());
+    }
+
+    public boolean isLeft() {
+        return this.direction.left();
+    }
+
+    public boolean isRight() {
+        return this.direction.right();
+    }
+
+    public int move() {
+        if(isLeft()) {
+            return this.index - 1;
         }
-        return Point.of(random.nextBoolean());
+        if(isRight()) {
+            return this.index + 1;
+        }
+        return this.index;
     }
 
-    public boolean getIsLine() {
-        return this.isLine;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Point point = (Point) o;
+        return index == point.index && Objects.equals(direction, point.direction);
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(index, direction);
+    }
 }
