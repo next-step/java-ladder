@@ -4,7 +4,7 @@ public class Point {
     private final int index;
     private final Direction direction;
 
-    public Point(int index, Direction direction) {
+    private Point(int index, Direction direction) {
         this.index = index;
         this.direction = direction;
     }
@@ -21,11 +21,4 @@ public class Point {
         return new Point(0, Direction.first(right));
     }
 
-    @Override
-    public String toString() {
-        return "Point{" +
-                "index=" + index +
-                ", direction=" + direction +
-                '}';
-    }
 }

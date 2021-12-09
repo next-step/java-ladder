@@ -11,11 +11,6 @@ import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 
 public class PointTest {
-    @Test
-    @DisplayName("사다리의 방향과 몇번째 사다리에 위치하는지의 index를 포함하여 Point라는 객체를 사용한다.")
-    public void pointNew() {
-        assertThat(new Point(0, Direction.LEFT)).isNotNull();
-    }
 
     @Test
     @DisplayName("현재 포인트의 방향을 고려하여 다음 포인트를 생성할 수 있다.\n" +
