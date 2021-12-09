@@ -1,7 +1,5 @@
 package nextstep.ladder.domain.entity;
 
-import nextstep.ladder.domain.utils.RandomUtils;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -14,10 +12,10 @@ public class Line {
 
   private final List<Point> points = new ArrayList<>();
 
-  public Line(int countOfPerson) {
+  public Line(int countOfPerson, BuildStrategy buildStrategy) {
     initPoints();
     IntStream.range(ONE, countOfPerson)
-             .forEach(this::makePointRandomly);
+             .forEach(index -> makePointRandomly(index, buildStrategy));
   }
 
   public Stream<Point> stream() {
@@ -28,14 +26,14 @@ public class Line {
     points.add(new Point(FALSE));
   }
 
-  private void makePointRandomly(int number) {
+  private void makePointRandomly(int number, BuildStrategy buildStrategy) {
     int prevPoint = number - ONE;
     if (points.get(prevPoint).hasWay()) {
       points.add(new Point(FALSE));
       return;
     }
 
-    boolean randomValue = RandomUtils.getBooleanRandomly();
+    boolean randomValue = buildStrategy.buildAble();
     points.add(new Point(randomValue));
   }
 
