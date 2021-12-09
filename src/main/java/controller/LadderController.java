@@ -10,10 +10,10 @@ import java.util.List;
 
 import static util.StringUtils.separateStringWithComma;
 
-public class LadderGame {
+public class LadderController {
     public static final String ALL_PARTICIPANTS = "all";
 
-    private LadderGame() {
+    private LadderController() {
 
     }
 

@@ -5,7 +5,7 @@ import domain.*;
 import java.util.List;
 import java.util.stream.IntStream;
 
-import static controller.LadderGame.ALL_PARTICIPANTS;
+import static controller.LadderController.ALL_PARTICIPANTS;
 
 public class ConsoleOutputView implements OutputView {
     private static final String BLANK_AFTER_NAME = " ";
