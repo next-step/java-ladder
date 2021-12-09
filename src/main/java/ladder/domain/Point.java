@@ -1,8 +1,11 @@
 package ladder.domain;
 
 import java.util.Objects;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Point {
+
+    static ThreadLocalRandom random = ThreadLocalRandom.current();
 
     private final Position position;
     private final Direction direction;
@@ -12,12 +15,20 @@ public class Point {
         this.direction = direction;
     }
 
-    public Position getPosition() {
-        return position;
+    public static Point createFirstPoint() {
+        return new Point(new Position(), Direction.createRandomDirection(() -> random.nextBoolean()));
     }
 
-    public Direction getDirection() {
-        return direction;
+    public static Point createPoint(int index) {
+        return new Point(new Position(index).move(), new Direction(true, false));
+    }
+
+    public static Point createRandomPoint(int index) {
+        return new Point(new Position(index).move(), Direction.createRandomDirection(() -> random.nextBoolean()));
+    }
+
+    public boolean isRight() {
+        return direction.isRight();
     }
 
     @Override
@@ -35,10 +46,8 @@ public class Point {
 
     @Override
     public String toString() {
-        return "Point{" +
-                "position=" + position +
-                ", direction=" + direction +
-                '}';
+        return "position=" + position +
+                        " " + direction;
     }
 
 }

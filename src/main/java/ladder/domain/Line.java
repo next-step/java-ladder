@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -13,6 +14,31 @@ public class Line {
 
     public List<Point> getPoints() {
         return points;
+    }
+
+    public static Line createLine(int players) {
+        List<Point> points = new ArrayList<>();
+        createFirstPoint(points);
+        createAfterPoint(points, players);
+        return new Line(points);
+    }
+
+    private static void createFirstPoint(List<Point> points) {
+        points.add(Point.createFirstPoint());
+    }
+
+    private static void createAfterPoint(List<Point> points, int players) {
+        for (int index = 0; index < players - 1; index++) {
+            addPoint(points, index);
+        }
+    }
+
+    private static void addPoint(List<Point> points, int index) {
+        if (points.get(index).isRight()) {
+            points.add(Point.createPoint(index));
+            return;
+        }
+        points.add(Point.createRandomPoint(index));
     }
 
     @Override
@@ -30,9 +56,8 @@ public class Line {
 
     @Override
     public String toString() {
-        return "Line{" +
-                "points=" + points +
-                '}';
+        return points + " ";
     }
+
 
 }

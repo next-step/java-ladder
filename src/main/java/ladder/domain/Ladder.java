@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -13,6 +14,14 @@ public class Ladder {
 
     public List<Line> getLines() {
         return lines;
+    }
+
+    public static Ladder createLadder(Players players, Height height) {
+        List<Line> lines = new ArrayList<>();
+        for (int i = 0; i < height.getHeight(); i++) {
+            lines.add(Line.createLine(players.getSize()));
+        }
+        return new Ladder(lines);
     }
 
     @Override

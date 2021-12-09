@@ -10,17 +10,26 @@ import static org.assertj.core.api.Assertions.assertThat;
 class DirectionTest {
 
     @Test
-    @DisplayName("방향값 생성")
+    @DisplayName("방향 객체 생성")
     void create() {
-        Direction direction = new Direction(false, false);
-        assertThat(direction).isEqualTo(new Direction(false, false));
+        Direction direction = new Direction(true, false);
+        assertThat(direction).isEqualTo(new Direction(true, false));
     }
 
     @Test
-    @DisplayName("사람 수만큼 Direction 객체 생성 후 리스트 반환")
-    void list() {
-        List<Direction> directions = Direction.of(4);
-        assertThat(directions).size().isEqualTo(4);
+    @DisplayName("false/true")
+    void setDirection() {
+        Direction direction = Direction.createRandomDirection(() -> true);
+        assertThat(direction.isRight()).isTrue();
+        assertThat(direction.isLeft()).isFalse();
+    }
+
+    @Test
+    @DisplayName("false/false")
+    void setDirection1() {
+        Direction direction = Direction.createRandomDirection(() -> false);
+        assertThat(direction.isRight()).isFalse();
+        assertThat(direction.isLeft()).isFalse();
     }
 
 }

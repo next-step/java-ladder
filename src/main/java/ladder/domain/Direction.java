@@ -1,9 +1,6 @@
 package ladder.domain;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
-import java.util.Random;
 
 public class Direction {
 
@@ -15,20 +12,8 @@ public class Direction {
         this.right = right;
     }
 
-    public static List<Direction> of(int size) {
-        Random random = new Random();
-
-        List<Direction> directions = new ArrayList<>();
-        directions.add(new Direction(false, random.nextBoolean()));
-
-        for (int i = 1; i < size; i++) {
-            if (directions.get(i-1).isRight() || directions.get(i-1).isLeft()) {
-                directions.add(new Direction(false, false));
-            } else {
-                directions.add(new Direction(random.nextBoolean(), random.nextBoolean()));
-            }
-        }
-        return directions;
+    public static Direction createRandomDirection(LadderStrategy ladderStrategy) {
+        return new Direction(false, ladderStrategy.isEnableLine());
     }
 
     public boolean isLeft() {
@@ -54,10 +39,8 @@ public class Direction {
 
     @Override
     public String toString() {
-        return "Direction{" +
-                "left=" + left +
-                ", right=" + right +
-                '}';
+        return "left=" + left +
+                ", right=" + right;
     }
 
 }

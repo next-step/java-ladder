@@ -7,6 +7,9 @@ public class Height {
     private final int height;
 
     public Height(int height) {
+        if (height < 1) {
+            throw new IllegalArgumentException("높이는 1이상 입력해주세요");
+        }
         this.height = height;
     }
 
