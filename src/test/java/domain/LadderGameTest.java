@@ -6,6 +6,7 @@ import java.util.Arrays;
 
 import static domain.LadderTest.LADDER;
 import static domain.ParticipantsTest.PARTICIPANTS;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class LadderGameTest {
     private static final LadderResult LADDER_RESULT = new LadderResult(Arrays.asList("bomb", "3000", "5000"));
