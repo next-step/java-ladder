@@ -8,6 +8,10 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 public class DirectionTest {
+    public static final Direction LEFT_DIRECTION = Direction.of(TRUE, FALSE);
+    public static final Direction RIGHT_DIRECTION = Direction.of(FALSE, TRUE);
+    public static final Direction NO_DIRECTION = Direction.of(FALSE, FALSE);
+
     @Test
     public void init() {
         assertThat(Direction.of(TRUE, FALSE)).isEqualTo(Direction.of(TRUE, FALSE));

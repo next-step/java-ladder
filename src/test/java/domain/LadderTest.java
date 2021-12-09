@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static domain.FloorsTest.FLOORS;
+import static domain.LadderLineTest.*;
 import static domain.ParticipantsTest.*;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -29,5 +30,14 @@ public class LadderTest {
         assertThat(results.get(1)).isEqualTo("5000");
         assertThat(results.get(2)).isEqualTo("blank");
         assertThat(results.get(3)).isEqualTo("blank");
+    }
+
+    @Test
+    void testFinalPoint() {
+        Ladder ladder = new Ladder(Arrays.asList(FIRST_LINE, SECOND_LINE, THIRD_LINE));
+
+        assertThat(ladder.finalPoint(0)).isEqualTo(2);
+        assertThat(ladder.finalPoint(1)).isEqualTo(1);
+        assertThat(ladder.finalPoint(2)).isEqualTo(0);
     }
 }
