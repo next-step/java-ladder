@@ -6,6 +6,8 @@ import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
 
 public class Application {
+    private static final String ALL = "all";
+
     public static void main(String[] args) {
         Players players = getPlayers();
 
@@ -21,11 +23,9 @@ public class Application {
         LadderResult ladderResult = LadderResult.from(players, ladder, results);
 
 
-        String playerName;
+        String playerName = InputView.askResultOfPlayer();
 
-        while (true) {
-            playerName = InputView.askResultOfPlayer();
-            checkPlayerName(playerName, ladderResult);
+        while (!playerName.equals(ALL)) {
             Player player = Player.from(playerName);
 
             Player findPlayer = players.findPlayer(player);
@@ -33,14 +33,10 @@ public class Application {
             Result resultOfPlayer = ladderResult.resultOfPlayer(findPlayer);
 
             OutputView.printResult(resultOfPlayer);
-        }
-    }
 
-    private static void checkPlayerName(String playerName, LadderResult ladderResult) {
-        if (playerName.equals("all")) {
-            OutputView.printLadderResult(ladderResult);
-            System.exit(0);
+            playerName = InputView.askResultOfPlayer();
         }
+        OutputView.printLadderResult(ladderResult);
     }
 
     private static Players getPlayers() {
