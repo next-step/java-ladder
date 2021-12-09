@@ -51,13 +51,13 @@ public class ResultView {
         System.out.println();
     }
 
-    public static void printResult(Map<String, String> resultMap, String name) {
+    public static void printResult(Map<String, String> resultMap, String key) {
         System.out.println("실행 결과");
-        if(name.equals("all")) {
+        if(key.equals("all")) {
             printAll(resultMap);
         }
-        if(resultMap.containsKey(name)) {
-            System.out.println(resultMap.get(name));
+        if(resultMap.containsKey(key)) {
+            System.out.println(resultMap.get(key));
         }
     }
 

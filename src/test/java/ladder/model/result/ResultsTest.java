@@ -23,7 +23,7 @@ class ResultsTest {
 
     @ParameterizedTest
     @CsvSource(value = {"1,2,3,4,5|5", "1,2,3|3", "1|1"}, delimiter = '|')
-    @DisplayName("값에 따라 생성된 리스트 사이즈 확인")
+    @DisplayName("실행 결과에 따라 생성된 리스트 사이즈 확인")
     void createdListSizeTest(String results, int size) {
         List<Result> list = new Results(results, size).get();
         assertThat(list.size()).isEqualTo(size);

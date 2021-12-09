@@ -31,13 +31,13 @@ public class Players {
         return Collections.unmodifiableList(this.players);
     }
 
+    public String name(int index) {
+        return players.get(index).name();
+    }
+
     private void checkValidation(List<Player> players) {
         if(players.size() < MIN_PLAYER_COUNT) {
             throw new IllegalArgumentException("게임을 하려면 최소 " + MIN_PLAYER_COUNT + "명이 필요합니다.");
         }
-    }
-
-    public String name(int index) {
-        return players.get(index).name();
     }
 }
