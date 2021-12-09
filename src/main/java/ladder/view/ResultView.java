@@ -21,7 +21,7 @@ public class ResultView {
     public static void printPlayerName(List<Player> players) {
         System.out.println("실행결과");
         System.out.println();
-        System.out.printf("%-5s", players.get(0));
+        System.out.printf("%5s", players.get(0));
         range(1, players.size() - 1)
                 .forEach(i -> System.out.printf("%6s", players.get(i)));
         System.out.printf("%6s%n", players.get(players.size()-1));
