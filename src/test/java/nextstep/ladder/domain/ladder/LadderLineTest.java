@@ -1,6 +1,6 @@
-package nextstep.ladder;
+package nextstep.ladder.domain.ladder;
 
-import nextstep.ladder.domain.LadderLine;
+import nextstep.ladder.domain.ladder.LadderLine;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

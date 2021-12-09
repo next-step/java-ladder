@@ -1,6 +1,6 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.ladder;
 
-import static nextstep.ladder.domain.LadderPointGenerator.generatePoint;
+import static nextstep.ladder.domain.ladder.LadderPointGenerator.generatePoint;
 
 public enum Direction {
     LEFT(),
