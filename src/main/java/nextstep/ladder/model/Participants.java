@@ -5,7 +5,6 @@ import nextstep.ladder.model.value.Participant;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Participants {
@@ -34,20 +33,12 @@ public class Participants {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Participants that = (Participants) o;
-        return Objects.equals(participants, that.participants);
+    public boolean equals(Object obj) {
+        return super.equals(obj);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(participants);
+        return super.hashCode();
     }
-
 }
