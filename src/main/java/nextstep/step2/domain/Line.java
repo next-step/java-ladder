@@ -56,12 +56,12 @@ public class Line {
         return Collections.unmodifiableList(bridges);
     }
 
-    private Bridge findBridge(Point before) {
-        return bridges.get(before.getValue());
+    public Point move(Point point) {
+        return point.movedPoint(findBridge(point));
     }
 
-    public Point move(Point before) {
-        return before.movedPoint(findBridge(before));
+    private Bridge findBridge(Point point) {
+        return bridges.get(point.getValue());
     }
 
     @Override
