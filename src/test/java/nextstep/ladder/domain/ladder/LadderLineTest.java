@@ -11,7 +11,8 @@ public class LadderLineTest {
     @DisplayName("사람 수를 입력하여, 사다리의 가로줄 하나를(height=1) 생성한다.")
     public void init() {
         int sizeOfPerson = 5;
-        assertThat(LadderLine.init(sizeOfPerson)).isInstanceOf(LadderLine.class);
+        LadderLine ladderLine = LadderLine.init(sizeOfPerson);
+        assertThat(ladderLine.getPoints().size()).isEqualTo(sizeOfPerson);
     }
 
 }

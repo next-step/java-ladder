@@ -12,6 +12,7 @@ public class LadderTest {
     public void init() {
         int sizeOfPerson = 5;
         int height = 4;
-        assertThat(Ladder.init(sizeOfPerson, height)).isInstanceOf(Ladder.class);
+        Ladder ladder = Ladder.init(sizeOfPerson, height);
+        assertThat(ladder.getLadderLines().size()).isEqualTo(height);
     }
 }
