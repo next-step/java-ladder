@@ -1,6 +1,7 @@
 package nextstep.laddergame.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -10,31 +11,62 @@ public class Line {
 
     private static final int BOOLEAN_LIMIT = 2;
 
-    private final List<Point> points = new ArrayList<>();
+    private final List<Bridge> bridges = new ArrayList<>();
 
     public Line(int countOfPerson) {
-        points.add(makeRandomPoint());
+        bridges.add(makeRandomBridge());
         IntStream.range(1, countOfPerson - 1)
-                 .forEach(index -> addPoint(index, points));
+                 .forEach(index -> addBridge(index, bridges));
     }
 
-    private void addPoint(int index, List<Point> points) {
+    private void addBridge(int index, List<Bridge> bridges) {
         if (mustEmpty(index)) {
-            points.add(Point.empty());
+            bridges.add(Bridge.empty());
             return;
         }
-        points.add(makeRandomPoint());
+        bridges.add(makeRandomBridge());
     }
 
-    private Point makeRandomPoint() {
-        return new Point(RandomUtils.generate(BOOLEAN_LIMIT));
+    private Bridge makeRandomBridge() {
+        return new Bridge(RandomUtils.generate(BOOLEAN_LIMIT));
     }
 
     private boolean mustEmpty(int index) {
-        return points.get(index - 1).exist();
+        return bridges.get(index - 1).exist();
     }
 
-    public List<Point> getPoints() {
-        return points;
+    public List<Bridge> getBridges() {
+        return Collections.unmodifiableList(bridges);
+    }
+
+    public void moveSide(Position position) {
+        if (moveLeft(position)) {
+            return;
+        }
+        moveRight(position);
+    }
+
+    private boolean moveLeft(Position position) {
+        if (!position.leftMovable()) {
+            return false;
+        }
+
+        Bridge leftBridge = bridges.get(position.getCursur() - 1);
+        if (leftBridge.exist()) {
+            position.moveLeft();
+            return true;
+        }
+        return false;
+    }
+
+    private void moveRight(Position position) {
+        if (!position.rigthMovable(bridges.size())) {
+            return;
+        }
+
+        Bridge rightBridge = bridges.get(position.getCursur());
+        if (rightBridge.exist()) {
+            position.moveRight();
+        }
     }
 }

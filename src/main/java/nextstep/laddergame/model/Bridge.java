@@ -2,29 +2,26 @@ package nextstep.laddergame.model;
 
 import java.util.Objects;
 
-public class Point {
+public class Bridge {
 
     private static final int FALSE = 0;
 
     private final boolean exist;
 
-    public Point(int booleanNumber) {
+    public Bridge(int booleanNumber) {
         this(convertToBoolean(booleanNumber));
     }
 
     private static boolean convertToBoolean(int booleanNumber) {
-        if (booleanNumber == FALSE) {
-            return false;
-        }
-        return true;
+        return booleanNumber != FALSE;
     }
 
-    public Point(boolean exist) {
+    public Bridge(boolean exist) {
         this.exist = exist;
     }
 
-    public static Point empty() {
-        return new Point(false);
+    public static Bridge empty() {
+        return new Bridge(false);
     }
 
     public boolean exist() {
@@ -39,8 +36,8 @@ public class Point {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Point point = (Point) o;
-        return exist == point.exist;
+        Bridge bridge = (Bridge) o;
+        return exist == bridge.exist;
     }
 
     @Override
