@@ -24,3 +24,11 @@
    - Point, Position, Line, Ladder, Height
 4. 포인트에서 방향값을 가지는 객체 생성
    - Direction: left,right값을 몪음
+5. 사다리 생성 구현
+   - 라인의 첫 포인트 false/random 값을 갖도록함
+   - 이후 포인트는 전포인트 right가 true이면 (true/false), false이면 (false/random) 구성
+   - random 값은 인터페이스, 람다, LocalThreadRandom 이용
+6. ResultView, InputView, Controller 작성
+   - Players -> Player -> PlayerName을 출력
+   - Ladder 객체에 있는 Line 객체를 뽑아 사다리 출력
+   - right : false -> (     |), true -> (-----|)
