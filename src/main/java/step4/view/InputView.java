@@ -28,7 +28,9 @@ public class InputView {
 
     public static String inputParticipantResult() {
         System.out.print(INPUT_PARTICIPANT_RESULT_MESSAGE);
-        return sc.nextLine();
+        String input = sc.nextLine();
+        System.out.println();
+        return input;
     }
 
     private static int parseInt(String input) {

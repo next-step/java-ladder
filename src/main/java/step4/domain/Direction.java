@@ -22,7 +22,7 @@ public class Direction {
 
     public Direction next(boolean current) {
         if (connected(this.current, current)) {
-            return of(this.current, Boolean.FALSE);
+            return of(Boolean.TRUE, Boolean.FALSE);
         }
         return of(this.current, current);
     }
@@ -39,7 +39,7 @@ public class Direction {
         return current;
     }
 
-    public void validate(boolean left, boolean current) {
+    private void validate(boolean left, boolean current) {
         if (connected(left, current)) {
             throw new IllegalArgumentException("두 방향은 연결될 수 없습니다.");
         }

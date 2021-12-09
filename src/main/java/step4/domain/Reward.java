@@ -13,6 +13,10 @@ public class Reward {
         return new Reward(name);
     }
 
+    public String name() {
+        return name.name();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

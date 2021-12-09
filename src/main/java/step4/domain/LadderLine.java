@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.Objects;
 
 public class LadderLine {
-    private final List<Point> ladderLines;
+    private final List<Point> points;
 
-    private LadderLine(List<Point> ladderLines) {
-        this.ladderLines = ladderLines;
+    private LadderLine(List<Point> points) {
+        this.points = points;
     }
 
     public static LadderLine of(Width width, PointCreateStrategy createStrategy) {
@@ -24,16 +24,16 @@ public class LadderLine {
         return pointBy(position.position()).move();
     }
 
-    public List<Point> lines() {
-        return ladderLines;
+    public List<Point> points() {
+        return points;
     }
 
     public int size() {
-        return ladderLines.size();
+        return points.size();
     }
 
     private Point pointBy(int position) {
-        return ladderLines.get(position);
+        return points.get(position);
     }
 
     @Override
@@ -41,11 +41,11 @@ public class LadderLine {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         LadderLine that = (LadderLine) o;
-        return Objects.equals(ladderLines, that.ladderLines);
+        return Objects.equals(points, that.points);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ladderLines);
+        return Objects.hash(points);
     }
 }

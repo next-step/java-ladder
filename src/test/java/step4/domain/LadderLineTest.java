@@ -1,6 +1,5 @@
 package step4.domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import step4.strategy.RandomPointCreateStrategy;
@@ -14,7 +13,7 @@ public class LadderLineTest {
         //given
         LadderLine ladderLine = LadderLine.of(Width.of(4), new RandomPointCreateStrategy());
         //when
-        for (Point point : ladderLine.lines()) {
+        for (Point point : ladderLine.points()) {
             System.out.println(point.toString());
         }
         //then

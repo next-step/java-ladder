@@ -41,6 +41,10 @@ public class Point {
         return position.position();
     }
 
+    public Direction direction() {
+        return direction;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
