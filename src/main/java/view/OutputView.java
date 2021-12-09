@@ -1,6 +1,6 @@
 package view;
 
-import domain.Ladder;
+import domain.LadderGame;
 import domain.LadderResult;
 import domain.Participants;
 
@@ -12,10 +12,8 @@ public interface OutputView {
     void showRequestOfHeightOfLadder();
     void showMessageOfResult();
     void showParticipants(Participants participants);
-    void showLadder(Ladder ladder);
+    void showLadderGame(LadderGame ladder);
     void showResults(List<String> results);
     void showRequestForResultOfParticipant();
-    void showResultOfLadderGame(String participant, Participants participants, LadderResult ladderResult, Ladder ladder);
-    void showResultOfParticipantInLadderGame(String result);
-    void showResultsOfAllParticipantsInLadderGame(Participants participants, LadderResult ladderResult, Ladder ladder);
+    void showResultOfLadderGame(String participantName, LadderResult ladderResult, LadderGame ladderGame);
 }

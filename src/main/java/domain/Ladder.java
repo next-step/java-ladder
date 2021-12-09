@@ -31,10 +31,6 @@ public class Ladder {
         return currentPoint;
     }
 
-    public List<Floor> getFloors() {
-        return floors.getFloors();
-    }
-
     public String finalResult(LadderResult ladderResult, String participantName) {
         Position initialPosition = participants.initialPosition(new Participant(participantName));
         Position finishedPosition = floors.finishedPosition(initialPosition);
@@ -56,5 +52,13 @@ public class Ladder {
                 .forEach(i -> ladderLines.add(LadderLine.init(sizeOfPerson)));
 
         return new Ladder(ladderLines);
+    }
+
+    public int height() {
+        return ladderLines.size();
+    }
+
+    public List<Boolean> line(int level) {
+        return ladderLines.get(level).line();
     }
 }

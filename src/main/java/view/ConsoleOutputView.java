@@ -42,9 +42,23 @@ public class ConsoleOutputView implements OutputView {
     }
 
     @Override
-    public void showLadder(Ladder ladder) {
-        List<Floor> floors = ladder.getFloors();
-        floors.forEach(this::showFloor);
+    public void showLadderGame(LadderGame ladderGame) {
+        for (int i = 0; i < ladderGame.height(); i++) {
+            String line = showLadderLine(ladderGame.nextLine(i));
+            System.out.println(line);
+        }
+    }
+
+    private String showLadderLine(List<Boolean> line) {
+        return line.stream()
+                .map(this::getLineExpression)
+                .reduce(INITIAL_EMPTY_SPACE + VERTICAL_BAR, (accumulator, stair) ->
+                        accumulator + stair + VERTICAL_BAR
+                );
+    }
+
+    private String getLineExpression(boolean isExist) {
+        return isExist ? STAIR_EXIST : NO_STAIR;
     }
 
     @Override
@@ -60,27 +74,21 @@ public class ConsoleOutputView implements OutputView {
     }
 
     @Override
-    public void showResultOfLadderGame(String participantName, Participants participants, LadderResult ladderResult, Ladder ladder) {
+    public void showResultOfLadderGame(String participantName, LadderResult ladderResult, LadderGame ladderGame) {
         if (participantName.equals(ALL_PARTICIPANTS)) {
-            showResultsOfAllParticipantsInLadderGame(participants, ladderResult, ladder);
+            showResultsOfAllParticipantsInLadderGame(ladderResult, ladderGame);
             return;
         }
 
-        String result = ladder.finalResult(ladderResult, participantName);
+        String result = ladderGame.result(participantName, ladderResult);
         showResultOfParticipantInLadderGame(result);
     }
 
-    @Override
-    public void showResultOfParticipantInLadderGame(String result) {
-        System.out.println(result);
-    }
+    private void showResultsOfAllParticipantsInLadderGame(LadderResult ladderResult, LadderGame ladderGame) {
+        List<String> participantNames = ladderGame.participantNames();
+        List<String> results = ladderGame.allResults(ladderResult);
 
-    @Override
-    public void showResultsOfAllParticipantsInLadderGame(Participants participants, LadderResult ladderResult, Ladder ladder) {
-        List<String> participantNames = participants.getNamesOfParticipants();
-        List<String> results = ladder.finalResultsOfAll(ladderResult);
-
-        IntStream.range(0, participants.size())
+        IntStream.range(0, participantNames.size())
                 .forEach(i -> showParticiantAndResult(participantNames.get(i), results.get(i)));
     }
 
@@ -88,16 +96,7 @@ public class ConsoleOutputView implements OutputView {
         System.out.printf("%s : %s\n", participant, result);
     }
 
-    private void showFloor(Floor floor) {
-        String floorState = floor.getStates().stream()
-                .map(this::getStairExpression)
-                .reduce(INITIAL_EMPTY_SPACE + VERTICAL_BAR, (accumulator, stair) ->
-                    accumulator + stair + VERTICAL_BAR
-                );
-        System.out.println(floorState);
-    }
-
-    private String getStairExpression(boolean isExist) {
-        return isExist ? STAIR_EXIST : NO_STAIR;
+    private void showResultOfParticipantInLadderGame(String result) {
+        System.out.println(result);
     }
 }

@@ -33,20 +33,18 @@ public class LadderController {
 
         outputView.showRequestOfHeightOfLadder();
         int heightOfLadder = inputView.getHeightOfLadder();
-        Floors floors = Floors.of(heightOfLadder, participants.size());
         LadderGame ladderGame = new LadderGame(participants, heightOfLadder);
-        Ladder ladder = new Ladder(floors, participants);
 
         outputView.showMessageOfResult();
         outputView.showParticipants(participants);
-        outputView.showLadder(ladder);
+        outputView.showLadderGame(ladderGame);
         outputView.showResults(separatedLadderResult);
 
         String participantName;
         do {
             outputView.showRequestForResultOfParticipant();
             participantName = inputView.getParticipantForResult();
-            outputView.showResultOfLadderGame(participantName, participants, ladderResult, ladder);
+            outputView.showResultOfLadderGame(participantName, ladderResult, ladderGame);
         } while (!participantName.equals(ALL_PARTICIPANTS));
     }
 }

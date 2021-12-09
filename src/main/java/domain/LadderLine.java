@@ -16,6 +16,15 @@ public class LadderLine {
         return points.get(position).move();
     }
 
+    public List<Boolean> line() {
+        List<Boolean> line = new ArrayList<>();
+        for (int i = 0; i < points.size() - 1; i++) {
+            line.add(points.get(i).hasRightDirection());
+        }
+
+        return line;
+    }
+
     public static LadderLine init(int sizeOfPerson) {
         List<Point> points = new ArrayList<>();
         Point point = initFirst(points);
