@@ -1,5 +1,6 @@
 package nextstep.ladder.domain.user;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,5 +16,9 @@ public class UserCollection {
                 .map(User::new)
                 .collect(Collectors.toList());
         return new UserCollection(users);
+    }
+
+    public List<User> getUsers() {
+        return Collections.unmodifiableList(users);
     }
 }

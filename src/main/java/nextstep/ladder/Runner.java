@@ -13,6 +13,6 @@ public class Runner {
         int height = InputView.inputMaxHeight();
         UserCollection userCollection = UserCollection.of(people);
         Ladder ladder = Ladder.init(people.size(), height);
-        OutputView.drawLadder(userCollection, ladder);
+        OutputView.drawLadderGame(userCollection, ladder);
     }
 }

@@ -1,6 +1,7 @@
 package nextstep.ladder.domain.ladder;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static nextstep.ladder.domain.ladder.LadderPointGenerator.generatePoint;
@@ -39,4 +40,7 @@ public class LadderLine {
         return point;
     }
 
+    public List<Point> getPoints() {
+        return Collections.unmodifiableList(points);
+    }
 }

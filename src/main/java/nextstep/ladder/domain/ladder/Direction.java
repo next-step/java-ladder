@@ -3,9 +3,15 @@ package nextstep.ladder.domain.ladder;
 import static nextstep.ladder.domain.ladder.LadderPointGenerator.generatePoint;
 
 public enum Direction {
-    LEFT(),
-    RIGHT(),
-    NONE();
+    LEFT("┤"),
+    RIGHT("├"),
+    NONE("┃");
+
+    private final String shape;
+
+    Direction(String shape) {
+        this.shape = shape;
+    }
 
     public static Direction first(boolean right) {
         return right ? RIGHT : NONE;
@@ -26,4 +32,7 @@ public enum Direction {
         return this == RIGHT ? LEFT : NONE;
     }
 
+    public String getShape() {
+        return shape;
+    }
 }

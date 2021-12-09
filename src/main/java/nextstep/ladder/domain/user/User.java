@@ -13,4 +13,8 @@ public class User {
             throw new IllegalArgumentException("사람이름은 최대 5자 입니다.");
         }
     }
+
+    public String getName() {
+        return name;
+    }
 }
