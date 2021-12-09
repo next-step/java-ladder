@@ -8,10 +8,10 @@ import java.util.Objects;
 public class Ladder {
     private static final int MINIMUM_RAIL_COUNT = 2;
 
-    private final List<Rail> rails;
+    private final List<Line> lines;
 
-    private Ladder(List<Rail> rails) {
-        this.rails = Collections.unmodifiableList(rails);
+    private Ladder(List<Line> lines) {
+        this.lines = Collections.unmodifiableList(lines);
     }
 
 
@@ -20,13 +20,17 @@ public class Ladder {
             throw new IllegalArgumentException("invalid number of player: must be larger than 2, but " + numberOfPlayer);
         }
 
-        List<Rail> rails = new ArrayList<>(numberOfPlayer);
-
-        for (int i = 0; i < numberOfPlayer; i++) {
-            rails.add(Rail.of(height));
+        if (height == null) {
+            throw new IllegalArgumentException("invalid height: cannot be null");
         }
 
-        return new Ladder(rails);
+        List<Line> lines = new ArrayList<>(height.toInt());
+
+        for (int i = 0; i < numberOfPlayer; i++) {
+            lines.add(Line.of(numberOfPlayer));
+        }
+
+        return new Ladder(lines);
     }
 
     public static Ladder of(int numberOfPlayer, int height) {
@@ -38,11 +42,11 @@ public class Ladder {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Ladder ladder = (Ladder) o;
-        return Objects.equals(rails, ladder.rails);
+        return Objects.equals(lines, ladder.lines);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(rails);
+        return Objects.hash(lines);
     }
 }
