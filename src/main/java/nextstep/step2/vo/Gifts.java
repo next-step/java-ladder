@@ -1,5 +1,7 @@
 package nextstep.step2.vo;
 
+import nextstep.step2.domain.Point;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -47,7 +49,8 @@ public class Gifts {
         return size() == size;
     }
 
-    public Gift giftWithIndex(int index) {
+    public Gift giftWithIndex(Point point) {
+        int index = point.getValue();
         if (index < 0 || index >= gifts.size()) {
             throw new IllegalArgumentException(INDEX_RANGE_EXCEPTION_MESSAGE);
         }
