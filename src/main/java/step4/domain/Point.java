@@ -6,7 +6,7 @@ public class Point {
     private final Position position;
     private final Direction direction;
 
-    public Point(Position position, Direction direction) {
+    private Point(Position position, Direction direction) {
         this.position = position;
         this.direction = direction;
     }
@@ -15,12 +15,12 @@ public class Point {
         return new Point(position, direction);
     }
 
-    public Point copy() {
-        return new Point(this.position.copy(), this.direction);
-    }
-
     public static Point start(boolean current) {
         return of(Position.of(0), Direction.start(current));
+    }
+
+    public Point copy() {
+        return new Point(this.position.copy(), this.direction);
     }
 
     public Point next(boolean current) {
