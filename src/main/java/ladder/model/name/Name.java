@@ -1,5 +1,7 @@
 package ladder.model.name;
 
+import ladder.model.util.StringUtil;
+
 import java.util.Objects;
 
 public class Name {
@@ -17,7 +19,7 @@ public class Name {
     }
 
     private void checkValidation(String name) {
-        if(name == null || name.trim().isEmpty()) {
+        if(StringUtil.isNullOrEmpty(name)) {
             throw new IllegalArgumentException("이름이 null 이거나 비어있습니다.");
         }
         if(name.length() > NAME_MAX_LENGTH) {
