@@ -31,4 +31,12 @@ public class ParticipantsTest {
     void testWhenThereIsNoParticipant() {
         assertThatThrownBy(() -> PARTICIPANTS.initialPosition(NOT_PARTICIPANT)).isInstanceOf(NoSuchElementException.class);
     }
+
+    @Test
+    void testInitialPosition() {
+        assertThat(PARTICIPANTS.initialPosition("pobi")).isEqualTo(0);
+        assertThat(PARTICIPANTS.initialPosition("honux")).isEqualTo(1);
+        assertThat(PARTICIPANTS.initialPosition("crong")).isEqualTo(2);
+        assertThat(PARTICIPANTS.initialPosition("jk")).isEqualTo(3);
+    }
 }
