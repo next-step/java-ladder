@@ -22,4 +22,8 @@ public class HeightTest {
                 .isThrownBy(() -> Height.of(invalidHeight))
                 .withMessageContaining("larger than 0");
     }
+
+    public static Height height(int height) {
+        return Height.of(height);
+    }
 }

@@ -1,40 +1,38 @@
 package nextstep.ladder.domain;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Ladder {
-    private static final int MINIMUM_RAIL_COUNT = 2;
-
     private final List<Line> lines;
 
     private Ladder(List<Line> lines) {
         this.lines = Collections.unmodifiableList(lines);
     }
 
-
-    public static Ladder of(int numberOfPlayer, Height height) {
-        if (numberOfPlayer < MINIMUM_RAIL_COUNT) {
-            throw new IllegalArgumentException("invalid number of player: must be larger than 2, but " + numberOfPlayer);
-        }
-
+    public static Ladder of(Players players, Height height) {
         if (height == null) {
             throw new IllegalArgumentException("invalid height: cannot be null");
         }
 
-        List<Line> lines = new ArrayList<>(height.toInt());
-
-        for (int i = 0; i < numberOfPlayer; i++) {
-            lines.add(Line.of(numberOfPlayer));
+        if (players == null) {
+            throw new IllegalArgumentException("invalid players: cannot be null");
         }
 
-        return new Ladder(lines);
+        return new Ladder(IntStream.of(height.toInt())
+                .mapToObj(n -> Line.of(players.size()))
+                .collect(Collectors.toList()));
     }
 
-    public static Ladder of(int numberOfPlayer, int height) {
-        return Ladder.of(numberOfPlayer, Height.of(height));
+    public static Ladder of(List<String> names, int height) {
+        if (names == null) {
+            throw new IllegalArgumentException("invalid players: cannot be null");
+        }
+
+        return Ladder.of(Players.of(names), Height.of(height));
     }
 
     @Override
