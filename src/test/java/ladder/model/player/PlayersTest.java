@@ -14,7 +14,7 @@ class PlayersTest {
     @DisplayName("참가하는 사람이 2명 미만일 경우 예외 발생")
     void minPlayerCountExceptionTest() {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new Players("play1").get())
+                .isThrownBy(() -> new Players("play1"))
                 .withMessage("게임을 하려면 최소 2명이 필요합니다.");
     }
 

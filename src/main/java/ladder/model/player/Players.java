@@ -12,29 +12,32 @@ public class Players {
     private final List<Player> players;
 
     public Players(String players) {
-        this.players = toPlayerList(players);
+        this.players = new Names(players).get()
+                .stream()
+                .map(Player::new)
+                .collect(Collectors.toList());
+        checkValidation(this.players);
     }
 
-    public int size() {
+    public int count() {
         return this.players.size();
+    }
+
+    public Player get(int index) {
+        return players.get(index);
     }
 
     public List<Player> get() {
         return Collections.unmodifiableList(this.players);
     }
 
-    private List<Player> toPlayerList(String players) {
-        List<Player> list = new Names(players).get()
-                            .stream()
-                            .map(Player::new)
-                            .collect(Collectors.toList());
-        checkValidation(list);
-        return list;
-    }
-
-    private void checkValidation(List<Player> list) {
-        if(list.size() < MIN_PLAYER_COUNT) {
+    private void checkValidation(List<Player> players) {
+        if(players.size() < MIN_PLAYER_COUNT) {
             throw new IllegalArgumentException("게임을 하려면 최소 " + MIN_PLAYER_COUNT + "명이 필요합니다.");
         }
+    }
+
+    public String name(int index) {
+        return players.get(index).name();
     }
 }
