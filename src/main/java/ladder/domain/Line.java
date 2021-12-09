@@ -3,6 +3,9 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.IntStream;
+
+import static java.util.stream.IntStream.*;
 
 public class Line {
 
@@ -28,9 +31,8 @@ public class Line {
     }
 
     private static void createAfterPoint(List<Point> points, int players) {
-        for (int index = 0; index < players - 1; index++) {
-            addPoint(points, index);
-        }
+        range(0, players - 1)
+                .forEach(index -> addPoint(points, index));
     }
 
     private static void addPoint(List<Point> points, int index) {

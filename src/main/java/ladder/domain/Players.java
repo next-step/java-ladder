@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -14,6 +13,10 @@ public class Players {
 
     public List<Player> getPlayers() {
         return players;
+    }
+
+    public int getSize() {
+        return players.size();
     }
 
     @Override

@@ -5,7 +5,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Point {
 
-    static ThreadLocalRandom random = ThreadLocalRandom.current();
+    private static final ThreadLocalRandom random = ThreadLocalRandom.current();
 
     private final Position position;
     private final Direction direction;
@@ -16,7 +16,7 @@ public class Point {
     }
 
     public static Point createFirstPoint() {
-        return new Point(new Position(), Direction.createRandomDirection(() -> random.nextBoolean()));
+        return new Point(new Position(), Direction.createRandomDirection(random::nextBoolean));
     }
 
     public static Point createPoint(int index) {
@@ -24,7 +24,7 @@ public class Point {
     }
 
     public static Point createRandomPoint(int index) {
-        return new Point(new Position(index).move(), Direction.createRandomDirection(() -> random.nextBoolean()));
+        return new Point(new Position(index).move(), Direction.createRandomDirection(random::nextBoolean));
     }
 
     public boolean isRight() {

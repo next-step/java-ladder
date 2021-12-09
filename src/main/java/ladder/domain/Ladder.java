@@ -1,8 +1,10 @@
 package ladder.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
+import static java.util.stream.Collectors.toList;
+import static java.util.stream.IntStream.range;
 
 public class Ladder {
 
@@ -17,10 +19,9 @@ public class Ladder {
     }
 
     public static Ladder createLadder(Players players, Height height) {
-        List<Line> lines = new ArrayList<>();
-        for (int i = 0; i < height.getHeight(); i++) {
-            lines.add(Line.createLine(players.getSize()));
-        }
+        List<Line> lines = range(0, height.getHeight())
+                .mapToObj(i -> Line.createLine(players.getSize()))
+                .collect(toList());
         return new Ladder(lines);
     }
 
