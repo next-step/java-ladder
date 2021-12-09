@@ -16,6 +16,10 @@ public class Participants {
         return participants.size();
     }
 
+    public int initialPosition(String name) {
+        return participants.indexOf(new Participant(name));
+    }
+
     public Position initialPosition (Participant participant) {
         if (!participants.contains(participant)) {
             throw new NoSuchElementException("There is no participant having that name");
