@@ -12,7 +12,7 @@ public class Participant {
 
     public Participant(String inputName) {
 
-        if(inputName.isEmpty() || inputName == null) {
+        if(inputName.isEmpty()) {
             throw new NullPointerException(FORMAT_ERROR_MSG);
         }
 
