@@ -1,8 +1,8 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.strategy.RandomStrategy;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -13,14 +13,14 @@ public class Lines {
         this.lines = lines;
     }
 
-    public static Lines of(int countOfParticipants, int countOfLine) {
+    public static Lines ofRandom(int countOfParticipants, int countOfLine) {
         List<Line> lines = new ArrayList<>();
         IntStream.range(0, countOfLine)
-                .forEach(index -> lines.add(Line.of(countOfParticipants, new RandomStrategy())));
+                .forEach(index -> lines.add(Line.ofRandom(countOfParticipants)));
         return new Lines(lines);
     }
 
     public List<Line> getLines() {
-        return lines;
+        return Collections.unmodifiableList(lines);
     }
 }
