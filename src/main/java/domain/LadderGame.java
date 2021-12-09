@@ -4,6 +4,11 @@ public class LadderGame {
     private final Participants participants;
     private final Ladder ladder;
 
+    public LadderGame(Participants participants, int height) {
+        this.participants = participants;
+        this.ladder = Ladder.of(participants.size(), height);
+    }
+
     public LadderGame(Participants participants, Ladder ladder) {
         this.participants = participants;
         this.ladder = ladder;

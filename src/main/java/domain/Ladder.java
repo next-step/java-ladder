@@ -2,6 +2,7 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Ladder {
     private final Floors floors;
@@ -46,5 +47,14 @@ public class Ladder {
         participants.getNamesOfParticipants().forEach(name -> results.add(finalResult(ladderResult, name)));
 
         return results;
+    }
+
+    public static Ladder of(int sizeOfPerson, int height) {
+        List<LadderLine> ladderLines = new ArrayList<>();
+
+        IntStream.range(0, height)
+                .forEach(i -> ladderLines.add(LadderLine.init(sizeOfPerson)));
+
+        return new Ladder(ladderLines);
     }
 }

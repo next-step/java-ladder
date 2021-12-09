@@ -34,6 +34,7 @@ public class LadderController {
         outputView.showRequestOfHeightOfLadder();
         int heightOfLadder = inputView.getHeightOfLadder();
         Floors floors = Floors.of(heightOfLadder, participants.size());
+        LadderGame ladderGame = new LadderGame(participants, heightOfLadder);
         Ladder ladder = new Ladder(floors, participants);
 
         outputView.showMessageOfResult();
