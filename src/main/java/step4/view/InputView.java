@@ -29,7 +29,6 @@ public class InputView {
     public static String inputParticipantResult() {
         System.out.print(INPUT_PARTICIPANT_RESULT_MESSAGE);
         String input = sc.nextLine();
-        System.out.println();
         return input;
     }
 

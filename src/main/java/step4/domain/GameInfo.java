@@ -5,6 +5,7 @@ public class GameInfo {
     private final Rewards rewards;
 
     private GameInfo(Participants participants, Rewards rewards) {
+        validateSizeEquals(participants.size(), rewards.size());
         this.participants = participants;
         this.rewards = rewards;
     }
@@ -19,5 +20,11 @@ public class GameInfo {
 
     public Rewards rewards() {
         return rewards;
+    }
+
+    private void validateSizeEquals(int participantSize, int rewardSize) {
+        if (participantSize != rewardSize) {
+            throw new IllegalArgumentException("참가자와 보상의 수가 일치하지 않습니다.");
+        }
     }
 }

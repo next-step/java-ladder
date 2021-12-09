@@ -15,6 +15,10 @@ public class Point {
         return new Point(position, direction);
     }
 
+    public Point copy() {
+        return new Point(this.position.copy(), this.direction);
+    }
+
     public static Point start(boolean current) {
         return of(Position.of(0), Direction.start(current));
     }

@@ -20,6 +20,7 @@ public class ResultView {
 
     public static void participantResult(String result) {
         System.out.println(result);
+        System.out.println();
     }
 
     public static void allParticipantResult(String result) {

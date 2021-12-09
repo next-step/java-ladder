@@ -25,13 +25,13 @@ public class GameResult {
         if (participantIndex == NOT_FOUND) {
             return NOT_FOUND_PARTICIPANT;
         }
-        Position position = cloneLadder().startBy(participantIndex);
+        Position position = copy().startBy(participantIndex);
         return gameInfo.rewards().findBy(position.position());
     }
 
     public String resultAll() {
         List<String> names = gameInfo.participants().participantNames();
-        List<String> rewards = cloneLadder().startAll().stream()
+        List<String> rewards = copy().startAll().stream()
                 .map(position -> gameInfo.rewards().findBy(position.position()))
                 .collect(Collectors.toList());
         return IntStream.range(0, names.size())
@@ -39,12 +39,7 @@ public class GameResult {
                 .collect(Collectors.joining("\n"));
     }
 
-    private Ladder cloneLadder() {
-        try {
-            return ladder.clone();
-        } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
-        }
-        return ladder;
+    private Ladder copy() {
+        return ladder.copy();
     }
 }

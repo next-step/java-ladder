@@ -2,10 +2,11 @@ package step4.domain;
 
 import step4.strategy.PointCreateStrategy;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class LadderLine {
+public class LadderLine implements Cloneable {
     private final List<Point> points;
 
     private LadderLine(List<Point> points) {
@@ -18,6 +19,14 @@ public class LadderLine {
 
     public static LadderLine of(int width, PointCreateStrategy createStrategy) {
         return new LadderLine(createStrategy.create(width));
+    }
+
+    public LadderLine copy() {
+        List<Point> points = new ArrayList<>();
+        for (Point point : this.points) {
+            points.add(point.copy());
+        }
+        return new LadderLine(points);
     }
 
     public Position move(Position position) {
