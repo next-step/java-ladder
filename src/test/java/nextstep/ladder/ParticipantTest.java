@@ -15,7 +15,7 @@ public class ParticipantTest {
     @DisplayName("checkParticipantLength 메소드는")
     class Describe_checkParticipantLength {
         @Nested
-        @DisplayName(PARTICIPANT_SIZE +"가 넘는 길이의 참가자가 입력되면 ")
+        @DisplayName(PARTICIPANT_SIZE + "가 넘는 길이의 참가자가 입력되면 ")
         class long_participant_length {
             @Test
             @DisplayName("이름의 길이가" + PARTICIPANT_SIZE + "를 초과합니다.를 반환")

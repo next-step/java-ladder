@@ -10,7 +10,7 @@ public class LadderController {
         int countOfLine = Input.InputCountOfLine();
         String participantsString = Input.InputParticipants();
         Participants participants = Participants.of(participantsString);
-        Lines lines = Lines.of(participants.getParticipantsSize(), countOfLine);
+        Lines lines = Lines.ofRandom(participants.getParticipantsSize(), countOfLine);
         OutPut.viewParticipants(participants);
         OutPut.viewLadder(lines);
     }
