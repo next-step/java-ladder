@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,7 +23,7 @@ public class Participants {
     }
 
     public List<Participant> getParticipants() {
-        return participants;
+        return Collections.unmodifiableList(participants);
     }
 
 }
