@@ -10,8 +10,8 @@ public class PointTest {
 
     @Test
     public void first() {
-        assertThat(Point.first(TRUE).move).isEqualTo(1);
-        assertThat(Point.first(FALSE).move).isEqualTo(1);
+        assertThat(Point.first(TRUE).move()).isEqualTo(1);
+        assertThat(Point.first(FALSE).move()).isEqualTo(0);
     }
 
     @Test
