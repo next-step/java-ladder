@@ -2,6 +2,8 @@ package nextstep.ladder.model.value;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -24,14 +26,13 @@ public class ParticipantTest {
                 new Participant("jeonggi")).isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
+    @ParameterizedTest
     @DisplayName("사람 이름이 null 이거나 빈값이면 안되는 예외 검증")
-    void emptyExceptionTest() {
+    @NullAndEmptySource
+    void emptyExceptionTest(String input) {
 
         assertThatThrownBy(() ->
-                new Participant("")).isInstanceOf(NullPointerException.class);
+                new Participant(input)).isInstanceOf(NullPointerException.class);
 
-        assertThatThrownBy(() ->
-                new Participant(null)).isInstanceOf(NullPointerException.class);
     }
 }
