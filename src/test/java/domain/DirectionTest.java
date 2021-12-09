@@ -10,12 +10,13 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 public class DirectionTest {
     @Test
     public void init() {
-        assertThat(Direction.of(trre, false)).isEqualTo(Direction.of(true, false)));
+        assertThat(Direction.of(TRUE, FALSE)).isEqualTo(Direction.of(TRUE, FALSE));
     }
 
     @Test
     public void init_invalid() {
-        assertThatThrownBy(Direction.of(TRUE, TRUE));
+        assertThatThrownBy(() ->
+                Direction.of(TRUE, TRUE)).isInstanceOf(IllegalStateException.class);
     }
 
     @Test

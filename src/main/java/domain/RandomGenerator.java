@@ -27,4 +27,8 @@ public class RandomGenerator {
 
         return random.nextBoolean();
     }
+
+    public static boolean generatePoint() {
+        return random.nextBoolean();
+    }
 }
