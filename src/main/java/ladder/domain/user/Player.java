@@ -6,8 +6,8 @@ public class Player {
 
     private final PlayerName playerName;
 
-    public Player(PlayerName name) {
-        this.playerName = name;
+    public Player(String name) {
+        playerName = new PlayerName(name);
     }
 
     public PlayerName getPlayerName() {
@@ -16,8 +16,12 @@ public class Player {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o){
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Player player = (Player) o;
         return Objects.equals(playerName, player.playerName);
     }

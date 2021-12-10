@@ -1,48 +1,33 @@
 package ladder.domain.ladder;
 
 import java.util.Objects;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class Point {
-
-    private static final ThreadLocalRandom random = ThreadLocalRandom.current();
 
     private final Position position;
     private final Direction direction;
 
-    public Point(Position position, Direction direction) {
-        this.position = position;
+    public Point() {
+        this(0, new Direction());
+    }
+
+    public Point(int position, Direction direction) {
+        this.position = new Position(position);
         this.direction = direction;
-    }
-
-    public static Point createFirstPoint() {
-        return new Point(new Position(), Direction.createRandomDirection(random::nextBoolean));
-    }
-
-    public static Point createPoint(int index) {
-        return new Point(new Position(index).move(), new Direction(true, false));
-    }
-
-    public static Point createRandomPoint(int index) {
-        return new Point(new Position(index).move(), Direction.createRandomDirection(random::nextBoolean));
     }
 
     public boolean isRight() {
         return direction.isRight();
     }
 
-    public Position getPosition() {
-        return position;
-    }
-
-    public boolean isFirst() {
-        return position.isFirst();
-    }
-
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Point point = (Point) o;
         return Objects.equals(position, point.position) && Objects.equals(direction, point.direction);
     }

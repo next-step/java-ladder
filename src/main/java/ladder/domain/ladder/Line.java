@@ -4,48 +4,29 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import static java.util.stream.IntStream.*;
-
 public class Line {
 
-    private final List<Point> points;
+    private final List<Point> points = new ArrayList<>();
 
-    public Line(List<Point> points) {
-        this.points = points;
+    public Line(int players, LadderStrategy strategy) {
+        points.add(new Point());
+        for (int i = 0; i < players - 1; i++) {
+            points.add(new Point(i + 1, Direction.createDirection(points.get(i).isRight(), strategy)));
+        }
     }
 
     public List<Point> getPoints() {
         return points;
     }
 
-    public static Line createLine(int players) {
-        List<Point> points = new ArrayList<>();
-        createFirstPoint(points);
-        createAfterPoint(points, players);
-        return new Line(points);
-    }
-
-    private static void createFirstPoint(List<Point> points) {
-        points.add(Point.createFirstPoint());
-    }
-
-    private static void createAfterPoint(List<Point> points, int players) {
-        range(0, players - 1)
-                .forEach(index -> addPoint(points, index));
-    }
-
-    private static void addPoint(List<Point> points, int index) {
-        if (points.get(index).isRight()) {
-            points.add(Point.createPoint(index));
-            return;
-        }
-        points.add(Point.createRandomPoint(index));
-    }
-
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Line line = (Line) o;
         return Objects.equals(points, line.points);
     }

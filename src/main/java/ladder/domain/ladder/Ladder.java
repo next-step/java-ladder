@@ -22,15 +22,19 @@ public class Ladder {
 
     public static Ladder createLadder(Players players, Height height) {
         List<Line> lines = range(0, height.getHeight())
-                .mapToObj(i -> Line.createLine(players.getSize()))
+                .mapToObj(i -> new Line(players.size(), new RandomLadder()))
                 .collect(toList());
         return new Ladder(lines);
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Ladder ladder = (Ladder) o;
         return Objects.equals(lines, ladder.lines);
     }
