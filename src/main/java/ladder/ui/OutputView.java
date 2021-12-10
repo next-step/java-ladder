@@ -2,7 +2,8 @@ package ladder.ui;
 
 import ladder.domain.*;
 import ladder.dto.LadderGame;
-import ladder.util.function.Function;
+import ladder.enums.LadderPart;
+import ladder.util.function.MathFunction;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,6 +18,9 @@ public class OutputView {
     private static final String EMPTY_DELIMITER = "";
     private static final StringBuilder STRING_BUILDER = new StringBuilder();
     private static final int STRING_BUILDER_DEFAULT_LENGTH = 0;
+    private static final String RAIL_VALUE = "|";
+    private static final String RUNG_VALUE = "-----";
+    private static final String EMPTY_RUNG_VALUE = "     ";
 
     private OutputView() {}
 
@@ -39,18 +43,18 @@ public class OutputView {
         STRING_BUILDER.setLength(STRING_BUILDER_DEFAULT_LENGTH);
         STRING_BUILDER.append(name);
         while (STRING_BUILDER.length() < NAME_PADDING) {
-            append(STRING_BUILDER);
+            append();
         }
         return STRING_BUILDER.toString();
     }
 
-    private static void append(StringBuilder sb) {
-        if (Function.EVEN_NUMBER.test(sb.length())) {
-            sb.append(SPACE);
+    private static void append() {
+        if (MathFunction.EVEN_NUMBER.test(STRING_BUILDER.length())) {
+            STRING_BUILDER.append(SPACE);
             return;
         }
 
-        sb.insert(STRING_BUILDER_DEFAULT_LENGTH, SPACE);
+        STRING_BUILDER.insert(STRING_BUILDER_DEFAULT_LENGTH, SPACE);
     }
 
     private static void printLadders(Ladder ladder) {
@@ -66,7 +70,17 @@ public class OutputView {
     private static String appendLine(Line line) {
         List<LadderPart> ladderParts = line.getLadderParts();
         return ladderParts.stream()
-                .map(LadderPart::value)
+                .map(ladderPart -> {
+                    if (ladderPart.isRail()) {
+                        return RAIL_VALUE;
+                    }
+
+                    if (ladderPart.isRung()) {
+                        return RUNG_VALUE;
+                    }
+
+                    return EMPTY_RUNG_VALUE;
+                })
                 .collect(Collectors.joining(EMPTY_DELIMITER));
     }
 

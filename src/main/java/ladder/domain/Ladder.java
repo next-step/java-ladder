@@ -2,7 +2,6 @@ package ladder.domain;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.function.ToIntFunction;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -12,13 +11,16 @@ public class Ladder {
 
     private static final int MIN_WIDTH = 1;
     private static final int MIN_HEIGHT = 1;
-    private static final int FIRST_INDEX = 0;
-    private static final ToIntFunction<Names> NAMES_TO_WIDTH = names -> names.count() * 2 - 1;
+    public static final int INDEX_ZERO = 0;
 
     private final List<Line> lines;
 
     public Ladder(Names names, int height) {
-        this(NAMES_TO_WIDTH.applyAsInt(names), height);
+        this(widthFromNames(names), height);
+    }
+
+    private static int widthFromNames(Names names) {
+        return names.count() * 2 - 1;
     }
 
     public Ladder(int width, int height) {
@@ -26,9 +28,8 @@ public class Ladder {
             throw new IllegalArgumentException(INVALID_WIDTH_HEIGHT_MESSAGE);
         }
 
-        this.lines = IntStream.range(0, height)
-                .map(idx -> width)
-                .mapToObj(Line::new)
+        this.lines = IntStream.range(INDEX_ZERO, height)
+                .mapToObj(index -> new Line(width))
                 .collect(Collectors.toList());
     }
 
@@ -37,7 +38,7 @@ public class Ladder {
     }
 
     public int width() {
-        return lines.get(FIRST_INDEX).width();
+        return lines.get(INDEX_ZERO).width();
     }
 
     public List<Line> getLines() {

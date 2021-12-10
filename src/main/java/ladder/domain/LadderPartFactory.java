@@ -1,23 +1,27 @@
 package ladder.domain;
 
+import ladder.enums.LadderPart;
 import ladder.strategy.MakeRungStrategy;
-import ladder.util.function.Function;
-
-import java.util.Random;
+import ladder.util.function.MathFunction;
 
 public class LadderPartFactory {
 
-    private static final Random RANDOM = new Random();
     private static boolean isPreviousRungSet = false;
 
     private LadderPartFactory() {}
 
-    public static LadderPart ladderPart(int idx) {
-        if (Function.EVEN_NUMBER.test(idx)) {
-            return Rail.instance();
+    public static LadderPart ladderPart(int idx, MakeRungStrategy strategy) {
+        if (MathFunction.EVEN_NUMBER.test(idx)) {
+            return LadderPart.RAIL;
         }
-        changeIsPreviousRungSet(MakeRungStrategy.of(isPreviousRungSet, RANDOM.nextBoolean()).test());
-        return Rung.from(isPreviousRungSet);
+
+        if (isPreviousRungSet) {
+            changeIsPreviousRungSet(false);
+            return LadderPart.from(isPreviousRungSet);
+        }
+
+        changeIsPreviousRungSet(strategy.test());
+        return LadderPart.from(isPreviousRungSet);
     }
 
     public static void initIsPreviousRungSet() {
