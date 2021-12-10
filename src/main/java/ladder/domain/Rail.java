@@ -11,18 +11,13 @@ public class Rail implements LadderPart {
         this.value = value;
     }
 
-    public static Rail rail() {
+    public static Rail instance() {
         return rail;
     }
 
     @Override
     public String value() {
         return value;
-    }
-
-    @Override
-    public boolean isInstanceOf(Class<?> clazz) {
-        return Rail.class.equals(clazz);
     }
 
 }

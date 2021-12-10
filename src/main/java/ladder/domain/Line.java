@@ -1,31 +1,27 @@
 package ladder.domain;
 
-import java.util.ArrayList;
+import ladder.util.function.Function;
+
 import java.util.Collections;
 import java.util.List;
-import java.util.function.Predicate;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Line {
 
     private static final String INVALID_WIDTH_MESSAGE = "width는 짝수일 수 없습니다.";
-    private static final Predicate<Integer> widthCondition = width -> width % 2 == 0;
 
     private final List<LadderPart> ladderParts;
 
     public Line(int width) {
-        if (widthCondition.test(width)) {
+        if (Function.EVEN_NUMBER.test(width)) {
             throw new IllegalArgumentException(INVALID_WIDTH_MESSAGE);
         }
 
-        ladderParts = new ArrayList<>();
-
-        PreviousRung previousRung = PreviousRung.of(false);
-        for (int i = 0; i < width; i++) {
-            LadderPart ladderPart = LadderPartFactory.ladderPart(i, previousRung);
-            previousRung = previousRung.changedRung(ladderPart);
-
-            ladderParts.add(ladderPart);
-        }
+        LadderPartFactory.initIsPreviousRungSet();
+        ladderParts = IntStream.range(0, width)
+                .mapToObj(LadderPartFactory::ladderPart)
+                .collect(Collectors.toList());
     }
 
     public int width() {

@@ -13,7 +13,7 @@ public class NamesTest {
     void create() {
         Names names = new Names("pobi, honux, crong, jk");
 
-        assertThat(names.getNames()).hasSize(4);
+        assertThat(names.getValue()).hasSize(4);
     }
 
     @DisplayName("생성 파라미터는 null일 수 없음")

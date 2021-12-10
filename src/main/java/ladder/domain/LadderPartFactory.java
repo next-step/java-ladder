@@ -1,30 +1,31 @@
 package ladder.domain;
 
+import ladder.strategy.MakeRungStrategy;
+import ladder.util.function.Function;
+
 import java.util.Random;
-import java.util.function.Predicate;
 
 public class LadderPartFactory {
 
-    private static final Predicate<Integer> RAIL_CHECK = idx -> idx % 2 == 0;
+    private static final Random RANDOM = new Random();
+    private static boolean isPreviousRungSet = false;
 
-    public static LadderPart ladderPart(int idx, PreviousRung previousRung) {
-        return ladderPart(idx, previousRung.isSet());
+    private LadderPartFactory() {}
+
+    public static LadderPart ladderPart(int idx) {
+        if (Function.EVEN_NUMBER.test(idx)) {
+            return Rail.instance();
+        }
+        changeIsPreviousRungSet(MakeRungStrategy.of(isPreviousRungSet, RANDOM.nextBoolean()).test());
+        return Rung.from(isPreviousRungSet);
     }
 
-    public static LadderPart ladderPart(int idx, boolean isRungSet) {
-        if (RAIL_CHECK.test(idx)) {
-            return Rail.rail();
-        }
-
-        if (!isRungSet) {
-            return Rung.rung(randomBoolean());
-        }
-
-        return Rung.rung(false);
+    public static void initIsPreviousRungSet() {
+        changeIsPreviousRungSet(false);
     }
 
-    private static boolean randomBoolean() {
-        return new Random().nextBoolean();
+    public static void changeIsPreviousRungSet(boolean value) {
+        isPreviousRungSet = value;
     }
 
 }

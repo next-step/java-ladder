@@ -8,6 +8,8 @@ public class InputView {
     private static final String READ_HEIGHT_MESSAGE = "최대 사다리 높이는 몇 개인가요?";
     private static final Scanner scanner = new Scanner(System.in);
 
+    private InputView() {}
+
     public static String readNames() {
         System.out.println(READ_NAMES_MESSAGE);
         return scanner.nextLine();

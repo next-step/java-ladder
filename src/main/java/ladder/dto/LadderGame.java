@@ -1,4 +1,7 @@
-package ladder.domain;
+package ladder.dto;
+
+import ladder.domain.Ladder;
+import ladder.domain.Names;
 
 public class LadderGame {
 

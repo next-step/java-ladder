@@ -1,10 +1,10 @@
 package ladder.domain;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.function.Function;
-import java.util.function.UnaryOperator;
+import java.util.function.ToIntFunction;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Ladder {
 
@@ -12,12 +12,13 @@ public class Ladder {
 
     private static final int MIN_WIDTH = 1;
     private static final int MIN_HEIGHT = 1;
-    private static final Function<Names, Integer> NAMES_TO_WIDTH = names -> names.count() * 2 - 1;
+    private static final int FIRST_INDEX = 0;
+    private static final ToIntFunction<Names> NAMES_TO_WIDTH = names -> names.count() * 2 - 1;
 
     private final List<Line> lines;
 
     public Ladder(Names names, int height) {
-        this(NAMES_TO_WIDTH.apply(names), height);
+        this(NAMES_TO_WIDTH.applyAsInt(names), height);
     }
 
     public Ladder(int width, int height) {
@@ -25,10 +26,10 @@ public class Ladder {
             throw new IllegalArgumentException(INVALID_WIDTH_HEIGHT_MESSAGE);
         }
 
-        this.lines = new ArrayList<>();
-        for (int i = 0; i < height; i++) {
-            lines.add(new Line(width));
-        }
+        this.lines = IntStream.range(0, height)
+                .map(idx -> width)
+                .mapToObj(Line::new)
+                .collect(Collectors.toList());
     }
 
     public int height() {
@@ -36,7 +37,7 @@ public class Ladder {
     }
 
     public int width() {
-        return lines.get(0).width();
+        return lines.get(FIRST_INDEX).width();
     }
 
     public List<Line> getLines() {

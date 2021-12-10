@@ -14,26 +14,26 @@ public class RungTest {
     @ParameterizedTest
     @ValueSource(booleans = {true, false})
     void create(boolean isSet) {
-        Assertions.assertThat(Rung.rung(isSet)).isInstanceOf(LadderPart.class);
+        Assertions.assertThat(Rung.from(isSet)).isInstanceOf(LadderPart.class);
     }
 
     @DisplayName("생성메서드 Rung.rung(true) 확인")
     @Test
     void rung() {
-        assertThat(Rung.rung(true).value()).isEqualTo("-----");
+        assertThat(Rung.from(true).value()).isEqualTo("-----");
     }
 
     @DisplayName("생성메서드 Rung.rung(false) 확인")
     @Test
     void emptyRung() {
-        assertThat(Rung.rung(false).value()).isEqualTo("     ");
+        assertThat(Rung.from(false).value()).isEqualTo("     ");
     }
 
     @DisplayName("emptyRung, Rung == 확인")
     @ParameterizedTest
     @ValueSource(booleans = {true, false})
     void same(boolean isSet) {
-        assertThat(Rung.rung(isSet) == Rung.rung(isSet)).isTrue();
+        assertThat(Rung.from(isSet) == Rung.from(isSet)).isTrue();
     }
 
 }

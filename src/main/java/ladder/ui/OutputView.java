@@ -1,6 +1,8 @@
 package ladder.ui;
 
 import ladder.domain.*;
+import ladder.dto.LadderGame;
+import ladder.util.function.Function;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,9 +11,14 @@ public class OutputView {
 
     private static final String RESULT_MESSAGE = "실행 결과\n";
     private static final int NAME_PADDING = 6;
+    private static final char SPACE = ' ';
     private static final String TWO_SPACE = "  ";
     private static final String LINE_JOINING_DELIMITER = "\n" + TWO_SPACE;
     private static final String EMPTY_DELIMITER = "";
+    private static final StringBuilder STRING_BUILDER = new StringBuilder();
+    private static final int STRING_BUILDER_DEFAULT_LENGTH = 0;
+
+    private OutputView() {}
 
     public static void printResult(LadderGame ladderGame) {
         System.out.println(RESULT_MESSAGE);
@@ -20,7 +27,7 @@ public class OutputView {
     }
 
     private static void printNames(Names names) {
-        List<Name> nameList = names.getNames();
+        List<Name> nameList = names.getValue();
         System.out.println(nameList.stream()
                 .map(Name::getValue)
                 .map(OutputView::padding)
@@ -29,31 +36,31 @@ public class OutputView {
     }
 
     private static String padding(String name) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(name);
-        while (sb.length() < NAME_PADDING) {
-            append(sb);
+        STRING_BUILDER.setLength(STRING_BUILDER_DEFAULT_LENGTH);
+        STRING_BUILDER.append(name);
+        while (STRING_BUILDER.length() < NAME_PADDING) {
+            append(STRING_BUILDER);
         }
-        return sb.toString();
+        return STRING_BUILDER.toString();
     }
 
     private static void append(StringBuilder sb) {
-        if (sb.length() % 2 == 0) {
-            sb.append(' ');
+        if (Function.EVEN_NUMBER.test(sb.length())) {
+            sb.append(SPACE);
             return;
         }
 
-        sb.insert(0, ' ');
+        sb.insert(STRING_BUILDER_DEFAULT_LENGTH, SPACE);
     }
 
     private static void printLadders(Ladder ladder) {
-        StringBuilder sb = new StringBuilder();
+        STRING_BUILDER.setLength(STRING_BUILDER_DEFAULT_LENGTH);
         List<Line> lines = ladder.getLines();
-        sb.append(TWO_SPACE);
-        sb.append(lines.stream()
+        STRING_BUILDER.append(TWO_SPACE);
+        STRING_BUILDER.append(lines.stream()
                 .map(OutputView::appendLine)
                 .collect(Collectors.joining(LINE_JOINING_DELIMITER)));
-        System.out.println(sb.toString());
+        System.out.println(STRING_BUILDER);
     }
 
     private static String appendLine(Line line) {
