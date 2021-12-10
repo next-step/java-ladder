@@ -41,6 +41,6 @@ public class Ladder {
 
   private boolean checkAllSameSize(List<Line> lines, Line firstLine) {
     return lines.stream()
-            .allMatch(line -> line.size() == firstLine.size());
+                .allMatch(line -> line.size() == firstLine.size());
   }
 }
