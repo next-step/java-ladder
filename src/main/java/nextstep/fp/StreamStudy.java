@@ -12,6 +12,8 @@ import java.util.stream.Collectors;
 
 public class StreamStudy {
 
+    private static int TOP_LIMIT_NUMBER = 100;
+
     public static long countWords() throws IOException {
         String contents = new String(Files.readAllBytes(Paths
                 .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
@@ -33,8 +35,8 @@ public class StreamStudy {
                 .filter(word -> word.length() > 12)
                 .sorted(Comparator.comparingInt(String::length))
                 .distinct()
-                .map(x -> x.toLowerCase(Locale.ROOT))
-                .limit(100)
+                .map(word -> word.toLowerCase(Locale.ROOT))
+                .limit(TOP_LIMIT_NUMBER)
                 .forEach(System.out::println);
     }
 
