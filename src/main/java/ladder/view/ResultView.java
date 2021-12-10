@@ -30,7 +30,7 @@ public class ResultView {
 
     private static String printPlayerName(List<Player> players) {
         return players.stream()
-                .map(s -> String.format(FIVE_SIZE_FORMAT, s.getPlayerName()))
+                .map(player -> String.format(FIVE_SIZE_FORMAT, player.getPlayerName()))
                 .collect(joining(SPACE));
     }
 

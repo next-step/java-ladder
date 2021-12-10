@@ -1,8 +1,8 @@
-package ladder.domain.ladder;
+package ladder.strategy;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-public class RandomLadder implements LadderStrategy {
+public class RandomLine implements LineStrategy {
 
     @Override
     public boolean isEnableLine() {

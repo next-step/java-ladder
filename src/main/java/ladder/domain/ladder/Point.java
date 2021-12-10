@@ -4,15 +4,15 @@ import java.util.Objects;
 
 public class Point {
 
-    private final Position position;
-    private final Direction direction;
+    private final PointPosition position;
+    private final PointDirection direction;
 
     public Point() {
-        this(0, new Direction());
+        this(0, new PointDirection());
     }
 
-    public Point(int position, Direction direction) {
-        this.position = new Position(position);
+    public Point(int position, PointDirection direction) {
+        this.position = new PointPosition(position);
         this.direction = direction;
     }
 

@@ -1,26 +1,28 @@
 package ladder.domain.ladder;
 
+import ladder.strategy.LineStrategy;
+
 import java.util.Objects;
 
-public class Direction {
+public class PointDirection {
 
     private final boolean left;
     private final boolean right;
 
-    public Direction() {
+    public PointDirection() {
         this(false, false);
     }
 
-    public Direction(boolean left, boolean right) {
+    public PointDirection(boolean left, boolean right) {
         this.left = left;
         this.right = right;
     }
 
-    public static Direction createDirection(boolean isRight, LadderStrategy strategy) {
+    public static PointDirection createDirection(boolean isRight, LineStrategy strategy) {
         if (isRight) {
-            return new Direction(true, false);
+            return new PointDirection(true, false);
         }
-        return new Direction(false, strategy.isEnableLine());
+        return new PointDirection(false, strategy.isEnableLine());
     }
 
     public boolean isRight() {
@@ -39,7 +41,7 @@ public class Direction {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Direction direction = (Direction) o;
+        PointDirection direction = (PointDirection) o;
         return left == direction.left && right == direction.right;
     }
 

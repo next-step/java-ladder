@@ -2,14 +2,14 @@ package ladder.domain.ladder;
 
 import java.util.Objects;
 
-public class Position {
+public class PointPosition {
 
     public static final int FIRST_POSITION_VALUE = 0;
     public static final String POSITION_ERROR_MSG = "음수값은 안됩니다.";
 
     private final int position;
 
-    public Position(int position) {
+    public PointPosition(int position) {
         if (position < FIRST_POSITION_VALUE) {
             throw new IllegalArgumentException(POSITION_ERROR_MSG);
         }
@@ -24,8 +24,8 @@ public class Position {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Position position1 = (Position) o;
-        return position == position1.position;
+        PointPosition position = (PointPosition) o;
+        return this.position == position.position;
     }
 
     @Override

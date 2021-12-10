@@ -1,17 +1,18 @@
 package ladder.domain.ladder;
 
+import ladder.strategy.RandomLine;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class DirectionTest {
+class PointDirectionTest {
 
     @Test
     @DisplayName("방향 객체 생성 - 기본값으로 false, false 를 가진다")
     void createDefault() {
-        Direction direction = new Direction();
-        assertThat(direction).isEqualTo(new Direction());
+        PointDirection direction = new PointDirection();
+        assertThat(direction).isEqualTo(new PointDirection());
         assertThat(direction.isRight()).isFalse();
         assertThat(direction.isLeft()).isFalse();
     }
@@ -19,8 +20,8 @@ class DirectionTest {
     @Test
     @DisplayName("방향 객체 생성 - 방향값 지정해서 생성")
     void create() {
-        Direction direction = new Direction(true, false);
-        assertThat(direction).isEqualTo(new Direction(true, false));
+        PointDirection direction = new PointDirection(true, false);
+        assertThat(direction).isEqualTo(new PointDirection(true, false));
         assertThat(direction.isRight()).isFalse();
         assertThat(direction.isLeft()).isTrue();
     }
@@ -28,19 +29,19 @@ class DirectionTest {
     @Test
     @DisplayName("전 포인트 객체 right 값이 true(선이 있다) - 다음 객체 생성은? left:false / right:true")
     void beforeLineTrue() {
-        assertThat(Direction.createDirection(true, new RandomLadder())).isEqualTo(new Direction(true,false));
+        assertThat(PointDirection.createDirection(true, new RandomLine())).isEqualTo(new PointDirection(true,false));
     }
 
     @Test
     @DisplayName("전 포인트 객체 right 값이 false(선이 없다) - 다음 객체 생성은? left:false / right:random(true)")
     void beforeLineFalse1() {
-        assertThat(Direction.createDirection(false, () -> true)).isEqualTo(new Direction(false, true));
+        assertThat(PointDirection.createDirection(false, () -> true)).isEqualTo(new PointDirection(false, true));
     }
 
     @Test
     @DisplayName("전 포인트 객체 right 값이 false(선이 없다) - 다음 객체 생성은? left:false / right:random(false)")
     void beforeLineFalse2() {
-        assertThat(Direction.createDirection(false, () -> false)).isEqualTo(new Direction(false, false));
+        assertThat(PointDirection.createDirection(false, () -> false)).isEqualTo(new PointDirection(false, false));
     }
 
 }

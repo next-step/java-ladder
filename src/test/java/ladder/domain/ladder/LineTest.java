@@ -1,5 +1,6 @@
 package ladder.domain.ladder;
 
+import ladder.strategy.RandomLine;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +12,7 @@ class LineTest {
     @DisplayName("인원별로 포인트를 가지는 라인 생성")
     void create() {
         int players = 4;
-        Line line = new Line(players, new RandomLadder());
+        Line line = new Line(players, new RandomLine());
         assertThat(line.getPoints()).size().isEqualTo(4);
     }
 

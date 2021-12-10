@@ -1,6 +1,7 @@
 package ladder.domain.ladder;
 
 import ladder.domain.user.Players;
+import ladder.strategy.RandomLine;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -16,7 +17,7 @@ public class LadderTest {
     @CsvSource(value = {"3,4,5"})
     void create(int height) {
         Players players = new Players(Arrays.asList("pobi", "honux"));
-        Ladder ladder = Ladder.createLadder(players, new Height(height));
+        Ladder ladder = Ladder.createLadder(new RandomLine(), players, new LadderHeight(height));
         assertThat(ladder.getLines()).size().isEqualTo(height);
     }
 

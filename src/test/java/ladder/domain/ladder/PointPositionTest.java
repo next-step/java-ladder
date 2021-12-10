@@ -5,22 +5,22 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
-class PositionTest {
+class PointPositionTest {
 
     @Test
     @DisplayName("포지션 생성")
     void create() {
-        Position position = new Position(1);
-        assertThat(position).isEqualTo(new Position(1));
+        PointPosition position = new PointPosition(1);
+        assertThat(position).isEqualTo(new PointPosition(1));
     }
 
     @Test
     @DisplayName("position 값이 음수일 경우 검증 -> IllegalArgumentException")
     void valid() {
-        assertThatThrownBy(() -> new Position(-1))
+        assertThatThrownBy(() -> new PointPosition(-1))
                 .isInstanceOf(IllegalArgumentException.class);
         // 정상 값
-        assertThatCode(() -> new Position(0))
+        assertThatCode(() -> new PointPosition(0))
                 .doesNotThrowAnyException();
     }
 
