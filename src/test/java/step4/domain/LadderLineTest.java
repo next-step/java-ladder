@@ -4,7 +4,10 @@ import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import step4.strategy.RandomPointCreateStrategy;
 
+import java.util.Arrays;
+
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LadderLineTest {
 
@@ -18,6 +21,26 @@ public class LadderLineTest {
         }
         //then
         assertThat(ladderLine.size()).isEqualTo(4);
+    }
+
+    @Test
+    void 사다리_라인을_생성한다() {
+        //given
+        LadderLine ladderLine = LadderLine.of(Width.of(1),
+                width -> Arrays.asList(Point.of(Position.of(0), Direction.of(false, true))));
+        //when
+        //then
+        assertThat(ladderLine.size()).isEqualTo(1);
+    }
+
+    @Test
+    void 사다리_라인이_겹치면_IllegalArgumentException_이_발생한다() {
+        //given
+        //when
+        //then
+        assertThatThrownBy(() ->
+            LadderLine.of(Width.of(1), width -> Arrays.asList(Point.of(Position.of(0), Direction.of(true, true))))
+        ).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test

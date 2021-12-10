@@ -32,10 +32,6 @@ public class Position {
         return position;
     }
 
-    public Position copy() {
-        return new Position(this.position);
-    }
-
     private void validateMovableToLeft() {
         if (position == START_POSITION) {
             throw new IllegalArgumentException("위치 0에서 왼쪽으로 이동할 수 없습니다.");

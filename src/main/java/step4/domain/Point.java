@@ -19,10 +19,6 @@ public class Point {
         return of(Position.of(0), Direction.start(current));
     }
 
-    public Point copy() {
-        return new Point(this.position.copy(), this.direction);
-    }
-
     public Point next(boolean current) {
         return of(position.next(), direction.next(current));
     }

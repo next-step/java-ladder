@@ -11,7 +11,7 @@ class ParticipantsTest {
         //given
         Participants participants = Participants.of("a,b,c,d");
         //when
-        int index = participants.findIndexBy("a");
+        int index = participants.indexOf("a");
         //then
         assertThat(index).isEqualTo(0);
     }

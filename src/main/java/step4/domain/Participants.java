@@ -33,7 +33,7 @@ public class Participants {
                 .collect(Collectors.toList());
     }
 
-    public int findIndexBy(String name) {
+    public int indexOf(String name) {
         return participants.indexOf(Participant.of(name));
     }
 }

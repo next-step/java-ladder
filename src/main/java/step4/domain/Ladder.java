@@ -17,21 +17,8 @@ public class Ladder {
         }
     }
 
-    private Ladder(List<LadderLine> lines, LadderInfo ladderInfo) {
-        this.lines = lines;
-        this.ladderInfo = ladderInfo;
-    }
-
     public static Ladder of(LadderInfo ladderInfo, RandomPointCreateStrategy createStrategy) {
         return new Ladder(ladderInfo, createStrategy);
-    }
-
-    public Ladder copy() {
-        List<LadderLine> lines = new ArrayList<>();
-        for (LadderLine line : this.lines) {
-            lines.add(line.copy());
-        }
-        return new Ladder(lines, this.ladderInfo);
     }
 
     public int size() {

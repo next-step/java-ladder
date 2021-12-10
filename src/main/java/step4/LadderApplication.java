@@ -6,21 +6,24 @@ import step4.domain.LadderInfo;
 import step4.domain.Participants;
 import step4.domain.Rewards;
 import step4.view.InputView;
+import step4.view.ResultView;
 
 public class LadderApplication {
     public static void main(String[] args) {
         String participantsName = InputView.inputParticipantsName();
         Participants participants = Participants.of(participantsName);
-        System.out.println();
+        ResultView.nextLine();
 
         String rewardsName = InputView.inputRewardsName();
         Rewards rewards = Rewards.of(rewardsName);
-        System.out.println();
+        ResultView.nextLine();
 
         int height = InputView.inputLadderHeight();
-        System.out.println();
+        ResultView.nextLine();
 
-        LadderGame ladderGame = LadderGame.create(GameInfo.of(participants, rewards));
-        ladderGame.start(LadderInfo.of(participants.size(), height));
+        LadderGame ladderGame = LadderGame.create();
+        LadderInfo ladderInfo = LadderInfo.of(participants.size(), height);
+        GameInfo gameInfo = GameInfo.of(participants, rewards);
+        ladderGame.start(ladderInfo, gameInfo);
     }
 }

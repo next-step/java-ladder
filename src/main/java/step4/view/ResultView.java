@@ -2,9 +2,12 @@ package step4.view;
 
 import step4.domain.*;
 
+import java.util.Map;
+
 public class ResultView {
     private static final String LADDER_RESULT_MESSAGE = "사다리 결과\n\n";
     private static final String PARTICIPANT_ALL_RESULT_MESSAGE = "실행 결과\n";
+    private static final String PARTICIPANT_ALL_RESULT = "%s : %s\n";
     private static final String LADDER_LINE = "|-----";
     private static final String NO_LADDER_LINE = "|     ";
     private static final String WHITE_SPACE = " ";
@@ -20,18 +23,24 @@ public class ResultView {
 
     public static void participantResult(String result) {
         System.out.println(result);
-        System.out.println();
+        nextLine();
     }
 
-    public static void allParticipantResult(String result) {
-        System.out.println(result);
+    public static void allParticipantResult(Map<String, String> result) {
+        System.out.print(PARTICIPANT_ALL_RESULT_MESSAGE);
+        result.forEach((participant, reward) ->
+                System.out.printf(PARTICIPANT_ALL_RESULT, participant, reward));
+    }
+
+    public static void nextLine() {
+        System.out.println();
     }
 
     private static void showParticipants(Participants participants) {
         participants.participants().stream()
                 .map(Participant::name)
                 .forEach(name -> System.out.print(showName(name)));
-        System.out.println();
+        nextLine();
     }
 
     private static String showName(String name) {
@@ -49,7 +58,7 @@ public class ResultView {
         line.points().stream()
                 .map(Point::direction)
                 .forEach((direction) -> System.out.print(showDirection(direction)));
-        System.out.println();
+        nextLine();
     }
 
     private static String showDirection(Direction direction) {
@@ -64,10 +73,6 @@ public class ResultView {
                 .map(Reward::name)
                 .forEach(name -> System.out.print(showName(name)));
         System.out.println();
-    }
-
-    public void participantAllResult() {
-        System.out.print(PARTICIPANT_ALL_RESULT_MESSAGE);
     }
 
     private static String repeatWhiteSpace(int repeatCount) {
