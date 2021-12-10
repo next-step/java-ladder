@@ -8,24 +8,24 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class PointTest {
 
     @Test
-    @DisplayName("포인트 생성")
+    @DisplayName("포인트 객체 생성")
     void create() {
-        Point point = new Point(new Position(3), new Direction(true, false));
-        assertThat(point).isEqualTo(new Point(new Position(3), new Direction(true, false)));
+        Point point = new Point();
+        assertThat(point).isEqualTo(new Point());
     }
 
     @Test
-    @DisplayName("첫 포인트 생성 후 포지션 확인")
-    void createFirstPoint() {
-        Point firstPoint = Point.createFirstPoint();
-        assertThat(firstPoint.getPosition()).isEqualTo(new Position(0));
+    @DisplayName("방향값 right - true 인지 확인")
+    void isRight() {
+        Point point = new Point(0, new Direction(false, true));
+        assertThat(point.isRight()).isTrue();
     }
 
     @Test
-    @DisplayName("그 다음 포인트 생성 후 포지션 확인")
-    void createPoint() {
-        Point point = Point.createPoint(0);
-        assertThat(point.getPosition()).isEqualTo(new Position(1));
+    @DisplayName("방향값 right - false")
+    void isNotRight() {
+        Point point = new Point(0, new Direction(false, false));
+        assertThat(point.isRight()).isFalse();
     }
 
 }

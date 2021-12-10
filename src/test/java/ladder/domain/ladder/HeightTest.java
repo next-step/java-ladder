@@ -3,8 +3,7 @@ package ladder.domain.ladder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 class HeightTest {
 
@@ -16,10 +15,13 @@ class HeightTest {
     }
 
     @Test
-    @DisplayName("검증")
+    @DisplayName("높이가 0 이하 값 검증 -> IllegalArgumentException")
     void valid() {
         assertThatThrownBy(() -> new Height(0))
                 .isInstanceOf(IllegalArgumentException.class);
+        // 정상
+        assertThatCode(() -> new Height(1))
+                .doesNotThrowAnyException();
     }
 
 }
