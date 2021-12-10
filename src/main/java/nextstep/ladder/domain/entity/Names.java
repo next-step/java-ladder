@@ -1,7 +1,6 @@
 package nextstep.ladder.domain.entity;
 
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -10,7 +9,6 @@ import static java.util.stream.Collectors.toList;
 public class Names {
 
   private static final String COMMA = ",";
-  private static final int ZERO = 0;
 
   private final List<Name> nameList;
 
@@ -35,13 +33,6 @@ public class Names {
 
   public int size() {
     return nameList.size();
-  }
-
-  public int maxSize() {
-    return nameList.stream()
-                   .max(Comparator.comparingInt(Name::howLong))
-                   .map(Name::howLong)
-                   .orElse(ZERO);
   }
 
   public Stream<Name> stream() {
