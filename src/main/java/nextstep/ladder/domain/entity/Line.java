@@ -28,14 +28,11 @@ public class Line {
   }
 
   private void makePointRandomly(int now, BuildStrategy buildStrategy) {
-    int prevPoint = now - PREV;
-    if (points.get(prevPoint).hasWay()) {
-      points.add(new Point(FALSE));
-      return;
-    }
+    int prevIndex = now - PREV;
+    Point prevPoint = points.get(prevIndex);
 
-    boolean randomValue = buildStrategy.buildAble();
-    points.add(new Point(randomValue));
+    Point point = new Point();
+    points.add(point.makeWay(prevPoint, buildStrategy));
   }
 
   public int size() {
