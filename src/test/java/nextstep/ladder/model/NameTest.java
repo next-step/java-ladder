@@ -9,7 +9,7 @@ class NameTest {
 
     @Test
     @DisplayName("사람 이름 5글자 초과시 IllegalArgumentException 발생 테스트")
-    void name() {
+    void nameMaxLengthOverTest() {
         assertThatIllegalArgumentException().isThrownBy(() -> new Name("abcdef"));
     }
 }
