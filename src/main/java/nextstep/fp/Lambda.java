@@ -26,25 +26,22 @@ public class Lambda {
         }).start();
     }
 
-    public static int sumAll(List<Integer> numbers, SumStrategy sumStrategy) {
-        return sum(numbers, sumStrategy);
+    public static int sumAll(List<Integer> numbers) {
+        return sum(numbers, number -> true);
     }
 
-    public static int sumAllEven(List<Integer> numbers, SumStrategy sumStrategy) {
-        return sum(numbers, sumStrategy);
+    public static int sumAllEven(List<Integer> numbers) {
+        return sum(numbers, number -> number % 2 == 0);
     }
 
-    public static int sumAllOverThree(List<Integer> numbers, SumStrategy sumStrategy) {
-        return sum(numbers, sumStrategy);
+    public static int sumAllOverThree(List<Integer> numbers) {
+        return sum(numbers, number -> number > 3);
     }
 
     private static Integer sum(List<Integer> numbers, SumStrategy sumStrategy) {
-        int total = 0;
-        for (int number : numbers) {
-            if (sumStrategy.filter(number)) {
-                total += number;
-            }
-        }
-        return total;
+        return numbers.stream()
+                .mapToInt(number -> number)
+                .filter(sumStrategy::filter)
+                .sum();
     }
 }
