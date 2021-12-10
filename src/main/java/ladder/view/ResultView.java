@@ -5,10 +5,8 @@ import ladder.domain.ladder.Point;
 import ladder.domain.user.Player;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
-import static java.util.stream.Collectors.*;
-import static java.util.stream.IntStream.range;
+import static java.util.stream.Collectors.joining;
 
 public class ResultView {
 
@@ -49,9 +47,6 @@ public class ResultView {
     }
 
     private static String printPoint(Point point) {
-        if (point.isFirst()) {
-            return LADDER_SPACE;
-        }
         if (point.isRight()) {
             return LADDER_LINE;
         }
