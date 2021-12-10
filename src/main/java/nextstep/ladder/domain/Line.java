@@ -1,25 +1,25 @@
 package nextstep.ladder.domain;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
+import nextstep.ladder.domain.line.LineGenerateStrategy;
+
 public class Line {
-    private final int numberOfPlayer;
     private final List<Boolean> points;
 
-    private Line(final int numberOfPlayer, final List<Boolean> points) {
-        this.numberOfPlayer = numberOfPlayer;
+    private Line(final List<Boolean> points) {
         this.points = Collections.unmodifiableList(points);
     }
 
-    public static Line of(final int numberOfPlayer) {
-        List<Boolean> points = new ArrayList<>(numberOfPlayer);
-        // todo generate via strategy
-        Collections.fill(points, false);
+    public static Line of(final int numberOfPlayer, final LineGenerateStrategy strategy) {
+        if (strategy == null) {
+            throw new IllegalArgumentException("invalid strategy: cannot be null");
+        }
 
-        return new Line(numberOfPlayer, points);
+        List<Boolean> points = strategy.generate(numberOfPlayer);
+        return new Line(points);
     }
 
     @Override
@@ -27,11 +27,11 @@ public class Line {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Line line = (Line) o;
-        return numberOfPlayer == line.numberOfPlayer && Objects.equals(points, line.points);
+        return Objects.equals(points, line.points);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(numberOfPlayer, points);
+        return Objects.hash(points);
     }
 }

@@ -6,6 +6,8 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import nextstep.ladder.domain.line.LineGenerateStrategy;
+
 public class Ladder {
     private final List<Line> lines;
 
@@ -23,7 +25,7 @@ public class Ladder {
         }
 
         return new Ladder(IntStream.of(height.toInt())
-                .mapToObj(n -> Line.of(players.size()))
+                .mapToObj(n -> Line.of(players.size(), LineGenerateStrategy.NO_LINE_STRATEGY))
                 .collect(Collectors.toList()));
     }
 
