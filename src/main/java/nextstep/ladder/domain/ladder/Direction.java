@@ -14,7 +14,10 @@ public enum Direction {
     }
 
     public static Direction first(boolean right) {
-        return right ? RIGHT : NONE;
+        if(right){
+            return RIGHT;
+        }
+        return NONE;
     }
 
     public Direction next() {
@@ -29,7 +32,10 @@ public enum Direction {
     }
 
     public Direction last(){
-        return this == RIGHT ? LEFT : NONE;
+        if(this == RIGHT){
+            return LEFT;
+        }
+        return NONE;
     }
 
     public String getShape() {

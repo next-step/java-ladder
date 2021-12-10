@@ -4,6 +4,7 @@ import nextstep.ladder.domain.ladder.Direction;
 import nextstep.ladder.domain.ladder.Ladder;
 import nextstep.ladder.domain.ladder.LadderLine;
 import nextstep.ladder.domain.ladder.Point;
+import nextstep.ladder.domain.user.Name;
 import nextstep.ladder.domain.user.User;
 import nextstep.ladder.domain.user.UserCollection;
 
@@ -22,6 +23,7 @@ public class OutputView {
         String userNameFormat = users.getUsers()
                 .stream()
                 .map(User::getName)
+                .map(Name::getValue)
                 .map(name -> String.format("%5s", name))
                 .collect(Collectors.joining());
         System.out.println(userNameFormat);
