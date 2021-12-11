@@ -8,7 +8,7 @@ public class LadderMain {
         String[] users = InputView.inputUserName();
         String ladderHeight = InputView.inputLadderHeight();
         LadderService ladderService = new LadderService(users, ladderHeight);
-
+        ladderService.play();
 
     }
 }

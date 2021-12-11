@@ -10,6 +10,10 @@ public class Users {
         this.users = users;
     }
 
+    public int getUserCount() {
+        return users.size();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
