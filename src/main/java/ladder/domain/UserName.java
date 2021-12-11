@@ -6,6 +6,9 @@ public class UserName {
     private String name;
 
     public UserName(String name) {
+        if (name.length() > 5) {
+            throw new IllegalArgumentException("이름은 최대5글자까지 부여할 수 있습니다.");
+        }
         this.name = name;
     }
 

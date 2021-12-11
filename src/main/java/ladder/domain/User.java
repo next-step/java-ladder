@@ -3,10 +3,10 @@ package ladder.domain;
 import java.util.Objects;
 
 public class User {
-    private String userName;
+    private UserName userName;
 
     public User(String userName) {
-        this.userName = userName;
+        this.userName = new UserName(userName);
     }
 
     @Override
