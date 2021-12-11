@@ -1,9 +1,11 @@
 package nextstep.ladder.view;
 
 import static nextstep.ladder.view.PrintUtils.print;
+import static nextstep.ladder.view.PrintUtils.printSpace;
 
 import java.util.stream.Collectors;
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.LadderResults;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Participant;
 import nextstep.ladder.domain.Participants;
@@ -17,12 +19,30 @@ public class OutputView {
     private static final String HEIGHT_SPLITTER = "\n";
     private static final String STRING_FORMAT_OF_FIVE = "%-5s";
     private static final String LINE_END_TO_END_FORMAT = "|%s";
+    private static final String LADDER_RESULT_MESSAGE = "사다리 결과";
+    private static final String GAME_RESULT_MESSAGE = "실행 결과";
 
-    public void printResult(Participants participants, Ladder ladder) {
-        print("실행결과");
+    public void printLadder(Participants participants, Ladder ladder, LadderResults ladderResults) {
+        print(LADDER_RESULT_MESSAGE);
 
         print(prettyPrintParticipantsName(participants));
         print(printLadderPretty(ladder));
+        print(printLadderResultPretty(ladderResults));
+    }
+
+
+    public void printResult(Participant participant, LadderResults ladderResults) {
+        printSpace();
+        print(GAME_RESULT_MESSAGE);
+        print(ladderResults.get(participant));
+    }
+
+    public void printAllResult(Participants participants, LadderResults ladderResults) {
+        print(GAME_RESULT_MESSAGE);
+
+        participants.getParticipants().stream()
+            .map(participant -> participant.getName() + " : " + ladderResults.get(participant))
+            .forEach(PrintUtils::print);
     }
 
     private String prettyPrintParticipantsName(Participants participants) {
@@ -35,6 +55,12 @@ public class OutputView {
         return ladder.getLines().stream()
             .map(this::lineToPrintString)
             .collect(Collectors.joining(HEIGHT_SPLITTER));
+    }
+
+    private String printLadderResultPretty(LadderResults ladderResults) {
+        return ladderResults.getResults().stream()
+            .map(this::getStringWithFormat)
+            .collect(Collectors.joining(WHITE_SPACE));
     }
 
     private String lineToPrintString(Line lines) {
