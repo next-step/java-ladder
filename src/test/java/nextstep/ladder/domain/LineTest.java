@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 
 public class LineTest {
     @ParameterizedTest(name = "create: {arguments}")
-    @ValueSource(ints = {1, 10})
+    @ValueSource(ints = {2, 10})
     public void create(int numberOfPlayer) {
         assertThat(Line.of(numberOfPlayer, LineGenerateStrategy.NO_LINE_STRATEGY))
                 .isEqualTo(Line.of(numberOfPlayer, LineGenerateStrategy.NO_LINE_STRATEGY));

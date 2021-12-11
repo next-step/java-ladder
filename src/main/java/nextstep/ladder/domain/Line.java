@@ -14,13 +14,17 @@ public class Line {
         this.points = Collections.unmodifiableList(points);
     }
 
-    public static Line of(final int numberOfPlayer, final LineGenerateStrategy strategy) {
+    public static Line of(final PlayerCount playerCount, final LineGenerateStrategy strategy) {
         if (strategy == null) {
             throw new IllegalArgumentException("invalid strategy: cannot be null");
         }
 
-        List<Boolean> points = strategy.generate(numberOfPlayer);
+        List<Boolean> points = strategy.generate(playerCount);
         return new Line(points);
+    }
+
+    public static Line of(final int playerCount, final LineGenerateStrategy strategy) {
+        return Line.of(PlayerCount.of(playerCount), strategy);
     }
 
     @Override

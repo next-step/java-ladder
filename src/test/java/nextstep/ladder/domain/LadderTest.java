@@ -1,7 +1,6 @@
 package nextstep.ladder.domain;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
@@ -11,31 +10,31 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.NullSource;
 
 import static nextstep.ladder.domain.HeightTest.h;
-import static nextstep.ladder.domain.PlayersTest.players;
+import static nextstep.ladder.domain.PlayerCountTest.pc;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class LadderTest {
     @Test
     public void create() {
-        final List<String> names = List.of("name1", "name2", "name3");
-        final int height = 5;
+        final PlayerCount playerCount = pc(5);
+        final Height height = h(5);
 
-        assertThat(Ladder.of(names, height)).isEqualTo(Ladder.of(names, height));
+        assertThat(Ladder.of(playerCount, height)).isEqualTo(Ladder.of(playerCount, height));
     }
 
     static Stream<Arguments> parseInvalidLadder() {
         return Stream.of(
                 Arguments.of(null, h(5)),
-                Arguments.of(players("name1", "name2", "name3"), null)
+                Arguments.of(pc(5), null)
         );
     }
 
     @ParameterizedTest
     @MethodSource("parseInvalidLadder")
-    public void createFailed(Players players, Height height) {
+    public void createFailed(PlayerCount playerCount, Height height) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> Ladder.of(players, height));
+                .isThrownBy(() -> Ladder.of(playerCount, height));
     }
 
     @ParameterizedTest
@@ -46,18 +45,10 @@ public class LadderTest {
     }
 
     @Test
-    public void playList() {
-        final List<String> names = List.of("name1", "name2", "name3");
-        final int height = 5;
-        assertThat(Ladder.of(names, height).playerList())
-                .hasSameElementsAs(names.stream().map(Player::of).collect(Collectors.toList()));
-    }
-
-    @Test
     public void ladder() {
-        final List<String> names = List.of("name1", "name2", "name3");
+        final int playerCount = 3;
         final int height = 5;
-        assertThat(Ladder.of(names, height).ladder())
+        assertThat(Ladder.of(playerCount, height).ladder())
                 .hasSize(height);
     }
 }

@@ -11,6 +11,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 
+import static nextstep.ladder.domain.PlayerCountTest.pc;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
@@ -35,18 +36,14 @@ public class PlayersTest {
     }
 
     @Test
-    public void size() {
+    public void count() {
         final List<String> names = List.of("name1", "name2");
-        assertThat(Players.of(names).size()).isEqualTo(names.size());
+        assertThat(Players.of(names).count()).isEqualTo(pc(names.size()));
     }
 
     @Test
     public void collect() {
         final List<String> names = List.of("name1", "name2");
         assertThat(Players.of(names).collect()).hasSameElementsAs(names.stream().map(Player::of).collect(Collectors.toList()));
-    }
-
-    public static Players players(String ... names) {
-        return Players.of(Arrays.asList(names));
     }
 }

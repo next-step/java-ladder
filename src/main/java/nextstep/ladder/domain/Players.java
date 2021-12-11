@@ -6,8 +6,6 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Players {
-    private static final int MINIMUM_RAIL_COUNT = 2;
-
     private final List<Player> players;
 
     private Players(final List<Player> players) {
@@ -19,9 +17,7 @@ public class Players {
             throw new IllegalArgumentException("names cannot be null");
         }
 
-        if (names.size() < MINIMUM_RAIL_COUNT) {
-            throw new IllegalArgumentException("invalid number of player: must be larger than 2, but " + names.size());
-        }
+        PlayerCount.validate(names.size());
 
         return new Players(names.stream()
                 .map(Name::of)
@@ -33,8 +29,8 @@ public class Players {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Players players1 = (Players) o;
-        return Objects.equals(players, players1.players);
+        Players other = (Players) o;
+        return Objects.equals(players, other.players);
     }
 
     @Override
@@ -42,8 +38,8 @@ public class Players {
         return Objects.hash(players);
     }
 
-    public int size() {
-        return players.size();
+    public PlayerCount count() {
+        return PlayerCount.of(players.size());
     }
 
     public List<Player> collect() {
