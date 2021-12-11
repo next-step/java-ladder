@@ -1,5 +1,6 @@
 package ladder.view;
 
+import ladder.domain.LadderHeight;
 import ladder.domain.User;
 import ladder.domain.Users;
 
@@ -17,5 +18,10 @@ public class InputView {
         return new Users(Arrays.stream(users)
                 .map(user -> new User(user))
                 .collect(Collectors.toList()));
+    }
+
+    public static LadderHeight inputLadderHeight() {
+        System.out.println("최대 사다리 높이는 몇 개인가요?");
+        return new LadderHeight(scanner.next());
     }
 }
