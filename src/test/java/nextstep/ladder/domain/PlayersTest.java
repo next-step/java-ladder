@@ -1,6 +1,5 @@
 package nextstep.ladder.domain;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -42,8 +41,8 @@ public class PlayersTest {
     }
 
     @Test
-    public void collect() {
+    public void stream() {
         final List<String> names = List.of("name1", "name2");
-        assertThat(Players.of(names).collect()).hasSameElementsAs(names.stream().map(Player::of).collect(Collectors.toList()));
+        assertThat(Players.of(names).stream()).hasSameElementsAs(names.stream().map(Player::of).collect(Collectors.toList()));
     }
 }

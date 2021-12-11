@@ -1,11 +1,12 @@
 package nextstep.ladder.view;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
+import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Name;
 import nextstep.ladder.domain.Player;
+import nextstep.ladder.domain.Players;
 
 public class OutputView {
     public static final String NAME_FORMAT = "%-" + (Name.LENGTH_LIMIT + 1) + "s";
@@ -15,7 +16,7 @@ public class OutputView {
     public static final String RAIL = "|";
 
 
-    public static void printPlayerList(List<Player> players) {
+    public static void printPlayerList(Players players) {
         players.stream()
                 .map(Player::name)
                 .map(OutputView::formatName)
@@ -27,7 +28,7 @@ public class OutputView {
         return String.format(NAME_FORMAT, name);
     }
 
-    public static void printLadder(List<Line> ladder) {
+    public static void printLadder(Ladder ladder) {
         ladder.stream()
                 .map(OutputView::mapLine)
                 .map(line -> NOTHING.repeat(5) + RAIL + line)

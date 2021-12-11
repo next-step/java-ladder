@@ -45,10 +45,10 @@ public class LadderTest {
     }
 
     @Test
-    public void ladder() {
+    public void stream() {
         final int playerCount = 3;
         final int height = 5;
-        assertThat(Ladder.of(playerCount, height).ladder())
-                .hasSize(height);
+        assertThat(Ladder.of(playerCount, height).stream()).hasSize(height);
+        assertThat(Ladder.of(playerCount, height).stream()).hasOnlyElementsOfType(Line.class);
     }
 }

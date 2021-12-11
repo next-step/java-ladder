@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Players {
     private final List<Player> players;
@@ -42,7 +43,7 @@ public class Players {
         return PlayerCount.of(players.size());
     }
 
-    public List<Player> collect() {
-        return players;
+    public Stream<Player> stream() {
+        return players.stream();
     }
 }
