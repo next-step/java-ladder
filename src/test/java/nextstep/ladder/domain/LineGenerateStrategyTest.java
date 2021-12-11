@@ -1,7 +1,5 @@
 package nextstep.ladder.domain;
 
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import nextstep.ladder.domain.line.LineGenerateStrategy;
@@ -27,18 +25,10 @@ public class LineGenerateStrategyTest {
                 .reduce(false, Boolean::logicalOr, Boolean::logicalAnd)).isFalse();
     }
 
-    public static LineGenerateStrategy INVALID_ALL_LINE_STRATEGY = number -> Stream.generate(() -> Boolean.TRUE)
-            .limit(number)
-            .collect(Collectors.toList());
-
-    public static LineGenerateStrategy INVALID_TRUE_IN_SUCCESSION_STRATEGY = number -> IntStream.range(0, number)
-            .mapToObj(num -> num % 3 != 0)
-            .collect(Collectors.toList());
-
     static Stream<Arguments> parseGenerateFailed() {
         return Stream.of(
-                Arguments.of(INVALID_ALL_LINE_STRATEGY),
-                Arguments.of(INVALID_TRUE_IN_SUCCESSION_STRATEGY)
+                Arguments.of(TestLineStrategy.INVALID_ALL_LINE_STRATEGY),
+                Arguments.of(TestLineStrategy.INVALID_TRUE_IN_SUCCESSION_STRATEGY)
         );
     }
 

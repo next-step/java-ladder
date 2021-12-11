@@ -12,6 +12,6 @@ public class LadderGame {
         Ladder ladder = Ladder.of(names, height);
 
         OutputView.printPlayerList(ladder.playerList());
-        System.out.println(ladder.ladder());
+        OutputView.printLadder(ladder.ladder());
     }
 }

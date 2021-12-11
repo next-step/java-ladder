@@ -3,7 +3,7 @@ package nextstep.ladder.domain;
 import java.util.Objects;
 
 public class Name {
-    private static final int NAME_LIMIT = 5;
+    public static final int LENGTH_LIMIT = 5;
     private final String name;
 
     private Name(final String name) {
@@ -15,7 +15,7 @@ public class Name {
             throw new IllegalArgumentException("invalid name: cannot be null or empty");
         }
 
-        if (name.length() > NAME_LIMIT) {
+        if (name.length() > LENGTH_LIMIT) {
             throw new IllegalArgumentException("invalid name: too long " + name.length());
         }
 
