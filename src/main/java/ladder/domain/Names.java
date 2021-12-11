@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 public class Names {
     private static final String PLAYER_ERROR_MESSAGE = "error : 사다리 게임 은 혼자할수 없습니다.";
+    private static final String NAME_ERROR_MESSAGE = "error : 없는 이름입니다.";
     private static final int PLAYER_NAME_MIN = 2;
 
     private final List<Name> names;
@@ -36,6 +37,13 @@ public class Names {
 
     public String value(int index) {
         return names.get(index).value();
+    }
+
+    public Name playerName(String playerName){
+        return names.stream()
+                .filter(name -> name.value().equals(playerName))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(NAME_ERROR_MESSAGE));
     }
 
 }
