@@ -31,7 +31,6 @@ public class Line {
         return !points.get(index - UNIT);
     }
 
-    // TODO: Enum을 사용하여 refactoring이 가능할지 검토 2021/12/11 (kiyeon_kim1)
     public int move(int position) {
         if (hasLeftLine(position)) {
             return position - UNIT;
@@ -45,7 +44,11 @@ public class Line {
     }
 
     public boolean hasLeftLine(int position) {
-        if (position == START_NUMBER) {
+        if (position - UNIT < START_NUMBER) {
+            return false;
+        }
+
+        if (position > points.size()) {
             return false;
         }
 
@@ -53,7 +56,11 @@ public class Line {
     }
 
     public boolean hasRightLine(int position) {
-        if (position > points.size()) {
+        if (position < START_NUMBER) {
+            return false;
+        }
+
+        if (position > points.size() - UNIT) {
             return false;
         }
 
