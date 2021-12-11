@@ -2,6 +2,7 @@ package nextstep.ladder.domain;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
@@ -37,6 +38,12 @@ public class PlayersTest {
     public void size() {
         final List<String> names = List.of("name1", "name2");
         assertThat(Players.of(names).size()).isEqualTo(names.size());
+    }
+
+    @Test
+    public void collect() {
+        final List<String> names = List.of("name1", "name2");
+        assertThat(Players.of(names).collect()).hasSameElementsAs(names.stream().map(Player::of).collect(Collectors.toList()));
     }
 
     public static Players players(String ... names) {

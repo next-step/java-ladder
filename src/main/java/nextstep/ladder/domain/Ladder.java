@@ -10,12 +10,14 @@ import nextstep.ladder.domain.line.LineGenerateStrategy;
 
 public class Ladder {
     private final List<Line> lines;
+    private final Players players;
 
-    private Ladder(List<Line> lines) {
+    private Ladder(final Players players, final List<Line> lines) {
+        this.players = players;
         this.lines = Collections.unmodifiableList(lines);
     }
 
-    public static Ladder of(Players players, Height height) {
+    public static Ladder of(final Players players, final Height height) {
         if (height == null) {
             throw new IllegalArgumentException("invalid height: cannot be null");
         }
@@ -24,12 +26,12 @@ public class Ladder {
             throw new IllegalArgumentException("invalid players: cannot be null");
         }
 
-        return new Ladder(IntStream.of(height.toInt())
+        return new Ladder(players, IntStream.range(0, height.toInt())
                 .mapToObj(n -> Line.of(players.size(), LineGenerateStrategy.NO_LINE_STRATEGY))
                 .collect(Collectors.toList()));
     }
 
-    public static Ladder of(List<String> names, int height) {
+    public static Ladder of(final List<String> names, final int height) {
         if (names == null) {
             throw new IllegalArgumentException("invalid players: cannot be null");
         }
@@ -48,5 +50,13 @@ public class Ladder {
     @Override
     public int hashCode() {
         return Objects.hash(lines);
+    }
+
+    public List<Player> playerList() {
+        return players.collect();
+    }
+
+    public List<Line> ladder() {
+        return lines;
     }
 }

@@ -14,7 +14,7 @@ public class Players {
         this.players = Collections.unmodifiableList(players);
     }
 
-    public static Players of(List<String> names) {
+    public static Players of(final List<String> names) {
         if (names == null) {
             throw new IllegalArgumentException("names cannot be null");
         }
@@ -44,5 +44,9 @@ public class Players {
 
     public int size() {
         return players.size();
+    }
+
+    public List<Player> collect() {
+        return players;
     }
 }
