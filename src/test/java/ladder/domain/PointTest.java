@@ -25,11 +25,11 @@ public class PointTest {
         assertThat(Point.lastPoint(true)).isEqualTo(Point.lastPoint(true));
     }
 
-    @Test
-    @DisplayName("left와 current가 둘다 true일 수 없다.")
-    void invalidePoint() {
-        assertThatThrownBy(() -> {
-            new Point(true, true);
-        }).isInstanceOf(IllegalArgumentException.class);
-    }
+//    @Test
+//    @DisplayName("left와 current가 둘다 true일 수 없다.")
+//    void invalidePoint() {
+//        assertThatThrownBy(() -> {
+//            new Point(true, true);
+//        }).isInstanceOf(IllegalArgumentException.class);
+//    }
 }

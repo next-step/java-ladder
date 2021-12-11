@@ -8,7 +8,7 @@ public class Point {
 
     public Point(boolean left, boolean current) {
         if (left && current) {
-            throw new IllegalArgumentException("left와 current가 둘다 true일 수 없습니다.");
+            current = false;
         }
 
         this.left = left;
@@ -21,6 +21,10 @@ public class Point {
 
     public static Point lastPoint(boolean left) {
         return new Point(left, false);
+    }
+
+    public boolean getCurrent() {
+        return current;
     }
 
     @Override
