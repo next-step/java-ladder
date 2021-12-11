@@ -19,7 +19,16 @@ public class Line {
             throw new IllegalArgumentException("invalid strategy: cannot be null");
         }
 
+        if (playerCount == null) {
+            throw new IllegalArgumentException("invalid player count: cannot be null");
+        }
+
         List<Boolean> points = strategy.generate(playerCount);
+
+        if (points.size() != playerCount.toInt()) {
+            throw new IllegalArgumentException("invalid line: generated size is not match");
+        }
+
         return new Line(points);
     }
 

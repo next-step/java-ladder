@@ -4,7 +4,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import nextstep.ladder.domain.line.LineGenerateStrategy;
@@ -16,38 +15,22 @@ public class Ladder {
         this.lines = Collections.unmodifiableList(lines);
     }
 
-    public static Ladder of(final PlayerCount playerCount, final Height height) {
+    public static Ladder of(final PlayerCount playerCount, final Height height, LineGenerateStrategy strategy) {
         if (height == null) {
             throw new IllegalArgumentException("invalid height: cannot be null");
         }
 
-        if (playerCount == null) {
-            throw new IllegalArgumentException("invalid player count: cannot be null");
-        }
-
-        return new Ladder(Stream.generate(() -> Line.of(playerCount, LineGenerateStrategy.NO_LINE_STRATEGY))
+        return new Ladder(Stream.generate(() -> Line.of(playerCount, strategy))
                 .limit(height.toInt())
                 .collect(Collectors.toList()));
     }
 
-    public static Ladder of(final PlayerCount playerCount, final int height) {
-        return Ladder.of(playerCount, Height.of(height));
+    public static Ladder of(final PlayerCount playerCount, final int height, LineGenerateStrategy strategy) {
+        return Ladder.of(playerCount, Height.of(height), strategy);
     }
 
-    public static Ladder of(final int playerCount, final int height) {
-        return Ladder.of(PlayerCount.of(playerCount), Height.of(height));
-    }
-
-    public static Ladder of(final Players players, final Height height) {
-        return Ladder.of(players.count(), height);
-    }
-
-    public static Ladder of(final List<String> names, final int height) {
-        if (names == null) {
-            throw new IllegalArgumentException("invalid players: cannot be null");
-        }
-
-        return Ladder.of(Players.of(names), Height.of(height));
+    public static Ladder of(final int playerCount, final int height, LineGenerateStrategy strategy) {
+        return Ladder.of(PlayerCount.of(playerCount), Height.of(height), strategy);
     }
 
     @Override

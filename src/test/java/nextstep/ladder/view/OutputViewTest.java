@@ -31,7 +31,7 @@ public class OutputViewTest {
 
     static Stream<Arguments> parseLine() {
         return Stream.of(
-                Arguments.of(l(3, LineGenerateStrategy.NO_LINE_STRATEGY), "     |     |     "),
+                Arguments.of(l(3, TestLineStrategy.NO_LINE_STRATEGY), "     |     |     "),
                 Arguments.of(l(3, TestLineStrategy.INVALID_ALL_LINE_STRATEGY), "-----|-----|-----")
         );
     }
