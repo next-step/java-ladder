@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class Height {
     private static final int ZERO = 0;
+
     private final int height;
 
     private Height(final int height) {

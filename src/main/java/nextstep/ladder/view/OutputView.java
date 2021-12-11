@@ -9,11 +9,11 @@ import nextstep.ladder.domain.Player;
 import nextstep.ladder.domain.Players;
 
 public class OutputView {
-    public static final String NAME_FORMAT = "%-" + (Name.LENGTH_LIMIT + 1) + "s";
-    public static final String NEWLINE = "\n";
-    public static final String NOTHING = " ";
-    public static final String LINE = "-";
-    public static final String RAIL = "|";
+    private static final String NAME_FORMAT = "%-" + (Name.LENGTH_LIMIT + 1) + "s";
+    private static final String NEWLINE = "\n";
+    private static final String NOTHING = " ";
+    private static final String LINE = "-";
+    private static final String RAIL = "|";
 
     public static void printPlayerList(Players players) {
         players.stream()
@@ -29,9 +29,12 @@ public class OutputView {
 
     public static void printLadder(Ladder ladder) {
         ladder.stream()
-                .map(OutputView::mapLine)
-                .map(line -> NOTHING.repeat(Name.LENGTH_LIMIT) + RAIL + line)
+                .map(OutputView::formatLine)
                 .forEach(System.out::println);
+    }
+
+    public static String formatLine(Line line) {
+        return NOTHING.repeat(Name.LENGTH_LIMIT) + RAIL + mapLine(line) + RAIL;
     }
 
     public static String mapLine(Line line) {

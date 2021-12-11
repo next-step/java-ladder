@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class Name {
     public static final int LENGTH_LIMIT = 5;
+
     private final String name;
 
     private Name(final String name) {

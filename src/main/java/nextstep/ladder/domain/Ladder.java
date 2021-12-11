@@ -29,10 +29,6 @@ public class Ladder {
         return Ladder.of(playerCount, Height.of(height), strategy);
     }
 
-    public static Ladder of(final int playerCount, final int height, LineGenerateStrategy strategy) {
-        return Ladder.of(PlayerCount.of(playerCount), Height.of(height), strategy);
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

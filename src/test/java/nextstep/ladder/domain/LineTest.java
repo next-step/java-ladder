@@ -52,10 +52,10 @@ public class LineTest {
     @Test
     public void stream() {
         final int numberOfPlayer = 5;
-        final Boolean[] pointList = new Boolean[numberOfPlayer];
+        final Boolean[] pointList = new Boolean[numberOfPlayer - 1];
         Arrays.fill(pointList, Boolean.FALSE);
         assertThat(Line.of(numberOfPlayer, TestLineStrategy.NO_LINE_STRATEGY).stream())
-                .hasSize(numberOfPlayer);
+                .hasSize(numberOfPlayer - 1);
         assertThat(Line.of(numberOfPlayer, TestLineStrategy.NO_LINE_STRATEGY).stream())
                 .hasSameElementsAs(Arrays.asList(pointList));
     }

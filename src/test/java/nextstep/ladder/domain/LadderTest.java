@@ -40,7 +40,7 @@ public class LadderTest {
 
     @Test
     public void stream() {
-        final int playerCount = 3;
+        final PlayerCount playerCount = pc(3);
         final int height = 5;
         final LineGenerateStrategy strategy = TestLineStrategy.NO_LINE_STRATEGY;
         assertThat(Ladder.of(playerCount, height, strategy).stream()).hasSize(height);
