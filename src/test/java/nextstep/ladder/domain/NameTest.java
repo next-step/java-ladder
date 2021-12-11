@@ -24,7 +24,7 @@ public class NameTest {
                 .withMessageContaining("invalid name");
     }
 
-    public static Name name(final String name) {
+    public static Name n(final String name) {
         return Name.of(name);
     }
 }

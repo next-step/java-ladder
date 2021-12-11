@@ -40,4 +40,8 @@ public class Player {
                 "name=" + name +
                 '}';
     }
+
+    public Name name() {
+        return name;
+    }
 }

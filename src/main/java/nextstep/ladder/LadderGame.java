@@ -3,6 +3,7 @@ package nextstep.ladder;
 import java.util.List;
 
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.view.OutputView;
 
 public class LadderGame {
     public static void main(String[] args) {
@@ -10,7 +11,7 @@ public class LadderGame {
         final int height = 5;
         Ladder ladder = Ladder.of(names, height);
 
-        System.out.println(ladder.playerList());
+        OutputView.printPlayerList(ladder.playerList());
         System.out.println(ladder.ladder());
     }
 }
