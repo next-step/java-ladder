@@ -1,7 +1,7 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Lines;
+import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Participants;
 import nextstep.ladder.domain.Point;
 
@@ -25,10 +25,10 @@ public class OutPut {
         System.out.println();
     }
 
-    public static void viewLadder(Lines lines) {
-        for (Line line : lines.getLines()) {
+    public static void viewLadder(Ladder ladder) {
+        for (Line line : ladder.getLines()) {
             System.out.print("|");
-            line.getPoints().stream().forEach(point -> {
+            line.getPoints().forEach(point -> {
                 if (point == Point.of(true)) {
                     System.out.print("-----|");
                 }
