@@ -57,6 +57,28 @@ class LineTest {
         assertThat(line.move(3)).isEqualTo(2);
     }
 
+    @Test
+    @DisplayName("왼쪽 이동 기능이 잘 동작한다.")
+    void hasLeftLineTest() {
+        Line line = new Line(3, drawLineRandomMock());
+
+        assertThat(line.hasLeftLine(-1)).isFalse();
+        assertThat(line.hasLeftLine(0)).isFalse();
+        assertThat(line.hasLeftLine(3)).isTrue();
+        assertThat(line.hasLeftLine(5)).isFalse();
+    }
+
+    @Test
+    @DisplayName("오른쪽 이동 기능이 잘 동작한다.")
+    void hasRightLineTest() {
+        Line line = new Line(3, drawLineRandomMock());
+
+        assertThat(line.hasRightLine(-10)).isFalse();
+        assertThat(line.hasRightLine(0)).isTrue();
+        assertThat(line.hasRightLine(3)).isFalse();
+        assertThat(line.hasRightLine(100)).isFalse();
+    }
+
     private Random drawLineRandomMock() {
         return new Random() {
             @Override
