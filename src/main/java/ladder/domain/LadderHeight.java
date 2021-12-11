@@ -3,7 +3,7 @@ package ladder.domain;
 import java.util.Objects;
 
 public class LadderHeight {
-    private int height;
+    private final int height;
 
     public LadderHeight(String height) {
         this(Integer.parseInt(height));

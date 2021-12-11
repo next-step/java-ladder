@@ -1,27 +1,19 @@
 package ladder.view;
 
-import ladder.domain.LadderHeight;
-import ladder.domain.User;
-import ladder.domain.Users;
-
-import java.util.Arrays;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
     private static final String COMMA = ",";
 
-    public static Users inputUserName() {
+    public static String[] inputUserName() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        String[] users = scanner.next().split(COMMA);
-        return new Users(Arrays.stream(users)
-                .map(user -> new User(user))
-                .collect(Collectors.toList()));
+        return scanner.next().split(COMMA);
     }
 
-    public static LadderHeight inputLadderHeight() {
+    public static String inputLadderHeight() {
+        System.out.println();
         System.out.println("최대 사다리 높이는 몇 개인가요?");
-        return new LadderHeight(scanner.next());
+        return scanner.next();
     }
 }

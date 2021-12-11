@@ -3,7 +3,7 @@ package ladder.domain;
 import java.util.Objects;
 
 public class UserName {
-    private String name;
+    private final String name;
 
     public UserName(String name) {
         if (name.length() > 5) {
