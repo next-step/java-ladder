@@ -15,9 +15,9 @@ public class Point {
         POINT_FOR_CASH.put("false", new Point(false));
     }
 
-    private final Boolean point;
+    private final boolean point;
 
-    private Point(Boolean point) {
+    private Point(boolean point) {
         this.point = point;
     }
 
