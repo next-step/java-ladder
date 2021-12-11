@@ -17,4 +17,8 @@ public class Winning {
     public Map<Name, Prize> playerByPrize() {
         return Collections.unmodifiableMap(winning);
     }
+
+    public int size(){
+        return winning.size();
+    }
 }
