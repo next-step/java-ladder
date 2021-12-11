@@ -25,8 +25,8 @@ public class Ladder {
             throw new IllegalArgumentException("invalid player count: cannot be null");
         }
 
-        return new Ladder(IntStream.range(0, height.toInt())
-                .mapToObj(n -> Line.of(playerCount, LineGenerateStrategy.NO_LINE_STRATEGY))
+        return new Ladder(Stream.generate(() -> Line.of(playerCount, LineGenerateStrategy.NO_LINE_STRATEGY))
+                .limit(height.toInt())
                 .collect(Collectors.toList()));
     }
 

@@ -15,7 +15,6 @@ public class OutputView {
     public static final String LINE = "-";
     public static final String RAIL = "|";
 
-
     public static void printPlayerList(Players players) {
         players.stream()
                 .map(Player::name)
@@ -31,7 +30,7 @@ public class OutputView {
     public static void printLadder(Ladder ladder) {
         ladder.stream()
                 .map(OutputView::mapLine)
-                .map(line -> NOTHING.repeat(5) + RAIL + line)
+                .map(line -> NOTHING.repeat(Name.LENGTH_LIMIT) + RAIL + line)
                 .forEach(System.out::println);
     }
 
@@ -44,6 +43,6 @@ public class OutputView {
 
     public static String mapPoint(boolean isPoint) {
         String point = isPoint ? LINE : NOTHING;
-        return point.repeat(5);
+        return point.repeat(Name.LENGTH_LIMIT);
     }
 }
