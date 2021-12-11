@@ -70,7 +70,7 @@ public class ResultView {
         if (name.value().equalsIgnoreCase("all")) {
             printPrizesAll(winning);
         }
-        System.out.println(winning.prize(name));
+        System.out.println(winning.prize(name).value());
     }
 
     private static void printPrizesAll(Winning winning) {
