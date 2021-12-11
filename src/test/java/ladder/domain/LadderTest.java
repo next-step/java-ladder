@@ -4,16 +4,18 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
+import java.util.*;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class LadderTest {
+    private Names names;
     private Ladder ladder;
 
     @BeforeEach
     public void setup() {
-        ladder = new Ladder(new Names(Arrays.asList("aaa", "bbb", "ccc")), new Height(5));
+        names = new Names(Arrays.asList("aaa", "bbb", "ccc"));
+        ladder = new Ladder(names, new Height(5));
     }
 
     @Test
@@ -21,4 +23,5 @@ public class LadderTest {
     public void createLadder() {
         assertThat(ladder.size()).isEqualTo(5);
     }
+
 }
