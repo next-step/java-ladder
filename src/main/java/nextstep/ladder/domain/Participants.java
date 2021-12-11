@@ -26,9 +26,18 @@ public class Participants {
     }
 
     public Participants execute(Ladder ladder) {
-        return new Participants(participants.stream()
+        List<Participant> collect = participants.stream()
             .map(participant -> participant.climb(ladder))
-            .collect(Collectors.toList()));
+            .collect(Collectors.toList());
+
+        return new Participants(collect);
+    }
+
+    public Participant findByName(String name) {
+        return participants.stream()
+            .filter(participant -> participant.isEqualsName(name))
+            .findAny()
+            .orElseThrow(() -> new IllegalArgumentException("사용자 이름을 찾을 수 없어요."));
     }
 
     public int size() {

@@ -2,6 +2,7 @@ package nextstep.ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
@@ -15,22 +16,25 @@ import org.junit.jupiter.api.Test;
 
 class ParticipantsTest {
 
+    private List<String> names;
     private Participants participants;
 
     @BeforeEach
     void init() {
-        participants = Participants.create("pobi,kiyy,koi,kk");
+
+        String input = "pobi,kiyy,koi,kk";
+
+        names = Arrays.asList(input.split(","));
+        participants = Participants.create(input);
     }
 
     @Test
     @DisplayName("참석자는 `,` 을 기준으로 split하여, 생성되어야 한다.")
     void createTest() throws NoSuchFieldException, IllegalAccessException {
-        String input = "pobi,kiyy,koi,kk";
-
         List<Participant> participantList = getParticipantsByReflection(participants);
 
         AtomicInteger position = new AtomicInteger(0);
-        List<Participant> expected = Arrays.stream(input.split(","))
+        List<Participant> expected = names.stream()
             .map(name -> new Participant(name, position.getAndIncrement()))
             .collect(Collectors.toList());
 
@@ -64,8 +68,26 @@ class ParticipantsTest {
             .collect(Collectors.toList());
 
         assertThat(resultPositions).containsExactly(0, 1, 2, 3);
-
     }
+
+    @Test
+    @DisplayName("참가자 이름을 찾을때, 존재한다면, 정상적으로 반환된다.")
+    void findNameTest() {
+        AtomicInteger mockPosition = new AtomicInteger(0);
+
+        for (String name : names) {
+            assertThat(participants.findByName(name)).isEqualTo(
+                new Participant(name, mockPosition.getAndIncrement()));
+        }
+    }
+
+    @Test
+    @DisplayName("참가자 이름을 찾을때, 없는 이름이라면 예외가 발생한다.")
+    void findNameExceptionTest() {
+        assertThatIllegalArgumentException()
+            .isThrownBy(() -> participants.findByName("mock"));
+    }
+
 
     @SuppressWarnings("unchecked")
     private List<Participant> getParticipantsByReflection(Participants participants)

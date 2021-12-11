@@ -9,7 +9,6 @@ public class Participant {
     private static final int MAX_NAME_LENGTH = 5;
 
     private final String name;
-
     private final int position;
 
     public Participant(String name, int position) {
@@ -17,19 +16,22 @@ public class Participant {
         this.position = position;
     }
 
-
     public Participant climb(Ladder ladder) {
-        int tempPosition = position;
+        int tempPosition = this.position;
 
         for (Line line : ladder.getLines()) {
             tempPosition = line.move(tempPosition);
         }
 
-        return new Participant(name, tempPosition);
+        return new Participant(this.name, tempPosition);
+    }
+
+    public boolean isEqualsName(String findName) {
+        return this.name.equals(findName);
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public int getPosition() {
