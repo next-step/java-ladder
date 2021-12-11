@@ -1,5 +1,7 @@
 package nextstep.laddergame.model;
 
+import java.util.Objects;
+
 import nextstep.laddergame.exception.InvalidDirectionException;
 
 public class Direction {
@@ -40,5 +42,22 @@ public class Direction {
             return of(right, false);
         }
         return of(right, nextRight);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Direction direction = (Direction) o;
+        return left == direction.left && right == direction.right;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(left, right);
     }
 }
