@@ -9,7 +9,7 @@ import nextstep.ladder.domain.Player;
 import nextstep.ladder.domain.Players;
 
 public class OutputView {
-    private static final String NAME_FORMAT = "%-" + (Name.LENGTH_LIMIT + 1) + "s";
+    private static final String NAME_FORMAT = "%" + (Name.LENGTH_LIMIT + 1) + "s";
     private static final String NEWLINE = "\n";
     private static final String NOTHING = " ";
     private static final String LINE = "-";
