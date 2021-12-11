@@ -49,23 +49,17 @@ public class LineTest extends MakePoints {
     @Test
     @DisplayName("ofString 메소드로 Line 이 잘 만들어지는지 테스트")
     public void LineFromStringInputTest() {
-        Line lineByString_A = Line.ofString("true,false,true,false,false,false");
-        Line lineByString_B = Line.ofString("false,false,true,false,true,false");
-        Line lineByString_C = Line.ofString("true,false,false,false,true");
+        Line lineByStringA = Line.ofString("true,false,true,false,false,false");
+        Line lineByStringB = Line.ofString("false,false,true,false,true,false");
+        Line lineByStringC = Line.ofString("true,false,false,false,true");
 
-        List<Point> line_A = givenA();
-        List<Point> line_B = givenB();
-        List<Point> line_C = givenC();
+        List<Point> lineA = givenA();
+        List<Point> lineB = givenB();
+        List<Point> lineC = givenC();
 
-        for (int index = 0; index < lineByString_A.getPoints().size(); index++) {
-            assertThat(lineByString_A.getPoints().get(index)).isEqualTo(line_A.get(index));
-        }
-        for (int index = 0; index < lineByString_B.getPoints().size(); index++) {
-            assertThat(lineByString_B.getPoints().get(index)).isEqualTo(line_B.get(index));
-        }
-        for (int index = 0; index < lineByString_C.getPoints().size(); index++) {
-            assertThat(lineByString_C.getPoints().get(index)).isEqualTo(line_C.get(index));
-        }
+        assertThat(lineByStringA).isEqualTo(lineA);
+        assertThat(lineByStringB).isEqualTo(lineB);
+        assertThat(lineByStringC).isEqualTo(lineC);
     }
 
     @Test
