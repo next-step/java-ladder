@@ -1,13 +1,13 @@
 package nextstep.laddergame.view;
 
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.stream.IntStream;
 
 import nextstep.laddergame.model.Bridge;
 import nextstep.laddergame.model.Goal;
 import nextstep.laddergame.model.Line;
 import nextstep.laddergame.model.Participant;
-import nextstep.laddergame.model.Result;
 import nextstep.laddergame.model.Results;
 
 public final class ResultView {
@@ -67,14 +67,14 @@ public final class ResultView {
         System.out.println(stringBuilder);
     }
 
-    public static void printResult(List<Result> results) {
+    public static void printResult(List<Entry<Participant, Goal>> results) {
         stringBuilder.setLength(BUILDER_INITIAL_LENGTH);
         stringBuilder.append("실행 결과")
                      .append(NEW_LINE);
 
-        results.forEach(result -> stringBuilder.append(result.getParticipant().name())
+        results.forEach(result -> stringBuilder.append(result.getKey().name())
                                                .append(RESULT_SEPARATOR)
-                                               .append(result.getGoal().value())
+                                               .append(result.getValue().value())
                                                .append(NEW_LINE));
 
         System.out.println(stringBuilder);
