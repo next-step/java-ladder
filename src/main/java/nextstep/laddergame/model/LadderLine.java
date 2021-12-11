@@ -1,6 +1,7 @@
 package nextstep.laddergame.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import nextstep.laddergame.utils.RandomUtils;
@@ -41,5 +42,9 @@ public class LadderLine {
 
     public int move(int position) {
         return points.get(position).move();
+    }
+
+    public List<Point> getPoints() {
+        return Collections.unmodifiableList(points);
     }
 }
