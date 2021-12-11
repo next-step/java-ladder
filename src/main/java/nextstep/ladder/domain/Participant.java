@@ -10,12 +10,30 @@ public class Participant {
 
     private final String name;
 
-    public Participant(String name) {
+    private final int position;
+
+    public Participant(String name, int position) {
         this.name = rangeStringLength(name, MAX_NAME_LENGTH);
+        this.position = position;
+    }
+
+
+    public Participant climb(Ladder ladder) {
+        int tempPosition = position;
+
+        for (Line line : ladder.getLines()) {
+            tempPosition = line.move(tempPosition);
+        }
+
+        return new Participant(name, tempPosition);
     }
 
     public String getName() {
         return name;
+    }
+
+    public int getPosition() {
+        return position;
     }
 
     @Override
@@ -27,11 +45,13 @@ public class Participant {
             return false;
         }
         Participant that = (Participant) o;
-        return Objects.equals(name, that.name);
+        return getPosition() == that.getPosition() && Objects.equals(getName(),
+            that.getName());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(getName(), getPosition());
     }
+
 }

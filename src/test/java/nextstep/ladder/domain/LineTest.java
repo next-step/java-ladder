@@ -41,6 +41,21 @@ class LineTest {
             .isThrownBy(() -> points.add(true));
     }
 
+    @Test
+    @DisplayName("사다리 선에 따라, 정상적으로 이동한다.")
+    void lineMoveTest() {
+        Line line = new Line(3, drawLineRandomMock());
+        // true, false, true
+        /* 0     1      2     3
+           |-----|      |-----|
+         */
+
+        assertThat(line.move(0)).isEqualTo(1);
+        assertThat(line.move(1)).isEqualTo(0);
+
+        assertThat(line.move(2)).isEqualTo(3);
+        assertThat(line.move(3)).isEqualTo(2);
+    }
 
     private Random drawLineRandomMock() {
         return new Random() {

@@ -10,6 +10,7 @@ import java.util.stream.IntStream;
 public class Line {
 
     private static final int START_NUMBER = 0;
+    private static final int UNIT = 1;
 
     private final List<Boolean> points = new ArrayList<>();
 
@@ -23,12 +24,42 @@ public class Line {
     }
 
     public boolean isNotDrawnBeforePoint(int index) {
-        if (index - 1 < 0) {
+        if (index - UNIT < 0) {
             return true;
         }
 
-        return !points.get(index - 1);
+        return !points.get(index - UNIT);
     }
+
+    // TODO: Enum을 사용하여 refactoring이 가능할지 검토 2021/12/11 (kiyeon_kim1)
+    public int move(int position) {
+        if (hasLeftLine(position)) {
+            return position - UNIT;
+        }
+
+        if (hasRightLine(position)) {
+            return position + UNIT;
+        }
+
+        return position;
+    }
+
+    public boolean hasLeftLine(int position) {
+        if (position == START_NUMBER) {
+            return false;
+        }
+
+        return points.get(position - UNIT);
+    }
+
+    public boolean hasRightLine(int position) {
+        if (position > points.size()) {
+            return false;
+        }
+
+        return points.get(position);
+    }
+
 
     private boolean pickAtRandom(Random random) {
         return random.nextBoolean();
