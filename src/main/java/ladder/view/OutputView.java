@@ -10,7 +10,14 @@ public class OutputView {
         System.out.println("실행결과");
     }
 
-    public static void drawLadder(Users users, Lines lines) {
+    public static void drawLadderUsers(Users users) {
         System.out.println(users.getUserNames());
+    }
+
+    public static void drawLadderLines(Lines lines) {
+        lines.getLines().stream()
+                .forEach(line -> {
+
+                });
     }
 }

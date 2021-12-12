@@ -28,6 +28,18 @@ public class Line {
         return points;
     }
 
+    public String getResultLine() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("    ");
+        points.forEach(point -> {
+            sb.append("|");
+            if (point.getCurrent()) {
+                sb.append("-----");
+            }
+        });
+        return sb.toString();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

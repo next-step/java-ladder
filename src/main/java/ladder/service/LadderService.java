@@ -26,7 +26,8 @@ public class LadderService {
         Lines lines = new Lines();
         lines.createLines(users.getUserCount(), ladderHeight.getHeight());
         OutputView.resultLadder();
-        OutputView.drawLadder(users, lines);
+        OutputView.drawLadderUsers(users);
+        OutputView.drawLadderLines(lines);
     }
 
 
