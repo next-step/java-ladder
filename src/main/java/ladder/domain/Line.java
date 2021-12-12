@@ -29,7 +29,7 @@ public class Line {
         return lineNumber.get(lineNumber.size() - EXIST);
     }
 
-    public static int lineValue(int beforeLine) {
+    private static int lineValue(int beforeLine) {
         return beforeLine == NONE ? LineRandom.random() : NONE;
     }
 
