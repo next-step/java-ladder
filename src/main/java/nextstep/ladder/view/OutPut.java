@@ -1,9 +1,8 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Participants;
-import nextstep.ladder.domain.Point;
+import nextstep.ladder.domain.*;
+
+import java.util.HashMap;
 
 import static nextstep.ladder.domain.Participant.PARTICIPANT_SIZE;
 
@@ -25,18 +24,35 @@ public class OutPut {
         System.out.println();
     }
 
+    public static void viewLine(Line line) {
+        for (Point point : line.getPoints()) {
+            if (point == Point.of("right")) {
+                System.out.print("|-----");
+            }
+            if (point != Point.of("right")) {
+                System.out.print("|     ");
+            }
+        }
+        System.out.println();
+    }
+
     public static void viewLadder(Ladder ladder) {
         for (Line line : ladder.getLines()) {
-            System.out.print("|");
-            line.getPoints().forEach(point -> {
-                if (point == Point.of(true)) {
-                    System.out.print("-----|");
-                }
-                if (point == Point.of(false)) {
-                    System.out.print("     |");
-                }
-            });
-            System.out.println();
+            viewLine(line);
+        }
+    }
+
+    public static void viewCompensation(Compensations compensations) {
+        System.out.println(compensations.getCompensations());
+    }
+
+    public static void viewResult(Participants participants, Compensations compensations, Ladder ladder, Participant participantWantResult) {
+        HashMap<String, String> result = PlayGame.playGame(participantWantResult, participants, compensations, ladder);
+        for (Participant participant : participants.getParticipants()) {
+            if (result.containsKey(participant.getParticipant())) {
+                System.out.println(participant.getParticipant() + " : " + result.get(participant.getParticipant()));
+            }
+
         }
     }
 }
