@@ -8,6 +8,7 @@ public class OutputView {
 
     public static void resultLadder() {
         System.out.println("실행결과");
+        System.out.println();
     }
 
     public static void drawLadderUsers(Users users) {
@@ -16,8 +17,6 @@ public class OutputView {
 
     public static void drawLadderLines(Lines lines) {
         lines.getLines().stream()
-                .forEach(line -> {
-
-                });
+                .forEach(line -> System.out.println(line.getResultLine()));
     }
 }

@@ -33,9 +33,7 @@ public class Line {
         sb.append("    ");
         points.forEach(point -> {
             sb.append("|");
-            if (point.getCurrent()) {
-                sb.append("-----");
-            }
+            sb.append(point.getResultPoint());
         });
         return sb.toString();
     }

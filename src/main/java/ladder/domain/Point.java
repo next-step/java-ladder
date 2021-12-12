@@ -27,6 +27,13 @@ public class Point {
         return current;
     }
 
+    public String getResultPoint() {
+        if (current) {
+            return "-----";
+        }
+        return "     ";
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -40,4 +47,5 @@ public class Point {
     public int hashCode() {
         return Objects.hash(left, current);
     }
+
 }
