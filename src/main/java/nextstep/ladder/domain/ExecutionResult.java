@@ -2,6 +2,7 @@ package nextstep.ladder.domain;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import nextstep.ladder.exception.ExecutionResultNullPointerException;
@@ -21,6 +22,10 @@ public class ExecutionResult {
         List<String> executionResult = toCollection(result);
         validSize(executionResult, size);
         return new ExecutionResult(executionResult);
+    }
+
+    public List<String> getExecutionResult() {
+        return Collections.unmodifiableList(executionResult);
     }
 
     public String get(int index) {
