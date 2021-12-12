@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,6 +20,9 @@ public class Names {
         return names.size();
     }
 
+    public List<Name> getNames() {
+        return Collections.unmodifiableList(names);
+    }
     public static Names from(String name) {
         List<Name> names = Arrays.stream(name.split(SEPARATORS))
                 .map(String::trim)
