@@ -9,24 +9,24 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class NameTest {
+class LadderStringTest {
 
-    @DisplayName("이름 생성")
+    @DisplayName("LadderString 생성")
     @Test
     void create() {
-        String pobi = "pobi";
+        String ladderString = "5000";
 
-        Assertions.assertThat(new Name(pobi)).isEqualTo(new Name(pobi));
+        Assertions.assertThat(new LadderString(ladderString)).isEqualTo(new LadderString(ladderString));
     }
 
-    @DisplayName("이름은 1~5자")
+    @DisplayName("결과는 1~5자")
     @ParameterizedTest
     @NullAndEmptySource
     @ValueSource(strings = {" ", "sixsix"})
-    void valid(String name) {
-        assertThatThrownBy(() -> new Name(name))
+    void valid(String ladderString) {
+        assertThatThrownBy(() -> new LadderString(ladderString))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("이름은 1~5자입니다.");
+                .hasMessage("입력 값은 1~5자입니다.");
     }
 
 }
