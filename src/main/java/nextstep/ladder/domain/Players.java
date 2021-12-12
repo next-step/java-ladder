@@ -26,6 +26,14 @@ public class Players {
                 .collect(Collectors.toList()));
     }
 
+    public PlayerCount count() {
+        return PlayerCount.of(players.size());
+    }
+
+    public Stream<Player> stream() {
+        return players.stream();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -37,13 +45,5 @@ public class Players {
     @Override
     public int hashCode() {
         return Objects.hash(players);
-    }
-
-    public PlayerCount count() {
-        return PlayerCount.of(players.size());
-    }
-
-    public Stream<Player> stream() {
-        return players.stream();
     }
 }

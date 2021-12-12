@@ -41,6 +41,10 @@ public class Line {
         return of(PlayerCount.of(playerCount), strategy);
     }
 
+    public Stream<Boolean> stream() {
+        return points.stream();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -59,9 +63,5 @@ public class Line {
         return "Line{" +
                 "points=" + points +
                 '}';
-    }
-
-    public Stream<Boolean> stream() {
-        return points.stream();
     }
 }

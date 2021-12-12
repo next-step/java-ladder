@@ -21,6 +21,10 @@ public class Player {
         return new Player(name);
     }
 
+    public Name name() {
+        return name;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -39,9 +43,5 @@ public class Player {
         return "Player{" +
                 "name=" + name +
                 '}';
-    }
-
-    public Name name() {
-        return name;
     }
 }

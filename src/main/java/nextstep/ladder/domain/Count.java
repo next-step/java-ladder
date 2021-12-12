@@ -9,6 +9,10 @@ public abstract class Count {
         this.count = count;
     }
 
+    public int toInt() {
+        return count;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -20,9 +24,5 @@ public abstract class Count {
     @Override
     public int hashCode() {
         return Objects.hash(count);
-    }
-
-    public int toInt() {
-        return count;
     }
 }

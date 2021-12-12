@@ -29,6 +29,10 @@ public class Ladder {
         return Ladder.of(playerCount, Height.of(height), strategy);
     }
 
+    public Stream<Line> stream() {
+        return lines.stream();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -40,9 +44,5 @@ public class Ladder {
     @Override
     public int hashCode() {
         return Objects.hash(lines);
-    }
-
-    public Stream<Line> stream() {
-        return lines.stream();
     }
 }

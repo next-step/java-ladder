@@ -19,6 +19,10 @@ public class Height {
         return new Height(height);
     }
 
+    public int toInt() {
+        return height;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -30,9 +34,5 @@ public class Height {
     @Override
     public int hashCode() {
         return Objects.hash(height);
-    }
-
-    public int toInt() {
-        return height;
     }
 }
