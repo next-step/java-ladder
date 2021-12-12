@@ -1,7 +1,6 @@
 package ladder.domain;
 
 import ladder.enums.LadderPart;
-import ladder.strategy.RandomRungSupplier;
 import ladder.util.function.MathFunction;
 
 import java.util.Collections;
@@ -23,7 +22,7 @@ public class Line {
 
         LadderPartFactory.initIsPreviousRungSet();
         ladderParts = IntStream.range(INDEX_ZERO, width)
-                .mapToObj(index -> LadderPartFactory.ladderPart(index, new RandomRungSupplier()))
+                .mapToObj(LadderPartFactory::ladderPart)
                 .collect(Collectors.toList());
     }
 

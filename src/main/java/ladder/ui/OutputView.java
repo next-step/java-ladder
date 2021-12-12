@@ -70,18 +70,20 @@ public class OutputView {
     private static String appendLine(Line line) {
         List<LadderPart> ladderParts = line.getLadderParts();
         return ladderParts.stream()
-                .map(ladderPart -> {
-                    if (ladderPart.isRail()) {
-                        return RAIL_VALUE;
-                    }
-
-                    if (ladderPart.isRung()) {
-                        return RUNG_VALUE;
-                    }
-
-                    return EMPTY_RUNG_VALUE;
-                })
+                .map(OutputView::ladderPartValue)
                 .collect(Collectors.joining(EMPTY_DELIMITER));
+    }
+
+    private static String ladderPartValue(LadderPart ladderPart) {
+        if (ladderPart.isRail()) {
+            return RAIL_VALUE;
+        }
+
+        if (ladderPart.isRung()) {
+            return RUNG_VALUE;
+        }
+
+        return EMPTY_RUNG_VALUE;
     }
 
 }
