@@ -14,7 +14,7 @@ public class Application {
         Results results = getResults(players.playersCount());
         int ladderHeight = InputView.askLadderHeight();
 
-        Lines lines = LinesFactory.of(ladderHeight, new RandomLineGenerator(), new RandomBooleanListGenerator(players.playersCount()));
+        Lines lines = LinesFactory.of(ladderHeight, new RandomBooleanListGenerator(players.playersCount()));
 
         Ladder ladder = Ladder.from(lines);
 

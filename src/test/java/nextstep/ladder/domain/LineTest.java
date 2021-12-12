@@ -20,7 +20,7 @@ class LineTest {
     @DisplayName("create Line test")
     void createLine() {
         List<Boolean> booleanList = new RandomBooleanListGenerator(5).generate();
-        Line line = new RandomLineGenerator().generate(booleanList);
+        Line line = LineGenerator.generate(booleanList);
 
         assertThat(line).isInstanceOf(Line.class);
     }
