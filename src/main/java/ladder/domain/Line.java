@@ -14,14 +14,14 @@ public class Line {
     }
 
     public Line(int countOfUser) {
-        boolean left = random.nextBoolean();
-        points.add(Point.firstPoint(left));
+        boolean current = random.nextBoolean();
+        points.add(Point.firstPoint(current));
         for (int i = 1; i < countOfUser - 1; i++) {
-            Point point = new Point(left, random.nextBoolean());
+            Point point = new Point(current, random.nextBoolean());
             points.add(point);
-            left = point.getCurrent();
+            current = point.getCurrent();
         }
-        points.add(Point.lastPoint(left));
+        points.add(Point.lastPoint(current));
     }
 
     public List<Point> getPoints() {

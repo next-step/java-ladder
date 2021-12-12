@@ -4,6 +4,7 @@ import ladder.domain.LadderHeight;
 import ladder.domain.Lines;
 import ladder.domain.User;
 import ladder.domain.Users;
+import ladder.view.OutputView;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -24,7 +25,10 @@ public class LadderService {
     public void play() {
         Lines lines = new Lines();
         lines.createLines(users.getUserCount(), ladderHeight.getHeight());
+        OutputView.resultLadder();
+        OutputView.drawLadder(users, lines);
     }
+
 
     @Override
     public boolean equals(Object o) {

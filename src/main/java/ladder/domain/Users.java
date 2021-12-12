@@ -2,6 +2,7 @@ package ladder.domain;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Users {
     private final List<User> users;
@@ -12,6 +13,12 @@ public class Users {
 
     public int getUserCount() {
         return users.size();
+    }
+
+    public String getUserNames() {
+        return users.stream()
+                .map(user -> user.getNameAndBlank())
+                .collect(Collectors.joining(" "));
     }
 
     @Override

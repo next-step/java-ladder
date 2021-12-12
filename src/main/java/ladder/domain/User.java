@@ -9,6 +9,10 @@ public class User {
         this.userName = new UserName(userName);
     }
 
+    public String getNameAndBlank() {
+        return userName.getNameAndBlank();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

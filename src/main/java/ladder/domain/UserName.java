@@ -12,6 +12,23 @@ public class UserName {
         this.name = name;
     }
 
+    public String getNameAndBlank() {
+        if (name.length() == 5) {
+            return name;
+        }
+        String nameAndBlank = name + " ";
+        if (name.length() == 4) {
+            return nameAndBlank;
+        }
+        if (name.length() == 3) {
+            return " " + nameAndBlank;
+        }
+        if (name.length() == 2) {
+            return "  " + nameAndBlank;
+        }
+        return "   " + nameAndBlank;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

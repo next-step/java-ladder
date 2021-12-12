@@ -1,10 +1,11 @@
 package ladder.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class Lines {
-    private List<Line> lines;
+    private List<Line> lines = new ArrayList<>();
 
     public Lines() {
 
@@ -18,6 +19,7 @@ public class Lines {
         for (int i = 0; i < ladderHeight; i++) {
             lines.add(new Line(userCount));
         }
+        System.out.println();
     }
 
     @Override
