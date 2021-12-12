@@ -1,9 +1,10 @@
 package nextstep.laddergame.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
+import java.util.Map.Entry;
 
 public class Results {
 
@@ -13,11 +14,8 @@ public class Results {
         results.put(participant, goal);
     }
 
-    public List<Result> getAll() {
-        return results.entrySet()
-                      .stream()
-                      .map(entry -> new Result(entry.getKey(), entry.getValue()))
-                      .collect(Collectors.toList());
+    public List<Entry<Participant, Goal>> getAll() {
+        return new ArrayList<>(results.entrySet());
     }
 
     public Goal get(Participant participant) {

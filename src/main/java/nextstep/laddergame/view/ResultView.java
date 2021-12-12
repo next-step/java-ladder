@@ -1,13 +1,13 @@
 package nextstep.laddergame.view;
 
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.stream.IntStream;
 
-import nextstep.laddergame.model.Bridge;
 import nextstep.laddergame.model.Goal;
-import nextstep.laddergame.model.Line;
+import nextstep.laddergame.model.LadderLine;
 import nextstep.laddergame.model.Participant;
-import nextstep.laddergame.model.Result;
+import nextstep.laddergame.model.Point;
 import nextstep.laddergame.model.Results;
 
 public final class ResultView {
@@ -26,31 +26,44 @@ public final class ResultView {
     private ResultView() {
     }
 
-    public static void printLadder(List<Participant> participants, List<Line> ladder, List<Goal> goals) {
+    public static void printLadder(List<Participant> participants, List<LadderLine> ladder, List<Goal> goals) {
         stringBuilder.setLength(BUILDER_INITIAL_LENGTH);
         stringBuilder.append("사다리 결과")
                      .append(NEW_LINE);
-        participants.forEach(participant -> stringBuilder.append(participant.name())
-                                                         .append(DELIMITER));
-        stringBuilder.append(NEW_LINE);
-        ladder.forEach(line -> printLine(line));
 
-        goals.forEach(goal -> stringBuilder.append(goal.value())
-                                           .append(DELIMITER));
+        printParticipants(participants);
+        printLadder(ladder);
+        printGoals(goals);
+
         System.out.println(stringBuilder);
     }
 
-    private static void printLine(Line line) {
-        stringBuilder.append(DELIMITER);
-        line.getBridges()
-            .forEach(bridge -> printBridge(bridge));
-        stringBuilder.append(VERTICAL)
-                     .append(NEW_LINE);
+    private static void printParticipants(List<Participant> participants) {
+        participants.forEach(participant -> stringBuilder.append(participant.name())
+                                                         .append(DELIMITER));
+        stringBuilder.append(NEW_LINE);
     }
 
-    private static StringBuilder printBridge(Bridge bridge) {
+    private static void printLadder(List<LadderLine> ladder) {
+        ladder.forEach(line -> printLine(line));
+    }
+
+    private static void printLine(LadderLine line) {
+        stringBuilder.append(DELIMITER);
+        line.getPoints()
+            .forEach(point -> printPoint(point));
+        stringBuilder.append(NEW_LINE);
+    }
+
+    private static void printGoals(List<Goal> goals) {
+        goals.forEach(goal -> stringBuilder.append(goal.value())
+                                           .append(DELIMITER));
+        stringBuilder.append(NEW_LINE);
+    }
+
+    private static StringBuilder printPoint(Point point) {
         stringBuilder.append(VERTICAL);
-        String line = bridge.exist() ? LINE : EMPTY;
+        String line = point.isRight() ? LINE : EMPTY;
         IntStream.range(0, INDENT_LENGTH)
                  .forEach(index -> stringBuilder.append(line));
         return stringBuilder;
@@ -67,14 +80,14 @@ public final class ResultView {
         System.out.println(stringBuilder);
     }
 
-    public static void printResult(List<Result> results) {
+    public static void printResult(List<Entry<Participant, Goal>> results) {
         stringBuilder.setLength(BUILDER_INITIAL_LENGTH);
         stringBuilder.append("실행 결과")
                      .append(NEW_LINE);
 
-        results.forEach(result -> stringBuilder.append(result.getParticipant().name())
+        results.forEach(result -> stringBuilder.append(result.getKey().name())
                                                .append(RESULT_SEPARATOR)
-                                               .append(result.getGoal().value())
+                                               .append(result.getValue().value())
                                                .append(NEW_LINE));
 
         System.out.println(stringBuilder);
