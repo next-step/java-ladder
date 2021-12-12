@@ -15,7 +15,7 @@ public class Ladder {
         this.ladder = Collections.unmodifiableList(ladder);
     }
 
-    public static List<Line> ladderLine(Names names, Height height) {
+    private static List<Line> ladderLine(Names names, Height height) {
         int namesCount = names.size();
         int ladderHeight = height.value();
         return IntStream.range(0, ladderHeight)
@@ -32,7 +32,7 @@ public class Ladder {
         return new Winning(winning);
     }
 
-    public int position(int startPosition) {
+    private int position(int startPosition) {
         int position = startPosition;
         for (Line line : ladder) {
             position = line.position(position);
