@@ -20,4 +20,8 @@ public class Name {
                 .filter(n -> n.length() <= NAME_MAX_LENGTH)
                 .orElseThrow(() -> new IllegalArgumentException(EXCEPTION_NAME_MAX_LENGTH_OVER));
     }
+
+    public String getName() {
+        return name;
+    }
 }
