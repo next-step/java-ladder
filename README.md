@@ -16,3 +16,6 @@
 
 * 람다 실습 1 - 익명 클래스를 람다로 전환
   * 다음 테스트 코드에서 MoveStrategy에 대한 익명 클래스로 구현하고 있는데 람다를 적용해 구현한다.
+  * nextstep.fp.CarTest의 이동, 정지 method
+* 람다 실습 2 - 람다를 활용해 중복 제거
+  * nextstep.fp.Lambda의 sumAll, sumAllEven, sumAllOverThree method 소스 코드를 확인하고 중복 제거한다.
