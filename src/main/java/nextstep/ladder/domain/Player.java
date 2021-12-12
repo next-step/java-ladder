@@ -10,7 +10,7 @@ public class Player {
     }
 
     public static Player of(final String name) {
-        return new Player(Name.of(name));
+        return of(Name.of(name));
     }
 
     public static Player of(final Name name) {
