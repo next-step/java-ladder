@@ -2,18 +2,19 @@ package ladder.view;
 
 import java.util.Scanner;
 
+import static ladder.utils.Constants.*;
+
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
-    private static final String COMMA = ",";
 
     public static String[] inputUserName() {
-        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        return scanner.next().split(COMMA);
+        System.out.println(MSG_INPUT_USER_NAME);
+        return scanner.next().split(SYMBOL_COMMA);
     }
 
     public static String inputLadderHeight() {
         System.out.println();
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
+        System.out.println(MSG_INPUT_LADDER_HEIGHT);
         return scanner.next();
     }
 }

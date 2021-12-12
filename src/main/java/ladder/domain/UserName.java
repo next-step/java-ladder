@@ -2,31 +2,33 @@ package ladder.domain;
 
 import java.util.Objects;
 
+import static ladder.utils.Constants.*;
+
 public class UserName {
     private final String name;
 
     public UserName(String name) {
-        if (name.length() > 5) {
-            throw new IllegalArgumentException("이름은 최대5글자까지 부여할 수 있습니다.");
+        if (name.length() > NUMBER_FIVE) {
+            throw new IllegalArgumentException(MSG_NAME_LENGTH_FIVE);
         }
         this.name = name;
     }
 
     public String getNameAndBlank() {
-        if (name.length() == 5) {
+        if (name.length() == NUMBER_FIVE) {
             return name;
         }
-        String nameAndBlank = name + " ";
-        if (name.length() == 4) {
+        String nameAndBlank = name + SYMBOL_BLANK;
+        if (name.length() == NUMBER_FOUR) {
             return nameAndBlank;
         }
-        if (name.length() == 3) {
-            return " " + nameAndBlank;
+        if (name.length() == NUMBER_THREE) {
+            return SYMBOL_BLANK + nameAndBlank;
         }
-        if (name.length() == 2) {
-            return "  " + nameAndBlank;
+        if (name.length() == NUMBER_TWO) {
+            return SYMBOL_BLANK + SYMBOL_BLANK + nameAndBlank;
         }
-        return "   " + nameAndBlank;
+        return SYMBOL_BLANK + SYMBOL_BLANK + SYMBOL_BLANK + nameAndBlank;
     }
 
     @Override

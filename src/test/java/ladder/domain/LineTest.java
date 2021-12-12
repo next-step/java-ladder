@@ -33,6 +33,6 @@ public class LineTest {
     @Test
     @DisplayName("Line을 그리기 위해 사다리 line을 가져온다.")
     void getResultLine() {
-        assertThat(line.getResultLine()).isEqualTo("    |-----|");
+        assertThat(line.getResultLine()).isEqualTo("    |-----|     ");
     }
 }

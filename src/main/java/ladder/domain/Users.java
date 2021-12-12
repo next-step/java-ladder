@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import static ladder.utils.Constants.SYMBOL_BLANK;
+
 public class Users {
     private final List<User> users;
 
@@ -18,7 +20,7 @@ public class Users {
     public String getUserNames() {
         return users.stream()
                 .map(user -> user.getNameAndBlank())
-                .collect(Collectors.joining(" "));
+                .collect(Collectors.joining(SYMBOL_BLANK));
     }
 
     @Override

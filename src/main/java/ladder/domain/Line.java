@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
+import static ladder.utils.Constants.SYMBOL_BLANK;
+import static ladder.utils.Constants.SYMBOL_VERTICAL_BAR;
+
 public class Line {
     private List<Point> points = new ArrayList<>();
     private Random random = new Random();
@@ -30,9 +33,9 @@ public class Line {
 
     public String getResultLine() {
         StringBuilder sb = new StringBuilder();
-        sb.append("    ");
+        sb.append(SYMBOL_BLANK).append(SYMBOL_BLANK).append(SYMBOL_BLANK).append(SYMBOL_BLANK);
         points.forEach(point -> {
-            sb.append("|");
+            sb.append(SYMBOL_VERTICAL_BAR);
             sb.append(point.getResultPoint());
         });
         return sb.toString();

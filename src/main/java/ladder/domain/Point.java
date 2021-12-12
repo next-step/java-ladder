@@ -2,6 +2,9 @@ package ladder.domain;
 
 import java.util.Objects;
 
+import static ladder.utils.Constants.SYMBOL_BLANK;
+import static ladder.utils.Constants.SYMBOL_DASH;
+
 public class Point {
     private final boolean left;
     private final boolean current;
@@ -29,9 +32,10 @@ public class Point {
 
     public String getResultPoint() {
         if (current) {
-            return "-----";
+            return SYMBOL_DASH + SYMBOL_DASH + SYMBOL_DASH + SYMBOL_DASH + SYMBOL_DASH;
         }
-        return "     ";
+
+        return SYMBOL_BLANK + SYMBOL_BLANK + SYMBOL_BLANK + SYMBOL_BLANK + SYMBOL_BLANK ;
     }
 
     @Override
