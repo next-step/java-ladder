@@ -1,31 +1,31 @@
 package nextstep.fp;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class CarTest {
+class CarTest {
+    Car car;
+
+    @BeforeEach
+    void setUp() {
+        car = new Car("pobi", 0);
+    }
+
     @Test
-    public void 이동() {
-        Car car = new Car("pobi", 0);
-        Car actual = car.move(new MoveStrategy() {
-            @Override
-            public boolean isMovable() {
-                return true;
-            }
-        });
+    void 이동() {
+        // when
+        Car actual = car.move(() -> true);
+        // then
         assertThat(actual).isEqualTo(new Car("pobi", 1));
     }
 
     @Test
-    public void 정지() {
-        Car car = new Car("pobi", 0);
-        Car actual = car.move(new MoveStrategy() {
-            @Override
-            public boolean isMovable() {
-                return false;
-            }
-        });
+    void 정지() {
+        // when
+        Car actual = car.move(() -> false);
+        // then
         assertThat(actual).isEqualTo(new Car("pobi", 0));
     }
 }
