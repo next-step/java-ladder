@@ -17,10 +17,4 @@ public class LineTest {
         List<Integer> list = IntStream.range(0, 2).boxed().collect(Collectors.toList());
         assertThat(Line.beforeLine(list)).isEqualTo(1);
     }
-
-    @Test
-    @DisplayName("같은 높이의 왼쪽 줄 있으면 0이 나와야 한다.")
-    public void beforeLineValue() {
-        assertThat(Line.lineValue(1)).isEqualTo(0);
-    }
 }

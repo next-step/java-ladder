@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Line {
@@ -10,7 +11,7 @@ public class Line {
     private final List<Integer> line;
 
     private Line(List<Integer> line) {
-        this.line = line;
+        this.line = Collections.unmodifiableList(line);
     }
 
     public static Line from(int nameCount) {
@@ -22,11 +23,19 @@ public class Line {
     }
 
     public static int beforeLine(List<Integer> lineNumber) {
-        return lineNumber.size() == NONE ? LineRandom.random() : lineNumber.get(lineNumber.size() - EXIST);
+        if (lineNumber.size() == NONE) {
+            return LineRandom.random();
+        }
+        return lineNumber.get(lineNumber.size() - EXIST);
     }
 
-    public static int lineValue(int beforeLine) {
+    private static int lineValue(int beforeLine) {
         return beforeLine == NONE ? LineRandom.random() : NONE;
+    }
+
+    public int position(int position) {
+        return Position.move(position, line)
+                .value();
     }
 
     public int size() {
