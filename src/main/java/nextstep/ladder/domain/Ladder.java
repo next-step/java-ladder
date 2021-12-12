@@ -12,15 +12,19 @@ public class Ladder {
 
     private final List<Line> lines = new ArrayList<>();
 
-    private Ladder(PositiveNumber height, int participantsCount) {
+    private Ladder(PositiveNumber height, int participantsCount, Random random) {
         valid(participantsCount);
 
         IntStream.range(START_NUMBER, height.getNumber())
-            .forEach(i -> lines.add(new Line(participantsCount - 1, new Random())));
+            .forEach(i -> lines.add(new Line(participantsCount - 1, random)));
     }
 
     public static Ladder create(PositiveNumber height, int participantsCount) {
-        return new Ladder(height, participantsCount);
+        return new Ladder(height, participantsCount, new Random());
+    }
+
+    public static Ladder create(PositiveNumber height, int participantsCount, Random random) {
+        return new Ladder(height, participantsCount, random);
     }
 
     public List<Line> getLines() {
