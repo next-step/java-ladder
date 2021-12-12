@@ -17,8 +17,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class OutputViewTest {
     static Stream<Arguments> parseName() {
         return Stream.of(
-                Arguments.of(n("name1"), "name1 "),
-                Arguments.of(n("name"), "name  "),
+                Arguments.of(n("name1"), " name1"),
+                Arguments.of(n("name"), "  name"),
                 Arguments.of(n(" "), "      ")
         );
     }
