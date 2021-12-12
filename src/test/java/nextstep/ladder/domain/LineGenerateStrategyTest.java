@@ -24,7 +24,6 @@ public class LineGenerateStrategyTest {
     @MethodSource("parseGenerate")
     public void generateNotInSuccession(LineGenerateStrategy strategy) {
         final LineCount lineCount = lc(5);
-        System.out.println(strategy.generate(lineCount));
         assertThat(strategy.generate(lineCount).size()).isEqualTo(lineCount.toInt());
         assertThat(strategy.generate(lineCount)
                 .stream()
