@@ -1,8 +1,10 @@
 package nextstep.ladder.view;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.stream.Collectors;
-import nextstep.ladder.domain.ExecutionResult;
+import nextstep.ladder.domain.Category;
+import nextstep.ladder.domain.AbstractString;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Players;
@@ -20,20 +22,11 @@ public class ResultView {
     private ResultView() {
     }
 
-    public static void outputResult(Players players, Ladder ladder, ExecutionResult executionResult) {
+    public static void outputResult(Players players, Ladder ladder, Category category) {
         System.out.println("사다리 결과\n");
         outputPlayer(players);
         outputLadder(players.getPlayer(DEFAULT_PLAYER_INDEX).length(), ladder);
-        outputExecutionResult(executionResult);
-    }
-
-    private static void outputExecutionResult(ExecutionResult executionResult) {
-        String executionResultJoin = executionResult.getExecutionResult()
-            .stream()
-            .map(result -> String.format(STRING_FORMAT, result))
-            .collect(Collectors.joining());
-
-        System.out.println(executionResultJoin.trim());
+        outputCategory(category);
     }
 
     private static void outputLadder(int firstBlankLength, Ladder ladder) {
@@ -61,11 +54,23 @@ public class ResultView {
     }
 
     private static void outputPlayer(Players players) {
-        String player = players.getPlayers().stream()
-            .map(name -> String.format(STRING_FORMAT, name))
-            .collect(Collectors.joining());
-
+        String player = ToJoining(players.getPlayers());
         System.out.println(player.trim());
+    }
+
+    private static void outputCategory(Category category) {
+        String categoryJoin = ToJoining(category.getCategory());
+        System.out.println(categoryJoin.trim());
+    }
+
+    private static <T extends AbstractString> String ToJoining(List<T> inputStrings) {
+        return inputStrings.stream()
+            .map(ResultView::getFormat)
+            .collect(Collectors.joining());
+    }
+
+    private static String getFormat(AbstractString result) {
+        return String.format(STRING_FORMAT, result);
     }
 
 }

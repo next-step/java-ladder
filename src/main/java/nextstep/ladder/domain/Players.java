@@ -32,6 +32,10 @@ public class Players {
         return size() - MINUS_NUMBER;
     }
 
+    public boolean isSize(int size) {
+        return players.size() == size;
+    }
+
     private void valid(List<Name> players) {
         if (players.isEmpty() || players.size() < PLAYERS_MINIMUM_SIZE) {
             throw new NotEnoughPlayersException(PLAYERS_MINIMUM_SIZE);

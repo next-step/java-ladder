@@ -3,7 +3,6 @@ package nextstep.ladder.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
-import nextstep.ladder.exception.NameNullPointerException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
@@ -22,9 +21,8 @@ public class StringAsPlayersTest {
     @NullAndEmptySource
     @DisplayName("null 혹은 빈 값 예외처리")
     void nameNullPointerException(String players) {
-        assertThatExceptionOfType(NameNullPointerException.class)
+        assertThatExceptionOfType(NullPointerException.class)
             .isThrownBy(() -> new StringAsPlayers(players));
-
     }
 
 }

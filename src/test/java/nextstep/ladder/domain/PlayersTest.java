@@ -17,10 +17,10 @@ public class PlayersTest {
 
     static Stream<Arguments> generateNames() {
         List<Name> names = new ArrayList<>();
-        names.add(Name.from("pobi"));
-        names.add(Name.from("honux"));
-        names.add(Name.from("crong"));
-        names.add(Name.from("jk"));
+        names.add(StringFactory.name("pobi"));
+        names.add(StringFactory.name("honux"));
+        names.add(StringFactory.name("crong"));
+        names.add(StringFactory.name("jk"));
 
         return Stream.of(Arguments.of(names, 4));
     }
