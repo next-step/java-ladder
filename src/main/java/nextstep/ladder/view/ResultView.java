@@ -16,6 +16,7 @@ public class ResultView {
     private static final String STRING_FORMAT = "%6s";
     private static final String DELIMITER_JOIN = "";
     private static final String DELIMITER_LINE = "|";
+    private static final String LADDER_RESULT_MESSAGE = "사다리 결과\n";
     private static final int DEFAULT_BLANK_LENGTH = 5;
     private static final int DEFAULT_PLAYER_INDEX = 0;
 
@@ -23,7 +24,7 @@ public class ResultView {
     }
 
     public static void outputResult(Players players, Ladder ladder, Category category) {
-        System.out.println("사다리 결과\n");
+        System.out.println(LADDER_RESULT_MESSAGE);
         outputPlayer(players);
         outputLadder(players.getPlayer(DEFAULT_PLAYER_INDEX).length(), ladder);
         outputCategory(category);
