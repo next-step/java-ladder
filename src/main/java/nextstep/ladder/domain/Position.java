@@ -10,6 +10,7 @@ import java.util.stream.IntStream;
 public class Position {
 
     private static final Map<Integer, Position> cache = new HashMap<>();
+
     private static final int UNIT = 1;
 
     private final int position;
