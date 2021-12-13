@@ -20,7 +20,7 @@ public class Line {
     }
 
     public boolean isNotDrawnBeforePoint(int index) {
-        if (index - UNIT < 0) {
+        if (index - UNIT < START_NUMBER) {
             return true;
         }
 
@@ -31,16 +31,12 @@ public class Line {
         return random.nextBoolean();
     }
 
-    public int size() {
-        return points.size();
-    }
-
     public boolean get(int index) {
         return points.get(index);
     }
 
     public boolean hasLeft(int position) {
-        if (position - UNIT < 0) {
+        if (position - UNIT < START_NUMBER) {
             return false;
         }
 
@@ -53,7 +49,7 @@ public class Line {
 
     public boolean hasRight(int position) {
 
-        if (position < 0) {
+        if (position < START_NUMBER) {
             return false;
         }
 
