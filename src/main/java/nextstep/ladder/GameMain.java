@@ -40,9 +40,6 @@ public class GameMain {
     }
 
     private static boolean isStopInput(String findName) {
-        if (findName.equals("all")) {
-            return true;
-        }
-        return false;
+        return findName.equals("all");
     }
 }
