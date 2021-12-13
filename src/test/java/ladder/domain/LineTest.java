@@ -24,13 +24,6 @@ public class LineTest {
     }
 
     @Test
-    @DisplayName("참가자 수 만큼의 points를 가진다.")
-    void createOfUser() {
-        Line line = new Line(3);
-        assertThat(line.getPoints().size()).isEqualTo(3);
-    }
-
-    @Test
     @DisplayName("Line을 그리기 위해 사다리 line을 가져온다.")
     void getResultLine() {
         assertThat(line.getResultLine()).isEqualTo("    |-----|     ");

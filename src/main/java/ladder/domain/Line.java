@@ -27,10 +27,6 @@ public class Line {
         points.add(Point.lastPoint(current));
     }
 
-    public List<Point> getPoints() {
-        return points;
-    }
-
     public String getResultLine() {
         StringBuilder sb = new StringBuilder();
         sb.append(SYMBOL_BLANK).append(SYMBOL_BLANK).append(SYMBOL_BLANK).append(SYMBOL_BLANK);

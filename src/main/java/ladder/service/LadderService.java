@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
 public class LadderService {
     private final Users users;
     private final LadderHeight ladderHeight;
-    private Lines lines;
 
     public LadderService(String[] users, String ladderHeight) {
         this.users = new Users(Arrays.stream(users)
@@ -23,8 +22,7 @@ public class LadderService {
     }
 
     public void play() {
-        Lines lines = new Lines();
-        lines.createLines(users.getUserCount(), ladderHeight.getHeight());
+        Lines lines = Lines.createLines(users.getUserCount(), ladderHeight.getHeight());
         OutputView.resultLadder();
         OutputView.drawLadderUsers(users);
         OutputView.drawLadderLines(lines);

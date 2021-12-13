@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class Lines {
-    private List<Line> lines = new ArrayList<>();
+    private List<Line> lines;
 
     public Lines() {
 
@@ -15,11 +15,12 @@ public class Lines {
         this.lines = lines;
     }
 
-    public void createLines(int userCount, int ladderHeight) {
+    public static Lines createLines(int userCount, int ladderHeight) {
+        List<Line> lines = new ArrayList<>();
         for (int i = 0; i < ladderHeight; i++) {
             lines.add(new Line(userCount));
         }
-        System.out.println();
+        return new Lines(lines);
     }
 
     public List<Line> getLines() {

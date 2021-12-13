@@ -9,6 +9,7 @@ public class OutputView {
     private static final StringBuilder sb = new StringBuilder();
 
     public static void resultLadder() {
+        System.out.println();
         System.out.println(MSG_RESULT_PLAY);
         System.out.println();
     }

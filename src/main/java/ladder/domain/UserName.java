@@ -8,24 +8,24 @@ public class UserName {
     private final String name;
 
     public UserName(String name) {
-        if (name.length() > NUMBER_FIVE) {
+        if (name.length() > USER_NAME_LENGTH_FIVE) {
             throw new IllegalArgumentException(MSG_NAME_LENGTH_FIVE);
         }
         this.name = name;
     }
 
     public String getNameAndBlank() {
-        if (name.length() == NUMBER_FIVE) {
+        if (name.length() == USER_NAME_LENGTH_FIVE) {
             return name;
         }
         String nameAndBlank = name + SYMBOL_BLANK;
-        if (name.length() == NUMBER_FOUR) {
+        if (name.length() == USER_NAME_LENGTH_FOUR) {
             return nameAndBlank;
         }
-        if (name.length() == NUMBER_THREE) {
+        if (name.length() == USER_NAME_LENGTH_THREE) {
             return SYMBOL_BLANK + nameAndBlank;
         }
-        if (name.length() == NUMBER_TWO) {
+        if (name.length() == USER_NAME_LENGTH_TWO) {
             return SYMBOL_BLANK + SYMBOL_BLANK + nameAndBlank;
         }
         return SYMBOL_BLANK + SYMBOL_BLANK + SYMBOL_BLANK + nameAndBlank;
