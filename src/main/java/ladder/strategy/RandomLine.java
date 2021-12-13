@@ -4,9 +4,10 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class RandomLine implements LineStrategy {
 
+    private static final ThreadLocalRandom random = ThreadLocalRandom.current();
+
     @Override
     public boolean isEnableLine() {
-        ThreadLocalRandom random = ThreadLocalRandom.current();
         return random.nextBoolean();
     }
 
