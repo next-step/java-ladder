@@ -3,8 +3,8 @@ package nextstep.ladder.domain;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Participants {
 
@@ -17,12 +17,12 @@ public class Participants {
     }
 
     public static Participants create(String input) {
-        AtomicInteger position = new AtomicInteger(0);
+        List<String> participantNames = Arrays.asList(input.split(INPUT_STRING_REGEX));
 
-        return new Participants(
-            Arrays.stream(input.split(INPUT_STRING_REGEX))
-                .map(name -> new Participant(name, position.getAndIncrement()))
-                .collect(Collectors.toList()));
+        return new Participants(IntStream.range(0, participantNames.size())
+            .boxed()
+            .map(position -> new Participant(participantNames.get(position), position))
+            .collect(Collectors.toList()));
     }
 
     public Participants execute(Ladder ladder) {

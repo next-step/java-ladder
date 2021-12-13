@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -33,9 +34,9 @@ class ParticipantsTest {
     void createTest() throws NoSuchFieldException, IllegalAccessException {
         List<Participant> participantList = getParticipantsByReflection(participants);
 
-        AtomicInteger position = new AtomicInteger(0);
-        List<Participant> expected = names.stream()
-            .map(name -> new Participant(name, position.getAndIncrement()))
+        List<Participant> expected = IntStream.range(0, names.size())
+            .boxed()
+            .map(index -> new Participant(names.get(index), index))
             .collect(Collectors.toList());
 
         assertThat(participantList).isEqualTo(expected);
@@ -73,11 +74,12 @@ class ParticipantsTest {
     @Test
     @DisplayName("참가자 이름을 찾을때, 존재한다면, 정상적으로 반환된다.")
     void findNameTest() {
-        AtomicInteger mockPosition = new AtomicInteger(0);
+
+        int mockPosition = 0;
 
         for (String name : names) {
             assertThat(participants.findByName(name)).isEqualTo(
-                new Participant(name, mockPosition.getAndIncrement()));
+                new Participant(name, mockPosition++));
         }
     }
 

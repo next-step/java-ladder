@@ -16,7 +16,7 @@ public class Ladder {
         valid(participantsCount);
 
         IntStream.range(START_NUMBER, height.getNumber())
-            .forEach(i -> lines.add(new Line(participantsCount - 1, random)));
+            .forEach(index -> lines.add(new Line(participantsCount - 1, random)));
     }
 
     public static Ladder create(PositiveNumber height, int participantsCount) {
