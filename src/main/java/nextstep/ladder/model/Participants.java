@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 public class Participants {
 
     private final String FIND_PERSON_ERROR_MSG = "해당 참가자는 존재 하지 않습니다!!!";
+    private static final String DELIMITER = ",";
 
     private static List<Participant> participants;
 
@@ -24,7 +25,7 @@ public class Participants {
         AtomicInteger position = new AtomicInteger(0);
 
         return new Participants(
-                Arrays.stream(inputData.split(","))
+                Arrays.stream(inputData.split(DELIMITER))
                         .map(String::trim)
                         .map(name -> new Participant(name, position.getAndIncrement()))
                         .collect(Collectors.toList()));
