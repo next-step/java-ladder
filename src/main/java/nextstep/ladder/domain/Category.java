@@ -11,8 +11,7 @@ public class Category {
 
     private final List<Name> category;
 
-    private Category(List<Name> category, Players players) {
-        validSize(category, players);
+    private Category(List<Name> category) {
         this.category = category;
     }
 
@@ -20,7 +19,9 @@ public class Category {
         List<Name> category = Arrays.stream(inputCategory.split())
             .map(Name::of)
             .collect(Collectors.toCollection(ArrayList::new));
-        return new Category(category, players);
+
+        validSize(category, players);
+        return new Category(category);
     }
 
     public Name get(int index) {
@@ -31,7 +32,7 @@ public class Category {
         return Collections.unmodifiableList(category);
     }
 
-    private void validSize(List<Name> category, Players players) {
+    private static void validSize(List<Name> category, Players players) {
         if (!players.isSize(category.size())) {
             throw new CategorySizeException();
         }
