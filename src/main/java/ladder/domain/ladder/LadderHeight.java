@@ -4,14 +4,14 @@ import java.util.Objects;
 
 public class LadderHeight {
 
-    public static final int MIN_HEIGHT_VALUE = 1;
-    public static final String HEIGHT_ERROR_MSG = "높이는 1이상 입력해주세요";
+    public static final int MINIMUM_HEIGHT_VALUE = 1;
+    public static final String ERROR_HEIGHT_VALUE_MSG = "높이는 1이상 입력해주세요";
 
     private final int height;
 
     public LadderHeight(int height) {
-        if (height < MIN_HEIGHT_VALUE) {
-            throw new IllegalArgumentException(HEIGHT_ERROR_MSG);
+        if (height < MINIMUM_HEIGHT_VALUE) {
+            throw new IllegalArgumentException(ERROR_HEIGHT_VALUE_MSG);
         }
         this.height = height;
     }

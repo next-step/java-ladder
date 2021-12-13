@@ -16,10 +16,16 @@ public class Line {
         for (int i = 0; i < players - 1; i++) {
             points.add(new Point(i + 1, PointDirection.createDirection(points.get(i).isRight(), strategy)));
         }
+        points.add(new Point(players, PointDirection.createLastDirection(points.get(points.size() - 1).isRight())));
     }
 
     public List<Point> getPoints() {
         return Collections.unmodifiableList(points);
+    }
+
+    public int move(int index) {
+        index = points.get(index).move();
+        return index;
     }
 
     @Override
@@ -43,6 +49,5 @@ public class Line {
     public String toString() {
         return points + " ";
     }
-
 
 }

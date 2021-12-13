@@ -2,7 +2,6 @@ package ladder.domain.ladder;
 
 import ladder.domain.user.Players;
 import ladder.strategy.LineStrategy;
-import ladder.strategy.RandomLine;
 
 import java.util.List;
 import java.util.Objects;
@@ -24,9 +23,16 @@ public class Ladder {
 
     public static Ladder createLadder(LineStrategy strategy, Players players, LadderHeight height) {
         List<Line> lines = range(0, height.getHeight())
-                .mapToObj(i -> new Line(players.size(), strategy))
+                .mapToObj(range -> new Line(players.size(), strategy))
                 .collect(toList());
         return new Ladder(lines);
+    }
+
+    public int move(int index) {
+        for (Line line : lines) {
+            index = line.move(index);
+        }
+        return index;
     }
 
     @Override

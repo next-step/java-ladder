@@ -5,15 +5,27 @@ import java.util.Objects;
 public class PointPosition {
 
     public static final int FIRST_POSITION_VALUE = 0;
-    public static final String POSITION_ERROR_MSG = "음수값은 안됩니다.";
+    public static final String ERROR_POSITION_VALUE_MSG = "음수값은 안됩니다.";
 
-    private final int position;
+    private int position;
 
     public PointPosition(int position) {
         if (position < FIRST_POSITION_VALUE) {
-            throw new IllegalArgumentException(POSITION_ERROR_MSG);
+            throw new IllegalArgumentException(ERROR_POSITION_VALUE_MSG);
         }
         this.position = position;
+    }
+
+    public int increment() {
+        return ++position;
+    }
+
+    public int decrement() {
+        return --position;
+    }
+
+    public int stop() {
+        return position;
     }
 
     @Override

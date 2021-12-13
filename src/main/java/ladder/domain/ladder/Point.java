@@ -16,8 +16,22 @@ public class Point {
         this.direction = direction;
     }
 
+    public int move() {
+        if (isRight()) {
+            return position.increment();
+        }
+        if (isLeft()) {
+            return position.decrement();
+        }
+        return position.stop();
+    }
+
     public boolean isRight() {
         return direction.isRight();
+    }
+
+    public boolean isLeft() {
+        return direction.isLeft();
     }
 
     @Override

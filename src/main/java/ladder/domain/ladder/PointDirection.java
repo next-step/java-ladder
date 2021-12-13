@@ -14,6 +14,9 @@ public class PointDirection {
     }
 
     public PointDirection(boolean left, boolean right) {
+        if (left && right) {
+            throw new IllegalStateException();
+        }
         this.left = left;
         this.right = right;
     }
@@ -23,6 +26,13 @@ public class PointDirection {
             return new PointDirection(true, false);
         }
         return new PointDirection(false, strategy.isEnableLine());
+    }
+
+    public static PointDirection createLastDirection(boolean isRight) {
+        if (isRight) {
+            return new PointDirection(true, false);
+        }
+        return new PointDirection(false, false);
     }
 
     public boolean isRight() {
