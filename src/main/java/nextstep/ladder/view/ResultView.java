@@ -3,8 +3,8 @@ package nextstep.ladder.view;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-import nextstep.ladder.domain.Category;
 import nextstep.ladder.domain.AbstractString;
+import nextstep.ladder.domain.Category;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Players;
@@ -54,16 +54,16 @@ public class ResultView {
     }
 
     private static void outputPlayer(Players players) {
-        String player = ToJoining(players.getPlayers());
+        String player = toJoining(players.getPlayers());
         System.out.println(player.trim());
     }
 
     private static void outputCategory(Category category) {
-        String categoryJoin = ToJoining(category.getCategory());
+        String categoryJoin = toJoining(category.getCategory());
         System.out.println(categoryJoin.trim());
     }
 
-    private static <T extends AbstractString> String ToJoining(List<T> inputStrings) {
+    private static <T extends AbstractString> String toJoining(List<T> inputStrings) {
         return inputStrings.stream()
             .map(ResultView::getFormat)
             .collect(Collectors.joining());
