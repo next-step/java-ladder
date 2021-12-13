@@ -6,8 +6,6 @@ import nextstep.ladder.exception.CategorySizeException;
 
 public class Category {
 
-    private static final String DELIMITER = ",";
-
     private final List<Item> category;
 
     public Category(List<Item> category, Players players) {
