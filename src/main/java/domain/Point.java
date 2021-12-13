@@ -1,5 +1,7 @@
 package domain;
 
+import static domain.RandomGenerator.generatePoint;
+
 public class Point {
     private final int index;
     private final Direction direction;

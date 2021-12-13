@@ -13,7 +13,7 @@ public class LadderTest {
     @Test
     void testFinalPoint() {
         assertThat(LADDER.finalPoint(0)).isEqualTo(2);
-        assertThat(LADDER.finalPoint(1)).isEqualTo(1);
-        assertThat(LADDER.finalPoint(2)).isEqualTo(0);
+        assertThat(LADDER.finalPoint(1)).isEqualTo(0);
+        assertThat(LADDER.finalPoint(2)).isEqualTo(1);
     }
 }

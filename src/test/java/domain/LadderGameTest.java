@@ -16,7 +16,7 @@ public class LadderGameTest {
         LadderGame ladderGame = new LadderGame(PARTICIPANTS, LADDER);
 
         assertThat(ladderGame.result("pobi", LADDER_RESULT)).isEqualTo("5000");
-        assertThat(ladderGame.result("honux", LADDER_RESULT)).isEqualTo("3000");
-        assertThat(ladderGame.result("crong", LADDER_RESULT)).isEqualTo("bomb");
+        assertThat(ladderGame.result("honux", LADDER_RESULT)).isEqualTo("bomb");
+        assertThat(ladderGame.result("crong", LADDER_RESULT)).isEqualTo("3000");
     }
 }
