@@ -4,14 +4,19 @@ import java.util.Objects;
 
 public class PlayerName {
 
-    public static final int MAX_NAME_VALUE = 5;
-    public static final String PLAYER_NAME_ERROR_MSG = "이름은 5글자를 초과하면 안됩니다.";
+    public static final int MAXIMUM_NAME_LENGTH = 5;
+    public static final int MINIMUM_NAME_LENGTH = 1;
+    public static final String ERROR_NAME_LENGTH_MSG = "이름은 5글자를 초과하면 안됩니다.";
+    public static final String ERROR_NULL_MSG = "1명 이상 입력해주세요";
 
     private final String name;
 
     public PlayerName(String name) {
-        if (!(0 < name.length() && name.length() <= MAX_NAME_VALUE)) {
-            throw new IllegalArgumentException(PLAYER_NAME_ERROR_MSG);
+        if (!(MINIMUM_NAME_LENGTH <= name.length() && name.length() <= MAXIMUM_NAME_LENGTH)) {
+            throw new IllegalArgumentException(ERROR_NAME_LENGTH_MSG);
+        }
+        if (name.isEmpty()) {
+            throw new NullPointerException(ERROR_NULL_MSG);
         }
         this.name = name;
     }
@@ -42,4 +47,7 @@ public class PlayerName {
         return name;
     }
 
+    public boolean isSameName(String player) {
+        return this.name.equals(player);
+    }
 }

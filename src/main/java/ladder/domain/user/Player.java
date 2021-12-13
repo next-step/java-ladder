@@ -36,4 +36,7 @@ public class Player {
         return playerName.getName();
     }
 
+    public boolean isSamePlayer(String player) {
+        return playerName.isSameName(player);
+    }
 }
