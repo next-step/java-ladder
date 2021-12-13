@@ -13,6 +13,10 @@ public class Ladder {
         this.lines = lines;
     }
 
+    public static Ladder ofLines(List<Line> lines) {
+        return new Ladder(lines);
+    }
+
     public static Ladder ofRandom(int countOfParticipants, int countOfLine) {
         List<Line> lines = new ArrayList<>();
         IntStream.range(0, countOfLine)

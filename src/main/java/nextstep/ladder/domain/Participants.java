@@ -9,6 +9,7 @@ public class Participants {
     private final List<Participant> participants;
 
     private Participants(List<Participant> participants) {
+        checkMinimumNumber(participants);
         this.participants = participants;
     }
 
@@ -20,6 +21,12 @@ public class Participants {
 
     public int getParticipantsSize() {
         return participants.size();
+    }
+
+    private void checkMinimumNumber(List<Participant> participants) {
+        if (participants.size() < 2) {
+            throw new IllegalArgumentException("2명보다 적은 참가자는 게임할 수 없습니다.");
+        }
     }
 
     public List<Participant> getParticipants() {

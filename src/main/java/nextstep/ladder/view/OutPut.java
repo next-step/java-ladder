@@ -19,7 +19,7 @@ public class OutPut {
                     for (int i = 0; i < (PARTICIPANT_SIZE + 1 - participant.getParticipantLength()); i++) {
                         sb.append(" ");
                     }
-                    System.out.print(participant.getParticipant() + sb.toString());
+                    System.out.print(participant.getParticipant() + sb);
                 });
         System.out.println();
     }
@@ -43,7 +43,15 @@ public class OutPut {
     }
 
     public static void viewCompensation(Compensations compensations) {
-        System.out.println(compensations.getCompensations());
+        compensations.getCompensations().stream()
+                .forEach(compensation -> {
+                    sb.setLength(0);
+                    for (int i = 0; i < (PARTICIPANT_SIZE + 1 - compensation.length()); i++) {
+                        sb.append(" ");
+                    }
+                    System.out.print(compensation + sb);
+                });
+        System.out.println();
     }
 
     public static void viewResult(Participants participants, Compensations compensations, Ladder ladder, Participant participantWantResult) {

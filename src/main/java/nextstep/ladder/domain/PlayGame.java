@@ -26,6 +26,7 @@ public class PlayGame {
                 index = i;
             }
         }
+        checkParticipant(index);
         for (Line line : ladder.getLines()) {
             if (line.getPoints().get(index) == Point.of("right")) {
                 index += 1;
@@ -35,5 +36,11 @@ public class PlayGame {
         }
         result.put(participantWantResult.getParticipant(), compensations.getCompensations().get(index));
         return result;
+    }
+
+    public static void checkParticipant(int index) {
+        if (index == -1) {
+            throw new IllegalArgumentException("해당 참가자가 없습니다.");
+        }
     }
 }

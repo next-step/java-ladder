@@ -1,6 +1,8 @@
 package nextstep.ladder.domain;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 
 public class Point {
     public static final Random RANDOM = new Random();
@@ -11,14 +13,14 @@ public class Point {
     private static final Map<String, Point> POINT_FOR_CASH = new HashMap<>();
 
     static {
-        POINT_FOR_CASH.put("left", new Point(Arrays.asList(true, false)));
-        POINT_FOR_CASH.put("right", new Point(Arrays.asList(false, true)));
-        POINT_FOR_CASH.put("none", new Point(Arrays.asList(false, false)));
+        POINT_FOR_CASH.put("left", new Point("left"));
+        POINT_FOR_CASH.put("right", new Point("right"));
+        POINT_FOR_CASH.put("none", new Point("none"));
     }
 
-    private final List<Boolean> point;
+    private final String point;
 
-    private Point(List<Boolean> point) {
+    private Point(String point) {
         this.point = point;
     }
 
