@@ -5,7 +5,7 @@ import static common.ErrorMessages.LADDER_HEIGHT_IS_TOO_SHORT;
 
 public class Height {
 
-  private int height;
+  private final int height;
 
   public Height(int height) {
     checkValidity(height);

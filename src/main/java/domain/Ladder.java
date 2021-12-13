@@ -9,7 +9,8 @@ import java.util.List;
 public class Ladder {
 
   private Height height;
-  private List<Floor> floors = new ArrayList();
+//  private List<Floor> floors = new ArrayList();
+  private Floors floors;
 
   public Ladder(int height, int numberOfPlayers) {
     this.height = new Height(height);
@@ -22,15 +23,16 @@ public class Ladder {
   }
 
   private void createFloors(int numberOfPlayers, HorizontalLineDrawingStrategy strategy) {
+    this.floors = new Floors();
     List<Floor> lines = new ArrayList();
     lines.add(new Floor(numberOfPlayers, strategy));
     for (int i = 0; i < height.getValue(); i++) {
-      this.floors.add(new Floor(numberOfPlayers, strategy));
+      this.floors.addFloor(new Floor(numberOfPlayers, strategy));
     }
   }
 
   public List<Floor> getFloors() {
-    return new ArrayList(floors);
+    return this.floors.getFloors();
   }
 
 }
