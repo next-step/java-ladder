@@ -6,6 +6,7 @@ import java.util.stream.IntStream;
 public class Line {
 
     private static final int START_NUMBER = 0;
+    private static final int UNIT = 1;
 
     private List<Point> points = new ArrayList<>();
 
@@ -33,6 +34,42 @@ public class Line {
         return points.get(position).isTrue();
     }
 
+    public int move(int position) {
+        if (hasLeftLine(position).isTrue()) {
+            return position - UNIT;
+        }
+
+        if (hasRightLine(position).isTrue()) {
+            return position + UNIT;
+        }
+
+        return position;
+    }
+
+    public Point hasLeftLine(int position) {
+        if (position - UNIT < START_NUMBER) {
+            return new Point(false);
+        }
+
+        if (position > points.size()) {
+            return new Point(false);
+        }
+
+        return points.get(position - UNIT);
+    }
+
+    public Point hasRightLine(int position) {
+        if (position < START_NUMBER) {
+            return new Point(false);
+        }
+
+        if (position > points.size() - UNIT) {
+            return new Point(false);
+        }
+
+        return points.get(position);
+    }
+
     public List<Point> getPoints() {
         return Collections.unmodifiableList(points);
     }
@@ -53,4 +90,5 @@ public class Line {
     public int hashCode() {
         return Objects.hash(points);
     }
+
 }

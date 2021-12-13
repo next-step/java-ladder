@@ -13,9 +13,9 @@ public class ParticipantTest {
     @Test
     @DisplayName("참석자의 이름이 정상적으로 생성되는지 검증")
     void createTest() {
-        Participant name = new Participant("lee");
+        Participant name = new Participant("lee", 0);
 
-        assertThat(name).isEqualTo(new Participant("lee"));
+        assertThat(name).isEqualTo(new Participant("lee", 0));
     }
 
     @Test
@@ -23,7 +23,7 @@ public class ParticipantTest {
     void overExceptionTest() {
 
         assertThatThrownBy(() ->
-                new Participant("jeonggi")).isInstanceOf(IllegalArgumentException.class);
+                new Participant("jeonggi", 0)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @ParameterizedTest
@@ -32,7 +32,7 @@ public class ParticipantTest {
     void emptyExceptionTest(String input) {
 
         assertThatThrownBy(() ->
-                new Participant(input)).isInstanceOf(NullPointerException.class);
+                new Participant(input, 0)).isInstanceOf(NullPointerException.class);
 
     }
 }

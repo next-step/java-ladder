@@ -11,7 +11,6 @@ import java.util.stream.IntStream;
 public class Ladder {
 
     private static final int START_NUMBER = 0;
-    private static Random RANDOM = new Random();
 
     private static List<Line> lines = new ArrayList<>();
 
@@ -22,7 +21,7 @@ public class Ladder {
     public static Ladder of(int height, int countOfPerson) {
 
         IntStream.range(START_NUMBER, height)
-                .forEach(i -> lines.add(new Line(countOfPerson - 1 , RANDOM)));
+                .forEach(i -> lines.add(new Line(countOfPerson - 1 , new Random())));
 
         return new Ladder(lines);
     }

@@ -1,6 +1,7 @@
 package nextstep.ladder.model;
 
 import nextstep.ladder.model.value.LadderResult;
+import nextstep.ladder.model.value.Participant;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -29,4 +30,7 @@ public class LadderResults {
         return Collections.unmodifiableList(ladderResults);
     }
 
+    public LadderResult get(Participant participant) {
+        return ladderResults.get(participant.getPosition());
+    }
 }

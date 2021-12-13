@@ -5,6 +5,7 @@ import nextstep.ladder.model.value.Participant;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 public class Participants {
@@ -17,10 +18,13 @@ public class Participants {
     }
 
     public static Participants from(String inputData) {
+
+        AtomicInteger position = new AtomicInteger(0);
+
         return new Participants(
                 Arrays.stream(inputData.split(","))
                         .map(String::trim)
-                        .map(Participant::new)
+                        .map(name -> new Participant(name, position.getAndIncrement()))
                         .collect(Collectors.toList()));
     }
 

@@ -9,8 +9,9 @@ public class Participant {
     private static final int NAME_MAX_SIZE = 5;
 
     private final String name;
+    private final int position;
 
-    public Participant(String inputName) {
+    public Participant(String inputName, int position) {
 
         if(inputName.isEmpty()) {
             throw new NullPointerException(FORMAT_ERROR_MSG);
@@ -21,10 +22,15 @@ public class Participant {
         }
 
         this.name = inputName;
+        this.position = position;
     }
 
     public String getName() {
         return name;
+    }
+
+    public int getPosition() {
+        return position;
     }
 
     @Override
