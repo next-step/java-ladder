@@ -1,7 +1,10 @@
 package nextstep.ladder.domain;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 import nextstep.ladder.exception.NotEnoughPlayersException;
 
 public class Players {
@@ -11,9 +14,17 @@ public class Players {
 
     private final List<Name> players;
 
-    public Players(List<Name> players) {
-        valid(players);
+    private Players(List<Name> players) {
         this.players = players;
+    }
+
+    public static Players of(InputString playerName) {
+        List<Name> players = Arrays.stream(playerName.split())
+            .map(Name::of)
+            .collect(Collectors.toCollection(ArrayList::new));
+
+        valid(players);
+        return new Players(players);
     }
 
     public Name getPlayer(int index) {
@@ -36,7 +47,7 @@ public class Players {
         return players.size() == size;
     }
 
-    private void valid(List<Name> players) {
+    private static void valid(List<Name> players) {
         if (players.isEmpty() || players.size() < PLAYERS_MINIMUM_SIZE) {
             throw new NotEnoughPlayersException(PLAYERS_MINIMUM_SIZE);
         }

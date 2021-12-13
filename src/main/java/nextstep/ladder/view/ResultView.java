@@ -3,10 +3,10 @@ package nextstep.ladder.view;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-import nextstep.ladder.domain.AbstractString;
 import nextstep.ladder.domain.Category;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Line;
+import nextstep.ladder.domain.Name;
 import nextstep.ladder.domain.Players;
 
 public class ResultView {
@@ -63,13 +63,13 @@ public class ResultView {
         System.out.println(categoryJoin.trim());
     }
 
-    private static <T extends AbstractString> String toJoining(List<T> inputStrings) {
+    private static String toJoining(List<Name> inputStrings) {
         return inputStrings.stream()
             .map(ResultView::getFormat)
             .collect(Collectors.joining());
     }
 
-    private static String getFormat(AbstractString result) {
+    private static String getFormat(Name result) {
         return String.format(STRING_FORMAT, result);
     }
 

@@ -3,7 +3,6 @@ package nextstep.ladder.service;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import nextstep.ladder.domain.Category;
-import nextstep.ladder.domain.Item;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Move;
@@ -23,8 +22,8 @@ public class LadderGame {
         return LadderGameHolder.LADDER_GAME;
     }
 
-    public Map<Name, Item> gamePlay(Players players, Ladder ladder, Category category) {
-        Map<Name, Item> result = new LinkedHashMap<>();
+    public Map<Name, Name> gamePlay(Players players, Ladder ladder, Category category) {
+        Map<Name, Name> result = new LinkedHashMap<>();
         final int SIZE = players.size();
 
         for (int idx = 0; idx < SIZE; idx++) {

@@ -16,7 +16,7 @@ public class NameTest {
     @ValueSource(strings = {"pobi", "honux", "crong", "jk"})
     @DisplayName("생성 성공")
     void create(String name) {
-        assertThat(new Name(name)).isEqualTo(new Name(name));
+        assertThat(Name.of(name)).isEqualTo(Name.of(name));
     }
 
     @ParameterizedTest
@@ -24,7 +24,7 @@ public class NameTest {
     @DisplayName("이름 길이 초과 예외처리")
     void nameSizeOverBoundException(String name) {
         assertThatExceptionOfType(NameSizeOverBoundException.class)
-            .isThrownBy(() -> new Name(name));
+            .isThrownBy(() -> Name.of(name));
     }
 
     @ParameterizedTest
@@ -32,7 +32,7 @@ public class NameTest {
     @DisplayName("이름 NULL 혹은 빈값 예외처리")
     void nameNullPointerException(String name) {
         assertThatExceptionOfType(InputNullPointerException.class)
-            .isThrownBy(() -> new Name(name));
+            .isThrownBy(() -> Name.of(name));
     }
 
 }

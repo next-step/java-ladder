@@ -2,12 +2,10 @@ package nextstep.ladder.controller;
 
 import nextstep.ladder.domain.Category;
 import nextstep.ladder.domain.Height;
+import nextstep.ladder.domain.InputString;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.service.LadderGame;
 import nextstep.ladder.domain.Players;
-import nextstep.ladder.domain.StringAsCategory;
-import nextstep.ladder.domain.StringAsHeight;
-import nextstep.ladder.domain.StringAsPlayers;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.PlayersResultView;
 import nextstep.ladder.view.ResultView;
@@ -15,14 +13,13 @@ import nextstep.ladder.view.ResultView;
 public class LadderController {
 
     public static void main(String[] args) {
-        String playerName = InputView.inputPlayerName();
-        Players players = new StringAsPlayers(playerName).players();
+        InputString inputPlayer = new InputString(InputView.inputPlayerName());
+        Players players = Players.of(inputPlayer);
 
-        String items = InputView.inputCategory();
-        Category category = new StringAsCategory(items).category(players);
+        InputString inputCategory = new InputString(InputView.inputCategory());
+        Category category = Category.of(inputCategory, players);
 
-        String ladderLength = InputView.inputLadderLength();
-        Height height = new StringAsHeight(ladderLength).height();
+        Height height = new Height(InputView.inputLadderLength());
 
         Ladder ladder = Ladder.of(players.width(), height);
         ResultView.outputResult(players, ladder, category);
