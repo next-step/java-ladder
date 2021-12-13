@@ -25,7 +25,9 @@ public class LadderGame {
 
     public Map<Name, Item> gamePlay(Players players, Ladder ladder, Category category) {
         Map<Name, Item> result = new LinkedHashMap<>();
-        for (int idx = 0; idx < players.size(); idx++) {
+        final int SIZE = players.size();
+
+        for (int idx = 0; idx < SIZE; idx++) {
             result.put(players.getPlayer(idx), category.get(playerResult(ladder, idx)));
         }
         return result;
