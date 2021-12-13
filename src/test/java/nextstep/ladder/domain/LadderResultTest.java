@@ -13,12 +13,7 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LadderResultTest {
-
-    private Players players = Players.from(new String[] {"A", "B", "C", "D", "E", "F"});
-    private Results results = Results.from(new String[] {"1", "2", "3", "4", "5", "6"});
-    private Ladder ladder;
     private LadderResult ladderResult;
-
     /*
       setUp Lines
       A -> 1
@@ -34,7 +29,6 @@ class LadderResultTest {
       |------|      |------|      |------|
       1      2      3      4      5      6
        */
-
     @BeforeEach
     @DisplayName("Players Ladder Results로 LadderResults를 생성한다")
     void setUp() {
@@ -70,9 +64,10 @@ class LadderResultTest {
                         )
                 )
         );
-
+        Players players = Players.from(new String[] {"A", "B", "C", "D", "E", "F"});
+        Results results = Results.from(new String[] {"1", "2", "3", "4", "5", "6"});
         Lines lines = Lines.from(lineList);
-        ladder = Ladder.from(lines);
+        Ladder ladder = Ladder.from(lines);
         ladderResult = LadderResult.from(players, ladder, results);
     }
 

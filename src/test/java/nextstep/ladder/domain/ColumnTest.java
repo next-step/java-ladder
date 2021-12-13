@@ -76,4 +76,34 @@ class ColumnTest {
                 )
         );
     }
+
+    @ParameterizedTest
+    @DisplayName("Column isRight test")
+    @MethodSource
+    void isRight(Column column, boolean expected) {
+        assertThat(column.isRight()).isEqualTo(expected);
+    }
+
+    static Stream<Arguments> isRight() {
+        return Stream.of(
+                Arguments.of(
+                    Column.head(Boolean.TRUE), Boolean.TRUE
+                ),
+                Arguments.of(
+                    Column.head(Boolean.FALSE), Boolean.FALSE
+                ),
+                Arguments.of(
+                    Column.body(Boolean.TRUE, Boolean.FALSE), Boolean.FALSE
+                ),
+                Arguments.of(
+                    Column.body(Boolean.FALSE, Boolean.TRUE), Boolean.TRUE
+                ),
+                Arguments.of(
+                    Column.body(Boolean.FALSE, Boolean.FALSE), Boolean.FALSE
+                ),
+                Arguments.of(
+                    Column.tail(Boolean.FALSE), Boolean.FALSE
+                )
+        );
+    }
 }

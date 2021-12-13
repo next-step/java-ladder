@@ -6,13 +6,15 @@ import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
 
 public class Application {
+    private static final String ALL = "all";
+
     public static void main(String[] args) {
         Players players = getPlayers();
 
         Results results = getResults(players.playersCount());
         int ladderHeight = InputView.askLadderHeight();
 
-        Lines lines = LinesFactory.of(players.playersCount(), ladderHeight, new RandomLineGenerator(), new RandomBooleanListGenerator());
+        Lines lines = LinesFactory.of(ladderHeight, new RandomBooleanListGenerator(players.playersCount()));
 
         Ladder ladder = Ladder.from(lines);
 
@@ -23,8 +25,7 @@ public class Application {
 
         String playerName = InputView.askResultOfPlayer();
 
-        while (true) {
-            checkPlayerName(playerName, ladderResult);
+        while (!playerName.equals(ALL)) {
             Player player = Player.from(playerName);
 
             Player findPlayer = players.findPlayer(player);
@@ -32,14 +33,10 @@ public class Application {
             Result resultOfPlayer = ladderResult.resultOfPlayer(findPlayer);
 
             OutputView.printResult(resultOfPlayer);
-        }
-    }
 
-    private static void checkPlayerName(String playerName, LadderResult ladderResult) {
-        if (playerName.equals("all")) {
-            OutputView.printLadderResult(ladderResult);
+            playerName = InputView.askResultOfPlayer();
         }
-        System.exit(0);
+        OutputView.printLadderResult(ladderResult);
     }
 
     private static Players getPlayers() {

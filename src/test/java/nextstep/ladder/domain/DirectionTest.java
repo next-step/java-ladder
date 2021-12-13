@@ -38,7 +38,7 @@ class DirectionTest {
 
     @Test
     @DisplayName("Direction의 left & right 모두 true일 경우 exception")
-    void exception(boolean left, boolean right) {
+    void exception() {
         assertThatThrownBy(() -> Direction.of(Boolean.TRUE, Boolean.TRUE)).isInstanceOf(DirectionException.class);
     }
 
@@ -60,13 +60,6 @@ class DirectionTest {
                 Arguments.of(
                         Direction.STOP, 1, 1
 
-                ),
-                Arguments.of(
-                        Direction.STOP, 1, 1
-
-                ),
-                Arguments.of(
-                        Direction.STOP, 1, 1
                 )
         );
     }
