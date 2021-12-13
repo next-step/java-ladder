@@ -12,7 +12,7 @@ public class Name {
     private final String name;
 
     public Name(String name) {
-        this.name = validationNameLength(StringUtils.isNullOrEmpty(name));
+        this.name = validationNameLength(StringUtils.validationNotNullAndEmpty(name));
     }
 
     private String validationNameLength(String name) {
