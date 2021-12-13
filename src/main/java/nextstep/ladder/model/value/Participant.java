@@ -1,5 +1,7 @@
 package nextstep.ladder.model.value;
 
+import nextstep.ladder.model.Ladder;
+
 import java.util.Objects;
 
 public class Participant {
@@ -23,6 +25,20 @@ public class Participant {
 
         this.name = inputName;
         this.position = position;
+    }
+
+    public Participant climb(Ladder ladder) {
+        int tempPosition = this.position;
+
+        for (Line line : ladder.getLines()) {
+            tempPosition = line.move(tempPosition);
+        }
+
+        return new Participant(this.name, tempPosition);
+    }
+
+    public boolean isEqualsName(String name) {
+        return this.name.equals(name);
     }
 
     public String getName() {

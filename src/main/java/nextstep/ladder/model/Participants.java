@@ -10,6 +10,8 @@ import java.util.stream.Collectors;
 
 public class Participants {
 
+    private final String FIND_PERSON_ERROR_MSG = "해당 참가자는 존재 하지 않습니다!!!";
+
     private static List<Participant> participants;
 
     private Participants(List<Participant> inputData) {
@@ -26,6 +28,21 @@ public class Participants {
                         .map(String::trim)
                         .map(name -> new Participant(name, position.getAndIncrement()))
                         .collect(Collectors.toList()));
+    }
+
+    public Participants execute(Ladder ladder) {
+        List<Participant> collect = participants.stream()
+                .map(participant -> participant.climb(ladder))
+                .collect(Collectors.toList());
+
+        return new Participants(collect);
+    }
+
+    public Participant findByName(String name) {
+        return participants.stream()
+                .filter(participant -> participant.isEqualsName(name))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException(FIND_PERSON_ERROR_MSG));
     }
 
     public int size() {
