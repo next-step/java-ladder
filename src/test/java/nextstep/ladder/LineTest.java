@@ -11,62 +11,48 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class MakePoints {
-    List<Point> givenA() {
-        List<Point> list = new ArrayList<>();
-        list.add(Point.of(true));
-        list.add(Point.of(false));
-        list.add(Point.of(true));
-        list.add(Point.of(false));
-        list.add(Point.of(false));
-        list.add(Point.of(false));
-        return list;
-    }
-
-    List<Point> givenB() {
-        List<Point> list = new ArrayList<>();
-        list.add(Point.of(false));
-        list.add(Point.of(false));
-        list.add(Point.of(true));
-        list.add(Point.of(false));
-        list.add(Point.of(true));
-        list.add(Point.of(false));
-        return list;
-    }
-
-    List<Point> givenC() {
-        List<Point> list = new ArrayList<>();
-        list.add(Point.of(true));
-        list.add(Point.of(false));
-        list.add(Point.of(false));
-        list.add(Point.of(false));
-        list.add(Point.of(true));
-        return list;
-    }
-}
-
-public class LineTest extends MakePoints {
+public class LineTest {
     @Test
     @DisplayName("ofString 메소드로 Line 이 잘 만들어지는지 테스트")
     public void LineFromStringInputTest() {
-        Line lineByStringA = Line.ofString("true,false,true,false,false,false");
-        Line lineByStringB = Line.ofString("false,false,true,false,true,false");
-        Line lineByStringC = Line.ofString("true,false,false,false,true");
+        Line lineByStringA = Line.ofString("right,left,right,left,none,none");
+        Line lineByStringB = Line.ofString("none,right,left,right,left,none");
+        Line lineByStringC = Line.ofString("right,left,none,right,left");
 
-        List<Point> lineA = givenA();
-        List<Point> lineB = givenB();
-        List<Point> lineC = givenC();
+        List<Point> lineA = new ArrayList<>();
+        lineA.add(Point.of("right"));
+        lineA.add(Point.of("left"));
+        lineA.add(Point.of("right"));
+        lineA.add(Point.of("left"));
+        lineA.add(Point.of("none"));
+        lineA.add(Point.of("none"));
 
-        assertThat(lineByStringA).isEqualTo(lineA);
-        assertThat(lineByStringB).isEqualTo(lineB);
-        assertThat(lineByStringC).isEqualTo(lineC);
+
+        List<Point> lineB = new ArrayList<>();
+        lineB.add(Point.of("none"));
+        lineB.add(Point.of("right"));
+        lineB.add(Point.of("left"));
+        lineB.add(Point.of("right"));
+        lineB.add(Point.of("left"));
+        lineB.add(Point.of("none"));
+
+        List<Point> lineC = new ArrayList<>();
+        lineC.add(Point.of("right"));
+        lineC.add(Point.of("left"));
+        lineC.add(Point.of("none"));
+        lineC.add(Point.of("right"));
+        lineC.add(Point.of("left"));
+
+        assertThat(lineByStringA.getPoints()).isEqualTo(lineA);
+        assertThat(lineByStringB.getPoints()).isEqualTo(lineB);
+        assertThat(lineByStringC.getPoints()).isEqualTo(lineC);
     }
 
     @Test
-    @DisplayName("ofString 메소드 인풋으로, Boolean 변환이 불가능한 문자열이 들어왔을 때 'Boolean 으로 변환될 수 없습니다.' 를 반환")
+    @DisplayName("ofString 메소드 인풋으로, Point로 변환이 불가능한 문자열이 들어왔을 때 'Boolean 으로 변환될 수 없습니다.' 를 반환")
     public void checkCanBeBooleanTest() {
         assertThatThrownBy(() -> {
             Line.ofString("test,test,test");
-        }).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("Boolean 으로 변환될 수 없습니다.");
+        }).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("Point 로 변환될 수 없습니다.");
     }
 }

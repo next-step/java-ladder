@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class ParticipantsTest {
     @Test
@@ -23,5 +24,13 @@ public class ParticipantsTest {
         for (int index = 0; index < participants.getParticipantsSize(); index++) {
             assertThat(participants.getParticipants().get(index)).isEqualTo(participantList.get(index));
         }
+    }
+
+    @Test
+    @DisplayName("checkMinimumNumber 는 2명보다 작은 participants 가 입력되면 2명보다 적은 참가자는 게임할 수 없습니다. 를 반환")
+    void checkMinimumNumberTest() {
+        assertThatThrownBy(() -> {
+            Participants participants = Participants.of("t");
+        }).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("2명보다 적은 참가자는 게임할 수 없습니다.");
     }
 }
