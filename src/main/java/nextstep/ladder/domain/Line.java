@@ -7,6 +7,7 @@ import nextstep.ladder.exception.NotEnoughWidthException;
 
 public class Line {
 
+    private static final int MINIMUM_INDEX = 0;
     private static final int MINIMUM_WIDTH = 1;
     private static final int MINUS_INDEX = 1;
     private static final boolean DEFAULT_LINE = false;
@@ -23,11 +24,14 @@ public class Line {
     }
 
     public Boolean get(int index) {
-        try {
-            return line.get(index);
-        } catch (IndexOutOfBoundsException e) {
+        if (isNotUseIndex(index)) {
             return DEFAULT_LINE;
         }
+        return line.get(index);
+    }
+
+    private boolean isNotUseIndex(int index) {
+        return index < MINIMUM_INDEX || index >= line.size();
     }
 
     public static Line of(int width, LineStrategy lineStrategy) {
