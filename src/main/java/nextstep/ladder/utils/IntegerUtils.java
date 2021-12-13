@@ -12,4 +12,11 @@ public interface IntegerUtils {
         }
         return number;
     }
+
+    static int getNumberIfNotNegative(int number) {
+        if (number < 0) {
+            throw new IllegalArgumentException("음수 값은 사용할 수 없습니다.");
+        }
+        return number;
+    }
 }

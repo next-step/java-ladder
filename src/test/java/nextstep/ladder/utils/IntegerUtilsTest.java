@@ -25,4 +25,18 @@ class IntegerUtilsTest {
         assertThatIllegalArgumentException()
             .isThrownBy(() -> getNumberIfPositive(input));
     }
+
+    @Test
+    @DisplayName("Input 값이, 0이상인 경우, 동일한 값이 반환된다.")
+    void getNumberIfNotNegativeTest() {
+        assertThat(getNumberIfNotNegative(10)).isEqualTo(10);
+        assertThat(getNumberIfNotNegative(0)).isEqualTo(0);
+    }
+
+    @Test
+    @DisplayName("Input 값이 음수인 경우, RuntimeException이 발생한다.")
+    void getNumberIfNotNegativeExceptionTest() {
+        assertThatIllegalArgumentException()
+            .isThrownBy(() -> getNumberIfNotNegative(-1));
+    }
 }
