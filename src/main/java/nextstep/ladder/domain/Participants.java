@@ -21,7 +21,7 @@ public class Participants {
 
         return new Participants(IntStream.range(0, participantNames.size())
             .boxed()
-            .map(position -> new Participant(participantNames.get(position), position))
+            .map(position -> new Participant(participantNames.get(position), Position.of(position)))
             .collect(Collectors.toList()));
     }
 

@@ -19,10 +19,6 @@ public class Line {
             .forEach(index -> points.add(isNotDrawnBeforePoint(index) && pickAtRandom(random)));
     }
 
-    public boolean hasLine(int position) {
-        return points.get(position);
-    }
-
     public boolean isNotDrawnBeforePoint(int index) {
         if (index - UNIT < 0) {
             return true;
@@ -31,45 +27,16 @@ public class Line {
         return !points.get(index - UNIT);
     }
 
-    public int move(int position) {
-        if (hasLeftLine(position)) {
-            return position - UNIT;
-        }
-
-        if (hasRightLine(position)) {
-            return position + UNIT;
-        }
-
-        return position;
-    }
-
-    public boolean hasLeftLine(int position) {
-        if (position - UNIT < START_NUMBER) {
-            return false;
-        }
-
-        if (position > points.size()) {
-            return false;
-        }
-
-        return points.get(position - UNIT);
-    }
-
-    public boolean hasRightLine(int position) {
-        if (position < START_NUMBER) {
-            return false;
-        }
-
-        if (position > points.size() - UNIT) {
-            return false;
-        }
-
-        return points.get(position);
-    }
-
-
     private boolean pickAtRandom(Random random) {
         return random.nextBoolean();
+    }
+
+    public int size() {
+        return points.size();
+    }
+
+    public boolean get(int index) {
+        return points.get(index);
     }
 
     public List<Boolean> getPoints() {

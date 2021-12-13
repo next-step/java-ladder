@@ -36,7 +36,7 @@ class ParticipantsTest {
 
         List<Participant> expected = IntStream.range(0, names.size())
             .boxed()
-            .map(index -> new Participant(names.get(index), index))
+            .map(index -> new Participant(names.get(index), Position.of(index)))
             .collect(Collectors.toList());
 
         assertThat(participantList).isEqualTo(expected);
@@ -48,7 +48,7 @@ class ParticipantsTest {
         List<Participant> participantsList = participants.getParticipants();
 
         assertThatExceptionOfType(UnsupportedOperationException.class)
-            .isThrownBy(() -> participantsList.add(new Participant("user5", 0)));
+            .isThrownBy(() -> participantsList.add(new Participant("user5", Position.of(0))));
     }
 
     @Test
@@ -79,7 +79,7 @@ class ParticipantsTest {
 
         for (String name : names) {
             assertThat(participants.findByName(name)).isEqualTo(
-                new Participant(name, mockPosition++));
+                new Participant(name, Position.of(mockPosition++)));
         }
     }
 

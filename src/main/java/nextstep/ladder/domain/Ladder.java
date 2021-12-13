@@ -31,6 +31,16 @@ public class Ladder {
         return Collections.unmodifiableList(lines);
     }
 
+    public Position execute(Position position) {
+        Position tempPosition = position;
+
+        for (Line line : lines) {
+            tempPosition = tempPosition.move(line);
+        }
+
+        return tempPosition;
+    }
+
     private void valid(int participantsCount) {
         if (participantsCount < 0) {
             throw new IllegalArgumentException("참석자의 수는 0명 아래일 수 없어요.");
@@ -43,4 +53,6 @@ public class Ladder {
             "lines=" + lines +
             '}';
     }
+
+
 }

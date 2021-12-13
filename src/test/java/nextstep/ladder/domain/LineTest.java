@@ -27,7 +27,7 @@ class LineTest {
         Line line = new Line(participantsCount, unDrawLineRandomMock());
 
         IntStream.range(0, participantsCount)
-            .forEach(position -> assertThat(line.hasLine(position)).isFalse());
+            .forEach(position -> assertThat(line.get(position)).isFalse());
     }
 
     @Test
@@ -41,43 +41,6 @@ class LineTest {
             .isThrownBy(() -> points.add(true));
     }
 
-    @Test
-    @DisplayName("사다리 선에 따라, 정상적으로 이동한다.")
-    void lineMoveTest() {
-        Line line = new Line(3, drawLineRandomMock());
-        // true, false, true
-        /* 0     1      2     3
-           |-----|      |-----|
-         */
-
-        assertThat(line.move(0)).isEqualTo(1);
-        assertThat(line.move(1)).isEqualTo(0);
-
-        assertThat(line.move(2)).isEqualTo(3);
-        assertThat(line.move(3)).isEqualTo(2);
-    }
-
-    @Test
-    @DisplayName("왼쪽 이동 기능이 잘 동작한다.")
-    void hasLeftLineTest() {
-        Line line = new Line(3, drawLineRandomMock());
-
-        assertThat(line.hasLeftLine(-1)).isFalse();
-        assertThat(line.hasLeftLine(0)).isFalse();
-        assertThat(line.hasLeftLine(3)).isTrue();
-        assertThat(line.hasLeftLine(5)).isFalse();
-    }
-
-    @Test
-    @DisplayName("오른쪽 이동 기능이 잘 동작한다.")
-    void hasRightLineTest() {
-        Line line = new Line(3, drawLineRandomMock());
-
-        assertThat(line.hasRightLine(-10)).isFalse();
-        assertThat(line.hasRightLine(0)).isTrue();
-        assertThat(line.hasRightLine(3)).isFalse();
-        assertThat(line.hasRightLine(100)).isFalse();
-    }
 
     private Random drawLineRandomMock() {
         return new Random() {

@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
 import java.util.List;
+import java.util.Random;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -39,5 +40,31 @@ public class LadderTest {
         List<Line> lines = ladder.getLines();
 
         assertThat(lines.get(0).getPoints()).hasSize(participantsCount - 1);
+    }
+
+
+    @Test
+    @DisplayName("사다리 구조대로, 위치가 잘 움직인다.")
+    void executeTest() {
+        Ladder ladder = Ladder.create(PositiveNumber.create(2), 3, drawLineRandomMock());
+
+        /*
+         *  0     1      2
+         *  |-----|      |
+         *  |-----|      |
+         */
+
+        assertThat(ladder.execute(Position.of(0))).isEqualTo(Position.of(0));
+        assertThat(ladder.execute(Position.of(1))).isEqualTo(Position.of(1));
+        assertThat(ladder.execute(Position.of(2))).isEqualTo(Position.of(2));
+    }
+
+    private Random drawLineRandomMock() {
+        return new Random() {
+            @Override
+            public boolean nextBoolean() {
+                return true;
+            }
+        };
     }
 }
