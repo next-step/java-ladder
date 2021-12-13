@@ -44,23 +44,6 @@ class PositionTest {
         assertThat(Position.of(2).move(line)).isEqualTo(Position.of(3));
     }
 
-    @Test
-    @DisplayName("왼쪽 이동 기능이 잘 동작한다.")
-    void hasLeftLineTest() {
-        assertThat(Position.of(0).hasLeft(line)).isFalse();
-        assertThat(Position.of(3).hasLeft(line)).isTrue();
-        assertThat(Position.of(5).hasLeft(line)).isFalse();
-    }
-
-    @Test
-    @DisplayName("오른쪽 이동 기능이 잘 동작한다.")
-    void hasRightLineTest() {
-
-        assertThat(Position.of(0).hasRight(line)).isTrue();
-        assertThat(Position.of(3).hasRight(line)).isFalse();
-        assertThat(Position.of(100).hasRight(line)).isFalse();
-    }
-
 
     private Random drawLineRandomMock() {
         return new Random() {

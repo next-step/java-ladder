@@ -39,6 +39,32 @@ public class Line {
         return points.get(index);
     }
 
+    public boolean hasLeft(int position) {
+        if (position - UNIT < 0) {
+            return false;
+        }
+
+        if (position > points.size()) {
+            return false;
+        }
+
+        return points.get(position - UNIT);
+    }
+
+    public boolean hasRight(int position) {
+
+        if (position < 0) {
+            return false;
+        }
+
+        if (position > points.size() - UNIT) {
+            return false;
+        }
+
+        return points.get(position);
+    }
+
+
     public List<Boolean> getPoints() {
         return Collections.unmodifiableList(points);
     }

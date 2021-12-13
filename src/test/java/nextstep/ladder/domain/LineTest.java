@@ -41,6 +41,34 @@ class LineTest {
             .isThrownBy(() -> points.add(true));
     }
 
+    @Test
+    @DisplayName("왼쪽 이동 기능이 잘 동작한다.")
+    void hasLeftLineTest() {
+        Line line = new Line(3, drawLineRandomMock());
+        // true, false, true
+        /* 0     1      2     3
+           |-----|      |-----|
+         */
+
+        assertThat(line.hasLeft(0)).isFalse();
+        assertThat(line.hasLeft(3)).isTrue();
+        assertThat(line.hasLeft(5)).isFalse();
+    }
+
+    @Test
+    @DisplayName("오른쪽 이동 기능이 잘 동작한다.")
+    void hasRightLineTest() {
+        Line line = new Line(3, drawLineRandomMock());
+        // true, false, true
+        /* 0     1      2     3
+           |-----|      |-----|
+         */
+
+        assertThat(line.hasRight(0)).isTrue();
+        assertThat(line.hasRight(3)).isFalse();
+        assertThat(line.hasRight(100)).isFalse();
+    }
+
 
     private Random drawLineRandomMock() {
         return new Random() {

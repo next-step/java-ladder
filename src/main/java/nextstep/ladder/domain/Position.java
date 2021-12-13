@@ -27,39 +27,15 @@ public class Position {
     }
 
     public Position move(Line line) {
-        if (hasLeft(line)) {
+        if (line.hasLeft(position)) {
             return Position.of(position - UNIT);
         }
 
-        if (hasRight(line)) {
+        if (line.hasRight(position)) {
             return Position.of(position + UNIT);
         }
 
         return this;
-    }
-
-    public boolean hasLeft(Line line) {
-        if (position - UNIT < 0) {
-            return false;
-        }
-
-        if (position > line.size()) {
-            return false;
-        }
-
-        return line.get(position - UNIT);
-    }
-
-    public boolean hasRight(Line line) {
-        if (position < 0) {
-            return false;
-        }
-
-        if (position > line.size() - UNIT) {
-            return false;
-        }
-
-        return line.get(position);
     }
 
 
