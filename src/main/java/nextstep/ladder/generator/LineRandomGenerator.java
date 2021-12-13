@@ -10,9 +10,7 @@ public class LineRandomGenerator implements LineGenerator {
     @Override
     public boolean generate(Boolean prevBoolean) {
         return Optional.ofNullable(prevBoolean)
-                .filter(prev -> prev == Boolean.FALSE)
-                .map((prev) -> RANDOM.nextBoolean())
-                .orElse(Boolean.FALSE);
-
+                .map(prev -> !prev && RANDOM.nextBoolean())
+                .orElse(RANDOM.nextBoolean());
     }
 }
