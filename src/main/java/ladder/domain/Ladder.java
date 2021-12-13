@@ -15,11 +15,11 @@ public class Ladder {
 
     private final List<Line> lines;
 
-    public Ladder(Names names, int height) {
+    public Ladder(LadderStrings<Name> names, int height) {
         this(widthFromNames(names), height);
     }
 
-    private static int widthFromNames(Names names) {
+    private static int widthFromNames(LadderStrings<Name> names) {
         return names.count() * 2 - 1;
     }
 
