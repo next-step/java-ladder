@@ -14,7 +14,7 @@ public class ScannerUtils {
     }
 
     public static int nextInt() {
-        return SCANNER.nextInt();
+        return Integer.parseInt(SCANNER.nextLine());
     }
 
 }
