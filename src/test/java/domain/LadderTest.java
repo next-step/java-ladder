@@ -30,11 +30,11 @@ class LadderTest {
   void ladderHeightCannotLowerThan_MIN_LADDER_HEIGHT(){
     // given
     int wrongHeight = MIN_LADDER_HEIGHT - 1;
-    int playersAmount = 4;
+    int numberOfPlayers = 4;
 
     assertThatThrownBy(() ->
             // when
-            new Ladder(wrongHeight, playersAmount)
+            new Ladder(wrongHeight, numberOfPlayers)
     // then
     ).isInstanceOf(IllegalArgumentException.class)
             .withFailMessage(ErrorMessages.LADDER_HEIGHT_IS_TOO_SHORT);
