@@ -5,29 +5,36 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class Ladder {
-    private final Floors floors;
-    private final Participants participants;
 
-    public Ladder(Floors floors, Participants participants) {
-        this.floors = floors;
-        this.participants = participants;
+    private final List<LadderLine> ladderLines;
+
+    public Ladder(List<LadderLine> ladderLines) {
+        this.ladderLines = ladderLines;
     }
 
-    public List<Floor> getFloors() {
-        return floors.getFloors();
+    public int finalPoint(int startPoint) {
+        int currentPoint = startPoint;
+        for (LadderLine ladderLine : ladderLines) {
+            currentPoint = ladderLine.move(currentPoint);
+        }
+
+        return currentPoint;
     }
 
-    public String finalResult(LadderResult ladderResult, String participantName) {
-        Position initialPosition = participants.initialPosition(new Participant(participantName));
-        Position finishedPosition = floors.finishedPosition(initialPosition);
+    public static Ladder of(int sizeOfPerson, int height) {
+        List<LadderLine> ladderLines = new ArrayList<>();
 
-        return ladderResult.result(finishedPosition);
+        IntStream.range(0, height)
+                .forEach(i -> ladderLines.add(LadderLine.init(sizeOfPerson)));
+
+        return new Ladder(ladderLines);
     }
 
-    public List<String> finalResultsOfAll(LadderResult ladderResult) {
-        List<String> results = new ArrayList<>();
-        participants.getNamesOfParticipants().forEach(name -> results.add(finalResult(ladderResult, name)));
+    public int height() {
+        return ladderLines.size();
+    }
 
-        return results;
+    public List<Boolean> line(int level) {
+        return ladderLines.get(level).line();
     }
 }

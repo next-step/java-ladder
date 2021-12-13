@@ -1,7 +1,7 @@
-import controller.LadderGame;
+import controller.LadderController;
 
 public class Runner {
     public static void main(String args[]) {
-        LadderGame.runGame();
+        LadderController.runGame();
     }
 }

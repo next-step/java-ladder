@@ -10,10 +10,10 @@ import java.util.List;
 
 import static util.StringUtils.separateStringWithComma;
 
-public class LadderGame {
+public class LadderController {
     public static final String ALL_PARTICIPANTS = "all";
 
-    private LadderGame() {
+    private LadderController() {
 
     }
 
@@ -33,19 +33,18 @@ public class LadderGame {
 
         outputView.showRequestOfHeightOfLadder();
         int heightOfLadder = inputView.getHeightOfLadder();
-        Floors floors = Floors.of(heightOfLadder, participants.size());
-        Ladder ladder = new Ladder(floors, participants);
+        LadderGame ladderGame = new LadderGame(participants, heightOfLadder);
 
         outputView.showMessageOfResult();
         outputView.showParticipants(participants);
-        outputView.showLadder(ladder);
+        outputView.showLadderGame(ladderGame);
         outputView.showResults(separatedLadderResult);
 
         String participantName;
         do {
             outputView.showRequestForResultOfParticipant();
             participantName = inputView.getParticipantForResult();
-            outputView.showResultOfLadderGame(participantName, participants, ladderResult, ladder);
+            outputView.showResultOfLadderGame(participantName, ladderResult, ladderGame);
         } while (!participantName.equals(ALL_PARTICIPANTS));
     }
 }
