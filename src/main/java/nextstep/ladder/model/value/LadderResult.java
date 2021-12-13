@@ -38,4 +38,9 @@ public class LadderResult {
     public int hashCode() {
         return Objects.hash(ladderResult);
     }
+
+    @Override
+    public String toString() {
+        return ladderResult;
+    }
 }

@@ -58,13 +58,13 @@ public class ParticipantsTest {
     @Test
     @DisplayName("참가자 이름을 찾을때, 존재한다면, 정상적으로 반환된다.")
     void findNameTest() {
-        AtomicInteger mockPosition = new AtomicInteger(0);
+        AtomicInteger autoPosition = new AtomicInteger(0);
         String inputData = "lee,kim,park,joo";
         List<String> names = Arrays.asList(inputData.split(","));
 
         for (String name : names) {
             assertThat(localParticipants.findByName(name)).isEqualTo(
-                    new Participant(name, mockPosition.getAndIncrement()));
+                    new Participant(name, autoPosition.getAndIncrement()));
         }
     }
 
@@ -72,7 +72,7 @@ public class ParticipantsTest {
     @DisplayName("참가자 이름을 찾을때, 없는 이름이라면 예외가 발생한다.")
     void findNameExceptionTest() {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> localParticipants.findByName("mock"));
+                .isThrownBy(() -> localParticipants.findByName("poby"));
     }
 
     private Random drawLineRandom() {
