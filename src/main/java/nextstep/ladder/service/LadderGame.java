@@ -13,16 +13,7 @@ public class LadderGame {
 
     private static final int LEFT_INDEX = 1;
 
-    private static class LadderGameHolder {
-
-        private static final LadderGame LADDER_GAME = new LadderGame();
-    }
-
-    public static LadderGame getInstance() {
-        return LadderGameHolder.LADDER_GAME;
-    }
-
-    public Map<Name, Name> gamePlay(Players players, Ladder ladder, Category category) {
+    public static Map<Name, Name> gamePlay(Players players, Ladder ladder, Category category) {
         Map<Name, Name> result = new LinkedHashMap<>();
         final int SIZE = players.size();
 
@@ -32,7 +23,7 @@ public class LadderGame {
         return result;
     }
 
-    private int playerResult(Ladder ladder, int idx) {
+    private static int playerResult(Ladder ladder, int idx) {
         for (Line line : ladder.getLadder()) {
             idx = idx + Move.of(line.get(idx - LEFT_INDEX), line.get(idx)).move();
         }

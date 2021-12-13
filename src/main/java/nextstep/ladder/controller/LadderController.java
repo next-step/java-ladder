@@ -24,8 +24,7 @@ public class LadderController {
         Ladder ladder = Ladder.of(players.width(), height);
         ResultView.outputResult(players, ladder, category);
 
-        LadderGame ladderGame = LadderGame.getInstance();
-        PlayersResultView.gameResult(ladderGame.gamePlay(players, ladder, category));
+        PlayersResultView.gameResult(LadderGame.gamePlay(players, ladder, category));
     }
 
 }

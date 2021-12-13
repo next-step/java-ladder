@@ -22,8 +22,7 @@ public class LadderGameTest {
         Category category = Category.of(new InputString("꽝,성공,꽝"), players);
 
         // when
-        LadderGame ladderGame = LadderGame.getInstance();
-        Map<Name, Name> nameStringMap = ladderGame.gamePlay(players, ladder, category);
+        Map<Name, Name> nameStringMap = LadderGame.gamePlay(players, ladder, category);
 
         // then
         Map<Name, Name> validation = new LinkedHashMap<>();
