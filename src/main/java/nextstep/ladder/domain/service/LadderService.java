@@ -3,11 +3,14 @@ package nextstep.ladder.domain.service;
 import nextstep.ladder.domain.entity.Ladder;
 import nextstep.ladder.domain.entity.LadderHeight;
 import nextstep.ladder.domain.entity.Line;
+import nextstep.ladder.domain.entity.Name;
 import nextstep.ladder.domain.entity.Names;
 import nextstep.ladder.domain.entity.Point;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.stream.IntStream;
 
@@ -34,14 +37,13 @@ public class LadderService {
 
     IntStream.range(FIRST_INDEX, countOfPerson)
              .forEach(now -> {
-               int prevIndex = now - PREV;
-
-               Point prevPoint = points.get(prevIndex);
-               Point nowPoint = createPoint(prevPoint);
+               Point prevPoint = points.get(now - PREV);
+               Point nowPoint = prevPoint.next(random.nextBoolean());
 
                points.add(nowPoint);
              });
 
+    points.add(new Point(FALSE));
     return new Line(points);
   }
 
@@ -51,11 +53,18 @@ public class LadderService {
     return points;
   }
 
-  public Point createPoint(Point prev) {
-    if (prev.hasWay()) {
-      return new Point(FALSE);
-    }
-    return new Point(random::nextBoolean);
-  }
+  public Map<String, Integer> gameStart(Ladder ladder, Names names) {
+    Map<String, Integer> result = new HashMap<>();
 
+    IntStream.range(0, names.size())
+             .forEach(index -> {
+               Name name = names.getName(index);
+
+               int endPoint = ladder.explore(index + FIRST_INDEX);
+
+               result.put(name.tellName(), endPoint);
+             });
+
+    return result;
+  }
 }

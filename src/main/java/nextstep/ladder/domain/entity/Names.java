@@ -31,6 +31,10 @@ public class Names {
     return this.nameList;
   }
 
+  public Name getName(int index) {
+    return nameList.get(index);
+  }
+
   public int size() {
     return nameList.size();
   }

@@ -21,8 +21,4 @@ public class Name {
   public String tellName() {
     return this.value;
   }
-
-  public int howLong() {
-    return this.value.length();
-  }
 }
