@@ -1,7 +1,5 @@
 package ladder.model.result;
 
-import ladder.model.util.StringUtil;
-
 import java.util.Objects;
 
 public class Result {
@@ -10,21 +8,25 @@ public class Result {
     private final String result;
 
     public Result(String result) {
-        checkValidation(result);
+        checkResultIsEmpty(result);
+        checkResultLength(result);
         this.result = result;
+    }
+
+    private void checkResultIsEmpty(String result) {
+        if(result == null || result.trim().isEmpty()) {
+            throw new IllegalArgumentException("실행 결과가 null 이거나 비어있습니다.");
+        }
+    }
+
+    private void checkResultLength(String result) {
+        if(result.length() > RESULT_MAX_LENGTH) {
+            throw new IllegalArgumentException("실행 결과 길이는 " + RESULT_MAX_LENGTH + "를 넘으면 안됩니다.");
+        }
     }
 
     public String get() {
         return this.result;
-    }
-
-    private void checkValidation(String result) {
-        if(StringUtil.isNullOrEmpty(result)) {
-            throw new IllegalArgumentException("실행 결과가 null 이거나 비어있습니다.");
-        }
-        if(result.length() > RESULT_MAX_LENGTH) {
-            throw new IllegalArgumentException("실행 결과 길이는 " + RESULT_MAX_LENGTH + "를 넘으면 안됩니다.");
-        }
     }
 
     @Override
