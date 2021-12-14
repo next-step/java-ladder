@@ -1,4 +1,4 @@
-package nextstep.ladder.model;
+package nextstep.ladder.common;
 
 import nextstep.ladder.utils.StringUtils;
 

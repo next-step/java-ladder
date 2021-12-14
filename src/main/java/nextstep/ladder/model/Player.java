@@ -1,5 +1,7 @@
 package nextstep.ladder.model;
 
+import nextstep.ladder.common.Name;
+
 import java.util.Optional;
 
 public class Player extends Name {

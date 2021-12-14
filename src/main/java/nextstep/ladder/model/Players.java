@@ -1,5 +1,7 @@
 package nextstep.ladder.model;
 
+import nextstep.ladder.common.Name;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -36,10 +38,9 @@ public class Players {
                 .orElseThrow(() -> new IllegalArgumentException(EXCEPTION_NOT_FOUND_PLAYER));
     }
 
-    @Override
-    public String toString() {
+    public String drawing() {
         return players.stream()
-                .map(player -> String.format("%5s", player.getName()))
-                .collect(Collectors.joining(" "));
+                .map(player -> String.format(Name.DRAWING_NAME_FORMAT, player.getName()))
+                .collect(Collectors.joining(Name.BLANK_DELIMITER));
     }
 }
