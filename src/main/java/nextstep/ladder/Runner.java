@@ -10,6 +10,7 @@ import java.util.List;
 public class Runner {
     public static void main(String[] args) {
         List<String> people = InputView.inputPeople();
+        List<String> result = InputView.inputResult();
         int height = InputView.inputMaxHeight();
         UserCollection userCollection = UserCollection.of(people);
         Ladder ladder = Ladder.init(people.size(), height);

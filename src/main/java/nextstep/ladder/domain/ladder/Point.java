@@ -24,6 +24,10 @@ public class Point {
         return new Point(FIRST_INDEX, Direction.first(right));
     }
 
+    public int move() {
+        return direction.getMove().apply(index);
+    }
+
     public Direction getDirection() {
         return direction;
     }
