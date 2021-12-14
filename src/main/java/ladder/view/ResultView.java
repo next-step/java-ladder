@@ -76,9 +76,9 @@ public class ResultView {
             System.out.println("실행 결과");
 
             if (target.equals(END_CONDITION)) {
-                for (String key : results.keySet()) {
-                    System.out.println(key + " : " + results.get(key));
-                }
+                results.keySet().stream()
+                        .map(key -> key + " : " + results.get(key))
+                        .forEach(System.out::println);
                 break;
             }
 
