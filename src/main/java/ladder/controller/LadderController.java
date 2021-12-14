@@ -30,9 +30,18 @@ public class LadderController {
         Ladder ladder = createLadder(players, height);
         ResultView.printLadderResult(players.getPlayers(), ladder.getLines(), results.getResults());
 
-        String findPlayer = InputView.printInputFindPlayer();
-        List<Integer> indices = executeResult(findPlayer, players, ladder);
-        ResultView.printGameResult(names, results.getResults(), indices);
+        while (true) {
+            String findPlayer = InputView.printInputFindPlayer();
+            List<Integer> indices = executeResult(findPlayer, players, ladder);
+            ResultView.printGameResult(names, results.getResults(), indices);
+            checkEndGame(findPlayer);
+        }
+    }
+
+    private void checkEndGame(String findPlayer) {
+        if (findPlayer.equalsIgnoreCase(ALL_RESULTS)) {
+            System.exit(0);
+        }
     }
 
     private Ladder createLadder(Players players, LadderHeight height) {
@@ -41,7 +50,7 @@ public class LadderController {
 
     private List<Integer> executeResult(String findPlayer, Players players, Ladder ladder) {
         List<Integer> indices = new ArrayList<>();
-        if (findPlayer.equals(ALL_RESULTS)) {
+        if (findPlayer.equalsIgnoreCase(ALL_RESULTS)) {
             return addIndices(players, ladder, indices);
         }
         int index = players.findPlayers(findPlayer);
