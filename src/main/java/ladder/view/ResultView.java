@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
-import java.util.TreeMap;
 import java.util.stream.Collectors;
+
+import static ladder.view.InputViewUtil.userInput;
 
 public class ResultView {
     public static final String VERTICAL_LINE = "|     ";
@@ -33,28 +33,37 @@ public class ResultView {
 
         // Print User List
         result.add(userList.stream()
-                .map(Util::StringPadding)
+                .map(InputViewUtil::StringPadding)
                 .collect(Collectors.joining()));
 
         // Print Ladder
         for (Line line : ladder.getLines()) {
-            StringBuilder stringBuilder = new StringBuilder();
-            for (Point point : line.getPoints()) {
-                if (point.isCurr()) {
-                    stringBuilder.append(VERTICAL_LINE_WITH_FOOTHOLD);
-                } else {
-                    stringBuilder.append(VERTICAL_LINE);
-                }
-            }
-            result.add(stringBuilder.toString());
+            drawLine(result, line);
         }
 
         // Print Result
         result.add(resultList.stream()
-                .map(Util::StringPadding)
+                .map(InputViewUtil::StringPadding)
                 .collect(Collectors.joining()));
 
         System.out.println(String.join(NEW_LINE, result));
+    }
+
+    private void drawLine(List<String> result, Line line) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Point point : line.getPoints()) {
+            drawPoint(stringBuilder, point);
+        }
+        result.add(stringBuilder.toString());
+    }
+
+    private void drawPoint(StringBuilder stringBuilder, Point point) {
+        if (point.isCurr()) {
+            stringBuilder.append(VERTICAL_LINE_WITH_FOOTHOLD);
+            return;
+        }
+
+        stringBuilder.append(VERTICAL_LINE);
     }
 
     public void showResult() {
@@ -62,9 +71,7 @@ public class ResultView {
 
         while (true) {
             System.out.println("결과를 보고 싶은 사람은?");
-            String target = new Scanner(System.in).nextLine()
-                    .trim()
-                    .toLowerCase();
+            String target = userInput();
 
             System.out.println("실행 결과");
 
@@ -81,7 +88,6 @@ public class ResultView {
             }
 
             System.out.println("해당 사용자가 없습니다.");
-            System.out.println();
         }
     }
 
