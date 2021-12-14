@@ -5,21 +5,21 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
-    private final List<Line> ladder;
+    private final List<LadderLine> ladder;
 
     public Ladder(Names names, Height height) {
         this(ladderLine(names, height));
     }
 
-    private Ladder(List<Line> ladder) {
+    private Ladder(List<LadderLine> ladder) {
         this.ladder = Collections.unmodifiableList(ladder);
     }
 
-    private static List<Line> ladderLine(Names names, Height height) {
+    public static List<LadderLine> ladderLine(Names names, Height height) {
         int namesCount = names.size();
         int ladderHeight = height.value();
         return IntStream.range(0, ladderHeight)
-                .mapToObj(i -> Line.from(namesCount))
+                .mapToObj(i -> LadderLine.init(namesCount))
                 .collect(Collectors.toList());
     }
 
@@ -34,13 +34,13 @@ public class Ladder {
 
     private int position(int startPosition) {
         int position = startPosition;
-        for (Line line : ladder) {
-            position = line.position(position);
+        for (LadderLine line : ladder) {
+            position = line.move(position);
         }
         return position;
     }
 
-    public Line findLine(int index) {
+    public LadderLine findLine(int index) {
         return ladder.get(index);
     }
 

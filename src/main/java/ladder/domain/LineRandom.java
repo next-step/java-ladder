@@ -9,8 +9,12 @@ public class LineRandom {
     private LineRandom() {
     }
 
-    public static int random() {
-        return random.nextInt(VALID_NUMBER_RANGE);
+    public static boolean random() {
+        if(random.nextInt(VALID_NUMBER_RANGE) == 1){
+            return true;
+        }
+        return false;
     }
+
 
 }
