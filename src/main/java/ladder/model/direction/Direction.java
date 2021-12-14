@@ -1,12 +1,11 @@
 package ladder.model.direction;
 
-import ladder.model.util.RandomBoolean;
-
 import java.util.HashMap;
 import java.util.Map;
 
 public class Direction {
 
+    private static final DirectionKey directionKey = new DirectionKey();
     private static final Map<Integer,Direction> DIRECTION_CACHE = new HashMap<>();
     private final boolean right;
     private final boolean left;
@@ -15,7 +14,6 @@ public class Direction {
         DIRECTION_CACHE.put(1, new Direction(false, false));
         DIRECTION_CACHE.put(2, new Direction(false, true));
         DIRECTION_CACHE.put(3, new Direction(true, false));
-        DIRECTION_CACHE.put(4, new Direction(true, true));
     }
 
     private Direction(boolean left, boolean right) {
@@ -24,7 +22,7 @@ public class Direction {
     }
 
     public static Direction of(boolean left, boolean right) {
-        return DIRECTION_CACHE.get(DirectionKey.get(left,right));
+        return DIRECTION_CACHE.get(directionKey.get(left,right));
     }
 
     public static Direction first(boolean right) {
@@ -35,11 +33,11 @@ public class Direction {
         return of(this.left, false);
     }
 
-    public Direction next() {
+    public Direction next(boolean randomRight) {
         if(this.right) {
             return of(true, false);
         }
-        return of(false, RandomBoolean.get());
+        return of(false, randomRight);
     }
 
     public boolean left() {

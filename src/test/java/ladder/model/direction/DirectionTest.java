@@ -35,6 +35,7 @@ class DirectionTest {
     @Test
     @DisplayName("right이 true이면 next의 right 항상 false")
     void rightTrueLeftOfNextIsFalse() {
-        assertFalse(Direction.of(false,true).next().right());
+        assertFalse(Direction.of(false,true).next(true).right());
+        assertFalse(Direction.of(false,true).next(false).right());
     }
 }
