@@ -25,4 +25,8 @@ public class ResultCollection {
     public Result getResultFromIndex(int index){
         return results.get(index);
     }
+
+    public int size(){
+        return results.size();
+    }
 }

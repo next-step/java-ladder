@@ -67,15 +67,19 @@ public class OutputView {
         return new String(new char[TEXT_WIDTH]).replace("\0", BLANK) + direction.getShape();
     }
 
-    public static void showLadderResult(LadderResult result){
+    public static void showLadderResult(LadderResult result) throws ArrayIndexOutOfBoundsException {
         System.out.println("실행 결과");
         System.out.println(result.getResult().getValue());
     }
 
-    public static void showLadderResult(List<LadderResult> ladderResults){
-        System.out.println("실행 결과");
-        ladderResults.stream()
-                .map(ladderResult -> ladderResult.getUser().getName().getValue() + " : " + ladderResult.getResult().getValue())
-                .forEach(System.out::println);
+    public static void showLadderResult(List<LadderResult> ladderResults) throws ArrayIndexOutOfBoundsException{
+            System.out.println("실행 결과");
+            ladderResults.stream()
+                    .map(ladderResult -> ladderResult.getUser().getName().getValue() + " : " + ladderResult.getResult().getValue())
+                    .forEach(System.out::println);
+    }
+
+    public static void wrongUserCheck(){
+        System.out.println("잘못된 유저 이름입니다 다시 입력해주세요");
     }
 }

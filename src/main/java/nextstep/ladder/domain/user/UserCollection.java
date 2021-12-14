@@ -22,7 +22,7 @@ public class UserCollection {
         return Collections.unmodifiableList(users);
     }
 
-    public int getUserIndex(String userName) {
+    public int getIndex(String userName) {
 
         List<String> userNames = users.stream()
                 .map(User::getName)
