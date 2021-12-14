@@ -7,13 +7,25 @@ public class Point {
     private final PointPosition position;
     private final PointDirection direction;
 
-    public Point() {
-        this(0, new PointDirection());
-    }
-
-    public Point(int position, PointDirection direction) {
+    private Point(int position, PointDirection direction) {
         this.position = new PointPosition(position);
         this.direction = direction;
+    }
+
+    public static Point of(int position, PointDirection direction) {
+        return new Point(position, direction);
+    }
+
+    public static Point first(boolean current) {
+        return Point.of(0, PointDirection.first(false, current));
+    }
+
+    public static Point middle(Point point, boolean current) {
+        return Point.of(point.getPosition() + 1, PointDirection.next(point.getDirection(), current));
+    }
+
+    public static Point last(Point point) {
+        return Point.of(point.getPosition() + 1, PointDirection.next(point.getDirection(), false));
     }
 
     public int move() {
@@ -32,6 +44,14 @@ public class Point {
 
     public boolean isLeft() {
         return direction.isLeft();
+    }
+
+    public int getPosition() {
+        return position.getPosition();
+    }
+
+    private PointDirection getDirection() {
+        return direction;
     }
 
     @Override

@@ -12,20 +12,24 @@ public class Line {
     private final List<Point> points = new ArrayList<>();
 
     public Line(int players, LineStrategy strategy) {
-        points.add(new Point());
-        for (int i = 0; i < players - 1; i++) {
-            points.add(new Point(i + 1, PointDirection.createDirection(points.get(i).isRight(), strategy)));
+        Point first = Point.first(strategy.isEnableLine());
+        points.add(first);
+        Point middle = first;
+        for (int i = 1; i < players - 1; i++) {
+            middle = Point.middle(middle, strategy.isEnableLine());
+            points.add(middle);
         }
-        points.add(new Point(players, PointDirection.createLastDirection(points.get(points.size() - 1).isRight())));
-    }
-
-    public List<Point> getPoints() {
-        return Collections.unmodifiableList(points);
+        Point last = Point.last(middle);
+        points.add(last);
     }
 
     public int move(int index) {
         index = points.get(index).move();
         return index;
+    }
+
+    public List<Point> getPoints() {
+        return Collections.unmodifiableList(points);
     }
 
     @Override

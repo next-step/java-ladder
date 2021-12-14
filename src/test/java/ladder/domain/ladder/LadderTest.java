@@ -35,10 +35,10 @@ public class LadderTest {
 
     private static Stream<Arguments> provideMoveValue() {
         return Stream.of(
-                Arguments.of(1, 2),
-                Arguments.of(2, 1),
-                Arguments.of(3, 4),
-                Arguments.of(4, 3)
+                Arguments.of(0, 1),
+                Arguments.of(1, 0),
+                Arguments.of(2, 3),
+                Arguments.of(3, 2)
         );
     }
 

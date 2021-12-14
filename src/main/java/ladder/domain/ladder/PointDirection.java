@@ -1,7 +1,5 @@
 package ladder.domain.ladder;
 
-import ladder.strategy.LineStrategy;
-
 import java.util.Objects;
 
 public class PointDirection {
@@ -9,11 +7,7 @@ public class PointDirection {
     private final boolean left;
     private final boolean right;
 
-    public PointDirection() {
-        this(false, false);
-    }
-
-    public PointDirection(boolean left, boolean right) {
+    private PointDirection(boolean left, boolean right) {
         if (left && right) {
             throw new IllegalStateException();
         }
@@ -21,18 +15,19 @@ public class PointDirection {
         this.right = right;
     }
 
-    public static PointDirection createDirection(boolean isRight, LineStrategy strategy) {
-        if (isRight) {
-            return new PointDirection(true, false);
-        }
-        return new PointDirection(false, strategy.isEnableLine());
+    public static PointDirection of(boolean left, boolean current) {
+        return new PointDirection(left, current);
     }
 
-    public static PointDirection createLastDirection(boolean isRight) {
-        if (isRight) {
-            return new PointDirection(true, false);
+    public static PointDirection first(boolean left, boolean current) {
+        return of(left, current);
+    }
+
+    public static PointDirection next(PointDirection direction, boolean current) {
+        if (direction.isRight()) {
+            return of(true, false);
         }
-        return new PointDirection(false, false);
+        return of(false, current);
     }
 
     public boolean isRight() {
