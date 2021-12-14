@@ -15,7 +15,7 @@ class ResultsTest {
     @ParameterizedTest
     @ValueSource(ints = {1,2,3,4})
     @DisplayName("playerCount와 입력받은 실행결과 개수가 다를때 예외발생 테스트")
-    void resultsSizeDifferntWithPlayerCountExceptionTest(int playerCount) {
+    void resultsSizeDifferentWithPlayerCountExceptionTest(int playerCount) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Results("1,2,3,4,5", playerCount).get())
                 .withMessage("실행 결과의 수는 참여하는 사람 수와 같아야 합니다.");

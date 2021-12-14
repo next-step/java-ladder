@@ -1,6 +1,5 @@
 package ladder.model.player;
 
-import ladder.model.name.Name;
 import ladder.model.name.Names;
 
 import java.util.Collections;
@@ -9,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class Players {
 
-    private static final String RESULT_OF_ALL = "all";
+    private static final String RESULT_OF_ALL = "ALL";
     private static final int MIN_PLAYER_COUNT = 2;
     private final List<Player> players;
 
@@ -40,7 +39,7 @@ public class Players {
     }
 
     public List<Player> getResultOf(String resultOf) {
-        if(resultOf.equals(RESULT_OF_ALL)) return get();
+        if(resultOf.equalsIgnoreCase(RESULT_OF_ALL)) return get();
         return players.stream()
                 .filter(player -> player.isName(resultOf))
                 .collect(Collectors.toList());
