@@ -1,13 +1,13 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.ladder.Direction;
-import nextstep.ladder.domain.ladder.Ladder;
-import nextstep.ladder.domain.ladder.LadderLine;
-import nextstep.ladder.domain.ladder.Point;
+import nextstep.ladder.domain.ladder.*;
+import nextstep.ladder.domain.result.Result;
+import nextstep.ladder.domain.result.ResultCollection;
 import nextstep.ladder.domain.user.Name;
 import nextstep.ladder.domain.user.User;
 import nextstep.ladder.domain.user.UserCollection;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -19,7 +19,14 @@ public class OutputView {
     private OutputView() {
     }
 
-    public static void drawUserName(UserCollection users) {
+    public static void drawLadderGame(UserCollection users, Ladder ladder, ResultCollection resultCollection) {
+        System.out.println("사다리 결과");
+        drawUserName(users);
+        drawLadder(ladder);
+        drawResult(resultCollection);
+    }
+
+    private static void drawUserName(UserCollection users) {
         String userNameFormat = users.getUsers()
                 .stream()
                 .map(User::getName)
@@ -29,9 +36,13 @@ public class OutputView {
         System.out.println(userNameFormat);
     }
 
-    public static void drawLadderGame(UserCollection users, Ladder ladder) {
-        drawUserName(users);
-        drawLadder(ladder);
+    private static void drawResult(ResultCollection results) {
+        String userNameFormat = results.getUsers()
+                .stream()
+                .map(Result::getValue)
+                .map(name -> String.format("%5s", name))
+                .collect(Collectors.joining());
+        System.out.println(userNameFormat);
     }
 
     private static void drawLadder(Ladder ladder) {
@@ -56,5 +67,15 @@ public class OutputView {
         return new String(new char[TEXT_WIDTH]).replace("\0", BLANK) + direction.getShape();
     }
 
+    public static void showLadderResult(LadderResult result){
+        System.out.println("실행 결과");
+        System.out.println(result.getResult().getValue());
+    }
 
+    public static void showLadderResult(List<LadderResult> ladderResults){
+        System.out.println("실행 결과");
+        ladderResults.stream()
+                .map(ladderResult -> ladderResult.getUser().getName().getValue() + " : " + ladderResult.getResult().getValue())
+                .forEach(System.out::println);
+    }
 }
