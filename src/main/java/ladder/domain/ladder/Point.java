@@ -4,6 +4,9 @@ import java.util.Objects;
 
 public class Point {
 
+    public static final int START_POSITION = 0;
+    public static final int POSITION_MOVE = 1;
+
     private final PointPosition position;
     private final PointDirection direction;
 
@@ -17,15 +20,19 @@ public class Point {
     }
 
     public static Point first(boolean current) {
-        return Point.of(0, PointDirection.first(false, current));
+        return Point.of(START_POSITION, PointDirection.first(false, current));
     }
 
     public static Point middle(Point point, boolean current) {
-        return Point.of(point.getPosition() + 1, PointDirection.next(point.getDirection(), current));
+        return Point.of(next(point), PointDirection.next(point.getDirection(), current));
     }
 
     public static Point last(Point point) {
-        return Point.of(point.getPosition() + 1, PointDirection.next(point.getDirection(), false));
+        return Point.of(next(point), PointDirection.next(point.getDirection(), false));
+    }
+
+    private static int next(Point point) {
+        return point.getPosition() + POSITION_MOVE;
     }
 
     public int move() {
