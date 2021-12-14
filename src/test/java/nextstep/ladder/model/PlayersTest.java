@@ -2,10 +2,12 @@ package nextstep.ladder.model;
 
 import nextstep.ladder.utils.StringUtils;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 class PlayersTest {
@@ -21,4 +23,22 @@ class PlayersTest {
         });
     }
 
+    @Test
+    @DisplayName("Person에서 name으로 Player 찾기: 성공")
+    void SuccessFindByName() {
+        Person person = new Person("aaaa,bbbb,cccc".split(","));
+
+        String target = "aaaa";
+        Player player = person.findPlayerByName(target);
+        assertThat(player.getName()).isEqualTo(target);
+    }
+
+    @Test
+    @DisplayName("Person에서 name으로 Player 찾기: 실패")
+    void FailFindByName() {
+        Person person = new Person("aaaa,bbbb,cccc".split(","));
+        String target = "dddd";
+        assertThatIllegalArgumentException().isThrownBy(() -> person.findPlayerByName(target));
+
+    }
 }
