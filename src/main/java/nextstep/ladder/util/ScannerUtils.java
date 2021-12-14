@@ -13,4 +13,8 @@ public class ScannerUtils {
         return SCANNER.nextLine();
     }
 
+    public static int nextInt() {
+        return Integer.parseInt(SCANNER.nextLine());
+    }
+
 }

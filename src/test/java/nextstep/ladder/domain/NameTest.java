@@ -3,7 +3,7 @@ package nextstep.ladder.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
-import nextstep.ladder.exception.NameNullPointerException;
+import nextstep.ladder.exception.InputNullPointerException;
 import nextstep.ladder.exception.NameSizeOverBoundException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -16,7 +16,7 @@ public class NameTest {
     @ValueSource(strings = {"pobi", "honux", "crong", "jk"})
     @DisplayName("생성 성공")
     void create(String name) {
-        assertThat(Name.from(name)).isEqualTo(Name.from(name));
+        assertThat(Name.of(name)).isEqualTo(Name.of(name));
     }
 
     @ParameterizedTest
@@ -24,15 +24,15 @@ public class NameTest {
     @DisplayName("이름 길이 초과 예외처리")
     void nameSizeOverBoundException(String name) {
         assertThatExceptionOfType(NameSizeOverBoundException.class)
-            .isThrownBy(() -> Name.from(name));
+            .isThrownBy(() -> Name.of(name));
     }
 
     @ParameterizedTest
     @NullAndEmptySource
     @DisplayName("이름 NULL 혹은 빈값 예외처리")
     void nameNullPointerException(String name) {
-        assertThatExceptionOfType(NameNullPointerException.class)
-            .isThrownBy(() -> Name.from(name));
+        assertThatExceptionOfType(InputNullPointerException.class)
+            .isThrownBy(() -> Name.of(name));
     }
 
 }

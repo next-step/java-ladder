@@ -27,4 +27,11 @@ public class Ladder {
         return new Ladder(lines);
     }
 
+    public static Ladder of(int width, Height height, LineStrategy lineStrategy) {
+        List<Line> lines = IntStream.range(0, height.getHeight())
+            .mapToObj((i) -> Line.of(width, lineStrategy))
+            .collect(Collectors.toCollection(ArrayList::new));
+        return new Ladder(lines);
+    }
+
 }

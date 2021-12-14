@@ -1,12 +1,12 @@
 package nextstep.ladder.domain;
 
 import java.util.Objects;
-import nextstep.ladder.exception.NameNullPointerException;
+import nextstep.ladder.exception.InputNullPointerException;
 import nextstep.ladder.exception.NameSizeOverBoundException;
 
 public class Name {
 
-    private static final int NAME_MAXIMUM_SIZE = 5;
+    private static final int STRING_MAXIMUM_SIZE = 5;
 
     private final String name;
 
@@ -14,7 +14,7 @@ public class Name {
         this.name = name;
     }
 
-    public static Name from(String name) {
+    public static Name of(String name) {
         valid(name);
         return new Name(name);
     }
@@ -25,11 +25,11 @@ public class Name {
 
     private static void valid(String name) {
         if (name == null || name.isEmpty()) {
-            throw new NameNullPointerException();
+            throw new InputNullPointerException();
         }
 
-        if (name.length() > NAME_MAXIMUM_SIZE) {
-            throw new NameSizeOverBoundException(NAME_MAXIMUM_SIZE);
+        if (name.length() > STRING_MAXIMUM_SIZE) {
+            throw new NameSizeOverBoundException(STRING_MAXIMUM_SIZE);
         }
     }
 
