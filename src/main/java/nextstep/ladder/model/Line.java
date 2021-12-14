@@ -27,8 +27,7 @@ public class Line {
         return point ? EXIST_LINE : BLANK_LINE;
     }
 
-    @Override
-    public String toString() {
+    public String drawing() {
         StringBuilder builder = new StringBuilder(BLANK_LINE + LADDER_COLUMN);
         points.forEach(point -> builder.append(isLine(point)).append(LADDER_COLUMN));
         return builder.toString();

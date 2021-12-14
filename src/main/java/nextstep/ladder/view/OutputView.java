@@ -28,6 +28,6 @@ public class OutputView {
 
     public static void print(Ladder ladder) {
         print("실행 결과");
-        print(ladder.toString());
+        print(ladder.drawing());
     }
 }

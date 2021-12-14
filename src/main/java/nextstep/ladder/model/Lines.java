@@ -16,10 +16,9 @@ public class Lines {
         IntStream.range(0, height).forEach(index -> lines.add(LineFactory.of(width, generator)));
     }
 
-    @Override
-    public String toString() {
+    public String drawing() {
         return lines.stream()
-                .map(Line::toString)
+                .map(Line::drawing)
                 .collect(Collectors.joining("\n"));
     }
 }

@@ -14,9 +14,9 @@ public class Ladder {
         this.lines = new Lines(splitNames.length, height);
     }
 
-    @Override
-    public String toString() {
-        return players.toString() + "\n" +
-                lines.toString();
+    public String drawing() {
+        return person.drawing() + "\n" +
+                lines.drawing() + "\n" +
+                results.drawing();
     }
 }

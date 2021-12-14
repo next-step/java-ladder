@@ -28,4 +28,11 @@ public class Results {
         }
         return splitResults;
     }
+
+    public String drawing() {
+        return results.stream()
+                .map(result -> String.format(Name.DRAWING_NAME_FORMAT, result.getName()))
+                .collect(Collectors.joining(Name.BLANK_DELIMITER));
+    }
+
 }
