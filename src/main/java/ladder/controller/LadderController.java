@@ -17,7 +17,7 @@ public class LadderController {
         ResultView.printLadder(ladder);
         ResultView.printPrizes(prizes);
 
-        while (true){
+        while (true) {
             ResultView.printLadderResult(winning, names.playerName(InputView.resultPlayerName()));
         }
     }
