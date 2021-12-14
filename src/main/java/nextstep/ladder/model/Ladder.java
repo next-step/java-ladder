@@ -1,17 +1,15 @@
 package nextstep.ladder.model;
 
-import nextstep.ladder.utils.StringUtils;
-
 public class Ladder {
-    private static final String DELIMITER = ",";
 
     private final Players players;
     private final Lines lines;
+    private final Results results;
 
-    public Ladder(String names, int height) {
-        String[] splitNames = StringUtils.validationNotNullAndEmpty(names).split(DELIMITER);
-        this.players = new Players(splitNames);
-        this.lines = new Lines(splitNames.length, height);
+    public Ladder(Person person, Lines lines, Results results) {
+        this.person = person;
+        this.lines = lines;
+        this.results = results;
     }
 
     public String drawing() {
