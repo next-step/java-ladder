@@ -10,6 +10,10 @@ public class Player {
         playerName = new PlayerName(name);
     }
 
+    public boolean isSamePlayer(String player) {
+        return playerName.isSameName(player);
+    }
+
     public PlayerName getPlayerName() {
         return playerName;
     }
@@ -36,7 +40,4 @@ public class Player {
         return playerName.getName();
     }
 
-    public boolean isSamePlayer(String player) {
-        return playerName.isSameName(player);
-    }
 }

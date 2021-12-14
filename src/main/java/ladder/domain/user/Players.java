@@ -19,10 +19,6 @@ public class Players {
         this.players = toPlayers(players);
     }
 
-    public List<Player> getPlayers() {
-        return players;
-    }
-
     public int size() {
         return players.size();
     }
@@ -42,6 +38,10 @@ public class Players {
 
     private boolean isSamePlayer(int index, String player) {
         return players.get(index).isSamePlayer(player);
+    }
+
+    public List<Player> getPlayers() {
+        return players;
     }
 
     @Override
