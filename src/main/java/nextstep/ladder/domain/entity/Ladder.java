@@ -43,4 +43,14 @@ public class Ladder {
     return lines.stream()
                 .allMatch(line -> line.size() == firstLine.size());
   }
+
+  public int explore(int startingPoint) {
+     int result = startingPoint;
+
+     for (Line line : lines) {
+       result = line.move(result);
+     }
+
+     return result;
+  }
 }
