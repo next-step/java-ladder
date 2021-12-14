@@ -32,8 +32,7 @@ public class Players {
     @Override
     public String toString() {
         return players.stream()
-                .map(Player::getName)
-                .map(name -> String.format("%5s", name))
+                .map(player -> String.format("%5s", player.getName()))
                 .collect(Collectors.joining(" "));
     }
 }

@@ -1,14 +1,20 @@
 package nextstep.ladder.model;
 
-public class Player {
+import java.util.Optional;
 
-    private final Name name;
+public class Player extends Name {
+
+    private static final int NAME_MAX_LENGTH = 5;
+    private static final String EXCEPTION_NAME_MAX_LENGTH_OVER = "사람 이름은 5글자를 초과할 수 없습니다.";
 
     public Player(String name) {
-        this.name = new Name(name);
+        super(name);
     }
 
-    public String getName() {
-        return name.getName();
+    @Override
+    protected String validation(String name) {
+        return Optional.ofNullable(name)
+                .filter(n -> n.length() <= NAME_MAX_LENGTH)
+                .orElseThrow(() -> new IllegalArgumentException(EXCEPTION_NAME_MAX_LENGTH_OVER));
     }
 }
