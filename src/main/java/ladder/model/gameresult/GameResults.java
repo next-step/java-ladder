@@ -6,7 +6,7 @@ import java.util.List;
 
 public class GameResults {
 
-    private static final String RESULT_OF_ALL = "all";
+    private static final String RESULT_OF_ALL = "ALL";
     private final String resultOf;
     private final List<GameResult> gameResults = new ArrayList<>();
 
@@ -14,7 +14,7 @@ public class GameResults {
         this.resultOf = resultOf;
     }
 
-    public boolean isAll() { return this.resultOf.equals(RESULT_OF_ALL); }
+    public boolean isAll() { return this.resultOf.equalsIgnoreCase(RESULT_OF_ALL); }
 
     public void add(String name, int resultIndex) {
         gameResults.add(new GameResult(name, resultIndex));
