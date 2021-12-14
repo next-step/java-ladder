@@ -32,7 +32,7 @@ public class LadderController {
 
         String findPlayer = InputView.printInputFindPlayer();
         List<Integer> indices = executeResult(findPlayer, players, ladder);
-        ResultView.printGameResult(players.getPlayers(), results.getResults(), indices);
+        ResultView.printGameResult(names, results.getResults(), indices);
     }
 
     private Ladder createLadder(Players players, LadderHeight height) {
@@ -45,15 +45,13 @@ public class LadderController {
             return addIndices(players, ladder, indices);
         }
         int index = players.findPlayers(findPlayer);
-        int position = ladder.move(index + 1);
-        indices.add(position);
+        indices.add(ladder.move(index));
         return indices;
     }
 
     private List<Integer> addIndices(Players players, Ladder ladder, List<Integer> indices) {
         for (int index = 0; index < players.size(); index++) {
-            int position = ladder.move(index + 1);
-            indices.add(position - 1);
+            indices.add(ladder.move(index));
         }
         return indices;
     }

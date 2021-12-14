@@ -5,6 +5,9 @@ import ladder.domain.ladder.Point;
 import ladder.domain.user.Player;
 
 import java.util.List;
+import java.util.StringJoiner;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.joining;
 
@@ -34,7 +37,7 @@ public class ResultView {
         System.out.println();
     }
 
-    public static void printGameResult(List<Player> players, List<String> results, List<Integer> positions) {
+    public static void printGameResult(List<String> players, List<String> results, List<Integer> positions) {
         System.out.println();
         System.out.println(RESULT_MSG);
         System.out.println(gameResults(players, results, positions));
@@ -53,9 +56,12 @@ public class ResultView {
     }
 
     private static String printLine(Line line) {
-        return line.getPoints().stream()
+        StringJoiner joiner = new StringJoiner(LADDER_COLUMN);
+        joiner.add(LADDER_SPACE);
+        line.getPoints().stream()
                 .map(ResultView::printPoint)
-                .collect(joining(LADDER_COLUMN));
+                .forEach(joiner::add);
+        return joiner.toString();
     }
 
     private static String printPoint(Point point) {
@@ -71,17 +77,24 @@ public class ResultView {
                 .collect(joining(WHITE_SPACE));
     }
 
-    private static String gameResults(List<Player> players, List<String> results, List<Integer> indices) {
+    private static String gameResults(List<String> players, List<String> items, List<Integer> indices) {
         if (isOneResult(players, indices)) {
-            return results.get(indices.get(ZERO_INDEX));
+            return items.get(indices.get(ZERO_INDEX));
         }
-        return indices.stream()
-                .map(index -> players.get(index) + DELIMITER + results.get(index))
+        List<String> results = getResults(items, indices);
+        return IntStream.range(ZERO_INDEX, players.size())
+                .mapToObj(index -> players.get(index) + DELIMITER + results.get(index))
                 .collect(joining(ENTER));
     }
 
-    private static boolean isOneResult(List<Player> players, List<Integer> indices) {
+    private static boolean isOneResult(List<String> players, List<Integer> indices) {
         return indices.size() != players.size();
+    }
+
+    private static List<String> getResults(List<String> items, List<Integer> indices) {
+        return indices.stream()
+                .map(items::get)
+                .collect(Collectors.toList());
     }
 
 }
