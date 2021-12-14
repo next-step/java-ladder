@@ -20,6 +20,7 @@ public class ViewImpl implements View {
   private static final String RESULT_MESSAGE = "실행결과";
   private static final int INIT = 0;
   private static final int FIRST_INDEX = 1;
+  private static final int INIT_LADDER_SIZE = 2;
   private static final int LADDER_SIZE = 5;
   private static final int MAX_BLANK_SIZE = 6;
   private static final String RESULT_DELIMITER = "   :   ";
@@ -75,13 +76,25 @@ public class ViewImpl implements View {
   }
 
   private String printLine(Line line) {
-    return line.stream().skip(FIRST_INDEX)
-                        .map(this::printPoint)
-                        .collect(
-                                  joining(
-                                          Symbol.VERTICAL_LINE.getValue(),
-                                          Symbol.VERTICAL_LINE.getValue(),
-                                          Symbol.VERTICAL_LINE.getValue()));
+    if (line.size() == INIT_LADDER_SIZE) {
+      return printLineOnlyOne(line);
+    }
+
+    return line.stream()
+               .skip(FIRST_INDEX)
+               .limit(line.size() - INIT_LADDER_SIZE)
+               .map(this::printPoint)
+               .collect(
+                         joining(
+                                 Symbol.VERTICAL_LINE.getValue(),
+                                 Symbol.VERTICAL_LINE.getValue(),
+                                 Symbol.VERTICAL_LINE.getValue()));
+  }
+
+  private String printLineOnlyOne(Line line) {
+    return line.stream()
+               .map(point -> Symbol.BLANK.getValue())
+               .collect(joining(Symbol.VERTICAL_LINE.getValue()));
   }
 
   private String printPoint(Point point) {
