@@ -1,5 +1,6 @@
 package ladder.model.player;
 
+import ladder.model.name.Name;
 import ladder.model.name.Names;
 
 import java.util.Collections;
@@ -43,5 +44,9 @@ public class Players {
         return players.stream()
                 .filter(player -> player.isName(resultOf))
                 .collect(Collectors.toList());
+    }
+
+    public boolean contains(String resultOf) {
+        return players.contains(new Player(resultOf));
     }
 }
