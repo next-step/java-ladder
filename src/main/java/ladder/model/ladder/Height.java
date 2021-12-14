@@ -12,14 +12,14 @@ public class Height {
         this.height = height;
     }
 
-    public int get() {
-        return height;
-    }
-
     private void checkValidation(int height) {
         if(height < MIN_HEIGHT) {
             throw new IllegalArgumentException("최대 사다리 높이는 " + MIN_HEIGHT + " 이상이여야 합니다.");
         }
+    }
+
+    public int get() {
+        return height;
     }
 
     @Override
