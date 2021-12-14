@@ -13,4 +13,10 @@ public class Ladder {
         this.person = new Person(splitNames);
         this.lines = new Lines(splitNames.length, height);
     }
+
+    @Override
+    public String toString() {
+        return person.toString() + "\n" +
+                lines.toString();
+    }
 }

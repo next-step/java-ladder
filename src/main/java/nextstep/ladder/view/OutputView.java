@@ -1,5 +1,6 @@
 package nextstep.ladder.view;
 
+import nextstep.ladder.model.Ladder;
 import nextstep.ladder.model.Line;
 import nextstep.ladder.model.Lines;
 import nextstep.ladder.model.Person;
@@ -17,10 +18,16 @@ public class OutputView {
         print(person.toString());
     }
 
-    public static void print(Line line){
+    public static void print(Line line) {
         print(line.toString());
     }
+
     public static void print(Lines lines) {
         print(lines.toString());
+    }
+
+    public static void print(Ladder ladder) {
+        print("실행 결과");
+        print(ladder.toString());
     }
 }

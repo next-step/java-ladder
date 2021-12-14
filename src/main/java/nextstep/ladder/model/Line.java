@@ -20,7 +20,7 @@ public class Line {
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder(LADDER_COLUMN);
+        StringBuilder builder = new StringBuilder(BLANK_LINE + LADDER_COLUMN);
         points.forEach(point -> builder.append(isLine(point)).append(LADDER_COLUMN));
         return builder.toString();
     }

@@ -33,6 +33,7 @@ public class Person {
     public String toString() {
         return players.stream()
                 .map(Player::getName)
-                .collect(Collectors.joining(", "));
+                .map(name -> String.format("%5s", name))
+                .collect(Collectors.joining(" "));
     }
 }

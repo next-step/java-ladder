@@ -9,12 +9,12 @@ public class InputView {
     private InputView() {
     }
 
-    public static String nextLine(String message){
+    public static String nextLine(String message) {
         OutputView.print(message);
         return SCANNER.nextLine();
     }
 
-    public static int nextInt(String message){
+    public static int nextInt(String message) {
         OutputView.print(message);
         return SCANNER.nextInt();
     }
