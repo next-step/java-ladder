@@ -11,4 +11,10 @@ public class Line {
 
     }
 
+    @Override
+    public String toString() {
+        return "Line{" +
+                "points=" + points +
+                '}';
+    }
 }

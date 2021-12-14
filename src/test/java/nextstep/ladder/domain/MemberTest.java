@@ -18,5 +18,4 @@ public class MemberTest {
             new Member("december");
         }).isInstanceOf(IllegalArgumentException.class);
     }
-    // , 로 스플릿
 }
