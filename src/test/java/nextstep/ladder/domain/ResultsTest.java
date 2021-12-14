@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -22,5 +23,9 @@ public class ResultsTest {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> Results.of(results))
                 .withMessageContaining("cannot be null or empty");
+    }
+
+    public static Results rs(String ... results) {
+        return Results.of(Arrays.asList(results));
     }
 }

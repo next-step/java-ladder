@@ -10,6 +10,7 @@ public class LineCount extends Count {
 
     private LineCount(final int lineCount) {
         super(lineCount);
+        cache.put(lineCount, this);
     }
 
     public static LineCount of(int lineCount) {
@@ -21,9 +22,7 @@ public class LineCount extends Count {
             throw new IllegalArgumentException("invalid number of player: must be larger than 2, but " + lineCount);
         }
 
-        LineCount instance = new LineCount(lineCount);
-        cache.put(lineCount, instance);
-        return instance;
+        return new LineCount(lineCount);
     }
 
     public static LineCount of(PlayerCount playerCount) {

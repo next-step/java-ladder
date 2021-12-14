@@ -3,6 +3,7 @@ package nextstep.ladder;
 import java.util.List;
 
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.LadderBuilder;
 import nextstep.ladder.domain.Players;
 import nextstep.ladder.domain.Results;
 import nextstep.ladder.domain.line.RandomLineStrategy;
@@ -19,7 +20,8 @@ public class LadderGame {
         final List<String> resultList = List.of("r1", "r2", "r3", "r4", "r5");
         final Players players = Players.of(names);
         final Results results = Results.of(resultList);
-        final Ladder ladder = Ladder.of(players.count(), height, new RandomLineStrategy());
+        final LadderBuilder ladderBuilder = LadderBuilder.of(players, results);
+        final Ladder ladder = ladderBuilder.build(height, new RandomLineStrategy());
 
         OutputView.printPlayerList(players);
         OutputView.printLadder(ladder);

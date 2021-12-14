@@ -22,6 +22,10 @@ public class Results {
                 .collect(Collectors.toList()));
     }
 
+    public ResultCount count() {
+        return new ResultCount(results.size());
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
