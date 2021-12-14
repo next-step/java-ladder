@@ -1,10 +1,9 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Member;
+import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Members;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class ResultView {
@@ -32,6 +31,23 @@ public class ResultView {
 
     public static void responseLadder(Ladder ladder) {
         System.out.println();
-        System.out.println(ladder);
+        for (Line line : ladder.getLines()) {
+            printLine(line);
+        }
+        System.out.println(ladder.getLines());
+    }
+
+    private static void printLine(Line line) {
+        for (Boolean point : line.getPoints()) {
+            System.out.print(checkLine(point));
+        }
+        System.out.println();
+    }
+
+    private static String checkLine(Boolean point) {
+        if(point){
+            return LINKED_LINE;
+        }
+        return NOT_LINKED_LINE;
     }
 }

@@ -7,35 +7,32 @@ import java.util.List;
 
 public class LadderGame {
     private final Members members;
-    private final int layer;
+    private final Layer layer;
 
     public LadderGame(String memberNames, int layer) {
-        this(new Members(memberNames), layer);
+        this(new Members(memberNames), new Layer(layer));
     }
 
-    public LadderGame(Members members, int layer){
+    public LadderGame(Members members, Layer layer){
         this.members = members;
         this.layer = layer;
     }
 
-    public Ladder generate(PointStrategy pointStrategy) {
-        // pointStrategy.generate();
-//        new Ladder(ladderheight)
+    public Ladder create(PointStrategy pointStrategy) {
         List<Line> Lines = new ArrayList<>();
         while(moreLayer()){
-            Lines.add(gen(pointStrategy));
+            Lines.add(generate(pointStrategy));
         }
         return new Ladder(Lines);
     }
 
-    public Line gen(PointStrategy pointStrategy) {
-//        layer.nextLayer();
-        return new Line(1);
+    public Line generate(PointStrategy pointStrategy) {
+        layer.nextLayer();
+        return new Line(members.countOfMember(), pointStrategy);
     }
 
     public boolean moreLayer(){
-        // return layer.moreLayer();
-        return true;
+        return layer.moreLayer();
     }
 
     public Members getMembers() {

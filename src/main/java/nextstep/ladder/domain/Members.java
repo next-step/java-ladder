@@ -2,6 +2,7 @@ package nextstep.ladder.domain;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Members {
@@ -21,13 +22,16 @@ public class Members {
     }
 
     private List<Member> memberNames(String memberNames) {
-        String[] splitMemberNames = memberNames.replaceAll(DEFAULT_WHITE_SPACE_CHARACTER, DEFAULT_CHARACTER)
-                .split(DEFAULT_SPLIT_CHARACTER);
-        validationNames(splitMemberNames);
-
-        return Arrays.stream(splitMemberNames)
+        return Arrays.stream(getNames(memberNames))
                             .map(name -> new Member(name))
                             .collect(Collectors.toList());
+    }
+
+    private String[] getNames(String memberNames) {
+        String[] splitMemberNames = memberNames.replaceAll(DEFAULT_WHITE_SPACE_CHARACTER, DEFAULT_CHARACTER)
+                                                    .split(DEFAULT_SPLIT_CHARACTER);
+        validationNames(splitMemberNames);
+        return splitMemberNames;
     }
 
     private void validationNames(String[] splitMemberNames) {
@@ -36,7 +40,24 @@ public class Members {
         }
     }
 
+    public int countOfMember() {
+        return members.size();
+    }
+
     public List<Member> getMembers() {
         return members;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Members members1 = (Members) o;
+        return Objects.equals(members, members1.members);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(members);
     }
 }

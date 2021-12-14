@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class Member {
     private static final int MAX_MEMBER_NAME_LENGTH = 5;
+
     private final String name;
 
     public Member(String name) {
@@ -12,6 +13,10 @@ public class Member {
     }
 
     private void validationMember(String name){
+        if(Objects.isNull(name) || name.length() == 0) {
+            throw new IllegalArgumentException("참가자명을 입력하세요.");
+        }
+
         if(name.length() > MAX_MEMBER_NAME_LENGTH) {
             throw new IllegalArgumentException("5글자를 초과하였습니다.");
         }
