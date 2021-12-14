@@ -44,15 +44,15 @@ public class ResultView {
                 .forEach(i -> System.out.println(ladderLine(ladder.findLine(i))));
     }
 
-    private static String ladderLine(Line line) {
+    private static String ladderLine(LadderLine line) {
         int ladderLineCount = line.size() - 1;
         return VERTICAL_LINE + IntStream.range(0, ladderLineCount)
-                .mapToObj(i -> lineAndEmpty(line.value(i)))
+                .mapToObj(i -> lineAndEmpty(line.findRight(i)))
                 .collect(Collectors.joining(VERTICAL_LINE)) + VERTICAL_LINE;
     }
 
-    private static String lineAndEmpty(int line) {
-        return line == 0 ? SPACE_FIVE : HYPHEN_FIVE;
+    private static String lineAndEmpty(boolean line) {
+        return line ? HYPHEN_FIVE : SPACE_FIVE;
     }
 
     public static void printPrizes(Prizes prizes) {
