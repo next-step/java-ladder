@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 public class Players {
 
+    private static final String RESULT_OF_ALL = "all";
     private static final int MIN_PLAYER_COUNT = 2;
     private final List<Player> players;
 
@@ -19,25 +20,28 @@ public class Players {
         checkValidation(this.players);
     }
 
-    public int count() {
-        return this.players.size();
+    private void checkValidation(List<Player> players) {
+        if(players.size() < MIN_PLAYER_COUNT) {
+            throw new IllegalArgumentException("게임을 하려면 최소 " + MIN_PLAYER_COUNT + "명이 필요합니다.");
+        }
     }
 
-    public Player get(int index) {
-        return players.get(index);
+    public int count() {
+        return this.players.size();
     }
 
     public List<Player> get() {
         return Collections.unmodifiableList(this.players);
     }
 
-    public String name(int index) {
-        return players.get(index).name();
+    public int indexOf(Player player) {
+        return players.indexOf(player);
     }
 
-    private void checkValidation(List<Player> players) {
-        if(players.size() < MIN_PLAYER_COUNT) {
-            throw new IllegalArgumentException("게임을 하려면 최소 " + MIN_PLAYER_COUNT + "명이 필요합니다.");
-        }
+    public List<Player> getResultOf(String resultOf) {
+        if(resultOf.equals(RESULT_OF_ALL)) return get();
+        return players.stream()
+                .filter(player -> player.isName(resultOf))
+                .collect(Collectors.toList());
     }
 }

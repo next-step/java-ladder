@@ -1,5 +1,7 @@
 package ladder.view;
 
+import ladder.model.gameresult.GameResult;
+import ladder.model.gameresult.GameResults;
 import ladder.model.ladder.Ladder;
 import ladder.model.ladder.Line;
 import ladder.model.point.Point;
@@ -10,7 +12,6 @@ import ladder.model.result.Results;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 public class ResultView {
 
@@ -47,21 +48,20 @@ public class ResultView {
     }
 
     private static void printResults(List<Result> results) {
-        results.forEach(result -> System.out.printf("%-5s ", result.get()));
+        results.forEach(result -> System.out.printf("%5s ", result.get()));
         System.out.println();
     }
 
-    public static void printResult(Map<String, String> resultMap, String key) {
+    public static void printResult(GameResults gameResults, Results results) {
         System.out.println("실행 결과");
-        if(key.equals("all")) {
-            printAll(resultMap);
-        }
-        if(resultMap.containsKey(key)) {
-            System.out.println(resultMap.get(key));
-        }
+        gameResults.get().forEach(gameResult ->
+                System.out.println(printGameResult(gameResults.isAll(), gameResult, results)));
     }
 
-    private static void printAll(Map<String, String> gameResult) {
-        gameResult.forEach((name,result) -> System.out.println(name + " : " + result));
+    private static String printGameResult(boolean all, GameResult gameResult, Results results) {
+        if(all) {
+            return gameResult.name() + " : " + results.get(gameResult.resultIndex()).get();
+        }
+        return results.get(gameResult.resultIndex()).get();
     }
 }

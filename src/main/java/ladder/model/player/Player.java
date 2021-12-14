@@ -13,4 +13,8 @@ public class Player {
     public String name() {
         return name.get();
     }
+
+    public boolean isName(String name) {
+        return this.name.equals(new Name(name));
+    }
 }
