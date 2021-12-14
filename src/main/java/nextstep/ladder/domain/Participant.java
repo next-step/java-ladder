@@ -9,21 +9,15 @@ public class Participant {
     private static final int MAX_NAME_LENGTH = 5;
 
     private final String name;
-    private final int position;
+    private final Position position;
 
-    public Participant(String name, int position) {
+    public Participant(String name, Position position) {
         this.name = rangeStringLength(name, MAX_NAME_LENGTH);
         this.position = position;
     }
 
     public Participant climb(Ladder ladder) {
-        int tempPosition = this.position;
-
-        for (Line line : ladder.getLines()) {
-            tempPosition = line.move(tempPosition);
-        }
-
-        return new Participant(this.name, tempPosition);
+        return new Participant(this.name, ladder.execute(position));
     }
 
     public boolean isEqualsName(String findName) {
@@ -35,7 +29,7 @@ public class Participant {
     }
 
     public int getPosition() {
-        return position;
+        return position.getPosition();
     }
 
     @Override
@@ -47,8 +41,8 @@ public class Participant {
             return false;
         }
         Participant that = (Participant) o;
-        return getPosition() == that.getPosition() && Objects.equals(getName(),
-            that.getName());
+        return Objects.equals(getName(), that.getName()) && Objects.equals(
+            getPosition(), that.getPosition());
     }
 
     @Override

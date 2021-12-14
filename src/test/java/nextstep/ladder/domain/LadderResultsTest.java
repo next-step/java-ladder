@@ -28,7 +28,7 @@ class LadderResultsTest {
     @DisplayName("참가자의 결과가 정상적으로 반환된다.")
     void getTest() {
         LadderResults ladderResults = LadderResults.create(input);
-        Participant participant = new Participant("koi", 1);
+        Participant participant = new Participant("koi", Position.of(1));
 
         assertThat(ladderResults.get(participant)).isEqualTo("5000");
     }
