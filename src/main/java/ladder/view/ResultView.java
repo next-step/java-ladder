@@ -10,10 +10,12 @@ import ladder.model.player.Players;
 import ladder.model.result.Result;
 import ladder.model.result.Results;
 
-import java.util.Collections;
 import java.util.List;
 
 public class ResultView {
+
+    private static final String LINE = "-----|";
+    private static final String NO_LINE = "     |";
 
     public static void printLadderResult(Players players, Ladder ladder, Results results) {
         System.out.println("사다리 결과");
@@ -40,11 +42,11 @@ public class ResultView {
     }
 
     private static void printPoint(Point point) {
-        String value = " ";
+        String value = NO_LINE;
         if(point.isLeft())  {
-            value = "-";
+            value = LINE;
         }
-        System.out.print(String.join("", Collections.nCopies(5, value)) + "|");
+        System.out.print(value);
     }
 
     private static void printResults(List<Result> results) {
