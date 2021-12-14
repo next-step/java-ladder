@@ -30,8 +30,8 @@ class PointTest {
     @DisplayName("다음 포인트로 이동 테스트")
     void pointNextTest(int index) {
         Direction direction = Direction.of(false,true);
-        Point point1 = new Point(index,direction);
-        Point point2 = new Point(index + 1 ,direction.next());
-        assertThat(point1.next()).isEqualTo(point2);
+        Point point1 = new Point(index, direction);
+        Point point2 = new Point(index + 1 ,direction.next(true));
+        assertThat(point1.next(true)).isEqualTo(point2);
     }
 }

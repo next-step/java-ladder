@@ -22,8 +22,8 @@ public class Point {
         return new Point(this.index, this.direction.last());
     }
 
-    public Point next() {
-        return new Point(this.index + 1, this.direction.next());
+    public Point next(boolean randomRight) {
+        return new Point(this.index + 1, this.direction.next(randomRight));
     }
 
     public boolean isLeft() {
