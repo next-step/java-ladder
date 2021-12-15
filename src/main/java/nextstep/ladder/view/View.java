@@ -3,9 +3,8 @@ package nextstep.ladder.view;
 import nextstep.ladder.domain.entity.Ladder;
 import nextstep.ladder.domain.entity.LadderHeight;
 import nextstep.ladder.domain.entity.Names;
+import nextstep.ladder.domain.entity.PrizeEntry;
 import nextstep.ladder.domain.entity.PrizeGroup;
-
-import java.util.Map;
 
 public interface View {
 
@@ -21,5 +20,5 @@ public interface View {
 
   void printPrize(PrizeGroup prizeGroup);
 
-  void printResult(Map<String, Integer> resultMap, PrizeGroup prizeGroup);
+  void printResult(PrizeEntry entry, PrizeGroup prizeGroup);
 }

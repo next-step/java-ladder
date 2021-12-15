@@ -28,4 +28,16 @@ class PointTest {
     assertEquals(result, nowPoint.hasWay());
   }
 
+  @ParameterizedTest
+  @CsvSource(value = {"true:false:-1", "false:true:1", "false:false:0"}, delimiter = ':')
+  @DisplayName("길이 있는 쪽의 index를 반환한다.")
+  void findDirection(boolean left, boolean right, int result) {
+    Point leftPoint = new Point(left);
+    Point rightPoint = new Point(right);
+
+    int direction = rightPoint.findDirection(leftPoint);
+
+    assertEquals(result, direction);
+  }
+
 }

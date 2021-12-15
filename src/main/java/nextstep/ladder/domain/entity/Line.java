@@ -6,8 +6,8 @@ import java.util.stream.Stream;
 
 public class Line {
 
-  private static final int ONE_STEP = 1;
   private static final int INIT = 1;
+  private static final int LEFT = -1;
 
   private final List<Point> points;
 
@@ -27,23 +27,12 @@ public class Line {
     return IntStream.range(INIT, points.size() + INIT)
                     .filter(index -> index  == startingPoint)
                     .map(now -> {
-
-                      if(isThisDirection(now - ONE_STEP)) {
-                        return now - ONE_STEP;
-                      }
-
-                      if(isThisDirection(now)) {
-                        return now + ONE_STEP;
-                      }
-
-                      return now;
-                     })
+                      Point nowPoint = points.get(now);
+                      int direction = nowPoint.findDirection(points.get(now + LEFT));
+                      return now + direction;
+                    })
                     .findFirst()
                     .orElseThrow(IllegalArgumentException::new);
   }
 
-  private boolean isThisDirection(int index) {
-    Point point = points.get(index);
-    return point.hasWay();
-  }
 }

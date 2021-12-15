@@ -7,10 +7,10 @@ import nextstep.ladder.domain.entity.Name;
 import nextstep.ladder.domain.entity.Names;
 import nextstep.ladder.domain.entity.Point;
 import nextstep.ladder.domain.entity.Prize;
-import nextstep.ladder.domain.entity.Symbol;
+import nextstep.ladder.domain.entity.PrizeEntry;
 import nextstep.ladder.domain.entity.PrizeGroup;
+import nextstep.ladder.domain.entity.Symbol;
 
-import java.util.Map;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.joining;
@@ -116,28 +116,28 @@ public class ViewImpl implements View {
   }
 
   @Override
-  public void printResult(Map<String, Integer> resultMap, PrizeGroup prizeGroup) {
+  public void printResult(PrizeEntry entry, PrizeGroup prizeGroup) {
     String target = getTarget();
 
     while (!target.equals(ALL)) {
-      Integer index = resultMap.get(target);
+      int index = entry.findByName(target);
       Prize prize = prizeGroup.getResult(index - FIRST_INDEX);
 
       resultView.printMessage(toResult(target, prize.getRank()));
       target = getTarget();
     }
 
-    resultView.printMessage(toResult(resultMap, prizeGroup));
+    resultView.printMessage(toResult(entry, prizeGroup));
   }
 
-  private String toResult(Map<String, Integer> resultMap, PrizeGroup prizeGroup) {
+  private String toResult(PrizeEntry entry, PrizeGroup prizeGroup) {
     stringBuilder.setLength(INIT);
 
-    resultMap.forEach((key, index) -> stringBuilder.append(key)
-             .append(RESULT_DELIMITER)
-             .append(prizeGroup.getResult(index - FIRST_INDEX)
-                            .getRank())
-             .append(System.lineSeparator()));
+    entry.forEach((key, index) -> stringBuilder.append(key)
+         .append(RESULT_DELIMITER)
+         .append(prizeGroup.getResult(index - FIRST_INDEX)
+                           .getRank())
+         .append(System.lineSeparator()));
 
     return stringBuilder.toString();
   }
