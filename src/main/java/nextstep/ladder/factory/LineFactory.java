@@ -13,10 +13,7 @@ public class LineFactory {
     }
 
     public static Line of(int countOfPerson, LineGenerator generator) {
-        List<Boolean> points = new ArrayList<>();
-        points.add(generator.generate(null));
-        loopGenerate(points, countOfPerson, generator);
-        return new Line(points);
+        return of(false, countOfPerson, generator);
     }
 
     public static Line of(Boolean first, int countOfPerson, LineGenerator generator) {
