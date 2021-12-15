@@ -3,7 +3,7 @@ package nextstep.ladder.view;
 import nextstep.ladder.model.Ladder;
 import nextstep.ladder.model.Line;
 import nextstep.ladder.model.Lines;
-import nextstep.ladder.model.Person;
+import nextstep.ladder.model.Players;
 
 public class OutputView {
 
@@ -14,8 +14,8 @@ public class OutputView {
         System.out.println(message);
     }
 
-    public static void print(Person person) {
-        print(person.toString());
+    public static void print(Players players) {
+        print(players.toString());
     }
 
     public static void print(Line line) {

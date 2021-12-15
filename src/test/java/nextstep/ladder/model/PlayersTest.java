@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-class PersonTest {
+class PlayersTest {
 
     @ParameterizedTest
     @NullAndEmptySource
@@ -17,7 +17,7 @@ class PersonTest {
     void validationMiddleEmpty(String names) {
         assertThatIllegalArgumentException().isThrownBy(() -> {
             String[] splitNames = StringUtils.validationNotNullAndEmpty(names).split(",");
-            new Person(splitNames);
+            new Players(splitNames);
         });
     }
 
