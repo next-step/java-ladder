@@ -1,13 +1,23 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.strategy.PointStrategy;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class LadderTest {
+
     @Test
     void create() {
-//        Ladder ladder = new Ladder(5);
-//        assertThat(ladder.getLines().size()).isEqualTo(5);
+        PointStrategy pointStrategy = () -> true;
+        Ladder ladder = new Ladder(Arrays.asList(
+                new Line(5, pointStrategy),
+                new Line(5, pointStrategy),
+                new Line(5, pointStrategy)
+        ));
+        assertThat(ladder.getLines().size()).isEqualTo(3);
     }
 }

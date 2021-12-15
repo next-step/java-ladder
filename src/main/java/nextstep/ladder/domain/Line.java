@@ -15,17 +15,20 @@ public class Line {
     public Line (int countOfMember, PointStrategy pointStrategy) {
         List<Boolean> booleans = new ArrayList<>();
         for (int i=0; i < countOfMember; i++) {
-            if(i == 0) {
-                booleans.add(false);
-            }else {
-                booleans.add(isPrevLined(pointStrategy, booleans.get(i-1)));
-            }
+            booleans.add(isLined(pointStrategy, booleans, i));
         }
         this.points = booleans;
     }
 
-    private boolean isPrevLined(PointStrategy pointStrategy, boolean prevLined) {
-        if(prevLined) {
+    public Line (List<Boolean> points) {
+        this.points = points;
+    }
+
+    private boolean isLined(PointStrategy pointStrategy, List<Boolean> booleans, int i) {
+        if(i == 0) {
+            return false;
+        }
+        if(booleans.get(i-1)) {
             return false;
         }
         return pointStrategy.generate();

@@ -4,8 +4,6 @@ import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Members;
 
-import java.util.List;
-
 public class ResultView {
     private static final String RESPONSE_INIT_MESSAGE = "실행결과";
     private static final String RESPONSE_MEMBER_MESSAGE = "%5s";
@@ -34,7 +32,6 @@ public class ResultView {
         for (Line line : ladder.getLines()) {
             printLine(line);
         }
-        System.out.println(ladder.getLines());
     }
 
     private static void printLine(Line line) {

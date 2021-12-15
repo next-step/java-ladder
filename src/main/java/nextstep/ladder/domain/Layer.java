@@ -15,7 +15,7 @@ public class Layer {
     }
 
     public Layer(int layer, int nowLayer) {
-        if (MIN_INPUT_NUMBER > nowLayer) {
+        if (MIN_INPUT_NUMBER > layer) {
             throw new IllegalArgumentException(EXCEPTION_MESSAGE_MIN_TRY_ROUND);
         }
         this.layer = layer;
