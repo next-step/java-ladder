@@ -2,6 +2,7 @@ package nextstep.ladder.factory;
 
 import nextstep.ladder.generator.LineGenerator;
 import nextstep.ladder.model.Line;
+import nextstep.ladder.utils.RandomUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +14,7 @@ public class LineFactory {
     }
 
     public static Line of(int countOfPerson, LineGenerator generator) {
-        return of(false, countOfPerson, generator);
+        return of(RandomUtils.nextBoolean(), countOfPerson, generator);
     }
 
     public static Line of(Boolean first, int countOfPerson, LineGenerator generator) {
