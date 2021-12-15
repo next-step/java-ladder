@@ -9,9 +9,9 @@ import nextstep.ladder.domain.LadderBuilder;
 import nextstep.ladder.domain.Player;
 import nextstep.ladder.domain.Players;
 import nextstep.ladder.domain.Result;
+import nextstep.ladder.domain.ResultOfGame;
 import nextstep.ladder.domain.Results;
 import nextstep.ladder.domain.line.RandomLineStrategy;
-import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
 
 public class LadderGame {
@@ -35,17 +35,21 @@ public class LadderGame {
         OutputView.printResult(results);
 
         // todo result of players from ladder + player + result
-        Map<Player, Result> resultOfPlayers = Map.of(Player.of("n1"), Result.of("r4"),
+        ResultOfGame resultOfGame = ResultOfGame.of(Map.of(Player.of("n1"), Result.of("r4"),
                 Player.of("n2"), Result.of("r2"),
                 Player.of("n3"), Result.of("r3"),
-                Player.of("n4"), Result.of("r1"));
+                Player.of("n4"), Result.of("r1")));
 
         List<String> resultCommand = List.of("n1", "n3", ALL_COMMAND, QUIT_COMMAND);
         Iterator<String> iter = resultCommand.iterator();
-        String nameOfUser = iter.next();
+        String nameOfUser = "";
         while(!nameOfUser.equalsIgnoreCase(QUIT_COMMAND) && iter.hasNext()) {
-            OutputView.printResultOfPlayers(nameOfUser, resultOfPlayers);
             nameOfUser = iter.next();
+            if (nameOfUser.equalsIgnoreCase(QUIT_COMMAND)) {
+                break;
+            }
+
+            OutputView.printResultOfPlayers(nameOfUser, resultOfGame);
         }
     }
 }

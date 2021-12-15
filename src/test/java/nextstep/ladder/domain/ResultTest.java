@@ -24,4 +24,8 @@ public class ResultTest {
                 .isThrownBy(() -> Result.of(result))
                 .withMessageContaining("cannot be null or empty");
     }
+
+    public static Result r(String result) {
+        return Result.of(result);
+    }
 }

@@ -1,6 +1,5 @@
 package nextstep.ladder.view;
 
-import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -11,12 +10,13 @@ import nextstep.ladder.domain.Name;
 import nextstep.ladder.domain.Player;
 import nextstep.ladder.domain.Players;
 import nextstep.ladder.domain.Result;
+import nextstep.ladder.domain.ResultOfGame;
 import nextstep.ladder.domain.Results;
 
 public class OutputView {
     private static final String NAME_FORMAT = "%" + (Name.LENGTH_LIMIT + 1) + "s";
     private static final String NEWLINE = "\n";
-    private static final String NOTHING = " ";
+    private static final String SPACE = " ";
     private static final String LINE = "-";
     private static final String RAIL = "|";
     private static final String NAME_COLON = ":";
@@ -45,7 +45,7 @@ public class OutputView {
     }
 
     public static String formatLine(Line line) {
-        return NOTHING.repeat(Name.LENGTH_LIMIT) + RAIL + mapLine(line) + RAIL;
+        return SPACE.repeat(Name.LENGTH_LIMIT) + RAIL + mapLine(line) + RAIL;
     }
 
     public static String mapLine(Line line) {
@@ -56,7 +56,7 @@ public class OutputView {
     }
 
     public static String mapPoint(boolean isPoint) {
-        String point = isPoint ? LINE : NOTHING;
+        String point = isPoint ? LINE : SPACE;
         return point.repeat(Name.LENGTH_LIMIT);
     }
 
@@ -68,25 +68,23 @@ public class OutputView {
         System.out.print(NEWLINE);
     }
 
-    public static void printResultOfPlayers(String nameOfUser, Map<Player, Result> resultOfPlayers) {
+    public static void printResultOfPlayers(String nameOfUser, ResultOfGame resultOfGame) {
         System.out.println("실행 결과");
 
-
-        Optional.ofNullable(resultOfPlayers.get(Player.of(nameOfUser)))
+        resultOfGame.result(Player.of(nameOfUser))
                 .map(Result::toString)
-                .or(() -> mapNotExistUser(nameOfUser, resultOfPlayers))
+                .or(() -> mapNotExistUser(nameOfUser, resultOfGame))
                 .ifPresent(System.out::println);
     }
 
-    public static Optional<String> mapNotExistUser(String nameOfUser, Map<Player, Result> resultOfPlayers) {
+    public static Optional<String> mapNotExistUser(String nameOfUser, ResultOfGame resultOfGame) {
         return Optional.of(nameOfUser)
-                .filter(com -> com.equalsIgnoreCase(LadderGame.ALL_COMMAND))
-                .map(com -> parseAllResult(resultOfPlayers));
+                .filter(name -> name.equalsIgnoreCase(LadderGame.ALL_COMMAND))
+                .map(name -> parseAllResult(resultOfGame));
     }
 
-    public static String parseAllResult(Map<Player, Result> resultOfPlayers) {
-        return resultOfPlayers.entrySet()
-                .stream()
+    public static String parseAllResult(ResultOfGame resultOfGame) {
+        return resultOfGame.streamOfEntry()
                 .map(entry -> entry.getKey().name() + NAME_COLON + entry.getValue())
                 .collect(Collectors.joining(NEWLINE));
     }

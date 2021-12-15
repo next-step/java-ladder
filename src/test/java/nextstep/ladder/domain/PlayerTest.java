@@ -29,4 +29,8 @@ public class PlayerTest {
         final Name name = n("name1");
         assertThat(Player.of(name).name()).isEqualTo(name);
     }
+
+    public static Player p(String name) {
+        return Player.of(name);
+    }
 }
