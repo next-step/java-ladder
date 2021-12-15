@@ -28,4 +28,17 @@ public class Floor {
     public List<Boolean> getLines() {
         return Collections.unmodifiableList(this.lines);
     }
+
+    // 왼쪽: -1 오른쪽 : + 1
+    public int whichDirection(int position) {
+        // position == 0 인 경우는 없음 section은 1부터
+        int nextPosition = position;
+        if (lines.get(position - 1)) {
+            nextPosition -= 1;
+        }
+        if (position != lines.size() && lines.get(position)) {
+            nextPosition += 1;
+        }
+        return nextPosition;
+    }
 }
