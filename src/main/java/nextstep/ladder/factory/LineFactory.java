@@ -28,7 +28,7 @@ public class LineFactory {
 
     private static void loopGenerate(List<Boolean> points, int countOfPerson, LineGenerator generator) {
         for (int i = ONE; i < countOfPerson - ONE; i++) {
-            Boolean prevPoint = points.get(i - ONE);
+            boolean prevPoint = points.get(i - ONE);
             points.add(generator.generate(prevPoint));
         }
     }
