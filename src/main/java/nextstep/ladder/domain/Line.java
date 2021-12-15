@@ -12,23 +12,23 @@ import java.util.stream.Stream;
 public class Line {
     private final List<Boolean> points;
 
-    public Line (int countOfMember, PointStrategy pointStrategy) {
+    public Line(int countOfMember, PointStrategy pointStrategy) {
         List<Boolean> booleans = new ArrayList<>();
-        for (int i=0; i < countOfMember; i++) {
-            booleans.add(isLined(pointStrategy, booleans, i));
+        for (int count=0; count < countOfMember; count++) {
+            booleans.add(isLined(pointStrategy, booleans, count));
         }
         this.points = booleans;
     }
 
-    public Line (List<Boolean> points) {
+    public Line(List<Boolean> points) {
         this.points = points;
     }
 
-    private boolean isLined(PointStrategy pointStrategy, List<Boolean> booleans, int i) {
-        if(i == 0) {
+    private boolean isLined(PointStrategy pointStrategy, List<Boolean> booleans, int count) {
+        if (count == 0) {
             return false;
         }
-        if(booleans.get(i-1)) {
+        if (booleans.get(count-1)) {
             return false;
         }
         return pointStrategy.generate();

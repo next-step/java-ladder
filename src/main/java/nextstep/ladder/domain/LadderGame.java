@@ -21,7 +21,7 @@ public class LadderGame {
 
     public Ladder create(PointStrategy pointStrategy) {
         List<Line> Lines = new ArrayList<>();
-        while(moreLayer()){
+        while (moreLayer()) {
             Lines.add(generate(pointStrategy));
         }
         return new Ladder(Lines);

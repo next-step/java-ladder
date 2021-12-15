@@ -6,6 +6,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Members {
+    private static final String EXCEPTION_MESSAGE_MEMBERS = "참가자 수가 1보다 작은 수 입니다.";
     private static final String DEFAULT_WHITE_SPACE_CHARACTER = " ";
     private static final String DEFAULT_CHARACTER = "";
     private static final String DEFAULT_SPLIT_CHARACTER = ",";
@@ -14,29 +15,29 @@ public class Members {
     public final List<Member> members;
 
     public Members(String memberNames) {
-        this.members = memberNames(memberNames);
+        this.members = toMembers(memberNames);
     }
 
     public Members(List<Member> members) {
         this.members = members;
     }
 
-    private List<Member> memberNames(String memberNames) {
+    private List<Member> toMembers(String memberNames) {
         return Arrays.stream(getNames(memberNames))
-                            .map(name -> new Member(name))
+                            .map(Member::new)
                             .collect(Collectors.toList());
     }
 
     private String[] getNames(String memberNames) {
-        String[] splitMemberNames = memberNames.replaceAll(DEFAULT_WHITE_SPACE_CHARACTER, DEFAULT_CHARACTER)
+        String[] splitMemberNames = memberNames.replace(DEFAULT_WHITE_SPACE_CHARACTER, DEFAULT_CHARACTER)
                                                     .split(DEFAULT_SPLIT_CHARACTER);
-        validationNames(splitMemberNames);
+        validateNames(splitMemberNames);
         return splitMemberNames;
     }
 
-    private void validationNames(String[] splitMemberNames) {
-        if(splitMemberNames.length < DEFAULT_MEMBER_NUMBER){
-            throw new IllegalArgumentException("참가자 수가 정확하지 않습니다.");
+    private void validateNames(String[] splitMemberNames) {
+        if (splitMemberNames.length < DEFAULT_MEMBER_NUMBER) {
+            throw new IllegalArgumentException(EXCEPTION_MESSAGE_MEMBERS);
         }
     }
 

@@ -3,7 +3,7 @@ package nextstep.ladder.domain;
 import java.util.Objects;
 
 public class Layer {
-    private static final String EXCEPTION_MESSAGE_MIN_TRY_ROUND = "시도 횟수가 1보다 작은 수 입니다.";
+    private static final String EXCEPTION_MESSAGE_MIN_LAYER = "사다리 높이가 1보다 작은 수 입니다.";
     private static final int MIN_INPUT_NUMBER = 1;
     private static final int START_LAYER = 1;
 
@@ -15,8 +15,8 @@ public class Layer {
     }
 
     public Layer(int layer, int nowLayer) {
-        if (MIN_INPUT_NUMBER > layer) {
-            throw new IllegalArgumentException(EXCEPTION_MESSAGE_MIN_TRY_ROUND);
+        if (layer < MIN_INPUT_NUMBER) {
+            throw new IllegalArgumentException(EXCEPTION_MESSAGE_MIN_LAYER);
         }
         this.layer = layer;
         this.nowLayer = nowLayer;
