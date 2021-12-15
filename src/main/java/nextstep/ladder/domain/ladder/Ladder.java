@@ -20,6 +20,13 @@ public class Ladder {
         return new Ladder(ladderLines);
     }
 
+    public int move(int index){
+        for(LadderLine ladderLine: ladderLines){
+            index = ladderLine.move(index);
+        }
+        return index;
+    }
+
     public List<LadderLine> getLadderLines() {
         return Collections.unmodifiableList(ladderLines);
     }

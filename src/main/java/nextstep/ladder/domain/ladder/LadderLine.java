@@ -40,6 +40,10 @@ public class LadderLine {
         return point;
     }
 
+    public int move(int position) {
+        return points.get(position).move();
+    }
+
     public List<Point> getPoints() {
         return Collections.unmodifiableList(points);
     }

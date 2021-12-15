@@ -21,4 +21,24 @@ public class UserCollection {
     public List<User> getUsers() {
         return Collections.unmodifiableList(users);
     }
+
+    public int getIndex(String userName) {
+
+        List<String> userNames = users.stream()
+                .map(User::getName)
+                .map(Name::getValue)
+                .collect(Collectors.toList());
+
+        return userNames.indexOf(userName);
+    }
+
+    public User getUserFromIndex(int index){
+        return users.get(index);
+    }
+
+    public int size(){
+        return users.size();
+    }
+
+
 }
