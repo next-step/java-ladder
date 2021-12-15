@@ -15,27 +15,29 @@ public class ResultView {
 
     public void gameResult(Names names, Ladder ladder) {
         System.out.println(GAME_RUN_MESSAGE);
+        System.out.println(printEntryName(names));
+        printLaddersResult(ladder);
+    }
 
-        String entryNames = names.getNames()
-                                .stream()
-                                .map(name -> String.format(NAME_FORMAT, name.getValue()))
-                                .collect(Collectors.joining());
-        System.out.println(entryNames);
+    private String printEntryName(Names names) {
+        return names.getNames()
+                .stream()
+                .map(name -> String.format(NAME_FORMAT, name.getValue()))
+                .collect(Collectors.joining());
+    }
 
-        ladder.getLadder()
-                .forEach(line -> {
-                    line.getLine()
-                            .forEach(point -> {
-                                        System.out.print(printPoint(point));
-                                        });
+    private void printLaddersResult(Ladder ladder) {
+        ladder.getLadder().forEach(line -> {
+                    line.getLine().forEach(this::printPoint);
                     System.out.println();
                 });
     }
 
-    private String printPoint(Point point) {
+    private void printPoint(Point point) {
         if (point.isValue()) {
-            return String.format("%s%s", LADDER_DASH, LADDER_LINE);
+            System.out.printf("%s%s", LADDER_DASH, LADDER_LINE);
+            return;
         }
-        return String.format("%s%s", LADDER_BLANK, LADDER_LINE);
+        System.out.printf("%s%s", LADDER_BLANK, LADDER_LINE);
     }
 }
