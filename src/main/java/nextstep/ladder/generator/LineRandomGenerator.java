@@ -8,8 +8,8 @@ public class LineRandomGenerator implements LineGenerator {
     private static final Random RANDOM = new Random();
 
     @Override
-    public boolean generate(Boolean prevBoolean) {
-        return Optional.ofNullable(prevBoolean)
+    public boolean generate(boolean prevBoolean) {
+        return Optional.of(prevBoolean)
                 .map(prev -> !prev && RANDOM.nextBoolean())
                 .orElse(RANDOM.nextBoolean());
     }
