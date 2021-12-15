@@ -1,26 +1,32 @@
 package ladder.game;
 
-import ladder.model.Height;
-import ladder.model.Line;
+import ladder.model.gameresult.GameResults;
+import ladder.model.ladder.Ladder;
 import ladder.model.player.Players;
-
-import java.util.*;
 
 public class LadderGame {
 
+    private static final String RESULT_OF_ALL = "ALL";
+    private final Ladder ladder;
     private final Players players;
-    private final Height height;
 
-    public LadderGame(Players players, Height height) {
+    public LadderGame(Ladder ladder, Players players) {
+        this.ladder = ladder;
         this.players = players;
-        this.height = height;
     }
 
-    public List<Line> play() {
-        List<Line> lineList = new ArrayList<Line>();
-        for (int cnt = 0; cnt < height.get(); cnt++) {
-            lineList.add(new Line(players.size()));
+    public GameResults play(String resultOf) {
+        checkValidation(resultOf);
+        GameResults gameResult = new GameResults(resultOf);
+        players.getResultOf(resultOf).forEach(
+            player -> gameResult.add(player.name(), ladder.move(players.indexOf(player)))
+        );
+        return gameResult;
+    }
+
+    private void checkValidation(String resultOf) {
+        if(!resultOf.equalsIgnoreCase(RESULT_OF_ALL) && !players.contains(resultOf)) {
+            throw new IllegalArgumentException("해당 이름을 가진 참가자가 없습니다.");
         }
-        return lineList;
     }
 }

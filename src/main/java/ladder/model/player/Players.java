@@ -8,14 +8,25 @@ import java.util.stream.Collectors;
 
 public class Players {
 
+    private static final String RESULT_OF_ALL = "ALL";
     private static final int MIN_PLAYER_COUNT = 2;
     private final List<Player> players;
 
     public Players(String players) {
-        this.players = toPlayerList(players);
+        this.players = new Names(players).get()
+                .stream()
+                .map(Player::new)
+                .collect(Collectors.toList());
+        checkValidation(this.players);
     }
 
-    public int size() {
+    private void checkValidation(List<Player> players) {
+        if(players.size() < MIN_PLAYER_COUNT) {
+            throw new IllegalArgumentException("게임을 하려면 최소 " + MIN_PLAYER_COUNT + "명이 필요합니다.");
+        }
+    }
+
+    public int count() {
         return this.players.size();
     }
 
@@ -23,18 +34,18 @@ public class Players {
         return Collections.unmodifiableList(this.players);
     }
 
-    private List<Player> toPlayerList(String players) {
-        List<Player> list = new Names(players).get()
-                            .stream()
-                            .map(Player::new)
-                            .collect(Collectors.toList());
-        checkValidation(list);
-        return list;
+    public int indexOf(Player player) {
+        return players.indexOf(player);
     }
 
-    private void checkValidation(List<Player> list) {
-        if(list.size() < MIN_PLAYER_COUNT) {
-            throw new IllegalArgumentException("게임을 하려면 최소 " + MIN_PLAYER_COUNT + "명이 필요합니다.");
-        }
+    public List<Player> getResultOf(String resultOf) {
+        if(resultOf.equalsIgnoreCase(RESULT_OF_ALL)) return get();
+        return players.stream()
+                .filter(player -> player.isName(resultOf))
+                .collect(Collectors.toList());
+    }
+
+    public boolean contains(String resultOf) {
+        return players.contains(new Player(resultOf));
     }
 }

@@ -1,6 +1,6 @@
 package ladder.model.stringas;
 
-import ladder.model.Height;
+import ladder.model.ladder.Height;
 
 public class StringAsHeight {
 
