@@ -25,7 +25,6 @@ public class Names {
     }
     public static Names from(String name) {
         List<Name> names = Arrays.stream(name.split(SEPARATORS))
-                .map(String::trim)
                 .map(Name::new)
                 .collect(Collectors.toList());
         return new Names(names);

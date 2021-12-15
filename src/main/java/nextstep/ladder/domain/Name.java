@@ -9,7 +9,7 @@ public class Name {
 
     public Name(String value) {
         validValue(value);
-        this.value = value;
+        this.value = value.trim();
     }
 
     public String getValue() {
