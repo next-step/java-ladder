@@ -7,11 +7,11 @@ import nextstep.ladder.domain.Point;
 import java.util.stream.Collectors;
 
 public class ResultView {
-    private final String GAME_RUN_MESSAGE = "실행결과\n";
-    private final String NAME_FORMAT = "%6s";
-    private final String LADDER_BLANK = "     ";
-    private final String LADDER_DASH = "-----";
-    private final String LADDER_LINE = "|";
+    private final static String GAME_RUN_MESSAGE = "실행결과\n";
+    private final static String NAME_FORMAT = "%6s";
+    private final static String LADDER_BLANK = "     ";
+    private final static String LADDER_DASH = "-----";
+    private final static String LADDER_LINE = "|";
 
     public void gameResult(Names names, Ladder ladder) {
         System.out.println(GAME_RUN_MESSAGE);

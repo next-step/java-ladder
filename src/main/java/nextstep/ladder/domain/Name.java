@@ -3,7 +3,7 @@ package nextstep.ladder.domain;
 import java.util.Objects;
 
 public class Name {
-    private final int MAX_NAME_LENGTH = 5;
+    private final static int MAX_NAME_LENGTH = 5;
 
     private final String value;
 
