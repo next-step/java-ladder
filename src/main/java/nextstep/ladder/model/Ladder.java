@@ -6,14 +6,14 @@ public class Ladder {
     private final Lines lines;
     private final Results results;
 
-    public Ladder(Person person, Lines lines, Results results) {
-        this.person = person;
+    public Ladder(Players players, Lines lines, Results results) {
+        this.players = players;
         this.lines = lines;
         this.results = results;
     }
 
     public String drawing() {
-        return person.drawing() + "\n" +
+        return players.drawing() + "\n" +
                 lines.drawing() + "\n" +
                 results.drawing();
     }

@@ -2,7 +2,7 @@ package nextstep.ladder;
 
 import nextstep.ladder.model.Ladder;
 import nextstep.ladder.model.Lines;
-import nextstep.ladder.model.Person;
+import nextstep.ladder.model.Players;
 import nextstep.ladder.model.Results;
 import nextstep.ladder.utils.StringUtils;
 import nextstep.ladder.view.OutputView;
@@ -18,7 +18,7 @@ class LadderGameTest {
     void IntegrationTest() {
         String inputNames = "pobi,honux,crong,jk,adsfa,qfadg,qszcq,dafda,11231";
         String[] splitNames = StringUtils.validationNotNullAndEmpty(inputNames).split(DELIMITER);
-        Person person = new Person(splitNames);
+        Players players = new Players(splitNames);
         int width = splitNames.length;
 
         String inputResults = "꽝,5000,꽝,꽝,꽝,꽝,꽝,꽝,10000";
@@ -28,7 +28,7 @@ class LadderGameTest {
         int height = 10;
         Lines lines = new Lines(width, height);
 
-        Ladder ladder = new Ladder(person, lines, results);
+        Ladder ladder = new Ladder(players, lines, results);
 
         OutputView.print(ladder);
     }

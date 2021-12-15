@@ -26,19 +26,19 @@ class PlayersTest {
     @Test
     @DisplayName("Person에서 name으로 Player 찾기: 성공")
     void SuccessFindByName() {
-        Person person = new Person("aaaa,bbbb,cccc".split(","));
+        Players players = new Players("aaaa,bbbb,cccc".split(","));
 
         String target = "aaaa";
-        Player player = person.findPlayerByName(target);
+        Player player = players.findPlayerByName(target);
         assertThat(player.getName()).isEqualTo(target);
     }
 
     @Test
     @DisplayName("Person에서 name으로 Player 찾기: 실패")
     void FailFindByName() {
-        Person person = new Person("aaaa,bbbb,cccc".split(","));
+        Players players = new Players("aaaa,bbbb,cccc".split(","));
         String target = "dddd";
-        assertThatIllegalArgumentException().isThrownBy(() -> person.findPlayerByName(target));
+        assertThatIllegalArgumentException().isThrownBy(() -> players.findPlayerByName(target));
 
     }
 }
