@@ -1,7 +1,9 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.model.Ladder;
+import nextstep.ladder.model.LadderResults;
 import nextstep.ladder.model.Participants;
+import nextstep.ladder.model.value.LadderResult;
 import nextstep.ladder.model.value.Line;
 import nextstep.ladder.model.value.Participant;
 import nextstep.ladder.model.value.Point;
@@ -17,12 +19,30 @@ public class OutputVIew {
     private static final String HEIGHT_SPLITTER = "\n";
     private static final String STRING_FORMAT_OF_FIVE = "%-5s";
     private static final String LINE_END_TO_END_FORMAT = "|%s";
+    private static final String GAME_RESULT_MESSAGE = "실행 결과";
 
-    public void printResult(Participants participants, Ladder ladder) {
+    public void printResult(Participants participants, Ladder ladder, LadderResults ladderResults) {
         System.out.println("실행결과" + HEIGHT_SPLITTER);
 
         System.out.println(prettyPrintParticipantsName(participants));
         System.out.println(printLadderPretty(ladder));
+        System.out.println(printLadderResultPretty(ladderResults));
+    }
+
+    public void printResult(Participant participant, LadderResults ladderResults) {
+        System.out.println();
+
+        System.out.println(GAME_RESULT_MESSAGE);
+        System.out.println(ladderResults.get(participant));
+    }
+
+    public void printAllResult(Participants resultParticipants, LadderResults ladderResults) {
+
+        System.out.println(GAME_RESULT_MESSAGE);
+
+        resultParticipants.getParticipants().stream()
+                .map(participant -> participant.getName() + " : " + ladderResults.get(participant))
+                .forEach(System.out::println);
     }
 
     private String prettyPrintParticipantsName(Participants participants) {
@@ -53,6 +73,13 @@ public class OutputVIew {
         return UN_DRAW_LINE;
     }
 
+    private String printLadderResultPretty(LadderResults ladderResults) {
+        return ladderResults.getLadderResults().stream()
+                .map(LadderResult::getLadderResult)
+                .map(this::getStringWithFormat)
+                .collect(Collectors.joining(WHITE_SPACE));
+    }
+
     private String getParticipantNameWithFormat(Participant participant) {
         return getStringWithFormat(participant.getName());
     }
@@ -60,4 +87,5 @@ public class OutputVIew {
     private String getStringWithFormat(String input) {
         return String.format(STRING_FORMAT_OF_FIVE, input);
     }
+
 }

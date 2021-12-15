@@ -1,5 +1,8 @@
 package nextstep.ladder.model.value;
 
+import nextstep.ladder.model.Ladder;
+import nextstep.ladder.service.CustomException;
+
 import java.util.Objects;
 
 public class Participant {
@@ -9,22 +12,42 @@ public class Participant {
     private static final int NAME_MAX_SIZE = 5;
 
     private final String name;
+    private final int position;
 
-    public Participant(String inputName) {
+    public Participant(String inputName, int position) {
 
         if(inputName.isEmpty()) {
             throw new NullPointerException(FORMAT_ERROR_MSG);
         }
 
         if(inputName.length() > NAME_MAX_SIZE) {
-            throw new IllegalArgumentException(SIZE_ERROR_MSG);
+            throw new CustomException(SIZE_ERROR_MSG);
         }
 
         this.name = inputName;
+        this.position = position;
+    }
+
+    public Participant climb(Ladder ladder) {
+        int tempPosition = this.position;
+
+        for (Line line : ladder.getLines()) {
+            tempPosition = line.move(tempPosition);
+        }
+
+        return new Participant(this.name, tempPosition);
+    }
+
+    public boolean isEqualsName(String name) {
+        return this.name.equals(name);
     }
 
     public String getName() {
         return name;
+    }
+
+    public int getPosition() {
+        return position;
     }
 
     @Override

@@ -11,20 +11,22 @@ import java.util.stream.IntStream;
 public class Ladder {
 
     private static final int START_NUMBER = 0;
-    private static Random RANDOM = new Random();
 
     private static List<Line> lines = new ArrayList<>();
 
-    private Ladder(List<Line> ladder) {
-        lines = ladder;
+    private Ladder(int height, int countOfPerson, Random random) {
+
+        IntStream.range(START_NUMBER, height)
+                .forEach(i -> lines.add(new Line(countOfPerson - 1 , random)));
+
     }
 
     public static Ladder of(int height, int countOfPerson) {
+        return new Ladder(height, countOfPerson, new Random());
+    }
 
-        IntStream.range(START_NUMBER, height)
-                .forEach(i -> lines.add(new Line(countOfPerson - 1 , RANDOM)));
-
-        return new Ladder(lines);
+    public static Ladder of(int height, int countOfPerson, Random random) {
+        return new Ladder(height, countOfPerson, random);
     }
 
     public List<Line> getLines() {

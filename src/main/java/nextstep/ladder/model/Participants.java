@@ -1,13 +1,18 @@
 package nextstep.ladder.model;
 
 import nextstep.ladder.model.value.Participant;
+import nextstep.ladder.service.CustomException;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 public class Participants {
+
+    private final String FIND_PERSON_ERROR_MSG = "해당 참가자는 존재 하지 않습니다!!!";
+    private static final String DELIMITER = ",";
 
     private static List<Participant> participants;
 
@@ -17,11 +22,29 @@ public class Participants {
     }
 
     public static Participants from(String inputData) {
+
+        AtomicInteger position = new AtomicInteger(0);
+
         return new Participants(
-                Arrays.stream(inputData.split(","))
+                Arrays.stream(inputData.split(DELIMITER))
                         .map(String::trim)
-                        .map(Participant::new)
+                        .map(name -> new Participant(name, position.getAndIncrement()))
                         .collect(Collectors.toList()));
+    }
+
+    public Participants execute(Ladder ladder) {
+        List<Participant> collect = participants.stream()
+                .map(participant -> participant.climb(ladder))
+                .collect(Collectors.toList());
+
+        return new Participants(collect);
+    }
+
+    public Participant findByName(String name) {
+        return participants.stream()
+                .filter(participant -> participant.isEqualsName(name))
+                .findAny()
+                .orElseThrow(() -> new CustomException(FIND_PERSON_ERROR_MSG));
     }
 
     public int size() {

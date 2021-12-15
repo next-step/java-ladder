@@ -1,5 +1,7 @@
 package nextstep.ladder.model.value;
 
+import nextstep.ladder.service.CustomException;
+
 import java.util.Objects;
 
 public class Height {
@@ -13,11 +15,11 @@ public class Height {
     public Height(String inputData) {
 
         if(isNotDigit(inputData)) {
-            throw new IllegalArgumentException(HEIGHT_NUMBER_ERROR_MSG);
+            throw new CustomException(HEIGHT_NUMBER_ERROR_MSG);
         }
 
         if(Integer.parseInt(inputData) > MAX_HEIGHT) {
-            throw new IllegalArgumentException(HEIGHT_ERROR_MSG);
+            throw new CustomException(HEIGHT_ERROR_MSG);
         }
 
         this.ladderHeight = Integer.parseInt(inputData);
