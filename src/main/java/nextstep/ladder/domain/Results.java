@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Results {
     private final List<Result> results;
@@ -24,6 +25,10 @@ public class Results {
 
     public ResultCount count() {
         return new ResultCount(results.size());
+    }
+
+    public Stream<Result> stream() {
+        return results.stream();
     }
 
     @Override
