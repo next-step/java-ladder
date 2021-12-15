@@ -1,6 +1,7 @@
 package nextstep.ladder.model.value;
 
 import nextstep.ladder.model.Ladder;
+import nextstep.ladder.service.CustomException;
 
 import java.util.Objects;
 
@@ -20,7 +21,7 @@ public class Participant {
         }
 
         if(inputName.length() > NAME_MAX_SIZE) {
-            throw new IllegalArgumentException(SIZE_ERROR_MSG);
+            throw new CustomException(SIZE_ERROR_MSG);
         }
 
         this.name = inputName;

@@ -1,6 +1,7 @@
 package nextstep.ladder.model;
 
 import nextstep.ladder.model.value.Participant;
+import nextstep.ladder.service.CustomException;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -43,7 +44,7 @@ public class Participants {
         return participants.stream()
                 .filter(participant -> participant.isEqualsName(name))
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException(FIND_PERSON_ERROR_MSG));
+                .orElseThrow(() -> new CustomException(FIND_PERSON_ERROR_MSG));
     }
 
     public int size() {

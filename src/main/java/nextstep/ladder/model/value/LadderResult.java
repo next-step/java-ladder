@@ -1,5 +1,7 @@
 package nextstep.ladder.model.value;
 
+import nextstep.ladder.service.CustomException;
+
 import java.util.Objects;
 
 public class LadderResult {
@@ -12,7 +14,7 @@ public class LadderResult {
     public LadderResult(String ladderResult) {
 
         if(ladderResult.length() > NAME_MAX_SIZE) {
-            throw new IllegalArgumentException(SIZE_ERROR_MSG);
+            throw new CustomException(SIZE_ERROR_MSG);
         }
 
         this.ladderResult = ladderResult;
