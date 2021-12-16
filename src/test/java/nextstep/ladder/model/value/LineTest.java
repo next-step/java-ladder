@@ -50,23 +50,6 @@ public class LineTest {
                 .isThrownBy(() -> points.add(new Point(true)));
     }
 
-    @Test
-    @DisplayName("사다리 선에 따라 잘 이동 하는지 테스트")
-    void moveTest() {
-        Line line = new Line(4, drawLine());
-        /*
-        사다리 모양
-        0     1     2     3     4
-        |-----|     |-----|     |
-         */
-        assertThat(line.move(0)).isEqualTo(1);
-        assertThat(line.move(1)).isEqualTo(0);
-
-        assertThat(line.move(2)).isEqualTo(3);
-        assertThat(line.move(3)).isEqualTo(2);
-
-    }
-
     private Random drawLine() {
         return new Random() {
             @Override

@@ -38,18 +38,6 @@ public class Line {
         return points.get(position).isTrue();
     }
 
-    public int move(int position) {
-        if (hasLeftLine(position).isTrue()) {
-            return position - UNIT;
-        }
-
-        if (hasRightLine(position).isTrue()) {
-            return position + UNIT;
-        }
-
-        return position;
-    }
-
     public Point hasLeftLine(int position) {
         if (position - UNIT < START_NUMBER) {
             return new Point(false);
