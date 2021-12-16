@@ -23,13 +23,7 @@ public class Line {
                 .orElseThrow(() -> new IllegalArgumentException(MESSAGE_MIN_WIDTH));
     }
 
-    private String isLine(boolean point) {
-        return point ? EXIST_LINE : BLANK_LINE;
-    }
-
-    public String drawing() {
-        StringBuilder builder = new StringBuilder(BLANK_LINE + LADDER_COLUMN);
-        points.forEach(point -> builder.append(isLine(point)).append(LADDER_COLUMN));
-        return builder.toString();
+    public List<Boolean> getPoints() {
+        return points;
     }
 }

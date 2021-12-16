@@ -12,9 +12,16 @@ public class Ladder {
         this.results = results;
     }
 
-    public String drawing() {
-        return players.drawing() + "\n" +
-                lines.drawing() + "\n" +
-                results.drawing();
+
+    public Players getPlayers() {
+        return players;
+    }
+
+    public Lines getLines() {
+        return lines;
+    }
+
+    public Results getResults() {
+        return results;
     }
 }

@@ -6,9 +6,6 @@ import java.util.Objects;
 
 public abstract class Name {
 
-    public static final String DRAWING_NAME_FORMAT = "%5s";
-    public static final String BLANK_DELIMITER = " ";
-
     private final String name;
 
     public Name(String name) {

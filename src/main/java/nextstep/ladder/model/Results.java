@@ -1,7 +1,5 @@
 package nextstep.ladder.model;
 
-import nextstep.ladder.common.Name;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,10 +27,7 @@ public class Results {
         return splitResults;
     }
 
-    public String drawing() {
-        return results.stream()
-                .map(result -> String.format(Name.DRAWING_NAME_FORMAT, result.getName()))
-                .collect(Collectors.joining(Name.BLANK_DELIMITER));
+    public List<Result> getResults() {
+        return results;
     }
-
 }

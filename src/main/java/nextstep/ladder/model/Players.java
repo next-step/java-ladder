@@ -38,9 +38,7 @@ public class Players {
                 .orElseThrow(() -> new IllegalArgumentException(EXCEPTION_NOT_FOUND_PLAYER));
     }
 
-    public String drawing() {
-        return players.stream()
-                .map(player -> String.format(Name.DRAWING_NAME_FORMAT, player.getName()))
-                .collect(Collectors.joining(Name.BLANK_DELIMITER));
+    public List<Player> getPlayers() {
+        return players;
     }
 }

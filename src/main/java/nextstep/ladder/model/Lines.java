@@ -5,7 +5,6 @@ import nextstep.ladder.generator.LineRandomGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Lines {
@@ -16,9 +15,7 @@ public class Lines {
         IntStream.range(0, height).forEach(index -> lines.add(LineFactory.of(width, generator)));
     }
 
-    public String drawing() {
-        return lines.stream()
-                .map(Line::drawing)
-                .collect(Collectors.joining("\n"));
+    public List<Line> getLines() {
+        return lines;
     }
 }
