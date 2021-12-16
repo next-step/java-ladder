@@ -27,4 +27,11 @@ public class Name {
     public String getName() {
         return name;
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder();
+        sb.append(name);
+        return sb.toString();
+    }
 }
