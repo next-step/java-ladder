@@ -15,6 +15,14 @@ public class LineTest {
     private final int participants = 5;
 
     @Test
+    @DisplayName("사람 수 만 입력해도 생성 되는지 검증")
+    void createTest() {
+        Line line = Line.of(participants);
+
+        assertThat(line.getPoints().size()).isEqualTo(5);
+    }
+
+    @Test
     @DisplayName("사다리 라인 생성 시 처음은 반드시 true 이고 이전 라인이 있다면 생성되지 않아야 한다.")
     void lineDrawTest() {
         Line line = new Line(participants, drawLine());

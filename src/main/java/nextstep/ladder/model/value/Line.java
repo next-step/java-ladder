@@ -18,6 +18,10 @@ public class Line {
 
     }
 
+    public static Line of (int countOfPerson) {
+        return new Line(countOfPerson, new Random());
+    }
+
     public boolean isBeforePoint(int index) {
         if (index - 1 < 0) {
             return true;
