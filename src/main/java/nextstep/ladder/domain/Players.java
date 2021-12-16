@@ -1,16 +1,11 @@
 package nextstep.ladder.domain;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-public class Players {
-    private final List<Player> players;
-
+public class Players extends FirstClassList<Player> {
     private Players(final List<Player> players) {
-        this.players = Collections.unmodifiableList(players);
+        super(players);
     }
 
     public static Players of(final List<String> names) {
@@ -27,31 +22,13 @@ public class Players {
     }
 
     public PlayerCount count() {
-        return PlayerCount.of(players.size());
-    }
-
-    public Stream<Player> stream() {
-        return players.stream();
+        return PlayerCount.of(size());
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Players other = (Players) o;
-        return Objects.equals(players, other.players);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(players);
-    }
-
-    public List<Player> collect() {
-        return players;
-    }
-
-    public Player get(int index) {
-        return players.get(index);
+    public String toString() {
+        return "Players {" +
+                super.toString() +
+                '}';
     }
 }

@@ -1,18 +1,13 @@
 package nextstep.ladder.domain;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import nextstep.ladder.domain.line.LineGenerateStrategy;
 
-public class Line {
-    private final List<Boolean> points;
-
+public class Line extends FirstClassList<Boolean> {
     private Line(final List<Boolean> points) {
-        this.points = Collections.unmodifiableList(points);
+        super(points);
     }
 
     public static Line of (final PointCount count, final LineGenerateStrategy strategy) {
@@ -38,10 +33,6 @@ public class Line {
         return of(PointCount.of(count), strategy);
     }
 
-    public Stream<Boolean> stream() {
-        return points.stream();
-    }
-
     public List<Integer> nextPosition(List<Integer> position) {
         return position.stream()
                 .map(this::move)
@@ -50,11 +41,11 @@ public class Line {
 
     public int move(int index) {
         // todo refactoring
-        if (index < points.size() && points.get(index)) {
+        if (index < size() && get(index)) {
             return index + 1;
         }
 
-        if (index != 0 && points.get(index - 1)) {
+        if (index != 0 && get(index - 1)) {
             return index - 1;
         }
 
@@ -62,22 +53,9 @@ public class Line {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Line line = (Line) o;
-        return Objects.equals(points, line.points);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(points);
-    }
-
-    @Override
     public String toString() {
-        return "Line{" +
-                "points=" + points +
+        return "Line {" +
+                super.toString() +
                 '}';
     }
 }
