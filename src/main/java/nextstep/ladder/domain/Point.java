@@ -17,8 +17,12 @@ public class Point {
         return new Point(false, current);
     }
 
-    public Point next(boolean current) {
-        return new Point(this.current, current);
+    public Point next(LineStrategy lineStrategy) {
+        if (hasLineBefore()) {
+            return new Point(this.current, false);
+        }
+
+        return new Point(this.current, lineStrategy.random());
     }
 
     public boolean hasLineBefore() {

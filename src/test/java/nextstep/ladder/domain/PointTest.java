@@ -3,7 +3,6 @@ package nextstep.ladder.domain;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 /**
  * @author han
@@ -11,21 +10,28 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class PointTest {
 
     @Test
-    void throwExceptionIfHasTrueAndTrue() {
-        assertThatThrownBy(() -> {
-            Point.init(true).next(true);
-        }).isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
     void hasLineBefore() {
-        Point point = Point.init(false).next(true);
+        Point point = Point.init(false).next(new TrueReturnStrategy());
         assertThat(point.hasLineBefore()).isEqualTo(true);
     }
 
     @Test
     void hasNotLineBefore() {
-        Point point = Point.init(true).next(false);
+        Point point = Point.init(true).next(new FalseReturnStrategy());
         assertThat(point.hasLineBefore()).isEqualTo(false);
+    }
+
+    class FalseReturnStrategy implements LineStrategy {
+        @Override
+        public boolean random() {
+            return false;
+        }
+    }
+
+    class TrueReturnStrategy implements LineStrategy {
+        @Override
+        public boolean random() {
+            return true;
+        }
     }
 }
