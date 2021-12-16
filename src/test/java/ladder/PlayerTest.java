@@ -10,8 +10,8 @@ public class PlayerTest {
 
     @Test
     void 플레이어들_생성() {
-        Players players = new Players("p1, p2, p3, p4, p5");
-        Assertions.assertThat(players.getCount()).isEqualTo(5);
+        Players players = Players.of("p1, p2, p3, p4, p5");
+        Assertions.assertThat(players.count()).isEqualTo(5);
     }
 
     @Test
