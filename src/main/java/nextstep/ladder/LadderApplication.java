@@ -3,6 +3,8 @@ package nextstep.ladder;
 import nextstep.ladder.domain.entity.Ladder;
 import nextstep.ladder.domain.entity.LadderHeight;
 import nextstep.ladder.domain.entity.Names;
+import nextstep.ladder.domain.entity.PrizeEntry;
+import nextstep.ladder.domain.entity.PrizeGroup;
 import nextstep.ladder.domain.service.LadderService;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
@@ -14,12 +16,17 @@ public class LadderApplication {
     ViewImpl view = new ViewImpl(InputView.getInstance(), ResultView.getInstance());
 
     Names names = view.getNames();
+    PrizeGroup prizeGroup = view.getResults(names);
     LadderHeight ladderHeight = view.getLadderHeight();
 
     LadderService ladderService = new LadderService();
     Ladder ladder = ladderService.createLadder(ladderHeight, names);
+    view.printLadder(names, ladder);
+    view.printPrize(prizeGroup);
 
-    view.printResult(names, ladder);
+    PrizeEntry prizeEntry = new PrizeEntry(ladderService.gameStart(ladder, names));
+
+    view.printResult(prizeEntry, prizeGroup);
   }
 
 }

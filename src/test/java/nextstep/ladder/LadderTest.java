@@ -3,14 +3,15 @@ package nextstep.ladder;
 import nextstep.ladder.domain.entity.Ladder;
 import nextstep.ladder.domain.entity.Line;
 import nextstep.ladder.domain.entity.Point;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.Arrays;
 import java.util.Collections;
-import java.util.Random;
+import java.util.List;
 import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.collectingAndThen;
@@ -46,10 +47,35 @@ class LadderTest {
                                                                 .collect(collectingAndThen(toList(), Ladder::new)));
   }
 
-  Line createLine(int size) {
+  @ParameterizedTest
+  @CsvSource(value = {"1:4", "2:2", "3:1", "4:3"}, delimiter = ':')
+  @DisplayName("사다리와 시작점을 주었을 때 마지막 도착 지점을 반환한다.")
+  void exploreTest(int startingPoint, int result) {
+    Line line1 = createLine(Arrays.asList(false, true, false, false, false));
+    Line line2 = createLine(Arrays.asList(false, false, true, false, false));
+    Line line3 = createLine(Arrays.asList(false, true, false, true, false));
+
+    /*
+    |-| | |
+    | |-| |
+    |-| |-|
+     */
+    Ladder ladder = new Ladder(Arrays.asList(line1, line2, line3));
+
+    int explore = ladder.explore(startingPoint);
+    assertEquals(result, explore);
+  }
+
+  private Line createLine(int size) {
     return IntStream.range(0, size)
                     .mapToObj(index -> new Point())
                     .collect(collectingAndThen(toList(), Line::new));
+  }
+
+  private Line createLine(List<Boolean> booleanList) {
+    return booleanList.stream()
+                      .map(Point::new)
+                      .collect(collectingAndThen(toList(), Line::new));
   }
 
 }
