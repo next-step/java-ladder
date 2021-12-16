@@ -11,9 +11,13 @@ public class Players {
     private static final String DELIMITER = ",";
     private final List<Player> players;
 
-    public Players(String text) {
+    private Players(String text) {
         players = new ArrayList<>();
         init(text);
+    }
+
+    public static Players of(String text) {
+        return new Players(text);
     }
 
     private void init(String text) {
@@ -21,7 +25,11 @@ public class Players {
         person.forEach(player -> players.add(new Player(player)));
     }
 
-    public int getCount() {
+    public List<Player> getPlayers() {
+        return this.players;
+    }
+
+    public int count() {
         return players.size();
     }
 }

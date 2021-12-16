@@ -16,6 +16,10 @@ public class Ladder {
                 .forEach(x -> lines.add(new Line(playerSize)));
     }
 
+    public static Ladder of(Height height, Players players) {
+        return new Ladder(height.getSize(), players.count());
+    }
+
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
     }
