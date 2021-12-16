@@ -7,9 +7,11 @@ import nextstep.ladder.domain.line.RandomLineStrategy;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.NullSource;
 
 import static nextstep.ladder.domain.PointCountTest.ptc;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class LineGenerateStrategyTest {
     static Stream<Arguments> parseGenerate() {
@@ -45,5 +47,13 @@ public class LineGenerateStrategyTest {
         assertThat(strategy.generate(pointCount)
                 .stream()
                 .reduce(false, Boolean::logicalOr, Boolean::logicalAnd)).isTrue();
+    }
+
+    @ParameterizedTest(name = "generate failed: {arguments}")
+    @NullSource
+    public void generateFailedByInvalidInput(final Count count) {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> TestLineStrategy.NO_LINE_STRATEGY.generate(count))
+                .withMessageContaining("cannot be null");
     }
 }

@@ -14,7 +14,7 @@ public class RandomLineStrategy implements LineGenerateStrategy {
     private final AtomicBoolean previousPoint = new AtomicBoolean(RANDOM.nextBoolean());
 
     @Override
-    public List<Boolean> generate(Count count) {
+    public List<Boolean> generatePoints(Count count) {
         return Stream.generate(this::generatePoint)
                 .limit(count.toInt())
                 .collect(Collectors.toList());

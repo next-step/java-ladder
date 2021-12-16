@@ -11,18 +11,11 @@ public class Line extends FirstClassList<Boolean> {
     }
 
     public static Line of (final PointCount count, final LineGenerateStrategy strategy) {
-        if (strategy == null || count == null) {
-            throw new IllegalArgumentException("invalid input: count or strategy cannot be null");
+        if (strategy == null) {
+            throw new IllegalArgumentException("invalid input: strategy cannot be null");
         }
 
-        // todo 길이 검증을 generate 안으로 넣자
-        List<Boolean> points = strategy.generate(count);
-
-        if (points.size() != count.toInt()) {
-            throw new IllegalArgumentException("invalid line: generated size is not match");
-        }
-
-        return new Line(points);
+        return new Line(strategy.generate(count));
     }
 
     public static Line of(final PlayerCount playerCount, final LineGenerateStrategy strategy) {

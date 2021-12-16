@@ -14,7 +14,7 @@ public class TestLineStrategy {
 
     public static LineGenerateStrategy VALID_STRATEGY = new LineGenerateStrategy() {
         @Override
-        public List<Boolean> generate(Count count) {
+        public List<Boolean> generatePoints(Count count) {
             flag = true;
             return Stream.generate(this::reverseFlag)
                     .limit(count.toInt())
