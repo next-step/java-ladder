@@ -4,10 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 public class Line {
-
-    public static final String BLANK_LINE = "     ";
-    public static final String EXIST_LINE = "-----";
-    private static final String LADDER_COLUMN = "|";
     private static final int MIN_WIDTH = 2;
     private static final String MESSAGE_MIN_WIDTH = "너비가 최소 2는 되어야합니다.";
 
