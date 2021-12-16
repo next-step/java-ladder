@@ -1,6 +1,7 @@
 package nextstep.ladder.model;
 
 import nextstep.ladder.model.value.Participant;
+import nextstep.ladder.model.value.Position;
 import nextstep.ladder.service.CustomException;
 
 import java.util.Arrays;
@@ -28,7 +29,7 @@ public class Participants {
         return new Participants(
                 Arrays.stream(inputData.split(DELIMITER))
                         .map(String::trim)
-                        .map(name -> new Participant(name, position.getAndIncrement()))
+                        .map(name -> new Participant(name, new Position(position.getAndIncrement())))
                         .collect(Collectors.toList()));
     }
 
