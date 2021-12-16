@@ -30,6 +30,7 @@
   
 
 - Height: 사다리 높이 클래스
+  - 최소 1 이상의 사다리 높이 유효성 검증을 실시합니다.
 
 
 - Location: 위치 정보를 나타내는 클래스
@@ -49,6 +50,8 @@
 ### exception 패키지
 
 - PlayerException : 플레이어 정보 오류 반환 클래스
+
+- HeightException : 사다리 높이 오류 반환 클래스
 
 
 
