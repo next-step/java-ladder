@@ -34,4 +34,9 @@ public class Point {
             throw new IllegalArgumentException();
         }
     }
+
+    @Override
+    public String toString() {
+        return hasLineBefore() ? "-----|" : "     |";
+    }
 }
