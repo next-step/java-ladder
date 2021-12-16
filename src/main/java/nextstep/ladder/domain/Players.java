@@ -16,7 +16,6 @@ public class Players extends FirstClassList<Player> {
         PlayerCount.validate(names.size());
 
         return new Players(names.stream()
-                .map(Name::of)
                 .map(Player::of)
                 .collect(Collectors.toList()));
     }

@@ -24,14 +24,13 @@ public class OutputView {
     public static void printPlayerList(Players players) {
         players.stream()
                 .map(Player::name)
-                .map(Name::toString)
                 .map(OutputView::formatPadding)
                 .forEach(System.out::print);
         System.out.print(NEWLINE);
     }
 
-    public static String formatPadding(String text) {
-        return String.format(NAME_FORMAT, text);
+    public static String formatPadding(Object object) {
+        return String.format(NAME_FORMAT, object);
     }
 
     public static String formatName(Name name) {
@@ -62,7 +61,6 @@ public class OutputView {
 
     public static void printResult(Results results) {
         results.stream()
-                .map(Result::toString)
                 .map(OutputView::formatPadding)
                 .forEach(System.out::print);
         System.out.print(NEWLINE);

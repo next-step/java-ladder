@@ -31,7 +31,7 @@ public class Ladder extends FirstClassList<Line> {
     }
 
     public ResultOfGame result(Players players, Results results) {
-        List<Integer> indexMap = IntStream.range(0, players.count().toInt())
+        List<Integer> indexMap = IntStream.range(0, players.size())
                 .boxed()
                 .collect(Collectors.toList());
 
