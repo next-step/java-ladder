@@ -5,30 +5,27 @@ import java.util.Objects;
 import nextstep.ladder.domain.line.LineGenerateStrategy;
 
 public class LadderBuilder {
-    public static final int MINIMUM_RAIL_COUNT = 2;
+    private final LadderFrame ladderFrame;
+    private final Height height;
 
-    private final Players players;
-    private final Results results;
-
-    private LadderBuilder(final Players players, final Results results) {
-        this.players = players;
-        this.results = results;
+    private LadderBuilder(final LadderFrame ladderFrame, final Height height) {
+        this.ladderFrame = ladderFrame;
+        this.height = height;
     }
 
-    public static LadderBuilder of(Players players, Results results) {
-        if (players == null || results == null) {
-            throw new IllegalArgumentException("invalid input: players or results cannot be null");
-        }
-
-        if (!players.count().equalValue(results.count())) {
-            throw new IllegalArgumentException("invalid input: player count and result count must be same");
-        }
-
-        return new LadderBuilder(players, results);
+    public static LadderBuilder of(Players players, Results results, Height height) {
+        return of(LadderFrame.of(players, results), height);
     }
 
-    public Ladder build(int height, LineGenerateStrategy strategy) {
-        return Ladder.of(players.count(), Height.of(height), strategy);
+    public static LadderBuilder of(LadderFrame ladderFrame, Height height) {
+        if (ladderFrame == null || height == null) {
+            throw new IllegalArgumentException("invalid frame or height: cannot be null");
+        }
+        return new LadderBuilder(ladderFrame, height);
+    }
+
+    public Ladder build(LineGenerateStrategy strategy) {
+        return Ladder.of(ladderFrame.playerCount(), height, strategy);
     }
 
     @Override
@@ -36,11 +33,19 @@ public class LadderBuilder {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         LadderBuilder that = (LadderBuilder) o;
-        return Objects.equals(players, that.players) && Objects.equals(results, that.results);
+        return Objects.equals(ladderFrame, that.ladderFrame) && Objects.equals(height, that.height);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(players, results);
+        return Objects.hash(ladderFrame, height);
+    }
+
+    @Override
+    public String toString() {
+        return "LadderBuilder{" +
+                "ladderFrame=" + ladderFrame +
+                ", height=" + height +
+                '}';
     }
 }

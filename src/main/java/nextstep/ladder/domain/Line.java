@@ -15,31 +15,27 @@ public class Line {
         this.points = Collections.unmodifiableList(points);
     }
 
-    public static Line of (final LineCount lineCount, final LineGenerateStrategy strategy) {
-        if (strategy == null) {
-            throw new IllegalArgumentException("invalid strategy: cannot be null");
+    public static Line of (final PointCount count, final LineGenerateStrategy strategy) {
+        if (strategy == null || count == null) {
+            throw new IllegalArgumentException("invalid input: count or strategy cannot be null");
         }
 
-        if (lineCount == null) {
-            throw new IllegalArgumentException("invalid player count: cannot be null");
-        }
+        // todo 길이 검증을 generate 안으로 넣자
+        List<Boolean> points = strategy.generate(count);
 
-        List<Boolean> points = strategy.generate(lineCount);
-
-        if (points.size() != lineCount.toInt()) {
+        if (points.size() != count.toInt()) {
             throw new IllegalArgumentException("invalid line: generated size is not match");
         }
 
         return new Line(points);
-
     }
 
     public static Line of(final PlayerCount playerCount, final LineGenerateStrategy strategy) {
-        return of(LineCount.of(playerCount), strategy);
+        return of(PointCount.of(playerCount), strategy);
     }
 
-    public static Line of(final int playerCount, final LineGenerateStrategy strategy) {
-        return of(PlayerCount.of(playerCount), strategy);
+    public static Line of(final int count, final LineGenerateStrategy strategy) {
+        return of(PointCount.of(count), strategy);
     }
 
     public Stream<Boolean> stream() {

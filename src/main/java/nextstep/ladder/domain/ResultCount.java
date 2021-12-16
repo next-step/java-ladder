@@ -16,7 +16,7 @@ public class ResultCount extends Count {
             return cache.get(count);
         }
 
-        if (count < LadderBuilder.MINIMUM_RAIL_COUNT) {
+        if (count < LadderFrame.MINIMUM_RAIL_COUNT) {
             throw new IllegalArgumentException("invalid count: must be larger than 2, but" + count);
         }
 

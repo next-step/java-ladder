@@ -17,7 +17,7 @@ public class ResultOfGame {
     }
 
     public static ResultOfGame of(Map<Player, Result> playerResultMap) {
-        if (playerResultMap == null || playerResultMap.size() < LadderBuilder.MINIMUM_RAIL_COUNT) {
+        if (playerResultMap == null || playerResultMap.size() < LadderFrame.MINIMUM_RAIL_COUNT) {
             throw new IllegalArgumentException("invalid input: result map cannot be null and larger than 2");
         }
 

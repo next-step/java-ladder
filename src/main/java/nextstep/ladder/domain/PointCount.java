@@ -3,17 +3,17 @@ package nextstep.ladder.domain;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LineCount extends Count {
+public class PointCount extends Count {
     private static final int MINIMUM_LINE_COUNT = 1;
     private static final int PLAYER_LINE_DIFF = 1;
-    private static final Map<Integer, LineCount> cache = new HashMap<>();
+    private static final Map<Integer, PointCount> cache = new HashMap<>();
 
-    private LineCount(final int lineCount) {
+    private PointCount(final int lineCount) {
         super(lineCount);
         cache.put(lineCount, this);
     }
 
-    public static LineCount of(int lineCount) {
+    public static PointCount of(int lineCount) {
         if (cache.containsKey(lineCount)) {
             return cache.get(lineCount);
         }
@@ -22,10 +22,10 @@ public class LineCount extends Count {
             throw new IllegalArgumentException("invalid number of player: must be larger than 2, but " + lineCount);
         }
 
-        return new LineCount(lineCount);
+        return new PointCount(lineCount);
     }
 
-    public static LineCount of(PlayerCount playerCount) {
+    public static PointCount of(PlayerCount playerCount) {
         if (playerCount == null) {
             throw new IllegalArgumentException("invalid player count: cannot be null");
         }

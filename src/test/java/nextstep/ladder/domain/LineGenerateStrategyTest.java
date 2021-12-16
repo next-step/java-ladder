@@ -8,7 +8,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import static nextstep.ladder.domain.LineCountTest.lc;
+import static nextstep.ladder.domain.PointCountTest.ptc;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LineGenerateStrategyTest {
@@ -23,9 +23,9 @@ public class LineGenerateStrategyTest {
     @ParameterizedTest(name = "generated line must not be in succession: {arguments}")
     @MethodSource("parseGenerate")
     public void generateNotInSuccession(LineGenerateStrategy strategy) {
-        final LineCount lineCount = lc(5);
-        assertThat(strategy.generate(lineCount).size()).isEqualTo(lineCount.toInt());
-        assertThat(strategy.generate(lineCount)
+        final PointCount pointCount = ptc(5);
+        assertThat(strategy.generate(pointCount).size()).isEqualTo(pointCount.toInt());
+        assertThat(strategy.generate(pointCount)
                 .stream()
                 .parallel()
                 .reduce(false, Boolean::logicalOr, Boolean::logicalAnd)).isFalse();
@@ -41,8 +41,8 @@ public class LineGenerateStrategyTest {
     @ParameterizedTest(name = "generated line failed if be in succession: {arguments}")
     @MethodSource("parseGenerateFailed")
     public void generateFailedInSuccession(LineGenerateStrategy strategy) {
-        final LineCount lineCount = lc(5);
-        assertThat(strategy.generate(lineCount)
+        final PointCount pointCount = ptc(5);
+        assertThat(strategy.generate(pointCount)
                 .stream()
                 .reduce(false, Boolean::logicalOr, Boolean::logicalAnd)).isTrue();
     }

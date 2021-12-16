@@ -16,18 +16,22 @@ public class Ladder {
         this.lines = Collections.unmodifiableList(lines);
     }
 
-    public static Ladder of(final PlayerCount playerCount, final Height height, LineGenerateStrategy strategy) {
-        if (height == null) {
-            throw new IllegalArgumentException("invalid height: cannot be null");
+    public static Ladder of(final PointCount pointCount, final Height height, LineGenerateStrategy strategy) {
+        if (pointCount == null || height == null) {
+            throw new IllegalArgumentException("invalid input: cannot be null");
         }
 
-        return new Ladder(Stream.generate(() -> Line.of(playerCount, strategy))
+        return new Ladder(Stream.generate(() -> Line.of(pointCount, strategy))
                 .limit(height.toInt())
                 .collect(Collectors.toList()));
     }
 
-    public static Ladder of(final PlayerCount playerCount, final int height, LineGenerateStrategy strategy) {
-        return Ladder.of(playerCount, Height.of(height), strategy);
+    public static Ladder of(final PointCount pointCount, final int height, final LineGenerateStrategy strategy) {
+        return Ladder.of(pointCount, Height.of(height), strategy);
+    }
+
+    public static Ladder of(final PlayerCount playerCount, final Height height, final LineGenerateStrategy strategy) {
+        return Ladder.of(PointCount.of(playerCount), height, strategy);
     }
 
     public Stream<Line> stream() {

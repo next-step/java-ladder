@@ -14,10 +14,10 @@ public class TestLineStrategy {
 
     public static LineGenerateStrategy VALID_STRATEGY = new LineGenerateStrategy() {
         @Override
-        public List<Boolean> generate(LineCount lineCount) {
+        public List<Boolean> generate(Count count) {
             flag = true;
             return Stream.generate(this::reverseFlag)
-                    .limit(lineCount.toInt())
+                    .limit(count.toInt())
                     .collect(Collectors.toList());
         }
 

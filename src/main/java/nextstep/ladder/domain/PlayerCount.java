@@ -22,7 +22,7 @@ public class PlayerCount extends Count {
     }
 
     public static void validate(final int playerCount) {
-        if (playerCount < LadderBuilder.MINIMUM_RAIL_COUNT) {
+        if (playerCount < LadderFrame.MINIMUM_RAIL_COUNT) {
             throw new IllegalArgumentException("invalid number of player: must be larger than 2, but " + playerCount);
         }
     }

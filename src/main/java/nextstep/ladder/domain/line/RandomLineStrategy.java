@@ -6,7 +6,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import nextstep.ladder.domain.LineCount;
+import nextstep.ladder.domain.Count;
 
 public class RandomLineStrategy implements LineGenerateStrategy {
     private static final Random RANDOM = new Random();
@@ -14,9 +14,9 @@ public class RandomLineStrategy implements LineGenerateStrategy {
     private final AtomicBoolean previousPoint = new AtomicBoolean(RANDOM.nextBoolean());
 
     @Override
-    public List<Boolean> generate(LineCount lineCount) {
+    public List<Boolean> generate(Count count) {
         return Stream.generate(this::generatePoint)
-                .limit(lineCount.toInt())
+                .limit(count.toInt())
                 .collect(Collectors.toList());
     }
 
