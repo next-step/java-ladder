@@ -3,6 +3,7 @@ package nextstep.ladder.domain;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import nextstep.ladder.domain.line.LineGenerateStrategy;
@@ -43,6 +44,25 @@ public class Line {
 
     public Stream<Boolean> stream() {
         return points.stream();
+    }
+
+    public List<Integer> nextPosition(List<Integer> position) {
+        return position.stream()
+                .map(this::move)
+                .collect(Collectors.toList());
+    }
+
+    public int move(int index) {
+        // todo refactoring
+        if (index < points.size() && points.get(index)) {
+            return index + 1;
+        }
+
+        if (index != 0 && points.get(index - 1)) {
+            return index - 1;
+        }
+
+        return index;
     }
 
     @Override

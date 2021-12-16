@@ -1,9 +1,12 @@
 package nextstep.ladder.domain;
 
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class ResultOfGame {
@@ -19,6 +22,15 @@ public class ResultOfGame {
         }
 
         return new ResultOfGame(playerResultMap);
+    }
+
+    public static ResultOfGame of(Players players, Results results, List<Integer> indexMap) {
+        Map<Player, Result> resultMap = new HashMap<>();
+
+        IntStream.range(0, indexMap.size())
+                .forEach(index -> resultMap.put(players.get(index), results.get(indexMap.get(index))));
+
+        return of(resultMap);
     }
 
     public Optional<Result> result(Player player) {
@@ -41,5 +53,12 @@ public class ResultOfGame {
     @Override
     public int hashCode() {
         return Objects.hash(playerResultMap);
+    }
+
+    @Override
+    public String toString() {
+        return "ResultOfGame{" +
+                "playerResultMap=" + playerResultMap +
+                '}';
     }
 }

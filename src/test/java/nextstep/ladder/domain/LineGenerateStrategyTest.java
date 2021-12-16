@@ -33,7 +33,7 @@ public class LineGenerateStrategyTest {
 
     static Stream<Arguments> parseGenerateFailed() {
         return Stream.of(
-                Arguments.of(TestLineStrategy.INVALID_ALL_LINE_STRATEGY),
+                Arguments.of(TestLineStrategy.ALL_LINE_STRATEGY),
                 Arguments.of(TestLineStrategy.INVALID_TRUE_IN_SUCCESSION_STRATEGY)
         );
     }

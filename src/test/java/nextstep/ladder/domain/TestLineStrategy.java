@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -11,17 +12,23 @@ public class TestLineStrategy {
             .limit(number.toInt())
             .collect(Collectors.toList());
 
-    public static LineGenerateStrategy VALID_STRATEGY = number -> Stream.generate(TestLineStrategy::reverseFlag)
-            .limit(number.toInt())
-            .collect(Collectors.toList());
+    public static LineGenerateStrategy VALID_STRATEGY = new LineGenerateStrategy() {
+        @Override
+        public List<Boolean> generate(LineCount lineCount) {
+            flag = true;
+            return Stream.generate(this::reverseFlag)
+                    .limit(lineCount.toInt())
+                    .collect(Collectors.toList());
+        }
 
-    private static boolean flag = true;
-    private static boolean reverseFlag() {
-        flag = !flag;
-        return flag;
-    }
+        private boolean flag;
+        private boolean reverseFlag() {
+            flag = !flag;
+            return flag;
+        }
+    };
 
-    public static LineGenerateStrategy INVALID_ALL_LINE_STRATEGY = number -> Stream.generate(() -> Boolean.TRUE)
+    public static LineGenerateStrategy ALL_LINE_STRATEGY = number -> Stream.generate(() -> Boolean.TRUE)
             .limit(number.toInt())
             .collect(Collectors.toList());
 

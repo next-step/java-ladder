@@ -2,13 +2,10 @@ package nextstep.ladder;
 
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.LadderBuilder;
-import nextstep.ladder.domain.Player;
 import nextstep.ladder.domain.Players;
-import nextstep.ladder.domain.Result;
 import nextstep.ladder.domain.ResultOfGame;
 import nextstep.ladder.domain.Results;
 import nextstep.ladder.domain.line.RandomLineStrategy;
@@ -34,11 +31,7 @@ public class LadderGame {
         OutputView.printLadder(ladder);
         OutputView.printResult(results);
 
-        // todo result of players from ladder + player + result
-        ResultOfGame resultOfGame = ResultOfGame.of(Map.of(Player.of("n1"), Result.of("r4"),
-                Player.of("n2"), Result.of("r2"),
-                Player.of("n3"), Result.of("r3"),
-                Player.of("n4"), Result.of("r1")));
+        ResultOfGame resultOfGame = ladder.result(players, results);
 
         List<String> resultCommand = List.of("n1", "n3", ALL_COMMAND, QUIT_COMMAND);
         Iterator<String> iter = resultCommand.iterator();

@@ -46,4 +46,12 @@ public class Players {
     public int hashCode() {
         return Objects.hash(players);
     }
+
+    public List<Player> collect() {
+        return players;
+    }
+
+    public Player get(int index) {
+        return players.get(index);
+    }
 }

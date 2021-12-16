@@ -33,7 +33,7 @@ public class OutputViewTest {
     static Stream<Arguments> parseFormatLine() {
         return Stream.of(
                 Arguments.of(l(3, TestLineStrategy.NO_LINE_STRATEGY), "     |     |     |"),
-                Arguments.of(l(3, TestLineStrategy.INVALID_ALL_LINE_STRATEGY), "     |-----|-----|")
+                Arguments.of(l(3, TestLineStrategy.ALL_LINE_STRATEGY), "     |-----|-----|")
         );
     }
 
@@ -46,7 +46,7 @@ public class OutputViewTest {
     static Stream<Arguments> parseMapLine() {
         return Stream.of(
                 Arguments.of(l(3, TestLineStrategy.NO_LINE_STRATEGY), "     |     "),
-                Arguments.of(l(3, TestLineStrategy.INVALID_ALL_LINE_STRATEGY), "-----|-----")
+                Arguments.of(l(3, TestLineStrategy.ALL_LINE_STRATEGY), "-----|-----")
         );
     }
 

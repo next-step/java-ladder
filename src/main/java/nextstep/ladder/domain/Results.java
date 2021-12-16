@@ -31,6 +31,14 @@ public class Results {
         return results.stream();
     }
 
+    public List<Result> collect() {
+        return results;
+    }
+
+    public Result get(int index) {
+        return results.get(index);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
