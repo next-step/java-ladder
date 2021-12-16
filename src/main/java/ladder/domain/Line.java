@@ -7,26 +7,26 @@ import java.util.stream.IntStream;
 public class Line {
 
     private static final int INDEX_SIZE = 1;
-    private final List<Point> line;
+    private final List<Point> points;
 
     public Line(int size) {
-        line = new ArrayList<>();
+        points = new ArrayList<>();
         init(size);
     }
 
     private void init(int playerSize) {
-        this.line.add(new Point());
+        this.points.add(new Point());
         IntStream.range(INDEX_SIZE, playerSize - INDEX_SIZE)
-                .forEach(x -> this.line.add(new Point(getLastPoint(), true)));
-        this.line.add(new Point(getLastPoint(), false));
+                .forEach(x -> this.points.add(new Point(getLastPoint(), true)));
+        this.points.add(new Point(getLastPoint(), false));
     }
 
     private Point getLastPoint() {
-        int index = this.line.size() - 1;
-        return this.line.get(index);
+        int index = this.points.size() - 1;
+        return this.points.get(index);
     }
 
-    public List<Point> getLine() {
-        return this.line;
+    public List<Point> getPoints() {
+        return this.points;
     }
 }

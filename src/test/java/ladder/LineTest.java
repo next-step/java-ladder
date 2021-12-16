@@ -9,6 +9,6 @@ public class LineTest {
     @Test
     void 라인_생성() {
         Line line = new Line(5);
-        Assertions.assertThat(line.getLine().size()).isEqualTo(5);
+        Assertions.assertThat(line.getPoints().size()).isEqualTo(5);
     }
 }
