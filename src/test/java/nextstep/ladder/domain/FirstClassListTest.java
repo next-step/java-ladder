@@ -84,4 +84,14 @@ public class FirstClassListTest {
     public void get() {
         assertThat(TestList.of(TestObject.OBJ1, TestObject.OBJ2).get(0)).isEqualTo(TestObject.OBJ1);
     }
+
+    @Test
+    public void hasSameSize() {
+        TestList testList = TestList.of(TestObject.OBJ1, TestObject.OBJ2);
+        FirstClassList<Integer> testIntList = new FirstClassList<>(List.of(0, 1)) {};
+        FirstClassList<Long> testLongList = new FirstClassList<>(List.of(0L, 1L, 2L)) {};
+
+        assertThat(testList.hasSameSize(testIntList)).isTrue();
+        assertThat(testList.hasSameSize(testLongList)).isFalse();
+    }
 }

@@ -18,8 +18,7 @@ public class LadderFrame {
             throw new IllegalArgumentException("players or results cannot be null");
         }
 
-        // todo count를 꺼내야하나??
-        if (!players.count().equalValue(results.count())) {
+        if (!players.hasSameSize(results)) {
             throw new IllegalArgumentException("players and results count is not matched");
         }
 

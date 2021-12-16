@@ -33,6 +33,10 @@ public abstract class FirstClassList<T> {
         return collection.get(index);
     }
 
+    public <S> boolean hasSameSize(FirstClassList<S> other) {
+        return other != null && collection.size() == other.size();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
