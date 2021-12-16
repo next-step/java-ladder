@@ -9,9 +9,10 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static nextstep.ladder.model.Line.BLANK_LINE;
+
 class LineTest {
-    private static final String BLANK_LINE = "     ";
-    private static final String EXIST_LINE = "-----";
+
 
     @Test
     @DisplayName("이전 다리가 있을 경우, 다음 다리는 무조건 없음 ")
@@ -21,7 +22,7 @@ class LineTest {
 
 
         List<String> lines = line.getPoints().stream()
-                .map(point -> point ? EXIST_LINE : BLANK_LINE)
+                .map(Line::isLine)
                 .collect(Collectors.toList());
 
         Assertions.assertThat(lines.get(1)).isEqualTo(BLANK_LINE);

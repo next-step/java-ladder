@@ -4,6 +4,10 @@ import java.util.List;
 import java.util.Optional;
 
 public class Line {
+    public static final String BLANK_LINE = "     ";
+    public static final String EXIST_LINE = "-----";
+    public static final String LADDER_COLUMN = "|";
+
     private static final int MIN_WIDTH = 2;
     private static final String MESSAGE_MIN_WIDTH = "너비가 최소 2는 되어야합니다.";
 
@@ -11,6 +15,10 @@ public class Line {
 
     public Line(List<Boolean> points) {
         this.points = validationWidth(points);
+    }
+
+    public static String isLine(boolean point) {
+        return point ? EXIST_LINE : BLANK_LINE;
     }
 
     private List<Boolean> validationWidth(List<Boolean> points) {
