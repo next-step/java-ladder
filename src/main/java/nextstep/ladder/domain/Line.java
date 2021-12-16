@@ -30,6 +30,22 @@ public class Line {
         return new Line(points);
     }
 
+    public int move(int location) {
+        return IntStream.range(1, points.size())
+                .filter(index -> index == location)
+                .map(current -> {
+                    if (points.get(current - 1).isValue()) {
+                        return current - 1;
+                    }
+                    if (points.get(current).isValue()) {
+                        return current + 1;
+                    }
+
+                    return current;
+                })
+                .findFirst().orElseThrow(IllegalArgumentException::new);
+    }
+
     private static Point createPoint(Point prev, LineStrategy lineStrategy) {
         if (prev.isValue()) {
             return new Point(false);
