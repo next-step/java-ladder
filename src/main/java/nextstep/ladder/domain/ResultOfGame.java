@@ -27,6 +27,7 @@ public class ResultOfGame {
     public static ResultOfGame of(Players players, Results results, List<Integer> indexMap) {
         Map<Player, Result> resultMap = new HashMap<>();
 
+        // todo refactor
         IntStream.range(0, indexMap.size())
                 .forEach(index -> resultMap.put(players.elementOf(index), results.elementOf(indexMap.get(index))));
 

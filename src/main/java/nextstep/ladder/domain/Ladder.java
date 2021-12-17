@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -35,12 +36,15 @@ public class Ladder extends FirstClassList<Line> {
                 .boxed()
                 .collect(Collectors.toList());
 
-        // todo stream으론 못바꿀까?
-        for (Line line : collect()) {
-            indexMap = line.nextPosition(indexMap);
+        return ResultOfGame.of(players, results, next(indexMap, collect().iterator()));
+    }
+
+    public List<Integer> next(List<Integer> indexMap, Iterator<Line> lineIterator) {
+        if (!lineIterator.hasNext()) {
+            return indexMap;
         }
 
-        return ResultOfGame.of(players, results, indexMap);
+        return next(lineIterator.next().nextPosition(indexMap), lineIterator);
     }
 
     @Override
