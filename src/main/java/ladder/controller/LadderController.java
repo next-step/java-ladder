@@ -1,15 +1,13 @@
 package ladder.controller;
 
 import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.LadderComponent;
 import ladder.domain.ladder.LadderHeight;
 import ladder.domain.result.ExecutionResults;
-import ladder.domain.user.Players;
+import ladder.domain.user.LadderPlayers;
 import ladder.strategy.LineStrategy;
 import ladder.view.InputView;
 import ladder.view.ResultView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class LadderController {
 
@@ -22,47 +20,36 @@ public class LadderController {
     }
 
     public void start() {
-        List<String> names = InputView.printInputNames();
-        Players players = new Players(names);
-        ExecutionResults results = new ExecutionResults(InputView.printInputItems());
+        LadderPlayers players = new LadderPlayers(InputView.printInputNames());
+        ExecutionResults items = new ExecutionResults(InputView.printInputItems());
         LadderHeight height = new LadderHeight(InputView.printInputLadderHeight());
 
-        Ladder ladder = createLadder(players, height);
-        ResultView.printLadderResult(players.getPlayers(), ladder.getLines(), results.getResults());
+        Ladder ladder = Ladder.createLadder(lineStrategy, LadderComponent.of(players.size(), height.getHeight()));
 
-        while (true) {
-            String findPlayer = InputView.printInputFindPlayer();
-            List<Integer> indices = executeResult(findPlayer, players, ladder);
-            ResultView.printGameResult(names, results.getResults(), indices);
-            checkEndGame(findPlayer);
-        }
+        ResultView.printLadderResult(players.getPlayers(), ladder.getLines());
+        ResultView.printItems(items);
+
+        ExecutionResults results = items.executeGame(players, ladder);
+
+        printGameResults(players, results);
     }
 
-    private void checkEndGame(String findPlayer) {
-        if (findPlayer.equalsIgnoreCase(ALL_RESULTS)) {
-            System.exit(0);
+    private void printGameResults(LadderPlayers players, ExecutionResults results) {
+        String wantedName = InputView.printInputFindPlayer();
+
+        if (isAll(wantedName)) {
+            ResultView.printResults(players.getPlayerNames(), results.getResults());
+            return;
         }
+
+        int findIndexByName = players.findIndexByName(wantedName);
+        ResultView.printSingleResult(findIndexByName, results.getResults());
+
+        printGameResults(players, results);
     }
 
-    private Ladder createLadder(Players players, LadderHeight height) {
-        return Ladder.createLadder(lineStrategy, players, height);
-    }
-
-    private List<Integer> executeResult(String findPlayer, Players players, Ladder ladder) {
-        List<Integer> indices = new ArrayList<>();
-        if (findPlayer.equalsIgnoreCase(ALL_RESULTS)) {
-            return addIndices(players, ladder, indices);
-        }
-        int index = players.findPlayers(findPlayer);
-        indices.add(ladder.move(index));
-        return indices;
-    }
-
-    private List<Integer> addIndices(Players players, Ladder ladder, List<Integer> indices) {
-        for (int index = 0; index < players.size(); index++) {
-            indices.add(ladder.move(index));
-        }
-        return indices;
+    private boolean isAll(String wantedName) {
+        return wantedName.equalsIgnoreCase(ALL_RESULTS);
     }
 
 }
