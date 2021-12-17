@@ -2,11 +2,11 @@ package ladder.view;
 
 import ladder.domain.ladder.Line;
 import ladder.domain.ladder.Point;
+import ladder.domain.result.ExecutionResults;
 import ladder.domain.user.Player;
 
 import java.util.List;
 import java.util.StringJoiner;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.joining;
@@ -28,19 +28,29 @@ public class ResultView {
         throw new AssertionError();
     }
 
-    public static void printLadderResult(List<Player> players, List<Line> ladder, List<String> items) {
+    public static void printLadderResult(List<Player> players, List<Line> ladder) {
         System.out.println(LADDER_MSG);
         System.out.println();
         System.out.println(printPlayerName(players));
         System.out.println(printLadder(ladder));
-        System.out.println(printItems(items));
+    }
+
+    public static void printItems(ExecutionResults items) {
+        System.out.println(gameItems(items));
         System.out.println();
     }
 
-    public static void printGameResult(List<String> players, List<String> results, List<Integer> positions) {
+    public static void printResults(List<String> players, List<String> results) {
         System.out.println();
         System.out.println(RESULT_MSG);
-        System.out.println(gameResults(players, results, positions));
+        System.out.println(gameResults(players, results));
+    }
+
+    public static void printSingleResult(int index, List<String> resultItems) {
+        System.out.println();
+        System.out.println(RESULT_MSG);
+        System.out.println(resultItems.get(index));
+        System.out.println();
     }
 
     private static String printPlayerName(List<Player> players) {
@@ -58,7 +68,7 @@ public class ResultView {
     private static String printLine(Line line) {
         StringJoiner joiner = new StringJoiner(LADDER_COLUMN);
         joiner.add(LADDER_SPACE);
-        line.getPoints().stream()
+        line.getLiens().stream()
                 .map(ResultView::printPoint)
                 .forEach(joiner::add);
         return joiner.toString();
@@ -71,30 +81,16 @@ public class ResultView {
         return LADDER_SPACE;
     }
 
-    private static String printItems(List<String> items) {
-        return items.stream()
+    private static String gameItems(ExecutionResults items) {
+        return items.getResults().stream()
                 .map(item -> String.format(FIVE_SIZE_FORMAT, item))
                 .collect(joining(WHITE_SPACE));
     }
 
-    private static String gameResults(List<String> players, List<String> items, List<Integer> indices) {
-        if (isOneResult(players, indices)) {
-            return items.get(indices.get(ZERO_INDEX));
-        }
-        List<String> results = getResults(items, indices);
+    private static String gameResults(List<String> players, List<String> resultItems) {
         return IntStream.range(ZERO_INDEX, players.size())
-                .mapToObj(index -> players.get(index) + DELIMITER + results.get(index))
+                .mapToObj(index -> players.get(index) + DELIMITER + resultItems.get(index))
                 .collect(joining(ENTER));
-    }
-
-    private static boolean isOneResult(List<String> players, List<Integer> indices) {
-        return indices.size() != players.size();
-    }
-
-    private static List<String> getResults(List<String> items, List<Integer> indices) {
-        return indices.stream()
-                .map(items::get)
-                .collect(Collectors.toList());
     }
 
 }
