@@ -9,18 +9,32 @@ import java.util.Objects;
 
 public class Line {
 
-    private final List<Point> points = new ArrayList<>();
+    private final List<Point> points;
 
-    public Line(int players, LineStrategy strategy) {
-        Point first = Point.first(strategy.isEnableLine());
-        points.add(first);
-        Point middle = first;
-        for (int i = 1; i < players - 1; i++) {
-            middle = Point.middle(middle, strategy.isEnableLine());
-            points.add(middle);
+    private Line(List<Point> points) {
+        this.points = points;
+    }
+
+    public static Line createLine(int countOfPlayers, LineStrategy strategy)  {
+        List<Point> points = new ArrayList<>();
+        Point point = createFirstPoint(strategy, points);
+        for (int i = 1; i < countOfPlayers - 1; i++) {
+            point = Point.middle(point, strategy.isEnableLine());
+            points.add(point);
         }
-        Point last = Point.last(middle);
-        points.add(last);
+        createLastPoint(points, point);
+        return new Line(points);
+    }
+
+    private static Point createFirstPoint(LineStrategy strategy, List<Point> points) {
+        Point point = Point.first(strategy.isEnableLine());
+        points.add(point);
+        return point;
+    }
+
+    private static void createLastPoint(List<Point> points, Point point) {
+        point = Point.last(point);
+        points.add(point);
     }
 
     public int move(int index) {
@@ -28,7 +42,7 @@ public class Line {
         return index;
     }
 
-    public List<Point> getPoints() {
+    public List<Point> getLiens() {
         return Collections.unmodifiableList(points);
     }
 
