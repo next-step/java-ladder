@@ -2,6 +2,7 @@ package ladder.view;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class InputView {
@@ -11,6 +12,7 @@ public class InputView {
     private static final String INPUT_ITEMS = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String INPUT_LADDER_HEIGHT = "최대 사다리 높이는 몇 개인가요?";
     private static final String INPUT_FIND_PLAYER_RESULT = "결과를 보고 싶은 사람은?";
+    public static final String ERROR_INVALID_VALUE_MSG = "잘못된 입력 값 입니다.";
 
     private static final Scanner sc = new Scanner(System.in);
 
@@ -35,7 +37,14 @@ public class InputView {
 
     public static String printInputFindPlayer() {
         System.out.println(INPUT_FIND_PLAYER_RESULT);
-        return sc.nextLine();
+        return checkInvalidValue(sc.nextLine());
+    }
+
+    private static String checkInvalidValue(String inputValue) {
+        if (Objects.isNull(inputValue) || inputValue.isEmpty()) {
+            throw new IllegalArgumentException(ERROR_INVALID_VALUE_MSG);
+        }
+        return inputValue;
     }
 
 }
