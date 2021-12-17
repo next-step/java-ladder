@@ -19,7 +19,11 @@ class LadderHeightTest {
     void valid() {
         assertThatThrownBy(() -> new LadderHeight(0))
                 .isInstanceOf(IllegalArgumentException.class);
-        // 정상
+    }
+
+    @Test
+    @DisplayName("높이가 0 이상인 값 - 정상")
+    void invalid() {
         assertThatCode(() -> new LadderHeight(1))
                 .doesNotThrowAnyException();
     }

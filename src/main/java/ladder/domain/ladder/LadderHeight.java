@@ -28,8 +28,8 @@ public class LadderHeight {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        LadderHeight height = (LadderHeight) o;
-        return this.height == height.height;
+        LadderHeight that = (LadderHeight) o;
+        return this.height == that.height;
     }
 
     @Override
