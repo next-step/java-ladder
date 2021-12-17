@@ -35,7 +35,7 @@ public class OutputUI {
             System.out.print(LADDER_BEGIN_SPACE);
             for (int j = 0; j < points.size() -1 ; j++) {
                 Point point = points.get(j);
-                if (point.isValue()) {
+                if (point.isIndex()) {
                     System.out.print(LADDER_LINE);
                 } else {
                     System.out.print(LADDER_NO_LINE);

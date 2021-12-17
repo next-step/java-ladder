@@ -1,14 +1,12 @@
 package ladder;
 
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LinesTest {
 
-    @DisplayName("사다리 높이만큼 Line을 생성한다.")
     @Test
-    void createLine() {
+    void 사다리_높이만큼_사다리_생성() {
         // given
         int ladderHeight = 5;
         int numberOfParticipant = 4;

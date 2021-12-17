@@ -12,7 +12,17 @@ public class Line {
 
     public Line(int numberOfParticipant) {
         for (int i = 0; i < numberOfParticipant; i++) {
-            points.add(new Point(CustomRandom::nextBoolean));
+            boolean left;
+            if (i > 0) {
+                left = points.get(i - 1).isIndex();
+                if (left) {
+                    points.add(new Point(() -> false, true));
+                } else {
+                    points.add(new Point(CustomRandom::nextBoolean, false));
+                }
+            } else {
+                points.add(new Point(CustomRandom::nextBoolean, false));
+            }
         }
     }
 

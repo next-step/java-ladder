@@ -1,19 +1,30 @@
 package ladder;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 class PointTest {
 
     @DisplayName("사다리의 point가 생성되면 true 아니면 false.")
     @Test
-    void createPoint() {
+    void point_생성() {
         // when
-        Point point = new Point(() -> true);
-        boolean actuality = point.isValue();
+        Point point = new Point(() -> true, false);
+        boolean actuality = point.isIndex();
 
         // then
-        Assertions.assertThat(actuality).isTrue();
+        assertThat(actuality).isTrue();
+    }
+
+    @DisplayName("")
+    @Test
+    void d() {
+        // given
+
+        // when
+
+        // then
     }
 }
