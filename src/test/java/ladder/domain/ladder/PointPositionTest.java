@@ -19,7 +19,11 @@ class PointPositionTest {
     void valid() {
         assertThatThrownBy(() -> new PointPosition(-1))
                 .isInstanceOf(IllegalArgumentException.class);
-        // 정상 값
+    }
+
+    @Test
+    @DisplayName("position 정상 값")
+    void invalid() {
         assertThatCode(() -> new PointPosition(0))
                 .doesNotThrowAnyException();
     }
