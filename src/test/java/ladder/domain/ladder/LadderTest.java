@@ -1,6 +1,6 @@
 package ladder.domain.ladder;
 
-import ladder.domain.user.Players;
+import ladder.domain.user.LadderPlayers;
 import ladder.strategy.RandomLine;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -19,8 +19,7 @@ public class LadderTest {
     @DisplayName("사다리 객체 생성 - 입력된 height 만큼 라인 객체를 갖고있음")
     @CsvSource(value = {"3,4,5"})
     void create(int height) {
-        Players players = new Players(Arrays.asList("pobi", "honux"));
-        Ladder ladder = Ladder.createLadder(new RandomLine(), players, new LadderHeight(height));
+        Ladder ladder = Ladder.createLadder(new RandomLine(), LadderComponent.of(2, height));
         assertThat(ladder.getLines()).size().isEqualTo(height);
     }
 
@@ -28,8 +27,7 @@ public class LadderTest {
     @DisplayName("Line 마다 move 후 마지막 위치값을 반환")
     @MethodSource("provideMoveValue")
     void move(int input, int expected) {
-        Players players = new Players(Arrays.asList("pobi", "honux", "dd", "ss"));
-        Ladder ladder = Ladder.createLadder(() -> true, players, new LadderHeight(3));
+        Ladder ladder = Ladder.createLadder(() -> true, LadderComponent.of(4, 3));
         assertThat(ladder.move(input)).isEqualTo(expected);
     }
 
