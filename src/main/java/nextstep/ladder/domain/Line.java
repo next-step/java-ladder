@@ -1,11 +1,15 @@
 package nextstep.ladder.domain;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import nextstep.ladder.domain.line.LineGenerateStrategy;
 
 public class Line extends FirstClassList<Boolean> {
+    private static final int LEFT = -1;
+    private static final int RIGHT = 1;
+
     private Line(final List<Boolean> points) {
         super(points);
     }
@@ -33,16 +37,13 @@ public class Line extends FirstClassList<Boolean> {
     }
 
     public int move(int index) {
-        // todo refactoring
-        if (index < size() && get(index)) {
-            return index + 1;
-        }
+        return hasPoint(index).map(point -> index + RIGHT)
+                .orElse(hasPoint(index + LEFT).map(p -> index + LEFT)
+                        .orElse(index));
+    }
 
-        if (index != 0 && get(index - 1)) {
-            return index - 1;
-        }
-
-        return index;
+    public Optional<Boolean> hasPoint(int index) {
+        return elementOfOpt(index).filter(p -> p);
     }
 
     @Override

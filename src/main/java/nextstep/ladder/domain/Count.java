@@ -13,10 +13,6 @@ public abstract class Count {
         return count;
     }
 
-    public boolean equalValue(Count other) {
-        return other != null && other.count == count;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

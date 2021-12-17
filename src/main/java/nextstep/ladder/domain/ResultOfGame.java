@@ -28,7 +28,7 @@ public class ResultOfGame {
         Map<Player, Result> resultMap = new HashMap<>();
 
         IntStream.range(0, indexMap.size())
-                .forEach(index -> resultMap.put(players.get(index), results.get(indexMap.get(index))));
+                .forEach(index -> resultMap.put(players.elementOf(index), results.elementOf(indexMap.get(index))));
 
         return of(resultMap);
     }

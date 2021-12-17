@@ -93,6 +93,13 @@ public class LineTest {
         assertThat(line.move(current)).isEqualTo(next);
     }
 
+    @Test
+    public void hasPoint() {
+        Line line = Line.of(ptc(1), TestLineStrategy.ALL_LINE_STRATEGY);
+        assertThat(line.hasPoint(0)).isPresent();
+        assertThat(line.hasPoint(1)).isEmpty();
+    }
+
     public static Line l(int pointCount, LineGenerateStrategy strategy) {
         return Line.of(pointCount, strategy);
     }

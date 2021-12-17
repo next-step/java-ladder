@@ -3,10 +3,13 @@ package nextstep.ladder.domain;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 public class FirstClassListTest {
     static final class TestObject {
@@ -82,7 +85,16 @@ public class FirstClassListTest {
 
     @Test
     public void get() {
-        assertThat(TestList.of(TestObject.OBJ1, TestObject.OBJ2).get(0)).isEqualTo(TestObject.OBJ1);
+        assertThat(TestList.of(TestObject.OBJ1, TestObject.OBJ2).elementOf(0)).isEqualTo(TestObject.OBJ1);
+        assertThat(TestList.of(TestObject.OBJ1, TestObject.OBJ2).elementOfOpt(0)).isEqualTo(Optional.of(TestObject.OBJ1));
+    }
+
+    @ParameterizedTest(name = "get failed: {arguments}")
+    @ValueSource(ints = {-1, 5})
+    public void getFailed(int index) {
+        assertThatExceptionOfType(IndexOutOfBoundsException.class)
+                .isThrownBy(() -> TestList.of(TestObject.OBJ1, TestObject.OBJ2).elementOf(index));
+        assertThat(TestList.of(TestObject.OBJ1, TestObject.OBJ2).elementOfOpt(index)).isEqualTo(Optional.empty());
     }
 
     @Test
