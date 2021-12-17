@@ -1,26 +1,22 @@
 package ladder.domain.user;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
-public class Players {
+public class LadderPlayers {
 
     public static final String ERROR_EMPTY_MSG = "리스트가 비어있습니다..";
-    public static final String NOT_FIND_PLAYER_ERROR_MSG = "맞는 이름이 없습니다.";
+    public static final String ERROR_NOT_FIND_PLAYER_MSG = "맞는 이름이 없습니다.";
 
     private final List<Player> players;
 
-    public Players(List<String> players) {
-        if (players == null || players.size() == 0) {
+    public LadderPlayers(List<String> players) {
+        if (Objects.isNull(players) || players.isEmpty()) {
             throw new IllegalArgumentException(ERROR_EMPTY_MSG);
         }
         this.players = toPlayers(players);
-    }
-
-    public int size() {
-        return players.size();
     }
 
     private List<Player> toPlayers(List<String> players) {
@@ -29,19 +25,25 @@ public class Players {
                 .collect(Collectors.toList());
     }
 
-    public int findPlayers(String player) {
-        return IntStream.range(0, players.size())
-                .filter(index -> isSamePlayer(index, player))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(NOT_FIND_PLAYER_ERROR_MSG));
+    public int findIndexByName(String wantedName) {
+        if (!getPlayerNames().contains(wantedName)) {
+            throw new IllegalArgumentException(ERROR_NOT_FIND_PLAYER_MSG);
+        }
+        return getPlayerNames().indexOf(wantedName);
     }
 
-    private boolean isSamePlayer(int index, String player) {
-        return players.get(index).isSamePlayer(player);
+    public List<String> getPlayerNames() {
+        return players.stream()
+                .map(Player::getPlayerName)
+                .collect(Collectors.toList());
     }
 
     public List<Player> getPlayers() {
-        return players;
+        return Collections.unmodifiableList(this.players);
+    }
+
+    public int size() {
+        return players.size();
     }
 
     @Override
@@ -52,8 +54,8 @@ public class Players {
         if (o == null || getClass() != o.getClass()){
             return false;
         }
-        Players players1 = (Players) o;
-        return Objects.equals(players, players1.players);
+        LadderPlayers that = (LadderPlayers) o;
+        return Objects.equals(players, that.players);
     }
 
     @Override

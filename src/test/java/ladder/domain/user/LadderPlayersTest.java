@@ -13,13 +13,13 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class PlayersTest {
+public class LadderPlayersTest {
 
     @ParameterizedTest
     @DisplayName("Players 객체 생성 - 입력된 플레이어 이름 수 만큼 Player 객체로 저장")
     @MethodSource("providePlayers")
     void create(List<String> users, int size) {
-        Players players = new Players(users);
+        LadderPlayers players = new LadderPlayers(users);
         assertThat(players.getPlayers()).size().isEqualTo(size);
     }
 
@@ -33,10 +33,7 @@ public class PlayersTest {
     @Test
     @DisplayName("Players 값이 비어있을 경우 예외 반환 -> IllegalArgumentException")
     void checkSize() {
-        assertThatThrownBy(() -> new Players(Collections.EMPTY_LIST))
-                .isInstanceOf(IllegalArgumentException.class);
-
-        assertThatThrownBy(() -> new Players(null))
+        assertThatThrownBy(() -> new LadderPlayers(Collections.EMPTY_LIST))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -44,8 +41,8 @@ public class PlayersTest {
     @DisplayName("입력한 값이 Players에서 동일한 이름 객체 위치값 반환")
     @MethodSource("provideFindPlayers")
     void findPlayerIndex(String value, int expected) {
-        Players players = new Players(Arrays.asList("pobi", "honux", "crong"));
-        assertThat(players.findPlayers(value)).isEqualTo(expected);
+        LadderPlayers players = new LadderPlayers(Arrays.asList("pobi", "honux", "crong"));
+        assertThat(players.findIndexByName(value)).isEqualTo(expected);
     }
 
     private static Stream<Arguments> provideFindPlayers() {
@@ -57,19 +54,10 @@ public class PlayersTest {
     }
 
     @Test
-    @DisplayName("Players 저장된 값 입력 - 정상값")
-    void findPlayer() {
-        Players players = new Players(Arrays.asList("pobi", "honux", "crong"));
-        assertThatCode(() -> players.findPlayers("pobi"))
-                .doesNotThrowAnyException();
-    }
-
-    @Test
-    @DisplayName("Players 저장되지 않은 값 입력 시 -> IllegalArgumentException 반환")
-    void findPlayersFail() {
-        Players players = new Players(Arrays.asList("pobi", "honux", "crong"));
-        assertThatThrownBy(() -> players.findPlayers("s"))
-                .isInstanceOf(IllegalArgumentException.class);
+    @DisplayName("플레이어들 이름 리스트로 반환")
+    void getPlayerNames() {
+        LadderPlayers players = new LadderPlayers(Arrays.asList("pobi", "honux", "crong"));
+        assertThat(players.getPlayerNames()).containsExactly("pobi", "honux", "crong");
     }
 
 }
