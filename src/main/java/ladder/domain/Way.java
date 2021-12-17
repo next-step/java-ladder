@@ -11,7 +11,7 @@ public enum Way {
         this.load = load;
     }
 
-    public void print() {
-        System.out.print(this.load);
+    public String getLoad() {
+        return load;
     }
 }

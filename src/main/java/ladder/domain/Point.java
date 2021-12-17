@@ -42,8 +42,4 @@ public class Point {
     public Way getWay() {
         return way;
     }
-
-    public void print() {
-        way.print();
-    }
 }

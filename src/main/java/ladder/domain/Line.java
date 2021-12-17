@@ -8,8 +8,6 @@ import java.util.stream.IntStream;
 public class Line {
 
     private static final int INDEX_SIZE = 1;
-    private static final String EMPTY_FIRST = "    ";
-    private static final char SPOT = '|';
 
     private final List<Point> points;
 
@@ -32,14 +30,5 @@ public class Line {
 
     public List<Point> getPoints() {
         return Collections.unmodifiableList(this.points);
-    }
-
-    public void print() {
-        System.out.print(EMPTY_FIRST);
-        points.forEach(point -> {
-            System.out.print(SPOT);
-            point.print();
-        });
-        System.out.println();
     }
 }
