@@ -16,9 +16,9 @@ public class ParticipantTest {
     @Test
     @DisplayName("참석자의 이름이 정상적으로 생성되는지 검증")
     void createTest() {
-        Participant name = new Participant("lee", 0);
+        Participant name = new Participant("lee", new Position(0));
 
-        assertThat(name).isEqualTo(new Participant("lee", 0));
+        assertThat(name).isEqualTo(new Participant("lee", new Position(0)));
     }
 
     @Test
@@ -26,7 +26,7 @@ public class ParticipantTest {
     void overExceptionTest() {
 
         assertThatThrownBy(() ->
-                new Participant("jeonggi", 0)).isInstanceOf(IllegalArgumentException.class);
+                new Participant("jeonggi", new Position(0))).isInstanceOf(IllegalArgumentException.class);
     }
 
     @ParameterizedTest
@@ -35,14 +35,14 @@ public class ParticipantTest {
     void emptyExceptionTest(String input) {
 
         assertThatThrownBy(() ->
-                new Participant(input, 0)).isInstanceOf(NullPointerException.class);
+                new Participant(input, new Position(0))).isInstanceOf(NullPointerException.class);
 
     }
 
     @Test
     @DisplayName("사용자가 사다리가 잘 동작하는지 검증")
     void climbTest() {
-        Participant participant = new Participant("lee", 0);
+        Participant participant = new Participant("lee", new Position(0));
 
         Participant afterClimbParticipant = participant.climb(
                 Ladder.of(2, 3, drawLineRandom()));
@@ -52,7 +52,7 @@ public class ParticipantTest {
          *  |-----|      |
          */
 
-        assertThat(afterClimbParticipant).isEqualTo(new Participant("lee", 0));
+        assertThat(afterClimbParticipant).isEqualTo(new Participant("lee", new Position(0)));
     }
 
     private Random drawLineRandom() {

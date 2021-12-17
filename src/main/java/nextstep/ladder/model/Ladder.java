@@ -1,6 +1,7 @@
 package nextstep.ladder.model;
 
 import nextstep.ladder.model.value.Line;
+import nextstep.ladder.model.value.Position;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -27,6 +28,16 @@ public class Ladder {
 
     public static Ladder of(int height, int countOfPerson, Random random) {
         return new Ladder(height, countOfPerson, random);
+    }
+
+    public Position execute(Position position) {
+        Position tempPosition = position;
+
+        for (Line line : lines) {
+            tempPosition = tempPosition.move(line);
+        }
+
+        return tempPosition;
     }
 
     public List<Line> getLines() {

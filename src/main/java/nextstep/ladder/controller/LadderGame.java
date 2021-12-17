@@ -23,11 +23,9 @@ public class LadderGame {
 
         OutputVIew outputVIew = new OutputVIew();
         outputVIew.printResult(participants, ladder, ladderResults);
-
         Participants resultParticipants = participants.execute(ladder);
 
         String findName;
-
         while(true) {
             findName = InputView.wantShowPerson();
 

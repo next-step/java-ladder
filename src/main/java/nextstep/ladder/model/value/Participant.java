@@ -12,9 +12,9 @@ public class Participant {
     private static final int NAME_MAX_SIZE = 5;
 
     private final String name;
-    private final int position;
+    private final Position position;
 
-    public Participant(String inputName, int position) {
+    public Participant(String inputName, Position position) {
 
         if(inputName.isEmpty()) {
             throw new NullPointerException(FORMAT_ERROR_MSG);
@@ -29,13 +29,7 @@ public class Participant {
     }
 
     public Participant climb(Ladder ladder) {
-        int tempPosition = this.position;
-
-        for (Line line : ladder.getLines()) {
-            tempPosition = line.move(tempPosition);
-        }
-
-        return new Participant(this.name, tempPosition);
+        return new Participant(this.name, ladder.execute(position));
     }
 
     public boolean isEqualsName(String name) {
@@ -47,7 +41,7 @@ public class Participant {
     }
 
     public int getPosition() {
-        return position;
+        return position.getPosition();
     }
 
     @Override

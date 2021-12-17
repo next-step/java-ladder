@@ -1,6 +1,7 @@
 package nextstep.ladder.model;
 
 import nextstep.ladder.model.value.Participant;
+import nextstep.ladder.model.value.Position;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -64,7 +65,7 @@ public class ParticipantsTest {
 
         for (String name : names) {
             assertThat(localParticipants.findByName(name)).isEqualTo(
-                    new Participant(name, autoPosition.getAndIncrement()));
+                    new Participant(name, new Position(autoPosition.getAndIncrement())));
         }
     }
 

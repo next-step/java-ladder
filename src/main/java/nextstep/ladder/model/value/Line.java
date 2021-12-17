@@ -18,6 +18,10 @@ public class Line {
 
     }
 
+    public static Line of (int countOfPerson) {
+        return new Line(countOfPerson, new Random());
+    }
+
     public boolean isBeforePoint(int index) {
         if (index - 1 < 0) {
             return true;
@@ -32,18 +36,6 @@ public class Line {
 
     public boolean hasLine(int position) {
         return points.get(position).isTrue();
-    }
-
-    public int move(int position) {
-        if (hasLeftLine(position).isTrue()) {
-            return position - UNIT;
-        }
-
-        if (hasRightLine(position).isTrue()) {
-            return position + UNIT;
-        }
-
-        return position;
     }
 
     public Point hasLeftLine(int position) {
