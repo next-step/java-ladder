@@ -3,17 +3,20 @@ package ladder;
 import ladder.domain.Height;
 import ladder.exception.HeightException;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class HeightTest {
 
     @Test
-    void 사다리_높이는_숫자() {
+    @DisplayName("사다리 높이는 숫자")
+    void isHeightNumber() {
         Assertions.assertThatThrownBy(() -> Height.of("숫자아님")).isInstanceOf(NumberFormatException.class);
     }
 
     @Test
-    void 사다리_높이는_1이상() {
+    @DisplayName("사다리 높이는 1이상")
+    void heightIsOneMore() {
         Assertions.assertThatThrownBy(() -> Height.of("0")).isInstanceOf(HeightException.class);
     }
 }
