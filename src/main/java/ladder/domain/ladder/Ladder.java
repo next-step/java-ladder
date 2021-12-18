@@ -12,22 +12,20 @@ import static java.util.stream.IntStream.range;
 public class Ladder {
 
     private final List<Line> lines;
-    private final LadderComponent component;
 
-    private Ladder(List<Line> lines, LadderComponent component) {
+    private Ladder(List<Line> lines) {
         this.lines = new ArrayList<>(lines);
-        this.component = component;
     }
 
     public List<Line> getLines() {
         return lines;
     }
 
-    public static Ladder createLadder(LineStrategy strategy, LadderComponent component) {
+    public static Ladder createLadder(LineStrategy strategy, LadderComponentDto component) {
         List<Line> lines = range(0, component.getHeight())
-                .mapToObj(range -> Line.createLine(component.getWidth(), strategy))
+                .mapToObj(range -> Line.createLine(component.getPlayers().size(), strategy))
                 .collect(toList());
-        return new Ladder(lines, component);
+        return new Ladder(lines);
     }
 
     public int move(int index) {
