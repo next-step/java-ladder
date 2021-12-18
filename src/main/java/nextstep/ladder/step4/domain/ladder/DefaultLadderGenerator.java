@@ -21,11 +21,12 @@ public class DefaultLadderGenerator implements LadderGenerator {
         DefaultLineGenerator defaultLineGenerator = new DefaultLineGenerator(new RandomLineStrategy());
 
         List<DefaultLine> ladder = new ArrayList<>();
-        for (int i = 0; i < height.height(); i++) {
-            ladder.add(defaultLineGenerator.generate(width));
+        final int height = this.height.height();
+        for (int i = 0; i < height; i++) {
+            ladder.add(defaultLineGenerator.generate(this.width));
         }
 
-        return new DefaultLadder(width, ladder);
+        return new DefaultLadder(this.width, ladder);
     }
 
 }
