@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 public class MembersTest {
     private Members members;
@@ -18,7 +19,7 @@ public class MembersTest {
 
     @Test
     void 생성_비교() {
-        Members targetMembers = new Members("poni, mouse, peace");
+        Members targetMembers = new Members("poni,mouse,peace");
         assertThat(targetMembers).isEqualTo(members);
     }
 
@@ -29,7 +30,7 @@ public class MembersTest {
 
     @Test
     void 참가자명단_미입력() {
-        AssertionsForClassTypes.assertThatThrownBy(() -> {
+        assertThatThrownBy(() -> {
             new Members("");
         }).isInstanceOf(IllegalArgumentException.class);
     }
