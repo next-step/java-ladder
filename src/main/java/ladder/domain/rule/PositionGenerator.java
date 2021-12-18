@@ -1,4 +1,4 @@
-package ladder.rule;
+package ladder.domain.rule;
 
 public interface PositionGenerator {
 
