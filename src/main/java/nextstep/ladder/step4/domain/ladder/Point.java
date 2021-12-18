@@ -14,4 +14,8 @@ public class Point {
         return Move.of(direction).move(this.index);
     }
 
+    public boolean right() {
+        return direction.right();
+    }
+
 }

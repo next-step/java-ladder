@@ -1,8 +1,10 @@
 package nextstep.ladder.step4.domain.ladder;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import nextstep.ladder.step4.domain.ladder.engine.Ladder;
 
 public class DefaultLadder implements Ladder {
@@ -24,6 +26,14 @@ public class DefaultLadder implements Ladder {
             result.put(key, getTarget(key, height));
         }
         return new LadderResult(result);
+    }
+
+    public int size() {
+        return lines.size();
+    }
+
+    public List<Boolean> lines(int index) {
+        return lines.get(index).points();
     }
 
     private int getTarget(int key, int size) {

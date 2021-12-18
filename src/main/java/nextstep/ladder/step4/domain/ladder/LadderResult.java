@@ -14,4 +14,7 @@ public class LadderResult {
         return ladderResult.get(key);
     }
 
+    public int size() {
+        return ladderResult.size();
+    }
 }

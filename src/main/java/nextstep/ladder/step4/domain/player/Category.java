@@ -2,6 +2,7 @@ package nextstep.ladder.step4.domain.player;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,9 +23,18 @@ public class Category {
         return new Category(category);
     }
 
+    public Name get(Integer index) {
+        return category.get(index);
+    }
+
+    public List<Name> category() {
+        return Collections.unmodifiableList(category);
+    }
+
     private static void valid(int size, int playerCount) {
         if (size != playerCount) {
             throw new IllegalArgumentException("플레이어 수와 결과 수는 같아야 합니다.");
         }
     }
+
 }

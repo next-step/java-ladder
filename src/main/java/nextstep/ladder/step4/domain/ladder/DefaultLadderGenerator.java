@@ -17,7 +17,7 @@ public class DefaultLadderGenerator implements LadderGenerator {
     }
 
     @Override
-    public Ladder generate() {
+    public DefaultLadder generate() {
         DefaultLineGenerator defaultLineGenerator = new DefaultLineGenerator(new RandomLineStrategy());
 
         List<DefaultLine> ladder = new ArrayList<>();

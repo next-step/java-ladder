@@ -33,6 +33,10 @@ public class Direction {
         return new Direction(this.right, DEFAULT_VALUE);
     }
 
+    public boolean right() {
+        return right;
+    }
+
     private void valid(boolean left, boolean right) {
         if (left && right) {
             throw new IllegalArgumentException("올바르지 않은 사다리를 생성하려 하였습니다.");
