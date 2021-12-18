@@ -11,8 +11,8 @@ public class HorizontalLine {
         this.points = points;
     }
 
-    public int move() {
-        return 0;
+    public int move(int index) {
+        return points.get(index).move();
     }
 
     @Override

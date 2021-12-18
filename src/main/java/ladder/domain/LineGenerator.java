@@ -22,6 +22,4 @@ public class LineGenerator {
 
         return new HorizontalLine(points);
     }
-
-
 }
