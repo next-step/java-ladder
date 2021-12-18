@@ -25,10 +25,6 @@ public class Results extends FirstClassList<Result> {
         return new Results(results);
     }
 
-    public ResultCount count() {
-        return new ResultCount(size());
-    }
-
     public Results mapByIndex(List<Integer> indexes) {
         return of(indexes.stream()
                 .map(this::elementOf)
