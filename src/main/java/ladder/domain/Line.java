@@ -24,21 +24,24 @@ public class Line {
     private List<Boolean> init(int countOfPlayers, Random random) {
         List<Boolean> points = new ArrayList<>();
         for (int i = 0; i < countOfPlayers - 1; i++) {
-            if (hasPrevPointTrue(points, i)) {
-                points.add(false);
-                continue;
-            }
-            points.add(random.nextBoolean());
+            addPoints(points, i, random);
         }
         points.add(false); // 마지막 점은 무조건 false
         return points;
     }
 
-    private boolean hasPrevPointTrue(List<Boolean> points, int point) {
+    private void addPoints(List<Boolean> points, int point, Random random) {
         if (point == FIRST_POINT) {
-            return false;
+            points.add(random.nextBoolean());
+            return;
         }
-        return points.get(point - 1);
+
+        if (points.get(point - 1) == true) {
+            points.add(false);
+            return;
+        }
+
+        points.add(random.nextBoolean());
     }
 
     public int numberOfPoints() {
