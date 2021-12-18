@@ -22,6 +22,10 @@ public class Direction {
     }
 
     public Direction next(boolean right) {
+        if (this.right) {
+            right = false;
+        }
+
         return new Direction(this.right, right);
     }
 
