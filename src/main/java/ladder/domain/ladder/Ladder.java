@@ -1,7 +1,8 @@
 package ladder.domain.ladder;
 
-import ladder.domain.user.Players;
+import ladder.strategy.LineStrategy;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -11,20 +12,29 @@ import static java.util.stream.IntStream.range;
 public class Ladder {
 
     private final List<Line> lines;
+    private final LadderComponent component;
 
-    public Ladder(List<Line> lines) {
-        this.lines = lines;
+    private Ladder(List<Line> lines, LadderComponent component) {
+        this.lines = new ArrayList<>(lines);
+        this.component = component;
     }
 
     public List<Line> getLines() {
         return lines;
     }
 
-    public static Ladder createLadder(Players players, Height height) {
-        List<Line> lines = range(0, height.getHeight())
-                .mapToObj(i -> new Line(players.size(), new RandomLadder()))
+    public static Ladder createLadder(LineStrategy strategy, LadderComponent component) {
+        List<Line> lines = range(0, component.getHeight())
+                .mapToObj(range -> Line.createLine(component.getWidth(), strategy))
                 .collect(toList());
-        return new Ladder(lines);
+        return new Ladder(lines, component);
+    }
+
+    public int move(int index) {
+        for (Line line : lines) {
+            index = line.move(index);
+        }
+        return index;
     }
 
     @Override

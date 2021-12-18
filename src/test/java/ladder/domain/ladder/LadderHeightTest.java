@@ -5,22 +5,26 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
-class HeightTest {
+class LadderHeightTest {
 
     @Test
     @DisplayName("사다리 높이 생성")
     void create() {
-        Height height = new Height(5);
-        assertThat(height).isEqualTo(new Height(5));
+        LadderHeight height = new LadderHeight(5);
+        assertThat(height).isEqualTo(new LadderHeight(5));
     }
 
     @Test
     @DisplayName("높이가 0 이하 값 검증 -> IllegalArgumentException")
     void valid() {
-        assertThatThrownBy(() -> new Height(0))
+        assertThatThrownBy(() -> new LadderHeight(0))
                 .isInstanceOf(IllegalArgumentException.class);
-        // 정상
-        assertThatCode(() -> new Height(1))
+    }
+
+    @Test
+    @DisplayName("높이가 0 이상인 값 - 정상")
+    void invalid() {
+        assertThatCode(() -> new LadderHeight(1))
                 .doesNotThrowAnyException();
     }
 
