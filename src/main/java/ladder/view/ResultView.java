@@ -6,8 +6,8 @@ import ladder.domain.result.ExecutionResults;
 import ladder.domain.user.Player;
 
 import java.util.List;
+import java.util.Map;
 import java.util.StringJoiner;
-import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.joining;
 
@@ -22,7 +22,6 @@ public class ResultView {
     public static final String LADDER_COLUMN = "|";
     public static final String ENTER = "\n";
     public static final String DELIMITER = " : ";
-    public static final int ZERO_INDEX = 0;
 
     private ResultView() {
         throw new AssertionError();
@@ -40,16 +39,16 @@ public class ResultView {
         System.out.println();
     }
 
-    public static void printResults(List<String> players, List<String> results) {
+    public static void printResults(List<String> players, Map<String, String> results) {
         System.out.println();
         System.out.println(RESULT_MSG);
         System.out.println(gameResults(players, results));
     }
 
-    public static void printSingleResult(int index, List<String> resultItems) {
+    public static void printSingleResult(String resultItem) {
         System.out.println();
         System.out.println(RESULT_MSG);
-        System.out.println(resultItems.get(index));
+        System.out.println(resultItem);
         System.out.println();
     }
 
@@ -87,9 +86,9 @@ public class ResultView {
                 .collect(joining(WHITE_SPACE));
     }
 
-    private static String gameResults(List<String> players, List<String> resultItems) {
-        return IntStream.range(ZERO_INDEX, players.size())
-                .mapToObj(index -> players.get(index) + DELIMITER + resultItems.get(index))
+    private static String gameResults(List<String> playersName, Map<String, String> resultItems) {
+        return playersName.stream()
+                .map(name -> name + DELIMITER + resultItems.get(name))
                 .collect(joining(ENTER));
     }
 

@@ -1,13 +1,15 @@
 package ladder.controller;
 
 import ladder.domain.ladder.Ladder;
-import ladder.domain.ladder.LadderComponent;
+import ladder.domain.ladder.LadderComponentDto;
 import ladder.domain.ladder.LadderHeight;
 import ladder.domain.result.ExecutionResults;
 import ladder.domain.user.LadderPlayers;
 import ladder.strategy.LineStrategy;
 import ladder.view.InputView;
 import ladder.view.ResultView;
+
+import java.util.Map;
 
 public class LadderController {
 
@@ -24,28 +26,27 @@ public class LadderController {
         ExecutionResults items = new ExecutionResults(InputView.printInputItems());
         LadderHeight height = new LadderHeight(InputView.printInputLadderHeight());
 
-        Ladder ladder = Ladder.createLadder(lineStrategy, LadderComponent.of(players.size(), height.getHeight()));
+        Ladder ladder = Ladder.createLadder(lineStrategy, new LadderComponentDto(players, height));
 
         ResultView.printLadderResult(players.getPlayers(), ladder.getLines());
         ResultView.printItems(items);
 
-        ExecutionResults results = items.executeGame(players, ladder);
-
-        printGameResults(players, results);
+        Map<String, String> result = items.executeGame(players, ladder);
+        printGameResults(players, result);
     }
 
-    private void printGameResults(LadderPlayers players, ExecutionResults results) {
-        String wantedName = InputView.printInputFindPlayer();
+    private void printGameResults(LadderPlayers players, Map<String, String> result) {
+        String targetName = InputView.printInputFindPlayer();
 
-        if (isAll(wantedName)) {
-            ResultView.printResults(players.getPlayerNames(), results.getResults());
+        if (isAll(targetName)) {
+            ResultView.printResults(players.getPlayerNames(), result);
             return;
         }
 
-        int findIndexByName = players.findIndexByName(wantedName);
-        ResultView.printSingleResult(findIndexByName, results.getResults());
+        String findName = players.findByName(targetName);
+        ResultView.printSingleResult(result.get(findName));
 
-        printGameResults(players, results);
+        printGameResults(players, result);
     }
 
     private boolean isAll(String wantedName) {

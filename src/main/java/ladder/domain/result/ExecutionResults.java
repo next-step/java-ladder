@@ -3,10 +3,7 @@ package ladder.domain.result;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.user.LadderPlayers;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class ExecutionResults {
 
@@ -21,13 +18,13 @@ public class ExecutionResults {
         this.results = results;
     }
 
-    public ExecutionResults executeGame(LadderPlayers players, Ladder ladder) {
-        List<String> gameResult = new ArrayList<>();
-        for (int index = 0; index < players.size(); index++) {
-            int findIndex = ladder.move(index);
-            gameResult.add(this.results.get(findIndex));
+    public Map<String, String> executeGame(LadderPlayers players, Ladder ladder) {
+        Map<String, String> result = new HashMap<>();
+        for (int num = 0; num < players.size(); num++) {
+            int findIndex = ladder.move(num);
+            result.put(players.getPlayerNames().get(num), this.results.get(findIndex));
         }
-        return new ExecutionResults(gameResult);
+        return result;
     }
 
     public List<String> getResults() {
