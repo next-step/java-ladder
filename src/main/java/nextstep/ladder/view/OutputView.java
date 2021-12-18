@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import nextstep.ladder.LadderGame;
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.LadderFrame;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Name;
 import nextstep.ladder.domain.Player;
@@ -64,6 +65,12 @@ public class OutputView {
                 .map(OutputView::formatPadding)
                 .forEach(System.out::print);
         System.out.print(NEWLINE);
+    }
+
+    public static void printLadder(LadderFrame ladderFrame, Ladder ladder) {
+        printPlayerList(ladderFrame.players());
+        printLadder(ladder);
+        printResult(ladderFrame.results());
     }
 
     public static void printResultOfPlayers(String nameOfUser, ResultOfGame resultOfGame) {

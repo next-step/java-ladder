@@ -31,13 +31,13 @@ public class Ladder extends FirstClassList<Line> {
         return Ladder.of(PointCount.of(playerCount), height, strategy);
     }
 
-    public ResultOfGame result(Players players, Results results) {
-        List<Integer> indexMap = downToResult(IntStream.range(0, players.size())
+    public ResultOfGame result(LadderFrame ladderFrame) {
+        List<Integer> indexMap = downToResult(IntStream.range(0, ladderFrame.players().size())
                         .boxed()
                         .collect(Collectors.toList()),
                 iterator());
 
-        return ResultOfGame.of(players, results.mapByIndex(indexMap));
+        return ResultOfGame.of(ladderFrame.players(), ladderFrame.results().mapByIndex(indexMap));
     }
 
     public List<Integer> downToResult(List<Integer> indexMap, Iterator<Line> iterator) {

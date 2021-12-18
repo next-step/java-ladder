@@ -1,6 +1,5 @@
 package nextstep.ladder;
 
-import java.util.Iterator;
 import java.util.List;
 
 import nextstep.ladder.domain.Height;
@@ -11,6 +10,7 @@ import nextstep.ladder.domain.Players;
 import nextstep.ladder.domain.ResultOfGame;
 import nextstep.ladder.domain.Results;
 import nextstep.ladder.domain.line.RandomLineStrategy;
+import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
 
 public class LadderGame {
@@ -18,29 +18,21 @@ public class LadderGame {
     public static String QUIT_COMMAND = "quit";
 
     public static void main(String[] args) {
-        //final List<String> names = InputView.inputNamesOfPlayer();
-        //final int height = InputView.inputHeight();
-        // for easy test
-        final List<String> names = List.of("n1", "n2", "n3", "n4", "n5");
-        final int height = 10;
-        final List<String> resultList = List.of("r1", "r2", "r3", "r4", "r5");
-        final Players players = Players.of(names);
-        final Results results = Results.fromString(resultList);
-        final LadderFrame ladderFrame = LadderFrame.of(players, results);
+        final List<String> names = InputView.inputCommaSeparateString("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+        final List<String> resultList = InputView.inputCommaSeparateString("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        final int height = InputView.inputNumber("최대 사다리 높이는 몇 개인가요?");
+
+        final LadderFrame ladderFrame = LadderFrame.of(Players.of(names), Results.fromString(resultList));
         final LadderBuilder ladderBuilder = LadderBuilder.of(ladderFrame, Height.of(height));
         final Ladder ladder = ladderBuilder.build(new RandomLineStrategy());
 
-        OutputView.printPlayerList(players);
-        OutputView.printLadder(ladder);
-        OutputView.printResult(results);
+        OutputView.printLadder(ladderFrame, ladder);
 
-        ResultOfGame resultOfGame = ladder.result(players, results);
+        ResultOfGame resultOfGame = ladder.result(ladderFrame);
 
-        List<String> resultCommand = List.of("n1", "n3", ALL_COMMAND, QUIT_COMMAND);
-        Iterator<String> iter = resultCommand.iterator();
         String nameOfUser = "";
-        while(!nameOfUser.equalsIgnoreCase(QUIT_COMMAND) && iter.hasNext()) {
-            nameOfUser = iter.next();
+        while(!nameOfUser.equalsIgnoreCase(QUIT_COMMAND)) {
+            nameOfUser = InputView.inputString("결과를 보고 싶은 사람은?");
             if (nameOfUser.equalsIgnoreCase(QUIT_COMMAND)) {
                 break;
             }
