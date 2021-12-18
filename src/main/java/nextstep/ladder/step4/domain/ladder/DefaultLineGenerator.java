@@ -22,7 +22,7 @@ public class DefaultLineGenerator implements LineGenerator {
     }
 
     @Override
-    public Line generate(int width) {
+    public DefaultLine generate(int width) {
         valid(width);
         List<Point> line = new ArrayList<>();
 
