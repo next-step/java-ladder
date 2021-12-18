@@ -1,8 +1,9 @@
 package ladder.domain;
 
+import ladder.util.RandomGenerator;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Line {
     private static final int FIRST_POINT = 0;
@@ -10,7 +11,7 @@ public class Line {
     private final List<Boolean> points;
 
     public Line(int countOfPlayers) {
-        this.points = init(countOfPlayers, new Random());
+        this.points = init(countOfPlayers);
     }
 
     public Line(boolean... points) {
@@ -21,18 +22,18 @@ public class Line {
         this.points = result;
     }
 
-    private List<Boolean> init(int countOfPlayers, Random random) {
+    private List<Boolean> init(int countOfPlayers) {
         List<Boolean> points = new ArrayList<>();
         for (int i = 0; i < countOfPlayers - 1; i++) {
-            addPoints(points, i, random);
+            addPoints(points, i);
         }
         points.add(false); // 마지막 점은 무조건 false
         return points;
     }
 
-    private void addPoints(List<Boolean> points, int point, Random random) {
+    private void addPoints(List<Boolean> points, int point) {
         if (point == FIRST_POINT) {
-            points.add(random.nextBoolean());
+            points.add(RandomGenerator.generate());
             return;
         }
 
@@ -41,7 +42,7 @@ public class Line {
             return;
         }
 
-        points.add(random.nextBoolean());
+        points.add(RandomGenerator.generate());
     }
 
     public int numberOfPoints() {
