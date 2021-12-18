@@ -15,6 +15,14 @@ public class DefaultLine implements Line {
         this.points = points;
     }
 
+    @Override
+    public int move(int index) {
+        if (index < 0 || index >= points.size()) {
+            throw new ArrayIndexOutOfBoundsException("존재하지 않는 라인 번호 입니다.");
+        }
+        return points.get(index).move();
+    }
+
     private void valid(List<Point> points) {
         if (points == null || points.isEmpty()) {
             throw new IllegalArgumentException("사다리가 존재하지 않습니다.");
@@ -25,8 +33,4 @@ public class DefaultLine implements Line {
         }
     }
 
-    @Override
-    public int move(int index) {
-        return 0;
-    }
 }

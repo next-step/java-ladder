@@ -13,7 +13,7 @@ public class DefaultLineGenerator implements LineGenerator {
 
     private static final int FIRST_INDEX = 0;
     private static final int START_INDEX = 1;
-    private static final int PRE_LAST_INDEX = 1;
+    private static final int LAST_INDEX_OF_WIDTH = 1;
 
     private final LineStrategy lineStrategy;
 
@@ -29,7 +29,7 @@ public class DefaultLineGenerator implements LineGenerator {
         Direction direction = Direction.first(lineStrategy.isLine());
         line.add(new Point(FIRST_INDEX, direction));
 
-        final int lastIndex = width - 1;
+        final int lastIndex = width - LAST_INDEX_OF_WIDTH;
         for (int index = START_INDEX; index < lastIndex; index++) {
             direction = direction.next(lineStrategy.isLine());
             line.add(new Point(index, direction));
