@@ -2,7 +2,6 @@ package ladder;
 
 import ladder.domain.Ladder;
 import ladder.domain.Line;
-import ladder.view.ResultView;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,6 +18,5 @@ public class LadderTest {
         Ladder ladder = new Ladder(ladderSize, playerCount);
         List<Line> lines = ladder.getLines();
         Assertions.assertThat(lines.size()).isEqualTo(ladderSize);
-        ResultView.printLadder(ladder);
     }
 }
