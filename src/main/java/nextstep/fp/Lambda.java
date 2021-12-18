@@ -53,4 +53,20 @@ public class Lambda {
         }
         return total;
     }
+
+    /**
+     * 공통 합계
+     * @param numbers
+     * @param c
+     * @return
+     */
+    public static int sum(List<Integer> numbers, Conditional c) {
+        int total = 0;
+        for (int number : numbers) {
+            if (c.test(number)) {
+                total += number;
+            }
+        }
+        return total;
+    }
 }

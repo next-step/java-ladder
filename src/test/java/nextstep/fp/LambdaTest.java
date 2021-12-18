@@ -48,4 +48,38 @@ public class LambdaTest {
         int sum = Lambda.sumAllOverThree(numbers);
         assertThat(sum).isEqualTo(15);
     }
+
+    @Test
+    public void 익명_sumAll() {
+        int sum = Lambda.sum(numbers, new Conditional() {
+            @Override
+            public boolean test(Integer number) {
+                return true;
+            }
+        });
+        assertThat(sum).isEqualTo(21);
+    }
+
+    @Test
+    public void 익명_sumAllEven() {
+        int sum = Lambda.sum(numbers, new Conditional() {
+            @Override
+            public boolean test(Integer number) {
+                return number % 2 == 0;
+            }
+        });
+        assertThat(sum).isEqualTo(12);
+    }
+
+    @Test
+    public void 익명_sumAllOverThree() {
+        int sum = Lambda.sum(numbers, new Conditional() {
+            @Override
+            public boolean test(Integer number) {
+                return number > 3;
+            }
+        });
+        assertThat(sum).isEqualTo(15);
+    }
+
 }
