@@ -16,9 +16,9 @@ public class ParticipantsTest {
     @DisplayName("of 메소드로 participants 가 잘 만들어지는지 테스트")
     void ofTest() {
         List<Participant> participantList = new ArrayList<Participant>();
-        participantList.add(Participant.of("t1"));
-        participantList.add(Participant.of("t2"));
-        participantList.add(Participant.of("t3"));
+        participantList.add(Participant.of("t1", 0));
+        participantList.add(Participant.of("t2", 1));
+        participantList.add(Participant.of("t3", 2));
 
         Participants participants = Participants.of("t1,t2,t3");
         for (int index = 0; index < participants.getParticipantsSize(); index++) {

@@ -2,7 +2,7 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.domain.*;
 
-import java.util.HashMap;
+import java.util.Map;
 
 import static nextstep.ladder.domain.Participant.PARTICIPANT_SIZE;
 
@@ -24,12 +24,12 @@ public class OutPut {
         System.out.println();
     }
 
-    public static void viewLine(Line line) {
+    private static void viewLine(Line line) {
         for (Point point : line.getPoints()) {
-            if (point == Point.of("right")) {
+            if (point.getDirection().isRight()) {
                 System.out.print("|-----");
             }
-            if (point != Point.of("right")) {
+            if (!point.getDirection().isRight()) {
                 System.out.print("|     ");
             }
         }
@@ -54,8 +54,7 @@ public class OutPut {
         System.out.println();
     }
 
-    public static void viewResult(Participants participants, Compensations compensations, Ladder ladder, Participant participantWantResult) {
-        HashMap<String, String> result = PlayGame.playGame(participantWantResult, participants, compensations, ladder);
+    public static void viewResult(Participants participants, Map<String, String> result) {
         for (Participant participant : participants.getParticipants()) {
             if (result.containsKey(participant.getParticipant())) {
                 System.out.println(participant.getParticipant() + " : " + result.get(participant.getParticipant()));

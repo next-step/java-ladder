@@ -15,13 +15,17 @@ public class Compensations {
         return new Compensations(Arrays.asList(compensationString.split(",")), participantsSize);
     }
 
-    public List<String> getCompensations() {
-        return compensations;
-    }
-
     private static void checkCompensationsSize(List<String> compensations, int participantsSize) {
         if (compensations.size() != participantsSize) {
             throw new IllegalArgumentException("보상과 참가자 수가 다릅니다.");
         }
+    }
+
+    public List<String> getCompensations() {
+        return compensations;
+    }
+
+    public String getCompensationByIndex(int index) {
+        return compensations.get(index);
     }
 }

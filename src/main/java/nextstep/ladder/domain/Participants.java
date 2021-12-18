@@ -3,6 +3,7 @@ package nextstep.ladder.domain;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 public class Participants {
@@ -14,8 +15,9 @@ public class Participants {
     }
 
     public static Participants of(String participants) {
+        AtomicInteger index = new AtomicInteger();
         return new Participants(Arrays.asList(participants.split(",")).stream()
-                .map(participant -> Participant.of(participant))
+                .map(participant -> Participant.of(participant, index.getAndIncrement()))
                 .collect(Collectors.toList()));
     }
 
@@ -33,4 +35,12 @@ public class Participants {
         return Collections.unmodifiableList(participants);
     }
 
+    public int getParticipantIndex(String participant) {
+        for (int index = 0; index < participants.size(); index++) {
+            if (participants.get(index).getParticipant() == participant) {
+                return index;
+            }
+        }
+        throw new IllegalArgumentException("해당하는 유저가 없습니다.");
+    }
 }
