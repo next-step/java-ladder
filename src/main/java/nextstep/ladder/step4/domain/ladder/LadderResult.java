@@ -10,4 +10,8 @@ public class LadderResult {
         this.ladderResult = ladderResult;
     }
 
+    public Integer get(int key) {
+        return ladderResult.get(key);
+    }
+
 }

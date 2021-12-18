@@ -7,19 +7,20 @@ import nextstep.ladder.step4.domain.ladder.engine.Ladder;
 
 public class DefaultLadder implements Ladder {
 
+    private final int width;
     private final List<DefaultLine> lines;
 
-    public DefaultLadder(List<DefaultLine> lines) {
+    public DefaultLadder(int width, List<DefaultLine> lines) {
         valid(lines);
+        this.width = width;
         this.lines = lines;
     }
 
     @Override
     public LadderResult play() {
-        final int height = lines.size();
-
         Map<Integer, Integer> result = new HashMap<>();
-        for (int key = 0; key < height; key++) {
+        final int height = lines.size();
+        for (int key = 0; key < width; key++) {
             result.put(key, getTarget(key, height));
         }
         return new LadderResult(result);

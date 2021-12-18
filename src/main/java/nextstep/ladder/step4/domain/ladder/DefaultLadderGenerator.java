@@ -25,7 +25,7 @@ public class DefaultLadderGenerator implements LadderGenerator {
             ladder.add(defaultLineGenerator.generate(width));
         }
 
-        return new DefaultLadder(ladder);
+        return new DefaultLadder(width, ladder);
     }
 
 }
