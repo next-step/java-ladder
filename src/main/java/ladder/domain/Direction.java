@@ -13,11 +13,11 @@ public class Direction {
         this.current = current;
     }
 
-    public static Direction first(boolean current) {
+    static Direction first(boolean current) {
         return new Direction(false, current);
     }
 
-    public int move() {
+    int move() {
         if (left) {
             return -1;
         }
