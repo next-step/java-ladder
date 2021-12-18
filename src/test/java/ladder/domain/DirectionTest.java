@@ -9,20 +9,20 @@ class DirectionTest {
 
     @Test
     void 왼쪽으로_이동() {
-        Direction direction = new Direction(true, false);
-        assertThat(direction.move()).isEqualTo(-1);
+        Direction left = new Direction(true, false);
+        assertThat(left.move()).isEqualTo(-1);
     }
 
     @Test
     void 오른쪽으로_이동() {
-        Direction direction = new Direction(false, true);
-        assertThat(direction.move()).isEqualTo(1);
+        Direction right = new Direction(false, true);
+        assertThat(right.move()).isEqualTo(1);
     }
 
     @Test
     void 제자리() {
-        Direction direction = new Direction(false, false);
-        assertThat(direction.move()).isEqualTo(0);
+        Direction center = new Direction(false, false);
+        assertThat(center.move()).isEqualTo(0);
     }
 
     @Test
