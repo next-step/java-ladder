@@ -30,13 +30,13 @@ public class Line extends FirstClassList<Boolean> {
         return of(PointCount.of(count), strategy);
     }
 
-    public List<Integer> nextPosition(List<Integer> position) {
+    public List<Integer> move(List<Integer> position) {
         return position.stream()
-                .map(this::move)
+                .map(this::nextPosition)
                 .collect(Collectors.toList());
     }
 
-    public int move(int index) {
+    public int nextPosition(int index) {
         return hasPoint(index).map(point -> index + RIGHT)
                 .orElse(hasPoint(index + LEFT).map(p -> index + LEFT)
                         .orElse(index));

@@ -72,7 +72,7 @@ public class LineTest {
     @ParameterizedTest(name = "next position: {arguments}")
     @MethodSource("parseNextPosition")
     public void nextPosition(Line line, List<Integer> current, List<Integer> next) {
-        assertThat(line.nextPosition(current)).hasSameElementsAs(next);
+        assertThat(line.move(current)).hasSameElementsAs(next);
     }
 
     static Stream<Arguments> parseMove() {
@@ -90,7 +90,7 @@ public class LineTest {
     @ParameterizedTest(name = "move : {arguments}")
     @MethodSource("parseMove")
     public void move(Line line, int current, int next) {
-        assertThat(line.move(current)).isEqualTo(next);
+        assertThat(line.nextPosition(current)).isEqualTo(next);
     }
 
     @Test

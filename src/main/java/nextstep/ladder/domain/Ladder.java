@@ -32,19 +32,21 @@ public class Ladder extends FirstClassList<Line> {
     }
 
     public ResultOfGame result(Players players, Results results) {
-        List<Integer> indexMap = IntStream.range(0, players.size())
-                .boxed()
-                .collect(Collectors.toList());
+        List<Integer> indexMap = downToResult(IntStream.range(0, players.size())
+                        .boxed()
+                        .collect(Collectors.toList()),
+                iterator());
 
-        return ResultOfGame.of(players, results, next(indexMap, collect().iterator()));
+        return ResultOfGame.of(players, results.mapByIndex(indexMap));
     }
 
-    public List<Integer> next(List<Integer> indexMap, Iterator<Line> lineIterator) {
-        if (!lineIterator.hasNext()) {
+    public List<Integer> downToResult(List<Integer> indexMap, Iterator<Line> iterator) {
+        if (!iterator.hasNext()) {
             return indexMap;
         }
 
-        return next(lineIterator.next().nextPosition(indexMap), lineIterator);
+        final Line line = iterator.next();
+        return downToResult(line.move(indexMap), iterator);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -42,6 +43,14 @@ public abstract class FirstClassList<T> {
         }
 
         return Optional.of(collection.get(index));
+    }
+
+    public int indexOf(T t) {
+        return collection.indexOf(t);
+    }
+
+    public Iterator<T> iterator() {
+        return collect().iterator();
     }
 
     public <S> boolean hasSameSize(FirstClassList<S> other) {

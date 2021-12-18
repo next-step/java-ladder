@@ -1,12 +1,11 @@
 package nextstep.ladder.domain;
 
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.stream.IntStream;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class ResultOfGame {
@@ -24,14 +23,13 @@ public class ResultOfGame {
         return new ResultOfGame(playerResultMap);
     }
 
-    public static ResultOfGame of(Players players, Results results, List<Integer> indexMap) {
-        Map<Player, Result> resultMap = new HashMap<>();
+    public static ResultOfGame of(Players players, Results results) {
+        return of(players.stream()
+                .collect(Collectors.toMap(
+                        Function.identity(),
+                        player -> results.elementOf(players.indexOf(player))
+                )));
 
-        // todo refactor
-        IntStream.range(0, indexMap.size())
-                .forEach(index -> resultMap.put(players.elementOf(index), results.elementOf(indexMap.get(index))));
-
-        return of(resultMap);
     }
 
     public Optional<Result> result(Player player) {

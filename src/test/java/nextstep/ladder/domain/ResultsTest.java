@@ -14,18 +14,18 @@ public class ResultsTest {
     @Test
     public void create() {
         final List<String> results = List.of("result1", "result2", "result3");
-        assertThat(Results.of(results)).isEqualTo(Results.of(results));
+        assertThat(Results.fromString(results)).isEqualTo(Results.fromString(results));
     }
 
     @ParameterizedTest(name = "create failed : [{arguments}]")
     @NullAndEmptySource
     public void createFailed(List<String> results) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> Results.of(results))
+                .isThrownBy(() -> Results.fromString(results))
                 .withMessageContaining("cannot be null or empty");
     }
 
     public static Results rs(String ... results) {
-        return Results.of(Arrays.asList(results));
+        return Results.fromString(Arrays.asList(results));
     }
 }

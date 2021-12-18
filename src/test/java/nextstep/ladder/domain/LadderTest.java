@@ -19,7 +19,8 @@ import static nextstep.ladder.domain.PlayersTest.ps;
 import static nextstep.ladder.domain.PointCountTest.ptc;
 import static nextstep.ladder.domain.ResultTest.r;
 import static nextstep.ladder.domain.ResultsTest.rs;
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class LadderTest {
     @Test
@@ -75,7 +76,6 @@ public class LadderTest {
         assertThat(ladder.result(players, results)).isEqualTo(expected);
     }
 
-
     static Stream<Arguments> parseLadderNext() {
         return Stream.of(
                 Arguments.of(pc(2), h(1), TestLineStrategy.NO_LINE_STRATEGY,
@@ -92,6 +92,6 @@ public class LadderTest {
     public void next(PlayerCount pc, Height height, LineGenerateStrategy strategy, List<Integer> expected) {
         Ladder ladder = Ladder.of(pc, height, strategy);
         List<Integer> indexMap = IntStream.range(0, pc.toInt()).boxed().collect(Collectors.toList());
-        assertThat(ladder.next(indexMap, ladder.collect().listIterator())).hasSameElementsAs(expected);
+        assertThat(ladder.downToResult(indexMap, ladder.collect().listIterator())).hasSameElementsAs(expected);
     }
 }

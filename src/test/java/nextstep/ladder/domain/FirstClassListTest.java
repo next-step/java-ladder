@@ -82,19 +82,29 @@ public class FirstClassListTest {
         assertThat(TestList.of(TestObject.OBJ1, TestObject.OBJ2).size()).isEqualTo(2);
     }
 
-
     @Test
-    public void get() {
+    public void elementOf() {
         assertThat(TestList.of(TestObject.OBJ1, TestObject.OBJ2).elementOf(0)).isEqualTo(TestObject.OBJ1);
         assertThat(TestList.of(TestObject.OBJ1, TestObject.OBJ2).elementOfOpt(0)).isEqualTo(Optional.of(TestObject.OBJ1));
     }
 
     @ParameterizedTest(name = "get failed: {arguments}")
     @ValueSource(ints = {-1, 5})
-    public void getFailed(int index) {
+    public void elementOfFailed(int index) {
         assertThatExceptionOfType(IndexOutOfBoundsException.class)
                 .isThrownBy(() -> TestList.of(TestObject.OBJ1, TestObject.OBJ2).elementOf(index));
         assertThat(TestList.of(TestObject.OBJ1, TestObject.OBJ2).elementOfOpt(index)).isEqualTo(Optional.empty());
+    }
+
+    @Test
+    public void indexOf() {
+        assertThat(TestList.of(TestObject.OBJ1, TestObject.OBJ2).indexOf(TestObject.OBJ1)).isEqualTo(0);
+    }
+
+    @Test
+    public void iterator() {
+        assertThat(TestList.of(TestObject.OBJ1, TestObject.OBJ2).iterator()).hasNext();
+        assertThat(TestList.of(TestObject.OBJ1, TestObject.OBJ2).iterator().next()).isEqualTo(TestObject.OBJ1);
     }
 
     @Test

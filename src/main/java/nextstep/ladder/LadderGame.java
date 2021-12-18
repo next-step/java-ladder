@@ -25,7 +25,7 @@ public class LadderGame {
         final int height = 10;
         final List<String> resultList = List.of("r1", "r2", "r3", "r4", "r5");
         final Players players = Players.of(names);
-        final Results results = Results.of(resultList);
+        final Results results = Results.fromString(resultList);
         final LadderFrame ladderFrame = LadderFrame.of(players, results);
         final LadderBuilder ladderBuilder = LadderBuilder.of(ladderFrame, Height.of(height));
         final Ladder ladder = ladderBuilder.build(new RandomLineStrategy());
