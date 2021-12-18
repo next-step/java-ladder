@@ -2,7 +2,6 @@ package nextstep.ladder.step4.domain.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
-import nextstep.ladder.step4.domain.ladder.engine.Ladder;
 import nextstep.ladder.step4.domain.ladder.engine.LadderGenerator;
 import nextstep.ladder.step4.domain.ladder.strategy.RandomLineStrategy;
 

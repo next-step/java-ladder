@@ -1,10 +1,8 @@
 package nextstep.ladder.step4.domain.ladder;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 import nextstep.ladder.step4.domain.ladder.engine.Ladder;
 
 public class DefaultLadder implements Ladder {

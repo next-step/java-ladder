@@ -4,7 +4,6 @@ import static nextstep.ladder.step4.exception.LineMinimumLengthException.MINIMUM
 
 import java.util.ArrayList;
 import java.util.List;
-import nextstep.ladder.step4.domain.ladder.engine.Line;
 import nextstep.ladder.step4.domain.ladder.engine.LineGenerator;
 import nextstep.ladder.step4.domain.ladder.strategy.LineStrategy;
 import nextstep.ladder.step4.exception.LineMinimumLengthException;
