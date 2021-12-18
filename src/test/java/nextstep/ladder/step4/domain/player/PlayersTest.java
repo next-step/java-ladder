@@ -5,16 +5,15 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class PlayersTest {
 
     @ParameterizedTest
-    @CsvSource(value = {"pobi,honux,crong,jk:3", "kim,dong,hyo:2"}, delimiter = ':')
+    @ValueSource(strings = {"pobi,honux,crong,jk", "kim,dong,hyo"})
     @DisplayName("생성성공")
-    void create(String input, int width) {
-        assertThat(Players.of(new StringAsSplit(input)).width()).isEqualTo(width);
+    void create(String input) {
+        assertThat(Players.of(new StringAsSplit(input))).isInstanceOf(Players.class);
     }
 
     @ParameterizedTest
