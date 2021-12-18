@@ -13,6 +13,14 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class LadderTest {
 
+    @Test
+    void play() {
+        List<DefaultLine> lines = new ArrayList<>();
+        lines.add(new DefaultLineGenerator(new RandomLineStrategy()).generate(5));
+
+        assertThat(new DefaultLadder(lines).play()).isInstanceOf(LadderResult.class);
+    }
+
     @ParameterizedTest
     @ValueSource(ints = {3, 4, 5})
     @DisplayName("사다리 생성")
