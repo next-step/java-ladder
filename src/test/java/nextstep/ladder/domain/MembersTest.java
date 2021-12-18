@@ -13,11 +13,7 @@ public class MembersTest {
 
     @BeforeEach
     private void before() {
-        members = new Members(Arrays.asList(
-            new Member("poni"),
-            new Member("mouse"),
-            new Member("peace")
-        ));
+        members = new Members("poni", "mouse", "peace");
     }
 
     @Test
