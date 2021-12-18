@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.domain.rule.PositionGenerator;
+
 import java.util.Objects;
 
 public class Direction {
@@ -13,8 +15,19 @@ public class Direction {
         this.current = current;
     }
 
-    static Direction first(boolean current) {
-        return new Direction(false, current);
+    static Direction first(PositionGenerator current) {
+        return new Direction(false, current.generate());
+    }
+
+    Direction next(PositionGenerator current) {
+        if (this.current) {
+            return new Direction(true, false);
+        }
+        return new Direction(false, current.generate());
+    }
+
+    Direction last() {
+        return new Direction(this.current, false);
     }
 
     int move() {

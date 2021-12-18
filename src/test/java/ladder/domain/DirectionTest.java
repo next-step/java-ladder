@@ -26,12 +26,6 @@ class DirectionTest {
     }
 
     @Test
-    void 첫_포인트는_오른쪾으로만_이동_가능() {
-        Direction expectedDirection = new Direction(false, true);
-        assertThat(Direction.first(true)).isEqualTo(expectedDirection);
-    }
-
-    @Test
     void 왼쪽_오른쪽_동시_이동_불가() {
         // when
         assertThatThrownBy(() -> new Direction(true, true))
