@@ -9,7 +9,7 @@ public class LineGenerator {
 
     private static final int BEFORE_LAST_POINT = 2;
 
-    public HorizontalLine create(int numberOfParticipant, PositionGenerator positionGenerator) {
+    HorizontalLine generate(int numberOfParticipant, PositionGenerator positionGenerator) {
         List<Point> points = new ArrayList<>();
         Point point = Point.first(positionGenerator);
         points.add(point);

@@ -16,7 +16,7 @@ class LineGeneratorTest {
         LineGenerator lineGenerator = new LineGenerator();
 
         // when
-        HorizontalLine line = lineGenerator.create(numberOfParticipant, () -> true);
+        HorizontalLine line = lineGenerator.generate(numberOfParticipant, () -> true);
 
         // then
         List<Point> points = new ArrayList<>();

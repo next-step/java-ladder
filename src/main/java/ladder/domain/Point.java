@@ -14,19 +14,19 @@ public class Point {
         this.direction = direction;
     }
 
-    public static Point first(PositionGenerator current) {
+    static Point first(PositionGenerator current) {
         return new Point(0, Direction.first(current));
     }
 
-    public Point next(PositionGenerator current) {
+    Point next(PositionGenerator current) {
         return new Point(index + 1, direction.next(current));
     }
 
-    public Point last() {
+    Point last() {
         return new Point(index + 1, direction.last());
     }
 
-    public int move() {
+    int move() {
         return index + direction.move();
     }
 

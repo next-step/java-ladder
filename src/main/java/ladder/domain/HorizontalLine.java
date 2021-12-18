@@ -7,11 +7,11 @@ public class HorizontalLine {
 
     private final List<Point> points;
 
-    public HorizontalLine(List<Point> points) {
+    HorizontalLine(List<Point> points) {
         this.points = points;
     }
 
-    public int move(int index) {
+    int move(int index) {
         return points.get(index).move();
     }
 

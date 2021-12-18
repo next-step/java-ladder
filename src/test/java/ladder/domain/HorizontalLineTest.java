@@ -11,7 +11,7 @@ class HorizontalLineTest {
         // given
         int numberOfParticipant = 4;
         LineGenerator lineGenerator = new LineGenerator();
-        HorizontalLine line = lineGenerator.create(numberOfParticipant, () -> true);
+        HorizontalLine line = lineGenerator.generate(numberOfParticipant, () -> true);
 
         // then
         assertThat(line.move(0)).isEqualTo(1);
