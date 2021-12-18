@@ -27,4 +27,11 @@ public class Ladder {
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
     }
+
+    public int play(int index) {
+        for (Line line : lines) {
+            index = line.move(index);
+        }
+        return index;
+    }
 }
