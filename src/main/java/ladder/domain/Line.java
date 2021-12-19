@@ -24,11 +24,15 @@ public class Line {
     }
 
     private Point getLastPoint() {
-        int index = this.points.size() - 1;
+        int index = this.points.size() - INDEX_SIZE;
         return this.points.get(index);
     }
 
     public List<Point> getPoints() {
         return Collections.unmodifiableList(this.points);
+    }
+
+    public int move(int location) {
+        return location + this.points.get(location).getWay().getDestination();
     }
 }

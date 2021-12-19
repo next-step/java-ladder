@@ -3,6 +3,7 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.IntStream;
 
 public class Ladder {
@@ -22,5 +23,11 @@ public class Ladder {
 
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
+    }
+
+    public Location climb(Location location) {
+        AtomicInteger nextLocation = new AtomicInteger(location.getLocation());
+        this.lines.forEach(line -> nextLocation.set(line.move(nextLocation.get())));
+        return new Location(nextLocation.get());
     }
 }
