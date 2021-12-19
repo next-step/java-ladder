@@ -37,7 +37,7 @@ public class Line {
             current = current.next(random.nextBoolean());
             points.add(current);
         }
-        return current.next(random.nextBoolean());
+        return current;
     }
 
     private static void initLast(List<Point> points, Point current) {
