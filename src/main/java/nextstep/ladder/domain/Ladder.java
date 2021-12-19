@@ -40,7 +40,7 @@ public class Ladder extends FirstClassList<Line> {
         return ResultOfGame.of(ladderFrame.players(), ladderFrame.results().mapByIndex(indexMap));
     }
 
-    public List<Integer> downToResult(List<Integer> indexMap, Iterator<Line> iterator) {
+    List<Integer> downToResult(List<Integer> indexMap, Iterator<Line> iterator) {
         if (!iterator.hasNext()) {
             return indexMap;
         }

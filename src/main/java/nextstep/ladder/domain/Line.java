@@ -36,13 +36,13 @@ public class Line extends FirstClassList<Boolean> {
                 .collect(Collectors.toList());
     }
 
-    public int nextPosition(int index) {
+    int nextPosition(int index) {
         return hasPoint(index).map(point -> index + RIGHT)
                 .orElse(hasPoint(index + LEFT).map(p -> index + LEFT)
                         .orElse(index));
     }
 
-    public Optional<Boolean> hasPoint(int index) {
+    Optional<Boolean> hasPoint(int index) {
         return elementOfOpt(index).filter(p -> p);
     }
 
