@@ -1,10 +1,8 @@
 package nextstep.ladder.model;
 
-import nextstep.ladder.common.Name;
-
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Players {
 
@@ -19,16 +17,17 @@ public class Players {
     }
 
     private List<Player> convertToPlayers(String[] splitNames) {
-        return Arrays.stream(validationSize(splitNames))
-                .map(Player::new)
+        return IntStream.range(0, validationSize(splitNames))
+                .mapToObj(index -> new Player(splitNames[index], new Index(index)))
                 .collect(Collectors.toList());
+
     }
 
-    private String[] validationSize(String[] splitNames) {
+    private int validationSize(String[] splitNames) {
         if (splitNames.length == PLAYERS_MIN_SIZE) {
             throw new IllegalArgumentException(MESSAGE_CANT_PLAY_THE_GAME_ALONE);
         }
-        return splitNames;
+        return splitNames.length;
     }
 
     public Player findPlayerByName(String name) {

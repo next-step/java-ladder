@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 class PlayerTest {
@@ -22,4 +23,11 @@ class PlayerTest {
         assertThatIllegalArgumentException().isThrownBy(() -> new Player(input));
     }
 
+
+    @Test
+    @DisplayName("index 값 일치 테스트")
+    void indexEqualsTest() {
+        Player player = new Player("test", new Index(1));
+        assertThat(player.getIndex()).isEqualTo(new Index(1));
+    }
 }

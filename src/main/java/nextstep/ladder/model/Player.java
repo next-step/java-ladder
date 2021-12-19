@@ -27,4 +27,8 @@ public class Player extends Name {
                 .filter(n -> n.length() <= NAME_MAX_LENGTH)
                 .orElseThrow(() -> new IllegalArgumentException(EXCEPTION_NAME_MAX_LENGTH_OVER));
     }
+
+    public Index getIndex() {
+        return index;
+    }
 }

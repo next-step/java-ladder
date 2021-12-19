@@ -24,7 +24,7 @@ class PlayersTest {
     }
 
     @Test
-    @DisplayName("Person에서 name으로 Player 찾기: 성공")
+    @DisplayName("Players에서 name으로 Player 찾기: 성공")
     void SuccessFindByName() {
         Players players = new Players("aaaa,bbbb,cccc".split(","));
 
@@ -34,11 +34,16 @@ class PlayersTest {
     }
 
     @Test
-    @DisplayName("Person에서 name으로 Player 찾기: 실패")
+    @DisplayName("Players에서 name으로 Player 찾기: 실패")
     void FailFindByName() {
         Players players = new Players("aaaa,bbbb,cccc".split(","));
         String target = "dddd";
         assertThatIllegalArgumentException().isThrownBy(() -> players.findPlayerByName(target));
+    }
 
+    @Test
+    @DisplayName("플레이어가 혼자일 경우 IllegalArgumentException 발생")
+    void validationSize() {
+        assertThatIllegalArgumentException().isThrownBy(() -> new Players("aaaa".split(",")));
     }
 }
