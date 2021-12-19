@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
 public class LadderTest {
 
     @Test
@@ -18,5 +20,14 @@ public class LadderTest {
         Ladder ladder = new Ladder(ladderSize, playerCount);
         List<Line> lines = ladder.getLines();
         Assertions.assertThat(lines.size()).isEqualTo(ladderSize);
+    }
+
+    @Test
+    @DisplayName("사다리 타기")
+    void climbLadder() {
+        int ladderSize = 5;
+        int playerCount = 3;
+        Ladder ladder = new Ladder(ladderSize, playerCount);
+        assertDoesNotThrow(() -> ladder.climb(new Location(2)));
     }
 }
