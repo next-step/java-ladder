@@ -39,7 +39,8 @@ public class Line {
                     int direction = nowPoint.checkDirection(points.get(current - 1));
                     return current + direction;
                 })
-                .findFirst().orElseThrow(IllegalArgumentException::new);
+                .findFirst()
+                .orElseThrow(IllegalArgumentException::new);
     }
 
     private static Point createPoint(Point prev, LineStrategy lineStrategy) {
