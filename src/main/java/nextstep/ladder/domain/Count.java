@@ -2,7 +2,7 @@ package nextstep.ladder.domain;
 
 import java.util.Objects;
 
-public abstract class Count {
+public class Count {
     private final int count;
 
     protected Count(final int count) {

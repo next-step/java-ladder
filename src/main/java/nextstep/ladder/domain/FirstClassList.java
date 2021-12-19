@@ -8,7 +8,7 @@ import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
 
-public abstract class FirstClassList<T> {
+public class FirstClassList<T> {
     private static final int HEAD_INDEX = 0;
 
     private final List<T> collection;
