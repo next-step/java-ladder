@@ -4,6 +4,7 @@ import ladder.util.RandomGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class RandomPoints implements PointsStrategy {
     private static final int FIRST_POINT = 0;
@@ -17,9 +18,7 @@ public class RandomPoints implements PointsStrategy {
     @Override
     public List<Boolean> points() {
         List<Boolean> points = new ArrayList<>();
-        for (int i = 0; i < number - 1; i++) {
-            addPoints(points, i);
-        }
+        IntStream.range(0, number - 1).forEach(i -> addPoints(points, i));
         points.add(false); // 마지막 점은 무조건 false
         return points;
     }

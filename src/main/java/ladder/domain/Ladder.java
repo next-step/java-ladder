@@ -2,6 +2,7 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Ladder {
     private final List<Line> lines;
@@ -12,9 +13,7 @@ public class Ladder {
 
     public List<Line> init(int countOfPlayers, int height) {
         List<Line> lines = new ArrayList<>();
-        for (int i = 0; i < height; i++) {
-            lines.add(new Line(new RandomPoints(countOfPlayers)));
-        }
+        IntStream.range(0, height).forEach((i)-> lines.add(new Line(new RandomPoints(countOfPlayers))));
         return lines;
     }
 
