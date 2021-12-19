@@ -14,27 +14,40 @@ public class ResultView {
     private final static String LADDER_DASH = "-----";
     private final static String LADDER_LINE = "|";
 
-    public void gameResult(Names names, Ladder ladder) {
+    private ResultView() {}
+
+    public static void gameResult(Names names, Ladder ladder) {
         System.out.println(LADDER_RUN_MESSAGE);
         System.out.println(printEntryName(names));
         printLaddersResult(ladder);
     }
 
-    public void printItems(Items items) {
+    public static void printItems(Items items) {
         System.out.println( items.getItems()
                 .stream()
                 .map(item -> String.format(NAME_FORMAT, item.getValue()))
                 .collect(Collectors.joining()));
     }
 
-    private String printEntryName(Names names) {
+    public static void printPlayerResult(Items items, int index) {
+        System.out.print(GAME_RUN_MESSAGE);
+        System.out.println(items.getItems().get(index).getValue());
+    }
+
+    public static void printGameAllPlayerResult(GameResult gameResult, Items items) {
+        System.out.print(GAME_RUN_MESSAGE);
+        Map<Name, Integer> result = gameResult.getGameResult();
+        result.forEach((name, index) -> System.out.printf("%s : %s\n", name.getValue(), items.getItems().get(index).getValue()));
+    }
+
+    private static String printEntryName(Names names) {
         return names.getNames()
                 .stream()
                 .map(name -> String.format(NAME_FORMAT, name.getValue()))
                 .collect(Collectors.joining());
     }
 
-    private void printLaddersResult(Ladder ladder) {
+    private static void printLaddersResult(Ladder ladder) {
         ladder.getLadder().forEach(line -> {
                     IntStream.range(0, line.getLine().size() - 1)
                             .forEach(index -> printPoint(line.getLine().get(index)));
@@ -42,22 +55,11 @@ public class ResultView {
                 });
     }
 
-    private void printPoint(Point point) {
+    private static void printPoint(Point point) {
         if (point.isValue()) {
             System.out.printf("%s%s", LADDER_DASH, LADDER_LINE);
             return;
         }
         System.out.printf("%s%s", LADDER_BLANK, LADDER_LINE);
-    }
-
-    public void printPlayerResult(Items items, int index) {
-        System.out.print(GAME_RUN_MESSAGE);
-        System.out.println(items.getItems().get(index).getValue());
-    }
-
-    public void printGameAllPlayerResult(GameResult gameResult, Items items) {
-        System.out.print(GAME_RUN_MESSAGE);
-        Map<Name, Integer> result = gameResult.getGameResult();
-        result.forEach((name, index) -> System.out.printf("%s : %s\n", name.getValue(), items.getItems().get(index).getValue()));
     }
 }

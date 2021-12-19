@@ -8,28 +8,24 @@ public class LadderMain {
     private static final String GAME_RESULT_ALL = "all";
 
     public static void main(String[] args) {
-        InputView inputView = new InputView();
-
-        String input = inputView.inputEntryMember();
-        String itemInput = inputView.inputItems();
-        int inputLadderHeight = inputView.inputLadderHeight();
+        String input = InputView.inputEntryMember();
+        String itemInput = InputView.inputItems();
+        int inputLadderHeight = InputView.inputLadderHeight();
 
         Names names = Names.from(input);
         Items items = Items.from(itemInput);
         Height height = new Height(inputLadderHeight);
         Ladder ladder = Ladder.of(names.entryMemberCount(), height, new RandomLineStrategy());
 
-
-        ResultView outputView = new ResultView();
-        outputView.gameResult(names, ladder);
-        outputView.printItems(items);
+        ResultView.gameResult(names, ladder);
+        ResultView.printItems(items);
 
         GameResult gameResult = new GameResult(ladder, names);
-        String playerName = inputView.inputResultName();
+        String playerName = InputView.inputResultName();
         while (!GAME_RESULT_ALL.equals(playerName)) {
-            outputView.printPlayerResult(items, gameResult.getResultIndex(new Name(playerName)));
-            playerName = inputView.inputResultName();
+            ResultView.printPlayerResult(items, gameResult.getResultIndex(new Name(playerName)));
+            playerName = InputView.inputResultName();
         }
-        outputView.printGameAllPlayerResult(gameResult, items);
+        ResultView.printGameAllPlayerResult(gameResult, items);
     }
 }

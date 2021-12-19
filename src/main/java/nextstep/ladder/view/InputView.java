@@ -9,25 +9,24 @@ public class InputView {
     private final static String INPUT_ENTRY_MEMBER_RESULT_ITEM = "결과를 보고 싶은 사람은?";
     private final static Scanner scanner = new Scanner(System.in);
 
-    public InputView() {
-    }
+    private InputView() {}
 
-    public String inputEntryMember() {
+    public static String inputEntryMember() {
         System.out.println(LADDER_GAME_ENTRY_MEMBER_MESSAGE);
         return scanner.nextLine();
     }
 
-    public int inputLadderHeight() {
+    public static int inputLadderHeight() {
         System.out.println(LADDER_HEIGHT_MESSAGE);
         return Integer.parseInt(scanner.nextLine());
     }
 
-    public String inputItems() {
+    public static String inputItems() {
         System.out.println(INPUT_ITEMS_MESSAGE);
         return scanner.nextLine();
     }
 
-    public String inputResultName() {
+    public static String inputResultName() {
         System.out.println(INPUT_ENTRY_MEMBER_RESULT_ITEM);
         return scanner.nextLine();
     }
