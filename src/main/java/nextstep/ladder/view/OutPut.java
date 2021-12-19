@@ -1,9 +1,8 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Lines;
-import nextstep.ladder.domain.Participants;
-import nextstep.ladder.domain.Point;
+import nextstep.ladder.domain.*;
+
+import java.util.Map;
 
 import static nextstep.ladder.domain.Participant.PARTICIPANT_SIZE;
 
@@ -20,23 +19,47 @@ public class OutPut {
                     for (int i = 0; i < (PARTICIPANT_SIZE + 1 - participant.getParticipantLength()); i++) {
                         sb.append(" ");
                     }
-                    System.out.print(participant.getParticipant() + sb.toString());
+                    System.out.print(participant.getParticipant() + sb);
                 });
         System.out.println();
     }
 
-    public static void viewLadder(Lines lines) {
-        for (Line line : lines.getLines()) {
-            System.out.print("|");
-            line.getPoints().stream().forEach(point -> {
-                if (point == Point.of(true)) {
-                    System.out.print("-----|");
-                }
-                if (point == Point.of(false)) {
-                    System.out.print("     |");
-                }
-            });
-            System.out.println();
+    private static void viewLine(Line line) {
+        for (Point point : line.getPoints()) {
+            if (point.getDirection().isRight()) {
+                System.out.print("|-----");
+            }
+            if (!point.getDirection().isRight()) {
+                System.out.print("|     ");
+            }
+        }
+        System.out.println();
+    }
+
+    public static void viewLadder(Ladder ladder) {
+        for (Line line : ladder.getLines()) {
+            viewLine(line);
+        }
+    }
+
+    public static void viewCompensation(Compensations compensations) {
+        compensations.getCompensations().stream()
+                .forEach(compensation -> {
+                    sb.setLength(0);
+                    for (int i = 0; i < (PARTICIPANT_SIZE + 1 - compensation.length()); i++) {
+                        sb.append(" ");
+                    }
+                    System.out.print(compensation + sb);
+                });
+        System.out.println();
+    }
+
+    public static void viewResult(Participants participants, Map<String, String> result) {
+        for (Participant participant : participants.getParticipants()) {
+            if (result.containsKey(participant.getParticipant())) {
+                System.out.println(participant.getParticipant() + " : " + result.get(participant.getParticipant()));
+            }
+
         }
     }
 }

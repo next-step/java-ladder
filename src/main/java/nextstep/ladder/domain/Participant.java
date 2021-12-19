@@ -6,14 +6,16 @@ public class Participant {
     public static final int PARTICIPANT_SIZE = 5;
 
     private final String participant;
+    private final int index;
 
-    private Participant(String participant) {
+    private Participant(String participant, int index) {
         checkParticipantLength(participant);
         this.participant = participant;
+        this.index = index;
     }
 
-    public static Participant of(String participant) {
-        return new Participant(participant);
+    public static Participant of(String participant, int index) {
+        return new Participant(participant, index);
     }
 
     private void checkParticipantLength(String participant) {

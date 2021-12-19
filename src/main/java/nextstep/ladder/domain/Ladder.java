@@ -6,21 +6,32 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
-public class Lines {
+public class Ladder {
     private final List<Line> lines;
 
-    public Lines(List<Line> lines) {
+    public Ladder(List<Line> lines) {
         this.lines = lines;
     }
 
-    public static Lines ofRandom(int countOfParticipants, int countOfLine) {
+    public static Ladder ofLines(List<Line> lines) {
+        return new Ladder(lines);
+    }
+
+    public static Ladder ofRandom(int countOfParticipants, int countOfLine) {
         List<Line> lines = new ArrayList<>();
         IntStream.range(0, countOfLine)
                 .forEach(index -> lines.add(Line.ofRandom(countOfParticipants)));
-        return new Lines(lines);
+        return new Ladder(lines);
     }
 
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
+    }
+
+    public int play(int index) {
+        for (Line line : lines) {
+            index = line.move(index);
+        }
+        return index;
     }
 }

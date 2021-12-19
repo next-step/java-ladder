@@ -21,7 +21,7 @@ public class ParticipantTest {
             @DisplayName("이름의 길이가" + PARTICIPANT_SIZE + "를 초과합니다.를 반환")
             void long_participant_length() {
                 assertThatThrownBy(() -> {
-                    Participant.of("testtest");
+                    Participant.of("testtest", 0);
                 }).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("이름의 길이가 " + PARTICIPANT_SIZE + "를 초과합니다.");
             }
         }
@@ -33,7 +33,7 @@ public class ParticipantTest {
             @DisplayName("이름의 길이가 0보다 커야합니다.를 반환")
             void zero_participant_length() {
                 assertThatThrownBy(() -> {
-                    Participant.of("");
+                    Participant.of("", 0);
                 }).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("이름의 길이가 0보다 커야합니다.");
             }
         }
