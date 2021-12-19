@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import ladder.fixture.TestLadderFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +14,7 @@ public class LineTest {
     @DisplayName("플레이어 수에 맞게 한 라인의 포인트 생성")
     @Test
     void 플레이어수_라인생성() {
-        Line line = createRandomLine(4);
+        Line line = TestLadderFactory.createRandomLine(4);
         assertThat(line.numberOfPoints()).isEqualTo(4);
     }
 
@@ -21,7 +22,7 @@ public class LineTest {
     @DisplayName("라인의 마지막 점은 항상 false다")
     @Test
     void 라인_마지막점_false() {
-        Line line = createRandomLine(4);
+        Line line = TestLadderFactory.createRandomLine(4);
         assertThat(line.hasRightLine(3)).isFalse();
     }
 
@@ -33,8 +34,6 @@ public class LineTest {
         assertThat(line.hasRightLine(0)).isTrue();
     }
 
-    private static Line createRandomLine(int countOfPlayers) {
-        return new Line(new RandomPoints(countOfPlayers));
-    }
+
 
 }
