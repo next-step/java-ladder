@@ -1,8 +1,8 @@
 package nextstep.ladder.model;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Results {
 
@@ -11,20 +11,20 @@ public class Results {
     private final List<Result> results;
 
     public Results(String[] splitResults, int width) {
-        this.results = convertTo(validationSize(splitResults, width));
+        this.results = convertTo(splitResults, width);
     }
 
-    private List<Result> convertTo(String[] splitResults) {
-        return Arrays.stream(splitResults)
-                .map(Result::new)
+    private List<Result> convertTo(String[] splitResults, int width) {
+        return IntStream.range(0, validationSize(splitResults, width))
+                .mapToObj(index -> new Result(splitResults[index], new Index(index)))
                 .collect(Collectors.toList());
     }
 
-    private String[] validationSize(String[] splitResults, int width) {
+    private int validationSize(String[] splitResults, int width) {
         if (splitResults.length != width) {
             throw new IllegalArgumentException(MESSAGE_NOT_EQUALS_SIZE);
         }
-        return splitResults;
+        return splitResults.length;
     }
 
     public List<Result> getResults() {
