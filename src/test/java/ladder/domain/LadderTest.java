@@ -1,7 +1,5 @@
-package ladder;
+package ladder.domain;
 
-import ladder.domain.Height;
-import ladder.domain.Ladder;
 import ladder.fixture.TestLadderFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

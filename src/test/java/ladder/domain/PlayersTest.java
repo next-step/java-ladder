@@ -1,6 +1,5 @@
-package ladder;
+package ladder.domain;
 
-import ladder.domain.Players;
 import ladder.fixture.TestLadderFactory;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
