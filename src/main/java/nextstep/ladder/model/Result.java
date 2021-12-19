@@ -4,12 +4,16 @@ import nextstep.ladder.common.Name;
 
 public class Result extends Name {
 
+    private final Index index;
+
     public Result(String name) {
         super(name);
+        this.index = new Index();
     }
 
-    @Override
-    protected String validation(String name) {
-        return name;
+    public Result(String name, Index index) {
+        super(name);
+        this.index = index;
     }
+
 }

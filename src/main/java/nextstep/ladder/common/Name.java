@@ -3,8 +3,12 @@ package nextstep.ladder.common;
 import nextstep.ladder.utils.StringUtils;
 
 import java.util.Objects;
+import java.util.Optional;
 
-public abstract class Name {
+public class Name {
+
+    private static final int NAME_MAX_LENGTH = 5;
+    private static final String EXCEPTION_NAME_MAX_LENGTH_OVER = "명칭은 5글자를 초과할 수 없습니다.";
 
     private final String name;
 
@@ -12,7 +16,11 @@ public abstract class Name {
         this.name = validation(StringUtils.validationNotNullAndEmpty(name));
     }
 
-    protected abstract String validation(String name);
+    private String validation(String name) {
+        return Optional.ofNullable(name)
+                .filter(n -> n.length() <= NAME_MAX_LENGTH)
+                .orElseThrow(() -> new IllegalArgumentException(EXCEPTION_NAME_MAX_LENGTH_OVER));
+    }
 
     public String getName() {
         return name;
