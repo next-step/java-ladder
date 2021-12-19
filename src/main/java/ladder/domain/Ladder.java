@@ -13,7 +13,7 @@ public class Ladder {
     public List<Line> init(int countOfPlayers, int height) {
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            lines.add(new Line(countOfPlayers));
+            lines.add(new Line(new RandomPoints(countOfPlayers)));
         }
         return lines;
     }
