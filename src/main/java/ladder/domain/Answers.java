@@ -8,6 +8,7 @@ import java.util.List;
 public class Answers {
 
     private static final String ERR_RESULT_SIZE = "결과 개수를 확인해주세요.";
+    private static final String ERR_RESULT = "결과가 존재하지 않습니다.";
     private static final String SPACE = " ";
     private static final String EMPTY = "";
     private static final String DELIMITER = ",";
@@ -34,6 +35,10 @@ public class Answers {
     }
 
     public String getResult(Location location) {
-        return this.results.get(location.getLocation());
+        try {
+            return this.results.get(location.getLocation());
+        } catch (RuntimeException e) {
+            throw new ResultException(ERR_RESULT);
+        }
     }
 }
