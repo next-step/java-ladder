@@ -13,16 +13,16 @@ public class Line {
 
     private final List<Point> points;
 
-    public Line(int countOfMember, PointStrategy pointStrategy) {
-        this(getPoints(countOfMember, pointStrategy));
-    }
-
-    public Line(Boolean... points) {
-        this(toLine(points));
-    }
-
-    public Line(List<Point> points) {
+    private Line(List<Point> points) {
         this.points = points;
+    }
+
+    public static Line of(int countOfMember, PointStrategy pointStrategy) {
+        return new Line(getPoints(countOfMember, pointStrategy));
+    }
+
+    public static Line createWithVariables(Boolean... points) {
+        return new Line(toLine(points));
     }
 
     private static List<Point> getPoints(int countOfMember, PointStrategy pointStrategy) {

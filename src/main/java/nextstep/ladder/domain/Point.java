@@ -9,7 +9,7 @@ public class Point {
         this.point = point;
     }
 
-    public boolean isPoint() {
+    public boolean isPass() {
         return point;
     }
 
