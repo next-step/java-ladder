@@ -14,8 +14,8 @@ public class Line {
         this.points = points;
     }
 
-    public Line(int countOfPlayer) {
-        this(initPoints(countOfPlayer));
+    public static Line init(int countOfPerson) {
+        return new Line(initPoints(countOfPerson));
     }
 
     private static Points initPoints(int countOfPerson) {
