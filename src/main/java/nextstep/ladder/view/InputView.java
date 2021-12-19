@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
+import nextstep.ladder.LadderGame;
+
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
     private static final String DELIMITER = ",";
@@ -36,7 +38,15 @@ public class InputView {
     }
 
     public static List<String> inputNameOfPlayers() {
-        return inputCommaSeparateString("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+        List<String> names = inputCommaSeparateString("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+        names.stream()
+                .filter(name -> name.equalsIgnoreCase(LadderGame.QUIT_COMMAND) || name.equalsIgnoreCase(LadderGame.ALL_COMMAND))
+                .findAny()
+                .ifPresent(name -> {
+                    throw new IllegalArgumentException("ALL or QUIT is not allowed for name: " + name);
+                });
+
+        return names;
     }
 
     public static List<String> inputPrizeOfResult() {
