@@ -2,9 +2,9 @@ package ladder.view;
 
 import ladder.domain.Ladder;
 import ladder.domain.Line;
+import ladder.domain.Name;
 import ladder.domain.Players;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class ResultView {
@@ -20,8 +20,8 @@ public class ResultView {
         printLadder(ladder.get());
     }
 
-    private static void printPlayer(String[] players) {
-        Arrays.stream(players)
+    private static void printPlayer(List<Name> players) {
+        players.stream()
                 .forEach(player -> System.out.print(String.format("%-5s ", player)));
         System.out.println();
     }

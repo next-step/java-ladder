@@ -2,39 +2,36 @@ package ladder.domain;
 
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Players {
-    private final String[] players;
+    private final List<Name> names;
 
-    public Players(String players) {
-        if (isEmpty(players)) {
+    public Players(String names) {
+        if (isEmpty(names)) {
             throw new IllegalArgumentException("참여할 사람의 이름을 입력해주세요");
         }
-        this.players = init(players);
+        this.names = init(names);
     }
 
     private boolean isEmpty(String str) {
         return str == null || str.trim().length() == 0;
     }
 
-    private String[] init(String playersString) {
+    private static List<Name> init(String playersString) {
         String[] players = playersString.split(",");
-        Arrays.stream(players).forEach((player) -> validate(player));
-        return players;
+        return Arrays.stream(players)
+                .map(player -> new Name(player))
+                .collect(Collectors.toList());
     }
 
-    private void validate(String player) {
-        if (player.length() == 0 || player.length() > 5) {
-            throw new IllegalArgumentException("이름은 1~5자까지 가능합니다.");
-        }
-    }
-
-    public String[] get() {
-        return players;
+    public List<Name> get() {
+        return names;
     }
 
     public int countOfPlayers() {
-        return players.length;
+        return names.size();
     }
 
 }
