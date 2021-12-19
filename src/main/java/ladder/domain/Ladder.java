@@ -7,7 +7,7 @@ import java.util.stream.IntStream;
 public class Ladder {
     private final List<Line> lines;
 
-    public Ladder(List<Line> lines) {
+    private Ladder(List<Line> lines) {
         this.lines = lines;
     }
 
