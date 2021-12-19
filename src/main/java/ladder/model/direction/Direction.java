@@ -11,6 +11,7 @@ public class Direction {
     private final boolean left;
 
     static {
+        /* 선과 선은 나란히 그릴 수 없다. 해서 true/true는 생성을 하지 않는다. */
         DIRECTION_CACHE.put(1, new Direction(false, false));
         DIRECTION_CACHE.put(2, new Direction(false, true));
         DIRECTION_CACHE.put(3, new Direction(true, false));

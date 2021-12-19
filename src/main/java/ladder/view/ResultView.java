@@ -20,7 +20,7 @@ public class ResultView {
     public static void printLadderResult(Players players, Ladder ladder, Results results) {
         System.out.println("사다리 결과");
         System.out.println();
-        printPlayerName(players.get());
+        printPlayerName(players.getAllPlayers());
         printLadder(ladder);
         printResults(results.get());
     }
