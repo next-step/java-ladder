@@ -27,21 +27,17 @@ public class Line {
                     Point prevPoint = points.get(prevIndex);
                     points.add(createPoint(prevPoint, lineStrategy));
                 });
+        points.add(new Point(false));
         return new Line(points);
     }
 
     public int move(int location) {
-        return IntStream.range(1, points.size())
+        return IntStream.range(FIRST_INDEX, points.size() + FIRST_INDEX)
                 .filter(index -> index == location)
                 .map(current -> {
-                    if (points.get(current - 1).isValue()) {
-                        return current - 1;
-                    }
-                    if (points.get(current).isValue()) {
-                        return current + 1;
-                    }
-
-                    return current;
+                    Point nowPoint = points.get(current);
+                    int direction = nowPoint.checkDirection(points.get(current - 1));
+                    return current + direction;
                 })
                 .findFirst().orElseThrow(IllegalArgumentException::new);
     }
