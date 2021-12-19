@@ -5,22 +5,22 @@ import ladder.exception.ResultException;
 import java.util.Arrays;
 import java.util.List;
 
-public class Results {
+public class Answers {
 
-    private static final String ERR_RESULT_SIZE = "결과 숫자를 확인해주세요.";
+    private static final String ERR_RESULT_SIZE = "결과 개수를 확인해주세요.";
     private static final String SPACE = " ";
     private static final String EMPTY = "";
     private static final String DELIMITER = ",";
     private final List<String> results;
 
-    private Results(List<String> results) {
+    private Answers(List<String> results) {
         this.results = results;
     }
 
-    public static Results of(String text, Players players) {
+    public static Answers of(String text, Players players) {
         List<String> results = Arrays.asList(text.replaceAll(SPACE, EMPTY).split(DELIMITER));
         valid(results, players);
-        return new Results(results);
+        return new Answers(results);
     }
 
     private static void valid(List<String> results, Players players) {
@@ -31,5 +31,9 @@ public class Results {
 
     public List<String> getResults() {
         return results;
+    }
+
+    public String getResult(Location location) {
+        return this.results.get(location.getLocation());
     }
 }

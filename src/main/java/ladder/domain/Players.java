@@ -29,4 +29,8 @@ public class Players {
     public int count() {
         return players.size();
     }
+
+    public int getPlayerIndex(Player player) {
+        return this.players.indexOf(player);
+    }
 }
