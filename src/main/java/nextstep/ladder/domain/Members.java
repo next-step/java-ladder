@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 public class Members {
     private static final String EXCEPTION_MESSAGE_MEMBERS = "참가자 수가 1보다 작은 수 입니다.";
+    private static final String EXCEPTION_MESSAGE_SAME_MEMBER = "참가자명이 동일합니다.";
     private static final String DEFAULT_SPLIT_CHARACTER = ",";
     private static final int DEFAULT_MEMBER_NUMBER = 1;
 
@@ -24,7 +25,7 @@ public class Members {
         return new Members(toMembers(getNames(memberNames)));
     }
 
-    private static List<Member> toMembers(String[] memberNames){
+    private static List<Member> toMembers(String[] memberNames) {
         return Arrays.stream(memberNames)
                         .map(Member::new)
                         .collect(Collectors.toList());
@@ -39,6 +40,10 @@ public class Members {
     private static void validateNames(String[] splitMemberNames) {
         if (splitMemberNames.length < DEFAULT_MEMBER_NUMBER) {
             throw new IllegalArgumentException(EXCEPTION_MESSAGE_MEMBERS);
+        }
+
+        if (Arrays.stream(splitMemberNames).distinct().count() != splitMemberNames.length) {
+            throw new IllegalArgumentException(EXCEPTION_MESSAGE_SAME_MEMBER);
         }
     }
 

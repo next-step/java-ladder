@@ -26,9 +26,16 @@ public class MembersTest {
     }
 
     @Test
-    void 참가자명단_미입력() {
+    void 참가자명단_미입력시_IllegalArgumentException() {
         assertThatThrownBy(() -> {
             Members.from("");
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 동일한_참가자_입력시_IllegalArgumentException() {
+        assertThatThrownBy(() -> {
+            Members.from("pobi,mouse,pobi");
         }).isInstanceOf(IllegalArgumentException.class);
     }
 }

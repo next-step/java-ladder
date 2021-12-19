@@ -28,21 +28,34 @@ public class Line {
     private static List<Point> getPoints(int countOfMember, PointStrategy pointStrategy) {
         List<Point> pointGroup = new ArrayList<>();
         for (int count = FIRST_POINT_POSITION; count < countOfMember; count++) {
-            if (count == FIRST_POINT_POSITION) {
-                pointGroup.add(new Point(false));
-            } else if (pointGroup.get(count-1).equals(new Point(true))) {
-                pointGroup.add(new Point(false));
-            } else {
-                pointGroup.add(new Point(pointStrategy.generate()));
-            }
+            pointGroup.add(generatePoint(pointStrategy, pointGroup, count));
         }
         return pointGroup;
+    }
+
+    private static Point generatePoint(PointStrategy pointStrategy, List<Point> pointGroup, int count) {
+        if (count == FIRST_POINT_POSITION || pointGroup.get(count-1).isPass() == true) {
+            return new Point(false);
+        }
+        return new Point(pointStrategy.generate());
     }
 
     private static List<Point> toLine(Boolean[] points) {
         return Arrays.stream(points)
                             .map(point -> new Point(point))
                             .collect(Collectors.toList());
+    }
+
+    public boolean isLine(int count) {
+        return points.get(count).isPass();
+    }
+
+    public boolean isNextLine(int count) {
+        int maxCount = count + 1;
+        if (maxCount == points.size()) {
+            return false;
+        }
+        return points.get(maxCount).isPass();
     }
 
     public List<Point> getPoints() {

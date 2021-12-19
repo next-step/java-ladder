@@ -2,13 +2,12 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.domain.*;
 
-import java.util.List;
-
 public class ResultView {
     private static final String RESPONSE_INIT_MESSAGE = "사다리 결과";
     private static final String RESPONSE_RESULT_MESSAGE = "실행 결과";
     private static final String RESPONSE_MEMBER_MESSAGE = "%5s";
     private static final String DEFAULT_WHITE_SPACE_CHARACTER = " ";
+    private static final String SPLIT_MEMBER_REWARD = " : ";
     private static final String NOT_LINKED_LINE = "     |";
     private static final String LINKED_LINE = "-----|";
     private static final String ALL_MEMBERS = "all";
@@ -61,14 +60,16 @@ public class ResultView {
         System.out.println(RESPONSE_RESULT_MESSAGE);
 
         if (member.equals(ALL_MEMBERS)) {
-            responseResultAll(ladderResults.getResultAll());
+            responseResultAll(ladderResults);
             return;
         }
         System.out.println(ladderResults.getResult(member));
     }
 
-    private static void responseResultAll(List<String> resultAll) {
-        resultAll.stream()
+    private static void responseResultAll(LadderResults ladderResults) {
+        ladderResults.getResults()
+                        .stream()
+                        .map(ladderResult -> ladderResult.getMemberName() + SPLIT_MEMBER_REWARD + ladderResult.getReward())
                         .forEach(System.out::println);
     }
 }

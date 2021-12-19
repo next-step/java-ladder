@@ -50,6 +50,10 @@ public class Rewards {
         return rewards;
     }
 
+    public Reward getRewards(int count) {
+        return rewards.get(count);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
