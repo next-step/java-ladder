@@ -12,7 +12,7 @@ public class Game {
     public static void main(String[] args) {
         InputView inputView = new InputView(new Scanner(System.in));
 
-        Players players = new Players(inputView.players());
+        Players players = Players.of(inputView.players());
         Ladder ladder = new Ladder(players, new Height(inputView.height()));
         ResultView.printResult(ladder, players);
 

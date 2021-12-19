@@ -1,6 +1,7 @@
 package ladder;
 
 import ladder.domain.Players;
+import ladder.fixture.TestLadderFactory;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EmptySource;
@@ -13,7 +14,7 @@ public class PlayersTest {
 
     @Test
     void 입력한플레이어_수() {
-        Players players = new Players("pobi,honux,crong,jk");
+        Players players = TestLadderFactory.createPlayer("pobi,honux,crong,jk");
         assertThat(players.countOfPlayers()).isEqualTo(4);
     }
 
@@ -21,7 +22,7 @@ public class PlayersTest {
     @ValueSource(strings = {"pobbby,honux,crong", "poby,hoonux,crong", "poby,,crong"})
     void 플레이어_이름_5자초과_예외(String input) {
         assertThatIllegalArgumentException()
-                .isThrownBy(()-> new Players(input))
+                .isThrownBy(()-> TestLadderFactory.createPlayer(input))
                 .withMessage("이름은 1~5자까지 가능합니다.");
     }
 
@@ -29,7 +30,8 @@ public class PlayersTest {
     @EmptySource
     void 플레이어_이름_empty_예외(String input) {
         assertThatIllegalArgumentException()
-                .isThrownBy(()-> new Players(input))
+                .isThrownBy(()-> TestLadderFactory.createPlayer(input))
                 .withMessage("참여할 사람의 이름을 입력해주세요");
     }
+
 }
