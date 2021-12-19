@@ -13,4 +13,11 @@ public class LineTest {
     void createLine() {
         assertDoesNotThrow(() -> new Line(5));
     }
+
+    @Test
+    @DisplayName("라인 이동")
+    void moveLine() {
+        Line line = new Line(5);
+        assertDoesNotThrow(() -> line.move(3));
+    }
 }
