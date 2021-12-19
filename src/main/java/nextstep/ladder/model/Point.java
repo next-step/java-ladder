@@ -2,7 +2,11 @@ package nextstep.ladder.model;
 
 import nextstep.ladder.generator.LineGenerator;
 
+import java.util.Objects;
+
 public class Point {
+
+    private static final String MESSAGE_NO_ADJACENT_POINT = "인접한 다리가 있어서는 안됩니다.";
 
     private final Index index;
     private final boolean active;
@@ -13,10 +17,31 @@ public class Point {
     }
 
     public Point next(LineGenerator generator) {
-        return new Point(index.next(), generator.generate(active));
+        boolean nextActive = validationNextPoint(generator.generate(active));
+        return new Point(index.next(), nextActive);
+    }
+
+    private boolean validationNextPoint(boolean next) {
+        if (this.active && next) {
+            throw new IllegalArgumentException(MESSAGE_NO_ADJACENT_POINT);
+        }
+        return next;
     }
 
     public boolean isActive() {
         return active;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Point)) return false;
+        Point point = (Point) o;
+        return isActive() == point.isActive() && Objects.equals(index, point.index);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(index, isActive());
     }
 }

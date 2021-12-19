@@ -14,7 +14,7 @@ public class Line {
     private final List<Point> points;
 
     public Line(List<Point> points) {
-        this.points = validationPoint(validationWidth(points));
+        this.points = validationWidth(points);
     }
 
     public static String isLine(boolean point) {
@@ -25,10 +25,6 @@ public class Line {
         return Optional.ofNullable(points)
                 .filter(p -> p.size() >= MIN_WIDTH)
                 .orElseThrow(() -> new IllegalArgumentException(MESSAGE_MIN_WIDTH));
-    }
-
-    private List<Point> validationPoint(List<Point> lines) {
-        return lines;
     }
 
     public List<Point> getPoints() {
