@@ -5,11 +5,11 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-public class ResultTest {
+public class RewardTest {
     @Test
     void 생성_비교() {
-        Result result = new Result("꽝");
-        assertThat(result.getResult()).isEqualTo("꽝");
+        Reward reward = new Reward("꽝");
+        assertThat(reward.getReward()).isEqualTo("꽝");
     }
 
     @Test
