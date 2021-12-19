@@ -11,23 +11,27 @@ public class Line {
     private static final int MIN_WIDTH = 2;
     private static final String MESSAGE_MIN_WIDTH = "너비가 최소 2는 되어야합니다.";
 
-    private final List<Boolean> points;
+    private final List<Point> points;
 
-    public Line(List<Boolean> points) {
-        this.points = validationWidth(points);
+    public Line(List<Point> points) {
+        this.points = validationPoint(validationWidth(points));
     }
 
     public static String isLine(boolean point) {
         return point ? EXIST_LINE : BLANK_LINE;
     }
 
-    private List<Boolean> validationWidth(List<Boolean> points) {
+    private List<Point> validationWidth(List<Point> points) {
         return Optional.ofNullable(points)
                 .filter(p -> p.size() >= MIN_WIDTH)
                 .orElseThrow(() -> new IllegalArgumentException(MESSAGE_MIN_WIDTH));
     }
 
-    public List<Boolean> getPoints() {
+    private List<Point> validationPoint(List<Point> lines) {
+        return lines;
+    }
+
+    public List<Point> getPoints() {
         return points;
     }
 }

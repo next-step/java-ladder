@@ -22,6 +22,7 @@ class LineTest {
 
 
         List<String> lines = line.getPoints().stream()
+                .map(Point::isActive)
                 .map(Line::isLine)
                 .collect(Collectors.toList());
 

@@ -28,6 +28,7 @@ public class OutputView {
     public static void print(Line line) {
         print(BLANK_LINE + LADDER_COLUMN
                 + line.getPoints().stream()
+                .map(Point::isActive)
                 .map(Line::isLine)
                 .collect(Collectors.joining(LADDER_COLUMN))
                 + LADDER_COLUMN);
