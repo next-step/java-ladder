@@ -73,7 +73,7 @@ public class LadderTest {
     @ParameterizedTest(name = "result of ladder: {arguments}")
     @MethodSource("parseLadderResult")
     public void result(Ladder ladder, Players players, Results results, ResultOfGame expected) {
-        assertThat(ladder.result(players, results)).isEqualTo(expected);
+        assertThat(ladder.result(LadderFrame.of(players, results))).isEqualTo(expected);
     }
 
     static Stream<Arguments> parseLadderNext() {

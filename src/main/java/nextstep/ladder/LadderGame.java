@@ -14,13 +14,13 @@ import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
 
 public class LadderGame {
-    public static String ALL_COMMAND = "all";
-    public static String QUIT_COMMAND = "quit";
+    public static final String ALL_COMMAND = "all";
+    public static final String QUIT_COMMAND = "quit";
 
     public static void main(String[] args) {
-        final List<String> names = InputView.inputCommaSeparateString("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        final List<String> resultList = InputView.inputCommaSeparateString("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
-        final int height = InputView.inputNumber("최대 사다리 높이는 몇 개인가요?");
+        final List<String> names = InputView.inputNameOfPlayers();
+        final List<String> resultList = InputView.inputPrizeOfResult();
+        final int height = InputView.inputHeight();
 
         final LadderFrame ladderFrame = LadderFrame.of(Players.of(names), Results.fromString(resultList));
         final LadderBuilder ladderBuilder = LadderBuilder.of(ladderFrame, Height.of(height));
@@ -32,7 +32,7 @@ public class LadderGame {
 
         String nameOfUser = "";
         while(!nameOfUser.equalsIgnoreCase(QUIT_COMMAND)) {
-            nameOfUser = InputView.inputString("결과를 보고 싶은 사람은?");
+            nameOfUser = InputView.inputNameForResult();
             if (nameOfUser.equalsIgnoreCase(QUIT_COMMAND)) {
                 break;
             }

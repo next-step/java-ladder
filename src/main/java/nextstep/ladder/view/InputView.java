@@ -19,11 +19,35 @@ public class InputView {
 
     public static int inputNumber(String message) {
         System.out.println(message);
-        return scanner.nextInt();
+        int number = scanner.nextInt();
+        flush();
+        return number;
     }
 
     public static String inputString(String message) {
         System.out.println(message);
         return scanner.nextLine();
+    }
+
+    private static void flush() {
+        if (scanner.hasNextLine()) {
+            scanner.nextLine();
+        }
+    }
+
+    public static List<String> inputNameOfPlayers() {
+        return inputCommaSeparateString("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+    }
+
+    public static List<String> inputPrizeOfResult() {
+        return inputCommaSeparateString("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+    }
+
+    public static int inputHeight() {
+        return inputNumber("최대 사다리 높이는 몇 개인가요?");
+    }
+
+    public static String inputNameForResult() {
+        return inputString("결과를 보고 싶은 사람은?");
     }
 }
