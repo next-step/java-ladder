@@ -24,6 +24,10 @@ public class Member {
         }
     }
 
+    public boolean isMatchName(String name) {
+        return this.name.equals(name);
+    }
+
     public String getName() {
         return name;
     }

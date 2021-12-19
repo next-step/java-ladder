@@ -12,16 +12,16 @@ public class Members {
 
     private final List<Member> members;
 
-    public Members(List<Member> members) {
+    private Members(List<Member> members) {
         this.members = members;
     }
 
-    public Members(String... members) {
-        this(toMembers(members));
+    public static Members of(String... members) {
+        return new Members(toMembers(members));
     }
 
-    public Members(String memberNames) {
-        this(toMembers(getNames(memberNames)));
+    public static Members from(String memberNames) {
+        return new Members(toMembers(getNames(memberNames)));
     }
 
     private static List<Member> toMembers(String[] memberNames){
