@@ -11,7 +11,7 @@ public class HeightTest {
     @Test
     void 높이_2이하_예외() {
         assertThatIllegalArgumentException()
-                .isThrownBy(()-> new Height(1))
+                .isThrownBy(()-> Height.of(1))
                 .withMessage("높이는 2 이상부터 가능합니다.");
     }
 }

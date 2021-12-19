@@ -11,7 +11,7 @@ public class LadderTest {
     @DisplayName("높이 5")
     @Test
     void 사다리생성() {
-        Ladder ladder = Ladder.of(TestLadderFactory.createPlayer("pobi,honux,crong,jk"), new Height(5));
+        Ladder ladder = Ladder.of(TestLadderFactory.createPlayer("pobi,honux,crong,jk"), Height.of(5));
         assertThat(ladder.countOfLine()).isEqualTo(5);
     }
 }

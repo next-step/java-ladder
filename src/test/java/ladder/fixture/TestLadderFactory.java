@@ -10,7 +10,7 @@ public class TestLadderFactory {
     }
 
     public static Line createRandomLine(int countOfPlayers) {
-        return new Line(new RandomPoints(countOfPlayers));
+        return Line.of(new RandomPoints(countOfPlayers));
     }
 
 }

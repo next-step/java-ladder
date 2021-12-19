@@ -6,8 +6,12 @@ import java.util.List;
 public class Line {
     private final List<Boolean> points;
 
-    public Line(PointsStrategy pointsStrategy) {
-        this.points = pointsStrategy.points();
+    private Line(List<Boolean> points) {
+        this.points = points;
+    }
+
+    public static Line of(PointsStrategy pointsStrategy) {
+        return new Line(pointsStrategy.points());
     }
 
     public int numberOfPoints() {

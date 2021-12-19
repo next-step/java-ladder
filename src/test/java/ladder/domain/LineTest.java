@@ -30,7 +30,7 @@ public class LineTest {
     @Test
     void 라인_가로라인여부() {
         List<Boolean> points = Arrays.asList(true, false, true, false);
-        Line line = new Line(() -> points);
+        Line line = Line.of(() -> points);
         assertThat(line.hasRightLine(0)).isTrue();
     }
 
