@@ -6,6 +6,7 @@ public class Point {
     private static final int LEFT = -1;
     private static final int RIGHT = 1;
     private static final int NOW = 0;
+
     private final boolean value;
 
     public Point(boolean value) {

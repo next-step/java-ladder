@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.stream.IntStream;
 
 public class GameResult {
-    private final static int ADD_INDEX = 1;
+    private static final int ADD_INDEX = 1;
 
     private final Map<Name, Integer> result;
 

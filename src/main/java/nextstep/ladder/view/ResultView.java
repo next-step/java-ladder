@@ -7,12 +7,12 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class ResultView {
-    private final static String LADDER_RUN_MESSAGE = "사다리 결과\n";
-    private final static String GAME_RUN_MESSAGE = "실행결과\n";
-    private final static String NAME_FORMAT = "%6s";
-    private final static String LADDER_BLANK = "     ";
-    private final static String LADDER_DASH = "-----";
-    private final static String LADDER_LINE = "|";
+    private static final  String LADDER_RUN_MESSAGE = "사다리 결과\n";
+    private static final String GAME_RUN_MESSAGE = "실행결과\n";
+    private static final String NAME_FORMAT = "%6s";
+    private static final String LADDER_BLANK = "     ";
+    private static final String LADDER_DASH = "-----";
+    private static final String LADDER_LINE = "|";
 
     private ResultView() {}
 

@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
-    private static int INIT_INDEX = 0;
+    private static final int INIT_INDEX = 0;
 
     private final List<Line> ladder;
 
