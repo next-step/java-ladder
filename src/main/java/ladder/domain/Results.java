@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -47,11 +48,11 @@ public class Results {
         return value.stream()
                 .filter(result -> result.matchName(name))
                 .findFirst()
-                .orElseThrow(() ->new IllegalArgumentException(NOT_FOUND_TARGET_MESSAGE));
+                .orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_TARGET_MESSAGE));
     }
 
     public List<Result> value() {
-        return value;
+        return Collections.unmodifiableList(value);
     }
 
 }

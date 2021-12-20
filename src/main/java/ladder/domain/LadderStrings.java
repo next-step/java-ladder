@@ -11,7 +11,7 @@ public class LadderStrings<T extends LadderString> {
     protected static final String EMPTY_MESSAGE = "입력이 비어있을 수 없습니다.";
     protected static final int MIN_LENGTH = 1;
 
-    protected final List<T> value;
+    private final List<T> value;
 
     public LadderStrings(List<T> ladderStrings) {
         if (Objects.isNull(ladderStrings)) {
