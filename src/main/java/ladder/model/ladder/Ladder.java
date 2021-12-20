@@ -15,7 +15,7 @@ public class Ladder {
     public static Ladder create(int height, int countOfPlayer) {
         List<Line> lines = new ArrayList<>();
         for (int cnt = 0; cnt < height; cnt++) {
-            lines.add(new Line(countOfPlayer));
+            lines.add(Line.init(countOfPlayer));
         }
         return new Ladder(lines);
     }

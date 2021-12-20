@@ -19,7 +19,7 @@ public class Point {
     }
 
     public Point last() {
-        return new Point(this.index, this.direction.last());
+        return new Point(this.index + 1, this.direction.last());
     }
 
     public Point next(boolean randomRight) {

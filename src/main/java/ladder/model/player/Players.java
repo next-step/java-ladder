@@ -30,18 +30,22 @@ public class Players {
         return this.players.size();
     }
 
-    public List<Player> get() {
-        return Collections.unmodifiableList(this.players);
-    }
-
     public int indexOf(Player player) {
         return players.indexOf(player);
     }
 
     public List<Player> getResultOf(String resultOf) {
-        if(resultOf.equalsIgnoreCase(RESULT_OF_ALL)) return get();
+        if(resultOf.equalsIgnoreCase(RESULT_OF_ALL)) return getAllPlayers();
+        return getPlayerByName(resultOf);
+    }
+
+    public List<Player> getAllPlayers() {
+        return Collections.unmodifiableList(this.players);
+    }
+
+    public List<Player> getPlayerByName(String name) {
         return players.stream()
-                .filter(player -> player.isName(resultOf))
+                .filter(player -> player.isName(name))
                 .collect(Collectors.toList());
     }
 
