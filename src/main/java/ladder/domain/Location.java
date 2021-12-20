@@ -14,6 +14,10 @@ public class Location {
         return location;
     }
 
+    public Location nextLocation(int destination) {
+        return new Location(this.location + destination);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

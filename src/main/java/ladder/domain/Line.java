@@ -32,7 +32,7 @@ public class Line {
         return Collections.unmodifiableList(this.points);
     }
 
-    public int move(int location) {
-        return this.points.get(location).nextLocation(location);
+    public Location move(Location location) {
+        return this.points.get(location.getLocation()).nextLocation(location);
     }
 }
