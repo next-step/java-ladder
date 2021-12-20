@@ -11,14 +11,14 @@ class HeightTest {
         int height = 11;
         assertThatThrownBy(() -> new Height(height))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("사다리 높이는 1이상 10이하로 설정 해주세요.");
+                .hasMessage("사다리 높이는 2이상 10이하로 설정 해주세요.");
     }
 
     @Test
-    void 사다리_높이가_1미만_시_예외() {
-        int height = 0;
+    void 사다리_높이가_2미만_시_예외() {
+        int height = 1;
         assertThatThrownBy(() -> new Height(height))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("사다리 높이는 1이상 10이하로 설정 해주세요.");
+                .hasMessage("사다리 높이는 2이상 10이하로 설정 해주세요.");
     }
 }

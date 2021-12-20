@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Height {
 
     private static final int MAXIMUM_HEIGHT = 10;
-    private static final int MINIMUM_HEIGHT = 1;
+    private static final int MINIMUM_HEIGHT = 2;
 
     private final int height;
 
