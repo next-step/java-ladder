@@ -39,6 +39,10 @@ public class Point {
         return Way.DOWN;
     }
 
+    public int nextLocation(int location) {
+        return this.way.getDestination() + location;
+    }
+
     public Way getWay() {
         return way;
     }

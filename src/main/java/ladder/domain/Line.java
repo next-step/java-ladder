@@ -33,6 +33,6 @@ public class Line {
     }
 
     public int move(int location) {
-        return location + this.points.get(location).getWay().getDestination();
+        return this.points.get(location).nextLocation(location);
     }
 }
