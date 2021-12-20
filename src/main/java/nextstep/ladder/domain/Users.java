@@ -25,9 +25,4 @@ public class Users {
     public List<User> getUsers() {
         return users;
     }
-
-    @Override
-    public String toString() {
-        return users.stream().map(user -> "     " + user).collect(Collectors.joining());
-    }
 }

@@ -16,12 +16,11 @@ public class Ladder {
         return new Ladder(users, Lines.of(users, height));
     }
 
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder();
-        sb.append(users);
-        sb.append("\n");
-        sb.append(lines);
-        return sb.toString();
+    public Users getUsers() {
+        return users;
+    }
+
+    public Lines getLines() {
+        return lines;
     }
 }

@@ -2,7 +2,6 @@ package nextstep.ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 /**
@@ -30,10 +29,5 @@ public class Line {
 
     public List<Point> getPoints() {
         return points;
-    }
-
-    @Override
-    public String toString() {
-        return points.stream().map(String::valueOf).collect(Collectors.joining());
     }
 }

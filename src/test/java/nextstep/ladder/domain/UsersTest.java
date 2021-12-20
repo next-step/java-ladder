@@ -14,7 +14,6 @@ class UsersTest {
     @Test
     void createByString() {
         Users users = Users.createByString(NAMES);
-        System.out.println(users);
         assertThat(users.getUsers().size()).isEqualTo(4);
     }
 }

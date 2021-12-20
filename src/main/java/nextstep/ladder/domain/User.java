@@ -11,10 +11,7 @@ public class User {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder();
-        sb.append(name);
-        return sb.toString();
+    public String getName() {
+        return name.getName();
     }
 }

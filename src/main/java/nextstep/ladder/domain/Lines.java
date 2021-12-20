@@ -31,14 +31,4 @@ public class Lines {
     public List<Line> getLines() {
         return lines;
     }
-
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder();
-        for (Line line : lines) {
-            sb.append(line);
-            sb.append("\n");
-        }
-        return sb.toString();
-    }
 }
