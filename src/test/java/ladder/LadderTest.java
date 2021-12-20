@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class LadderTest {
 
@@ -29,6 +29,10 @@ public class LadderTest {
         int ladderSize = 5;
         int playerCount = 3;
         Ladder ladder = new Ladder(ladderSize, playerCount);
-        assertDoesNotThrow(() -> ladder.climb(new Location(2)));
+        Location resultLocation = ladder.climb(new Location(2));
+        assertTrue(resultLocation.equals(new Location(1)) ||
+                resultLocation.equals(new Location(2)) ||
+                resultLocation.equals(new Location(3))
+        );
     }
 }
