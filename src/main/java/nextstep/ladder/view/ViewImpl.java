@@ -20,7 +20,7 @@ public class ViewImpl implements View {
   private static final String RESULT_MESSAGE = "실행결과";
   private static final int INIT = 0;
   private static final int FIRST_INDEX = 1;
-  private static final int INIT_LADDER_SIZE = 2;
+  private static final int INIT_LADDER_SIZE = 1;
   private static final int LADDER_SIZE = 5;
   private static final int MAX_BLANK_SIZE = 6;
   private static final String RESULT_DELIMITER = "   :   ";
@@ -81,14 +81,12 @@ public class ViewImpl implements View {
     }
 
     return line.stream()
-               .skip(FIRST_INDEX)
-               .limit(line.size() - INIT_LADDER_SIZE)
                .map(this::printPoint)
                .collect(
                          joining(
                                  Symbol.VERTICAL_LINE.getValue(),
                                  Symbol.VERTICAL_LINE.getValue(),
-                                 Symbol.VERTICAL_LINE.getValue()));
+                                 Symbol.BLANK.getValue()));
   }
 
   private String printLineOnlyOne(Line line) {
@@ -98,7 +96,7 @@ public class ViewImpl implements View {
   }
 
   private String printPoint(Point point) {
-    if (point.hasWay()) {
+    if (point.hasRightWay()) {
       return Symbol.printSymbolAsSize(Symbol.DASH, LADDER_SIZE);
     }
 
@@ -135,7 +133,7 @@ public class ViewImpl implements View {
 
     entry.forEach((key, index) -> stringBuilder.append(key)
          .append(RESULT_DELIMITER)
-         .append(prizeGroup.getResult(index - FIRST_INDEX)
+         .append(prizeGroup.getResult(index)
                            .getRank())
          .append(System.lineSeparator()));
 
