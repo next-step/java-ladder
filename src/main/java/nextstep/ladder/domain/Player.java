@@ -10,7 +10,7 @@ public class Player {
     }
 
     public static Player of(final String name) {
-        return new Player(Name.of(name));
+        return of(Name.of(name));
     }
 
     public static Player of(final Name name) {
@@ -19,6 +19,10 @@ public class Player {
         }
 
         return new Player(name);
+    }
+
+    public Name name() {
+        return name;
     }
 
     @Override
@@ -39,9 +43,5 @@ public class Player {
         return "Player{" +
                 "name=" + name +
                 '}';
-    }
-
-    public Name name() {
-        return name;
     }
 }

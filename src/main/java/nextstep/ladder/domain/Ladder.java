@@ -1,48 +1,58 @@
 package nextstep.ladder.domain;
 
-import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import nextstep.ladder.domain.line.LineGenerateStrategy;
 
-public class Ladder {
-    private final List<Line> lines;
-
+public class Ladder extends FirstClassList<Line> {
     private Ladder(final List<Line> lines) {
-        this.lines = Collections.unmodifiableList(lines);
+        super(lines);
     }
 
-    public static Ladder of(final PlayerCount playerCount, final Height height, LineGenerateStrategy strategy) {
-        if (height == null) {
-            throw new IllegalArgumentException("invalid height: cannot be null");
+    public static Ladder of(final PointCount pointCount, final Height height, LineGenerateStrategy strategy) {
+        if (pointCount == null || height == null) {
+            throw new IllegalArgumentException("invalid input: cannot be null");
         }
 
-        return new Ladder(Stream.generate(() -> Line.of(playerCount, strategy))
+        return new Ladder(Stream.generate(() -> Line.of(pointCount, strategy))
                 .limit(height.toInt())
                 .collect(Collectors.toList()));
     }
 
-    public static Ladder of(final PlayerCount playerCount, final int height, LineGenerateStrategy strategy) {
-        return Ladder.of(playerCount, Height.of(height), strategy);
+    public static Ladder of(final PointCount pointCount, final int height, final LineGenerateStrategy strategy) {
+        return Ladder.of(pointCount, Height.of(height), strategy);
+    }
+
+    public static Ladder of(final PlayerCount playerCount, final Height height, final LineGenerateStrategy strategy) {
+        return Ladder.of(PointCount.of(playerCount), height, strategy);
+    }
+
+    public ResultOfGame result(LadderFrame ladderFrame) {
+        List<Integer> indexMap = downToResult(IntStream.range(0, ladderFrame.players().size())
+                        .boxed()
+                        .collect(Collectors.toList()),
+                iterator());
+
+        return ResultOfGame.of(ladderFrame.players(), ladderFrame.results().mapByIndex(indexMap));
+    }
+
+    List<Integer> downToResult(List<Integer> indexMap, Iterator<Line> iterator) {
+        if (!iterator.hasNext()) {
+            return indexMap;
+        }
+
+        final Line line = iterator.next();
+        return downToResult(line.move(indexMap), iterator);
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Ladder ladder = (Ladder) o;
-        return Objects.equals(lines, ladder.lines);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(lines);
-    }
-
-    public Stream<Line> stream() {
-        return lines.stream();
+    public String toString() {
+        return "Ladder {" +
+                super.toString() +
+                "}";
     }
 }

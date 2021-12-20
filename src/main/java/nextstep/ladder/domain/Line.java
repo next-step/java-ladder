@@ -1,67 +1,55 @@
 package nextstep.ladder.domain;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Stream;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import nextstep.ladder.domain.line.LineGenerateStrategy;
 
-public class Line {
-    private final List<Boolean> points;
+public class Line extends FirstClassList<Boolean> {
+    private static final int LEFT = -1;
+    private static final int RIGHT = 1;
 
     private Line(final List<Boolean> points) {
-        this.points = Collections.unmodifiableList(points);
+        super(points);
     }
 
-    public static Line of (final LineCount lineCount, final LineGenerateStrategy strategy) {
+    public static Line of (final PointCount count, final LineGenerateStrategy strategy) {
         if (strategy == null) {
-            throw new IllegalArgumentException("invalid strategy: cannot be null");
+            throw new IllegalArgumentException("invalid input: strategy cannot be null");
         }
 
-        if (lineCount == null) {
-            throw new IllegalArgumentException("invalid player count: cannot be null");
-        }
-
-        List<Boolean> points = strategy.generate(lineCount);
-
-        if (points.size() != lineCount.toInt()) {
-            throw new IllegalArgumentException("invalid line: generated size is not match");
-        }
-
-        return new Line(points);
-
+        return new Line(strategy.generate(count));
     }
 
     public static Line of(final PlayerCount playerCount, final LineGenerateStrategy strategy) {
-        return of(LineCount.of(playerCount), strategy);
+        return of(PointCount.of(playerCount), strategy);
     }
 
-    public static Line of(final int playerCount, final LineGenerateStrategy strategy) {
-        return of(PlayerCount.of(playerCount), strategy);
+    public static Line of(final int count, final LineGenerateStrategy strategy) {
+        return of(PointCount.of(count), strategy);
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Line line = (Line) o;
-        return Objects.equals(points, line.points);
+    public List<Integer> move(List<Integer> position) {
+        return position.stream()
+                .map(this::nextPosition)
+                .collect(Collectors.toList());
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(points);
+    int nextPosition(int index) {
+        return hasPoint(index).map(point -> index + RIGHT)
+                .orElse(hasPoint(index + LEFT).map(p -> index + LEFT)
+                        .orElse(index));
+    }
+
+    Optional<Boolean> hasPoint(int index) {
+        return elementOfOpt(index).filter(p -> p);
     }
 
     @Override
     public String toString() {
-        return "Line{" +
-                "points=" + points +
+        return "Line {" +
+                super.toString() +
                 '}';
-    }
-
-    public Stream<Boolean> stream() {
-        return points.stream();
     }
 }

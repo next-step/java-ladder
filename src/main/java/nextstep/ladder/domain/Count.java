@@ -2,11 +2,15 @@ package nextstep.ladder.domain;
 
 import java.util.Objects;
 
-public abstract class Count {
+public class Count {
     private final int count;
 
     protected Count(final int count) {
         this.count = count;
+    }
+
+    public int toInt() {
+        return count;
     }
 
     @Override
@@ -20,9 +24,5 @@ public abstract class Count {
     @Override
     public int hashCode() {
         return Objects.hash(count);
-    }
-
-    public int toInt() {
-        return count;
     }
 }
