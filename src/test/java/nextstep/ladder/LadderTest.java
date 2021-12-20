@@ -9,6 +9,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -26,7 +27,7 @@ class LadderTest {
   @DisplayName("사다리를 생성한다.")
   void create(int input) {
     Ladder ladder = IntStream.range(0, input)
-                             .mapToObj(index -> createLine(input))
+                             .mapToObj(index -> createLine(createBooleans(input)))
                              .collect(collectingAndThen(toList(), Ladder::new));
 
     assertEquals(input, ladder.size());
@@ -38,22 +39,24 @@ class LadderTest {
     assertThrows(IllegalArgumentException.class, () -> new Ladder(Collections.emptyList()));
   }
 
-  @ParameterizedTest
-  @ValueSource(ints = {5, 6, 7})
+  @Test
   @DisplayName("사다리를 구성하는 각 줄의 사이즈가 다를 경우 exception을 던진다.")
-  void addNotSameSizeLine(int input) {
-    assertThrows(IllegalArgumentException.class, () -> IntStream.range(0, input)
-                                                                .mapToObj(this::createLine)
-                                                                .collect(collectingAndThen(toList(), Ladder::new)));
+  void addNotSameSizeLine() {
+    Line line1 = createLine(Arrays.asList(true, false, false));
+    Line line2 = createLine(Arrays.asList(false, false));
+    Line line3 = createLine(Arrays.asList(true, false, true));
+
+
+    assertThrows(IllegalArgumentException.class, () -> new Ladder(Arrays.asList(line1, line2, line3)));
   }
 
   @ParameterizedTest
-  @CsvSource(value = {"1:4", "2:2", "3:1", "4:3"}, delimiter = ':')
+  @CsvSource(value = {"0:3", "1:1", "2:0", "3:2"}, delimiter = ':')
   @DisplayName("사다리와 시작점을 주었을 때 마지막 도착 지점을 반환한다.")
   void exploreTest(int startingPoint, int result) {
-    Line line1 = createLine(Arrays.asList(false, true, false, false, false));
-    Line line2 = createLine(Arrays.asList(false, false, true, false, false));
-    Line line3 = createLine(Arrays.asList(false, true, false, true, false));
+    Line line1 = createLine(Arrays.asList(true, false, false));
+    Line line2 = createLine(Arrays.asList(false, true, false));
+    Line line3 = createLine(Arrays.asList(true, false, true));
 
     /*
     |-| | |
@@ -66,16 +69,40 @@ class LadderTest {
     assertEquals(result, explore);
   }
 
-  private Line createLine(int size) {
-    return IntStream.range(0, size)
-                    .mapToObj(index -> new Point())
-                    .collect(collectingAndThen(toList(), Line::new));
+  private List<Boolean> createBooleans(int count) {
+    return IntStream.range(0, count)
+            .mapToObj(index -> true)
+            .collect(toList());
   }
 
   private Line createLine(List<Boolean> booleanList) {
-    return booleanList.stream()
-                      .map(Point::new)
-                      .collect(collectingAndThen(toList(), Line::new));
+    List<Point> list = new ArrayList<>();
+    list.add(createStart(booleanList.get(0)));
+
+
+    creatBody(list, booleanList);
+
+    list.add(createLast(list.get(list.size() - 1)));
+
+    return new Line(list);
+  }
+
+  private Point createStart(boolean right) {
+    return Point.first(right);
+  }
+
+  private void creatBody(List<Point> list, List<Boolean> booleanList) {
+    IntStream.range(0, booleanList.size() - 1)
+             .forEach(index -> {
+               Point point = list.get(index);
+               Point next = point.next(booleanList.get(index + 1));
+               list.add(next);
+             });
+
+  }
+
+  private Point createLast(Point point) {
+    return point.last();
   }
 
 }

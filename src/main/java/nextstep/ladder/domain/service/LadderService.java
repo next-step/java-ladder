@@ -20,9 +20,8 @@ import static java.util.stream.Collectors.toList;
 public class LadderService {
 
   private static final int INIT_INDEX = 0;
-  private static final int FIRST_INDEX = 1;
+  private static final int EXCLUSIVE_COUNT = 2;
   private static final int PREV = 1;
-  private static final Boolean FALSE = false;
 
   private final Random random = new Random();
 
@@ -33,34 +32,42 @@ public class LadderService {
   }
 
   public Line createLine(int countOfPerson) {
-    List<Point> points = initPoints();
+    List<Point> points = new ArrayList<>();
+    initFirst(points);
 
-    IntStream.range(FIRST_INDEX, countOfPerson)
+    initBody(points, countOfPerson);
+
+    initLast(points);
+    return new Line(points);
+  }
+
+  private void initFirst(List<Point> points) {
+    points.add(Point.first(random.nextBoolean()));
+  }
+
+  private void initBody(List<Point> points, int countOfPerson) {
+    IntStream.range(INIT_INDEX, countOfPerson - EXCLUSIVE_COUNT)
              .forEach(now -> {
-               Point prevPoint = points.get(now - PREV);
+               Point prevPoint = points.get(now);
                Point nowPoint = prevPoint.next(random.nextBoolean());
 
                points.add(nowPoint);
              });
-
-    points.add(new Point(FALSE));
-    return new Line(points);
   }
 
-  private List<Point> initPoints() {
-    List<Point> points = new ArrayList<>();
-    points.add(new Point(FALSE));
-    return points;
+  private void initLast(List<Point> points) {
+    Point prevPoint = points.get(points.size() - PREV);
+    points.add(prevPoint.last());
   }
 
   public Map<String, Integer> gameStart(Ladder ladder, Names names) {
     Map<String, Integer> result = new HashMap<>();
 
-    IntStream.range(0, names.size())
+    IntStream.range(INIT_INDEX, names.size())
              .forEach(index -> {
                Name name = names.getName(index);
 
-               int endPoint = ladder.explore(index + FIRST_INDEX);
+               int endPoint = ladder.explore(index);
 
                result.put(name.tellName(), endPoint);
              });
