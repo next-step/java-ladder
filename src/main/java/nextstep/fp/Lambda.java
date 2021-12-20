@@ -61,12 +61,8 @@ public class Lambda {
      * @return
      */
     public static int sum(List<Integer> numbers, Conditional c) {
-        int total = 0;
-        for (int number : numbers) {
-            if (c.test(number)) {
-                total += number;
-            }
-        }
-        return total;
+        return numbers.stream()
+                .filter(number -> c.test(number) == true)
+                .reduce(0, (x, y) -> x + y);
     }
 }
