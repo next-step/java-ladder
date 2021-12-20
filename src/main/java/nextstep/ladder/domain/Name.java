@@ -3,13 +3,13 @@ package nextstep.ladder.domain;
 import java.util.Objects;
 
 public class Name {
-    private final int MAX_NAME_LENGTH = 5;
+    private final static int MAX_NAME_LENGTH = 5;
 
     private final String value;
 
     public Name(String value) {
         validValue(value);
-        this.value = value;
+        this.value = value.trim();
     }
 
     public String getValue() {

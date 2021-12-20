@@ -1,24 +1,31 @@
 package nextstep.ladder;
 
-import nextstep.ladder.domain.Height;
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Names;
-import nextstep.ladder.domain.RandomLineStrategy;
+import nextstep.ladder.domain.*;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
 public class LadderMain {
-    public static void main(String[] args) {
-        InputView inputView = new InputView();
+    private static final String GAME_RESULT_ALL = "all";
 
-        String input = inputView.inputEntryMember();
-        int inputLadderHeight = inputView.inputLadderHeight();
+    public static void main(String[] args) {
+        String input = InputView.inputEntryMember();
+        String itemInput = InputView.inputItems();
+        int inputLadderHeight = InputView.inputLadderHeight();
 
         Names names = Names.from(input);
+        Items items = Items.from(itemInput);
         Height height = new Height(inputLadderHeight);
         Ladder ladder = Ladder.of(names.entryMemberCount(), height, new RandomLineStrategy());
 
-        ResultView outputView = new ResultView();
-        outputView.gameResult(names, ladder);
+        ResultView.gameResult(names, ladder);
+        ResultView.printItems(items);
+
+        GameResult gameResult = new GameResult(ladder, names);
+        String playerName = InputView.inputResultName();
+        while (!GAME_RESULT_ALL.equals(playerName)) {
+            ResultView.printPlayerResult(items, gameResult.getResultIndex(new Name(playerName)));
+            playerName = InputView.inputResultName();
+        }
+        ResultView.printGameAllPlayerResult(gameResult, items);
     }
 }

@@ -1,41 +1,65 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Names;
-import nextstep.ladder.domain.Point;
+import nextstep.ladder.domain.*;
 
+import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class ResultView {
-    private final String GAME_RUN_MESSAGE = "실행결과\n";
-    private final String NAME_FORMAT = "%6s";
-    private final String LADDER_BLANK = "     ";
-    private final String LADDER_DASH = "-----";
-    private final String LADDER_LINE = "|";
+    private final static String LADDER_RUN_MESSAGE = "사다리 결과\n";
+    private final static String GAME_RUN_MESSAGE = "실행결과\n";
+    private final static String NAME_FORMAT = "%6s";
+    private final static String LADDER_BLANK = "     ";
+    private final static String LADDER_DASH = "-----";
+    private final static String LADDER_LINE = "|";
 
-    public void gameResult(Names names, Ladder ladder) {
-        System.out.println(GAME_RUN_MESSAGE);
+    private ResultView() {}
 
-        String entryNames = names.getNames()
-                                .stream()
-                                .map(name -> String.format(NAME_FORMAT, name.getValue()))
-                                .collect(Collectors.joining());
-        System.out.println(entryNames);
+    public static void gameResult(Names names, Ladder ladder) {
+        System.out.println(LADDER_RUN_MESSAGE);
+        System.out.println(printEntryName(names));
+        printLaddersResult(ladder);
+    }
 
-        ladder.getLadder()
-                .forEach(line -> {
-                    line.getLine()
-                            .forEach(point -> {
-                                        System.out.print(printPoint(point));
-                                        });
+    public static void printItems(Items items) {
+        System.out.println( items.getItems()
+                .stream()
+                .map(item -> String.format(NAME_FORMAT, item.getValue()))
+                .collect(Collectors.joining()));
+    }
+
+    public static void printPlayerResult(Items items, int index) {
+        System.out.print(GAME_RUN_MESSAGE);
+        System.out.println(items.getItems().get(index).getValue());
+    }
+
+    public static void printGameAllPlayerResult(GameResult gameResult, Items items) {
+        System.out.print(GAME_RUN_MESSAGE);
+        Map<Name, Integer> result = gameResult.getGameResult();
+        result.forEach((name, index) -> System.out.printf("%s : %s\n", name.getValue(), items.getItems().get(index).getValue()));
+    }
+
+    private static String printEntryName(Names names) {
+        return names.getNames()
+                .stream()
+                .map(name -> String.format(NAME_FORMAT, name.getValue()))
+                .collect(Collectors.joining());
+    }
+
+    private static void printLaddersResult(Ladder ladder) {
+        ladder.getLadder().forEach(line -> {
+                    IntStream.range(0, line.getLine().size() - 1)
+                            .forEach(index -> printPoint(line.getLine().get(index)));
                     System.out.println();
                 });
     }
 
-    private String printPoint(Point point) {
+    private static void printPoint(Point point) {
         if (point.isValue()) {
-            return String.format("%s%s", LADDER_DASH, LADDER_LINE);
+            System.out.printf("%s%s", LADDER_DASH, LADDER_LINE);
+            return;
         }
-        return String.format("%s%s", LADDER_BLANK, LADDER_LINE);
+        System.out.printf("%s%s", LADDER_BLANK, LADDER_LINE);
     }
 }
