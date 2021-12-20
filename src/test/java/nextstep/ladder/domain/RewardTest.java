@@ -15,7 +15,7 @@ public class RewardTest {
     @Test
     void 결과_미입력() {
         assertThatThrownBy(() -> {
-            new Member("");
+            new Reward("");
         }).isInstanceOf(IllegalArgumentException.class);
     }
 }

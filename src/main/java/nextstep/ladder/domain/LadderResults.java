@@ -5,6 +5,7 @@ import java.util.Objects;
 
 public class LadderResults {
     private static final String EXCEPTION_MESSAGE_MEMBERS = "참가자를 찾을 수 없습니다.";
+
     private final List<LadderResult> results;
 
     public LadderResults(List<LadderResult> results) {
@@ -14,7 +15,7 @@ public class LadderResults {
     public String getResult(String member) {
         return results.stream()
                             .filter(ladderResult -> ladderResult.isMember(member))
-                            .map(ladderResult -> ladderResult.getReward())
+                            .map(LadderResult::getReward)
                             .findFirst()
                             .orElseThrow(() -> new IllegalArgumentException(EXCEPTION_MESSAGE_MEMBERS));
     }

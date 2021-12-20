@@ -50,8 +50,8 @@ public class Rewards {
         return rewards;
     }
 
-    public Reward getRewards(int count) {
-        return rewards.get(count);
+    public Reward getRewards(int position) {
+        return rewards.get(position);
     }
 
     @Override

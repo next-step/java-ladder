@@ -33,11 +33,11 @@ public class LadderGame {
 
     public LadderResults start(Ladder ladder, Rewards rewards) {
         List<LadderResult> results = new ArrayList<>();
-        int memberCount = 0;
+        int memberPosition = 0;
         for (Member member : members.getMembers()) {
-            int position = getPosition(ladder, memberCount);
+            int position = getPosition(ladder, memberPosition);
             results.add(new LadderResult(member, rewards.getRewards(position)));
-            memberCount++;
+            memberPosition++;
         }
         return new LadderResults(results);
     }

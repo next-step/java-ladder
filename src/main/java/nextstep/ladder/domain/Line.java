@@ -14,6 +14,7 @@ public class Line {
     private final List<Point> points;
 
     private Line(List<Point> points) {
+        validateLine(points);
         this.points = points;
     }
 
@@ -25,6 +26,18 @@ public class Line {
         return new Line(toLine(points));
     }
 
+    private void validateLine(List<Point> points) {
+        for (int count = FIRST_POINT_POSITION; count < points.size(); count++) {
+            if (count == FIRST_POINT_POSITION && points.get(count).isLine()) {
+                throw new IllegalArgumentException("");
+            }
+            if (count > FIRST_POINT_POSITION && points.get(count).isLine()
+                                                && points.get(count-1).isLine()) {
+                throw new IllegalArgumentException("");
+            }
+        }
+    }
+
     private static List<Point> getPoints(int countOfMember, PointStrategy pointStrategy) {
         List<Point> pointGroup = new ArrayList<>();
         for (int count = FIRST_POINT_POSITION; count < countOfMember; count++) {
@@ -34,7 +47,7 @@ public class Line {
     }
 
     private static Point generatePoint(PointStrategy pointStrategy, List<Point> pointGroup, int count) {
-        if (count == FIRST_POINT_POSITION || pointGroup.get(count-1).isPass() == true) {
+        if (count == FIRST_POINT_POSITION || pointGroup.get(count-1).isLine()) {
             return new Point(false);
         }
         return new Point(pointStrategy.generate());
@@ -42,12 +55,12 @@ public class Line {
 
     private static List<Point> toLine(Boolean[] points) {
         return Arrays.stream(points)
-                            .map(point -> new Point(point))
+                            .map(Point::new)
                             .collect(Collectors.toList());
     }
 
     public boolean isLine(int count) {
-        return points.get(count).isPass();
+        return points.get(count).isLine();
     }
 
     public boolean isNextLine(int count) {
@@ -55,7 +68,7 @@ public class Line {
         if (maxCount == points.size()) {
             return false;
         }
-        return points.get(maxCount).isPass();
+        return points.get(maxCount).isLine();
     }
 
     public List<Point> getPoints() {

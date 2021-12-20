@@ -18,6 +18,11 @@ public class LadderResultTest {
     }
 
     @Test
+    void 멤버_아닌_확인시_() {
+        assertThat(ladderResult.isMember("mouse")).isFalse();
+    }
+
+    @Test
     void 멤버_이름_비교() {
         assertThat(ladderResult.getMemberName()).isEqualTo("pobi");
     }
