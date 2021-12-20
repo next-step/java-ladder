@@ -8,6 +8,6 @@ class PointTest {
     @Test
     void 생성_비교() {
         Point point = new Point(true);
-        assertThat(point.isLine()).isTrue();
+        assertThat(point.isPoint()).isTrue();
     }
 }

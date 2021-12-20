@@ -9,7 +9,7 @@ public class Point {
         this.point = point;
     }
 
-    public boolean isLine() {
+    public boolean isPoint() {
         return point;
     }
 

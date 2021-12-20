@@ -42,7 +42,7 @@ public class ResultView {
     }
 
     private static String checkLine(Point point) {
-        if (point.isLine()) {
+        if (point.isPoint()) {
             return LINKED_LINE;
         }
         return NOT_LINKED_LINE;

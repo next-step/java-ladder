@@ -33,11 +33,11 @@ public class Line {
     }
 
     private void compareLines(List<Point> points, int count) {
-        if (count == FIRST_POINT_POSITION && points.get(count).isLine()) {
+        if (count == FIRST_POINT_POSITION && points.get(count).isPoint()) {
             throw new IllegalArgumentException("");
         }
-        if (count > FIRST_POINT_POSITION && points.get(count).isLine()
-                                            && points.get(count -1).isLine()) {
+        if (count > FIRST_POINT_POSITION && points.get(count).isPoint()
+                                            && points.get(count -1).isPoint()) {
             throw new IllegalArgumentException("");
         }
     }
@@ -51,7 +51,7 @@ public class Line {
     }
 
     private static Point generatePoint(PointStrategy pointStrategy, List<Point> pointGroup, int count) {
-        if (count == FIRST_POINT_POSITION || pointGroup.get(count-1).isLine()) {
+        if (count == FIRST_POINT_POSITION || pointGroup.get(count-1).isPoint()) {
             return new Point(false);
         }
         return new Point(pointStrategy.generate());
@@ -64,7 +64,7 @@ public class Line {
     }
 
     public boolean isLine(int count) {
-        return points.get(count).isLine();
+        return points.get(count).isPoint();
     }
 
     public boolean isNextLine(int count) {
@@ -72,7 +72,7 @@ public class Line {
         if (maxCount == points.size()) {
             return false;
         }
-        return points.get(maxCount).isLine();
+        return points.get(maxCount).isPoint();
     }
 
     public List<Point> getPoints() {
