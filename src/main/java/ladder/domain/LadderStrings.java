@@ -25,6 +25,10 @@ public class LadderStrings<T extends LadderString> {
         this.value = ladderStrings;
     }
 
+    public T findByIndex(int index) {
+        return value.get(index);
+    }
+
     public int count() {
         return value.size();
     }

@@ -15,6 +15,9 @@ public class Line {
 
     private static final int MIN_WIDTH = 1;
     private static final int INDEX_ZERO = 0;
+    private static final int MOVE_COUNT = 2;
+    private static final int MOVE_CHECK_COUNT = 1;
+    private static final int LADDER_PARTS_SIZE_TO_INDEX = 1;
 
     private final List<LadderPart> ladderParts;
 
@@ -54,6 +57,34 @@ public class Line {
                 .collect(Collectors.toList());
     }
 
+    public int move(int position) {
+        return IntStream.range(INDEX_ZERO, ladderParts.size())
+                .filter(index -> index == position)
+                .map(currentIndex -> moveIndex(currentIndex))
+                .findFirst()
+                .orElseThrow(IllegalArgumentException::new);
+    }
+
+    private int moveIndex(int currentIndex) {
+        if (canMoveToTheLeft(currentIndex)) {
+            return currentIndex - MOVE_COUNT;
+        }
+        if (canMoveToTheRight(currentIndex)) {
+            return currentIndex + MOVE_COUNT;
+        }
+        return currentIndex;
+    }
+
+    private boolean canMoveToTheLeft(int currentIndex) {
+        return currentIndex > INDEX_ZERO
+                && ladderParts.get(currentIndex - MOVE_CHECK_COUNT).isRung();
+    }
+
+    private boolean canMoveToTheRight(int currentIndex) {
+        return currentIndex < ladderParts.size() - LADDER_PARTS_SIZE_TO_INDEX
+                && ladderParts.get(currentIndex + MOVE_CHECK_COUNT).isRung();
+    }
+
     public int width() {
         return ladderParts.size();
     }
@@ -61,5 +92,4 @@ public class Line {
     public List<LadderPart> getLadderParts() {
         return Collections.unmodifiableList(ladderParts);
     }
-
 }

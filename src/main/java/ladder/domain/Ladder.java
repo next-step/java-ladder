@@ -2,14 +2,17 @@ package ladder.domain;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
+
     public static final String INVALID_WIDTH_HEIGHT_MESSAGE = "width와 height는 양수여야 합니다.";
 
     private static final int MIN_HEIGHT = 1;
     private static final int INDEX_ZERO = 0;
+    private static final int CONVERT_INDEX_NUMBER = 2;
 
     private final List<Line> lines;
 
@@ -39,6 +42,21 @@ public class Ladder {
         this.lines = lines;
     }
 
+    public int findRewardIndex(int number) {
+        AtomicInteger result = new AtomicInteger(calculateStartIndex(number));
+        lines.stream()
+                .forEach(line -> result.set(line.move(result.get())));
+        return calculateRewardIndex(result.get());
+    }
+
+    private int calculateStartIndex(int index) {
+        return index * CONVERT_INDEX_NUMBER;
+    }
+
+    private int calculateRewardIndex(int index) {
+        return index / CONVERT_INDEX_NUMBER;
+    }
+
     public int height() {
         return lines.size();
     }
@@ -51,7 +69,4 @@ public class Ladder {
         return Collections.unmodifiableList(lines);
     }
 
-    public Results makeResult(Names names, Rewards rewards) {
-        return new Results(new Result("a","b"));
-    }
 }

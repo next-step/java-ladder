@@ -37,7 +37,6 @@ public class LadderTest {
     void invalid_width(int width, int height) {
         assertThatThrownBy(() -> new Ladder(width, height))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("width와 height는 양수여야 합니다.");
+                .hasMessage(Ladder.INVALID_WIDTH_HEIGHT_MESSAGE);
     }
-
 }
