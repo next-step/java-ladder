@@ -1,7 +1,8 @@
 package ladder.domain.user;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 class ParticipantsTest {
 
@@ -14,6 +15,6 @@ class ParticipantsTest {
         Participants participants = new Participants(names);
 
         // then
-        Assertions.assertThat(participants.size()).isEqualTo(3);
+        assertThat(participants.size()).isEqualTo(3);
     }
 }

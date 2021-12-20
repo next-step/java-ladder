@@ -1,5 +1,6 @@
 package ladder.domain.ladder;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -23,6 +24,13 @@ class DirectionTest {
     void 제자리() {
         Direction center = new Direction(false, false);
         assertThat(center.move()).isEqualTo(0);
+    }
+
+    @DisplayName("UI에서 사다리를 그리기 위한 테스트")
+    @Test
+    void 오른쪽으로_이동_여부() {
+        Direction direction = new Direction(false, true);
+        assertThat(direction.isRight()).isTrue();
     }
 
     @Test

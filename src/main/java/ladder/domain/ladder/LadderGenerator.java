@@ -21,7 +21,7 @@ public class LadderGenerator {
             HorizontalLine line = lineGenerator.generate(numberOfParticipant, positionGenerator);
             lines.add(line);
         }
-        return new Ladder(lines, numberOfParticipant);
+        return new Ladder(lines);
     }
 
     @Override

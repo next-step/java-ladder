@@ -15,6 +15,14 @@ public class HorizontalLine {
         return points.get(index).move();
     }
 
+    boolean isRight(int index) {
+        return points.get(index).isRight();
+    }
+
+    int size() {
+        return points.size();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

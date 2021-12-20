@@ -27,7 +27,7 @@ class LadderGeneratorTest {
         lines.add(lineGenerator.generate(numberOfParticipant, () -> true));
         lines.add(lineGenerator.generate(numberOfParticipant, () -> true));
 
-        Ladder expectedLadder = new Ladder(lines, numberOfParticipant);
+        Ladder expectedLadder = new Ladder(lines);
 
         assertThat(ladder).isEqualTo(expectedLadder);
     }

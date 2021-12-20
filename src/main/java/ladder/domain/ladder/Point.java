@@ -30,6 +30,10 @@ public class Point {
         return index + direction.move();
     }
 
+    boolean isRight() {
+        return direction.isRight();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

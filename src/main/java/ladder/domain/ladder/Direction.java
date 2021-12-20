@@ -40,6 +40,10 @@ public class Direction {
         return 0;
     }
 
+    boolean isRight() {
+        return current;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
