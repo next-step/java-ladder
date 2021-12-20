@@ -27,30 +27,36 @@ public class ResultView {
     }
 
     private static void printParticipants(List<Name> participants) {
-        StringBuilder sb = new StringBuilder();
-        for (Name name : participants) {
-            sb.append(name);
-            int nameLength = NAME_BOX_SIZE - name.toString().length();
-            if (nameLength > 0) {
-                for (int i = 0; i < nameLength; i++) {
-                    sb.append(NAME_BOX_BLANK);
-                }
-            }
+        participants.stream()
+                .map(Name::toString)
+                .forEach(name -> {
+                    System.out.print(name);
+                    int nameLength = NAME_BOX_SIZE - name.length();
+                    printNameBoxBlank(nameLength);
+                });
+        View.newLine();
+    }
+
+    private static void printNameBoxBlank(int nameLength) {
+        for (int i = 0; i < nameLength; i++) {
+            System.out.print(NAME_BOX_BLANK);
         }
-        System.out.println(sb);
     }
 
     private static void printLadder(LadderContext ladderContext) {
         int ladderHeight = ladderContext.ladderHeight();
-        int lineSize = ladderContext.lineSize();
-
-        for (int i = 0; i < ladderHeight; i++) { // 사다리 높이
-            StringBuilder sb = new StringBuilder(FIRST_LINE);
-            for (int j = 0; j < lineSize - 1; j++) { // 라인 크기
-                sb.append(getLine(ladderContext.isRight(i, j)));
-            }
-            System.out.println(sb);
+        for (int ladderIndex = 0; ladderIndex < ladderHeight; ladderIndex++) {
+            printLadder(ladderContext, ladderIndex);
         }
+    }
+
+    private static void printLadder(LadderContext ladderContext, int ladderIndex) {
+        int lineSize = ladderContext.lineSize();
+        StringBuilder sb = new StringBuilder(FIRST_LINE);
+        for (int lineIndex = 0; lineIndex < lineSize - 1; lineIndex++) { // 라인 크기
+            sb.append(getLine(ladderContext.isRight(ladderIndex, lineIndex)));
+        }
+        System.out.println(sb);
     }
 
     private static String getLine(boolean point) {
