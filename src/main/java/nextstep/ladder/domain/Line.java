@@ -36,14 +36,20 @@ public class Line extends FirstClassList<Boolean> {
                 .collect(Collectors.toList());
     }
 
+    // todo refactor: 포인트가 있는지는 Optional로 처리해버려서 필요가 없고, 그저 외부값인 index와 상수의 연산뿐이다.
+    // todo refactor: 따라서 내부 연산이 본래 전달되는 값을 필요로 하지 않아 메소드 참조로 바꿀 수 없느데, 이게 이상한 점이지 않을까?
     int nextPosition(int index) {
         return hasPoint(index).map(point -> index + RIGHT)
-                .orElse(hasPoint(index + LEFT).map(p -> index + LEFT)
+                .orElse(hasPoint(index + LEFT).map(point -> index + LEFT)
                         .orElse(index));
     }
 
     Optional<Boolean> hasPoint(int index) {
-        return elementOfOpt(index).filter(p -> p);
+        return elementOfOpt(index).filter(this::isPoint);
+    }
+
+    boolean isPoint(boolean point) {
+        return point;
     }
 
     @Override

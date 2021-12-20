@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
@@ -42,5 +43,13 @@ public class LadderFrameTest {
         LadderFrame frame = LadderFrame.of(players, results);
         assertThat(frame.players()).isEqualTo(players);
         assertThat(frame.results()).isEqualTo(results);
+    }
+
+    @Test
+    public void resultOfGame() {
+        Players players = ps("n1", "n2");
+        Results results = rs("r1", "r2");
+        LadderFrame frame = LadderFrame.of(players, results);
+        assertThat(frame.resultsOfGame(List.of(1, 0))).isEqualTo(rs("r2", "r1"));
     }
 }

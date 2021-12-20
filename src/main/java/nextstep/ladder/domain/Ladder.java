@@ -32,12 +32,12 @@ public class Ladder extends FirstClassList<Line> {
     }
 
     public ResultOfGame result(LadderFrame ladderFrame) {
-        List<Integer> indexMap = downToResult(IntStream.range(0, ladderFrame.players().size())
+        List<Integer> indexMap = downToResult(IntStream.range(0, ladderFrame.size())
                         .boxed()
                         .collect(Collectors.toList()),
                 iterator());
 
-        return ResultOfGame.of(ladderFrame.players(), ladderFrame.results().mapByIndex(indexMap));
+        return ResultOfGame.of(ladderFrame.players(), ladderFrame.resultsOfGame(indexMap));
     }
 
     List<Integer> downToResult(List<Integer> indexMap, Iterator<Line> iterator) {

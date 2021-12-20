@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import java.util.List;
 import java.util.Objects;
 
 public class LadderFrame {
@@ -31,6 +32,15 @@ public class LadderFrame {
 
     public Results results() {
         return results;
+    }
+
+    // todo 이렇게 하면 구조는 깔끔해지지만 LadderFrame의 책임이 많아지고 이름과 책임이 맞지 않음
+    public Results resultsOfGame(List<Integer> indexes) {
+        return results.mapByIndex(indexes);
+    }
+
+    public int size() {
+        return players().size();
     }
 
     public PlayerCount playerCount() {

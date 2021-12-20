@@ -25,6 +25,12 @@ public class ResultsTest {
                 .withMessageContaining("cannot be null or empty");
     }
 
+    @Test
+    public void mapByIndex() {
+        final Results results = rs("r1", "r2", "r3");
+        assertThat(results.mapByIndex(List.of(1, 0, 2))).isEqualTo(rs("r2", "r1", "r3"));
+    }
+
     public static Results rs(String ... results) {
         return Results.fromString(Arrays.asList(results));
     }

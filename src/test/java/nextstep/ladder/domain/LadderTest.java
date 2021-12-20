@@ -76,7 +76,7 @@ public class LadderTest {
         assertThat(ladder.result(LadderFrame.of(players, results))).isEqualTo(expected);
     }
 
-    static Stream<Arguments> parseLadderNext() {
+    static Stream<Arguments> parseLadderDownToResult() {
         return Stream.of(
                 Arguments.of(pc(2), h(1), TestLineStrategy.NO_LINE_STRATEGY,
                         List.of(0, 1)),
@@ -87,9 +87,9 @@ public class LadderTest {
         );
     }
 
-    @ParameterizedTest(name = "next: {arguments}")
-    @MethodSource("parseLadderNext")
-    public void next(PlayerCount pc, Height height, LineGenerateStrategy strategy, List<Integer> expected) {
+    @ParameterizedTest(name = "downToResult: {arguments}")
+    @MethodSource("parseLadderDownToResult")
+    public void downToResult(PlayerCount pc, Height height, LineGenerateStrategy strategy, List<Integer> expected) {
         Ladder ladder = Ladder.of(pc, height, strategy);
         List<Integer> indexMap = IntStream.range(0, pc.toInt()).boxed().collect(Collectors.toList());
         assertThat(ladder.downToResult(indexMap, ladder.collect().listIterator())).hasSameElementsAs(expected);
