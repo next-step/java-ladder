@@ -19,7 +19,6 @@ class StreamStudyTest {
     @Test
     void countWords() throws Exception {
         long result = StreamStudy.countWords();
-        System.out.println("result : " + result);
     }
 
     @Test
