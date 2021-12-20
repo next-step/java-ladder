@@ -38,11 +38,11 @@ public class Lambda {
         return sumAll(numbers, number -> number > 3);
     }
 
-    private static int sumAll(List<Integer> numbers, Conditional c) {
+    private static int sumAll(List<Integer> numbers, Conditional conditional) {
         return numbers
             .stream()
             .mapToInt(Integer::intValue)
-            .filter(number -> c.filter(number))
+            .filter(number -> conditional.filter(number))
             .sum();
     }
 }
