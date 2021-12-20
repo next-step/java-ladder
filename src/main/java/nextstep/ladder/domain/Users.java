@@ -26,6 +26,6 @@ public class Users {
 
     @Override
     public String toString() {
-        return users.stream().map(user -> user + "\t").collect(Collectors.joining());
+        return users.stream().map(user -> "     " + user).collect(Collectors.joining());
     }
 }
