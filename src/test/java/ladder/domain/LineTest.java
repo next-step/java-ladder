@@ -34,6 +34,11 @@ public class LineTest {
         assertThat(line.hasRightLine(0)).isTrue();
     }
 
-
+    @Test
+    void 라인_이동() {
+        List<Boolean> points = Arrays.asList(false, true, false, false);
+        Line line = Line.of(() -> points);
+        assertThat(line.move(2, new boolean[4])).isEqualTo(1);
+    }
 
 }

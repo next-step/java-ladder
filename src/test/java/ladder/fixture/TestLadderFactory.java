@@ -1,8 +1,7 @@
 package ladder.fixture;
 
-import ladder.domain.Line;
-import ladder.domain.Players;
-import ladder.domain.RandomPoints;
+import ladder.domain.*;
+
 
 public class TestLadderFactory {
     public static Players createPlayer(String names) {
@@ -11,6 +10,10 @@ public class TestLadderFactory {
 
     public static Line createRandomLine(int countOfPlayers) {
         return Line.of(new RandomPoints(countOfPlayers));
+    }
+
+    public static Ladder createLadder(String names, int height) {
+        return Ladder.of(createPlayer(names), Height.of(height));
     }
 
 }

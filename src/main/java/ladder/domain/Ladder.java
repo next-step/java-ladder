@@ -21,6 +21,19 @@ public class Ladder {
         return lines;
     }
 
+    public static Ladder of (List<Line> lines) {
+        return new Ladder(lines);
+    }
+
+    public int move(int startPoint) {
+        for (int i = 0; i < lines.size(); i++) {
+            boolean[] visited = new boolean[lines.get(i).numberOfPoints()];
+            int result = lines.get(i).move(startPoint, visited);
+            startPoint = result;
+        }
+        return startPoint;
+    }
+
     public int countOfLine() {
         return lines.size();
     }
