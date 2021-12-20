@@ -20,7 +20,7 @@ public class LineFactory {
 
     public static Line of(boolean first, int countOfPerson, LineGenerator generator) {
         List<Point> points = new ArrayList<>();
-        Point firstPoint = new Point(new Index(), first);
+        Point firstPoint = new Point(Index.ZERO, first);
         points.add(firstPoint);
         loopGenerate(points, countOfPerson, generator);
         return new Line(points);

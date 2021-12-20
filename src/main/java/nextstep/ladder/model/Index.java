@@ -3,12 +3,11 @@ package nextstep.ladder.model;
 import java.util.Objects;
 
 public class Index {
-    private static final String MESSAGE_INDEX_CAN_ONLY_POSITIVE = "INDEX는 0 이하의 값이 들어올 수 없습니다.";
-
     public static final int ZERO = 0;
     public static final int ONE = 1;
 
-    private final int index;
+    private static final String MESSAGE_INDEX_CAN_ONLY_POSITIVE = "INDEX는 0 이하의 값이 들어올 수 없습니다.";
+    protected final int index;
 
     public Index() {
         this(ZERO);
