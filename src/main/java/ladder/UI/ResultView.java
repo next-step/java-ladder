@@ -8,8 +8,12 @@ import java.util.List;
 
 public class ResultView {
 
+    private static final String FIRST_LINE = "|";
     private static final String LINE = "-----|";
     private static final String NO_LINE = "     |";
+
+    private static final int NAME_BOX_SIZE = 6;
+    private static final String NAME_BOX_BLANK = " ";
 
     public static void printLadderGameResult(ResponseDto responseDto) {
         View.newLine();
@@ -26,10 +30,10 @@ public class ResultView {
         StringBuilder sb = new StringBuilder();
         for (Name name : participants) {
             sb.append(name);
-            int nameLength = 6 - name.toString().length();
+            int nameLength = NAME_BOX_SIZE - name.toString().length();
             if (nameLength > 0) {
                 for (int i = 0; i < nameLength; i++) {
-                    sb.append(" ");
+                    sb.append(NAME_BOX_BLANK);
                 }
             }
         }
@@ -41,7 +45,7 @@ public class ResultView {
         int lineSize = ladderContext.lineSize();
 
         for (int i = 0; i < ladderHeight; i++) { // 사다리 높이
-            StringBuilder sb = new StringBuilder("|");
+            StringBuilder sb = new StringBuilder(FIRST_LINE);
             for (int j = 0; j < lineSize - 1; j++) { // 라인 크기
                 sb.append(getLine(ladderContext.isRight(i, j)));
             }
