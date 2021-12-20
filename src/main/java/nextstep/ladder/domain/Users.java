@@ -8,6 +8,8 @@ import java.util.stream.Collectors;
  * @author han
  */
 public class Users {
+    private static final String COMMA = ",";
+
     private final List<User> users;
 
     public Users(List<User> users) {
@@ -15,7 +17,7 @@ public class Users {
     }
 
     public static Users createByString(String users) {
-        return new Users(Arrays.stream(users.split(","))
+        return new Users(Arrays.stream(users.split(COMMA))
             .map(user -> new User(Name.of(user)))
             .collect(Collectors.toList()));
     }
