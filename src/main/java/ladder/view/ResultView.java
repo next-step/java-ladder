@@ -64,22 +64,21 @@ public class ResultView {
         System.out.print(result);
     }
 
-    public static void printResult(Answers answers, Ladder ladder, int index) {
-        System.out.println(RESULT);
-        System.out.println(answers.getResult(ladder.climb(new Location(index))));
+    public static void printResult(Answers answers, Location climbResultLocation) {
+        printResultText();
+        System.out.println(answers.getResult(climbResultLocation));
     }
 
-    public static void printResults(Players players, Ladder ladder, Answers answers) {
-        System.out.println(RESULT);
-        players.getPlayers().forEach(x -> {
-            int playerIndex = players.getPlayerIndex(x);
-            String result = answers.getResult(ladder.climb(new Location(playerIndex)));
-            System.out.println(String.format(RESULTS_FORMAT, x.getName(), result));
-        });
+    public static void printResults(Player player, String result) {
+        System.out.println(String.format(RESULTS_FORMAT, player.getName(), result));
     }
 
     public static boolean isAllResult(String input) {
         return ALL_KEYWORD.equals(input.toLowerCase(Locale.ROOT));
+    }
+
+    public static void printResultText() {
+        System.out.println(RESULT);
     }
 
 }

@@ -28,11 +28,17 @@ public class Game {
         String findInput = InputView.questionFindResult();
 
         if (ResultView.isAllResult(findInput)) {
-            ResultView.printResults(players, ladder, answers);
+            ResultView.printResultText();
+            players.getPlayers().forEach(x -> {
+                int playerIndex = players.getPlayerIndex(x);
+                String result = answers.getResult(ladder.climb(new Location(playerIndex)));
+                ResultView.printResults(x, result);
+            });
             return;
         }
 
         int idx = players.getPlayerIndex(new Player(findInput));
-        ResultView.printResult(answers, ladder, idx);
+        Location climbResult = ladder.climb(new Location(idx));
+        ResultView.printResult(answers, climbResult);
     }
 }
