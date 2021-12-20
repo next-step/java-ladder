@@ -35,18 +35,10 @@ public class LadderGame {
         List<LadderResult> results = new ArrayList<>();
         int memberPosition = 0;
         for (Member member : members.getMembers()) {
-            int position = getPosition(ladder, memberPosition);
+            int position = ladder.getPosition(memberPosition);
             results.add(new LadderResult(member, rewards.getRewards(position)));
             memberPosition++;
         }
         return new LadderResults(results);
-    }
-
-    private int getPosition(Ladder ladder, int position) {
-        for (Line line : ladder.getLines()) {
-            Direction direction = Direction.valueOf(line.isLine(position), line.isNextLine(position));
-            position += direction.getMovePosition();
-        }
-        return position;
     }
 }

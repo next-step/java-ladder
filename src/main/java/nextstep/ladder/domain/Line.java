@@ -28,13 +28,17 @@ public class Line {
 
     private void validateLine(List<Point> points) {
         for (int count = FIRST_POINT_POSITION; count < points.size(); count++) {
-            if (count == FIRST_POINT_POSITION && points.get(count).isLine()) {
-                throw new IllegalArgumentException("");
-            }
-            if (count > FIRST_POINT_POSITION && points.get(count).isLine()
-                                                && points.get(count-1).isLine()) {
-                throw new IllegalArgumentException("");
-            }
+            compareLines(points, count);
+        }
+    }
+
+    private void compareLines(List<Point> points, int count) {
+        if (count == FIRST_POINT_POSITION && points.get(count).isLine()) {
+            throw new IllegalArgumentException("");
+        }
+        if (count > FIRST_POINT_POSITION && points.get(count).isLine()
+                                            && points.get(count -1).isLine()) {
+            throw new IllegalArgumentException("");
         }
     }
 

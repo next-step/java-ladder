@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class LineTest {
@@ -28,5 +29,26 @@ class LineTest {
         Line line = Line.of(3, () -> false);
         Line targetLine = Line.createWithVariables(false, false, false);
         assertThat(line).isEqualTo(targetLine);
+    }
+
+    @Test
+    void 첫번째_true_인경우_IllegalArgumentException() {
+        assertThatThrownBy(() -> {
+            Line.createWithVariables(true, true);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 모두_true_인경우_IllegalArgumentException() {
+        assertThatThrownBy(() -> {
+            Line.createWithVariables(true, true, true);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 연속된_true_인경우_IllegalArgumentException() {
+        assertThatThrownBy(() -> {
+            Line.createWithVariables(false, true, true);
+        }).isInstanceOf(IllegalArgumentException.class);
     }
 }
