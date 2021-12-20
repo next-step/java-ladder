@@ -37,7 +37,7 @@
 - 사다리 (Ladder)
   - 사다리의 한줄 (Line)
   - 한줄의 각 지점 (Point)
-  - 임의의 길 만들기 (BuildStrategy)
+  - 한줄의 방향 (Direction)
   
 ### 뷰
 
