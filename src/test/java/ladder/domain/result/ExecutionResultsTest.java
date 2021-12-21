@@ -1,6 +1,5 @@
 package ladder.domain.result;
 
-import ladder.config.LadderConfig;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.LadderHeight;
 import ladder.domain.user.LadderPlayers;
@@ -8,7 +7,6 @@ import ladder.generator.DefaultLadderGenerator;
 import ladder.generator.DefaultLineGenerator;
 import ladder.generator.LadderGenerator;
 import ladder.generator.LineGenerator;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -25,17 +23,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ExecutionResultsTest {
-
-    private Ladder ladder;
-
-    @BeforeEach
-    void init() {
-        LadderPlayers players = new LadderPlayers(Arrays.asList("pobi", "honux", "crong"));
-        LadderHeight height = new LadderHeight(3);
-        LadderConfig config = new LadderConfig();
-        LadderGenerator generator = config.ladderGenerator(players, height);
-        ladder = generator.generate();
-    }
 
     @Test
     @DisplayName("ExecutionResults 객체 생성")
