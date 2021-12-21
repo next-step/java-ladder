@@ -1,15 +1,15 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Members;
+import nextstep.ladder.domain.*;
 
 public class ResultView {
-    private static final String RESPONSE_INIT_MESSAGE = "실행결과";
-    private static final String RESPONSE_MEMBER_MESSAGE = "%5s";
-    private static final String DEFAULT_WHITE_SPACE_CHARACTER = " ";
+    private static final String RESPONSE_INIT_MESSAGE = "사다리 결과";
+    private static final String RESPONSE_RESULT_MESSAGE = "실행 결과";
+    private static final String RESPONSE_RIGHT_ALIGN_MESSAGE = "%5s ";
+    private static final String SPLIT_MEMBER_REWARD = " : ";
     private static final String NOT_LINKED_LINE = "     |";
     private static final String LINKED_LINE = "-----|";
+    private static final String ALL_MEMBERS = "all";
 
     public static void responseInitMessage() {
         System.out.println();
@@ -19,12 +19,12 @@ public class ResultView {
     public static void responseLadderMembers(Members members) {
         System.out.println();
         members.getMembers().stream()
-                    .map(member -> rightAlignment(member.getName()) + DEFAULT_WHITE_SPACE_CHARACTER)
+                    .map(member -> rightAlignment(member.getName()))
                     .forEach(System.out::print);
     }
 
     private static String rightAlignment(String text) {
-        return String.format(RESPONSE_MEMBER_MESSAGE, text);
+        return String.format(RESPONSE_RIGHT_ALIGN_MESSAGE, text);
     }
 
     public static void responseLadder(Ladder ladder) {
@@ -35,16 +35,40 @@ public class ResultView {
     }
 
     private static void printLine(Line line) {
-        for (Boolean point : line.getPoints()) {
+        for (Point point : line.getPoints()) {
             System.out.print(checkLine(point));
         }
         System.out.println();
     }
 
-    private static String checkLine(Boolean point) {
-        if(point){
+    private static String checkLine(Point point) {
+        if (point.isPoint()) {
             return LINKED_LINE;
         }
         return NOT_LINKED_LINE;
+    }
+
+    public static void responseRewards(Rewards rewards) {
+        rewards.getRewards().stream()
+                .map(reward -> rightAlignment(reward.getReward()))
+                .forEach(System.out::print);
+    }
+
+    public static void responseResults(String member, LadderResults ladderResults) {
+        System.out.println();
+        System.out.println(RESPONSE_RESULT_MESSAGE);
+
+        if (member.equals(ALL_MEMBERS)) {
+            responseResultAll(ladderResults);
+            return;
+        }
+        System.out.println(ladderResults.getResult(member));
+    }
+
+    private static void responseResultAll(LadderResults ladderResults) {
+        ladderResults.getResults()
+                        .stream()
+                        .map(ladderResult -> ladderResult.getMemberName() + SPLIT_MEMBER_REWARD + ladderResult.getReward())
+                        .forEach(System.out::println);
     }
 }

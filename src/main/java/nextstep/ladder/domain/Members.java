@@ -6,37 +6,44 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Members {
-    private static final String DEFAULT_WHITE_SPACE_CHARACTER = " ";
-    private static final String DEFAULT_CHARACTER = "";
+    private static final String EXCEPTION_MESSAGE_MEMBERS = "참가자 수가 1보다 작은 수 입니다.";
+    private static final String EXCEPTION_MESSAGE_SAME_MEMBER = "참가자명이 동일합니다.";
     private static final String DEFAULT_SPLIT_CHARACTER = ",";
     private static final int DEFAULT_MEMBER_NUMBER = 1;
 
-    public final List<Member> members;
+    private final List<Member> members;
 
-    public Members(String memberNames) {
-        this.members = memberNames(memberNames);
-    }
-
-    public Members(List<Member> members) {
+    private Members(List<Member> members) {
         this.members = members;
     }
 
-    private List<Member> memberNames(String memberNames) {
-        return Arrays.stream(getNames(memberNames))
-                            .map(name -> new Member(name))
-                            .collect(Collectors.toList());
+    public static Members of(String... members) {
+        return new Members(toMembers(members));
     }
 
-    private String[] getNames(String memberNames) {
-        String[] splitMemberNames = memberNames.replaceAll(DEFAULT_WHITE_SPACE_CHARACTER, DEFAULT_CHARACTER)
-                                                    .split(DEFAULT_SPLIT_CHARACTER);
-        validationNames(splitMemberNames);
+    public static Members from(String memberNames) {
+        return new Members(toMembers(getNames(memberNames)));
+    }
+
+    private static List<Member> toMembers(String[] memberNames) {
+        return Arrays.stream(memberNames)
+                        .map(Member::new)
+                        .collect(Collectors.toList());
+    }
+
+    private static String[] getNames(String memberNames) {
+        String[] splitMemberNames = memberNames.split(DEFAULT_SPLIT_CHARACTER);
+        validateNames(splitMemberNames);
         return splitMemberNames;
     }
 
-    private void validationNames(String[] splitMemberNames) {
-        if(splitMemberNames.length < DEFAULT_MEMBER_NUMBER){
-            throw new IllegalArgumentException("참가자 수가 정확하지 않습니다.");
+    private static void validateNames(String[] splitMemberNames) {
+        if (splitMemberNames.length < DEFAULT_MEMBER_NUMBER) {
+            throw new IllegalArgumentException(EXCEPTION_MESSAGE_MEMBERS);
+        }
+
+        if (Arrays.stream(splitMemberNames).distinct().count() != splitMemberNames.length) {
+            throw new IllegalArgumentException(EXCEPTION_MESSAGE_SAME_MEMBER);
         }
     }
 

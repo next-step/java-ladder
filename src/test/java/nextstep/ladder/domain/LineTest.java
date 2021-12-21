@@ -1,37 +1,54 @@
 package nextstep.ladder.domain;
 
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.Arrays;
-
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-public class LineTest {
+class LineTest {
     @ParameterizedTest(name="{displayName} | 요청값: {0}")
     @ValueSource(booleans = {true, false})
-    void 초기값_false(boolean param) {
-        Line line = new Line(1, () -> param);
-        Line targetLine = new Line(Arrays.asList(false));
+    void 초기값_무조건_false(boolean param) {
+        Line line = Line.of(2, () -> param);
+        Line targetLine = Line.createWithVariables(false, param);
         assertThat(line).isEqualTo(targetLine);
     }
 
     @Test
-    void true뒤_false() {
-        Line line = new Line(3, () -> true);
-        Line targetLine = new Line(Arrays.asList(
-                false, true, false
-        ));
+    void true뒤_무조건_false() {
+        Line line = Line.of(3, () -> true);
+        Line targetLine = Line.createWithVariables(false, true, false);
         assertThat(line).isEqualTo(targetLine);
     }
 
     @Test
     void 모두_false_확인() {
-        Line line = new Line(3, () -> false);
-        Line targetLine = new Line(Arrays.asList(
-                false, false, false
-        ));
+        Line line = Line.of(3, () -> false);
+        Line targetLine = Line.createWithVariables(false, false, false);
         assertThat(line).isEqualTo(targetLine);
+    }
+
+    @Test
+    void 첫번째_true_인경우_IllegalArgumentException() {
+        assertThatThrownBy(() -> {
+            Line.createWithVariables(true, true);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 모두_true_인경우_IllegalArgumentException() {
+        assertThatThrownBy(() -> {
+            Line.createWithVariables(true, true, true);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 연속된_true_인경우_IllegalArgumentException() {
+        assertThatThrownBy(() -> {
+            Line.createWithVariables(false, true, true);
+        }).isInstanceOf(IllegalArgumentException.class);
     }
 }

@@ -1,28 +1,22 @@
 package nextstep.ladder.domain;
 
-import org.assertj.core.api.AssertionsForClassTypes;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 public class MembersTest {
     private Members members;
 
     @BeforeEach
     private void before() {
-        members = new Members(Arrays.asList(
-            new Member("poni"),
-            new Member("mouse"),
-            new Member("peace")
-        ));
+        members = Members.of("poni", "mouse", "peace");
     }
 
     @Test
     void 생성_비교() {
-        Members targetMembers = new Members("poni, mouse, peace");
+        Members targetMembers = Members.from("poni,mouse,peace");
         assertThat(targetMembers).isEqualTo(members);
     }
 
@@ -32,9 +26,16 @@ public class MembersTest {
     }
 
     @Test
-    void 참가자명단_미입력() {
-        AssertionsForClassTypes.assertThatThrownBy(() -> {
-            new Members("");
+    void 참가자명단_미입력시_IllegalArgumentException() {
+        assertThatThrownBy(() -> {
+            Members.from("");
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 동일한_참가자_입력시_IllegalArgumentException() {
+        assertThatThrownBy(() -> {
+            Members.from("pobi,mouse,pobi");
         }).isInstanceOf(IllegalArgumentException.class);
     }
 }

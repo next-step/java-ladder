@@ -4,21 +4,23 @@ import java.util.Objects;
 
 public class Member {
     private static final int MAX_MEMBER_NAME_LENGTH = 5;
+    private static final String EXCEPTION_MESSAGE_MEMBER_NAME = "참가자명을 입력하세요.";
+    private static final String EXCEPTION_MESSAGE_MEMBER_NAME_LENGTH = "5글자를 초과하였습니다.";
 
     private final String name;
 
     public Member(String name) {
-        validationMember(name);
+        validateMember(name);
         this.name = name;
     }
 
-    private void validationMember(String name){
-        if(Objects.isNull(name) || name.length() == 0) {
-            throw new IllegalArgumentException("참가자명을 입력하세요.");
+    private void validateMember(String name) {
+        if (Objects.isNull(name) || name.length() == 0) {
+            throw new IllegalArgumentException(EXCEPTION_MESSAGE_MEMBER_NAME);
         }
 
-        if(name.length() > MAX_MEMBER_NAME_LENGTH) {
-            throw new IllegalArgumentException("5글자를 초과하였습니다.");
+        if (name.length() > MAX_MEMBER_NAME_LENGTH) {
+            throw new IllegalArgumentException(EXCEPTION_MESSAGE_MEMBER_NAME_LENGTH);
         }
     }
 
@@ -38,6 +40,4 @@ public class Member {
     public int hashCode() {
         return Objects.hash(name);
     }
-
-
 }
