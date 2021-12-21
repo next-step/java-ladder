@@ -1,16 +1,16 @@
 package nextstep.ladder.model;
 
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 public enum Direction {
 
     LEFT(Index::prev),
     RIGHT(Index::next),
-    PASS(index -> index);
+    PASS(index -> {});
 
-    private final Function<Index, Index> expression;
+    private final Consumer<Index> expression;
 
-    Direction(Function<Index, Index> expression) {
+    Direction(Consumer<Index> expression) {
         this.expression = expression;
     }
 
@@ -32,6 +32,6 @@ public enum Direction {
     }
 
     public void move(Index index) {
-        expression.apply(index);
+        expression.accept(index);
     }
 }

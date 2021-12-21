@@ -7,7 +7,7 @@ public class Index {
     public static final int ONE = 1;
 
     private static final String MESSAGE_INDEX_CAN_ONLY_POSITIVE = "INDEX는 0 이하의 값이 들어올 수 없습니다.";
-    protected final int index;
+    protected int index;
 
     public Index() {
         this(ZERO);
@@ -17,12 +17,12 @@ public class Index {
         this.index = validationNegative(index);
     }
 
-    public Index next() {
-        return new Index(this.index + 1);
+    public void next() {
+        this.index++;
     }
 
-    public Index prev() {
-        return new Index(this.index - 1);
+    public void prev() {
+        validationNegative(--index);
     }
 
     private int validationNegative(int index) {

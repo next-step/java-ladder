@@ -20,6 +20,10 @@ public class Player extends Name {
         return this.index.isAdjacentRight(other) || this.index.isAdjacentLeft(other);
     }
 
+    public void move(Direction direction) {
+        direction.move(index);
+    }
+
     public Index getIndex() {
         return index;
     }

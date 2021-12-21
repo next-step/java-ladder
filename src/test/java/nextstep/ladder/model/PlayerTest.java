@@ -36,9 +36,17 @@ class PlayerTest {
     @CsvSource(value = {"3,true", "2,true", "1,false", "4,false"})
     @DisplayName("인접한 Point가 있는지 확인")
     void isAdjacentTest(int input, boolean output) {
-
         Player player = new Player("test", 3);
         Index index = new Index(input);
         assertThat(player.isAdjacent(index)).isEqualTo(output);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"LEFT,2", "RIGHT,4", "PASS,3"})
+    @DisplayName("Player 이동 테스트")
+    void move(Direction direction, int output) {
+        Player player = new Player("test", 3);
+        player.move(direction);
+        assertThat(player.getIndex().index).isEqualTo(output);
     }
 }
