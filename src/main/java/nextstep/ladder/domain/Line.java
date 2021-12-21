@@ -34,11 +34,7 @@ public class Line {
     public int move(int location) {
         return IntStream.range(FIRST_INDEX, points.size() + FIRST_INDEX)
                 .filter(index -> index == location)
-                .map(current -> {
-                    Point nowPoint = points.get(current);
-                    int direction = nowPoint.checkDirection(points.get(current - 1));
-                    return current + direction;
-                })
+                .map(current -> current + moveToPoint(points.get(current - 1), points.get(current)))
                 .findFirst()
                 .orElseThrow(IllegalArgumentException::new);
     }
@@ -48,5 +44,9 @@ public class Line {
             return new Point(false);
         }
         return new Point(lineStrategy.draw());
+    }
+
+    private int moveToPoint(Point leftPoint, Point currentPoint) {
+        return currentPoint.checkDirection(leftPoint);
     }
 }
