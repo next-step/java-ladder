@@ -10,13 +10,14 @@
 * 기능 요구사항 3단계와 같다.
 * 추가로 제공되는 객체 설계 힌트를 참고해 철저하게 TDD로 재구현해 본다.
 * [ ] 사다리 한 Line 추상화
-  * [ ] 사다리 게임에서 한 Line을 LadderLine으로 이름을 붙이고 다음과 같이 구현
-  * [ ] 사다리 Line의 모든 Point 초기화와 이동을 담당
+  * [x] 사다리 게임에서 한 Line을 LadderLine으로 이름을 붙이고 다음과 같이 구현
+  * [x] 사다리 Line의 모든 Point 초기화와 이동을 담당
+  * [ ] 포인트 생성 방식을 런타임에 정할수 있게 수정
 * [ ] LadderLine의 두 점과 현재 위치를 Point로 추상화
-  * [ ] LadderLine에서 위치와 각 점의 방향을 관리
+  * [x] LadderLine에서 위치와 각 점의 방향을 관리
 * [ ] 각 Point의 좌/우 방향을 Direction으로 추상화
-  * [ ] 각 Point의 좌/우 방향 정보를 가진다.
-  * [ ] 현재 Point에서 다음 Point를 생성하는 역할
+  * [x] 각 Point의 좌/우 방향 정보를 가진다.
+  * [x] 현재 Point에서 다음 Point를 생성하는 역할
 * [ ] 책임 기반의 인터페이스 위주 설계
   * [ ] LadderFrame의 resultOfGame 분리
 * 피드백
