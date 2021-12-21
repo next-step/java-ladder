@@ -9,6 +9,7 @@ import java.util.stream.IntStream;
  */
 public class Line {
     private static final int MINIMUM = 2;
+    private static final int BASE = 1;
 
     private final List<Point> points;
 
@@ -22,8 +23,8 @@ public class Line {
     private List<Point> createBy(int users, LineStrategy lineStrategy) {
         List<Point> points = new ArrayList<>();
         points.add(Point.init(false));
-        IntStream.range(0, users - 1)
-            .forEach(i -> points.add(points.get(i).next(lineStrategy)));
+        IntStream.range(BASE, users)
+            .forEach(i -> points.add(points.get(i - BASE).next(lineStrategy)));
         return points;
     }
 
