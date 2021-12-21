@@ -9,6 +9,7 @@ import java.util.stream.IntStream;
  */
 public class Lines {
     private static final LineStrategy strategy = new RandomStrategy();
+    private static final int ZERO = 0;
     private final List<Line> lines;
 
     private Lines(List<Line> line) {
@@ -23,7 +24,7 @@ public class Lines {
         int ladderHeight = height.getHeight();
         int userSize = users.getUsers().size();
 
-        return IntStream.range(0, ladderHeight)
+        return IntStream.range(ZERO, ladderHeight)
             .mapToObj(i -> new Line(userSize, strategy))
             .collect(Collectors.toList());
     }
