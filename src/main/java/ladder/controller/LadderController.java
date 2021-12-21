@@ -1,11 +1,11 @@
 package ladder.controller;
 
+import ladder.config.LadderConfig;
 import ladder.domain.ladder.Ladder;
-import ladder.domain.ladder.LadderComponentDto;
 import ladder.domain.ladder.LadderHeight;
 import ladder.domain.result.ExecutionResults;
 import ladder.domain.user.LadderPlayers;
-import ladder.strategy.LineStrategy;
+import ladder.generator.LadderGenerator;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
@@ -15,10 +15,10 @@ public class LadderController {
 
     public static final String ALL_RESULTS = "all";
 
-    private final LineStrategy lineStrategy;
+    private final LadderConfig config;
 
-    public LadderController(LineStrategy lineStrategy) {
-        this.lineStrategy = lineStrategy;
+    public LadderController(LadderConfig config) {
+        this.config = config;
     }
 
     public void start() {
@@ -26,7 +26,8 @@ public class LadderController {
         ExecutionResults items = new ExecutionResults(InputView.printInputItems());
         LadderHeight height = new LadderHeight(InputView.printInputLadderHeight());
 
-        Ladder ladder = Ladder.createLadder(lineStrategy, new LadderComponentDto(players, height));
+        LadderGenerator ladderGenerator = config.ladderGenerator(players, height);
+        Ladder ladder = ladderGenerator.generate();
 
         ResultView.printLadderResult(players.getPlayers(), ladder.getLines());
         ResultView.printItems(items);

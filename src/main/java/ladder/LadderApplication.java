@@ -1,15 +1,14 @@
 package ladder;
 
+import ladder.config.LadderConfig;
 import ladder.controller.LadderController;
-import ladder.strategy.LineStrategy;
-import ladder.strategy.RandomLine;
 
 public class LadderApplication {
 
     public static void main(String[] args) {
 
-        LineStrategy strategy = new RandomLine();
-        LadderController controller = new LadderController(strategy);
+        LadderConfig config = new LadderConfig();
+        LadderController controller = new LadderController(config);
 
         controller.start();
 
