@@ -27,6 +27,18 @@ public class Line {
                 .orElseThrow(() -> new IllegalArgumentException(MESSAGE_MIN_WIDTH));
     }
 
+    public void move(Player player) {
+        Direction direction = points.stream()
+                .filter(Point::isActive)
+                .filter(player::isAdjacent)
+                .findFirst()
+                .map(point -> Direction.of(player, point))
+                .orElse(Direction.PASS);
+
+        player.move(direction);
+    }
+
+
     public List<Point> getPoints() {
         return points;
     }
