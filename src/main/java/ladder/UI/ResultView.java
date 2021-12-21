@@ -1,10 +1,14 @@
 package ladder.UI;
 
+import ladder.domain.ladder.InputLadderResult;
 import ladder.domain.ladder.LadderContext;
+import ladder.domain.ladder.LadderResult;
 import ladder.domain.user.Name;
 import ladder.domain.user.Participants;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ResultView {
 
@@ -15,15 +19,13 @@ public class ResultView {
     private static final int NAME_BOX_SIZE = 6;
     private static final String NAME_BOX_BLANK = " ";
 
-    public static void printLadderGameResult(ResponseDto responseDto) {
+    public static void printLadderGame(ResponseDto responseDto) {
         View.newLine();
         System.out.println("실행결과");
 
-        Participants participants = responseDto.getParticipants();
-        LadderContext ladderContext = responseDto.getLadderContext();
-
-        printParticipants(participants.get());
-        printLadder(ladderContext);
+        printParticipants(responseDto.getParticipants().get());
+        printLadder(responseDto.getLadderContext());
+        printInputLadderResult(responseDto.getInputLadderResult());
     }
 
     private static void printParticipants(List<Name> participants) {
@@ -32,12 +34,12 @@ public class ResultView {
                 .forEach(name -> {
                     System.out.print(name);
                     int nameLength = NAME_BOX_SIZE - name.length();
-                    printNameBoxBlank(nameLength);
+                    printBlank(nameLength);
                 });
         View.newLine();
     }
 
-    private static void printNameBoxBlank(int nameLength) {
+    private static void printBlank(int nameLength) {
         for (int i = 0; i < nameLength; i++) {
             System.out.print(NAME_BOX_BLANK);
         }
@@ -48,6 +50,7 @@ public class ResultView {
         for (int ladderIndex = 0; ladderIndex < ladderHeight; ladderIndex++) {
             printLadder(ladderContext, ladderIndex);
         }
+
     }
 
     private static void printLadder(LadderContext ladderContext, int ladderIndex) {
@@ -64,5 +67,25 @@ public class ResultView {
             return LINE;
         }
         return NO_LINE;
+    }
+
+    private static void printInputLadderResult(InputLadderResult inputLadderResult) {
+        inputLadderResult.getResults().stream()
+                .map(String::toString)
+                .forEach(result -> {
+                    System.out.print(result);
+                    printBlank(NAME_BOX_SIZE - result.length());
+                });
+        View.newLine();
+    }
+
+    public static void printLadderGameResult(LadderResult ladderResult, String name) {
+        View.newLine();
+        System.out.println("실행결과");
+
+        Map<String, String> result = ladderResult.getResults(name);
+        for (String key : result.keySet()) {
+            System.out.println(key + " : " + result.get(key));
+        }
     }
 }

@@ -17,4 +17,17 @@ public class InputView {
         System.out.println("사다리 높이를 입력 해주세요.");
         return sc.nextInt();
     }
+
+    public static String inputLadderResult() {
+        View.newLine();
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요.");
+        return sc.nextLine();
+    }
+
+    public static String inputFindByName() {
+        View.newLine();
+        System.out.println("결과를 보고 싶은 사람은?");
+        Scanner sc = new Scanner(System.in);
+        return sc.nextLine();
+    }
 }
