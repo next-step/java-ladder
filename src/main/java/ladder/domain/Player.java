@@ -2,6 +2,8 @@ package ladder.domain;
 
 import ladder.exception.PlayerException;
 
+import java.util.Objects;
+
 public class Player {
 
     private static final String ERR_NAME_SIZE = "이름은 최대 5글자 입니다.";
@@ -23,5 +25,18 @@ public class Player {
 
     public String getName() {
         return this.name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Player player = (Player) o;
+        return Objects.equals(name, player.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }

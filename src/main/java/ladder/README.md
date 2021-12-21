@@ -42,9 +42,7 @@
 - Player: 플레이어 클래스
 
 
-- PlayerException: 플레이어 예외처리 클래스
-    - 플레이어 이름 5자 초과시 에러처리
-
+- Answers: 사용자가 입력한 결과 목록 클래스
 
 
 ### exception 패키지
@@ -53,6 +51,7 @@
 
 - HeightException : 사다리 높이 오류 반환 클래스
 
+- ResultException : 결과 오류 반환 클래스
 
 
 ### view 패키지

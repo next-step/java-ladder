@@ -23,4 +23,12 @@ public class Ladder {
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
     }
+
+    public Location climb(Location location) {
+        final Location[] nextLocation = {new Location(location.getLocation())};
+        this.lines.forEach(line ->
+            nextLocation[0] = line.move(nextLocation[0])
+        );
+        return nextLocation[0];
+    }
 }
