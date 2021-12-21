@@ -21,15 +21,14 @@ class ResultViewTest {
         LadderPlayers players = new LadderPlayers(Arrays.asList("pobi", "honux", "crong"));
         LadderHeight height = new LadderHeight(3);
         LadderConfig config = new LadderConfig();
-        LadderGenerator generator = config.ladderGenerator(players, height);
-        ladder = generator.generate();
+        LadderGenerator generator = config.ladderGenerator(height);
+        ladder = generator.generate(players.size());
     }
 
     @Test
     @DisplayName("사다리 출력 그림 보기 위해 작성")
     void printResult() {
         LadderPlayers players = new LadderPlayers(Arrays.asList("pobi", "honux", "crong", "jk"));
-//        Ladder ladder = Ladder.createLadder(new RandomLine(), new DefaultLadderGenerator(players, new LadderHeight(4)));
         ExecutionResults items = new ExecutionResults(Arrays.asList("꽝", "2000", "10000", "꽝"));
         ResultView.printLadderResult(players.getPlayers(), ladder.getLines());
         ResultView.printItems(items);

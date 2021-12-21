@@ -5,6 +5,6 @@ import ladder.domain.ladder.Ladder;
 @FunctionalInterface
 public interface LadderGenerator {
 
-    Ladder generate();
+    Ladder generate(int countOfPlayer);
 
 }
