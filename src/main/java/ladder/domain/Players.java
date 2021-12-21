@@ -37,7 +37,11 @@ public class Players {
     }
 
     public int findIndexByName(String name) {
-        return names.indexOf(new Name(name));
+        int result = names.indexOf(new Name(name));
+        if (result == -1) {
+            throw new IllegalArgumentException("찾을 수 없는 이름입니다.");
+        }
+        return result;
     }
 
 }
