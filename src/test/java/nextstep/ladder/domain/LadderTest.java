@@ -13,6 +13,7 @@ class LadderTest {
     void create() {
         Users users = Users.createByString(UsersTest.NAMES);
         Height height = new Height(5);
-        assertDoesNotThrow(() -> Ladder.from(users, height));
+        Results results = Results.createByString(ResultsTest.RESULTS);
+        assertDoesNotThrow(() -> Ladder.from(users, height, results));
     }
 }
