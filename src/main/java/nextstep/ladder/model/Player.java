@@ -16,6 +16,10 @@ public class Player extends Name {
         this.index = new Index(index);
     }
 
+    public boolean isAdjacent(Index other) {
+        return this.index.isAdjacentRight(other) || this.index.isAdjacentLeft(other);
+    }
+
     public Index getIndex() {
         return index;
     }
