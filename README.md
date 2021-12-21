@@ -24,6 +24,7 @@
   - all -> 모든 사람의 사다리 게임 결과
 
 ### domain
+**Ladder -> Line -> Point -> Direction**
 - 참여할 사람 생성
   - 입력받은 문자열을 ,로 split하여 참여하는 사람 분리
   - 이름은 1~5자까지 가능
