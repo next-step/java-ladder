@@ -21,16 +21,24 @@ public class DirectionTest {
     }
 
     @Test
-    public void next_random_true() {
+    public void 초기_true_이후_랜덤값이_true_경우() {
         assertThat(Direction.first(TRUE).next(() -> true)).isEqualTo(Direction.of(TRUE, FALSE));
     }
 
-//    @Test
-//    public void next_random_false() {
-//        for (int i = 0; i < 100; i++) {
-//            Direction.first(FALSE).next(() -> true);
-//        }
-//    }
+    @Test
+    public void 초기_true_이후_랜덤값이_false_경우() {
+        assertThat(Direction.first(TRUE).next(() -> false)).isEqualTo(Direction.of(TRUE, FALSE));
+    }
+
+    @Test
+    public void 초기_false_이후_랜덤값이_true_경우() {
+        assertThat(Direction.first(FALSE).next(() -> true)).isEqualTo(Direction.of(FALSE, TRUE));
+    }
+
+    @Test
+    public void 초기_false_이후_랜덤값이_false_경우() {
+        assertThat(Direction.first(FALSE).next(() -> false)).isEqualTo(Direction.of(FALSE, FALSE));
+    }
 
     @Test
     public void next_true() {

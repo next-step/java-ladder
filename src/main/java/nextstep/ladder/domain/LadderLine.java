@@ -3,6 +3,7 @@ package nextstep.ladder.domain;
 import nextstep.ladder.strategy.PointStrategy;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -46,6 +47,10 @@ public class LadderLine {
         Point point = Point.first(pointStrategy.generatePoint());
         points.add(point);
         return point;
+    }
+
+    public List<Point> getPoints() {
+        return points;
     }
 
     @Override

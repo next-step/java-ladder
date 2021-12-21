@@ -36,4 +36,10 @@ public class PointTest {
         Point second = Point.first(TRUE).next(() -> true);
         assertThat(second.move()).isEqualTo(0);
     }
+
+    @Test
+    public void next_false() {
+        Point second = Point.first(TRUE).next(() -> false);
+        assertThat(second.move()).isEqualTo(0);
+    }
 }
