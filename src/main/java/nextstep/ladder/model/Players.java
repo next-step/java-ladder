@@ -18,7 +18,7 @@ public class Players {
 
     private List<Player> convertToPlayers(String[] splitNames) {
         return IntStream.range(0, validationSize(splitNames))
-                .mapToObj(index -> new Player(splitNames[index], new Index(index)))
+                .mapToObj(index -> new Player(splitNames[index], index))
                 .collect(Collectors.toList());
 
     }

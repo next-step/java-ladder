@@ -27,7 +27,7 @@ class PlayerTest {
     @Test
     @DisplayName("index 값 일치 테스트")
     void indexEqualsTest() {
-        Player player = new Player("test", new Index(1));
-        assertThat(player.getIndex()).isEqualTo(new Index(1));
+        Player player = new Player("test", Index.ONE);
+        assertThat(player.getIndex()).isEqualTo(Index.ONE_INDEX);
     }
 }

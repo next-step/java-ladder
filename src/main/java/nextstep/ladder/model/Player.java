@@ -11,9 +11,9 @@ public class Player extends Name {
         this.index = new Index(0);
     }
 
-    public Player(String name, Index index) {
+    public Player(String name, int index) {
         super(name);
-        this.index = index;
+        this.index = new Index(index);
     }
 
     public Index getIndex() {
