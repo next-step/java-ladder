@@ -45,7 +45,10 @@ public class ResultView {
     }
 
     private static String printPoint(Point point) {
-        return point.hasLineBefore() ? LINE_WITH_BRIDGE : LINE_WITHOUT_BRIDGE;
+        if (point.hasLineBefore()) {
+            return LINE_WITH_BRIDGE;
+        }
+        return LINE_WITHOUT_BRIDGE;
     }
 }
 
