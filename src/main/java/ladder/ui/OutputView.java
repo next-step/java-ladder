@@ -35,11 +35,10 @@ public class OutputView {
         printRewards(ladderGame.getRewards());
     }
 
-    private static void printNames(LadderStrings<Name> names) {
+    private static void printNames(Names names) {
         List<Name> nameList = names.getValue();
         System.out.println(nameList.stream()
-                .map(Name::getValue)
-                .map(OutputView::padding)
+                .map(name -> padding(name.value()))
                 .collect(Collectors.joining(EMPTY_DELIMITER)));
     }
 
@@ -90,11 +89,10 @@ public class OutputView {
         return EMPTY_RUNG_VALUE;
     }
 
-    private static void printRewards(LadderStrings<Reward> rewards) {
-        List<Reward> nameList = rewards.getValue();
-        System.out.println(nameList.stream()
-                .map(Reward::getValue)
-                .map(OutputView::padding)
+    private static void printRewards(Rewards rewards) {
+        List<Reward> rewardList = rewards.getValue();
+        System.out.println(rewardList.stream()
+                .map(reward -> padding(reward.value()))
                 .collect(Collectors.joining(EMPTY_DELIMITER)));
     }
 
@@ -105,10 +103,7 @@ public class OutputView {
 
     public static void printResults(Results results) {
         System.out.println(REWARD_RESULT_MESSAGE);
-//        for (Result result : results.value()) {
-//            System.out.printf(PRINT_ALL_FORMAT, result.name(), result.reward());
-//        }
-        results.value().stream()
+        results.value()
                 .forEach(result -> System.out.printf(PRINT_ALL_FORMAT, result.name(), result.reward()));
     }
 

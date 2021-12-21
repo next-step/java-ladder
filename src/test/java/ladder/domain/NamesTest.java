@@ -16,14 +16,6 @@ public class NamesTest {
         assertThat(names.getValue()).hasSize(4);
     }
 
-    @DisplayName("생성 파라미터는 null일 수 없음")
-    @Test
-    void create_null() {
-        assertThatThrownBy(() -> new Names(null))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("입력이 null일 수 없습니다.");
-    }
-
     @DisplayName("생성 파라미터는 비어있을 수 없음")
     @Test
     void create_empty() {

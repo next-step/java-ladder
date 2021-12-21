@@ -20,11 +20,11 @@ public class LadderPartFactoryTest {
         LadderPartFactory.setStrategy(() -> true);
     }
 
-    @DisplayName("짝수는 Rail, 홀수는 Rung")
+    @DisplayName("인덱스가 짝수면 Rail, 홀수면 Rung 생성")
     @ParameterizedTest
     @MethodSource(value = "provideIndex")
-    void create(int idx, LadderPart ladderPart) {
-        assertThat(LadderPartFactory.ladderPart(idx)).isEqualTo(ladderPart);
+    void create(int index, LadderPart ladderPart) {
+        assertThat(LadderPartFactory.ladderPart(index)).isEqualTo(ladderPart);
     }
 
     private static Stream<Arguments> provideIndex() {
@@ -58,7 +58,7 @@ public class LadderPartFactoryTest {
     void setStrategy() {
         assertThatThrownBy(() -> LadderPartFactory.setStrategy(null))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("strategy는 null일 수 없습니다.");
+                .hasMessage(LadderPartFactory.STRATEGY_NULL_MESSAGE);
     }
 
 }

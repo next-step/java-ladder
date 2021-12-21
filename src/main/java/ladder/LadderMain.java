@@ -19,13 +19,15 @@ public class LadderMain {
 
         OutputView.printLadderGame(new LadderGameDto(names, ladder, rewards));
 
-        while (true) {
-            String name = InputView.readName();
+        readNameAndPrintResult(results);
+    }
 
-            checkPrintAllAndEnd(name, results);
+    private static void readNameAndPrintResult(Results results) {
+        String name = InputView.readName();
+        checkPrintAllAndEnd(name, results);
+        OutputView.printResult(results.resultOf(name));
 
-            OutputView.printResult(results.resultOf(name));
-        }
+        readNameAndPrintResult(results);
     }
 
     private static void checkPrintAllAndEnd(String name, Results results) {

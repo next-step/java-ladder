@@ -2,7 +2,6 @@ package ladder.domain;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -20,11 +19,11 @@ public class Ladder {
         this(new Names(names), height);
     }
 
-    public Ladder(LadderStrings<Name> names, int height) {
+    public Ladder(Names names, int height) {
         this(widthFromNames(names), height);
     }
 
-    private static int widthFromNames(LadderStrings<Name> names) {
+    private static int widthFromNames(Names names) {
         return names.count() * 2 - 1;
     }
 
@@ -43,10 +42,11 @@ public class Ladder {
     }
 
     public int findRewardIndex(int number) {
-        AtomicInteger result = new AtomicInteger(calculateStartIndex(number));
-        lines.stream()
-                .forEach(line -> result.set(line.move(result.get())));
-        return calculateRewardIndex(result.get());
+        int result = calculateStartIndex(number);
+        for (Line line : lines) {
+            result = line.move(result);
+        }
+        return calculateRewardIndex(result);
     }
 
     private int calculateStartIndex(int index) {

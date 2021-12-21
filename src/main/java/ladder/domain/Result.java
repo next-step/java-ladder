@@ -15,15 +15,15 @@ public class Result {
     }
 
     public boolean matchName(String name) {
-        return this.name.getValue().equals(name);
+        return this.name.match(name);
     }
 
     public String name() {
-        return name.getValue();
+        return name.value();
     }
 
     public String reward() {
-        return reward.getValue();
+        return reward.value();
     }
 
     @Override
@@ -49,4 +49,5 @@ public class Result {
         result = 31 * result + (reward != null ? reward.hashCode() : 0);
         return result;
     }
+
 }

@@ -37,19 +37,19 @@ class ResultsTest {
         );
     }
 
-    @DisplayName("올바른 결과")
+    @DisplayName("올바른 결과 생성")
     @ParameterizedTest
     @MethodSource(value = "provideLadder")
-    void makeResult(Ladder ladder) {
+    void create(Ladder ladder) {
         Results results = new Results(new Names("pobi, crong"), ladder, new Rewards("a, b"));
         assertThat(results.resultOf("pobi")).isEqualTo(new Result("pobi", "b"));
         assertThat(results.resultOf("crong")).isEqualTo(new Result("crong", "a"));
     }
 
-    @DisplayName("올바르지 않은 결과 - 길이가 다름")
+    @DisplayName("올바르지 않은 결과 생성시 예외발생 - 길이가 다름")
     @ParameterizedTest
     @MethodSource(value = "provideLadder")
-    void makeResult_fail(Ladder ladder) {
+    void create_fail(Ladder ladder) {
         assertThatThrownBy(() -> new Results(new Names("pobi, crong, honux"), ladder, new Rewards("a, b, c")))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(Results.INVALID_RESULT_LENGTH_MESSAGE);
