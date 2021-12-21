@@ -13,7 +13,7 @@ public class Ladder {
     }
 
     public static Ladder of(Players players, Height height) {
-        return new Ladder(init(players.countOfPlayers(), height.get()));
+        return new Ladder(init(players.countOfPlayers(), height.getHeight()));
     }
 
     private static List<Line> init(int countOfPlayers, int height) {
@@ -39,13 +39,13 @@ public class Ladder {
         return lines.size();
     }
 
-    public List<Line> get() {
+    public List<Line> getLadder() {
         return lines;
     }
 
     public List<LadderResult> findGameResult(Players players, Results results, String name) {
         if ("all".equals(name)) {
-            return players.get()
+            return players.getPlayers()
                     .stream()
                     .map(player -> LadderResult.of(player.getName(), findResult(players, results, player.getName())))
                     .collect(Collectors.toList());

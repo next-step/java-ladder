@@ -19,7 +19,7 @@ public class Height {
         return new Height(height);
     }
 
-    public int get() {
+    public int getHeight() {
         return height;
     }
 

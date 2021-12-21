@@ -26,7 +26,7 @@ public class Results {
         return results.get(index);
     }
 
-    public List<String> get() {
+    public List<String> getResults() {
         return results;
     }
 

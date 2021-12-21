@@ -28,7 +28,7 @@ public class Players {
         return str == null || str.trim().length() == 0;
     }
 
-    public List<Name> get() {
+    public List<Name> getPlayers() {
         return names;
     }
 

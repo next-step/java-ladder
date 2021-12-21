@@ -14,9 +14,9 @@ public class ResultView {
     public static void printLadderResult(Ladder ladder, Players players, Results results) {
         System.out.println();
         System.out.println(LADDER_RESULT);
-        printPlayer(players.get());
-        printLadder(ladder.get());
-        printResults(results.get());
+        printPlayer(players.getPlayers());
+        printLadder(ladder.getLadder());
+        printResults(results.getResults());
     }
 
     public static void printGameResult(List<LadderResult> results) {
