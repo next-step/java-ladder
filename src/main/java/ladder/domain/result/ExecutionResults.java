@@ -18,14 +18,14 @@ public class ExecutionResults {
         this.results = results;
     }
 
-    public Map<String, String> executeGame(LadderPlayers players, Ladder ladder) {
-        Map<String, String> result = new HashMap<>();
-        for (int num = 0; num < players.size(); num++) {
-            int findIndex = ladder.move(num);
-            result.put(players.getPlayerNames().get(num), this.results.get(findIndex));
-        }
-        return result;
-    }
+//    public Map<String, String> executeGame(LadderPlayers players, Ladder ladder) {
+//        Map<String, String> result = new HashMap<>();
+//        for (int num = 0; num < players.size(); num++) {
+//            int findIndex = ladder.move(num);
+//            result.put(players.getPlayerNames().get(num), this.results.get(findIndex));
+//        }
+//        return result;
+//    }
 
     public List<String> getResults() {
         return Collections.unmodifiableList(this.results);

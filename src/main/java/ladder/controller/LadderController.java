@@ -6,6 +6,7 @@ import ladder.domain.ladder.LadderHeight;
 import ladder.domain.result.ExecutionResults;
 import ladder.domain.user.LadderPlayers;
 import ladder.generator.LadderGenerator;
+import ladder.strategy.PlayResult;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
@@ -26,13 +27,15 @@ public class LadderController {
         ExecutionResults items = new ExecutionResults(InputView.printInputItems());
         LadderHeight height = new LadderHeight(InputView.printInputLadderHeight());
 
-        LadderGenerator ladderGenerator = config.ladderGenerator(players, height);
-        Ladder ladder = ladderGenerator.generate();
+        LadderGenerator ladderGenerator = config.ladderGenerator(height);
+        Ladder ladder = ladderGenerator.generate(players.size());
 
         ResultView.printLadderResult(players.getPlayers(), ladder.getLines());
         ResultView.printItems(items);
 
-        Map<String, String> result = items.executeGame(players, ladder);
+        PlayResult playResult = config.playResult(ladder);
+        Map<String, String> result = playResult.play(players, items);
+
         printGameResults(players, result);
     }
 
