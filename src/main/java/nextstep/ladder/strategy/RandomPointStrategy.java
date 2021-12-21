@@ -6,7 +6,7 @@ public class RandomPointStrategy implements PointStrategy {
     private static final Random RANDOM = new Random();
 
     @Override
-    public boolean generate() {
+    public boolean generatePoint() {
         return RANDOM.nextBoolean();
     }
 }
