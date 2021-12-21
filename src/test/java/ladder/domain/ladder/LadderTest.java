@@ -1,11 +1,15 @@
 package ladder.domain.ladder;
 
 import ladder.domain.user.LadderPlayers;
-import ladder.strategy.RandomLine;
+import ladder.generator.DefaultLadderGenerator;
+import ladder.generator.DefaultLineGenerator;
+import ladder.generator.LadderGenerator;
+import ladder.generator.LineGenerator;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.Arrays;
@@ -15,21 +19,30 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderTest {
 
-    @ParameterizedTest
-    @DisplayName("사다리 객체 생성 - 입력된 height 만큼 라인 객체를 갖고있음")
-    @CsvSource(value = {"3,4,5"})
-    void create(int height) {
-        LadderPlayers players = new LadderPlayers(Arrays.asList("pobi", "honux"));
-        Ladder ladder = Ladder.createLadder(new RandomLine(), new LadderComponentDto(players, new LadderHeight(height)));
-        assertThat(ladder.getLines()).size().isEqualTo(height);
+    private LadderHeight height;
+    private LadderGenerator generator;
+    private Ladder ladder;
+
+    @BeforeEach
+    void init() {
+        LadderPlayers players = new LadderPlayers(Arrays.asList("pobi", "honux", "crong", "jk"));
+        LineGenerator lineGenerator = new DefaultLineGenerator(() -> true);
+        height = new LadderHeight(3);
+        generator = new DefaultLadderGenerator(lineGenerator, players, height);
+        ladder = generator.generate();
+    }
+
+    @Test
+    @DisplayName("Generator 로 ladder 생성 - height 만큼 라인 생성")
+    void generateLadder() {
+        Ladder ladder = generator.generate();
+        assertThat(ladder.getLines()).size().isEqualTo(height.getHeight());
     }
 
     @ParameterizedTest
     @DisplayName("Line 마다 move 후 마지막 위치값을 반환")
     @MethodSource("provideMoveValue")
     void move(int input, int expected) {
-        LadderPlayers players = new LadderPlayers(Arrays.asList("pobi", "honux", "crong", "jk"));
-        Ladder ladder = Ladder.createLadder(() -> true,  new LadderComponentDto(players, new LadderHeight(3)));
         assertThat(ladder.move(input)).isEqualTo(expected);
     }
 

@@ -1,9 +1,14 @@
 package ladder.domain.result;
 
+import ladder.config.LadderConfig;
 import ladder.domain.ladder.Ladder;
-import ladder.domain.ladder.LadderComponentDto;
 import ladder.domain.ladder.LadderHeight;
 import ladder.domain.user.LadderPlayers;
+import ladder.generator.DefaultLadderGenerator;
+import ladder.generator.DefaultLineGenerator;
+import ladder.generator.LadderGenerator;
+import ladder.generator.LineGenerator;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -20,6 +25,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ExecutionResultsTest {
+
+    private Ladder ladder;
+
+    @BeforeEach
+    void init() {
+        LadderPlayers players = new LadderPlayers(Arrays.asList("pobi", "honux", "crong"));
+        LadderHeight height = new LadderHeight(3);
+        LadderConfig config = new LadderConfig();
+        LadderGenerator generator = config.ladderGenerator(players, height);
+        ladder = generator.generate();
+    }
 
     @Test
     @DisplayName("ExecutionResults 객체 생성")
@@ -49,9 +65,12 @@ class ExecutionResultsTest {
     @DisplayName("사다리 게힘 실행 시, 모든 결과항목 반환 - 결과에 맞는 항목들 Map 으로 반환")
     void createAllResults(String name, String expectedItem) {
         LadderPlayers players = new LadderPlayers(Arrays.asList("pobi", "honux", "crong"));
-        Ladder ladder = Ladder.createLadder(() -> true, new LadderComponentDto(players, new LadderHeight(3)));
-        ExecutionResults items = new ExecutionResults(Arrays.asList("꽝", "5000", "10000"));
+        LineGenerator lineGenerator = new DefaultLineGenerator(() -> true);
+        LadderHeight height = new LadderHeight(3);
+        LadderGenerator generator = new DefaultLadderGenerator(lineGenerator, players, height);
+        Ladder ladder = generator.generate();
 
+        ExecutionResults items = new ExecutionResults(Arrays.asList("꽝", "5000", "10000"));
         Map<String, String> results = items.executeGame(players, ladder);
 
         assertThat(results).size().isEqualTo(3);

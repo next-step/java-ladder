@@ -1,13 +1,8 @@
 package ladder.domain.ladder;
 
-import ladder.strategy.LineStrategy;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
-import static java.util.stream.Collectors.toList;
-import static java.util.stream.IntStream.range;
 
 public class Ladder {
 
@@ -21,10 +16,7 @@ public class Ladder {
         return lines;
     }
 
-    public static Ladder createLadder(LineStrategy strategy, LadderComponentDto component) {
-        List<Line> lines = range(0, component.getHeight())
-                .mapToObj(range -> Line.createLine(component.getPlayers().size(), strategy))
-                .collect(toList());
+    public static Ladder createLadder(List<Line> lines) {
         return new Ladder(lines);
     }
 
