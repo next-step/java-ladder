@@ -67,7 +67,7 @@ public class ResultView {
     private static String printLine(Line line) {
         StringJoiner joiner = new StringJoiner(LADDER_COLUMN);
         joiner.add(LADDER_SPACE);
-        line.getLiens().stream()
+        line.getPoints().stream()
                 .map(ResultView::printPoint)
                 .forEach(joiner::add);
         return joiner.toString();
