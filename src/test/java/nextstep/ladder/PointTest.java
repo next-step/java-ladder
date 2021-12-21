@@ -13,9 +13,9 @@ class PointTest {
   @ParameterizedTest
   @CsvSource(value = {"true:1", "false:0"}, delimiter = ':')
   @DisplayName("첫번째 point의 길을 생성 또는 생성하지 않는다.")
-  void first(boolean value, int index) {
+  void first(boolean value, int direction) {
     Point point = Point.first(value);
-    assertEquals(point.move(), index);
+    assertEquals(point.move(), direction);
   }
 
   @ParameterizedTest
@@ -30,9 +30,9 @@ class PointTest {
 
   @ParameterizedTest
   @CsvSource(value = {"true:false:-1", "false:true:1", "false:false:0"}, delimiter = ':')
-  @DisplayName("길이 있는 쪽의 index를 반환한다.")
+  @DisplayName("길이 있는 쪽의 방향 부호를 반환한다.")
   void findDirection(boolean left, boolean right, int result) {
-    Point point = new Point(Direction.of(left, right));
+    Point point = new Point(0, Direction.of(left, right));
     assertEquals(result, point.move());
   }
 

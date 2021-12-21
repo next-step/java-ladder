@@ -19,7 +19,6 @@ public class ViewImpl implements View {
 
   private static final String RESULT_MESSAGE = "실행결과";
   private static final int INIT = 0;
-  private static final int FIRST_INDEX = 1;
   private static final int INIT_LADDER_SIZE = 1;
   private static final int LADDER_SIZE = 5;
   private static final int MAX_BLANK_SIZE = 6;
@@ -119,7 +118,7 @@ public class ViewImpl implements View {
 
     while (!target.equals(ALL)) {
       int index = entry.findByName(target);
-      Prize prize = prizeGroup.getResult(index - FIRST_INDEX);
+      Prize prize = prizeGroup.getResult(index);
 
       resultView.printMessage(toResult(target, prize.getRank()));
       target = getTarget();

@@ -1,12 +1,9 @@
 package nextstep.ladder.domain.entity;
 
 import java.util.List;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Line {
-
-  private static final int INIT = 0;
 
   private final List<Point> points;
 
@@ -23,14 +20,10 @@ public class Line {
   }
 
   public int move(int startingPoint) {
-    return IntStream.range(INIT, points.size())
-                    .filter(index -> index  == startingPoint)
-                    .map(now -> {
-                      Point nowPoint = points.get(now);
-                      int direction = nowPoint.move();
-                      return now + direction;
-                    })
-                    .findFirst()
-                    .orElseThrow(IllegalArgumentException::new);
+    return points.stream()
+                 .filter(point -> point.isSame(startingPoint))
+                 .map(Point::move)
+                 .findFirst()
+                 .orElseThrow(IllegalArgumentException::new);
   }
 }
