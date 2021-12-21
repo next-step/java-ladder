@@ -28,6 +28,6 @@ class PlayerTest {
     @DisplayName("index 값 일치 테스트")
     void indexEqualsTest() {
         Player player = new Player("test", Index.ONE);
-        assertThat(player.getIndex()).isEqualTo(Index.ONE_INDEX);
+        assertThat(player.getIndex()).isEqualTo(new Index(Index.ONE));
     }
 }

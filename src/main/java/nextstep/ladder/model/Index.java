@@ -4,9 +4,7 @@ import java.util.Objects;
 
 public class Index {
     public static final int ZERO = 0;
-    public static final Index ZERO_INDEX = new Index(ZERO);
     public static final int ONE = 1;
-    public static final Index ONE_INDEX = new Index(ONE);
 
     private static final String MESSAGE_INDEX_CAN_ONLY_POSITIVE = "INDEX는 0 이하의 값이 들어올 수 없습니다.";
     protected final int index;
