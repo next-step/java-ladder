@@ -8,7 +8,7 @@ import java.util.stream.IntStream;
  * @author han
  */
 public class Lines {
-    private static final RandomStrategy strategy = new RandomStrategy();
+    private static final LineStrategy strategy = new RandomStrategy();
     private final List<Line> lines;
 
     private Lines(List<Line> line) {
