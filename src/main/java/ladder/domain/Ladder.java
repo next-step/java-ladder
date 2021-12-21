@@ -2,6 +2,7 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
@@ -40,5 +41,24 @@ public class Ladder {
 
     public List<Line> get() {
         return lines;
+    }
+
+    public List<LadderResult> findGameResult(Players players, Results results, String name) {
+        if ("all".equals(name)) {
+            return players.get()
+                    .stream()
+                    .map(player -> LadderResult.of(player.getName(), findResult(players, results, player.getName())))
+                    .collect(Collectors.toList());
+
+        }
+
+        List<LadderResult> ladderResults = new ArrayList<>();
+        ladderResults.add(LadderResult.of(name, findResult(players, results, name)));
+        return ladderResults;
+    }
+
+    private String findResult(Players players, Results results, String name) {
+        int endPoint = move(players.findIndexByName(name));
+        return results.findResultByIndex(endPoint);
     }
 }

@@ -36,4 +36,8 @@ public class Players {
         return names.size();
     }
 
+    public int findIndexByName(String name) {
+        return names.indexOf(new Name(name));
+    }
+
 }

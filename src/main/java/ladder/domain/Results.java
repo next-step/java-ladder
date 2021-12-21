@@ -22,4 +22,12 @@ public class Results {
         return results.size();
     }
 
+    public String findResultByIndex(int index) {
+        return results.get(index);
+    }
+
+    public List<String> get() {
+        return results;
+    }
+
 }
