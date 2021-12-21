@@ -14,20 +14,24 @@ public enum Direction {
         this.expression = expression;
     }
 
-    public static Direction ofPlayerAndPoint(Player player, Point point) {
-        Index subtractIndex = player.getIndex().subtract(point);
-
-        if (Index.ONE_INDEX.equals(subtractIndex)) {
-            return LEFT;
+    public static Direction of(Player player, Point point) {
+        if (!point.isActive()) {
+            return PASS;
         }
-        if (Index.ZERO_INDEX.equals(subtractIndex)) {
+        Index playerIndex = player.getIndex();
+
+        if (playerIndex.isAdjacentRight(point)) {
             return RIGHT;
+        }
+
+        if (playerIndex.isAdjacentLeft(point)) {
+            return LEFT;
         }
 
         return PASS;
     }
 
-    public Index move(Index index) {
-        return expression.apply(index);
+    public void move(Index index) {
+        expression.apply(index);
     }
 }

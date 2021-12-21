@@ -32,8 +32,15 @@ public class Index {
         return index;
     }
 
-    public Index subtract(Index other) {
-        return new Index(this.index - other.index);
+    public boolean isAdjacentRight(Index other) {
+        return this.index == other.index;
+    }
+
+    public boolean isAdjacentLeft(Index other) {
+        if (index == 0) {
+            return false;
+        }
+        return index - 1 == other.index;
     }
 
     @Override
