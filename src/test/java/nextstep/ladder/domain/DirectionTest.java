@@ -1,44 +1,88 @@
 package nextstep.ladder.domain;
 
-import org.junit.jupiter.api.Test;
+import java.util.stream.Stream;
 
-import static java.lang.Boolean.FALSE;
-import static java.lang.Boolean.TRUE;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalStateException;
 
 public class DirectionTest {
-    @Test
-    public void init() {
-        assertThat(Direction.of(true, false)).isEqualTo(Direction.of(true, false));
+
+    static Stream<Arguments> parseInitArguments() {
+        return Stream.of(
+                Arguments.of(true, false, Direction.LEFT),
+                Arguments.of(false, false, Direction.BYPASS),
+                Arguments.of(false, true, Direction.RIGHT)
+        );
     }
 
-    @Test
-    public void init_invalid() {
-        assertThatIllegalStateException().isThrownBy(() -> Direction.of(TRUE, TRUE));
+    @ParameterizedTest(name = "init: {arguments}")
+    @MethodSource("parseInitArguments")
+    public void init(boolean left, boolean right, Direction expected) {
+        assertThat(Direction.of(left, right)).isEqualTo(expected);
     }
 
-    @Test
-    public void next_true() {
-        Direction next = Direction.of(TRUE, FALSE).next(TRUE);
-        assertThat(next).isEqualTo(Direction.of(FALSE, TRUE));
+    @ParameterizedTest
+    @ValueSource(booleans = {true})
+    public void init_invalid(boolean direction) {
+        assertThatIllegalStateException().isThrownBy(() -> Direction.of(direction, direction));
     }
 
-    @Test
-    public void next_false() {
-        Direction next = Direction.of(FALSE, TRUE).next(FALSE);
-        assertThat(next).isEqualTo(Direction.of(TRUE, FALSE));
+    static Stream<Arguments> parseNextArguments() {
+        return Stream.of(
+                Arguments.of(true, false, Direction.LEFT),
+                Arguments.of(false, true, Direction.RIGHT)
+                );
     }
 
-    @Test
-    public void first() {
-        Direction first = Direction.first(TRUE);
-        assertThat(first.isLeft()).isFalse();
+    @ParameterizedTest(name = "next: {arguments}")
+    @MethodSource("parseNextArguments")
+    public void next(boolean first, boolean next, Direction expected) {
+        assertThat(Direction.first(first).next(next)).isEqualTo(expected);
     }
 
-    @Test
-    public void last() {
-        Direction last = Direction.first(TRUE).last();
-        assertThat(last).isEqualTo(Direction.of(TRUE, FALSE));
+    static Stream<Arguments> parseFirstArguments() {
+        return Stream.of(
+                Arguments.of(true, Direction.RIGHT),
+                Arguments.of(false, Direction.BYPASS)
+        );
+    }
+
+    @ParameterizedTest(name = "first: {arguments}")
+    @MethodSource("parseFirstArguments")
+    public void first(boolean first, Direction expected) {
+        assertThat(Direction.first(first)).isEqualTo(expected);
+    }
+
+    static Stream<Arguments> parseLastArguments() {
+        return Stream.of(
+                Arguments.of(true, Direction.LEFT),
+                Arguments.of(false, Direction.BYPASS)
+        );
+    }
+
+    @ParameterizedTest(name = "last: {arguments}")
+    @MethodSource("parseLastArguments")
+    public void last(boolean first, Direction expected) {
+        assertThat(Direction.first(first).last()).isEqualTo(expected);
+    }
+
+    static Stream<Arguments> parseDiffArguments() {
+        return Stream.of(
+                Arguments.of(true, false, -1),
+                Arguments.of(false, false, 0),
+                Arguments.of(false, true, 1)
+        );
+    }
+
+    @ParameterizedTest
+    @MethodSource("parseDiffArguments")
+    public void diff(boolean left, boolean right, int expected) {
+        assertThat(Direction.of(left, right).diff()).isEqualTo(expected);
+
     }
 }

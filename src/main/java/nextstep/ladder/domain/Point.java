@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 public class Point {
+    // todo refactor: wrap up
     private final int index;
     private final Direction direction;
 
@@ -10,15 +11,7 @@ public class Point {
     }
 
     public int move() {
-        if (direction.isRight()) {
-            return index + 1;
-        }
-
-        if (direction.isLeft()) {
-            return index - 1;
-        }
-
-        return this.index;
+        return this.index + direction.diff();
     }
 
     public Point next(Boolean right) {

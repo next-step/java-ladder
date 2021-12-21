@@ -1,65 +1,39 @@
 package nextstep.ladder.domain;
 
-import java.util.Objects;
+public enum Direction {
+    LEFT(false, -1),
+    BYPASS(false, 0),
+    RIGHT(true, 1);
 
-import static java.lang.Boolean.FALSE;
+    private final boolean point;
+    private final int diff;
 
-public class Direction {
-    private final boolean left;
-    private final boolean right;
-
-    private Direction(boolean left, boolean right) {
-        if (left && right) {
-            throw new IllegalStateException();
-        }
-
-        this.left = left;
-        this.right = right;
-    }
-
-    public boolean isRight() {
-        return this.right;
-    }
-
-    public boolean isLeft() {
-        return this.left;
-    }
-
-    public Direction next(boolean nextRight) {
-        return of(this.right, nextRight);
+    Direction(boolean point, int diff) {
+        this.point = point;
+        this.diff = diff;
     }
 
     public static Direction of(boolean first, boolean second) {
-        return new Direction(first, second);
+        if (first && second) {
+            throw new IllegalStateException();
+        }
+
+        return first ? LEFT : second ? RIGHT : BYPASS;
     }
 
     public static Direction first(boolean right) {
-        return of(FALSE, right);
+        return of(false, right);
+    }
+
+    public Direction next(boolean next) {
+        return of(this.point, next);
     }
 
     public Direction last() {
-        return of(this.right, FALSE);
+        return of(this.point, false);
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Direction pair = (Direction) o;
-        return left == pair.left &&
-                right == pair.right;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(left, right);
-    }
-
-    @Override
-    public String toString() {
-        return "Direction{" +
-                "left=" + left +
-                ", right=" + right +
-                '}';
+    public int diff() {
+        return diff;
     }
 }

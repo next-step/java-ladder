@@ -15,7 +15,8 @@
   * [x] 포인트 생성 방식을 런타임에 정할수 있게 수정
 * [ ] LadderLine의 두 점과 현재 위치를 Point로 추상화
   * [x] LadderLine에서 위치와 각 점의 방향을 관리
-* [ ] 각 Point의 좌/우 방향을 Direction으로 추상화
+  * [ ] Index class
+* [x] 각 Point의 좌/우 방향을 Direction으로 추상화
   * [x] 각 Point의 좌/우 방향 정보를 가진다.
   * [x] 현재 Point에서 다음 Point를 생성하는 역할
 * [ ] 책임 기반의 인터페이스 위주 설계
