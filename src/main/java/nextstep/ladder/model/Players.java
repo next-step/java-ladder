@@ -30,6 +30,10 @@ public class Players {
         return splitNames.length;
     }
 
+    public void move(Lines lines) {
+        players.forEach(lines::move);
+    }
+
     public Player findPlayerByName(String name) {
         return players.stream()
                 .filter(player -> name.equals(player.getName()))

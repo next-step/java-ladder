@@ -31,6 +31,7 @@ public class LadderGame {
 
 
         Ladder ladder = new Ladder(players, lines, results);
+        ladder.game();
 
         OutputView.print(ladder);
     }
