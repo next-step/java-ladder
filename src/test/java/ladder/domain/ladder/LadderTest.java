@@ -28,14 +28,14 @@ public class LadderTest {
         LadderPlayers players = new LadderPlayers(Arrays.asList("pobi", "honux", "crong", "jk"));
         LineGenerator lineGenerator = new DefaultLineGenerator(() -> true);
         height = new LadderHeight(3);
-        generator = new DefaultLadderGenerator(lineGenerator, height);
-        ladder = generator.generate(players.size());
+        generator = new DefaultLadderGenerator(lineGenerator);
+        ladder = generator.generate(players.size(), height);
     }
 
     @Test
     @DisplayName("Generator 로 ladder 생성 - height 만큼 라인 생성")
     void generateLadder() {
-        Ladder ladder = generator.generate(2);
+        Ladder ladder = generator.generate(2, height);
         assertThat(ladder.getLines()).size().isEqualTo(height.getHeight());
     }
 

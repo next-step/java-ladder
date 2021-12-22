@@ -8,7 +8,7 @@ public class LadderApplication {
     public static void main(String[] args) {
 
         LadderConfig config = new LadderConfig();
-        LadderController controller = new LadderController(config);
+        LadderController controller = new LadderController(config.ladderGenerator(), config.playResult());
 
         controller.start();
 

@@ -11,15 +11,13 @@ import java.util.stream.IntStream;
 public class DefaultLadderGenerator implements LadderGenerator {
 
     private final LineGenerator lineGenerator;
-    private final LadderHeight height;
 
-    public DefaultLadderGenerator(LineGenerator lineGenerator, LadderHeight height) {
+    public DefaultLadderGenerator(LineGenerator lineGenerator) {
         this.lineGenerator = lineGenerator;
-        this.height = height;
     }
 
     @Override
-    public Ladder generate(int countOfPlayer) {
+    public Ladder generate(int countOfPlayer, LadderHeight height) {
         List<Line> lines = IntStream.range(0, height.getHeight())
                 .mapToObj(range -> lineGenerator.generate(countOfPlayer))
                 .collect(Collectors.toList());

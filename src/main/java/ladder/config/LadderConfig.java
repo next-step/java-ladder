@@ -1,7 +1,5 @@
 package ladder.config;
 
-import ladder.domain.ladder.Ladder;
-import ladder.domain.ladder.LadderHeight;
 import ladder.generator.DefaultLadderGenerator;
 import ladder.generator.DefaultLineGenerator;
 import ladder.generator.LadderGenerator;
@@ -13,8 +11,8 @@ import ladder.strategy.RandomLine;
 
 public class LadderConfig {
 
-    public LadderGenerator ladderGenerator(LadderHeight height) {
-        return new DefaultLadderGenerator(lineGenerator(), height);
+    public LadderGenerator ladderGenerator() {
+        return new DefaultLadderGenerator(lineGenerator());
     }
 
     public LineGenerator lineGenerator() {
@@ -25,8 +23,8 @@ public class LadderConfig {
         return new RandomLine();
     }
 
-    public PlayResult playResult(Ladder ladder) {
-        return new DefaultPlayResult(ladder);
+    public PlayResult playResult() {
+        return new DefaultPlayResult();
     }
 
 }
