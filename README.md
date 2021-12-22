@@ -57,6 +57,12 @@ public class Line {
 
 * 위와 같이 Line 객체를 추가하면 ArrayList<ArrayList<Boolean>> 코드를 ArrayList<Line>과 같이 구현하는 것이 가능해 진다.
 
+## 기능 구현 목록
+
+- [ ] 사다리 게임에 필요한 입력 뷰 `InputView`
+    - [x] 참여자 이름 입력 기능 추가
+    - [ ] 최대 사다리 높이 입력 기능 추가
+
 * * *
 
 # Study: 자바8 스트림, 람다, Optional
