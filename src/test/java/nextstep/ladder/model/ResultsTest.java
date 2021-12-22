@@ -7,6 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 class ResultsTest {
@@ -32,5 +33,25 @@ class ResultsTest {
         String[] splitResults = StringUtils.validationNotNullAndEmpty(inputResults).split(DELIMITER);
         int playerSize = 10;
         assertThatIllegalArgumentException().isThrownBy(() -> new Results(splitResults, playerSize));
+    }
+
+    @Test
+    @DisplayName("Index로 Result 찾기: 성공")
+    void successFindByIndex() {
+        String[] splitResults = StringUtils.validationNotNullAndEmpty("꽝,5000,꽝").split(DELIMITER);
+        Results results = new Results(splitResults, splitResults.length);
+
+        Result result = results.findResultByIndex(new Index(Index.ONE));
+
+        assertThat(result.getName()).isEqualTo("5000");
+    }
+
+    @Test
+    @DisplayName("Index로 Result 찾기: 실패")
+    void failFindByIndex() {
+        String[] splitResults = StringUtils.validationNotNullAndEmpty("꽝,5000,꽝").split(DELIMITER);
+        Results results = new Results(splitResults, splitResults.length);
+
+        assertThatIllegalArgumentException().isThrownBy(() -> results.findResultByIndex(new Index(3)));
     }
 }
