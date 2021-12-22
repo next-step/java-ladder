@@ -2,6 +2,7 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.model.*;
 
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import static nextstep.ladder.model.Line.BLANK_LINE;
@@ -50,5 +51,18 @@ public class OutputView {
         print(ladder.getPlayers());
         print(ladder.getLines());
         print(ladder.getResults());
+    }
+
+    public static void print(Report report) {
+        Map<Player, Result> playerResults = report.getPlayerResults();
+        playerResults.keySet().forEach(player -> {
+            Result result = playerResults.get(player);
+            print(String.format("%s : %s", player.getName(), result.getName()));
+        });
+    }
+
+    public static void print(Report report, String name) {
+        Result result = report.findResultByPlayerName(name);
+        print(String.format("%s : %s", name, result.getName()));
     }
 }

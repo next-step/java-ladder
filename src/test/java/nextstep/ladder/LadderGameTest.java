@@ -1,12 +1,10 @@
 package nextstep.ladder;
 
 import nextstep.ladder.factory.LinesFactory;
-import nextstep.ladder.model.Ladder;
-import nextstep.ladder.model.Lines;
-import nextstep.ladder.model.Players;
-import nextstep.ladder.model.Results;
+import nextstep.ladder.model.*;
 import nextstep.ladder.utils.StringUtils;
 import nextstep.ladder.view.OutputView;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -55,8 +53,9 @@ class LadderGameTest {
         Lines lines = LinesFactory.of(true, width, height, prev -> !prev);
 
         Ladder ladder = new Ladder(players, lines, results);
-        ladder.game();
+        Report report = ladder.game();
 
+        OutputView.print(report);
         assertThat(players.toString()).contains("{index=" + index + " Name=" + name + "}");
     }
 }
