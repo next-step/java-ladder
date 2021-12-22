@@ -19,10 +19,8 @@ public class Direction {
         if (left && right) {
             throw new IllegalStateException();
         }
-
         this.left = left;
         this.right = right;
-        System.out.println(this);
     }
 
     public boolean isRight() {

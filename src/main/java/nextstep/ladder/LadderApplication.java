@@ -15,14 +15,12 @@ public class LadderApplication {
         LadderLayer ladderLayer = new LadderLayer(requestLadderLayer());
 
         PointStrategy pointStrategy = new RandomPointStrategy();
-//        LadderGame ladderGame = new LadderGame(members, layer);
-//        Ladder ladder = ladderGame.create(pointStrategy);
-//
+        Ladder ladder = Ladder.of(members, ladderLayer, pointStrategy);
+
         responseInitMessage();
         responseLadderMembers(members);
-//        responseLadder(ladder);
-//        responseRewards(rewards);
-//
-//        responseResults(requestResultMember(), ladderGame.start(ladder, rewards));
+        responseLadder(ladder);
+        responseRewards(rewards);
+        responseResults(requestResultMember(), LadderResults.of(members, rewards, ladder));
     }
 }

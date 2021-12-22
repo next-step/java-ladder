@@ -3,8 +3,8 @@ package nextstep.ladder.domain;
 import nextstep.ladder.strategy.PointStrategy;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 사다리 한 Line 추상화
@@ -14,20 +14,21 @@ import java.util.List;
 public class LadderLine {
     private final List<Point> points;
 
-    public LadderLine(List<Point> points) {
+    private LadderLine(List<Point> points) {
         this.points = points;
     }
 
-    public int move(int position) {
-        return points.get(position).move();
-    }
-
-    public static LadderLine init(int sizeOfPerson, PointStrategy pointStrategy) {
+    public static LadderLine of(int sizeOfPerson, PointStrategy pointStrategy) {
         List<Point> points = new ArrayList<>();
         Point point = initFirst(points, pointStrategy);
         point = initBody(sizeOfPerson, points, point, pointStrategy);
         initLast(points, point);
         return new LadderLine(points);
+    }
+
+    private static void initLast(List<Point> points, Point point) {
+        point = point.last();
+        points.add(point);
     }
 
     private static Point initBody(int sizeOfPerson, List<Point> points, Point point, PointStrategy pointStrategy) {
@@ -38,15 +39,14 @@ public class LadderLine {
         return point;
     }
 
-    private static void initLast(List<Point> points, Point point) {
-        point = point.last();
-        points.add(point);
-    }
-
     private static Point initFirst(List<Point> points, PointStrategy pointStrategy) {
         Point point = Point.first(pointStrategy.generatePoint());
         points.add(point);
         return point;
+    }
+
+    public int move(int position) {
+        return points.get(position).move();
     }
 
     public List<Point> getPoints() {

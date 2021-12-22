@@ -7,9 +7,11 @@ import java.util.stream.Collectors;
 
 public class Members {
     private static final String EXCEPTION_MESSAGE_MEMBERS = "참가자 수가 1보다 작은 수 입니다.";
+    private static final String EXCEPTION_MESSAGE_MAX_MEMBERS_POSITION = "최대 참가수보다 큰 수 입니다.";
     private static final String EXCEPTION_MESSAGE_SAME_MEMBER = "참가자명이 동일합니다.";
     private static final String DEFAULT_SPLIT_CHARACTER = ",";
     private static final int DEFAULT_MEMBER_NUMBER = 1;
+    private static final int DEFAULT_POSITION_NUMBER = 0;
 
     private final List<Member> members;
 
@@ -49,6 +51,21 @@ public class Members {
 
     public int countOfMember() {
         return members.size();
+    }
+
+    public Member getMember(int position) {
+        validatePosition(position);
+        return members.get(position);
+    }
+
+    private void validatePosition(int position) {
+        if (position < DEFAULT_POSITION_NUMBER) {
+            throw new IllegalArgumentException(EXCEPTION_MESSAGE_MEMBERS);
+        }
+
+        if (position > countOfMember()) {
+            throw new IllegalArgumentException(EXCEPTION_MESSAGE_MAX_MEMBERS_POSITION);
+        }
     }
 
     public List<Member> getMembers() {

@@ -52,11 +52,21 @@ public class DirectionTest {
 
     @Test
     public void first() {
-        assertThat(Direction.first(TRUE).isLeft()).isEqualTo(FALSE);
+        assertThat(Direction.first(TRUE)).isEqualTo(Direction.of(FALSE, TRUE));
     }
 
     @Test
     public void last() {
         assertThat(Direction.first(TRUE).last()).isEqualTo(Direction.of(TRUE, FALSE));
+    }
+
+    @Test
+    public void isLeft() {
+        assertThat(Direction.of(TRUE, FALSE).isLeft()).isTrue();
+    }
+
+    @Test
+    public void isRight() {
+        assertThat(Direction.of(FALSE, TRUE).isRight()).isTrue();
     }
 }

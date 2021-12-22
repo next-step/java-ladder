@@ -1,6 +1,10 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.strategy.PointStrategy;
+
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Ladder {
     private static final String EXCEPTION_MESSAGE_POSITION = "위치가 정확하지 않습니다.";
@@ -9,9 +13,16 @@ public class Ladder {
 
     private final List<LadderLine> ladderLines;
 
-    public Ladder(List<LadderLine> ladderLines) {
+    private Ladder(List<LadderLine> ladderLines) {
         validateLadder(ladderLines);
         this.ladderLines = ladderLines;
+    }
+
+    public static Ladder of(Members members, LadderLayer ladderLayer, PointStrategy pointStrategy) {
+        List<LadderLine> ladderLines = Stream.generate(() -> LadderLine.of(members.countOfMember(), pointStrategy))
+                .limit(ladderLayer.getLayer())
+                .collect(Collectors.toList());
+        return new Ladder(ladderLines);
     }
 
     private void validateLadder(List<LadderLine> lines) {
@@ -24,11 +35,10 @@ public class Ladder {
         }
     }
 
-    public int getPosition(int position) {
+    public int move(int position) {
         validatePosition(position);
-        for (LadderLine ladderLine : ladderLines) {
-//            Direction direction = Direction.valueOf(ladderLine.isLine(position), ladderLine.isNextLine(position));
-//            position += direction.getMovePosition();
+        for (LadderLine line : ladderLines) {
+            position = line.move(position);
         }
         return position;
     }
@@ -41,5 +51,12 @@ public class Ladder {
 
     public List<LadderLine> getLines() {
         return ladderLines;
+    }
+
+    @Override
+    public String toString() {
+        return "Ladder{" +
+                "ladderLines=" + ladderLines +
+                '}';
     }
 }

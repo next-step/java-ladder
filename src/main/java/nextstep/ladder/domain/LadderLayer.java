@@ -4,56 +4,35 @@ import java.util.Objects;
 
 public class LadderLayer {
     private static final String EXCEPTION_MESSAGE_MIN_LAYER = "사다리 높이가 1보다 작은 수 입니다.";
-    private static final String EXCEPTION_MESSAGE_MIN_NOW_LAYER = "현재 높이가 1보다 작은 수 입니다.";
-    private static final String EXCEPTION_MESSAGE_MAX_LAYER = "현재 높이가 사다리 높이보다 클 수 없습니다.";
     private static final int MIN_INPUT_NUMBER = 1;
-    private static final int START_LAYER = 1;
 
     private final int layer;
-    private int nowLayer;
 
     public LadderLayer(int layer) {
-        this(layer, START_LAYER);
-    }
-
-    public LadderLayer(int layer, int nowLayer) {
-        validateLayer(layer, nowLayer);
+        validateLayer(layer);
         this.layer = layer;
-        this.nowLayer = nowLayer;
     }
 
-    private void validateLayer(int layer, int nowLayer) {
+    private void validateLayer(int layer) {
         if (layer < MIN_INPUT_NUMBER) {
             throw new IllegalArgumentException(EXCEPTION_MESSAGE_MIN_LAYER);
         }
-
-        if (nowLayer < MIN_INPUT_NUMBER) {
-            throw new IllegalArgumentException(EXCEPTION_MESSAGE_MIN_NOW_LAYER);
-        }
-
-        if (layer < nowLayer) {
-            throw new IllegalArgumentException(EXCEPTION_MESSAGE_MAX_LAYER);
-        }
     }
 
-    public void nextLayer() {
-        nowLayer++;
-    }
-
-    public boolean moreLayer() {
-        return layer >= nowLayer;
+    public int getLayer() {
+        return layer;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        LadderLayer ladderLayer1 = (LadderLayer) o;
-        return layer == ladderLayer1.layer && nowLayer == ladderLayer1.nowLayer;
+        LadderLayer that = (LadderLayer) o;
+        return layer == that.layer;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(layer, nowLayer);
+        return Objects.hash(layer);
     }
 }

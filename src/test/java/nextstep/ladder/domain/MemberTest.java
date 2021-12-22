@@ -9,9 +9,9 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 public class MemberTest {
     @ParameterizedTest(name="{displayName} | 요청값: {0}")
     @ValueSource(strings = {"i", "am", "two", "four", "mouse"})
-    void 입력정보_확인() {
-        Member member = new Member("power");
-        assertThat(member.getName()).isEqualTo("power");
+    void 입력정보_확인(String param) {
+        Member member = new Member(param);
+        assertThat(member.getName()).isEqualTo(param);
     }
 
     @ParameterizedTest(name="{displayName} | 요청값: {0}")

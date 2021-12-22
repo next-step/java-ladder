@@ -2,6 +2,8 @@ package nextstep.ladder.domain;
 
 import nextstep.ladder.strategy.PointStrategy;
 
+import java.util.Objects;
+
 /**
  * LadderLine의 두 점과 현재 위치를 Point로 추상화
  *  - LadderLine에서 위치와 각 점의 방향을 관리
@@ -16,9 +18,6 @@ public class Point {
     }
 
     public int move() {
-        System.out.println("is left? " + direction.isLeft());
-        System.out.println("is right? " + direction.isRight());
-
         if (direction.isRight()) {
             return index + 1;
         }
@@ -28,14 +27,6 @@ public class Point {
         }
 
         return this.index;
-    }
-
-//    public Point next() {
-//        return new Point(index + 1, direction.next());
-//    }
-
-    public Point next(Boolean right) {
-        return new Point(index + 1, direction.next(right));
     }
 
     public Point next(PointStrategy pointStrategy) {
@@ -48,6 +39,23 @@ public class Point {
 
     public static Point first(Boolean right) {
         return new Point(0, Direction.first(right));
+    }
+
+    public boolean isLeft() {
+        return direction.isLeft();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Point point = (Point) o;
+        return index == point.index && Objects.equals(direction, point.direction);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(index, direction);
     }
 
     @Override
