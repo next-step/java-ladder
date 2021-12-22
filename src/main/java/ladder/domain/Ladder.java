@@ -9,11 +9,15 @@ public class Ladder {
 
     public static final String INVALID_WIDTH_HEIGHT_MESSAGE = "width와 height는 양수여야 합니다.";
 
-    private static final int MIN_WIDTH = 1;
     private static final int MIN_HEIGHT = 1;
-    public static final int INDEX_ZERO = 0;
+    private static final int INDEX_ZERO = 0;
+    private static final int CONVERT_INDEX_NUMBER = 2;
 
     private final List<Line> lines;
+
+    public Ladder(String names, int height) {
+        this(new Names(names), height);
+    }
 
     public Ladder(Names names, int height) {
         this(widthFromNames(names), height);
@@ -24,13 +28,33 @@ public class Ladder {
     }
 
     public Ladder(int width, int height) {
-        if (width < MIN_WIDTH || height < MIN_HEIGHT) {
+        if (height < MIN_HEIGHT) {
             throw new IllegalArgumentException(INVALID_WIDTH_HEIGHT_MESSAGE);
         }
 
         this.lines = IntStream.range(INDEX_ZERO, height)
                 .mapToObj(index -> new Line(width))
                 .collect(Collectors.toList());
+    }
+
+    public Ladder(List<Line> lines) {
+        this.lines = lines;
+    }
+
+    public int findRewardIndex(int number) {
+        int result = calculateStartIndex(number);
+        for (Line line : lines) {
+            result = line.move(result);
+        }
+        return calculateRewardIndex(result);
+    }
+
+    private int calculateStartIndex(int index) {
+        return index * CONVERT_INDEX_NUMBER;
+    }
+
+    private int calculateRewardIndex(int index) {
+        return index / CONVERT_INDEX_NUMBER;
     }
 
     public int height() {

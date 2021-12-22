@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LadderTest {
 
-    @DisplayName("Ladder는 height과 width를 가진다.")
+    @DisplayName("height과 width로 Ladder 생성")
     @Test
     void create() {
         int width = 7;
@@ -21,7 +21,7 @@ public class LadderTest {
         assertThat(ladder.height()).isEqualTo(height);
     }
 
-    @DisplayName("Names로 생성")
+    @DisplayName("Names로 Ladder 생성")
     @Test
     void create_names() {
         int height = 5;
@@ -37,7 +37,6 @@ public class LadderTest {
     void invalid_width(int width, int height) {
         assertThatThrownBy(() -> new Ladder(width, height))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("width와 height는 양수여야 합니다.");
+                .hasMessage(Ladder.INVALID_WIDTH_HEIGHT_MESSAGE);
     }
-
 }

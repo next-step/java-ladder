@@ -1,15 +1,11 @@
 package ladder.domain;
 
-public class Name implements LadderString {
+public class Reward implements LadderString {
 
     private final LadderStringValue ladderStringValue;
 
-    public Name(String value) {
+    public Reward(String value) {
         this.ladderStringValue = new LadderStringValue(value);
-    }
-
-    public boolean match(String name) {
-        return ladderStringValue.value().equals(name);
     }
 
     @Override
@@ -26,9 +22,9 @@ public class Name implements LadderString {
             return false;
         }
 
-        Name name = (Name) o;
+        Reward reward = (Reward) o;
 
-        return ladderStringValue != null ? ladderStringValue.equals(name.ladderStringValue) : name.ladderStringValue == null;
+        return ladderStringValue != null ? ladderStringValue.equals(reward.ladderStringValue) : reward.ladderStringValue == null;
     }
 
     @Override
