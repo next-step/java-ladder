@@ -10,6 +10,10 @@ public class Lines {
         this.lines = lines;
     }
 
+    public void move(Player player) {
+        lines.forEach(line -> line.move(player));
+    }
+
     public List<Line> getLines() {
         return lines;
     }
