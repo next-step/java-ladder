@@ -19,9 +19,9 @@ public class Game {
         ResultView.printLadderResult(ladder, players, results);
 
         String resultName = "";
-        while(true) {
+        while (true) {
             resultName = inputView.resultByName();
-            if (ALL.equals(resultName)) {
+            if (ALL.equalsIgnoreCase(resultName)) {
                 List<LadderResult> gameResult = ladder.findAllResult(players, results);
                 ResultView.printAllGameResult(gameResult);
                 break;

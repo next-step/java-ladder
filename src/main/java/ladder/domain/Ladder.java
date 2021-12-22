@@ -18,11 +18,11 @@ public class Ladder {
 
     private static List<Line> init(int countOfPlayers, int height) {
         List<Line> lines = new ArrayList<>();
-        IntStream.range(0, height).forEach((i)-> lines.add(Line.of(new RandomPoints(countOfPlayers))));
+        IntStream.range(0, height).forEach((i) -> lines.add(Line.of(new RandomPoints(countOfPlayers))));
         return lines;
     }
 
-    public static Ladder of (List<Line> lines) {
+    public static Ladder of(List<Line> lines) {
         return new Ladder(lines);
     }
 

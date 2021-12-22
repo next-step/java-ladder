@@ -1,7 +1,6 @@
 package ladder.domain;
 
 
-
 public class LadderResult {
     private final String player;
     private final String result;
