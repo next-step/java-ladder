@@ -19,14 +19,15 @@ public class ResultView {
         printResults(results.getResults());
     }
 
-    public static void printGameResult(List<LadderResult> results) {
+    public static void printGameResult(LadderResult result) {
         System.out.println();
         System.out.println(GAME_RESULT);
-        if (results.size() == 1) {
-            System.out.println(results.get(0).getResult());
-            return;
-        }
+        System.out.println(result.getResult());
+    }
 
+    public static void printAllGameResult(List<LadderResult> results) {
+        System.out.println();
+        System.out.println(GAME_RESULT);
         results.stream()
                 .forEach((ladderResult) -> System.out.printf("%s : %s\n", ladderResult.getPlayer(), ladderResult.getResult()));
     }

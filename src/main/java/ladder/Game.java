@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Game {
+    public static final String ALL = "all";
+
     public static void main(String[] args) {
         InputView inputView = new InputView(new Scanner(System.in));
 
@@ -17,12 +19,18 @@ public class Game {
         ResultView.printLadderResult(ladder, players, results);
 
         String resultName = "";
-        while(!"all".equals(resultName)) {
+        while(true) {
             resultName = inputView.resultByName();
-            List<LadderResult> gameResult = ladder.findGameResult(players, results, resultName);
+            if (ALL.equals(resultName)) {
+                List<LadderResult> gameResult = ladder.findAllResult(players, results);
+                ResultView.printAllGameResult(gameResult);
+                break;
+            }
+            LadderResult gameResult = ladder.findOneResult(players, results, resultName);
             ResultView.printGameResult(gameResult);
         }
 
         inputView.close();
     }
+
 }

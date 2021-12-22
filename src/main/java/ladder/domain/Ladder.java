@@ -42,22 +42,15 @@ public class Ladder {
         return lines;
     }
 
-    public List<LadderResult> findGameResult(Players players, Results results, String name) {
-        if ("all".equals(name)) {
-            return players.getPlayers()
-                    .stream()
-                    .map(player -> LadderResult.of(player.getName(), findResult(players, results, player.getName())))
-                    .collect(Collectors.toList());
-
-        }
-
-        List<LadderResult> ladderResults = new ArrayList<>();
-        ladderResults.add(LadderResult.of(name, findResult(players, results, name)));
-        return ladderResults;
+    public List<LadderResult> findAllResult(Players players, Results results) {
+        return players.getPlayers()
+                .stream()
+                .map(player -> findOneResult(players, results, player.getName()))
+                .collect(Collectors.toList());
     }
 
-    private String findResult(Players players, Results results, String name) {
+    public LadderResult findOneResult(Players players, Results results, String name) {
         int endPoint = move(players.findIndexByName(name));
-        return results.findResultByIndex(endPoint);
+        return LadderResult.of(name, results.findResultByIndex(endPoint));
     }
 }
