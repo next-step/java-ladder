@@ -25,7 +25,7 @@ public class InputView {
 
   public Names inputNames() {
     System.out.println(INPUT_NAMES_MESSAGE);
-    return new Names(scanner.next());
+    return new Names(scanner.nextLine());
   }
 
   public LadderHeight inputLadderHeight() {

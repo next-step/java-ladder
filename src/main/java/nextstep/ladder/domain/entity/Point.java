@@ -2,40 +2,48 @@ package nextstep.ladder.domain.entity;
 
 public class Point {
 
-  private static final Boolean FALSE = false;
   private static final int LEFT = -1;
   private static final int RIGHT = 1;
   private static final int NOW = 0;
 
-  private boolean way;
+  private final int index;
+  private final Direction direction;
 
-  public Point(boolean value) {
-    this.way = value;
+  public Point(int index, Direction direction) {
+    this.index = index;
+    this.direction = direction;
   }
 
-  public Point() {}
-
-  public boolean hasWay() {
-    return this.way;
+  public static Point first(boolean right) {
+    return new Point(0, Direction.first(right));
   }
 
-  public Point next(boolean next) {
-    if (way && next) {
-      return new Point(FALSE);
-    }
-    return new Point(next);
+  public Point last() {
+    return new Point(this.index + RIGHT, this.direction.last());
   }
 
-  public int findDirection(Point left) {
-    if (left.hasWay()) {
-      return LEFT;
+  public boolean hasRightWay() {
+    return direction.isRight();
+  }
+
+  public int move() {
+    if (direction.isLeft()) {
+      return index + LEFT;
     }
 
-    if(this.hasWay()) {
-      return RIGHT;
+    if(direction.isRight()) {
+      return index + RIGHT;
     }
 
-    return NOW;
+    return index + NOW;
+  }
+
+  public Point next(boolean right) {
+    return new Point(this.index + RIGHT, direction.next(right));
+  }
+
+  public boolean isSame(int value) {
+    return this.index == value;
   }
 
 }
