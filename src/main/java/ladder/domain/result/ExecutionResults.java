@@ -1,9 +1,8 @@
 package ladder.domain.result;
 
-import ladder.domain.ladder.Ladder;
-import ladder.domain.user.LadderPlayers;
-
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
 
 public class ExecutionResults {
 
@@ -18,14 +17,9 @@ public class ExecutionResults {
         this.results = results;
     }
 
-//    public Map<String, String> executeGame(LadderPlayers players, Ladder ladder) {
-//        Map<String, String> result = new HashMap<>();
-//        for (int num = 0; num < players.size(); num++) {
-//            int findIndex = ladder.move(num);
-//            result.put(players.getPlayerNames().get(num), this.results.get(findIndex));
-//        }
-//        return result;
-//    }
+    public String findByIndex(int num) {
+        return this.results.get(num);
+    }
 
     public List<String> getResults() {
         return Collections.unmodifiableList(this.results);
