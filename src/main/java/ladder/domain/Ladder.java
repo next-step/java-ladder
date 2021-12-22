@@ -27,12 +27,11 @@ public class Ladder {
     }
 
     public int move(int startPoint) {
-        int result = startPoint;
+        int point = startPoint;
         for (Line line : lines) {
-            boolean[] visited = new boolean[line.numberOfPoints()];
-            result = line.move(result, visited);
+            point = line.move(point);
         }
-        return result;
+        return point;
     }
 
     public int countOfLine() {

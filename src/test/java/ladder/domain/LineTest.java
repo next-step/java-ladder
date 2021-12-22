@@ -4,7 +4,7 @@ import ladder.fixture.TestLadderFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
+
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -18,27 +18,23 @@ public class LineTest {
         assertThat(line.numberOfPoints()).isEqualTo(4);
     }
 
-
-    @DisplayName("라인의 마지막 점은 항상 false다")
-    @Test
-    void 라인_마지막점_false() {
-        Line line = TestLadderFactory.createRandomLine(4);
-        assertThat(line.hasRightLine(3)).isFalse();
-    }
-
-    @DisplayName("point가 true면 오른쪽 가로 라인이 존재한다.")
-    @Test
-    void 라인_가로라인여부() {
-        List<Boolean> points = Arrays.asList(true, false, true, false);
-        Line line = Line.of(() -> points);
-        assertThat(line.hasRightLine(0)).isTrue();
-    }
-
     @Test
     void 라인_이동() {
-        List<Boolean> points = Arrays.asList(false, true, false, false);
+        List<Point> points = TestLadderFactory.createPoints(true, false, true, false);
         Line line = Line.of(() -> points);
-        assertThat(line.move(2, new boolean[4])).isEqualTo(1);
+
+        assertThat(line.move(0)).isEqualTo(1);
+        assertThat(line.move(1)).isEqualTo(0);
+        assertThat(line.move(2)).isEqualTo(3);
+        assertThat(line.move(3)).isEqualTo(2);
+    }
+
+    @Test
+    void 오른쪽라인여부() {
+        List<Point> points = TestLadderFactory.createPoints(true, false, false);
+        Line line = Line.of(() -> points);
+
+        assertThat(line.hasRightLine(1)).isFalse();
     }
 
 }

@@ -31,4 +31,5 @@ public class DirectionTest {
         Direction direction = Direction.first(false).next(false);
         assertThat(direction.isDown()).isTrue();
     }
+
 }
