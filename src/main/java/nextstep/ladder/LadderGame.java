@@ -1,5 +1,6 @@
 package nextstep.ladder;
 
+import nextstep.ladder.factory.LinesFactory;
 import nextstep.ladder.model.Ladder;
 import nextstep.ladder.model.Lines;
 import nextstep.ladder.model.Players;
@@ -26,7 +27,7 @@ public class LadderGame {
 
 
         int height = InputView.nextInt("최대 사다리 높이는 몇 개인가요?");
-        Lines lines = new Lines(width, height);
+        Lines lines = LinesFactory.of(width, height);
 
 
         Ladder ladder = new Ladder(players, lines, results);

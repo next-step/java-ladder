@@ -14,8 +14,8 @@ class LadderGameTest {
     private static final String DELIMITER = ",";
 
     @Test
-    @DisplayName("통합 테스트")
-    void IntegrationTest() {
+    @DisplayName("랜덤으로 잘 그려지는지 테스트")
+    void ladderDrawTest() {
         String inputNames = "pobi,honux,crong,jk,adsfa,qfadg,qszcq,dafda,11231";
         String[] splitNames = StringUtils.validationNotNullAndEmpty(inputNames).split(DELIMITER);
         Players players = new Players(splitNames);
@@ -26,7 +26,7 @@ class LadderGameTest {
         Results results = new Results(splitResults, width);
 
         int height = 10;
-        Lines lines = new Lines(width, height);
+        Lines lines = LinesFactory.of(width, height);
 
         Ladder ladder = new Ladder(players, lines, results);
 
