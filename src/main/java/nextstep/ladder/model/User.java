@@ -17,7 +17,7 @@ public final class User {
         }
     }
 
-    public UserName getName() {
-        return name;
+    public String getName() {
+        return name.getName();
     }
 }

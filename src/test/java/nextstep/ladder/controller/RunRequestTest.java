@@ -52,7 +52,6 @@ class RunRequestTest {
         // then
         assertThat(users.getUsers())
                 .extracting(User::getName)
-                .extracting(UserName::getName)
                 .isEqualTo(USER_NAMES);
     }
 

@@ -8,6 +8,7 @@ import nextstep.ladder.view.OutputView;
 public class LadderApplication {
     public static void main(String[] args) {
         LadderController controller = new LadderController();
-        OutputView.printLadderResult(controller.run(RunRequest.of(InputView.readParticipantNames(), InputView.readHeightOfLadder())));
+        RunRequest request = RunRequest.of(InputView.readParticipantNames(), InputView.readHeightOfLadder());
+        OutputView.printLadderResult(request.participatedUsers(), controller.run(request));
     }
 }
