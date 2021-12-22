@@ -1,7 +1,6 @@
 package nextstep.ladder.controller;
 
 import nextstep.ladder.model.User;
-import nextstep.ladder.model.UserName;
 import nextstep.ladder.model.Users;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
