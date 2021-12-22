@@ -12,9 +12,9 @@ public class Ladder {
         this.results = results;
     }
 
-    public void game() {
+    public Report game() {
         players.move(lines);
-        //TODO Players와 Results의 Index를 비교해서 Report 작성
+        return new Report(players, results);
     }
 
     public Players getPlayers() {
