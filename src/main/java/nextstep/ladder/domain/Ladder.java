@@ -1,23 +1,33 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.strategy.PointStrategy;
+
 import java.util.List;
-import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Ladder {
     private static final String EXCEPTION_MESSAGE_POSITION = "위치가 정확하지 않습니다.";
     private static final long MIN_DISTINCT_POINT_COUNT = 1L;
     private static final int MIN_POSITION = 0;
 
-    private final List<Line> lines;
+    private final List<LadderLine> ladderLines;
 
-    public Ladder(List<Line> lines) {
-        validateLadder(lines);
-        this.lines = lines;
+    private Ladder(List<LadderLine> ladderLines) {
+        validateLadder(ladderLines);
+        this.ladderLines = ladderLines;
     }
 
-    private void validateLadder(List<Line> lines) {
+    public static Ladder of(Members members, LadderLayer ladderLayer, PointStrategy pointStrategy) {
+        List<LadderLine> ladderLines = Stream.generate(() -> LadderLine.of(members.countOfMember(), pointStrategy))
+                .limit(ladderLayer.getLayer())
+                .collect(Collectors.toList());
+        return new Ladder(ladderLines);
+    }
+
+    private void validateLadder(List<LadderLine> lines) {
         long distinctPointCount = lines.stream()
-                                            .map(line -> line.getPoints().size())
+                                            .map(ladderLine -> ladderLine.getPoints().size())
                                             .distinct()
                                             .count();
         if (distinctPointCount != MIN_DISTINCT_POINT_COUNT) {
@@ -25,35 +35,28 @@ public class Ladder {
         }
     }
 
-    public int getPosition(int position) {
+    public int move(int position) {
         validatePosition(position);
-        for (Line line : lines) {
-            Direction direction = Direction.valueOf(line.isLine(position), line.isNextLine(position));
-            position += direction.getMovePosition();
+        for (LadderLine line : ladderLines) {
+            position = line.move(position);
         }
         return position;
     }
 
     private void validatePosition(int position) {
-        if (lines.size() < position || MIN_POSITION > position) {
+        if (ladderLines.size() < position || MIN_POSITION > position) {
             throw new IllegalArgumentException(EXCEPTION_MESSAGE_POSITION);
         }
     }
 
-    public List<Line> getLines() {
-        return lines;
+    public List<LadderLine> getLines() {
+        return ladderLines;
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Ladder ladder = (Ladder) o;
-        return Objects.equals(lines, ladder.lines);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(lines);
+    public String toString() {
+        return "Ladder{" +
+                "ladderLines=" + ladderLines +
+                '}';
     }
 }

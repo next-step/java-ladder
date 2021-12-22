@@ -50,7 +50,7 @@ public class Rewards {
         return rewards;
     }
 
-    public Reward getRewards(int position) {
+    public Reward getReward(int position) {
         return rewards.get(position);
     }
 

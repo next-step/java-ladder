@@ -2,6 +2,8 @@ package nextstep.ladder.domain;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
@@ -36,6 +38,19 @@ public class MembersTest {
     void 동일한_참가자_입력시_IllegalArgumentException() {
         assertThatThrownBy(() -> {
             Members.from("pobi,mouse,pobi");
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 참가자_위치로_찾기() {
+        assertThat(members.getMember(0)).isEqualTo(new Member("poni"));
+    }
+
+    @ParameterizedTest(name="{displayName} | 요청값: {0}")
+    @ValueSource(ints = {-1, 5})
+    void 참가자_잘못된_위치로_찾을시_IllegalArgumentException(int param) {
+        assertThatThrownBy(() -> {
+            members.getMember(param);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 }

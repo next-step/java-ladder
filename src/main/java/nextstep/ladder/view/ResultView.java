@@ -29,20 +29,20 @@ public class ResultView {
 
     public static void responseLadder(Ladder ladder) {
         System.out.println();
-        for (Line line : ladder.getLines()) {
+        for (LadderLine line : ladder.getLines()) {
             printLine(line);
         }
     }
 
-    private static void printLine(Line line) {
-        for (Point point : line.getPoints()) {
-            System.out.print(checkLine(point));
+    private static void printLine(LadderLine ladderLine) {
+        for (Point point : ladderLine.getPoints()) {
+            System.out.print(printPoint(point));
         }
         System.out.println();
     }
 
-    private static String checkLine(Point point) {
-        if (point.isPoint()) {
+    private static String printPoint(Point point) {
+        if (point.isLeft()) {
             return LINKED_LINE;
         }
         return NOT_LINKED_LINE;

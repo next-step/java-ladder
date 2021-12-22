@@ -19,7 +19,11 @@ public class LadderResultsTest {
                 new LadderResult(new Member("mouse"), new Reward("꽝")),
                 new LadderResult(new Member("kiti"), new Reward("10000"))
         );
-        ladderResults = new LadderResults(results);
+        Members members = Members.from("pobi,mouse,kiti");
+        Rewards rewards = Rewards.from("5000,꽝,10000");
+        Ladder ladder = Ladder.of(members, new LadderLayer(2), () -> true);
+
+        ladderResults = LadderResults.of(members, rewards, ladder);
     }
 
     @Test
