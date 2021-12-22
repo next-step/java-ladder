@@ -27,4 +27,9 @@ public class Player extends Name {
     public Index getIndex() {
         return index;
     }
+
+    @Override
+    public String toString() {
+        return "Player{" + "index=" + index.index + " Name=" + super.getName() + '}';
+    }
 }

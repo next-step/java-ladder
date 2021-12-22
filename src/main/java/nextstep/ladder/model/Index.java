@@ -56,4 +56,10 @@ public class Index {
         return Objects.hash(index);
     }
 
+    @Override
+    public String toString() {
+        return "Index{" +
+                "index=" + index +
+                '}';
+    }
 }
