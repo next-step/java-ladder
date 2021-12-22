@@ -101,6 +101,8 @@ public class Line {
 - [ ] 사다리 연결 방향 `PointDirection`
     - [ ] 사다리 연결 방향 생성 기능 추가
     - [ ] 리팩토링
+- [ ] 랜덤 변수 생성기 `RandomGenerator`
+    - [x] 랜덤 true/false 반환 기능 추가
 
 * * *
 
