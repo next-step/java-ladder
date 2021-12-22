@@ -1,9 +1,7 @@
 package ladder.config;
 
 import ladder.generator.DefaultLadderGenerator;
-import ladder.generator.DefaultLineGenerator;
-import ladder.generator.LadderGenerator;
-import ladder.generator.LineGenerator;
+import ladder.generator.Generator;
 import ladder.strategy.DefaultPlayResult;
 import ladder.strategy.LineStrategy;
 import ladder.strategy.PlayResult;
@@ -11,12 +9,8 @@ import ladder.strategy.RandomLine;
 
 public class LadderConfig {
 
-    public LadderGenerator ladderGenerator() {
-        return new DefaultLadderGenerator(lineGenerator());
-    }
-
-    public LineGenerator lineGenerator() {
-        return new DefaultLineGenerator(lineStrategy());
+    public Generator ladderGenerator() {
+        return new DefaultLadderGenerator(lineStrategy());
     }
 
     public LineStrategy lineStrategy() {

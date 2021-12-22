@@ -5,7 +5,7 @@ import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.LadderHeight;
 import ladder.domain.result.ExecutionResults;
 import ladder.domain.user.LadderPlayers;
-import ladder.generator.LadderGenerator;
+import ladder.generator.Generator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,7 +21,7 @@ class ResultViewTest {
         LadderPlayers players = new LadderPlayers(Arrays.asList("pobi", "honux", "crong"));
         LadderHeight height = new LadderHeight(3);
         LadderConfig config = new LadderConfig();
-        LadderGenerator generator = config.ladderGenerator();
+        Generator generator = config.ladderGenerator();
         ladder = generator.generate(players.size(), height);
     }
 

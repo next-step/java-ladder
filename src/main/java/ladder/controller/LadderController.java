@@ -6,7 +6,7 @@ import ladder.domain.ladder.LadderHeight;
 import ladder.domain.result.ExecutionResults;
 import ladder.domain.user.LadderPlayers;
 import ladder.domain.user.PlayerName;
-import ladder.generator.LadderGenerator;
+import ladder.generator.Generator;
 import ladder.strategy.PlayResult;
 import ladder.view.InputView;
 import ladder.view.ResultView;
@@ -17,10 +17,10 @@ public class LadderController {
 
     public static final String ALL_RESULTS = "all";
 
-    private final LadderGenerator ladderGenerator;
+    private final Generator ladderGenerator;
     private final PlayResult playResult;
 
-    public LadderController(LadderGenerator ladderGenerator, PlayResult playResult) {
+    public LadderController(Generator ladderGenerator, PlayResult playResult) {
         this.ladderGenerator = ladderGenerator;
         this.playResult = playResult;
     }

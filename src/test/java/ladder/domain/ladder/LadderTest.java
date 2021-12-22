@@ -2,9 +2,7 @@ package ladder.domain.ladder;
 
 import ladder.domain.user.LadderPlayers;
 import ladder.generator.DefaultLadderGenerator;
-import ladder.generator.DefaultLineGenerator;
-import ladder.generator.LadderGenerator;
-import ladder.generator.LineGenerator;
+import ladder.generator.Generator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,15 +18,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class LadderTest {
 
     private LadderHeight height;
-    private LadderGenerator generator;
+    private Generator generator;
     private Ladder ladder;
 
     @BeforeEach
     void init() {
         LadderPlayers players = new LadderPlayers(Arrays.asList("pobi", "honux", "crong", "jk"));
-        LineGenerator lineGenerator = new DefaultLineGenerator(() -> true);
         height = new LadderHeight(3);
-        generator = new DefaultLadderGenerator(lineGenerator);
+        generator = new DefaultLadderGenerator(() -> true);
         ladder = generator.generate(players.size(), height);
     }
 

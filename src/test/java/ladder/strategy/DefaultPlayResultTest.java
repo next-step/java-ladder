@@ -6,9 +6,7 @@ import ladder.domain.ladder.LadderHeight;
 import ladder.domain.user.LadderPlayers;
 import ladder.domain.user.PlayerName;
 import ladder.generator.DefaultLadderGenerator;
-import ladder.generator.DefaultLineGenerator;
-import ladder.generator.LadderGenerator;
-import ladder.generator.LineGenerator;
+import ladder.generator.Generator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -31,8 +29,7 @@ class DefaultPlayResultTest {
         infoDto = new LadderInfoDto(Arrays.asList("pobi", "honux", "crong"), Arrays.asList("꽝", "5000", "10000"), 3);
         LadderPlayers ladderPlayers = infoDto.getLadderPlayers();
         LadderHeight height = infoDto.getHeight();
-        LineGenerator lineGenerator = new DefaultLineGenerator(() -> true);
-        LadderGenerator generator = new DefaultLadderGenerator(lineGenerator);
+        Generator generator = new DefaultLadderGenerator(() -> true);
         ladder = generator.generate(ladderPlayers.size(), height);
     }
 
