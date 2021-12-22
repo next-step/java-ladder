@@ -5,7 +5,7 @@ import nextstep.ladder.model.Ladder;
 public class LadderController {
 
     // todo
-    public Ladder run() {
+    public Ladder run(RunRequest request) {
         return new Ladder();
     }
 }

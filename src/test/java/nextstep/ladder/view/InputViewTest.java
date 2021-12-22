@@ -5,6 +5,9 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -17,9 +20,9 @@ class InputViewTest {
         // given
         inputParticipantNames();
         // when
-        String participantNames = InputView.readParticipantNames();
+        List<String> participantNames = InputView.readParticipantNames();
         // then
-        assertThat(participantNames).isEqualTo(PARTICIPANT_NAMES);
+        assertThat(participantNames).isEqualTo(Arrays.stream(PARTICIPANT_NAMES.split(",")).collect(Collectors.toList()));
     }
 
     @Test
