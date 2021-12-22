@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.List;
 
 public final class LadderLine {
+    private static final int MIN_USER_SIZE = 2;
+
     private static final RandomGenerator RANDOM_GENERATOR = new RandomGenerator();
 
     private final List<LadderPoint> points;
@@ -14,11 +16,18 @@ public final class LadderLine {
     }
 
     public static LadderLine init(int userSize) {
+        validate(userSize);
         List<LadderPoint> points = new ArrayList<>(userSize);
         LadderPoint firstPoint = firstPoint();
         points.add(firstPoint);
         points.add(lastPoint(middlePoint(userSize, points, firstPoint)));
         return new LadderLine(points);
+    }
+
+    private static void validate(int userSize) {
+        if (userSize < MIN_USER_SIZE) {
+            throw new IllegalArgumentException(String.format("입력된 사용자의 수(%d)는 %d을 넘어야합니다.", userSize, MIN_USER_SIZE));
+        }
     }
 
     private static LadderPoint firstPoint() {
