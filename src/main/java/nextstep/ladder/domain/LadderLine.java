@@ -11,7 +11,7 @@ public class LadderLine {
     }
 
     public int move(int position) {
-        return points.get(position).move();
+        return points.get(position).move().toInt();
     }
 
     public static LadderLine init(int sizeOfPerson, LadderPointGenerateStrategy strategy) {

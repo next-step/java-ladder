@@ -1,40 +1,46 @@
 package nextstep.ladder.domain;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
-import static java.lang.Boolean.FALSE;
-import static java.lang.Boolean.TRUE;
-
+import static nextstep.ladder.domain.IndexTest.ix;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class PointTest {
+    @ParameterizedTest(name = "first: {arguments}")
+    @ValueSource(booleans = {true, false})
+    public void first(boolean right) {
+        assertThat(Point.first(right)).isEqualTo(Point.first(right));
+    }
+
     @Test
-    public void first() {
-        assertThat(Point.first(TRUE).move()).isEqualTo(1);
-        assertThat(Point.first(FALSE).move()).isEqualTo(0);
+    public void move() {
+        assertThat(Point.first(true).move()).isEqualTo(ix(1));
+        assertThat(Point.first(false).move()).isEqualTo(ix(0));
     }
 
     @Test
     public void next_stay() {
-        Point second = Point.first(FALSE).next(FALSE);
-        assertThat(second.move()).isEqualTo(1);
+        Point second = Point.first(false).next(false);
+        assertThat(second.move()).isEqualTo(ix(1));
     }
 
     @Test
     public void next_left() {
-        Point second = Point.first(TRUE).next(FALSE);
-        assertThat(second.move()).isEqualTo(0);
+        Point second = Point.first(true).next(false);
+        assertThat(second.move()).isEqualTo(ix(0));
     }
 
     @Test
     public void next_right() {
-        Point second = Point.first(FALSE).next(TRUE);
-        assertThat(second.move()).isEqualTo(2);
+        Point second = Point.first(false).next(true);
+        assertThat(second.move()).isEqualTo(ix(2));
     }
 
     @Test
     public void next() {
-        Point second = Point.first(TRUE).next(FALSE);
-        assertThat(second.move()).isEqualTo(0);
+        Point second = Point.first(true).next(false);
+        assertThat(second.move()).isEqualTo(ix(0));
     }
 }
