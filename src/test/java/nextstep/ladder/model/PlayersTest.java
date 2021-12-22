@@ -25,7 +25,7 @@ class PlayersTest {
 
     @Test
     @DisplayName("Players에서 name으로 Player 찾기: 성공")
-    void SuccessFindByName() {
+    void successFindByName() {
         Players players = new Players("aaaa,bbbb,cccc".split(","));
 
         String target = "aaaa";
@@ -35,7 +35,7 @@ class PlayersTest {
 
     @Test
     @DisplayName("Players에서 name으로 Player 찾기: 실패")
-    void FailFindByName() {
+    void failFindByName() {
         Players players = new Players("aaaa,bbbb,cccc".split(","));
         String target = "dddd";
         assertThatIllegalArgumentException().isThrownBy(() -> players.findPlayerByName(target));
@@ -45,5 +45,25 @@ class PlayersTest {
     @DisplayName("플레이어가 혼자일 경우 IllegalArgumentException 발생")
     void validationSize() {
         assertThatIllegalArgumentException().isThrownBy(() -> new Players("aaaa".split(",")));
+    }
+
+    @Test
+    @DisplayName("Players에서 Index로 Player 찾기: 성공")
+    void successFindByIndex() {
+        Players players = new Players("aaaa,bbbb,cccc".split(","));
+        Index index = new Index(1);
+
+        Player player = players.findPlayerByIndex(index);
+
+        assertThat(player.getName()).isEqualTo("bbbb");
+    }
+
+    @Test
+    @DisplayName("Players에서 Index로 Player 찾기: 실패")
+    void failFindByIndex() {
+        Players players = new Players("aaaa,bbbb,cccc".split(","));
+        Index index = new Index(3);
+
+        assertThatIllegalArgumentException().isThrownBy(() -> players.findPlayerByIndex(index));
     }
 }
