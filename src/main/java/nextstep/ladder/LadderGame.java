@@ -1,10 +1,7 @@
 package nextstep.ladder;
 
 import nextstep.ladder.factory.LinesFactory;
-import nextstep.ladder.model.Ladder;
-import nextstep.ladder.model.Lines;
-import nextstep.ladder.model.Players;
-import nextstep.ladder.model.Results;
+import nextstep.ladder.model.*;
 import nextstep.ladder.utils.StringUtils;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
@@ -31,8 +28,15 @@ public class LadderGame {
 
 
         Ladder ladder = new Ladder(players, lines, results);
-        ladder.game();
-
         OutputView.print(ladder);
+
+        Report report = ladder.game();
+
+        String name = InputView.nextLine("결과를 보고 싶은 사람은?");
+        if ("all".equals(StringUtils.validationNotNullAndEmpty(name))) {
+            OutputView.print(report);
+        } else {
+            OutputView.print(report, name);
+        }
     }
 }
