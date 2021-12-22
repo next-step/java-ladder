@@ -1,4 +1,7 @@
-package nextstep.ladder.view;
+package nextstep.ladder;
+
+import nextstep.ladder.view.InputView;
+import nextstep.ladder.view.OutputView;
 
 public class Application {
     public static void main(String[] args) {
