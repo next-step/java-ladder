@@ -5,28 +5,27 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-class UserTest {
-    private static final UserName VALID_NAME_CRONG = new UserName("crong");
+class UserNameTest {
 
     @Test
     void createTest() {
         // when & then
-        assertThat(new User(VALID_NAME_CRONG)).isNotNull();
+        assertThat(new UserName("crong")).isNotNull();
     }
 
     @Test
     void checkExceptionWithNullNameTest() {
         // when & then
         assertThatIllegalArgumentException().isThrownBy(
-                () -> new User(null)
+                () -> new UserName(null)
         );
     }
 
     @Test
-    void getNameTest() {
-        // when
-        User user = new User(VALID_NAME_CRONG);
-        // then
-        assertThat(user.getName()).isEqualTo(VALID_NAME_CRONG);
+    void checkExceptionWithNameGreaterThan5LetterTest() {
+        // when & then
+        assertThatIllegalArgumentException().isThrownBy(
+                () -> new UserName("crong-kim")
+        );
     }
 }

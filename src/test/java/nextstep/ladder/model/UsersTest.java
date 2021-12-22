@@ -9,7 +9,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class UsersTest {
 
-    private static final List<User> VALID_USERS = Arrays.asList(new User("pobi"), new User("honux"), new User("crong"), new User("jk"));
+    private static final List<User> VALID_USERS = Arrays.asList(
+            new User(new UserName("pobi")),
+            new User(new UserName("honux")),
+            new User(new UserName("crong")),
+            new User(new UserName("jk"))
+    );
 
     @Test
     void createTest() {

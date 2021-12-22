@@ -3,25 +3,21 @@ package nextstep.ladder.model;
 import java.util.Objects;
 
 public final class User {
-    private static final int MAX_NAME_SIZE = 5;
 
-    private final String name;
+    private final UserName name;
 
-    public User(String name) {
+    public User(UserName name) {
         validate(name);
         this.name = name;
     }
 
-    private void validate(String name) {
+    private void validate(UserName name) {
         if (Objects.isNull(name)) {
             throw new IllegalArgumentException("전달된 이름이 null입니다.");
         }
-        if (name.length() > MAX_NAME_SIZE) {
-            throw new IllegalArgumentException(String.format("전달된 이름이 %d을 초과했습니다.", MAX_NAME_SIZE));
-        }
     }
 
-    public String getName() {
+    public UserName getName() {
         return name;
     }
 }
