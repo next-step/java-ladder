@@ -14,8 +14,8 @@ public class Player {
         return this.playerName.isSameName(targetName);
     }
 
-    public String getPlayerName() {
-        return playerName.getName();
+    public PlayerName getPlayerName() {
+        return this.playerName;
     }
 
     @Override

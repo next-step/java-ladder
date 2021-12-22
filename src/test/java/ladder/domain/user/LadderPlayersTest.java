@@ -43,7 +43,7 @@ public class LadderPlayersTest {
     @MethodSource("provideFindPlayers")
     void findPlayerIndex(String value, String expected) {
         LadderPlayers players = new LadderPlayers(Arrays.asList("pobi", "honux", "crong"));
-        assertThat(players.findByName(value)).isEqualTo(expected);
+        assertThat(players.findByName(value).getName()).isEqualTo(expected);
     }
 
     private static Stream<Arguments> provideFindPlayers() {
@@ -58,7 +58,7 @@ public class LadderPlayersTest {
     @DisplayName("플레이어들 이름 리스트로 반환")
     void getPlayerNames() {
         LadderPlayers players = new LadderPlayers(Arrays.asList("pobi", "honux", "crong"));
-        assertThat(players.getPlayerNames()).containsExactly("pobi", "honux", "crong");
+        assertThat(players.getPlayerNames()).containsExactly(new PlayerName("pobi"), new PlayerName("honux"), new PlayerName("crong"));
     }
 
 }

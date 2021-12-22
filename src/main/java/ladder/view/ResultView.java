@@ -4,6 +4,7 @@ import ladder.domain.ladder.Line;
 import ladder.domain.ladder.Point;
 import ladder.domain.result.ExecutionResults;
 import ladder.domain.user.Player;
+import ladder.domain.user.PlayerName;
 
 import java.util.List;
 import java.util.Map;
@@ -39,7 +40,7 @@ public class ResultView {
         System.out.println();
     }
 
-    public static void printResults(List<String> players, Map<String, String> results) {
+    public static void printResults(List<PlayerName> players, Map<PlayerName, String> results) {
         System.out.println();
         System.out.println(RESULT_MSG);
         System.out.println(gameResults(players, results));
@@ -86,9 +87,9 @@ public class ResultView {
                 .collect(joining(WHITE_SPACE));
     }
 
-    private static String gameResults(List<String> playersName, Map<String, String> resultItems) {
+    private static String gameResults(List<PlayerName> playersName, Map<PlayerName, String> resultItems) {
         return playersName.stream()
-                .map(name -> name + DELIMITER + resultItems.get(name))
+                .map(name -> name.getName() + DELIMITER + resultItems.get(name))
                 .collect(joining(ENTER));
     }
 

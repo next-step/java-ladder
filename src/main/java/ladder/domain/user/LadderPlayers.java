@@ -25,7 +25,11 @@ public class LadderPlayers {
                 .collect(Collectors.toList());
     }
 
-    public String findByName(String targetName) {
+    public PlayerName findByIndex(int num) {
+        return this.players.get(num).getPlayerName();
+    }
+
+    public PlayerName findByName(String targetName) {
         return players.stream()
                 .filter(participant -> participant.isEqualsName(targetName))
                 .findAny()
@@ -33,7 +37,7 @@ public class LadderPlayers {
                 .getPlayerName();
     }
 
-    public List<String> getPlayerNames() {
+    public List<PlayerName> getPlayerNames() {
         return players.stream()
                 .map(Player::getPlayerName)
                 .collect(Collectors.toList());

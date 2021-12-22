@@ -1,26 +1,20 @@
 package ladder.strategy;
 
+import ladder.domain.dto.LadderInfoDto;
 import ladder.domain.ladder.Ladder;
-import ladder.domain.result.ExecutionResults;
-import ladder.domain.user.LadderPlayers;
+import ladder.domain.user.PlayerName;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class DefaultPlayResult implements PlayResult {
 
-    private final Ladder ladder;
-
-    public DefaultPlayResult(Ladder ladder) {
-        this.ladder = ladder;
-    }
-
     @Override
-    public Map<String, String> play(LadderPlayers players, ExecutionResults results) {
-        Map<String, String> result = new HashMap<>();
-        for (int num = 0; num < players.size(); num++) {
-            int findIndex = ladder.move(num);
-            result.put(players.getPlayerNames().get(num), results.getResults().get(findIndex));
+    public Map<PlayerName, String> play(Ladder ladder, LadderInfoDto infoDto) {
+        Map<PlayerName, String> result = new HashMap<>();
+        for (int num = 0; num < infoDto.getLadderPlayers().size(); num++) {
+            int resultIndex = ladder.move(num);
+            result.put(infoDto.getLadderPlayers().findByIndex(num), infoDto.getExecutionResults().findByIndex(resultIndex));
         }
         return result;
     }

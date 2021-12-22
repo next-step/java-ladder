@@ -21,8 +21,8 @@ class ResultViewTest {
         LadderPlayers players = new LadderPlayers(Arrays.asList("pobi", "honux", "crong"));
         LadderHeight height = new LadderHeight(3);
         LadderConfig config = new LadderConfig();
-        LadderGenerator generator = config.ladderGenerator(height);
-        ladder = generator.generate(players.size());
+        LadderGenerator generator = config.ladderGenerator();
+        ladder = generator.generate(players.size(), height);
     }
 
     @Test
