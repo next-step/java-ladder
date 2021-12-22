@@ -20,13 +20,10 @@ class LineTest {
 
     @Test
     @DisplayName("Generator 로 line 생성")
-    void generateLadder() {
-        assertThat(line.getPoints()).size().isEqualTo(4);
-    }
-
-    @Test
-    @DisplayName("인원별로 포인트를 가지는 라인 생성")
-    void create() {
+    void generateLine() {
+        LineGenerator lineGenerator = new DefaultLineGenerator(() -> true);
+        Line line = lineGenerator.generate(4);
+        assertThat(line).isEqualTo(lineGenerator.generate(4));
         assertThat(line.getPoints()).size().isEqualTo(4);
     }
 
