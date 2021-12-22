@@ -16,6 +16,10 @@ public class Line {
         init(size);
     }
 
+    public Line(List<Point> points) {
+        this.points = points;
+    }
+
     private void init(int playerSize) {
         this.points.add(new Point());
         IntStream.range(INDEX_SIZE, playerSize - INDEX_SIZE)
