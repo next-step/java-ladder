@@ -7,3 +7,11 @@
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
+
+## 구현 목록
+- [ ] Player를 만들자
+- [ ] Players를 만들자
+- [ ] 사다리 라인 수를 받아야 하는지 고민
+- [ ] Line을 만들자
+  - [ ] 포인트 생성 전략을 외부에서 받을 수 있도록 구현 (라인 전체를 만들어주는 생성 전략이 있어도 괜찮지 않을까?)
+- [ ] Ladder를 만들자
