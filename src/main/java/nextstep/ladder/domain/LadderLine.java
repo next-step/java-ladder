@@ -1,45 +1,36 @@
 package nextstep.ladder.domain;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Stream;
 
 public class LadderLine {
     private final List<Point> points;
 
     public LadderLine(List<Point> points) {
-        this.points = points;
+        this.points = Collections.unmodifiableList(points);
     }
 
-    public int move(int position) {
-        return points.get(position).move().toInt();
+    public Index move(int position) {
+        return points.get(position).move();
     }
 
-    public static LadderLine init(int sizeOfPerson, LadderPointGenerateStrategy strategy) {
-        List<Point> points = new ArrayList<>();
-        Point point = initFirst(points, strategy.generatePoint());
-        point = initBody(sizeOfPerson, points, point, strategy);
-        initLast(points, point);
-        return new LadderLine(points);
+    public static LadderLine init(int sizeOfRail, LadderPointGenerateStrategy strategy) {
+        return new LadderLine(LadderLineBuilder.of(sizeOfRail, strategy).build());
     }
 
-    // todo refactor: too many parameter
-    private static Point initBody(int sizeOfPerson, List<Point> points, Point point, LadderPointGenerateStrategy strategy) {
-        for (int i = 1; i < sizeOfPerson - 1; i++) {
-            point = point.next(strategy.generatePoint());
-            points.add(point);
-        }
-        return point;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LadderLine that = (LadderLine) o;
+        return Objects.equals(points, that.points);
     }
 
-    private static void initLast(List<Point> points, Point point) {
-        point = point.last();
-        points.add(point);
-    }
-
-    private static Point initFirst(List<Point> points, boolean first) {
-        Point point = Point.first(first);
-        points.add(point);
-        return point;
+    @Override
+    public int hashCode() {
+        return Objects.hash(points);
     }
 
     @Override
