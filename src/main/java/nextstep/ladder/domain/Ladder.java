@@ -4,15 +4,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import nextstep.ladder.engine.Ladder;
 import nextstep.ladder.engine.LadderPointGenerateStrategy;
 
-public class NewLadder extends FirstClassList<LadderLine> implements Ladder {
-    private NewLadder(final List<LadderLine> lines) {
+public class Ladder extends FirstClassList<LadderLine> implements nextstep.ladder.engine.Ladder {
+    private Ladder(final List<LadderLine> lines) {
         super(lines);
     }
 
-    public static NewLadder of(final RailCount railCount, final Height height, LadderPointGenerateStrategy strategy) {
+    public static Ladder of(final RailCount railCount, final Height height, LadderPointGenerateStrategy strategy) {
         if (railCount == null || height == null) {
             throw new IllegalArgumentException("rail count or height cannot be null");
         }
@@ -20,10 +19,10 @@ public class NewLadder extends FirstClassList<LadderLine> implements Ladder {
         List<LadderLine> lines = IntStream.range(0, height.toInt())
                 .mapToObj(index -> LadderLine.init(railCount, strategy))
                 .collect(Collectors.toList());
-        return new NewLadder(lines);
+        return new Ladder(lines);
     }
 
-    public static NewLadder of(final int railCount, final int height, final LadderPointGenerateStrategy strategy) {
+    public static Ladder of(final int railCount, final int height, final LadderPointGenerateStrategy strategy) {
         return of(RailCount.of(railCount), Height.of(height), strategy);
     }
 
