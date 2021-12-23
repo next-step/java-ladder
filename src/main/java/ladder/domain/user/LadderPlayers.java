@@ -25,14 +25,19 @@ public class LadderPlayers {
                 .collect(Collectors.toList());
     }
 
-    public int findIndexByName(String wantedName) {
-        if (!getPlayerNames().contains(wantedName)) {
-            throw new IllegalArgumentException(ERROR_NOT_FIND_PLAYER_MSG);
-        }
-        return getPlayerNames().indexOf(wantedName);
+    public PlayerName findByIndex(int num) {
+        return this.players.get(num).getPlayerName();
     }
 
-    public List<String> getPlayerNames() {
+    public PlayerName findByName(String targetName) {
+        return players.stream()
+                .filter(participant -> participant.isEqualsName(targetName))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException(ERROR_NOT_FIND_PLAYER_MSG))
+                .getPlayerName();
+    }
+
+    public List<PlayerName> getPlayerNames() {
         return players.stream()
                 .map(Player::getPlayerName)
                 .collect(Collectors.toList());

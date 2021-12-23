@@ -126,3 +126,16 @@
     - 어떻게 하는 걸까요...
 11. ~~불필요한 주석은 삭제하는게 좋습니다.~~
       - 주석 삭제하고 정상값 테스트 추가
+
+### step4. 사다리(리팩토링)
+**- TODO List**
+1. 인터페이스를 도입헤보자!
+2. generator 생성!
+   - LadderGenerator
+   - LineGenerator
+3. 구현체 생성
+   - DefaultLadderGenerator
+   - DefaultLineGenerator
+4. 결과값을 도출하는 인터페이스 도입은 안될까...
+   - PlayResult 인터페이스 생성
+   - DefaultPlayResult 구현체 생성

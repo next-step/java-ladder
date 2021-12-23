@@ -1,51 +1,62 @@
 package ladder.controller;
 
+import ladder.domain.dto.LadderInfoDto;
 import ladder.domain.ladder.Ladder;
-import ladder.domain.ladder.LadderComponent;
 import ladder.domain.ladder.LadderHeight;
 import ladder.domain.result.ExecutionResults;
 import ladder.domain.user.LadderPlayers;
-import ladder.strategy.LineStrategy;
+import ladder.domain.user.PlayerName;
+import ladder.generator.Generator;
+import ladder.strategy.PlayResult;
 import ladder.view.InputView;
 import ladder.view.ResultView;
+
+import java.util.Map;
 
 public class LadderController {
 
     public static final String ALL_RESULTS = "all";
 
-    private final LineStrategy lineStrategy;
+    private final Generator ladderGenerator;
+    private final PlayResult playResult;
 
-    public LadderController(LineStrategy lineStrategy) {
-        this.lineStrategy = lineStrategy;
+    public LadderController(Generator ladderGenerator, PlayResult playResult) {
+        this.ladderGenerator = ladderGenerator;
+        this.playResult = playResult;
     }
 
     public void start() {
-        LadderPlayers players = new LadderPlayers(InputView.printInputNames());
-        ExecutionResults items = new ExecutionResults(InputView.printInputItems());
-        LadderHeight height = new LadderHeight(InputView.printInputLadderHeight());
+        LadderInfoDto infoDto = new LadderInfoDto(InputView.printInputNames(), InputView.printInputItems(), InputView.printInputLadderHeight());
+        LadderPlayers players = infoDto.getLadderPlayers();
+        ExecutionResults items = infoDto.getExecutionResults();
+        LadderHeight height = infoDto.getHeight();
 
-        Ladder ladder = Ladder.createLadder(lineStrategy, LadderComponent.of(players.size(), height.getHeight()));
+        Ladder ladder = ladderGenerator.generate(players.size(), height);
 
-        ResultView.printLadderResult(players.getPlayers(), ladder.getLines());
-        ResultView.printItems(items);
+        printLadderTotalView(players, items, ladder);
 
-        ExecutionResults results = items.executeGame(players, ladder);
+        Map<PlayerName, String> result = playResult.play(ladder, infoDto);
 
-        printGameResults(players, results);
+        printGameResults(players, result);
     }
 
-    private void printGameResults(LadderPlayers players, ExecutionResults results) {
-        String wantedName = InputView.printInputFindPlayer();
+    private void printLadderTotalView(LadderPlayers players, ExecutionResults items, Ladder ladder) {
+        ResultView.printLadderResult(players.getPlayers(), ladder.getLines());
+        ResultView.printItems(items);
+    }
 
-        if (isAll(wantedName)) {
-            ResultView.printResults(players.getPlayerNames(), results.getResults());
+    private void printGameResults(LadderPlayers players, Map<PlayerName, String> result) {
+        String targetName = InputView.printInputFindPlayer();
+
+        if (isAll(targetName)) {
+            ResultView.printResults(players.getPlayerNames(), result);
             return;
         }
 
-        int findIndexByName = players.findIndexByName(wantedName);
-        ResultView.printSingleResult(findIndexByName, results.getResults());
+        PlayerName findName = players.findByName(targetName);
+        ResultView.printSingleResult(result.get(findName));
 
-        printGameResults(players, results);
+        printGameResults(players, result);
     }
 
     private boolean isAll(String wantedName) {

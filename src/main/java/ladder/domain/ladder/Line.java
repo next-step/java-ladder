@@ -1,8 +1,5 @@
 package ladder.domain.ladder;
 
-import ladder.strategy.LineStrategy;
-
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -15,26 +12,8 @@ public class Line {
         this.points = points;
     }
 
-    public static Line createLine(int countOfPlayers, LineStrategy strategy)  {
-        List<Point> points = new ArrayList<>();
-        Point point = createFirstPoint(strategy, points);
-        for (int i = 1; i < countOfPlayers - 1; i++) {
-            point = Point.middle(point, strategy.isEnableLine());
-            points.add(point);
-        }
-        createLastPoint(points, point);
+    public static Line createLine(List<Point> points)  {
         return new Line(points);
-    }
-
-    private static Point createFirstPoint(LineStrategy strategy, List<Point> points) {
-        Point point = Point.first(strategy.isEnableLine());
-        points.add(point);
-        return point;
-    }
-
-    private static void createLastPoint(List<Point> points, Point point) {
-        point = Point.last(point);
-        points.add(point);
     }
 
     public int move(int index) {
@@ -42,7 +21,7 @@ public class Line {
         return index;
     }
 
-    public List<Point> getLiens() {
+    public List<Point> getPoints() {
         return Collections.unmodifiableList(points);
     }
 

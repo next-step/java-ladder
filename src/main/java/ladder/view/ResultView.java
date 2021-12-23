@@ -4,10 +4,11 @@ import ladder.domain.ladder.Line;
 import ladder.domain.ladder.Point;
 import ladder.domain.result.ExecutionResults;
 import ladder.domain.user.Player;
+import ladder.domain.user.PlayerName;
 
 import java.util.List;
+import java.util.Map;
 import java.util.StringJoiner;
-import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.joining;
 
@@ -22,7 +23,6 @@ public class ResultView {
     public static final String LADDER_COLUMN = "|";
     public static final String ENTER = "\n";
     public static final String DELIMITER = " : ";
-    public static final int ZERO_INDEX = 0;
 
     private ResultView() {
         throw new AssertionError();
@@ -40,16 +40,16 @@ public class ResultView {
         System.out.println();
     }
 
-    public static void printResults(List<String> players, List<String> results) {
+    public static void printResults(List<PlayerName> players, Map<PlayerName, String> results) {
         System.out.println();
         System.out.println(RESULT_MSG);
         System.out.println(gameResults(players, results));
     }
 
-    public static void printSingleResult(int index, List<String> resultItems) {
+    public static void printSingleResult(String resultItem) {
         System.out.println();
         System.out.println(RESULT_MSG);
-        System.out.println(resultItems.get(index));
+        System.out.println(resultItem);
         System.out.println();
     }
 
@@ -68,7 +68,7 @@ public class ResultView {
     private static String printLine(Line line) {
         StringJoiner joiner = new StringJoiner(LADDER_COLUMN);
         joiner.add(LADDER_SPACE);
-        line.getLiens().stream()
+        line.getPoints().stream()
                 .map(ResultView::printPoint)
                 .forEach(joiner::add);
         return joiner.toString();
@@ -87,9 +87,9 @@ public class ResultView {
                 .collect(joining(WHITE_SPACE));
     }
 
-    private static String gameResults(List<String> players, List<String> resultItems) {
-        return IntStream.range(ZERO_INDEX, players.size())
-                .mapToObj(index -> players.get(index) + DELIMITER + resultItems.get(index))
+    private static String gameResults(List<PlayerName> playersName, Map<PlayerName, String> resultItems) {
+        return playersName.stream()
+                .map(name -> name.getName() + DELIMITER + resultItems.get(name))
                 .collect(joining(ENTER));
     }
 

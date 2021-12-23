@@ -7,11 +7,15 @@ public class Player {
     private final PlayerName playerName;
 
     public Player(String name) {
-        playerName = new PlayerName(name);
+        this.playerName = new PlayerName(name);
     }
 
-    public String getPlayerName() {
-        return playerName.getName();
+    public boolean isEqualsName(String targetName) {
+        return this.playerName.isSameName(targetName);
+    }
+
+    public PlayerName getPlayerName() {
+        return this.playerName;
     }
 
     @Override

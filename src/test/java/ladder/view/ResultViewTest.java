@@ -1,10 +1,12 @@
 package ladder.view;
 
+import ladder.config.LadderConfig;
 import ladder.domain.ladder.Ladder;
-import ladder.domain.ladder.LadderComponent;
+import ladder.domain.ladder.LadderHeight;
 import ladder.domain.result.ExecutionResults;
 import ladder.domain.user.LadderPlayers;
-import ladder.strategy.RandomLine;
+import ladder.generator.Generator;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,11 +14,21 @@ import java.util.Arrays;
 
 class ResultViewTest {
 
+    private Ladder ladder;
+
+    @BeforeEach
+    void init() {
+        LadderPlayers players = new LadderPlayers(Arrays.asList("pobi", "honux", "crong"));
+        LadderHeight height = new LadderHeight(3);
+        LadderConfig config = new LadderConfig();
+        Generator generator = config.ladderGenerator();
+        ladder = generator.generate(players.size(), height);
+    }
+
     @Test
     @DisplayName("사다리 출력 그림 보기 위해 작성")
     void printResult() {
         LadderPlayers players = new LadderPlayers(Arrays.asList("pobi", "honux", "crong", "jk"));
-        Ladder ladder = Ladder.createLadder(new RandomLine(), LadderComponent.of(4, 4));
         ExecutionResults items = new ExecutionResults(Arrays.asList("꽝", "2000", "10000", "꽝"));
         ResultView.printLadderResult(players.getPlayers(), ladder.getLines());
         ResultView.printItems(items);

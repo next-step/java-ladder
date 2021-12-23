@@ -15,9 +15,6 @@ public class PlayerName {
         if (!(MINIMUM_NAME_LENGTH <= name.length() && name.length() <= MAXIMUM_NAME_LENGTH)) {
             throw new IllegalArgumentException(ERROR_NAME_LENGTH_MSG);
         }
-        if (name.isEmpty()) {
-            throw new NullPointerException(ERROR_NULL_MSG);
-        }
         this.name = name;
     }
 

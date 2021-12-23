@@ -11,7 +11,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LadderPlayersTest {
 
@@ -38,18 +39,18 @@ public class LadderPlayersTest {
     }
 
     @ParameterizedTest
-    @DisplayName("입력한 값이 Players에서 동일한 이름 객체 위치값 반환")
+    @DisplayName("입력한 값이 Players에서 동일한 이름라면 이름 반환")
     @MethodSource("provideFindPlayers")
-    void findPlayerIndex(String value, int expected) {
+    void findPlayerIndex(String value, String expected) {
         LadderPlayers players = new LadderPlayers(Arrays.asList("pobi", "honux", "crong"));
-        assertThat(players.findIndexByName(value)).isEqualTo(expected);
+        assertThat(players.findByName(value).getName()).isEqualTo(expected);
     }
 
     private static Stream<Arguments> provideFindPlayers() {
         return Stream.of(
-                Arguments.of("pobi", 0),
-                Arguments.of("honux", 1),
-                Arguments.of("crong", 2)
+                Arguments.of("pobi", "pobi"),
+                Arguments.of("honux", "honux"),
+                Arguments.of("crong", "crong")
         );
     }
 
@@ -57,7 +58,7 @@ public class LadderPlayersTest {
     @DisplayName("플레이어들 이름 리스트로 반환")
     void getPlayerNames() {
         LadderPlayers players = new LadderPlayers(Arrays.asList("pobi", "honux", "crong"));
-        assertThat(players.getPlayerNames()).containsExactly("pobi", "honux", "crong");
+        assertThat(players.getPlayerNames()).containsExactly(new PlayerName("pobi"), new PlayerName("honux"), new PlayerName("crong"));
     }
 
 }
