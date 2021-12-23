@@ -14,6 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class InputViewTest {
     private static final String PARTICIPANT_NAMES = "pobi,honux,crong,jk";
     private static final String HEIGHT_OF_LADDER = "1";
+    private static final String EXECUTION_RESULT = "꽝,5000,꽝,3000";
 
     @Test
     void readParticipantNamesTest() {
@@ -33,6 +34,14 @@ class InputViewTest {
         int heightOfLadder = InputView.readHeightOfLadder();
         // then
         assertThat(heightOfLadder).isEqualTo(Integer.parseInt(HEIGHT_OF_LADDER));
+    }
+
+    @Test
+    void readExecutionResultTest() {
+        // given
+        inputSystemValue(EXECUTION_RESULT);
+        // when & then
+        assertThat(InputView.readExecutionResult()).isEqualTo(EXECUTION_RESULT);
     }
 
     private void inputParticipantNames() {
