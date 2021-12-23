@@ -5,7 +5,7 @@ import nextstep.ladder.domain.ladder.strategy.Strategy;
 import java.util.Objects;
 
 public class Ladder {
-    public static final String LADDER_HEIGHT_LIMIT_MESSAGE = "사다리는 최소 1단이어야 합니다.";
+    public static final String LADDER_HEIGHT_LIMIT_MESSAGE = "사다리 높이는 최소 1단이어야 합니다.";
     public static final int MIN = 1;
 
     private final Lines lines;
@@ -24,7 +24,6 @@ public class Ladder {
         Lines lines = Lines.from(height, numberOfParticipants, strategy);
         return new Ladder(height, lines);
     }
-
 
     @Override
     public boolean equals(Object o) {
