@@ -51,6 +51,10 @@ public class LadderFrameTest {
         assertThat(frame.resultsOfGame(List.of(1, 0))).isEqualTo(rs("r2", "r1"));
     }
 
+    @Test void railCount() {
+        assertThat(lf(List.of("n1", "n2"), List.of("r1", "r2")).railCount()).isEqualTo(RailCount.of(2));
+    }
+
     public static LadderFrame lf(List<String> players, List<String> results) {
         return LadderFrame.of(players, results);
     }

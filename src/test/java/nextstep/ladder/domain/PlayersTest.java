@@ -11,7 +11,6 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 
-import static nextstep.ladder.domain.PlayerCountTest.pc;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
@@ -33,12 +32,6 @@ public class PlayersTest {
     public void createFailed(List<String> names) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> Players.of(names));
-    }
-
-    @Test
-    public void count() {
-        final List<String> names = List.of("name1", "name2");
-        assertThat(Players.of(names).count()).isEqualTo(pc(names.size()));
     }
 
     @Test

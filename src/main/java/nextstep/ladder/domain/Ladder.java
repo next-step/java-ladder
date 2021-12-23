@@ -27,7 +27,7 @@ public class Ladder extends FirstClassList<LadderLine> implements nextstep.ladde
     }
 
     public ResultOfGame resultOfGame(LadderFrame ladderFrame) {
-        List<Integer> indexes = IntStream.range(0, ladderFrame.size())
+        List<Integer> indexes = IntStream.range(0, ladderFrame.railCount().toInt())
                 .mapToObj(this::downToResult)
                 .collect(Collectors.toList());
 

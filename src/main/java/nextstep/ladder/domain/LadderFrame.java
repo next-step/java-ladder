@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.Objects;
 
 public class LadderFrame {
-    public static final int MINIMUM_RAIL_COUNT = 2;
-
     private final Players players;
     private final Results results;
 
@@ -39,12 +37,8 @@ public class LadderFrame {
         return results.mapByIndex(indexes);
     }
 
-    public int size() {
-        return players().size();
-    }
-
-    public PlayerCount playerCount() {
-        return players.count();
+    public RailCount railCount() {
+        return RailCount.of(players.size());
     }
 
     @Override

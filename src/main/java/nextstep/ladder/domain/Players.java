@@ -13,15 +13,11 @@ public class Players extends FirstClassList<PlayerName> {
             throw new IllegalArgumentException("names cannot be null");
         }
 
-        PlayerCount.validate(names.size());
+        RailCount.validate(names.size());
 
         return new Players(names.stream()
                 .map(PlayerName::of)
                 .collect(Collectors.toList()));
-    }
-
-    public PlayerCount count() {
-        return PlayerCount.of(size());
     }
 
     @Override

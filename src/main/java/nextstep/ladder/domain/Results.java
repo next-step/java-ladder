@@ -9,9 +9,11 @@ public class Results extends FirstClassList<Result> {
     }
 
     public static Results fromString(final List<String> results) {
-        if (results == null || results.isEmpty()) {
+        if (results == null) {
             throw new IllegalArgumentException("invalid results: cannot be null or empty");
         }
+
+        RailCount.validate(results.size());
 
         return new Results(results.stream()
                 .map(Result::of)

@@ -33,8 +33,7 @@ public class ResultOfGameTest {
     @MethodSource("parseCreateFailed")
     public void createFailed(Map<PlayerName, Result> playerResultMap) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> ResultOfGame.of(playerResultMap))
-                .withMessageContaining("invalid input");
+                .isThrownBy(() -> ResultOfGame.of(playerResultMap));
     }
 
     @Test

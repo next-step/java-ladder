@@ -21,8 +21,7 @@ public class ResultsTest {
     @NullAndEmptySource
     public void createFailed(List<String> results) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> Results.fromString(results))
-                .withMessageContaining("cannot be null or empty");
+                .isThrownBy(() -> Results.fromString(results));
     }
 
     @Test

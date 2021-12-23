@@ -21,7 +21,7 @@ public class LadderBuilder implements nextstep.ladder.engine.LadderBuilder {
     }
 
     public nextstep.ladder.engine.Ladder build(LadderPointGenerateStrategy strategy) {
-        return Ladder.of(RailCount.of(ladderFrame.size()), height, strategy);
+        return Ladder.of(ladderFrame.railCount(), height, strategy);
     }
 
     @Override

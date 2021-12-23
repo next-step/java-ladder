@@ -3,8 +3,11 @@ package nextstep.ladder.domain;
 import java.util.HashMap;
 import java.util.Map;
 
+import nextstep.ladder.engine.Count;
+
 public class RailCount extends Count {
     public static final int MINIMUM_RAIL_COUNT = 2;
+
     private static final Map<Integer, RailCount> cache = new HashMap<>();
 
     private RailCount(int count) {
@@ -16,12 +19,16 @@ public class RailCount extends Count {
             return cache.get(railCount);
         }
 
-        if (railCount < MINIMUM_RAIL_COUNT) {
-            throw new IllegalArgumentException("invalid number of rail: must be larger than or equal to 2, but " + railCount);
-        }
+        validate(railCount);
 
         RailCount newRailCount = new RailCount(railCount);
         cache.put(railCount, newRailCount);
         return newRailCount;
+    }
+
+    public static void validate(final int railCount) {
+        if (railCount < MINIMUM_RAIL_COUNT) {
+            throw new IllegalArgumentException("invalid rail count: must be larger than 2, but " + railCount);
+        }
     }
 }
