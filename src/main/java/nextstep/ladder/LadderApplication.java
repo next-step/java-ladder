@@ -14,6 +14,7 @@ public class LadderApplication {
         RunRequest request = RunRequest.of(userNames, InputView.readHeightOfLadder());
         OutputView.printLadderResult(request.participatedUsers(), controller.run(request));
         Users users = Users.from(InputView.readUserNames());
+        List<String> executionResult = LadderResult.from(InputView.readLadderResults());
         Ladder ladder = controller.createLadder(RunRequest.of(users.size(), InputView.readHeightOfLadder()));
         OutputView.printLadderResult(users, ladder);
         OutputView.printExecutionResultForUsers(InputView.readCommandForResultOfTargetUser());// todo: 반복 실행 결과 확인 로직 구현

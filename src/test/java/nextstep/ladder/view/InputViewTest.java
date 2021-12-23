@@ -39,11 +39,11 @@ class InputViewTest {
     }
 
     @Test
-    void readExecutionResultsTest() {
+    void readLadderResultsTest() {
         // given
         inputSystemValue(EXECUTION_RESULTS);
         // when & then
-        assertThat(InputView.readExecutionResults()).containsExactly(EXECUTION_RESULTS.split(","));
+        assertThat(InputView.readLadderResults()).containsExactly(EXECUTION_RESULTS.split(","));
     }
 
     @ParameterizedTest
