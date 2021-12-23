@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import static nextstep.ladder.domain.HeightTest.h;
 import static nextstep.ladder.domain.LadderFrameTest.lf;
-import static nextstep.ladder.domain.PlayerTest.p;
+import static nextstep.ladder.domain.PlayerNameTest.pn;
 import static nextstep.ladder.domain.RailCountTest.rc;
 import static nextstep.ladder.domain.ResultTest.r;
 import static nextstep.ladder.domain.TestLadderPointStrategy.NO_LINE_STRATEGY;
@@ -57,13 +57,13 @@ public class NewLadderTest {
         return Stream.of(
                 Arguments.of(NewLadder.of(2, 2, NO_LINE_STRATEGY),
                         lf(List.of("p1", "p2"), List.of("r1", "r2")),
-                        ResultOfGame.of(Map.of(p("p1"), r("r1"), p("p2"), r("r2")))),
+                        ResultOfGame.of(Map.of(pn("p1"), r("r1"), pn("p2"), r("r2")))),
                 Arguments.of(NewLadder.of(2, 1, TestLadderPointStrategy.reverseLineStrategy()),
                         lf(List.of("p1", "p2"), List.of("r1", "r2")),
-                        ResultOfGame.of(Map.of(p("p1"), r("r2"), p("p2"), r("r1")))),
+                        ResultOfGame.of(Map.of(pn("p1"), r("r2"), pn("p2"), r("r1")))),
                 Arguments.of(NewLadder.of(2, 3, TestLadderPointStrategy.reverseLineStrategy()),
                         lf(List.of("p1", "p2"), List.of("r1", "r2")),
-                        ResultOfGame.of(Map.of(p("p1"), r("r1"), p("p2"), r("r2"))))
+                        ResultOfGame.of(Map.of(pn("p1"), r("r1"), pn("p2"), r("r2"))))
         );
     }
 

@@ -9,13 +9,13 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class ResultOfGame {
-    private final Map<Player, Result> playerResultMap;
+    private final Map<PlayerName, Result> playerResultMap;
 
-    private ResultOfGame(Map<Player, Result> playerResultMap) {
+    private ResultOfGame(Map<PlayerName, Result> playerResultMap) {
         this.playerResultMap = Collections.unmodifiableMap(playerResultMap);
     }
 
-    public static ResultOfGame of(Map<Player, Result> playerResultMap) {
+    public static ResultOfGame of(Map<PlayerName, Result> playerResultMap) {
         if (playerResultMap == null || playerResultMap.size() < LadderFrame.MINIMUM_RAIL_COUNT) {
             throw new IllegalArgumentException("invalid input: result map cannot be null and larger than 2");
         }
@@ -31,11 +31,11 @@ public class ResultOfGame {
                 )));
     }
 
-    public Optional<Result> result(Player player) {
-        return Optional.ofNullable(playerResultMap.get(player));
+    public Optional<Result> result(PlayerName playerName) {
+        return Optional.ofNullable(playerResultMap.get(playerName));
     }
 
-    public Stream<Map.Entry<Player, Result>> streamOfEntry() {
+    public Stream<Map.Entry<PlayerName, Result>> streamOfEntry() {
         return playerResultMap.entrySet()
                 .stream();
     }

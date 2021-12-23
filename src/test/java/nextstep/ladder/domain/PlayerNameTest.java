@@ -7,12 +7,12 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-public class NameTest {
+public class PlayerNameTest {
     @ParameterizedTest(name = "create: {arguments}")
     @ValueSource(strings = {"n", "name", "name1"})
     public void create(String name) {
-        assertThat(Name.of(name)).isEqualTo(Name.of(name));
-        assertThat(Name.of(name).toString()).isEqualTo(name);
+        assertThat(PlayerName.of(name)).isEqualTo(PlayerName.of(name));
+        assertThat(PlayerName.of(name).toString()).isEqualTo(name);
     }
 
     @ParameterizedTest(name = "create failed: {arguments}")
@@ -20,11 +20,11 @@ public class NameTest {
     @ValueSource(strings = {"name12"})
     public void createFailed(String name) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> Name.of(name))
+                .isThrownBy(() -> PlayerName.of(name))
                 .withMessageContaining("invalid name");
     }
 
-    public static Name n(final String name) {
-        return Name.of(name);
+    public static PlayerName pn(final String name) {
+        return PlayerName.of(name);
     }
 }

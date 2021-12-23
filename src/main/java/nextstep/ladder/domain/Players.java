@@ -3,9 +3,9 @@ package nextstep.ladder.domain;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Players extends FirstClassList<Player> {
-    private Players(final List<Player> players) {
-        super(players);
+public class Players extends FirstClassList<PlayerName> {
+    private Players(final List<PlayerName> playerNames) {
+        super(playerNames);
     }
 
     public static Players of(final List<String> names) {
@@ -16,7 +16,7 @@ public class Players extends FirstClassList<Player> {
         PlayerCount.validate(names.size());
 
         return new Players(names.stream()
-                .map(Player::of)
+                .map(PlayerName::of)
                 .collect(Collectors.toList()));
     }
 

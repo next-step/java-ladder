@@ -5,8 +5,7 @@ import java.util.stream.Collectors;
 
 import nextstep.ladder.LadderGame;
 import nextstep.ladder.domain.LadderFrame;
-import nextstep.ladder.domain.Name;
-import nextstep.ladder.domain.Player;
+import nextstep.ladder.domain.PlayerName;
 import nextstep.ladder.domain.Players;
 import nextstep.ladder.domain.Result;
 import nextstep.ladder.domain.ResultOfGame;
@@ -15,7 +14,7 @@ import nextstep.ladder.engine.Ladder;
 import nextstep.ladder.engine.Line;
 
 public class OutputView {
-    private static final String NAME_FORMAT = "%" + (Name.LENGTH_LIMIT + 1) + "s";
+    private static final String NAME_FORMAT = "%" + (PlayerName.LENGTH_LIMIT + 1) + "s";
     private static final String NEWLINE = "\n";
     private static final String SPACE = " ";
     private static final String LINE = "-";
@@ -24,7 +23,6 @@ public class OutputView {
 
     public static void printPlayerList(Players players) {
         players.stream()
-                .map(Player::name)
                 .map(OutputView::formatPadding)
                 .forEach(System.out::print);
         System.out.print(NEWLINE);
@@ -34,7 +32,7 @@ public class OutputView {
         return String.format(NAME_FORMAT, object);
     }
 
-    public static String formatName(Name name) {
+    public static String formatName(PlayerName name) {
         return String.format(NAME_FORMAT, name);
     }
 
@@ -45,7 +43,7 @@ public class OutputView {
     }
 
     public static String formatLine(Line line) {
-        return SPACE.repeat(Name.LENGTH_LIMIT) + RAIL + mapLine(line);
+        return SPACE.repeat(PlayerName.LENGTH_LIMIT) + RAIL + mapLine(line);
     }
 
     public static String mapLine(Line line) {
@@ -57,7 +55,7 @@ public class OutputView {
 
     public static String mapPoint(boolean isPoint) {
         String point = isPoint ? LINE : SPACE;
-        return point.repeat(Name.LENGTH_LIMIT);
+        return point.repeat(PlayerName.LENGTH_LIMIT);
     }
 
     public static void printResult(Results results) {
@@ -76,7 +74,7 @@ public class OutputView {
     public static void printResultOfPlayers(String nameOfUser, ResultOfGame resultOfGame) {
         System.out.println("실행 결과");
 
-        resultOfGame.result(Player.of(nameOfUser))
+        resultOfGame.result(PlayerName.of(nameOfUser))
                 .map(Result::toString)
                 .or(() -> mapNotExistUser(nameOfUser, resultOfGame))
                 .ifPresent(System.out::println);
@@ -90,7 +88,7 @@ public class OutputView {
 
     public static String parseAllResult(ResultOfGame resultOfGame) {
         return resultOfGame.streamOfEntry()
-                .map(entry -> entry.getKey().name() + NAME_COLON + entry.getValue())
+                .map(entry -> entry.getKey() + NAME_COLON + entry.getValue())
                 .collect(Collectors.joining(NEWLINE));
     }
 }

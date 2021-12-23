@@ -2,16 +2,16 @@ package nextstep.ladder.domain;
 
 import java.util.Objects;
 
-public class Name {
+public class PlayerName {
     public static final int LENGTH_LIMIT = 5;
 
     private final String name;
 
-    private Name(final String name) {
+    private PlayerName(final String name) {
         this.name = name;
     }
 
-    public static Name of(final String name) {
+    public static PlayerName of(final String name) {
         if (name == null || name.isEmpty()) {
             throw new IllegalArgumentException("invalid name: cannot be null or empty");
         }
@@ -20,14 +20,14 @@ public class Name {
             throw new IllegalArgumentException("invalid name: too long " + name.length());
         }
 
-        return new Name(name);
+        return new PlayerName(name);
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Name name1 = (Name) o;
+        PlayerName name1 = (PlayerName) o;
         return Objects.equals(name, name1.name);
     }
 
