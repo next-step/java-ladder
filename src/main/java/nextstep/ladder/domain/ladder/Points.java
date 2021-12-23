@@ -2,15 +2,14 @@ package nextstep.ladder.domain.ladder;
 
 import nextstep.ladder.domain.ladder.strategy.Strategy;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class Points {
-    private final List<Boolean> values = new ArrayList<>();
+    private final List<Boolean> values;
 
     private Points(List<Boolean> points) {
-        this.values.addAll(points);
+        this.values = points;
     }
 
     public static Points from(List<Boolean> points) {
