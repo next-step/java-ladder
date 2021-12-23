@@ -21,6 +21,8 @@
   * [x] 각 Point의 좌/우 방향 정보를 가진다.
   * [x] 현재 Point에서 다음 Point를 생성하는 역할
 * [ ] LadderLine, Point, Direction 클래스를 기존 코드에 적용
+  * [x] sizeOfRail의 wrapping
+  * [x] LadderBuilder에 적용
 * [ ] 책임 기반의 인터페이스 위주 설계
   * [ ] LadderFrame의 resultOfGame 분리
 * 피드백

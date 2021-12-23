@@ -3,7 +3,6 @@ package nextstep.ladder.domain;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Stream;
 
 public class LadderLine {
     private final List<Point> points;
@@ -16,8 +15,8 @@ public class LadderLine {
         return points.get(position).move();
     }
 
-    public static LadderLine init(int sizeOfRail, LadderPointGenerateStrategy strategy) {
-        return new LadderLine(LadderLineBuilder.of(sizeOfRail, strategy).build());
+    public static LadderLine init(int railCount, LadderPointGenerateStrategy strategy) {
+        return new LadderLine(LadderLineBuilder.of(RailCount.of(railCount), strategy).build());
     }
 
     @Override

@@ -16,7 +16,7 @@ public class LadderPointGenerateStrategyTest {
     static Stream<Arguments> parseGenerate() {
         return Stream.of(
                 Arguments.of(NO_LINE_STRATEGY),
-                Arguments.of(new TestLadderPointStrategy.ReverseLineStrategy()),
+                Arguments.of(TestLadderPointStrategy.reverseLineStrategy()),
                 Arguments.of(new RandomLadderPointStrategy())
         );
     }

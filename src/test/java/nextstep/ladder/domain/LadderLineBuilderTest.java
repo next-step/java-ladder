@@ -9,6 +9,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import static nextstep.ladder.domain.RailCountTest.rc;
 import static nextstep.ladder.domain.TestLadderPointStrategy.NO_LINE_STRATEGY;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
@@ -16,20 +17,21 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 public class LadderLineBuilderTest {
     @Test
     public void create() {
+        assertThat(LadderLineBuilder.of(rc(2), NO_LINE_STRATEGY)).isExactlyInstanceOf(LadderLineBuilder.class);
         assertThat(LadderLineBuilder.of(2, NO_LINE_STRATEGY)).isExactlyInstanceOf(LadderLineBuilder.class);
     }
 
     static Stream<Arguments> parseCreateFailed() {
         return Stream.of(
-                Arguments.of(1, NO_LINE_STRATEGY),
-                Arguments.of(2, null)
+                Arguments.of(null, NO_LINE_STRATEGY),
+                Arguments.of(rc(2), null)
         );
     }
 
     @ParameterizedTest(name = "create failed: {arguments}")
     @MethodSource("parseCreateFailed")
-    public void createFailed(int sizeOfRail, LadderPointGenerateStrategy strategy) {
-        assertThatIllegalArgumentException().isThrownBy(() -> LadderLineBuilder.of(sizeOfRail, strategy));
+    public void createFailed(RailCount railCount, LadderPointGenerateStrategy strategy) {
+        assertThatIllegalArgumentException().isThrownBy(() -> LadderLineBuilder.of(railCount, strategy));
     }
 
     static List<Point> generateLadderPoints(int sizeOfPerson, LadderPointGenerateStrategy strategy) {
@@ -47,13 +49,13 @@ public class LadderLineBuilderTest {
     static Stream<Arguments> parseBuildArguments() {
         return Stream.of(
                 Arguments.of(2, NO_LINE_STRATEGY),
-                Arguments.of(5, new TestLadderPointStrategy.ReverseLineStrategy())
+                Arguments.of(5, TestLadderPointStrategy.reverseLineStrategy())
         );
     }
 
     @ParameterizedTest(name = "build: {arguments}")
     @MethodSource("parseBuildArguments")
-    public void build(int sizeOfPerson, LadderPointGenerateStrategy strategy) {
-        assertThat(LadderLineBuilder.of(sizeOfPerson, strategy).build()).hasSameElementsAs(generateLadderPoints(sizeOfPerson, strategy));
+    public void build(int railCount, LadderPointGenerateStrategy strategy) {
+        assertThat(LadderLineBuilder.of(railCount, strategy).build()).hasSameElementsAs(generateLadderPoints(railCount, strategy));
     }
 }

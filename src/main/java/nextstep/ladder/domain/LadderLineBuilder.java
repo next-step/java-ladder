@@ -9,35 +9,33 @@ import java.util.stream.IntStream;
 public class LadderLineBuilder {
     private static final int HEAD_INDEX = 1;
     private static final int LAST_REVERSE_INDEX = 1;
-    public static final int MINIMUM_RAIL_COUNT = 2;
 
-
-    private final int sizeOfRail;
+    private final RailCount railCount;
     private final LadderPointGenerateStrategy strategy;
     private final AtomicReference<Point> previous;
 
-    public LadderLineBuilder(int sizeOfRail, LadderPointGenerateStrategy strategy) {
-        this.sizeOfRail = sizeOfRail;
+    public LadderLineBuilder(RailCount railCount, LadderPointGenerateStrategy strategy) {
+        this.railCount = railCount;
         this.strategy = strategy;
         this.previous = new AtomicReference<>(Point.first(strategy.generatePoint()));
     }
 
-    public static LadderLineBuilder of(int sizeOfRail, LadderPointGenerateStrategy strategy) {
-        if (sizeOfRail < MINIMUM_RAIL_COUNT) {
-            throw new IllegalArgumentException("size of rail must larger than or equal to 2");
+    public static LadderLineBuilder of(RailCount railCount, LadderPointGenerateStrategy strategy) {
+        if (railCount == null || strategy == null) {
+            throw new IllegalArgumentException("rail count or strategy cannot be null");
         }
 
-        if (strategy == null) {
-            throw new IllegalArgumentException("strategy cannot be null");
-        }
+        return new LadderLineBuilder(railCount, strategy);
+    }
 
-        return new LadderLineBuilder(sizeOfRail, strategy);
+    public static LadderLineBuilder of(int railCount, LadderPointGenerateStrategy strategy) {
+        return of(RailCount.of(railCount), strategy);
     }
 
     public List<Point> build() {
-        List<Point> points = new ArrayList<>(sizeOfRail);
+        List<Point> points = new ArrayList<>(railCount.toInt());
         points.add(previous.get());
-        points.addAll(IntStream.range(HEAD_INDEX, sizeOfRail - LAST_REVERSE_INDEX)
+        points.addAll(IntStream.range(HEAD_INDEX, railCount.toInt() - LAST_REVERSE_INDEX)
                 .mapToObj(this::generate)
                 .collect(Collectors.toList()));
         points.add(previous.get().last());
@@ -56,7 +54,7 @@ public class LadderLineBuilder {
     @Override
     public String toString() {
         return "LadderLineBuilder{" +
-                "sizeOfPerson=" + sizeOfRail +
+                "sizeOfPerson=" + railCount +
                 ", strategy=" + strategy +
                 ", previous=" + previous +
                 '}';

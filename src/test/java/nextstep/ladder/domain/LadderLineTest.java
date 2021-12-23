@@ -21,8 +21,8 @@ public class LadderLineTest {
     static Stream<Arguments> parseMoveArguments() {
         return Stream.of(
                 Arguments.of(LadderLine.init(2, NO_LINE_STRATEGY), 0, 0),
-                Arguments.of(LadderLine.init(2, new TestLadderPointStrategy.ReverseLineStrategy()), 1, 0),
-                Arguments.of(LadderLine.init(2, new TestLadderPointStrategy.ReverseLineStrategy()), 0, 1)
+                Arguments.of(LadderLine.init(2, TestLadderPointStrategy.reverseLineStrategy()), 1, 0),
+                Arguments.of(LadderLine.init(2, TestLadderPointStrategy.reverseLineStrategy()), 0, 1)
         );
     }
 

@@ -3,7 +3,11 @@ package nextstep.ladder.domain;
 public class TestLadderPointStrategy {
     public static LadderPointGenerateStrategy NO_LINE_STRATEGY = () -> false;
 
-    static class ReverseLineStrategy implements LadderPointGenerateStrategy {
+    public static LadderPointGenerateStrategy reverseLineStrategy() {
+        return new ReverseLineStrategy();
+    }
+
+    private static class ReverseLineStrategy implements LadderPointGenerateStrategy {
         private boolean flag = false;
 
         @Override

@@ -29,7 +29,6 @@ public class ResultOfGame {
                         Function.identity(),
                         player -> results.elementOf(players.indexOf(player))
                 )));
-
     }
 
     public Optional<Result> result(Player player) {
