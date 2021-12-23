@@ -7,26 +7,35 @@ public class Point {
     private static final int RIGHT = 1;
     private static final int NOW = 0;
 
-    private final boolean value;
+    private final int index;
+    private final Direction direction;
 
-    public Point(boolean value) {
-        this.value = value;
+    public Point(int index, Direction direction) {
+        this.index = index;
+        this.direction = direction;
     }
 
-    public boolean isValue() {
-        return value;
+    public int move() {
+        if (direction.isRight()) {
+            return index + RIGHT;
+        }
+        if (direction.isLeft()) {
+            return index + LEFT;
+        }
+
+        return index;
     }
 
-    public int checkDirection(Point left) {
-        if (left.isValue()) {
-            return LEFT;
-        }
+    public Point next(boolean right) {
+        return new Point(index + RIGHT, direction.next(right));
+    }
 
-        if(this.isValue()) {
-            return RIGHT;
-        }
+    public Point last() {
+        return new Point(index + RIGHT, direction.last());
+    }
 
-        return NOW;
+    public static Point first(Boolean right) {
+        return new Point(0, Direction.first(right));
     }
 
     @Override
@@ -34,11 +43,11 @@ public class Point {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Point point = (Point) o;
-        return value == point.value;
+        return index == point.index;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(value);
+        return Objects.hash(index);
     }
 }
