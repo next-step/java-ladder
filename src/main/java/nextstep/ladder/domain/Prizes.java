@@ -3,25 +3,25 @@ package nextstep.ladder.domain;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Results extends FirstClassList<Result> {
-    private Results(final List<Result> results) {
-        super(results);
+public class Prizes extends FirstClassList<Prize> {
+    private Prizes(final List<Prize> prizes) {
+        super(prizes);
     }
 
-    public static Results fromString(final List<String> results) {
+    public static Prizes fromString(final List<String> results) {
         if (results == null) {
             throw new IllegalArgumentException("invalid results: cannot be null or empty");
         }
 
         RailCount.validate(results.size());
 
-        return new Results(results.stream()
-                .map(Result::of)
+        return new Prizes(results.stream()
+                .map(Prize::of)
                 .collect(Collectors.toList()));
     }
 
-    public Results mapByIndex(List<Integer> indexes) {
-        return new Results(indexes.stream()
+    public Prizes mapByIndex(List<Integer> indexes) {
+        return new Prizes(indexes.stream()
                 .map(this::elementOf)
                 .collect(Collectors.toList()));
     }

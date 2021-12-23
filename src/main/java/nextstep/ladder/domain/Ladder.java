@@ -43,7 +43,7 @@ public class Ladder extends FirstClassList<LadderLine> implements nextstep.ladde
     }
 
     @Override
-    public Results results() {
+    public Prizes prizes() {
         return ladderFrame.results();
     }
 

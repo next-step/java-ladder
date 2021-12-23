@@ -15,8 +15,8 @@ import static nextstep.ladder.domain.LadderFrameTest.lf;
 import static nextstep.ladder.domain.LadderFrameTest.simpleLF;
 import static nextstep.ladder.domain.PlayerNameTest.pn;
 import static nextstep.ladder.domain.PlayersTest.ps;
-import static nextstep.ladder.domain.ResultTest.r;
-import static nextstep.ladder.domain.ResultsTest.rs;
+import static nextstep.ladder.domain.PrizeTest.pz;
+import static nextstep.ladder.domain.PrizesTest.rs;
 import static nextstep.ladder.domain.TestLadderPointStrategy.NO_LINE_STRATEGY;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
@@ -57,11 +57,11 @@ public class LadderTest {
     static Stream<Arguments> parseLadderResult() {
         return Stream.of(
                 Arguments.of(simpleLF, 2, NO_LINE_STRATEGY,
-                        ResultOfGame.of(Map.of(pn("p1"), r("r1"), pn("p2"), r("r2")))),
+                        ResultOfGame.of(Map.of(pn("p1"), pz("r1"), pn("p2"), pz("r2")))),
                 Arguments.of(simpleLF, 1, TestLadderPointStrategy.reverseLineStrategy(),
-                        ResultOfGame.of(Map.of(pn("p1"), r("r2"), pn("p2"), r("r1")))),
+                        ResultOfGame.of(Map.of(pn("p1"), pz("r2"), pn("p2"), pz("r1")))),
                 Arguments.of(simpleLF, 3, TestLadderPointStrategy.reverseLineStrategy(),
-                        ResultOfGame.of(Map.of(pn("p1"), r("r1"), pn("p2"), r("r2"))))
+                        ResultOfGame.of(Map.of(pn("p1"), pz("r1"), pn("p2"), pz("r2"))))
         );
     }
 
@@ -71,7 +71,7 @@ public class LadderTest {
         List<String> results = List.of("r1", "r2");
         LadderFrame frame = lf(players, results);
         assertThat(l(frame, 5, NO_LINE_STRATEGY).players()).isEqualTo(ps(players));
-        assertThat(l(frame, 5, NO_LINE_STRATEGY).results()).isEqualTo(rs(results));
+        assertThat(l(frame, 5, NO_LINE_STRATEGY).prizes()).isEqualTo(rs(results));
     }
 
 

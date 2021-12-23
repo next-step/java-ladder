@@ -8,9 +8,9 @@ import nextstep.ladder.LadderGame;
 // todo domain을 너무 많이 본다
 import nextstep.ladder.domain.PlayerName;
 import nextstep.ladder.domain.Players;
-import nextstep.ladder.domain.Result;
+import nextstep.ladder.domain.Prize;
 import nextstep.ladder.domain.ResultOfGame;
-import nextstep.ladder.domain.Results;
+import nextstep.ladder.domain.Prizes;
 // todo 최대한 engine만 보도록
 import nextstep.ladder.engine.Ladder;
 import nextstep.ladder.engine.Line;
@@ -53,8 +53,8 @@ public class OutputView {
         return point.repeat(PlayerName.LENGTH_LIMIT);
     }
 
-    public static void printResult(Results results) {
-        results.stream()
+    public static void printResult(Prizes prizes) {
+        prizes.stream()
                 .map(OutputView::formatPadding)
                 .forEach(System.out::print);
         System.out.print(NEWLINE);
@@ -67,14 +67,14 @@ public class OutputView {
                 .map(OutputView::formatLine)
                 .forEach(System.out::println);
 
-        printResult(ladder.results());
+        printResult(ladder.prizes());
     }
 
     public static void printResultOfPlayers(String nameOfUser, ResultOfGame resultOfGame) {
         System.out.println("실행 결과");
 
         resultOfGame.result(PlayerName.of(nameOfUser))
-                .map(Result::toString)
+                .map(Prize::toString)
                 .or(() -> mapNotExistUser(nameOfUser, resultOfGame))
                 .ifPresent(System.out::println);
     }

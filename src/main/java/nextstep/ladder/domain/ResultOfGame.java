@@ -9,13 +9,13 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class ResultOfGame {
-    private final Map<PlayerName, Result> playerResultMap;
+    private final Map<PlayerName, Prize> playerResultMap;
 
-    private ResultOfGame(Map<PlayerName, Result> playerResultMap) {
+    private ResultOfGame(Map<PlayerName, Prize> playerResultMap) {
         this.playerResultMap = Collections.unmodifiableMap(playerResultMap);
     }
 
-    public static ResultOfGame of(Map<PlayerName, Result> playerResultMap) {
+    public static ResultOfGame of(Map<PlayerName, Prize> playerResultMap) {
         if (playerResultMap == null) {
             throw new IllegalArgumentException("invalid input: result map cannot be null");
         }
@@ -25,19 +25,19 @@ public class ResultOfGame {
         return new ResultOfGame(playerResultMap);
     }
 
-    public static ResultOfGame of(Players players, Results results) {
+    public static ResultOfGame of(Players players, Prizes prizes) {
         return of(players.stream()
                 .collect(Collectors.toMap(
                         Function.identity(),
-                        player -> results.elementOf(players.indexOf(player))
+                        player -> prizes.elementOf(players.indexOf(player))
                 )));
     }
 
-    public Optional<Result> result(PlayerName playerName) {
+    public Optional<Prize> result(PlayerName playerName) {
         return Optional.ofNullable(playerResultMap.get(playerName));
     }
 
-    public Stream<Map.Entry<PlayerName, Result>> streamOfEntry() {
+    public Stream<Map.Entry<PlayerName, Prize>> streamOfEntry() {
         return playerResultMap.entrySet()
                 .stream();
     }

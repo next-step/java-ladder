@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import static nextstep.ladder.domain.PlayersTest.ps;
-import static nextstep.ladder.domain.ResultsTest.rs;
+import static nextstep.ladder.domain.PrizesTest.rs;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 

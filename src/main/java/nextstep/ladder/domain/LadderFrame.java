@@ -5,11 +5,11 @@ import java.util.Objects;
 
 public class LadderFrame {
     private final Players players;
-    private final Results results;
+    private final Prizes prizes;
 
-    private LadderFrame(Players players, Results results) {
+    private LadderFrame(Players players, Prizes prizes) {
         this.players = players;
-        this.results = results;
+        this.prizes = prizes;
     }
 
     public static LadderFrame of(List<String> players, List<String> results) {
@@ -21,20 +21,20 @@ public class LadderFrame {
             throw new IllegalArgumentException("players and results count is not matched");
         }
 
-        return new LadderFrame(Players.of(players), Results.fromString(results));
+        return new LadderFrame(Players.of(players), Prizes.fromString(results));
     }
 
     public Players players() {
         return players;
     }
 
-    public Results results() {
-        return results;
+    public Prizes results() {
+        return prizes;
     }
 
     // todo 이렇게 하면 구조는 깔끔해지지만 LadderFrame의 책임이 많아지고 이름과 책임이 맞지 않음
-    public Results resultsOfGame(List<Integer> indexes) {
-        return results.mapByIndex(indexes);
+    public Prizes resultsOfGame(List<Integer> indexes) {
+        return prizes.mapByIndex(indexes);
     }
 
     public RailCount railCount() {
@@ -46,19 +46,19 @@ public class LadderFrame {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         LadderFrame that = (LadderFrame) o;
-        return Objects.equals(players, that.players) && Objects.equals(results, that.results);
+        return Objects.equals(players, that.players) && Objects.equals(prizes, that.prizes);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(players, results);
+        return Objects.hash(players, prizes);
     }
 
     @Override
     public String toString() {
         return "LadderFrame{" +
                 "players=" + players +
-                ", results=" + results +
+                ", results=" + prizes +
                 '}';
     }
 }

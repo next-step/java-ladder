@@ -17,14 +17,17 @@ public class FirstClassList<T> {
         this.collection = Collections.unmodifiableList(collection);
     }
 
+    // todo refactor: test에서만 사용
     public List<T> collect() {
         return collection;
     }
 
+    // todo refactor: test에서만 사용
     public Stream<T> stream() {
         return collection.stream();
     }
 
+    // todo refactor: test에서만 사용
     public void forEach(Consumer<? super T> action) {
         collection.forEach(action);
     }
@@ -37,6 +40,7 @@ public class FirstClassList<T> {
         return collection.get(index);
     }
 
+    // todo refactor: test에서만 사용
     public Optional<T> elementOfOpt(int index) {
         if (index < HEAD_INDEX || index >= collection.size()) {
             return Optional.empty();
@@ -49,10 +53,12 @@ public class FirstClassList<T> {
         return collection.indexOf(t);
     }
 
+    // todo refactor: test에서만 사용
     public Iterator<T> iterator() {
         return collect().iterator();
     }
 
+    // todo refactor: test에서만 사용
     public <S> boolean hasSameSize(FirstClassList<S> other) {
         return other != null && collection.size() == other.size();
     }
