@@ -100,10 +100,11 @@ public class Line {
     - [x] 참여자/사다리 높이를 입력받아 게임 시작 기능 추가
     - [x] `InputView`에서 전달받는 파라미터 클래스 `RunRequest` 추가
     - [ ] 리팩토링
-- [ ] `LadderController`에 파라미터를 전달하기 위한 클래스 `RunRequest`
+- [ ] `LadderController`에 `Ladder` 생성 파라미터를 전달하기 위한 클래스 `RunRequest`
     - [x] 전달 인스턴스 생성 기능 추가
     - [x] 전달 파라미터 검증 메서드 추가
     - [x] `Users`를 만드는 빌더 메서드 추가
+    - [x] 사다리 생성시 필요한 파라미터(사용자 수, 사다리 높이)로 변경
     - [ ] 리팩토링
 - [ ] 게임 참여자인 사용자 모델 `User`
     - [x] 사용자 모델 생성

@@ -1,10 +1,7 @@
 package nextstep.ladder.controller;
 
-import nextstep.ladder.model.User;
-import nextstep.ladder.model.Users;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Arrays;
@@ -19,17 +16,17 @@ class RunRequestTest {
     @Test
     void ofTest() {
         // when
-        RunRequest request = RunRequest.of(USER_NAMES, 5);
+        RunRequest request = RunRequest.of(USER_NAMES.size(), 5);
         // then
         assertThat(request).isNotNull();
     }
 
     @ParameterizedTest
-    @NullAndEmptySource
-    void checkExceptionForInvalidUserNamesTest(List<String> userNames) {
+    @ValueSource(ints = {1, 0, Integer.MIN_VALUE})
+    void checkExceptionForInvalidUserNamesTest(int userSize) {
         // when & then
         assertThatIllegalArgumentException().isThrownBy(
-                () -> RunRequest.of(userNames, 5)
+                () -> RunRequest.of(userSize, 5)
         );
     }
 
@@ -38,27 +35,25 @@ class RunRequestTest {
     void checkExceptionForInvalidHeightOfLadderTest(int heightOfLadder) {
         // when & then
         assertThatIllegalArgumentException().isThrownBy(
-                () -> RunRequest.of(USER_NAMES, heightOfLadder)
+                () -> RunRequest.of(USER_NAMES.size(), heightOfLadder)
         );
     }
 
     @Test
-    void participatedUsersTest() {
+    void getUserSizeTest() {
         // given
-        RunRequest request = RunRequest.of(USER_NAMES, 5);
+        RunRequest request = RunRequest.of(USER_NAMES.size(), 5);
         // when
-        Users users = request.participatedUsers();
+        int userSize = request.getUserSize();
         // then
-        assertThat(users.getUsers())
-                .extracting(User::getName)
-                .isEqualTo(USER_NAMES);
+        assertThat(userSize).isEqualTo(USER_NAMES.size());
     }
 
     @Test
     void getHeightOfLadderTest() {
         // given
         int heightOfLadder = 5;
-        RunRequest request = RunRequest.of(USER_NAMES, heightOfLadder);
+        RunRequest request = RunRequest.of(USER_NAMES.size(), heightOfLadder);
         // when & then
         assertThat(request.getHeightOfLadder()).isEqualTo(heightOfLadder);
     }

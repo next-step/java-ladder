@@ -1,39 +1,32 @@
 package nextstep.ladder.controller;
 
-import nextstep.ladder.model.User;
-import nextstep.ladder.model.UserName;
-import nextstep.ladder.model.Users;
-
-import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
-
 public final class RunRequest {
+    private static final int MIN_USER_SIZE = 2;
     private static final int MIN_HEIGHT_SIZE = 1;
 
-    private final List<String> userNames;
+    private final int userSize;
     private final int heightOfLadder;
 
-    private RunRequest(List<String> userNames, int heightOfLadder) {
-        this.userNames = userNames;
+    private RunRequest(int userSize, int heightOfLadder) {
+        this.userSize = userSize;
         this.heightOfLadder = heightOfLadder;
     }
 
-    public static RunRequest of(List<String> userNames, int heightOfLadder) {
-        validate(userNames, heightOfLadder);
-        return new RunRequest(userNames, heightOfLadder);
+    public static RunRequest of(int userSize, int heightOfLadder) {
+        validate(userSize, heightOfLadder);
+        return new RunRequest(userSize, heightOfLadder);
     }
 
-    public Users participatedUsers() {
-        return Users.from(users());
+    public int getUserSize() {
+        return userSize;
     }
 
     public int getHeightOfLadder() {
         return heightOfLadder;
     }
 
-    private static void validate(List<String> userNames, int heightOfLadder) {
-        validateUserNames(userNames);
+    private static void validate(int userSize, int heightOfLadder) {
+        validateUserSize(userSize);
         validateHeightOfLadder(heightOfLadder);
     }
 
@@ -43,18 +36,9 @@ public final class RunRequest {
         }
     }
 
-    private static void validateUserNames(List<String> userNames) {
-        if (Objects.isNull(userNames)) {
-            throw new IllegalArgumentException("전달된 사용자 이름이 null입니다.");
+    private static void validateUserSize(int userSize) {
+        if (userSize < MIN_USER_SIZE) {
+            throw new IllegalArgumentException(String.format("전달된 사용자의 수가 %d보다 작습니다.", MIN_USER_SIZE));
         }
-        if (userNames.isEmpty()) {
-            throw new IllegalArgumentException("전달된 사용자 이름이 비어있습니다.");
-        }
-    }
-
-    private List<User> users() {
-        return userNames.stream()
-                .map(name -> new User(new UserName(name)))
-                .collect(Collectors.toList());
     }
 }
