@@ -32,8 +32,7 @@ public final class Ladder {
 
     private static List<LadderLine> ladderLines(int userSize, int height) {
         return IntStream.range(0, height)
-                .boxed()
-                .map(x -> LadderLine.init(userSize))
+                .mapToObj(x -> LadderLine.init(userSize))
                 .collect(Collectors.toList());
     }
 }
