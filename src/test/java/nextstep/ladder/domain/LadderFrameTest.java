@@ -58,4 +58,6 @@ public class LadderFrameTest {
     public static LadderFrame lf(List<String> players, List<String> results) {
         return LadderFrame.of(players, results);
     }
+
+    public static LadderFrame simpleLF = lf(List.of("p1", "p2"), List.of("r1", "r2"));
 }

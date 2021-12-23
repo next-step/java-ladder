@@ -2,10 +2,15 @@ package nextstep.ladder.engine;
 
 import java.util.stream.Stream;
 
-import nextstep.ladder.domain.LadderFrame;
+// todo engine에서 domain 보면 안된다.
+import nextstep.ladder.domain.Players;
 import nextstep.ladder.domain.ResultOfGame;
+import nextstep.ladder.domain.Results;
 
 public interface Ladder {
-    ResultOfGame resultOfGame(LadderFrame ladderFrame);
+    ResultOfGame resultOfGame();
     Stream<? extends Line> stream();
+
+    Players players();
+    Results results();
 }

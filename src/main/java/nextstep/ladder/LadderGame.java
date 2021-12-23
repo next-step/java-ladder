@@ -3,10 +3,10 @@ package nextstep.ladder;
 import java.util.List;
 
 import nextstep.ladder.domain.LadderFrame;
-import nextstep.ladder.domain.LadderBuilder;
 import nextstep.ladder.domain.RandomLadderPointStrategy;
 import nextstep.ladder.domain.ResultOfGame;
 import nextstep.ladder.engine.Ladder;
+import nextstep.ladder.engine.LadderBuilder;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
 
@@ -20,12 +20,12 @@ public class LadderGame {
         final int height = InputView.inputHeight();
 
         final LadderFrame ladderFrame = LadderFrame.of(names, resultList);
-        final nextstep.ladder.engine.LadderBuilder ladderBuilder = LadderBuilder.of(ladderFrame, height);
+        final LadderBuilder ladderBuilder = nextstep.ladder.domain.LadderBuilder.of(ladderFrame, height);
         final Ladder ladder = ladderBuilder.build(new RandomLadderPointStrategy());
 
-        OutputView.printLadder(ladderFrame, ladder);
+        OutputView.printLadder(ladder);
 
-        ResultOfGame resultOfGame = ladder.resultOfGame(ladderFrame);
+        ResultOfGame resultOfGame = ladder.resultOfGame();
 
         String nameOfUser = "";
         while(!nameOfUser.equalsIgnoreCase(QUIT_COMMAND)) {

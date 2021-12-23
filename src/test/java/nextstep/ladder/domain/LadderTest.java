@@ -12,9 +12,11 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import static nextstep.ladder.domain.HeightTest.h;
 import static nextstep.ladder.domain.LadderFrameTest.lf;
+import static nextstep.ladder.domain.LadderFrameTest.simpleLF;
 import static nextstep.ladder.domain.PlayerNameTest.pn;
-import static nextstep.ladder.domain.RailCountTest.rc;
+import static nextstep.ladder.domain.PlayersTest.ps;
 import static nextstep.ladder.domain.ResultTest.r;
+import static nextstep.ladder.domain.ResultsTest.rs;
 import static nextstep.ladder.domain.TestLadderPointStrategy.NO_LINE_STRATEGY;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
@@ -22,54 +24,64 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 public class LadderTest {
     @Test
     public void create() {
-        final RailCount railCount = rc(2);
+        final LadderFrame ladderFrame = lf(List.of("p1", "p2", "p3"), List.of("r1", "r2", "r3"));
         final Height height = h(5);
         final LadderPointGenerateStrategy strategy = NO_LINE_STRATEGY;
 
-        assertThat(Ladder.of(railCount, height, strategy)).isEqualTo(Ladder.of(railCount, height, strategy));
+        assertThat(Ladder.of(ladderFrame, height, strategy)).isEqualTo(Ladder.of(ladderFrame, height, strategy));
     }
 
     static Stream<Arguments> parseInvalidLadder() {
         return Stream.of(
                  Arguments.of(null, h(5), NO_LINE_STRATEGY),
-                Arguments.of(rc(2), null, NO_LINE_STRATEGY),
-                Arguments.of(rc(2), h(5), null)
+                Arguments.of(simpleLF, null, NO_LINE_STRATEGY),
+                Arguments.of(simpleLF, h(5), null)
         );
     }
 
     @ParameterizedTest(name = "create failed: {arguments}")
     @MethodSource("parseInvalidLadder")
-    public void createFailed(RailCount railCount, Height height, LadderPointGenerateStrategy strategy) {
+    public void createFailed(LadderFrame ladderFrame, Height height, LadderPointGenerateStrategy strategy) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> Ladder.of(railCount, height, strategy));
+                .isThrownBy(() -> Ladder.of(ladderFrame, height, strategy));
     }
 
     @Test
     public void stream() {
-        final int railCount = 2;
         final int height = 5;
         final LadderPointGenerateStrategy strategy = NO_LINE_STRATEGY;
-        assertThat(Ladder.of(railCount, height, strategy).stream()).hasSize(height);
-        assertThat(Ladder.of(railCount, height, strategy).stream()).hasOnlyElementsOfType(LadderLine.class);
+        assertThat(Ladder.of(simpleLF, height, strategy).stream()).hasSize(height);
+        assertThat(Ladder.of(simpleLF, height, strategy).stream()).hasOnlyElementsOfType(LadderLine.class);
     }
 
     static Stream<Arguments> parseLadderResult() {
         return Stream.of(
-                Arguments.of(Ladder.of(2, 2, NO_LINE_STRATEGY),
-                        lf(List.of("p1", "p2"), List.of("r1", "r2")),
+                Arguments.of(simpleLF, 2, NO_LINE_STRATEGY,
                         ResultOfGame.of(Map.of(pn("p1"), r("r1"), pn("p2"), r("r2")))),
-                Arguments.of(Ladder.of(2, 1, TestLadderPointStrategy.reverseLineStrategy()),
-                        lf(List.of("p1", "p2"), List.of("r1", "r2")),
+                Arguments.of(simpleLF, 1, TestLadderPointStrategy.reverseLineStrategy(),
                         ResultOfGame.of(Map.of(pn("p1"), r("r2"), pn("p2"), r("r1")))),
-                Arguments.of(Ladder.of(2, 3, TestLadderPointStrategy.reverseLineStrategy()),
-                        lf(List.of("p1", "p2"), List.of("r1", "r2")),
+                Arguments.of(simpleLF, 3, TestLadderPointStrategy.reverseLineStrategy(),
                         ResultOfGame.of(Map.of(pn("p1"), r("r1"), pn("p2"), r("r2"))))
         );
     }
 
+    @Test
+    public void playersAndResults() {
+        List<String> players = List.of("n1", "n2");
+        List<String> results = List.of("r1", "r2");
+        LadderFrame frame = lf(players, results);
+        assertThat(l(frame, 5, NO_LINE_STRATEGY).players()).isEqualTo(ps(players));
+        assertThat(l(frame, 5, NO_LINE_STRATEGY).results()).isEqualTo(rs(results));
+    }
+
+
     @ParameterizedTest(name = "result of ladder: {arguments}")
     @MethodSource("parseLadderResult")
-    public void result(Ladder ladder, LadderFrame ladderFrame, ResultOfGame expected) {
-        assertThat(ladder.resultOfGame(ladderFrame)).isEqualTo(expected);
+    public void result(LadderFrame ladderFrame, int height, LadderPointGenerateStrategy strategy, ResultOfGame expected) {
+        assertThat(l(ladderFrame, height, strategy).resultOfGame()).isEqualTo(expected);
+    }
+
+    public static Ladder l(LadderFrame ladderFrame, int height, LadderPointGenerateStrategy strategy) {
+        return Ladder.of(ladderFrame, height, strategy);
     }
 }

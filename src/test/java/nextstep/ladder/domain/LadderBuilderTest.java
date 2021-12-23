@@ -41,7 +41,7 @@ public class LadderBuilderTest {
         final List<String> results = List.of("result1", "result2");
         final int height = 5;
         final LadderBuilder builder = LadderBuilder.of(lf(players, results), height);
-        assertThat(Ladder.of(players.size(), height, NO_LINE_STRATEGY))
+        assertThat(Ladder.of(lf(players, results), height, NO_LINE_STRATEGY))
                 .isEqualTo(builder.build(NO_LINE_STRATEGY));
     }
 }

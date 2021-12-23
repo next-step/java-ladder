@@ -3,13 +3,15 @@ package nextstep.ladder.view;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+// todo view에서 LadderGame을 보면 안된다
 import nextstep.ladder.LadderGame;
-import nextstep.ladder.domain.LadderFrame;
+// todo domain을 너무 많이 본다
 import nextstep.ladder.domain.PlayerName;
 import nextstep.ladder.domain.Players;
 import nextstep.ladder.domain.Result;
 import nextstep.ladder.domain.ResultOfGame;
 import nextstep.ladder.domain.Results;
+// todo 최대한 engine만 보도록
 import nextstep.ladder.engine.Ladder;
 import nextstep.ladder.engine.Line;
 
@@ -36,12 +38,6 @@ public class OutputView {
         return String.format(NAME_FORMAT, name);
     }
 
-    public static void printLadder(Ladder ladder) {
-        ladder.stream()
-                .map(OutputView::formatLine)
-                .forEach(System.out::println);
-    }
-
     public static String formatLine(Line line) {
         return SPACE.repeat(PlayerName.LENGTH_LIMIT) + RAIL + mapLine(line);
     }
@@ -50,7 +46,6 @@ public class OutputView {
         return line.boolStream()
                 .map(OutputView::mapPoint)
                 .collect(Collectors.joining(RAIL));
-
     }
 
     public static String mapPoint(boolean isPoint) {
@@ -65,10 +60,14 @@ public class OutputView {
         System.out.print(NEWLINE);
     }
 
-    public static void printLadder(LadderFrame ladderFrame, Ladder ladder) {
-        printPlayerList(ladderFrame.players());
-        printLadder(ladder);
-        printResult(ladderFrame.results());
+    public static void printLadder(Ladder ladder) {
+        printPlayerList(ladder.players());
+
+        ladder.stream()
+                .map(OutputView::formatLine)
+                .forEach(System.out::println);
+
+        printResult(ladder.results());
     }
 
     public static void printResultOfPlayers(String nameOfUser, ResultOfGame resultOfGame) {
