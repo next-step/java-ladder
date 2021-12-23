@@ -6,24 +6,27 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class PointTest {
 
     @DisplayName("객체 생성 테스트")
     @Test
     void create() {
-        Point point = new Point(false);
-
-        assertThat(point).isNotNull();
+        assertThat(Point.first(false)).isNotNull();
     }
-    @DisplayName("점의 좌우 이동으로 다음 위치를 구하는 테스트")
-    @ParameterizedTest
-    @CsvSource(value = {"false:true:1", "true:false:-1", "false:false:0"}, delimiter = ':')
-    void checkDirectionTest(boolean left, boolean current, int nextLocation) {
-        Point leftPoint = new Point(left);
-        Point currentPoint = new Point(current);
 
-        assertThat(currentPoint.checkDirection(leftPoint)).isEqualTo(nextLocation);
+    @DisplayName("첫번째 포인트를 생성한다. 길의 연결 여부에 따라 위치를 확인한다.")
+    @ParameterizedTest
+    @CsvSource(value = {"true:1", "false:0"}, delimiter = ':')
+    void first(boolean right, int index) {
+        assertThat(Point.first(right).move()).isEqualTo(index);
+    }
+
+    @DisplayName("점의 이동을 테스트")
+    @ParameterizedTest
+    @CsvSource(value = {"false:true:2", "false:false:1", "true:false:0"}, delimiter = ':')
+    void next(boolean first, boolean second, int index) {
+        Point point = Point.first(first).next(second);
+        assertThat(point.move()).isEqualTo(index);
     }
 }
