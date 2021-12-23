@@ -4,6 +4,8 @@ import java.util.Objects;
 
 public class Participant {
     public static final int MAX = 5;
+    public static final String INPUT_NULL_OR_EMPTY_MESSAGE = "이름을 입력해주세요.";
+    public static final String INPUT_LIMIT_MESSAGE = "이름은 5글자 이하로 입력해주세요.";
     private final String name;
 
     private Participant(String input) {
@@ -12,11 +14,11 @@ public class Participant {
 
     public static Participant from(String input) {
         if (isNullOrEmpty(input)) {
-            throw new IllegalArgumentException("이름을 입력해주세요.");
+            throw new IllegalArgumentException(INPUT_NULL_OR_EMPTY_MESSAGE);
         }
 
         if (isMoreThanLimit(input)) {
-            throw new IllegalArgumentException("이름은 5글자 이하로 입력해주세요.");
+            throw new IllegalArgumentException(INPUT_LIMIT_MESSAGE);
         }
 
         return new Participant(input);
