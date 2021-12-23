@@ -12,8 +12,8 @@ class LineTest {
     @Test
     @DisplayName("인원 수만큼 가로 라인을 그려서 사다리를 만든다")
     void shouldCreate() {
-        Line line = Line.from(2,  new Strategy.Fake());
-        assertThat(line).isEqualTo(Line.from(2, new Strategy.Fake()));
+        Line line = Line.from(4,  new Strategy.Fake());
+        assertThat(line).isEqualTo(Line.from(4, new Strategy.Fake()));
     }
 
     @Test

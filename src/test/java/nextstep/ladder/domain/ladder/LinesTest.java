@@ -14,7 +14,7 @@ class LinesTest {
     @ValueSource(ints = {2, 3, 4, 5})
     @DisplayName("높이만큼 라인을 생성한다")
     void shouldCreate(int height) {
-        Lines lines = Lines.from(Condition.of(3, height), new Strategy.Fake());
+        Lines lines = Lines.from(Condition.of(4, height), new Strategy.Fake());
         assertThat(lines.size()).isEqualTo(height);
     }
 }

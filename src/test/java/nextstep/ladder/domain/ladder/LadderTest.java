@@ -12,7 +12,7 @@ class LadderTest {
     @Test
     @DisplayName("높이 값으로 사다리를 생성한다")
     void shouldCreateWithHeight() {
-        Ladder ladder = Ladder.from(Condition.of(3, 3), new Strategy.Fake());
-        assertThat(ladder).isEqualTo(Ladder.from(Condition.of(3, 3), new Strategy.Fake()));
+        Ladder ladder = Ladder.from(Condition.of(4, 3), new Strategy.Fake());
+        assertThat(ladder).isEqualTo(Ladder.from(Condition.of(4, 3), new Strategy.Fake()));
     }
 }
