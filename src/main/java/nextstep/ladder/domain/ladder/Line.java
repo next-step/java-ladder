@@ -1,6 +1,6 @@
 package nextstep.ladder.domain.ladder;
 
-import nextstep.ladder.domain.ladder.strategy.RandomStrategy;
+import nextstep.ladder.domain.ladder.strategy.Strategy;
 
 import java.util.Objects;
 
@@ -13,12 +13,12 @@ public class Line {
         this.points = points;
     }
 
-    public static Line from(int numberOfParticipants) {
+    public static Line from(int numberOfParticipants, Strategy strategy) {
         if (numberOfParticipants < MIN_PARTICIPANTS) {
             throw new IllegalArgumentException(PARTICIPANTS_LIMIT_MESSAGE);
         }
 
-        return new Line(Points.of(numberOfParticipants, new RandomStrategy()));
+        return new Line(Points.of(numberOfParticipants, strategy));
     }
 
     @Override
