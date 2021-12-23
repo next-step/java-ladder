@@ -16,6 +16,8 @@
   - [x] 포인트 생성 전략을 외부에서 받을 수 있도록 구현
 - [x] Ladder를 만들자
 - [x] View Layer 구현
+- [x] PointCreationStrategy 를 LineCreationStrategy로 변경
+- [x] Line은 연속하는 Point가 없는 리스트를 받아 확인만 하고 생성 로직은 LineCreationStrategy 구현체로 이동
 
 
 ## 커밋을 하지 않고 몰아서 하게 된다 어떻게 하면 좋을까

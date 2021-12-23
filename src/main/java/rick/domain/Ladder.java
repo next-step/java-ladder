@@ -1,23 +1,24 @@
 package rick.domain;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import rick.strategy.PointCreationStrategy;
+import rick.strategy.LineCreationStrategy;
 
 public class Ladder {
-    private final List<Line> lines = new ArrayList<>();
 
-    public Ladder(int countOfPerson, int ladderLineCount, PointCreationStrategy pointCreationStrategy) {
-        IntStream.range(0, ladderLineCount)
-            .mapToObj(idx-> new Line(countOfPerson, pointCreationStrategy))
-            .forEach(lines::add);
+    private final List<Line> lines;
+
+    public Ladder(int countOfPerson, int ladderLineCount, LineCreationStrategy lineCreationStrategy) {
+        lines = IntStream.range(0, ladderLineCount)
+            .mapToObj(idx -> new Line(countOfPerson, lineCreationStrategy))
+            .collect(Collectors.toList());
     }
 
     public Ladder(List<Line> lines) {
-        this.lines.addAll(lines);
+        this.lines = lines;
     }
 
     public List<Line> getLines() {

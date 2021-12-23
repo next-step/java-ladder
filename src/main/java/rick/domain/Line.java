@@ -1,39 +1,53 @@
 package rick.domain;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import rick.strategy.PointCreationStrategy;
+import rick.strategy.LineCreationStrategy;
 
 public class Line {
 
-    private final List<Boolean> points = new ArrayList<>();
+    private static final String EXCEPTION_MESSAGE_CAN_NOT_BE_EMPTY = "포인트 목록은 빈 값일 수 없습니다.";
+    private static final String EXCEPTION_MESSAGE_CAN_NOT_BE_NULL = "포인트 목록은 null 일 수 없습니다.";
+    private static final String EXCEPTION_MESSAGE_CAN_NOT_BE_CONSECUTIVE = "라인은 연속되는 이동가능한 포인터를 가질 수 없습니다.";
 
-    public Line(int countOfPerson, PointCreationStrategy pointsGenerationStrategy) {
-        final int pointCount = countOfPerson - 1;
-        boolean previousPointValue = false;
+    private final List<Point> points;
 
-        for (int i = 0; i < pointCount; i++) {
-            final boolean point = createPointValue(previousPointValue, pointsGenerationStrategy);
-            points.add(point);
-            previousPointValue = point;
-        }
+    public Line(int countOfPerson, LineCreationStrategy pointsGenerationStrategy) {
+        this(pointsGenerationStrategy.create(countOfPerson - 1));
     }
 
-    public Line(List<Boolean> points) {
-        this.points.addAll(points);
-    }
-
-    public List<Boolean> getPoints() {
-        return points;
-    }
-
-    private Boolean createPointValue(boolean previousPointValue, PointCreationStrategy pointsGenerationStrategy) {
-        if (previousPointValue) {
-            return false;
+    public Line(List<Point> points) {
+        if (Objects.isNull(points)) {
+            throw new IllegalArgumentException(EXCEPTION_MESSAGE_CAN_NOT_BE_NULL);
         }
 
-        return pointsGenerationStrategy.create();
+        if (points.isEmpty()) {
+            throw new IllegalArgumentException(EXCEPTION_MESSAGE_CAN_NOT_BE_EMPTY);
+        }
+
+        if (hasConsecutivePoints(points)) {
+            throw new IllegalArgumentException(EXCEPTION_MESSAGE_CAN_NOT_BE_CONSECUTIVE);
+        }
+
+        this.points = points;
+    }
+
+    public List<Point> getPoints() {
+        return Collections.unmodifiableList(points);
+    }
+
+    private boolean hasConsecutivePoints(List<Point> points) {
+        for (int i = 1; i < points.size(); i++) {
+            if (isConsecutiveMovablePoints(points.get(i - 1), points.get(i))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isConsecutiveMovablePoints(Point previousPoint, Point point) {
+        return previousPoint.movable() && previousPoint.equals(point);
     }
 
     @Override

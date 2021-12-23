@@ -1,26 +1,33 @@
 package rick.domain;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 import java.util.Arrays;
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 public class LineTest {
 
-    @Test
-    @DisplayName("true만 반환하는 PointCreationStrategy를 이용한 생성")
-    void createWithTrue() {
-        Line expected = new Line(Arrays.asList(true, false, true));
-        assertThat(new Line(4, () -> true))
-            .isEqualTo(expected);
+    @ParameterizedTest
+    @DisplayName("LineCreationStrategy를 통한 연속되는 이동가능한 포인트가 있는 라인 생성")
+    @CsvSource(value = {"true:true:true", "true:true:false", "false:true:true"}, delimiter = ':')
+    void createWithLineCreationStrategy(boolean point1, boolean point2, boolean point3) {
+        List<Point> consecutiveMovablePoints = Arrays.asList(
+            new Point(point1), new Point(point2), new Point(point3)
+        );
+
+        assertThatIllegalArgumentException()
+            .isThrownBy(() -> new Line(4, (count) -> consecutiveMovablePoints));
     }
 
-    @Test
-    @DisplayName("false만 반환하는 PointCreationStrategy를 이용한 생성")
-    void createWithFalse() {
-        Line expected = new Line(Arrays.asList(false, false, false));
-        assertThat(new Line(4, () -> false))
-            .isEqualTo(expected);
+    @ParameterizedTest
+    @NullAndEmptySource
+    @DisplayName("null, empty 문자열")
+    void nullAndEmptySource(final List<Point> points) {
+        assertThatIllegalArgumentException()
+            .isThrownBy(() -> new Line(points));
     }
 }

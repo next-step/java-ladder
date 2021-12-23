@@ -4,13 +4,14 @@ import rick.domain.Ladder;
 import rick.domain.Line;
 import rick.domain.Player;
 import rick.domain.Players;
+import rick.domain.Point;
 
 public class ResultView {
 
     private ResultView() {
     }
 
-    public static void drawResult(Players players, Ladder ladder, int ladderLineCount) {
+    public static void drawResult(Players players, Ladder ladder) {
         System.out.println("실행결과");
         System.out.println();
 
@@ -22,17 +23,24 @@ public class ResultView {
         System.out.println();
 
         for (Line line : ladder.getLines()) {
-            System.out.print("     |");
-            for (Boolean point : line.getPoints()) {
-                if (point) {
-                    System.out.print("-----");
-
-                } else {
-                    System.out.print("     ");
-                }
-                System.out.print("|");
-            }
-            System.out.println();
+            drawLine(line);
         }
+    }
+
+    private static void drawLine(Line line) {
+        System.out.print("     |");
+        for (Point point : line.getPoints()) {
+            drawPoint(point);
+        }
+        System.out.println();
+    }
+
+    private static void drawPoint(Point point) {
+        if (point.movable()) {
+            System.out.print("-----|");
+            return;
+        }
+
+        System.out.print("     |");
     }
 }
