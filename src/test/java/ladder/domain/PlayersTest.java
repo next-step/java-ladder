@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import ladder.fixture.TestLadderFactory;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EmptySource;
@@ -31,6 +32,15 @@ public class PlayersTest {
         assertThatIllegalArgumentException()
                 .isThrownBy(()-> TestLadderFactory.createPlayer(input))
                 .withMessage("참여할 사람의 이름을 입력해주세요");
+    }
+
+    @DisplayName("플레이어들 중 해당하는 이름이 없을 경우 예외")
+    @Test
+    void 플레이어_findIndexByName_예외() {
+        Players players = TestLadderFactory.createPlayer("hi,hello,bye");
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> players.findIndexByName("poby"))
+                .withMessage("찾을 수 없는 이름입니다.");
     }
 
 }

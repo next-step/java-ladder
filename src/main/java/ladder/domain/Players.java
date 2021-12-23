@@ -28,12 +28,20 @@ public class Players {
         return str == null || str.trim().length() == 0;
     }
 
-    public List<Name> get() {
+    public List<Name> getPlayers() {
         return names;
     }
 
     public int countOfPlayers() {
         return names.size();
+    }
+
+    public int findIndexByName(String name) {
+        int result = names.indexOf(new Name(name));
+        if (result == -1) {
+            throw new IllegalArgumentException("찾을 수 없는 이름입니다.");
+        }
+        return result;
     }
 
 }
