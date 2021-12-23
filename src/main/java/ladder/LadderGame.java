@@ -24,9 +24,7 @@ public class LadderGame {
                 ladder,
                 prizes.getPrizeNames());
 
-        participants = play(participants, ladder);
-
-        printResult(participants, prizes);
+        printResult(play(participants, ladder), prizes);
     }
 
     private static Participants play(Participants participants, Ladder ladder) {

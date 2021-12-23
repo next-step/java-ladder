@@ -1,5 +1,6 @@
 package ladder.view;
 
+import ladder.domain.Connection;
 import ladder.domain.Ladder;
 import ladder.domain.Participants;
 import ladder.domain.Prizes;
@@ -34,7 +35,9 @@ public class ResultView {
 
     public void printLadder(Ladder ladder) {
         ladder.getFloors().forEach(floor -> {
-            floor.getLines().forEach(this::printLine);
+            floor.getConnections()
+                    .stream().map(Connection::getConnected)
+                    .forEach(this::printLine);
             System.out.println();
         });
     }

@@ -3,6 +3,7 @@ package ladder.domain;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -49,16 +50,24 @@ public class Participants {
                 .collect(Collectors.toList()));
     }
 
-    public void print() {
-        participants.forEach(System.out::println);
-    }
-
     public int getParticipantSection(String name) {
-        Participant participant = participants.stream().filter(p -> p.getName().equals(name))
+        Participant participant = participants.stream().filter(p -> p.hasSameName(name))
                 .findFirst().orElseThrow(
                         () -> new IllegalArgumentException("해당 이름의 참가자가 없습니다.")
                 );
         return participant.getSection();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Participants that = (Participants) o;
+        return Objects.equals(participants, that.participants);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(participants);
+    }
 }
