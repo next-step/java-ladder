@@ -1,14 +1,15 @@
 package nextstep.ladder.factory;
 
 import nextstep.ladder.generator.LineGenerator;
+import nextstep.ladder.model.Index;
 import nextstep.ladder.model.Line;
+import nextstep.ladder.model.Point;
 import nextstep.ladder.utils.RandomUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class LineFactory {
-    private static final int ONE = 1;
 
     private LineFactory() {
     }
@@ -17,17 +18,18 @@ public class LineFactory {
         return of(RandomUtils.nextBoolean(), countOfPerson, generator);
     }
 
-    public static Line of(Boolean first, int countOfPerson, LineGenerator generator) {
-        List<Boolean> points = new ArrayList<>();
-        points.add(first);
+    public static Line of(boolean first, int countOfPerson, LineGenerator generator) {
+        List<Point> points = new ArrayList<>();
+        Point firstPoint = new Point(Index.ZERO, first);
+        points.add(firstPoint);
         loopGenerate(points, countOfPerson, generator);
         return new Line(points);
     }
 
-    private static void loopGenerate(List<Boolean> points, int countOfPerson, LineGenerator generator) {
-        for (int i = ONE; i < countOfPerson - ONE; i++) {
-            boolean prevPoint = points.get(i - ONE);
-            points.add(generator.generate(prevPoint));
+    private static void loopGenerate(List<Point> points, int countOfPerson, LineGenerator generator) {
+        for (int i = Index.ONE; i < countOfPerson - Index.ONE; i++) {
+            Point prevPoint = points.get(i - Index.ONE);
+            points.add(prevPoint.next(generator));
         }
     }
 }

@@ -15,8 +15,7 @@ public class InputView {
     }
 
     public static int nextInt(String message) {
-        OutputView.print(message);
-        return SCANNER.nextInt();
+        return Integer.parseInt(nextLine(message));
     }
 
 }

@@ -1,14 +1,35 @@
 package nextstep.ladder.model;
 
-public class Player {
+import nextstep.ladder.common.Name;
 
-    private final Name name;
+public class Player extends Name {
+
+    private final Index index;
 
     public Player(String name) {
-        this.name = new Name(name);
+        super(name);
+        this.index = new Index(0);
     }
 
-    public String getName() {
-        return name.getName();
+    public Player(String name, int index) {
+        super(name);
+        this.index = new Index(index);
+    }
+
+    public boolean isAdjacent(Index other) {
+        return this.index.isAdjacentRight(other) || this.index.isAdjacentLeft(other);
+    }
+
+    public void move(Direction direction) {
+        direction.move(index);
+    }
+
+    public Index getIndex() {
+        return index;
+    }
+
+    @Override
+    public String toString() {
+        return "Player{" + "index=" + index.index + " Name=" + super.getName() + '}';
     }
 }

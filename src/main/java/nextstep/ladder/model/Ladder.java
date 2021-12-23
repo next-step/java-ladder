@@ -1,22 +1,31 @@
 package nextstep.ladder.model;
 
-import nextstep.ladder.utils.StringUtils;
-
 public class Ladder {
-    private static final String DELIMITER = ",";
 
     private final Players players;
     private final Lines lines;
+    private final Results results;
 
-    public Ladder(String names, int height) {
-        String[] splitNames = StringUtils.validationNotNullAndEmpty(names).split(DELIMITER);
-        this.players = new Players(splitNames);
-        this.lines = new Lines(splitNames.length, height);
+    public Ladder(Players players, Lines lines, Results results) {
+        this.players = players;
+        this.lines = lines;
+        this.results = results;
     }
 
-    @Override
-    public String toString() {
-        return players.toString() + "\n" +
-                lines.toString();
+    public Report game() {
+        players.move(lines);
+        return new Report(players, results);
+    }
+
+    public Players getPlayers() {
+        return players;
+    }
+
+    public Lines getLines() {
+        return lines;
+    }
+
+    public Results getResults() {
+        return results;
     }
 }
