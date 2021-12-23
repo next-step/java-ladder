@@ -3,8 +3,7 @@ package ladder;
 import ladder.domain.Ladder;
 import ladder.domain.Participants;
 import ladder.domain.Prizes;
-import ladder.strategy.MovingStrategy;
-import ladder.strategy.RandomMovingStrategy;
+import ladder.strategy.RandomGeneratorStrategy;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
@@ -17,32 +16,22 @@ public class LadderGame {
         Prizes prizes = inputView.getPrizes(participants);
         int height = inputView.getLadderHeight();
 
-        MovingStrategy movingStrategy = new RandomMovingStrategy();
-        Ladder ladder = new Ladder(height, participants.size(), movingStrategy);
+        Ladder ladder = new Ladder(participants.size(), height, new RandomGeneratorStrategy());
 
         resultView.printLadder(participants.getParticipantNames(),
                 ladder,
                 prizes.getPrizeNames());
-
-        printResult(play(participants, ladder), prizes);
+        printResult(participants, ladder, prizes);
     }
 
-    private static Participants play(Participants participants, Ladder ladder) {
-        for (int i = 0; i < ladder.getHeight(); i++) {
-            participants = participants.playOneFloor(i, ladder.getFloors().get(i));
-        }
-        return participants;
-    }
-
-    private static void printResult(Participants participants, Prizes prizes) {
-        boolean keepGoing = true;
-        while (keepGoing) {
+    private static void printResult(Participants participants, Ladder ladder, Prizes prizes) {
+        while (true) {
             String name = inputView.getParticipant();
-            resultView.printResult(participants, prizes, name);
-
             if (name.equals("all")) {
-                keepGoing = false;
+                resultView.printResultALL(participants, ladder, prizes);
+                return;
             }
+            resultView.printPrizeResult(prizes, ladder.findPrizeIndex(participants.getParticipant(name).getPosition()));
         }
     }
 }

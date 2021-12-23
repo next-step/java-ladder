@@ -6,8 +6,8 @@ public class Participant {
     private final Name name;
     private final Position position;
 
-    public Participant(String name, int section, int floor) {
-        this(new Name(name), new Position(section, floor));
+    public Participant(String name, int position) {
+        this(new Name(name), new Position(position));
     }
 
     public Participant(Name name, Position position) {
@@ -23,21 +23,11 @@ public class Participant {
         return this.name.equals(new Name(name));
     }
 
-    // PrizeIndex 가져오는 거임
-    public int getSection() {
-        return this.position.getSection();
+    public int getPosition() {
+        return this.position.getPosition();
     }
-
-    public int getFloor() {
-        return this.position.getFloor();
-    }
-
-    @Override
-    public String toString() {
-        return "Participant{" +
-                "name=" + name +
-                ", position=" + position +
-                '}';
+    public int getPrizeIndex(Ladder ladder) {
+        return this.position.findPrizeIndex(ladder);
     }
 
     @Override
@@ -52,4 +42,13 @@ public class Participant {
     public int hashCode() {
         return Objects.hash(name, position);
     }
+
+    @Override
+    public String toString() {
+        return "Participant{" +
+                "name=" + name +
+                ", position=" + position +
+                '}';
+    }
+
 }

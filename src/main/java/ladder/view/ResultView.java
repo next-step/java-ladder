@@ -1,9 +1,6 @@
 package ladder.view;
 
-import ladder.domain.Connection;
-import ladder.domain.Ladder;
-import ladder.domain.Participants;
-import ladder.domain.Prizes;
+import ladder.domain.*;
 
 import java.util.List;
 import java.util.stream.IntStream;
@@ -11,6 +8,9 @@ import java.util.stream.IntStream;
 public class ResultView {
     private static final int NAME_SPACE_SIZE = 6;
     private static final String NAME_SPACE = "      ";
+    private static final String PILLAR = "|";
+    private static final String CONNECTED_LINE = "-----";
+    private static final String EMPTY_LINE = "     ";
 
     public void printLadder(List<String> participantNames, Ladder ladder, List<String> prizeNames) {
         System.out.println("사다리 결과");
@@ -33,31 +33,33 @@ public class ResultView {
         return String.valueOf(array);
     }
 
-    public void printLadder(Ladder ladder) {
-        ladder.getFloors().forEach(floor -> {
-            floor.getConnections()
-                    .stream().map(Connection::getConnected)
-                    .forEach(this::printLine);
-            System.out.println();
-        });
+    private void printLadder(final Ladder ladder) {
+        ladder.getLadderLines().forEach(this::printLine);
     }
 
-    private void printLine(Boolean point) {
-        if (point) {
-            System.out.print("-----|");
-            return;
+    private void printLine(final LadderLine line) {
+        line.getPoints().forEach(point -> System.out.print(printBetweenLine(point) + PILLAR));
+        System.out.println();
+    }
+
+    private static String printBetweenLine(final Point point) {
+        if (point.hasLeftDirectionLine()) {
+            return CONNECTED_LINE;
         }
-        System.out.print("     |");
+        return EMPTY_LINE;
     }
 
-    public void printResult(Participants participants, Prizes prizes, String name) {
+    public void printResultALL(Participants participants, Ladder ladder, Prizes prizes) {
         System.out.println("실행 결과");
-        if (name.equals("all")) {
-            participants.getParticipants().forEach(
-                    participant -> System.out.println(participant.getName() + " : " + prizes.getPrizeName(participant.getSection() - 1))
-            );
-            return;
-        }
-        System.out.println(prizes.getPrizeName(participants.getParticipantSection(name) - 1));
+        participants.getParticipants().forEach(
+                participant -> {
+                    System.out.println(participant.getName() + " : " + prizes.getPrizeName(participant.getPrizeIndex(ladder)));
+                }
+        );
+    }
+
+    public void printPrizeResult(Prizes prizes, int index) {
+        System.out.println("실행 결과");
+        System.out.println(prizes.getPrizeName(index));
     }
 }

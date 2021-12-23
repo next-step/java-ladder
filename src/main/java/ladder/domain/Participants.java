@@ -8,15 +8,17 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Participants {
+    private static final String SEPARATOR = ",";
+
     private final List<Participant> participants;
 
     public Participants(String text) {
-        this(text.split(","));
+        this(text.split(SEPARATOR));
     }
 
     public Participants(String[] names) {
         this(IntStream.range(0, names.length)
-                .mapToObj(i -> new Participant(names[i], i + 1, 1))
+                .mapToObj(i -> new Participant(names[i], i))
                 .collect(Collectors.toList()));
     }
 
@@ -38,24 +40,11 @@ public class Participants {
                 .collect(Collectors.toList()));
     }
 
-    public Participants playOneFloor(int height, Floor floor) {
-        return new Participants(participants.stream()
-                .map(
-                        participant -> {
-                            int newPosition = floor.whichDirection(participant.getSection());
-                            return new Participant(participant.getName(),
-                                    newPosition,
-                                    height + 1);
-                        })
-                .collect(Collectors.toList()));
-    }
-
-    public int getParticipantSection(String name) {
-        Participant participant = participants.stream().filter(p -> p.hasSameName(name))
+    public Participant getParticipant(String name) {
+        return participants.stream().filter(p -> p.hasSameName(name))
                 .findFirst().orElseThrow(
                         () -> new IllegalArgumentException("해당 이름의 참가자가 없습니다.")
                 );
-        return participant.getSection();
     }
 
     @Override

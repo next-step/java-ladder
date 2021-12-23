@@ -1,27 +1,24 @@
 package ladder.domain;
 
 public class Position {
-    private final int section;
-    private final int floor;
+    private final int index;
 
-    public Position(int section, int floor) {
-        this.section = section;
-        this.floor = floor;
+    public Position(int index) {
+        this.index = index;
     }
 
-    public int getSection() {
-        return this.section;
+    public int getPosition() {
+        return this.index;
     }
 
-    public int getFloor() {
-        return this.floor;
+    public int findPrizeIndex(Ladder ladder) {
+        return ladder.findPrizeIndex(this.index);
     }
 
     @Override
     public String toString() {
         return "Position{" +
-                "section=" + section +
-                ", floor=" + floor +
+                "index=" + index +
                 '}';
     }
 }
