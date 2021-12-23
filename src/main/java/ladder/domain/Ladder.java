@@ -10,14 +10,19 @@ public class Ladder {
     private static final int START_INDEX = 0;
     private final List<Line> lines;
 
-    public Ladder(int LadderSize, int playerSize) {
-        lines = new ArrayList<>();
-        IntStream.range(START_INDEX, LadderSize)
-                .forEach(x -> lines.add(new Line(playerSize)));
+    private Ladder(List<Line> lines) {
+        this.lines = lines;
     }
 
     public static Ladder of(Height height, Players players) {
-        return new Ladder(height.getSize(), players.count());
+        List<Line> lines = new ArrayList<>();
+        IntStream.range(START_INDEX, height.getSize())
+                .forEach(x -> lines.add(new Line(players.count())));
+        return new Ladder(lines);
+    }
+
+    public static Ladder of(List<Line> lines) {
+        return new Ladder(lines);
     }
 
     public List<Line> getLines() {
