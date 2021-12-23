@@ -13,15 +13,11 @@ public class LadderBuilder {
         this.height = height;
     }
 
-    public static LadderBuilder of(Players players, Results results, Height height) {
-        return of(LadderFrame.of(players, results), height);
-    }
-
-    public static LadderBuilder of(LadderFrame ladderFrame, Height height) {
-        if (ladderFrame == null || height == null) {
-            throw new IllegalArgumentException("invalid frame or height: cannot be null");
+    public static LadderBuilder of(LadderFrame ladderFrame, int height) {
+        if (ladderFrame == null) {
+            throw new IllegalArgumentException("invalid frame: cannot be null");
         }
-        return new LadderBuilder(ladderFrame, height);
+        return new LadderBuilder(ladderFrame, Height.of(height));
     }
 
     public Ladder build(LineGenerateStrategy strategy) {

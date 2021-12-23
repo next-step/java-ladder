@@ -51,4 +51,8 @@ public class PlayersTest {
     public static Players ps(String ... names) {
         return Players.of(Arrays.asList(names));
     }
+
+    public static Players ps(List<String> names) {
+        return Players.of(names);
+    }
 }

@@ -23,8 +23,8 @@ public class Ladder extends FirstClassList<Line> {
                 .collect(Collectors.toList()));
     }
 
-    public static Ladder of(final PointCount pointCount, final int height, final LineGenerateStrategy strategy) {
-        return Ladder.of(pointCount, Height.of(height), strategy);
+    public static Ladder of(final int pointCount, final int height, final LineGenerateStrategy strategy) {
+        return Ladder.of(PointCount.of(pointCount), Height.of(height), strategy);
     }
 
     public static Ladder of(final PlayerCount playerCount, final Height height, final LineGenerateStrategy strategy) {

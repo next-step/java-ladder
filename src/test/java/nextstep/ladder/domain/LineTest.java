@@ -90,7 +90,7 @@ public class LineTest {
     @ParameterizedTest(name = "move : {arguments}")
     @MethodSource("parseMove")
     public void move(Line line, int current, int next) {
-        assertThat(line.nextPosition(current)).isEqualTo(next);
+        assertThat(line.move(current)).isEqualTo(next);
     }
 
     @Test

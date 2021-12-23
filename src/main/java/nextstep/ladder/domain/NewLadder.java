@@ -9,9 +9,9 @@ public class NewLadder extends FirstClassList<LadderLine> {
         super(lines);
     }
 
-    public static NewLadder of(final int railCount, final Height height, LadderPointGenerateStrategy strategy) {
-        if (height == null) {
-            throw new IllegalArgumentException("height cannot be null");
+    public static NewLadder of(final RailCount railCount, final Height height, LadderPointGenerateStrategy strategy) {
+        if (railCount == null || height == null) {
+            throw new IllegalArgumentException("rail count or height cannot be null");
         }
 
         List<LadderLine> lines = IntStream.range(0, height.toInt())
@@ -21,7 +21,7 @@ public class NewLadder extends FirstClassList<LadderLine> {
     }
 
     public static NewLadder of(final int railCount, final int height, final LadderPointGenerateStrategy strategy) {
-        return of(railCount, Height.of(height), strategy);
+        return of(RailCount.of(railCount), Height.of(height), strategy);
     }
 
     public ResultOfGame result(LadderFrame ladderFrame) {

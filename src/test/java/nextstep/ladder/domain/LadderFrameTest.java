@@ -16,21 +16,21 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 public class LadderFrameTest {
     @Test
     public void create() {
-        assertThat(LadderFrame.of(ps("n1", "n2"), rs("r1", "r2")))
-                .isEqualTo(LadderFrame.of(ps("n1", "n2"), rs("r1", "r2")));
+        assertThat(LadderFrame.of(List.of("n1", "n2"), List.of("r1", "r2")))
+                .isEqualTo(LadderFrame.of(List.of("n1", "n2"), List.of("r1", "r2")));
     }
 
     static Stream<Arguments> parseCreateFailed() {
         return Stream.of(
-                Arguments.of(null, rs("r1", "r2"), "cannot be null"),
-                Arguments.of(ps("p1", "p2"), null, "cannot be null"),
-                Arguments.of(ps("p1", "p2"), rs("r1", "r2", "r3"), "count is not matched")
+                Arguments.of(null, List.of("r1", "r2"), "cannot be null"),
+                Arguments.of(List.of("p1", "p2"), null, "cannot be null"),
+                Arguments.of(List.of("p1", "p2"), List.of("r1", "r2", "r3"), "count is not matched")
         );
     }
 
     @ParameterizedTest
     @MethodSource("parseCreateFailed")
-    public void createFailed(Players players, Results results, String expectedMessage) {
+    public void createFailed(List<String> players, List<String> results, String expectedMessage) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> LadderFrame.of(players, results))
                 .withMessageContaining(expectedMessage);
@@ -38,18 +38,20 @@ public class LadderFrameTest {
 
     @Test
     public void playersAndResults() {
-        Players players = ps("n1", "n2");
-        Results results = rs("r1", "r2");
-        LadderFrame frame = LadderFrame.of(players, results);
-        assertThat(frame.players()).isEqualTo(players);
-        assertThat(frame.results()).isEqualTo(results);
+        List<String> players = List.of("n1", "n2");
+        List<String> results = List.of("r1", "r2");
+        LadderFrame frame = lf(players, results);
+        assertThat(frame.players()).isEqualTo(ps(players));
+        assertThat(frame.results()).isEqualTo(rs(results));
     }
 
     @Test
     public void resultOfGame() {
-        Players players = ps("n1", "n2");
-        Results results = rs("r1", "r2");
-        LadderFrame frame = LadderFrame.of(players, results);
+        LadderFrame frame = lf(List.of("n1", "n2"), List.of("r1", "r2"));
         assertThat(frame.resultsOfGame(List.of(1, 0))).isEqualTo(rs("r2", "r1"));
+    }
+
+    public static LadderFrame lf(List<String> players, List<String> results) {
+        return LadderFrame.of(players, results);
     }
 }

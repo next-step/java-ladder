@@ -14,16 +14,16 @@ public class LadderFrame {
         this.results = results;
     }
 
-    public static LadderFrame of(Players players, Results results) {
+    public static LadderFrame of(List<String> players, List<String> results) {
         if (players == null || results == null) {
             throw new IllegalArgumentException("players or results cannot be null");
         }
 
-        if (!players.hasSameSize(results)) {
+        if (players.size() != results.size()) {
             throw new IllegalArgumentException("players and results count is not matched");
         }
 
-        return new LadderFrame(players, results);
+        return new LadderFrame(Players.of(players), Results.fromString(results));
     }
 
     public Players players() {

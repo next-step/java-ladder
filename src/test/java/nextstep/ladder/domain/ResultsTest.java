@@ -34,4 +34,8 @@ public class ResultsTest {
     public static Results rs(String ... results) {
         return Results.fromString(Arrays.asList(results));
     }
+
+    public static Results rs(List<String> results) {
+        return Results.fromString(results);
+    }
 }

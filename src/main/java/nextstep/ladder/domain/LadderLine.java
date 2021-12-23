@@ -15,6 +15,10 @@ public class LadderLine {
         return points.get(position).move();
     }
 
+    public static LadderLine init(RailCount railCount, LadderPointGenerateStrategy strategy) {
+        return new LadderLine(LadderLineBuilder.of(railCount, strategy).build());
+    }
+
     public static LadderLine init(int railCount, LadderPointGenerateStrategy strategy) {
         return new LadderLine(LadderLineBuilder.of(RailCount.of(railCount), strategy).build());
     }
