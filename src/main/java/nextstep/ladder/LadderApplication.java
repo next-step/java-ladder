@@ -14,5 +14,6 @@ public class LadderApplication {
         String executionResult = InputView.readExecutionResult();// todo: 사다리 실행 결과 로직 구현
         RunRequest request = RunRequest.of(userNames, InputView.readHeightOfLadder());
         OutputView.printLadderResult(request.participatedUsers(), controller.run(request));
+        OutputView.printExecutionResultForUsers(InputView.readCommandForResultOfTargetUser());// todo: 반복 실행 결과 확인 로직 구현
     }
 }
