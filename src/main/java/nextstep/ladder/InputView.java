@@ -1,5 +1,7 @@
 package nextstep.ladder;
 
+import nextstep.ladder.domain.ladder.Ladder;
+
 import java.util.Scanner;
 
 public class InputView {
