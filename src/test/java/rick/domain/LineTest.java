@@ -1,5 +1,6 @@
 package rick.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 import java.util.Arrays;
@@ -29,5 +30,31 @@ public class LineTest {
     void nullAndEmptySource(final List<Point> points) {
         assertThatIllegalArgumentException()
             .isThrownBy(() -> new Line(points));
+    }
+
+    @ParameterizedTest
+    @DisplayName("라인을 통과한 뒤의 playerIndex 확인")
+    @CsvSource(value = {
+        "0:true:false:true:1",
+        "1:true:false:true:0",
+        "2:true:false:true:3",
+        "3:true:false:true:2",
+        "0:false:true:false:0",
+        "1:false:true:false:2",
+        "2:false:true:false:1",
+        "3:false:true:false:3",
+        "0:false:false:false:0",
+        "1:false:false:false:1",
+        "2:false:false:false:2",
+        "3:false:false:false:3"}, delimiter = ':')
+    void createWithLineCreationStrategy2(int currentPlayerIndex, boolean point1, boolean point2, boolean point3,
+        int nextPlayerIndex) {
+        List<Point> points = Arrays.asList(
+            new Point(point1), new Point(point2), new Point(point3)
+        );
+        Line line = new Line(points);
+
+        assertThat(line.nextPlayerIndex(currentPlayerIndex))
+            .isEqualTo(nextPlayerIndex);
     }
 }

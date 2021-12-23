@@ -49,6 +49,25 @@ public class Line {
         return previousPoint.movable() && previousPoint.equals(point);
     }
 
+    public int nextPlayerIndex(int playerIndex) {
+        int leftPointIndex = playerIndex - 1;
+        int rightPointIndex = playerIndex;
+
+        if (leftPointIndex >= 0 && movable(leftPointIndex)) {
+            return --playerIndex;
+        }
+
+        if (rightPointIndex < points.size() && movable(rightPointIndex)) {
+            return ++playerIndex;
+        }
+
+        return playerIndex;
+    }
+
+    private boolean movable(int pointIndex) {
+        return points.get(pointIndex).movable();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
