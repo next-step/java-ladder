@@ -1,28 +1,22 @@
 package nextstep.ladder.domain.ladder;
 
+import nextstep.ladder.domain.Condition;
 import nextstep.ladder.domain.ladder.strategy.Strategy;
 
 import java.util.Objects;
 
 public class Ladder {
-    public static final String LADDER_HEIGHT_LIMIT_MESSAGE = "사다리 높이는 최소 1단이어야 합니다.";
-    public static final int MIN = 1;
-
     private final Lines lines;
     private final int height;
 
-    private Ladder(int height, Lines lines) {
-        this.height = height;
+    private Ladder(Lines lines, int height) {
         this.lines = lines;
+        this.height = height;
     }
 
-    public static Ladder from(int height, int numberOfParticipants, Strategy strategy) {
-        if (height < MIN) {
-            throw new IllegalArgumentException(LADDER_HEIGHT_LIMIT_MESSAGE);
-        }
-
-        Lines lines = Lines.from(height, numberOfParticipants, strategy);
-        return new Ladder(height, lines);
+    public static Ladder from(Condition condition, Strategy strategy) {
+        Lines lines = Lines.from(condition, strategy);
+        return new Ladder(lines, condition.heightOfLadder());
     }
 
     @Override

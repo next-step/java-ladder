@@ -13,12 +13,6 @@ class ParticipantsTest {
         String input = "pobi,honux,crong,jk";
         Participants participants = Participants.from(input);
 
-        assertThat(participants.values())
-                .containsExactly(
-                        Participant.from("pobi"),
-                        Participant.from("honux"),
-                        Participant.from("crong"),
-                        Participant.from("jk")
-                );
+        assertThat(participants).isEqualTo(Participants.from(input));
     }
 }

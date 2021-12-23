@@ -1,5 +1,6 @@
 package nextstep.ladder.domain.ladder;
 
+import nextstep.ladder.domain.Condition;
 import nextstep.ladder.domain.ladder.strategy.Strategy;
 
 import java.util.List;
@@ -8,17 +9,15 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Lines {
+    public static final int START_VALUE = 0;
     private final List<Line> values;
 
     private Lines(List<Line> values) {
         this.values = values;
     }
 
-    public static Lines from(int height, int numberOfParticipants, Strategy strategy) {
-        List<Line> lines = IntStream.range(0, height)
-                .mapToObj(index -> Line.from(numberOfParticipants, strategy))
-                .collect(Collectors.toList());
-
+    public static Lines from(Condition condition, Strategy strategy) {
+        List<Line> lines = lines(condition, strategy);
         return new Lines(lines);
     }
 
@@ -28,6 +27,15 @@ public class Lines {
 
     public int size() {
         return values.size();
+    }
+
+    private static List<Line> lines(Condition condition, Strategy strategy) {
+        int numberOfParticipants = condition.numberOfParticipants();
+        int height = condition.heightOfLadder();
+
+        return IntStream.range(START_VALUE, height)
+                .mapToObj(index -> Line.from(numberOfParticipants, strategy))
+                .collect(Collectors.toList());
     }
 
     @Override
