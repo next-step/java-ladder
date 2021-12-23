@@ -6,6 +6,8 @@ import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import nextstep.ladder.engine.LadderPointGenerateStrategy;
+
 public class LadderLineBuilder {
     private static final int HEAD_INDEX = 1;
     private static final int LAST_REVERSE_INDEX = 1;

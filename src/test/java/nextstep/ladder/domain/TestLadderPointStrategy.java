@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.engine.LadderPointGenerateStrategy;
+
 public class TestLadderPointStrategy {
     public static LadderPointGenerateStrategy NO_LINE_STRATEGY = () -> false;
 

@@ -3,10 +3,11 @@ package nextstep.ladder.domain;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-import nextstep.ladder.domain.line.LineGenerateStrategy;
+import nextstep.ladder.engine.LadderPointGenerateStrategy;
 
-public class Line extends FirstClassList<Boolean> {
+public class Line extends FirstClassList<Boolean> implements nextstep.ladder.engine.Line {
     private static final int LEFT = -1;
     private static final int RIGHT = 1;
 
@@ -14,19 +15,22 @@ public class Line extends FirstClassList<Boolean> {
         super(points);
     }
 
-    public static Line of (final PointCount count, final LineGenerateStrategy strategy) {
-        if (strategy == null) {
+    public static Line of (final PointCount count, final LadderPointGenerateStrategy strategy) {
+        if (count == null || strategy == null) {
             throw new IllegalArgumentException("invalid input: strategy cannot be null");
         }
 
-        return new Line(strategy.generate(count));
+        List<Boolean> generated = Stream.generate(strategy::generatePoint)
+                .limit(count.toInt())
+                .collect(Collectors.toList());
+        return new Line(generated);
     }
 
-    public static Line of(final PlayerCount playerCount, final LineGenerateStrategy strategy) {
+    public static Line of(final PlayerCount playerCount, final LadderPointGenerateStrategy strategy) {
         return of(PointCount.of(playerCount), strategy);
     }
 
-    public static Line of(final int count, final LineGenerateStrategy strategy) {
+    public static Line of(final int count, final LadderPointGenerateStrategy strategy) {
         return of(PointCount.of(count), strategy);
     }
 
@@ -50,6 +54,11 @@ public class Line extends FirstClassList<Boolean> {
 
     boolean isPoint(boolean point) {
         return point;
+    }
+
+    @Override
+    public Stream<Boolean> boolStream() {
+        return stream();
     }
 
     @Override

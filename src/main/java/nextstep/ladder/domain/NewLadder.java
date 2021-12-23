@@ -4,7 +4,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class NewLadder extends FirstClassList<LadderLine> {
+import nextstep.ladder.engine.Ladder;
+import nextstep.ladder.engine.LadderPointGenerateStrategy;
+
+public class NewLadder extends FirstClassList<LadderLine> implements Ladder {
     private NewLadder(final List<LadderLine> lines) {
         super(lines);
     }
@@ -24,7 +27,7 @@ public class NewLadder extends FirstClassList<LadderLine> {
         return of(RailCount.of(railCount), Height.of(height), strategy);
     }
 
-    public ResultOfGame result(LadderFrame ladderFrame) {
+    public ResultOfGame resultOfGame(LadderFrame ladderFrame) {
         List<Integer> indexes = IntStream.range(0, ladderFrame.size())
                 .mapToObj(this::downToResult)
                 .collect(Collectors.toList());

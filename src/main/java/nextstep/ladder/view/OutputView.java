@@ -5,14 +5,14 @@ import java.util.stream.Collectors;
 
 import nextstep.ladder.LadderGame;
 import nextstep.ladder.domain.LadderFrame;
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Name;
 import nextstep.ladder.domain.Player;
 import nextstep.ladder.domain.Players;
 import nextstep.ladder.domain.Result;
 import nextstep.ladder.domain.ResultOfGame;
 import nextstep.ladder.domain.Results;
+import nextstep.ladder.engine.Ladder;
+import nextstep.ladder.engine.Line;
 
 public class OutputView {
     private static final String NAME_FORMAT = "%" + (Name.LENGTH_LIMIT + 1) + "s";
@@ -45,11 +45,11 @@ public class OutputView {
     }
 
     public static String formatLine(Line line) {
-        return SPACE.repeat(Name.LENGTH_LIMIT) + RAIL + mapLine(line) + RAIL;
+        return SPACE.repeat(Name.LENGTH_LIMIT) + RAIL + mapLine(line);
     }
 
     public static String mapLine(Line line) {
-        return line.stream()
+        return line.boolStream()
                 .map(OutputView::mapPoint)
                 .collect(Collectors.joining(RAIL));
 

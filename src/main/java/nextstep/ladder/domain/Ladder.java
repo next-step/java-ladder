@@ -6,14 +6,14 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-import nextstep.ladder.domain.line.LineGenerateStrategy;
+import nextstep.ladder.engine.LadderPointGenerateStrategy;
 
-public class Ladder extends FirstClassList<Line> {
+public class Ladder extends FirstClassList<Line> implements nextstep.ladder.engine.Ladder {
     private Ladder(final List<Line> lines) {
         super(lines);
     }
 
-    public static Ladder of(final PointCount pointCount, final Height height, LineGenerateStrategy strategy) {
+    public static Ladder of(final PointCount pointCount, final Height height, LadderPointGenerateStrategy strategy) {
         if (pointCount == null || height == null) {
             throw new IllegalArgumentException("invalid input: cannot be null");
         }
@@ -23,15 +23,15 @@ public class Ladder extends FirstClassList<Line> {
                 .collect(Collectors.toList()));
     }
 
-    public static Ladder of(final int pointCount, final int height, final LineGenerateStrategy strategy) {
+    public static Ladder of(final int pointCount, final int height, final LadderPointGenerateStrategy strategy) {
         return Ladder.of(PointCount.of(pointCount), Height.of(height), strategy);
     }
 
-    public static Ladder of(final PlayerCount playerCount, final Height height, final LineGenerateStrategy strategy) {
+    public static Ladder of(final PlayerCount playerCount, final Height height, final LadderPointGenerateStrategy strategy) {
         return Ladder.of(PointCount.of(playerCount), height, strategy);
     }
 
-    public ResultOfGame result(LadderFrame ladderFrame) {
+    public ResultOfGame resultOfGame(LadderFrame ladderFrame) {
         List<Integer> indexMap = downToResult(IntStream.range(0, ladderFrame.size())
                         .boxed()
                         .collect(Collectors.toList()),

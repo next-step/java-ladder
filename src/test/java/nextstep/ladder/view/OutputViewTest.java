@@ -4,7 +4,6 @@ import java.util.stream.Stream;
 
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Name;
-import nextstep.ladder.domain.TestLineStrategy;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -12,6 +11,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static nextstep.ladder.domain.LineTest.l;
 import static nextstep.ladder.domain.NameTest.n;
+import static nextstep.ladder.domain.TestLadderPointStrategy.ALL_LINE_STRATEGY;
+import static nextstep.ladder.domain.TestLadderPointStrategy.NO_LINE_STRATEGY;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class OutputViewTest {
@@ -32,8 +33,8 @@ public class OutputViewTest {
 
     static Stream<Arguments> parseFormatLine() {
         return Stream.of(
-                Arguments.of(l(2, TestLineStrategy.NO_LINE_STRATEGY), "     |     |     |"),
-                Arguments.of(l(2, TestLineStrategy.ALL_LINE_STRATEGY), "     |-----|-----|")
+                Arguments.of(l(2, NO_LINE_STRATEGY), "     |     |     |"),
+                Arguments.of(l(2, ALL_LINE_STRATEGY), "     |-----|-----|")
         );
     }
 
@@ -45,8 +46,8 @@ public class OutputViewTest {
 
     static Stream<Arguments> parseMapLine() {
         return Stream.of(
-                Arguments.of(l(2, TestLineStrategy.NO_LINE_STRATEGY), "     |     "),
-                Arguments.of(l(2, TestLineStrategy.ALL_LINE_STRATEGY), "-----|-----")
+                Arguments.of(l(2, NO_LINE_STRATEGY), "     |     "),
+                Arguments.of(l(2, ALL_LINE_STRATEGY), "-----|-----")
         );
     }
 

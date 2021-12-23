@@ -20,10 +20,15 @@
 * [x] 각 Point의 좌/우 방향을 Direction으로 추상화
   * [x] 각 Point의 좌/우 방향 정보를 가진다.
   * [x] 현재 Point에서 다음 Point를 생성하는 역할
-* [ ] LadderLine, Point, Direction 클래스를 기존 코드에 적용
+* [x] LadderLine, Point, Direction 클래스를 기존 코드에 적용
   * [x] sizeOfRail의 wrapping
   * [x] LadderBuilder에 적용
 * [ ] 책임 기반의 인터페이스 위주 설계
+  * [x] LadderBuilder가 Ladder를 생성
+  * [x] Ladder가 경기를 진행
+  * [x] Ladder를 출력하기 위해 Line을 탐색
+    * [ ] 참가자를 탐색
+    * [ ] 경기 결과를 탐색
   * [ ] LadderFrame의 resultOfGame 분리
 * 피드백
   * [ ] 람다식 메서드 추출하여 메서드 참조로 변경

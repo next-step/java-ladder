@@ -27,6 +27,14 @@ public class Point {
         return new Point(index.next(), direction.last());
     }
 
+    public boolean isLeft() {
+        return direction == Direction.LEFT;
+    }
+
+    public boolean isRight() {
+        return direction == Direction.RIGHT;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

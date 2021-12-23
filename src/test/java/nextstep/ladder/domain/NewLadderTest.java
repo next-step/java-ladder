@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
 
+import nextstep.ladder.engine.LadderPointGenerateStrategy;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -69,6 +70,6 @@ public class NewLadderTest {
     @ParameterizedTest(name = "result of ladder: {arguments}")
     @MethodSource("parseLadderResult")
     public void result(NewLadder ladder, LadderFrame ladderFrame, ResultOfGame expected) {
-        assertThat(ladder.result(ladderFrame)).isEqualTo(expected);
+        assertThat(ladder.resultOfGame(ladderFrame)).isEqualTo(expected);
     }
 }
