@@ -5,18 +5,19 @@ import nextstep.ladder.domain.ladder.Line;
 import nextstep.ladder.domain.participant.Participants;
 
 public class ResultView {
+    public static final String RESULT_MESSAGE = "실행 결과";
     public static final String NEW_LINE = "\n";
     public static final String TAB = "\t";
     public static final String END = "|";
 
     public static void result(Participants participants, Ladder ladder) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("실행 결과").append(NEW_LINE).append(NEW_LINE);
+        stringBuilder.append(RESULT_MESSAGE).append(NEW_LINE).append(NEW_LINE);
 
         participants.values()
                 .forEach(participant -> stringBuilder
                         .append(participant.name())
-                        .append("\t")
+                        .append(TAB)
                 );
 
         stringBuilder.append(NEW_LINE);

@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class InputView {
     public static final Scanner scanner = new Scanner(System.in);
-    public static final String PARTICIPANTS_REQUEST = "참여할 사람 이름을 입력하세요.";
+    public static final String PARTICIPANTS_REQUEST = "참여할 사람의 이름을 입력하세요.";
     public static final String LADDER_HEIGHT_REQUEST = "최대 사다리 높이를 입력하세요.";
 
     public static Participants participants() {
