@@ -132,6 +132,11 @@ public class Line {
     - [ ] 리팩토링
 - [ ] 랜덤 변수 생성기 `RandomGenerator`
     - [x] 랜덤 true/false 반환 기능 추가
+- [ ] 사다리 결과 `LadderResult`
+    - [x] 사다리 결과 생성 기능 추가
+    - [x] 사다리 결과 검증 기능 추가
+- [ ] 사다리 결과 그룹 `LadderResults`
+    - [ ] 사다리 결과 그룹 생성 기능 추가
 
 * * *
 
