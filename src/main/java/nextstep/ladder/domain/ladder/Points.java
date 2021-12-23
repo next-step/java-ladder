@@ -20,6 +20,10 @@ public class Points {
         return new Points(strategy.points(numberOfParticipants));
     }
 
+    public List<Boolean> values() {
+        return values;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

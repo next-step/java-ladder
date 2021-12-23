@@ -24,6 +24,10 @@ public class Participant {
         return new Participant(input);
     }
 
+    public String name() {
+        return name;
+    }
+
     private static boolean isNullOrEmpty(String input) {
         return input == null || input.length() == 0;
     }

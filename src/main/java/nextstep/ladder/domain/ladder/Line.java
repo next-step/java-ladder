@@ -2,6 +2,7 @@ package nextstep.ladder.domain.ladder;
 
 import nextstep.ladder.domain.ladder.strategy.Strategy;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Line {
@@ -19,6 +20,10 @@ public class Line {
         }
 
         return new Line(Points.of(numberOfParticipants, strategy));
+    }
+
+    public List<Boolean> points() {
+        return points.values();
     }
 
     @Override

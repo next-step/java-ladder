@@ -3,6 +3,7 @@ package nextstep.ladder.domain.ladder;
 import nextstep.ladder.domain.Condition;
 import nextstep.ladder.domain.ladder.strategy.Strategy;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Ladder {
@@ -17,6 +18,10 @@ public class Ladder {
     public static Ladder from(Condition condition, Strategy strategy) {
         Lines lines = Lines.from(condition, strategy);
         return new Ladder(lines, condition.heightOfLadder());
+    }
+
+    public List<Line> lines() {
+        return lines.values();
     }
 
     @Override
