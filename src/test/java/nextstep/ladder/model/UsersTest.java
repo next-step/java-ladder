@@ -8,12 +8,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class UsersTest {
-    private static final List<User> VALID_USERS = Arrays.asList(
-            new User(new UserName("pobi")),
-            new User(new UserName("honux")),
-            new User(new UserName("crong")),
-            new User(new UserName("jk"))
-    );
+    private static final List<String> VALID_USERS = Arrays.asList("pobi", "honux", "crong", "jk");
     public static final Users USERS = Users.from(VALID_USERS);
 
     @Test
@@ -25,7 +20,8 @@ class UsersTest {
     @Test
     void getUsersTest() {
         // when & then
-        assertThat(USERS.getUsers()).isEqualTo(VALID_USERS);
+        assertThat(USERS.getUsers()).extracting(User::getName)
+                .isEqualTo(VALID_USERS);
     }
 
     @Test

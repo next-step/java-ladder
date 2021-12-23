@@ -3,6 +3,7 @@ package nextstep.ladder.model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public final class Users {
 
@@ -12,8 +13,8 @@ public final class Users {
         this.users = new ArrayList<>(users);
     }
 
-    public static Users from(List<User> users) {
-        return new Users(users);
+    public static Users from(List<String> userNames) {
+        return new Users(users(userNames));
     }
 
     public List<User> getUsers() {
@@ -22,5 +23,12 @@ public final class Users {
 
     public int size() {
         return users.size();
+    }
+
+    private static List<User> users(List<String> userNames) {
+        return userNames.stream()
+                .map(UserName::new)
+                .map(User::new)
+                .collect(Collectors.toList());
     }
 }
