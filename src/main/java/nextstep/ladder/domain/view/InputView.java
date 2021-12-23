@@ -1,6 +1,6 @@
-package nextstep.ladder;
+package nextstep.ladder.domain.view;
 
-import nextstep.ladder.domain.ladder.Ladder;
+import nextstep.ladder.domain.participant.Participants;
 
 import java.util.Scanner;
 
@@ -9,15 +9,13 @@ public class InputView {
     public static final String PARTICIPANTS_REQUEST = "참여할 사람 이름을 입력하세요.";
     public static final String LADDER_HEIGHT_REQUEST = "최대 사다리 높이를 입력하세요.";
 
-    public static String participants() {
+    public static Participants participants() {
         System.out.println(PARTICIPANTS_REQUEST);
-        return scanner.nextLine();
+        return Participants.from(scanner.nextLine());
     }
 
-    public static Ladder ladder() {
+    public static int heightOfLadder() {
         System.out.println(LADDER_HEIGHT_REQUEST);
-        int height = Integer.parseInt(scanner.nextLine());
-
-        return new Ladder(height);
+        return Integer.parseInt(scanner.nextLine());
     }
 }
