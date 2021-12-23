@@ -2,6 +2,7 @@ package nextstep.ladder.domain;
 
 import java.util.stream.Stream;
 
+import nextstep.ladder.engine.LadderPointGenerateStrategy;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -30,5 +31,9 @@ public class LadderLineTest {
     @MethodSource("parseMoveArguments")
     public void move(LadderLine line, int move, int expected) {
         assertThat(line.move(move)).isEqualTo(ix(expected));
+    }
+
+    public static LadderLine ll(int railCount, LadderPointGenerateStrategy strategy) {
+        return LadderLine.init(railCount, strategy);
     }
 }
