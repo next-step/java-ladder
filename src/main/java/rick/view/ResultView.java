@@ -35,26 +35,4 @@ public class ResultView {
             System.out.println();
         }
     }
-
-    //    public void drawResult(int playerCount, int ladderHeight, LadderLines ladderLines) {
-//        int ladderLineCountOfRow = (playerCount - 1);
-//
-//        for (int rowIndex = 0; rowIndex < ladderHeight; rowIndex++) {
-//            drawRow(ladderLines.getLadderLines(), ladderLineCountOfRow, rowIndex);
-//        }
-//    }
-//
-//    private void drawRow(List<LadderLine> ladderLines, int ladderLineCountOfRow, int rowIndex) {
-//        System.out.print("|");
-//
-//        for (int columnIndex = 0; columnIndex < ladderLineCountOfRow; columnIndex++) {
-//            LadderLine ladderLine = ladderLines.get((rowIndex * ladderLineCountOfRow) + columnIndex);
-//            String lineString = getLineString(ladderLine.movable());
-//            System.out.print(lineString);
-//            System.out.print("|");
-//        }
-//        System.out.println();
-//    }
 }
-
-
