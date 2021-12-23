@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Participants {
+    public static final String PARTICIPANTS_LIMIT_MESSAGE = "참가자는 2명 이상이어야 합니다.";
     public static final String DELIMITER = ",";
     private final List<Participant> values;
 
@@ -14,6 +15,10 @@ public class Participants {
 
     public static Participants from(String input) {
         String[] splitInputs = input.split(DELIMITER);
+
+        if (splitInputs.length < 2) {
+            throw new IllegalArgumentException(PARTICIPANTS_LIMIT_MESSAGE);
+        }
 
         List<Participant> participants = Arrays.stream(splitInputs)
                 .map(Participant::from)
