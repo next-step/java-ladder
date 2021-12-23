@@ -19,4 +19,8 @@ public class Ladder {
     public List<Floor> getFloors() {
         return Collections.unmodifiableList(this.floors);
     }
+
+    public int getHeight() {
+        return this.floors.size();
+    }
 }

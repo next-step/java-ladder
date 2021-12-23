@@ -1,6 +1,7 @@
 package ladder.view;
 
 import ladder.domain.Participants;
+import ladder.domain.Prizes;
 
 import java.util.Scanner;
 
@@ -17,8 +18,19 @@ public class InputView {
         return new Participants(names);
     }
 
+    public Prizes getPrizes(Participants participants) {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        String names = scanner.next();
+        return new Prizes(names, participants.size());
+    }
+
     public int getLadderHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         return scanner.nextInt();
+    }
+
+    public String getParticipant() {
+        System.out.println("결과를 보고 싶은 사람은?");
+        return scanner.next();
     }
 }

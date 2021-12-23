@@ -13,6 +13,6 @@ public class LadderTest {
     void create(int ladderHeight, int countOfPillar) {
         Ladder ladder = new Ladder(ladderHeight, countOfPillar, () -> true); // MovingStrategy 테스트는 FloorTest 참조
         assertThat(ladder.getFloors().size()).isEqualTo(ladderHeight);
-        assertThat(ladder.getFloors().get(0).getLines().size()).isEqualTo(countOfPillar);
+        assertThat(ladder.getFloors().get(0).getConnections().size()).isEqualTo(countOfPillar);
     }
 }

@@ -10,7 +10,7 @@ import java.io.InputStream;
 public class LadderGameTest {
     @BeforeEach
     void init() {
-        String input = "pobi,honux,crong,jk 5";
+        String input = "pobi,honux,crong,jk 꽝,5000,꽝,3000 5 pobi crong all";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
     }
