@@ -23,9 +23,9 @@ class InputViewTest {
         // given
         inputParticipantNames();
         // when
-        List<String> participantNames = InputView.readParticipantNames();
+        List<String> userNames = InputView.readUserNames();
         // then
-        assertThat(participantNames).isEqualTo(Arrays.stream(PARTICIPANT_NAMES.split(",")).collect(Collectors.toList()));
+        assertThat(userNames).isEqualTo(Arrays.stream(PARTICIPANT_NAMES.split(",")).collect(Collectors.toList()));
     }
 
     @Test
