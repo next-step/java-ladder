@@ -5,11 +5,14 @@ import nextstep.ladder.controller.RunRequest;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
 
+import java.util.List;
+
 public class LadderApplication {
     public static void main(String[] args) {
         LadderController controller = new LadderController();
-        RunRequest request = RunRequest.of(InputView.readParticipantNames(), InputView.readHeightOfLadder());
+        List<String> userNames = InputView.readParticipantNames();
         String executionResult = InputView.readExecutionResult();// todo: 사다리 실행 결과 로직 구현
+        RunRequest request = RunRequest.of(userNames, InputView.readHeightOfLadder());
         OutputView.printLadderResult(request.participatedUsers(), controller.run(request));
     }
 }

@@ -1,6 +1,8 @@
 package nextstep.ladder.view;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -42,6 +44,15 @@ class InputViewTest {
         inputSystemValue(EXECUTION_RESULT);
         // when & then
         assertThat(InputView.readExecutionResult()).isEqualTo(EXECUTION_RESULT);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"all", "exit", "crong"})
+    void readCommandForResultOfTargetUserTest(String command) {
+        // given
+        inputSystemValue(command);
+        // when & then
+        assertThat(InputView.readCommandForResultOfTargetUser()).isEqualTo(command);
     }
 
     private void inputParticipantNames() {
