@@ -30,10 +30,10 @@ public class Ladder {
     }
 
     public Location climb(Location location) {
-        final Location[] nextLocation = {new Location(location.getLocation())};
-        this.lines.forEach(line ->
-            nextLocation[0] = line.move(nextLocation[0])
-        );
-        return nextLocation[0];
+        Location nextLocation = location;
+        for (Line line : lines) {
+            nextLocation = line.move(nextLocation);
+        }
+        return nextLocation;
     }
 }
