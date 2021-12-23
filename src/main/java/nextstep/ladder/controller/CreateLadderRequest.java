@@ -1,20 +1,20 @@
 package nextstep.ladder.controller;
 
-public final class RunRequest {
+public final class CreateLadderRequest {
     private static final int MIN_USER_SIZE = 2;
     private static final int MIN_HEIGHT_SIZE = 1;
 
     private final int userSize;
     private final int heightOfLadder;
 
-    private RunRequest(int userSize, int heightOfLadder) {
+    private CreateLadderRequest(int userSize, int heightOfLadder) {
         this.userSize = userSize;
         this.heightOfLadder = heightOfLadder;
     }
 
-    public static RunRequest of(int userSize, int heightOfLadder) {
+    public static CreateLadderRequest of(int userSize, int heightOfLadder) {
         validate(userSize, heightOfLadder);
-        return new RunRequest(userSize, heightOfLadder);
+        return new CreateLadderRequest(userSize, heightOfLadder);
     }
 
     public int getUserSize() {

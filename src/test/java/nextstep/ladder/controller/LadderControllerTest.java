@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class LadderControllerTest {
 
-    private static final RunRequest VALID_REQUEST = RunRequest.of(4, 5);
+    private static final CreateLadderRequest VALID_REQUEST = CreateLadderRequest.of(4, 5);
 
     @Test
     void createTest() {

@@ -10,13 +10,13 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-class RunRequestTest {
+class CreateLadderRequestTest {
     private static final List<String> USER_NAMES = Arrays.asList("pobi", "honux", "crong", "jk");
 
     @Test
     void ofTest() {
         // when
-        RunRequest request = RunRequest.of(USER_NAMES.size(), 5);
+        CreateLadderRequest request = CreateLadderRequest.of(USER_NAMES.size(), 5);
         // then
         assertThat(request).isNotNull();
     }
@@ -26,7 +26,7 @@ class RunRequestTest {
     void checkExceptionForInvalidUserNamesTest(int userSize) {
         // when & then
         assertThatIllegalArgumentException().isThrownBy(
-                () -> RunRequest.of(userSize, 5)
+                () -> CreateLadderRequest.of(userSize, 5)
         );
     }
 
@@ -35,14 +35,14 @@ class RunRequestTest {
     void checkExceptionForInvalidHeightOfLadderTest(int heightOfLadder) {
         // when & then
         assertThatIllegalArgumentException().isThrownBy(
-                () -> RunRequest.of(USER_NAMES.size(), heightOfLadder)
+                () -> CreateLadderRequest.of(USER_NAMES.size(), heightOfLadder)
         );
     }
 
     @Test
     void getUserSizeTest() {
         // given
-        RunRequest request = RunRequest.of(USER_NAMES.size(), 5);
+        CreateLadderRequest request = CreateLadderRequest.of(USER_NAMES.size(), 5);
         // when
         int userSize = request.getUserSize();
         // then
@@ -53,7 +53,7 @@ class RunRequestTest {
     void getHeightOfLadderTest() {
         // given
         int heightOfLadder = 5;
-        RunRequest request = RunRequest.of(USER_NAMES.size(), heightOfLadder);
+        CreateLadderRequest request = CreateLadderRequest.of(USER_NAMES.size(), heightOfLadder);
         // when & then
         assertThat(request.getHeightOfLadder()).isEqualTo(heightOfLadder);
     }
