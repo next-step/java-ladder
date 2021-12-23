@@ -6,7 +6,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 class UserTest {
-    private static final UserName VALID_NAME_CRONG = new UserName("crong");
+    private static final String CRONG = "crong";
+    private static final UserName VALID_NAME_CRONG = new UserName(CRONG);
 
     @Test
     void createTest() {
@@ -27,6 +28,6 @@ class UserTest {
         // when
         User user = new User(VALID_NAME_CRONG);
         // then
-        assertThat(user.getName()).isEqualTo(VALID_NAME_CRONG);
+        assertThat(user.getName()).isEqualTo(CRONG);
     }
 }

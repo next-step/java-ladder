@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class InputViewTest {
     private static final String PARTICIPANT_NAMES = "pobi,honux,crong,jk";
     private static final String HEIGHT_OF_LADDER = "1";
-    private static final String EXECUTION_RESULT = "꽝,5000,꽝,3000";
+    private static final String EXECUTION_RESULTS = "꽝,5000,꽝,3000";
 
     @Test
     void readParticipantNamesTest() {
@@ -39,11 +39,11 @@ class InputViewTest {
     }
 
     @Test
-    void readExecutionResultTest() {
+    void readExecutionResultsTest() {
         // given
-        inputSystemValue(EXECUTION_RESULT);
+        inputSystemValue(EXECUTION_RESULTS);
         // when & then
-        assertThat(InputView.readExecutionResult()).isEqualTo(EXECUTION_RESULT);
+        assertThat(InputView.readExecutionResults()).containsExactly(EXECUTION_RESULTS.split(","));
     }
 
     @ParameterizedTest
