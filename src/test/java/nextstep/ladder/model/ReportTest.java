@@ -7,6 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 class ReportTest {
 
@@ -41,5 +42,12 @@ class ReportTest {
         Result result = report.findResultByPlayerName(playerName);
 
         assertThat(result).isEqualTo(new Result(resultName, new Index(index)));
+    }
+
+    @Test
+    @DisplayName("이름으로 Result 찾기: 실패")
+    void failFindResultByPlayer() {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> report.findResultByPlayerName("test"));
     }
 }

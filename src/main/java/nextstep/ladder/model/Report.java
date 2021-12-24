@@ -3,9 +3,10 @@ package nextstep.ladder.model;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public class Report {
-
+    private static final String MESSAGE_PLAYER_NOT_FOUND_FORMAT = "Not found Player. Name=%s";
     private final Map<Player, Result> playerResults = new HashMap<>();
 
     public Report(Players players, Results results) {
@@ -20,12 +21,8 @@ public class Report {
     }
 
     public Result findResultByPlayerName(String name) {
-        return playerResults.get(
-                playerResults.keySet().stream()
-                        .filter(player -> name.equals(player.getName()))
-                        .findFirst()
-                        .orElseThrow(() -> new IllegalArgumentException(Players.EXCEPTION_NOT_FOUND_PLAYER))
-        );
+        return Optional.ofNullable(playerResults.get(new Player(name)))
+                .orElseThrow(() -> new IllegalArgumentException(String.format(MESSAGE_PLAYER_NOT_FOUND_FORMAT, name)));
     }
 
     public Map<Player, Result> getPlayerResults() {
