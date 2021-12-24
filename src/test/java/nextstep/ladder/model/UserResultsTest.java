@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 class UserResultsTest {
     private static final UserResults USER_RESULTS = UserResults.from(Arrays.asList(UserResultTest.USER_RESULT_WITH_BANG, UserResultTest.USER_RESULT_WITH_2000_WON));
@@ -16,5 +17,14 @@ class UserResultsTest {
     void fromTest() {
         // when & then
         assertThat(USER_RESULTS).isNotNull();
+    }
+
+    @ParameterizedTest
+    @NullAndEmptySource
+    void checkExceptionForInvalidUserResultsTest(List<UserResult> invalidUserResults) {
+        // when & then
+        assertThatIllegalArgumentException().isThrownBy(
+                () -> UserResults.from(invalidUserResults)
+        );
     }
 }
