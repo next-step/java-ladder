@@ -16,11 +16,22 @@ public class Point {
     }
 
     public int move() {
-        return this.direction.nextPoint(this.index);
+        if (direction.isRight()) {
+            return index + 1;
+        }
+
+        if (direction.isLeft()) {
+            return index - 1;
+        }
+        return this.index;
     }
 
     public Point next(final GeneratorStrategy movingStrategy) {
         return new Point(index + 1, direction.next(movingStrategy));
+    }
+
+    public Point next(Boolean right) {
+        return new Point(index + 1, direction.next(right));
     }
 
     public Point last() {
