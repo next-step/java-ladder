@@ -52,6 +52,10 @@ public class Players {
         return players;
     }
 
+    public int size() {
+        return players.size();
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Players[");
