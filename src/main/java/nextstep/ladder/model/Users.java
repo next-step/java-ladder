@@ -17,6 +17,13 @@ public final class Users {
         return new Users(users(userNames));
     }
 
+    private static List<User> users(List<String> userNames) {
+        return userNames.stream()
+                .map(UserName::new)
+                .map(User::new)
+                .collect(Collectors.toList());
+    }
+
     public List<User> getUsers() {
         return Collections.unmodifiableList(users);
     }
@@ -27,12 +34,5 @@ public final class Users {
 
     public User get(int index) {
         return users.get(index);
-    }
-
-    private static List<User> users(List<String> userNames) {
-        return userNames.stream()
-                .map(UserName::new)
-                .map(User::new)
-                .collect(Collectors.toList());
     }
 }

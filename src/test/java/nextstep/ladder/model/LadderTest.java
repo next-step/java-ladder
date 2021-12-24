@@ -11,8 +11,8 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 public class LadderTest {
     private static final int HEIGHT_OF_LADDER = 5;
     private static final int USER_SIZE = 4;
-    private static final int INITIATIVE_INDEX = 0;
     public static final Ladder LADDER = Ladder.initate(USER_SIZE, HEIGHT_OF_LADDER);
+    private static final int INITIATIVE_INDEX = 0;
 
     @Test
     void initTest() {

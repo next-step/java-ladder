@@ -20,6 +20,18 @@ public final class Ladder {
         return new Ladder(ladderLines(userSize, height));
     }
 
+    private static void validate(int height) {
+        if (height < MIN_HEIGHT) {
+            throw new IllegalArgumentException(String.format("전달된 사다리의 높이(%d)는 %d이상이 필요합니다.", height, MIN_HEIGHT));
+        }
+    }
+
+    private static List<LadderLine> ladderLines(int userSize, int height) {
+        return IntStream.range(0, height)
+                .mapToObj(x -> LadderLine.init(userSize))
+                .collect(Collectors.toList());
+    }
+
     public List<LadderLine> getLadderLines() {
         return Collections.unmodifiableList(ladderLines);
     }
@@ -33,17 +45,5 @@ public final class Ladder {
 
     public int height() {
         return ladderLines.size();
-    }
-
-    private static void validate(int height) {
-        if (height < MIN_HEIGHT) {
-            throw new IllegalArgumentException(String.format("전달된 사다리의 높이(%d)는 %d이상이 필요합니다.", height, MIN_HEIGHT));
-        }
-    }
-
-    private static List<LadderLine> ladderLines(int userSize, int height) {
-        return IntStream.range(0, height)
-                .mapToObj(x -> LadderLine.init(userSize))
-                .collect(Collectors.toList());
     }
 }

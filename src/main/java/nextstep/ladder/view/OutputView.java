@@ -23,8 +23,8 @@ public final class OutputView {
         // todo: 사다리 실행 결과 출력 구현
         System.out.println(
                 Stream.of("꽝", "5,000", "꽝", "3,000")
-                .map(name -> String.format("%6s", name))
-                .collect(Collectors.joining())
+                        .map(name -> String.format("%6s", name))
+                        .collect(Collectors.joining())
         );
     }
 

@@ -17,14 +17,6 @@ public final class CreateLadderRequest {
         return new CreateLadderRequest(userSize, heightOfLadder);
     }
 
-    public int getUserSize() {
-        return userSize;
-    }
-
-    public int getHeightOfLadder() {
-        return heightOfLadder;
-    }
-
     private static void validate(int userSize, int heightOfLadder) {
         validateUserSize(userSize);
         validateHeightOfLadder(heightOfLadder);
@@ -40,5 +32,13 @@ public final class CreateLadderRequest {
         if (userSize < MIN_USER_SIZE) {
             throw new IllegalArgumentException(String.format("전달된 사용자의 수가 %d보다 작습니다.", MIN_USER_SIZE));
         }
+    }
+
+    public int getUserSize() {
+        return userSize;
+    }
+
+    public int getHeightOfLadder() {
+        return heightOfLadder;
     }
 }

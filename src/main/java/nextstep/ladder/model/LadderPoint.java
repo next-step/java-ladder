@@ -12,16 +12,16 @@ public final class LadderPoint {
         this.direction = direction;
     }
 
+    public static LadderPoint first(Boolean right) {
+        return new LadderPoint(INIT_INDEX, PointDirection.first(right));
+    }
+
     public LadderPoint next() {
         return new LadderPoint(index + INCREMENT_UNIT_INDEX, direction.next());
     }
 
     public LadderPoint last() {
         return new LadderPoint(index + INCREMENT_UNIT_INDEX, direction.last());
-    }
-
-    public static LadderPoint first(Boolean right) {
-        return new LadderPoint(INIT_INDEX, PointDirection.first(right));
     }
 
     public PointDirection getDirection() {
