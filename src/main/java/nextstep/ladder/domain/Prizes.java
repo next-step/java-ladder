@@ -3,6 +3,8 @@ package nextstep.ladder.domain;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import nextstep.ladder.engine.FirstClassList;
+
 public class Prizes extends FirstClassList<Prize> {
     private Prizes(final List<Prize> prizes) {
         super(prizes);

@@ -8,14 +8,16 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class ResultOfGame {
-    private final Map<PlayerName, Prize> playerResultMap;
+import nextstep.ladder.engine.Name;
 
-    private ResultOfGame(Map<PlayerName, Prize> playerResultMap) {
+public class ResultOfGame {
+    private final Map<Name, Prize> playerResultMap;
+
+    private ResultOfGame(Map<Name, Prize> playerResultMap) {
         this.playerResultMap = Collections.unmodifiableMap(playerResultMap);
     }
 
-    public static ResultOfGame of(Map<PlayerName, Prize> playerResultMap) {
+    public static ResultOfGame of(Map<Name, Prize> playerResultMap) {
         if (playerResultMap == null) {
             throw new IllegalArgumentException("invalid input: result map cannot be null");
         }
@@ -37,7 +39,7 @@ public class ResultOfGame {
         return Optional.ofNullable(playerResultMap.get(playerName));
     }
 
-    public Stream<Map.Entry<PlayerName, Prize>> streamOfEntry() {
+    public Stream<Map.Entry<Name, Prize>> streamOfEntry() {
         return playerResultMap.entrySet()
                 .stream();
     }

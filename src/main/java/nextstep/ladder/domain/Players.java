@@ -3,8 +3,11 @@ package nextstep.ladder.domain;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Players extends FirstClassList<PlayerName> {
-    private Players(final List<PlayerName> playerNames) {
+import nextstep.ladder.engine.FirstClassList;
+import nextstep.ladder.engine.Name;
+
+public class Players extends FirstClassList<Name> implements nextstep.ladder.engine.Players {
+    private Players(final List<Name> playerNames) {
         super(playerNames);
     }
 

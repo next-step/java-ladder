@@ -2,9 +2,9 @@ package nextstep.ladder.domain;
 
 import java.util.Objects;
 
-public class PlayerName {
-    public static final int LENGTH_LIMIT = 5;
+import nextstep.ladder.engine.Name;
 
+public class PlayerName implements Name {
     private final String name;
 
     private PlayerName(final String name) {

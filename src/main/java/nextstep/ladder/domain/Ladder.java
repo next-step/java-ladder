@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import nextstep.ladder.engine.FirstClassList;
+import nextstep.ladder.engine.Players;
 import nextstep.ladder.engine.LadderPointGenerateStrategy;
 
 public class Ladder extends FirstClassList<LadderLine> implements nextstep.ladder.engine.Ladder {

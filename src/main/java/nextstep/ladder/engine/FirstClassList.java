@@ -1,4 +1,4 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.engine;
 
 import java.util.Collections;
 import java.util.Iterator;
@@ -22,7 +22,6 @@ public class FirstClassList<T> {
         return collection;
     }
 
-    // todo refactor: test에서만 사용
     public Stream<T> stream() {
         return collection.stream();
     }

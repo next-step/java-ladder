@@ -7,16 +7,17 @@ import java.util.stream.Collectors;
 import nextstep.ladder.LadderGame;
 // todo domain을 너무 많이 본다
 import nextstep.ladder.domain.PlayerName;
-import nextstep.ladder.domain.Players;
 import nextstep.ladder.domain.Prize;
 import nextstep.ladder.domain.ResultOfGame;
 import nextstep.ladder.domain.Prizes;
 // todo 최대한 engine만 보도록
 import nextstep.ladder.engine.Ladder;
 import nextstep.ladder.engine.Line;
+import nextstep.ladder.engine.Name;
+import nextstep.ladder.engine.Players;
 
 public class OutputView {
-    private static final String NAME_FORMAT = "%" + (PlayerName.LENGTH_LIMIT + 1) + "s";
+    private static final String NAME_FORMAT = "%" + (Name.LENGTH_LIMIT + 1) + "s";
     private static final String NEWLINE = "\n";
     private static final String SPACE = " ";
     private static final String LINE = "-";
@@ -34,12 +35,12 @@ public class OutputView {
         return String.format(NAME_FORMAT, object);
     }
 
-    public static String formatName(PlayerName name) {
+    public static String formatName(Name name) {
         return String.format(NAME_FORMAT, name);
     }
 
     public static String formatLine(Line line) {
-        return SPACE.repeat(PlayerName.LENGTH_LIMIT) + RAIL + mapLine(line);
+        return SPACE.repeat(Name.LENGTH_LIMIT) + RAIL + mapLine(line);
     }
 
     public static String mapLine(Line line) {
@@ -50,7 +51,7 @@ public class OutputView {
 
     public static String mapPoint(boolean isPoint) {
         String point = isPoint ? LINE : SPACE;
-        return point.repeat(PlayerName.LENGTH_LIMIT);
+        return point.repeat(Name.LENGTH_LIMIT);
     }
 
     public static void printResult(Prizes prizes) {
