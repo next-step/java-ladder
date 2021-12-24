@@ -13,8 +13,18 @@ public final class LadderGame {
     private final UsersLadderResults usersLadderResults;
 
     public LadderGame(Ladder ladder, UsersLadderResults usersLadderResults) {
+        validate(ladder, usersLadderResults);
         this.ladder = ladder;
         this.usersLadderResults = usersLadderResults;
+    }
+
+    private void validate(Ladder ladder, UsersLadderResults usersLadderResults) {
+        if (Objects.isNull(ladder)) {
+            throw new IllegalArgumentException("게임 사다리 정보가 null입니다.");
+        }
+        if (Objects.isNull(usersLadderResults)) {
+            throw new IllegalArgumentException("사다리 게임의 결과에 필요한 사용자와 결과 정보가 null입니다.");
+        }
     }
 
     public UserResults userResults() {
