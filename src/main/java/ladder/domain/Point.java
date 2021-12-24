@@ -12,15 +12,15 @@ public class Point {
     }
 
     public boolean hasLeftDirectionLine() {
-        return direction.isLeft();
+        return direction == Direction.LEFT;
     }
 
     public int move() {
-        if (direction.isRight()) {
+        if (direction == Direction.RIGHT) {
             return index + 1;
         }
 
-        if (direction.isLeft()) {
+        if (direction == Direction.LEFT) {
             return index - 1;
         }
         return this.index;
@@ -28,10 +28,6 @@ public class Point {
 
     public Point next(final GeneratorStrategy movingStrategy) {
         return new Point(index + 1, direction.next(movingStrategy));
-    }
-
-    public Point next(Boolean right) {
-        return new Point(index + 1, direction.next(right));
     }
 
     public Point last() {

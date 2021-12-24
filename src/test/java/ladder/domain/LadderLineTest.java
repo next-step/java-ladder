@@ -16,7 +16,7 @@ public class LadderLineTest {
 
     @Test
     public void move_이동() {
-        LadderLine line = LadderLine.init(2, previous -> true);
+        LadderLine line = LadderLine.init(2, () -> true);
         assertThat(line.move(0)).isEqualTo(1);
     }
 }

@@ -14,10 +14,7 @@ public class RandomGeneratorStrategy implements GeneratorStrategy {
     }
 
     @Override
-    public boolean generatePoint(boolean previous) {
-        if (previous) {
-            return false;
-        }
+    public boolean canMove() {
         return random.nextBoolean();
     }
 }

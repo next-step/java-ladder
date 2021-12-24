@@ -10,13 +10,13 @@ public class RandomGeneratorStrategyTest {
     @Test
     void test() {
         GeneratorStrategy movingStrategy = new RandomGeneratorStrategy(0);
-        assertThat(movingStrategy.generatePoint(false)).isTrue();
-        assertThat(movingStrategy.generatePoint(false)).isTrue();
-        assertThat(movingStrategy.generatePoint(false)).isFalse();
-        assertThat(movingStrategy.generatePoint(false)).isTrue();
-        assertThat(movingStrategy.generatePoint(false)).isTrue();
-        assertThat(movingStrategy.generatePoint(false)).isFalse();
-        assertThat(movingStrategy.generatePoint(false)).isTrue();
-        assertThat(movingStrategy.generatePoint(false)).isFalse();
+        assertThat(movingStrategy.canMove()).isTrue();
+        assertThat(movingStrategy.canMove()).isTrue();
+        assertThat(movingStrategy.canMove()).isFalse();
+        assertThat(movingStrategy.canMove()).isTrue();
+        assertThat(movingStrategy.canMove()).isTrue();
+        assertThat(movingStrategy.canMove()).isFalse();
+        assertThat(movingStrategy.canMove()).isTrue();
+        assertThat(movingStrategy.canMove()).isFalse();
     }
 }
