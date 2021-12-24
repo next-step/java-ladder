@@ -25,7 +25,7 @@ public class LadderLine {
     }
 
     private static Point initBody(int sizeOfPerson, List<Point> points, Point point) {
-        for (int i = 1; i < sizeOfPerson; i++) {
+        for (int i = 1; i < sizeOfPerson - 1; i++) {
             point = point.next();
             points.add(point);
         }
@@ -41,6 +41,10 @@ public class LadderLine {
         Point point = Point.first(generatePoint());
         points.add(point);
         return point;
+    }
+
+    public List<Point> getPoints() {
+        return points;
     }
 
     @Override

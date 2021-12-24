@@ -34,7 +34,9 @@ public class Point {
         return new Point(0, Direction.first(right));
     }
 
-
+    public Direction getDirection() {
+        return direction;
+    }
 
     @Override
     public String toString() {

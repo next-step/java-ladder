@@ -1,11 +1,12 @@
 package ladder_refactor.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
 
-    private List<LadderLine> lines;
+    private final List<LadderLine> lines;
 
     private Ladder(List<LadderLine> lines) {
         this.lines = lines;
@@ -27,6 +28,6 @@ public class Ladder {
     }
 
     public List<LadderLine> getLines() {
-        return lines;
+        return Collections.unmodifiableList(lines);
     }
 }
