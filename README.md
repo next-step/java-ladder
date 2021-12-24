@@ -44,13 +44,13 @@
 >
 > ![ladder_game_result](https://user-images.githubusercontent.com/15815583/147233380-fa711eab-2f3f-4c5d-8c81-4137bc4e20ac.png)
 >
-> 결과를 보고 싶은 사람은? ('참여자이름' or 모든 참여자:'all' or 종료:'exit')  
+> 결과를 보고 싶은 사람은? ('참여자이름' or 모든 참여자:'all')  
 > pobi
 >
 > 실행 결과  
 > 꽝
 >
-> 결과를 보고 싶은 사람은? ('참여자이름' or 모든 참여자:'all' or 종료:'exit')  
+> 결과를 보고 싶은 사람은? ('참여자이름' or 모든 참여자:'all')  
 > all
 >
 > 실행 결과  
@@ -96,6 +96,7 @@ public class Line {
     - [x] 참여자의 사다리 실행 결과 출력 기능 추가
     - [x] 참여자의 사다리 실행 결과 출력 기능 구현 리팩토링
     - [x] 사다리 게임 실행 후, 사용자의 실행 결과 출력 기능 추가
+    - [x] 사다리 게임 참여자 실행 결과 선택 기능 추가
     - [ ] 리팩토링
 - [ ] `LadderController`에 `Ladder` 생성 파라미터를 전달하기 위한 클래스 `CreateLadderRequest`
     - [x] 전달 인스턴스 생성 기능 추가
