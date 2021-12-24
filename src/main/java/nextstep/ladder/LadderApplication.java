@@ -16,7 +16,7 @@ public class LadderApplication {
         Users users = Users.from(InputView.readUserNames());
         LadderResults ladderResults = LadderResults.from(InputView.readLadderResults());
         Ladder ladder = controller.createLadder(CreateLadderRequest.of(users.size(), InputView.readHeightOfLadder()));
-        OutputView.printLadderResult(users, ladder);
+        OutputView.printLadderResult(users, ladder, ladderResults);
         OutputView.printExecutionResultForUsers(controller.retrieveUserResults(RetrieveResultRequest.of(ladder, UsersLadderResults.of(users, ladderResults))), InputView.readCommandForResultOfTargetUser());
     }
 }

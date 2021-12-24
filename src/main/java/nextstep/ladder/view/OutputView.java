@@ -12,20 +12,16 @@ public final class OutputView {
     private static final String LADDER_VERTICAL_BAR = "┃";
     private static final String BLANK = " ";
     private static final int TEXT_WIDTH = 5;
+    private static final String OUTPUT_FORMAT = "%6s";
 
     private OutputView() {
     }
 
-    public static void printLadderResult(Users users, Ladder ladder) {
+    public static void printLadderResult(Users users, Ladder ladder, LadderResults ladderResults) {
         System.out.println(RESULT_FOR_LADDER_OUTPUT_MESSAGE);
         printUserNames(users);
         printLadder(ladder);
-        // todo: 사다리 실행 결과 출력 구현
-        System.out.println(
-                Stream.of("꽝", "5,000", "꽝", "3,000")
-                        .map(name -> String.format("%6s", name))
-                        .collect(Collectors.joining())
-        );
+        printLadderResults(ladderResults);
     }
 
     // todo: 사다리 실행 사용자 결과 구현
@@ -33,6 +29,18 @@ public final class OutputView {
         System.out.println(RESULT_FOR_USERS_OUTPUT_MESSAGE);
         Stream.of("pobi : 꽝", "honux : 3000", "crong : 꽝", "jk : 5000")
                 .forEach(System.out::println);
+    }
+
+    private static void printLadderResults(LadderResults ladderResults) {
+        System.out.println(ladderResults(ladderResults));
+    }
+
+    private static String ladderResults(LadderResults ladderResults) {
+        return ladderResults.getLadderResults()
+                .stream()
+                .map(LadderResult::getValue)
+                .map(name -> String.format(OUTPUT_FORMAT, name))
+                .collect(Collectors.joining());
     }
 
     private static void printUserNames(Users users) {
