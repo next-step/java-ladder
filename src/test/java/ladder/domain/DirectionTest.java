@@ -9,33 +9,36 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class DirectionTest {
+    private static final Direction STAY = new Direction.Builder().left(FALSE).right(FALSE).build();
+    private static final Direction LEFT = new Direction.Builder().left(TRUE).right(FALSE).build();
+    private static final Direction RIGHT = new Direction.Builder().left(FALSE).right(TRUE).build();
     @Test
     public void init() {
-        assertThat(Direction.of(true, false)).isEqualTo(Direction.of(true, false));
+        assertThat(new Direction.Builder().build()).isEqualTo(STAY);
     }
 
     @Test
     public void init_invalid() {
-        assertThatThrownBy(() -> Direction.of(TRUE, TRUE))
+        assertThatThrownBy(() -> new Direction.Builder().left(TRUE).right(TRUE).build())
                 .isInstanceOf(IllegalStateException.class);
     }
 
     @Test
     public void next_random_true() {
         Direction next = Direction.first(previous -> true).next(new RandomGeneratorStrategy());
-        assertThat(next).isEqualTo(Direction.of(TRUE, FALSE));
+        assertThat(next).isEqualTo(LEFT);
     }
 
     @Test
     public void next_true() {
-        Direction next = Direction.of(TRUE, FALSE).next(TRUE);
-        assertThat(next).isEqualTo(Direction.of(FALSE, TRUE));
+        Direction next = LEFT.next(TRUE);
+        assertThat(next).isEqualTo(RIGHT);
     }
 
     @Test
     public void next_false() {
-        Direction next = Direction.of(FALSE, TRUE).next(FALSE);
-        assertThat(next).isEqualTo(Direction.of(TRUE, FALSE));
+        Direction next = RIGHT.next(FALSE);
+        assertThat(next).isEqualTo(LEFT);
     }
 
     @Test
@@ -47,6 +50,6 @@ public class DirectionTest {
     @Test
     public void last() {
         Direction last = Direction.first(previous -> true).last();
-        assertThat(last).isEqualTo(Direction.of(TRUE, FALSE));
+        assertThat(last).isEqualTo(LEFT);
     }
 }

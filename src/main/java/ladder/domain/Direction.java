@@ -10,10 +10,10 @@ public class Direction {
     private final boolean left;
     private final boolean right;
 
-    private Direction(final boolean left, final boolean right) {
-        checkValidation(left, right);
-        this.left = left;
-        this.right = right;
+    private Direction(final Builder directionBuilder) {
+        checkValidation(directionBuilder.left, directionBuilder.right);
+        this.left = directionBuilder.left;
+        this.right = directionBuilder.right;
     }
 
     private void checkValidation(boolean left, boolean right) {
@@ -22,32 +22,62 @@ public class Direction {
         }
     }
 
-    public boolean isRight() {
-        return this.right;
-    }
-
     public boolean isLeft() {
         return this.left;
-    }
-
-    public Direction next(final boolean nextRight) {
-        return of(this.right, nextRight);
     }
 
     public Direction next(final GeneratorStrategy movingStrategy) {
         return next(movingStrategy.generatePoint(this.right));
     }
 
-    public static Direction of(boolean first, boolean second) {
-        return new Direction(first, second);
+    public Direction next(final boolean nextRight) {
+        return new Builder()
+                .left(this.right)
+                .right(nextRight)
+                .build();
     }
 
     public static Direction first(GeneratorStrategy generatorStrategy) {
-        return of(FALSE, generatorStrategy.generatePoint(false));
+        return new Builder()
+                .left(FALSE)
+                .right(generatorStrategy.generatePoint(false))
+                .build();
     }
 
     public Direction last() {
-        return of(this.right, FALSE);
+        return new Builder()
+                .left(this.right)
+                .right(FALSE)
+                .build();
+    }
+
+    public int nextPoint(int position) {
+        if (this.left) {
+            position -= 1;
+        }
+        if (this.right) {
+            position += 1;
+        }
+        return position;
+    }
+
+    public static class Builder {
+        private boolean left = false;
+        private boolean right = false;
+
+        public Builder left(boolean first) {
+            this.left = first;
+            return this;
+        }
+
+        public Builder right(boolean second) {
+            this.right = second;
+            return this;
+        }
+
+        public Direction build() {
+            return new Direction(this);
+        }
     }
 
     @Override
