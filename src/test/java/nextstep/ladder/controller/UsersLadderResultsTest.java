@@ -6,18 +6,18 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class UserResultsRequestTest {
-    public static final UserResultsRequest USER_RESULTS_REQUEST = UserResultsRequest.of(UsersTest.FOUR_USERS, LadderResultsTest.FOUR_LADDER_RESULTS);
+class UsersLadderResultsTest {
+    public static final UsersLadderResults USERS_LADDER_RESULTS = UsersLadderResults.of(UsersTest.FOUR_USERS, LadderResultsTest.FOUR_LADDER_RESULTS);
 
     @Test
     void ofTest() {
         // then
-        assertThat(USER_RESULTS_REQUEST).isNotNull();
+        assertThat(USERS_LADDER_RESULTS).isNotNull();
     }
 
     @Test
     void sizeTest() {
         // when & then
-        assertThat(USER_RESULTS_REQUEST.size()).isEqualTo(UsersTest.FOUR_USERS.size());
+        assertThat(USERS_LADDER_RESULTS.size()).isEqualTo(UsersTest.FOUR_USERS.size());
     }
 }

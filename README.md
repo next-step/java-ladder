@@ -104,7 +104,7 @@ public class Line {
 - [ ] `LadderController`에 게임 결과 확인 파라미터를 전달하기 위한 클래스 `RetrieveResultRequest`
     - [x] 전달 인스턴스 생성 기능 추가
     - [x] 전달 파라미터 검증 기능 추가
-- [ ] `LadderController`에 게임 결과 확인 파라미터를 전달하기 위한 클래스 `UserResultRequest`
+- [ ] `LadderController`에 게임 결과 확인 파라미터를 전달하기 위한 클래스 `UsersLadderResults`
     - [x] 전달 인스턴스 생성 기능 추가
     - [x] 전달 파라미터 검증 기능 추가
     - [x] 사용자 게임 결과 갯수 기능 추가
