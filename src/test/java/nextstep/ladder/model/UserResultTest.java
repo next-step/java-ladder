@@ -6,13 +6,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class UserResultTest {
-    public static final UserResult USER_RESULT_WITH_BANG = new UserResult(UserTest.CRONG, LadderResultTest.BANG);
-    public static final UserResult USER_RESULT_WITH_2000_WON = new UserResult(UserTest.POBI, LadderResultTest.WON_2000);
+    public static final UserResult CRONG_USER_RESULT_WITH_BANG = new UserResult(UserTest.CRONG, LadderResultTest.BANG);
+    public static final UserResult POBI_USER_RESULT_WITH_2000_WON = new UserResult(UserTest.POBI, LadderResultTest.WON_2000);
 
     @Test
     void createTest() {
         // then
-        assertThat(USER_RESULT_WITH_BANG).isNotNull();
+        assertThat(CRONG_USER_RESULT_WITH_BANG).isNotNull();
     }
 
     @Test
@@ -34,12 +34,24 @@ public class UserResultTest {
     @Test
     void getUserTest() {
         // when & then
-        assertThat(USER_RESULT_WITH_BANG.getUser()).isNotNull();
+        assertThat(CRONG_USER_RESULT_WITH_BANG.getUser()).isNotNull();
     }
 
     @Test
     void getResultTest() {
         // when & then
-        assertThat(USER_RESULT_WITH_BANG.getResult()).isNotNull();
+        assertThat(CRONG_USER_RESULT_WITH_BANG.getResult()).isNotNull();
+    }
+
+    @Test
+    void userNameTest() {
+        // when & then
+        assertThat(CRONG_USER_RESULT_WITH_BANG.userName()).isEqualTo(UserTest.CRONG.getName());
+    }
+
+    @Test
+    void ladderResultTest() {
+        // when & then
+        assertThat(CRONG_USER_RESULT_WITH_BANG.ladderResult()).isEqualTo(LadderResultTest.BANG.getValue());
     }
 }

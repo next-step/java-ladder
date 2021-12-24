@@ -24,4 +24,8 @@ public final class UserResults {
             throw new IllegalArgumentException("사용자 결과가 비어있습니다.");
         }
     }
+
+    public List<UserResult> getUserResults() {
+        return userResults;
+    }
 }

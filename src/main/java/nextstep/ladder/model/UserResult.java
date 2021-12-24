@@ -17,8 +17,16 @@ public final class UserResult {
         return user;
     }
 
+    public String userName() {
+        return user.getName();
+    }
+
     public LadderResult getResult() {
         return result;
+    }
+
+    public String ladderResult() {
+        return result.getValue();
     }
 
     private void validate(User user, LadderResult result) {

@@ -24,8 +24,7 @@ public final class OutputView {
 
     public static void printExecutionResultForUsers(UserResults userResults, String command) {
         System.out.println(RESULT_FOR_USERS_OUTPUT_MESSAGE);
-        Stream.of("pobi : 꽝", "honux : 3000", "crong : 꽝", "jk : 5000")
-                .forEach(System.out::println);
+        System.out.println(userResults(userResults));
     }
 
     private static String formattedUserNames(Users users) {
@@ -41,6 +40,13 @@ public final class OutputView {
 
     private static String formattedLadderResults(LadderResults ladderResults) {
         return ladderResults(ladderResults);
+    }
+
+    private static String userResults(UserResults userResults) {
+        return userResults.getUserResults()
+                .stream()
+                .map(userResult -> String.format("%s : %s", userResult.userName(), userResult.ladderResult()))
+                .collect(Collectors.joining("\n"));
     }
 
     private static String ladderResults(LadderResults ladderResults) {

@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 class UserResultsTest {
-    private static final UserResults USER_RESULTS = UserResults.from(Arrays.asList(UserResultTest.USER_RESULT_WITH_BANG, UserResultTest.USER_RESULT_WITH_2000_WON));
+    private static final UserResults USER_RESULTS = UserResults.from(Arrays.asList(UserResultTest.CRONG_USER_RESULT_WITH_BANG, UserResultTest.POBI_USER_RESULT_WITH_2000_WON));
 
     @Test
     void fromTest() {
