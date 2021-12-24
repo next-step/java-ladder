@@ -23,4 +23,17 @@ public final class LadderResult {
             throw new IllegalArgumentException("전달된 사다리 결과가 비어있습니다.");
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LadderResult that = (LadderResult) o;
+        return Objects.equals(value, that.value);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
 }

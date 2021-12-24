@@ -37,4 +37,15 @@ public final class LadderResults {
     public List<LadderResult> getLadderResults() {
         return Collections.unmodifiableList(ladderResults);
     }
+
+    public LadderResult get(int index) {
+        if (size() <= index) {
+            throw new IllegalArgumentException(String.format("입력된 index(%d)는 결과를 넘어갈 수 없습니다.", index));
+        }
+        return ladderResults.get(index);
+    }
+
+    public int size() {
+        return ladderResults.size();
+    }
 }
