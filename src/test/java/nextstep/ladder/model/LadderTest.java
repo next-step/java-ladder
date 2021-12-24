@@ -7,13 +7,15 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-class LadderTest {
+public class LadderTest {
+    public static final Ladder LADDER = Ladder.initate(4, 5);
+
     private static final int VALID_HEIGHT_OF_LADDER = 5;
 
     @Test
     void initTest() {
         // then
-        assertThat(Ladder.initate(UsersTest.USERS.size(), VALID_HEIGHT_OF_LADDER)).isNotNull();
+        assertThat(Ladder.initate(UsersTest.FOUR_USERS.size(), VALID_HEIGHT_OF_LADDER)).isNotNull();
     }
 
     @ParameterizedTest
@@ -30,15 +32,15 @@ class LadderTest {
     void checkExceptionForInvalidHeightTest(int invalidHeight) {
         // when & then
         assertThatIllegalArgumentException().isThrownBy(
-                () -> Ladder.initate(UsersTest.USERS.size(), invalidHeight)
+                () -> Ladder.initate(UsersTest.FOUR_USERS.size(), invalidHeight)
         );
     }
 
     @Test
     void getLaddersTest() {
         // given
-        Ladder ladder = Ladder.initate(UsersTest.USERS.size(), VALID_HEIGHT_OF_LADDER);
+        Ladder ladder = Ladder.initate(UsersTest.FOUR_USERS.size(), VALID_HEIGHT_OF_LADDER);
         // when & then
-        assertThat(ladder.getLadders()).hasSize(VALID_HEIGHT_OF_LADDER);
+        assertThat(ladder.getLadderLines()).hasSize(VALID_HEIGHT_OF_LADDER);
     }
 }
