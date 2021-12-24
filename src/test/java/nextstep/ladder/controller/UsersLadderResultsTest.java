@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class UsersLadderResultsTest {
+public class UsersLadderResultsTest {
     public static final UsersLadderResults USERS_LADDER_RESULTS = UsersLadderResults.of(UsersTest.FOUR_USERS, LadderResultsTest.FOUR_LADDER_RESULTS);
 
     @Test

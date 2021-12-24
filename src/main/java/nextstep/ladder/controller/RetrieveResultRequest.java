@@ -32,4 +32,8 @@ public final class RetrieveResultRequest {
     public Ladder getLadder() {
         return ladder;
     }
+
+    public LadderGame ladderGame() {
+        return new LadderGame(ladder, usersLadderResults);
+    }
 }
