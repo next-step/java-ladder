@@ -27,4 +27,8 @@ public final class LadderPoint {
     public PointDirection getDirection() {
         return direction;
     }
+
+    public int move() {
+        return direction.move(index);
+    }
 }

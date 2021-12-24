@@ -8,6 +8,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class LadderPointTest {
 
+    private static final int FIRST_MOVING_POINT = 1;
+
     @Test
     void firstWithTrueTest() {
         // when & then
@@ -42,5 +44,13 @@ class LadderPointTest {
     void lastFromNonFirstTest() {
         // when & then
         assertThat(LadderPoint.first(FALSE).last().getDirection()).isEqualTo(PointDirection.NONE);
+    }
+
+    @Test
+    void moveTest() {
+        // given
+        LadderPoint firstPoint = LadderPoint.first(true);
+        // when & then
+        assertThat(firstPoint.move()).isEqualTo(FIRST_MOVING_POINT);
     }
 }
