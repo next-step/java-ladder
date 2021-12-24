@@ -3,8 +3,6 @@ package nextstep.ladder.view;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-// todo view에서 LadderGame을 보면 안된다
-import nextstep.ladder.LadderGame;
 import nextstep.ladder.engine.GameResult;
 import nextstep.ladder.engine.Ladder;
 import nextstep.ladder.engine.Line;
@@ -79,7 +77,7 @@ public class OutputView {
 
     public static Optional<String> mapNotExistUser(String nameOfUser, GameResult resultOfGame) {
         return Optional.of(nameOfUser)
-                .filter(name -> name.equalsIgnoreCase(LadderGame.ALL_COMMAND))
+                .filter(name -> name.equalsIgnoreCase(Command.ALL_COMMAND))
                 .map(name -> parseAllResult(resultOfGame));
     }
 

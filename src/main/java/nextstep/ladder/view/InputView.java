@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-import nextstep.ladder.LadderGame;
-
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
     private static final String DELIMITER = ",";
@@ -42,7 +40,7 @@ public class InputView {
     }
 
     private static boolean reserved(String command) {
-        return command.equalsIgnoreCase(LadderGame.QUIT_COMMAND) || command.equalsIgnoreCase(LadderGame.ALL_COMMAND);
+        return command.equalsIgnoreCase(Command.QUIT_COMMAND) || command.equalsIgnoreCase(Command.ALL_COMMAND);
     }
 
     public static List<String> inputNameOfPlayers() {

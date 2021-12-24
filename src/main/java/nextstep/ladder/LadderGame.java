@@ -7,13 +7,11 @@ import nextstep.ladder.domain.RandomLadderPointStrategy;
 import nextstep.ladder.engine.GameResult;
 import nextstep.ladder.engine.Ladder;
 import nextstep.ladder.engine.LadderBuilder;
+import nextstep.ladder.view.Command;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
 
 public class LadderGame {
-    public static final String ALL_COMMAND = "all";
-    public static final String QUIT_COMMAND = "quit";
-
     public static void main(String[] args) {
         final List<String> names = InputView.inputNameOfPlayers();
         final List<String> resultList = InputView.inputPrizeOfResult();
@@ -28,9 +26,9 @@ public class LadderGame {
         GameResult gameResult = ladder.result();
 
         String nameOfUser = "";
-        while(!nameOfUser.equalsIgnoreCase(QUIT_COMMAND)) {
+        while(!nameOfUser.equalsIgnoreCase(Command.QUIT_COMMAND)) {
             nameOfUser = InputView.inputNameForResult();
-            if (nameOfUser.equalsIgnoreCase(QUIT_COMMAND)) {
+            if (nameOfUser.equalsIgnoreCase(Command.QUIT_COMMAND)) {
                 break;
             }
 
